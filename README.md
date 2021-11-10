@@ -36,7 +36,7 @@ Call the API:
 	BuyersApi apiInstance = new BuyersApi(gr4vyClient.getClient());
 
 	try {
-		Buyers result = apiInstance.listBuyers("", 20, "");
+		Buyers result = apiInstance.listBuyers(null, null, null);
 		System.out.println(result);
 	} catch (ApiException e) {
 		System.err.println("Exception when calling BuyersApi#listBuyers");
@@ -109,49 +109,32 @@ This library conveniently maps every API path to a seperate function. For
 example, `GET /buyers?limit=100` would be:
 
 ```java
-  
+	String search = null;
+	Integer limit = 100;
+	String cursor = null;
+	Buyers response = api.listBuyers(search, limit, cursor);
 ```
 
 To create, the API requires a request object for that resource that is conventiently
-named `Gr4vy<Resource>Request`.  To update, the API requires a request object
-for that resource that is named `Gr4vy<Resource>Update`.
+named `<Resource>Request`.  To update, the API requires a request object
+for that resource that is named `<Resource>Update`.
 
-For example, to create a buyer you will need to pass a `Gr4vyBuyerRequest` object to
-the `AddBuyer` method.
-
-```java
-  
-```
-
-So to update a buyer you will need to pass in the `Gr4vyBuyerUpdate` to the
-`UpdateBuyer` method.
+For example, to create a buyer you will need to pass a `BuyerRequest` object to
+the `addBuyer` method.
 
 ```java
-  
+	BuyerRequest buyer = new BuyerRequest();
+	buyer.setDisplayName("Tester T.");
+	Buyer result = apiInstance.addBuyer(buyer);
 ```
 
-## Response
-
-Every resolved API call returns the requested resource, a `*http.Response`
-object from the "net/http" package and an `error` object.
-
+So to update a buyer you will need to pass in the `BuyerUpdate` object to the
+`updateBuyer` method.
 
 ```java
-  
-```
-
-## Logging & Debugging
-
-The SDK makes it easy possible to the requests and responses to the console.
-
-```java
-  
-```
-
-This will output the request parameters and response to the console as follows.
-
-```sh
-
+	BuyerUpdate buyer = new BuyerUpdate();
+	buyer.setDisplayName("Tester T.");
+	Buyer result = apiInstance.updateBuyer(buyerId, buyer);
 ```
 
 ## Development
@@ -176,7 +159,7 @@ mvn test
 
 ### Publishing
 
-
+This library is published using Maven.
 
 ## License
 
