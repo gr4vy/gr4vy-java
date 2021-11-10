@@ -64,6 +64,9 @@ public class Gr4vyClient {
         this.debug = debug;
     }
 	
+    public void setHost(String host) {
+    	this.host = host;
+    }
 	public ApiClient getClient() throws Gr4vyException {
 		try {
 			ApiClient defaultClient = Configuration.getDefaultApiClient();

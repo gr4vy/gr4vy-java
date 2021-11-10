@@ -6,7 +6,11 @@ more details, visit [gr4vy.com](https://gr4vy.com).
 ## Installation
 
 ```java
-
+<dependency>
+    <groupId>com.gr4vy</groupId>
+    <artifactId>gr4vy_sdk</artifactId>
+    <version>0.1.0</version>
+</dependency>
 ```
 
 ## Getting Started
@@ -18,18 +22,44 @@ Once you have been set up with a Gr4vy account you will need to head over to the
 **Integrations** panel and generate a private key. We recommend storing this key
 in a secure location but in this code sample we simply read the file from disk.
 
+Import Gr4vy:
 ```java
+import com.gr4vy.sdk.*;
+import com.gr4vy.api.ApiException;
+import com.gr4vy.api.model.*;
+import com.gr4vy.api.openapi.BuyersApi;
+```
 
+Call the API:
+```java
+	Gr4vyClient gr4vyClient = new Gr4vyClient("[YOUR_GR4VY_ID]", "private_key.pem");
+	BuyersApi apiInstance = new BuyersApi(gr4vyClient.getClient());
+
+	try {
+		Buyers result = apiInstance.listBuyers("", 20, "");
+		System.out.println(result);
+	} catch (ApiException e) {
+		System.err.println("Exception when calling BuyersApi#listBuyers");
+		System.err.println("Status code: " + e.getCode());
+		System.err.println("Reason: " + e.getResponseBody());
+		System.err.println("Response headers: " + e.getResponseHeaders());
+	}
 ```
 
 ## Gr4vy Embed
 
-To create a token for Gr4vy Embed, call the `client.GetEmbedToken(embed)`
+To create a token for Gr4vy Embed, call the `client.getEmbedToken(embed)`
 function with the amount, currency, and optional buyer information for Gr4vy
 Embed.
 
 ```java
+	Gr4vyClient client = new Gr4vyClient("[YOUR_GR4VY_ID]", "private_key.pem");
+			
+	Map<String, Object> embed = new HashMap<String, Object>();
+	embed.put("amount", 1299);
+	embed.put("currency", "USD");
 
+	String token = client.getEmbedToken(embed);
 ```
 
 You can now pass this token to your frontend where it can be used to
@@ -40,23 +70,33 @@ the token to pull in previously stored payment methods for a user. A buyer
 needs to be created before it can be used in this way.
 
 ```java
-
+	Gr4vyClient gr4vyClient = new Gr4vyClient("[YOUR_GR4VY_ID]", "private_key.pem");
+	BuyersApi apiInstance = new BuyersApi(gr4vyClient.getClient());
+	BuyerRequest buyer = new BuyerRequest();
+	buyer.setDisplayName("Tester T.");
+	try {
+		Buyer result = apiInstance.addBuyer(buyer);
+		System.out.println(result);
+	} catch (ApiException e) {
+		
+	}
 ```
 
 ## Initialization
 
-The client can be initialized with the Gr4vy ID (`gr4vyId`) and the private key
-string.
+The client can be initialized with the Gr4vy ID (`gr4vyId`) and the location of your
+private key string.
 
 ```java
-  
+  Gr4vyClient gr4vyClient = new Gr4vyClient("[YOUR_GR4VY_ID]", "private_key.pem");
 ```
 
 Alternatively, instead of the `gr4vyId` it can be initialized with the `baseUrl`
 of the server to use directly.
 
 ```java
-  
+  Gr4vyClient gr4vyClient = new Gr4vyClient("acme", "private_key.pem");
+  gr4vyClient.setHost("https://api.acme.gr4vy.app")
 ```
 
 Your API private key can be created in your admin panel on the **Integrations**
