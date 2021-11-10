@@ -1,4 +1,9 @@
 {
-    "apiPackage": "com.gr4vy.openapi",
-    "artifactId": "openapi"
+    "apiPackage": "com.gr4vy.api.openapi",
+    "modelPackage": "com.gr4vy.api.model",
+    "artifactId": "openapi",
+    "apiDocs": false,
+    "modelDocs": false,
+    "apiTests": false,
+    "modelTests": false
 }
