@@ -22,10 +22,7 @@ jobs:
           distribution: 'temurin' # See 'Supported distributions' for available options
           java-version: '17'
 
-      - name: Install dependencies
-        run: mvn install
-
-      - name: Run tests
+      - name: Install dependencies & run tests
         env: 
           PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
-        run: mvn test
+        run: mvn install
