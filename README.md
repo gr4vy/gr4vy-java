@@ -5,12 +5,20 @@ more details, visit [gr4vy.com](https://gr4vy.com).
 
 ## Installation
 
+Add the jitpack.io repository to your pom.xml:
 ```java
-<dependency>
-    <groupId>com.gr4vy</groupId>
-    <artifactId>gr4vy_sdk</artifactId>
-    <version>0.1.0</version>
-</dependency>
+	<repository>
+	    <id>jitpack.io</id>
+	    <url>https://jitpack.io</url>
+	</repository>
+```
+Add the `gr4vy-java` dependency to your pom.xml:
+```java
+  	<dependency>
+	    <groupId>com.github.gr4vy</groupId>
+	    <artifactId>gr4vy-java</artifactId>
+	    <version>0.2.0</version>
+	</dependency>
 ```
 
 ## Getting Started
