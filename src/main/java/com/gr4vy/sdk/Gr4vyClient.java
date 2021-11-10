@@ -17,7 +17,6 @@ import java.security.interfaces.ECPublicKey;
 import java.security.spec.InvalidKeySpecException;
 import java.text.ParseException;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
@@ -29,11 +28,8 @@ import org.bouncycastle.openssl.PEMParser;
 import org.bouncycastle.openssl.jcajce.JcaPEMKeyConverter;
 
 import com.gr4vy.api.ApiClient;
-import com.gr4vy.api.ApiException;
 import com.gr4vy.api.Configuration;
 import com.gr4vy.api.auth.*;
-import com.gr4vy.api.model.*;
-import com.gr4vy.api.openapi.BuyersApi;
 import com.nimbusds.jose.JOSEException;
 import com.nimbusds.jose.JWSAlgorithm;
 import com.nimbusds.jose.JWSHeader;
@@ -67,38 +63,9 @@ public class Gr4vyClient {
         this.host = "https://api." + gr4vyId + ".gr4vy.app";
         this.debug = debug;
     }
-    
-	public static void main(String[] args) {
-
-		Gr4vyClient gr4vyClient = new Gr4vyClient("spider", "private_key.pem");
-
-		BuyersApi apiInstance = new BuyersApi(gr4vyClient.getClient());
-		BuyerRequest buyerRequest = new BuyerRequest();  
-		try {
-//			Buyer result = apiInstance.addBuyer(buyerRequest);
-			Buyers result = apiInstance.listBuyers("", 20, "");
-			System.out.println(result);
-			
-			Map<String, Object> embed = new HashMap<String, Object>();
-			embed.put("amount", 1299);
-			embed.put("currency", "USD");
-			
-			String token = gr4vyClient.getEmbedToken(embed);
-			System.out.println(token);
-			
-		} catch (ApiException e) {
-			System.err.println("Exception when calling BuyersApi#addBuyer");
-			System.err.println("Status code: " + e.getCode());
-			System.err.println("Reason: " + e.getResponseBody());
-			System.err.println("Response headers: " + e.getResponseHeaders());
-		}
-	}
 	
 	public ApiClient getClient() throws Gr4vyException {
 		try {
-			if (this.privateKeyLocation == null || this.privateKeyLocation.length() < 2) {
-				throw new Gr4vyException("Unable to read private key");
-			}
 			ApiClient defaultClient = Configuration.getDefaultApiClient();
 			defaultClient.setBasePath(this.host);
 
@@ -177,14 +144,24 @@ public class Gr4vyClient {
 	    PublicKey publicKeyGenerated = keyFactory.generatePublic(pubSpec);
 	    return (ECPublicKey) publicKeyGenerated;
 	}
+	
 	private String getKey() {
-		try {
-			ClassLoader classLoader = getClass().getClassLoader();
-			File file = new File(classLoader.getResource(this.privateKeyLocation).getFile());
-			String key = new String(Files.readAllBytes(file.toPath()), Charset.defaultCharset());
-			return key;
-		} catch (IOException e) {
-			throw new Gr4vyException("Unable to find private key");
-		}
+		String value = System.getenv("PRIVATE_KEY");
+        if (value != null) {
+            return value;
+        }
+        else {
+        	if (this.privateKeyLocation == null || this.privateKeyLocation.length() < 2) {
+    			throw new Gr4vyException("Unable to read private key");
+    		}
+        	try {
+    			ClassLoader classLoader = getClass().getClassLoader();
+    			File file = new File(classLoader.getResource(this.privateKeyLocation).getFile());
+    			String key = new String(Files.readAllBytes(file.toPath()), Charset.defaultCharset());
+    			return key;
+    		} catch (IOException e) {
+    			throw new Gr4vyException("Unable to find private key");
+    		}
+        }
 	}
 }
