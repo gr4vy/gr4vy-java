@@ -44,6 +44,7 @@ public class Gr4vyClient {
 	private String gr4vyId;
 	private String privateKeyLocation;
 	private String host;
+	private String environment;
 	private Boolean debug = false;
 
     /**
@@ -53,14 +54,27 @@ public class Gr4vyClient {
     {
         this.gr4vyId = gr4vyId;
         this.privateKeyLocation = privateKeyLocation;
-        this.host = "https://api." + gr4vyId + ".gr4vy.app";
+        this.environment = "sandbox";
+        String apiPrefix = environment == "sandbox" ? "sandbox." : "";
+        this.host = "https://api." + apiPrefix + gr4vyId  + ".gr4vy.app";
         this.debug = false;
     }
-    public Gr4vyClient(String gr4vyId, String privateKeyLocation, Boolean debug)
+	public Gr4vyClient(String gr4vyId, String privateKeyLocation, String environment)
     {
         this.gr4vyId = gr4vyId;
         this.privateKeyLocation = privateKeyLocation;
-        this.host = "https://api." + gr4vyId + ".gr4vy.app";
+        this.environment = environment;
+        String apiPrefix = environment == "sandbox" ? "sandbox." : "";
+        this.host = "https://api." + apiPrefix + gr4vyId  + ".gr4vy.app";
+        this.debug = false;
+    }
+    public Gr4vyClient(String gr4vyId, String privateKeyLocation, Boolean debug, String environment)
+    {
+        this.gr4vyId = gr4vyId;
+        this.privateKeyLocation = privateKeyLocation;
+        this.environment = environment;
+        String apiPrefix = environment == "sandbox" ? "sandbox." : "";
+        this.host = "https://api." + apiPrefix + gr4vyId  + ".gr4vy.app";
         this.debug = debug;
     }
 	

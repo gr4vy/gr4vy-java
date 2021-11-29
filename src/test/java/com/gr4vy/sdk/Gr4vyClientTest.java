@@ -25,7 +25,7 @@ public class Gr4vyClientTest {
 	
 	@Test
     public void addBuyersTest() throws Gr4vyException, ApiException {
-    	Gr4vyClient client = new Gr4vyClient("spider", "private_key.pem");
+    	Gr4vyClient client = new Gr4vyClient("spider", "private_key.pem", "sandbox");
     	BuyersApi api = new BuyersApi(client.getClient());
     	BuyerRequest buyer = new BuyerRequest();
     	buyer.setDisplayName("Java Test");
@@ -36,7 +36,7 @@ public class Gr4vyClientTest {
 	
 	@Test
     public void listBuyersTest() throws Gr4vyException, ApiException {
-    	Gr4vyClient client = new Gr4vyClient("spider", "private_key.pem");
+    	Gr4vyClient client = new Gr4vyClient("spider", "private_key.pem", "sandbox");
     	BuyersApi api = new BuyersApi(client.getClient());
     	
         String search = null;
