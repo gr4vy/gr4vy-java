@@ -34,7 +34,7 @@ import java.util.List;
  * Request body for activating a payment service.
  */
 @ApiModel(description = "Request body for activating a payment service.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-11-10T11:15:12.826734Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-11-29T06:53:23.548460Z[Etc/UTC]")
 public class PaymentServiceRequest {
   public static final String SERIALIZED_NAME_DISPLAY_NAME = "display_name";
   @SerializedName(SERIALIZED_NAME_DISPLAY_NAME)
@@ -92,113 +92,9 @@ public class PaymentServiceRequest {
   @SerializedName(SERIALIZED_NAME_MERCHANT_URL)
   private String merchantUrl;
 
-  /**
-   * Defines if the credentials are intended for the service&#39;s live API or sandbox/test API.
-   */
-  @JsonAdapter(CredentialsModeEnum.Adapter.class)
-  public enum CredentialsModeEnum {
-    SANDBOX("sandbox"),
-    
-    LIVE("live");
-
-    private String value;
-
-    CredentialsModeEnum(String value) {
-      this.value = value;
-    }
-
-    public String getValue() {
-      return value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    public static CredentialsModeEnum fromValue(String value) {
-      for (CredentialsModeEnum b : CredentialsModeEnum.values()) {
-        if (b.value.equals(value)) {
-          return b;
-        }
-      }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
-    }
-
-    public static class Adapter extends TypeAdapter<CredentialsModeEnum> {
-      @Override
-      public void write(final JsonWriter jsonWriter, final CredentialsModeEnum enumeration) throws IOException {
-        jsonWriter.value(enumeration.getValue());
-      }
-
-      @Override
-      public CredentialsModeEnum read(final JsonReader jsonReader) throws IOException {
-        String value =  jsonReader.nextString();
-        return CredentialsModeEnum.fromValue(value);
-      }
-    }
-  }
-
-  public static final String SERIALIZED_NAME_CREDENTIALS_MODE = "credentials_mode";
-  @SerializedName(SERIALIZED_NAME_CREDENTIALS_MODE)
-  private CredentialsModeEnum credentialsMode = CredentialsModeEnum.LIVE;
-
   public static final String SERIALIZED_NAME_ACTIVE = "active";
   @SerializedName(SERIALIZED_NAME_ACTIVE)
   private Boolean active = true;
-
-  /**
-   * Gets or Sets environments
-   */
-  @JsonAdapter(EnvironmentsEnum.Adapter.class)
-  public enum EnvironmentsEnum {
-    DEVELOPMENT("development"),
-    
-    STAGING("staging"),
-    
-    PRODUCTION("production");
-
-    private String value;
-
-    EnvironmentsEnum(String value) {
-      this.value = value;
-    }
-
-    public String getValue() {
-      return value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    public static EnvironmentsEnum fromValue(String value) {
-      for (EnvironmentsEnum b : EnvironmentsEnum.values()) {
-        if (b.value.equals(value)) {
-          return b;
-        }
-      }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
-    }
-
-    public static class Adapter extends TypeAdapter<EnvironmentsEnum> {
-      @Override
-      public void write(final JsonWriter jsonWriter, final EnvironmentsEnum enumeration) throws IOException {
-        jsonWriter.value(enumeration.getValue());
-      }
-
-      @Override
-      public EnvironmentsEnum read(final JsonReader jsonReader) throws IOException {
-        String value =  jsonReader.nextString();
-        return EnvironmentsEnum.fromValue(value);
-      }
-    }
-  }
-
-  public static final String SERIALIZED_NAME_ENVIRONMENTS = "environments";
-  @SerializedName(SERIALIZED_NAME_ENVIRONMENTS)
-  private List<EnvironmentsEnum> environments = null;
 
   public static final String SERIALIZED_NAME_POSITION = "position";
   @SerializedName(SERIALIZED_NAME_POSITION)
@@ -542,29 +438,6 @@ public class PaymentServiceRequest {
   }
 
 
-  public PaymentServiceRequest credentialsMode(CredentialsModeEnum credentialsMode) {
-    
-    this.credentialsMode = credentialsMode;
-    return this;
-  }
-
-   /**
-   * Defines if the credentials are intended for the service&#39;s live API or sandbox/test API.
-   * @return credentialsMode
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(example = "live", value = "Defines if the credentials are intended for the service's live API or sandbox/test API.")
-
-  public CredentialsModeEnum getCredentialsMode() {
-    return credentialsMode;
-  }
-
-
-  public void setCredentialsMode(CredentialsModeEnum credentialsMode) {
-    this.credentialsMode = credentialsMode;
-  }
-
-
   public PaymentServiceRequest active(Boolean active) {
     
     this.active = active;
@@ -585,37 +458,6 @@ public class PaymentServiceRequest {
 
   public void setActive(Boolean active) {
     this.active = active;
-  }
-
-
-  public PaymentServiceRequest environments(List<EnvironmentsEnum> environments) {
-    
-    this.environments = environments;
-    return this;
-  }
-
-  public PaymentServiceRequest addEnvironmentsItem(EnvironmentsEnum environmentsItem) {
-    if (this.environments == null) {
-      this.environments = new ArrayList<EnvironmentsEnum>();
-    }
-    this.environments.add(environmentsItem);
-    return this;
-  }
-
-   /**
-   * Determines the Gr4vy environments in which this service should be available. This can be used in combination with the &#x60;environment&#x60; parameters in the payment method and transaction APIs to route transactions through this service.
-   * @return environments
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(example = "[\"production\"]", value = "Determines the Gr4vy environments in which this service should be available. This can be used in combination with the `environment` parameters in the payment method and transaction APIs to route transactions through this service.")
-
-  public List<EnvironmentsEnum> getEnvironments() {
-    return environments;
-  }
-
-
-  public void setEnvironments(List<EnvironmentsEnum> environments) {
-    this.environments = environments;
   }
 
 
@@ -687,16 +529,14 @@ public class PaymentServiceRequest {
         Objects.equals(this.merchantCountryCode, paymentServiceRequest.merchantCountryCode) &&
         Objects.equals(this.merchantCategoryCode, paymentServiceRequest.merchantCategoryCode) &&
         Objects.equals(this.merchantUrl, paymentServiceRequest.merchantUrl) &&
-        Objects.equals(this.credentialsMode, paymentServiceRequest.credentialsMode) &&
         Objects.equals(this.active, paymentServiceRequest.active) &&
-        Objects.equals(this.environments, paymentServiceRequest.environments) &&
         Objects.equals(this.position, paymentServiceRequest.position) &&
         Objects.equals(this.paymentServiceDefinitionId, paymentServiceRequest.paymentServiceDefinitionId);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(displayName, fields, acceptedCountries, acceptedCurrencies, threeDSecureEnabled, acquirerBinVisa, acquirerBinMastercard, acquirerBinAmex, acquirerBinDiscover, acquirerMerchantId, merchantName, merchantCountryCode, merchantCategoryCode, merchantUrl, credentialsMode, active, environments, position, paymentServiceDefinitionId);
+    return Objects.hash(displayName, fields, acceptedCountries, acceptedCurrencies, threeDSecureEnabled, acquirerBinVisa, acquirerBinMastercard, acquirerBinAmex, acquirerBinDiscover, acquirerMerchantId, merchantName, merchantCountryCode, merchantCategoryCode, merchantUrl, active, position, paymentServiceDefinitionId);
   }
 
   @Override
@@ -717,9 +557,7 @@ public class PaymentServiceRequest {
     sb.append("    merchantCountryCode: ").append(toIndentedString(merchantCountryCode)).append("\n");
     sb.append("    merchantCategoryCode: ").append(toIndentedString(merchantCategoryCode)).append("\n");
     sb.append("    merchantUrl: ").append(toIndentedString(merchantUrl)).append("\n");
-    sb.append("    credentialsMode: ").append(toIndentedString(credentialsMode)).append("\n");
     sb.append("    active: ").append(toIndentedString(active)).append("\n");
-    sb.append("    environments: ").append(toIndentedString(environments)).append("\n");
     sb.append("    position: ").append(toIndentedString(position)).append("\n");
     sb.append("    paymentServiceDefinitionId: ").append(toIndentedString(paymentServiceDefinitionId)).append("\n");
     sb.append("}");

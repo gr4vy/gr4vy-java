@@ -22,3 +22,8 @@ build
 .settings/
 *.pem
 .classpath
+.travis.yml
+build.*
+gradle*
+settings.gradle
+git_push.sh

@@ -432,7 +432,6 @@ public class TransactionsApi {
      * @param afterCreatedAt Filters the results to only transactions created after this ISO date-time string. (optional)
      * @param beforeUpdatedAt Filters the results to only transactions last updated before this ISO date-time string. (optional)
      * @param afterUpdatedAt Filters the results to only transactions last updated after this ISO date-time string. (optional)
-     * @param environment Filters the results to only the items available in this environment. (optional, default to production)
      * @param limit Defines the maximum number of items to return for this request. (optional, default to 20)
      * @param cursor A cursor that identifies the page of results to return. This is used to paginate the results of this API.  For the first page of results, this parameter can be left out. For additional pages, use the value returned by the API in the &#x60;next_cursor&#x60; field. Similarly the &#x60;previous_cursor&#x60; can be used to reverse backwards in the list. (optional)
      * @param _callback Callback for upload/download progress
@@ -445,7 +444,7 @@ public class TransactionsApi {
         <tr><td> 401 </td><td> Returns an error if no valid authentication was provided. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call listTransactionsCall(String search, String transactionStatus, String buyerId, String buyerExternalIdentifier, String beforeCreatedAt, String afterCreatedAt, String beforeUpdatedAt, String afterUpdatedAt, String environment, Integer limit, String cursor, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call listTransactionsCall(String search, String transactionStatus, String buyerId, String buyerExternalIdentifier, String beforeCreatedAt, String afterCreatedAt, String beforeUpdatedAt, String afterUpdatedAt, Integer limit, String cursor, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -489,10 +488,6 @@ public class TransactionsApi {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("after_updated_at", afterUpdatedAt));
         }
 
-        if (environment != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("environment", environment));
-        }
-
         if (limit != null) {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("limit", limit));
         }
@@ -520,10 +515,10 @@ public class TransactionsApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call listTransactionsValidateBeforeCall(String search, String transactionStatus, String buyerId, String buyerExternalIdentifier, String beforeCreatedAt, String afterCreatedAt, String beforeUpdatedAt, String afterUpdatedAt, String environment, Integer limit, String cursor, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call listTransactionsValidateBeforeCall(String search, String transactionStatus, String buyerId, String buyerExternalIdentifier, String beforeCreatedAt, String afterCreatedAt, String beforeUpdatedAt, String afterUpdatedAt, Integer limit, String cursor, final ApiCallback _callback) throws ApiException {
         
 
-        okhttp3.Call localVarCall = listTransactionsCall(search, transactionStatus, buyerId, buyerExternalIdentifier, beforeCreatedAt, afterCreatedAt, beforeUpdatedAt, afterUpdatedAt, environment, limit, cursor, _callback);
+        okhttp3.Call localVarCall = listTransactionsCall(search, transactionStatus, buyerId, buyerExternalIdentifier, beforeCreatedAt, afterCreatedAt, beforeUpdatedAt, afterUpdatedAt, limit, cursor, _callback);
         return localVarCall;
 
     }
@@ -539,7 +534,6 @@ public class TransactionsApi {
      * @param afterCreatedAt Filters the results to only transactions created after this ISO date-time string. (optional)
      * @param beforeUpdatedAt Filters the results to only transactions last updated before this ISO date-time string. (optional)
      * @param afterUpdatedAt Filters the results to only transactions last updated after this ISO date-time string. (optional)
-     * @param environment Filters the results to only the items available in this environment. (optional, default to production)
      * @param limit Defines the maximum number of items to return for this request. (optional, default to 20)
      * @param cursor A cursor that identifies the page of results to return. This is used to paginate the results of this API.  For the first page of results, this parameter can be left out. For additional pages, use the value returned by the API in the &#x60;next_cursor&#x60; field. Similarly the &#x60;previous_cursor&#x60; can be used to reverse backwards in the list. (optional)
      * @return Transactions
@@ -551,8 +545,8 @@ public class TransactionsApi {
         <tr><td> 401 </td><td> Returns an error if no valid authentication was provided. </td><td>  -  </td></tr>
      </table>
      */
-    public Transactions listTransactions(String search, String transactionStatus, String buyerId, String buyerExternalIdentifier, String beforeCreatedAt, String afterCreatedAt, String beforeUpdatedAt, String afterUpdatedAt, String environment, Integer limit, String cursor) throws ApiException {
-        ApiResponse<Transactions> localVarResp = listTransactionsWithHttpInfo(search, transactionStatus, buyerId, buyerExternalIdentifier, beforeCreatedAt, afterCreatedAt, beforeUpdatedAt, afterUpdatedAt, environment, limit, cursor);
+    public Transactions listTransactions(String search, String transactionStatus, String buyerId, String buyerExternalIdentifier, String beforeCreatedAt, String afterCreatedAt, String beforeUpdatedAt, String afterUpdatedAt, Integer limit, String cursor) throws ApiException {
+        ApiResponse<Transactions> localVarResp = listTransactionsWithHttpInfo(search, transactionStatus, buyerId, buyerExternalIdentifier, beforeCreatedAt, afterCreatedAt, beforeUpdatedAt, afterUpdatedAt, limit, cursor);
         return localVarResp.getData();
     }
 
@@ -567,7 +561,6 @@ public class TransactionsApi {
      * @param afterCreatedAt Filters the results to only transactions created after this ISO date-time string. (optional)
      * @param beforeUpdatedAt Filters the results to only transactions last updated before this ISO date-time string. (optional)
      * @param afterUpdatedAt Filters the results to only transactions last updated after this ISO date-time string. (optional)
-     * @param environment Filters the results to only the items available in this environment. (optional, default to production)
      * @param limit Defines the maximum number of items to return for this request. (optional, default to 20)
      * @param cursor A cursor that identifies the page of results to return. This is used to paginate the results of this API.  For the first page of results, this parameter can be left out. For additional pages, use the value returned by the API in the &#x60;next_cursor&#x60; field. Similarly the &#x60;previous_cursor&#x60; can be used to reverse backwards in the list. (optional)
      * @return ApiResponse&lt;Transactions&gt;
@@ -579,8 +572,8 @@ public class TransactionsApi {
         <tr><td> 401 </td><td> Returns an error if no valid authentication was provided. </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<Transactions> listTransactionsWithHttpInfo(String search, String transactionStatus, String buyerId, String buyerExternalIdentifier, String beforeCreatedAt, String afterCreatedAt, String beforeUpdatedAt, String afterUpdatedAt, String environment, Integer limit, String cursor) throws ApiException {
-        okhttp3.Call localVarCall = listTransactionsValidateBeforeCall(search, transactionStatus, buyerId, buyerExternalIdentifier, beforeCreatedAt, afterCreatedAt, beforeUpdatedAt, afterUpdatedAt, environment, limit, cursor, null);
+    public ApiResponse<Transactions> listTransactionsWithHttpInfo(String search, String transactionStatus, String buyerId, String buyerExternalIdentifier, String beforeCreatedAt, String afterCreatedAt, String beforeUpdatedAt, String afterUpdatedAt, Integer limit, String cursor) throws ApiException {
+        okhttp3.Call localVarCall = listTransactionsValidateBeforeCall(search, transactionStatus, buyerId, buyerExternalIdentifier, beforeCreatedAt, afterCreatedAt, beforeUpdatedAt, afterUpdatedAt, limit, cursor, null);
         Type localVarReturnType = new TypeToken<Transactions>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -596,7 +589,6 @@ public class TransactionsApi {
      * @param afterCreatedAt Filters the results to only transactions created after this ISO date-time string. (optional)
      * @param beforeUpdatedAt Filters the results to only transactions last updated before this ISO date-time string. (optional)
      * @param afterUpdatedAt Filters the results to only transactions last updated after this ISO date-time string. (optional)
-     * @param environment Filters the results to only the items available in this environment. (optional, default to production)
      * @param limit Defines the maximum number of items to return for this request. (optional, default to 20)
      * @param cursor A cursor that identifies the page of results to return. This is used to paginate the results of this API.  For the first page of results, this parameter can be left out. For additional pages, use the value returned by the API in the &#x60;next_cursor&#x60; field. Similarly the &#x60;previous_cursor&#x60; can be used to reverse backwards in the list. (optional)
      * @param _callback The callback to be executed when the API call finishes
@@ -609,9 +601,9 @@ public class TransactionsApi {
         <tr><td> 401 </td><td> Returns an error if no valid authentication was provided. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call listTransactionsAsync(String search, String transactionStatus, String buyerId, String buyerExternalIdentifier, String beforeCreatedAt, String afterCreatedAt, String beforeUpdatedAt, String afterUpdatedAt, String environment, Integer limit, String cursor, final ApiCallback<Transactions> _callback) throws ApiException {
+    public okhttp3.Call listTransactionsAsync(String search, String transactionStatus, String buyerId, String buyerExternalIdentifier, String beforeCreatedAt, String afterCreatedAt, String beforeUpdatedAt, String afterUpdatedAt, Integer limit, String cursor, final ApiCallback<Transactions> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = listTransactionsValidateBeforeCall(search, transactionStatus, buyerId, buyerExternalIdentifier, beforeCreatedAt, afterCreatedAt, beforeUpdatedAt, afterUpdatedAt, environment, limit, cursor, _callback);
+        okhttp3.Call localVarCall = listTransactionsValidateBeforeCall(search, transactionStatus, buyerId, buyerExternalIdentifier, beforeCreatedAt, afterCreatedAt, beforeUpdatedAt, afterUpdatedAt, limit, cursor, _callback);
         Type localVarReturnType = new TypeToken<Transactions>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;

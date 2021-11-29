@@ -31,7 +31,7 @@ import org.threeten.bp.OffsetDateTime;
  * A generic payment method.
  */
 @ApiModel(description = "A generic payment method.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-11-10T11:15:12.826734Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-11-29T06:53:23.548460Z[Etc/UTC]")
 public class PaymentMethod {
   /**
    * &#x60;payment-method&#x60;.
@@ -180,59 +180,6 @@ public class PaymentMethod {
   public static final String SERIALIZED_NAME_APPROVAL_URL = "approval_url";
   @SerializedName(SERIALIZED_NAME_APPROVAL_URL)
   private String approvalUrl;
-
-  /**
-   * The environment this payment method has been stored for. This will be null of the payment method was not stored.
-   */
-  @JsonAdapter(EnvironmentEnum.Adapter.class)
-  public enum EnvironmentEnum {
-    DEVELOPMENT("development"),
-    
-    STAGING("staging"),
-    
-    PRODUCTION("production");
-
-    private String value;
-
-    EnvironmentEnum(String value) {
-      this.value = value;
-    }
-
-    public String getValue() {
-      return value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    public static EnvironmentEnum fromValue(String value) {
-      for (EnvironmentEnum b : EnvironmentEnum.values()) {
-        if (b.value.equals(value)) {
-          return b;
-        }
-      }
-      return null;
-    }
-
-    public static class Adapter extends TypeAdapter<EnvironmentEnum> {
-      @Override
-      public void write(final JsonWriter jsonWriter, final EnvironmentEnum enumeration) throws IOException {
-        jsonWriter.value(enumeration.getValue());
-      }
-
-      @Override
-      public EnvironmentEnum read(final JsonReader jsonReader) throws IOException {
-        String value =  jsonReader.nextString();
-        return EnvironmentEnum.fromValue(value);
-      }
-    }
-  }
-
-  public static final String SERIALIZED_NAME_ENVIRONMENT = "environment";
-  @SerializedName(SERIALIZED_NAME_ENVIRONMENT)
-  private EnvironmentEnum environment = EnvironmentEnum.PRODUCTION;
 
 
   public PaymentMethod type(TypeEnum type) {
@@ -534,29 +481,6 @@ public class PaymentMethod {
   }
 
 
-  public PaymentMethod environment(EnvironmentEnum environment) {
-    
-    this.environment = environment;
-    return this;
-  }
-
-   /**
-   * The environment this payment method has been stored for. This will be null of the payment method was not stored.
-   * @return environment
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(example = "production", value = "The environment this payment method has been stored for. This will be null of the payment method was not stored.")
-
-  public EnvironmentEnum getEnvironment() {
-    return environment;
-  }
-
-
-  public void setEnvironment(EnvironmentEnum environment) {
-    this.environment = environment;
-  }
-
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -578,13 +502,12 @@ public class PaymentMethod {
         Objects.equals(this.label, paymentMethod.label) &&
         Objects.equals(this.scheme, paymentMethod.scheme) &&
         Objects.equals(this.expirationDate, paymentMethod.expirationDate) &&
-        Objects.equals(this.approvalUrl, paymentMethod.approvalUrl) &&
-        Objects.equals(this.environment, paymentMethod.environment);
+        Objects.equals(this.approvalUrl, paymentMethod.approvalUrl);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(type, id, status, method, mode, createdAt, updatedAt, externalIdentifier, buyer, label, scheme, expirationDate, approvalUrl, environment);
+    return Objects.hash(type, id, status, method, mode, createdAt, updatedAt, externalIdentifier, buyer, label, scheme, expirationDate, approvalUrl);
   }
 
   @Override
@@ -604,7 +527,6 @@ public class PaymentMethod {
     sb.append("    scheme: ").append(toIndentedString(scheme)).append("\n");
     sb.append("    expirationDate: ").append(toIndentedString(expirationDate)).append("\n");
     sb.append("    approvalUrl: ").append(toIndentedString(approvalUrl)).append("\n");
-    sb.append("    environment: ").append(toIndentedString(environment)).append("\n");
     sb.append("}");
     return sb.toString();
   }
