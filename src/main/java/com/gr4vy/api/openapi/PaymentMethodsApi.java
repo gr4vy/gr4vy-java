@@ -303,7 +303,6 @@ public class PaymentMethodsApi {
      * @param buyerExternalIdentifier Filters the results to only the items for which the &#x60;buyer&#x60; has an &#x60;external_identifier&#x60; that matches this value. (optional)
      * @param country Filters the results to only the items which support this country code. A country is formatted as 2-letter ISO country code. (optional)
      * @param currency Filters the results to only the items which support this currency code. A currency is formatted as 3-letter ISO currency code. (optional)
-     * @param environment Filters the results to only the items available in this environment. (optional, default to production)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -315,7 +314,7 @@ public class PaymentMethodsApi {
         <tr><td> 404 </td><td> Returns an error if the resource can not be found. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call listBuyerPaymentMethodsCall(String buyerId, String buyerExternalIdentifier, String country, String currency, String environment, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call listBuyerPaymentMethodsCall(String buyerId, String buyerExternalIdentifier, String country, String currency, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -343,10 +342,6 @@ public class PaymentMethodsApi {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("currency", currency));
         }
 
-        if (environment != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("environment", environment));
-        }
-
         final String[] localVarAccepts = {
             "application/json"
         };
@@ -366,10 +361,10 @@ public class PaymentMethodsApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call listBuyerPaymentMethodsValidateBeforeCall(String buyerId, String buyerExternalIdentifier, String country, String currency, String environment, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call listBuyerPaymentMethodsValidateBeforeCall(String buyerId, String buyerExternalIdentifier, String country, String currency, final ApiCallback _callback) throws ApiException {
         
 
-        okhttp3.Call localVarCall = listBuyerPaymentMethodsCall(buyerId, buyerExternalIdentifier, country, currency, environment, _callback);
+        okhttp3.Call localVarCall = listBuyerPaymentMethodsCall(buyerId, buyerExternalIdentifier, country, currency, _callback);
         return localVarCall;
 
     }
@@ -381,7 +376,6 @@ public class PaymentMethodsApi {
      * @param buyerExternalIdentifier Filters the results to only the items for which the &#x60;buyer&#x60; has an &#x60;external_identifier&#x60; that matches this value. (optional)
      * @param country Filters the results to only the items which support this country code. A country is formatted as 2-letter ISO country code. (optional)
      * @param currency Filters the results to only the items which support this currency code. A currency is formatted as 3-letter ISO currency code. (optional)
-     * @param environment Filters the results to only the items available in this environment. (optional, default to production)
      * @return PaymentMethodsTokenized
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -392,8 +386,8 @@ public class PaymentMethodsApi {
         <tr><td> 404 </td><td> Returns an error if the resource can not be found. </td><td>  -  </td></tr>
      </table>
      */
-    public PaymentMethodsTokenized listBuyerPaymentMethods(String buyerId, String buyerExternalIdentifier, String country, String currency, String environment) throws ApiException {
-        ApiResponse<PaymentMethodsTokenized> localVarResp = listBuyerPaymentMethodsWithHttpInfo(buyerId, buyerExternalIdentifier, country, currency, environment);
+    public PaymentMethodsTokenized listBuyerPaymentMethods(String buyerId, String buyerExternalIdentifier, String country, String currency) throws ApiException {
+        ApiResponse<PaymentMethodsTokenized> localVarResp = listBuyerPaymentMethodsWithHttpInfo(buyerId, buyerExternalIdentifier, country, currency);
         return localVarResp.getData();
     }
 
@@ -404,7 +398,6 @@ public class PaymentMethodsApi {
      * @param buyerExternalIdentifier Filters the results to only the items for which the &#x60;buyer&#x60; has an &#x60;external_identifier&#x60; that matches this value. (optional)
      * @param country Filters the results to only the items which support this country code. A country is formatted as 2-letter ISO country code. (optional)
      * @param currency Filters the results to only the items which support this currency code. A currency is formatted as 3-letter ISO currency code. (optional)
-     * @param environment Filters the results to only the items available in this environment. (optional, default to production)
      * @return ApiResponse&lt;PaymentMethodsTokenized&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -415,8 +408,8 @@ public class PaymentMethodsApi {
         <tr><td> 404 </td><td> Returns an error if the resource can not be found. </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<PaymentMethodsTokenized> listBuyerPaymentMethodsWithHttpInfo(String buyerId, String buyerExternalIdentifier, String country, String currency, String environment) throws ApiException {
-        okhttp3.Call localVarCall = listBuyerPaymentMethodsValidateBeforeCall(buyerId, buyerExternalIdentifier, country, currency, environment, null);
+    public ApiResponse<PaymentMethodsTokenized> listBuyerPaymentMethodsWithHttpInfo(String buyerId, String buyerExternalIdentifier, String country, String currency) throws ApiException {
+        okhttp3.Call localVarCall = listBuyerPaymentMethodsValidateBeforeCall(buyerId, buyerExternalIdentifier, country, currency, null);
         Type localVarReturnType = new TypeToken<PaymentMethodsTokenized>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -428,7 +421,6 @@ public class PaymentMethodsApi {
      * @param buyerExternalIdentifier Filters the results to only the items for which the &#x60;buyer&#x60; has an &#x60;external_identifier&#x60; that matches this value. (optional)
      * @param country Filters the results to only the items which support this country code. A country is formatted as 2-letter ISO country code. (optional)
      * @param currency Filters the results to only the items which support this currency code. A currency is formatted as 3-letter ISO currency code. (optional)
-     * @param environment Filters the results to only the items available in this environment. (optional, default to production)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -440,16 +432,15 @@ public class PaymentMethodsApi {
         <tr><td> 404 </td><td> Returns an error if the resource can not be found. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call listBuyerPaymentMethodsAsync(String buyerId, String buyerExternalIdentifier, String country, String currency, String environment, final ApiCallback<PaymentMethodsTokenized> _callback) throws ApiException {
+    public okhttp3.Call listBuyerPaymentMethodsAsync(String buyerId, String buyerExternalIdentifier, String country, String currency, final ApiCallback<PaymentMethodsTokenized> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = listBuyerPaymentMethodsValidateBeforeCall(buyerId, buyerExternalIdentifier, country, currency, environment, _callback);
+        okhttp3.Call localVarCall = listBuyerPaymentMethodsValidateBeforeCall(buyerId, buyerExternalIdentifier, country, currency, _callback);
         Type localVarReturnType = new TypeToken<PaymentMethodsTokenized>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
     /**
      * Build call for listPaymentMethods
-     * @param environment Filters the results to only the items available in this environment. (optional, default to production)
      * @param buyerId Filters the results to only the items for which the &#x60;buyer&#x60; has an &#x60;id&#x60; that matches this value. (optional)
      * @param buyerExternalIdentifier Filters the results to only the items for which the &#x60;buyer&#x60; has an &#x60;external_identifier&#x60; that matches this value. (optional)
      * @param limit Defines the maximum number of items to return for this request. (optional, default to 20)
@@ -464,7 +455,7 @@ public class PaymentMethodsApi {
         <tr><td> 401 </td><td> Returns an error if no valid authentication was provided. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call listPaymentMethodsCall(String environment, String buyerId, String buyerExternalIdentifier, Integer limit, String cursor, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call listPaymentMethodsCall(String buyerId, String buyerExternalIdentifier, Integer limit, String cursor, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -475,10 +466,6 @@ public class PaymentMethodsApi {
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
-
-        if (environment != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("environment", environment));
-        }
 
         if (buyerId != null) {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("buyer_id", buyerId));
@@ -515,10 +502,10 @@ public class PaymentMethodsApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call listPaymentMethodsValidateBeforeCall(String environment, String buyerId, String buyerExternalIdentifier, Integer limit, String cursor, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call listPaymentMethodsValidateBeforeCall(String buyerId, String buyerExternalIdentifier, Integer limit, String cursor, final ApiCallback _callback) throws ApiException {
         
 
-        okhttp3.Call localVarCall = listPaymentMethodsCall(environment, buyerId, buyerExternalIdentifier, limit, cursor, _callback);
+        okhttp3.Call localVarCall = listPaymentMethodsCall(buyerId, buyerExternalIdentifier, limit, cursor, _callback);
         return localVarCall;
 
     }
@@ -526,7 +513,6 @@ public class PaymentMethodsApi {
     /**
      * List payment methods
      * Returns a list of stored (tokenized) payment methods.
-     * @param environment Filters the results to only the items available in this environment. (optional, default to production)
      * @param buyerId Filters the results to only the items for which the &#x60;buyer&#x60; has an &#x60;id&#x60; that matches this value. (optional)
      * @param buyerExternalIdentifier Filters the results to only the items for which the &#x60;buyer&#x60; has an &#x60;external_identifier&#x60; that matches this value. (optional)
      * @param limit Defines the maximum number of items to return for this request. (optional, default to 20)
@@ -540,15 +526,14 @@ public class PaymentMethodsApi {
         <tr><td> 401 </td><td> Returns an error if no valid authentication was provided. </td><td>  -  </td></tr>
      </table>
      */
-    public PaymentMethods listPaymentMethods(String environment, String buyerId, String buyerExternalIdentifier, Integer limit, String cursor) throws ApiException {
-        ApiResponse<PaymentMethods> localVarResp = listPaymentMethodsWithHttpInfo(environment, buyerId, buyerExternalIdentifier, limit, cursor);
+    public PaymentMethods listPaymentMethods(String buyerId, String buyerExternalIdentifier, Integer limit, String cursor) throws ApiException {
+        ApiResponse<PaymentMethods> localVarResp = listPaymentMethodsWithHttpInfo(buyerId, buyerExternalIdentifier, limit, cursor);
         return localVarResp.getData();
     }
 
     /**
      * List payment methods
      * Returns a list of stored (tokenized) payment methods.
-     * @param environment Filters the results to only the items available in this environment. (optional, default to production)
      * @param buyerId Filters the results to only the items for which the &#x60;buyer&#x60; has an &#x60;id&#x60; that matches this value. (optional)
      * @param buyerExternalIdentifier Filters the results to only the items for which the &#x60;buyer&#x60; has an &#x60;external_identifier&#x60; that matches this value. (optional)
      * @param limit Defines the maximum number of items to return for this request. (optional, default to 20)
@@ -562,8 +547,8 @@ public class PaymentMethodsApi {
         <tr><td> 401 </td><td> Returns an error if no valid authentication was provided. </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<PaymentMethods> listPaymentMethodsWithHttpInfo(String environment, String buyerId, String buyerExternalIdentifier, Integer limit, String cursor) throws ApiException {
-        okhttp3.Call localVarCall = listPaymentMethodsValidateBeforeCall(environment, buyerId, buyerExternalIdentifier, limit, cursor, null);
+    public ApiResponse<PaymentMethods> listPaymentMethodsWithHttpInfo(String buyerId, String buyerExternalIdentifier, Integer limit, String cursor) throws ApiException {
+        okhttp3.Call localVarCall = listPaymentMethodsValidateBeforeCall(buyerId, buyerExternalIdentifier, limit, cursor, null);
         Type localVarReturnType = new TypeToken<PaymentMethods>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -571,7 +556,6 @@ public class PaymentMethodsApi {
     /**
      * List payment methods (asynchronously)
      * Returns a list of stored (tokenized) payment methods.
-     * @param environment Filters the results to only the items available in this environment. (optional, default to production)
      * @param buyerId Filters the results to only the items for which the &#x60;buyer&#x60; has an &#x60;id&#x60; that matches this value. (optional)
      * @param buyerExternalIdentifier Filters the results to only the items for which the &#x60;buyer&#x60; has an &#x60;external_identifier&#x60; that matches this value. (optional)
      * @param limit Defines the maximum number of items to return for this request. (optional, default to 20)
@@ -586,9 +570,9 @@ public class PaymentMethodsApi {
         <tr><td> 401 </td><td> Returns an error if no valid authentication was provided. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call listPaymentMethodsAsync(String environment, String buyerId, String buyerExternalIdentifier, Integer limit, String cursor, final ApiCallback<PaymentMethods> _callback) throws ApiException {
+    public okhttp3.Call listPaymentMethodsAsync(String buyerId, String buyerExternalIdentifier, Integer limit, String cursor, final ApiCallback<PaymentMethods> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = listPaymentMethodsValidateBeforeCall(environment, buyerId, buyerExternalIdentifier, limit, cursor, _callback);
+        okhttp3.Call localVarCall = listPaymentMethodsValidateBeforeCall(buyerId, buyerExternalIdentifier, limit, cursor, _callback);
         Type localVarReturnType = new TypeToken<PaymentMethods>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;

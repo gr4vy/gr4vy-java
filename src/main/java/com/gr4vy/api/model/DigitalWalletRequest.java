@@ -30,7 +30,7 @@ import java.util.List;
  * Merchant details used to register with a digital wallet provider.
  */
 @ApiModel(description = "Merchant details used to register with a digital wallet provider.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-11-10T11:15:12.826734Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-11-29T06:53:23.548460Z[Etc/UTC]")
 public class DigitalWalletRequest {
   /**
    * The name of the digital wallet provider.
@@ -98,59 +98,6 @@ public class DigitalWalletRequest {
   public static final String SERIALIZED_NAME_ACCEPT_TERMS_AND_CONDITIONS = "accept_terms_and_conditions";
   @SerializedName(SERIALIZED_NAME_ACCEPT_TERMS_AND_CONDITIONS)
   private Boolean acceptTermsAndConditions;
-
-  /**
-   * Gets or Sets environments
-   */
-  @JsonAdapter(EnvironmentsEnum.Adapter.class)
-  public enum EnvironmentsEnum {
-    DEVELOPMENT("development"),
-    
-    STAGING("staging"),
-    
-    PRODUCTION("production");
-
-    private String value;
-
-    EnvironmentsEnum(String value) {
-      this.value = value;
-    }
-
-    public String getValue() {
-      return value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    public static EnvironmentsEnum fromValue(String value) {
-      for (EnvironmentsEnum b : EnvironmentsEnum.values()) {
-        if (b.value.equals(value)) {
-          return b;
-        }
-      }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
-    }
-
-    public static class Adapter extends TypeAdapter<EnvironmentsEnum> {
-      @Override
-      public void write(final JsonWriter jsonWriter, final EnvironmentsEnum enumeration) throws IOException {
-        jsonWriter.value(enumeration.getValue());
-      }
-
-      @Override
-      public EnvironmentsEnum read(final JsonReader jsonReader) throws IOException {
-        String value =  jsonReader.nextString();
-        return EnvironmentsEnum.fromValue(value);
-      }
-    }
-  }
-
-  public static final String SERIALIZED_NAME_ENVIRONMENTS = "environments";
-  @SerializedName(SERIALIZED_NAME_ENVIRONMENTS)
-  private List<EnvironmentsEnum> environments = null;
 
 
   public DigitalWalletRequest provider(ProviderEnum provider) {
@@ -269,37 +216,6 @@ public class DigitalWalletRequest {
   }
 
 
-  public DigitalWalletRequest environments(List<EnvironmentsEnum> environments) {
-    
-    this.environments = environments;
-    return this;
-  }
-
-  public DigitalWalletRequest addEnvironmentsItem(EnvironmentsEnum environmentsItem) {
-    if (this.environments == null) {
-      this.environments = new ArrayList<EnvironmentsEnum>();
-    }
-    this.environments.add(environmentsItem);
-    return this;
-  }
-
-   /**
-   * Determines the Gr4vy environments in which this digital wallet should be available.
-   * @return environments
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(example = "[\"production\"]", value = "Determines the Gr4vy environments in which this digital wallet should be available.")
-
-  public List<EnvironmentsEnum> getEnvironments() {
-    return environments;
-  }
-
-
-  public void setEnvironments(List<EnvironmentsEnum> environments) {
-    this.environments = environments;
-  }
-
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -313,13 +229,12 @@ public class DigitalWalletRequest {
         Objects.equals(this.merchantName, digitalWalletRequest.merchantName) &&
         Objects.equals(this.merchantUrl, digitalWalletRequest.merchantUrl) &&
         Objects.equals(this.domainNames, digitalWalletRequest.domainNames) &&
-        Objects.equals(this.acceptTermsAndConditions, digitalWalletRequest.acceptTermsAndConditions) &&
-        Objects.equals(this.environments, digitalWalletRequest.environments);
+        Objects.equals(this.acceptTermsAndConditions, digitalWalletRequest.acceptTermsAndConditions);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(provider, merchantName, merchantUrl, domainNames, acceptTermsAndConditions, environments);
+    return Objects.hash(provider, merchantName, merchantUrl, domainNames, acceptTermsAndConditions);
   }
 
   @Override
@@ -331,7 +246,6 @@ public class DigitalWalletRequest {
     sb.append("    merchantUrl: ").append(toIndentedString(merchantUrl)).append("\n");
     sb.append("    domainNames: ").append(toIndentedString(domainNames)).append("\n");
     sb.append("    acceptTermsAndConditions: ").append(toIndentedString(acceptTermsAndConditions)).append("\n");
-    sb.append("    environments: ").append(toIndentedString(environments)).append("\n");
     sb.append("}");
     return sb.toString();
   }

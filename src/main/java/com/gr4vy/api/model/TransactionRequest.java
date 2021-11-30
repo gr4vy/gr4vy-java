@@ -30,7 +30,7 @@ import java.io.IOException;
  * A request to create a transaction.
  */
 @ApiModel(description = "A request to create a transaction.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-11-10T11:15:12.826734Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-11-29T06:53:23.548460Z[Etc/UTC]")
 public class TransactionRequest {
   public static final String SERIALIZED_NAME_AMOUNT = "amount";
   @SerializedName(SERIALIZED_NAME_AMOUNT)
@@ -102,59 +102,6 @@ public class TransactionRequest {
   public static final String SERIALIZED_NAME_EXTERNAL_IDENTIFIER = "external_identifier";
   @SerializedName(SERIALIZED_NAME_EXTERNAL_IDENTIFIER)
   private String externalIdentifier;
-
-  /**
-   * Defines the environment to create this transaction in. Setting this to anything other than &#x60;production&#x60; will force Gr4vy to use the payment a service configured for that environment.
-   */
-  @JsonAdapter(EnvironmentEnum.Adapter.class)
-  public enum EnvironmentEnum {
-    DEVELOPMENT("development"),
-    
-    STAGING("staging"),
-    
-    PRODUCTION("production");
-
-    private String value;
-
-    EnvironmentEnum(String value) {
-      this.value = value;
-    }
-
-    public String getValue() {
-      return value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    public static EnvironmentEnum fromValue(String value) {
-      for (EnvironmentEnum b : EnvironmentEnum.values()) {
-        if (b.value.equals(value)) {
-          return b;
-        }
-      }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
-    }
-
-    public static class Adapter extends TypeAdapter<EnvironmentEnum> {
-      @Override
-      public void write(final JsonWriter jsonWriter, final EnvironmentEnum enumeration) throws IOException {
-        jsonWriter.value(enumeration.getValue());
-      }
-
-      @Override
-      public EnvironmentEnum read(final JsonReader jsonReader) throws IOException {
-        String value =  jsonReader.nextString();
-        return EnvironmentEnum.fromValue(value);
-      }
-    }
-  }
-
-  public static final String SERIALIZED_NAME_ENVIRONMENT = "environment";
-  @SerializedName(SERIALIZED_NAME_ENVIRONMENT)
-  private EnvironmentEnum environment;
 
   public static final String SERIALIZED_NAME_THREE_D_SECURE_DATA = "three_d_secure_data";
   @SerializedName(SERIALIZED_NAME_THREE_D_SECURE_DATA)
@@ -298,29 +245,6 @@ public class TransactionRequest {
   }
 
 
-  public TransactionRequest environment(EnvironmentEnum environment) {
-    
-    this.environment = environment;
-    return this;
-  }
-
-   /**
-   * Defines the environment to create this transaction in. Setting this to anything other than &#x60;production&#x60; will force Gr4vy to use the payment a service configured for that environment.
-   * @return environment
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(example = "staging", value = "Defines the environment to create this transaction in. Setting this to anything other than `production` will force Gr4vy to use the payment a service configured for that environment.")
-
-  public EnvironmentEnum getEnvironment() {
-    return environment;
-  }
-
-
-  public void setEnvironment(EnvironmentEnum environment) {
-    this.environment = environment;
-  }
-
-
   public TransactionRequest threeDSecureData(ThreeDSecureDataV1V2 threeDSecureData) {
     
     this.threeDSecureData = threeDSecureData;
@@ -359,13 +283,12 @@ public class TransactionRequest {
         Objects.equals(this.store, transactionRequest.store) &&
         Objects.equals(this.intent, transactionRequest.intent) &&
         Objects.equals(this.externalIdentifier, transactionRequest.externalIdentifier) &&
-        Objects.equals(this.environment, transactionRequest.environment) &&
         Objects.equals(this.threeDSecureData, transactionRequest.threeDSecureData);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(amount, currency, paymentMethod, store, intent, externalIdentifier, environment, threeDSecureData);
+    return Objects.hash(amount, currency, paymentMethod, store, intent, externalIdentifier, threeDSecureData);
   }
 
   @Override
@@ -378,7 +301,6 @@ public class TransactionRequest {
     sb.append("    store: ").append(toIndentedString(store)).append("\n");
     sb.append("    intent: ").append(toIndentedString(intent)).append("\n");
     sb.append("    externalIdentifier: ").append(toIndentedString(externalIdentifier)).append("\n");
-    sb.append("    environment: ").append(toIndentedString(environment)).append("\n");
     sb.append("    threeDSecureData: ").append(toIndentedString(threeDSecureData)).append("\n");
     sb.append("}");
     return sb.toString();

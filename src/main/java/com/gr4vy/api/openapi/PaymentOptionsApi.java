@@ -60,7 +60,6 @@ public class PaymentOptionsApi {
      * Build call for listPaymentOptions
      * @param country Filters the results to only the items which support this country code. A country is formatted as 2-letter ISO country code. (optional)
      * @param currency Filters the results to only the items which support this currency code. A currency is formatted as 3-letter ISO currency code. (optional)
-     * @param environment Filters the results to only the items available in this environment. (optional, default to production)
      * @param locale An ISO 639-1 Language Code and optional ISO 3166 Country Code. This locale determines the language for the labels returned for every payment option. (optional, default to en-US)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
@@ -73,7 +72,7 @@ public class PaymentOptionsApi {
         <tr><td> 401 </td><td> Returns an error if no valid authentication was provided. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call listPaymentOptionsCall(String country, String currency, String environment, String locale, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call listPaymentOptionsCall(String country, String currency, String locale, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -91,10 +90,6 @@ public class PaymentOptionsApi {
 
         if (currency != null) {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("currency", currency));
-        }
-
-        if (environment != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("environment", environment));
         }
 
         if (locale != null) {
@@ -120,10 +115,10 @@ public class PaymentOptionsApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call listPaymentOptionsValidateBeforeCall(String country, String currency, String environment, String locale, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call listPaymentOptionsValidateBeforeCall(String country, String currency, String locale, final ApiCallback _callback) throws ApiException {
         
 
-        okhttp3.Call localVarCall = listPaymentOptionsCall(country, currency, environment, locale, _callback);
+        okhttp3.Call localVarCall = listPaymentOptionsCall(country, currency, locale, _callback);
         return localVarCall;
 
     }
@@ -133,7 +128,6 @@ public class PaymentOptionsApi {
      * Returns a list of available payment method options for a currency and country.
      * @param country Filters the results to only the items which support this country code. A country is formatted as 2-letter ISO country code. (optional)
      * @param currency Filters the results to only the items which support this currency code. A currency is formatted as 3-letter ISO currency code. (optional)
-     * @param environment Filters the results to only the items available in this environment. (optional, default to production)
      * @param locale An ISO 639-1 Language Code and optional ISO 3166 Country Code. This locale determines the language for the labels returned for every payment option. (optional, default to en-US)
      * @return PaymentOptions
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -145,8 +139,8 @@ public class PaymentOptionsApi {
         <tr><td> 401 </td><td> Returns an error if no valid authentication was provided. </td><td>  -  </td></tr>
      </table>
      */
-    public PaymentOptions listPaymentOptions(String country, String currency, String environment, String locale) throws ApiException {
-        ApiResponse<PaymentOptions> localVarResp = listPaymentOptionsWithHttpInfo(country, currency, environment, locale);
+    public PaymentOptions listPaymentOptions(String country, String currency, String locale) throws ApiException {
+        ApiResponse<PaymentOptions> localVarResp = listPaymentOptionsWithHttpInfo(country, currency, locale);
         return localVarResp.getData();
     }
 
@@ -155,7 +149,6 @@ public class PaymentOptionsApi {
      * Returns a list of available payment method options for a currency and country.
      * @param country Filters the results to only the items which support this country code. A country is formatted as 2-letter ISO country code. (optional)
      * @param currency Filters the results to only the items which support this currency code. A currency is formatted as 3-letter ISO currency code. (optional)
-     * @param environment Filters the results to only the items available in this environment. (optional, default to production)
      * @param locale An ISO 639-1 Language Code and optional ISO 3166 Country Code. This locale determines the language for the labels returned for every payment option. (optional, default to en-US)
      * @return ApiResponse&lt;PaymentOptions&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -167,8 +160,8 @@ public class PaymentOptionsApi {
         <tr><td> 401 </td><td> Returns an error if no valid authentication was provided. </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<PaymentOptions> listPaymentOptionsWithHttpInfo(String country, String currency, String environment, String locale) throws ApiException {
-        okhttp3.Call localVarCall = listPaymentOptionsValidateBeforeCall(country, currency, environment, locale, null);
+    public ApiResponse<PaymentOptions> listPaymentOptionsWithHttpInfo(String country, String currency, String locale) throws ApiException {
+        okhttp3.Call localVarCall = listPaymentOptionsValidateBeforeCall(country, currency, locale, null);
         Type localVarReturnType = new TypeToken<PaymentOptions>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -178,7 +171,6 @@ public class PaymentOptionsApi {
      * Returns a list of available payment method options for a currency and country.
      * @param country Filters the results to only the items which support this country code. A country is formatted as 2-letter ISO country code. (optional)
      * @param currency Filters the results to only the items which support this currency code. A currency is formatted as 3-letter ISO currency code. (optional)
-     * @param environment Filters the results to only the items available in this environment. (optional, default to production)
      * @param locale An ISO 639-1 Language Code and optional ISO 3166 Country Code. This locale determines the language for the labels returned for every payment option. (optional, default to en-US)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
@@ -191,9 +183,9 @@ public class PaymentOptionsApi {
         <tr><td> 401 </td><td> Returns an error if no valid authentication was provided. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call listPaymentOptionsAsync(String country, String currency, String environment, String locale, final ApiCallback<PaymentOptions> _callback) throws ApiException {
+    public okhttp3.Call listPaymentOptionsAsync(String country, String currency, String locale, final ApiCallback<PaymentOptions> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = listPaymentOptionsValidateBeforeCall(country, currency, environment, locale, _callback);
+        okhttp3.Call localVarCall = listPaymentOptionsValidateBeforeCall(country, currency, locale, _callback);
         Type localVarReturnType = new TypeToken<PaymentOptions>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;

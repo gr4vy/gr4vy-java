@@ -29,7 +29,7 @@ import java.util.UUID;
  * Request to use a redirect payment method in a transaction.
  */
 @ApiModel(description = "Request to use a redirect payment method in a transaction.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-11-10T11:15:12.826734Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-11-29T06:53:23.548460Z[Etc/UTC]")
 public class RedirectRequest {
   public static final String SERIALIZED_NAME_METHOD = "method";
   @SerializedName(SERIALIZED_NAME_METHOD)
@@ -58,59 +58,6 @@ public class RedirectRequest {
   public static final String SERIALIZED_NAME_BUYER_EXTERNAL_IDENTIFIER = "buyer_external_identifier";
   @SerializedName(SERIALIZED_NAME_BUYER_EXTERNAL_IDENTIFIER)
   private String buyerExternalIdentifier;
-
-  /**
-   * Defines the environment to store this payment method in. Setting this to anything other than &#x60;production&#x60; will force Gr4vy to use a payment a service configured for that environment.
-   */
-  @JsonAdapter(EnvironmentEnum.Adapter.class)
-  public enum EnvironmentEnum {
-    DEVELOPMENT("development"),
-    
-    STAGING("staging"),
-    
-    PRODUCTION("production");
-
-    private String value;
-
-    EnvironmentEnum(String value) {
-      this.value = value;
-    }
-
-    public String getValue() {
-      return value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    public static EnvironmentEnum fromValue(String value) {
-      for (EnvironmentEnum b : EnvironmentEnum.values()) {
-        if (b.value.equals(value)) {
-          return b;
-        }
-      }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
-    }
-
-    public static class Adapter extends TypeAdapter<EnvironmentEnum> {
-      @Override
-      public void write(final JsonWriter jsonWriter, final EnvironmentEnum enumeration) throws IOException {
-        jsonWriter.value(enumeration.getValue());
-      }
-
-      @Override
-      public EnvironmentEnum read(final JsonReader jsonReader) throws IOException {
-        String value =  jsonReader.nextString();
-        return EnvironmentEnum.fromValue(value);
-      }
-    }
-  }
-
-  public static final String SERIALIZED_NAME_ENVIRONMENT = "environment";
-  @SerializedName(SERIALIZED_NAME_ENVIRONMENT)
-  private EnvironmentEnum environment;
 
 
   public RedirectRequest method(String method) {
@@ -270,29 +217,6 @@ public class RedirectRequest {
   }
 
 
-  public RedirectRequest environment(EnvironmentEnum environment) {
-    
-    this.environment = environment;
-    return this;
-  }
-
-   /**
-   * Defines the environment to store this payment method in. Setting this to anything other than &#x60;production&#x60; will force Gr4vy to use a payment a service configured for that environment.
-   * @return environment
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(example = "staging", value = "Defines the environment to store this payment method in. Setting this to anything other than `production` will force Gr4vy to use a payment a service configured for that environment.")
-
-  public EnvironmentEnum getEnvironment() {
-    return environment;
-  }
-
-
-  public void setEnvironment(EnvironmentEnum environment) {
-    this.environment = environment;
-  }
-
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -308,13 +232,12 @@ public class RedirectRequest {
         Objects.equals(this.country, redirectRequest.country) &&
         Objects.equals(this.externalIdentifier, redirectRequest.externalIdentifier) &&
         Objects.equals(this.buyerId, redirectRequest.buyerId) &&
-        Objects.equals(this.buyerExternalIdentifier, redirectRequest.buyerExternalIdentifier) &&
-        Objects.equals(this.environment, redirectRequest.environment);
+        Objects.equals(this.buyerExternalIdentifier, redirectRequest.buyerExternalIdentifier);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(method, redirectUrl, currency, country, externalIdentifier, buyerId, buyerExternalIdentifier, environment);
+    return Objects.hash(method, redirectUrl, currency, country, externalIdentifier, buyerId, buyerExternalIdentifier);
   }
 
   @Override
@@ -328,7 +251,6 @@ public class RedirectRequest {
     sb.append("    externalIdentifier: ").append(toIndentedString(externalIdentifier)).append("\n");
     sb.append("    buyerId: ").append(toIndentedString(buyerId)).append("\n");
     sb.append("    buyerExternalIdentifier: ").append(toIndentedString(buyerExternalIdentifier)).append("\n");
-    sb.append("    environment: ").append(toIndentedString(environment)).append("\n");
     sb.append("}");
     return sb.toString();
   }

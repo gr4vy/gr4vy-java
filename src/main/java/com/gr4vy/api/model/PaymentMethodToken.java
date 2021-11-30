@@ -29,7 +29,7 @@ import java.io.IOException;
  * A token for a payment method.
  */
 @ApiModel(description = "A token for a payment method.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-11-10T11:15:12.826734Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-11-29T06:53:23.548460Z[Etc/UTC]")
 public class PaymentMethodToken {
   /**
    * &#x60;payment-method-token&#x60;.
@@ -87,6 +87,61 @@ public class PaymentMethodToken {
   public static final String SERIALIZED_NAME_TOKEN = "token";
   @SerializedName(SERIALIZED_NAME_TOKEN)
   private String token;
+
+  /**
+   * The state of the payment method.  - &#x60;processing&#x60; - The payment method is still being stored. - &#x60;buyer_approval_required&#x60; - The buyer still needs to provide   approval before the payment method can be stored. - &#x60;succeeded&#x60; - The payment method is approved and stored with all   relevant payment services. - &#x60;failed&#x60; - Storing the payment method did not succeed.
+   */
+  @JsonAdapter(StatusEnum.Adapter.class)
+  public enum StatusEnum {
+    PROCESSING("processing"),
+    
+    BUYER_APPROVAL_REQUIRED("buyer_approval_required"),
+    
+    SUCCEEDED("succeeded"),
+    
+    FAILED("failed");
+
+    private String value;
+
+    StatusEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static StatusEnum fromValue(String value) {
+      for (StatusEnum b : StatusEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+
+    public static class Adapter extends TypeAdapter<StatusEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final StatusEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public StatusEnum read(final JsonReader jsonReader) throws IOException {
+        String value =  jsonReader.nextString();
+        return StatusEnum.fromValue(value);
+      }
+    }
+  }
+
+  public static final String SERIALIZED_NAME_STATUS = "status";
+  @SerializedName(SERIALIZED_NAME_STATUS)
+  private StatusEnum status;
 
   public static final String SERIALIZED_NAME_PAYMENT_SERVICE = "payment_service";
   @SerializedName(SERIALIZED_NAME_PAYMENT_SERVICE)
@@ -162,6 +217,29 @@ public class PaymentMethodToken {
   }
 
 
+  public PaymentMethodToken status(StatusEnum status) {
+    
+    this.status = status;
+    return this;
+  }
+
+   /**
+   * The state of the payment method.  - &#x60;processing&#x60; - The payment method is still being stored. - &#x60;buyer_approval_required&#x60; - The buyer still needs to provide   approval before the payment method can be stored. - &#x60;succeeded&#x60; - The payment method is approved and stored with all   relevant payment services. - &#x60;failed&#x60; - Storing the payment method did not succeed.
+   * @return status
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "succeeded", value = "The state of the payment method.  - `processing` - The payment method is still being stored. - `buyer_approval_required` - The buyer still needs to provide   approval before the payment method can be stored. - `succeeded` - The payment method is approved and stored with all   relevant payment services. - `failed` - Storing the payment method did not succeed.")
+
+  public StatusEnum getStatus() {
+    return status;
+  }
+
+
+  public void setStatus(StatusEnum status) {
+    this.status = status;
+  }
+
+
   public PaymentMethodToken paymentService(PaymentServiceSnapshot paymentService) {
     
     this.paymentService = paymentService;
@@ -197,12 +275,13 @@ public class PaymentMethodToken {
     return Objects.equals(this.type, paymentMethodToken.type) &&
         Objects.equals(this.id, paymentMethodToken.id) &&
         Objects.equals(this.token, paymentMethodToken.token) &&
+        Objects.equals(this.status, paymentMethodToken.status) &&
         Objects.equals(this.paymentService, paymentMethodToken.paymentService);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(type, id, token, paymentService);
+    return Objects.hash(type, id, token, status, paymentService);
   }
 
   @Override
@@ -212,6 +291,7 @@ public class PaymentMethodToken {
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    token: ").append(toIndentedString(token)).append("\n");
+    sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("    paymentService: ").append(toIndentedString(paymentService)).append("\n");
     sb.append("}");
     return sb.toString();

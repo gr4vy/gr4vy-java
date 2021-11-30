@@ -33,7 +33,7 @@ import org.threeten.bp.OffsetDateTime;
  * A transaction record.
  */
 @ApiModel(description = "A transaction record.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-11-10T11:15:12.826734Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-11-29T06:53:23.548460Z[Etc/UTC]")
 public class Transaction {
   /**
    * The type of this resource. Is always &#x60;transaction&#x60;.
@@ -216,59 +216,6 @@ public class Transaction {
   public static final String SERIALIZED_NAME_PAYMENT_SERVICE = "payment_service";
   @SerializedName(SERIALIZED_NAME_PAYMENT_SERVICE)
   private PaymentServiceSnapshot paymentService;
-
-  /**
-   * The environment this transaction has been created in.
-   */
-  @JsonAdapter(EnvironmentEnum.Adapter.class)
-  public enum EnvironmentEnum {
-    DEVELOPMENT("development"),
-    
-    STAGING("staging"),
-    
-    PRODUCTION("production");
-
-    private String value;
-
-    EnvironmentEnum(String value) {
-      this.value = value;
-    }
-
-    public String getValue() {
-      return value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    public static EnvironmentEnum fromValue(String value) {
-      for (EnvironmentEnum b : EnvironmentEnum.values()) {
-        if (b.value.equals(value)) {
-          return b;
-        }
-      }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
-    }
-
-    public static class Adapter extends TypeAdapter<EnvironmentEnum> {
-      @Override
-      public void write(final JsonWriter jsonWriter, final EnvironmentEnum enumeration) throws IOException {
-        jsonWriter.value(enumeration.getValue());
-      }
-
-      @Override
-      public EnvironmentEnum read(final JsonReader jsonReader) throws IOException {
-        String value =  jsonReader.nextString();
-        return EnvironmentEnum.fromValue(value);
-      }
-    }
-  }
-
-  public static final String SERIALIZED_NAME_ENVIRONMENT = "environment";
-  @SerializedName(SERIALIZED_NAME_ENVIRONMENT)
-  private EnvironmentEnum environment = EnvironmentEnum.PRODUCTION;
 
 
   public Transaction type(TypeEnum type) {
@@ -576,29 +523,6 @@ public class Transaction {
   }
 
 
-  public Transaction environment(EnvironmentEnum environment) {
-    
-    this.environment = environment;
-    return this;
-  }
-
-   /**
-   * The environment this transaction has been created in.
-   * @return environment
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(example = "production", value = "The environment this transaction has been created in.")
-
-  public EnvironmentEnum getEnvironment() {
-    return environment;
-  }
-
-
-  public void setEnvironment(EnvironmentEnum environment) {
-    this.environment = environment;
-  }
-
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -620,13 +544,12 @@ public class Transaction {
         Objects.equals(this.createdAt, transaction.createdAt) &&
         Objects.equals(this.externalIdentifier, transaction.externalIdentifier) &&
         Objects.equals(this.updatedAt, transaction.updatedAt) &&
-        Objects.equals(this.paymentService, transaction.paymentService) &&
-        Objects.equals(this.environment, transaction.environment);
+        Objects.equals(this.paymentService, transaction.paymentService);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(type, id, status, amount, capturedAmount, refundedAmount, currency, paymentMethod, buyer, createdAt, externalIdentifier, updatedAt, paymentService, environment);
+    return Objects.hash(type, id, status, amount, capturedAmount, refundedAmount, currency, paymentMethod, buyer, createdAt, externalIdentifier, updatedAt, paymentService);
   }
 
   @Override
@@ -646,7 +569,6 @@ public class Transaction {
     sb.append("    externalIdentifier: ").append(toIndentedString(externalIdentifier)).append("\n");
     sb.append("    updatedAt: ").append(toIndentedString(updatedAt)).append("\n");
     sb.append("    paymentService: ").append(toIndentedString(paymentService)).append("\n");
-    sb.append("    environment: ").append(toIndentedString(environment)).append("\n");
     sb.append("}");
     return sb.toString();
   }
