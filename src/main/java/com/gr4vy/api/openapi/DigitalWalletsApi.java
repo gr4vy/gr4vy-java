@@ -579,7 +579,7 @@ public class DigitalWalletsApi {
 
     /**
      * Update digital wallet
-     * Updates the values a digital wallet was registered with, and the Gr4vy environments in which a registered digital wallet should be available.
+     * Updates the values a digital wallet was registered with.
      * @param digitalWalletId The ID of the registered digital wallet. (required)
      * @param digitalWalletUpdate  (optional)
      * @return DigitalWallet
@@ -600,7 +600,7 @@ public class DigitalWalletsApi {
 
     /**
      * Update digital wallet
-     * Updates the values a digital wallet was registered with, and the Gr4vy environments in which a registered digital wallet should be available.
+     * Updates the values a digital wallet was registered with.
      * @param digitalWalletId The ID of the registered digital wallet. (required)
      * @param digitalWalletUpdate  (optional)
      * @return ApiResponse&lt;DigitalWallet&gt;
@@ -622,7 +622,7 @@ public class DigitalWalletsApi {
 
     /**
      * Update digital wallet (asynchronously)
-     * Updates the values a digital wallet was registered with, and the Gr4vy environments in which a registered digital wallet should be available.
+     * Updates the values a digital wallet was registered with.
      * @param digitalWalletId The ID of the registered digital wallet. (required)
      * @param digitalWalletUpdate  (optional)
      * @param _callback The callback to be executed when the API call finishes

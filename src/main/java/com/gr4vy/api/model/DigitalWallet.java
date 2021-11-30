@@ -32,7 +32,7 @@ import org.threeten.bp.OffsetDateTime;
  * A digital wallet (e.g. Apple Pay) that has been registered.
  */
 @ApiModel(description = "A digital wallet (e.g. Apple Pay) that has been registered.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-11-10T11:15:12.826734Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-11-29T06:53:23.548460Z[Etc/UTC]")
 public class DigitalWallet {
   /**
    * &#x60;digital-wallet&#x60;.
@@ -157,59 +157,6 @@ public class DigitalWallet {
   public static final String SERIALIZED_NAME_UPDATED_AT = "updated_at";
   @SerializedName(SERIALIZED_NAME_UPDATED_AT)
   private OffsetDateTime updatedAt;
-
-  /**
-   * Gets or Sets environments
-   */
-  @JsonAdapter(EnvironmentsEnum.Adapter.class)
-  public enum EnvironmentsEnum {
-    DEVELOPMENT("development"),
-    
-    STAGING("staging"),
-    
-    PRODUCTION("production");
-
-    private String value;
-
-    EnvironmentsEnum(String value) {
-      this.value = value;
-    }
-
-    public String getValue() {
-      return value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    public static EnvironmentsEnum fromValue(String value) {
-      for (EnvironmentsEnum b : EnvironmentsEnum.values()) {
-        if (b.value.equals(value)) {
-          return b;
-        }
-      }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
-    }
-
-    public static class Adapter extends TypeAdapter<EnvironmentsEnum> {
-      @Override
-      public void write(final JsonWriter jsonWriter, final EnvironmentsEnum enumeration) throws IOException {
-        jsonWriter.value(enumeration.getValue());
-      }
-
-      @Override
-      public EnvironmentsEnum read(final JsonReader jsonReader) throws IOException {
-        String value =  jsonReader.nextString();
-        return EnvironmentsEnum.fromValue(value);
-      }
-    }
-  }
-
-  public static final String SERIALIZED_NAME_ENVIRONMENTS = "environments";
-  @SerializedName(SERIALIZED_NAME_ENVIRONMENTS)
-  private List<EnvironmentsEnum> environments = null;
 
 
   public DigitalWallet type(TypeEnum type) {
@@ -404,37 +351,6 @@ public class DigitalWallet {
   }
 
 
-  public DigitalWallet environments(List<EnvironmentsEnum> environments) {
-    
-    this.environments = environments;
-    return this;
-  }
-
-  public DigitalWallet addEnvironmentsItem(EnvironmentsEnum environmentsItem) {
-    if (this.environments == null) {
-      this.environments = new ArrayList<EnvironmentsEnum>();
-    }
-    this.environments.add(environmentsItem);
-    return this;
-  }
-
-   /**
-   * The Gr4vy environments in which this digital wallet is available.
-   * @return environments
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(example = "[\"production\"]", value = "The Gr4vy environments in which this digital wallet is available.")
-
-  public List<EnvironmentsEnum> getEnvironments() {
-    return environments;
-  }
-
-
-  public void setEnvironments(List<EnvironmentsEnum> environments) {
-    this.environments = environments;
-  }
-
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -451,13 +367,12 @@ public class DigitalWallet {
         Objects.equals(this.merchantUrl, digitalWallet.merchantUrl) &&
         Objects.equals(this.domainNames, digitalWallet.domainNames) &&
         Objects.equals(this.createdAt, digitalWallet.createdAt) &&
-        Objects.equals(this.updatedAt, digitalWallet.updatedAt) &&
-        Objects.equals(this.environments, digitalWallet.environments);
+        Objects.equals(this.updatedAt, digitalWallet.updatedAt);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(type, provider, id, merchantName, merchantUrl, domainNames, createdAt, updatedAt, environments);
+    return Objects.hash(type, provider, id, merchantName, merchantUrl, domainNames, createdAt, updatedAt);
   }
 
   @Override
@@ -472,7 +387,6 @@ public class DigitalWallet {
     sb.append("    domainNames: ").append(toIndentedString(domainNames)).append("\n");
     sb.append("    createdAt: ").append(toIndentedString(createdAt)).append("\n");
     sb.append("    updatedAt: ").append(toIndentedString(updatedAt)).append("\n");
-    sb.append("    environments: ").append(toIndentedString(environments)).append("\n");
     sb.append("}");
     return sb.toString();
   }

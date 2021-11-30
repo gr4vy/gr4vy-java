@@ -54,6 +54,18 @@ Call the API:
 	}
 ```
 
+## Environment
+
+The SDK defaults the environment to "sandbox", to send transactions to production, set the environment in `Gr4vyClient`:
+
+```java
+
+Gr4vyClient gr4vyClient = new Gr4vyClient("[YOUR_GR4VY_ID]", "private_key.pem", "sandbox");
+
+Gr4vyClient gr4vyClient = new Gr4vyClient("[YOUR_GR4VY_ID]", "private_key.pem", "production");
+
+```
+
 ## Gr4vy Embed
 
 To create a token for Gr4vy Embed, call the `client.getEmbedToken(embed)`

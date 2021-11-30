@@ -30,7 +30,7 @@ import java.util.List;
  * Request body to update a registered digital wallet&#39;s details.
  */
 @ApiModel(description = "Request body to update a registered digital wallet's details.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-11-10T11:15:12.826734Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-11-29T06:53:23.548460Z[Etc/UTC]")
 public class DigitalWalletUpdate {
   public static final String SERIALIZED_NAME_MERCHANT_NAME = "merchant_name";
   @SerializedName(SERIALIZED_NAME_MERCHANT_NAME)
@@ -39,59 +39,6 @@ public class DigitalWalletUpdate {
   public static final String SERIALIZED_NAME_DOMAIN_NAMES = "domain_names";
   @SerializedName(SERIALIZED_NAME_DOMAIN_NAMES)
   private List<String> domainNames = null;
-
-  /**
-   * Gets or Sets environments
-   */
-  @JsonAdapter(EnvironmentsEnum.Adapter.class)
-  public enum EnvironmentsEnum {
-    DEVELOPMENT("development"),
-    
-    STAGING("staging"),
-    
-    PRODUCTION("production");
-
-    private String value;
-
-    EnvironmentsEnum(String value) {
-      this.value = value;
-    }
-
-    public String getValue() {
-      return value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    public static EnvironmentsEnum fromValue(String value) {
-      for (EnvironmentsEnum b : EnvironmentsEnum.values()) {
-        if (b.value.equals(value)) {
-          return b;
-        }
-      }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
-    }
-
-    public static class Adapter extends TypeAdapter<EnvironmentsEnum> {
-      @Override
-      public void write(final JsonWriter jsonWriter, final EnvironmentsEnum enumeration) throws IOException {
-        jsonWriter.value(enumeration.getValue());
-      }
-
-      @Override
-      public EnvironmentsEnum read(final JsonReader jsonReader) throws IOException {
-        String value =  jsonReader.nextString();
-        return EnvironmentsEnum.fromValue(value);
-      }
-    }
-  }
-
-  public static final String SERIALIZED_NAME_ENVIRONMENTS = "environments";
-  @SerializedName(SERIALIZED_NAME_ENVIRONMENTS)
-  private List<EnvironmentsEnum> environments = null;
 
 
   public DigitalWalletUpdate merchantName(String merchantName) {
@@ -148,37 +95,6 @@ public class DigitalWalletUpdate {
   }
 
 
-  public DigitalWalletUpdate environments(List<EnvironmentsEnum> environments) {
-    
-    this.environments = environments;
-    return this;
-  }
-
-  public DigitalWalletUpdate addEnvironmentsItem(EnvironmentsEnum environmentsItem) {
-    if (this.environments == null) {
-      this.environments = new ArrayList<EnvironmentsEnum>();
-    }
-    this.environments.add(environmentsItem);
-    return this;
-  }
-
-   /**
-   * Determines the Gr4vy environments in which this digital wallet should be available.
-   * @return environments
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(example = "[\"production\"]", value = "Determines the Gr4vy environments in which this digital wallet should be available.")
-
-  public List<EnvironmentsEnum> getEnvironments() {
-    return environments;
-  }
-
-
-  public void setEnvironments(List<EnvironmentsEnum> environments) {
-    this.environments = environments;
-  }
-
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -189,13 +105,12 @@ public class DigitalWalletUpdate {
     }
     DigitalWalletUpdate digitalWalletUpdate = (DigitalWalletUpdate) o;
     return Objects.equals(this.merchantName, digitalWalletUpdate.merchantName) &&
-        Objects.equals(this.domainNames, digitalWalletUpdate.domainNames) &&
-        Objects.equals(this.environments, digitalWalletUpdate.environments);
+        Objects.equals(this.domainNames, digitalWalletUpdate.domainNames);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(merchantName, domainNames, environments);
+    return Objects.hash(merchantName, domainNames);
   }
 
   @Override
@@ -204,7 +119,6 @@ public class DigitalWalletUpdate {
     sb.append("class DigitalWalletUpdate {\n");
     sb.append("    merchantName: ").append(toIndentedString(merchantName)).append("\n");
     sb.append("    domainNames: ").append(toIndentedString(domainNames)).append("\n");
-    sb.append("    environments: ").append(toIndentedString(environments)).append("\n");
     sb.append("}");
     return sb.toString();
   }
