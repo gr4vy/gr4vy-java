@@ -112,7 +112,7 @@ public class Gr4vyClient {
 		}
 	}
 	
-	private String getToken(String key, String[] scopes, Map<String, Object> embed) throws IOException, NoSuchAlgorithmException, NoSuchProviderException, InvalidKeySpecException, JOSEException, ParseException {
+	public String getToken(String key, String[] scopes, Map<String, Object> embed) throws IOException, NoSuchAlgorithmException, NoSuchProviderException, InvalidKeySpecException, JOSEException, ParseException {
 		Security.addProvider(new org.bouncycastle.jce.provider.BouncyCastleProvider());
 		
 		Reader reader = new StringReader(key);
@@ -162,7 +162,7 @@ public class Gr4vyClient {
 	    return (ECPublicKey) publicKeyGenerated;
 	}
 	
-	private String getKey() {
+	public String getKey() {
 		String value = System.getenv("PRIVATE_KEY");
         if (value != null) {
             return value;
