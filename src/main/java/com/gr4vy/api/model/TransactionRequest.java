@@ -25,12 +25,15 @@ import com.gr4vy.api.model.TransactionPaymentMethodRequest;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * A request to create a transaction.
  */
 @ApiModel(description = "A request to create a transaction.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-11-29T06:53:23.548460Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-12-17T10:55:07.385073Z[Etc/UTC]")
 public class TransactionRequest {
   public static final String SERIALIZED_NAME_AMOUNT = "amount";
   @SerializedName(SERIALIZED_NAME_AMOUNT)
@@ -106,6 +109,75 @@ public class TransactionRequest {
   public static final String SERIALIZED_NAME_THREE_D_SECURE_DATA = "three_d_secure_data";
   @SerializedName(SERIALIZED_NAME_THREE_D_SECURE_DATA)
   private ThreeDSecureDataV1V2 threeDSecureData;
+
+  public static final String SERIALIZED_NAME_MERCHANT_INITIATED = "merchant_initiated";
+  @SerializedName(SERIALIZED_NAME_MERCHANT_INITIATED)
+  private Boolean merchantInitiated = false;
+
+  /**
+   * The source of the transaction. Defaults to &#39;ecommerce&#39;.
+   */
+  @JsonAdapter(PaymentSourceEnum.Adapter.class)
+  public enum PaymentSourceEnum {
+    ECOMMERCE("ecommerce"),
+    
+    MOTO("moto"),
+    
+    RECURRING("recurring"),
+    
+    INSTALLMENT("installment"),
+    
+    CARD_ON_FILE("card_on_file");
+
+    private String value;
+
+    PaymentSourceEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static PaymentSourceEnum fromValue(String value) {
+      for (PaymentSourceEnum b : PaymentSourceEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+
+    public static class Adapter extends TypeAdapter<PaymentSourceEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final PaymentSourceEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public PaymentSourceEnum read(final JsonReader jsonReader) throws IOException {
+        String value =  jsonReader.nextString();
+        return PaymentSourceEnum.fromValue(value);
+      }
+    }
+  }
+
+  public static final String SERIALIZED_NAME_PAYMENT_SOURCE = "payment_source";
+  @SerializedName(SERIALIZED_NAME_PAYMENT_SOURCE)
+  private PaymentSourceEnum paymentSource;
+
+  public static final String SERIALIZED_NAME_IS_SUBSEQUENT_PAYMENT = "is_subsequent_payment";
+  @SerializedName(SERIALIZED_NAME_IS_SUBSEQUENT_PAYMENT)
+  private Boolean isSubsequentPayment = false;
+
+  public static final String SERIALIZED_NAME_METADATA = "metadata";
+  @SerializedName(SERIALIZED_NAME_METADATA)
+  private Map<String, String> metadata = null;
 
 
   public TransactionRequest amount(Integer amount) {
@@ -268,6 +340,106 @@ public class TransactionRequest {
   }
 
 
+  public TransactionRequest merchantInitiated(Boolean merchantInitiated) {
+    
+    this.merchantInitiated = merchantInitiated;
+    return this;
+  }
+
+   /**
+   * Indicates whether the transaction was initiated by the merchant (true) or customer (false).
+   * @return merchantInitiated
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "true", value = "Indicates whether the transaction was initiated by the merchant (true) or customer (false).")
+
+  public Boolean getMerchantInitiated() {
+    return merchantInitiated;
+  }
+
+
+  public void setMerchantInitiated(Boolean merchantInitiated) {
+    this.merchantInitiated = merchantInitiated;
+  }
+
+
+  public TransactionRequest paymentSource(PaymentSourceEnum paymentSource) {
+    
+    this.paymentSource = paymentSource;
+    return this;
+  }
+
+   /**
+   * The source of the transaction. Defaults to &#39;ecommerce&#39;.
+   * @return paymentSource
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "ecommerce", value = "The source of the transaction. Defaults to 'ecommerce'.")
+
+  public PaymentSourceEnum getPaymentSource() {
+    return paymentSource;
+  }
+
+
+  public void setPaymentSource(PaymentSourceEnum paymentSource) {
+    this.paymentSource = paymentSource;
+  }
+
+
+  public TransactionRequest isSubsequentPayment(Boolean isSubsequentPayment) {
+    
+    this.isSubsequentPayment = isSubsequentPayment;
+    return this;
+  }
+
+   /**
+   * Indicates whether the transaction represents a subsequent payment coming from a setup recurring payment. Please note this flag is only compatible with payment_source set to [recurring, installment, card_on_file] and will be ignored for other values or if payment_source is not present.
+   * @return isSubsequentPayment
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "true", value = "Indicates whether the transaction represents a subsequent payment coming from a setup recurring payment. Please note this flag is only compatible with payment_source set to [recurring, installment, card_on_file] and will be ignored for other values or if payment_source is not present.")
+
+  public Boolean getIsSubsequentPayment() {
+    return isSubsequentPayment;
+  }
+
+
+  public void setIsSubsequentPayment(Boolean isSubsequentPayment) {
+    this.isSubsequentPayment = isSubsequentPayment;
+  }
+
+
+  public TransactionRequest metadata(Map<String, String> metadata) {
+    
+    this.metadata = metadata;
+    return this;
+  }
+
+  public TransactionRequest putMetadataItem(String key, String metadataItem) {
+    if (this.metadata == null) {
+      this.metadata = new HashMap<String, String>();
+    }
+    this.metadata.put(key, metadataItem);
+    return this;
+  }
+
+   /**
+   * Any additional information about the transaction that you would like to store as key-value pairs. This data is passed to payment service providers that support it. Please visit https://gr4vy.com/docs/ under &#x60;Connections&#x60; for more information on how specific providers support metadata.
+   * @return metadata
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "{\"key\":\"value\"}", value = "Any additional information about the transaction that you would like to store as key-value pairs. This data is passed to payment service providers that support it. Please visit https://gr4vy.com/docs/ under `Connections` for more information on how specific providers support metadata.")
+
+  public Map<String, String> getMetadata() {
+    return metadata;
+  }
+
+
+  public void setMetadata(Map<String, String> metadata) {
+    this.metadata = metadata;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -283,12 +455,16 @@ public class TransactionRequest {
         Objects.equals(this.store, transactionRequest.store) &&
         Objects.equals(this.intent, transactionRequest.intent) &&
         Objects.equals(this.externalIdentifier, transactionRequest.externalIdentifier) &&
-        Objects.equals(this.threeDSecureData, transactionRequest.threeDSecureData);
+        Objects.equals(this.threeDSecureData, transactionRequest.threeDSecureData) &&
+        Objects.equals(this.merchantInitiated, transactionRequest.merchantInitiated) &&
+        Objects.equals(this.paymentSource, transactionRequest.paymentSource) &&
+        Objects.equals(this.isSubsequentPayment, transactionRequest.isSubsequentPayment) &&
+        Objects.equals(this.metadata, transactionRequest.metadata);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(amount, currency, paymentMethod, store, intent, externalIdentifier, threeDSecureData);
+    return Objects.hash(amount, currency, paymentMethod, store, intent, externalIdentifier, threeDSecureData, merchantInitiated, paymentSource, isSubsequentPayment, metadata);
   }
 
   @Override
@@ -302,6 +478,10 @@ public class TransactionRequest {
     sb.append("    intent: ").append(toIndentedString(intent)).append("\n");
     sb.append("    externalIdentifier: ").append(toIndentedString(externalIdentifier)).append("\n");
     sb.append("    threeDSecureData: ").append(toIndentedString(threeDSecureData)).append("\n");
+    sb.append("    merchantInitiated: ").append(toIndentedString(merchantInitiated)).append("\n");
+    sb.append("    paymentSource: ").append(toIndentedString(paymentSource)).append("\n");
+    sb.append("    isSubsequentPayment: ").append(toIndentedString(isSubsequentPayment)).append("\n");
+    sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
     sb.append("}");
     return sb.toString();
   }

@@ -23,7 +23,6 @@ import com.google.gson.stream.JsonWriter;
 import com.gr4vy.api.model.BuyerSnapshot;
 import com.gr4vy.api.model.PaymentMethodSnapshot;
 import com.gr4vy.api.model.PaymentServiceSnapshot;
-import com.gr4vy.api.model.TransactionSummary;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
@@ -35,72 +34,7 @@ import org.threeten.bp.OffsetDateTime;
  */
 @ApiModel(description = "A transaction record.")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-12-17T10:55:07.385073Z[Etc/UTC]")
-public class Transaction {
-  public static final String SERIALIZED_NAME_MERCHANT_INITIATED = "merchant_initiated";
-  @SerializedName(SERIALIZED_NAME_MERCHANT_INITIATED)
-  private Boolean merchantInitiated = false;
-
-  /**
-   * The source of the transaction. Defaults to &#39;ecommerce&#39;.
-   */
-  @JsonAdapter(PaymentSourceEnum.Adapter.class)
-  public enum PaymentSourceEnum {
-    ECOMMERCE("ecommerce"),
-    
-    MOTO("moto"),
-    
-    RECURRING("recurring"),
-    
-    INSTALLMENT("installment"),
-    
-    CARD_ON_FILE("card_on_file");
-
-    private String value;
-
-    PaymentSourceEnum(String value) {
-      this.value = value;
-    }
-
-    public String getValue() {
-      return value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    public static PaymentSourceEnum fromValue(String value) {
-      for (PaymentSourceEnum b : PaymentSourceEnum.values()) {
-        if (b.value.equals(value)) {
-          return b;
-        }
-      }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
-    }
-
-    public static class Adapter extends TypeAdapter<PaymentSourceEnum> {
-      @Override
-      public void write(final JsonWriter jsonWriter, final PaymentSourceEnum enumeration) throws IOException {
-        jsonWriter.value(enumeration.getValue());
-      }
-
-      @Override
-      public PaymentSourceEnum read(final JsonReader jsonReader) throws IOException {
-        String value =  jsonReader.nextString();
-        return PaymentSourceEnum.fromValue(value);
-      }
-    }
-  }
-
-  public static final String SERIALIZED_NAME_PAYMENT_SOURCE = "payment_source";
-  @SerializedName(SERIALIZED_NAME_PAYMENT_SOURCE)
-  private PaymentSourceEnum paymentSource;
-
-  public static final String SERIALIZED_NAME_IS_SUBSEQUENT_PAYMENT = "is_subsequent_payment";
-  @SerializedName(SERIALIZED_NAME_IS_SUBSEQUENT_PAYMENT)
-  private Boolean isSubsequentPayment = false;
-
+public class TransactionSummary {
   /**
    * The type of this resource. Is always &#x60;transaction&#x60;.
    */
@@ -284,76 +218,7 @@ public class Transaction {
   private PaymentServiceSnapshot paymentService;
 
 
-  public Transaction merchantInitiated(Boolean merchantInitiated) {
-    
-    this.merchantInitiated = merchantInitiated;
-    return this;
-  }
-
-   /**
-   * Indicates whether the transaction was initiated by the merchant (true) or customer (false).
-   * @return merchantInitiated
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(example = "true", value = "Indicates whether the transaction was initiated by the merchant (true) or customer (false).")
-
-  public Boolean getMerchantInitiated() {
-    return merchantInitiated;
-  }
-
-
-  public void setMerchantInitiated(Boolean merchantInitiated) {
-    this.merchantInitiated = merchantInitiated;
-  }
-
-
-  public Transaction paymentSource(PaymentSourceEnum paymentSource) {
-    
-    this.paymentSource = paymentSource;
-    return this;
-  }
-
-   /**
-   * The source of the transaction. Defaults to &#39;ecommerce&#39;.
-   * @return paymentSource
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(example = "ecommerce", value = "The source of the transaction. Defaults to 'ecommerce'.")
-
-  public PaymentSourceEnum getPaymentSource() {
-    return paymentSource;
-  }
-
-
-  public void setPaymentSource(PaymentSourceEnum paymentSource) {
-    this.paymentSource = paymentSource;
-  }
-
-
-  public Transaction isSubsequentPayment(Boolean isSubsequentPayment) {
-    
-    this.isSubsequentPayment = isSubsequentPayment;
-    return this;
-  }
-
-   /**
-   * Indicates whether the transaction represents a subsequent payment coming from a setup recurring payment. Please note this flag is only compatible with payment_source set to [recurring, installment, card_on_file] and will be ignored for other values or if payment_source is not present.
-   * @return isSubsequentPayment
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(example = "true", value = "Indicates whether the transaction represents a subsequent payment coming from a setup recurring payment. Please note this flag is only compatible with payment_source set to [recurring, installment, card_on_file] and will be ignored for other values or if payment_source is not present.")
-
-  public Boolean getIsSubsequentPayment() {
-    return isSubsequentPayment;
-  }
-
-
-  public void setIsSubsequentPayment(Boolean isSubsequentPayment) {
-    this.isSubsequentPayment = isSubsequentPayment;
-  }
-
-
-  public Transaction type(TypeEnum type) {
+  public TransactionSummary type(TypeEnum type) {
     
     this.type = type;
     return this;
@@ -376,7 +241,7 @@ public class Transaction {
   }
 
 
-  public Transaction id(UUID id) {
+  public TransactionSummary id(UUID id) {
     
     this.id = id;
     return this;
@@ -399,7 +264,7 @@ public class Transaction {
   }
 
 
-  public Transaction status(StatusEnum status) {
+  public TransactionSummary status(StatusEnum status) {
     
     this.status = status;
     return this;
@@ -422,7 +287,7 @@ public class Transaction {
   }
 
 
-  public Transaction amount(Integer amount) {
+  public TransactionSummary amount(Integer amount) {
     
     this.amount = amount;
     return this;
@@ -447,7 +312,7 @@ public class Transaction {
   }
 
 
-  public Transaction capturedAmount(Integer capturedAmount) {
+  public TransactionSummary capturedAmount(Integer capturedAmount) {
     
     this.capturedAmount = capturedAmount;
     return this;
@@ -472,7 +337,7 @@ public class Transaction {
   }
 
 
-  public Transaction refundedAmount(Integer refundedAmount) {
+  public TransactionSummary refundedAmount(Integer refundedAmount) {
     
     this.refundedAmount = refundedAmount;
     return this;
@@ -497,7 +362,7 @@ public class Transaction {
   }
 
 
-  public Transaction currency(String currency) {
+  public TransactionSummary currency(String currency) {
     
     this.currency = currency;
     return this;
@@ -520,7 +385,7 @@ public class Transaction {
   }
 
 
-  public Transaction paymentMethod(PaymentMethodSnapshot paymentMethod) {
+  public TransactionSummary paymentMethod(PaymentMethodSnapshot paymentMethod) {
     
     this.paymentMethod = paymentMethod;
     return this;
@@ -543,7 +408,7 @@ public class Transaction {
   }
 
 
-  public Transaction buyer(BuyerSnapshot buyer) {
+  public TransactionSummary buyer(BuyerSnapshot buyer) {
     
     this.buyer = buyer;
     return this;
@@ -566,7 +431,7 @@ public class Transaction {
   }
 
 
-  public Transaction createdAt(OffsetDateTime createdAt) {
+  public TransactionSummary createdAt(OffsetDateTime createdAt) {
     
     this.createdAt = createdAt;
     return this;
@@ -589,7 +454,7 @@ public class Transaction {
   }
 
 
-  public Transaction externalIdentifier(String externalIdentifier) {
+  public TransactionSummary externalIdentifier(String externalIdentifier) {
     
     this.externalIdentifier = externalIdentifier;
     return this;
@@ -612,7 +477,7 @@ public class Transaction {
   }
 
 
-  public Transaction updatedAt(OffsetDateTime updatedAt) {
+  public TransactionSummary updatedAt(OffsetDateTime updatedAt) {
     
     this.updatedAt = updatedAt;
     return this;
@@ -635,7 +500,7 @@ public class Transaction {
   }
 
 
-  public Transaction paymentService(PaymentServiceSnapshot paymentService) {
+  public TransactionSummary paymentService(PaymentServiceSnapshot paymentService) {
     
     this.paymentService = paymentService;
     return this;
@@ -666,37 +531,31 @@ public class Transaction {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    Transaction transaction = (Transaction) o;
-    return Objects.equals(this.merchantInitiated, transaction.merchantInitiated) &&
-        Objects.equals(this.paymentSource, transaction.paymentSource) &&
-        Objects.equals(this.isSubsequentPayment, transaction.isSubsequentPayment) &&
-        Objects.equals(this.type, transaction.type) &&
-        Objects.equals(this.id, transaction.id) &&
-        Objects.equals(this.status, transaction.status) &&
-        Objects.equals(this.amount, transaction.amount) &&
-        Objects.equals(this.capturedAmount, transaction.capturedAmount) &&
-        Objects.equals(this.refundedAmount, transaction.refundedAmount) &&
-        Objects.equals(this.currency, transaction.currency) &&
-        Objects.equals(this.paymentMethod, transaction.paymentMethod) &&
-        Objects.equals(this.buyer, transaction.buyer) &&
-        Objects.equals(this.createdAt, transaction.createdAt) &&
-        Objects.equals(this.externalIdentifier, transaction.externalIdentifier) &&
-        Objects.equals(this.updatedAt, transaction.updatedAt) &&
-        Objects.equals(this.paymentService, transaction.paymentService);
+    TransactionSummary transactionSummary = (TransactionSummary) o;
+    return Objects.equals(this.type, transactionSummary.type) &&
+        Objects.equals(this.id, transactionSummary.id) &&
+        Objects.equals(this.status, transactionSummary.status) &&
+        Objects.equals(this.amount, transactionSummary.amount) &&
+        Objects.equals(this.capturedAmount, transactionSummary.capturedAmount) &&
+        Objects.equals(this.refundedAmount, transactionSummary.refundedAmount) &&
+        Objects.equals(this.currency, transactionSummary.currency) &&
+        Objects.equals(this.paymentMethod, transactionSummary.paymentMethod) &&
+        Objects.equals(this.buyer, transactionSummary.buyer) &&
+        Objects.equals(this.createdAt, transactionSummary.createdAt) &&
+        Objects.equals(this.externalIdentifier, transactionSummary.externalIdentifier) &&
+        Objects.equals(this.updatedAt, transactionSummary.updatedAt) &&
+        Objects.equals(this.paymentService, transactionSummary.paymentService);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(merchantInitiated, paymentSource, isSubsequentPayment, type, id, status, amount, capturedAmount, refundedAmount, currency, paymentMethod, buyer, createdAt, externalIdentifier, updatedAt, paymentService);
+    return Objects.hash(type, id, status, amount, capturedAmount, refundedAmount, currency, paymentMethod, buyer, createdAt, externalIdentifier, updatedAt, paymentService);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class Transaction {\n");
-    sb.append("    merchantInitiated: ").append(toIndentedString(merchantInitiated)).append("\n");
-    sb.append("    paymentSource: ").append(toIndentedString(paymentSource)).append("\n");
-    sb.append("    isSubsequentPayment: ").append(toIndentedString(isSubsequentPayment)).append("\n");
+    sb.append("class TransactionSummary {\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
