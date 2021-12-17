@@ -29,7 +29,7 @@ import java.util.UUID;
  * Payment method details to use in a transaction or to register a new payment method.
  */
 @ApiModel(description = "Payment method details to use in a transaction or to register a new payment method.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-11-29T06:53:23.548460Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-12-17T10:55:07.385073Z[Etc/UTC]")
 public class TransactionPaymentMethodRequest {
   public static final String SERIALIZED_NAME_METHOD = "method";
   @SerializedName(SERIALIZED_NAME_METHOD)

@@ -20,7 +20,7 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import com.gr4vy.api.model.Transaction;
+import com.gr4vy.api.model.TransactionSummary;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
@@ -31,11 +31,11 @@ import java.util.List;
  * A list of transactions.
  */
 @ApiModel(description = "A list of transactions.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-11-29T06:53:23.548460Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-12-17T10:55:07.385073Z[Etc/UTC]")
 public class Transactions {
   public static final String SERIALIZED_NAME_ITEMS = "items";
   @SerializedName(SERIALIZED_NAME_ITEMS)
-  private List<Transaction> items = null;
+  private List<TransactionSummary> items = null;
 
   public static final String SERIALIZED_NAME_LIMIT = "limit";
   @SerializedName(SERIALIZED_NAME_LIMIT)
@@ -50,15 +50,15 @@ public class Transactions {
   private String previousCursor;
 
 
-  public Transactions items(List<Transaction> items) {
+  public Transactions items(List<TransactionSummary> items) {
     
     this.items = items;
     return this;
   }
 
-  public Transactions addItemsItem(Transaction itemsItem) {
+  public Transactions addItemsItem(TransactionSummary itemsItem) {
     if (this.items == null) {
-      this.items = new ArrayList<Transaction>();
+      this.items = new ArrayList<TransactionSummary>();
     }
     this.items.add(itemsItem);
     return this;
@@ -71,12 +71,12 @@ public class Transactions {
   @javax.annotation.Nullable
   @ApiModelProperty(value = "A list of transactions.")
 
-  public List<Transaction> getItems() {
+  public List<TransactionSummary> getItems() {
     return items;
   }
 
 
-  public void setItems(List<Transaction> items) {
+  public void setItems(List<TransactionSummary> items) {
     this.items = items;
   }
 
