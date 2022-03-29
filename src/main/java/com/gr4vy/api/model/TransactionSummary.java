@@ -33,7 +33,7 @@ import org.threeten.bp.OffsetDateTime;
  * A transaction record.
  */
 @ApiModel(description = "A transaction record.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-12-17T10:55:07.385073Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-03-29T11:53:32.457004Z[Etc/UTC]")
 public class TransactionSummary {
   /**
    * The type of this resource. Is always &#x60;transaction&#x60;.
@@ -116,6 +116,12 @@ public class TransactionSummary {
     AUTHORIZATION_EXPIRED("authorization_expired"),
     
     AUTHORIZATION_VOIDED("authorization_voided"),
+    
+    AUTHORIZATION_VOID_PENDING("authorization_void_pending"),
+    
+    AUTHORIZATION_VOID_DECLINED("authorization_void_declined"),
+    
+    AUTHORIZATION_VOID_FAILED("authorization_void_failed"),
     
     REFUND_SUCCEEDED("refund_succeeded"),
     

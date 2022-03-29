@@ -20,7 +20,7 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import com.gr4vy.api.model.BillingDetails;
+import com.gr4vy.api.model.BillingDetailsRequest;
 import com.gr4vy.api.model.BillingDetailsUpdateRequest;
 import com.gr4vy.api.model.BuyerRequest;
 import io.swagger.annotations.ApiModel;
@@ -31,7 +31,7 @@ import java.io.IOException;
  * A request to update a buyer.
  */
 @ApiModel(description = "A request to update a buyer.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-12-17T10:55:07.385073Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-03-29T11:53:32.457004Z[Etc/UTC]")
 public class BuyerUpdate {
   public static final String SERIALIZED_NAME_BILLING_DETAILS = "billing_details";
   @SerializedName(SERIALIZED_NAME_BILLING_DETAILS)

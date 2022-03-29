@@ -21,22 +21,17 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import com.gr4vy.api.model.Address;
-import com.gr4vy.api.model.AddressUpdate;
-import com.gr4vy.api.model.BillingDetailsRequest;
 import com.gr4vy.api.model.TaxId;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 
 /**
- * BillingDetailsUpdateRequest
+ * Billing details to use associated to a buyer.
  */
+@ApiModel(description = "Billing details to use associated to a buyer.")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-03-29T11:53:32.457004Z[Etc/UTC]")
-public class BillingDetailsUpdateRequest {
-  public static final String SERIALIZED_NAME_ADDRESS = "address";
-  @SerializedName(SERIALIZED_NAME_ADDRESS)
-  private AddressUpdate address;
-
+public class BillingDetailsRequest {
   public static final String SERIALIZED_NAME_FIRST_NAME = "first_name";
   @SerializedName(SERIALIZED_NAME_FIRST_NAME)
   private String firstName;
@@ -53,35 +48,16 @@ public class BillingDetailsUpdateRequest {
   @SerializedName(SERIALIZED_NAME_PHONE_NUMBER)
   private String phoneNumber;
 
+  public static final String SERIALIZED_NAME_ADDRESS = "address";
+  @SerializedName(SERIALIZED_NAME_ADDRESS)
+  private Address address;
+
   public static final String SERIALIZED_NAME_TAX_ID = "tax_id";
   @SerializedName(SERIALIZED_NAME_TAX_ID)
   private TaxId taxId;
 
 
-  public BillingDetailsUpdateRequest address(AddressUpdate address) {
-    
-    this.address = address;
-    return this;
-  }
-
-   /**
-   * Address associated with the billing details.
-   * @return address
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "Address associated with the billing details.")
-
-  public AddressUpdate getAddress() {
-    return address;
-  }
-
-
-  public void setAddress(AddressUpdate address) {
-    this.address = address;
-  }
-
-
-  public BillingDetailsUpdateRequest firstName(String firstName) {
+  public BillingDetailsRequest firstName(String firstName) {
     
     this.firstName = firstName;
     return this;
@@ -104,7 +80,7 @@ public class BillingDetailsUpdateRequest {
   }
 
 
-  public BillingDetailsUpdateRequest lastName(String lastName) {
+  public BillingDetailsRequest lastName(String lastName) {
     
     this.lastName = lastName;
     return this;
@@ -127,7 +103,7 @@ public class BillingDetailsUpdateRequest {
   }
 
 
-  public BillingDetailsUpdateRequest emailAddress(String emailAddress) {
+  public BillingDetailsRequest emailAddress(String emailAddress) {
     
     this.emailAddress = emailAddress;
     return this;
@@ -150,7 +126,7 @@ public class BillingDetailsUpdateRequest {
   }
 
 
-  public BillingDetailsUpdateRequest phoneNumber(String phoneNumber) {
+  public BillingDetailsRequest phoneNumber(String phoneNumber) {
     
     this.phoneNumber = phoneNumber;
     return this;
@@ -173,7 +149,30 @@ public class BillingDetailsUpdateRequest {
   }
 
 
-  public BillingDetailsUpdateRequest taxId(TaxId taxId) {
+  public BillingDetailsRequest address(Address address) {
+    
+    this.address = address;
+    return this;
+  }
+
+   /**
+   * Get address
+   * @return address
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public Address getAddress() {
+    return address;
+  }
+
+
+  public void setAddress(Address address) {
+    this.address = address;
+  }
+
+
+  public BillingDetailsRequest taxId(TaxId taxId) {
     
     this.taxId = taxId;
     return this;
@@ -204,29 +203,29 @@ public class BillingDetailsUpdateRequest {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    BillingDetailsUpdateRequest billingDetailsUpdateRequest = (BillingDetailsUpdateRequest) o;
-    return Objects.equals(this.address, billingDetailsUpdateRequest.address) &&
-        Objects.equals(this.firstName, billingDetailsUpdateRequest.firstName) &&
-        Objects.equals(this.lastName, billingDetailsUpdateRequest.lastName) &&
-        Objects.equals(this.emailAddress, billingDetailsUpdateRequest.emailAddress) &&
-        Objects.equals(this.phoneNumber, billingDetailsUpdateRequest.phoneNumber) &&
-        Objects.equals(this.taxId, billingDetailsUpdateRequest.taxId);
+    BillingDetailsRequest billingDetailsRequest = (BillingDetailsRequest) o;
+    return Objects.equals(this.firstName, billingDetailsRequest.firstName) &&
+        Objects.equals(this.lastName, billingDetailsRequest.lastName) &&
+        Objects.equals(this.emailAddress, billingDetailsRequest.emailAddress) &&
+        Objects.equals(this.phoneNumber, billingDetailsRequest.phoneNumber) &&
+        Objects.equals(this.address, billingDetailsRequest.address) &&
+        Objects.equals(this.taxId, billingDetailsRequest.taxId);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(address, firstName, lastName, emailAddress, phoneNumber, taxId);
+    return Objects.hash(firstName, lastName, emailAddress, phoneNumber, address, taxId);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class BillingDetailsUpdateRequest {\n");
-    sb.append("    address: ").append(toIndentedString(address)).append("\n");
+    sb.append("class BillingDetailsRequest {\n");
     sb.append("    firstName: ").append(toIndentedString(firstName)).append("\n");
     sb.append("    lastName: ").append(toIndentedString(lastName)).append("\n");
     sb.append("    emailAddress: ").append(toIndentedString(emailAddress)).append("\n");
     sb.append("    phoneNumber: ").append(toIndentedString(phoneNumber)).append("\n");
+    sb.append("    address: ").append(toIndentedString(address)).append("\n");
     sb.append("    taxId: ").append(toIndentedString(taxId)).append("\n");
     sb.append("}");
     return sb.toString();

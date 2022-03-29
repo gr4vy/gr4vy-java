@@ -20,7 +20,7 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import com.gr4vy.api.model.BillingDetails;
+import com.gr4vy.api.model.BillingDetailsRequest;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
@@ -29,7 +29,7 @@ import java.io.IOException;
  * A request to create a buyer.
  */
 @ApiModel(description = "A request to create a buyer.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-12-17T10:55:07.385073Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-03-29T11:53:32.457004Z[Etc/UTC]")
 public class BuyerRequest {
   public static final String SERIALIZED_NAME_EXTERNAL_IDENTIFIER = "external_identifier";
   @SerializedName(SERIALIZED_NAME_EXTERNAL_IDENTIFIER)
@@ -41,7 +41,7 @@ public class BuyerRequest {
 
   public static final String SERIALIZED_NAME_BILLING_DETAILS = "billing_details";
   @SerializedName(SERIALIZED_NAME_BILLING_DETAILS)
-  private BillingDetails billingDetails;
+  private BillingDetailsRequest billingDetails;
 
 
   public BuyerRequest externalIdentifier(String externalIdentifier) {
@@ -90,7 +90,7 @@ public class BuyerRequest {
   }
 
 
-  public BuyerRequest billingDetails(BillingDetails billingDetails) {
+  public BuyerRequest billingDetails(BillingDetailsRequest billingDetails) {
     
     this.billingDetails = billingDetails;
     return this;
@@ -103,12 +103,12 @@ public class BuyerRequest {
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
 
-  public BillingDetails getBillingDetails() {
+  public BillingDetailsRequest getBillingDetails() {
     return billingDetails;
   }
 
 
-  public void setBillingDetails(BillingDetails billingDetails) {
+  public void setBillingDetails(BillingDetailsRequest billingDetails) {
     this.billingDetails = billingDetails;
   }
 

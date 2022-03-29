@@ -20,11 +20,14 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import com.gr4vy.api.model.CartItem;
+import com.gr4vy.api.model.StatementDescriptor;
 import com.gr4vy.api.model.ThreeDSecureDataV1V2;
 import com.gr4vy.api.model.TransactionPaymentMethodRequest;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -33,7 +36,7 @@ import java.util.Map;
  * A request to create a transaction.
  */
 @ApiModel(description = "A request to create a transaction.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-12-17T10:55:07.385073Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-03-29T11:53:32.457004Z[Etc/UTC]")
 public class TransactionRequest {
   public static final String SERIALIZED_NAME_AMOUNT = "amount";
   @SerializedName(SERIALIZED_NAME_AMOUNT)
@@ -115,7 +118,7 @@ public class TransactionRequest {
   private Boolean merchantInitiated = false;
 
   /**
-   * The source of the transaction. Defaults to &#39;ecommerce&#39;.
+   * The source of the transaction. Defaults to &#x60;ecommerce&#x60;.
    */
   @JsonAdapter(PaymentSourceEnum.Adapter.class)
   public enum PaymentSourceEnum {
@@ -178,6 +181,18 @@ public class TransactionRequest {
   public static final String SERIALIZED_NAME_METADATA = "metadata";
   @SerializedName(SERIALIZED_NAME_METADATA)
   private Map<String, String> metadata = null;
+
+  public static final String SERIALIZED_NAME_STATEMENT_DESCRIPTOR = "statement_descriptor";
+  @SerializedName(SERIALIZED_NAME_STATEMENT_DESCRIPTOR)
+  private StatementDescriptor statementDescriptor;
+
+  public static final String SERIALIZED_NAME_CART_ITEMS = "cart_items";
+  @SerializedName(SERIALIZED_NAME_CART_ITEMS)
+  private List<CartItem> cartItems = null;
+
+  public static final String SERIALIZED_NAME_PREVIOUS_SCHEME_TRANSACTION_ID = "previous_scheme_transaction_id";
+  @SerializedName(SERIALIZED_NAME_PREVIOUS_SCHEME_TRANSACTION_ID)
+  private String previousSchemeTransactionId = "null";
 
 
   public TransactionRequest amount(Integer amount) {
@@ -370,11 +385,11 @@ public class TransactionRequest {
   }
 
    /**
-   * The source of the transaction. Defaults to &#39;ecommerce&#39;.
+   * The source of the transaction. Defaults to &#x60;ecommerce&#x60;.
    * @return paymentSource
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "ecommerce", value = "The source of the transaction. Defaults to 'ecommerce'.")
+  @ApiModelProperty(example = "ecommerce", value = "The source of the transaction. Defaults to `ecommerce`.")
 
   public PaymentSourceEnum getPaymentSource() {
     return paymentSource;
@@ -393,11 +408,11 @@ public class TransactionRequest {
   }
 
    /**
-   * Indicates whether the transaction represents a subsequent payment coming from a setup recurring payment. Please note this flag is only compatible with payment_source set to [recurring, installment, card_on_file] and will be ignored for other values or if payment_source is not present.
+   * Indicates whether the transaction represents a subsequent payment coming from a setup recurring payment. Please note this flag is only compatible with &#x60;payment_source&#x60; set to &#x60;recurring&#x60;, &#x60;installment&#x60;, or &#x60;card_on_file&#x60; and will be ignored for other values or if &#x60;payment_source&#x60; is not present.
    * @return isSubsequentPayment
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "true", value = "Indicates whether the transaction represents a subsequent payment coming from a setup recurring payment. Please note this flag is only compatible with payment_source set to [recurring, installment, card_on_file] and will be ignored for other values or if payment_source is not present.")
+  @ApiModelProperty(example = "true", value = "Indicates whether the transaction represents a subsequent payment coming from a setup recurring payment. Please note this flag is only compatible with `payment_source` set to `recurring`, `installment`, or `card_on_file` and will be ignored for other values or if `payment_source` is not present.")
 
   public Boolean getIsSubsequentPayment() {
     return isSubsequentPayment;
@@ -440,6 +455,83 @@ public class TransactionRequest {
   }
 
 
+  public TransactionRequest statementDescriptor(StatementDescriptor statementDescriptor) {
+    
+    this.statementDescriptor = statementDescriptor;
+    return this;
+  }
+
+   /**
+   * Get statementDescriptor
+   * @return statementDescriptor
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public StatementDescriptor getStatementDescriptor() {
+    return statementDescriptor;
+  }
+
+
+  public void setStatementDescriptor(StatementDescriptor statementDescriptor) {
+    this.statementDescriptor = statementDescriptor;
+  }
+
+
+  public TransactionRequest cartItems(List<CartItem> cartItems) {
+    
+    this.cartItems = cartItems;
+    return this;
+  }
+
+  public TransactionRequest addCartItemsItem(CartItem cartItemsItem) {
+    if (this.cartItems == null) {
+      this.cartItems = new ArrayList<CartItem>();
+    }
+    this.cartItems.add(cartItemsItem);
+    return this;
+  }
+
+   /**
+   * An array of cart items that represents the line items of a transaction.
+   * @return cartItems
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "An array of cart items that represents the line items of a transaction.")
+
+  public List<CartItem> getCartItems() {
+    return cartItems;
+  }
+
+
+  public void setCartItems(List<CartItem> cartItems) {
+    this.cartItems = cartItems;
+  }
+
+
+  public TransactionRequest previousSchemeTransactionId(String previousSchemeTransactionId) {
+    
+    this.previousSchemeTransactionId = previousSchemeTransactionId;
+    return this;
+  }
+
+   /**
+   * A scheme&#39;s transaction identifier to use in connecting a merchant initiated transaction to a previous customer initiated transaction.  If not provided, and a qualifying customer initiated transaction has been previously made, then Gr4vy will populate this value with the identifier returned for that transaction.  e.g. the Visa Transaction Identifier, or Mastercard Trace ID.
+   * @return previousSchemeTransactionId
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "123456789012345", value = "A scheme's transaction identifier to use in connecting a merchant initiated transaction to a previous customer initiated transaction.  If not provided, and a qualifying customer initiated transaction has been previously made, then Gr4vy will populate this value with the identifier returned for that transaction.  e.g. the Visa Transaction Identifier, or Mastercard Trace ID.")
+
+  public String getPreviousSchemeTransactionId() {
+    return previousSchemeTransactionId;
+  }
+
+
+  public void setPreviousSchemeTransactionId(String previousSchemeTransactionId) {
+    this.previousSchemeTransactionId = previousSchemeTransactionId;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -459,12 +551,15 @@ public class TransactionRequest {
         Objects.equals(this.merchantInitiated, transactionRequest.merchantInitiated) &&
         Objects.equals(this.paymentSource, transactionRequest.paymentSource) &&
         Objects.equals(this.isSubsequentPayment, transactionRequest.isSubsequentPayment) &&
-        Objects.equals(this.metadata, transactionRequest.metadata);
+        Objects.equals(this.metadata, transactionRequest.metadata) &&
+        Objects.equals(this.statementDescriptor, transactionRequest.statementDescriptor) &&
+        Objects.equals(this.cartItems, transactionRequest.cartItems) &&
+        Objects.equals(this.previousSchemeTransactionId, transactionRequest.previousSchemeTransactionId);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(amount, currency, paymentMethod, store, intent, externalIdentifier, threeDSecureData, merchantInitiated, paymentSource, isSubsequentPayment, metadata);
+    return Objects.hash(amount, currency, paymentMethod, store, intent, externalIdentifier, threeDSecureData, merchantInitiated, paymentSource, isSubsequentPayment, metadata, statementDescriptor, cartItems, previousSchemeTransactionId);
   }
 
   @Override
@@ -482,6 +577,9 @@ public class TransactionRequest {
     sb.append("    paymentSource: ").append(toIndentedString(paymentSource)).append("\n");
     sb.append("    isSubsequentPayment: ").append(toIndentedString(isSubsequentPayment)).append("\n");
     sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
+    sb.append("    statementDescriptor: ").append(toIndentedString(statementDescriptor)).append("\n");
+    sb.append("    cartItems: ").append(toIndentedString(cartItems)).append("\n");
+    sb.append("    previousSchemeTransactionId: ").append(toIndentedString(previousSchemeTransactionId)).append("\n");
     sb.append("}");
     return sb.toString();
   }

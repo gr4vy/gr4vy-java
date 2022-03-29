@@ -29,7 +29,7 @@ import java.util.UUID;
  * Card details to use in a transaction or to register a new payment method.
  */
 @ApiModel(description = "Card details to use in a transaction or to register a new payment method.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-12-17T10:55:07.385073Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-03-29T11:53:32.457004Z[Etc/UTC]")
 public class CardRequest {
   /**
    * &#x60;card&#x60;.
@@ -103,10 +103,6 @@ public class CardRequest {
   public static final String SERIALIZED_NAME_BUYER_EXTERNAL_IDENTIFIER = "buyer_external_identifier";
   @SerializedName(SERIALIZED_NAME_BUYER_EXTERNAL_IDENTIFIER)
   private String buyerExternalIdentifier;
-
-  public static final String SERIALIZED_NAME_REDIRECT_URL = "redirect_url";
-  @SerializedName(SERIALIZED_NAME_REDIRECT_URL)
-  private String redirectUrl;
 
 
   public CardRequest method(MethodEnum method) {
@@ -266,29 +262,6 @@ public class CardRequest {
   }
 
 
-  public CardRequest redirectUrl(String redirectUrl) {
-    
-    this.redirectUrl = redirectUrl;
-    return this;
-  }
-
-   /**
-   * The redirect URL to redirect a buyer after a 3D Secure flow has been completed. This will be appended with both a transaction ID and status (e.g. &#x60;https://example.com/callback? gr4vy_transaction_id&#x3D;123&amp;gr4vy_transaction_status&#x3D;capture_succeeded&#x60;). This is required if the transaction request body does not include &#x60;three_d_secure_data&#x60;.
-   * @return redirectUrl
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(example = "https://example.com/callback", value = "The redirect URL to redirect a buyer after a 3D Secure flow has been completed. This will be appended with both a transaction ID and status (e.g. `https://example.com/callback? gr4vy_transaction_id=123&gr4vy_transaction_status=capture_succeeded`). This is required if the transaction request body does not include `three_d_secure_data`.")
-
-  public String getRedirectUrl() {
-    return redirectUrl;
-  }
-
-
-  public void setRedirectUrl(String redirectUrl) {
-    this.redirectUrl = redirectUrl;
-  }
-
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -304,13 +277,12 @@ public class CardRequest {
         Objects.equals(this.securityCode, cardRequest.securityCode) &&
         Objects.equals(this.externalIdentifier, cardRequest.externalIdentifier) &&
         Objects.equals(this.buyerId, cardRequest.buyerId) &&
-        Objects.equals(this.buyerExternalIdentifier, cardRequest.buyerExternalIdentifier) &&
-        Objects.equals(this.redirectUrl, cardRequest.redirectUrl);
+        Objects.equals(this.buyerExternalIdentifier, cardRequest.buyerExternalIdentifier);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(method, number, expirationDate, securityCode, externalIdentifier, buyerId, buyerExternalIdentifier, redirectUrl);
+    return Objects.hash(method, number, expirationDate, securityCode, externalIdentifier, buyerId, buyerExternalIdentifier);
   }
 
   @Override
@@ -324,7 +296,6 @@ public class CardRequest {
     sb.append("    externalIdentifier: ").append(toIndentedString(externalIdentifier)).append("\n");
     sb.append("    buyerId: ").append(toIndentedString(buyerId)).append("\n");
     sb.append("    buyerExternalIdentifier: ").append(toIndentedString(buyerExternalIdentifier)).append("\n");
-    sb.append("    redirectUrl: ").append(toIndentedString(redirectUrl)).append("\n");
     sb.append("}");
     return sb.toString();
   }

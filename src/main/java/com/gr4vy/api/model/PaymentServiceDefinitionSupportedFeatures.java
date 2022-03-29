@@ -28,7 +28,7 @@ import java.io.IOException;
  * Features supported by the payment definition.
  */
 @ApiModel(description = "Features supported by the payment definition.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-12-17T10:55:07.385073Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-03-29T11:53:32.457004Z[Etc/UTC]")
 public class PaymentServiceDefinitionSupportedFeatures {
   public static final String SERIALIZED_NAME_PAYMENT_METHOD_TOKENIZATION = "payment_method_tokenization";
   @SerializedName(SERIALIZED_NAME_PAYMENT_METHOD_TOKENIZATION)
@@ -42,9 +42,9 @@ public class PaymentServiceDefinitionSupportedFeatures {
   @SerializedName(SERIALIZED_NAME_THREE_D_SECURE_PASS_THROUGH)
   private Boolean threeDSecurePassThrough;
 
-  public static final String SERIALIZED_NAME_APPLE_PAY = "apple_pay";
-  @SerializedName(SERIALIZED_NAME_APPLE_PAY)
-  private Boolean applePay;
+  public static final String SERIALIZED_NAME_NETWORK_TOKENS = "network_tokens";
+  @SerializedName(SERIALIZED_NAME_NETWORK_TOKENS)
+  private Boolean networkTokens;
 
 
   public PaymentServiceDefinitionSupportedFeatures paymentMethodTokenization(Boolean paymentMethodTokenization) {
@@ -116,26 +116,26 @@ public class PaymentServiceDefinitionSupportedFeatures {
   }
 
 
-  public PaymentServiceDefinitionSupportedFeatures applePay(Boolean applePay) {
+  public PaymentServiceDefinitionSupportedFeatures networkTokens(Boolean networkTokens) {
     
-    this.applePay = applePay;
+    this.networkTokens = networkTokens;
     return this;
   }
 
    /**
-   * Supports passing decrypted apple pay token to the underlying processor.
-   * @return applePay
+   * Supports passing decrypted digital wallet (e.g. Apple Pay) tokens to the underlying processor.
+   * @return networkTokens
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "false", value = "Supports passing decrypted apple pay token to the underlying processor.")
+  @ApiModelProperty(example = "false", value = "Supports passing decrypted digital wallet (e.g. Apple Pay) tokens to the underlying processor.")
 
-  public Boolean getApplePay() {
-    return applePay;
+  public Boolean getNetworkTokens() {
+    return networkTokens;
   }
 
 
-  public void setApplePay(Boolean applePay) {
-    this.applePay = applePay;
+  public void setNetworkTokens(Boolean networkTokens) {
+    this.networkTokens = networkTokens;
   }
 
 
@@ -151,12 +151,12 @@ public class PaymentServiceDefinitionSupportedFeatures {
     return Objects.equals(this.paymentMethodTokenization, paymentServiceDefinitionSupportedFeatures.paymentMethodTokenization) &&
         Objects.equals(this.threeDSecureHosted, paymentServiceDefinitionSupportedFeatures.threeDSecureHosted) &&
         Objects.equals(this.threeDSecurePassThrough, paymentServiceDefinitionSupportedFeatures.threeDSecurePassThrough) &&
-        Objects.equals(this.applePay, paymentServiceDefinitionSupportedFeatures.applePay);
+        Objects.equals(this.networkTokens, paymentServiceDefinitionSupportedFeatures.networkTokens);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(paymentMethodTokenization, threeDSecureHosted, threeDSecurePassThrough, applePay);
+    return Objects.hash(paymentMethodTokenization, threeDSecureHosted, threeDSecurePassThrough, networkTokens);
   }
 
   @Override
@@ -166,7 +166,7 @@ public class PaymentServiceDefinitionSupportedFeatures {
     sb.append("    paymentMethodTokenization: ").append(toIndentedString(paymentMethodTokenization)).append("\n");
     sb.append("    threeDSecureHosted: ").append(toIndentedString(threeDSecureHosted)).append("\n");
     sb.append("    threeDSecurePassThrough: ").append(toIndentedString(threeDSecurePassThrough)).append("\n");
-    sb.append("    applePay: ").append(toIndentedString(applePay)).append("\n");
+    sb.append("    networkTokens: ").append(toIndentedString(networkTokens)).append("\n");
     sb.append("}");
     return sb.toString();
   }

@@ -28,7 +28,7 @@ import java.io.IOException;
  * An active, configured payment service.
  */
 @ApiModel(description = "An active, configured payment service.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-12-17T10:55:07.385073Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-03-29T11:53:32.457004Z[Etc/UTC]")
 public class PaymentServiceSnapshot {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -90,6 +90,10 @@ public class PaymentServiceSnapshot {
   public static final String SERIALIZED_NAME_METHOD = "method";
   @SerializedName(SERIALIZED_NAME_METHOD)
   private String method;
+
+  public static final String SERIALIZED_NAME_DISPLAY_NAME = "display_name";
+  @SerializedName(SERIALIZED_NAME_DISPLAY_NAME)
+  private String displayName;
 
 
   public PaymentServiceSnapshot id(String id) {
@@ -184,6 +188,29 @@ public class PaymentServiceSnapshot {
   }
 
 
+  public PaymentServiceSnapshot displayName(String displayName) {
+    
+    this.displayName = displayName;
+    return this;
+  }
+
+   /**
+   * The custom name set for this service.
+   * @return displayName
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "Stripe (Main)", value = "The custom name set for this service.")
+
+  public String getDisplayName() {
+    return displayName;
+  }
+
+
+  public void setDisplayName(String displayName) {
+    this.displayName = displayName;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -196,12 +223,13 @@ public class PaymentServiceSnapshot {
     return Objects.equals(this.id, paymentServiceSnapshot.id) &&
         Objects.equals(this.type, paymentServiceSnapshot.type) &&
         Objects.equals(this.paymentServiceDefinitionId, paymentServiceSnapshot.paymentServiceDefinitionId) &&
-        Objects.equals(this.method, paymentServiceSnapshot.method);
+        Objects.equals(this.method, paymentServiceSnapshot.method) &&
+        Objects.equals(this.displayName, paymentServiceSnapshot.displayName);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, type, paymentServiceDefinitionId, method);
+    return Objects.hash(id, type, paymentServiceDefinitionId, method, displayName);
   }
 
   @Override
@@ -212,6 +240,7 @@ public class PaymentServiceSnapshot {
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("    paymentServiceDefinitionId: ").append(toIndentedString(paymentServiceDefinitionId)).append("\n");
     sb.append("    method: ").append(toIndentedString(method)).append("\n");
+    sb.append("    displayName: ").append(toIndentedString(displayName)).append("\n");
     sb.append("}");
     return sb.toString();
   }

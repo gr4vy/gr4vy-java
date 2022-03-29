@@ -20,7 +20,7 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import com.gr4vy.api.model.PaymentServiceDefinition;
+import com.gr4vy.api.model.Refund;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
@@ -28,14 +28,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * A list of available payment services definitions.
+ * A list of refunds.
  */
-@ApiModel(description = "A list of available payment services definitions.")
+@ApiModel(description = "A list of refunds.")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-03-29T11:53:32.457004Z[Etc/UTC]")
-public class PaymentServiceDefinitions {
+public class Refunds {
   public static final String SERIALIZED_NAME_ITEMS = "items";
   @SerializedName(SERIALIZED_NAME_ITEMS)
-  private List<PaymentServiceDefinition> items = null;
+  private List<Refund> items = null;
 
   public static final String SERIALIZED_NAME_LIMIT = "limit";
   @SerializedName(SERIALIZED_NAME_LIMIT)
@@ -50,38 +50,38 @@ public class PaymentServiceDefinitions {
   private String previousCursor;
 
 
-  public PaymentServiceDefinitions items(List<PaymentServiceDefinition> items) {
+  public Refunds items(List<Refund> items) {
     
     this.items = items;
     return this;
   }
 
-  public PaymentServiceDefinitions addItemsItem(PaymentServiceDefinition itemsItem) {
+  public Refunds addItemsItem(Refund itemsItem) {
     if (this.items == null) {
-      this.items = new ArrayList<PaymentServiceDefinition>();
+      this.items = new ArrayList<Refund>();
     }
     this.items.add(itemsItem);
     return this;
   }
 
    /**
-   * Get items
+   * A list of refunds.
    * @return items
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "A list of refunds.")
 
-  public List<PaymentServiceDefinition> getItems() {
+  public List<Refund> getItems() {
     return items;
   }
 
 
-  public void setItems(List<PaymentServiceDefinition> items) {
+  public void setItems(List<Refund> items) {
     this.items = items;
   }
 
 
-  public PaymentServiceDefinitions limit(Integer limit) {
+  public Refunds limit(Integer limit) {
     
     this.limit = limit;
     return this;
@@ -106,7 +106,7 @@ public class PaymentServiceDefinitions {
   }
 
 
-  public PaymentServiceDefinitions nextCursor(String nextCursor) {
+  public Refunds nextCursor(String nextCursor) {
     
     this.nextCursor = nextCursor;
     return this;
@@ -129,7 +129,7 @@ public class PaymentServiceDefinitions {
   }
 
 
-  public PaymentServiceDefinitions previousCursor(String previousCursor) {
+  public Refunds previousCursor(String previousCursor) {
     
     this.previousCursor = previousCursor;
     return this;
@@ -160,11 +160,11 @@ public class PaymentServiceDefinitions {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    PaymentServiceDefinitions paymentServiceDefinitions = (PaymentServiceDefinitions) o;
-    return Objects.equals(this.items, paymentServiceDefinitions.items) &&
-        Objects.equals(this.limit, paymentServiceDefinitions.limit) &&
-        Objects.equals(this.nextCursor, paymentServiceDefinitions.nextCursor) &&
-        Objects.equals(this.previousCursor, paymentServiceDefinitions.previousCursor);
+    Refunds refunds = (Refunds) o;
+    return Objects.equals(this.items, refunds.items) &&
+        Objects.equals(this.limit, refunds.limit) &&
+        Objects.equals(this.nextCursor, refunds.nextCursor) &&
+        Objects.equals(this.previousCursor, refunds.previousCursor);
   }
 
   @Override
@@ -175,7 +175,7 @@ public class PaymentServiceDefinitions {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class PaymentServiceDefinitions {\n");
+    sb.append("class Refunds {\n");
     sb.append("    items: ").append(toIndentedString(items)).append("\n");
     sb.append("    limit: ").append(toIndentedString(limit)).append("\n");
     sb.append("    nextCursor: ").append(toIndentedString(nextCursor)).append("\n");
