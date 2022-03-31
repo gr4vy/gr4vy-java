@@ -28,10 +28,14 @@ import java.io.IOException;
 
 
 import com.gr4vy.api.model.Error401Unauthorized;
+import com.gr4vy.api.model.Error404NotFound;
 import com.gr4vy.api.model.ErrorGeneric;
+import com.gr4vy.api.model.Refund;
+import com.gr4vy.api.model.Refunds;
 import com.gr4vy.api.model.Transaction;
 import com.gr4vy.api.model.TransactionCaptureRequest;
 import com.gr4vy.api.model.TransactionRefundRequest;
+import com.gr4vy.api.model.TransactionRefundRequestDeprecated;
 import com.gr4vy.api.model.TransactionRequest;
 import com.gr4vy.api.model.Transactions;
 
@@ -423,6 +427,272 @@ public class TransactionsApi {
         return localVarCall;
     }
     /**
+     * Build call for getTransactionRefund
+     * @param transactionId The ID for the transaction to get the information for. (required)
+     * @param refundId The unique ID of the refund. (required)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Returns a refund. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Returns an error if no valid authentication was provided. </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Returns an error if the resource can not be found. </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call getTransactionRefundCall(String transactionId, String refundId, final ApiCallback _callback) throws ApiException {
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/transactions/{transaction_id}/refunds/{refund_id}"
+            .replaceAll("\\{" + "transaction_id" + "\\}", localVarApiClient.escapeString(transactionId.toString()))
+            .replaceAll("\\{" + "refund_id" + "\\}", localVarApiClient.escapeString(refundId.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        String[] localVarAuthNames = new String[] { "BearerAuth" };
+        return localVarApiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call getTransactionRefundValidateBeforeCall(String transactionId, String refundId, final ApiCallback _callback) throws ApiException {
+        
+        // verify the required parameter 'transactionId' is set
+        if (transactionId == null) {
+            throw new ApiException("Missing the required parameter 'transactionId' when calling getTransactionRefund(Async)");
+        }
+        
+        // verify the required parameter 'refundId' is set
+        if (refundId == null) {
+            throw new ApiException("Missing the required parameter 'refundId' when calling getTransactionRefund(Async)");
+        }
+        
+
+        okhttp3.Call localVarCall = getTransactionRefundCall(transactionId, refundId, _callback);
+        return localVarCall;
+
+    }
+
+    /**
+     * Get transaction refund
+     * Gets information about a refund associated with a certain transaction.
+     * @param transactionId The ID for the transaction to get the information for. (required)
+     * @param refundId The unique ID of the refund. (required)
+     * @return Refund
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Returns a refund. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Returns an error if no valid authentication was provided. </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Returns an error if the resource can not be found. </td><td>  -  </td></tr>
+     </table>
+     */
+    public Refund getTransactionRefund(String transactionId, String refundId) throws ApiException {
+        ApiResponse<Refund> localVarResp = getTransactionRefundWithHttpInfo(transactionId, refundId);
+        return localVarResp.getData();
+    }
+
+    /**
+     * Get transaction refund
+     * Gets information about a refund associated with a certain transaction.
+     * @param transactionId The ID for the transaction to get the information for. (required)
+     * @param refundId The unique ID of the refund. (required)
+     * @return ApiResponse&lt;Refund&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Returns a refund. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Returns an error if no valid authentication was provided. </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Returns an error if the resource can not be found. </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<Refund> getTransactionRefundWithHttpInfo(String transactionId, String refundId) throws ApiException {
+        okhttp3.Call localVarCall = getTransactionRefundValidateBeforeCall(transactionId, refundId, null);
+        Type localVarReturnType = new TypeToken<Refund>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Get transaction refund (asynchronously)
+     * Gets information about a refund associated with a certain transaction.
+     * @param transactionId The ID for the transaction to get the information for. (required)
+     * @param refundId The unique ID of the refund. (required)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Returns a refund. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Returns an error if no valid authentication was provided. </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Returns an error if the resource can not be found. </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call getTransactionRefundAsync(String transactionId, String refundId, final ApiCallback<Refund> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = getTransactionRefundValidateBeforeCall(transactionId, refundId, _callback);
+        Type localVarReturnType = new TypeToken<Refund>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+    /**
+     * Build call for listTransactionRefunds
+     * @param transactionId The ID for the transaction to get the information for. (required)
+     * @param limit Defines the maximum number of items to return for this request. (optional, default to 20)
+     * @param cursor A cursor that identifies the page of results to return. This is used to paginate the results of this API.  For the first page of results, this parameter can be left out. For additional pages, use the value returned by the API in the &#x60;next_cursor&#x60; field. Similarly the &#x60;previous_cursor&#x60; can be used to reverse backwards in the list. (optional)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Returns a list of refunds. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Returns an error if no valid authentication was provided. </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Returns an error if the resource can not be found. </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call listTransactionRefundsCall(String transactionId, Integer limit, String cursor, final ApiCallback _callback) throws ApiException {
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/transactions/{transaction_id}/refunds"
+            .replaceAll("\\{" + "transaction_id" + "\\}", localVarApiClient.escapeString(transactionId.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        if (limit != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("limit", limit));
+        }
+
+        if (cursor != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("cursor", cursor));
+        }
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        String[] localVarAuthNames = new String[] { "BearerAuth" };
+        return localVarApiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call listTransactionRefundsValidateBeforeCall(String transactionId, Integer limit, String cursor, final ApiCallback _callback) throws ApiException {
+        
+        // verify the required parameter 'transactionId' is set
+        if (transactionId == null) {
+            throw new ApiException("Missing the required parameter 'transactionId' when calling listTransactionRefunds(Async)");
+        }
+        
+
+        okhttp3.Call localVarCall = listTransactionRefundsCall(transactionId, limit, cursor, _callback);
+        return localVarCall;
+
+    }
+
+    /**
+     * List transaction refunds
+     * Lists all refunds associated with a certain transaction.
+     * @param transactionId The ID for the transaction to get the information for. (required)
+     * @param limit Defines the maximum number of items to return for this request. (optional, default to 20)
+     * @param cursor A cursor that identifies the page of results to return. This is used to paginate the results of this API.  For the first page of results, this parameter can be left out. For additional pages, use the value returned by the API in the &#x60;next_cursor&#x60; field. Similarly the &#x60;previous_cursor&#x60; can be used to reverse backwards in the list. (optional)
+     * @return Refunds
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Returns a list of refunds. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Returns an error if no valid authentication was provided. </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Returns an error if the resource can not be found. </td><td>  -  </td></tr>
+     </table>
+     */
+    public Refunds listTransactionRefunds(String transactionId, Integer limit, String cursor) throws ApiException {
+        ApiResponse<Refunds> localVarResp = listTransactionRefundsWithHttpInfo(transactionId, limit, cursor);
+        return localVarResp.getData();
+    }
+
+    /**
+     * List transaction refunds
+     * Lists all refunds associated with a certain transaction.
+     * @param transactionId The ID for the transaction to get the information for. (required)
+     * @param limit Defines the maximum number of items to return for this request. (optional, default to 20)
+     * @param cursor A cursor that identifies the page of results to return. This is used to paginate the results of this API.  For the first page of results, this parameter can be left out. For additional pages, use the value returned by the API in the &#x60;next_cursor&#x60; field. Similarly the &#x60;previous_cursor&#x60; can be used to reverse backwards in the list. (optional)
+     * @return ApiResponse&lt;Refunds&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Returns a list of refunds. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Returns an error if no valid authentication was provided. </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Returns an error if the resource can not be found. </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<Refunds> listTransactionRefundsWithHttpInfo(String transactionId, Integer limit, String cursor) throws ApiException {
+        okhttp3.Call localVarCall = listTransactionRefundsValidateBeforeCall(transactionId, limit, cursor, null);
+        Type localVarReturnType = new TypeToken<Refunds>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * List transaction refunds (asynchronously)
+     * Lists all refunds associated with a certain transaction.
+     * @param transactionId The ID for the transaction to get the information for. (required)
+     * @param limit Defines the maximum number of items to return for this request. (optional, default to 20)
+     * @param cursor A cursor that identifies the page of results to return. This is used to paginate the results of this API.  For the first page of results, this parameter can be left out. For additional pages, use the value returned by the API in the &#x60;next_cursor&#x60; field. Similarly the &#x60;previous_cursor&#x60; can be used to reverse backwards in the list. (optional)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Returns a list of refunds. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Returns an error if no valid authentication was provided. </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Returns an error if the resource can not be found. </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call listTransactionRefundsAsync(String transactionId, Integer limit, String cursor, final ApiCallback<Refunds> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = listTransactionRefundsValidateBeforeCall(transactionId, limit, cursor, _callback);
+        Type localVarReturnType = new TypeToken<Refunds>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+    /**
      * Build call for listTransactions
      * @param search Filters the transactions to only the items for which the &#x60;id&#x60; or &#x60;external_identifier&#x60; matches this value. This field allows for a partial match, matching any transaction for which either of the fields partially or completely matches. (optional)
      * @param transactionStatus Filters the results to only the transactions for which the &#x60;status&#x60; matches this value. (optional)
@@ -618,16 +888,17 @@ public class TransactionsApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Returns cancelled transaction. </td><td>  -  </td></tr>
+        <tr><td> 201 </td><td> Returns the created refund. </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Returns an error if the request was badly formatted or missing required fields. </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Returns an error if no valid authentication was provided. </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Returns an error if the resource can not be found or has not yet been created. </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Returns an error if the resource can not be found. </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call refundTransactionCall(String transactionId, TransactionRefundRequest transactionRefundRequest, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = transactionRefundRequest;
 
         // create path and map variables
-        String localVarPath = "/transactions/{transaction_id}/refund"
+        String localVarPath = "/transactions/{transaction_id}/refunds"
             .replaceAll("\\{" + "transaction_id" + "\\}", localVarApiClient.escapeString(transactionId.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
@@ -669,10 +940,140 @@ public class TransactionsApi {
     }
 
     /**
-     * Refund or void transactions
-     * Refunds or voids transaction. If this transaction was already captured, it will issue a refund. If the transaction was not yet captured the authorization will instead be voided.
+     * Refund transaction
+     * Refunds a transaction, fully or partially.  If the transaction was not yet successfully captured, the refund will not be processed. Authorized transactions can be [voided](#operation/void-transaction) instead.
      * @param transactionId The ID for the transaction to get the information for. (required)
      * @param transactionRefundRequest  (optional)
+     * @return Refund
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 201 </td><td> Returns the created refund. </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Returns an error if the request was badly formatted or missing required fields. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Returns an error if no valid authentication was provided. </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Returns an error if the resource can not be found. </td><td>  -  </td></tr>
+     </table>
+     */
+    public Refund refundTransaction(String transactionId, TransactionRefundRequest transactionRefundRequest) throws ApiException {
+        ApiResponse<Refund> localVarResp = refundTransactionWithHttpInfo(transactionId, transactionRefundRequest);
+        return localVarResp.getData();
+    }
+
+    /**
+     * Refund transaction
+     * Refunds a transaction, fully or partially.  If the transaction was not yet successfully captured, the refund will not be processed. Authorized transactions can be [voided](#operation/void-transaction) instead.
+     * @param transactionId The ID for the transaction to get the information for. (required)
+     * @param transactionRefundRequest  (optional)
+     * @return ApiResponse&lt;Refund&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 201 </td><td> Returns the created refund. </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Returns an error if the request was badly formatted or missing required fields. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Returns an error if no valid authentication was provided. </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Returns an error if the resource can not be found. </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<Refund> refundTransactionWithHttpInfo(String transactionId, TransactionRefundRequest transactionRefundRequest) throws ApiException {
+        okhttp3.Call localVarCall = refundTransactionValidateBeforeCall(transactionId, transactionRefundRequest, null);
+        Type localVarReturnType = new TypeToken<Refund>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Refund transaction (asynchronously)
+     * Refunds a transaction, fully or partially.  If the transaction was not yet successfully captured, the refund will not be processed. Authorized transactions can be [voided](#operation/void-transaction) instead.
+     * @param transactionId The ID for the transaction to get the information for. (required)
+     * @param transactionRefundRequest  (optional)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 201 </td><td> Returns the created refund. </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Returns an error if the request was badly formatted or missing required fields. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Returns an error if no valid authentication was provided. </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Returns an error if the resource can not be found. </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call refundTransactionAsync(String transactionId, TransactionRefundRequest transactionRefundRequest, final ApiCallback<Refund> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = refundTransactionValidateBeforeCall(transactionId, transactionRefundRequest, _callback);
+        Type localVarReturnType = new TypeToken<Refund>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+    /**
+     * Build call for refundTransactionDeprecated
+     * @param transactionId The ID for the transaction to get the information for. (required)
+     * @param transactionRefundRequestDeprecated  (optional)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Returns cancelled transaction. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Returns an error if no valid authentication was provided. </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Returns an error if the resource can not be found or has not yet been created. </td><td>  -  </td></tr>
+     </table>
+     * @deprecated
+     */
+    @Deprecated
+    public okhttp3.Call refundTransactionDeprecatedCall(String transactionId, TransactionRefundRequestDeprecated transactionRefundRequestDeprecated, final ApiCallback _callback) throws ApiException {
+        Object localVarPostBody = transactionRefundRequestDeprecated;
+
+        // create path and map variables
+        String localVarPath = "/transactions/{transaction_id}/refund"
+            .replaceAll("\\{" + "transaction_id" + "\\}", localVarApiClient.escapeString(transactionId.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            "application/json"
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        String[] localVarAuthNames = new String[] { "BearerAuth" };
+        return localVarApiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @Deprecated
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call refundTransactionDeprecatedValidateBeforeCall(String transactionId, TransactionRefundRequestDeprecated transactionRefundRequestDeprecated, final ApiCallback _callback) throws ApiException {
+        
+        // verify the required parameter 'transactionId' is set
+        if (transactionId == null) {
+            throw new ApiException("Missing the required parameter 'transactionId' when calling refundTransactionDeprecated(Async)");
+        }
+        
+
+        okhttp3.Call localVarCall = refundTransactionDeprecatedCall(transactionId, transactionRefundRequestDeprecated, _callback);
+        return localVarCall;
+
+    }
+
+    /**
+     * Refund or void transactions
+     * Refunds or voids transaction. If this transaction was already captured, it will issue a refund. If the transaction was not yet captured the authorization will instead be voided.  **Warning**: this endpoint will be removed eventually, use [Refund transaction](#operation/refund-transaction) or [Void transaction](#operation/void-transaction) endpoints instead.
+     * @param transactionId The ID for the transaction to get the information for. (required)
+     * @param transactionRefundRequestDeprecated  (optional)
      * @return Transaction
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -682,17 +1083,19 @@ public class TransactionsApi {
         <tr><td> 401 </td><td> Returns an error if no valid authentication was provided. </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> Returns an error if the resource can not be found or has not yet been created. </td><td>  -  </td></tr>
      </table>
+     * @deprecated
      */
-    public Transaction refundTransaction(String transactionId, TransactionRefundRequest transactionRefundRequest) throws ApiException {
-        ApiResponse<Transaction> localVarResp = refundTransactionWithHttpInfo(transactionId, transactionRefundRequest);
+    @Deprecated
+    public Transaction refundTransactionDeprecated(String transactionId, TransactionRefundRequestDeprecated transactionRefundRequestDeprecated) throws ApiException {
+        ApiResponse<Transaction> localVarResp = refundTransactionDeprecatedWithHttpInfo(transactionId, transactionRefundRequestDeprecated);
         return localVarResp.getData();
     }
 
     /**
      * Refund or void transactions
-     * Refunds or voids transaction. If this transaction was already captured, it will issue a refund. If the transaction was not yet captured the authorization will instead be voided.
+     * Refunds or voids transaction. If this transaction was already captured, it will issue a refund. If the transaction was not yet captured the authorization will instead be voided.  **Warning**: this endpoint will be removed eventually, use [Refund transaction](#operation/refund-transaction) or [Void transaction](#operation/void-transaction) endpoints instead.
      * @param transactionId The ID for the transaction to get the information for. (required)
-     * @param transactionRefundRequest  (optional)
+     * @param transactionRefundRequestDeprecated  (optional)
      * @return ApiResponse&lt;Transaction&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -702,18 +1105,20 @@ public class TransactionsApi {
         <tr><td> 401 </td><td> Returns an error if no valid authentication was provided. </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> Returns an error if the resource can not be found or has not yet been created. </td><td>  -  </td></tr>
      </table>
+     * @deprecated
      */
-    public ApiResponse<Transaction> refundTransactionWithHttpInfo(String transactionId, TransactionRefundRequest transactionRefundRequest) throws ApiException {
-        okhttp3.Call localVarCall = refundTransactionValidateBeforeCall(transactionId, transactionRefundRequest, null);
+    @Deprecated
+    public ApiResponse<Transaction> refundTransactionDeprecatedWithHttpInfo(String transactionId, TransactionRefundRequestDeprecated transactionRefundRequestDeprecated) throws ApiException {
+        okhttp3.Call localVarCall = refundTransactionDeprecatedValidateBeforeCall(transactionId, transactionRefundRequestDeprecated, null);
         Type localVarReturnType = new TypeToken<Transaction>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
      * Refund or void transactions (asynchronously)
-     * Refunds or voids transaction. If this transaction was already captured, it will issue a refund. If the transaction was not yet captured the authorization will instead be voided.
+     * Refunds or voids transaction. If this transaction was already captured, it will issue a refund. If the transaction was not yet captured the authorization will instead be voided.  **Warning**: this endpoint will be removed eventually, use [Refund transaction](#operation/refund-transaction) or [Void transaction](#operation/void-transaction) endpoints instead.
      * @param transactionId The ID for the transaction to get the information for. (required)
-     * @param transactionRefundRequest  (optional)
+     * @param transactionRefundRequestDeprecated  (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -724,10 +1129,136 @@ public class TransactionsApi {
         <tr><td> 401 </td><td> Returns an error if no valid authentication was provided. </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> Returns an error if the resource can not be found or has not yet been created. </td><td>  -  </td></tr>
      </table>
+     * @deprecated
      */
-    public okhttp3.Call refundTransactionAsync(String transactionId, TransactionRefundRequest transactionRefundRequest, final ApiCallback<Transaction> _callback) throws ApiException {
+    @Deprecated
+    public okhttp3.Call refundTransactionDeprecatedAsync(String transactionId, TransactionRefundRequestDeprecated transactionRefundRequestDeprecated, final ApiCallback<Transaction> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = refundTransactionValidateBeforeCall(transactionId, transactionRefundRequest, _callback);
+        okhttp3.Call localVarCall = refundTransactionDeprecatedValidateBeforeCall(transactionId, transactionRefundRequestDeprecated, _callback);
+        Type localVarReturnType = new TypeToken<Transaction>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+    /**
+     * Build call for voidTransaction
+     * @param transactionId The ID for the transaction to get the information for. (required)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Returns the voided transaction. </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Returns an error if the request was badly formatted or missing required fields. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Returns an error if no valid authentication was provided. </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Returns an error if the resource can not be found. </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call voidTransactionCall(String transactionId, final ApiCallback _callback) throws ApiException {
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/transactions/{transaction_id}/void"
+            .replaceAll("\\{" + "transaction_id" + "\\}", localVarApiClient.escapeString(transactionId.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        String[] localVarAuthNames = new String[] { "BearerAuth" };
+        return localVarApiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call voidTransactionValidateBeforeCall(String transactionId, final ApiCallback _callback) throws ApiException {
+        
+        // verify the required parameter 'transactionId' is set
+        if (transactionId == null) {
+            throw new ApiException("Missing the required parameter 'transactionId' when calling voidTransaction(Async)");
+        }
+        
+
+        okhttp3.Call localVarCall = voidTransactionCall(transactionId, _callback);
+        return localVarCall;
+
+    }
+
+    /**
+     * Void transaction
+     * Voids a transaction.  If the transaction was not yet successfully authorized, or was already captured, the void will not be processed. Captured transactions can be [refunded](#operation/refund-transaction) instead.
+     * @param transactionId The ID for the transaction to get the information for. (required)
+     * @return Transaction
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Returns the voided transaction. </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Returns an error if the request was badly formatted or missing required fields. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Returns an error if no valid authentication was provided. </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Returns an error if the resource can not be found. </td><td>  -  </td></tr>
+     </table>
+     */
+    public Transaction voidTransaction(String transactionId) throws ApiException {
+        ApiResponse<Transaction> localVarResp = voidTransactionWithHttpInfo(transactionId);
+        return localVarResp.getData();
+    }
+
+    /**
+     * Void transaction
+     * Voids a transaction.  If the transaction was not yet successfully authorized, or was already captured, the void will not be processed. Captured transactions can be [refunded](#operation/refund-transaction) instead.
+     * @param transactionId The ID for the transaction to get the information for. (required)
+     * @return ApiResponse&lt;Transaction&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Returns the voided transaction. </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Returns an error if the request was badly formatted or missing required fields. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Returns an error if no valid authentication was provided. </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Returns an error if the resource can not be found. </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<Transaction> voidTransactionWithHttpInfo(String transactionId) throws ApiException {
+        okhttp3.Call localVarCall = voidTransactionValidateBeforeCall(transactionId, null);
+        Type localVarReturnType = new TypeToken<Transaction>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Void transaction (asynchronously)
+     * Voids a transaction.  If the transaction was not yet successfully authorized, or was already captured, the void will not be processed. Captured transactions can be [refunded](#operation/refund-transaction) instead.
+     * @param transactionId The ID for the transaction to get the information for. (required)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Returns the voided transaction. </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Returns an error if the request was badly formatted or missing required fields. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Returns an error if no valid authentication was provided. </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Returns an error if the resource can not be found. </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call voidTransactionAsync(String transactionId, final ApiCallback<Transaction> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = voidTransactionValidateBeforeCall(transactionId, _callback);
         Type localVarReturnType = new TypeToken<Transaction>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;

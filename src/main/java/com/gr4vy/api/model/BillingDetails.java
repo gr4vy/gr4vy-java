@@ -27,11 +27,60 @@ import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 
 /**
- * Billing details to use associated to a buyer.
+ * Billing details associated to a buyer.
  */
-@ApiModel(description = "Billing details to use associated to a buyer.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-12-17T10:55:07.385073Z[Etc/UTC]")
+@ApiModel(description = "Billing details associated to a buyer.")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-03-29T11:53:32.457004Z[Etc/UTC]")
 public class BillingDetails {
+  /**
+   * The type of this resource. Is always &#x60;billing-details&#x60;.
+   */
+  @JsonAdapter(TypeEnum.Adapter.class)
+  public enum TypeEnum {
+    BILLING_DETAILS("billing-details");
+
+    private String value;
+
+    TypeEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static TypeEnum fromValue(String value) {
+      for (TypeEnum b : TypeEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+
+    public static class Adapter extends TypeAdapter<TypeEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final TypeEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public TypeEnum read(final JsonReader jsonReader) throws IOException {
+        String value =  jsonReader.nextString();
+        return TypeEnum.fromValue(value);
+      }
+    }
+  }
+
+  public static final String SERIALIZED_NAME_TYPE = "type";
+  @SerializedName(SERIALIZED_NAME_TYPE)
+  private TypeEnum type;
+
   public static final String SERIALIZED_NAME_FIRST_NAME = "first_name";
   @SerializedName(SERIALIZED_NAME_FIRST_NAME)
   private String firstName;
@@ -57,6 +106,29 @@ public class BillingDetails {
   private TaxId taxId;
 
 
+  public BillingDetails type(TypeEnum type) {
+    
+    this.type = type;
+    return this;
+  }
+
+   /**
+   * The type of this resource. Is always &#x60;billing-details&#x60;.
+   * @return type
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "billing-details", value = "The type of this resource. Is always `billing-details`.")
+
+  public TypeEnum getType() {
+    return type;
+  }
+
+
+  public void setType(TypeEnum type) {
+    this.type = type;
+  }
+
+
   public BillingDetails firstName(String firstName) {
     
     this.firstName = firstName;
@@ -64,11 +136,11 @@ public class BillingDetails {
   }
 
    /**
-   * The first name(s) or given name for the buyer.
+   * The first name(s) or given name of the buyer.
    * @return firstName
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "John", value = "The first name(s) or given name for the buyer.")
+  @ApiModelProperty(example = "John", value = "The first name(s) or given name of the buyer.")
 
   public String getFirstName() {
     return firstName;
@@ -110,11 +182,11 @@ public class BillingDetails {
   }
 
    /**
-   * The email address for the buyer.
+   * The email address of the buyer.
    * @return emailAddress
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "john@example.com", value = "The email address for the buyer.")
+  @ApiModelProperty(example = "john@example.com", value = "The email address of the buyer.")
 
   public String getEmailAddress() {
     return emailAddress;
@@ -133,11 +205,11 @@ public class BillingDetails {
   }
 
    /**
-   * The phone number to use for this request. This expect the number in the [E164 number standard](https://www.twilio.com/docs/glossary/what-e164).
+   * The phone number of the buyer. This expect the number in the [E164 number standard](https://www.twilio.com/docs/glossary/what-e164).
    * @return phoneNumber
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "+1234567890", value = "The phone number to use for this request. This expect the number in the [E164 number standard](https://www.twilio.com/docs/glossary/what-e164).")
+  @ApiModelProperty(example = "+1234567890", value = "The phone number of the buyer. This expect the number in the [E164 number standard](https://www.twilio.com/docs/glossary/what-e164).")
 
   public String getPhoneNumber() {
     return phoneNumber;
@@ -204,7 +276,8 @@ public class BillingDetails {
       return false;
     }
     BillingDetails billingDetails = (BillingDetails) o;
-    return Objects.equals(this.firstName, billingDetails.firstName) &&
+    return Objects.equals(this.type, billingDetails.type) &&
+        Objects.equals(this.firstName, billingDetails.firstName) &&
         Objects.equals(this.lastName, billingDetails.lastName) &&
         Objects.equals(this.emailAddress, billingDetails.emailAddress) &&
         Objects.equals(this.phoneNumber, billingDetails.phoneNumber) &&
@@ -214,13 +287,14 @@ public class BillingDetails {
 
   @Override
   public int hashCode() {
-    return Objects.hash(firstName, lastName, emailAddress, phoneNumber, address, taxId);
+    return Objects.hash(type, firstName, lastName, emailAddress, phoneNumber, address, taxId);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class BillingDetails {\n");
+    sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("    firstName: ").append(toIndentedString(firstName)).append("\n");
     sb.append("    lastName: ").append(toIndentedString(lastName)).append("\n");
     sb.append("    emailAddress: ").append(toIndentedString(emailAddress)).append("\n");

@@ -25,17 +25,17 @@ import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 
 /**
- * Details for a previously tokenized payment method.
+ * Details for a Google Pay payment method.
  */
-@ApiModel(description = "Details for a previously tokenized payment method.")
+@ApiModel(description = "Details for a Google Pay payment method.")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-03-29T11:53:32.457004Z[Etc/UTC]")
-public class TokenizedRequest {
+public class GooglePayRequest {
   /**
-   * &#x60;id&#x60;.
+   * &#x60;googlepay&#x60;.
    */
   @JsonAdapter(MethodEnum.Adapter.class)
   public enum MethodEnum {
-    ID("id");
+    GOOGLEPAY("googlepay");
 
     private String value;
 
@@ -79,26 +79,22 @@ public class TokenizedRequest {
   @SerializedName(SERIALIZED_NAME_METHOD)
   private MethodEnum method;
 
-  public static final String SERIALIZED_NAME_ID = "id";
-  @SerializedName(SERIALIZED_NAME_ID)
-  private String id;
-
-  public static final String SERIALIZED_NAME_REDIRECT_URL = "redirect_url";
-  @SerializedName(SERIALIZED_NAME_REDIRECT_URL)
-  private String redirectUrl;
+  public static final String SERIALIZED_NAME_TOKEN = "token";
+  @SerializedName(SERIALIZED_NAME_TOKEN)
+  private Object token;
 
 
-  public TokenizedRequest method(MethodEnum method) {
+  public GooglePayRequest method(MethodEnum method) {
     
     this.method = method;
     return this;
   }
 
    /**
-   * &#x60;id&#x60;.
+   * &#x60;googlepay&#x60;.
    * @return method
   **/
-  @ApiModelProperty(example = "id", required = true, value = "`id`.")
+  @ApiModelProperty(example = "googlepay", required = true, value = "`googlepay`.")
 
   public MethodEnum getMethod() {
     return method;
@@ -110,48 +106,25 @@ public class TokenizedRequest {
   }
 
 
-  public TokenizedRequest id(String id) {
+  public GooglePayRequest token(Object token) {
     
-    this.id = id;
+    this.token = token;
     return this;
   }
 
    /**
-   * A ID that represents a previously tokenized payment method. This token can represent any type of payment method.
-   * @return id
+   * The encrypted (opaque) token returned by the Google Pay API that represents a payment method.
+   * @return token
   **/
-  @ApiModelProperty(example = "46973e9d-88a7-44a6-abfe-be4ff0134ff4", required = true, value = "A ID that represents a previously tokenized payment method. This token can represent any type of payment method.")
+  @ApiModelProperty(required = true, value = "The encrypted (opaque) token returned by the Google Pay API that represents a payment method.")
 
-  public String getId() {
-    return id;
+  public Object getToken() {
+    return token;
   }
 
 
-  public void setId(String id) {
-    this.id = id;
-  }
-
-
-  public TokenizedRequest redirectUrl(String redirectUrl) {
-    
-    this.redirectUrl = redirectUrl;
-    return this;
-  }
-
-   /**
-   * We strongly recommended providing a &#x60;redirect_url&#x60; for stored cards when 3-D Secure is enabled and &#x60;three_d_secure_data&#x60; is not provided. This will be appended with both a transaction ID and status (e.g. &#x60;https://example.com/callback? gr4vy_transaction_id&#x3D;123&amp;gr4vy_transaction_status&#x3D;capture_succeeded&#x60;) after 3-D Secure has completed.
-   * @return redirectUrl
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(example = "https://example.com/callback", value = "We strongly recommended providing a `redirect_url` for stored cards when 3-D Secure is enabled and `three_d_secure_data` is not provided. This will be appended with both a transaction ID and status (e.g. `https://example.com/callback? gr4vy_transaction_id=123&gr4vy_transaction_status=capture_succeeded`) after 3-D Secure has completed.")
-
-  public String getRedirectUrl() {
-    return redirectUrl;
-  }
-
-
-  public void setRedirectUrl(String redirectUrl) {
-    this.redirectUrl = redirectUrl;
+  public void setToken(Object token) {
+    this.token = token;
   }
 
 
@@ -163,24 +136,22 @@ public class TokenizedRequest {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    TokenizedRequest tokenizedRequest = (TokenizedRequest) o;
-    return Objects.equals(this.method, tokenizedRequest.method) &&
-        Objects.equals(this.id, tokenizedRequest.id) &&
-        Objects.equals(this.redirectUrl, tokenizedRequest.redirectUrl);
+    GooglePayRequest googlePayRequest = (GooglePayRequest) o;
+    return Objects.equals(this.method, googlePayRequest.method) &&
+        Objects.equals(this.token, googlePayRequest.token);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(method, id, redirectUrl);
+    return Objects.hash(method, token);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class TokenizedRequest {\n");
+    sb.append("class GooglePayRequest {\n");
     sb.append("    method: ").append(toIndentedString(method)).append("\n");
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    redirectUrl: ").append(toIndentedString(redirectUrl)).append("\n");
+    sb.append("    token: ").append(toIndentedString(token)).append("\n");
     sb.append("}");
     return sb.toString();
   }

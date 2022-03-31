@@ -25,10 +25,10 @@ import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 
 /**
- * A field containing a key-value pair for a required field defined by the service for this payment service.
+ * A key-value pair that represents a field defined in the definition for this payment service.
  */
-@ApiModel(description = "A field containing a key-value pair for a required field defined by the service for this payment service.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-12-17T10:55:07.385073Z[Etc/UTC]")
+@ApiModel(description = "A key-value pair that represents a field defined in the definition for this payment service.")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-03-29T11:53:32.457004Z[Etc/UTC]")
 public class PaymentServiceUpdateFields {
   public static final String SERIALIZED_NAME_KEY = "key";
   @SerializedName(SERIALIZED_NAME_KEY)
@@ -71,7 +71,7 @@ public class PaymentServiceUpdateFields {
    * The value of a field to set.
    * @return value
   **/
-  @ApiModelProperty(example = "sk_test_4eC39HqLyjWDarjtT1zdp7dc", required = true, value = "The value of a field to set.")
+  @ApiModelProperty(example = "sk_test_26PHem9AhJZvU623DfE1x4sd", required = true, value = "The value of a field to set.")
 
   public String getValue() {
     return value;
