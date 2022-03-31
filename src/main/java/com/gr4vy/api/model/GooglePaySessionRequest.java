@@ -20,52 +20,40 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import com.gr4vy.api.model.DigitalWallet;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
- * A list of registered digital wallets.
+ * Initiates a new session with Google Pay.
  */
-@ApiModel(description = "A list of registered digital wallets.")
+@ApiModel(description = "Initiates a new session with Google Pay.")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-03-29T11:53:32.457004Z[Etc/UTC]")
-public class DigitalWallets {
-  public static final String SERIALIZED_NAME_ITEMS = "items";
-  @SerializedName(SERIALIZED_NAME_ITEMS)
-  private List<DigitalWallet> items = null;
+public class GooglePaySessionRequest {
+  public static final String SERIALIZED_NAME_ORIGIN_DOMAIN = "origin_domain";
+  @SerializedName(SERIALIZED_NAME_ORIGIN_DOMAIN)
+  private String originDomain;
 
 
-  public DigitalWallets items(List<DigitalWallet> items) {
+  public GooglePaySessionRequest originDomain(String originDomain) {
     
-    this.items = items;
-    return this;
-  }
-
-  public DigitalWallets addItemsItem(DigitalWallet itemsItem) {
-    if (this.items == null) {
-      this.items = new ArrayList<DigitalWallet>();
-    }
-    this.items.add(itemsItem);
+    this.originDomain = originDomain;
     return this;
   }
 
    /**
-   * A list of registered digital wallets.
-   * @return items
+   * Fully qualified domain name of the merchant.
+   * @return originDomain
   **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "A list of registered digital wallets.")
+  @ApiModelProperty(required = true, value = "Fully qualified domain name of the merchant.")
 
-  public List<DigitalWallet> getItems() {
-    return items;
+  public String getOriginDomain() {
+    return originDomain;
   }
 
 
-  public void setItems(List<DigitalWallet> items) {
-    this.items = items;
+  public void setOriginDomain(String originDomain) {
+    this.originDomain = originDomain;
   }
 
 
@@ -77,20 +65,20 @@ public class DigitalWallets {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    DigitalWallets digitalWallets = (DigitalWallets) o;
-    return Objects.equals(this.items, digitalWallets.items);
+    GooglePaySessionRequest googlePaySessionRequest = (GooglePaySessionRequest) o;
+    return Objects.equals(this.originDomain, googlePaySessionRequest.originDomain);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(items);
+    return Objects.hash(originDomain);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class DigitalWallets {\n");
-    sb.append("    items: ").append(toIndentedString(items)).append("\n");
+    sb.append("class GooglePaySessionRequest {\n");
+    sb.append("    originDomain: ").append(toIndentedString(originDomain)).append("\n");
     sb.append("}");
     return sb.toString();
   }

@@ -32,7 +32,7 @@ import java.util.List;
  * Request body for updating an active payment service.
  */
 @ApiModel(description = "Request body for updating an active payment service.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-12-17T10:55:07.385073Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-03-29T11:53:32.457004Z[Etc/UTC]")
 public class PaymentServiceUpdate {
   public static final String SERIALIZED_NAME_DISPLAY_NAME = "display_name";
   @SerializedName(SERIALIZED_NAME_DISPLAY_NAME)
@@ -137,11 +137,11 @@ public class PaymentServiceUpdate {
   }
 
    /**
-   * A list of fields, each containing a key-value pair for each field defined by the definition for this payment service e.g. for stripe-card &#x60;secret_key&#x60; is required and so must be sent with in this field.
+   * A list of fields, each containing a key-value pair for each field defined by the definition for this payment service e.g. for stripe-card &#x60;secret_key&#x60; is required and so must be sent within this field.
    * @return fields
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "A list of fields, each containing a key-value pair for each field defined by the definition for this payment service e.g. for stripe-card `secret_key` is required and so must be sent with in this field.")
+  @ApiModelProperty(value = "A list of fields, each containing a key-value pair for each field defined by the definition for this payment service e.g. for stripe-card `secret_key` is required and so must be sent within this field.")
 
   public List<PaymentServiceUpdateFields> getFields() {
     return fields;

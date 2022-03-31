@@ -32,7 +32,7 @@ import org.threeten.bp.OffsetDateTime;
  * A digital wallet (e.g. Apple Pay) that has been registered.
  */
 @ApiModel(description = "A digital wallet (e.g. Apple Pay) that has been registered.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-12-17T10:55:07.385073Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-03-29T11:53:32.457004Z[Etc/UTC]")
 public class DigitalWallet {
   /**
    * &#x60;digital-wallet&#x60;.

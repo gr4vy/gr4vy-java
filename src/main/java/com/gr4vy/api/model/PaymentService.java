@@ -33,7 +33,7 @@ import org.threeten.bp.OffsetDateTime;
  * An active, configured payment service.
  */
 @ApiModel(description = "An active, configured payment service.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-12-17T10:55:07.385073Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-03-29T11:53:32.457004Z[Etc/UTC]")
 public class PaymentService {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -216,6 +216,10 @@ public class PaymentService {
   public static final String SERIALIZED_NAME_UPDATED_AT = "updated_at";
   @SerializedName(SERIALIZED_NAME_UPDATED_AT)
   private OffsetDateTime updatedAt;
+
+  public static final String SERIALIZED_NAME_WEBHOOK_URL = "webhook_url";
+  @SerializedName(SERIALIZED_NAME_WEBHOOK_URL)
+  private String webhookUrl;
 
 
   public PaymentService id(UUID id) {
@@ -740,6 +744,29 @@ public class PaymentService {
   }
 
 
+  public PaymentService webhookUrl(String webhookUrl) {
+    
+    this.webhookUrl = webhookUrl;
+    return this;
+  }
+
+   /**
+   * The URL that needs to be configured with this payment service as the receiving endpoint for webhooks from the service to Gr4vy. Currently, Gr4vy does not yet automatically register webhooks on setup, and therefore webhooks need to be registered manually by the merchant.
+   * @return webhookUrl
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "https://api.example.app.gr4vy.com/i/ViYUjDkUSoiQ0ColeigGwnN0cmlwZS1jYXJk/9fcuh3fzQHPRBUslDGLVqBzx3qda6RjoJuaxn3qlvQ0", value = "The URL that needs to be configured with this payment service as the receiving endpoint for webhooks from the service to Gr4vy. Currently, Gr4vy does not yet automatically register webhooks on setup, and therefore webhooks need to be registered manually by the merchant.")
+
+  public String getWebhookUrl() {
+    return webhookUrl;
+  }
+
+
+  public void setWebhookUrl(String webhookUrl) {
+    this.webhookUrl = webhookUrl;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -770,12 +797,13 @@ public class PaymentService {
         Objects.equals(this.active, paymentService.active) &&
         Objects.equals(this.position, paymentService.position) &&
         Objects.equals(this.createdAt, paymentService.createdAt) &&
-        Objects.equals(this.updatedAt, paymentService.updatedAt);
+        Objects.equals(this.updatedAt, paymentService.updatedAt) &&
+        Objects.equals(this.webhookUrl, paymentService.webhookUrl);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, type, paymentServiceDefinitionId, method, displayName, status, acceptedCurrencies, acceptedCountries, threeDSecureEnabled, acquirerBinVisa, acquirerBinMastercard, acquirerBinAmex, acquirerBinDiscover, acquirerMerchantId, merchantName, merchantCountryCode, merchantCategoryCode, merchantUrl, active, position, createdAt, updatedAt);
+    return Objects.hash(id, type, paymentServiceDefinitionId, method, displayName, status, acceptedCurrencies, acceptedCountries, threeDSecureEnabled, acquirerBinVisa, acquirerBinMastercard, acquirerBinAmex, acquirerBinDiscover, acquirerMerchantId, merchantName, merchantCountryCode, merchantCategoryCode, merchantUrl, active, position, createdAt, updatedAt, webhookUrl);
   }
 
   @Override
@@ -804,6 +832,7 @@ public class PaymentService {
     sb.append("    position: ").append(toIndentedString(position)).append("\n");
     sb.append("    createdAt: ").append(toIndentedString(createdAt)).append("\n");
     sb.append("    updatedAt: ").append(toIndentedString(updatedAt)).append("\n");
+    sb.append("    webhookUrl: ").append(toIndentedString(webhookUrl)).append("\n");
     sb.append("}");
     return sb.toString();
   }

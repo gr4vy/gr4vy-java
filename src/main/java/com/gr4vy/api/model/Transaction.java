@@ -21,12 +21,15 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import com.gr4vy.api.model.BuyerSnapshot;
+import com.gr4vy.api.model.CartItem;
 import com.gr4vy.api.model.PaymentMethodSnapshot;
 import com.gr4vy.api.model.PaymentServiceSnapshot;
-import com.gr4vy.api.model.TransactionSummary;
+import com.gr4vy.api.model.StatementDescriptor;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 import org.threeten.bp.OffsetDateTime;
 
@@ -34,73 +37,8 @@ import org.threeten.bp.OffsetDateTime;
  * A transaction record.
  */
 @ApiModel(description = "A transaction record.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-12-17T10:55:07.385073Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-03-29T11:53:32.457004Z[Etc/UTC]")
 public class Transaction {
-  public static final String SERIALIZED_NAME_MERCHANT_INITIATED = "merchant_initiated";
-  @SerializedName(SERIALIZED_NAME_MERCHANT_INITIATED)
-  private Boolean merchantInitiated = false;
-
-  /**
-   * The source of the transaction. Defaults to &#39;ecommerce&#39;.
-   */
-  @JsonAdapter(PaymentSourceEnum.Adapter.class)
-  public enum PaymentSourceEnum {
-    ECOMMERCE("ecommerce"),
-    
-    MOTO("moto"),
-    
-    RECURRING("recurring"),
-    
-    INSTALLMENT("installment"),
-    
-    CARD_ON_FILE("card_on_file");
-
-    private String value;
-
-    PaymentSourceEnum(String value) {
-      this.value = value;
-    }
-
-    public String getValue() {
-      return value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    public static PaymentSourceEnum fromValue(String value) {
-      for (PaymentSourceEnum b : PaymentSourceEnum.values()) {
-        if (b.value.equals(value)) {
-          return b;
-        }
-      }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
-    }
-
-    public static class Adapter extends TypeAdapter<PaymentSourceEnum> {
-      @Override
-      public void write(final JsonWriter jsonWriter, final PaymentSourceEnum enumeration) throws IOException {
-        jsonWriter.value(enumeration.getValue());
-      }
-
-      @Override
-      public PaymentSourceEnum read(final JsonReader jsonReader) throws IOException {
-        String value =  jsonReader.nextString();
-        return PaymentSourceEnum.fromValue(value);
-      }
-    }
-  }
-
-  public static final String SERIALIZED_NAME_PAYMENT_SOURCE = "payment_source";
-  @SerializedName(SERIALIZED_NAME_PAYMENT_SOURCE)
-  private PaymentSourceEnum paymentSource;
-
-  public static final String SERIALIZED_NAME_IS_SUBSEQUENT_PAYMENT = "is_subsequent_payment";
-  @SerializedName(SERIALIZED_NAME_IS_SUBSEQUENT_PAYMENT)
-  private Boolean isSubsequentPayment = false;
-
   /**
    * The type of this resource. Is always &#x60;transaction&#x60;.
    */
@@ -182,6 +120,12 @@ public class Transaction {
     AUTHORIZATION_EXPIRED("authorization_expired"),
     
     AUTHORIZATION_VOIDED("authorization_voided"),
+    
+    AUTHORIZATION_VOID_PENDING("authorization_void_pending"),
+    
+    AUTHORIZATION_VOID_DECLINED("authorization_void_declined"),
+    
+    AUTHORIZATION_VOID_FAILED("authorization_void_failed"),
     
     REFUND_SUCCEEDED("refund_succeeded"),
     
@@ -283,74 +227,82 @@ public class Transaction {
   @SerializedName(SERIALIZED_NAME_PAYMENT_SERVICE)
   private PaymentServiceSnapshot paymentService;
 
+  public static final String SERIALIZED_NAME_MERCHANT_INITIATED = "merchant_initiated";
+  @SerializedName(SERIALIZED_NAME_MERCHANT_INITIATED)
+  private Boolean merchantInitiated = false;
 
-  public Transaction merchantInitiated(Boolean merchantInitiated) {
+  /**
+   * The source of the transaction. Defaults to &#x60;ecommerce&#x60;.
+   */
+  @JsonAdapter(PaymentSourceEnum.Adapter.class)
+  public enum PaymentSourceEnum {
+    ECOMMERCE("ecommerce"),
     
-    this.merchantInitiated = merchantInitiated;
-    return this;
-  }
-
-   /**
-   * Indicates whether the transaction was initiated by the merchant (true) or customer (false).
-   * @return merchantInitiated
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(example = "true", value = "Indicates whether the transaction was initiated by the merchant (true) or customer (false).")
-
-  public Boolean getMerchantInitiated() {
-    return merchantInitiated;
-  }
-
-
-  public void setMerchantInitiated(Boolean merchantInitiated) {
-    this.merchantInitiated = merchantInitiated;
-  }
-
-
-  public Transaction paymentSource(PaymentSourceEnum paymentSource) {
+    MOTO("moto"),
     
-    this.paymentSource = paymentSource;
-    return this;
-  }
-
-   /**
-   * The source of the transaction. Defaults to &#39;ecommerce&#39;.
-   * @return paymentSource
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(example = "ecommerce", value = "The source of the transaction. Defaults to 'ecommerce'.")
-
-  public PaymentSourceEnum getPaymentSource() {
-    return paymentSource;
-  }
-
-
-  public void setPaymentSource(PaymentSourceEnum paymentSource) {
-    this.paymentSource = paymentSource;
-  }
-
-
-  public Transaction isSubsequentPayment(Boolean isSubsequentPayment) {
+    RECURRING("recurring"),
     
-    this.isSubsequentPayment = isSubsequentPayment;
-    return this;
+    INSTALLMENT("installment"),
+    
+    CARD_ON_FILE("card_on_file");
+
+    private String value;
+
+    PaymentSourceEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static PaymentSourceEnum fromValue(String value) {
+      for (PaymentSourceEnum b : PaymentSourceEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+
+    public static class Adapter extends TypeAdapter<PaymentSourceEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final PaymentSourceEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public PaymentSourceEnum read(final JsonReader jsonReader) throws IOException {
+        String value =  jsonReader.nextString();
+        return PaymentSourceEnum.fromValue(value);
+      }
+    }
   }
 
-   /**
-   * Indicates whether the transaction represents a subsequent payment coming from a setup recurring payment. Please note this flag is only compatible with payment_source set to [recurring, installment, card_on_file] and will be ignored for other values or if payment_source is not present.
-   * @return isSubsequentPayment
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(example = "true", value = "Indicates whether the transaction represents a subsequent payment coming from a setup recurring payment. Please note this flag is only compatible with payment_source set to [recurring, installment, card_on_file] and will be ignored for other values or if payment_source is not present.")
+  public static final String SERIALIZED_NAME_PAYMENT_SOURCE = "payment_source";
+  @SerializedName(SERIALIZED_NAME_PAYMENT_SOURCE)
+  private PaymentSourceEnum paymentSource;
 
-  public Boolean getIsSubsequentPayment() {
-    return isSubsequentPayment;
-  }
+  public static final String SERIALIZED_NAME_IS_SUBSEQUENT_PAYMENT = "is_subsequent_payment";
+  @SerializedName(SERIALIZED_NAME_IS_SUBSEQUENT_PAYMENT)
+  private Boolean isSubsequentPayment = false;
 
+  public static final String SERIALIZED_NAME_STATEMENT_DESCRIPTOR = "statement_descriptor";
+  @SerializedName(SERIALIZED_NAME_STATEMENT_DESCRIPTOR)
+  private StatementDescriptor statementDescriptor;
 
-  public void setIsSubsequentPayment(Boolean isSubsequentPayment) {
-    this.isSubsequentPayment = isSubsequentPayment;
-  }
+  public static final String SERIALIZED_NAME_CART_ITEMS = "cart_items";
+  @SerializedName(SERIALIZED_NAME_CART_ITEMS)
+  private List<CartItem> cartItems = null;
+
+  public static final String SERIALIZED_NAME_SCHEME_TRANSACTION_ID = "scheme_transaction_id";
+  @SerializedName(SERIALIZED_NAME_SCHEME_TRANSACTION_ID)
+  private String schemeTransactionId = "null";
 
 
   public Transaction type(TypeEnum type) {
@@ -658,6 +610,152 @@ public class Transaction {
   }
 
 
+  public Transaction merchantInitiated(Boolean merchantInitiated) {
+    
+    this.merchantInitiated = merchantInitiated;
+    return this;
+  }
+
+   /**
+   * Indicates whether the transaction was initiated by the merchant (true) or customer (false).
+   * @return merchantInitiated
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "true", value = "Indicates whether the transaction was initiated by the merchant (true) or customer (false).")
+
+  public Boolean getMerchantInitiated() {
+    return merchantInitiated;
+  }
+
+
+  public void setMerchantInitiated(Boolean merchantInitiated) {
+    this.merchantInitiated = merchantInitiated;
+  }
+
+
+  public Transaction paymentSource(PaymentSourceEnum paymentSource) {
+    
+    this.paymentSource = paymentSource;
+    return this;
+  }
+
+   /**
+   * The source of the transaction. Defaults to &#x60;ecommerce&#x60;.
+   * @return paymentSource
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "ecommerce", value = "The source of the transaction. Defaults to `ecommerce`.")
+
+  public PaymentSourceEnum getPaymentSource() {
+    return paymentSource;
+  }
+
+
+  public void setPaymentSource(PaymentSourceEnum paymentSource) {
+    this.paymentSource = paymentSource;
+  }
+
+
+  public Transaction isSubsequentPayment(Boolean isSubsequentPayment) {
+    
+    this.isSubsequentPayment = isSubsequentPayment;
+    return this;
+  }
+
+   /**
+   * Indicates whether the transaction represents a subsequent payment coming from a setup recurring payment. Please note this flag is only compatible with &#x60;payment_source&#x60; set to &#x60;recurring&#x60;, &#x60;installment&#x60;, or &#x60;card_on_file&#x60; and will be ignored for other values or if &#x60;payment_source&#x60; is not present.
+   * @return isSubsequentPayment
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "true", value = "Indicates whether the transaction represents a subsequent payment coming from a setup recurring payment. Please note this flag is only compatible with `payment_source` set to `recurring`, `installment`, or `card_on_file` and will be ignored for other values or if `payment_source` is not present.")
+
+  public Boolean getIsSubsequentPayment() {
+    return isSubsequentPayment;
+  }
+
+
+  public void setIsSubsequentPayment(Boolean isSubsequentPayment) {
+    this.isSubsequentPayment = isSubsequentPayment;
+  }
+
+
+  public Transaction statementDescriptor(StatementDescriptor statementDescriptor) {
+    
+    this.statementDescriptor = statementDescriptor;
+    return this;
+  }
+
+   /**
+   * Get statementDescriptor
+   * @return statementDescriptor
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public StatementDescriptor getStatementDescriptor() {
+    return statementDescriptor;
+  }
+
+
+  public void setStatementDescriptor(StatementDescriptor statementDescriptor) {
+    this.statementDescriptor = statementDescriptor;
+  }
+
+
+  public Transaction cartItems(List<CartItem> cartItems) {
+    
+    this.cartItems = cartItems;
+    return this;
+  }
+
+  public Transaction addCartItemsItem(CartItem cartItemsItem) {
+    if (this.cartItems == null) {
+      this.cartItems = new ArrayList<CartItem>();
+    }
+    this.cartItems.add(cartItemsItem);
+    return this;
+  }
+
+   /**
+   * An array of cart items that represents the line items of a transaction.
+   * @return cartItems
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "An array of cart items that represents the line items of a transaction.")
+
+  public List<CartItem> getCartItems() {
+    return cartItems;
+  }
+
+
+  public void setCartItems(List<CartItem> cartItems) {
+    this.cartItems = cartItems;
+  }
+
+
+  public Transaction schemeTransactionId(String schemeTransactionId) {
+    
+    this.schemeTransactionId = schemeTransactionId;
+    return this;
+  }
+
+   /**
+   * An identifier for the transaction used by the scheme itself, when available.  e.g. the Visa Transaction Identifier, or Mastercard Trace ID.
+   * @return schemeTransactionId
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "123456789012345", value = "An identifier for the transaction used by the scheme itself, when available.  e.g. the Visa Transaction Identifier, or Mastercard Trace ID.")
+
+  public String getSchemeTransactionId() {
+    return schemeTransactionId;
+  }
+
+
+  public void setSchemeTransactionId(String schemeTransactionId) {
+    this.schemeTransactionId = schemeTransactionId;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -667,10 +765,7 @@ public class Transaction {
       return false;
     }
     Transaction transaction = (Transaction) o;
-    return Objects.equals(this.merchantInitiated, transaction.merchantInitiated) &&
-        Objects.equals(this.paymentSource, transaction.paymentSource) &&
-        Objects.equals(this.isSubsequentPayment, transaction.isSubsequentPayment) &&
-        Objects.equals(this.type, transaction.type) &&
+    return Objects.equals(this.type, transaction.type) &&
         Objects.equals(this.id, transaction.id) &&
         Objects.equals(this.status, transaction.status) &&
         Objects.equals(this.amount, transaction.amount) &&
@@ -682,21 +777,24 @@ public class Transaction {
         Objects.equals(this.createdAt, transaction.createdAt) &&
         Objects.equals(this.externalIdentifier, transaction.externalIdentifier) &&
         Objects.equals(this.updatedAt, transaction.updatedAt) &&
-        Objects.equals(this.paymentService, transaction.paymentService);
+        Objects.equals(this.paymentService, transaction.paymentService) &&
+        Objects.equals(this.merchantInitiated, transaction.merchantInitiated) &&
+        Objects.equals(this.paymentSource, transaction.paymentSource) &&
+        Objects.equals(this.isSubsequentPayment, transaction.isSubsequentPayment) &&
+        Objects.equals(this.statementDescriptor, transaction.statementDescriptor) &&
+        Objects.equals(this.cartItems, transaction.cartItems) &&
+        Objects.equals(this.schemeTransactionId, transaction.schemeTransactionId);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(merchantInitiated, paymentSource, isSubsequentPayment, type, id, status, amount, capturedAmount, refundedAmount, currency, paymentMethod, buyer, createdAt, externalIdentifier, updatedAt, paymentService);
+    return Objects.hash(type, id, status, amount, capturedAmount, refundedAmount, currency, paymentMethod, buyer, createdAt, externalIdentifier, updatedAt, paymentService, merchantInitiated, paymentSource, isSubsequentPayment, statementDescriptor, cartItems, schemeTransactionId);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class Transaction {\n");
-    sb.append("    merchantInitiated: ").append(toIndentedString(merchantInitiated)).append("\n");
-    sb.append("    paymentSource: ").append(toIndentedString(paymentSource)).append("\n");
-    sb.append("    isSubsequentPayment: ").append(toIndentedString(isSubsequentPayment)).append("\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
@@ -710,6 +808,12 @@ public class Transaction {
     sb.append("    externalIdentifier: ").append(toIndentedString(externalIdentifier)).append("\n");
     sb.append("    updatedAt: ").append(toIndentedString(updatedAt)).append("\n");
     sb.append("    paymentService: ").append(toIndentedString(paymentService)).append("\n");
+    sb.append("    merchantInitiated: ").append(toIndentedString(merchantInitiated)).append("\n");
+    sb.append("    paymentSource: ").append(toIndentedString(paymentSource)).append("\n");
+    sb.append("    isSubsequentPayment: ").append(toIndentedString(isSubsequentPayment)).append("\n");
+    sb.append("    statementDescriptor: ").append(toIndentedString(statementDescriptor)).append("\n");
+    sb.append("    cartItems: ").append(toIndentedString(cartItems)).append("\n");
+    sb.append("    schemeTransactionId: ").append(toIndentedString(schemeTransactionId)).append("\n");
     sb.append("}");
     return sb.toString();
   }

@@ -20,52 +20,43 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import com.gr4vy.api.model.DigitalWallet;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
- * A list of registered digital wallets.
+ * A request to refund a transaction.
  */
-@ApiModel(description = "A list of registered digital wallets.")
+@ApiModel(description = "A request to refund a transaction.")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-03-29T11:53:32.457004Z[Etc/UTC]")
-public class DigitalWallets {
-  public static final String SERIALIZED_NAME_ITEMS = "items";
-  @SerializedName(SERIALIZED_NAME_ITEMS)
-  private List<DigitalWallet> items = null;
+public class TransactionRefundRequestDeprecated {
+  public static final String SERIALIZED_NAME_AMOUNT = "amount";
+  @SerializedName(SERIALIZED_NAME_AMOUNT)
+  private Integer amount;
 
 
-  public DigitalWallets items(List<DigitalWallet> items) {
+  public TransactionRefundRequestDeprecated amount(Integer amount) {
     
-    this.items = items;
-    return this;
-  }
-
-  public DigitalWallets addItemsItem(DigitalWallet itemsItem) {
-    if (this.items == null) {
-      this.items = new ArrayList<DigitalWallet>();
-    }
-    this.items.add(itemsItem);
+    this.amount = amount;
     return this;
   }
 
    /**
-   * A list of registered digital wallets.
-   * @return items
+   * The (partial) amount to refund.  When omitted blank, this will refund the entire amount.
+   * minimum: 0
+   * maximum: 99999999
+   * @return amount
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "A list of registered digital wallets.")
+  @ApiModelProperty(example = "1299", value = "The (partial) amount to refund.  When omitted blank, this will refund the entire amount.")
 
-  public List<DigitalWallet> getItems() {
-    return items;
+  public Integer getAmount() {
+    return amount;
   }
 
 
-  public void setItems(List<DigitalWallet> items) {
-    this.items = items;
+  public void setAmount(Integer amount) {
+    this.amount = amount;
   }
 
 
@@ -77,20 +68,20 @@ public class DigitalWallets {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    DigitalWallets digitalWallets = (DigitalWallets) o;
-    return Objects.equals(this.items, digitalWallets.items);
+    TransactionRefundRequestDeprecated transactionRefundRequestDeprecated = (TransactionRefundRequestDeprecated) o;
+    return Objects.equals(this.amount, transactionRefundRequestDeprecated.amount);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(items);
+    return Objects.hash(amount);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class DigitalWallets {\n");
-    sb.append("    items: ").append(toIndentedString(items)).append("\n");
+    sb.append("class TransactionRefundRequestDeprecated {\n");
+    sb.append("    amount: ").append(toIndentedString(amount)).append("\n");
     sb.append("}");
     return sb.toString();
   }

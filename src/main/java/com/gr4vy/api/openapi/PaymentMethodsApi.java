@@ -443,6 +443,7 @@ public class PaymentMethodsApi {
      * Build call for listPaymentMethods
      * @param buyerId Filters the results to only the items for which the &#x60;buyer&#x60; has an &#x60;id&#x60; that matches this value. (optional)
      * @param buyerExternalIdentifier Filters the results to only the items for which the &#x60;buyer&#x60; has an &#x60;external_identifier&#x60; that matches this value. (optional)
+     * @param status Filters the results to only the payment methods for which the &#x60;status&#x60; matches this value. (optional)
      * @param limit Defines the maximum number of items to return for this request. (optional, default to 20)
      * @param cursor A cursor that identifies the page of results to return. This is used to paginate the results of this API.  For the first page of results, this parameter can be left out. For additional pages, use the value returned by the API in the &#x60;next_cursor&#x60; field. Similarly the &#x60;previous_cursor&#x60; can be used to reverse backwards in the list. (optional)
      * @param _callback Callback for upload/download progress
@@ -455,7 +456,7 @@ public class PaymentMethodsApi {
         <tr><td> 401 </td><td> Returns an error if no valid authentication was provided. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call listPaymentMethodsCall(String buyerId, String buyerExternalIdentifier, Integer limit, String cursor, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call listPaymentMethodsCall(String buyerId, String buyerExternalIdentifier, String status, Integer limit, String cursor, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -473,6 +474,10 @@ public class PaymentMethodsApi {
 
         if (buyerExternalIdentifier != null) {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("buyer_external_identifier", buyerExternalIdentifier));
+        }
+
+        if (status != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("status", status));
         }
 
         if (limit != null) {
@@ -502,10 +507,10 @@ public class PaymentMethodsApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call listPaymentMethodsValidateBeforeCall(String buyerId, String buyerExternalIdentifier, Integer limit, String cursor, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call listPaymentMethodsValidateBeforeCall(String buyerId, String buyerExternalIdentifier, String status, Integer limit, String cursor, final ApiCallback _callback) throws ApiException {
         
 
-        okhttp3.Call localVarCall = listPaymentMethodsCall(buyerId, buyerExternalIdentifier, limit, cursor, _callback);
+        okhttp3.Call localVarCall = listPaymentMethodsCall(buyerId, buyerExternalIdentifier, status, limit, cursor, _callback);
         return localVarCall;
 
     }
@@ -515,6 +520,7 @@ public class PaymentMethodsApi {
      * Returns a list of stored (tokenized) payment methods.
      * @param buyerId Filters the results to only the items for which the &#x60;buyer&#x60; has an &#x60;id&#x60; that matches this value. (optional)
      * @param buyerExternalIdentifier Filters the results to only the items for which the &#x60;buyer&#x60; has an &#x60;external_identifier&#x60; that matches this value. (optional)
+     * @param status Filters the results to only the payment methods for which the &#x60;status&#x60; matches this value. (optional)
      * @param limit Defines the maximum number of items to return for this request. (optional, default to 20)
      * @param cursor A cursor that identifies the page of results to return. This is used to paginate the results of this API.  For the first page of results, this parameter can be left out. For additional pages, use the value returned by the API in the &#x60;next_cursor&#x60; field. Similarly the &#x60;previous_cursor&#x60; can be used to reverse backwards in the list. (optional)
      * @return PaymentMethods
@@ -526,8 +532,8 @@ public class PaymentMethodsApi {
         <tr><td> 401 </td><td> Returns an error if no valid authentication was provided. </td><td>  -  </td></tr>
      </table>
      */
-    public PaymentMethods listPaymentMethods(String buyerId, String buyerExternalIdentifier, Integer limit, String cursor) throws ApiException {
-        ApiResponse<PaymentMethods> localVarResp = listPaymentMethodsWithHttpInfo(buyerId, buyerExternalIdentifier, limit, cursor);
+    public PaymentMethods listPaymentMethods(String buyerId, String buyerExternalIdentifier, String status, Integer limit, String cursor) throws ApiException {
+        ApiResponse<PaymentMethods> localVarResp = listPaymentMethodsWithHttpInfo(buyerId, buyerExternalIdentifier, status, limit, cursor);
         return localVarResp.getData();
     }
 
@@ -536,6 +542,7 @@ public class PaymentMethodsApi {
      * Returns a list of stored (tokenized) payment methods.
      * @param buyerId Filters the results to only the items for which the &#x60;buyer&#x60; has an &#x60;id&#x60; that matches this value. (optional)
      * @param buyerExternalIdentifier Filters the results to only the items for which the &#x60;buyer&#x60; has an &#x60;external_identifier&#x60; that matches this value. (optional)
+     * @param status Filters the results to only the payment methods for which the &#x60;status&#x60; matches this value. (optional)
      * @param limit Defines the maximum number of items to return for this request. (optional, default to 20)
      * @param cursor A cursor that identifies the page of results to return. This is used to paginate the results of this API.  For the first page of results, this parameter can be left out. For additional pages, use the value returned by the API in the &#x60;next_cursor&#x60; field. Similarly the &#x60;previous_cursor&#x60; can be used to reverse backwards in the list. (optional)
      * @return ApiResponse&lt;PaymentMethods&gt;
@@ -547,8 +554,8 @@ public class PaymentMethodsApi {
         <tr><td> 401 </td><td> Returns an error if no valid authentication was provided. </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<PaymentMethods> listPaymentMethodsWithHttpInfo(String buyerId, String buyerExternalIdentifier, Integer limit, String cursor) throws ApiException {
-        okhttp3.Call localVarCall = listPaymentMethodsValidateBeforeCall(buyerId, buyerExternalIdentifier, limit, cursor, null);
+    public ApiResponse<PaymentMethods> listPaymentMethodsWithHttpInfo(String buyerId, String buyerExternalIdentifier, String status, Integer limit, String cursor) throws ApiException {
+        okhttp3.Call localVarCall = listPaymentMethodsValidateBeforeCall(buyerId, buyerExternalIdentifier, status, limit, cursor, null);
         Type localVarReturnType = new TypeToken<PaymentMethods>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -558,6 +565,7 @@ public class PaymentMethodsApi {
      * Returns a list of stored (tokenized) payment methods.
      * @param buyerId Filters the results to only the items for which the &#x60;buyer&#x60; has an &#x60;id&#x60; that matches this value. (optional)
      * @param buyerExternalIdentifier Filters the results to only the items for which the &#x60;buyer&#x60; has an &#x60;external_identifier&#x60; that matches this value. (optional)
+     * @param status Filters the results to only the payment methods for which the &#x60;status&#x60; matches this value. (optional)
      * @param limit Defines the maximum number of items to return for this request. (optional, default to 20)
      * @param cursor A cursor that identifies the page of results to return. This is used to paginate the results of this API.  For the first page of results, this parameter can be left out. For additional pages, use the value returned by the API in the &#x60;next_cursor&#x60; field. Similarly the &#x60;previous_cursor&#x60; can be used to reverse backwards in the list. (optional)
      * @param _callback The callback to be executed when the API call finishes
@@ -570,9 +578,9 @@ public class PaymentMethodsApi {
         <tr><td> 401 </td><td> Returns an error if no valid authentication was provided. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call listPaymentMethodsAsync(String buyerId, String buyerExternalIdentifier, Integer limit, String cursor, final ApiCallback<PaymentMethods> _callback) throws ApiException {
+    public okhttp3.Call listPaymentMethodsAsync(String buyerId, String buyerExternalIdentifier, String status, Integer limit, String cursor, final ApiCallback<PaymentMethods> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = listPaymentMethodsValidateBeforeCall(buyerId, buyerExternalIdentifier, limit, cursor, _callback);
+        okhttp3.Call localVarCall = listPaymentMethodsValidateBeforeCall(buyerId, buyerExternalIdentifier, status, limit, cursor, _callback);
         Type localVarReturnType = new TypeToken<PaymentMethods>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;

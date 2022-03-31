@@ -27,89 +27,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Additional context specific to the payment option. This is currently only returned for Apple Pay.
+ * Additional context specific to the payment option. This is currently only returned for Apple Pay and Google Pay.
  */
-@ApiModel(description = "Additional context specific to the payment option. This is currently only returned for Apple Pay.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-12-17T10:55:07.385073Z[Etc/UTC]")
+@ApiModel(description = "Additional context specific to the payment option. This is currently only returned for Apple Pay and Google Pay.")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-03-29T11:53:32.457004Z[Etc/UTC]")
 public class PaymentOptionContext {
   public static final String SERIALIZED_NAME_MERCHANT_NAME = "merchant_name";
   @SerializedName(SERIALIZED_NAME_MERCHANT_NAME)
   private String merchantName;
 
-  /**
-   * Gets or Sets supportedSchemes
-   */
-  @JsonAdapter(SupportedSchemesEnum.Adapter.class)
-  public enum SupportedSchemesEnum {
-    AMEX("amex"),
-    
-    CARTESBANCAIRES("cartesBancaires"),
-    
-    DISCOVER("discover"),
-    
-    EFTPOS("eftpos"),
-    
-    ELECTRON("electron"),
-    
-    ELO("elo"),
-    
-    INTERAC("interac"),
-    
-    JCB("jcb"),
-    
-    MADA("mada"),
-    
-    MAESTRO("maestro"),
-    
-    MASTERCARD("masterCard"),
-    
-    PRIVATELABEL("privateLabel"),
-    
-    VISA("visa"),
-    
-    VPAY("vPay");
-
-    private String value;
-
-    SupportedSchemesEnum(String value) {
-      this.value = value;
-    }
-
-    public String getValue() {
-      return value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    public static SupportedSchemesEnum fromValue(String value) {
-      for (SupportedSchemesEnum b : SupportedSchemesEnum.values()) {
-        if (b.value.equals(value)) {
-          return b;
-        }
-      }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
-    }
-
-    public static class Adapter extends TypeAdapter<SupportedSchemesEnum> {
-      @Override
-      public void write(final JsonWriter jsonWriter, final SupportedSchemesEnum enumeration) throws IOException {
-        jsonWriter.value(enumeration.getValue());
-      }
-
-      @Override
-      public SupportedSchemesEnum read(final JsonReader jsonReader) throws IOException {
-        String value =  jsonReader.nextString();
-        return SupportedSchemesEnum.fromValue(value);
-      }
-    }
-  }
-
   public static final String SERIALIZED_NAME_SUPPORTED_SCHEMES = "supported_schemes";
   @SerializedName(SERIALIZED_NAME_SUPPORTED_SCHEMES)
-  private List<SupportedSchemesEnum> supportedSchemes = null;
+  private List<String> supportedSchemes = null;
 
 
   public PaymentOptionContext merchantName(String merchantName) {
@@ -119,11 +48,11 @@ public class PaymentOptionContext {
   }
 
    /**
-   * Display name of the merchant for Apple Pay.
+   * Display name of the merchant as registered with the digital wallet provider.
    * @return merchantName
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "Display name of the merchant for Apple Pay.")
+  @ApiModelProperty(value = "Display name of the merchant as registered with the digital wallet provider.")
 
   public String getMerchantName() {
     return merchantName;
@@ -135,33 +64,33 @@ public class PaymentOptionContext {
   }
 
 
-  public PaymentOptionContext supportedSchemes(List<SupportedSchemesEnum> supportedSchemes) {
+  public PaymentOptionContext supportedSchemes(List<String> supportedSchemes) {
     
     this.supportedSchemes = supportedSchemes;
     return this;
   }
 
-  public PaymentOptionContext addSupportedSchemesItem(SupportedSchemesEnum supportedSchemesItem) {
+  public PaymentOptionContext addSupportedSchemesItem(String supportedSchemesItem) {
     if (this.supportedSchemes == null) {
-      this.supportedSchemes = new ArrayList<SupportedSchemesEnum>();
+      this.supportedSchemes = new ArrayList<String>();
     }
     this.supportedSchemes.add(supportedSchemesItem);
     return this;
   }
 
    /**
-   * Supported schemes for Apple Pay.
+   * Card schemes supported by the digital wallet provider.
    * @return supportedSchemes
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "Supported schemes for Apple Pay.")
+  @ApiModelProperty(value = "Card schemes supported by the digital wallet provider.")
 
-  public List<SupportedSchemesEnum> getSupportedSchemes() {
+  public List<String> getSupportedSchemes() {
     return supportedSchemes;
   }
 
 
-  public void setSupportedSchemes(List<SupportedSchemesEnum> supportedSchemes) {
+  public void setSupportedSchemes(List<String> supportedSchemes) {
     this.supportedSchemes = supportedSchemes;
   }
 

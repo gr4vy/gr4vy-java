@@ -20,21 +20,18 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import com.gr4vy.api.model.ErrorDetail;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
- * A generic client error.
+ * Invalid credentials (HTTP 400).
  */
-@ApiModel(description = "A generic client error.")
+@ApiModel(description = "Invalid credentials (HTTP 400).")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-03-29T11:53:32.457004Z[Etc/UTC]")
-public class ErrorGeneric {
+public class Error400InvalidCredentials {
   /**
-   * The type of this object. This is always &#x60;error&#x60;.
+   * &#x60;error&#x60;.
    */
   @JsonAdapter(TypeEnum.Adapter.class)
   public enum TypeEnum {
@@ -80,37 +77,123 @@ public class ErrorGeneric {
 
   public static final String SERIALIZED_NAME_TYPE = "type";
   @SerializedName(SERIALIZED_NAME_TYPE)
-  private TypeEnum type = TypeEnum.ERROR;
+  private TypeEnum type;
+
+  /**
+   * &#x60;invalid_credentials&#x60;.
+   */
+  @JsonAdapter(CodeEnum.Adapter.class)
+  public enum CodeEnum {
+    INVALID_CREDENTIALS("invalid_credentials");
+
+    private String value;
+
+    CodeEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static CodeEnum fromValue(String value) {
+      for (CodeEnum b : CodeEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+
+    public static class Adapter extends TypeAdapter<CodeEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final CodeEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public CodeEnum read(final JsonReader jsonReader) throws IOException {
+        String value =  jsonReader.nextString();
+        return CodeEnum.fromValue(value);
+      }
+    }
+  }
 
   public static final String SERIALIZED_NAME_CODE = "code";
   @SerializedName(SERIALIZED_NAME_CODE)
-  private String code;
+  private CodeEnum code;
+
+  /**
+   * &#x60;400&#x60;.
+   */
+  @JsonAdapter(StatusEnum.Adapter.class)
+  public enum StatusEnum {
+    NUMBER_400(400);
+
+    private Integer value;
+
+    StatusEnum(Integer value) {
+      this.value = value;
+    }
+
+    public Integer getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static StatusEnum fromValue(Integer value) {
+      for (StatusEnum b : StatusEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+
+    public static class Adapter extends TypeAdapter<StatusEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final StatusEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public StatusEnum read(final JsonReader jsonReader) throws IOException {
+        Integer value =  jsonReader.nextInt();
+        return StatusEnum.fromValue(value);
+      }
+    }
+  }
 
   public static final String SERIALIZED_NAME_STATUS = "status";
   @SerializedName(SERIALIZED_NAME_STATUS)
-  private Integer status;
+  private StatusEnum status;
 
   public static final String SERIALIZED_NAME_MESSAGE = "message";
   @SerializedName(SERIALIZED_NAME_MESSAGE)
   private String message;
 
-  public static final String SERIALIZED_NAME_DETAILS = "details";
-  @SerializedName(SERIALIZED_NAME_DETAILS)
-  private List<ErrorDetail> details = null;
 
-
-  public ErrorGeneric type(TypeEnum type) {
+  public Error400InvalidCredentials type(TypeEnum type) {
     
     this.type = type;
     return this;
   }
 
    /**
-   * The type of this object. This is always &#x60;error&#x60;.
+   * &#x60;error&#x60;.
    * @return type
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "error", value = "The type of this object. This is always `error`.")
+  @ApiModelProperty(example = "error", value = "`error`.")
 
   public TypeEnum getType() {
     return type;
@@ -122,66 +205,64 @@ public class ErrorGeneric {
   }
 
 
-  public ErrorGeneric code(String code) {
+  public Error400InvalidCredentials code(CodeEnum code) {
     
     this.code = code;
     return this;
   }
 
    /**
-   * A custom code to further describe the type of error being returned. This code provides further specification within the HTTP &#x60;status&#x60; code and can be used by a program to define logic based on the error.
+   * &#x60;invalid_credentials&#x60;.
    * @return code
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "incorrect_json", value = "A custom code to further describe the type of error being returned. This code provides further specification within the HTTP `status` code and can be used by a program to define logic based on the error.")
+  @ApiModelProperty(example = "invalid_credentials", value = "`invalid_credentials`.")
 
-  public String getCode() {
+  public CodeEnum getCode() {
     return code;
   }
 
 
-  public void setCode(String code) {
+  public void setCode(CodeEnum code) {
     this.code = code;
   }
 
 
-  public ErrorGeneric status(Integer status) {
+  public Error400InvalidCredentials status(StatusEnum status) {
     
     this.status = status;
     return this;
   }
 
    /**
-   * The HTTP status code of this error.
-   * minimum: 200
-   * maximum: 600
+   * &#x60;400&#x60;.
    * @return status
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "499", value = "The HTTP status code of this error.")
+  @ApiModelProperty(example = "400", value = "`400`.")
 
-  public Integer getStatus() {
+  public StatusEnum getStatus() {
     return status;
   }
 
 
-  public void setStatus(Integer status) {
+  public void setStatus(StatusEnum status) {
     this.status = status;
   }
 
 
-  public ErrorGeneric message(String message) {
+  public Error400InvalidCredentials message(String message) {
     
     this.message = message;
     return this;
   }
 
    /**
-   * A human readable message that describes the error. The content of this field should not be used to determine any business logic. 
+   * The provided credentials are invalid.
    * @return message
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "The request body was not valid JSON.", value = "A human readable message that describes the error. The content of this field should not be used to determine any business logic. ")
+  @ApiModelProperty(example = "The provided credentials are invalid", value = "The provided credentials are invalid.")
 
   public String getMessage() {
     return message;
@@ -193,37 +274,6 @@ public class ErrorGeneric {
   }
 
 
-  public ErrorGeneric details(List<ErrorDetail> details) {
-    
-    this.details = details;
-    return this;
-  }
-
-  public ErrorGeneric addDetailsItem(ErrorDetail detailsItem) {
-    if (this.details == null) {
-      this.details = new ArrayList<ErrorDetail>();
-    }
-    this.details.add(detailsItem);
-    return this;
-  }
-
-   /**
-   * A list of detail objects that further clarify the reason for the error. Not every error supports more detail.
-   * @return details
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "A list of detail objects that further clarify the reason for the error. Not every error supports more detail.")
-
-  public List<ErrorDetail> getDetails() {
-    return details;
-  }
-
-
-  public void setDetails(List<ErrorDetail> details) {
-    this.details = details;
-  }
-
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -232,28 +282,26 @@ public class ErrorGeneric {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    ErrorGeneric errorGeneric = (ErrorGeneric) o;
-    return Objects.equals(this.type, errorGeneric.type) &&
-        Objects.equals(this.code, errorGeneric.code) &&
-        Objects.equals(this.status, errorGeneric.status) &&
-        Objects.equals(this.message, errorGeneric.message) &&
-        Objects.equals(this.details, errorGeneric.details);
+    Error400InvalidCredentials error400InvalidCredentials = (Error400InvalidCredentials) o;
+    return Objects.equals(this.type, error400InvalidCredentials.type) &&
+        Objects.equals(this.code, error400InvalidCredentials.code) &&
+        Objects.equals(this.status, error400InvalidCredentials.status) &&
+        Objects.equals(this.message, error400InvalidCredentials.message);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(type, code, status, message, details);
+    return Objects.hash(type, code, status, message);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class ErrorGeneric {\n");
+    sb.append("class Error400InvalidCredentials {\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("    code: ").append(toIndentedString(code)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("    message: ").append(toIndentedString(message)).append("\n");
-    sb.append("    details: ").append(toIndentedString(details)).append("\n");
     sb.append("}");
     return sb.toString();
   }

@@ -20,7 +20,6 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import com.gr4vy.api.model.Address;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
@@ -28,7 +27,7 @@ import java.io.IOException;
 /**
  * AddressUpdate
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-12-17T10:55:07.385073Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-03-29T11:53:32.457004Z[Etc/UTC]")
 public class AddressUpdate {
   public static final String SERIALIZED_NAME_CITY = "city";
   @SerializedName(SERIALIZED_NAME_CITY)
@@ -77,7 +76,8 @@ public class AddressUpdate {
    * The city for the billing address.
    * @return city
   **/
-  @ApiModelProperty(example = "London", required = true, value = "The city for the billing address.")
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "London", value = "The city for the billing address.")
 
   public String getCity() {
     return city;
@@ -99,7 +99,8 @@ public class AddressUpdate {
    * The country for the billing address.
    * @return country
   **/
-  @ApiModelProperty(example = "GB", required = true, value = "The country for the billing address.")
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "GB", value = "The country for the billing address.")
 
   public String getCountry() {
     return country;
@@ -121,7 +122,8 @@ public class AddressUpdate {
    * The postal code or zip code for the billing address.
    * @return postalCode
   **/
-  @ApiModelProperty(example = "789123", required = true, value = "The postal code or zip code for the billing address.")
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "789123", value = "The postal code or zip code for the billing address.")
 
   public String getPostalCode() {
     return postalCode;
@@ -143,7 +145,8 @@ public class AddressUpdate {
    * The state, county, or province for the billing address.
    * @return state
   **/
-  @ApiModelProperty(example = "Greater London", required = true, value = "The state, county, or province for the billing address.")
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "Greater London", value = "The state, county, or province for the billing address.")
 
   public String getState() {
     return state;
@@ -189,7 +192,7 @@ public class AddressUpdate {
    * @return houseNumberOrName
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "10", required = true, value = "The house number or name for the billing address. Not all payment services use this field but some do.")
+  @ApiModelProperty(example = "10", value = "The house number or name for the billing address. Not all payment services use this field but some do.")
 
   public String getHouseNumberOrName() {
     return houseNumberOrName;
@@ -211,7 +214,8 @@ public class AddressUpdate {
    * The first line of the billing address.
    * @return line1
   **/
-  @ApiModelProperty(example = "10 Oxford Street", required = true, value = "The first line of the billing address.")
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "10 Oxford Street", value = "The first line of the billing address.")
 
   public String getLine1() {
     return line1;
@@ -234,7 +238,7 @@ public class AddressUpdate {
    * @return line2
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "New Oxford Court", required = true, value = "The second line of the billing address.")
+  @ApiModelProperty(example = "New Oxford Court", value = "The second line of the billing address.")
 
   public String getLine2() {
     return line2;
@@ -257,7 +261,7 @@ public class AddressUpdate {
    * @return organization
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "Gr4vy", required = true, value = "The optional name of the company or organisation to add to the billing address.")
+  @ApiModelProperty(example = "Gr4vy", value = "The optional name of the company or organisation to add to the billing address.")
 
   public String getOrganization() {
     return organization;
