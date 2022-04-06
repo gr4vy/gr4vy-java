@@ -20,7 +20,6 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import com.gr4vy.api.model.Undefined;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
@@ -39,7 +38,7 @@ public class PaymentOptionContext {
 
   public static final String SERIALIZED_NAME_SUPPORTED_SCHEMES = "supported_schemes";
   @SerializedName(SERIALIZED_NAME_SUPPORTED_SCHEMES)
-  private List<Undefined> supportedSchemes = null;
+  private List<String> supportedSchemes = null;
 
 
   public PaymentOptionContext merchantName(String merchantName) {
@@ -65,15 +64,15 @@ public class PaymentOptionContext {
   }
 
 
-  public PaymentOptionContext supportedSchemes(List<Undefined> supportedSchemes) {
+  public PaymentOptionContext supportedSchemes(List<String> supportedSchemes) {
     
     this.supportedSchemes = supportedSchemes;
     return this;
   }
 
-  public PaymentOptionContext addSupportedSchemesItem(Undefined supportedSchemesItem) {
+  public PaymentOptionContext addSupportedSchemesItem(String supportedSchemesItem) {
     if (this.supportedSchemes == null) {
-      this.supportedSchemes = new ArrayList<Undefined>();
+      this.supportedSchemes = new ArrayList<String>();
     }
     this.supportedSchemes.add(supportedSchemesItem);
     return this;
@@ -86,12 +85,12 @@ public class PaymentOptionContext {
   @javax.annotation.Nullable
   @ApiModelProperty(value = "Card schemes supported by the digital wallet provider.")
 
-  public List<Undefined> getSupportedSchemes() {
+  public List<String> getSupportedSchemes() {
     return supportedSchemes;
   }
 
 
-  public void setSupportedSchemes(List<Undefined> supportedSchemes) {
+  public void setSupportedSchemes(List<String> supportedSchemes) {
     this.supportedSchemes = supportedSchemes;
   }
 
