@@ -28,11 +28,11 @@ import java.io.IOException;
  * The tax ID information associated to a buyer.
  */
 @ApiModel(description = "The tax ID information associated to a buyer.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-03-29T11:53:32.457004Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-04-06T18:03:23.672646Z[Etc/UTC]")
 public class TaxId {
-  public static final String SERIALIZED_NAME_ID = "id";
-  @SerializedName(SERIALIZED_NAME_ID)
-  private String id;
+  public static final String SERIALIZED_NAME_VALUE = "value";
+  @SerializedName(SERIALIZED_NAME_VALUE)
+  private String value;
 
   /**
    * The kind of tax ID.
@@ -42,6 +42,8 @@ public class TaxId {
     AE_TRN("ae.trn"),
     
     AU_ABN("au.abn"),
+    
+    AR_CUIT("ar.cuit"),
     
     BR_CNPJ("br.cnpj"),
     
@@ -162,26 +164,25 @@ public class TaxId {
   private KindEnum kind;
 
 
-  public TaxId id(String id) {
+  public TaxId value(String value) {
     
-    this.id = id;
+    this.value = value;
     return this;
   }
 
    /**
    * The tax ID for the buyer.
-   * @return id
+   * @return value
   **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(example = "12345678931", value = "The tax ID for the buyer.")
+  @ApiModelProperty(example = "12345678931", required = true, value = "The tax ID for the buyer.")
 
-  public String getId() {
-    return id;
+  public String getValue() {
+    return value;
   }
 
 
-  public void setId(String id) {
-    this.id = id;
+  public void setValue(String value) {
+    this.value = value;
   }
 
 
@@ -216,20 +217,20 @@ public class TaxId {
       return false;
     }
     TaxId taxId = (TaxId) o;
-    return Objects.equals(this.id, taxId.id) &&
+    return Objects.equals(this.value, taxId.value) &&
         Objects.equals(this.kind, taxId.kind);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, kind);
+    return Objects.hash(value, kind);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class TaxId {\n");
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("    value: ").append(toIndentedString(value)).append("\n");
     sb.append("    kind: ").append(toIndentedString(kind)).append("\n");
     sb.append("}");
     return sb.toString();

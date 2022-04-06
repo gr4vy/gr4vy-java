@@ -29,7 +29,7 @@ import java.io.IOException;
 /**
  * ThreeDSecureDataV1
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-03-29T11:53:32.457004Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-04-06T18:03:23.672646Z[Etc/UTC]")
 public class ThreeDSecureDataV1 {
   public static final String SERIALIZED_NAME_CAVV = "cavv";
   @SerializedName(SERIALIZED_NAME_CAVV)

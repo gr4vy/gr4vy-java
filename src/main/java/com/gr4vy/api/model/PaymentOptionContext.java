@@ -20,6 +20,7 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import com.gr4vy.api.model.Undefined;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
@@ -30,7 +31,7 @@ import java.util.List;
  * Additional context specific to the payment option. This is currently only returned for Apple Pay and Google Pay.
  */
 @ApiModel(description = "Additional context specific to the payment option. This is currently only returned for Apple Pay and Google Pay.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-03-29T11:53:32.457004Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-04-06T18:03:23.672646Z[Etc/UTC]")
 public class PaymentOptionContext {
   public static final String SERIALIZED_NAME_MERCHANT_NAME = "merchant_name";
   @SerializedName(SERIALIZED_NAME_MERCHANT_NAME)
@@ -38,7 +39,7 @@ public class PaymentOptionContext {
 
   public static final String SERIALIZED_NAME_SUPPORTED_SCHEMES = "supported_schemes";
   @SerializedName(SERIALIZED_NAME_SUPPORTED_SCHEMES)
-  private List<String> supportedSchemes = null;
+  private List<Undefined> supportedSchemes = null;
 
 
   public PaymentOptionContext merchantName(String merchantName) {
@@ -64,15 +65,15 @@ public class PaymentOptionContext {
   }
 
 
-  public PaymentOptionContext supportedSchemes(List<String> supportedSchemes) {
+  public PaymentOptionContext supportedSchemes(List<Undefined> supportedSchemes) {
     
     this.supportedSchemes = supportedSchemes;
     return this;
   }
 
-  public PaymentOptionContext addSupportedSchemesItem(String supportedSchemesItem) {
+  public PaymentOptionContext addSupportedSchemesItem(Undefined supportedSchemesItem) {
     if (this.supportedSchemes == null) {
-      this.supportedSchemes = new ArrayList<String>();
+      this.supportedSchemes = new ArrayList<Undefined>();
     }
     this.supportedSchemes.add(supportedSchemesItem);
     return this;
@@ -85,12 +86,12 @@ public class PaymentOptionContext {
   @javax.annotation.Nullable
   @ApiModelProperty(value = "Card schemes supported by the digital wallet provider.")
 
-  public List<String> getSupportedSchemes() {
+  public List<Undefined> getSupportedSchemes() {
     return supportedSchemes;
   }
 
 
-  public void setSupportedSchemes(List<String> supportedSchemes) {
+  public void setSupportedSchemes(List<Undefined> supportedSchemes) {
     this.supportedSchemes = supportedSchemes;
   }
 

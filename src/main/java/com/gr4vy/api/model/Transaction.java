@@ -37,7 +37,7 @@ import org.threeten.bp.OffsetDateTime;
  * A transaction record.
  */
 @ApiModel(description = "A transaction record.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-03-29T11:53:32.457004Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-04-06T18:03:23.672646Z[Etc/UTC]")
 public class Transaction {
   /**
    * The type of this resource. Is always &#x60;transaction&#x60;.
@@ -303,6 +303,126 @@ public class Transaction {
   public static final String SERIALIZED_NAME_SCHEME_TRANSACTION_ID = "scheme_transaction_id";
   @SerializedName(SERIALIZED_NAME_SCHEME_TRANSACTION_ID)
   private String schemeTransactionId = "null";
+
+  public static final String SERIALIZED_NAME_RAW_RESPONSE_CODE = "raw_response_code";
+  @SerializedName(SERIALIZED_NAME_RAW_RESPONSE_CODE)
+  private String rawResponseCode;
+
+  public static final String SERIALIZED_NAME_RAW_RESPONSE_DESCRIPTION = "raw_response_description";
+  @SerializedName(SERIALIZED_NAME_RAW_RESPONSE_DESCRIPTION)
+  private String rawResponseDescription;
+
+  /**
+   * The response code received from the payment service for the Address Verification Check (AVS). This code is mapped to a standardized Gr4vy AVS response code.  - &#x60;no_match&#x60; - neither address or postal code match - &#x60;match&#x60; - both address and postal code match - &#x60;partial_match_address&#x60; - address matches but postal code does not - &#x60;partial_match_postcode&#x60; - postal code matches but address does not - &#x60;unavailable &#x60; - AVS is unavailable for card/country  The value of this field can be &#x60;null&#x60; if the payment service did not provide a response.
+   */
+  @JsonAdapter(AvsResponseCodeEnum.Adapter.class)
+  public enum AvsResponseCodeEnum {
+    NO_MATCH("no_match"),
+    
+    MATCH("match"),
+    
+    PARTIAL_MATCH_ADDRESS("partial_match_address"),
+    
+    PARTIAL_MATCH_POSTCODE("partial_match_postcode"),
+    
+    UNAVAILABLE("unavailable");
+
+    private String value;
+
+    AvsResponseCodeEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static AvsResponseCodeEnum fromValue(String value) {
+      for (AvsResponseCodeEnum b : AvsResponseCodeEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      return null;
+    }
+
+    public static class Adapter extends TypeAdapter<AvsResponseCodeEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final AvsResponseCodeEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public AvsResponseCodeEnum read(final JsonReader jsonReader) throws IOException {
+        String value =  jsonReader.nextString();
+        return AvsResponseCodeEnum.fromValue(value);
+      }
+    }
+  }
+
+  public static final String SERIALIZED_NAME_AVS_RESPONSE_CODE = "avs_response_code";
+  @SerializedName(SERIALIZED_NAME_AVS_RESPONSE_CODE)
+  private AvsResponseCodeEnum avsResponseCode;
+
+  /**
+   * The response code received from the payment service for the Card Verification Value (CVV). This code is mapped to a standardized Gr4vy CVV response code.  - &#x60;no_match&#x60; - the CVV does not match the expected value - &#x60;match&#x60; - the CVV matches the expected value - &#x60;unavailable &#x60; - CVV check unavailable for card our country - &#x60;not_provided &#x60; - CVV not provided  The value of this field can be &#x60;null&#x60; if the payment service did not provide a response.
+   */
+  @JsonAdapter(CvvResponseCodeEnum.Adapter.class)
+  public enum CvvResponseCodeEnum {
+    NO_MATCH("no_match"),
+    
+    MATCH("match"),
+    
+    UNAVAILABLE("unavailable"),
+    
+    NOT_PROVIDED("not_provided");
+
+    private String value;
+
+    CvvResponseCodeEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static CvvResponseCodeEnum fromValue(String value) {
+      for (CvvResponseCodeEnum b : CvvResponseCodeEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      return null;
+    }
+
+    public static class Adapter extends TypeAdapter<CvvResponseCodeEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final CvvResponseCodeEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public CvvResponseCodeEnum read(final JsonReader jsonReader) throws IOException {
+        String value =  jsonReader.nextString();
+        return CvvResponseCodeEnum.fromValue(value);
+      }
+    }
+  }
+
+  public static final String SERIALIZED_NAME_CVV_RESPONSE_CODE = "cvv_response_code";
+  @SerializedName(SERIALIZED_NAME_CVV_RESPONSE_CODE)
+  private CvvResponseCodeEnum cvvResponseCode;
 
 
   public Transaction type(TypeEnum type) {
@@ -756,6 +876,98 @@ public class Transaction {
   }
 
 
+  public Transaction rawResponseCode(String rawResponseCode) {
+    
+    this.rawResponseCode = rawResponseCode;
+    return this;
+  }
+
+   /**
+   * This is the response code received from the payment service. This can be set to any value and is not standardized across different payment services.
+   * @return rawResponseCode
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "incorrect-zip", value = "This is the response code received from the payment service. This can be set to any value and is not standardized across different payment services.")
+
+  public String getRawResponseCode() {
+    return rawResponseCode;
+  }
+
+
+  public void setRawResponseCode(String rawResponseCode) {
+    this.rawResponseCode = rawResponseCode;
+  }
+
+
+  public Transaction rawResponseDescription(String rawResponseDescription) {
+    
+    this.rawResponseDescription = rawResponseDescription;
+    return this;
+  }
+
+   /**
+   * This is the response description received from the payment service. This can be set to any value and is not standardized across different payment services.
+   * @return rawResponseDescription
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "The card's postal code is incorrect. Check the card's postal code or use a different card.", value = "This is the response description received from the payment service. This can be set to any value and is not standardized across different payment services.")
+
+  public String getRawResponseDescription() {
+    return rawResponseDescription;
+  }
+
+
+  public void setRawResponseDescription(String rawResponseDescription) {
+    this.rawResponseDescription = rawResponseDescription;
+  }
+
+
+  public Transaction avsResponseCode(AvsResponseCodeEnum avsResponseCode) {
+    
+    this.avsResponseCode = avsResponseCode;
+    return this;
+  }
+
+   /**
+   * The response code received from the payment service for the Address Verification Check (AVS). This code is mapped to a standardized Gr4vy AVS response code.  - &#x60;no_match&#x60; - neither address or postal code match - &#x60;match&#x60; - both address and postal code match - &#x60;partial_match_address&#x60; - address matches but postal code does not - &#x60;partial_match_postcode&#x60; - postal code matches but address does not - &#x60;unavailable &#x60; - AVS is unavailable for card/country  The value of this field can be &#x60;null&#x60; if the payment service did not provide a response.
+   * @return avsResponseCode
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "partial_match_address", value = "The response code received from the payment service for the Address Verification Check (AVS). This code is mapped to a standardized Gr4vy AVS response code.  - `no_match` - neither address or postal code match - `match` - both address and postal code match - `partial_match_address` - address matches but postal code does not - `partial_match_postcode` - postal code matches but address does not - `unavailable ` - AVS is unavailable for card/country  The value of this field can be `null` if the payment service did not provide a response.")
+
+  public AvsResponseCodeEnum getAvsResponseCode() {
+    return avsResponseCode;
+  }
+
+
+  public void setAvsResponseCode(AvsResponseCodeEnum avsResponseCode) {
+    this.avsResponseCode = avsResponseCode;
+  }
+
+
+  public Transaction cvvResponseCode(CvvResponseCodeEnum cvvResponseCode) {
+    
+    this.cvvResponseCode = cvvResponseCode;
+    return this;
+  }
+
+   /**
+   * The response code received from the payment service for the Card Verification Value (CVV). This code is mapped to a standardized Gr4vy CVV response code.  - &#x60;no_match&#x60; - the CVV does not match the expected value - &#x60;match&#x60; - the CVV matches the expected value - &#x60;unavailable &#x60; - CVV check unavailable for card our country - &#x60;not_provided &#x60; - CVV not provided  The value of this field can be &#x60;null&#x60; if the payment service did not provide a response.
+   * @return cvvResponseCode
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "match", value = "The response code received from the payment service for the Card Verification Value (CVV). This code is mapped to a standardized Gr4vy CVV response code.  - `no_match` - the CVV does not match the expected value - `match` - the CVV matches the expected value - `unavailable ` - CVV check unavailable for card our country - `not_provided ` - CVV not provided  The value of this field can be `null` if the payment service did not provide a response.")
+
+  public CvvResponseCodeEnum getCvvResponseCode() {
+    return cvvResponseCode;
+  }
+
+
+  public void setCvvResponseCode(CvvResponseCodeEnum cvvResponseCode) {
+    this.cvvResponseCode = cvvResponseCode;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -783,12 +995,16 @@ public class Transaction {
         Objects.equals(this.isSubsequentPayment, transaction.isSubsequentPayment) &&
         Objects.equals(this.statementDescriptor, transaction.statementDescriptor) &&
         Objects.equals(this.cartItems, transaction.cartItems) &&
-        Objects.equals(this.schemeTransactionId, transaction.schemeTransactionId);
+        Objects.equals(this.schemeTransactionId, transaction.schemeTransactionId) &&
+        Objects.equals(this.rawResponseCode, transaction.rawResponseCode) &&
+        Objects.equals(this.rawResponseDescription, transaction.rawResponseDescription) &&
+        Objects.equals(this.avsResponseCode, transaction.avsResponseCode) &&
+        Objects.equals(this.cvvResponseCode, transaction.cvvResponseCode);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(type, id, status, amount, capturedAmount, refundedAmount, currency, paymentMethod, buyer, createdAt, externalIdentifier, updatedAt, paymentService, merchantInitiated, paymentSource, isSubsequentPayment, statementDescriptor, cartItems, schemeTransactionId);
+    return Objects.hash(type, id, status, amount, capturedAmount, refundedAmount, currency, paymentMethod, buyer, createdAt, externalIdentifier, updatedAt, paymentService, merchantInitiated, paymentSource, isSubsequentPayment, statementDescriptor, cartItems, schemeTransactionId, rawResponseCode, rawResponseDescription, avsResponseCode, cvvResponseCode);
   }
 
   @Override
@@ -814,6 +1030,10 @@ public class Transaction {
     sb.append("    statementDescriptor: ").append(toIndentedString(statementDescriptor)).append("\n");
     sb.append("    cartItems: ").append(toIndentedString(cartItems)).append("\n");
     sb.append("    schemeTransactionId: ").append(toIndentedString(schemeTransactionId)).append("\n");
+    sb.append("    rawResponseCode: ").append(toIndentedString(rawResponseCode)).append("\n");
+    sb.append("    rawResponseDescription: ").append(toIndentedString(rawResponseDescription)).append("\n");
+    sb.append("    avsResponseCode: ").append(toIndentedString(avsResponseCode)).append("\n");
+    sb.append("    cvvResponseCode: ").append(toIndentedString(cvvResponseCode)).append("\n");
     sb.append("}");
     return sb.toString();
   }

@@ -98,7 +98,6 @@ src/main/java/com/gr4vy/api/model/Transaction.java
 src/main/java/com/gr4vy/api/model/TransactionCaptureRequest.java
 src/main/java/com/gr4vy/api/model/TransactionPaymentMethodRequest.java
 src/main/java/com/gr4vy/api/model/TransactionRefundRequest.java
-src/main/java/com/gr4vy/api/model/TransactionRefundRequestDeprecated.java
 src/main/java/com/gr4vy/api/model/TransactionRequest.java
 src/main/java/com/gr4vy/api/model/TransactionSummary.java
 src/main/java/com/gr4vy/api/model/Transactions.java
@@ -181,7 +180,6 @@ src/test/java/com/gr4vy/api/model/ThreeDSecureDataV2Test.java
 src/test/java/com/gr4vy/api/model/TokenizedRequestTest.java
 src/test/java/com/gr4vy/api/model/TransactionCaptureRequestTest.java
 src/test/java/com/gr4vy/api/model/TransactionPaymentMethodRequestTest.java
-src/test/java/com/gr4vy/api/model/TransactionRefundRequestDeprecatedTest.java
 src/test/java/com/gr4vy/api/model/TransactionRefundRequestTest.java
 src/test/java/com/gr4vy/api/model/TransactionRequestTest.java
 src/test/java/com/gr4vy/api/model/TransactionSummaryTest.java
