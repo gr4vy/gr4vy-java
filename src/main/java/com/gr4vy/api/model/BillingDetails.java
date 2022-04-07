@@ -30,7 +30,7 @@ import java.io.IOException;
  * Billing details associated to a buyer.
  */
 @ApiModel(description = "Billing details associated to a buyer.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-03-29T11:53:32.457004Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-04-06T18:03:23.672646Z[Etc/UTC]")
 public class BillingDetails {
   /**
    * The type of this resource. Is always &#x60;billing-details&#x60;.

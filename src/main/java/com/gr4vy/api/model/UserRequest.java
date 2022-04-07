@@ -28,7 +28,7 @@ import java.io.IOException;
  * A request to create a user.
  */
 @ApiModel(description = "A request to create a user.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-03-29T11:53:32.457004Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-04-06T18:03:23.672646Z[Etc/UTC]")
 public class UserRequest {
   public static final String SERIALIZED_NAME_DISPLAY_NAME = "display_name";
   @SerializedName(SERIALIZED_NAME_DISPLAY_NAME)

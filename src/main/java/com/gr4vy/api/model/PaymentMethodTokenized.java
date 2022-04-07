@@ -29,7 +29,7 @@ import java.util.UUID;
  * A mini format version of a payment method.
  */
 @ApiModel(description = "A mini format version of a payment method.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-03-29T11:53:32.457004Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-04-06T18:03:23.672646Z[Etc/UTC]")
 public class PaymentMethodTokenized {
   /**
    * &#x60;payment-method&#x60;.
