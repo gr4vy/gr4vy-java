@@ -31,7 +31,7 @@ import java.util.List;
  * Bad Request (HTTP 400).
  */
 @ApiModel(description = "Bad Request (HTTP 400).")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-03-29T11:53:32.457004Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-04-06T18:03:23.672646Z[Etc/UTC]")
 public class Error400BadRequest {
   /**
    * &#x60;error&#x60;.

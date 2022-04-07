@@ -30,7 +30,7 @@ import java.util.List;
  * Additional context specific to the payment option. This is currently only returned for Apple Pay and Google Pay.
  */
 @ApiModel(description = "Additional context specific to the payment option. This is currently only returned for Apple Pay and Google Pay.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-03-29T11:53:32.457004Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-04-06T18:03:23.672646Z[Etc/UTC]")
 public class PaymentOptionContext {
   public static final String SERIALIZED_NAME_MERCHANT_NAME = "merchant_name";
   @SerializedName(SERIALIZED_NAME_MERCHANT_NAME)
