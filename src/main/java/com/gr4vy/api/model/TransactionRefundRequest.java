@@ -28,7 +28,7 @@ import java.io.IOException;
  * A request to refund a transaction.
  */
 @ApiModel(description = "A request to refund a transaction.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-04-06T18:03:23.672646Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-05-09T14:10:22.211861Z[Etc/UTC]")
 public class TransactionRefundRequest {
   public static final String SERIALIZED_NAME_AMOUNT = "amount";
   @SerializedName(SERIALIZED_NAME_AMOUNT)
@@ -42,13 +42,13 @@ public class TransactionRefundRequest {
   }
 
    /**
-   * The amount requested to refund.  If omitted, a full refund will be requested. Otherwise, the amount must be lower than or equal to the remaining balance in the associated transaction. Negative refunds are not supported.
-   * minimum: 0
+   * The amount requested to refund.  If omitted, a full refund will be requested.  Otherwise, the amount must be lower than or equal to the remaining balance in the associated transaction.  Negative and zero-amount refunds are not supported.
+   * minimum: 1
    * maximum: 99999999
    * @return amount
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "1299", value = "The amount requested to refund.  If omitted, a full refund will be requested. Otherwise, the amount must be lower than or equal to the remaining balance in the associated transaction. Negative refunds are not supported.")
+  @ApiModelProperty(example = "1299", value = "The amount requested to refund.  If omitted, a full refund will be requested.  Otherwise, the amount must be lower than or equal to the remaining balance in the associated transaction.  Negative and zero-amount refunds are not supported.")
 
   public Integer getAmount() {
     return amount;

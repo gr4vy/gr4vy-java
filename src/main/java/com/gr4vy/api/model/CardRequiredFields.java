@@ -20,178 +20,133 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import com.gr4vy.api.model.Address;
-import com.gr4vy.api.model.TaxId;
+import com.gr4vy.api.model.CardRequiredFieldsAddress;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 
 /**
- * BillingDetailsUpdateRequest
+ * The fields that are required to process a transaction for this card.
  */
+@ApiModel(description = "The fields that are required to process a transaction for this card.")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-05-09T14:10:22.211861Z[Etc/UTC]")
-public class BillingDetailsUpdateRequest {
+public class CardRequiredFields {
   public static final String SERIALIZED_NAME_FIRST_NAME = "first_name";
   @SerializedName(SERIALIZED_NAME_FIRST_NAME)
-  private String firstName;
+  private Boolean firstName;
 
   public static final String SERIALIZED_NAME_LAST_NAME = "last_name";
   @SerializedName(SERIALIZED_NAME_LAST_NAME)
-  private String lastName;
+  private Boolean lastName;
 
   public static final String SERIALIZED_NAME_EMAIL_ADDRESS = "email_address";
   @SerializedName(SERIALIZED_NAME_EMAIL_ADDRESS)
-  private String emailAddress;
+  private Boolean emailAddress;
 
   public static final String SERIALIZED_NAME_PHONE_NUMBER = "phone_number";
   @SerializedName(SERIALIZED_NAME_PHONE_NUMBER)
-  private String phoneNumber;
+  private Boolean phoneNumber;
 
   public static final String SERIALIZED_NAME_ADDRESS = "address";
   @SerializedName(SERIALIZED_NAME_ADDRESS)
-  private Address address;
+  private CardRequiredFieldsAddress address;
 
   public static final String SERIALIZED_NAME_TAX_ID = "tax_id";
   @SerializedName(SERIALIZED_NAME_TAX_ID)
-  private TaxId taxId;
+  private Boolean taxId;
 
-
-  public BillingDetailsUpdateRequest firstName(String firstName) {
-    
-    this.firstName = firstName;
-    return this;
-  }
 
    /**
-   * The first name(s) or given name for the buyer.
+   * The first (given) name of the buyer.
    * @return firstName
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "John", value = "The first name(s) or given name for the buyer.")
+  @ApiModelProperty(value = "The first (given) name of the buyer.")
 
-  public String getFirstName() {
+  public Boolean getFirstName() {
     return firstName;
   }
 
 
-  public void setFirstName(String firstName) {
-    this.firstName = firstName;
-  }
 
-
-  public BillingDetailsUpdateRequest lastName(String lastName) {
-    
-    this.lastName = lastName;
-    return this;
-  }
 
    /**
-   * The last name, or family name, of the buyer.
+   * The last (family) name of the buyer.
    * @return lastName
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "Lunn", value = "The last name, or family name, of the buyer.")
+  @ApiModelProperty(value = "The last (family) name of the buyer.")
 
-  public String getLastName() {
+  public Boolean getLastName() {
     return lastName;
   }
 
 
-  public void setLastName(String lastName) {
-    this.lastName = lastName;
-  }
 
-
-  public BillingDetailsUpdateRequest emailAddress(String emailAddress) {
-    
-    this.emailAddress = emailAddress;
-    return this;
-  }
 
    /**
-   * The email address for the buyer.
+   * The email address of the buyer.
    * @return emailAddress
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "john@example.com", value = "The email address for the buyer.")
+  @ApiModelProperty(value = "The email address of the buyer.")
 
-  public String getEmailAddress() {
+  public Boolean getEmailAddress() {
     return emailAddress;
   }
 
 
-  public void setEmailAddress(String emailAddress) {
-    this.emailAddress = emailAddress;
-  }
 
-
-  public BillingDetailsUpdateRequest phoneNumber(String phoneNumber) {
-    
-    this.phoneNumber = phoneNumber;
-    return this;
-  }
 
    /**
-   * The phone number for the buyer which should be formatted according to the [E164 number standard](https://www.twilio.com/docs/glossary/what-e164).
+   * The phone number of the buyer.
    * @return phoneNumber
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "+1234567890", value = "The phone number for the buyer which should be formatted according to the [E164 number standard](https://www.twilio.com/docs/glossary/what-e164).")
+  @ApiModelProperty(value = "The phone number of the buyer.")
 
-  public String getPhoneNumber() {
+  public Boolean getPhoneNumber() {
     return phoneNumber;
   }
 
 
-  public void setPhoneNumber(String phoneNumber) {
-    this.phoneNumber = phoneNumber;
-  }
 
 
-  public BillingDetailsUpdateRequest address(Address address) {
+  public CardRequiredFields address(CardRequiredFieldsAddress address) {
     
     this.address = address;
     return this;
   }
 
    /**
-   * The billing address for the buyer.
+   * Get address
    * @return address
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "The billing address for the buyer.")
-
-  public Address getAddress() {
-    return address;
-  }
-
-
-  public void setAddress(Address address) {
-    this.address = address;
-  }
-
-
-  public BillingDetailsUpdateRequest taxId(TaxId taxId) {
-    
-    this.taxId = taxId;
-    return this;
-  }
-
-   /**
-   * Get taxId
-   * @return taxId
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
 
-  public TaxId getTaxId() {
+  public CardRequiredFieldsAddress getAddress() {
+    return address;
+  }
+
+
+  public void setAddress(CardRequiredFieldsAddress address) {
+    this.address = address;
+  }
+
+
+   /**
+   * The tax id code associated with the billing details.
+   * @return taxId
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "The tax id code associated with the billing details.")
+
+  public Boolean getTaxId() {
     return taxId;
   }
 
 
-  public void setTaxId(TaxId taxId) {
-    this.taxId = taxId;
-  }
 
 
   @Override
@@ -202,13 +157,13 @@ public class BillingDetailsUpdateRequest {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    BillingDetailsUpdateRequest billingDetailsUpdateRequest = (BillingDetailsUpdateRequest) o;
-    return Objects.equals(this.firstName, billingDetailsUpdateRequest.firstName) &&
-        Objects.equals(this.lastName, billingDetailsUpdateRequest.lastName) &&
-        Objects.equals(this.emailAddress, billingDetailsUpdateRequest.emailAddress) &&
-        Objects.equals(this.phoneNumber, billingDetailsUpdateRequest.phoneNumber) &&
-        Objects.equals(this.address, billingDetailsUpdateRequest.address) &&
-        Objects.equals(this.taxId, billingDetailsUpdateRequest.taxId);
+    CardRequiredFields cardRequiredFields = (CardRequiredFields) o;
+    return Objects.equals(this.firstName, cardRequiredFields.firstName) &&
+        Objects.equals(this.lastName, cardRequiredFields.lastName) &&
+        Objects.equals(this.emailAddress, cardRequiredFields.emailAddress) &&
+        Objects.equals(this.phoneNumber, cardRequiredFields.phoneNumber) &&
+        Objects.equals(this.address, cardRequiredFields.address) &&
+        Objects.equals(this.taxId, cardRequiredFields.taxId);
   }
 
   @Override
@@ -219,7 +174,7 @@ public class BillingDetailsUpdateRequest {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class BillingDetailsUpdateRequest {\n");
+    sb.append("class CardRequiredFields {\n");
     sb.append("    firstName: ").append(toIndentedString(firstName)).append("\n");
     sb.append("    lastName: ").append(toIndentedString(lastName)).append("\n");
     sb.append("    emailAddress: ").append(toIndentedString(emailAddress)).append("\n");

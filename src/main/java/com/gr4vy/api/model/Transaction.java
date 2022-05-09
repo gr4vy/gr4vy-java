@@ -29,7 +29,9 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 import org.threeten.bp.OffsetDateTime;
 
@@ -37,7 +39,7 @@ import org.threeten.bp.OffsetDateTime;
  * A transaction record.
  */
 @ApiModel(description = "A transaction record.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-04-06T18:03:23.672646Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-05-09T14:10:22.211861Z[Etc/UTC]")
 public class Transaction {
   /**
    * The type of this resource. Is always &#x60;transaction&#x60;.
@@ -93,7 +95,7 @@ public class Transaction {
   private UUID id;
 
   /**
-   * The status of the transaction. The status may change over time as asynchronous  processing events occur.
+   * The status of the transaction. The status may change over time as asynchronous processing events occur.
    */
   @JsonAdapter(StatusEnum.Adapter.class)
   public enum StatusEnum {
@@ -126,14 +128,6 @@ public class Transaction {
     AUTHORIZATION_VOID_DECLINED("authorization_void_declined"),
     
     AUTHORIZATION_VOID_FAILED("authorization_void_failed"),
-    
-    REFUND_SUCCEEDED("refund_succeeded"),
-    
-    REFUND_PENDING("refund_pending"),
-    
-    REFUND_DECLINED("refund_declined"),
-    
-    REFUND_FAILED("refund_failed"),
     
     BUYER_APPROVAL_SUCCEEDED("buyer_approval_succeeded"),
     
@@ -187,6 +181,57 @@ public class Transaction {
   @SerializedName(SERIALIZED_NAME_STATUS)
   private StatusEnum status;
 
+  /**
+   * The original &#x60;intent&#x60; used when the transaction was [created](#operation/authorize-new-transaction).
+   */
+  @JsonAdapter(IntentEnum.Adapter.class)
+  public enum IntentEnum {
+    AUTHORIZE("authorize"),
+    
+    CAPTURE("capture");
+
+    private String value;
+
+    IntentEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static IntentEnum fromValue(String value) {
+      for (IntentEnum b : IntentEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+
+    public static class Adapter extends TypeAdapter<IntentEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final IntentEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public IntentEnum read(final JsonReader jsonReader) throws IOException {
+        String value =  jsonReader.nextString();
+        return IntentEnum.fromValue(value);
+      }
+    }
+  }
+
+  public static final String SERIALIZED_NAME_INTENT = "intent";
+  @SerializedName(SERIALIZED_NAME_INTENT)
+  private IntentEnum intent;
+
   public static final String SERIALIZED_NAME_AMOUNT = "amount";
   @SerializedName(SERIALIZED_NAME_AMOUNT)
   private Integer amount;
@@ -202,6 +247,10 @@ public class Transaction {
   public static final String SERIALIZED_NAME_CURRENCY = "currency";
   @SerializedName(SERIALIZED_NAME_CURRENCY)
   private String currency;
+
+  public static final String SERIALIZED_NAME_COUNTRY = "country";
+  @SerializedName(SERIALIZED_NAME_COUNTRY)
+  private String country;
 
   public static final String SERIALIZED_NAME_PAYMENT_METHOD = "payment_method";
   @SerializedName(SERIALIZED_NAME_PAYMENT_METHOD)
@@ -424,6 +473,81 @@ public class Transaction {
   @SerializedName(SERIALIZED_NAME_CVV_RESPONSE_CODE)
   private CvvResponseCodeEnum cvvResponseCode;
 
+  /**
+   * Gets or Sets method
+   */
+  @JsonAdapter(MethodEnum.Adapter.class)
+  public enum MethodEnum {
+    CARD("card"),
+    
+    PAYPAL("paypal"),
+    
+    BANKED("banked"),
+    
+    GOCARDLESS("gocardless"),
+    
+    STRIPEDD("stripedd"),
+    
+    APPLEPAY("applepay"),
+    
+    GOOGLEPAY("googlepay"),
+    
+    AFTERPAY("afterpay"),
+    
+    CLEARPAY("clearpay"),
+    
+    ZIPPAY("zippay");
+
+    private String value;
+
+    MethodEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static MethodEnum fromValue(String value) {
+      for (MethodEnum b : MethodEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+
+    public static class Adapter extends TypeAdapter<MethodEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final MethodEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public MethodEnum read(final JsonReader jsonReader) throws IOException {
+        String value =  jsonReader.nextString();
+        return MethodEnum.fromValue(value);
+      }
+    }
+  }
+
+  public static final String SERIALIZED_NAME_METHOD = "method";
+  @SerializedName(SERIALIZED_NAME_METHOD)
+  private MethodEnum method;
+
+  public static final String SERIALIZED_NAME_PAYMENT_SERVICE_TRANSACTION_ID = "payment_service_transaction_id";
+  @SerializedName(SERIALIZED_NAME_PAYMENT_SERVICE_TRANSACTION_ID)
+  private String paymentServiceTransactionId;
+
+  public static final String SERIALIZED_NAME_METADATA = "metadata";
+  @SerializedName(SERIALIZED_NAME_METADATA)
+  private Map<String, String> metadata = null;
+
 
   public Transaction type(TypeEnum type) {
     
@@ -478,11 +602,11 @@ public class Transaction {
   }
 
    /**
-   * The status of the transaction. The status may change over time as asynchronous  processing events occur.
+   * The status of the transaction. The status may change over time as asynchronous processing events occur.
    * @return status
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "processing", value = "The status of the transaction. The status may change over time as asynchronous  processing events occur.")
+  @ApiModelProperty(example = "processing", value = "The status of the transaction. The status may change over time as asynchronous processing events occur.")
 
   public StatusEnum getStatus() {
     return status;
@@ -494,6 +618,29 @@ public class Transaction {
   }
 
 
+  public Transaction intent(IntentEnum intent) {
+    
+    this.intent = intent;
+    return this;
+  }
+
+   /**
+   * The original &#x60;intent&#x60; used when the transaction was [created](#operation/authorize-new-transaction).
+   * @return intent
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "authorize", value = "The original `intent` used when the transaction was [created](#operation/authorize-new-transaction).")
+
+  public IntentEnum getIntent() {
+    return intent;
+  }
+
+
+  public void setIntent(IntentEnum intent) {
+    this.intent = intent;
+  }
+
+
   public Transaction amount(Integer amount) {
     
     this.amount = amount;
@@ -501,13 +648,13 @@ public class Transaction {
   }
 
    /**
-   * The authorized amount for this transaction. This can be different than the actual captured amount and part of this amount may be refunded.
+   * The authorized amount for this transaction. This can be more than the actual captured amount and part of this amount may be refunded.
    * minimum: 0
    * maximum: 99999999
    * @return amount
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "1299", value = "The authorized amount for this transaction. This can be different than the actual captured amount and part of this amount may be refunded.")
+  @ApiModelProperty(example = "1299", value = "The authorized amount for this transaction. This can be more than the actual captured amount and part of this amount may be refunded.")
 
   public Integer getAmount() {
     return amount;
@@ -526,13 +673,13 @@ public class Transaction {
   }
 
    /**
-   * The captured amount for this transaction. This can be a part and in some cases even more than the authorized amount.
+   * The captured amount for this transaction. This can be the total or a portion of the authorized amount.
    * minimum: 0
    * maximum: 99999999
    * @return capturedAmount
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "999", value = "The captured amount for this transaction. This can be a part and in some cases even more than the authorized amount.")
+  @ApiModelProperty(example = "999", value = "The captured amount for this transaction. This can be the total or a portion of the authorized amount.")
 
   public Integer getCapturedAmount() {
     return capturedAmount;
@@ -551,13 +698,13 @@ public class Transaction {
   }
 
    /**
-   * The refunded amount for this transaction. This can be a part or all of the captured amount.
+   * The refunded amount for this transaction. This can be the total or a portion of the captured amount.
    * minimum: 0
    * maximum: 99999999
    * @return refundedAmount
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "100", value = "The refunded amount for this transaction. This can be a part or all of the captured amount.")
+  @ApiModelProperty(example = "100", value = "The refunded amount for this transaction. This can be the total or a portion of the captured amount.")
 
   public Integer getRefundedAmount() {
     return refundedAmount;
@@ -589,6 +736,29 @@ public class Transaction {
 
   public void setCurrency(String currency) {
     this.currency = currency;
+  }
+
+
+  public Transaction country(String country) {
+    
+    this.country = country;
+    return this;
+  }
+
+   /**
+   * The 2-letter ISO code of the country of the transaction. This is used to filter the payment services that is used to process the transaction. 
+   * @return country
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "US", value = "The 2-letter ISO code of the country of the transaction. This is used to filter the payment services that is used to process the transaction. ")
+
+  public String getCountry() {
+    return country;
+  }
+
+
+  public void setCountry(String country) {
+    this.country = country;
   }
 
 
@@ -783,11 +953,11 @@ public class Transaction {
   }
 
    /**
-   * Indicates whether the transaction represents a subsequent payment coming from a setup recurring payment. Please note this flag is only compatible with &#x60;payment_source&#x60; set to &#x60;recurring&#x60;, &#x60;installment&#x60;, or &#x60;card_on_file&#x60; and will be ignored for other values or if &#x60;payment_source&#x60; is not present.
+   * Indicates whether the transaction represents a subsequent payment coming from a setup recurring payment. Please note there are some restrictions on how this flag may be used.  The flag can only be &#x60;false&#x60; (or not set) when the transaction meets one of the following criteria:  * It is not &#x60;merchant_initiated&#x60;. * &#x60;payment_source&#x60; is set to &#x60;card_on_file&#x60;.  The flag can only be set to &#x60;true&#x60; when the transaction meets one of the following criteria:  * It is not &#x60;merchant_initiated&#x60;. * &#x60;payment_source&#x60; is set to &#x60;recurring&#x60; or &#x60;installment&#x60; and &#x60;merchant_initiated&#x60; is set to &#x60;true&#x60;. * &#x60;payment_source&#x60; is set to &#x60;card_on_file&#x60;.
    * @return isSubsequentPayment
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "true", value = "Indicates whether the transaction represents a subsequent payment coming from a setup recurring payment. Please note this flag is only compatible with `payment_source` set to `recurring`, `installment`, or `card_on_file` and will be ignored for other values or if `payment_source` is not present.")
+  @ApiModelProperty(example = "true", value = "Indicates whether the transaction represents a subsequent payment coming from a setup recurring payment. Please note there are some restrictions on how this flag may be used.  The flag can only be `false` (or not set) when the transaction meets one of the following criteria:  * It is not `merchant_initiated`. * `payment_source` is set to `card_on_file`.  The flag can only be set to `true` when the transaction meets one of the following criteria:  * It is not `merchant_initiated`. * `payment_source` is set to `recurring` or `installment` and `merchant_initiated` is set to `true`. * `payment_source` is set to `card_on_file`.")
 
   public Boolean getIsSubsequentPayment() {
     return isSubsequentPayment;
@@ -968,6 +1138,83 @@ public class Transaction {
   }
 
 
+  public Transaction method(MethodEnum method) {
+    
+    this.method = method;
+    return this;
+  }
+
+   /**
+   * Get method
+   * @return method
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "card", value = "")
+
+  public MethodEnum getMethod() {
+    return method;
+  }
+
+
+  public void setMethod(MethodEnum method) {
+    this.method = method;
+  }
+
+
+  public Transaction paymentServiceTransactionId(String paymentServiceTransactionId) {
+    
+    this.paymentServiceTransactionId = paymentServiceTransactionId;
+    return this;
+  }
+
+   /**
+   * The payment service&#39;s unique ID for the transaction.
+   * @return paymentServiceTransactionId
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "charge_xYqd43gySMtori", value = "The payment service's unique ID for the transaction.")
+
+  public String getPaymentServiceTransactionId() {
+    return paymentServiceTransactionId;
+  }
+
+
+  public void setPaymentServiceTransactionId(String paymentServiceTransactionId) {
+    this.paymentServiceTransactionId = paymentServiceTransactionId;
+  }
+
+
+  public Transaction metadata(Map<String, String> metadata) {
+    
+    this.metadata = metadata;
+    return this;
+  }
+
+  public Transaction putMetadataItem(String key, String metadataItem) {
+    if (this.metadata == null) {
+      this.metadata = new HashMap<String, String>();
+    }
+    this.metadata.put(key, metadataItem);
+    return this;
+  }
+
+   /**
+   * Additional information about the transaction stored as key-value pairs.
+   * @return metadata
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "{\"key\":\"value\"}", value = "Additional information about the transaction stored as key-value pairs.")
+
+  public Map<String, String> getMetadata() {
+    return metadata;
+  }
+
+
+  public void setMetadata(Map<String, String> metadata) {
+    this.metadata = metadata;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -980,10 +1227,12 @@ public class Transaction {
     return Objects.equals(this.type, transaction.type) &&
         Objects.equals(this.id, transaction.id) &&
         Objects.equals(this.status, transaction.status) &&
+        Objects.equals(this.intent, transaction.intent) &&
         Objects.equals(this.amount, transaction.amount) &&
         Objects.equals(this.capturedAmount, transaction.capturedAmount) &&
         Objects.equals(this.refundedAmount, transaction.refundedAmount) &&
         Objects.equals(this.currency, transaction.currency) &&
+        Objects.equals(this.country, transaction.country) &&
         Objects.equals(this.paymentMethod, transaction.paymentMethod) &&
         Objects.equals(this.buyer, transaction.buyer) &&
         Objects.equals(this.createdAt, transaction.createdAt) &&
@@ -999,12 +1248,15 @@ public class Transaction {
         Objects.equals(this.rawResponseCode, transaction.rawResponseCode) &&
         Objects.equals(this.rawResponseDescription, transaction.rawResponseDescription) &&
         Objects.equals(this.avsResponseCode, transaction.avsResponseCode) &&
-        Objects.equals(this.cvvResponseCode, transaction.cvvResponseCode);
+        Objects.equals(this.cvvResponseCode, transaction.cvvResponseCode) &&
+        Objects.equals(this.method, transaction.method) &&
+        Objects.equals(this.paymentServiceTransactionId, transaction.paymentServiceTransactionId) &&
+        Objects.equals(this.metadata, transaction.metadata);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(type, id, status, amount, capturedAmount, refundedAmount, currency, paymentMethod, buyer, createdAt, externalIdentifier, updatedAt, paymentService, merchantInitiated, paymentSource, isSubsequentPayment, statementDescriptor, cartItems, schemeTransactionId, rawResponseCode, rawResponseDescription, avsResponseCode, cvvResponseCode);
+    return Objects.hash(type, id, status, intent, amount, capturedAmount, refundedAmount, currency, country, paymentMethod, buyer, createdAt, externalIdentifier, updatedAt, paymentService, merchantInitiated, paymentSource, isSubsequentPayment, statementDescriptor, cartItems, schemeTransactionId, rawResponseCode, rawResponseDescription, avsResponseCode, cvvResponseCode, method, paymentServiceTransactionId, metadata);
   }
 
   @Override
@@ -1014,10 +1266,12 @@ public class Transaction {
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
+    sb.append("    intent: ").append(toIndentedString(intent)).append("\n");
     sb.append("    amount: ").append(toIndentedString(amount)).append("\n");
     sb.append("    capturedAmount: ").append(toIndentedString(capturedAmount)).append("\n");
     sb.append("    refundedAmount: ").append(toIndentedString(refundedAmount)).append("\n");
     sb.append("    currency: ").append(toIndentedString(currency)).append("\n");
+    sb.append("    country: ").append(toIndentedString(country)).append("\n");
     sb.append("    paymentMethod: ").append(toIndentedString(paymentMethod)).append("\n");
     sb.append("    buyer: ").append(toIndentedString(buyer)).append("\n");
     sb.append("    createdAt: ").append(toIndentedString(createdAt)).append("\n");
@@ -1034,6 +1288,9 @@ public class Transaction {
     sb.append("    rawResponseDescription: ").append(toIndentedString(rawResponseDescription)).append("\n");
     sb.append("    avsResponseCode: ").append(toIndentedString(avsResponseCode)).append("\n");
     sb.append("    cvvResponseCode: ").append(toIndentedString(cvvResponseCode)).append("\n");
+    sb.append("    method: ").append(toIndentedString(method)).append("\n");
+    sb.append("    paymentServiceTransactionId: ").append(toIndentedString(paymentServiceTransactionId)).append("\n");
+    sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
     sb.append("}");
     return sb.toString();
   }

@@ -1067,7 +1067,7 @@ public class TransactionsApi {
 
     /**
      * Void transaction
-     * Voids a transaction.  If the transaction was not yet successfully authorized, or was already captured, the void will not be processed. Captured transactions can be [refunded](#operation/refund-transaction) instead.
+     * Voids a transaction.  If the transaction was not yet successfully authorized, or was already captured, the void will not be processed. Captured transactions can be [refunded](#operation/refund-transaction) instead.  Voiding zero-amount authorized transactions is not supported.
      * @param transactionId The ID for the transaction to get the information for. (required)
      * @return Transaction
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -1087,7 +1087,7 @@ public class TransactionsApi {
 
     /**
      * Void transaction
-     * Voids a transaction.  If the transaction was not yet successfully authorized, or was already captured, the void will not be processed. Captured transactions can be [refunded](#operation/refund-transaction) instead.
+     * Voids a transaction.  If the transaction was not yet successfully authorized, or was already captured, the void will not be processed. Captured transactions can be [refunded](#operation/refund-transaction) instead.  Voiding zero-amount authorized transactions is not supported.
      * @param transactionId The ID for the transaction to get the information for. (required)
      * @return ApiResponse&lt;Transaction&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -1108,7 +1108,7 @@ public class TransactionsApi {
 
     /**
      * Void transaction (asynchronously)
-     * Voids a transaction.  If the transaction was not yet successfully authorized, or was already captured, the void will not be processed. Captured transactions can be [refunded](#operation/refund-transaction) instead.
+     * Voids a transaction.  If the transaction was not yet successfully authorized, or was already captured, the void will not be processed. Captured transactions can be [refunded](#operation/refund-transaction) instead.  Voiding zero-amount authorized transactions is not supported.
      * @param transactionId The ID for the transaction to get the information for. (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call

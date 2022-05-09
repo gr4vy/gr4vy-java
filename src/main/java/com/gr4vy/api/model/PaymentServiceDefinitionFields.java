@@ -28,7 +28,7 @@ import java.io.IOException;
  * A single field that needs to be submitted for a payment service when it is created.
  */
 @ApiModel(description = "A single field that needs to be submitted for a payment service when it is created.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-04-06T18:03:23.672646Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-05-09T14:10:22.211861Z[Etc/UTC]")
 public class PaymentServiceDefinitionFields {
   public static final String SERIALIZED_NAME_KEY = "key";
   @SerializedName(SERIALIZED_NAME_KEY)
@@ -94,6 +94,10 @@ public class PaymentServiceDefinitionFields {
   public static final String SERIALIZED_NAME_FORMAT = "format";
   @SerializedName(SERIALIZED_NAME_FORMAT)
   private FormatEnum format;
+
+  public static final String SERIALIZED_NAME_SECRET = "secret";
+  @SerializedName(SERIALIZED_NAME_SECRET)
+  private Boolean secret;
 
 
   public PaymentServiceDefinitionFields key(String key) {
@@ -188,6 +192,29 @@ public class PaymentServiceDefinitionFields {
   }
 
 
+  public PaymentServiceDefinitionFields secret(Boolean secret) {
+    
+    this.secret = secret;
+    return this;
+  }
+
+   /**
+   * Defines if this field is secret. When &#x60;true&#x60; the field is not returned when querying the payment service.
+   * @return secret
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "true", value = "Defines if this field is secret. When `true` the field is not returned when querying the payment service.")
+
+  public Boolean getSecret() {
+    return secret;
+  }
+
+
+  public void setSecret(Boolean secret) {
+    this.secret = secret;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -200,12 +227,13 @@ public class PaymentServiceDefinitionFields {
     return Objects.equals(this.key, paymentServiceDefinitionFields.key) &&
         Objects.equals(this.displayName, paymentServiceDefinitionFields.displayName) &&
         Objects.equals(this.required, paymentServiceDefinitionFields.required) &&
-        Objects.equals(this.format, paymentServiceDefinitionFields.format);
+        Objects.equals(this.format, paymentServiceDefinitionFields.format) &&
+        Objects.equals(this.secret, paymentServiceDefinitionFields.secret);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(key, displayName, required, format);
+    return Objects.hash(key, displayName, required, format, secret);
   }
 
   @Override
@@ -216,6 +244,7 @@ public class PaymentServiceDefinitionFields {
     sb.append("    displayName: ").append(toIndentedString(displayName)).append("\n");
     sb.append("    required: ").append(toIndentedString(required)).append("\n");
     sb.append("    format: ").append(toIndentedString(format)).append("\n");
+    sb.append("    secret: ").append(toIndentedString(secret)).append("\n");
     sb.append("}");
     return sb.toString();
   }

@@ -30,7 +30,7 @@ import org.threeten.bp.OffsetDateTime;
 /**
  * Buyer
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-04-06T18:03:23.672646Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-05-09T14:10:22.211861Z[Etc/UTC]")
 public class Buyer {
   /**
    * The type of this resource. Is always &#x60;buyer&#x60;.

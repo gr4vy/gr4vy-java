@@ -29,7 +29,7 @@ import java.util.UUID;
  * Request to use a redirect payment method in a transaction.
  */
 @ApiModel(description = "Request to use a redirect payment method in a transaction.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-04-06T18:03:23.672646Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-05-09T14:10:22.211861Z[Etc/UTC]")
 public class RedirectRequest {
   public static final String SERIALIZED_NAME_METHOD = "method";
   @SerializedName(SERIALIZED_NAME_METHOD)
@@ -136,7 +136,7 @@ public class RedirectRequest {
    * The 2-letter ISO code of the country to use this payment method for. This is used to select the payment service to use.
    * @return country
   **/
-  @ApiModelProperty(example = "USD", required = true, value = "The 2-letter ISO code of the country to use this payment method for. This is used to select the payment service to use.")
+  @ApiModelProperty(example = "US", required = true, value = "The 2-letter ISO code of the country to use this payment method for. This is used to select the payment service to use.")
 
   public String getCountry() {
     return country;

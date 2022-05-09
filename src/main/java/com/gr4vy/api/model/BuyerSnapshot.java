@@ -30,7 +30,7 @@ import java.util.UUID;
  * Snapshot of a buyer, as used when embedded inside other resources.
  */
 @ApiModel(description = "Snapshot of a buyer, as used when embedded inside other resources.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-04-06T18:03:23.672646Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-05-09T14:10:22.211861Z[Etc/UTC]")
 public class BuyerSnapshot {
   /**
    * The type of this resource. Is always &#x60;buyer&#x60;.

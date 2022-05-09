@@ -30,7 +30,7 @@ import java.io.IOException;
  * Billing details associated to a buyer.
  */
 @ApiModel(description = "Billing details associated to a buyer.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-04-06T18:03:23.672646Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-05-09T14:10:22.211861Z[Etc/UTC]")
 public class BillingDetails {
   /**
    * The type of this resource. Is always &#x60;billing-details&#x60;.
@@ -205,11 +205,11 @@ public class BillingDetails {
   }
 
    /**
-   * The phone number of the buyer. This expect the number in the [E164 number standard](https://www.twilio.com/docs/glossary/what-e164).
+   * The phone number of the buyer. This number is formatted according to the [E164 number standard](https://www.twilio.com/docs/glossary/what-e164).
    * @return phoneNumber
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "+1234567890", value = "The phone number of the buyer. This expect the number in the [E164 number standard](https://www.twilio.com/docs/glossary/what-e164).")
+  @ApiModelProperty(example = "+1234567890", value = "The phone number of the buyer. This number is formatted according to the [E164 number standard](https://www.twilio.com/docs/glossary/what-e164).")
 
   public String getPhoneNumber() {
     return phoneNumber;

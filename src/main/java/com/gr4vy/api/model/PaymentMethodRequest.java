@@ -29,7 +29,7 @@ import java.util.UUID;
  * Payment method details used to register a new payment method.
  */
 @ApiModel(description = "Payment method details used to register a new payment method.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-04-06T18:03:23.672646Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-05-09T14:10:22.211861Z[Etc/UTC]")
 public class PaymentMethodRequest {
   public static final String SERIALIZED_NAME_METHOD = "method";
   @SerializedName(SERIALIZED_NAME_METHOD)
@@ -289,7 +289,7 @@ public class PaymentMethodRequest {
    * @return country
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "USD", value = "The 2-letter ISO code of the country to store this payment method for. This is used to select the payment service to use.  This only applies to `redirect` mode payment methods like `gocardless`.")
+  @ApiModelProperty(example = "US", value = "The 2-letter ISO code of the country to store this payment method for. This is used to select the payment service to use.  This only applies to `redirect` mode payment methods like `gocardless`.")
 
   public String getCountry() {
     return country;

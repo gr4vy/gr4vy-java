@@ -30,7 +30,7 @@ import java.io.IOException;
  * Billing details to use associated to a buyer.
  */
 @ApiModel(description = "Billing details to use associated to a buyer.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-04-06T18:03:23.672646Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-05-09T14:10:22.211861Z[Etc/UTC]")
 public class BillingDetailsRequest {
   public static final String SERIALIZED_NAME_FIRST_NAME = "first_name";
   @SerializedName(SERIALIZED_NAME_FIRST_NAME)
@@ -133,11 +133,11 @@ public class BillingDetailsRequest {
   }
 
    /**
-   * The phone number to use for this request. This expect the number in the [E164 number standard](https://www.twilio.com/docs/glossary/what-e164).
+   * The phone number for the buyer which should be formatted according to the [E164 number standard](https://www.twilio.com/docs/glossary/what-e164).
    * @return phoneNumber
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "+1234567890", value = "The phone number to use for this request. This expect the number in the [E164 number standard](https://www.twilio.com/docs/glossary/what-e164).")
+  @ApiModelProperty(example = "+1234567890", value = "The phone number for the buyer which should be formatted according to the [E164 number standard](https://www.twilio.com/docs/glossary/what-e164).")
 
   public String getPhoneNumber() {
     return phoneNumber;
@@ -156,11 +156,11 @@ public class BillingDetailsRequest {
   }
 
    /**
-   * Get address
+   * The billing address for the buyer.
    * @return address
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "The billing address for the buyer.")
 
   public Address getAddress() {
     return address;
