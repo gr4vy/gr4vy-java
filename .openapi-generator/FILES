@@ -28,12 +28,12 @@ src/main/java/com/gr4vy/api/auth/Authentication.java
 src/main/java/com/gr4vy/api/auth/HttpBasicAuth.java
 src/main/java/com/gr4vy/api/auth/HttpBearerAuth.java
 src/main/java/com/gr4vy/api/model/Address.java
-src/main/java/com/gr4vy/api/model/AddressUpdate.java
 src/main/java/com/gr4vy/api/model/ApplePayRequest.java
 src/main/java/com/gr4vy/api/model/ApplePaySessionRequest.java
 src/main/java/com/gr4vy/api/model/BillingDetails.java
 src/main/java/com/gr4vy/api/model/BillingDetailsRequest.java
 src/main/java/com/gr4vy/api/model/BillingDetailsUpdateRequest.java
+src/main/java/com/gr4vy/api/model/BrowserInfo.java
 src/main/java/com/gr4vy/api/model/Buyer.java
 src/main/java/com/gr4vy/api/model/BuyerRequest.java
 src/main/java/com/gr4vy/api/model/BuyerSnapshot.java
@@ -41,6 +41,8 @@ src/main/java/com/gr4vy/api/model/BuyerUpdate.java
 src/main/java/com/gr4vy/api/model/Buyers.java
 src/main/java/com/gr4vy/api/model/CardDetails.java
 src/main/java/com/gr4vy/api/model/CardRequest.java
+src/main/java/com/gr4vy/api/model/CardRequiredFields.java
+src/main/java/com/gr4vy/api/model/CardRequiredFieldsAddress.java
 src/main/java/com/gr4vy/api/model/CartItem.java
 src/main/java/com/gr4vy/api/model/DigitalWallet.java
 src/main/java/com/gr4vy/api/model/DigitalWalletRequest.java
@@ -74,6 +76,7 @@ src/main/java/com/gr4vy/api/model/PaymentServiceDefinition.java
 src/main/java/com/gr4vy/api/model/PaymentServiceDefinitionFields.java
 src/main/java/com/gr4vy/api/model/PaymentServiceDefinitionSupportedFeatures.java
 src/main/java/com/gr4vy/api/model/PaymentServiceDefinitions.java
+src/main/java/com/gr4vy/api/model/PaymentServiceFields.java
 src/main/java/com/gr4vy/api/model/PaymentServiceRequest.java
 src/main/java/com/gr4vy/api/model/PaymentServiceRequestAllOf.java
 src/main/java/com/gr4vy/api/model/PaymentServiceSnapshot.java
@@ -112,12 +115,12 @@ src/main/java/com/gr4vy/api/openapi/PaymentServiceDefinitionsApi.java
 src/main/java/com/gr4vy/api/openapi/PaymentServicesApi.java
 src/main/java/com/gr4vy/api/openapi/TransactionsApi.java
 src/test/java/com/gr4vy/api/model/AddressTest.java
-src/test/java/com/gr4vy/api/model/AddressUpdateTest.java
 src/test/java/com/gr4vy/api/model/ApplePayRequestTest.java
 src/test/java/com/gr4vy/api/model/ApplePaySessionRequestTest.java
 src/test/java/com/gr4vy/api/model/BillingDetailsRequestTest.java
 src/test/java/com/gr4vy/api/model/BillingDetailsTest.java
 src/test/java/com/gr4vy/api/model/BillingDetailsUpdateRequestTest.java
+src/test/java/com/gr4vy/api/model/BrowserInfoTest.java
 src/test/java/com/gr4vy/api/model/BuyerRequestTest.java
 src/test/java/com/gr4vy/api/model/BuyerSnapshotTest.java
 src/test/java/com/gr4vy/api/model/BuyerTest.java
@@ -125,6 +128,8 @@ src/test/java/com/gr4vy/api/model/BuyerUpdateTest.java
 src/test/java/com/gr4vy/api/model/BuyersTest.java
 src/test/java/com/gr4vy/api/model/CardDetailsTest.java
 src/test/java/com/gr4vy/api/model/CardRequestTest.java
+src/test/java/com/gr4vy/api/model/CardRequiredFieldsAddressTest.java
+src/test/java/com/gr4vy/api/model/CardRequiredFieldsTest.java
 src/test/java/com/gr4vy/api/model/CartItemTest.java
 src/test/java/com/gr4vy/api/model/DigitalWalletRequestTest.java
 src/test/java/com/gr4vy/api/model/DigitalWalletTest.java
@@ -157,6 +162,7 @@ src/test/java/com/gr4vy/api/model/PaymentServiceDefinitionFieldsTest.java
 src/test/java/com/gr4vy/api/model/PaymentServiceDefinitionSupportedFeaturesTest.java
 src/test/java/com/gr4vy/api/model/PaymentServiceDefinitionTest.java
 src/test/java/com/gr4vy/api/model/PaymentServiceDefinitionsTest.java
+src/test/java/com/gr4vy/api/model/PaymentServiceFieldsTest.java
 src/test/java/com/gr4vy/api/model/PaymentServiceRequestAllOfTest.java
 src/test/java/com/gr4vy/api/model/PaymentServiceRequestTest.java
 src/test/java/com/gr4vy/api/model/PaymentServiceSnapshotTest.java

@@ -29,7 +29,7 @@ import java.util.UUID;
  * A mini format version of a payment method.
  */
 @ApiModel(description = "A mini format version of a payment method.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-04-06T18:03:23.672646Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-05-09T14:10:22.211861Z[Etc/UTC]")
 public class PaymentMethodTokenized {
   /**
    * &#x60;payment-method&#x60;.
@@ -170,6 +170,14 @@ public class PaymentMethodTokenized {
   public static final String SERIALIZED_NAME_APPROVAL_URL = "approval_url";
   @SerializedName(SERIALIZED_NAME_APPROVAL_URL)
   private String approvalUrl;
+
+  public static final String SERIALIZED_NAME_CURRENCY = "currency";
+  @SerializedName(SERIALIZED_NAME_CURRENCY)
+  private String currency;
+
+  public static final String SERIALIZED_NAME_COUNTRY = "country";
+  @SerializedName(SERIALIZED_NAME_COUNTRY)
+  private String country;
 
 
   public PaymentMethodTokenized type(TypeEnum type) {
@@ -333,6 +341,52 @@ public class PaymentMethodTokenized {
   }
 
 
+  public PaymentMethodTokenized currency(String currency) {
+    
+    this.currency = currency;
+    return this;
+  }
+
+   /**
+   * The ISO-4217 currency code that this payment method can be used for. If this value is &#x60;null&#x60; the payment method may be used for multiple currencies.
+   * @return currency
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "USD", value = "The ISO-4217 currency code that this payment method can be used for. If this value is `null` the payment method may be used for multiple currencies.")
+
+  public String getCurrency() {
+    return currency;
+  }
+
+
+  public void setCurrency(String currency) {
+    this.currency = currency;
+  }
+
+
+  public PaymentMethodTokenized country(String country) {
+    
+    this.country = country;
+    return this;
+  }
+
+   /**
+   * The 2-letter ISO code of the country this payment method can be used for. If this value is &#x60;null&#x60; the payment method may be used in multiple countries.
+   * @return country
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "US", value = "The 2-letter ISO code of the country this payment method can be used for. If this value is `null` the payment method may be used in multiple countries.")
+
+  public String getCountry() {
+    return country;
+  }
+
+
+  public void setCountry(String country) {
+    this.country = country;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -348,12 +402,14 @@ public class PaymentMethodTokenized {
         Objects.equals(this.label, paymentMethodTokenized.label) &&
         Objects.equals(this.scheme, paymentMethodTokenized.scheme) &&
         Objects.equals(this.expirationDate, paymentMethodTokenized.expirationDate) &&
-        Objects.equals(this.approvalUrl, paymentMethodTokenized.approvalUrl);
+        Objects.equals(this.approvalUrl, paymentMethodTokenized.approvalUrl) &&
+        Objects.equals(this.currency, paymentMethodTokenized.currency) &&
+        Objects.equals(this.country, paymentMethodTokenized.country);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(type, id, method, label, scheme, expirationDate, approvalUrl);
+    return Objects.hash(type, id, method, label, scheme, expirationDate, approvalUrl, currency, country);
   }
 
   @Override
@@ -367,6 +423,8 @@ public class PaymentMethodTokenized {
     sb.append("    scheme: ").append(toIndentedString(scheme)).append("\n");
     sb.append("    expirationDate: ").append(toIndentedString(expirationDate)).append("\n");
     sb.append("    approvalUrl: ").append(toIndentedString(approvalUrl)).append("\n");
+    sb.append("    currency: ").append(toIndentedString(currency)).append("\n");
+    sb.append("    country: ").append(toIndentedString(country)).append("\n");
     sb.append("}");
     return sb.toString();
   }

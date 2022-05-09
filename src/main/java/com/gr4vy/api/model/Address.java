@@ -25,10 +25,10 @@ import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 
 /**
- * Billing details associated to a buyer.
+ * The billing address of the buyer.
  */
-@ApiModel(description = "Billing details associated to a buyer.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-04-06T18:03:23.672646Z[Etc/UTC]")
+@ApiModel(description = "The billing address of the buyer.")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-05-09T14:10:22.211861Z[Etc/UTC]")
 public class Address {
   public static final String SERIALIZED_NAME_CITY = "city";
   @SerializedName(SERIALIZED_NAME_CITY)
@@ -77,7 +77,8 @@ public class Address {
    * The city for the billing address.
    * @return city
   **/
-  @ApiModelProperty(example = "London", required = true, value = "The city for the billing address.")
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "London", value = "The city for the billing address.")
 
   public String getCity() {
     return city;
@@ -99,7 +100,8 @@ public class Address {
    * The country for the billing address.
    * @return country
   **/
-  @ApiModelProperty(example = "GB", required = true, value = "The country for the billing address.")
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "GB", value = "The country for the billing address.")
 
   public String getCountry() {
     return country;
@@ -121,7 +123,8 @@ public class Address {
    * The postal code or zip code for the billing address.
    * @return postalCode
   **/
-  @ApiModelProperty(example = "789123", required = true, value = "The postal code or zip code for the billing address.")
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "789123", value = "The postal code or zip code for the billing address.")
 
   public String getPostalCode() {
     return postalCode;
@@ -143,7 +146,8 @@ public class Address {
    * The state, county, or province for the billing address.
    * @return state
   **/
-  @ApiModelProperty(example = "Greater London", required = true, value = "The state, county, or province for the billing address.")
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "Greater London", value = "The state, county, or province for the billing address.")
 
   public String getState() {
     return state;
@@ -211,7 +215,8 @@ public class Address {
    * The first line of the billing address.
    * @return line1
   **/
-  @ApiModelProperty(example = "10 Oxford Street", required = true, value = "The first line of the billing address.")
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "10 Oxford Street", value = "The first line of the billing address.")
 
   public String getLine1() {
     return line1;

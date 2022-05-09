@@ -32,7 +32,7 @@ import java.util.List;
  * Request body for updating an active payment service.
  */
 @ApiModel(description = "Request body for updating an active payment service.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-04-06T18:03:23.672646Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-05-09T14:10:22.211861Z[Etc/UTC]")
 public class PaymentServiceUpdate {
   public static final String SERIALIZED_NAME_DISPLAY_NAME = "display_name";
   @SerializedName(SERIALIZED_NAME_DISPLAY_NAME)
@@ -97,6 +97,10 @@ public class PaymentServiceUpdate {
   public static final String SERIALIZED_NAME_POSITION = "position";
   @SerializedName(SERIALIZED_NAME_POSITION)
   private BigDecimal position;
+
+  public static final String SERIALIZED_NAME_PAYMENT_METHOD_TOKENIZATION_ENABLED = "payment_method_tokenization_enabled";
+  @SerializedName(SERIALIZED_NAME_PAYMENT_METHOD_TOKENIZATION_ENABLED)
+  private Boolean paymentMethodTokenizationEnabled = false;
 
 
   public PaymentServiceUpdate displayName(String displayName) {
@@ -491,6 +495,29 @@ public class PaymentServiceUpdate {
   }
 
 
+  public PaymentServiceUpdate paymentMethodTokenizationEnabled(Boolean paymentMethodTokenizationEnabled) {
+    
+    this.paymentMethodTokenizationEnabled = paymentMethodTokenizationEnabled;
+    return this;
+  }
+
+   /**
+   * Defines if tokenization is enabled for the service (can only be enabled if the payment service definition supports it).
+   * @return paymentMethodTokenizationEnabled
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "true", value = "Defines if tokenization is enabled for the service (can only be enabled if the payment service definition supports it).")
+
+  public Boolean getPaymentMethodTokenizationEnabled() {
+    return paymentMethodTokenizationEnabled;
+  }
+
+
+  public void setPaymentMethodTokenizationEnabled(Boolean paymentMethodTokenizationEnabled) {
+    this.paymentMethodTokenizationEnabled = paymentMethodTokenizationEnabled;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -515,12 +542,13 @@ public class PaymentServiceUpdate {
         Objects.equals(this.merchantCategoryCode, paymentServiceUpdate.merchantCategoryCode) &&
         Objects.equals(this.merchantUrl, paymentServiceUpdate.merchantUrl) &&
         Objects.equals(this.active, paymentServiceUpdate.active) &&
-        Objects.equals(this.position, paymentServiceUpdate.position);
+        Objects.equals(this.position, paymentServiceUpdate.position) &&
+        Objects.equals(this.paymentMethodTokenizationEnabled, paymentServiceUpdate.paymentMethodTokenizationEnabled);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(displayName, fields, acceptedCountries, acceptedCurrencies, threeDSecureEnabled, acquirerBinVisa, acquirerBinMastercard, acquirerBinAmex, acquirerBinDiscover, acquirerMerchantId, merchantName, merchantCountryCode, merchantCategoryCode, merchantUrl, active, position);
+    return Objects.hash(displayName, fields, acceptedCountries, acceptedCurrencies, threeDSecureEnabled, acquirerBinVisa, acquirerBinMastercard, acquirerBinAmex, acquirerBinDiscover, acquirerMerchantId, merchantName, merchantCountryCode, merchantCategoryCode, merchantUrl, active, position, paymentMethodTokenizationEnabled);
   }
 
   @Override
@@ -543,6 +571,7 @@ public class PaymentServiceUpdate {
     sb.append("    merchantUrl: ").append(toIndentedString(merchantUrl)).append("\n");
     sb.append("    active: ").append(toIndentedString(active)).append("\n");
     sb.append("    position: ").append(toIndentedString(position)).append("\n");
+    sb.append("    paymentMethodTokenizationEnabled: ").append(toIndentedString(paymentMethodTokenizationEnabled)).append("\n");
     sb.append("}");
     return sb.toString();
   }

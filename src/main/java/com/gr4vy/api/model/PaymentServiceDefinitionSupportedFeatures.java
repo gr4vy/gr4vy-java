@@ -28,11 +28,15 @@ import java.io.IOException;
  * Features supported by the payment definition.
  */
 @ApiModel(description = "Features supported by the payment definition.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-04-06T18:03:23.672646Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-05-09T14:10:22.211861Z[Etc/UTC]")
 public class PaymentServiceDefinitionSupportedFeatures {
   public static final String SERIALIZED_NAME_PAYMENT_METHOD_TOKENIZATION = "payment_method_tokenization";
   @SerializedName(SERIALIZED_NAME_PAYMENT_METHOD_TOKENIZATION)
   private Boolean paymentMethodTokenization;
+
+  public static final String SERIALIZED_NAME_PAYMENT_METHOD_TOKENIZATION_TOGGLE = "payment_method_tokenization_toggle";
+  @SerializedName(SERIALIZED_NAME_PAYMENT_METHOD_TOKENIZATION_TOGGLE)
+  private Boolean paymentMethodTokenizationToggle;
 
   public static final String SERIALIZED_NAME_THREE_D_SECURE_HOSTED = "three_d_secure_hosted";
   @SerializedName(SERIALIZED_NAME_THREE_D_SECURE_HOSTED)
@@ -83,6 +87,29 @@ public class PaymentServiceDefinitionSupportedFeatures {
 
   public void setPaymentMethodTokenization(Boolean paymentMethodTokenization) {
     this.paymentMethodTokenization = paymentMethodTokenization;
+  }
+
+
+  public PaymentServiceDefinitionSupportedFeatures paymentMethodTokenizationToggle(Boolean paymentMethodTokenizationToggle) {
+    
+    this.paymentMethodTokenizationToggle = paymentMethodTokenizationToggle;
+    return this;
+  }
+
+   /**
+   * Supports toggling tokenization for a payment method on or off from the dashboard.
+   * @return paymentMethodTokenizationToggle
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "false", value = "Supports toggling tokenization for a payment method on or off from the dashboard.")
+
+  public Boolean getPaymentMethodTokenizationToggle() {
+    return paymentMethodTokenizationToggle;
+  }
+
+
+  public void setPaymentMethodTokenizationToggle(Boolean paymentMethodTokenizationToggle) {
+    this.paymentMethodTokenizationToggle = paymentMethodTokenizationToggle;
   }
 
 
@@ -257,6 +284,7 @@ public class PaymentServiceDefinitionSupportedFeatures {
     }
     PaymentServiceDefinitionSupportedFeatures paymentServiceDefinitionSupportedFeatures = (PaymentServiceDefinitionSupportedFeatures) o;
     return Objects.equals(this.paymentMethodTokenization, paymentServiceDefinitionSupportedFeatures.paymentMethodTokenization) &&
+        Objects.equals(this.paymentMethodTokenizationToggle, paymentServiceDefinitionSupportedFeatures.paymentMethodTokenizationToggle) &&
         Objects.equals(this.threeDSecureHosted, paymentServiceDefinitionSupportedFeatures.threeDSecureHosted) &&
         Objects.equals(this.threeDSecurePassThrough, paymentServiceDefinitionSupportedFeatures.threeDSecurePassThrough) &&
         Objects.equals(this.networkTokens, paymentServiceDefinitionSupportedFeatures.networkTokens) &&
@@ -268,7 +296,7 @@ public class PaymentServiceDefinitionSupportedFeatures {
 
   @Override
   public int hashCode() {
-    return Objects.hash(paymentMethodTokenization, threeDSecureHosted, threeDSecurePassThrough, networkTokens, verifyCredentials, _void, refunds, partialRefunds);
+    return Objects.hash(paymentMethodTokenization, paymentMethodTokenizationToggle, threeDSecureHosted, threeDSecurePassThrough, networkTokens, verifyCredentials, _void, refunds, partialRefunds);
   }
 
   @Override
@@ -276,6 +304,7 @@ public class PaymentServiceDefinitionSupportedFeatures {
     StringBuilder sb = new StringBuilder();
     sb.append("class PaymentServiceDefinitionSupportedFeatures {\n");
     sb.append("    paymentMethodTokenization: ").append(toIndentedString(paymentMethodTokenization)).append("\n");
+    sb.append("    paymentMethodTokenizationToggle: ").append(toIndentedString(paymentMethodTokenizationToggle)).append("\n");
     sb.append("    threeDSecureHosted: ").append(toIndentedString(threeDSecureHosted)).append("\n");
     sb.append("    threeDSecurePassThrough: ").append(toIndentedString(threeDSecurePassThrough)).append("\n");
     sb.append("    networkTokens: ").append(toIndentedString(networkTokens)).append("\n");

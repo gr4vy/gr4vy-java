@@ -33,7 +33,7 @@ import org.threeten.bp.OffsetDateTime;
  * A transaction record.
  */
 @ApiModel(description = "A transaction record.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-04-06T18:03:23.672646Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-05-09T14:10:22.211861Z[Etc/UTC]")
 public class TransactionSummary {
   /**
    * The type of this resource. Is always &#x60;transaction&#x60;.
@@ -89,7 +89,7 @@ public class TransactionSummary {
   private UUID id;
 
   /**
-   * The status of the transaction. The status may change over time as asynchronous  processing events occur.
+   * The status of the transaction. The status may change over time as asynchronous processing events occur.
    */
   @JsonAdapter(StatusEnum.Adapter.class)
   public enum StatusEnum {
@@ -122,14 +122,6 @@ public class TransactionSummary {
     AUTHORIZATION_VOID_DECLINED("authorization_void_declined"),
     
     AUTHORIZATION_VOID_FAILED("authorization_void_failed"),
-    
-    REFUND_SUCCEEDED("refund_succeeded"),
-    
-    REFUND_PENDING("refund_pending"),
-    
-    REFUND_DECLINED("refund_declined"),
-    
-    REFUND_FAILED("refund_failed"),
     
     BUYER_APPROVAL_SUCCEEDED("buyer_approval_succeeded"),
     
@@ -183,6 +175,57 @@ public class TransactionSummary {
   @SerializedName(SERIALIZED_NAME_STATUS)
   private StatusEnum status;
 
+  /**
+   * The original &#x60;intent&#x60; used when the transaction was [created](#operation/authorize-new-transaction).
+   */
+  @JsonAdapter(IntentEnum.Adapter.class)
+  public enum IntentEnum {
+    AUTHORIZE("authorize"),
+    
+    CAPTURE("capture");
+
+    private String value;
+
+    IntentEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static IntentEnum fromValue(String value) {
+      for (IntentEnum b : IntentEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+
+    public static class Adapter extends TypeAdapter<IntentEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final IntentEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public IntentEnum read(final JsonReader jsonReader) throws IOException {
+        String value =  jsonReader.nextString();
+        return IntentEnum.fromValue(value);
+      }
+    }
+  }
+
+  public static final String SERIALIZED_NAME_INTENT = "intent";
+  @SerializedName(SERIALIZED_NAME_INTENT)
+  private IntentEnum intent;
+
   public static final String SERIALIZED_NAME_AMOUNT = "amount";
   @SerializedName(SERIALIZED_NAME_AMOUNT)
   private Integer amount;
@@ -198,6 +241,10 @@ public class TransactionSummary {
   public static final String SERIALIZED_NAME_CURRENCY = "currency";
   @SerializedName(SERIALIZED_NAME_CURRENCY)
   private String currency;
+
+  public static final String SERIALIZED_NAME_COUNTRY = "country";
+  @SerializedName(SERIALIZED_NAME_COUNTRY)
+  private String country;
 
   public static final String SERIALIZED_NAME_PAYMENT_METHOD = "payment_method";
   @SerializedName(SERIALIZED_NAME_PAYMENT_METHOD)
@@ -222,6 +269,73 @@ public class TransactionSummary {
   public static final String SERIALIZED_NAME_PAYMENT_SERVICE = "payment_service";
   @SerializedName(SERIALIZED_NAME_PAYMENT_SERVICE)
   private PaymentServiceSnapshot paymentService;
+
+  /**
+   * Gets or Sets method
+   */
+  @JsonAdapter(MethodEnum.Adapter.class)
+  public enum MethodEnum {
+    CARD("card"),
+    
+    PAYPAL("paypal"),
+    
+    BANKED("banked"),
+    
+    GOCARDLESS("gocardless"),
+    
+    STRIPEDD("stripedd"),
+    
+    APPLEPAY("applepay"),
+    
+    GOOGLEPAY("googlepay"),
+    
+    AFTERPAY("afterpay"),
+    
+    CLEARPAY("clearpay"),
+    
+    ZIPPAY("zippay");
+
+    private String value;
+
+    MethodEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static MethodEnum fromValue(String value) {
+      for (MethodEnum b : MethodEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+
+    public static class Adapter extends TypeAdapter<MethodEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final MethodEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public MethodEnum read(final JsonReader jsonReader) throws IOException {
+        String value =  jsonReader.nextString();
+        return MethodEnum.fromValue(value);
+      }
+    }
+  }
+
+  public static final String SERIALIZED_NAME_METHOD = "method";
+  @SerializedName(SERIALIZED_NAME_METHOD)
+  private MethodEnum method;
 
 
   public TransactionSummary type(TypeEnum type) {
@@ -277,11 +391,11 @@ public class TransactionSummary {
   }
 
    /**
-   * The status of the transaction. The status may change over time as asynchronous  processing events occur.
+   * The status of the transaction. The status may change over time as asynchronous processing events occur.
    * @return status
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "processing", value = "The status of the transaction. The status may change over time as asynchronous  processing events occur.")
+  @ApiModelProperty(example = "processing", value = "The status of the transaction. The status may change over time as asynchronous processing events occur.")
 
   public StatusEnum getStatus() {
     return status;
@@ -293,6 +407,29 @@ public class TransactionSummary {
   }
 
 
+  public TransactionSummary intent(IntentEnum intent) {
+    
+    this.intent = intent;
+    return this;
+  }
+
+   /**
+   * The original &#x60;intent&#x60; used when the transaction was [created](#operation/authorize-new-transaction).
+   * @return intent
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "authorize", value = "The original `intent` used when the transaction was [created](#operation/authorize-new-transaction).")
+
+  public IntentEnum getIntent() {
+    return intent;
+  }
+
+
+  public void setIntent(IntentEnum intent) {
+    this.intent = intent;
+  }
+
+
   public TransactionSummary amount(Integer amount) {
     
     this.amount = amount;
@@ -300,13 +437,13 @@ public class TransactionSummary {
   }
 
    /**
-   * The authorized amount for this transaction. This can be different than the actual captured amount and part of this amount may be refunded.
+   * The authorized amount for this transaction. This can be more than the actual captured amount and part of this amount may be refunded.
    * minimum: 0
    * maximum: 99999999
    * @return amount
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "1299", value = "The authorized amount for this transaction. This can be different than the actual captured amount and part of this amount may be refunded.")
+  @ApiModelProperty(example = "1299", value = "The authorized amount for this transaction. This can be more than the actual captured amount and part of this amount may be refunded.")
 
   public Integer getAmount() {
     return amount;
@@ -325,13 +462,13 @@ public class TransactionSummary {
   }
 
    /**
-   * The captured amount for this transaction. This can be a part and in some cases even more than the authorized amount.
+   * The captured amount for this transaction. This can be the total or a portion of the authorized amount.
    * minimum: 0
    * maximum: 99999999
    * @return capturedAmount
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "999", value = "The captured amount for this transaction. This can be a part and in some cases even more than the authorized amount.")
+  @ApiModelProperty(example = "999", value = "The captured amount for this transaction. This can be the total or a portion of the authorized amount.")
 
   public Integer getCapturedAmount() {
     return capturedAmount;
@@ -350,13 +487,13 @@ public class TransactionSummary {
   }
 
    /**
-   * The refunded amount for this transaction. This can be a part or all of the captured amount.
+   * The refunded amount for this transaction. This can be the total or a portion of the captured amount.
    * minimum: 0
    * maximum: 99999999
    * @return refundedAmount
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "100", value = "The refunded amount for this transaction. This can be a part or all of the captured amount.")
+  @ApiModelProperty(example = "100", value = "The refunded amount for this transaction. This can be the total or a portion of the captured amount.")
 
   public Integer getRefundedAmount() {
     return refundedAmount;
@@ -388,6 +525,29 @@ public class TransactionSummary {
 
   public void setCurrency(String currency) {
     this.currency = currency;
+  }
+
+
+  public TransactionSummary country(String country) {
+    
+    this.country = country;
+    return this;
+  }
+
+   /**
+   * The 2-letter ISO code of the country of the transaction. This is used to filter the payment services that is used to process the transaction. 
+   * @return country
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "US", value = "The 2-letter ISO code of the country of the transaction. This is used to filter the payment services that is used to process the transaction. ")
+
+  public String getCountry() {
+    return country;
+  }
+
+
+  public void setCountry(String country) {
+    this.country = country;
   }
 
 
@@ -529,6 +689,29 @@ public class TransactionSummary {
   }
 
 
+  public TransactionSummary method(MethodEnum method) {
+    
+    this.method = method;
+    return this;
+  }
+
+   /**
+   * Get method
+   * @return method
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "card", value = "")
+
+  public MethodEnum getMethod() {
+    return method;
+  }
+
+
+  public void setMethod(MethodEnum method) {
+    this.method = method;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -541,21 +724,24 @@ public class TransactionSummary {
     return Objects.equals(this.type, transactionSummary.type) &&
         Objects.equals(this.id, transactionSummary.id) &&
         Objects.equals(this.status, transactionSummary.status) &&
+        Objects.equals(this.intent, transactionSummary.intent) &&
         Objects.equals(this.amount, transactionSummary.amount) &&
         Objects.equals(this.capturedAmount, transactionSummary.capturedAmount) &&
         Objects.equals(this.refundedAmount, transactionSummary.refundedAmount) &&
         Objects.equals(this.currency, transactionSummary.currency) &&
+        Objects.equals(this.country, transactionSummary.country) &&
         Objects.equals(this.paymentMethod, transactionSummary.paymentMethod) &&
         Objects.equals(this.buyer, transactionSummary.buyer) &&
         Objects.equals(this.createdAt, transactionSummary.createdAt) &&
         Objects.equals(this.externalIdentifier, transactionSummary.externalIdentifier) &&
         Objects.equals(this.updatedAt, transactionSummary.updatedAt) &&
-        Objects.equals(this.paymentService, transactionSummary.paymentService);
+        Objects.equals(this.paymentService, transactionSummary.paymentService) &&
+        Objects.equals(this.method, transactionSummary.method);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(type, id, status, amount, capturedAmount, refundedAmount, currency, paymentMethod, buyer, createdAt, externalIdentifier, updatedAt, paymentService);
+    return Objects.hash(type, id, status, intent, amount, capturedAmount, refundedAmount, currency, country, paymentMethod, buyer, createdAt, externalIdentifier, updatedAt, paymentService, method);
   }
 
   @Override
@@ -565,16 +751,19 @@ public class TransactionSummary {
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
+    sb.append("    intent: ").append(toIndentedString(intent)).append("\n");
     sb.append("    amount: ").append(toIndentedString(amount)).append("\n");
     sb.append("    capturedAmount: ").append(toIndentedString(capturedAmount)).append("\n");
     sb.append("    refundedAmount: ").append(toIndentedString(refundedAmount)).append("\n");
     sb.append("    currency: ").append(toIndentedString(currency)).append("\n");
+    sb.append("    country: ").append(toIndentedString(country)).append("\n");
     sb.append("    paymentMethod: ").append(toIndentedString(paymentMethod)).append("\n");
     sb.append("    buyer: ").append(toIndentedString(buyer)).append("\n");
     sb.append("    createdAt: ").append(toIndentedString(createdAt)).append("\n");
     sb.append("    externalIdentifier: ").append(toIndentedString(externalIdentifier)).append("\n");
     sb.append("    updatedAt: ").append(toIndentedString(updatedAt)).append("\n");
     sb.append("    paymentService: ").append(toIndentedString(paymentService)).append("\n");
+    sb.append("    method: ").append(toIndentedString(method)).append("\n");
     sb.append("}");
     return sb.toString();
   }

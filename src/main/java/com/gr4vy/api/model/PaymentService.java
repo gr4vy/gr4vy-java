@@ -20,6 +20,7 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import com.gr4vy.api.model.PaymentServiceFields;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
@@ -33,7 +34,7 @@ import org.threeten.bp.OffsetDateTime;
  * An active, configured payment service.
  */
 @ApiModel(description = "An active, configured payment service.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-04-06T18:03:23.672646Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-05-09T14:10:22.211861Z[Etc/UTC]")
 public class PaymentService {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -209,6 +210,10 @@ public class PaymentService {
   @SerializedName(SERIALIZED_NAME_POSITION)
   private BigDecimal position;
 
+  public static final String SERIALIZED_NAME_PAYMENT_METHOD_TOKENIZATION_ENABLED = "payment_method_tokenization_enabled";
+  @SerializedName(SERIALIZED_NAME_PAYMENT_METHOD_TOKENIZATION_ENABLED)
+  private Boolean paymentMethodTokenizationEnabled = false;
+
   public static final String SERIALIZED_NAME_CREATED_AT = "created_at";
   @SerializedName(SERIALIZED_NAME_CREATED_AT)
   private OffsetDateTime createdAt;
@@ -220,6 +225,10 @@ public class PaymentService {
   public static final String SERIALIZED_NAME_WEBHOOK_URL = "webhook_url";
   @SerializedName(SERIALIZED_NAME_WEBHOOK_URL)
   private String webhookUrl;
+
+  public static final String SERIALIZED_NAME_FIELDS = "fields";
+  @SerializedName(SERIALIZED_NAME_FIELDS)
+  private List<PaymentServiceFields> fields = null;
 
 
   public PaymentService id(UUID id) {
@@ -698,6 +707,29 @@ public class PaymentService {
   }
 
 
+  public PaymentService paymentMethodTokenizationEnabled(Boolean paymentMethodTokenizationEnabled) {
+    
+    this.paymentMethodTokenizationEnabled = paymentMethodTokenizationEnabled;
+    return this;
+  }
+
+   /**
+   * Defines if tokenization is enabled for the service (can only be enabled if the payment service definition supports it).
+   * @return paymentMethodTokenizationEnabled
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "true", value = "Defines if tokenization is enabled for the service (can only be enabled if the payment service definition supports it).")
+
+  public Boolean getPaymentMethodTokenizationEnabled() {
+    return paymentMethodTokenizationEnabled;
+  }
+
+
+  public void setPaymentMethodTokenizationEnabled(Boolean paymentMethodTokenizationEnabled) {
+    this.paymentMethodTokenizationEnabled = paymentMethodTokenizationEnabled;
+  }
+
+
   public PaymentService createdAt(OffsetDateTime createdAt) {
     
     this.createdAt = createdAt;
@@ -755,7 +787,7 @@ public class PaymentService {
    * @return webhookUrl
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "https://api.example.app.gr4vy.com/i/ViYUjDkUSoiQ0ColeigGwnN0cmlwZS1jYXJk/9fcuh3fzQHPRBUslDGLVqBzx3qda6RjoJuaxn3qlvQ0", value = "The URL that needs to be configured with this payment service as the receiving endpoint for webhooks from the service to Gr4vy. Currently, Gr4vy does not yet automatically register webhooks on setup, and therefore webhooks need to be registered manually by the merchant.")
+  @ApiModelProperty(example = "https://api.example.app.gr4vy.com/i/ViYUjDkUSoiQ0ColeigGwnN0...", value = "The URL that needs to be configured with this payment service as the receiving endpoint for webhooks from the service to Gr4vy. Currently, Gr4vy does not yet automatically register webhooks on setup, and therefore webhooks need to be registered manually by the merchant.")
 
   public String getWebhookUrl() {
     return webhookUrl;
@@ -764,6 +796,37 @@ public class PaymentService {
 
   public void setWebhookUrl(String webhookUrl) {
     this.webhookUrl = webhookUrl;
+  }
+
+
+  public PaymentService fields(List<PaymentServiceFields> fields) {
+    
+    this.fields = fields;
+    return this;
+  }
+
+  public PaymentService addFieldsItem(PaymentServiceFields fieldsItem) {
+    if (this.fields == null) {
+      this.fields = new ArrayList<PaymentServiceFields>();
+    }
+    this.fields.add(fieldsItem);
+    return this;
+  }
+
+   /**
+   * A list of fields, each containing a key-value pair for each field configured for this payment service. Fields marked as &#x60;secret&#x60; (see Payment Service Definition) are not returned.
+   * @return fields
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "A list of fields, each containing a key-value pair for each field configured for this payment service. Fields marked as `secret` (see Payment Service Definition) are not returned.")
+
+  public List<PaymentServiceFields> getFields() {
+    return fields;
+  }
+
+
+  public void setFields(List<PaymentServiceFields> fields) {
+    this.fields = fields;
   }
 
 
@@ -796,14 +859,16 @@ public class PaymentService {
         Objects.equals(this.merchantUrl, paymentService.merchantUrl) &&
         Objects.equals(this.active, paymentService.active) &&
         Objects.equals(this.position, paymentService.position) &&
+        Objects.equals(this.paymentMethodTokenizationEnabled, paymentService.paymentMethodTokenizationEnabled) &&
         Objects.equals(this.createdAt, paymentService.createdAt) &&
         Objects.equals(this.updatedAt, paymentService.updatedAt) &&
-        Objects.equals(this.webhookUrl, paymentService.webhookUrl);
+        Objects.equals(this.webhookUrl, paymentService.webhookUrl) &&
+        Objects.equals(this.fields, paymentService.fields);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, type, paymentServiceDefinitionId, method, displayName, status, acceptedCurrencies, acceptedCountries, threeDSecureEnabled, acquirerBinVisa, acquirerBinMastercard, acquirerBinAmex, acquirerBinDiscover, acquirerMerchantId, merchantName, merchantCountryCode, merchantCategoryCode, merchantUrl, active, position, createdAt, updatedAt, webhookUrl);
+    return Objects.hash(id, type, paymentServiceDefinitionId, method, displayName, status, acceptedCurrencies, acceptedCountries, threeDSecureEnabled, acquirerBinVisa, acquirerBinMastercard, acquirerBinAmex, acquirerBinDiscover, acquirerMerchantId, merchantName, merchantCountryCode, merchantCategoryCode, merchantUrl, active, position, paymentMethodTokenizationEnabled, createdAt, updatedAt, webhookUrl, fields);
   }
 
   @Override
@@ -830,9 +895,11 @@ public class PaymentService {
     sb.append("    merchantUrl: ").append(toIndentedString(merchantUrl)).append("\n");
     sb.append("    active: ").append(toIndentedString(active)).append("\n");
     sb.append("    position: ").append(toIndentedString(position)).append("\n");
+    sb.append("    paymentMethodTokenizationEnabled: ").append(toIndentedString(paymentMethodTokenizationEnabled)).append("\n");
     sb.append("    createdAt: ").append(toIndentedString(createdAt)).append("\n");
     sb.append("    updatedAt: ").append(toIndentedString(updatedAt)).append("\n");
     sb.append("    webhookUrl: ").append(toIndentedString(webhookUrl)).append("\n");
+    sb.append("    fields: ").append(toIndentedString(fields)).append("\n");
     sb.append("}");
     return sb.toString();
   }

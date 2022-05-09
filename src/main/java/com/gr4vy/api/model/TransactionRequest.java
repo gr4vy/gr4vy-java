@@ -20,6 +20,7 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import com.gr4vy.api.model.BrowserInfo;
 import com.gr4vy.api.model.CartItem;
 import com.gr4vy.api.model.StatementDescriptor;
 import com.gr4vy.api.model.ThreeDSecureDataV1V2;
@@ -36,7 +37,7 @@ import java.util.Map;
  * A request to create a transaction.
  */
 @ApiModel(description = "A request to create a transaction.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-04-06T18:03:23.672646Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-05-09T14:10:22.211861Z[Etc/UTC]")
 public class TransactionRequest {
   public static final String SERIALIZED_NAME_AMOUNT = "amount";
   @SerializedName(SERIALIZED_NAME_AMOUNT)
@@ -45,6 +46,10 @@ public class TransactionRequest {
   public static final String SERIALIZED_NAME_CURRENCY = "currency";
   @SerializedName(SERIALIZED_NAME_CURRENCY)
   private String currency;
+
+  public static final String SERIALIZED_NAME_COUNTRY = "country";
+  @SerializedName(SERIALIZED_NAME_COUNTRY)
+  private String country;
 
   public static final String SERIALIZED_NAME_PAYMENT_METHOD = "payment_method";
   @SerializedName(SERIALIZED_NAME_PAYMENT_METHOD)
@@ -194,6 +199,10 @@ public class TransactionRequest {
   @SerializedName(SERIALIZED_NAME_PREVIOUS_SCHEME_TRANSACTION_ID)
   private String previousSchemeTransactionId = "null";
 
+  public static final String SERIALIZED_NAME_BROWSER_INFO = "browser_info";
+  @SerializedName(SERIALIZED_NAME_BROWSER_INFO)
+  private BrowserInfo browserInfo;
+
 
   public TransactionRequest amount(Integer amount) {
     
@@ -202,12 +211,12 @@ public class TransactionRequest {
   }
 
    /**
-   * The monetary amount to create an authorization for, in the smallest currency unit for the given currency, for example &#x60;1299&#x60; cents to create an authorization for &#x60;$12.99&#x60;.
+   * The monetary amount to create an authorization for, in the smallest currency unit for the given currency, for example &#x60;1299&#x60; cents to create an authorization for &#x60;$12.99&#x60;.  If the &#x60;intent&#x60; is set to &#x60;capture&#x60;, an amount greater than zero must be supplied.
    * minimum: 0
    * maximum: 99999999
    * @return amount
   **/
-  @ApiModelProperty(example = "1299", required = true, value = "The monetary amount to create an authorization for, in the smallest currency unit for the given currency, for example `1299` cents to create an authorization for `$12.99`.")
+  @ApiModelProperty(example = "1299", required = true, value = "The monetary amount to create an authorization for, in the smallest currency unit for the given currency, for example `1299` cents to create an authorization for `$12.99`.  If the `intent` is set to `capture`, an amount greater than zero must be supplied.")
 
   public Integer getAmount() {
     return amount;
@@ -241,6 +250,29 @@ public class TransactionRequest {
   }
 
 
+  public TransactionRequest country(String country) {
+    
+    this.country = country;
+    return this;
+  }
+
+   /**
+   * The 2-letter ISO code of the country of the transaction. This is used to filter the payment services that is used to process the transaction. 
+   * @return country
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "US", value = "The 2-letter ISO code of the country of the transaction. This is used to filter the payment services that is used to process the transaction. ")
+
+  public String getCountry() {
+    return country;
+  }
+
+
+  public void setCountry(String country) {
+    this.country = country;
+  }
+
+
   public TransactionRequest paymentMethod(TransactionPaymentMethodRequest paymentMethod) {
     
     this.paymentMethod = paymentMethod;
@@ -270,11 +302,11 @@ public class TransactionRequest {
   }
 
    /**
-   * Whether or not to also try and store the payment method with us so that it can be used again for future use. This is only supported for payment methods that support this feature.
+   * Whether or not to also try and store the payment method with us so that it can be used again for future use. This is only supported for payment methods that support this feature. There are also a few restrictions on how the flag may be set:  * The flag has to be set to &#x60;true&#x60; when the &#x60;payment_source&#x60; is set to &#x60;recurring&#x60; or &#x60;installment&#x60;, and &#x60;merchant_initiated&#x60; is set to &#x60;false&#x60;.  * The flag has to be set to &#x60;false&#x60; (or not set) when using a previously tokenized payment method.
    * @return store
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "true", value = "Whether or not to also try and store the payment method with us so that it can be used again for future use. This is only supported for payment methods that support this feature.")
+  @ApiModelProperty(example = "true", value = "Whether or not to also try and store the payment method with us so that it can be used again for future use. This is only supported for payment methods that support this feature. There are also a few restrictions on how the flag may be set:  * The flag has to be set to `true` when the `payment_source` is set to `recurring` or `installment`, and `merchant_initiated` is set to `false`.  * The flag has to be set to `false` (or not set) when using a previously tokenized payment method.")
 
   public Boolean getStore() {
     return store;
@@ -408,11 +440,11 @@ public class TransactionRequest {
   }
 
    /**
-   * Indicates whether the transaction represents a subsequent payment coming from a setup recurring payment. Please note this flag is only compatible with &#x60;payment_source&#x60; set to &#x60;recurring&#x60;, &#x60;installment&#x60;, or &#x60;card_on_file&#x60; and will be ignored for other values or if &#x60;payment_source&#x60; is not present.
+   * Indicates whether the transaction represents a subsequent payment coming from a setup recurring payment. Please note there are some restrictions on how this flag may be used.  The flag can only be &#x60;false&#x60; (or not set) when the transaction meets one of the following criteria:  * It is not &#x60;merchant_initiated&#x60;. * &#x60;payment_source&#x60; is set to &#x60;card_on_file&#x60;.  The flag can only be set to &#x60;true&#x60; when the transaction meets one of the following criteria:  * It is not &#x60;merchant_initiated&#x60;. * &#x60;payment_source&#x60; is set to &#x60;recurring&#x60; or &#x60;installment&#x60; and &#x60;merchant_initiated&#x60; is set to &#x60;true&#x60;. * &#x60;payment_source&#x60; is set to &#x60;card_on_file&#x60;.
    * @return isSubsequentPayment
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "true", value = "Indicates whether the transaction represents a subsequent payment coming from a setup recurring payment. Please note this flag is only compatible with `payment_source` set to `recurring`, `installment`, or `card_on_file` and will be ignored for other values or if `payment_source` is not present.")
+  @ApiModelProperty(example = "true", value = "Indicates whether the transaction represents a subsequent payment coming from a setup recurring payment. Please note there are some restrictions on how this flag may be used.  The flag can only be `false` (or not set) when the transaction meets one of the following criteria:  * It is not `merchant_initiated`. * `payment_source` is set to `card_on_file`.  The flag can only be set to `true` when the transaction meets one of the following criteria:  * It is not `merchant_initiated`. * `payment_source` is set to `recurring` or `installment` and `merchant_initiated` is set to `true`. * `payment_source` is set to `card_on_file`.")
 
   public Boolean getIsSubsequentPayment() {
     return isSubsequentPayment;
@@ -532,6 +564,29 @@ public class TransactionRequest {
   }
 
 
+  public TransactionRequest browserInfo(BrowserInfo browserInfo) {
+    
+    this.browserInfo = browserInfo;
+    return this;
+  }
+
+   /**
+   * Get browserInfo
+   * @return browserInfo
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public BrowserInfo getBrowserInfo() {
+    return browserInfo;
+  }
+
+
+  public void setBrowserInfo(BrowserInfo browserInfo) {
+    this.browserInfo = browserInfo;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -543,6 +598,7 @@ public class TransactionRequest {
     TransactionRequest transactionRequest = (TransactionRequest) o;
     return Objects.equals(this.amount, transactionRequest.amount) &&
         Objects.equals(this.currency, transactionRequest.currency) &&
+        Objects.equals(this.country, transactionRequest.country) &&
         Objects.equals(this.paymentMethod, transactionRequest.paymentMethod) &&
         Objects.equals(this.store, transactionRequest.store) &&
         Objects.equals(this.intent, transactionRequest.intent) &&
@@ -554,12 +610,13 @@ public class TransactionRequest {
         Objects.equals(this.metadata, transactionRequest.metadata) &&
         Objects.equals(this.statementDescriptor, transactionRequest.statementDescriptor) &&
         Objects.equals(this.cartItems, transactionRequest.cartItems) &&
-        Objects.equals(this.previousSchemeTransactionId, transactionRequest.previousSchemeTransactionId);
+        Objects.equals(this.previousSchemeTransactionId, transactionRequest.previousSchemeTransactionId) &&
+        Objects.equals(this.browserInfo, transactionRequest.browserInfo);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(amount, currency, paymentMethod, store, intent, externalIdentifier, threeDSecureData, merchantInitiated, paymentSource, isSubsequentPayment, metadata, statementDescriptor, cartItems, previousSchemeTransactionId);
+    return Objects.hash(amount, currency, country, paymentMethod, store, intent, externalIdentifier, threeDSecureData, merchantInitiated, paymentSource, isSubsequentPayment, metadata, statementDescriptor, cartItems, previousSchemeTransactionId, browserInfo);
   }
 
   @Override
@@ -568,6 +625,7 @@ public class TransactionRequest {
     sb.append("class TransactionRequest {\n");
     sb.append("    amount: ").append(toIndentedString(amount)).append("\n");
     sb.append("    currency: ").append(toIndentedString(currency)).append("\n");
+    sb.append("    country: ").append(toIndentedString(country)).append("\n");
     sb.append("    paymentMethod: ").append(toIndentedString(paymentMethod)).append("\n");
     sb.append("    store: ").append(toIndentedString(store)).append("\n");
     sb.append("    intent: ").append(toIndentedString(intent)).append("\n");
@@ -580,6 +638,7 @@ public class TransactionRequest {
     sb.append("    statementDescriptor: ").append(toIndentedString(statementDescriptor)).append("\n");
     sb.append("    cartItems: ").append(toIndentedString(cartItems)).append("\n");
     sb.append("    previousSchemeTransactionId: ").append(toIndentedString(previousSchemeTransactionId)).append("\n");
+    sb.append("    browserInfo: ").append(toIndentedString(browserInfo)).append("\n");
     sb.append("}");
     return sb.toString();
   }
