@@ -29,7 +29,7 @@ import java.io.IOException;
  * An available payment option for a locale.
  */
 @ApiModel(description = "An available payment option for a locale.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-04-06T18:03:23.672646Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-05-09T14:10:22.211861Z[Etc/UTC]")
 public class PaymentOption {
   /**
    * &#x60;payment-option&#x60;.
@@ -103,6 +103,10 @@ public class PaymentOption {
   public static final String SERIALIZED_NAME_CONTEXT = "context";
   @SerializedName(SERIALIZED_NAME_CONTEXT)
   private PaymentOptionContext context;
+
+  public static final String SERIALIZED_NAME_PAYMENT_METHOD_TOKENIZATION_ENABLED = "payment_method_tokenization_enabled";
+  @SerializedName(SERIALIZED_NAME_PAYMENT_METHOD_TOKENIZATION_ENABLED)
+  private Boolean paymentMethodTokenizationEnabled;
 
 
   public PaymentOption type(TypeEnum type) {
@@ -266,6 +270,29 @@ public class PaymentOption {
   }
 
 
+  public PaymentOption paymentMethodTokenizationEnabled(Boolean paymentMethodTokenizationEnabled) {
+    
+    this.paymentMethodTokenizationEnabled = paymentMethodTokenizationEnabled;
+    return this;
+  }
+
+   /**
+   * A flag to indicate if storing the payment method is enabled.
+   * @return paymentMethodTokenizationEnabled
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "A flag to indicate if storing the payment method is enabled.")
+
+  public Boolean getPaymentMethodTokenizationEnabled() {
+    return paymentMethodTokenizationEnabled;
+  }
+
+
+  public void setPaymentMethodTokenizationEnabled(Boolean paymentMethodTokenizationEnabled) {
+    this.paymentMethodTokenizationEnabled = paymentMethodTokenizationEnabled;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -281,12 +308,13 @@ public class PaymentOption {
         Objects.equals(this.mode, paymentOption.mode) &&
         Objects.equals(this.label, paymentOption.label) &&
         Objects.equals(this.canStorePaymentMethod, paymentOption.canStorePaymentMethod) &&
-        Objects.equals(this.context, paymentOption.context);
+        Objects.equals(this.context, paymentOption.context) &&
+        Objects.equals(this.paymentMethodTokenizationEnabled, paymentOption.paymentMethodTokenizationEnabled);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(type, method, iconUrl, mode, label, canStorePaymentMethod, context);
+    return Objects.hash(type, method, iconUrl, mode, label, canStorePaymentMethod, context, paymentMethodTokenizationEnabled);
   }
 
   @Override
@@ -300,6 +328,7 @@ public class PaymentOption {
     sb.append("    label: ").append(toIndentedString(label)).append("\n");
     sb.append("    canStorePaymentMethod: ").append(toIndentedString(canStorePaymentMethod)).append("\n");
     sb.append("    context: ").append(toIndentedString(context)).append("\n");
+    sb.append("    paymentMethodTokenizationEnabled: ").append(toIndentedString(paymentMethodTokenizationEnabled)).append("\n");
     sb.append("}");
     return sb.toString();
   }

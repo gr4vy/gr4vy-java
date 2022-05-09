@@ -28,7 +28,7 @@ import java.io.IOException;
  * The statement descriptor is the text to be shown on the buyer&#39;s statements.  The specific usage of these fields will depend on the capabilities of the underlying PSP and bank. As a typical example, &#39;name&#39; and &#39;description&#39; could be concatenated using &#39;* &#39; as a separator, and then the resulting descriptor would be truncated to 22 characters by the issuing bank.
  */
 @ApiModel(description = "The statement descriptor is the text to be shown on the buyer's statements.  The specific usage of these fields will depend on the capabilities of the underlying PSP and bank. As a typical example, 'name' and 'description' could be concatenated using '* ' as a separator, and then the resulting descriptor would be truncated to 22 characters by the issuing bank.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-04-06T18:03:23.672646Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-05-09T14:10:22.211861Z[Etc/UTC]")
 public class StatementDescriptor {
   public static final String SERIALIZED_NAME_NAME = "name";
   @SerializedName(SERIALIZED_NAME_NAME)
@@ -127,11 +127,11 @@ public class StatementDescriptor {
   }
 
    /**
-   * The value in the phone number field of a customer&#39;s statement. The phone number to use for this request. This expect the number in the [E164 number standard](https://www.twilio.com/docs/glossary/what-e164).
+   * The value in the phone number field of a customer&#39;s statement which should be formatted according to the [E164 number standard](https://www.twilio.com/docs/glossary/what-e164).
    * @return phoneNumber
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "+1234567890", value = "The value in the phone number field of a customer's statement. The phone number to use for this request. This expect the number in the [E164 number standard](https://www.twilio.com/docs/glossary/what-e164).")
+  @ApiModelProperty(example = "+1234567890", value = "The value in the phone number field of a customer's statement which should be formatted according to the [E164 number standard](https://www.twilio.com/docs/glossary/what-e164).")
 
   public String getPhoneNumber() {
     return phoneNumber;

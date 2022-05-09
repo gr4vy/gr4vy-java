@@ -25,36 +25,62 @@ import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 
 /**
- * A request to reset a password for a user.
+ * PaymentServiceFields
  */
-@ApiModel(description = "A request to reset a password for a user.")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-05-09T14:10:22.211861Z[Etc/UTC]")
-public class ResetPasswordRequest {
-  public static final String SERIALIZED_NAME_EMAIL_ADDRESS = "email_address";
-  @SerializedName(SERIALIZED_NAME_EMAIL_ADDRESS)
-  private String emailAddress;
+public class PaymentServiceFields {
+  public static final String SERIALIZED_NAME_KEY = "key";
+  @SerializedName(SERIALIZED_NAME_KEY)
+  private String key;
+
+  public static final String SERIALIZED_NAME_VALUE = "value";
+  @SerializedName(SERIALIZED_NAME_VALUE)
+  private String value;
 
 
-  public ResetPasswordRequest emailAddress(String emailAddress) {
+  public PaymentServiceFields key(String key) {
     
-    this.emailAddress = emailAddress;
+    this.key = key;
     return this;
   }
 
    /**
-   * The email address of the user account to reset.
-   * @return emailAddress
+   * The key of the field.
+   * @return key
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "john@example.com", value = "The email address of the user account to reset.")
+  @ApiModelProperty(example = "secret_key", value = "The key of the field.")
 
-  public String getEmailAddress() {
-    return emailAddress;
+  public String getKey() {
+    return key;
   }
 
 
-  public void setEmailAddress(String emailAddress) {
-    this.emailAddress = emailAddress;
+  public void setKey(String key) {
+    this.key = key;
+  }
+
+
+  public PaymentServiceFields value(String value) {
+    
+    this.value = value;
+    return this;
+  }
+
+   /**
+   * The value of the field.
+   * @return value
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "sk_test_26PHem9AhJZvU623DfE1x4sd", value = "The value of the field.")
+
+  public String getValue() {
+    return value;
+  }
+
+
+  public void setValue(String value) {
+    this.value = value;
   }
 
 
@@ -66,20 +92,22 @@ public class ResetPasswordRequest {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    ResetPasswordRequest resetPasswordRequest = (ResetPasswordRequest) o;
-    return Objects.equals(this.emailAddress, resetPasswordRequest.emailAddress);
+    PaymentServiceFields paymentServiceFields = (PaymentServiceFields) o;
+    return Objects.equals(this.key, paymentServiceFields.key) &&
+        Objects.equals(this.value, paymentServiceFields.value);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(emailAddress);
+    return Objects.hash(key, value);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class ResetPasswordRequest {\n");
-    sb.append("    emailAddress: ").append(toIndentedString(emailAddress)).append("\n");
+    sb.append("class PaymentServiceFields {\n");
+    sb.append("    key: ").append(toIndentedString(key)).append("\n");
+    sb.append("    value: ").append(toIndentedString(value)).append("\n");
     sb.append("}");
     return sb.toString();
   }

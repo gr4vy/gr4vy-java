@@ -20,17 +20,16 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import com.gr4vy.api.model.CardRequiredFields;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Details about a card.
  */
 @ApiModel(description = "Details about a card.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-04-06T18:03:23.672646Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-05-09T14:10:22.211861Z[Etc/UTC]")
 public class CardDetails {
   /**
    * &#x60;card-detail&#x60;.
@@ -146,7 +145,7 @@ public class CardDetails {
 
   public static final String SERIALIZED_NAME_REQUIRED_FIELDS = "required_fields";
   @SerializedName(SERIALIZED_NAME_REQUIRED_FIELDS)
-  private List<String> requiredFields = null;
+  private CardRequiredFields requiredFields;
 
 
   public CardDetails type(TypeEnum type) {
@@ -179,11 +178,11 @@ public class CardDetails {
   }
 
    /**
-   * The 6-8 digit BIN of the card.
+   * The 8 digit BIN of the card. When looking up card details using a &#x60;payment_method_id&#x60; this value will be &#x60;null&#x60;.
    * @return id
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "424242", value = "The 6-8 digit BIN of the card.")
+  @ApiModelProperty(example = "42424242", value = "The 8 digit BIN of the card. When looking up card details using a `payment_method_id` this value will be `null`.")
 
   public String getId() {
     return id;
@@ -264,33 +263,25 @@ public class CardDetails {
   }
 
 
-  public CardDetails requiredFields(List<String> requiredFields) {
+  public CardDetails requiredFields(CardRequiredFields requiredFields) {
     
     this.requiredFields = requiredFields;
     return this;
   }
 
-  public CardDetails addRequiredFieldsItem(String requiredFieldsItem) {
-    if (this.requiredFields == null) {
-      this.requiredFields = new ArrayList<String>();
-    }
-    this.requiredFields.add(requiredFieldsItem);
-    return this;
-  }
-
    /**
-   * A list of fields that are required to process a transaction for this card.
+   * Get requiredFields
    * @return requiredFields
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "[\"name\",\"address\",\"tax_id\"]", value = "A list of fields that are required to process a transaction for this card.")
+  @ApiModelProperty(value = "")
 
-  public List<String> getRequiredFields() {
+  public CardRequiredFields getRequiredFields() {
     return requiredFields;
   }
 
 
-  public void setRequiredFields(List<String> requiredFields) {
+  public void setRequiredFields(CardRequiredFields requiredFields) {
     this.requiredFields = requiredFields;
   }
 

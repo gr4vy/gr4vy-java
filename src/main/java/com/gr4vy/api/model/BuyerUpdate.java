@@ -20,9 +20,7 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import com.gr4vy.api.model.BillingDetailsRequest;
 import com.gr4vy.api.model.BillingDetailsUpdateRequest;
-import com.gr4vy.api.model.BuyerRequest;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
@@ -31,12 +29,8 @@ import java.io.IOException;
  * A request to update a buyer.
  */
 @ApiModel(description = "A request to update a buyer.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-04-06T18:03:23.672646Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-05-09T14:10:22.211861Z[Etc/UTC]")
 public class BuyerUpdate {
-  public static final String SERIALIZED_NAME_BILLING_DETAILS = "billing_details";
-  @SerializedName(SERIALIZED_NAME_BILLING_DETAILS)
-  private BillingDetailsUpdateRequest billingDetails;
-
   public static final String SERIALIZED_NAME_EXTERNAL_IDENTIFIER = "external_identifier";
   @SerializedName(SERIALIZED_NAME_EXTERNAL_IDENTIFIER)
   private String externalIdentifier;
@@ -45,28 +39,9 @@ public class BuyerUpdate {
   @SerializedName(SERIALIZED_NAME_DISPLAY_NAME)
   private String displayName;
 
-
-  public BuyerUpdate billingDetails(BillingDetailsUpdateRequest billingDetails) {
-    
-    this.billingDetails = billingDetails;
-    return this;
-  }
-
-   /**
-   * The optional billing details to update a buyer.
-   * @return billingDetails
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "The optional billing details to update a buyer.")
-
-  public BillingDetailsUpdateRequest getBillingDetails() {
-    return billingDetails;
-  }
-
-
-  public void setBillingDetails(BillingDetailsUpdateRequest billingDetails) {
-    this.billingDetails = billingDetails;
-  }
+  public static final String SERIALIZED_NAME_BILLING_DETAILS = "billing_details";
+  @SerializedName(SERIALIZED_NAME_BILLING_DETAILS)
+  private BillingDetailsUpdateRequest billingDetails;
 
 
   public BuyerUpdate externalIdentifier(String externalIdentifier) {
@@ -115,6 +90,29 @@ public class BuyerUpdate {
   }
 
 
+  public BuyerUpdate billingDetails(BillingDetailsUpdateRequest billingDetails) {
+    
+    this.billingDetails = billingDetails;
+    return this;
+  }
+
+   /**
+   * Get billingDetails
+   * @return billingDetails
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public BillingDetailsUpdateRequest getBillingDetails() {
+    return billingDetails;
+  }
+
+
+  public void setBillingDetails(BillingDetailsUpdateRequest billingDetails) {
+    this.billingDetails = billingDetails;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -124,23 +122,23 @@ public class BuyerUpdate {
       return false;
     }
     BuyerUpdate buyerUpdate = (BuyerUpdate) o;
-    return Objects.equals(this.billingDetails, buyerUpdate.billingDetails) &&
-        Objects.equals(this.externalIdentifier, buyerUpdate.externalIdentifier) &&
-        Objects.equals(this.displayName, buyerUpdate.displayName);
+    return Objects.equals(this.externalIdentifier, buyerUpdate.externalIdentifier) &&
+        Objects.equals(this.displayName, buyerUpdate.displayName) &&
+        Objects.equals(this.billingDetails, buyerUpdate.billingDetails);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(billingDetails, externalIdentifier, displayName);
+    return Objects.hash(externalIdentifier, displayName, billingDetails);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class BuyerUpdate {\n");
-    sb.append("    billingDetails: ").append(toIndentedString(billingDetails)).append("\n");
     sb.append("    externalIdentifier: ").append(toIndentedString(externalIdentifier)).append("\n");
     sb.append("    displayName: ").append(toIndentedString(displayName)).append("\n");
+    sb.append("    billingDetails: ").append(toIndentedString(billingDetails)).append("\n");
     sb.append("}");
     return sb.toString();
   }
