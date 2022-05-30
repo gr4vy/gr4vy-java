@@ -28,7 +28,7 @@ import java.io.IOException;
  * Details for a previously tokenized payment method.
  */
 @ApiModel(description = "Details for a previously tokenized payment method.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-05-09T14:10:22.211861Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-05-30T12:22:53.235500Z[Etc/UTC]")
 public class TokenizedRequest {
   /**
    * &#x60;id&#x60;.
