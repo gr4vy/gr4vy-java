@@ -96,6 +96,7 @@ src/main/java/com/gr4vy/api/model/ThreeDSecureDataV1AllOf.java
 src/main/java/com/gr4vy/api/model/ThreeDSecureDataV1V2.java
 src/main/java/com/gr4vy/api/model/ThreeDSecureDataV2.java
 src/main/java/com/gr4vy/api/model/ThreeDSecureDataV2AllOf.java
+src/main/java/com/gr4vy/api/model/ThreeDSecureSummary.java
 src/main/java/com/gr4vy/api/model/TokenizedRequest.java
 src/main/java/com/gr4vy/api/model/Transaction.java
 src/main/java/com/gr4vy/api/model/TransactionCaptureRequest.java
@@ -183,6 +184,7 @@ src/test/java/com/gr4vy/api/model/ThreeDSecureDataV1Test.java
 src/test/java/com/gr4vy/api/model/ThreeDSecureDataV1V2Test.java
 src/test/java/com/gr4vy/api/model/ThreeDSecureDataV2AllOfTest.java
 src/test/java/com/gr4vy/api/model/ThreeDSecureDataV2Test.java
+src/test/java/com/gr4vy/api/model/ThreeDSecureSummaryTest.java
 src/test/java/com/gr4vy/api/model/TokenizedRequestTest.java
 src/test/java/com/gr4vy/api/model/TransactionCaptureRequestTest.java
 src/test/java/com/gr4vy/api/model/TransactionPaymentMethodRequestTest.java

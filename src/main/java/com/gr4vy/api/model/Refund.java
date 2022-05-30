@@ -30,7 +30,7 @@ import org.threeten.bp.OffsetDateTime;
  * A refund record.  A refund is always associated with a single transaction, while a transaction can potentially have several refunds.
  */
 @ApiModel(description = "A refund record.  A refund is always associated with a single transaction, while a transaction can potentially have several refunds.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-05-09T14:10:22.211861Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-05-30T12:22:53.235500Z[Etc/UTC]")
 public class Refund {
   /**
    * The type of this resource. Is always &#x60;refund&#x60;.
