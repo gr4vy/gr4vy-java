@@ -25,6 +25,7 @@ import com.gr4vy.api.model.CartItem;
 import com.gr4vy.api.model.PaymentMethodSnapshot;
 import com.gr4vy.api.model.PaymentServiceSnapshot;
 import com.gr4vy.api.model.StatementDescriptor;
+import com.gr4vy.api.model.ThreeDSecureSummary;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
@@ -39,7 +40,7 @@ import org.threeten.bp.OffsetDateTime;
  * A transaction record.
  */
 @ApiModel(description = "A transaction record.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-05-09T14:10:22.211861Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-05-30T12:22:53.235500Z[Etc/UTC]")
 public class Transaction {
   /**
    * The type of this resource. Is always &#x60;transaction&#x60;.
@@ -101,43 +102,21 @@ public class Transaction {
   public enum StatusEnum {
     PROCESSING("processing"),
     
-    PROCESSING_FAILED("processing_failed"),
-    
-    CAPTURE_SUCCEEDED("capture_succeeded"),
-    
-    CAPTURE_PENDING("capture_pending"),
-    
-    CAPTURE_DECLINED("capture_declined"),
-    
-    CAPTURE_FAILED("capture_failed"),
+    BUYER_APPROVAL_PENDING("buyer_approval_pending"),
     
     AUTHORIZATION_SUCCEEDED("authorization_succeeded"),
     
-    AUTHORIZATION_PENDING("authorization_pending"),
+    AUTHORIZATION_FAILED("authorization_failed"),
     
     AUTHORIZATION_DECLINED("authorization_declined"),
     
-    AUTHORIZATION_FAILED("authorization_failed"),
+    CAPTURE_PENDING("capture_pending"),
     
-    AUTHORIZATION_EXPIRED("authorization_expired"),
-    
-    AUTHORIZATION_VOIDED("authorization_voided"),
+    CAPTURE_SUCCEEDED("capture_succeeded"),
     
     AUTHORIZATION_VOID_PENDING("authorization_void_pending"),
     
-    AUTHORIZATION_VOID_DECLINED("authorization_void_declined"),
-    
-    AUTHORIZATION_VOID_FAILED("authorization_void_failed"),
-    
-    BUYER_APPROVAL_SUCCEEDED("buyer_approval_succeeded"),
-    
-    BUYER_APPROVAL_PENDING("buyer_approval_pending"),
-    
-    BUYER_APPROVAL_DECLINED("buyer_approval_declined"),
-    
-    BUYER_APPROVAL_FAILED("buyer_approval_failed"),
-    
-    BUYER_APPROVAL_TIMEDOUT("buyer_approval_timedout");
+    AUTHORIZATION_VOIDED("authorization_voided");
 
     private String value;
 
@@ -478,23 +457,51 @@ public class Transaction {
    */
   @JsonAdapter(MethodEnum.Adapter.class)
   public enum MethodEnum {
-    CARD("card"),
-    
-    PAYPAL("paypal"),
-    
-    BANKED("banked"),
-    
-    GOCARDLESS("gocardless"),
-    
-    STRIPEDD("stripedd"),
+    AFTERPAY("afterpay"),
     
     APPLEPAY("applepay"),
     
-    GOOGLEPAY("googlepay"),
+    BANKED("banked"),
     
-    AFTERPAY("afterpay"),
+    BOLETO("boleto"),
+    
+    CARD("card"),
     
     CLEARPAY("clearpay"),
+    
+    DANA("dana"),
+    
+    FORTUMO("fortumo"),
+    
+    GCASH("gcash"),
+    
+    GOCARDLESS("gocardless"),
+    
+    GOOGLEPAY("googlepay"),
+    
+    GOOGLEPAY_PAN_ONLY("googlepay_pan_only"),
+    
+    GRABPAY("grabpay"),
+    
+    KLARNA("klarna"),
+    
+    OVO("ovo"),
+    
+    PAYMAYA("paymaya"),
+    
+    PAYPAL("paypal"),
+    
+    PIX("pix"),
+    
+    RABBITLINEPAY("rabbitlinepay"),
+    
+    SHOPEEPAY("shopeepay"),
+    
+    STRIPEDD("stripedd"),
+    
+    TRUEMONEY("truemoney"),
+    
+    TRUSTLY("trustly"),
     
     ZIPPAY("zippay");
 
@@ -547,6 +554,10 @@ public class Transaction {
   public static final String SERIALIZED_NAME_METADATA = "metadata";
   @SerializedName(SERIALIZED_NAME_METADATA)
   private Map<String, String> metadata = null;
+
+  public static final String SERIALIZED_NAME_THREE_D_SECURE = "three_d_secure";
+  @SerializedName(SERIALIZED_NAME_THREE_D_SECURE)
+  private ThreeDSecureSummary threeDSecure;
 
 
   public Transaction type(TypeEnum type) {
@@ -1215,6 +1226,29 @@ public class Transaction {
   }
 
 
+  public Transaction threeDSecure(ThreeDSecureSummary threeDSecure) {
+    
+    this.threeDSecure = threeDSecure;
+    return this;
+  }
+
+   /**
+   * Get threeDSecure
+   * @return threeDSecure
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public ThreeDSecureSummary getThreeDSecure() {
+    return threeDSecure;
+  }
+
+
+  public void setThreeDSecure(ThreeDSecureSummary threeDSecure) {
+    this.threeDSecure = threeDSecure;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -1251,12 +1285,13 @@ public class Transaction {
         Objects.equals(this.cvvResponseCode, transaction.cvvResponseCode) &&
         Objects.equals(this.method, transaction.method) &&
         Objects.equals(this.paymentServiceTransactionId, transaction.paymentServiceTransactionId) &&
-        Objects.equals(this.metadata, transaction.metadata);
+        Objects.equals(this.metadata, transaction.metadata) &&
+        Objects.equals(this.threeDSecure, transaction.threeDSecure);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(type, id, status, intent, amount, capturedAmount, refundedAmount, currency, country, paymentMethod, buyer, createdAt, externalIdentifier, updatedAt, paymentService, merchantInitiated, paymentSource, isSubsequentPayment, statementDescriptor, cartItems, schemeTransactionId, rawResponseCode, rawResponseDescription, avsResponseCode, cvvResponseCode, method, paymentServiceTransactionId, metadata);
+    return Objects.hash(type, id, status, intent, amount, capturedAmount, refundedAmount, currency, country, paymentMethod, buyer, createdAt, externalIdentifier, updatedAt, paymentService, merchantInitiated, paymentSource, isSubsequentPayment, statementDescriptor, cartItems, schemeTransactionId, rawResponseCode, rawResponseDescription, avsResponseCode, cvvResponseCode, method, paymentServiceTransactionId, metadata, threeDSecure);
   }
 
   @Override
@@ -1291,6 +1326,7 @@ public class Transaction {
     sb.append("    method: ").append(toIndentedString(method)).append("\n");
     sb.append("    paymentServiceTransactionId: ").append(toIndentedString(paymentServiceTransactionId)).append("\n");
     sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
+    sb.append("    threeDSecure: ").append(toIndentedString(threeDSecure)).append("\n");
     sb.append("}");
     return sb.toString();
   }
