@@ -20,7 +20,7 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import com.gr4vy.api.model.CardRequiredFields;
+import com.gr4vy.api.model.RequiredFields;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
@@ -29,7 +29,7 @@ import java.io.IOException;
  * Details about a card.
  */
 @ApiModel(description = "Details about a card.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-05-30T12:22:53.235500Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-09-09T18:46:45.100086Z[Etc/UTC]")
 public class CardDetails {
   /**
    * &#x60;card-detail&#x60;.
@@ -145,7 +145,7 @@ public class CardDetails {
 
   public static final String SERIALIZED_NAME_REQUIRED_FIELDS = "required_fields";
   @SerializedName(SERIALIZED_NAME_REQUIRED_FIELDS)
-  private CardRequiredFields requiredFields;
+  private RequiredFields requiredFields;
 
 
   public CardDetails type(TypeEnum type) {
@@ -263,7 +263,7 @@ public class CardDetails {
   }
 
 
-  public CardDetails requiredFields(CardRequiredFields requiredFields) {
+  public CardDetails requiredFields(RequiredFields requiredFields) {
     
     this.requiredFields = requiredFields;
     return this;
@@ -276,12 +276,12 @@ public class CardDetails {
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
 
-  public CardRequiredFields getRequiredFields() {
+  public RequiredFields getRequiredFields() {
     return requiredFields;
   }
 
 
-  public void setRequiredFields(CardRequiredFields requiredFields) {
+  public void setRequiredFields(RequiredFields requiredFields) {
     this.requiredFields = requiredFields;
   }
 

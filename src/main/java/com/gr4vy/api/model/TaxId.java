@@ -28,7 +28,7 @@ import java.io.IOException;
  * The tax ID information associated to a buyer.
  */
 @ApiModel(description = "The tax ID information associated to a buyer.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-05-30T12:22:53.235500Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-09-09T18:46:45.100086Z[Etc/UTC]")
 public class TaxId {
   public static final String SERIALIZED_NAME_VALUE = "value";
   @SerializedName(SERIALIZED_NAME_VALUE)
@@ -100,6 +100,8 @@ public class TaxId {
     NO_VAT("no.vat"),
     
     NZ_GST("nz.gst"),
+    
+    PH_TIN("ph.tin"),
     
     RU_INN("ru.inn"),
     
