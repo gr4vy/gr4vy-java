@@ -415,6 +415,7 @@ public class PaymentServicesApi {
      * @param limit Defines the maximum number of items to return for this request. (optional, default to 20)
      * @param cursor A cursor that identifies the page of results to return. This is used to paginate the results of this API.  For the first page of results, this parameter can be left out. For additional pages, use the value returned by the API in the &#x60;next_cursor&#x60; field. Similarly the &#x60;previous_cursor&#x60; can be used to reverse backwards in the list. (optional)
      * @param method Filters the results to only the items for which the &#x60;method&#x60; has been set to this value. (optional)
+     * @param deleted Filters the results to only show items which have been deleted. By default, deleted items will not be returned. (optional, default to false)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -425,7 +426,7 @@ public class PaymentServicesApi {
         <tr><td> 401 </td><td> Returns an error if no valid authentication was provided. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call listPaymentServicesCall(Integer limit, String cursor, String method, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call listPaymentServicesCall(Integer limit, String cursor, String method, Boolean deleted, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -449,6 +450,10 @@ public class PaymentServicesApi {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("method", method));
         }
 
+        if (deleted != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("deleted", deleted));
+        }
+
         final String[] localVarAccepts = {
             "application/json"
         };
@@ -468,10 +473,10 @@ public class PaymentServicesApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call listPaymentServicesValidateBeforeCall(Integer limit, String cursor, String method, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call listPaymentServicesValidateBeforeCall(Integer limit, String cursor, String method, Boolean deleted, final ApiCallback _callback) throws ApiException {
         
 
-        okhttp3.Call localVarCall = listPaymentServicesCall(limit, cursor, method, _callback);
+        okhttp3.Call localVarCall = listPaymentServicesCall(limit, cursor, method, deleted, _callback);
         return localVarCall;
 
     }
@@ -482,6 +487,7 @@ public class PaymentServicesApi {
      * @param limit Defines the maximum number of items to return for this request. (optional, default to 20)
      * @param cursor A cursor that identifies the page of results to return. This is used to paginate the results of this API.  For the first page of results, this parameter can be left out. For additional pages, use the value returned by the API in the &#x60;next_cursor&#x60; field. Similarly the &#x60;previous_cursor&#x60; can be used to reverse backwards in the list. (optional)
      * @param method Filters the results to only the items for which the &#x60;method&#x60; has been set to this value. (optional)
+     * @param deleted Filters the results to only show items which have been deleted. By default, deleted items will not be returned. (optional, default to false)
      * @return PaymentServices
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -491,8 +497,8 @@ public class PaymentServicesApi {
         <tr><td> 401 </td><td> Returns an error if no valid authentication was provided. </td><td>  -  </td></tr>
      </table>
      */
-    public PaymentServices listPaymentServices(Integer limit, String cursor, String method) throws ApiException {
-        ApiResponse<PaymentServices> localVarResp = listPaymentServicesWithHttpInfo(limit, cursor, method);
+    public PaymentServices listPaymentServices(Integer limit, String cursor, String method, Boolean deleted) throws ApiException {
+        ApiResponse<PaymentServices> localVarResp = listPaymentServicesWithHttpInfo(limit, cursor, method, deleted);
         return localVarResp.getData();
     }
 
@@ -502,6 +508,7 @@ public class PaymentServicesApi {
      * @param limit Defines the maximum number of items to return for this request. (optional, default to 20)
      * @param cursor A cursor that identifies the page of results to return. This is used to paginate the results of this API.  For the first page of results, this parameter can be left out. For additional pages, use the value returned by the API in the &#x60;next_cursor&#x60; field. Similarly the &#x60;previous_cursor&#x60; can be used to reverse backwards in the list. (optional)
      * @param method Filters the results to only the items for which the &#x60;method&#x60; has been set to this value. (optional)
+     * @param deleted Filters the results to only show items which have been deleted. By default, deleted items will not be returned. (optional, default to false)
      * @return ApiResponse&lt;PaymentServices&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -511,8 +518,8 @@ public class PaymentServicesApi {
         <tr><td> 401 </td><td> Returns an error if no valid authentication was provided. </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<PaymentServices> listPaymentServicesWithHttpInfo(Integer limit, String cursor, String method) throws ApiException {
-        okhttp3.Call localVarCall = listPaymentServicesValidateBeforeCall(limit, cursor, method, null);
+    public ApiResponse<PaymentServices> listPaymentServicesWithHttpInfo(Integer limit, String cursor, String method, Boolean deleted) throws ApiException {
+        okhttp3.Call localVarCall = listPaymentServicesValidateBeforeCall(limit, cursor, method, deleted, null);
         Type localVarReturnType = new TypeToken<PaymentServices>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -523,6 +530,7 @@ public class PaymentServicesApi {
      * @param limit Defines the maximum number of items to return for this request. (optional, default to 20)
      * @param cursor A cursor that identifies the page of results to return. This is used to paginate the results of this API.  For the first page of results, this parameter can be left out. For additional pages, use the value returned by the API in the &#x60;next_cursor&#x60; field. Similarly the &#x60;previous_cursor&#x60; can be used to reverse backwards in the list. (optional)
      * @param method Filters the results to only the items for which the &#x60;method&#x60; has been set to this value. (optional)
+     * @param deleted Filters the results to only show items which have been deleted. By default, deleted items will not be returned. (optional, default to false)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -533,9 +541,9 @@ public class PaymentServicesApi {
         <tr><td> 401 </td><td> Returns an error if no valid authentication was provided. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call listPaymentServicesAsync(Integer limit, String cursor, String method, final ApiCallback<PaymentServices> _callback) throws ApiException {
+    public okhttp3.Call listPaymentServicesAsync(Integer limit, String cursor, String method, Boolean deleted, final ApiCallback<PaymentServices> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = listPaymentServicesValidateBeforeCall(limit, cursor, method, _callback);
+        okhttp3.Call localVarCall = listPaymentServicesValidateBeforeCall(limit, cursor, method, deleted, _callback);
         Type localVarReturnType = new TypeToken<PaymentServices>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;

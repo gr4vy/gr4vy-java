@@ -30,6 +30,7 @@ import java.io.IOException;
 import com.gr4vy.api.model.Error401Unauthorized;
 import com.gr4vy.api.model.Error404NotFound;
 import com.gr4vy.api.model.ErrorGeneric;
+import org.threeten.bp.OffsetDateTime;
 import com.gr4vy.api.model.Refund;
 import com.gr4vy.api.model.Refunds;
 import com.gr4vy.api.model.Transaction;
@@ -37,6 +38,7 @@ import com.gr4vy.api.model.TransactionCaptureRequest;
 import com.gr4vy.api.model.TransactionRefundRequest;
 import com.gr4vy.api.model.TransactionRequest;
 import com.gr4vy.api.model.Transactions;
+import java.util.UUID;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -693,16 +695,32 @@ public class TransactionsApi {
     }
     /**
      * Build call for listTransactions
-     * @param search Filters the transactions to only the items for which the &#x60;id&#x60; or &#x60;external_identifier&#x60; matches this value. This field allows for a partial match, matching any transaction for which either of the fields partially or completely matches. (optional)
-     * @param transactionStatus Filters the results to only the transactions for which the &#x60;status&#x60; matches this value. (optional)
-     * @param buyerId Filters the results to only the items for which the &#x60;buyer&#x60; has an &#x60;id&#x60; that matches this value. (optional)
      * @param buyerExternalIdentifier Filters the results to only the items for which the &#x60;buyer&#x60; has an &#x60;external_identifier&#x60; that matches this value. (optional)
-     * @param beforeCreatedAt Filters the results to only transactions created before this ISO date-time string. (optional)
-     * @param afterCreatedAt Filters the results to only transactions created after this ISO date-time string. (optional)
-     * @param beforeUpdatedAt Filters the results to only transactions last updated before this ISO date-time string. (optional)
-     * @param afterUpdatedAt Filters the results to only transactions last updated after this ISO date-time string. (optional)
-     * @param limit Defines the maximum number of items to return for this request. (optional, default to 20)
+     * @param buyerId Filters the results to only the items for which the &#x60;buyer&#x60; has an &#x60;id&#x60; that matches this value. (optional)
      * @param cursor A cursor that identifies the page of results to return. This is used to paginate the results of this API.  For the first page of results, this parameter can be left out. For additional pages, use the value returned by the API in the &#x60;next_cursor&#x60; field. Similarly the &#x60;previous_cursor&#x60; can be used to reverse backwards in the list. (optional)
+     * @param limit Defines the maximum number of items to return for this request. (optional, default to 20)
+     * @param amountEq Filters for transactions that have an &#x60;amount&#x60; that is equal to the provided &#x60;amount_eq&#x60; value. (optional)
+     * @param amountGte Filters for transactions that have an &#x60;amount&#x60; that is greater than or equal to the &#x60;amount_gte&#x60; value. (optional)
+     * @param amountLte Filters for transactions that have an &#x60;amount&#x60; that is less than or equal to the &#x60;amount_lte&#x60; value. (optional)
+     * @param createdAtGte Filters the results to only transactions created after this ISO date-time string. The time zone must be included.  Ensure that the date-time string is URL encoded, e.g. &#x60;2022-01-01T12:00:00+08:00&#x60; must be encoded as &#x60;2022-01-01T12%3A00%3A00%2B08%3A00&#x60;. (optional)
+     * @param createdAtLte Filters the results to only transactions created before this ISO date-time string. The time zone must be included.  Ensure that the date-time string is URL encoded, e.g. &#x60;2022-01-01T12:00:00+08:00&#x60; must be encoded as &#x60;2022-01-01T12%3A00%3A00%2B08%3A00&#x60;. (optional)
+     * @param currency Filters for transactions that have matching &#x60;currency&#x60; values. The &#x60;currency&#x60; values provided must be formatted as 3-letter ISO currency code. (optional)
+     * @param externalIdentifier Filters the results to only the items for which the &#x60;external_identifier&#x60; matches this value. (optional)
+     * @param hasRefunds When set to &#x60;true&#x60;, filter for transactions that have at least one refund in any state associated with it. When set to &#x60;false&#x60;, filter for transactions that have no refunds. (optional)
+     * @param id Filters for the transaction that has a matching &#x60;id&#x60; value. (optional)
+     * @param metadata Filters for transactions where their &#x60;metadata&#x60; values contain all of the provided &#x60;metadata&#x60; keys. The value sent for &#x60;metadata&#x60; must be formatted as a JSON string, and all keys and values must be strings. This value should also be URL encoded.  Duplicate keys are not supported. If a key is duplicated, only the last appearing value will be used. (optional)
+     * @param method Filters the results to only the items for which the &#x60;method&#x60; has been set to this value. (optional)
+     * @param paymentServiceId Filters for transactions that were processed by the provided &#x60;payment_service_id&#x60; values. (optional)
+     * @param paymentServiceTransactionId Filters for transactions that have a matching &#x60;payment_service_transaction_id&#x60; value. The &#x60;payment_service_transaction_id&#x60; is the identifier of the transaction given by the payment service. (optional)
+     * @param search Filters for transactions that have one of the following fields match exactly with the provided &#x60;search&#x60; value: * &#x60;buyer_external_identifier&#x60; * &#x60;buyer_id&#x60; * &#x60;external_identifier&#x60; * &#x60;id&#x60; * &#x60;payment_service_transaction_id&#x60; (optional)
+     * @param status Filters the results to only the transactions that have a &#x60;status&#x60; that matches with any of the provided status values. (optional)
+     * @param updatedAtGte Filters the results to only transactions last updated after this ISO date-time string. The time zone must be included.  Ensure that the date-time string is URL encoded, e.g. &#x60;2022-01-01T12:00:00+08:00&#x60; must be encoded as &#x60;2022-01-01T12%3A00%3A00%2B08%3A00&#x60;. (optional)
+     * @param updatedAtLte Filters the results to only transactions last updated before this ISO date-time string. The time zone must be included.  Ensure that the date-time string is URL encoded, e.g. &#x60;2022-01-01T12:00:00+08:00&#x60; must be encoded as &#x60;2022-01-01T12%3A00%3A00%2B08%3A00&#x60;. (optional)
+     * @param beforeCreatedAt Filters the results to only transactions created before this ISO date-time string. The time zone must be included.  Ensure that the date-time string is URL encoded, e.g. &#x60;2022-01-01T12:00:00+08:00&#x60; must be encoded as &#x60;2022-01-01T12%3A00%3A00%2B08%3A00&#x60;.  **WARNING** This filter is deprecated and may be removed eventually, use &#x60;created_at_lte&#x60; instead. (optional)
+     * @param afterCreatedAt Filters the results to only transactions created after this ISO date-time string. The time zone must be included.  Ensure that the date-time string is URL encoded, e.g. &#x60;2022-01-01T12:00:00+08:00&#x60; must be encoded as &#x60;2022-01-01T12%3A00%3A00%2B08%3A00&#x60;.  **WARNING** This filter is deprecated and may be removed eventually, use &#x60;created_at_gte&#x60; instead. (optional)
+     * @param beforeUpdatedAt Filters the results to only transactions last updated before this ISO date-time string. The time zone must be included.  Ensure that the date-time string is URL encoded, e.g. &#x60;2022-01-01T12:00:00+08:00&#x60; must be encoded as &#x60;2022-01-01T12%3A00%3A00%2B08%3A00&#x60;.  **WARNING** This filter is deprecated and may be removed eventually, use &#x60;updated_at_lte&#x60; instead. (optional)
+     * @param afterUpdatedAt Filters the results to only transactions last updated after this ISO date-time string. The time zone must be included.  Ensure that the date-time string is URL encoded, e.g. &#x60;2022-01-01T12:00:00+08:00&#x60; must be encoded as &#x60;2022-01-01T12%3A00%3A00%2B08%3A00&#x60;.  **WARNING** This filter is deprecated and may be removed eventually, use &#x60;updated_at_gte&#x60; instead. (optional)
+     * @param transactionStatus Filters the results to only the transactions for which the &#x60;status&#x60; matches this value.  **WARNING** This filter is deprecated and may be removed eventually, use &#x60;status&#x60; instead. (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -713,7 +731,7 @@ public class TransactionsApi {
         <tr><td> 401 </td><td> Returns an error if no valid authentication was provided. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call listTransactionsCall(String search, String transactionStatus, String buyerId, String buyerExternalIdentifier, String beforeCreatedAt, String afterCreatedAt, String beforeUpdatedAt, String afterUpdatedAt, Integer limit, String cursor, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call listTransactionsCall(String buyerExternalIdentifier, String buyerId, String cursor, Integer limit, Integer amountEq, Integer amountGte, Integer amountLte, OffsetDateTime createdAtGte, OffsetDateTime createdAtLte, List<String> currency, String externalIdentifier, Boolean hasRefunds, UUID id, List<String> metadata, List<String> method, List<UUID> paymentServiceId, String paymentServiceTransactionId, String search, List<String> status, OffsetDateTime updatedAtGte, OffsetDateTime updatedAtLte, OffsetDateTime beforeCreatedAt, OffsetDateTime afterCreatedAt, OffsetDateTime beforeUpdatedAt, OffsetDateTime afterUpdatedAt, String transactionStatus, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -725,20 +743,88 @@ public class TransactionsApi {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
-        if (search != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("search", search));
-        }
-
-        if (transactionStatus != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("transaction_status", transactionStatus));
+        if (buyerExternalIdentifier != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("buyer_external_identifier", buyerExternalIdentifier));
         }
 
         if (buyerId != null) {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("buyer_id", buyerId));
         }
 
-        if (buyerExternalIdentifier != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("buyer_external_identifier", buyerExternalIdentifier));
+        if (cursor != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("cursor", cursor));
+        }
+
+        if (limit != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("limit", limit));
+        }
+
+        if (amountEq != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("amount_eq", amountEq));
+        }
+
+        if (amountGte != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("amount_gte", amountGte));
+        }
+
+        if (amountLte != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("amount_lte", amountLte));
+        }
+
+        if (createdAtGte != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("created_at_gte", createdAtGte));
+        }
+
+        if (createdAtLte != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("created_at_lte", createdAtLte));
+        }
+
+        if (currency != null) {
+            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("multi", "currency", currency));
+        }
+
+        if (externalIdentifier != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("external_identifier", externalIdentifier));
+        }
+
+        if (hasRefunds != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("has_refunds", hasRefunds));
+        }
+
+        if (id != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("id", id));
+        }
+
+        if (metadata != null) {
+            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("multi", "metadata", metadata));
+        }
+
+        if (method != null) {
+            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("multi", "method", method));
+        }
+
+        if (paymentServiceId != null) {
+            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("multi", "payment_service_id", paymentServiceId));
+        }
+
+        if (paymentServiceTransactionId != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("payment_service_transaction_id", paymentServiceTransactionId));
+        }
+
+        if (search != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("search", search));
+        }
+
+        if (status != null) {
+            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("multi", "status", status));
+        }
+
+        if (updatedAtGte != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("updated_at_gte", updatedAtGte));
+        }
+
+        if (updatedAtLte != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("updated_at_lte", updatedAtLte));
         }
 
         if (beforeCreatedAt != null) {
@@ -757,12 +843,8 @@ public class TransactionsApi {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("after_updated_at", afterUpdatedAt));
         }
 
-        if (limit != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("limit", limit));
-        }
-
-        if (cursor != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("cursor", cursor));
+        if (transactionStatus != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("transaction_status", transactionStatus));
         }
 
         final String[] localVarAccepts = {
@@ -784,10 +866,10 @@ public class TransactionsApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call listTransactionsValidateBeforeCall(String search, String transactionStatus, String buyerId, String buyerExternalIdentifier, String beforeCreatedAt, String afterCreatedAt, String beforeUpdatedAt, String afterUpdatedAt, Integer limit, String cursor, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call listTransactionsValidateBeforeCall(String buyerExternalIdentifier, String buyerId, String cursor, Integer limit, Integer amountEq, Integer amountGte, Integer amountLte, OffsetDateTime createdAtGte, OffsetDateTime createdAtLte, List<String> currency, String externalIdentifier, Boolean hasRefunds, UUID id, List<String> metadata, List<String> method, List<UUID> paymentServiceId, String paymentServiceTransactionId, String search, List<String> status, OffsetDateTime updatedAtGte, OffsetDateTime updatedAtLte, OffsetDateTime beforeCreatedAt, OffsetDateTime afterCreatedAt, OffsetDateTime beforeUpdatedAt, OffsetDateTime afterUpdatedAt, String transactionStatus, final ApiCallback _callback) throws ApiException {
         
 
-        okhttp3.Call localVarCall = listTransactionsCall(search, transactionStatus, buyerId, buyerExternalIdentifier, beforeCreatedAt, afterCreatedAt, beforeUpdatedAt, afterUpdatedAt, limit, cursor, _callback);
+        okhttp3.Call localVarCall = listTransactionsCall(buyerExternalIdentifier, buyerId, cursor, limit, amountEq, amountGte, amountLte, createdAtGte, createdAtLte, currency, externalIdentifier, hasRefunds, id, metadata, method, paymentServiceId, paymentServiceTransactionId, search, status, updatedAtGte, updatedAtLte, beforeCreatedAt, afterCreatedAt, beforeUpdatedAt, afterUpdatedAt, transactionStatus, _callback);
         return localVarCall;
 
     }
@@ -795,16 +877,32 @@ public class TransactionsApi {
     /**
      * List transactions
      * Lists all transactions for an account. Sorted by last &#x60;updated_at&#x60; status.
-     * @param search Filters the transactions to only the items for which the &#x60;id&#x60; or &#x60;external_identifier&#x60; matches this value. This field allows for a partial match, matching any transaction for which either of the fields partially or completely matches. (optional)
-     * @param transactionStatus Filters the results to only the transactions for which the &#x60;status&#x60; matches this value. (optional)
-     * @param buyerId Filters the results to only the items for which the &#x60;buyer&#x60; has an &#x60;id&#x60; that matches this value. (optional)
      * @param buyerExternalIdentifier Filters the results to only the items for which the &#x60;buyer&#x60; has an &#x60;external_identifier&#x60; that matches this value. (optional)
-     * @param beforeCreatedAt Filters the results to only transactions created before this ISO date-time string. (optional)
-     * @param afterCreatedAt Filters the results to only transactions created after this ISO date-time string. (optional)
-     * @param beforeUpdatedAt Filters the results to only transactions last updated before this ISO date-time string. (optional)
-     * @param afterUpdatedAt Filters the results to only transactions last updated after this ISO date-time string. (optional)
-     * @param limit Defines the maximum number of items to return for this request. (optional, default to 20)
+     * @param buyerId Filters the results to only the items for which the &#x60;buyer&#x60; has an &#x60;id&#x60; that matches this value. (optional)
      * @param cursor A cursor that identifies the page of results to return. This is used to paginate the results of this API.  For the first page of results, this parameter can be left out. For additional pages, use the value returned by the API in the &#x60;next_cursor&#x60; field. Similarly the &#x60;previous_cursor&#x60; can be used to reverse backwards in the list. (optional)
+     * @param limit Defines the maximum number of items to return for this request. (optional, default to 20)
+     * @param amountEq Filters for transactions that have an &#x60;amount&#x60; that is equal to the provided &#x60;amount_eq&#x60; value. (optional)
+     * @param amountGte Filters for transactions that have an &#x60;amount&#x60; that is greater than or equal to the &#x60;amount_gte&#x60; value. (optional)
+     * @param amountLte Filters for transactions that have an &#x60;amount&#x60; that is less than or equal to the &#x60;amount_lte&#x60; value. (optional)
+     * @param createdAtGte Filters the results to only transactions created after this ISO date-time string. The time zone must be included.  Ensure that the date-time string is URL encoded, e.g. &#x60;2022-01-01T12:00:00+08:00&#x60; must be encoded as &#x60;2022-01-01T12%3A00%3A00%2B08%3A00&#x60;. (optional)
+     * @param createdAtLte Filters the results to only transactions created before this ISO date-time string. The time zone must be included.  Ensure that the date-time string is URL encoded, e.g. &#x60;2022-01-01T12:00:00+08:00&#x60; must be encoded as &#x60;2022-01-01T12%3A00%3A00%2B08%3A00&#x60;. (optional)
+     * @param currency Filters for transactions that have matching &#x60;currency&#x60; values. The &#x60;currency&#x60; values provided must be formatted as 3-letter ISO currency code. (optional)
+     * @param externalIdentifier Filters the results to only the items for which the &#x60;external_identifier&#x60; matches this value. (optional)
+     * @param hasRefunds When set to &#x60;true&#x60;, filter for transactions that have at least one refund in any state associated with it. When set to &#x60;false&#x60;, filter for transactions that have no refunds. (optional)
+     * @param id Filters for the transaction that has a matching &#x60;id&#x60; value. (optional)
+     * @param metadata Filters for transactions where their &#x60;metadata&#x60; values contain all of the provided &#x60;metadata&#x60; keys. The value sent for &#x60;metadata&#x60; must be formatted as a JSON string, and all keys and values must be strings. This value should also be URL encoded.  Duplicate keys are not supported. If a key is duplicated, only the last appearing value will be used. (optional)
+     * @param method Filters the results to only the items for which the &#x60;method&#x60; has been set to this value. (optional)
+     * @param paymentServiceId Filters for transactions that were processed by the provided &#x60;payment_service_id&#x60; values. (optional)
+     * @param paymentServiceTransactionId Filters for transactions that have a matching &#x60;payment_service_transaction_id&#x60; value. The &#x60;payment_service_transaction_id&#x60; is the identifier of the transaction given by the payment service. (optional)
+     * @param search Filters for transactions that have one of the following fields match exactly with the provided &#x60;search&#x60; value: * &#x60;buyer_external_identifier&#x60; * &#x60;buyer_id&#x60; * &#x60;external_identifier&#x60; * &#x60;id&#x60; * &#x60;payment_service_transaction_id&#x60; (optional)
+     * @param status Filters the results to only the transactions that have a &#x60;status&#x60; that matches with any of the provided status values. (optional)
+     * @param updatedAtGte Filters the results to only transactions last updated after this ISO date-time string. The time zone must be included.  Ensure that the date-time string is URL encoded, e.g. &#x60;2022-01-01T12:00:00+08:00&#x60; must be encoded as &#x60;2022-01-01T12%3A00%3A00%2B08%3A00&#x60;. (optional)
+     * @param updatedAtLte Filters the results to only transactions last updated before this ISO date-time string. The time zone must be included.  Ensure that the date-time string is URL encoded, e.g. &#x60;2022-01-01T12:00:00+08:00&#x60; must be encoded as &#x60;2022-01-01T12%3A00%3A00%2B08%3A00&#x60;. (optional)
+     * @param beforeCreatedAt Filters the results to only transactions created before this ISO date-time string. The time zone must be included.  Ensure that the date-time string is URL encoded, e.g. &#x60;2022-01-01T12:00:00+08:00&#x60; must be encoded as &#x60;2022-01-01T12%3A00%3A00%2B08%3A00&#x60;.  **WARNING** This filter is deprecated and may be removed eventually, use &#x60;created_at_lte&#x60; instead. (optional)
+     * @param afterCreatedAt Filters the results to only transactions created after this ISO date-time string. The time zone must be included.  Ensure that the date-time string is URL encoded, e.g. &#x60;2022-01-01T12:00:00+08:00&#x60; must be encoded as &#x60;2022-01-01T12%3A00%3A00%2B08%3A00&#x60;.  **WARNING** This filter is deprecated and may be removed eventually, use &#x60;created_at_gte&#x60; instead. (optional)
+     * @param beforeUpdatedAt Filters the results to only transactions last updated before this ISO date-time string. The time zone must be included.  Ensure that the date-time string is URL encoded, e.g. &#x60;2022-01-01T12:00:00+08:00&#x60; must be encoded as &#x60;2022-01-01T12%3A00%3A00%2B08%3A00&#x60;.  **WARNING** This filter is deprecated and may be removed eventually, use &#x60;updated_at_lte&#x60; instead. (optional)
+     * @param afterUpdatedAt Filters the results to only transactions last updated after this ISO date-time string. The time zone must be included.  Ensure that the date-time string is URL encoded, e.g. &#x60;2022-01-01T12:00:00+08:00&#x60; must be encoded as &#x60;2022-01-01T12%3A00%3A00%2B08%3A00&#x60;.  **WARNING** This filter is deprecated and may be removed eventually, use &#x60;updated_at_gte&#x60; instead. (optional)
+     * @param transactionStatus Filters the results to only the transactions for which the &#x60;status&#x60; matches this value.  **WARNING** This filter is deprecated and may be removed eventually, use &#x60;status&#x60; instead. (optional)
      * @return Transactions
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -814,24 +912,40 @@ public class TransactionsApi {
         <tr><td> 401 </td><td> Returns an error if no valid authentication was provided. </td><td>  -  </td></tr>
      </table>
      */
-    public Transactions listTransactions(String search, String transactionStatus, String buyerId, String buyerExternalIdentifier, String beforeCreatedAt, String afterCreatedAt, String beforeUpdatedAt, String afterUpdatedAt, Integer limit, String cursor) throws ApiException {
-        ApiResponse<Transactions> localVarResp = listTransactionsWithHttpInfo(search, transactionStatus, buyerId, buyerExternalIdentifier, beforeCreatedAt, afterCreatedAt, beforeUpdatedAt, afterUpdatedAt, limit, cursor);
+    public Transactions listTransactions(String buyerExternalIdentifier, String buyerId, String cursor, Integer limit, Integer amountEq, Integer amountGte, Integer amountLte, OffsetDateTime createdAtGte, OffsetDateTime createdAtLte, List<String> currency, String externalIdentifier, Boolean hasRefunds, UUID id, List<String> metadata, List<String> method, List<UUID> paymentServiceId, String paymentServiceTransactionId, String search, List<String> status, OffsetDateTime updatedAtGte, OffsetDateTime updatedAtLte, OffsetDateTime beforeCreatedAt, OffsetDateTime afterCreatedAt, OffsetDateTime beforeUpdatedAt, OffsetDateTime afterUpdatedAt, String transactionStatus) throws ApiException {
+        ApiResponse<Transactions> localVarResp = listTransactionsWithHttpInfo(buyerExternalIdentifier, buyerId, cursor, limit, amountEq, amountGte, amountLte, createdAtGte, createdAtLte, currency, externalIdentifier, hasRefunds, id, metadata, method, paymentServiceId, paymentServiceTransactionId, search, status, updatedAtGte, updatedAtLte, beforeCreatedAt, afterCreatedAt, beforeUpdatedAt, afterUpdatedAt, transactionStatus);
         return localVarResp.getData();
     }
 
     /**
      * List transactions
      * Lists all transactions for an account. Sorted by last &#x60;updated_at&#x60; status.
-     * @param search Filters the transactions to only the items for which the &#x60;id&#x60; or &#x60;external_identifier&#x60; matches this value. This field allows for a partial match, matching any transaction for which either of the fields partially or completely matches. (optional)
-     * @param transactionStatus Filters the results to only the transactions for which the &#x60;status&#x60; matches this value. (optional)
-     * @param buyerId Filters the results to only the items for which the &#x60;buyer&#x60; has an &#x60;id&#x60; that matches this value. (optional)
      * @param buyerExternalIdentifier Filters the results to only the items for which the &#x60;buyer&#x60; has an &#x60;external_identifier&#x60; that matches this value. (optional)
-     * @param beforeCreatedAt Filters the results to only transactions created before this ISO date-time string. (optional)
-     * @param afterCreatedAt Filters the results to only transactions created after this ISO date-time string. (optional)
-     * @param beforeUpdatedAt Filters the results to only transactions last updated before this ISO date-time string. (optional)
-     * @param afterUpdatedAt Filters the results to only transactions last updated after this ISO date-time string. (optional)
-     * @param limit Defines the maximum number of items to return for this request. (optional, default to 20)
+     * @param buyerId Filters the results to only the items for which the &#x60;buyer&#x60; has an &#x60;id&#x60; that matches this value. (optional)
      * @param cursor A cursor that identifies the page of results to return. This is used to paginate the results of this API.  For the first page of results, this parameter can be left out. For additional pages, use the value returned by the API in the &#x60;next_cursor&#x60; field. Similarly the &#x60;previous_cursor&#x60; can be used to reverse backwards in the list. (optional)
+     * @param limit Defines the maximum number of items to return for this request. (optional, default to 20)
+     * @param amountEq Filters for transactions that have an &#x60;amount&#x60; that is equal to the provided &#x60;amount_eq&#x60; value. (optional)
+     * @param amountGte Filters for transactions that have an &#x60;amount&#x60; that is greater than or equal to the &#x60;amount_gte&#x60; value. (optional)
+     * @param amountLte Filters for transactions that have an &#x60;amount&#x60; that is less than or equal to the &#x60;amount_lte&#x60; value. (optional)
+     * @param createdAtGte Filters the results to only transactions created after this ISO date-time string. The time zone must be included.  Ensure that the date-time string is URL encoded, e.g. &#x60;2022-01-01T12:00:00+08:00&#x60; must be encoded as &#x60;2022-01-01T12%3A00%3A00%2B08%3A00&#x60;. (optional)
+     * @param createdAtLte Filters the results to only transactions created before this ISO date-time string. The time zone must be included.  Ensure that the date-time string is URL encoded, e.g. &#x60;2022-01-01T12:00:00+08:00&#x60; must be encoded as &#x60;2022-01-01T12%3A00%3A00%2B08%3A00&#x60;. (optional)
+     * @param currency Filters for transactions that have matching &#x60;currency&#x60; values. The &#x60;currency&#x60; values provided must be formatted as 3-letter ISO currency code. (optional)
+     * @param externalIdentifier Filters the results to only the items for which the &#x60;external_identifier&#x60; matches this value. (optional)
+     * @param hasRefunds When set to &#x60;true&#x60;, filter for transactions that have at least one refund in any state associated with it. When set to &#x60;false&#x60;, filter for transactions that have no refunds. (optional)
+     * @param id Filters for the transaction that has a matching &#x60;id&#x60; value. (optional)
+     * @param metadata Filters for transactions where their &#x60;metadata&#x60; values contain all of the provided &#x60;metadata&#x60; keys. The value sent for &#x60;metadata&#x60; must be formatted as a JSON string, and all keys and values must be strings. This value should also be URL encoded.  Duplicate keys are not supported. If a key is duplicated, only the last appearing value will be used. (optional)
+     * @param method Filters the results to only the items for which the &#x60;method&#x60; has been set to this value. (optional)
+     * @param paymentServiceId Filters for transactions that were processed by the provided &#x60;payment_service_id&#x60; values. (optional)
+     * @param paymentServiceTransactionId Filters for transactions that have a matching &#x60;payment_service_transaction_id&#x60; value. The &#x60;payment_service_transaction_id&#x60; is the identifier of the transaction given by the payment service. (optional)
+     * @param search Filters for transactions that have one of the following fields match exactly with the provided &#x60;search&#x60; value: * &#x60;buyer_external_identifier&#x60; * &#x60;buyer_id&#x60; * &#x60;external_identifier&#x60; * &#x60;id&#x60; * &#x60;payment_service_transaction_id&#x60; (optional)
+     * @param status Filters the results to only the transactions that have a &#x60;status&#x60; that matches with any of the provided status values. (optional)
+     * @param updatedAtGte Filters the results to only transactions last updated after this ISO date-time string. The time zone must be included.  Ensure that the date-time string is URL encoded, e.g. &#x60;2022-01-01T12:00:00+08:00&#x60; must be encoded as &#x60;2022-01-01T12%3A00%3A00%2B08%3A00&#x60;. (optional)
+     * @param updatedAtLte Filters the results to only transactions last updated before this ISO date-time string. The time zone must be included.  Ensure that the date-time string is URL encoded, e.g. &#x60;2022-01-01T12:00:00+08:00&#x60; must be encoded as &#x60;2022-01-01T12%3A00%3A00%2B08%3A00&#x60;. (optional)
+     * @param beforeCreatedAt Filters the results to only transactions created before this ISO date-time string. The time zone must be included.  Ensure that the date-time string is URL encoded, e.g. &#x60;2022-01-01T12:00:00+08:00&#x60; must be encoded as &#x60;2022-01-01T12%3A00%3A00%2B08%3A00&#x60;.  **WARNING** This filter is deprecated and may be removed eventually, use &#x60;created_at_lte&#x60; instead. (optional)
+     * @param afterCreatedAt Filters the results to only transactions created after this ISO date-time string. The time zone must be included.  Ensure that the date-time string is URL encoded, e.g. &#x60;2022-01-01T12:00:00+08:00&#x60; must be encoded as &#x60;2022-01-01T12%3A00%3A00%2B08%3A00&#x60;.  **WARNING** This filter is deprecated and may be removed eventually, use &#x60;created_at_gte&#x60; instead. (optional)
+     * @param beforeUpdatedAt Filters the results to only transactions last updated before this ISO date-time string. The time zone must be included.  Ensure that the date-time string is URL encoded, e.g. &#x60;2022-01-01T12:00:00+08:00&#x60; must be encoded as &#x60;2022-01-01T12%3A00%3A00%2B08%3A00&#x60;.  **WARNING** This filter is deprecated and may be removed eventually, use &#x60;updated_at_lte&#x60; instead. (optional)
+     * @param afterUpdatedAt Filters the results to only transactions last updated after this ISO date-time string. The time zone must be included.  Ensure that the date-time string is URL encoded, e.g. &#x60;2022-01-01T12:00:00+08:00&#x60; must be encoded as &#x60;2022-01-01T12%3A00%3A00%2B08%3A00&#x60;.  **WARNING** This filter is deprecated and may be removed eventually, use &#x60;updated_at_gte&#x60; instead. (optional)
+     * @param transactionStatus Filters the results to only the transactions for which the &#x60;status&#x60; matches this value.  **WARNING** This filter is deprecated and may be removed eventually, use &#x60;status&#x60; instead. (optional)
      * @return ApiResponse&lt;Transactions&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -841,8 +955,8 @@ public class TransactionsApi {
         <tr><td> 401 </td><td> Returns an error if no valid authentication was provided. </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<Transactions> listTransactionsWithHttpInfo(String search, String transactionStatus, String buyerId, String buyerExternalIdentifier, String beforeCreatedAt, String afterCreatedAt, String beforeUpdatedAt, String afterUpdatedAt, Integer limit, String cursor) throws ApiException {
-        okhttp3.Call localVarCall = listTransactionsValidateBeforeCall(search, transactionStatus, buyerId, buyerExternalIdentifier, beforeCreatedAt, afterCreatedAt, beforeUpdatedAt, afterUpdatedAt, limit, cursor, null);
+    public ApiResponse<Transactions> listTransactionsWithHttpInfo(String buyerExternalIdentifier, String buyerId, String cursor, Integer limit, Integer amountEq, Integer amountGte, Integer amountLte, OffsetDateTime createdAtGte, OffsetDateTime createdAtLte, List<String> currency, String externalIdentifier, Boolean hasRefunds, UUID id, List<String> metadata, List<String> method, List<UUID> paymentServiceId, String paymentServiceTransactionId, String search, List<String> status, OffsetDateTime updatedAtGte, OffsetDateTime updatedAtLte, OffsetDateTime beforeCreatedAt, OffsetDateTime afterCreatedAt, OffsetDateTime beforeUpdatedAt, OffsetDateTime afterUpdatedAt, String transactionStatus) throws ApiException {
+        okhttp3.Call localVarCall = listTransactionsValidateBeforeCall(buyerExternalIdentifier, buyerId, cursor, limit, amountEq, amountGte, amountLte, createdAtGte, createdAtLte, currency, externalIdentifier, hasRefunds, id, metadata, method, paymentServiceId, paymentServiceTransactionId, search, status, updatedAtGte, updatedAtLte, beforeCreatedAt, afterCreatedAt, beforeUpdatedAt, afterUpdatedAt, transactionStatus, null);
         Type localVarReturnType = new TypeToken<Transactions>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -850,16 +964,32 @@ public class TransactionsApi {
     /**
      * List transactions (asynchronously)
      * Lists all transactions for an account. Sorted by last &#x60;updated_at&#x60; status.
-     * @param search Filters the transactions to only the items for which the &#x60;id&#x60; or &#x60;external_identifier&#x60; matches this value. This field allows for a partial match, matching any transaction for which either of the fields partially or completely matches. (optional)
-     * @param transactionStatus Filters the results to only the transactions for which the &#x60;status&#x60; matches this value. (optional)
-     * @param buyerId Filters the results to only the items for which the &#x60;buyer&#x60; has an &#x60;id&#x60; that matches this value. (optional)
      * @param buyerExternalIdentifier Filters the results to only the items for which the &#x60;buyer&#x60; has an &#x60;external_identifier&#x60; that matches this value. (optional)
-     * @param beforeCreatedAt Filters the results to only transactions created before this ISO date-time string. (optional)
-     * @param afterCreatedAt Filters the results to only transactions created after this ISO date-time string. (optional)
-     * @param beforeUpdatedAt Filters the results to only transactions last updated before this ISO date-time string. (optional)
-     * @param afterUpdatedAt Filters the results to only transactions last updated after this ISO date-time string. (optional)
-     * @param limit Defines the maximum number of items to return for this request. (optional, default to 20)
+     * @param buyerId Filters the results to only the items for which the &#x60;buyer&#x60; has an &#x60;id&#x60; that matches this value. (optional)
      * @param cursor A cursor that identifies the page of results to return. This is used to paginate the results of this API.  For the first page of results, this parameter can be left out. For additional pages, use the value returned by the API in the &#x60;next_cursor&#x60; field. Similarly the &#x60;previous_cursor&#x60; can be used to reverse backwards in the list. (optional)
+     * @param limit Defines the maximum number of items to return for this request. (optional, default to 20)
+     * @param amountEq Filters for transactions that have an &#x60;amount&#x60; that is equal to the provided &#x60;amount_eq&#x60; value. (optional)
+     * @param amountGte Filters for transactions that have an &#x60;amount&#x60; that is greater than or equal to the &#x60;amount_gte&#x60; value. (optional)
+     * @param amountLte Filters for transactions that have an &#x60;amount&#x60; that is less than or equal to the &#x60;amount_lte&#x60; value. (optional)
+     * @param createdAtGte Filters the results to only transactions created after this ISO date-time string. The time zone must be included.  Ensure that the date-time string is URL encoded, e.g. &#x60;2022-01-01T12:00:00+08:00&#x60; must be encoded as &#x60;2022-01-01T12%3A00%3A00%2B08%3A00&#x60;. (optional)
+     * @param createdAtLte Filters the results to only transactions created before this ISO date-time string. The time zone must be included.  Ensure that the date-time string is URL encoded, e.g. &#x60;2022-01-01T12:00:00+08:00&#x60; must be encoded as &#x60;2022-01-01T12%3A00%3A00%2B08%3A00&#x60;. (optional)
+     * @param currency Filters for transactions that have matching &#x60;currency&#x60; values. The &#x60;currency&#x60; values provided must be formatted as 3-letter ISO currency code. (optional)
+     * @param externalIdentifier Filters the results to only the items for which the &#x60;external_identifier&#x60; matches this value. (optional)
+     * @param hasRefunds When set to &#x60;true&#x60;, filter for transactions that have at least one refund in any state associated with it. When set to &#x60;false&#x60;, filter for transactions that have no refunds. (optional)
+     * @param id Filters for the transaction that has a matching &#x60;id&#x60; value. (optional)
+     * @param metadata Filters for transactions where their &#x60;metadata&#x60; values contain all of the provided &#x60;metadata&#x60; keys. The value sent for &#x60;metadata&#x60; must be formatted as a JSON string, and all keys and values must be strings. This value should also be URL encoded.  Duplicate keys are not supported. If a key is duplicated, only the last appearing value will be used. (optional)
+     * @param method Filters the results to only the items for which the &#x60;method&#x60; has been set to this value. (optional)
+     * @param paymentServiceId Filters for transactions that were processed by the provided &#x60;payment_service_id&#x60; values. (optional)
+     * @param paymentServiceTransactionId Filters for transactions that have a matching &#x60;payment_service_transaction_id&#x60; value. The &#x60;payment_service_transaction_id&#x60; is the identifier of the transaction given by the payment service. (optional)
+     * @param search Filters for transactions that have one of the following fields match exactly with the provided &#x60;search&#x60; value: * &#x60;buyer_external_identifier&#x60; * &#x60;buyer_id&#x60; * &#x60;external_identifier&#x60; * &#x60;id&#x60; * &#x60;payment_service_transaction_id&#x60; (optional)
+     * @param status Filters the results to only the transactions that have a &#x60;status&#x60; that matches with any of the provided status values. (optional)
+     * @param updatedAtGte Filters the results to only transactions last updated after this ISO date-time string. The time zone must be included.  Ensure that the date-time string is URL encoded, e.g. &#x60;2022-01-01T12:00:00+08:00&#x60; must be encoded as &#x60;2022-01-01T12%3A00%3A00%2B08%3A00&#x60;. (optional)
+     * @param updatedAtLte Filters the results to only transactions last updated before this ISO date-time string. The time zone must be included.  Ensure that the date-time string is URL encoded, e.g. &#x60;2022-01-01T12:00:00+08:00&#x60; must be encoded as &#x60;2022-01-01T12%3A00%3A00%2B08%3A00&#x60;. (optional)
+     * @param beforeCreatedAt Filters the results to only transactions created before this ISO date-time string. The time zone must be included.  Ensure that the date-time string is URL encoded, e.g. &#x60;2022-01-01T12:00:00+08:00&#x60; must be encoded as &#x60;2022-01-01T12%3A00%3A00%2B08%3A00&#x60;.  **WARNING** This filter is deprecated and may be removed eventually, use &#x60;created_at_lte&#x60; instead. (optional)
+     * @param afterCreatedAt Filters the results to only transactions created after this ISO date-time string. The time zone must be included.  Ensure that the date-time string is URL encoded, e.g. &#x60;2022-01-01T12:00:00+08:00&#x60; must be encoded as &#x60;2022-01-01T12%3A00%3A00%2B08%3A00&#x60;.  **WARNING** This filter is deprecated and may be removed eventually, use &#x60;created_at_gte&#x60; instead. (optional)
+     * @param beforeUpdatedAt Filters the results to only transactions last updated before this ISO date-time string. The time zone must be included.  Ensure that the date-time string is URL encoded, e.g. &#x60;2022-01-01T12:00:00+08:00&#x60; must be encoded as &#x60;2022-01-01T12%3A00%3A00%2B08%3A00&#x60;.  **WARNING** This filter is deprecated and may be removed eventually, use &#x60;updated_at_lte&#x60; instead. (optional)
+     * @param afterUpdatedAt Filters the results to only transactions last updated after this ISO date-time string. The time zone must be included.  Ensure that the date-time string is URL encoded, e.g. &#x60;2022-01-01T12:00:00+08:00&#x60; must be encoded as &#x60;2022-01-01T12%3A00%3A00%2B08%3A00&#x60;.  **WARNING** This filter is deprecated and may be removed eventually, use &#x60;updated_at_gte&#x60; instead. (optional)
+     * @param transactionStatus Filters the results to only the transactions for which the &#x60;status&#x60; matches this value.  **WARNING** This filter is deprecated and may be removed eventually, use &#x60;status&#x60; instead. (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -870,9 +1000,9 @@ public class TransactionsApi {
         <tr><td> 401 </td><td> Returns an error if no valid authentication was provided. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call listTransactionsAsync(String search, String transactionStatus, String buyerId, String buyerExternalIdentifier, String beforeCreatedAt, String afterCreatedAt, String beforeUpdatedAt, String afterUpdatedAt, Integer limit, String cursor, final ApiCallback<Transactions> _callback) throws ApiException {
+    public okhttp3.Call listTransactionsAsync(String buyerExternalIdentifier, String buyerId, String cursor, Integer limit, Integer amountEq, Integer amountGte, Integer amountLte, OffsetDateTime createdAtGte, OffsetDateTime createdAtLte, List<String> currency, String externalIdentifier, Boolean hasRefunds, UUID id, List<String> metadata, List<String> method, List<UUID> paymentServiceId, String paymentServiceTransactionId, String search, List<String> status, OffsetDateTime updatedAtGte, OffsetDateTime updatedAtLte, OffsetDateTime beforeCreatedAt, OffsetDateTime afterCreatedAt, OffsetDateTime beforeUpdatedAt, OffsetDateTime afterUpdatedAt, String transactionStatus, final ApiCallback<Transactions> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = listTransactionsValidateBeforeCall(search, transactionStatus, buyerId, buyerExternalIdentifier, beforeCreatedAt, afterCreatedAt, beforeUpdatedAt, afterUpdatedAt, limit, cursor, _callback);
+        okhttp3.Call localVarCall = listTransactionsValidateBeforeCall(buyerExternalIdentifier, buyerId, cursor, limit, amountEq, amountGte, amountLte, createdAtGte, createdAtLte, currency, externalIdentifier, hasRefunds, id, metadata, method, paymentServiceId, paymentServiceTransactionId, search, status, updatedAtGte, updatedAtLte, beforeCreatedAt, afterCreatedAt, beforeUpdatedAt, afterUpdatedAt, transactionStatus, _callback);
         Type localVarReturnType = new TypeToken<Transactions>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;

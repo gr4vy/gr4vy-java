@@ -33,7 +33,7 @@ import org.threeten.bp.OffsetDateTime;
  * A transaction record.
  */
 @ApiModel(description = "A transaction record.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-05-30T12:22:53.235500Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-09-09T18:46:45.100086Z[Etc/UTC]")
 public class TransactionSummary {
   /**
    * The type of this resource. Is always &#x60;transaction&#x60;.
@@ -259,6 +259,8 @@ public class TransactionSummary {
     
     BANKED("banked"),
     
+    BITPAY("bitpay"),
+    
     BOLETO("boleto"),
     
     CARD("card"),
@@ -275,8 +277,6 @@ public class TransactionSummary {
     
     GOOGLEPAY("googlepay"),
     
-    GOOGLEPAY_PAN_ONLY("googlepay_pan_only"),
-    
     GRABPAY("grabpay"),
     
     KLARNA("klarna"),
@@ -290,6 +290,8 @@ public class TransactionSummary {
     PIX("pix"),
     
     RABBITLINEPAY("rabbitlinepay"),
+    
+    SCALAPAY("scalapay"),
     
     SHOPEEPAY("shopeepay"),
     
@@ -342,6 +344,14 @@ public class TransactionSummary {
   public static final String SERIALIZED_NAME_METHOD = "method";
   @SerializedName(SERIALIZED_NAME_METHOD)
   private MethodEnum method;
+
+  public static final String SERIALIZED_NAME_RAW_RESPONSE_CODE = "raw_response_code";
+  @SerializedName(SERIALIZED_NAME_RAW_RESPONSE_CODE)
+  private String rawResponseCode;
+
+  public static final String SERIALIZED_NAME_RAW_RESPONSE_DESCRIPTION = "raw_response_description";
+  @SerializedName(SERIALIZED_NAME_RAW_RESPONSE_DESCRIPTION)
+  private String rawResponseDescription;
 
 
   public TransactionSummary type(TypeEnum type) {
@@ -718,6 +728,52 @@ public class TransactionSummary {
   }
 
 
+  public TransactionSummary rawResponseCode(String rawResponseCode) {
+    
+    this.rawResponseCode = rawResponseCode;
+    return this;
+  }
+
+   /**
+   * This is the response code received from the payment service. This can be set to any value and is not standardized across different payment services.
+   * @return rawResponseCode
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "incorrect-zip", value = "This is the response code received from the payment service. This can be set to any value and is not standardized across different payment services.")
+
+  public String getRawResponseCode() {
+    return rawResponseCode;
+  }
+
+
+  public void setRawResponseCode(String rawResponseCode) {
+    this.rawResponseCode = rawResponseCode;
+  }
+
+
+  public TransactionSummary rawResponseDescription(String rawResponseDescription) {
+    
+    this.rawResponseDescription = rawResponseDescription;
+    return this;
+  }
+
+   /**
+   * This is the response description received from the payment service. This can be set to any value and is not standardized across different payment services.
+   * @return rawResponseDescription
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "The card's postal code is incorrect. Check the card's postal code or use a different card.", value = "This is the response description received from the payment service. This can be set to any value and is not standardized across different payment services.")
+
+  public String getRawResponseDescription() {
+    return rawResponseDescription;
+  }
+
+
+  public void setRawResponseDescription(String rawResponseDescription) {
+    this.rawResponseDescription = rawResponseDescription;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -742,12 +798,14 @@ public class TransactionSummary {
         Objects.equals(this.externalIdentifier, transactionSummary.externalIdentifier) &&
         Objects.equals(this.updatedAt, transactionSummary.updatedAt) &&
         Objects.equals(this.paymentService, transactionSummary.paymentService) &&
-        Objects.equals(this.method, transactionSummary.method);
+        Objects.equals(this.method, transactionSummary.method) &&
+        Objects.equals(this.rawResponseCode, transactionSummary.rawResponseCode) &&
+        Objects.equals(this.rawResponseDescription, transactionSummary.rawResponseDescription);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(type, id, status, intent, amount, capturedAmount, refundedAmount, currency, country, paymentMethod, buyer, createdAt, externalIdentifier, updatedAt, paymentService, method);
+    return Objects.hash(type, id, status, intent, amount, capturedAmount, refundedAmount, currency, country, paymentMethod, buyer, createdAt, externalIdentifier, updatedAt, paymentService, method, rawResponseCode, rawResponseDescription);
   }
 
   @Override
@@ -770,6 +828,8 @@ public class TransactionSummary {
     sb.append("    updatedAt: ").append(toIndentedString(updatedAt)).append("\n");
     sb.append("    paymentService: ").append(toIndentedString(paymentService)).append("\n");
     sb.append("    method: ").append(toIndentedString(method)).append("\n");
+    sb.append("    rawResponseCode: ").append(toIndentedString(rawResponseCode)).append("\n");
+    sb.append("    rawResponseDescription: ").append(toIndentedString(rawResponseDescription)).append("\n");
     sb.append("}");
     return sb.toString();
   }

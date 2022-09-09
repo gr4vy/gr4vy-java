@@ -40,7 +40,7 @@ import org.threeten.bp.OffsetDateTime;
  * A transaction record.
  */
 @ApiModel(description = "A transaction record.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-05-30T12:22:53.235500Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-09-09T18:46:45.100086Z[Etc/UTC]")
 public class Transaction {
   /**
    * The type of this resource. Is always &#x60;transaction&#x60;.
@@ -463,6 +463,8 @@ public class Transaction {
     
     BANKED("banked"),
     
+    BITPAY("bitpay"),
+    
     BOLETO("boleto"),
     
     CARD("card"),
@@ -479,8 +481,6 @@ public class Transaction {
     
     GOOGLEPAY("googlepay"),
     
-    GOOGLEPAY_PAN_ONLY("googlepay_pan_only"),
-    
     GRABPAY("grabpay"),
     
     KLARNA("klarna"),
@@ -494,6 +494,8 @@ public class Transaction {
     PIX("pix"),
     
     RABBITLINEPAY("rabbitlinepay"),
+    
+    SCALAPAY("scalapay"),
     
     SHOPEEPAY("shopeepay"),
     
@@ -558,6 +560,18 @@ public class Transaction {
   public static final String SERIALIZED_NAME_THREE_D_SECURE = "three_d_secure";
   @SerializedName(SERIALIZED_NAME_THREE_D_SECURE)
   private ThreeDSecureSummary threeDSecure;
+
+  public static final String SERIALIZED_NAME_AUTHORIZED_AT = "authorized_at";
+  @SerializedName(SERIALIZED_NAME_AUTHORIZED_AT)
+  private OffsetDateTime authorizedAt;
+
+  public static final String SERIALIZED_NAME_CAPTURED_AT = "captured_at";
+  @SerializedName(SERIALIZED_NAME_CAPTURED_AT)
+  private OffsetDateTime capturedAt;
+
+  public static final String SERIALIZED_NAME_VOIDED_AT = "voided_at";
+  @SerializedName(SERIALIZED_NAME_VOIDED_AT)
+  private OffsetDateTime voidedAt;
 
 
   public Transaction type(TypeEnum type) {
@@ -1249,6 +1263,75 @@ public class Transaction {
   }
 
 
+  public Transaction authorizedAt(OffsetDateTime authorizedAt) {
+    
+    this.authorizedAt = authorizedAt;
+    return this;
+  }
+
+   /**
+   * The date and time when this transaction was authorized in the payment service.  Don&#39;t use this field to determine whether the transaction was authorized. A &#x60;null&#x60; value doesn&#39;t necessarily imply that the transaction wasn&#39;t authorized, it can mean that the payment service doesn&#39;t provide this value, that it didn&#39;t provide it at the time the transaction was authorized or that the transaction was authorized before the introduction of this field.
+   * @return authorizedAt
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "2013-07-16T19:23Z", value = "The date and time when this transaction was authorized in the payment service.  Don't use this field to determine whether the transaction was authorized. A `null` value doesn't necessarily imply that the transaction wasn't authorized, it can mean that the payment service doesn't provide this value, that it didn't provide it at the time the transaction was authorized or that the transaction was authorized before the introduction of this field.")
+
+  public OffsetDateTime getAuthorizedAt() {
+    return authorizedAt;
+  }
+
+
+  public void setAuthorizedAt(OffsetDateTime authorizedAt) {
+    this.authorizedAt = authorizedAt;
+  }
+
+
+  public Transaction capturedAt(OffsetDateTime capturedAt) {
+    
+    this.capturedAt = capturedAt;
+    return this;
+  }
+
+   /**
+   * The date and time when this transaction was captured in the payment service.  Don&#39;t use this field to determine whether the transaction was captured. A &#x60;null&#x60; value doesn&#39;t necessarily imply that the transaction wasn&#39;t captured, it can mean that the payment service doesn&#39;t provide this value, that it didn&#39;t provide it at the time the transaction was captured or that the transaction was captured before the introduction of this field.
+   * @return capturedAt
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "2013-07-16T19:23Z", value = "The date and time when this transaction was captured in the payment service.  Don't use this field to determine whether the transaction was captured. A `null` value doesn't necessarily imply that the transaction wasn't captured, it can mean that the payment service doesn't provide this value, that it didn't provide it at the time the transaction was captured or that the transaction was captured before the introduction of this field.")
+
+  public OffsetDateTime getCapturedAt() {
+    return capturedAt;
+  }
+
+
+  public void setCapturedAt(OffsetDateTime capturedAt) {
+    this.capturedAt = capturedAt;
+  }
+
+
+  public Transaction voidedAt(OffsetDateTime voidedAt) {
+    
+    this.voidedAt = voidedAt;
+    return this;
+  }
+
+   /**
+   * The date and time when this transaction was voided in the payment service.  Don&#39;t use this field to determine whether the transaction was voided. A &#x60;null&#x60; value doesn&#39;t necessarily imply that the transaction wasn&#39;t voided, it can mean that the payment service doesn&#39;t provide this value, that it didn&#39;t provide it at the time the transaction was voided or that the transaction was voided before the introduction of this field.
+   * @return voidedAt
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "2013-07-16T19:23Z", value = "The date and time when this transaction was voided in the payment service.  Don't use this field to determine whether the transaction was voided. A `null` value doesn't necessarily imply that the transaction wasn't voided, it can mean that the payment service doesn't provide this value, that it didn't provide it at the time the transaction was voided or that the transaction was voided before the introduction of this field.")
+
+  public OffsetDateTime getVoidedAt() {
+    return voidedAt;
+  }
+
+
+  public void setVoidedAt(OffsetDateTime voidedAt) {
+    this.voidedAt = voidedAt;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -1286,12 +1369,15 @@ public class Transaction {
         Objects.equals(this.method, transaction.method) &&
         Objects.equals(this.paymentServiceTransactionId, transaction.paymentServiceTransactionId) &&
         Objects.equals(this.metadata, transaction.metadata) &&
-        Objects.equals(this.threeDSecure, transaction.threeDSecure);
+        Objects.equals(this.threeDSecure, transaction.threeDSecure) &&
+        Objects.equals(this.authorizedAt, transaction.authorizedAt) &&
+        Objects.equals(this.capturedAt, transaction.capturedAt) &&
+        Objects.equals(this.voidedAt, transaction.voidedAt);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(type, id, status, intent, amount, capturedAmount, refundedAmount, currency, country, paymentMethod, buyer, createdAt, externalIdentifier, updatedAt, paymentService, merchantInitiated, paymentSource, isSubsequentPayment, statementDescriptor, cartItems, schemeTransactionId, rawResponseCode, rawResponseDescription, avsResponseCode, cvvResponseCode, method, paymentServiceTransactionId, metadata, threeDSecure);
+    return Objects.hash(type, id, status, intent, amount, capturedAmount, refundedAmount, currency, country, paymentMethod, buyer, createdAt, externalIdentifier, updatedAt, paymentService, merchantInitiated, paymentSource, isSubsequentPayment, statementDescriptor, cartItems, schemeTransactionId, rawResponseCode, rawResponseDescription, avsResponseCode, cvvResponseCode, method, paymentServiceTransactionId, metadata, threeDSecure, authorizedAt, capturedAt, voidedAt);
   }
 
   @Override
@@ -1327,6 +1413,9 @@ public class Transaction {
     sb.append("    paymentServiceTransactionId: ").append(toIndentedString(paymentServiceTransactionId)).append("\n");
     sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
     sb.append("    threeDSecure: ").append(toIndentedString(threeDSecure)).append("\n");
+    sb.append("    authorizedAt: ").append(toIndentedString(authorizedAt)).append("\n");
+    sb.append("    capturedAt: ").append(toIndentedString(capturedAt)).append("\n");
+    sb.append("    voidedAt: ").append(toIndentedString(voidedAt)).append("\n");
     sb.append("}");
     return sb.toString();
   }

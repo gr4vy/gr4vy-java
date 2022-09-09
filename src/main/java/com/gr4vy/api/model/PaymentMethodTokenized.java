@@ -29,7 +29,7 @@ import java.util.UUID;
  * A mini format version of a payment method.
  */
 @ApiModel(description = "A mini format version of a payment method.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-05-30T12:22:53.235500Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-09-09T18:46:45.100086Z[Etc/UTC]")
 public class PaymentMethodTokenized {
   /**
    * &#x60;payment-method&#x60;.
@@ -97,29 +97,31 @@ public class PaymentMethodTokenized {
    */
   @JsonAdapter(SchemeEnum.Adapter.class)
   public enum SchemeEnum {
-    VISA("visa"),
+    AMEX("amex"),
     
-    MASTERCARD("mastercard"),
-    
-    AMERICAN_EXPRESS("american-express"),
+    DANKORT("dankort"),
     
     DINERS_CLUB("diners-club"),
     
     DISCOVER("discover"),
     
-    JCB("jcb"),
-    
-    UNIONPAY("unionpay"),
-    
-    MAESTRO("maestro"),
+    EFTPOS_AUSTRALIA("eftpos-australia"),
     
     ELO("elo"),
     
-    MIR("mir"),
+    JCB("jcb"),
     
-    HIPER("hiper"),
+    MAESTRO("maestro"),
     
-    HIPERCARD("hipercard");
+    MASTERCARD("mastercard"),
+    
+    OTHER("other"),
+    
+    RUPAY("rupay"),
+    
+    UNIONPAY("unionpay"),
+    
+    VISA("visa");
 
     private String value;
 
@@ -166,6 +168,57 @@ public class PaymentMethodTokenized {
   public static final String SERIALIZED_NAME_EXPIRATION_DATE = "expiration_date";
   @SerializedName(SERIALIZED_NAME_EXPIRATION_DATE)
   private String expirationDate;
+
+  /**
+   * The browser target that an approval URL must be opened in. If &#x60;any&#x60; or &#x60;null&#x60;, then there is no specific requirement.
+   */
+  @JsonAdapter(ApprovalTargetEnum.Adapter.class)
+  public enum ApprovalTargetEnum {
+    ANY("any"),
+    
+    NEW_WINDOW("new_window");
+
+    private String value;
+
+    ApprovalTargetEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static ApprovalTargetEnum fromValue(String value) {
+      for (ApprovalTargetEnum b : ApprovalTargetEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      return null;
+    }
+
+    public static class Adapter extends TypeAdapter<ApprovalTargetEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final ApprovalTargetEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public ApprovalTargetEnum read(final JsonReader jsonReader) throws IOException {
+        String value =  jsonReader.nextString();
+        return ApprovalTargetEnum.fromValue(value);
+      }
+    }
+  }
+
+  public static final String SERIALIZED_NAME_APPROVAL_TARGET = "approval_target";
+  @SerializedName(SERIALIZED_NAME_APPROVAL_TARGET)
+  private ApprovalTargetEnum approvalTarget;
 
   public static final String SERIALIZED_NAME_APPROVAL_URL = "approval_url";
   @SerializedName(SERIALIZED_NAME_APPROVAL_URL)
@@ -318,6 +371,29 @@ public class PaymentMethodTokenized {
   }
 
 
+  public PaymentMethodTokenized approvalTarget(ApprovalTargetEnum approvalTarget) {
+    
+    this.approvalTarget = approvalTarget;
+    return this;
+  }
+
+   /**
+   * The browser target that an approval URL must be opened in. If &#x60;any&#x60; or &#x60;null&#x60;, then there is no specific requirement.
+   * @return approvalTarget
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "any", value = "The browser target that an approval URL must be opened in. If `any` or `null`, then there is no specific requirement.")
+
+  public ApprovalTargetEnum getApprovalTarget() {
+    return approvalTarget;
+  }
+
+
+  public void setApprovalTarget(ApprovalTargetEnum approvalTarget) {
+    this.approvalTarget = approvalTarget;
+  }
+
+
   public PaymentMethodTokenized approvalUrl(String approvalUrl) {
     
     this.approvalUrl = approvalUrl;
@@ -402,6 +478,7 @@ public class PaymentMethodTokenized {
         Objects.equals(this.label, paymentMethodTokenized.label) &&
         Objects.equals(this.scheme, paymentMethodTokenized.scheme) &&
         Objects.equals(this.expirationDate, paymentMethodTokenized.expirationDate) &&
+        Objects.equals(this.approvalTarget, paymentMethodTokenized.approvalTarget) &&
         Objects.equals(this.approvalUrl, paymentMethodTokenized.approvalUrl) &&
         Objects.equals(this.currency, paymentMethodTokenized.currency) &&
         Objects.equals(this.country, paymentMethodTokenized.country);
@@ -409,7 +486,7 @@ public class PaymentMethodTokenized {
 
   @Override
   public int hashCode() {
-    return Objects.hash(type, id, method, label, scheme, expirationDate, approvalUrl, currency, country);
+    return Objects.hash(type, id, method, label, scheme, expirationDate, approvalTarget, approvalUrl, currency, country);
   }
 
   @Override
@@ -422,6 +499,7 @@ public class PaymentMethodTokenized {
     sb.append("    label: ").append(toIndentedString(label)).append("\n");
     sb.append("    scheme: ").append(toIndentedString(scheme)).append("\n");
     sb.append("    expirationDate: ").append(toIndentedString(expirationDate)).append("\n");
+    sb.append("    approvalTarget: ").append(toIndentedString(approvalTarget)).append("\n");
     sb.append("    approvalUrl: ").append(toIndentedString(approvalUrl)).append("\n");
     sb.append("    currency: ").append(toIndentedString(currency)).append("\n");
     sb.append("    country: ").append(toIndentedString(country)).append("\n");

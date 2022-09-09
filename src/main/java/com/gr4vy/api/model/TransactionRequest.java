@@ -37,7 +37,7 @@ import java.util.Map;
  * A request to create a transaction.
  */
 @ApiModel(description = "A request to create a transaction.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-05-30T12:22:53.235500Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-09-09T18:46:45.100086Z[Etc/UTC]")
 public class TransactionRequest {
   public static final String SERIALIZED_NAME_AMOUNT = "amount";
   @SerializedName(SERIALIZED_NAME_AMOUNT)
@@ -235,10 +235,10 @@ public class TransactionRequest {
   }
 
    /**
-   * A supported ISO-4217 currency code.
+   * A supported ISO-4217 currency code.  For redirect requests, this value must match the one specified for &#x60;currency&#x60; in &#x60;payment_method&#x60;. 
    * @return currency
   **/
-  @ApiModelProperty(example = "USD", required = true, value = "A supported ISO-4217 currency code.")
+  @ApiModelProperty(example = "USD", required = true, value = "A supported ISO-4217 currency code.  For redirect requests, this value must match the one specified for `currency` in `payment_method`. ")
 
   public String getCurrency() {
     return currency;
@@ -257,11 +257,11 @@ public class TransactionRequest {
   }
 
    /**
-   * The 2-letter ISO code of the country of the transaction. This is used to filter the payment services that is used to process the transaction. 
+   * The 2-letter ISO code of the country of the transaction. This is used to filter the payment services that is used to process the transaction.  If this value is provided for redirect requests and it&#39;s not &#x60;null&#x60;, it must match the one specified for &#x60;country&#x60; in &#x60;payment_method&#x60;. Otherwise, the value specified for &#x60;country&#x60; in &#x60;payment_method&#x60; will be assumed implicitly. 
    * @return country
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "US", value = "The 2-letter ISO code of the country of the transaction. This is used to filter the payment services that is used to process the transaction. ")
+  @ApiModelProperty(example = "US", value = "The 2-letter ISO code of the country of the transaction. This is used to filter the payment services that is used to process the transaction.  If this value is provided for redirect requests and it's not `null`, it must match the one specified for `country` in `payment_method`. Otherwise, the value specified for `country` in `payment_method` will be assumed implicitly. ")
 
   public String getCountry() {
     return country;

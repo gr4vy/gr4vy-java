@@ -20,6 +20,7 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import com.gr4vy.api.model.PaymentMethodDetailsCard;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
@@ -29,7 +30,7 @@ import java.util.UUID;
  * Snapshot of a payment method, as used when embedded inside other resources.
  */
 @ApiModel(description = "Snapshot of a payment method, as used when embedded inside other resources.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-05-30T12:22:53.235500Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-09-09T18:46:45.100086Z[Etc/UTC]")
 public class PaymentMethodSnapshot {
   /**
    * &#x60;payment-method&#x60;.
@@ -104,6 +105,57 @@ public class PaymentMethodSnapshot {
   @SerializedName(SERIALIZED_NAME_EXPIRATION_DATE)
   private String expirationDate;
 
+  /**
+   * The browser target that an approval URL must be opened in. If &#x60;any&#x60; or &#x60;null&#x60;, then there is no specific requirement.
+   */
+  @JsonAdapter(ApprovalTargetEnum.Adapter.class)
+  public enum ApprovalTargetEnum {
+    ANY("any"),
+    
+    NEW_WINDOW("new_window");
+
+    private String value;
+
+    ApprovalTargetEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static ApprovalTargetEnum fromValue(String value) {
+      for (ApprovalTargetEnum b : ApprovalTargetEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      return null;
+    }
+
+    public static class Adapter extends TypeAdapter<ApprovalTargetEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final ApprovalTargetEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public ApprovalTargetEnum read(final JsonReader jsonReader) throws IOException {
+        String value =  jsonReader.nextString();
+        return ApprovalTargetEnum.fromValue(value);
+      }
+    }
+  }
+
+  public static final String SERIALIZED_NAME_APPROVAL_TARGET = "approval_target";
+  @SerializedName(SERIALIZED_NAME_APPROVAL_TARGET)
+  private ApprovalTargetEnum approvalTarget;
+
   public static final String SERIALIZED_NAME_APPROVAL_URL = "approval_url";
   @SerializedName(SERIALIZED_NAME_APPROVAL_URL)
   private String approvalUrl;
@@ -115,6 +167,10 @@ public class PaymentMethodSnapshot {
   public static final String SERIALIZED_NAME_COUNTRY = "country";
   @SerializedName(SERIALIZED_NAME_COUNTRY)
   private String country;
+
+  public static final String SERIALIZED_NAME_DETAILS = "details";
+  @SerializedName(SERIALIZED_NAME_DETAILS)
+  private PaymentMethodDetailsCard details;
 
 
   public PaymentMethodSnapshot type(TypeEnum type) {
@@ -278,6 +334,29 @@ public class PaymentMethodSnapshot {
   }
 
 
+  public PaymentMethodSnapshot approvalTarget(ApprovalTargetEnum approvalTarget) {
+    
+    this.approvalTarget = approvalTarget;
+    return this;
+  }
+
+   /**
+   * The browser target that an approval URL must be opened in. If &#x60;any&#x60; or &#x60;null&#x60;, then there is no specific requirement.
+   * @return approvalTarget
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "any", value = "The browser target that an approval URL must be opened in. If `any` or `null`, then there is no specific requirement.")
+
+  public ApprovalTargetEnum getApprovalTarget() {
+    return approvalTarget;
+  }
+
+
+  public void setApprovalTarget(ApprovalTargetEnum approvalTarget) {
+    this.approvalTarget = approvalTarget;
+  }
+
+
   public PaymentMethodSnapshot approvalUrl(String approvalUrl) {
     
     this.approvalUrl = approvalUrl;
@@ -347,6 +426,29 @@ public class PaymentMethodSnapshot {
   }
 
 
+  public PaymentMethodSnapshot details(PaymentMethodDetailsCard details) {
+    
+    this.details = details;
+    return this;
+  }
+
+   /**
+   * Get details
+   * @return details
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public PaymentMethodDetailsCard getDetails() {
+    return details;
+  }
+
+
+  public void setDetails(PaymentMethodDetailsCard details) {
+    this.details = details;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -363,14 +465,16 @@ public class PaymentMethodSnapshot {
         Objects.equals(this.label, paymentMethodSnapshot.label) &&
         Objects.equals(this.scheme, paymentMethodSnapshot.scheme) &&
         Objects.equals(this.expirationDate, paymentMethodSnapshot.expirationDate) &&
+        Objects.equals(this.approvalTarget, paymentMethodSnapshot.approvalTarget) &&
         Objects.equals(this.approvalUrl, paymentMethodSnapshot.approvalUrl) &&
         Objects.equals(this.currency, paymentMethodSnapshot.currency) &&
-        Objects.equals(this.country, paymentMethodSnapshot.country);
+        Objects.equals(this.country, paymentMethodSnapshot.country) &&
+        Objects.equals(this.details, paymentMethodSnapshot.details);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(type, id, method, externalIdentifier, label, scheme, expirationDate, approvalUrl, currency, country);
+    return Objects.hash(type, id, method, externalIdentifier, label, scheme, expirationDate, approvalTarget, approvalUrl, currency, country, details);
   }
 
   @Override
@@ -384,9 +488,11 @@ public class PaymentMethodSnapshot {
     sb.append("    label: ").append(toIndentedString(label)).append("\n");
     sb.append("    scheme: ").append(toIndentedString(scheme)).append("\n");
     sb.append("    expirationDate: ").append(toIndentedString(expirationDate)).append("\n");
+    sb.append("    approvalTarget: ").append(toIndentedString(approvalTarget)).append("\n");
     sb.append("    approvalUrl: ").append(toIndentedString(approvalUrl)).append("\n");
     sb.append("    currency: ").append(toIndentedString(currency)).append("\n");
     sb.append("    country: ").append(toIndentedString(country)).append("\n");
+    sb.append("    details: ").append(toIndentedString(details)).append("\n");
     sb.append("}");
     return sb.toString();
   }

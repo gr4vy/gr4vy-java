@@ -20,6 +20,7 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import com.gr4vy.api.model.PaymentServiceDefinitionConfiguration;
 import com.gr4vy.api.model.PaymentServiceDefinitionFields;
 import com.gr4vy.api.model.PaymentServiceDefinitionSupportedFeatures;
 import io.swagger.annotations.ApiModel;
@@ -32,7 +33,7 @@ import java.util.List;
  * An available payment service that can be configured.
  */
 @ApiModel(description = "An available payment service that can be configured.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-05-30T12:22:53.235500Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-09-09T18:46:45.100086Z[Etc/UTC]")
 public class PaymentServiceDefinition {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -73,6 +74,10 @@ public class PaymentServiceDefinition {
   public static final String SERIALIZED_NAME_ICON_URL = "icon_url";
   @SerializedName(SERIALIZED_NAME_ICON_URL)
   private String iconUrl;
+
+  public static final String SERIALIZED_NAME_CONFIGURATION = "configuration";
+  @SerializedName(SERIALIZED_NAME_CONFIGURATION)
+  private PaymentServiceDefinitionConfiguration _configuration;
 
 
   public PaymentServiceDefinition id(String id) {
@@ -329,6 +334,29 @@ public class PaymentServiceDefinition {
   }
 
 
+  public PaymentServiceDefinition _configuration(PaymentServiceDefinitionConfiguration _configuration) {
+    
+    this._configuration = _configuration;
+    return this;
+  }
+
+   /**
+   * Get _configuration
+   * @return _configuration
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public PaymentServiceDefinitionConfiguration getConfiguration() {
+    return _configuration;
+  }
+
+
+  public void setConfiguration(PaymentServiceDefinitionConfiguration _configuration) {
+    this._configuration = _configuration;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -347,12 +375,13 @@ public class PaymentServiceDefinition {
         Objects.equals(this.supportedCountries, paymentServiceDefinition.supportedCountries) &&
         Objects.equals(this.mode, paymentServiceDefinition.mode) &&
         Objects.equals(this.supportedFeatures, paymentServiceDefinition.supportedFeatures) &&
-        Objects.equals(this.iconUrl, paymentServiceDefinition.iconUrl);
+        Objects.equals(this.iconUrl, paymentServiceDefinition.iconUrl) &&
+        Objects.equals(this._configuration, paymentServiceDefinition._configuration);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, type, displayName, method, fields, supportedCurrencies, supportedCountries, mode, supportedFeatures, iconUrl);
+    return Objects.hash(id, type, displayName, method, fields, supportedCurrencies, supportedCountries, mode, supportedFeatures, iconUrl, _configuration);
   }
 
   @Override
@@ -369,6 +398,7 @@ public class PaymentServiceDefinition {
     sb.append("    mode: ").append(toIndentedString(mode)).append("\n");
     sb.append("    supportedFeatures: ").append(toIndentedString(supportedFeatures)).append("\n");
     sb.append("    iconUrl: ").append(toIndentedString(iconUrl)).append("\n");
+    sb.append("    _configuration: ").append(toIndentedString(_configuration)).append("\n");
     sb.append("}");
     return sb.toString();
   }
