@@ -29,7 +29,7 @@ import java.io.IOException;
  * Details about the 3-D Secure challenge that was presented to the buyer for this transaction, where applicable.
  */
 @ApiModel(description = "Details about the 3-D Secure challenge that was presented to the buyer for this transaction, where applicable.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-05-30T12:22:53.235500Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-09-09T18:46:45.100086Z[Etc/UTC]")
 public class ThreeDSecureSummary {
   public static final String SERIALIZED_NAME_VERSION = "version";
   @SerializedName(SERIALIZED_NAME_VERSION)

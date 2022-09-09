@@ -29,7 +29,7 @@ import java.util.UUID;
  * Card details to use in a transaction or to register a new payment method.
  */
 @ApiModel(description = "Card details to use in a transaction or to register a new payment method.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-05-30T12:22:53.235500Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-09-09T18:46:45.100086Z[Etc/UTC]")
 public class CardRequest {
   /**
    * &#x60;card&#x60;.
@@ -134,10 +134,10 @@ public class CardRequest {
   }
 
    /**
-   * The 15-16 digit number for this card as it can be found on the front of the card.
+   * The 13-19 digit number for this card as it can be found on the front of the card.
    * @return number
   **/
-  @ApiModelProperty(example = "4111111111111111", required = true, value = "The 15-16 digit number for this card as it can be found on the front of the card.")
+  @ApiModelProperty(example = "4111111111111111", required = true, value = "The 13-19 digit number for this card as it can be found on the front of the card.")
 
   public String getNumber() {
     return number;

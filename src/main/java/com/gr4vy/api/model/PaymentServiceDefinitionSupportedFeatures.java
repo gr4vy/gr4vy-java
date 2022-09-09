@@ -28,8 +28,20 @@ import java.io.IOException;
  * Features supported by the payment definition.
  */
 @ApiModel(description = "Features supported by the payment definition.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-05-30T12:22:53.235500Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-09-09T18:46:45.100086Z[Etc/UTC]")
 public class PaymentServiceDefinitionSupportedFeatures {
+  public static final String SERIALIZED_NAME_DELAYED_CAPTURE = "delayed_capture";
+  @SerializedName(SERIALIZED_NAME_DELAYED_CAPTURE)
+  private Boolean delayedCapture;
+
+  public static final String SERIALIZED_NAME_NETWORK_TOKENS = "network_tokens";
+  @SerializedName(SERIALIZED_NAME_NETWORK_TOKENS)
+  private Boolean networkTokens;
+
+  public static final String SERIALIZED_NAME_PARTIAL_REFUNDS = "partial_refunds";
+  @SerializedName(SERIALIZED_NAME_PARTIAL_REFUNDS)
+  private Boolean partialRefunds;
+
   public static final String SERIALIZED_NAME_PAYMENT_METHOD_TOKENIZATION = "payment_method_tokenization";
   @SerializedName(SERIALIZED_NAME_PAYMENT_METHOD_TOKENIZATION)
   private Boolean paymentMethodTokenization;
@@ -37,6 +49,10 @@ public class PaymentServiceDefinitionSupportedFeatures {
   public static final String SERIALIZED_NAME_PAYMENT_METHOD_TOKENIZATION_TOGGLE = "payment_method_tokenization_toggle";
   @SerializedName(SERIALIZED_NAME_PAYMENT_METHOD_TOKENIZATION_TOGGLE)
   private Boolean paymentMethodTokenizationToggle;
+
+  public static final String SERIALIZED_NAME_REFUNDS = "refunds";
+  @SerializedName(SERIALIZED_NAME_REFUNDS)
+  private Boolean refunds;
 
   public static final String SERIALIZED_NAME_THREE_D_SECURE_HOSTED = "three_d_secure_hosted";
   @SerializedName(SERIALIZED_NAME_THREE_D_SECURE_HOSTED)
@@ -46,10 +62,6 @@ public class PaymentServiceDefinitionSupportedFeatures {
   @SerializedName(SERIALIZED_NAME_THREE_D_SECURE_PASS_THROUGH)
   private Boolean threeDSecurePassThrough;
 
-  public static final String SERIALIZED_NAME_NETWORK_TOKENS = "network_tokens";
-  @SerializedName(SERIALIZED_NAME_NETWORK_TOKENS)
-  private Boolean networkTokens;
-
   public static final String SERIALIZED_NAME_VERIFY_CREDENTIALS = "verify_credentials";
   @SerializedName(SERIALIZED_NAME_VERIFY_CREDENTIALS)
   private Boolean verifyCredentials;
@@ -58,13 +70,74 @@ public class PaymentServiceDefinitionSupportedFeatures {
   @SerializedName(SERIALIZED_NAME_VOID)
   private Boolean _void;
 
-  public static final String SERIALIZED_NAME_REFUNDS = "refunds";
-  @SerializedName(SERIALIZED_NAME_REFUNDS)
-  private Boolean refunds;
 
-  public static final String SERIALIZED_NAME_PARTIAL_REFUNDS = "partial_refunds";
-  @SerializedName(SERIALIZED_NAME_PARTIAL_REFUNDS)
-  private Boolean partialRefunds;
+  public PaymentServiceDefinitionSupportedFeatures delayedCapture(Boolean delayedCapture) {
+    
+    this.delayedCapture = delayedCapture;
+    return this;
+  }
+
+   /**
+   * Supports [capturing](#operation/capture-transaction) authorized transactions.
+   * @return delayedCapture
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "false", value = "Supports [capturing](#operation/capture-transaction) authorized transactions.")
+
+  public Boolean getDelayedCapture() {
+    return delayedCapture;
+  }
+
+
+  public void setDelayedCapture(Boolean delayedCapture) {
+    this.delayedCapture = delayedCapture;
+  }
+
+
+  public PaymentServiceDefinitionSupportedFeatures networkTokens(Boolean networkTokens) {
+    
+    this.networkTokens = networkTokens;
+    return this;
+  }
+
+   /**
+   * Supports passing decrypted digital wallet (e.g. Apple Pay) tokens to the underlying processor.
+   * @return networkTokens
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "false", value = "Supports passing decrypted digital wallet (e.g. Apple Pay) tokens to the underlying processor.")
+
+  public Boolean getNetworkTokens() {
+    return networkTokens;
+  }
+
+
+  public void setNetworkTokens(Boolean networkTokens) {
+    this.networkTokens = networkTokens;
+  }
+
+
+  public PaymentServiceDefinitionSupportedFeatures partialRefunds(Boolean partialRefunds) {
+    
+    this.partialRefunds = partialRefunds;
+    return this;
+  }
+
+   /**
+   * Supports [partially refunding](#operation/refund-transaction) captured transactions.
+   * @return partialRefunds
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "false", value = "Supports [partially refunding](#operation/refund-transaction) captured transactions.")
+
+  public Boolean getPartialRefunds() {
+    return partialRefunds;
+  }
+
+
+  public void setPartialRefunds(Boolean partialRefunds) {
+    this.partialRefunds = partialRefunds;
+  }
 
 
   public PaymentServiceDefinitionSupportedFeatures paymentMethodTokenization(Boolean paymentMethodTokenization) {
@@ -110,6 +183,29 @@ public class PaymentServiceDefinitionSupportedFeatures {
 
   public void setPaymentMethodTokenizationToggle(Boolean paymentMethodTokenizationToggle) {
     this.paymentMethodTokenizationToggle = paymentMethodTokenizationToggle;
+  }
+
+
+  public PaymentServiceDefinitionSupportedFeatures refunds(Boolean refunds) {
+    
+    this.refunds = refunds;
+    return this;
+  }
+
+   /**
+   * Supports [refunding](#operation/refund-transaction) captured transactions.
+   * @return refunds
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "true", value = "Supports [refunding](#operation/refund-transaction) captured transactions.")
+
+  public Boolean getRefunds() {
+    return refunds;
+  }
+
+
+  public void setRefunds(Boolean refunds) {
+    this.refunds = refunds;
   }
 
 
@@ -159,29 +255,6 @@ public class PaymentServiceDefinitionSupportedFeatures {
   }
 
 
-  public PaymentServiceDefinitionSupportedFeatures networkTokens(Boolean networkTokens) {
-    
-    this.networkTokens = networkTokens;
-    return this;
-  }
-
-   /**
-   * Supports passing decrypted digital wallet (e.g. Apple Pay) tokens to the underlying processor.
-   * @return networkTokens
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(example = "false", value = "Supports passing decrypted digital wallet (e.g. Apple Pay) tokens to the underlying processor.")
-
-  public Boolean getNetworkTokens() {
-    return networkTokens;
-  }
-
-
-  public void setNetworkTokens(Boolean networkTokens) {
-    this.networkTokens = networkTokens;
-  }
-
-
   public PaymentServiceDefinitionSupportedFeatures verifyCredentials(Boolean verifyCredentials) {
     
     this.verifyCredentials = verifyCredentials;
@@ -228,52 +301,6 @@ public class PaymentServiceDefinitionSupportedFeatures {
   }
 
 
-  public PaymentServiceDefinitionSupportedFeatures refunds(Boolean refunds) {
-    
-    this.refunds = refunds;
-    return this;
-  }
-
-   /**
-   * Supports [refunding](#operation/refund-transaction) captured transactions.
-   * @return refunds
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(example = "true", value = "Supports [refunding](#operation/refund-transaction) captured transactions.")
-
-  public Boolean getRefunds() {
-    return refunds;
-  }
-
-
-  public void setRefunds(Boolean refunds) {
-    this.refunds = refunds;
-  }
-
-
-  public PaymentServiceDefinitionSupportedFeatures partialRefunds(Boolean partialRefunds) {
-    
-    this.partialRefunds = partialRefunds;
-    return this;
-  }
-
-   /**
-   * Supports [partially refunding](#operation/refund-transaction) captured transactions.
-   * @return partialRefunds
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(example = "false", value = "Supports [partially refunding](#operation/refund-transaction) captured transactions.")
-
-  public Boolean getPartialRefunds() {
-    return partialRefunds;
-  }
-
-
-  public void setPartialRefunds(Boolean partialRefunds) {
-    this.partialRefunds = partialRefunds;
-  }
-
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -283,35 +310,37 @@ public class PaymentServiceDefinitionSupportedFeatures {
       return false;
     }
     PaymentServiceDefinitionSupportedFeatures paymentServiceDefinitionSupportedFeatures = (PaymentServiceDefinitionSupportedFeatures) o;
-    return Objects.equals(this.paymentMethodTokenization, paymentServiceDefinitionSupportedFeatures.paymentMethodTokenization) &&
+    return Objects.equals(this.delayedCapture, paymentServiceDefinitionSupportedFeatures.delayedCapture) &&
+        Objects.equals(this.networkTokens, paymentServiceDefinitionSupportedFeatures.networkTokens) &&
+        Objects.equals(this.partialRefunds, paymentServiceDefinitionSupportedFeatures.partialRefunds) &&
+        Objects.equals(this.paymentMethodTokenization, paymentServiceDefinitionSupportedFeatures.paymentMethodTokenization) &&
         Objects.equals(this.paymentMethodTokenizationToggle, paymentServiceDefinitionSupportedFeatures.paymentMethodTokenizationToggle) &&
+        Objects.equals(this.refunds, paymentServiceDefinitionSupportedFeatures.refunds) &&
         Objects.equals(this.threeDSecureHosted, paymentServiceDefinitionSupportedFeatures.threeDSecureHosted) &&
         Objects.equals(this.threeDSecurePassThrough, paymentServiceDefinitionSupportedFeatures.threeDSecurePassThrough) &&
-        Objects.equals(this.networkTokens, paymentServiceDefinitionSupportedFeatures.networkTokens) &&
         Objects.equals(this.verifyCredentials, paymentServiceDefinitionSupportedFeatures.verifyCredentials) &&
-        Objects.equals(this._void, paymentServiceDefinitionSupportedFeatures._void) &&
-        Objects.equals(this.refunds, paymentServiceDefinitionSupportedFeatures.refunds) &&
-        Objects.equals(this.partialRefunds, paymentServiceDefinitionSupportedFeatures.partialRefunds);
+        Objects.equals(this._void, paymentServiceDefinitionSupportedFeatures._void);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(paymentMethodTokenization, paymentMethodTokenizationToggle, threeDSecureHosted, threeDSecurePassThrough, networkTokens, verifyCredentials, _void, refunds, partialRefunds);
+    return Objects.hash(delayedCapture, networkTokens, partialRefunds, paymentMethodTokenization, paymentMethodTokenizationToggle, refunds, threeDSecureHosted, threeDSecurePassThrough, verifyCredentials, _void);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class PaymentServiceDefinitionSupportedFeatures {\n");
+    sb.append("    delayedCapture: ").append(toIndentedString(delayedCapture)).append("\n");
+    sb.append("    networkTokens: ").append(toIndentedString(networkTokens)).append("\n");
+    sb.append("    partialRefunds: ").append(toIndentedString(partialRefunds)).append("\n");
     sb.append("    paymentMethodTokenization: ").append(toIndentedString(paymentMethodTokenization)).append("\n");
     sb.append("    paymentMethodTokenizationToggle: ").append(toIndentedString(paymentMethodTokenizationToggle)).append("\n");
+    sb.append("    refunds: ").append(toIndentedString(refunds)).append("\n");
     sb.append("    threeDSecureHosted: ").append(toIndentedString(threeDSecureHosted)).append("\n");
     sb.append("    threeDSecurePassThrough: ").append(toIndentedString(threeDSecurePassThrough)).append("\n");
-    sb.append("    networkTokens: ").append(toIndentedString(networkTokens)).append("\n");
     sb.append("    verifyCredentials: ").append(toIndentedString(verifyCredentials)).append("\n");
     sb.append("    _void: ").append(toIndentedString(_void)).append("\n");
-    sb.append("    refunds: ").append(toIndentedString(refunds)).append("\n");
-    sb.append("    partialRefunds: ").append(toIndentedString(partialRefunds)).append("\n");
     sb.append("}");
     return sb.toString();
   }

@@ -28,7 +28,7 @@ import java.io.IOException;
  * Details for a previously tokenized payment method.
  */
 @ApiModel(description = "Details for a previously tokenized payment method.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-05-30T12:22:53.235500Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-09-09T18:46:45.100086Z[Etc/UTC]")
 public class TokenizedRequest {
   /**
    * &#x60;id&#x60;.
@@ -86,6 +86,10 @@ public class TokenizedRequest {
   public static final String SERIALIZED_NAME_REDIRECT_URL = "redirect_url";
   @SerializedName(SERIALIZED_NAME_REDIRECT_URL)
   private String redirectUrl;
+
+  public static final String SERIALIZED_NAME_SECURITY_CODE = "security_code";
+  @SerializedName(SERIALIZED_NAME_SECURITY_CODE)
+  private String securityCode;
 
 
   public TokenizedRequest method(MethodEnum method) {
@@ -155,6 +159,29 @@ public class TokenizedRequest {
   }
 
 
+  public TokenizedRequest securityCode(String securityCode) {
+    
+    this.securityCode = securityCode;
+    return this;
+  }
+
+   /**
+   * The 3 or 4 digit security code often found on the card. This often referred to as the CVV or CVD.  The security code can only be set if the stored payment method represents a card.
+   * @return securityCode
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "123", value = "The 3 or 4 digit security code often found on the card. This often referred to as the CVV or CVD.  The security code can only be set if the stored payment method represents a card.")
+
+  public String getSecurityCode() {
+    return securityCode;
+  }
+
+
+  public void setSecurityCode(String securityCode) {
+    this.securityCode = securityCode;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -166,12 +193,13 @@ public class TokenizedRequest {
     TokenizedRequest tokenizedRequest = (TokenizedRequest) o;
     return Objects.equals(this.method, tokenizedRequest.method) &&
         Objects.equals(this.id, tokenizedRequest.id) &&
-        Objects.equals(this.redirectUrl, tokenizedRequest.redirectUrl);
+        Objects.equals(this.redirectUrl, tokenizedRequest.redirectUrl) &&
+        Objects.equals(this.securityCode, tokenizedRequest.securityCode);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(method, id, redirectUrl);
+    return Objects.hash(method, id, redirectUrl, securityCode);
   }
 
   @Override
@@ -181,6 +209,7 @@ public class TokenizedRequest {
     sb.append("    method: ").append(toIndentedString(method)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    redirectUrl: ").append(toIndentedString(redirectUrl)).append("\n");
+    sb.append("    securityCode: ").append(toIndentedString(securityCode)).append("\n");
     sb.append("}");
     return sb.toString();
   }

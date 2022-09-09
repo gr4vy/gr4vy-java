@@ -20,6 +20,8 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import com.gr4vy.api.model.PaymentOptionApprovalUI;
+import com.gr4vy.api.model.RequiredFields;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
@@ -30,7 +32,7 @@ import java.util.List;
  * Additional context specific to the payment option. This is currently only returned for Apple Pay and Google Pay.
  */
 @ApiModel(description = "Additional context specific to the payment option. This is currently only returned for Apple Pay and Google Pay.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-05-30T12:22:53.235500Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-09-09T18:46:45.100086Z[Etc/UTC]")
 public class PaymentOptionContext {
   public static final String SERIALIZED_NAME_MERCHANT_NAME = "merchant_name";
   @SerializedName(SERIALIZED_NAME_MERCHANT_NAME)
@@ -39,6 +41,14 @@ public class PaymentOptionContext {
   public static final String SERIALIZED_NAME_SUPPORTED_SCHEMES = "supported_schemes";
   @SerializedName(SERIALIZED_NAME_SUPPORTED_SCHEMES)
   private List<String> supportedSchemes = null;
+
+  public static final String SERIALIZED_NAME_APPROVAL_UI = "approval_ui";
+  @SerializedName(SERIALIZED_NAME_APPROVAL_UI)
+  private PaymentOptionApprovalUI approvalUi;
+
+  public static final String SERIALIZED_NAME_REQUIRED_FIELDS = "required_fields";
+  @SerializedName(SERIALIZED_NAME_REQUIRED_FIELDS)
+  private RequiredFields requiredFields;
 
 
   public PaymentOptionContext merchantName(String merchantName) {
@@ -95,6 +105,52 @@ public class PaymentOptionContext {
   }
 
 
+  public PaymentOptionContext approvalUi(PaymentOptionApprovalUI approvalUi) {
+    
+    this.approvalUi = approvalUi;
+    return this;
+  }
+
+   /**
+   * Get approvalUi
+   * @return approvalUi
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public PaymentOptionApprovalUI getApprovalUi() {
+    return approvalUi;
+  }
+
+
+  public void setApprovalUi(PaymentOptionApprovalUI approvalUi) {
+    this.approvalUi = approvalUi;
+  }
+
+
+  public PaymentOptionContext requiredFields(RequiredFields requiredFields) {
+    
+    this.requiredFields = requiredFields;
+    return this;
+  }
+
+   /**
+   * Get requiredFields
+   * @return requiredFields
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public RequiredFields getRequiredFields() {
+    return requiredFields;
+  }
+
+
+  public void setRequiredFields(RequiredFields requiredFields) {
+    this.requiredFields = requiredFields;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -105,12 +161,14 @@ public class PaymentOptionContext {
     }
     PaymentOptionContext paymentOptionContext = (PaymentOptionContext) o;
     return Objects.equals(this.merchantName, paymentOptionContext.merchantName) &&
-        Objects.equals(this.supportedSchemes, paymentOptionContext.supportedSchemes);
+        Objects.equals(this.supportedSchemes, paymentOptionContext.supportedSchemes) &&
+        Objects.equals(this.approvalUi, paymentOptionContext.approvalUi) &&
+        Objects.equals(this.requiredFields, paymentOptionContext.requiredFields);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(merchantName, supportedSchemes);
+    return Objects.hash(merchantName, supportedSchemes, approvalUi, requiredFields);
   }
 
   @Override
@@ -119,6 +177,8 @@ public class PaymentOptionContext {
     sb.append("class PaymentOptionContext {\n");
     sb.append("    merchantName: ").append(toIndentedString(merchantName)).append("\n");
     sb.append("    supportedSchemes: ").append(toIndentedString(supportedSchemes)).append("\n");
+    sb.append("    approvalUi: ").append(toIndentedString(approvalUi)).append("\n");
+    sb.append("    requiredFields: ").append(toIndentedString(requiredFields)).append("\n");
     sb.append("}");
     return sb.toString();
   }
