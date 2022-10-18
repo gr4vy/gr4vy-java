@@ -30,7 +30,7 @@ import java.util.UUID;
  * Snapshot of a payment method, as used when embedded inside other resources.
  */
 @ApiModel(description = "Snapshot of a payment method, as used when embedded inside other resources.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-10-18T21:14:21.023172Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-10-18T22:22:07.544896Z[Etc/UTC]")
 public class PaymentMethodSnapshot {
   /**
    * &#x60;payment-method&#x60;.

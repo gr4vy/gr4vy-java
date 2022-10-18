@@ -32,7 +32,7 @@ import org.threeten.bp.OffsetDateTime;
  * A report record.
  */
 @ApiModel(description = "A report record.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-10-18T21:14:21.023172Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-10-18T22:22:07.544896Z[Etc/UTC]")
 public class Report {
   /**
    * The type of this resource. Is always &#x60;report&#x60;.

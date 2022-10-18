@@ -27,7 +27,7 @@ import java.io.IOException;
 /**
  * ThreeDSecureDataV2AllOf
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-10-18T21:14:21.023172Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-10-18T22:22:07.544896Z[Etc/UTC]")
 public class ThreeDSecureDataV2AllOf {
   public static final String SERIALIZED_NAME_AUTHENTICATION_RESPONSE = "authentication_response";
   @SerializedName(SERIALIZED_NAME_AUTHENTICATION_RESPONSE)

@@ -28,7 +28,7 @@ import java.io.IOException;
  * A key-value pair that represents a field defined in the definition for this payment service.
  */
 @ApiModel(description = "A key-value pair that represents a field defined in the definition for this payment service.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-10-18T21:14:21.023172Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-10-18T22:22:07.544896Z[Etc/UTC]")
 public class PaymentServiceUpdateFields {
   public static final String SERIALIZED_NAME_KEY = "key";
   @SerializedName(SERIALIZED_NAME_KEY)
