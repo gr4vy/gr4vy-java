@@ -27,7 +27,7 @@ import java.io.IOException;
 /**
  * PaymentServiceRequestAllOf
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-09-09T18:46:45.100086Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-10-18T21:14:21.023172Z[Etc/UTC]")
 public class PaymentServiceRequestAllOf {
   public static final String SERIALIZED_NAME_PAYMENT_SERVICE_DEFINITION_ID = "payment_service_definition_id";
   @SerializedName(SERIALIZED_NAME_PAYMENT_SERVICE_DEFINITION_ID)

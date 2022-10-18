@@ -26,12 +26,13 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.util.UUID;
+import org.threeten.bp.OffsetDateTime;
 
 /**
  * A log of a change that occurred in the Gr4vy instance.
  */
 @ApiModel(description = "A log of a change that occurred in the Gr4vy instance.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-09-09T18:46:45.100086Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-10-18T21:14:21.023172Z[Etc/UTC]")
 public class AuditLog {
   /**
    * &#x60;audit-log&#x60;.
@@ -88,7 +89,7 @@ public class AuditLog {
 
   public static final String SERIALIZED_NAME_TIMESTAMP = "timestamp";
   @SerializedName(SERIALIZED_NAME_TIMESTAMP)
-  private String timestamp;
+  private OffsetDateTime timestamp;
 
   /**
    * The action that was performed.
@@ -198,7 +199,7 @@ public class AuditLog {
   }
 
 
-  public AuditLog timestamp(String timestamp) {
+  public AuditLog timestamp(OffsetDateTime timestamp) {
     
     this.timestamp = timestamp;
     return this;
@@ -209,14 +210,14 @@ public class AuditLog {
    * @return timestamp
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "2022-05-20T10:46:02.000Z", value = "The date and time that the action was performed.")
+  @ApiModelProperty(example = "2022-01-01T00:00Z", value = "The date and time that the action was performed.")
 
-  public String getTimestamp() {
+  public OffsetDateTime getTimestamp() {
     return timestamp;
   }
 
 
-  public void setTimestamp(String timestamp) {
+  public void setTimestamp(OffsetDateTime timestamp) {
     this.timestamp = timestamp;
   }
 

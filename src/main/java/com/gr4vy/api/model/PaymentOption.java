@@ -29,7 +29,7 @@ import java.io.IOException;
  * An available payment option for a locale.
  */
 @ApiModel(description = "An available payment option for a locale.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-09-09T18:46:45.100086Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-10-18T21:14:21.023172Z[Etc/UTC]")
 public class PaymentOption {
   /**
    * &#x60;payment-option&#x60;.
@@ -99,6 +99,10 @@ public class PaymentOption {
   public static final String SERIALIZED_NAME_CAN_STORE_PAYMENT_METHOD = "can_store_payment_method";
   @SerializedName(SERIALIZED_NAME_CAN_STORE_PAYMENT_METHOD)
   private Boolean canStorePaymentMethod;
+
+  public static final String SERIALIZED_NAME_CAN_DELAY_CAPTURE = "can_delay_capture";
+  @SerializedName(SERIALIZED_NAME_CAN_DELAY_CAPTURE)
+  private Boolean canDelayCapture;
 
   public static final String SERIALIZED_NAME_CONTEXT = "context";
   @SerializedName(SERIALIZED_NAME_CONTEXT)
@@ -243,6 +247,29 @@ public class PaymentOption {
   }
 
 
+  public PaymentOption canDelayCapture(Boolean canDelayCapture) {
+    
+    this.canDelayCapture = canDelayCapture;
+    return this;
+  }
+
+   /**
+   * A flag to indicate if delayed capture is supported.
+   * @return canDelayCapture
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "A flag to indicate if delayed capture is supported.")
+
+  public Boolean getCanDelayCapture() {
+    return canDelayCapture;
+  }
+
+
+  public void setCanDelayCapture(Boolean canDelayCapture) {
+    this.canDelayCapture = canDelayCapture;
+  }
+
+
   public PaymentOption context(PaymentOptionContext context) {
     
     this.context = context;
@@ -281,12 +308,13 @@ public class PaymentOption {
         Objects.equals(this.mode, paymentOption.mode) &&
         Objects.equals(this.label, paymentOption.label) &&
         Objects.equals(this.canStorePaymentMethod, paymentOption.canStorePaymentMethod) &&
+        Objects.equals(this.canDelayCapture, paymentOption.canDelayCapture) &&
         Objects.equals(this.context, paymentOption.context);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(type, method, iconUrl, mode, label, canStorePaymentMethod, context);
+    return Objects.hash(type, method, iconUrl, mode, label, canStorePaymentMethod, canDelayCapture, context);
   }
 
   @Override
@@ -299,6 +327,7 @@ public class PaymentOption {
     sb.append("    mode: ").append(toIndentedString(mode)).append("\n");
     sb.append("    label: ").append(toIndentedString(label)).append("\n");
     sb.append("    canStorePaymentMethod: ").append(toIndentedString(canStorePaymentMethod)).append("\n");
+    sb.append("    canDelayCapture: ").append(toIndentedString(canDelayCapture)).append("\n");
     sb.append("    context: ").append(toIndentedString(context)).append("\n");
     sb.append("}");
     return sb.toString();

@@ -429,7 +429,7 @@ public class AntiFraudServicesApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 201 </td><td> Returns the anti-fraud service that was added. </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> Returns the anti-fraud service that was updated. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Returns an error if the request was badly formatted or missing required fields. </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Returns an error if no valid authentication was provided. </td><td>  -  </td></tr>
      </table>
@@ -489,7 +489,7 @@ public class AntiFraudServicesApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 201 </td><td> Returns the anti-fraud service that was added. </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> Returns the anti-fraud service that was updated. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Returns an error if the request was badly formatted or missing required fields. </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Returns an error if no valid authentication was provided. </td><td>  -  </td></tr>
      </table>
@@ -509,7 +509,7 @@ public class AntiFraudServicesApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 201 </td><td> Returns the anti-fraud service that was added. </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> Returns the anti-fraud service that was updated. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Returns an error if the request was badly formatted or missing required fields. </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Returns an error if no valid authentication was provided. </td><td>  -  </td></tr>
      </table>
@@ -531,7 +531,7 @@ public class AntiFraudServicesApi {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 201 </td><td> Returns the anti-fraud service that was added. </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> Returns the anti-fraud service that was updated. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Returns an error if the request was badly formatted or missing required fields. </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Returns an error if no valid authentication was provided. </td><td>  -  </td></tr>
      </table>

@@ -33,7 +33,7 @@ import org.threeten.bp.OffsetDateTime;
  * A transaction record.
  */
 @ApiModel(description = "A transaction record.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-09-09T18:46:45.100086Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-10-18T21:14:21.023172Z[Etc/UTC]")
 public class TransactionSummary {
   /**
    * The type of this resource. Is always &#x60;transaction&#x60;.

@@ -31,7 +31,7 @@ import java.util.List;
  * Not Found Error (HTTP 404).
  */
 @ApiModel(description = "Not Found Error (HTTP 404).")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-09-09T18:46:45.100086Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-10-18T21:14:21.023172Z[Etc/UTC]")
 public class Error404NotFound {
   /**
    * &#x60;error&#x60;.

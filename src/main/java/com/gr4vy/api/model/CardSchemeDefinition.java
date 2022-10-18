@@ -28,7 +28,7 @@ import java.io.IOException;
  * Definitions of a card scheme including icon, label, etc.
  */
 @ApiModel(description = "Definitions of a card scheme including icon, label, etc.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-09-09T18:46:45.100086Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-10-18T21:14:21.023172Z[Etc/UTC]")
 public class CardSchemeDefinition {
   /**
    * &#x60;card-scheme-definition&#x60;.

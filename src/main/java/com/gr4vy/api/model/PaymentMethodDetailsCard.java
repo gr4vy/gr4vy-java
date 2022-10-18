@@ -28,7 +28,7 @@ import java.io.IOException;
  * A credit or debit card payment method.
  */
 @ApiModel(description = "A credit or debit card payment method.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-09-09T18:46:45.100086Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-10-18T21:14:21.023172Z[Etc/UTC]")
 public class PaymentMethodDetailsCard {
   /**
    * The type of card, one of &#x60;credit&#x60;, &#x60;debit&#x60; or &#x60;prepaid&#x60;.

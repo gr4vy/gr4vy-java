@@ -29,7 +29,7 @@ import java.io.IOException;
  * A request to update the secure fields of a checkout session.
  */
 @ApiModel(description = "A request to update the secure fields of a checkout session.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-09-09T18:46:45.100086Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-10-18T21:14:21.023172Z[Etc/UTC]")
 public class CheckoutSessionSecureFieldsUpdate {
   public static final String SERIALIZED_NAME_PAYMENT_METHOD = "payment_method";
   @SerializedName(SERIALIZED_NAME_PAYMENT_METHOD)
