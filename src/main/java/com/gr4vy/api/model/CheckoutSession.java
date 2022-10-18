@@ -24,12 +24,13 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.util.UUID;
+import org.threeten.bp.OffsetDateTime;
 
 /**
  * A short-lived checkout session.
  */
 @ApiModel(description = "A short-lived checkout session.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-09-09T18:46:45.100086Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-10-18T22:22:07.544896Z[Etc/UTC]")
 public class CheckoutSession {
   /**
    * &#x60;checkout-session&#x60;.
@@ -86,7 +87,7 @@ public class CheckoutSession {
 
   public static final String SERIALIZED_NAME_EXPIRES_AT = "expires_at";
   @SerializedName(SERIALIZED_NAME_EXPIRES_AT)
-  private String expiresAt;
+  private OffsetDateTime expiresAt;
 
 
   public CheckoutSession type(TypeEnum type) {
@@ -135,7 +136,7 @@ public class CheckoutSession {
   }
 
 
-  public CheckoutSession expiresAt(String expiresAt) {
+  public CheckoutSession expiresAt(OffsetDateTime expiresAt) {
     
     this.expiresAt = expiresAt;
     return this;
@@ -146,14 +147,14 @@ public class CheckoutSession {
    * @return expiresAt
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "2022-07-27T16:13:02.000Z", value = "The date and time when the Checkout Session will expire. By default this will be set to 1 hour from the date of creation.")
+  @ApiModelProperty(example = "2022-01-01T00:00Z", value = "The date and time when the Checkout Session will expire. By default this will be set to 1 hour from the date of creation.")
 
-  public String getExpiresAt() {
+  public OffsetDateTime getExpiresAt() {
     return expiresAt;
   }
 
 
-  public void setExpiresAt(String expiresAt) {
+  public void setExpiresAt(OffsetDateTime expiresAt) {
     this.expiresAt = expiresAt;
   }
 

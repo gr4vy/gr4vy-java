@@ -28,7 +28,7 @@ import java.io.IOException;
  * Features supported by the payment definition.
  */
 @ApiModel(description = "Features supported by the payment definition.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-09-09T18:46:45.100086Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-10-18T22:22:07.544896Z[Etc/UTC]")
 public class PaymentServiceDefinitionSupportedFeatures {
   public static final String SERIALIZED_NAME_DELAYED_CAPTURE = "delayed_capture";
   @SerializedName(SERIALIZED_NAME_DELAYED_CAPTURE)

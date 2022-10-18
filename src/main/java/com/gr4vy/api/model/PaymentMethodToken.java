@@ -29,7 +29,7 @@ import java.io.IOException;
  * A token for a payment method.
  */
 @ApiModel(description = "A token for a payment method.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-09-09T18:46:45.100086Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-10-18T22:22:07.544896Z[Etc/UTC]")
 public class PaymentMethodToken {
   /**
    * &#x60;payment-method-token&#x60;.

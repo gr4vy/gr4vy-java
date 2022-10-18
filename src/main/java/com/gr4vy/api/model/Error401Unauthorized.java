@@ -31,7 +31,7 @@ import java.util.List;
  * Unauthorized Error (HTTP 401).
  */
 @ApiModel(description = "Unauthorized Error (HTTP 401).")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-09-09T18:46:45.100086Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-10-18T22:22:07.544896Z[Etc/UTC]")
 public class Error401Unauthorized {
   /**
    * &#x60;error&#x60;.
