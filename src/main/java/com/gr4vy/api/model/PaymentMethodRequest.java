@@ -29,11 +29,15 @@ import java.util.UUID;
  * Payment method details used to register a new payment method.
  */
 @ApiModel(description = "Payment method details used to register a new payment method.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-09-09T18:46:45.100086Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-10-18T22:22:07.544896Z[Etc/UTC]")
 public class PaymentMethodRequest {
   public static final String SERIALIZED_NAME_METHOD = "method";
   @SerializedName(SERIALIZED_NAME_METHOD)
   private String method;
+
+  public static final String SERIALIZED_NAME_ID = "id";
+  @SerializedName(SERIALIZED_NAME_ID)
+  private UUID id;
 
   public static final String SERIALIZED_NAME_NUMBER = "number";
   @SerializedName(SERIALIZED_NAME_NUMBER)
@@ -79,10 +83,10 @@ public class PaymentMethodRequest {
   }
 
    /**
-   * Get method
+   * The type of the funding source, e.g. &#x60;card&#x60;, &#x60;paypal&#x60;, or &#x60;checkout-session&#x60;.
    * @return method
   **/
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(example = "card", required = true, value = "The type of the funding source, e.g. `card`, `paypal`, or `checkout-session`.")
 
   public String getMethod() {
     return method;
@@ -91,6 +95,29 @@ public class PaymentMethodRequest {
 
   public void setMethod(String method) {
     this.method = method;
+  }
+
+
+  public PaymentMethodRequest id(UUID id) {
+    
+    this.id = id;
+    return this;
+  }
+
+   /**
+   * The ID of a Checkout Session.
+   * @return id
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "8d3fe99b-1422-42e6-bbb3-932d95ae5f79", value = "The ID of a Checkout Session.")
+
+  public UUID getId() {
+    return id;
+  }
+
+
+  public void setId(UUID id) {
+    this.id = id;
   }
 
 
@@ -311,6 +338,7 @@ public class PaymentMethodRequest {
     }
     PaymentMethodRequest paymentMethodRequest = (PaymentMethodRequest) o;
     return Objects.equals(this.method, paymentMethodRequest.method) &&
+        Objects.equals(this.id, paymentMethodRequest.id) &&
         Objects.equals(this.number, paymentMethodRequest.number) &&
         Objects.equals(this.expirationDate, paymentMethodRequest.expirationDate) &&
         Objects.equals(this.securityCode, paymentMethodRequest.securityCode) &&
@@ -324,7 +352,7 @@ public class PaymentMethodRequest {
 
   @Override
   public int hashCode() {
-    return Objects.hash(method, number, expirationDate, securityCode, externalIdentifier, buyerId, buyerExternalIdentifier, redirectUrl, currency, country);
+    return Objects.hash(method, id, number, expirationDate, securityCode, externalIdentifier, buyerId, buyerExternalIdentifier, redirectUrl, currency, country);
   }
 
   @Override
@@ -332,6 +360,7 @@ public class PaymentMethodRequest {
     StringBuilder sb = new StringBuilder();
     sb.append("class PaymentMethodRequest {\n");
     sb.append("    method: ").append(toIndentedString(method)).append("\n");
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    number: ").append(toIndentedString(number)).append("\n");
     sb.append("    expirationDate: ").append(toIndentedString(expirationDate)).append("\n");
     sb.append("    securityCode: ").append(toIndentedString(securityCode)).append("\n");

@@ -29,7 +29,7 @@ import java.io.IOException;
  * Details about a card.
  */
 @ApiModel(description = "Details about a card.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-09-09T18:46:45.100086Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-10-18T22:22:07.544896Z[Etc/UTC]")
 public class CardDetails {
   /**
    * &#x60;card-detail&#x60;.
@@ -139,6 +139,10 @@ public class CardDetails {
   @SerializedName(SERIALIZED_NAME_SCHEME)
   private String scheme;
 
+  public static final String SERIALIZED_NAME_SCHEME_ICON_URL = "scheme_icon_url";
+  @SerializedName(SERIALIZED_NAME_SCHEME_ICON_URL)
+  private String schemeIconUrl;
+
   public static final String SERIALIZED_NAME_COUNTRY = "country";
   @SerializedName(SERIALIZED_NAME_COUNTRY)
   private String country;
@@ -240,6 +244,29 @@ public class CardDetails {
   }
 
 
+  public CardDetails schemeIconUrl(String schemeIconUrl) {
+    
+    this.schemeIconUrl = schemeIconUrl;
+    return this;
+  }
+
+   /**
+   * An icon to display for the card scheme.
+   * @return schemeIconUrl
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "https://api.sandbox.example.gr4vy.app/assets/card-scheme-definitions/visa.svg", value = "An icon to display for the card scheme.")
+
+  public String getSchemeIconUrl() {
+    return schemeIconUrl;
+  }
+
+
+  public void setSchemeIconUrl(String schemeIconUrl) {
+    this.schemeIconUrl = schemeIconUrl;
+  }
+
+
   public CardDetails country(String country) {
     
     this.country = country;
@@ -299,13 +326,14 @@ public class CardDetails {
         Objects.equals(this.id, cardDetails.id) &&
         Objects.equals(this.cardType, cardDetails.cardType) &&
         Objects.equals(this.scheme, cardDetails.scheme) &&
+        Objects.equals(this.schemeIconUrl, cardDetails.schemeIconUrl) &&
         Objects.equals(this.country, cardDetails.country) &&
         Objects.equals(this.requiredFields, cardDetails.requiredFields);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(type, id, cardType, scheme, country, requiredFields);
+    return Objects.hash(type, id, cardType, scheme, schemeIconUrl, country, requiredFields);
   }
 
   @Override
@@ -316,6 +344,7 @@ public class CardDetails {
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    cardType: ").append(toIndentedString(cardType)).append("\n");
     sb.append("    scheme: ").append(toIndentedString(scheme)).append("\n");
+    sb.append("    schemeIconUrl: ").append(toIndentedString(schemeIconUrl)).append("\n");
     sb.append("    country: ").append(toIndentedString(country)).append("\n");
     sb.append("    requiredFields: ").append(toIndentedString(requiredFields)).append("\n");
     sb.append("}");

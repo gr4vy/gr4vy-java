@@ -107,6 +107,14 @@ src/main/java/com/gr4vy/api/model/PaymentServices.java
 src/main/java/com/gr4vy/api/model/RedirectRequest.java
 src/main/java/com/gr4vy/api/model/Refund.java
 src/main/java/com/gr4vy/api/model/Refunds.java
+src/main/java/com/gr4vy/api/model/Report.java
+src/main/java/com/gr4vy/api/model/ReportCreate.java
+src/main/java/com/gr4vy/api/model/ReportExecution.java
+src/main/java/com/gr4vy/api/model/ReportExecutionUrl.java
+src/main/java/com/gr4vy/api/model/ReportExecutions.java
+src/main/java/com/gr4vy/api/model/ReportSpec.java
+src/main/java/com/gr4vy/api/model/ReportUpdate.java
+src/main/java/com/gr4vy/api/model/Reports.java
 src/main/java/com/gr4vy/api/model/RequiredFields.java
 src/main/java/com/gr4vy/api/model/RequiredFieldsAddress.java
 src/main/java/com/gr4vy/api/model/ResetPasswordRequest.java
@@ -142,6 +150,7 @@ src/main/java/com/gr4vy/api/openapi/PaymentMethodsApi.java
 src/main/java/com/gr4vy/api/openapi/PaymentOptionsApi.java
 src/main/java/com/gr4vy/api/openapi/PaymentServiceDefinitionsApi.java
 src/main/java/com/gr4vy/api/openapi/PaymentServicesApi.java
+src/main/java/com/gr4vy/api/openapi/ReportsApi.java
 src/main/java/com/gr4vy/api/openapi/TransactionsApi.java
 src/test/java/com/gr4vy/api/model/AddressTest.java
 src/test/java/com/gr4vy/api/model/AntiFraudServiceCreateTest.java
@@ -223,6 +232,14 @@ src/test/java/com/gr4vy/api/model/PaymentServicesTest.java
 src/test/java/com/gr4vy/api/model/RedirectRequestTest.java
 src/test/java/com/gr4vy/api/model/RefundTest.java
 src/test/java/com/gr4vy/api/model/RefundsTest.java
+src/test/java/com/gr4vy/api/model/ReportCreateTest.java
+src/test/java/com/gr4vy/api/model/ReportExecutionTest.java
+src/test/java/com/gr4vy/api/model/ReportExecutionUrlTest.java
+src/test/java/com/gr4vy/api/model/ReportExecutionsTest.java
+src/test/java/com/gr4vy/api/model/ReportSpecTest.java
+src/test/java/com/gr4vy/api/model/ReportTest.java
+src/test/java/com/gr4vy/api/model/ReportUpdateTest.java
+src/test/java/com/gr4vy/api/model/ReportsTest.java
 src/test/java/com/gr4vy/api/model/RequiredFieldsAddressTest.java
 src/test/java/com/gr4vy/api/model/RequiredFieldsTest.java
 src/test/java/com/gr4vy/api/model/ResetPasswordRequestTest.java
@@ -258,4 +275,5 @@ src/test/java/com/gr4vy/api/openapi/PaymentMethodsApiTest.java
 src/test/java/com/gr4vy/api/openapi/PaymentOptionsApiTest.java
 src/test/java/com/gr4vy/api/openapi/PaymentServiceDefinitionsApiTest.java
 src/test/java/com/gr4vy/api/openapi/PaymentServicesApiTest.java
+src/test/java/com/gr4vy/api/openapi/ReportsApiTest.java
 src/test/java/com/gr4vy/api/openapi/TransactionsApiTest.java

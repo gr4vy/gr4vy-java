@@ -32,7 +32,7 @@ import org.threeten.bp.OffsetDateTime;
 /**
  * AntiFraudService
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-09-09T18:46:45.100086Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-10-18T22:22:07.544896Z[Etc/UTC]")
 public class AntiFraudService {
   /**
    * The type of this resource. Is always &#x60;anti-fraud-service&#x60;.
