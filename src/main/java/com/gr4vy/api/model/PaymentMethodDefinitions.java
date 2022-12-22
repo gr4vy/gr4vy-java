@@ -31,7 +31,7 @@ import java.util.List;
  * A list of available payment method definitions.
  */
 @ApiModel(description = "A list of available payment method definitions.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-10-18T22:22:07.544896Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-12-22T14:21:56.132305Z[Etc/UTC]")
 public class PaymentMethodDefinitions {
   public static final String SERIALIZED_NAME_ITEMS = "items";
   @SerializedName(SERIALIZED_NAME_ITEMS)

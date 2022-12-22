@@ -28,7 +28,7 @@ import java.io.IOException;
  * Features supported by the payment definition.
  */
 @ApiModel(description = "Features supported by the payment definition.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-10-18T22:22:07.544896Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-12-22T14:21:56.132305Z[Etc/UTC]")
 public class PaymentServiceDefinitionSupportedFeatures {
   public static final String SERIALIZED_NAME_DELAYED_CAPTURE = "delayed_capture";
   @SerializedName(SERIALIZED_NAME_DELAYED_CAPTURE)
@@ -37,6 +37,18 @@ public class PaymentServiceDefinitionSupportedFeatures {
   public static final String SERIALIZED_NAME_NETWORK_TOKENS = "network_tokens";
   @SerializedName(SERIALIZED_NAME_NETWORK_TOKENS)
   private Boolean networkTokens;
+
+  public static final String SERIALIZED_NAME_NETWORK_TOKENS_DEFAULT = "network_tokens_default";
+  @SerializedName(SERIALIZED_NAME_NETWORK_TOKENS_DEFAULT)
+  private Boolean networkTokensDefault;
+
+  public static final String SERIALIZED_NAME_NETWORK_TOKENS_TOGGLE = "network_tokens_toggle";
+  @SerializedName(SERIALIZED_NAME_NETWORK_TOKENS_TOGGLE)
+  private Boolean networkTokensToggle;
+
+  public static final String SERIALIZED_NAME_OPEN_LOOP = "open_loop";
+  @SerializedName(SERIALIZED_NAME_OPEN_LOOP)
+  private Boolean openLoop;
 
   public static final String SERIALIZED_NAME_PARTIAL_REFUNDS = "partial_refunds";
   @SerializedName(SERIALIZED_NAME_PARTIAL_REFUNDS)
@@ -114,6 +126,75 @@ public class PaymentServiceDefinitionSupportedFeatures {
 
   public void setNetworkTokens(Boolean networkTokens) {
     this.networkTokens = networkTokens;
+  }
+
+
+  public PaymentServiceDefinitionSupportedFeatures networkTokensDefault(Boolean networkTokensDefault) {
+    
+    this.networkTokensDefault = networkTokensDefault;
+    return this;
+  }
+
+   /**
+   * Supports processing network tokens by default.
+   * @return networkTokensDefault
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "true", value = "Supports processing network tokens by default.")
+
+  public Boolean getNetworkTokensDefault() {
+    return networkTokensDefault;
+  }
+
+
+  public void setNetworkTokensDefault(Boolean networkTokensDefault) {
+    this.networkTokensDefault = networkTokensDefault;
+  }
+
+
+  public PaymentServiceDefinitionSupportedFeatures networkTokensToggle(Boolean networkTokensToggle) {
+    
+    this.networkTokensToggle = networkTokensToggle;
+    return this;
+  }
+
+   /**
+   * Supports toggling processing of network tokens on or off.
+   * @return networkTokensToggle
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "false", value = "Supports toggling processing of network tokens on or off.")
+
+  public Boolean getNetworkTokensToggle() {
+    return networkTokensToggle;
+  }
+
+
+  public void setNetworkTokensToggle(Boolean networkTokensToggle) {
+    this.networkTokensToggle = networkTokensToggle;
+  }
+
+
+  public PaymentServiceDefinitionSupportedFeatures openLoop(Boolean openLoop) {
+    
+    this.openLoop = openLoop;
+    return this;
+  }
+
+   /**
+   * Supports processing transactions with either raw PAN details or network tokens.
+   * @return openLoop
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "true", value = "Supports processing transactions with either raw PAN details or network tokens.")
+
+  public Boolean getOpenLoop() {
+    return openLoop;
+  }
+
+
+  public void setOpenLoop(Boolean openLoop) {
+    this.openLoop = openLoop;
   }
 
 
@@ -312,6 +393,9 @@ public class PaymentServiceDefinitionSupportedFeatures {
     PaymentServiceDefinitionSupportedFeatures paymentServiceDefinitionSupportedFeatures = (PaymentServiceDefinitionSupportedFeatures) o;
     return Objects.equals(this.delayedCapture, paymentServiceDefinitionSupportedFeatures.delayedCapture) &&
         Objects.equals(this.networkTokens, paymentServiceDefinitionSupportedFeatures.networkTokens) &&
+        Objects.equals(this.networkTokensDefault, paymentServiceDefinitionSupportedFeatures.networkTokensDefault) &&
+        Objects.equals(this.networkTokensToggle, paymentServiceDefinitionSupportedFeatures.networkTokensToggle) &&
+        Objects.equals(this.openLoop, paymentServiceDefinitionSupportedFeatures.openLoop) &&
         Objects.equals(this.partialRefunds, paymentServiceDefinitionSupportedFeatures.partialRefunds) &&
         Objects.equals(this.paymentMethodTokenization, paymentServiceDefinitionSupportedFeatures.paymentMethodTokenization) &&
         Objects.equals(this.paymentMethodTokenizationToggle, paymentServiceDefinitionSupportedFeatures.paymentMethodTokenizationToggle) &&
@@ -324,7 +408,7 @@ public class PaymentServiceDefinitionSupportedFeatures {
 
   @Override
   public int hashCode() {
-    return Objects.hash(delayedCapture, networkTokens, partialRefunds, paymentMethodTokenization, paymentMethodTokenizationToggle, refunds, threeDSecureHosted, threeDSecurePassThrough, verifyCredentials, _void);
+    return Objects.hash(delayedCapture, networkTokens, networkTokensDefault, networkTokensToggle, openLoop, partialRefunds, paymentMethodTokenization, paymentMethodTokenizationToggle, refunds, threeDSecureHosted, threeDSecurePassThrough, verifyCredentials, _void);
   }
 
   @Override
@@ -333,6 +417,9 @@ public class PaymentServiceDefinitionSupportedFeatures {
     sb.append("class PaymentServiceDefinitionSupportedFeatures {\n");
     sb.append("    delayedCapture: ").append(toIndentedString(delayedCapture)).append("\n");
     sb.append("    networkTokens: ").append(toIndentedString(networkTokens)).append("\n");
+    sb.append("    networkTokensDefault: ").append(toIndentedString(networkTokensDefault)).append("\n");
+    sb.append("    networkTokensToggle: ").append(toIndentedString(networkTokensToggle)).append("\n");
+    sb.append("    openLoop: ").append(toIndentedString(openLoop)).append("\n");
     sb.append("    partialRefunds: ").append(toIndentedString(partialRefunds)).append("\n");
     sb.append("    paymentMethodTokenization: ").append(toIndentedString(paymentMethodTokenization)).append("\n");
     sb.append("    paymentMethodTokenizationToggle: ").append(toIndentedString(paymentMethodTokenizationToggle)).append("\n");

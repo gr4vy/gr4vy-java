@@ -23,12 +23,15 @@ import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * The specification of a report.
  */
 @ApiModel(description = "The specification of a report.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-10-18T22:22:07.544896Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-12-22T14:21:56.132305Z[Etc/UTC]")
 public class ReportSpec {
   /**
    * The model (dataset) that the data used for the report is retrieved from.
@@ -81,7 +84,7 @@ public class ReportSpec {
 
   public static final String SERIALIZED_NAME_PARAMS = "params";
   @SerializedName(SERIALIZED_NAME_PARAMS)
-  private Object params;
+  private Map<String, Object> params = new HashMap<String, Object>();
 
 
   public ReportSpec model(ModelEnum model) {
@@ -106,9 +109,14 @@ public class ReportSpec {
   }
 
 
-  public ReportSpec params(Object params) {
+  public ReportSpec params(Map<String, Object> params) {
     
     this.params = params;
+    return this;
+  }
+
+  public ReportSpec putParamsItem(String key, Object paramsItem) {
+    this.params.put(key, paramsItem);
     return this;
   }
 
@@ -118,12 +126,12 @@ public class ReportSpec {
   **/
   @ApiModelProperty(example = "{\"fields\":[\"id\",\"status\"],\"filters\":{\"status\":[\"authorization_failed\"]},\"sort\":[{\"field\":\"captured_at\",\"order\":\"desc\"}]}", required = true, value = "Parameters used to configure the report. Acceptable values for this property depend on the value specified for `model`.")
 
-  public Object getParams() {
+  public Map<String, Object> getParams() {
     return params;
   }
 
 
-  public void setParams(Object params) {
+  public void setParams(Map<String, Object> params) {
     this.params = params;
   }
 

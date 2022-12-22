@@ -135,7 +135,7 @@ public class PaymentOptionsApi {
 
     /**
      * List payment options
-     * Returns a list of available payment method options for a currency and country.
+     * Returns a list of available payment method options for the combination of amount, currency, country and metadata.  If the amount is zero, payment options which do not support zero amounts, will be omitted in the response.
      * @param country Filters the results to only the items which support this country code. A country is formatted as 2-letter ISO country code. (optional)
      * @param currency Filters the results to only the items which support this currency code. A currency is formatted as 3-letter ISO currency code. (optional)
      * @param amount Used by the Flow engine to filter the results based on the transaction amount. (optional)
@@ -158,7 +158,7 @@ public class PaymentOptionsApi {
 
     /**
      * List payment options
-     * Returns a list of available payment method options for a currency and country.
+     * Returns a list of available payment method options for the combination of amount, currency, country and metadata.  If the amount is zero, payment options which do not support zero amounts, will be omitted in the response.
      * @param country Filters the results to only the items which support this country code. A country is formatted as 2-letter ISO country code. (optional)
      * @param currency Filters the results to only the items which support this currency code. A currency is formatted as 3-letter ISO currency code. (optional)
      * @param amount Used by the Flow engine to filter the results based on the transaction amount. (optional)
@@ -182,7 +182,7 @@ public class PaymentOptionsApi {
 
     /**
      * List payment options (asynchronously)
-     * Returns a list of available payment method options for a currency and country.
+     * Returns a list of available payment method options for the combination of amount, currency, country and metadata.  If the amount is zero, payment options which do not support zero amounts, will be omitted in the response.
      * @param country Filters the results to only the items which support this country code. A country is formatted as 2-letter ISO country code. (optional)
      * @param currency Filters the results to only the items which support this currency code. A currency is formatted as 3-letter ISO currency code. (optional)
      * @param amount Used by the Flow engine to filter the results based on the transaction amount. (optional)

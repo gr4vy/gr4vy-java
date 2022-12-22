@@ -22,6 +22,7 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import com.gr4vy.api.model.BrowserInfo;
 import com.gr4vy.api.model.CartItem;
+import com.gr4vy.api.model.ConnectionOptions;
 import com.gr4vy.api.model.StatementDescriptor;
 import com.gr4vy.api.model.ThreeDSecureDataV1V2;
 import com.gr4vy.api.model.TransactionPaymentMethodRequest;
@@ -32,12 +33,13 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 /**
  * A request to create a transaction.
  */
 @ApiModel(description = "A request to create a transaction.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-10-18T22:22:07.544896Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-12-22T14:21:56.132305Z[Etc/UTC]")
 public class TransactionRequest {
   public static final String SERIALIZED_NAME_AMOUNT = "amount";
   @SerializedName(SERIALIZED_NAME_AMOUNT)
@@ -202,6 +204,14 @@ public class TransactionRequest {
   public static final String SERIALIZED_NAME_BROWSER_INFO = "browser_info";
   @SerializedName(SERIALIZED_NAME_BROWSER_INFO)
   private BrowserInfo browserInfo;
+
+  public static final String SERIALIZED_NAME_SHIPPING_DETAILS_ID = "shipping_details_id";
+  @SerializedName(SERIALIZED_NAME_SHIPPING_DETAILS_ID)
+  private UUID shippingDetailsId;
+
+  public static final String SERIALIZED_NAME_CONNECTION_OPTIONS = "connection_options";
+  @SerializedName(SERIALIZED_NAME_CONNECTION_OPTIONS)
+  private ConnectionOptions connectionOptions;
 
 
   public TransactionRequest amount(Integer amount) {
@@ -587,6 +597,52 @@ public class TransactionRequest {
   }
 
 
+  public TransactionRequest shippingDetailsId(UUID shippingDetailsId) {
+    
+    this.shippingDetailsId = shippingDetailsId;
+    return this;
+  }
+
+   /**
+   * The unique identifier of a set of shipping details stored for the buyer.  If provided, the created transaction will include a copy of the details at the point of transaction creation; i.e. it will not be affected by later changes to the detail in the database.
+   * @return shippingDetailsId
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "47da6902-5eae-4b4b-88fd-856802d627d6", value = "The unique identifier of a set of shipping details stored for the buyer.  If provided, the created transaction will include a copy of the details at the point of transaction creation; i.e. it will not be affected by later changes to the detail in the database.")
+
+  public UUID getShippingDetailsId() {
+    return shippingDetailsId;
+  }
+
+
+  public void setShippingDetailsId(UUID shippingDetailsId) {
+    this.shippingDetailsId = shippingDetailsId;
+  }
+
+
+  public TransactionRequest connectionOptions(ConnectionOptions connectionOptions) {
+    
+    this.connectionOptions = connectionOptions;
+    return this;
+  }
+
+   /**
+   * Get connectionOptions
+   * @return connectionOptions
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public ConnectionOptions getConnectionOptions() {
+    return connectionOptions;
+  }
+
+
+  public void setConnectionOptions(ConnectionOptions connectionOptions) {
+    this.connectionOptions = connectionOptions;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -611,12 +667,14 @@ public class TransactionRequest {
         Objects.equals(this.statementDescriptor, transactionRequest.statementDescriptor) &&
         Objects.equals(this.cartItems, transactionRequest.cartItems) &&
         Objects.equals(this.previousSchemeTransactionId, transactionRequest.previousSchemeTransactionId) &&
-        Objects.equals(this.browserInfo, transactionRequest.browserInfo);
+        Objects.equals(this.browserInfo, transactionRequest.browserInfo) &&
+        Objects.equals(this.shippingDetailsId, transactionRequest.shippingDetailsId) &&
+        Objects.equals(this.connectionOptions, transactionRequest.connectionOptions);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(amount, currency, country, paymentMethod, store, intent, externalIdentifier, threeDSecureData, merchantInitiated, paymentSource, isSubsequentPayment, metadata, statementDescriptor, cartItems, previousSchemeTransactionId, browserInfo);
+    return Objects.hash(amount, currency, country, paymentMethod, store, intent, externalIdentifier, threeDSecureData, merchantInitiated, paymentSource, isSubsequentPayment, metadata, statementDescriptor, cartItems, previousSchemeTransactionId, browserInfo, shippingDetailsId, connectionOptions);
   }
 
   @Override
@@ -639,6 +697,8 @@ public class TransactionRequest {
     sb.append("    cartItems: ").append(toIndentedString(cartItems)).append("\n");
     sb.append("    previousSchemeTransactionId: ").append(toIndentedString(previousSchemeTransactionId)).append("\n");
     sb.append("    browserInfo: ").append(toIndentedString(browserInfo)).append("\n");
+    sb.append("    shippingDetailsId: ").append(toIndentedString(shippingDetailsId)).append("\n");
+    sb.append("    connectionOptions: ").append(toIndentedString(connectionOptions)).append("\n");
     sb.append("}");
     return sb.toString();
   }

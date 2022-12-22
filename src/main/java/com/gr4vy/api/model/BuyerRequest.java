@@ -29,7 +29,7 @@ import java.io.IOException;
  * A request to create a buyer.
  */
 @ApiModel(description = "A request to create a buyer.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-10-18T22:22:07.544896Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-12-22T14:21:56.132305Z[Etc/UTC]")
 public class BuyerRequest {
   public static final String SERIALIZED_NAME_EXTERNAL_IDENTIFIER = "external_identifier";
   @SerializedName(SERIALIZED_NAME_EXTERNAL_IDENTIFIER)
