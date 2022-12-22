@@ -32,8 +32,16 @@ import java.util.List;
  * Additional context specific to the payment option. This is currently only returned for Apple Pay and Google Pay.
  */
 @ApiModel(description = "Additional context specific to the payment option. This is currently only returned for Apple Pay and Google Pay.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-10-18T22:22:07.544896Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-12-22T14:21:56.132305Z[Etc/UTC]")
 public class PaymentOptionContext {
+  public static final String SERIALIZED_NAME_GATEWAY = "gateway";
+  @SerializedName(SERIALIZED_NAME_GATEWAY)
+  private String gateway;
+
+  public static final String SERIALIZED_NAME_GATEWAY_MERCHANT_ID = "gateway_merchant_id";
+  @SerializedName(SERIALIZED_NAME_GATEWAY_MERCHANT_ID)
+  private String gatewayMerchantId;
+
   public static final String SERIALIZED_NAME_MERCHANT_NAME = "merchant_name";
   @SerializedName(SERIALIZED_NAME_MERCHANT_NAME)
   private String merchantName;
@@ -49,6 +57,52 @@ public class PaymentOptionContext {
   public static final String SERIALIZED_NAME_REQUIRED_FIELDS = "required_fields";
   @SerializedName(SERIALIZED_NAME_REQUIRED_FIELDS)
   private RequiredFields requiredFields;
+
+
+  public PaymentOptionContext gateway(String gateway) {
+    
+    this.gateway = gateway;
+    return this;
+  }
+
+   /**
+   * Gateway used for Google Pay payments.
+   * @return gateway
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Gateway used for Google Pay payments.")
+
+  public String getGateway() {
+    return gateway;
+  }
+
+
+  public void setGateway(String gateway) {
+    this.gateway = gateway;
+  }
+
+
+  public PaymentOptionContext gatewayMerchantId(String gatewayMerchantId) {
+    
+    this.gatewayMerchantId = gatewayMerchantId;
+    return this;
+  }
+
+   /**
+   * Gateway merchant identifier used for Google Pay payments.
+   * @return gatewayMerchantId
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Gateway merchant identifier used for Google Pay payments.")
+
+  public String getGatewayMerchantId() {
+    return gatewayMerchantId;
+  }
+
+
+  public void setGatewayMerchantId(String gatewayMerchantId) {
+    this.gatewayMerchantId = gatewayMerchantId;
+  }
 
 
   public PaymentOptionContext merchantName(String merchantName) {
@@ -160,7 +214,9 @@ public class PaymentOptionContext {
       return false;
     }
     PaymentOptionContext paymentOptionContext = (PaymentOptionContext) o;
-    return Objects.equals(this.merchantName, paymentOptionContext.merchantName) &&
+    return Objects.equals(this.gateway, paymentOptionContext.gateway) &&
+        Objects.equals(this.gatewayMerchantId, paymentOptionContext.gatewayMerchantId) &&
+        Objects.equals(this.merchantName, paymentOptionContext.merchantName) &&
         Objects.equals(this.supportedSchemes, paymentOptionContext.supportedSchemes) &&
         Objects.equals(this.approvalUi, paymentOptionContext.approvalUi) &&
         Objects.equals(this.requiredFields, paymentOptionContext.requiredFields);
@@ -168,13 +224,15 @@ public class PaymentOptionContext {
 
   @Override
   public int hashCode() {
-    return Objects.hash(merchantName, supportedSchemes, approvalUi, requiredFields);
+    return Objects.hash(gateway, gatewayMerchantId, merchantName, supportedSchemes, approvalUi, requiredFields);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class PaymentOptionContext {\n");
+    sb.append("    gateway: ").append(toIndentedString(gateway)).append("\n");
+    sb.append("    gatewayMerchantId: ").append(toIndentedString(gatewayMerchantId)).append("\n");
     sb.append("    merchantName: ").append(toIndentedString(merchantName)).append("\n");
     sb.append("    supportedSchemes: ").append(toIndentedString(supportedSchemes)).append("\n");
     sb.append("    approvalUi: ").append(toIndentedString(approvalUi)).append("\n");

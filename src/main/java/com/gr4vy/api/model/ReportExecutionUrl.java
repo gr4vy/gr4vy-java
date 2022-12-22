@@ -29,7 +29,7 @@ import org.threeten.bp.OffsetDateTime;
  * The temporary signed URL to download the result of a report execution and its expiration date and time.
  */
 @ApiModel(description = "The temporary signed URL to download the result of a report execution and its expiration date and time.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-10-18T22:22:07.544896Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-12-22T14:21:56.132305Z[Etc/UTC]")
 public class ReportExecutionUrl {
   public static final String SERIALIZED_NAME_URL = "url";
   @SerializedName(SERIALIZED_NAME_URL)

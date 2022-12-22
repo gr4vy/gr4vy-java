@@ -23,42 +23,49 @@ import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
 
 /**
  * A request to create a user.
  */
 @ApiModel(description = "A request to create a user.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-10-18T22:22:07.544896Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-12-22T14:21:56.132305Z[Etc/UTC]")
 public class UserRequest {
-  public static final String SERIALIZED_NAME_DISPLAY_NAME = "display_name";
-  @SerializedName(SERIALIZED_NAME_DISPLAY_NAME)
-  private String displayName;
+  public static final String SERIALIZED_NAME_NAME = "name";
+  @SerializedName(SERIALIZED_NAME_NAME)
+  private String name;
 
   public static final String SERIALIZED_NAME_EMAIL_ADDRESS = "email_address";
   @SerializedName(SERIALIZED_NAME_EMAIL_ADDRESS)
   private String emailAddress;
 
+  public static final String SERIALIZED_NAME_ROLE_IDS = "role_ids";
+  @SerializedName(SERIALIZED_NAME_ROLE_IDS)
+  private List<UUID> roleIds = null;
 
-  public UserRequest displayName(String displayName) {
+
+  public UserRequest name(String name) {
     
-    this.displayName = displayName;
+    this.name = name;
     return this;
   }
 
    /**
-   * An external identifier that can be used to match the buyer against your own records. This value needs to be unique for all buyers.
-   * @return displayName
+   * The full name of the user which is used in the Gr4vy admin panel to give an user a human readable name.
+   * @return name
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "John L.", value = "An external identifier that can be used to match the buyer against your own records. This value needs to be unique for all buyers.")
+  @ApiModelProperty(example = "John L.", value = "The full name of the user which is used in the Gr4vy admin panel to give an user a human readable name.")
 
-  public String getDisplayName() {
-    return displayName;
+  public String getName() {
+    return name;
   }
 
 
-  public void setDisplayName(String displayName) {
-    this.displayName = displayName;
+  public void setName(String name) {
+    this.name = name;
   }
 
 
@@ -69,11 +76,11 @@ public class UserRequest {
   }
 
    /**
-   * A unique name for this buyer which is used in the Gr4vy admin panel to give a buyer a human readable name.
+   * The email address for this user.
    * @return emailAddress
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "john@example.com", value = "A unique name for this buyer which is used in the Gr4vy admin panel to give a buyer a human readable name.")
+  @ApiModelProperty(example = "john@example.com", value = "The email address for this user.")
 
   public String getEmailAddress() {
     return emailAddress;
@@ -82,6 +89,37 @@ public class UserRequest {
 
   public void setEmailAddress(String emailAddress) {
     this.emailAddress = emailAddress;
+  }
+
+
+  public UserRequest roleIds(List<UUID> roleIds) {
+    
+    this.roleIds = roleIds;
+    return this;
+  }
+
+  public UserRequest addRoleIdsItem(UUID roleIdsItem) {
+    if (this.roleIds == null) {
+      this.roleIds = new ArrayList<UUID>();
+    }
+    this.roleIds.add(roleIdsItem);
+    return this;
+  }
+
+   /**
+   * A list of role ids that will be assigned to the user being created. The creator must have &#x60;roles.write&#x60; or the role that is being assigned.
+   * @return roleIds
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "[\"8d3fe99b-1422-42e6-bbb3-932d95ae5f79\"]", value = "A list of role ids that will be assigned to the user being created. The creator must have `roles.write` or the role that is being assigned.")
+
+  public List<UUID> getRoleIds() {
+    return roleIds;
+  }
+
+
+  public void setRoleIds(List<UUID> roleIds) {
+    this.roleIds = roleIds;
   }
 
 
@@ -94,21 +132,23 @@ public class UserRequest {
       return false;
     }
     UserRequest userRequest = (UserRequest) o;
-    return Objects.equals(this.displayName, userRequest.displayName) &&
-        Objects.equals(this.emailAddress, userRequest.emailAddress);
+    return Objects.equals(this.name, userRequest.name) &&
+        Objects.equals(this.emailAddress, userRequest.emailAddress) &&
+        Objects.equals(this.roleIds, userRequest.roleIds);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(displayName, emailAddress);
+    return Objects.hash(name, emailAddress, roleIds);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class UserRequest {\n");
-    sb.append("    displayName: ").append(toIndentedString(displayName)).append("\n");
+    sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    emailAddress: ").append(toIndentedString(emailAddress)).append("\n");
+    sb.append("    roleIds: ").append(toIndentedString(roleIds)).append("\n");
     sb.append("}");
     return sb.toString();
   }

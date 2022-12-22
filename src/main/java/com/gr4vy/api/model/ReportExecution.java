@@ -20,6 +20,9 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import com.gr4vy.api.model.ReportExecutionSummary;
+import com.gr4vy.api.model.ReportExecutionSummaryContext;
+import com.gr4vy.api.model.ReportSummary;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
@@ -30,8 +33,12 @@ import org.threeten.bp.OffsetDateTime;
  * A report execution.
  */
 @ApiModel(description = "A report execution.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-10-18T22:22:07.544896Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-12-22T14:21:56.132305Z[Etc/UTC]")
 public class ReportExecution {
+  public static final String SERIALIZED_NAME_REPORT = "report";
+  @SerializedName(SERIALIZED_NAME_REPORT)
+  private ReportSummary report;
+
   /**
    * The type of this resource. Is always &#x60;report-execution&#x60;.
    */
@@ -150,9 +157,32 @@ public class ReportExecution {
   @SerializedName(SERIALIZED_NAME_STATUS)
   private StatusEnum status;
 
-  public static final String SERIALIZED_NAME_REPORT_ID = "report_id";
-  @SerializedName(SERIALIZED_NAME_REPORT_ID)
-  private UUID reportId;
+  public static final String SERIALIZED_NAME_CONTEXT = "context";
+  @SerializedName(SERIALIZED_NAME_CONTEXT)
+  private ReportExecutionSummaryContext context;
+
+
+  public ReportExecution report(ReportSummary report) {
+    
+    this.report = report;
+    return this;
+  }
+
+   /**
+   * The report associated with this report execution.
+   * @return report
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "The report associated with this report execution.")
+
+  public ReportSummary getReport() {
+    return report;
+  }
+
+
+  public void setReport(ReportSummary report) {
+    this.report = report;
+  }
 
 
   public ReportExecution type(TypeEnum type) {
@@ -270,26 +300,26 @@ public class ReportExecution {
   }
 
 
-  public ReportExecution reportId(UUID reportId) {
+  public ReportExecution context(ReportExecutionSummaryContext context) {
     
-    this.reportId = reportId;
+    this.context = context;
     return this;
   }
 
    /**
-   * The &#x60;id&#x60; of the report to associate this report execution to.
-   * @return reportId
+   * Get context
+   * @return context
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "fe26475d-ec3e-4884-9553-f7356683f7f9", value = "The `id` of the report to associate this report execution to.")
+  @ApiModelProperty(value = "")
 
-  public UUID getReportId() {
-    return reportId;
+  public ReportExecutionSummaryContext getContext() {
+    return context;
   }
 
 
-  public void setReportId(UUID reportId) {
-    this.reportId = reportId;
+  public void setContext(ReportExecutionSummaryContext context) {
+    this.context = context;
   }
 
 
@@ -302,29 +332,31 @@ public class ReportExecution {
       return false;
     }
     ReportExecution reportExecution = (ReportExecution) o;
-    return Objects.equals(this.type, reportExecution.type) &&
+    return Objects.equals(this.report, reportExecution.report) &&
+        Objects.equals(this.type, reportExecution.type) &&
         Objects.equals(this.id, reportExecution.id) &&
         Objects.equals(this.createdAt, reportExecution.createdAt) &&
         Objects.equals(this.updatedAt, reportExecution.updatedAt) &&
         Objects.equals(this.status, reportExecution.status) &&
-        Objects.equals(this.reportId, reportExecution.reportId);
+        Objects.equals(this.context, reportExecution.context);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(type, id, createdAt, updatedAt, status, reportId);
+    return Objects.hash(report, type, id, createdAt, updatedAt, status, context);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class ReportExecution {\n");
+    sb.append("    report: ").append(toIndentedString(report)).append("\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    createdAt: ").append(toIndentedString(createdAt)).append("\n");
     sb.append("    updatedAt: ").append(toIndentedString(updatedAt)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
-    sb.append("    reportId: ").append(toIndentedString(reportId)).append("\n");
+    sb.append("    context: ").append(toIndentedString(context)).append("\n");
     sb.append("}");
     return sb.toString();
   }

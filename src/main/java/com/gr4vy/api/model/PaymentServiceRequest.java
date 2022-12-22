@@ -34,7 +34,7 @@ import java.util.List;
  * Request body for activating a payment service.
  */
 @ApiModel(description = "Request body for activating a payment service.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-10-18T22:22:07.544896Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-12-22T14:21:56.132305Z[Etc/UTC]")
 public class PaymentServiceRequest {
   public static final String SERIALIZED_NAME_DISPLAY_NAME = "display_name";
   @SerializedName(SERIALIZED_NAME_DISPLAY_NAME)
@@ -103,6 +103,10 @@ public class PaymentServiceRequest {
   public static final String SERIALIZED_NAME_PAYMENT_METHOD_TOKENIZATION_ENABLED = "payment_method_tokenization_enabled";
   @SerializedName(SERIALIZED_NAME_PAYMENT_METHOD_TOKENIZATION_ENABLED)
   private Boolean paymentMethodTokenizationEnabled = false;
+
+  public static final String SERIALIZED_NAME_NETWORK_TOKENS_ENABLED = "network_tokens_enabled";
+  @SerializedName(SERIALIZED_NAME_NETWORK_TOKENS_ENABLED)
+  private Boolean networkTokensEnabled;
 
   public static final String SERIALIZED_NAME_PAYMENT_SERVICE_DEFINITION_ID = "payment_service_definition_id";
   @SerializedName(SERIALIZED_NAME_PAYMENT_SERVICE_DEFINITION_ID)
@@ -511,6 +515,29 @@ public class PaymentServiceRequest {
   }
 
 
+  public PaymentServiceRequest networkTokensEnabled(Boolean networkTokensEnabled) {
+    
+    this.networkTokensEnabled = networkTokensEnabled;
+    return this;
+  }
+
+   /**
+   * Defines if network tokens are enabled for the service. This feature can only be enabled if the payment service definition supports the &#x60;open_loop&#x60; feature and the PSP is set up to accept network tokens.  If this value is not provided or is set to &#x60;null&#x60;, it will be set to the value of &#x60;network_tokens_default&#x60; in the payment service definition.  If &#x60;network_tokens_toggle&#x60; is &#x60;false&#x60;, &#x60;network_tokens_enabled&#x60; should either not be provided or set to &#x60;null&#x60;, or it will fail with a validation error. This will then be set to the value of &#x60;network_tokens_default&#x60;.
+   * @return networkTokensEnabled
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "true", value = "Defines if network tokens are enabled for the service. This feature can only be enabled if the payment service definition supports the `open_loop` feature and the PSP is set up to accept network tokens.  If this value is not provided or is set to `null`, it will be set to the value of `network_tokens_default` in the payment service definition.  If `network_tokens_toggle` is `false`, `network_tokens_enabled` should either not be provided or set to `null`, or it will fail with a validation error. This will then be set to the value of `network_tokens_default`.")
+
+  public Boolean getNetworkTokensEnabled() {
+    return networkTokensEnabled;
+  }
+
+
+  public void setNetworkTokensEnabled(Boolean networkTokensEnabled) {
+    this.networkTokensEnabled = networkTokensEnabled;
+  }
+
+
   public PaymentServiceRequest paymentServiceDefinitionId(String paymentServiceDefinitionId) {
     
     this.paymentServiceDefinitionId = paymentServiceDefinitionId;
@@ -559,12 +586,13 @@ public class PaymentServiceRequest {
         Objects.equals(this.active, paymentServiceRequest.active) &&
         Objects.equals(this.position, paymentServiceRequest.position) &&
         Objects.equals(this.paymentMethodTokenizationEnabled, paymentServiceRequest.paymentMethodTokenizationEnabled) &&
+        Objects.equals(this.networkTokensEnabled, paymentServiceRequest.networkTokensEnabled) &&
         Objects.equals(this.paymentServiceDefinitionId, paymentServiceRequest.paymentServiceDefinitionId);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(displayName, fields, acceptedCountries, acceptedCurrencies, threeDSecureEnabled, acquirerBinVisa, acquirerBinMastercard, acquirerBinAmex, acquirerBinDiscover, acquirerMerchantId, merchantName, merchantCountryCode, merchantCategoryCode, merchantUrl, active, position, paymentMethodTokenizationEnabled, paymentServiceDefinitionId);
+    return Objects.hash(displayName, fields, acceptedCountries, acceptedCurrencies, threeDSecureEnabled, acquirerBinVisa, acquirerBinMastercard, acquirerBinAmex, acquirerBinDiscover, acquirerMerchantId, merchantName, merchantCountryCode, merchantCategoryCode, merchantUrl, active, position, paymentMethodTokenizationEnabled, networkTokensEnabled, paymentServiceDefinitionId);
   }
 
   @Override
@@ -588,6 +616,7 @@ public class PaymentServiceRequest {
     sb.append("    active: ").append(toIndentedString(active)).append("\n");
     sb.append("    position: ").append(toIndentedString(position)).append("\n");
     sb.append("    paymentMethodTokenizationEnabled: ").append(toIndentedString(paymentMethodTokenizationEnabled)).append("\n");
+    sb.append("    networkTokensEnabled: ").append(toIndentedString(networkTokensEnabled)).append("\n");
     sb.append("    paymentServiceDefinitionId: ").append(toIndentedString(paymentServiceDefinitionId)).append("\n");
     sb.append("}");
     return sb.toString();

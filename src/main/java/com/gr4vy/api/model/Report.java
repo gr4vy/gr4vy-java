@@ -20,8 +20,9 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import com.gr4vy.api.model.ReportExecution;
+import com.gr4vy.api.model.ReportExecutionSummary;
 import com.gr4vy.api.model.ReportSpec;
+import com.gr4vy.api.model.ReportSummary;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
@@ -32,8 +33,95 @@ import org.threeten.bp.OffsetDateTime;
  * A report record.
  */
 @ApiModel(description = "A report record.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-10-18T22:22:07.544896Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-12-22T14:21:56.132305Z[Etc/UTC]")
 public class Report {
+  public static final String SERIALIZED_NAME_CREATED_AT = "created_at";
+  @SerializedName(SERIALIZED_NAME_CREATED_AT)
+  private OffsetDateTime createdAt;
+
+  public static final String SERIALIZED_NAME_UPDATED_AT = "updated_at";
+  @SerializedName(SERIALIZED_NAME_UPDATED_AT)
+  private OffsetDateTime updatedAt;
+
+  public static final String SERIALIZED_NAME_NEXT_EXECUTION_AT = "next_execution_at";
+  @SerializedName(SERIALIZED_NAME_NEXT_EXECUTION_AT)
+  private OffsetDateTime nextExecutionAt;
+
+  public static final String SERIALIZED_NAME_DESCRIPTION = "description";
+  @SerializedName(SERIALIZED_NAME_DESCRIPTION)
+  private String description;
+
+  /**
+   * Specifies the schedule of this report.  If this is a one-off report, this value is &#x60;once&#x60;.  If this is a recurring report, this value is set to the frequency by which the report will be executed. For example, a &#x60;monthly&#x60; schedule means that this report will be periodically executed at the start of each month.  Note that a &#x60;weekly&#x60; schedule means that the report is executed at the start of every Monday.
+   */
+  @JsonAdapter(ScheduleEnum.Adapter.class)
+  public enum ScheduleEnum {
+    DAILY("daily"),
+    
+    MONTHLY("monthly"),
+    
+    ONCE("once"),
+    
+    WEEKLY("weekly");
+
+    private String value;
+
+    ScheduleEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static ScheduleEnum fromValue(String value) {
+      for (ScheduleEnum b : ScheduleEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+
+    public static class Adapter extends TypeAdapter<ScheduleEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final ScheduleEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public ScheduleEnum read(final JsonReader jsonReader) throws IOException {
+        String value =  jsonReader.nextString();
+        return ScheduleEnum.fromValue(value);
+      }
+    }
+  }
+
+  public static final String SERIALIZED_NAME_SCHEDULE = "schedule";
+  @SerializedName(SERIALIZED_NAME_SCHEDULE)
+  private ScheduleEnum schedule;
+
+  public static final String SERIALIZED_NAME_SCHEDULE_ENABLED = "schedule_enabled";
+  @SerializedName(SERIALIZED_NAME_SCHEDULE_ENABLED)
+  private Boolean scheduleEnabled;
+
+  public static final String SERIALIZED_NAME_SCHEDULE_TIMEZONE = "schedule_timezone";
+  @SerializedName(SERIALIZED_NAME_SCHEDULE_TIMEZONE)
+  private String scheduleTimezone;
+
+  public static final String SERIALIZED_NAME_SPEC = "spec";
+  @SerializedName(SERIALIZED_NAME_SPEC)
+  private ReportSpec spec;
+
+  public static final String SERIALIZED_NAME_LATEST_EXECUTION = "latest_execution";
+  @SerializedName(SERIALIZED_NAME_LATEST_EXECUTION)
+  private ReportExecutionSummary latestExecution;
+
   /**
    * The type of this resource. Is always &#x60;report&#x60;.
    */
@@ -87,75 +175,9 @@ public class Report {
   @SerializedName(SERIALIZED_NAME_ID)
   private UUID id;
 
-  public static final String SERIALIZED_NAME_CREATED_AT = "created_at";
-  @SerializedName(SERIALIZED_NAME_CREATED_AT)
-  private OffsetDateTime createdAt;
-
-  public static final String SERIALIZED_NAME_UPDATED_AT = "updated_at";
-  @SerializedName(SERIALIZED_NAME_UPDATED_AT)
-  private OffsetDateTime updatedAt;
-
   public static final String SERIALIZED_NAME_NAME = "name";
   @SerializedName(SERIALIZED_NAME_NAME)
   private String name;
-
-  public static final String SERIALIZED_NAME_DESCRIPTION = "description";
-  @SerializedName(SERIALIZED_NAME_DESCRIPTION)
-  private String description;
-
-  public static final String SERIALIZED_NAME_SPEC = "spec";
-  @SerializedName(SERIALIZED_NAME_SPEC)
-  private ReportSpec spec;
-
-  public static final String SERIALIZED_NAME_LATEST_EXECUTION = "latest_execution";
-  @SerializedName(SERIALIZED_NAME_LATEST_EXECUTION)
-  private ReportExecution latestExecution;
-
-
-  public Report type(TypeEnum type) {
-    
-    this.type = type;
-    return this;
-  }
-
-   /**
-   * The type of this resource. Is always &#x60;report&#x60;.
-   * @return type
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(example = "report", value = "The type of this resource. Is always `report`.")
-
-  public TypeEnum getType() {
-    return type;
-  }
-
-
-  public void setType(TypeEnum type) {
-    this.type = type;
-  }
-
-
-  public Report id(UUID id) {
-    
-    this.id = id;
-    return this;
-  }
-
-   /**
-   * The unique identifier for this report.
-   * @return id
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(example = "fe26475d-ec3e-4884-9553-f7356683f7f9", value = "The unique identifier for this report.")
-
-  public UUID getId() {
-    return id;
-  }
-
-
-  public void setId(UUID id) {
-    this.id = id;
-  }
 
 
   public Report createdAt(OffsetDateTime createdAt) {
@@ -204,26 +226,26 @@ public class Report {
   }
 
 
-  public Report name(String name) {
+  public Report nextExecutionAt(OffsetDateTime nextExecutionAt) {
     
-    this.name = name;
+    this.nextExecutionAt = nextExecutionAt;
     return this;
   }
 
    /**
-   * The name of this report.
-   * @return name
+   * The date and time this report will next be executed, provided that &#x60;schedule_enabled&#x60; is &#x60;true&#x60;. This value is null if this is a one-off report.
+   * @return nextExecutionAt
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "Failed Authorizations 042022", value = "The name of this report.")
+  @ApiModelProperty(example = "2023-01-01T00:00Z", value = "The date and time this report will next be executed, provided that `schedule_enabled` is `true`. This value is null if this is a one-off report.")
 
-  public String getName() {
-    return name;
+  public OffsetDateTime getNextExecutionAt() {
+    return nextExecutionAt;
   }
 
 
-  public void setName(String name) {
-    this.name = name;
+  public void setNextExecutionAt(OffsetDateTime nextExecutionAt) {
+    this.nextExecutionAt = nextExecutionAt;
   }
 
 
@@ -250,6 +272,75 @@ public class Report {
   }
 
 
+  public Report schedule(ScheduleEnum schedule) {
+    
+    this.schedule = schedule;
+    return this;
+  }
+
+   /**
+   * Specifies the schedule of this report.  If this is a one-off report, this value is &#x60;once&#x60;.  If this is a recurring report, this value is set to the frequency by which the report will be executed. For example, a &#x60;monthly&#x60; schedule means that this report will be periodically executed at the start of each month.  Note that a &#x60;weekly&#x60; schedule means that the report is executed at the start of every Monday.
+   * @return schedule
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "monthly", value = "Specifies the schedule of this report.  If this is a one-off report, this value is `once`.  If this is a recurring report, this value is set to the frequency by which the report will be executed. For example, a `monthly` schedule means that this report will be periodically executed at the start of each month.  Note that a `weekly` schedule means that the report is executed at the start of every Monday.")
+
+  public ScheduleEnum getSchedule() {
+    return schedule;
+  }
+
+
+  public void setSchedule(ScheduleEnum schedule) {
+    this.schedule = schedule;
+  }
+
+
+  public Report scheduleEnabled(Boolean scheduleEnabled) {
+    
+    this.scheduleEnabled = scheduleEnabled;
+    return this;
+  }
+
+   /**
+   * Indicates whether this report&#39;s scheduling is enabled. This value can only be set to &#x60;true&#x60; if this is a recurring report.  When this value is set to &#x60;true&#x60;, this report will be executed at the &#x60;next_execution_at&#x60; date and time.  When this value is set to &#x60;false&#x60;, future executions of this report are paused until this value is set to &#x60;true&#x60; again.
+   * @return scheduleEnabled
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "true", value = "Indicates whether this report's scheduling is enabled. This value can only be set to `true` if this is a recurring report.  When this value is set to `true`, this report will be executed at the `next_execution_at` date and time.  When this value is set to `false`, future executions of this report are paused until this value is set to `true` again.")
+
+  public Boolean getScheduleEnabled() {
+    return scheduleEnabled;
+  }
+
+
+  public void setScheduleEnabled(Boolean scheduleEnabled) {
+    this.scheduleEnabled = scheduleEnabled;
+  }
+
+
+  public Report scheduleTimezone(String scheduleTimezone) {
+    
+    this.scheduleTimezone = scheduleTimezone;
+    return this;
+  }
+
+   /**
+   * The time zone in which the next execution will be scheduled. This value is used to calculate this report&#39;s &#x60;next_execution_at&#x60; value and is only relevant if this is a recurring report. This time zone is also used to calculate the timestamp range for reports that use date-time placeholders. Date-time placeholders are dynamic timestamps that change with every report execution.
+   * @return scheduleTimezone
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "The time zone in which the next execution will be scheduled. This value is used to calculate this report's `next_execution_at` value and is only relevant if this is a recurring report. This time zone is also used to calculate the timestamp range for reports that use date-time placeholders. Date-time placeholders are dynamic timestamps that change with every report execution.")
+
+  public String getScheduleTimezone() {
+    return scheduleTimezone;
+  }
+
+
+  public void setScheduleTimezone(String scheduleTimezone) {
+    this.scheduleTimezone = scheduleTimezone;
+  }
+
+
   public Report spec(ReportSpec spec) {
     
     this.spec = spec;
@@ -273,7 +364,7 @@ public class Report {
   }
 
 
-  public Report latestExecution(ReportExecution latestExecution) {
+  public Report latestExecution(ReportExecutionSummary latestExecution) {
     
     this.latestExecution = latestExecution;
     return this;
@@ -286,13 +377,82 @@ public class Report {
   @javax.annotation.Nullable
   @ApiModelProperty(value = "Details of the latest execution of this report.")
 
-  public ReportExecution getLatestExecution() {
+  public ReportExecutionSummary getLatestExecution() {
     return latestExecution;
   }
 
 
-  public void setLatestExecution(ReportExecution latestExecution) {
+  public void setLatestExecution(ReportExecutionSummary latestExecution) {
     this.latestExecution = latestExecution;
+  }
+
+
+  public Report type(TypeEnum type) {
+    
+    this.type = type;
+    return this;
+  }
+
+   /**
+   * The type of this resource. Is always &#x60;report&#x60;.
+   * @return type
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "report", value = "The type of this resource. Is always `report`.")
+
+  public TypeEnum getType() {
+    return type;
+  }
+
+
+  public void setType(TypeEnum type) {
+    this.type = type;
+  }
+
+
+  public Report id(UUID id) {
+    
+    this.id = id;
+    return this;
+  }
+
+   /**
+   * The unique identifier for this report.
+   * @return id
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "fe26475d-ec3e-4884-9553-f7356683f7f9", value = "The unique identifier for this report.")
+
+  public UUID getId() {
+    return id;
+  }
+
+
+  public void setId(UUID id) {
+    this.id = id;
+  }
+
+
+  public Report name(String name) {
+    
+    this.name = name;
+    return this;
+  }
+
+   /**
+   * The name of this report.
+   * @return name
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "Failed Authorizations 042022", value = "The name of this report.")
+
+  public String getName() {
+    return name;
+  }
+
+
+  public void setName(String name) {
+    this.name = name;
   }
 
 
@@ -305,33 +465,41 @@ public class Report {
       return false;
     }
     Report report = (Report) o;
-    return Objects.equals(this.type, report.type) &&
-        Objects.equals(this.id, report.id) &&
-        Objects.equals(this.createdAt, report.createdAt) &&
+    return Objects.equals(this.createdAt, report.createdAt) &&
         Objects.equals(this.updatedAt, report.updatedAt) &&
-        Objects.equals(this.name, report.name) &&
+        Objects.equals(this.nextExecutionAt, report.nextExecutionAt) &&
         Objects.equals(this.description, report.description) &&
+        Objects.equals(this.schedule, report.schedule) &&
+        Objects.equals(this.scheduleEnabled, report.scheduleEnabled) &&
+        Objects.equals(this.scheduleTimezone, report.scheduleTimezone) &&
         Objects.equals(this.spec, report.spec) &&
-        Objects.equals(this.latestExecution, report.latestExecution);
+        Objects.equals(this.latestExecution, report.latestExecution) &&
+        Objects.equals(this.type, report.type) &&
+        Objects.equals(this.id, report.id) &&
+        Objects.equals(this.name, report.name);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(type, id, createdAt, updatedAt, name, description, spec, latestExecution);
+    return Objects.hash(createdAt, updatedAt, nextExecutionAt, description, schedule, scheduleEnabled, scheduleTimezone, spec, latestExecution, type, id, name);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class Report {\n");
-    sb.append("    type: ").append(toIndentedString(type)).append("\n");
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    createdAt: ").append(toIndentedString(createdAt)).append("\n");
     sb.append("    updatedAt: ").append(toIndentedString(updatedAt)).append("\n");
-    sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("    nextExecutionAt: ").append(toIndentedString(nextExecutionAt)).append("\n");
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
+    sb.append("    schedule: ").append(toIndentedString(schedule)).append("\n");
+    sb.append("    scheduleEnabled: ").append(toIndentedString(scheduleEnabled)).append("\n");
+    sb.append("    scheduleTimezone: ").append(toIndentedString(scheduleTimezone)).append("\n");
     sb.append("    spec: ").append(toIndentedString(spec)).append("\n");
     sb.append("    latestExecution: ").append(toIndentedString(latestExecution)).append("\n");
+    sb.append("    type: ").append(toIndentedString(type)).append("\n");
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("}");
     return sb.toString();
   }

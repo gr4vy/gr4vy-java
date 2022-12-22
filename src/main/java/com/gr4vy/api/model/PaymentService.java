@@ -34,7 +34,7 @@ import org.threeten.bp.OffsetDateTime;
  * An active, configured payment service.
  */
 @ApiModel(description = "An active, configured payment service.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-10-18T22:22:07.544896Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-12-22T14:21:56.132305Z[Etc/UTC]")
 public class PaymentService {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -161,6 +161,10 @@ public class PaymentService {
   public static final String SERIALIZED_NAME_ACCEPTED_COUNTRIES = "accepted_countries";
   @SerializedName(SERIALIZED_NAME_ACCEPTED_COUNTRIES)
   private List<String> acceptedCountries = null;
+
+  public static final String SERIALIZED_NAME_NETWORK_TOKENS_ENABLED = "network_tokens_enabled";
+  @SerializedName(SERIALIZED_NAME_NETWORK_TOKENS_ENABLED)
+  private Boolean networkTokensEnabled;
 
   public static final String SERIALIZED_NAME_THREE_D_SECURE_ENABLED = "three_d_secure_enabled";
   @SerializedName(SERIALIZED_NAME_THREE_D_SECURE_ENABLED)
@@ -428,6 +432,29 @@ public class PaymentService {
 
   public void setAcceptedCountries(List<String> acceptedCountries) {
     this.acceptedCountries = acceptedCountries;
+  }
+
+
+  public PaymentService networkTokensEnabled(Boolean networkTokensEnabled) {
+    
+    this.networkTokensEnabled = networkTokensEnabled;
+    return this;
+  }
+
+   /**
+   * Defines if network tokens are enabled for the service. This feature can only be enabled if the payment service definition supports the &#x60;open_loop&#x60; feature and the PSP is set up to accept network tokens.
+   * @return networkTokensEnabled
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "true", value = "Defines if network tokens are enabled for the service. This feature can only be enabled if the payment service definition supports the `open_loop` feature and the PSP is set up to accept network tokens.")
+
+  public Boolean getNetworkTokensEnabled() {
+    return networkTokensEnabled;
+  }
+
+
+  public void setNetworkTokensEnabled(Boolean networkTokensEnabled) {
+    this.networkTokensEnabled = networkTokensEnabled;
   }
 
 
@@ -847,6 +874,7 @@ public class PaymentService {
         Objects.equals(this.status, paymentService.status) &&
         Objects.equals(this.acceptedCurrencies, paymentService.acceptedCurrencies) &&
         Objects.equals(this.acceptedCountries, paymentService.acceptedCountries) &&
+        Objects.equals(this.networkTokensEnabled, paymentService.networkTokensEnabled) &&
         Objects.equals(this.threeDSecureEnabled, paymentService.threeDSecureEnabled) &&
         Objects.equals(this.acquirerBinVisa, paymentService.acquirerBinVisa) &&
         Objects.equals(this.acquirerBinMastercard, paymentService.acquirerBinMastercard) &&
@@ -868,7 +896,7 @@ public class PaymentService {
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, type, paymentServiceDefinitionId, method, displayName, status, acceptedCurrencies, acceptedCountries, threeDSecureEnabled, acquirerBinVisa, acquirerBinMastercard, acquirerBinAmex, acquirerBinDiscover, acquirerMerchantId, merchantName, merchantCountryCode, merchantCategoryCode, merchantUrl, active, position, paymentMethodTokenizationEnabled, createdAt, updatedAt, webhookUrl, fields);
+    return Objects.hash(id, type, paymentServiceDefinitionId, method, displayName, status, acceptedCurrencies, acceptedCountries, networkTokensEnabled, threeDSecureEnabled, acquirerBinVisa, acquirerBinMastercard, acquirerBinAmex, acquirerBinDiscover, acquirerMerchantId, merchantName, merchantCountryCode, merchantCategoryCode, merchantUrl, active, position, paymentMethodTokenizationEnabled, createdAt, updatedAt, webhookUrl, fields);
   }
 
   @Override
@@ -883,6 +911,7 @@ public class PaymentService {
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("    acceptedCurrencies: ").append(toIndentedString(acceptedCurrencies)).append("\n");
     sb.append("    acceptedCountries: ").append(toIndentedString(acceptedCountries)).append("\n");
+    sb.append("    networkTokensEnabled: ").append(toIndentedString(networkTokensEnabled)).append("\n");
     sb.append("    threeDSecureEnabled: ").append(toIndentedString(threeDSecureEnabled)).append("\n");
     sb.append("    acquirerBinVisa: ").append(toIndentedString(acquirerBinVisa)).append("\n");
     sb.append("    acquirerBinMastercard: ").append(toIndentedString(acquirerBinMastercard)).append("\n");

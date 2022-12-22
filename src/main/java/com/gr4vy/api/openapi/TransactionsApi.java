@@ -711,6 +711,7 @@ public class TransactionsApi {
      * @param metadata Filters for transactions where their &#x60;metadata&#x60; values contain all of the provided &#x60;metadata&#x60; keys. The value sent for &#x60;metadata&#x60; must be formatted as a JSON string, and all keys and values must be strings. This value should also be URL encoded.  Duplicate keys are not supported. If a key is duplicated, only the last appearing value will be used. (optional)
      * @param method Filters the results to only the items for which the &#x60;method&#x60; has been set to this value. (optional)
      * @param paymentMethodId The ID of the payment method. (optional)
+     * @param paymentMethodLabel Filters for transactions that have a payment method with a label that matches exactly with the provided value. (optional)
      * @param paymentServiceId Filters for transactions that were processed by the provided &#x60;payment_service_id&#x60; values. (optional)
      * @param paymentServiceTransactionId Filters for transactions that have a matching &#x60;payment_service_transaction_id&#x60; value. The &#x60;payment_service_transaction_id&#x60; is the identifier of the transaction given by the payment service. (optional)
      * @param search Filters for transactions that have one of the following fields match exactly with the provided &#x60;search&#x60; value: * &#x60;buyer_external_identifier&#x60; * &#x60;buyer_id&#x60; * &#x60;external_identifier&#x60; * &#x60;id&#x60; * &#x60;payment_service_transaction_id&#x60; (optional)
@@ -732,7 +733,7 @@ public class TransactionsApi {
         <tr><td> 401 </td><td> Returns an error if no valid authentication was provided. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call listTransactionsCall(String buyerExternalIdentifier, String buyerId, String cursor, Integer limit, Integer amountEq, Integer amountGte, Integer amountLte, OffsetDateTime createdAtGte, OffsetDateTime createdAtLte, List<String> currency, String externalIdentifier, Boolean hasRefunds, UUID id, List<String> metadata, List<String> method, UUID paymentMethodId, List<UUID> paymentServiceId, String paymentServiceTransactionId, String search, List<String> status, OffsetDateTime updatedAtGte, OffsetDateTime updatedAtLte, OffsetDateTime beforeCreatedAt, OffsetDateTime afterCreatedAt, OffsetDateTime beforeUpdatedAt, OffsetDateTime afterUpdatedAt, String transactionStatus, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call listTransactionsCall(String buyerExternalIdentifier, String buyerId, String cursor, Integer limit, Integer amountEq, Integer amountGte, Integer amountLte, OffsetDateTime createdAtGte, OffsetDateTime createdAtLte, List<String> currency, String externalIdentifier, Boolean hasRefunds, UUID id, List<String> metadata, List<String> method, UUID paymentMethodId, String paymentMethodLabel, List<UUID> paymentServiceId, String paymentServiceTransactionId, String search, List<String> status, OffsetDateTime updatedAtGte, OffsetDateTime updatedAtLte, OffsetDateTime beforeCreatedAt, OffsetDateTime afterCreatedAt, OffsetDateTime beforeUpdatedAt, OffsetDateTime afterUpdatedAt, String transactionStatus, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -808,6 +809,10 @@ public class TransactionsApi {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("payment_method_id", paymentMethodId));
         }
 
+        if (paymentMethodLabel != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("payment_method_label", paymentMethodLabel));
+        }
+
         if (paymentServiceId != null) {
             localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("multi", "payment_service_id", paymentServiceId));
         }
@@ -871,10 +876,10 @@ public class TransactionsApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call listTransactionsValidateBeforeCall(String buyerExternalIdentifier, String buyerId, String cursor, Integer limit, Integer amountEq, Integer amountGte, Integer amountLte, OffsetDateTime createdAtGte, OffsetDateTime createdAtLte, List<String> currency, String externalIdentifier, Boolean hasRefunds, UUID id, List<String> metadata, List<String> method, UUID paymentMethodId, List<UUID> paymentServiceId, String paymentServiceTransactionId, String search, List<String> status, OffsetDateTime updatedAtGte, OffsetDateTime updatedAtLte, OffsetDateTime beforeCreatedAt, OffsetDateTime afterCreatedAt, OffsetDateTime beforeUpdatedAt, OffsetDateTime afterUpdatedAt, String transactionStatus, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call listTransactionsValidateBeforeCall(String buyerExternalIdentifier, String buyerId, String cursor, Integer limit, Integer amountEq, Integer amountGte, Integer amountLte, OffsetDateTime createdAtGte, OffsetDateTime createdAtLte, List<String> currency, String externalIdentifier, Boolean hasRefunds, UUID id, List<String> metadata, List<String> method, UUID paymentMethodId, String paymentMethodLabel, List<UUID> paymentServiceId, String paymentServiceTransactionId, String search, List<String> status, OffsetDateTime updatedAtGte, OffsetDateTime updatedAtLte, OffsetDateTime beforeCreatedAt, OffsetDateTime afterCreatedAt, OffsetDateTime beforeUpdatedAt, OffsetDateTime afterUpdatedAt, String transactionStatus, final ApiCallback _callback) throws ApiException {
         
 
-        okhttp3.Call localVarCall = listTransactionsCall(buyerExternalIdentifier, buyerId, cursor, limit, amountEq, amountGte, amountLte, createdAtGte, createdAtLte, currency, externalIdentifier, hasRefunds, id, metadata, method, paymentMethodId, paymentServiceId, paymentServiceTransactionId, search, status, updatedAtGte, updatedAtLte, beforeCreatedAt, afterCreatedAt, beforeUpdatedAt, afterUpdatedAt, transactionStatus, _callback);
+        okhttp3.Call localVarCall = listTransactionsCall(buyerExternalIdentifier, buyerId, cursor, limit, amountEq, amountGte, amountLte, createdAtGte, createdAtLte, currency, externalIdentifier, hasRefunds, id, metadata, method, paymentMethodId, paymentMethodLabel, paymentServiceId, paymentServiceTransactionId, search, status, updatedAtGte, updatedAtLte, beforeCreatedAt, afterCreatedAt, beforeUpdatedAt, afterUpdatedAt, transactionStatus, _callback);
         return localVarCall;
 
     }
@@ -898,6 +903,7 @@ public class TransactionsApi {
      * @param metadata Filters for transactions where their &#x60;metadata&#x60; values contain all of the provided &#x60;metadata&#x60; keys. The value sent for &#x60;metadata&#x60; must be formatted as a JSON string, and all keys and values must be strings. This value should also be URL encoded.  Duplicate keys are not supported. If a key is duplicated, only the last appearing value will be used. (optional)
      * @param method Filters the results to only the items for which the &#x60;method&#x60; has been set to this value. (optional)
      * @param paymentMethodId The ID of the payment method. (optional)
+     * @param paymentMethodLabel Filters for transactions that have a payment method with a label that matches exactly with the provided value. (optional)
      * @param paymentServiceId Filters for transactions that were processed by the provided &#x60;payment_service_id&#x60; values. (optional)
      * @param paymentServiceTransactionId Filters for transactions that have a matching &#x60;payment_service_transaction_id&#x60; value. The &#x60;payment_service_transaction_id&#x60; is the identifier of the transaction given by the payment service. (optional)
      * @param search Filters for transactions that have one of the following fields match exactly with the provided &#x60;search&#x60; value: * &#x60;buyer_external_identifier&#x60; * &#x60;buyer_id&#x60; * &#x60;external_identifier&#x60; * &#x60;id&#x60; * &#x60;payment_service_transaction_id&#x60; (optional)
@@ -918,8 +924,8 @@ public class TransactionsApi {
         <tr><td> 401 </td><td> Returns an error if no valid authentication was provided. </td><td>  -  </td></tr>
      </table>
      */
-    public Transactions listTransactions(String buyerExternalIdentifier, String buyerId, String cursor, Integer limit, Integer amountEq, Integer amountGte, Integer amountLte, OffsetDateTime createdAtGte, OffsetDateTime createdAtLte, List<String> currency, String externalIdentifier, Boolean hasRefunds, UUID id, List<String> metadata, List<String> method, UUID paymentMethodId, List<UUID> paymentServiceId, String paymentServiceTransactionId, String search, List<String> status, OffsetDateTime updatedAtGte, OffsetDateTime updatedAtLte, OffsetDateTime beforeCreatedAt, OffsetDateTime afterCreatedAt, OffsetDateTime beforeUpdatedAt, OffsetDateTime afterUpdatedAt, String transactionStatus) throws ApiException {
-        ApiResponse<Transactions> localVarResp = listTransactionsWithHttpInfo(buyerExternalIdentifier, buyerId, cursor, limit, amountEq, amountGte, amountLte, createdAtGte, createdAtLte, currency, externalIdentifier, hasRefunds, id, metadata, method, paymentMethodId, paymentServiceId, paymentServiceTransactionId, search, status, updatedAtGte, updatedAtLte, beforeCreatedAt, afterCreatedAt, beforeUpdatedAt, afterUpdatedAt, transactionStatus);
+    public Transactions listTransactions(String buyerExternalIdentifier, String buyerId, String cursor, Integer limit, Integer amountEq, Integer amountGte, Integer amountLte, OffsetDateTime createdAtGte, OffsetDateTime createdAtLte, List<String> currency, String externalIdentifier, Boolean hasRefunds, UUID id, List<String> metadata, List<String> method, UUID paymentMethodId, String paymentMethodLabel, List<UUID> paymentServiceId, String paymentServiceTransactionId, String search, List<String> status, OffsetDateTime updatedAtGte, OffsetDateTime updatedAtLte, OffsetDateTime beforeCreatedAt, OffsetDateTime afterCreatedAt, OffsetDateTime beforeUpdatedAt, OffsetDateTime afterUpdatedAt, String transactionStatus) throws ApiException {
+        ApiResponse<Transactions> localVarResp = listTransactionsWithHttpInfo(buyerExternalIdentifier, buyerId, cursor, limit, amountEq, amountGte, amountLte, createdAtGte, createdAtLte, currency, externalIdentifier, hasRefunds, id, metadata, method, paymentMethodId, paymentMethodLabel, paymentServiceId, paymentServiceTransactionId, search, status, updatedAtGte, updatedAtLte, beforeCreatedAt, afterCreatedAt, beforeUpdatedAt, afterUpdatedAt, transactionStatus);
         return localVarResp.getData();
     }
 
@@ -942,6 +948,7 @@ public class TransactionsApi {
      * @param metadata Filters for transactions where their &#x60;metadata&#x60; values contain all of the provided &#x60;metadata&#x60; keys. The value sent for &#x60;metadata&#x60; must be formatted as a JSON string, and all keys and values must be strings. This value should also be URL encoded.  Duplicate keys are not supported. If a key is duplicated, only the last appearing value will be used. (optional)
      * @param method Filters the results to only the items for which the &#x60;method&#x60; has been set to this value. (optional)
      * @param paymentMethodId The ID of the payment method. (optional)
+     * @param paymentMethodLabel Filters for transactions that have a payment method with a label that matches exactly with the provided value. (optional)
      * @param paymentServiceId Filters for transactions that were processed by the provided &#x60;payment_service_id&#x60; values. (optional)
      * @param paymentServiceTransactionId Filters for transactions that have a matching &#x60;payment_service_transaction_id&#x60; value. The &#x60;payment_service_transaction_id&#x60; is the identifier of the transaction given by the payment service. (optional)
      * @param search Filters for transactions that have one of the following fields match exactly with the provided &#x60;search&#x60; value: * &#x60;buyer_external_identifier&#x60; * &#x60;buyer_id&#x60; * &#x60;external_identifier&#x60; * &#x60;id&#x60; * &#x60;payment_service_transaction_id&#x60; (optional)
@@ -962,8 +969,8 @@ public class TransactionsApi {
         <tr><td> 401 </td><td> Returns an error if no valid authentication was provided. </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<Transactions> listTransactionsWithHttpInfo(String buyerExternalIdentifier, String buyerId, String cursor, Integer limit, Integer amountEq, Integer amountGte, Integer amountLte, OffsetDateTime createdAtGte, OffsetDateTime createdAtLte, List<String> currency, String externalIdentifier, Boolean hasRefunds, UUID id, List<String> metadata, List<String> method, UUID paymentMethodId, List<UUID> paymentServiceId, String paymentServiceTransactionId, String search, List<String> status, OffsetDateTime updatedAtGte, OffsetDateTime updatedAtLte, OffsetDateTime beforeCreatedAt, OffsetDateTime afterCreatedAt, OffsetDateTime beforeUpdatedAt, OffsetDateTime afterUpdatedAt, String transactionStatus) throws ApiException {
-        okhttp3.Call localVarCall = listTransactionsValidateBeforeCall(buyerExternalIdentifier, buyerId, cursor, limit, amountEq, amountGte, amountLte, createdAtGte, createdAtLte, currency, externalIdentifier, hasRefunds, id, metadata, method, paymentMethodId, paymentServiceId, paymentServiceTransactionId, search, status, updatedAtGte, updatedAtLte, beforeCreatedAt, afterCreatedAt, beforeUpdatedAt, afterUpdatedAt, transactionStatus, null);
+    public ApiResponse<Transactions> listTransactionsWithHttpInfo(String buyerExternalIdentifier, String buyerId, String cursor, Integer limit, Integer amountEq, Integer amountGte, Integer amountLte, OffsetDateTime createdAtGte, OffsetDateTime createdAtLte, List<String> currency, String externalIdentifier, Boolean hasRefunds, UUID id, List<String> metadata, List<String> method, UUID paymentMethodId, String paymentMethodLabel, List<UUID> paymentServiceId, String paymentServiceTransactionId, String search, List<String> status, OffsetDateTime updatedAtGte, OffsetDateTime updatedAtLte, OffsetDateTime beforeCreatedAt, OffsetDateTime afterCreatedAt, OffsetDateTime beforeUpdatedAt, OffsetDateTime afterUpdatedAt, String transactionStatus) throws ApiException {
+        okhttp3.Call localVarCall = listTransactionsValidateBeforeCall(buyerExternalIdentifier, buyerId, cursor, limit, amountEq, amountGte, amountLte, createdAtGte, createdAtLte, currency, externalIdentifier, hasRefunds, id, metadata, method, paymentMethodId, paymentMethodLabel, paymentServiceId, paymentServiceTransactionId, search, status, updatedAtGte, updatedAtLte, beforeCreatedAt, afterCreatedAt, beforeUpdatedAt, afterUpdatedAt, transactionStatus, null);
         Type localVarReturnType = new TypeToken<Transactions>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -987,6 +994,7 @@ public class TransactionsApi {
      * @param metadata Filters for transactions where their &#x60;metadata&#x60; values contain all of the provided &#x60;metadata&#x60; keys. The value sent for &#x60;metadata&#x60; must be formatted as a JSON string, and all keys and values must be strings. This value should also be URL encoded.  Duplicate keys are not supported. If a key is duplicated, only the last appearing value will be used. (optional)
      * @param method Filters the results to only the items for which the &#x60;method&#x60; has been set to this value. (optional)
      * @param paymentMethodId The ID of the payment method. (optional)
+     * @param paymentMethodLabel Filters for transactions that have a payment method with a label that matches exactly with the provided value. (optional)
      * @param paymentServiceId Filters for transactions that were processed by the provided &#x60;payment_service_id&#x60; values. (optional)
      * @param paymentServiceTransactionId Filters for transactions that have a matching &#x60;payment_service_transaction_id&#x60; value. The &#x60;payment_service_transaction_id&#x60; is the identifier of the transaction given by the payment service. (optional)
      * @param search Filters for transactions that have one of the following fields match exactly with the provided &#x60;search&#x60; value: * &#x60;buyer_external_identifier&#x60; * &#x60;buyer_id&#x60; * &#x60;external_identifier&#x60; * &#x60;id&#x60; * &#x60;payment_service_transaction_id&#x60; (optional)
@@ -1008,9 +1016,9 @@ public class TransactionsApi {
         <tr><td> 401 </td><td> Returns an error if no valid authentication was provided. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call listTransactionsAsync(String buyerExternalIdentifier, String buyerId, String cursor, Integer limit, Integer amountEq, Integer amountGte, Integer amountLte, OffsetDateTime createdAtGte, OffsetDateTime createdAtLte, List<String> currency, String externalIdentifier, Boolean hasRefunds, UUID id, List<String> metadata, List<String> method, UUID paymentMethodId, List<UUID> paymentServiceId, String paymentServiceTransactionId, String search, List<String> status, OffsetDateTime updatedAtGte, OffsetDateTime updatedAtLte, OffsetDateTime beforeCreatedAt, OffsetDateTime afterCreatedAt, OffsetDateTime beforeUpdatedAt, OffsetDateTime afterUpdatedAt, String transactionStatus, final ApiCallback<Transactions> _callback) throws ApiException {
+    public okhttp3.Call listTransactionsAsync(String buyerExternalIdentifier, String buyerId, String cursor, Integer limit, Integer amountEq, Integer amountGte, Integer amountLte, OffsetDateTime createdAtGte, OffsetDateTime createdAtLte, List<String> currency, String externalIdentifier, Boolean hasRefunds, UUID id, List<String> metadata, List<String> method, UUID paymentMethodId, String paymentMethodLabel, List<UUID> paymentServiceId, String paymentServiceTransactionId, String search, List<String> status, OffsetDateTime updatedAtGte, OffsetDateTime updatedAtLte, OffsetDateTime beforeCreatedAt, OffsetDateTime afterCreatedAt, OffsetDateTime beforeUpdatedAt, OffsetDateTime afterUpdatedAt, String transactionStatus, final ApiCallback<Transactions> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = listTransactionsValidateBeforeCall(buyerExternalIdentifier, buyerId, cursor, limit, amountEq, amountGte, amountLte, createdAtGte, createdAtLte, currency, externalIdentifier, hasRefunds, id, metadata, method, paymentMethodId, paymentServiceId, paymentServiceTransactionId, search, status, updatedAtGte, updatedAtLte, beforeCreatedAt, afterCreatedAt, beforeUpdatedAt, afterUpdatedAt, transactionStatus, _callback);
+        okhttp3.Call localVarCall = listTransactionsValidateBeforeCall(buyerExternalIdentifier, buyerId, cursor, limit, amountEq, amountGte, amountLte, createdAtGte, createdAtLte, currency, externalIdentifier, hasRefunds, id, metadata, method, paymentMethodId, paymentMethodLabel, paymentServiceId, paymentServiceTransactionId, search, status, updatedAtGte, updatedAtLte, beforeCreatedAt, afterCreatedAt, beforeUpdatedAt, afterUpdatedAt, transactionStatus, _callback);
         Type localVarReturnType = new TypeToken<Transactions>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;

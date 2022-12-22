@@ -24,6 +24,7 @@ import com.gr4vy.api.model.BuyerSnapshot;
 import com.gr4vy.api.model.CartItem;
 import com.gr4vy.api.model.PaymentMethodSnapshot;
 import com.gr4vy.api.model.PaymentServiceSnapshot;
+import com.gr4vy.api.model.ShippingDetail;
 import com.gr4vy.api.model.StatementDescriptor;
 import com.gr4vy.api.model.ThreeDSecureSummary;
 import io.swagger.annotations.ApiModel;
@@ -40,7 +41,7 @@ import org.threeten.bp.OffsetDateTime;
  * A transaction record.
  */
 @ApiModel(description = "A transaction record.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-10-18T22:22:07.544896Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-12-22T14:21:56.132305Z[Etc/UTC]")
 public class Transaction {
   /**
    * The type of this resource. Is always &#x60;transaction&#x60;.
@@ -556,6 +557,10 @@ public class Transaction {
   public static final String SERIALIZED_NAME_METADATA = "metadata";
   @SerializedName(SERIALIZED_NAME_METADATA)
   private Map<String, String> metadata = null;
+
+  public static final String SERIALIZED_NAME_SHIPPING_DETAILS = "shipping_details";
+  @SerializedName(SERIALIZED_NAME_SHIPPING_DETAILS)
+  private ShippingDetail shippingDetails;
 
   public static final String SERIALIZED_NAME_THREE_D_SECURE = "three_d_secure";
   @SerializedName(SERIALIZED_NAME_THREE_D_SECURE)
@@ -1240,6 +1245,29 @@ public class Transaction {
   }
 
 
+  public Transaction shippingDetails(ShippingDetail shippingDetails) {
+    
+    this.shippingDetails = shippingDetails;
+    return this;
+  }
+
+   /**
+   * Get shippingDetails
+   * @return shippingDetails
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public ShippingDetail getShippingDetails() {
+    return shippingDetails;
+  }
+
+
+  public void setShippingDetails(ShippingDetail shippingDetails) {
+    this.shippingDetails = shippingDetails;
+  }
+
+
   public Transaction threeDSecure(ThreeDSecureSummary threeDSecure) {
     
     this.threeDSecure = threeDSecure;
@@ -1369,6 +1397,7 @@ public class Transaction {
         Objects.equals(this.method, transaction.method) &&
         Objects.equals(this.paymentServiceTransactionId, transaction.paymentServiceTransactionId) &&
         Objects.equals(this.metadata, transaction.metadata) &&
+        Objects.equals(this.shippingDetails, transaction.shippingDetails) &&
         Objects.equals(this.threeDSecure, transaction.threeDSecure) &&
         Objects.equals(this.authorizedAt, transaction.authorizedAt) &&
         Objects.equals(this.capturedAt, transaction.capturedAt) &&
@@ -1377,7 +1406,7 @@ public class Transaction {
 
   @Override
   public int hashCode() {
-    return Objects.hash(type, id, status, intent, amount, capturedAmount, refundedAmount, currency, country, paymentMethod, buyer, createdAt, externalIdentifier, updatedAt, paymentService, merchantInitiated, paymentSource, isSubsequentPayment, statementDescriptor, cartItems, schemeTransactionId, rawResponseCode, rawResponseDescription, avsResponseCode, cvvResponseCode, method, paymentServiceTransactionId, metadata, threeDSecure, authorizedAt, capturedAt, voidedAt);
+    return Objects.hash(type, id, status, intent, amount, capturedAmount, refundedAmount, currency, country, paymentMethod, buyer, createdAt, externalIdentifier, updatedAt, paymentService, merchantInitiated, paymentSource, isSubsequentPayment, statementDescriptor, cartItems, schemeTransactionId, rawResponseCode, rawResponseDescription, avsResponseCode, cvvResponseCode, method, paymentServiceTransactionId, metadata, shippingDetails, threeDSecure, authorizedAt, capturedAt, voidedAt);
   }
 
   @Override
@@ -1412,6 +1441,7 @@ public class Transaction {
     sb.append("    method: ").append(toIndentedString(method)).append("\n");
     sb.append("    paymentServiceTransactionId: ").append(toIndentedString(paymentServiceTransactionId)).append("\n");
     sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
+    sb.append("    shippingDetails: ").append(toIndentedString(shippingDetails)).append("\n");
     sb.append("    threeDSecure: ").append(toIndentedString(threeDSecure)).append("\n");
     sb.append("    authorizedAt: ").append(toIndentedString(authorizedAt)).append("\n");
     sb.append("    capturedAt: ").append(toIndentedString(capturedAt)).append("\n");
