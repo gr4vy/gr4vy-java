@@ -29,7 +29,7 @@ import java.util.UUID;
  * The user who performed the action.
  */
 @ApiModel(description = "The user who performed the action.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-10-18T22:22:07.544896Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-12-22T14:21:56.132305Z[Etc/UTC]")
 public class AuditLogUser {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -38,6 +38,10 @@ public class AuditLogUser {
   public static final String SERIALIZED_NAME_NAME = "name";
   @SerializedName(SERIALIZED_NAME_NAME)
   private String name;
+
+  public static final String SERIALIZED_NAME_EMAIL_ADDRESS = "email_address";
+  @SerializedName(SERIALIZED_NAME_EMAIL_ADDRESS)
+  private String emailAddress;
 
   public static final String SERIALIZED_NAME_STAFF = "staff";
   @SerializedName(SERIALIZED_NAME_STAFF)
@@ -90,6 +94,29 @@ public class AuditLogUser {
   }
 
 
+  public AuditLogUser emailAddress(String emailAddress) {
+    
+    this.emailAddress = emailAddress;
+    return this;
+  }
+
+   /**
+   * The email address for this user.
+   * @return emailAddress
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "john@example.com", value = "The email address for this user.")
+
+  public String getEmailAddress() {
+    return emailAddress;
+  }
+
+
+  public void setEmailAddress(String emailAddress) {
+    this.emailAddress = emailAddress;
+  }
+
+
   public AuditLogUser staff(Boolean staff) {
     
     this.staff = staff;
@@ -124,12 +151,13 @@ public class AuditLogUser {
     AuditLogUser auditLogUser = (AuditLogUser) o;
     return Objects.equals(this.id, auditLogUser.id) &&
         Objects.equals(this.name, auditLogUser.name) &&
+        Objects.equals(this.emailAddress, auditLogUser.emailAddress) &&
         Objects.equals(this.staff, auditLogUser.staff);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name, staff);
+    return Objects.hash(id, name, emailAddress, staff);
   }
 
   @Override
@@ -138,6 +166,7 @@ public class AuditLogUser {
     sb.append("class AuditLogUser {\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("    emailAddress: ").append(toIndentedString(emailAddress)).append("\n");
     sb.append("    staff: ").append(toIndentedString(staff)).append("\n");
     sb.append("}");
     return sb.toString();

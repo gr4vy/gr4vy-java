@@ -28,10 +28,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * A list of executions for a report.
+ * A list of report executions.
  */
-@ApiModel(description = "A list of executions for a report.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-10-18T22:22:07.544896Z[Etc/UTC]")
+@ApiModel(description = "A list of report executions.")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-12-22T14:21:56.132305Z[Etc/UTC]")
 public class ReportExecutions {
   public static final String SERIALIZED_NAME_ITEMS = "items";
   @SerializedName(SERIALIZED_NAME_ITEMS)
@@ -65,11 +65,11 @@ public class ReportExecutions {
   }
 
    /**
-   * A list of executions for a report.
+   * A list of report executions.
    * @return items
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "A list of executions for a report.")
+  @ApiModelProperty(value = "A list of report executions.")
 
   public List<ReportExecution> getItems() {
     return items;

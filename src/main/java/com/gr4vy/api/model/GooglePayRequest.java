@@ -20,6 +20,7 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import com.gr4vy.api.model.GooglePayRequestAssuranceDetails;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
@@ -28,7 +29,7 @@ import java.io.IOException;
  * Details for a Google Pay payment method.
  */
 @ApiModel(description = "Details for a Google Pay payment method.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-10-18T22:22:07.544896Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-12-22T14:21:56.132305Z[Etc/UTC]")
 public class GooglePayRequest {
   /**
    * &#x60;googlepay&#x60;.
@@ -83,6 +84,18 @@ public class GooglePayRequest {
   @SerializedName(SERIALIZED_NAME_TOKEN)
   private Object token;
 
+  public static final String SERIALIZED_NAME_ASSURANCE_DETAILS = "assurance_details";
+  @SerializedName(SERIALIZED_NAME_ASSURANCE_DETAILS)
+  private GooglePayRequestAssuranceDetails assuranceDetails;
+
+  public static final String SERIALIZED_NAME_CARD_HOLDER_NAME = "card_holder_name";
+  @SerializedName(SERIALIZED_NAME_CARD_HOLDER_NAME)
+  private String cardHolderName;
+
+  public static final String SERIALIZED_NAME_REDIRECT_URL = "redirect_url";
+  @SerializedName(SERIALIZED_NAME_REDIRECT_URL)
+  private String redirectUrl;
+
 
   public GooglePayRequest method(MethodEnum method) {
     
@@ -128,6 +141,75 @@ public class GooglePayRequest {
   }
 
 
+  public GooglePayRequest assuranceDetails(GooglePayRequestAssuranceDetails assuranceDetails) {
+    
+    this.assuranceDetails = assuranceDetails;
+    return this;
+  }
+
+   /**
+   * Get assuranceDetails
+   * @return assuranceDetails
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public GooglePayRequestAssuranceDetails getAssuranceDetails() {
+    return assuranceDetails;
+  }
+
+
+  public void setAssuranceDetails(GooglePayRequestAssuranceDetails assuranceDetails) {
+    this.assuranceDetails = assuranceDetails;
+  }
+
+
+  public GooglePayRequest cardHolderName(String cardHolderName) {
+    
+    this.cardHolderName = cardHolderName;
+    return this;
+  }
+
+   /**
+   * Name of the card holder.
+   * @return cardHolderName
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Name of the card holder.")
+
+  public String getCardHolderName() {
+    return cardHolderName;
+  }
+
+
+  public void setCardHolderName(String cardHolderName) {
+    this.cardHolderName = cardHolderName;
+  }
+
+
+  public GooglePayRequest redirectUrl(String redirectUrl) {
+    
+    this.redirectUrl = redirectUrl;
+    return this;
+  }
+
+   /**
+   * The redirect URL to redirect a buyer to after they have authorized their transaction or payment method. This only applies to payment methods that require buyer approval.
+   * @return redirectUrl
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "https://example.com/callback", value = "The redirect URL to redirect a buyer to after they have authorized their transaction or payment method. This only applies to payment methods that require buyer approval.")
+
+  public String getRedirectUrl() {
+    return redirectUrl;
+  }
+
+
+  public void setRedirectUrl(String redirectUrl) {
+    this.redirectUrl = redirectUrl;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -138,12 +220,15 @@ public class GooglePayRequest {
     }
     GooglePayRequest googlePayRequest = (GooglePayRequest) o;
     return Objects.equals(this.method, googlePayRequest.method) &&
-        Objects.equals(this.token, googlePayRequest.token);
+        Objects.equals(this.token, googlePayRequest.token) &&
+        Objects.equals(this.assuranceDetails, googlePayRequest.assuranceDetails) &&
+        Objects.equals(this.cardHolderName, googlePayRequest.cardHolderName) &&
+        Objects.equals(this.redirectUrl, googlePayRequest.redirectUrl);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(method, token);
+    return Objects.hash(method, token, assuranceDetails, cardHolderName, redirectUrl);
   }
 
   @Override
@@ -152,6 +237,9 @@ public class GooglePayRequest {
     sb.append("class GooglePayRequest {\n");
     sb.append("    method: ").append(toIndentedString(method)).append("\n");
     sb.append("    token: ").append(toIndentedString(token)).append("\n");
+    sb.append("    assuranceDetails: ").append(toIndentedString(assuranceDetails)).append("\n");
+    sb.append("    cardHolderName: ").append(toIndentedString(cardHolderName)).append("\n");
+    sb.append("    redirectUrl: ").append(toIndentedString(redirectUrl)).append("\n");
     sb.append("}");
     return sb.toString();
   }

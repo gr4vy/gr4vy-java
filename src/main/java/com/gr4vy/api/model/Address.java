@@ -25,10 +25,10 @@ import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 
 /**
- * The billing address of the buyer.
+ * An address for the buyer.
  */
-@ApiModel(description = "The billing address of the buyer.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-10-18T22:22:07.544896Z[Etc/UTC]")
+@ApiModel(description = "An address for the buyer.")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-12-22T14:21:56.132305Z[Etc/UTC]")
 public class Address {
   public static final String SERIALIZED_NAME_CITY = "city";
   @SerializedName(SERIALIZED_NAME_CITY)
@@ -74,11 +74,11 @@ public class Address {
   }
 
    /**
-   * The city for the billing address.
+   * The city for the address.
    * @return city
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "London", value = "The city for the billing address.")
+  @ApiModelProperty(example = "London", value = "The city for the address.")
 
   public String getCity() {
     return city;
@@ -97,11 +97,11 @@ public class Address {
   }
 
    /**
-   * The country for the billing address.
+   * The country for the address in ISO 3166 format.
    * @return country
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "GB", value = "The country for the billing address.")
+  @ApiModelProperty(example = "GB", value = "The country for the address in ISO 3166 format.")
 
   public String getCountry() {
     return country;
@@ -120,11 +120,11 @@ public class Address {
   }
 
    /**
-   * The postal code or zip code for the billing address.
+   * The postal code or zip code for the address.
    * @return postalCode
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "789123", value = "The postal code or zip code for the billing address.")
+  @ApiModelProperty(example = "789123", value = "The postal code or zip code for the address.")
 
   public String getPostalCode() {
     return postalCode;
@@ -143,11 +143,11 @@ public class Address {
   }
 
    /**
-   * The state, county, or province for the billing address.
+   * The state, county, or province for the address.
    * @return state
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "Greater London", value = "The state, county, or province for the billing address.")
+  @ApiModelProperty(example = "Greater London", value = "The state, county, or province for the address.")
 
   public String getState() {
     return state;
@@ -166,11 +166,11 @@ public class Address {
   }
 
    /**
-   * The code of state, county, or province for the billing address in ISO 3166-2 format.
+   * The code of state, county, or province for the address in ISO 3166-2 format.
    * @return stateCode
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "GB-LND", value = "The code of state, county, or province for the billing address in ISO 3166-2 format.")
+  @ApiModelProperty(example = "GB-LND", value = "The code of state, county, or province for the address in ISO 3166-2 format.")
 
   public String getStateCode() {
     return stateCode;
@@ -189,11 +189,11 @@ public class Address {
   }
 
    /**
-   * The house number or name for the billing address. Not all payment services use this field but some do.
+   * The house number or name for the address. Not all payment services use this field but some do.
    * @return houseNumberOrName
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "10", value = "The house number or name for the billing address. Not all payment services use this field but some do.")
+  @ApiModelProperty(example = "10", value = "The house number or name for the address. Not all payment services use this field but some do.")
 
   public String getHouseNumberOrName() {
     return houseNumberOrName;
@@ -212,11 +212,11 @@ public class Address {
   }
 
    /**
-   * The first line of the billing address.
+   * The first line of the address.
    * @return line1
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "10 Oxford Street", value = "The first line of the billing address.")
+  @ApiModelProperty(example = "10 Oxford Street", value = "The first line of the address.")
 
   public String getLine1() {
     return line1;
@@ -235,11 +235,11 @@ public class Address {
   }
 
    /**
-   * The second line of the billing address.
+   * The second line of the address.
    * @return line2
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "New Oxford Court", value = "The second line of the billing address.")
+  @ApiModelProperty(example = "New Oxford Court", value = "The second line of the address.")
 
   public String getLine2() {
     return line2;
@@ -258,11 +258,11 @@ public class Address {
   }
 
    /**
-   * The optional name of the company or organisation to add to the billing address.
+   * The optional name of the company or organisation to add to the address.
    * @return organization
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "Gr4vy", value = "The optional name of the company or organisation to add to the billing address.")
+  @ApiModelProperty(example = "Gr4vy", value = "The optional name of the company or organisation to add to the address.")
 
   public String getOrganization() {
     return organization;

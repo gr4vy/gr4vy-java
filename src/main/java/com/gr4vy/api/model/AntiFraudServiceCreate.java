@@ -32,16 +32,16 @@ import java.util.List;
  * A request to create an anti-fraud service.
  */
 @ApiModel(description = "A request to create an anti-fraud service.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-10-18T22:22:07.544896Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-12-22T14:21:56.132305Z[Etc/UTC]")
 public class AntiFraudServiceCreate {
   /**
    * The name of the Anti-Fraud service provider. During update request, this value is used for validation only but the underlying service can not be changed for an existing service.
    */
   @JsonAdapter(AntiFraudServiceDefinitionIdEnum.Adapter.class)
   public enum AntiFraudServiceDefinitionIdEnum {
-    SIFT("sift"),
+    SIFT_ANTI_FRAUD("sift-anti-fraud"),
     
-    CYBERSOURCE("cybersource");
+    CYBERSOURCE_ANTI_FRAUD("cybersource-anti-fraud");
 
     private String value;
 
@@ -108,7 +108,7 @@ public class AntiFraudServiceCreate {
    * The name of the Anti-Fraud service provider. During update request, this value is used for validation only but the underlying service can not be changed for an existing service.
    * @return antiFraudServiceDefinitionId
   **/
-  @ApiModelProperty(example = "sift", required = true, value = "The name of the Anti-Fraud service provider. During update request, this value is used for validation only but the underlying service can not be changed for an existing service.")
+  @ApiModelProperty(example = "sift-anti-fraud", required = true, value = "The name of the Anti-Fraud service provider. During update request, this value is used for validation only but the underlying service can not be changed for an existing service.")
 
   public AntiFraudServiceDefinitionIdEnum getAntiFraudServiceDefinitionId() {
     return antiFraudServiceDefinitionId;
@@ -177,10 +177,10 @@ public class AntiFraudServiceCreate {
   }
 
    /**
-   * A list of fields, each containing a key-value pair for each field defined by the definition for this anti-fraud service e.g. for sift &#x60;api_key&#x60; must be sent within this field when creating the service.  For updates, only the fields sent here will be updated, existing ones will not be affected if not present.
+   * A list of fields, each containing a key-value pair for each field defined by the definition for this anti-fraud service e.g. for Sift &#x60;api_key&#x60; must be sent within this field when creating the service.  For updates, only the fields sent here will be updated, existing ones will not be affected if not present.
    * @return fields
   **/
-  @ApiModelProperty(required = true, value = "A list of fields, each containing a key-value pair for each field defined by the definition for this anti-fraud service e.g. for sift `api_key` must be sent within this field when creating the service.  For updates, only the fields sent here will be updated, existing ones will not be affected if not present.")
+  @ApiModelProperty(required = true, value = "A list of fields, each containing a key-value pair for each field defined by the definition for this anti-fraud service e.g. for Sift `api_key` must be sent within this field when creating the service.  For updates, only the fields sent here will be updated, existing ones will not be affected if not present.")
 
   public List<AntiFraudServiceUpdateFields> getFields() {
     return fields;

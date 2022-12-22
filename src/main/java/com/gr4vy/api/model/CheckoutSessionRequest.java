@@ -29,7 +29,7 @@ import java.util.UUID;
  * Details for a Checkout Session payment method.
  */
 @ApiModel(description = "Details for a Checkout Session payment method.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-10-18T22:22:07.544896Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-12-22T14:21:56.132305Z[Etc/UTC]")
 public class CheckoutSessionRequest {
   /**
    * &#x60;checkout-session&#x60;.
@@ -84,6 +84,18 @@ public class CheckoutSessionRequest {
   @SerializedName(SERIALIZED_NAME_ID)
   private UUID id;
 
+  public static final String SERIALIZED_NAME_EXTERNAL_IDENTIFIER = "external_identifier";
+  @SerializedName(SERIALIZED_NAME_EXTERNAL_IDENTIFIER)
+  private String externalIdentifier;
+
+  public static final String SERIALIZED_NAME_BUYER_ID = "buyer_id";
+  @SerializedName(SERIALIZED_NAME_BUYER_ID)
+  private UUID buyerId;
+
+  public static final String SERIALIZED_NAME_BUYER_EXTERNAL_IDENTIFIER = "buyer_external_identifier";
+  @SerializedName(SERIALIZED_NAME_BUYER_EXTERNAL_IDENTIFIER)
+  private String buyerExternalIdentifier;
+
 
   public CheckoutSessionRequest method(MethodEnum method) {
     
@@ -129,6 +141,75 @@ public class CheckoutSessionRequest {
   }
 
 
+  public CheckoutSessionRequest externalIdentifier(String externalIdentifier) {
+    
+    this.externalIdentifier = externalIdentifier;
+    return this;
+  }
+
+   /**
+   * An external identifier that can be used to match the card against your own records.
+   * @return externalIdentifier
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "card-323444", value = "An external identifier that can be used to match the card against your own records.")
+
+  public String getExternalIdentifier() {
+    return externalIdentifier;
+  }
+
+
+  public void setExternalIdentifier(String externalIdentifier) {
+    this.externalIdentifier = externalIdentifier;
+  }
+
+
+  public CheckoutSessionRequest buyerId(UUID buyerId) {
+    
+    this.buyerId = buyerId;
+    return this;
+  }
+
+   /**
+   * The ID of the buyer to associate this payment method to. If this field is provided then the &#x60;buyer_external_identifier&#x60; field needs to be unset.
+   * @return buyerId
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "fe26475d-ec3e-4884-9553-f7356683f7f9", value = "The ID of the buyer to associate this payment method to. If this field is provided then the `buyer_external_identifier` field needs to be unset.")
+
+  public UUID getBuyerId() {
+    return buyerId;
+  }
+
+
+  public void setBuyerId(UUID buyerId) {
+    this.buyerId = buyerId;
+  }
+
+
+  public CheckoutSessionRequest buyerExternalIdentifier(String buyerExternalIdentifier) {
+    
+    this.buyerExternalIdentifier = buyerExternalIdentifier;
+    return this;
+  }
+
+   /**
+   * The &#x60;external_identifier&#x60; of the buyer to associate this payment method to. If this field is provided then the &#x60;buyer_id&#x60; field needs to be unset.
+   * @return buyerExternalIdentifier
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "user-789123", value = "The `external_identifier` of the buyer to associate this payment method to. If this field is provided then the `buyer_id` field needs to be unset.")
+
+  public String getBuyerExternalIdentifier() {
+    return buyerExternalIdentifier;
+  }
+
+
+  public void setBuyerExternalIdentifier(String buyerExternalIdentifier) {
+    this.buyerExternalIdentifier = buyerExternalIdentifier;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -139,12 +220,15 @@ public class CheckoutSessionRequest {
     }
     CheckoutSessionRequest checkoutSessionRequest = (CheckoutSessionRequest) o;
     return Objects.equals(this.method, checkoutSessionRequest.method) &&
-        Objects.equals(this.id, checkoutSessionRequest.id);
+        Objects.equals(this.id, checkoutSessionRequest.id) &&
+        Objects.equals(this.externalIdentifier, checkoutSessionRequest.externalIdentifier) &&
+        Objects.equals(this.buyerId, checkoutSessionRequest.buyerId) &&
+        Objects.equals(this.buyerExternalIdentifier, checkoutSessionRequest.buyerExternalIdentifier);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(method, id);
+    return Objects.hash(method, id, externalIdentifier, buyerId, buyerExternalIdentifier);
   }
 
   @Override
@@ -153,6 +237,9 @@ public class CheckoutSessionRequest {
     sb.append("class CheckoutSessionRequest {\n");
     sb.append("    method: ").append(toIndentedString(method)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("    externalIdentifier: ").append(toIndentedString(externalIdentifier)).append("\n");
+    sb.append("    buyerId: ").append(toIndentedString(buyerId)).append("\n");
+    sb.append("    buyerExternalIdentifier: ").append(toIndentedString(buyerExternalIdentifier)).append("\n");
     sb.append("}");
     return sb.toString();
   }
