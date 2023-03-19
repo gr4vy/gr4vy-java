@@ -29,6 +29,7 @@ import java.io.IOException;
 
 import com.gr4vy.api.model.Error401Unauthorized;
 import com.gr4vy.api.model.Error404NotFound;
+import com.gr4vy.api.model.Error409DuplicateRecord;
 import com.gr4vy.api.model.ErrorGeneric;
 import com.gr4vy.api.model.PaymentMethod;
 import com.gr4vy.api.model.PaymentMethodRequest;
@@ -371,7 +372,7 @@ public class PaymentMethodsApi {
 
     /**
      * List stored payment methods for a buyer
-     * Returns a list of stored (tokenized) payment methods for a buyer in a short tokenized format. Only payment methods that are compatible with at least one active payment service in that region are shown.
+     * Returns a list of stored payment methods for a buyer in a summarized format. Only payment methods that are compatible with at least one active payment service in that region are shown.
      * @param buyerId Filters the results to only the items for which the &#x60;buyer&#x60; has an &#x60;id&#x60; that matches this value. (optional)
      * @param buyerExternalIdentifier Filters the results to only the items for which the &#x60;buyer&#x60; has an &#x60;external_identifier&#x60; that matches this value. (optional)
      * @param country Filters the results to only the items which support this country code. A country is formatted as 2-letter ISO country code. (optional)
@@ -393,7 +394,7 @@ public class PaymentMethodsApi {
 
     /**
      * List stored payment methods for a buyer
-     * Returns a list of stored (tokenized) payment methods for a buyer in a short tokenized format. Only payment methods that are compatible with at least one active payment service in that region are shown.
+     * Returns a list of stored payment methods for a buyer in a summarized format. Only payment methods that are compatible with at least one active payment service in that region are shown.
      * @param buyerId Filters the results to only the items for which the &#x60;buyer&#x60; has an &#x60;id&#x60; that matches this value. (optional)
      * @param buyerExternalIdentifier Filters the results to only the items for which the &#x60;buyer&#x60; has an &#x60;external_identifier&#x60; that matches this value. (optional)
      * @param country Filters the results to only the items which support this country code. A country is formatted as 2-letter ISO country code. (optional)
@@ -416,7 +417,7 @@ public class PaymentMethodsApi {
 
     /**
      * List stored payment methods for a buyer (asynchronously)
-     * Returns a list of stored (tokenized) payment methods for a buyer in a short tokenized format. Only payment methods that are compatible with at least one active payment service in that region are shown.
+     * Returns a list of stored payment methods for a buyer in a summarized format. Only payment methods that are compatible with at least one active payment service in that region are shown.
      * @param buyerId Filters the results to only the items for which the &#x60;buyer&#x60; has an &#x60;id&#x60; that matches this value. (optional)
      * @param buyerExternalIdentifier Filters the results to only the items for which the &#x60;buyer&#x60; has an &#x60;external_identifier&#x60; that matches this value. (optional)
      * @param country Filters the results to only the items which support this country code. A country is formatted as 2-letter ISO country code. (optional)
@@ -517,7 +518,7 @@ public class PaymentMethodsApi {
 
     /**
      * List payment methods
-     * Returns a list of stored (tokenized) payment methods.
+     * Returns a list of stored payment methods.
      * @param buyerId Filters the results to only the items for which the &#x60;buyer&#x60; has an &#x60;id&#x60; that matches this value. (optional)
      * @param buyerExternalIdentifier Filters the results to only the items for which the &#x60;buyer&#x60; has an &#x60;external_identifier&#x60; that matches this value. (optional)
      * @param status Filters the results to only the payment methods for which the &#x60;status&#x60; matches this value. (optional)
@@ -539,7 +540,7 @@ public class PaymentMethodsApi {
 
     /**
      * List payment methods
-     * Returns a list of stored (tokenized) payment methods.
+     * Returns a list of stored payment methods.
      * @param buyerId Filters the results to only the items for which the &#x60;buyer&#x60; has an &#x60;id&#x60; that matches this value. (optional)
      * @param buyerExternalIdentifier Filters the results to only the items for which the &#x60;buyer&#x60; has an &#x60;external_identifier&#x60; that matches this value. (optional)
      * @param status Filters the results to only the payment methods for which the &#x60;status&#x60; matches this value. (optional)
@@ -562,7 +563,7 @@ public class PaymentMethodsApi {
 
     /**
      * List payment methods (asynchronously)
-     * Returns a list of stored (tokenized) payment methods.
+     * Returns a list of stored payment methods.
      * @param buyerId Filters the results to only the items for which the &#x60;buyer&#x60; has an &#x60;id&#x60; that matches this value. (optional)
      * @param buyerExternalIdentifier Filters the results to only the items for which the &#x60;buyer&#x60; has an &#x60;external_identifier&#x60; that matches this value. (optional)
      * @param status Filters the results to only the payment methods for which the &#x60;status&#x60; matches this value. (optional)
@@ -597,6 +598,7 @@ public class PaymentMethodsApi {
         <tr><td> 201 </td><td> Returns the created payment method. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Returns an error if the request was badly formatted or missing required fields. </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Returns an error if no valid authentication was provided. </td><td>  -  </td></tr>
+        <tr><td> 409 </td><td> Returns an error if duplicate resource has been found. </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call storePaymentMethodCall(PaymentMethodRequest paymentMethodRequest, final ApiCallback _callback) throws ApiException {
@@ -640,7 +642,7 @@ public class PaymentMethodsApi {
 
     /**
      * New payment method
-     * Stores and tokenizes a new payment method.
+     * Stores and vaults a new payment method.  Vaulting a card only stores its information but doesn&#39;t validate it against any PSP, so ephemeral data like the security code, often referred to as the CVV or CVD, won&#39;t be used. In order to validate the card data, a CIT (Customer Initiated Transaction) must be done, even if it&#39;s a zero-value one. 
      * @param paymentMethodRequest  (optional)
      * @return PaymentMethod
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -650,6 +652,7 @@ public class PaymentMethodsApi {
         <tr><td> 201 </td><td> Returns the created payment method. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Returns an error if the request was badly formatted or missing required fields. </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Returns an error if no valid authentication was provided. </td><td>  -  </td></tr>
+        <tr><td> 409 </td><td> Returns an error if duplicate resource has been found. </td><td>  -  </td></tr>
      </table>
      */
     public PaymentMethod storePaymentMethod(PaymentMethodRequest paymentMethodRequest) throws ApiException {
@@ -659,7 +662,7 @@ public class PaymentMethodsApi {
 
     /**
      * New payment method
-     * Stores and tokenizes a new payment method.
+     * Stores and vaults a new payment method.  Vaulting a card only stores its information but doesn&#39;t validate it against any PSP, so ephemeral data like the security code, often referred to as the CVV or CVD, won&#39;t be used. In order to validate the card data, a CIT (Customer Initiated Transaction) must be done, even if it&#39;s a zero-value one. 
      * @param paymentMethodRequest  (optional)
      * @return ApiResponse&lt;PaymentMethod&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -669,6 +672,7 @@ public class PaymentMethodsApi {
         <tr><td> 201 </td><td> Returns the created payment method. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Returns an error if the request was badly formatted or missing required fields. </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Returns an error if no valid authentication was provided. </td><td>  -  </td></tr>
+        <tr><td> 409 </td><td> Returns an error if duplicate resource has been found. </td><td>  -  </td></tr>
      </table>
      */
     public ApiResponse<PaymentMethod> storePaymentMethodWithHttpInfo(PaymentMethodRequest paymentMethodRequest) throws ApiException {
@@ -679,7 +683,7 @@ public class PaymentMethodsApi {
 
     /**
      * New payment method (asynchronously)
-     * Stores and tokenizes a new payment method.
+     * Stores and vaults a new payment method.  Vaulting a card only stores its information but doesn&#39;t validate it against any PSP, so ephemeral data like the security code, often referred to as the CVV or CVD, won&#39;t be used. In order to validate the card data, a CIT (Customer Initiated Transaction) must be done, even if it&#39;s a zero-value one. 
      * @param paymentMethodRequest  (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
@@ -690,6 +694,7 @@ public class PaymentMethodsApi {
         <tr><td> 201 </td><td> Returns the created payment method. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Returns an error if the request was badly formatted or missing required fields. </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Returns an error if no valid authentication was provided. </td><td>  -  </td></tr>
+        <tr><td> 409 </td><td> Returns an error if duplicate resource has been found. </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call storePaymentMethodAsync(PaymentMethodRequest paymentMethodRequest, final ApiCallback<PaymentMethod> _callback) throws ApiException {

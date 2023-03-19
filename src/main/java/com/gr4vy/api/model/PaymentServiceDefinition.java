@@ -33,7 +33,7 @@ import java.util.List;
  * An available payment service that can be configured.
  */
 @ApiModel(description = "An available payment service that can be configured.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-12-22T14:21:56.132305Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-03-19T17:27:23.170866Z[Etc/UTC]")
 public class PaymentServiceDefinition {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -156,11 +156,11 @@ public class PaymentServiceDefinition {
   }
 
    /**
-   * Get method
+   * The ID of the payment method that this services handles.
    * @return method
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "The ID of the payment method that this services handles.")
 
   public String getMethod() {
     return method;
@@ -272,11 +272,11 @@ public class PaymentServiceDefinition {
   }
 
    /**
-   * Get mode
+   * The mode of this payment service.
    * @return mode
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "The mode of this payment service.")
 
   public String getMode() {
     return mode;

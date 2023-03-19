@@ -31,7 +31,7 @@ import java.util.Map;
  * Additional options for Cybersource Decision Manager (anti-fraud).
  */
 @ApiModel(description = "Additional options for Cybersource Decision Manager (anti-fraud).")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-12-22T14:21:56.132305Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-03-19T17:27:23.170866Z[Etc/UTC]")
 public class ConnectionOptionsCybersourceAntiFraud {
   public static final String SERIALIZED_NAME_DEVICE_FINGERPRINT_ID = "device_fingerprint_id";
   @SerializedName(SERIALIZED_NAME_DEVICE_FINGERPRINT_ID)

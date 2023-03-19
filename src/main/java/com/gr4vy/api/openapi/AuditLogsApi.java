@@ -60,6 +60,8 @@ public class AuditLogsApi {
      * @param limit Defines the maximum number of items to return for this request. (optional, default to 20)
      * @param cursor A cursor that identifies the page of results to return. This is used to paginate the results of this API.  For the first page of results, this parameter can be left out. For additional pages, use the value returned by the API in the &#x60;next_cursor&#x60; field. Similarly the &#x60;previous_cursor&#x60; can be used to reverse backwards in the list. (optional)
      * @param userId Filters the results to only the items for which the &#x60;user&#x60; has an &#x60;id&#x60; that matches this value. (optional)
+     * @param action Filters the results to only the items for which the &#x60;audit-log&#x60; has an &#x60;action&#x60; that matches this value. (optional)
+     * @param resourceType Filters the results to only the items for which the &#x60;audit-log&#x60; has a &#x60;resource&#x60; that matches this type value. (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -70,7 +72,7 @@ public class AuditLogsApi {
         <tr><td> 401 </td><td> Returns an error if no valid authentication was provided. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call listAuditLogsCall(Integer limit, String cursor, String userId, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call listAuditLogsCall(Integer limit, String cursor, String userId, String action, String resourceType, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -94,6 +96,14 @@ public class AuditLogsApi {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("user_id", userId));
         }
 
+        if (action != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("action", action));
+        }
+
+        if (resourceType != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("resource_type", resourceType));
+        }
+
         final String[] localVarAccepts = {
             "application/json"
         };
@@ -113,10 +123,10 @@ public class AuditLogsApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call listAuditLogsValidateBeforeCall(Integer limit, String cursor, String userId, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call listAuditLogsValidateBeforeCall(Integer limit, String cursor, String userId, String action, String resourceType, final ApiCallback _callback) throws ApiException {
         
 
-        okhttp3.Call localVarCall = listAuditLogsCall(limit, cursor, userId, _callback);
+        okhttp3.Call localVarCall = listAuditLogsCall(limit, cursor, userId, action, resourceType, _callback);
         return localVarCall;
 
     }
@@ -127,6 +137,8 @@ public class AuditLogsApi {
      * @param limit Defines the maximum number of items to return for this request. (optional, default to 20)
      * @param cursor A cursor that identifies the page of results to return. This is used to paginate the results of this API.  For the first page of results, this parameter can be left out. For additional pages, use the value returned by the API in the &#x60;next_cursor&#x60; field. Similarly the &#x60;previous_cursor&#x60; can be used to reverse backwards in the list. (optional)
      * @param userId Filters the results to only the items for which the &#x60;user&#x60; has an &#x60;id&#x60; that matches this value. (optional)
+     * @param action Filters the results to only the items for which the &#x60;audit-log&#x60; has an &#x60;action&#x60; that matches this value. (optional)
+     * @param resourceType Filters the results to only the items for which the &#x60;audit-log&#x60; has a &#x60;resource&#x60; that matches this type value. (optional)
      * @return AuditLogs
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -136,8 +148,8 @@ public class AuditLogsApi {
         <tr><td> 401 </td><td> Returns an error if no valid authentication was provided. </td><td>  -  </td></tr>
      </table>
      */
-    public AuditLogs listAuditLogs(Integer limit, String cursor, String userId) throws ApiException {
-        ApiResponse<AuditLogs> localVarResp = listAuditLogsWithHttpInfo(limit, cursor, userId);
+    public AuditLogs listAuditLogs(Integer limit, String cursor, String userId, String action, String resourceType) throws ApiException {
+        ApiResponse<AuditLogs> localVarResp = listAuditLogsWithHttpInfo(limit, cursor, userId, action, resourceType);
         return localVarResp.getData();
     }
 
@@ -147,6 +159,8 @@ public class AuditLogsApi {
      * @param limit Defines the maximum number of items to return for this request. (optional, default to 20)
      * @param cursor A cursor that identifies the page of results to return. This is used to paginate the results of this API.  For the first page of results, this parameter can be left out. For additional pages, use the value returned by the API in the &#x60;next_cursor&#x60; field. Similarly the &#x60;previous_cursor&#x60; can be used to reverse backwards in the list. (optional)
      * @param userId Filters the results to only the items for which the &#x60;user&#x60; has an &#x60;id&#x60; that matches this value. (optional)
+     * @param action Filters the results to only the items for which the &#x60;audit-log&#x60; has an &#x60;action&#x60; that matches this value. (optional)
+     * @param resourceType Filters the results to only the items for which the &#x60;audit-log&#x60; has a &#x60;resource&#x60; that matches this type value. (optional)
      * @return ApiResponse&lt;AuditLogs&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -156,8 +170,8 @@ public class AuditLogsApi {
         <tr><td> 401 </td><td> Returns an error if no valid authentication was provided. </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<AuditLogs> listAuditLogsWithHttpInfo(Integer limit, String cursor, String userId) throws ApiException {
-        okhttp3.Call localVarCall = listAuditLogsValidateBeforeCall(limit, cursor, userId, null);
+    public ApiResponse<AuditLogs> listAuditLogsWithHttpInfo(Integer limit, String cursor, String userId, String action, String resourceType) throws ApiException {
+        okhttp3.Call localVarCall = listAuditLogsValidateBeforeCall(limit, cursor, userId, action, resourceType, null);
         Type localVarReturnType = new TypeToken<AuditLogs>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -168,6 +182,8 @@ public class AuditLogsApi {
      * @param limit Defines the maximum number of items to return for this request. (optional, default to 20)
      * @param cursor A cursor that identifies the page of results to return. This is used to paginate the results of this API.  For the first page of results, this parameter can be left out. For additional pages, use the value returned by the API in the &#x60;next_cursor&#x60; field. Similarly the &#x60;previous_cursor&#x60; can be used to reverse backwards in the list. (optional)
      * @param userId Filters the results to only the items for which the &#x60;user&#x60; has an &#x60;id&#x60; that matches this value. (optional)
+     * @param action Filters the results to only the items for which the &#x60;audit-log&#x60; has an &#x60;action&#x60; that matches this value. (optional)
+     * @param resourceType Filters the results to only the items for which the &#x60;audit-log&#x60; has a &#x60;resource&#x60; that matches this type value. (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -178,9 +194,9 @@ public class AuditLogsApi {
         <tr><td> 401 </td><td> Returns an error if no valid authentication was provided. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call listAuditLogsAsync(Integer limit, String cursor, String userId, final ApiCallback<AuditLogs> _callback) throws ApiException {
+    public okhttp3.Call listAuditLogsAsync(Integer limit, String cursor, String userId, String action, String resourceType, final ApiCallback<AuditLogs> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = listAuditLogsValidateBeforeCall(limit, cursor, userId, _callback);
+        okhttp3.Call localVarCall = listAuditLogsValidateBeforeCall(limit, cursor, userId, action, resourceType, _callback);
         Type localVarReturnType = new TypeToken<AuditLogs>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;

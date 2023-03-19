@@ -32,7 +32,7 @@ import org.threeten.bp.OffsetDateTime;
  * A digital wallet (e.g. Apple Pay) that has been registered.
  */
 @ApiModel(description = "A digital wallet (e.g. Apple Pay) that has been registered.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-12-22T14:21:56.132305Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-03-19T17:27:23.170866Z[Etc/UTC]")
 public class DigitalWallet {
   /**
    * &#x60;digital-wallet&#x60;.
@@ -157,6 +157,18 @@ public class DigitalWallet {
   public static final String SERIALIZED_NAME_UPDATED_AT = "updated_at";
   @SerializedName(SERIALIZED_NAME_UPDATED_AT)
   private OffsetDateTime updatedAt;
+
+  public static final String SERIALIZED_NAME_ACTIVE_CERTIFICATE_COUNT = "active_certificate_count";
+  @SerializedName(SERIALIZED_NAME_ACTIVE_CERTIFICATE_COUNT)
+  private Integer activeCertificateCount;
+
+  public static final String SERIALIZED_NAME_PENDING_CERTIFICATE_COUNT = "pending_certificate_count";
+  @SerializedName(SERIALIZED_NAME_PENDING_CERTIFICATE_COUNT)
+  private Integer pendingCertificateCount;
+
+  public static final String SERIALIZED_NAME_EXPIRED_CERTIFICATE_COUNT = "expired_certificate_count";
+  @SerializedName(SERIALIZED_NAME_EXPIRED_CERTIFICATE_COUNT)
+  private Integer expiredCertificateCount;
 
 
   public DigitalWallet type(TypeEnum type) {
@@ -351,6 +363,75 @@ public class DigitalWallet {
   }
 
 
+  public DigitalWallet activeCertificateCount(Integer activeCertificateCount) {
+    
+    this.activeCertificateCount = activeCertificateCount;
+    return this;
+  }
+
+   /**
+   * The number of active custom certificates registered for this digital wallet (Apple Pay only).
+   * @return activeCertificateCount
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "1", value = "The number of active custom certificates registered for this digital wallet (Apple Pay only).")
+
+  public Integer getActiveCertificateCount() {
+    return activeCertificateCount;
+  }
+
+
+  public void setActiveCertificateCount(Integer activeCertificateCount) {
+    this.activeCertificateCount = activeCertificateCount;
+  }
+
+
+  public DigitalWallet pendingCertificateCount(Integer pendingCertificateCount) {
+    
+    this.pendingCertificateCount = pendingCertificateCount;
+    return this;
+  }
+
+   /**
+   * The number of pending custom certificates registered for this digital wallet (Apple Pay only).
+   * @return pendingCertificateCount
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "1", value = "The number of pending custom certificates registered for this digital wallet (Apple Pay only).")
+
+  public Integer getPendingCertificateCount() {
+    return pendingCertificateCount;
+  }
+
+
+  public void setPendingCertificateCount(Integer pendingCertificateCount) {
+    this.pendingCertificateCount = pendingCertificateCount;
+  }
+
+
+  public DigitalWallet expiredCertificateCount(Integer expiredCertificateCount) {
+    
+    this.expiredCertificateCount = expiredCertificateCount;
+    return this;
+  }
+
+   /**
+   * The number of expired custom certificates registered for this digital wallet (Apple Pay only).
+   * @return expiredCertificateCount
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "1", value = "The number of expired custom certificates registered for this digital wallet (Apple Pay only).")
+
+  public Integer getExpiredCertificateCount() {
+    return expiredCertificateCount;
+  }
+
+
+  public void setExpiredCertificateCount(Integer expiredCertificateCount) {
+    this.expiredCertificateCount = expiredCertificateCount;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -367,12 +448,15 @@ public class DigitalWallet {
         Objects.equals(this.merchantUrl, digitalWallet.merchantUrl) &&
         Objects.equals(this.domainNames, digitalWallet.domainNames) &&
         Objects.equals(this.createdAt, digitalWallet.createdAt) &&
-        Objects.equals(this.updatedAt, digitalWallet.updatedAt);
+        Objects.equals(this.updatedAt, digitalWallet.updatedAt) &&
+        Objects.equals(this.activeCertificateCount, digitalWallet.activeCertificateCount) &&
+        Objects.equals(this.pendingCertificateCount, digitalWallet.pendingCertificateCount) &&
+        Objects.equals(this.expiredCertificateCount, digitalWallet.expiredCertificateCount);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(type, provider, id, merchantName, merchantUrl, domainNames, createdAt, updatedAt);
+    return Objects.hash(type, provider, id, merchantName, merchantUrl, domainNames, createdAt, updatedAt, activeCertificateCount, pendingCertificateCount, expiredCertificateCount);
   }
 
   @Override
@@ -387,6 +471,9 @@ public class DigitalWallet {
     sb.append("    domainNames: ").append(toIndentedString(domainNames)).append("\n");
     sb.append("    createdAt: ").append(toIndentedString(createdAt)).append("\n");
     sb.append("    updatedAt: ").append(toIndentedString(updatedAt)).append("\n");
+    sb.append("    activeCertificateCount: ").append(toIndentedString(activeCertificateCount)).append("\n");
+    sb.append("    pendingCertificateCount: ").append(toIndentedString(pendingCertificateCount)).append("\n");
+    sb.append("    expiredCertificateCount: ").append(toIndentedString(expiredCertificateCount)).append("\n");
     sb.append("}");
     return sb.toString();
   }

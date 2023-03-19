@@ -21,6 +21,7 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import com.gr4vy.api.model.ThreeDSecureDataV1V2;
+import com.gr4vy.api.model.ThreeDSecureError;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
@@ -29,7 +30,7 @@ import java.io.IOException;
  * Details about the 3-D Secure challenge that was presented to the buyer for this transaction, where applicable.
  */
 @ApiModel(description = "Details about the 3-D Secure challenge that was presented to the buyer for this transaction, where applicable.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-12-22T14:21:56.132305Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-03-19T17:27:23.170866Z[Etc/UTC]")
 public class ThreeDSecureSummary {
   public static final String SERIALIZED_NAME_VERSION = "version";
   @SerializedName(SERIALIZED_NAME_VERSION)
@@ -143,6 +144,10 @@ public class ThreeDSecureSummary {
   @SerializedName(SERIALIZED_NAME_METHOD)
   private MethodEnum method;
 
+  public static final String SERIALIZED_NAME_ERROR_DATA = "error_data";
+  @SerializedName(SERIALIZED_NAME_ERROR_DATA)
+  private ThreeDSecureError errorData;
+
   public static final String SERIALIZED_NAME_RESPONSE_DATA = "response_data";
   @SerializedName(SERIALIZED_NAME_RESPONSE_DATA)
   private ThreeDSecureDataV1V2 responseData;
@@ -217,6 +222,29 @@ public class ThreeDSecureSummary {
   }
 
 
+  public ThreeDSecureSummary errorData(ThreeDSecureError errorData) {
+    
+    this.errorData = errorData;
+    return this;
+  }
+
+   /**
+   * If the transaction had a 3DS error, information about it.
+   * @return errorData
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "If the transaction had a 3DS error, information about it.")
+
+  public ThreeDSecureError getErrorData() {
+    return errorData;
+  }
+
+
+  public void setErrorData(ThreeDSecureError errorData) {
+    this.errorData = errorData;
+  }
+
+
   public ThreeDSecureSummary responseData(ThreeDSecureDataV1V2 responseData) {
     
     this.responseData = responseData;
@@ -252,12 +280,13 @@ public class ThreeDSecureSummary {
     return Objects.equals(this.version, threeDSecureSummary.version) &&
         Objects.equals(this.status, threeDSecureSummary.status) &&
         Objects.equals(this.method, threeDSecureSummary.method) &&
+        Objects.equals(this.errorData, threeDSecureSummary.errorData) &&
         Objects.equals(this.responseData, threeDSecureSummary.responseData);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(version, status, method, responseData);
+    return Objects.hash(version, status, method, errorData, responseData);
   }
 
   @Override
@@ -267,6 +296,7 @@ public class ThreeDSecureSummary {
     sb.append("    version: ").append(toIndentedString(version)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("    method: ").append(toIndentedString(method)).append("\n");
+    sb.append("    errorData: ").append(toIndentedString(errorData)).append("\n");
     sb.append("    responseData: ").append(toIndentedString(responseData)).append("\n");
     sb.append("}");
     return sb.toString();

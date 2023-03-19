@@ -369,7 +369,7 @@ public class BuyersApi {
 
     /**
      * Delete buyer
-     * Deletes a buyer record. Any associated tokenized payment methods will remain in the system but no longer associated to the buyer.
+     * Deletes a buyer record. Any associated stored payment methods will remain in the system but no longer associated to the buyer.
      * @param buyerId The unique ID for a buyer. (required)
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -386,7 +386,7 @@ public class BuyersApi {
 
     /**
      * Delete buyer
-     * Deletes a buyer record. Any associated tokenized payment methods will remain in the system but no longer associated to the buyer.
+     * Deletes a buyer record. Any associated stored payment methods will remain in the system but no longer associated to the buyer.
      * @param buyerId The unique ID for a buyer. (required)
      * @return ApiResponse&lt;Void&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -405,7 +405,7 @@ public class BuyersApi {
 
     /**
      * Delete buyer (asynchronously)
-     * Deletes a buyer record. Any associated tokenized payment methods will remain in the system but no longer associated to the buyer.
+     * Deletes a buyer record. Any associated stored payment methods will remain in the system but no longer associated to the buyer.
      * @param buyerId The unique ID for a buyer. (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
@@ -938,6 +938,7 @@ public class BuyersApi {
         <tr><td> 400 </td><td> Returns an error if the request was badly formatted or missing required fields. </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Returns an error if no valid authentication was provided. </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> Returns an error if the resource can not be found. </td><td>  -  </td></tr>
+        <tr><td> 409 </td><td> Returns an error if duplicate resource has been found. </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call updateBuyerCall(UUID buyerId, BuyerUpdate buyerUpdate, final ApiCallback _callback) throws ApiException {
@@ -999,6 +1000,7 @@ public class BuyersApi {
         <tr><td> 400 </td><td> Returns an error if the request was badly formatted or missing required fields. </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Returns an error if no valid authentication was provided. </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> Returns an error if the resource can not be found. </td><td>  -  </td></tr>
+        <tr><td> 409 </td><td> Returns an error if duplicate resource has been found. </td><td>  -  </td></tr>
      </table>
      */
     public Buyer updateBuyer(UUID buyerId, BuyerUpdate buyerUpdate) throws ApiException {
@@ -1020,6 +1022,7 @@ public class BuyersApi {
         <tr><td> 400 </td><td> Returns an error if the request was badly formatted or missing required fields. </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Returns an error if no valid authentication was provided. </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> Returns an error if the resource can not be found. </td><td>  -  </td></tr>
+        <tr><td> 409 </td><td> Returns an error if duplicate resource has been found. </td><td>  -  </td></tr>
      </table>
      */
     public ApiResponse<Buyer> updateBuyerWithHttpInfo(UUID buyerId, BuyerUpdate buyerUpdate) throws ApiException {
@@ -1043,6 +1046,7 @@ public class BuyersApi {
         <tr><td> 400 </td><td> Returns an error if the request was badly formatted or missing required fields. </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Returns an error if no valid authentication was provided. </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> Returns an error if the resource can not be found. </td><td>  -  </td></tr>
+        <tr><td> 409 </td><td> Returns an error if duplicate resource has been found. </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call updateBuyerAsync(UUID buyerId, BuyerUpdate buyerUpdate, final ApiCallback<Buyer> _callback) throws ApiException {

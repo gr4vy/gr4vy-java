@@ -28,10 +28,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * A list of stored payment methods in token format.
+ * A list of stored payment methods in summarized format.
  */
-@ApiModel(description = "A list of stored payment methods in token format.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-12-22T14:21:56.132305Z[Etc/UTC]")
+@ApiModel(description = "A list of stored payment methods in summarized format.")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-03-19T17:27:23.170866Z[Etc/UTC]")
 public class PaymentMethodsTokenized {
   public static final String SERIALIZED_NAME_ITEMS = "items";
   @SerializedName(SERIALIZED_NAME_ITEMS)
@@ -53,11 +53,11 @@ public class PaymentMethodsTokenized {
   }
 
    /**
-   * A list of stored payment methods in token format.
+   * A list of stored payment methods in summarized format.
    * @return items
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "A list of stored payment methods in token format.")
+  @ApiModelProperty(value = "A list of stored payment methods in summarized format.")
 
   public List<PaymentMethodTokenized> getItems() {
     return items;

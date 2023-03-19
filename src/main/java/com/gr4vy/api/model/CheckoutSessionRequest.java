@@ -26,10 +26,10 @@ import java.io.IOException;
 import java.util.UUID;
 
 /**
- * Details for a Checkout Session payment method.
+ * Details to register a new Checkout Session payment method.
  */
-@ApiModel(description = "Details for a Checkout Session payment method.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-12-22T14:21:56.132305Z[Etc/UTC]")
+@ApiModel(description = "Details to register a new Checkout Session payment method.")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-03-19T17:27:23.170866Z[Etc/UTC]")
 public class CheckoutSessionRequest {
   /**
    * &#x60;checkout-session&#x60;.

@@ -30,7 +30,7 @@ import java.util.UUID;
  * Snapshot of a buyer, as used when embedded inside other resources.
  */
 @ApiModel(description = "Snapshot of a buyer, as used when embedded inside other resources.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-12-22T14:21:56.132305Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-03-19T17:27:23.170866Z[Etc/UTC]")
 public class BuyerSnapshot {
   /**
    * The type of this resource. Is always &#x60;buyer&#x60;.
@@ -197,11 +197,11 @@ public class BuyerSnapshot {
   }
 
    /**
-   * Get billingDetails
+   * The billing details associated with the buyer, which include the address and tax ID.
    * @return billingDetails
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "The billing details associated with the buyer, which include the address and tax ID.")
 
   public BillingDetails getBillingDetails() {
     return billingDetails;

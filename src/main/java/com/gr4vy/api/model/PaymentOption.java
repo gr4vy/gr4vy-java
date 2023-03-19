@@ -29,7 +29,7 @@ import java.io.IOException;
  * An available payment option for a locale.
  */
 @ApiModel(description = "An available payment option for a locale.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-12-22T14:21:56.132305Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-03-19T17:27:23.170866Z[Etc/UTC]")
 public class PaymentOption {
   /**
    * &#x60;payment-option&#x60;.
@@ -139,11 +139,11 @@ public class PaymentOption {
   }
 
    /**
-   * Get method
+   * The type of payment method that is available.
    * @return method
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "The type of payment method that is available.")
 
   public String getMethod() {
     return method;
@@ -185,11 +185,11 @@ public class PaymentOption {
   }
 
    /**
-   * Get mode
+   * The mode to use with this payment option.
    * @return mode
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "The mode to use with this payment option.")
 
   public String getMode() {
     return mode;

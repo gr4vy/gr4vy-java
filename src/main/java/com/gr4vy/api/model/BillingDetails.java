@@ -30,7 +30,7 @@ import java.io.IOException;
  * Billing details associated to a buyer.
  */
 @ApiModel(description = "Billing details associated to a buyer.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-12-22T14:21:56.132305Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-03-19T17:27:23.170866Z[Etc/UTC]")
 public class BillingDetails {
   /**
    * The type of this resource. Is always &#x60;billing-details&#x60;.
@@ -228,11 +228,11 @@ public class BillingDetails {
   }
 
    /**
-   * Get address
+   * The billing address of the buyer.
    * @return address
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "The billing address of the buyer.")
 
   public Address getAddress() {
     return address;
@@ -251,11 +251,11 @@ public class BillingDetails {
   }
 
    /**
-   * Get taxId
+   * The tax information associated with the billing details.
    * @return taxId
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "The tax information associated with the billing details.")
 
   public TaxId getTaxId() {
     return taxId;

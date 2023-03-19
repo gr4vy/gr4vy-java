@@ -33,7 +33,7 @@ import org.threeten.bp.OffsetDateTime;
  * A transaction record.
  */
 @ApiModel(description = "A transaction record.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-12-22T14:21:56.132305Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-03-19T17:27:23.170866Z[Etc/UTC]")
 public class TransactionSummary {
   /**
    * The type of this resource. Is always &#x60;transaction&#x60;.
@@ -574,11 +574,11 @@ public class TransactionSummary {
   }
 
    /**
-   * Get paymentMethod
+   * The payment method used for this transaction.
    * @return paymentMethod
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "The payment method used for this transaction.")
 
   public PaymentMethodSnapshot getPaymentMethod() {
     return paymentMethod;
@@ -597,11 +597,11 @@ public class TransactionSummary {
   }
 
    /**
-   * Get buyer
+   * The buyer used for this transaction.
    * @return buyer
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "The buyer used for this transaction.")
 
   public BuyerSnapshot getBuyer() {
     return buyer;
@@ -689,11 +689,11 @@ public class TransactionSummary {
   }
 
    /**
-   * Get paymentService
+   * The payment service used for this transaction.
    * @return paymentService
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "The payment service used for this transaction.")
 
   public PaymentServiceSnapshot getPaymentService() {
     return paymentService;

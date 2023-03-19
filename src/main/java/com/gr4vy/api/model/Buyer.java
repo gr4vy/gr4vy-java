@@ -30,7 +30,7 @@ import org.threeten.bp.OffsetDateTime;
 /**
  * Buyer
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-12-22T14:21:56.132305Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-03-19T17:27:23.170866Z[Etc/UTC]")
 public class Buyer {
   /**
    * The type of this resource. Is always &#x60;buyer&#x60;.
@@ -205,11 +205,11 @@ public class Buyer {
   }
 
    /**
-   * Get billingDetails
+   * The billing details associated with a buyer.
    * @return billingDetails
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "The billing details associated with a buyer.")
 
   public BillingDetails getBillingDetails() {
     return billingDetails;

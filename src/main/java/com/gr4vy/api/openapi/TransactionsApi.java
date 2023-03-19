@@ -29,12 +29,14 @@ import java.io.IOException;
 
 import com.gr4vy.api.model.Error401Unauthorized;
 import com.gr4vy.api.model.Error404NotFound;
+import com.gr4vy.api.model.Error409DuplicateRecord;
 import com.gr4vy.api.model.ErrorGeneric;
 import org.threeten.bp.OffsetDateTime;
 import com.gr4vy.api.model.Refund;
 import com.gr4vy.api.model.Refunds;
 import com.gr4vy.api.model.Transaction;
 import com.gr4vy.api.model.TransactionCaptureRequest;
+import com.gr4vy.api.model.TransactionHistoryEvents;
 import com.gr4vy.api.model.TransactionRefundRequest;
 import com.gr4vy.api.model.TransactionRequest;
 import com.gr4vy.api.model.Transactions;
@@ -67,6 +69,7 @@ public class TransactionsApi {
 
     /**
      * Build call for authorizeNewTransaction
+     * @param idempotencyKey A unique key that identifies this request. Providing this header will make this an idempotent request. We recommend using V4 UUIDs, or another random string with enough entropy to avoid collisions. See the [documentation](https://docs.gr4vy.com/idempotent-requests) for more information. (optional)
      * @param transactionRequest  (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
@@ -77,9 +80,10 @@ public class TransactionsApi {
         <tr><td> 201 </td><td> Returns the created transaction. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Returns an error if the request was badly formatted or missing required fields. </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Returns an error if no valid authentication was provided. </td><td>  -  </td></tr>
+        <tr><td> 409 </td><td> Returns an error if duplicate resource has been found. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call authorizeNewTransactionCall(TransactionRequest transactionRequest, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call authorizeNewTransactionCall(String idempotencyKey, TransactionRequest transactionRequest, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = transactionRequest;
 
         // create path and map variables
@@ -90,6 +94,10 @@ public class TransactionsApi {
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        if (idempotencyKey != null) {
+            localVarHeaderParams.put("Idempotency-Key", localVarApiClient.parameterToString(idempotencyKey));
+        }
 
         final String[] localVarAccepts = {
             "application/json"
@@ -110,10 +118,10 @@ public class TransactionsApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call authorizeNewTransactionValidateBeforeCall(TransactionRequest transactionRequest, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call authorizeNewTransactionValidateBeforeCall(String idempotencyKey, TransactionRequest transactionRequest, final ApiCallback _callback) throws ApiException {
         
 
-        okhttp3.Call localVarCall = authorizeNewTransactionCall(transactionRequest, _callback);
+        okhttp3.Call localVarCall = authorizeNewTransactionCall(idempotencyKey, transactionRequest, _callback);
         return localVarCall;
 
     }
@@ -121,6 +129,7 @@ public class TransactionsApi {
     /**
      * New transaction
      * Attempts to create an authorization for a payment method. In some cases it is not possible to create the authorization without redirecting the user for their authorization. In these cases the status is set to &#x60;buyer_approval_pending&#x60; and an &#x60;approval_url&#x60; is returned.  Additionally, this endpoint accepts a few additional fields that allow for simultaneous capturing and storage of the payment method.  * &#x60;store&#x60; - Use this field to store the payment method for future use. Not all payment methods support this feature. * &#x60;capture&#x60; - Use this method to also perform a capture of the transaction after it has been authorized. 
+     * @param idempotencyKey A unique key that identifies this request. Providing this header will make this an idempotent request. We recommend using V4 UUIDs, or another random string with enough entropy to avoid collisions. See the [documentation](https://docs.gr4vy.com/idempotent-requests) for more information. (optional)
      * @param transactionRequest  (optional)
      * @return Transaction
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -130,16 +139,18 @@ public class TransactionsApi {
         <tr><td> 201 </td><td> Returns the created transaction. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Returns an error if the request was badly formatted or missing required fields. </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Returns an error if no valid authentication was provided. </td><td>  -  </td></tr>
+        <tr><td> 409 </td><td> Returns an error if duplicate resource has been found. </td><td>  -  </td></tr>
      </table>
      */
-    public Transaction authorizeNewTransaction(TransactionRequest transactionRequest) throws ApiException {
-        ApiResponse<Transaction> localVarResp = authorizeNewTransactionWithHttpInfo(transactionRequest);
+    public Transaction authorizeNewTransaction(String idempotencyKey, TransactionRequest transactionRequest) throws ApiException {
+        ApiResponse<Transaction> localVarResp = authorizeNewTransactionWithHttpInfo(idempotencyKey, transactionRequest);
         return localVarResp.getData();
     }
 
     /**
      * New transaction
      * Attempts to create an authorization for a payment method. In some cases it is not possible to create the authorization without redirecting the user for their authorization. In these cases the status is set to &#x60;buyer_approval_pending&#x60; and an &#x60;approval_url&#x60; is returned.  Additionally, this endpoint accepts a few additional fields that allow for simultaneous capturing and storage of the payment method.  * &#x60;store&#x60; - Use this field to store the payment method for future use. Not all payment methods support this feature. * &#x60;capture&#x60; - Use this method to also perform a capture of the transaction after it has been authorized. 
+     * @param idempotencyKey A unique key that identifies this request. Providing this header will make this an idempotent request. We recommend using V4 UUIDs, or another random string with enough entropy to avoid collisions. See the [documentation](https://docs.gr4vy.com/idempotent-requests) for more information. (optional)
      * @param transactionRequest  (optional)
      * @return ApiResponse&lt;Transaction&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -149,10 +160,11 @@ public class TransactionsApi {
         <tr><td> 201 </td><td> Returns the created transaction. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Returns an error if the request was badly formatted or missing required fields. </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Returns an error if no valid authentication was provided. </td><td>  -  </td></tr>
+        <tr><td> 409 </td><td> Returns an error if duplicate resource has been found. </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<Transaction> authorizeNewTransactionWithHttpInfo(TransactionRequest transactionRequest) throws ApiException {
-        okhttp3.Call localVarCall = authorizeNewTransactionValidateBeforeCall(transactionRequest, null);
+    public ApiResponse<Transaction> authorizeNewTransactionWithHttpInfo(String idempotencyKey, TransactionRequest transactionRequest) throws ApiException {
+        okhttp3.Call localVarCall = authorizeNewTransactionValidateBeforeCall(idempotencyKey, transactionRequest, null);
         Type localVarReturnType = new TypeToken<Transaction>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -160,6 +172,7 @@ public class TransactionsApi {
     /**
      * New transaction (asynchronously)
      * Attempts to create an authorization for a payment method. In some cases it is not possible to create the authorization without redirecting the user for their authorization. In these cases the status is set to &#x60;buyer_approval_pending&#x60; and an &#x60;approval_url&#x60; is returned.  Additionally, this endpoint accepts a few additional fields that allow for simultaneous capturing and storage of the payment method.  * &#x60;store&#x60; - Use this field to store the payment method for future use. Not all payment methods support this feature. * &#x60;capture&#x60; - Use this method to also perform a capture of the transaction after it has been authorized. 
+     * @param idempotencyKey A unique key that identifies this request. Providing this header will make this an idempotent request. We recommend using V4 UUIDs, or another random string with enough entropy to avoid collisions. See the [documentation](https://docs.gr4vy.com/idempotent-requests) for more information. (optional)
      * @param transactionRequest  (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
@@ -170,11 +183,12 @@ public class TransactionsApi {
         <tr><td> 201 </td><td> Returns the created transaction. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Returns an error if the request was badly formatted or missing required fields. </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Returns an error if no valid authentication was provided. </td><td>  -  </td></tr>
+        <tr><td> 409 </td><td> Returns an error if duplicate resource has been found. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call authorizeNewTransactionAsync(TransactionRequest transactionRequest, final ApiCallback<Transaction> _callback) throws ApiException {
+    public okhttp3.Call authorizeNewTransactionAsync(String idempotencyKey, TransactionRequest transactionRequest, final ApiCallback<Transaction> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = authorizeNewTransactionValidateBeforeCall(transactionRequest, _callback);
+        okhttp3.Call localVarCall = authorizeNewTransactionValidateBeforeCall(idempotencyKey, transactionRequest, _callback);
         Type localVarReturnType = new TypeToken<Transaction>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -424,6 +438,126 @@ public class TransactionsApi {
 
         okhttp3.Call localVarCall = getTransactionValidateBeforeCall(transactionId, _callback);
         Type localVarReturnType = new TypeToken<Transaction>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+    /**
+     * Build call for getTransactionHistoryEvents
+     * @param transactionId The ID for the transaction to get the information for. (required)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Returns a collection of transaction history events. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Returns an error if no valid authentication was provided. </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Returns an error if the resource can not be found or has not yet been created. </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call getTransactionHistoryEventsCall(String transactionId, final ApiCallback _callback) throws ApiException {
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/transactions/{transaction_id}/events"
+            .replaceAll("\\{" + "transaction_id" + "\\}", localVarApiClient.escapeString(transactionId.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        String[] localVarAuthNames = new String[] { "BearerAuth" };
+        return localVarApiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call getTransactionHistoryEventsValidateBeforeCall(String transactionId, final ApiCallback _callback) throws ApiException {
+        
+        // verify the required parameter 'transactionId' is set
+        if (transactionId == null) {
+            throw new ApiException("Missing the required parameter 'transactionId' when calling getTransactionHistoryEvents(Async)");
+        }
+        
+
+        okhttp3.Call localVarCall = getTransactionHistoryEventsCall(transactionId, _callback);
+        return localVarCall;
+
+    }
+
+    /**
+     * Get transaction history events
+     * Get all events related to processing a transaction.
+     * @param transactionId The ID for the transaction to get the information for. (required)
+     * @return TransactionHistoryEvents
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Returns a collection of transaction history events. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Returns an error if no valid authentication was provided. </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Returns an error if the resource can not be found or has not yet been created. </td><td>  -  </td></tr>
+     </table>
+     */
+    public TransactionHistoryEvents getTransactionHistoryEvents(String transactionId) throws ApiException {
+        ApiResponse<TransactionHistoryEvents> localVarResp = getTransactionHistoryEventsWithHttpInfo(transactionId);
+        return localVarResp.getData();
+    }
+
+    /**
+     * Get transaction history events
+     * Get all events related to processing a transaction.
+     * @param transactionId The ID for the transaction to get the information for. (required)
+     * @return ApiResponse&lt;TransactionHistoryEvents&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Returns a collection of transaction history events. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Returns an error if no valid authentication was provided. </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Returns an error if the resource can not be found or has not yet been created. </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<TransactionHistoryEvents> getTransactionHistoryEventsWithHttpInfo(String transactionId) throws ApiException {
+        okhttp3.Call localVarCall = getTransactionHistoryEventsValidateBeforeCall(transactionId, null);
+        Type localVarReturnType = new TypeToken<TransactionHistoryEvents>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Get transaction history events (asynchronously)
+     * Get all events related to processing a transaction.
+     * @param transactionId The ID for the transaction to get the information for. (required)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Returns a collection of transaction history events. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Returns an error if no valid authentication was provided. </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Returns an error if the resource can not be found or has not yet been created. </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call getTransactionHistoryEventsAsync(String transactionId, final ApiCallback<TransactionHistoryEvents> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = getTransactionHistoryEventsValidateBeforeCall(transactionId, _callback);
+        Type localVarReturnType = new TypeToken<TransactionHistoryEvents>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }

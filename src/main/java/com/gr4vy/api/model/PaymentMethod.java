@@ -32,7 +32,7 @@ import org.threeten.bp.OffsetDateTime;
  * A generic payment method.
  */
 @ApiModel(description = "A generic payment method.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-12-22T14:21:56.132305Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-03-19T17:27:23.170866Z[Etc/UTC]")
 public class PaymentMethod {
   /**
    * &#x60;payment-method&#x60;.
@@ -322,11 +322,11 @@ public class PaymentMethod {
   }
 
    /**
-   * Get method
+   * The type of this payment method.
    * @return method
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "The type of this payment method.")
 
   public String getMethod() {
     return method;
@@ -345,11 +345,11 @@ public class PaymentMethod {
   }
 
    /**
-   * Get mode
+   * The mode to use with this payment method.
    * @return mode
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "The mode to use with this payment method.")
 
   public String getMode() {
     return mode;
@@ -437,11 +437,11 @@ public class PaymentMethod {
   }
 
    /**
-   * Get buyer
+   * The optional buyer for which this payment method has been stored.
    * @return buyer
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "The optional buyer for which this payment method has been stored.")
 
   public Buyer getBuyer() {
     return buyer;

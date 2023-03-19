@@ -33,6 +33,7 @@ import com.gr4vy.api.model.DigitalWalletUpdate;
 import com.gr4vy.api.model.DigitalWallets;
 import com.gr4vy.api.model.Error401Unauthorized;
 import com.gr4vy.api.model.Error404NotFound;
+import com.gr4vy.api.model.Error409DuplicateRecord;
 import com.gr4vy.api.model.ErrorGeneric;
 
 import java.lang.reflect.Type;
@@ -121,7 +122,7 @@ public class DigitalWalletsApi {
 
     /**
      * De-register digital wallet
-     * De-registers a digital wallet with a provider. Upon successful de-registration, the digital wallet&#39;s record is deleted and will no longer be available.
+     * De-registers a digital wallet with a provider. Upon successful de-registration, the digital wallet&#39;s record is deleted and will no longer be available.  A digital wallet of the &#x60;apple&#x60; provider may only be de-registered if there are no &#x60;active&#x60; Apple Pay certificates. When there are only &#x60;incomplete&#x60; or &#x60;expired&#x60; Apple Pay certificates, these certificates are deleted alongside the &#x60;apple&#x60; digital wallet&#39;s record.
      * @param digitalWalletId The ID of the registered digital wallet. (required)
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -138,7 +139,7 @@ public class DigitalWalletsApi {
 
     /**
      * De-register digital wallet
-     * De-registers a digital wallet with a provider. Upon successful de-registration, the digital wallet&#39;s record is deleted and will no longer be available.
+     * De-registers a digital wallet with a provider. Upon successful de-registration, the digital wallet&#39;s record is deleted and will no longer be available.  A digital wallet of the &#x60;apple&#x60; provider may only be de-registered if there are no &#x60;active&#x60; Apple Pay certificates. When there are only &#x60;incomplete&#x60; or &#x60;expired&#x60; Apple Pay certificates, these certificates are deleted alongside the &#x60;apple&#x60; digital wallet&#39;s record.
      * @param digitalWalletId The ID of the registered digital wallet. (required)
      * @return ApiResponse&lt;Void&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -157,7 +158,7 @@ public class DigitalWalletsApi {
 
     /**
      * De-register digital wallet (asynchronously)
-     * De-registers a digital wallet with a provider. Upon successful de-registration, the digital wallet&#39;s record is deleted and will no longer be available.
+     * De-registers a digital wallet with a provider. Upon successful de-registration, the digital wallet&#39;s record is deleted and will no longer be available.  A digital wallet of the &#x60;apple&#x60; provider may only be de-registered if there are no &#x60;active&#x60; Apple Pay certificates. When there are only &#x60;incomplete&#x60; or &#x60;expired&#x60; Apple Pay certificates, these certificates are deleted alongside the &#x60;apple&#x60; digital wallet&#39;s record.
      * @param digitalWalletId The ID of the registered digital wallet. (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
@@ -414,6 +415,7 @@ public class DigitalWalletsApi {
         <tr><td> 201 </td><td> Returns the newly registered digital wallet. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Returns an error if the request was badly formatted or missing required fields. </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Returns an error if no valid authentication was provided. </td><td>  -  </td></tr>
+        <tr><td> 409 </td><td> Returns an error if duplicate resource has been found. </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call registerDigitalWalletCall(DigitalWalletRequest digitalWalletRequest, final ApiCallback _callback) throws ApiException {
@@ -467,6 +469,7 @@ public class DigitalWalletsApi {
         <tr><td> 201 </td><td> Returns the newly registered digital wallet. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Returns an error if the request was badly formatted or missing required fields. </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Returns an error if no valid authentication was provided. </td><td>  -  </td></tr>
+        <tr><td> 409 </td><td> Returns an error if duplicate resource has been found. </td><td>  -  </td></tr>
      </table>
      */
     public DigitalWallet registerDigitalWallet(DigitalWalletRequest digitalWalletRequest) throws ApiException {
@@ -486,6 +489,7 @@ public class DigitalWalletsApi {
         <tr><td> 201 </td><td> Returns the newly registered digital wallet. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Returns an error if the request was badly formatted or missing required fields. </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Returns an error if no valid authentication was provided. </td><td>  -  </td></tr>
+        <tr><td> 409 </td><td> Returns an error if duplicate resource has been found. </td><td>  -  </td></tr>
      </table>
      */
     public ApiResponse<DigitalWallet> registerDigitalWalletWithHttpInfo(DigitalWalletRequest digitalWalletRequest) throws ApiException {
@@ -507,6 +511,7 @@ public class DigitalWalletsApi {
         <tr><td> 201 </td><td> Returns the newly registered digital wallet. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Returns an error if the request was badly formatted or missing required fields. </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Returns an error if no valid authentication was provided. </td><td>  -  </td></tr>
+        <tr><td> 409 </td><td> Returns an error if duplicate resource has been found. </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call registerDigitalWalletAsync(DigitalWalletRequest digitalWalletRequest, final ApiCallback<DigitalWallet> _callback) throws ApiException {

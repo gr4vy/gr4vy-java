@@ -32,7 +32,7 @@ import java.util.List;
  * A request to create an anti-fraud service.
  */
 @ApiModel(description = "A request to create an anti-fraud service.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-12-22T14:21:56.132305Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-03-19T17:27:23.170866Z[Etc/UTC]")
 public class AntiFraudServiceCreate {
   /**
    * The name of the Anti-Fraud service provider. During update request, this value is used for validation only but the underlying service can not be changed for an existing service.
@@ -149,11 +149,11 @@ public class AntiFraudServiceCreate {
   }
 
    /**
-   * Defines if this service is currently active or not.
+   * Defines if this service is currently active or not. There can only be one active service at any time. When updating a service to active, the current active service will be deactivated.
    * @return active
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "true", value = "Defines if this service is currently active or not.")
+  @ApiModelProperty(example = "true", value = "Defines if this service is currently active or not. There can only be one active service at any time. When updating a service to active, the current active service will be deactivated.")
 
   public Boolean getActive() {
     return active;

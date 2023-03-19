@@ -28,7 +28,7 @@ import java.io.IOException;
  * A single field that needs to be submitted for a payment service when it is created.
  */
 @ApiModel(description = "A single field that needs to be submitted for a payment service when it is created.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-12-22T14:21:56.132305Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-03-19T17:27:23.170866Z[Etc/UTC]")
 public class PaymentServiceDefinitionFields {
   public static final String SERIALIZED_NAME_KEY = "key";
   @SerializedName(SERIALIZED_NAME_KEY)

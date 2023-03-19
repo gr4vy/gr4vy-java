@@ -31,6 +31,7 @@ import com.gr4vy.api.model.CheckoutSession;
 import com.gr4vy.api.model.CheckoutSessionSecureFieldsUpdate;
 import com.gr4vy.api.model.Error401Unauthorized;
 import com.gr4vy.api.model.Error404NotFound;
+import com.gr4vy.api.model.Error409DuplicateRecord;
 import com.gr4vy.api.model.ErrorGeneric;
 import java.util.UUID;
 
@@ -69,6 +70,7 @@ public class CheckoutSessionsApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 201 </td><td> Returns the new Checkout Session. </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Returns an error if no valid authentication was provided. </td><td>  -  </td></tr>
+        <tr><td> 409 </td><td> Returns an error if duplicate resource has been found. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> Returns a generic error. </td><td>  -  </td></tr>
      </table>
      */
@@ -121,6 +123,7 @@ public class CheckoutSessionsApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 201 </td><td> Returns the new Checkout Session. </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Returns an error if no valid authentication was provided. </td><td>  -  </td></tr>
+        <tr><td> 409 </td><td> Returns an error if duplicate resource has been found. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> Returns a generic error. </td><td>  -  </td></tr>
      </table>
      */
@@ -139,6 +142,7 @@ public class CheckoutSessionsApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 201 </td><td> Returns the new Checkout Session. </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Returns an error if no valid authentication was provided. </td><td>  -  </td></tr>
+        <tr><td> 409 </td><td> Returns an error if duplicate resource has been found. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> Returns a generic error. </td><td>  -  </td></tr>
      </table>
      */
@@ -159,6 +163,7 @@ public class CheckoutSessionsApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 201 </td><td> Returns the new Checkout Session. </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Returns an error if no valid authentication was provided. </td><td>  -  </td></tr>
+        <tr><td> 409 </td><td> Returns an error if duplicate resource has been found. </td><td>  -  </td></tr>
         <tr><td> 0 </td><td> Returns a generic error. </td><td>  -  </td></tr>
      </table>
      */

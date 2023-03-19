@@ -29,7 +29,7 @@ import java.io.IOException;
  * A request to create a buyer.
  */
 @ApiModel(description = "A request to create a buyer.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-12-22T14:21:56.132305Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-03-19T17:27:23.170866Z[Etc/UTC]")
 public class BuyerRequest {
   public static final String SERIALIZED_NAME_EXTERNAL_IDENTIFIER = "external_identifier";
   @SerializedName(SERIALIZED_NAME_EXTERNAL_IDENTIFIER)
@@ -97,11 +97,11 @@ public class BuyerRequest {
   }
 
    /**
-   * Get billingDetails
+   * The optional billing details to associate with a buyer.
    * @return billingDetails
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "The optional billing details to associate with a buyer.")
 
   public BillingDetailsRequest getBillingDetails() {
     return billingDetails;
