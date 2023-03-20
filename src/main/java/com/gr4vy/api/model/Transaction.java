@@ -485,6 +485,8 @@ public class Transaction {
     GRABPAY("grabpay"),
     
     KLARNA("klarna"),
+
+    MULTIPAGO("multipago"),
     
     OVO("ovo"),
     
