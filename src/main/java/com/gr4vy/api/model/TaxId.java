@@ -48,6 +48,8 @@ public class TaxId {
     AR_CUIL("ar.cuil"),
     
     AR_CUIT("ar.cuit"),
+
+    BO_CI("bo.ci"),
     
     BR_CNPJ("br.cnpj"),
     
