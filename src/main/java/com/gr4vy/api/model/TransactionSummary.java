@@ -280,6 +280,8 @@ public class TransactionSummary {
     GRABPAY("grabpay"),
     
     KLARNA("klarna"),
+
+    MULTIPAGO("multipago"),
     
     OVO("ovo"),
     
