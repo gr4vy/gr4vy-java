@@ -46,7 +46,7 @@ public class Gr4vyClient {
 	private String host;
 	private String environment;
 	private Boolean debug = false;
-	private String merchantAccountId = 'default';
+	private String merchantAccountId = "default";
 
     /**
      * Constructor
