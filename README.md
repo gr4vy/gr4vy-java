@@ -66,6 +66,14 @@ Gr4vyClient gr4vyClient = new Gr4vyClient("[YOUR_GR4VY_ID]", "private_key.pem", 
 
 ```
 
+## Multi merchant
+
+In a multi-merchant environment, the merchant account ID can be set after the SDK has been initialized.
+
+```java
+gr4vyClient.setMerchantAccountId("my-account-id"); // defaults to `default`
+```
+
 ## Gr4vy Embed
 
 To create a token for Gr4vy Embed, call the `client.getEmbedToken(embed)`
