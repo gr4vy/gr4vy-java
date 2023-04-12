@@ -46,7 +46,7 @@ public class Gr4vyClient {
 	private String host;
 	private String environment;
 	private Boolean debug = false;
-	private String merchantAccountId = 'default'
+	private String merchantAccountId = 'default';
 
     /**
      * Constructor
@@ -79,7 +79,7 @@ public class Gr4vyClient {
         this.debug = debug;
     }
 
-	public void setMerchantAccountId(String merchantAccountId) {
+    public void setMerchantAccountId(String merchantAccountId) {
     	this.merchantAccountId = merchantAccountId;
     }
 	
@@ -90,7 +90,7 @@ public class Gr4vyClient {
 		try {
 			ApiClient defaultClient = Configuration.getDefaultApiClient();
 			defaultClient.setBasePath(this.host);
-			defaultClient.addDefaultHeader("X-GR4VY-MERCHANT-ACCOUNT-ID", this.merchantAccountId)
+			defaultClient.addDefaultHeader("X-GR4VY-MERCHANT-ACCOUNT-ID", this.merchantAccountId);
 
 			String key = getKey();
 			
