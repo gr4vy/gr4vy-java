@@ -17,7 +17,15 @@ Add the `gr4vy-java` dependency to your pom.xml:
   	<dependency>
 	    <groupId>com.github.gr4vy</groupId>
 	    <artifactId>gr4vy-java</artifactId>
-	    <version>0.5.0</version>
+	    <version>0.13.0</version>
+	</dependency>
+```
+Add the `okhttp` dependency to your pom.xml:
+```java
+  	<dependency>
+	    <groupId>com.squareup.okhttp3</groupId>
+	    <artifactId>okhttp</artifactId>
+	    <version>4.9.1</version>
 	</dependency>
 ```
 
