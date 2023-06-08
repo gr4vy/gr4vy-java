@@ -17,14 +17,15 @@ Add the `gr4vy-java` dependency to your pom.xml:
   	<dependency>
 	    <groupId>com.github.gr4vy</groupId>
 	    <artifactId>gr4vy-java</artifactId>
-	    <version>0.5.0</version>
+	    <version>0.13.0</version>
 	</dependency>
 ```
 
 ## Getting Started
 
 To make your first API call, you will need to [request](https://gr4vy.com) a
-Gr4vy instance to be set up. Please contact our sales team for a demo.
+Gr4vy instance to be set up. Please contact our sales team for a demo. Please ensure 
+that you have the latest version of com.squareup.okhttp3
 
 Once you have been set up with a Gr4vy account you will need to head over to the
 **Integrations** panel and generate a private key. We recommend storing this key
