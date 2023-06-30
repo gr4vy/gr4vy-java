@@ -28,12 +28,8 @@ import java.io.IOException;
  * An active, configured payment service.
  */
 @ApiModel(description = "An active, configured payment service.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-12-22T14:21:56.132305Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-06-30T05:21:36.133441Z[Etc/UTC]")
 public class PaymentServiceSnapshot {
-  public static final String SERIALIZED_NAME_ID = "id";
-  @SerializedName(SERIALIZED_NAME_ID)
-  private String id;
-
   /**
    * The type of this resource.
    */
@@ -83,40 +79,114 @@ public class PaymentServiceSnapshot {
   @SerializedName(SERIALIZED_NAME_TYPE)
   private TypeEnum type;
 
+  public static final String SERIALIZED_NAME_ID = "id";
+  @SerializedName(SERIALIZED_NAME_ID)
+  private String id;
+
   public static final String SERIALIZED_NAME_PAYMENT_SERVICE_DEFINITION_ID = "payment_service_definition_id";
   @SerializedName(SERIALIZED_NAME_PAYMENT_SERVICE_DEFINITION_ID)
   private String paymentServiceDefinitionId;
 
+  /**
+   * The payment method that this services handles.
+   */
+  @JsonAdapter(MethodEnum.Adapter.class)
+  public enum MethodEnum {
+    AFTERPAY("afterpay"),
+    
+    APPLEPAY("applepay"),
+    
+    BANKED("banked"),
+    
+    BITPAY("bitpay"),
+    
+    BOLETO("boleto"),
+    
+    CARD("card"),
+    
+    CLEARPAY("clearpay"),
+    
+    DANA("dana"),
+    
+    FORTUMO("fortumo"),
+    
+    GCASH("gcash"),
+    
+    GOCARDLESS("gocardless"),
+    
+    GOOGLEPAY("googlepay"),
+    
+    GRABPAY("grabpay"),
+    
+    KLARNA("klarna"),
+    
+    OVO("ovo"),
+    
+    PAYMAYA("paymaya"),
+    
+    PAYPAL("paypal"),
+    
+    PIX("pix"),
+    
+    RABBITLINEPAY("rabbitlinepay"),
+    
+    SCALAPAY("scalapay"),
+    
+    SHOPEEPAY("shopeepay"),
+    
+    STRIPEDD("stripedd"),
+    
+    TRUEMONEY("truemoney"),
+    
+    TRUSTLY("trustly"),
+    
+    ZIPPAY("zippay");
+
+    private String value;
+
+    MethodEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static MethodEnum fromValue(String value) {
+      for (MethodEnum b : MethodEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+
+    public static class Adapter extends TypeAdapter<MethodEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final MethodEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public MethodEnum read(final JsonReader jsonReader) throws IOException {
+        String value =  jsonReader.nextString();
+        return MethodEnum.fromValue(value);
+      }
+    }
+  }
+
   public static final String SERIALIZED_NAME_METHOD = "method";
   @SerializedName(SERIALIZED_NAME_METHOD)
-  private String method;
+  private MethodEnum method;
 
   public static final String SERIALIZED_NAME_DISPLAY_NAME = "display_name";
   @SerializedName(SERIALIZED_NAME_DISPLAY_NAME)
   private String displayName;
-
-
-  public PaymentServiceSnapshot id(String id) {
-    
-    this.id = id;
-    return this;
-  }
-
-   /**
-   * The ID of this payment service.
-   * @return id
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(example = "stripe-card-faaad066-30b4-4997-a438-242b0752d7e1", value = "The ID of this payment service.")
-
-  public String getId() {
-    return id;
-  }
-
-
-  public void setId(String id) {
-    this.id = id;
-  }
 
 
   public PaymentServiceSnapshot type(TypeEnum type) {
@@ -139,6 +209,29 @@ public class PaymentServiceSnapshot {
 
   public void setType(TypeEnum type) {
     this.type = type;
+  }
+
+
+  public PaymentServiceSnapshot id(String id) {
+    
+    this.id = id;
+    return this;
+  }
+
+   /**
+   * The ID of this payment service.
+   * @return id
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "stripe-card-faaad066-30b4-4997-a438-242b0752d7e1", value = "The ID of this payment service.")
+
+  public String getId() {
+    return id;
+  }
+
+
+  public void setId(String id) {
+    this.id = id;
   }
 
 
@@ -165,25 +258,25 @@ public class PaymentServiceSnapshot {
   }
 
 
-  public PaymentServiceSnapshot method(String method) {
+  public PaymentServiceSnapshot method(MethodEnum method) {
     
     this.method = method;
     return this;
   }
 
    /**
-   * Get method
+   * The payment method that this services handles.
    * @return method
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(example = "card", value = "The payment method that this services handles.")
 
-  public String getMethod() {
+  public MethodEnum getMethod() {
     return method;
   }
 
 
-  public void setMethod(String method) {
+  public void setMethod(MethodEnum method) {
     this.method = method;
   }
 
@@ -220,8 +313,8 @@ public class PaymentServiceSnapshot {
       return false;
     }
     PaymentServiceSnapshot paymentServiceSnapshot = (PaymentServiceSnapshot) o;
-    return Objects.equals(this.id, paymentServiceSnapshot.id) &&
-        Objects.equals(this.type, paymentServiceSnapshot.type) &&
+    return Objects.equals(this.type, paymentServiceSnapshot.type) &&
+        Objects.equals(this.id, paymentServiceSnapshot.id) &&
         Objects.equals(this.paymentServiceDefinitionId, paymentServiceSnapshot.paymentServiceDefinitionId) &&
         Objects.equals(this.method, paymentServiceSnapshot.method) &&
         Objects.equals(this.displayName, paymentServiceSnapshot.displayName);
@@ -229,15 +322,15 @@ public class PaymentServiceSnapshot {
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, type, paymentServiceDefinitionId, method, displayName);
+    return Objects.hash(type, id, paymentServiceDefinitionId, method, displayName);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class PaymentServiceSnapshot {\n");
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    paymentServiceDefinitionId: ").append(toIndentedString(paymentServiceDefinitionId)).append("\n");
     sb.append("    method: ").append(toIndentedString(method)).append("\n");
     sb.append("    displayName: ").append(toIndentedString(displayName)).append("\n");

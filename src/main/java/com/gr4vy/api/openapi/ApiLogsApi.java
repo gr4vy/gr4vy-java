@@ -107,7 +107,7 @@ public class ApiLogsApi {
     }
 
     /**
-     * List API error Logs
+     * List API error logs
      * Returns a list of API 4XX and 5XX logs.
      * @return ApiLogs
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -124,7 +124,7 @@ public class ApiLogsApi {
     }
 
     /**
-     * List API error Logs
+     * List API error logs
      * Returns a list of API 4XX and 5XX logs.
      * @return ApiResponse&lt;ApiLogs&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -142,7 +142,7 @@ public class ApiLogsApi {
     }
 
     /**
-     * List API error Logs (asynchronously)
+     * List API error logs (asynchronously)
      * Returns a list of API 4XX and 5XX logs.
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call

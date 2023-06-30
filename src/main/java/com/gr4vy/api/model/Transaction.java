@@ -41,7 +41,7 @@ import org.threeten.bp.OffsetDateTime;
  * A transaction record.
  */
 @ApiModel(description = "A transaction record.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-12-22T14:21:56.132305Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-06-30T05:21:36.133441Z[Etc/UTC]")
 public class Transaction {
   /**
    * The type of this resource. Is always &#x60;transaction&#x60;.
@@ -96,8 +96,12 @@ public class Transaction {
   @SerializedName(SERIALIZED_NAME_ID)
   private UUID id;
 
+  public static final String SERIALIZED_NAME_MERCHANT_ACCOUNT_ID = "merchant_account_id";
+  @SerializedName(SERIALIZED_NAME_MERCHANT_ACCOUNT_ID)
+  private String merchantAccountId;
+
   /**
-   * The status of the transaction. The status may change over time as asynchronous processing events occur.
+   * The status of the transaction. The status may change over time as asynchronous processing events occur.  Please note that the possible statuses returned will depend on the operation performed. For example, a captured transaction will never move to a &#x60;authorization_voided&#x60; status.
    */
   @JsonAdapter(StatusEnum.Adapter.class)
   public enum StatusEnum {
@@ -255,6 +259,10 @@ public class Transaction {
   public static final String SERIALIZED_NAME_PAYMENT_SERVICE = "payment_service";
   @SerializedName(SERIALIZED_NAME_PAYMENT_SERVICE)
   private PaymentServiceSnapshot paymentService;
+
+  public static final String SERIALIZED_NAME_PENDING_REVIEW = "pending_review";
+  @SerializedName(SERIALIZED_NAME_PENDING_REVIEW)
+  private Boolean pendingReview;
 
   public static final String SERIALIZED_NAME_MERCHANT_INITIATED = "merchant_initiated";
   @SerializedName(SERIALIZED_NAME_MERCHANT_INITIATED)
@@ -485,8 +493,6 @@ public class Transaction {
     GRABPAY("grabpay"),
     
     KLARNA("klarna"),
-
-    MULTIPAGO("multipago"),
     
     OVO("ovo"),
     
@@ -580,6 +586,10 @@ public class Transaction {
   @SerializedName(SERIALIZED_NAME_VOIDED_AT)
   private OffsetDateTime voidedAt;
 
+  public static final String SERIALIZED_NAME_CHECKOUT_SESSION_ID = "checkout_session_id";
+  @SerializedName(SERIALIZED_NAME_CHECKOUT_SESSION_ID)
+  private UUID checkoutSessionId;
+
 
   public Transaction type(TypeEnum type) {
     
@@ -627,6 +637,29 @@ public class Transaction {
   }
 
 
+  public Transaction merchantAccountId(String merchantAccountId) {
+    
+    this.merchantAccountId = merchantAccountId;
+    return this;
+  }
+
+   /**
+   * The ID of the merchant account to which this transaction belongs to.
+   * @return merchantAccountId
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "default", value = "The ID of the merchant account to which this transaction belongs to.")
+
+  public String getMerchantAccountId() {
+    return merchantAccountId;
+  }
+
+
+  public void setMerchantAccountId(String merchantAccountId) {
+    this.merchantAccountId = merchantAccountId;
+  }
+
+
   public Transaction status(StatusEnum status) {
     
     this.status = status;
@@ -634,11 +667,11 @@ public class Transaction {
   }
 
    /**
-   * The status of the transaction. The status may change over time as asynchronous processing events occur.
+   * The status of the transaction. The status may change over time as asynchronous processing events occur.  Please note that the possible statuses returned will depend on the operation performed. For example, a captured transaction will never move to a &#x60;authorization_voided&#x60; status.
    * @return status
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "processing", value = "The status of the transaction. The status may change over time as asynchronous processing events occur.")
+  @ApiModelProperty(example = "processing", value = "The status of the transaction. The status may change over time as asynchronous processing events occur.  Please note that the possible statuses returned will depend on the operation performed. For example, a captured transaction will never move to a `authorization_voided` status.")
 
   public StatusEnum getStatus() {
     return status;
@@ -801,11 +834,11 @@ public class Transaction {
   }
 
    /**
-   * Get paymentMethod
+   * The payment method used for this transaction.
    * @return paymentMethod
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "The payment method used for this transaction.")
 
   public PaymentMethodSnapshot getPaymentMethod() {
     return paymentMethod;
@@ -824,11 +857,11 @@ public class Transaction {
   }
 
    /**
-   * Get buyer
+   * The buyer used for this transaction.
    * @return buyer
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "The buyer used for this transaction.")
 
   public BuyerSnapshot getBuyer() {
     return buyer;
@@ -916,11 +949,11 @@ public class Transaction {
   }
 
    /**
-   * Get paymentService
+   * The payment service used for this transaction.
    * @return paymentService
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "The payment service used for this transaction.")
 
   public PaymentServiceSnapshot getPaymentService() {
     return paymentService;
@@ -929,6 +962,29 @@ public class Transaction {
 
   public void setPaymentService(PaymentServiceSnapshot paymentService) {
     this.paymentService = paymentService;
+  }
+
+
+  public Transaction pendingReview(Boolean pendingReview) {
+    
+    this.pendingReview = pendingReview;
+    return this;
+  }
+
+   /**
+   * Whether a manual review is pending.
+   * @return pendingReview
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "true", value = "Whether a manual review is pending.")
+
+  public Boolean getPendingReview() {
+    return pendingReview;
+  }
+
+
+  public void setPendingReview(Boolean pendingReview) {
+    this.pendingReview = pendingReview;
   }
 
 
@@ -1254,11 +1310,11 @@ public class Transaction {
   }
 
    /**
-   * Get shippingDetails
+   * The shipping details associated with the transaction.
    * @return shippingDetails
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "The shipping details associated with the transaction.")
 
   public ShippingDetail getShippingDetails() {
     return shippingDetails;
@@ -1362,6 +1418,29 @@ public class Transaction {
   }
 
 
+  public Transaction checkoutSessionId(UUID checkoutSessionId) {
+    
+    this.checkoutSessionId = checkoutSessionId;
+    return this;
+  }
+
+   /**
+   * The identifier for the checkout session this transaction is associated with.
+   * @return checkoutSessionId
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "fe26475d-ec3e-4884-9553-f7356683f7f9", value = "The identifier for the checkout session this transaction is associated with.")
+
+  public UUID getCheckoutSessionId() {
+    return checkoutSessionId;
+  }
+
+
+  public void setCheckoutSessionId(UUID checkoutSessionId) {
+    this.checkoutSessionId = checkoutSessionId;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -1373,6 +1452,7 @@ public class Transaction {
     Transaction transaction = (Transaction) o;
     return Objects.equals(this.type, transaction.type) &&
         Objects.equals(this.id, transaction.id) &&
+        Objects.equals(this.merchantAccountId, transaction.merchantAccountId) &&
         Objects.equals(this.status, transaction.status) &&
         Objects.equals(this.intent, transaction.intent) &&
         Objects.equals(this.amount, transaction.amount) &&
@@ -1386,6 +1466,7 @@ public class Transaction {
         Objects.equals(this.externalIdentifier, transaction.externalIdentifier) &&
         Objects.equals(this.updatedAt, transaction.updatedAt) &&
         Objects.equals(this.paymentService, transaction.paymentService) &&
+        Objects.equals(this.pendingReview, transaction.pendingReview) &&
         Objects.equals(this.merchantInitiated, transaction.merchantInitiated) &&
         Objects.equals(this.paymentSource, transaction.paymentSource) &&
         Objects.equals(this.isSubsequentPayment, transaction.isSubsequentPayment) &&
@@ -1403,12 +1484,13 @@ public class Transaction {
         Objects.equals(this.threeDSecure, transaction.threeDSecure) &&
         Objects.equals(this.authorizedAt, transaction.authorizedAt) &&
         Objects.equals(this.capturedAt, transaction.capturedAt) &&
-        Objects.equals(this.voidedAt, transaction.voidedAt);
+        Objects.equals(this.voidedAt, transaction.voidedAt) &&
+        Objects.equals(this.checkoutSessionId, transaction.checkoutSessionId);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(type, id, status, intent, amount, capturedAmount, refundedAmount, currency, country, paymentMethod, buyer, createdAt, externalIdentifier, updatedAt, paymentService, merchantInitiated, paymentSource, isSubsequentPayment, statementDescriptor, cartItems, schemeTransactionId, rawResponseCode, rawResponseDescription, avsResponseCode, cvvResponseCode, method, paymentServiceTransactionId, metadata, shippingDetails, threeDSecure, authorizedAt, capturedAt, voidedAt);
+    return Objects.hash(type, id, merchantAccountId, status, intent, amount, capturedAmount, refundedAmount, currency, country, paymentMethod, buyer, createdAt, externalIdentifier, updatedAt, paymentService, pendingReview, merchantInitiated, paymentSource, isSubsequentPayment, statementDescriptor, cartItems, schemeTransactionId, rawResponseCode, rawResponseDescription, avsResponseCode, cvvResponseCode, method, paymentServiceTransactionId, metadata, shippingDetails, threeDSecure, authorizedAt, capturedAt, voidedAt, checkoutSessionId);
   }
 
   @Override
@@ -1417,6 +1499,7 @@ public class Transaction {
     sb.append("class Transaction {\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("    merchantAccountId: ").append(toIndentedString(merchantAccountId)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("    intent: ").append(toIndentedString(intent)).append("\n");
     sb.append("    amount: ").append(toIndentedString(amount)).append("\n");
@@ -1430,6 +1513,7 @@ public class Transaction {
     sb.append("    externalIdentifier: ").append(toIndentedString(externalIdentifier)).append("\n");
     sb.append("    updatedAt: ").append(toIndentedString(updatedAt)).append("\n");
     sb.append("    paymentService: ").append(toIndentedString(paymentService)).append("\n");
+    sb.append("    pendingReview: ").append(toIndentedString(pendingReview)).append("\n");
     sb.append("    merchantInitiated: ").append(toIndentedString(merchantInitiated)).append("\n");
     sb.append("    paymentSource: ").append(toIndentedString(paymentSource)).append("\n");
     sb.append("    isSubsequentPayment: ").append(toIndentedString(isSubsequentPayment)).append("\n");
@@ -1448,6 +1532,7 @@ public class Transaction {
     sb.append("    authorizedAt: ").append(toIndentedString(authorizedAt)).append("\n");
     sb.append("    capturedAt: ").append(toIndentedString(capturedAt)).append("\n");
     sb.append("    voidedAt: ").append(toIndentedString(voidedAt)).append("\n");
+    sb.append("    checkoutSessionId: ").append(toIndentedString(checkoutSessionId)).append("\n");
     sb.append("}");
     return sb.toString();
   }

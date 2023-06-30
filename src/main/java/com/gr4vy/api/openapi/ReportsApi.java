@@ -66,120 +66,6 @@ public class ReportsApi {
     }
 
     /**
-     * Build call for addReport
-     * @param reportCreate  (optional)
-     * @param _callback Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 201 </td><td> Returns the report that was added. </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Returns an error if the request was badly formatted or missing required fields. </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Returns an error if no valid authentication was provided. </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call addReportCall(ReportCreate reportCreate, final ApiCallback _callback) throws ApiException {
-        Object localVarPostBody = reportCreate;
-
-        // create path and map variables
-        String localVarPath = "/reports";
-
-        List<Pair> localVarQueryParams = new ArrayList<Pair>();
-        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
-        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-        Map<String, String> localVarCookieParams = new HashMap<String, String>();
-        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
-
-        final String[] localVarAccepts = {
-            "application/json"
-        };
-        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
-        if (localVarAccept != null) {
-            localVarHeaderParams.put("Accept", localVarAccept);
-        }
-
-        final String[] localVarContentTypes = {
-            "application/json"
-        };
-        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        localVarHeaderParams.put("Content-Type", localVarContentType);
-
-        String[] localVarAuthNames = new String[] { "BearerAuth" };
-        return localVarApiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
-    }
-
-    @SuppressWarnings("rawtypes")
-    private okhttp3.Call addReportValidateBeforeCall(ReportCreate reportCreate, final ApiCallback _callback) throws ApiException {
-        
-
-        okhttp3.Call localVarCall = addReportCall(reportCreate, _callback);
-        return localVarCall;
-
-    }
-
-    /**
-     * New report
-     * Adds a report.  Documentation about reports models and how to write a valid specification can be found in [Reporting docs](/reporting/introduction). 
-     * @param reportCreate  (optional)
-     * @return Report
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 201 </td><td> Returns the report that was added. </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Returns an error if the request was badly formatted or missing required fields. </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Returns an error if no valid authentication was provided. </td><td>  -  </td></tr>
-     </table>
-     */
-    public Report addReport(ReportCreate reportCreate) throws ApiException {
-        ApiResponse<Report> localVarResp = addReportWithHttpInfo(reportCreate);
-        return localVarResp.getData();
-    }
-
-    /**
-     * New report
-     * Adds a report.  Documentation about reports models and how to write a valid specification can be found in [Reporting docs](/reporting/introduction). 
-     * @param reportCreate  (optional)
-     * @return ApiResponse&lt;Report&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 201 </td><td> Returns the report that was added. </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Returns an error if the request was badly formatted or missing required fields. </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Returns an error if no valid authentication was provided. </td><td>  -  </td></tr>
-     </table>
-     */
-    public ApiResponse<Report> addReportWithHttpInfo(ReportCreate reportCreate) throws ApiException {
-        okhttp3.Call localVarCall = addReportValidateBeforeCall(reportCreate, null);
-        Type localVarReturnType = new TypeToken<Report>(){}.getType();
-        return localVarApiClient.execute(localVarCall, localVarReturnType);
-    }
-
-    /**
-     * New report (asynchronously)
-     * Adds a report.  Documentation about reports models and how to write a valid specification can be found in [Reporting docs](/reporting/introduction). 
-     * @param reportCreate  (optional)
-     * @param _callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 201 </td><td> Returns the report that was added. </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Returns an error if the request was badly formatted or missing required fields. </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Returns an error if no valid authentication was provided. </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call addReportAsync(ReportCreate reportCreate, final ApiCallback<Report> _callback) throws ApiException {
-
-        okhttp3.Call localVarCall = addReportValidateBeforeCall(reportCreate, _callback);
-        Type localVarReturnType = new TypeToken<Report>(){}.getType();
-        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
-        return localVarCall;
-    }
-    /**
      * Build call for generateDownloadUrl
      * @param reportId The unique ID for a report. (required)
      * @param reportExecutionId The unique ID for a report execution. (required)
@@ -246,7 +132,7 @@ public class ReportsApi {
     }
 
     /**
-     * Generate the download URL of a report execution result
+     * Generate report download URL
      * Generates a temporary signed URL to download the result of a report execution.
      * @param reportId The unique ID for a report. (required)
      * @param reportExecutionId The unique ID for a report execution. (required)
@@ -266,7 +152,7 @@ public class ReportsApi {
     }
 
     /**
-     * Generate the download URL of a report execution result
+     * Generate report download URL
      * Generates a temporary signed URL to download the result of a report execution.
      * @param reportId The unique ID for a report. (required)
      * @param reportExecutionId The unique ID for a report execution. (required)
@@ -287,7 +173,7 @@ public class ReportsApi {
     }
 
     /**
-     * Generate the download URL of a report execution result (asynchronously)
+     * Generate report download URL (asynchronously)
      * Generates a temporary signed URL to download the result of a report execution.
      * @param reportId The unique ID for a report. (required)
      * @param reportExecutionId The unique ID for a report execution. (required)
@@ -557,6 +443,7 @@ public class ReportsApi {
      * @param createdAtLte Filters the results to report executions created before this ISO date-time string. The time zone must be included.  Ensure that the date-time string is URL encoded, e.g. &#x60;2022-01-01T12:00:00+08:00&#x60; must be encoded as &#x60;2022-01-01T12%3A00%3A00%2B08%3A00&#x60;. (optional)
      * @param reportName Filters for executions of reports that have a matching &#x60;name&#x60; value. This filter is case-insensitive.  Ensure that when necessary, the value you pass for this filter is URL encoded. (optional)
      * @param status Filters for report executions that have a matching &#x60;status&#x60; value.  This filter accepts multiple values. (optional)
+     * @param creatorId Filters the results to only match the reports that their &#x60;creator_id&#x60; matches with any of the provided creator IDs. (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -567,7 +454,7 @@ public class ReportsApi {
         <tr><td> 401 </td><td> Returns an error if no valid authentication was provided. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call listAllReportExecutionsCall(String cursor, Integer limit, OffsetDateTime createdAtGte, OffsetDateTime createdAtLte, String reportName, List<String> status, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call listAllReportExecutionsCall(String cursor, Integer limit, OffsetDateTime createdAtGte, OffsetDateTime createdAtLte, String reportName, List<String> status, List<UUID> creatorId, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -603,6 +490,10 @@ public class ReportsApi {
             localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("multi", "status", status));
         }
 
+        if (creatorId != null) {
+            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("multi", "creator_id", creatorId));
+        }
+
         final String[] localVarAccepts = {
             "application/json"
         };
@@ -622,10 +513,10 @@ public class ReportsApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call listAllReportExecutionsValidateBeforeCall(String cursor, Integer limit, OffsetDateTime createdAtGte, OffsetDateTime createdAtLte, String reportName, List<String> status, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call listAllReportExecutionsValidateBeforeCall(String cursor, Integer limit, OffsetDateTime createdAtGte, OffsetDateTime createdAtLte, String reportName, List<String> status, List<UUID> creatorId, final ApiCallback _callback) throws ApiException {
         
 
-        okhttp3.Call localVarCall = listAllReportExecutionsCall(cursor, limit, createdAtGte, createdAtLte, reportName, status, _callback);
+        okhttp3.Call localVarCall = listAllReportExecutionsCall(cursor, limit, createdAtGte, createdAtLte, reportName, status, creatorId, _callback);
         return localVarCall;
 
     }
@@ -639,6 +530,7 @@ public class ReportsApi {
      * @param createdAtLte Filters the results to report executions created before this ISO date-time string. The time zone must be included.  Ensure that the date-time string is URL encoded, e.g. &#x60;2022-01-01T12:00:00+08:00&#x60; must be encoded as &#x60;2022-01-01T12%3A00%3A00%2B08%3A00&#x60;. (optional)
      * @param reportName Filters for executions of reports that have a matching &#x60;name&#x60; value. This filter is case-insensitive.  Ensure that when necessary, the value you pass for this filter is URL encoded. (optional)
      * @param status Filters for report executions that have a matching &#x60;status&#x60; value.  This filter accepts multiple values. (optional)
+     * @param creatorId Filters the results to only match the reports that their &#x60;creator_id&#x60; matches with any of the provided creator IDs. (optional)
      * @return ReportExecutions
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -648,8 +540,8 @@ public class ReportsApi {
         <tr><td> 401 </td><td> Returns an error if no valid authentication was provided. </td><td>  -  </td></tr>
      </table>
      */
-    public ReportExecutions listAllReportExecutions(String cursor, Integer limit, OffsetDateTime createdAtGte, OffsetDateTime createdAtLte, String reportName, List<String> status) throws ApiException {
-        ApiResponse<ReportExecutions> localVarResp = listAllReportExecutionsWithHttpInfo(cursor, limit, createdAtGte, createdAtLte, reportName, status);
+    public ReportExecutions listAllReportExecutions(String cursor, Integer limit, OffsetDateTime createdAtGte, OffsetDateTime createdAtLte, String reportName, List<String> status, List<UUID> creatorId) throws ApiException {
+        ApiResponse<ReportExecutions> localVarResp = listAllReportExecutionsWithHttpInfo(cursor, limit, createdAtGte, createdAtLte, reportName, status, creatorId);
         return localVarResp.getData();
     }
 
@@ -662,6 +554,7 @@ public class ReportsApi {
      * @param createdAtLte Filters the results to report executions created before this ISO date-time string. The time zone must be included.  Ensure that the date-time string is URL encoded, e.g. &#x60;2022-01-01T12:00:00+08:00&#x60; must be encoded as &#x60;2022-01-01T12%3A00%3A00%2B08%3A00&#x60;. (optional)
      * @param reportName Filters for executions of reports that have a matching &#x60;name&#x60; value. This filter is case-insensitive.  Ensure that when necessary, the value you pass for this filter is URL encoded. (optional)
      * @param status Filters for report executions that have a matching &#x60;status&#x60; value.  This filter accepts multiple values. (optional)
+     * @param creatorId Filters the results to only match the reports that their &#x60;creator_id&#x60; matches with any of the provided creator IDs. (optional)
      * @return ApiResponse&lt;ReportExecutions&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -671,8 +564,8 @@ public class ReportsApi {
         <tr><td> 401 </td><td> Returns an error if no valid authentication was provided. </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<ReportExecutions> listAllReportExecutionsWithHttpInfo(String cursor, Integer limit, OffsetDateTime createdAtGte, OffsetDateTime createdAtLte, String reportName, List<String> status) throws ApiException {
-        okhttp3.Call localVarCall = listAllReportExecutionsValidateBeforeCall(cursor, limit, createdAtGte, createdAtLte, reportName, status, null);
+    public ApiResponse<ReportExecutions> listAllReportExecutionsWithHttpInfo(String cursor, Integer limit, OffsetDateTime createdAtGte, OffsetDateTime createdAtLte, String reportName, List<String> status, List<UUID> creatorId) throws ApiException {
+        okhttp3.Call localVarCall = listAllReportExecutionsValidateBeforeCall(cursor, limit, createdAtGte, createdAtLte, reportName, status, creatorId, null);
         Type localVarReturnType = new TypeToken<ReportExecutions>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -686,6 +579,7 @@ public class ReportsApi {
      * @param createdAtLte Filters the results to report executions created before this ISO date-time string. The time zone must be included.  Ensure that the date-time string is URL encoded, e.g. &#x60;2022-01-01T12:00:00+08:00&#x60; must be encoded as &#x60;2022-01-01T12%3A00%3A00%2B08%3A00&#x60;. (optional)
      * @param reportName Filters for executions of reports that have a matching &#x60;name&#x60; value. This filter is case-insensitive.  Ensure that when necessary, the value you pass for this filter is URL encoded. (optional)
      * @param status Filters for report executions that have a matching &#x60;status&#x60; value.  This filter accepts multiple values. (optional)
+     * @param creatorId Filters the results to only match the reports that their &#x60;creator_id&#x60; matches with any of the provided creator IDs. (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -696,9 +590,9 @@ public class ReportsApi {
         <tr><td> 401 </td><td> Returns an error if no valid authentication was provided. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call listAllReportExecutionsAsync(String cursor, Integer limit, OffsetDateTime createdAtGte, OffsetDateTime createdAtLte, String reportName, List<String> status, final ApiCallback<ReportExecutions> _callback) throws ApiException {
+    public okhttp3.Call listAllReportExecutionsAsync(String cursor, Integer limit, OffsetDateTime createdAtGte, OffsetDateTime createdAtLte, String reportName, List<String> status, List<UUID> creatorId, final ApiCallback<ReportExecutions> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = listAllReportExecutionsValidateBeforeCall(cursor, limit, createdAtGte, createdAtLte, reportName, status, _callback);
+        okhttp3.Call localVarCall = listAllReportExecutionsValidateBeforeCall(cursor, limit, createdAtGte, createdAtLte, reportName, status, creatorId, _callback);
         Type localVarReturnType = new TypeToken<ReportExecutions>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -772,8 +666,8 @@ public class ReportsApi {
     }
 
     /**
-     * List executions for a report
-     * Returns a list of executions for a report.
+     * List executions for report
+     * Returns a list of executions for a report. For a one-off report there will only be one, where for scheduled ones there may be more.
      * @param reportId The unique ID for a report. (required)
      * @param cursor A cursor that identifies the page of results to return. This is used to paginate the results of this API.  For the first page of results, this parameter can be left out. For additional pages, use the value returned by the API in the &#x60;next_cursor&#x60; field. Similarly the &#x60;previous_cursor&#x60; can be used to reverse backwards in the list. (optional)
      * @param limit Defines the maximum number of items to return for this request. (optional, default to 20)
@@ -792,8 +686,8 @@ public class ReportsApi {
     }
 
     /**
-     * List executions for a report
-     * Returns a list of executions for a report.
+     * List executions for report
+     * Returns a list of executions for a report. For a one-off report there will only be one, where for scheduled ones there may be more.
      * @param reportId The unique ID for a report. (required)
      * @param cursor A cursor that identifies the page of results to return. This is used to paginate the results of this API.  For the first page of results, this parameter can be left out. For additional pages, use the value returned by the API in the &#x60;next_cursor&#x60; field. Similarly the &#x60;previous_cursor&#x60; can be used to reverse backwards in the list. (optional)
      * @param limit Defines the maximum number of items to return for this request. (optional, default to 20)
@@ -813,8 +707,8 @@ public class ReportsApi {
     }
 
     /**
-     * List executions for a report (asynchronously)
-     * Returns a list of executions for a report.
+     * List executions for report (asynchronously)
+     * Returns a list of executions for a report. For a one-off report there will only be one, where for scheduled ones there may be more.
      * @param reportId The unique ID for a report. (required)
      * @param cursor A cursor that identifies the page of results to return. This is used to paginate the results of this API.  For the first page of results, this parameter can be left out. For additional pages, use the value returned by the API in the &#x60;next_cursor&#x60; field. Similarly the &#x60;previous_cursor&#x60; can be used to reverse backwards in the list. (optional)
      * @param limit Defines the maximum number of items to return for this request. (optional, default to 20)
@@ -982,6 +876,120 @@ public class ReportsApi {
         return localVarCall;
     }
     /**
+     * Build call for newReport
+     * @param reportCreate  (optional)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 201 </td><td> Returns the report that was added. </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Returns an error if the request was badly formatted or missing required fields. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Returns an error if no valid authentication was provided. </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call newReportCall(ReportCreate reportCreate, final ApiCallback _callback) throws ApiException {
+        Object localVarPostBody = reportCreate;
+
+        // create path and map variables
+        String localVarPath = "/reports";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            "application/json"
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        String[] localVarAuthNames = new String[] { "BearerAuth" };
+        return localVarApiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call newReportValidateBeforeCall(ReportCreate reportCreate, final ApiCallback _callback) throws ApiException {
+        
+
+        okhttp3.Call localVarCall = newReportCall(reportCreate, _callback);
+        return localVarCall;
+
+    }
+
+    /**
+     * New report
+     * Creates a new report. 
+     * @param reportCreate  (optional)
+     * @return Report
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 201 </td><td> Returns the report that was added. </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Returns an error if the request was badly formatted or missing required fields. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Returns an error if no valid authentication was provided. </td><td>  -  </td></tr>
+     </table>
+     */
+    public Report newReport(ReportCreate reportCreate) throws ApiException {
+        ApiResponse<Report> localVarResp = newReportWithHttpInfo(reportCreate);
+        return localVarResp.getData();
+    }
+
+    /**
+     * New report
+     * Creates a new report. 
+     * @param reportCreate  (optional)
+     * @return ApiResponse&lt;Report&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 201 </td><td> Returns the report that was added. </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Returns an error if the request was badly formatted or missing required fields. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Returns an error if no valid authentication was provided. </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<Report> newReportWithHttpInfo(ReportCreate reportCreate) throws ApiException {
+        okhttp3.Call localVarCall = newReportValidateBeforeCall(reportCreate, null);
+        Type localVarReturnType = new TypeToken<Report>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * New report (asynchronously)
+     * Creates a new report. 
+     * @param reportCreate  (optional)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 201 </td><td> Returns the report that was added. </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Returns an error if the request was badly formatted or missing required fields. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Returns an error if no valid authentication was provided. </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call newReportAsync(ReportCreate reportCreate, final ApiCallback<Report> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = newReportValidateBeforeCall(reportCreate, _callback);
+        Type localVarReturnType = new TypeToken<Report>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+    /**
      * Build call for updateReport
      * @param reportId The unique ID for a report. (required)
      * @param reportUpdate  (optional)
@@ -1044,7 +1052,7 @@ public class ReportsApi {
 
     /**
      * Update report
-     * Updates a report.
+     * Updates a report. This is mostly used with scheduled reports.
      * @param reportId The unique ID for a report. (required)
      * @param reportUpdate  (optional)
      * @return Report
@@ -1065,7 +1073,7 @@ public class ReportsApi {
 
     /**
      * Update report
-     * Updates a report.
+     * Updates a report. This is mostly used with scheduled reports.
      * @param reportId The unique ID for a report. (required)
      * @param reportUpdate  (optional)
      * @return ApiResponse&lt;Report&gt;
@@ -1087,7 +1095,7 @@ public class ReportsApi {
 
     /**
      * Update report (asynchronously)
-     * Updates a report.
+     * Updates a report. This is mostly used with scheduled reports.
      * @param reportId The unique ID for a report. (required)
      * @param reportUpdate  (optional)
      * @param _callback The callback to be executed when the API call finishes

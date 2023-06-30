@@ -28,7 +28,7 @@ import java.io.IOException;
  * Information about the validation performed on the payment data. (See https://developers.google.com/pay/api/web/reference/response-objects#assurance-details-specifications).
  */
 @ApiModel(description = "Information about the validation performed on the payment data. (See https://developers.google.com/pay/api/web/reference/response-objects#assurance-details-specifications).")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-12-22T14:21:56.132305Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-06-30T05:21:36.133441Z[Etc/UTC]")
 public class GooglePayRequestAssuranceDetails {
   public static final String SERIALIZED_NAME_ACCOUNT_VERIFIED = "account_verified";
   @SerializedName(SERIALIZED_NAME_ACCOUNT_VERIFIED)

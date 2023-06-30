@@ -33,6 +33,7 @@ import com.gr4vy.api.model.DigitalWalletUpdate;
 import com.gr4vy.api.model.DigitalWallets;
 import com.gr4vy.api.model.Error401Unauthorized;
 import com.gr4vy.api.model.Error404NotFound;
+import com.gr4vy.api.model.Error409DuplicateRecord;
 import com.gr4vy.api.model.ErrorGeneric;
 
 import java.lang.reflect.Type;
@@ -61,7 +62,7 @@ public class DigitalWalletsApi {
     }
 
     /**
-     * Build call for deregisterDigitalWallet
+     * Build call for deleteDigitalWallet
      * @param digitalWalletId The ID of the registered digital wallet. (required)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
@@ -74,7 +75,7 @@ public class DigitalWalletsApi {
         <tr><td> 404 </td><td> Returns an error if the resource can not be found. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call deregisterDigitalWalletCall(String digitalWalletId, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call deleteDigitalWalletCall(String digitalWalletId, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -106,22 +107,22 @@ public class DigitalWalletsApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call deregisterDigitalWalletValidateBeforeCall(String digitalWalletId, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call deleteDigitalWalletValidateBeforeCall(String digitalWalletId, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'digitalWalletId' is set
         if (digitalWalletId == null) {
-            throw new ApiException("Missing the required parameter 'digitalWalletId' when calling deregisterDigitalWallet(Async)");
+            throw new ApiException("Missing the required parameter 'digitalWalletId' when calling deleteDigitalWallet(Async)");
         }
         
 
-        okhttp3.Call localVarCall = deregisterDigitalWalletCall(digitalWalletId, _callback);
+        okhttp3.Call localVarCall = deleteDigitalWalletCall(digitalWalletId, _callback);
         return localVarCall;
 
     }
 
     /**
      * De-register digital wallet
-     * De-registers a digital wallet with a provider. Upon successful de-registration, the digital wallet&#39;s record is deleted and will no longer be available.
+     * De-registers a digital wallet with a provider. Upon successful de-registration, the digital wallet&#39;s record is deleted and will no longer be available.  A digital wallet of the Apple provider may only be de-registered if there are no active Apple Pay certificates. When there are only incomplete or expired Apple Pay certificates, these certificates are deleted alongside the Apple digital wallet&#39;s record.
      * @param digitalWalletId The ID of the registered digital wallet. (required)
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -132,13 +133,13 @@ public class DigitalWalletsApi {
         <tr><td> 404 </td><td> Returns an error if the resource can not be found. </td><td>  -  </td></tr>
      </table>
      */
-    public void deregisterDigitalWallet(String digitalWalletId) throws ApiException {
-        deregisterDigitalWalletWithHttpInfo(digitalWalletId);
+    public void deleteDigitalWallet(String digitalWalletId) throws ApiException {
+        deleteDigitalWalletWithHttpInfo(digitalWalletId);
     }
 
     /**
      * De-register digital wallet
-     * De-registers a digital wallet with a provider. Upon successful de-registration, the digital wallet&#39;s record is deleted and will no longer be available.
+     * De-registers a digital wallet with a provider. Upon successful de-registration, the digital wallet&#39;s record is deleted and will no longer be available.  A digital wallet of the Apple provider may only be de-registered if there are no active Apple Pay certificates. When there are only incomplete or expired Apple Pay certificates, these certificates are deleted alongside the Apple digital wallet&#39;s record.
      * @param digitalWalletId The ID of the registered digital wallet. (required)
      * @return ApiResponse&lt;Void&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -150,14 +151,14 @@ public class DigitalWalletsApi {
         <tr><td> 404 </td><td> Returns an error if the resource can not be found. </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<Void> deregisterDigitalWalletWithHttpInfo(String digitalWalletId) throws ApiException {
-        okhttp3.Call localVarCall = deregisterDigitalWalletValidateBeforeCall(digitalWalletId, null);
+    public ApiResponse<Void> deleteDigitalWalletWithHttpInfo(String digitalWalletId) throws ApiException {
+        okhttp3.Call localVarCall = deleteDigitalWalletValidateBeforeCall(digitalWalletId, null);
         return localVarApiClient.execute(localVarCall);
     }
 
     /**
      * De-register digital wallet (asynchronously)
-     * De-registers a digital wallet with a provider. Upon successful de-registration, the digital wallet&#39;s record is deleted and will no longer be available.
+     * De-registers a digital wallet with a provider. Upon successful de-registration, the digital wallet&#39;s record is deleted and will no longer be available.  A digital wallet of the Apple provider may only be de-registered if there are no active Apple Pay certificates. When there are only incomplete or expired Apple Pay certificates, these certificates are deleted alongside the Apple digital wallet&#39;s record.
      * @param digitalWalletId The ID of the registered digital wallet. (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
@@ -170,9 +171,9 @@ public class DigitalWalletsApi {
         <tr><td> 404 </td><td> Returns an error if the resource can not be found. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call deregisterDigitalWalletAsync(String digitalWalletId, final ApiCallback<Void> _callback) throws ApiException {
+    public okhttp3.Call deleteDigitalWalletAsync(String digitalWalletId, final ApiCallback<Void> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = deregisterDigitalWalletValidateBeforeCall(digitalWalletId, _callback);
+        okhttp3.Call localVarCall = deleteDigitalWalletValidateBeforeCall(digitalWalletId, _callback);
         localVarApiClient.executeAsync(localVarCall, _callback);
         return localVarCall;
     }
@@ -403,7 +404,7 @@ public class DigitalWalletsApi {
         return localVarCall;
     }
     /**
-     * Build call for registerDigitalWallet
+     * Build call for newDigitalWallet
      * @param digitalWalletRequest  (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
@@ -414,9 +415,10 @@ public class DigitalWalletsApi {
         <tr><td> 201 </td><td> Returns the newly registered digital wallet. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Returns an error if the request was badly formatted or missing required fields. </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Returns an error if no valid authentication was provided. </td><td>  -  </td></tr>
+        <tr><td> 409 </td><td> Returns an error if duplicate resource has been found. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call registerDigitalWalletCall(DigitalWalletRequest digitalWalletRequest, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call newDigitalWalletCall(DigitalWalletRequest digitalWalletRequest, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = digitalWalletRequest;
 
         // create path and map variables
@@ -447,10 +449,10 @@ public class DigitalWalletsApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call registerDigitalWalletValidateBeforeCall(DigitalWalletRequest digitalWalletRequest, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call newDigitalWalletValidateBeforeCall(DigitalWalletRequest digitalWalletRequest, final ApiCallback _callback) throws ApiException {
         
 
-        okhttp3.Call localVarCall = registerDigitalWalletCall(digitalWalletRequest, _callback);
+        okhttp3.Call localVarCall = newDigitalWalletCall(digitalWalletRequest, _callback);
         return localVarCall;
 
     }
@@ -467,10 +469,11 @@ public class DigitalWalletsApi {
         <tr><td> 201 </td><td> Returns the newly registered digital wallet. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Returns an error if the request was badly formatted or missing required fields. </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Returns an error if no valid authentication was provided. </td><td>  -  </td></tr>
+        <tr><td> 409 </td><td> Returns an error if duplicate resource has been found. </td><td>  -  </td></tr>
      </table>
      */
-    public DigitalWallet registerDigitalWallet(DigitalWalletRequest digitalWalletRequest) throws ApiException {
-        ApiResponse<DigitalWallet> localVarResp = registerDigitalWalletWithHttpInfo(digitalWalletRequest);
+    public DigitalWallet newDigitalWallet(DigitalWalletRequest digitalWalletRequest) throws ApiException {
+        ApiResponse<DigitalWallet> localVarResp = newDigitalWalletWithHttpInfo(digitalWalletRequest);
         return localVarResp.getData();
     }
 
@@ -486,10 +489,11 @@ public class DigitalWalletsApi {
         <tr><td> 201 </td><td> Returns the newly registered digital wallet. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Returns an error if the request was badly formatted or missing required fields. </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Returns an error if no valid authentication was provided. </td><td>  -  </td></tr>
+        <tr><td> 409 </td><td> Returns an error if duplicate resource has been found. </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<DigitalWallet> registerDigitalWalletWithHttpInfo(DigitalWalletRequest digitalWalletRequest) throws ApiException {
-        okhttp3.Call localVarCall = registerDigitalWalletValidateBeforeCall(digitalWalletRequest, null);
+    public ApiResponse<DigitalWallet> newDigitalWalletWithHttpInfo(DigitalWalletRequest digitalWalletRequest) throws ApiException {
+        okhttp3.Call localVarCall = newDigitalWalletValidateBeforeCall(digitalWalletRequest, null);
         Type localVarReturnType = new TypeToken<DigitalWallet>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -507,11 +511,12 @@ public class DigitalWalletsApi {
         <tr><td> 201 </td><td> Returns the newly registered digital wallet. </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Returns an error if the request was badly formatted or missing required fields. </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Returns an error if no valid authentication was provided. </td><td>  -  </td></tr>
+        <tr><td> 409 </td><td> Returns an error if duplicate resource has been found. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call registerDigitalWalletAsync(DigitalWalletRequest digitalWalletRequest, final ApiCallback<DigitalWallet> _callback) throws ApiException {
+    public okhttp3.Call newDigitalWalletAsync(DigitalWalletRequest digitalWalletRequest, final ApiCallback<DigitalWallet> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = registerDigitalWalletValidateBeforeCall(digitalWalletRequest, _callback);
+        okhttp3.Call localVarCall = newDigitalWalletValidateBeforeCall(digitalWalletRequest, _callback);
         Type localVarReturnType = new TypeToken<DigitalWallet>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;

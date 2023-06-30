@@ -20,7 +20,7 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import com.gr4vy.api.model.CardRequest;
+import com.gr4vy.api.model.CheckoutSessionFieldsPaymentMethod;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
@@ -29,14 +29,14 @@ import java.io.IOException;
  * A request to update the secure fields of a checkout session.
  */
 @ApiModel(description = "A request to update the secure fields of a checkout session.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-12-22T14:21:56.132305Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-06-30T05:21:36.133441Z[Etc/UTC]")
 public class CheckoutSessionSecureFieldsUpdate {
   public static final String SERIALIZED_NAME_PAYMENT_METHOD = "payment_method";
   @SerializedName(SERIALIZED_NAME_PAYMENT_METHOD)
-  private CardRequest paymentMethod;
+  private CheckoutSessionFieldsPaymentMethod paymentMethod;
 
 
-  public CheckoutSessionSecureFieldsUpdate paymentMethod(CardRequest paymentMethod) {
+  public CheckoutSessionSecureFieldsUpdate paymentMethod(CheckoutSessionFieldsPaymentMethod paymentMethod) {
     
     this.paymentMethod = paymentMethod;
     return this;
@@ -49,12 +49,12 @@ public class CheckoutSessionSecureFieldsUpdate {
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
 
-  public CardRequest getPaymentMethod() {
+  public CheckoutSessionFieldsPaymentMethod getPaymentMethod() {
     return paymentMethod;
   }
 
 
-  public void setPaymentMethod(CardRequest paymentMethod) {
+  public void setPaymentMethod(CheckoutSessionFieldsPaymentMethod paymentMethod) {
     this.paymentMethod = paymentMethod;
   }
 

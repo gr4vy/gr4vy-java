@@ -63,124 +63,6 @@ public class RolesApi {
     }
 
     /**
-     * Build call for addRoleAssignment
-     * @param roleAssignmentRequest  (optional)
-     * @param _callback Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 201 </td><td> Returns the role assignment that was added. </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Returns an error if the request was badly formatted or missing required fields. </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Returns an error if no valid authentication was provided. </td><td>  -  </td></tr>
-        <tr><td> 409 </td><td> Returns an error if duplicate resource has been found. </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call addRoleAssignmentCall(RoleAssignmentRequest roleAssignmentRequest, final ApiCallback _callback) throws ApiException {
-        Object localVarPostBody = roleAssignmentRequest;
-
-        // create path and map variables
-        String localVarPath = "/roles/assignments";
-
-        List<Pair> localVarQueryParams = new ArrayList<Pair>();
-        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
-        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-        Map<String, String> localVarCookieParams = new HashMap<String, String>();
-        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
-
-        final String[] localVarAccepts = {
-            "application/json"
-        };
-        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
-        if (localVarAccept != null) {
-            localVarHeaderParams.put("Accept", localVarAccept);
-        }
-
-        final String[] localVarContentTypes = {
-            "application/json"
-        };
-        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        localVarHeaderParams.put("Content-Type", localVarContentType);
-
-        String[] localVarAuthNames = new String[] { "BearerAuth" };
-        return localVarApiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
-    }
-
-    @SuppressWarnings("rawtypes")
-    private okhttp3.Call addRoleAssignmentValidateBeforeCall(RoleAssignmentRequest roleAssignmentRequest, final ApiCallback _callback) throws ApiException {
-        
-
-        okhttp3.Call localVarCall = addRoleAssignmentCall(roleAssignmentRequest, _callback);
-        return localVarCall;
-
-    }
-
-    /**
-     * New role assignment
-     * Adds a role assignment, in effect applying a role to the given assignee. 
-     * @param roleAssignmentRequest  (optional)
-     * @return RoleAssignment
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 201 </td><td> Returns the role assignment that was added. </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Returns an error if the request was badly formatted or missing required fields. </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Returns an error if no valid authentication was provided. </td><td>  -  </td></tr>
-        <tr><td> 409 </td><td> Returns an error if duplicate resource has been found. </td><td>  -  </td></tr>
-     </table>
-     */
-    public RoleAssignment addRoleAssignment(RoleAssignmentRequest roleAssignmentRequest) throws ApiException {
-        ApiResponse<RoleAssignment> localVarResp = addRoleAssignmentWithHttpInfo(roleAssignmentRequest);
-        return localVarResp.getData();
-    }
-
-    /**
-     * New role assignment
-     * Adds a role assignment, in effect applying a role to the given assignee. 
-     * @param roleAssignmentRequest  (optional)
-     * @return ApiResponse&lt;RoleAssignment&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 201 </td><td> Returns the role assignment that was added. </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Returns an error if the request was badly formatted or missing required fields. </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Returns an error if no valid authentication was provided. </td><td>  -  </td></tr>
-        <tr><td> 409 </td><td> Returns an error if duplicate resource has been found. </td><td>  -  </td></tr>
-     </table>
-     */
-    public ApiResponse<RoleAssignment> addRoleAssignmentWithHttpInfo(RoleAssignmentRequest roleAssignmentRequest) throws ApiException {
-        okhttp3.Call localVarCall = addRoleAssignmentValidateBeforeCall(roleAssignmentRequest, null);
-        Type localVarReturnType = new TypeToken<RoleAssignment>(){}.getType();
-        return localVarApiClient.execute(localVarCall, localVarReturnType);
-    }
-
-    /**
-     * New role assignment (asynchronously)
-     * Adds a role assignment, in effect applying a role to the given assignee. 
-     * @param roleAssignmentRequest  (optional)
-     * @param _callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 201 </td><td> Returns the role assignment that was added. </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Returns an error if the request was badly formatted or missing required fields. </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Returns an error if no valid authentication was provided. </td><td>  -  </td></tr>
-        <tr><td> 409 </td><td> Returns an error if duplicate resource has been found. </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call addRoleAssignmentAsync(RoleAssignmentRequest roleAssignmentRequest, final ApiCallback<RoleAssignment> _callback) throws ApiException {
-
-        okhttp3.Call localVarCall = addRoleAssignmentValidateBeforeCall(roleAssignmentRequest, _callback);
-        Type localVarReturnType = new TypeToken<RoleAssignment>(){}.getType();
-        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
-        return localVarCall;
-    }
-    /**
      * Build call for deleteRoleAssignment
      * @param roleAssignmentId The unique ID for the role assignment. (required)
      * @param _callback Callback for upload/download progress
@@ -561,6 +443,124 @@ public class RolesApi {
 
         okhttp3.Call localVarCall = listRolesValidateBeforeCall(limit, cursor, _callback);
         Type localVarReturnType = new TypeToken<Roles>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+    /**
+     * Build call for newRoleAssignment
+     * @param roleAssignmentRequest  (optional)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 201 </td><td> Returns the role assignment that was added. </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Returns an error if the request was badly formatted or missing required fields. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Returns an error if no valid authentication was provided. </td><td>  -  </td></tr>
+        <tr><td> 409 </td><td> Returns an error if duplicate resource has been found. </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call newRoleAssignmentCall(RoleAssignmentRequest roleAssignmentRequest, final ApiCallback _callback) throws ApiException {
+        Object localVarPostBody = roleAssignmentRequest;
+
+        // create path and map variables
+        String localVarPath = "/roles/assignments";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            "application/json"
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        String[] localVarAuthNames = new String[] { "BearerAuth" };
+        return localVarApiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call newRoleAssignmentValidateBeforeCall(RoleAssignmentRequest roleAssignmentRequest, final ApiCallback _callback) throws ApiException {
+        
+
+        okhttp3.Call localVarCall = newRoleAssignmentCall(roleAssignmentRequest, _callback);
+        return localVarCall;
+
+    }
+
+    /**
+     * New role assignment
+     * Adds a role assignment, in effect applying a role to the given assignee. 
+     * @param roleAssignmentRequest  (optional)
+     * @return RoleAssignment
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 201 </td><td> Returns the role assignment that was added. </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Returns an error if the request was badly formatted or missing required fields. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Returns an error if no valid authentication was provided. </td><td>  -  </td></tr>
+        <tr><td> 409 </td><td> Returns an error if duplicate resource has been found. </td><td>  -  </td></tr>
+     </table>
+     */
+    public RoleAssignment newRoleAssignment(RoleAssignmentRequest roleAssignmentRequest) throws ApiException {
+        ApiResponse<RoleAssignment> localVarResp = newRoleAssignmentWithHttpInfo(roleAssignmentRequest);
+        return localVarResp.getData();
+    }
+
+    /**
+     * New role assignment
+     * Adds a role assignment, in effect applying a role to the given assignee. 
+     * @param roleAssignmentRequest  (optional)
+     * @return ApiResponse&lt;RoleAssignment&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 201 </td><td> Returns the role assignment that was added. </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Returns an error if the request was badly formatted or missing required fields. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Returns an error if no valid authentication was provided. </td><td>  -  </td></tr>
+        <tr><td> 409 </td><td> Returns an error if duplicate resource has been found. </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<RoleAssignment> newRoleAssignmentWithHttpInfo(RoleAssignmentRequest roleAssignmentRequest) throws ApiException {
+        okhttp3.Call localVarCall = newRoleAssignmentValidateBeforeCall(roleAssignmentRequest, null);
+        Type localVarReturnType = new TypeToken<RoleAssignment>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * New role assignment (asynchronously)
+     * Adds a role assignment, in effect applying a role to the given assignee. 
+     * @param roleAssignmentRequest  (optional)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 201 </td><td> Returns the role assignment that was added. </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Returns an error if the request was badly formatted or missing required fields. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Returns an error if no valid authentication was provided. </td><td>  -  </td></tr>
+        <tr><td> 409 </td><td> Returns an error if duplicate resource has been found. </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call newRoleAssignmentAsync(RoleAssignmentRequest roleAssignmentRequest, final ApiCallback<RoleAssignment> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = newRoleAssignmentValidateBeforeCall(roleAssignmentRequest, _callback);
+        Type localVarReturnType = new TypeToken<RoleAssignment>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }

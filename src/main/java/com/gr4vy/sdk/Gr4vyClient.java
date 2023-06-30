@@ -47,6 +47,7 @@ public class Gr4vyClient {
 	private String environment;
 	private Boolean debug = false;
 	private String merchantAccountId = "default";
+	private UUID checkoutSessionId;
 
     /**
      * Constructor
@@ -78,7 +79,7 @@ public class Gr4vyClient {
         this.host = "https://api." + apiPrefix + gr4vyId  + ".gr4vy.app";
         this.debug = debug;
     }
-
+	
     public void setMerchantAccountId(String merchantAccountId) {
     	this.merchantAccountId = merchantAccountId;
     }
@@ -111,6 +112,10 @@ public class Gr4vyClient {
 		try {
 			String key = getKey();
 			String[] scopes = {"embed"};
+			if (embed != null && embed.containsKey("checkout_session_id")) {
+				checkoutSessionId = UUID.fromString(embed.get("checkout_session_id").toString());
+				return getToken(key, scopes, embed, checkoutSessionId);
+			}
 			return getToken(key, scopes, embed);
 		}
 		catch (Exception e) {
@@ -148,6 +153,51 @@ public class Gr4vyClient {
 	    if (embed != null) {
 	    	claimsSet.claim("embed", embed);
 	    }
+
+	    SignedJWT signedJWT = new SignedJWT(
+	    	new JWSHeader.Builder(JWSAlgorithm.ES512).keyID(keyId).build(),
+	    	claimsSet.build());
+	    
+	    
+	    signedJWT.sign(signer);
+	    
+	    return signedJWT.serialize();
+	}
+
+	public String getToken(String key, String[] scopes, Map<String, Object> embed, UUID checkoutSessionId) throws IOException, NoSuchAlgorithmException, NoSuchProviderException, InvalidKeySpecException, JOSEException, ParseException {
+		Security.addProvider(new org.bouncycastle.jce.provider.BouncyCastleProvider());
+		
+		Reader reader = new StringReader(key);
+	    PEMParser pemParser = new PEMParser(reader);
+	    PrivateKeyInfo privateKeyInfo = (PrivateKeyInfo) pemParser.readObject();
+	    pemParser.close();
+	    
+	    ECPrivateKey ecKey = (ECPrivateKey) new JcaPEMKeyConverter().getPrivateKey(privateKeyInfo);
+	    ECKey e = new ECKey.Builder(Curve.P_521, publicFromPrivate(ecKey))
+	    		.privateKey(ecKey)
+	    		.build();
+
+	    String keyId = e.computeThumbprint("SHA256").toString();
+	    JWSSigner signer = new ECDSASigner(e);
+	    
+	    Date now = new Date();
+	    Date expire = new Date(now.getTime() + 60 * 1000);
+	    
+	    JWTClaimsSet.Builder claimsSet = new JWTClaimsSet.Builder()
+	    		.jwtID(UUID.randomUUID().toString())
+	    		.notBeforeTime(now)
+	    	    .issueTime(now)
+	    	    .issuer("Gr4vy SDK 0.1.0 - Java")
+	    	    .expirationTime(expire)
+	    	    .claim("scopes", scopes);
+	    
+	    if (embed != null) {
+	    	claimsSet.claim("embed", embed);
+	    }
+
+		if(checkoutSessionId != null) {
+			claimsSet.claim("checkout_session_id", checkoutSessionId);
+		}
 
 	    SignedJWT signedJWT = new SignedJWT(
 	    	new JWSHeader.Builder(JWSAlgorithm.ES512).keyID(keyId).build(),

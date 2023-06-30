@@ -31,7 +31,7 @@ import java.util.UUID;
  * A request to create a user.
  */
 @ApiModel(description = "A request to create a user.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-12-22T14:21:56.132305Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-06-30T05:21:36.133441Z[Etc/UTC]")
 public class UserRequest {
   public static final String SERIALIZED_NAME_NAME = "name";
   @SerializedName(SERIALIZED_NAME_NAME)
@@ -44,6 +44,10 @@ public class UserRequest {
   public static final String SERIALIZED_NAME_ROLE_IDS = "role_ids";
   @SerializedName(SERIALIZED_NAME_ROLE_IDS)
   private List<UUID> roleIds = null;
+
+  public static final String SERIALIZED_NAME_MERCHANT_ACCOUNT_IDS = "merchant_account_ids";
+  @SerializedName(SERIALIZED_NAME_MERCHANT_ACCOUNT_IDS)
+  private List<String> merchantAccountIds = null;
 
 
   public UserRequest name(String name) {
@@ -123,6 +127,37 @@ public class UserRequest {
   }
 
 
+  public UserRequest merchantAccountIds(List<String> merchantAccountIds) {
+    
+    this.merchantAccountIds = merchantAccountIds;
+    return this;
+  }
+
+  public UserRequest addMerchantAccountIdsItem(String merchantAccountIdsItem) {
+    if (this.merchantAccountIds == null) {
+      this.merchantAccountIds = new ArrayList<String>();
+    }
+    this.merchantAccountIds.add(merchantAccountIdsItem);
+    return this;
+  }
+
+   /**
+   * A list of merchant account IDs that the user being created will be assigned to.
+   * @return merchantAccountIds
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "[\"default\",\"plantly-uk\"]", value = "A list of merchant account IDs that the user being created will be assigned to.")
+
+  public List<String> getMerchantAccountIds() {
+    return merchantAccountIds;
+  }
+
+
+  public void setMerchantAccountIds(List<String> merchantAccountIds) {
+    this.merchantAccountIds = merchantAccountIds;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -134,12 +169,13 @@ public class UserRequest {
     UserRequest userRequest = (UserRequest) o;
     return Objects.equals(this.name, userRequest.name) &&
         Objects.equals(this.emailAddress, userRequest.emailAddress) &&
-        Objects.equals(this.roleIds, userRequest.roleIds);
+        Objects.equals(this.roleIds, userRequest.roleIds) &&
+        Objects.equals(this.merchantAccountIds, userRequest.merchantAccountIds);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, emailAddress, roleIds);
+    return Objects.hash(name, emailAddress, roleIds, merchantAccountIds);
   }
 
   @Override
@@ -149,6 +185,7 @@ public class UserRequest {
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    emailAddress: ").append(toIndentedString(emailAddress)).append("\n");
     sb.append("    roleIds: ").append(toIndentedString(roleIds)).append("\n");
+    sb.append("    merchantAccountIds: ").append(toIndentedString(merchantAccountIds)).append("\n");
     sb.append("}");
     return sb.toString();
   }
