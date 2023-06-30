@@ -64,7 +64,7 @@ public class Gr4vyClientTest {
     	BuyersApi api = new BuyersApi(client.getClient());
     	BuyerRequest buyer = new BuyerRequest();
     	buyer.setDisplayName("Java Test");
-        Buyer response = api.addBuyer(buyer);
+        Buyer response = api.newBuyer(buyer);
 
         assert response != null;
     }
