@@ -104,7 +104,7 @@ needs to be created before it can be used in this way.
 	BuyerRequest buyer = new BuyerRequest();
 	buyer.setDisplayName("Tester T.");
 	try {
-		Buyer result = apiInstance.addBuyer(buyer);
+		Buyer result = apiInstance.newBuyer(buyer);
 		System.out.println(result);
 	} catch (ApiException e) {
 		

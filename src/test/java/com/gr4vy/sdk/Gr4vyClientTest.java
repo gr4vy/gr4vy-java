@@ -40,9 +40,8 @@ public class Gr4vyClientTest {
 		
 		CheckoutSessionsApi checkoutSessionsApi = new CheckoutSessionsApi(client.getClient());
 		CheckoutSession checkoutSession = checkoutSessionsApi.newCheckoutSession();
-		embed.put("checkout_session_id", checkoutSession.getId());
-
-    	String token = client.getEmbedToken(embed);
+		
+    	String token = client.getEmbedToken(embed, checkoutSession.getId());
         assert token != null;
     }
 	

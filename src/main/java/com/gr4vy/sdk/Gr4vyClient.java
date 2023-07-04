@@ -79,7 +79,7 @@ public class Gr4vyClient {
         this.host = "https://api." + apiPrefix + gr4vyId  + ".gr4vy.app";
         this.debug = debug;
     }
-	
+
     public void setMerchantAccountId(String merchantAccountId) {
     	this.merchantAccountId = merchantAccountId;
     }
@@ -112,11 +112,18 @@ public class Gr4vyClient {
 		try {
 			String key = getKey();
 			String[] scopes = {"embed"};
-			if (embed != null && embed.containsKey("checkout_session_id")) {
-				checkoutSessionId = UUID.fromString(embed.get("checkout_session_id").toString());
-				return getToken(key, scopes, embed, checkoutSessionId);
-			}
 			return getToken(key, scopes, embed);
+		}
+		catch (Exception e) {
+			throw new Gr4vyException("Error while generating token, please make sure your private key is valid.");
+		}
+	}
+
+	public String getEmbedToken(Map<String, Object> embed, UUID checkoutSessionId) throws Gr4vyException {
+		try {
+			String key = getKey();
+			String[] scopes = {"embed"};
+			return getToken(key, scopes, embed, checkoutSessionId);
 		}
 		catch (Exception e) {
 			throw new Gr4vyException("Error while generating token, please make sure your private key is valid.");
