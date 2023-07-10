@@ -26,7 +26,7 @@ public class Gr4vyClientTest {
 		embed.put("amount", 1299);
 		embed.put("currency", "USD");
 
-    	String token = client.getEmbedToken(embed);
+    	String token = client.getEmbedToken(embed, null);
         assert token != null;
     }
 
@@ -51,7 +51,7 @@ public class Gr4vyClientTest {
 		
 		String key = client.getKey();
 		String[] scopes = {"*.read", "*.write"};
-		String token = client.getToken(key, scopes, null);
+		String token = client.getToken(key, scopes, null, null);
 		
     	System.out.println(token);
         assert token != null;

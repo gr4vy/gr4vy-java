@@ -97,7 +97,7 @@ public class Gr4vyClient {
 			
 			String[] scopes = {"*.read", "*.write"};
 			
-			String token = getToken(key, scopes, null);
+			String token = getToken(key, scopes, null, null);
 			
 			HttpBearerAuth BearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("BearerAuth");
 			BearerAuth.setBearerToken(token);
@@ -108,17 +108,6 @@ public class Gr4vyClient {
 		}
 	}
 	
-	public String getEmbedToken(Map<String, Object> embed) throws Gr4vyException {
-		try {
-			String key = getKey();
-			String[] scopes = {"embed"};
-			return getToken(key, scopes, embed);
-		}
-		catch (Exception e) {
-			throw new Gr4vyException("Error while generating token, please make sure your private key is valid.");
-		}
-	}
-
 	public String getEmbedToken(Map<String, Object> embed, UUID checkoutSessionId) throws Gr4vyException {
 		try {
 			String key = getKey();
@@ -130,47 +119,6 @@ public class Gr4vyClient {
 		}
 	}
 	
-	public String getToken(String key, String[] scopes, Map<String, Object> embed) throws IOException, NoSuchAlgorithmException, NoSuchProviderException, InvalidKeySpecException, JOSEException, ParseException {
-		Security.addProvider(new org.bouncycastle.jce.provider.BouncyCastleProvider());
-		
-		Reader reader = new StringReader(key);
-	    PEMParser pemParser = new PEMParser(reader);
-	    PrivateKeyInfo privateKeyInfo = (PrivateKeyInfo) pemParser.readObject();
-	    pemParser.close();
-	    
-	    ECPrivateKey ecKey = (ECPrivateKey) new JcaPEMKeyConverter().getPrivateKey(privateKeyInfo);
-	    ECKey e = new ECKey.Builder(Curve.P_521, publicFromPrivate(ecKey))
-	    		.privateKey(ecKey)
-	    		.build();
-
-	    String keyId = e.computeThumbprint("SHA256").toString();
-	    JWSSigner signer = new ECDSASigner(e);
-	    
-	    Date now = new Date();
-	    Date expire = new Date(now.getTime() + 60 * 1000);
-	    
-	    JWTClaimsSet.Builder claimsSet = new JWTClaimsSet.Builder()
-	    		.jwtID(UUID.randomUUID().toString())
-	    		.notBeforeTime(now)
-	    	    .issueTime(now)
-	    	    .issuer("Gr4vy SDK 0.1.0 - Java")
-	    	    .expirationTime(expire)
-	    	    .claim("scopes", scopes);
-	    
-	    if (embed != null) {
-	    	claimsSet.claim("embed", embed);
-	    }
-
-	    SignedJWT signedJWT = new SignedJWT(
-	    	new JWSHeader.Builder(JWSAlgorithm.ES512).keyID(keyId).build(),
-	    	claimsSet.build());
-	    
-	    
-	    signedJWT.sign(signer);
-	    
-	    return signedJWT.serialize();
-	}
-
 	public String getToken(String key, String[] scopes, Map<String, Object> embed, UUID checkoutSessionId) throws IOException, NoSuchAlgorithmException, NoSuchProviderException, InvalidKeySpecException, JOSEException, ParseException {
 		Security.addProvider(new org.bouncycastle.jce.provider.BouncyCastleProvider());
 		
