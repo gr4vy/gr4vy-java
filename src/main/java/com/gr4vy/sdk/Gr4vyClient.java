@@ -108,6 +108,10 @@ public class Gr4vyClient {
 		}
 	}
 	
+	public String getEmbedToken(Map<String, Object> embed) throws Gr4vyException {
+		return getEmbedToken(embed, null);
+	}
+	
 	public String getEmbedToken(Map<String, Object> embed, UUID checkoutSessionId) throws Gr4vyException {
 		try {
 			String key = getKey();
@@ -119,6 +123,10 @@ public class Gr4vyClient {
 		}
 	}
 	
+	public String getToken(String key, String[] scopes, Map<String, Object> embed) throws IOException, NoSuchAlgorithmException, NoSuchProviderException, InvalidKeySpecException, JOSEException, ParseException {
+		return getToken(key, scopes, embed, null);
+	}
+
 	public String getToken(String key, String[] scopes, Map<String, Object> embed, UUID checkoutSessionId) throws IOException, NoSuchAlgorithmException, NoSuchProviderException, InvalidKeySpecException, JOSEException, ParseException {
 		Security.addProvider(new org.bouncycastle.jce.provider.BouncyCastleProvider());
 		
