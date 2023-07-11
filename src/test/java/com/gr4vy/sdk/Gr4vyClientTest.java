@@ -13,6 +13,7 @@ import org.junit.Test;
 import com.gr4vy.api.ApiException;
 import com.gr4vy.api.model.*;
 import com.gr4vy.api.openapi.BuyersApi;
+import com.gr4vy.api.openapi.CheckoutSessionsApi;
 import com.nimbusds.jose.JOSEException;
 
 public class Gr4vyClientTest {
@@ -26,6 +27,21 @@ public class Gr4vyClientTest {
 		embed.put("currency", "USD");
 
     	String token = client.getEmbedToken(embed);
+        assert token != null;
+    }
+
+	@Test
+    public void getEmbedTokenTestWithCheckoutSessionPassedIn() throws Gr4vyException, ApiException {
+    	Gr4vyClient client = new Gr4vyClient("spider", "private_key.pem");
+		
+		Map<String, Object> embed = new HashMap<String, Object>();
+		embed.put("amount", 1299);
+		embed.put("currency", "USD");
+		
+		CheckoutSessionsApi checkoutSessionsApi = new CheckoutSessionsApi(client.getClient());
+		CheckoutSession checkoutSession = checkoutSessionsApi.newCheckoutSession();
+		
+    	String token = client.getEmbedToken(embed, checkoutSession.getId());
         assert token != null;
     }
 	
@@ -47,7 +63,7 @@ public class Gr4vyClientTest {
     	BuyersApi api = new BuyersApi(client.getClient());
     	BuyerRequest buyer = new BuyerRequest();
     	buyer.setDisplayName("Java Test");
-        Buyer response = api.addBuyer(buyer);
+        Buyer response = api.newBuyer(buyer);
 
         assert response != null;
     }

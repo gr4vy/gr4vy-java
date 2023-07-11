@@ -28,7 +28,7 @@ import java.io.IOException;
  * Configuration for the approval interface that should be shown to the buyer.
  */
 @ApiModel(description = "Configuration for the approval interface that should be shown to the buyer.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-12-22T14:21:56.132305Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-06-30T05:21:36.133441Z[Etc/UTC]")
 public class PaymentOptionApprovalUI {
   public static final String SERIALIZED_NAME_HEIGHT = "height";
   @SerializedName(SERIALIZED_NAME_HEIGHT)

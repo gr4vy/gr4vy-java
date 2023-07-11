@@ -31,7 +31,7 @@ import java.util.UUID;
  * A request to update a user.
  */
 @ApiModel(description = "A request to update a user.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-12-22T14:21:56.132305Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-06-30T05:21:36.133441Z[Etc/UTC]")
 public class UserUpdate {
   public static final String SERIALIZED_NAME_NAME = "name";
   @SerializedName(SERIALIZED_NAME_NAME)
@@ -40,6 +40,10 @@ public class UserUpdate {
   public static final String SERIALIZED_NAME_ROLE_IDS = "role_ids";
   @SerializedName(SERIALIZED_NAME_ROLE_IDS)
   private List<UUID> roleIds = null;
+
+  public static final String SERIALIZED_NAME_MERCHANT_ACCOUNT_IDS = "merchant_account_ids";
+  @SerializedName(SERIALIZED_NAME_MERCHANT_ACCOUNT_IDS)
+  private List<String> merchantAccountIds = null;
 
 
   public UserUpdate name(String name) {
@@ -96,6 +100,37 @@ public class UserUpdate {
   }
 
 
+  public UserUpdate merchantAccountIds(List<String> merchantAccountIds) {
+    
+    this.merchantAccountIds = merchantAccountIds;
+    return this;
+  }
+
+  public UserUpdate addMerchantAccountIdsItem(String merchantAccountIdsItem) {
+    if (this.merchantAccountIds == null) {
+      this.merchantAccountIds = new ArrayList<String>();
+    }
+    this.merchantAccountIds.add(merchantAccountIdsItem);
+    return this;
+  }
+
+   /**
+   * A list of merchant account IDs that the user is assigned to.
+   * @return merchantAccountIds
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "[\"default\",\"plantly-uk\"]", value = "A list of merchant account IDs that the user is assigned to.")
+
+  public List<String> getMerchantAccountIds() {
+    return merchantAccountIds;
+  }
+
+
+  public void setMerchantAccountIds(List<String> merchantAccountIds) {
+    this.merchantAccountIds = merchantAccountIds;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -106,12 +141,13 @@ public class UserUpdate {
     }
     UserUpdate userUpdate = (UserUpdate) o;
     return Objects.equals(this.name, userUpdate.name) &&
-        Objects.equals(this.roleIds, userUpdate.roleIds);
+        Objects.equals(this.roleIds, userUpdate.roleIds) &&
+        Objects.equals(this.merchantAccountIds, userUpdate.merchantAccountIds);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, roleIds);
+    return Objects.hash(name, roleIds, merchantAccountIds);
   }
 
   @Override
@@ -120,6 +156,7 @@ public class UserUpdate {
     sb.append("class UserUpdate {\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    roleIds: ").append(toIndentedString(roleIds)).append("\n");
+    sb.append("    merchantAccountIds: ").append(toIndentedString(merchantAccountIds)).append("\n");
     sb.append("}");
     return sb.toString();
   }

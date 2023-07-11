@@ -33,7 +33,7 @@ import org.threeten.bp.OffsetDateTime;
  * A transaction record.
  */
 @ApiModel(description = "A transaction record.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-12-22T14:21:56.132305Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-06-30T05:21:36.133441Z[Etc/UTC]")
 public class TransactionSummary {
   /**
    * The type of this resource. Is always &#x60;transaction&#x60;.
@@ -87,6 +87,10 @@ public class TransactionSummary {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
   private UUID id;
+
+  public static final String SERIALIZED_NAME_MERCHANT_ACCOUNT_ID = "merchant_account_id";
+  @SerializedName(SERIALIZED_NAME_MERCHANT_ACCOUNT_ID)
+  private String merchantAccountId;
 
   /**
    * The status of the transaction. The status may change over time as asynchronous processing events occur.
@@ -248,6 +252,10 @@ public class TransactionSummary {
   @SerializedName(SERIALIZED_NAME_PAYMENT_SERVICE)
   private PaymentServiceSnapshot paymentService;
 
+  public static final String SERIALIZED_NAME_PENDING_REVIEW = "pending_review";
+  @SerializedName(SERIALIZED_NAME_PENDING_REVIEW)
+  private Boolean pendingReview;
+
   /**
    * Gets or Sets method
    */
@@ -280,8 +288,6 @@ public class TransactionSummary {
     GRABPAY("grabpay"),
     
     KLARNA("klarna"),
-
-    MULTIPAGO("multipago"),
     
     OVO("ovo"),
     
@@ -355,6 +361,10 @@ public class TransactionSummary {
   @SerializedName(SERIALIZED_NAME_RAW_RESPONSE_DESCRIPTION)
   private String rawResponseDescription;
 
+  public static final String SERIALIZED_NAME_CHECKOUT_SESSION_ID = "checkout_session_id";
+  @SerializedName(SERIALIZED_NAME_CHECKOUT_SESSION_ID)
+  private UUID checkoutSessionId;
+
 
   public TransactionSummary type(TypeEnum type) {
     
@@ -399,6 +409,29 @@ public class TransactionSummary {
 
   public void setId(UUID id) {
     this.id = id;
+  }
+
+
+  public TransactionSummary merchantAccountId(String merchantAccountId) {
+    
+    this.merchantAccountId = merchantAccountId;
+    return this;
+  }
+
+   /**
+   * The ID of the merchant account to which this transaction belongs to.
+   * @return merchantAccountId
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "default", value = "The ID of the merchant account to which this transaction belongs to.")
+
+  public String getMerchantAccountId() {
+    return merchantAccountId;
+  }
+
+
+  public void setMerchantAccountId(String merchantAccountId) {
+    this.merchantAccountId = merchantAccountId;
   }
 
 
@@ -576,11 +609,11 @@ public class TransactionSummary {
   }
 
    /**
-   * Get paymentMethod
+   * The payment method used for this transaction.
    * @return paymentMethod
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "The payment method used for this transaction.")
 
   public PaymentMethodSnapshot getPaymentMethod() {
     return paymentMethod;
@@ -599,11 +632,11 @@ public class TransactionSummary {
   }
 
    /**
-   * Get buyer
+   * The buyer used for this transaction.
    * @return buyer
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "The buyer used for this transaction.")
 
   public BuyerSnapshot getBuyer() {
     return buyer;
@@ -691,11 +724,11 @@ public class TransactionSummary {
   }
 
    /**
-   * Get paymentService
+   * The payment service used for this transaction.
    * @return paymentService
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "The payment service used for this transaction.")
 
   public PaymentServiceSnapshot getPaymentService() {
     return paymentService;
@@ -704,6 +737,29 @@ public class TransactionSummary {
 
   public void setPaymentService(PaymentServiceSnapshot paymentService) {
     this.paymentService = paymentService;
+  }
+
+
+  public TransactionSummary pendingReview(Boolean pendingReview) {
+    
+    this.pendingReview = pendingReview;
+    return this;
+  }
+
+   /**
+   * Whether a manual review is pending.
+   * @return pendingReview
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "true", value = "Whether a manual review is pending.")
+
+  public Boolean getPendingReview() {
+    return pendingReview;
+  }
+
+
+  public void setPendingReview(Boolean pendingReview) {
+    this.pendingReview = pendingReview;
   }
 
 
@@ -776,6 +832,29 @@ public class TransactionSummary {
   }
 
 
+  public TransactionSummary checkoutSessionId(UUID checkoutSessionId) {
+    
+    this.checkoutSessionId = checkoutSessionId;
+    return this;
+  }
+
+   /**
+   * The identifier for the checkout session this transaction is associated with.
+   * @return checkoutSessionId
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "fe26475d-ec3e-4884-9553-f7356683f7f9", value = "The identifier for the checkout session this transaction is associated with.")
+
+  public UUID getCheckoutSessionId() {
+    return checkoutSessionId;
+  }
+
+
+  public void setCheckoutSessionId(UUID checkoutSessionId) {
+    this.checkoutSessionId = checkoutSessionId;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -787,6 +866,7 @@ public class TransactionSummary {
     TransactionSummary transactionSummary = (TransactionSummary) o;
     return Objects.equals(this.type, transactionSummary.type) &&
         Objects.equals(this.id, transactionSummary.id) &&
+        Objects.equals(this.merchantAccountId, transactionSummary.merchantAccountId) &&
         Objects.equals(this.status, transactionSummary.status) &&
         Objects.equals(this.intent, transactionSummary.intent) &&
         Objects.equals(this.amount, transactionSummary.amount) &&
@@ -800,14 +880,16 @@ public class TransactionSummary {
         Objects.equals(this.externalIdentifier, transactionSummary.externalIdentifier) &&
         Objects.equals(this.updatedAt, transactionSummary.updatedAt) &&
         Objects.equals(this.paymentService, transactionSummary.paymentService) &&
+        Objects.equals(this.pendingReview, transactionSummary.pendingReview) &&
         Objects.equals(this.method, transactionSummary.method) &&
         Objects.equals(this.rawResponseCode, transactionSummary.rawResponseCode) &&
-        Objects.equals(this.rawResponseDescription, transactionSummary.rawResponseDescription);
+        Objects.equals(this.rawResponseDescription, transactionSummary.rawResponseDescription) &&
+        Objects.equals(this.checkoutSessionId, transactionSummary.checkoutSessionId);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(type, id, status, intent, amount, capturedAmount, refundedAmount, currency, country, paymentMethod, buyer, createdAt, externalIdentifier, updatedAt, paymentService, method, rawResponseCode, rawResponseDescription);
+    return Objects.hash(type, id, merchantAccountId, status, intent, amount, capturedAmount, refundedAmount, currency, country, paymentMethod, buyer, createdAt, externalIdentifier, updatedAt, paymentService, pendingReview, method, rawResponseCode, rawResponseDescription, checkoutSessionId);
   }
 
   @Override
@@ -816,6 +898,7 @@ public class TransactionSummary {
     sb.append("class TransactionSummary {\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("    merchantAccountId: ").append(toIndentedString(merchantAccountId)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("    intent: ").append(toIndentedString(intent)).append("\n");
     sb.append("    amount: ").append(toIndentedString(amount)).append("\n");
@@ -829,9 +912,11 @@ public class TransactionSummary {
     sb.append("    externalIdentifier: ").append(toIndentedString(externalIdentifier)).append("\n");
     sb.append("    updatedAt: ").append(toIndentedString(updatedAt)).append("\n");
     sb.append("    paymentService: ").append(toIndentedString(paymentService)).append("\n");
+    sb.append("    pendingReview: ").append(toIndentedString(pendingReview)).append("\n");
     sb.append("    method: ").append(toIndentedString(method)).append("\n");
     sb.append("    rawResponseCode: ").append(toIndentedString(rawResponseCode)).append("\n");
     sb.append("    rawResponseDescription: ").append(toIndentedString(rawResponseDescription)).append("\n");
+    sb.append("    checkoutSessionId: ").append(toIndentedString(checkoutSessionId)).append("\n");
     sb.append("}");
     return sb.toString();
   }

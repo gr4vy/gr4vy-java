@@ -29,7 +29,7 @@ import java.util.UUID;
  * A report record summary.
  */
 @ApiModel(description = "A report record summary.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-12-22T14:21:56.132305Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-06-30T05:21:36.133441Z[Etc/UTC]")
 public class ReportSummary {
   /**
    * The type of this resource. Is always &#x60;report&#x60;.
@@ -84,9 +84,72 @@ public class ReportSummary {
   @SerializedName(SERIALIZED_NAME_ID)
   private UUID id;
 
+  public static final String SERIALIZED_NAME_MERCHANT_ACCOUNT_ID = "merchant_account_id";
+  @SerializedName(SERIALIZED_NAME_MERCHANT_ACCOUNT_ID)
+  private String merchantAccountId;
+
   public static final String SERIALIZED_NAME_NAME = "name";
   @SerializedName(SERIALIZED_NAME_NAME)
   private String name;
+
+  public static final String SERIALIZED_NAME_CREATOR_ID = "creator_id";
+  @SerializedName(SERIALIZED_NAME_CREATOR_ID)
+  private UUID creatorId;
+
+  public static final String SERIALIZED_NAME_CREATOR_DISPLAY_NAME = "creator_display_name";
+  @SerializedName(SERIALIZED_NAME_CREATOR_DISPLAY_NAME)
+  private String creatorDisplayName;
+
+  /**
+   * The type of the creator of this report.
+   */
+  @JsonAdapter(CreatorTypeEnum.Adapter.class)
+  public enum CreatorTypeEnum {
+    USER("user"),
+    
+    PRIVATE_KEY("private_key");
+
+    private String value;
+
+    CreatorTypeEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static CreatorTypeEnum fromValue(String value) {
+      for (CreatorTypeEnum b : CreatorTypeEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      return null;
+    }
+
+    public static class Adapter extends TypeAdapter<CreatorTypeEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final CreatorTypeEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public CreatorTypeEnum read(final JsonReader jsonReader) throws IOException {
+        String value =  jsonReader.nextString();
+        return CreatorTypeEnum.fromValue(value);
+      }
+    }
+  }
+
+  public static final String SERIALIZED_NAME_CREATOR_TYPE = "creator_type";
+  @SerializedName(SERIALIZED_NAME_CREATOR_TYPE)
+  private CreatorTypeEnum creatorType;
 
 
   public ReportSummary type(TypeEnum type) {
@@ -135,6 +198,29 @@ public class ReportSummary {
   }
 
 
+  public ReportSummary merchantAccountId(String merchantAccountId) {
+    
+    this.merchantAccountId = merchantAccountId;
+    return this;
+  }
+
+   /**
+   * The unique ID for a merchant account.
+   * @return merchantAccountId
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "default", value = "The unique ID for a merchant account.")
+
+  public String getMerchantAccountId() {
+    return merchantAccountId;
+  }
+
+
+  public void setMerchantAccountId(String merchantAccountId) {
+    this.merchantAccountId = merchantAccountId;
+  }
+
+
   public ReportSummary name(String name) {
     
     this.name = name;
@@ -158,6 +244,75 @@ public class ReportSummary {
   }
 
 
+  public ReportSummary creatorId(UUID creatorId) {
+    
+    this.creatorId = creatorId;
+    return this;
+  }
+
+   /**
+   * The unique identifier for the creator of this report.
+   * @return creatorId
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "bd5d40d1-913b-419c-bd62-84efc46e0026", value = "The unique identifier for the creator of this report.")
+
+  public UUID getCreatorId() {
+    return creatorId;
+  }
+
+
+  public void setCreatorId(UUID creatorId) {
+    this.creatorId = creatorId;
+  }
+
+
+  public ReportSummary creatorDisplayName(String creatorDisplayName) {
+    
+    this.creatorDisplayName = creatorDisplayName;
+    return this;
+  }
+
+   /**
+   * The name of the creator of this report.
+   * @return creatorDisplayName
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "John Doe", value = "The name of the creator of this report.")
+
+  public String getCreatorDisplayName() {
+    return creatorDisplayName;
+  }
+
+
+  public void setCreatorDisplayName(String creatorDisplayName) {
+    this.creatorDisplayName = creatorDisplayName;
+  }
+
+
+  public ReportSummary creatorType(CreatorTypeEnum creatorType) {
+    
+    this.creatorType = creatorType;
+    return this;
+  }
+
+   /**
+   * The type of the creator of this report.
+   * @return creatorType
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "The type of the creator of this report.")
+
+  public CreatorTypeEnum getCreatorType() {
+    return creatorType;
+  }
+
+
+  public void setCreatorType(CreatorTypeEnum creatorType) {
+    this.creatorType = creatorType;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -169,12 +324,16 @@ public class ReportSummary {
     ReportSummary reportSummary = (ReportSummary) o;
     return Objects.equals(this.type, reportSummary.type) &&
         Objects.equals(this.id, reportSummary.id) &&
-        Objects.equals(this.name, reportSummary.name);
+        Objects.equals(this.merchantAccountId, reportSummary.merchantAccountId) &&
+        Objects.equals(this.name, reportSummary.name) &&
+        Objects.equals(this.creatorId, reportSummary.creatorId) &&
+        Objects.equals(this.creatorDisplayName, reportSummary.creatorDisplayName) &&
+        Objects.equals(this.creatorType, reportSummary.creatorType);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(type, id, name);
+    return Objects.hash(type, id, merchantAccountId, name, creatorId, creatorDisplayName, creatorType);
   }
 
   @Override
@@ -183,7 +342,11 @@ public class ReportSummary {
     sb.append("class ReportSummary {\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("    merchantAccountId: ").append(toIndentedString(merchantAccountId)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("    creatorId: ").append(toIndentedString(creatorId)).append("\n");
+    sb.append("    creatorDisplayName: ").append(toIndentedString(creatorDisplayName)).append("\n");
+    sb.append("    creatorType: ").append(toIndentedString(creatorType)).append("\n");
     sb.append("}");
     return sb.toString();
   }

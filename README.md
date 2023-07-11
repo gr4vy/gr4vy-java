@@ -78,7 +78,7 @@ gr4vyClient.setMerchantAccountId("my-account-id"); // defaults to `default`
 ## Gr4vy Embed
 
 To create a token for Gr4vy Embed, call the `client.getEmbedToken(embed)`
-function with the amount, currency, and optional checkout session and buyer information for Gr4vy
+function with the amount, currency, and optional checkout session and optional buyer information for Gr4vy
 Embed.
 
 ```java
@@ -104,7 +104,7 @@ needs to be created before it can be used in this way.
 	BuyerRequest buyer = new BuyerRequest();
 	buyer.setDisplayName("Tester T.");
 	try {
-		Buyer result = apiInstance.addBuyer(buyer);
+		Buyer result = apiInstance.newBuyer(buyer);
 		System.out.println(result);
 	} catch (ApiException e) {
 		

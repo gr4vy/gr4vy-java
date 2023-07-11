@@ -29,7 +29,7 @@ import java.util.UUID;
  * Payment method details used to register a new payment method.
  */
 @ApiModel(description = "Payment method details used to register a new payment method.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-12-22T14:21:56.132305Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-06-30T05:21:36.133441Z[Etc/UTC]")
 public class PaymentMethodRequest {
   public static final String SERIALIZED_NAME_METHOD = "method";
   @SerializedName(SERIALIZED_NAME_METHOD)
@@ -46,10 +46,6 @@ public class PaymentMethodRequest {
   public static final String SERIALIZED_NAME_EXPIRATION_DATE = "expiration_date";
   @SerializedName(SERIALIZED_NAME_EXPIRATION_DATE)
   private String expirationDate;
-
-  public static final String SERIALIZED_NAME_SECURITY_CODE = "security_code";
-  @SerializedName(SERIALIZED_NAME_SECURITY_CODE)
-  private String securityCode;
 
   public static final String SERIALIZED_NAME_EXTERNAL_IDENTIFIER = "external_identifier";
   @SerializedName(SERIALIZED_NAME_EXTERNAL_IDENTIFIER)
@@ -128,11 +124,11 @@ public class PaymentMethodRequest {
   }
 
    /**
-   * The 13-19 digit number for this credit card as it can be found on the front of the card.  If a card has been stored with us previously, this number will represent the unique tokenized card ID provided via our API.
+   * The 13-19 digit number for this credit card as it can be found on the front of the card.
    * @return number
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "4111111111111111", value = "The 13-19 digit number for this credit card as it can be found on the front of the card.  If a card has been stored with us previously, this number will represent the unique tokenized card ID provided via our API.")
+  @ApiModelProperty(example = "4111111111111111", value = "The 13-19 digit number for this credit card as it can be found on the front of the card.")
 
   public String getNumber() {
     return number;
@@ -151,11 +147,11 @@ public class PaymentMethodRequest {
   }
 
    /**
-   * The expiration date of the card, formatted &#x60;MM/YY&#x60;. If a card has been previously stored with us this value is optional.  If the &#x60;number&#x60; of this card represents a tokenized card, then this value is ignored.
+   * The expiration date of the card, formatted &#x60;MM/YY&#x60;. If a card has been previously stored with us this value is optional.
    * @return expirationDate
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "11/15", value = "The expiration date of the card, formatted `MM/YY`. If a card has been previously stored with us this value is optional.  If the `number` of this card represents a tokenized card, then this value is ignored.")
+  @ApiModelProperty(example = "11/15", value = "The expiration date of the card, formatted `MM/YY`. If a card has been previously stored with us this value is optional.")
 
   public String getExpirationDate() {
     return expirationDate;
@@ -164,29 +160,6 @@ public class PaymentMethodRequest {
 
   public void setExpirationDate(String expirationDate) {
     this.expirationDate = expirationDate;
-  }
-
-
-  public PaymentMethodRequest securityCode(String securityCode) {
-    
-    this.securityCode = securityCode;
-    return this;
-  }
-
-   /**
-   * The 3 or 4 digit security code often found on the card. This often referred to as the CVV or CVD.  If the &#x60;number&#x60; of this card represents a tokenized card, then this value is ignored.
-   * @return securityCode
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(example = "123", value = "The 3 or 4 digit security code often found on the card. This often referred to as the CVV or CVD.  If the `number` of this card represents a tokenized card, then this value is ignored.")
-
-  public String getSecurityCode() {
-    return securityCode;
-  }
-
-
-  public void setSecurityCode(String securityCode) {
-    this.securityCode = securityCode;
   }
 
 
@@ -341,7 +314,6 @@ public class PaymentMethodRequest {
         Objects.equals(this.id, paymentMethodRequest.id) &&
         Objects.equals(this.number, paymentMethodRequest.number) &&
         Objects.equals(this.expirationDate, paymentMethodRequest.expirationDate) &&
-        Objects.equals(this.securityCode, paymentMethodRequest.securityCode) &&
         Objects.equals(this.externalIdentifier, paymentMethodRequest.externalIdentifier) &&
         Objects.equals(this.buyerId, paymentMethodRequest.buyerId) &&
         Objects.equals(this.buyerExternalIdentifier, paymentMethodRequest.buyerExternalIdentifier) &&
@@ -352,7 +324,7 @@ public class PaymentMethodRequest {
 
   @Override
   public int hashCode() {
-    return Objects.hash(method, id, number, expirationDate, securityCode, externalIdentifier, buyerId, buyerExternalIdentifier, redirectUrl, currency, country);
+    return Objects.hash(method, id, number, expirationDate, externalIdentifier, buyerId, buyerExternalIdentifier, redirectUrl, currency, country);
   }
 
   @Override
@@ -363,7 +335,6 @@ public class PaymentMethodRequest {
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    number: ").append(toIndentedString(number)).append("\n");
     sb.append("    expirationDate: ").append(toIndentedString(expirationDate)).append("\n");
-    sb.append("    securityCode: ").append(toIndentedString(securityCode)).append("\n");
     sb.append("    externalIdentifier: ").append(toIndentedString(externalIdentifier)).append("\n");
     sb.append("    buyerId: ").append(toIndentedString(buyerId)).append("\n");
     sb.append("    buyerExternalIdentifier: ").append(toIndentedString(buyerExternalIdentifier)).append("\n");

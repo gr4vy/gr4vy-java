@@ -30,7 +30,7 @@ import org.threeten.bp.OffsetDateTime;
 /**
  * Buyer
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-12-22T14:21:56.132305Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-06-30T05:21:36.133441Z[Etc/UTC]")
 public class Buyer {
   /**
    * The type of this resource. Is always &#x60;buyer&#x60;.
@@ -84,6 +84,10 @@ public class Buyer {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
   private UUID id;
+
+  public static final String SERIALIZED_NAME_MERCHANT_ACCOUNT_ID = "merchant_account_id";
+  @SerializedName(SERIALIZED_NAME_MERCHANT_ACCOUNT_ID)
+  private String merchantAccountId;
 
   public static final String SERIALIZED_NAME_EXTERNAL_IDENTIFIER = "external_identifier";
   @SerializedName(SERIALIZED_NAME_EXTERNAL_IDENTIFIER)
@@ -152,6 +156,29 @@ public class Buyer {
   }
 
 
+  public Buyer merchantAccountId(String merchantAccountId) {
+    
+    this.merchantAccountId = merchantAccountId;
+    return this;
+  }
+
+   /**
+   * The unique ID for a merchant account.
+   * @return merchantAccountId
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "default", value = "The unique ID for a merchant account.")
+
+  public String getMerchantAccountId() {
+    return merchantAccountId;
+  }
+
+
+  public void setMerchantAccountId(String merchantAccountId) {
+    this.merchantAccountId = merchantAccountId;
+  }
+
+
   public Buyer externalIdentifier(String externalIdentifier) {
     
     this.externalIdentifier = externalIdentifier;
@@ -205,11 +232,11 @@ public class Buyer {
   }
 
    /**
-   * Get billingDetails
+   * The billing details associated with a buyer.
    * @return billingDetails
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "The billing details associated with a buyer.")
 
   public BillingDetails getBillingDetails() {
     return billingDetails;
@@ -278,6 +305,7 @@ public class Buyer {
     Buyer buyer = (Buyer) o;
     return Objects.equals(this.type, buyer.type) &&
         Objects.equals(this.id, buyer.id) &&
+        Objects.equals(this.merchantAccountId, buyer.merchantAccountId) &&
         Objects.equals(this.externalIdentifier, buyer.externalIdentifier) &&
         Objects.equals(this.displayName, buyer.displayName) &&
         Objects.equals(this.billingDetails, buyer.billingDetails) &&
@@ -287,7 +315,7 @@ public class Buyer {
 
   @Override
   public int hashCode() {
-    return Objects.hash(type, id, externalIdentifier, displayName, billingDetails, createdAt, updatedAt);
+    return Objects.hash(type, id, merchantAccountId, externalIdentifier, displayName, billingDetails, createdAt, updatedAt);
   }
 
   @Override
@@ -296,6 +324,7 @@ public class Buyer {
     sb.append("class Buyer {\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("    merchantAccountId: ").append(toIndentedString(merchantAccountId)).append("\n");
     sb.append("    externalIdentifier: ").append(toIndentedString(externalIdentifier)).append("\n");
     sb.append("    displayName: ").append(toIndentedString(displayName)).append("\n");
     sb.append("    billingDetails: ").append(toIndentedString(billingDetails)).append("\n");

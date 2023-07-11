@@ -39,7 +39,7 @@ import java.util.UUID;
  * A request to create a transaction.
  */
 @ApiModel(description = "A request to create a transaction.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-12-22T14:21:56.132305Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-06-30T05:21:36.133441Z[Etc/UTC]")
 public class TransactionRequest {
   public static final String SERIALIZED_NAME_AMOUNT = "amount";
   @SerializedName(SERIALIZED_NAME_AMOUNT)
@@ -213,6 +213,10 @@ public class TransactionRequest {
   @SerializedName(SERIALIZED_NAME_CONNECTION_OPTIONS)
   private ConnectionOptions connectionOptions;
 
+  public static final String SERIALIZED_NAME_ASYNC_CAPTURE = "async_capture";
+  @SerializedName(SERIALIZED_NAME_ASYNC_CAPTURE)
+  private Boolean asyncCapture = false;
+
 
   public TransactionRequest amount(Integer amount) {
     
@@ -312,11 +316,11 @@ public class TransactionRequest {
   }
 
    /**
-   * Whether or not to also try and store the payment method with us so that it can be used again for future use. This is only supported for payment methods that support this feature. There are also a few restrictions on how the flag may be set:  * The flag has to be set to &#x60;true&#x60; when the &#x60;payment_source&#x60; is set to &#x60;recurring&#x60; or &#x60;installment&#x60;, and &#x60;merchant_initiated&#x60; is set to &#x60;false&#x60;.  * The flag has to be set to &#x60;false&#x60; (or not set) when using a previously tokenized payment method.
+   * Whether or not to also try and store the payment method with us so that it can be used again for future use. This is only supported for payment methods that support this feature. There are also a few restrictions on how the flag may be set:  * The flag has to be set to &#x60;true&#x60; when the &#x60;payment_source&#x60; is set to &#x60;recurring&#x60; or &#x60;installment&#x60;, and &#x60;merchant_initiated&#x60; is set to &#x60;false&#x60;.  * The flag has to be set to &#x60;false&#x60; (or not set) when using a previously vaulted payment method.
    * @return store
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "true", value = "Whether or not to also try and store the payment method with us so that it can be used again for future use. This is only supported for payment methods that support this feature. There are also a few restrictions on how the flag may be set:  * The flag has to be set to `true` when the `payment_source` is set to `recurring` or `installment`, and `merchant_initiated` is set to `false`.  * The flag has to be set to `false` (or not set) when using a previously tokenized payment method.")
+  @ApiModelProperty(example = "true", value = "Whether or not to also try and store the payment method with us so that it can be used again for future use. This is only supported for payment methods that support this feature. There are also a few restrictions on how the flag may be set:  * The flag has to be set to `true` when the `payment_source` is set to `recurring` or `installment`, and `merchant_initiated` is set to `false`.  * The flag has to be set to `false` (or not set) when using a previously vaulted payment method.")
 
   public Boolean getStore() {
     return store;
@@ -481,11 +485,11 @@ public class TransactionRequest {
   }
 
    /**
-   * Any additional information about the transaction that you would like to store as key-value pairs. This data is passed to payment service providers that support it. Please visit https://gr4vy.com/docs/ under &#x60;Connections&#x60; for more information on how specific providers support metadata.
+   * Any additional information about the transaction that you would like to store as key-value pairs. This data is passed to payment service providers that support it.
    * @return metadata
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "{\"key\":\"value\"}", value = "Any additional information about the transaction that you would like to store as key-value pairs. This data is passed to payment service providers that support it. Please visit https://gr4vy.com/docs/ under `Connections` for more information on how specific providers support metadata.")
+  @ApiModelProperty(example = "{\"key\":\"value\"}", value = "Any additional information about the transaction that you would like to store as key-value pairs. This data is passed to payment service providers that support it.")
 
   public Map<String, String> getMetadata() {
     return metadata;
@@ -581,11 +585,11 @@ public class TransactionRequest {
   }
 
    /**
-   * Get browserInfo
+   * Information about the browser used by the buyer.
    * @return browserInfo
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "Information about the browser used by the buyer.")
 
   public BrowserInfo getBrowserInfo() {
     return browserInfo;
@@ -627,11 +631,11 @@ public class TransactionRequest {
   }
 
    /**
-   * Get connectionOptions
+   * Allows for passing optional configuration per connection to take advantage of connection specific features. When provided, the data is only passed to the target connection type to prevent sharing configuration across connections.  Please note that each of the keys this object are in kebab-case, for example &#x60;cybersource-anti-fraud&#x60; as they represent the ID of the connector. All the other keys will be snake-case, for example &#x60;device_fingerprint_id&#x60;.
    * @return connectionOptions
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "Allows for passing optional configuration per connection to take advantage of connection specific features. When provided, the data is only passed to the target connection type to prevent sharing configuration across connections.  Please note that each of the keys this object are in kebab-case, for example `cybersource-anti-fraud` as they represent the ID of the connector. All the other keys will be snake-case, for example `device_fingerprint_id`.")
 
   public ConnectionOptions getConnectionOptions() {
     return connectionOptions;
@@ -640,6 +644,29 @@ public class TransactionRequest {
 
   public void setConnectionOptions(ConnectionOptions connectionOptions) {
     this.connectionOptions = connectionOptions;
+  }
+
+
+  public TransactionRequest asyncCapture(Boolean asyncCapture) {
+    
+    this.asyncCapture = asyncCapture;
+    return this;
+  }
+
+   /**
+   * Whether to capture the transaction asynchronously.  - When &#x60;async_capture&#x60; is &#x60;false&#x60; (default), the transaction is captured   in the same request. - When &#x60;async_capture&#x60; is &#x60;true&#x60;, the transaction is automatically   captured at a later time.  Redirect transactions are not affected by this flag.  This flag can only be set to &#x60;true&#x60; when &#x60;intent&#x60; is set to &#x60;capture&#x60;.
+   * @return asyncCapture
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "true", value = "Whether to capture the transaction asynchronously.  - When `async_capture` is `false` (default), the transaction is captured   in the same request. - When `async_capture` is `true`, the transaction is automatically   captured at a later time.  Redirect transactions are not affected by this flag.  This flag can only be set to `true` when `intent` is set to `capture`.")
+
+  public Boolean getAsyncCapture() {
+    return asyncCapture;
+  }
+
+
+  public void setAsyncCapture(Boolean asyncCapture) {
+    this.asyncCapture = asyncCapture;
   }
 
 
@@ -669,12 +696,13 @@ public class TransactionRequest {
         Objects.equals(this.previousSchemeTransactionId, transactionRequest.previousSchemeTransactionId) &&
         Objects.equals(this.browserInfo, transactionRequest.browserInfo) &&
         Objects.equals(this.shippingDetailsId, transactionRequest.shippingDetailsId) &&
-        Objects.equals(this.connectionOptions, transactionRequest.connectionOptions);
+        Objects.equals(this.connectionOptions, transactionRequest.connectionOptions) &&
+        Objects.equals(this.asyncCapture, transactionRequest.asyncCapture);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(amount, currency, country, paymentMethod, store, intent, externalIdentifier, threeDSecureData, merchantInitiated, paymentSource, isSubsequentPayment, metadata, statementDescriptor, cartItems, previousSchemeTransactionId, browserInfo, shippingDetailsId, connectionOptions);
+    return Objects.hash(amount, currency, country, paymentMethod, store, intent, externalIdentifier, threeDSecureData, merchantInitiated, paymentSource, isSubsequentPayment, metadata, statementDescriptor, cartItems, previousSchemeTransactionId, browserInfo, shippingDetailsId, connectionOptions, asyncCapture);
   }
 
   @Override
@@ -699,6 +727,7 @@ public class TransactionRequest {
     sb.append("    browserInfo: ").append(toIndentedString(browserInfo)).append("\n");
     sb.append("    shippingDetailsId: ").append(toIndentedString(shippingDetailsId)).append("\n");
     sb.append("    connectionOptions: ").append(toIndentedString(connectionOptions)).append("\n");
+    sb.append("    asyncCapture: ").append(toIndentedString(asyncCapture)).append("\n");
     sb.append("}");
     return sb.toString();
   }

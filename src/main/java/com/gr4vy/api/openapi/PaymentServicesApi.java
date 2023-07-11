@@ -61,120 +61,6 @@ public class PaymentServicesApi {
     }
 
     /**
-     * Build call for addPaymentService
-     * @param paymentServiceRequest  (optional)
-     * @param _callback Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 201 </td><td> Returns the created payment service. </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Returns an error if the request was badly formatted or missing required fields. </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Returns an error if no valid authentication was provided. </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call addPaymentServiceCall(PaymentServiceRequest paymentServiceRequest, final ApiCallback _callback) throws ApiException {
-        Object localVarPostBody = paymentServiceRequest;
-
-        // create path and map variables
-        String localVarPath = "/payment-services";
-
-        List<Pair> localVarQueryParams = new ArrayList<Pair>();
-        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
-        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-        Map<String, String> localVarCookieParams = new HashMap<String, String>();
-        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
-
-        final String[] localVarAccepts = {
-            "application/json"
-        };
-        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
-        if (localVarAccept != null) {
-            localVarHeaderParams.put("Accept", localVarAccept);
-        }
-
-        final String[] localVarContentTypes = {
-            "application/json"
-        };
-        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        localVarHeaderParams.put("Content-Type", localVarContentType);
-
-        String[] localVarAuthNames = new String[] { "BearerAuth" };
-        return localVarApiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
-    }
-
-    @SuppressWarnings("rawtypes")
-    private okhttp3.Call addPaymentServiceValidateBeforeCall(PaymentServiceRequest paymentServiceRequest, final ApiCallback _callback) throws ApiException {
-        
-
-        okhttp3.Call localVarCall = addPaymentServiceCall(paymentServiceRequest, _callback);
-        return localVarCall;
-
-    }
-
-    /**
-     * New payment service
-     * Adds a new payment service by providing a custom name and a value for each of the required fields.
-     * @param paymentServiceRequest  (optional)
-     * @return PaymentService
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 201 </td><td> Returns the created payment service. </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Returns an error if the request was badly formatted or missing required fields. </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Returns an error if no valid authentication was provided. </td><td>  -  </td></tr>
-     </table>
-     */
-    public PaymentService addPaymentService(PaymentServiceRequest paymentServiceRequest) throws ApiException {
-        ApiResponse<PaymentService> localVarResp = addPaymentServiceWithHttpInfo(paymentServiceRequest);
-        return localVarResp.getData();
-    }
-
-    /**
-     * New payment service
-     * Adds a new payment service by providing a custom name and a value for each of the required fields.
-     * @param paymentServiceRequest  (optional)
-     * @return ApiResponse&lt;PaymentService&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 201 </td><td> Returns the created payment service. </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Returns an error if the request was badly formatted or missing required fields. </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Returns an error if no valid authentication was provided. </td><td>  -  </td></tr>
-     </table>
-     */
-    public ApiResponse<PaymentService> addPaymentServiceWithHttpInfo(PaymentServiceRequest paymentServiceRequest) throws ApiException {
-        okhttp3.Call localVarCall = addPaymentServiceValidateBeforeCall(paymentServiceRequest, null);
-        Type localVarReturnType = new TypeToken<PaymentService>(){}.getType();
-        return localVarApiClient.execute(localVarCall, localVarReturnType);
-    }
-
-    /**
-     * New payment service (asynchronously)
-     * Adds a new payment service by providing a custom name and a value for each of the required fields.
-     * @param paymentServiceRequest  (optional)
-     * @param _callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 201 </td><td> Returns the created payment service. </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Returns an error if the request was badly formatted or missing required fields. </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Returns an error if no valid authentication was provided. </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call addPaymentServiceAsync(PaymentServiceRequest paymentServiceRequest, final ApiCallback<PaymentService> _callback) throws ApiException {
-
-        okhttp3.Call localVarCall = addPaymentServiceValidateBeforeCall(paymentServiceRequest, _callback);
-        Type localVarReturnType = new TypeToken<PaymentService>(){}.getType();
-        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
-        return localVarCall;
-    }
-    /**
      * Build call for deletePaymentService
      * @param paymentServiceId The ID of the payment service. (required)
      * @param _callback Callback for upload/download progress
@@ -414,7 +300,7 @@ public class PaymentServicesApi {
      * Build call for listPaymentServices
      * @param limit Defines the maximum number of items to return for this request. (optional, default to 20)
      * @param cursor A cursor that identifies the page of results to return. This is used to paginate the results of this API.  For the first page of results, this parameter can be left out. For additional pages, use the value returned by the API in the &#x60;next_cursor&#x60; field. Similarly the &#x60;previous_cursor&#x60; can be used to reverse backwards in the list. (optional)
-     * @param method Filters the results to only the items for which the &#x60;method&#x60; has been set to this value. (optional)
+     * @param method Filters the results to only the items for which the &#x60;method&#x60; has been set to this value. For example &#x60;card&#x60;. (optional)
      * @param deleted Filters the results to only show items which have been deleted. By default, deleted items will not be returned. (optional, default to false)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
@@ -486,7 +372,7 @@ public class PaymentServicesApi {
      * Lists the currently configured and activated payment services.
      * @param limit Defines the maximum number of items to return for this request. (optional, default to 20)
      * @param cursor A cursor that identifies the page of results to return. This is used to paginate the results of this API.  For the first page of results, this parameter can be left out. For additional pages, use the value returned by the API in the &#x60;next_cursor&#x60; field. Similarly the &#x60;previous_cursor&#x60; can be used to reverse backwards in the list. (optional)
-     * @param method Filters the results to only the items for which the &#x60;method&#x60; has been set to this value. (optional)
+     * @param method Filters the results to only the items for which the &#x60;method&#x60; has been set to this value. For example &#x60;card&#x60;. (optional)
      * @param deleted Filters the results to only show items which have been deleted. By default, deleted items will not be returned. (optional, default to false)
      * @return PaymentServices
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -507,7 +393,7 @@ public class PaymentServicesApi {
      * Lists the currently configured and activated payment services.
      * @param limit Defines the maximum number of items to return for this request. (optional, default to 20)
      * @param cursor A cursor that identifies the page of results to return. This is used to paginate the results of this API.  For the first page of results, this parameter can be left out. For additional pages, use the value returned by the API in the &#x60;next_cursor&#x60; field. Similarly the &#x60;previous_cursor&#x60; can be used to reverse backwards in the list. (optional)
-     * @param method Filters the results to only the items for which the &#x60;method&#x60; has been set to this value. (optional)
+     * @param method Filters the results to only the items for which the &#x60;method&#x60; has been set to this value. For example &#x60;card&#x60;. (optional)
      * @param deleted Filters the results to only show items which have been deleted. By default, deleted items will not be returned. (optional, default to false)
      * @return ApiResponse&lt;PaymentServices&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -529,7 +415,7 @@ public class PaymentServicesApi {
      * Lists the currently configured and activated payment services.
      * @param limit Defines the maximum number of items to return for this request. (optional, default to 20)
      * @param cursor A cursor that identifies the page of results to return. This is used to paginate the results of this API.  For the first page of results, this parameter can be left out. For additional pages, use the value returned by the API in the &#x60;next_cursor&#x60; field. Similarly the &#x60;previous_cursor&#x60; can be used to reverse backwards in the list. (optional)
-     * @param method Filters the results to only the items for which the &#x60;method&#x60; has been set to this value. (optional)
+     * @param method Filters the results to only the items for which the &#x60;method&#x60; has been set to this value. For example &#x60;card&#x60;. (optional)
      * @param deleted Filters the results to only show items which have been deleted. By default, deleted items will not be returned. (optional, default to false)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
@@ -545,6 +431,120 @@ public class PaymentServicesApi {
 
         okhttp3.Call localVarCall = listPaymentServicesValidateBeforeCall(limit, cursor, method, deleted, _callback);
         Type localVarReturnType = new TypeToken<PaymentServices>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+    /**
+     * Build call for newPaymentService
+     * @param paymentServiceRequest  (optional)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 201 </td><td> Returns the created payment service. </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Returns an error if the request was badly formatted or missing required fields. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Returns an error if no valid authentication was provided. </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call newPaymentServiceCall(PaymentServiceRequest paymentServiceRequest, final ApiCallback _callback) throws ApiException {
+        Object localVarPostBody = paymentServiceRequest;
+
+        // create path and map variables
+        String localVarPath = "/payment-services";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            "application/json"
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        String[] localVarAuthNames = new String[] { "BearerAuth" };
+        return localVarApiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call newPaymentServiceValidateBeforeCall(PaymentServiceRequest paymentServiceRequest, final ApiCallback _callback) throws ApiException {
+        
+
+        okhttp3.Call localVarCall = newPaymentServiceCall(paymentServiceRequest, _callback);
+        return localVarCall;
+
+    }
+
+    /**
+     * New payment service
+     * Adds a new payment service by providing a custom name and a value for each of the required fields.
+     * @param paymentServiceRequest  (optional)
+     * @return PaymentService
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 201 </td><td> Returns the created payment service. </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Returns an error if the request was badly formatted or missing required fields. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Returns an error if no valid authentication was provided. </td><td>  -  </td></tr>
+     </table>
+     */
+    public PaymentService newPaymentService(PaymentServiceRequest paymentServiceRequest) throws ApiException {
+        ApiResponse<PaymentService> localVarResp = newPaymentServiceWithHttpInfo(paymentServiceRequest);
+        return localVarResp.getData();
+    }
+
+    /**
+     * New payment service
+     * Adds a new payment service by providing a custom name and a value for each of the required fields.
+     * @param paymentServiceRequest  (optional)
+     * @return ApiResponse&lt;PaymentService&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 201 </td><td> Returns the created payment service. </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Returns an error if the request was badly formatted or missing required fields. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Returns an error if no valid authentication was provided. </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<PaymentService> newPaymentServiceWithHttpInfo(PaymentServiceRequest paymentServiceRequest) throws ApiException {
+        okhttp3.Call localVarCall = newPaymentServiceValidateBeforeCall(paymentServiceRequest, null);
+        Type localVarReturnType = new TypeToken<PaymentService>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * New payment service (asynchronously)
+     * Adds a new payment service by providing a custom name and a value for each of the required fields.
+     * @param paymentServiceRequest  (optional)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 201 </td><td> Returns the created payment service. </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Returns an error if the request was badly formatted or missing required fields. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Returns an error if no valid authentication was provided. </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call newPaymentServiceAsync(PaymentServiceRequest paymentServiceRequest, final ApiCallback<PaymentService> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = newPaymentServiceValidateBeforeCall(paymentServiceRequest, _callback);
+        Type localVarReturnType = new TypeToken<PaymentService>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }

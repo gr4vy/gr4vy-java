@@ -28,7 +28,7 @@ import java.io.IOException;
  * Features supported by the payment definition.
  */
 @ApiModel(description = "Features supported by the payment definition.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-12-22T14:21:56.132305Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-06-30T05:21:36.133441Z[Etc/UTC]")
 public class PaymentServiceDefinitionSupportedFeatures {
   public static final String SERIALIZED_NAME_DELAYED_CAPTURE = "delayed_capture";
   @SerializedName(SERIALIZED_NAME_DELAYED_CAPTURE)
@@ -50,6 +50,10 @@ public class PaymentServiceDefinitionSupportedFeatures {
   @SerializedName(SERIALIZED_NAME_OPEN_LOOP)
   private Boolean openLoop;
 
+  public static final String SERIALIZED_NAME_OPEN_LOOP_TOGGLE = "open_loop_toggle";
+  @SerializedName(SERIALIZED_NAME_OPEN_LOOP_TOGGLE)
+  private Boolean openLoopToggle;
+
   public static final String SERIALIZED_NAME_PARTIAL_REFUNDS = "partial_refunds";
   @SerializedName(SERIALIZED_NAME_PARTIAL_REFUNDS)
   private Boolean partialRefunds;
@@ -65,6 +69,10 @@ public class PaymentServiceDefinitionSupportedFeatures {
   public static final String SERIALIZED_NAME_REFUNDS = "refunds";
   @SerializedName(SERIALIZED_NAME_REFUNDS)
   private Boolean refunds;
+
+  public static final String SERIALIZED_NAME_REQUIRES_WEBHOOK_SETUP = "requires_webhook_setup";
+  @SerializedName(SERIALIZED_NAME_REQUIRES_WEBHOOK_SETUP)
+  private Boolean requiresWebhookSetup;
 
   public static final String SERIALIZED_NAME_THREE_D_SECURE_HOSTED = "three_d_secure_hosted";
   @SerializedName(SERIALIZED_NAME_THREE_D_SECURE_HOSTED)
@@ -198,6 +206,29 @@ public class PaymentServiceDefinitionSupportedFeatures {
   }
 
 
+  public PaymentServiceDefinitionSupportedFeatures openLoopToggle(Boolean openLoopToggle) {
+    
+    this.openLoopToggle = openLoopToggle;
+    return this;
+  }
+
+   /**
+   * Supports toggling processing as open-loop on or off.
+   * @return openLoopToggle
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "false", value = "Supports toggling processing as open-loop on or off.")
+
+  public Boolean getOpenLoopToggle() {
+    return openLoopToggle;
+  }
+
+
+  public void setOpenLoopToggle(Boolean openLoopToggle) {
+    this.openLoopToggle = openLoopToggle;
+  }
+
+
   public PaymentServiceDefinitionSupportedFeatures partialRefunds(Boolean partialRefunds) {
     
     this.partialRefunds = partialRefunds;
@@ -287,6 +318,29 @@ public class PaymentServiceDefinitionSupportedFeatures {
 
   public void setRefunds(Boolean refunds) {
     this.refunds = refunds;
+  }
+
+
+  public PaymentServiceDefinitionSupportedFeatures requiresWebhookSetup(Boolean requiresWebhookSetup) {
+    
+    this.requiresWebhookSetup = requiresWebhookSetup;
+    return this;
+  }
+
+   /**
+   * Requires merchant to set up &#x60;webhook_url&#x60; manually with provider.
+   * @return requiresWebhookSetup
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "true", value = "Requires merchant to set up `webhook_url` manually with provider.")
+
+  public Boolean getRequiresWebhookSetup() {
+    return requiresWebhookSetup;
+  }
+
+
+  public void setRequiresWebhookSetup(Boolean requiresWebhookSetup) {
+    this.requiresWebhookSetup = requiresWebhookSetup;
   }
 
 
@@ -396,10 +450,12 @@ public class PaymentServiceDefinitionSupportedFeatures {
         Objects.equals(this.networkTokensDefault, paymentServiceDefinitionSupportedFeatures.networkTokensDefault) &&
         Objects.equals(this.networkTokensToggle, paymentServiceDefinitionSupportedFeatures.networkTokensToggle) &&
         Objects.equals(this.openLoop, paymentServiceDefinitionSupportedFeatures.openLoop) &&
+        Objects.equals(this.openLoopToggle, paymentServiceDefinitionSupportedFeatures.openLoopToggle) &&
         Objects.equals(this.partialRefunds, paymentServiceDefinitionSupportedFeatures.partialRefunds) &&
         Objects.equals(this.paymentMethodTokenization, paymentServiceDefinitionSupportedFeatures.paymentMethodTokenization) &&
         Objects.equals(this.paymentMethodTokenizationToggle, paymentServiceDefinitionSupportedFeatures.paymentMethodTokenizationToggle) &&
         Objects.equals(this.refunds, paymentServiceDefinitionSupportedFeatures.refunds) &&
+        Objects.equals(this.requiresWebhookSetup, paymentServiceDefinitionSupportedFeatures.requiresWebhookSetup) &&
         Objects.equals(this.threeDSecureHosted, paymentServiceDefinitionSupportedFeatures.threeDSecureHosted) &&
         Objects.equals(this.threeDSecurePassThrough, paymentServiceDefinitionSupportedFeatures.threeDSecurePassThrough) &&
         Objects.equals(this.verifyCredentials, paymentServiceDefinitionSupportedFeatures.verifyCredentials) &&
@@ -408,7 +464,7 @@ public class PaymentServiceDefinitionSupportedFeatures {
 
   @Override
   public int hashCode() {
-    return Objects.hash(delayedCapture, networkTokens, networkTokensDefault, networkTokensToggle, openLoop, partialRefunds, paymentMethodTokenization, paymentMethodTokenizationToggle, refunds, threeDSecureHosted, threeDSecurePassThrough, verifyCredentials, _void);
+    return Objects.hash(delayedCapture, networkTokens, networkTokensDefault, networkTokensToggle, openLoop, openLoopToggle, partialRefunds, paymentMethodTokenization, paymentMethodTokenizationToggle, refunds, requiresWebhookSetup, threeDSecureHosted, threeDSecurePassThrough, verifyCredentials, _void);
   }
 
   @Override
@@ -420,10 +476,12 @@ public class PaymentServiceDefinitionSupportedFeatures {
     sb.append("    networkTokensDefault: ").append(toIndentedString(networkTokensDefault)).append("\n");
     sb.append("    networkTokensToggle: ").append(toIndentedString(networkTokensToggle)).append("\n");
     sb.append("    openLoop: ").append(toIndentedString(openLoop)).append("\n");
+    sb.append("    openLoopToggle: ").append(toIndentedString(openLoopToggle)).append("\n");
     sb.append("    partialRefunds: ").append(toIndentedString(partialRefunds)).append("\n");
     sb.append("    paymentMethodTokenization: ").append(toIndentedString(paymentMethodTokenization)).append("\n");
     sb.append("    paymentMethodTokenizationToggle: ").append(toIndentedString(paymentMethodTokenizationToggle)).append("\n");
     sb.append("    refunds: ").append(toIndentedString(refunds)).append("\n");
+    sb.append("    requiresWebhookSetup: ").append(toIndentedString(requiresWebhookSetup)).append("\n");
     sb.append("    threeDSecureHosted: ").append(toIndentedString(threeDSecureHosted)).append("\n");
     sb.append("    threeDSecurePassThrough: ").append(toIndentedString(threeDSecurePassThrough)).append("\n");
     sb.append("    verifyCredentials: ").append(toIndentedString(verifyCredentials)).append("\n");

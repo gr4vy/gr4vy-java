@@ -29,7 +29,7 @@ import java.util.UUID;
  * The user who performed the action.
  */
 @ApiModel(description = "The user who performed the action.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-12-22T14:21:56.132305Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-06-30T05:21:36.133441Z[Etc/UTC]")
 public class AuditLogUser {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -46,6 +46,59 @@ public class AuditLogUser {
   public static final String SERIALIZED_NAME_STAFF = "staff";
   @SerializedName(SERIALIZED_NAME_STAFF)
   private Boolean staff;
+
+  /**
+   * The status of the user.
+   */
+  @JsonAdapter(StatusEnum.Adapter.class)
+  public enum StatusEnum {
+    ACTIVE("active"),
+    
+    PENDING("pending"),
+    
+    DELETED("deleted");
+
+    private String value;
+
+    StatusEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static StatusEnum fromValue(String value) {
+      for (StatusEnum b : StatusEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+
+    public static class Adapter extends TypeAdapter<StatusEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final StatusEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public StatusEnum read(final JsonReader jsonReader) throws IOException {
+        String value =  jsonReader.nextString();
+        return StatusEnum.fromValue(value);
+      }
+    }
+  }
+
+  public static final String SERIALIZED_NAME_STATUS = "status";
+  @SerializedName(SERIALIZED_NAME_STATUS)
+  private StatusEnum status;
 
 
   public AuditLogUser id(UUID id) {
@@ -140,6 +193,29 @@ public class AuditLogUser {
   }
 
 
+  public AuditLogUser status(StatusEnum status) {
+    
+    this.status = status;
+    return this;
+  }
+
+   /**
+   * The status of the user.
+   * @return status
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "active", value = "The status of the user.")
+
+  public StatusEnum getStatus() {
+    return status;
+  }
+
+
+  public void setStatus(StatusEnum status) {
+    this.status = status;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -152,12 +228,13 @@ public class AuditLogUser {
     return Objects.equals(this.id, auditLogUser.id) &&
         Objects.equals(this.name, auditLogUser.name) &&
         Objects.equals(this.emailAddress, auditLogUser.emailAddress) &&
-        Objects.equals(this.staff, auditLogUser.staff);
+        Objects.equals(this.staff, auditLogUser.staff) &&
+        Objects.equals(this.status, auditLogUser.status);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name, emailAddress, staff);
+    return Objects.hash(id, name, emailAddress, staff, status);
   }
 
   @Override
@@ -168,6 +245,7 @@ public class AuditLogUser {
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    emailAddress: ").append(toIndentedString(emailAddress)).append("\n");
     sb.append("    staff: ").append(toIndentedString(staff)).append("\n");
+    sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("}");
     return sb.toString();
   }

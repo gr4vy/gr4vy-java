@@ -31,6 +31,7 @@ import com.gr4vy.api.model.CheckoutSession;
 import com.gr4vy.api.model.CheckoutSessionSecureFieldsUpdate;
 import com.gr4vy.api.model.Error401Unauthorized;
 import com.gr4vy.api.model.Error404NotFound;
+import com.gr4vy.api.model.Error409DuplicateRecord;
 import com.gr4vy.api.model.ErrorGeneric;
 import java.util.UUID;
 
@@ -59,116 +60,6 @@ public class CheckoutSessionsApi {
         this.localVarApiClient = apiClient;
     }
 
-    /**
-     * Build call for addCheckoutSession
-     * @param _callback Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 201 </td><td> Returns the new Checkout Session. </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Returns an error if no valid authentication was provided. </td><td>  -  </td></tr>
-        <tr><td> 0 </td><td> Returns a generic error. </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call addCheckoutSessionCall(final ApiCallback _callback) throws ApiException {
-        Object localVarPostBody = null;
-
-        // create path and map variables
-        String localVarPath = "/checkout/sessions";
-
-        List<Pair> localVarQueryParams = new ArrayList<Pair>();
-        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
-        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-        Map<String, String> localVarCookieParams = new HashMap<String, String>();
-        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
-
-        final String[] localVarAccepts = {
-            "application/json"
-        };
-        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
-        if (localVarAccept != null) {
-            localVarHeaderParams.put("Accept", localVarAccept);
-        }
-
-        final String[] localVarContentTypes = {
-            
-        };
-        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        localVarHeaderParams.put("Content-Type", localVarContentType);
-
-        String[] localVarAuthNames = new String[] { "BearerAuth" };
-        return localVarApiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
-    }
-
-    @SuppressWarnings("rawtypes")
-    private okhttp3.Call addCheckoutSessionValidateBeforeCall(final ApiCallback _callback) throws ApiException {
-        
-
-        okhttp3.Call localVarCall = addCheckoutSessionCall(_callback);
-        return localVarCall;
-
-    }
-
-    /**
-     * Create a new Checkout Session
-     * Creates a new Checkout Session.
-     * @return CheckoutSession
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 201 </td><td> Returns the new Checkout Session. </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Returns an error if no valid authentication was provided. </td><td>  -  </td></tr>
-        <tr><td> 0 </td><td> Returns a generic error. </td><td>  -  </td></tr>
-     </table>
-     */
-    public CheckoutSession addCheckoutSession() throws ApiException {
-        ApiResponse<CheckoutSession> localVarResp = addCheckoutSessionWithHttpInfo();
-        return localVarResp.getData();
-    }
-
-    /**
-     * Create a new Checkout Session
-     * Creates a new Checkout Session.
-     * @return ApiResponse&lt;CheckoutSession&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 201 </td><td> Returns the new Checkout Session. </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Returns an error if no valid authentication was provided. </td><td>  -  </td></tr>
-        <tr><td> 0 </td><td> Returns a generic error. </td><td>  -  </td></tr>
-     </table>
-     */
-    public ApiResponse<CheckoutSession> addCheckoutSessionWithHttpInfo() throws ApiException {
-        okhttp3.Call localVarCall = addCheckoutSessionValidateBeforeCall(null);
-        Type localVarReturnType = new TypeToken<CheckoutSession>(){}.getType();
-        return localVarApiClient.execute(localVarCall, localVarReturnType);
-    }
-
-    /**
-     * Create a new Checkout Session (asynchronously)
-     * Creates a new Checkout Session.
-     * @param _callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 201 </td><td> Returns the new Checkout Session. </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Returns an error if no valid authentication was provided. </td><td>  -  </td></tr>
-        <tr><td> 0 </td><td> Returns a generic error. </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call addCheckoutSessionAsync(final ApiCallback<CheckoutSession> _callback) throws ApiException {
-
-        okhttp3.Call localVarCall = addCheckoutSessionValidateBeforeCall(_callback);
-        Type localVarReturnType = new TypeToken<CheckoutSession>(){}.getType();
-        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
-        return localVarCall;
-    }
     /**
      * Build call for deleteCheckoutSession
      * @param checkoutSessionId The unique ID for a Checkout Session. (required)
@@ -230,7 +121,7 @@ public class CheckoutSessionsApi {
     }
 
     /**
-     * Delete a Checkout Session
+     * Delete checkout session
      * Deletes a Checkout Session.
      * @param checkoutSessionId The unique ID for a Checkout Session. (required)
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -248,7 +139,7 @@ public class CheckoutSessionsApi {
     }
 
     /**
-     * Delete a Checkout Session
+     * Delete checkout session
      * Deletes a Checkout Session.
      * @param checkoutSessionId The unique ID for a Checkout Session. (required)
      * @return ApiResponse&lt;Void&gt;
@@ -268,7 +159,7 @@ public class CheckoutSessionsApi {
     }
 
     /**
-     * Delete a Checkout Session (asynchronously)
+     * Delete checkout session (asynchronously)
      * Deletes a Checkout Session.
      * @param checkoutSessionId The unique ID for a Checkout Session. (required)
      * @param _callback The callback to be executed when the API call finishes
@@ -350,7 +241,7 @@ public class CheckoutSessionsApi {
     }
 
     /**
-     * Get a Checkout Session
+     * Get checkout session
      * Gets details about a current Checkout Session.
      * @param checkoutSessionId The unique ID for a Checkout Session. (required)
      * @return CheckoutSession
@@ -370,7 +261,7 @@ public class CheckoutSessionsApi {
     }
 
     /**
-     * Get a Checkout Session
+     * Get checkout session
      * Gets details about a current Checkout Session.
      * @param checkoutSessionId The unique ID for a Checkout Session. (required)
      * @return ApiResponse&lt;CheckoutSession&gt;
@@ -391,7 +282,7 @@ public class CheckoutSessionsApi {
     }
 
     /**
-     * Get a Checkout Session (asynchronously)
+     * Get checkout session (asynchronously)
      * Gets details about a current Checkout Session.
      * @param checkoutSessionId The unique ID for a Checkout Session. (required)
      * @param _callback The callback to be executed when the API call finishes
@@ -409,6 +300,120 @@ public class CheckoutSessionsApi {
     public okhttp3.Call getCheckoutSessionAsync(UUID checkoutSessionId, final ApiCallback<CheckoutSession> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = getCheckoutSessionValidateBeforeCall(checkoutSessionId, _callback);
+        Type localVarReturnType = new TypeToken<CheckoutSession>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+    /**
+     * Build call for newCheckoutSession
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 201 </td><td> Returns the new Checkout Session. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Returns an error if no valid authentication was provided. </td><td>  -  </td></tr>
+        <tr><td> 409 </td><td> Returns an error if duplicate resource has been found. </td><td>  -  </td></tr>
+        <tr><td> 0 </td><td> Returns a generic error. </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call newCheckoutSessionCall(final ApiCallback _callback) throws ApiException {
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/checkout/sessions";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        String[] localVarAuthNames = new String[] { "BearerAuth" };
+        return localVarApiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call newCheckoutSessionValidateBeforeCall(final ApiCallback _callback) throws ApiException {
+        
+
+        okhttp3.Call localVarCall = newCheckoutSessionCall(_callback);
+        return localVarCall;
+
+    }
+
+    /**
+     * New checkout session
+     * Creates a new Checkout Session.
+     * @return CheckoutSession
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 201 </td><td> Returns the new Checkout Session. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Returns an error if no valid authentication was provided. </td><td>  -  </td></tr>
+        <tr><td> 409 </td><td> Returns an error if duplicate resource has been found. </td><td>  -  </td></tr>
+        <tr><td> 0 </td><td> Returns a generic error. </td><td>  -  </td></tr>
+     </table>
+     */
+    public CheckoutSession newCheckoutSession() throws ApiException {
+        ApiResponse<CheckoutSession> localVarResp = newCheckoutSessionWithHttpInfo();
+        return localVarResp.getData();
+    }
+
+    /**
+     * New checkout session
+     * Creates a new Checkout Session.
+     * @return ApiResponse&lt;CheckoutSession&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 201 </td><td> Returns the new Checkout Session. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Returns an error if no valid authentication was provided. </td><td>  -  </td></tr>
+        <tr><td> 409 </td><td> Returns an error if duplicate resource has been found. </td><td>  -  </td></tr>
+        <tr><td> 0 </td><td> Returns a generic error. </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<CheckoutSession> newCheckoutSessionWithHttpInfo() throws ApiException {
+        okhttp3.Call localVarCall = newCheckoutSessionValidateBeforeCall(null);
+        Type localVarReturnType = new TypeToken<CheckoutSession>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * New checkout session (asynchronously)
+     * Creates a new Checkout Session.
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 201 </td><td> Returns the new Checkout Session. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Returns an error if no valid authentication was provided. </td><td>  -  </td></tr>
+        <tr><td> 409 </td><td> Returns an error if duplicate resource has been found. </td><td>  -  </td></tr>
+        <tr><td> 0 </td><td> Returns a generic error. </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call newCheckoutSessionAsync(final ApiCallback<CheckoutSession> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = newCheckoutSessionValidateBeforeCall(_callback);
         Type localVarReturnType = new TypeToken<CheckoutSession>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -475,8 +480,8 @@ public class CheckoutSessionsApi {
     }
 
     /**
-     * Update a Checkout Session&#39;s Secure Fields
-     * Updates the Secure Fields of the Checkout Session. Once the fields have been received the &#x60;expires_at&#x60; will be updated to 5 minutes from the time of receipt.
+     * Update fields for checkout session
+     * Updates the Secure Fields of the Checkout Session. Once the fields have been received the expiration will be updated to 5 minutes from the time of receipt.
      * @param checkoutSessionId The unique ID for a Checkout Session. (required)
      * @param checkoutSessionSecureFieldsUpdate  (optional)
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -494,8 +499,8 @@ public class CheckoutSessionsApi {
     }
 
     /**
-     * Update a Checkout Session&#39;s Secure Fields
-     * Updates the Secure Fields of the Checkout Session. Once the fields have been received the &#x60;expires_at&#x60; will be updated to 5 minutes from the time of receipt.
+     * Update fields for checkout session
+     * Updates the Secure Fields of the Checkout Session. Once the fields have been received the expiration will be updated to 5 minutes from the time of receipt.
      * @param checkoutSessionId The unique ID for a Checkout Session. (required)
      * @param checkoutSessionSecureFieldsUpdate  (optional)
      * @return ApiResponse&lt;Void&gt;
@@ -515,8 +520,8 @@ public class CheckoutSessionsApi {
     }
 
     /**
-     * Update a Checkout Session&#39;s Secure Fields (asynchronously)
-     * Updates the Secure Fields of the Checkout Session. Once the fields have been received the &#x60;expires_at&#x60; will be updated to 5 minutes from the time of receipt.
+     * Update fields for checkout session (asynchronously)
+     * Updates the Secure Fields of the Checkout Session. Once the fields have been received the expiration will be updated to 5 minutes from the time of receipt.
      * @param checkoutSessionId The unique ID for a Checkout Session. (required)
      * @param checkoutSessionSecureFieldsUpdate  (optional)
      * @param _callback The callback to be executed when the API call finishes

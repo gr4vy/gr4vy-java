@@ -26,10 +26,10 @@ import java.io.IOException;
 import java.util.UUID;
 
 /**
- * Details for a Checkout Session payment method.
+ * Details to register a new Checkout Session payment method.
  */
-@ApiModel(description = "Details for a Checkout Session payment method.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-12-22T14:21:56.132305Z[Etc/UTC]")
+@ApiModel(description = "Details to register a new Checkout Session payment method.")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-06-30T05:21:36.133441Z[Etc/UTC]")
 public class CheckoutSessionRequest {
   /**
    * &#x60;checkout-session&#x60;.
@@ -83,6 +83,10 @@ public class CheckoutSessionRequest {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
   private UUID id;
+
+  public static final String SERIALIZED_NAME_REDIRECT_URL = "redirect_url";
+  @SerializedName(SERIALIZED_NAME_REDIRECT_URL)
+  private String redirectUrl;
 
   public static final String SERIALIZED_NAME_EXTERNAL_IDENTIFIER = "external_identifier";
   @SerializedName(SERIALIZED_NAME_EXTERNAL_IDENTIFIER)
@@ -138,6 +142,29 @@ public class CheckoutSessionRequest {
 
   public void setId(UUID id) {
     this.id = id;
+  }
+
+
+  public CheckoutSessionRequest redirectUrl(String redirectUrl) {
+    
+    this.redirectUrl = redirectUrl;
+    return this;
+  }
+
+   /**
+   * The redirect URL to redirect a buyer to after they have authorized their transaction or payment method. This only applies to payment methods that require buyer approval.
+   * @return redirectUrl
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "https://example.com/callback", value = "The redirect URL to redirect a buyer to after they have authorized their transaction or payment method. This only applies to payment methods that require buyer approval.")
+
+  public String getRedirectUrl() {
+    return redirectUrl;
+  }
+
+
+  public void setRedirectUrl(String redirectUrl) {
+    this.redirectUrl = redirectUrl;
   }
 
 
@@ -221,6 +248,7 @@ public class CheckoutSessionRequest {
     CheckoutSessionRequest checkoutSessionRequest = (CheckoutSessionRequest) o;
     return Objects.equals(this.method, checkoutSessionRequest.method) &&
         Objects.equals(this.id, checkoutSessionRequest.id) &&
+        Objects.equals(this.redirectUrl, checkoutSessionRequest.redirectUrl) &&
         Objects.equals(this.externalIdentifier, checkoutSessionRequest.externalIdentifier) &&
         Objects.equals(this.buyerId, checkoutSessionRequest.buyerId) &&
         Objects.equals(this.buyerExternalIdentifier, checkoutSessionRequest.buyerExternalIdentifier);
@@ -228,7 +256,7 @@ public class CheckoutSessionRequest {
 
   @Override
   public int hashCode() {
-    return Objects.hash(method, id, externalIdentifier, buyerId, buyerExternalIdentifier);
+    return Objects.hash(method, id, redirectUrl, externalIdentifier, buyerId, buyerExternalIdentifier);
   }
 
   @Override
@@ -237,6 +265,7 @@ public class CheckoutSessionRequest {
     sb.append("class CheckoutSessionRequest {\n");
     sb.append("    method: ").append(toIndentedString(method)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("    redirectUrl: ").append(toIndentedString(redirectUrl)).append("\n");
     sb.append("    externalIdentifier: ").append(toIndentedString(externalIdentifier)).append("\n");
     sb.append("    buyerId: ").append(toIndentedString(buyerId)).append("\n");
     sb.append("    buyerExternalIdentifier: ").append(toIndentedString(buyerExternalIdentifier)).append("\n");

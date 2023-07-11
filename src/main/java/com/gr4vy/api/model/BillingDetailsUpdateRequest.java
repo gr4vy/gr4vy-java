@@ -29,7 +29,7 @@ import java.io.IOException;
 /**
  * BillingDetailsUpdateRequest
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-12-22T14:21:56.132305Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-06-30T05:21:36.133441Z[Etc/UTC]")
 public class BillingDetailsUpdateRequest {
   public static final String SERIALIZED_NAME_FIRST_NAME = "first_name";
   @SerializedName(SERIALIZED_NAME_FIRST_NAME)
@@ -178,11 +178,11 @@ public class BillingDetailsUpdateRequest {
   }
 
    /**
-   * Get taxId
+   * The tax ID information associated with the billing details.
    * @return taxId
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "The tax ID information associated with the billing details.")
 
   public TaxId getTaxId() {
     return taxId;
