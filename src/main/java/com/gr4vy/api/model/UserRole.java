@@ -30,12 +30,8 @@ import java.util.UUID;
 /**
  * UserRole
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-12-22T14:21:56.132305Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-06-30T05:21:36.133441Z[Etc/UTC]")
 public class UserRole {
-  public static final String SERIALIZED_NAME_ASSIGNMENT_ID = "assignment_id";
-  @SerializedName(SERIALIZED_NAME_ASSIGNMENT_ID)
-  private UUID assignmentId;
-
   /**
    * The type of this resource. Always &#x60;role&#x60;.
    */
@@ -100,29 +96,6 @@ public class UserRole {
   public static final String SERIALIZED_NAME_PERMISSIONS = "permissions";
   @SerializedName(SERIALIZED_NAME_PERMISSIONS)
   private RolePermissions permissions;
-
-
-  public UserRole assignmentId(UUID assignmentId) {
-    
-    this.assignmentId = assignmentId;
-    return this;
-  }
-
-   /**
-   * The unique ID for this role assignment to the user.
-   * @return assignmentId
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(example = "462ab2e2-3e29-44bd-b39f-e4d1293affbb", value = "The unique ID for this role assignment to the user.")
-
-  public UUID getAssignmentId() {
-    return assignmentId;
-  }
-
-
-  public void setAssignmentId(UUID assignmentId) {
-    this.assignmentId = assignmentId;
-  }
 
 
   public UserRole type(TypeEnum type) {
@@ -249,8 +222,7 @@ public class UserRole {
       return false;
     }
     UserRole userRole = (UserRole) o;
-    return Objects.equals(this.assignmentId, userRole.assignmentId) &&
-        Objects.equals(this.type, userRole.type) &&
+    return Objects.equals(this.type, userRole.type) &&
         Objects.equals(this.id, userRole.id) &&
         Objects.equals(this.name, userRole.name) &&
         Objects.equals(this.description, userRole.description) &&
@@ -259,14 +231,13 @@ public class UserRole {
 
   @Override
   public int hashCode() {
-    return Objects.hash(assignmentId, type, id, name, description, permissions);
+    return Objects.hash(type, id, name, description, permissions);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class UserRole {\n");
-    sb.append("    assignmentId: ").append(toIndentedString(assignmentId)).append("\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");

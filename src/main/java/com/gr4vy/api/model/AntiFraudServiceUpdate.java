@@ -31,7 +31,7 @@ import java.util.List;
  * A request to update an anti-fraud service.
  */
 @ApiModel(description = "A request to update an anti-fraud service.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-12-22T14:21:56.132305Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-06-30T05:21:36.133441Z[Etc/UTC]")
 public class AntiFraudServiceUpdate {
   /**
    * The name of the Anti-Fraud service provider. During update request, this value is used for validation only but the underlying service can not be changed for an existing service.
@@ -92,6 +92,10 @@ public class AntiFraudServiceUpdate {
   @SerializedName(SERIALIZED_NAME_ACTIVE)
   private Boolean active = true;
 
+  public static final String SERIALIZED_NAME_REVIEWS_ENABLED = "reviews_enabled";
+  @SerializedName(SERIALIZED_NAME_REVIEWS_ENABLED)
+  private Boolean reviewsEnabled = false;
+
   public static final String SERIALIZED_NAME_FIELDS = "fields";
   @SerializedName(SERIALIZED_NAME_FIELDS)
   private List<AntiFraudServiceUpdateFields> fields = null;
@@ -149,11 +153,11 @@ public class AntiFraudServiceUpdate {
   }
 
    /**
-   * Defines if this service is currently active or not.
+   * Defines if this service is currently active or not. There can only be one active service at any time. When updating a service to active, the current active service will be deactivated.
    * @return active
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "true", value = "Defines if this service is currently active or not.")
+  @ApiModelProperty(example = "true", value = "Defines if this service is currently active or not. There can only be one active service at any time. When updating a service to active, the current active service will be deactivated.")
 
   public Boolean getActive() {
     return active;
@@ -162,6 +166,29 @@ public class AntiFraudServiceUpdate {
 
   public void setActive(Boolean active) {
     this.active = active;
+  }
+
+
+  public AntiFraudServiceUpdate reviewsEnabled(Boolean reviewsEnabled) {
+    
+    this.reviewsEnabled = reviewsEnabled;
+    return this;
+  }
+
+   /**
+   * Defines if this service needs to handle the review status from anti-fraud responses with a proper review workflow. If not, the review status will be treated as any other one.
+   * @return reviewsEnabled
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "false", value = "Defines if this service needs to handle the review status from anti-fraud responses with a proper review workflow. If not, the review status will be treated as any other one.")
+
+  public Boolean getReviewsEnabled() {
+    return reviewsEnabled;
+  }
+
+
+  public void setReviewsEnabled(Boolean reviewsEnabled) {
+    this.reviewsEnabled = reviewsEnabled;
   }
 
 
@@ -208,12 +235,13 @@ public class AntiFraudServiceUpdate {
     return Objects.equals(this.antiFraudServiceDefinitionId, antiFraudServiceUpdate.antiFraudServiceDefinitionId) &&
         Objects.equals(this.displayName, antiFraudServiceUpdate.displayName) &&
         Objects.equals(this.active, antiFraudServiceUpdate.active) &&
+        Objects.equals(this.reviewsEnabled, antiFraudServiceUpdate.reviewsEnabled) &&
         Objects.equals(this.fields, antiFraudServiceUpdate.fields);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(antiFraudServiceDefinitionId, displayName, active, fields);
+    return Objects.hash(antiFraudServiceDefinitionId, displayName, active, reviewsEnabled, fields);
   }
 
   @Override
@@ -223,6 +251,7 @@ public class AntiFraudServiceUpdate {
     sb.append("    antiFraudServiceDefinitionId: ").append(toIndentedString(antiFraudServiceDefinitionId)).append("\n");
     sb.append("    displayName: ").append(toIndentedString(displayName)).append("\n");
     sb.append("    active: ").append(toIndentedString(active)).append("\n");
+    sb.append("    reviewsEnabled: ").append(toIndentedString(reviewsEnabled)).append("\n");
     sb.append("    fields: ").append(toIndentedString(fields)).append("\n");
     sb.append("}");
     return sb.toString();

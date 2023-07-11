@@ -47,6 +47,7 @@ public class Gr4vyClient {
 	private String environment;
 	private Boolean debug = false;
 	private String merchantAccountId = "default";
+	private UUID checkoutSessionId;
 
     /**
      * Constructor
@@ -96,7 +97,7 @@ public class Gr4vyClient {
 			
 			String[] scopes = {"*.read", "*.write"};
 			
-			String token = getToken(key, scopes, null);
+			String token = getToken(key, scopes, null, null);
 			
 			HttpBearerAuth BearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("BearerAuth");
 			BearerAuth.setBearerToken(token);
@@ -108,10 +109,14 @@ public class Gr4vyClient {
 	}
 	
 	public String getEmbedToken(Map<String, Object> embed) throws Gr4vyException {
+		return getEmbedToken(embed, null);
+	}
+	
+	public String getEmbedToken(Map<String, Object> embed, UUID checkoutSessionId) throws Gr4vyException {
 		try {
 			String key = getKey();
 			String[] scopes = {"embed"};
-			return getToken(key, scopes, embed);
+			return getToken(key, scopes, embed, checkoutSessionId);
 		}
 		catch (Exception e) {
 			throw new Gr4vyException("Error while generating token, please make sure your private key is valid.");
@@ -119,6 +124,10 @@ public class Gr4vyClient {
 	}
 	
 	public String getToken(String key, String[] scopes, Map<String, Object> embed) throws IOException, NoSuchAlgorithmException, NoSuchProviderException, InvalidKeySpecException, JOSEException, ParseException {
+		return getToken(key, scopes, embed, null);
+	}
+
+	public String getToken(String key, String[] scopes, Map<String, Object> embed, UUID checkoutSessionId) throws IOException, NoSuchAlgorithmException, NoSuchProviderException, InvalidKeySpecException, JOSEException, ParseException {
 		Security.addProvider(new org.bouncycastle.jce.provider.BouncyCastleProvider());
 		
 		Reader reader = new StringReader(key);
@@ -148,6 +157,10 @@ public class Gr4vyClient {
 	    if (embed != null) {
 	    	claimsSet.claim("embed", embed);
 	    }
+
+		if(checkoutSessionId != null) {
+			claimsSet.claim("checkout_session_id", checkoutSessionId);
+		}
 
 	    SignedJWT signedJWT = new SignedJWT(
 	    	new JWSHeader.Builder(JWSAlgorithm.ES512).keyID(keyId).build(),

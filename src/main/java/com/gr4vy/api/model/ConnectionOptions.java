@@ -20,6 +20,7 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import com.gr4vy.api.model.ConnectionOptionsAdyenCard;
 import com.gr4vy.api.model.ConnectionOptionsCybersourceAntiFraud;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -28,11 +29,15 @@ import java.io.IOException;
 /**
  * ConnectionOptions
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-12-22T14:21:56.132305Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-06-30T05:21:36.133441Z[Etc/UTC]")
 public class ConnectionOptions {
   public static final String SERIALIZED_NAME_CYBERSOURCE_ANTI_FRAUD = "cybersource-anti-fraud";
   @SerializedName(SERIALIZED_NAME_CYBERSOURCE_ANTI_FRAUD)
   private ConnectionOptionsCybersourceAntiFraud cybersourceAntiFraud;
+
+  public static final String SERIALIZED_NAME_ADYEN_CARD = "adyen-card";
+  @SerializedName(SERIALIZED_NAME_ADYEN_CARD)
+  private ConnectionOptionsAdyenCard adyenCard;
 
 
   public ConnectionOptions cybersourceAntiFraud(ConnectionOptionsCybersourceAntiFraud cybersourceAntiFraud) {
@@ -58,6 +63,29 @@ public class ConnectionOptions {
   }
 
 
+  public ConnectionOptions adyenCard(ConnectionOptionsAdyenCard adyenCard) {
+    
+    this.adyenCard = adyenCard;
+    return this;
+  }
+
+   /**
+   * Get adyenCard
+   * @return adyenCard
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public ConnectionOptionsAdyenCard getAdyenCard() {
+    return adyenCard;
+  }
+
+
+  public void setAdyenCard(ConnectionOptionsAdyenCard adyenCard) {
+    this.adyenCard = adyenCard;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -67,12 +95,13 @@ public class ConnectionOptions {
       return false;
     }
     ConnectionOptions connectionOptions = (ConnectionOptions) o;
-    return Objects.equals(this.cybersourceAntiFraud, connectionOptions.cybersourceAntiFraud);
+    return Objects.equals(this.cybersourceAntiFraud, connectionOptions.cybersourceAntiFraud) &&
+        Objects.equals(this.adyenCard, connectionOptions.adyenCard);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(cybersourceAntiFraud);
+    return Objects.hash(cybersourceAntiFraud, adyenCard);
   }
 
   @Override
@@ -80,6 +109,7 @@ public class ConnectionOptions {
     StringBuilder sb = new StringBuilder();
     sb.append("class ConnectionOptions {\n");
     sb.append("    cybersourceAntiFraud: ").append(toIndentedString(cybersourceAntiFraud)).append("\n");
+    sb.append("    adyenCard: ").append(toIndentedString(adyenCard)).append("\n");
     sb.append("}");
     return sb.toString();
   }

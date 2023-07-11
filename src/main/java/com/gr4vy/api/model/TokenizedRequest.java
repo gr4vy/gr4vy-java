@@ -25,10 +25,10 @@ import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 
 /**
- * Details for a previously tokenized payment method.
+ * Details for a previously stored payment method.
  */
-@ApiModel(description = "Details for a previously tokenized payment method.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-12-22T14:21:56.132305Z[Etc/UTC]")
+@ApiModel(description = "Details for a previously stored payment method.")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-06-30T05:21:36.133441Z[Etc/UTC]")
 public class TokenizedRequest {
   /**
    * &#x60;id&#x60;.
@@ -121,10 +121,10 @@ public class TokenizedRequest {
   }
 
    /**
-   * A ID that represents a previously tokenized payment method. This token can represent any type of payment method.
+   * A ID that represents a previously stored payment method. This ID can represent any type of payment method.
    * @return id
   **/
-  @ApiModelProperty(example = "46973e9d-88a7-44a6-abfe-be4ff0134ff4", required = true, value = "A ID that represents a previously tokenized payment method. This token can represent any type of payment method.")
+  @ApiModelProperty(example = "46973e9d-88a7-44a6-abfe-be4ff0134ff4", required = true, value = "A ID that represents a previously stored payment method. This ID can represent any type of payment method.")
 
   public String getId() {
     return id;
@@ -143,11 +143,11 @@ public class TokenizedRequest {
   }
 
    /**
-   * We strongly recommended providing a &#x60;redirect_url&#x60; for stored cards when 3-D Secure is enabled and &#x60;three_d_secure_data&#x60; is not provided. This will be appended with both a transaction ID and status (e.g. &#x60;https://example.com/callback? gr4vy_transaction_id&#x3D;123&amp;gr4vy_transaction_status&#x3D;capture_succeeded&#x60;) after 3-D Secure has completed.
+   * This value is mandatory for stored redirect payment methods. For stored cards, we strongly recommend providing a &#x60;redirect_url&#x60; either when 3-D Secure is enabled and &#x60;three_d_secure_data&#x60; is not provided, or when using connections where 3DS is enabled. This value will be appended with both a transaction ID and status (e.g. &#x60;https://example.com/callback?gr4vy_transaction_id&#x3D;123 &amp;gr4vy_transaction_status&#x3D;capture_succeeded&#x60;) after 3-D Secure has completed. For those cases, if the value is not present, the transaction will be marked as failed.
    * @return redirectUrl
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "https://example.com/callback", value = "We strongly recommended providing a `redirect_url` for stored cards when 3-D Secure is enabled and `three_d_secure_data` is not provided. This will be appended with both a transaction ID and status (e.g. `https://example.com/callback? gr4vy_transaction_id=123&gr4vy_transaction_status=capture_succeeded`) after 3-D Secure has completed.")
+  @ApiModelProperty(example = "https://example.com/callback", value = "This value is mandatory for stored redirect payment methods. For stored cards, we strongly recommend providing a `redirect_url` either when 3-D Secure is enabled and `three_d_secure_data` is not provided, or when using connections where 3DS is enabled. This value will be appended with both a transaction ID and status (e.g. `https://example.com/callback?gr4vy_transaction_id=123 &gr4vy_transaction_status=capture_succeeded`) after 3-D Secure has completed. For those cases, if the value is not present, the transaction will be marked as failed.")
 
   public String getRedirectUrl() {
     return redirectUrl;

@@ -29,7 +29,7 @@ import java.util.UUID;
  * A mini format version of a payment method.
  */
 @ApiModel(description = "A mini format version of a payment method.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-12-22T14:21:56.132305Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-06-30T05:21:36.133441Z[Etc/UTC]")
 public class PaymentMethodTokenized {
   /**
    * &#x60;payment-method&#x60;.
@@ -84,9 +84,106 @@ public class PaymentMethodTokenized {
   @SerializedName(SERIALIZED_NAME_ID)
   private UUID id;
 
+  public static final String SERIALIZED_NAME_MERCHANT_ACCOUNT_ID = "merchant_account_id";
+  @SerializedName(SERIALIZED_NAME_MERCHANT_ACCOUNT_ID)
+  private String merchantAccountId;
+
+  /**
+   * The type of this payment method.
+   */
+  @JsonAdapter(MethodEnum.Adapter.class)
+  public enum MethodEnum {
+    AFTERPAY("afterpay"),
+    
+    APPLEPAY("applepay"),
+    
+    BANKED("banked"),
+    
+    BITPAY("bitpay"),
+    
+    BOLETO("boleto"),
+    
+    CARD("card"),
+    
+    CLEARPAY("clearpay"),
+    
+    DANA("dana"),
+    
+    FORTUMO("fortumo"),
+    
+    GCASH("gcash"),
+    
+    GOCARDLESS("gocardless"),
+    
+    GOOGLEPAY("googlepay"),
+    
+    GRABPAY("grabpay"),
+    
+    KLARNA("klarna"),
+    
+    OVO("ovo"),
+    
+    PAYMAYA("paymaya"),
+    
+    PAYPAL("paypal"),
+    
+    PIX("pix"),
+    
+    RABBITLINEPAY("rabbitlinepay"),
+    
+    SCALAPAY("scalapay"),
+    
+    SHOPEEPAY("shopeepay"),
+    
+    STRIPEDD("stripedd"),
+    
+    TRUEMONEY("truemoney"),
+    
+    TRUSTLY("trustly"),
+    
+    ZIPPAY("zippay");
+
+    private String value;
+
+    MethodEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static MethodEnum fromValue(String value) {
+      for (MethodEnum b : MethodEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+
+    public static class Adapter extends TypeAdapter<MethodEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final MethodEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public MethodEnum read(final JsonReader jsonReader) throws IOException {
+        String value =  jsonReader.nextString();
+        return MethodEnum.fromValue(value);
+      }
+    }
+  }
+
   public static final String SERIALIZED_NAME_METHOD = "method";
   @SerializedName(SERIALIZED_NAME_METHOD)
-  private String method;
+  private MethodEnum method;
 
   public static final String SERIALIZED_NAME_LABEL = "label";
   @SerializedName(SERIALIZED_NAME_LABEL)
@@ -279,25 +376,48 @@ public class PaymentMethodTokenized {
   }
 
 
-  public PaymentMethodTokenized method(String method) {
+  public PaymentMethodTokenized merchantAccountId(String merchantAccountId) {
+    
+    this.merchantAccountId = merchantAccountId;
+    return this;
+  }
+
+   /**
+   * The unique ID for a merchant account.
+   * @return merchantAccountId
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "default", value = "The unique ID for a merchant account.")
+
+  public String getMerchantAccountId() {
+    return merchantAccountId;
+  }
+
+
+  public void setMerchantAccountId(String merchantAccountId) {
+    this.merchantAccountId = merchantAccountId;
+  }
+
+
+  public PaymentMethodTokenized method(MethodEnum method) {
     
     this.method = method;
     return this;
   }
 
    /**
-   * Get method
+   * The type of this payment method.
    * @return method
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(example = "card", value = "The type of this payment method.")
 
-  public String getMethod() {
+  public MethodEnum getMethod() {
     return method;
   }
 
 
-  public void setMethod(String method) {
+  public void setMethod(MethodEnum method) {
     this.method = method;
   }
 
@@ -474,6 +594,7 @@ public class PaymentMethodTokenized {
     PaymentMethodTokenized paymentMethodTokenized = (PaymentMethodTokenized) o;
     return Objects.equals(this.type, paymentMethodTokenized.type) &&
         Objects.equals(this.id, paymentMethodTokenized.id) &&
+        Objects.equals(this.merchantAccountId, paymentMethodTokenized.merchantAccountId) &&
         Objects.equals(this.method, paymentMethodTokenized.method) &&
         Objects.equals(this.label, paymentMethodTokenized.label) &&
         Objects.equals(this.scheme, paymentMethodTokenized.scheme) &&
@@ -486,7 +607,7 @@ public class PaymentMethodTokenized {
 
   @Override
   public int hashCode() {
-    return Objects.hash(type, id, method, label, scheme, expirationDate, approvalTarget, approvalUrl, currency, country);
+    return Objects.hash(type, id, merchantAccountId, method, label, scheme, expirationDate, approvalTarget, approvalUrl, currency, country);
   }
 
   @Override
@@ -495,6 +616,7 @@ public class PaymentMethodTokenized {
     sb.append("class PaymentMethodTokenized {\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("    merchantAccountId: ").append(toIndentedString(merchantAccountId)).append("\n");
     sb.append("    method: ").append(toIndentedString(method)).append("\n");
     sb.append("    label: ").append(toIndentedString(label)).append("\n");
     sb.append("    scheme: ").append(toIndentedString(scheme)).append("\n");

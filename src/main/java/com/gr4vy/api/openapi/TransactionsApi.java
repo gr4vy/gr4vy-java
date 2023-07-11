@@ -29,6 +29,7 @@ import java.io.IOException;
 
 import com.gr4vy.api.model.Error401Unauthorized;
 import com.gr4vy.api.model.Error404NotFound;
+import com.gr4vy.api.model.Error409DuplicateRecord;
 import com.gr4vy.api.model.ErrorGeneric;
 import org.threeten.bp.OffsetDateTime;
 import com.gr4vy.api.model.Refund;
@@ -65,120 +66,6 @@ public class TransactionsApi {
         this.localVarApiClient = apiClient;
     }
 
-    /**
-     * Build call for authorizeNewTransaction
-     * @param transactionRequest  (optional)
-     * @param _callback Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 201 </td><td> Returns the created transaction. </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Returns an error if the request was badly formatted or missing required fields. </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Returns an error if no valid authentication was provided. </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call authorizeNewTransactionCall(TransactionRequest transactionRequest, final ApiCallback _callback) throws ApiException {
-        Object localVarPostBody = transactionRequest;
-
-        // create path and map variables
-        String localVarPath = "/transactions";
-
-        List<Pair> localVarQueryParams = new ArrayList<Pair>();
-        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
-        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-        Map<String, String> localVarCookieParams = new HashMap<String, String>();
-        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
-
-        final String[] localVarAccepts = {
-            "application/json"
-        };
-        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
-        if (localVarAccept != null) {
-            localVarHeaderParams.put("Accept", localVarAccept);
-        }
-
-        final String[] localVarContentTypes = {
-            "application/json"
-        };
-        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        localVarHeaderParams.put("Content-Type", localVarContentType);
-
-        String[] localVarAuthNames = new String[] { "BearerAuth" };
-        return localVarApiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
-    }
-
-    @SuppressWarnings("rawtypes")
-    private okhttp3.Call authorizeNewTransactionValidateBeforeCall(TransactionRequest transactionRequest, final ApiCallback _callback) throws ApiException {
-        
-
-        okhttp3.Call localVarCall = authorizeNewTransactionCall(transactionRequest, _callback);
-        return localVarCall;
-
-    }
-
-    /**
-     * New transaction
-     * Attempts to create an authorization for a payment method. In some cases it is not possible to create the authorization without redirecting the user for their authorization. In these cases the status is set to &#x60;buyer_approval_pending&#x60; and an &#x60;approval_url&#x60; is returned.  Additionally, this endpoint accepts a few additional fields that allow for simultaneous capturing and storage of the payment method.  * &#x60;store&#x60; - Use this field to store the payment method for future use. Not all payment methods support this feature. * &#x60;capture&#x60; - Use this method to also perform a capture of the transaction after it has been authorized. 
-     * @param transactionRequest  (optional)
-     * @return Transaction
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 201 </td><td> Returns the created transaction. </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Returns an error if the request was badly formatted or missing required fields. </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Returns an error if no valid authentication was provided. </td><td>  -  </td></tr>
-     </table>
-     */
-    public Transaction authorizeNewTransaction(TransactionRequest transactionRequest) throws ApiException {
-        ApiResponse<Transaction> localVarResp = authorizeNewTransactionWithHttpInfo(transactionRequest);
-        return localVarResp.getData();
-    }
-
-    /**
-     * New transaction
-     * Attempts to create an authorization for a payment method. In some cases it is not possible to create the authorization without redirecting the user for their authorization. In these cases the status is set to &#x60;buyer_approval_pending&#x60; and an &#x60;approval_url&#x60; is returned.  Additionally, this endpoint accepts a few additional fields that allow for simultaneous capturing and storage of the payment method.  * &#x60;store&#x60; - Use this field to store the payment method for future use. Not all payment methods support this feature. * &#x60;capture&#x60; - Use this method to also perform a capture of the transaction after it has been authorized. 
-     * @param transactionRequest  (optional)
-     * @return ApiResponse&lt;Transaction&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 201 </td><td> Returns the created transaction. </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Returns an error if the request was badly formatted or missing required fields. </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Returns an error if no valid authentication was provided. </td><td>  -  </td></tr>
-     </table>
-     */
-    public ApiResponse<Transaction> authorizeNewTransactionWithHttpInfo(TransactionRequest transactionRequest) throws ApiException {
-        okhttp3.Call localVarCall = authorizeNewTransactionValidateBeforeCall(transactionRequest, null);
-        Type localVarReturnType = new TypeToken<Transaction>(){}.getType();
-        return localVarApiClient.execute(localVarCall, localVarReturnType);
-    }
-
-    /**
-     * New transaction (asynchronously)
-     * Attempts to create an authorization for a payment method. In some cases it is not possible to create the authorization without redirecting the user for their authorization. In these cases the status is set to &#x60;buyer_approval_pending&#x60; and an &#x60;approval_url&#x60; is returned.  Additionally, this endpoint accepts a few additional fields that allow for simultaneous capturing and storage of the payment method.  * &#x60;store&#x60; - Use this field to store the payment method for future use. Not all payment methods support this feature. * &#x60;capture&#x60; - Use this method to also perform a capture of the transaction after it has been authorized. 
-     * @param transactionRequest  (optional)
-     * @param _callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 201 </td><td> Returns the created transaction. </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Returns an error if the request was badly formatted or missing required fields. </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Returns an error if no valid authentication was provided. </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call authorizeNewTransactionAsync(TransactionRequest transactionRequest, final ApiCallback<Transaction> _callback) throws ApiException {
-
-        okhttp3.Call localVarCall = authorizeNewTransactionValidateBeforeCall(transactionRequest, _callback);
-        Type localVarReturnType = new TypeToken<Transaction>(){}.getType();
-        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
-        return localVarCall;
-    }
     /**
      * Build call for captureTransaction
      * @param transactionId The ID for the transaction to get the information for. (required)
@@ -308,6 +195,136 @@ public class TransactionsApi {
         return localVarCall;
     }
     /**
+     * Build call for getRefund
+     * @param transactionId The ID for the transaction to get the information for. (required)
+     * @param refundId The unique ID of the refund. (required)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Returns a refund. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Returns an error if no valid authentication was provided. </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Returns an error if the resource can not be found. </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call getRefundCall(String transactionId, String refundId, final ApiCallback _callback) throws ApiException {
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/transactions/{transaction_id}/refunds/{refund_id}"
+            .replaceAll("\\{" + "transaction_id" + "\\}", localVarApiClient.escapeString(transactionId.toString()))
+            .replaceAll("\\{" + "refund_id" + "\\}", localVarApiClient.escapeString(refundId.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        String[] localVarAuthNames = new String[] { "BearerAuth" };
+        return localVarApiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call getRefundValidateBeforeCall(String transactionId, String refundId, final ApiCallback _callback) throws ApiException {
+        
+        // verify the required parameter 'transactionId' is set
+        if (transactionId == null) {
+            throw new ApiException("Missing the required parameter 'transactionId' when calling getRefund(Async)");
+        }
+        
+        // verify the required parameter 'refundId' is set
+        if (refundId == null) {
+            throw new ApiException("Missing the required parameter 'refundId' when calling getRefund(Async)");
+        }
+        
+
+        okhttp3.Call localVarCall = getRefundCall(transactionId, refundId, _callback);
+        return localVarCall;
+
+    }
+
+    /**
+     * Get refund
+     * Gets information about a refund associated with a certain transaction.
+     * @param transactionId The ID for the transaction to get the information for. (required)
+     * @param refundId The unique ID of the refund. (required)
+     * @return Refund
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Returns a refund. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Returns an error if no valid authentication was provided. </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Returns an error if the resource can not be found. </td><td>  -  </td></tr>
+     </table>
+     */
+    public Refund getRefund(String transactionId, String refundId) throws ApiException {
+        ApiResponse<Refund> localVarResp = getRefundWithHttpInfo(transactionId, refundId);
+        return localVarResp.getData();
+    }
+
+    /**
+     * Get refund
+     * Gets information about a refund associated with a certain transaction.
+     * @param transactionId The ID for the transaction to get the information for. (required)
+     * @param refundId The unique ID of the refund. (required)
+     * @return ApiResponse&lt;Refund&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Returns a refund. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Returns an error if no valid authentication was provided. </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Returns an error if the resource can not be found. </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<Refund> getRefundWithHttpInfo(String transactionId, String refundId) throws ApiException {
+        okhttp3.Call localVarCall = getRefundValidateBeforeCall(transactionId, refundId, null);
+        Type localVarReturnType = new TypeToken<Refund>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Get refund (asynchronously)
+     * Gets information about a refund associated with a certain transaction.
+     * @param transactionId The ID for the transaction to get the information for. (required)
+     * @param refundId The unique ID of the refund. (required)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Returns a refund. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Returns an error if no valid authentication was provided. </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Returns an error if the resource can not be found. </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call getRefundAsync(String transactionId, String refundId, final ApiCallback<Refund> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = getRefundValidateBeforeCall(transactionId, refundId, _callback);
+        Type localVarReturnType = new TypeToken<Refund>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+    /**
      * Build call for getTransaction
      * @param transactionId The ID for the transaction to get the information for. (required)
      * @param _callback Callback for upload/download progress
@@ -428,136 +445,6 @@ public class TransactionsApi {
         return localVarCall;
     }
     /**
-     * Build call for getTransactionRefund
-     * @param transactionId The ID for the transaction to get the information for. (required)
-     * @param refundId The unique ID of the refund. (required)
-     * @param _callback Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Returns a refund. </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Returns an error if no valid authentication was provided. </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Returns an error if the resource can not be found. </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call getTransactionRefundCall(String transactionId, String refundId, final ApiCallback _callback) throws ApiException {
-        Object localVarPostBody = null;
-
-        // create path and map variables
-        String localVarPath = "/transactions/{transaction_id}/refunds/{refund_id}"
-            .replaceAll("\\{" + "transaction_id" + "\\}", localVarApiClient.escapeString(transactionId.toString()))
-            .replaceAll("\\{" + "refund_id" + "\\}", localVarApiClient.escapeString(refundId.toString()));
-
-        List<Pair> localVarQueryParams = new ArrayList<Pair>();
-        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
-        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-        Map<String, String> localVarCookieParams = new HashMap<String, String>();
-        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
-
-        final String[] localVarAccepts = {
-            "application/json"
-        };
-        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
-        if (localVarAccept != null) {
-            localVarHeaderParams.put("Accept", localVarAccept);
-        }
-
-        final String[] localVarContentTypes = {
-            
-        };
-        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        localVarHeaderParams.put("Content-Type", localVarContentType);
-
-        String[] localVarAuthNames = new String[] { "BearerAuth" };
-        return localVarApiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
-    }
-
-    @SuppressWarnings("rawtypes")
-    private okhttp3.Call getTransactionRefundValidateBeforeCall(String transactionId, String refundId, final ApiCallback _callback) throws ApiException {
-        
-        // verify the required parameter 'transactionId' is set
-        if (transactionId == null) {
-            throw new ApiException("Missing the required parameter 'transactionId' when calling getTransactionRefund(Async)");
-        }
-        
-        // verify the required parameter 'refundId' is set
-        if (refundId == null) {
-            throw new ApiException("Missing the required parameter 'refundId' when calling getTransactionRefund(Async)");
-        }
-        
-
-        okhttp3.Call localVarCall = getTransactionRefundCall(transactionId, refundId, _callback);
-        return localVarCall;
-
-    }
-
-    /**
-     * Get transaction refund
-     * Gets information about a refund associated with a certain transaction.
-     * @param transactionId The ID for the transaction to get the information for. (required)
-     * @param refundId The unique ID of the refund. (required)
-     * @return Refund
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Returns a refund. </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Returns an error if no valid authentication was provided. </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Returns an error if the resource can not be found. </td><td>  -  </td></tr>
-     </table>
-     */
-    public Refund getTransactionRefund(String transactionId, String refundId) throws ApiException {
-        ApiResponse<Refund> localVarResp = getTransactionRefundWithHttpInfo(transactionId, refundId);
-        return localVarResp.getData();
-    }
-
-    /**
-     * Get transaction refund
-     * Gets information about a refund associated with a certain transaction.
-     * @param transactionId The ID for the transaction to get the information for. (required)
-     * @param refundId The unique ID of the refund. (required)
-     * @return ApiResponse&lt;Refund&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Returns a refund. </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Returns an error if no valid authentication was provided. </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Returns an error if the resource can not be found. </td><td>  -  </td></tr>
-     </table>
-     */
-    public ApiResponse<Refund> getTransactionRefundWithHttpInfo(String transactionId, String refundId) throws ApiException {
-        okhttp3.Call localVarCall = getTransactionRefundValidateBeforeCall(transactionId, refundId, null);
-        Type localVarReturnType = new TypeToken<Refund>(){}.getType();
-        return localVarApiClient.execute(localVarCall, localVarReturnType);
-    }
-
-    /**
-     * Get transaction refund (asynchronously)
-     * Gets information about a refund associated with a certain transaction.
-     * @param transactionId The ID for the transaction to get the information for. (required)
-     * @param refundId The unique ID of the refund. (required)
-     * @param _callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Returns a refund. </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Returns an error if no valid authentication was provided. </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Returns an error if the resource can not be found. </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call getTransactionRefundAsync(String transactionId, String refundId, final ApiCallback<Refund> _callback) throws ApiException {
-
-        okhttp3.Call localVarCall = getTransactionRefundValidateBeforeCall(transactionId, refundId, _callback);
-        Type localVarReturnType = new TypeToken<Refund>(){}.getType();
-        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
-        return localVarCall;
-    }
-    /**
      * Build call for listTransactionRefunds
      * @param transactionId The ID for the transaction to get the information for. (required)
      * @param limit Defines the maximum number of items to return for this request. (optional, default to 20)
@@ -627,7 +514,7 @@ public class TransactionsApi {
     }
 
     /**
-     * List transaction refunds
+     * List refunds
      * Lists all refunds associated with a certain transaction.
      * @param transactionId The ID for the transaction to get the information for. (required)
      * @param limit Defines the maximum number of items to return for this request. (optional, default to 20)
@@ -648,7 +535,7 @@ public class TransactionsApi {
     }
 
     /**
-     * List transaction refunds
+     * List refunds
      * Lists all refunds associated with a certain transaction.
      * @param transactionId The ID for the transaction to get the information for. (required)
      * @param limit Defines the maximum number of items to return for this request. (optional, default to 20)
@@ -670,7 +557,7 @@ public class TransactionsApi {
     }
 
     /**
-     * List transaction refunds (asynchronously)
+     * List refunds (asynchronously)
      * Lists all refunds associated with a certain transaction.
      * @param transactionId The ID for the transaction to get the information for. (required)
      * @param limit Defines the maximum number of items to return for this request. (optional, default to 20)
@@ -702,15 +589,17 @@ public class TransactionsApi {
      * @param amountEq Filters for transactions that have an &#x60;amount&#x60; that is equal to the provided &#x60;amount_eq&#x60; value. (optional)
      * @param amountGte Filters for transactions that have an &#x60;amount&#x60; that is greater than or equal to the &#x60;amount_gte&#x60; value. (optional)
      * @param amountLte Filters for transactions that have an &#x60;amount&#x60; that is less than or equal to the &#x60;amount_lte&#x60; value. (optional)
+     * @param checkoutSessionId Filters for transactions that are linked to the unique ID for a Checkout Session. (optional)
      * @param createdAtGte Filters the results to only transactions created after this ISO date-time string. The time zone must be included.  Ensure that the date-time string is URL encoded, e.g. &#x60;2022-01-01T12:00:00+08:00&#x60; must be encoded as &#x60;2022-01-01T12%3A00%3A00%2B08%3A00&#x60;. (optional)
      * @param createdAtLte Filters the results to only transactions created before this ISO date-time string. The time zone must be included.  Ensure that the date-time string is URL encoded, e.g. &#x60;2022-01-01T12:00:00+08:00&#x60; must be encoded as &#x60;2022-01-01T12%3A00%3A00%2B08%3A00&#x60;. (optional)
      * @param currency Filters for transactions that have matching &#x60;currency&#x60; values. The &#x60;currency&#x60; values provided must be formatted as 3-letter ISO currency code. (optional)
      * @param externalIdentifier Filters the results to only the items for which the &#x60;external_identifier&#x60; matches this value. (optional)
      * @param hasRefunds When set to &#x60;true&#x60;, filter for transactions that have at least one completed refund associated with it. When set to &#x60;false&#x60;, filter for transactions that have no completed refunds. (optional)
+     * @param pendingReview When set to &#x60;true&#x60;, filter for transactions that have a manual review pending. When set to &#x60;false&#x60;, filter for transactions that don&#39;t have a manual review pending. (optional)
      * @param id Filters for the transaction that has a matching &#x60;id&#x60; value. (optional)
      * @param metadata Filters for transactions where their &#x60;metadata&#x60; values contain all of the provided &#x60;metadata&#x60; keys. The value sent for &#x60;metadata&#x60; must be formatted as a JSON string, and all keys and values must be strings. This value should also be URL encoded.  Duplicate keys are not supported. If a key is duplicated, only the last appearing value will be used. (optional)
      * @param method Filters the results to only the items for which the &#x60;method&#x60; has been set to this value. (optional)
-     * @param paymentMethodId The ID of the payment method. (optional)
+     * @param paymentMethodId Filters for transactions that have a payment method with an ID that matches exactly with the provided value. (optional)
      * @param paymentMethodLabel Filters for transactions that have a payment method with a label that matches exactly with the provided value. (optional)
      * @param paymentServiceId Filters for transactions that were processed by the provided &#x60;payment_service_id&#x60; values. (optional)
      * @param paymentServiceTransactionId Filters for transactions that have a matching &#x60;payment_service_transaction_id&#x60; value. The &#x60;payment_service_transaction_id&#x60; is the identifier of the transaction given by the payment service. (optional)
@@ -718,11 +607,6 @@ public class TransactionsApi {
      * @param status Filters the results to only the transactions that have a &#x60;status&#x60; that matches with any of the provided status values. (optional)
      * @param updatedAtGte Filters the results to only transactions last updated after this ISO date-time string. The time zone must be included.  Ensure that the date-time string is URL encoded, e.g. &#x60;2022-01-01T12:00:00+08:00&#x60; must be encoded as &#x60;2022-01-01T12%3A00%3A00%2B08%3A00&#x60;. (optional)
      * @param updatedAtLte Filters the results to only transactions last updated before this ISO date-time string. The time zone must be included.  Ensure that the date-time string is URL encoded, e.g. &#x60;2022-01-01T12:00:00+08:00&#x60; must be encoded as &#x60;2022-01-01T12%3A00%3A00%2B08%3A00&#x60;. (optional)
-     * @param beforeCreatedAt Filters the results to only transactions created before this ISO date-time string. The time zone must be included.  Ensure that the date-time string is URL encoded, e.g. &#x60;2022-01-01T12:00:00+08:00&#x60; must be encoded as &#x60;2022-01-01T12%3A00%3A00%2B08%3A00&#x60;.  **WARNING** This filter is deprecated and may be removed eventually, use &#x60;created_at_lte&#x60; instead. (optional)
-     * @param afterCreatedAt Filters the results to only transactions created after this ISO date-time string. The time zone must be included.  Ensure that the date-time string is URL encoded, e.g. &#x60;2022-01-01T12:00:00+08:00&#x60; must be encoded as &#x60;2022-01-01T12%3A00%3A00%2B08%3A00&#x60;.  **WARNING** This filter is deprecated and may be removed eventually, use &#x60;created_at_gte&#x60; instead. (optional)
-     * @param beforeUpdatedAt Filters the results to only transactions last updated before this ISO date-time string. The time zone must be included.  Ensure that the date-time string is URL encoded, e.g. &#x60;2022-01-01T12:00:00+08:00&#x60; must be encoded as &#x60;2022-01-01T12%3A00%3A00%2B08%3A00&#x60;.  **WARNING** This filter is deprecated and may be removed eventually, use &#x60;updated_at_lte&#x60; instead. (optional)
-     * @param afterUpdatedAt Filters the results to only transactions last updated after this ISO date-time string. The time zone must be included.  Ensure that the date-time string is URL encoded, e.g. &#x60;2022-01-01T12:00:00+08:00&#x60; must be encoded as &#x60;2022-01-01T12%3A00%3A00%2B08%3A00&#x60;.  **WARNING** This filter is deprecated and may be removed eventually, use &#x60;updated_at_gte&#x60; instead. (optional)
-     * @param transactionStatus Filters the results to only the transactions for which the &#x60;status&#x60; matches this value.  **WARNING** This filter is deprecated and may be removed eventually, use &#x60;status&#x60; instead. (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -733,7 +617,7 @@ public class TransactionsApi {
         <tr><td> 401 </td><td> Returns an error if no valid authentication was provided. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call listTransactionsCall(String buyerExternalIdentifier, String buyerId, String cursor, Integer limit, Integer amountEq, Integer amountGte, Integer amountLte, OffsetDateTime createdAtGte, OffsetDateTime createdAtLte, List<String> currency, String externalIdentifier, Boolean hasRefunds, UUID id, List<String> metadata, List<String> method, UUID paymentMethodId, String paymentMethodLabel, List<UUID> paymentServiceId, String paymentServiceTransactionId, String search, List<String> status, OffsetDateTime updatedAtGte, OffsetDateTime updatedAtLte, OffsetDateTime beforeCreatedAt, OffsetDateTime afterCreatedAt, OffsetDateTime beforeUpdatedAt, OffsetDateTime afterUpdatedAt, String transactionStatus, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call listTransactionsCall(String buyerExternalIdentifier, String buyerId, String cursor, Integer limit, Integer amountEq, Integer amountGte, Integer amountLte, UUID checkoutSessionId, OffsetDateTime createdAtGte, OffsetDateTime createdAtLte, List<String> currency, String externalIdentifier, Boolean hasRefunds, Boolean pendingReview, UUID id, List<String> metadata, List<String> method, UUID paymentMethodId, String paymentMethodLabel, List<UUID> paymentServiceId, String paymentServiceTransactionId, String search, List<String> status, OffsetDateTime updatedAtGte, OffsetDateTime updatedAtLte, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -773,6 +657,10 @@ public class TransactionsApi {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("amount_lte", amountLte));
         }
 
+        if (checkoutSessionId != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("checkout_session_id", checkoutSessionId));
+        }
+
         if (createdAtGte != null) {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("created_at_gte", createdAtGte));
         }
@@ -791,6 +679,10 @@ public class TransactionsApi {
 
         if (hasRefunds != null) {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("has_refunds", hasRefunds));
+        }
+
+        if (pendingReview != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("pending_review", pendingReview));
         }
 
         if (id != null) {
@@ -837,26 +729,6 @@ public class TransactionsApi {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("updated_at_lte", updatedAtLte));
         }
 
-        if (beforeCreatedAt != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("before_created_at", beforeCreatedAt));
-        }
-
-        if (afterCreatedAt != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("after_created_at", afterCreatedAt));
-        }
-
-        if (beforeUpdatedAt != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("before_updated_at", beforeUpdatedAt));
-        }
-
-        if (afterUpdatedAt != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("after_updated_at", afterUpdatedAt));
-        }
-
-        if (transactionStatus != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("transaction_status", transactionStatus));
-        }
-
         final String[] localVarAccepts = {
             "application/json"
         };
@@ -876,17 +748,17 @@ public class TransactionsApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call listTransactionsValidateBeforeCall(String buyerExternalIdentifier, String buyerId, String cursor, Integer limit, Integer amountEq, Integer amountGte, Integer amountLte, OffsetDateTime createdAtGte, OffsetDateTime createdAtLte, List<String> currency, String externalIdentifier, Boolean hasRefunds, UUID id, List<String> metadata, List<String> method, UUID paymentMethodId, String paymentMethodLabel, List<UUID> paymentServiceId, String paymentServiceTransactionId, String search, List<String> status, OffsetDateTime updatedAtGte, OffsetDateTime updatedAtLte, OffsetDateTime beforeCreatedAt, OffsetDateTime afterCreatedAt, OffsetDateTime beforeUpdatedAt, OffsetDateTime afterUpdatedAt, String transactionStatus, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call listTransactionsValidateBeforeCall(String buyerExternalIdentifier, String buyerId, String cursor, Integer limit, Integer amountEq, Integer amountGte, Integer amountLte, UUID checkoutSessionId, OffsetDateTime createdAtGte, OffsetDateTime createdAtLte, List<String> currency, String externalIdentifier, Boolean hasRefunds, Boolean pendingReview, UUID id, List<String> metadata, List<String> method, UUID paymentMethodId, String paymentMethodLabel, List<UUID> paymentServiceId, String paymentServiceTransactionId, String search, List<String> status, OffsetDateTime updatedAtGte, OffsetDateTime updatedAtLte, final ApiCallback _callback) throws ApiException {
         
 
-        okhttp3.Call localVarCall = listTransactionsCall(buyerExternalIdentifier, buyerId, cursor, limit, amountEq, amountGte, amountLte, createdAtGte, createdAtLte, currency, externalIdentifier, hasRefunds, id, metadata, method, paymentMethodId, paymentMethodLabel, paymentServiceId, paymentServiceTransactionId, search, status, updatedAtGte, updatedAtLte, beforeCreatedAt, afterCreatedAt, beforeUpdatedAt, afterUpdatedAt, transactionStatus, _callback);
+        okhttp3.Call localVarCall = listTransactionsCall(buyerExternalIdentifier, buyerId, cursor, limit, amountEq, amountGte, amountLte, checkoutSessionId, createdAtGte, createdAtLte, currency, externalIdentifier, hasRefunds, pendingReview, id, metadata, method, paymentMethodId, paymentMethodLabel, paymentServiceId, paymentServiceTransactionId, search, status, updatedAtGte, updatedAtLte, _callback);
         return localVarCall;
 
     }
 
     /**
      * List transactions
-     * Lists all transactions for an account. Sorted by last &#x60;updated_at&#x60; status.
+     * Lists all transactions for an account. Sorted by last updated at.
      * @param buyerExternalIdentifier Filters the results to only the items for which the &#x60;buyer&#x60; has an &#x60;external_identifier&#x60; that matches this value. (optional)
      * @param buyerId Filters the results to only the items for which the &#x60;buyer&#x60; has an &#x60;id&#x60; that matches this value. (optional)
      * @param cursor A cursor that identifies the page of results to return. This is used to paginate the results of this API.  For the first page of results, this parameter can be left out. For additional pages, use the value returned by the API in the &#x60;next_cursor&#x60; field. Similarly the &#x60;previous_cursor&#x60; can be used to reverse backwards in the list. (optional)
@@ -894,15 +766,17 @@ public class TransactionsApi {
      * @param amountEq Filters for transactions that have an &#x60;amount&#x60; that is equal to the provided &#x60;amount_eq&#x60; value. (optional)
      * @param amountGte Filters for transactions that have an &#x60;amount&#x60; that is greater than or equal to the &#x60;amount_gte&#x60; value. (optional)
      * @param amountLte Filters for transactions that have an &#x60;amount&#x60; that is less than or equal to the &#x60;amount_lte&#x60; value. (optional)
+     * @param checkoutSessionId Filters for transactions that are linked to the unique ID for a Checkout Session. (optional)
      * @param createdAtGte Filters the results to only transactions created after this ISO date-time string. The time zone must be included.  Ensure that the date-time string is URL encoded, e.g. &#x60;2022-01-01T12:00:00+08:00&#x60; must be encoded as &#x60;2022-01-01T12%3A00%3A00%2B08%3A00&#x60;. (optional)
      * @param createdAtLte Filters the results to only transactions created before this ISO date-time string. The time zone must be included.  Ensure that the date-time string is URL encoded, e.g. &#x60;2022-01-01T12:00:00+08:00&#x60; must be encoded as &#x60;2022-01-01T12%3A00%3A00%2B08%3A00&#x60;. (optional)
      * @param currency Filters for transactions that have matching &#x60;currency&#x60; values. The &#x60;currency&#x60; values provided must be formatted as 3-letter ISO currency code. (optional)
      * @param externalIdentifier Filters the results to only the items for which the &#x60;external_identifier&#x60; matches this value. (optional)
      * @param hasRefunds When set to &#x60;true&#x60;, filter for transactions that have at least one completed refund associated with it. When set to &#x60;false&#x60;, filter for transactions that have no completed refunds. (optional)
+     * @param pendingReview When set to &#x60;true&#x60;, filter for transactions that have a manual review pending. When set to &#x60;false&#x60;, filter for transactions that don&#39;t have a manual review pending. (optional)
      * @param id Filters for the transaction that has a matching &#x60;id&#x60; value. (optional)
      * @param metadata Filters for transactions where their &#x60;metadata&#x60; values contain all of the provided &#x60;metadata&#x60; keys. The value sent for &#x60;metadata&#x60; must be formatted as a JSON string, and all keys and values must be strings. This value should also be URL encoded.  Duplicate keys are not supported. If a key is duplicated, only the last appearing value will be used. (optional)
      * @param method Filters the results to only the items for which the &#x60;method&#x60; has been set to this value. (optional)
-     * @param paymentMethodId The ID of the payment method. (optional)
+     * @param paymentMethodId Filters for transactions that have a payment method with an ID that matches exactly with the provided value. (optional)
      * @param paymentMethodLabel Filters for transactions that have a payment method with a label that matches exactly with the provided value. (optional)
      * @param paymentServiceId Filters for transactions that were processed by the provided &#x60;payment_service_id&#x60; values. (optional)
      * @param paymentServiceTransactionId Filters for transactions that have a matching &#x60;payment_service_transaction_id&#x60; value. The &#x60;payment_service_transaction_id&#x60; is the identifier of the transaction given by the payment service. (optional)
@@ -910,11 +784,6 @@ public class TransactionsApi {
      * @param status Filters the results to only the transactions that have a &#x60;status&#x60; that matches with any of the provided status values. (optional)
      * @param updatedAtGte Filters the results to only transactions last updated after this ISO date-time string. The time zone must be included.  Ensure that the date-time string is URL encoded, e.g. &#x60;2022-01-01T12:00:00+08:00&#x60; must be encoded as &#x60;2022-01-01T12%3A00%3A00%2B08%3A00&#x60;. (optional)
      * @param updatedAtLte Filters the results to only transactions last updated before this ISO date-time string. The time zone must be included.  Ensure that the date-time string is URL encoded, e.g. &#x60;2022-01-01T12:00:00+08:00&#x60; must be encoded as &#x60;2022-01-01T12%3A00%3A00%2B08%3A00&#x60;. (optional)
-     * @param beforeCreatedAt Filters the results to only transactions created before this ISO date-time string. The time zone must be included.  Ensure that the date-time string is URL encoded, e.g. &#x60;2022-01-01T12:00:00+08:00&#x60; must be encoded as &#x60;2022-01-01T12%3A00%3A00%2B08%3A00&#x60;.  **WARNING** This filter is deprecated and may be removed eventually, use &#x60;created_at_lte&#x60; instead. (optional)
-     * @param afterCreatedAt Filters the results to only transactions created after this ISO date-time string. The time zone must be included.  Ensure that the date-time string is URL encoded, e.g. &#x60;2022-01-01T12:00:00+08:00&#x60; must be encoded as &#x60;2022-01-01T12%3A00%3A00%2B08%3A00&#x60;.  **WARNING** This filter is deprecated and may be removed eventually, use &#x60;created_at_gte&#x60; instead. (optional)
-     * @param beforeUpdatedAt Filters the results to only transactions last updated before this ISO date-time string. The time zone must be included.  Ensure that the date-time string is URL encoded, e.g. &#x60;2022-01-01T12:00:00+08:00&#x60; must be encoded as &#x60;2022-01-01T12%3A00%3A00%2B08%3A00&#x60;.  **WARNING** This filter is deprecated and may be removed eventually, use &#x60;updated_at_lte&#x60; instead. (optional)
-     * @param afterUpdatedAt Filters the results to only transactions last updated after this ISO date-time string. The time zone must be included.  Ensure that the date-time string is URL encoded, e.g. &#x60;2022-01-01T12:00:00+08:00&#x60; must be encoded as &#x60;2022-01-01T12%3A00%3A00%2B08%3A00&#x60;.  **WARNING** This filter is deprecated and may be removed eventually, use &#x60;updated_at_gte&#x60; instead. (optional)
-     * @param transactionStatus Filters the results to only the transactions for which the &#x60;status&#x60; matches this value.  **WARNING** This filter is deprecated and may be removed eventually, use &#x60;status&#x60; instead. (optional)
      * @return Transactions
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -924,14 +793,14 @@ public class TransactionsApi {
         <tr><td> 401 </td><td> Returns an error if no valid authentication was provided. </td><td>  -  </td></tr>
      </table>
      */
-    public Transactions listTransactions(String buyerExternalIdentifier, String buyerId, String cursor, Integer limit, Integer amountEq, Integer amountGte, Integer amountLte, OffsetDateTime createdAtGte, OffsetDateTime createdAtLte, List<String> currency, String externalIdentifier, Boolean hasRefunds, UUID id, List<String> metadata, List<String> method, UUID paymentMethodId, String paymentMethodLabel, List<UUID> paymentServiceId, String paymentServiceTransactionId, String search, List<String> status, OffsetDateTime updatedAtGte, OffsetDateTime updatedAtLte, OffsetDateTime beforeCreatedAt, OffsetDateTime afterCreatedAt, OffsetDateTime beforeUpdatedAt, OffsetDateTime afterUpdatedAt, String transactionStatus) throws ApiException {
-        ApiResponse<Transactions> localVarResp = listTransactionsWithHttpInfo(buyerExternalIdentifier, buyerId, cursor, limit, amountEq, amountGte, amountLte, createdAtGte, createdAtLte, currency, externalIdentifier, hasRefunds, id, metadata, method, paymentMethodId, paymentMethodLabel, paymentServiceId, paymentServiceTransactionId, search, status, updatedAtGte, updatedAtLte, beforeCreatedAt, afterCreatedAt, beforeUpdatedAt, afterUpdatedAt, transactionStatus);
+    public Transactions listTransactions(String buyerExternalIdentifier, String buyerId, String cursor, Integer limit, Integer amountEq, Integer amountGte, Integer amountLte, UUID checkoutSessionId, OffsetDateTime createdAtGte, OffsetDateTime createdAtLte, List<String> currency, String externalIdentifier, Boolean hasRefunds, Boolean pendingReview, UUID id, List<String> metadata, List<String> method, UUID paymentMethodId, String paymentMethodLabel, List<UUID> paymentServiceId, String paymentServiceTransactionId, String search, List<String> status, OffsetDateTime updatedAtGte, OffsetDateTime updatedAtLte) throws ApiException {
+        ApiResponse<Transactions> localVarResp = listTransactionsWithHttpInfo(buyerExternalIdentifier, buyerId, cursor, limit, amountEq, amountGte, amountLte, checkoutSessionId, createdAtGte, createdAtLte, currency, externalIdentifier, hasRefunds, pendingReview, id, metadata, method, paymentMethodId, paymentMethodLabel, paymentServiceId, paymentServiceTransactionId, search, status, updatedAtGte, updatedAtLte);
         return localVarResp.getData();
     }
 
     /**
      * List transactions
-     * Lists all transactions for an account. Sorted by last &#x60;updated_at&#x60; status.
+     * Lists all transactions for an account. Sorted by last updated at.
      * @param buyerExternalIdentifier Filters the results to only the items for which the &#x60;buyer&#x60; has an &#x60;external_identifier&#x60; that matches this value. (optional)
      * @param buyerId Filters the results to only the items for which the &#x60;buyer&#x60; has an &#x60;id&#x60; that matches this value. (optional)
      * @param cursor A cursor that identifies the page of results to return. This is used to paginate the results of this API.  For the first page of results, this parameter can be left out. For additional pages, use the value returned by the API in the &#x60;next_cursor&#x60; field. Similarly the &#x60;previous_cursor&#x60; can be used to reverse backwards in the list. (optional)
@@ -939,15 +808,17 @@ public class TransactionsApi {
      * @param amountEq Filters for transactions that have an &#x60;amount&#x60; that is equal to the provided &#x60;amount_eq&#x60; value. (optional)
      * @param amountGte Filters for transactions that have an &#x60;amount&#x60; that is greater than or equal to the &#x60;amount_gte&#x60; value. (optional)
      * @param amountLte Filters for transactions that have an &#x60;amount&#x60; that is less than or equal to the &#x60;amount_lte&#x60; value. (optional)
+     * @param checkoutSessionId Filters for transactions that are linked to the unique ID for a Checkout Session. (optional)
      * @param createdAtGte Filters the results to only transactions created after this ISO date-time string. The time zone must be included.  Ensure that the date-time string is URL encoded, e.g. &#x60;2022-01-01T12:00:00+08:00&#x60; must be encoded as &#x60;2022-01-01T12%3A00%3A00%2B08%3A00&#x60;. (optional)
      * @param createdAtLte Filters the results to only transactions created before this ISO date-time string. The time zone must be included.  Ensure that the date-time string is URL encoded, e.g. &#x60;2022-01-01T12:00:00+08:00&#x60; must be encoded as &#x60;2022-01-01T12%3A00%3A00%2B08%3A00&#x60;. (optional)
      * @param currency Filters for transactions that have matching &#x60;currency&#x60; values. The &#x60;currency&#x60; values provided must be formatted as 3-letter ISO currency code. (optional)
      * @param externalIdentifier Filters the results to only the items for which the &#x60;external_identifier&#x60; matches this value. (optional)
      * @param hasRefunds When set to &#x60;true&#x60;, filter for transactions that have at least one completed refund associated with it. When set to &#x60;false&#x60;, filter for transactions that have no completed refunds. (optional)
+     * @param pendingReview When set to &#x60;true&#x60;, filter for transactions that have a manual review pending. When set to &#x60;false&#x60;, filter for transactions that don&#39;t have a manual review pending. (optional)
      * @param id Filters for the transaction that has a matching &#x60;id&#x60; value. (optional)
      * @param metadata Filters for transactions where their &#x60;metadata&#x60; values contain all of the provided &#x60;metadata&#x60; keys. The value sent for &#x60;metadata&#x60; must be formatted as a JSON string, and all keys and values must be strings. This value should also be URL encoded.  Duplicate keys are not supported. If a key is duplicated, only the last appearing value will be used. (optional)
      * @param method Filters the results to only the items for which the &#x60;method&#x60; has been set to this value. (optional)
-     * @param paymentMethodId The ID of the payment method. (optional)
+     * @param paymentMethodId Filters for transactions that have a payment method with an ID that matches exactly with the provided value. (optional)
      * @param paymentMethodLabel Filters for transactions that have a payment method with a label that matches exactly with the provided value. (optional)
      * @param paymentServiceId Filters for transactions that were processed by the provided &#x60;payment_service_id&#x60; values. (optional)
      * @param paymentServiceTransactionId Filters for transactions that have a matching &#x60;payment_service_transaction_id&#x60; value. The &#x60;payment_service_transaction_id&#x60; is the identifier of the transaction given by the payment service. (optional)
@@ -955,11 +826,6 @@ public class TransactionsApi {
      * @param status Filters the results to only the transactions that have a &#x60;status&#x60; that matches with any of the provided status values. (optional)
      * @param updatedAtGte Filters the results to only transactions last updated after this ISO date-time string. The time zone must be included.  Ensure that the date-time string is URL encoded, e.g. &#x60;2022-01-01T12:00:00+08:00&#x60; must be encoded as &#x60;2022-01-01T12%3A00%3A00%2B08%3A00&#x60;. (optional)
      * @param updatedAtLte Filters the results to only transactions last updated before this ISO date-time string. The time zone must be included.  Ensure that the date-time string is URL encoded, e.g. &#x60;2022-01-01T12:00:00+08:00&#x60; must be encoded as &#x60;2022-01-01T12%3A00%3A00%2B08%3A00&#x60;. (optional)
-     * @param beforeCreatedAt Filters the results to only transactions created before this ISO date-time string. The time zone must be included.  Ensure that the date-time string is URL encoded, e.g. &#x60;2022-01-01T12:00:00+08:00&#x60; must be encoded as &#x60;2022-01-01T12%3A00%3A00%2B08%3A00&#x60;.  **WARNING** This filter is deprecated and may be removed eventually, use &#x60;created_at_lte&#x60; instead. (optional)
-     * @param afterCreatedAt Filters the results to only transactions created after this ISO date-time string. The time zone must be included.  Ensure that the date-time string is URL encoded, e.g. &#x60;2022-01-01T12:00:00+08:00&#x60; must be encoded as &#x60;2022-01-01T12%3A00%3A00%2B08%3A00&#x60;.  **WARNING** This filter is deprecated and may be removed eventually, use &#x60;created_at_gte&#x60; instead. (optional)
-     * @param beforeUpdatedAt Filters the results to only transactions last updated before this ISO date-time string. The time zone must be included.  Ensure that the date-time string is URL encoded, e.g. &#x60;2022-01-01T12:00:00+08:00&#x60; must be encoded as &#x60;2022-01-01T12%3A00%3A00%2B08%3A00&#x60;.  **WARNING** This filter is deprecated and may be removed eventually, use &#x60;updated_at_lte&#x60; instead. (optional)
-     * @param afterUpdatedAt Filters the results to only transactions last updated after this ISO date-time string. The time zone must be included.  Ensure that the date-time string is URL encoded, e.g. &#x60;2022-01-01T12:00:00+08:00&#x60; must be encoded as &#x60;2022-01-01T12%3A00%3A00%2B08%3A00&#x60;.  **WARNING** This filter is deprecated and may be removed eventually, use &#x60;updated_at_gte&#x60; instead. (optional)
-     * @param transactionStatus Filters the results to only the transactions for which the &#x60;status&#x60; matches this value.  **WARNING** This filter is deprecated and may be removed eventually, use &#x60;status&#x60; instead. (optional)
      * @return ApiResponse&lt;Transactions&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -969,15 +835,15 @@ public class TransactionsApi {
         <tr><td> 401 </td><td> Returns an error if no valid authentication was provided. </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<Transactions> listTransactionsWithHttpInfo(String buyerExternalIdentifier, String buyerId, String cursor, Integer limit, Integer amountEq, Integer amountGte, Integer amountLte, OffsetDateTime createdAtGte, OffsetDateTime createdAtLte, List<String> currency, String externalIdentifier, Boolean hasRefunds, UUID id, List<String> metadata, List<String> method, UUID paymentMethodId, String paymentMethodLabel, List<UUID> paymentServiceId, String paymentServiceTransactionId, String search, List<String> status, OffsetDateTime updatedAtGte, OffsetDateTime updatedAtLte, OffsetDateTime beforeCreatedAt, OffsetDateTime afterCreatedAt, OffsetDateTime beforeUpdatedAt, OffsetDateTime afterUpdatedAt, String transactionStatus) throws ApiException {
-        okhttp3.Call localVarCall = listTransactionsValidateBeforeCall(buyerExternalIdentifier, buyerId, cursor, limit, amountEq, amountGte, amountLte, createdAtGte, createdAtLte, currency, externalIdentifier, hasRefunds, id, metadata, method, paymentMethodId, paymentMethodLabel, paymentServiceId, paymentServiceTransactionId, search, status, updatedAtGte, updatedAtLte, beforeCreatedAt, afterCreatedAt, beforeUpdatedAt, afterUpdatedAt, transactionStatus, null);
+    public ApiResponse<Transactions> listTransactionsWithHttpInfo(String buyerExternalIdentifier, String buyerId, String cursor, Integer limit, Integer amountEq, Integer amountGte, Integer amountLte, UUID checkoutSessionId, OffsetDateTime createdAtGte, OffsetDateTime createdAtLte, List<String> currency, String externalIdentifier, Boolean hasRefunds, Boolean pendingReview, UUID id, List<String> metadata, List<String> method, UUID paymentMethodId, String paymentMethodLabel, List<UUID> paymentServiceId, String paymentServiceTransactionId, String search, List<String> status, OffsetDateTime updatedAtGte, OffsetDateTime updatedAtLte) throws ApiException {
+        okhttp3.Call localVarCall = listTransactionsValidateBeforeCall(buyerExternalIdentifier, buyerId, cursor, limit, amountEq, amountGte, amountLte, checkoutSessionId, createdAtGte, createdAtLte, currency, externalIdentifier, hasRefunds, pendingReview, id, metadata, method, paymentMethodId, paymentMethodLabel, paymentServiceId, paymentServiceTransactionId, search, status, updatedAtGte, updatedAtLte, null);
         Type localVarReturnType = new TypeToken<Transactions>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
      * List transactions (asynchronously)
-     * Lists all transactions for an account. Sorted by last &#x60;updated_at&#x60; status.
+     * Lists all transactions for an account. Sorted by last updated at.
      * @param buyerExternalIdentifier Filters the results to only the items for which the &#x60;buyer&#x60; has an &#x60;external_identifier&#x60; that matches this value. (optional)
      * @param buyerId Filters the results to only the items for which the &#x60;buyer&#x60; has an &#x60;id&#x60; that matches this value. (optional)
      * @param cursor A cursor that identifies the page of results to return. This is used to paginate the results of this API.  For the first page of results, this parameter can be left out. For additional pages, use the value returned by the API in the &#x60;next_cursor&#x60; field. Similarly the &#x60;previous_cursor&#x60; can be used to reverse backwards in the list. (optional)
@@ -985,15 +851,17 @@ public class TransactionsApi {
      * @param amountEq Filters for transactions that have an &#x60;amount&#x60; that is equal to the provided &#x60;amount_eq&#x60; value. (optional)
      * @param amountGte Filters for transactions that have an &#x60;amount&#x60; that is greater than or equal to the &#x60;amount_gte&#x60; value. (optional)
      * @param amountLte Filters for transactions that have an &#x60;amount&#x60; that is less than or equal to the &#x60;amount_lte&#x60; value. (optional)
+     * @param checkoutSessionId Filters for transactions that are linked to the unique ID for a Checkout Session. (optional)
      * @param createdAtGte Filters the results to only transactions created after this ISO date-time string. The time zone must be included.  Ensure that the date-time string is URL encoded, e.g. &#x60;2022-01-01T12:00:00+08:00&#x60; must be encoded as &#x60;2022-01-01T12%3A00%3A00%2B08%3A00&#x60;. (optional)
      * @param createdAtLte Filters the results to only transactions created before this ISO date-time string. The time zone must be included.  Ensure that the date-time string is URL encoded, e.g. &#x60;2022-01-01T12:00:00+08:00&#x60; must be encoded as &#x60;2022-01-01T12%3A00%3A00%2B08%3A00&#x60;. (optional)
      * @param currency Filters for transactions that have matching &#x60;currency&#x60; values. The &#x60;currency&#x60; values provided must be formatted as 3-letter ISO currency code. (optional)
      * @param externalIdentifier Filters the results to only the items for which the &#x60;external_identifier&#x60; matches this value. (optional)
      * @param hasRefunds When set to &#x60;true&#x60;, filter for transactions that have at least one completed refund associated with it. When set to &#x60;false&#x60;, filter for transactions that have no completed refunds. (optional)
+     * @param pendingReview When set to &#x60;true&#x60;, filter for transactions that have a manual review pending. When set to &#x60;false&#x60;, filter for transactions that don&#39;t have a manual review pending. (optional)
      * @param id Filters for the transaction that has a matching &#x60;id&#x60; value. (optional)
      * @param metadata Filters for transactions where their &#x60;metadata&#x60; values contain all of the provided &#x60;metadata&#x60; keys. The value sent for &#x60;metadata&#x60; must be formatted as a JSON string, and all keys and values must be strings. This value should also be URL encoded.  Duplicate keys are not supported. If a key is duplicated, only the last appearing value will be used. (optional)
      * @param method Filters the results to only the items for which the &#x60;method&#x60; has been set to this value. (optional)
-     * @param paymentMethodId The ID of the payment method. (optional)
+     * @param paymentMethodId Filters for transactions that have a payment method with an ID that matches exactly with the provided value. (optional)
      * @param paymentMethodLabel Filters for transactions that have a payment method with a label that matches exactly with the provided value. (optional)
      * @param paymentServiceId Filters for transactions that were processed by the provided &#x60;payment_service_id&#x60; values. (optional)
      * @param paymentServiceTransactionId Filters for transactions that have a matching &#x60;payment_service_transaction_id&#x60; value. The &#x60;payment_service_transaction_id&#x60; is the identifier of the transaction given by the payment service. (optional)
@@ -1001,11 +869,6 @@ public class TransactionsApi {
      * @param status Filters the results to only the transactions that have a &#x60;status&#x60; that matches with any of the provided status values. (optional)
      * @param updatedAtGte Filters the results to only transactions last updated after this ISO date-time string. The time zone must be included.  Ensure that the date-time string is URL encoded, e.g. &#x60;2022-01-01T12:00:00+08:00&#x60; must be encoded as &#x60;2022-01-01T12%3A00%3A00%2B08%3A00&#x60;. (optional)
      * @param updatedAtLte Filters the results to only transactions last updated before this ISO date-time string. The time zone must be included.  Ensure that the date-time string is URL encoded, e.g. &#x60;2022-01-01T12:00:00+08:00&#x60; must be encoded as &#x60;2022-01-01T12%3A00%3A00%2B08%3A00&#x60;. (optional)
-     * @param beforeCreatedAt Filters the results to only transactions created before this ISO date-time string. The time zone must be included.  Ensure that the date-time string is URL encoded, e.g. &#x60;2022-01-01T12:00:00+08:00&#x60; must be encoded as &#x60;2022-01-01T12%3A00%3A00%2B08%3A00&#x60;.  **WARNING** This filter is deprecated and may be removed eventually, use &#x60;created_at_lte&#x60; instead. (optional)
-     * @param afterCreatedAt Filters the results to only transactions created after this ISO date-time string. The time zone must be included.  Ensure that the date-time string is URL encoded, e.g. &#x60;2022-01-01T12:00:00+08:00&#x60; must be encoded as &#x60;2022-01-01T12%3A00%3A00%2B08%3A00&#x60;.  **WARNING** This filter is deprecated and may be removed eventually, use &#x60;created_at_gte&#x60; instead. (optional)
-     * @param beforeUpdatedAt Filters the results to only transactions last updated before this ISO date-time string. The time zone must be included.  Ensure that the date-time string is URL encoded, e.g. &#x60;2022-01-01T12:00:00+08:00&#x60; must be encoded as &#x60;2022-01-01T12%3A00%3A00%2B08%3A00&#x60;.  **WARNING** This filter is deprecated and may be removed eventually, use &#x60;updated_at_lte&#x60; instead. (optional)
-     * @param afterUpdatedAt Filters the results to only transactions last updated after this ISO date-time string. The time zone must be included.  Ensure that the date-time string is URL encoded, e.g. &#x60;2022-01-01T12:00:00+08:00&#x60; must be encoded as &#x60;2022-01-01T12%3A00%3A00%2B08%3A00&#x60;.  **WARNING** This filter is deprecated and may be removed eventually, use &#x60;updated_at_gte&#x60; instead. (optional)
-     * @param transactionStatus Filters the results to only the transactions for which the &#x60;status&#x60; matches this value.  **WARNING** This filter is deprecated and may be removed eventually, use &#x60;status&#x60; instead. (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -1016,15 +879,15 @@ public class TransactionsApi {
         <tr><td> 401 </td><td> Returns an error if no valid authentication was provided. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call listTransactionsAsync(String buyerExternalIdentifier, String buyerId, String cursor, Integer limit, Integer amountEq, Integer amountGte, Integer amountLte, OffsetDateTime createdAtGte, OffsetDateTime createdAtLte, List<String> currency, String externalIdentifier, Boolean hasRefunds, UUID id, List<String> metadata, List<String> method, UUID paymentMethodId, String paymentMethodLabel, List<UUID> paymentServiceId, String paymentServiceTransactionId, String search, List<String> status, OffsetDateTime updatedAtGte, OffsetDateTime updatedAtLte, OffsetDateTime beforeCreatedAt, OffsetDateTime afterCreatedAt, OffsetDateTime beforeUpdatedAt, OffsetDateTime afterUpdatedAt, String transactionStatus, final ApiCallback<Transactions> _callback) throws ApiException {
+    public okhttp3.Call listTransactionsAsync(String buyerExternalIdentifier, String buyerId, String cursor, Integer limit, Integer amountEq, Integer amountGte, Integer amountLte, UUID checkoutSessionId, OffsetDateTime createdAtGte, OffsetDateTime createdAtLte, List<String> currency, String externalIdentifier, Boolean hasRefunds, Boolean pendingReview, UUID id, List<String> metadata, List<String> method, UUID paymentMethodId, String paymentMethodLabel, List<UUID> paymentServiceId, String paymentServiceTransactionId, String search, List<String> status, OffsetDateTime updatedAtGte, OffsetDateTime updatedAtLte, final ApiCallback<Transactions> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = listTransactionsValidateBeforeCall(buyerExternalIdentifier, buyerId, cursor, limit, amountEq, amountGte, amountLte, createdAtGte, createdAtLte, currency, externalIdentifier, hasRefunds, id, metadata, method, paymentMethodId, paymentMethodLabel, paymentServiceId, paymentServiceTransactionId, search, status, updatedAtGte, updatedAtLte, beforeCreatedAt, afterCreatedAt, beforeUpdatedAt, afterUpdatedAt, transactionStatus, _callback);
+        okhttp3.Call localVarCall = listTransactionsValidateBeforeCall(buyerExternalIdentifier, buyerId, cursor, limit, amountEq, amountGte, amountLte, checkoutSessionId, createdAtGte, createdAtLte, currency, externalIdentifier, hasRefunds, pendingReview, id, metadata, method, paymentMethodId, paymentMethodLabel, paymentServiceId, paymentServiceTransactionId, search, status, updatedAtGte, updatedAtLte, _callback);
         Type localVarReturnType = new TypeToken<Transactions>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
     /**
-     * Build call for refundTransaction
+     * Build call for newRefund
      * @param transactionId The ID for the transaction to get the information for. (required)
      * @param transactionRefundRequest  (optional)
      * @param _callback Callback for upload/download progress
@@ -1039,7 +902,7 @@ public class TransactionsApi {
         <tr><td> 404 </td><td> Returns an error if the resource can not be found. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call refundTransactionCall(String transactionId, TransactionRefundRequest transactionRefundRequest, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call newRefundCall(String transactionId, TransactionRefundRequest transactionRefundRequest, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = transactionRefundRequest;
 
         // create path and map variables
@@ -1071,22 +934,22 @@ public class TransactionsApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call refundTransactionValidateBeforeCall(String transactionId, TransactionRefundRequest transactionRefundRequest, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call newRefundValidateBeforeCall(String transactionId, TransactionRefundRequest transactionRefundRequest, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'transactionId' is set
         if (transactionId == null) {
-            throw new ApiException("Missing the required parameter 'transactionId' when calling refundTransaction(Async)");
+            throw new ApiException("Missing the required parameter 'transactionId' when calling newRefund(Async)");
         }
         
 
-        okhttp3.Call localVarCall = refundTransactionCall(transactionId, transactionRefundRequest, _callback);
+        okhttp3.Call localVarCall = newRefundCall(transactionId, transactionRefundRequest, _callback);
         return localVarCall;
 
     }
 
     /**
      * Refund transaction
-     * Refunds a transaction, fully or partially.  If the transaction was not yet successfully captured, the refund will not be processed. Authorized transactions can be [voided](#operation/void-transaction) instead.
+     * Refunds a transaction, fully or partially.  If the transaction was not yet successfully captured, the refund will not be processed. Authorized transactions can be voided instead.
      * @param transactionId The ID for the transaction to get the information for. (required)
      * @param transactionRefundRequest  (optional)
      * @return Refund
@@ -1100,14 +963,14 @@ public class TransactionsApi {
         <tr><td> 404 </td><td> Returns an error if the resource can not be found. </td><td>  -  </td></tr>
      </table>
      */
-    public Refund refundTransaction(String transactionId, TransactionRefundRequest transactionRefundRequest) throws ApiException {
-        ApiResponse<Refund> localVarResp = refundTransactionWithHttpInfo(transactionId, transactionRefundRequest);
+    public Refund newRefund(String transactionId, TransactionRefundRequest transactionRefundRequest) throws ApiException {
+        ApiResponse<Refund> localVarResp = newRefundWithHttpInfo(transactionId, transactionRefundRequest);
         return localVarResp.getData();
     }
 
     /**
      * Refund transaction
-     * Refunds a transaction, fully or partially.  If the transaction was not yet successfully captured, the refund will not be processed. Authorized transactions can be [voided](#operation/void-transaction) instead.
+     * Refunds a transaction, fully or partially.  If the transaction was not yet successfully captured, the refund will not be processed. Authorized transactions can be voided instead.
      * @param transactionId The ID for the transaction to get the information for. (required)
      * @param transactionRefundRequest  (optional)
      * @return ApiResponse&lt;Refund&gt;
@@ -1121,15 +984,15 @@ public class TransactionsApi {
         <tr><td> 404 </td><td> Returns an error if the resource can not be found. </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<Refund> refundTransactionWithHttpInfo(String transactionId, TransactionRefundRequest transactionRefundRequest) throws ApiException {
-        okhttp3.Call localVarCall = refundTransactionValidateBeforeCall(transactionId, transactionRefundRequest, null);
+    public ApiResponse<Refund> newRefundWithHttpInfo(String transactionId, TransactionRefundRequest transactionRefundRequest) throws ApiException {
+        okhttp3.Call localVarCall = newRefundValidateBeforeCall(transactionId, transactionRefundRequest, null);
         Type localVarReturnType = new TypeToken<Refund>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
      * Refund transaction (asynchronously)
-     * Refunds a transaction, fully or partially.  If the transaction was not yet successfully captured, the refund will not be processed. Authorized transactions can be [voided](#operation/void-transaction) instead.
+     * Refunds a transaction, fully or partially.  If the transaction was not yet successfully captured, the refund will not be processed. Authorized transactions can be voided instead.
      * @param transactionId The ID for the transaction to get the information for. (required)
      * @param transactionRefundRequest  (optional)
      * @param _callback The callback to be executed when the API call finishes
@@ -1144,10 +1007,136 @@ public class TransactionsApi {
         <tr><td> 404 </td><td> Returns an error if the resource can not be found. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call refundTransactionAsync(String transactionId, TransactionRefundRequest transactionRefundRequest, final ApiCallback<Refund> _callback) throws ApiException {
+    public okhttp3.Call newRefundAsync(String transactionId, TransactionRefundRequest transactionRefundRequest, final ApiCallback<Refund> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = refundTransactionValidateBeforeCall(transactionId, transactionRefundRequest, _callback);
+        okhttp3.Call localVarCall = newRefundValidateBeforeCall(transactionId, transactionRefundRequest, _callback);
         Type localVarReturnType = new TypeToken<Refund>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+    /**
+     * Build call for newTransaction
+     * @param idempotencyKey A unique key that identifies this request. Providing this header will make this an idempotent request. We recommend using V4 UUIDs, or another random string with enough entropy to avoid collisions. (optional)
+     * @param transactionRequest  (optional)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 201 </td><td> Returns the created transaction. </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Returns an error if the request was badly formatted or missing required fields. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Returns an error if no valid authentication was provided. </td><td>  -  </td></tr>
+        <tr><td> 409 </td><td> Returns an error if duplicate resource has been found. </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call newTransactionCall(String idempotencyKey, TransactionRequest transactionRequest, final ApiCallback _callback) throws ApiException {
+        Object localVarPostBody = transactionRequest;
+
+        // create path and map variables
+        String localVarPath = "/transactions";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        if (idempotencyKey != null) {
+            localVarHeaderParams.put("Idempotency-Key", localVarApiClient.parameterToString(idempotencyKey));
+        }
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            "application/json"
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        String[] localVarAuthNames = new String[] { "BearerAuth" };
+        return localVarApiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call newTransactionValidateBeforeCall(String idempotencyKey, TransactionRequest transactionRequest, final ApiCallback _callback) throws ApiException {
+        
+
+        okhttp3.Call localVarCall = newTransactionCall(idempotencyKey, transactionRequest, _callback);
+        return localVarCall;
+
+    }
+
+    /**
+     * New transaction
+     * Attempts to create an authorization for a payment method. In some cases it is not possible to create the authorization without redirecting the user for their authorization. In these cases the status is set to indicate buyer approval is pending and an approval URL is returned. 
+     * @param idempotencyKey A unique key that identifies this request. Providing this header will make this an idempotent request. We recommend using V4 UUIDs, or another random string with enough entropy to avoid collisions. (optional)
+     * @param transactionRequest  (optional)
+     * @return Transaction
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 201 </td><td> Returns the created transaction. </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Returns an error if the request was badly formatted or missing required fields. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Returns an error if no valid authentication was provided. </td><td>  -  </td></tr>
+        <tr><td> 409 </td><td> Returns an error if duplicate resource has been found. </td><td>  -  </td></tr>
+     </table>
+     */
+    public Transaction newTransaction(String idempotencyKey, TransactionRequest transactionRequest) throws ApiException {
+        ApiResponse<Transaction> localVarResp = newTransactionWithHttpInfo(idempotencyKey, transactionRequest);
+        return localVarResp.getData();
+    }
+
+    /**
+     * New transaction
+     * Attempts to create an authorization for a payment method. In some cases it is not possible to create the authorization without redirecting the user for their authorization. In these cases the status is set to indicate buyer approval is pending and an approval URL is returned. 
+     * @param idempotencyKey A unique key that identifies this request. Providing this header will make this an idempotent request. We recommend using V4 UUIDs, or another random string with enough entropy to avoid collisions. (optional)
+     * @param transactionRequest  (optional)
+     * @return ApiResponse&lt;Transaction&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 201 </td><td> Returns the created transaction. </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Returns an error if the request was badly formatted or missing required fields. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Returns an error if no valid authentication was provided. </td><td>  -  </td></tr>
+        <tr><td> 409 </td><td> Returns an error if duplicate resource has been found. </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<Transaction> newTransactionWithHttpInfo(String idempotencyKey, TransactionRequest transactionRequest) throws ApiException {
+        okhttp3.Call localVarCall = newTransactionValidateBeforeCall(idempotencyKey, transactionRequest, null);
+        Type localVarReturnType = new TypeToken<Transaction>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * New transaction (asynchronously)
+     * Attempts to create an authorization for a payment method. In some cases it is not possible to create the authorization without redirecting the user for their authorization. In these cases the status is set to indicate buyer approval is pending and an approval URL is returned. 
+     * @param idempotencyKey A unique key that identifies this request. Providing this header will make this an idempotent request. We recommend using V4 UUIDs, or another random string with enough entropy to avoid collisions. (optional)
+     * @param transactionRequest  (optional)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 201 </td><td> Returns the created transaction. </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Returns an error if the request was badly formatted or missing required fields. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Returns an error if no valid authentication was provided. </td><td>  -  </td></tr>
+        <tr><td> 409 </td><td> Returns an error if duplicate resource has been found. </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call newTransactionAsync(String idempotencyKey, TransactionRequest transactionRequest, final ApiCallback<Transaction> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = newTransactionValidateBeforeCall(idempotencyKey, transactionRequest, _callback);
+        Type localVarReturnType = new TypeToken<Transaction>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
@@ -1213,7 +1202,7 @@ public class TransactionsApi {
 
     /**
      * Void transaction
-     * Voids a transaction.  If the transaction was not yet successfully authorized, or was already captured, the void will not be processed. Captured transactions can be [refunded](#operation/refund-transaction) instead.  Voiding zero-amount authorized transactions is not supported.
+     * Voids a transaction.  If the transaction was not yet successfully authorized, or was already captured, the void will not be processed. Captured transactions can be refunded instead.  Voiding zero-amount authorized transactions is not supported.  Once voided, the status of the transaction will be either &#x60;authorization_voided&#x60;, &#x60;authorization_void_pending&#x60;, or if the void fails the original status will remain.
      * @param transactionId The ID for the transaction to get the information for. (required)
      * @return Transaction
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -1233,7 +1222,7 @@ public class TransactionsApi {
 
     /**
      * Void transaction
-     * Voids a transaction.  If the transaction was not yet successfully authorized, or was already captured, the void will not be processed. Captured transactions can be [refunded](#operation/refund-transaction) instead.  Voiding zero-amount authorized transactions is not supported.
+     * Voids a transaction.  If the transaction was not yet successfully authorized, or was already captured, the void will not be processed. Captured transactions can be refunded instead.  Voiding zero-amount authorized transactions is not supported.  Once voided, the status of the transaction will be either &#x60;authorization_voided&#x60;, &#x60;authorization_void_pending&#x60;, or if the void fails the original status will remain.
      * @param transactionId The ID for the transaction to get the information for. (required)
      * @return ApiResponse&lt;Transaction&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -1254,7 +1243,7 @@ public class TransactionsApi {
 
     /**
      * Void transaction (asynchronously)
-     * Voids a transaction.  If the transaction was not yet successfully authorized, or was already captured, the void will not be processed. Captured transactions can be [refunded](#operation/refund-transaction) instead.  Voiding zero-amount authorized transactions is not supported.
+     * Voids a transaction.  If the transaction was not yet successfully authorized, or was already captured, the void will not be processed. Captured transactions can be refunded instead.  Voiding zero-amount authorized transactions is not supported.  Once voided, the status of the transaction will be either &#x60;authorization_voided&#x60;, &#x60;authorization_void_pending&#x60;, or if the void fails the original status will remain.
      * @param transactionId The ID for the transaction to get the information for. (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call

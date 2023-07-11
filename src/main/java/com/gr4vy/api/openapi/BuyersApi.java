@@ -67,248 +67,6 @@ public class BuyersApi {
     }
 
     /**
-     * Build call for addBuyer
-     * @param buyerRequest  (optional)
-     * @param _callback Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 201 </td><td> Returns the buyer that was added. </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Returns an error if the request was badly formatted or missing required fields. </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Returns an error if no valid authentication was provided. </td><td>  -  </td></tr>
-        <tr><td> 409 </td><td> Returns an error if duplicate resource has been found. </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call addBuyerCall(BuyerRequest buyerRequest, final ApiCallback _callback) throws ApiException {
-        Object localVarPostBody = buyerRequest;
-
-        // create path and map variables
-        String localVarPath = "/buyers";
-
-        List<Pair> localVarQueryParams = new ArrayList<Pair>();
-        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
-        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-        Map<String, String> localVarCookieParams = new HashMap<String, String>();
-        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
-
-        final String[] localVarAccepts = {
-            "application/json"
-        };
-        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
-        if (localVarAccept != null) {
-            localVarHeaderParams.put("Accept", localVarAccept);
-        }
-
-        final String[] localVarContentTypes = {
-            "application/json"
-        };
-        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        localVarHeaderParams.put("Content-Type", localVarContentType);
-
-        String[] localVarAuthNames = new String[] { "BearerAuth" };
-        return localVarApiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
-    }
-
-    @SuppressWarnings("rawtypes")
-    private okhttp3.Call addBuyerValidateBeforeCall(BuyerRequest buyerRequest, final ApiCallback _callback) throws ApiException {
-        
-
-        okhttp3.Call localVarCall = addBuyerCall(buyerRequest, _callback);
-        return localVarCall;
-
-    }
-
-    /**
-     * New buyer
-     * Adds a buyer, allowing for payment methods and transactions to be associated to this buyer. 
-     * @param buyerRequest  (optional)
-     * @return Buyer
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 201 </td><td> Returns the buyer that was added. </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Returns an error if the request was badly formatted or missing required fields. </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Returns an error if no valid authentication was provided. </td><td>  -  </td></tr>
-        <tr><td> 409 </td><td> Returns an error if duplicate resource has been found. </td><td>  -  </td></tr>
-     </table>
-     */
-    public Buyer addBuyer(BuyerRequest buyerRequest) throws ApiException {
-        ApiResponse<Buyer> localVarResp = addBuyerWithHttpInfo(buyerRequest);
-        return localVarResp.getData();
-    }
-
-    /**
-     * New buyer
-     * Adds a buyer, allowing for payment methods and transactions to be associated to this buyer. 
-     * @param buyerRequest  (optional)
-     * @return ApiResponse&lt;Buyer&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 201 </td><td> Returns the buyer that was added. </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Returns an error if the request was badly formatted or missing required fields. </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Returns an error if no valid authentication was provided. </td><td>  -  </td></tr>
-        <tr><td> 409 </td><td> Returns an error if duplicate resource has been found. </td><td>  -  </td></tr>
-     </table>
-     */
-    public ApiResponse<Buyer> addBuyerWithHttpInfo(BuyerRequest buyerRequest) throws ApiException {
-        okhttp3.Call localVarCall = addBuyerValidateBeforeCall(buyerRequest, null);
-        Type localVarReturnType = new TypeToken<Buyer>(){}.getType();
-        return localVarApiClient.execute(localVarCall, localVarReturnType);
-    }
-
-    /**
-     * New buyer (asynchronously)
-     * Adds a buyer, allowing for payment methods and transactions to be associated to this buyer. 
-     * @param buyerRequest  (optional)
-     * @param _callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 201 </td><td> Returns the buyer that was added. </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Returns an error if the request was badly formatted or missing required fields. </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Returns an error if no valid authentication was provided. </td><td>  -  </td></tr>
-        <tr><td> 409 </td><td> Returns an error if duplicate resource has been found. </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call addBuyerAsync(BuyerRequest buyerRequest, final ApiCallback<Buyer> _callback) throws ApiException {
-
-        okhttp3.Call localVarCall = addBuyerValidateBeforeCall(buyerRequest, _callback);
-        Type localVarReturnType = new TypeToken<Buyer>(){}.getType();
-        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
-        return localVarCall;
-    }
-    /**
-     * Build call for addBuyerShippingDetail
-     * @param buyerId The unique ID for a buyer. (required)
-     * @param shippingDetailRequest  (optional)
-     * @param _callback Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 201 </td><td> Returns the shipping detail that was added. </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Returns an error if the request was badly formatted or missing required fields. </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Returns an error if no valid authentication was provided. </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call addBuyerShippingDetailCall(UUID buyerId, ShippingDetailRequest shippingDetailRequest, final ApiCallback _callback) throws ApiException {
-        Object localVarPostBody = shippingDetailRequest;
-
-        // create path and map variables
-        String localVarPath = "/buyers/{buyer_id}/shipping-details"
-            .replaceAll("\\{" + "buyer_id" + "\\}", localVarApiClient.escapeString(buyerId.toString()));
-
-        List<Pair> localVarQueryParams = new ArrayList<Pair>();
-        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
-        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-        Map<String, String> localVarCookieParams = new HashMap<String, String>();
-        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
-
-        final String[] localVarAccepts = {
-            "application/json"
-        };
-        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
-        if (localVarAccept != null) {
-            localVarHeaderParams.put("Accept", localVarAccept);
-        }
-
-        final String[] localVarContentTypes = {
-            "application/json"
-        };
-        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        localVarHeaderParams.put("Content-Type", localVarContentType);
-
-        String[] localVarAuthNames = new String[] { "BearerAuth" };
-        return localVarApiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
-    }
-
-    @SuppressWarnings("rawtypes")
-    private okhttp3.Call addBuyerShippingDetailValidateBeforeCall(UUID buyerId, ShippingDetailRequest shippingDetailRequest, final ApiCallback _callback) throws ApiException {
-        
-        // verify the required parameter 'buyerId' is set
-        if (buyerId == null) {
-            throw new ApiException("Missing the required parameter 'buyerId' when calling addBuyerShippingDetail(Async)");
-        }
-        
-
-        okhttp3.Call localVarCall = addBuyerShippingDetailCall(buyerId, shippingDetailRequest, _callback);
-        return localVarCall;
-
-    }
-
-    /**
-     * New buyer shipping detail
-     * Adds a buyer shipping detail.
-     * @param buyerId The unique ID for a buyer. (required)
-     * @param shippingDetailRequest  (optional)
-     * @return ShippingDetail
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 201 </td><td> Returns the shipping detail that was added. </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Returns an error if the request was badly formatted or missing required fields. </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Returns an error if no valid authentication was provided. </td><td>  -  </td></tr>
-     </table>
-     */
-    public ShippingDetail addBuyerShippingDetail(UUID buyerId, ShippingDetailRequest shippingDetailRequest) throws ApiException {
-        ApiResponse<ShippingDetail> localVarResp = addBuyerShippingDetailWithHttpInfo(buyerId, shippingDetailRequest);
-        return localVarResp.getData();
-    }
-
-    /**
-     * New buyer shipping detail
-     * Adds a buyer shipping detail.
-     * @param buyerId The unique ID for a buyer. (required)
-     * @param shippingDetailRequest  (optional)
-     * @return ApiResponse&lt;ShippingDetail&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 201 </td><td> Returns the shipping detail that was added. </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Returns an error if the request was badly formatted or missing required fields. </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Returns an error if no valid authentication was provided. </td><td>  -  </td></tr>
-     </table>
-     */
-    public ApiResponse<ShippingDetail> addBuyerShippingDetailWithHttpInfo(UUID buyerId, ShippingDetailRequest shippingDetailRequest) throws ApiException {
-        okhttp3.Call localVarCall = addBuyerShippingDetailValidateBeforeCall(buyerId, shippingDetailRequest, null);
-        Type localVarReturnType = new TypeToken<ShippingDetail>(){}.getType();
-        return localVarApiClient.execute(localVarCall, localVarReturnType);
-    }
-
-    /**
-     * New buyer shipping detail (asynchronously)
-     * Adds a buyer shipping detail.
-     * @param buyerId The unique ID for a buyer. (required)
-     * @param shippingDetailRequest  (optional)
-     * @param _callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 201 </td><td> Returns the shipping detail that was added. </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Returns an error if the request was badly formatted or missing required fields. </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Returns an error if no valid authentication was provided. </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call addBuyerShippingDetailAsync(UUID buyerId, ShippingDetailRequest shippingDetailRequest, final ApiCallback<ShippingDetail> _callback) throws ApiException {
-
-        okhttp3.Call localVarCall = addBuyerShippingDetailValidateBeforeCall(buyerId, shippingDetailRequest, _callback);
-        Type localVarReturnType = new TypeToken<ShippingDetail>(){}.getType();
-        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
-        return localVarCall;
-    }
-    /**
      * Build call for deleteBuyer
      * @param buyerId The unique ID for a buyer. (required)
      * @param _callback Callback for upload/download progress
@@ -369,7 +127,7 @@ public class BuyersApi {
 
     /**
      * Delete buyer
-     * Deletes a buyer record. Any associated tokenized payment methods will remain in the system but no longer associated to the buyer.
+     * Deletes a buyer record. Any associated stored payment methods will remain in the system but no longer associated to the buyer.
      * @param buyerId The unique ID for a buyer. (required)
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -386,7 +144,7 @@ public class BuyersApi {
 
     /**
      * Delete buyer
-     * Deletes a buyer record. Any associated tokenized payment methods will remain in the system but no longer associated to the buyer.
+     * Deletes a buyer record. Any associated stored payment methods will remain in the system but no longer associated to the buyer.
      * @param buyerId The unique ID for a buyer. (required)
      * @return ApiResponse&lt;Void&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -405,7 +163,7 @@ public class BuyersApi {
 
     /**
      * Delete buyer (asynchronously)
-     * Deletes a buyer record. Any associated tokenized payment methods will remain in the system but no longer associated to the buyer.
+     * Deletes a buyer record. Any associated stored payment methods will remain in the system but no longer associated to the buyer.
      * @param buyerId The unique ID for a buyer. (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
@@ -675,7 +433,7 @@ public class BuyersApi {
         return localVarCall;
     }
     /**
-     * Build call for getBuyerShippingDetails
+     * Build call for listBuyerShippingDetails
      * @param buyerId The unique ID for a buyer. (required)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
@@ -688,7 +446,7 @@ public class BuyersApi {
         <tr><td> 0 </td><td> Returns a generic error. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getBuyerShippingDetailsCall(UUID buyerId, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call listBuyerShippingDetailsCall(UUID buyerId, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -720,21 +478,21 @@ public class BuyersApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call getBuyerShippingDetailsValidateBeforeCall(UUID buyerId, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call listBuyerShippingDetailsValidateBeforeCall(UUID buyerId, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'buyerId' is set
         if (buyerId == null) {
-            throw new ApiException("Missing the required parameter 'buyerId' when calling getBuyerShippingDetails(Async)");
+            throw new ApiException("Missing the required parameter 'buyerId' when calling listBuyerShippingDetails(Async)");
         }
         
 
-        okhttp3.Call localVarCall = getBuyerShippingDetailsCall(buyerId, _callback);
+        okhttp3.Call localVarCall = listBuyerShippingDetailsCall(buyerId, _callback);
         return localVarCall;
 
     }
 
     /**
-     * Get buyer shipping details
+     * List buyer shipping details
      * Retrieve all shipping details for a buyer.
      * @param buyerId The unique ID for a buyer. (required)
      * @return ShippingDetails
@@ -747,13 +505,13 @@ public class BuyersApi {
         <tr><td> 0 </td><td> Returns a generic error. </td><td>  -  </td></tr>
      </table>
      */
-    public ShippingDetails getBuyerShippingDetails(UUID buyerId) throws ApiException {
-        ApiResponse<ShippingDetails> localVarResp = getBuyerShippingDetailsWithHttpInfo(buyerId);
+    public ShippingDetails listBuyerShippingDetails(UUID buyerId) throws ApiException {
+        ApiResponse<ShippingDetails> localVarResp = listBuyerShippingDetailsWithHttpInfo(buyerId);
         return localVarResp.getData();
     }
 
     /**
-     * Get buyer shipping details
+     * List buyer shipping details
      * Retrieve all shipping details for a buyer.
      * @param buyerId The unique ID for a buyer. (required)
      * @return ApiResponse&lt;ShippingDetails&gt;
@@ -766,14 +524,14 @@ public class BuyersApi {
         <tr><td> 0 </td><td> Returns a generic error. </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<ShippingDetails> getBuyerShippingDetailsWithHttpInfo(UUID buyerId) throws ApiException {
-        okhttp3.Call localVarCall = getBuyerShippingDetailsValidateBeforeCall(buyerId, null);
+    public ApiResponse<ShippingDetails> listBuyerShippingDetailsWithHttpInfo(UUID buyerId) throws ApiException {
+        okhttp3.Call localVarCall = listBuyerShippingDetailsValidateBeforeCall(buyerId, null);
         Type localVarReturnType = new TypeToken<ShippingDetails>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
-     * Get buyer shipping details (asynchronously)
+     * List buyer shipping details (asynchronously)
      * Retrieve all shipping details for a buyer.
      * @param buyerId The unique ID for a buyer. (required)
      * @param _callback The callback to be executed when the API call finishes
@@ -787,9 +545,9 @@ public class BuyersApi {
         <tr><td> 0 </td><td> Returns a generic error. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getBuyerShippingDetailsAsync(UUID buyerId, final ApiCallback<ShippingDetails> _callback) throws ApiException {
+    public okhttp3.Call listBuyerShippingDetailsAsync(UUID buyerId, final ApiCallback<ShippingDetails> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = getBuyerShippingDetailsValidateBeforeCall(buyerId, _callback);
+        okhttp3.Call localVarCall = listBuyerShippingDetailsValidateBeforeCall(buyerId, _callback);
         Type localVarReturnType = new TypeToken<ShippingDetails>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -925,6 +683,248 @@ public class BuyersApi {
         return localVarCall;
     }
     /**
+     * Build call for newBuyer
+     * @param buyerRequest  (optional)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 201 </td><td> Returns the buyer that was added. </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Returns an error if the request was badly formatted or missing required fields. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Returns an error if no valid authentication was provided. </td><td>  -  </td></tr>
+        <tr><td> 409 </td><td> Returns an error if duplicate resource has been found. </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call newBuyerCall(BuyerRequest buyerRequest, final ApiCallback _callback) throws ApiException {
+        Object localVarPostBody = buyerRequest;
+
+        // create path and map variables
+        String localVarPath = "/buyers";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            "application/json"
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        String[] localVarAuthNames = new String[] { "BearerAuth" };
+        return localVarApiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call newBuyerValidateBeforeCall(BuyerRequest buyerRequest, final ApiCallback _callback) throws ApiException {
+        
+
+        okhttp3.Call localVarCall = newBuyerCall(buyerRequest, _callback);
+        return localVarCall;
+
+    }
+
+    /**
+     * New buyer
+     * Adds a buyer, allowing for payment methods and transactions to be associated to this buyer. 
+     * @param buyerRequest  (optional)
+     * @return Buyer
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 201 </td><td> Returns the buyer that was added. </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Returns an error if the request was badly formatted or missing required fields. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Returns an error if no valid authentication was provided. </td><td>  -  </td></tr>
+        <tr><td> 409 </td><td> Returns an error if duplicate resource has been found. </td><td>  -  </td></tr>
+     </table>
+     */
+    public Buyer newBuyer(BuyerRequest buyerRequest) throws ApiException {
+        ApiResponse<Buyer> localVarResp = newBuyerWithHttpInfo(buyerRequest);
+        return localVarResp.getData();
+    }
+
+    /**
+     * New buyer
+     * Adds a buyer, allowing for payment methods and transactions to be associated to this buyer. 
+     * @param buyerRequest  (optional)
+     * @return ApiResponse&lt;Buyer&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 201 </td><td> Returns the buyer that was added. </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Returns an error if the request was badly formatted or missing required fields. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Returns an error if no valid authentication was provided. </td><td>  -  </td></tr>
+        <tr><td> 409 </td><td> Returns an error if duplicate resource has been found. </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<Buyer> newBuyerWithHttpInfo(BuyerRequest buyerRequest) throws ApiException {
+        okhttp3.Call localVarCall = newBuyerValidateBeforeCall(buyerRequest, null);
+        Type localVarReturnType = new TypeToken<Buyer>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * New buyer (asynchronously)
+     * Adds a buyer, allowing for payment methods and transactions to be associated to this buyer. 
+     * @param buyerRequest  (optional)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 201 </td><td> Returns the buyer that was added. </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Returns an error if the request was badly formatted or missing required fields. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Returns an error if no valid authentication was provided. </td><td>  -  </td></tr>
+        <tr><td> 409 </td><td> Returns an error if duplicate resource has been found. </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call newBuyerAsync(BuyerRequest buyerRequest, final ApiCallback<Buyer> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = newBuyerValidateBeforeCall(buyerRequest, _callback);
+        Type localVarReturnType = new TypeToken<Buyer>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+    /**
+     * Build call for newBuyerShippingDetail
+     * @param buyerId The unique ID for a buyer. (required)
+     * @param shippingDetailRequest  (optional)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 201 </td><td> Returns the shipping detail that was added. </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Returns an error if the request was badly formatted or missing required fields. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Returns an error if no valid authentication was provided. </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call newBuyerShippingDetailCall(UUID buyerId, ShippingDetailRequest shippingDetailRequest, final ApiCallback _callback) throws ApiException {
+        Object localVarPostBody = shippingDetailRequest;
+
+        // create path and map variables
+        String localVarPath = "/buyers/{buyer_id}/shipping-details"
+            .replaceAll("\\{" + "buyer_id" + "\\}", localVarApiClient.escapeString(buyerId.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            "application/json"
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        String[] localVarAuthNames = new String[] { "BearerAuth" };
+        return localVarApiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call newBuyerShippingDetailValidateBeforeCall(UUID buyerId, ShippingDetailRequest shippingDetailRequest, final ApiCallback _callback) throws ApiException {
+        
+        // verify the required parameter 'buyerId' is set
+        if (buyerId == null) {
+            throw new ApiException("Missing the required parameter 'buyerId' when calling newBuyerShippingDetail(Async)");
+        }
+        
+
+        okhttp3.Call localVarCall = newBuyerShippingDetailCall(buyerId, shippingDetailRequest, _callback);
+        return localVarCall;
+
+    }
+
+    /**
+     * New buyer shipping detail
+     * Adds a buyer shipping detail.
+     * @param buyerId The unique ID for a buyer. (required)
+     * @param shippingDetailRequest  (optional)
+     * @return ShippingDetail
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 201 </td><td> Returns the shipping detail that was added. </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Returns an error if the request was badly formatted or missing required fields. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Returns an error if no valid authentication was provided. </td><td>  -  </td></tr>
+     </table>
+     */
+    public ShippingDetail newBuyerShippingDetail(UUID buyerId, ShippingDetailRequest shippingDetailRequest) throws ApiException {
+        ApiResponse<ShippingDetail> localVarResp = newBuyerShippingDetailWithHttpInfo(buyerId, shippingDetailRequest);
+        return localVarResp.getData();
+    }
+
+    /**
+     * New buyer shipping detail
+     * Adds a buyer shipping detail.
+     * @param buyerId The unique ID for a buyer. (required)
+     * @param shippingDetailRequest  (optional)
+     * @return ApiResponse&lt;ShippingDetail&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 201 </td><td> Returns the shipping detail that was added. </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Returns an error if the request was badly formatted or missing required fields. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Returns an error if no valid authentication was provided. </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<ShippingDetail> newBuyerShippingDetailWithHttpInfo(UUID buyerId, ShippingDetailRequest shippingDetailRequest) throws ApiException {
+        okhttp3.Call localVarCall = newBuyerShippingDetailValidateBeforeCall(buyerId, shippingDetailRequest, null);
+        Type localVarReturnType = new TypeToken<ShippingDetail>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * New buyer shipping detail (asynchronously)
+     * Adds a buyer shipping detail.
+     * @param buyerId The unique ID for a buyer. (required)
+     * @param shippingDetailRequest  (optional)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 201 </td><td> Returns the shipping detail that was added. </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Returns an error if the request was badly formatted or missing required fields. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Returns an error if no valid authentication was provided. </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call newBuyerShippingDetailAsync(UUID buyerId, ShippingDetailRequest shippingDetailRequest, final ApiCallback<ShippingDetail> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = newBuyerShippingDetailValidateBeforeCall(buyerId, shippingDetailRequest, _callback);
+        Type localVarReturnType = new TypeToken<ShippingDetail>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+    /**
      * Build call for updateBuyer
      * @param buyerId The unique ID for a buyer. (required)
      * @param buyerUpdate  (optional)
@@ -938,6 +938,7 @@ public class BuyersApi {
         <tr><td> 400 </td><td> Returns an error if the request was badly formatted or missing required fields. </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Returns an error if no valid authentication was provided. </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> Returns an error if the resource can not be found. </td><td>  -  </td></tr>
+        <tr><td> 409 </td><td> Returns an error if duplicate resource has been found. </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call updateBuyerCall(UUID buyerId, BuyerUpdate buyerUpdate, final ApiCallback _callback) throws ApiException {
@@ -999,6 +1000,7 @@ public class BuyersApi {
         <tr><td> 400 </td><td> Returns an error if the request was badly formatted or missing required fields. </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Returns an error if no valid authentication was provided. </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> Returns an error if the resource can not be found. </td><td>  -  </td></tr>
+        <tr><td> 409 </td><td> Returns an error if duplicate resource has been found. </td><td>  -  </td></tr>
      </table>
      */
     public Buyer updateBuyer(UUID buyerId, BuyerUpdate buyerUpdate) throws ApiException {
@@ -1020,6 +1022,7 @@ public class BuyersApi {
         <tr><td> 400 </td><td> Returns an error if the request was badly formatted or missing required fields. </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Returns an error if no valid authentication was provided. </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> Returns an error if the resource can not be found. </td><td>  -  </td></tr>
+        <tr><td> 409 </td><td> Returns an error if duplicate resource has been found. </td><td>  -  </td></tr>
      </table>
      */
     public ApiResponse<Buyer> updateBuyerWithHttpInfo(UUID buyerId, BuyerUpdate buyerUpdate) throws ApiException {
@@ -1043,6 +1046,7 @@ public class BuyersApi {
         <tr><td> 400 </td><td> Returns an error if the request was badly formatted or missing required fields. </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Returns an error if no valid authentication was provided. </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> Returns an error if the resource can not be found. </td><td>  -  </td></tr>
+        <tr><td> 409 </td><td> Returns an error if duplicate resource has been found. </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call updateBuyerAsync(UUID buyerId, BuyerUpdate buyerUpdate, final ApiCallback<Buyer> _callback) throws ApiException {
@@ -1121,8 +1125,8 @@ public class BuyersApi {
     }
 
     /**
-     * Update buyer shipping detail
-     * Updates a shipping detail for a buyer.
+     * Update buyer shipping details
+     * Updates shipping detail for a buyer.
      * @param buyerId The unique ID for a buyer. (required)
      * @param shippingDetailId The unique ID for a buyer&#39;s shipping detail. (required)
      * @param shippingDetailUpdateRequest  (optional)
@@ -1143,8 +1147,8 @@ public class BuyersApi {
     }
 
     /**
-     * Update buyer shipping detail
-     * Updates a shipping detail for a buyer.
+     * Update buyer shipping details
+     * Updates shipping detail for a buyer.
      * @param buyerId The unique ID for a buyer. (required)
      * @param shippingDetailId The unique ID for a buyer&#39;s shipping detail. (required)
      * @param shippingDetailUpdateRequest  (optional)
@@ -1166,8 +1170,8 @@ public class BuyersApi {
     }
 
     /**
-     * Update buyer shipping detail (asynchronously)
-     * Updates a shipping detail for a buyer.
+     * Update buyer shipping details (asynchronously)
+     * Updates shipping detail for a buyer.
      * @param buyerId The unique ID for a buyer. (required)
      * @param shippingDetailId The unique ID for a buyer&#39;s shipping detail. (required)
      * @param shippingDetailUpdateRequest  (optional)

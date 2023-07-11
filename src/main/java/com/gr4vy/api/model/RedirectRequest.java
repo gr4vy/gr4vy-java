@@ -26,14 +26,67 @@ import java.io.IOException;
 import java.util.UUID;
 
 /**
- * Request to use a redirect payment method in a transaction.
+ * Details to register a new redirect payment method.
  */
-@ApiModel(description = "Request to use a redirect payment method in a transaction.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-12-22T14:21:56.132305Z[Etc/UTC]")
+@ApiModel(description = "Details to register a new redirect payment method.")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-06-30T05:21:36.133441Z[Etc/UTC]")
 public class RedirectRequest {
+  /**
+   * The method to use, this can be any of the methods that support redirect requests.  When storing a new payment method, only &#x60;gocardless&#x60; and &#x60;stripedd&#x60; are currently supported.
+   */
+  @JsonAdapter(MethodEnum.Adapter.class)
+  public enum MethodEnum {
+    PAYPAL("paypal"),
+    
+    BANKED("banked"),
+    
+    BITPAY("bitpay"),
+    
+    GOCARDLESS("gocardless"),
+    
+    STRIPEDD("stripedd");
+
+    private String value;
+
+    MethodEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static MethodEnum fromValue(String value) {
+      for (MethodEnum b : MethodEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+
+    public static class Adapter extends TypeAdapter<MethodEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final MethodEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public MethodEnum read(final JsonReader jsonReader) throws IOException {
+        String value =  jsonReader.nextString();
+        return MethodEnum.fromValue(value);
+      }
+    }
+  }
+
   public static final String SERIALIZED_NAME_METHOD = "method";
   @SerializedName(SERIALIZED_NAME_METHOD)
-  private String method;
+  private MethodEnum method;
 
   public static final String SERIALIZED_NAME_REDIRECT_URL = "redirect_url";
   @SerializedName(SERIALIZED_NAME_REDIRECT_URL)
@@ -60,24 +113,24 @@ public class RedirectRequest {
   private String buyerExternalIdentifier;
 
 
-  public RedirectRequest method(String method) {
+  public RedirectRequest method(MethodEnum method) {
     
     this.method = method;
     return this;
   }
 
    /**
-   * Get method
+   * The method to use, this can be any of the methods that support redirect requests.  When storing a new payment method, only &#x60;gocardless&#x60; and &#x60;stripedd&#x60; are currently supported.
    * @return method
   **/
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(example = "paypal", required = true, value = "The method to use, this can be any of the methods that support redirect requests.  When storing a new payment method, only `gocardless` and `stripedd` are currently supported.")
 
-  public String getMethod() {
+  public MethodEnum getMethod() {
     return method;
   }
 
 
-  public void setMethod(String method) {
+  public void setMethod(MethodEnum method) {
     this.method = method;
   }
 

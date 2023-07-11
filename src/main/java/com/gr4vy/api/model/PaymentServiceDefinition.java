@@ -33,7 +33,7 @@ import java.util.List;
  * An available payment service that can be configured.
  */
 @ApiModel(description = "An available payment service that can be configured.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-12-22T14:21:56.132305Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-06-30T05:21:36.133441Z[Etc/UTC]")
 public class PaymentServiceDefinition {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -47,9 +47,102 @@ public class PaymentServiceDefinition {
   @SerializedName(SERIALIZED_NAME_DISPLAY_NAME)
   private String displayName;
 
+  /**
+   * The ID of the payment method that this services handles.
+   */
+  @JsonAdapter(MethodEnum.Adapter.class)
+  public enum MethodEnum {
+    AFTERPAY("afterpay"),
+    
+    APPLEPAY("applepay"),
+    
+    BANKED("banked"),
+    
+    BITPAY("bitpay"),
+    
+    BOLETO("boleto"),
+    
+    CARD("card"),
+    
+    CLEARPAY("clearpay"),
+    
+    DANA("dana"),
+    
+    FORTUMO("fortumo"),
+    
+    GCASH("gcash"),
+    
+    GOCARDLESS("gocardless"),
+    
+    GOOGLEPAY("googlepay"),
+    
+    GRABPAY("grabpay"),
+    
+    KLARNA("klarna"),
+    
+    OVO("ovo"),
+    
+    PAYMAYA("paymaya"),
+    
+    PAYPAL("paypal"),
+    
+    PIX("pix"),
+    
+    RABBITLINEPAY("rabbitlinepay"),
+    
+    SCALAPAY("scalapay"),
+    
+    SHOPEEPAY("shopeepay"),
+    
+    STRIPEDD("stripedd"),
+    
+    TRUEMONEY("truemoney"),
+    
+    TRUSTLY("trustly"),
+    
+    ZIPPAY("zippay");
+
+    private String value;
+
+    MethodEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static MethodEnum fromValue(String value) {
+      for (MethodEnum b : MethodEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+
+    public static class Adapter extends TypeAdapter<MethodEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final MethodEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public MethodEnum read(final JsonReader jsonReader) throws IOException {
+        String value =  jsonReader.nextString();
+        return MethodEnum.fromValue(value);
+      }
+    }
+  }
+
   public static final String SERIALIZED_NAME_METHOD = "method";
   @SerializedName(SERIALIZED_NAME_METHOD)
-  private String method;
+  private MethodEnum method;
 
   public static final String SERIALIZED_NAME_FIELDS = "fields";
   @SerializedName(SERIALIZED_NAME_FIELDS)
@@ -63,9 +156,60 @@ public class PaymentServiceDefinition {
   @SerializedName(SERIALIZED_NAME_SUPPORTED_COUNTRIES)
   private List<String> supportedCountries = null;
 
+  /**
+   * The mode of this payment service.
+   */
+  @JsonAdapter(ModeEnum.Adapter.class)
+  public enum ModeEnum {
+    CARD("card"),
+    
+    REDIRECT("redirect"),
+    
+    APPLEPAY("applepay"),
+    
+    GOOGLEPAY("googlepay");
+
+    private String value;
+
+    ModeEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static ModeEnum fromValue(String value) {
+      for (ModeEnum b : ModeEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+
+    public static class Adapter extends TypeAdapter<ModeEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final ModeEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public ModeEnum read(final JsonReader jsonReader) throws IOException {
+        String value =  jsonReader.nextString();
+        return ModeEnum.fromValue(value);
+      }
+    }
+  }
+
   public static final String SERIALIZED_NAME_MODE = "mode";
   @SerializedName(SERIALIZED_NAME_MODE)
-  private String mode;
+  private ModeEnum mode;
 
   public static final String SERIALIZED_NAME_SUPPORTED_FEATURES = "supported_features";
   @SerializedName(SERIALIZED_NAME_SUPPORTED_FEATURES)
@@ -149,25 +293,25 @@ public class PaymentServiceDefinition {
   }
 
 
-  public PaymentServiceDefinition method(String method) {
+  public PaymentServiceDefinition method(MethodEnum method) {
     
     this.method = method;
     return this;
   }
 
    /**
-   * Get method
+   * The ID of the payment method that this services handles.
    * @return method
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(example = "card", value = "The ID of the payment method that this services handles.")
 
-  public String getMethod() {
+  public MethodEnum getMethod() {
     return method;
   }
 
 
-  public void setMethod(String method) {
+  public void setMethod(MethodEnum method) {
     this.method = method;
   }
 
@@ -265,25 +409,25 @@ public class PaymentServiceDefinition {
   }
 
 
-  public PaymentServiceDefinition mode(String mode) {
+  public PaymentServiceDefinition mode(ModeEnum mode) {
     
     this.mode = mode;
     return this;
   }
 
    /**
-   * Get mode
+   * The mode of this payment service.
    * @return mode
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(example = "card", value = "The mode of this payment service.")
 
-  public String getMode() {
+  public ModeEnum getMode() {
     return mode;
   }
 
 
-  public void setMode(String mode) {
+  public void setMode(ModeEnum mode) {
     this.mode = mode;
   }
 

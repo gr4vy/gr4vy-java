@@ -27,3 +27,6 @@ build.*
 gradle*
 settings.gradle
 git_push.sh
+
+#ide files
+*.idea
