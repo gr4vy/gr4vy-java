@@ -28,7 +28,7 @@ import java.io.IOException;
  * Initiates a new session with Apple Pay.
  */
 @ApiModel(description = "Initiates a new session with Apple Pay.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-06-30T05:21:36.133441Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-08-08T13:56:38.178267Z[Etc/UTC]")
 public class ApplePaySessionRequest {
   public static final String SERIALIZED_NAME_VALIDATION_URL = "validation_url";
   @SerializedName(SERIALIZED_NAME_VALIDATION_URL)

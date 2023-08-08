@@ -22,6 +22,7 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import com.gr4vy.api.model.ConnectionOptionsAdyenCard;
 import com.gr4vy.api.model.ConnectionOptionsCybersourceAntiFraud;
+import com.gr4vy.api.model.ConnectionOptionsForterAntiFraud;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
@@ -29,11 +30,15 @@ import java.io.IOException;
 /**
  * ConnectionOptions
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-06-30T05:21:36.133441Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-08-08T13:56:38.178267Z[Etc/UTC]")
 public class ConnectionOptions {
   public static final String SERIALIZED_NAME_CYBERSOURCE_ANTI_FRAUD = "cybersource-anti-fraud";
   @SerializedName(SERIALIZED_NAME_CYBERSOURCE_ANTI_FRAUD)
   private ConnectionOptionsCybersourceAntiFraud cybersourceAntiFraud;
+
+  public static final String SERIALIZED_NAME_FORTER_ANTI_FRAUD = "forter-anti-fraud";
+  @SerializedName(SERIALIZED_NAME_FORTER_ANTI_FRAUD)
+  private ConnectionOptionsForterAntiFraud forterAntiFraud;
 
   public static final String SERIALIZED_NAME_ADYEN_CARD = "adyen-card";
   @SerializedName(SERIALIZED_NAME_ADYEN_CARD)
@@ -60,6 +65,29 @@ public class ConnectionOptions {
 
   public void setCybersourceAntiFraud(ConnectionOptionsCybersourceAntiFraud cybersourceAntiFraud) {
     this.cybersourceAntiFraud = cybersourceAntiFraud;
+  }
+
+
+  public ConnectionOptions forterAntiFraud(ConnectionOptionsForterAntiFraud forterAntiFraud) {
+    
+    this.forterAntiFraud = forterAntiFraud;
+    return this;
+  }
+
+   /**
+   * Get forterAntiFraud
+   * @return forterAntiFraud
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public ConnectionOptionsForterAntiFraud getForterAntiFraud() {
+    return forterAntiFraud;
+  }
+
+
+  public void setForterAntiFraud(ConnectionOptionsForterAntiFraud forterAntiFraud) {
+    this.forterAntiFraud = forterAntiFraud;
   }
 
 
@@ -96,12 +124,13 @@ public class ConnectionOptions {
     }
     ConnectionOptions connectionOptions = (ConnectionOptions) o;
     return Objects.equals(this.cybersourceAntiFraud, connectionOptions.cybersourceAntiFraud) &&
+        Objects.equals(this.forterAntiFraud, connectionOptions.forterAntiFraud) &&
         Objects.equals(this.adyenCard, connectionOptions.adyenCard);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(cybersourceAntiFraud, adyenCard);
+    return Objects.hash(cybersourceAntiFraud, forterAntiFraud, adyenCard);
   }
 
   @Override
@@ -109,6 +138,7 @@ public class ConnectionOptions {
     StringBuilder sb = new StringBuilder();
     sb.append("class ConnectionOptions {\n");
     sb.append("    cybersourceAntiFraud: ").append(toIndentedString(cybersourceAntiFraud)).append("\n");
+    sb.append("    forterAntiFraud: ").append(toIndentedString(forterAntiFraud)).append("\n");
     sb.append("    adyenCard: ").append(toIndentedString(adyenCard)).append("\n");
     sb.append("}");
     return sb.toString();

@@ -20,9 +20,14 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import com.gr4vy.api.model.CartItem;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 import org.threeten.bp.OffsetDateTime;
 
@@ -30,7 +35,7 @@ import org.threeten.bp.OffsetDateTime;
  * A short-lived checkout session.
  */
 @ApiModel(description = "A short-lived checkout session.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-06-30T05:21:36.133441Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-08-08T13:56:38.178267Z[Etc/UTC]")
 public class CheckoutSession {
   /**
    * &#x60;checkout-session&#x60;.
@@ -88,6 +93,14 @@ public class CheckoutSession {
   public static final String SERIALIZED_NAME_EXPIRES_AT = "expires_at";
   @SerializedName(SERIALIZED_NAME_EXPIRES_AT)
   private OffsetDateTime expiresAt;
+
+  public static final String SERIALIZED_NAME_CART_ITEMS = "cart_items";
+  @SerializedName(SERIALIZED_NAME_CART_ITEMS)
+  private List<CartItem> cartItems = null;
+
+  public static final String SERIALIZED_NAME_METADATA = "metadata";
+  @SerializedName(SERIALIZED_NAME_METADATA)
+  private Map<String, String> metadata = null;
 
 
   public CheckoutSession type(TypeEnum type) {
@@ -159,6 +172,68 @@ public class CheckoutSession {
   }
 
 
+  public CheckoutSession cartItems(List<CartItem> cartItems) {
+    
+    this.cartItems = cartItems;
+    return this;
+  }
+
+  public CheckoutSession addCartItemsItem(CartItem cartItemsItem) {
+    if (this.cartItems == null) {
+      this.cartItems = new ArrayList<CartItem>();
+    }
+    this.cartItems.add(cartItemsItem);
+    return this;
+  }
+
+   /**
+   * An array of cart items that represents the line items of a transaction.
+   * @return cartItems
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "An array of cart items that represents the line items of a transaction.")
+
+  public List<CartItem> getCartItems() {
+    return cartItems;
+  }
+
+
+  public void setCartItems(List<CartItem> cartItems) {
+    this.cartItems = cartItems;
+  }
+
+
+  public CheckoutSession metadata(Map<String, String> metadata) {
+    
+    this.metadata = metadata;
+    return this;
+  }
+
+  public CheckoutSession putMetadataItem(String key, String metadataItem) {
+    if (this.metadata == null) {
+      this.metadata = new HashMap<String, String>();
+    }
+    this.metadata.put(key, metadataItem);
+    return this;
+  }
+
+   /**
+   * Any additional information about the transaction that you would like to store as key-value pairs. This data is passed to payment service providers that support it.
+   * @return metadata
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "{\"key\":\"value\"}", value = "Any additional information about the transaction that you would like to store as key-value pairs. This data is passed to payment service providers that support it.")
+
+  public Map<String, String> getMetadata() {
+    return metadata;
+  }
+
+
+  public void setMetadata(Map<String, String> metadata) {
+    this.metadata = metadata;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -170,12 +245,14 @@ public class CheckoutSession {
     CheckoutSession checkoutSession = (CheckoutSession) o;
     return Objects.equals(this.type, checkoutSession.type) &&
         Objects.equals(this.id, checkoutSession.id) &&
-        Objects.equals(this.expiresAt, checkoutSession.expiresAt);
+        Objects.equals(this.expiresAt, checkoutSession.expiresAt) &&
+        Objects.equals(this.cartItems, checkoutSession.cartItems) &&
+        Objects.equals(this.metadata, checkoutSession.metadata);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(type, id, expiresAt);
+    return Objects.hash(type, id, expiresAt, cartItems, metadata);
   }
 
   @Override
@@ -185,6 +262,8 @@ public class CheckoutSession {
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    expiresAt: ").append(toIndentedString(expiresAt)).append("\n");
+    sb.append("    cartItems: ").append(toIndentedString(cartItems)).append("\n");
+    sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
     sb.append("}");
     return sb.toString();
   }

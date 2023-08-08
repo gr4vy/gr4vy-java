@@ -39,7 +39,7 @@ import java.util.UUID;
  * A request to create a transaction.
  */
 @ApiModel(description = "A request to create a transaction.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-06-30T05:21:36.133441Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-08-08T13:56:38.178267Z[Etc/UTC]")
 public class TransactionRequest {
   public static final String SERIALIZED_NAME_AMOUNT = "amount";
   @SerializedName(SERIALIZED_NAME_AMOUNT)
@@ -216,6 +216,10 @@ public class TransactionRequest {
   public static final String SERIALIZED_NAME_ASYNC_CAPTURE = "async_capture";
   @SerializedName(SERIALIZED_NAME_ASYNC_CAPTURE)
   private Boolean asyncCapture = false;
+
+  public static final String SERIALIZED_NAME_ANTI_FRAUD_FINGERPRINT = "anti_fraud_fingerprint";
+  @SerializedName(SERIALIZED_NAME_ANTI_FRAUD_FINGERPRINT)
+  private String antiFraudFingerprint = "null";
 
 
   public TransactionRequest amount(Integer amount) {
@@ -631,11 +635,11 @@ public class TransactionRequest {
   }
 
    /**
-   * Allows for passing optional configuration per connection to take advantage of connection specific features. When provided, the data is only passed to the target connection type to prevent sharing configuration across connections.  Please note that each of the keys this object are in kebab-case, for example &#x60;cybersource-anti-fraud&#x60; as they represent the ID of the connector. All the other keys will be snake-case, for example &#x60;device_fingerprint_id&#x60;.
+   * Allows for passing optional configuration per connection to take advantage of connection specific features. When provided, the data is only passed to the target connection type to prevent sharing configuration across connections.  Please note that each of the keys this object are in kebab-case, for example &#x60;cybersource-anti-fraud&#x60; as they represent the ID of the connector. All the other keys will be snake-case, for example &#x60;merchant_defined_data&#x60;.
    * @return connectionOptions
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "Allows for passing optional configuration per connection to take advantage of connection specific features. When provided, the data is only passed to the target connection type to prevent sharing configuration across connections.  Please note that each of the keys this object are in kebab-case, for example `cybersource-anti-fraud` as they represent the ID of the connector. All the other keys will be snake-case, for example `device_fingerprint_id`.")
+  @ApiModelProperty(value = "Allows for passing optional configuration per connection to take advantage of connection specific features. When provided, the data is only passed to the target connection type to prevent sharing configuration across connections.  Please note that each of the keys this object are in kebab-case, for example `cybersource-anti-fraud` as they represent the ID of the connector. All the other keys will be snake-case, for example `merchant_defined_data`.")
 
   public ConnectionOptions getConnectionOptions() {
     return connectionOptions;
@@ -670,6 +674,29 @@ public class TransactionRequest {
   }
 
 
+  public TransactionRequest antiFraudFingerprint(String antiFraudFingerprint) {
+    
+    this.antiFraudFingerprint = antiFraudFingerprint;
+    return this;
+  }
+
+   /**
+   * This field represents the fingerprint data to be passed to the active anti-fraud service.
+   * @return antiFraudFingerprint
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "yGeBAFYgFmM=", value = "This field represents the fingerprint data to be passed to the active anti-fraud service.")
+
+  public String getAntiFraudFingerprint() {
+    return antiFraudFingerprint;
+  }
+
+
+  public void setAntiFraudFingerprint(String antiFraudFingerprint) {
+    this.antiFraudFingerprint = antiFraudFingerprint;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -697,12 +724,13 @@ public class TransactionRequest {
         Objects.equals(this.browserInfo, transactionRequest.browserInfo) &&
         Objects.equals(this.shippingDetailsId, transactionRequest.shippingDetailsId) &&
         Objects.equals(this.connectionOptions, transactionRequest.connectionOptions) &&
-        Objects.equals(this.asyncCapture, transactionRequest.asyncCapture);
+        Objects.equals(this.asyncCapture, transactionRequest.asyncCapture) &&
+        Objects.equals(this.antiFraudFingerprint, transactionRequest.antiFraudFingerprint);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(amount, currency, country, paymentMethod, store, intent, externalIdentifier, threeDSecureData, merchantInitiated, paymentSource, isSubsequentPayment, metadata, statementDescriptor, cartItems, previousSchemeTransactionId, browserInfo, shippingDetailsId, connectionOptions, asyncCapture);
+    return Objects.hash(amount, currency, country, paymentMethod, store, intent, externalIdentifier, threeDSecureData, merchantInitiated, paymentSource, isSubsequentPayment, metadata, statementDescriptor, cartItems, previousSchemeTransactionId, browserInfo, shippingDetailsId, connectionOptions, asyncCapture, antiFraudFingerprint);
   }
 
   @Override
@@ -728,6 +756,7 @@ public class TransactionRequest {
     sb.append("    shippingDetailsId: ").append(toIndentedString(shippingDetailsId)).append("\n");
     sb.append("    connectionOptions: ").append(toIndentedString(connectionOptions)).append("\n");
     sb.append("    asyncCapture: ").append(toIndentedString(asyncCapture)).append("\n");
+    sb.append("    antiFraudFingerprint: ").append(toIndentedString(antiFraudFingerprint)).append("\n");
     sb.append("}");
     return sb.toString();
   }
