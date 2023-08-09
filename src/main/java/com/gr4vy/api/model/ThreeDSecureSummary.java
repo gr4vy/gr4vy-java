@@ -27,10 +27,10 @@ import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 
 /**
- * Details about the 3-D Secure challenge that was presented to the buyer for this transaction, where applicable.
+ * The 3-D Secure data that was sent to the payment service for the transaction.
  */
-@ApiModel(description = "Details about the 3-D Secure challenge that was presented to the buyer for this transaction, where applicable.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-06-30T05:21:36.133441Z[Etc/UTC]")
+@ApiModel(description = "The 3-D Secure data that was sent to the payment service for the transaction.")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-08-08T13:56:38.178267Z[Etc/UTC]")
 public class ThreeDSecureSummary {
   public static final String SERIALIZED_NAME_VERSION = "version";
   @SerializedName(SERIALIZED_NAME_VERSION)
@@ -229,11 +229,11 @@ public class ThreeDSecureSummary {
   }
 
    /**
-   * If the transaction had a 3DS error, information about it.
+   * The error data received from our 3DS server. This will not be populated if the customer failed the authentication with a status code of &#x60;N&#x60;, &#x60;R&#x60;, or &#x60;U&#x60;.  To see full details about the 3DS calls in those situations please use our transaction events API.
    * @return errorData
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "If the transaction had a 3DS error, information about it.")
+  @ApiModelProperty(value = "The error data received from our 3DS server. This will not be populated if the customer failed the authentication with a status code of `N`, `R`, or `U`.  To see full details about the 3DS calls in those situations please use our transaction events API.")
 
   public ThreeDSecureError getErrorData() {
     return errorData;

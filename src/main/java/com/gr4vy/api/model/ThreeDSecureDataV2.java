@@ -29,7 +29,7 @@ import java.io.IOException;
 /**
  * ThreeDSecureDataV2
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-06-30T05:21:36.133441Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-08-08T13:56:38.178267Z[Etc/UTC]")
 public class ThreeDSecureDataV2 {
   public static final String SERIALIZED_NAME_CAVV = "cavv";
   @SerializedName(SERIALIZED_NAME_CAVV)
@@ -43,13 +43,121 @@ public class ThreeDSecureDataV2 {
   @SerializedName(SERIALIZED_NAME_VERSION)
   private String version;
 
+  /**
+   * The transaction status received as part of the authentication request.
+   */
+  @JsonAdapter(DirectoryResponseEnum.Adapter.class)
+  public enum DirectoryResponseEnum {
+    C("C"),
+    
+    Y("Y"),
+    
+    A("A"),
+    
+    N("N"),
+    
+    R("R"),
+    
+    U("U");
+
+    private String value;
+
+    DirectoryResponseEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static DirectoryResponseEnum fromValue(String value) {
+      for (DirectoryResponseEnum b : DirectoryResponseEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+
+    public static class Adapter extends TypeAdapter<DirectoryResponseEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final DirectoryResponseEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public DirectoryResponseEnum read(final JsonReader jsonReader) throws IOException {
+        String value =  jsonReader.nextString();
+        return DirectoryResponseEnum.fromValue(value);
+      }
+    }
+  }
+
   public static final String SERIALIZED_NAME_DIRECTORY_RESPONSE = "directory_response";
   @SerializedName(SERIALIZED_NAME_DIRECTORY_RESPONSE)
-  private String directoryResponse;
+  private DirectoryResponseEnum directoryResponse;
+
+  /**
+   * The transaction status after a the 3DS challenge. This will be null in case of a frictionless 3DS flow.
+   */
+  @JsonAdapter(AuthenticationResponseEnum.Adapter.class)
+  public enum AuthenticationResponseEnum {
+    Y("Y"),
+    
+    A("A"),
+    
+    N("N"),
+    
+    R("R"),
+    
+    U("U");
+
+    private String value;
+
+    AuthenticationResponseEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static AuthenticationResponseEnum fromValue(String value) {
+      for (AuthenticationResponseEnum b : AuthenticationResponseEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      return null;
+    }
+
+    public static class Adapter extends TypeAdapter<AuthenticationResponseEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final AuthenticationResponseEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public AuthenticationResponseEnum read(final JsonReader jsonReader) throws IOException {
+        String value =  jsonReader.nextString();
+        return AuthenticationResponseEnum.fromValue(value);
+      }
+    }
+  }
 
   public static final String SERIALIZED_NAME_AUTHENTICATION_RESPONSE = "authentication_response";
   @SerializedName(SERIALIZED_NAME_AUTHENTICATION_RESPONSE)
-  private String authenticationResponse;
+  private AuthenticationResponseEnum authenticationResponse;
 
   public static final String SERIALIZED_NAME_DIRECTORY_TRANSACTION_ID = "directory_transaction_id";
   @SerializedName(SERIALIZED_NAME_DIRECTORY_TRANSACTION_ID)
@@ -122,47 +230,47 @@ public class ThreeDSecureDataV2 {
   }
 
 
-  public ThreeDSecureDataV2 directoryResponse(String directoryResponse) {
+  public ThreeDSecureDataV2 directoryResponse(DirectoryResponseEnum directoryResponse) {
     
     this.directoryResponse = directoryResponse;
     return this;
   }
 
    /**
-   * For 3-D Secure version 1, the enrolment response. For 3-D Secure version , the transaction status from the &#x60;ARes&#x60;.
+   * The transaction status received as part of the authentication request.
    * @return directoryResponse
   **/
-  @ApiModelProperty(example = "C", required = true, value = "For 3-D Secure version 1, the enrolment response. For 3-D Secure version , the transaction status from the `ARes`.")
+  @ApiModelProperty(example = "C", required = true, value = "The transaction status received as part of the authentication request.")
 
-  public String getDirectoryResponse() {
+  public DirectoryResponseEnum getDirectoryResponse() {
     return directoryResponse;
   }
 
 
-  public void setDirectoryResponse(String directoryResponse) {
+  public void setDirectoryResponse(DirectoryResponseEnum directoryResponse) {
     this.directoryResponse = directoryResponse;
   }
 
 
-  public ThreeDSecureDataV2 authenticationResponse(String authenticationResponse) {
+  public ThreeDSecureDataV2 authenticationResponse(AuthenticationResponseEnum authenticationResponse) {
     
     this.authenticationResponse = authenticationResponse;
     return this;
   }
 
    /**
-   * The transaction status from the challenge result (not required for frictionless).
+   * The transaction status after a the 3DS challenge. This will be null in case of a frictionless 3DS flow.
    * @return authenticationResponse
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "Y", value = "The transaction status from the challenge result (not required for frictionless).")
+  @ApiModelProperty(example = "Y", value = "The transaction status after a the 3DS challenge. This will be null in case of a frictionless 3DS flow.")
 
-  public String getAuthenticationResponse() {
+  public AuthenticationResponseEnum getAuthenticationResponse() {
     return authenticationResponse;
   }
 
 
-  public void setAuthenticationResponse(String authenticationResponse) {
+  public void setAuthenticationResponse(AuthenticationResponseEnum authenticationResponse) {
     this.authenticationResponse = authenticationResponse;
   }
 

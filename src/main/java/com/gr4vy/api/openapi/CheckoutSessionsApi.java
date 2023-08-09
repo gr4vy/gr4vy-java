@@ -28,7 +28,9 @@ import java.io.IOException;
 
 
 import com.gr4vy.api.model.CheckoutSession;
+import com.gr4vy.api.model.CheckoutSessionCreateRequest;
 import com.gr4vy.api.model.CheckoutSessionSecureFieldsUpdate;
+import com.gr4vy.api.model.CheckoutSessionUpdateRequest;
 import com.gr4vy.api.model.Error401Unauthorized;
 import com.gr4vy.api.model.Error404NotFound;
 import com.gr4vy.api.model.Error409DuplicateRecord;
@@ -306,6 +308,7 @@ public class CheckoutSessionsApi {
     }
     /**
      * Build call for newCheckoutSession
+     * @param checkoutSessionCreateRequest  (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -318,8 +321,8 @@ public class CheckoutSessionsApi {
         <tr><td> 0 </td><td> Returns a generic error. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call newCheckoutSessionCall(final ApiCallback _callback) throws ApiException {
-        Object localVarPostBody = null;
+    public okhttp3.Call newCheckoutSessionCall(CheckoutSessionCreateRequest checkoutSessionCreateRequest, final ApiCallback _callback) throws ApiException {
+        Object localVarPostBody = checkoutSessionCreateRequest;
 
         // create path and map variables
         String localVarPath = "/checkout/sessions";
@@ -339,7 +342,7 @@ public class CheckoutSessionsApi {
         }
 
         final String[] localVarContentTypes = {
-            
+            "application/json"
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
@@ -349,10 +352,10 @@ public class CheckoutSessionsApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call newCheckoutSessionValidateBeforeCall(final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call newCheckoutSessionValidateBeforeCall(CheckoutSessionCreateRequest checkoutSessionCreateRequest, final ApiCallback _callback) throws ApiException {
         
 
-        okhttp3.Call localVarCall = newCheckoutSessionCall(_callback);
+        okhttp3.Call localVarCall = newCheckoutSessionCall(checkoutSessionCreateRequest, _callback);
         return localVarCall;
 
     }
@@ -360,6 +363,7 @@ public class CheckoutSessionsApi {
     /**
      * New checkout session
      * Creates a new Checkout Session.
+     * @param checkoutSessionCreateRequest  (optional)
      * @return CheckoutSession
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -371,14 +375,15 @@ public class CheckoutSessionsApi {
         <tr><td> 0 </td><td> Returns a generic error. </td><td>  -  </td></tr>
      </table>
      */
-    public CheckoutSession newCheckoutSession() throws ApiException {
-        ApiResponse<CheckoutSession> localVarResp = newCheckoutSessionWithHttpInfo();
+    public CheckoutSession newCheckoutSession(CheckoutSessionCreateRequest checkoutSessionCreateRequest) throws ApiException {
+        ApiResponse<CheckoutSession> localVarResp = newCheckoutSessionWithHttpInfo(checkoutSessionCreateRequest);
         return localVarResp.getData();
     }
 
     /**
      * New checkout session
      * Creates a new Checkout Session.
+     * @param checkoutSessionCreateRequest  (optional)
      * @return ApiResponse&lt;CheckoutSession&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -390,8 +395,8 @@ public class CheckoutSessionsApi {
         <tr><td> 0 </td><td> Returns a generic error. </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<CheckoutSession> newCheckoutSessionWithHttpInfo() throws ApiException {
-        okhttp3.Call localVarCall = newCheckoutSessionValidateBeforeCall(null);
+    public ApiResponse<CheckoutSession> newCheckoutSessionWithHttpInfo(CheckoutSessionCreateRequest checkoutSessionCreateRequest) throws ApiException {
+        okhttp3.Call localVarCall = newCheckoutSessionValidateBeforeCall(checkoutSessionCreateRequest, null);
         Type localVarReturnType = new TypeToken<CheckoutSession>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -399,6 +404,7 @@ public class CheckoutSessionsApi {
     /**
      * New checkout session (asynchronously)
      * Creates a new Checkout Session.
+     * @param checkoutSessionCreateRequest  (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -411,9 +417,145 @@ public class CheckoutSessionsApi {
         <tr><td> 0 </td><td> Returns a generic error. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call newCheckoutSessionAsync(final ApiCallback<CheckoutSession> _callback) throws ApiException {
+    public okhttp3.Call newCheckoutSessionAsync(CheckoutSessionCreateRequest checkoutSessionCreateRequest, final ApiCallback<CheckoutSession> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = newCheckoutSessionValidateBeforeCall(_callback);
+        okhttp3.Call localVarCall = newCheckoutSessionValidateBeforeCall(checkoutSessionCreateRequest, _callback);
+        Type localVarReturnType = new TypeToken<CheckoutSession>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+    /**
+     * Build call for updateCheckoutSession
+     * @param checkoutSessionId The unique ID for a Checkout Session. (required)
+     * @param checkoutSessionUpdateRequest  (optional)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Returns the updated Checkout Session. </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Returns an error if the request was badly formatted or missing required fields. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Returns an error if no valid authentication was provided. </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Returns an error if the resource can not be found. </td><td>  -  </td></tr>
+        <tr><td> 409 </td><td> Returns an error if duplicate resource has been found. </td><td>  -  </td></tr>
+        <tr><td> 0 </td><td> Returns a generic error. </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call updateCheckoutSessionCall(UUID checkoutSessionId, CheckoutSessionUpdateRequest checkoutSessionUpdateRequest, final ApiCallback _callback) throws ApiException {
+        Object localVarPostBody = checkoutSessionUpdateRequest;
+
+        // create path and map variables
+        String localVarPath = "/checkout/sessions/{checkout_session_id}"
+            .replaceAll("\\{" + "checkout_session_id" + "\\}", localVarApiClient.escapeString(checkoutSessionId.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            "application/json"
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        String[] localVarAuthNames = new String[] { "BearerAuth" };
+        return localVarApiClient.buildCall(localVarPath, "PUT", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call updateCheckoutSessionValidateBeforeCall(UUID checkoutSessionId, CheckoutSessionUpdateRequest checkoutSessionUpdateRequest, final ApiCallback _callback) throws ApiException {
+        
+        // verify the required parameter 'checkoutSessionId' is set
+        if (checkoutSessionId == null) {
+            throw new ApiException("Missing the required parameter 'checkoutSessionId' when calling updateCheckoutSession(Async)");
+        }
+        
+
+        okhttp3.Call localVarCall = updateCheckoutSessionCall(checkoutSessionId, checkoutSessionUpdateRequest, _callback);
+        return localVarCall;
+
+    }
+
+    /**
+     * Update checkout session
+     * Updates a Checkout Session.
+     * @param checkoutSessionId The unique ID for a Checkout Session. (required)
+     * @param checkoutSessionUpdateRequest  (optional)
+     * @return CheckoutSession
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Returns the updated Checkout Session. </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Returns an error if the request was badly formatted or missing required fields. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Returns an error if no valid authentication was provided. </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Returns an error if the resource can not be found. </td><td>  -  </td></tr>
+        <tr><td> 409 </td><td> Returns an error if duplicate resource has been found. </td><td>  -  </td></tr>
+        <tr><td> 0 </td><td> Returns a generic error. </td><td>  -  </td></tr>
+     </table>
+     */
+    public CheckoutSession updateCheckoutSession(UUID checkoutSessionId, CheckoutSessionUpdateRequest checkoutSessionUpdateRequest) throws ApiException {
+        ApiResponse<CheckoutSession> localVarResp = updateCheckoutSessionWithHttpInfo(checkoutSessionId, checkoutSessionUpdateRequest);
+        return localVarResp.getData();
+    }
+
+    /**
+     * Update checkout session
+     * Updates a Checkout Session.
+     * @param checkoutSessionId The unique ID for a Checkout Session. (required)
+     * @param checkoutSessionUpdateRequest  (optional)
+     * @return ApiResponse&lt;CheckoutSession&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Returns the updated Checkout Session. </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Returns an error if the request was badly formatted or missing required fields. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Returns an error if no valid authentication was provided. </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Returns an error if the resource can not be found. </td><td>  -  </td></tr>
+        <tr><td> 409 </td><td> Returns an error if duplicate resource has been found. </td><td>  -  </td></tr>
+        <tr><td> 0 </td><td> Returns a generic error. </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<CheckoutSession> updateCheckoutSessionWithHttpInfo(UUID checkoutSessionId, CheckoutSessionUpdateRequest checkoutSessionUpdateRequest) throws ApiException {
+        okhttp3.Call localVarCall = updateCheckoutSessionValidateBeforeCall(checkoutSessionId, checkoutSessionUpdateRequest, null);
+        Type localVarReturnType = new TypeToken<CheckoutSession>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Update checkout session (asynchronously)
+     * Updates a Checkout Session.
+     * @param checkoutSessionId The unique ID for a Checkout Session. (required)
+     * @param checkoutSessionUpdateRequest  (optional)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Returns the updated Checkout Session. </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Returns an error if the request was badly formatted or missing required fields. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Returns an error if no valid authentication was provided. </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Returns an error if the resource can not be found. </td><td>  -  </td></tr>
+        <tr><td> 409 </td><td> Returns an error if duplicate resource has been found. </td><td>  -  </td></tr>
+        <tr><td> 0 </td><td> Returns a generic error. </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call updateCheckoutSessionAsync(UUID checkoutSessionId, CheckoutSessionUpdateRequest checkoutSessionUpdateRequest, final ApiCallback<CheckoutSession> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = updateCheckoutSessionValidateBeforeCall(checkoutSessionId, checkoutSessionUpdateRequest, _callback);
         Type localVarReturnType = new TypeToken<CheckoutSession>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;

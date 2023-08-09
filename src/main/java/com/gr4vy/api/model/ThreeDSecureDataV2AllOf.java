@@ -27,37 +27,172 @@ import java.io.IOException;
 /**
  * ThreeDSecureDataV2AllOf
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-06-30T05:21:36.133441Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-08-08T13:56:38.178267Z[Etc/UTC]")
 public class ThreeDSecureDataV2AllOf {
+  /**
+   * The transaction status after a the 3DS challenge. This will be null in case of a frictionless 3DS flow.
+   */
+  @JsonAdapter(AuthenticationResponseEnum.Adapter.class)
+  public enum AuthenticationResponseEnum {
+    Y("Y"),
+    
+    A("A"),
+    
+    N("N"),
+    
+    R("R"),
+    
+    U("U");
+
+    private String value;
+
+    AuthenticationResponseEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static AuthenticationResponseEnum fromValue(String value) {
+      for (AuthenticationResponseEnum b : AuthenticationResponseEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      return null;
+    }
+
+    public static class Adapter extends TypeAdapter<AuthenticationResponseEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final AuthenticationResponseEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public AuthenticationResponseEnum read(final JsonReader jsonReader) throws IOException {
+        String value =  jsonReader.nextString();
+        return AuthenticationResponseEnum.fromValue(value);
+      }
+    }
+  }
+
   public static final String SERIALIZED_NAME_AUTHENTICATION_RESPONSE = "authentication_response";
   @SerializedName(SERIALIZED_NAME_AUTHENTICATION_RESPONSE)
-  private String authenticationResponse;
+  private AuthenticationResponseEnum authenticationResponse;
+
+  /**
+   * The transaction status received as part of the authentication request.
+   */
+  @JsonAdapter(DirectoryResponseEnum.Adapter.class)
+  public enum DirectoryResponseEnum {
+    C("C"),
+    
+    Y("Y"),
+    
+    A("A"),
+    
+    N("N"),
+    
+    R("R"),
+    
+    U("U");
+
+    private String value;
+
+    DirectoryResponseEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static DirectoryResponseEnum fromValue(String value) {
+      for (DirectoryResponseEnum b : DirectoryResponseEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+
+    public static class Adapter extends TypeAdapter<DirectoryResponseEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final DirectoryResponseEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public DirectoryResponseEnum read(final JsonReader jsonReader) throws IOException {
+        String value =  jsonReader.nextString();
+        return DirectoryResponseEnum.fromValue(value);
+      }
+    }
+  }
+
+  public static final String SERIALIZED_NAME_DIRECTORY_RESPONSE = "directory_response";
+  @SerializedName(SERIALIZED_NAME_DIRECTORY_RESPONSE)
+  private DirectoryResponseEnum directoryResponse;
 
   public static final String SERIALIZED_NAME_DIRECTORY_TRANSACTION_ID = "directory_transaction_id";
   @SerializedName(SERIALIZED_NAME_DIRECTORY_TRANSACTION_ID)
   private String directoryTransactionId;
 
 
-  public ThreeDSecureDataV2AllOf authenticationResponse(String authenticationResponse) {
+  public ThreeDSecureDataV2AllOf authenticationResponse(AuthenticationResponseEnum authenticationResponse) {
     
     this.authenticationResponse = authenticationResponse;
     return this;
   }
 
    /**
-   * The transaction status from the challenge result (not required for frictionless).
+   * The transaction status after a the 3DS challenge. This will be null in case of a frictionless 3DS flow.
    * @return authenticationResponse
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "Y", value = "The transaction status from the challenge result (not required for frictionless).")
+  @ApiModelProperty(example = "Y", value = "The transaction status after a the 3DS challenge. This will be null in case of a frictionless 3DS flow.")
 
-  public String getAuthenticationResponse() {
+  public AuthenticationResponseEnum getAuthenticationResponse() {
     return authenticationResponse;
   }
 
 
-  public void setAuthenticationResponse(String authenticationResponse) {
+  public void setAuthenticationResponse(AuthenticationResponseEnum authenticationResponse) {
     this.authenticationResponse = authenticationResponse;
+  }
+
+
+  public ThreeDSecureDataV2AllOf directoryResponse(DirectoryResponseEnum directoryResponse) {
+    
+    this.directoryResponse = directoryResponse;
+    return this;
+  }
+
+   /**
+   * The transaction status received as part of the authentication request.
+   * @return directoryResponse
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "C", value = "The transaction status received as part of the authentication request.")
+
+  public DirectoryResponseEnum getDirectoryResponse() {
+    return directoryResponse;
+  }
+
+
+  public void setDirectoryResponse(DirectoryResponseEnum directoryResponse) {
+    this.directoryResponse = directoryResponse;
   }
 
 
@@ -93,12 +228,13 @@ public class ThreeDSecureDataV2AllOf {
     }
     ThreeDSecureDataV2AllOf threeDSecureDataV2AllOf = (ThreeDSecureDataV2AllOf) o;
     return Objects.equals(this.authenticationResponse, threeDSecureDataV2AllOf.authenticationResponse) &&
+        Objects.equals(this.directoryResponse, threeDSecureDataV2AllOf.directoryResponse) &&
         Objects.equals(this.directoryTransactionId, threeDSecureDataV2AllOf.directoryTransactionId);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(authenticationResponse, directoryTransactionId);
+    return Objects.hash(authenticationResponse, directoryResponse, directoryTransactionId);
   }
 
   @Override
@@ -106,6 +242,7 @@ public class ThreeDSecureDataV2AllOf {
     StringBuilder sb = new StringBuilder();
     sb.append("class ThreeDSecureDataV2AllOf {\n");
     sb.append("    authenticationResponse: ").append(toIndentedString(authenticationResponse)).append("\n");
+    sb.append("    directoryResponse: ").append(toIndentedString(directoryResponse)).append("\n");
     sb.append("    directoryTransactionId: ").append(toIndentedString(directoryTransactionId)).append("\n");
     sb.append("}");
     return sb.toString();

@@ -32,7 +32,7 @@ import org.threeten.bp.OffsetDateTime;
  * A log of a change that occurred in the Gr4vy instance.
  */
 @ApiModel(description = "A log of a change that occurred in the Gr4vy instance.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-06-30T05:21:36.133441Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-08-08T13:56:38.178267Z[Etc/UTC]")
 public class AuditLog {
   /**
    * &#x60;audit-log&#x60;.
@@ -144,6 +144,10 @@ public class AuditLog {
   @SerializedName(SERIALIZED_NAME_ACTION)
   private ActionEnum action;
 
+  public static final String SERIALIZED_NAME_MERCHANT_ACCOUNT_ID = "merchant_account_id";
+  @SerializedName(SERIALIZED_NAME_MERCHANT_ACCOUNT_ID)
+  private String merchantAccountId;
+
   public static final String SERIALIZED_NAME_USER = "user";
   @SerializedName(SERIALIZED_NAME_USER)
   private AuditLogUser user;
@@ -245,6 +249,29 @@ public class AuditLog {
   }
 
 
+  public AuditLog merchantAccountId(String merchantAccountId) {
+    
+    this.merchantAccountId = merchantAccountId;
+    return this;
+  }
+
+   /**
+   * The ID of the merchant account this entry was created for.
+   * @return merchantAccountId
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "default", value = "The ID of the merchant account this entry was created for.")
+
+  public String getMerchantAccountId() {
+    return merchantAccountId;
+  }
+
+
+  public void setMerchantAccountId(String merchantAccountId) {
+    this.merchantAccountId = merchantAccountId;
+  }
+
+
   public AuditLog user(AuditLogUser user) {
     
     this.user = user;
@@ -304,13 +331,14 @@ public class AuditLog {
         Objects.equals(this.id, auditLog.id) &&
         Objects.equals(this.timestamp, auditLog.timestamp) &&
         Objects.equals(this.action, auditLog.action) &&
+        Objects.equals(this.merchantAccountId, auditLog.merchantAccountId) &&
         Objects.equals(this.user, auditLog.user) &&
         Objects.equals(this.resource, auditLog.resource);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(type, id, timestamp, action, user, resource);
+    return Objects.hash(type, id, timestamp, action, merchantAccountId, user, resource);
   }
 
   @Override
@@ -321,6 +349,7 @@ public class AuditLog {
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    timestamp: ").append(toIndentedString(timestamp)).append("\n");
     sb.append("    action: ").append(toIndentedString(action)).append("\n");
+    sb.append("    merchantAccountId: ").append(toIndentedString(merchantAccountId)).append("\n");
     sb.append("    user: ").append(toIndentedString(user)).append("\n");
     sb.append("    resource: ").append(toIndentedString(resource)).append("\n");
     sb.append("}");
