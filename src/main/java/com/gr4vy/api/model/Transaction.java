@@ -41,7 +41,7 @@ import org.threeten.bp.OffsetDateTime;
  * A transaction record.
  */
 @ApiModel(description = "A transaction record.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-06-30T05:21:36.133441Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-08-08T13:56:38.178267Z[Etc/UTC]")
 public class Transaction {
   /**
    * The type of this resource. Is always &#x60;transaction&#x60;.
@@ -348,6 +348,10 @@ public class Transaction {
   public static final String SERIALIZED_NAME_RAW_RESPONSE_DESCRIPTION = "raw_response_description";
   @SerializedName(SERIALIZED_NAME_RAW_RESPONSE_DESCRIPTION)
   private String rawResponseDescription;
+
+  public static final String SERIALIZED_NAME_AUTH_RESPONSE_CODE = "auth_response_code";
+  @SerializedName(SERIALIZED_NAME_AUTH_RESPONSE_CODE)
+  private String authResponseCode;
 
   /**
    * The response code received from the payment service for the Address Verification Check (AVS). This code is mapped to a standardized Gr4vy AVS response code.  - &#x60;no_match&#x60; - neither address or postal code match - &#x60;match&#x60; - both address and postal code match - &#x60;partial_match_address&#x60; - address matches but postal code does not - &#x60;partial_match_postcode&#x60; - postal code matches but address does not - &#x60;unavailable &#x60; - AVS is unavailable for card/country  The value of this field can be &#x60;null&#x60; if the payment service did not provide a response.
@@ -1180,6 +1184,29 @@ public class Transaction {
   }
 
 
+  public Transaction authResponseCode(String authResponseCode) {
+    
+    this.authResponseCode = authResponseCode;
+    return this;
+  }
+
+   /**
+   * This is the response description received from the processor.
+   * @return authResponseCode
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "00", value = "This is the response description received from the processor.")
+
+  public String getAuthResponseCode() {
+    return authResponseCode;
+  }
+
+
+  public void setAuthResponseCode(String authResponseCode) {
+    this.authResponseCode = authResponseCode;
+  }
+
+
   public Transaction avsResponseCode(AvsResponseCodeEnum avsResponseCode) {
     
     this.avsResponseCode = avsResponseCode;
@@ -1475,6 +1502,7 @@ public class Transaction {
         Objects.equals(this.schemeTransactionId, transaction.schemeTransactionId) &&
         Objects.equals(this.rawResponseCode, transaction.rawResponseCode) &&
         Objects.equals(this.rawResponseDescription, transaction.rawResponseDescription) &&
+        Objects.equals(this.authResponseCode, transaction.authResponseCode) &&
         Objects.equals(this.avsResponseCode, transaction.avsResponseCode) &&
         Objects.equals(this.cvvResponseCode, transaction.cvvResponseCode) &&
         Objects.equals(this.method, transaction.method) &&
@@ -1490,7 +1518,7 @@ public class Transaction {
 
   @Override
   public int hashCode() {
-    return Objects.hash(type, id, merchantAccountId, status, intent, amount, capturedAmount, refundedAmount, currency, country, paymentMethod, buyer, createdAt, externalIdentifier, updatedAt, paymentService, pendingReview, merchantInitiated, paymentSource, isSubsequentPayment, statementDescriptor, cartItems, schemeTransactionId, rawResponseCode, rawResponseDescription, avsResponseCode, cvvResponseCode, method, paymentServiceTransactionId, metadata, shippingDetails, threeDSecure, authorizedAt, capturedAt, voidedAt, checkoutSessionId);
+    return Objects.hash(type, id, merchantAccountId, status, intent, amount, capturedAmount, refundedAmount, currency, country, paymentMethod, buyer, createdAt, externalIdentifier, updatedAt, paymentService, pendingReview, merchantInitiated, paymentSource, isSubsequentPayment, statementDescriptor, cartItems, schemeTransactionId, rawResponseCode, rawResponseDescription, authResponseCode, avsResponseCode, cvvResponseCode, method, paymentServiceTransactionId, metadata, shippingDetails, threeDSecure, authorizedAt, capturedAt, voidedAt, checkoutSessionId);
   }
 
   @Override
@@ -1522,6 +1550,7 @@ public class Transaction {
     sb.append("    schemeTransactionId: ").append(toIndentedString(schemeTransactionId)).append("\n");
     sb.append("    rawResponseCode: ").append(toIndentedString(rawResponseCode)).append("\n");
     sb.append("    rawResponseDescription: ").append(toIndentedString(rawResponseDescription)).append("\n");
+    sb.append("    authResponseCode: ").append(toIndentedString(authResponseCode)).append("\n");
     sb.append("    avsResponseCode: ").append(toIndentedString(avsResponseCode)).append("\n");
     sb.append("    cvvResponseCode: ").append(toIndentedString(cvvResponseCode)).append("\n");
     sb.append("    method: ").append(toIndentedString(method)).append("\n");

@@ -27,7 +27,7 @@ import java.io.IOException;
 /**
  * ThreeDSecureDataV1AllOf
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-06-30T05:21:36.133441Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-08-08T13:56:38.178267Z[Etc/UTC]")
 public class ThreeDSecureDataV1AllOf {
   public static final String SERIALIZED_NAME_AUTHENTICATION_RESPONSE = "authentication_response";
   @SerializedName(SERIALIZED_NAME_AUTHENTICATION_RESPONSE)
@@ -49,10 +49,10 @@ public class ThreeDSecureDataV1AllOf {
   }
 
    /**
-   * The authentication response.
+   * The response for the 3DS authentication call.
    * @return authenticationResponse
   **/
-  @ApiModelProperty(example = "Y", required = true, value = "The authentication response.")
+  @ApiModelProperty(example = "Y", required = true, value = "The response for the 3DS authentication call.")
 
   public String getAuthenticationResponse() {
     return authenticationResponse;
@@ -71,10 +71,10 @@ public class ThreeDSecureDataV1AllOf {
   }
 
    /**
-   * The CAVV Algorithm used.
+   * The CAVV algorithm used.
    * @return cavvAlgorithm
   **/
-  @ApiModelProperty(required = true, value = "The CAVV Algorithm used.")
+  @ApiModelProperty(required = true, value = "The CAVV algorithm used.")
 
   public String getCavvAlgorithm() {
     return cavvAlgorithm;

@@ -31,38 +31,11 @@ import java.util.Map;
  * Additional options for Cybersource Decision Manager (anti-fraud).
  */
 @ApiModel(description = "Additional options for Cybersource Decision Manager (anti-fraud).")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-06-30T05:21:36.133441Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-08-08T13:56:38.178267Z[Etc/UTC]")
 public class ConnectionOptionsCybersourceAntiFraud {
-  public static final String SERIALIZED_NAME_DEVICE_FINGERPRINT_ID = "device_fingerprint_id";
-  @SerializedName(SERIALIZED_NAME_DEVICE_FINGERPRINT_ID)
-  private String deviceFingerprintId;
-
   public static final String SERIALIZED_NAME_MERCHANT_DEFINED_DATA = "merchant_defined_data";
   @SerializedName(SERIALIZED_NAME_MERCHANT_DEFINED_DATA)
   private Map<String, String> merchantDefinedData = null;
-
-
-  public ConnectionOptionsCybersourceAntiFraud deviceFingerprintId(String deviceFingerprintId) {
-    
-    this.deviceFingerprintId = deviceFingerprintId;
-    return this;
-  }
-
-   /**
-   * This field represents device fingerprint ID.
-   * @return deviceFingerprintId
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(example = "yGeBAFYgFmM=", value = "This field represents device fingerprint ID.")
-
-  public String getDeviceFingerprintId() {
-    return deviceFingerprintId;
-  }
-
-
-  public void setDeviceFingerprintId(String deviceFingerprintId) {
-    this.deviceFingerprintId = deviceFingerprintId;
-  }
 
 
   public ConnectionOptionsCybersourceAntiFraud merchantDefinedData(Map<String, String> merchantDefinedData) {
@@ -80,11 +53,11 @@ public class ConnectionOptionsCybersourceAntiFraud {
   }
 
    /**
-   * This is a key-value object for merchant defined data.
+   * This is a key-value object for merchant defined data. Each key needs to be a numeric string identifying the MDD field to set. For example, for field 1 set the key to \&quot;1\&quot;.
    * @return merchantDefinedData
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "{\"field1\":\"value1\",\"field2\":\"value2\"}", value = "This is a key-value object for merchant defined data.")
+  @ApiModelProperty(example = "{\"1\":\"John Doe\",\"2\":\"trusted\",\"99\":\"recurring\"}", value = "This is a key-value object for merchant defined data. Each key needs to be a numeric string identifying the MDD field to set. For example, for field 1 set the key to \"1\".")
 
   public Map<String, String> getMerchantDefinedData() {
     return merchantDefinedData;
@@ -105,20 +78,18 @@ public class ConnectionOptionsCybersourceAntiFraud {
       return false;
     }
     ConnectionOptionsCybersourceAntiFraud connectionOptionsCybersourceAntiFraud = (ConnectionOptionsCybersourceAntiFraud) o;
-    return Objects.equals(this.deviceFingerprintId, connectionOptionsCybersourceAntiFraud.deviceFingerprintId) &&
-        Objects.equals(this.merchantDefinedData, connectionOptionsCybersourceAntiFraud.merchantDefinedData);
+    return Objects.equals(this.merchantDefinedData, connectionOptionsCybersourceAntiFraud.merchantDefinedData);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(deviceFingerprintId, merchantDefinedData);
+    return Objects.hash(merchantDefinedData);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class ConnectionOptionsCybersourceAntiFraud {\n");
-    sb.append("    deviceFingerprintId: ").append(toIndentedString(deviceFingerprintId)).append("\n");
     sb.append("    merchantDefinedData: ").append(toIndentedString(merchantDefinedData)).append("\n");
     sb.append("}");
     return sb.toString();

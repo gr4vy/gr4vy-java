@@ -29,7 +29,7 @@ import java.util.UUID;
  * Request body for provision a payment service token.
  */
 @ApiModel(description = "Request body for provision a payment service token.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-06-30T05:21:36.133441Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-08-08T13:56:38.178267Z[Etc/UTC]")
 public class PaymentServiceTokenRequest {
   public static final String SERIALIZED_NAME_SECURITY_CODE = "security_code";
   @SerializedName(SERIALIZED_NAME_SECURITY_CODE)

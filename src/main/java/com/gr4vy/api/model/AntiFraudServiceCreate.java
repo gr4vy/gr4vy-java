@@ -32,16 +32,18 @@ import java.util.List;
  * A request to create an anti-fraud service.
  */
 @ApiModel(description = "A request to create an anti-fraud service.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-06-30T05:21:36.133441Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-08-08T13:56:38.178267Z[Etc/UTC]")
 public class AntiFraudServiceCreate {
   /**
    * The name of the Anti-Fraud service provider. During update request, this value is used for validation only but the underlying service can not be changed for an existing service.
    */
   @JsonAdapter(AntiFraudServiceDefinitionIdEnum.Adapter.class)
   public enum AntiFraudServiceDefinitionIdEnum {
-    SIFT_ANTI_FRAUD("sift-anti-fraud"),
+    CYBERSOURCE_ANTI_FRAUD("cybersource-anti-fraud"),
     
-    CYBERSOURCE_ANTI_FRAUD("cybersource-anti-fraud");
+    FORTER_ANTI_FRAUD("forter-anti-fraud"),
+    
+    SIFT_ANTI_FRAUD("sift-anti-fraud");
 
     private String value;
 

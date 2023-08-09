@@ -24,12 +24,13 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.util.UUID;
+import org.threeten.bp.OffsetDateTime;
 
 /**
  * A mini format version of a payment method.
  */
 @ApiModel(description = "A mini format version of a payment method.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-06-30T05:21:36.133441Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-08-08T13:56:38.178267Z[Etc/UTC]")
 public class PaymentMethodTokenized {
   /**
    * &#x60;payment-method&#x60;.
@@ -329,6 +330,14 @@ public class PaymentMethodTokenized {
   @SerializedName(SERIALIZED_NAME_COUNTRY)
   private String country;
 
+  public static final String SERIALIZED_NAME_LAST_REPLACED_AT = "last_replaced_at";
+  @SerializedName(SERIALIZED_NAME_LAST_REPLACED_AT)
+  private OffsetDateTime lastReplacedAt;
+
+  public static final String SERIALIZED_NAME_HAS_REPLACEMENT = "has_replacement";
+  @SerializedName(SERIALIZED_NAME_HAS_REPLACEMENT)
+  private Boolean hasReplacement;
+
 
   public PaymentMethodTokenized type(TypeEnum type) {
     
@@ -583,6 +592,52 @@ public class PaymentMethodTokenized {
   }
 
 
+  public PaymentMethodTokenized lastReplacedAt(OffsetDateTime lastReplacedAt) {
+    
+    this.lastReplacedAt = lastReplacedAt;
+    return this;
+  }
+
+   /**
+   * The date and time when this card was last replaced.  When the Account Updater determines that new card details are available (e.g. when it&#39;s about to expire), existing details are not changed immediately. The actual replacement occurs when a transaction using this payment method is declined with any of the following codes:  * &#x60;canceled_payment_method&#x60; * &#x60;expired_payment_method&#x60; * &#x60;unavailable_payment_method&#x60; * &#x60;unknown_payment_method&#x60;  When the replacement is applied, this field is updated. For non-card payment methods, the value of this field is always set to &#x60;null&#x60;.
+   * @return lastReplacedAt
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "2023-07-26T19:23Z", value = "The date and time when this card was last replaced.  When the Account Updater determines that new card details are available (e.g. when it's about to expire), existing details are not changed immediately. The actual replacement occurs when a transaction using this payment method is declined with any of the following codes:  * `canceled_payment_method` * `expired_payment_method` * `unavailable_payment_method` * `unknown_payment_method`  When the replacement is applied, this field is updated. For non-card payment methods, the value of this field is always set to `null`.")
+
+  public OffsetDateTime getLastReplacedAt() {
+    return lastReplacedAt;
+  }
+
+
+  public void setLastReplacedAt(OffsetDateTime lastReplacedAt) {
+    this.lastReplacedAt = lastReplacedAt;
+  }
+
+
+  public PaymentMethodTokenized hasReplacement(Boolean hasReplacement) {
+    
+    this.hasReplacement = hasReplacement;
+    return this;
+  }
+
+   /**
+   * Whether this card has a pending replacement that hasn&#39;t been applied yet.  When the Account Updater determines that new card details are available (e.g. when it&#39;s about to expire), existing details are not changed immediately, but this field is set to &#x60;true&#x60;. The actual replacement occurs when a transaction using this payment method is declined with any of the following codes:  * &#x60;canceled_payment_method&#x60; * &#x60;expired_payment_method&#x60; * &#x60;unavailable_payment_method&#x60; * &#x60;unknown_payment_method&#x60;  When the replacement is applied, this field is set to &#x60;false&#x60;. For non-card payment methods, the value of this field is always set to &#x60;false&#x60;.
+   * @return hasReplacement
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "false", value = "Whether this card has a pending replacement that hasn't been applied yet.  When the Account Updater determines that new card details are available (e.g. when it's about to expire), existing details are not changed immediately, but this field is set to `true`. The actual replacement occurs when a transaction using this payment method is declined with any of the following codes:  * `canceled_payment_method` * `expired_payment_method` * `unavailable_payment_method` * `unknown_payment_method`  When the replacement is applied, this field is set to `false`. For non-card payment methods, the value of this field is always set to `false`.")
+
+  public Boolean getHasReplacement() {
+    return hasReplacement;
+  }
+
+
+  public void setHasReplacement(Boolean hasReplacement) {
+    this.hasReplacement = hasReplacement;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -602,12 +657,14 @@ public class PaymentMethodTokenized {
         Objects.equals(this.approvalTarget, paymentMethodTokenized.approvalTarget) &&
         Objects.equals(this.approvalUrl, paymentMethodTokenized.approvalUrl) &&
         Objects.equals(this.currency, paymentMethodTokenized.currency) &&
-        Objects.equals(this.country, paymentMethodTokenized.country);
+        Objects.equals(this.country, paymentMethodTokenized.country) &&
+        Objects.equals(this.lastReplacedAt, paymentMethodTokenized.lastReplacedAt) &&
+        Objects.equals(this.hasReplacement, paymentMethodTokenized.hasReplacement);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(type, id, merchantAccountId, method, label, scheme, expirationDate, approvalTarget, approvalUrl, currency, country);
+    return Objects.hash(type, id, merchantAccountId, method, label, scheme, expirationDate, approvalTarget, approvalUrl, currency, country, lastReplacedAt, hasReplacement);
   }
 
   @Override
@@ -625,6 +682,8 @@ public class PaymentMethodTokenized {
     sb.append("    approvalUrl: ").append(toIndentedString(approvalUrl)).append("\n");
     sb.append("    currency: ").append(toIndentedString(currency)).append("\n");
     sb.append("    country: ").append(toIndentedString(country)).append("\n");
+    sb.append("    lastReplacedAt: ").append(toIndentedString(lastReplacedAt)).append("\n");
+    sb.append("    hasReplacement: ").append(toIndentedString(hasReplacement)).append("\n");
     sb.append("}");
     return sb.toString();
   }

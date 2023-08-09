@@ -39,7 +39,7 @@ public class Gr4vyClientTest {
 		embed.put("currency", "USD");
 		
 		CheckoutSessionsApi checkoutSessionsApi = new CheckoutSessionsApi(client.getClient());
-		CheckoutSession checkoutSession = checkoutSessionsApi.newCheckoutSession();
+		CheckoutSession checkoutSession = checkoutSessionsApi.newCheckoutSession(new CheckoutSessionCreateRequest());
 		
     	String token = client.getEmbedToken(embed, checkoutSession.getId());
         assert token != null;

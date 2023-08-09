@@ -31,7 +31,7 @@ import org.threeten.bp.OffsetDateTime;
  * A report execution summary.
  */
 @ApiModel(description = "A report execution summary.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-06-30T05:21:36.133441Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-08-08T13:56:38.178267Z[Etc/UTC]")
 public class ReportExecutionSummary {
   /**
    * The type of this resource. Is always &#x60;report-execution&#x60;.
