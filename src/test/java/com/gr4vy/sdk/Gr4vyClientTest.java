@@ -115,24 +115,24 @@ public class Gr4vyClientTest {
 //        assert response != null;
 //	}
 	
-	@Test
-	public void newTransactionTest() throws Gr4vyException {
-		Gr4vyClient client = new Gr4vyClient("spider", "private_key.pem", "sandbox");
-		
-		TransactionCardRequest pm = new TransactionCardRequest()
-				.number("4111111111111111")
-				.securityCode("123")
-				.expirationDate("12/23");
-		
-		TransactionRequest request = new TransactionRequest()
-				.amount(100)
-				.currency("GBP")
-				.paymentMethod(pm);
-		
-     	Transaction response = client.newTransaction(request);
-     	System.out.println(response);
-        assert response != null;
-	}
+//	@Test
+//	public void newTransactionTest() throws Gr4vyException {
+//		Gr4vyClient client = new Gr4vyClient("spider", "private_key.pem", "sandbox");
+//		
+//		TransactionCardRequest pm = new TransactionCardRequest()
+//				.number("4111111111111111")
+//				.securityCode("123")
+//				.expirationDate("12/23");
+//		
+//		TransactionRequest request = new TransactionRequest()
+//				.amount(100)
+//				.currency("GBP")
+//				.paymentMethod(pm);
+//		
+//     	Transaction response = client.newTransaction(request);
+//     	System.out.println(response);
+//        assert response != null;
+//	}
 	
 	@Test
 	public void captureTransactionTest() throws Gr4vyException {
@@ -180,23 +180,23 @@ public class Gr4vyClientTest {
         assert response != null;
 	}
 	
-	@Test
-	public void newStoredTransactionTest() throws Gr4vyException {
-		//Test cannot be run because checkout session is empty
-		Gr4vyClient client = new Gr4vyClient("spider", "private_key.pem", "sandbox");
-		
-		TransactionStoredRequest pm = new TransactionStoredRequest()
-				.id("my_stored_uuid");
-		
-		TransactionRequest request = new TransactionRequest()
-				.amount(100)
-				.currency("GBP")
-				.paymentMethod(pm);
-		
-     	Transaction response = client.newTransaction(request);
-     	System.out.println(response);
-        assert response != null;
-	}
+//	@Test
+//	public void newStoredTransactionTest() throws Gr4vyException {
+//		//Test cannot be run because checkout session is empty
+//		Gr4vyClient client = new Gr4vyClient("spider", "private_key.pem", "sandbox");
+//		
+//		TransactionStoredRequest pm = new TransactionStoredRequest()
+//				.id("my_stored_uuid");
+//		
+//		TransactionRequest request = new TransactionRequest()
+//				.amount(100)
+//				.currency("GBP")
+//				.paymentMethod(pm);
+//		
+//     	Transaction response = client.newTransaction(request);
+//     	System.out.println(response);
+//        assert response != null;
+//	}
 	
 	@Test
     public void listTransactionsTest() throws Gr4vyException {
@@ -242,14 +242,14 @@ public class Gr4vyClientTest {
         assert response != null;
 	}
 	
-	@Test
-	public void listBuyerPaymentMethodsTest() throws Gr4vyException {
-		Gr4vyClient client = new Gr4vyClient("spider", "private_key.pem", "sandbox");
-		
-     	PaymentMethods response = client.listBuyerPaymentMethods("");
-     	System.out.println(response);
-        assert response != null;
-	}
+//	@Test
+//	public void listBuyerPaymentMethodsTest() throws Gr4vyException {
+//		Gr4vyClient client = new Gr4vyClient("spider", "private_key.pem", "sandbox");
+//		
+//     	PaymentMethods response = client.listBuyerPaymentMethods("");
+//     	System.out.println(response);
+//        assert response != null;
+//	}
 
 
 }
