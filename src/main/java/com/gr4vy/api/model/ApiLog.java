@@ -32,7 +32,7 @@ import org.threeten.bp.OffsetDateTime;
  * A log of an error that happened in the API call.
  */
 @ApiModel(description = "A log of an error that happened in the API call.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-08-08T13:56:38.178267Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-09-06T15:11:33.631354Z[Etc/UTC]")
 public class ApiLog {
   /**
    * &#x60;api-log&#x60;.

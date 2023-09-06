@@ -28,7 +28,7 @@ import org.threeten.bp.OffsetDateTime;
 /**
  * MerchantAccount
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-08-08T13:56:38.178267Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-09-06T15:11:33.631354Z[Etc/UTC]")
 public class MerchantAccount {
   /**
    * &#x60;merchant-account&#x60;.
@@ -94,6 +94,10 @@ public class MerchantAccount {
   public static final String SERIALIZED_NAME_OUTBOUND_WEBHOOK_USERNAME = "outbound_webhook_username";
   @SerializedName(SERIALIZED_NAME_OUTBOUND_WEBHOOK_USERNAME)
   private String outboundWebhookUsername;
+
+  public static final String SERIALIZED_NAME_OUTBOUND_WEBHOOK_PASSWORD = "outbound_webhook_password";
+  @SerializedName(SERIALIZED_NAME_OUTBOUND_WEBHOOK_PASSWORD)
+  private String outboundWebhookPassword;
 
   public static final String SERIALIZED_NAME_VISA_NETWORK_TOKENS_REQUESTOR_ID = "visa_network_tokens_requestor_id";
   @SerializedName(SERIALIZED_NAME_VISA_NETWORK_TOKENS_REQUESTOR_ID)
@@ -240,6 +244,29 @@ public class MerchantAccount {
 
   public void setOutboundWebhookUsername(String outboundWebhookUsername) {
     this.outboundWebhookUsername = outboundWebhookUsername;
+  }
+
+
+  public MerchantAccount outboundWebhookPassword(String outboundWebhookPassword) {
+    
+    this.outboundWebhookPassword = outboundWebhookPassword;
+    return this;
+  }
+
+   /**
+   * The optional password to use when &#x60;outbound_webhook_url&#x60; is configured and requires basic authentication.  If the field is not &#x60;null&#x60;, the value is masked to avoid exposing sensitive information.
+   * @return outboundWebhookPassword
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "********", value = "The optional password to use when `outbound_webhook_url` is configured and requires basic authentication.  If the field is not `null`, the value is masked to avoid exposing sensitive information.")
+
+  public String getOutboundWebhookPassword() {
+    return outboundWebhookPassword;
+  }
+
+
+  public void setOutboundWebhookPassword(String outboundWebhookPassword) {
+    this.outboundWebhookPassword = outboundWebhookPassword;
   }
 
 
@@ -441,6 +468,7 @@ public class MerchantAccount {
         Objects.equals(this.displayName, merchantAccount.displayName) &&
         Objects.equals(this.outboundWebhookUrl, merchantAccount.outboundWebhookUrl) &&
         Objects.equals(this.outboundWebhookUsername, merchantAccount.outboundWebhookUsername) &&
+        Objects.equals(this.outboundWebhookPassword, merchantAccount.outboundWebhookPassword) &&
         Objects.equals(this.visaNetworkTokensRequestorId, merchantAccount.visaNetworkTokensRequestorId) &&
         Objects.equals(this.visaNetworkTokensAppId, merchantAccount.visaNetworkTokensAppId) &&
         Objects.equals(this.amexNetworkTokensRequestorId, merchantAccount.amexNetworkTokensRequestorId) &&
@@ -453,7 +481,7 @@ public class MerchantAccount {
 
   @Override
   public int hashCode() {
-    return Objects.hash(type, id, displayName, outboundWebhookUrl, outboundWebhookUsername, visaNetworkTokensRequestorId, visaNetworkTokensAppId, amexNetworkTokensRequestorId, amexNetworkTokensAppId, mastercardNetworkTokensRequestorId, mastercardNetworkTokensAppId, createdAt, updatedAt);
+    return Objects.hash(type, id, displayName, outboundWebhookUrl, outboundWebhookUsername, outboundWebhookPassword, visaNetworkTokensRequestorId, visaNetworkTokensAppId, amexNetworkTokensRequestorId, amexNetworkTokensAppId, mastercardNetworkTokensRequestorId, mastercardNetworkTokensAppId, createdAt, updatedAt);
   }
 
   @Override
@@ -465,6 +493,7 @@ public class MerchantAccount {
     sb.append("    displayName: ").append(toIndentedString(displayName)).append("\n");
     sb.append("    outboundWebhookUrl: ").append(toIndentedString(outboundWebhookUrl)).append("\n");
     sb.append("    outboundWebhookUsername: ").append(toIndentedString(outboundWebhookUsername)).append("\n");
+    sb.append("    outboundWebhookPassword: ").append(toIndentedString(outboundWebhookPassword)).append("\n");
     sb.append("    visaNetworkTokensRequestorId: ").append(toIndentedString(visaNetworkTokensRequestorId)).append("\n");
     sb.append("    visaNetworkTokensAppId: ").append(toIndentedString(visaNetworkTokensAppId)).append("\n");
     sb.append("    amexNetworkTokensRequestorId: ").append(toIndentedString(amexNetworkTokensRequestorId)).append("\n");

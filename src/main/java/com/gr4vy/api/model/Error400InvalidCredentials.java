@@ -28,7 +28,7 @@ import java.io.IOException;
  * Invalid credentials (HTTP 400).
  */
 @ApiModel(description = "Invalid credentials (HTTP 400).")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-08-08T13:56:38.178267Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-09-06T15:11:33.631354Z[Etc/UTC]")
 public class Error400InvalidCredentials {
   /**
    * &#x60;error&#x60;.

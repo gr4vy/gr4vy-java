@@ -30,7 +30,7 @@ import java.util.UUID;
  * Shipping detail for a buyer.
  */
 @ApiModel(description = "Shipping detail for a buyer.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-08-08T13:56:38.178267Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-09-06T15:11:33.631354Z[Etc/UTC]")
 public class ShippingDetail {
   /**
    * The type of this resource. Is always &#x60;shipping-details&#x60;.

@@ -29,7 +29,7 @@ import java.util.UUID;
  * Additional context for this event.
  */
 @ApiModel(description = "Additional context for this event.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-08-08T13:56:38.178267Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-09-06T15:11:33.631354Z[Etc/UTC]")
 public class AntiFraudWebhookEventContext {
   public static final String SERIALIZED_NAME_ANTI_FRAUD_SERVICE_ID = "anti_fraud_service_id";
   @SerializedName(SERIALIZED_NAME_ANTI_FRAUD_SERVICE_ID)

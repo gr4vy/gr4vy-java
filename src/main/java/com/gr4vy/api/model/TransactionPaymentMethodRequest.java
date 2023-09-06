@@ -20,6 +20,7 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import com.gr4vy.api.model.GooglePayRequestAssuranceDetails;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
@@ -29,7 +30,7 @@ import java.util.UUID;
  * Payment method details to use in a transaction or to register a new payment method.
  */
 @ApiModel(description = "Payment method details to use in a transaction or to register a new payment method.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-08-08T13:56:38.178267Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-09-06T15:11:33.631354Z[Etc/UTC]")
 public class TransactionPaymentMethodRequest {
   /**
    * The method to use for this request.
@@ -38,51 +39,121 @@ public class TransactionPaymentMethodRequest {
   public enum MethodEnum {
     AFTERPAY("afterpay"),
     
+    ALIPAY("alipay"),
+    
+    ALIPAYHK("alipayhk"),
+    
     APPLEPAY("applepay"),
     
+    BACS("bacs"),
+    
+    BANCONTACT("bancontact"),
+    
     BANKED("banked"),
+    
+    BECS("becs"),
     
     BITPAY("bitpay"),
     
     BOLETO("boleto"),
     
+    BOOST("boost"),
+    
     CARD("card"),
+    
+    CHECKOUT_SESSION("checkout-session"),
     
     CLEARPAY("clearpay"),
     
     DANA("dana"),
     
+    DCB("dcb"),
+    
+    EPS("eps"),
+    
     FORTUMO("fortumo"),
     
     GCASH("gcash"),
+    
+    GIROPAY("giropay"),
     
     GOCARDLESS("gocardless"),
     
     GOOGLEPAY("googlepay"),
     
+    GOPAY("gopay"),
+    
     GRABPAY("grabpay"),
+    
+    IDEAL("ideal"),
+    
+    ID("id"),
+    
+    KAKAOPAY("kakaopay"),
     
     KLARNA("klarna"),
     
+    LAYBUY("laybuy"),
+    
+    LINEPAY("linepay"),
+    
+    LINKAJA("linkaja"),
+    
+    MAYBANKQRPAY("maybankqrpay"),
+    
+    MULTIBANCO("multibanco"),
+    
+    ONEY_3X("oney_3x"),
+    
+    ONEY_4X("oney_4x"),
+    
+    ONEY_6X("oney_6x"),
+    
+    ONEY_10X("oney_10x"),
+    
+    ONEY_12X("oney_12x"),
+    
     OVO("ovo"),
+    
+    OXXO("oxxo"),
     
     PAYMAYA("paymaya"),
     
     PAYPAL("paypal"),
     
+    PAYPALPAYLATER("paypalpaylater"),
+    
     PIX("pix"),
     
     RABBITLINEPAY("rabbitlinepay"),
     
+    RAZORPAY("razorpay"),
+    
     SCALAPAY("scalapay"),
+    
+    SEPA("sepa"),
     
     SHOPEEPAY("shopeepay"),
     
+    SINGTELDASH("singteldash"),
+    
+    SOFORT("sofort"),
+    
     STRIPEDD("stripedd"),
+    
+    THAIQR("thaiqr"),
+    
+    TOUCHNGO("touchngo"),
     
     TRUEMONEY("truemoney"),
     
     TRUSTLY("trustly"),
+    
+    VENMO("venmo"),
+    
+    WAAVE("waave"),
+    
+    WECHAT("wechat"),
     
     ZIPPAY("zippay");
 
@@ -167,6 +238,18 @@ public class TransactionPaymentMethodRequest {
   public static final String SERIALIZED_NAME_COUNTRY = "country";
   @SerializedName(SERIALIZED_NAME_COUNTRY)
   private String country;
+
+  public static final String SERIALIZED_NAME_TOKEN = "token";
+  @SerializedName(SERIALIZED_NAME_TOKEN)
+  private Object token;
+
+  public static final String SERIALIZED_NAME_ASSURANCE_DETAILS = "assurance_details";
+  @SerializedName(SERIALIZED_NAME_ASSURANCE_DETAILS)
+  private GooglePayRequestAssuranceDetails assuranceDetails;
+
+  public static final String SERIALIZED_NAME_CARD_HOLDER_NAME = "card_holder_name";
+  @SerializedName(SERIALIZED_NAME_CARD_HOLDER_NAME)
+  private String cardHolderName;
 
 
   public TransactionPaymentMethodRequest method(MethodEnum method) {
@@ -359,11 +442,11 @@ public class TransactionPaymentMethodRequest {
   }
 
    /**
-   * An identifier for a previously vaulted payment method. This id can represent any type of payment method.
+   * An identifier for a previously tokenized payment method or checkout-session. This id can represent any type of payment method or checkout-session.
    * @return id
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "77a76f7e-d2de-4bbc-ada9-d6a0015e6bd5", value = "An identifier for a previously vaulted payment method. This id can represent any type of payment method.")
+  @ApiModelProperty(example = "77a76f7e-d2de-4bbc-ada9-d6a0015e6bd5", value = "An identifier for a previously tokenized payment method or checkout-session. This id can represent any type of payment method or checkout-session.")
 
   public String getId() {
     return id;
@@ -382,11 +465,11 @@ public class TransactionPaymentMethodRequest {
   }
 
    /**
-   * The ISO-4217 currency code to store this payment method for. This is used to select the payment service to use.  This only applies to &#x60;redirect&#x60; mode payment methods like &#x60;gocardless&#x60;.
+   * The ISO-4217 currency code to use this payment method for. This is used to select the payment service to use.
    * @return currency
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "USD", value = "The ISO-4217 currency code to store this payment method for. This is used to select the payment service to use.  This only applies to `redirect` mode payment methods like `gocardless`.")
+  @ApiModelProperty(example = "USD", value = "The ISO-4217 currency code to use this payment method for. This is used to select the payment service to use.")
 
   public String getCurrency() {
     return currency;
@@ -405,11 +488,11 @@ public class TransactionPaymentMethodRequest {
   }
 
    /**
-   * The 2-letter ISO code of the country to store this payment method for. This is used to select the payment service to use.  This only applies to &#x60;redirect&#x60; mode payment methods like &#x60;gocardless&#x60;.
+   * The 2-letter ISO code of the country to use this payment method for. This is used to select the payment service to use.
    * @return country
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "US", value = "The 2-letter ISO code of the country to store this payment method for. This is used to select the payment service to use.  This only applies to `redirect` mode payment methods like `gocardless`.")
+  @ApiModelProperty(example = "US", value = "The 2-letter ISO code of the country to use this payment method for. This is used to select the payment service to use.")
 
   public String getCountry() {
     return country;
@@ -418,6 +501,75 @@ public class TransactionPaymentMethodRequest {
 
   public void setCountry(String country) {
     this.country = country;
+  }
+
+
+  public TransactionPaymentMethodRequest token(Object token) {
+    
+    this.token = token;
+    return this;
+  }
+
+   /**
+   * The encrypted (opaque) token that was passed to the &#x60;onpaymentauthorized&#x60; callback by the Apple Pay integration.
+   * @return token
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "The encrypted (opaque) token that was passed to the `onpaymentauthorized` callback by the Apple Pay integration.")
+
+  public Object getToken() {
+    return token;
+  }
+
+
+  public void setToken(Object token) {
+    this.token = token;
+  }
+
+
+  public TransactionPaymentMethodRequest assuranceDetails(GooglePayRequestAssuranceDetails assuranceDetails) {
+    
+    this.assuranceDetails = assuranceDetails;
+    return this;
+  }
+
+   /**
+   * Get assuranceDetails
+   * @return assuranceDetails
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public GooglePayRequestAssuranceDetails getAssuranceDetails() {
+    return assuranceDetails;
+  }
+
+
+  public void setAssuranceDetails(GooglePayRequestAssuranceDetails assuranceDetails) {
+    this.assuranceDetails = assuranceDetails;
+  }
+
+
+  public TransactionPaymentMethodRequest cardHolderName(String cardHolderName) {
+    
+    this.cardHolderName = cardHolderName;
+    return this;
+  }
+
+   /**
+   * Name of the card holder.
+   * @return cardHolderName
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Name of the card holder.")
+
+  public String getCardHolderName() {
+    return cardHolderName;
+  }
+
+
+  public void setCardHolderName(String cardHolderName) {
+    this.cardHolderName = cardHolderName;
   }
 
 
@@ -440,12 +592,15 @@ public class TransactionPaymentMethodRequest {
         Objects.equals(this.redirectUrl, transactionPaymentMethodRequest.redirectUrl) &&
         Objects.equals(this.id, transactionPaymentMethodRequest.id) &&
         Objects.equals(this.currency, transactionPaymentMethodRequest.currency) &&
-        Objects.equals(this.country, transactionPaymentMethodRequest.country);
+        Objects.equals(this.country, transactionPaymentMethodRequest.country) &&
+        Objects.equals(this.token, transactionPaymentMethodRequest.token) &&
+        Objects.equals(this.assuranceDetails, transactionPaymentMethodRequest.assuranceDetails) &&
+        Objects.equals(this.cardHolderName, transactionPaymentMethodRequest.cardHolderName);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(method, number, expirationDate, securityCode, externalIdentifier, buyerId, buyerExternalIdentifier, redirectUrl, id, currency, country);
+    return Objects.hash(method, number, expirationDate, securityCode, externalIdentifier, buyerId, buyerExternalIdentifier, redirectUrl, id, currency, country, token, assuranceDetails, cardHolderName);
   }
 
   @Override
@@ -463,6 +618,9 @@ public class TransactionPaymentMethodRequest {
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    currency: ").append(toIndentedString(currency)).append("\n");
     sb.append("    country: ").append(toIndentedString(country)).append("\n");
+    sb.append("    token: ").append(toIndentedString(token)).append("\n");
+    sb.append("    assuranceDetails: ").append(toIndentedString(assuranceDetails)).append("\n");
+    sb.append("    cardHolderName: ").append(toIndentedString(cardHolderName)).append("\n");
     sb.append("}");
     return sb.toString();
   }

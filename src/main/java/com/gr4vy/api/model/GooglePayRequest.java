@@ -29,7 +29,7 @@ import java.io.IOException;
  * Details for a Google Pay payment method.
  */
 @ApiModel(description = "Details for a Google Pay payment method.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-08-08T13:56:38.178267Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-09-06T15:11:33.631354Z[Etc/UTC]")
 public class GooglePayRequest {
   /**
    * &#x60;googlepay&#x60;.
@@ -82,7 +82,7 @@ public class GooglePayRequest {
 
   public static final String SERIALIZED_NAME_TOKEN = "token";
   @SerializedName(SERIALIZED_NAME_TOKEN)
-  private Object token;
+  private String token;
 
   public static final String SERIALIZED_NAME_ASSURANCE_DETAILS = "assurance_details";
   @SerializedName(SERIALIZED_NAME_ASSURANCE_DETAILS)
@@ -119,7 +119,7 @@ public class GooglePayRequest {
   }
 
 
-  public GooglePayRequest token(Object token) {
+  public GooglePayRequest token(String token) {
     
     this.token = token;
     return this;
@@ -131,12 +131,12 @@ public class GooglePayRequest {
   **/
   @ApiModelProperty(required = true, value = "The encrypted (opaque) token returned by the Google Pay API that represents a payment method.")
 
-  public Object getToken() {
+  public String getToken() {
     return token;
   }
 
 
-  public void setToken(Object token) {
+  public void setToken(String token) {
     this.token = token;
   }
 

@@ -23,6 +23,7 @@ import com.google.gson.stream.JsonWriter;
 import com.gr4vy.api.model.ConnectionOptionsAdyenCard;
 import com.gr4vy.api.model.ConnectionOptionsCybersourceAntiFraud;
 import com.gr4vy.api.model.ConnectionOptionsForterAntiFraud;
+import com.gr4vy.api.model.ConnectionOptionsPaypalPaypal;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
@@ -30,7 +31,7 @@ import java.io.IOException;
 /**
  * ConnectionOptions
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-08-08T13:56:38.178267Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-09-06T15:11:33.631354Z[Etc/UTC]")
 public class ConnectionOptions {
   public static final String SERIALIZED_NAME_CYBERSOURCE_ANTI_FRAUD = "cybersource-anti-fraud";
   @SerializedName(SERIALIZED_NAME_CYBERSOURCE_ANTI_FRAUD)
@@ -43,6 +44,14 @@ public class ConnectionOptions {
   public static final String SERIALIZED_NAME_ADYEN_CARD = "adyen-card";
   @SerializedName(SERIALIZED_NAME_ADYEN_CARD)
   private ConnectionOptionsAdyenCard adyenCard;
+
+  public static final String SERIALIZED_NAME_PAYPAL_PAYPAL = "paypal-paypal";
+  @SerializedName(SERIALIZED_NAME_PAYPAL_PAYPAL)
+  private ConnectionOptionsPaypalPaypal paypalPaypal;
+
+  public static final String SERIALIZED_NAME_PAYPAL_PAYPALPAYLATER = "paypal-paypalpaylater";
+  @SerializedName(SERIALIZED_NAME_PAYPAL_PAYPALPAYLATER)
+  private ConnectionOptionsPaypalPaypal paypalPaypalpaylater;
 
 
   public ConnectionOptions cybersourceAntiFraud(ConnectionOptionsCybersourceAntiFraud cybersourceAntiFraud) {
@@ -114,6 +123,52 @@ public class ConnectionOptions {
   }
 
 
+  public ConnectionOptions paypalPaypal(ConnectionOptionsPaypalPaypal paypalPaypal) {
+    
+    this.paypalPaypal = paypalPaypal;
+    return this;
+  }
+
+   /**
+   * Get paypalPaypal
+   * @return paypalPaypal
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public ConnectionOptionsPaypalPaypal getPaypalPaypal() {
+    return paypalPaypal;
+  }
+
+
+  public void setPaypalPaypal(ConnectionOptionsPaypalPaypal paypalPaypal) {
+    this.paypalPaypal = paypalPaypal;
+  }
+
+
+  public ConnectionOptions paypalPaypalpaylater(ConnectionOptionsPaypalPaypal paypalPaypalpaylater) {
+    
+    this.paypalPaypalpaylater = paypalPaypalpaylater;
+    return this;
+  }
+
+   /**
+   * Get paypalPaypalpaylater
+   * @return paypalPaypalpaylater
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public ConnectionOptionsPaypalPaypal getPaypalPaypalpaylater() {
+    return paypalPaypalpaylater;
+  }
+
+
+  public void setPaypalPaypalpaylater(ConnectionOptionsPaypalPaypal paypalPaypalpaylater) {
+    this.paypalPaypalpaylater = paypalPaypalpaylater;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -125,12 +180,14 @@ public class ConnectionOptions {
     ConnectionOptions connectionOptions = (ConnectionOptions) o;
     return Objects.equals(this.cybersourceAntiFraud, connectionOptions.cybersourceAntiFraud) &&
         Objects.equals(this.forterAntiFraud, connectionOptions.forterAntiFraud) &&
-        Objects.equals(this.adyenCard, connectionOptions.adyenCard);
+        Objects.equals(this.adyenCard, connectionOptions.adyenCard) &&
+        Objects.equals(this.paypalPaypal, connectionOptions.paypalPaypal) &&
+        Objects.equals(this.paypalPaypalpaylater, connectionOptions.paypalPaypalpaylater);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(cybersourceAntiFraud, forterAntiFraud, adyenCard);
+    return Objects.hash(cybersourceAntiFraud, forterAntiFraud, adyenCard, paypalPaypal, paypalPaypalpaylater);
   }
 
   @Override
@@ -140,6 +197,8 @@ public class ConnectionOptions {
     sb.append("    cybersourceAntiFraud: ").append(toIndentedString(cybersourceAntiFraud)).append("\n");
     sb.append("    forterAntiFraud: ").append(toIndentedString(forterAntiFraud)).append("\n");
     sb.append("    adyenCard: ").append(toIndentedString(adyenCard)).append("\n");
+    sb.append("    paypalPaypal: ").append(toIndentedString(paypalPaypal)).append("\n");
+    sb.append("    paypalPaypalpaylater: ").append(toIndentedString(paypalPaypalpaylater)).append("\n");
     sb.append("}");
     return sb.toString();
   }

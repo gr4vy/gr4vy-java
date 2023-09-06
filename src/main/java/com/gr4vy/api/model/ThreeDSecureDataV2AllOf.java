@@ -27,7 +27,7 @@ import java.io.IOException;
 /**
  * ThreeDSecureDataV2AllOf
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-08-08T13:56:38.178267Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-09-06T15:11:33.631354Z[Etc/UTC]")
 public class ThreeDSecureDataV2AllOf {
   /**
    * The transaction status after a the 3DS challenge. This will be null in case of a frictionless 3DS flow.

@@ -30,7 +30,7 @@ import org.threeten.bp.OffsetDateTime;
  * Additional context for this event.
  */
 @ApiModel(description = "Additional context for this event.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-08-08T13:56:38.178267Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-09-06T15:11:33.631354Z[Etc/UTC]")
 public class PaymentConnectorResponseTransactionVoidSucceededEventContext {
   public static final String SERIALIZED_NAME_PAYMENT_SERVICE_ID = "payment_service_id";
   @SerializedName(SERIALIZED_NAME_PAYMENT_SERVICE_ID)

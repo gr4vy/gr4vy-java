@@ -34,7 +34,7 @@ import org.threeten.bp.OffsetDateTime;
  * An active, configured payment service.
  */
 @ApiModel(description = "An active, configured payment service.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-08-08T13:56:38.178267Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-09-06T15:11:33.631354Z[Etc/UTC]")
 public class PaymentService {
   /**
    * The type of this resource.
@@ -104,51 +104,121 @@ public class PaymentService {
   public enum MethodEnum {
     AFTERPAY("afterpay"),
     
+    ALIPAY("alipay"),
+    
+    ALIPAYHK("alipayhk"),
+    
     APPLEPAY("applepay"),
     
+    BACS("bacs"),
+    
+    BANCONTACT("bancontact"),
+    
     BANKED("banked"),
+    
+    BECS("becs"),
     
     BITPAY("bitpay"),
     
     BOLETO("boleto"),
     
+    BOOST("boost"),
+    
     CARD("card"),
+    
+    CHECKOUT_SESSION("checkout-session"),
     
     CLEARPAY("clearpay"),
     
     DANA("dana"),
     
+    DCB("dcb"),
+    
+    EPS("eps"),
+    
     FORTUMO("fortumo"),
     
     GCASH("gcash"),
+    
+    GIROPAY("giropay"),
     
     GOCARDLESS("gocardless"),
     
     GOOGLEPAY("googlepay"),
     
+    GOPAY("gopay"),
+    
     GRABPAY("grabpay"),
+    
+    IDEAL("ideal"),
+    
+    ID("id"),
+    
+    KAKAOPAY("kakaopay"),
     
     KLARNA("klarna"),
     
+    LAYBUY("laybuy"),
+    
+    LINEPAY("linepay"),
+    
+    LINKAJA("linkaja"),
+    
+    MAYBANKQRPAY("maybankqrpay"),
+    
+    MULTIBANCO("multibanco"),
+    
+    ONEY_3X("oney_3x"),
+    
+    ONEY_4X("oney_4x"),
+    
+    ONEY_6X("oney_6x"),
+    
+    ONEY_10X("oney_10x"),
+    
+    ONEY_12X("oney_12x"),
+    
     OVO("ovo"),
+    
+    OXXO("oxxo"),
     
     PAYMAYA("paymaya"),
     
     PAYPAL("paypal"),
     
+    PAYPALPAYLATER("paypalpaylater"),
+    
     PIX("pix"),
     
     RABBITLINEPAY("rabbitlinepay"),
     
+    RAZORPAY("razorpay"),
+    
     SCALAPAY("scalapay"),
+    
+    SEPA("sepa"),
     
     SHOPEEPAY("shopeepay"),
     
+    SINGTELDASH("singteldash"),
+    
+    SOFORT("sofort"),
+    
     STRIPEDD("stripedd"),
+    
+    THAIQR("thaiqr"),
+    
+    TOUCHNGO("touchngo"),
     
     TRUEMONEY("truemoney"),
     
     TRUSTLY("trustly"),
+    
+    VENMO("venmo"),
+    
+    WAAVE("waave"),
+    
+    WECHAT("wechat"),
     
     ZIPPAY("zippay");
 

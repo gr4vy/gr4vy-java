@@ -31,7 +31,7 @@ import org.threeten.bp.OffsetDateTime;
  * This event logs the reason why we skipped getting an anti-fraud decision.
  */
 @ApiModel(description = "This event logs the reason why we skipped getting an anti-fraud decision.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-08-08T13:56:38.178267Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-09-06T15:11:33.631354Z[Etc/UTC]")
 public class AntiFraudDecisionSkippedEvent {
   /**
    * The type of this resource. Is always &#x60;transaction-event&#x60;.

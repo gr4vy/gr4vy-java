@@ -28,7 +28,7 @@ import java.io.IOException;
  * Request body for provision a network token.
  */
 @ApiModel(description = "Request body for provision a network token.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-08-08T13:56:38.178267Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-09-06T15:11:33.631354Z[Etc/UTC]")
 public class NetworkTokenRequest {
   public static final String SERIALIZED_NAME_SECURITY_CODE = "security_code";
   @SerializedName(SERIALIZED_NAME_SECURITY_CODE)
