@@ -33,7 +33,7 @@ import org.threeten.bp.OffsetDateTime;
  * A generic transaction history event.
  */
 @ApiModel(description = "A generic transaction history event.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-09-06T15:11:33.631354Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-09-06T15:55:13.160613Z[Etc/UTC]")
 public class TransactionHistoryEvent {
   /**
    * The type of this resource. Is always &#x60;transaction-event&#x60;.

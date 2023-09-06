@@ -29,7 +29,7 @@ import java.util.UUID;
  * Details to register a new Checkout Session payment method.
  */
 @ApiModel(description = "Details to register a new Checkout Session payment method.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-09-06T15:11:33.631354Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-09-06T15:55:13.160613Z[Etc/UTC]")
 public class CheckoutSessionRequest {
   /**
    * &#x60;checkout-session&#x60;.

@@ -31,7 +31,7 @@ import org.threeten.bp.OffsetDateTime;
  * This event logs the exact details parsed details for a failed void as reported by our connector.
  */
 @ApiModel(description = "This event logs the exact details parsed details for a failed void as reported by our connector.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-09-06T15:11:33.631354Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-09-06T15:55:13.160613Z[Etc/UTC]")
 public class PaymentConnectorResponseTransactionVoidFailedEvent {
   /**
    * The type of this resource. Is always &#x60;transaction-event&#x60;.

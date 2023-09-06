@@ -31,7 +31,7 @@ import org.threeten.bp.OffsetDateTime;
  * This event logs the request and response details of HTTP calls made to an anti-fraud provider.
  */
 @ApiModel(description = "This event logs the request and response details of HTTP calls made to an anti-fraud provider.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-09-06T15:11:33.631354Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-09-06T15:55:13.160613Z[Etc/UTC]")
 public class AntiFraudDecisionEvent {
   /**
    * The type of this resource. Is always &#x60;transaction-event&#x60;.

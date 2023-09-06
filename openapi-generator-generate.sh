@@ -12,3 +12,9 @@ docker run --rm \
 
 rm -rf src/test/java/com/gr4vy/api
 rm -rf api
+mkdir src/main/model
+cp -R src/main/java/com/gr4vy/api/model/* src/main/model/
+rm -rf src/main/java/com/gr4vy/api/*
+mkdir src/main/java/com/gr4vy/api/model
+cp -R src/main/model/* src/main/java/com/gr4vy/api/model/
+rm -rf src/main/model

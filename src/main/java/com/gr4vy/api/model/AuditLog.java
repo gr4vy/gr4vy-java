@@ -32,7 +32,7 @@ import org.threeten.bp.OffsetDateTime;
  * A log of a change that occurred in the Gr4vy instance.
  */
 @ApiModel(description = "A log of a change that occurred in the Gr4vy instance.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-09-06T15:11:33.631354Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-09-06T15:55:13.160613Z[Etc/UTC]")
 public class AuditLog {
   /**
    * &#x60;audit-log&#x60;.

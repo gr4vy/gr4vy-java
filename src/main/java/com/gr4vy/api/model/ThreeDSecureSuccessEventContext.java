@@ -28,7 +28,7 @@ import java.io.IOException;
  * 3DS context.
  */
 @ApiModel(description = "3DS context.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-09-06T15:11:33.631354Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-09-06T15:55:13.160613Z[Etc/UTC]")
 public class ThreeDSecureSuccessEventContext {
   public static final String SERIALIZED_NAME_ECI = "eci";
   @SerializedName(SERIALIZED_NAME_ECI)

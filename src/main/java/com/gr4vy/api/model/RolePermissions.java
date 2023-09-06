@@ -30,7 +30,7 @@ import java.util.List;
  * The permissions associated with a role.
  */
 @ApiModel(description = "The permissions associated with a role.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-09-06T15:11:33.631354Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-09-06T15:55:13.160613Z[Etc/UTC]")
 public class RolePermissions {
   public static final String SERIALIZED_NAME_ALLOW = "allow";
   @SerializedName(SERIALIZED_NAME_ALLOW)

@@ -30,7 +30,7 @@ import java.util.UUID;
  * Payment method details to use in a transaction or to register a new payment method.
  */
 @ApiModel(description = "Payment method details to use in a transaction or to register a new payment method.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-09-06T15:11:33.631354Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-09-06T15:55:13.160613Z[Etc/UTC]")
 public class TransactionPaymentMethodRequest {
   /**
    * The method to use for this request.

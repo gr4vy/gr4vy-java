@@ -30,7 +30,7 @@ import java.util.List;
  * Merchant details used to register with a digital wallet provider.
  */
 @ApiModel(description = "Merchant details used to register with a digital wallet provider.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-09-06T15:11:33.631354Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-09-06T15:55:13.160613Z[Etc/UTC]")
 public class DigitalWalletRequest {
   /**
    * The name of the digital wallet provider.

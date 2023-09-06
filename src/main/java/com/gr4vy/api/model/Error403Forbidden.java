@@ -31,7 +31,7 @@ import java.util.List;
  * Forbidden Error (HTTP 403).
  */
 @ApiModel(description = "Forbidden Error (HTTP 403).")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-09-06T15:11:33.631354Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-09-06T15:55:13.160613Z[Etc/UTC]")
 public class Error403Forbidden {
   /**
    * &#x60;error&#x60;.

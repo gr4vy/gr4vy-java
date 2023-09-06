@@ -30,7 +30,7 @@ import java.io.IOException;
  * The 3-D Secure data that was sent to the payment service for the transaction.
  */
 @ApiModel(description = "The 3-D Secure data that was sent to the payment service for the transaction.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-09-06T15:11:33.631354Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-09-06T15:55:13.160613Z[Etc/UTC]")
 public class ThreeDSecureSummary {
   public static final String SERIALIZED_NAME_VERSION = "version";
   @SerializedName(SERIALIZED_NAME_VERSION)

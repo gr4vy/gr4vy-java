@@ -28,7 +28,7 @@ import java.io.IOException;
  * Details for a Apple Pay payment method.
  */
 @ApiModel(description = "Details for a Apple Pay payment method.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-09-06T15:11:33.631354Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-09-06T15:55:13.160613Z[Etc/UTC]")
 public class ApplePayRequest {
   /**
    * &#x60;applepay&#x60;.

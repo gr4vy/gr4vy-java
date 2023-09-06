@@ -28,7 +28,7 @@ import java.io.IOException;
  * Details to store a new Click to Pay payment method.
  */
 @ApiModel(description = "Details to store a new Click to Pay payment method.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-09-06T15:11:33.631354Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-09-06T15:55:13.160613Z[Etc/UTC]")
 public class CheckoutSessionFieldsClickToPayPaymentMethod {
   /**
    * &#x60;click_to_pay&#x60;.

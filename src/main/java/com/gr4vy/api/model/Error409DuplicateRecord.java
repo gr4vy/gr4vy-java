@@ -31,7 +31,7 @@ import java.util.List;
  * Duplicate Record Error (HTTP 409).
  */
 @ApiModel(description = "Duplicate Record Error (HTTP 409).")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-09-06T15:11:33.631354Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-09-06T15:55:13.160613Z[Etc/UTC]")
 public class Error409DuplicateRecord {
   /**
    * &#x60;error&#x60;.

@@ -35,7 +35,7 @@ import org.threeten.bp.OffsetDateTime;
  * A short-lived checkout session.
  */
 @ApiModel(description = "A short-lived checkout session.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-09-06T15:11:33.631354Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-09-06T15:55:13.160613Z[Etc/UTC]")
 public class CheckoutSession {
   /**
    * &#x60;checkout-session&#x60;.

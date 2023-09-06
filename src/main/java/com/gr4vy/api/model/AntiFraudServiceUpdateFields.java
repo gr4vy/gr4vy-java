@@ -28,7 +28,7 @@ import java.io.IOException;
  * A key-value pair that represents a field defined in the definition for this anti-fraud service.
  */
 @ApiModel(description = "A key-value pair that represents a field defined in the definition for this anti-fraud service.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-09-06T15:11:33.631354Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-09-06T15:55:13.160613Z[Etc/UTC]")
 public class AntiFraudServiceUpdateFields {
   public static final String SERIALIZED_NAME_KEY = "key";
   @SerializedName(SERIALIZED_NAME_KEY)

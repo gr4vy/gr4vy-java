@@ -31,7 +31,7 @@ import org.threeten.bp.OffsetDateTime;
  * The result and raw data for a card BIN lookup.
  */
 @ApiModel(description = "The result and raw data for a card BIN lookup.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-09-06T15:11:33.631354Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-09-06T15:55:13.160613Z[Etc/UTC]")
 public class BINLookupRequest {
   /**
    * The type of this resource. Is always &#x60;transaction-event&#x60;.
