@@ -18,3 +18,16 @@ rm -rf src/main/java/com/gr4vy/api/*
 mkdir src/main/java/com/gr4vy/api/model
 cp -R src/main/model/* src/main/java/com/gr4vy/api/model/
 rm -rf src/main/model
+
+var1='OffsetDateTime'
+rep1='String'
+sed -i '' "s/$var1/$rep1/g" src/main/java/com/gr4vy/api/model/*.java
+
+var1='import org.threeten.bp.String;'
+rep1=''
+sed -i '' "s/$var1/$rep1/g" src/main/java/com/gr4vy/api/model/*.java
+
+var1='private String previousSchemeTransactionId = "null";'
+rep1='private String previousSchemeTransactionId = null;'
+sed -i '' "s/$var1/$rep1/g" src/main/java/com/gr4vy/api/model/*.java
+

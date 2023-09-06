@@ -29,7 +29,7 @@ import java.util.UUID;
  * Additional context for this event.
  */
 @ApiModel(description = "Additional context for this event.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-09-06T15:55:13.160613Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-09-06T16:38:13.632050Z[Etc/UTC]")
 public class PaymentConnectorResponseTransactionCaptureSucceededEventContext {
   public static final String SERIALIZED_NAME_PAYMENT_SERVICE_ID = "payment_service_id";
   @SerializedName(SERIALIZED_NAME_PAYMENT_SERVICE_ID)

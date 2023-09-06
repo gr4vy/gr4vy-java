@@ -35,13 +35,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
-import org.threeten.bp.OffsetDateTime;
+
 
 /**
  * A transaction record.
  */
 @ApiModel(description = "A transaction record.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-09-06T15:55:13.160613Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-09-06T16:38:13.632050Z[Etc/UTC]")
 public class Transaction {
   /**
    * The type of this resource. Is always &#x60;transaction&#x60;.
@@ -250,7 +250,7 @@ public class Transaction {
 
   public static final String SERIALIZED_NAME_CREATED_AT = "created_at";
   @SerializedName(SERIALIZED_NAME_CREATED_AT)
-  private OffsetDateTime createdAt;
+  private String createdAt;
 
   public static final String SERIALIZED_NAME_EXTERNAL_IDENTIFIER = "external_identifier";
   @SerializedName(SERIALIZED_NAME_EXTERNAL_IDENTIFIER)
@@ -258,7 +258,7 @@ public class Transaction {
 
   public static final String SERIALIZED_NAME_UPDATED_AT = "updated_at";
   @SerializedName(SERIALIZED_NAME_UPDATED_AT)
-  private OffsetDateTime updatedAt;
+  private String updatedAt;
 
   public static final String SERIALIZED_NAME_PAYMENT_SERVICE = "payment_service";
   @SerializedName(SERIALIZED_NAME_PAYMENT_SERVICE)
@@ -654,15 +654,15 @@ public class Transaction {
 
   public static final String SERIALIZED_NAME_AUTHORIZED_AT = "authorized_at";
   @SerializedName(SERIALIZED_NAME_AUTHORIZED_AT)
-  private OffsetDateTime authorizedAt;
+  private String authorizedAt;
 
   public static final String SERIALIZED_NAME_CAPTURED_AT = "captured_at";
   @SerializedName(SERIALIZED_NAME_CAPTURED_AT)
-  private OffsetDateTime capturedAt;
+  private String capturedAt;
 
   public static final String SERIALIZED_NAME_VOIDED_AT = "voided_at";
   @SerializedName(SERIALIZED_NAME_VOIDED_AT)
-  private OffsetDateTime voidedAt;
+  private String voidedAt;
 
   public static final String SERIALIZED_NAME_CHECKOUT_SESSION_ID = "checkout_session_id";
   @SerializedName(SERIALIZED_NAME_CHECKOUT_SESSION_ID)
@@ -974,7 +974,7 @@ public class Transaction {
   }
 
 
-  public Transaction createdAt(OffsetDateTime createdAt) {
+  public Transaction createdAt(String createdAt) {
     
     this.createdAt = createdAt;
     return this;
@@ -987,12 +987,12 @@ public class Transaction {
   @javax.annotation.Nullable
   @ApiModelProperty(example = "2013-07-16T19:23Z", value = "The date and time when this transaction was created in our system.")
 
-  public OffsetDateTime getCreatedAt() {
+  public String getCreatedAt() {
     return createdAt;
   }
 
 
-  public void setCreatedAt(OffsetDateTime createdAt) {
+  public void setCreatedAt(String createdAt) {
     this.createdAt = createdAt;
   }
 
@@ -1020,7 +1020,7 @@ public class Transaction {
   }
 
 
-  public Transaction updatedAt(OffsetDateTime updatedAt) {
+  public Transaction updatedAt(String updatedAt) {
     
     this.updatedAt = updatedAt;
     return this;
@@ -1033,12 +1033,12 @@ public class Transaction {
   @javax.annotation.Nullable
   @ApiModelProperty(value = "Defines when the transaction was last updated.")
 
-  public OffsetDateTime getUpdatedAt() {
+  public String getUpdatedAt() {
     return updatedAt;
   }
 
 
-  public void setUpdatedAt(OffsetDateTime updatedAt) {
+  public void setUpdatedAt(String updatedAt) {
     this.updatedAt = updatedAt;
   }
 
@@ -1473,7 +1473,7 @@ public class Transaction {
   }
 
 
-  public Transaction authorizedAt(OffsetDateTime authorizedAt) {
+  public Transaction authorizedAt(String authorizedAt) {
     
     this.authorizedAt = authorizedAt;
     return this;
@@ -1486,17 +1486,17 @@ public class Transaction {
   @javax.annotation.Nullable
   @ApiModelProperty(example = "2013-07-16T19:23Z", value = "The date and time when this transaction was authorized in the payment service.  Don't use this field to determine whether the transaction was authorized. A `null` value doesn't necessarily imply that the transaction wasn't authorized, it can mean that the payment service doesn't provide this value, that it didn't provide it at the time the transaction was authorized or that the transaction was authorized before the introduction of this field.")
 
-  public OffsetDateTime getAuthorizedAt() {
+  public String getAuthorizedAt() {
     return authorizedAt;
   }
 
 
-  public void setAuthorizedAt(OffsetDateTime authorizedAt) {
+  public void setAuthorizedAt(String authorizedAt) {
     this.authorizedAt = authorizedAt;
   }
 
 
-  public Transaction capturedAt(OffsetDateTime capturedAt) {
+  public Transaction capturedAt(String capturedAt) {
     
     this.capturedAt = capturedAt;
     return this;
@@ -1509,17 +1509,17 @@ public class Transaction {
   @javax.annotation.Nullable
   @ApiModelProperty(example = "2013-07-16T19:23Z", value = "The date and time when this transaction was captured in the payment service.  Don't use this field to determine whether the transaction was captured. A `null` value doesn't necessarily imply that the transaction wasn't captured, it can mean that the payment service doesn't provide this value, that it didn't provide it at the time the transaction was captured or that the transaction was captured before the introduction of this field.")
 
-  public OffsetDateTime getCapturedAt() {
+  public String getCapturedAt() {
     return capturedAt;
   }
 
 
-  public void setCapturedAt(OffsetDateTime capturedAt) {
+  public void setCapturedAt(String capturedAt) {
     this.capturedAt = capturedAt;
   }
 
 
-  public Transaction voidedAt(OffsetDateTime voidedAt) {
+  public Transaction voidedAt(String voidedAt) {
     
     this.voidedAt = voidedAt;
     return this;
@@ -1532,12 +1532,12 @@ public class Transaction {
   @javax.annotation.Nullable
   @ApiModelProperty(example = "2013-07-16T19:23Z", value = "The date and time when this transaction was voided in the payment service.  Don't use this field to determine whether the transaction was voided. A `null` value doesn't necessarily imply that the transaction wasn't voided, it can mean that the payment service doesn't provide this value, that it didn't provide it at the time the transaction was voided or that the transaction was voided before the introduction of this field.")
 
-  public OffsetDateTime getVoidedAt() {
+  public String getVoidedAt() {
     return voidedAt;
   }
 
 
-  public void setVoidedAt(OffsetDateTime voidedAt) {
+  public void setVoidedAt(String voidedAt) {
     this.voidedAt = voidedAt;
   }
 

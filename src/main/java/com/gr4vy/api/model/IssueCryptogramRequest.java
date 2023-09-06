@@ -28,7 +28,7 @@ import java.io.IOException;
  * Request body for issue a cryptogram for a network token.
  */
 @ApiModel(description = "Request body for issue a cryptogram for a network token.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-09-06T15:55:13.160613Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-09-06T16:38:13.632050Z[Etc/UTC]")
 public class IssueCryptogramRequest {
   public static final String SERIALIZED_NAME_MERCHANT_INITIATED = "merchant_initiated";
   @SerializedName(SERIALIZED_NAME_MERCHANT_INITIATED)

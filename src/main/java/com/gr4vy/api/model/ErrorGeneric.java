@@ -31,7 +31,7 @@ import java.util.List;
  * A generic client error.
  */
 @ApiModel(description = "A generic client error.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-09-06T15:55:13.160613Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-09-06T16:38:13.632050Z[Etc/UTC]")
 public class ErrorGeneric {
   /**
    * The type of this object. This is always &#x60;error&#x60;.

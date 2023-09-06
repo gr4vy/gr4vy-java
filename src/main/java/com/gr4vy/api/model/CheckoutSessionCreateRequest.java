@@ -33,7 +33,7 @@ import java.util.Map;
  * A request to create a checkout session.
  */
 @ApiModel(description = "A request to create a checkout session.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-09-06T15:55:13.160613Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-09-06T16:38:13.632050Z[Etc/UTC]")
 public class CheckoutSessionCreateRequest {
   public static final String SERIALIZED_NAME_CART_ITEMS = "cart_items";
   @SerializedName(SERIALIZED_NAME_CART_ITEMS)

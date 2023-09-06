@@ -28,7 +28,7 @@ import java.io.IOException;
  * Configuration items for the payment service.
  */
 @ApiModel(description = "Configuration items for the payment service.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-09-06T15:55:13.160613Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-09-06T16:38:13.632050Z[Etc/UTC]")
 public class PaymentServiceDefinitionConfiguration {
   public static final String SERIALIZED_NAME_APPROVAL_UI_HEIGHT = "approval_ui_height";
   @SerializedName(SERIALIZED_NAME_APPROVAL_UI_HEIGHT)

@@ -26,13 +26,13 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.util.UUID;
-import org.threeten.bp.OffsetDateTime;
+
 
 /**
  * A generic payment method.
  */
 @ApiModel(description = "A generic payment method.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-09-06T15:55:13.160613Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-09-06T16:38:13.632050Z[Etc/UTC]")
 public class PaymentMethod {
   /**
    * &#x60;payment-method&#x60;.
@@ -370,11 +370,11 @@ public class PaymentMethod {
 
   public static final String SERIALIZED_NAME_CREATED_AT = "created_at";
   @SerializedName(SERIALIZED_NAME_CREATED_AT)
-  private OffsetDateTime createdAt;
+  private String createdAt;
 
   public static final String SERIALIZED_NAME_UPDATED_AT = "updated_at";
   @SerializedName(SERIALIZED_NAME_UPDATED_AT)
-  private OffsetDateTime updatedAt;
+  private String updatedAt;
 
   public static final String SERIALIZED_NAME_EXTERNAL_IDENTIFIER = "external_identifier";
   @SerializedName(SERIALIZED_NAME_EXTERNAL_IDENTIFIER)
@@ -465,7 +465,7 @@ public class PaymentMethod {
 
   public static final String SERIALIZED_NAME_LAST_REPLACED_AT = "last_replaced_at";
   @SerializedName(SERIALIZED_NAME_LAST_REPLACED_AT)
-  private OffsetDateTime lastReplacedAt;
+  private String lastReplacedAt;
 
   public static final String SERIALIZED_NAME_HAS_REPLACEMENT = "has_replacement";
   @SerializedName(SERIALIZED_NAME_HAS_REPLACEMENT)
@@ -610,7 +610,7 @@ public class PaymentMethod {
   }
 
 
-  public PaymentMethod createdAt(OffsetDateTime createdAt) {
+  public PaymentMethod createdAt(String createdAt) {
     
     this.createdAt = createdAt;
     return this;
@@ -623,17 +623,17 @@ public class PaymentMethod {
   @javax.annotation.Nullable
   @ApiModelProperty(example = "2013-07-16T19:23Z", value = "The date and time when this payment method was first created in our system.")
 
-  public OffsetDateTime getCreatedAt() {
+  public String getCreatedAt() {
     return createdAt;
   }
 
 
-  public void setCreatedAt(OffsetDateTime createdAt) {
+  public void setCreatedAt(String createdAt) {
     this.createdAt = createdAt;
   }
 
 
-  public PaymentMethod updatedAt(OffsetDateTime updatedAt) {
+  public PaymentMethod updatedAt(String updatedAt) {
     
     this.updatedAt = updatedAt;
     return this;
@@ -646,12 +646,12 @@ public class PaymentMethod {
   @javax.annotation.Nullable
   @ApiModelProperty(example = "2013-07-16T19:23Z", value = "The date and time when this payment method was last updated in our system.")
 
-  public OffsetDateTime getUpdatedAt() {
+  public String getUpdatedAt() {
     return updatedAt;
   }
 
 
-  public void setUpdatedAt(OffsetDateTime updatedAt) {
+  public void setUpdatedAt(String updatedAt) {
     this.updatedAt = updatedAt;
   }
 
@@ -886,7 +886,7 @@ public class PaymentMethod {
   }
 
 
-  public PaymentMethod lastReplacedAt(OffsetDateTime lastReplacedAt) {
+  public PaymentMethod lastReplacedAt(String lastReplacedAt) {
     
     this.lastReplacedAt = lastReplacedAt;
     return this;
@@ -899,12 +899,12 @@ public class PaymentMethod {
   @javax.annotation.Nullable
   @ApiModelProperty(example = "2023-07-26T19:23Z", value = "The date and time when this card was last replaced.  When the Account Updater determines that new card details are available (e.g. when it's about to expire), existing details are not changed immediately. The actual replacement occurs when a transaction using this payment method is declined with any of the following codes:  * `canceled_payment_method` * `expired_payment_method` * `unavailable_payment_method` * `unknown_payment_method`  When the replacement is applied, this field is updated. For non-card payment methods, the value of this field is always set to `null`.")
 
-  public OffsetDateTime getLastReplacedAt() {
+  public String getLastReplacedAt() {
     return lastReplacedAt;
   }
 
 
-  public void setLastReplacedAt(OffsetDateTime lastReplacedAt) {
+  public void setLastReplacedAt(String lastReplacedAt) {
     this.lastReplacedAt = lastReplacedAt;
   }
 

@@ -28,7 +28,7 @@ import java.io.IOException;
  * Details to store a new card payment method.
  */
 @ApiModel(description = "Details to store a new card payment method.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-09-06T15:55:13.160613Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-09-06T16:31:27.877088Z[Etc/UTC]")
 public class CheckoutSessionFieldsCardPaymentMethod {
   /**
    * &#x60;card&#x60;.

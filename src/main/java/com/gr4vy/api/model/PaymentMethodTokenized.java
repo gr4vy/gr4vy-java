@@ -24,13 +24,13 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.util.UUID;
-import org.threeten.bp.OffsetDateTime;
+
 
 /**
  * A mini format version of a payment method.
  */
 @ApiModel(description = "A mini format version of a payment method.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-09-06T15:55:13.160613Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-09-06T16:38:13.632050Z[Etc/UTC]")
 public class PaymentMethodTokenized {
   /**
    * &#x60;payment-method&#x60;.
@@ -402,7 +402,7 @@ public class PaymentMethodTokenized {
 
   public static final String SERIALIZED_NAME_LAST_REPLACED_AT = "last_replaced_at";
   @SerializedName(SERIALIZED_NAME_LAST_REPLACED_AT)
-  private OffsetDateTime lastReplacedAt;
+  private String lastReplacedAt;
 
   public static final String SERIALIZED_NAME_HAS_REPLACEMENT = "has_replacement";
   @SerializedName(SERIALIZED_NAME_HAS_REPLACEMENT)
@@ -662,7 +662,7 @@ public class PaymentMethodTokenized {
   }
 
 
-  public PaymentMethodTokenized lastReplacedAt(OffsetDateTime lastReplacedAt) {
+  public PaymentMethodTokenized lastReplacedAt(String lastReplacedAt) {
     
     this.lastReplacedAt = lastReplacedAt;
     return this;
@@ -675,12 +675,12 @@ public class PaymentMethodTokenized {
   @javax.annotation.Nullable
   @ApiModelProperty(example = "2023-07-26T19:23Z", value = "The date and time when this card was last replaced.  When the Account Updater determines that new card details are available (e.g. when it's about to expire), existing details are not changed immediately. The actual replacement occurs when a transaction using this payment method is declined with any of the following codes:  * `canceled_payment_method` * `expired_payment_method` * `unavailable_payment_method` * `unknown_payment_method`  When the replacement is applied, this field is updated. For non-card payment methods, the value of this field is always set to `null`.")
 
-  public OffsetDateTime getLastReplacedAt() {
+  public String getLastReplacedAt() {
     return lastReplacedAt;
   }
 
 
-  public void setLastReplacedAt(OffsetDateTime lastReplacedAt) {
+  public void setLastReplacedAt(String lastReplacedAt) {
     this.lastReplacedAt = lastReplacedAt;
   }
 

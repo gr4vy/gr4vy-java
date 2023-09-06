@@ -28,7 +28,7 @@ import java.io.IOException;
  * Additional options for Forter (anti-fraud).
  */
 @ApiModel(description = "Additional options for Forter (anti-fraud).")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-09-06T15:55:13.160613Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-09-06T16:38:13.632050Z[Etc/UTC]")
 public class ConnectionOptionsForterAntiFraud {
   public static final String SERIALIZED_NAME_DELIVERY_TYPE = "delivery_type";
   @SerializedName(SERIALIZED_NAME_DELIVERY_TYPE)

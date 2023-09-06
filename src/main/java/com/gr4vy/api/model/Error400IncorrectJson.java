@@ -31,7 +31,7 @@ import java.util.List;
  * Incorrect JSON (HTTP 400).
  */
 @ApiModel(description = "Incorrect JSON (HTTP 400).")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-09-06T15:55:13.160613Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-09-06T16:38:13.632050Z[Etc/UTC]")
 public class Error400IncorrectJson {
   /**
    * &#x60;error&#x60;.

@@ -23,13 +23,13 @@ import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
-import org.threeten.bp.OffsetDateTime;
+
 
 /**
  * The temporary signed URL to download the result of a report execution and its expiration date and time.
  */
 @ApiModel(description = "The temporary signed URL to download the result of a report execution and its expiration date and time.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-09-06T15:55:13.160613Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-09-06T16:38:13.632050Z[Etc/UTC]")
 public class ReportExecutionUrl {
   public static final String SERIALIZED_NAME_URL = "url";
   @SerializedName(SERIALIZED_NAME_URL)
@@ -37,7 +37,7 @@ public class ReportExecutionUrl {
 
   public static final String SERIALIZED_NAME_EXPIRES_AT = "expires_at";
   @SerializedName(SERIALIZED_NAME_EXPIRES_AT)
-  private OffsetDateTime expiresAt;
+  private String expiresAt;
 
 
   public ReportExecutionUrl url(String url) {
@@ -63,7 +63,7 @@ public class ReportExecutionUrl {
   }
 
 
-  public ReportExecutionUrl expiresAt(OffsetDateTime expiresAt) {
+  public ReportExecutionUrl expiresAt(String expiresAt) {
     
     this.expiresAt = expiresAt;
     return this;
@@ -76,12 +76,12 @@ public class ReportExecutionUrl {
   @javax.annotation.Nullable
   @ApiModelProperty(example = "2013-07-16T19:23Z", value = "The date and time when the download URL expires.")
 
-  public OffsetDateTime getExpiresAt() {
+  public String getExpiresAt() {
     return expiresAt;
   }
 
 
-  public void setExpiresAt(OffsetDateTime expiresAt) {
+  public void setExpiresAt(String expiresAt) {
     this.expiresAt = expiresAt;
   }
 

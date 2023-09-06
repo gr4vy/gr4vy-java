@@ -23,12 +23,12 @@ import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
-import org.threeten.bp.OffsetDateTime;
+
 
 /**
  * MerchantAccount
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-09-06T15:55:13.160613Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-09-06T16:38:13.632050Z[Etc/UTC]")
 public class MerchantAccount {
   /**
    * &#x60;merchant-account&#x60;.
@@ -125,11 +125,11 @@ public class MerchantAccount {
 
   public static final String SERIALIZED_NAME_CREATED_AT = "created_at";
   @SerializedName(SERIALIZED_NAME_CREATED_AT)
-  private OffsetDateTime createdAt;
+  private String createdAt;
 
   public static final String SERIALIZED_NAME_UPDATED_AT = "updated_at";
   @SerializedName(SERIALIZED_NAME_UPDATED_AT)
-  private OffsetDateTime updatedAt;
+  private String updatedAt;
 
 
   public MerchantAccount type(TypeEnum type) {
@@ -408,7 +408,7 @@ public class MerchantAccount {
   }
 
 
-  public MerchantAccount createdAt(OffsetDateTime createdAt) {
+  public MerchantAccount createdAt(String createdAt) {
     
     this.createdAt = createdAt;
     return this;
@@ -421,17 +421,17 @@ public class MerchantAccount {
   @javax.annotation.Nullable
   @ApiModelProperty(example = "2022-02-01T14:20Z", value = "The date and time when this merchant account was created.")
 
-  public OffsetDateTime getCreatedAt() {
+  public String getCreatedAt() {
     return createdAt;
   }
 
 
-  public void setCreatedAt(OffsetDateTime createdAt) {
+  public void setCreatedAt(String createdAt) {
     this.createdAt = createdAt;
   }
 
 
-  public MerchantAccount updatedAt(OffsetDateTime updatedAt) {
+  public MerchantAccount updatedAt(String updatedAt) {
     
     this.updatedAt = updatedAt;
     return this;
@@ -444,12 +444,12 @@ public class MerchantAccount {
   @javax.annotation.Nullable
   @ApiModelProperty(example = "2022-02-01T14:20Z", value = "The date and time when this merchant account was updated.")
 
-  public OffsetDateTime getUpdatedAt() {
+  public String getUpdatedAt() {
     return updatedAt;
   }
 
 
-  public void setUpdatedAt(OffsetDateTime updatedAt) {
+  public void setUpdatedAt(String updatedAt) {
     this.updatedAt = updatedAt;
   }
 
