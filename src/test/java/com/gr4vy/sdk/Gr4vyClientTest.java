@@ -108,7 +108,6 @@ public class Gr4vyClientTest {
 //		TransactionRequest request = new TransactionRequest()
 //				.amount(100)
 //				.currency("GBP")
-//				.externalIdentifier("SteveTest")
 //				.paymentMethod(pm);
 //		
 //     	Transaction response = client.newTransaction(request);
@@ -170,6 +169,24 @@ public class Gr4vyClientTest {
 				.redirectUrl("https://gr4vy.com")
 				.currency("GBP")
 				.country("GB");
+		
+		TransactionRequest request = new TransactionRequest()
+				.amount(100)
+				.currency("GBP")
+				.paymentMethod(pm);
+		
+     	Transaction response = client.newTransaction(request);
+     	System.out.println(response);
+        assert response != null;
+	}
+	
+	@Test
+	public void newStoredTransactionTest() throws Gr4vyException {
+		//Test cannot be run because checkout session is empty
+		Gr4vyClient client = new Gr4vyClient("spider", "private_key.pem", "sandbox");
+		
+		TransactionStoredRequest pm = new TransactionStoredRequest()
+				.id("my_stored_uuid");
 		
 		TransactionRequest request = new TransactionRequest()
 				.amount(100)

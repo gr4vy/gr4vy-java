@@ -25,6 +25,9 @@ import io.swagger.annotations.ApiModelProperty;
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-08-08T13:56:38.178267Z[Etc/UTC]")
 public class TransactionStoredRequest extends TransactionPaymentMethodRequest {
   
+  public TransactionStoredRequest() {
+	  this.method = "id";
+  }
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
   private String id;
