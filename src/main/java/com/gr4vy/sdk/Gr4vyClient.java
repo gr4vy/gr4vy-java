@@ -20,11 +20,6 @@ import java.util.Date;
 import java.util.Map;
 import java.util.UUID;
 
-import javax.json.Json;
-import javax.json.JsonException;
-import javax.json.JsonObject;
-import javax.json.JsonReader;
-
 import org.bouncycastle.asn1.pkcs.PrivateKeyInfo;
 import org.bouncycastle.jce.ECNamedCurveTable;
 import org.bouncycastle.jce.spec.ECNamedCurveParameterSpec;
@@ -32,7 +27,8 @@ import org.bouncycastle.jce.spec.ECPublicKeySpec;
 import org.bouncycastle.openssl.PEMParser;
 import org.bouncycastle.openssl.jcajce.JcaPEMKeyConverter;
 
-
+import com.google.gson.Gson;
+import com.gr4vy.api.model.*;
 import com.nimbusds.jose.JOSEException;
 import com.nimbusds.jose.JWSAlgorithm;
 import com.nimbusds.jose.JWSHeader;
@@ -58,6 +54,7 @@ public class Gr4vyClient {
 	private Boolean debug = false;
 	private String merchantAccountId = "default";
 	private UUID checkoutSessionId;
+	private final Gson gson = new Gson();
 	
 	public static final MediaType JSON
     = MediaType.parse("application/json; charset=utf-8");
@@ -100,26 +97,6 @@ public class Gr4vyClient {
     public void setHost(String host) {
     	this.host = host;
     }
-	// public ApiClient getClient() throws Gr4vyException {
-	// 	try {
-	// 		ApiClient defaultClient = Configuration.getDefaultApiClient();
-	// 		defaultClient.setBasePath(this.host);
-	// 		defaultClient.addDefaultHeader("X-GR4VY-MERCHANT-ACCOUNT-ID", this.merchantAccountId);
-
-	// 		String key = getKey();
-			
-	// 		String[] scopes = {"*.read", "*.write"};
-			
-	// 		String token = getToken(key, scopes, null, null);
-			
-	// 		HttpBearerAuth BearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("BearerAuth");
-	// 		BearerAuth.setBearerToken(token);
-			
-	// 		return defaultClient;
-	// 	} catch (Exception e) {
-	// 		throw new Gr4vyException("Error while generating token, please make sure your private key is valid.");
-	// 	}
-	// }
 	
 	public String getEmbedToken(Map<String, Object> embed) throws Gr4vyException {
 		return getEmbedToken(embed, null);
@@ -214,7 +191,7 @@ public class Gr4vyClient {
         }
 	}
 
-	private JsonObject get(String endpoint, JsonObject params) throws Gr4vyException {
+	private String get(String endpoint) throws Gr4vyException {
 		String[] scopes = {"*.read", "*.write"};
 		String accessToken = null;
 		try {
@@ -249,16 +226,10 @@ public class Gr4vyClient {
     
 		if (!response.isSuccessful()) throw new Gr4vyException("response was not successful: " + responseData);
 		
-	    try {
-	    	JsonReader jsonReader = Json.createReader(new StringReader(responseData));
-	    	JsonObject jobj = jsonReader.readObject();        
-	        return jobj;
-	    } catch (JsonException e) { 
-	    	throw new Gr4vyException("exception parsing json: " + e.getMessage()); 
-	    }
+		return responseData;
     }
 	
-	private JsonObject post(String endpoint, JsonObject jsonBody) throws Gr4vyException {
+	private String post(String endpoint, String jsonBody) throws Gr4vyException {
 		String[] scopes = {"*.read", "*.write"};
 		String accessToken = null;
 		try {
@@ -276,7 +247,7 @@ public class Gr4vyClient {
 			      .addHeader("Content-Type", "application/json");
         
 		if (jsonBody != null) {
-			RequestBody body = RequestBody.create(jsonBody.toString(), JSON);
+			RequestBody body = RequestBody.create(jsonBody, JSON);
 			requestBuilder.post(body);
 		}
 		else {
@@ -303,17 +274,11 @@ public class Gr4vyClient {
 		} catch (IOException e1) { }
 		
 		if (!response.isSuccessful()) throw new Gr4vyException("response was not successful: " + responseData);
-		
-	    try {
-	    	JsonReader jsonReader = Json.createReader(new StringReader(responseData));
-	    	JsonObject jobj = jsonReader.readObject();        
-	        return jobj;
-	    } catch (JsonException e) { 
-	    	throw new Gr4vyException("exception parsing json: " + e.getMessage()); 
-	    }
+
+		return responseData;
     }
 	
-	private JsonObject put(String endpoint, JsonObject jsonBody) throws Gr4vyException {
+	private String put(String endpoint, String jsonBody) throws Gr4vyException {
 		String[] scopes = {"*.read", "*.write"};
 		String accessToken = null;
 		try {
@@ -331,7 +296,7 @@ public class Gr4vyClient {
 			      .addHeader("Content-Type", "application/json");
         
 		if (jsonBody != null) {
-			RequestBody body = RequestBody.create(jsonBody.toString(), JSON);
+			RequestBody body = RequestBody.create(jsonBody, JSON);
 			requestBuilder.put(body);
 		}
 		else {
@@ -358,17 +323,11 @@ public class Gr4vyClient {
 		} catch (IOException e1) { }
     
 		if (!response.isSuccessful()) throw new Gr4vyException("response was not successful: " + responseData);
-		
-	    try {
-	    	JsonReader jsonReader = Json.createReader(new StringReader(responseData));
-	    	JsonObject jobj = jsonReader.readObject();        
-	        return jobj;
-	    } catch (JsonException e) { 
-	    	throw new Gr4vyException("exception parsing json: " + e.getMessage()); 
-	    }
+
+		return responseData;
     }
 	
-	private JsonObject delete(String endpoint) throws Gr4vyException {
+	private boolean delete(String endpoint) throws Gr4vyException {
 		String[] scopes = {"*.read", "*.write"};
 		String accessToken = null;
 		try {
@@ -404,103 +363,76 @@ public class Gr4vyClient {
 			try {
 				responseData = response.body().string();
 			} catch (IOException e1) { }
-	    
-		    try {
-		    	JsonReader jsonReader = Json.createReader(new StringReader(responseData));
-		    	JsonObject jobj = jsonReader.readObject();        
-		        return jobj;
-		    } catch (JsonException e) { 
-		    	throw new Gr4vyException("exception parsing json: " + e.getMessage()); 
-		    }
-	    } else {
-	    	return Json.createObjectBuilder()
-	    		     .add("success", "true").build();
+			
+			throw new Gr4vyException("response was not successful: " + responseData);
+			
 	    }
 	    
+	    return true;
     }
 
-	public JsonObject newBuyer(JsonObject jsonBody) {
-		JsonObject response = this.post("/buyers", jsonBody);
-        return response;
+	public Buyer newBuyer(BuyerRequest request) {
+		String response = this.post("/buyers", this.gson.toJson(request));
+		return this.gson.fromJson(response,Buyer.class);
 	}
-	public JsonObject getBuyer(String buyerId) {
-		JsonObject response = this.get("/buyers/" + buyerId, null);
-        return response;
+	public Buyer getBuyer(String buyerId) {
+		String response = this.get("/buyers/" + buyerId);
+		return this.gson.fromJson(response,Buyer.class);
 	}
-	public JsonObject updateBuyer(String buyerId, JsonObject jsonBody) {
-		JsonObject response = this.put("/buyers/" + buyerId, jsonBody);
-        return response;
+	public Buyer updateBuyer(String buyerId, BuyerUpdate request) {
+		String response = this.put("/buyers/" + buyerId, this.gson.toJson(request));
+		return this.gson.fromJson(response,Buyer.class);
 	}
-	public JsonObject listBuyers() {
-		JsonObject response = this.get("/buyers", null);
-        return response;
+	public Buyers listBuyers() {
+		String response = this.get("/buyers");
+		return this.gson.fromJson(response,Buyers.class);
 	}
-	public JsonObject deleteBuyer(String buyerId) {
-		JsonObject response = this.delete("/buyers/" + buyerId);
-        return response;
-	}
-
-	public JsonObject storePaymentMethod() {
-		return null;
-	}
-	public JsonObject getPaymentMethod() {
-		return null;
-	}
-	public JsonObject listPaymentMethods() {
-		return null;
-	}
-	public JsonObject listBuyerPaymentMethods() {
-		return null;
-	}
-	public JsonObject deletePaymentMethod() {
-		return null;
+	public boolean deleteBuyer(String buyerId) {
+		return this.delete("/buyers/" + buyerId);
 	}
 
-	public JsonObject listPaymentOptions() {
-		return null;
+	public PaymentMethod storePaymentMethod(PaymentMethodRequest request) {
+		String response = this.post("/payment-methods", this.gson.toJson(request));
+		return this.gson.fromJson(response,PaymentMethod.class);
 	}
-	public JsonObject postListPaymentOptions() {
-		return null;
+	public PaymentMethod getPaymentMethod(String paymentMethodId) {
+		String response = this.get("/payment-methods/" + paymentMethodId);
+		return this.gson.fromJson(response,PaymentMethod.class);
 	}
-	public JsonObject listPaymentServiceDefinitions() {
-		return null;
+	public PaymentMethods listPaymentMethods() {
+		String response = this.get("/payment-methods");
+		return this.gson.fromJson(response,PaymentMethods.class);
 	}
-	public JsonObject getPaymentServiceDefinition() {
-		return null;
+	public PaymentMethods listBuyerPaymentMethods(String buyerId) {
+		String response = this.get("/buyers/payment-methods?buyer_id=" + buyerId);
+		return this.gson.fromJson(response,PaymentMethods.class);
 	}
-	public JsonObject addPaymentService() {
-		return null;
+	public boolean deletePaymentMethod(String paymentMethodId) {
+		return this.delete("/payment-methods/" + paymentMethodId);
 	}
-	public JsonObject getPaymentService() {
-		return null;
+
+	public Transaction newTransaction(TransactionRequest request) {
+		String response = this.post("/transactions", this.gson.toJson(request));
+        return this.gson.fromJson(response,Transaction.class);
 	}
-	public JsonObject updatePaymentService() {
-		return null;
+	public Transaction getTransaction(String transactionId) {
+		String response = this.get("/transactions/" + transactionId);
+		return this.gson.fromJson(response,Transaction.class);
 	}
-	public JsonObject listPaymentServices() {
-		return null;
+	public Transaction captureTransaction(String transactionId, TransactionCaptureRequest request) {
+		String response = this.post("/transactions/" + transactionId + "/capture", this.gson.toJson(request));
+		return this.gson.fromJson(response,Transaction.class);
 	}
-	public JsonObject deletePaymentService() {
-		return null;
+	public Transactions listTransactions() {
+		String response = this.get("/transactions");
+		return this.gson.fromJson(response,Transactions.class);
 	}
-	public JsonObject newTransaction(JsonObject jsonBody) {
-		JsonObject response = this.post("/transactions", jsonBody);
-        return response;
+	public Transaction refundTransaction(String transactionId, TransactionRefundRequest request) {
+		String response = this.post("/transactions/" + transactionId + "/refund", this.gson.toJson(request));
+		return this.gson.fromJson(response,Transaction.class);
 	}
-	public JsonObject getTransaction() {
-		return null;
-	}
-	public JsonObject captureTransaction() {
-		return null;
-	}
-	public JsonObject listTransactions() {
-		return null;
-	}
-	public JsonObject refundTransaction() {
-		return null;
-	}
-	public JsonObject newCheckoutSession(JsonObject jsonBody) {
-		JsonObject response = this.post("/checkout/sessions", jsonBody);
-        return response;
+	public CheckoutSession newCheckoutSession(CheckoutSessionRequest request) {
+		String response = this.post("/checkout/sessions", this.gson.toJson(request));
+		return this.gson.fromJson(response,CheckoutSession.class);
 	}
 }
