@@ -25,13 +25,13 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.util.UUID;
-import org.threeten.bp.OffsetDateTime;
+
 
 /**
  * Error details for a failed 3DS call.
  */
 @ApiModel(description = "Error details for a failed 3DS call.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-08-08T13:56:38.178267Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-09-06T16:38:13.632050Z[Etc/UTC]")
 public class ThreeDSecureRequestErrorEvent {
   /**
    * The type of this resource. Is always &#x60;transaction-event&#x60;.
@@ -137,7 +137,7 @@ public class ThreeDSecureRequestErrorEvent {
 
   public static final String SERIALIZED_NAME_CREATED_AT = "created_at";
   @SerializedName(SERIALIZED_NAME_CREATED_AT)
-  private OffsetDateTime createdAt;
+  private String createdAt;
 
   public static final String SERIALIZED_NAME_CONTEXT = "context";
   @SerializedName(SERIALIZED_NAME_CONTEXT)
@@ -213,7 +213,7 @@ public class ThreeDSecureRequestErrorEvent {
   }
 
 
-  public ThreeDSecureRequestErrorEvent createdAt(OffsetDateTime createdAt) {
+  public ThreeDSecureRequestErrorEvent createdAt(String createdAt) {
     
     this.createdAt = createdAt;
     return this;
@@ -226,12 +226,12 @@ public class ThreeDSecureRequestErrorEvent {
   @javax.annotation.Nullable
   @ApiModelProperty(example = "2013-07-16T19:23Z", value = "The date and time when this transaction was created in our system.")
 
-  public OffsetDateTime getCreatedAt() {
+  public String getCreatedAt() {
     return createdAt;
   }
 
 
-  public void setCreatedAt(OffsetDateTime createdAt) {
+  public void setCreatedAt(String createdAt) {
     this.createdAt = createdAt;
   }
 

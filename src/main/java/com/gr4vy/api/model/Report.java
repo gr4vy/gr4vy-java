@@ -27,25 +27,25 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.util.UUID;
-import org.threeten.bp.OffsetDateTime;
+
 
 /**
  * A report record.
  */
 @ApiModel(description = "A report record.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-08-08T13:56:38.178267Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-09-06T16:38:13.632050Z[Etc/UTC]")
 public class Report {
   public static final String SERIALIZED_NAME_CREATED_AT = "created_at";
   @SerializedName(SERIALIZED_NAME_CREATED_AT)
-  private OffsetDateTime createdAt;
+  private String createdAt;
 
   public static final String SERIALIZED_NAME_UPDATED_AT = "updated_at";
   @SerializedName(SERIALIZED_NAME_UPDATED_AT)
-  private OffsetDateTime updatedAt;
+  private String updatedAt;
 
   public static final String SERIALIZED_NAME_NEXT_EXECUTION_AT = "next_execution_at";
   @SerializedName(SERIALIZED_NAME_NEXT_EXECUTION_AT)
-  private OffsetDateTime nextExecutionAt;
+  private String nextExecutionAt;
 
   public static final String SERIALIZED_NAME_DESCRIPTION = "description";
   @SerializedName(SERIALIZED_NAME_DESCRIPTION)
@@ -243,7 +243,7 @@ public class Report {
   private CreatorTypeEnum creatorType;
 
 
-  public Report createdAt(OffsetDateTime createdAt) {
+  public Report createdAt(String createdAt) {
     
     this.createdAt = createdAt;
     return this;
@@ -256,17 +256,17 @@ public class Report {
   @javax.annotation.Nullable
   @ApiModelProperty(example = "2013-07-16T19:23Z", value = "The date and time this report was created in our system.")
 
-  public OffsetDateTime getCreatedAt() {
+  public String getCreatedAt() {
     return createdAt;
   }
 
 
-  public void setCreatedAt(OffsetDateTime createdAt) {
+  public void setCreatedAt(String createdAt) {
     this.createdAt = createdAt;
   }
 
 
-  public Report updatedAt(OffsetDateTime updatedAt) {
+  public Report updatedAt(String updatedAt) {
     
     this.updatedAt = updatedAt;
     return this;
@@ -279,17 +279,17 @@ public class Report {
   @javax.annotation.Nullable
   @ApiModelProperty(example = "2013-07-16T19:23Z", value = "The date and time this report was last updated.")
 
-  public OffsetDateTime getUpdatedAt() {
+  public String getUpdatedAt() {
     return updatedAt;
   }
 
 
-  public void setUpdatedAt(OffsetDateTime updatedAt) {
+  public void setUpdatedAt(String updatedAt) {
     this.updatedAt = updatedAt;
   }
 
 
-  public Report nextExecutionAt(OffsetDateTime nextExecutionAt) {
+  public Report nextExecutionAt(String nextExecutionAt) {
     
     this.nextExecutionAt = nextExecutionAt;
     return this;
@@ -302,12 +302,12 @@ public class Report {
   @javax.annotation.Nullable
   @ApiModelProperty(example = "2023-01-01T00:00Z", value = "The date and time this report will next be executed, provided that `schedule_enabled` is `true`. This value is null if this is a one-off report.")
 
-  public OffsetDateTime getNextExecutionAt() {
+  public String getNextExecutionAt() {
     return nextExecutionAt;
   }
 
 
-  public void setNextExecutionAt(OffsetDateTime nextExecutionAt) {
+  public void setNextExecutionAt(String nextExecutionAt) {
     this.nextExecutionAt = nextExecutionAt;
   }
 

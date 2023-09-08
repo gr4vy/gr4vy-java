@@ -24,13 +24,13 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.util.UUID;
-import org.threeten.bp.OffsetDateTime;
+
 
 /**
  * Additional context for this event.
  */
 @ApiModel(description = "Additional context for this event.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-08-08T13:56:38.178267Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-09-06T16:38:13.632050Z[Etc/UTC]")
 public class PaymentConnectorResponseTransactionVoidSucceededEventContext {
   public static final String SERIALIZED_NAME_PAYMENT_SERVICE_ID = "payment_service_id";
   @SerializedName(SERIALIZED_NAME_PAYMENT_SERVICE_ID)
@@ -50,7 +50,7 @@ public class PaymentConnectorResponseTransactionVoidSucceededEventContext {
 
   public static final String SERIALIZED_NAME_VOIDED_AT = "voided_at";
   @SerializedName(SERIALIZED_NAME_VOIDED_AT)
-  private OffsetDateTime voidedAt;
+  private String voidedAt;
 
 
   public PaymentConnectorResponseTransactionVoidSucceededEventContext paymentServiceId(UUID paymentServiceId) {
@@ -145,7 +145,7 @@ public class PaymentConnectorResponseTransactionVoidSucceededEventContext {
   }
 
 
-  public PaymentConnectorResponseTransactionVoidSucceededEventContext voidedAt(OffsetDateTime voidedAt) {
+  public PaymentConnectorResponseTransactionVoidSucceededEventContext voidedAt(String voidedAt) {
     
     this.voidedAt = voidedAt;
     return this;
@@ -158,12 +158,12 @@ public class PaymentConnectorResponseTransactionVoidSucceededEventContext {
   @javax.annotation.Nullable
   @ApiModelProperty(example = "2013-07-16T19:23Z", value = "The date and time when this transaction was voided.")
 
-  public OffsetDateTime getVoidedAt() {
+  public String getVoidedAt() {
     return voidedAt;
   }
 
 
-  public void setVoidedAt(OffsetDateTime voidedAt) {
+  public void setVoidedAt(String voidedAt) {
     this.voidedAt = voidedAt;
   }
 

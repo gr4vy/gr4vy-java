@@ -39,7 +39,7 @@ import java.util.UUID;
  * A request to create a transaction.
  */
 @ApiModel(description = "A request to create a transaction.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-08-08T13:56:38.178267Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-09-06T16:38:13.632050Z[Etc/UTC]")
 public class TransactionRequest {
   public static final String SERIALIZED_NAME_AMOUNT = "amount";
   @SerializedName(SERIALIZED_NAME_AMOUNT)
@@ -199,7 +199,7 @@ public class TransactionRequest {
 
   public static final String SERIALIZED_NAME_PREVIOUS_SCHEME_TRANSACTION_ID = "previous_scheme_transaction_id";
   @SerializedName(SERIALIZED_NAME_PREVIOUS_SCHEME_TRANSACTION_ID)
-  private String previousSchemeTransactionId = "null";
+  private String previousSchemeTransactionId = null;
 
   public static final String SERIALIZED_NAME_BROWSER_INFO = "browser_info";
   @SerializedName(SERIALIZED_NAME_BROWSER_INFO)

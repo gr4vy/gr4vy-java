@@ -32,7 +32,7 @@ import java.util.List;
  * A request to create an anti-fraud service.
  */
 @ApiModel(description = "A request to create an anti-fraud service.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-08-08T13:56:38.178267Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-09-06T16:38:13.632050Z[Etc/UTC]")
 public class AntiFraudServiceCreate {
   /**
    * The name of the Anti-Fraud service provider. During update request, this value is used for validation only but the underlying service can not be changed for an existing service.

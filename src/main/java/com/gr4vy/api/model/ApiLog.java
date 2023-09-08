@@ -26,13 +26,13 @@ import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.UUID;
-import org.threeten.bp.OffsetDateTime;
+
 
 /**
  * A log of an error that happened in the API call.
  */
 @ApiModel(description = "A log of an error that happened in the API call.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-08-08T13:56:38.178267Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-09-06T16:38:13.632050Z[Etc/UTC]")
 public class ApiLog {
   /**
    * &#x60;api-log&#x60;.
@@ -97,7 +97,7 @@ public class ApiLog {
 
   public static final String SERIALIZED_NAME_REQUEST_RECEIVED_AT = "request_received_at";
   @SerializedName(SERIALIZED_NAME_REQUEST_RECEIVED_AT)
-  private OffsetDateTime requestReceivedAt;
+  private String requestReceivedAt;
 
   public static final String SERIALIZED_NAME_RESPONSE_STATUS_CODE = "response_status_code";
   @SerializedName(SERIALIZED_NAME_RESPONSE_STATUS_CODE)
@@ -109,7 +109,7 @@ public class ApiLog {
 
   public static final String SERIALIZED_NAME_RESPONSE_SENT_AT = "response_sent_at";
   @SerializedName(SERIALIZED_NAME_RESPONSE_SENT_AT)
-  private OffsetDateTime responseSentAt;
+  private String responseSentAt;
 
 
   public ApiLog type(TypeEnum type) {
@@ -204,7 +204,7 @@ public class ApiLog {
   }
 
 
-  public ApiLog requestReceivedAt(OffsetDateTime requestReceivedAt) {
+  public ApiLog requestReceivedAt(String requestReceivedAt) {
     
     this.requestReceivedAt = requestReceivedAt;
     return this;
@@ -217,12 +217,12 @@ public class ApiLog {
   @javax.annotation.Nullable
   @ApiModelProperty(example = "2022-01-01T00:00Z", value = "The date and time that the request was received.")
 
-  public OffsetDateTime getRequestReceivedAt() {
+  public String getRequestReceivedAt() {
     return requestReceivedAt;
   }
 
 
-  public void setRequestReceivedAt(OffsetDateTime requestReceivedAt) {
+  public void setRequestReceivedAt(String requestReceivedAt) {
     this.requestReceivedAt = requestReceivedAt;
   }
 
@@ -273,7 +273,7 @@ public class ApiLog {
   }
 
 
-  public ApiLog responseSentAt(OffsetDateTime responseSentAt) {
+  public ApiLog responseSentAt(String responseSentAt) {
     
     this.responseSentAt = responseSentAt;
     return this;
@@ -286,12 +286,12 @@ public class ApiLog {
   @javax.annotation.Nullable
   @ApiModelProperty(example = "2022-01-01T00:00:10Z", value = "date-time of when the response was sent.")
 
-  public OffsetDateTime getResponseSentAt() {
+  public String getResponseSentAt() {
     return responseSentAt;
   }
 
 
-  public void setResponseSentAt(OffsetDateTime responseSentAt) {
+  public void setResponseSentAt(String responseSentAt) {
     this.responseSentAt = responseSentAt;
   }
 

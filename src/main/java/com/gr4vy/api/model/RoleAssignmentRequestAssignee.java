@@ -29,7 +29,7 @@ import java.util.UUID;
  * The assignee to associate with the role assignment.
  */
 @ApiModel(description = "The assignee to associate with the role assignment.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-08-08T13:56:38.178267Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-09-06T16:38:13.632050Z[Etc/UTC]")
 public class RoleAssignmentRequestAssignee {
   /**
    * The type of the assignee to associate with the role assignment.
