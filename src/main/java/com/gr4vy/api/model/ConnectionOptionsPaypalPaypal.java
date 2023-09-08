@@ -20,51 +20,51 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import com.gr4vy.api.model.ConnectionOptionsPaypalPaypalAdditionalData;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 /**
- * Additional options to be passed through to Adyen when processing card transactions.
+ * Additional options to be passed through to PayPal when processing transactions.
  */
-@ApiModel(description = "Additional options to be passed through to Adyen when processing card transactions.")
+@ApiModel(description = "Additional options to be passed through to PayPal when processing transactions.")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-09-06T16:38:13.632050Z[Etc/UTC]")
-public class ConnectionOptionsAdyenCard {
-  public static final String SERIALIZED_NAME_ADDITIONAL_DATA = "additionalData";
+public class ConnectionOptionsPaypalPaypal {
+  public static final String SERIALIZED_NAME_ADDITIONAL_DATA = "additional_data";
   @SerializedName(SERIALIZED_NAME_ADDITIONAL_DATA)
-  private Map<String, String> additionalData = null;
+  private List<ConnectionOptionsPaypalPaypalAdditionalData> additionalData = null;
 
 
-  public ConnectionOptionsAdyenCard additionalData(Map<String, String> additionalData) {
+  public ConnectionOptionsPaypalPaypal additionalData(List<ConnectionOptionsPaypalPaypalAdditionalData> additionalData) {
     
     this.additionalData = additionalData;
     return this;
   }
 
-  public ConnectionOptionsAdyenCard putAdditionalDataItem(String key, String additionalDataItem) {
+  public ConnectionOptionsPaypalPaypal addAdditionalDataItem(ConnectionOptionsPaypalPaypalAdditionalData additionalDataItem) {
     if (this.additionalData == null) {
-      this.additionalData = new HashMap<String, String>();
+      this.additionalData = new ArrayList<ConnectionOptionsPaypalPaypalAdditionalData>();
     }
-    this.additionalData.put(key, additionalDataItem);
+    this.additionalData.add(additionalDataItem);
     return this;
   }
 
    /**
-   * A key-value object representing additional data to be passed to Adyen.
+   * An array with key-value objects representing additional data to be passed to PayPal.
    * @return additionalData
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "{\"riskdata.operatorCode\":\"operatorCode,\",\"riskdata.operatorCountry\":\"operatorCountry\"}", value = "A key-value object representing additional data to be passed to Adyen.")
+  @ApiModelProperty(example = "[{\"key\":\"test\",\"value\":\"abc\"}]", value = "An array with key-value objects representing additional data to be passed to PayPal.")
 
-  public Map<String, String> getAdditionalData() {
+  public List<ConnectionOptionsPaypalPaypalAdditionalData> getAdditionalData() {
     return additionalData;
   }
 
 
-  public void setAdditionalData(Map<String, String> additionalData) {
+  public void setAdditionalData(List<ConnectionOptionsPaypalPaypalAdditionalData> additionalData) {
     this.additionalData = additionalData;
   }
 
@@ -77,8 +77,8 @@ public class ConnectionOptionsAdyenCard {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    ConnectionOptionsAdyenCard connectionOptionsAdyenCard = (ConnectionOptionsAdyenCard) o;
-    return Objects.equals(this.additionalData, connectionOptionsAdyenCard.additionalData);
+    ConnectionOptionsPaypalPaypal connectionOptionsPaypalPaypal = (ConnectionOptionsPaypalPaypal) o;
+    return Objects.equals(this.additionalData, connectionOptionsPaypalPaypal.additionalData);
   }
 
   @Override
@@ -89,7 +89,7 @@ public class ConnectionOptionsAdyenCard {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class ConnectionOptionsAdyenCard {\n");
+    sb.append("class ConnectionOptionsPaypalPaypal {\n");
     sb.append("    additionalData: ").append(toIndentedString(additionalData)).append("\n");
     sb.append("}");
     return sb.toString();

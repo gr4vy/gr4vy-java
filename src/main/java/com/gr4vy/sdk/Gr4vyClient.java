@@ -27,9 +27,8 @@ import org.bouncycastle.jce.spec.ECPublicKeySpec;
 import org.bouncycastle.openssl.PEMParser;
 import org.bouncycastle.openssl.jcajce.JcaPEMKeyConverter;
 
-import com.gr4vy.api.ApiClient;
-import com.gr4vy.api.Configuration;
-import com.gr4vy.api.auth.*;
+import com.google.gson.Gson;
+import com.gr4vy.api.model.*;
 import com.nimbusds.jose.JOSEException;
 import com.nimbusds.jose.JWSAlgorithm;
 import com.nimbusds.jose.JWSHeader;
@@ -40,6 +39,13 @@ import com.nimbusds.jose.jwk.ECKey;
 import com.nimbusds.jwt.JWTClaimsSet;
 import com.nimbusds.jwt.SignedJWT;
 
+import okhttp3.Call;
+import okhttp3.MediaType;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
+
 public class Gr4vyClient {
 	private String gr4vyId;
 	private String privateKeyLocation;
@@ -48,7 +54,11 @@ public class Gr4vyClient {
 	private Boolean debug = false;
 	private String merchantAccountId = "default";
 	private UUID checkoutSessionId;
-
+	private final Gson gson = new Gson();
+	
+	public static final MediaType JSON
+    = MediaType.parse("application/json; charset=utf-8");
+	
     /**
      * Constructor
      */
@@ -87,26 +97,6 @@ public class Gr4vyClient {
     public void setHost(String host) {
     	this.host = host;
     }
-	public ApiClient getClient() throws Gr4vyException {
-		try {
-			ApiClient defaultClient = Configuration.getDefaultApiClient();
-			defaultClient.setBasePath(this.host);
-			defaultClient.addDefaultHeader("X-GR4VY-MERCHANT-ACCOUNT-ID", this.merchantAccountId);
-
-			String key = getKey();
-			
-			String[] scopes = {"*.read", "*.write"};
-			
-			String token = getToken(key, scopes, null, null);
-			
-			HttpBearerAuth BearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("BearerAuth");
-			BearerAuth.setBearerToken(token);
-			
-			return defaultClient;
-		} catch (Exception e) {
-			throw new Gr4vyException("Error while generating token, please make sure your private key is valid.");
-		}
-	}
 	
 	public String getEmbedToken(Map<String, Object> embed) throws Gr4vyException {
 		return getEmbedToken(embed, null);
@@ -199,5 +189,250 @@ public class Gr4vyClient {
     			throw new Gr4vyException("Unable to find private key");
     		}
         }
+	}
+
+	private String get(String endpoint) throws Gr4vyException {
+		String[] scopes = {"*.read", "*.write"};
+		String accessToken = null;
+		try {
+			accessToken = this.getToken(this.getKey(), scopes, null);
+		} catch (Exception e2) {
+			throw new Gr4vyException("Unable to generate token: " + e2.getMessage());
+		} 
+		
+		OkHttpClient client = new OkHttpClient.Builder().build();
+		
+        Request request = new Request.Builder()
+	      .url(this.host + endpoint)
+	      .addHeader("Authorization", "Bearer " + accessToken)
+	      .addHeader("X-GR4VY-MERCHANT-ACCOUNT-ID", this.merchantAccountId)
+	      .addHeader("Content-Type", "application/json")
+	      .build();
+
+	    Call call = client.newCall(request);
+	    Response response = null;
+		try {
+			response = call.execute();
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+		
+		if (response == null) throw new Gr4vyException("response was null");
+
+    	String responseData = null;
+		try {
+			responseData = response.body().string();
+		} catch (IOException e1) { }
+    
+		if (!response.isSuccessful()) throw new Gr4vyException("response was not successful: " + responseData);
+		
+		return responseData;
+    }
+	
+	private String post(String endpoint, String jsonBody) throws Gr4vyException {
+		String[] scopes = {"*.read", "*.write"};
+		String accessToken = null;
+		try {
+			accessToken = this.getToken(this.getKey(), scopes, null);
+		} catch (Exception e2) {
+			throw new Gr4vyException("Unable to generate token: " + e2.getMessage());
+		} 
+		
+		OkHttpClient client = new OkHttpClient.Builder().build();
+		
+		Request.Builder requestBuilder = new Request.Builder()
+			      .url(this.host + endpoint)
+			      .addHeader("Authorization", "Bearer " + accessToken)
+			      .addHeader("X-GR4VY-MERCHANT-ACCOUNT-ID", this.merchantAccountId)
+			      .addHeader("Content-Type", "application/json");
+        
+		if (jsonBody != null) {
+			RequestBody body = RequestBody.create(jsonBody, JSON);
+			requestBuilder.post(body);
+		}
+		else {
+			RequestBody body = RequestBody.create(new byte[0], null);
+			requestBuilder.post(body);
+		}
+		
+		Request request = requestBuilder.build();
+        
+
+	    Call call = client.newCall(request);
+	    Response response = null;
+		try {
+			response = call.execute();
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+		
+		if (response == null) throw new Gr4vyException("response was null");
+
+    	String responseData = null;
+		try {
+			responseData = response.body().string();
+		} catch (IOException e1) { }
+		
+		if (!response.isSuccessful()) throw new Gr4vyException("response was not successful: " + responseData);
+
+		return responseData;
+    }
+	
+	private String put(String endpoint, String jsonBody) throws Gr4vyException {
+		String[] scopes = {"*.read", "*.write"};
+		String accessToken = null;
+		try {
+			accessToken = this.getToken(this.getKey(), scopes, null);
+		} catch (Exception e2) {
+			throw new Gr4vyException("Unable to generate token: " + e2.getMessage());
+		} 
+		
+		OkHttpClient client = new OkHttpClient.Builder().build();
+		
+		Request.Builder requestBuilder = new Request.Builder()
+			      .url(this.host + endpoint)
+			      .addHeader("Authorization", "Bearer " + accessToken)
+			      .addHeader("X-GR4VY-MERCHANT-ACCOUNT-ID", this.merchantAccountId)
+			      .addHeader("Content-Type", "application/json");
+        
+		if (jsonBody != null) {
+			RequestBody body = RequestBody.create(jsonBody, JSON);
+			requestBuilder.put(body);
+		}
+		else {
+			RequestBody body = RequestBody.create(new byte[0], null);
+			requestBuilder.put(body);
+		}
+		
+		Request request = requestBuilder.build();
+        
+
+	    Call call = client.newCall(request);
+	    Response response = null;
+		try {
+			response = call.execute();
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+		
+		if (response == null) throw new Gr4vyException("response was null");
+
+    	String responseData = null;
+		try {
+			responseData = response.body().string();
+		} catch (IOException e1) { }
+    
+		if (!response.isSuccessful()) throw new Gr4vyException("response was not successful: " + responseData);
+
+		return responseData;
+    }
+	
+	private boolean delete(String endpoint) throws Gr4vyException {
+		String[] scopes = {"*.read", "*.write"};
+		String accessToken = null;
+		try {
+			accessToken = this.getToken(this.getKey(), scopes, null);
+		} catch (Exception e2) {
+			throw new Gr4vyException("Unable to generate token: " + e2.getMessage());
+		} 
+		
+		OkHttpClient client = new OkHttpClient.Builder().build();
+		
+		Request.Builder requestBuilder = new Request.Builder()
+			      .url(this.host + endpoint)
+			      .addHeader("Authorization", "Bearer " + accessToken)
+			      .addHeader("X-GR4VY-MERCHANT-ACCOUNT-ID", this.merchantAccountId)
+			      .addHeader("Content-Type", "application/json")
+			      .delete();
+        
+		
+		Request request = requestBuilder.build();
+
+	    Call call = client.newCall(request);
+	    Response response = null;
+		try {
+			response = call.execute();
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+		
+		if (response == null) throw new Gr4vyException("response was null");
+		
+	    if (!response.isSuccessful()) {
+	    	String responseData = null;
+			try {
+				responseData = response.body().string();
+			} catch (IOException e1) { }
+			
+			throw new Gr4vyException("response was not successful: " + responseData);
+			
+	    }
+	    
+	    return true;
+    }
+
+	public Buyer newBuyer(BuyerRequest request) {
+		String response = this.post("/buyers", this.gson.toJson(request));
+		return this.gson.fromJson(response,Buyer.class);
+	}
+	public Buyer getBuyer(String buyerId) {
+		String response = this.get("/buyers/" + buyerId);
+		return this.gson.fromJson(response,Buyer.class);
+	}
+	public Buyer updateBuyer(String buyerId, BuyerUpdate request) {
+		String response = this.put("/buyers/" + buyerId, this.gson.toJson(request));
+		return this.gson.fromJson(response,Buyer.class);
+	}
+	public Buyers listBuyers() {
+		String response = this.get("/buyers");
+		return this.gson.fromJson(response,Buyers.class);
+	}
+	public boolean deleteBuyer(String buyerId) {
+		return this.delete("/buyers/" + buyerId);
+	}
+
+	public PaymentMethod storePaymentMethod(PaymentMethodRequest request) {
+		String response = this.post("/payment-methods", this.gson.toJson(request));
+		return this.gson.fromJson(response,PaymentMethod.class);
+	}
+	public PaymentMethod getPaymentMethod(String paymentMethodId) {
+		String response = this.get("/payment-methods/" + paymentMethodId);
+		return this.gson.fromJson(response,PaymentMethod.class);
+	}
+	public PaymentMethods listPaymentMethods() {
+		String response = this.get("/payment-methods");
+		return this.gson.fromJson(response,PaymentMethods.class);
+	}
+	public PaymentMethods listBuyerPaymentMethods(String buyerId) {
+		String response = this.get("/buyers/payment-methods?buyer_id=" + buyerId);
+		return this.gson.fromJson(response,PaymentMethods.class);
+	}
+	public boolean deletePaymentMethod(String paymentMethodId) {
+		return this.delete("/payment-methods/" + paymentMethodId);
+	}
+
+	public Transaction newTransaction(TransactionRequest request) {
+		String response = this.post("/transactions", this.gson.toJson(request));
+        return this.gson.fromJson(response,Transaction.class);
+	}
+	public Transaction getTransaction(String transactionId) {
+		String response = this.get("/transactions/" + transactionId);
+		return this.gson.fromJson(response,Transaction.class);
+	}
+	public Transaction captureTransaction(String transactionId, TransactionCaptureRequest request) {
+		String response = this.post("/transactions/" + transactionId + "/capture", this.gson.toJson(request));
+		return this.gson.fromJson(response,Transaction.class);
+	}
+	public Transactions listTransactions() {
+		String response = this.get("/transactions");
+		return this.gson.fromJson(response,Transactions.class);
+	}
+	public Transaction refundTransaction(String transactionId, TransactionRefundRequest request) {
+		String response = this.post("/transactions/" + transactionId + "/refund", this.gson.toJson(request));
+		return this.gson.fromJson(response,Transaction.class);
+	}
+	public CheckoutSession newCheckoutSession(CheckoutSessionRequest request) {
+		String response = this.post("/checkout/sessions", this.gson.toJson(request));
+		return this.gson.fromJson(response,CheckoutSession.class);
 	}
 }

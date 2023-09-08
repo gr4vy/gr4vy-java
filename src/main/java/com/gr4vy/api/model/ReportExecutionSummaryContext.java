@@ -23,24 +23,24 @@ import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
-import org.threeten.bp.OffsetDateTime;
+
 
 /**
  * Contains the context values used to compute the value of date-time placeholders such as &#x60;month_start&#x60; and &#x60;month_end&#x60; if present in the report&#39;s specification. Date-time placeholders are dynamic timestamps that change with every report execution.
  */
 @ApiModel(description = "Contains the context values used to compute the value of date-time placeholders such as `month_start` and `month_end` if present in the report's specification. Date-time placeholders are dynamic timestamps that change with every report execution.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-08-08T13:56:38.178267Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-09-06T16:38:13.632050Z[Etc/UTC]")
 public class ReportExecutionSummaryContext {
   public static final String SERIALIZED_NAME_REFERENCE_TIMESTAMP = "reference_timestamp";
   @SerializedName(SERIALIZED_NAME_REFERENCE_TIMESTAMP)
-  private OffsetDateTime referenceTimestamp;
+  private String referenceTimestamp;
 
   public static final String SERIALIZED_NAME_REFERENCE_TIMEZONE = "reference_timezone";
   @SerializedName(SERIALIZED_NAME_REFERENCE_TIMEZONE)
   private String referenceTimezone;
 
 
-  public ReportExecutionSummaryContext referenceTimestamp(OffsetDateTime referenceTimestamp) {
+  public ReportExecutionSummaryContext referenceTimestamp(String referenceTimestamp) {
     
     this.referenceTimestamp = referenceTimestamp;
     return this;
@@ -53,12 +53,12 @@ public class ReportExecutionSummaryContext {
   @javax.annotation.Nullable
   @ApiModelProperty(example = "2013-07-16T19:23Z", value = "The date and time used by the system as a reference point to compute date-time placeholders.")
 
-  public OffsetDateTime getReferenceTimestamp() {
+  public String getReferenceTimestamp() {
     return referenceTimestamp;
   }
 
 
-  public void setReferenceTimestamp(OffsetDateTime referenceTimestamp) {
+  public void setReferenceTimestamp(String referenceTimestamp) {
     this.referenceTimestamp = referenceTimestamp;
   }
 

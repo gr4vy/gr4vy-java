@@ -35,13 +35,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
-import org.threeten.bp.OffsetDateTime;
+
 
 /**
  * A transaction record.
  */
 @ApiModel(description = "A transaction record.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-08-08T13:56:38.178267Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-09-06T16:38:13.632050Z[Etc/UTC]")
 public class Transaction {
   /**
    * The type of this resource. Is always &#x60;transaction&#x60;.
@@ -95,6 +95,10 @@ public class Transaction {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
   private UUID id;
+
+  public static final String SERIALIZED_NAME_RECONCILIATION_ID = "reconciliation_id";
+  @SerializedName(SERIALIZED_NAME_RECONCILIATION_ID)
+  private String reconciliationId;
 
   public static final String SERIALIZED_NAME_MERCHANT_ACCOUNT_ID = "merchant_account_id";
   @SerializedName(SERIALIZED_NAME_MERCHANT_ACCOUNT_ID)
@@ -246,7 +250,7 @@ public class Transaction {
 
   public static final String SERIALIZED_NAME_CREATED_AT = "created_at";
   @SerializedName(SERIALIZED_NAME_CREATED_AT)
-  private OffsetDateTime createdAt;
+  private String createdAt;
 
   public static final String SERIALIZED_NAME_EXTERNAL_IDENTIFIER = "external_identifier";
   @SerializedName(SERIALIZED_NAME_EXTERNAL_IDENTIFIER)
@@ -254,7 +258,7 @@ public class Transaction {
 
   public static final String SERIALIZED_NAME_UPDATED_AT = "updated_at";
   @SerializedName(SERIALIZED_NAME_UPDATED_AT)
-  private OffsetDateTime updatedAt;
+  private String updatedAt;
 
   public static final String SERIALIZED_NAME_PAYMENT_SERVICE = "payment_service";
   @SerializedName(SERIALIZED_NAME_PAYMENT_SERVICE)
@@ -472,51 +476,121 @@ public class Transaction {
   public enum MethodEnum {
     AFTERPAY("afterpay"),
     
+    ALIPAY("alipay"),
+    
+    ALIPAYHK("alipayhk"),
+    
     APPLEPAY("applepay"),
     
+    BACS("bacs"),
+    
+    BANCONTACT("bancontact"),
+    
     BANKED("banked"),
+    
+    BECS("becs"),
     
     BITPAY("bitpay"),
     
     BOLETO("boleto"),
     
+    BOOST("boost"),
+    
     CARD("card"),
+    
+    CHECKOUT_SESSION("checkout-session"),
     
     CLEARPAY("clearpay"),
     
     DANA("dana"),
     
+    DCB("dcb"),
+    
+    EPS("eps"),
+    
     FORTUMO("fortumo"),
     
     GCASH("gcash"),
+    
+    GIROPAY("giropay"),
     
     GOCARDLESS("gocardless"),
     
     GOOGLEPAY("googlepay"),
     
+    GOPAY("gopay"),
+    
     GRABPAY("grabpay"),
+    
+    IDEAL("ideal"),
+    
+    ID("id"),
+    
+    KAKAOPAY("kakaopay"),
     
     KLARNA("klarna"),
     
+    LAYBUY("laybuy"),
+    
+    LINEPAY("linepay"),
+    
+    LINKAJA("linkaja"),
+    
+    MAYBANKQRPAY("maybankqrpay"),
+    
+    MULTIBANCO("multibanco"),
+    
+    ONEY_3X("oney_3x"),
+    
+    ONEY_4X("oney_4x"),
+    
+    ONEY_6X("oney_6x"),
+    
+    ONEY_10X("oney_10x"),
+    
+    ONEY_12X("oney_12x"),
+    
     OVO("ovo"),
+    
+    OXXO("oxxo"),
     
     PAYMAYA("paymaya"),
     
     PAYPAL("paypal"),
     
+    PAYPALPAYLATER("paypalpaylater"),
+    
     PIX("pix"),
     
     RABBITLINEPAY("rabbitlinepay"),
     
+    RAZORPAY("razorpay"),
+    
     SCALAPAY("scalapay"),
+    
+    SEPA("sepa"),
     
     SHOPEEPAY("shopeepay"),
     
+    SINGTELDASH("singteldash"),
+    
+    SOFORT("sofort"),
+    
     STRIPEDD("stripedd"),
+    
+    THAIQR("thaiqr"),
+    
+    TOUCHNGO("touchngo"),
     
     TRUEMONEY("truemoney"),
     
     TRUSTLY("trustly"),
+    
+    VENMO("venmo"),
+    
+    WAAVE("waave"),
+    
+    WECHAT("wechat"),
     
     ZIPPAY("zippay");
 
@@ -580,15 +654,15 @@ public class Transaction {
 
   public static final String SERIALIZED_NAME_AUTHORIZED_AT = "authorized_at";
   @SerializedName(SERIALIZED_NAME_AUTHORIZED_AT)
-  private OffsetDateTime authorizedAt;
+  private String authorizedAt;
 
   public static final String SERIALIZED_NAME_CAPTURED_AT = "captured_at";
   @SerializedName(SERIALIZED_NAME_CAPTURED_AT)
-  private OffsetDateTime capturedAt;
+  private String capturedAt;
 
   public static final String SERIALIZED_NAME_VOIDED_AT = "voided_at";
   @SerializedName(SERIALIZED_NAME_VOIDED_AT)
-  private OffsetDateTime voidedAt;
+  private String voidedAt;
 
   public static final String SERIALIZED_NAME_CHECKOUT_SESSION_ID = "checkout_session_id";
   @SerializedName(SERIALIZED_NAME_CHECKOUT_SESSION_ID)
@@ -638,6 +712,29 @@ public class Transaction {
 
   public void setId(UUID id) {
     this.id = id;
+  }
+
+
+  public Transaction reconciliationId(String reconciliationId) {
+    
+    this.reconciliationId = reconciliationId;
+    return this;
+  }
+
+   /**
+   * The base62 encoded transaction ID. This represents a shorter version of this transaction&#39;s &#x60;id&#x60; which is sent to payment services, anti-fraud services, and other connectors. You can use this ID to reconcile a payment service&#39;s transaction against our system.  This ID is sent instead of the transaction ID because not all services support 36 digit identifiers.
+   * @return reconciliationId
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "7jZXl4gBUNl0CnaLEnfXbt", value = "The base62 encoded transaction ID. This represents a shorter version of this transaction's `id` which is sent to payment services, anti-fraud services, and other connectors. You can use this ID to reconcile a payment service's transaction against our system.  This ID is sent instead of the transaction ID because not all services support 36 digit identifiers.")
+
+  public String getReconciliationId() {
+    return reconciliationId;
+  }
+
+
+  public void setReconciliationId(String reconciliationId) {
+    this.reconciliationId = reconciliationId;
   }
 
 
@@ -877,7 +974,7 @@ public class Transaction {
   }
 
 
-  public Transaction createdAt(OffsetDateTime createdAt) {
+  public Transaction createdAt(String createdAt) {
     
     this.createdAt = createdAt;
     return this;
@@ -890,12 +987,12 @@ public class Transaction {
   @javax.annotation.Nullable
   @ApiModelProperty(example = "2013-07-16T19:23Z", value = "The date and time when this transaction was created in our system.")
 
-  public OffsetDateTime getCreatedAt() {
+  public String getCreatedAt() {
     return createdAt;
   }
 
 
-  public void setCreatedAt(OffsetDateTime createdAt) {
+  public void setCreatedAt(String createdAt) {
     this.createdAt = createdAt;
   }
 
@@ -923,7 +1020,7 @@ public class Transaction {
   }
 
 
-  public Transaction updatedAt(OffsetDateTime updatedAt) {
+  public Transaction updatedAt(String updatedAt) {
     
     this.updatedAt = updatedAt;
     return this;
@@ -936,12 +1033,12 @@ public class Transaction {
   @javax.annotation.Nullable
   @ApiModelProperty(value = "Defines when the transaction was last updated.")
 
-  public OffsetDateTime getUpdatedAt() {
+  public String getUpdatedAt() {
     return updatedAt;
   }
 
 
-  public void setUpdatedAt(OffsetDateTime updatedAt) {
+  public void setUpdatedAt(String updatedAt) {
     this.updatedAt = updatedAt;
   }
 
@@ -1376,7 +1473,7 @@ public class Transaction {
   }
 
 
-  public Transaction authorizedAt(OffsetDateTime authorizedAt) {
+  public Transaction authorizedAt(String authorizedAt) {
     
     this.authorizedAt = authorizedAt;
     return this;
@@ -1389,17 +1486,17 @@ public class Transaction {
   @javax.annotation.Nullable
   @ApiModelProperty(example = "2013-07-16T19:23Z", value = "The date and time when this transaction was authorized in the payment service.  Don't use this field to determine whether the transaction was authorized. A `null` value doesn't necessarily imply that the transaction wasn't authorized, it can mean that the payment service doesn't provide this value, that it didn't provide it at the time the transaction was authorized or that the transaction was authorized before the introduction of this field.")
 
-  public OffsetDateTime getAuthorizedAt() {
+  public String getAuthorizedAt() {
     return authorizedAt;
   }
 
 
-  public void setAuthorizedAt(OffsetDateTime authorizedAt) {
+  public void setAuthorizedAt(String authorizedAt) {
     this.authorizedAt = authorizedAt;
   }
 
 
-  public Transaction capturedAt(OffsetDateTime capturedAt) {
+  public Transaction capturedAt(String capturedAt) {
     
     this.capturedAt = capturedAt;
     return this;
@@ -1412,17 +1509,17 @@ public class Transaction {
   @javax.annotation.Nullable
   @ApiModelProperty(example = "2013-07-16T19:23Z", value = "The date and time when this transaction was captured in the payment service.  Don't use this field to determine whether the transaction was captured. A `null` value doesn't necessarily imply that the transaction wasn't captured, it can mean that the payment service doesn't provide this value, that it didn't provide it at the time the transaction was captured or that the transaction was captured before the introduction of this field.")
 
-  public OffsetDateTime getCapturedAt() {
+  public String getCapturedAt() {
     return capturedAt;
   }
 
 
-  public void setCapturedAt(OffsetDateTime capturedAt) {
+  public void setCapturedAt(String capturedAt) {
     this.capturedAt = capturedAt;
   }
 
 
-  public Transaction voidedAt(OffsetDateTime voidedAt) {
+  public Transaction voidedAt(String voidedAt) {
     
     this.voidedAt = voidedAt;
     return this;
@@ -1435,12 +1532,12 @@ public class Transaction {
   @javax.annotation.Nullable
   @ApiModelProperty(example = "2013-07-16T19:23Z", value = "The date and time when this transaction was voided in the payment service.  Don't use this field to determine whether the transaction was voided. A `null` value doesn't necessarily imply that the transaction wasn't voided, it can mean that the payment service doesn't provide this value, that it didn't provide it at the time the transaction was voided or that the transaction was voided before the introduction of this field.")
 
-  public OffsetDateTime getVoidedAt() {
+  public String getVoidedAt() {
     return voidedAt;
   }
 
 
-  public void setVoidedAt(OffsetDateTime voidedAt) {
+  public void setVoidedAt(String voidedAt) {
     this.voidedAt = voidedAt;
   }
 
@@ -1479,6 +1576,7 @@ public class Transaction {
     Transaction transaction = (Transaction) o;
     return Objects.equals(this.type, transaction.type) &&
         Objects.equals(this.id, transaction.id) &&
+        Objects.equals(this.reconciliationId, transaction.reconciliationId) &&
         Objects.equals(this.merchantAccountId, transaction.merchantAccountId) &&
         Objects.equals(this.status, transaction.status) &&
         Objects.equals(this.intent, transaction.intent) &&
@@ -1518,7 +1616,7 @@ public class Transaction {
 
   @Override
   public int hashCode() {
-    return Objects.hash(type, id, merchantAccountId, status, intent, amount, capturedAmount, refundedAmount, currency, country, paymentMethod, buyer, createdAt, externalIdentifier, updatedAt, paymentService, pendingReview, merchantInitiated, paymentSource, isSubsequentPayment, statementDescriptor, cartItems, schemeTransactionId, rawResponseCode, rawResponseDescription, authResponseCode, avsResponseCode, cvvResponseCode, method, paymentServiceTransactionId, metadata, shippingDetails, threeDSecure, authorizedAt, capturedAt, voidedAt, checkoutSessionId);
+    return Objects.hash(type, id, reconciliationId, merchantAccountId, status, intent, amount, capturedAmount, refundedAmount, currency, country, paymentMethod, buyer, createdAt, externalIdentifier, updatedAt, paymentService, pendingReview, merchantInitiated, paymentSource, isSubsequentPayment, statementDescriptor, cartItems, schemeTransactionId, rawResponseCode, rawResponseDescription, authResponseCode, avsResponseCode, cvvResponseCode, method, paymentServiceTransactionId, metadata, shippingDetails, threeDSecure, authorizedAt, capturedAt, voidedAt, checkoutSessionId);
   }
 
   @Override
@@ -1527,6 +1625,7 @@ public class Transaction {
     sb.append("class Transaction {\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("    reconciliationId: ").append(toIndentedString(reconciliationId)).append("\n");
     sb.append("    merchantAccountId: ").append(toIndentedString(merchantAccountId)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("    intent: ").append(toIndentedString(intent)).append("\n");

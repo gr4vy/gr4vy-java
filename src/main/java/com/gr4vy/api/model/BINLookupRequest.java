@@ -20,19 +20,19 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import com.gr4vy.api.model.AntiFraudDecisionTransactionEventContext;
+import com.gr4vy.api.model.BINLookupRequestContext;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.util.UUID;
-import org.threeten.bp.OffsetDateTime;
+
 
 /**
- * The request/response details of HTTP calls made to an anti-fraud provider.
+ * The result and raw data for a card BIN lookup.
  */
-@ApiModel(description = "The request/response details of HTTP calls made to an anti-fraud provider.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-06-30T05:21:36.133441Z[Etc/UTC]")
-public class AntiFraudDecisionTransactionEvent {
+@ApiModel(description = "The result and raw data for a card BIN lookup.")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-09-06T16:38:13.632050Z[Etc/UTC]")
+public class BINLookupRequest {
   /**
    * The type of this resource. Is always &#x60;transaction-event&#x60;.
    */
@@ -87,11 +87,11 @@ public class AntiFraudDecisionTransactionEvent {
   private UUID id;
 
   /**
-   * The name of this resource. Is always &#x60;anti-fraud-decision &#x60;.
+   * The name of this resource. Is always &#x60;bin-lookup-request&#x60;.
    */
   @JsonAdapter(NameEnum.Adapter.class)
   public enum NameEnum {
-    ANTI_FRAUD_DECISION("anti-fraud-decision");
+    BIN_LOOKUP_REQUEST("bin-lookup-request");
 
     private String value;
 
@@ -137,14 +137,14 @@ public class AntiFraudDecisionTransactionEvent {
 
   public static final String SERIALIZED_NAME_CREATED_AT = "created_at";
   @SerializedName(SERIALIZED_NAME_CREATED_AT)
-  private OffsetDateTime createdAt;
+  private String createdAt;
 
   public static final String SERIALIZED_NAME_CONTEXT = "context";
   @SerializedName(SERIALIZED_NAME_CONTEXT)
-  private AntiFraudDecisionTransactionEventContext context;
+  private BINLookupRequestContext context;
 
 
-  public AntiFraudDecisionTransactionEvent type(TypeEnum type) {
+  public BINLookupRequest type(TypeEnum type) {
     
     this.type = type;
     return this;
@@ -167,7 +167,7 @@ public class AntiFraudDecisionTransactionEvent {
   }
 
 
-  public AntiFraudDecisionTransactionEvent id(UUID id) {
+  public BINLookupRequest id(UUID id) {
     
     this.id = id;
     return this;
@@ -190,18 +190,18 @@ public class AntiFraudDecisionTransactionEvent {
   }
 
 
-  public AntiFraudDecisionTransactionEvent name(NameEnum name) {
+  public BINLookupRequest name(NameEnum name) {
     
     this.name = name;
     return this;
   }
 
    /**
-   * The name of this resource. Is always &#x60;anti-fraud-decision &#x60;.
+   * The name of this resource. Is always &#x60;bin-lookup-request&#x60;.
    * @return name
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "anti-fraud-decision", value = "The name of this resource. Is always `anti-fraud-decision `.")
+  @ApiModelProperty(example = "bin-lookup-request", value = "The name of this resource. Is always `bin-lookup-request`.")
 
   public NameEnum getName() {
     return name;
@@ -213,7 +213,7 @@ public class AntiFraudDecisionTransactionEvent {
   }
 
 
-  public AntiFraudDecisionTransactionEvent createdAt(OffsetDateTime createdAt) {
+  public BINLookupRequest createdAt(String createdAt) {
     
     this.createdAt = createdAt;
     return this;
@@ -226,17 +226,17 @@ public class AntiFraudDecisionTransactionEvent {
   @javax.annotation.Nullable
   @ApiModelProperty(example = "2013-07-16T19:23Z", value = "The date and time when this transaction was created in our system.")
 
-  public OffsetDateTime getCreatedAt() {
+  public String getCreatedAt() {
     return createdAt;
   }
 
 
-  public void setCreatedAt(OffsetDateTime createdAt) {
+  public void setCreatedAt(String createdAt) {
     this.createdAt = createdAt;
   }
 
 
-  public AntiFraudDecisionTransactionEvent context(AntiFraudDecisionTransactionEventContext context) {
+  public BINLookupRequest context(BINLookupRequestContext context) {
     
     this.context = context;
     return this;
@@ -249,12 +249,12 @@ public class AntiFraudDecisionTransactionEvent {
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
 
-  public AntiFraudDecisionTransactionEventContext getContext() {
+  public BINLookupRequestContext getContext() {
     return context;
   }
 
 
-  public void setContext(AntiFraudDecisionTransactionEventContext context) {
+  public void setContext(BINLookupRequestContext context) {
     this.context = context;
   }
 
@@ -267,12 +267,12 @@ public class AntiFraudDecisionTransactionEvent {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    AntiFraudDecisionTransactionEvent antiFraudDecisionTransactionEvent = (AntiFraudDecisionTransactionEvent) o;
-    return Objects.equals(this.type, antiFraudDecisionTransactionEvent.type) &&
-        Objects.equals(this.id, antiFraudDecisionTransactionEvent.id) &&
-        Objects.equals(this.name, antiFraudDecisionTransactionEvent.name) &&
-        Objects.equals(this.createdAt, antiFraudDecisionTransactionEvent.createdAt) &&
-        Objects.equals(this.context, antiFraudDecisionTransactionEvent.context);
+    BINLookupRequest biNLookupRequest = (BINLookupRequest) o;
+    return Objects.equals(this.type, biNLookupRequest.type) &&
+        Objects.equals(this.id, biNLookupRequest.id) &&
+        Objects.equals(this.name, biNLookupRequest.name) &&
+        Objects.equals(this.createdAt, biNLookupRequest.createdAt) &&
+        Objects.equals(this.context, biNLookupRequest.context);
   }
 
   @Override
@@ -283,7 +283,7 @@ public class AntiFraudDecisionTransactionEvent {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class AntiFraudDecisionTransactionEvent {\n");
+    sb.append("class BINLookupRequest {\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");

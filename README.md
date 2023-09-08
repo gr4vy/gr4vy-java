@@ -17,7 +17,7 @@ Add the `gr4vy-java` dependency to your pom.xml:
   	<dependency>
 	    <groupId>com.github.gr4vy</groupId>
 	    <artifactId>gr4vy-java</artifactId>
-	    <version>0.13.0</version>
+	    <version>0.16.0</version>
 	</dependency>
 ```
 
@@ -34,20 +34,17 @@ in a secure location but in this code sample we simply read the file from disk.
 Import Gr4vy:
 ```java
 import com.gr4vy.sdk.*;
-import com.gr4vy.api.ApiException;
 import com.gr4vy.api.model.*;
-import com.gr4vy.api.openapi.BuyersApi;
 ```
 
 Call the API:
 ```java
 	Gr4vyClient gr4vyClient = new Gr4vyClient("[YOUR_GR4VY_ID]", "private_key.pem");
-	BuyersApi apiInstance = new BuyersApi(gr4vyClient.getClient());
 
 	try {
-		Buyers result = apiInstance.listBuyers(null, null, null);
+		Buyers result = gr4vyClient.listBuyers(null, null, null);
 		System.out.println(result);
-	} catch (ApiException e) {
+	} catch (Gr4vyException e) {
 		System.err.println("Exception when calling BuyersApi#listBuyers");
 		System.err.println("Status code: " + e.getCode());
 		System.err.println("Reason: " + e.getResponseBody());
@@ -100,11 +97,11 @@ needs to be created before it can be used in this way.
 
 ```java
 	Gr4vyClient gr4vyClient = new Gr4vyClient("[YOUR_GR4VY_ID]", "private_key.pem");
-	BuyersApi apiInstance = new BuyersApi(gr4vyClient.getClient());
+	
 	BuyerRequest buyer = new BuyerRequest();
 	buyer.setDisplayName("Tester T.");
 	try {
-		Buyer result = apiInstance.newBuyer(buyer);
+		Buyer result = gr4vyClient.newBuyer(buyer);
 		System.out.println(result);
 	} catch (ApiException e) {
 		
@@ -141,7 +138,7 @@ example, `GET /buyers?limit=100` would be:
 	String search = null;
 	Integer limit = 100;
 	String cursor = null;
-	Buyers response = api.listBuyers(search, limit, cursor);
+	Buyers response = client.listBuyers(search, limit, cursor);
 ```
 
 To create, the API requires a request object for that resource that is conventiently
@@ -154,7 +151,7 @@ the `addBuyer` method.
 ```java
 	BuyerRequest buyer = new BuyerRequest();
 	buyer.setDisplayName("Tester T.");
-	Buyer result = apiInstance.addBuyer(buyer);
+	Buyer result = client.addBuyer(buyer);
 ```
 
 So to update a buyer you will need to pass in the `BuyerUpdate` object to the
@@ -163,22 +160,18 @@ So to update a buyer you will need to pass in the `BuyerUpdate` object to the
 ```java
 	BuyerUpdate buyer = new BuyerUpdate();
 	buyer.setDisplayName("Tester T.");
-	Buyer result = apiInstance.updateBuyer(buyerId, buyer);
+	Buyer result = client.updateBuyer(buyerId, buyer);
 ```
 
 ## Development
 
-### Adding new APIs
+### Updating models
 
-To add new APIs, run the following command to update the models and APIs based
-on the API spec.
+To update API models, run the following command:
 
 ```sh
 ./openapi-generator-generate.sh
 ```
-
-Next, update `sdk_<object_name>.go` to bind any new APIs or remove any APIs that are no
-longer available.
 
 Run the tests to ensure the changes do not break any existing tests.
 

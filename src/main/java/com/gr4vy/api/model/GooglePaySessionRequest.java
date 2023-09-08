@@ -28,7 +28,7 @@ import java.io.IOException;
  * Initiates a new session with Google Pay.
  */
 @ApiModel(description = "Initiates a new session with Google Pay.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-08-08T13:56:38.178267Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-09-06T16:38:13.632050Z[Etc/UTC]")
 public class GooglePaySessionRequest {
   public static final String SERIALIZED_NAME_ORIGIN_DOMAIN = "origin_domain";
   @SerializedName(SERIALIZED_NAME_ORIGIN_DOMAIN)

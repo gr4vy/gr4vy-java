@@ -51,6 +51,8 @@ src/main/java/com/gr4vy/api/model/AuditLog.java
 src/main/java/com/gr4vy/api/model/AuditLogResource.java
 src/main/java/com/gr4vy/api/model/AuditLogUser.java
 src/main/java/com/gr4vy/api/model/AuditLogs.java
+src/main/java/com/gr4vy/api/model/BINLookupRequest.java
+src/main/java/com/gr4vy/api/model/BINLookupRequestContext.java
 src/main/java/com/gr4vy/api/model/BillingDetails.java
 src/main/java/com/gr4vy/api/model/BillingDetailsRequest.java
 src/main/java/com/gr4vy/api/model/BillingDetailsUpdateRequest.java
@@ -67,9 +69,7 @@ src/main/java/com/gr4vy/api/model/CardSchemeDefinitions.java
 src/main/java/com/gr4vy/api/model/CartItem.java
 src/main/java/com/gr4vy/api/model/CheckoutSession.java
 src/main/java/com/gr4vy/api/model/CheckoutSessionCreateRequest.java
-src/main/java/com/gr4vy/api/model/CheckoutSessionFieldsPaymentMethod.java
 src/main/java/com/gr4vy/api/model/CheckoutSessionRequest.java
-src/main/java/com/gr4vy/api/model/CheckoutSessionSecureFieldsUpdate.java
 src/main/java/com/gr4vy/api/model/CheckoutSessionUpdateRequest.java
 src/main/java/com/gr4vy/api/model/Connection.java
 src/main/java/com/gr4vy/api/model/ConnectionDefinition.java
@@ -78,6 +78,8 @@ src/main/java/com/gr4vy/api/model/ConnectionOptions.java
 src/main/java/com/gr4vy/api/model/ConnectionOptionsAdyenCard.java
 src/main/java/com/gr4vy/api/model/ConnectionOptionsCybersourceAntiFraud.java
 src/main/java/com/gr4vy/api/model/ConnectionOptionsForterAntiFraud.java
+src/main/java/com/gr4vy/api/model/ConnectionOptionsPaypalPaypal.java
+src/main/java/com/gr4vy/api/model/ConnectionOptionsPaypalPaypalAdditionalData.java
 src/main/java/com/gr4vy/api/model/Connections.java
 src/main/java/com/gr4vy/api/model/Cryptogram.java
 src/main/java/com/gr4vy/api/model/DigitalWallet.java
@@ -204,6 +206,7 @@ src/main/java/com/gr4vy/api/model/ThreeDSecureResultRequestEventContext.java
 src/main/java/com/gr4vy/api/model/ThreeDSecureSuccessEvent.java
 src/main/java/com/gr4vy/api/model/ThreeDSecureSuccessEventContext.java
 src/main/java/com/gr4vy/api/model/ThreeDSecureSummary.java
+src/main/java/com/gr4vy/api/model/ThreeDSecureV2.java
 src/main/java/com/gr4vy/api/model/TokenizedRequest.java
 src/main/java/com/gr4vy/api/model/Transaction.java
 src/main/java/com/gr4vy/api/model/TransactionCaptureRequest.java
@@ -263,6 +266,8 @@ src/test/java/com/gr4vy/api/model/AuditLogResourceTest.java
 src/test/java/com/gr4vy/api/model/AuditLogTest.java
 src/test/java/com/gr4vy/api/model/AuditLogUserTest.java
 src/test/java/com/gr4vy/api/model/AuditLogsTest.java
+src/test/java/com/gr4vy/api/model/BINLookupRequestContextTest.java
+src/test/java/com/gr4vy/api/model/BINLookupRequestTest.java
 src/test/java/com/gr4vy/api/model/BillingDetailsRequestTest.java
 src/test/java/com/gr4vy/api/model/BillingDetailsTest.java
 src/test/java/com/gr4vy/api/model/BillingDetailsUpdateRequestTest.java
@@ -278,9 +283,7 @@ src/test/java/com/gr4vy/api/model/CardSchemeDefinitionTest.java
 src/test/java/com/gr4vy/api/model/CardSchemeDefinitionsTest.java
 src/test/java/com/gr4vy/api/model/CartItemTest.java
 src/test/java/com/gr4vy/api/model/CheckoutSessionCreateRequestTest.java
-src/test/java/com/gr4vy/api/model/CheckoutSessionFieldsPaymentMethodTest.java
 src/test/java/com/gr4vy/api/model/CheckoutSessionRequestTest.java
-src/test/java/com/gr4vy/api/model/CheckoutSessionSecureFieldsUpdateTest.java
 src/test/java/com/gr4vy/api/model/CheckoutSessionTest.java
 src/test/java/com/gr4vy/api/model/CheckoutSessionUpdateRequestTest.java
 src/test/java/com/gr4vy/api/model/ConnectionDefinitionTest.java
@@ -288,6 +291,8 @@ src/test/java/com/gr4vy/api/model/ConnectionDefinitionsTest.java
 src/test/java/com/gr4vy/api/model/ConnectionOptionsAdyenCardTest.java
 src/test/java/com/gr4vy/api/model/ConnectionOptionsCybersourceAntiFraudTest.java
 src/test/java/com/gr4vy/api/model/ConnectionOptionsForterAntiFraudTest.java
+src/test/java/com/gr4vy/api/model/ConnectionOptionsPaypalPaypalAdditionalDataTest.java
+src/test/java/com/gr4vy/api/model/ConnectionOptionsPaypalPaypalTest.java
 src/test/java/com/gr4vy/api/model/ConnectionOptionsTest.java
 src/test/java/com/gr4vy/api/model/ConnectionTest.java
 src/test/java/com/gr4vy/api/model/ConnectionsTest.java
@@ -416,6 +421,7 @@ src/test/java/com/gr4vy/api/model/ThreeDSecureResultRequestEventTest.java
 src/test/java/com/gr4vy/api/model/ThreeDSecureSuccessEventContextTest.java
 src/test/java/com/gr4vy/api/model/ThreeDSecureSuccessEventTest.java
 src/test/java/com/gr4vy/api/model/ThreeDSecureSummaryTest.java
+src/test/java/com/gr4vy/api/model/ThreeDSecureV2Test.java
 src/test/java/com/gr4vy/api/model/TokenizedRequestTest.java
 src/test/java/com/gr4vy/api/model/TransactionCaptureRequestTest.java
 src/test/java/com/gr4vy/api/model/TransactionCardRequestTest.java

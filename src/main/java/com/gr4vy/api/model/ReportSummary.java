@@ -29,7 +29,7 @@ import java.util.UUID;
  * A report record summary.
  */
 @ApiModel(description = "A report record summary.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-08-08T13:56:38.178267Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-09-06T16:38:13.632050Z[Etc/UTC]")
 public class ReportSummary {
   /**
    * The type of this resource. Is always &#x60;report&#x60;.

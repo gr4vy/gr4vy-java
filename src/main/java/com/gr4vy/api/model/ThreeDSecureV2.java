@@ -25,10 +25,22 @@ import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 
 /**
- * ThreeDSecureDataV2AllOf
+ * ThreeDSecureV2
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-09-06T16:38:13.632050Z[Etc/UTC]")
-public class ThreeDSecureDataV2AllOf {
+public class ThreeDSecureV2 {
+  public static final String SERIALIZED_NAME_CAVV = "cavv";
+  @SerializedName(SERIALIZED_NAME_CAVV)
+  private String cavv;
+
+  public static final String SERIALIZED_NAME_ECI = "eci";
+  @SerializedName(SERIALIZED_NAME_ECI)
+  private String eci;
+
+  public static final String SERIALIZED_NAME_VERSION = "version";
+  @SerializedName(SERIALIZED_NAME_VERSION)
+  private String version;
+
   /**
    * The transaction status after a the 3DS challenge. This will be null in case of a frictionless 3DS flow.
    */
@@ -124,7 +136,7 @@ public class ThreeDSecureDataV2AllOf {
           return b;
         }
       }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+      return null;
     }
 
     public static class Adapter extends TypeAdapter<DirectoryResponseEnum> {
@@ -149,8 +161,81 @@ public class ThreeDSecureDataV2AllOf {
   @SerializedName(SERIALIZED_NAME_DIRECTORY_TRANSACTION_ID)
   private String directoryTransactionId;
 
+  public static final String SERIALIZED_NAME_TRANSACTION_REASON = "transaction_reason";
+  @SerializedName(SERIALIZED_NAME_TRANSACTION_REASON)
+  private String transactionReason;
 
-  public ThreeDSecureDataV2AllOf authenticationResponse(AuthenticationResponseEnum authenticationResponse) {
+
+  public ThreeDSecureV2 cavv(String cavv) {
+    
+    this.cavv = cavv;
+    return this;
+  }
+
+   /**
+   * The cardholder authentication value or AAV.
+   * @return cavv
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "3q2+78r+ur7erb7vyv66vv8=", value = "The cardholder authentication value or AAV.")
+
+  public String getCavv() {
+    return cavv;
+  }
+
+
+  public void setCavv(String cavv) {
+    this.cavv = cavv;
+  }
+
+
+  public ThreeDSecureV2 eci(String eci) {
+    
+    this.eci = eci;
+    return this;
+  }
+
+   /**
+   * The electronic commerce indicator for the 3DS transaction.
+   * @return eci
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "05", value = "The electronic commerce indicator for the 3DS transaction.")
+
+  public String getEci() {
+    return eci;
+  }
+
+
+  public void setEci(String eci) {
+    this.eci = eci;
+  }
+
+
+  public ThreeDSecureV2 version(String version) {
+    
+    this.version = version;
+    return this;
+  }
+
+   /**
+   * The version of 3-D Secure that was used.
+   * @return version
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "The version of 3-D Secure that was used.")
+
+  public String getVersion() {
+    return version;
+  }
+
+
+  public void setVersion(String version) {
+    this.version = version;
+  }
+
+
+  public ThreeDSecureV2 authenticationResponse(AuthenticationResponseEnum authenticationResponse) {
     
     this.authenticationResponse = authenticationResponse;
     return this;
@@ -173,7 +258,7 @@ public class ThreeDSecureDataV2AllOf {
   }
 
 
-  public ThreeDSecureDataV2AllOf directoryResponse(DirectoryResponseEnum directoryResponse) {
+  public ThreeDSecureV2 directoryResponse(DirectoryResponseEnum directoryResponse) {
     
     this.directoryResponse = directoryResponse;
     return this;
@@ -196,7 +281,7 @@ public class ThreeDSecureDataV2AllOf {
   }
 
 
-  public ThreeDSecureDataV2AllOf directoryTransactionId(String directoryTransactionId) {
+  public ThreeDSecureV2 directoryTransactionId(String directoryTransactionId) {
     
     this.directoryTransactionId = directoryTransactionId;
     return this;
@@ -206,7 +291,8 @@ public class ThreeDSecureDataV2AllOf {
    * The transaction identifier.
    * @return directoryTransactionId
   **/
-  @ApiModelProperty(example = "c4e59ceb-a382-4d6a-bc87-385d591fa09d", required = true, value = "The transaction identifier.")
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "c4e59ceb-a382-4d6a-bc87-385d591fa09d", value = "The transaction identifier.")
 
   public String getDirectoryTransactionId() {
     return directoryTransactionId;
@@ -218,6 +304,29 @@ public class ThreeDSecureDataV2AllOf {
   }
 
 
+  public ThreeDSecureV2 transactionReason(String transactionReason) {
+    
+    this.transactionReason = transactionReason;
+    return this;
+  }
+
+   /**
+   * The reason identifier for a declined transaction.
+   * @return transactionReason
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "05", value = "The reason identifier for a declined transaction.")
+
+  public String getTransactionReason() {
+    return transactionReason;
+  }
+
+
+  public void setTransactionReason(String transactionReason) {
+    this.transactionReason = transactionReason;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -226,24 +335,32 @@ public class ThreeDSecureDataV2AllOf {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    ThreeDSecureDataV2AllOf threeDSecureDataV2AllOf = (ThreeDSecureDataV2AllOf) o;
-    return Objects.equals(this.authenticationResponse, threeDSecureDataV2AllOf.authenticationResponse) &&
-        Objects.equals(this.directoryResponse, threeDSecureDataV2AllOf.directoryResponse) &&
-        Objects.equals(this.directoryTransactionId, threeDSecureDataV2AllOf.directoryTransactionId);
+    ThreeDSecureV2 threeDSecureV2 = (ThreeDSecureV2) o;
+    return Objects.equals(this.cavv, threeDSecureV2.cavv) &&
+        Objects.equals(this.eci, threeDSecureV2.eci) &&
+        Objects.equals(this.version, threeDSecureV2.version) &&
+        Objects.equals(this.authenticationResponse, threeDSecureV2.authenticationResponse) &&
+        Objects.equals(this.directoryResponse, threeDSecureV2.directoryResponse) &&
+        Objects.equals(this.directoryTransactionId, threeDSecureV2.directoryTransactionId) &&
+        Objects.equals(this.transactionReason, threeDSecureV2.transactionReason);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(authenticationResponse, directoryResponse, directoryTransactionId);
+    return Objects.hash(cavv, eci, version, authenticationResponse, directoryResponse, directoryTransactionId, transactionReason);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class ThreeDSecureDataV2AllOf {\n");
+    sb.append("class ThreeDSecureV2 {\n");
+    sb.append("    cavv: ").append(toIndentedString(cavv)).append("\n");
+    sb.append("    eci: ").append(toIndentedString(eci)).append("\n");
+    sb.append("    version: ").append(toIndentedString(version)).append("\n");
     sb.append("    authenticationResponse: ").append(toIndentedString(authenticationResponse)).append("\n");
     sb.append("    directoryResponse: ").append(toIndentedString(directoryResponse)).append("\n");
     sb.append("    directoryTransactionId: ").append(toIndentedString(directoryTransactionId)).append("\n");
+    sb.append("    transactionReason: ").append(toIndentedString(transactionReason)).append("\n");
     sb.append("}");
     return sb.toString();
   }

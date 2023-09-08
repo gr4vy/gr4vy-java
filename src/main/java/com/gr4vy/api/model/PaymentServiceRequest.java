@@ -32,7 +32,7 @@ import java.util.List;
  * Request body for activating a payment service.
  */
 @ApiModel(description = "Request body for activating a payment service.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-08-08T13:56:38.178267Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-09-06T16:38:13.632050Z[Etc/UTC]")
 public class PaymentServiceRequest {
   public static final String SERIALIZED_NAME_PAYMENT_SERVICE_DEFINITION_ID = "payment_service_definition_id";
   @SerializedName(SERIALIZED_NAME_PAYMENT_SERVICE_DEFINITION_ID)

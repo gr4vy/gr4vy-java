@@ -28,13 +28,13 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
-import org.threeten.bp.OffsetDateTime;
+
 
 /**
  * An active, configured payment service.
  */
 @ApiModel(description = "An active, configured payment service.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-08-08T13:56:38.178267Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-09-06T16:38:13.632050Z[Etc/UTC]")
 public class PaymentService {
   /**
    * The type of this resource.
@@ -104,51 +104,121 @@ public class PaymentService {
   public enum MethodEnum {
     AFTERPAY("afterpay"),
     
+    ALIPAY("alipay"),
+    
+    ALIPAYHK("alipayhk"),
+    
     APPLEPAY("applepay"),
     
+    BACS("bacs"),
+    
+    BANCONTACT("bancontact"),
+    
     BANKED("banked"),
+    
+    BECS("becs"),
     
     BITPAY("bitpay"),
     
     BOLETO("boleto"),
     
+    BOOST("boost"),
+    
     CARD("card"),
+    
+    CHECKOUT_SESSION("checkout-session"),
     
     CLEARPAY("clearpay"),
     
     DANA("dana"),
     
+    DCB("dcb"),
+    
+    EPS("eps"),
+    
     FORTUMO("fortumo"),
     
     GCASH("gcash"),
+    
+    GIROPAY("giropay"),
     
     GOCARDLESS("gocardless"),
     
     GOOGLEPAY("googlepay"),
     
+    GOPAY("gopay"),
+    
     GRABPAY("grabpay"),
+    
+    IDEAL("ideal"),
+    
+    ID("id"),
+    
+    KAKAOPAY("kakaopay"),
     
     KLARNA("klarna"),
     
+    LAYBUY("laybuy"),
+    
+    LINEPAY("linepay"),
+    
+    LINKAJA("linkaja"),
+    
+    MAYBANKQRPAY("maybankqrpay"),
+    
+    MULTIBANCO("multibanco"),
+    
+    ONEY_3X("oney_3x"),
+    
+    ONEY_4X("oney_4x"),
+    
+    ONEY_6X("oney_6x"),
+    
+    ONEY_10X("oney_10x"),
+    
+    ONEY_12X("oney_12x"),
+    
     OVO("ovo"),
+    
+    OXXO("oxxo"),
     
     PAYMAYA("paymaya"),
     
     PAYPAL("paypal"),
     
+    PAYPALPAYLATER("paypalpaylater"),
+    
     PIX("pix"),
     
     RABBITLINEPAY("rabbitlinepay"),
     
+    RAZORPAY("razorpay"),
+    
     SCALAPAY("scalapay"),
+    
+    SEPA("sepa"),
     
     SHOPEEPAY("shopeepay"),
     
+    SINGTELDASH("singteldash"),
+    
+    SOFORT("sofort"),
+    
     STRIPEDD("stripedd"),
+    
+    THAIQR("thaiqr"),
+    
+    TOUCHNGO("touchngo"),
     
     TRUEMONEY("truemoney"),
     
     TRUSTLY("trustly"),
+    
+    VENMO("venmo"),
+    
+    WAAVE("waave"),
+    
+    WECHAT("wechat"),
     
     ZIPPAY("zippay");
 
@@ -285,11 +355,11 @@ public class PaymentService {
 
   public static final String SERIALIZED_NAME_CREATED_AT = "created_at";
   @SerializedName(SERIALIZED_NAME_CREATED_AT)
-  private OffsetDateTime createdAt;
+  private String createdAt;
 
   public static final String SERIALIZED_NAME_UPDATED_AT = "updated_at";
   @SerializedName(SERIALIZED_NAME_UPDATED_AT)
-  private OffsetDateTime updatedAt;
+  private String updatedAt;
 
   public static final String SERIALIZED_NAME_WEBHOOK_URL = "webhook_url";
   @SerializedName(SERIALIZED_NAME_WEBHOOK_URL)
@@ -661,7 +731,7 @@ public class PaymentService {
   }
 
 
-  public PaymentService createdAt(OffsetDateTime createdAt) {
+  public PaymentService createdAt(String createdAt) {
     
     this.createdAt = createdAt;
     return this;
@@ -674,17 +744,17 @@ public class PaymentService {
   @javax.annotation.Nullable
   @ApiModelProperty(example = "2012-12-12T10:53:43Z", value = "The date and time when this service was created.")
 
-  public OffsetDateTime getCreatedAt() {
+  public String getCreatedAt() {
     return createdAt;
   }
 
 
-  public void setCreatedAt(OffsetDateTime createdAt) {
+  public void setCreatedAt(String createdAt) {
     this.createdAt = createdAt;
   }
 
 
-  public PaymentService updatedAt(OffsetDateTime updatedAt) {
+  public PaymentService updatedAt(String updatedAt) {
     
     this.updatedAt = updatedAt;
     return this;
@@ -697,12 +767,12 @@ public class PaymentService {
   @javax.annotation.Nullable
   @ApiModelProperty(example = "2012-12-12T10:53:43Z", value = "The date and time when this service was last updated.")
 
-  public OffsetDateTime getUpdatedAt() {
+  public String getUpdatedAt() {
     return updatedAt;
   }
 
 
-  public void setUpdatedAt(OffsetDateTime updatedAt) {
+  public void setUpdatedAt(String updatedAt) {
     this.updatedAt = updatedAt;
   }
 

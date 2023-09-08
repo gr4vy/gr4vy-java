@@ -25,11 +25,10 @@ import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 
 /**
- * A key-value pair that represents a field defined in the definition for this payment service.
+ * ConnectionOptionsPaypalPaypalAdditionalData
  */
-@ApiModel(description = "A key-value pair that represents a field defined in the definition for this payment service.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-12-22T14:21:56.132305Z[Etc/UTC]")
-public class PaymentServiceUpdateFields {
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-09-06T16:38:13.632050Z[Etc/UTC]")
+public class ConnectionOptionsPaypalPaypalAdditionalData {
   public static final String SERIALIZED_NAME_KEY = "key";
   @SerializedName(SERIALIZED_NAME_KEY)
   private String key;
@@ -39,17 +38,18 @@ public class PaymentServiceUpdateFields {
   private String value;
 
 
-  public PaymentServiceUpdateFields key(String key) {
+  public ConnectionOptionsPaypalPaypalAdditionalData key(String key) {
     
     this.key = key;
     return this;
   }
 
    /**
-   * The key of the field to set a value for.
+   * Get key
    * @return key
   **/
-  @ApiModelProperty(example = "private_key", required = true, value = "The key of the field to set a value for.")
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
 
   public String getKey() {
     return key;
@@ -61,17 +61,18 @@ public class PaymentServiceUpdateFields {
   }
 
 
-  public PaymentServiceUpdateFields value(String value) {
+  public ConnectionOptionsPaypalPaypalAdditionalData value(String value) {
     
     this.value = value;
     return this;
   }
 
    /**
-   * The value of a field to set.
+   * Get value
    * @return value
   **/
-  @ApiModelProperty(example = "sk_test_26PHem9AhJZvU623DfE1x4sd", required = true, value = "The value of a field to set.")
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
 
   public String getValue() {
     return value;
@@ -91,9 +92,9 @@ public class PaymentServiceUpdateFields {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    PaymentServiceUpdateFields paymentServiceUpdateFields = (PaymentServiceUpdateFields) o;
-    return Objects.equals(this.key, paymentServiceUpdateFields.key) &&
-        Objects.equals(this.value, paymentServiceUpdateFields.value);
+    ConnectionOptionsPaypalPaypalAdditionalData connectionOptionsPaypalPaypalAdditionalData = (ConnectionOptionsPaypalPaypalAdditionalData) o;
+    return Objects.equals(this.key, connectionOptionsPaypalPaypalAdditionalData.key) &&
+        Objects.equals(this.value, connectionOptionsPaypalPaypalAdditionalData.value);
   }
 
   @Override
@@ -104,7 +105,7 @@ public class PaymentServiceUpdateFields {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class PaymentServiceUpdateFields {\n");
+    sb.append("class ConnectionOptionsPaypalPaypalAdditionalData {\n");
     sb.append("    key: ").append(toIndentedString(key)).append("\n");
     sb.append("    value: ").append(toIndentedString(value)).append("\n");
     sb.append("}");

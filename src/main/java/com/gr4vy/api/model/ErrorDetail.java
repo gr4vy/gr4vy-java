@@ -28,7 +28,7 @@ import java.io.IOException;
  * Additional detail about the part of a request body that caused an issue.
  */
 @ApiModel(description = "Additional detail about the part of a request body that caused an issue.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-08-08T13:56:38.178267Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-09-06T16:38:13.632050Z[Etc/UTC]")
 public class ErrorDetail {
   /**
    * The location where the error caused an issue.

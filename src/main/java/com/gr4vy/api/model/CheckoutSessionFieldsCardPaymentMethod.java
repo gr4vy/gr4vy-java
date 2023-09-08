@@ -25,11 +25,11 @@ import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 
 /**
- * Details to store a new payment method.
+ * Details to store a new card payment method.
  */
-@ApiModel(description = "Details to store a new payment method.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-08-08T13:56:38.178267Z[Etc/UTC]")
-public class CheckoutSessionFieldsPaymentMethod {
+@ApiModel(description = "Details to store a new card payment method.")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-09-06T16:31:27.877088Z[Etc/UTC]")
+public class CheckoutSessionFieldsCardPaymentMethod {
   /**
    * &#x60;card&#x60;.
    */
@@ -92,7 +92,7 @@ public class CheckoutSessionFieldsPaymentMethod {
   private String securityCode;
 
 
-  public CheckoutSessionFieldsPaymentMethod method(MethodEnum method) {
+  public CheckoutSessionFieldsCardPaymentMethod method(MethodEnum method) {
     
     this.method = method;
     return this;
@@ -114,7 +114,7 @@ public class CheckoutSessionFieldsPaymentMethod {
   }
 
 
-  public CheckoutSessionFieldsPaymentMethod number(String number) {
+  public CheckoutSessionFieldsCardPaymentMethod number(String number) {
     
     this.number = number;
     return this;
@@ -137,7 +137,7 @@ public class CheckoutSessionFieldsPaymentMethod {
   }
 
 
-  public CheckoutSessionFieldsPaymentMethod expirationDate(String expirationDate) {
+  public CheckoutSessionFieldsCardPaymentMethod expirationDate(String expirationDate) {
     
     this.expirationDate = expirationDate;
     return this;
@@ -160,7 +160,7 @@ public class CheckoutSessionFieldsPaymentMethod {
   }
 
 
-  public CheckoutSessionFieldsPaymentMethod securityCode(String securityCode) {
+  public CheckoutSessionFieldsCardPaymentMethod securityCode(String securityCode) {
     
     this.securityCode = securityCode;
     return this;
@@ -191,11 +191,11 @@ public class CheckoutSessionFieldsPaymentMethod {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    CheckoutSessionFieldsPaymentMethod checkoutSessionFieldsPaymentMethod = (CheckoutSessionFieldsPaymentMethod) o;
-    return Objects.equals(this.method, checkoutSessionFieldsPaymentMethod.method) &&
-        Objects.equals(this.number, checkoutSessionFieldsPaymentMethod.number) &&
-        Objects.equals(this.expirationDate, checkoutSessionFieldsPaymentMethod.expirationDate) &&
-        Objects.equals(this.securityCode, checkoutSessionFieldsPaymentMethod.securityCode);
+    CheckoutSessionFieldsCardPaymentMethod checkoutSessionFieldsCardPaymentMethod = (CheckoutSessionFieldsCardPaymentMethod) o;
+    return Objects.equals(this.method, checkoutSessionFieldsCardPaymentMethod.method) &&
+        Objects.equals(this.number, checkoutSessionFieldsCardPaymentMethod.number) &&
+        Objects.equals(this.expirationDate, checkoutSessionFieldsCardPaymentMethod.expirationDate) &&
+        Objects.equals(this.securityCode, checkoutSessionFieldsCardPaymentMethod.securityCode);
   }
 
   @Override
@@ -206,7 +206,7 @@ public class CheckoutSessionFieldsPaymentMethod {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class CheckoutSessionFieldsPaymentMethod {\n");
+    sb.append("class CheckoutSessionFieldsCardPaymentMethod {\n");
     sb.append("    method: ").append(toIndentedString(method)).append("\n");
     sb.append("    number: ").append(toIndentedString(number)).append("\n");
     sb.append("    expirationDate: ").append(toIndentedString(expirationDate)).append("\n");
