@@ -7,6 +7,7 @@ import java.security.spec.InvalidKeySpecException;
 import java.text.ParseException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 import org.junit.Test;
 
@@ -75,7 +76,7 @@ public class Gr4vyClientTest {
      	update.setDisplayName("NewJava Test2");
      	response = client.updateBuyer(response.getId().toString(), update);
      	
-     	System.out.println(response);
+     	// System.out.println(response);
         assert response.getId() != null;
         assert response.getDisplayName().equals("NewJava Test2");
         
@@ -92,7 +93,7 @@ public class Gr4vyClientTest {
 //        String cursor = null;
         Buyers response = client.listBuyers();
         
-        System.out.println(response);
+        // System.out.println(response);
         assert response != null;
     }
 	
@@ -117,25 +118,46 @@ public class Gr4vyClientTest {
 //        assert response != null;
 //	}
 	
-//	@Test
-//	public void newTransactionTest() throws Gr4vyException {
-//		Gr4vyClient client = new Gr4vyClient("spider", "private_key.pem", "sandbox");
-//		
-//		TransactionPaymentMethodRequest pm = new TransactionPaymentMethodRequest()
-//				.method(MethodEnum.CARD)
-//				.number("4111111111111111")
-//				.securityCode("123")
-//				.expirationDate("12/23");
-//		
-//		TransactionRequest request = new TransactionRequest()
-//				.amount(100)
-//				.currency("GBP")
-//				.paymentMethod(pm);
-//		
-//     	Transaction response = client.newTransaction(request);
-//     	System.out.println(response);
-//        assert response != null;
-//	}
+	// @Test
+	// public void newTransactionTest() throws Gr4vyException {
+	// 	Gr4vyClient client = new Gr4vyClient("spider", "private_key.pem", "sandbox");
+		
+	// 	TransactionPaymentMethodRequest pm = new TransactionPaymentMethodRequest()
+	// 			.method(MethodEnum.CARD)
+	// 			.number("4111111111111111")
+	// 			.securityCode("123")
+	// 			.expirationDate("12/23");
+		
+	// 	TransactionRequest request = new TransactionRequest()
+	// 			.amount(100)
+	// 			.currency("USD")
+	// 			.paymentMethod(pm);
+		
+ //    	Transaction response = client.newTransaction(request);
+ //    	System.out.println(response);
+ //       assert response != null;
+	// }
+
+	// @Test
+	// public void newTransactionWithIdempotencyTest() throws Gr4vyException {
+	// 	Gr4vyClient client = new Gr4vyClient("spider", "private_key.pem", "sandbox");
+		
+	// 	TransactionPaymentMethodRequest pm = new TransactionPaymentMethodRequest()
+	// 			.method(MethodEnum.CARD)
+	// 			.number("4111111111111111")
+	// 			.securityCode("123")
+	// 			.expirationDate("12/23");
+		
+	// 	TransactionRequest request = new TransactionRequest()
+	// 			.amount(100)
+	// 			.currency("USD")
+	// 			.paymentMethod(pm);
+		
+	// 	UUID idempotencyKey = UUID.randomUUID();
+ //    	Transaction response = client.newTransaction(request, idempotencyKey.toString());
+ //    	System.out.println(response);
+ //       assert response != null;
+	// }
 	
 //	@Test
 //	public void captureTransactionTest() throws Gr4vyException {
@@ -164,26 +186,26 @@ public class Gr4vyClientTest {
 //        assert captureResponse != null;
 //	}
 	
-	@Test
-	public void newRedirectTransactionTest() throws Gr4vyException {
-		//Test cannot be run because checkout session is empty
-		Gr4vyClient client = new Gr4vyClient("spider", "private_key.pem", "sandbox");
+	// @Test
+	// public void newRedirectTransactionTest() throws Gr4vyException {
+	// 	//Test cannot be run because checkout session is empty
+	// 	Gr4vyClient client = new Gr4vyClient("spider", "private_key.pem", "sandbox");
 		
-		TransactionPaymentMethodRequest pm = new TransactionPaymentMethodRequest()
-				.method(MethodEnum.PAYPAL)
-				.redirectUrl("https://gr4vy.com")
-				.currency("GBP")
-				.country("GB");
+	// 	TransactionPaymentMethodRequest pm = new TransactionPaymentMethodRequest()
+	// 			.method(MethodEnum.PAYPAL)
+	// 			.redirectUrl("https://gr4vy.com")
+	// 			.currency("GBP")
+	// 			.country("GB");
 		
-		TransactionRequest request = new TransactionRequest()
-				.amount(100)
-				.currency("GBP")
-				.paymentMethod(pm);
+	// 	TransactionRequest request = new TransactionRequest()
+	// 			.amount(100)
+	// 			.currency("GBP")
+	// 			.paymentMethod(pm);
 		
-     	Transaction response = client.newTransaction(request);
-     	System.out.println(response);
-        assert response != null;
-	}
+ //     	Transaction response = client.newTransaction(request);
+ //     	System.out.println(response);
+ //        assert response != null;
+	// }
 	
 //	@Test
 //	public void newStoredTransactionTest() throws Gr4vyException {
@@ -212,7 +234,7 @@ public class Gr4vyClientTest {
 //        String cursor = null;
         Transactions response = client.listTransactions();
         
-        System.out.println(response);
+        // System.out.println(response);
         assert response != null;
     }
 	
@@ -225,7 +247,7 @@ public class Gr4vyClientTest {
 				.expirationDate("12/24");
      	
      	PaymentMethod response = client.storePaymentMethod(pm);
-     	System.out.println(response);
+     	// System.out.println(response);
         assert response.getId() != null;
 	}
 	
@@ -234,7 +256,7 @@ public class Gr4vyClientTest {
 		Gr4vyClient client = new Gr4vyClient("spider", "private_key.pem", "sandbox");
 		
      	PaymentMethod response = client.getPaymentMethod("eeefe91c-9449-4730-81a4-85cd59e8d72a");
-     	System.out.println(response);
+     	// System.out.println(response);
         assert response.getId() != null;
 	}
 	
@@ -243,7 +265,7 @@ public class Gr4vyClientTest {
 		Gr4vyClient client = new Gr4vyClient("spider", "private_key.pem", "sandbox");
 		
      	PaymentMethods response = client.listPaymentMethods();
-     	System.out.println(response);
+     	// System.out.println(response);
         assert response != null;
 	}
 	
