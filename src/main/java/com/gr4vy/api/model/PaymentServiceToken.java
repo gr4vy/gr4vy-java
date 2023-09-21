@@ -30,8 +30,57 @@ import java.util.UUID;
  * A payment service token.
  */
 @ApiModel(description = "A payment service token.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-09-06T16:38:13.632050Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class PaymentServiceToken {
+  /**
+   * The type of this resource.
+   */
+  @JsonAdapter(TypeEnum.Adapter.class)
+  public enum TypeEnum {
+    PAYMENT_SERVICE_TOKEN("payment-service-token");
+
+    private String value;
+
+    TypeEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static TypeEnum fromValue(String value) {
+      for (TypeEnum b : TypeEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+
+    public static class Adapter extends TypeAdapter<TypeEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final TypeEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public TypeEnum read(final JsonReader jsonReader) throws IOException {
+        String value =  jsonReader.nextString();
+        return TypeEnum.fromValue(value);
+      }
+    }
+  }
+
+  public static final String SERIALIZED_NAME_TYPE = "type";
+  @SerializedName(SERIALIZED_NAME_TYPE)
+  private TypeEnum type;
+
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
   private UUID id;
@@ -114,6 +163,29 @@ public class PaymentServiceToken {
   public static final String SERIALIZED_NAME_UPDATED_AT = "updated_at";
   @SerializedName(SERIALIZED_NAME_UPDATED_AT)
   private String updatedAt;
+
+
+  public PaymentServiceToken type(TypeEnum type) {
+    
+    this.type = type;
+    return this;
+  }
+
+   /**
+   * The type of this resource.
+   * @return type
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "payment-service-token", value = "The type of this resource.")
+
+  public TypeEnum getType() {
+    return type;
+  }
+
+
+  public void setType(TypeEnum type) {
+    this.type = type;
+  }
 
 
   public PaymentServiceToken id(UUID id) {
@@ -309,7 +381,8 @@ public class PaymentServiceToken {
       return false;
     }
     PaymentServiceToken paymentServiceToken = (PaymentServiceToken) o;
-    return Objects.equals(this.id, paymentServiceToken.id) &&
+    return Objects.equals(this.type, paymentServiceToken.type) &&
+        Objects.equals(this.id, paymentServiceToken.id) &&
         Objects.equals(this.paymentMethodId, paymentServiceToken.paymentMethodId) &&
         Objects.equals(this.paymentServiceId, paymentServiceToken.paymentServiceId) &&
         Objects.equals(this.status, paymentServiceToken.status) &&
@@ -321,13 +394,14 @@ public class PaymentServiceToken {
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, paymentMethodId, paymentServiceId, status, approvalUrl, token, createdAt, updatedAt);
+    return Objects.hash(type, id, paymentMethodId, paymentServiceId, status, approvalUrl, token, createdAt, updatedAt);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class PaymentServiceToken {\n");
+    sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    paymentMethodId: ").append(toIndentedString(paymentMethodId)).append("\n");
     sb.append("    paymentServiceId: ").append(toIndentedString(paymentServiceId)).append("\n");

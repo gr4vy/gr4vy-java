@@ -186,6 +186,58 @@ public class Gr4vyClientTest {
 //        assert captureResponse != null;
 //	}
 	
+//	@Test
+//	public void voidTransactionTest() throws Gr4vyException {
+//		Gr4vyClient client = new Gr4vyClient("spider", "private_key.pem", "sandbox");
+//		
+//		TransactionPaymentMethodRequest pm = new TransactionPaymentMethodRequest()
+//				.method(MethodEnum.CARD)
+//				.number("4111111111111111")
+//				.securityCode("123")
+//				.expirationDate("12/23");
+//		
+//		TransactionRequest request = new TransactionRequest()
+//				.amount(100)
+//				.currency("USD")
+//				.paymentMethod(pm)
+//				.intent(IntentEnum.AUTHORIZE);
+//		
+//     	Transaction response = client.newTransaction(request);
+//     	System.out.println(response);
+//        assert response != null;
+//        
+//        Transaction voidResponse = client.voidTransaction(response.getId().toString());
+//     	System.out.println(voidResponse);
+//        assert voidResponse != null;
+//	}
+//	
+//	@Test
+//	public void refundTransactionTest() throws Gr4vyException {
+//		Gr4vyClient client = new Gr4vyClient("spider", "private_key.pem", "sandbox");
+//		
+//		TransactionPaymentMethodRequest pm = new TransactionPaymentMethodRequest()
+//				.method(MethodEnum.CARD)
+//				.number("4111111111111111")
+//				.securityCode("123")
+//				.expirationDate("12/23");
+//		
+//		TransactionRequest request = new TransactionRequest()
+//				.amount(100)
+//				.currency("USD")
+//				.paymentMethod(pm)
+//				.intent(IntentEnum.CAPTURE);
+//		
+//     	Transaction response = client.newTransaction(request);
+//     	System.out.println(response);
+//        assert response != null;
+//        
+//        TransactionRefundRequest refund = new TransactionRefundRequest()
+//        		.amount(100);
+//        Refund refundResponse = client.refundTransaction(response.getId().toString(), refund);
+//     	System.out.println(refundResponse);
+//        assert refundResponse != null;
+//	}
+	
 	// @Test
 	// public void newRedirectTransactionTest() throws Gr4vyException {
 	// 	//Test cannot be run because checkout session is empty

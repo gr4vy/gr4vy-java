@@ -34,7 +34,7 @@ import java.util.UUID;
  * An active, configured payment service.
  */
 @ApiModel(description = "An active, configured payment service.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-09-06T16:38:13.632050Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class PaymentService {
   /**
    * The type of this resource.
@@ -127,6 +127,8 @@ public class PaymentService {
     CARD("card"),
     
     CHECKOUT_SESSION("checkout-session"),
+    
+    CLICK_TO_PAY("click-to-pay"),
     
     CLEARPAY("clearpay"),
     

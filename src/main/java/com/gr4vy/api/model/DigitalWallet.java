@@ -32,7 +32,7 @@ import java.util.UUID;
  * A digital wallet (e.g. Apple Pay) that has been registered.
  */
 @ApiModel(description = "A digital wallet (e.g. Apple Pay) that has been registered.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-09-06T16:38:13.632050Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class DigitalWallet {
   /**
    * &#x60;digital-wallet&#x60;.

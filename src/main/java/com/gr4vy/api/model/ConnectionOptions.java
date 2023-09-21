@@ -31,7 +31,7 @@ import java.io.IOException;
 /**
  * ConnectionOptions
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-09-06T16:38:13.632050Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class ConnectionOptions {
   public static final String SERIALIZED_NAME_CYBERSOURCE_ANTI_FRAUD = "cybersource-anti-fraud";
   @SerializedName(SERIALIZED_NAME_CYBERSOURCE_ANTI_FRAUD)

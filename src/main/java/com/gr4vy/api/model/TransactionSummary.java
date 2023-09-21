@@ -33,7 +33,7 @@ import java.util.UUID;
  * A transaction record.
  */
 @ApiModel(description = "A transaction record.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-09-06T16:38:13.632050Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class TransactionSummary {
   /**
    * The type of this resource. Is always &#x60;transaction&#x60;.
@@ -290,6 +290,8 @@ public class TransactionSummary {
     CARD("card"),
     
     CHECKOUT_SESSION("checkout-session"),
+    
+    CLICK_TO_PAY("click-to-pay"),
     
     CLEARPAY("clearpay"),
     

@@ -29,7 +29,7 @@ import java.util.UUID;
  * Details to register a new redirect payment method.
  */
 @ApiModel(description = "Details to register a new redirect payment method.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-09-06T16:38:13.632050Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class RedirectRequest {
   /**
    * The method to use, this can be any of the methods that support redirect requests.  When storing a new payment method, only &#x60;gocardless&#x60; and &#x60;stripedd&#x60; are currently supported.

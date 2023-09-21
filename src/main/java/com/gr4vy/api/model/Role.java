@@ -29,7 +29,7 @@ import java.util.UUID;
 /**
  * Role
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-09-06T16:38:13.632050Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class Role {
   /**
    * The type of this resource. Always &#x60;role&#x60;.

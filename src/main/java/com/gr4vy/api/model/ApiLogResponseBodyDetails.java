@@ -28,7 +28,7 @@ import java.io.IOException;
  * Details of the log entry, stack trace and endpoint.
  */
 @ApiModel(description = "Details of the log entry, stack trace and endpoint.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-09-06T16:38:13.632050Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class ApiLogResponseBodyDetails {
   public static final String SERIALIZED_NAME_POINTER = "pointer";
   @SerializedName(SERIALIZED_NAME_POINTER)

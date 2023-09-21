@@ -28,7 +28,7 @@ import java.io.IOException;
  * A request to set a password for a user.
  */
 @ApiModel(description = "A request to set a password for a user.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-09-06T16:38:13.632050Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class SetPasswordRequest {
   public static final String SERIALIZED_NAME_RESET_TOKEN = "reset_token";
   @SerializedName(SERIALIZED_NAME_RESET_TOKEN)

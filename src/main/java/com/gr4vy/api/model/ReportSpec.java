@@ -31,7 +31,7 @@ import java.util.Map;
  * The specification of a report.
  */
 @ApiModel(description = "The specification of a report.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-09-06T16:38:13.632050Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class ReportSpec {
   /**
    * The model (dataset) that the data used for the report is retrieved from.

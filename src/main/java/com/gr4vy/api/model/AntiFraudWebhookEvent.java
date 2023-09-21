@@ -31,7 +31,7 @@ import java.util.UUID;
  * This event logs the webhook received when an anti-fraud decision is updated.
  */
 @ApiModel(description = "This event logs the webhook received when an anti-fraud decision is updated.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-09-06T16:38:13.632050Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class AntiFraudWebhookEvent {
   /**
    * The type of this resource. Is always &#x60;transaction-event&#x60;.

@@ -33,7 +33,7 @@ import java.util.UUID;
  * A report execution.
  */
 @ApiModel(description = "A report execution.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-09-06T16:38:13.632050Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class ReportExecution {
   public static final String SERIALIZED_NAME_REPORT = "report";
   @SerializedName(SERIALIZED_NAME_REPORT)
