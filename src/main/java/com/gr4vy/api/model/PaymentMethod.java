@@ -32,7 +32,7 @@ import java.util.UUID;
  * A generic payment method.
  */
 @ApiModel(description = "A generic payment method.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-09-06T16:38:13.632050Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class PaymentMethod {
   /**
    * &#x60;payment-method&#x60;.
@@ -176,6 +176,8 @@ public class PaymentMethod {
     CARD("card"),
     
     CHECKOUT_SESSION("checkout-session"),
+    
+    CLICK_TO_PAY("click-to-pay"),
     
     CLEARPAY("clearpay"),
     

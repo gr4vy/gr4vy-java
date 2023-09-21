@@ -32,7 +32,7 @@ import java.util.UUID;
  * A log of a change that occurred in the Gr4vy instance.
  */
 @ApiModel(description = "A log of a change that occurred in the Gr4vy instance.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-09-06T16:38:13.632050Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class AuditLog {
   /**
    * &#x60;audit-log&#x60;.

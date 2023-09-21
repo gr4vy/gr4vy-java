@@ -31,7 +31,7 @@ import java.util.UUID;
  * Details related to 3DS processing.
  */
 @ApiModel(description = "Details related to 3DS processing.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-09-06T16:38:13.632050Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class ThreeDSecureSuccessEvent {
   /**
    * The type of this resource. Is always &#x60;transaction-event&#x60;.

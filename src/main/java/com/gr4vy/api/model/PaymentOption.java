@@ -29,7 +29,7 @@ import java.io.IOException;
  * An available payment option for a locale.
  */
 @ApiModel(description = "An available payment option for a locale.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-09-06T16:38:13.632050Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class PaymentOption {
   /**
    * &#x60;payment-option&#x60;.
@@ -110,6 +110,8 @@ public class PaymentOption {
     CARD("card"),
     
     CHECKOUT_SESSION("checkout-session"),
+    
+    CLICK_TO_PAY("click-to-pay"),
     
     CLEARPAY("clearpay"),
     

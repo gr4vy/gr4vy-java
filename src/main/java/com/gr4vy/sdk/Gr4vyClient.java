@@ -438,9 +438,13 @@ public class Gr4vyClient {
 		String response = this.get("/transactions");
 		return this.gson.fromJson(response,Transactions.class);
 	}
-	public Transaction refundTransaction(String transactionId, TransactionRefundRequest request) {
-		String response = this.post("/transactions/" + transactionId + "/refund", this.gson.toJson(request));
+	public Transaction voidTransaction(String transactionId) {
+		String response = this.post("/transactions/" + transactionId + "/void", null);
 		return this.gson.fromJson(response,Transaction.class);
+	}
+	public Refund refundTransaction(String transactionId, TransactionRefundRequest request) {
+		String response = this.post("/transactions/" + transactionId + "/refunds", this.gson.toJson(request));
+		return this.gson.fromJson(response,Refund.class);
 	}
 	public CheckoutSession newCheckoutSession(CheckoutSessionCreateRequest request) {
 		String response = this.post("/checkout/sessions", this.gson.toJson(request));

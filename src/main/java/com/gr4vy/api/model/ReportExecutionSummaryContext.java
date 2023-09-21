@@ -29,7 +29,7 @@ import java.io.IOException;
  * Contains the context values used to compute the value of date-time placeholders such as &#x60;month_start&#x60; and &#x60;month_end&#x60; if present in the report&#39;s specification. Date-time placeholders are dynamic timestamps that change with every report execution.
  */
 @ApiModel(description = "Contains the context values used to compute the value of date-time placeholders such as `month_start` and `month_end` if present in the report's specification. Date-time placeholders are dynamic timestamps that change with every report execution.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-09-06T16:38:13.632050Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class ReportExecutionSummaryContext {
   public static final String SERIALIZED_NAME_REFERENCE_TIMESTAMP = "reference_timestamp";
   @SerializedName(SERIALIZED_NAME_REFERENCE_TIMESTAMP)

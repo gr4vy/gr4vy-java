@@ -30,7 +30,7 @@ import java.util.UUID;
  * A refund record.  A refund is always associated with a single transaction, while a transaction can potentially have several refunds.
  */
 @ApiModel(description = "A refund record.  A refund is always associated with a single transaction, while a transaction can potentially have several refunds.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-09-06T16:38:13.632050Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class Refund {
   /**
    * The type of this resource. Is always &#x60;refund&#x60;.

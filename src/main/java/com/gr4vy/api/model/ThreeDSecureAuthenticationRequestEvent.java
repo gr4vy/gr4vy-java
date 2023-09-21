@@ -31,7 +31,7 @@ import java.util.UUID;
  * The result and raw data for a 3DS authorization call.
  */
 @ApiModel(description = "The result and raw data for a 3DS authorization call.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-09-06T16:38:13.632050Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class ThreeDSecureAuthenticationRequestEvent {
   /**
    * The type of this resource. Is always &#x60;transaction-event&#x60;.

@@ -31,7 +31,7 @@ import java.util.UUID;
  * Error details for a failed 3DS call.
  */
 @ApiModel(description = "Error details for a failed 3DS call.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-09-06T16:38:13.632050Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class ThreeDSecureRequestErrorEvent {
   /**
    * The type of this resource. Is always &#x60;transaction-event&#x60;.
