@@ -31,7 +31,7 @@ import java.util.UUID;
  * This event logs the exact details parsed details for a declined capture as reported by our connector.
  */
 @ApiModel(description = "This event logs the exact details parsed details for a declined capture as reported by our connector.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-09-06T16:38:13.632050Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class PaymentConnectorResponseTransactionCaptureDeclinedEvent {
   /**
    * The type of this resource. Is always &#x60;transaction-event&#x60;.

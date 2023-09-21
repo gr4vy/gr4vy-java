@@ -29,7 +29,7 @@ import java.util.UUID;
  * Card payment method details to use in a transaction.
  */
 @ApiModel(description = "Card payment method details to use in a transaction.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-09-06T16:38:13.632050Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class TransactionCardRequest {
   /**
    * &#x60;card&#x60;.

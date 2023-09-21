@@ -30,7 +30,7 @@ import java.math.BigDecimal;
  * The JSON response body for the log entry.
  */
 @ApiModel(description = "The JSON response body for the log entry.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-09-06T16:38:13.632050Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class ApiLogResponseBody {
   public static final String SERIALIZED_NAME_CODE = "code";
   @SerializedName(SERIALIZED_NAME_CODE)

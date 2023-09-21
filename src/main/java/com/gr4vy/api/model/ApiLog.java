@@ -32,7 +32,7 @@ import java.util.UUID;
  * A log of an error that happened in the API call.
  */
 @ApiModel(description = "A log of an error that happened in the API call.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-09-06T16:38:13.632050Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class ApiLog {
   /**
    * &#x60;api-log&#x60;.

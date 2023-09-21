@@ -31,7 +31,7 @@ import java.util.Map;
  * Additional options for Cybersource Decision Manager (anti-fraud).
  */
 @ApiModel(description = "Additional options for Cybersource Decision Manager (anti-fraud).")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-09-06T16:38:13.632050Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class ConnectionOptionsCybersourceAntiFraud {
   public static final String SERIALIZED_NAME_MERCHANT_DEFINED_DATA = "merchant_defined_data";
   @SerializedName(SERIALIZED_NAME_MERCHANT_DEFINED_DATA)

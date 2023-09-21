@@ -29,7 +29,7 @@ import java.io.IOException;
  * The temporary signed URL to download the result of a report execution and its expiration date and time.
  */
 @ApiModel(description = "The temporary signed URL to download the result of a report execution and its expiration date and time.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-09-06T16:38:13.632050Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class ReportExecutionUrl {
   public static final String SERIALIZED_NAME_URL = "url";
   @SerializedName(SERIALIZED_NAME_URL)

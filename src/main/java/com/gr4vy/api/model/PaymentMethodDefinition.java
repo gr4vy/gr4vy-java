@@ -28,7 +28,7 @@ import java.io.IOException;
  * Definitions of a payment method including icon, label, etc.
  */
 @ApiModel(description = "Definitions of a payment method including icon, label, etc.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-09-06T16:38:13.632050Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class PaymentMethodDefinition {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)

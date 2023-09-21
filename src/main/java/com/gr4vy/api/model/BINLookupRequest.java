@@ -31,7 +31,7 @@ import java.util.UUID;
  * The result and raw data for a card BIN lookup.
  */
 @ApiModel(description = "The result and raw data for a card BIN lookup.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-09-06T16:38:13.632050Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class BINLookupRequest {
   /**
    * The type of this resource. Is always &#x60;transaction-event&#x60;.

@@ -30,7 +30,7 @@ import java.util.UUID;
  * Snapshot of a payment method, as used when embedded inside other resources.
  */
 @ApiModel(description = "Snapshot of a payment method, as used when embedded inside other resources.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-09-06T16:38:13.632050Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class PaymentMethodSnapshot {
   /**
    * &#x60;payment-method&#x60;.
@@ -115,6 +115,8 @@ public class PaymentMethodSnapshot {
     CARD("card"),
     
     CHECKOUT_SESSION("checkout-session"),
+    
+    CLICK_TO_PAY("click-to-pay"),
     
     CLEARPAY("clearpay"),
     

@@ -29,7 +29,7 @@ import java.io.IOException;
  * Details for a Google Pay payment method.
  */
 @ApiModel(description = "Details for a Google Pay payment method.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-09-06T16:38:13.632050Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class GooglePayRequest {
   /**
    * &#x60;googlepay&#x60;.
