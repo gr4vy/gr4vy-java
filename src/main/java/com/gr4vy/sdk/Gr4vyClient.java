@@ -224,7 +224,7 @@ public class Gr4vyClient {
 			responseData = response.body().string();
 		} catch (IOException e1) { }
     
-		if (!response.isSuccessful()) throw new Gr4vyException("response was not successful: " + responseData);
+		if (!response.isSuccessful()) throw new Gr4vyException("response was not successful", responseData, response.code());
 		
 		return responseData;
     }
@@ -280,7 +280,7 @@ public class Gr4vyClient {
 			responseData = response.body().string();
 		} catch (IOException e1) { }
 		
-		if (!response.isSuccessful()) throw new Gr4vyException("response was not successful: " + responseData);
+		if (!response.isSuccessful()) throw new Gr4vyException("response was not successful", responseData, response.code());
 
 		return responseData;
     }
@@ -329,7 +329,7 @@ public class Gr4vyClient {
 			responseData = response.body().string();
 		} catch (IOException e1) { }
     
-		if (!response.isSuccessful()) throw new Gr4vyException("response was not successful: " + responseData);
+		if (!response.isSuccessful()) throw new Gr4vyException("response was not successful", responseData, response.code());
 
 		return responseData;
     }
@@ -371,7 +371,7 @@ public class Gr4vyClient {
 				responseData = response.body().string();
 			} catch (IOException e1) { }
 			
-			throw new Gr4vyException("response was not successful: " + responseData);
+			throw new Gr4vyException("response was not successful", responseData, response.code());
 			
 	    }
 	    
