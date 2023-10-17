@@ -89,6 +89,10 @@ public class Refund {
   @SerializedName(SERIALIZED_NAME_TRANSACTION_ID)
   private UUID transactionId;
 
+  public static final String SERIALIZED_NAME_PAYMENT_SERVICE_REFUND_ID = "payment_service_refund_id";
+  @SerializedName(SERIALIZED_NAME_PAYMENT_SERVICE_REFUND_ID)
+  private String paymentServiceRefundId;
+
   /**
    * The status of the refund. It may change over time as asynchronous processing events occur.  - &#x60;processing&#x60; - The refund is being processed. - &#x60;succeeded&#x60; - The refund was successful. - &#x60;declined&#x60; - The refund was declined by the underlying PSP. - &#x60;failed&#x60; - The refund could not proceed due to a technical issue. - &#x60;voided&#x60; - The refund was voided and will not proceed.
    */
@@ -232,6 +236,29 @@ public class Refund {
   }
 
 
+  public Refund paymentServiceRefundId(String paymentServiceRefundId) {
+    
+    this.paymentServiceRefundId = paymentServiceRefundId;
+    return this;
+  }
+
+   /**
+   * The payment service&#39;s unique ID for the refund.
+   * @return paymentServiceRefundId
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "refund_xYqd43gySMtori", value = "The payment service's unique ID for the refund.")
+
+  public String getPaymentServiceRefundId() {
+    return paymentServiceRefundId;
+  }
+
+
+  public void setPaymentServiceRefundId(String paymentServiceRefundId) {
+    this.paymentServiceRefundId = paymentServiceRefundId;
+  }
+
+
   public Refund status(StatusEnum status) {
     
     this.status = status;
@@ -361,6 +388,7 @@ public class Refund {
     return Objects.equals(this.type, refund.type) &&
         Objects.equals(this.id, refund.id) &&
         Objects.equals(this.transactionId, refund.transactionId) &&
+        Objects.equals(this.paymentServiceRefundId, refund.paymentServiceRefundId) &&
         Objects.equals(this.status, refund.status) &&
         Objects.equals(this.currency, refund.currency) &&
         Objects.equals(this.amount, refund.amount) &&
@@ -370,7 +398,7 @@ public class Refund {
 
   @Override
   public int hashCode() {
-    return Objects.hash(type, id, transactionId, status, currency, amount, createdAt, updatedAt);
+    return Objects.hash(type, id, transactionId, paymentServiceRefundId, status, currency, amount, createdAt, updatedAt);
   }
 
   @Override
@@ -380,6 +408,7 @@ public class Refund {
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    transactionId: ").append(toIndentedString(transactionId)).append("\n");
+    sb.append("    paymentServiceRefundId: ").append(toIndentedString(paymentServiceRefundId)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("    currency: ").append(toIndentedString(currency)).append("\n");
     sb.append("    amount: ").append(toIndentedString(amount)).append("\n");
