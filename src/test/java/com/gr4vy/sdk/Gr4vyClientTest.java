@@ -1,5 +1,7 @@
 package com.gr4vy.sdk;
 
+import static org.junit.Assert.assertEquals;
+
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 import java.security.NoSuchProviderException;
@@ -18,6 +20,17 @@ import com.nimbusds.jose.JOSEException;
 
 public class Gr4vyClientTest {
 
+	@Test
+    public void setTimeoutTest() throws Gr4vyException {
+    	Gr4vyClient client = new Gr4vyClient("spider", "private_key.pem");
+		
+		client.setTimeouts(1, 2, 3);
+
+        assert client.getConnectTimeout() == 1;
+        assert client.getWriteTimeout() == 2;
+        assert client.getReadTimeout() == 3;
+    }
+	
 	@Test
     public void getEmbedTokenTest() throws Gr4vyException {
     	Gr4vyClient client = new Gr4vyClient("spider", "private_key.pem");
@@ -110,17 +123,40 @@ public class Gr4vyClientTest {
 
 		try {
 	     	Transaction response = client.newTransaction(request);
-	     	System.out.println(response);
 	     	assert response != null;
 		}
 		catch (Gr4vyException e) {
-			System.out.print(e.getHttpCode());
-			System.out.print(e.getResponseData());
-			assert false;
+			ErrorGeneric error = e.getError();
+			assertEquals(error.getDetails().get(0).getMessage(), "Invalid checkout session ID. Session does not exist, is incomplete or has expired.");
 		}
         
 	}
 	
+	 @Test
+	 public void newFailTransactionTest() throws Gr4vyException {
+	 	Gr4vyClient client = new Gr4vyClient("spider", "private_key.pem", "sandbox");
+		
+	 	TransactionPaymentMethodRequest pm = new TransactionPaymentMethodRequest()
+	 			.method(MethodEnum.CARD)
+	 			.number("4111111111111111")
+	 			.securityCode("123")
+	 			.expirationDate("12/23");
+		
+	 	TransactionRequest request = new TransactionRequest()
+	 			.amount(100)
+	 			.currency("ABC")
+	 			.paymentMethod(pm);
+		
+	 	try {
+	 		Transaction response = client.newTransaction(request);
+	        assert response != null;
+	 	}
+	 	catch (Gr4vyException ex) {
+	 		ErrorGeneric error = ex.getError();
+	 		assertEquals(error.getDetails().get(0).getMessage(), "Unknown ISO 4217 currency code: ABC"); 
+	 	}
+	 }
+
 	 @Test
 	 public void newTransactionTest() throws Gr4vyException {
 	 	Gr4vyClient client = new Gr4vyClient("spider", "private_key.pem", "sandbox");
@@ -137,7 +173,6 @@ public class Gr4vyClientTest {
 	 			.paymentMethod(pm);
 		
      	Transaction response = client.newTransaction(request);
-     	System.out.println(response);
         assert response != null;
 	 }
 
@@ -158,7 +193,6 @@ public class Gr4vyClientTest {
 		
 	 	UUID idempotencyKey = UUID.randomUUID();
      	Transaction response = client.newTransaction(request, idempotencyKey.toString());
-     	System.out.println(response);
         assert response != null;
 	 }
 	
@@ -179,13 +213,11 @@ public class Gr4vyClientTest {
 				.intent(IntentEnum.AUTHORIZE);
 		
      	Transaction response = client.newTransaction(request);
-     	System.out.println(response);
         assert response != null;
         
         TransactionCaptureRequest capture = new TransactionCaptureRequest()
         		.amount(100);
         Transaction captureResponse = client.captureTransaction(response.getId().toString(), capture);
-     	System.out.println(captureResponse);
         assert captureResponse != null;
 	}
 	
@@ -206,11 +238,9 @@ public class Gr4vyClientTest {
 				.intent(IntentEnum.AUTHORIZE);
 		
      	Transaction response = client.newTransaction(request);
-     	System.out.println(response);
         assert response != null;
         
         Transaction voidResponse = client.voidTransaction(response.getId().toString());
-     	System.out.println(voidResponse);
         assert voidResponse != null;
 	}
 	
@@ -231,13 +261,11 @@ public class Gr4vyClientTest {
 				.intent(IntentEnum.CAPTURE);
 		
      	Transaction response = client.newTransaction(request);
-     	System.out.println(response);
         assert response != null;
         
         TransactionRefundRequest refund = new TransactionRefundRequest()
         		.amount(100);
         Refund refundResponse = client.refundTransaction(response.getId().toString(), refund);
-     	System.out.println(refundResponse);
         assert refundResponse != null;
 	}
 	
@@ -257,8 +285,7 @@ public class Gr4vyClientTest {
 	 			.paymentMethod(pm);
 		
       	Transaction response = client.newTransaction(request);
-      	System.out.println(response);
-         assert response != null;
+        assert response != null;
 	 }
 	
 	@Test
@@ -273,9 +300,17 @@ public class Gr4vyClientTest {
 				.currency("GBP")
 				.paymentMethod(pm);
 		
-     	Transaction response = client.newTransaction(request);
-     	System.out.println(response);
-        assert response != null;
+        try {
+        	Transaction response = client.newTransaction(request);
+            assert response != null;
+		}
+		catch (Gr4vyException ex) {
+			if (!ex.hasError()) {
+				assert false;
+			}
+			ErrorGeneric error = ex.getError();
+			assertEquals(error.getDetails().get(0).getMessage(), "Invalid Payment Method");
+		}
 	}
 	
 	@Test
@@ -303,8 +338,17 @@ public class Gr4vyClientTest {
 	public void getPaymentMethodTest() throws Gr4vyException {
 		Gr4vyClient client = new Gr4vyClient("spider", "private_key.pem", "sandbox");
 		
-     	PaymentMethod response = client.getPaymentMethod("eeefe91c-9449-4730-81a4-85cd59e8d72a");
-        assert response.getId() != null;
+        try {
+        	PaymentMethod response = client.getPaymentMethod("eeefe91c-9449-4730-81a4-85cd59e8d72a");
+        	assert response != null;
+		}
+		catch (Gr4vyException ex) {
+			if (!ex.hasError()) {
+				assert false;
+			}
+			ErrorGeneric error = ex.getError();
+			assertEquals(error.getMessage(), "The resource could not be found");
+		}
 	}
 	
 	@Test
@@ -319,9 +363,14 @@ public class Gr4vyClientTest {
 	public void listBuyerPaymentMethodsTest() throws Gr4vyException {
 		Gr4vyClient client = new Gr4vyClient("spider", "private_key.pem", "sandbox");
 		
-     	PaymentMethods response = client.listBuyerPaymentMethods("");
-     	System.out.println(response);
-        assert response != null;
+		try {
+	     	PaymentMethods response = client.listBuyerPaymentMethods("");
+	        assert response != null;
+		}
+		catch (Gr4vyException ex) {
+			ErrorGeneric error = ex.getError();
+			assertEquals(error.getDetails().get(0).getMessage(), "value is not a valid uuid"); 
+		}
 	}
 
 

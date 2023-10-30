@@ -19,6 +19,7 @@ import java.text.ParseException;
 import java.util.Date;
 import java.util.Map;
 import java.util.UUID;
+import java.util.concurrent.TimeUnit;
 
 import org.bouncycastle.asn1.pkcs.PrivateKeyInfo;
 import org.bouncycastle.jce.ECNamedCurveTable;
@@ -47,14 +48,15 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 
 public class Gr4vyClient {
-	private String gr4vyId;
 	private String privateKeyLocation;
 	private String host;
 	private String environment;
 	private Boolean debug = false;
 	private String merchantAccountId = "default";
-	private UUID checkoutSessionId;
 	private final Gson gson = new Gson();
+	private int connectTimeout = 10;
+	private int writeTimeout = 10;
+	private int readTimeout = 30;
 	
 	public static final MediaType JSON
     = MediaType.parse("application/json; charset=utf-8");
@@ -64,7 +66,6 @@ public class Gr4vyClient {
      */
 	public Gr4vyClient(String gr4vyId, String privateKeyLocation)
     {
-        this.gr4vyId = gr4vyId;
         this.privateKeyLocation = privateKeyLocation;
         this.environment = "sandbox";
         String apiPrefix = environment == "sandbox" ? "sandbox." : "";
@@ -73,7 +74,6 @@ public class Gr4vyClient {
     }
 	public Gr4vyClient(String gr4vyId, String privateKeyLocation, String environment)
     {
-        this.gr4vyId = gr4vyId;
         this.privateKeyLocation = privateKeyLocation;
         this.environment = environment;
         String apiPrefix = environment == "sandbox" ? "sandbox." : "";
@@ -82,7 +82,6 @@ public class Gr4vyClient {
     }
     public Gr4vyClient(String gr4vyId, String privateKeyLocation, Boolean debug, String environment)
     {
-        this.gr4vyId = gr4vyId;
         this.privateKeyLocation = privateKeyLocation;
         this.environment = environment;
         String apiPrefix = environment == "sandbox" ? "sandbox." : "";
@@ -97,6 +96,24 @@ public class Gr4vyClient {
     public void setHost(String host) {
     	this.host = host;
     }
+    
+    public void setTimeouts(int connect, int write, int read) {
+    	this.connectTimeout = connect;
+    	this.writeTimeout = write;
+    	this.readTimeout = read;
+    }
+    
+    public int getConnectTimeout() {
+    	return this.connectTimeout;
+    }
+    
+    public int getWriteTimeout() {
+    	return this.writeTimeout;
+    }
+    
+    public int getReadTimeout() {
+    	return this.readTimeout;
+    }
 	
 	public String getEmbedToken(Map<String, Object> embed) throws Gr4vyException {
 		return getEmbedToken(embed, null);
@@ -109,7 +126,7 @@ public class Gr4vyClient {
 			return getToken(key, scopes, embed, checkoutSessionId);
 		}
 		catch (Exception e) {
-			throw new Gr4vyException("Error while generating token, please make sure your private key is valid.");
+			throw new Gr4vyException("Error while generating token, please make sure your private key is valid.", e);
 		}
 	}
 	
@@ -186,7 +203,7 @@ public class Gr4vyClient {
     			String key = new String(Files.readAllBytes(file.toPath()), Charset.defaultCharset());
     			return key;
     		} catch (IOException e) {
-    			throw new Gr4vyException("Unable to find private key");
+    			throw new Gr4vyException("Unable to find private key", e);
     		}
         }
 	}
@@ -197,10 +214,14 @@ public class Gr4vyClient {
 		try {
 			accessToken = this.getToken(this.getKey(), scopes, null);
 		} catch (Exception e2) {
-			throw new Gr4vyException("Unable to generate token: " + e2.getMessage());
+			throw new Gr4vyException("Unable to generate token", e2);
 		} 
 		
-		OkHttpClient client = new OkHttpClient.Builder().build();
+		OkHttpClient client = new OkHttpClient.Builder()
+				.connectTimeout(this.connectTimeout, TimeUnit.SECONDS)
+			    .writeTimeout(this.writeTimeout, TimeUnit.SECONDS)
+			    .readTimeout(this.readTimeout, TimeUnit.SECONDS)
+				.build();
 		
         Request request = new Request.Builder()
 	      .url(this.host + endpoint)
@@ -214,11 +235,9 @@ public class Gr4vyClient {
 		try {
 			response = call.execute();
 		} catch (IOException e1) {
-			e1.printStackTrace();
+			throw new Gr4vyException("response was null", e1);
 		}
 		
-		if (response == null) throw new Gr4vyException("response was null");
-
     	String responseData = null;
 		try {
 			responseData = response.body().string();
@@ -239,10 +258,14 @@ public class Gr4vyClient {
 		try {
 			accessToken = this.getToken(this.getKey(), scopes, null);
 		} catch (Exception e2) {
-			throw new Gr4vyException("Unable to generate token: " + e2.getMessage());
+			throw new Gr4vyException("Unable to generate token", e2);
 		} 
 		
-		OkHttpClient client = new OkHttpClient.Builder().build();
+		OkHttpClient client = new OkHttpClient.Builder()
+				.connectTimeout(this.connectTimeout, TimeUnit.SECONDS)
+			    .writeTimeout(this.writeTimeout, TimeUnit.SECONDS)
+			    .readTimeout(this.readTimeout, TimeUnit.SECONDS)
+				.build();
 		
 		Request.Builder requestBuilder = new Request.Builder()
 			      .url(this.host + endpoint)
@@ -270,11 +293,8 @@ public class Gr4vyClient {
 		try {
 			response = call.execute();
 		} catch (IOException e1) {
-			e1.printStackTrace();
+			throw new Gr4vyException("response was null", e1);
 		}
-		
-		if (response == null) throw new Gr4vyException("response was null");
-
     	String responseData = null;
 		try {
 			responseData = response.body().string();
@@ -291,10 +311,14 @@ public class Gr4vyClient {
 		try {
 			accessToken = this.getToken(this.getKey(), scopes, null);
 		} catch (Exception e2) {
-			throw new Gr4vyException("Unable to generate token: " + e2.getMessage());
+			throw new Gr4vyException("Unable to generate token", e2);
 		} 
 		
-		OkHttpClient client = new OkHttpClient.Builder().build();
+		OkHttpClient client = new OkHttpClient.Builder()
+				.connectTimeout(this.connectTimeout, TimeUnit.SECONDS)
+			    .writeTimeout(this.writeTimeout, TimeUnit.SECONDS)
+			    .readTimeout(this.readTimeout, TimeUnit.SECONDS)
+				.build();
 		
 		Request.Builder requestBuilder = new Request.Builder()
 			      .url(this.host + endpoint)
@@ -319,11 +343,9 @@ public class Gr4vyClient {
 		try {
 			response = call.execute();
 		} catch (IOException e1) {
-			e1.printStackTrace();
+			throw new Gr4vyException("response was null", e1);
 		}
 		
-		if (response == null) throw new Gr4vyException("response was null");
-
     	String responseData = null;
 		try {
 			responseData = response.body().string();
@@ -340,10 +362,14 @@ public class Gr4vyClient {
 		try {
 			accessToken = this.getToken(this.getKey(), scopes, null);
 		} catch (Exception e2) {
-			throw new Gr4vyException("Unable to generate token: " + e2.getMessage());
+			throw new Gr4vyException("Unable to generate token", e2);
 		} 
 		
-		OkHttpClient client = new OkHttpClient.Builder().build();
+		OkHttpClient client = new OkHttpClient.Builder()
+				.connectTimeout(this.connectTimeout, TimeUnit.SECONDS)
+			    .writeTimeout(this.writeTimeout, TimeUnit.SECONDS)
+			    .readTimeout(this.readTimeout, TimeUnit.SECONDS)
+				.build();
 		
 		Request.Builder requestBuilder = new Request.Builder()
 			      .url(this.host + endpoint)
@@ -360,10 +386,8 @@ public class Gr4vyClient {
 		try {
 			response = call.execute();
 		} catch (IOException e1) {
-			e1.printStackTrace();
+			throw new Gr4vyException("response was null", e1);
 		}
-		
-		if (response == null) throw new Gr4vyException("response was null");
 		
 	    if (!response.isSuccessful()) {
 	    	String responseData = null;
