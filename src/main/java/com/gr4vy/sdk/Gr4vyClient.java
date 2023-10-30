@@ -48,6 +48,7 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 
 public class Gr4vyClient {
+	private OkHttpClient okClient; 
 	private String privateKeyLocation;
 	private String host;
 	private String environment;
@@ -101,6 +102,21 @@ public class Gr4vyClient {
     	this.connectTimeout = connect;
     	this.writeTimeout = write;
     	this.readTimeout = read;
+    }
+    
+    public void setClient(OkHttpClient client) {
+    	this.okClient = client;
+    }
+    
+    private OkHttpClient getClient() {
+    	if (this.okClient == null) {
+    		this.okClient = new OkHttpClient.Builder()
+				.connectTimeout(this.connectTimeout, TimeUnit.SECONDS)
+			    .writeTimeout(this.writeTimeout, TimeUnit.SECONDS)
+			    .readTimeout(this.readTimeout, TimeUnit.SECONDS)
+				.build();
+    	}
+    	return this.okClient;
     }
     
     public int getConnectTimeout() {
@@ -217,11 +233,7 @@ public class Gr4vyClient {
 			throw new Gr4vyException("Unable to generate token", e2);
 		} 
 		
-		OkHttpClient client = new OkHttpClient.Builder()
-				.connectTimeout(this.connectTimeout, TimeUnit.SECONDS)
-			    .writeTimeout(this.writeTimeout, TimeUnit.SECONDS)
-			    .readTimeout(this.readTimeout, TimeUnit.SECONDS)
-				.build();
+		OkHttpClient client = this.getClient();
 		
         Request request = new Request.Builder()
 	      .url(this.host + endpoint)
@@ -261,11 +273,7 @@ public class Gr4vyClient {
 			throw new Gr4vyException("Unable to generate token", e2);
 		} 
 		
-		OkHttpClient client = new OkHttpClient.Builder()
-				.connectTimeout(this.connectTimeout, TimeUnit.SECONDS)
-			    .writeTimeout(this.writeTimeout, TimeUnit.SECONDS)
-			    .readTimeout(this.readTimeout, TimeUnit.SECONDS)
-				.build();
+		OkHttpClient client = this.getClient();
 		
 		Request.Builder requestBuilder = new Request.Builder()
 			      .url(this.host + endpoint)
@@ -314,11 +322,7 @@ public class Gr4vyClient {
 			throw new Gr4vyException("Unable to generate token", e2);
 		} 
 		
-		OkHttpClient client = new OkHttpClient.Builder()
-				.connectTimeout(this.connectTimeout, TimeUnit.SECONDS)
-			    .writeTimeout(this.writeTimeout, TimeUnit.SECONDS)
-			    .readTimeout(this.readTimeout, TimeUnit.SECONDS)
-				.build();
+		OkHttpClient client = this.getClient();
 		
 		Request.Builder requestBuilder = new Request.Builder()
 			      .url(this.host + endpoint)
@@ -365,11 +369,7 @@ public class Gr4vyClient {
 			throw new Gr4vyException("Unable to generate token", e2);
 		} 
 		
-		OkHttpClient client = new OkHttpClient.Builder()
-				.connectTimeout(this.connectTimeout, TimeUnit.SECONDS)
-			    .writeTimeout(this.writeTimeout, TimeUnit.SECONDS)
-			    .readTimeout(this.readTimeout, TimeUnit.SECONDS)
-				.build();
+		OkHttpClient client = this.getClient();
 		
 		Request.Builder requestBuilder = new Request.Builder()
 			      .url(this.host + endpoint)
