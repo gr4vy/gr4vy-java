@@ -5,7 +5,7 @@
     <artifactId>gr4vy</artifactId>
     <packaging>jar</packaging>
     <name>gr4vy</name>
-    <version>0.16.5</version>
+    <version>0.17.0</version>
     <url>https://gr4vy.com</url>
     <description>Gr4vy Java SDK</description>
 
