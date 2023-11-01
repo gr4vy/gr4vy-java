@@ -2,7 +2,7 @@
 rm -rf api
 docker run --rm \
   -v ${PWD}:/local openapitools/openapi-generator-cli:v5.1.1 generate \
-  -i https://raw.githubusercontent.com/gr4vy/gr4vy-openapi/sdks/openapi.v1.json \
+  -i https://gr4vy.github.io/gr4vy-openapi/openapi.sdks.v1.json \
   -g java \
   --git-user-id gr4vy \
   --git-repo-id gr4vy-java \
@@ -30,4 +30,12 @@ sed -i '' "s/$var1/$rep1/g" src/main/java/com/gr4vy/api/model/*.java
 var1='private String previousSchemeTransactionId = "null";'
 rep1='private String previousSchemeTransactionId = null;'
 sed -i '' "s/$var1/$rep1/g" src/main/java/com/gr4vy/api/model/*.java
+
+var1='AnyOfCardSchemestring'
+rep1='CardScheme'
+sed -i '' "s/$var1/$rep1/g" src/main/java/com/gr4vy/api/model/CheckoutSessionPaymentMethod.java
+
+var1='DigitalWalletFields'
+rep1='DigitalWalletClickToPayFields'
+sed -i '' "s/$var1/$rep1/g" src/main/java/com/gr4vy/api/model/DigitalWallet.java
 

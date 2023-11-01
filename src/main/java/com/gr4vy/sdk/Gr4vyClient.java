@@ -462,6 +462,10 @@ public class Gr4vyClient {
 		String response = this.get("/transactions");
 		return this.gson.fromJson(response,Transactions.class);
 	}
+	public TransactionHistoryEvents listEventsForTransaction(String transactionId) {
+		String response = this.get("/transactions/" + transactionId + "/events");
+		return this.gson.fromJson(response,TransactionHistoryEvents.class);
+	}
 	public Transaction voidTransaction(String transactionId) {
 		String response = this.post("/transactions/" + transactionId + "/void", null);
 		return this.gson.fromJson(response,Transaction.class);
@@ -473,5 +477,16 @@ public class Gr4vyClient {
 	public CheckoutSession newCheckoutSession(CheckoutSessionCreateRequest request) {
 		String response = this.post("/checkout/sessions", this.gson.toJson(request));
 		return this.gson.fromJson(response,CheckoutSession.class);
+	}
+	public CheckoutSession getCheckoutSession(String checkoutSessionId) {
+		String response = this.get("/checkout/sessions/" + checkoutSessionId);
+		return this.gson.fromJson(response, CheckoutSession.class);
+	}
+	public CheckoutSession updateCheckoutSession(String checkoutSessionId, CheckoutSessionUpdateRequest request) {
+		String response = this.put("/checkout/sessions/" + checkoutSessionId, this.gson.toJson(request));
+		return this.gson.fromJson(response,CheckoutSession.class);
+	}
+	public boolean deleteCheckoutSession(String checkoutSessionId) {
+		return this.delete("/checkout/sessions/" + checkoutSessionId);
 	}
 }

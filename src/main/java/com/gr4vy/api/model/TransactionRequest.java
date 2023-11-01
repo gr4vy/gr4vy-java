@@ -125,7 +125,7 @@ public class TransactionRequest {
   private Boolean merchantInitiated = false;
 
   /**
-   * The source of the transaction. Defaults to &#x60;ecommerce&#x60;.
+   * Gets or Sets paymentSource
    */
   @JsonAdapter(PaymentSourceEnum.Adapter.class)
   public enum PaymentSourceEnum {
@@ -435,11 +435,11 @@ public class TransactionRequest {
   }
 
    /**
-   * The source of the transaction. Defaults to &#x60;ecommerce&#x60;.
+   * Get paymentSource
    * @return paymentSource
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "ecommerce", value = "The source of the transaction. Defaults to `ecommerce`.")
+  @ApiModelProperty(example = "recurring", value = "")
 
   public PaymentSourceEnum getPaymentSource() {
     return paymentSource;

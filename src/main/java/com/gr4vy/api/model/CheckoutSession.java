@@ -21,6 +21,7 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import com.gr4vy.api.model.CartItem;
+import com.gr4vy.api.model.CheckoutSessionPaymentMethod;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
@@ -101,6 +102,10 @@ public class CheckoutSession {
   public static final String SERIALIZED_NAME_METADATA = "metadata";
   @SerializedName(SERIALIZED_NAME_METADATA)
   private Map<String, String> metadata = null;
+
+  public static final String SERIALIZED_NAME_PAYMENT_METHOD = "payment_method";
+  @SerializedName(SERIALIZED_NAME_PAYMENT_METHOD)
+  private CheckoutSessionPaymentMethod paymentMethod;
 
 
   public CheckoutSession type(TypeEnum type) {
@@ -234,6 +239,29 @@ public class CheckoutSession {
   }
 
 
+  public CheckoutSession paymentMethod(CheckoutSessionPaymentMethod paymentMethod) {
+    
+    this.paymentMethod = paymentMethod;
+    return this;
+  }
+
+   /**
+   * Get paymentMethod
+   * @return paymentMethod
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public CheckoutSessionPaymentMethod getPaymentMethod() {
+    return paymentMethod;
+  }
+
+
+  public void setPaymentMethod(CheckoutSessionPaymentMethod paymentMethod) {
+    this.paymentMethod = paymentMethod;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -247,12 +275,13 @@ public class CheckoutSession {
         Objects.equals(this.id, checkoutSession.id) &&
         Objects.equals(this.expiresAt, checkoutSession.expiresAt) &&
         Objects.equals(this.cartItems, checkoutSession.cartItems) &&
-        Objects.equals(this.metadata, checkoutSession.metadata);
+        Objects.equals(this.metadata, checkoutSession.metadata) &&
+        Objects.equals(this.paymentMethod, checkoutSession.paymentMethod);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(type, id, expiresAt, cartItems, metadata);
+    return Objects.hash(type, id, expiresAt, cartItems, metadata, paymentMethod);
   }
 
   @Override
@@ -264,6 +293,7 @@ public class CheckoutSession {
     sb.append("    expiresAt: ").append(toIndentedString(expiresAt)).append("\n");
     sb.append("    cartItems: ").append(toIndentedString(cartItems)).append("\n");
     sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
+    sb.append("    paymentMethod: ").append(toIndentedString(paymentMethod)).append("\n");
     sb.append("}");
     return sb.toString();
   }

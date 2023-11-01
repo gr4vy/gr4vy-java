@@ -20,8 +20,8 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import com.gr4vy.api.model.GiftCardServiceFields;
 import com.gr4vy.api.model.MerchantProfile;
-import com.gr4vy.api.model.PaymentServiceFields;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
@@ -369,7 +369,7 @@ public class PaymentService {
 
   public static final String SERIALIZED_NAME_FIELDS = "fields";
   @SerializedName(SERIALIZED_NAME_FIELDS)
-  private List<PaymentServiceFields> fields = null;
+  private List<GiftCardServiceFields> fields = null;
 
 
   public PaymentService type(TypeEnum type) {
@@ -802,15 +802,15 @@ public class PaymentService {
   }
 
 
-  public PaymentService fields(List<PaymentServiceFields> fields) {
+  public PaymentService fields(List<GiftCardServiceFields> fields) {
     
     this.fields = fields;
     return this;
   }
 
-  public PaymentService addFieldsItem(PaymentServiceFields fieldsItem) {
+  public PaymentService addFieldsItem(GiftCardServiceFields fieldsItem) {
     if (this.fields == null) {
-      this.fields = new ArrayList<PaymentServiceFields>();
+      this.fields = new ArrayList<GiftCardServiceFields>();
     }
     this.fields.add(fieldsItem);
     return this;
@@ -823,12 +823,12 @@ public class PaymentService {
   @javax.annotation.Nullable
   @ApiModelProperty(value = "A list of fields, each containing a key-value pair for each field configured for this payment service. Fields marked as `secret` (see Payment Service Definition) are not returned.")
 
-  public List<PaymentServiceFields> getFields() {
+  public List<GiftCardServiceFields> getFields() {
     return fields;
   }
 
 
-  public void setFields(List<PaymentServiceFields> fields) {
+  public void setFields(List<GiftCardServiceFields> fields) {
     this.fields = fields;
   }
 
