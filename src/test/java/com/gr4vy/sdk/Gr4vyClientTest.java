@@ -268,7 +268,8 @@ public class Gr4vyClientTest {
 				.method(MethodEnum.CARD)
 				.number("4111111111111111")
 				.securityCode("123")
-				.expirationDate("12/23");
+				.expirationDate("12/23")
+				.redirectUrl("https://gr4vy.com");
 		
 		TransactionRequest request = new TransactionRequest()
 				.amount(100)

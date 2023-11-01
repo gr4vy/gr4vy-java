@@ -90,7 +90,13 @@ src/main/java/com/gr4vy/api/model/ConnectionOptionsPaypalPaypalAdditionalData.ja
 src/main/java/com/gr4vy/api/model/Connections.java
 src/main/java/com/gr4vy/api/model/Cryptogram.java
 src/main/java/com/gr4vy/api/model/DigitalWallet.java
+src/main/java/com/gr4vy/api/model/DigitalWalletApplePayTokenDecrypted.java
+src/main/java/com/gr4vy/api/model/DigitalWalletApplePayTokenDecryptedContext.java
 src/main/java/com/gr4vy/api/model/DigitalWalletClickToPayFields.java
+src/main/java/com/gr4vy/api/model/DigitalWalletClickToPayTokenDecrypted.java
+src/main/java/com/gr4vy/api/model/DigitalWalletClickToPayTokenDecryptedContext.java
+src/main/java/com/gr4vy/api/model/DigitalWalletGooglePayTokenDecrypted.java
+src/main/java/com/gr4vy/api/model/DigitalWalletGooglePayTokenDecryptedContext.java
 src/main/java/com/gr4vy/api/model/DigitalWalletRequest.java
 src/main/java/com/gr4vy/api/model/DigitalWalletUpdate.java
 src/main/java/com/gr4vy/api/model/DigitalWallets.java
@@ -127,6 +133,8 @@ src/main/java/com/gr4vy/api/model/MerchantProfileScheme.java
 src/main/java/com/gr4vy/api/model/NetworkToken.java
 src/main/java/com/gr4vy/api/model/NetworkTokenRequest.java
 src/main/java/com/gr4vy/api/model/NetworkTokens.java
+src/main/java/com/gr4vy/api/model/PaymentConnectorExternalTransactionRequest.java
+src/main/java/com/gr4vy/api/model/PaymentConnectorExternalTransactionRequestContext.java
 src/main/java/com/gr4vy/api/model/PaymentConnectorResponseTransactionAuthorizationFailedEvent.java
 src/main/java/com/gr4vy/api/model/PaymentConnectorResponseTransactionAuthorizationFailedEventContext.java
 src/main/java/com/gr4vy/api/model/PaymentConnectorResponseTransactionAuthorizationSucceededEvent.java
@@ -229,6 +237,7 @@ src/main/java/com/gr4vy/api/model/TransactionCaptureRequest.java
 src/main/java/com/gr4vy/api/model/TransactionCardRequest.java
 src/main/java/com/gr4vy/api/model/TransactionCheckoutSessionRequest.java
 src/main/java/com/gr4vy/api/model/TransactionHistoryEvent.java
+src/main/java/com/gr4vy/api/model/TransactionHistoryEvents.java
 src/main/java/com/gr4vy/api/model/TransactionPaymentMethodRequest.java
 src/main/java/com/gr4vy/api/model/TransactionRedirectRequest.java
 src/main/java/com/gr4vy/api/model/TransactionRefundRequest.java
@@ -322,7 +331,13 @@ src/test/java/com/gr4vy/api/model/ConnectionOptionsTest.java
 src/test/java/com/gr4vy/api/model/ConnectionTest.java
 src/test/java/com/gr4vy/api/model/ConnectionsTest.java
 src/test/java/com/gr4vy/api/model/CryptogramTest.java
+src/test/java/com/gr4vy/api/model/DigitalWalletApplePayTokenDecryptedContextTest.java
+src/test/java/com/gr4vy/api/model/DigitalWalletApplePayTokenDecryptedTest.java
 src/test/java/com/gr4vy/api/model/DigitalWalletClickToPayFieldsTest.java
+src/test/java/com/gr4vy/api/model/DigitalWalletClickToPayTokenDecryptedContextTest.java
+src/test/java/com/gr4vy/api/model/DigitalWalletClickToPayTokenDecryptedTest.java
+src/test/java/com/gr4vy/api/model/DigitalWalletGooglePayTokenDecryptedContextTest.java
+src/test/java/com/gr4vy/api/model/DigitalWalletGooglePayTokenDecryptedTest.java
 src/test/java/com/gr4vy/api/model/DigitalWalletRequestTest.java
 src/test/java/com/gr4vy/api/model/DigitalWalletTest.java
 src/test/java/com/gr4vy/api/model/DigitalWalletUpdateTest.java
@@ -360,6 +375,8 @@ src/test/java/com/gr4vy/api/model/MerchantProfileTest.java
 src/test/java/com/gr4vy/api/model/NetworkTokenRequestTest.java
 src/test/java/com/gr4vy/api/model/NetworkTokenTest.java
 src/test/java/com/gr4vy/api/model/NetworkTokensTest.java
+src/test/java/com/gr4vy/api/model/PaymentConnectorExternalTransactionRequestContextTest.java
+src/test/java/com/gr4vy/api/model/PaymentConnectorExternalTransactionRequestTest.java
 src/test/java/com/gr4vy/api/model/PaymentConnectorResponseTransactionAuthorizationFailedEventContextTest.java
 src/test/java/com/gr4vy/api/model/PaymentConnectorResponseTransactionAuthorizationFailedEventTest.java
 src/test/java/com/gr4vy/api/model/PaymentConnectorResponseTransactionAuthorizationSucceededEventContextTest.java
@@ -461,6 +478,7 @@ src/test/java/com/gr4vy/api/model/TransactionCaptureRequestTest.java
 src/test/java/com/gr4vy/api/model/TransactionCardRequestTest.java
 src/test/java/com/gr4vy/api/model/TransactionCheckoutSessionRequestTest.java
 src/test/java/com/gr4vy/api/model/TransactionHistoryEventTest.java
+src/test/java/com/gr4vy/api/model/TransactionHistoryEventsTest.java
 src/test/java/com/gr4vy/api/model/TransactionPaymentMethodRequestTest.java
 src/test/java/com/gr4vy/api/model/TransactionRedirectRequestTest.java
 src/test/java/com/gr4vy/api/model/TransactionRefundRequestTest.java

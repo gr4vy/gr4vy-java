@@ -353,6 +353,10 @@ public class Transaction {
   @SerializedName(SERIALIZED_NAME_RAW_RESPONSE_DESCRIPTION)
   private String rawResponseDescription;
 
+  public static final String SERIALIZED_NAME_ERROR_CODE = "error_code";
+  @SerializedName(SERIALIZED_NAME_ERROR_CODE)
+  private String errorCode;
+
   public static final String SERIALIZED_NAME_AUTH_RESPONSE_CODE = "auth_response_code";
   @SerializedName(SERIALIZED_NAME_AUTH_RESPONSE_CODE)
   private String authResponseCode;
@@ -1283,6 +1287,29 @@ public class Transaction {
   }
 
 
+  public Transaction errorCode(String errorCode) {
+    
+    this.errorCode = errorCode;
+    return this;
+  }
+
+   /**
+   * This is an error code set by Gr4vy.
+   * @return errorCode
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "missing_redirect_url", value = "This is an error code set by Gr4vy.")
+
+  public String getErrorCode() {
+    return errorCode;
+  }
+
+
+  public void setErrorCode(String errorCode) {
+    this.errorCode = errorCode;
+  }
+
+
   public Transaction authResponseCode(String authResponseCode) {
     
     this.authResponseCode = authResponseCode;
@@ -1602,6 +1629,7 @@ public class Transaction {
         Objects.equals(this.schemeTransactionId, transaction.schemeTransactionId) &&
         Objects.equals(this.rawResponseCode, transaction.rawResponseCode) &&
         Objects.equals(this.rawResponseDescription, transaction.rawResponseDescription) &&
+        Objects.equals(this.errorCode, transaction.errorCode) &&
         Objects.equals(this.authResponseCode, transaction.authResponseCode) &&
         Objects.equals(this.avsResponseCode, transaction.avsResponseCode) &&
         Objects.equals(this.cvvResponseCode, transaction.cvvResponseCode) &&
@@ -1618,7 +1646,7 @@ public class Transaction {
 
   @Override
   public int hashCode() {
-    return Objects.hash(type, id, reconciliationId, merchantAccountId, status, intent, amount, capturedAmount, refundedAmount, currency, country, paymentMethod, buyer, createdAt, externalIdentifier, updatedAt, paymentService, pendingReview, merchantInitiated, paymentSource, isSubsequentPayment, statementDescriptor, cartItems, schemeTransactionId, rawResponseCode, rawResponseDescription, authResponseCode, avsResponseCode, cvvResponseCode, method, paymentServiceTransactionId, metadata, shippingDetails, threeDSecure, authorizedAt, capturedAt, voidedAt, checkoutSessionId);
+    return Objects.hash(type, id, reconciliationId, merchantAccountId, status, intent, amount, capturedAmount, refundedAmount, currency, country, paymentMethod, buyer, createdAt, externalIdentifier, updatedAt, paymentService, pendingReview, merchantInitiated, paymentSource, isSubsequentPayment, statementDescriptor, cartItems, schemeTransactionId, rawResponseCode, rawResponseDescription, errorCode, authResponseCode, avsResponseCode, cvvResponseCode, method, paymentServiceTransactionId, metadata, shippingDetails, threeDSecure, authorizedAt, capturedAt, voidedAt, checkoutSessionId);
   }
 
   @Override
@@ -1651,6 +1679,7 @@ public class Transaction {
     sb.append("    schemeTransactionId: ").append(toIndentedString(schemeTransactionId)).append("\n");
     sb.append("    rawResponseCode: ").append(toIndentedString(rawResponseCode)).append("\n");
     sb.append("    rawResponseDescription: ").append(toIndentedString(rawResponseDescription)).append("\n");
+    sb.append("    errorCode: ").append(toIndentedString(errorCode)).append("\n");
     sb.append("    authResponseCode: ").append(toIndentedString(authResponseCode)).append("\n");
     sb.append("    avsResponseCode: ").append(toIndentedString(avsResponseCode)).append("\n");
     sb.append("    cvvResponseCode: ").append(toIndentedString(cvvResponseCode)).append("\n");
