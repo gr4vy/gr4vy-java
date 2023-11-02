@@ -20,21 +20,19 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import com.gr4vy.api.model.DigitalWalletApplePayTokenDecryptedContext;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 import java.util.UUID;
 
 
 /**
- * A generic transaction history event.
+ * The result after decrypting an Apple Pay token.
  */
-@ApiModel(description = "A generic transaction history event.")
+@ApiModel(description = "The result after decrypting an Apple Pay token.")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class TransactionHistoryEvent {
+public class DigitalWalletApplePayTokenDecrypted {
   /**
    * The type of this resource. Is always &#x60;transaction-event&#x60;.
    */
@@ -89,59 +87,11 @@ public class TransactionHistoryEvent {
   private UUID id;
 
   /**
-   * The name of this resource.
+   * The name of this resource. Is always &#x60;digital-wallet-apple-pay-token-decrypted&#x60;.
    */
   @JsonAdapter(NameEnum.Adapter.class)
   public enum NameEnum {
-    ANTI_FRAUD_DECISION_ERROR("anti-fraud-decision-error"),
-    
-    ANTI_FRAUD_DECISION_SKIPPED("anti-fraud-decision-skipped"),
-    
-    ANTI_FRAUD_DECISION("anti-fraud-decision"),
-    
-    ANTI_FRAUD_TRANSACTION_STATUS_UPDATE("anti-fraud-transaction-status-update"),
-    
-    ANTI_FRAUD_TRANSACTION_STATUS_UPDATE_ERROR("anti-fraud-transaction-status-update-error"),
-    
-    ANTI_FRAUD_WEBHOOK("anti-fraud-webhook"),
-    
-    BIN_LOOKUP_REQUEST("bin-lookup-request"),
-    
-    DIGITAL_WALLET_APPLE_PAY_TOKEN_DECRYPTED("digital-wallet-apple-pay-token-decrypted"),
-    
-    DIGITAL_WALLET_GOOGLE_PAY_TOKEN_DECRYPTED("digital-wallet-google-pay-token-decrypted"),
-    
-    DIGITAL_WALLET_CLICK_TO_PAY_TOKEN_DECRYPTED("digital-wallet-click-to-pay-token-decrypted"),
-    
-    PAYMENT_CONNECTOR_RESPONSE_TRANSACTION_AUTHORIZATION_FAILED("payment-connector-response-transaction-authorization-failed"),
-    
-    PAYMENT_CONNECTOR_RESPONSE_TRANSACTION_AUTHORIZATION_SUCCEEDED("payment-connector-response-transaction-authorization-succeeded"),
-    
-    PAYMENT_CONNECTOR_RESPONSE_TRANSACTION_CAPTURE_DECLINED("payment-connector-response-transaction-capture-declined"),
-    
-    PAYMENT_CONNECTOR_RESPONSE_TRANSACTION_CAPTURE_FAILED("payment-connector-response-transaction-capture-failed"),
-    
-    PAYMENT_CONNECTOR_RESPONSE_TRANSACTION_CAPTURE_SUCCEEDED("payment-connector-response-transaction-capture-succeeded"),
-    
-    PAYMENT_CONNECTOR_RESPONSE_TRANSACTION_DECLINED("payment-connector-response-transaction-declined"),
-    
-    PAYMENT_CONNECTOR_RESPONSE_TRANSACTION_VOID_DECLINED("payment-connector-response-transaction-void-declined"),
-    
-    PAYMENT_CONNECTOR_RESPONSE_TRANSACTION_VOID_FAILED("payment-connector-response-transaction-void-failed"),
-    
-    PAYMENT_CONNECTOR_RESPONSE_TRANSACTION_VOID_SUCCEEDED("payment-connector-response-transaction-void-succeeded"),
-    
-    PAYMENT_CONNECTOR_EXTERNAL_TRANSACTION_REQUEST("payment-connector-external-transaction-request"),
-    
-    THREE_D_SECURE_AUTHENTICATION_REQUEST("three-d-secure-authentication-request"),
-    
-    THREE_D_SECURE_PREPARATION_REQUEST("three-d-secure-preparation-request"),
-    
-    THREE_D_SECURE_REQUEST_ERROR("three-d-secure-request-error"),
-    
-    THREE_D_SECURE_RESULT_REQUEST("three-d-secure-result-request"),
-    
-    THREE_D_SECURE_SUCCESS("three-d-secure-success");
+    DIGITAL_WALLET_APPLE_PAY_TOKEN_DECRYPTED("digital-wallet-apple-pay-token-decrypted");
 
     private String value;
 
@@ -191,10 +141,10 @@ public class TransactionHistoryEvent {
 
   public static final String SERIALIZED_NAME_CONTEXT = "context";
   @SerializedName(SERIALIZED_NAME_CONTEXT)
-  private Map<String, Object> context = null;
+  private DigitalWalletApplePayTokenDecryptedContext context;
 
 
-  public TransactionHistoryEvent type(TypeEnum type) {
+  public DigitalWalletApplePayTokenDecrypted type(TypeEnum type) {
     
     this.type = type;
     return this;
@@ -217,7 +167,7 @@ public class TransactionHistoryEvent {
   }
 
 
-  public TransactionHistoryEvent id(UUID id) {
+  public DigitalWalletApplePayTokenDecrypted id(UUID id) {
     
     this.id = id;
     return this;
@@ -240,18 +190,18 @@ public class TransactionHistoryEvent {
   }
 
 
-  public TransactionHistoryEvent name(NameEnum name) {
+  public DigitalWalletApplePayTokenDecrypted name(NameEnum name) {
     
     this.name = name;
     return this;
   }
 
    /**
-   * The name of this resource.
+   * The name of this resource. Is always &#x60;digital-wallet-apple-pay-token-decrypted&#x60;.
    * @return name
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "anti-fraud-decision", value = "The name of this resource.")
+  @ApiModelProperty(example = "digital-wallet-apple-pay-token-decrypted", value = "The name of this resource. Is always `digital-wallet-apple-pay-token-decrypted`.")
 
   public NameEnum getName() {
     return name;
@@ -263,7 +213,7 @@ public class TransactionHistoryEvent {
   }
 
 
-  public TransactionHistoryEvent createdAt(String createdAt) {
+  public DigitalWalletApplePayTokenDecrypted createdAt(String createdAt) {
     
     this.createdAt = createdAt;
     return this;
@@ -286,33 +236,25 @@ public class TransactionHistoryEvent {
   }
 
 
-  public TransactionHistoryEvent context(Map<String, Object> context) {
+  public DigitalWalletApplePayTokenDecrypted context(DigitalWalletApplePayTokenDecryptedContext context) {
     
     this.context = context;
     return this;
   }
 
-  public TransactionHistoryEvent putContextItem(String key, Object contextItem) {
-    if (this.context == null) {
-      this.context = new HashMap<String, Object>();
-    }
-    this.context.put(key, contextItem);
-    return this;
-  }
-
    /**
-   * A list of key/values with additional data.
+   * Get context
    * @return context
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "A list of key/values with additional data.")
+  @ApiModelProperty(value = "")
 
-  public Map<String, Object> getContext() {
+  public DigitalWalletApplePayTokenDecryptedContext getContext() {
     return context;
   }
 
 
-  public void setContext(Map<String, Object> context) {
+  public void setContext(DigitalWalletApplePayTokenDecryptedContext context) {
     this.context = context;
   }
 
@@ -325,12 +267,12 @@ public class TransactionHistoryEvent {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    TransactionHistoryEvent transactionHistoryEvent = (TransactionHistoryEvent) o;
-    return Objects.equals(this.type, transactionHistoryEvent.type) &&
-        Objects.equals(this.id, transactionHistoryEvent.id) &&
-        Objects.equals(this.name, transactionHistoryEvent.name) &&
-        Objects.equals(this.createdAt, transactionHistoryEvent.createdAt) &&
-        Objects.equals(this.context, transactionHistoryEvent.context);
+    DigitalWalletApplePayTokenDecrypted digitalWalletApplePayTokenDecrypted = (DigitalWalletApplePayTokenDecrypted) o;
+    return Objects.equals(this.type, digitalWalletApplePayTokenDecrypted.type) &&
+        Objects.equals(this.id, digitalWalletApplePayTokenDecrypted.id) &&
+        Objects.equals(this.name, digitalWalletApplePayTokenDecrypted.name) &&
+        Objects.equals(this.createdAt, digitalWalletApplePayTokenDecrypted.createdAt) &&
+        Objects.equals(this.context, digitalWalletApplePayTokenDecrypted.context);
   }
 
   @Override
@@ -341,7 +283,7 @@ public class TransactionHistoryEvent {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class TransactionHistoryEvent {\n");
+    sb.append("class DigitalWalletApplePayTokenDecrypted {\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");

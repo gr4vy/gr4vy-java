@@ -92,7 +92,7 @@ public class PaymentMethod {
   private String merchantAccountId;
 
   /**
-   * The state of the payment method.  - &#x60;processing&#x60; - The payment method is still being stored. - &#x60;buyer_approval_required&#x60; - Storing the payment method requires   the buyer to provide approval. Follow the &#x60;approval_url&#x60; for next steps. - &#x60;succeeded&#x60; - The payment method is approved and stored with all   relevant payment services. - &#x60;failed&#x60; - Storing the payment method did not succeed.
+   * The state of the payment method.  - &#x60;processing&#x60; - The payment method is stored but has not been used yet. - &#x60;buyer_approval_required&#x60; - Storing the payment method requires   the buyer to provide approval. Follow the &#x60;approval_url&#x60; for next steps. - &#x60;succeeded&#x60; - The payment method is stored and has been used. - &#x60;failed&#x60; - The payment method could not be stored, or failed first use.
    */
   @JsonAdapter(StatusEnum.Adapter.class)
   public enum StatusEnum {
@@ -550,11 +550,11 @@ public class PaymentMethod {
   }
 
    /**
-   * The state of the payment method.  - &#x60;processing&#x60; - The payment method is still being stored. - &#x60;buyer_approval_required&#x60; - Storing the payment method requires   the buyer to provide approval. Follow the &#x60;approval_url&#x60; for next steps. - &#x60;succeeded&#x60; - The payment method is approved and stored with all   relevant payment services. - &#x60;failed&#x60; - Storing the payment method did not succeed.
+   * The state of the payment method.  - &#x60;processing&#x60; - The payment method is stored but has not been used yet. - &#x60;buyer_approval_required&#x60; - Storing the payment method requires   the buyer to provide approval. Follow the &#x60;approval_url&#x60; for next steps. - &#x60;succeeded&#x60; - The payment method is stored and has been used. - &#x60;failed&#x60; - The payment method could not be stored, or failed first use.
    * @return status
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "succeeded", value = "The state of the payment method.  - `processing` - The payment method is still being stored. - `buyer_approval_required` - Storing the payment method requires   the buyer to provide approval. Follow the `approval_url` for next steps. - `succeeded` - The payment method is approved and stored with all   relevant payment services. - `failed` - Storing the payment method did not succeed.")
+  @ApiModelProperty(example = "succeeded", value = "The state of the payment method.  - `processing` - The payment method is stored but has not been used yet. - `buyer_approval_required` - Storing the payment method requires   the buyer to provide approval. Follow the `approval_url` for next steps. - `succeeded` - The payment method is stored and has been used. - `failed` - The payment method could not be stored, or failed first use.")
 
   public StatusEnum getStatus() {
     return status;

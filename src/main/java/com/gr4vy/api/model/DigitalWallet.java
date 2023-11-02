@@ -20,6 +20,7 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import com.gr4vy.api.model.DigitalWalletClickToPayFields;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
@@ -150,9 +151,21 @@ public class DigitalWallet {
   @SerializedName(SERIALIZED_NAME_MERCHANT_URL)
   private String merchantUrl = "null";
 
+  public static final String SERIALIZED_NAME_MERCHANT_DISPLAY_NAME = "merchant_display_name";
+  @SerializedName(SERIALIZED_NAME_MERCHANT_DISPLAY_NAME)
+  private String merchantDisplayName;
+
+  public static final String SERIALIZED_NAME_MERCHANT_COUNTRY_CODE = "merchant_country_code";
+  @SerializedName(SERIALIZED_NAME_MERCHANT_COUNTRY_CODE)
+  private String merchantCountryCode;
+
   public static final String SERIALIZED_NAME_DOMAIN_NAMES = "domain_names";
   @SerializedName(SERIALIZED_NAME_DOMAIN_NAMES)
   private List<String> domainNames = null;
+
+  public static final String SERIALIZED_NAME_FIELDS = "fields";
+  @SerializedName(SERIALIZED_NAME_FIELDS)
+  private DigitalWalletClickToPayFields fields = null;
 
   public static final String SERIALIZED_NAME_CREATED_AT = "created_at";
   @SerializedName(SERIALIZED_NAME_CREATED_AT)
@@ -313,6 +326,52 @@ public class DigitalWallet {
   }
 
 
+  public DigitalWallet merchantDisplayName(String merchantDisplayName) {
+    
+    this.merchantDisplayName = merchantDisplayName;
+    return this;
+  }
+
+   /**
+   * The consumer facing name of the merchant.
+   * @return merchantDisplayName
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "Gr4vy", value = "The consumer facing name of the merchant.")
+
+  public String getMerchantDisplayName() {
+    return merchantDisplayName;
+  }
+
+
+  public void setMerchantDisplayName(String merchantDisplayName) {
+    this.merchantDisplayName = merchantDisplayName;
+  }
+
+
+  public DigitalWallet merchantCountryCode(String merchantCountryCode) {
+    
+    this.merchantCountryCode = merchantCountryCode;
+    return this;
+  }
+
+   /**
+   * The country code where the merchant is registered.
+   * @return merchantCountryCode
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "US", value = "The country code where the merchant is registered.")
+
+  public String getMerchantCountryCode() {
+    return merchantCountryCode;
+  }
+
+
+  public void setMerchantCountryCode(String merchantCountryCode) {
+    this.merchantCountryCode = merchantCountryCode;
+  }
+
+
   public DigitalWallet domainNames(List<String> domainNames) {
     
     this.domainNames = domainNames;
@@ -341,6 +400,29 @@ public class DigitalWallet {
 
   public void setDomainNames(List<String> domainNames) {
     this.domainNames = domainNames;
+  }
+
+
+  public DigitalWallet fields(DigitalWalletClickToPayFields fields) {
+    
+    this.fields = fields;
+    return this;
+  }
+
+   /**
+   * Get fields
+   * @return fields
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public DigitalWalletClickToPayFields getFields() {
+    return fields;
+  }
+
+
+  public void setFields(DigitalWalletClickToPayFields fields) {
+    this.fields = fields;
   }
 
 
@@ -474,7 +556,10 @@ public class DigitalWallet {
         Objects.equals(this.provider, digitalWallet.provider) &&
         Objects.equals(this.merchantName, digitalWallet.merchantName) &&
         Objects.equals(this.merchantUrl, digitalWallet.merchantUrl) &&
+        Objects.equals(this.merchantDisplayName, digitalWallet.merchantDisplayName) &&
+        Objects.equals(this.merchantCountryCode, digitalWallet.merchantCountryCode) &&
         Objects.equals(this.domainNames, digitalWallet.domainNames) &&
+        Objects.equals(this.fields, digitalWallet.fields) &&
         Objects.equals(this.createdAt, digitalWallet.createdAt) &&
         Objects.equals(this.updatedAt, digitalWallet.updatedAt) &&
         Objects.equals(this.activeCertificateCount, digitalWallet.activeCertificateCount) &&
@@ -484,7 +569,7 @@ public class DigitalWallet {
 
   @Override
   public int hashCode() {
-    return Objects.hash(type, id, merchantAccountId, provider, merchantName, merchantUrl, domainNames, createdAt, updatedAt, activeCertificateCount, pendingCertificateCount, expiredCertificateCount);
+    return Objects.hash(type, id, merchantAccountId, provider, merchantName, merchantUrl, merchantDisplayName, merchantCountryCode, domainNames, fields, createdAt, updatedAt, activeCertificateCount, pendingCertificateCount, expiredCertificateCount);
   }
 
   @Override
@@ -497,7 +582,10 @@ public class DigitalWallet {
     sb.append("    provider: ").append(toIndentedString(provider)).append("\n");
     sb.append("    merchantName: ").append(toIndentedString(merchantName)).append("\n");
     sb.append("    merchantUrl: ").append(toIndentedString(merchantUrl)).append("\n");
+    sb.append("    merchantDisplayName: ").append(toIndentedString(merchantDisplayName)).append("\n");
+    sb.append("    merchantCountryCode: ").append(toIndentedString(merchantCountryCode)).append("\n");
     sb.append("    domainNames: ").append(toIndentedString(domainNames)).append("\n");
+    sb.append("    fields: ").append(toIndentedString(fields)).append("\n");
     sb.append("    createdAt: ").append(toIndentedString(createdAt)).append("\n");
     sb.append("    updatedAt: ").append(toIndentedString(updatedAt)).append("\n");
     sb.append("    activeCertificateCount: ").append(toIndentedString(activeCertificateCount)).append("\n");
