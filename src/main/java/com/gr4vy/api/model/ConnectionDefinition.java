@@ -54,9 +54,11 @@ public class ConnectionDefinition {
   public enum GroupEnum {
     ANTI_FRAUD_SERVICE("anti-fraud-service"),
     
-    PAYMENT_SERVICE("payment-service"),
+    DIGITAL_WALLET("digital-wallet"),
     
-    DIGITAL_WALLET("digital-wallet");
+    GIFT_CARD_SERVICE("gift-card-service"),
+    
+    PAYMENT_SERVICE("payment-service");
 
     private String value;
 
@@ -114,6 +116,8 @@ public class ConnectionDefinition {
     CARD("card"),
     
     CASH("cash"),
+    
+    STORED_CREDIT("stored-credit"),
     
     WALLET("wallet");
 

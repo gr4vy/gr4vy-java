@@ -91,6 +91,14 @@ public class DigitalWalletRequest {
   @SerializedName(SERIALIZED_NAME_MERCHANT_URL)
   private String merchantUrl = "null";
 
+  public static final String SERIALIZED_NAME_MERCHANT_DISPLAY_NAME = "merchant_display_name";
+  @SerializedName(SERIALIZED_NAME_MERCHANT_DISPLAY_NAME)
+  private String merchantDisplayName;
+
+  public static final String SERIALIZED_NAME_MERCHANT_COUNTRY_CODE = "merchant_country_code";
+  @SerializedName(SERIALIZED_NAME_MERCHANT_COUNTRY_CODE)
+  private String merchantCountryCode;
+
   public static final String SERIALIZED_NAME_DOMAIN_NAMES = "domain_names";
   @SerializedName(SERIALIZED_NAME_DOMAIN_NAMES)
   private List<String> domainNames = new ArrayList<String>();
@@ -151,11 +159,11 @@ public class DigitalWalletRequest {
   }
 
    /**
-   * The main URL of the merchant. This is used to register the merchant with a digital wallet provider and this URL is not displayed to the buyer.
+   * The main URL of the merchant.
    * @return merchantUrl
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "https://example.com", value = "The main URL of the merchant. This is used to register the merchant with a digital wallet provider and this URL is not displayed to the buyer.")
+  @ApiModelProperty(example = "https://example.com", value = "The main URL of the merchant.")
 
   public String getMerchantUrl() {
     return merchantUrl;
@@ -164,6 +172,52 @@ public class DigitalWalletRequest {
 
   public void setMerchantUrl(String merchantUrl) {
     this.merchantUrl = merchantUrl;
+  }
+
+
+  public DigitalWalletRequest merchantDisplayName(String merchantDisplayName) {
+    
+    this.merchantDisplayName = merchantDisplayName;
+    return this;
+  }
+
+   /**
+   * The consumer facing name of the merchant.
+   * @return merchantDisplayName
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "Gr4vy", value = "The consumer facing name of the merchant.")
+
+  public String getMerchantDisplayName() {
+    return merchantDisplayName;
+  }
+
+
+  public void setMerchantDisplayName(String merchantDisplayName) {
+    this.merchantDisplayName = merchantDisplayName;
+  }
+
+
+  public DigitalWalletRequest merchantCountryCode(String merchantCountryCode) {
+    
+    this.merchantCountryCode = merchantCountryCode;
+    return this;
+  }
+
+   /**
+   * The country code where the merchant is registered.
+   * @return merchantCountryCode
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "US", value = "The country code where the merchant is registered.")
+
+  public String getMerchantCountryCode() {
+    return merchantCountryCode;
+  }
+
+
+  public void setMerchantCountryCode(String merchantCountryCode) {
+    this.merchantCountryCode = merchantCountryCode;
   }
 
 
@@ -228,13 +282,15 @@ public class DigitalWalletRequest {
     return Objects.equals(this.provider, digitalWalletRequest.provider) &&
         Objects.equals(this.merchantName, digitalWalletRequest.merchantName) &&
         Objects.equals(this.merchantUrl, digitalWalletRequest.merchantUrl) &&
+        Objects.equals(this.merchantDisplayName, digitalWalletRequest.merchantDisplayName) &&
+        Objects.equals(this.merchantCountryCode, digitalWalletRequest.merchantCountryCode) &&
         Objects.equals(this.domainNames, digitalWalletRequest.domainNames) &&
         Objects.equals(this.acceptTermsAndConditions, digitalWalletRequest.acceptTermsAndConditions);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(provider, merchantName, merchantUrl, domainNames, acceptTermsAndConditions);
+    return Objects.hash(provider, merchantName, merchantUrl, merchantDisplayName, merchantCountryCode, domainNames, acceptTermsAndConditions);
   }
 
   @Override
@@ -244,6 +300,8 @@ public class DigitalWalletRequest {
     sb.append("    provider: ").append(toIndentedString(provider)).append("\n");
     sb.append("    merchantName: ").append(toIndentedString(merchantName)).append("\n");
     sb.append("    merchantUrl: ").append(toIndentedString(merchantUrl)).append("\n");
+    sb.append("    merchantDisplayName: ").append(toIndentedString(merchantDisplayName)).append("\n");
+    sb.append("    merchantCountryCode: ").append(toIndentedString(merchantCountryCode)).append("\n");
     sb.append("    domainNames: ").append(toIndentedString(domainNames)).append("\n");
     sb.append("    acceptTermsAndConditions: ").append(toIndentedString(acceptTermsAndConditions)).append("\n");
     sb.append("}");

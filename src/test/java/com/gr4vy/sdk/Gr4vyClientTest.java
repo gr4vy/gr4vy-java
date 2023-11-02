@@ -132,6 +132,20 @@ public class Gr4vyClientTest {
         
 	}
 	
+	@Test
+	public void getCheckoutSessionTest() throws Gr4vyException {
+		/*Test cannot be run because checkout session is empty*/
+		Gr4vyClient client = new Gr4vyClient("spider", "private_key.pem", "sandbox");
+		
+		CheckoutSession checkoutSession = client.newCheckoutSession(null);
+		
+		
+		CheckoutSession retrieved = client.getCheckoutSession(checkoutSession.getId().toString());
+		assert retrieved != null;
+		System.out.println(retrieved);
+        
+	}
+	
 	 @Test
 	 public void newFailTransactionTest() throws Gr4vyException {
 	 	Gr4vyClient client = new Gr4vyClient("spider", "private_key.pem", "sandbox");
@@ -204,7 +218,8 @@ public class Gr4vyClientTest {
 				.method(MethodEnum.CARD)
 				.number("4111111111111111")
 				.securityCode("123")
-				.expirationDate("12/23");
+				.expirationDate("12/23")
+				.redirectUrl("https://gr4vy.com");
 		
 		TransactionRequest request = new TransactionRequest()
 				.amount(100)
@@ -229,7 +244,8 @@ public class Gr4vyClientTest {
 				.method(MethodEnum.CARD)
 				.number("4111111111111111")
 				.securityCode("123")
-				.expirationDate("12/23");
+				.expirationDate("12/23")
+				.redirectUrl("https://gr4vy.com");
 		
 		TransactionRequest request = new TransactionRequest()
 				.amount(100)
@@ -252,7 +268,8 @@ public class Gr4vyClientTest {
 				.method(MethodEnum.CARD)
 				.number("4111111111111111")
 				.securityCode("123")
-				.expirationDate("12/23");
+				.expirationDate("12/23")
+				.redirectUrl("https://gr4vy.com");
 		
 		TransactionRequest request = new TransactionRequest()
 				.amount(100)
@@ -262,6 +279,8 @@ public class Gr4vyClientTest {
 		
      	Transaction response = client.newTransaction(request);
         assert response != null;
+        
+        System.out.println(response);
         
         TransactionRefundRequest refund = new TransactionRefundRequest()
         		.amount(100);
@@ -320,6 +339,16 @@ public class Gr4vyClientTest {
         Transactions response = client.listTransactions();
         
         assert response != null;
+    }
+	
+	@Test
+    public void listTransactionHistoryEventsTest() throws Gr4vyException {
+    	Gr4vyClient client = new Gr4vyClient("spider", "private_key.pem", "sandbox");
+
+        TransactionHistoryEvents response = client.listEventsForTransaction("0cb94b92-aeb9-4f67-96c5-084cbaf5b66c");
+        
+        assert response != null;
+        System.out.println(response);
     }
 	
 	@Test

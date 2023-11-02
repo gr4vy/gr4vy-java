@@ -20,8 +20,8 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import com.gr4vy.api.model.GiftCardServiceDefinitionFields;
 import com.gr4vy.api.model.PaymentServiceDefinitionConfiguration;
-import com.gr4vy.api.model.PaymentServiceDefinitionFields;
 import com.gr4vy.api.model.PaymentServiceDefinitionSupportedFeatures;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -39,9 +39,54 @@ public class PaymentServiceDefinition {
   @SerializedName(SERIALIZED_NAME_ID)
   private String id;
 
+  /**
+   * &#x60;payment-service-definition&#x60;.
+   */
+  @JsonAdapter(TypeEnum.Adapter.class)
+  public enum TypeEnum {
+    PAYMENT_SERVICE_DEFINITION("payment-service-definition");
+
+    private String value;
+
+    TypeEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static TypeEnum fromValue(String value) {
+      for (TypeEnum b : TypeEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+
+    public static class Adapter extends TypeAdapter<TypeEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final TypeEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public TypeEnum read(final JsonReader jsonReader) throws IOException {
+        String value =  jsonReader.nextString();
+        return TypeEnum.fromValue(value);
+      }
+    }
+  }
+
   public static final String SERIALIZED_NAME_TYPE = "type";
   @SerializedName(SERIALIZED_NAME_TYPE)
-  private String type = "payment-service-definition";
+  private TypeEnum type = TypeEnum.PAYMENT_SERVICE_DEFINITION;
 
   public static final String SERIALIZED_NAME_DISPLAY_NAME = "display_name";
   @SerializedName(SERIALIZED_NAME_DISPLAY_NAME)
@@ -218,7 +263,7 @@ public class PaymentServiceDefinition {
 
   public static final String SERIALIZED_NAME_FIELDS = "fields";
   @SerializedName(SERIALIZED_NAME_FIELDS)
-  private List<PaymentServiceDefinitionFields> fields = null;
+  private List<GiftCardServiceDefinitionFields> fields = null;
 
   public static final String SERIALIZED_NAME_SUPPORTED_CURRENCIES = "supported_currencies";
   @SerializedName(SERIALIZED_NAME_SUPPORTED_CURRENCIES)
@@ -319,7 +364,7 @@ public class PaymentServiceDefinition {
   }
 
 
-  public PaymentServiceDefinition type(String type) {
+  public PaymentServiceDefinition type(TypeEnum type) {
     
     this.type = type;
     return this;
@@ -332,12 +377,12 @@ public class PaymentServiceDefinition {
   @javax.annotation.Nullable
   @ApiModelProperty(example = "payment-service-definition", value = "`payment-service-definition`.")
 
-  public String getType() {
+  public TypeEnum getType() {
     return type;
   }
 
 
-  public void setType(String type) {
+  public void setType(TypeEnum type) {
     this.type = type;
   }
 
@@ -388,15 +433,15 @@ public class PaymentServiceDefinition {
   }
 
 
-  public PaymentServiceDefinition fields(List<PaymentServiceDefinitionFields> fields) {
+  public PaymentServiceDefinition fields(List<GiftCardServiceDefinitionFields> fields) {
     
     this.fields = fields;
     return this;
   }
 
-  public PaymentServiceDefinition addFieldsItem(PaymentServiceDefinitionFields fieldsItem) {
+  public PaymentServiceDefinition addFieldsItem(GiftCardServiceDefinitionFields fieldsItem) {
     if (this.fields == null) {
-      this.fields = new ArrayList<PaymentServiceDefinitionFields>();
+      this.fields = new ArrayList<GiftCardServiceDefinitionFields>();
     }
     this.fields.add(fieldsItem);
     return this;
@@ -409,12 +454,12 @@ public class PaymentServiceDefinition {
   @javax.annotation.Nullable
   @ApiModelProperty(value = "A list of fields that need to be submitted when activating the payment. service.")
 
-  public List<PaymentServiceDefinitionFields> getFields() {
+  public List<GiftCardServiceDefinitionFields> getFields() {
     return fields;
   }
 
 
-  public void setFields(List<PaymentServiceDefinitionFields> fields) {
+  public void setFields(List<GiftCardServiceDefinitionFields> fields) {
     this.fields = fields;
   }
 
