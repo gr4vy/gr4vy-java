@@ -105,8 +105,23 @@ public class Gr4vyClientTest {
     }
 	
 	@Test
+    public void listBuyersWithParamsTest() throws Gr4vyException {
+    	Gr4vyClient client = new Gr4vyClient("spider", "private_key.pem", "sandbox");
+    	
+        Map<String, Object> params = new HashMap<String, Object>();
+    	params.put("limit", 2);
+    	try {
+    		Buyers response = client.listBuyers(params);
+    		assert response != null;
+    	}
+    	catch (Gr4vyException e) {
+    		System.out.println(e.getError());
+    		assert false;
+    	}
+    }
+	
+	@Test
 	public void newCheckoutSessionTransactionTest() throws Gr4vyException {
-		/*Test cannot be run because checkout session is empty*/
 		Gr4vyClient client = new Gr4vyClient("spider", "private_key.pem", "sandbox");
 		
 		CheckoutSession checkoutSession = client.newCheckoutSession(null);
@@ -134,7 +149,6 @@ public class Gr4vyClientTest {
 	
 	@Test
 	public void getCheckoutSessionTest() throws Gr4vyException {
-		/*Test cannot be run because checkout session is empty*/
 		Gr4vyClient client = new Gr4vyClient("spider", "private_key.pem", "sandbox");
 		
 		CheckoutSession checkoutSession = client.newCheckoutSession(null);
@@ -142,8 +156,6 @@ public class Gr4vyClientTest {
 		
 		CheckoutSession retrieved = client.getCheckoutSession(checkoutSession.getId().toString());
 		assert retrieved != null;
-		System.out.println(retrieved);
-        
 	}
 	
 	 @Test
@@ -280,8 +292,6 @@ public class Gr4vyClientTest {
      	Transaction response = client.newTransaction(request);
         assert response != null;
         
-        System.out.println(response);
-        
         TransactionRefundRequest refund = new TransactionRefundRequest()
         		.amount(100);
         Refund refundResponse = client.refundTransaction(response.getId().toString(), refund);
@@ -342,13 +352,29 @@ public class Gr4vyClientTest {
     }
 	
 	@Test
+    public void listTransactionsWithParamsTest() throws Gr4vyException {
+    	Gr4vyClient client = new Gr4vyClient("spider", "private_key.pem", "sandbox");
+    	
+    	Map<String, Object> params = new HashMap<String, Object>();
+    	params.put("limit", 2);
+    	params.put("amount_gte", "100");
+    	try {
+    		Transactions response = client.listTransactions(params);
+    		assert response != null;
+    	}
+    	catch (Gr4vyException e) {
+    		System.out.println(e.getError());
+    		assert false;
+    	}
+    }
+	
+	@Test
     public void listTransactionHistoryEventsTest() throws Gr4vyException {
     	Gr4vyClient client = new Gr4vyClient("spider", "private_key.pem", "sandbox");
 
         TransactionHistoryEvents response = client.listEventsForTransaction("0cb94b92-aeb9-4f67-96c5-084cbaf5b66c");
         
         assert response != null;
-        System.out.println(response);
     }
 	
 	@Test
