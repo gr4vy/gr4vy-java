@@ -418,6 +418,15 @@ public class Gr4vyClient {
 		String response = this.get("/buyers");
 		return this.gson.fromJson(response,Buyers.class);
 	}
+	public Buyers listBuyers(Map<String, Object> params) {
+		String endpoint = "/buyers";
+		if (params.size() > 0) {
+			String encoded = Helper.urlEncodeUTF8(params);
+			endpoint = endpoint + "?" + encoded;
+		}
+		String response = this.get(endpoint);
+		return this.gson.fromJson(response,Buyers.class);
+	}
 	public boolean deleteBuyer(String buyerId) {
 		return this.delete("/buyers/" + buyerId);
 	}
@@ -432,6 +441,15 @@ public class Gr4vyClient {
 	}
 	public PaymentMethods listPaymentMethods() {
 		String response = this.get("/payment-methods");
+		return this.gson.fromJson(response,PaymentMethods.class);
+	}
+	public PaymentMethods listPaymentMethods(Map<String, Object> params) {
+		String endpoint = "/payment-methods";
+		if (params.size() > 0) {
+			String encoded = Helper.urlEncodeUTF8(params);
+			endpoint = endpoint + "?" + encoded;
+		}
+		String response = this.get(endpoint);
 		return this.gson.fromJson(response,PaymentMethods.class);
 	}
 	public PaymentMethods listBuyerPaymentMethods(String buyerId) {
@@ -460,6 +478,15 @@ public class Gr4vyClient {
 	}
 	public Transactions listTransactions() {
 		String response = this.get("/transactions");
+		return this.gson.fromJson(response,Transactions.class);
+	}
+	public Transactions listTransactions(Map<String, Object> params) {
+		String endpoint = "/transactions";
+		if (params.size() > 0) {
+			String encoded = Helper.urlEncodeUTF8(params);
+			endpoint = endpoint + "?" + encoded;
+		}
+		String response = this.get(endpoint);
 		return this.gson.fromJson(response,Transactions.class);
 	}
 	public TransactionHistoryEvents listEventsForTransaction(String transactionId) {
