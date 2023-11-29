@@ -69,6 +69,17 @@ public class Gr4vyClientTest {
     }
 	
 	@Test
+    public void getTokenTestWithTokenExpiry() throws Gr4vyException, NoSuchAlgorithmException, NoSuchProviderException, InvalidKeySpecException, IOException, JOSEException, ParseException {
+    	Gr4vyClient client = new Gr4vyClient("spider", "private_key.pem", "sandbox");
+		
+		String key = client.getKey();
+		String[] scopes = {"*.read", "*.write"};
+		String token = client.getToken(key, scopes, null, null, 900000);
+		
+        assert token != null;
+    }
+	
+	@Test
 	public void addBuyersTest() throws Gr4vyException {
 		Gr4vyClient client = new Gr4vyClient("spider", "private_key.pem", "sandbox");
      	BuyerRequest buyer = new BuyerRequest();
