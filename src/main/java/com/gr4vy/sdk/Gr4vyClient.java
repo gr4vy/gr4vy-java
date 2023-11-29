@@ -147,10 +147,14 @@ public class Gr4vyClient {
 	}
 	
 	public String getToken(String key, String[] scopes, Map<String, Object> embed) throws IOException, NoSuchAlgorithmException, NoSuchProviderException, InvalidKeySpecException, JOSEException, ParseException {
-		return getToken(key, scopes, embed, null);
+		return getToken(key, scopes, embed, null, 60);
+	}
+	
+	public String getToken(String key, String[] scopes, Map<String, Object> embed, UUID checkoutSessionId) throws IOException, NoSuchAlgorithmException, NoSuchProviderException, InvalidKeySpecException, JOSEException, ParseException {
+		return getToken(key, scopes, embed, checkoutSessionId, 60);
 	}
 
-	public String getToken(String key, String[] scopes, Map<String, Object> embed, UUID checkoutSessionId) throws IOException, NoSuchAlgorithmException, NoSuchProviderException, InvalidKeySpecException, JOSEException, ParseException {
+	public String getToken(String key, String[] scopes, Map<String, Object> embed, UUID checkoutSessionId, int tokenExpirySeconds) throws IOException, NoSuchAlgorithmException, NoSuchProviderException, InvalidKeySpecException, JOSEException, ParseException {
 		Security.addProvider(new org.bouncycastle.jce.provider.BouncyCastleProvider());
 		
 		Reader reader = new StringReader(key);
@@ -167,13 +171,13 @@ public class Gr4vyClient {
 	    JWSSigner signer = new ECDSASigner(e);
 	    
 	    Date now = new Date();
-	    Date expire = new Date(now.getTime() + 60 * 1000);
+	    Date expire = new Date(now.getTime() + tokenExpirySeconds * 1000);
 	    
 	    JWTClaimsSet.Builder claimsSet = new JWTClaimsSet.Builder()
 	    		.jwtID(UUID.randomUUID().toString())
 	    		.notBeforeTime(now)
 	    	    .issueTime(now)
-	    	    .issuer("Gr4vy SDK 0.1.0 - Java")
+	    	    .issuer("Gr4vy SDK 0.19.0 - Java")
 	    	    .expirationTime(expire)
 	    	    .claim("scopes", scopes);
 	    
