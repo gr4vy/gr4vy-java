@@ -74,7 +74,7 @@ public class Gr4vyClientTest {
 		
 		String key = client.getKey();
 		String[] scopes = {"*.read", "*.write"};
-		String token = client.getToken(key, scopes, null, null, 900);
+		String token = client.getToken(key, scopes, null, null, 900000);
 		
         assert token != null;
     }
