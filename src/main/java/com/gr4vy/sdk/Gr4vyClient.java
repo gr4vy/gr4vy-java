@@ -50,6 +50,7 @@ import okhttp3.Response;
 public class Gr4vyClient {
 	private OkHttpClient okClient; 
 	private String privateKeyLocation;
+	private String privateKeyString = null;
 	private String host;
 	private String environment;
 	private Boolean debug = false;
@@ -88,6 +89,10 @@ public class Gr4vyClient {
         String apiPrefix = environment == "sandbox" ? "sandbox." : "";
         this.host = "https://api." + apiPrefix + gr4vyId  + ".gr4vy.app";
         this.debug = debug;
+    }
+    
+    public void setPrivateKeyString(String privateKeyString) {
+    	this.privateKeyString = privateKeyString;
     }
 
     public void setMerchantAccountId(String merchantAccountId) {
@@ -209,6 +214,9 @@ public class Gr4vyClient {
 	}
 	
 	public String getKey() {
+		if (this.privateKeyString != null) {
+			return this.privateKeyString;
+		}
 		String value = System.getenv("PRIVATE_KEY");
         if (value != null) {
             return value;
