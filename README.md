@@ -17,7 +17,7 @@ Add the `gr4vy-java` dependency to your pom.xml:
   	<dependency>
 	    <groupId>com.github.gr4vy</groupId>
 	    <artifactId>gr4vy-java</artifactId>
-	    <version>0.18.0</version>
+	    <version>0.20.0</version>
 	</dependency>
 ```
 
@@ -111,7 +111,7 @@ needs to be created before it can be used in this way.
 ## Initialization
 
 The client can be initialized with the Gr4vy ID (`gr4vyId`) and the location of your
-private key string.
+private key string (see Setting Private Key below).
 
 ```java
   Gr4vyClient gr4vyClient = new Gr4vyClient("[YOUR_GR4VY_ID]", "private_key.pem");
@@ -125,9 +125,19 @@ of the server to use directly.
   gr4vyClient.setHost("https://api.acme.gr4vy.app")
 ```
 
+## Setting Private Key
+
 Your API private key can be created in your admin panel on the **Integrations**
 tab.
 
+There are three methods of setting the private key when using the SDK:
+
+1. Setting the private key location in the Gr4vyClient
+2. Calling `client.setPrivateKeyString("<PRIVATE_KEY_STRING>");`
+3. Setting the environment variable `PRIVATE_KEY`
+
+NOTE: When options 2 & 3 are used, the private key location in the Initialization
+can be null.
 
 ## Making API calls
 
