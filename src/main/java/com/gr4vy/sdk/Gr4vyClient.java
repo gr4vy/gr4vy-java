@@ -19,7 +19,8 @@ import java.text.ParseException;
 import java.util.Date;
 import java.util.Map;
 import java.util.UUID;
-import java.util.concurrent.TimeUnit;
+
+import java.time.Duration;
 
 import org.bouncycastle.asn1.pkcs.PrivateKeyInfo;
 import org.bouncycastle.jce.ECNamedCurveTable;
@@ -50,13 +51,12 @@ import okhttp3.Response;
 public class Gr4vyClient {
 	private String host;
 	private OkHttpClient okClient; 
-	private String privateKeyLocation = null;
-	private String privateKeyString = null;
-	private Boolean debug = false;
-	private String merchantAccountId = "default";
-	private int connectTimeout = 10;
-	private int writeTimeout = 10;
-	private int readTimeout = 30;
+	private String privateKeyLocation;
+	private String privateKeyString;
+	private String merchantAccountId;
+	private Duration connectTimeout;
+	private Duration writeTimeout;
+	private Duration readTimeout;
 	
 	private final Gson gson = new Gson();
 	public static final MediaType JSON
@@ -70,7 +70,6 @@ public class Gr4vyClient {
 		this.okClient = builder.okClient;
 		this.privateKeyLocation = builder.privateKeyLocation;
 		this.privateKeyString = builder.privateKeyString;
-		this.debug = builder.debug;
 		this.merchantAccountId = builder.merchantAccountId;
 		this.connectTimeout = builder.connectTimeout;
 		this.writeTimeout = builder.writeTimeout;
@@ -84,11 +83,10 @@ public class Gr4vyClient {
 		private OkHttpClient okClient = null; 
 		private String privateKeyLocation = null;
 		private String privateKeyString = null;
-		private Boolean debug = false;
 		private String merchantAccountId = "default";
-		private int connectTimeout = 10;
-		private int writeTimeout = 10;
-		private int readTimeout = 30;
+		private Duration connectTimeout = Duration.ofSeconds(10);
+		private Duration writeTimeout = Duration.ofSeconds(10);
+		private Duration readTimeout = Duration.ofSeconds(30);
 		
 		
 		public Builder gr4vyId(String gr4vyId) {
@@ -115,18 +113,20 @@ public class Gr4vyClient {
 			this.privateKeyLocation = privateKeyLocation;
 			return this;
 		}
-		public Builder debug(Boolean debug) {
-			this.debug = debug;
-			return this;
-		}
 		public Builder merchantAccountId(String merchantAccountId) {
 			this.merchantAccountId = merchantAccountId;
 			return this;
 		}
-		public Builder timeouts(int connect, int write, int read) {
-	    	this.connectTimeout = connect;
-	    	this.writeTimeout = write;
-	    	this.readTimeout = read;
+		public Builder readTimeout(Duration read) {
+			this.readTimeout = read;
+			return this;
+		}
+		public Builder writeTimeout(Duration write) {
+			this.writeTimeout = write;
+			return this;
+		}
+		public Builder connectTimeout(Duration connect) {
+			this.connectTimeout = connect;
 			return this;
 		}
 		public Gr4vyClient build() {
@@ -145,24 +145,24 @@ public class Gr4vyClient {
     private OkHttpClient getClient() {
     	if (this.okClient == null) {
     		this.okClient = new OkHttpClient.Builder()
-				.connectTimeout(this.connectTimeout, TimeUnit.SECONDS)
-			    .writeTimeout(this.writeTimeout, TimeUnit.SECONDS)
-			    .readTimeout(this.readTimeout, TimeUnit.SECONDS)
+				.connectTimeout(this.connectTimeout)
+			    .writeTimeout(this.writeTimeout)
+			    .readTimeout(this.readTimeout)
 				.build();
     	}
     	return this.okClient;
     }
     
-    public int getConnectTimeout() {
-    	return this.connectTimeout;
+    public long getConnectTimeout() {
+    	return this.connectTimeout.getSeconds();
     }
     
-    public int getWriteTimeout() {
-    	return this.writeTimeout;
+    public long getWriteTimeout() {
+    	return this.writeTimeout.getSeconds();
     }
     
-    public int getReadTimeout() {
-    	return this.readTimeout;
+    public long getReadTimeout() {
+    	return this.readTimeout.getSeconds();
     }
 	
 	public String getEmbedToken(Map<String, Object> embed) throws Gr4vyException {

@@ -142,9 +142,10 @@ The following fields can be optionally set using the builder:
 				.environment("sandbox") // optional, defaults to sandbox
 				.host(null) // optional - allows setting a custom host
 				.client(null) // optional - allows setting the http client
-				.debug(false) // optional
 				.merchantAccountId("default") // optional, defaults to default
-				.timeouts(10, 10, 30) // optional, defaults to 10, 10, 30	
+				.connectTimeout(Duration.ofSeconds(10)) // optional, defaults to 10s
+				.writeTimeout(Duration.ofSeconds(10)) // optional, defaults to 10s
+				.readTimeout(Duration.ofSeconds(30)) // optional, defaults to 30s
 				.build();
 ```
 

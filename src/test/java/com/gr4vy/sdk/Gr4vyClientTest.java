@@ -7,6 +7,7 @@ import java.security.NoSuchAlgorithmException;
 import java.security.NoSuchProviderException;
 import java.security.spec.InvalidKeySpecException;
 import java.text.ParseException;
+import java.time.Duration;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
@@ -29,9 +30,10 @@ public class Gr4vyClientTest {
 				.environment("sandbox") // optional, defaults to sandbox
 				.host(null) // optional - allows setting a custom host
 				.client(null) // optional - allows setting the http client
-				.debug(false) // optional
-				.merchantAccountId("default") // optional, defaults to default
-				.timeouts(1, 2, 3) // optional, defaults to 10, 10, 30	
+				.merchantAccountId("default") // optional, defaults to default	
+				.connectTimeout(Duration.ofSeconds(1)) // optional, defaults to 10
+				.writeTimeout(Duration.ofSeconds(2)) // optional, defaults to 10
+				.readTimeout(Duration.ofSeconds(3)) // optional, defaults to 30
 				.build();
 
         assert client.getConnectTimeout() == 1;
