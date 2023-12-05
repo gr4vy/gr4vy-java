@@ -48,69 +48,98 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 
 public class Gr4vyClient {
-	private OkHttpClient okClient; 
-	private String privateKeyLocation;
-	private String privateKeyString = null;
 	private String host;
-	private String environment;
+	private OkHttpClient okClient; 
+	private String privateKeyLocation = null;
+	private String privateKeyString = null;
 	private Boolean debug = false;
 	private String merchantAccountId = "default";
-	private final Gson gson = new Gson();
 	private int connectTimeout = 10;
 	private int writeTimeout = 10;
 	private int readTimeout = 30;
 	
+	private final Gson gson = new Gson();
 	public static final MediaType JSON
     = MediaType.parse("application/json; charset=utf-8");
 	
     /**
      * Constructor
      */
-	public Gr4vyClient(String gr4vyId, String privateKeyLocation)
-    {
-        this.privateKeyLocation = privateKeyLocation;
-        this.environment = "sandbox";
-        String apiPrefix = environment == "sandbox" ? "sandbox." : "";
-        this.host = "https://api." + apiPrefix + gr4vyId  + ".gr4vy.app";
-        this.debug = false;
-    }
-	public Gr4vyClient(String gr4vyId, String privateKeyLocation, String environment)
-    {
-        this.privateKeyLocation = privateKeyLocation;
-        this.environment = environment;
-        String apiPrefix = environment == "sandbox" ? "sandbox." : "";
-        this.host = "https://api." + apiPrefix + gr4vyId  + ".gr4vy.app";
-        this.debug = false;
-    }
-    public Gr4vyClient(String gr4vyId, String privateKeyLocation, Boolean debug, String environment)
-    {
-        this.privateKeyLocation = privateKeyLocation;
-        this.environment = environment;
-        String apiPrefix = environment == "sandbox" ? "sandbox." : "";
-        this.host = "https://api." + apiPrefix + gr4vyId  + ".gr4vy.app";
-        this.debug = debug;
-    }
-    
-    public void setPrivateKeyString(String privateKeyString) {
-    	this.privateKeyString = privateKeyString;
-    }
-
-    public void setMerchantAccountId(String merchantAccountId) {
-    	this.merchantAccountId = merchantAccountId;
-    }
+	public Gr4vyClient(Builder builder) {
+		this.host = builder.host;
+		this.okClient = builder.okClient;
+		this.privateKeyLocation = builder.privateKeyLocation;
+		this.privateKeyString = builder.privateKeyString;
+		this.debug = builder.debug;
+		this.merchantAccountId = builder.merchantAccountId;
+		this.connectTimeout = builder.connectTimeout;
+		this.writeTimeout = builder.writeTimeout;
+		this.readTimeout = builder.readTimeout;
+	}
+	
+	public static class Builder {
+		private String gr4vyId = "spider";
+		private String environment = "sandbox";
+		private String host = null;
+		private OkHttpClient okClient = null; 
+		private String privateKeyLocation = null;
+		private String privateKeyString = null;
+		private Boolean debug = false;
+		private String merchantAccountId = "default";
+		private int connectTimeout = 10;
+		private int writeTimeout = 10;
+		private int readTimeout = 30;
+		
+		
+		public Builder gr4vyId(String gr4vyId) {
+			this.gr4vyId = gr4vyId;
+			return this;
+		}
+		public Builder environment(String environment) {
+			this.environment = environment;
+			return this;
+		}
+		public Builder host(String host) {
+			this.host = host;
+			return this;
+		}
+		public Builder client(OkHttpClient okHttpClient) {
+			this.okClient = okHttpClient;
+			return this;
+		}
+		public Builder privateKeyString(String privateKeyString) {
+			this.privateKeyString = privateKeyString;
+			return this;
+		}
+		public Builder privateKeyLocation(String privateKeyLocation) {
+			this.privateKeyLocation = privateKeyLocation;
+			return this;
+		}
+		public Builder debug(Boolean debug) {
+			this.debug = debug;
+			return this;
+		}
+		public Builder merchantAccountId(String merchantAccountId) {
+			this.merchantAccountId = merchantAccountId;
+			return this;
+		}
+		public Builder timeouts(int connect, int write, int read) {
+	    	this.connectTimeout = connect;
+	    	this.writeTimeout = write;
+	    	this.readTimeout = read;
+			return this;
+		}
+		public Gr4vyClient build() {
+			if (this.host == null) {
+				String apiPrefix = this.environment == "sandbox" ? "sandbox." : "";
+	            this.host = "https://api." + apiPrefix + this.gr4vyId  + ".gr4vy.app";
+            }
+            return new Gr4vyClient(this);
+        }
+	}
 	
     public void setHost(String host) {
     	this.host = host;
-    }
-    
-    public void setTimeouts(int connect, int write, int read) {
-    	this.connectTimeout = connect;
-    	this.writeTimeout = write;
-    	this.readTimeout = read;
-    }
-    
-    public void setClient(OkHttpClient client) {
-    	this.okClient = client;
     }
     
     private OkHttpClient getClient() {
@@ -149,6 +178,10 @@ public class Gr4vyClient {
 		catch (Exception e) {
 			throw new Gr4vyException("Error while generating token, please make sure your private key is valid.", e);
 		}
+	}
+	
+	public String getToken(String[] scopes) throws IOException, NoSuchAlgorithmException, NoSuchProviderException, InvalidKeySpecException, JOSEException, ParseException {
+		return getToken(this.getKey(), scopes, null, null, 60000);
 	}
 	
 	public String getToken(String key, String[] scopes, Map<String, Object> embed) throws IOException, NoSuchAlgorithmException, NoSuchProviderException, InvalidKeySpecException, JOSEException, ParseException {

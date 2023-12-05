@@ -22,9 +22,17 @@ public class Gr4vyClientTest {
 
 	@Test
     public void setTimeoutTest() throws Gr4vyException {
-    	Gr4vyClient client = new Gr4vyClient("spider", "private_key.pem");
-		
-		client.setTimeouts(1, 2, 3);
+	  	Gr4vyClient client = new Gr4vyClient.Builder()
+				.gr4vyId("[YOUR_GR4VY_ID]") // required
+				.privateKeyLocation("private_key.pem") // conditional
+				.privateKeyString("-----BEGIN PRIVATE KEY-----\n...") // conditional
+				.environment("sandbox") // optional, defaults to sandbox
+				.host(null) // optional - allows setting a custom host
+				.client(null) // optional - allows setting the http client
+				.debug(false) // optional
+				.merchantAccountId("default") // optional, defaults to default
+				.timeouts(1, 2, 3) // optional, defaults to 10, 10, 30	
+				.build();
 
         assert client.getConnectTimeout() == 1;
         assert client.getWriteTimeout() == 2;
@@ -33,7 +41,11 @@ public class Gr4vyClientTest {
 	
 	@Test
     public void getEmbedTokenTest() throws Gr4vyException {
-    	Gr4vyClient client = new Gr4vyClient("spider", "private_key.pem");
+		Gr4vyClient client = new Gr4vyClient.Builder()
+				.gr4vyId("spider")
+				.privateKeyLocation("private_key.pem")
+				.merchantAccountId("default")
+				.build();
 		
 		Map<String, Object> embed = new HashMap<String, Object>();
 		embed.put("amount", 1299);
@@ -45,7 +57,10 @@ public class Gr4vyClientTest {
 
 	@Test
 	public void getEmbedTokenTestWithCheckoutSessionPassedIn() throws Gr4vyException {
-		Gr4vyClient client = new Gr4vyClient("spider", "private_key.pem");
+		Gr4vyClient client = new Gr4vyClient.Builder()
+				.gr4vyId("spider")
+				.privateKeyLocation("private_key.pem")
+				.build();
 		
 		CheckoutSession checkoutSession = client.newCheckoutSession(null);
 		
@@ -59,18 +74,25 @@ public class Gr4vyClientTest {
 	
 	@Test
     public void getTokenTest() throws Gr4vyException, NoSuchAlgorithmException, NoSuchProviderException, InvalidKeySpecException, IOException, JOSEException, ParseException {
-    	Gr4vyClient client = new Gr4vyClient("spider", "private_key.pem", "sandbox");
+    	Gr4vyClient client = new Gr4vyClient.Builder()
+				.gr4vyId("spider")
+				.privateKeyLocation("private_key.pem")
+				.environment("sandbox")
+				.build();
 		
-		String key = client.getKey();
 		String[] scopes = {"*.read", "*.write"};
-		String token = client.getToken(key, scopes, null);
+		String token = client.getToken(scopes);
 		
         assert token != null;
     }
 	
 	@Test
     public void getTokenTestWithTokenExpiry() throws Gr4vyException, NoSuchAlgorithmException, NoSuchProviderException, InvalidKeySpecException, IOException, JOSEException, ParseException {
-    	Gr4vyClient client = new Gr4vyClient("spider", "private_key.pem", "sandbox");
+		Gr4vyClient client = new Gr4vyClient.Builder()
+				.gr4vyId("spider")
+				.privateKeyLocation("private_key.pem")
+				.environment("sandbox")
+				.build();
 		
 		String key = client.getKey();
 		String[] scopes = {"*.read", "*.write"};
@@ -81,7 +103,11 @@ public class Gr4vyClientTest {
 	
 	@Test
 	public void addBuyersTest() throws Gr4vyException {
-		Gr4vyClient client = new Gr4vyClient("spider", "private_key.pem", "sandbox");
+		Gr4vyClient client = new Gr4vyClient.Builder()
+				.gr4vyId("spider")
+				.privateKeyLocation("private_key.pem")
+				.environment("sandbox")
+				.build();
      	BuyerRequest buyer = new BuyerRequest();
      	buyer.setDisplayName("newJava Test");
      	Buyer response = client.newBuyer(buyer);
@@ -90,7 +116,11 @@ public class Gr4vyClientTest {
 	
 	@Test
 	public void updateBuyersTest() throws Gr4vyException {
-		Gr4vyClient client = new Gr4vyClient("spider", "private_key.pem", "sandbox");
+		Gr4vyClient client = new Gr4vyClient.Builder()
+				.gr4vyId("spider")
+				.privateKeyLocation("private_key.pem")
+				.environment("sandbox")
+				.build();
 		BuyerRequest buyer = new BuyerRequest();
      	buyer.setDisplayName("newJava Test");
      	Buyer response = client.newBuyer(buyer);
@@ -108,7 +138,11 @@ public class Gr4vyClientTest {
 	
 	@Test
     public void listBuyersTest() throws Gr4vyException {
-    	Gr4vyClient client = new Gr4vyClient("spider", "private_key.pem", "sandbox");
+		Gr4vyClient client = new Gr4vyClient.Builder()
+				.gr4vyId("spider")
+				.privateKeyLocation("private_key.pem")
+				.environment("sandbox")
+				.build();
     	
         Buyers response = client.listBuyers();
         
@@ -117,7 +151,11 @@ public class Gr4vyClientTest {
 	
 	@Test
     public void listBuyersWithParamsTest() throws Gr4vyException {
-    	Gr4vyClient client = new Gr4vyClient("spider", "private_key.pem", "sandbox");
+		Gr4vyClient client = new Gr4vyClient.Builder()
+				.gr4vyId("spider")
+				.privateKeyLocation("private_key.pem")
+				.environment("sandbox")
+				.build();
     	
         Map<String, Object> params = new HashMap<String, Object>();
     	params.put("limit", 2);
@@ -133,7 +171,11 @@ public class Gr4vyClientTest {
 	
 	@Test
 	public void newCheckoutSessionTransactionTest() throws Gr4vyException {
-		Gr4vyClient client = new Gr4vyClient("spider", "private_key.pem", "sandbox");
+		Gr4vyClient client = new Gr4vyClient.Builder()
+				.gr4vyId("spider")
+				.privateKeyLocation("private_key.pem")
+				.environment("sandbox")
+				.build();
 		
 		CheckoutSession checkoutSession = client.newCheckoutSession(null);
 		
@@ -160,7 +202,11 @@ public class Gr4vyClientTest {
 	
 	@Test
 	public void getCheckoutSessionTest() throws Gr4vyException {
-		Gr4vyClient client = new Gr4vyClient("spider", "private_key.pem", "sandbox");
+		Gr4vyClient client = new Gr4vyClient.Builder()
+				.gr4vyId("spider")
+				.privateKeyLocation("private_key.pem")
+				.environment("sandbox")
+				.build();
 		
 		CheckoutSession checkoutSession = client.newCheckoutSession(null);
 		
@@ -171,7 +217,11 @@ public class Gr4vyClientTest {
 	
 	 @Test
 	 public void newFailTransactionTest() throws Gr4vyException {
-	 	Gr4vyClient client = new Gr4vyClient("spider", "private_key.pem", "sandbox");
+		 Gr4vyClient client = new Gr4vyClient.Builder()
+					.gr4vyId("spider")
+					.privateKeyLocation("private_key.pem")
+					.environment("sandbox")
+					.build();
 		
 	 	TransactionPaymentMethodRequest pm = new TransactionPaymentMethodRequest()
 	 			.method(MethodEnum.CARD)
@@ -196,7 +246,11 @@ public class Gr4vyClientTest {
 
 	 @Test
 	 public void newTransactionTest() throws Gr4vyException {
-	 	Gr4vyClient client = new Gr4vyClient("spider", "private_key.pem", "sandbox");
+		 Gr4vyClient client = new Gr4vyClient.Builder()
+					.gr4vyId("spider")
+					.privateKeyLocation("private_key.pem")
+					.environment("sandbox")
+					.build();
 		
 	 	TransactionPaymentMethodRequest pm = new TransactionPaymentMethodRequest()
 	 			.method(MethodEnum.CARD)
@@ -215,7 +269,11 @@ public class Gr4vyClientTest {
 
 	 @Test
 	 public void newTransactionWithIdempotencyTest() throws Gr4vyException {
-	 	Gr4vyClient client = new Gr4vyClient("spider", "private_key.pem", "sandbox");
+		 Gr4vyClient client = new Gr4vyClient.Builder()
+					.gr4vyId("spider")
+					.privateKeyLocation("private_key.pem")
+					.environment("sandbox")
+					.build();
 		
 	 	TransactionPaymentMethodRequest pm = new TransactionPaymentMethodRequest()
 	 			.method(MethodEnum.CARD)
@@ -235,7 +293,11 @@ public class Gr4vyClientTest {
 	
 	@Test
 	public void captureTransactionTest() throws Gr4vyException {
-		Gr4vyClient client = new Gr4vyClient("spider", "private_key.pem", "sandbox");
+		Gr4vyClient client = new Gr4vyClient.Builder()
+				.gr4vyId("spider")
+				.privateKeyLocation("private_key.pem")
+				.environment("sandbox")
+				.build();
 		
 		TransactionPaymentMethodRequest pm = new TransactionPaymentMethodRequest()
 				.method(MethodEnum.CARD)
@@ -261,7 +323,11 @@ public class Gr4vyClientTest {
 	
 	@Test
 	public void voidTransactionTest() throws Gr4vyException {
-		Gr4vyClient client = new Gr4vyClient("spider", "private_key.pem", "sandbox");
+		Gr4vyClient client = new Gr4vyClient.Builder()
+				.gr4vyId("spider")
+				.privateKeyLocation("private_key.pem")
+				.environment("sandbox")
+				.build();
 		
 		TransactionPaymentMethodRequest pm = new TransactionPaymentMethodRequest()
 				.method(MethodEnum.CARD)
@@ -285,7 +351,11 @@ public class Gr4vyClientTest {
 	
 	@Test
 	public void refundTransactionTest() throws Gr4vyException {
-		Gr4vyClient client = new Gr4vyClient("spider", "private_key.pem", "sandbox");
+		Gr4vyClient client = new Gr4vyClient.Builder()
+				.gr4vyId("spider")
+				.privateKeyLocation("private_key.pem")
+				.environment("sandbox")
+				.build();
 		
 		TransactionPaymentMethodRequest pm = new TransactionPaymentMethodRequest()
 				.method(MethodEnum.CARD)
@@ -311,7 +381,11 @@ public class Gr4vyClientTest {
 	
 	 @Test
 	 public void newRedirectTransactionTest() throws Gr4vyException {
-	 	Gr4vyClient client = new Gr4vyClient("spider", "private_key.pem", "sandbox");
+		 Gr4vyClient client = new Gr4vyClient.Builder()
+					.gr4vyId("spider")
+					.privateKeyLocation("private_key.pem")
+					.environment("sandbox")
+					.build();
 		
 	 	TransactionPaymentMethodRequest pm = new TransactionPaymentMethodRequest()
 	 			.method(MethodEnum.PAYPAL)
@@ -330,7 +404,11 @@ public class Gr4vyClientTest {
 	
 	@Test
 	public void newStoredTransactionTest() throws Gr4vyException {
-		Gr4vyClient client = new Gr4vyClient("spider", "private_key.pem", "sandbox");
+		Gr4vyClient client = new Gr4vyClient.Builder()
+				.gr4vyId("spider")
+				.privateKeyLocation("private_key.pem")
+				.environment("sandbox")
+				.build();
 		
 		TransactionPaymentMethodRequest pm = new TransactionPaymentMethodRequest()
 				.id("my_stored_uuid");
@@ -355,7 +433,11 @@ public class Gr4vyClientTest {
 	
 	@Test
     public void listTransactionsTest() throws Gr4vyException {
-    	Gr4vyClient client = new Gr4vyClient("spider", "private_key.pem", "sandbox");
+		Gr4vyClient client = new Gr4vyClient.Builder()
+				.gr4vyId("spider")
+				.privateKeyLocation("private_key.pem")
+				.environment("sandbox")
+				.build();
 
         Transactions response = client.listTransactions();
         
@@ -364,7 +446,11 @@ public class Gr4vyClientTest {
 	
 	@Test
     public void listTransactionsWithParamsTest() throws Gr4vyException {
-    	Gr4vyClient client = new Gr4vyClient("spider", "private_key.pem", "sandbox");
+		Gr4vyClient client = new Gr4vyClient.Builder()
+				.gr4vyId("spider")
+				.privateKeyLocation("private_key.pem")
+				.environment("sandbox")
+				.build();
     	
     	Map<String, Object> params = new HashMap<String, Object>();
     	params.put("limit", 2);
@@ -381,7 +467,11 @@ public class Gr4vyClientTest {
 	
 	@Test
     public void listTransactionHistoryEventsTest() throws Gr4vyException {
-    	Gr4vyClient client = new Gr4vyClient("spider", "private_key.pem", "sandbox");
+		Gr4vyClient client = new Gr4vyClient.Builder()
+				.gr4vyId("spider")
+				.privateKeyLocation("private_key.pem")
+				.environment("sandbox")
+				.build();
 
         TransactionHistoryEvents response = client.listEventsForTransaction("0cb94b92-aeb9-4f67-96c5-084cbaf5b66c");
         
@@ -390,7 +480,12 @@ public class Gr4vyClientTest {
 	
 	@Test
 	public void storePaymentMethodTest() throws Gr4vyException {
-		Gr4vyClient client = new Gr4vyClient("spider", "private_key.pem", "sandbox");
+		Gr4vyClient client = new Gr4vyClient.Builder()
+				.gr4vyId("spider")
+				.privateKeyLocation("private_key.pem")
+				.environment("sandbox")
+				.build();
+		
 		PaymentMethodRequest pm = new PaymentMethodRequest()
 				.method("card")
 				.number("4111111111111111")
@@ -402,7 +497,11 @@ public class Gr4vyClientTest {
 	
 	@Test
 	public void getPaymentMethodTest() throws Gr4vyException {
-		Gr4vyClient client = new Gr4vyClient("spider", "private_key.pem", "sandbox");
+		Gr4vyClient client = new Gr4vyClient.Builder()
+				.gr4vyId("spider")
+				.privateKeyLocation("private_key.pem")
+				.environment("sandbox")
+				.build();
 		
         try {
         	PaymentMethod response = client.getPaymentMethod("eeefe91c-9449-4730-81a4-85cd59e8d72a");
@@ -419,7 +518,11 @@ public class Gr4vyClientTest {
 	
 	@Test
 	public void listPaymentMethodsTest() throws Gr4vyException {
-		Gr4vyClient client = new Gr4vyClient("spider", "private_key.pem", "sandbox");
+		Gr4vyClient client = new Gr4vyClient.Builder()
+				.gr4vyId("spider")
+				.privateKeyLocation("private_key.pem")
+				.environment("sandbox")
+				.build();
 		
      	PaymentMethods response = client.listPaymentMethods();
         assert response != null;
@@ -427,7 +530,11 @@ public class Gr4vyClientTest {
 	
 	@Test
 	public void listBuyerPaymentMethodsTest() throws Gr4vyException {
-		Gr4vyClient client = new Gr4vyClient("spider", "private_key.pem", "sandbox");
+		Gr4vyClient client = new Gr4vyClient.Builder()
+				.gr4vyId("spider")
+				.privateKeyLocation("private_key.pem")
+				.environment("sandbox")
+				.build();
 		
 		try {
 	     	PaymentMethods response = client.listBuyerPaymentMethods("");
