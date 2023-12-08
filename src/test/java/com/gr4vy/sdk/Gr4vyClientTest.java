@@ -12,6 +12,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.gr4vy.api.model.*;
@@ -20,7 +21,18 @@ import com.gr4vy.api.model.TransactionRequest.IntentEnum;
 import com.nimbusds.jose.JOSEException;
 
 public class Gr4vyClientTest {
-
+	
+	protected static Gr4vyClient shared;
+	
+	@BeforeClass
+    public static void setup() {
+		shared = new Gr4vyClient.Builder()
+				.gr4vyId("spider")
+				.privateKeyLocation("private_key.pem")
+				.environment("sandbox")
+				.build();
+    }
+	
 	@Test
     public void setTimeoutTest() throws Gr4vyException {
 	  	Gr4vyClient client = new Gr4vyClient.Builder()
@@ -76,93 +88,59 @@ public class Gr4vyClientTest {
 	
 	@Test
     public void getTokenTest() throws Gr4vyException, NoSuchAlgorithmException, NoSuchProviderException, InvalidKeySpecException, IOException, JOSEException, ParseException {
-    	Gr4vyClient client = new Gr4vyClient.Builder()
-				.gr4vyId("spider")
-				.privateKeyLocation("private_key.pem")
-				.environment("sandbox")
-				.build();
-		
 		String[] scopes = {"*.read", "*.write"};
-		String token = client.getToken(scopes);
+		String token = shared.getToken(scopes);
 		
         assert token != null;
     }
 	
 	@Test
     public void getTokenTestWithTokenExpiry() throws Gr4vyException, NoSuchAlgorithmException, NoSuchProviderException, InvalidKeySpecException, IOException, JOSEException, ParseException {
-		Gr4vyClient client = new Gr4vyClient.Builder()
-				.gr4vyId("spider")
-				.privateKeyLocation("private_key.pem")
-				.environment("sandbox")
-				.build();
-		
-		String key = client.getKey();
+		String key = shared.getKey();
 		String[] scopes = {"*.read", "*.write"};
-		String token = client.getToken(key, scopes, null, null, 900000);
+		String token = shared.getToken(key, scopes, null, null, 900000);
 		
         assert token != null;
     }
 	
 	@Test
 	public void addBuyersTest() throws Gr4vyException {
-		Gr4vyClient client = new Gr4vyClient.Builder()
-				.gr4vyId("spider")
-				.privateKeyLocation("private_key.pem")
-				.environment("sandbox")
-				.build();
      	BuyerRequest buyer = new BuyerRequest();
      	buyer.setDisplayName("newJava Test");
-     	Buyer response = client.newBuyer(buyer);
+     	Buyer response = shared.newBuyer(buyer);
         assert response.getId() != null;
 	}
 	
 	@Test
 	public void updateBuyersTest() throws Gr4vyException {
-		Gr4vyClient client = new Gr4vyClient.Builder()
-				.gr4vyId("spider")
-				.privateKeyLocation("private_key.pem")
-				.environment("sandbox")
-				.build();
 		BuyerRequest buyer = new BuyerRequest();
      	buyer.setDisplayName("newJava Test");
-     	Buyer response = client.newBuyer(buyer);
+     	Buyer response = shared.newBuyer(buyer);
      	
      	BuyerUpdate update = new BuyerUpdate();
      	update.setDisplayName("NewJava Test2");
-     	response = client.updateBuyer(response.getId().toString(), update);
+     	response = shared.updateBuyer(response.getId().toString(), update);
      	
         assert response.getId() != null;
         assert response.getDisplayName().equals("NewJava Test2");
         
-        assert client.deleteBuyer(response.getId().toString());
+        assert shared.deleteBuyer(response.getId().toString());
         
 	}
 	
 	@Test
     public void listBuyersTest() throws Gr4vyException {
-		Gr4vyClient client = new Gr4vyClient.Builder()
-				.gr4vyId("spider")
-				.privateKeyLocation("private_key.pem")
-				.environment("sandbox")
-				.build();
-    	
-        Buyers response = client.listBuyers();
+        Buyers response = shared.listBuyers();
         
         assert response != null;
     }
 	
 	@Test
     public void listBuyersWithParamsTest() throws Gr4vyException {
-		Gr4vyClient client = new Gr4vyClient.Builder()
-				.gr4vyId("spider")
-				.privateKeyLocation("private_key.pem")
-				.environment("sandbox")
-				.build();
-    	
         Map<String, Object> params = new HashMap<String, Object>();
     	params.put("limit", 2);
     	try {
-    		Buyers response = client.listBuyers(params);
+    		Buyers response = shared.listBuyers(params);
     		assert response != null;
     	}
     	catch (Gr4vyException e) {
@@ -173,13 +151,7 @@ public class Gr4vyClientTest {
 	
 	@Test
 	public void newCheckoutSessionTransactionTest() throws Gr4vyException {
-		Gr4vyClient client = new Gr4vyClient.Builder()
-				.gr4vyId("spider")
-				.privateKeyLocation("private_key.pem")
-				.environment("sandbox")
-				.build();
-		
-		CheckoutSession checkoutSession = client.newCheckoutSession(null);
+		CheckoutSession checkoutSession = shared.newCheckoutSession(null);
 		
 		TransactionPaymentMethodRequest pm = new TransactionPaymentMethodRequest()
 				.method(MethodEnum.CHECKOUT_SESSION)
@@ -192,7 +164,7 @@ public class Gr4vyClientTest {
 		
 
 		try {
-	     	Transaction response = client.newTransaction(request);
+	     	Transaction response = shared.newTransaction(request);
 	     	assert response != null;
 		}
 		catch (Gr4vyException e) {
@@ -204,27 +176,15 @@ public class Gr4vyClientTest {
 	
 	@Test
 	public void getCheckoutSessionTest() throws Gr4vyException {
-		Gr4vyClient client = new Gr4vyClient.Builder()
-				.gr4vyId("spider")
-				.privateKeyLocation("private_key.pem")
-				.environment("sandbox")
-				.build();
-		
-		CheckoutSession checkoutSession = client.newCheckoutSession(null);
+		CheckoutSession checkoutSession = shared.newCheckoutSession(null);
 		
 		
-		CheckoutSession retrieved = client.getCheckoutSession(checkoutSession.getId().toString());
+		CheckoutSession retrieved = shared.getCheckoutSession(checkoutSession.getId().toString());
 		assert retrieved != null;
 	}
 	
 	 @Test
 	 public void newFailTransactionTest() throws Gr4vyException {
-		 Gr4vyClient client = new Gr4vyClient.Builder()
-					.gr4vyId("spider")
-					.privateKeyLocation("private_key.pem")
-					.environment("sandbox")
-					.build();
-		
 	 	TransactionPaymentMethodRequest pm = new TransactionPaymentMethodRequest()
 	 			.method(MethodEnum.CARD)
 	 			.number("4111111111111111")
@@ -237,7 +197,7 @@ public class Gr4vyClientTest {
 	 			.paymentMethod(pm);
 		
 	 	try {
-	 		Transaction response = client.newTransaction(request);
+	 		Transaction response = shared.newTransaction(request);
 	        assert response != null;
 	 	}
 	 	catch (Gr4vyException ex) {
@@ -248,12 +208,6 @@ public class Gr4vyClientTest {
 
 	 @Test
 	 public void newTransactionTest() throws Gr4vyException {
-		 Gr4vyClient client = new Gr4vyClient.Builder()
-					.gr4vyId("spider")
-					.privateKeyLocation("private_key.pem")
-					.environment("sandbox")
-					.build();
-		
 	 	TransactionPaymentMethodRequest pm = new TransactionPaymentMethodRequest()
 	 			.method(MethodEnum.CARD)
 	 			.number("4111111111111111")
@@ -265,18 +219,12 @@ public class Gr4vyClientTest {
 	 			.currency("USD")
 	 			.paymentMethod(pm);
 		
-     	Transaction response = client.newTransaction(request);
+     	Transaction response = shared.newTransaction(request);
         assert response != null;
 	 }
 
 	 @Test
 	 public void newTransactionWithIdempotencyTest() throws Gr4vyException {
-		 Gr4vyClient client = new Gr4vyClient.Builder()
-					.gr4vyId("spider")
-					.privateKeyLocation("private_key.pem")
-					.environment("sandbox")
-					.build();
-		
 	 	TransactionPaymentMethodRequest pm = new TransactionPaymentMethodRequest()
 	 			.method(MethodEnum.CARD)
 	 			.number("4111111111111111")
@@ -289,18 +237,12 @@ public class Gr4vyClientTest {
 	 			.paymentMethod(pm);
 		
 	 	UUID idempotencyKey = UUID.randomUUID();
-     	Transaction response = client.newTransaction(request, idempotencyKey.toString());
+     	Transaction response = shared.newTransaction(request, idempotencyKey.toString());
         assert response != null;
 	 }
 	
 	@Test
 	public void captureTransactionTest() throws Gr4vyException {
-		Gr4vyClient client = new Gr4vyClient.Builder()
-				.gr4vyId("spider")
-				.privateKeyLocation("private_key.pem")
-				.environment("sandbox")
-				.build();
-		
 		TransactionPaymentMethodRequest pm = new TransactionPaymentMethodRequest()
 				.method(MethodEnum.CARD)
 				.number("4111111111111111")
@@ -314,23 +256,17 @@ public class Gr4vyClientTest {
 				.paymentMethod(pm)
 				.intent(IntentEnum.AUTHORIZE);
 		
-     	Transaction response = client.newTransaction(request);
+     	Transaction response = shared.newTransaction(request);
         assert response != null;
         
         TransactionCaptureRequest capture = new TransactionCaptureRequest()
         		.amount(100);
-        Transaction captureResponse = client.captureTransaction(response.getId().toString(), capture);
+        Transaction captureResponse = shared.captureTransaction(response.getId().toString(), capture);
         assert captureResponse != null;
 	}
 	
 	@Test
 	public void voidTransactionTest() throws Gr4vyException {
-		Gr4vyClient client = new Gr4vyClient.Builder()
-				.gr4vyId("spider")
-				.privateKeyLocation("private_key.pem")
-				.environment("sandbox")
-				.build();
-		
 		TransactionPaymentMethodRequest pm = new TransactionPaymentMethodRequest()
 				.method(MethodEnum.CARD)
 				.number("4111111111111111")
@@ -344,21 +280,15 @@ public class Gr4vyClientTest {
 				.paymentMethod(pm)
 				.intent(IntentEnum.AUTHORIZE);
 		
-     	Transaction response = client.newTransaction(request);
+     	Transaction response = shared.newTransaction(request);
         assert response != null;
         
-        Transaction voidResponse = client.voidTransaction(response.getId().toString());
+        Transaction voidResponse = shared.voidTransaction(response.getId().toString());
         assert voidResponse != null;
 	}
 	
 	@Test
 	public void refundTransactionTest() throws Gr4vyException {
-		Gr4vyClient client = new Gr4vyClient.Builder()
-				.gr4vyId("spider")
-				.privateKeyLocation("private_key.pem")
-				.environment("sandbox")
-				.build();
-		
 		TransactionPaymentMethodRequest pm = new TransactionPaymentMethodRequest()
 				.method(MethodEnum.CARD)
 				.number("4111111111111111")
@@ -372,23 +302,23 @@ public class Gr4vyClientTest {
 				.paymentMethod(pm)
 				.intent(IntentEnum.CAPTURE);
 		
-     	Transaction response = client.newTransaction(request);
+     	Transaction response = shared.newTransaction(request);
         assert response != null;
+        
+        String transactionId = response.getId().toString();
         
         TransactionRefundRequest refund = new TransactionRefundRequest()
         		.amount(100);
-        Refund refundResponse = client.refundTransaction(response.getId().toString(), refund);
+        Refund refundResponse = shared.refundTransaction(transactionId, refund);
         assert refundResponse != null;
+        
+        Refund checkRefund = shared.getRefund(transactionId, refundResponse.getId().toString());
+        assert checkRefund.getStatus().equals(refundResponse.getStatus());
+        assert checkRefund.getId().equals(refundResponse.getId());
 	}
 	
 	 @Test
 	 public void newRedirectTransactionTest() throws Gr4vyException {
-		 Gr4vyClient client = new Gr4vyClient.Builder()
-					.gr4vyId("spider")
-					.privateKeyLocation("private_key.pem")
-					.environment("sandbox")
-					.build();
-		
 	 	TransactionPaymentMethodRequest pm = new TransactionPaymentMethodRequest()
 	 			.method(MethodEnum.PAYPAL)
 	 			.redirectUrl("https://gr4vy.com")
@@ -400,18 +330,12 @@ public class Gr4vyClientTest {
 	 			.currency("GBP")
 	 			.paymentMethod(pm);
 		
-      	Transaction response = client.newTransaction(request);
+      	Transaction response = shared.newTransaction(request);
         assert response != null;
 	 }
 	
 	@Test
 	public void newStoredTransactionTest() throws Gr4vyException {
-		Gr4vyClient client = new Gr4vyClient.Builder()
-				.gr4vyId("spider")
-				.privateKeyLocation("private_key.pem")
-				.environment("sandbox")
-				.build();
-		
 		TransactionPaymentMethodRequest pm = new TransactionPaymentMethodRequest()
 				.id("my_stored_uuid");
 		
@@ -421,7 +345,7 @@ public class Gr4vyClientTest {
 				.paymentMethod(pm);
 		
         try {
-        	Transaction response = client.newTransaction(request);
+        	Transaction response = shared.newTransaction(request);
             assert response != null;
 		}
 		catch (Gr4vyException ex) {
@@ -435,30 +359,18 @@ public class Gr4vyClientTest {
 	
 	@Test
     public void listTransactionsTest() throws Gr4vyException {
-		Gr4vyClient client = new Gr4vyClient.Builder()
-				.gr4vyId("spider")
-				.privateKeyLocation("private_key.pem")
-				.environment("sandbox")
-				.build();
-
-        Transactions response = client.listTransactions();
+        Transactions response = shared.listTransactions();
         
         assert response != null;
     }
 	
 	@Test
     public void listTransactionsWithParamsTest() throws Gr4vyException {
-		Gr4vyClient client = new Gr4vyClient.Builder()
-				.gr4vyId("spider")
-				.privateKeyLocation("private_key.pem")
-				.environment("sandbox")
-				.build();
-    	
     	Map<String, Object> params = new HashMap<String, Object>();
     	params.put("limit", 2);
     	params.put("amount_gte", "100");
     	try {
-    		Transactions response = client.listTransactions(params);
+    		Transactions response = shared.listTransactions(params);
     		assert response != null;
     	}
     	catch (Gr4vyException e) {
@@ -469,44 +381,26 @@ public class Gr4vyClientTest {
 	
 	@Test
     public void listTransactionHistoryEventsTest() throws Gr4vyException {
-		Gr4vyClient client = new Gr4vyClient.Builder()
-				.gr4vyId("spider")
-				.privateKeyLocation("private_key.pem")
-				.environment("sandbox")
-				.build();
-
-        TransactionHistoryEvents response = client.listEventsForTransaction("0cb94b92-aeb9-4f67-96c5-084cbaf5b66c");
+        TransactionHistoryEvents response = shared.listEventsForTransaction("0cb94b92-aeb9-4f67-96c5-084cbaf5b66c");
         
         assert response != null;
     }
 	
 	@Test
 	public void storePaymentMethodTest() throws Gr4vyException {
-		Gr4vyClient client = new Gr4vyClient.Builder()
-				.gr4vyId("spider")
-				.privateKeyLocation("private_key.pem")
-				.environment("sandbox")
-				.build();
-		
 		PaymentMethodRequest pm = new PaymentMethodRequest()
 				.method("card")
 				.number("4111111111111111")
 				.expirationDate("12/24");
      	
-     	PaymentMethod response = client.storePaymentMethod(pm);
+     	PaymentMethod response = shared.storePaymentMethod(pm);
         assert response.getId() != null;
 	}
 	
 	@Test
-	public void getPaymentMethodTest() throws Gr4vyException {
-		Gr4vyClient client = new Gr4vyClient.Builder()
-				.gr4vyId("spider")
-				.privateKeyLocation("private_key.pem")
-				.environment("sandbox")
-				.build();
-		
+	public void getPaymentMethodTest() throws Gr4vyException {		
         try {
-        	PaymentMethod response = client.getPaymentMethod("eeefe91c-9449-4730-81a4-85cd59e8d72a");
+        	PaymentMethod response = shared.getPaymentMethod("eeefe91c-9449-4730-81a4-85cd59e8d72a");
         	assert response != null;
 		}
 		catch (Gr4vyException ex) {
@@ -520,26 +414,14 @@ public class Gr4vyClientTest {
 	
 	@Test
 	public void listPaymentMethodsTest() throws Gr4vyException {
-		Gr4vyClient client = new Gr4vyClient.Builder()
-				.gr4vyId("spider")
-				.privateKeyLocation("private_key.pem")
-				.environment("sandbox")
-				.build();
-		
-     	PaymentMethods response = client.listPaymentMethods();
+     	PaymentMethods response = shared.listPaymentMethods();
         assert response != null;
 	}
 	
 	@Test
 	public void listBuyerPaymentMethodsTest() throws Gr4vyException {
-		Gr4vyClient client = new Gr4vyClient.Builder()
-				.gr4vyId("spider")
-				.privateKeyLocation("private_key.pem")
-				.environment("sandbox")
-				.build();
-		
 		try {
-	     	PaymentMethods response = client.listBuyerPaymentMethods("");
+	     	PaymentMethods response = shared.listBuyerPaymentMethods("");
 	        assert response != null;
 		}
 		catch (Gr4vyException ex) {
@@ -547,6 +429,12 @@ public class Gr4vyClientTest {
 			assertEquals(error.getDetails().get(0).getMessage(), "value is not a valid uuid"); 
 		}
 	}
-
+	
+	@Test
+	public void listPaymentOptionsTest() throws Gr4vyException {		
+		Map<String, Object> params = new HashMap<String, Object>();
+     	PaymentOptions response = shared.listPaymentOptions(params);
+        assert response != null;
+	}
 
 }
