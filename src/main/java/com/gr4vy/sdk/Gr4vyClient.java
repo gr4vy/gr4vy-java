@@ -62,6 +62,8 @@ public class Gr4vyClient {
 	public static final MediaType JSON
     = MediaType.parse("application/json; charset=utf-8");
 	
+	private CachedToken cachedToken = null;
+	
     /**
      * Constructor
      */
@@ -131,15 +133,15 @@ public class Gr4vyClient {
 		}
 		public Gr4vyClient build() {
 			if (this.host == null) {
-				String apiPrefix = this.environment == "sandbox" ? "sandbox." : "";
+				String apiPrefix = this.environment.equals("sandbox") ? "sandbox." : "";
 	            this.host = "https://api." + apiPrefix + this.gr4vyId  + ".gr4vy.app";
             }
             return new Gr4vyClient(this);
         }
 	}
 	
-    public void setHost(String host) {
-    	this.host = host;
+    public void resetCachedToken() {
+    	this.cachedToken = null;
     }
     
     private OkHttpClient getClient() {
@@ -193,6 +195,9 @@ public class Gr4vyClient {
 	}
 
 	public String getToken(String key, String[] scopes, Map<String, Object> embed, UUID checkoutSessionId, int tokenExpiryMillis) throws IOException, NoSuchAlgorithmException, NoSuchProviderException, InvalidKeySpecException, JOSEException, ParseException {
+		if (cachedToken != null && cachedToken.isValid()) {
+			return cachedToken.getToken();
+		}
 		Security.addProvider(new org.bouncycastle.jce.provider.BouncyCastleProvider());
 		
 		Reader reader = new StringReader(key);
@@ -215,7 +220,7 @@ public class Gr4vyClient {
 	    		.jwtID(UUID.randomUUID().toString())
 	    		.notBeforeTime(now)
 	    	    .issueTime(now)
-	    	    .issuer("Gr4vy SDK 0.19.0 - Java")
+	    	    .issuer("Gr4vy SDK 0.22.0 - Java")
 	    	    .expirationTime(expire)
 	    	    .claim("scopes", scopes);
 	    
@@ -234,7 +239,9 @@ public class Gr4vyClient {
 	    
 	    signedJWT.sign(signer);
 	    
-	    return signedJWT.serialize();
+	    String token = signedJWT.serialize();
+	    cachedToken = new CachedToken(token, expire.getTime());
+	    return token;
 	}
 	
 	private static ECPublicKey publicFromPrivate(ECPrivateKey key) throws NoSuchAlgorithmException, NoSuchProviderException, InvalidKeySpecException {
@@ -269,11 +276,11 @@ public class Gr4vyClient {
         }
 	}
 
-	private String get(String endpoint) throws Gr4vyException {
+	public String get(String endpoint) throws Gr4vyException {
 		String[] scopes = {"*.read", "*.write"};
 		String accessToken = null;
 		try {
-			accessToken = this.getToken(this.getKey(), scopes, null);
+			accessToken = this.getToken(scopes);
 		} catch (Exception e2) {
 			throw new Gr4vyException("Unable to generate token", e2);
 		} 
@@ -305,15 +312,15 @@ public class Gr4vyClient {
 		return responseData;
     }
 	
-	private String post(String endpoint, String jsonBody) throws Gr4vyException {
+	public String post(String endpoint, String jsonBody) throws Gr4vyException {
 		return this.post(endpoint, jsonBody, null);
 	}
 
-	private String post(String endpoint, String jsonBody, String idempotencyKey) throws Gr4vyException {
+	public String post(String endpoint, String jsonBody, String idempotencyKey) throws Gr4vyException {
 		String[] scopes = {"*.read", "*.write"};
 		String accessToken = null;
 		try {
-			accessToken = this.getToken(this.getKey(), scopes, null);
+			accessToken = this.getToken(scopes);
 		} catch (Exception e2) {
 			throw new Gr4vyException("Unable to generate token", e2);
 		} 
@@ -358,11 +365,11 @@ public class Gr4vyClient {
 		return responseData;
     }
 	
-	private String put(String endpoint, String jsonBody) throws Gr4vyException {
+	public String put(String endpoint, String jsonBody) throws Gr4vyException {
 		String[] scopes = {"*.read", "*.write"};
 		String accessToken = null;
 		try {
-			accessToken = this.getToken(this.getKey(), scopes, null);
+			accessToken = this.getToken(scopes);
 		} catch (Exception e2) {
 			throw new Gr4vyException("Unable to generate token", e2);
 		} 
@@ -405,11 +412,11 @@ public class Gr4vyClient {
 		return responseData;
     }
 	
-	private boolean delete(String endpoint) throws Gr4vyException {
+	public boolean delete(String endpoint) throws Gr4vyException {
 		String[] scopes = {"*.read", "*.write"};
 		String accessToken = null;
 		try {
-			accessToken = this.getToken(this.getKey(), scopes, null);
+			accessToken = this.getToken(scopes);
 		} catch (Exception e2) {
 			throw new Gr4vyException("Unable to generate token", e2);
 		} 
@@ -546,6 +553,25 @@ public class Gr4vyClient {
 		String response = this.post("/transactions/" + transactionId + "/refunds", this.gson.toJson(request));
 		return this.gson.fromJson(response,Refund.class);
 	}
+	public Refunds listRefundsForTransaction(String transactionId) {
+		String response = this.get("/transactions/" + transactionId + "/refunds");
+		return this.gson.fromJson(response,Refunds.class);
+	}
+	public Refunds listRefundsForTransaction(String transactionId, Map<String, Object> params) {
+		String endpoint = "/transactions/" + transactionId + "/refunds";
+		if (params.size() > 0) {
+			String encoded = Helper.urlEncodeUTF8(params);
+			endpoint = endpoint + "?" + encoded;
+		}
+		String response = this.get(endpoint);
+		return this.gson.fromJson(response,Refunds.class);
+	}
+	public Refund getRefund(String transactionId, String refundId) {
+		String endpoint = "/transactions/" + transactionId + "/refunds/" + refundId;
+		String response = this.get(endpoint);
+		return this.gson.fromJson(response,Refund.class);
+	}
+	
 	public CheckoutSession newCheckoutSession(CheckoutSessionCreateRequest request) {
 		String response = this.post("/checkout/sessions", this.gson.toJson(request));
 		return this.gson.fromJson(response,CheckoutSession.class);
@@ -560,5 +586,19 @@ public class Gr4vyClient {
 	}
 	public boolean deleteCheckoutSession(String checkoutSessionId) {
 		return this.delete("/checkout/sessions/" + checkoutSessionId);
+	}
+	
+	public PaymentOptions listPaymentOptions(Map<String, Object> params) {
+		String endpoint = "/payment-options";
+		if (params.size() > 0) {
+			String encoded = Helper.urlEncodeUTF8(params);
+			endpoint = endpoint + "?" + encoded;
+		}
+		String response = this.get(endpoint);
+		return this.gson.fromJson(response, PaymentOptions.class);
+	}
+	public PaymentOptions listPaymentOptions(PaymentOptionsRequest request) {
+		String response = this.post("/payment-options", this.gson.toJson(request));
+		return this.gson.fromJson(response, PaymentOptions.class);
 	}
 }
