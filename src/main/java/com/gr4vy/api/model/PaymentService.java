@@ -89,13 +89,37 @@ public class PaymentService {
   @SerializedName(SERIALIZED_NAME_ID)
   private UUID id;
 
+  public static final String SERIALIZED_NAME_ACCEPTED_COUNTRIES = "accepted_countries";
+  @SerializedName(SERIALIZED_NAME_ACCEPTED_COUNTRIES)
+  private List<String> acceptedCountries = null;
+
+  public static final String SERIALIZED_NAME_ACCEPTED_CURRENCIES = "accepted_currencies";
+  @SerializedName(SERIALIZED_NAME_ACCEPTED_CURRENCIES)
+  private List<String> acceptedCurrencies = null;
+
+  public static final String SERIALIZED_NAME_ACTIVE = "active";
+  @SerializedName(SERIALIZED_NAME_ACTIVE)
+  private Boolean active = true;
+
+  public static final String SERIALIZED_NAME_CREATED_AT = "created_at";
+  @SerializedName(SERIALIZED_NAME_CREATED_AT)
+  private String createdAt;
+
+  public static final String SERIALIZED_NAME_DISPLAY_NAME = "display_name";
+  @SerializedName(SERIALIZED_NAME_DISPLAY_NAME)
+  private String displayName;
+
+  public static final String SERIALIZED_NAME_FIELDS = "fields";
+  @SerializedName(SERIALIZED_NAME_FIELDS)
+  private List<GiftCardServiceFields> fields = null;
+
   public static final String SERIALIZED_NAME_MERCHANT_ACCOUNT_ID = "merchant_account_id";
   @SerializedName(SERIALIZED_NAME_MERCHANT_ACCOUNT_ID)
   private String merchantAccountId;
 
-  public static final String SERIALIZED_NAME_PAYMENT_SERVICE_DEFINITION_ID = "payment_service_definition_id";
-  @SerializedName(SERIALIZED_NAME_PAYMENT_SERVICE_DEFINITION_ID)
-  private String paymentServiceDefinitionId;
+  public static final String SERIALIZED_NAME_MERCHANT_PROFILE = "merchant_profile";
+  @SerializedName(SERIALIZED_NAME_MERCHANT_PROFILE)
+  private MerchantProfile merchantProfile;
 
   /**
    * The payment method that this service handles.
@@ -266,9 +290,21 @@ public class PaymentService {
   @SerializedName(SERIALIZED_NAME_METHOD)
   private MethodEnum method;
 
-  public static final String SERIALIZED_NAME_DISPLAY_NAME = "display_name";
-  @SerializedName(SERIALIZED_NAME_DISPLAY_NAME)
-  private String displayName;
+  public static final String SERIALIZED_NAME_NETWORK_TOKENS_ENABLED = "network_tokens_enabled";
+  @SerializedName(SERIALIZED_NAME_NETWORK_TOKENS_ENABLED)
+  private Boolean networkTokensEnabled;
+
+  public static final String SERIALIZED_NAME_OPEN_LOOP = "open_loop";
+  @SerializedName(SERIALIZED_NAME_OPEN_LOOP)
+  private Boolean openLoop;
+
+  public static final String SERIALIZED_NAME_PAYMENT_METHOD_TOKENIZATION_ENABLED = "payment_method_tokenization_enabled";
+  @SerializedName(SERIALIZED_NAME_PAYMENT_METHOD_TOKENIZATION_ENABLED)
+  private Boolean paymentMethodTokenizationEnabled = false;
+
+  public static final String SERIALIZED_NAME_PAYMENT_SERVICE_DEFINITION_ID = "payment_service_definition_id";
+  @SerializedName(SERIALIZED_NAME_PAYMENT_SERVICE_DEFINITION_ID)
+  private String paymentServiceDefinitionId;
 
   /**
    * The current status of this service. This will start off as pending, move to created, and might eventually move to an error status if and when the credentials are no longer valid. 
@@ -323,41 +359,9 @@ public class PaymentService {
   @SerializedName(SERIALIZED_NAME_STATUS)
   private StatusEnum status;
 
-  public static final String SERIALIZED_NAME_ACCEPTED_CURRENCIES = "accepted_currencies";
-  @SerializedName(SERIALIZED_NAME_ACCEPTED_CURRENCIES)
-  private List<String> acceptedCurrencies = null;
-
-  public static final String SERIALIZED_NAME_ACCEPTED_COUNTRIES = "accepted_countries";
-  @SerializedName(SERIALIZED_NAME_ACCEPTED_COUNTRIES)
-  private List<String> acceptedCountries = null;
-
-  public static final String SERIALIZED_NAME_OPEN_LOOP = "open_loop";
-  @SerializedName(SERIALIZED_NAME_OPEN_LOOP)
-  private Boolean openLoop;
-
-  public static final String SERIALIZED_NAME_PAYMENT_METHOD_TOKENIZATION_ENABLED = "payment_method_tokenization_enabled";
-  @SerializedName(SERIALIZED_NAME_PAYMENT_METHOD_TOKENIZATION_ENABLED)
-  private Boolean paymentMethodTokenizationEnabled = false;
-
-  public static final String SERIALIZED_NAME_NETWORK_TOKENS_ENABLED = "network_tokens_enabled";
-  @SerializedName(SERIALIZED_NAME_NETWORK_TOKENS_ENABLED)
-  private Boolean networkTokensEnabled;
-
   public static final String SERIALIZED_NAME_THREE_D_SECURE_ENABLED = "three_d_secure_enabled";
   @SerializedName(SERIALIZED_NAME_THREE_D_SECURE_ENABLED)
   private Boolean threeDSecureEnabled = false;
-
-  public static final String SERIALIZED_NAME_MERCHANT_PROFILE = "merchant_profile";
-  @SerializedName(SERIALIZED_NAME_MERCHANT_PROFILE)
-  private MerchantProfile merchantProfile;
-
-  public static final String SERIALIZED_NAME_ACTIVE = "active";
-  @SerializedName(SERIALIZED_NAME_ACTIVE)
-  private Boolean active = true;
-
-  public static final String SERIALIZED_NAME_CREATED_AT = "created_at";
-  @SerializedName(SERIALIZED_NAME_CREATED_AT)
-  private String createdAt;
 
   public static final String SERIALIZED_NAME_UPDATED_AT = "updated_at";
   @SerializedName(SERIALIZED_NAME_UPDATED_AT)
@@ -366,10 +370,6 @@ public class PaymentService {
   public static final String SERIALIZED_NAME_WEBHOOK_URL = "webhook_url";
   @SerializedName(SERIALIZED_NAME_WEBHOOK_URL)
   private String webhookUrl;
-
-  public static final String SERIALIZED_NAME_FIELDS = "fields";
-  @SerializedName(SERIALIZED_NAME_FIELDS)
-  private List<GiftCardServiceFields> fields = null;
 
 
   public PaymentService type(TypeEnum type) {
@@ -418,152 +418,6 @@ public class PaymentService {
   }
 
 
-  public PaymentService merchantAccountId(String merchantAccountId) {
-    
-    this.merchantAccountId = merchantAccountId;
-    return this;
-  }
-
-   /**
-   * The unique ID for a merchant account.
-   * @return merchantAccountId
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(example = "default", value = "The unique ID for a merchant account.")
-
-  public String getMerchantAccountId() {
-    return merchantAccountId;
-  }
-
-
-  public void setMerchantAccountId(String merchantAccountId) {
-    this.merchantAccountId = merchantAccountId;
-  }
-
-
-  public PaymentService paymentServiceDefinitionId(String paymentServiceDefinitionId) {
-    
-    this.paymentServiceDefinitionId = paymentServiceDefinitionId;
-    return this;
-  }
-
-   /**
-   * The ID of the payment service definition used to create this service. 
-   * @return paymentServiceDefinitionId
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(example = "stripe-card", value = "The ID of the payment service definition used to create this service. ")
-
-  public String getPaymentServiceDefinitionId() {
-    return paymentServiceDefinitionId;
-  }
-
-
-  public void setPaymentServiceDefinitionId(String paymentServiceDefinitionId) {
-    this.paymentServiceDefinitionId = paymentServiceDefinitionId;
-  }
-
-
-  public PaymentService method(MethodEnum method) {
-    
-    this.method = method;
-    return this;
-  }
-
-   /**
-   * The payment method that this service handles.
-   * @return method
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(example = "card", value = "The payment method that this service handles.")
-
-  public MethodEnum getMethod() {
-    return method;
-  }
-
-
-  public void setMethod(MethodEnum method) {
-    this.method = method;
-  }
-
-
-  public PaymentService displayName(String displayName) {
-    
-    this.displayName = displayName;
-    return this;
-  }
-
-   /**
-   * The custom name set for this service.
-   * @return displayName
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(example = "Stripe (Main)", value = "The custom name set for this service.")
-
-  public String getDisplayName() {
-    return displayName;
-  }
-
-
-  public void setDisplayName(String displayName) {
-    this.displayName = displayName;
-  }
-
-
-  public PaymentService status(StatusEnum status) {
-    
-    this.status = status;
-    return this;
-  }
-
-   /**
-   * The current status of this service. This will start off as pending, move to created, and might eventually move to an error status if and when the credentials are no longer valid. 
-   * @return status
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "The current status of this service. This will start off as pending, move to created, and might eventually move to an error status if and when the credentials are no longer valid. ")
-
-  public StatusEnum getStatus() {
-    return status;
-  }
-
-
-  public void setStatus(StatusEnum status) {
-    this.status = status;
-  }
-
-
-  public PaymentService acceptedCurrencies(List<String> acceptedCurrencies) {
-    
-    this.acceptedCurrencies = acceptedCurrencies;
-    return this;
-  }
-
-  public PaymentService addAcceptedCurrenciesItem(String acceptedCurrenciesItem) {
-    if (this.acceptedCurrencies == null) {
-      this.acceptedCurrencies = new ArrayList<String>();
-    }
-    this.acceptedCurrencies.add(acceptedCurrenciesItem);
-    return this;
-  }
-
-   /**
-   * A list of currencies for which this service is enabled, in ISO 4217 three-letter code format.
-   * @return acceptedCurrencies
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(example = "[\"EUR\"]", value = "A list of currencies for which this service is enabled, in ISO 4217 three-letter code format.")
-
-  public List<String> getAcceptedCurrencies() {
-    return acceptedCurrencies;
-  }
-
-
-  public void setAcceptedCurrencies(List<String> acceptedCurrencies) {
-    this.acceptedCurrencies = acceptedCurrencies;
-  }
-
-
   public PaymentService acceptedCountries(List<String> acceptedCountries) {
     
     this.acceptedCountries = acceptedCountries;
@@ -595,118 +449,34 @@ public class PaymentService {
   }
 
 
-  public PaymentService openLoop(Boolean openLoop) {
+  public PaymentService acceptedCurrencies(List<String> acceptedCurrencies) {
     
-    this.openLoop = openLoop;
+    this.acceptedCurrencies = acceptedCurrencies;
+    return this;
+  }
+
+  public PaymentService addAcceptedCurrenciesItem(String acceptedCurrenciesItem) {
+    if (this.acceptedCurrencies == null) {
+      this.acceptedCurrencies = new ArrayList<String>();
+    }
+    this.acceptedCurrencies.add(acceptedCurrenciesItem);
     return this;
   }
 
    /**
-   * Defines if the service works as an open-loop service. This feature can only be enabled if the PSP is set up to accept previous scheme transaction IDs.
-   * @return openLoop
+   * A list of currencies for which this service is enabled, in ISO 4217 three-letter code format.
+   * @return acceptedCurrencies
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "true", value = "Defines if the service works as an open-loop service. This feature can only be enabled if the PSP is set up to accept previous scheme transaction IDs.")
+  @ApiModelProperty(example = "[\"EUR\"]", value = "A list of currencies for which this service is enabled, in ISO 4217 three-letter code format.")
 
-  public Boolean getOpenLoop() {
-    return openLoop;
+  public List<String> getAcceptedCurrencies() {
+    return acceptedCurrencies;
   }
 
 
-  public void setOpenLoop(Boolean openLoop) {
-    this.openLoop = openLoop;
-  }
-
-
-  public PaymentService paymentMethodTokenizationEnabled(Boolean paymentMethodTokenizationEnabled) {
-    
-    this.paymentMethodTokenizationEnabled = paymentMethodTokenizationEnabled;
-    return this;
-  }
-
-   /**
-   * Defines if tokenization is enabled for the service. This feature can only be enabled if the payment service is NOT set as &#x60;open_loop&#x60; and the PSP is set up to tokenize.
-   * @return paymentMethodTokenizationEnabled
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(example = "true", value = "Defines if tokenization is enabled for the service. This feature can only be enabled if the payment service is NOT set as `open_loop` and the PSP is set up to tokenize.")
-
-  public Boolean getPaymentMethodTokenizationEnabled() {
-    return paymentMethodTokenizationEnabled;
-  }
-
-
-  public void setPaymentMethodTokenizationEnabled(Boolean paymentMethodTokenizationEnabled) {
-    this.paymentMethodTokenizationEnabled = paymentMethodTokenizationEnabled;
-  }
-
-
-  public PaymentService networkTokensEnabled(Boolean networkTokensEnabled) {
-    
-    this.networkTokensEnabled = networkTokensEnabled;
-    return this;
-  }
-
-   /**
-   * Defines if network tokens are enabled for the service. This feature can only be enabled if the payment service is set as &#x60;open_loop&#x60; and the PSP is set up to accept network tokens.
-   * @return networkTokensEnabled
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(example = "true", value = "Defines if network tokens are enabled for the service. This feature can only be enabled if the payment service is set as `open_loop` and the PSP is set up to accept network tokens.")
-
-  public Boolean getNetworkTokensEnabled() {
-    return networkTokensEnabled;
-  }
-
-
-  public void setNetworkTokensEnabled(Boolean networkTokensEnabled) {
-    this.networkTokensEnabled = networkTokensEnabled;
-  }
-
-
-  public PaymentService threeDSecureEnabled(Boolean threeDSecureEnabled) {
-    
-    this.threeDSecureEnabled = threeDSecureEnabled;
-    return this;
-  }
-
-   /**
-   * Defines if 3-D Secure is enabled for the service (can only be enabled if the payment service definition supports the &#x60;three_d_secure_hosted&#x60; feature). This does not affect pass through 3-D Secure data.
-   * @return threeDSecureEnabled
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(example = "true", value = "Defines if 3-D Secure is enabled for the service (can only be enabled if the payment service definition supports the `three_d_secure_hosted` feature). This does not affect pass through 3-D Secure data.")
-
-  public Boolean getThreeDSecureEnabled() {
-    return threeDSecureEnabled;
-  }
-
-
-  public void setThreeDSecureEnabled(Boolean threeDSecureEnabled) {
-    this.threeDSecureEnabled = threeDSecureEnabled;
-  }
-
-
-  public PaymentService merchantProfile(MerchantProfile merchantProfile) {
-    
-    this.merchantProfile = merchantProfile;
-    return this;
-  }
-
-   /**
-   * An object containing a key for each supported card scheme (Amex, Discover, Mastercard and Visa), and for each key an object with the merchant profile for this service and the corresponding scheme.
-   * @return merchantProfile
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "An object containing a key for each supported card scheme (Amex, Discover, Mastercard and Visa), and for each key an object with the merchant profile for this service and the corresponding scheme.")
-
-  public MerchantProfile getMerchantProfile() {
-    return merchantProfile;
-  }
-
-
-  public void setMerchantProfile(MerchantProfile merchantProfile) {
-    this.merchantProfile = merchantProfile;
+  public void setAcceptedCurrencies(List<String> acceptedCurrencies) {
+    this.acceptedCurrencies = acceptedCurrencies;
   }
 
 
@@ -756,6 +526,267 @@ public class PaymentService {
   }
 
 
+  public PaymentService displayName(String displayName) {
+    
+    this.displayName = displayName;
+    return this;
+  }
+
+   /**
+   * The custom name set for this service.
+   * @return displayName
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "Stripe (Main)", value = "The custom name set for this service.")
+
+  public String getDisplayName() {
+    return displayName;
+  }
+
+
+  public void setDisplayName(String displayName) {
+    this.displayName = displayName;
+  }
+
+
+  public PaymentService fields(List<GiftCardServiceFields> fields) {
+    
+    this.fields = fields;
+    return this;
+  }
+
+  public PaymentService addFieldsItem(GiftCardServiceFields fieldsItem) {
+    if (this.fields == null) {
+      this.fields = new ArrayList<GiftCardServiceFields>();
+    }
+    this.fields.add(fieldsItem);
+    return this;
+  }
+
+   /**
+   * A list of fields, each containing a key-value pair for each field configured for this payment service. Fields marked as &#x60;secret&#x60; (see Payment Service Definition) are not returned.
+   * @return fields
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "A list of fields, each containing a key-value pair for each field configured for this payment service. Fields marked as `secret` (see Payment Service Definition) are not returned.")
+
+  public List<GiftCardServiceFields> getFields() {
+    return fields;
+  }
+
+
+  public void setFields(List<GiftCardServiceFields> fields) {
+    this.fields = fields;
+  }
+
+
+  public PaymentService merchantAccountId(String merchantAccountId) {
+    
+    this.merchantAccountId = merchantAccountId;
+    return this;
+  }
+
+   /**
+   * The unique ID for a merchant account.
+   * @return merchantAccountId
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "default", value = "The unique ID for a merchant account.")
+
+  public String getMerchantAccountId() {
+    return merchantAccountId;
+  }
+
+
+  public void setMerchantAccountId(String merchantAccountId) {
+    this.merchantAccountId = merchantAccountId;
+  }
+
+
+  public PaymentService merchantProfile(MerchantProfile merchantProfile) {
+    
+    this.merchantProfile = merchantProfile;
+    return this;
+  }
+
+   /**
+   * An object containing a key for each supported card scheme (Amex, Discover, Mastercard and Visa), and for each key an object with the merchant profile for this service and the corresponding scheme.
+   * @return merchantProfile
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "An object containing a key for each supported card scheme (Amex, Discover, Mastercard and Visa), and for each key an object with the merchant profile for this service and the corresponding scheme.")
+
+  public MerchantProfile getMerchantProfile() {
+    return merchantProfile;
+  }
+
+
+  public void setMerchantProfile(MerchantProfile merchantProfile) {
+    this.merchantProfile = merchantProfile;
+  }
+
+
+  public PaymentService method(MethodEnum method) {
+    
+    this.method = method;
+    return this;
+  }
+
+   /**
+   * The payment method that this service handles.
+   * @return method
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "card", value = "The payment method that this service handles.")
+
+  public MethodEnum getMethod() {
+    return method;
+  }
+
+
+  public void setMethod(MethodEnum method) {
+    this.method = method;
+  }
+
+
+  public PaymentService networkTokensEnabled(Boolean networkTokensEnabled) {
+    
+    this.networkTokensEnabled = networkTokensEnabled;
+    return this;
+  }
+
+   /**
+   * Defines if network tokens are enabled for the service. This feature can only be enabled if the payment service is set as &#x60;open_loop&#x60; and the PSP is set up to accept network tokens.
+   * @return networkTokensEnabled
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "true", value = "Defines if network tokens are enabled for the service. This feature can only be enabled if the payment service is set as `open_loop` and the PSP is set up to accept network tokens.")
+
+  public Boolean getNetworkTokensEnabled() {
+    return networkTokensEnabled;
+  }
+
+
+  public void setNetworkTokensEnabled(Boolean networkTokensEnabled) {
+    this.networkTokensEnabled = networkTokensEnabled;
+  }
+
+
+  public PaymentService openLoop(Boolean openLoop) {
+    
+    this.openLoop = openLoop;
+    return this;
+  }
+
+   /**
+   * Defines if the service works as an open-loop service. This feature can only be enabled if the PSP is set up to accept previous scheme transaction IDs.
+   * @return openLoop
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "true", value = "Defines if the service works as an open-loop service. This feature can only be enabled if the PSP is set up to accept previous scheme transaction IDs.")
+
+  public Boolean getOpenLoop() {
+    return openLoop;
+  }
+
+
+  public void setOpenLoop(Boolean openLoop) {
+    this.openLoop = openLoop;
+  }
+
+
+  public PaymentService paymentMethodTokenizationEnabled(Boolean paymentMethodTokenizationEnabled) {
+    
+    this.paymentMethodTokenizationEnabled = paymentMethodTokenizationEnabled;
+    return this;
+  }
+
+   /**
+   * Defines if tokenization is enabled for the service. This feature can only be enabled if the payment service is NOT set as &#x60;open_loop&#x60; and the PSP is set up to tokenize.
+   * @return paymentMethodTokenizationEnabled
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "true", value = "Defines if tokenization is enabled for the service. This feature can only be enabled if the payment service is NOT set as `open_loop` and the PSP is set up to tokenize.")
+
+  public Boolean getPaymentMethodTokenizationEnabled() {
+    return paymentMethodTokenizationEnabled;
+  }
+
+
+  public void setPaymentMethodTokenizationEnabled(Boolean paymentMethodTokenizationEnabled) {
+    this.paymentMethodTokenizationEnabled = paymentMethodTokenizationEnabled;
+  }
+
+
+  public PaymentService paymentServiceDefinitionId(String paymentServiceDefinitionId) {
+    
+    this.paymentServiceDefinitionId = paymentServiceDefinitionId;
+    return this;
+  }
+
+   /**
+   * The ID of the payment service definition used to create this service. 
+   * @return paymentServiceDefinitionId
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "stripe-card", value = "The ID of the payment service definition used to create this service. ")
+
+  public String getPaymentServiceDefinitionId() {
+    return paymentServiceDefinitionId;
+  }
+
+
+  public void setPaymentServiceDefinitionId(String paymentServiceDefinitionId) {
+    this.paymentServiceDefinitionId = paymentServiceDefinitionId;
+  }
+
+
+  public PaymentService status(StatusEnum status) {
+    
+    this.status = status;
+    return this;
+  }
+
+   /**
+   * The current status of this service. This will start off as pending, move to created, and might eventually move to an error status if and when the credentials are no longer valid. 
+   * @return status
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "The current status of this service. This will start off as pending, move to created, and might eventually move to an error status if and when the credentials are no longer valid. ")
+
+  public StatusEnum getStatus() {
+    return status;
+  }
+
+
+  public void setStatus(StatusEnum status) {
+    this.status = status;
+  }
+
+
+  public PaymentService threeDSecureEnabled(Boolean threeDSecureEnabled) {
+    
+    this.threeDSecureEnabled = threeDSecureEnabled;
+    return this;
+  }
+
+   /**
+   * Defines if 3-D Secure is enabled for the service (can only be enabled if the payment service definition supports the &#x60;three_d_secure_hosted&#x60; feature). This does not affect pass through 3-D Secure data.
+   * @return threeDSecureEnabled
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "true", value = "Defines if 3-D Secure is enabled for the service (can only be enabled if the payment service definition supports the `three_d_secure_hosted` feature). This does not affect pass through 3-D Secure data.")
+
+  public Boolean getThreeDSecureEnabled() {
+    return threeDSecureEnabled;
+  }
+
+
+  public void setThreeDSecureEnabled(Boolean threeDSecureEnabled) {
+    this.threeDSecureEnabled = threeDSecureEnabled;
+  }
+
+
   public PaymentService updatedAt(String updatedAt) {
     
     this.updatedAt = updatedAt;
@@ -802,37 +833,6 @@ public class PaymentService {
   }
 
 
-  public PaymentService fields(List<GiftCardServiceFields> fields) {
-    
-    this.fields = fields;
-    return this;
-  }
-
-  public PaymentService addFieldsItem(GiftCardServiceFields fieldsItem) {
-    if (this.fields == null) {
-      this.fields = new ArrayList<GiftCardServiceFields>();
-    }
-    this.fields.add(fieldsItem);
-    return this;
-  }
-
-   /**
-   * A list of fields, each containing a key-value pair for each field configured for this payment service. Fields marked as &#x60;secret&#x60; (see Payment Service Definition) are not returned.
-   * @return fields
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "A list of fields, each containing a key-value pair for each field configured for this payment service. Fields marked as `secret` (see Payment Service Definition) are not returned.")
-
-  public List<GiftCardServiceFields> getFields() {
-    return fields;
-  }
-
-
-  public void setFields(List<GiftCardServiceFields> fields) {
-    this.fields = fields;
-  }
-
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -844,28 +844,28 @@ public class PaymentService {
     PaymentService paymentService = (PaymentService) o;
     return Objects.equals(this.type, paymentService.type) &&
         Objects.equals(this.id, paymentService.id) &&
-        Objects.equals(this.merchantAccountId, paymentService.merchantAccountId) &&
-        Objects.equals(this.paymentServiceDefinitionId, paymentService.paymentServiceDefinitionId) &&
-        Objects.equals(this.method, paymentService.method) &&
-        Objects.equals(this.displayName, paymentService.displayName) &&
-        Objects.equals(this.status, paymentService.status) &&
-        Objects.equals(this.acceptedCurrencies, paymentService.acceptedCurrencies) &&
         Objects.equals(this.acceptedCountries, paymentService.acceptedCountries) &&
-        Objects.equals(this.openLoop, paymentService.openLoop) &&
-        Objects.equals(this.paymentMethodTokenizationEnabled, paymentService.paymentMethodTokenizationEnabled) &&
-        Objects.equals(this.networkTokensEnabled, paymentService.networkTokensEnabled) &&
-        Objects.equals(this.threeDSecureEnabled, paymentService.threeDSecureEnabled) &&
-        Objects.equals(this.merchantProfile, paymentService.merchantProfile) &&
+        Objects.equals(this.acceptedCurrencies, paymentService.acceptedCurrencies) &&
         Objects.equals(this.active, paymentService.active) &&
         Objects.equals(this.createdAt, paymentService.createdAt) &&
+        Objects.equals(this.displayName, paymentService.displayName) &&
+        Objects.equals(this.fields, paymentService.fields) &&
+        Objects.equals(this.merchantAccountId, paymentService.merchantAccountId) &&
+        Objects.equals(this.merchantProfile, paymentService.merchantProfile) &&
+        Objects.equals(this.method, paymentService.method) &&
+        Objects.equals(this.networkTokensEnabled, paymentService.networkTokensEnabled) &&
+        Objects.equals(this.openLoop, paymentService.openLoop) &&
+        Objects.equals(this.paymentMethodTokenizationEnabled, paymentService.paymentMethodTokenizationEnabled) &&
+        Objects.equals(this.paymentServiceDefinitionId, paymentService.paymentServiceDefinitionId) &&
+        Objects.equals(this.status, paymentService.status) &&
+        Objects.equals(this.threeDSecureEnabled, paymentService.threeDSecureEnabled) &&
         Objects.equals(this.updatedAt, paymentService.updatedAt) &&
-        Objects.equals(this.webhookUrl, paymentService.webhookUrl) &&
-        Objects.equals(this.fields, paymentService.fields);
+        Objects.equals(this.webhookUrl, paymentService.webhookUrl);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(type, id, merchantAccountId, paymentServiceDefinitionId, method, displayName, status, acceptedCurrencies, acceptedCountries, openLoop, paymentMethodTokenizationEnabled, networkTokensEnabled, threeDSecureEnabled, merchantProfile, active, createdAt, updatedAt, webhookUrl, fields);
+    return Objects.hash(type, id, acceptedCountries, acceptedCurrencies, active, createdAt, displayName, fields, merchantAccountId, merchantProfile, method, networkTokensEnabled, openLoop, paymentMethodTokenizationEnabled, paymentServiceDefinitionId, status, threeDSecureEnabled, updatedAt, webhookUrl);
   }
 
   @Override
@@ -874,23 +874,23 @@ public class PaymentService {
     sb.append("class PaymentService {\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    merchantAccountId: ").append(toIndentedString(merchantAccountId)).append("\n");
-    sb.append("    paymentServiceDefinitionId: ").append(toIndentedString(paymentServiceDefinitionId)).append("\n");
-    sb.append("    method: ").append(toIndentedString(method)).append("\n");
-    sb.append("    displayName: ").append(toIndentedString(displayName)).append("\n");
-    sb.append("    status: ").append(toIndentedString(status)).append("\n");
-    sb.append("    acceptedCurrencies: ").append(toIndentedString(acceptedCurrencies)).append("\n");
     sb.append("    acceptedCountries: ").append(toIndentedString(acceptedCountries)).append("\n");
-    sb.append("    openLoop: ").append(toIndentedString(openLoop)).append("\n");
-    sb.append("    paymentMethodTokenizationEnabled: ").append(toIndentedString(paymentMethodTokenizationEnabled)).append("\n");
-    sb.append("    networkTokensEnabled: ").append(toIndentedString(networkTokensEnabled)).append("\n");
-    sb.append("    threeDSecureEnabled: ").append(toIndentedString(threeDSecureEnabled)).append("\n");
-    sb.append("    merchantProfile: ").append(toIndentedString(merchantProfile)).append("\n");
+    sb.append("    acceptedCurrencies: ").append(toIndentedString(acceptedCurrencies)).append("\n");
     sb.append("    active: ").append(toIndentedString(active)).append("\n");
     sb.append("    createdAt: ").append(toIndentedString(createdAt)).append("\n");
+    sb.append("    displayName: ").append(toIndentedString(displayName)).append("\n");
+    sb.append("    fields: ").append(toIndentedString(fields)).append("\n");
+    sb.append("    merchantAccountId: ").append(toIndentedString(merchantAccountId)).append("\n");
+    sb.append("    merchantProfile: ").append(toIndentedString(merchantProfile)).append("\n");
+    sb.append("    method: ").append(toIndentedString(method)).append("\n");
+    sb.append("    networkTokensEnabled: ").append(toIndentedString(networkTokensEnabled)).append("\n");
+    sb.append("    openLoop: ").append(toIndentedString(openLoop)).append("\n");
+    sb.append("    paymentMethodTokenizationEnabled: ").append(toIndentedString(paymentMethodTokenizationEnabled)).append("\n");
+    sb.append("    paymentServiceDefinitionId: ").append(toIndentedString(paymentServiceDefinitionId)).append("\n");
+    sb.append("    status: ").append(toIndentedString(status)).append("\n");
+    sb.append("    threeDSecureEnabled: ").append(toIndentedString(threeDSecureEnabled)).append("\n");
     sb.append("    updatedAt: ").append(toIndentedString(updatedAt)).append("\n");
     sb.append("    webhookUrl: ").append(toIndentedString(webhookUrl)).append("\n");
-    sb.append("    fields: ").append(toIndentedString(fields)).append("\n");
     sb.append("}");
     return sb.toString();
   }

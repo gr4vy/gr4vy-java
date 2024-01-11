@@ -166,6 +166,61 @@ public class Refund {
   @SerializedName(SERIALIZED_NAME_UPDATED_AT)
   private String updatedAt;
 
+  /**
+   * The type of the instrument that was refunded.
+   */
+  @JsonAdapter(TargetTypeEnum.Adapter.class)
+  public enum TargetTypeEnum {
+    PAYMENT_METHOD("payment-method"),
+    
+    GIFT_CARD_REDEMPTION("gift-card-redemption");
+
+    private String value;
+
+    TargetTypeEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static TargetTypeEnum fromValue(String value) {
+      for (TargetTypeEnum b : TargetTypeEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+
+    public static class Adapter extends TypeAdapter<TargetTypeEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final TargetTypeEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public TargetTypeEnum read(final JsonReader jsonReader) throws IOException {
+        String value =  jsonReader.nextString();
+        return TargetTypeEnum.fromValue(value);
+      }
+    }
+  }
+
+  public static final String SERIALIZED_NAME_TARGET_TYPE = "target_type";
+  @SerializedName(SERIALIZED_NAME_TARGET_TYPE)
+  private TargetTypeEnum targetType;
+
+  public static final String SERIALIZED_NAME_TARGET_ID = "target_id";
+  @SerializedName(SERIALIZED_NAME_TARGET_ID)
+  private String targetId;
+
 
   public Refund type(TypeEnum type) {
     
@@ -376,6 +431,52 @@ public class Refund {
   }
 
 
+  public Refund targetType(TargetTypeEnum targetType) {
+    
+    this.targetType = targetType;
+    return this;
+  }
+
+   /**
+   * The type of the instrument that was refunded.
+   * @return targetType
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "payment-method", value = "The type of the instrument that was refunded.")
+
+  public TargetTypeEnum getTargetType() {
+    return targetType;
+  }
+
+
+  public void setTargetType(TargetTypeEnum targetType) {
+    this.targetType = targetType;
+  }
+
+
+  public Refund targetId(String targetId) {
+    
+    this.targetId = targetId;
+    return this;
+  }
+
+   /**
+   * The optional ID of the instrument that was refunded. This may be &#x60;null&#x60; if the instrument was not stored.
+   * @return targetId
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "c23ea83f-1b1c-4584-a0e8-78ef8c041949", value = "The optional ID of the instrument that was refunded. This may be `null` if the instrument was not stored.")
+
+  public String getTargetId() {
+    return targetId;
+  }
+
+
+  public void setTargetId(String targetId) {
+    this.targetId = targetId;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -393,12 +494,14 @@ public class Refund {
         Objects.equals(this.currency, refund.currency) &&
         Objects.equals(this.amount, refund.amount) &&
         Objects.equals(this.createdAt, refund.createdAt) &&
-        Objects.equals(this.updatedAt, refund.updatedAt);
+        Objects.equals(this.updatedAt, refund.updatedAt) &&
+        Objects.equals(this.targetType, refund.targetType) &&
+        Objects.equals(this.targetId, refund.targetId);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(type, id, transactionId, paymentServiceRefundId, status, currency, amount, createdAt, updatedAt);
+    return Objects.hash(type, id, transactionId, paymentServiceRefundId, status, currency, amount, createdAt, updatedAt, targetType, targetId);
   }
 
   @Override
@@ -414,6 +517,8 @@ public class Refund {
     sb.append("    amount: ").append(toIndentedString(amount)).append("\n");
     sb.append("    createdAt: ").append(toIndentedString(createdAt)).append("\n");
     sb.append("    updatedAt: ").append(toIndentedString(updatedAt)).append("\n");
+    sb.append("    targetType: ").append(toIndentedString(targetType)).append("\n");
+    sb.append("    targetId: ").append(toIndentedString(targetId)).append("\n");
     sb.append("}");
     return sb.toString();
   }

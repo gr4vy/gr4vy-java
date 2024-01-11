@@ -23,6 +23,8 @@ import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -122,6 +124,105 @@ public class MerchantAccount {
   public static final String SERIALIZED_NAME_MASTERCARD_NETWORK_TOKENS_APP_ID = "mastercard_network_tokens_app_id";
   @SerializedName(SERIALIZED_NAME_MASTERCARD_NETWORK_TOKENS_APP_ID)
   private String mastercardNetworkTokensAppId;
+
+  public static final String SERIALIZED_NAME_LOON_CLIENT_KEY = "loon_client_key";
+  @SerializedName(SERIALIZED_NAME_LOON_CLIENT_KEY)
+  private String loonClientKey;
+
+  public static final String SERIALIZED_NAME_LOON_SECRET_KEY = "loon_secret_key";
+  @SerializedName(SERIALIZED_NAME_LOON_SECRET_KEY)
+  private String loonSecretKey;
+
+  /**
+   * Gets or Sets loonAcceptedSchemes
+   */
+  @JsonAdapter(LoonAcceptedSchemesEnum.Adapter.class)
+  public enum LoonAcceptedSchemesEnum {
+    ACCEL("accel"),
+    
+    AMEX("amex"),
+    
+    BANCONTACT("bancontact"),
+    
+    CARTE_BANCAIRE("carte-bancaire"),
+    
+    CIRRUS("cirrus"),
+    
+    CULIANCE("culiance"),
+    
+    DANKORT("dankort"),
+    
+    DINERS_CLUB("diners-club"),
+    
+    DISCOVER("discover"),
+    
+    EFTPOS_AUSTRALIA("eftpos-australia"),
+    
+    ELO("elo"),
+    
+    HIPERCARD("hipercard"),
+    
+    JCB("jcb"),
+    
+    MAESTRO("maestro"),
+    
+    MASTERCARD("mastercard"),
+    
+    NYCE("nyce"),
+    
+    OTHER("other"),
+    
+    PULSE("pulse"),
+    
+    RUPAY("rupay"),
+    
+    STAR("star"),
+    
+    UNIONPAY("unionpay"),
+    
+    VISA("visa");
+
+    private String value;
+
+    LoonAcceptedSchemesEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static LoonAcceptedSchemesEnum fromValue(String value) {
+      for (LoonAcceptedSchemesEnum b : LoonAcceptedSchemesEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+
+    public static class Adapter extends TypeAdapter<LoonAcceptedSchemesEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final LoonAcceptedSchemesEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public LoonAcceptedSchemesEnum read(final JsonReader jsonReader) throws IOException {
+        String value =  jsonReader.nextString();
+        return LoonAcceptedSchemesEnum.fromValue(value);
+      }
+    }
+  }
+
+  public static final String SERIALIZED_NAME_LOON_ACCEPTED_SCHEMES = "loon_accepted_schemes";
+  @SerializedName(SERIALIZED_NAME_LOON_ACCEPTED_SCHEMES)
+  private List<LoonAcceptedSchemesEnum> loonAcceptedSchemes = null;
 
   public static final String SERIALIZED_NAME_CREATED_AT = "created_at";
   @SerializedName(SERIALIZED_NAME_CREATED_AT)
@@ -408,6 +509,83 @@ public class MerchantAccount {
   }
 
 
+  public MerchantAccount loonClientKey(String loonClientKey) {
+    
+    this.loonClientKey = loonClientKey;
+    return this;
+  }
+
+   /**
+   * Client key provided by Pagos to authenticate to the Loon API. Loon is the Account Updater service used by Gr4vy.
+   * @return loonClientKey
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "7DD771287D0024BA418F8F7ECC7DF1CD", value = "Client key provided by Pagos to authenticate to the Loon API. Loon is the Account Updater service used by Gr4vy.")
+
+  public String getLoonClientKey() {
+    return loonClientKey;
+  }
+
+
+  public void setLoonClientKey(String loonClientKey) {
+    this.loonClientKey = loonClientKey;
+  }
+
+
+  public MerchantAccount loonSecretKey(String loonSecretKey) {
+    
+    this.loonSecretKey = loonSecretKey;
+    return this;
+  }
+
+   /**
+   * Secret key provided by Pagos to authenticate to the Loon API. Loon is the Account Updater service used by Gr4vy.  If the field is not &#x60;null&#x60;, the value is masked to avoid exposing sensitive information.
+   * @return loonSecretKey
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "********", value = "Secret key provided by Pagos to authenticate to the Loon API. Loon is the Account Updater service used by Gr4vy.  If the field is not `null`, the value is masked to avoid exposing sensitive information.")
+
+  public String getLoonSecretKey() {
+    return loonSecretKey;
+  }
+
+
+  public void setLoonSecretKey(String loonSecretKey) {
+    this.loonSecretKey = loonSecretKey;
+  }
+
+
+  public MerchantAccount loonAcceptedSchemes(List<LoonAcceptedSchemesEnum> loonAcceptedSchemes) {
+    
+    this.loonAcceptedSchemes = loonAcceptedSchemes;
+    return this;
+  }
+
+  public MerchantAccount addLoonAcceptedSchemesItem(LoonAcceptedSchemesEnum loonAcceptedSchemesItem) {
+    if (this.loonAcceptedSchemes == null) {
+      this.loonAcceptedSchemes = new ArrayList<LoonAcceptedSchemesEnum>();
+    }
+    this.loonAcceptedSchemes.add(loonAcceptedSchemesItem);
+    return this;
+  }
+
+   /**
+   * Card schemes accepted when creating jobs using this set of Loon API keys. Loon is the Account Updater service used by Gr4vy.
+   * @return loonAcceptedSchemes
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "[\"mastercard\",\"visa\"]", value = "Card schemes accepted when creating jobs using this set of Loon API keys. Loon is the Account Updater service used by Gr4vy.")
+
+  public List<LoonAcceptedSchemesEnum> getLoonAcceptedSchemes() {
+    return loonAcceptedSchemes;
+  }
+
+
+  public void setLoonAcceptedSchemes(List<LoonAcceptedSchemesEnum> loonAcceptedSchemes) {
+    this.loonAcceptedSchemes = loonAcceptedSchemes;
+  }
+
+
   public MerchantAccount createdAt(String createdAt) {
     
     this.createdAt = createdAt;
@@ -475,13 +653,16 @@ public class MerchantAccount {
         Objects.equals(this.amexNetworkTokensAppId, merchantAccount.amexNetworkTokensAppId) &&
         Objects.equals(this.mastercardNetworkTokensRequestorId, merchantAccount.mastercardNetworkTokensRequestorId) &&
         Objects.equals(this.mastercardNetworkTokensAppId, merchantAccount.mastercardNetworkTokensAppId) &&
+        Objects.equals(this.loonClientKey, merchantAccount.loonClientKey) &&
+        Objects.equals(this.loonSecretKey, merchantAccount.loonSecretKey) &&
+        Objects.equals(this.loonAcceptedSchemes, merchantAccount.loonAcceptedSchemes) &&
         Objects.equals(this.createdAt, merchantAccount.createdAt) &&
         Objects.equals(this.updatedAt, merchantAccount.updatedAt);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(type, id, displayName, outboundWebhookUrl, outboundWebhookUsername, outboundWebhookPassword, visaNetworkTokensRequestorId, visaNetworkTokensAppId, amexNetworkTokensRequestorId, amexNetworkTokensAppId, mastercardNetworkTokensRequestorId, mastercardNetworkTokensAppId, createdAt, updatedAt);
+    return Objects.hash(type, id, displayName, outboundWebhookUrl, outboundWebhookUsername, outboundWebhookPassword, visaNetworkTokensRequestorId, visaNetworkTokensAppId, amexNetworkTokensRequestorId, amexNetworkTokensAppId, mastercardNetworkTokensRequestorId, mastercardNetworkTokensAppId, loonClientKey, loonSecretKey, loonAcceptedSchemes, createdAt, updatedAt);
   }
 
   @Override
@@ -500,6 +681,9 @@ public class MerchantAccount {
     sb.append("    amexNetworkTokensAppId: ").append(toIndentedString(amexNetworkTokensAppId)).append("\n");
     sb.append("    mastercardNetworkTokensRequestorId: ").append(toIndentedString(mastercardNetworkTokensRequestorId)).append("\n");
     sb.append("    mastercardNetworkTokensAppId: ").append(toIndentedString(mastercardNetworkTokensAppId)).append("\n");
+    sb.append("    loonClientKey: ").append(toIndentedString(loonClientKey)).append("\n");
+    sb.append("    loonSecretKey: ").append(toIndentedString(loonSecretKey)).append("\n");
+    sb.append("    loonAcceptedSchemes: ").append(toIndentedString(loonAcceptedSchemes)).append("\n");
     sb.append("    createdAt: ").append(toIndentedString(createdAt)).append("\n");
     sb.append("    updatedAt: ").append(toIndentedString(updatedAt)).append("\n");
     sb.append("}");

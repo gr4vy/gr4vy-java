@@ -23,6 +23,8 @@ import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A request to create a merchant account.
@@ -73,6 +75,105 @@ public class MerchantAccountCreate {
   public static final String SERIALIZED_NAME_MASTERCARD_NETWORK_TOKENS_APP_ID = "mastercard_network_tokens_app_id";
   @SerializedName(SERIALIZED_NAME_MASTERCARD_NETWORK_TOKENS_APP_ID)
   private String mastercardNetworkTokensAppId;
+
+  public static final String SERIALIZED_NAME_LOON_CLIENT_KEY = "loon_client_key";
+  @SerializedName(SERIALIZED_NAME_LOON_CLIENT_KEY)
+  private String loonClientKey;
+
+  public static final String SERIALIZED_NAME_LOON_SECRET_KEY = "loon_secret_key";
+  @SerializedName(SERIALIZED_NAME_LOON_SECRET_KEY)
+  private String loonSecretKey;
+
+  /**
+   * Gets or Sets loonAcceptedSchemes
+   */
+  @JsonAdapter(LoonAcceptedSchemesEnum.Adapter.class)
+  public enum LoonAcceptedSchemesEnum {
+    ACCEL("accel"),
+    
+    AMEX("amex"),
+    
+    BANCONTACT("bancontact"),
+    
+    CARTE_BANCAIRE("carte-bancaire"),
+    
+    CIRRUS("cirrus"),
+    
+    CULIANCE("culiance"),
+    
+    DANKORT("dankort"),
+    
+    DINERS_CLUB("diners-club"),
+    
+    DISCOVER("discover"),
+    
+    EFTPOS_AUSTRALIA("eftpos-australia"),
+    
+    ELO("elo"),
+    
+    HIPERCARD("hipercard"),
+    
+    JCB("jcb"),
+    
+    MAESTRO("maestro"),
+    
+    MASTERCARD("mastercard"),
+    
+    NYCE("nyce"),
+    
+    OTHER("other"),
+    
+    PULSE("pulse"),
+    
+    RUPAY("rupay"),
+    
+    STAR("star"),
+    
+    UNIONPAY("unionpay"),
+    
+    VISA("visa");
+
+    private String value;
+
+    LoonAcceptedSchemesEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static LoonAcceptedSchemesEnum fromValue(String value) {
+      for (LoonAcceptedSchemesEnum b : LoonAcceptedSchemesEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+
+    public static class Adapter extends TypeAdapter<LoonAcceptedSchemesEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final LoonAcceptedSchemesEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public LoonAcceptedSchemesEnum read(final JsonReader jsonReader) throws IOException {
+        String value =  jsonReader.nextString();
+        return LoonAcceptedSchemesEnum.fromValue(value);
+      }
+    }
+  }
+
+  public static final String SERIALIZED_NAME_LOON_ACCEPTED_SCHEMES = "loon_accepted_schemes";
+  @SerializedName(SERIALIZED_NAME_LOON_ACCEPTED_SCHEMES)
+  private List<LoonAcceptedSchemesEnum> loonAcceptedSchemes = null;
 
 
   public MerchantAccountCreate id(String id) {
@@ -328,6 +429,83 @@ public class MerchantAccountCreate {
   }
 
 
+  public MerchantAccountCreate loonClientKey(String loonClientKey) {
+    
+    this.loonClientKey = loonClientKey;
+    return this;
+  }
+
+   /**
+   * Client key provided by Pagos to authenticate to the Loon API. Loon is the Account Updater service used by Gr4vy.  * If the field is not set or if it&#39;s set to &#x60;null&#x60;, the Account Updater service doesn&#39;t get configured. * If the field is set to &#x60;null&#x60;, the other &#x60;loon_*&#x60; fields must be set to &#x60;null&#x60; as well.
+   * @return loonClientKey
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Client key provided by Pagos to authenticate to the Loon API. Loon is the Account Updater service used by Gr4vy.  * If the field is not set or if it's set to `null`, the Account Updater service doesn't get configured. * If the field is set to `null`, the other `loon_*` fields must be set to `null` as well.")
+
+  public String getLoonClientKey() {
+    return loonClientKey;
+  }
+
+
+  public void setLoonClientKey(String loonClientKey) {
+    this.loonClientKey = loonClientKey;
+  }
+
+
+  public MerchantAccountCreate loonSecretKey(String loonSecretKey) {
+    
+    this.loonSecretKey = loonSecretKey;
+    return this;
+  }
+
+   /**
+   * Secret key provided by Pagos to authenticate to the Loon API. Loon is the Account Updater service used by Gr4vy.  * If the field is not set or if it&#39;s set to &#x60;null&#x60;, the Account Updater service doesn&#39;t get configured. * If the field is set to &#x60;null&#x60;, the other &#x60;loon_*&#x60; fields must be set to &#x60;null&#x60; as well.
+   * @return loonSecretKey
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Secret key provided by Pagos to authenticate to the Loon API. Loon is the Account Updater service used by Gr4vy.  * If the field is not set or if it's set to `null`, the Account Updater service doesn't get configured. * If the field is set to `null`, the other `loon_*` fields must be set to `null` as well.")
+
+  public String getLoonSecretKey() {
+    return loonSecretKey;
+  }
+
+
+  public void setLoonSecretKey(String loonSecretKey) {
+    this.loonSecretKey = loonSecretKey;
+  }
+
+
+  public MerchantAccountCreate loonAcceptedSchemes(List<LoonAcceptedSchemesEnum> loonAcceptedSchemes) {
+    
+    this.loonAcceptedSchemes = loonAcceptedSchemes;
+    return this;
+  }
+
+  public MerchantAccountCreate addLoonAcceptedSchemesItem(LoonAcceptedSchemesEnum loonAcceptedSchemesItem) {
+    if (this.loonAcceptedSchemes == null) {
+      this.loonAcceptedSchemes = new ArrayList<LoonAcceptedSchemesEnum>();
+    }
+    this.loonAcceptedSchemes.add(loonAcceptedSchemesItem);
+    return this;
+  }
+
+   /**
+   * Card schemes accepted when creating jobs using this set of Loon API keys. Loon is the Account Updater service used by Gr4vy.  * If the field is not set or if it&#39;s set to &#x60;null&#x60;, the Account Updater service doesn&#39;t get configured. * If the field is set to &#x60;null&#x60;, the other &#x60;loon_*&#x60; fields must be set to &#x60;null&#x60; as well.
+   * @return loonAcceptedSchemes
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Card schemes accepted when creating jobs using this set of Loon API keys. Loon is the Account Updater service used by Gr4vy.  * If the field is not set or if it's set to `null`, the Account Updater service doesn't get configured. * If the field is set to `null`, the other `loon_*` fields must be set to `null` as well.")
+
+  public List<LoonAcceptedSchemesEnum> getLoonAcceptedSchemes() {
+    return loonAcceptedSchemes;
+  }
+
+
+  public void setLoonAcceptedSchemes(List<LoonAcceptedSchemesEnum> loonAcceptedSchemes) {
+    this.loonAcceptedSchemes = loonAcceptedSchemes;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -347,12 +525,15 @@ public class MerchantAccountCreate {
         Objects.equals(this.amexNetworkTokensRequestorId, merchantAccountCreate.amexNetworkTokensRequestorId) &&
         Objects.equals(this.amexNetworkTokensAppId, merchantAccountCreate.amexNetworkTokensAppId) &&
         Objects.equals(this.mastercardNetworkTokensRequestorId, merchantAccountCreate.mastercardNetworkTokensRequestorId) &&
-        Objects.equals(this.mastercardNetworkTokensAppId, merchantAccountCreate.mastercardNetworkTokensAppId);
+        Objects.equals(this.mastercardNetworkTokensAppId, merchantAccountCreate.mastercardNetworkTokensAppId) &&
+        Objects.equals(this.loonClientKey, merchantAccountCreate.loonClientKey) &&
+        Objects.equals(this.loonSecretKey, merchantAccountCreate.loonSecretKey) &&
+        Objects.equals(this.loonAcceptedSchemes, merchantAccountCreate.loonAcceptedSchemes);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, displayName, outboundWebhookUrl, outboundWebhookUsername, outboundWebhookPassword, visaNetworkTokensRequestorId, visaNetworkTokensAppId, amexNetworkTokensRequestorId, amexNetworkTokensAppId, mastercardNetworkTokensRequestorId, mastercardNetworkTokensAppId);
+    return Objects.hash(id, displayName, outboundWebhookUrl, outboundWebhookUsername, outboundWebhookPassword, visaNetworkTokensRequestorId, visaNetworkTokensAppId, amexNetworkTokensRequestorId, amexNetworkTokensAppId, mastercardNetworkTokensRequestorId, mastercardNetworkTokensAppId, loonClientKey, loonSecretKey, loonAcceptedSchemes);
   }
 
   @Override
@@ -370,6 +551,9 @@ public class MerchantAccountCreate {
     sb.append("    amexNetworkTokensAppId: ").append(toIndentedString(amexNetworkTokensAppId)).append("\n");
     sb.append("    mastercardNetworkTokensRequestorId: ").append(toIndentedString(mastercardNetworkTokensRequestorId)).append("\n");
     sb.append("    mastercardNetworkTokensAppId: ").append(toIndentedString(mastercardNetworkTokensAppId)).append("\n");
+    sb.append("    loonClientKey: ").append(toIndentedString(loonClientKey)).append("\n");
+    sb.append("    loonSecretKey: ").append(toIndentedString(loonSecretKey)).append("\n");
+    sb.append("    loonAcceptedSchemes: ").append(toIndentedString(loonAcceptedSchemes)).append("\n");
     sb.append("}");
     return sb.toString();
   }

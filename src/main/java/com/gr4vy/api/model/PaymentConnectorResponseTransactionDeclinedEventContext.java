@@ -100,6 +100,120 @@ public class PaymentConnectorResponseTransactionDeclinedEventContext {
   @SerializedName(SERIALIZED_NAME_CODE)
   private String code;
 
+  /**
+   * The type of instrument used for this transaction.
+   */
+  @JsonAdapter(InstrumentTypeEnum.Adapter.class)
+  public enum InstrumentTypeEnum {
+    PAN("pan"),
+    
+    CARD_TOKEN("card_token"),
+    
+    REDIRECT("redirect"),
+    
+    REDIRECT_TOKEN("redirect_token"),
+    
+    GOOGLEPAY("googlepay"),
+    
+    APPLEPAY("applepay"),
+    
+    NETWORK_TOKEN("network_token");
+
+    private String value;
+
+    InstrumentTypeEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static InstrumentTypeEnum fromValue(String value) {
+      for (InstrumentTypeEnum b : InstrumentTypeEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+
+    public static class Adapter extends TypeAdapter<InstrumentTypeEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final InstrumentTypeEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public InstrumentTypeEnum read(final JsonReader jsonReader) throws IOException {
+        String value =  jsonReader.nextString();
+        return InstrumentTypeEnum.fromValue(value);
+      }
+    }
+  }
+
+  public static final String SERIALIZED_NAME_INSTRUMENT_TYPE = "instrument_type";
+  @SerializedName(SERIALIZED_NAME_INSTRUMENT_TYPE)
+  private InstrumentTypeEnum instrumentType;
+
+  /**
+   * Defines why the transaction might be retried. A retry is not guaranteed because the maximum number of retries might already have been attempted.  * &#x60;failure&#x60; - the transaction will be retried because of a failure calling   the payment service. * &#x60;retriable_decline&#x60; - the transaction will be retried because a decline code   was received that can be retried. * &#x60;payment_method_replacement&#x60; - the transaction will be retried because a   decline code was received that triggered a payment method replacement.
+   */
+  @JsonAdapter(RetryRuleEnum.Adapter.class)
+  public enum RetryRuleEnum {
+    FAILURE("failure"),
+    
+    RETRIABLE_DECLINE("retriable_decline"),
+    
+    PAYMENT_METHOD_REPLACEMENT("payment_method_replacement");
+
+    private String value;
+
+    RetryRuleEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static RetryRuleEnum fromValue(String value) {
+      for (RetryRuleEnum b : RetryRuleEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      return null;
+    }
+
+    public static class Adapter extends TypeAdapter<RetryRuleEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final RetryRuleEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public RetryRuleEnum read(final JsonReader jsonReader) throws IOException {
+        String value =  jsonReader.nextString();
+        return RetryRuleEnum.fromValue(value);
+      }
+    }
+  }
+
+  public static final String SERIALIZED_NAME_RETRY_RULE = "retry_rule";
+  @SerializedName(SERIALIZED_NAME_RETRY_RULE)
+  private RetryRuleEnum retryRule;
+
   public static final String SERIALIZED_NAME_RAW_RESPONSE_CODE = "raw_response_code";
   @SerializedName(SERIALIZED_NAME_RAW_RESPONSE_CODE)
   private String rawResponseCode;
@@ -217,6 +331,97 @@ public class PaymentConnectorResponseTransactionDeclinedEventContext {
   public static final String SERIALIZED_NAME_CVV_RESPONSE_CODE = "cvv_response_code";
   @SerializedName(SERIALIZED_NAME_CVV_RESPONSE_CODE)
   private CvvResponseCodeEnum cvvResponseCode;
+
+  /**
+   * The card scheme sent to the connector.
+   */
+  @JsonAdapter(PaymentMethodSchemeEnum.Adapter.class)
+  public enum PaymentMethodSchemeEnum {
+    ACCEL("accel"),
+    
+    AMEX("amex"),
+    
+    BANCONTACT("bancontact"),
+    
+    CARTE_BANCAIRE("carte-bancaire"),
+    
+    CIRRUS("cirrus"),
+    
+    CULIANCE("culiance"),
+    
+    DANKORT("dankort"),
+    
+    DINERS_CLUB("diners-club"),
+    
+    DISCOVER("discover"),
+    
+    EFTPOS_AUSTRALIA("eftpos-australia"),
+    
+    ELO("elo"),
+    
+    HIPERCARD("hipercard"),
+    
+    JCB("jcb"),
+    
+    MAESTRO("maestro"),
+    
+    MASTERCARD("mastercard"),
+    
+    NYCE("nyce"),
+    
+    OTHER("other"),
+    
+    PULSE("pulse"),
+    
+    RUPAY("rupay"),
+    
+    STAR("star"),
+    
+    UNIONPAY("unionpay"),
+    
+    VISA("visa");
+
+    private String value;
+
+    PaymentMethodSchemeEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static PaymentMethodSchemeEnum fromValue(String value) {
+      for (PaymentMethodSchemeEnum b : PaymentMethodSchemeEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      return null;
+    }
+
+    public static class Adapter extends TypeAdapter<PaymentMethodSchemeEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final PaymentMethodSchemeEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public PaymentMethodSchemeEnum read(final JsonReader jsonReader) throws IOException {
+        String value =  jsonReader.nextString();
+        return PaymentMethodSchemeEnum.fromValue(value);
+      }
+    }
+  }
+
+  public static final String SERIALIZED_NAME_PAYMENT_METHOD_SCHEME = "payment_method_scheme";
+  @SerializedName(SERIALIZED_NAME_PAYMENT_METHOD_SCHEME)
+  private PaymentMethodSchemeEnum paymentMethodScheme;
 
 
   public PaymentConnectorResponseTransactionDeclinedEventContext paymentServiceId(UUID paymentServiceId) {
@@ -357,6 +562,52 @@ public class PaymentConnectorResponseTransactionDeclinedEventContext {
   }
 
 
+  public PaymentConnectorResponseTransactionDeclinedEventContext instrumentType(InstrumentTypeEnum instrumentType) {
+    
+    this.instrumentType = instrumentType;
+    return this;
+  }
+
+   /**
+   * The type of instrument used for this transaction.
+   * @return instrumentType
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "pan", value = "The type of instrument used for this transaction.")
+
+  public InstrumentTypeEnum getInstrumentType() {
+    return instrumentType;
+  }
+
+
+  public void setInstrumentType(InstrumentTypeEnum instrumentType) {
+    this.instrumentType = instrumentType;
+  }
+
+
+  public PaymentConnectorResponseTransactionDeclinedEventContext retryRule(RetryRuleEnum retryRule) {
+    
+    this.retryRule = retryRule;
+    return this;
+  }
+
+   /**
+   * Defines why the transaction might be retried. A retry is not guaranteed because the maximum number of retries might already have been attempted.  * &#x60;failure&#x60; - the transaction will be retried because of a failure calling   the payment service. * &#x60;retriable_decline&#x60; - the transaction will be retried because a decline code   was received that can be retried. * &#x60;payment_method_replacement&#x60; - the transaction will be retried because a   decline code was received that triggered a payment method replacement.
+   * @return retryRule
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "failure", value = "Defines why the transaction might be retried. A retry is not guaranteed because the maximum number of retries might already have been attempted.  * `failure` - the transaction will be retried because of a failure calling   the payment service. * `retriable_decline` - the transaction will be retried because a decline code   was received that can be retried. * `payment_method_replacement` - the transaction will be retried because a   decline code was received that triggered a payment method replacement.")
+
+  public RetryRuleEnum getRetryRule() {
+    return retryRule;
+  }
+
+
+  public void setRetryRule(RetryRuleEnum retryRule) {
+    this.retryRule = retryRule;
+  }
+
+
   public PaymentConnectorResponseTransactionDeclinedEventContext rawResponseCode(String rawResponseCode) {
     
     this.rawResponseCode = rawResponseCode;
@@ -449,6 +700,29 @@ public class PaymentConnectorResponseTransactionDeclinedEventContext {
   }
 
 
+  public PaymentConnectorResponseTransactionDeclinedEventContext paymentMethodScheme(PaymentMethodSchemeEnum paymentMethodScheme) {
+    
+    this.paymentMethodScheme = paymentMethodScheme;
+    return this;
+  }
+
+   /**
+   * The card scheme sent to the connector.
+   * @return paymentMethodScheme
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "visa", value = "The card scheme sent to the connector.")
+
+  public PaymentMethodSchemeEnum getPaymentMethodScheme() {
+    return paymentMethodScheme;
+  }
+
+
+  public void setPaymentMethodScheme(PaymentMethodSchemeEnum paymentMethodScheme) {
+    this.paymentMethodScheme = paymentMethodScheme;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -464,15 +738,18 @@ public class PaymentConnectorResponseTransactionDeclinedEventContext {
         Objects.equals(this.paymentServiceTransactionId, paymentConnectorResponseTransactionDeclinedEventContext.paymentServiceTransactionId) &&
         Objects.equals(this.status, paymentConnectorResponseTransactionDeclinedEventContext.status) &&
         Objects.equals(this.code, paymentConnectorResponseTransactionDeclinedEventContext.code) &&
+        Objects.equals(this.instrumentType, paymentConnectorResponseTransactionDeclinedEventContext.instrumentType) &&
+        Objects.equals(this.retryRule, paymentConnectorResponseTransactionDeclinedEventContext.retryRule) &&
         Objects.equals(this.rawResponseCode, paymentConnectorResponseTransactionDeclinedEventContext.rawResponseCode) &&
         Objects.equals(this.rawResponseDescription, paymentConnectorResponseTransactionDeclinedEventContext.rawResponseDescription) &&
         Objects.equals(this.avsResponseCode, paymentConnectorResponseTransactionDeclinedEventContext.avsResponseCode) &&
-        Objects.equals(this.cvvResponseCode, paymentConnectorResponseTransactionDeclinedEventContext.cvvResponseCode);
+        Objects.equals(this.cvvResponseCode, paymentConnectorResponseTransactionDeclinedEventContext.cvvResponseCode) &&
+        Objects.equals(this.paymentMethodScheme, paymentConnectorResponseTransactionDeclinedEventContext.paymentMethodScheme);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(paymentServiceId, paymentServiceDisplayName, paymentServiceDefinitionId, paymentServiceTransactionId, status, code, rawResponseCode, rawResponseDescription, avsResponseCode, cvvResponseCode);
+    return Objects.hash(paymentServiceId, paymentServiceDisplayName, paymentServiceDefinitionId, paymentServiceTransactionId, status, code, instrumentType, retryRule, rawResponseCode, rawResponseDescription, avsResponseCode, cvvResponseCode, paymentMethodScheme);
   }
 
   @Override
@@ -485,10 +762,13 @@ public class PaymentConnectorResponseTransactionDeclinedEventContext {
     sb.append("    paymentServiceTransactionId: ").append(toIndentedString(paymentServiceTransactionId)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("    code: ").append(toIndentedString(code)).append("\n");
+    sb.append("    instrumentType: ").append(toIndentedString(instrumentType)).append("\n");
+    sb.append("    retryRule: ").append(toIndentedString(retryRule)).append("\n");
     sb.append("    rawResponseCode: ").append(toIndentedString(rawResponseCode)).append("\n");
     sb.append("    rawResponseDescription: ").append(toIndentedString(rawResponseDescription)).append("\n");
     sb.append("    avsResponseCode: ").append(toIndentedString(avsResponseCode)).append("\n");
     sb.append("    cvvResponseCode: ").append(toIndentedString(cvvResponseCode)).append("\n");
+    sb.append("    paymentMethodScheme: ").append(toIndentedString(paymentMethodScheme)).append("\n");
     sb.append("}");
     return sb.toString();
   }

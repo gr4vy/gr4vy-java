@@ -23,6 +23,7 @@ import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
+import java.util.UUID;
 
 /**
  * A request to refund a transaction.
@@ -34,6 +35,61 @@ public class TransactionRefundRequest {
   @SerializedName(SERIALIZED_NAME_AMOUNT)
   private Integer amount;
 
+  /**
+   * The target type to refund for. This can be used to target a gift card to refund to instead of the main payment method.
+   */
+  @JsonAdapter(TargetTypeEnum.Adapter.class)
+  public enum TargetTypeEnum {
+    PAYMENT_METHOD("payment-method"),
+    
+    GIFT_CARD_REDEMPTION("gift-card-redemption");
+
+    private String value;
+
+    TargetTypeEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static TargetTypeEnum fromValue(String value) {
+      for (TargetTypeEnum b : TargetTypeEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      return null;
+    }
+
+    public static class Adapter extends TypeAdapter<TargetTypeEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final TargetTypeEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public TargetTypeEnum read(final JsonReader jsonReader) throws IOException {
+        String value =  jsonReader.nextString();
+        return TargetTypeEnum.fromValue(value);
+      }
+    }
+  }
+
+  public static final String SERIALIZED_NAME_TARGET_TYPE = "target_type";
+  @SerializedName(SERIALIZED_NAME_TARGET_TYPE)
+  private TargetTypeEnum targetType = TargetTypeEnum.PAYMENT_METHOD;
+
+  public static final String SERIALIZED_NAME_TARGET_ID = "target_id";
+  @SerializedName(SERIALIZED_NAME_TARGET_ID)
+  private UUID targetId;
+
 
   public TransactionRefundRequest amount(Integer amount) {
     
@@ -42,13 +98,13 @@ public class TransactionRefundRequest {
   }
 
    /**
-   * The amount requested to refund.  If omitted, a full refund will be requested.  Otherwise, the amount must be lower than or equal to the remaining balance in the associated transaction.  Negative and zero-amount refunds are not supported.
+   * The amount requested to refund.  If omitted, a full refund will be requested for the main payment method.  When set, the amount must be lower than or equal to the remaining balance in the associated transaction. Negative and zero-amount refunds are not supported.
    * minimum: 1
    * maximum: 99999999
    * @return amount
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "1299", value = "The amount requested to refund.  If omitted, a full refund will be requested.  Otherwise, the amount must be lower than or equal to the remaining balance in the associated transaction.  Negative and zero-amount refunds are not supported.")
+  @ApiModelProperty(example = "1299", value = "The amount requested to refund.  If omitted, a full refund will be requested for the main payment method.  When set, the amount must be lower than or equal to the remaining balance in the associated transaction. Negative and zero-amount refunds are not supported.")
 
   public Integer getAmount() {
     return amount;
@@ -57,6 +113,52 @@ public class TransactionRefundRequest {
 
   public void setAmount(Integer amount) {
     this.amount = amount;
+  }
+
+
+  public TransactionRefundRequest targetType(TargetTypeEnum targetType) {
+    
+    this.targetType = targetType;
+    return this;
+  }
+
+   /**
+   * The target type to refund for. This can be used to target a gift card to refund to instead of the main payment method.
+   * @return targetType
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "gift-card-redemption", value = "The target type to refund for. This can be used to target a gift card to refund to instead of the main payment method.")
+
+  public TargetTypeEnum getTargetType() {
+    return targetType;
+  }
+
+
+  public void setTargetType(TargetTypeEnum targetType) {
+    this.targetType = targetType;
+  }
+
+
+  public TransactionRefundRequest targetId(UUID targetId) {
+    
+    this.targetId = targetId;
+    return this;
+  }
+
+   /**
+   * The optional ID of the instrument to refund for. This is only required when the &#x60;target_type&#x60; is set to &#x60;gift-card-redemption&#x60;.
+   * @return targetId
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "c23ea83f-1b1c-4584-a0e8-78ef8c041949", value = "The optional ID of the instrument to refund for. This is only required when the `target_type` is set to `gift-card-redemption`.")
+
+  public UUID getTargetId() {
+    return targetId;
+  }
+
+
+  public void setTargetId(UUID targetId) {
+    this.targetId = targetId;
   }
 
 
@@ -69,12 +171,14 @@ public class TransactionRefundRequest {
       return false;
     }
     TransactionRefundRequest transactionRefundRequest = (TransactionRefundRequest) o;
-    return Objects.equals(this.amount, transactionRefundRequest.amount);
+    return Objects.equals(this.amount, transactionRefundRequest.amount) &&
+        Objects.equals(this.targetType, transactionRefundRequest.targetType) &&
+        Objects.equals(this.targetId, transactionRefundRequest.targetId);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(amount);
+    return Objects.hash(amount, targetType, targetId);
   }
 
   @Override
@@ -82,6 +186,8 @@ public class TransactionRefundRequest {
     StringBuilder sb = new StringBuilder();
     sb.append("class TransactionRefundRequest {\n");
     sb.append("    amount: ").append(toIndentedString(amount)).append("\n");
+    sb.append("    targetType: ").append(toIndentedString(targetType)).append("\n");
+    sb.append("    targetId: ").append(toIndentedString(targetId)).append("\n");
     sb.append("}");
     return sb.toString();
   }

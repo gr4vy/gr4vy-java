@@ -20,7 +20,6 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import com.gr4vy.api.model.CardScheme;
 import com.gr4vy.api.model.CheckoutSessionPaymentMethodDetails;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -89,9 +88,96 @@ public class CheckoutSessionPaymentMethod {
   @SerializedName(SERIALIZED_NAME_METHOD)
   private MethodEnum method;
 
+  /**
+   * The scheme/brand of the card.
+   */
+  @JsonAdapter(SchemeEnum.Adapter.class)
+  public enum SchemeEnum {
+    ACCEL("accel"),
+    
+    AMEX("amex"),
+    
+    BANCONTACT("bancontact"),
+    
+    CARTE_BANCAIRE("carte-bancaire"),
+    
+    CIRRUS("cirrus"),
+    
+    CULIANCE("culiance"),
+    
+    DANKORT("dankort"),
+    
+    DINERS_CLUB("diners-club"),
+    
+    DISCOVER("discover"),
+    
+    EFTPOS_AUSTRALIA("eftpos-australia"),
+    
+    ELO("elo"),
+    
+    HIPERCARD("hipercard"),
+    
+    JCB("jcb"),
+    
+    MAESTRO("maestro"),
+    
+    MASTERCARD("mastercard"),
+    
+    NYCE("nyce"),
+    
+    OTHER("other"),
+    
+    PULSE("pulse"),
+    
+    RUPAY("rupay"),
+    
+    STAR("star"),
+    
+    UNIONPAY("unionpay"),
+    
+    VISA("visa");
+
+    private String value;
+
+    SchemeEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static SchemeEnum fromValue(String value) {
+      for (SchemeEnum b : SchemeEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      return null;
+    }
+
+    public static class Adapter extends TypeAdapter<SchemeEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final SchemeEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public SchemeEnum read(final JsonReader jsonReader) throws IOException {
+        String value =  jsonReader.nextString();
+        return SchemeEnum.fromValue(value);
+      }
+    }
+  }
+
   public static final String SERIALIZED_NAME_SCHEME = "scheme";
   @SerializedName(SERIALIZED_NAME_SCHEME)
-  private CardScheme scheme;
+  private SchemeEnum scheme;
 
   public static final String SERIALIZED_NAME_LABEL = "label";
   @SerializedName(SERIALIZED_NAME_LABEL)
@@ -171,25 +257,25 @@ public class CheckoutSessionPaymentMethod {
   }
 
 
-  public CheckoutSessionPaymentMethod scheme(CardScheme scheme) {
+  public CheckoutSessionPaymentMethod scheme(SchemeEnum scheme) {
     
     this.scheme = scheme;
     return this;
   }
 
    /**
-   * Get scheme
+   * The scheme/brand of the card.
    * @return scheme
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "visa", value = "")
+  @ApiModelProperty(example = "visa", value = "The scheme/brand of the card.")
 
-  public CardScheme getScheme() {
+  public SchemeEnum getScheme() {
     return scheme;
   }
 
 
-  public void setScheme(CardScheme scheme) {
+  public void setScheme(SchemeEnum scheme) {
     this.scheme = scheme;
   }
 
