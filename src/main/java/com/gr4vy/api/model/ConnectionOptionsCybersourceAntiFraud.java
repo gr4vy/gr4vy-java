@@ -33,9 +33,36 @@ import java.util.Map;
 @ApiModel(description = "Additional options for Cybersource Decision Manager (anti-fraud).")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class ConnectionOptionsCybersourceAntiFraud {
+  public static final String SERIALIZED_NAME_META_KEY_MERCHANT_ID = "meta_key_merchant_id";
+  @SerializedName(SERIALIZED_NAME_META_KEY_MERCHANT_ID)
+  private String metaKeyMerchantId;
+
   public static final String SERIALIZED_NAME_MERCHANT_DEFINED_DATA = "merchant_defined_data";
   @SerializedName(SERIALIZED_NAME_MERCHANT_DEFINED_DATA)
   private Map<String, String> merchantDefinedData = null;
+
+
+  public ConnectionOptionsCybersourceAntiFraud metaKeyMerchantId(String metaKeyMerchantId) {
+    
+    this.metaKeyMerchantId = metaKeyMerchantId;
+    return this;
+  }
+
+   /**
+   * An override for the merchant ID configured for the connector, used in combination with meta keys.
+   * @return metaKeyMerchantId
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "An override for the merchant ID configured for the connector, used in combination with meta keys.")
+
+  public String getMetaKeyMerchantId() {
+    return metaKeyMerchantId;
+  }
+
+
+  public void setMetaKeyMerchantId(String metaKeyMerchantId) {
+    this.metaKeyMerchantId = metaKeyMerchantId;
+  }
 
 
   public ConnectionOptionsCybersourceAntiFraud merchantDefinedData(Map<String, String> merchantDefinedData) {
@@ -78,18 +105,20 @@ public class ConnectionOptionsCybersourceAntiFraud {
       return false;
     }
     ConnectionOptionsCybersourceAntiFraud connectionOptionsCybersourceAntiFraud = (ConnectionOptionsCybersourceAntiFraud) o;
-    return Objects.equals(this.merchantDefinedData, connectionOptionsCybersourceAntiFraud.merchantDefinedData);
+    return Objects.equals(this.metaKeyMerchantId, connectionOptionsCybersourceAntiFraud.metaKeyMerchantId) &&
+        Objects.equals(this.merchantDefinedData, connectionOptionsCybersourceAntiFraud.merchantDefinedData);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(merchantDefinedData);
+    return Objects.hash(metaKeyMerchantId, merchantDefinedData);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class ConnectionOptionsCybersourceAntiFraud {\n");
+    sb.append("    metaKeyMerchantId: ").append(toIndentedString(metaKeyMerchantId)).append("\n");
     sb.append("    merchantDefinedData: ").append(toIndentedString(merchantDefinedData)).append("\n");
     sb.append("}");
     return sb.toString();

@@ -88,78 +88,41 @@ public class TransactionSummary {
   @SerializedName(SERIALIZED_NAME_ID)
   private UUID id;
 
-  public static final String SERIALIZED_NAME_RECONCILIATION_ID = "reconciliation_id";
-  @SerializedName(SERIALIZED_NAME_RECONCILIATION_ID)
-  private String reconciliationId;
+  public static final String SERIALIZED_NAME_AMOUNT = "amount";
+  @SerializedName(SERIALIZED_NAME_AMOUNT)
+  private Integer amount;
 
-  public static final String SERIALIZED_NAME_MERCHANT_ACCOUNT_ID = "merchant_account_id";
-  @SerializedName(SERIALIZED_NAME_MERCHANT_ACCOUNT_ID)
-  private String merchantAccountId;
+  public static final String SERIALIZED_NAME_AUTHORIZED_AMOUNT = "authorized_amount";
+  @SerializedName(SERIALIZED_NAME_AUTHORIZED_AMOUNT)
+  private Integer authorizedAmount;
 
-  /**
-   * The status of the transaction. The status may change over time as asynchronous processing events occur.
-   */
-  @JsonAdapter(StatusEnum.Adapter.class)
-  public enum StatusEnum {
-    PROCESSING("processing"),
-    
-    BUYER_APPROVAL_PENDING("buyer_approval_pending"),
-    
-    AUTHORIZATION_SUCCEEDED("authorization_succeeded"),
-    
-    AUTHORIZATION_FAILED("authorization_failed"),
-    
-    AUTHORIZATION_DECLINED("authorization_declined"),
-    
-    CAPTURE_PENDING("capture_pending"),
-    
-    CAPTURE_SUCCEEDED("capture_succeeded"),
-    
-    AUTHORIZATION_VOID_PENDING("authorization_void_pending"),
-    
-    AUTHORIZATION_VOIDED("authorization_voided");
+  public static final String SERIALIZED_NAME_BUYER = "buyer";
+  @SerializedName(SERIALIZED_NAME_BUYER)
+  private BuyerSnapshot buyer;
 
-    private String value;
+  public static final String SERIALIZED_NAME_CAPTURED_AMOUNT = "captured_amount";
+  @SerializedName(SERIALIZED_NAME_CAPTURED_AMOUNT)
+  private Integer capturedAmount;
 
-    StatusEnum(String value) {
-      this.value = value;
-    }
+  public static final String SERIALIZED_NAME_CHECKOUT_SESSION_ID = "checkout_session_id";
+  @SerializedName(SERIALIZED_NAME_CHECKOUT_SESSION_ID)
+  private UUID checkoutSessionId;
 
-    public String getValue() {
-      return value;
-    }
+  public static final String SERIALIZED_NAME_COUNTRY = "country";
+  @SerializedName(SERIALIZED_NAME_COUNTRY)
+  private String country;
 
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
+  public static final String SERIALIZED_NAME_CREATED_AT = "created_at";
+  @SerializedName(SERIALIZED_NAME_CREATED_AT)
+  private String createdAt;
 
-    public static StatusEnum fromValue(String value) {
-      for (StatusEnum b : StatusEnum.values()) {
-        if (b.value.equals(value)) {
-          return b;
-        }
-      }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
-    }
+  public static final String SERIALIZED_NAME_CURRENCY = "currency";
+  @SerializedName(SERIALIZED_NAME_CURRENCY)
+  private String currency;
 
-    public static class Adapter extends TypeAdapter<StatusEnum> {
-      @Override
-      public void write(final JsonWriter jsonWriter, final StatusEnum enumeration) throws IOException {
-        jsonWriter.value(enumeration.getValue());
-      }
-
-      @Override
-      public StatusEnum read(final JsonReader jsonReader) throws IOException {
-        String value =  jsonReader.nextString();
-        return StatusEnum.fromValue(value);
-      }
-    }
-  }
-
-  public static final String SERIALIZED_NAME_STATUS = "status";
-  @SerializedName(SERIALIZED_NAME_STATUS)
-  private StatusEnum status;
+  public static final String SERIALIZED_NAME_EXTERNAL_IDENTIFIER = "external_identifier";
+  @SerializedName(SERIALIZED_NAME_EXTERNAL_IDENTIFIER)
+  private String externalIdentifier;
 
   /**
    * The original &#x60;intent&#x60; used when the transaction was [created](#operation/authorize-new-transaction).
@@ -212,53 +175,9 @@ public class TransactionSummary {
   @SerializedName(SERIALIZED_NAME_INTENT)
   private IntentEnum intent;
 
-  public static final String SERIALIZED_NAME_AMOUNT = "amount";
-  @SerializedName(SERIALIZED_NAME_AMOUNT)
-  private Integer amount;
-
-  public static final String SERIALIZED_NAME_CAPTURED_AMOUNT = "captured_amount";
-  @SerializedName(SERIALIZED_NAME_CAPTURED_AMOUNT)
-  private Integer capturedAmount;
-
-  public static final String SERIALIZED_NAME_REFUNDED_AMOUNT = "refunded_amount";
-  @SerializedName(SERIALIZED_NAME_REFUNDED_AMOUNT)
-  private Integer refundedAmount;
-
-  public static final String SERIALIZED_NAME_CURRENCY = "currency";
-  @SerializedName(SERIALIZED_NAME_CURRENCY)
-  private String currency;
-
-  public static final String SERIALIZED_NAME_COUNTRY = "country";
-  @SerializedName(SERIALIZED_NAME_COUNTRY)
-  private String country;
-
-  public static final String SERIALIZED_NAME_PAYMENT_METHOD = "payment_method";
-  @SerializedName(SERIALIZED_NAME_PAYMENT_METHOD)
-  private PaymentMethodSnapshot paymentMethod;
-
-  public static final String SERIALIZED_NAME_BUYER = "buyer";
-  @SerializedName(SERIALIZED_NAME_BUYER)
-  private BuyerSnapshot buyer;
-
-  public static final String SERIALIZED_NAME_CREATED_AT = "created_at";
-  @SerializedName(SERIALIZED_NAME_CREATED_AT)
-  private String createdAt;
-
-  public static final String SERIALIZED_NAME_EXTERNAL_IDENTIFIER = "external_identifier";
-  @SerializedName(SERIALIZED_NAME_EXTERNAL_IDENTIFIER)
-  private String externalIdentifier;
-
-  public static final String SERIALIZED_NAME_UPDATED_AT = "updated_at";
-  @SerializedName(SERIALIZED_NAME_UPDATED_AT)
-  private String updatedAt;
-
-  public static final String SERIALIZED_NAME_PAYMENT_SERVICE = "payment_service";
-  @SerializedName(SERIALIZED_NAME_PAYMENT_SERVICE)
-  private PaymentServiceSnapshot paymentService;
-
-  public static final String SERIALIZED_NAME_PENDING_REVIEW = "pending_review";
-  @SerializedName(SERIALIZED_NAME_PENDING_REVIEW)
-  private Boolean pendingReview;
+  public static final String SERIALIZED_NAME_MERCHANT_ACCOUNT_ID = "merchant_account_id";
+  @SerializedName(SERIALIZED_NAME_MERCHANT_ACCOUNT_ID)
+  private String merchantAccountId;
 
   /**
    * Gets or Sets method
@@ -429,6 +348,18 @@ public class TransactionSummary {
   @SerializedName(SERIALIZED_NAME_METHOD)
   private MethodEnum method;
 
+  public static final String SERIALIZED_NAME_PAYMENT_METHOD = "payment_method";
+  @SerializedName(SERIALIZED_NAME_PAYMENT_METHOD)
+  private PaymentMethodSnapshot paymentMethod;
+
+  public static final String SERIALIZED_NAME_PAYMENT_SERVICE = "payment_service";
+  @SerializedName(SERIALIZED_NAME_PAYMENT_SERVICE)
+  private PaymentServiceSnapshot paymentService;
+
+  public static final String SERIALIZED_NAME_PENDING_REVIEW = "pending_review";
+  @SerializedName(SERIALIZED_NAME_PENDING_REVIEW)
+  private Boolean pendingReview;
+
   public static final String SERIALIZED_NAME_RAW_RESPONSE_CODE = "raw_response_code";
   @SerializedName(SERIALIZED_NAME_RAW_RESPONSE_CODE)
   private String rawResponseCode;
@@ -437,9 +368,82 @@ public class TransactionSummary {
   @SerializedName(SERIALIZED_NAME_RAW_RESPONSE_DESCRIPTION)
   private String rawResponseDescription;
 
-  public static final String SERIALIZED_NAME_CHECKOUT_SESSION_ID = "checkout_session_id";
-  @SerializedName(SERIALIZED_NAME_CHECKOUT_SESSION_ID)
-  private UUID checkoutSessionId;
+  public static final String SERIALIZED_NAME_RECONCILIATION_ID = "reconciliation_id";
+  @SerializedName(SERIALIZED_NAME_RECONCILIATION_ID)
+  private String reconciliationId;
+
+  public static final String SERIALIZED_NAME_REFUNDED_AMOUNT = "refunded_amount";
+  @SerializedName(SERIALIZED_NAME_REFUNDED_AMOUNT)
+  private Integer refundedAmount;
+
+  /**
+   * The status of the transaction. The status may change over time as asynchronous processing events occur.
+   */
+  @JsonAdapter(StatusEnum.Adapter.class)
+  public enum StatusEnum {
+    PROCESSING("processing"),
+    
+    BUYER_APPROVAL_PENDING("buyer_approval_pending"),
+    
+    AUTHORIZATION_SUCCEEDED("authorization_succeeded"),
+    
+    AUTHORIZATION_FAILED("authorization_failed"),
+    
+    AUTHORIZATION_DECLINED("authorization_declined"),
+    
+    CAPTURE_PENDING("capture_pending"),
+    
+    CAPTURE_SUCCEEDED("capture_succeeded"),
+    
+    AUTHORIZATION_VOID_PENDING("authorization_void_pending"),
+    
+    AUTHORIZATION_VOIDED("authorization_voided");
+
+    private String value;
+
+    StatusEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static StatusEnum fromValue(String value) {
+      for (StatusEnum b : StatusEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+
+    public static class Adapter extends TypeAdapter<StatusEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final StatusEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public StatusEnum read(final JsonReader jsonReader) throws IOException {
+        String value =  jsonReader.nextString();
+        return StatusEnum.fromValue(value);
+      }
+    }
+  }
+
+  public static final String SERIALIZED_NAME_STATUS = "status";
+  @SerializedName(SERIALIZED_NAME_STATUS)
+  private StatusEnum status;
+
+  public static final String SERIALIZED_NAME_UPDATED_AT = "updated_at";
+  @SerializedName(SERIALIZED_NAME_UPDATED_AT)
+  private String updatedAt;
 
 
   public TransactionSummary type(TypeEnum type) {
@@ -488,98 +492,6 @@ public class TransactionSummary {
   }
 
 
-  public TransactionSummary reconciliationId(String reconciliationId) {
-    
-    this.reconciliationId = reconciliationId;
-    return this;
-  }
-
-   /**
-   * The base62 encoded transaction ID. This represents a shorter version of this transaction&#39;s &#x60;id&#x60; which is sent to payment services, anti-fraud services, and other connectors. You can use this ID to reconcile a payment service&#39;s transaction against our system.  This ID is sent instead of the transaction ID because not all services support 36 digit identifiers.
-   * @return reconciliationId
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(example = "7jZXl4gBUNl0CnaLEnfXbt", value = "The base62 encoded transaction ID. This represents a shorter version of this transaction's `id` which is sent to payment services, anti-fraud services, and other connectors. You can use this ID to reconcile a payment service's transaction against our system.  This ID is sent instead of the transaction ID because not all services support 36 digit identifiers.")
-
-  public String getReconciliationId() {
-    return reconciliationId;
-  }
-
-
-  public void setReconciliationId(String reconciliationId) {
-    this.reconciliationId = reconciliationId;
-  }
-
-
-  public TransactionSummary merchantAccountId(String merchantAccountId) {
-    
-    this.merchantAccountId = merchantAccountId;
-    return this;
-  }
-
-   /**
-   * The ID of the merchant account to which this transaction belongs to.
-   * @return merchantAccountId
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(example = "default", value = "The ID of the merchant account to which this transaction belongs to.")
-
-  public String getMerchantAccountId() {
-    return merchantAccountId;
-  }
-
-
-  public void setMerchantAccountId(String merchantAccountId) {
-    this.merchantAccountId = merchantAccountId;
-  }
-
-
-  public TransactionSummary status(StatusEnum status) {
-    
-    this.status = status;
-    return this;
-  }
-
-   /**
-   * The status of the transaction. The status may change over time as asynchronous processing events occur.
-   * @return status
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(example = "processing", value = "The status of the transaction. The status may change over time as asynchronous processing events occur.")
-
-  public StatusEnum getStatus() {
-    return status;
-  }
-
-
-  public void setStatus(StatusEnum status) {
-    this.status = status;
-  }
-
-
-  public TransactionSummary intent(IntentEnum intent) {
-    
-    this.intent = intent;
-    return this;
-  }
-
-   /**
-   * The original &#x60;intent&#x60; used when the transaction was [created](#operation/authorize-new-transaction).
-   * @return intent
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(example = "authorize", value = "The original `intent` used when the transaction was [created](#operation/authorize-new-transaction).")
-
-  public IntentEnum getIntent() {
-    return intent;
-  }
-
-
-  public void setIntent(IntentEnum intent) {
-    this.intent = intent;
-  }
-
-
   public TransactionSummary amount(Integer amount) {
     
     this.amount = amount;
@@ -605,122 +517,28 @@ public class TransactionSummary {
   }
 
 
-  public TransactionSummary capturedAmount(Integer capturedAmount) {
+  public TransactionSummary authorizedAmount(Integer authorizedAmount) {
     
-    this.capturedAmount = capturedAmount;
+    this.authorizedAmount = authorizedAmount;
     return this;
   }
 
    /**
-   * The captured amount for this transaction. This can be the total or a portion of the authorized amount.
+   * The amount for this transaction that has been authorized for the &#x60;payment_method&#x60;. This can be less than the &#x60;amount&#x60; if gift cards were used.
    * minimum: 0
    * maximum: 99999999
-   * @return capturedAmount
+   * @return authorizedAmount
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "999", value = "The captured amount for this transaction. This can be the total or a portion of the authorized amount.")
+  @ApiModelProperty(example = "1299", value = "The amount for this transaction that has been authorized for the `payment_method`. This can be less than the `amount` if gift cards were used.")
 
-  public Integer getCapturedAmount() {
-    return capturedAmount;
+  public Integer getAuthorizedAmount() {
+    return authorizedAmount;
   }
 
 
-  public void setCapturedAmount(Integer capturedAmount) {
-    this.capturedAmount = capturedAmount;
-  }
-
-
-  public TransactionSummary refundedAmount(Integer refundedAmount) {
-    
-    this.refundedAmount = refundedAmount;
-    return this;
-  }
-
-   /**
-   * The refunded amount for this transaction. This can be the total or a portion of the captured amount.
-   * minimum: 0
-   * maximum: 99999999
-   * @return refundedAmount
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(example = "100", value = "The refunded amount for this transaction. This can be the total or a portion of the captured amount.")
-
-  public Integer getRefundedAmount() {
-    return refundedAmount;
-  }
-
-
-  public void setRefundedAmount(Integer refundedAmount) {
-    this.refundedAmount = refundedAmount;
-  }
-
-
-  public TransactionSummary currency(String currency) {
-    
-    this.currency = currency;
-    return this;
-  }
-
-   /**
-   * The currency code for this transaction.
-   * @return currency
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(example = "USD", value = "The currency code for this transaction.")
-
-  public String getCurrency() {
-    return currency;
-  }
-
-
-  public void setCurrency(String currency) {
-    this.currency = currency;
-  }
-
-
-  public TransactionSummary country(String country) {
-    
-    this.country = country;
-    return this;
-  }
-
-   /**
-   * The 2-letter ISO code of the country of the transaction. This is used to filter the payment services that is used to process the transaction. 
-   * @return country
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(example = "US", value = "The 2-letter ISO code of the country of the transaction. This is used to filter the payment services that is used to process the transaction. ")
-
-  public String getCountry() {
-    return country;
-  }
-
-
-  public void setCountry(String country) {
-    this.country = country;
-  }
-
-
-  public TransactionSummary paymentMethod(PaymentMethodSnapshot paymentMethod) {
-    
-    this.paymentMethod = paymentMethod;
-    return this;
-  }
-
-   /**
-   * The payment method used for this transaction.
-   * @return paymentMethod
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "The payment method used for this transaction.")
-
-  public PaymentMethodSnapshot getPaymentMethod() {
-    return paymentMethod;
-  }
-
-
-  public void setPaymentMethod(PaymentMethodSnapshot paymentMethod) {
-    this.paymentMethod = paymentMethod;
+  public void setAuthorizedAmount(Integer authorizedAmount) {
+    this.authorizedAmount = authorizedAmount;
   }
 
 
@@ -747,6 +565,77 @@ public class TransactionSummary {
   }
 
 
+  public TransactionSummary capturedAmount(Integer capturedAmount) {
+    
+    this.capturedAmount = capturedAmount;
+    return this;
+  }
+
+   /**
+   * The captured amount for this transaction. This can be the full value of the &#x60;authorized_amount&#x60; or less.
+   * minimum: 0
+   * maximum: 99999999
+   * @return capturedAmount
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "999", value = "The captured amount for this transaction. This can be the full value of the `authorized_amount` or less.")
+
+  public Integer getCapturedAmount() {
+    return capturedAmount;
+  }
+
+
+  public void setCapturedAmount(Integer capturedAmount) {
+    this.capturedAmount = capturedAmount;
+  }
+
+
+  public TransactionSummary checkoutSessionId(UUID checkoutSessionId) {
+    
+    this.checkoutSessionId = checkoutSessionId;
+    return this;
+  }
+
+   /**
+   * The identifier for the checkout session this transaction is associated with.
+   * @return checkoutSessionId
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "fe26475d-ec3e-4884-9553-f7356683f7f9", value = "The identifier for the checkout session this transaction is associated with.")
+
+  public UUID getCheckoutSessionId() {
+    return checkoutSessionId;
+  }
+
+
+  public void setCheckoutSessionId(UUID checkoutSessionId) {
+    this.checkoutSessionId = checkoutSessionId;
+  }
+
+
+  public TransactionSummary country(String country) {
+    
+    this.country = country;
+    return this;
+  }
+
+   /**
+   * The 2-letter ISO code of the country of the transaction. This is used to filter the payment services that is used to process the transaction. 
+   * @return country
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "US", value = "The 2-letter ISO code of the country of the transaction. This is used to filter the payment services that is used to process the transaction. ")
+
+  public String getCountry() {
+    return country;
+  }
+
+
+  public void setCountry(String country) {
+    this.country = country;
+  }
+
+
   public TransactionSummary createdAt(String createdAt) {
     
     this.createdAt = createdAt;
@@ -767,6 +656,29 @@ public class TransactionSummary {
 
   public void setCreatedAt(String createdAt) {
     this.createdAt = createdAt;
+  }
+
+
+  public TransactionSummary currency(String currency) {
+    
+    this.currency = currency;
+    return this;
+  }
+
+   /**
+   * The currency code for this transaction.
+   * @return currency
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "USD", value = "The currency code for this transaction.")
+
+  public String getCurrency() {
+    return currency;
+  }
+
+
+  public void setCurrency(String currency) {
+    this.currency = currency;
   }
 
 
@@ -793,26 +705,95 @@ public class TransactionSummary {
   }
 
 
-  public TransactionSummary updatedAt(String updatedAt) {
+  public TransactionSummary intent(IntentEnum intent) {
     
-    this.updatedAt = updatedAt;
+    this.intent = intent;
     return this;
   }
 
    /**
-   * Defines when the transaction was last updated.
-   * @return updatedAt
+   * The original &#x60;intent&#x60; used when the transaction was [created](#operation/authorize-new-transaction).
+   * @return intent
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "Defines when the transaction was last updated.")
+  @ApiModelProperty(example = "authorize", value = "The original `intent` used when the transaction was [created](#operation/authorize-new-transaction).")
 
-  public String getUpdatedAt() {
-    return updatedAt;
+  public IntentEnum getIntent() {
+    return intent;
   }
 
 
-  public void setUpdatedAt(String updatedAt) {
-    this.updatedAt = updatedAt;
+  public void setIntent(IntentEnum intent) {
+    this.intent = intent;
+  }
+
+
+  public TransactionSummary merchantAccountId(String merchantAccountId) {
+    
+    this.merchantAccountId = merchantAccountId;
+    return this;
+  }
+
+   /**
+   * The ID of the merchant account to which this transaction belongs to.
+   * @return merchantAccountId
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "default", value = "The ID of the merchant account to which this transaction belongs to.")
+
+  public String getMerchantAccountId() {
+    return merchantAccountId;
+  }
+
+
+  public void setMerchantAccountId(String merchantAccountId) {
+    this.merchantAccountId = merchantAccountId;
+  }
+
+
+  public TransactionSummary method(MethodEnum method) {
+    
+    this.method = method;
+    return this;
+  }
+
+   /**
+   * Get method
+   * @return method
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "card", value = "")
+
+  public MethodEnum getMethod() {
+    return method;
+  }
+
+
+  public void setMethod(MethodEnum method) {
+    this.method = method;
+  }
+
+
+  public TransactionSummary paymentMethod(PaymentMethodSnapshot paymentMethod) {
+    
+    this.paymentMethod = paymentMethod;
+    return this;
+  }
+
+   /**
+   * The payment method used for this transaction.
+   * @return paymentMethod
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "The payment method used for this transaction.")
+
+  public PaymentMethodSnapshot getPaymentMethod() {
+    return paymentMethod;
+  }
+
+
+  public void setPaymentMethod(PaymentMethodSnapshot paymentMethod) {
+    this.paymentMethod = paymentMethod;
   }
 
 
@@ -862,29 +843,6 @@ public class TransactionSummary {
   }
 
 
-  public TransactionSummary method(MethodEnum method) {
-    
-    this.method = method;
-    return this;
-  }
-
-   /**
-   * Get method
-   * @return method
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(example = "card", value = "")
-
-  public MethodEnum getMethod() {
-    return method;
-  }
-
-
-  public void setMethod(MethodEnum method) {
-    this.method = method;
-  }
-
-
   public TransactionSummary rawResponseCode(String rawResponseCode) {
     
     this.rawResponseCode = rawResponseCode;
@@ -931,26 +889,97 @@ public class TransactionSummary {
   }
 
 
-  public TransactionSummary checkoutSessionId(UUID checkoutSessionId) {
+  public TransactionSummary reconciliationId(String reconciliationId) {
     
-    this.checkoutSessionId = checkoutSessionId;
+    this.reconciliationId = reconciliationId;
     return this;
   }
 
    /**
-   * The identifier for the checkout session this transaction is associated with.
-   * @return checkoutSessionId
+   * The base62 encoded transaction ID. This represents a shorter version of this transaction&#39;s &#x60;id&#x60; which is sent to payment services, anti-fraud services, and other connectors. You can use this ID to reconcile a payment service&#39;s transaction against our system.  This ID is sent instead of the transaction ID because not all services support 36 digit identifiers.
+   * @return reconciliationId
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "fe26475d-ec3e-4884-9553-f7356683f7f9", value = "The identifier for the checkout session this transaction is associated with.")
+  @ApiModelProperty(example = "7jZXl4gBUNl0CnaLEnfXbt", value = "The base62 encoded transaction ID. This represents a shorter version of this transaction's `id` which is sent to payment services, anti-fraud services, and other connectors. You can use this ID to reconcile a payment service's transaction against our system.  This ID is sent instead of the transaction ID because not all services support 36 digit identifiers.")
 
-  public UUID getCheckoutSessionId() {
-    return checkoutSessionId;
+  public String getReconciliationId() {
+    return reconciliationId;
   }
 
 
-  public void setCheckoutSessionId(UUID checkoutSessionId) {
-    this.checkoutSessionId = checkoutSessionId;
+  public void setReconciliationId(String reconciliationId) {
+    this.reconciliationId = reconciliationId;
+  }
+
+
+  public TransactionSummary refundedAmount(Integer refundedAmount) {
+    
+    this.refundedAmount = refundedAmount;
+    return this;
+  }
+
+   /**
+   * The refunded amount for this transaction. This can be the full value of the &#x60;captured_amount&#x60; or less.
+   * minimum: 0
+   * maximum: 99999999
+   * @return refundedAmount
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "100", value = "The refunded amount for this transaction. This can be the full value of the `captured_amount` or less.")
+
+  public Integer getRefundedAmount() {
+    return refundedAmount;
+  }
+
+
+  public void setRefundedAmount(Integer refundedAmount) {
+    this.refundedAmount = refundedAmount;
+  }
+
+
+  public TransactionSummary status(StatusEnum status) {
+    
+    this.status = status;
+    return this;
+  }
+
+   /**
+   * The status of the transaction. The status may change over time as asynchronous processing events occur.
+   * @return status
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "processing", value = "The status of the transaction. The status may change over time as asynchronous processing events occur.")
+
+  public StatusEnum getStatus() {
+    return status;
+  }
+
+
+  public void setStatus(StatusEnum status) {
+    this.status = status;
+  }
+
+
+  public TransactionSummary updatedAt(String updatedAt) {
+    
+    this.updatedAt = updatedAt;
+    return this;
+  }
+
+   /**
+   * Defines when the transaction was last updated.
+   * @return updatedAt
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "2013-07-16T19:23Z", value = "Defines when the transaction was last updated.")
+
+  public String getUpdatedAt() {
+    return updatedAt;
+  }
+
+
+  public void setUpdatedAt(String updatedAt) {
+    this.updatedAt = updatedAt;
   }
 
 
@@ -965,31 +994,32 @@ public class TransactionSummary {
     TransactionSummary transactionSummary = (TransactionSummary) o;
     return Objects.equals(this.type, transactionSummary.type) &&
         Objects.equals(this.id, transactionSummary.id) &&
-        Objects.equals(this.reconciliationId, transactionSummary.reconciliationId) &&
-        Objects.equals(this.merchantAccountId, transactionSummary.merchantAccountId) &&
-        Objects.equals(this.status, transactionSummary.status) &&
-        Objects.equals(this.intent, transactionSummary.intent) &&
         Objects.equals(this.amount, transactionSummary.amount) &&
-        Objects.equals(this.capturedAmount, transactionSummary.capturedAmount) &&
-        Objects.equals(this.refundedAmount, transactionSummary.refundedAmount) &&
-        Objects.equals(this.currency, transactionSummary.currency) &&
-        Objects.equals(this.country, transactionSummary.country) &&
-        Objects.equals(this.paymentMethod, transactionSummary.paymentMethod) &&
+        Objects.equals(this.authorizedAmount, transactionSummary.authorizedAmount) &&
         Objects.equals(this.buyer, transactionSummary.buyer) &&
+        Objects.equals(this.capturedAmount, transactionSummary.capturedAmount) &&
+        Objects.equals(this.checkoutSessionId, transactionSummary.checkoutSessionId) &&
+        Objects.equals(this.country, transactionSummary.country) &&
         Objects.equals(this.createdAt, transactionSummary.createdAt) &&
+        Objects.equals(this.currency, transactionSummary.currency) &&
         Objects.equals(this.externalIdentifier, transactionSummary.externalIdentifier) &&
-        Objects.equals(this.updatedAt, transactionSummary.updatedAt) &&
+        Objects.equals(this.intent, transactionSummary.intent) &&
+        Objects.equals(this.merchantAccountId, transactionSummary.merchantAccountId) &&
+        Objects.equals(this.method, transactionSummary.method) &&
+        Objects.equals(this.paymentMethod, transactionSummary.paymentMethod) &&
         Objects.equals(this.paymentService, transactionSummary.paymentService) &&
         Objects.equals(this.pendingReview, transactionSummary.pendingReview) &&
-        Objects.equals(this.method, transactionSummary.method) &&
         Objects.equals(this.rawResponseCode, transactionSummary.rawResponseCode) &&
         Objects.equals(this.rawResponseDescription, transactionSummary.rawResponseDescription) &&
-        Objects.equals(this.checkoutSessionId, transactionSummary.checkoutSessionId);
+        Objects.equals(this.reconciliationId, transactionSummary.reconciliationId) &&
+        Objects.equals(this.refundedAmount, transactionSummary.refundedAmount) &&
+        Objects.equals(this.status, transactionSummary.status) &&
+        Objects.equals(this.updatedAt, transactionSummary.updatedAt);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(type, id, reconciliationId, merchantAccountId, status, intent, amount, capturedAmount, refundedAmount, currency, country, paymentMethod, buyer, createdAt, externalIdentifier, updatedAt, paymentService, pendingReview, method, rawResponseCode, rawResponseDescription, checkoutSessionId);
+    return Objects.hash(type, id, amount, authorizedAmount, buyer, capturedAmount, checkoutSessionId, country, createdAt, currency, externalIdentifier, intent, merchantAccountId, method, paymentMethod, paymentService, pendingReview, rawResponseCode, rawResponseDescription, reconciliationId, refundedAmount, status, updatedAt);
   }
 
   @Override
@@ -998,26 +1028,27 @@ public class TransactionSummary {
     sb.append("class TransactionSummary {\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    reconciliationId: ").append(toIndentedString(reconciliationId)).append("\n");
-    sb.append("    merchantAccountId: ").append(toIndentedString(merchantAccountId)).append("\n");
-    sb.append("    status: ").append(toIndentedString(status)).append("\n");
-    sb.append("    intent: ").append(toIndentedString(intent)).append("\n");
     sb.append("    amount: ").append(toIndentedString(amount)).append("\n");
-    sb.append("    capturedAmount: ").append(toIndentedString(capturedAmount)).append("\n");
-    sb.append("    refundedAmount: ").append(toIndentedString(refundedAmount)).append("\n");
-    sb.append("    currency: ").append(toIndentedString(currency)).append("\n");
-    sb.append("    country: ").append(toIndentedString(country)).append("\n");
-    sb.append("    paymentMethod: ").append(toIndentedString(paymentMethod)).append("\n");
+    sb.append("    authorizedAmount: ").append(toIndentedString(authorizedAmount)).append("\n");
     sb.append("    buyer: ").append(toIndentedString(buyer)).append("\n");
+    sb.append("    capturedAmount: ").append(toIndentedString(capturedAmount)).append("\n");
+    sb.append("    checkoutSessionId: ").append(toIndentedString(checkoutSessionId)).append("\n");
+    sb.append("    country: ").append(toIndentedString(country)).append("\n");
     sb.append("    createdAt: ").append(toIndentedString(createdAt)).append("\n");
+    sb.append("    currency: ").append(toIndentedString(currency)).append("\n");
     sb.append("    externalIdentifier: ").append(toIndentedString(externalIdentifier)).append("\n");
-    sb.append("    updatedAt: ").append(toIndentedString(updatedAt)).append("\n");
+    sb.append("    intent: ").append(toIndentedString(intent)).append("\n");
+    sb.append("    merchantAccountId: ").append(toIndentedString(merchantAccountId)).append("\n");
+    sb.append("    method: ").append(toIndentedString(method)).append("\n");
+    sb.append("    paymentMethod: ").append(toIndentedString(paymentMethod)).append("\n");
     sb.append("    paymentService: ").append(toIndentedString(paymentService)).append("\n");
     sb.append("    pendingReview: ").append(toIndentedString(pendingReview)).append("\n");
-    sb.append("    method: ").append(toIndentedString(method)).append("\n");
     sb.append("    rawResponseCode: ").append(toIndentedString(rawResponseCode)).append("\n");
     sb.append("    rawResponseDescription: ").append(toIndentedString(rawResponseDescription)).append("\n");
-    sb.append("    checkoutSessionId: ").append(toIndentedString(checkoutSessionId)).append("\n");
+    sb.append("    reconciliationId: ").append(toIndentedString(reconciliationId)).append("\n");
+    sb.append("    refundedAmount: ").append(toIndentedString(refundedAmount)).append("\n");
+    sb.append("    status: ").append(toIndentedString(status)).append("\n");
+    sb.append("    updatedAt: ").append(toIndentedString(updatedAt)).append("\n");
     sb.append("}");
     return sb.toString();
   }

@@ -85,17 +85,17 @@ public class BuyerSnapshot {
   @SerializedName(SERIALIZED_NAME_ID)
   private UUID id;
 
-  public static final String SERIALIZED_NAME_EXTERNAL_IDENTIFIER = "external_identifier";
-  @SerializedName(SERIALIZED_NAME_EXTERNAL_IDENTIFIER)
-  private String externalIdentifier;
+  public static final String SERIALIZED_NAME_BILLING_DETAILS = "billing_details";
+  @SerializedName(SERIALIZED_NAME_BILLING_DETAILS)
+  private BillingDetails billingDetails;
 
   public static final String SERIALIZED_NAME_DISPLAY_NAME = "display_name";
   @SerializedName(SERIALIZED_NAME_DISPLAY_NAME)
   private String displayName;
 
-  public static final String SERIALIZED_NAME_BILLING_DETAILS = "billing_details";
-  @SerializedName(SERIALIZED_NAME_BILLING_DETAILS)
-  private BillingDetails billingDetails;
+  public static final String SERIALIZED_NAME_EXTERNAL_IDENTIFIER = "external_identifier";
+  @SerializedName(SERIALIZED_NAME_EXTERNAL_IDENTIFIER)
+  private String externalIdentifier;
 
 
   public BuyerSnapshot type(TypeEnum type) {
@@ -144,26 +144,26 @@ public class BuyerSnapshot {
   }
 
 
-  public BuyerSnapshot externalIdentifier(String externalIdentifier) {
+  public BuyerSnapshot billingDetails(BillingDetails billingDetails) {
     
-    this.externalIdentifier = externalIdentifier;
+    this.billingDetails = billingDetails;
     return this;
   }
 
    /**
-   * An external identifier that can be used to match the buyer against your own records.
-   * @return externalIdentifier
+   * The billing details associated with the buyer, which include the address and tax ID.
+   * @return billingDetails
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "user-789123", value = "An external identifier that can be used to match the buyer against your own records.")
+  @ApiModelProperty(value = "The billing details associated with the buyer, which include the address and tax ID.")
 
-  public String getExternalIdentifier() {
-    return externalIdentifier;
+  public BillingDetails getBillingDetails() {
+    return billingDetails;
   }
 
 
-  public void setExternalIdentifier(String externalIdentifier) {
-    this.externalIdentifier = externalIdentifier;
+  public void setBillingDetails(BillingDetails billingDetails) {
+    this.billingDetails = billingDetails;
   }
 
 
@@ -190,26 +190,26 @@ public class BuyerSnapshot {
   }
 
 
-  public BuyerSnapshot billingDetails(BillingDetails billingDetails) {
+  public BuyerSnapshot externalIdentifier(String externalIdentifier) {
     
-    this.billingDetails = billingDetails;
+    this.externalIdentifier = externalIdentifier;
     return this;
   }
 
    /**
-   * The billing details associated with the buyer, which include the address and tax ID.
-   * @return billingDetails
+   * An external identifier that can be used to match the buyer against your own records.
+   * @return externalIdentifier
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "The billing details associated with the buyer, which include the address and tax ID.")
+  @ApiModelProperty(example = "user-789123", value = "An external identifier that can be used to match the buyer against your own records.")
 
-  public BillingDetails getBillingDetails() {
-    return billingDetails;
+  public String getExternalIdentifier() {
+    return externalIdentifier;
   }
 
 
-  public void setBillingDetails(BillingDetails billingDetails) {
-    this.billingDetails = billingDetails;
+  public void setExternalIdentifier(String externalIdentifier) {
+    this.externalIdentifier = externalIdentifier;
   }
 
 
@@ -224,14 +224,14 @@ public class BuyerSnapshot {
     BuyerSnapshot buyerSnapshot = (BuyerSnapshot) o;
     return Objects.equals(this.type, buyerSnapshot.type) &&
         Objects.equals(this.id, buyerSnapshot.id) &&
-        Objects.equals(this.externalIdentifier, buyerSnapshot.externalIdentifier) &&
+        Objects.equals(this.billingDetails, buyerSnapshot.billingDetails) &&
         Objects.equals(this.displayName, buyerSnapshot.displayName) &&
-        Objects.equals(this.billingDetails, buyerSnapshot.billingDetails);
+        Objects.equals(this.externalIdentifier, buyerSnapshot.externalIdentifier);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(type, id, externalIdentifier, displayName, billingDetails);
+    return Objects.hash(type, id, billingDetails, displayName, externalIdentifier);
   }
 
   @Override
@@ -240,9 +240,9 @@ public class BuyerSnapshot {
     sb.append("class BuyerSnapshot {\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    externalIdentifier: ").append(toIndentedString(externalIdentifier)).append("\n");
-    sb.append("    displayName: ").append(toIndentedString(displayName)).append("\n");
     sb.append("    billingDetails: ").append(toIndentedString(billingDetails)).append("\n");
+    sb.append("    displayName: ").append(toIndentedString(displayName)).append("\n");
+    sb.append("    externalIdentifier: ").append(toIndentedString(externalIdentifier)).append("\n");
     sb.append("}");
     return sb.toString();
   }

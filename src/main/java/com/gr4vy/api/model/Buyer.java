@@ -85,18 +85,6 @@ public class Buyer {
   @SerializedName(SERIALIZED_NAME_ID)
   private UUID id;
 
-  public static final String SERIALIZED_NAME_MERCHANT_ACCOUNT_ID = "merchant_account_id";
-  @SerializedName(SERIALIZED_NAME_MERCHANT_ACCOUNT_ID)
-  private String merchantAccountId;
-
-  public static final String SERIALIZED_NAME_EXTERNAL_IDENTIFIER = "external_identifier";
-  @SerializedName(SERIALIZED_NAME_EXTERNAL_IDENTIFIER)
-  private String externalIdentifier;
-
-  public static final String SERIALIZED_NAME_DISPLAY_NAME = "display_name";
-  @SerializedName(SERIALIZED_NAME_DISPLAY_NAME)
-  private String displayName;
-
   public static final String SERIALIZED_NAME_BILLING_DETAILS = "billing_details";
   @SerializedName(SERIALIZED_NAME_BILLING_DETAILS)
   private BillingDetails billingDetails;
@@ -104,6 +92,18 @@ public class Buyer {
   public static final String SERIALIZED_NAME_CREATED_AT = "created_at";
   @SerializedName(SERIALIZED_NAME_CREATED_AT)
   private String createdAt;
+
+  public static final String SERIALIZED_NAME_DISPLAY_NAME = "display_name";
+  @SerializedName(SERIALIZED_NAME_DISPLAY_NAME)
+  private String displayName;
+
+  public static final String SERIALIZED_NAME_EXTERNAL_IDENTIFIER = "external_identifier";
+  @SerializedName(SERIALIZED_NAME_EXTERNAL_IDENTIFIER)
+  private String externalIdentifier;
+
+  public static final String SERIALIZED_NAME_MERCHANT_ACCOUNT_ID = "merchant_account_id";
+  @SerializedName(SERIALIZED_NAME_MERCHANT_ACCOUNT_ID)
+  private String merchantAccountId;
 
   public static final String SERIALIZED_NAME_UPDATED_AT = "updated_at";
   @SerializedName(SERIALIZED_NAME_UPDATED_AT)
@@ -156,75 +156,6 @@ public class Buyer {
   }
 
 
-  public Buyer merchantAccountId(String merchantAccountId) {
-    
-    this.merchantAccountId = merchantAccountId;
-    return this;
-  }
-
-   /**
-   * The unique ID for a merchant account.
-   * @return merchantAccountId
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(example = "default", value = "The unique ID for a merchant account.")
-
-  public String getMerchantAccountId() {
-    return merchantAccountId;
-  }
-
-
-  public void setMerchantAccountId(String merchantAccountId) {
-    this.merchantAccountId = merchantAccountId;
-  }
-
-
-  public Buyer externalIdentifier(String externalIdentifier) {
-    
-    this.externalIdentifier = externalIdentifier;
-    return this;
-  }
-
-   /**
-   * An external identifier that can be used to match the buyer against your own records.
-   * @return externalIdentifier
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(example = "user-789123", value = "An external identifier that can be used to match the buyer against your own records.")
-
-  public String getExternalIdentifier() {
-    return externalIdentifier;
-  }
-
-
-  public void setExternalIdentifier(String externalIdentifier) {
-    this.externalIdentifier = externalIdentifier;
-  }
-
-
-  public Buyer displayName(String displayName) {
-    
-    this.displayName = displayName;
-    return this;
-  }
-
-   /**
-   * A unique name for this buyer which is used in the Gr4vy admin panel to give a buyer a human readable name.
-   * @return displayName
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(example = "John L.", value = "A unique name for this buyer which is used in the Gr4vy admin panel to give a buyer a human readable name.")
-
-  public String getDisplayName() {
-    return displayName;
-  }
-
-
-  public void setDisplayName(String displayName) {
-    this.displayName = displayName;
-  }
-
-
   public Buyer billingDetails(BillingDetails billingDetails) {
     
     this.billingDetails = billingDetails;
@@ -271,6 +202,75 @@ public class Buyer {
   }
 
 
+  public Buyer displayName(String displayName) {
+    
+    this.displayName = displayName;
+    return this;
+  }
+
+   /**
+   * A unique name for this buyer which is used in the Gr4vy admin panel to give a buyer a human readable name.
+   * @return displayName
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "John L.", value = "A unique name for this buyer which is used in the Gr4vy admin panel to give a buyer a human readable name.")
+
+  public String getDisplayName() {
+    return displayName;
+  }
+
+
+  public void setDisplayName(String displayName) {
+    this.displayName = displayName;
+  }
+
+
+  public Buyer externalIdentifier(String externalIdentifier) {
+    
+    this.externalIdentifier = externalIdentifier;
+    return this;
+  }
+
+   /**
+   * An external identifier that can be used to match the buyer against your own records.
+   * @return externalIdentifier
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "user-789123", value = "An external identifier that can be used to match the buyer against your own records.")
+
+  public String getExternalIdentifier() {
+    return externalIdentifier;
+  }
+
+
+  public void setExternalIdentifier(String externalIdentifier) {
+    this.externalIdentifier = externalIdentifier;
+  }
+
+
+  public Buyer merchantAccountId(String merchantAccountId) {
+    
+    this.merchantAccountId = merchantAccountId;
+    return this;
+  }
+
+   /**
+   * The unique ID for a merchant account.
+   * @return merchantAccountId
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "default", value = "The unique ID for a merchant account.")
+
+  public String getMerchantAccountId() {
+    return merchantAccountId;
+  }
+
+
+  public void setMerchantAccountId(String merchantAccountId) {
+    this.merchantAccountId = merchantAccountId;
+  }
+
+
   public Buyer updatedAt(String updatedAt) {
     
     this.updatedAt = updatedAt;
@@ -305,17 +305,17 @@ public class Buyer {
     Buyer buyer = (Buyer) o;
     return Objects.equals(this.type, buyer.type) &&
         Objects.equals(this.id, buyer.id) &&
-        Objects.equals(this.merchantAccountId, buyer.merchantAccountId) &&
-        Objects.equals(this.externalIdentifier, buyer.externalIdentifier) &&
-        Objects.equals(this.displayName, buyer.displayName) &&
         Objects.equals(this.billingDetails, buyer.billingDetails) &&
         Objects.equals(this.createdAt, buyer.createdAt) &&
+        Objects.equals(this.displayName, buyer.displayName) &&
+        Objects.equals(this.externalIdentifier, buyer.externalIdentifier) &&
+        Objects.equals(this.merchantAccountId, buyer.merchantAccountId) &&
         Objects.equals(this.updatedAt, buyer.updatedAt);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(type, id, merchantAccountId, externalIdentifier, displayName, billingDetails, createdAt, updatedAt);
+    return Objects.hash(type, id, billingDetails, createdAt, displayName, externalIdentifier, merchantAccountId, updatedAt);
   }
 
   @Override
@@ -324,11 +324,11 @@ public class Buyer {
     sb.append("class Buyer {\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    merchantAccountId: ").append(toIndentedString(merchantAccountId)).append("\n");
-    sb.append("    externalIdentifier: ").append(toIndentedString(externalIdentifier)).append("\n");
-    sb.append("    displayName: ").append(toIndentedString(displayName)).append("\n");
     sb.append("    billingDetails: ").append(toIndentedString(billingDetails)).append("\n");
     sb.append("    createdAt: ").append(toIndentedString(createdAt)).append("\n");
+    sb.append("    displayName: ").append(toIndentedString(displayName)).append("\n");
+    sb.append("    externalIdentifier: ").append(toIndentedString(externalIdentifier)).append("\n");
+    sb.append("    merchantAccountId: ").append(toIndentedString(merchantAccountId)).append("\n");
     sb.append("    updatedAt: ").append(toIndentedString(updatedAt)).append("\n");
     sb.append("}");
     return sb.toString();

@@ -189,12 +189,12 @@ public class CartItem {
   }
 
    /**
-   * The amount for an individual item represented as a monetary amount in the smallest currency unit for the given currency, for example &#x60;1299&#x60; USD cents represents &#x60;$12.99&#x60;.
+   * The amount for an individual item represented as a monetary amount in the smallest currency unit for the given currency, for example &#x60;1299&#x60; USD cents represents &#x60;$12.99&#x60;. The amount sent through to the payment processor as unitary amount will be calculated to include the discount and tax values sent as part of this cart item.
    * minimum: 0
    * maximum: 99999999
    * @return unitAmount
   **/
-  @ApiModelProperty(example = "37999", required = true, value = "The amount for an individual item represented as a monetary amount in the smallest currency unit for the given currency, for example `1299` USD cents represents `$12.99`.")
+  @ApiModelProperty(example = "37999", required = true, value = "The amount for an individual item represented as a monetary amount in the smallest currency unit for the given currency, for example `1299` USD cents represents `$12.99`. The amount sent through to the payment processor as unitary amount will be calculated to include the discount and tax values sent as part of this cart item.")
 
   public Integer getUnitAmount() {
     return unitAmount;

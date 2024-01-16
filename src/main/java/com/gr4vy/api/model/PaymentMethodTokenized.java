@@ -23,6 +23,8 @@ import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 
@@ -267,7 +269,17 @@ public class PaymentMethodTokenized {
    */
   @JsonAdapter(SchemeEnum.Adapter.class)
   public enum SchemeEnum {
+    ACCEL("accel"),
+    
     AMEX("amex"),
+    
+    BANCONTACT("bancontact"),
+    
+    CARTE_BANCAIRE("carte-bancaire"),
+    
+    CIRRUS("cirrus"),
+    
+    CULIANCE("culiance"),
     
     DANKORT("dankort"),
     
@@ -279,15 +291,23 @@ public class PaymentMethodTokenized {
     
     ELO("elo"),
     
+    HIPERCARD("hipercard"),
+    
     JCB("jcb"),
     
     MAESTRO("maestro"),
     
     MASTERCARD("mastercard"),
     
+    NYCE("nyce"),
+    
     OTHER("other"),
     
+    PULSE("pulse"),
+    
     RUPAY("rupay"),
+    
+    STAR("star"),
     
     UNIONPAY("unionpay"),
     
@@ -334,6 +354,97 @@ public class PaymentMethodTokenized {
   public static final String SERIALIZED_NAME_SCHEME = "scheme";
   @SerializedName(SERIALIZED_NAME_SCHEME)
   private SchemeEnum scheme;
+
+  /**
+   * Gets or Sets additionalSchemes
+   */
+  @JsonAdapter(AdditionalSchemesEnum.Adapter.class)
+  public enum AdditionalSchemesEnum {
+    ACCEL("accel"),
+    
+    AMEX("amex"),
+    
+    BANCONTACT("bancontact"),
+    
+    CARTE_BANCAIRE("carte-bancaire"),
+    
+    CIRRUS("cirrus"),
+    
+    CULIANCE("culiance"),
+    
+    DANKORT("dankort"),
+    
+    DINERS_CLUB("diners-club"),
+    
+    DISCOVER("discover"),
+    
+    EFTPOS_AUSTRALIA("eftpos-australia"),
+    
+    ELO("elo"),
+    
+    HIPERCARD("hipercard"),
+    
+    JCB("jcb"),
+    
+    MAESTRO("maestro"),
+    
+    MASTERCARD("mastercard"),
+    
+    NYCE("nyce"),
+    
+    OTHER("other"),
+    
+    PULSE("pulse"),
+    
+    RUPAY("rupay"),
+    
+    STAR("star"),
+    
+    UNIONPAY("unionpay"),
+    
+    VISA("visa");
+
+    private String value;
+
+    AdditionalSchemesEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static AdditionalSchemesEnum fromValue(String value) {
+      for (AdditionalSchemesEnum b : AdditionalSchemesEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+
+    public static class Adapter extends TypeAdapter<AdditionalSchemesEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final AdditionalSchemesEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public AdditionalSchemesEnum read(final JsonReader jsonReader) throws IOException {
+        String value =  jsonReader.nextString();
+        return AdditionalSchemesEnum.fromValue(value);
+      }
+    }
+  }
+
+  public static final String SERIALIZED_NAME_ADDITIONAL_SCHEMES = "additional_schemes";
+  @SerializedName(SERIALIZED_NAME_ADDITIONAL_SCHEMES)
+  private List<AdditionalSchemesEnum> additionalSchemes = null;
 
   public static final String SERIALIZED_NAME_EXPIRATION_DATE = "expiration_date";
   @SerializedName(SERIALIZED_NAME_EXPIRATION_DATE)
@@ -549,6 +660,37 @@ public class PaymentMethodTokenized {
   }
 
 
+  public PaymentMethodTokenized additionalSchemes(List<AdditionalSchemesEnum> additionalSchemes) {
+    
+    this.additionalSchemes = additionalSchemes;
+    return this;
+  }
+
+  public PaymentMethodTokenized addAdditionalSchemesItem(AdditionalSchemesEnum additionalSchemesItem) {
+    if (this.additionalSchemes == null) {
+      this.additionalSchemes = new ArrayList<AdditionalSchemesEnum>();
+    }
+    this.additionalSchemes.add(additionalSchemesItem);
+    return this;
+  }
+
+   /**
+   * Additional schemes of the card. Only applies to card payment methods.
+   * @return additionalSchemes
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Additional schemes of the card. Only applies to card payment methods.")
+
+  public List<AdditionalSchemesEnum> getAdditionalSchemes() {
+    return additionalSchemes;
+  }
+
+
+  public void setAdditionalSchemes(List<AdditionalSchemesEnum> additionalSchemes) {
+    this.additionalSchemes = additionalSchemes;
+  }
+
+
   public PaymentMethodTokenized expirationDate(String expirationDate) {
     
     this.expirationDate = expirationDate;
@@ -671,11 +813,11 @@ public class PaymentMethodTokenized {
   }
 
    /**
-   * The date and time when this card was last replaced.  When the Account Updater determines that new card details are available (e.g. when it&#39;s about to expire), existing details are not changed immediately. The actual replacement occurs when a transaction using this payment method is declined with any of the following codes:  * &#x60;canceled_payment_method&#x60; * &#x60;expired_payment_method&#x60; * &#x60;unavailable_payment_method&#x60; * &#x60;unknown_payment_method&#x60;  When the replacement is applied, this field is updated. For non-card payment methods, the value of this field is always set to &#x60;null&#x60;.
+   * The date and time when this card was last replaced.  When the Account Updater determines that new card details are available, existing details are not changed immediately. There are three scenarios in which the actual replacement occurs:  1. When this card has expired. 2. When only the expiration date changed. 3. When a transaction using this card is declined with any of the following codes:     * &#x60;canceled_payment_method&#x60;     * &#x60;expired_payment_method&#x60;     * &#x60;unavailable_payment_method&#x60;     * &#x60;unknown_payment_method&#x60;  When the replacement is applied, this field is updated. For non-card payment methods, the value of this field is always set to &#x60;null&#x60;.
    * @return lastReplacedAt
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "2023-07-26T19:23Z", value = "The date and time when this card was last replaced.  When the Account Updater determines that new card details are available (e.g. when it's about to expire), existing details are not changed immediately. The actual replacement occurs when a transaction using this payment method is declined with any of the following codes:  * `canceled_payment_method` * `expired_payment_method` * `unavailable_payment_method` * `unknown_payment_method`  When the replacement is applied, this field is updated. For non-card payment methods, the value of this field is always set to `null`.")
+  @ApiModelProperty(example = "2023-07-26T19:23Z", value = "The date and time when this card was last replaced.  When the Account Updater determines that new card details are available, existing details are not changed immediately. There are three scenarios in which the actual replacement occurs:  1. When this card has expired. 2. When only the expiration date changed. 3. When a transaction using this card is declined with any of the following codes:     * `canceled_payment_method`     * `expired_payment_method`     * `unavailable_payment_method`     * `unknown_payment_method`  When the replacement is applied, this field is updated. For non-card payment methods, the value of this field is always set to `null`.")
 
   public String getLastReplacedAt() {
     return lastReplacedAt;
@@ -694,11 +836,11 @@ public class PaymentMethodTokenized {
   }
 
    /**
-   * Whether this card has a pending replacement that hasn&#39;t been applied yet.  When the Account Updater determines that new card details are available (e.g. when it&#39;s about to expire), existing details are not changed immediately, but this field is set to &#x60;true&#x60;. The actual replacement occurs when a transaction using this payment method is declined with any of the following codes:  * &#x60;canceled_payment_method&#x60; * &#x60;expired_payment_method&#x60; * &#x60;unavailable_payment_method&#x60; * &#x60;unknown_payment_method&#x60;  When the replacement is applied, this field is set to &#x60;false&#x60;. For non-card payment methods, the value of this field is always set to &#x60;false&#x60;.
+   * Whether this card has a pending replacement that hasn&#39;t been applied yet.  When the Account Updater determines that new card details are available, existing details are not changed immediately, but this field is set to &#x60;true&#x60;. There are three scenarios in which the actual replacement occurs:  1. When this card has expired. 2. When only the expiration date changed. 3. When a transaction using this card is declined with any of the following codes:     * &#x60;canceled_payment_method&#x60;     * &#x60;expired_payment_method&#x60;     * &#x60;unavailable_payment_method&#x60;     * &#x60;unknown_payment_method&#x60;  When the replacement is applied, this field is set to &#x60;false&#x60;. For non-card payment methods, the value of this field is always set to &#x60;false&#x60;.
    * @return hasReplacement
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "false", value = "Whether this card has a pending replacement that hasn't been applied yet.  When the Account Updater determines that new card details are available (e.g. when it's about to expire), existing details are not changed immediately, but this field is set to `true`. The actual replacement occurs when a transaction using this payment method is declined with any of the following codes:  * `canceled_payment_method` * `expired_payment_method` * `unavailable_payment_method` * `unknown_payment_method`  When the replacement is applied, this field is set to `false`. For non-card payment methods, the value of this field is always set to `false`.")
+  @ApiModelProperty(example = "false", value = "Whether this card has a pending replacement that hasn't been applied yet.  When the Account Updater determines that new card details are available, existing details are not changed immediately, but this field is set to `true`. There are three scenarios in which the actual replacement occurs:  1. When this card has expired. 2. When only the expiration date changed. 3. When a transaction using this card is declined with any of the following codes:     * `canceled_payment_method`     * `expired_payment_method`     * `unavailable_payment_method`     * `unknown_payment_method`  When the replacement is applied, this field is set to `false`. For non-card payment methods, the value of this field is always set to `false`.")
 
   public Boolean getHasReplacement() {
     return hasReplacement;
@@ -725,6 +867,7 @@ public class PaymentMethodTokenized {
         Objects.equals(this.method, paymentMethodTokenized.method) &&
         Objects.equals(this.label, paymentMethodTokenized.label) &&
         Objects.equals(this.scheme, paymentMethodTokenized.scheme) &&
+        Objects.equals(this.additionalSchemes, paymentMethodTokenized.additionalSchemes) &&
         Objects.equals(this.expirationDate, paymentMethodTokenized.expirationDate) &&
         Objects.equals(this.approvalTarget, paymentMethodTokenized.approvalTarget) &&
         Objects.equals(this.approvalUrl, paymentMethodTokenized.approvalUrl) &&
@@ -736,7 +879,7 @@ public class PaymentMethodTokenized {
 
   @Override
   public int hashCode() {
-    return Objects.hash(type, id, merchantAccountId, method, label, scheme, expirationDate, approvalTarget, approvalUrl, currency, country, lastReplacedAt, hasReplacement);
+    return Objects.hash(type, id, merchantAccountId, method, label, scheme, additionalSchemes, expirationDate, approvalTarget, approvalUrl, currency, country, lastReplacedAt, hasReplacement);
   }
 
   @Override
@@ -749,6 +892,7 @@ public class PaymentMethodTokenized {
     sb.append("    method: ").append(toIndentedString(method)).append("\n");
     sb.append("    label: ").append(toIndentedString(label)).append("\n");
     sb.append("    scheme: ").append(toIndentedString(scheme)).append("\n");
+    sb.append("    additionalSchemes: ").append(toIndentedString(additionalSchemes)).append("\n");
     sb.append("    expirationDate: ").append(toIndentedString(expirationDate)).append("\n");
     sb.append("    approvalTarget: ").append(toIndentedString(approvalTarget)).append("\n");
     sb.append("    approvalUrl: ").append(toIndentedString(approvalUrl)).append("\n");
