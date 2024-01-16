@@ -83,9 +83,9 @@ public class PaymentServiceSnapshot {
   @SerializedName(SERIALIZED_NAME_ID)
   private String id;
 
-  public static final String SERIALIZED_NAME_PAYMENT_SERVICE_DEFINITION_ID = "payment_service_definition_id";
-  @SerializedName(SERIALIZED_NAME_PAYMENT_SERVICE_DEFINITION_ID)
-  private String paymentServiceDefinitionId;
+  public static final String SERIALIZED_NAME_DISPLAY_NAME = "display_name";
+  @SerializedName(SERIALIZED_NAME_DISPLAY_NAME)
+  private String displayName;
 
   /**
    * The payment method that this services handles.
@@ -256,9 +256,9 @@ public class PaymentServiceSnapshot {
   @SerializedName(SERIALIZED_NAME_METHOD)
   private MethodEnum method;
 
-  public static final String SERIALIZED_NAME_DISPLAY_NAME = "display_name";
-  @SerializedName(SERIALIZED_NAME_DISPLAY_NAME)
-  private String displayName;
+  public static final String SERIALIZED_NAME_PAYMENT_SERVICE_DEFINITION_ID = "payment_service_definition_id";
+  @SerializedName(SERIALIZED_NAME_PAYMENT_SERVICE_DEFINITION_ID)
+  private String paymentServiceDefinitionId;
 
 
   public PaymentServiceSnapshot type(TypeEnum type) {
@@ -307,26 +307,26 @@ public class PaymentServiceSnapshot {
   }
 
 
-  public PaymentServiceSnapshot paymentServiceDefinitionId(String paymentServiceDefinitionId) {
+  public PaymentServiceSnapshot displayName(String displayName) {
     
-    this.paymentServiceDefinitionId = paymentServiceDefinitionId;
+    this.displayName = displayName;
     return this;
   }
 
    /**
-   * The ID of the payment service definition used to create this service. 
-   * @return paymentServiceDefinitionId
+   * The custom name set for this service.
+   * @return displayName
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "stripe-card", value = "The ID of the payment service definition used to create this service. ")
+  @ApiModelProperty(example = "Stripe (Main)", value = "The custom name set for this service.")
 
-  public String getPaymentServiceDefinitionId() {
-    return paymentServiceDefinitionId;
+  public String getDisplayName() {
+    return displayName;
   }
 
 
-  public void setPaymentServiceDefinitionId(String paymentServiceDefinitionId) {
-    this.paymentServiceDefinitionId = paymentServiceDefinitionId;
+  public void setDisplayName(String displayName) {
+    this.displayName = displayName;
   }
 
 
@@ -353,26 +353,26 @@ public class PaymentServiceSnapshot {
   }
 
 
-  public PaymentServiceSnapshot displayName(String displayName) {
+  public PaymentServiceSnapshot paymentServiceDefinitionId(String paymentServiceDefinitionId) {
     
-    this.displayName = displayName;
+    this.paymentServiceDefinitionId = paymentServiceDefinitionId;
     return this;
   }
 
    /**
-   * The custom name set for this service.
-   * @return displayName
+   * The ID of the payment service definition used to create this service. 
+   * @return paymentServiceDefinitionId
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "Stripe (Main)", value = "The custom name set for this service.")
+  @ApiModelProperty(example = "stripe-card", value = "The ID of the payment service definition used to create this service. ")
 
-  public String getDisplayName() {
-    return displayName;
+  public String getPaymentServiceDefinitionId() {
+    return paymentServiceDefinitionId;
   }
 
 
-  public void setDisplayName(String displayName) {
-    this.displayName = displayName;
+  public void setPaymentServiceDefinitionId(String paymentServiceDefinitionId) {
+    this.paymentServiceDefinitionId = paymentServiceDefinitionId;
   }
 
 
@@ -387,14 +387,14 @@ public class PaymentServiceSnapshot {
     PaymentServiceSnapshot paymentServiceSnapshot = (PaymentServiceSnapshot) o;
     return Objects.equals(this.type, paymentServiceSnapshot.type) &&
         Objects.equals(this.id, paymentServiceSnapshot.id) &&
-        Objects.equals(this.paymentServiceDefinitionId, paymentServiceSnapshot.paymentServiceDefinitionId) &&
+        Objects.equals(this.displayName, paymentServiceSnapshot.displayName) &&
         Objects.equals(this.method, paymentServiceSnapshot.method) &&
-        Objects.equals(this.displayName, paymentServiceSnapshot.displayName);
+        Objects.equals(this.paymentServiceDefinitionId, paymentServiceSnapshot.paymentServiceDefinitionId);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(type, id, paymentServiceDefinitionId, method, displayName);
+    return Objects.hash(type, id, displayName, method, paymentServiceDefinitionId);
   }
 
   @Override
@@ -403,9 +403,9 @@ public class PaymentServiceSnapshot {
     sb.append("class PaymentServiceSnapshot {\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    paymentServiceDefinitionId: ").append(toIndentedString(paymentServiceDefinitionId)).append("\n");
-    sb.append("    method: ").append(toIndentedString(method)).append("\n");
     sb.append("    displayName: ").append(toIndentedString(displayName)).append("\n");
+    sb.append("    method: ").append(toIndentedString(method)).append("\n");
+    sb.append("    paymentServiceDefinitionId: ").append(toIndentedString(paymentServiceDefinitionId)).append("\n");
     sb.append("}");
     return sb.toString();
   }

@@ -22,6 +22,8 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import com.gr4vy.api.model.BuyerSnapshot;
 import com.gr4vy.api.model.CartItem;
+import com.gr4vy.api.model.GiftCardRedemption;
+import com.gr4vy.api.model.GiftCardServiceSnapshot;
 import com.gr4vy.api.model.PaymentMethodSnapshot;
 import com.gr4vy.api.model.PaymentServiceSnapshot;
 import com.gr4vy.api.model.ShippingDetail;
@@ -96,270 +98,21 @@ public class Transaction {
   @SerializedName(SERIALIZED_NAME_ID)
   private UUID id;
 
-  public static final String SERIALIZED_NAME_RECONCILIATION_ID = "reconciliation_id";
-  @SerializedName(SERIALIZED_NAME_RECONCILIATION_ID)
-  private String reconciliationId;
-
-  public static final String SERIALIZED_NAME_MERCHANT_ACCOUNT_ID = "merchant_account_id";
-  @SerializedName(SERIALIZED_NAME_MERCHANT_ACCOUNT_ID)
-  private String merchantAccountId;
-
-  /**
-   * The status of the transaction. The status may change over time as asynchronous processing events occur.  Please note that the possible statuses returned will depend on the operation performed. For example, a captured transaction will never move to a &#x60;authorization_voided&#x60; status.
-   */
-  @JsonAdapter(StatusEnum.Adapter.class)
-  public enum StatusEnum {
-    PROCESSING("processing"),
-    
-    BUYER_APPROVAL_PENDING("buyer_approval_pending"),
-    
-    AUTHORIZATION_SUCCEEDED("authorization_succeeded"),
-    
-    AUTHORIZATION_FAILED("authorization_failed"),
-    
-    AUTHORIZATION_DECLINED("authorization_declined"),
-    
-    CAPTURE_PENDING("capture_pending"),
-    
-    CAPTURE_SUCCEEDED("capture_succeeded"),
-    
-    AUTHORIZATION_VOID_PENDING("authorization_void_pending"),
-    
-    AUTHORIZATION_VOIDED("authorization_voided");
-
-    private String value;
-
-    StatusEnum(String value) {
-      this.value = value;
-    }
-
-    public String getValue() {
-      return value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    public static StatusEnum fromValue(String value) {
-      for (StatusEnum b : StatusEnum.values()) {
-        if (b.value.equals(value)) {
-          return b;
-        }
-      }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
-    }
-
-    public static class Adapter extends TypeAdapter<StatusEnum> {
-      @Override
-      public void write(final JsonWriter jsonWriter, final StatusEnum enumeration) throws IOException {
-        jsonWriter.value(enumeration.getValue());
-      }
-
-      @Override
-      public StatusEnum read(final JsonReader jsonReader) throws IOException {
-        String value =  jsonReader.nextString();
-        return StatusEnum.fromValue(value);
-      }
-    }
-  }
-
-  public static final String SERIALIZED_NAME_STATUS = "status";
-  @SerializedName(SERIALIZED_NAME_STATUS)
-  private StatusEnum status;
-
-  /**
-   * The original &#x60;intent&#x60; used when the transaction was [created](#operation/authorize-new-transaction).
-   */
-  @JsonAdapter(IntentEnum.Adapter.class)
-  public enum IntentEnum {
-    AUTHORIZE("authorize"),
-    
-    CAPTURE("capture");
-
-    private String value;
-
-    IntentEnum(String value) {
-      this.value = value;
-    }
-
-    public String getValue() {
-      return value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    public static IntentEnum fromValue(String value) {
-      for (IntentEnum b : IntentEnum.values()) {
-        if (b.value.equals(value)) {
-          return b;
-        }
-      }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
-    }
-
-    public static class Adapter extends TypeAdapter<IntentEnum> {
-      @Override
-      public void write(final JsonWriter jsonWriter, final IntentEnum enumeration) throws IOException {
-        jsonWriter.value(enumeration.getValue());
-      }
-
-      @Override
-      public IntentEnum read(final JsonReader jsonReader) throws IOException {
-        String value =  jsonReader.nextString();
-        return IntentEnum.fromValue(value);
-      }
-    }
-  }
-
-  public static final String SERIALIZED_NAME_INTENT = "intent";
-  @SerializedName(SERIALIZED_NAME_INTENT)
-  private IntentEnum intent;
-
   public static final String SERIALIZED_NAME_AMOUNT = "amount";
   @SerializedName(SERIALIZED_NAME_AMOUNT)
   private Integer amount;
 
-  public static final String SERIALIZED_NAME_CAPTURED_AMOUNT = "captured_amount";
-  @SerializedName(SERIALIZED_NAME_CAPTURED_AMOUNT)
-  private Integer capturedAmount;
-
-  public static final String SERIALIZED_NAME_REFUNDED_AMOUNT = "refunded_amount";
-  @SerializedName(SERIALIZED_NAME_REFUNDED_AMOUNT)
-  private Integer refundedAmount;
-
-  public static final String SERIALIZED_NAME_CURRENCY = "currency";
-  @SerializedName(SERIALIZED_NAME_CURRENCY)
-  private String currency;
-
-  public static final String SERIALIZED_NAME_COUNTRY = "country";
-  @SerializedName(SERIALIZED_NAME_COUNTRY)
-  private String country;
-
-  public static final String SERIALIZED_NAME_PAYMENT_METHOD = "payment_method";
-  @SerializedName(SERIALIZED_NAME_PAYMENT_METHOD)
-  private PaymentMethodSnapshot paymentMethod;
-
-  public static final String SERIALIZED_NAME_BUYER = "buyer";
-  @SerializedName(SERIALIZED_NAME_BUYER)
-  private BuyerSnapshot buyer;
-
-  public static final String SERIALIZED_NAME_CREATED_AT = "created_at";
-  @SerializedName(SERIALIZED_NAME_CREATED_AT)
-  private String createdAt;
-
-  public static final String SERIALIZED_NAME_EXTERNAL_IDENTIFIER = "external_identifier";
-  @SerializedName(SERIALIZED_NAME_EXTERNAL_IDENTIFIER)
-  private String externalIdentifier;
-
-  public static final String SERIALIZED_NAME_UPDATED_AT = "updated_at";
-  @SerializedName(SERIALIZED_NAME_UPDATED_AT)
-  private String updatedAt;
-
-  public static final String SERIALIZED_NAME_PAYMENT_SERVICE = "payment_service";
-  @SerializedName(SERIALIZED_NAME_PAYMENT_SERVICE)
-  private PaymentServiceSnapshot paymentService;
-
-  public static final String SERIALIZED_NAME_PENDING_REVIEW = "pending_review";
-  @SerializedName(SERIALIZED_NAME_PENDING_REVIEW)
-  private Boolean pendingReview;
-
-  public static final String SERIALIZED_NAME_MERCHANT_INITIATED = "merchant_initiated";
-  @SerializedName(SERIALIZED_NAME_MERCHANT_INITIATED)
-  private Boolean merchantInitiated = false;
-
-  /**
-   * Gets or Sets paymentSource
-   */
-  @JsonAdapter(PaymentSourceEnum.Adapter.class)
-  public enum PaymentSourceEnum {
-    ECOMMERCE("ecommerce"),
-    
-    MOTO("moto"),
-    
-    RECURRING("recurring"),
-    
-    INSTALLMENT("installment"),
-    
-    CARD_ON_FILE("card_on_file");
-
-    private String value;
-
-    PaymentSourceEnum(String value) {
-      this.value = value;
-    }
-
-    public String getValue() {
-      return value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    public static PaymentSourceEnum fromValue(String value) {
-      for (PaymentSourceEnum b : PaymentSourceEnum.values()) {
-        if (b.value.equals(value)) {
-          return b;
-        }
-      }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
-    }
-
-    public static class Adapter extends TypeAdapter<PaymentSourceEnum> {
-      @Override
-      public void write(final JsonWriter jsonWriter, final PaymentSourceEnum enumeration) throws IOException {
-        jsonWriter.value(enumeration.getValue());
-      }
-
-      @Override
-      public PaymentSourceEnum read(final JsonReader jsonReader) throws IOException {
-        String value =  jsonReader.nextString();
-        return PaymentSourceEnum.fromValue(value);
-      }
-    }
-  }
-
-  public static final String SERIALIZED_NAME_PAYMENT_SOURCE = "payment_source";
-  @SerializedName(SERIALIZED_NAME_PAYMENT_SOURCE)
-  private PaymentSourceEnum paymentSource;
-
-  public static final String SERIALIZED_NAME_IS_SUBSEQUENT_PAYMENT = "is_subsequent_payment";
-  @SerializedName(SERIALIZED_NAME_IS_SUBSEQUENT_PAYMENT)
-  private Boolean isSubsequentPayment = false;
-
-  public static final String SERIALIZED_NAME_STATEMENT_DESCRIPTOR = "statement_descriptor";
-  @SerializedName(SERIALIZED_NAME_STATEMENT_DESCRIPTOR)
-  private StatementDescriptor statementDescriptor;
-
-  public static final String SERIALIZED_NAME_CART_ITEMS = "cart_items";
-  @SerializedName(SERIALIZED_NAME_CART_ITEMS)
-  private List<CartItem> cartItems = null;
-
-  public static final String SERIALIZED_NAME_SCHEME_TRANSACTION_ID = "scheme_transaction_id";
-  @SerializedName(SERIALIZED_NAME_SCHEME_TRANSACTION_ID)
-  private String schemeTransactionId = "null";
-
-  public static final String SERIALIZED_NAME_RAW_RESPONSE_CODE = "raw_response_code";
-  @SerializedName(SERIALIZED_NAME_RAW_RESPONSE_CODE)
-  private String rawResponseCode;
-
-  public static final String SERIALIZED_NAME_RAW_RESPONSE_DESCRIPTION = "raw_response_description";
-  @SerializedName(SERIALIZED_NAME_RAW_RESPONSE_DESCRIPTION)
-  private String rawResponseDescription;
-
-  public static final String SERIALIZED_NAME_ERROR_CODE = "error_code";
-  @SerializedName(SERIALIZED_NAME_ERROR_CODE)
-  private String errorCode;
-
   public static final String SERIALIZED_NAME_AUTH_RESPONSE_CODE = "auth_response_code";
   @SerializedName(SERIALIZED_NAME_AUTH_RESPONSE_CODE)
   private String authResponseCode;
+
+  public static final String SERIALIZED_NAME_AUTHORIZED_AMOUNT = "authorized_amount";
+  @SerializedName(SERIALIZED_NAME_AUTHORIZED_AMOUNT)
+  private Integer authorizedAmount;
+
+  public static final String SERIALIZED_NAME_AUTHORIZED_AT = "authorized_at";
+  @SerializedName(SERIALIZED_NAME_AUTHORIZED_AT)
+  private String authorizedAt;
 
   /**
    * The response code received from the payment service for the Address Verification Check (AVS). This code is mapped to a standardized Gr4vy AVS response code.  - &#x60;no_match&#x60; - neither address or postal code match - &#x60;match&#x60; - both address and postal code match - &#x60;partial_match_address&#x60; - address matches but postal code does not - &#x60;partial_match_postcode&#x60; - postal code matches but address does not - &#x60;unavailable &#x60; - AVS is unavailable for card/country  The value of this field can be &#x60;null&#x60; if the payment service did not provide a response.
@@ -418,6 +171,38 @@ public class Transaction {
   @SerializedName(SERIALIZED_NAME_AVS_RESPONSE_CODE)
   private AvsResponseCodeEnum avsResponseCode;
 
+  public static final String SERIALIZED_NAME_BUYER = "buyer";
+  @SerializedName(SERIALIZED_NAME_BUYER)
+  private BuyerSnapshot buyer;
+
+  public static final String SERIALIZED_NAME_CAPTURED_AMOUNT = "captured_amount";
+  @SerializedName(SERIALIZED_NAME_CAPTURED_AMOUNT)
+  private Integer capturedAmount;
+
+  public static final String SERIALIZED_NAME_CAPTURED_AT = "captured_at";
+  @SerializedName(SERIALIZED_NAME_CAPTURED_AT)
+  private String capturedAt;
+
+  public static final String SERIALIZED_NAME_CART_ITEMS = "cart_items";
+  @SerializedName(SERIALIZED_NAME_CART_ITEMS)
+  private List<CartItem> cartItems = null;
+
+  public static final String SERIALIZED_NAME_CHECKOUT_SESSION_ID = "checkout_session_id";
+  @SerializedName(SERIALIZED_NAME_CHECKOUT_SESSION_ID)
+  private UUID checkoutSessionId;
+
+  public static final String SERIALIZED_NAME_COUNTRY = "country";
+  @SerializedName(SERIALIZED_NAME_COUNTRY)
+  private String country;
+
+  public static final String SERIALIZED_NAME_CREATED_AT = "created_at";
+  @SerializedName(SERIALIZED_NAME_CREATED_AT)
+  private String createdAt;
+
+  public static final String SERIALIZED_NAME_CURRENCY = "currency";
+  @SerializedName(SERIALIZED_NAME_CURRENCY)
+  private String currency;
+
   /**
    * The response code received from the payment service for the Card Verification Value (CVV). This code is mapped to a standardized Gr4vy CVV response code.  - &#x60;no_match&#x60; - the CVV does not match the expected value - &#x60;match&#x60; - the CVV matches the expected value - &#x60;unavailable &#x60; - CVV check unavailable for card our country - &#x60;not_provided &#x60; - CVV not provided  The value of this field can be &#x60;null&#x60; if the payment service did not provide a response.
    */
@@ -472,6 +257,142 @@ public class Transaction {
   public static final String SERIALIZED_NAME_CVV_RESPONSE_CODE = "cvv_response_code";
   @SerializedName(SERIALIZED_NAME_CVV_RESPONSE_CODE)
   private CvvResponseCodeEnum cvvResponseCode;
+
+  public static final String SERIALIZED_NAME_ERROR_CODE = "error_code";
+  @SerializedName(SERIALIZED_NAME_ERROR_CODE)
+  private String errorCode;
+
+  public static final String SERIALIZED_NAME_EXTERNAL_IDENTIFIER = "external_identifier";
+  @SerializedName(SERIALIZED_NAME_EXTERNAL_IDENTIFIER)
+  private String externalIdentifier;
+
+  public static final String SERIALIZED_NAME_GIFT_CARD_SERVICE = "gift_card_service";
+  @SerializedName(SERIALIZED_NAME_GIFT_CARD_SERVICE)
+  private GiftCardServiceSnapshot giftCardService;
+
+  public static final String SERIALIZED_NAME_GIFT_CARDS_REDEMPTIONS = "gift_cards_redemptions";
+  @SerializedName(SERIALIZED_NAME_GIFT_CARDS_REDEMPTIONS)
+  private List<GiftCardRedemption> giftCardsRedemptions = null;
+
+  /**
+   * The original &#x60;intent&#x60; used when the transaction was [created](#operation/authorize-new-transaction).
+   */
+  @JsonAdapter(IntentEnum.Adapter.class)
+  public enum IntentEnum {
+    AUTHORIZE("authorize"),
+    
+    CAPTURE("capture");
+
+    private String value;
+
+    IntentEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static IntentEnum fromValue(String value) {
+      for (IntentEnum b : IntentEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+
+    public static class Adapter extends TypeAdapter<IntentEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final IntentEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public IntentEnum read(final JsonReader jsonReader) throws IOException {
+        String value =  jsonReader.nextString();
+        return IntentEnum.fromValue(value);
+      }
+    }
+  }
+
+  public static final String SERIALIZED_NAME_INTENT = "intent";
+  @SerializedName(SERIALIZED_NAME_INTENT)
+  private IntentEnum intent;
+
+  /**
+   * The outcome of the original intent of a transaction.  This allows you to understand if the intent of the transaction (e.g. &#x60;capture&#x60; or &#x60;authorize&#x60;) has been achieved when dealing with multiple payment instruments.  If all payment instruments (&#x60;payment_method&#x60; and/or &#x60;gift_cards&#x60;) have succeeded to get an authorization or direct sale **at any point in time** then this will return a &#x60;succeeded&#x60; value.  If any of the payment instruments fails or declines then this will return a &#x60;failed&#x60; value.  If any payment instruments is still in a &#x60;pending&#x60; or &#x60;processing&#x60; state then the result will be &#x60;pending&#x60;.  Please note that if any of the payment instruments are voided or refunded after the result reaches a &#x60;succeeded&#x60; state  then the result will remain unchanged.
+   */
+  @JsonAdapter(IntentOutcomeEnum.Adapter.class)
+  public enum IntentOutcomeEnum {
+    PENDING("pending"),
+    
+    SUCCEEDED("succeeded"),
+    
+    FAILED("failed");
+
+    private String value;
+
+    IntentOutcomeEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static IntentOutcomeEnum fromValue(String value) {
+      for (IntentOutcomeEnum b : IntentOutcomeEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+
+    public static class Adapter extends TypeAdapter<IntentOutcomeEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final IntentOutcomeEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public IntentOutcomeEnum read(final JsonReader jsonReader) throws IOException {
+        String value =  jsonReader.nextString();
+        return IntentOutcomeEnum.fromValue(value);
+      }
+    }
+  }
+
+  public static final String SERIALIZED_NAME_INTENT_OUTCOME = "intent_outcome";
+  @SerializedName(SERIALIZED_NAME_INTENT_OUTCOME)
+  private IntentOutcomeEnum intentOutcome;
+
+  public static final String SERIALIZED_NAME_IS_SUBSEQUENT_PAYMENT = "is_subsequent_payment";
+  @SerializedName(SERIALIZED_NAME_IS_SUBSEQUENT_PAYMENT)
+  private Boolean isSubsequentPayment = false;
+
+  public static final String SERIALIZED_NAME_MERCHANT_ACCOUNT_ID = "merchant_account_id";
+  @SerializedName(SERIALIZED_NAME_MERCHANT_ACCOUNT_ID)
+  private String merchantAccountId;
+
+  public static final String SERIALIZED_NAME_MERCHANT_INITIATED = "merchant_initiated";
+  @SerializedName(SERIALIZED_NAME_MERCHANT_INITIATED)
+  private Boolean merchantInitiated = false;
+
+  public static final String SERIALIZED_NAME_METADATA = "metadata";
+  @SerializedName(SERIALIZED_NAME_METADATA)
+  private Map<String, String> metadata = null;
 
   /**
    * Gets or Sets method
@@ -642,37 +563,187 @@ public class Transaction {
   @SerializedName(SERIALIZED_NAME_METHOD)
   private MethodEnum method;
 
+  public static final String SERIALIZED_NAME_MULTI_TENDER = "multi_tender";
+  @SerializedName(SERIALIZED_NAME_MULTI_TENDER)
+  private Boolean multiTender;
+
+  public static final String SERIALIZED_NAME_PAYMENT_METHOD = "payment_method";
+  @SerializedName(SERIALIZED_NAME_PAYMENT_METHOD)
+  private PaymentMethodSnapshot paymentMethod;
+
+  public static final String SERIALIZED_NAME_PAYMENT_SERVICE = "payment_service";
+  @SerializedName(SERIALIZED_NAME_PAYMENT_SERVICE)
+  private PaymentServiceSnapshot paymentService;
+
   public static final String SERIALIZED_NAME_PAYMENT_SERVICE_TRANSACTION_ID = "payment_service_transaction_id";
   @SerializedName(SERIALIZED_NAME_PAYMENT_SERVICE_TRANSACTION_ID)
   private String paymentServiceTransactionId;
 
-  public static final String SERIALIZED_NAME_METADATA = "metadata";
-  @SerializedName(SERIALIZED_NAME_METADATA)
-  private Map<String, String> metadata = null;
+  /**
+   * The source of the transaction. Defaults to &#x60;ecommerce&#x60;.
+   */
+  @JsonAdapter(PaymentSourceEnum.Adapter.class)
+  public enum PaymentSourceEnum {
+    ECOMMERCE("ecommerce"),
+    
+    MOTO("moto"),
+    
+    RECURRING("recurring"),
+    
+    INSTALLMENT("installment"),
+    
+    CARD_ON_FILE("card_on_file");
+
+    private String value;
+
+    PaymentSourceEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static PaymentSourceEnum fromValue(String value) {
+      for (PaymentSourceEnum b : PaymentSourceEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+
+    public static class Adapter extends TypeAdapter<PaymentSourceEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final PaymentSourceEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public PaymentSourceEnum read(final JsonReader jsonReader) throws IOException {
+        String value =  jsonReader.nextString();
+        return PaymentSourceEnum.fromValue(value);
+      }
+    }
+  }
+
+  public static final String SERIALIZED_NAME_PAYMENT_SOURCE = "payment_source";
+  @SerializedName(SERIALIZED_NAME_PAYMENT_SOURCE)
+  private PaymentSourceEnum paymentSource;
+
+  public static final String SERIALIZED_NAME_PENDING_REVIEW = "pending_review";
+  @SerializedName(SERIALIZED_NAME_PENDING_REVIEW)
+  private Boolean pendingReview;
+
+  public static final String SERIALIZED_NAME_RAW_RESPONSE_CODE = "raw_response_code";
+  @SerializedName(SERIALIZED_NAME_RAW_RESPONSE_CODE)
+  private String rawResponseCode;
+
+  public static final String SERIALIZED_NAME_RAW_RESPONSE_DESCRIPTION = "raw_response_description";
+  @SerializedName(SERIALIZED_NAME_RAW_RESPONSE_DESCRIPTION)
+  private String rawResponseDescription;
+
+  public static final String SERIALIZED_NAME_RECONCILIATION_ID = "reconciliation_id";
+  @SerializedName(SERIALIZED_NAME_RECONCILIATION_ID)
+  private String reconciliationId;
+
+  public static final String SERIALIZED_NAME_REFUNDED_AMOUNT = "refunded_amount";
+  @SerializedName(SERIALIZED_NAME_REFUNDED_AMOUNT)
+  private Integer refundedAmount;
+
+  public static final String SERIALIZED_NAME_SCHEME_TRANSACTION_ID = "scheme_transaction_id";
+  @SerializedName(SERIALIZED_NAME_SCHEME_TRANSACTION_ID)
+  private String schemeTransactionId = "null";
 
   public static final String SERIALIZED_NAME_SHIPPING_DETAILS = "shipping_details";
   @SerializedName(SERIALIZED_NAME_SHIPPING_DETAILS)
   private ShippingDetail shippingDetails;
 
+  public static final String SERIALIZED_NAME_STATEMENT_DESCRIPTOR = "statement_descriptor";
+  @SerializedName(SERIALIZED_NAME_STATEMENT_DESCRIPTOR)
+  private StatementDescriptor statementDescriptor;
+
+  /**
+   * The status of the transaction for the &#x60;payment_method&#x60;. The status may change over time as asynchronous processing events occur.  Please note that the possible statuses returned will depend on the operation performed. For example, a captured transaction will never move to a &#x60;authorization_voided&#x60; status.
+   */
+  @JsonAdapter(StatusEnum.Adapter.class)
+  public enum StatusEnum {
+    PROCESSING("processing"),
+    
+    BUYER_APPROVAL_PENDING("buyer_approval_pending"),
+    
+    AUTHORIZATION_SUCCEEDED("authorization_succeeded"),
+    
+    AUTHORIZATION_FAILED("authorization_failed"),
+    
+    AUTHORIZATION_DECLINED("authorization_declined"),
+    
+    CAPTURE_PENDING("capture_pending"),
+    
+    CAPTURE_SUCCEEDED("capture_succeeded"),
+    
+    AUTHORIZATION_VOID_PENDING("authorization_void_pending"),
+    
+    AUTHORIZATION_VOIDED("authorization_voided");
+
+    private String value;
+
+    StatusEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static StatusEnum fromValue(String value) {
+      for (StatusEnum b : StatusEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+
+    public static class Adapter extends TypeAdapter<StatusEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final StatusEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public StatusEnum read(final JsonReader jsonReader) throws IOException {
+        String value =  jsonReader.nextString();
+        return StatusEnum.fromValue(value);
+      }
+    }
+  }
+
+  public static final String SERIALIZED_NAME_STATUS = "status";
+  @SerializedName(SERIALIZED_NAME_STATUS)
+  private StatusEnum status;
+
   public static final String SERIALIZED_NAME_THREE_D_SECURE = "three_d_secure";
   @SerializedName(SERIALIZED_NAME_THREE_D_SECURE)
   private ThreeDSecureSummary threeDSecure;
 
-  public static final String SERIALIZED_NAME_AUTHORIZED_AT = "authorized_at";
-  @SerializedName(SERIALIZED_NAME_AUTHORIZED_AT)
-  private String authorizedAt;
-
-  public static final String SERIALIZED_NAME_CAPTURED_AT = "captured_at";
-  @SerializedName(SERIALIZED_NAME_CAPTURED_AT)
-  private String capturedAt;
+  public static final String SERIALIZED_NAME_UPDATED_AT = "updated_at";
+  @SerializedName(SERIALIZED_NAME_UPDATED_AT)
+  private String updatedAt;
 
   public static final String SERIALIZED_NAME_VOIDED_AT = "voided_at";
   @SerializedName(SERIALIZED_NAME_VOIDED_AT)
   private String voidedAt;
-
-  public static final String SERIALIZED_NAME_CHECKOUT_SESSION_ID = "checkout_session_id";
-  @SerializedName(SERIALIZED_NAME_CHECKOUT_SESSION_ID)
-  private UUID checkoutSessionId;
 
 
   public Transaction type(TypeEnum type) {
@@ -721,98 +792,6 @@ public class Transaction {
   }
 
 
-  public Transaction reconciliationId(String reconciliationId) {
-    
-    this.reconciliationId = reconciliationId;
-    return this;
-  }
-
-   /**
-   * The base62 encoded transaction ID. This represents a shorter version of this transaction&#39;s &#x60;id&#x60; which is sent to payment services, anti-fraud services, and other connectors. You can use this ID to reconcile a payment service&#39;s transaction against our system.  This ID is sent instead of the transaction ID because not all services support 36 digit identifiers.
-   * @return reconciliationId
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(example = "7jZXl4gBUNl0CnaLEnfXbt", value = "The base62 encoded transaction ID. This represents a shorter version of this transaction's `id` which is sent to payment services, anti-fraud services, and other connectors. You can use this ID to reconcile a payment service's transaction against our system.  This ID is sent instead of the transaction ID because not all services support 36 digit identifiers.")
-
-  public String getReconciliationId() {
-    return reconciliationId;
-  }
-
-
-  public void setReconciliationId(String reconciliationId) {
-    this.reconciliationId = reconciliationId;
-  }
-
-
-  public Transaction merchantAccountId(String merchantAccountId) {
-    
-    this.merchantAccountId = merchantAccountId;
-    return this;
-  }
-
-   /**
-   * The ID of the merchant account to which this transaction belongs to.
-   * @return merchantAccountId
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(example = "default", value = "The ID of the merchant account to which this transaction belongs to.")
-
-  public String getMerchantAccountId() {
-    return merchantAccountId;
-  }
-
-
-  public void setMerchantAccountId(String merchantAccountId) {
-    this.merchantAccountId = merchantAccountId;
-  }
-
-
-  public Transaction status(StatusEnum status) {
-    
-    this.status = status;
-    return this;
-  }
-
-   /**
-   * The status of the transaction. The status may change over time as asynchronous processing events occur.  Please note that the possible statuses returned will depend on the operation performed. For example, a captured transaction will never move to a &#x60;authorization_voided&#x60; status.
-   * @return status
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(example = "processing", value = "The status of the transaction. The status may change over time as asynchronous processing events occur.  Please note that the possible statuses returned will depend on the operation performed. For example, a captured transaction will never move to a `authorization_voided` status.")
-
-  public StatusEnum getStatus() {
-    return status;
-  }
-
-
-  public void setStatus(StatusEnum status) {
-    this.status = status;
-  }
-
-
-  public Transaction intent(IntentEnum intent) {
-    
-    this.intent = intent;
-    return this;
-  }
-
-   /**
-   * The original &#x60;intent&#x60; used when the transaction was [created](#operation/authorize-new-transaction).
-   * @return intent
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(example = "authorize", value = "The original `intent` used when the transaction was [created](#operation/authorize-new-transaction).")
-
-  public IntentEnum getIntent() {
-    return intent;
-  }
-
-
-  public void setIntent(IntentEnum intent) {
-    this.intent = intent;
-  }
-
-
   public Transaction amount(Integer amount) {
     
     this.amount = amount;
@@ -820,13 +799,13 @@ public class Transaction {
   }
 
    /**
-   * The authorized amount for this transaction. This can be more than the actual captured amount and part of this amount may be refunded.
+   * The total amount for this transaction across all funding sources including gift cards.
    * minimum: 0
    * maximum: 99999999
    * @return amount
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "1299", value = "The authorized amount for this transaction. This can be more than the actual captured amount and part of this amount may be refunded.")
+  @ApiModelProperty(example = "1299", value = "The total amount for this transaction across all funding sources including gift cards.")
 
   public Integer getAmount() {
     return amount;
@@ -838,122 +817,97 @@ public class Transaction {
   }
 
 
-  public Transaction capturedAmount(Integer capturedAmount) {
+  public Transaction authResponseCode(String authResponseCode) {
     
-    this.capturedAmount = capturedAmount;
+    this.authResponseCode = authResponseCode;
     return this;
   }
 
    /**
-   * The captured amount for this transaction. This can be the total or a portion of the authorized amount.
+   * This is the response description received from the processor.
+   * @return authResponseCode
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "00", value = "This is the response description received from the processor.")
+
+  public String getAuthResponseCode() {
+    return authResponseCode;
+  }
+
+
+  public void setAuthResponseCode(String authResponseCode) {
+    this.authResponseCode = authResponseCode;
+  }
+
+
+  public Transaction authorizedAmount(Integer authorizedAmount) {
+    
+    this.authorizedAmount = authorizedAmount;
+    return this;
+  }
+
+   /**
+   * The amount for this transaction that has been authorized for the &#x60;payment_method&#x60;. This can be less than the &#x60;amount&#x60; if gift cards were used.
    * minimum: 0
    * maximum: 99999999
-   * @return capturedAmount
+   * @return authorizedAmount
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "999", value = "The captured amount for this transaction. This can be the total or a portion of the authorized amount.")
+  @ApiModelProperty(example = "1299", value = "The amount for this transaction that has been authorized for the `payment_method`. This can be less than the `amount` if gift cards were used.")
 
-  public Integer getCapturedAmount() {
-    return capturedAmount;
+  public Integer getAuthorizedAmount() {
+    return authorizedAmount;
   }
 
 
-  public void setCapturedAmount(Integer capturedAmount) {
-    this.capturedAmount = capturedAmount;
+  public void setAuthorizedAmount(Integer authorizedAmount) {
+    this.authorizedAmount = authorizedAmount;
   }
 
 
-  public Transaction refundedAmount(Integer refundedAmount) {
+  public Transaction authorizedAt(String authorizedAt) {
     
-    this.refundedAmount = refundedAmount;
+    this.authorizedAt = authorizedAt;
     return this;
   }
 
    /**
-   * The refunded amount for this transaction. This can be the total or a portion of the captured amount.
-   * minimum: 0
-   * maximum: 99999999
-   * @return refundedAmount
+   * The date and time when this transaction was authorized in the payment service.  Don&#39;t use this field to determine whether the transaction was authorized. A &#x60;null&#x60; value doesn&#39;t necessarily imply that the transaction wasn&#39;t authorized, it can mean that the payment service doesn&#39;t provide this value, that it didn&#39;t provide it at the time the transaction was authorized or that the transaction was authorized before the introduction of this field.
+   * @return authorizedAt
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "100", value = "The refunded amount for this transaction. This can be the total or a portion of the captured amount.")
+  @ApiModelProperty(example = "2013-07-16T19:23Z", value = "The date and time when this transaction was authorized in the payment service.  Don't use this field to determine whether the transaction was authorized. A `null` value doesn't necessarily imply that the transaction wasn't authorized, it can mean that the payment service doesn't provide this value, that it didn't provide it at the time the transaction was authorized or that the transaction was authorized before the introduction of this field.")
 
-  public Integer getRefundedAmount() {
-    return refundedAmount;
+  public String getAuthorizedAt() {
+    return authorizedAt;
   }
 
 
-  public void setRefundedAmount(Integer refundedAmount) {
-    this.refundedAmount = refundedAmount;
+  public void setAuthorizedAt(String authorizedAt) {
+    this.authorizedAt = authorizedAt;
   }
 
 
-  public Transaction currency(String currency) {
+  public Transaction avsResponseCode(AvsResponseCodeEnum avsResponseCode) {
     
-    this.currency = currency;
+    this.avsResponseCode = avsResponseCode;
     return this;
   }
 
    /**
-   * The currency code for this transaction.
-   * @return currency
+   * The response code received from the payment service for the Address Verification Check (AVS). This code is mapped to a standardized Gr4vy AVS response code.  - &#x60;no_match&#x60; - neither address or postal code match - &#x60;match&#x60; - both address and postal code match - &#x60;partial_match_address&#x60; - address matches but postal code does not - &#x60;partial_match_postcode&#x60; - postal code matches but address does not - &#x60;unavailable &#x60; - AVS is unavailable for card/country  The value of this field can be &#x60;null&#x60; if the payment service did not provide a response.
+   * @return avsResponseCode
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "USD", value = "The currency code for this transaction.")
+  @ApiModelProperty(example = "partial_match_address", value = "The response code received from the payment service for the Address Verification Check (AVS). This code is mapped to a standardized Gr4vy AVS response code.  - `no_match` - neither address or postal code match - `match` - both address and postal code match - `partial_match_address` - address matches but postal code does not - `partial_match_postcode` - postal code matches but address does not - `unavailable ` - AVS is unavailable for card/country  The value of this field can be `null` if the payment service did not provide a response.")
 
-  public String getCurrency() {
-    return currency;
+  public AvsResponseCodeEnum getAvsResponseCode() {
+    return avsResponseCode;
   }
 
 
-  public void setCurrency(String currency) {
-    this.currency = currency;
-  }
-
-
-  public Transaction country(String country) {
-    
-    this.country = country;
-    return this;
-  }
-
-   /**
-   * The 2-letter ISO code of the country of the transaction. This is used to filter the payment services that is used to process the transaction. 
-   * @return country
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(example = "US", value = "The 2-letter ISO code of the country of the transaction. This is used to filter the payment services that is used to process the transaction. ")
-
-  public String getCountry() {
-    return country;
-  }
-
-
-  public void setCountry(String country) {
-    this.country = country;
-  }
-
-
-  public Transaction paymentMethod(PaymentMethodSnapshot paymentMethod) {
-    
-    this.paymentMethod = paymentMethod;
-    return this;
-  }
-
-   /**
-   * The payment method used for this transaction.
-   * @return paymentMethod
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "The payment method used for this transaction.")
-
-  public PaymentMethodSnapshot getPaymentMethod() {
-    return paymentMethod;
-  }
-
-
-  public void setPaymentMethod(PaymentMethodSnapshot paymentMethod) {
-    this.paymentMethod = paymentMethod;
+  public void setAvsResponseCode(AvsResponseCodeEnum avsResponseCode) {
+    this.avsResponseCode = avsResponseCode;
   }
 
 
@@ -980,210 +934,51 @@ public class Transaction {
   }
 
 
-  public Transaction createdAt(String createdAt) {
+  public Transaction capturedAmount(Integer capturedAmount) {
     
-    this.createdAt = createdAt;
+    this.capturedAmount = capturedAmount;
     return this;
   }
 
    /**
-   * The date and time when this transaction was created in our system.
-   * @return createdAt
+   * The captured amount for this transaction. This can be the full value of the &#x60;authorized_amount&#x60; or less.
+   * minimum: 0
+   * maximum: 99999999
+   * @return capturedAmount
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "2013-07-16T19:23Z", value = "The date and time when this transaction was created in our system.")
+  @ApiModelProperty(example = "999", value = "The captured amount for this transaction. This can be the full value of the `authorized_amount` or less.")
 
-  public String getCreatedAt() {
-    return createdAt;
+  public Integer getCapturedAmount() {
+    return capturedAmount;
   }
 
 
-  public void setCreatedAt(String createdAt) {
-    this.createdAt = createdAt;
+  public void setCapturedAmount(Integer capturedAmount) {
+    this.capturedAmount = capturedAmount;
   }
 
 
-  public Transaction externalIdentifier(String externalIdentifier) {
+  public Transaction capturedAt(String capturedAt) {
     
-    this.externalIdentifier = externalIdentifier;
+    this.capturedAt = capturedAt;
     return this;
   }
 
    /**
-   * An external identifier that can be used to match the transaction against your own records.
-   * @return externalIdentifier
+   * The date and time when this transaction was captured in the payment service.  Don&#39;t use this field to determine whether the transaction was captured. A &#x60;null&#x60; value doesn&#39;t necessarily imply that the transaction wasn&#39;t captured, it can mean that the payment service doesn&#39;t provide this value, that it didn&#39;t provide it at the time the transaction was captured or that the transaction was captured before the introduction of this field.
+   * @return capturedAt
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "user-789123", value = "An external identifier that can be used to match the transaction against your own records.")
+  @ApiModelProperty(example = "2013-07-16T19:23Z", value = "The date and time when this transaction was captured in the payment service.  Don't use this field to determine whether the transaction was captured. A `null` value doesn't necessarily imply that the transaction wasn't captured, it can mean that the payment service doesn't provide this value, that it didn't provide it at the time the transaction was captured or that the transaction was captured before the introduction of this field.")
 
-  public String getExternalIdentifier() {
-    return externalIdentifier;
+  public String getCapturedAt() {
+    return capturedAt;
   }
 
 
-  public void setExternalIdentifier(String externalIdentifier) {
-    this.externalIdentifier = externalIdentifier;
-  }
-
-
-  public Transaction updatedAt(String updatedAt) {
-    
-    this.updatedAt = updatedAt;
-    return this;
-  }
-
-   /**
-   * Defines when the transaction was last updated.
-   * @return updatedAt
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "Defines when the transaction was last updated.")
-
-  public String getUpdatedAt() {
-    return updatedAt;
-  }
-
-
-  public void setUpdatedAt(String updatedAt) {
-    this.updatedAt = updatedAt;
-  }
-
-
-  public Transaction paymentService(PaymentServiceSnapshot paymentService) {
-    
-    this.paymentService = paymentService;
-    return this;
-  }
-
-   /**
-   * The payment service used for this transaction.
-   * @return paymentService
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "The payment service used for this transaction.")
-
-  public PaymentServiceSnapshot getPaymentService() {
-    return paymentService;
-  }
-
-
-  public void setPaymentService(PaymentServiceSnapshot paymentService) {
-    this.paymentService = paymentService;
-  }
-
-
-  public Transaction pendingReview(Boolean pendingReview) {
-    
-    this.pendingReview = pendingReview;
-    return this;
-  }
-
-   /**
-   * Whether a manual review is pending.
-   * @return pendingReview
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(example = "true", value = "Whether a manual review is pending.")
-
-  public Boolean getPendingReview() {
-    return pendingReview;
-  }
-
-
-  public void setPendingReview(Boolean pendingReview) {
-    this.pendingReview = pendingReview;
-  }
-
-
-  public Transaction merchantInitiated(Boolean merchantInitiated) {
-    
-    this.merchantInitiated = merchantInitiated;
-    return this;
-  }
-
-   /**
-   * Indicates whether the transaction was initiated by the merchant (true) or customer (false).
-   * @return merchantInitiated
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(example = "true", value = "Indicates whether the transaction was initiated by the merchant (true) or customer (false).")
-
-  public Boolean getMerchantInitiated() {
-    return merchantInitiated;
-  }
-
-
-  public void setMerchantInitiated(Boolean merchantInitiated) {
-    this.merchantInitiated = merchantInitiated;
-  }
-
-
-  public Transaction paymentSource(PaymentSourceEnum paymentSource) {
-    
-    this.paymentSource = paymentSource;
-    return this;
-  }
-
-   /**
-   * Get paymentSource
-   * @return paymentSource
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(example = "recurring", value = "")
-
-  public PaymentSourceEnum getPaymentSource() {
-    return paymentSource;
-  }
-
-
-  public void setPaymentSource(PaymentSourceEnum paymentSource) {
-    this.paymentSource = paymentSource;
-  }
-
-
-  public Transaction isSubsequentPayment(Boolean isSubsequentPayment) {
-    
-    this.isSubsequentPayment = isSubsequentPayment;
-    return this;
-  }
-
-   /**
-   * Indicates whether the transaction represents a subsequent payment coming from a setup recurring payment. Please note there are some restrictions on how this flag may be used.  The flag can only be &#x60;false&#x60; (or not set) when the transaction meets one of the following criteria:  * It is not &#x60;merchant_initiated&#x60;. * &#x60;payment_source&#x60; is set to &#x60;card_on_file&#x60;.  The flag can only be set to &#x60;true&#x60; when the transaction meets one of the following criteria:  * It is not &#x60;merchant_initiated&#x60;. * &#x60;payment_source&#x60; is set to &#x60;recurring&#x60; or &#x60;installment&#x60; and &#x60;merchant_initiated&#x60; is set to &#x60;true&#x60;. * &#x60;payment_source&#x60; is set to &#x60;card_on_file&#x60;.
-   * @return isSubsequentPayment
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(example = "true", value = "Indicates whether the transaction represents a subsequent payment coming from a setup recurring payment. Please note there are some restrictions on how this flag may be used.  The flag can only be `false` (or not set) when the transaction meets one of the following criteria:  * It is not `merchant_initiated`. * `payment_source` is set to `card_on_file`.  The flag can only be set to `true` when the transaction meets one of the following criteria:  * It is not `merchant_initiated`. * `payment_source` is set to `recurring` or `installment` and `merchant_initiated` is set to `true`. * `payment_source` is set to `card_on_file`.")
-
-  public Boolean getIsSubsequentPayment() {
-    return isSubsequentPayment;
-  }
-
-
-  public void setIsSubsequentPayment(Boolean isSubsequentPayment) {
-    this.isSubsequentPayment = isSubsequentPayment;
-  }
-
-
-  public Transaction statementDescriptor(StatementDescriptor statementDescriptor) {
-    
-    this.statementDescriptor = statementDescriptor;
-    return this;
-  }
-
-   /**
-   * Get statementDescriptor
-   * @return statementDescriptor
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-
-  public StatementDescriptor getStatementDescriptor() {
-    return statementDescriptor;
-  }
-
-
-  public void setStatementDescriptor(StatementDescriptor statementDescriptor) {
-    this.statementDescriptor = statementDescriptor;
+  public void setCapturedAt(String capturedAt) {
+    this.capturedAt = capturedAt;
   }
 
 
@@ -1218,26 +1013,525 @@ public class Transaction {
   }
 
 
-  public Transaction schemeTransactionId(String schemeTransactionId) {
+  public Transaction checkoutSessionId(UUID checkoutSessionId) {
     
-    this.schemeTransactionId = schemeTransactionId;
+    this.checkoutSessionId = checkoutSessionId;
     return this;
   }
 
    /**
-   * An identifier for the transaction used by the scheme itself, when available.  e.g. the Visa Transaction Identifier, or Mastercard Trace ID.
-   * @return schemeTransactionId
+   * The identifier for the checkout session this transaction is associated with.
+   * @return checkoutSessionId
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "123456789012345", value = "An identifier for the transaction used by the scheme itself, when available.  e.g. the Visa Transaction Identifier, or Mastercard Trace ID.")
+  @ApiModelProperty(example = "fe26475d-ec3e-4884-9553-f7356683f7f9", value = "The identifier for the checkout session this transaction is associated with.")
 
-  public String getSchemeTransactionId() {
-    return schemeTransactionId;
+  public UUID getCheckoutSessionId() {
+    return checkoutSessionId;
   }
 
 
-  public void setSchemeTransactionId(String schemeTransactionId) {
-    this.schemeTransactionId = schemeTransactionId;
+  public void setCheckoutSessionId(UUID checkoutSessionId) {
+    this.checkoutSessionId = checkoutSessionId;
+  }
+
+
+  public Transaction country(String country) {
+    
+    this.country = country;
+    return this;
+  }
+
+   /**
+   * The 2-letter ISO code of the country of the transaction. This is used to filter the payment services that is used to process the transaction. 
+   * @return country
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "US", value = "The 2-letter ISO code of the country of the transaction. This is used to filter the payment services that is used to process the transaction. ")
+
+  public String getCountry() {
+    return country;
+  }
+
+
+  public void setCountry(String country) {
+    this.country = country;
+  }
+
+
+  public Transaction createdAt(String createdAt) {
+    
+    this.createdAt = createdAt;
+    return this;
+  }
+
+   /**
+   * The date and time when this transaction was created in our system.
+   * @return createdAt
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "2013-07-16T19:23Z", value = "The date and time when this transaction was created in our system.")
+
+  public String getCreatedAt() {
+    return createdAt;
+  }
+
+
+  public void setCreatedAt(String createdAt) {
+    this.createdAt = createdAt;
+  }
+
+
+  public Transaction currency(String currency) {
+    
+    this.currency = currency;
+    return this;
+  }
+
+   /**
+   * The currency code for this transaction.
+   * @return currency
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "USD", value = "The currency code for this transaction.")
+
+  public String getCurrency() {
+    return currency;
+  }
+
+
+  public void setCurrency(String currency) {
+    this.currency = currency;
+  }
+
+
+  public Transaction cvvResponseCode(CvvResponseCodeEnum cvvResponseCode) {
+    
+    this.cvvResponseCode = cvvResponseCode;
+    return this;
+  }
+
+   /**
+   * The response code received from the payment service for the Card Verification Value (CVV). This code is mapped to a standardized Gr4vy CVV response code.  - &#x60;no_match&#x60; - the CVV does not match the expected value - &#x60;match&#x60; - the CVV matches the expected value - &#x60;unavailable &#x60; - CVV check unavailable for card our country - &#x60;not_provided &#x60; - CVV not provided  The value of this field can be &#x60;null&#x60; if the payment service did not provide a response.
+   * @return cvvResponseCode
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "match", value = "The response code received from the payment service for the Card Verification Value (CVV). This code is mapped to a standardized Gr4vy CVV response code.  - `no_match` - the CVV does not match the expected value - `match` - the CVV matches the expected value - `unavailable ` - CVV check unavailable for card our country - `not_provided ` - CVV not provided  The value of this field can be `null` if the payment service did not provide a response.")
+
+  public CvvResponseCodeEnum getCvvResponseCode() {
+    return cvvResponseCode;
+  }
+
+
+  public void setCvvResponseCode(CvvResponseCodeEnum cvvResponseCode) {
+    this.cvvResponseCode = cvvResponseCode;
+  }
+
+
+  public Transaction errorCode(String errorCode) {
+    
+    this.errorCode = errorCode;
+    return this;
+  }
+
+   /**
+   * This is an error code set by Gr4vy.
+   * @return errorCode
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "missing_redirect_url", value = "This is an error code set by Gr4vy.")
+
+  public String getErrorCode() {
+    return errorCode;
+  }
+
+
+  public void setErrorCode(String errorCode) {
+    this.errorCode = errorCode;
+  }
+
+
+  public Transaction externalIdentifier(String externalIdentifier) {
+    
+    this.externalIdentifier = externalIdentifier;
+    return this;
+  }
+
+   /**
+   * An external identifier that can be used to match the transaction against your own records.
+   * @return externalIdentifier
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "user-789123", value = "An external identifier that can be used to match the transaction against your own records.")
+
+  public String getExternalIdentifier() {
+    return externalIdentifier;
+  }
+
+
+  public void setExternalIdentifier(String externalIdentifier) {
+    this.externalIdentifier = externalIdentifier;
+  }
+
+
+  public Transaction giftCardService(GiftCardServiceSnapshot giftCardService) {
+    
+    this.giftCardService = giftCardService;
+    return this;
+  }
+
+   /**
+   * The gift card service used for this transaction.
+   * @return giftCardService
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "The gift card service used for this transaction.")
+
+  public GiftCardServiceSnapshot getGiftCardService() {
+    return giftCardService;
+  }
+
+
+  public void setGiftCardService(GiftCardServiceSnapshot giftCardService) {
+    this.giftCardService = giftCardService;
+  }
+
+
+  public Transaction giftCardsRedemptions(List<GiftCardRedemption> giftCardsRedemptions) {
+    
+    this.giftCardsRedemptions = giftCardsRedemptions;
+    return this;
+  }
+
+  public Transaction addGiftCardsRedemptionsItem(GiftCardRedemption giftCardsRedemptionsItem) {
+    if (this.giftCardsRedemptions == null) {
+      this.giftCardsRedemptions = new ArrayList<GiftCardRedemption>();
+    }
+    this.giftCardsRedemptions.add(giftCardsRedemptionsItem);
+    return this;
+  }
+
+   /**
+   * The gift cards redeemed for this transaction.
+   * @return giftCardsRedemptions
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "The gift cards redeemed for this transaction.")
+
+  public List<GiftCardRedemption> getGiftCardsRedemptions() {
+    return giftCardsRedemptions;
+  }
+
+
+  public void setGiftCardsRedemptions(List<GiftCardRedemption> giftCardsRedemptions) {
+    this.giftCardsRedemptions = giftCardsRedemptions;
+  }
+
+
+  public Transaction intent(IntentEnum intent) {
+    
+    this.intent = intent;
+    return this;
+  }
+
+   /**
+   * The original &#x60;intent&#x60; used when the transaction was [created](#operation/authorize-new-transaction).
+   * @return intent
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "authorize", value = "The original `intent` used when the transaction was [created](#operation/authorize-new-transaction).")
+
+  public IntentEnum getIntent() {
+    return intent;
+  }
+
+
+  public void setIntent(IntentEnum intent) {
+    this.intent = intent;
+  }
+
+
+  public Transaction intentOutcome(IntentOutcomeEnum intentOutcome) {
+    
+    this.intentOutcome = intentOutcome;
+    return this;
+  }
+
+   /**
+   * The outcome of the original intent of a transaction.  This allows you to understand if the intent of the transaction (e.g. &#x60;capture&#x60; or &#x60;authorize&#x60;) has been achieved when dealing with multiple payment instruments.  If all payment instruments (&#x60;payment_method&#x60; and/or &#x60;gift_cards&#x60;) have succeeded to get an authorization or direct sale **at any point in time** then this will return a &#x60;succeeded&#x60; value.  If any of the payment instruments fails or declines then this will return a &#x60;failed&#x60; value.  If any payment instruments is still in a &#x60;pending&#x60; or &#x60;processing&#x60; state then the result will be &#x60;pending&#x60;.  Please note that if any of the payment instruments are voided or refunded after the result reaches a &#x60;succeeded&#x60; state  then the result will remain unchanged.
+   * @return intentOutcome
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "pending", value = "The outcome of the original intent of a transaction.  This allows you to understand if the intent of the transaction (e.g. `capture` or `authorize`) has been achieved when dealing with multiple payment instruments.  If all payment instruments (`payment_method` and/or `gift_cards`) have succeeded to get an authorization or direct sale **at any point in time** then this will return a `succeeded` value.  If any of the payment instruments fails or declines then this will return a `failed` value.  If any payment instruments is still in a `pending` or `processing` state then the result will be `pending`.  Please note that if any of the payment instruments are voided or refunded after the result reaches a `succeeded` state  then the result will remain unchanged.")
+
+  public IntentOutcomeEnum getIntentOutcome() {
+    return intentOutcome;
+  }
+
+
+  public void setIntentOutcome(IntentOutcomeEnum intentOutcome) {
+    this.intentOutcome = intentOutcome;
+  }
+
+
+  public Transaction isSubsequentPayment(Boolean isSubsequentPayment) {
+    
+    this.isSubsequentPayment = isSubsequentPayment;
+    return this;
+  }
+
+   /**
+   * Indicates whether the transaction represents a subsequent payment coming from a setup recurring payment. Please note there are some restrictions on how this flag may be used.  The flag can only be &#x60;false&#x60; (or not set) when the transaction meets one of the following criteria:  * It is not &#x60;merchant_initiated&#x60;. * &#x60;payment_source&#x60; is set to &#x60;card_on_file&#x60;.  The flag can only be set to &#x60;true&#x60; when the transaction meets one of the following criteria:  * It is not &#x60;merchant_initiated&#x60;. * &#x60;payment_source&#x60; is set to &#x60;recurring&#x60; or &#x60;installment&#x60; and &#x60;merchant_initiated&#x60; is set to &#x60;true&#x60;. * &#x60;payment_source&#x60; is set to &#x60;card_on_file&#x60;.
+   * @return isSubsequentPayment
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "true", value = "Indicates whether the transaction represents a subsequent payment coming from a setup recurring payment. Please note there are some restrictions on how this flag may be used.  The flag can only be `false` (or not set) when the transaction meets one of the following criteria:  * It is not `merchant_initiated`. * `payment_source` is set to `card_on_file`.  The flag can only be set to `true` when the transaction meets one of the following criteria:  * It is not `merchant_initiated`. * `payment_source` is set to `recurring` or `installment` and `merchant_initiated` is set to `true`. * `payment_source` is set to `card_on_file`.")
+
+  public Boolean getIsSubsequentPayment() {
+    return isSubsequentPayment;
+  }
+
+
+  public void setIsSubsequentPayment(Boolean isSubsequentPayment) {
+    this.isSubsequentPayment = isSubsequentPayment;
+  }
+
+
+  public Transaction merchantAccountId(String merchantAccountId) {
+    
+    this.merchantAccountId = merchantAccountId;
+    return this;
+  }
+
+   /**
+   * The ID of the merchant account to which this transaction belongs to.
+   * @return merchantAccountId
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "default", value = "The ID of the merchant account to which this transaction belongs to.")
+
+  public String getMerchantAccountId() {
+    return merchantAccountId;
+  }
+
+
+  public void setMerchantAccountId(String merchantAccountId) {
+    this.merchantAccountId = merchantAccountId;
+  }
+
+
+  public Transaction merchantInitiated(Boolean merchantInitiated) {
+    
+    this.merchantInitiated = merchantInitiated;
+    return this;
+  }
+
+   /**
+   * Indicates whether the transaction was initiated by the merchant (true) or customer (false).
+   * @return merchantInitiated
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "true", value = "Indicates whether the transaction was initiated by the merchant (true) or customer (false).")
+
+  public Boolean getMerchantInitiated() {
+    return merchantInitiated;
+  }
+
+
+  public void setMerchantInitiated(Boolean merchantInitiated) {
+    this.merchantInitiated = merchantInitiated;
+  }
+
+
+  public Transaction metadata(Map<String, String> metadata) {
+    
+    this.metadata = metadata;
+    return this;
+  }
+
+  public Transaction putMetadataItem(String key, String metadataItem) {
+    if (this.metadata == null) {
+      this.metadata = new HashMap<String, String>();
+    }
+    this.metadata.put(key, metadataItem);
+    return this;
+  }
+
+   /**
+   * Additional information about the transaction stored as key-value pairs.
+   * @return metadata
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "{\"key\":\"value\"}", value = "Additional information about the transaction stored as key-value pairs.")
+
+  public Map<String, String> getMetadata() {
+    return metadata;
+  }
+
+
+  public void setMetadata(Map<String, String> metadata) {
+    this.metadata = metadata;
+  }
+
+
+  public Transaction method(MethodEnum method) {
+    
+    this.method = method;
+    return this;
+  }
+
+   /**
+   * Get method
+   * @return method
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "card", value = "")
+
+  public MethodEnum getMethod() {
+    return method;
+  }
+
+
+  public void setMethod(MethodEnum method) {
+    this.method = method;
+  }
+
+
+  public Transaction multiTender(Boolean multiTender) {
+    
+    this.multiTender = multiTender;
+    return this;
+  }
+
+   /**
+   * Defines if this transaction has been split across multiple payment instruments such as a &#x60;payment_method&#x60; and one or more &#x60;gift_cards&#x60;, or multiple &#x60;gift_cards&#x60; without a &#x60;payment_method&#x60;.
+   * @return multiTender
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "true", value = "Defines if this transaction has been split across multiple payment instruments such as a `payment_method` and one or more `gift_cards`, or multiple `gift_cards` without a `payment_method`.")
+
+  public Boolean getMultiTender() {
+    return multiTender;
+  }
+
+
+  public void setMultiTender(Boolean multiTender) {
+    this.multiTender = multiTender;
+  }
+
+
+  public Transaction paymentMethod(PaymentMethodSnapshot paymentMethod) {
+    
+    this.paymentMethod = paymentMethod;
+    return this;
+  }
+
+   /**
+   * The payment method used for this transaction.
+   * @return paymentMethod
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "The payment method used for this transaction.")
+
+  public PaymentMethodSnapshot getPaymentMethod() {
+    return paymentMethod;
+  }
+
+
+  public void setPaymentMethod(PaymentMethodSnapshot paymentMethod) {
+    this.paymentMethod = paymentMethod;
+  }
+
+
+  public Transaction paymentService(PaymentServiceSnapshot paymentService) {
+    
+    this.paymentService = paymentService;
+    return this;
+  }
+
+   /**
+   * The payment service used for this transaction.
+   * @return paymentService
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "The payment service used for this transaction.")
+
+  public PaymentServiceSnapshot getPaymentService() {
+    return paymentService;
+  }
+
+
+  public void setPaymentService(PaymentServiceSnapshot paymentService) {
+    this.paymentService = paymentService;
+  }
+
+
+  public Transaction paymentServiceTransactionId(String paymentServiceTransactionId) {
+    
+    this.paymentServiceTransactionId = paymentServiceTransactionId;
+    return this;
+  }
+
+   /**
+   * The payment service&#39;s unique ID for the transaction.
+   * @return paymentServiceTransactionId
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "charge_xYqd43gySMtori", value = "The payment service's unique ID for the transaction.")
+
+  public String getPaymentServiceTransactionId() {
+    return paymentServiceTransactionId;
+  }
+
+
+  public void setPaymentServiceTransactionId(String paymentServiceTransactionId) {
+    this.paymentServiceTransactionId = paymentServiceTransactionId;
+  }
+
+
+  public Transaction paymentSource(PaymentSourceEnum paymentSource) {
+    
+    this.paymentSource = paymentSource;
+    return this;
+  }
+
+   /**
+   * The source of the transaction. Defaults to &#x60;ecommerce&#x60;.
+   * @return paymentSource
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "recurring", value = "The source of the transaction. Defaults to `ecommerce`.")
+
+  public PaymentSourceEnum getPaymentSource() {
+    return paymentSource;
+  }
+
+
+  public void setPaymentSource(PaymentSourceEnum paymentSource) {
+    this.paymentSource = paymentSource;
+  }
+
+
+  public Transaction pendingReview(Boolean pendingReview) {
+    
+    this.pendingReview = pendingReview;
+    return this;
+  }
+
+   /**
+   * Whether a manual review is pending.
+   * @return pendingReview
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "true", value = "Whether a manual review is pending.")
+
+  public Boolean getPendingReview() {
+    return pendingReview;
+  }
+
+
+  public void setPendingReview(Boolean pendingReview) {
+    this.pendingReview = pendingReview;
   }
 
 
@@ -1287,172 +1581,74 @@ public class Transaction {
   }
 
 
-  public Transaction errorCode(String errorCode) {
+  public Transaction reconciliationId(String reconciliationId) {
     
-    this.errorCode = errorCode;
+    this.reconciliationId = reconciliationId;
     return this;
   }
 
    /**
-   * This is an error code set by Gr4vy.
-   * @return errorCode
+   * The base62 encoded transaction ID. This represents a shorter version of this transaction&#39;s &#x60;id&#x60; which is sent to payment services, anti-fraud services, and other connectors. You can use this ID to reconcile a payment service&#39;s transaction against our system.  This ID is sent instead of the transaction ID because not all services support 36 digit identifiers.
+   * @return reconciliationId
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "missing_redirect_url", value = "This is an error code set by Gr4vy.")
+  @ApiModelProperty(example = "7jZXl4gBUNl0CnaLEnfXbt", value = "The base62 encoded transaction ID. This represents a shorter version of this transaction's `id` which is sent to payment services, anti-fraud services, and other connectors. You can use this ID to reconcile a payment service's transaction against our system.  This ID is sent instead of the transaction ID because not all services support 36 digit identifiers.")
 
-  public String getErrorCode() {
-    return errorCode;
+  public String getReconciliationId() {
+    return reconciliationId;
   }
 
 
-  public void setErrorCode(String errorCode) {
-    this.errorCode = errorCode;
+  public void setReconciliationId(String reconciliationId) {
+    this.reconciliationId = reconciliationId;
   }
 
 
-  public Transaction authResponseCode(String authResponseCode) {
+  public Transaction refundedAmount(Integer refundedAmount) {
     
-    this.authResponseCode = authResponseCode;
+    this.refundedAmount = refundedAmount;
     return this;
   }
 
    /**
-   * This is the response description received from the processor.
-   * @return authResponseCode
+   * The refunded amount for this transaction. This can be the full value of the &#x60;captured_amount&#x60; or less.
+   * minimum: 0
+   * maximum: 99999999
+   * @return refundedAmount
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "00", value = "This is the response description received from the processor.")
+  @ApiModelProperty(example = "100", value = "The refunded amount for this transaction. This can be the full value of the `captured_amount` or less.")
 
-  public String getAuthResponseCode() {
-    return authResponseCode;
+  public Integer getRefundedAmount() {
+    return refundedAmount;
   }
 
 
-  public void setAuthResponseCode(String authResponseCode) {
-    this.authResponseCode = authResponseCode;
+  public void setRefundedAmount(Integer refundedAmount) {
+    this.refundedAmount = refundedAmount;
   }
 
 
-  public Transaction avsResponseCode(AvsResponseCodeEnum avsResponseCode) {
+  public Transaction schemeTransactionId(String schemeTransactionId) {
     
-    this.avsResponseCode = avsResponseCode;
+    this.schemeTransactionId = schemeTransactionId;
     return this;
   }
 
    /**
-   * The response code received from the payment service for the Address Verification Check (AVS). This code is mapped to a standardized Gr4vy AVS response code.  - &#x60;no_match&#x60; - neither address or postal code match - &#x60;match&#x60; - both address and postal code match - &#x60;partial_match_address&#x60; - address matches but postal code does not - &#x60;partial_match_postcode&#x60; - postal code matches but address does not - &#x60;unavailable &#x60; - AVS is unavailable for card/country  The value of this field can be &#x60;null&#x60; if the payment service did not provide a response.
-   * @return avsResponseCode
+   * An identifier for the transaction used by the scheme itself, when available.  e.g. the Visa Transaction Identifier, or Mastercard Trace ID.
+   * @return schemeTransactionId
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "partial_match_address", value = "The response code received from the payment service for the Address Verification Check (AVS). This code is mapped to a standardized Gr4vy AVS response code.  - `no_match` - neither address or postal code match - `match` - both address and postal code match - `partial_match_address` - address matches but postal code does not - `partial_match_postcode` - postal code matches but address does not - `unavailable ` - AVS is unavailable for card/country  The value of this field can be `null` if the payment service did not provide a response.")
+  @ApiModelProperty(example = "123456789012345", value = "An identifier for the transaction used by the scheme itself, when available.  e.g. the Visa Transaction Identifier, or Mastercard Trace ID.")
 
-  public AvsResponseCodeEnum getAvsResponseCode() {
-    return avsResponseCode;
+  public String getSchemeTransactionId() {
+    return schemeTransactionId;
   }
 
 
-  public void setAvsResponseCode(AvsResponseCodeEnum avsResponseCode) {
-    this.avsResponseCode = avsResponseCode;
-  }
-
-
-  public Transaction cvvResponseCode(CvvResponseCodeEnum cvvResponseCode) {
-    
-    this.cvvResponseCode = cvvResponseCode;
-    return this;
-  }
-
-   /**
-   * The response code received from the payment service for the Card Verification Value (CVV). This code is mapped to a standardized Gr4vy CVV response code.  - &#x60;no_match&#x60; - the CVV does not match the expected value - &#x60;match&#x60; - the CVV matches the expected value - &#x60;unavailable &#x60; - CVV check unavailable for card our country - &#x60;not_provided &#x60; - CVV not provided  The value of this field can be &#x60;null&#x60; if the payment service did not provide a response.
-   * @return cvvResponseCode
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(example = "match", value = "The response code received from the payment service for the Card Verification Value (CVV). This code is mapped to a standardized Gr4vy CVV response code.  - `no_match` - the CVV does not match the expected value - `match` - the CVV matches the expected value - `unavailable ` - CVV check unavailable for card our country - `not_provided ` - CVV not provided  The value of this field can be `null` if the payment service did not provide a response.")
-
-  public CvvResponseCodeEnum getCvvResponseCode() {
-    return cvvResponseCode;
-  }
-
-
-  public void setCvvResponseCode(CvvResponseCodeEnum cvvResponseCode) {
-    this.cvvResponseCode = cvvResponseCode;
-  }
-
-
-  public Transaction method(MethodEnum method) {
-    
-    this.method = method;
-    return this;
-  }
-
-   /**
-   * Get method
-   * @return method
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(example = "card", value = "")
-
-  public MethodEnum getMethod() {
-    return method;
-  }
-
-
-  public void setMethod(MethodEnum method) {
-    this.method = method;
-  }
-
-
-  public Transaction paymentServiceTransactionId(String paymentServiceTransactionId) {
-    
-    this.paymentServiceTransactionId = paymentServiceTransactionId;
-    return this;
-  }
-
-   /**
-   * The payment service&#39;s unique ID for the transaction.
-   * @return paymentServiceTransactionId
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(example = "charge_xYqd43gySMtori", value = "The payment service's unique ID for the transaction.")
-
-  public String getPaymentServiceTransactionId() {
-    return paymentServiceTransactionId;
-  }
-
-
-  public void setPaymentServiceTransactionId(String paymentServiceTransactionId) {
-    this.paymentServiceTransactionId = paymentServiceTransactionId;
-  }
-
-
-  public Transaction metadata(Map<String, String> metadata) {
-    
-    this.metadata = metadata;
-    return this;
-  }
-
-  public Transaction putMetadataItem(String key, String metadataItem) {
-    if (this.metadata == null) {
-      this.metadata = new HashMap<String, String>();
-    }
-    this.metadata.put(key, metadataItem);
-    return this;
-  }
-
-   /**
-   * Additional information about the transaction stored as key-value pairs.
-   * @return metadata
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(example = "{\"key\":\"value\"}", value = "Additional information about the transaction stored as key-value pairs.")
-
-  public Map<String, String> getMetadata() {
-    return metadata;
-  }
-
-
-  public void setMetadata(Map<String, String> metadata) {
-    this.metadata = metadata;
+  public void setSchemeTransactionId(String schemeTransactionId) {
+    this.schemeTransactionId = schemeTransactionId;
   }
 
 
@@ -1479,6 +1675,52 @@ public class Transaction {
   }
 
 
+  public Transaction statementDescriptor(StatementDescriptor statementDescriptor) {
+    
+    this.statementDescriptor = statementDescriptor;
+    return this;
+  }
+
+   /**
+   * Get statementDescriptor
+   * @return statementDescriptor
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public StatementDescriptor getStatementDescriptor() {
+    return statementDescriptor;
+  }
+
+
+  public void setStatementDescriptor(StatementDescriptor statementDescriptor) {
+    this.statementDescriptor = statementDescriptor;
+  }
+
+
+  public Transaction status(StatusEnum status) {
+    
+    this.status = status;
+    return this;
+  }
+
+   /**
+   * The status of the transaction for the &#x60;payment_method&#x60;. The status may change over time as asynchronous processing events occur.  Please note that the possible statuses returned will depend on the operation performed. For example, a captured transaction will never move to a &#x60;authorization_voided&#x60; status.
+   * @return status
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "processing", value = "The status of the transaction for the `payment_method`. The status may change over time as asynchronous processing events occur.  Please note that the possible statuses returned will depend on the operation performed. For example, a captured transaction will never move to a `authorization_voided` status.")
+
+  public StatusEnum getStatus() {
+    return status;
+  }
+
+
+  public void setStatus(StatusEnum status) {
+    this.status = status;
+  }
+
+
   public Transaction threeDSecure(ThreeDSecureSummary threeDSecure) {
     
     this.threeDSecure = threeDSecure;
@@ -1502,49 +1744,26 @@ public class Transaction {
   }
 
 
-  public Transaction authorizedAt(String authorizedAt) {
+  public Transaction updatedAt(String updatedAt) {
     
-    this.authorizedAt = authorizedAt;
+    this.updatedAt = updatedAt;
     return this;
   }
 
    /**
-   * The date and time when this transaction was authorized in the payment service.  Don&#39;t use this field to determine whether the transaction was authorized. A &#x60;null&#x60; value doesn&#39;t necessarily imply that the transaction wasn&#39;t authorized, it can mean that the payment service doesn&#39;t provide this value, that it didn&#39;t provide it at the time the transaction was authorized or that the transaction was authorized before the introduction of this field.
-   * @return authorizedAt
+   * Defines when the transaction was last updated.
+   * @return updatedAt
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "2013-07-16T19:23Z", value = "The date and time when this transaction was authorized in the payment service.  Don't use this field to determine whether the transaction was authorized. A `null` value doesn't necessarily imply that the transaction wasn't authorized, it can mean that the payment service doesn't provide this value, that it didn't provide it at the time the transaction was authorized or that the transaction was authorized before the introduction of this field.")
+  @ApiModelProperty(example = "2013-07-16T19:23Z", value = "Defines when the transaction was last updated.")
 
-  public String getAuthorizedAt() {
-    return authorizedAt;
+  public String getUpdatedAt() {
+    return updatedAt;
   }
 
 
-  public void setAuthorizedAt(String authorizedAt) {
-    this.authorizedAt = authorizedAt;
-  }
-
-
-  public Transaction capturedAt(String capturedAt) {
-    
-    this.capturedAt = capturedAt;
-    return this;
-  }
-
-   /**
-   * The date and time when this transaction was captured in the payment service.  Don&#39;t use this field to determine whether the transaction was captured. A &#x60;null&#x60; value doesn&#39;t necessarily imply that the transaction wasn&#39;t captured, it can mean that the payment service doesn&#39;t provide this value, that it didn&#39;t provide it at the time the transaction was captured or that the transaction was captured before the introduction of this field.
-   * @return capturedAt
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(example = "2013-07-16T19:23Z", value = "The date and time when this transaction was captured in the payment service.  Don't use this field to determine whether the transaction was captured. A `null` value doesn't necessarily imply that the transaction wasn't captured, it can mean that the payment service doesn't provide this value, that it didn't provide it at the time the transaction was captured or that the transaction was captured before the introduction of this field.")
-
-  public String getCapturedAt() {
-    return capturedAt;
-  }
-
-
-  public void setCapturedAt(String capturedAt) {
-    this.capturedAt = capturedAt;
+  public void setUpdatedAt(String updatedAt) {
+    this.updatedAt = updatedAt;
   }
 
 
@@ -1571,29 +1790,6 @@ public class Transaction {
   }
 
 
-  public Transaction checkoutSessionId(UUID checkoutSessionId) {
-    
-    this.checkoutSessionId = checkoutSessionId;
-    return this;
-  }
-
-   /**
-   * The identifier for the checkout session this transaction is associated with.
-   * @return checkoutSessionId
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(example = "fe26475d-ec3e-4884-9553-f7356683f7f9", value = "The identifier for the checkout session this transaction is associated with.")
-
-  public UUID getCheckoutSessionId() {
-    return checkoutSessionId;
-  }
-
-
-  public void setCheckoutSessionId(UUID checkoutSessionId) {
-    this.checkoutSessionId = checkoutSessionId;
-  }
-
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -1605,48 +1801,53 @@ public class Transaction {
     Transaction transaction = (Transaction) o;
     return Objects.equals(this.type, transaction.type) &&
         Objects.equals(this.id, transaction.id) &&
-        Objects.equals(this.reconciliationId, transaction.reconciliationId) &&
-        Objects.equals(this.merchantAccountId, transaction.merchantAccountId) &&
-        Objects.equals(this.status, transaction.status) &&
-        Objects.equals(this.intent, transaction.intent) &&
         Objects.equals(this.amount, transaction.amount) &&
-        Objects.equals(this.capturedAmount, transaction.capturedAmount) &&
-        Objects.equals(this.refundedAmount, transaction.refundedAmount) &&
-        Objects.equals(this.currency, transaction.currency) &&
-        Objects.equals(this.country, transaction.country) &&
-        Objects.equals(this.paymentMethod, transaction.paymentMethod) &&
+        Objects.equals(this.authResponseCode, transaction.authResponseCode) &&
+        Objects.equals(this.authorizedAmount, transaction.authorizedAmount) &&
+        Objects.equals(this.authorizedAt, transaction.authorizedAt) &&
+        Objects.equals(this.avsResponseCode, transaction.avsResponseCode) &&
         Objects.equals(this.buyer, transaction.buyer) &&
-        Objects.equals(this.createdAt, transaction.createdAt) &&
-        Objects.equals(this.externalIdentifier, transaction.externalIdentifier) &&
-        Objects.equals(this.updatedAt, transaction.updatedAt) &&
-        Objects.equals(this.paymentService, transaction.paymentService) &&
-        Objects.equals(this.pendingReview, transaction.pendingReview) &&
-        Objects.equals(this.merchantInitiated, transaction.merchantInitiated) &&
-        Objects.equals(this.paymentSource, transaction.paymentSource) &&
-        Objects.equals(this.isSubsequentPayment, transaction.isSubsequentPayment) &&
-        Objects.equals(this.statementDescriptor, transaction.statementDescriptor) &&
+        Objects.equals(this.capturedAmount, transaction.capturedAmount) &&
+        Objects.equals(this.capturedAt, transaction.capturedAt) &&
         Objects.equals(this.cartItems, transaction.cartItems) &&
-        Objects.equals(this.schemeTransactionId, transaction.schemeTransactionId) &&
+        Objects.equals(this.checkoutSessionId, transaction.checkoutSessionId) &&
+        Objects.equals(this.country, transaction.country) &&
+        Objects.equals(this.createdAt, transaction.createdAt) &&
+        Objects.equals(this.currency, transaction.currency) &&
+        Objects.equals(this.cvvResponseCode, transaction.cvvResponseCode) &&
+        Objects.equals(this.errorCode, transaction.errorCode) &&
+        Objects.equals(this.externalIdentifier, transaction.externalIdentifier) &&
+        Objects.equals(this.giftCardService, transaction.giftCardService) &&
+        Objects.equals(this.giftCardsRedemptions, transaction.giftCardsRedemptions) &&
+        Objects.equals(this.intent, transaction.intent) &&
+        Objects.equals(this.intentOutcome, transaction.intentOutcome) &&
+        Objects.equals(this.isSubsequentPayment, transaction.isSubsequentPayment) &&
+        Objects.equals(this.merchantAccountId, transaction.merchantAccountId) &&
+        Objects.equals(this.merchantInitiated, transaction.merchantInitiated) &&
+        Objects.equals(this.metadata, transaction.metadata) &&
+        Objects.equals(this.method, transaction.method) &&
+        Objects.equals(this.multiTender, transaction.multiTender) &&
+        Objects.equals(this.paymentMethod, transaction.paymentMethod) &&
+        Objects.equals(this.paymentService, transaction.paymentService) &&
+        Objects.equals(this.paymentServiceTransactionId, transaction.paymentServiceTransactionId) &&
+        Objects.equals(this.paymentSource, transaction.paymentSource) &&
+        Objects.equals(this.pendingReview, transaction.pendingReview) &&
         Objects.equals(this.rawResponseCode, transaction.rawResponseCode) &&
         Objects.equals(this.rawResponseDescription, transaction.rawResponseDescription) &&
-        Objects.equals(this.errorCode, transaction.errorCode) &&
-        Objects.equals(this.authResponseCode, transaction.authResponseCode) &&
-        Objects.equals(this.avsResponseCode, transaction.avsResponseCode) &&
-        Objects.equals(this.cvvResponseCode, transaction.cvvResponseCode) &&
-        Objects.equals(this.method, transaction.method) &&
-        Objects.equals(this.paymentServiceTransactionId, transaction.paymentServiceTransactionId) &&
-        Objects.equals(this.metadata, transaction.metadata) &&
+        Objects.equals(this.reconciliationId, transaction.reconciliationId) &&
+        Objects.equals(this.refundedAmount, transaction.refundedAmount) &&
+        Objects.equals(this.schemeTransactionId, transaction.schemeTransactionId) &&
         Objects.equals(this.shippingDetails, transaction.shippingDetails) &&
+        Objects.equals(this.statementDescriptor, transaction.statementDescriptor) &&
+        Objects.equals(this.status, transaction.status) &&
         Objects.equals(this.threeDSecure, transaction.threeDSecure) &&
-        Objects.equals(this.authorizedAt, transaction.authorizedAt) &&
-        Objects.equals(this.capturedAt, transaction.capturedAt) &&
-        Objects.equals(this.voidedAt, transaction.voidedAt) &&
-        Objects.equals(this.checkoutSessionId, transaction.checkoutSessionId);
+        Objects.equals(this.updatedAt, transaction.updatedAt) &&
+        Objects.equals(this.voidedAt, transaction.voidedAt);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(type, id, reconciliationId, merchantAccountId, status, intent, amount, capturedAmount, refundedAmount, currency, country, paymentMethod, buyer, createdAt, externalIdentifier, updatedAt, paymentService, pendingReview, merchantInitiated, paymentSource, isSubsequentPayment, statementDescriptor, cartItems, schemeTransactionId, rawResponseCode, rawResponseDescription, errorCode, authResponseCode, avsResponseCode, cvvResponseCode, method, paymentServiceTransactionId, metadata, shippingDetails, threeDSecure, authorizedAt, capturedAt, voidedAt, checkoutSessionId);
+    return Objects.hash(type, id, amount, authResponseCode, authorizedAmount, authorizedAt, avsResponseCode, buyer, capturedAmount, capturedAt, cartItems, checkoutSessionId, country, createdAt, currency, cvvResponseCode, errorCode, externalIdentifier, giftCardService, giftCardsRedemptions, intent, intentOutcome, isSubsequentPayment, merchantAccountId, merchantInitiated, metadata, method, multiTender, paymentMethod, paymentService, paymentServiceTransactionId, paymentSource, pendingReview, rawResponseCode, rawResponseDescription, reconciliationId, refundedAmount, schemeTransactionId, shippingDetails, statementDescriptor, status, threeDSecure, updatedAt, voidedAt);
   }
 
   @Override
@@ -1655,43 +1856,48 @@ public class Transaction {
     sb.append("class Transaction {\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    reconciliationId: ").append(toIndentedString(reconciliationId)).append("\n");
-    sb.append("    merchantAccountId: ").append(toIndentedString(merchantAccountId)).append("\n");
-    sb.append("    status: ").append(toIndentedString(status)).append("\n");
-    sb.append("    intent: ").append(toIndentedString(intent)).append("\n");
     sb.append("    amount: ").append(toIndentedString(amount)).append("\n");
-    sb.append("    capturedAmount: ").append(toIndentedString(capturedAmount)).append("\n");
-    sb.append("    refundedAmount: ").append(toIndentedString(refundedAmount)).append("\n");
-    sb.append("    currency: ").append(toIndentedString(currency)).append("\n");
-    sb.append("    country: ").append(toIndentedString(country)).append("\n");
-    sb.append("    paymentMethod: ").append(toIndentedString(paymentMethod)).append("\n");
+    sb.append("    authResponseCode: ").append(toIndentedString(authResponseCode)).append("\n");
+    sb.append("    authorizedAmount: ").append(toIndentedString(authorizedAmount)).append("\n");
+    sb.append("    authorizedAt: ").append(toIndentedString(authorizedAt)).append("\n");
+    sb.append("    avsResponseCode: ").append(toIndentedString(avsResponseCode)).append("\n");
     sb.append("    buyer: ").append(toIndentedString(buyer)).append("\n");
-    sb.append("    createdAt: ").append(toIndentedString(createdAt)).append("\n");
-    sb.append("    externalIdentifier: ").append(toIndentedString(externalIdentifier)).append("\n");
-    sb.append("    updatedAt: ").append(toIndentedString(updatedAt)).append("\n");
-    sb.append("    paymentService: ").append(toIndentedString(paymentService)).append("\n");
-    sb.append("    pendingReview: ").append(toIndentedString(pendingReview)).append("\n");
-    sb.append("    merchantInitiated: ").append(toIndentedString(merchantInitiated)).append("\n");
-    sb.append("    paymentSource: ").append(toIndentedString(paymentSource)).append("\n");
-    sb.append("    isSubsequentPayment: ").append(toIndentedString(isSubsequentPayment)).append("\n");
-    sb.append("    statementDescriptor: ").append(toIndentedString(statementDescriptor)).append("\n");
+    sb.append("    capturedAmount: ").append(toIndentedString(capturedAmount)).append("\n");
+    sb.append("    capturedAt: ").append(toIndentedString(capturedAt)).append("\n");
     sb.append("    cartItems: ").append(toIndentedString(cartItems)).append("\n");
-    sb.append("    schemeTransactionId: ").append(toIndentedString(schemeTransactionId)).append("\n");
+    sb.append("    checkoutSessionId: ").append(toIndentedString(checkoutSessionId)).append("\n");
+    sb.append("    country: ").append(toIndentedString(country)).append("\n");
+    sb.append("    createdAt: ").append(toIndentedString(createdAt)).append("\n");
+    sb.append("    currency: ").append(toIndentedString(currency)).append("\n");
+    sb.append("    cvvResponseCode: ").append(toIndentedString(cvvResponseCode)).append("\n");
+    sb.append("    errorCode: ").append(toIndentedString(errorCode)).append("\n");
+    sb.append("    externalIdentifier: ").append(toIndentedString(externalIdentifier)).append("\n");
+    sb.append("    giftCardService: ").append(toIndentedString(giftCardService)).append("\n");
+    sb.append("    giftCardsRedemptions: ").append(toIndentedString(giftCardsRedemptions)).append("\n");
+    sb.append("    intent: ").append(toIndentedString(intent)).append("\n");
+    sb.append("    intentOutcome: ").append(toIndentedString(intentOutcome)).append("\n");
+    sb.append("    isSubsequentPayment: ").append(toIndentedString(isSubsequentPayment)).append("\n");
+    sb.append("    merchantAccountId: ").append(toIndentedString(merchantAccountId)).append("\n");
+    sb.append("    merchantInitiated: ").append(toIndentedString(merchantInitiated)).append("\n");
+    sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
+    sb.append("    method: ").append(toIndentedString(method)).append("\n");
+    sb.append("    multiTender: ").append(toIndentedString(multiTender)).append("\n");
+    sb.append("    paymentMethod: ").append(toIndentedString(paymentMethod)).append("\n");
+    sb.append("    paymentService: ").append(toIndentedString(paymentService)).append("\n");
+    sb.append("    paymentServiceTransactionId: ").append(toIndentedString(paymentServiceTransactionId)).append("\n");
+    sb.append("    paymentSource: ").append(toIndentedString(paymentSource)).append("\n");
+    sb.append("    pendingReview: ").append(toIndentedString(pendingReview)).append("\n");
     sb.append("    rawResponseCode: ").append(toIndentedString(rawResponseCode)).append("\n");
     sb.append("    rawResponseDescription: ").append(toIndentedString(rawResponseDescription)).append("\n");
-    sb.append("    errorCode: ").append(toIndentedString(errorCode)).append("\n");
-    sb.append("    authResponseCode: ").append(toIndentedString(authResponseCode)).append("\n");
-    sb.append("    avsResponseCode: ").append(toIndentedString(avsResponseCode)).append("\n");
-    sb.append("    cvvResponseCode: ").append(toIndentedString(cvvResponseCode)).append("\n");
-    sb.append("    method: ").append(toIndentedString(method)).append("\n");
-    sb.append("    paymentServiceTransactionId: ").append(toIndentedString(paymentServiceTransactionId)).append("\n");
-    sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
+    sb.append("    reconciliationId: ").append(toIndentedString(reconciliationId)).append("\n");
+    sb.append("    refundedAmount: ").append(toIndentedString(refundedAmount)).append("\n");
+    sb.append("    schemeTransactionId: ").append(toIndentedString(schemeTransactionId)).append("\n");
     sb.append("    shippingDetails: ").append(toIndentedString(shippingDetails)).append("\n");
+    sb.append("    statementDescriptor: ").append(toIndentedString(statementDescriptor)).append("\n");
+    sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("    threeDSecure: ").append(toIndentedString(threeDSecure)).append("\n");
-    sb.append("    authorizedAt: ").append(toIndentedString(authorizedAt)).append("\n");
-    sb.append("    capturedAt: ").append(toIndentedString(capturedAt)).append("\n");
+    sb.append("    updatedAt: ").append(toIndentedString(updatedAt)).append("\n");
     sb.append("    voidedAt: ").append(toIndentedString(voidedAt)).append("\n");
-    sb.append("    checkoutSessionId: ").append(toIndentedString(checkoutSessionId)).append("\n");
     sb.append("}");
     return sb.toString();
   }

@@ -23,7 +23,6 @@ import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
-import java.util.UUID;
 
 /**
  * Card payment method details to use in a transaction.
@@ -95,14 +94,6 @@ public class TransactionCardRequest {
   public static final String SERIALIZED_NAME_EXTERNAL_IDENTIFIER = "external_identifier";
   @SerializedName(SERIALIZED_NAME_EXTERNAL_IDENTIFIER)
   private String externalIdentifier;
-
-  public static final String SERIALIZED_NAME_BUYER_ID = "buyer_id";
-  @SerializedName(SERIALIZED_NAME_BUYER_ID)
-  private UUID buyerId;
-
-  public static final String SERIALIZED_NAME_BUYER_EXTERNAL_IDENTIFIER = "buyer_external_identifier";
-  @SerializedName(SERIALIZED_NAME_BUYER_EXTERNAL_IDENTIFIER)
-  private String buyerExternalIdentifier;
 
   public static final String SERIALIZED_NAME_REDIRECT_URL = "redirect_url";
   @SerializedName(SERIALIZED_NAME_REDIRECT_URL)
@@ -220,52 +211,6 @@ public class TransactionCardRequest {
   }
 
 
-  public TransactionCardRequest buyerId(UUID buyerId) {
-    
-    this.buyerId = buyerId;
-    return this;
-  }
-
-   /**
-   * The ID of the buyer to associate this payment method to. If this field is provided then the &#x60;buyer_external_identifier&#x60; field needs to be unset.
-   * @return buyerId
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(example = "fe26475d-ec3e-4884-9553-f7356683f7f9", value = "The ID of the buyer to associate this payment method to. If this field is provided then the `buyer_external_identifier` field needs to be unset.")
-
-  public UUID getBuyerId() {
-    return buyerId;
-  }
-
-
-  public void setBuyerId(UUID buyerId) {
-    this.buyerId = buyerId;
-  }
-
-
-  public TransactionCardRequest buyerExternalIdentifier(String buyerExternalIdentifier) {
-    
-    this.buyerExternalIdentifier = buyerExternalIdentifier;
-    return this;
-  }
-
-   /**
-   * The &#x60;external_identifier&#x60; of the buyer to associate this payment method to. If this field is provided then the &#x60;buyer_id&#x60; field needs to be unset.
-   * @return buyerExternalIdentifier
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(example = "user-789123", value = "The `external_identifier` of the buyer to associate this payment method to. If this field is provided then the `buyer_id` field needs to be unset.")
-
-  public String getBuyerExternalIdentifier() {
-    return buyerExternalIdentifier;
-  }
-
-
-  public void setBuyerExternalIdentifier(String buyerExternalIdentifier) {
-    this.buyerExternalIdentifier = buyerExternalIdentifier;
-  }
-
-
   public TransactionCardRequest redirectUrl(String redirectUrl) {
     
     this.redirectUrl = redirectUrl;
@@ -303,14 +248,12 @@ public class TransactionCardRequest {
         Objects.equals(this.expirationDate, transactionCardRequest.expirationDate) &&
         Objects.equals(this.securityCode, transactionCardRequest.securityCode) &&
         Objects.equals(this.externalIdentifier, transactionCardRequest.externalIdentifier) &&
-        Objects.equals(this.buyerId, transactionCardRequest.buyerId) &&
-        Objects.equals(this.buyerExternalIdentifier, transactionCardRequest.buyerExternalIdentifier) &&
         Objects.equals(this.redirectUrl, transactionCardRequest.redirectUrl);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(method, number, expirationDate, securityCode, externalIdentifier, buyerId, buyerExternalIdentifier, redirectUrl);
+    return Objects.hash(method, number, expirationDate, securityCode, externalIdentifier, redirectUrl);
   }
 
   @Override
@@ -322,8 +265,6 @@ public class TransactionCardRequest {
     sb.append("    expirationDate: ").append(toIndentedString(expirationDate)).append("\n");
     sb.append("    securityCode: ").append(toIndentedString(securityCode)).append("\n");
     sb.append("    externalIdentifier: ").append(toIndentedString(externalIdentifier)).append("\n");
-    sb.append("    buyerId: ").append(toIndentedString(buyerId)).append("\n");
-    sb.append("    buyerExternalIdentifier: ").append(toIndentedString(buyerExternalIdentifier)).append("\n");
     sb.append("    redirectUrl: ").append(toIndentedString(redirectUrl)).append("\n");
     sb.append("}");
     return sb.toString();

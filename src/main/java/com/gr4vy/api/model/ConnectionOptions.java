@@ -24,6 +24,7 @@ import com.gr4vy.api.model.ConnectionOptionsAdyenCard;
 import com.gr4vy.api.model.ConnectionOptionsCybersourceAntiFraud;
 import com.gr4vy.api.model.ConnectionOptionsForterAntiFraud;
 import com.gr4vy.api.model.ConnectionOptionsPaypalPaypal;
+import com.gr4vy.api.model.ConnectionOptionsStripeCard;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
@@ -52,6 +53,10 @@ public class ConnectionOptions {
   public static final String SERIALIZED_NAME_PAYPAL_PAYPALPAYLATER = "paypal-paypalpaylater";
   @SerializedName(SERIALIZED_NAME_PAYPAL_PAYPALPAYLATER)
   private ConnectionOptionsPaypalPaypal paypalPaypalpaylater;
+
+  public static final String SERIALIZED_NAME_STRIPE_CARD = "stripe-card";
+  @SerializedName(SERIALIZED_NAME_STRIPE_CARD)
+  private ConnectionOptionsStripeCard stripeCard;
 
 
   public ConnectionOptions cybersourceAntiFraud(ConnectionOptionsCybersourceAntiFraud cybersourceAntiFraud) {
@@ -169,6 +174,29 @@ public class ConnectionOptions {
   }
 
 
+  public ConnectionOptions stripeCard(ConnectionOptionsStripeCard stripeCard) {
+    
+    this.stripeCard = stripeCard;
+    return this;
+  }
+
+   /**
+   * Get stripeCard
+   * @return stripeCard
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public ConnectionOptionsStripeCard getStripeCard() {
+    return stripeCard;
+  }
+
+
+  public void setStripeCard(ConnectionOptionsStripeCard stripeCard) {
+    this.stripeCard = stripeCard;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -182,12 +210,13 @@ public class ConnectionOptions {
         Objects.equals(this.forterAntiFraud, connectionOptions.forterAntiFraud) &&
         Objects.equals(this.adyenCard, connectionOptions.adyenCard) &&
         Objects.equals(this.paypalPaypal, connectionOptions.paypalPaypal) &&
-        Objects.equals(this.paypalPaypalpaylater, connectionOptions.paypalPaypalpaylater);
+        Objects.equals(this.paypalPaypalpaylater, connectionOptions.paypalPaypalpaylater) &&
+        Objects.equals(this.stripeCard, connectionOptions.stripeCard);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(cybersourceAntiFraud, forterAntiFraud, adyenCard, paypalPaypal, paypalPaypalpaylater);
+    return Objects.hash(cybersourceAntiFraud, forterAntiFraud, adyenCard, paypalPaypal, paypalPaypalpaylater, stripeCard);
   }
 
   @Override
@@ -199,6 +228,7 @@ public class ConnectionOptions {
     sb.append("    adyenCard: ").append(toIndentedString(adyenCard)).append("\n");
     sb.append("    paypalPaypal: ").append(toIndentedString(paypalPaypal)).append("\n");
     sb.append("    paypalPaypalpaylater: ").append(toIndentedString(paypalPaypalpaylater)).append("\n");
+    sb.append("    stripeCard: ").append(toIndentedString(stripeCard)).append("\n");
     sb.append("}");
     return sb.toString();
   }
