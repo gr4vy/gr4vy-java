@@ -25,6 +25,8 @@ import com.gr4vy.api.model.PaymentMethodDetailsCard;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 
@@ -87,26 +89,58 @@ public class PaymentMethod {
   @SerializedName(SERIALIZED_NAME_ID)
   private UUID id;
 
-  public static final String SERIALIZED_NAME_MERCHANT_ACCOUNT_ID = "merchant_account_id";
-  @SerializedName(SERIALIZED_NAME_MERCHANT_ACCOUNT_ID)
-  private String merchantAccountId;
-
   /**
-   * The state of the payment method.  - &#x60;processing&#x60; - The payment method is stored but has not been used yet. - &#x60;buyer_approval_required&#x60; - Storing the payment method requires   the buyer to provide approval. Follow the &#x60;approval_url&#x60; for next steps. - &#x60;succeeded&#x60; - The payment method is stored and has been used. - &#x60;failed&#x60; - The payment method could not be stored, or failed first use.
+   * Gets or Sets additionalSchemes
    */
-  @JsonAdapter(StatusEnum.Adapter.class)
-  public enum StatusEnum {
-    PROCESSING("processing"),
+  @JsonAdapter(AdditionalSchemesEnum.Adapter.class)
+  public enum AdditionalSchemesEnum {
+    ACCEL("accel"),
     
-    BUYER_APPROVAL_REQUIRED("buyer_approval_required"),
+    AMEX("amex"),
     
-    SUCCEEDED("succeeded"),
+    BANCONTACT("bancontact"),
     
-    FAILED("failed");
+    CARTE_BANCAIRE("carte-bancaire"),
+    
+    CIRRUS("cirrus"),
+    
+    CULIANCE("culiance"),
+    
+    DANKORT("dankort"),
+    
+    DINERS_CLUB("diners-club"),
+    
+    DISCOVER("discover"),
+    
+    EFTPOS_AUSTRALIA("eftpos-australia"),
+    
+    ELO("elo"),
+    
+    HIPERCARD("hipercard"),
+    
+    JCB("jcb"),
+    
+    MAESTRO("maestro"),
+    
+    MASTERCARD("mastercard"),
+    
+    NYCE("nyce"),
+    
+    OTHER("other"),
+    
+    PULSE("pulse"),
+    
+    RUPAY("rupay"),
+    
+    STAR("star"),
+    
+    UNIONPAY("unionpay"),
+    
+    VISA("visa");
 
     private String value;
 
-    StatusEnum(String value) {
+    AdditionalSchemesEnum(String value) {
       this.value = value;
     }
 
@@ -119,8 +153,8 @@ public class PaymentMethod {
       return String.valueOf(value);
     }
 
-    public static StatusEnum fromValue(String value) {
-      for (StatusEnum b : StatusEnum.values()) {
+    public static AdditionalSchemesEnum fromValue(String value) {
+      for (AdditionalSchemesEnum b : AdditionalSchemesEnum.values()) {
         if (b.value.equals(value)) {
           return b;
         }
@@ -128,23 +162,122 @@ public class PaymentMethod {
       throw new IllegalArgumentException("Unexpected value '" + value + "'");
     }
 
-    public static class Adapter extends TypeAdapter<StatusEnum> {
+    public static class Adapter extends TypeAdapter<AdditionalSchemesEnum> {
       @Override
-      public void write(final JsonWriter jsonWriter, final StatusEnum enumeration) throws IOException {
+      public void write(final JsonWriter jsonWriter, final AdditionalSchemesEnum enumeration) throws IOException {
         jsonWriter.value(enumeration.getValue());
       }
 
       @Override
-      public StatusEnum read(final JsonReader jsonReader) throws IOException {
+      public AdditionalSchemesEnum read(final JsonReader jsonReader) throws IOException {
         String value =  jsonReader.nextString();
-        return StatusEnum.fromValue(value);
+        return AdditionalSchemesEnum.fromValue(value);
       }
     }
   }
 
-  public static final String SERIALIZED_NAME_STATUS = "status";
-  @SerializedName(SERIALIZED_NAME_STATUS)
-  private StatusEnum status;
+  public static final String SERIALIZED_NAME_ADDITIONAL_SCHEMES = "additional_schemes";
+  @SerializedName(SERIALIZED_NAME_ADDITIONAL_SCHEMES)
+  private List<AdditionalSchemesEnum> additionalSchemes = null;
+
+  /**
+   * The browser target that an approval URL must be opened in. If &#x60;any&#x60; or &#x60;null&#x60;, then there is no specific requirement.
+   */
+  @JsonAdapter(ApprovalTargetEnum.Adapter.class)
+  public enum ApprovalTargetEnum {
+    ANY("any"),
+    
+    NEW_WINDOW("new_window");
+
+    private String value;
+
+    ApprovalTargetEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static ApprovalTargetEnum fromValue(String value) {
+      for (ApprovalTargetEnum b : ApprovalTargetEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      return null;
+    }
+
+    public static class Adapter extends TypeAdapter<ApprovalTargetEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final ApprovalTargetEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public ApprovalTargetEnum read(final JsonReader jsonReader) throws IOException {
+        String value =  jsonReader.nextString();
+        return ApprovalTargetEnum.fromValue(value);
+      }
+    }
+  }
+
+  public static final String SERIALIZED_NAME_APPROVAL_TARGET = "approval_target";
+  @SerializedName(SERIALIZED_NAME_APPROVAL_TARGET)
+  private ApprovalTargetEnum approvalTarget;
+
+  public static final String SERIALIZED_NAME_APPROVAL_URL = "approval_url";
+  @SerializedName(SERIALIZED_NAME_APPROVAL_URL)
+  private String approvalUrl;
+
+  public static final String SERIALIZED_NAME_BUYER = "buyer";
+  @SerializedName(SERIALIZED_NAME_BUYER)
+  private Buyer buyer;
+
+  public static final String SERIALIZED_NAME_COUNTRY = "country";
+  @SerializedName(SERIALIZED_NAME_COUNTRY)
+  private String country;
+
+  public static final String SERIALIZED_NAME_CREATED_AT = "created_at";
+  @SerializedName(SERIALIZED_NAME_CREATED_AT)
+  private String createdAt;
+
+  public static final String SERIALIZED_NAME_CURRENCY = "currency";
+  @SerializedName(SERIALIZED_NAME_CURRENCY)
+  private String currency;
+
+  public static final String SERIALIZED_NAME_DETAILS = "details";
+  @SerializedName(SERIALIZED_NAME_DETAILS)
+  private PaymentMethodDetailsCard details;
+
+  public static final String SERIALIZED_NAME_EXPIRATION_DATE = "expiration_date";
+  @SerializedName(SERIALIZED_NAME_EXPIRATION_DATE)
+  private String expirationDate;
+
+  public static final String SERIALIZED_NAME_EXTERNAL_IDENTIFIER = "external_identifier";
+  @SerializedName(SERIALIZED_NAME_EXTERNAL_IDENTIFIER)
+  private String externalIdentifier;
+
+  public static final String SERIALIZED_NAME_HAS_REPLACEMENT = "has_replacement";
+  @SerializedName(SERIALIZED_NAME_HAS_REPLACEMENT)
+  private Boolean hasReplacement;
+
+  public static final String SERIALIZED_NAME_LABEL = "label";
+  @SerializedName(SERIALIZED_NAME_LABEL)
+  private String label;
+
+  public static final String SERIALIZED_NAME_LAST_REPLACED_AT = "last_replaced_at";
+  @SerializedName(SERIALIZED_NAME_LAST_REPLACED_AT)
+  private String lastReplacedAt;
+
+  public static final String SERIALIZED_NAME_MERCHANT_ACCOUNT_ID = "merchant_account_id";
+  @SerializedName(SERIALIZED_NAME_MERCHANT_ACCOUNT_ID)
+  private String merchantAccountId;
 
   /**
    * The type of this payment method.
@@ -370,46 +503,58 @@ public class PaymentMethod {
   @SerializedName(SERIALIZED_NAME_MODE)
   private ModeEnum mode;
 
-  public static final String SERIALIZED_NAME_CREATED_AT = "created_at";
-  @SerializedName(SERIALIZED_NAME_CREATED_AT)
-  private String createdAt;
-
-  public static final String SERIALIZED_NAME_UPDATED_AT = "updated_at";
-  @SerializedName(SERIALIZED_NAME_UPDATED_AT)
-  private String updatedAt;
-
-  public static final String SERIALIZED_NAME_EXTERNAL_IDENTIFIER = "external_identifier";
-  @SerializedName(SERIALIZED_NAME_EXTERNAL_IDENTIFIER)
-  private String externalIdentifier;
-
-  public static final String SERIALIZED_NAME_BUYER = "buyer";
-  @SerializedName(SERIALIZED_NAME_BUYER)
-  private Buyer buyer;
-
-  public static final String SERIALIZED_NAME_LABEL = "label";
-  @SerializedName(SERIALIZED_NAME_LABEL)
-  private String label;
-
-  public static final String SERIALIZED_NAME_SCHEME = "scheme";
-  @SerializedName(SERIALIZED_NAME_SCHEME)
-  private String scheme;
-
-  public static final String SERIALIZED_NAME_EXPIRATION_DATE = "expiration_date";
-  @SerializedName(SERIALIZED_NAME_EXPIRATION_DATE)
-  private String expirationDate;
-
   /**
-   * The browser target that an approval URL must be opened in. If &#x60;any&#x60; or &#x60;null&#x60;, then there is no specific requirement.
+   * The scheme of the card. Only applies to card payments.
    */
-  @JsonAdapter(ApprovalTargetEnum.Adapter.class)
-  public enum ApprovalTargetEnum {
-    ANY("any"),
+  @JsonAdapter(SchemeEnum.Adapter.class)
+  public enum SchemeEnum {
+    ACCEL("accel"),
     
-    NEW_WINDOW("new_window");
+    AMEX("amex"),
+    
+    BANCONTACT("bancontact"),
+    
+    CARTE_BANCAIRE("carte-bancaire"),
+    
+    CIRRUS("cirrus"),
+    
+    CULIANCE("culiance"),
+    
+    DANKORT("dankort"),
+    
+    DINERS_CLUB("diners-club"),
+    
+    DISCOVER("discover"),
+    
+    EFTPOS_AUSTRALIA("eftpos-australia"),
+    
+    ELO("elo"),
+    
+    HIPERCARD("hipercard"),
+    
+    JCB("jcb"),
+    
+    MAESTRO("maestro"),
+    
+    MASTERCARD("mastercard"),
+    
+    NYCE("nyce"),
+    
+    OTHER("other"),
+    
+    PULSE("pulse"),
+    
+    RUPAY("rupay"),
+    
+    STAR("star"),
+    
+    UNIONPAY("unionpay"),
+    
+    VISA("visa");
 
     private String value;
 
-    ApprovalTargetEnum(String value) {
+    SchemeEnum(String value) {
       this.value = value;
     }
 
@@ -422,8 +567,8 @@ public class PaymentMethod {
       return String.valueOf(value);
     }
 
-    public static ApprovalTargetEnum fromValue(String value) {
-      for (ApprovalTargetEnum b : ApprovalTargetEnum.values()) {
+    public static SchemeEnum fromValue(String value) {
+      for (SchemeEnum b : SchemeEnum.values()) {
         if (b.value.equals(value)) {
           return b;
         }
@@ -431,47 +576,82 @@ public class PaymentMethod {
       return null;
     }
 
-    public static class Adapter extends TypeAdapter<ApprovalTargetEnum> {
+    public static class Adapter extends TypeAdapter<SchemeEnum> {
       @Override
-      public void write(final JsonWriter jsonWriter, final ApprovalTargetEnum enumeration) throws IOException {
+      public void write(final JsonWriter jsonWriter, final SchemeEnum enumeration) throws IOException {
         jsonWriter.value(enumeration.getValue());
       }
 
       @Override
-      public ApprovalTargetEnum read(final JsonReader jsonReader) throws IOException {
+      public SchemeEnum read(final JsonReader jsonReader) throws IOException {
         String value =  jsonReader.nextString();
-        return ApprovalTargetEnum.fromValue(value);
+        return SchemeEnum.fromValue(value);
       }
     }
   }
 
-  public static final String SERIALIZED_NAME_APPROVAL_TARGET = "approval_target";
-  @SerializedName(SERIALIZED_NAME_APPROVAL_TARGET)
-  private ApprovalTargetEnum approvalTarget;
+  public static final String SERIALIZED_NAME_SCHEME = "scheme";
+  @SerializedName(SERIALIZED_NAME_SCHEME)
+  private SchemeEnum scheme;
 
-  public static final String SERIALIZED_NAME_APPROVAL_URL = "approval_url";
-  @SerializedName(SERIALIZED_NAME_APPROVAL_URL)
-  private String approvalUrl;
+  /**
+   * The state of the payment method.  - &#x60;processing&#x60; - The payment method is stored but has not been used yet. - &#x60;buyer_approval_required&#x60; - Storing the payment method requires   the buyer to provide approval. Follow the &#x60;approval_url&#x60; for next steps. - &#x60;succeeded&#x60; - The payment method is stored and has been used. - &#x60;failed&#x60; - The payment method could not be stored, or failed first use.
+   */
+  @JsonAdapter(StatusEnum.Adapter.class)
+  public enum StatusEnum {
+    PROCESSING("processing"),
+    
+    BUYER_APPROVAL_REQUIRED("buyer_approval_required"),
+    
+    SUCCEEDED("succeeded"),
+    
+    FAILED("failed");
 
-  public static final String SERIALIZED_NAME_CURRENCY = "currency";
-  @SerializedName(SERIALIZED_NAME_CURRENCY)
-  private String currency;
+    private String value;
 
-  public static final String SERIALIZED_NAME_COUNTRY = "country";
-  @SerializedName(SERIALIZED_NAME_COUNTRY)
-  private String country;
+    StatusEnum(String value) {
+      this.value = value;
+    }
 
-  public static final String SERIALIZED_NAME_DETAILS = "details";
-  @SerializedName(SERIALIZED_NAME_DETAILS)
-  private PaymentMethodDetailsCard details;
+    public String getValue() {
+      return value;
+    }
 
-  public static final String SERIALIZED_NAME_LAST_REPLACED_AT = "last_replaced_at";
-  @SerializedName(SERIALIZED_NAME_LAST_REPLACED_AT)
-  private String lastReplacedAt;
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
 
-  public static final String SERIALIZED_NAME_HAS_REPLACEMENT = "has_replacement";
-  @SerializedName(SERIALIZED_NAME_HAS_REPLACEMENT)
-  private Boolean hasReplacement;
+    public static StatusEnum fromValue(String value) {
+      for (StatusEnum b : StatusEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+
+    public static class Adapter extends TypeAdapter<StatusEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final StatusEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public StatusEnum read(final JsonReader jsonReader) throws IOException {
+        String value =  jsonReader.nextString();
+        return StatusEnum.fromValue(value);
+      }
+    }
+  }
+
+  public static final String SERIALIZED_NAME_STATUS = "status";
+  @SerializedName(SERIALIZED_NAME_STATUS)
+  private StatusEnum status;
+
+  public static final String SERIALIZED_NAME_UPDATED_AT = "updated_at";
+  @SerializedName(SERIALIZED_NAME_UPDATED_AT)
+  private String updatedAt;
 
 
   public PaymentMethod type(TypeEnum type) {
@@ -520,256 +700,34 @@ public class PaymentMethod {
   }
 
 
-  public PaymentMethod merchantAccountId(String merchantAccountId) {
+  public PaymentMethod additionalSchemes(List<AdditionalSchemesEnum> additionalSchemes) {
     
-    this.merchantAccountId = merchantAccountId;
+    this.additionalSchemes = additionalSchemes;
+    return this;
+  }
+
+  public PaymentMethod addAdditionalSchemesItem(AdditionalSchemesEnum additionalSchemesItem) {
+    if (this.additionalSchemes == null) {
+      this.additionalSchemes = new ArrayList<AdditionalSchemesEnum>();
+    }
+    this.additionalSchemes.add(additionalSchemesItem);
     return this;
   }
 
    /**
-   * The unique ID for a merchant account.
-   * @return merchantAccountId
+   * Additional schemes of the card. Only applies to card payment methods.
+   * @return additionalSchemes
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "default", value = "The unique ID for a merchant account.")
+  @ApiModelProperty(value = "Additional schemes of the card. Only applies to card payment methods.")
 
-  public String getMerchantAccountId() {
-    return merchantAccountId;
+  public List<AdditionalSchemesEnum> getAdditionalSchemes() {
+    return additionalSchemes;
   }
 
 
-  public void setMerchantAccountId(String merchantAccountId) {
-    this.merchantAccountId = merchantAccountId;
-  }
-
-
-  public PaymentMethod status(StatusEnum status) {
-    
-    this.status = status;
-    return this;
-  }
-
-   /**
-   * The state of the payment method.  - &#x60;processing&#x60; - The payment method is stored but has not been used yet. - &#x60;buyer_approval_required&#x60; - Storing the payment method requires   the buyer to provide approval. Follow the &#x60;approval_url&#x60; for next steps. - &#x60;succeeded&#x60; - The payment method is stored and has been used. - &#x60;failed&#x60; - The payment method could not be stored, or failed first use.
-   * @return status
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(example = "succeeded", value = "The state of the payment method.  - `processing` - The payment method is stored but has not been used yet. - `buyer_approval_required` - Storing the payment method requires   the buyer to provide approval. Follow the `approval_url` for next steps. - `succeeded` - The payment method is stored and has been used. - `failed` - The payment method could not be stored, or failed first use.")
-
-  public StatusEnum getStatus() {
-    return status;
-  }
-
-
-  public void setStatus(StatusEnum status) {
-    this.status = status;
-  }
-
-
-  public PaymentMethod method(MethodEnum method) {
-    
-    this.method = method;
-    return this;
-  }
-
-   /**
-   * The type of this payment method.
-   * @return method
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(example = "card", value = "The type of this payment method.")
-
-  public MethodEnum getMethod() {
-    return method;
-  }
-
-
-  public void setMethod(MethodEnum method) {
-    this.method = method;
-  }
-
-
-  public PaymentMethod mode(ModeEnum mode) {
-    
-    this.mode = mode;
-    return this;
-  }
-
-   /**
-   * The mode to use with this payment method.
-   * @return mode
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(example = "card", value = "The mode to use with this payment method.")
-
-  public ModeEnum getMode() {
-    return mode;
-  }
-
-
-  public void setMode(ModeEnum mode) {
-    this.mode = mode;
-  }
-
-
-  public PaymentMethod createdAt(String createdAt) {
-    
-    this.createdAt = createdAt;
-    return this;
-  }
-
-   /**
-   * The date and time when this payment method was first created in our system.
-   * @return createdAt
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(example = "2013-07-16T19:23Z", value = "The date and time when this payment method was first created in our system.")
-
-  public String getCreatedAt() {
-    return createdAt;
-  }
-
-
-  public void setCreatedAt(String createdAt) {
-    this.createdAt = createdAt;
-  }
-
-
-  public PaymentMethod updatedAt(String updatedAt) {
-    
-    this.updatedAt = updatedAt;
-    return this;
-  }
-
-   /**
-   * The date and time when this payment method was last updated in our system.
-   * @return updatedAt
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(example = "2013-07-16T19:23Z", value = "The date and time when this payment method was last updated in our system.")
-
-  public String getUpdatedAt() {
-    return updatedAt;
-  }
-
-
-  public void setUpdatedAt(String updatedAt) {
-    this.updatedAt = updatedAt;
-  }
-
-
-  public PaymentMethod externalIdentifier(String externalIdentifier) {
-    
-    this.externalIdentifier = externalIdentifier;
-    return this;
-  }
-
-   /**
-   * An external identifier that can be used to match the payment method against your own records.
-   * @return externalIdentifier
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(example = "user-789123", value = "An external identifier that can be used to match the payment method against your own records.")
-
-  public String getExternalIdentifier() {
-    return externalIdentifier;
-  }
-
-
-  public void setExternalIdentifier(String externalIdentifier) {
-    this.externalIdentifier = externalIdentifier;
-  }
-
-
-  public PaymentMethod buyer(Buyer buyer) {
-    
-    this.buyer = buyer;
-    return this;
-  }
-
-   /**
-   * The optional buyer for which this payment method has been stored.
-   * @return buyer
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "The optional buyer for which this payment method has been stored.")
-
-  public Buyer getBuyer() {
-    return buyer;
-  }
-
-
-  public void setBuyer(Buyer buyer) {
-    this.buyer = buyer;
-  }
-
-
-  public PaymentMethod label(String label) {
-    
-    this.label = label;
-    return this;
-  }
-
-   /**
-   * A label for the card or the account. For a &#x60;paypal&#x60; payment method this is the user&#39;s email address. For a card it is the last 4 digits of the card.
-   * @return label
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(example = "john@example.com", value = "A label for the card or the account. For a `paypal` payment method this is the user's email address. For a card it is the last 4 digits of the card.")
-
-  public String getLabel() {
-    return label;
-  }
-
-
-  public void setLabel(String label) {
-    this.label = label;
-  }
-
-
-  public PaymentMethod scheme(String scheme) {
-    
-    this.scheme = scheme;
-    return this;
-  }
-
-   /**
-   * The scheme of the card. Only applies to card payments.
-   * @return scheme
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(example = "visa", value = "The scheme of the card. Only applies to card payments.")
-
-  public String getScheme() {
-    return scheme;
-  }
-
-
-  public void setScheme(String scheme) {
-    this.scheme = scheme;
-  }
-
-
-  public PaymentMethod expirationDate(String expirationDate) {
-    
-    this.expirationDate = expirationDate;
-    return this;
-  }
-
-   /**
-   * The expiration date for the payment method.
-   * @return expirationDate
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(example = "07/24", value = "The expiration date for the payment method.")
-
-  public String getExpirationDate() {
-    return expirationDate;
-  }
-
-
-  public void setExpirationDate(String expirationDate) {
-    this.expirationDate = expirationDate;
+  public void setAdditionalSchemes(List<AdditionalSchemesEnum> additionalSchemes) {
+    this.additionalSchemes = additionalSchemes;
   }
 
 
@@ -819,26 +777,26 @@ public class PaymentMethod {
   }
 
 
-  public PaymentMethod currency(String currency) {
+  public PaymentMethod buyer(Buyer buyer) {
     
-    this.currency = currency;
+    this.buyer = buyer;
     return this;
   }
 
    /**
-   * The ISO-4217 currency code that this payment method can be used for. If this value is &#x60;null&#x60; the payment method may be used for multiple currencies.
-   * @return currency
+   * The optional buyer for which this payment method has been stored.
+   * @return buyer
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "USD", value = "The ISO-4217 currency code that this payment method can be used for. If this value is `null` the payment method may be used for multiple currencies.")
+  @ApiModelProperty(value = "The optional buyer for which this payment method has been stored.")
 
-  public String getCurrency() {
-    return currency;
+  public Buyer getBuyer() {
+    return buyer;
   }
 
 
-  public void setCurrency(String currency) {
-    this.currency = currency;
+  public void setBuyer(Buyer buyer) {
+    this.buyer = buyer;
   }
 
 
@@ -865,6 +823,52 @@ public class PaymentMethod {
   }
 
 
+  public PaymentMethod createdAt(String createdAt) {
+    
+    this.createdAt = createdAt;
+    return this;
+  }
+
+   /**
+   * The date and time when this payment method was first created in our system.
+   * @return createdAt
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "2013-07-16T19:23Z", value = "The date and time when this payment method was first created in our system.")
+
+  public String getCreatedAt() {
+    return createdAt;
+  }
+
+
+  public void setCreatedAt(String createdAt) {
+    this.createdAt = createdAt;
+  }
+
+
+  public PaymentMethod currency(String currency) {
+    
+    this.currency = currency;
+    return this;
+  }
+
+   /**
+   * The ISO-4217 currency code that this payment method can be used for. If this value is &#x60;null&#x60; the payment method may be used for multiple currencies.
+   * @return currency
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "USD", value = "The ISO-4217 currency code that this payment method can be used for. If this value is `null` the payment method may be used for multiple currencies.")
+
+  public String getCurrency() {
+    return currency;
+  }
+
+
+  public void setCurrency(String currency) {
+    this.currency = currency;
+  }
+
+
   public PaymentMethod details(PaymentMethodDetailsCard details) {
     
     this.details = details;
@@ -888,6 +892,98 @@ public class PaymentMethod {
   }
 
 
+  public PaymentMethod expirationDate(String expirationDate) {
+    
+    this.expirationDate = expirationDate;
+    return this;
+  }
+
+   /**
+   * The expiration date for the payment method.
+   * @return expirationDate
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "07/24", value = "The expiration date for the payment method.")
+
+  public String getExpirationDate() {
+    return expirationDate;
+  }
+
+
+  public void setExpirationDate(String expirationDate) {
+    this.expirationDate = expirationDate;
+  }
+
+
+  public PaymentMethod externalIdentifier(String externalIdentifier) {
+    
+    this.externalIdentifier = externalIdentifier;
+    return this;
+  }
+
+   /**
+   * An external identifier that can be used to match the payment method against your own records.
+   * @return externalIdentifier
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "user-789123", value = "An external identifier that can be used to match the payment method against your own records.")
+
+  public String getExternalIdentifier() {
+    return externalIdentifier;
+  }
+
+
+  public void setExternalIdentifier(String externalIdentifier) {
+    this.externalIdentifier = externalIdentifier;
+  }
+
+
+  public PaymentMethod hasReplacement(Boolean hasReplacement) {
+    
+    this.hasReplacement = hasReplacement;
+    return this;
+  }
+
+   /**
+   * Whether this card has a pending replacement that hasn&#39;t been applied yet.  When the Account Updater determines that new card details are available, existing details are not changed immediately, but this field is set to &#x60;true&#x60;. There are three scenarios in which the actual replacement occurs:  1. When this card has expired. 2. When only the expiration date changed. 3. When a transaction using this card is declined with any of the following codes:     * &#x60;canceled_payment_method&#x60;     * &#x60;expired_payment_method&#x60;     * &#x60;unavailable_payment_method&#x60;     * &#x60;unknown_payment_method&#x60;  When the replacement is applied, this field is set to &#x60;false&#x60;. For non-card payment methods, the value of this field is always set to &#x60;false&#x60;.
+   * @return hasReplacement
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "false", value = "Whether this card has a pending replacement that hasn't been applied yet.  When the Account Updater determines that new card details are available, existing details are not changed immediately, but this field is set to `true`. There are three scenarios in which the actual replacement occurs:  1. When this card has expired. 2. When only the expiration date changed. 3. When a transaction using this card is declined with any of the following codes:     * `canceled_payment_method`     * `expired_payment_method`     * `unavailable_payment_method`     * `unknown_payment_method`  When the replacement is applied, this field is set to `false`. For non-card payment methods, the value of this field is always set to `false`.")
+
+  public Boolean getHasReplacement() {
+    return hasReplacement;
+  }
+
+
+  public void setHasReplacement(Boolean hasReplacement) {
+    this.hasReplacement = hasReplacement;
+  }
+
+
+  public PaymentMethod label(String label) {
+    
+    this.label = label;
+    return this;
+  }
+
+   /**
+   * A label for the card or the account. For a &#x60;paypal&#x60; payment method this is the user&#39;s email address. For a card it is the last 4 digits of the card.
+   * @return label
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "john@example.com", value = "A label for the card or the account. For a `paypal` payment method this is the user's email address. For a card it is the last 4 digits of the card.")
+
+  public String getLabel() {
+    return label;
+  }
+
+
+  public void setLabel(String label) {
+    this.label = label;
+  }
+
+
   public PaymentMethod lastReplacedAt(String lastReplacedAt) {
     
     this.lastReplacedAt = lastReplacedAt;
@@ -895,11 +991,11 @@ public class PaymentMethod {
   }
 
    /**
-   * The date and time when this card was last replaced.  When the Account Updater determines that new card details are available (e.g. when it&#39;s about to expire), existing details are not changed immediately. The actual replacement occurs when a transaction using this payment method is declined with any of the following codes:  * &#x60;canceled_payment_method&#x60; * &#x60;expired_payment_method&#x60; * &#x60;unavailable_payment_method&#x60; * &#x60;unknown_payment_method&#x60;  When the replacement is applied, this field is updated. For non-card payment methods, the value of this field is always set to &#x60;null&#x60;.
+   * The date and time when this card was last replaced.  When the Account Updater determines that new card details are available, existing details are not changed immediately. There are three scenarios in which the actual replacement occurs:  1. When this card has expired. 2. When only the expiration date changed. 3. When a transaction using this card is declined with any of the following codes:     * &#x60;canceled_payment_method&#x60;     * &#x60;expired_payment_method&#x60;     * &#x60;unavailable_payment_method&#x60;     * &#x60;unknown_payment_method&#x60;  When the replacement is applied, this field is updated. For non-card payment methods, the value of this field is always set to &#x60;null&#x60;.
    * @return lastReplacedAt
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "2023-07-26T19:23Z", value = "The date and time when this card was last replaced.  When the Account Updater determines that new card details are available (e.g. when it's about to expire), existing details are not changed immediately. The actual replacement occurs when a transaction using this payment method is declined with any of the following codes:  * `canceled_payment_method` * `expired_payment_method` * `unavailable_payment_method` * `unknown_payment_method`  When the replacement is applied, this field is updated. For non-card payment methods, the value of this field is always set to `null`.")
+  @ApiModelProperty(example = "2023-07-26T19:23Z", value = "The date and time when this card was last replaced.  When the Account Updater determines that new card details are available, existing details are not changed immediately. There are three scenarios in which the actual replacement occurs:  1. When this card has expired. 2. When only the expiration date changed. 3. When a transaction using this card is declined with any of the following codes:     * `canceled_payment_method`     * `expired_payment_method`     * `unavailable_payment_method`     * `unknown_payment_method`  When the replacement is applied, this field is updated. For non-card payment methods, the value of this field is always set to `null`.")
 
   public String getLastReplacedAt() {
     return lastReplacedAt;
@@ -911,26 +1007,141 @@ public class PaymentMethod {
   }
 
 
-  public PaymentMethod hasReplacement(Boolean hasReplacement) {
+  public PaymentMethod merchantAccountId(String merchantAccountId) {
     
-    this.hasReplacement = hasReplacement;
+    this.merchantAccountId = merchantAccountId;
     return this;
   }
 
    /**
-   * Whether this card has a pending replacement that hasn&#39;t been applied yet.  When the Account Updater determines that new card details are available (e.g. when it&#39;s about to expire), existing details are not changed immediately, but this field is set to &#x60;true&#x60;. The actual replacement occurs when a transaction using this payment method is declined with any of the following codes:  * &#x60;canceled_payment_method&#x60; * &#x60;expired_payment_method&#x60; * &#x60;unavailable_payment_method&#x60; * &#x60;unknown_payment_method&#x60;  When the replacement is applied, this field is set to &#x60;false&#x60;. For non-card payment methods, the value of this field is always set to &#x60;false&#x60;.
-   * @return hasReplacement
+   * The unique ID for a merchant account.
+   * @return merchantAccountId
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "false", value = "Whether this card has a pending replacement that hasn't been applied yet.  When the Account Updater determines that new card details are available (e.g. when it's about to expire), existing details are not changed immediately, but this field is set to `true`. The actual replacement occurs when a transaction using this payment method is declined with any of the following codes:  * `canceled_payment_method` * `expired_payment_method` * `unavailable_payment_method` * `unknown_payment_method`  When the replacement is applied, this field is set to `false`. For non-card payment methods, the value of this field is always set to `false`.")
+  @ApiModelProperty(example = "default", value = "The unique ID for a merchant account.")
 
-  public Boolean getHasReplacement() {
-    return hasReplacement;
+  public String getMerchantAccountId() {
+    return merchantAccountId;
   }
 
 
-  public void setHasReplacement(Boolean hasReplacement) {
-    this.hasReplacement = hasReplacement;
+  public void setMerchantAccountId(String merchantAccountId) {
+    this.merchantAccountId = merchantAccountId;
+  }
+
+
+  public PaymentMethod method(MethodEnum method) {
+    
+    this.method = method;
+    return this;
+  }
+
+   /**
+   * The type of this payment method.
+   * @return method
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "card", value = "The type of this payment method.")
+
+  public MethodEnum getMethod() {
+    return method;
+  }
+
+
+  public void setMethod(MethodEnum method) {
+    this.method = method;
+  }
+
+
+  public PaymentMethod mode(ModeEnum mode) {
+    
+    this.mode = mode;
+    return this;
+  }
+
+   /**
+   * The mode to use with this payment method.
+   * @return mode
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "card", value = "The mode to use with this payment method.")
+
+  public ModeEnum getMode() {
+    return mode;
+  }
+
+
+  public void setMode(ModeEnum mode) {
+    this.mode = mode;
+  }
+
+
+  public PaymentMethod scheme(SchemeEnum scheme) {
+    
+    this.scheme = scheme;
+    return this;
+  }
+
+   /**
+   * The scheme of the card. Only applies to card payments.
+   * @return scheme
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "visa", value = "The scheme of the card. Only applies to card payments.")
+
+  public SchemeEnum getScheme() {
+    return scheme;
+  }
+
+
+  public void setScheme(SchemeEnum scheme) {
+    this.scheme = scheme;
+  }
+
+
+  public PaymentMethod status(StatusEnum status) {
+    
+    this.status = status;
+    return this;
+  }
+
+   /**
+   * The state of the payment method.  - &#x60;processing&#x60; - The payment method is stored but has not been used yet. - &#x60;buyer_approval_required&#x60; - Storing the payment method requires   the buyer to provide approval. Follow the &#x60;approval_url&#x60; for next steps. - &#x60;succeeded&#x60; - The payment method is stored and has been used. - &#x60;failed&#x60; - The payment method could not be stored, or failed first use.
+   * @return status
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "succeeded", value = "The state of the payment method.  - `processing` - The payment method is stored but has not been used yet. - `buyer_approval_required` - Storing the payment method requires   the buyer to provide approval. Follow the `approval_url` for next steps. - `succeeded` - The payment method is stored and has been used. - `failed` - The payment method could not be stored, or failed first use.")
+
+  public StatusEnum getStatus() {
+    return status;
+  }
+
+
+  public void setStatus(StatusEnum status) {
+    this.status = status;
+  }
+
+
+  public PaymentMethod updatedAt(String updatedAt) {
+    
+    this.updatedAt = updatedAt;
+    return this;
+  }
+
+   /**
+   * The date and time when this payment method was last updated in our system.
+   * @return updatedAt
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "2013-07-16T19:23Z", value = "The date and time when this payment method was last updated in our system.")
+
+  public String getUpdatedAt() {
+    return updatedAt;
+  }
+
+
+  public void setUpdatedAt(String updatedAt) {
+    this.updatedAt = updatedAt;
   }
 
 
@@ -945,29 +1156,30 @@ public class PaymentMethod {
     PaymentMethod paymentMethod = (PaymentMethod) o;
     return Objects.equals(this.type, paymentMethod.type) &&
         Objects.equals(this.id, paymentMethod.id) &&
-        Objects.equals(this.merchantAccountId, paymentMethod.merchantAccountId) &&
-        Objects.equals(this.status, paymentMethod.status) &&
-        Objects.equals(this.method, paymentMethod.method) &&
-        Objects.equals(this.mode, paymentMethod.mode) &&
-        Objects.equals(this.createdAt, paymentMethod.createdAt) &&
-        Objects.equals(this.updatedAt, paymentMethod.updatedAt) &&
-        Objects.equals(this.externalIdentifier, paymentMethod.externalIdentifier) &&
-        Objects.equals(this.buyer, paymentMethod.buyer) &&
-        Objects.equals(this.label, paymentMethod.label) &&
-        Objects.equals(this.scheme, paymentMethod.scheme) &&
-        Objects.equals(this.expirationDate, paymentMethod.expirationDate) &&
+        Objects.equals(this.additionalSchemes, paymentMethod.additionalSchemes) &&
         Objects.equals(this.approvalTarget, paymentMethod.approvalTarget) &&
         Objects.equals(this.approvalUrl, paymentMethod.approvalUrl) &&
-        Objects.equals(this.currency, paymentMethod.currency) &&
+        Objects.equals(this.buyer, paymentMethod.buyer) &&
         Objects.equals(this.country, paymentMethod.country) &&
+        Objects.equals(this.createdAt, paymentMethod.createdAt) &&
+        Objects.equals(this.currency, paymentMethod.currency) &&
         Objects.equals(this.details, paymentMethod.details) &&
+        Objects.equals(this.expirationDate, paymentMethod.expirationDate) &&
+        Objects.equals(this.externalIdentifier, paymentMethod.externalIdentifier) &&
+        Objects.equals(this.hasReplacement, paymentMethod.hasReplacement) &&
+        Objects.equals(this.label, paymentMethod.label) &&
         Objects.equals(this.lastReplacedAt, paymentMethod.lastReplacedAt) &&
-        Objects.equals(this.hasReplacement, paymentMethod.hasReplacement);
+        Objects.equals(this.merchantAccountId, paymentMethod.merchantAccountId) &&
+        Objects.equals(this.method, paymentMethod.method) &&
+        Objects.equals(this.mode, paymentMethod.mode) &&
+        Objects.equals(this.scheme, paymentMethod.scheme) &&
+        Objects.equals(this.status, paymentMethod.status) &&
+        Objects.equals(this.updatedAt, paymentMethod.updatedAt);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(type, id, merchantAccountId, status, method, mode, createdAt, updatedAt, externalIdentifier, buyer, label, scheme, expirationDate, approvalTarget, approvalUrl, currency, country, details, lastReplacedAt, hasReplacement);
+    return Objects.hash(type, id, additionalSchemes, approvalTarget, approvalUrl, buyer, country, createdAt, currency, details, expirationDate, externalIdentifier, hasReplacement, label, lastReplacedAt, merchantAccountId, method, mode, scheme, status, updatedAt);
   }
 
   @Override
@@ -976,24 +1188,25 @@ public class PaymentMethod {
     sb.append("class PaymentMethod {\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    merchantAccountId: ").append(toIndentedString(merchantAccountId)).append("\n");
-    sb.append("    status: ").append(toIndentedString(status)).append("\n");
-    sb.append("    method: ").append(toIndentedString(method)).append("\n");
-    sb.append("    mode: ").append(toIndentedString(mode)).append("\n");
-    sb.append("    createdAt: ").append(toIndentedString(createdAt)).append("\n");
-    sb.append("    updatedAt: ").append(toIndentedString(updatedAt)).append("\n");
-    sb.append("    externalIdentifier: ").append(toIndentedString(externalIdentifier)).append("\n");
-    sb.append("    buyer: ").append(toIndentedString(buyer)).append("\n");
-    sb.append("    label: ").append(toIndentedString(label)).append("\n");
-    sb.append("    scheme: ").append(toIndentedString(scheme)).append("\n");
-    sb.append("    expirationDate: ").append(toIndentedString(expirationDate)).append("\n");
+    sb.append("    additionalSchemes: ").append(toIndentedString(additionalSchemes)).append("\n");
     sb.append("    approvalTarget: ").append(toIndentedString(approvalTarget)).append("\n");
     sb.append("    approvalUrl: ").append(toIndentedString(approvalUrl)).append("\n");
-    sb.append("    currency: ").append(toIndentedString(currency)).append("\n");
+    sb.append("    buyer: ").append(toIndentedString(buyer)).append("\n");
     sb.append("    country: ").append(toIndentedString(country)).append("\n");
+    sb.append("    createdAt: ").append(toIndentedString(createdAt)).append("\n");
+    sb.append("    currency: ").append(toIndentedString(currency)).append("\n");
     sb.append("    details: ").append(toIndentedString(details)).append("\n");
-    sb.append("    lastReplacedAt: ").append(toIndentedString(lastReplacedAt)).append("\n");
+    sb.append("    expirationDate: ").append(toIndentedString(expirationDate)).append("\n");
+    sb.append("    externalIdentifier: ").append(toIndentedString(externalIdentifier)).append("\n");
     sb.append("    hasReplacement: ").append(toIndentedString(hasReplacement)).append("\n");
+    sb.append("    label: ").append(toIndentedString(label)).append("\n");
+    sb.append("    lastReplacedAt: ").append(toIndentedString(lastReplacedAt)).append("\n");
+    sb.append("    merchantAccountId: ").append(toIndentedString(merchantAccountId)).append("\n");
+    sb.append("    method: ").append(toIndentedString(method)).append("\n");
+    sb.append("    mode: ").append(toIndentedString(mode)).append("\n");
+    sb.append("    scheme: ").append(toIndentedString(scheme)).append("\n");
+    sb.append("    status: ").append(toIndentedString(status)).append("\n");
+    sb.append("    updatedAt: ").append(toIndentedString(updatedAt)).append("\n");
     sb.append("}");
     return sb.toString();
   }

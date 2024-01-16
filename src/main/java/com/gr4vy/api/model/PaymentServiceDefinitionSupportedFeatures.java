@@ -34,9 +34,9 @@ public class PaymentServiceDefinitionSupportedFeatures {
   @SerializedName(SERIALIZED_NAME_DELAYED_CAPTURE)
   private Boolean delayedCapture;
 
-  public static final String SERIALIZED_NAME_NETWORK_TOKENS = "network_tokens";
-  @SerializedName(SERIALIZED_NAME_NETWORK_TOKENS)
-  private Boolean networkTokens;
+  public static final String SERIALIZED_NAME_DIGITAL_WALLETS = "digital_wallets";
+  @SerializedName(SERIALIZED_NAME_DIGITAL_WALLETS)
+  private Boolean digitalWallets;
 
   public static final String SERIALIZED_NAME_NETWORK_TOKENS_DEFAULT = "network_tokens_default";
   @SerializedName(SERIALIZED_NAME_NETWORK_TOKENS_DEFAULT)
@@ -114,26 +114,26 @@ public class PaymentServiceDefinitionSupportedFeatures {
   }
 
 
-  public PaymentServiceDefinitionSupportedFeatures networkTokens(Boolean networkTokens) {
+  public PaymentServiceDefinitionSupportedFeatures digitalWallets(Boolean digitalWallets) {
     
-    this.networkTokens = networkTokens;
+    this.digitalWallets = digitalWallets;
     return this;
   }
 
    /**
    * Supports passing decrypted digital wallet (e.g. Apple Pay) tokens to the underlying processor.
-   * @return networkTokens
+   * @return digitalWallets
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(example = "false", value = "Supports passing decrypted digital wallet (e.g. Apple Pay) tokens to the underlying processor.")
 
-  public Boolean getNetworkTokens() {
-    return networkTokens;
+  public Boolean getDigitalWallets() {
+    return digitalWallets;
   }
 
 
-  public void setNetworkTokens(Boolean networkTokens) {
-    this.networkTokens = networkTokens;
+  public void setDigitalWallets(Boolean digitalWallets) {
+    this.digitalWallets = digitalWallets;
   }
 
 
@@ -446,7 +446,7 @@ public class PaymentServiceDefinitionSupportedFeatures {
     }
     PaymentServiceDefinitionSupportedFeatures paymentServiceDefinitionSupportedFeatures = (PaymentServiceDefinitionSupportedFeatures) o;
     return Objects.equals(this.delayedCapture, paymentServiceDefinitionSupportedFeatures.delayedCapture) &&
-        Objects.equals(this.networkTokens, paymentServiceDefinitionSupportedFeatures.networkTokens) &&
+        Objects.equals(this.digitalWallets, paymentServiceDefinitionSupportedFeatures.digitalWallets) &&
         Objects.equals(this.networkTokensDefault, paymentServiceDefinitionSupportedFeatures.networkTokensDefault) &&
         Objects.equals(this.networkTokensToggle, paymentServiceDefinitionSupportedFeatures.networkTokensToggle) &&
         Objects.equals(this.openLoop, paymentServiceDefinitionSupportedFeatures.openLoop) &&
@@ -464,7 +464,7 @@ public class PaymentServiceDefinitionSupportedFeatures {
 
   @Override
   public int hashCode() {
-    return Objects.hash(delayedCapture, networkTokens, networkTokensDefault, networkTokensToggle, openLoop, openLoopToggle, partialRefunds, paymentMethodTokenization, paymentMethodTokenizationToggle, refunds, requiresWebhookSetup, threeDSecureHosted, threeDSecurePassThrough, verifyCredentials, _void);
+    return Objects.hash(delayedCapture, digitalWallets, networkTokensDefault, networkTokensToggle, openLoop, openLoopToggle, partialRefunds, paymentMethodTokenization, paymentMethodTokenizationToggle, refunds, requiresWebhookSetup, threeDSecureHosted, threeDSecurePassThrough, verifyCredentials, _void);
   }
 
   @Override
@@ -472,7 +472,7 @@ public class PaymentServiceDefinitionSupportedFeatures {
     StringBuilder sb = new StringBuilder();
     sb.append("class PaymentServiceDefinitionSupportedFeatures {\n");
     sb.append("    delayedCapture: ").append(toIndentedString(delayedCapture)).append("\n");
-    sb.append("    networkTokens: ").append(toIndentedString(networkTokens)).append("\n");
+    sb.append("    digitalWallets: ").append(toIndentedString(digitalWallets)).append("\n");
     sb.append("    networkTokensDefault: ").append(toIndentedString(networkTokensDefault)).append("\n");
     sb.append("    networkTokensToggle: ").append(toIndentedString(networkTokensToggle)).append("\n");
     sb.append("    openLoop: ").append(toIndentedString(openLoop)).append("\n");

@@ -162,13 +162,15 @@ public class PaymentConnectorResponseTransactionAuthorizationFailedEventContext 
   private InstrumentTypeEnum instrumentType;
 
   /**
-   * Defines why the transaction might be retried. A retry is not guaranteed because the maximum number of retries might already have been attempted.  * &#x60;failure&#x60; - the transaction will be retried because of a failure calling   the payment service. * &#x60;retriable_decline&#x60; - the transaction will be retried because a decline code   was received that can be retried.
+   * Defines why the transaction might be retried. A retry is not guaranteed because the maximum number of retries might already have been attempted.  * &#x60;failure&#x60; - the transaction will be retried because of a failure calling   the payment service. * &#x60;retriable_decline&#x60; - the transaction will be retried because a decline code   was received that can be retried. * &#x60;payment_method_replacement&#x60; - the transaction will be retried because a   decline code was received that triggered a payment method replacement.
    */
   @JsonAdapter(RetryRuleEnum.Adapter.class)
   public enum RetryRuleEnum {
     FAILURE("failure"),
     
-    RETRIABLE_DECLINE("retriable_decline");
+    RETRIABLE_DECLINE("retriable_decline"),
+    
+    PAYMENT_METHOD_REPLACEMENT("payment_method_replacement");
 
     private String value;
 
@@ -329,6 +331,97 @@ public class PaymentConnectorResponseTransactionAuthorizationFailedEventContext 
   public static final String SERIALIZED_NAME_CVV_RESPONSE_CODE = "cvv_response_code";
   @SerializedName(SERIALIZED_NAME_CVV_RESPONSE_CODE)
   private CvvResponseCodeEnum cvvResponseCode;
+
+  /**
+   * The card scheme sent to the connector.
+   */
+  @JsonAdapter(PaymentMethodSchemeEnum.Adapter.class)
+  public enum PaymentMethodSchemeEnum {
+    ACCEL("accel"),
+    
+    AMEX("amex"),
+    
+    BANCONTACT("bancontact"),
+    
+    CARTE_BANCAIRE("carte-bancaire"),
+    
+    CIRRUS("cirrus"),
+    
+    CULIANCE("culiance"),
+    
+    DANKORT("dankort"),
+    
+    DINERS_CLUB("diners-club"),
+    
+    DISCOVER("discover"),
+    
+    EFTPOS_AUSTRALIA("eftpos-australia"),
+    
+    ELO("elo"),
+    
+    HIPERCARD("hipercard"),
+    
+    JCB("jcb"),
+    
+    MAESTRO("maestro"),
+    
+    MASTERCARD("mastercard"),
+    
+    NYCE("nyce"),
+    
+    OTHER("other"),
+    
+    PULSE("pulse"),
+    
+    RUPAY("rupay"),
+    
+    STAR("star"),
+    
+    UNIONPAY("unionpay"),
+    
+    VISA("visa");
+
+    private String value;
+
+    PaymentMethodSchemeEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static PaymentMethodSchemeEnum fromValue(String value) {
+      for (PaymentMethodSchemeEnum b : PaymentMethodSchemeEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      return null;
+    }
+
+    public static class Adapter extends TypeAdapter<PaymentMethodSchemeEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final PaymentMethodSchemeEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public PaymentMethodSchemeEnum read(final JsonReader jsonReader) throws IOException {
+        String value =  jsonReader.nextString();
+        return PaymentMethodSchemeEnum.fromValue(value);
+      }
+    }
+  }
+
+  public static final String SERIALIZED_NAME_PAYMENT_METHOD_SCHEME = "payment_method_scheme";
+  @SerializedName(SERIALIZED_NAME_PAYMENT_METHOD_SCHEME)
+  private PaymentMethodSchemeEnum paymentMethodScheme;
 
 
   public PaymentConnectorResponseTransactionAuthorizationFailedEventContext paymentServiceId(UUID paymentServiceId) {
@@ -499,11 +592,11 @@ public class PaymentConnectorResponseTransactionAuthorizationFailedEventContext 
   }
 
    /**
-   * Defines why the transaction might be retried. A retry is not guaranteed because the maximum number of retries might already have been attempted.  * &#x60;failure&#x60; - the transaction will be retried because of a failure calling   the payment service. * &#x60;retriable_decline&#x60; - the transaction will be retried because a decline code   was received that can be retried.
+   * Defines why the transaction might be retried. A retry is not guaranteed because the maximum number of retries might already have been attempted.  * &#x60;failure&#x60; - the transaction will be retried because of a failure calling   the payment service. * &#x60;retriable_decline&#x60; - the transaction will be retried because a decline code   was received that can be retried. * &#x60;payment_method_replacement&#x60; - the transaction will be retried because a   decline code was received that triggered a payment method replacement.
    * @return retryRule
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "failure", value = "Defines why the transaction might be retried. A retry is not guaranteed because the maximum number of retries might already have been attempted.  * `failure` - the transaction will be retried because of a failure calling   the payment service. * `retriable_decline` - the transaction will be retried because a decline code   was received that can be retried.")
+  @ApiModelProperty(example = "failure", value = "Defines why the transaction might be retried. A retry is not guaranteed because the maximum number of retries might already have been attempted.  * `failure` - the transaction will be retried because of a failure calling   the payment service. * `retriable_decline` - the transaction will be retried because a decline code   was received that can be retried. * `payment_method_replacement` - the transaction will be retried because a   decline code was received that triggered a payment method replacement.")
 
   public RetryRuleEnum getRetryRule() {
     return retryRule;
@@ -607,6 +700,29 @@ public class PaymentConnectorResponseTransactionAuthorizationFailedEventContext 
   }
 
 
+  public PaymentConnectorResponseTransactionAuthorizationFailedEventContext paymentMethodScheme(PaymentMethodSchemeEnum paymentMethodScheme) {
+    
+    this.paymentMethodScheme = paymentMethodScheme;
+    return this;
+  }
+
+   /**
+   * The card scheme sent to the connector.
+   * @return paymentMethodScheme
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "visa", value = "The card scheme sent to the connector.")
+
+  public PaymentMethodSchemeEnum getPaymentMethodScheme() {
+    return paymentMethodScheme;
+  }
+
+
+  public void setPaymentMethodScheme(PaymentMethodSchemeEnum paymentMethodScheme) {
+    this.paymentMethodScheme = paymentMethodScheme;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -627,12 +743,13 @@ public class PaymentConnectorResponseTransactionAuthorizationFailedEventContext 
         Objects.equals(this.rawResponseCode, paymentConnectorResponseTransactionAuthorizationFailedEventContext.rawResponseCode) &&
         Objects.equals(this.rawResponseDescription, paymentConnectorResponseTransactionAuthorizationFailedEventContext.rawResponseDescription) &&
         Objects.equals(this.avsResponseCode, paymentConnectorResponseTransactionAuthorizationFailedEventContext.avsResponseCode) &&
-        Objects.equals(this.cvvResponseCode, paymentConnectorResponseTransactionAuthorizationFailedEventContext.cvvResponseCode);
+        Objects.equals(this.cvvResponseCode, paymentConnectorResponseTransactionAuthorizationFailedEventContext.cvvResponseCode) &&
+        Objects.equals(this.paymentMethodScheme, paymentConnectorResponseTransactionAuthorizationFailedEventContext.paymentMethodScheme);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(paymentServiceId, paymentServiceDisplayName, paymentServiceDefinitionId, paymentServiceTransactionId, status, code, instrumentType, retryRule, rawResponseCode, rawResponseDescription, avsResponseCode, cvvResponseCode);
+    return Objects.hash(paymentServiceId, paymentServiceDisplayName, paymentServiceDefinitionId, paymentServiceTransactionId, status, code, instrumentType, retryRule, rawResponseCode, rawResponseDescription, avsResponseCode, cvvResponseCode, paymentMethodScheme);
   }
 
   @Override
@@ -651,6 +768,7 @@ public class PaymentConnectorResponseTransactionAuthorizationFailedEventContext 
     sb.append("    rawResponseDescription: ").append(toIndentedString(rawResponseDescription)).append("\n");
     sb.append("    avsResponseCode: ").append(toIndentedString(avsResponseCode)).append("\n");
     sb.append("    cvvResponseCode: ").append(toIndentedString(cvvResponseCode)).append("\n");
+    sb.append("    paymentMethodScheme: ").append(toIndentedString(paymentMethodScheme)).append("\n");
     sb.append("}");
     return sb.toString();
   }

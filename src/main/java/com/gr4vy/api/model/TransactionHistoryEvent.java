@@ -113,6 +113,14 @@ public class TransactionHistoryEvent {
     
     DIGITAL_WALLET_CLICK_TO_PAY_TOKEN_DECRYPTED("digital-wallet-click-to-pay-token-decrypted"),
     
+    GIFT_CARD_REDEMPTION_FAILED("gift-card-redemption-failed"),
+    
+    GIFT_CARD_REDEMPTION_SUCCEEDED("gift-card-redemption-succeeded"),
+    
+    GIFT_CARD_REFUND_FAILED("gift-card-refund-failed"),
+    
+    GIFT_CARD_REFUND_SUCCEEDED("gift-card-refund-succeeded"),
+    
     PAYMENT_CONNECTOR_RESPONSE_TRANSACTION_AUTHORIZATION_FAILED("payment-connector-response-transaction-authorization-failed"),
     
     PAYMENT_CONNECTOR_RESPONSE_TRANSACTION_AUTHORIZATION_SUCCEEDED("payment-connector-response-transaction-authorization-succeeded"),

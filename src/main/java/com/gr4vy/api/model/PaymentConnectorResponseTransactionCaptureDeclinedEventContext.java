@@ -169,6 +169,97 @@ public class PaymentConnectorResponseTransactionCaptureDeclinedEventContext {
   @SerializedName(SERIALIZED_NAME_CVV_RESPONSE_CODE)
   private CvvResponseCodeEnum cvvResponseCode;
 
+  /**
+   * The card scheme sent to the connector.
+   */
+  @JsonAdapter(PaymentMethodSchemeEnum.Adapter.class)
+  public enum PaymentMethodSchemeEnum {
+    ACCEL("accel"),
+    
+    AMEX("amex"),
+    
+    BANCONTACT("bancontact"),
+    
+    CARTE_BANCAIRE("carte-bancaire"),
+    
+    CIRRUS("cirrus"),
+    
+    CULIANCE("culiance"),
+    
+    DANKORT("dankort"),
+    
+    DINERS_CLUB("diners-club"),
+    
+    DISCOVER("discover"),
+    
+    EFTPOS_AUSTRALIA("eftpos-australia"),
+    
+    ELO("elo"),
+    
+    HIPERCARD("hipercard"),
+    
+    JCB("jcb"),
+    
+    MAESTRO("maestro"),
+    
+    MASTERCARD("mastercard"),
+    
+    NYCE("nyce"),
+    
+    OTHER("other"),
+    
+    PULSE("pulse"),
+    
+    RUPAY("rupay"),
+    
+    STAR("star"),
+    
+    UNIONPAY("unionpay"),
+    
+    VISA("visa");
+
+    private String value;
+
+    PaymentMethodSchemeEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static PaymentMethodSchemeEnum fromValue(String value) {
+      for (PaymentMethodSchemeEnum b : PaymentMethodSchemeEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      return null;
+    }
+
+    public static class Adapter extends TypeAdapter<PaymentMethodSchemeEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final PaymentMethodSchemeEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public PaymentMethodSchemeEnum read(final JsonReader jsonReader) throws IOException {
+        String value =  jsonReader.nextString();
+        return PaymentMethodSchemeEnum.fromValue(value);
+      }
+    }
+  }
+
+  public static final String SERIALIZED_NAME_PAYMENT_METHOD_SCHEME = "payment_method_scheme";
+  @SerializedName(SERIALIZED_NAME_PAYMENT_METHOD_SCHEME)
+  private PaymentMethodSchemeEnum paymentMethodScheme;
+
 
   public PaymentConnectorResponseTransactionCaptureDeclinedEventContext paymentServiceId(UUID paymentServiceId) {
     
@@ -377,6 +468,29 @@ public class PaymentConnectorResponseTransactionCaptureDeclinedEventContext {
   }
 
 
+  public PaymentConnectorResponseTransactionCaptureDeclinedEventContext paymentMethodScheme(PaymentMethodSchemeEnum paymentMethodScheme) {
+    
+    this.paymentMethodScheme = paymentMethodScheme;
+    return this;
+  }
+
+   /**
+   * The card scheme sent to the connector.
+   * @return paymentMethodScheme
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "visa", value = "The card scheme sent to the connector.")
+
+  public PaymentMethodSchemeEnum getPaymentMethodScheme() {
+    return paymentMethodScheme;
+  }
+
+
+  public void setPaymentMethodScheme(PaymentMethodSchemeEnum paymentMethodScheme) {
+    this.paymentMethodScheme = paymentMethodScheme;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -394,12 +508,13 @@ public class PaymentConnectorResponseTransactionCaptureDeclinedEventContext {
         Objects.equals(this.rawResponseCode, paymentConnectorResponseTransactionCaptureDeclinedEventContext.rawResponseCode) &&
         Objects.equals(this.rawResponseDescription, paymentConnectorResponseTransactionCaptureDeclinedEventContext.rawResponseDescription) &&
         Objects.equals(this.avsResponseCode, paymentConnectorResponseTransactionCaptureDeclinedEventContext.avsResponseCode) &&
-        Objects.equals(this.cvvResponseCode, paymentConnectorResponseTransactionCaptureDeclinedEventContext.cvvResponseCode);
+        Objects.equals(this.cvvResponseCode, paymentConnectorResponseTransactionCaptureDeclinedEventContext.cvvResponseCode) &&
+        Objects.equals(this.paymentMethodScheme, paymentConnectorResponseTransactionCaptureDeclinedEventContext.paymentMethodScheme);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(paymentServiceId, paymentServiceDisplayName, paymentServiceDefinitionId, paymentServiceTransactionId, code, rawResponseCode, rawResponseDescription, avsResponseCode, cvvResponseCode);
+    return Objects.hash(paymentServiceId, paymentServiceDisplayName, paymentServiceDefinitionId, paymentServiceTransactionId, code, rawResponseCode, rawResponseDescription, avsResponseCode, cvvResponseCode, paymentMethodScheme);
   }
 
   @Override
@@ -415,6 +530,7 @@ public class PaymentConnectorResponseTransactionCaptureDeclinedEventContext {
     sb.append("    rawResponseDescription: ").append(toIndentedString(rawResponseDescription)).append("\n");
     sb.append("    avsResponseCode: ").append(toIndentedString(avsResponseCode)).append("\n");
     sb.append("    cvvResponseCode: ").append(toIndentedString(cvvResponseCode)).append("\n");
+    sb.append("    paymentMethodScheme: ").append(toIndentedString(paymentMethodScheme)).append("\n");
     sb.append("}");
     return sb.toString();
   }

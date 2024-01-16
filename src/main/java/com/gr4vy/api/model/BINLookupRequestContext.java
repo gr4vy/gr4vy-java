@@ -23,6 +23,8 @@ import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * BIN lookup request context.
@@ -50,13 +52,199 @@ public class BINLookupRequestContext {
   @SerializedName(SERIALIZED_NAME_TYPE)
   private String type;
 
+  /**
+   * The card scheme result from the lookup response.
+   */
+  @JsonAdapter(SchemeEnum.Adapter.class)
+  public enum SchemeEnum {
+    ACCEL("accel"),
+    
+    AMEX("amex"),
+    
+    BANCONTACT("bancontact"),
+    
+    CARTE_BANCAIRE("carte-bancaire"),
+    
+    CIRRUS("cirrus"),
+    
+    CULIANCE("culiance"),
+    
+    DANKORT("dankort"),
+    
+    DINERS_CLUB("diners-club"),
+    
+    DISCOVER("discover"),
+    
+    EFTPOS_AUSTRALIA("eftpos-australia"),
+    
+    ELO("elo"),
+    
+    HIPERCARD("hipercard"),
+    
+    JCB("jcb"),
+    
+    MAESTRO("maestro"),
+    
+    MASTERCARD("mastercard"),
+    
+    NYCE("nyce"),
+    
+    OTHER("other"),
+    
+    PULSE("pulse"),
+    
+    RUPAY("rupay"),
+    
+    STAR("star"),
+    
+    UNIONPAY("unionpay"),
+    
+    VISA("visa");
+
+    private String value;
+
+    SchemeEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static SchemeEnum fromValue(String value) {
+      for (SchemeEnum b : SchemeEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      return null;
+    }
+
+    public static class Adapter extends TypeAdapter<SchemeEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final SchemeEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public SchemeEnum read(final JsonReader jsonReader) throws IOException {
+        String value =  jsonReader.nextString();
+        return SchemeEnum.fromValue(value);
+      }
+    }
+  }
+
   public static final String SERIALIZED_NAME_SCHEME = "scheme";
   @SerializedName(SERIALIZED_NAME_SCHEME)
-  private String scheme;
+  private SchemeEnum scheme;
+
+  /**
+   * Gets or Sets additionalSchemes
+   */
+  @JsonAdapter(AdditionalSchemesEnum.Adapter.class)
+  public enum AdditionalSchemesEnum {
+    ACCEL("accel"),
+    
+    AMEX("amex"),
+    
+    BANCONTACT("bancontact"),
+    
+    CARTE_BANCAIRE("carte-bancaire"),
+    
+    CIRRUS("cirrus"),
+    
+    CULIANCE("culiance"),
+    
+    DANKORT("dankort"),
+    
+    DINERS_CLUB("diners-club"),
+    
+    DISCOVER("discover"),
+    
+    EFTPOS_AUSTRALIA("eftpos-australia"),
+    
+    ELO("elo"),
+    
+    HIPERCARD("hipercard"),
+    
+    JCB("jcb"),
+    
+    MAESTRO("maestro"),
+    
+    MASTERCARD("mastercard"),
+    
+    NYCE("nyce"),
+    
+    OTHER("other"),
+    
+    PULSE("pulse"),
+    
+    RUPAY("rupay"),
+    
+    STAR("star"),
+    
+    UNIONPAY("unionpay"),
+    
+    VISA("visa");
+
+    private String value;
+
+    AdditionalSchemesEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static AdditionalSchemesEnum fromValue(String value) {
+      for (AdditionalSchemesEnum b : AdditionalSchemesEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+
+    public static class Adapter extends TypeAdapter<AdditionalSchemesEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final AdditionalSchemesEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public AdditionalSchemesEnum read(final JsonReader jsonReader) throws IOException {
+        String value =  jsonReader.nextString();
+        return AdditionalSchemesEnum.fromValue(value);
+      }
+    }
+  }
+
+  public static final String SERIALIZED_NAME_ADDITIONAL_SCHEMES = "additional_schemes";
+  @SerializedName(SERIALIZED_NAME_ADDITIONAL_SCHEMES)
+  private List<AdditionalSchemesEnum> additionalSchemes = null;
 
   public static final String SERIALIZED_NAME_COUNTRY_CODE = "country_code";
   @SerializedName(SERIALIZED_NAME_COUNTRY_CODE)
   private String countryCode;
+
+  public static final String SERIALIZED_NAME_ACCOUNT_UPDATER = "account_updater";
+  @SerializedName(SERIALIZED_NAME_ACCOUNT_UPDATER)
+  private Boolean accountUpdater;
+
+  public static final String SERIALIZED_NAME_ISSUER_TOKENIZATION = "issuer_tokenization";
+  @SerializedName(SERIALIZED_NAME_ISSUER_TOKENIZATION)
+  private Boolean issuerTokenization;
 
 
   public BINLookupRequestContext response(String response) {
@@ -174,7 +362,7 @@ public class BINLookupRequestContext {
   }
 
 
-  public BINLookupRequestContext scheme(String scheme) {
+  public BINLookupRequestContext scheme(SchemeEnum scheme) {
     
     this.scheme = scheme;
     return this;
@@ -185,15 +373,46 @@ public class BINLookupRequestContext {
    * @return scheme
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "The card scheme result from the lookup response.")
+  @ApiModelProperty(example = "visa", value = "The card scheme result from the lookup response.")
 
-  public String getScheme() {
+  public SchemeEnum getScheme() {
     return scheme;
   }
 
 
-  public void setScheme(String scheme) {
+  public void setScheme(SchemeEnum scheme) {
     this.scheme = scheme;
+  }
+
+
+  public BINLookupRequestContext additionalSchemes(List<AdditionalSchemesEnum> additionalSchemes) {
+    
+    this.additionalSchemes = additionalSchemes;
+    return this;
+  }
+
+  public BINLookupRequestContext addAdditionalSchemesItem(AdditionalSchemesEnum additionalSchemesItem) {
+    if (this.additionalSchemes == null) {
+      this.additionalSchemes = new ArrayList<AdditionalSchemesEnum>();
+    }
+    this.additionalSchemes.add(additionalSchemesItem);
+    return this;
+  }
+
+   /**
+   * The card additional schemes from the lookup response.
+   * @return additionalSchemes
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "The card additional schemes from the lookup response.")
+
+  public List<AdditionalSchemesEnum> getAdditionalSchemes() {
+    return additionalSchemes;
+  }
+
+
+  public void setAdditionalSchemes(List<AdditionalSchemesEnum> additionalSchemes) {
+    this.additionalSchemes = additionalSchemes;
   }
 
 
@@ -220,6 +439,52 @@ public class BINLookupRequestContext {
   }
 
 
+  public BINLookupRequestContext accountUpdater(Boolean accountUpdater) {
+    
+    this.accountUpdater = accountUpdater;
+    return this;
+  }
+
+   /**
+   * Whether Account Updater is enabled for this card.
+   * @return accountUpdater
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Whether Account Updater is enabled for this card.")
+
+  public Boolean getAccountUpdater() {
+    return accountUpdater;
+  }
+
+
+  public void setAccountUpdater(Boolean accountUpdater) {
+    this.accountUpdater = accountUpdater;
+  }
+
+
+  public BINLookupRequestContext issuerTokenization(Boolean issuerTokenization) {
+    
+    this.issuerTokenization = issuerTokenization;
+    return this;
+  }
+
+   /**
+   * Whether the issuing bank supports network tokenization for this card.
+   * @return issuerTokenization
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Whether the issuing bank supports network tokenization for this card.")
+
+  public Boolean getIssuerTokenization() {
+    return issuerTokenization;
+  }
+
+
+  public void setIssuerTokenization(Boolean issuerTokenization) {
+    this.issuerTokenization = issuerTokenization;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -235,12 +500,15 @@ public class BINLookupRequestContext {
         Objects.equals(this.bin, biNLookupRequestContext.bin) &&
         Objects.equals(this.type, biNLookupRequestContext.type) &&
         Objects.equals(this.scheme, biNLookupRequestContext.scheme) &&
-        Objects.equals(this.countryCode, biNLookupRequestContext.countryCode);
+        Objects.equals(this.additionalSchemes, biNLookupRequestContext.additionalSchemes) &&
+        Objects.equals(this.countryCode, biNLookupRequestContext.countryCode) &&
+        Objects.equals(this.accountUpdater, biNLookupRequestContext.accountUpdater) &&
+        Objects.equals(this.issuerTokenization, biNLookupRequestContext.issuerTokenization);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(response, responseStatusCode, success, bin, type, scheme, countryCode);
+    return Objects.hash(response, responseStatusCode, success, bin, type, scheme, additionalSchemes, countryCode, accountUpdater, issuerTokenization);
   }
 
   @Override
@@ -253,7 +521,10 @@ public class BINLookupRequestContext {
     sb.append("    bin: ").append(toIndentedString(bin)).append("\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("    scheme: ").append(toIndentedString(scheme)).append("\n");
+    sb.append("    additionalSchemes: ").append(toIndentedString(additionalSchemes)).append("\n");
     sb.append("    countryCode: ").append(toIndentedString(countryCode)).append("\n");
+    sb.append("    accountUpdater: ").append(toIndentedString(accountUpdater)).append("\n");
+    sb.append("    issuerTokenization: ").append(toIndentedString(issuerTokenization)).append("\n");
     sb.append("}");
     return sb.toString();
   }

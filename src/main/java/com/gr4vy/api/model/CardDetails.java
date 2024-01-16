@@ -135,9 +135,96 @@ public class CardDetails {
   @SerializedName(SERIALIZED_NAME_CARD_TYPE)
   private CardTypeEnum cardType;
 
+  /**
+   * The scheme/brand of the card.
+   */
+  @JsonAdapter(SchemeEnum.Adapter.class)
+  public enum SchemeEnum {
+    ACCEL("accel"),
+    
+    AMEX("amex"),
+    
+    BANCONTACT("bancontact"),
+    
+    CARTE_BANCAIRE("carte-bancaire"),
+    
+    CIRRUS("cirrus"),
+    
+    CULIANCE("culiance"),
+    
+    DANKORT("dankort"),
+    
+    DINERS_CLUB("diners-club"),
+    
+    DISCOVER("discover"),
+    
+    EFTPOS_AUSTRALIA("eftpos-australia"),
+    
+    ELO("elo"),
+    
+    HIPERCARD("hipercard"),
+    
+    JCB("jcb"),
+    
+    MAESTRO("maestro"),
+    
+    MASTERCARD("mastercard"),
+    
+    NYCE("nyce"),
+    
+    OTHER("other"),
+    
+    PULSE("pulse"),
+    
+    RUPAY("rupay"),
+    
+    STAR("star"),
+    
+    UNIONPAY("unionpay"),
+    
+    VISA("visa");
+
+    private String value;
+
+    SchemeEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static SchemeEnum fromValue(String value) {
+      for (SchemeEnum b : SchemeEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      return null;
+    }
+
+    public static class Adapter extends TypeAdapter<SchemeEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final SchemeEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public SchemeEnum read(final JsonReader jsonReader) throws IOException {
+        String value =  jsonReader.nextString();
+        return SchemeEnum.fromValue(value);
+      }
+    }
+  }
+
   public static final String SERIALIZED_NAME_SCHEME = "scheme";
   @SerializedName(SERIALIZED_NAME_SCHEME)
-  private String scheme;
+  private SchemeEnum scheme;
 
   public static final String SERIALIZED_NAME_SCHEME_ICON_URL = "scheme_icon_url";
   @SerializedName(SERIALIZED_NAME_SCHEME_ICON_URL)
@@ -221,7 +308,7 @@ public class CardDetails {
   }
 
 
-  public CardDetails scheme(String scheme) {
+  public CardDetails scheme(SchemeEnum scheme) {
     
     this.scheme = scheme;
     return this;
@@ -234,12 +321,12 @@ public class CardDetails {
   @javax.annotation.Nullable
   @ApiModelProperty(example = "visa", value = "The scheme/brand of the card.")
 
-  public String getScheme() {
+  public SchemeEnum getScheme() {
     return scheme;
   }
 
 
-  public void setScheme(String scheme) {
+  public void setScheme(SchemeEnum scheme) {
     this.scheme = scheme;
   }
 

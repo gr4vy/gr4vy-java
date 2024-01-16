@@ -84,7 +84,7 @@ public class ReportSpec {
 
   public static final String SERIALIZED_NAME_PARAMS = "params";
   @SerializedName(SERIALIZED_NAME_PARAMS)
-  private Map<String, Object> params = new HashMap<String, Object>();
+  private Map<String, Object> params;
 
 
   public ReportSpec model(ModelEnum model) {
@@ -124,7 +124,7 @@ public class ReportSpec {
    * Parameters used to configure the report. Acceptable values for this property depend on the value specified for &#x60;model&#x60;.
    * @return params
   **/
-  @ApiModelProperty(example = "{\"fields\":[\"id\",\"status\"],\"filters\":{\"status\":[\"authorization_failed\"]},\"sort\":[{\"field\":\"captured_at\",\"order\":\"desc\"}]}", required = true, value = "Parameters used to configure the report. Acceptable values for this property depend on the value specified for `model`.")
+  @ApiModelProperty(required = true, value = "Parameters used to configure the report. Acceptable values for this property depend on the value specified for `model`.")
 
   public Map<String, Object> getParams() {
     return params;

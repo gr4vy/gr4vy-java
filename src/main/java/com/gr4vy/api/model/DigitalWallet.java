@@ -165,7 +165,7 @@ public class DigitalWallet {
 
   public static final String SERIALIZED_NAME_FIELDS = "fields";
   @SerializedName(SERIALIZED_NAME_FIELDS)
-  private DigitalWalletClickToPayFields fields = null;
+  private DigitalWalletClickToPayFields fields;
 
   public static final String SERIALIZED_NAME_CREATED_AT = "created_at";
   @SerializedName(SERIALIZED_NAME_CREATED_AT)
