@@ -87,6 +87,7 @@ src/main/java/com/gr4vy/api/model/ConnectionDefinitions.java
 src/main/java/com/gr4vy/api/model/ConnectionOptions.java
 src/main/java/com/gr4vy/api/model/ConnectionOptionsAdyenCard.java
 src/main/java/com/gr4vy/api/model/ConnectionOptionsCybersourceAntiFraud.java
+src/main/java/com/gr4vy/api/model/ConnectionOptionsCybersourceCard.java
 src/main/java/com/gr4vy/api/model/ConnectionOptionsForterAntiFraud.java
 src/main/java/com/gr4vy/api/model/ConnectionOptionsForterAntiFraudAddress.java
 src/main/java/com/gr4vy/api/model/ConnectionOptionsForterAntiFraudBasicItemData.java
@@ -101,6 +102,7 @@ src/main/java/com/gr4vy/api/model/ConnectionOptionsForterAntiFraudTotalDiscountC
 src/main/java/com/gr4vy/api/model/ConnectionOptionsPaypalPaypal.java
 src/main/java/com/gr4vy/api/model/ConnectionOptionsPaypalPaypalAdditionalData.java
 src/main/java/com/gr4vy/api/model/ConnectionOptionsStripeCard.java
+src/main/java/com/gr4vy/api/model/ConnectionOptionsStripeCardStripeConnect.java
 src/main/java/com/gr4vy/api/model/Connections.java
 src/main/java/com/gr4vy/api/model/Cryptogram.java
 src/main/java/com/gr4vy/api/model/DigitalWallet.java
@@ -122,6 +124,7 @@ src/main/java/com/gr4vy/api/model/Error403Forbidden.java
 src/main/java/com/gr4vy/api/model/Error404NotFound.java
 src/main/java/com/gr4vy/api/model/Error404PendingCreation.java
 src/main/java/com/gr4vy/api/model/Error409DuplicateRecord.java
+src/main/java/com/gr4vy/api/model/Error429TooManyRequests.java
 src/main/java/com/gr4vy/api/model/ErrorDetail.java
 src/main/java/com/gr4vy/api/model/ErrorGeneric.java
 src/main/java/com/gr4vy/api/model/GiftCard.java
@@ -164,6 +167,13 @@ src/main/java/com/gr4vy/api/model/MerchantAccounts.java
 src/main/java/com/gr4vy/api/model/MerchantProfile.java
 src/main/java/com/gr4vy/api/model/MerchantProfileScheme.java
 src/main/java/com/gr4vy/api/model/NetworkToken.java
+src/main/java/com/gr4vy/api/model/NetworkTokenCryptogramProvisionFailed.java
+src/main/java/com/gr4vy/api/model/NetworkTokenCryptogramProvisionFailedContext.java
+src/main/java/com/gr4vy/api/model/NetworkTokenCryptogramProvisionSucceeded.java
+src/main/java/com/gr4vy/api/model/NetworkTokenCryptogramProvisionSucceededContext.java
+src/main/java/com/gr4vy/api/model/NetworkTokenProvisionFailed.java
+src/main/java/com/gr4vy/api/model/NetworkTokenProvisionFailedContext.java
+src/main/java/com/gr4vy/api/model/NetworkTokenProvisionSucceeded.java
 src/main/java/com/gr4vy/api/model/NetworkTokenRequest.java
 src/main/java/com/gr4vy/api/model/NetworkTokens.java
 src/main/java/com/gr4vy/api/model/PaymentConnectorExternalTransactionRequest.java
@@ -365,6 +375,7 @@ src/test/java/com/gr4vy/api/model/ConnectionDefinitionTest.java
 src/test/java/com/gr4vy/api/model/ConnectionDefinitionsTest.java
 src/test/java/com/gr4vy/api/model/ConnectionOptionsAdyenCardTest.java
 src/test/java/com/gr4vy/api/model/ConnectionOptionsCybersourceAntiFraudTest.java
+src/test/java/com/gr4vy/api/model/ConnectionOptionsCybersourceCardTest.java
 src/test/java/com/gr4vy/api/model/ConnectionOptionsForterAntiFraudAddressTest.java
 src/test/java/com/gr4vy/api/model/ConnectionOptionsForterAntiFraudBasicItemDataTest.java
 src/test/java/com/gr4vy/api/model/ConnectionOptionsForterAntiFraudBeneficiariesTest.java
@@ -378,6 +389,7 @@ src/test/java/com/gr4vy/api/model/ConnectionOptionsForterAntiFraudTotalDiscountC
 src/test/java/com/gr4vy/api/model/ConnectionOptionsForterAntiFraudTotalDiscountTest.java
 src/test/java/com/gr4vy/api/model/ConnectionOptionsPaypalPaypalAdditionalDataTest.java
 src/test/java/com/gr4vy/api/model/ConnectionOptionsPaypalPaypalTest.java
+src/test/java/com/gr4vy/api/model/ConnectionOptionsStripeCardStripeConnectTest.java
 src/test/java/com/gr4vy/api/model/ConnectionOptionsStripeCardTest.java
 src/test/java/com/gr4vy/api/model/ConnectionOptionsTest.java
 src/test/java/com/gr4vy/api/model/ConnectionTest.java
@@ -402,6 +414,7 @@ src/test/java/com/gr4vy/api/model/Error403ForbiddenTest.java
 src/test/java/com/gr4vy/api/model/Error404NotFoundTest.java
 src/test/java/com/gr4vy/api/model/Error404PendingCreationTest.java
 src/test/java/com/gr4vy/api/model/Error409DuplicateRecordTest.java
+src/test/java/com/gr4vy/api/model/Error429TooManyRequestsTest.java
 src/test/java/com/gr4vy/api/model/ErrorDetailTest.java
 src/test/java/com/gr4vy/api/model/ErrorGenericTest.java
 src/test/java/com/gr4vy/api/model/GiftCardBalanceNewRequestTest.java
@@ -443,6 +456,13 @@ src/test/java/com/gr4vy/api/model/MerchantAccountUpdateTest.java
 src/test/java/com/gr4vy/api/model/MerchantAccountsTest.java
 src/test/java/com/gr4vy/api/model/MerchantProfileSchemeTest.java
 src/test/java/com/gr4vy/api/model/MerchantProfileTest.java
+src/test/java/com/gr4vy/api/model/NetworkTokenCryptogramProvisionFailedContextTest.java
+src/test/java/com/gr4vy/api/model/NetworkTokenCryptogramProvisionFailedTest.java
+src/test/java/com/gr4vy/api/model/NetworkTokenCryptogramProvisionSucceededContextTest.java
+src/test/java/com/gr4vy/api/model/NetworkTokenCryptogramProvisionSucceededTest.java
+src/test/java/com/gr4vy/api/model/NetworkTokenProvisionFailedContextTest.java
+src/test/java/com/gr4vy/api/model/NetworkTokenProvisionFailedTest.java
+src/test/java/com/gr4vy/api/model/NetworkTokenProvisionSucceededTest.java
 src/test/java/com/gr4vy/api/model/NetworkTokenRequestTest.java
 src/test/java/com/gr4vy/api/model/NetworkTokenTest.java
 src/test/java/com/gr4vy/api/model/NetworkTokensTest.java

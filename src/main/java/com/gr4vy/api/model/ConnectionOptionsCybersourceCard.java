@@ -20,52 +20,41 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import com.gr4vy.api.model.GiftCardBalanceRequest;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
- * A request to check the balance for a set of stored and non-stored gift cards.
+ * Additional options for Cybersource payment gateway.
  */
-@ApiModel(description = "A request to check the balance for a set of stored and non-stored gift cards.")
+@ApiModel(description = "Additional options for Cybersource payment gateway.")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class GiftCardBalancesRequest {
-  public static final String SERIALIZED_NAME_ITEMS = "items";
-  @SerializedName(SERIALIZED_NAME_ITEMS)
-  private List<GiftCardBalanceRequest> items = null;
+public class ConnectionOptionsCybersourceCard {
+  public static final String SERIALIZED_NAME_META_KEY_MERCHANT_ID = "meta_key_merchant_id";
+  @SerializedName(SERIALIZED_NAME_META_KEY_MERCHANT_ID)
+  private String metaKeyMerchantId;
 
 
-  public GiftCardBalancesRequest items(List<GiftCardBalanceRequest> items) {
+  public ConnectionOptionsCybersourceCard metaKeyMerchantId(String metaKeyMerchantId) {
     
-    this.items = items;
-    return this;
-  }
-
-  public GiftCardBalancesRequest addItemsItem(GiftCardBalanceRequest itemsItem) {
-    if (this.items == null) {
-      this.items = new ArrayList<GiftCardBalanceRequest>();
-    }
-    this.items.add(itemsItem);
+    this.metaKeyMerchantId = metaKeyMerchantId;
     return this;
   }
 
    /**
-   * One or more gift cards to check balances for, up to a default limit of 10 gift cards. Please contact our team to change this limit.
-   * @return items
+   * An override for the merchant ID configured for the connector, used in combination with meta keys.
+   * @return metaKeyMerchantId
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "One or more gift cards to check balances for, up to a default limit of 10 gift cards. Please contact our team to change this limit.")
+  @ApiModelProperty(value = "An override for the merchant ID configured for the connector, used in combination with meta keys.")
 
-  public List<GiftCardBalanceRequest> getItems() {
-    return items;
+  public String getMetaKeyMerchantId() {
+    return metaKeyMerchantId;
   }
 
 
-  public void setItems(List<GiftCardBalanceRequest> items) {
-    this.items = items;
+  public void setMetaKeyMerchantId(String metaKeyMerchantId) {
+    this.metaKeyMerchantId = metaKeyMerchantId;
   }
 
 
@@ -77,20 +66,20 @@ public class GiftCardBalancesRequest {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    GiftCardBalancesRequest giftCardBalancesRequest = (GiftCardBalancesRequest) o;
-    return Objects.equals(this.items, giftCardBalancesRequest.items);
+    ConnectionOptionsCybersourceCard connectionOptionsCybersourceCard = (ConnectionOptionsCybersourceCard) o;
+    return Objects.equals(this.metaKeyMerchantId, connectionOptionsCybersourceCard.metaKeyMerchantId);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(items);
+    return Objects.hash(metaKeyMerchantId);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class GiftCardBalancesRequest {\n");
-    sb.append("    items: ").append(toIndentedString(items)).append("\n");
+    sb.append("class ConnectionOptionsCybersourceCard {\n");
+    sb.append("    metaKeyMerchantId: ").append(toIndentedString(metaKeyMerchantId)).append("\n");
     sb.append("}");
     return sb.toString();
   }

@@ -155,9 +155,9 @@ public class GiftCardRedemption {
    */
   @JsonAdapter(ErrorCodeEnum.Adapter.class)
   public enum ErrorCodeEnum {
-    DEACTIVATED_CARD("deactivated_card"),
-    
     EXPIRED_CARD("expired_card"),
+    
+    INACTIVE_CARD("inactive_card"),
     
     INCORRECT_CURRENCY("incorrect_currency"),
     

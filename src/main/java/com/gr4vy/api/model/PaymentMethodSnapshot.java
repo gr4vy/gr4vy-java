@@ -343,7 +343,7 @@ public class PaymentMethodSnapshot {
   private String paymentAccountReference;
 
   /**
-   * An additional label used to differentiate different sub-types of a payment method. Most notably this can include the type of card used in a transaction.
+   * An additional label used to differentiate different sub-types of a payment method. Most notably this can include the type of card used in a transaction. This field is &#x60;null&#x60; for the non-card payment methods. This represents the card scheme sent to the connector and it could be different from the actual card scheme that is being used by the PSP to process the transaction in the following situations: 1. &#x60;use_additional_scheme&#x60; transformation is used with the &#x60;PAN&#x60; instrument but we already have a PSP token for the card. 2. &#x60;use_additional_scheme&#x60; transformation is used but PSP has fallen back to the main card scheme internally.
    */
   @JsonAdapter(SchemeEnum.Adapter.class)
   public enum SchemeEnum {
@@ -740,11 +740,11 @@ public class PaymentMethodSnapshot {
   }
 
    /**
-   * An additional label used to differentiate different sub-types of a payment method. Most notably this can include the type of card used in a transaction.
+   * An additional label used to differentiate different sub-types of a payment method. Most notably this can include the type of card used in a transaction. This field is &#x60;null&#x60; for the non-card payment methods. This represents the card scheme sent to the connector and it could be different from the actual card scheme that is being used by the PSP to process the transaction in the following situations: 1. &#x60;use_additional_scheme&#x60; transformation is used with the &#x60;PAN&#x60; instrument but we already have a PSP token for the card. 2. &#x60;use_additional_scheme&#x60; transformation is used but PSP has fallen back to the main card scheme internally.
    * @return scheme
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "visa", value = "An additional label used to differentiate different sub-types of a payment method. Most notably this can include the type of card used in a transaction.")
+  @ApiModelProperty(example = "visa", value = "An additional label used to differentiate different sub-types of a payment method. Most notably this can include the type of card used in a transaction. This field is `null` for the non-card payment methods. This represents the card scheme sent to the connector and it could be different from the actual card scheme that is being used by the PSP to process the transaction in the following situations: 1. `use_additional_scheme` transformation is used with the `PAN` instrument but we already have a PSP token for the card. 2. `use_additional_scheme` transformation is used but PSP has fallen back to the main card scheme internally.")
 
   public SchemeEnum getScheme() {
     return scheme;
