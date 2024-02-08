@@ -28,11 +28,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Duplicate Record Error (HTTP 409).
+ * Too Many Requests Error (HTTP 429).
  */
-@ApiModel(description = "Duplicate Record Error (HTTP 409).")
+@ApiModel(description = "Too Many Requests Error (HTTP 429).")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class Error409DuplicateRecord {
+public class Error429TooManyRequests {
   /**
    * &#x60;error&#x60;.
    */
@@ -83,11 +83,11 @@ public class Error409DuplicateRecord {
   private TypeEnum type;
 
   /**
-   * &#x60;duplicate_record&#x60;.
+   * &#x60;too_many_requests&#x60;.
    */
   @JsonAdapter(CodeEnum.Adapter.class)
   public enum CodeEnum {
-    DUPLICATE_RECORD("duplicate_record");
+    TOO_MANY_REQUESTS("too_many_requests");
 
     private String value;
 
@@ -132,11 +132,11 @@ public class Error409DuplicateRecord {
   private CodeEnum code;
 
   /**
-   * &#x60;409&#x60;.
+   * &#x60;429&#x60;.
    */
   @JsonAdapter(StatusEnum.Adapter.class)
   public enum StatusEnum {
-    NUMBER_409(409);
+    NUMBER_429(429);
 
     private Integer value;
 
@@ -189,7 +189,7 @@ public class Error409DuplicateRecord {
   private List<ErrorDetail> details = null;
 
 
-  public Error409DuplicateRecord type(TypeEnum type) {
+  public Error429TooManyRequests type(TypeEnum type) {
     
     this.type = type;
     return this;
@@ -212,18 +212,18 @@ public class Error409DuplicateRecord {
   }
 
 
-  public Error409DuplicateRecord code(CodeEnum code) {
+  public Error429TooManyRequests code(CodeEnum code) {
     
     this.code = code;
     return this;
   }
 
    /**
-   * &#x60;duplicate_record&#x60;.
+   * &#x60;too_many_requests&#x60;.
    * @return code
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "duplicate_record", value = "`duplicate_record`.")
+  @ApiModelProperty(example = "too_many_requests", value = "`too_many_requests`.")
 
   public CodeEnum getCode() {
     return code;
@@ -235,18 +235,18 @@ public class Error409DuplicateRecord {
   }
 
 
-  public Error409DuplicateRecord status(StatusEnum status) {
+  public Error429TooManyRequests status(StatusEnum status) {
     
     this.status = status;
     return this;
   }
 
    /**
-   * &#x60;409&#x60;.
+   * &#x60;429&#x60;.
    * @return status
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "409", value = "`409`.")
+  @ApiModelProperty(example = "429", value = "`429`.")
 
   public StatusEnum getStatus() {
     return status;
@@ -258,7 +258,7 @@ public class Error409DuplicateRecord {
   }
 
 
-  public Error409DuplicateRecord message(String message) {
+  public Error429TooManyRequests message(String message) {
     
     this.message = message;
     return this;
@@ -269,7 +269,7 @@ public class Error409DuplicateRecord {
    * @return message
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "A duplicate record exists with this external_identifier value", value = "Further details on the field that triggered the error.")
+  @ApiModelProperty(example = "Too many requests", value = "Further details on the field that triggered the error.")
 
   public String getMessage() {
     return message;
@@ -281,13 +281,13 @@ public class Error409DuplicateRecord {
   }
 
 
-  public Error409DuplicateRecord details(List<ErrorDetail> details) {
+  public Error429TooManyRequests details(List<ErrorDetail> details) {
     
     this.details = details;
     return this;
   }
 
-  public Error409DuplicateRecord addDetailsItem(ErrorDetail detailsItem) {
+  public Error429TooManyRequests addDetailsItem(ErrorDetail detailsItem) {
     if (this.details == null) {
       this.details = new ArrayList<ErrorDetail>();
     }
@@ -320,12 +320,12 @@ public class Error409DuplicateRecord {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    Error409DuplicateRecord error409DuplicateRecord = (Error409DuplicateRecord) o;
-    return Objects.equals(this.type, error409DuplicateRecord.type) &&
-        Objects.equals(this.code, error409DuplicateRecord.code) &&
-        Objects.equals(this.status, error409DuplicateRecord.status) &&
-        Objects.equals(this.message, error409DuplicateRecord.message) &&
-        Objects.equals(this.details, error409DuplicateRecord.details);
+    Error429TooManyRequests error429TooManyRequests = (Error429TooManyRequests) o;
+    return Objects.equals(this.type, error429TooManyRequests.type) &&
+        Objects.equals(this.code, error429TooManyRequests.code) &&
+        Objects.equals(this.status, error429TooManyRequests.status) &&
+        Objects.equals(this.message, error429TooManyRequests.message) &&
+        Objects.equals(this.details, error429TooManyRequests.details);
   }
 
   @Override
@@ -336,7 +336,7 @@ public class Error409DuplicateRecord {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class Error409DuplicateRecord {\n");
+    sb.append("class Error429TooManyRequests {\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("    code: ").append(toIndentedString(code)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
