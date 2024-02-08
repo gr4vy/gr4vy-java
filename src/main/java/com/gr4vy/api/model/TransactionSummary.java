@@ -21,11 +21,14 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import com.gr4vy.api.model.BuyerSnapshot;
+import com.gr4vy.api.model.GiftCardRedemption;
 import com.gr4vy.api.model.PaymentMethodSnapshot;
 import com.gr4vy.api.model.PaymentServiceSnapshot;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 
@@ -123,6 +126,10 @@ public class TransactionSummary {
   public static final String SERIALIZED_NAME_EXTERNAL_IDENTIFIER = "external_identifier";
   @SerializedName(SERIALIZED_NAME_EXTERNAL_IDENTIFIER)
   private String externalIdentifier;
+
+  public static final String SERIALIZED_NAME_GIFT_CARD_REDEMPTIONS = "gift_card_redemptions";
+  @SerializedName(SERIALIZED_NAME_GIFT_CARD_REDEMPTIONS)
+  private List<GiftCardRedemption> giftCardRedemptions = null;
 
   /**
    * The original &#x60;intent&#x60; used when the transaction was [created](#operation/authorize-new-transaction).
@@ -705,6 +712,37 @@ public class TransactionSummary {
   }
 
 
+  public TransactionSummary giftCardRedemptions(List<GiftCardRedemption> giftCardRedemptions) {
+    
+    this.giftCardRedemptions = giftCardRedemptions;
+    return this;
+  }
+
+  public TransactionSummary addGiftCardRedemptionsItem(GiftCardRedemption giftCardRedemptionsItem) {
+    if (this.giftCardRedemptions == null) {
+      this.giftCardRedemptions = new ArrayList<GiftCardRedemption>();
+    }
+    this.giftCardRedemptions.add(giftCardRedemptionsItem);
+    return this;
+  }
+
+   /**
+   * The gift cards redeemed for this transaction.
+   * @return giftCardRedemptions
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "The gift cards redeemed for this transaction.")
+
+  public List<GiftCardRedemption> getGiftCardRedemptions() {
+    return giftCardRedemptions;
+  }
+
+
+  public void setGiftCardRedemptions(List<GiftCardRedemption> giftCardRedemptions) {
+    this.giftCardRedemptions = giftCardRedemptions;
+  }
+
+
   public TransactionSummary intent(IntentEnum intent) {
     
     this.intent = intent;
@@ -1003,6 +1041,7 @@ public class TransactionSummary {
         Objects.equals(this.createdAt, transactionSummary.createdAt) &&
         Objects.equals(this.currency, transactionSummary.currency) &&
         Objects.equals(this.externalIdentifier, transactionSummary.externalIdentifier) &&
+        Objects.equals(this.giftCardRedemptions, transactionSummary.giftCardRedemptions) &&
         Objects.equals(this.intent, transactionSummary.intent) &&
         Objects.equals(this.merchantAccountId, transactionSummary.merchantAccountId) &&
         Objects.equals(this.method, transactionSummary.method) &&
@@ -1019,7 +1058,7 @@ public class TransactionSummary {
 
   @Override
   public int hashCode() {
-    return Objects.hash(type, id, amount, authorizedAmount, buyer, capturedAmount, checkoutSessionId, country, createdAt, currency, externalIdentifier, intent, merchantAccountId, method, paymentMethod, paymentService, pendingReview, rawResponseCode, rawResponseDescription, reconciliationId, refundedAmount, status, updatedAt);
+    return Objects.hash(type, id, amount, authorizedAmount, buyer, capturedAmount, checkoutSessionId, country, createdAt, currency, externalIdentifier, giftCardRedemptions, intent, merchantAccountId, method, paymentMethod, paymentService, pendingReview, rawResponseCode, rawResponseDescription, reconciliationId, refundedAmount, status, updatedAt);
   }
 
   @Override
@@ -1037,6 +1076,7 @@ public class TransactionSummary {
     sb.append("    createdAt: ").append(toIndentedString(createdAt)).append("\n");
     sb.append("    currency: ").append(toIndentedString(currency)).append("\n");
     sb.append("    externalIdentifier: ").append(toIndentedString(externalIdentifier)).append("\n");
+    sb.append("    giftCardRedemptions: ").append(toIndentedString(giftCardRedemptions)).append("\n");
     sb.append("    intent: ").append(toIndentedString(intent)).append("\n");
     sb.append("    merchantAccountId: ").append(toIndentedString(merchantAccountId)).append("\n");
     sb.append("    method: ").append(toIndentedString(method)).append("\n");

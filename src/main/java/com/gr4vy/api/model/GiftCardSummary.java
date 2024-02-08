@@ -118,9 +118,9 @@ public class GiftCardSummary {
    */
   @JsonAdapter(BalanceErrorCodeEnum.Adapter.class)
   public enum BalanceErrorCodeEnum {
-    DEACTIVATED_CARD("deactivated_card"),
-    
     EXPIRED_CARD("expired_card"),
+    
+    INACTIVE_CARD("inactive_card"),
     
     INCORRECT_CURRENCY("incorrect_currency"),
     

@@ -270,9 +270,9 @@ public class Transaction {
   @SerializedName(SERIALIZED_NAME_GIFT_CARD_SERVICE)
   private GiftCardServiceSnapshot giftCardService;
 
-  public static final String SERIALIZED_NAME_GIFT_CARDS_REDEMPTIONS = "gift_cards_redemptions";
-  @SerializedName(SERIALIZED_NAME_GIFT_CARDS_REDEMPTIONS)
-  private List<GiftCardRedemption> giftCardsRedemptions = null;
+  public static final String SERIALIZED_NAME_GIFT_CARD_REDEMPTIONS = "gift_card_redemptions";
+  @SerializedName(SERIALIZED_NAME_GIFT_CARD_REDEMPTIONS)
+  private List<GiftCardRedemption> giftCardRedemptions = null;
 
   /**
    * The original &#x60;intent&#x60; used when the transaction was [created](#operation/authorize-new-transaction).
@@ -1197,34 +1197,34 @@ public class Transaction {
   }
 
 
-  public Transaction giftCardsRedemptions(List<GiftCardRedemption> giftCardsRedemptions) {
+  public Transaction giftCardRedemptions(List<GiftCardRedemption> giftCardRedemptions) {
     
-    this.giftCardsRedemptions = giftCardsRedemptions;
+    this.giftCardRedemptions = giftCardRedemptions;
     return this;
   }
 
-  public Transaction addGiftCardsRedemptionsItem(GiftCardRedemption giftCardsRedemptionsItem) {
-    if (this.giftCardsRedemptions == null) {
-      this.giftCardsRedemptions = new ArrayList<GiftCardRedemption>();
+  public Transaction addGiftCardRedemptionsItem(GiftCardRedemption giftCardRedemptionsItem) {
+    if (this.giftCardRedemptions == null) {
+      this.giftCardRedemptions = new ArrayList<GiftCardRedemption>();
     }
-    this.giftCardsRedemptions.add(giftCardsRedemptionsItem);
+    this.giftCardRedemptions.add(giftCardRedemptionsItem);
     return this;
   }
 
    /**
    * The gift cards redeemed for this transaction.
-   * @return giftCardsRedemptions
+   * @return giftCardRedemptions
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "The gift cards redeemed for this transaction.")
 
-  public List<GiftCardRedemption> getGiftCardsRedemptions() {
-    return giftCardsRedemptions;
+  public List<GiftCardRedemption> getGiftCardRedemptions() {
+    return giftCardRedemptions;
   }
 
 
-  public void setGiftCardsRedemptions(List<GiftCardRedemption> giftCardsRedemptions) {
-    this.giftCardsRedemptions = giftCardsRedemptions;
+  public void setGiftCardRedemptions(List<GiftCardRedemption> giftCardRedemptions) {
+    this.giftCardRedemptions = giftCardRedemptions;
   }
 
 
@@ -1818,7 +1818,7 @@ public class Transaction {
         Objects.equals(this.errorCode, transaction.errorCode) &&
         Objects.equals(this.externalIdentifier, transaction.externalIdentifier) &&
         Objects.equals(this.giftCardService, transaction.giftCardService) &&
-        Objects.equals(this.giftCardsRedemptions, transaction.giftCardsRedemptions) &&
+        Objects.equals(this.giftCardRedemptions, transaction.giftCardRedemptions) &&
         Objects.equals(this.intent, transaction.intent) &&
         Objects.equals(this.intentOutcome, transaction.intentOutcome) &&
         Objects.equals(this.isSubsequentPayment, transaction.isSubsequentPayment) &&
@@ -1847,7 +1847,7 @@ public class Transaction {
 
   @Override
   public int hashCode() {
-    return Objects.hash(type, id, amount, authResponseCode, authorizedAmount, authorizedAt, avsResponseCode, buyer, capturedAmount, capturedAt, cartItems, checkoutSessionId, country, createdAt, currency, cvvResponseCode, errorCode, externalIdentifier, giftCardService, giftCardsRedemptions, intent, intentOutcome, isSubsequentPayment, merchantAccountId, merchantInitiated, metadata, method, multiTender, paymentMethod, paymentService, paymentServiceTransactionId, paymentSource, pendingReview, rawResponseCode, rawResponseDescription, reconciliationId, refundedAmount, schemeTransactionId, shippingDetails, statementDescriptor, status, threeDSecure, updatedAt, voidedAt);
+    return Objects.hash(type, id, amount, authResponseCode, authorizedAmount, authorizedAt, avsResponseCode, buyer, capturedAmount, capturedAt, cartItems, checkoutSessionId, country, createdAt, currency, cvvResponseCode, errorCode, externalIdentifier, giftCardService, giftCardRedemptions, intent, intentOutcome, isSubsequentPayment, merchantAccountId, merchantInitiated, metadata, method, multiTender, paymentMethod, paymentService, paymentServiceTransactionId, paymentSource, pendingReview, rawResponseCode, rawResponseDescription, reconciliationId, refundedAmount, schemeTransactionId, shippingDetails, statementDescriptor, status, threeDSecure, updatedAt, voidedAt);
   }
 
   @Override
@@ -1873,7 +1873,7 @@ public class Transaction {
     sb.append("    errorCode: ").append(toIndentedString(errorCode)).append("\n");
     sb.append("    externalIdentifier: ").append(toIndentedString(externalIdentifier)).append("\n");
     sb.append("    giftCardService: ").append(toIndentedString(giftCardService)).append("\n");
-    sb.append("    giftCardsRedemptions: ").append(toIndentedString(giftCardsRedemptions)).append("\n");
+    sb.append("    giftCardRedemptions: ").append(toIndentedString(giftCardRedemptions)).append("\n");
     sb.append("    intent: ").append(toIndentedString(intent)).append("\n");
     sb.append("    intentOutcome: ").append(toIndentedString(intentOutcome)).append("\n");
     sb.append("    isSubsequentPayment: ").append(toIndentedString(isSubsequentPayment)).append("\n");

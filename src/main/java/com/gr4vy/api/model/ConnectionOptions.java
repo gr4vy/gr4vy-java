@@ -22,6 +22,7 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import com.gr4vy.api.model.ConnectionOptionsAdyenCard;
 import com.gr4vy.api.model.ConnectionOptionsCybersourceAntiFraud;
+import com.gr4vy.api.model.ConnectionOptionsCybersourceCard;
 import com.gr4vy.api.model.ConnectionOptionsForterAntiFraud;
 import com.gr4vy.api.model.ConnectionOptionsPaypalPaypal;
 import com.gr4vy.api.model.ConnectionOptionsStripeCard;
@@ -34,6 +35,10 @@ import java.io.IOException;
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class ConnectionOptions {
+  public static final String SERIALIZED_NAME_CYBERSOURCE_CARD = "cybersource-card";
+  @SerializedName(SERIALIZED_NAME_CYBERSOURCE_CARD)
+  private ConnectionOptionsCybersourceCard cybersourceCard;
+
   public static final String SERIALIZED_NAME_CYBERSOURCE_ANTI_FRAUD = "cybersource-anti-fraud";
   @SerializedName(SERIALIZED_NAME_CYBERSOURCE_ANTI_FRAUD)
   private ConnectionOptionsCybersourceAntiFraud cybersourceAntiFraud;
@@ -57,6 +62,29 @@ public class ConnectionOptions {
   public static final String SERIALIZED_NAME_STRIPE_CARD = "stripe-card";
   @SerializedName(SERIALIZED_NAME_STRIPE_CARD)
   private ConnectionOptionsStripeCard stripeCard;
+
+
+  public ConnectionOptions cybersourceCard(ConnectionOptionsCybersourceCard cybersourceCard) {
+    
+    this.cybersourceCard = cybersourceCard;
+    return this;
+  }
+
+   /**
+   * Get cybersourceCard
+   * @return cybersourceCard
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public ConnectionOptionsCybersourceCard getCybersourceCard() {
+    return cybersourceCard;
+  }
+
+
+  public void setCybersourceCard(ConnectionOptionsCybersourceCard cybersourceCard) {
+    this.cybersourceCard = cybersourceCard;
+  }
 
 
   public ConnectionOptions cybersourceAntiFraud(ConnectionOptionsCybersourceAntiFraud cybersourceAntiFraud) {
@@ -206,7 +234,8 @@ public class ConnectionOptions {
       return false;
     }
     ConnectionOptions connectionOptions = (ConnectionOptions) o;
-    return Objects.equals(this.cybersourceAntiFraud, connectionOptions.cybersourceAntiFraud) &&
+    return Objects.equals(this.cybersourceCard, connectionOptions.cybersourceCard) &&
+        Objects.equals(this.cybersourceAntiFraud, connectionOptions.cybersourceAntiFraud) &&
         Objects.equals(this.forterAntiFraud, connectionOptions.forterAntiFraud) &&
         Objects.equals(this.adyenCard, connectionOptions.adyenCard) &&
         Objects.equals(this.paypalPaypal, connectionOptions.paypalPaypal) &&
@@ -216,13 +245,14 @@ public class ConnectionOptions {
 
   @Override
   public int hashCode() {
-    return Objects.hash(cybersourceAntiFraud, forterAntiFraud, adyenCard, paypalPaypal, paypalPaypalpaylater, stripeCard);
+    return Objects.hash(cybersourceCard, cybersourceAntiFraud, forterAntiFraud, adyenCard, paypalPaypal, paypalPaypalpaylater, stripeCard);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class ConnectionOptions {\n");
+    sb.append("    cybersourceCard: ").append(toIndentedString(cybersourceCard)).append("\n");
     sb.append("    cybersourceAntiFraud: ").append(toIndentedString(cybersourceAntiFraud)).append("\n");
     sb.append("    forterAntiFraud: ").append(toIndentedString(forterAntiFraud)).append("\n");
     sb.append("    adyenCard: ").append(toIndentedString(adyenCard)).append("\n");

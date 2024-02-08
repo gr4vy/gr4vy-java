@@ -534,11 +534,11 @@ public class TransactionRequest {
   }
 
    /**
-   * The optional gift-card to use for this transaction. At least one gift card is required if no other &#x60;payment_method&#x60; has been added.
+   * The optional gift card(s) to use for this transaction. At least one gift card is required if no other &#x60;payment_method&#x60; has been added. By default, only a maximum limit of 10 gift cards may be used in a single transaction. Please contact our team to change this limit.
    * @return giftCards
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "The optional gift-card to use for this transaction. At least one gift card is required if no other `payment_method` has been added.")
+  @ApiModelProperty(value = "The optional gift card(s) to use for this transaction. At least one gift card is required if no other `payment_method` has been added. By default, only a maximum limit of 10 gift cards may be used in a single transaction. Please contact our team to change this limit.")
 
   public List<TransactionGiftCardRequest> getGiftCards() {
     return giftCards;

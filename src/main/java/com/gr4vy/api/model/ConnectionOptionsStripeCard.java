@@ -20,6 +20,7 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import com.gr4vy.api.model.ConnectionOptionsStripeCardStripeConnect;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
@@ -33,6 +34,10 @@ public class ConnectionOptionsStripeCard {
   public static final String SERIALIZED_NAME_ERROR_ON_REQUIRES_ACTION = "error_on_requires_action";
   @SerializedName(SERIALIZED_NAME_ERROR_ON_REQUIRES_ACTION)
   private Boolean errorOnRequiresAction = false;
+
+  public static final String SERIALIZED_NAME_STRIPE_CONNECT = "stripe_connect";
+  @SerializedName(SERIALIZED_NAME_STRIPE_CONNECT)
+  private ConnectionOptionsStripeCardStripeConnect stripeConnect;
 
 
   public ConnectionOptionsStripeCard errorOnRequiresAction(Boolean errorOnRequiresAction) {
@@ -58,6 +63,29 @@ public class ConnectionOptionsStripeCard {
   }
 
 
+  public ConnectionOptionsStripeCard stripeConnect(ConnectionOptionsStripeCardStripeConnect stripeConnect) {
+    
+    this.stripeConnect = stripeConnect;
+    return this;
+  }
+
+   /**
+   * Get stripeConnect
+   * @return stripeConnect
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public ConnectionOptionsStripeCardStripeConnect getStripeConnect() {
+    return stripeConnect;
+  }
+
+
+  public void setStripeConnect(ConnectionOptionsStripeCardStripeConnect stripeConnect) {
+    this.stripeConnect = stripeConnect;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -67,12 +95,13 @@ public class ConnectionOptionsStripeCard {
       return false;
     }
     ConnectionOptionsStripeCard connectionOptionsStripeCard = (ConnectionOptionsStripeCard) o;
-    return Objects.equals(this.errorOnRequiresAction, connectionOptionsStripeCard.errorOnRequiresAction);
+    return Objects.equals(this.errorOnRequiresAction, connectionOptionsStripeCard.errorOnRequiresAction) &&
+        Objects.equals(this.stripeConnect, connectionOptionsStripeCard.stripeConnect);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(errorOnRequiresAction);
+    return Objects.hash(errorOnRequiresAction, stripeConnect);
   }
 
   @Override
@@ -80,6 +109,7 @@ public class ConnectionOptionsStripeCard {
     StringBuilder sb = new StringBuilder();
     sb.append("class ConnectionOptionsStripeCard {\n");
     sb.append("    errorOnRequiresAction: ").append(toIndentedString(errorOnRequiresAction)).append("\n");
+    sb.append("    stripeConnect: ").append(toIndentedString(stripeConnect)).append("\n");
     sb.append("}");
     return sb.toString();
   }
