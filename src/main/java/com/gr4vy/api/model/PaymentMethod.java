@@ -653,6 +653,10 @@ public class PaymentMethod {
   @SerializedName(SERIALIZED_NAME_UPDATED_AT)
   private String updatedAt;
 
+  public static final String SERIALIZED_NAME_FINGERPRINT = "fingerprint";
+  @SerializedName(SERIALIZED_NAME_FINGERPRINT)
+  private String fingerprint;
+
 
   public PaymentMethod type(TypeEnum type) {
     
@@ -1145,6 +1149,29 @@ public class PaymentMethod {
   }
 
 
+  public PaymentMethod fingerprint(String fingerprint) {
+    
+    this.fingerprint = fingerprint;
+    return this;
+  }
+
+   /**
+   * The unique hash derived from the payment method identifier (e.g. card number).
+   * @return fingerprint
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "20eb353620155d2b5fc864cc46a73ea77cb92c725238650839da1813fa987a17", value = "The unique hash derived from the payment method identifier (e.g. card number).")
+
+  public String getFingerprint() {
+    return fingerprint;
+  }
+
+
+  public void setFingerprint(String fingerprint) {
+    this.fingerprint = fingerprint;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -1174,12 +1201,13 @@ public class PaymentMethod {
         Objects.equals(this.mode, paymentMethod.mode) &&
         Objects.equals(this.scheme, paymentMethod.scheme) &&
         Objects.equals(this.status, paymentMethod.status) &&
-        Objects.equals(this.updatedAt, paymentMethod.updatedAt);
+        Objects.equals(this.updatedAt, paymentMethod.updatedAt) &&
+        Objects.equals(this.fingerprint, paymentMethod.fingerprint);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(type, id, additionalSchemes, approvalTarget, approvalUrl, buyer, country, createdAt, currency, details, expirationDate, externalIdentifier, hasReplacement, label, lastReplacedAt, merchantAccountId, method, mode, scheme, status, updatedAt);
+    return Objects.hash(type, id, additionalSchemes, approvalTarget, approvalUrl, buyer, country, createdAt, currency, details, expirationDate, externalIdentifier, hasReplacement, label, lastReplacedAt, merchantAccountId, method, mode, scheme, status, updatedAt, fingerprint);
   }
 
   @Override
@@ -1207,6 +1235,7 @@ public class PaymentMethod {
     sb.append("    scheme: ").append(toIndentedString(scheme)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("    updatedAt: ").append(toIndentedString(updatedAt)).append("\n");
+    sb.append("    fingerprint: ").append(toIndentedString(fingerprint)).append("\n");
     sb.append("}");
     return sb.toString();
   }
