@@ -187,6 +187,10 @@ public class CheckoutSessionPaymentMethod {
   @SerializedName(SERIALIZED_NAME_DETAILS)
   private CheckoutSessionPaymentMethodDetails details;
 
+  public static final String SERIALIZED_NAME_FINGERPRINT = "fingerprint";
+  @SerializedName(SERIALIZED_NAME_FINGERPRINT)
+  private String fingerprint;
+
 
   public CheckoutSessionPaymentMethod type(String type) {
     
@@ -326,6 +330,29 @@ public class CheckoutSessionPaymentMethod {
   }
 
 
+  public CheckoutSessionPaymentMethod fingerprint(String fingerprint) {
+    
+    this.fingerprint = fingerprint;
+    return this;
+  }
+
+   /**
+   * The unique hash derived from the payment method identifier (e.g. card number).
+   * @return fingerprint
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "20eb353620155d2b5fc864cc46a73ea77cb92c725238650839da1813fa987a17", value = "The unique hash derived from the payment method identifier (e.g. card number).")
+
+  public String getFingerprint() {
+    return fingerprint;
+  }
+
+
+  public void setFingerprint(String fingerprint) {
+    this.fingerprint = fingerprint;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -340,12 +367,13 @@ public class CheckoutSessionPaymentMethod {
         Objects.equals(this.method, checkoutSessionPaymentMethod.method) &&
         Objects.equals(this.scheme, checkoutSessionPaymentMethod.scheme) &&
         Objects.equals(this.label, checkoutSessionPaymentMethod.label) &&
-        Objects.equals(this.details, checkoutSessionPaymentMethod.details);
+        Objects.equals(this.details, checkoutSessionPaymentMethod.details) &&
+        Objects.equals(this.fingerprint, checkoutSessionPaymentMethod.fingerprint);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(type, id, method, scheme, label, details);
+    return Objects.hash(type, id, method, scheme, label, details, fingerprint);
   }
 
   @Override
@@ -358,6 +386,7 @@ public class CheckoutSessionPaymentMethod {
     sb.append("    scheme: ").append(toIndentedString(scheme)).append("\n");
     sb.append("    label: ").append(toIndentedString(label)).append("\n");
     sb.append("    details: ").append(toIndentedString(details)).append("\n");
+    sb.append("    fingerprint: ").append(toIndentedString(fingerprint)).append("\n");
     sb.append("}");
     return sb.toString();
   }
