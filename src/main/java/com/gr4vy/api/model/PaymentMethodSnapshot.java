@@ -433,6 +433,10 @@ public class PaymentMethodSnapshot {
   @SerializedName(SERIALIZED_NAME_SCHEME)
   private SchemeEnum scheme;
 
+  public static final String SERIALIZED_NAME_FINGERPRINT = "fingerprint";
+  @SerializedName(SERIALIZED_NAME_FINGERPRINT)
+  private String fingerprint;
+
 
   public PaymentMethodSnapshot type(TypeEnum type) {
     
@@ -756,6 +760,29 @@ public class PaymentMethodSnapshot {
   }
 
 
+  public PaymentMethodSnapshot fingerprint(String fingerprint) {
+    
+    this.fingerprint = fingerprint;
+    return this;
+  }
+
+   /**
+   * The unique hash derived from the payment method identifier (e.g. card number).
+   * @return fingerprint
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "20eb353620155d2b5fc864cc46a73ea77cb92c725238650839da1813fa987a17", value = "The unique hash derived from the payment method identifier (e.g. card number).")
+
+  public String getFingerprint() {
+    return fingerprint;
+  }
+
+
+  public void setFingerprint(String fingerprint) {
+    this.fingerprint = fingerprint;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -778,12 +805,13 @@ public class PaymentMethodSnapshot {
         Objects.equals(this.lastReplacedAt, paymentMethodSnapshot.lastReplacedAt) &&
         Objects.equals(this.method, paymentMethodSnapshot.method) &&
         Objects.equals(this.paymentAccountReference, paymentMethodSnapshot.paymentAccountReference) &&
-        Objects.equals(this.scheme, paymentMethodSnapshot.scheme);
+        Objects.equals(this.scheme, paymentMethodSnapshot.scheme) &&
+        Objects.equals(this.fingerprint, paymentMethodSnapshot.fingerprint);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(type, id, approvalTarget, approvalUrl, country, currency, details, expirationDate, externalIdentifier, label, lastReplacedAt, method, paymentAccountReference, scheme);
+    return Objects.hash(type, id, approvalTarget, approvalUrl, country, currency, details, expirationDate, externalIdentifier, label, lastReplacedAt, method, paymentAccountReference, scheme, fingerprint);
   }
 
   @Override
@@ -804,6 +832,7 @@ public class PaymentMethodSnapshot {
     sb.append("    method: ").append(toIndentedString(method)).append("\n");
     sb.append("    paymentAccountReference: ").append(toIndentedString(paymentAccountReference)).append("\n");
     sb.append("    scheme: ").append(toIndentedString(scheme)).append("\n");
+    sb.append("    fingerprint: ").append(toIndentedString(fingerprint)).append("\n");
     sb.append("}");
     return sb.toString();
   }
