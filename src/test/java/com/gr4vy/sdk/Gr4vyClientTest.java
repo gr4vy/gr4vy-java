@@ -150,6 +150,28 @@ public class Gr4vyClientTest {
     }
 	
 	@Test
+	public void addShippingDetailsToBuyerTest() throws Gr4vyException {
+		BuyerRequest buyer = new BuyerRequest();
+     	buyer.setDisplayName("newJava Test");
+     	Buyer response = shared.newBuyer(buyer);
+        assert response.getId() != null;
+        
+		ShippingDetailRequest shippingDetails = new ShippingDetailRequest();
+		shippingDetails.emailAddress("shipping@test.com");
+		
+		ShippingDetail shippingResponse = shared.addShippingDetailsToBuyer(response.getId().toString(), shippingDetails);
+		System.out.println(shippingResponse);
+        assert shippingResponse.getId() != null;
+        
+        ShippingDetails details = shared.listShippingDetailsForBuyer(response.getId().toString());
+        
+        assert details.getItems().size() == 1;
+        
+        assert shared.deleteBuyer(response.getId().toString());
+	}
+	
+	
+	@Test
 	public void newCheckoutSessionTransactionTest() throws Gr4vyException {
 		CheckoutSession checkoutSession = shared.newCheckoutSession(null);
 		
