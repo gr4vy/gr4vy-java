@@ -482,6 +482,21 @@ public class Gr4vyClient {
 	public boolean deleteBuyer(String buyerId) {
 		return this.delete("/buyers/" + buyerId);
 	}
+	public ShippingDetail addShippingDetailsToBuyer(String buyerId, ShippingDetailRequest request) {
+		String response = this.post("/buyers/" + buyerId + "/shipping-details", this.gson.toJson(request));
+		return this.gson.fromJson(response, ShippingDetail.class);
+	}
+	public ShippingDetail updateShippingDetailsForBuyer(String buyerId, String shippingDetailId, ShippingDetailUpdateRequest request) {
+		String response = this.put("/buyers/" + buyerId + "/shipping-details/" + shippingDetailId, this.gson.toJson(request));
+		return this.gson.fromJson(response, ShippingDetail.class);
+	}
+	public boolean deleteShippingDetailsForBuyer(String buyerId, String shippingDetailId) {
+		return this.delete("/buyers/" + buyerId + "/shipping-details/" + shippingDetailId);
+	}
+	public ShippingDetails listShippingDetailsForBuyer(String buyerId) {
+		String response = this.get("/buyers/" + buyerId + "/shipping-details");
+		return this.gson.fromJson(response, ShippingDetails.class);
+	}
 
 	public PaymentMethod storePaymentMethod(PaymentMethodRequest request) {
 		String response = this.post("/payment-methods", this.gson.toJson(request));
