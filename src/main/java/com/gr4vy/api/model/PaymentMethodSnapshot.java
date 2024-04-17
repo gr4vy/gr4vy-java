@@ -184,8 +184,6 @@ public class PaymentMethodSnapshot {
     
     BACS("bacs"),
     
-    BANCONTACT("bancontact"),
-    
     BANKED("banked"),
     
     BECS("becs"),
@@ -198,19 +196,21 @@ public class PaymentMethodSnapshot {
     
     CARD("card"),
     
-    CHECKOUT_SESSION("checkout-session"),
+    CASHAPP("cashapp"),
     
-    CLICK_TO_PAY("click-to-pay"),
+    CHASEORBITAL("chaseorbital"),
     
     CLEARPAY("clearpay"),
+    
+    CLICK_TO_PAY("click-to-pay"),
     
     DANA("dana"),
     
     DCB("dcb"),
     
-    EPS("eps"),
+    DLOCAL("dlocal"),
     
-    FORTUMO("fortumo"),
+    EBANX("ebanx"),
     
     GCASH("gcash"),
     
@@ -226,15 +226,11 @@ public class PaymentMethodSnapshot {
     
     IDEAL("ideal"),
     
-    ID("id"),
-    
     KAKAOPAY("kakaopay"),
     
     KLARNA("klarna"),
     
     LAYBUY("laybuy"),
-    
-    LINEPAY("linepay"),
     
     LINKAJA("linkaja"),
     
@@ -256,17 +252,21 @@ public class PaymentMethodSnapshot {
     
     OXXO("oxxo"),
     
+    PAYID("payid"),
+    
     PAYMAYA("paymaya"),
     
     PAYPAL("paypal"),
     
     PAYPALPAYLATER("paypalpaylater"),
     
+    PAYTO("payto"),
+    
+    VENMO("venmo"),
+    
     PIX("pix"),
     
     RABBITLINEPAY("rabbitlinepay"),
-    
-    RAZORPAY("razorpay"),
     
     SCALAPAY("scalapay"),
     
@@ -288,13 +288,29 @@ public class PaymentMethodSnapshot {
     
     TRUSTLY("trustly"),
     
-    VENMO("venmo"),
+    TRUSTLYEUROPE("trustlyeurope"),
     
-    WAAVE("waave"),
+    GIVINGBLOCK("givingblock"),
     
     WECHAT("wechat"),
     
-    ZIPPAY("zippay");
+    ZIPPAY("zippay"),
+    
+    BANCONTACT("bancontact"),
+    
+    EPS("eps"),
+    
+    LINEPAY("linepay"),
+    
+    RAZORPAY("razorpay"),
+    
+    MULTIPAGO("multipago"),
+    
+    WAAVE("waave"),
+    
+    SMARTPAY("smartpay"),
+    
+    VIPPS("vipps");
 
     private String value;
 
@@ -377,6 +393,8 @@ public class PaymentMethodSnapshot {
     
     MASTERCARD("mastercard"),
     
+    MIR("mir"),
+    
     NYCE("nyce"),
     
     OTHER("other"),
@@ -387,9 +405,13 @@ public class PaymentMethodSnapshot {
     
     STAR("star"),
     
+    UATP("uatp"),
+    
     UNIONPAY("unionpay"),
     
-    VISA("visa");
+    VISA("visa"),
+    
+    NULL("null");
 
     private String value;
 

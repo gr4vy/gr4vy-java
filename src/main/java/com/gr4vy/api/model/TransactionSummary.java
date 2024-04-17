@@ -132,6 +132,67 @@ public class TransactionSummary {
   private List<GiftCardRedemption> giftCardRedemptions = null;
 
   /**
+   * The name of the instrument used to process the transaction. 
+   */
+  @JsonAdapter(InstrumentTypeEnum.Adapter.class)
+  public enum InstrumentTypeEnum {
+    APPLEPAY("applepay"),
+    
+    CARD_TOKEN("card_token"),
+    
+    GOOGLEPAY("googlepay"),
+    
+    NETWORK_TOKEN("network_token"),
+    
+    PAN("pan"),
+    
+    REDIRECT("redirect"),
+    
+    REDIRECT_TOKEN("redirect_token");
+
+    private String value;
+
+    InstrumentTypeEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static InstrumentTypeEnum fromValue(String value) {
+      for (InstrumentTypeEnum b : InstrumentTypeEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      return null;
+    }
+
+    public static class Adapter extends TypeAdapter<InstrumentTypeEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final InstrumentTypeEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public InstrumentTypeEnum read(final JsonReader jsonReader) throws IOException {
+        String value =  jsonReader.nextString();
+        return InstrumentTypeEnum.fromValue(value);
+      }
+    }
+  }
+
+  public static final String SERIALIZED_NAME_INSTRUMENT_TYPE = "instrument_type";
+  @SerializedName(SERIALIZED_NAME_INSTRUMENT_TYPE)
+  private InstrumentTypeEnum instrumentType;
+
+  /**
    * The original &#x60;intent&#x60; used when the transaction was [created](#operation/authorize-new-transaction).
    */
   @JsonAdapter(IntentEnum.Adapter.class)
@@ -201,8 +262,6 @@ public class TransactionSummary {
     
     BACS("bacs"),
     
-    BANCONTACT("bancontact"),
-    
     BANKED("banked"),
     
     BECS("becs"),
@@ -215,19 +274,21 @@ public class TransactionSummary {
     
     CARD("card"),
     
-    CHECKOUT_SESSION("checkout-session"),
+    CASHAPP("cashapp"),
     
-    CLICK_TO_PAY("click-to-pay"),
+    CHASEORBITAL("chaseorbital"),
     
     CLEARPAY("clearpay"),
+    
+    CLICK_TO_PAY("click-to-pay"),
     
     DANA("dana"),
     
     DCB("dcb"),
     
-    EPS("eps"),
+    DLOCAL("dlocal"),
     
-    FORTUMO("fortumo"),
+    EBANX("ebanx"),
     
     GCASH("gcash"),
     
@@ -243,15 +304,11 @@ public class TransactionSummary {
     
     IDEAL("ideal"),
     
-    ID("id"),
-    
     KAKAOPAY("kakaopay"),
     
     KLARNA("klarna"),
     
     LAYBUY("laybuy"),
-    
-    LINEPAY("linepay"),
     
     LINKAJA("linkaja"),
     
@@ -273,17 +330,21 @@ public class TransactionSummary {
     
     OXXO("oxxo"),
     
+    PAYID("payid"),
+    
     PAYMAYA("paymaya"),
     
     PAYPAL("paypal"),
     
     PAYPALPAYLATER("paypalpaylater"),
     
+    PAYTO("payto"),
+    
+    VENMO("venmo"),
+    
     PIX("pix"),
     
     RABBITLINEPAY("rabbitlinepay"),
-    
-    RAZORPAY("razorpay"),
     
     SCALAPAY("scalapay"),
     
@@ -305,13 +366,29 @@ public class TransactionSummary {
     
     TRUSTLY("trustly"),
     
-    VENMO("venmo"),
+    TRUSTLYEUROPE("trustlyeurope"),
     
-    WAAVE("waave"),
+    GIVINGBLOCK("givingblock"),
     
     WECHAT("wechat"),
     
-    ZIPPAY("zippay");
+    ZIPPAY("zippay"),
+    
+    BANCONTACT("bancontact"),
+    
+    EPS("eps"),
+    
+    LINEPAY("linepay"),
+    
+    RAZORPAY("razorpay"),
+    
+    MULTIPAGO("multipago"),
+    
+    WAAVE("waave"),
+    
+    SMARTPAY("smartpay"),
+    
+    VIPPS("vipps");
 
     private String value;
 
@@ -334,7 +411,7 @@ public class TransactionSummary {
           return b;
         }
       }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+      return null;
     }
 
     public static class Adapter extends TypeAdapter<MethodEnum> {
@@ -743,6 +820,29 @@ public class TransactionSummary {
   }
 
 
+  public TransactionSummary instrumentType(InstrumentTypeEnum instrumentType) {
+    
+    this.instrumentType = instrumentType;
+    return this;
+  }
+
+   /**
+   * The name of the instrument used to process the transaction. 
+   * @return instrumentType
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "network_token", value = "The name of the instrument used to process the transaction. ")
+
+  public InstrumentTypeEnum getInstrumentType() {
+    return instrumentType;
+  }
+
+
+  public void setInstrumentType(InstrumentTypeEnum instrumentType) {
+    this.instrumentType = instrumentType;
+  }
+
+
   public TransactionSummary intent(IntentEnum intent) {
     
     this.intent = intent;
@@ -1042,6 +1142,7 @@ public class TransactionSummary {
         Objects.equals(this.currency, transactionSummary.currency) &&
         Objects.equals(this.externalIdentifier, transactionSummary.externalIdentifier) &&
         Objects.equals(this.giftCardRedemptions, transactionSummary.giftCardRedemptions) &&
+        Objects.equals(this.instrumentType, transactionSummary.instrumentType) &&
         Objects.equals(this.intent, transactionSummary.intent) &&
         Objects.equals(this.merchantAccountId, transactionSummary.merchantAccountId) &&
         Objects.equals(this.method, transactionSummary.method) &&
@@ -1058,7 +1159,7 @@ public class TransactionSummary {
 
   @Override
   public int hashCode() {
-    return Objects.hash(type, id, amount, authorizedAmount, buyer, capturedAmount, checkoutSessionId, country, createdAt, currency, externalIdentifier, giftCardRedemptions, intent, merchantAccountId, method, paymentMethod, paymentService, pendingReview, rawResponseCode, rawResponseDescription, reconciliationId, refundedAmount, status, updatedAt);
+    return Objects.hash(type, id, amount, authorizedAmount, buyer, capturedAmount, checkoutSessionId, country, createdAt, currency, externalIdentifier, giftCardRedemptions, instrumentType, intent, merchantAccountId, method, paymentMethod, paymentService, pendingReview, rawResponseCode, rawResponseDescription, reconciliationId, refundedAmount, status, updatedAt);
   }
 
   @Override
@@ -1077,6 +1178,7 @@ public class TransactionSummary {
     sb.append("    currency: ").append(toIndentedString(currency)).append("\n");
     sb.append("    externalIdentifier: ").append(toIndentedString(externalIdentifier)).append("\n");
     sb.append("    giftCardRedemptions: ").append(toIndentedString(giftCardRedemptions)).append("\n");
+    sb.append("    instrumentType: ").append(toIndentedString(instrumentType)).append("\n");
     sb.append("    intent: ").append(toIndentedString(intent)).append("\n");
     sb.append("    merchantAccountId: ").append(toIndentedString(merchantAccountId)).append("\n");
     sb.append("    method: ").append(toIndentedString(method)).append("\n");

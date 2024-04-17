@@ -314,6 +314,8 @@ public class PaymentConnectorResponseTransactionCaptureSucceededEventContext {
     
     MASTERCARD("mastercard"),
     
+    MIR("mir"),
+    
     NYCE("nyce"),
     
     OTHER("other"),
@@ -324,9 +326,13 @@ public class PaymentConnectorResponseTransactionCaptureSucceededEventContext {
     
     STAR("star"),
     
+    UATP("uatp"),
+    
     UNIONPAY("unionpay"),
     
-    VISA("visa");
+    VISA("visa"),
+    
+    NULL("null");
 
     private String value;
 

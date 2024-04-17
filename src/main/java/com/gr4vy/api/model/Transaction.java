@@ -114,6 +114,10 @@ public class Transaction {
   @SerializedName(SERIALIZED_NAME_AUTHORIZED_AT)
   private String authorizedAt;
 
+  public static final String SERIALIZED_NAME_APPROVAL_EXPIRES_AT = "approval_expires_at";
+  @SerializedName(SERIALIZED_NAME_APPROVAL_EXPIRES_AT)
+  private String approvalExpiresAt;
+
   /**
    * The response code received from the payment service for the Address Verification Check (AVS). This code is mapped to a standardized Gr4vy AVS response code.  - &#x60;no_match&#x60; - neither address or postal code match - &#x60;match&#x60; - both address and postal code match - &#x60;partial_match_address&#x60; - address matches but postal code does not - &#x60;partial_match_postcode&#x60; - postal code matches but address does not - &#x60;unavailable &#x60; - AVS is unavailable for card/country  The value of this field can be &#x60;null&#x60; if the payment service did not provide a response.
    */
@@ -275,6 +279,67 @@ public class Transaction {
   private List<GiftCardRedemption> giftCardRedemptions = null;
 
   /**
+   * The name of the instrument used to process the transaction. 
+   */
+  @JsonAdapter(InstrumentTypeEnum.Adapter.class)
+  public enum InstrumentTypeEnum {
+    APPLEPAY("applepay"),
+    
+    CARD_TOKEN("card_token"),
+    
+    GOOGLEPAY("googlepay"),
+    
+    NETWORK_TOKEN("network_token"),
+    
+    PAN("pan"),
+    
+    REDIRECT("redirect"),
+    
+    REDIRECT_TOKEN("redirect_token");
+
+    private String value;
+
+    InstrumentTypeEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static InstrumentTypeEnum fromValue(String value) {
+      for (InstrumentTypeEnum b : InstrumentTypeEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      return null;
+    }
+
+    public static class Adapter extends TypeAdapter<InstrumentTypeEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final InstrumentTypeEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public InstrumentTypeEnum read(final JsonReader jsonReader) throws IOException {
+        String value =  jsonReader.nextString();
+        return InstrumentTypeEnum.fromValue(value);
+      }
+    }
+  }
+
+  public static final String SERIALIZED_NAME_INSTRUMENT_TYPE = "instrument_type";
+  @SerializedName(SERIALIZED_NAME_INSTRUMENT_TYPE)
+  private InstrumentTypeEnum instrumentType;
+
+  /**
    * The original &#x60;intent&#x60; used when the transaction was [created](#operation/authorize-new-transaction).
    */
   @JsonAdapter(IntentEnum.Adapter.class)
@@ -409,8 +474,6 @@ public class Transaction {
     
     BACS("bacs"),
     
-    BANCONTACT("bancontact"),
-    
     BANKED("banked"),
     
     BECS("becs"),
@@ -423,19 +486,21 @@ public class Transaction {
     
     CARD("card"),
     
-    CHECKOUT_SESSION("checkout-session"),
+    CASHAPP("cashapp"),
     
-    CLICK_TO_PAY("click-to-pay"),
+    CHASEORBITAL("chaseorbital"),
     
     CLEARPAY("clearpay"),
+    
+    CLICK_TO_PAY("click-to-pay"),
     
     DANA("dana"),
     
     DCB("dcb"),
     
-    EPS("eps"),
+    DLOCAL("dlocal"),
     
-    FORTUMO("fortumo"),
+    EBANX("ebanx"),
     
     GCASH("gcash"),
     
@@ -451,15 +516,11 @@ public class Transaction {
     
     IDEAL("ideal"),
     
-    ID("id"),
-    
     KAKAOPAY("kakaopay"),
     
     KLARNA("klarna"),
     
     LAYBUY("laybuy"),
-    
-    LINEPAY("linepay"),
     
     LINKAJA("linkaja"),
     
@@ -481,17 +542,21 @@ public class Transaction {
     
     OXXO("oxxo"),
     
+    PAYID("payid"),
+    
     PAYMAYA("paymaya"),
     
     PAYPAL("paypal"),
     
     PAYPALPAYLATER("paypalpaylater"),
     
+    PAYTO("payto"),
+    
+    VENMO("venmo"),
+    
     PIX("pix"),
     
     RABBITLINEPAY("rabbitlinepay"),
-    
-    RAZORPAY("razorpay"),
     
     SCALAPAY("scalapay"),
     
@@ -513,13 +578,29 @@ public class Transaction {
     
     TRUSTLY("trustly"),
     
-    VENMO("venmo"),
+    TRUSTLYEUROPE("trustlyeurope"),
     
-    WAAVE("waave"),
+    GIVINGBLOCK("givingblock"),
     
     WECHAT("wechat"),
     
-    ZIPPAY("zippay");
+    ZIPPAY("zippay"),
+    
+    BANCONTACT("bancontact"),
+    
+    EPS("eps"),
+    
+    LINEPAY("linepay"),
+    
+    RAZORPAY("razorpay"),
+    
+    MULTIPAGO("multipago"),
+    
+    WAAVE("waave"),
+    
+    SMARTPAY("smartpay"),
+    
+    VIPPS("vipps");
 
     private String value;
 
@@ -542,7 +623,7 @@ public class Transaction {
           return b;
         }
       }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+      return null;
     }
 
     public static class Adapter extends TypeAdapter<MethodEnum> {
@@ -888,6 +969,29 @@ public class Transaction {
   }
 
 
+  public Transaction approvalExpiresAt(String approvalExpiresAt) {
+    
+    this.approvalExpiresAt = approvalExpiresAt;
+    return this;
+  }
+
+   /**
+   * The date and time when this transaction will be marked as failed if it does not successfully gets captured, authorized or otherwise approved before.
+   * @return approvalExpiresAt
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "2013-07-16T19:23Z", value = "The date and time when this transaction will be marked as failed if it does not successfully gets captured, authorized or otherwise approved before.")
+
+  public String getApprovalExpiresAt() {
+    return approvalExpiresAt;
+  }
+
+
+  public void setApprovalExpiresAt(String approvalExpiresAt) {
+    this.approvalExpiresAt = approvalExpiresAt;
+  }
+
+
   public Transaction avsResponseCode(AvsResponseCodeEnum avsResponseCode) {
     
     this.avsResponseCode = avsResponseCode;
@@ -1225,6 +1329,29 @@ public class Transaction {
 
   public void setGiftCardRedemptions(List<GiftCardRedemption> giftCardRedemptions) {
     this.giftCardRedemptions = giftCardRedemptions;
+  }
+
+
+  public Transaction instrumentType(InstrumentTypeEnum instrumentType) {
+    
+    this.instrumentType = instrumentType;
+    return this;
+  }
+
+   /**
+   * The name of the instrument used to process the transaction. 
+   * @return instrumentType
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "network_token", value = "The name of the instrument used to process the transaction. ")
+
+  public InstrumentTypeEnum getInstrumentType() {
+    return instrumentType;
+  }
+
+
+  public void setInstrumentType(InstrumentTypeEnum instrumentType) {
+    this.instrumentType = instrumentType;
   }
 
 
@@ -1805,6 +1932,7 @@ public class Transaction {
         Objects.equals(this.authResponseCode, transaction.authResponseCode) &&
         Objects.equals(this.authorizedAmount, transaction.authorizedAmount) &&
         Objects.equals(this.authorizedAt, transaction.authorizedAt) &&
+        Objects.equals(this.approvalExpiresAt, transaction.approvalExpiresAt) &&
         Objects.equals(this.avsResponseCode, transaction.avsResponseCode) &&
         Objects.equals(this.buyer, transaction.buyer) &&
         Objects.equals(this.capturedAmount, transaction.capturedAmount) &&
@@ -1819,6 +1947,7 @@ public class Transaction {
         Objects.equals(this.externalIdentifier, transaction.externalIdentifier) &&
         Objects.equals(this.giftCardService, transaction.giftCardService) &&
         Objects.equals(this.giftCardRedemptions, transaction.giftCardRedemptions) &&
+        Objects.equals(this.instrumentType, transaction.instrumentType) &&
         Objects.equals(this.intent, transaction.intent) &&
         Objects.equals(this.intentOutcome, transaction.intentOutcome) &&
         Objects.equals(this.isSubsequentPayment, transaction.isSubsequentPayment) &&
@@ -1847,7 +1976,7 @@ public class Transaction {
 
   @Override
   public int hashCode() {
-    return Objects.hash(type, id, amount, authResponseCode, authorizedAmount, authorizedAt, avsResponseCode, buyer, capturedAmount, capturedAt, cartItems, checkoutSessionId, country, createdAt, currency, cvvResponseCode, errorCode, externalIdentifier, giftCardService, giftCardRedemptions, intent, intentOutcome, isSubsequentPayment, merchantAccountId, merchantInitiated, metadata, method, multiTender, paymentMethod, paymentService, paymentServiceTransactionId, paymentSource, pendingReview, rawResponseCode, rawResponseDescription, reconciliationId, refundedAmount, schemeTransactionId, shippingDetails, statementDescriptor, status, threeDSecure, updatedAt, voidedAt);
+    return Objects.hash(type, id, amount, authResponseCode, authorizedAmount, authorizedAt, approvalExpiresAt, avsResponseCode, buyer, capturedAmount, capturedAt, cartItems, checkoutSessionId, country, createdAt, currency, cvvResponseCode, errorCode, externalIdentifier, giftCardService, giftCardRedemptions, instrumentType, intent, intentOutcome, isSubsequentPayment, merchantAccountId, merchantInitiated, metadata, method, multiTender, paymentMethod, paymentService, paymentServiceTransactionId, paymentSource, pendingReview, rawResponseCode, rawResponseDescription, reconciliationId, refundedAmount, schemeTransactionId, shippingDetails, statementDescriptor, status, threeDSecure, updatedAt, voidedAt);
   }
 
   @Override
@@ -1860,6 +1989,7 @@ public class Transaction {
     sb.append("    authResponseCode: ").append(toIndentedString(authResponseCode)).append("\n");
     sb.append("    authorizedAmount: ").append(toIndentedString(authorizedAmount)).append("\n");
     sb.append("    authorizedAt: ").append(toIndentedString(authorizedAt)).append("\n");
+    sb.append("    approvalExpiresAt: ").append(toIndentedString(approvalExpiresAt)).append("\n");
     sb.append("    avsResponseCode: ").append(toIndentedString(avsResponseCode)).append("\n");
     sb.append("    buyer: ").append(toIndentedString(buyer)).append("\n");
     sb.append("    capturedAmount: ").append(toIndentedString(capturedAmount)).append("\n");
@@ -1874,6 +2004,7 @@ public class Transaction {
     sb.append("    externalIdentifier: ").append(toIndentedString(externalIdentifier)).append("\n");
     sb.append("    giftCardService: ").append(toIndentedString(giftCardService)).append("\n");
     sb.append("    giftCardRedemptions: ").append(toIndentedString(giftCardRedemptions)).append("\n");
+    sb.append("    instrumentType: ").append(toIndentedString(instrumentType)).append("\n");
     sb.append("    intent: ").append(toIndentedString(intent)).append("\n");
     sb.append("    intentOutcome: ").append(toIndentedString(intentOutcome)).append("\n");
     sb.append("    isSubsequentPayment: ").append(toIndentedString(isSubsequentPayment)).append("\n");

@@ -90,6 +90,10 @@ public class TransactionRefundRequest {
   @SerializedName(SERIALIZED_NAME_TARGET_ID)
   private UUID targetId;
 
+  public static final String SERIALIZED_NAME_REASON = "reason";
+  @SerializedName(SERIALIZED_NAME_REASON)
+  private String reason;
+
 
   public TransactionRefundRequest amount(Integer amount) {
     
@@ -162,6 +166,29 @@ public class TransactionRefundRequest {
   }
 
 
+  public TransactionRefundRequest reason(String reason) {
+    
+    this.reason = reason;
+    return this;
+  }
+
+   /**
+   * An optional reason to attach extra context to the refund request.
+   * @return reason
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "Refund due to user request", value = "An optional reason to attach extra context to the refund request.")
+
+  public String getReason() {
+    return reason;
+  }
+
+
+  public void setReason(String reason) {
+    this.reason = reason;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -173,12 +200,13 @@ public class TransactionRefundRequest {
     TransactionRefundRequest transactionRefundRequest = (TransactionRefundRequest) o;
     return Objects.equals(this.amount, transactionRefundRequest.amount) &&
         Objects.equals(this.targetType, transactionRefundRequest.targetType) &&
-        Objects.equals(this.targetId, transactionRefundRequest.targetId);
+        Objects.equals(this.targetId, transactionRefundRequest.targetId) &&
+        Objects.equals(this.reason, transactionRefundRequest.reason);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(amount, targetType, targetId);
+    return Objects.hash(amount, targetType, targetId, reason);
   }
 
   @Override
@@ -188,6 +216,7 @@ public class TransactionRefundRequest {
     sb.append("    amount: ").append(toIndentedString(amount)).append("\n");
     sb.append("    targetType: ").append(toIndentedString(targetType)).append("\n");
     sb.append("    targetId: ").append(toIndentedString(targetId)).append("\n");
+    sb.append("    reason: ").append(toIndentedString(reason)).append("\n");
     sb.append("}");
     return sb.toString();
   }
