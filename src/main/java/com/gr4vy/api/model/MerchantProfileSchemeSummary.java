@@ -24,12 +24,13 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 
+
 /**
  * Merchant profile for a specific scheme.
  */
 @ApiModel(description = "Merchant profile for a specific scheme.")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class MerchantProfileScheme {
+public class MerchantProfileSchemeSummary {
   public static final String SERIALIZED_NAME_MERCHANT_ACQUIRER_BIN = "merchant_acquirer_bin";
   @SerializedName(SERIALIZED_NAME_MERCHANT_ACQUIRER_BIN)
   private String merchantAcquirerBin;
@@ -54,8 +55,12 @@ public class MerchantProfileScheme {
   @SerializedName(SERIALIZED_NAME_MERCHANT_CATEGORY_CODE)
   private String merchantCategoryCode;
 
+  public static final String SERIALIZED_NAME_CREATED_AT = "created_at";
+  @SerializedName(SERIALIZED_NAME_CREATED_AT)
+  private String createdAt;
 
-  public MerchantProfileScheme merchantAcquirerBin(String merchantAcquirerBin) {
+
+  public MerchantProfileSchemeSummary merchantAcquirerBin(String merchantAcquirerBin) {
     
     this.merchantAcquirerBin = merchantAcquirerBin;
     return this;
@@ -78,7 +83,7 @@ public class MerchantProfileScheme {
   }
 
 
-  public MerchantProfileScheme merchantUrl(String merchantUrl) {
+  public MerchantProfileSchemeSummary merchantUrl(String merchantUrl) {
     
     this.merchantUrl = merchantUrl;
     return this;
@@ -101,7 +106,7 @@ public class MerchantProfileScheme {
   }
 
 
-  public MerchantProfileScheme merchantAcquirerId(String merchantAcquirerId) {
+  public MerchantProfileSchemeSummary merchantAcquirerId(String merchantAcquirerId) {
     
     this.merchantAcquirerId = merchantAcquirerId;
     return this;
@@ -124,7 +129,7 @@ public class MerchantProfileScheme {
   }
 
 
-  public MerchantProfileScheme merchantName(String merchantName) {
+  public MerchantProfileSchemeSummary merchantName(String merchantName) {
     
     this.merchantName = merchantName;
     return this;
@@ -147,7 +152,7 @@ public class MerchantProfileScheme {
   }
 
 
-  public MerchantProfileScheme merchantCountryCode(String merchantCountryCode) {
+  public MerchantProfileSchemeSummary merchantCountryCode(String merchantCountryCode) {
     
     this.merchantCountryCode = merchantCountryCode;
     return this;
@@ -170,7 +175,7 @@ public class MerchantProfileScheme {
   }
 
 
-  public MerchantProfileScheme merchantCategoryCode(String merchantCategoryCode) {
+  public MerchantProfileSchemeSummary merchantCategoryCode(String merchantCategoryCode) {
     
     this.merchantCategoryCode = merchantCategoryCode;
     return this;
@@ -193,6 +198,29 @@ public class MerchantProfileScheme {
   }
 
 
+  public MerchantProfileSchemeSummary createdAt(String createdAt) {
+    
+    this.createdAt = createdAt;
+    return this;
+  }
+
+   /**
+   * The date and time when this profile was created.
+   * @return createdAt
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "2023-07-26T19:23Z", value = "The date and time when this profile was created.")
+
+  public String getCreatedAt() {
+    return createdAt;
+  }
+
+
+  public void setCreatedAt(String createdAt) {
+    this.createdAt = createdAt;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -201,30 +229,32 @@ public class MerchantProfileScheme {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    MerchantProfileScheme merchantProfileScheme = (MerchantProfileScheme) o;
-    return Objects.equals(this.merchantAcquirerBin, merchantProfileScheme.merchantAcquirerBin) &&
-        Objects.equals(this.merchantUrl, merchantProfileScheme.merchantUrl) &&
-        Objects.equals(this.merchantAcquirerId, merchantProfileScheme.merchantAcquirerId) &&
-        Objects.equals(this.merchantName, merchantProfileScheme.merchantName) &&
-        Objects.equals(this.merchantCountryCode, merchantProfileScheme.merchantCountryCode) &&
-        Objects.equals(this.merchantCategoryCode, merchantProfileScheme.merchantCategoryCode);
+    MerchantProfileSchemeSummary merchantProfileSchemeSummary = (MerchantProfileSchemeSummary) o;
+    return Objects.equals(this.merchantAcquirerBin, merchantProfileSchemeSummary.merchantAcquirerBin) &&
+        Objects.equals(this.merchantUrl, merchantProfileSchemeSummary.merchantUrl) &&
+        Objects.equals(this.merchantAcquirerId, merchantProfileSchemeSummary.merchantAcquirerId) &&
+        Objects.equals(this.merchantName, merchantProfileSchemeSummary.merchantName) &&
+        Objects.equals(this.merchantCountryCode, merchantProfileSchemeSummary.merchantCountryCode) &&
+        Objects.equals(this.merchantCategoryCode, merchantProfileSchemeSummary.merchantCategoryCode) &&
+        Objects.equals(this.createdAt, merchantProfileSchemeSummary.createdAt);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(merchantAcquirerBin, merchantUrl, merchantAcquirerId, merchantName, merchantCountryCode, merchantCategoryCode);
+    return Objects.hash(merchantAcquirerBin, merchantUrl, merchantAcquirerId, merchantName, merchantCountryCode, merchantCategoryCode, createdAt);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class MerchantProfileScheme {\n");
+    sb.append("class MerchantProfileSchemeSummary {\n");
     sb.append("    merchantAcquirerBin: ").append(toIndentedString(merchantAcquirerBin)).append("\n");
     sb.append("    merchantUrl: ").append(toIndentedString(merchantUrl)).append("\n");
     sb.append("    merchantAcquirerId: ").append(toIndentedString(merchantAcquirerId)).append("\n");
     sb.append("    merchantName: ").append(toIndentedString(merchantName)).append("\n");
     sb.append("    merchantCountryCode: ").append(toIndentedString(merchantCountryCode)).append("\n");
     sb.append("    merchantCategoryCode: ").append(toIndentedString(merchantCategoryCode)).append("\n");
+    sb.append("    createdAt: ").append(toIndentedString(createdAt)).append("\n");
     sb.append("}");
     return sb.toString();
   }

@@ -95,8 +95,6 @@ public class PaymentOption {
     
     BACS("bacs"),
     
-    BANCONTACT("bancontact"),
-    
     BANKED("banked"),
     
     BECS("becs"),
@@ -109,19 +107,25 @@ public class PaymentOption {
     
     CARD("card"),
     
+    CASHAPP("cashapp"),
+    
+    CHASEORBITAL("chaseorbital"),
+    
     CHECKOUT_SESSION("checkout-session"),
     
-    CLICK_TO_PAY("click-to-pay"),
-    
     CLEARPAY("clearpay"),
+    
+    CLICK_TO_PAY("click-to-pay"),
     
     DANA("dana"),
     
     DCB("dcb"),
     
-    EPS("eps"),
+    DLOCAL("dlocal"),
     
-    FORTUMO("fortumo"),
+    EBANX("ebanx"),
+    
+    EVERYDAYPAY("everydaypay"),
     
     GCASH("gcash"),
     
@@ -137,15 +141,11 @@ public class PaymentOption {
     
     IDEAL("ideal"),
     
-    ID("id"),
-    
     KAKAOPAY("kakaopay"),
     
     KLARNA("klarna"),
     
     LAYBUY("laybuy"),
-    
-    LINEPAY("linepay"),
     
     LINKAJA("linkaja"),
     
@@ -167,17 +167,21 @@ public class PaymentOption {
     
     OXXO("oxxo"),
     
+    PAYID("payid"),
+    
     PAYMAYA("paymaya"),
     
     PAYPAL("paypal"),
     
     PAYPALPAYLATER("paypalpaylater"),
     
+    PAYTO("payto"),
+    
+    VENMO("venmo"),
+    
     PIX("pix"),
     
     RABBITLINEPAY("rabbitlinepay"),
-    
-    RAZORPAY("razorpay"),
     
     SCALAPAY("scalapay"),
     
@@ -199,13 +203,31 @@ public class PaymentOption {
     
     TRUSTLY("trustly"),
     
-    VENMO("venmo"),
+    TRUSTLYEUROPE("trustlyeurope"),
     
-    WAAVE("waave"),
+    NETWORK_TOKEN("network-token"),
+    
+    GIVINGBLOCK("givingblock"),
     
     WECHAT("wechat"),
     
-    ZIPPAY("zippay");
+    ZIPPAY("zippay"),
+    
+    BANCONTACT("bancontact"),
+    
+    EPS("eps"),
+    
+    LINEPAY("linepay"),
+    
+    RAZORPAY("razorpay"),
+    
+    MULTIPAGO("multipago"),
+    
+    WAAVE("waave"),
+    
+    SMARTPAY("smartpay"),
+    
+    VIPPS("vipps");
 
     private String value;
 

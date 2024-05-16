@@ -41,7 +41,9 @@ public class DigitalWalletApplePayTokenDecryptedContext {
   public enum TypeEnum {
     DPAN("dpan"),
     
-    FPAN("fpan");
+    FPAN("fpan"),
+    
+    NULL("null");
 
     private String value;
 

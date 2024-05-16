@@ -91,7 +91,9 @@ public class CartItem {
     
     STORE_CREDIT("store_credit"),
     
-    SURCHARGE("surcharge");
+    SURCHARGE("surcharge"),
+    
+    NULL("null");
 
     private String value;
 
