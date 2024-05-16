@@ -39,6 +39,10 @@ public class ConnectionOptionsStripeCardStripeConnect {
   @SerializedName(SERIALIZED_NAME_APPLICATION_FEE_AMOUNT)
   private BigDecimal applicationFeeAmount;
 
+  public static final String SERIALIZED_NAME_ON_BEHALF_OF = "on_behalf_of";
+  @SerializedName(SERIALIZED_NAME_ON_BEHALF_OF)
+  private String onBehalfOf;
+
 
   public ConnectionOptionsStripeCardStripeConnect stripeAccount(String stripeAccount) {
     
@@ -86,6 +90,29 @@ public class ConnectionOptionsStripeCardStripeConnect {
   }
 
 
+  public ConnectionOptionsStripeCardStripeConnect onBehalfOf(String onBehalfOf) {
+    
+    this.onBehalfOf = onBehalfOf;
+    return this;
+  }
+
+   /**
+   * The Stripe account ID that these funds are intended for.
+   * @return onBehalfOf
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "The Stripe account ID that these funds are intended for.")
+
+  public String getOnBehalfOf() {
+    return onBehalfOf;
+  }
+
+
+  public void setOnBehalfOf(String onBehalfOf) {
+    this.onBehalfOf = onBehalfOf;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -96,12 +123,13 @@ public class ConnectionOptionsStripeCardStripeConnect {
     }
     ConnectionOptionsStripeCardStripeConnect connectionOptionsStripeCardStripeConnect = (ConnectionOptionsStripeCardStripeConnect) o;
     return Objects.equals(this.stripeAccount, connectionOptionsStripeCardStripeConnect.stripeAccount) &&
-        Objects.equals(this.applicationFeeAmount, connectionOptionsStripeCardStripeConnect.applicationFeeAmount);
+        Objects.equals(this.applicationFeeAmount, connectionOptionsStripeCardStripeConnect.applicationFeeAmount) &&
+        Objects.equals(this.onBehalfOf, connectionOptionsStripeCardStripeConnect.onBehalfOf);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(stripeAccount, applicationFeeAmount);
+    return Objects.hash(stripeAccount, applicationFeeAmount, onBehalfOf);
   }
 
   @Override
@@ -110,6 +138,7 @@ public class ConnectionOptionsStripeCardStripeConnect {
     sb.append("class ConnectionOptionsStripeCardStripeConnect {\n");
     sb.append("    stripeAccount: ").append(toIndentedString(stripeAccount)).append("\n");
     sb.append("    applicationFeeAmount: ").append(toIndentedString(applicationFeeAmount)).append("\n");
+    sb.append("    onBehalfOf: ").append(toIndentedString(onBehalfOf)).append("\n");
     sb.append("}");
     return sb.toString();
   }
