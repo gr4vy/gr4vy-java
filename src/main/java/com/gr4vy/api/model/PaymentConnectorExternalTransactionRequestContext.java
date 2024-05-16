@@ -70,6 +70,14 @@ public class PaymentConnectorExternalTransactionRequestContext {
   @SerializedName(SERIALIZED_NAME_URL)
   private String url;
 
+  public static final String SERIALIZED_NAME_REFUND_ID = "refund_id";
+  @SerializedName(SERIALIZED_NAME_REFUND_ID)
+  private String refundId;
+
+  public static final String SERIALIZED_NAME_REFUND_XID = "refund_xid";
+  @SerializedName(SERIALIZED_NAME_REFUND_XID)
+  private String refundXid;
+
 
   public PaymentConnectorExternalTransactionRequestContext connectorRequestId(String connectorRequestId) {
     
@@ -301,6 +309,52 @@ public class PaymentConnectorExternalTransactionRequestContext {
   }
 
 
+  public PaymentConnectorExternalTransactionRequestContext refundId(String refundId) {
+    
+    this.refundId = refundId;
+    return this;
+  }
+
+   /**
+   * The ID of the refund, in case this links to a refund.
+   * @return refundId
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "The ID of the refund, in case this links to a refund.")
+
+  public String getRefundId() {
+    return refundId;
+  }
+
+
+  public void setRefundId(String refundId) {
+    this.refundId = refundId;
+  }
+
+
+  public PaymentConnectorExternalTransactionRequestContext refundXid(String refundXid) {
+    
+    this.refundXid = refundXid;
+    return this;
+  }
+
+   /**
+   * The external ID of the refund.
+   * @return refundXid
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "The external ID of the refund.")
+
+  public String getRefundXid() {
+    return refundXid;
+  }
+
+
+  public void setRefundXid(String refundXid) {
+    this.refundXid = refundXid;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -319,12 +373,14 @@ public class PaymentConnectorExternalTransactionRequestContext {
         Objects.equals(this.responseStatusCode, paymentConnectorExternalTransactionRequestContext.responseStatusCode) &&
         Objects.equals(this.paymentServiceDisplayName, paymentConnectorExternalTransactionRequestContext.paymentServiceDisplayName) &&
         Objects.equals(this.method, paymentConnectorExternalTransactionRequestContext.method) &&
-        Objects.equals(this.url, paymentConnectorExternalTransactionRequestContext.url);
+        Objects.equals(this.url, paymentConnectorExternalTransactionRequestContext.url) &&
+        Objects.equals(this.refundId, paymentConnectorExternalTransactionRequestContext.refundId) &&
+        Objects.equals(this.refundXid, paymentConnectorExternalTransactionRequestContext.refundXid);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(connectorRequestId, request, response, paymentServiceDefinitionId, success, paymentServiceId, responseStatusCode, paymentServiceDisplayName, method, url);
+    return Objects.hash(connectorRequestId, request, response, paymentServiceDefinitionId, success, paymentServiceId, responseStatusCode, paymentServiceDisplayName, method, url, refundId, refundXid);
   }
 
   @Override
@@ -341,6 +397,8 @@ public class PaymentConnectorExternalTransactionRequestContext {
     sb.append("    paymentServiceDisplayName: ").append(toIndentedString(paymentServiceDisplayName)).append("\n");
     sb.append("    method: ").append(toIndentedString(method)).append("\n");
     sb.append("    url: ").append(toIndentedString(url)).append("\n");
+    sb.append("    refundId: ").append(toIndentedString(refundId)).append("\n");
+    sb.append("    refundXid: ").append(toIndentedString(refundXid)).append("\n");
     sb.append("}");
     return sb.toString();
   }

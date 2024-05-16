@@ -20,7 +20,7 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import com.gr4vy.api.model.MerchantProfileScheme;
+import com.gr4vy.api.model.MerchantProfileSchemeSummary;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
@@ -30,37 +30,37 @@ import java.io.IOException;
  */
 @ApiModel(description = "Merchant profile for the different card schemes.")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class MerchantProfile {
+public class MerchantProfileSummary {
   public static final String SERIALIZED_NAME_AMEX = "amex";
   @SerializedName(SERIALIZED_NAME_AMEX)
-  private MerchantProfileScheme amex;
+  private MerchantProfileSchemeSummary amex;
 
   public static final String SERIALIZED_NAME_DANKORT = "dankort";
   @SerializedName(SERIALIZED_NAME_DANKORT)
-  private MerchantProfileScheme dankort;
+  private MerchantProfileSchemeSummary dankort;
 
   public static final String SERIALIZED_NAME_DISCOVER = "discover";
   @SerializedName(SERIALIZED_NAME_DISCOVER)
-  private MerchantProfileScheme discover;
+  private MerchantProfileSchemeSummary discover;
 
   public static final String SERIALIZED_NAME_JCB = "jcb";
   @SerializedName(SERIALIZED_NAME_JCB)
-  private MerchantProfileScheme jcb;
+  private MerchantProfileSchemeSummary jcb;
 
   public static final String SERIALIZED_NAME_MASTERCARD = "mastercard";
   @SerializedName(SERIALIZED_NAME_MASTERCARD)
-  private MerchantProfileScheme mastercard;
+  private MerchantProfileSchemeSummary mastercard;
 
   public static final String SERIALIZED_NAME_UNIONPAY = "unionpay";
   @SerializedName(SERIALIZED_NAME_UNIONPAY)
-  private MerchantProfileScheme unionpay;
+  private MerchantProfileSchemeSummary unionpay;
 
   public static final String SERIALIZED_NAME_VISA = "visa";
   @SerializedName(SERIALIZED_NAME_VISA)
-  private MerchantProfileScheme visa;
+  private MerchantProfileSchemeSummary visa;
 
 
-  public MerchantProfile amex(MerchantProfileScheme amex) {
+  public MerchantProfileSummary amex(MerchantProfileSchemeSummary amex) {
     
     this.amex = amex;
     return this;
@@ -73,17 +73,17 @@ public class MerchantProfile {
   @javax.annotation.Nullable
   @ApiModelProperty(value = "Merchant profile for Amex.")
 
-  public MerchantProfileScheme getAmex() {
+  public MerchantProfileSchemeSummary getAmex() {
     return amex;
   }
 
 
-  public void setAmex(MerchantProfileScheme amex) {
+  public void setAmex(MerchantProfileSchemeSummary amex) {
     this.amex = amex;
   }
 
 
-  public MerchantProfile dankort(MerchantProfileScheme dankort) {
+  public MerchantProfileSummary dankort(MerchantProfileSchemeSummary dankort) {
     
     this.dankort = dankort;
     return this;
@@ -96,17 +96,17 @@ public class MerchantProfile {
   @javax.annotation.Nullable
   @ApiModelProperty(value = "Merchant profile for Dankort.")
 
-  public MerchantProfileScheme getDankort() {
+  public MerchantProfileSchemeSummary getDankort() {
     return dankort;
   }
 
 
-  public void setDankort(MerchantProfileScheme dankort) {
+  public void setDankort(MerchantProfileSchemeSummary dankort) {
     this.dankort = dankort;
   }
 
 
-  public MerchantProfile discover(MerchantProfileScheme discover) {
+  public MerchantProfileSummary discover(MerchantProfileSchemeSummary discover) {
     
     this.discover = discover;
     return this;
@@ -119,17 +119,17 @@ public class MerchantProfile {
   @javax.annotation.Nullable
   @ApiModelProperty(value = "Merchant profile for Discover.")
 
-  public MerchantProfileScheme getDiscover() {
+  public MerchantProfileSchemeSummary getDiscover() {
     return discover;
   }
 
 
-  public void setDiscover(MerchantProfileScheme discover) {
+  public void setDiscover(MerchantProfileSchemeSummary discover) {
     this.discover = discover;
   }
 
 
-  public MerchantProfile jcb(MerchantProfileScheme jcb) {
+  public MerchantProfileSummary jcb(MerchantProfileSchemeSummary jcb) {
     
     this.jcb = jcb;
     return this;
@@ -142,17 +142,17 @@ public class MerchantProfile {
   @javax.annotation.Nullable
   @ApiModelProperty(value = "Merchant profile for JCB.")
 
-  public MerchantProfileScheme getJcb() {
+  public MerchantProfileSchemeSummary getJcb() {
     return jcb;
   }
 
 
-  public void setJcb(MerchantProfileScheme jcb) {
+  public void setJcb(MerchantProfileSchemeSummary jcb) {
     this.jcb = jcb;
   }
 
 
-  public MerchantProfile mastercard(MerchantProfileScheme mastercard) {
+  public MerchantProfileSummary mastercard(MerchantProfileSchemeSummary mastercard) {
     
     this.mastercard = mastercard;
     return this;
@@ -165,17 +165,17 @@ public class MerchantProfile {
   @javax.annotation.Nullable
   @ApiModelProperty(value = "Merchant profile for Mastercard.")
 
-  public MerchantProfileScheme getMastercard() {
+  public MerchantProfileSchemeSummary getMastercard() {
     return mastercard;
   }
 
 
-  public void setMastercard(MerchantProfileScheme mastercard) {
+  public void setMastercard(MerchantProfileSchemeSummary mastercard) {
     this.mastercard = mastercard;
   }
 
 
-  public MerchantProfile unionpay(MerchantProfileScheme unionpay) {
+  public MerchantProfileSummary unionpay(MerchantProfileSchemeSummary unionpay) {
     
     this.unionpay = unionpay;
     return this;
@@ -188,17 +188,17 @@ public class MerchantProfile {
   @javax.annotation.Nullable
   @ApiModelProperty(value = "Merchant profile for UnionPay.")
 
-  public MerchantProfileScheme getUnionpay() {
+  public MerchantProfileSchemeSummary getUnionpay() {
     return unionpay;
   }
 
 
-  public void setUnionpay(MerchantProfileScheme unionpay) {
+  public void setUnionpay(MerchantProfileSchemeSummary unionpay) {
     this.unionpay = unionpay;
   }
 
 
-  public MerchantProfile visa(MerchantProfileScheme visa) {
+  public MerchantProfileSummary visa(MerchantProfileSchemeSummary visa) {
     
     this.visa = visa;
     return this;
@@ -211,12 +211,12 @@ public class MerchantProfile {
   @javax.annotation.Nullable
   @ApiModelProperty(value = "Merchant profile for Visa.")
 
-  public MerchantProfileScheme getVisa() {
+  public MerchantProfileSchemeSummary getVisa() {
     return visa;
   }
 
 
-  public void setVisa(MerchantProfileScheme visa) {
+  public void setVisa(MerchantProfileSchemeSummary visa) {
     this.visa = visa;
   }
 
@@ -229,14 +229,14 @@ public class MerchantProfile {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    MerchantProfile merchantProfile = (MerchantProfile) o;
-    return Objects.equals(this.amex, merchantProfile.amex) &&
-        Objects.equals(this.dankort, merchantProfile.dankort) &&
-        Objects.equals(this.discover, merchantProfile.discover) &&
-        Objects.equals(this.jcb, merchantProfile.jcb) &&
-        Objects.equals(this.mastercard, merchantProfile.mastercard) &&
-        Objects.equals(this.unionpay, merchantProfile.unionpay) &&
-        Objects.equals(this.visa, merchantProfile.visa);
+    MerchantProfileSummary merchantProfileSummary = (MerchantProfileSummary) o;
+    return Objects.equals(this.amex, merchantProfileSummary.amex) &&
+        Objects.equals(this.dankort, merchantProfileSummary.dankort) &&
+        Objects.equals(this.discover, merchantProfileSummary.discover) &&
+        Objects.equals(this.jcb, merchantProfileSummary.jcb) &&
+        Objects.equals(this.mastercard, merchantProfileSummary.mastercard) &&
+        Objects.equals(this.unionpay, merchantProfileSummary.unionpay) &&
+        Objects.equals(this.visa, merchantProfileSummary.visa);
   }
 
   @Override
@@ -247,7 +247,7 @@ public class MerchantProfile {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class MerchantProfile {\n");
+    sb.append("class MerchantProfileSummary {\n");
     sb.append("    amex: ").append(toIndentedString(amex)).append("\n");
     sb.append("    dankort: ").append(toIndentedString(dankort)).append("\n");
     sb.append("    discover: ").append(toIndentedString(discover)).append("\n");

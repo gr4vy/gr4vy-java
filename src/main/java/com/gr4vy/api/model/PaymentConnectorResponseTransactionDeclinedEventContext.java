@@ -367,6 +367,8 @@ public class PaymentConnectorResponseTransactionDeclinedEventContext {
     
     MASTERCARD("mastercard"),
     
+    MIR("mir"),
+    
     NYCE("nyce"),
     
     OTHER("other"),
@@ -377,9 +379,13 @@ public class PaymentConnectorResponseTransactionDeclinedEventContext {
     
     STAR("star"),
     
+    UATP("uatp"),
+    
     UNIONPAY("unionpay"),
     
-    VISA("visa");
+    VISA("visa"),
+    
+    NULL("null");
 
     private String value;
 

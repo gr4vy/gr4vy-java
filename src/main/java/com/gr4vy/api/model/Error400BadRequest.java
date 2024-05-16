@@ -83,11 +83,15 @@ public class Error400BadRequest {
   private TypeEnum type;
 
   /**
-   * &#x60;bad_request&#x60;.
+   * A short code that describes the reason for the error.
    */
   @JsonAdapter(CodeEnum.Adapter.class)
   public enum CodeEnum {
-    BAD_REQUEST("bad_request");
+    BAD_REQUEST("bad_request"),
+    
+    INCORRECT_JSON("incorrect_json"),
+    
+    INVALID_CREDENTIALS("invalid_credentials");
 
     private String value;
 
@@ -219,11 +223,11 @@ public class Error400BadRequest {
   }
 
    /**
-   * &#x60;bad_request&#x60;.
+   * A short code that describes the reason for the error.
    * @return code
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "bad_request", value = "`bad_request`.")
+  @ApiModelProperty(example = "bad_request", value = "A short code that describes the reason for the error.")
 
   public CodeEnum getCode() {
     return code;
@@ -265,11 +269,11 @@ public class Error400BadRequest {
   }
 
    /**
-   * Describes the fields that are missing or incorrectly formatted in the API request.
+   * A human-readable reason for the error.
    * @return message
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "Missing '****' field", value = "Describes the fields that are missing or incorrectly formatted in the API request.")
+  @ApiModelProperty(example = "Missing '****' field", value = "A human-readable reason for the error.")
 
   public String getMessage() {
     return message;

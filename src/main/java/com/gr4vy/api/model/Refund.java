@@ -158,6 +158,10 @@ public class Refund {
   @SerializedName(SERIALIZED_NAME_AMOUNT)
   private Integer amount;
 
+  public static final String SERIALIZED_NAME_REASON = "reason";
+  @SerializedName(SERIALIZED_NAME_REASON)
+  private String reason = "null";
+
   public static final String SERIALIZED_NAME_CREATED_AT = "created_at";
   @SerializedName(SERIALIZED_NAME_CREATED_AT)
   private String createdAt;
@@ -385,6 +389,29 @@ public class Refund {
   }
 
 
+  public Refund reason(String reason) {
+    
+    this.reason = reason;
+    return this;
+  }
+
+   /**
+   * The reason for this refund. Could be a multiline string.
+   * @return reason
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "Refund due to user request", value = "The reason for this refund. Could be a multiline string.")
+
+  public String getReason() {
+    return reason;
+  }
+
+
+  public void setReason(String reason) {
+    this.reason = reason;
+  }
+
+
   public Refund createdAt(String createdAt) {
     
     this.createdAt = createdAt;
@@ -493,6 +520,7 @@ public class Refund {
         Objects.equals(this.status, refund.status) &&
         Objects.equals(this.currency, refund.currency) &&
         Objects.equals(this.amount, refund.amount) &&
+        Objects.equals(this.reason, refund.reason) &&
         Objects.equals(this.createdAt, refund.createdAt) &&
         Objects.equals(this.updatedAt, refund.updatedAt) &&
         Objects.equals(this.targetType, refund.targetType) &&
@@ -501,7 +529,7 @@ public class Refund {
 
   @Override
   public int hashCode() {
-    return Objects.hash(type, id, transactionId, paymentServiceRefundId, status, currency, amount, createdAt, updatedAt, targetType, targetId);
+    return Objects.hash(type, id, transactionId, paymentServiceRefundId, status, currency, amount, reason, createdAt, updatedAt, targetType, targetId);
   }
 
   @Override
@@ -515,6 +543,7 @@ public class Refund {
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("    currency: ").append(toIndentedString(currency)).append("\n");
     sb.append("    amount: ").append(toIndentedString(amount)).append("\n");
+    sb.append("    reason: ").append(toIndentedString(reason)).append("\n");
     sb.append("    createdAt: ").append(toIndentedString(createdAt)).append("\n");
     sb.append("    updatedAt: ").append(toIndentedString(updatedAt)).append("\n");
     sb.append("    targetType: ").append(toIndentedString(targetType)).append("\n");
