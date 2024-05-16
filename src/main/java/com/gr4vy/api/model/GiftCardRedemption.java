@@ -90,6 +90,8 @@ public class GiftCardRedemption {
    */
   @JsonAdapter(StatusEnum.Adapter.class)
   public enum StatusEnum {
+    CREATED("created"),
+    
     SUCCEEDED("succeeded"),
     
     FAILED("failed"),

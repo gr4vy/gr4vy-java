@@ -234,6 +234,10 @@ public class TransactionRequest {
   @SerializedName(SERIALIZED_NAME_THREE_D_SECURE_DATA)
   private ThreeDSecureDataV1V2 threeDSecureData;
 
+  public static final String SERIALIZED_NAME_PAYMENT_SERVICE_ID = "payment_service_id";
+  @SerializedName(SERIALIZED_NAME_PAYMENT_SERVICE_ID)
+  private UUID paymentServiceId;
+
 
   public TransactionRequest amount(Integer amount) {
     
@@ -457,11 +461,11 @@ public class TransactionRequest {
   }
 
    /**
-   * Allows for passing optional configuration per connection to take advantage of connection specific features. When provided, the data is only passed to the target connection type to prevent sharing configuration across connections.  Please note that each of the keys this object are in kebab-case, for example &#x60;cybersource-anti-fraud&#x60; as they represent the ID of the connector. All the other keys will be snake-case, for example &#x60;merchant_defined_data&#x60;.
+   * Allows for passing optional configuration per connection to take advantage of connection specific features. When provided, the data is only passed to the target connection type to prevent sharing configuration across connections.  Please note that each of the keys this object are in kebab-case, for example &#x60;cybersource-anti-fraud&#x60; as they represent the ID of the connector. All the other keys will be snake case, for example &#x60;merchant_defined_data&#x60; or camel case to match an external API that the connector uses.
    * @return connectionOptions
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "Allows for passing optional configuration per connection to take advantage of connection specific features. When provided, the data is only passed to the target connection type to prevent sharing configuration across connections.  Please note that each of the keys this object are in kebab-case, for example `cybersource-anti-fraud` as they represent the ID of the connector. All the other keys will be snake-case, for example `merchant_defined_data`.")
+  @ApiModelProperty(value = "Allows for passing optional configuration per connection to take advantage of connection specific features. When provided, the data is only passed to the target connection type to prevent sharing configuration across connections.  Please note that each of the keys this object are in kebab-case, for example `cybersource-anti-fraud` as they represent the ID of the connector. All the other keys will be snake case, for example `merchant_defined_data` or camel case to match an external API that the connector uses.")
 
   public ConnectionOptions getConnectionOptions() {
     return connectionOptions;
@@ -788,6 +792,29 @@ public class TransactionRequest {
   }
 
 
+  public TransactionRequest paymentServiceId(UUID paymentServiceId) {
+    
+    this.paymentServiceId = paymentServiceId;
+    return this;
+  }
+
+   /**
+   * The unique identifier of an existing payment service. When provided, the created transaction will be processed by the given payment service and any routing rules will be skipped.
+   * @return paymentServiceId
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "47da6902-5eae-4b4b-88fd-856802d627d6", value = "The unique identifier of an existing payment service. When provided, the created transaction will be processed by the given payment service and any routing rules will be skipped.")
+
+  public UUID getPaymentServiceId() {
+    return paymentServiceId;
+  }
+
+
+  public void setPaymentServiceId(UUID paymentServiceId) {
+    this.paymentServiceId = paymentServiceId;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -819,12 +846,13 @@ public class TransactionRequest {
         Objects.equals(this.shippingDetailsId, transactionRequest.shippingDetailsId) &&
         Objects.equals(this.statementDescriptor, transactionRequest.statementDescriptor) &&
         Objects.equals(this.store, transactionRequest.store) &&
-        Objects.equals(this.threeDSecureData, transactionRequest.threeDSecureData);
+        Objects.equals(this.threeDSecureData, transactionRequest.threeDSecureData) &&
+        Objects.equals(this.paymentServiceId, transactionRequest.paymentServiceId);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(amount, currency, paymentMethod, antiFraudFingerprint, asyncCapture, browserInfo, buyerExternalIdentifier, buyerId, cartItems, connectionOptions, country, externalIdentifier, giftCards, intent, isSubsequentPayment, merchantInitiated, metadata, paymentSource, previousSchemeTransactionId, shippingDetailsId, statementDescriptor, store, threeDSecureData);
+    return Objects.hash(amount, currency, paymentMethod, antiFraudFingerprint, asyncCapture, browserInfo, buyerExternalIdentifier, buyerId, cartItems, connectionOptions, country, externalIdentifier, giftCards, intent, isSubsequentPayment, merchantInitiated, metadata, paymentSource, previousSchemeTransactionId, shippingDetailsId, statementDescriptor, store, threeDSecureData, paymentServiceId);
   }
 
   @Override
@@ -854,6 +882,7 @@ public class TransactionRequest {
     sb.append("    statementDescriptor: ").append(toIndentedString(statementDescriptor)).append("\n");
     sb.append("    store: ").append(toIndentedString(store)).append("\n");
     sb.append("    threeDSecureData: ").append(toIndentedString(threeDSecureData)).append("\n");
+    sb.append("    paymentServiceId: ").append(toIndentedString(paymentServiceId)).append("\n");
     sb.append("}");
     return sb.toString();
   }
