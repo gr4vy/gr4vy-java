@@ -271,8 +271,8 @@ public class Gr4vyClientTest {
 		.number("4111111111111111")
 		.expirationDate("12/24");
  
-		PaymentMethod response = shared.storePaymentMethod(pmPaymentMethodRequest);
-		String id = response.getId().toString();
+		PaymentMethod pm_response = shared.storePaymentMethod(pmPaymentMethodRequest);
+		String id = pm_response.getId().toString();
 
 	 	TransactionPaymentMethodRequest pm = new TransactionPaymentMethodRequest()
 	 			.method(MethodEnum.ID)
