@@ -262,7 +262,31 @@ public class Gr4vyClientTest {
      	Transaction response = shared.newTransaction(request, idempotencyKey.toString());
         assert response != null;
 	 }
-	
+
+	 @Test
+	 public void newTransactionWithStoredPaymentMethodTest() throws Gr4vyException {
+
+		PaymentMethodRequest pmPaymentMethodRequest = new PaymentMethodRequest()
+		.method("card")
+		.number("4111111111111111")
+		.expirationDate("12/24");
+ 
+		PaymentMethod pm_response = shared.storePaymentMethod(pmPaymentMethodRequest);
+		String id = pm_response.getId().toString();
+
+	 	TransactionPaymentMethodRequest pm = new TransactionPaymentMethodRequest()
+	 			.method(MethodEnum.ID)
+	 			.id(id);
+
+	 	TransactionRequest request = new TransactionRequest()
+	 			.amount(100)
+	 			.currency("USD")
+	 			.paymentMethod(pm);
+		
+     	Transaction response = shared.newTransaction(request);
+        assert response != null;
+	 }
+
 	@Test
 	public void captureTransactionTest() throws Gr4vyException {
 		TransactionPaymentMethodRequest pm = new TransactionPaymentMethodRequest()
