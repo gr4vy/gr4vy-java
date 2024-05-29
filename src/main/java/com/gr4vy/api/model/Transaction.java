@@ -606,7 +606,9 @@ public class Transaction {
     
     SMARTPAY("smartpay"),
     
-    VIPPS("vipps");
+    VIPPS("vipps"),
+
+    ID("id");
 
     private String value;
 
