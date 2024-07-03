@@ -616,4 +616,10 @@ public class Gr4vyClient {
 		String response = this.post("/payment-options", this.gson.toJson(request));
 		return this.gson.fromJson(response, PaymentOptions.class);
 	}
+
+	public PaymentServiceToken newPaymentServiceToken(String paymentMethodId, PaymentServiceTokenRequest request) {
+		String response = this.post("/payment-methods/" + paymentMethodId + "/payment-service-tokens", this.gson.toJson(request));
+		return this.gson.fromJson(response, PaymentServiceToken.class);
+	}
+
 }
