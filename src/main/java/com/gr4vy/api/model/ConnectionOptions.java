@@ -24,6 +24,7 @@ import com.gr4vy.api.model.ConnectionOptionsAdyenCard;
 import com.gr4vy.api.model.ConnectionOptionsCybersourceAntiFraud;
 import com.gr4vy.api.model.ConnectionOptionsCybersourceCard;
 import com.gr4vy.api.model.ConnectionOptionsForterAntiFraud;
+import com.gr4vy.api.model.ConnectionOptionsGivingblockGivingblock;
 import com.gr4vy.api.model.ConnectionOptionsPaypalPaypal;
 import com.gr4vy.api.model.ConnectionOptionsStripeCard;
 import io.swagger.annotations.ApiModel;
@@ -42,6 +43,10 @@ public class ConnectionOptions {
   public static final String SERIALIZED_NAME_CYBERSOURCE_ANTI_FRAUD = "cybersource-anti-fraud";
   @SerializedName(SERIALIZED_NAME_CYBERSOURCE_ANTI_FRAUD)
   private ConnectionOptionsCybersourceAntiFraud cybersourceAntiFraud;
+
+  public static final String SERIALIZED_NAME_GIVINGBLOCK_GIVINGBLOCK = "givingblock-givingblock";
+  @SerializedName(SERIALIZED_NAME_GIVINGBLOCK_GIVINGBLOCK)
+  private ConnectionOptionsGivingblockGivingblock givingblockGivingblock;
 
   public static final String SERIALIZED_NAME_FORTER_ANTI_FRAUD = "forter-anti-fraud";
   @SerializedName(SERIALIZED_NAME_FORTER_ANTI_FRAUD)
@@ -107,6 +112,29 @@ public class ConnectionOptions {
 
   public void setCybersourceAntiFraud(ConnectionOptionsCybersourceAntiFraud cybersourceAntiFraud) {
     this.cybersourceAntiFraud = cybersourceAntiFraud;
+  }
+
+
+  public ConnectionOptions givingblockGivingblock(ConnectionOptionsGivingblockGivingblock givingblockGivingblock) {
+    
+    this.givingblockGivingblock = givingblockGivingblock;
+    return this;
+  }
+
+   /**
+   * Get givingblockGivingblock
+   * @return givingblockGivingblock
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public ConnectionOptionsGivingblockGivingblock getGivingblockGivingblock() {
+    return givingblockGivingblock;
+  }
+
+
+  public void setGivingblockGivingblock(ConnectionOptionsGivingblockGivingblock givingblockGivingblock) {
+    this.givingblockGivingblock = givingblockGivingblock;
   }
 
 
@@ -236,6 +264,7 @@ public class ConnectionOptions {
     ConnectionOptions connectionOptions = (ConnectionOptions) o;
     return Objects.equals(this.cybersourceCard, connectionOptions.cybersourceCard) &&
         Objects.equals(this.cybersourceAntiFraud, connectionOptions.cybersourceAntiFraud) &&
+        Objects.equals(this.givingblockGivingblock, connectionOptions.givingblockGivingblock) &&
         Objects.equals(this.forterAntiFraud, connectionOptions.forterAntiFraud) &&
         Objects.equals(this.adyenCard, connectionOptions.adyenCard) &&
         Objects.equals(this.paypalPaypal, connectionOptions.paypalPaypal) &&
@@ -245,7 +274,7 @@ public class ConnectionOptions {
 
   @Override
   public int hashCode() {
-    return Objects.hash(cybersourceCard, cybersourceAntiFraud, forterAntiFraud, adyenCard, paypalPaypal, paypalPaypalpaylater, stripeCard);
+    return Objects.hash(cybersourceCard, cybersourceAntiFraud, givingblockGivingblock, forterAntiFraud, adyenCard, paypalPaypal, paypalPaypalpaylater, stripeCard);
   }
 
   @Override
@@ -254,6 +283,7 @@ public class ConnectionOptions {
     sb.append("class ConnectionOptions {\n");
     sb.append("    cybersourceCard: ").append(toIndentedString(cybersourceCard)).append("\n");
     sb.append("    cybersourceAntiFraud: ").append(toIndentedString(cybersourceAntiFraud)).append("\n");
+    sb.append("    givingblockGivingblock: ").append(toIndentedString(givingblockGivingblock)).append("\n");
     sb.append("    forterAntiFraud: ").append(toIndentedString(forterAntiFraud)).append("\n");
     sb.append("    adyenCard: ").append(toIndentedString(adyenCard)).append("\n");
     sb.append("    paypalPaypal: ").append(toIndentedString(paypalPaypal)).append("\n");

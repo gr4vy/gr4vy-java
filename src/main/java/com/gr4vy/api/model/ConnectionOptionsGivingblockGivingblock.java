@@ -25,38 +25,36 @@ import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 
 /**
- * A request to capture a transaction.
+ * Additional options for Giving Block connector.
  */
-@ApiModel(description = "A request to capture a transaction.")
+@ApiModel(description = "Additional options for Giving Block connector.")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class TransactionCaptureRequest {
-  public static final String SERIALIZED_NAME_AMOUNT = "amount";
-  @SerializedName(SERIALIZED_NAME_AMOUNT)
-  private Integer amount;
+public class ConnectionOptionsGivingblockGivingblock {
+  public static final String SERIALIZED_NAME_DEFAULT_CRYPTOCURRENCY = "defaultCryptocurrency";
+  @SerializedName(SERIALIZED_NAME_DEFAULT_CRYPTOCURRENCY)
+  private String defaultCryptocurrency;
 
 
-  public TransactionCaptureRequest amount(Integer amount) {
+  public ConnectionOptionsGivingblockGivingblock defaultCryptocurrency(String defaultCryptocurrency) {
     
-    this.amount = amount;
+    this.defaultCryptocurrency = defaultCryptocurrency;
     return this;
   }
 
    /**
-   * The monetary amount to capture an authorization for, in the smallest currency unit for the given currency, for example &#x60;1299&#x60; cents to create an authorization for &#x60;$12.99&#x60;.  When omitted blank, this will capture the entire amount.
-   * minimum: 1
-   * maximum: 99999999
-   * @return amount
+   * The default crypto currency to display on the hosted page presented by The Giving Block.
+   * @return defaultCryptocurrency
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "1299", value = "The monetary amount to capture an authorization for, in the smallest currency unit for the given currency, for example `1299` cents to create an authorization for `$12.99`.  When omitted blank, this will capture the entire amount.")
+  @ApiModelProperty(example = "ETH", value = "The default crypto currency to display on the hosted page presented by The Giving Block.")
 
-  public Integer getAmount() {
-    return amount;
+  public String getDefaultCryptocurrency() {
+    return defaultCryptocurrency;
   }
 
 
-  public void setAmount(Integer amount) {
-    this.amount = amount;
+  public void setDefaultCryptocurrency(String defaultCryptocurrency) {
+    this.defaultCryptocurrency = defaultCryptocurrency;
   }
 
 
@@ -68,20 +66,20 @@ public class TransactionCaptureRequest {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    TransactionCaptureRequest transactionCaptureRequest = (TransactionCaptureRequest) o;
-    return Objects.equals(this.amount, transactionCaptureRequest.amount);
+    ConnectionOptionsGivingblockGivingblock connectionOptionsGivingblockGivingblock = (ConnectionOptionsGivingblockGivingblock) o;
+    return Objects.equals(this.defaultCryptocurrency, connectionOptionsGivingblockGivingblock.defaultCryptocurrency);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(amount);
+    return Objects.hash(defaultCryptocurrency);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class TransactionCaptureRequest {\n");
-    sb.append("    amount: ").append(toIndentedString(amount)).append("\n");
+    sb.append("class ConnectionOptionsGivingblockGivingblock {\n");
+    sb.append("    defaultCryptocurrency: ").append(toIndentedString(defaultCryptocurrency)).append("\n");
     sb.append("}");
     return sb.toString();
   }

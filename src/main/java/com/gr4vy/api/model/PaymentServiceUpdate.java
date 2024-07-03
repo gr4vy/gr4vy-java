@@ -68,7 +68,7 @@ public class PaymentServiceUpdate {
 
   public static final String SERIALIZED_NAME_PAYMENT_METHOD_TOKENIZATION_ENABLED = "payment_method_tokenization_enabled";
   @SerializedName(SERIALIZED_NAME_PAYMENT_METHOD_TOKENIZATION_ENABLED)
-  private Boolean paymentMethodTokenizationEnabled = false;
+  private Boolean paymentMethodTokenizationEnabled;
 
   public static final String SERIALIZED_NAME_NETWORK_TOKENS_ENABLED = "network_tokens_enabled";
   @SerializedName(SERIALIZED_NAME_NETWORK_TOKENS_ENABLED)

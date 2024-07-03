@@ -46,6 +46,8 @@ public class TransactionPaymentMethodRequest {
     
     BACS("bacs"),
     
+    BANCONTACT("bancontact"),
+    
     BANKED("banked"),
     
     BECS("becs"),
@@ -76,11 +78,15 @@ public class TransactionPaymentMethodRequest {
     
     EBANX("ebanx"),
     
+    EPS("eps"),
+    
     EVERYDAYPAY("everydaypay"),
     
     GCASH("gcash"),
     
     GIROPAY("giropay"),
+    
+    GIVINGBLOCK("givingblock"),
     
     GOCARDLESS("gocardless"),
     
@@ -89,6 +95,8 @@ public class TransactionPaymentMethodRequest {
     GOPAY("gopay"),
     
     GRABPAY("grabpay"),
+
+    ID("id"),
     
     IDEAL("ideal"),
     
@@ -98,11 +106,17 @@ public class TransactionPaymentMethodRequest {
     
     LAYBUY("laybuy"),
     
+    LINEPAY("linepay"),
+    
     LINKAJA("linkaja"),
     
     MAYBANKQRPAY("maybankqrpay"),
     
     MULTIBANCO("multibanco"),
+    
+    MULTIPAGO("multipago"),
+    
+    NETWORK_TOKEN("network-token"),
     
     ONEY_3X("oney_3x"),
     
@@ -134,6 +148,8 @@ public class TransactionPaymentMethodRequest {
     
     RABBITLINEPAY("rabbitlinepay"),
     
+    RAZORPAY("razorpay"),
+    
     SCALAPAY("scalapay"),
     
     SEPA("sepa"),
@@ -141,6 +157,8 @@ public class TransactionPaymentMethodRequest {
     SHOPEEPAY("shopeepay"),
     
     SINGTELDASH("singteldash"),
+    
+    SMARTPAY("smartpay"),
     
     SOFORT("sofort"),
     
@@ -156,31 +174,13 @@ public class TransactionPaymentMethodRequest {
     
     TRUSTLYEUROPE("trustlyeurope"),
     
-    NETWORK_TOKEN("network-token"),
-    
-    GIVINGBLOCK("givingblock"),
-    
-    WECHAT("wechat"),
-    
-    ZIPPAY("zippay"),
-    
-    BANCONTACT("bancontact"),
-    
-    EPS("eps"),
-    
-    LINEPAY("linepay"),
-    
-    RAZORPAY("razorpay"),
-    
-    MULTIPAGO("multipago"),
+    VIPPS("vipps"),
     
     WAAVE("waave"),
     
-    SMARTPAY("smartpay"),
+    WECHAT("wechat"),
     
-    VIPPS("vipps"),
-
-    ID("id");
+    ZIPPAY("zippay");
 
     private String value;
 
@@ -264,9 +264,9 @@ public class TransactionPaymentMethodRequest {
   @SerializedName(SERIALIZED_NAME_ASSURANCE_DETAILS)
   private GooglePayRequestAssuranceDetails assuranceDetails;
 
-  public static final String SERIALIZED_NAME_CARD_HOLDER_NAME = "card_holder_name";
-  @SerializedName(SERIALIZED_NAME_CARD_HOLDER_NAME)
-  private String cardHolderName;
+  public static final String SERIALIZED_NAME_CARDHOLDER_NAME = "cardholder_name";
+  @SerializedName(SERIALIZED_NAME_CARDHOLDER_NAME)
+  private String cardholderName;
 
   public static final String SERIALIZED_NAME_CRYPTOGRAM = "cryptogram";
   @SerializedName(SERIALIZED_NAME_CRYPTOGRAM)
@@ -525,26 +525,26 @@ public class TransactionPaymentMethodRequest {
   }
 
 
-  public TransactionPaymentMethodRequest cardHolderName(String cardHolderName) {
+  public TransactionPaymentMethodRequest cardholderName(String cardholderName) {
     
-    this.cardHolderName = cardHolderName;
+    this.cardholderName = cardholderName;
     return this;
   }
 
    /**
    * Name of the card holder.
-   * @return cardHolderName
+   * @return cardholderName
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "Name of the card holder.")
 
-  public String getCardHolderName() {
-    return cardHolderName;
+  public String getCardholderName() {
+    return cardholderName;
   }
 
 
-  public void setCardHolderName(String cardHolderName) {
-    this.cardHolderName = cardHolderName;
+  public void setCardholderName(String cardholderName) {
+    this.cardholderName = cardholderName;
   }
 
 
@@ -591,13 +591,13 @@ public class TransactionPaymentMethodRequest {
         Objects.equals(this.country, transactionPaymentMethodRequest.country) &&
         Objects.equals(this.token, transactionPaymentMethodRequest.token) &&
         Objects.equals(this.assuranceDetails, transactionPaymentMethodRequest.assuranceDetails) &&
-        Objects.equals(this.cardHolderName, transactionPaymentMethodRequest.cardHolderName) &&
+        Objects.equals(this.cardholderName, transactionPaymentMethodRequest.cardholderName) &&
         Objects.equals(this.cryptogram, transactionPaymentMethodRequest.cryptogram);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(method, number, expirationDate, securityCode, externalIdentifier, redirectUrl, id, currency, country, token, assuranceDetails, cardHolderName, cryptogram);
+    return Objects.hash(method, number, expirationDate, securityCode, externalIdentifier, redirectUrl, id, currency, country, token, assuranceDetails, cardholderName, cryptogram);
   }
 
   @Override
@@ -615,7 +615,7 @@ public class TransactionPaymentMethodRequest {
     sb.append("    country: ").append(toIndentedString(country)).append("\n");
     sb.append("    token: ").append(toIndentedString(token)).append("\n");
     sb.append("    assuranceDetails: ").append(toIndentedString(assuranceDetails)).append("\n");
-    sb.append("    cardHolderName: ").append(toIndentedString(cardHolderName)).append("\n");
+    sb.append("    cardholderName: ").append(toIndentedString(cardholderName)).append("\n");
     sb.append("    cryptogram: ").append(toIndentedString(cryptogram)).append("\n");
     sb.append("}");
     return sb.toString();

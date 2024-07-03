@@ -20,12 +20,10 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import com.gr4vy.api.model.ReportSpecParams;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 /**
  * The specification of a report.
@@ -84,7 +82,7 @@ public class ReportSpec {
 
   public static final String SERIALIZED_NAME_PARAMS = "params";
   @SerializedName(SERIALIZED_NAME_PARAMS)
-  private Map<String, Object> params;
+  private ReportSpecParams params;
 
 
   public ReportSpec model(ModelEnum model) {
@@ -109,29 +107,24 @@ public class ReportSpec {
   }
 
 
-  public ReportSpec params(Map<String, Object> params) {
+  public ReportSpec params(ReportSpecParams params) {
     
     this.params = params;
     return this;
   }
 
-  public ReportSpec putParamsItem(String key, Object paramsItem) {
-    this.params.put(key, paramsItem);
-    return this;
-  }
-
    /**
-   * Parameters used to configure the report. Acceptable values for this property depend on the value specified for &#x60;model&#x60;.
+   * Get params
    * @return params
   **/
-  @ApiModelProperty(required = true, value = "Parameters used to configure the report. Acceptable values for this property depend on the value specified for `model`.")
+  @ApiModelProperty(required = true, value = "")
 
-  public Map<String, Object> getParams() {
+  public ReportSpecParams getParams() {
     return params;
   }
 
 
-  public void setParams(Map<String, Object> params) {
+  public void setParams(ReportSpecParams params) {
     this.params = params;
   }
 

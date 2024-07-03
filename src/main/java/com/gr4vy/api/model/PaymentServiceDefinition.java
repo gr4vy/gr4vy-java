@@ -20,7 +20,7 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import com.gr4vy.api.model.GiftCardServiceDefinitionFields;
+import com.gr4vy.api.model.AntiFraudServiceDefinitionFields;
 import com.gr4vy.api.model.PaymentServiceDefinitionConfiguration;
 import com.gr4vy.api.model.PaymentServiceDefinitionSupportedFeatures;
 import io.swagger.annotations.ApiModel;
@@ -107,6 +107,8 @@ public class PaymentServiceDefinition {
     
     BACS("bacs"),
     
+    BANCONTACT("bancontact"),
+    
     BANKED("banked"),
     
     BECS("becs"),
@@ -137,11 +139,15 @@ public class PaymentServiceDefinition {
     
     EBANX("ebanx"),
     
+    EPS("eps"),
+    
     EVERYDAYPAY("everydaypay"),
     
     GCASH("gcash"),
     
     GIROPAY("giropay"),
+    
+    GIVINGBLOCK("givingblock"),
     
     GOCARDLESS("gocardless"),
     
@@ -159,11 +165,17 @@ public class PaymentServiceDefinition {
     
     LAYBUY("laybuy"),
     
+    LINEPAY("linepay"),
+    
     LINKAJA("linkaja"),
     
     MAYBANKQRPAY("maybankqrpay"),
     
     MULTIBANCO("multibanco"),
+    
+    MULTIPAGO("multipago"),
+    
+    NETWORK_TOKEN("network-token"),
     
     ONEY_3X("oney_3x"),
     
@@ -195,6 +207,8 @@ public class PaymentServiceDefinition {
     
     RABBITLINEPAY("rabbitlinepay"),
     
+    RAZORPAY("razorpay"),
+    
     SCALAPAY("scalapay"),
     
     SEPA("sepa"),
@@ -202,6 +216,8 @@ public class PaymentServiceDefinition {
     SHOPEEPAY("shopeepay"),
     
     SINGTELDASH("singteldash"),
+    
+    SMARTPAY("smartpay"),
     
     SOFORT("sofort"),
     
@@ -217,29 +233,13 @@ public class PaymentServiceDefinition {
     
     TRUSTLYEUROPE("trustlyeurope"),
     
-    NETWORK_TOKEN("network-token"),
-    
-    GIVINGBLOCK("givingblock"),
-    
-    WECHAT("wechat"),
-    
-    ZIPPAY("zippay"),
-    
-    BANCONTACT("bancontact"),
-    
-    EPS("eps"),
-    
-    LINEPAY("linepay"),
-    
-    RAZORPAY("razorpay"),
-    
-    MULTIPAGO("multipago"),
+    VIPPS("vipps"),
     
     WAAVE("waave"),
     
-    SMARTPAY("smartpay"),
+    WECHAT("wechat"),
     
-    VIPPS("vipps");
+    ZIPPAY("zippay");
 
     private String value;
 
@@ -285,7 +285,7 @@ public class PaymentServiceDefinition {
 
   public static final String SERIALIZED_NAME_FIELDS = "fields";
   @SerializedName(SERIALIZED_NAME_FIELDS)
-  private List<GiftCardServiceDefinitionFields> fields = null;
+  private List<AntiFraudServiceDefinitionFields> fields = null;
 
   public static final String SERIALIZED_NAME_SUPPORTED_CURRENCIES = "supported_currencies";
   @SerializedName(SERIALIZED_NAME_SUPPORTED_CURRENCIES)
@@ -455,15 +455,15 @@ public class PaymentServiceDefinition {
   }
 
 
-  public PaymentServiceDefinition fields(List<GiftCardServiceDefinitionFields> fields) {
+  public PaymentServiceDefinition fields(List<AntiFraudServiceDefinitionFields> fields) {
     
     this.fields = fields;
     return this;
   }
 
-  public PaymentServiceDefinition addFieldsItem(GiftCardServiceDefinitionFields fieldsItem) {
+  public PaymentServiceDefinition addFieldsItem(AntiFraudServiceDefinitionFields fieldsItem) {
     if (this.fields == null) {
-      this.fields = new ArrayList<GiftCardServiceDefinitionFields>();
+      this.fields = new ArrayList<AntiFraudServiceDefinitionFields>();
     }
     this.fields.add(fieldsItem);
     return this;
@@ -476,12 +476,12 @@ public class PaymentServiceDefinition {
   @javax.annotation.Nullable
   @ApiModelProperty(value = "A list of fields that need to be submitted when activating the payment. service.")
 
-  public List<GiftCardServiceDefinitionFields> getFields() {
+  public List<AntiFraudServiceDefinitionFields> getFields() {
     return fields;
   }
 
 
-  public void setFields(List<GiftCardServiceDefinitionFields> fields) {
+  public void setFields(List<AntiFraudServiceDefinitionFields> fields) {
     this.fields = fields;
   }
 
