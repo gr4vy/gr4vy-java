@@ -262,6 +262,8 @@ public class TransactionSummary {
     
     BACS("bacs"),
     
+    BANCONTACT("bancontact"),
+    
     BANKED("banked"),
     
     BECS("becs"),
@@ -292,11 +294,15 @@ public class TransactionSummary {
     
     EBANX("ebanx"),
     
+    EPS("eps"),
+    
     EVERYDAYPAY("everydaypay"),
     
     GCASH("gcash"),
     
     GIROPAY("giropay"),
+    
+    GIVINGBLOCK("givingblock"),
     
     GOCARDLESS("gocardless"),
     
@@ -314,11 +320,17 @@ public class TransactionSummary {
     
     LAYBUY("laybuy"),
     
+    LINEPAY("linepay"),
+    
     LINKAJA("linkaja"),
     
     MAYBANKQRPAY("maybankqrpay"),
     
     MULTIBANCO("multibanco"),
+    
+    MULTIPAGO("multipago"),
+    
+    NETWORK_TOKEN("network-token"),
     
     ONEY_3X("oney_3x"),
     
@@ -350,6 +362,8 @@ public class TransactionSummary {
     
     RABBITLINEPAY("rabbitlinepay"),
     
+    RAZORPAY("razorpay"),
+    
     SCALAPAY("scalapay"),
     
     SEPA("sepa"),
@@ -357,6 +371,8 @@ public class TransactionSummary {
     SHOPEEPAY("shopeepay"),
     
     SINGTELDASH("singteldash"),
+    
+    SMARTPAY("smartpay"),
     
     SOFORT("sofort"),
     
@@ -372,29 +388,13 @@ public class TransactionSummary {
     
     TRUSTLYEUROPE("trustlyeurope"),
     
-    NETWORK_TOKEN("network-token"),
-    
-    GIVINGBLOCK("givingblock"),
-    
-    WECHAT("wechat"),
-    
-    ZIPPAY("zippay"),
-    
-    BANCONTACT("bancontact"),
-    
-    EPS("eps"),
-    
-    LINEPAY("linepay"),
-    
-    RAZORPAY("razorpay"),
-    
-    MULTIPAGO("multipago"),
+    VIPPS("vipps"),
     
     WAAVE("waave"),
     
-    SMARTPAY("smartpay"),
+    WECHAT("wechat"),
     
-    VIPPS("vipps");
+    ZIPPAY("zippay");
 
     private String value;
 

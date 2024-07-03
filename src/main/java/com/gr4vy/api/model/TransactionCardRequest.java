@@ -176,7 +176,8 @@ public class TransactionCardRequest {
    * The 3 or 4 digit security code often found on the card. This often referred to as the CVV or CVD.
    * @return securityCode
   **/
-  @ApiModelProperty(example = "123", required = true, value = "The 3 or 4 digit security code often found on the card. This often referred to as the CVV or CVD.")
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "123", value = "The 3 or 4 digit security code often found on the card. This often referred to as the CVV or CVD.")
 
   public String getSecurityCode() {
     return securityCode;
