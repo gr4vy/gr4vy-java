@@ -28,21 +28,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * An available gift card service that can be configured.
+ * An available anti fraud service that can be configured.
  */
-@ApiModel(description = "An available gift card service that can be configured.")
+@ApiModel(description = "An available anti fraud service that can be configured.")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class GiftCardServiceDefinition {
+public class AntiFraudServiceDefinition {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
   private String id;
 
   /**
-   * &#x60;gift-card-service-definition&#x60;.
+   * &#x60;anti-fraud-service-definition&#x60;.
    */
   @JsonAdapter(TypeEnum.Adapter.class)
   public enum TypeEnum {
-    GIFT_CARD_SERVICE_DEFINITION("gift-card-service-definition");
+    ANTI_FRAUD_SERVICE_DEFINITION("anti-fraud-service-definition");
 
     private String value;
 
@@ -84,7 +84,7 @@ public class GiftCardServiceDefinition {
 
   public static final String SERIALIZED_NAME_TYPE = "type";
   @SerializedName(SERIALIZED_NAME_TYPE)
-  private TypeEnum type = TypeEnum.GIFT_CARD_SERVICE_DEFINITION;
+  private TypeEnum type = TypeEnum.ANTI_FRAUD_SERVICE_DEFINITION;
 
   public static final String SERIALIZED_NAME_DISPLAY_NAME = "display_name";
   @SerializedName(SERIALIZED_NAME_DISPLAY_NAME)
@@ -99,18 +99,18 @@ public class GiftCardServiceDefinition {
   private String iconUrl;
 
 
-  public GiftCardServiceDefinition id(String id) {
+  public AntiFraudServiceDefinition id(String id) {
     
     this.id = id;
     return this;
   }
 
    /**
-   * The ID of the gift card service definition.
+   * The ID of the anti fraud service definition.
    * @return id
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "qwikcilver-gift-card", value = "The ID of the gift card service definition.")
+  @ApiModelProperty(example = "sift-anti-fraud", value = "The ID of the anti fraud service definition.")
 
   public String getId() {
     return id;
@@ -122,18 +122,18 @@ public class GiftCardServiceDefinition {
   }
 
 
-  public GiftCardServiceDefinition type(TypeEnum type) {
+  public AntiFraudServiceDefinition type(TypeEnum type) {
     
     this.type = type;
     return this;
   }
 
    /**
-   * &#x60;gift-card-service-definition&#x60;.
+   * &#x60;anti-fraud-service-definition&#x60;.
    * @return type
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "gift-card-service-definition", value = "`gift-card-service-definition`.")
+  @ApiModelProperty(example = "anti-fraud-service-definition", value = "`anti-fraud-service-definition`.")
 
   public TypeEnum getType() {
     return type;
@@ -145,7 +145,7 @@ public class GiftCardServiceDefinition {
   }
 
 
-  public GiftCardServiceDefinition displayName(String displayName) {
+  public AntiFraudServiceDefinition displayName(String displayName) {
     
     this.displayName = displayName;
     return this;
@@ -168,13 +168,13 @@ public class GiftCardServiceDefinition {
   }
 
 
-  public GiftCardServiceDefinition fields(List<AntiFraudServiceDefinitionFields> fields) {
+  public AntiFraudServiceDefinition fields(List<AntiFraudServiceDefinitionFields> fields) {
     
     this.fields = fields;
     return this;
   }
 
-  public GiftCardServiceDefinition addFieldsItem(AntiFraudServiceDefinitionFields fieldsItem) {
+  public AntiFraudServiceDefinition addFieldsItem(AntiFraudServiceDefinitionFields fieldsItem) {
     if (this.fields == null) {
       this.fields = new ArrayList<AntiFraudServiceDefinitionFields>();
     }
@@ -199,7 +199,7 @@ public class GiftCardServiceDefinition {
   }
 
 
-  public GiftCardServiceDefinition iconUrl(String iconUrl) {
+  public AntiFraudServiceDefinition iconUrl(String iconUrl) {
     
     this.iconUrl = iconUrl;
     return this;
@@ -230,12 +230,12 @@ public class GiftCardServiceDefinition {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    GiftCardServiceDefinition giftCardServiceDefinition = (GiftCardServiceDefinition) o;
-    return Objects.equals(this.id, giftCardServiceDefinition.id) &&
-        Objects.equals(this.type, giftCardServiceDefinition.type) &&
-        Objects.equals(this.displayName, giftCardServiceDefinition.displayName) &&
-        Objects.equals(this.fields, giftCardServiceDefinition.fields) &&
-        Objects.equals(this.iconUrl, giftCardServiceDefinition.iconUrl);
+    AntiFraudServiceDefinition antiFraudServiceDefinition = (AntiFraudServiceDefinition) o;
+    return Objects.equals(this.id, antiFraudServiceDefinition.id) &&
+        Objects.equals(this.type, antiFraudServiceDefinition.type) &&
+        Objects.equals(this.displayName, antiFraudServiceDefinition.displayName) &&
+        Objects.equals(this.fields, antiFraudServiceDefinition.fields) &&
+        Objects.equals(this.iconUrl, antiFraudServiceDefinition.iconUrl);
   }
 
   @Override
@@ -246,7 +246,7 @@ public class GiftCardServiceDefinition {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class GiftCardServiceDefinition {\n");
+    sb.append("class AntiFraudServiceDefinition {\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("    displayName: ").append(toIndentedString(displayName)).append("\n");

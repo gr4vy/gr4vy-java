@@ -20,7 +20,7 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import com.gr4vy.api.model.AntiFraudTransactionStatusUpdateErrorEventContext;
+import com.gr4vy.api.model.AntiFraudDecisionUpdateEventContext;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
@@ -28,11 +28,11 @@ import java.util.UUID;
 
 
 /**
- * This event logs the reason why we were unable to update an anti-fraud transaction.
+ * This event logs the request and response details of HTTP calls made to an anti-fraud provider to update a decision.
  */
-@ApiModel(description = "This event logs the reason why we were unable to update an anti-fraud transaction.")
+@ApiModel(description = "This event logs the request and response details of HTTP calls made to an anti-fraud provider to update a decision.")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class AntiFraudTransactionStatusUpdateErrorEvent {
+public class AntiFraudDecisionUpdateEvent {
   /**
    * The type of this resource. Is always &#x60;transaction-event&#x60;.
    */
@@ -87,11 +87,11 @@ public class AntiFraudTransactionStatusUpdateErrorEvent {
   private UUID id;
 
   /**
-   * The name of this resource. Is always &#x60;anti-fraud-transaction-status-update-error&#x60;.
+   * The name of this resource. Is always &#x60;anti-fraud-decision-update&#x60;.
    */
   @JsonAdapter(NameEnum.Adapter.class)
   public enum NameEnum {
-    ANTI_FRAUD_TRANSACTION_STATUS_UPDATE_ERROR("anti-fraud-transaction-status-update-error");
+    ANTI_FRAUD_DECISION_UPDATE("anti-fraud-decision-update");
 
     private String value;
 
@@ -141,10 +141,10 @@ public class AntiFraudTransactionStatusUpdateErrorEvent {
 
   public static final String SERIALIZED_NAME_CONTEXT = "context";
   @SerializedName(SERIALIZED_NAME_CONTEXT)
-  private AntiFraudTransactionStatusUpdateErrorEventContext context;
+  private AntiFraudDecisionUpdateEventContext context;
 
 
-  public AntiFraudTransactionStatusUpdateErrorEvent type(TypeEnum type) {
+  public AntiFraudDecisionUpdateEvent type(TypeEnum type) {
     
     this.type = type;
     return this;
@@ -167,7 +167,7 @@ public class AntiFraudTransactionStatusUpdateErrorEvent {
   }
 
 
-  public AntiFraudTransactionStatusUpdateErrorEvent id(UUID id) {
+  public AntiFraudDecisionUpdateEvent id(UUID id) {
     
     this.id = id;
     return this;
@@ -190,18 +190,18 @@ public class AntiFraudTransactionStatusUpdateErrorEvent {
   }
 
 
-  public AntiFraudTransactionStatusUpdateErrorEvent name(NameEnum name) {
+  public AntiFraudDecisionUpdateEvent name(NameEnum name) {
     
     this.name = name;
     return this;
   }
 
    /**
-   * The name of this resource. Is always &#x60;anti-fraud-transaction-status-update-error&#x60;.
+   * The name of this resource. Is always &#x60;anti-fraud-decision-update&#x60;.
    * @return name
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "anti-fraud-transaction-status-update-error", value = "The name of this resource. Is always `anti-fraud-transaction-status-update-error`.")
+  @ApiModelProperty(example = "anti-fraud-decision-update", value = "The name of this resource. Is always `anti-fraud-decision-update`.")
 
   public NameEnum getName() {
     return name;
@@ -213,7 +213,7 @@ public class AntiFraudTransactionStatusUpdateErrorEvent {
   }
 
 
-  public AntiFraudTransactionStatusUpdateErrorEvent createdAt(String createdAt) {
+  public AntiFraudDecisionUpdateEvent createdAt(String createdAt) {
     
     this.createdAt = createdAt;
     return this;
@@ -236,7 +236,7 @@ public class AntiFraudTransactionStatusUpdateErrorEvent {
   }
 
 
-  public AntiFraudTransactionStatusUpdateErrorEvent context(AntiFraudTransactionStatusUpdateErrorEventContext context) {
+  public AntiFraudDecisionUpdateEvent context(AntiFraudDecisionUpdateEventContext context) {
     
     this.context = context;
     return this;
@@ -249,12 +249,12 @@ public class AntiFraudTransactionStatusUpdateErrorEvent {
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
 
-  public AntiFraudTransactionStatusUpdateErrorEventContext getContext() {
+  public AntiFraudDecisionUpdateEventContext getContext() {
     return context;
   }
 
 
-  public void setContext(AntiFraudTransactionStatusUpdateErrorEventContext context) {
+  public void setContext(AntiFraudDecisionUpdateEventContext context) {
     this.context = context;
   }
 
@@ -267,12 +267,12 @@ public class AntiFraudTransactionStatusUpdateErrorEvent {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    AntiFraudTransactionStatusUpdateErrorEvent antiFraudTransactionStatusUpdateErrorEvent = (AntiFraudTransactionStatusUpdateErrorEvent) o;
-    return Objects.equals(this.type, antiFraudTransactionStatusUpdateErrorEvent.type) &&
-        Objects.equals(this.id, antiFraudTransactionStatusUpdateErrorEvent.id) &&
-        Objects.equals(this.name, antiFraudTransactionStatusUpdateErrorEvent.name) &&
-        Objects.equals(this.createdAt, antiFraudTransactionStatusUpdateErrorEvent.createdAt) &&
-        Objects.equals(this.context, antiFraudTransactionStatusUpdateErrorEvent.context);
+    AntiFraudDecisionUpdateEvent antiFraudDecisionUpdateEvent = (AntiFraudDecisionUpdateEvent) o;
+    return Objects.equals(this.type, antiFraudDecisionUpdateEvent.type) &&
+        Objects.equals(this.id, antiFraudDecisionUpdateEvent.id) &&
+        Objects.equals(this.name, antiFraudDecisionUpdateEvent.name) &&
+        Objects.equals(this.createdAt, antiFraudDecisionUpdateEvent.createdAt) &&
+        Objects.equals(this.context, antiFraudDecisionUpdateEvent.context);
   }
 
   @Override
@@ -283,7 +283,7 @@ public class AntiFraudTransactionStatusUpdateErrorEvent {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class AntiFraudTransactionStatusUpdateErrorEvent {\n");
+    sb.append("class AntiFraudDecisionUpdateEvent {\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");

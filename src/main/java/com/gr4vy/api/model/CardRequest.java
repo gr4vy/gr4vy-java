@@ -88,6 +88,10 @@ public class CardRequest {
   @SerializedName(SERIALIZED_NAME_EXPIRATION_DATE)
   private String expirationDate;
 
+  public static final String SERIALIZED_NAME_SECURITY_CODE = "security_code";
+  @SerializedName(SERIALIZED_NAME_SECURITY_CODE)
+  private String securityCode;
+
   public static final String SERIALIZED_NAME_EXTERNAL_IDENTIFIER = "external_identifier";
   @SerializedName(SERIALIZED_NAME_EXTERNAL_IDENTIFIER)
   private String externalIdentifier;
@@ -168,6 +172,29 @@ public class CardRequest {
 
   public void setExpirationDate(String expirationDate) {
     this.expirationDate = expirationDate;
+  }
+
+
+  public CardRequest securityCode(String securityCode) {
+    
+    this.securityCode = securityCode;
+    return this;
+  }
+
+   /**
+   * The 3 or 4 digit security code often found on the card. This often referred to as the CVV or CVD.  The security code can only be set if the stored payment method represents a card.
+   * @return securityCode
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "123", value = "The 3 or 4 digit security code often found on the card. This often referred to as the CVV or CVD.  The security code can only be set if the stored payment method represents a card.")
+
+  public String getSecurityCode() {
+    return securityCode;
+  }
+
+
+  public void setSecurityCode(String securityCode) {
+    this.securityCode = securityCode;
   }
 
 
@@ -275,6 +302,7 @@ public class CardRequest {
     return Objects.equals(this.method, cardRequest.method) &&
         Objects.equals(this.number, cardRequest.number) &&
         Objects.equals(this.expirationDate, cardRequest.expirationDate) &&
+        Objects.equals(this.securityCode, cardRequest.securityCode) &&
         Objects.equals(this.externalIdentifier, cardRequest.externalIdentifier) &&
         Objects.equals(this.buyerId, cardRequest.buyerId) &&
         Objects.equals(this.buyerExternalIdentifier, cardRequest.buyerExternalIdentifier) &&
@@ -283,7 +311,7 @@ public class CardRequest {
 
   @Override
   public int hashCode() {
-    return Objects.hash(method, number, expirationDate, externalIdentifier, buyerId, buyerExternalIdentifier, redirectUrl);
+    return Objects.hash(method, number, expirationDate, securityCode, externalIdentifier, buyerId, buyerExternalIdentifier, redirectUrl);
   }
 
   @Override
@@ -293,6 +321,7 @@ public class CardRequest {
     sb.append("    method: ").append(toIndentedString(method)).append("\n");
     sb.append("    number: ").append(toIndentedString(number)).append("\n");
     sb.append("    expirationDate: ").append(toIndentedString(expirationDate)).append("\n");
+    sb.append("    securityCode: ").append(toIndentedString(securityCode)).append("\n");
     sb.append("    externalIdentifier: ").append(toIndentedString(externalIdentifier)).append("\n");
     sb.append("    buyerId: ").append(toIndentedString(buyerId)).append("\n");
     sb.append("    buyerExternalIdentifier: ").append(toIndentedString(buyerExternalIdentifier)).append("\n");
