@@ -622,4 +622,13 @@ public class Gr4vyClient {
 		return this.gson.fromJson(response, PaymentServiceToken.class);
 	}
 
+	public PaymentServiceToken getPaymentServiceTokens(String paymentMethodId) {
+		String response = this.get("/payment-methods/" + paymentMethodId + "/payment-service-tokens");
+		return this.gson.fromJson(response, PaymentServiceToken.class);
+	}
+
+	public boolean deletePaymentServiceToken(String paymentMethodId, String paymentServiceTokenId) {
+		return this.delete("/payment-methods/" + paymentMethodId + "/payment-service-tokens/" + paymentServiceTokenId);
+	}
 }
+
