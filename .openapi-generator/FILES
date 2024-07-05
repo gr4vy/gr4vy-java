@@ -292,6 +292,8 @@ src/main/java/com/gr4vy/api/model/TransactionGiftCardRequest.java
 src/main/java/com/gr4vy/api/model/TransactionGiftCardStoredRequest.java
 src/main/java/com/gr4vy/api/model/TransactionHistoryEvent.java
 src/main/java/com/gr4vy/api/model/TransactionHistoryEvents.java
+src/main/java/com/gr4vy/api/model/TransactionNetworkTokenApplePayRequest.java
+src/main/java/com/gr4vy/api/model/TransactionNetworkTokenGooglePayRequest.java
 src/main/java/com/gr4vy/api/model/TransactionNetworkTokenRequest.java
 src/main/java/com/gr4vy/api/model/TransactionPaymentMethodRequest.java
 src/main/java/com/gr4vy/api/model/TransactionRedirectRequest.java
@@ -592,6 +594,8 @@ src/test/java/com/gr4vy/api/model/TransactionGiftCardRequestTest.java
 src/test/java/com/gr4vy/api/model/TransactionGiftCardStoredRequestTest.java
 src/test/java/com/gr4vy/api/model/TransactionHistoryEventTest.java
 src/test/java/com/gr4vy/api/model/TransactionHistoryEventsTest.java
+src/test/java/com/gr4vy/api/model/TransactionNetworkTokenApplePayRequestTest.java
+src/test/java/com/gr4vy/api/model/TransactionNetworkTokenGooglePayRequestTest.java
 src/test/java/com/gr4vy/api/model/TransactionNetworkTokenRequestTest.java
 src/test/java/com/gr4vy/api/model/TransactionPaymentMethodRequestTest.java
 src/test/java/com/gr4vy/api/model/TransactionRedirectRequestTest.java
