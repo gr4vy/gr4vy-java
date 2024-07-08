@@ -483,4 +483,12 @@ public class Gr4vyClientTest {
         assert response != null;
 	}
 
+	@Test
+	public void getPaymentServiceTokensTest() throws Gr4vyException {
+     	PaymentMethods paymentMethods = shared.listPaymentMethods();
+		PaymentMethod paymentMethod = paymentMethods.getItems().get(0);
+		PaymentServiceTokens response = shared.getPaymentServiceTokens(paymentMethod.getId().toString());
+        assert response != null;
+	}
+
 }
