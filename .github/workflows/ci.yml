@@ -25,4 +25,4 @@ jobs:
       - name: Install dependencies & run tests
         env: 
           PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
-        run: mvn install -DskipTests
+        run: mvn install
