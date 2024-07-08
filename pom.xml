@@ -5,7 +5,7 @@
     <artifactId>gr4vy</artifactId>
     <packaging>jar</packaging>
     <name>gr4vy</name>
-    <version>0.29.1</version>
+    <version>0.29.2</version>
     <url>https://gr4vy.com</url>
     <description>Gr4vy Java SDK</description>
 
@@ -259,7 +259,7 @@
         </dependency>
     </dependencies>
     <properties>
-        <java.version>1.7</java.version>
+        <java.version>1.8</java.version>
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
         <gson-fire-version>1.8.5</gson-fire-version>

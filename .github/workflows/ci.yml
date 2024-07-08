@@ -20,9 +20,9 @@ jobs:
         uses: actions/setup-java@v2
         with:
           distribution: 'temurin' # See 'Supported distributions' for available options
-          java-version: '17'
+          java-version: '18'
 
       - name: Install dependencies & run tests
         env: 
           PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
-        run: mvn install -DskipTests
+        run: mvn install

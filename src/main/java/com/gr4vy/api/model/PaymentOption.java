@@ -208,6 +208,8 @@ public class PaymentOption {
     SMARTPAY("smartpay"),
     
     SOFORT("sofort"),
+
+    SPEI("spei"),
     
     STRIPEDD("stripedd"),
     
