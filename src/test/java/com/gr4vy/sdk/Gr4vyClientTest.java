@@ -160,7 +160,6 @@ public class Gr4vyClientTest {
 		shippingDetails.emailAddress("shipping@test.com");
 		
 		ShippingDetail shippingResponse = shared.addShippingDetailsToBuyer(response.getId().toString(), shippingDetails);
-		System.out.println(shippingResponse);
         assert shippingResponse.getId() != null;
         
         ShippingDetails details = shared.listShippingDetailsForBuyer(response.getId().toString());
@@ -211,7 +210,7 @@ public class Gr4vyClientTest {
 	 			.method(MethodEnum.CARD)
 	 			.number("4111111111111111")
 	 			.securityCode("123")
-	 			.expirationDate("12/23");
+	 			.expirationDate("12/26");
 		
 	 	TransactionRequest request = new TransactionRequest()
 	 			.amount(100)
@@ -234,7 +233,7 @@ public class Gr4vyClientTest {
 	 			.method(MethodEnum.CARD)
 	 			.number("4111111111111111")
 	 			.securityCode("123")
-	 			.expirationDate("12/23");
+	 			.expirationDate("12/26");
 		
 	 	TransactionRequest request = new TransactionRequest()
 	 			.amount(100)
@@ -251,7 +250,7 @@ public class Gr4vyClientTest {
 	 			.method(MethodEnum.CARD)
 	 			.number("4111111111111111")
 	 			.securityCode("123")
-	 			.expirationDate("12/23");
+	 			.expirationDate("12/26");
 		
 	 	TransactionRequest request = new TransactionRequest()
 	 			.amount(100)
@@ -293,7 +292,7 @@ public class Gr4vyClientTest {
 				.method(MethodEnum.CARD)
 				.number("4111111111111111")
 				.securityCode("123")
-				.expirationDate("12/23")
+				.expirationDate("12/26")
 				.redirectUrl("https://gr4vy.com");
 		
 		TransactionRequest request = new TransactionRequest()
@@ -317,7 +316,7 @@ public class Gr4vyClientTest {
 				.method(MethodEnum.CARD)
 				.number("4111111111111111")
 				.securityCode("123")
-				.expirationDate("12/23")
+				.expirationDate("12/26")
 				.redirectUrl("https://gr4vy.com");
 		
 		TransactionRequest request = new TransactionRequest()
@@ -339,7 +338,7 @@ public class Gr4vyClientTest {
 				.method(MethodEnum.CARD)
 				.number("4111111111111111")
 				.securityCode("123")
-				.expirationDate("12/23")
+				.expirationDate("12/26")
 				.redirectUrl("https://gr4vy.com");
 		
 		TransactionRequest request = new TransactionRequest()
