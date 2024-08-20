@@ -194,14 +194,14 @@
 		    <version>9.15.2</version>
 		</dependency>
 		<dependency>
-		    <groupId>org.bouncycastle</groupId>
-		    <artifactId>bcprov-jdk15on</artifactId>
-		    <version>1.69</version>
+            <groupId>org.bouncycastle</groupId>
+		    <artifactId>bcprov-jdk15to18</artifactId>
+		    <version>1.78.1</version>
 		</dependency>
 		<dependency>
-		    <groupId>org.bouncycastle</groupId>
-		    <artifactId>bcpkix-jdk15on</artifactId>
-		    <version>1.69</version>
+            <groupId>org.bouncycastle</groupId>
+		    <artifactId>bcpkix-jdk15to18</artifactId>
+		    <version>1.78.1</version>
 		</dependency>
         <dependency>
             <groupId>io.swagger</groupId>
