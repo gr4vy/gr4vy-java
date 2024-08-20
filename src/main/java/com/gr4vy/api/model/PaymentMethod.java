@@ -124,6 +124,8 @@ public class PaymentMethod {
     
     MASTERCARD("mastercard"),
     
+    MIR("mir"),
+    
     NYCE("nyce"),
     
     OTHER("other"),
@@ -134,9 +136,13 @@ public class PaymentMethod {
     
     STAR("star"),
     
+    UATP("uatp"),
+    
     UNIONPAY("unionpay"),
     
-    VISA("visa");
+    VISA("visa"),
+    
+    NULL("null");
 
     private String value;
 
@@ -308,23 +314,33 @@ public class PaymentMethod {
     
     CARD("card"),
     
+    CASHAPP("cashapp"),
+    
+    CHASEORBITAL("chaseorbital"),
+    
     CHECKOUT_SESSION("checkout-session"),
     
-    CLICK_TO_PAY("click-to-pay"),
-    
     CLEARPAY("clearpay"),
+    
+    CLICK_TO_PAY("click-to-pay"),
     
     DANA("dana"),
     
     DCB("dcb"),
     
+    DLOCAL("dlocal"),
+    
+    EBANX("ebanx"),
+    
     EPS("eps"),
     
-    FORTUMO("fortumo"),
+    EVERYDAYPAY("everydaypay"),
     
     GCASH("gcash"),
     
     GIROPAY("giropay"),
+    
+    GIVINGBLOCK("givingblock"),
     
     GOCARDLESS("gocardless"),
     
@@ -335,8 +351,6 @@ public class PaymentMethod {
     GRABPAY("grabpay"),
     
     IDEAL("ideal"),
-    
-    ID("id"),
     
     KAKAOPAY("kakaopay"),
     
@@ -352,6 +366,10 @@ public class PaymentMethod {
     
     MULTIBANCO("multibanco"),
     
+    MULTIPAGO("multipago"),
+    
+    NETWORK_TOKEN("network-token"),
+    
     ONEY_3X("oney_3x"),
     
     ONEY_4X("oney_4x"),
@@ -366,11 +384,17 @@ public class PaymentMethod {
     
     OXXO("oxxo"),
     
+    PAYID("payid"),
+    
     PAYMAYA("paymaya"),
     
     PAYPAL("paypal"),
     
     PAYPALPAYLATER("paypalpaylater"),
+    
+    PAYTO("payto"),
+    
+    VENMO("venmo"),
     
     PIX("pix"),
     
@@ -386,6 +410,8 @@ public class PaymentMethod {
     
     SINGTELDASH("singteldash"),
     
+    SMARTPAY("smartpay"),
+    
     SOFORT("sofort"),
     
     STRIPEDD("stripedd"),
@@ -398,7 +424,9 @@ public class PaymentMethod {
     
     TRUSTLY("trustly"),
     
-    VENMO("venmo"),
+    TRUSTLYEUROPE("trustlyeurope"),
+    
+    VIPPS("vipps"),
     
     WAAVE("waave"),
     
@@ -538,6 +566,8 @@ public class PaymentMethod {
     
     MASTERCARD("mastercard"),
     
+    MIR("mir"),
+    
     NYCE("nyce"),
     
     OTHER("other"),
@@ -548,9 +578,13 @@ public class PaymentMethod {
     
     STAR("star"),
     
+    UATP("uatp"),
+    
     UNIONPAY("unionpay"),
     
-    VISA("visa");
+    VISA("visa"),
+    
+    NULL("null");
 
     private String value;
 

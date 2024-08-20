@@ -20,7 +20,7 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import com.gr4vy.api.model.GiftCardServiceDefinitionFields;
+import com.gr4vy.api.model.AntiFraudServiceDefinitionFields;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
@@ -92,7 +92,7 @@ public class GiftCardServiceDefinition {
 
   public static final String SERIALIZED_NAME_FIELDS = "fields";
   @SerializedName(SERIALIZED_NAME_FIELDS)
-  private List<GiftCardServiceDefinitionFields> fields = null;
+  private List<AntiFraudServiceDefinitionFields> fields = null;
 
   public static final String SERIALIZED_NAME_ICON_URL = "icon_url";
   @SerializedName(SERIALIZED_NAME_ICON_URL)
@@ -168,15 +168,15 @@ public class GiftCardServiceDefinition {
   }
 
 
-  public GiftCardServiceDefinition fields(List<GiftCardServiceDefinitionFields> fields) {
+  public GiftCardServiceDefinition fields(List<AntiFraudServiceDefinitionFields> fields) {
     
     this.fields = fields;
     return this;
   }
 
-  public GiftCardServiceDefinition addFieldsItem(GiftCardServiceDefinitionFields fieldsItem) {
+  public GiftCardServiceDefinition addFieldsItem(AntiFraudServiceDefinitionFields fieldsItem) {
     if (this.fields == null) {
-      this.fields = new ArrayList<GiftCardServiceDefinitionFields>();
+      this.fields = new ArrayList<AntiFraudServiceDefinitionFields>();
     }
     this.fields.add(fieldsItem);
     return this;
@@ -189,12 +189,12 @@ public class GiftCardServiceDefinition {
   @javax.annotation.Nullable
   @ApiModelProperty(value = "A list of fields that need to be submitted when activating the payment. service.")
 
-  public List<GiftCardServiceDefinitionFields> getFields() {
+  public List<AntiFraudServiceDefinitionFields> getFields() {
     return fields;
   }
 
 
-  public void setFields(List<GiftCardServiceDefinitionFields> fields) {
+  public void setFields(List<AntiFraudServiceDefinitionFields> fields) {
     this.fields = fields;
   }
 

@@ -83,6 +83,18 @@ public class ApplePayRequest {
   @SerializedName(SERIALIZED_NAME_TOKEN)
   private Object token;
 
+  public static final String SERIALIZED_NAME_CARD_SUFFIX = "card_suffix";
+  @SerializedName(SERIALIZED_NAME_CARD_SUFFIX)
+  private String cardSuffix;
+
+  public static final String SERIALIZED_NAME_CARD_SCHEME = "card_scheme";
+  @SerializedName(SERIALIZED_NAME_CARD_SCHEME)
+  private String cardScheme;
+
+  public static final String SERIALIZED_NAME_CARD_TYPE = "card_type";
+  @SerializedName(SERIALIZED_NAME_CARD_TYPE)
+  private String cardType;
+
 
   public ApplePayRequest method(MethodEnum method) {
     
@@ -128,6 +140,75 @@ public class ApplePayRequest {
   }
 
 
+  public ApplePayRequest cardSuffix(String cardSuffix) {
+    
+    this.cardSuffix = cardSuffix;
+    return this;
+  }
+
+   /**
+   * Last 4 digits of the PAN for identification purposes.
+   * @return cardSuffix
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "1234", value = "Last 4 digits of the PAN for identification purposes.")
+
+  public String getCardSuffix() {
+    return cardSuffix;
+  }
+
+
+  public void setCardSuffix(String cardSuffix) {
+    this.cardSuffix = cardSuffix;
+  }
+
+
+  public ApplePayRequest cardScheme(String cardScheme) {
+    
+    this.cardScheme = cardScheme;
+    return this;
+  }
+
+   /**
+   * The scheme/brand of the card.
+   * @return cardScheme
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "The scheme/brand of the card.")
+
+  public String getCardScheme() {
+    return cardScheme;
+  }
+
+
+  public void setCardScheme(String cardScheme) {
+    this.cardScheme = cardScheme;
+  }
+
+
+  public ApplePayRequest cardType(String cardType) {
+    
+    this.cardType = cardType;
+    return this;
+  }
+
+   /**
+   * The type of card.
+   * @return cardType
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "credit", value = "The type of card.")
+
+  public String getCardType() {
+    return cardType;
+  }
+
+
+  public void setCardType(String cardType) {
+    this.cardType = cardType;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -138,12 +219,15 @@ public class ApplePayRequest {
     }
     ApplePayRequest applePayRequest = (ApplePayRequest) o;
     return Objects.equals(this.method, applePayRequest.method) &&
-        Objects.equals(this.token, applePayRequest.token);
+        Objects.equals(this.token, applePayRequest.token) &&
+        Objects.equals(this.cardSuffix, applePayRequest.cardSuffix) &&
+        Objects.equals(this.cardScheme, applePayRequest.cardScheme) &&
+        Objects.equals(this.cardType, applePayRequest.cardType);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(method, token);
+    return Objects.hash(method, token, cardSuffix, cardScheme, cardType);
   }
 
   @Override
@@ -152,6 +236,9 @@ public class ApplePayRequest {
     sb.append("class ApplePayRequest {\n");
     sb.append("    method: ").append(toIndentedString(method)).append("\n");
     sb.append("    token: ").append(toIndentedString(token)).append("\n");
+    sb.append("    cardSuffix: ").append(toIndentedString(cardSuffix)).append("\n");
+    sb.append("    cardScheme: ").append(toIndentedString(cardScheme)).append("\n");
+    sb.append("    cardType: ").append(toIndentedString(cardType)).append("\n");
     sb.append("}");
     return sb.toString();
   }

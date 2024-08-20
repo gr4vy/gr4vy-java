@@ -103,6 +103,103 @@ public class ThreeDSecureDataV2 {
   private DirectoryResponseEnum directoryResponse;
 
   /**
+   * The scheme/brand of the card that is used for 3-D Secure.
+   */
+  @JsonAdapter(SchemeEnum.Adapter.class)
+  public enum SchemeEnum {
+    ACCEL("accel"),
+    
+    AMEX("amex"),
+    
+    BANCONTACT("bancontact"),
+    
+    CARTE_BANCAIRE("carte-bancaire"),
+    
+    CIRRUS("cirrus"),
+    
+    CULIANCE("culiance"),
+    
+    DANKORT("dankort"),
+    
+    DINERS_CLUB("diners-club"),
+    
+    DISCOVER("discover"),
+    
+    EFTPOS_AUSTRALIA("eftpos-australia"),
+    
+    ELO("elo"),
+    
+    HIPERCARD("hipercard"),
+    
+    JCB("jcb"),
+    
+    MAESTRO("maestro"),
+    
+    MASTERCARD("mastercard"),
+    
+    MIR("mir"),
+    
+    NYCE("nyce"),
+    
+    OTHER("other"),
+    
+    PULSE("pulse"),
+    
+    RUPAY("rupay"),
+    
+    STAR("star"),
+    
+    UATP("uatp"),
+    
+    UNIONPAY("unionpay"),
+    
+    VISA("visa"),
+    
+    NULL("null");
+
+    private String value;
+
+    SchemeEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static SchemeEnum fromValue(String value) {
+      for (SchemeEnum b : SchemeEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      return null;
+    }
+
+    public static class Adapter extends TypeAdapter<SchemeEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final SchemeEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public SchemeEnum read(final JsonReader jsonReader) throws IOException {
+        String value =  jsonReader.nextString();
+        return SchemeEnum.fromValue(value);
+      }
+    }
+  }
+
+  public static final String SERIALIZED_NAME_SCHEME = "scheme";
+  @SerializedName(SERIALIZED_NAME_SCHEME)
+  private SchemeEnum scheme;
+
+  /**
    * The transaction status after a the 3DS challenge. This will be null in case of a frictionless 3DS flow.
    */
   @JsonAdapter(AuthenticationResponseEnum.Adapter.class)
@@ -252,6 +349,29 @@ public class ThreeDSecureDataV2 {
   }
 
 
+  public ThreeDSecureDataV2 scheme(SchemeEnum scheme) {
+    
+    this.scheme = scheme;
+    return this;
+  }
+
+   /**
+   * The scheme/brand of the card that is used for 3-D Secure.
+   * @return scheme
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "visa", value = "The scheme/brand of the card that is used for 3-D Secure.")
+
+  public SchemeEnum getScheme() {
+    return scheme;
+  }
+
+
+  public void setScheme(SchemeEnum scheme) {
+    this.scheme = scheme;
+  }
+
+
   public ThreeDSecureDataV2 authenticationResponse(AuthenticationResponseEnum authenticationResponse) {
     
     this.authenticationResponse = authenticationResponse;
@@ -310,13 +430,14 @@ public class ThreeDSecureDataV2 {
         Objects.equals(this.eci, threeDSecureDataV2.eci) &&
         Objects.equals(this.version, threeDSecureDataV2.version) &&
         Objects.equals(this.directoryResponse, threeDSecureDataV2.directoryResponse) &&
+        Objects.equals(this.scheme, threeDSecureDataV2.scheme) &&
         Objects.equals(this.authenticationResponse, threeDSecureDataV2.authenticationResponse) &&
         Objects.equals(this.directoryTransactionId, threeDSecureDataV2.directoryTransactionId);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(cavv, eci, version, directoryResponse, authenticationResponse, directoryTransactionId);
+    return Objects.hash(cavv, eci, version, directoryResponse, scheme, authenticationResponse, directoryTransactionId);
   }
 
   @Override
@@ -327,6 +448,7 @@ public class ThreeDSecureDataV2 {
     sb.append("    eci: ").append(toIndentedString(eci)).append("\n");
     sb.append("    version: ").append(toIndentedString(version)).append("\n");
     sb.append("    directoryResponse: ").append(toIndentedString(directoryResponse)).append("\n");
+    sb.append("    scheme: ").append(toIndentedString(scheme)).append("\n");
     sb.append("    authenticationResponse: ").append(toIndentedString(authenticationResponse)).append("\n");
     sb.append("    directoryTransactionId: ").append(toIndentedString(directoryTransactionId)).append("\n");
     sb.append("}");

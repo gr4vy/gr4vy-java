@@ -60,23 +60,33 @@ public class TransactionPaymentMethodRequest {
     
     CARD("card"),
     
+    CASHAPP("cashapp"),
+    
+    CHASEORBITAL("chaseorbital"),
+    
     CHECKOUT_SESSION("checkout-session"),
     
-    CLICK_TO_PAY("click-to-pay"),
-    
     CLEARPAY("clearpay"),
+    
+    CLICK_TO_PAY("click-to-pay"),
     
     DANA("dana"),
     
     DCB("dcb"),
     
+    DLOCAL("dlocal"),
+    
+    EBANX("ebanx"),
+    
     EPS("eps"),
     
-    FORTUMO("fortumo"),
+    EVERYDAYPAY("everydaypay"),
     
     GCASH("gcash"),
     
     GIROPAY("giropay"),
+    
+    GIVINGBLOCK("givingblock"),
     
     GOCARDLESS("gocardless"),
     
@@ -85,10 +95,10 @@ public class TransactionPaymentMethodRequest {
     GOPAY("gopay"),
     
     GRABPAY("grabpay"),
+
+    ID("id"),
     
     IDEAL("ideal"),
-    
-    ID("id"),
     
     KAKAOPAY("kakaopay"),
     
@@ -104,6 +114,10 @@ public class TransactionPaymentMethodRequest {
     
     MULTIBANCO("multibanco"),
     
+    MULTIPAGO("multipago"),
+    
+    NETWORK_TOKEN("network-token"),
+    
     ONEY_3X("oney_3x"),
     
     ONEY_4X("oney_4x"),
@@ -118,11 +132,17 @@ public class TransactionPaymentMethodRequest {
     
     OXXO("oxxo"),
     
+    PAYID("payid"),
+    
     PAYMAYA("paymaya"),
     
     PAYPAL("paypal"),
     
     PAYPALPAYLATER("paypalpaylater"),
+    
+    PAYTO("payto"),
+    
+    VENMO("venmo"),
     
     PIX("pix"),
     
@@ -138,6 +158,8 @@ public class TransactionPaymentMethodRequest {
     
     SINGTELDASH("singteldash"),
     
+    SMARTPAY("smartpay"),
+    
     SOFORT("sofort"),
     
     STRIPEDD("stripedd"),
@@ -150,7 +172,9 @@ public class TransactionPaymentMethodRequest {
     
     TRUSTLY("trustly"),
     
-    VENMO("venmo"),
+    TRUSTLYEUROPE("trustlyeurope"),
+    
+    VIPPS("vipps"),
     
     WAAVE("waave"),
     
@@ -240,9 +264,13 @@ public class TransactionPaymentMethodRequest {
   @SerializedName(SERIALIZED_NAME_ASSURANCE_DETAILS)
   private GooglePayRequestAssuranceDetails assuranceDetails;
 
-  public static final String SERIALIZED_NAME_CARD_HOLDER_NAME = "card_holder_name";
-  @SerializedName(SERIALIZED_NAME_CARD_HOLDER_NAME)
-  private String cardHolderName;
+  public static final String SERIALIZED_NAME_CARDHOLDER_NAME = "cardholder_name";
+  @SerializedName(SERIALIZED_NAME_CARDHOLDER_NAME)
+  private String cardholderName;
+
+  public static final String SERIALIZED_NAME_CRYPTOGRAM = "cryptogram";
+  @SerializedName(SERIALIZED_NAME_CRYPTOGRAM)
+  private String cryptogram;
 
 
   public TransactionPaymentMethodRequest method(MethodEnum method) {
@@ -497,26 +525,49 @@ public class TransactionPaymentMethodRequest {
   }
 
 
-  public TransactionPaymentMethodRequest cardHolderName(String cardHolderName) {
+  public TransactionPaymentMethodRequest cardholderName(String cardholderName) {
     
-    this.cardHolderName = cardHolderName;
+    this.cardholderName = cardholderName;
     return this;
   }
 
    /**
    * Name of the card holder.
-   * @return cardHolderName
+   * @return cardholderName
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "Name of the card holder.")
 
-  public String getCardHolderName() {
-    return cardHolderName;
+  public String getCardholderName() {
+    return cardholderName;
   }
 
 
-  public void setCardHolderName(String cardHolderName) {
-    this.cardHolderName = cardHolderName;
+  public void setCardholderName(String cardholderName) {
+    this.cardholderName = cardholderName;
+  }
+
+
+  public TransactionPaymentMethodRequest cryptogram(String cryptogram) {
+    
+    this.cryptogram = cryptogram;
+    return this;
+  }
+
+   /**
+   * The cryptogram of the network token.
+   * @return cryptogram
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "The cryptogram of the network token.")
+
+  public String getCryptogram() {
+    return cryptogram;
+  }
+
+
+  public void setCryptogram(String cryptogram) {
+    this.cryptogram = cryptogram;
   }
 
 
@@ -540,12 +591,13 @@ public class TransactionPaymentMethodRequest {
         Objects.equals(this.country, transactionPaymentMethodRequest.country) &&
         Objects.equals(this.token, transactionPaymentMethodRequest.token) &&
         Objects.equals(this.assuranceDetails, transactionPaymentMethodRequest.assuranceDetails) &&
-        Objects.equals(this.cardHolderName, transactionPaymentMethodRequest.cardHolderName);
+        Objects.equals(this.cardholderName, transactionPaymentMethodRequest.cardholderName) &&
+        Objects.equals(this.cryptogram, transactionPaymentMethodRequest.cryptogram);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(method, number, expirationDate, securityCode, externalIdentifier, redirectUrl, id, currency, country, token, assuranceDetails, cardHolderName);
+    return Objects.hash(method, number, expirationDate, securityCode, externalIdentifier, redirectUrl, id, currency, country, token, assuranceDetails, cardholderName, cryptogram);
   }
 
   @Override
@@ -563,7 +615,8 @@ public class TransactionPaymentMethodRequest {
     sb.append("    country: ").append(toIndentedString(country)).append("\n");
     sb.append("    token: ").append(toIndentedString(token)).append("\n");
     sb.append("    assuranceDetails: ").append(toIndentedString(assuranceDetails)).append("\n");
-    sb.append("    cardHolderName: ").append(toIndentedString(cardHolderName)).append("\n");
+    sb.append("    cardholderName: ").append(toIndentedString(cardholderName)).append("\n");
+    sb.append("    cryptogram: ").append(toIndentedString(cryptogram)).append("\n");
     sb.append("}");
     return sb.toString();
   }

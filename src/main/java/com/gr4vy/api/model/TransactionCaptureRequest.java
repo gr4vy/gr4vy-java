@@ -42,13 +42,13 @@ public class TransactionCaptureRequest {
   }
 
    /**
-   * The monetary amount to capture an authorization for, in the smallest currency unit for the given currency, for example &#x60;1299&#x60; cents to create an authorization for &#x60;$12.99&#x60;.  When omitted blank, this will capture the entire amount.  Capturing an amount that is greater than the authorized amount is not supported.
+   * The monetary amount to capture an authorization for, in the smallest currency unit for the given currency, for example &#x60;1299&#x60; cents to create an authorization for &#x60;$12.99&#x60;.  When omitted blank, this will capture the entire amount.
    * minimum: 1
    * maximum: 99999999
    * @return amount
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "1299", value = "The monetary amount to capture an authorization for, in the smallest currency unit for the given currency, for example `1299` cents to create an authorization for `$12.99`.  When omitted blank, this will capture the entire amount.  Capturing an amount that is greater than the authorized amount is not supported.")
+  @ApiModelProperty(example = "1299", value = "The monetary amount to capture an authorization for, in the smallest currency unit for the given currency, for example `1299` cents to create an authorization for `$12.99`.  When omitted blank, this will capture the entire amount.")
 
   public Integer getAmount() {
     return amount;

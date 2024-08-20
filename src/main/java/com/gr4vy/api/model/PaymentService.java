@@ -21,7 +21,7 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import com.gr4vy.api.model.GiftCardServiceFields;
-import com.gr4vy.api.model.MerchantProfile;
+import com.gr4vy.api.model.MerchantProfileSummary;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
@@ -119,7 +119,7 @@ public class PaymentService {
 
   public static final String SERIALIZED_NAME_MERCHANT_PROFILE = "merchant_profile";
   @SerializedName(SERIALIZED_NAME_MERCHANT_PROFILE)
-  private MerchantProfile merchantProfile;
+  private MerchantProfileSummary merchantProfile;
 
   /**
    * The payment method that this service handles.
@@ -150,23 +150,33 @@ public class PaymentService {
     
     CARD("card"),
     
+    CASHAPP("cashapp"),
+    
+    CHASEORBITAL("chaseorbital"),
+    
     CHECKOUT_SESSION("checkout-session"),
     
-    CLICK_TO_PAY("click-to-pay"),
-    
     CLEARPAY("clearpay"),
+    
+    CLICK_TO_PAY("click-to-pay"),
     
     DANA("dana"),
     
     DCB("dcb"),
     
+    DLOCAL("dlocal"),
+    
+    EBANX("ebanx"),
+    
     EPS("eps"),
     
-    FORTUMO("fortumo"),
+    EVERYDAYPAY("everydaypay"),
     
     GCASH("gcash"),
     
     GIROPAY("giropay"),
+    
+    GIVINGBLOCK("givingblock"),
     
     GOCARDLESS("gocardless"),
     
@@ -177,8 +187,6 @@ public class PaymentService {
     GRABPAY("grabpay"),
     
     IDEAL("ideal"),
-    
-    ID("id"),
     
     KAKAOPAY("kakaopay"),
     
@@ -194,6 +202,10 @@ public class PaymentService {
     
     MULTIBANCO("multibanco"),
     
+    MULTIPAGO("multipago"),
+    
+    NETWORK_TOKEN("network-token"),
+    
     ONEY_3X("oney_3x"),
     
     ONEY_4X("oney_4x"),
@@ -208,11 +220,17 @@ public class PaymentService {
     
     OXXO("oxxo"),
     
+    PAYID("payid"),
+    
     PAYMAYA("paymaya"),
     
     PAYPAL("paypal"),
     
     PAYPALPAYLATER("paypalpaylater"),
+    
+    PAYTO("payto"),
+    
+    VENMO("venmo"),
     
     PIX("pix"),
     
@@ -228,6 +246,8 @@ public class PaymentService {
     
     SINGTELDASH("singteldash"),
     
+    SMARTPAY("smartpay"),
+    
     SOFORT("sofort"),
     
     STRIPEDD("stripedd"),
@@ -240,7 +260,9 @@ public class PaymentService {
     
     TRUSTLY("trustly"),
     
-    VENMO("venmo"),
+    TRUSTLYEUROPE("trustlyeurope"),
+    
+    VIPPS("vipps"),
     
     WAAVE("waave"),
     
@@ -603,7 +625,7 @@ public class PaymentService {
   }
 
 
-  public PaymentService merchantProfile(MerchantProfile merchantProfile) {
+  public PaymentService merchantProfile(MerchantProfileSummary merchantProfile) {
     
     this.merchantProfile = merchantProfile;
     return this;
@@ -616,12 +638,12 @@ public class PaymentService {
   @javax.annotation.Nullable
   @ApiModelProperty(value = "An object containing a key for each supported card scheme (Amex, Discover, Mastercard and Visa), and for each key an object with the merchant profile for this service and the corresponding scheme.")
 
-  public MerchantProfile getMerchantProfile() {
+  public MerchantProfileSummary getMerchantProfile() {
     return merchantProfile;
   }
 
 
-  public void setMerchantProfile(MerchantProfile merchantProfile) {
+  public void setMerchantProfile(MerchantProfileSummary merchantProfile) {
     this.merchantProfile = merchantProfile;
   }
 
