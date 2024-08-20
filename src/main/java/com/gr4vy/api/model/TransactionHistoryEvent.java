@@ -99,6 +99,10 @@ public class TransactionHistoryEvent {
     
     ANTI_FRAUD_DECISION("anti-fraud-decision"),
     
+    ANTI_FRAUD_DECISION_UPDATE("anti-fraud-decision-update"),
+    
+    ANTI_FRAUD_DECISION_UPDATE_ERROR("anti-fraud-decision-update-error"),
+    
     ANTI_FRAUD_TRANSACTION_STATUS_UPDATE("anti-fraud-transaction-status-update"),
     
     ANTI_FRAUD_TRANSACTION_STATUS_UPDATE_ERROR("anti-fraud-transaction-status-update-error"),

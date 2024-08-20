@@ -150,6 +150,27 @@ public class Gr4vyClientTest {
     }
 	
 	@Test
+	public void addShippingDetailsToBuyerTest() throws Gr4vyException {
+		BuyerRequest buyer = new BuyerRequest();
+     	buyer.setDisplayName("newJava Test");
+     	Buyer response = shared.newBuyer(buyer);
+        assert response.getId() != null;
+        
+		ShippingDetailRequest shippingDetails = new ShippingDetailRequest();
+		shippingDetails.emailAddress("shipping@test.com");
+		
+		ShippingDetail shippingResponse = shared.addShippingDetailsToBuyer(response.getId().toString(), shippingDetails);
+        assert shippingResponse.getId() != null;
+        
+        ShippingDetails details = shared.listShippingDetailsForBuyer(response.getId().toString());
+        
+        assert details.getItems().size() == 1;
+        
+        assert shared.deleteBuyer(response.getId().toString());
+	}
+	
+	
+	@Test
 	public void newCheckoutSessionTransactionTest() throws Gr4vyException {
 		CheckoutSession checkoutSession = shared.newCheckoutSession(null);
 		
@@ -189,7 +210,7 @@ public class Gr4vyClientTest {
 	 			.method(MethodEnum.CARD)
 	 			.number("4111111111111111")
 	 			.securityCode("123")
-	 			.expirationDate("12/23");
+	 			.expirationDate("12/26");
 		
 	 	TransactionRequest request = new TransactionRequest()
 	 			.amount(100)
@@ -212,7 +233,7 @@ public class Gr4vyClientTest {
 	 			.method(MethodEnum.CARD)
 	 			.number("4111111111111111")
 	 			.securityCode("123")
-	 			.expirationDate("12/23");
+	 			.expirationDate("12/26");
 		
 	 	TransactionRequest request = new TransactionRequest()
 	 			.amount(100)
@@ -229,7 +250,7 @@ public class Gr4vyClientTest {
 	 			.method(MethodEnum.CARD)
 	 			.number("4111111111111111")
 	 			.securityCode("123")
-	 			.expirationDate("12/23");
+	 			.expirationDate("12/26");
 		
 	 	TransactionRequest request = new TransactionRequest()
 	 			.amount(100)
@@ -240,14 +261,38 @@ public class Gr4vyClientTest {
      	Transaction response = shared.newTransaction(request, idempotencyKey.toString());
         assert response != null;
 	 }
-	
+
+	 @Test
+	 public void newTransactionWithStoredPaymentMethodTest() throws Gr4vyException {
+
+		PaymentMethodRequest pmPaymentMethodRequest = new PaymentMethodRequest()
+		.method("card")
+		.number("4111111111111111")
+		.expirationDate("12/24");
+ 
+		PaymentMethod pm_response = shared.storePaymentMethod(pmPaymentMethodRequest);
+		String id = pm_response.getId().toString();
+
+	 	TransactionPaymentMethodRequest pm = new TransactionPaymentMethodRequest()
+	 			.method(MethodEnum.ID)
+	 			.id(id);
+
+	 	TransactionRequest request = new TransactionRequest()
+	 			.amount(100)
+	 			.currency("USD")
+	 			.paymentMethod(pm);
+		
+     	Transaction response = shared.newTransaction(request);
+        assert response != null;
+	 }
+
 	@Test
 	public void captureTransactionTest() throws Gr4vyException {
 		TransactionPaymentMethodRequest pm = new TransactionPaymentMethodRequest()
 				.method(MethodEnum.CARD)
 				.number("4111111111111111")
 				.securityCode("123")
-				.expirationDate("12/23")
+				.expirationDate("12/26")
 				.redirectUrl("https://gr4vy.com");
 		
 		TransactionRequest request = new TransactionRequest()
@@ -271,7 +316,7 @@ public class Gr4vyClientTest {
 				.method(MethodEnum.CARD)
 				.number("4111111111111111")
 				.securityCode("123")
-				.expirationDate("12/23")
+				.expirationDate("12/26")
 				.redirectUrl("https://gr4vy.com");
 		
 		TransactionRequest request = new TransactionRequest()
@@ -293,7 +338,7 @@ public class Gr4vyClientTest {
 				.method(MethodEnum.CARD)
 				.number("4111111111111111")
 				.securityCode("123")
-				.expirationDate("12/23")
+				.expirationDate("12/26")
 				.redirectUrl("https://gr4vy.com");
 		
 		TransactionRequest request = new TransactionRequest()
@@ -434,6 +479,14 @@ public class Gr4vyClientTest {
 	public void listPaymentOptionsTest() throws Gr4vyException {		
 		Map<String, Object> params = new HashMap<String, Object>();
      	PaymentOptions response = shared.listPaymentOptions(params);
+        assert response != null;
+	}
+
+	@Test
+	public void getPaymentServiceTokensTest() throws Gr4vyException {
+     	PaymentMethods paymentMethods = shared.listPaymentMethods();
+		PaymentMethod paymentMethod = paymentMethods.getItems().get(0);
+		PaymentServiceTokens response = shared.getPaymentServiceTokens(paymentMethod.getId().toString());
         assert response != null;
 	}
 

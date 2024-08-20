@@ -41,6 +41,10 @@ public class ConnectionOptionsCybersourceAntiFraud {
   @SerializedName(SERIALIZED_NAME_MERCHANT_DEFINED_DATA)
   private Map<String, String> merchantDefinedData = null;
 
+  public static final String SERIALIZED_NAME_SHIPPING_METHOD = "shipping_method";
+  @SerializedName(SERIALIZED_NAME_SHIPPING_METHOD)
+  private String shippingMethod;
+
 
   public ConnectionOptionsCybersourceAntiFraud metaKeyMerchantId(String metaKeyMerchantId) {
     
@@ -96,6 +100,29 @@ public class ConnectionOptionsCybersourceAntiFraud {
   }
 
 
+  public ConnectionOptionsCybersourceAntiFraud shippingMethod(String shippingMethod) {
+    
+    this.shippingMethod = shippingMethod;
+    return this;
+  }
+
+   /**
+   * Shipping method for the order.
+   * @return shippingMethod
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Shipping method for the order.")
+
+  public String getShippingMethod() {
+    return shippingMethod;
+  }
+
+
+  public void setShippingMethod(String shippingMethod) {
+    this.shippingMethod = shippingMethod;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -106,12 +133,13 @@ public class ConnectionOptionsCybersourceAntiFraud {
     }
     ConnectionOptionsCybersourceAntiFraud connectionOptionsCybersourceAntiFraud = (ConnectionOptionsCybersourceAntiFraud) o;
     return Objects.equals(this.metaKeyMerchantId, connectionOptionsCybersourceAntiFraud.metaKeyMerchantId) &&
-        Objects.equals(this.merchantDefinedData, connectionOptionsCybersourceAntiFraud.merchantDefinedData);
+        Objects.equals(this.merchantDefinedData, connectionOptionsCybersourceAntiFraud.merchantDefinedData) &&
+        Objects.equals(this.shippingMethod, connectionOptionsCybersourceAntiFraud.shippingMethod);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(metaKeyMerchantId, merchantDefinedData);
+    return Objects.hash(metaKeyMerchantId, merchantDefinedData, shippingMethod);
   }
 
   @Override
@@ -120,6 +148,7 @@ public class ConnectionOptionsCybersourceAntiFraud {
     sb.append("class ConnectionOptionsCybersourceAntiFraud {\n");
     sb.append("    metaKeyMerchantId: ").append(toIndentedString(metaKeyMerchantId)).append("\n");
     sb.append("    merchantDefinedData: ").append(toIndentedString(merchantDefinedData)).append("\n");
+    sb.append("    shippingMethod: ").append(toIndentedString(shippingMethod)).append("\n");
     sb.append("}");
     return sb.toString();
   }

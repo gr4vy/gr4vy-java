@@ -154,11 +154,11 @@ public class MerchantProfileScheme {
   }
 
    /**
-   * Acquirer bin to use when calling 3DS through this scheme.
+   * Merchant country code to use when calling 3DS through this scheme.
    * @return merchantCountryCode
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "Acquirer bin to use when calling 3DS through this scheme.")
+  @ApiModelProperty(value = "Merchant country code to use when calling 3DS through this scheme.")
 
   public String getMerchantCountryCode() {
     return merchantCountryCode;
@@ -177,11 +177,11 @@ public class MerchantProfileScheme {
   }
 
    /**
-   * Acquirer bin to use when calling 3DS through this scheme.
+   * Merchant category code to use when calling 3DS through this scheme.
    * @return merchantCategoryCode
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "Acquirer bin to use when calling 3DS through this scheme.")
+  @ApiModelProperty(value = "Merchant category code to use when calling 3DS through this scheme.")
 
   public String getMerchantCategoryCode() {
     return merchantCategoryCode;

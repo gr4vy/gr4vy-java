@@ -20,7 +20,7 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import com.gr4vy.api.model.GiftCardServiceDefinitionFields;
+import com.gr4vy.api.model.AntiFraudServiceDefinitionFields;
 import com.gr4vy.api.model.PaymentServiceDefinitionConfiguration;
 import com.gr4vy.api.model.PaymentServiceDefinitionSupportedFeatures;
 import io.swagger.annotations.ApiModel;
@@ -121,23 +121,33 @@ public class PaymentServiceDefinition {
     
     CARD("card"),
     
+    CASHAPP("cashapp"),
+    
+    CHASEORBITAL("chaseorbital"),
+    
     CHECKOUT_SESSION("checkout-session"),
     
-    CLICK_TO_PAY("click-to-pay"),
-    
     CLEARPAY("clearpay"),
+    
+    CLICK_TO_PAY("click-to-pay"),
     
     DANA("dana"),
     
     DCB("dcb"),
     
+    DLOCAL("dlocal"),
+    
+    EBANX("ebanx"),
+    
     EPS("eps"),
     
-    FORTUMO("fortumo"),
+    EVERYDAYPAY("everydaypay"),
     
     GCASH("gcash"),
     
     GIROPAY("giropay"),
+    
+    GIVINGBLOCK("givingblock"),
     
     GOCARDLESS("gocardless"),
     
@@ -148,8 +158,6 @@ public class PaymentServiceDefinition {
     GRABPAY("grabpay"),
     
     IDEAL("ideal"),
-    
-    ID("id"),
     
     KAKAOPAY("kakaopay"),
     
@@ -165,6 +173,10 @@ public class PaymentServiceDefinition {
     
     MULTIBANCO("multibanco"),
     
+    MULTIPAGO("multipago"),
+    
+    NETWORK_TOKEN("network-token"),
+    
     ONEY_3X("oney_3x"),
     
     ONEY_4X("oney_4x"),
@@ -179,11 +191,17 @@ public class PaymentServiceDefinition {
     
     OXXO("oxxo"),
     
+    PAYID("payid"),
+    
     PAYMAYA("paymaya"),
     
     PAYPAL("paypal"),
     
     PAYPALPAYLATER("paypalpaylater"),
+    
+    PAYTO("payto"),
+    
+    VENMO("venmo"),
     
     PIX("pix"),
     
@@ -199,6 +217,8 @@ public class PaymentServiceDefinition {
     
     SINGTELDASH("singteldash"),
     
+    SMARTPAY("smartpay"),
+    
     SOFORT("sofort"),
     
     STRIPEDD("stripedd"),
@@ -211,7 +231,9 @@ public class PaymentServiceDefinition {
     
     TRUSTLY("trustly"),
     
-    VENMO("venmo"),
+    TRUSTLYEUROPE("trustlyeurope"),
+    
+    VIPPS("vipps"),
     
     WAAVE("waave"),
     
@@ -263,7 +285,7 @@ public class PaymentServiceDefinition {
 
   public static final String SERIALIZED_NAME_FIELDS = "fields";
   @SerializedName(SERIALIZED_NAME_FIELDS)
-  private List<GiftCardServiceDefinitionFields> fields = null;
+  private List<AntiFraudServiceDefinitionFields> fields = null;
 
   public static final String SERIALIZED_NAME_SUPPORTED_CURRENCIES = "supported_currencies";
   @SerializedName(SERIALIZED_NAME_SUPPORTED_CURRENCIES)
@@ -433,15 +455,15 @@ public class PaymentServiceDefinition {
   }
 
 
-  public PaymentServiceDefinition fields(List<GiftCardServiceDefinitionFields> fields) {
+  public PaymentServiceDefinition fields(List<AntiFraudServiceDefinitionFields> fields) {
     
     this.fields = fields;
     return this;
   }
 
-  public PaymentServiceDefinition addFieldsItem(GiftCardServiceDefinitionFields fieldsItem) {
+  public PaymentServiceDefinition addFieldsItem(AntiFraudServiceDefinitionFields fieldsItem) {
     if (this.fields == null) {
-      this.fields = new ArrayList<GiftCardServiceDefinitionFields>();
+      this.fields = new ArrayList<AntiFraudServiceDefinitionFields>();
     }
     this.fields.add(fieldsItem);
     return this;
@@ -454,12 +476,12 @@ public class PaymentServiceDefinition {
   @javax.annotation.Nullable
   @ApiModelProperty(value = "A list of fields that need to be submitted when activating the payment. service.")
 
-  public List<GiftCardServiceDefinitionFields> getFields() {
+  public List<AntiFraudServiceDefinitionFields> getFields() {
     return fields;
   }
 
 
-  public void setFields(List<GiftCardServiceDefinitionFields> fields) {
+  public void setFields(List<AntiFraudServiceDefinitionFields> fields) {
     this.fields = fields;
   }
 

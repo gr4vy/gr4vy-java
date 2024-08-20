@@ -35,13 +35,25 @@ public class MerchantProfile {
   @SerializedName(SERIALIZED_NAME_AMEX)
   private MerchantProfileScheme amex;
 
+  public static final String SERIALIZED_NAME_DANKORT = "dankort";
+  @SerializedName(SERIALIZED_NAME_DANKORT)
+  private MerchantProfileScheme dankort;
+
   public static final String SERIALIZED_NAME_DISCOVER = "discover";
   @SerializedName(SERIALIZED_NAME_DISCOVER)
   private MerchantProfileScheme discover;
 
+  public static final String SERIALIZED_NAME_JCB = "jcb";
+  @SerializedName(SERIALIZED_NAME_JCB)
+  private MerchantProfileScheme jcb;
+
   public static final String SERIALIZED_NAME_MASTERCARD = "mastercard";
   @SerializedName(SERIALIZED_NAME_MASTERCARD)
   private MerchantProfileScheme mastercard;
+
+  public static final String SERIALIZED_NAME_UNIONPAY = "unionpay";
+  @SerializedName(SERIALIZED_NAME_UNIONPAY)
+  private MerchantProfileScheme unionpay;
 
   public static final String SERIALIZED_NAME_VISA = "visa";
   @SerializedName(SERIALIZED_NAME_VISA)
@@ -71,6 +83,29 @@ public class MerchantProfile {
   }
 
 
+  public MerchantProfile dankort(MerchantProfileScheme dankort) {
+    
+    this.dankort = dankort;
+    return this;
+  }
+
+   /**
+   * Merchant profile for Dankort.
+   * @return dankort
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Merchant profile for Dankort.")
+
+  public MerchantProfileScheme getDankort() {
+    return dankort;
+  }
+
+
+  public void setDankort(MerchantProfileScheme dankort) {
+    this.dankort = dankort;
+  }
+
+
   public MerchantProfile discover(MerchantProfileScheme discover) {
     
     this.discover = discover;
@@ -94,6 +129,29 @@ public class MerchantProfile {
   }
 
 
+  public MerchantProfile jcb(MerchantProfileScheme jcb) {
+    
+    this.jcb = jcb;
+    return this;
+  }
+
+   /**
+   * Merchant profile for JCB.
+   * @return jcb
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Merchant profile for JCB.")
+
+  public MerchantProfileScheme getJcb() {
+    return jcb;
+  }
+
+
+  public void setJcb(MerchantProfileScheme jcb) {
+    this.jcb = jcb;
+  }
+
+
   public MerchantProfile mastercard(MerchantProfileScheme mastercard) {
     
     this.mastercard = mastercard;
@@ -114,6 +172,29 @@ public class MerchantProfile {
 
   public void setMastercard(MerchantProfileScheme mastercard) {
     this.mastercard = mastercard;
+  }
+
+
+  public MerchantProfile unionpay(MerchantProfileScheme unionpay) {
+    
+    this.unionpay = unionpay;
+    return this;
+  }
+
+   /**
+   * Merchant profile for UnionPay.
+   * @return unionpay
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Merchant profile for UnionPay.")
+
+  public MerchantProfileScheme getUnionpay() {
+    return unionpay;
+  }
+
+
+  public void setUnionpay(MerchantProfileScheme unionpay) {
+    this.unionpay = unionpay;
   }
 
 
@@ -150,14 +231,17 @@ public class MerchantProfile {
     }
     MerchantProfile merchantProfile = (MerchantProfile) o;
     return Objects.equals(this.amex, merchantProfile.amex) &&
+        Objects.equals(this.dankort, merchantProfile.dankort) &&
         Objects.equals(this.discover, merchantProfile.discover) &&
+        Objects.equals(this.jcb, merchantProfile.jcb) &&
         Objects.equals(this.mastercard, merchantProfile.mastercard) &&
+        Objects.equals(this.unionpay, merchantProfile.unionpay) &&
         Objects.equals(this.visa, merchantProfile.visa);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(amex, discover, mastercard, visa);
+    return Objects.hash(amex, dankort, discover, jcb, mastercard, unionpay, visa);
   }
 
   @Override
@@ -165,8 +249,11 @@ public class MerchantProfile {
     StringBuilder sb = new StringBuilder();
     sb.append("class MerchantProfile {\n");
     sb.append("    amex: ").append(toIndentedString(amex)).append("\n");
+    sb.append("    dankort: ").append(toIndentedString(dankort)).append("\n");
     sb.append("    discover: ").append(toIndentedString(discover)).append("\n");
+    sb.append("    jcb: ").append(toIndentedString(jcb)).append("\n");
     sb.append("    mastercard: ").append(toIndentedString(mastercard)).append("\n");
+    sb.append("    unionpay: ").append(toIndentedString(unionpay)).append("\n");
     sb.append("    visa: ").append(toIndentedString(visa)).append("\n");
     sb.append("}");
     return sb.toString();

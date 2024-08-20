@@ -48,6 +48,10 @@ public class BINLookupRequestContext {
   @SerializedName(SERIALIZED_NAME_BIN)
   private String bin;
 
+  public static final String SERIALIZED_NAME_INSTRUMENT = "instrument";
+  @SerializedName(SERIALIZED_NAME_INSTRUMENT)
+  private String instrument;
+
   public static final String SERIALIZED_NAME_TYPE = "type";
   @SerializedName(SERIALIZED_NAME_TYPE)
   private String type;
@@ -87,6 +91,8 @@ public class BINLookupRequestContext {
     
     MASTERCARD("mastercard"),
     
+    MIR("mir"),
+    
     NYCE("nyce"),
     
     OTHER("other"),
@@ -97,9 +103,13 @@ public class BINLookupRequestContext {
     
     STAR("star"),
     
+    UATP("uatp"),
+    
     UNIONPAY("unionpay"),
     
-    VISA("visa");
+    VISA("visa"),
+    
+    NULL("null");
 
     private String value;
 
@@ -178,6 +188,8 @@ public class BINLookupRequestContext {
     
     MASTERCARD("mastercard"),
     
+    MIR("mir"),
+    
     NYCE("nyce"),
     
     OTHER("other"),
@@ -188,9 +200,13 @@ public class BINLookupRequestContext {
     
     STAR("star"),
     
+    UATP("uatp"),
+    
     UNIONPAY("unionpay"),
     
-    VISA("visa");
+    VISA("visa"),
+    
+    NULL("null");
 
     private String value;
 
@@ -238,13 +254,9 @@ public class BINLookupRequestContext {
   @SerializedName(SERIALIZED_NAME_COUNTRY_CODE)
   private String countryCode;
 
-  public static final String SERIALIZED_NAME_ACCOUNT_UPDATER = "account_updater";
-  @SerializedName(SERIALIZED_NAME_ACCOUNT_UPDATER)
-  private Boolean accountUpdater;
-
-  public static final String SERIALIZED_NAME_ISSUER_TOKENIZATION = "issuer_tokenization";
-  @SerializedName(SERIALIZED_NAME_ISSUER_TOKENIZATION)
-  private Boolean issuerTokenization;
+  public static final String SERIALIZED_NAME_SUPPORTS_NETWORK_TOKENS = "supports_network_tokens";
+  @SerializedName(SERIALIZED_NAME_SUPPORTS_NETWORK_TOKENS)
+  private Boolean supportsNetworkTokens;
 
 
   public BINLookupRequestContext response(String response) {
@@ -336,6 +348,29 @@ public class BINLookupRequestContext {
 
   public void setBin(String bin) {
     this.bin = bin;
+  }
+
+
+  public BINLookupRequestContext instrument(String instrument) {
+    
+    this.instrument = instrument;
+    return this;
+  }
+
+   /**
+   * The instrument type used to lookup BIN details.
+   * @return instrument
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "pan", value = "The instrument type used to lookup BIN details.")
+
+  public String getInstrument() {
+    return instrument;
+  }
+
+
+  public void setInstrument(String instrument) {
+    this.instrument = instrument;
   }
 
 
@@ -439,49 +474,26 @@ public class BINLookupRequestContext {
   }
 
 
-  public BINLookupRequestContext accountUpdater(Boolean accountUpdater) {
+  public BINLookupRequestContext supportsNetworkTokens(Boolean supportsNetworkTokens) {
     
-    this.accountUpdater = accountUpdater;
-    return this;
-  }
-
-   /**
-   * Whether Account Updater is enabled for this card.
-   * @return accountUpdater
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "Whether Account Updater is enabled for this card.")
-
-  public Boolean getAccountUpdater() {
-    return accountUpdater;
-  }
-
-
-  public void setAccountUpdater(Boolean accountUpdater) {
-    this.accountUpdater = accountUpdater;
-  }
-
-
-  public BINLookupRequestContext issuerTokenization(Boolean issuerTokenization) {
-    
-    this.issuerTokenization = issuerTokenization;
+    this.supportsNetworkTokens = supportsNetworkTokens;
     return this;
   }
 
    /**
    * Whether the issuing bank supports network tokenization for this card.
-   * @return issuerTokenization
+   * @return supportsNetworkTokens
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "Whether the issuing bank supports network tokenization for this card.")
 
-  public Boolean getIssuerTokenization() {
-    return issuerTokenization;
+  public Boolean getSupportsNetworkTokens() {
+    return supportsNetworkTokens;
   }
 
 
-  public void setIssuerTokenization(Boolean issuerTokenization) {
-    this.issuerTokenization = issuerTokenization;
+  public void setSupportsNetworkTokens(Boolean supportsNetworkTokens) {
+    this.supportsNetworkTokens = supportsNetworkTokens;
   }
 
 
@@ -498,17 +510,17 @@ public class BINLookupRequestContext {
         Objects.equals(this.responseStatusCode, biNLookupRequestContext.responseStatusCode) &&
         Objects.equals(this.success, biNLookupRequestContext.success) &&
         Objects.equals(this.bin, biNLookupRequestContext.bin) &&
+        Objects.equals(this.instrument, biNLookupRequestContext.instrument) &&
         Objects.equals(this.type, biNLookupRequestContext.type) &&
         Objects.equals(this.scheme, biNLookupRequestContext.scheme) &&
         Objects.equals(this.additionalSchemes, biNLookupRequestContext.additionalSchemes) &&
         Objects.equals(this.countryCode, biNLookupRequestContext.countryCode) &&
-        Objects.equals(this.accountUpdater, biNLookupRequestContext.accountUpdater) &&
-        Objects.equals(this.issuerTokenization, biNLookupRequestContext.issuerTokenization);
+        Objects.equals(this.supportsNetworkTokens, biNLookupRequestContext.supportsNetworkTokens);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(response, responseStatusCode, success, bin, type, scheme, additionalSchemes, countryCode, accountUpdater, issuerTokenization);
+    return Objects.hash(response, responseStatusCode, success, bin, instrument, type, scheme, additionalSchemes, countryCode, supportsNetworkTokens);
   }
 
   @Override
@@ -519,12 +531,12 @@ public class BINLookupRequestContext {
     sb.append("    responseStatusCode: ").append(toIndentedString(responseStatusCode)).append("\n");
     sb.append("    success: ").append(toIndentedString(success)).append("\n");
     sb.append("    bin: ").append(toIndentedString(bin)).append("\n");
+    sb.append("    instrument: ").append(toIndentedString(instrument)).append("\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("    scheme: ").append(toIndentedString(scheme)).append("\n");
     sb.append("    additionalSchemes: ").append(toIndentedString(additionalSchemes)).append("\n");
     sb.append("    countryCode: ").append(toIndentedString(countryCode)).append("\n");
-    sb.append("    accountUpdater: ").append(toIndentedString(accountUpdater)).append("\n");
-    sb.append("    issuerTokenization: ").append(toIndentedString(issuerTokenization)).append("\n");
+    sb.append("    supportsNetworkTokens: ").append(toIndentedString(supportsNetworkTokens)).append("\n");
     sb.append("}");
     return sb.toString();
   }

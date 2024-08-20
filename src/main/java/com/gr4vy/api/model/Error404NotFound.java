@@ -83,11 +83,13 @@ public class Error404NotFound {
   private TypeEnum type;
 
   /**
-   * &#x60;not_found&#x60;.
+   * The reason code for the error.
    */
   @JsonAdapter(CodeEnum.Adapter.class)
   public enum CodeEnum {
-    NOT_FOUND("not_found");
+    NOT_FOUND("not_found"),
+    
+    PENDING_CREATION("pending_creation");
 
     private String value;
 
@@ -180,54 +182,9 @@ public class Error404NotFound {
   @SerializedName(SERIALIZED_NAME_STATUS)
   private StatusEnum status;
 
-  /**
-   * The resource could not be found.
-   */
-  @JsonAdapter(MessageEnum.Adapter.class)
-  public enum MessageEnum {
-    THE_RESOURCE_COULD_NOT_BE_FOUND("The resource could not be found");
-
-    private String value;
-
-    MessageEnum(String value) {
-      this.value = value;
-    }
-
-    public String getValue() {
-      return value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    public static MessageEnum fromValue(String value) {
-      for (MessageEnum b : MessageEnum.values()) {
-        if (b.value.equals(value)) {
-          return b;
-        }
-      }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
-    }
-
-    public static class Adapter extends TypeAdapter<MessageEnum> {
-      @Override
-      public void write(final JsonWriter jsonWriter, final MessageEnum enumeration) throws IOException {
-        jsonWriter.value(enumeration.getValue());
-      }
-
-      @Override
-      public MessageEnum read(final JsonReader jsonReader) throws IOException {
-        String value =  jsonReader.nextString();
-        return MessageEnum.fromValue(value);
-      }
-    }
-  }
-
   public static final String SERIALIZED_NAME_MESSAGE = "message";
   @SerializedName(SERIALIZED_NAME_MESSAGE)
-  private MessageEnum message;
+  private String message;
 
   public static final String SERIALIZED_NAME_DETAILS = "details";
   @SerializedName(SERIALIZED_NAME_DETAILS)
@@ -264,11 +221,11 @@ public class Error404NotFound {
   }
 
    /**
-   * &#x60;not_found&#x60;.
+   * The reason code for the error.
    * @return code
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "not_found", value = "`not_found`.")
+  @ApiModelProperty(example = "not_found", value = "The reason code for the error.")
 
   public CodeEnum getCode() {
     return code;
@@ -303,25 +260,25 @@ public class Error404NotFound {
   }
 
 
-  public Error404NotFound message(MessageEnum message) {
+  public Error404NotFound message(String message) {
     
     this.message = message;
     return this;
   }
 
    /**
-   * The resource could not be found.
+   * The human readable reason for the error.
    * @return message
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "The resource could not be found", value = "The resource could not be found.")
+  @ApiModelProperty(example = "The resource could not be found", value = "The human readable reason for the error.")
 
-  public MessageEnum getMessage() {
+  public String getMessage() {
     return message;
   }
 
 
-  public void setMessage(MessageEnum message) {
+  public void setMessage(String message) {
     this.message = message;
   }
 

@@ -23,6 +23,9 @@ import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Additional options for Cybersource payment gateway.
@@ -33,6 +36,14 @@ public class ConnectionOptionsCybersourceCard {
   public static final String SERIALIZED_NAME_META_KEY_MERCHANT_ID = "meta_key_merchant_id";
   @SerializedName(SERIALIZED_NAME_META_KEY_MERCHANT_ID)
   private String metaKeyMerchantId;
+
+  public static final String SERIALIZED_NAME_MERCHANT_DEFINED_INFORMATION = "merchant_defined_information";
+  @SerializedName(SERIALIZED_NAME_MERCHANT_DEFINED_INFORMATION)
+  private Map<String, String> merchantDefinedInformation = null;
+
+  public static final String SERIALIZED_NAME_SHIP_TO_METHOD = "ship_to_method";
+  @SerializedName(SERIALIZED_NAME_SHIP_TO_METHOD)
+  private String shipToMethod;
 
 
   public ConnectionOptionsCybersourceCard metaKeyMerchantId(String metaKeyMerchantId) {
@@ -58,6 +69,60 @@ public class ConnectionOptionsCybersourceCard {
   }
 
 
+  public ConnectionOptionsCybersourceCard merchantDefinedInformation(Map<String, String> merchantDefinedInformation) {
+    
+    this.merchantDefinedInformation = merchantDefinedInformation;
+    return this;
+  }
+
+  public ConnectionOptionsCybersourceCard putMerchantDefinedInformationItem(String key, String merchantDefinedInformationItem) {
+    if (this.merchantDefinedInformation == null) {
+      this.merchantDefinedInformation = new HashMap<String, String>();
+    }
+    this.merchantDefinedInformation.put(key, merchantDefinedInformationItem);
+    return this;
+  }
+
+   /**
+   * This is a key-value object for merchant defined information. Each key needs to be a numeric string identifying the MDI field to set. For example, for field 1 set the key to \&quot;1\&quot;.
+   * @return merchantDefinedInformation
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "{\"1\":\"John Doe\",\"2\":\"trusted\",\"99\":\"recurring\"}", value = "This is a key-value object for merchant defined information. Each key needs to be a numeric string identifying the MDI field to set. For example, for field 1 set the key to \"1\".")
+
+  public Map<String, String> getMerchantDefinedInformation() {
+    return merchantDefinedInformation;
+  }
+
+
+  public void setMerchantDefinedInformation(Map<String, String> merchantDefinedInformation) {
+    this.merchantDefinedInformation = merchantDefinedInformation;
+  }
+
+
+  public ConnectionOptionsCybersourceCard shipToMethod(String shipToMethod) {
+    
+    this.shipToMethod = shipToMethod;
+    return this;
+  }
+
+   /**
+   * Shipping method for the order.
+   * @return shipToMethod
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Shipping method for the order.")
+
+  public String getShipToMethod() {
+    return shipToMethod;
+  }
+
+
+  public void setShipToMethod(String shipToMethod) {
+    this.shipToMethod = shipToMethod;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -67,12 +132,14 @@ public class ConnectionOptionsCybersourceCard {
       return false;
     }
     ConnectionOptionsCybersourceCard connectionOptionsCybersourceCard = (ConnectionOptionsCybersourceCard) o;
-    return Objects.equals(this.metaKeyMerchantId, connectionOptionsCybersourceCard.metaKeyMerchantId);
+    return Objects.equals(this.metaKeyMerchantId, connectionOptionsCybersourceCard.metaKeyMerchantId) &&
+        Objects.equals(this.merchantDefinedInformation, connectionOptionsCybersourceCard.merchantDefinedInformation) &&
+        Objects.equals(this.shipToMethod, connectionOptionsCybersourceCard.shipToMethod);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(metaKeyMerchantId);
+    return Objects.hash(metaKeyMerchantId, merchantDefinedInformation, shipToMethod);
   }
 
   @Override
@@ -80,6 +147,8 @@ public class ConnectionOptionsCybersourceCard {
     StringBuilder sb = new StringBuilder();
     sb.append("class ConnectionOptionsCybersourceCard {\n");
     sb.append("    metaKeyMerchantId: ").append(toIndentedString(metaKeyMerchantId)).append("\n");
+    sb.append("    merchantDefinedInformation: ").append(toIndentedString(merchantDefinedInformation)).append("\n");
+    sb.append("    shipToMethod: ").append(toIndentedString(shipToMethod)).append("\n");
     sb.append("}");
     return sb.toString();
   }

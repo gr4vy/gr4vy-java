@@ -116,23 +116,33 @@ public class PaymentServiceSnapshot {
     
     CARD("card"),
     
+    CASHAPP("cashapp"),
+    
+    CHASEORBITAL("chaseorbital"),
+    
     CHECKOUT_SESSION("checkout-session"),
     
-    CLICK_TO_PAY("click-to-pay"),
-    
     CLEARPAY("clearpay"),
+    
+    CLICK_TO_PAY("click-to-pay"),
     
     DANA("dana"),
     
     DCB("dcb"),
     
+    DLOCAL("dlocal"),
+    
+    EBANX("ebanx"),
+    
     EPS("eps"),
     
-    FORTUMO("fortumo"),
+    EVERYDAYPAY("everydaypay"),
     
     GCASH("gcash"),
     
     GIROPAY("giropay"),
+    
+    GIVINGBLOCK("givingblock"),
     
     GOCARDLESS("gocardless"),
     
@@ -143,8 +153,6 @@ public class PaymentServiceSnapshot {
     GRABPAY("grabpay"),
     
     IDEAL("ideal"),
-    
-    ID("id"),
     
     KAKAOPAY("kakaopay"),
     
@@ -160,6 +168,10 @@ public class PaymentServiceSnapshot {
     
     MULTIBANCO("multibanco"),
     
+    MULTIPAGO("multipago"),
+    
+    NETWORK_TOKEN("network-token"),
+    
     ONEY_3X("oney_3x"),
     
     ONEY_4X("oney_4x"),
@@ -174,11 +186,17 @@ public class PaymentServiceSnapshot {
     
     OXXO("oxxo"),
     
+    PAYID("payid"),
+    
     PAYMAYA("paymaya"),
     
     PAYPAL("paypal"),
     
     PAYPALPAYLATER("paypalpaylater"),
+    
+    PAYTO("payto"),
+    
+    VENMO("venmo"),
     
     PIX("pix"),
     
@@ -194,6 +212,8 @@ public class PaymentServiceSnapshot {
     
     SINGTELDASH("singteldash"),
     
+    SMARTPAY("smartpay"),
+    
     SOFORT("sofort"),
     
     STRIPEDD("stripedd"),
@@ -206,7 +226,9 @@ public class PaymentServiceSnapshot {
     
     TRUSTLY("trustly"),
     
-    VENMO("venmo"),
+    TRUSTLYEUROPE("trustlyeurope"),
+    
+    VIPPS("vipps"),
     
     WAAVE("waave"),
     

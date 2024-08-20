@@ -198,23 +198,33 @@ public class PaymentMethodSnapshot {
     
     CARD("card"),
     
+    CASHAPP("cashapp"),
+    
+    CHASEORBITAL("chaseorbital"),
+    
     CHECKOUT_SESSION("checkout-session"),
     
-    CLICK_TO_PAY("click-to-pay"),
-    
     CLEARPAY("clearpay"),
+    
+    CLICK_TO_PAY("click-to-pay"),
     
     DANA("dana"),
     
     DCB("dcb"),
     
+    DLOCAL("dlocal"),
+    
+    EBANX("ebanx"),
+    
     EPS("eps"),
     
-    FORTUMO("fortumo"),
+    EVERYDAYPAY("everydaypay"),
     
     GCASH("gcash"),
     
     GIROPAY("giropay"),
+    
+    GIVINGBLOCK("givingblock"),
     
     GOCARDLESS("gocardless"),
     
@@ -225,8 +235,6 @@ public class PaymentMethodSnapshot {
     GRABPAY("grabpay"),
     
     IDEAL("ideal"),
-    
-    ID("id"),
     
     KAKAOPAY("kakaopay"),
     
@@ -242,6 +250,10 @@ public class PaymentMethodSnapshot {
     
     MULTIBANCO("multibanco"),
     
+    MULTIPAGO("multipago"),
+    
+    NETWORK_TOKEN("network-token"),
+    
     ONEY_3X("oney_3x"),
     
     ONEY_4X("oney_4x"),
@@ -256,11 +268,17 @@ public class PaymentMethodSnapshot {
     
     OXXO("oxxo"),
     
+    PAYID("payid"),
+    
     PAYMAYA("paymaya"),
     
     PAYPAL("paypal"),
     
     PAYPALPAYLATER("paypalpaylater"),
+    
+    PAYTO("payto"),
+    
+    VENMO("venmo"),
     
     PIX("pix"),
     
@@ -276,6 +294,8 @@ public class PaymentMethodSnapshot {
     
     SINGTELDASH("singteldash"),
     
+    SMARTPAY("smartpay"),
+    
     SOFORT("sofort"),
     
     STRIPEDD("stripedd"),
@@ -288,7 +308,9 @@ public class PaymentMethodSnapshot {
     
     TRUSTLY("trustly"),
     
-    VENMO("venmo"),
+    TRUSTLYEUROPE("trustlyeurope"),
+    
+    VIPPS("vipps"),
     
     WAAVE("waave"),
     
@@ -377,6 +399,8 @@ public class PaymentMethodSnapshot {
     
     MASTERCARD("mastercard"),
     
+    MIR("mir"),
+    
     NYCE("nyce"),
     
     OTHER("other"),
@@ -387,9 +411,13 @@ public class PaymentMethodSnapshot {
     
     STAR("star"),
     
+    UATP("uatp"),
+    
     UNIONPAY("unionpay"),
     
-    VISA("visa");
+    VISA("visa"),
+    
+    NULL("null");
 
     private String value;
 

@@ -28,9 +28,9 @@ import java.util.UUID;
 
 
 /**
- * This event logs the reason why we were unable to update an anti-fraud decision.
+ * This event logs the reason why we were unable to update an anti-fraud transaction.
  */
-@ApiModel(description = "This event logs the reason why we were unable to update an anti-fraud decision.")
+@ApiModel(description = "This event logs the reason why we were unable to update an anti-fraud transaction.")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class AntiFraudTransactionStatusUpdateErrorEvent {
   /**
