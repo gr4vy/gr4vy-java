@@ -200,7 +200,6 @@ public class Gr4vyClient {
 		if (cachedToken != null && cachedToken.isValid()) {
 			return cachedToken.getToken();
 		}
-		Security.addProvider(BouncyCastleProviderSingleton.getInstance());
 		
 	    JWK jwk = ECKey.parseFromPEMEncodedObjects(key);
 
