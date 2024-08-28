@@ -247,7 +247,7 @@ public class Gr4vyClient {
 		if (this.publicKeyString != null) {
 			return this.publicKeyString;
 		}
-		String value = System.getenv("PRIVATE_KEY");
+		String value = System.getenv("PUBLIC_KEY");
         if (value != null) {
             return value;
         }
