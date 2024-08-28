@@ -17,7 +17,7 @@ Add the `gr4vy-java` dependency to your pom.xml:
   	<dependency>
 	    <groupId>com.github.gr4vy</groupId>
 	    <artifactId>gr4vy-java</artifactId>
-	    <version>0.28.0</version>
+	    <version>0.30.0</version>
 	</dependency>
 ```
 
@@ -25,11 +25,17 @@ Add the `gr4vy-java` dependency to your pom.xml:
 
 To make your first API call, you will need to [request](https://gr4vy.com) a
 Gr4vy instance to be set up. Please contact our sales team for a demo. Please ensure 
-that you have the latest version of com.squareup.okhttp3
+that you have the latest version of com.squareup.okhttp3.
 
 Once you have been set up with a Gr4vy account you will need to head over to the
 **Integrations** panel and generate a private key. We recommend storing this key
 in a secure location but in this code sample we simply read the file from disk.
+
+Due to a restriction in Java 17+ the EC public key must first be generated from the
+private key by running:
+```
+openssl ec -in private_key.pem -pubout -out public_key.pem
+``` 
 
 Import Gr4vy:
 ```java
@@ -42,6 +48,7 @@ Call the API:
 	Gr4vyClient client = new Gr4vyClient.Builder()
 				.gr4vyId("[YOUR_GR4VY_ID]")
 				.privateKeyLocation("private_key.pem")
+				.publicKeyLocation("public_key.pem")
 				.build();
 
 	try {
@@ -64,12 +71,14 @@ The SDK defaults the environment to "sandbox", to send transactions to productio
 	Gr4vyClient client = new Gr4vyClient.Builder()
 				.gr4vyId("[YOUR_GR4VY_ID]")
 				.privateKeyLocation("private_key.pem")
+				.publicKeyLocation("public_key.pem")
 				.environment("sandbox")
 				.build();
 
 	Gr4vyClient client = new Gr4vyClient.Builder()
 				.gr4vyId("[YOUR_GR4VY_ID]")
 				.privateKeyLocation("private_key.pem")
+				.publicKeyLocation("public_key.pem")
 				.environment("production")
 				.build();
 
@@ -83,6 +92,7 @@ In a multi-merchant environment, the merchant account ID can be set after the SD
 	Gr4vyClient client = new Gr4vyClient.Builder()
 				.gr4vyId("[YOUR_GR4VY_ID]")
 				.privateKeyLocation("private_key.pem")
+				.publicKeyLocation("public_key.pem")
 				.merchantAccountId("default")
 				.build();
 ```
@@ -97,6 +107,7 @@ Embed.
 	Gr4vyClient client = new Gr4vyClient.Builder()
 				.gr4vyId("[YOUR_GR4VY_ID]")
 				.privateKeyLocation("private_key.pem")
+				.publicKeyLocation("public_key.pem")
 				.build();
 			
 	Map<String, Object> embed = new HashMap<String, Object>();
@@ -117,6 +128,7 @@ needs to be created before it can be used in this way.
 	Gr4vyClient client = new Gr4vyClient.Builder()
 				.gr4vyId("[YOUR_GR4VY_ID]")
 				.privateKeyLocation("private_key.pem")
+				.publicKeyLocation("public_key.pem")
 				.build();
 	
 	BuyerRequest buyer = new BuyerRequest();
@@ -139,6 +151,8 @@ The following fields can be optionally set using the builder:
 				.gr4vyId("[YOUR_GR4VY_ID]") // required
 				.privateKeyLocation("private_key.pem") // conditional
 				.privateKeyString("-----BEGIN PRIVATE KEY-----\n...") // conditional
+				.publicKeyLocation("public_key.pem") // conditional
+				.publicKeyString("-----BEGIN PUBLIC KEY-----\n...") // conditional
 				.environment("sandbox") // optional, defaults to sandbox
 				.host(null) // optional - allows setting a custom host
 				.client(null) // optional - allows setting the http client

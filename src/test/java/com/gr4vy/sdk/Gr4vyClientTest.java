@@ -24,11 +24,15 @@ public class Gr4vyClientTest {
 	
 	protected static Gr4vyClient shared;
 	
+	final static String PRIVATE_KEY_NAME = "private_key.pem";
+	final static String PUBLIC_KEY_NAME = "public_key.pem";
+	
 	@BeforeClass
     public static void setup() {
 		shared = new Gr4vyClient.Builder()
 				.gr4vyId("spider")
-				.privateKeyLocation("private_key.pem")
+				.privateKeyLocation(PRIVATE_KEY_NAME)
+				.publicKeyLocation(PUBLIC_KEY_NAME)
 				.environment("sandbox")
 				.build();
     }
@@ -37,8 +41,10 @@ public class Gr4vyClientTest {
     public void setTimeoutTest() throws Gr4vyException {
 	  	Gr4vyClient client = new Gr4vyClient.Builder()
 				.gr4vyId("[YOUR_GR4VY_ID]") // required
-				.privateKeyLocation("private_key.pem") // conditional
+				.privateKeyLocation(PRIVATE_KEY_NAME) // conditional
 				.privateKeyString("-----BEGIN PRIVATE KEY-----\n...") // conditional
+				.publicKeyLocation(PUBLIC_KEY_NAME) // conditional
+				.publicKeyString("-----BEGIN PUBLIC KEY-----\n...") // conditional
 				.environment("sandbox") // optional, defaults to sandbox
 				.host(null) // optional - allows setting a custom host
 				.client(null) // optional - allows setting the http client
@@ -57,7 +63,8 @@ public class Gr4vyClientTest {
     public void getEmbedTokenTest() throws Gr4vyException {
 		Gr4vyClient client = new Gr4vyClient.Builder()
 				.gr4vyId("spider")
-				.privateKeyLocation("private_key.pem")
+				.privateKeyLocation(PRIVATE_KEY_NAME)
+				.publicKeyLocation(PUBLIC_KEY_NAME)
 				.merchantAccountId("default")
 				.build();
 		
@@ -73,7 +80,8 @@ public class Gr4vyClientTest {
 	public void getEmbedTokenTestWithCheckoutSessionPassedIn() throws Gr4vyException {
 		Gr4vyClient client = new Gr4vyClient.Builder()
 				.gr4vyId("spider")
-				.privateKeyLocation("private_key.pem")
+				.privateKeyLocation(PRIVATE_KEY_NAME)
+				.publicKeyLocation(PUBLIC_KEY_NAME)
 				.build();
 		
 		CheckoutSession checkoutSession = client.newCheckoutSession(null);
