@@ -316,6 +316,8 @@ public class TransactionSummary {
     
     KAKAOPAY("kakaopay"),
     
+    KCP("kcp"),
+    
     KLARNA("klarna"),
     
     LAYBUY("laybuy"),
@@ -375,6 +377,8 @@ public class TransactionSummary {
     SMARTPAY("smartpay"),
     
     SOFORT("sofort"),
+    
+    SPEI("spei"),
     
     STRIPEDD("stripedd"),
     

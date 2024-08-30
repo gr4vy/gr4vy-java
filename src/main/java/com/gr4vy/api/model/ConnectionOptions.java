@@ -23,6 +23,8 @@ import com.google.gson.stream.JsonWriter;
 import com.gr4vy.api.model.ConnectionOptionsAdyenCard;
 import com.gr4vy.api.model.ConnectionOptionsCybersourceAntiFraud;
 import com.gr4vy.api.model.ConnectionOptionsCybersourceCard;
+import com.gr4vy.api.model.ConnectionOptionsCybersourceIdeal;
+import com.gr4vy.api.model.ConnectionOptionsCybersourceKcp;
 import com.gr4vy.api.model.ConnectionOptionsForterAntiFraud;
 import com.gr4vy.api.model.ConnectionOptionsGivingblockGivingblock;
 import com.gr4vy.api.model.ConnectionOptionsPaypalPaypal;
@@ -39,6 +41,14 @@ public class ConnectionOptions {
   public static final String SERIALIZED_NAME_CYBERSOURCE_CARD = "cybersource-card";
   @SerializedName(SERIALIZED_NAME_CYBERSOURCE_CARD)
   private ConnectionOptionsCybersourceCard cybersourceCard;
+
+  public static final String SERIALIZED_NAME_CYBERSOURCE_KCP = "cybersource-kcp";
+  @SerializedName(SERIALIZED_NAME_CYBERSOURCE_KCP)
+  private ConnectionOptionsCybersourceKcp cybersourceKcp;
+
+  public static final String SERIALIZED_NAME_CYBERSOURCE_IDEAL = "cybersource-ideal";
+  @SerializedName(SERIALIZED_NAME_CYBERSOURCE_IDEAL)
+  private ConnectionOptionsCybersourceIdeal cybersourceIdeal;
 
   public static final String SERIALIZED_NAME_CYBERSOURCE_ANTI_FRAUD = "cybersource-anti-fraud";
   @SerializedName(SERIALIZED_NAME_CYBERSOURCE_ANTI_FRAUD)
@@ -89,6 +99,52 @@ public class ConnectionOptions {
 
   public void setCybersourceCard(ConnectionOptionsCybersourceCard cybersourceCard) {
     this.cybersourceCard = cybersourceCard;
+  }
+
+
+  public ConnectionOptions cybersourceKcp(ConnectionOptionsCybersourceKcp cybersourceKcp) {
+    
+    this.cybersourceKcp = cybersourceKcp;
+    return this;
+  }
+
+   /**
+   * Get cybersourceKcp
+   * @return cybersourceKcp
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public ConnectionOptionsCybersourceKcp getCybersourceKcp() {
+    return cybersourceKcp;
+  }
+
+
+  public void setCybersourceKcp(ConnectionOptionsCybersourceKcp cybersourceKcp) {
+    this.cybersourceKcp = cybersourceKcp;
+  }
+
+
+  public ConnectionOptions cybersourceIdeal(ConnectionOptionsCybersourceIdeal cybersourceIdeal) {
+    
+    this.cybersourceIdeal = cybersourceIdeal;
+    return this;
+  }
+
+   /**
+   * Get cybersourceIdeal
+   * @return cybersourceIdeal
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public ConnectionOptionsCybersourceIdeal getCybersourceIdeal() {
+    return cybersourceIdeal;
+  }
+
+
+  public void setCybersourceIdeal(ConnectionOptionsCybersourceIdeal cybersourceIdeal) {
+    this.cybersourceIdeal = cybersourceIdeal;
   }
 
 
@@ -263,6 +319,8 @@ public class ConnectionOptions {
     }
     ConnectionOptions connectionOptions = (ConnectionOptions) o;
     return Objects.equals(this.cybersourceCard, connectionOptions.cybersourceCard) &&
+        Objects.equals(this.cybersourceKcp, connectionOptions.cybersourceKcp) &&
+        Objects.equals(this.cybersourceIdeal, connectionOptions.cybersourceIdeal) &&
         Objects.equals(this.cybersourceAntiFraud, connectionOptions.cybersourceAntiFraud) &&
         Objects.equals(this.givingblockGivingblock, connectionOptions.givingblockGivingblock) &&
         Objects.equals(this.forterAntiFraud, connectionOptions.forterAntiFraud) &&
@@ -274,7 +332,7 @@ public class ConnectionOptions {
 
   @Override
   public int hashCode() {
-    return Objects.hash(cybersourceCard, cybersourceAntiFraud, givingblockGivingblock, forterAntiFraud, adyenCard, paypalPaypal, paypalPaypalpaylater, stripeCard);
+    return Objects.hash(cybersourceCard, cybersourceKcp, cybersourceIdeal, cybersourceAntiFraud, givingblockGivingblock, forterAntiFraud, adyenCard, paypalPaypal, paypalPaypalpaylater, stripeCard);
   }
 
   @Override
@@ -282,6 +340,8 @@ public class ConnectionOptions {
     StringBuilder sb = new StringBuilder();
     sb.append("class ConnectionOptions {\n");
     sb.append("    cybersourceCard: ").append(toIndentedString(cybersourceCard)).append("\n");
+    sb.append("    cybersourceKcp: ").append(toIndentedString(cybersourceKcp)).append("\n");
+    sb.append("    cybersourceIdeal: ").append(toIndentedString(cybersourceIdeal)).append("\n");
     sb.append("    cybersourceAntiFraud: ").append(toIndentedString(cybersourceAntiFraud)).append("\n");
     sb.append("    givingblockGivingblock: ").append(toIndentedString(givingblockGivingblock)).append("\n");
     sb.append("    forterAntiFraud: ").append(toIndentedString(forterAntiFraud)).append("\n");

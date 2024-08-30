@@ -156,6 +156,8 @@ public class PaymentServiceSnapshot {
     
     KAKAOPAY("kakaopay"),
     
+    KCP("kcp"),
+    
     KLARNA("klarna"),
     
     LAYBUY("laybuy"),
@@ -215,6 +217,8 @@ public class PaymentServiceSnapshot {
     SMARTPAY("smartpay"),
     
     SOFORT("sofort"),
+    
+    SPEI("spei"),
     
     STRIPEDD("stripedd"),
     

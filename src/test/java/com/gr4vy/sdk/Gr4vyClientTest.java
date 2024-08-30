@@ -263,6 +263,26 @@ public class Gr4vyClientTest {
 	 }
 
 	 @Test
+	 public void newTransactionWithIdempotencyAndIpAddressTest() throws Gr4vyException {
+	 	TransactionPaymentMethodRequest pm = new TransactionPaymentMethodRequest()
+	 			.method(MethodEnum.CARD)
+	 			.number("4111111111111111")
+	 			.securityCode("123")
+	 			.expirationDate("12/26");
+		
+	 	TransactionRequest request = new TransactionRequest()
+	 			.amount(200)
+	 			.currency("USD")
+	 			.paymentMethod(pm);
+		
+	 	UUID idempotencyKey = UUID.randomUUID();
+     	Transaction response = shared.newTransaction(request, idempotencyKey.toString(), "64.233.160.0");
+        assert response != null;
+	 }
+
+
+
+	 @Test
 	 public void newTransactionWithStoredPaymentMethodTest() throws Gr4vyException {
 
 		PaymentMethodRequest pmPaymentMethodRequest = new PaymentMethodRequest()

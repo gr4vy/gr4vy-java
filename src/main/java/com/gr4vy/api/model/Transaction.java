@@ -530,6 +530,8 @@ public class Transaction {
     
     KAKAOPAY("kakaopay"),
     
+    KCP("kcp"),
+    
     KLARNA("klarna"),
     
     LAYBUY("laybuy"),
@@ -589,6 +591,8 @@ public class Transaction {
     SMARTPAY("smartpay"),
     
     SOFORT("sofort"),
+    
+    SPEI("spei"),
     
     STRIPEDD("stripedd"),
     

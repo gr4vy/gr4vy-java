@@ -161,6 +161,8 @@ public class PaymentServiceDefinition {
     
     KAKAOPAY("kakaopay"),
     
+    KCP("kcp"),
+    
     KLARNA("klarna"),
     
     LAYBUY("laybuy"),
@@ -220,6 +222,8 @@ public class PaymentServiceDefinition {
     SMARTPAY("smartpay"),
     
     SOFORT("sofort"),
+    
+    SPEI("spei"),
     
     STRIPEDD("stripedd"),
     
@@ -306,7 +310,11 @@ public class PaymentServiceDefinition {
     
     APPLEPAY("applepay"),
     
-    GOOGLEPAY("googlepay");
+    GOOGLEPAY("googlepay"),
+    
+    CLICK_TO_PAY("click-to-pay"),
+    
+    CHECKOUT_SESSION("checkout-session");
 
     private String value;
 

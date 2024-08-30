@@ -102,6 +102,8 @@ public class TransactionPaymentMethodRequest {
     
     KAKAOPAY("kakaopay"),
     
+    KCP("kcp"),
+    
     KLARNA("klarna"),
     
     LAYBUY("laybuy"),
@@ -161,6 +163,8 @@ public class TransactionPaymentMethodRequest {
     SMARTPAY("smartpay"),
     
     SOFORT("sofort"),
+    
+    SPEI("spei"),
     
     STRIPEDD("stripedd"),
     

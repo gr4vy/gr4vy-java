@@ -32,7 +32,7 @@ import java.util.UUID;
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class RedirectRequest {
   /**
-   * The method to use, this can be any of the methods that support redirect requests.  When storing a new payment method, only &#x60;gocardless&#x60; and &#x60;stripedd&#x60; are currently supported.
+   * The method to use, this can be any of the methods that support redirect requests.
    */
   @JsonAdapter(MethodEnum.Adapter.class)
   public enum MethodEnum {
@@ -120,10 +120,10 @@ public class RedirectRequest {
   }
 
    /**
-   * The method to use, this can be any of the methods that support redirect requests.  When storing a new payment method, only &#x60;gocardless&#x60; and &#x60;stripedd&#x60; are currently supported.
+   * The method to use, this can be any of the methods that support redirect requests.
    * @return method
   **/
-  @ApiModelProperty(example = "paypal", required = true, value = "The method to use, this can be any of the methods that support redirect requests.  When storing a new payment method, only `gocardless` and `stripedd` are currently supported.")
+  @ApiModelProperty(example = "paypal", required = true, value = "The method to use, this can be any of the methods that support redirect requests.")
 
   public MethodEnum getMethod() {
     return method;
