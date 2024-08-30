@@ -94,6 +94,8 @@ src/main/java/com/gr4vy/api/model/ConnectionOptions.java
 src/main/java/com/gr4vy/api/model/ConnectionOptionsAdyenCard.java
 src/main/java/com/gr4vy/api/model/ConnectionOptionsCybersourceAntiFraud.java
 src/main/java/com/gr4vy/api/model/ConnectionOptionsCybersourceCard.java
+src/main/java/com/gr4vy/api/model/ConnectionOptionsCybersourceIdeal.java
+src/main/java/com/gr4vy/api/model/ConnectionOptionsCybersourceKcp.java
 src/main/java/com/gr4vy/api/model/ConnectionOptionsForterAntiFraud.java
 src/main/java/com/gr4vy/api/model/ConnectionOptionsForterAntiFraudAddress.java
 src/main/java/com/gr4vy/api/model/ConnectionOptionsForterAntiFraudBasicItemData.java
@@ -395,6 +397,8 @@ src/test/java/com/gr4vy/api/model/ConnectionDefinitionsTest.java
 src/test/java/com/gr4vy/api/model/ConnectionOptionsAdyenCardTest.java
 src/test/java/com/gr4vy/api/model/ConnectionOptionsCybersourceAntiFraudTest.java
 src/test/java/com/gr4vy/api/model/ConnectionOptionsCybersourceCardTest.java
+src/test/java/com/gr4vy/api/model/ConnectionOptionsCybersourceIdealTest.java
+src/test/java/com/gr4vy/api/model/ConnectionOptionsCybersourceKcpTest.java
 src/test/java/com/gr4vy/api/model/ConnectionOptionsForterAntiFraudAddressTest.java
 src/test/java/com/gr4vy/api/model/ConnectionOptionsForterAntiFraudBasicItemDataTest.java
 src/test/java/com/gr4vy/api/model/ConnectionOptionsForterAntiFraudBeneficiariesTest.java

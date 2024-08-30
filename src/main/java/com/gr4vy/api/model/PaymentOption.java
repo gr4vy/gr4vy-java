@@ -149,6 +149,8 @@ public class PaymentOption {
     
     KAKAOPAY("kakaopay"),
     
+    KCP("kcp"),
+    
     KLARNA("klarna"),
     
     LAYBUY("laybuy"),
@@ -208,7 +210,7 @@ public class PaymentOption {
     SMARTPAY("smartpay"),
     
     SOFORT("sofort"),
-
+    
     SPEI("spei"),
     
     STRIPEDD("stripedd"),
@@ -288,7 +290,11 @@ public class PaymentOption {
     
     APPLEPAY("applepay"),
     
-    GOOGLEPAY("googlepay");
+    GOOGLEPAY("googlepay"),
+    
+    CLICK_TO_PAY("click-to-pay"),
+    
+    CHECKOUT_SESSION("checkout-session");
 
     private String value;
 

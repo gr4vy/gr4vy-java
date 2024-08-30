@@ -60,6 +60,8 @@ public class TransactionPaymentMethodRequest {
     
     CARD("card"),
     
+    ID("id"),
+    
     CASHAPP("cashapp"),
     
     CHASEORBITAL("chaseorbital"),
@@ -95,12 +97,12 @@ public class TransactionPaymentMethodRequest {
     GOPAY("gopay"),
     
     GRABPAY("grabpay"),
-
-    ID("id"),
     
     IDEAL("ideal"),
     
     KAKAOPAY("kakaopay"),
+    
+    KCP("kcp"),
     
     KLARNA("klarna"),
     
@@ -161,6 +163,8 @@ public class TransactionPaymentMethodRequest {
     SMARTPAY("smartpay"),
     
     SOFORT("sofort"),
+    
+    SPEI("spei"),
     
     STRIPEDD("stripedd"),
     

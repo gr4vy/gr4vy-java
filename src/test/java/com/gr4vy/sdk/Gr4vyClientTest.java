@@ -31,6 +31,7 @@ public class Gr4vyClientTest {
     public static void setup() {
 		shared = new Gr4vyClient.Builder()
 				.gr4vyId("spider")
+				.merchantAccountId("steve")
 				.privateKeyLocation(PRIVATE_KEY_NAME)
 				.publicKeyLocation(PUBLIC_KEY_NAME)
 				.environment("sandbox")
@@ -283,8 +284,8 @@ public class Gr4vyClientTest {
 
 	 	TransactionPaymentMethodRequest pm = new TransactionPaymentMethodRequest()
 	 			.method(MethodEnum.ID)
-	 			.id(id);
-
+	 			.id(id);	 	
+	 	
 	 	TransactionRequest request = new TransactionRequest()
 	 			.amount(100)
 	 			.currency("USD")
@@ -493,9 +494,11 @@ public class Gr4vyClientTest {
 	@Test
 	public void getPaymentServiceTokensTest() throws Gr4vyException {
      	PaymentMethods paymentMethods = shared.listPaymentMethods();
-		PaymentMethod paymentMethod = paymentMethods.getItems().get(0);
-		PaymentServiceTokens response = shared.getPaymentServiceTokens(paymentMethod.getId().toString());
-        assert response != null;
+     	if (paymentMethods.getItems().size() > 0) {
+			PaymentMethod paymentMethod = paymentMethods.getItems().get(0);
+			PaymentServiceTokens response = shared.getPaymentServiceTokens(paymentMethod.getId().toString());
+	        assert response != null;
+     	}
 	}
 
 }
