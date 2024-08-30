@@ -353,8 +353,6 @@ public class PaymentMethod {
     GRABPAY("grabpay"),
     
     IDEAL("ideal"),
-
-    ID("id"),
     
     KAKAOPAY("kakaopay"),
     
