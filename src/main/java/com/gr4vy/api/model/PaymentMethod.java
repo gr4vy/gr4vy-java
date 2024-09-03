@@ -345,12 +345,14 @@ public class PaymentMethod {
     GOCARDLESS("gocardless"),
     
     GOOGLEPAY("googlepay"),
-
+    
     GOOGLEPAY_PAN_ONLY("googlepay_pan_only"),
     
     GOPAY("gopay"),
     
     GRABPAY("grabpay"),
+    
+    ID("id"),
     
     IDEAL("ideal"),
     
