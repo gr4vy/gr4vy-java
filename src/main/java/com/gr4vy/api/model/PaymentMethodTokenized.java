@@ -152,13 +152,19 @@ public class PaymentMethodTokenized {
     
     GOOGLEPAY("googlepay"),
     
+    GOOGLEPAY_PAN_ONLY("googlepay_pan_only"),
+    
     GOPAY("gopay"),
     
     GRABPAY("grabpay"),
     
+    ID("id"),
+    
     IDEAL("ideal"),
     
     KAKAOPAY("kakaopay"),
+    
+    KCP("kcp"),
     
     KLARNA("klarna"),
     
@@ -219,6 +225,8 @@ public class PaymentMethodTokenized {
     SMARTPAY("smartpay"),
     
     SOFORT("sofort"),
+    
+    SPEI("spei"),
     
     STRIPEDD("stripedd"),
     

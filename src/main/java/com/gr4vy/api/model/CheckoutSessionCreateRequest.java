@@ -21,6 +21,7 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import com.gr4vy.api.model.CartItem;
+import com.gr4vy.api.model.TransactionBuyerRequest;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
@@ -42,6 +43,10 @@ public class CheckoutSessionCreateRequest {
   public static final String SERIALIZED_NAME_METADATA = "metadata";
   @SerializedName(SERIALIZED_NAME_METADATA)
   private Map<String, String> metadata = null;
+
+  public static final String SERIALIZED_NAME_BUYER = "buyer";
+  @SerializedName(SERIALIZED_NAME_BUYER)
+  private TransactionBuyerRequest buyer;
 
 
   public CheckoutSessionCreateRequest cartItems(List<CartItem> cartItems) {
@@ -106,6 +111,29 @@ public class CheckoutSessionCreateRequest {
   }
 
 
+  public CheckoutSessionCreateRequest buyer(TransactionBuyerRequest buyer) {
+    
+    this.buyer = buyer;
+    return this;
+  }
+
+   /**
+   * Get buyer
+   * @return buyer
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public TransactionBuyerRequest getBuyer() {
+    return buyer;
+  }
+
+
+  public void setBuyer(TransactionBuyerRequest buyer) {
+    this.buyer = buyer;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -116,12 +144,13 @@ public class CheckoutSessionCreateRequest {
     }
     CheckoutSessionCreateRequest checkoutSessionCreateRequest = (CheckoutSessionCreateRequest) o;
     return Objects.equals(this.cartItems, checkoutSessionCreateRequest.cartItems) &&
-        Objects.equals(this.metadata, checkoutSessionCreateRequest.metadata);
+        Objects.equals(this.metadata, checkoutSessionCreateRequest.metadata) &&
+        Objects.equals(this.buyer, checkoutSessionCreateRequest.buyer);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(cartItems, metadata);
+    return Objects.hash(cartItems, metadata, buyer);
   }
 
   @Override
@@ -130,6 +159,7 @@ public class CheckoutSessionCreateRequest {
     sb.append("class CheckoutSessionCreateRequest {\n");
     sb.append("    cartItems: ").append(toIndentedString(cartItems)).append("\n");
     sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
+    sb.append("    buyer: ").append(toIndentedString(buyer)).append("\n");
     sb.append("}");
     return sb.toString();
   }

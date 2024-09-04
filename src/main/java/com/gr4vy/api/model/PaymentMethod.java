@@ -346,13 +346,19 @@ public class PaymentMethod {
     
     GOOGLEPAY("googlepay"),
     
+    GOOGLEPAY_PAN_ONLY("googlepay_pan_only"),
+    
     GOPAY("gopay"),
     
     GRABPAY("grabpay"),
     
+    ID("id"),
+    
     IDEAL("ideal"),
     
     KAKAOPAY("kakaopay"),
+    
+    KCP("kcp"),
     
     KLARNA("klarna"),
     
@@ -413,6 +419,8 @@ public class PaymentMethod {
     SMARTPAY("smartpay"),
     
     SOFORT("sofort"),
+    
+    SPEI("spei"),
     
     STRIPEDD("stripedd"),
     
@@ -487,7 +495,11 @@ public class PaymentMethod {
     
     APPLEPAY("applepay"),
     
-    GOOGLEPAY("googlepay");
+    GOOGLEPAY("googlepay"),
+    
+    CLICK_TO_PAY("click-to-pay"),
+    
+    CHECKOUT_SESSION("checkout-session");
 
     private String value;
 
@@ -629,7 +641,7 @@ public class PaymentMethod {
   private SchemeEnum scheme;
 
   /**
-   * The state of the payment method.  - &#x60;processing&#x60; - The payment method is stored but has not been used yet. - &#x60;buyer_approval_required&#x60; - Storing the payment method requires   the buyer to provide approval. Follow the &#x60;approval_url&#x60; for next steps. - &#x60;succeeded&#x60; - The payment method is stored and has been used. - &#x60;failed&#x60; - The payment method could not be stored, or failed first use.
+   * The state of the payment method.  - &#x60;processing&#x60; - The payment method is stored but is not ready to be    used yet, as we may be waiting for a notification from a connector    to complete the setup. - &#x60;buyer_approval_required&#x60; - Storing the payment method requires   the buyer to provide approval. Follow the &#x60;approval_url&#x60; for next steps. - &#x60;succeeded&#x60; - The payment method is stored and can be used. - &#x60;failed&#x60; - The payment method could not be stored, or failed verification.
    */
   @JsonAdapter(StatusEnum.Adapter.class)
   public enum StatusEnum {
@@ -1144,11 +1156,11 @@ public class PaymentMethod {
   }
 
    /**
-   * The state of the payment method.  - &#x60;processing&#x60; - The payment method is stored but has not been used yet. - &#x60;buyer_approval_required&#x60; - Storing the payment method requires   the buyer to provide approval. Follow the &#x60;approval_url&#x60; for next steps. - &#x60;succeeded&#x60; - The payment method is stored and has been used. - &#x60;failed&#x60; - The payment method could not be stored, or failed first use.
+   * The state of the payment method.  - &#x60;processing&#x60; - The payment method is stored but is not ready to be    used yet, as we may be waiting for a notification from a connector    to complete the setup. - &#x60;buyer_approval_required&#x60; - Storing the payment method requires   the buyer to provide approval. Follow the &#x60;approval_url&#x60; for next steps. - &#x60;succeeded&#x60; - The payment method is stored and can be used. - &#x60;failed&#x60; - The payment method could not be stored, or failed verification.
    * @return status
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "succeeded", value = "The state of the payment method.  - `processing` - The payment method is stored but has not been used yet. - `buyer_approval_required` - Storing the payment method requires   the buyer to provide approval. Follow the `approval_url` for next steps. - `succeeded` - The payment method is stored and has been used. - `failed` - The payment method could not be stored, or failed first use.")
+  @ApiModelProperty(example = "succeeded", value = "The state of the payment method.  - `processing` - The payment method is stored but is not ready to be    used yet, as we may be waiting for a notification from a connector    to complete the setup. - `buyer_approval_required` - Storing the payment method requires   the buyer to provide approval. Follow the `approval_url` for next steps. - `succeeded` - The payment method is stored and can be used. - `failed` - The payment method could not be stored, or failed verification.")
 
   public StatusEnum getStatus() {
     return status;
