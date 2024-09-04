@@ -520,15 +520,19 @@ public class Transaction {
     
     GOOGLEPAY("googlepay"),
     
+    GOOGLEPAY_PAN_ONLY("googlepay_pan_only"),
+    
     GOPAY("gopay"),
     
     GRABPAY("grabpay"),
-
+    
     ID("id"),
     
     IDEAL("ideal"),
     
     KAKAOPAY("kakaopay"),
+    
+    KCP("kcp"),
     
     KLARNA("klarna"),
     
@@ -589,6 +593,8 @@ public class Transaction {
     SMARTPAY("smartpay"),
     
     SOFORT("sofort"),
+    
+    SPEI("spei"),
     
     STRIPEDD("stripedd"),
     

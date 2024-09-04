@@ -94,6 +94,8 @@ src/main/java/com/gr4vy/api/model/ConnectionOptions.java
 src/main/java/com/gr4vy/api/model/ConnectionOptionsAdyenCard.java
 src/main/java/com/gr4vy/api/model/ConnectionOptionsCybersourceAntiFraud.java
 src/main/java/com/gr4vy/api/model/ConnectionOptionsCybersourceCard.java
+src/main/java/com/gr4vy/api/model/ConnectionOptionsCybersourceIdeal.java
+src/main/java/com/gr4vy/api/model/ConnectionOptionsCybersourceKcp.java
 src/main/java/com/gr4vy/api/model/ConnectionOptionsForterAntiFraud.java
 src/main/java/com/gr4vy/api/model/ConnectionOptionsForterAntiFraudAddress.java
 src/main/java/com/gr4vy/api/model/ConnectionOptionsForterAntiFraudBasicItemData.java
@@ -284,6 +286,7 @@ src/main/java/com/gr4vy/api/model/ThreeDSecureSummary.java
 src/main/java/com/gr4vy/api/model/ThreeDSecureV2.java
 src/main/java/com/gr4vy/api/model/TokenizedRequest.java
 src/main/java/com/gr4vy/api/model/Transaction.java
+src/main/java/com/gr4vy/api/model/TransactionBuyerRequest.java
 src/main/java/com/gr4vy/api/model/TransactionCaptureRequest.java
 src/main/java/com/gr4vy/api/model/TransactionCardRequest.java
 src/main/java/com/gr4vy/api/model/TransactionCheckoutSessionRequest.java
@@ -395,6 +398,8 @@ src/test/java/com/gr4vy/api/model/ConnectionDefinitionsTest.java
 src/test/java/com/gr4vy/api/model/ConnectionOptionsAdyenCardTest.java
 src/test/java/com/gr4vy/api/model/ConnectionOptionsCybersourceAntiFraudTest.java
 src/test/java/com/gr4vy/api/model/ConnectionOptionsCybersourceCardTest.java
+src/test/java/com/gr4vy/api/model/ConnectionOptionsCybersourceIdealTest.java
+src/test/java/com/gr4vy/api/model/ConnectionOptionsCybersourceKcpTest.java
 src/test/java/com/gr4vy/api/model/ConnectionOptionsForterAntiFraudAddressTest.java
 src/test/java/com/gr4vy/api/model/ConnectionOptionsForterAntiFraudBasicItemDataTest.java
 src/test/java/com/gr4vy/api/model/ConnectionOptionsForterAntiFraudBeneficiariesTest.java
@@ -586,6 +591,7 @@ src/test/java/com/gr4vy/api/model/ThreeDSecureSuccessEventTest.java
 src/test/java/com/gr4vy/api/model/ThreeDSecureSummaryTest.java
 src/test/java/com/gr4vy/api/model/ThreeDSecureV2Test.java
 src/test/java/com/gr4vy/api/model/TokenizedRequestTest.java
+src/test/java/com/gr4vy/api/model/TransactionBuyerRequestTest.java
 src/test/java/com/gr4vy/api/model/TransactionCaptureRequestTest.java
 src/test/java/com/gr4vy/api/model/TransactionCardRequestTest.java
 src/test/java/com/gr4vy/api/model/TransactionCheckoutSessionRequestTest.java

@@ -153,13 +153,19 @@ public class PaymentServiceDefinition {
     
     GOOGLEPAY("googlepay"),
     
+    GOOGLEPAY_PAN_ONLY("googlepay_pan_only"),
+    
     GOPAY("gopay"),
     
     GRABPAY("grabpay"),
     
+    ID("id"),
+    
     IDEAL("ideal"),
     
     KAKAOPAY("kakaopay"),
+    
+    KCP("kcp"),
     
     KLARNA("klarna"),
     
@@ -220,6 +226,8 @@ public class PaymentServiceDefinition {
     SMARTPAY("smartpay"),
     
     SOFORT("sofort"),
+    
+    SPEI("spei"),
     
     STRIPEDD("stripedd"),
     
@@ -306,7 +314,11 @@ public class PaymentServiceDefinition {
     
     APPLEPAY("applepay"),
     
-    GOOGLEPAY("googlepay");
+    GOOGLEPAY("googlepay"),
+    
+    CLICK_TO_PAY("click-to-pay"),
+    
+    CHECKOUT_SESSION("checkout-session");
 
     private String value;
 

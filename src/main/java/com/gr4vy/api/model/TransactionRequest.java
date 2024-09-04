@@ -25,6 +25,7 @@ import com.gr4vy.api.model.CartItem;
 import com.gr4vy.api.model.ConnectionOptions;
 import com.gr4vy.api.model.StatementDescriptor;
 import com.gr4vy.api.model.ThreeDSecureDataV1V2;
+import com.gr4vy.api.model.TransactionBuyerRequest;
 import com.gr4vy.api.model.TransactionGiftCardRequest;
 import com.gr4vy.api.model.TransactionPaymentMethodRequest;
 import io.swagger.annotations.ApiModel;
@@ -73,6 +74,10 @@ public class TransactionRequest {
   public static final String SERIALIZED_NAME_BUYER_ID = "buyer_id";
   @SerializedName(SERIALIZED_NAME_BUYER_ID)
   private UUID buyerId;
+
+  public static final String SERIALIZED_NAME_BUYER = "buyer";
+  @SerializedName(SERIALIZED_NAME_BUYER)
+  private TransactionBuyerRequest buyer;
 
   public static final String SERIALIZED_NAME_CART_ITEMS = "cart_items";
   @SerializedName(SERIALIZED_NAME_CART_ITEMS)
@@ -420,6 +425,29 @@ public class TransactionRequest {
 
   public void setBuyerId(UUID buyerId) {
     this.buyerId = buyerId;
+  }
+
+
+  public TransactionRequest buyer(TransactionBuyerRequest buyer) {
+    
+    this.buyer = buyer;
+    return this;
+  }
+
+   /**
+   * Get buyer
+   * @return buyer
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public TransactionBuyerRequest getBuyer() {
+    return buyer;
+  }
+
+
+  public void setBuyer(TransactionBuyerRequest buyer) {
+    this.buyer = buyer;
   }
 
 
@@ -832,6 +860,7 @@ public class TransactionRequest {
         Objects.equals(this.browserInfo, transactionRequest.browserInfo) &&
         Objects.equals(this.buyerExternalIdentifier, transactionRequest.buyerExternalIdentifier) &&
         Objects.equals(this.buyerId, transactionRequest.buyerId) &&
+        Objects.equals(this.buyer, transactionRequest.buyer) &&
         Objects.equals(this.cartItems, transactionRequest.cartItems) &&
         Objects.equals(this.connectionOptions, transactionRequest.connectionOptions) &&
         Objects.equals(this.country, transactionRequest.country) &&
@@ -852,7 +881,7 @@ public class TransactionRequest {
 
   @Override
   public int hashCode() {
-    return Objects.hash(amount, currency, paymentMethod, antiFraudFingerprint, asyncCapture, browserInfo, buyerExternalIdentifier, buyerId, cartItems, connectionOptions, country, externalIdentifier, giftCards, intent, isSubsequentPayment, merchantInitiated, metadata, paymentSource, previousSchemeTransactionId, shippingDetailsId, statementDescriptor, store, threeDSecureData, paymentServiceId);
+    return Objects.hash(amount, currency, paymentMethod, antiFraudFingerprint, asyncCapture, browserInfo, buyerExternalIdentifier, buyerId, buyer, cartItems, connectionOptions, country, externalIdentifier, giftCards, intent, isSubsequentPayment, merchantInitiated, metadata, paymentSource, previousSchemeTransactionId, shippingDetailsId, statementDescriptor, store, threeDSecureData, paymentServiceId);
   }
 
   @Override
@@ -867,6 +896,7 @@ public class TransactionRequest {
     sb.append("    browserInfo: ").append(toIndentedString(browserInfo)).append("\n");
     sb.append("    buyerExternalIdentifier: ").append(toIndentedString(buyerExternalIdentifier)).append("\n");
     sb.append("    buyerId: ").append(toIndentedString(buyerId)).append("\n");
+    sb.append("    buyer: ").append(toIndentedString(buyer)).append("\n");
     sb.append("    cartItems: ").append(toIndentedString(cartItems)).append("\n");
     sb.append("    connectionOptions: ").append(toIndentedString(connectionOptions)).append("\n");
     sb.append("    country: ").append(toIndentedString(country)).append("\n");
