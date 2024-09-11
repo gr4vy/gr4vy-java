@@ -549,6 +549,10 @@ public class Gr4vyClient {
 		String response = this.get("/transactions/" + transactionId);
 		return this.gson.fromJson(response,Transaction.class);
 	}
+	public Transaction syncTransaction(String transactionId) {
+		String response = this.post("/transactions/" + transactionId + "/sync");
+		return this.gson.fromJson(response,Transaction.class);
+	}
 	public Transaction captureTransaction(String transactionId, TransactionCaptureRequest request) {
 		String response = this.post("/transactions/" + transactionId + "/capture", this.gson.toJson(request));
 		return this.gson.fromJson(response,Transaction.class);
