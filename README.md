@@ -17,7 +17,7 @@ Add the `gr4vy-java` dependency to your pom.xml:
   	<dependency>
 	    <groupId>com.github.gr4vy</groupId>
 	    <artifactId>gr4vy-java</artifactId>
-	    <version>0.30.0</version>
+	    <version>0.31.0</version>
 	</dependency>
 ```
 
@@ -31,8 +31,7 @@ Once you have been set up with a Gr4vy account you will need to head over to the
 **Integrations** panel and generate a private key. We recommend storing this key
 in a secure location but in this code sample we simply read the file from disk.
 
-Due to a restriction in Java 17+ the EC public key must first be generated from the
-private key by running:
+Due to a restriction in Java 17+ the EC public key must first be generated from the private key by running:
 ```
 openssl ec -in private_key.pem -pubout -out public_key.pem
 ``` 

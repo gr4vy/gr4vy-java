@@ -213,7 +213,7 @@ public class Gr4vyClient {
 	    		.jwtID(UUID.randomUUID().toString())
 	    		.notBeforeTime(now)
 	    	    .issueTime(now)
-	    	    .issuer("Gr4vy SDK 0.30.0 - Java")
+	    	    .issuer("Gr4vy SDK 0.31.0 - Java")
 	    	    .expirationTime(expire)
 	    	    .claim("scopes", scopes);
 	    
