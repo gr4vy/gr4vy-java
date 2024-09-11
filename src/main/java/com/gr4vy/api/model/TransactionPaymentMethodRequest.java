@@ -60,8 +60,6 @@ public class TransactionPaymentMethodRequest {
     
     CARD("card"),
     
-    ID("id"),
-    
     CASHAPP("cashapp"),
     
     CHASEORBITAL("chaseorbital"),
@@ -94,9 +92,13 @@ public class TransactionPaymentMethodRequest {
     
     GOOGLEPAY("googlepay"),
     
+    GOOGLEPAY_PAN_ONLY("googlepay_pan_only"),
+    
     GOPAY("gopay"),
     
     GRABPAY("grabpay"),
+    
+    ID("id"),
     
     IDEAL("ideal"),
     

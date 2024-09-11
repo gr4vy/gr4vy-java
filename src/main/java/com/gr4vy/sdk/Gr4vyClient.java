@@ -325,10 +325,13 @@ public class Gr4vyClient {
     }
 	
 	public String post(String endpoint, String jsonBody) throws Gr4vyException {
-		return this.post(endpoint, jsonBody, null);
+		return this.post(endpoint, jsonBody, null, null);
 	}
 
 	public String post(String endpoint, String jsonBody, String idempotencyKey) throws Gr4vyException {
+		return this.post(endpoint, jsonBody, idempotencyKey, null);
+	}
+	public String post(String endpoint, String jsonBody, String idempotencyKey, String ipAddress) throws Gr4vyException {
 		String[] scopes = {"*.read", "*.write"};
 		String accessToken = null;
 		try {
@@ -347,6 +350,9 @@ public class Gr4vyClient {
         
         if (idempotencyKey != null) {
         	requestBuilder.addHeader("Idempotency-Key", idempotencyKey);
+        }
+		if (ipAddress != null) {
+        	requestBuilder.addHeader("X-Forwarded-For", ipAddress);
         }
 		if (jsonBody != null) {
 			RequestBody body = RequestBody.create(jsonBody, JSON);
@@ -545,6 +551,10 @@ public class Gr4vyClient {
 	}
 	public Transaction newTransaction(TransactionRequest request, String idempotencyKey) {
 		String response = this.post("/transactions", this.gson.toJson(request), idempotencyKey);
+        return this.gson.fromJson(response,Transaction.class);
+	}
+	public Transaction newTransaction(TransactionRequest request, String idempotencyKey, String ipAddress) {
+		String response = this.post("/transactions", this.gson.toJson(request), idempotencyKey, ipAddress);
         return this.gson.fromJson(response,Transaction.class);
 	}
 	public Transaction getTransaction(String transactionId) {
