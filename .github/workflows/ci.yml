@@ -25,4 +25,5 @@ jobs:
       - name: Install dependencies & run tests
         env: 
           PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
+          PUBLIC_KEY: ${{ secrets.PUBLIC_KEY }}
         run: mvn install
