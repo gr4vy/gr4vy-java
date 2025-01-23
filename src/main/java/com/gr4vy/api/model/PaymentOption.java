@@ -178,6 +178,8 @@ public class PaymentOption {
     NETBANKING("netbanking"),
     
     NETWORK_TOKEN("network-token"),
+
+    NUPAY("nupay"),
     
     ONEY_3X("oney_3x"),
     
