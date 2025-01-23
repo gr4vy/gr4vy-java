@@ -20,6 +20,8 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import com.gr4vy.api.model.AdditionalIdentifiers;
+import com.gr4vy.api.model.Airline;
 import com.gr4vy.api.model.BuyerSnapshot;
 import com.gr4vy.api.model.CartItem;
 import com.gr4vy.api.model.GiftCardRedemption;
@@ -101,6 +103,10 @@ public class Transaction {
   public static final String SERIALIZED_NAME_AMOUNT = "amount";
   @SerializedName(SERIALIZED_NAME_AMOUNT)
   private Integer amount;
+
+  public static final String SERIALIZED_NAME_ADDITIONAL_IDENTIFIERS = "additional_identifiers";
+  @SerializedName(SERIALIZED_NAME_ADDITIONAL_IDENTIFIERS)
+  private AdditionalIdentifiers additionalIdentifiers;
 
   public static final String SERIALIZED_NAME_AUTH_RESPONSE_CODE = "auth_response_code";
   @SerializedName(SERIALIZED_NAME_AUTH_RESPONSE_CODE)
@@ -506,11 +512,15 @@ public class Transaction {
     
     EBANX("ebanx"),
     
+    EFECTY("efecty"),
+    
     EPS("eps"),
     
     EVERYDAYPAY("everydaypay"),
     
     GCASH("gcash"),
+    
+    GIFT_CARD("gift-card"),
     
     GIROPAY("giropay"),
     
@@ -544,9 +554,13 @@ public class Transaction {
     
     MAYBANKQRPAY("maybankqrpay"),
     
+    MERCADOPAGO("mercadopago"),
+    
     MULTIBANCO("multibanco"),
     
     MULTIPAGO("multipago"),
+    
+    NETBANKING("netbanking"),
     
     NETWORK_TOKEN("network-token"),
     
@@ -578,6 +592,8 @@ public class Transaction {
     
     PIX("pix"),
     
+    PSE("pse"),
+    
     RABBITLINEPAY("rabbitlinepay"),
     
     RAZORPAY("razorpay"),
@@ -608,9 +624,13 @@ public class Transaction {
     
     TRUSTLYEUROPE("trustlyeurope"),
     
+    UPI("upi"),
+    
     VIPPS("vipps"),
     
     WAAVE("waave"),
+    
+    WEBPAY("webpay"),
     
     WECHAT("wechat"),
     
@@ -832,6 +852,10 @@ public class Transaction {
   @SerializedName(SERIALIZED_NAME_THREE_D_SECURE)
   private ThreeDSecureSummary threeDSecure;
 
+  public static final String SERIALIZED_NAME_AIRLINE = "airline";
+  @SerializedName(SERIALIZED_NAME_AIRLINE)
+  private Airline airline;
+
   public static final String SERIALIZED_NAME_UPDATED_AT = "updated_at";
   @SerializedName(SERIALIZED_NAME_UPDATED_AT)
   private String updatedAt;
@@ -839,6 +863,18 @@ public class Transaction {
   public static final String SERIALIZED_NAME_VOIDED_AT = "voided_at";
   @SerializedName(SERIALIZED_NAME_VOIDED_AT)
   private String voidedAt;
+
+  public static final String SERIALIZED_NAME_SETTLED_CURRENCY = "settled_currency";
+  @SerializedName(SERIALIZED_NAME_SETTLED_CURRENCY)
+  private String settledCurrency;
+
+  public static final String SERIALIZED_NAME_SETTLED_AMOUNT = "settled_amount";
+  @SerializedName(SERIALIZED_NAME_SETTLED_AMOUNT)
+  private Integer settledAmount;
+
+  public static final String SERIALIZED_NAME_SETTLED = "settled";
+  @SerializedName(SERIALIZED_NAME_SETTLED)
+  private Boolean settled;
 
 
   public Transaction type(TypeEnum type) {
@@ -909,6 +945,29 @@ public class Transaction {
 
   public void setAmount(Integer amount) {
     this.amount = amount;
+  }
+
+
+  public Transaction additionalIdentifiers(AdditionalIdentifiers additionalIdentifiers) {
+    
+    this.additionalIdentifiers = additionalIdentifiers;
+    return this;
+  }
+
+   /**
+   * A list of additional identifiers that we may keep track of to manage this transaction. This may include the authorization ID, capture ID, and processor ID, as well as an undefined list of additional identifiers.
+   * @return additionalIdentifiers
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "A list of additional identifiers that we may keep track of to manage this transaction. This may include the authorization ID, capture ID, and processor ID, as well as an undefined list of additional identifiers.")
+
+  public AdditionalIdentifiers getAdditionalIdentifiers() {
+    return additionalIdentifiers;
+  }
+
+
+  public void setAdditionalIdentifiers(AdditionalIdentifiers additionalIdentifiers) {
+    this.additionalIdentifiers = additionalIdentifiers;
   }
 
 
@@ -1885,6 +1944,29 @@ public class Transaction {
   }
 
 
+  public Transaction airline(Airline airline) {
+    
+    this.airline = airline;
+    return this;
+  }
+
+   /**
+   * Contains information about an airline travel, if applicable.
+   * @return airline
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Contains information about an airline travel, if applicable.")
+
+  public Airline getAirline() {
+    return airline;
+  }
+
+
+  public void setAirline(Airline airline) {
+    this.airline = airline;
+  }
+
+
   public Transaction updatedAt(String updatedAt) {
     
     this.updatedAt = updatedAt;
@@ -1931,6 +2013,75 @@ public class Transaction {
   }
 
 
+  public Transaction settledCurrency(String settledCurrency) {
+    
+    this.settledCurrency = settledCurrency;
+    return this;
+  }
+
+   /**
+   * The currency of this transaction&#39;s settlement in ISO 4217 three-letter code format.
+   * @return settledCurrency
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "GBP", value = "The currency of this transaction's settlement in ISO 4217 three-letter code format.")
+
+  public String getSettledCurrency() {
+    return settledCurrency;
+  }
+
+
+  public void setSettledCurrency(String settledCurrency) {
+    this.settledCurrency = settledCurrency;
+  }
+
+
+  public Transaction settledAmount(Integer settledAmount) {
+    
+    this.settledAmount = settledAmount;
+    return this;
+  }
+
+   /**
+   * The net amount settled for this transaction.
+   * @return settledAmount
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "1000", value = "The net amount settled for this transaction.")
+
+  public Integer getSettledAmount() {
+    return settledAmount;
+  }
+
+
+  public void setSettledAmount(Integer settledAmount) {
+    this.settledAmount = settledAmount;
+  }
+
+
+  public Transaction settled(Boolean settled) {
+    
+    this.settled = settled;
+    return this;
+  }
+
+   /**
+   * Indicates whether this transaction has been settled.
+   * @return settled
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "true", value = "Indicates whether this transaction has been settled.")
+
+  public Boolean getSettled() {
+    return settled;
+  }
+
+
+  public void setSettled(Boolean settled) {
+    this.settled = settled;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -1943,6 +2094,7 @@ public class Transaction {
     return Objects.equals(this.type, transaction.type) &&
         Objects.equals(this.id, transaction.id) &&
         Objects.equals(this.amount, transaction.amount) &&
+        Objects.equals(this.additionalIdentifiers, transaction.additionalIdentifiers) &&
         Objects.equals(this.authResponseCode, transaction.authResponseCode) &&
         Objects.equals(this.authorizedAmount, transaction.authorizedAmount) &&
         Objects.equals(this.authorizedAt, transaction.authorizedAt) &&
@@ -1984,13 +2136,17 @@ public class Transaction {
         Objects.equals(this.statementDescriptor, transaction.statementDescriptor) &&
         Objects.equals(this.status, transaction.status) &&
         Objects.equals(this.threeDSecure, transaction.threeDSecure) &&
+        Objects.equals(this.airline, transaction.airline) &&
         Objects.equals(this.updatedAt, transaction.updatedAt) &&
-        Objects.equals(this.voidedAt, transaction.voidedAt);
+        Objects.equals(this.voidedAt, transaction.voidedAt) &&
+        Objects.equals(this.settledCurrency, transaction.settledCurrency) &&
+        Objects.equals(this.settledAmount, transaction.settledAmount) &&
+        Objects.equals(this.settled, transaction.settled);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(type, id, amount, authResponseCode, authorizedAmount, authorizedAt, approvalExpiresAt, avsResponseCode, buyer, capturedAmount, capturedAt, cartItems, checkoutSessionId, country, createdAt, currency, cvvResponseCode, errorCode, externalIdentifier, giftCardService, giftCardRedemptions, instrumentType, intent, intentOutcome, isSubsequentPayment, merchantAccountId, merchantInitiated, metadata, method, multiTender, paymentMethod, paymentService, paymentServiceTransactionId, paymentSource, pendingReview, rawResponseCode, rawResponseDescription, reconciliationId, refundedAmount, schemeTransactionId, shippingDetails, statementDescriptor, status, threeDSecure, updatedAt, voidedAt);
+    return Objects.hash(type, id, amount, additionalIdentifiers, authResponseCode, authorizedAmount, authorizedAt, approvalExpiresAt, avsResponseCode, buyer, capturedAmount, capturedAt, cartItems, checkoutSessionId, country, createdAt, currency, cvvResponseCode, errorCode, externalIdentifier, giftCardService, giftCardRedemptions, instrumentType, intent, intentOutcome, isSubsequentPayment, merchantAccountId, merchantInitiated, metadata, method, multiTender, paymentMethod, paymentService, paymentServiceTransactionId, paymentSource, pendingReview, rawResponseCode, rawResponseDescription, reconciliationId, refundedAmount, schemeTransactionId, shippingDetails, statementDescriptor, status, threeDSecure, airline, updatedAt, voidedAt, settledCurrency, settledAmount, settled);
   }
 
   @Override
@@ -2000,6 +2156,7 @@ public class Transaction {
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    amount: ").append(toIndentedString(amount)).append("\n");
+    sb.append("    additionalIdentifiers: ").append(toIndentedString(additionalIdentifiers)).append("\n");
     sb.append("    authResponseCode: ").append(toIndentedString(authResponseCode)).append("\n");
     sb.append("    authorizedAmount: ").append(toIndentedString(authorizedAmount)).append("\n");
     sb.append("    authorizedAt: ").append(toIndentedString(authorizedAt)).append("\n");
@@ -2041,8 +2198,12 @@ public class Transaction {
     sb.append("    statementDescriptor: ").append(toIndentedString(statementDescriptor)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("    threeDSecure: ").append(toIndentedString(threeDSecure)).append("\n");
+    sb.append("    airline: ").append(toIndentedString(airline)).append("\n");
     sb.append("    updatedAt: ").append(toIndentedString(updatedAt)).append("\n");
     sb.append("    voidedAt: ").append(toIndentedString(voidedAt)).append("\n");
+    sb.append("    settledCurrency: ").append(toIndentedString(settledCurrency)).append("\n");
+    sb.append("    settledAmount: ").append(toIndentedString(settledAmount)).append("\n");
+    sb.append("    settled: ").append(toIndentedString(settled)).append("\n");
     sb.append("}");
     return sb.toString();
   }

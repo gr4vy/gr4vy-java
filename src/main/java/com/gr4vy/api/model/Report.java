@@ -411,11 +411,11 @@ public class Report {
   }
 
    /**
-   * The specifications of this report.
+   * Get spec
    * @return spec
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "The specifications of this report.")
+  @ApiModelProperty(value = "")
 
   public ReportSpec getSpec() {
     return spec;

@@ -22,6 +22,7 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import com.gr4vy.api.model.GiftCardServiceFields;
 import com.gr4vy.api.model.MerchantProfileSummary;
+import com.gr4vy.api.model.PaymentServiceReportingFields;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
@@ -113,6 +114,10 @@ public class PaymentService {
   @SerializedName(SERIALIZED_NAME_FIELDS)
   private List<GiftCardServiceFields> fields = null;
 
+  public static final String SERIALIZED_NAME_REPORTING_FIELDS = "reporting_fields";
+  @SerializedName(SERIALIZED_NAME_REPORTING_FIELDS)
+  private List<PaymentServiceReportingFields> reportingFields = null;
+
   public static final String SERIALIZED_NAME_MERCHANT_ACCOUNT_ID = "merchant_account_id";
   @SerializedName(SERIALIZED_NAME_MERCHANT_ACCOUNT_ID)
   private String merchantAccountId;
@@ -168,11 +173,15 @@ public class PaymentService {
     
     EBANX("ebanx"),
     
+    EFECTY("efecty"),
+    
     EPS("eps"),
     
     EVERYDAYPAY("everydaypay"),
     
     GCASH("gcash"),
+    
+    GIFT_CARD("gift-card"),
     
     GIROPAY("giropay"),
     
@@ -206,9 +215,13 @@ public class PaymentService {
     
     MAYBANKQRPAY("maybankqrpay"),
     
+    MERCADOPAGO("mercadopago"),
+    
     MULTIBANCO("multibanco"),
     
     MULTIPAGO("multipago"),
+    
+    NETBANKING("netbanking"),
     
     NETWORK_TOKEN("network-token"),
     
@@ -240,6 +253,8 @@ public class PaymentService {
     
     PIX("pix"),
     
+    PSE("pse"),
+    
     RABBITLINEPAY("rabbitlinepay"),
     
     RAZORPAY("razorpay"),
@@ -270,9 +285,13 @@ public class PaymentService {
     
     TRUSTLYEUROPE("trustlyeurope"),
     
+    UPI("upi"),
+    
     VIPPS("vipps"),
     
     WAAVE("waave"),
+    
+    WEBPAY("webpay"),
     
     WECHAT("wechat"),
     
@@ -335,6 +354,10 @@ public class PaymentService {
   public static final String SERIALIZED_NAME_PAYMENT_SERVICE_DEFINITION_ID = "payment_service_definition_id";
   @SerializedName(SERIALIZED_NAME_PAYMENT_SERVICE_DEFINITION_ID)
   private String paymentServiceDefinitionId;
+
+  public static final String SERIALIZED_NAME_SETTLEMENT_REPORTING_ENABLED = "settlement_reporting_enabled";
+  @SerializedName(SERIALIZED_NAME_SETTLEMENT_REPORTING_ENABLED)
+  private Boolean settlementReportingEnabled;
 
   /**
    * The current status of this service. This will start off as pending, move to created, and might eventually move to an error status if and when the credentials are no longer valid. 
@@ -610,6 +633,37 @@ public class PaymentService {
   }
 
 
+  public PaymentService reportingFields(List<PaymentServiceReportingFields> reportingFields) {
+    
+    this.reportingFields = reportingFields;
+    return this;
+  }
+
+  public PaymentService addReportingFieldsItem(PaymentServiceReportingFields reportingFieldsItem) {
+    if (this.reportingFields == null) {
+      this.reportingFields = new ArrayList<PaymentServiceReportingFields>();
+    }
+    this.reportingFields.add(reportingFieldsItem);
+    return this;
+  }
+
+   /**
+   * A list of fields, each containing a key-value pair for each field configured for reporting for this payment service. Fields marked as &#x60;secret&#x60; (see Payment Service Definition) are not returned.
+   * @return reportingFields
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "A list of fields, each containing a key-value pair for each field configured for reporting for this payment service. Fields marked as `secret` (see Payment Service Definition) are not returned.")
+
+  public List<PaymentServiceReportingFields> getReportingFields() {
+    return reportingFields;
+  }
+
+
+  public void setReportingFields(List<PaymentServiceReportingFields> reportingFields) {
+    this.reportingFields = reportingFields;
+  }
+
+
   public PaymentService merchantAccountId(String merchantAccountId) {
     
     this.merchantAccountId = merchantAccountId;
@@ -771,6 +825,29 @@ public class PaymentService {
   }
 
 
+  public PaymentService settlementReportingEnabled(Boolean settlementReportingEnabled) {
+    
+    this.settlementReportingEnabled = settlementReportingEnabled;
+    return this;
+  }
+
+   /**
+   * Defines if settlement reporting is enabled for the service. This feature can only be enabled if the payment service definition supports the &#x60;settlement_reporting&#x60; feature.
+   * @return settlementReportingEnabled
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "true", value = "Defines if settlement reporting is enabled for the service. This feature can only be enabled if the payment service definition supports the `settlement_reporting` feature.")
+
+  public Boolean getSettlementReportingEnabled() {
+    return settlementReportingEnabled;
+  }
+
+
+  public void setSettlementReportingEnabled(Boolean settlementReportingEnabled) {
+    this.settlementReportingEnabled = settlementReportingEnabled;
+  }
+
+
   public PaymentService status(StatusEnum status) {
     
     this.status = status;
@@ -801,11 +878,11 @@ public class PaymentService {
   }
 
    /**
-   * Defines if 3-D Secure is enabled for the service (can only be enabled if the payment service definition supports the &#x60;three_d_secure_hosted&#x60; feature). This does not affect pass through 3-D Secure data.
+   * Defines if 3-D Secure is enabled for the service. This feature can only be enabled if the payment service definition supports the &#x60;three_d_secure_hosted&#x60; feature. This does not affect pass through 3-D Secure data.
    * @return threeDSecureEnabled
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "true", value = "Defines if 3-D Secure is enabled for the service (can only be enabled if the payment service definition supports the `three_d_secure_hosted` feature). This does not affect pass through 3-D Secure data.")
+  @ApiModelProperty(example = "true", value = "Defines if 3-D Secure is enabled for the service. This feature can only be enabled if the payment service definition supports the `three_d_secure_hosted` feature. This does not affect pass through 3-D Secure data.")
 
   public Boolean getThreeDSecureEnabled() {
     return threeDSecureEnabled;
@@ -880,6 +957,7 @@ public class PaymentService {
         Objects.equals(this.createdAt, paymentService.createdAt) &&
         Objects.equals(this.displayName, paymentService.displayName) &&
         Objects.equals(this.fields, paymentService.fields) &&
+        Objects.equals(this.reportingFields, paymentService.reportingFields) &&
         Objects.equals(this.merchantAccountId, paymentService.merchantAccountId) &&
         Objects.equals(this.merchantProfile, paymentService.merchantProfile) &&
         Objects.equals(this.method, paymentService.method) &&
@@ -887,6 +965,7 @@ public class PaymentService {
         Objects.equals(this.openLoop, paymentService.openLoop) &&
         Objects.equals(this.paymentMethodTokenizationEnabled, paymentService.paymentMethodTokenizationEnabled) &&
         Objects.equals(this.paymentServiceDefinitionId, paymentService.paymentServiceDefinitionId) &&
+        Objects.equals(this.settlementReportingEnabled, paymentService.settlementReportingEnabled) &&
         Objects.equals(this.status, paymentService.status) &&
         Objects.equals(this.threeDSecureEnabled, paymentService.threeDSecureEnabled) &&
         Objects.equals(this.updatedAt, paymentService.updatedAt) &&
@@ -895,7 +974,7 @@ public class PaymentService {
 
   @Override
   public int hashCode() {
-    return Objects.hash(type, id, acceptedCountries, acceptedCurrencies, active, createdAt, displayName, fields, merchantAccountId, merchantProfile, method, networkTokensEnabled, openLoop, paymentMethodTokenizationEnabled, paymentServiceDefinitionId, status, threeDSecureEnabled, updatedAt, webhookUrl);
+    return Objects.hash(type, id, acceptedCountries, acceptedCurrencies, active, createdAt, displayName, fields, reportingFields, merchantAccountId, merchantProfile, method, networkTokensEnabled, openLoop, paymentMethodTokenizationEnabled, paymentServiceDefinitionId, settlementReportingEnabled, status, threeDSecureEnabled, updatedAt, webhookUrl);
   }
 
   @Override
@@ -910,6 +989,7 @@ public class PaymentService {
     sb.append("    createdAt: ").append(toIndentedString(createdAt)).append("\n");
     sb.append("    displayName: ").append(toIndentedString(displayName)).append("\n");
     sb.append("    fields: ").append(toIndentedString(fields)).append("\n");
+    sb.append("    reportingFields: ").append(toIndentedString(reportingFields)).append("\n");
     sb.append("    merchantAccountId: ").append(toIndentedString(merchantAccountId)).append("\n");
     sb.append("    merchantProfile: ").append(toIndentedString(merchantProfile)).append("\n");
     sb.append("    method: ").append(toIndentedString(method)).append("\n");
@@ -917,6 +997,7 @@ public class PaymentService {
     sb.append("    openLoop: ").append(toIndentedString(openLoop)).append("\n");
     sb.append("    paymentMethodTokenizationEnabled: ").append(toIndentedString(paymentMethodTokenizationEnabled)).append("\n");
     sb.append("    paymentServiceDefinitionId: ").append(toIndentedString(paymentServiceDefinitionId)).append("\n");
+    sb.append("    settlementReportingEnabled: ").append(toIndentedString(settlementReportingEnabled)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("    threeDSecureEnabled: ").append(toIndentedString(threeDSecureEnabled)).append("\n");
     sb.append("    updatedAt: ").append(toIndentedString(updatedAt)).append("\n");

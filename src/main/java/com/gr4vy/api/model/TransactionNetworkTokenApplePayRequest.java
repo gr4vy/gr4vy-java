@@ -253,11 +253,11 @@ public class TransactionNetworkTokenApplePayRequest {
   }
 
    /**
-   * The electronic commerce indicator for 3D-Secure.
+   * The ecommerce indicator for 3D-Secure.
    * @return eci
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "05", value = "The electronic commerce indicator for 3D-Secure.")
+  @ApiModelProperty(example = "05", value = "The ecommerce indicator for 3D-Secure.")
 
   public String getEci() {
     return eci;

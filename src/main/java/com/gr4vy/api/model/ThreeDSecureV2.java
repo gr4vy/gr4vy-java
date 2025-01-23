@@ -196,11 +196,11 @@ public class ThreeDSecureV2 {
   }
 
    /**
-   * The electronic commerce indicator for the 3DS transaction.
+   * The ecommerce indicator for the 3DS transaction.
    * @return eci
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "05", value = "The electronic commerce indicator for the 3DS transaction.")
+  @ApiModelProperty(example = "05", value = "The ecommerce indicator for the 3DS transaction.")
 
   public String getEci() {
     return eci;

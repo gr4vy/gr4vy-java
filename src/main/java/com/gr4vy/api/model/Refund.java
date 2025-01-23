@@ -225,6 +225,22 @@ public class Refund {
   @SerializedName(SERIALIZED_NAME_TARGET_ID)
   private String targetId;
 
+  public static final String SERIALIZED_NAME_EXTERNAL_IDENTIFIER = "external_identifier";
+  @SerializedName(SERIALIZED_NAME_EXTERNAL_IDENTIFIER)
+  private String externalIdentifier;
+
+  public static final String SERIALIZED_NAME_RECONCILIATION_ID = "reconciliation_id";
+  @SerializedName(SERIALIZED_NAME_RECONCILIATION_ID)
+  private String reconciliationId;
+
+  public static final String SERIALIZED_NAME_TRANSACTION_EXTERNAL_IDENTIFIER = "transaction_external_identifier";
+  @SerializedName(SERIALIZED_NAME_TRANSACTION_EXTERNAL_IDENTIFIER)
+  private String transactionExternalIdentifier;
+
+  public static final String SERIALIZED_NAME_TRANSACTION_RECONCILIATION_ID = "transaction_reconciliation_id";
+  @SerializedName(SERIALIZED_NAME_TRANSACTION_RECONCILIATION_ID)
+  private String transactionReconciliationId;
+
 
   public Refund type(TypeEnum type) {
     
@@ -504,6 +520,98 @@ public class Refund {
   }
 
 
+  public Refund externalIdentifier(String externalIdentifier) {
+    
+    this.externalIdentifier = externalIdentifier;
+    return this;
+  }
+
+   /**
+   * An external identifier that can be used to match the refund against your own records.
+   * @return externalIdentifier
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "refund-789123", value = "An external identifier that can be used to match the refund against your own records.")
+
+  public String getExternalIdentifier() {
+    return externalIdentifier;
+  }
+
+
+  public void setExternalIdentifier(String externalIdentifier) {
+    this.externalIdentifier = externalIdentifier;
+  }
+
+
+  public Refund reconciliationId(String reconciliationId) {
+    
+    this.reconciliationId = reconciliationId;
+    return this;
+  }
+
+   /**
+   * The base62 encoded refund ID. This represents a shorter version of this refund&#39;s &#x60;id&#x60; which is sent to payment services, anti-fraud services, and other connectors. You can use this ID to reconcile a payment service&#39;s refund against our system.
+   * @return reconciliationId
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "7jZXl4gBUNl0CnaLEnfXbt", value = "The base62 encoded refund ID. This represents a shorter version of this refund's `id` which is sent to payment services, anti-fraud services, and other connectors. You can use this ID to reconcile a payment service's refund against our system.")
+
+  public String getReconciliationId() {
+    return reconciliationId;
+  }
+
+
+  public void setReconciliationId(String reconciliationId) {
+    this.reconciliationId = reconciliationId;
+  }
+
+
+  public Refund transactionExternalIdentifier(String transactionExternalIdentifier) {
+    
+    this.transactionExternalIdentifier = transactionExternalIdentifier;
+    return this;
+  }
+
+   /**
+   * The external identifier of the related transaction.
+   * @return transactionExternalIdentifier
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "transaction-789123", value = "The external identifier of the related transaction.")
+
+  public String getTransactionExternalIdentifier() {
+    return transactionExternalIdentifier;
+  }
+
+
+  public void setTransactionExternalIdentifier(String transactionExternalIdentifier) {
+    this.transactionExternalIdentifier = transactionExternalIdentifier;
+  }
+
+
+  public Refund transactionReconciliationId(String transactionReconciliationId) {
+    
+    this.transactionReconciliationId = transactionReconciliationId;
+    return this;
+  }
+
+   /**
+   * The base62 encoded transaction ID. This represents a shorter version of the related transaction&#39;s &#x60;id&#x60; which is sent to payment services, anti-fraud services, and other connectors. You can use this ID to reconcile a payment service&#39;s transaction against our system.
+   * @return transactionReconciliationId
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "7jZXl4gBUNl0CnaLEnfXbt", value = "The base62 encoded transaction ID. This represents a shorter version of the related transaction's `id` which is sent to payment services, anti-fraud services, and other connectors. You can use this ID to reconcile a payment service's transaction against our system.")
+
+  public String getTransactionReconciliationId() {
+    return transactionReconciliationId;
+  }
+
+
+  public void setTransactionReconciliationId(String transactionReconciliationId) {
+    this.transactionReconciliationId = transactionReconciliationId;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -524,12 +632,16 @@ public class Refund {
         Objects.equals(this.createdAt, refund.createdAt) &&
         Objects.equals(this.updatedAt, refund.updatedAt) &&
         Objects.equals(this.targetType, refund.targetType) &&
-        Objects.equals(this.targetId, refund.targetId);
+        Objects.equals(this.targetId, refund.targetId) &&
+        Objects.equals(this.externalIdentifier, refund.externalIdentifier) &&
+        Objects.equals(this.reconciliationId, refund.reconciliationId) &&
+        Objects.equals(this.transactionExternalIdentifier, refund.transactionExternalIdentifier) &&
+        Objects.equals(this.transactionReconciliationId, refund.transactionReconciliationId);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(type, id, transactionId, paymentServiceRefundId, status, currency, amount, reason, createdAt, updatedAt, targetType, targetId);
+    return Objects.hash(type, id, transactionId, paymentServiceRefundId, status, currency, amount, reason, createdAt, updatedAt, targetType, targetId, externalIdentifier, reconciliationId, transactionExternalIdentifier, transactionReconciliationId);
   }
 
   @Override
@@ -548,6 +660,10 @@ public class Refund {
     sb.append("    updatedAt: ").append(toIndentedString(updatedAt)).append("\n");
     sb.append("    targetType: ").append(toIndentedString(targetType)).append("\n");
     sb.append("    targetId: ").append(toIndentedString(targetId)).append("\n");
+    sb.append("    externalIdentifier: ").append(toIndentedString(externalIdentifier)).append("\n");
+    sb.append("    reconciliationId: ").append(toIndentedString(reconciliationId)).append("\n");
+    sb.append("    transactionExternalIdentifier: ").append(toIndentedString(transactionExternalIdentifier)).append("\n");
+    sb.append("    transactionReconciliationId: ").append(toIndentedString(transactionReconciliationId)).append("\n");
     sb.append("}");
     return sb.toString();
   }

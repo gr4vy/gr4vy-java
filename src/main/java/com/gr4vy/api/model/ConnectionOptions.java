@@ -21,13 +21,16 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import com.gr4vy.api.model.ConnectionOptionsAdyenCard;
+import com.gr4vy.api.model.ConnectionOptionsAdyenSepa;
 import com.gr4vy.api.model.ConnectionOptionsCybersourceAntiFraud;
 import com.gr4vy.api.model.ConnectionOptionsCybersourceCard;
 import com.gr4vy.api.model.ConnectionOptionsCybersourceIdeal;
 import com.gr4vy.api.model.ConnectionOptionsCybersourceKcp;
+import com.gr4vy.api.model.ConnectionOptionsFiservCard;
 import com.gr4vy.api.model.ConnectionOptionsForterAntiFraud;
 import com.gr4vy.api.model.ConnectionOptionsGivingblockGivingblock;
 import com.gr4vy.api.model.ConnectionOptionsPaypalPaypal;
+import com.gr4vy.api.model.ConnectionOptionsPowertranzCard;
 import com.gr4vy.api.model.ConnectionOptionsStripeCard;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -66,6 +69,10 @@ public class ConnectionOptions {
   @SerializedName(SERIALIZED_NAME_ADYEN_CARD)
   private ConnectionOptionsAdyenCard adyenCard;
 
+  public static final String SERIALIZED_NAME_ADYEN_SEPA = "adyen-sepa";
+  @SerializedName(SERIALIZED_NAME_ADYEN_SEPA)
+  private ConnectionOptionsAdyenSepa adyenSepa;
+
   public static final String SERIALIZED_NAME_PAYPAL_PAYPAL = "paypal-paypal";
   @SerializedName(SERIALIZED_NAME_PAYPAL_PAYPAL)
   private ConnectionOptionsPaypalPaypal paypalPaypal;
@@ -74,9 +81,17 @@ public class ConnectionOptions {
   @SerializedName(SERIALIZED_NAME_PAYPAL_PAYPALPAYLATER)
   private ConnectionOptionsPaypalPaypal paypalPaypalpaylater;
 
+  public static final String SERIALIZED_NAME_POWERTRANZ_CARD = "powertranz-card";
+  @SerializedName(SERIALIZED_NAME_POWERTRANZ_CARD)
+  private ConnectionOptionsPowertranzCard powertranzCard;
+
   public static final String SERIALIZED_NAME_STRIPE_CARD = "stripe-card";
   @SerializedName(SERIALIZED_NAME_STRIPE_CARD)
   private ConnectionOptionsStripeCard stripeCard;
+
+  public static final String SERIALIZED_NAME_FISERV_CARD = "fiserv-card";
+  @SerializedName(SERIALIZED_NAME_FISERV_CARD)
+  private ConnectionOptionsFiservCard fiservCard;
 
 
   public ConnectionOptions cybersourceCard(ConnectionOptionsCybersourceCard cybersourceCard) {
@@ -240,6 +255,29 @@ public class ConnectionOptions {
   }
 
 
+  public ConnectionOptions adyenSepa(ConnectionOptionsAdyenSepa adyenSepa) {
+    
+    this.adyenSepa = adyenSepa;
+    return this;
+  }
+
+   /**
+   * Get adyenSepa
+   * @return adyenSepa
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public ConnectionOptionsAdyenSepa getAdyenSepa() {
+    return adyenSepa;
+  }
+
+
+  public void setAdyenSepa(ConnectionOptionsAdyenSepa adyenSepa) {
+    this.adyenSepa = adyenSepa;
+  }
+
+
   public ConnectionOptions paypalPaypal(ConnectionOptionsPaypalPaypal paypalPaypal) {
     
     this.paypalPaypal = paypalPaypal;
@@ -286,6 +324,29 @@ public class ConnectionOptions {
   }
 
 
+  public ConnectionOptions powertranzCard(ConnectionOptionsPowertranzCard powertranzCard) {
+    
+    this.powertranzCard = powertranzCard;
+    return this;
+  }
+
+   /**
+   * Get powertranzCard
+   * @return powertranzCard
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public ConnectionOptionsPowertranzCard getPowertranzCard() {
+    return powertranzCard;
+  }
+
+
+  public void setPowertranzCard(ConnectionOptionsPowertranzCard powertranzCard) {
+    this.powertranzCard = powertranzCard;
+  }
+
+
   public ConnectionOptions stripeCard(ConnectionOptionsStripeCard stripeCard) {
     
     this.stripeCard = stripeCard;
@@ -309,6 +370,29 @@ public class ConnectionOptions {
   }
 
 
+  public ConnectionOptions fiservCard(ConnectionOptionsFiservCard fiservCard) {
+    
+    this.fiservCard = fiservCard;
+    return this;
+  }
+
+   /**
+   * Get fiservCard
+   * @return fiservCard
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public ConnectionOptionsFiservCard getFiservCard() {
+    return fiservCard;
+  }
+
+
+  public void setFiservCard(ConnectionOptionsFiservCard fiservCard) {
+    this.fiservCard = fiservCard;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -325,14 +409,17 @@ public class ConnectionOptions {
         Objects.equals(this.givingblockGivingblock, connectionOptions.givingblockGivingblock) &&
         Objects.equals(this.forterAntiFraud, connectionOptions.forterAntiFraud) &&
         Objects.equals(this.adyenCard, connectionOptions.adyenCard) &&
+        Objects.equals(this.adyenSepa, connectionOptions.adyenSepa) &&
         Objects.equals(this.paypalPaypal, connectionOptions.paypalPaypal) &&
         Objects.equals(this.paypalPaypalpaylater, connectionOptions.paypalPaypalpaylater) &&
-        Objects.equals(this.stripeCard, connectionOptions.stripeCard);
+        Objects.equals(this.powertranzCard, connectionOptions.powertranzCard) &&
+        Objects.equals(this.stripeCard, connectionOptions.stripeCard) &&
+        Objects.equals(this.fiservCard, connectionOptions.fiservCard);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(cybersourceCard, cybersourceKcp, cybersourceIdeal, cybersourceAntiFraud, givingblockGivingblock, forterAntiFraud, adyenCard, paypalPaypal, paypalPaypalpaylater, stripeCard);
+    return Objects.hash(cybersourceCard, cybersourceKcp, cybersourceIdeal, cybersourceAntiFraud, givingblockGivingblock, forterAntiFraud, adyenCard, adyenSepa, paypalPaypal, paypalPaypalpaylater, powertranzCard, stripeCard, fiservCard);
   }
 
   @Override
@@ -346,9 +433,12 @@ public class ConnectionOptions {
     sb.append("    givingblockGivingblock: ").append(toIndentedString(givingblockGivingblock)).append("\n");
     sb.append("    forterAntiFraud: ").append(toIndentedString(forterAntiFraud)).append("\n");
     sb.append("    adyenCard: ").append(toIndentedString(adyenCard)).append("\n");
+    sb.append("    adyenSepa: ").append(toIndentedString(adyenSepa)).append("\n");
     sb.append("    paypalPaypal: ").append(toIndentedString(paypalPaypal)).append("\n");
     sb.append("    paypalPaypalpaylater: ").append(toIndentedString(paypalPaypalpaylater)).append("\n");
+    sb.append("    powertranzCard: ").append(toIndentedString(powertranzCard)).append("\n");
     sb.append("    stripeCard: ").append(toIndentedString(stripeCard)).append("\n");
+    sb.append("    fiservCard: ").append(toIndentedString(fiservCard)).append("\n");
     sb.append("}");
     return sb.toString();
   }

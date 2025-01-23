@@ -228,10 +228,10 @@ public class ReportCreate {
   }
 
    /**
-   * The specifications of the report.
+   * Get spec
    * @return spec
   **/
-  @ApiModelProperty(required = true, value = "The specifications of the report.")
+  @ApiModelProperty(required = true, value = "")
 
   public ReportSpec getSpec() {
     return spec;

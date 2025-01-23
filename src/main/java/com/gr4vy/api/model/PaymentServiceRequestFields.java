@@ -68,10 +68,10 @@ public class PaymentServiceRequestFields {
   }
 
    /**
-   * The value of a field to set; you can unset optional fields by setting this to an empty string &#x60;\&quot;\&quot;&#x60;.
+   * The value of a field to set.
    * @return value
   **/
-  @ApiModelProperty(example = "sk_test_26PHem9AhJZvU623DfE1x4sd", required = true, value = "The value of a field to set; you can unset optional fields by setting this to an empty string `\"\"`.")
+  @ApiModelProperty(example = "sk_test_26PHem9AhJZvU623DfE1x4sd", required = true, value = "The value of a field to set.")
 
   public String getValue() {
     return value;

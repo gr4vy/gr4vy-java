@@ -20,6 +20,7 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import com.gr4vy.api.model.Airline;
 import com.gr4vy.api.model.CartItem;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -42,6 +43,10 @@ public class CheckoutSessionUpdateRequest {
   public static final String SERIALIZED_NAME_METADATA = "metadata";
   @SerializedName(SERIALIZED_NAME_METADATA)
   private Map<String, String> metadata = null;
+
+  public static final String SERIALIZED_NAME_AIRLINE = "airline";
+  @SerializedName(SERIALIZED_NAME_AIRLINE)
+  private Airline airline;
 
 
   public CheckoutSessionUpdateRequest cartItems(List<CartItem> cartItems) {
@@ -106,6 +111,29 @@ public class CheckoutSessionUpdateRequest {
   }
 
 
+  public CheckoutSessionUpdateRequest airline(Airline airline) {
+    
+    this.airline = airline;
+    return this;
+  }
+
+   /**
+   * The airline addendum data which describes the airline booking associated with this transaction.
+   * @return airline
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "The airline addendum data which describes the airline booking associated with this transaction.")
+
+  public Airline getAirline() {
+    return airline;
+  }
+
+
+  public void setAirline(Airline airline) {
+    this.airline = airline;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -116,12 +144,13 @@ public class CheckoutSessionUpdateRequest {
     }
     CheckoutSessionUpdateRequest checkoutSessionUpdateRequest = (CheckoutSessionUpdateRequest) o;
     return Objects.equals(this.cartItems, checkoutSessionUpdateRequest.cartItems) &&
-        Objects.equals(this.metadata, checkoutSessionUpdateRequest.metadata);
+        Objects.equals(this.metadata, checkoutSessionUpdateRequest.metadata) &&
+        Objects.equals(this.airline, checkoutSessionUpdateRequest.airline);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(cartItems, metadata);
+    return Objects.hash(cartItems, metadata, airline);
   }
 
   @Override
@@ -130,6 +159,7 @@ public class CheckoutSessionUpdateRequest {
     sb.append("class CheckoutSessionUpdateRequest {\n");
     sb.append("    cartItems: ").append(toIndentedString(cartItems)).append("\n");
     sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
+    sb.append("    airline: ").append(toIndentedString(airline)).append("\n");
     sb.append("}");
     return sb.toString();
   }

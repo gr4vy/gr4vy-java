@@ -290,10 +290,10 @@ public class ThreeDSecureDataV2 {
   }
 
    /**
-   * The electronic commerce indicator for the 3DS transaction.
+   * The ecommerce indicator for the 3DS transaction.
    * @return eci
   **/
-  @ApiModelProperty(example = "05", required = true, value = "The electronic commerce indicator for the 3DS transaction.")
+  @ApiModelProperty(example = "05", required = true, value = "The ecommerce indicator for the 3DS transaction.")
 
   public String getEci() {
     return eci;

@@ -216,11 +216,15 @@ public class PaymentMethodSnapshot {
     
     EBANX("ebanx"),
     
+    EFECTY("efecty"),
+    
     EPS("eps"),
     
     EVERYDAYPAY("everydaypay"),
     
     GCASH("gcash"),
+    
+    GIFT_CARD("gift-card"),
     
     GIROPAY("giropay"),
     
@@ -254,9 +258,13 @@ public class PaymentMethodSnapshot {
     
     MAYBANKQRPAY("maybankqrpay"),
     
+    MERCADOPAGO("mercadopago"),
+    
     MULTIBANCO("multibanco"),
     
     MULTIPAGO("multipago"),
+    
+    NETBANKING("netbanking"),
     
     NETWORK_TOKEN("network-token"),
     
@@ -288,6 +296,8 @@ public class PaymentMethodSnapshot {
     
     PIX("pix"),
     
+    PSE("pse"),
+    
     RABBITLINEPAY("rabbitlinepay"),
     
     RAZORPAY("razorpay"),
@@ -318,9 +328,13 @@ public class PaymentMethodSnapshot {
     
     TRUSTLYEUROPE("trustlyeurope"),
     
+    UPI("upi"),
+    
     VIPPS("vipps"),
     
     WAAVE("waave"),
+    
+    WEBPAY("webpay"),
     
     WECHAT("wechat"),
     

@@ -20,6 +20,7 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import com.gr4vy.api.model.Airline;
 import com.gr4vy.api.model.CartItem;
 import com.gr4vy.api.model.TransactionBuyerRequest;
 import io.swagger.annotations.ApiModel;
@@ -43,6 +44,10 @@ public class CheckoutSessionCreateRequest {
   public static final String SERIALIZED_NAME_METADATA = "metadata";
   @SerializedName(SERIALIZED_NAME_METADATA)
   private Map<String, String> metadata = null;
+
+  public static final String SERIALIZED_NAME_AIRLINE = "airline";
+  @SerializedName(SERIALIZED_NAME_AIRLINE)
+  private Airline airline;
 
   public static final String SERIALIZED_NAME_BUYER = "buyer";
   @SerializedName(SERIALIZED_NAME_BUYER)
@@ -111,6 +116,29 @@ public class CheckoutSessionCreateRequest {
   }
 
 
+  public CheckoutSessionCreateRequest airline(Airline airline) {
+    
+    this.airline = airline;
+    return this;
+  }
+
+   /**
+   * The airline addendum data which describes the airline booking associated with this transaction.
+   * @return airline
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "The airline addendum data which describes the airline booking associated with this transaction.")
+
+  public Airline getAirline() {
+    return airline;
+  }
+
+
+  public void setAirline(Airline airline) {
+    this.airline = airline;
+  }
+
+
   public CheckoutSessionCreateRequest buyer(TransactionBuyerRequest buyer) {
     
     this.buyer = buyer;
@@ -145,12 +173,13 @@ public class CheckoutSessionCreateRequest {
     CheckoutSessionCreateRequest checkoutSessionCreateRequest = (CheckoutSessionCreateRequest) o;
     return Objects.equals(this.cartItems, checkoutSessionCreateRequest.cartItems) &&
         Objects.equals(this.metadata, checkoutSessionCreateRequest.metadata) &&
+        Objects.equals(this.airline, checkoutSessionCreateRequest.airline) &&
         Objects.equals(this.buyer, checkoutSessionCreateRequest.buyer);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(cartItems, metadata, buyer);
+    return Objects.hash(cartItems, metadata, airline, buyer);
   }
 
   @Override
@@ -159,6 +188,7 @@ public class CheckoutSessionCreateRequest {
     sb.append("class CheckoutSessionCreateRequest {\n");
     sb.append("    cartItems: ").append(toIndentedString(cartItems)).append("\n");
     sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
+    sb.append("    airline: ").append(toIndentedString(airline)).append("\n");
     sb.append("    buyer: ").append(toIndentedString(buyer)).append("\n");
     sb.append("}");
     return sb.toString();

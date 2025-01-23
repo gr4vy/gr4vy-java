@@ -332,11 +332,15 @@ public class PaymentMethod {
     
     EBANX("ebanx"),
     
+    EFECTY("efecty"),
+    
     EPS("eps"),
     
     EVERYDAYPAY("everydaypay"),
     
     GCASH("gcash"),
+    
+    GIFT_CARD("gift-card"),
     
     GIROPAY("giropay"),
     
@@ -370,9 +374,13 @@ public class PaymentMethod {
     
     MAYBANKQRPAY("maybankqrpay"),
     
+    MERCADOPAGO("mercadopago"),
+    
     MULTIBANCO("multibanco"),
     
     MULTIPAGO("multipago"),
+    
+    NETBANKING("netbanking"),
     
     NETWORK_TOKEN("network-token"),
     
@@ -404,6 +412,8 @@ public class PaymentMethod {
     
     PIX("pix"),
     
+    PSE("pse"),
+    
     RABBITLINEPAY("rabbitlinepay"),
     
     RAZORPAY("razorpay"),
@@ -434,9 +444,13 @@ public class PaymentMethod {
     
     TRUSTLYEUROPE("trustlyeurope"),
     
+    UPI("upi"),
+    
     VIPPS("vipps"),
     
     WAAVE("waave"),
+    
+    WEBPAY("webpay"),
     
     WECHAT("wechat"),
     
@@ -702,6 +716,22 @@ public class PaymentMethod {
   public static final String SERIALIZED_NAME_FINGERPRINT = "fingerprint";
   @SerializedName(SERIALIZED_NAME_FINGERPRINT)
   private String fingerprint;
+
+  public static final String SERIALIZED_NAME_LAST_USED_AT = "last_used_at";
+  @SerializedName(SERIALIZED_NAME_LAST_USED_AT)
+  private String lastUsedAt;
+
+  public static final String SERIALIZED_NAME_USAGE_COUNT = "usage_count";
+  @SerializedName(SERIALIZED_NAME_USAGE_COUNT)
+  private Integer usageCount;
+
+  public static final String SERIALIZED_NAME_CIT_LAST_USED_AT = "cit_last_used_at";
+  @SerializedName(SERIALIZED_NAME_CIT_LAST_USED_AT)
+  private String citLastUsedAt;
+
+  public static final String SERIALIZED_NAME_CIT_USAGE_COUNT = "cit_usage_count";
+  @SerializedName(SERIALIZED_NAME_CIT_USAGE_COUNT)
+  private Integer citUsageCount;
 
 
   public PaymentMethod type(TypeEnum type) {
@@ -1218,6 +1248,98 @@ public class PaymentMethod {
   }
 
 
+  public PaymentMethod lastUsedAt(String lastUsedAt) {
+    
+    this.lastUsedAt = lastUsedAt;
+    return this;
+  }
+
+   /**
+   * The timestamp when this payment method was last used in a transaction.
+   * @return lastUsedAt
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "2013-07-16T19:23Z", value = "The timestamp when this payment method was last used in a transaction.")
+
+  public String getLastUsedAt() {
+    return lastUsedAt;
+  }
+
+
+  public void setLastUsedAt(String lastUsedAt) {
+    this.lastUsedAt = lastUsedAt;
+  }
+
+
+  public PaymentMethod usageCount(Integer usageCount) {
+    
+    this.usageCount = usageCount;
+    return this;
+  }
+
+   /**
+   * The number of times this payment method has been used in transactions.
+   * @return usageCount
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "5", value = "The number of times this payment method has been used in transactions.")
+
+  public Integer getUsageCount() {
+    return usageCount;
+  }
+
+
+  public void setUsageCount(Integer usageCount) {
+    this.usageCount = usageCount;
+  }
+
+
+  public PaymentMethod citLastUsedAt(String citLastUsedAt) {
+    
+    this.citLastUsedAt = citLastUsedAt;
+    return this;
+  }
+
+   /**
+   * The timestamp when this payment method was last used in a transaction for client initiated transactions.
+   * @return citLastUsedAt
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "2013-07-16T19:23Z", value = "The timestamp when this payment method was last used in a transaction for client initiated transactions.")
+
+  public String getCitLastUsedAt() {
+    return citLastUsedAt;
+  }
+
+
+  public void setCitLastUsedAt(String citLastUsedAt) {
+    this.citLastUsedAt = citLastUsedAt;
+  }
+
+
+  public PaymentMethod citUsageCount(Integer citUsageCount) {
+    
+    this.citUsageCount = citUsageCount;
+    return this;
+  }
+
+   /**
+   * The number of times this payment method has been used in transactions for client initiated transactions.
+   * @return citUsageCount
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "2", value = "The number of times this payment method has been used in transactions for client initiated transactions.")
+
+  public Integer getCitUsageCount() {
+    return citUsageCount;
+  }
+
+
+  public void setCitUsageCount(Integer citUsageCount) {
+    this.citUsageCount = citUsageCount;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -1248,12 +1370,16 @@ public class PaymentMethod {
         Objects.equals(this.scheme, paymentMethod.scheme) &&
         Objects.equals(this.status, paymentMethod.status) &&
         Objects.equals(this.updatedAt, paymentMethod.updatedAt) &&
-        Objects.equals(this.fingerprint, paymentMethod.fingerprint);
+        Objects.equals(this.fingerprint, paymentMethod.fingerprint) &&
+        Objects.equals(this.lastUsedAt, paymentMethod.lastUsedAt) &&
+        Objects.equals(this.usageCount, paymentMethod.usageCount) &&
+        Objects.equals(this.citLastUsedAt, paymentMethod.citLastUsedAt) &&
+        Objects.equals(this.citUsageCount, paymentMethod.citUsageCount);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(type, id, additionalSchemes, approvalTarget, approvalUrl, buyer, country, createdAt, currency, details, expirationDate, externalIdentifier, hasReplacement, label, lastReplacedAt, merchantAccountId, method, mode, scheme, status, updatedAt, fingerprint);
+    return Objects.hash(type, id, additionalSchemes, approvalTarget, approvalUrl, buyer, country, createdAt, currency, details, expirationDate, externalIdentifier, hasReplacement, label, lastReplacedAt, merchantAccountId, method, mode, scheme, status, updatedAt, fingerprint, lastUsedAt, usageCount, citLastUsedAt, citUsageCount);
   }
 
   @Override
@@ -1282,6 +1408,10 @@ public class PaymentMethod {
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("    updatedAt: ").append(toIndentedString(updatedAt)).append("\n");
     sb.append("    fingerprint: ").append(toIndentedString(fingerprint)).append("\n");
+    sb.append("    lastUsedAt: ").append(toIndentedString(lastUsedAt)).append("\n");
+    sb.append("    usageCount: ").append(toIndentedString(usageCount)).append("\n");
+    sb.append("    citLastUsedAt: ").append(toIndentedString(citLastUsedAt)).append("\n");
+    sb.append("    citUsageCount: ").append(toIndentedString(citUsageCount)).append("\n");
     sb.append("}");
     return sb.toString();
   }

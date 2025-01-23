@@ -21,7 +21,8 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import com.gr4vy.api.model.MerchantProfile;
-import com.gr4vy.api.model.PaymentServiceRequestFields;
+import com.gr4vy.api.model.PaymentServiceUpdateFields;
+import com.gr4vy.api.model.PaymentServiceUpdateReportingFields;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
@@ -40,7 +41,11 @@ public class PaymentServiceUpdate {
 
   public static final String SERIALIZED_NAME_FIELDS = "fields";
   @SerializedName(SERIALIZED_NAME_FIELDS)
-  private List<PaymentServiceRequestFields> fields = null;
+  private List<PaymentServiceUpdateFields> fields = null;
+
+  public static final String SERIALIZED_NAME_REPORTING_FIELDS = "reporting_fields";
+  @SerializedName(SERIALIZED_NAME_REPORTING_FIELDS)
+  private List<PaymentServiceUpdateReportingFields> reportingFields = null;
 
   public static final String SERIALIZED_NAME_ACCEPTED_COUNTRIES = "accepted_countries";
   @SerializedName(SERIALIZED_NAME_ACCEPTED_COUNTRIES)
@@ -74,6 +79,10 @@ public class PaymentServiceUpdate {
   @SerializedName(SERIALIZED_NAME_NETWORK_TOKENS_ENABLED)
   private Boolean networkTokensEnabled;
 
+  public static final String SERIALIZED_NAME_SETTLEMENT_REPORTING_ENABLED = "settlement_reporting_enabled";
+  @SerializedName(SERIALIZED_NAME_SETTLEMENT_REPORTING_ENABLED)
+  private Boolean settlementReportingEnabled = false;
+
 
   public PaymentServiceUpdate displayName(String displayName) {
     
@@ -98,15 +107,15 @@ public class PaymentServiceUpdate {
   }
 
 
-  public PaymentServiceUpdate fields(List<PaymentServiceRequestFields> fields) {
+  public PaymentServiceUpdate fields(List<PaymentServiceUpdateFields> fields) {
     
     this.fields = fields;
     return this;
   }
 
-  public PaymentServiceUpdate addFieldsItem(PaymentServiceRequestFields fieldsItem) {
+  public PaymentServiceUpdate addFieldsItem(PaymentServiceUpdateFields fieldsItem) {
     if (this.fields == null) {
-      this.fields = new ArrayList<PaymentServiceRequestFields>();
+      this.fields = new ArrayList<PaymentServiceUpdateFields>();
     }
     this.fields.add(fieldsItem);
     return this;
@@ -119,13 +128,44 @@ public class PaymentServiceUpdate {
   @javax.annotation.Nullable
   @ApiModelProperty(value = "A list of fields, each containing a key-value pair for each field defined by the definition for this payment service e.g. for stripe-card `secret_key` is required and so must be sent within this field.")
 
-  public List<PaymentServiceRequestFields> getFields() {
+  public List<PaymentServiceUpdateFields> getFields() {
     return fields;
   }
 
 
-  public void setFields(List<PaymentServiceRequestFields> fields) {
+  public void setFields(List<PaymentServiceUpdateFields> fields) {
     this.fields = fields;
+  }
+
+
+  public PaymentServiceUpdate reportingFields(List<PaymentServiceUpdateReportingFields> reportingFields) {
+    
+    this.reportingFields = reportingFields;
+    return this;
+  }
+
+  public PaymentServiceUpdate addReportingFieldsItem(PaymentServiceUpdateReportingFields reportingFieldsItem) {
+    if (this.reportingFields == null) {
+      this.reportingFields = new ArrayList<PaymentServiceUpdateReportingFields>();
+    }
+    this.reportingFields.add(reportingFieldsItem);
+    return this;
+  }
+
+   /**
+   * The &#x60;reporting_fields&#x60; field should contain a list of key-value pairs. Each key-value pair represents a reporting field defined by the payment service. For example, when enabling settlement reporting for &#x60;nuvei-card&#x60;, the &#x60;ssh_username&#x60; field is required and must be included in &#x60;reporting_fields&#x60;.
+   * @return reportingFields
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "The `reporting_fields` field should contain a list of key-value pairs. Each key-value pair represents a reporting field defined by the payment service. For example, when enabling settlement reporting for `nuvei-card`, the `ssh_username` field is required and must be included in `reporting_fields`.")
+
+  public List<PaymentServiceUpdateReportingFields> getReportingFields() {
+    return reportingFields;
+  }
+
+
+  public void setReportingFields(List<PaymentServiceUpdateReportingFields> reportingFields) {
+    this.reportingFields = reportingFields;
   }
 
 
@@ -198,11 +238,11 @@ public class PaymentServiceUpdate {
   }
 
    /**
-   * Defines if 3-D Secure is enabled for the service (can only be enabled if the payment service definition supports the &#x60;three_d_secure_hosted&#x60; feature). This does not affect pass through 3-D Secure data.
+   * Defines if 3-D Secure is enabled for the service. This feature can only be enabled if the payment service definition supports the &#x60;three_d_secure_hosted&#x60; feature. This does not affect pass through 3-D Secure data.
    * @return threeDSecureEnabled
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "true", value = "Defines if 3-D Secure is enabled for the service (can only be enabled if the payment service definition supports the `three_d_secure_hosted` feature). This does not affect pass through 3-D Secure data.")
+  @ApiModelProperty(example = "true", value = "Defines if 3-D Secure is enabled for the service. This feature can only be enabled if the payment service definition supports the `three_d_secure_hosted` feature. This does not affect pass through 3-D Secure data.")
 
   public Boolean getThreeDSecureEnabled() {
     return threeDSecureEnabled;
@@ -329,6 +369,29 @@ public class PaymentServiceUpdate {
   }
 
 
+  public PaymentServiceUpdate settlementReportingEnabled(Boolean settlementReportingEnabled) {
+    
+    this.settlementReportingEnabled = settlementReportingEnabled;
+    return this;
+  }
+
+   /**
+   * Defines if settlement reporting is enabled for the service. This feature can only be enabled if the payment service definition supports the &#x60;settlement_reporting&#x60; feature.
+   * @return settlementReportingEnabled
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "true", value = "Defines if settlement reporting is enabled for the service. This feature can only be enabled if the payment service definition supports the `settlement_reporting` feature.")
+
+  public Boolean getSettlementReportingEnabled() {
+    return settlementReportingEnabled;
+  }
+
+
+  public void setSettlementReportingEnabled(Boolean settlementReportingEnabled) {
+    this.settlementReportingEnabled = settlementReportingEnabled;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -340,6 +403,7 @@ public class PaymentServiceUpdate {
     PaymentServiceUpdate paymentServiceUpdate = (PaymentServiceUpdate) o;
     return Objects.equals(this.displayName, paymentServiceUpdate.displayName) &&
         Objects.equals(this.fields, paymentServiceUpdate.fields) &&
+        Objects.equals(this.reportingFields, paymentServiceUpdate.reportingFields) &&
         Objects.equals(this.acceptedCountries, paymentServiceUpdate.acceptedCountries) &&
         Objects.equals(this.acceptedCurrencies, paymentServiceUpdate.acceptedCurrencies) &&
         Objects.equals(this.threeDSecureEnabled, paymentServiceUpdate.threeDSecureEnabled) &&
@@ -347,12 +411,13 @@ public class PaymentServiceUpdate {
         Objects.equals(this.active, paymentServiceUpdate.active) &&
         Objects.equals(this.openLoop, paymentServiceUpdate.openLoop) &&
         Objects.equals(this.paymentMethodTokenizationEnabled, paymentServiceUpdate.paymentMethodTokenizationEnabled) &&
-        Objects.equals(this.networkTokensEnabled, paymentServiceUpdate.networkTokensEnabled);
+        Objects.equals(this.networkTokensEnabled, paymentServiceUpdate.networkTokensEnabled) &&
+        Objects.equals(this.settlementReportingEnabled, paymentServiceUpdate.settlementReportingEnabled);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(displayName, fields, acceptedCountries, acceptedCurrencies, threeDSecureEnabled, merchantProfile, active, openLoop, paymentMethodTokenizationEnabled, networkTokensEnabled);
+    return Objects.hash(displayName, fields, reportingFields, acceptedCountries, acceptedCurrencies, threeDSecureEnabled, merchantProfile, active, openLoop, paymentMethodTokenizationEnabled, networkTokensEnabled, settlementReportingEnabled);
   }
 
   @Override
@@ -361,6 +426,7 @@ public class PaymentServiceUpdate {
     sb.append("class PaymentServiceUpdate {\n");
     sb.append("    displayName: ").append(toIndentedString(displayName)).append("\n");
     sb.append("    fields: ").append(toIndentedString(fields)).append("\n");
+    sb.append("    reportingFields: ").append(toIndentedString(reportingFields)).append("\n");
     sb.append("    acceptedCountries: ").append(toIndentedString(acceptedCountries)).append("\n");
     sb.append("    acceptedCurrencies: ").append(toIndentedString(acceptedCurrencies)).append("\n");
     sb.append("    threeDSecureEnabled: ").append(toIndentedString(threeDSecureEnabled)).append("\n");
@@ -369,6 +435,7 @@ public class PaymentServiceUpdate {
     sb.append("    openLoop: ").append(toIndentedString(openLoop)).append("\n");
     sb.append("    paymentMethodTokenizationEnabled: ").append(toIndentedString(paymentMethodTokenizationEnabled)).append("\n");
     sb.append("    networkTokensEnabled: ").append(toIndentedString(networkTokensEnabled)).append("\n");
+    sb.append("    settlementReportingEnabled: ").append(toIndentedString(settlementReportingEnabled)).append("\n");
     sb.append("}");
     return sb.toString();
   }

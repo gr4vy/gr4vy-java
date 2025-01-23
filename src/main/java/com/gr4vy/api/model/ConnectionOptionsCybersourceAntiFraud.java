@@ -84,11 +84,11 @@ public class ConnectionOptionsCybersourceAntiFraud {
   }
 
    /**
-   * This is a key-value object for merchant defined data. Each key needs to be a numeric string identifying the MDD field to set. For example, for field 1 set the key to \&quot;1\&quot;.
+   * This is a key-value object for merchant defined data. Each key needs to be a numeric string identifying the MDD field to set. For example, for field 1 set the key to \&quot;1\&quot;.  Please avoid fields \&quot;31\&quot;, \&quot;48\&quot;, \&quot;50\&quot;-\&quot;56\&quot; and \&quot;63\&quot;-\&quot;76\&quot; as these are auto-populated based on the transaction profile.
    * @return merchantDefinedData
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "{\"1\":\"John Doe\",\"2\":\"trusted\",\"99\":\"recurring\"}", value = "This is a key-value object for merchant defined data. Each key needs to be a numeric string identifying the MDD field to set. For example, for field 1 set the key to \"1\".")
+  @ApiModelProperty(example = "{\"1\":\"John Doe\",\"2\":\"trusted\",\"99\":\"recurring\"}", value = "This is a key-value object for merchant defined data. Each key needs to be a numeric string identifying the MDD field to set. For example, for field 1 set the key to \"1\".  Please avoid fields \"31\", \"48\", \"50\"-\"56\" and \"63\"-\"76\" as these are auto-populated based on the transaction profile.")
 
   public Map<String, String> getMerchantDefinedData() {
     return merchantDefinedData;

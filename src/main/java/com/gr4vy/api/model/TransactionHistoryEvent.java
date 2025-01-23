@@ -151,6 +151,8 @@ public class TransactionHistoryEvent {
     
     PAYMENT_CONNECTOR_RESPONSE_TRANSACTION_VOID_SUCCEEDED("payment-connector-response-transaction-void-succeeded"),
     
+    PAYMENT_CONNECTOR_REPORT_TRANSACTION_SETTLED("payment-connector-report-transaction-settled"),
+    
     PAYMENT_CONNECTOR_EXTERNAL_TRANSACTION_REQUEST("payment-connector-external-transaction-request"),
     
     THREE_D_SECURE_AUTHENTICATION_REQUEST("three-d-secure-authentication-request"),

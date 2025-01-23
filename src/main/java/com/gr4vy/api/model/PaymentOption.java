@@ -127,11 +127,15 @@ public class PaymentOption {
     
     EBANX("ebanx"),
     
+    EFECTY("efecty"),
+    
     EPS("eps"),
     
     EVERYDAYPAY("everydaypay"),
     
     GCASH("gcash"),
+    
+    GIFT_CARD("gift-card"),
     
     GIROPAY("giropay"),
     
@@ -152,6 +156,8 @@ public class PaymentOption {
     IDEAL("ideal"),
     
     KAKAOPAY("kakaopay"),
+
+    BCP("bcp"),
     
     KCP("kcp"),
     
@@ -165,11 +171,17 @@ public class PaymentOption {
     
     MAYBANKQRPAY("maybankqrpay"),
     
+    MERCADOPAGO("mercadopago"),
+    
     MULTIBANCO("multibanco"),
     
     MULTIPAGO("multipago"),
     
+    NETBANKING("netbanking"),
+    
     NETWORK_TOKEN("network-token"),
+
+    NUPAY("nupay"),
     
     ONEY_3X("oney_3x"),
     
@@ -196,16 +208,34 @@ public class PaymentOption {
     PAYTO("payto"),
     
     VENMO("venmo"),
+
+    PICPAY("picpay"),
+
+    PAYVALIDA("payvalida"),
+
+    PAGOEFECTIVO("pagoefectivo"),
+    
+    NEQUI("nequi"),
+
+    KHIPU("khipu"),
+
+    ABITAB("abitab"),
     
     PIX("pix"),
+    
+    PSE("pse"),
     
     RABBITLINEPAY("rabbitlinepay"),
     
     RAZORPAY("razorpay"),
+
+    REDPAGOS("redpagos"),
     
     SCALAPAY("scalapay"),
     
     SEPA("sepa"),
+
+    SERVIPAG("servipag"),
     
     SHOPEEPAY("shopeepay"),
     
@@ -229,11 +259,17 @@ public class PaymentOption {
     
     TRUSTLYEUROPE("trustlyeurope"),
     
+    UPI("upi"),
+    
     VIPPS("vipps"),
     
     WAAVE("waave"),
     
+    WEBPAY("webpay"),
+    
     WECHAT("wechat"),
+
+    YAPE("yape"),
     
     ZIPPAY("zippay");
 
