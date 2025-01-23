@@ -156,6 +156,8 @@ public class PaymentOption {
     IDEAL("ideal"),
     
     KAKAOPAY("kakaopay"),
+
+    BCP("bcp"),
     
     KCP("kcp"),
     
