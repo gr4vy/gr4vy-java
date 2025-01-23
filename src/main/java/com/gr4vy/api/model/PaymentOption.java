@@ -206,6 +206,18 @@ public class PaymentOption {
     PAYTO("payto"),
     
     VENMO("venmo"),
+
+    PICPAY("picpay"),
+
+    PAYVALIDA("payvalida"),
+
+    PAGOEFECTIVO("pagoefectivo"),
+    
+    NEQUI("nequi"),
+
+    KHIPU("khipu"),
+
+    ABITAB("abitab"),
     
     PIX("pix"),
     
@@ -214,10 +226,14 @@ public class PaymentOption {
     RABBITLINEPAY("rabbitlinepay"),
     
     RAZORPAY("razorpay"),
+
+    REDPAGOS("redpagos"),
     
     SCALAPAY("scalapay"),
     
     SEPA("sepa"),
+
+    SERVIPAG("servipag"),
     
     SHOPEEPAY("shopeepay"),
     
