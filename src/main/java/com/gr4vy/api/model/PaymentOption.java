@@ -250,6 +250,8 @@ public class PaymentOption {
     WEBPAY("webpay"),
     
     WECHAT("wechat"),
+
+    YAPE("yape"),
     
     ZIPPAY("zippay");
 
