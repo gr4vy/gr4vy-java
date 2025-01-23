@@ -21,6 +21,7 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import com.gr4vy.api.model.BillingDetailsRequest;
+import com.gr4vy.api.model.ShippingDetail;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
@@ -45,7 +46,7 @@ public class TransactionBuyerRequest {
 
   public static final String SERIALIZED_NAME_SHIPPING_DETAILS = "shipping_details";
   @SerializedName(SERIALIZED_NAME_SHIPPING_DETAILS)
-  private BillingDetailsRequest shippingDetails;
+  private ShippingDetail shippingDetails;
 
 
   public TransactionBuyerRequest externalIdentifier(String externalIdentifier) {
@@ -117,7 +118,7 @@ public class TransactionBuyerRequest {
   }
 
 
-  public TransactionBuyerRequest shippingDetails(BillingDetailsRequest shippingDetails) {
+  public TransactionBuyerRequest shippingDetails(ShippingDetail shippingDetails) {
     
     this.shippingDetails = shippingDetails;
     return this;
@@ -130,12 +131,12 @@ public class TransactionBuyerRequest {
   @javax.annotation.Nullable
   @ApiModelProperty(value = "The optional shipping details for the buyer.")
 
-  public BillingDetailsRequest getShippingDetails() {
+  public ShippingDetail getShippingDetails() {
     return shippingDetails;
   }
 
 
-  public void setShippingDetails(BillingDetailsRequest shippingDetails) {
+  public void setShippingDetails(ShippingDetail shippingDetails) {
     this.shippingDetails = shippingDetails;
   }
 

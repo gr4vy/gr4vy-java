@@ -34,6 +34,10 @@ public class TransactionRefundAllRequest {
   @SerializedName(SERIALIZED_NAME_REASON)
   private String reason;
 
+  public static final String SERIALIZED_NAME_EXTERNAL_IDENTIFIER = "external_identifier";
+  @SerializedName(SERIALIZED_NAME_EXTERNAL_IDENTIFIER)
+  private String externalIdentifier;
+
 
   public TransactionRefundAllRequest reason(String reason) {
     
@@ -58,6 +62,29 @@ public class TransactionRefundAllRequest {
   }
 
 
+  public TransactionRefundAllRequest externalIdentifier(String externalIdentifier) {
+    
+    this.externalIdentifier = externalIdentifier;
+    return this;
+  }
+
+   /**
+   * An external identifier that can be used to match the refund against your own records.
+   * @return externalIdentifier
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "refund-789123", value = "An external identifier that can be used to match the refund against your own records.")
+
+  public String getExternalIdentifier() {
+    return externalIdentifier;
+  }
+
+
+  public void setExternalIdentifier(String externalIdentifier) {
+    this.externalIdentifier = externalIdentifier;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -67,12 +94,13 @@ public class TransactionRefundAllRequest {
       return false;
     }
     TransactionRefundAllRequest transactionRefundAllRequest = (TransactionRefundAllRequest) o;
-    return Objects.equals(this.reason, transactionRefundAllRequest.reason);
+    return Objects.equals(this.reason, transactionRefundAllRequest.reason) &&
+        Objects.equals(this.externalIdentifier, transactionRefundAllRequest.externalIdentifier);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(reason);
+    return Objects.hash(reason, externalIdentifier);
   }
 
   @Override
@@ -80,6 +108,7 @@ public class TransactionRefundAllRequest {
     StringBuilder sb = new StringBuilder();
     sb.append("class TransactionRefundAllRequest {\n");
     sb.append("    reason: ").append(toIndentedString(reason)).append("\n");
+    sb.append("    externalIdentifier: ").append(toIndentedString(externalIdentifier)).append("\n");
     sb.append("}");
     return sb.toString();
   }

@@ -23,6 +23,7 @@ import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -237,6 +238,14 @@ public class MerchantAccount {
   public static final String SERIALIZED_NAME_UPDATED_AT = "updated_at";
   @SerializedName(SERIALIZED_NAME_UPDATED_AT)
   private String updatedAt;
+
+  public static final String SERIALIZED_NAME_OVER_CAPTURE_AMOUNT = "over_capture_amount";
+  @SerializedName(SERIALIZED_NAME_OVER_CAPTURE_AMOUNT)
+  private BigDecimal overCaptureAmount;
+
+  public static final String SERIALIZED_NAME_OVER_CAPTURE_PERCENTAGE = "over_capture_percentage";
+  @SerializedName(SERIALIZED_NAME_OVER_CAPTURE_PERCENTAGE)
+  private BigDecimal overCapturePercentage;
 
 
   public MerchantAccount type(TypeEnum type) {
@@ -638,6 +647,56 @@ public class MerchantAccount {
   }
 
 
+  public MerchantAccount overCaptureAmount(BigDecimal overCaptureAmount) {
+    
+    this.overCaptureAmount = overCaptureAmount;
+    return this;
+  }
+
+   /**
+   * The maximum monetary amount allowed for over-capture, in the smallest currency unit, for example &#x60;1299&#x60; cents to allow for an over-capture of &#x60;$12.99&#x60;.
+   * minimum: 1
+   * maximum: 99999999
+   * @return overCaptureAmount
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "1000", value = "The maximum monetary amount allowed for over-capture, in the smallest currency unit, for example `1299` cents to allow for an over-capture of `$12.99`.")
+
+  public BigDecimal getOverCaptureAmount() {
+    return overCaptureAmount;
+  }
+
+
+  public void setOverCaptureAmount(BigDecimal overCaptureAmount) {
+    this.overCaptureAmount = overCaptureAmount;
+  }
+
+
+  public MerchantAccount overCapturePercentage(BigDecimal overCapturePercentage) {
+    
+    this.overCapturePercentage = overCapturePercentage;
+    return this;
+  }
+
+   /**
+   * The maximum percentage allowed for over-capture, for example &#x60;25&#x60; to allow for an over-capture of 25% of the original transaction amount.
+   * minimum: 1
+   * maximum: 99999999
+   * @return overCapturePercentage
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "20", value = "The maximum percentage allowed for over-capture, for example `25` to allow for an over-capture of 25% of the original transaction amount.")
+
+  public BigDecimal getOverCapturePercentage() {
+    return overCapturePercentage;
+  }
+
+
+  public void setOverCapturePercentage(BigDecimal overCapturePercentage) {
+    this.overCapturePercentage = overCapturePercentage;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -663,12 +722,14 @@ public class MerchantAccount {
         Objects.equals(this.loonSecretKey, merchantAccount.loonSecretKey) &&
         Objects.equals(this.loonAcceptedSchemes, merchantAccount.loonAcceptedSchemes) &&
         Objects.equals(this.createdAt, merchantAccount.createdAt) &&
-        Objects.equals(this.updatedAt, merchantAccount.updatedAt);
+        Objects.equals(this.updatedAt, merchantAccount.updatedAt) &&
+        Objects.equals(this.overCaptureAmount, merchantAccount.overCaptureAmount) &&
+        Objects.equals(this.overCapturePercentage, merchantAccount.overCapturePercentage);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(type, id, displayName, outboundWebhookUrl, outboundWebhookUsername, outboundWebhookPassword, visaNetworkTokensRequestorId, visaNetworkTokensAppId, amexNetworkTokensRequestorId, amexNetworkTokensAppId, mastercardNetworkTokensRequestorId, mastercardNetworkTokensAppId, loonClientKey, loonSecretKey, loonAcceptedSchemes, createdAt, updatedAt);
+    return Objects.hash(type, id, displayName, outboundWebhookUrl, outboundWebhookUsername, outboundWebhookPassword, visaNetworkTokensRequestorId, visaNetworkTokensAppId, amexNetworkTokensRequestorId, amexNetworkTokensAppId, mastercardNetworkTokensRequestorId, mastercardNetworkTokensAppId, loonClientKey, loonSecretKey, loonAcceptedSchemes, createdAt, updatedAt, overCaptureAmount, overCapturePercentage);
   }
 
   @Override
@@ -692,6 +753,8 @@ public class MerchantAccount {
     sb.append("    loonAcceptedSchemes: ").append(toIndentedString(loonAcceptedSchemes)).append("\n");
     sb.append("    createdAt: ").append(toIndentedString(createdAt)).append("\n");
     sb.append("    updatedAt: ").append(toIndentedString(updatedAt)).append("\n");
+    sb.append("    overCaptureAmount: ").append(toIndentedString(overCaptureAmount)).append("\n");
+    sb.append("    overCapturePercentage: ").append(toIndentedString(overCapturePercentage)).append("\n");
     sb.append("}");
     return sb.toString();
   }

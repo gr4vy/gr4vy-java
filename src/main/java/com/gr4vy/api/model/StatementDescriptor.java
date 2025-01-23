@@ -42,6 +42,10 @@ public class StatementDescriptor {
   @SerializedName(SERIALIZED_NAME_CITY)
   private String city;
 
+  public static final String SERIALIZED_NAME_COUNTRY = "country";
+  @SerializedName(SERIALIZED_NAME_COUNTRY)
+  private String country;
+
   public static final String SERIALIZED_NAME_PHONE_NUMBER = "phone_number";
   @SerializedName(SERIALIZED_NAME_PHONE_NUMBER)
   private String phoneNumber;
@@ -104,11 +108,11 @@ public class StatementDescriptor {
   }
 
    /**
-   * City from which the charge originated.
+   * The merchant&#39;s city to be displayed in a statement descriptor.
    * @return city
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "London", value = "City from which the charge originated.")
+  @ApiModelProperty(example = "London", value = "The merchant's city to be displayed in a statement descriptor.")
 
   public String getCity() {
     return city;
@@ -117,6 +121,29 @@ public class StatementDescriptor {
 
   public void setCity(String city) {
     this.city = city;
+  }
+
+
+  public StatementDescriptor country(String country) {
+    
+    this.country = country;
+    return this;
+  }
+
+   /**
+   * The 2-letter ISO country code of the merchant to be displayed in a statement descriptor. 
+   * @return country
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "US", value = "The 2-letter ISO country code of the merchant to be displayed in a statement descriptor. ")
+
+  public String getCountry() {
+    return country;
+  }
+
+
+  public void setCountry(String country) {
+    this.country = country;
   }
 
 
@@ -150,11 +177,11 @@ public class StatementDescriptor {
   }
 
    /**
-   * The value in the URL/web address field of a customer&#39;s statement.
+   * The merchant&#39;s URL to be displayed in a statement descriptor.
    * @return url
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "www.gr4vy.com", value = "The value in the URL/web address field of a customer's statement.")
+  @ApiModelProperty(example = "www.gr4vy.com", value = "The merchant's URL to be displayed in a statement descriptor.")
 
   public String getUrl() {
     return url;
@@ -178,13 +205,14 @@ public class StatementDescriptor {
     return Objects.equals(this.name, statementDescriptor.name) &&
         Objects.equals(this.description, statementDescriptor.description) &&
         Objects.equals(this.city, statementDescriptor.city) &&
+        Objects.equals(this.country, statementDescriptor.country) &&
         Objects.equals(this.phoneNumber, statementDescriptor.phoneNumber) &&
         Objects.equals(this.url, statementDescriptor.url);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, description, city, phoneNumber, url);
+    return Objects.hash(name, description, city, country, phoneNumber, url);
   }
 
   @Override
@@ -194,6 +222,7 @@ public class StatementDescriptor {
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
     sb.append("    city: ").append(toIndentedString(city)).append("\n");
+    sb.append("    country: ").append(toIndentedString(country)).append("\n");
     sb.append("    phoneNumber: ").append(toIndentedString(phoneNumber)).append("\n");
     sb.append("    url: ").append(toIndentedString(url)).append("\n");
     sb.append("}");

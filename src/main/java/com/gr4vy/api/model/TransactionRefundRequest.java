@@ -94,6 +94,10 @@ public class TransactionRefundRequest {
   @SerializedName(SERIALIZED_NAME_REASON)
   private String reason;
 
+  public static final String SERIALIZED_NAME_EXTERNAL_IDENTIFIER = "external_identifier";
+  @SerializedName(SERIALIZED_NAME_EXTERNAL_IDENTIFIER)
+  private String externalIdentifier;
+
 
   public TransactionRefundRequest amount(Integer amount) {
     
@@ -189,6 +193,29 @@ public class TransactionRefundRequest {
   }
 
 
+  public TransactionRefundRequest externalIdentifier(String externalIdentifier) {
+    
+    this.externalIdentifier = externalIdentifier;
+    return this;
+  }
+
+   /**
+   * An external identifier that can be used to match the refund against your own records.
+   * @return externalIdentifier
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "refund-789123", value = "An external identifier that can be used to match the refund against your own records.")
+
+  public String getExternalIdentifier() {
+    return externalIdentifier;
+  }
+
+
+  public void setExternalIdentifier(String externalIdentifier) {
+    this.externalIdentifier = externalIdentifier;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -201,12 +228,13 @@ public class TransactionRefundRequest {
     return Objects.equals(this.amount, transactionRefundRequest.amount) &&
         Objects.equals(this.targetType, transactionRefundRequest.targetType) &&
         Objects.equals(this.targetId, transactionRefundRequest.targetId) &&
-        Objects.equals(this.reason, transactionRefundRequest.reason);
+        Objects.equals(this.reason, transactionRefundRequest.reason) &&
+        Objects.equals(this.externalIdentifier, transactionRefundRequest.externalIdentifier);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(amount, targetType, targetId, reason);
+    return Objects.hash(amount, targetType, targetId, reason, externalIdentifier);
   }
 
   @Override
@@ -217,6 +245,7 @@ public class TransactionRefundRequest {
     sb.append("    targetType: ").append(toIndentedString(targetType)).append("\n");
     sb.append("    targetId: ").append(toIndentedString(targetId)).append("\n");
     sb.append("    reason: ").append(toIndentedString(reason)).append("\n");
+    sb.append("    externalIdentifier: ").append(toIndentedString(externalIdentifier)).append("\n");
     sb.append("}");
     return sb.toString();
   }

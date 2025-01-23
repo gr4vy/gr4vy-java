@@ -20,6 +20,7 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import com.gr4vy.api.model.Airline;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
@@ -33,6 +34,10 @@ public class TransactionCaptureRequest {
   public static final String SERIALIZED_NAME_AMOUNT = "amount";
   @SerializedName(SERIALIZED_NAME_AMOUNT)
   private Integer amount;
+
+  public static final String SERIALIZED_NAME_AIRLINE = "airline";
+  @SerializedName(SERIALIZED_NAME_AIRLINE)
+  private Airline airline;
 
 
   public TransactionCaptureRequest amount(Integer amount) {
@@ -60,6 +65,29 @@ public class TransactionCaptureRequest {
   }
 
 
+  public TransactionCaptureRequest airline(Airline airline) {
+    
+    this.airline = airline;
+    return this;
+  }
+
+   /**
+   * The airline addendum data which describes the airline booking associated with this transaction. When provided, this will override any airline data provided when authorizing the transaction. Only the data on this request will be passed to the payment service, and none of the original data will be sent or kept.
+   * @return airline
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "The airline addendum data which describes the airline booking associated with this transaction. When provided, this will override any airline data provided when authorizing the transaction. Only the data on this request will be passed to the payment service, and none of the original data will be sent or kept.")
+
+  public Airline getAirline() {
+    return airline;
+  }
+
+
+  public void setAirline(Airline airline) {
+    this.airline = airline;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -69,12 +97,13 @@ public class TransactionCaptureRequest {
       return false;
     }
     TransactionCaptureRequest transactionCaptureRequest = (TransactionCaptureRequest) o;
-    return Objects.equals(this.amount, transactionCaptureRequest.amount);
+    return Objects.equals(this.amount, transactionCaptureRequest.amount) &&
+        Objects.equals(this.airline, transactionCaptureRequest.airline);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(amount);
+    return Objects.hash(amount, airline);
   }
 
   @Override
@@ -82,6 +111,7 @@ public class TransactionCaptureRequest {
     StringBuilder sb = new StringBuilder();
     sb.append("class TransactionCaptureRequest {\n");
     sb.append("    amount: ").append(toIndentedString(amount)).append("\n");
+    sb.append("    airline: ").append(toIndentedString(airline)).append("\n");
     sb.append("}");
     return sb.toString();
   }
