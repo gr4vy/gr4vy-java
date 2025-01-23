@@ -37,6 +37,18 @@ public class ConnectionOptionsAdyenCard {
   @SerializedName(SERIALIZED_NAME_ADDITIONAL_DATA)
   private Map<String, String> additionalData = null;
 
+  public static final String SERIALIZED_NAME_AUTO_RESCUE = "autoRescue";
+  @SerializedName(SERIALIZED_NAME_AUTO_RESCUE)
+  private Boolean autoRescue = false;
+
+  public static final String SERIALIZED_NAME_MAX_DAYS_TO_RESCUE = "maxDaysToRescue";
+  @SerializedName(SERIALIZED_NAME_MAX_DAYS_TO_RESCUE)
+  private Integer maxDaysToRescue;
+
+  public static final String SERIALIZED_NAME_AUTO_RESCUE_SCENARIO = "autoRescueScenario";
+  @SerializedName(SERIALIZED_NAME_AUTO_RESCUE_SCENARIO)
+  private String autoRescueScenario = "null";
+
 
   public ConnectionOptionsAdyenCard additionalData(Map<String, String> additionalData) {
     
@@ -69,6 +81,75 @@ public class ConnectionOptionsAdyenCard {
   }
 
 
+  public ConnectionOptionsAdyenCard autoRescue(Boolean autoRescue) {
+    
+    this.autoRescue = autoRescue;
+    return this;
+  }
+
+   /**
+   * Enabled Adyen&#39;s auto-rescue feature.
+   * @return autoRescue
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Enabled Adyen's auto-rescue feature.")
+
+  public Boolean getAutoRescue() {
+    return autoRescue;
+  }
+
+
+  public void setAutoRescue(Boolean autoRescue) {
+    this.autoRescue = autoRescue;
+  }
+
+
+  public ConnectionOptionsAdyenCard maxDaysToRescue(Integer maxDaysToRescue) {
+    
+    this.maxDaysToRescue = maxDaysToRescue;
+    return this;
+  }
+
+   /**
+   * Defines the number of days to auto-retry a payment for if &#x60;autoRescue&#x60; is enabled.
+   * @return maxDaysToRescue
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Defines the number of days to auto-retry a payment for if `autoRescue` is enabled.")
+
+  public Integer getMaxDaysToRescue() {
+    return maxDaysToRescue;
+  }
+
+
+  public void setMaxDaysToRescue(Integer maxDaysToRescue) {
+    this.maxDaysToRescue = maxDaysToRescue;
+  }
+
+
+  public ConnectionOptionsAdyenCard autoRescueScenario(String autoRescueScenario) {
+    
+    this.autoRescueScenario = autoRescueScenario;
+    return this;
+  }
+
+   /**
+   * Defines the Adyen auto-rescue test scenario to invoke.
+   * @return autoRescueScenario
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Defines the Adyen auto-rescue test scenario to invoke.")
+
+  public String getAutoRescueScenario() {
+    return autoRescueScenario;
+  }
+
+
+  public void setAutoRescueScenario(String autoRescueScenario) {
+    this.autoRescueScenario = autoRescueScenario;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -78,12 +159,15 @@ public class ConnectionOptionsAdyenCard {
       return false;
     }
     ConnectionOptionsAdyenCard connectionOptionsAdyenCard = (ConnectionOptionsAdyenCard) o;
-    return Objects.equals(this.additionalData, connectionOptionsAdyenCard.additionalData);
+    return Objects.equals(this.additionalData, connectionOptionsAdyenCard.additionalData) &&
+        Objects.equals(this.autoRescue, connectionOptionsAdyenCard.autoRescue) &&
+        Objects.equals(this.maxDaysToRescue, connectionOptionsAdyenCard.maxDaysToRescue) &&
+        Objects.equals(this.autoRescueScenario, connectionOptionsAdyenCard.autoRescueScenario);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(additionalData);
+    return Objects.hash(additionalData, autoRescue, maxDaysToRescue, autoRescueScenario);
   }
 
   @Override
@@ -91,6 +175,9 @@ public class ConnectionOptionsAdyenCard {
     StringBuilder sb = new StringBuilder();
     sb.append("class ConnectionOptionsAdyenCard {\n");
     sb.append("    additionalData: ").append(toIndentedString(additionalData)).append("\n");
+    sb.append("    autoRescue: ").append(toIndentedString(autoRescue)).append("\n");
+    sb.append("    maxDaysToRescue: ").append(toIndentedString(maxDaysToRescue)).append("\n");
+    sb.append("    autoRescueScenario: ").append(toIndentedString(autoRescueScenario)).append("\n");
     sb.append("}");
     return sb.toString();
   }

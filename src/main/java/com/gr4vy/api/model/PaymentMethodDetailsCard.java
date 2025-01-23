@@ -30,6 +30,10 @@ import java.io.IOException;
 @ApiModel(description = "A credit or debit card payment method.")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class PaymentMethodDetailsCard {
+  public static final String SERIALIZED_NAME_BIN = "bin";
+  @SerializedName(SERIALIZED_NAME_BIN)
+  private String bin;
+
   /**
    * The type of card, one of &#x60;credit&#x60;, &#x60;debit&#x60; or &#x60;prepaid&#x60;.
    */
@@ -83,32 +87,9 @@ public class PaymentMethodDetailsCard {
   @SerializedName(SERIALIZED_NAME_CARD_TYPE)
   private CardTypeEnum cardType;
 
-  public static final String SERIALIZED_NAME_BIN = "bin";
-  @SerializedName(SERIALIZED_NAME_BIN)
-  private String bin;
-
-
-  public PaymentMethodDetailsCard cardType(CardTypeEnum cardType) {
-    
-    this.cardType = cardType;
-    return this;
-  }
-
-   /**
-   * The type of card, one of &#x60;credit&#x60;, &#x60;debit&#x60; or &#x60;prepaid&#x60;.
-   * @return cardType
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(example = "credit", value = "The type of card, one of `credit`, `debit` or `prepaid`.")
-
-  public CardTypeEnum getCardType() {
-    return cardType;
-  }
-
-
-  public void setCardType(CardTypeEnum cardType) {
-    this.cardType = cardType;
-  }
+  public static final String SERIALIZED_NAME_CARD_ISSUER_NAME = "card_issuer_name";
+  @SerializedName(SERIALIZED_NAME_CARD_ISSUER_NAME)
+  private String cardIssuerName;
 
 
   public PaymentMethodDetailsCard bin(String bin) {
@@ -134,6 +115,52 @@ public class PaymentMethodDetailsCard {
   }
 
 
+  public PaymentMethodDetailsCard cardType(CardTypeEnum cardType) {
+    
+    this.cardType = cardType;
+    return this;
+  }
+
+   /**
+   * The type of card, one of &#x60;credit&#x60;, &#x60;debit&#x60; or &#x60;prepaid&#x60;.
+   * @return cardType
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "credit", value = "The type of card, one of `credit`, `debit` or `prepaid`.")
+
+  public CardTypeEnum getCardType() {
+    return cardType;
+  }
+
+
+  public void setCardType(CardTypeEnum cardType) {
+    this.cardType = cardType;
+  }
+
+
+  public PaymentMethodDetailsCard cardIssuerName(String cardIssuerName) {
+    
+    this.cardIssuerName = cardIssuerName;
+    return this;
+  }
+
+   /**
+   * The name of the card issuer.
+   * @return cardIssuerName
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "Bank", value = "The name of the card issuer.")
+
+  public String getCardIssuerName() {
+    return cardIssuerName;
+  }
+
+
+  public void setCardIssuerName(String cardIssuerName) {
+    this.cardIssuerName = cardIssuerName;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -143,21 +170,23 @@ public class PaymentMethodDetailsCard {
       return false;
     }
     PaymentMethodDetailsCard paymentMethodDetailsCard = (PaymentMethodDetailsCard) o;
-    return Objects.equals(this.cardType, paymentMethodDetailsCard.cardType) &&
-        Objects.equals(this.bin, paymentMethodDetailsCard.bin);
+    return Objects.equals(this.bin, paymentMethodDetailsCard.bin) &&
+        Objects.equals(this.cardType, paymentMethodDetailsCard.cardType) &&
+        Objects.equals(this.cardIssuerName, paymentMethodDetailsCard.cardIssuerName);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(cardType, bin);
+    return Objects.hash(bin, cardType, cardIssuerName);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class PaymentMethodDetailsCard {\n");
-    sb.append("    cardType: ").append(toIndentedString(cardType)).append("\n");
     sb.append("    bin: ").append(toIndentedString(bin)).append("\n");
+    sb.append("    cardType: ").append(toIndentedString(cardType)).append("\n");
+    sb.append("    cardIssuerName: ").append(toIndentedString(cardIssuerName)).append("\n");
     sb.append("}");
     return sb.toString();
   }

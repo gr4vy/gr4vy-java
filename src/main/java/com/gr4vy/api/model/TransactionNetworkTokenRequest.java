@@ -87,6 +87,10 @@ public class TransactionNetworkTokenRequest {
   @SerializedName(SERIALIZED_NAME_EXPIRATION_DATE)
   private String expirationDate;
 
+  public static final String SERIALIZED_NAME_ECI = "eci";
+  @SerializedName(SERIALIZED_NAME_ECI)
+  private String eci;
+
   public static final String SERIALIZED_NAME_CRYPTOGRAM = "cryptogram";
   @SerializedName(SERIALIZED_NAME_CRYPTOGRAM)
   private String cryptogram;
@@ -162,6 +166,29 @@ public class TransactionNetworkTokenRequest {
   }
 
 
+  public TransactionNetworkTokenRequest eci(String eci) {
+    
+    this.eci = eci;
+    return this;
+  }
+
+   /**
+   * The ecommerce indicator.
+   * @return eci
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "05", value = "The ecommerce indicator.")
+
+  public String getEci() {
+    return eci;
+  }
+
+
+  public void setEci(String eci) {
+    this.eci = eci;
+  }
+
+
   public TransactionNetworkTokenRequest cryptogram(String cryptogram) {
     
     this.cryptogram = cryptogram;
@@ -220,13 +247,14 @@ public class TransactionNetworkTokenRequest {
     return Objects.equals(this.method, transactionNetworkTokenRequest.method) &&
         Objects.equals(this.token, transactionNetworkTokenRequest.token) &&
         Objects.equals(this.expirationDate, transactionNetworkTokenRequest.expirationDate) &&
+        Objects.equals(this.eci, transactionNetworkTokenRequest.eci) &&
         Objects.equals(this.cryptogram, transactionNetworkTokenRequest.cryptogram) &&
         Objects.equals(this.redirectUrl, transactionNetworkTokenRequest.redirectUrl);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(method, token, expirationDate, cryptogram, redirectUrl);
+    return Objects.hash(method, token, expirationDate, eci, cryptogram, redirectUrl);
   }
 
   @Override
@@ -236,6 +264,7 @@ public class TransactionNetworkTokenRequest {
     sb.append("    method: ").append(toIndentedString(method)).append("\n");
     sb.append("    token: ").append(toIndentedString(token)).append("\n");
     sb.append("    expirationDate: ").append(toIndentedString(expirationDate)).append("\n");
+    sb.append("    eci: ").append(toIndentedString(eci)).append("\n");
     sb.append("    cryptogram: ").append(toIndentedString(cryptogram)).append("\n");
     sb.append("    redirectUrl: ").append(toIndentedString(redirectUrl)).append("\n");
     sb.append("}");

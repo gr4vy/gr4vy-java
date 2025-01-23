@@ -90,6 +90,10 @@ public class CheckoutSessionPaymentMethodDetails {
   @SerializedName(SERIALIZED_NAME_CARD_COUNTRY)
   private String cardCountry;
 
+  public static final String SERIALIZED_NAME_CARD_ISSUER_NAME = "card_issuer_name";
+  @SerializedName(SERIALIZED_NAME_CARD_ISSUER_NAME)
+  private String cardIssuerName;
+
 
   public CheckoutSessionPaymentMethodDetails bin(String bin) {
     
@@ -160,6 +164,29 @@ public class CheckoutSessionPaymentMethodDetails {
   }
 
 
+  public CheckoutSessionPaymentMethodDetails cardIssuerName(String cardIssuerName) {
+    
+    this.cardIssuerName = cardIssuerName;
+    return this;
+  }
+
+   /**
+   * The name of the card issuer.
+   * @return cardIssuerName
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "Bank", value = "The name of the card issuer.")
+
+  public String getCardIssuerName() {
+    return cardIssuerName;
+  }
+
+
+  public void setCardIssuerName(String cardIssuerName) {
+    this.cardIssuerName = cardIssuerName;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -171,12 +198,13 @@ public class CheckoutSessionPaymentMethodDetails {
     CheckoutSessionPaymentMethodDetails checkoutSessionPaymentMethodDetails = (CheckoutSessionPaymentMethodDetails) o;
     return Objects.equals(this.bin, checkoutSessionPaymentMethodDetails.bin) &&
         Objects.equals(this.cardType, checkoutSessionPaymentMethodDetails.cardType) &&
-        Objects.equals(this.cardCountry, checkoutSessionPaymentMethodDetails.cardCountry);
+        Objects.equals(this.cardCountry, checkoutSessionPaymentMethodDetails.cardCountry) &&
+        Objects.equals(this.cardIssuerName, checkoutSessionPaymentMethodDetails.cardIssuerName);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(bin, cardType, cardCountry);
+    return Objects.hash(bin, cardType, cardCountry, cardIssuerName);
   }
 
   @Override
@@ -186,6 +214,7 @@ public class CheckoutSessionPaymentMethodDetails {
     sb.append("    bin: ").append(toIndentedString(bin)).append("\n");
     sb.append("    cardType: ").append(toIndentedString(cardType)).append("\n");
     sb.append("    cardCountry: ").append(toIndentedString(cardCountry)).append("\n");
+    sb.append("    cardIssuerName: ").append(toIndentedString(cardIssuerName)).append("\n");
     sb.append("}");
     return sb.toString();
   }

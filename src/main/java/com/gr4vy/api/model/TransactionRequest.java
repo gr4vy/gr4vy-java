@@ -20,6 +20,7 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import com.gr4vy.api.model.Airline;
 import com.gr4vy.api.model.BrowserInfo;
 import com.gr4vy.api.model.CartItem;
 import com.gr4vy.api.model.ConnectionOptions;
@@ -242,6 +243,10 @@ public class TransactionRequest {
   public static final String SERIALIZED_NAME_PAYMENT_SERVICE_ID = "payment_service_id";
   @SerializedName(SERIALIZED_NAME_PAYMENT_SERVICE_ID)
   private UUID paymentServiceId;
+
+  public static final String SERIALIZED_NAME_AIRLINE = "airline";
+  @SerializedName(SERIALIZED_NAME_AIRLINE)
+  private Airline airline;
 
 
   public TransactionRequest amount(Integer amount) {
@@ -512,11 +517,11 @@ public class TransactionRequest {
   }
 
    /**
-   * The 2-letter ISO code of the country of the transaction. This is used to filter the payment services that is used to process the transaction.  If this value is provided for redirect requests and it&#39;s not &#x60;null&#x60;, it must match the one specified for &#x60;country&#x60; in &#x60;payment_method&#x60;. Otherwise, the value specified for &#x60;country&#x60; in &#x60;payment_method&#x60; will be assumed implicitly. 
+   * The 2-letter ISO code of the country where the transaction is processed. This is also used to filter the payment services that can process the transaction.  If this value is provided for redirect requests and it&#39;s not &#x60;null&#x60;, it must match the one specified for &#x60;country&#x60; in &#x60;payment_method&#x60;. Otherwise, the value specified for &#x60;country&#x60; in &#x60;payment_method&#x60; will be assumed implicitly. 
    * @return country
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "US", value = "The 2-letter ISO code of the country of the transaction. This is used to filter the payment services that is used to process the transaction.  If this value is provided for redirect requests and it's not `null`, it must match the one specified for `country` in `payment_method`. Otherwise, the value specified for `country` in `payment_method` will be assumed implicitly. ")
+  @ApiModelProperty(example = "US", value = "The 2-letter ISO code of the country where the transaction is processed. This is also used to filter the payment services that can process the transaction.  If this value is provided for redirect requests and it's not `null`, it must match the one specified for `country` in `payment_method`. Otherwise, the value specified for `country` in `payment_method` will be assumed implicitly. ")
 
   public String getCountry() {
     return country;
@@ -843,6 +848,29 @@ public class TransactionRequest {
   }
 
 
+  public TransactionRequest airline(Airline airline) {
+    
+    this.airline = airline;
+    return this;
+  }
+
+   /**
+   * The airline addendum data which describes the airline booking associated with this transaction.
+   * @return airline
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "The airline addendum data which describes the airline booking associated with this transaction.")
+
+  public Airline getAirline() {
+    return airline;
+  }
+
+
+  public void setAirline(Airline airline) {
+    this.airline = airline;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -876,12 +904,13 @@ public class TransactionRequest {
         Objects.equals(this.statementDescriptor, transactionRequest.statementDescriptor) &&
         Objects.equals(this.store, transactionRequest.store) &&
         Objects.equals(this.threeDSecureData, transactionRequest.threeDSecureData) &&
-        Objects.equals(this.paymentServiceId, transactionRequest.paymentServiceId);
+        Objects.equals(this.paymentServiceId, transactionRequest.paymentServiceId) &&
+        Objects.equals(this.airline, transactionRequest.airline);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(amount, currency, paymentMethod, antiFraudFingerprint, asyncCapture, browserInfo, buyerExternalIdentifier, buyerId, buyer, cartItems, connectionOptions, country, externalIdentifier, giftCards, intent, isSubsequentPayment, merchantInitiated, metadata, paymentSource, previousSchemeTransactionId, shippingDetailsId, statementDescriptor, store, threeDSecureData, paymentServiceId);
+    return Objects.hash(amount, currency, paymentMethod, antiFraudFingerprint, asyncCapture, browserInfo, buyerExternalIdentifier, buyerId, buyer, cartItems, connectionOptions, country, externalIdentifier, giftCards, intent, isSubsequentPayment, merchantInitiated, metadata, paymentSource, previousSchemeTransactionId, shippingDetailsId, statementDescriptor, store, threeDSecureData, paymentServiceId, airline);
   }
 
   @Override
@@ -913,6 +942,7 @@ public class TransactionRequest {
     sb.append("    store: ").append(toIndentedString(store)).append("\n");
     sb.append("    threeDSecureData: ").append(toIndentedString(threeDSecureData)).append("\n");
     sb.append("    paymentServiceId: ").append(toIndentedString(paymentServiceId)).append("\n");
+    sb.append("    airline: ").append(toIndentedString(airline)).append("\n");
     sb.append("}");
     return sb.toString();
   }

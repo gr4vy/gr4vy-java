@@ -294,11 +294,15 @@ public class TransactionSummary {
     
     EBANX("ebanx"),
     
+    EFECTY("efecty"),
+    
     EPS("eps"),
     
     EVERYDAYPAY("everydaypay"),
     
     GCASH("gcash"),
+    
+    GIFT_CARD("gift-card"),
     
     GIROPAY("giropay"),
     
@@ -332,9 +336,13 @@ public class TransactionSummary {
     
     MAYBANKQRPAY("maybankqrpay"),
     
+    MERCADOPAGO("mercadopago"),
+    
     MULTIBANCO("multibanco"),
     
     MULTIPAGO("multipago"),
+    
+    NETBANKING("netbanking"),
     
     NETWORK_TOKEN("network-token"),
     
@@ -366,6 +374,8 @@ public class TransactionSummary {
     
     PIX("pix"),
     
+    PSE("pse"),
+    
     RABBITLINEPAY("rabbitlinepay"),
     
     RAZORPAY("razorpay"),
@@ -396,9 +406,13 @@ public class TransactionSummary {
     
     TRUSTLYEUROPE("trustlyeurope"),
     
+    UPI("upi"),
+    
     VIPPS("vipps"),
     
     WAAVE("waave"),
+    
+    WEBPAY("webpay"),
     
     WECHAT("wechat"),
     
@@ -542,6 +556,18 @@ public class TransactionSummary {
   public static final String SERIALIZED_NAME_UPDATED_AT = "updated_at";
   @SerializedName(SERIALIZED_NAME_UPDATED_AT)
   private String updatedAt;
+
+  public static final String SERIALIZED_NAME_SETTLED_CURRENCY = "settled_currency";
+  @SerializedName(SERIALIZED_NAME_SETTLED_CURRENCY)
+  private String settledCurrency;
+
+  public static final String SERIALIZED_NAME_SETTLED_AMOUNT = "settled_amount";
+  @SerializedName(SERIALIZED_NAME_SETTLED_AMOUNT)
+  private Integer settledAmount;
+
+  public static final String SERIALIZED_NAME_SETTLED = "settled";
+  @SerializedName(SERIALIZED_NAME_SETTLED)
+  private Boolean settled;
 
 
   public TransactionSummary type(TypeEnum type) {
@@ -1135,6 +1161,75 @@ public class TransactionSummary {
   }
 
 
+  public TransactionSummary settledCurrency(String settledCurrency) {
+    
+    this.settledCurrency = settledCurrency;
+    return this;
+  }
+
+   /**
+   * The currency of this transaction&#39;s settlement in ISO 4217 three-letter code format.
+   * @return settledCurrency
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "GBP", value = "The currency of this transaction's settlement in ISO 4217 three-letter code format.")
+
+  public String getSettledCurrency() {
+    return settledCurrency;
+  }
+
+
+  public void setSettledCurrency(String settledCurrency) {
+    this.settledCurrency = settledCurrency;
+  }
+
+
+  public TransactionSummary settledAmount(Integer settledAmount) {
+    
+    this.settledAmount = settledAmount;
+    return this;
+  }
+
+   /**
+   * The net amount settled for this transaction.
+   * @return settledAmount
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "1000", value = "The net amount settled for this transaction.")
+
+  public Integer getSettledAmount() {
+    return settledAmount;
+  }
+
+
+  public void setSettledAmount(Integer settledAmount) {
+    this.settledAmount = settledAmount;
+  }
+
+
+  public TransactionSummary settled(Boolean settled) {
+    
+    this.settled = settled;
+    return this;
+  }
+
+   /**
+   * Indicates whether this transaction has been settled.
+   * @return settled
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "true", value = "Indicates whether this transaction has been settled.")
+
+  public Boolean getSettled() {
+    return settled;
+  }
+
+
+  public void setSettled(Boolean settled) {
+    this.settled = settled;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -1168,12 +1263,15 @@ public class TransactionSummary {
         Objects.equals(this.reconciliationId, transactionSummary.reconciliationId) &&
         Objects.equals(this.refundedAmount, transactionSummary.refundedAmount) &&
         Objects.equals(this.status, transactionSummary.status) &&
-        Objects.equals(this.updatedAt, transactionSummary.updatedAt);
+        Objects.equals(this.updatedAt, transactionSummary.updatedAt) &&
+        Objects.equals(this.settledCurrency, transactionSummary.settledCurrency) &&
+        Objects.equals(this.settledAmount, transactionSummary.settledAmount) &&
+        Objects.equals(this.settled, transactionSummary.settled);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(type, id, amount, authorizedAmount, buyer, capturedAmount, checkoutSessionId, country, createdAt, currency, externalIdentifier, giftCardRedemptions, instrumentType, intent, merchantAccountId, method, paymentMethod, paymentService, pendingReview, rawResponseCode, rawResponseDescription, reconciliationId, refundedAmount, status, updatedAt);
+    return Objects.hash(type, id, amount, authorizedAmount, buyer, capturedAmount, checkoutSessionId, country, createdAt, currency, externalIdentifier, giftCardRedemptions, instrumentType, intent, merchantAccountId, method, paymentMethod, paymentService, pendingReview, rawResponseCode, rawResponseDescription, reconciliationId, refundedAmount, status, updatedAt, settledCurrency, settledAmount, settled);
   }
 
   @Override
@@ -1205,6 +1303,9 @@ public class TransactionSummary {
     sb.append("    refundedAmount: ").append(toIndentedString(refundedAmount)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("    updatedAt: ").append(toIndentedString(updatedAt)).append("\n");
+    sb.append("    settledCurrency: ").append(toIndentedString(settledCurrency)).append("\n");
+    sb.append("    settledAmount: ").append(toIndentedString(settledAmount)).append("\n");
+    sb.append("    settled: ").append(toIndentedString(settled)).append("\n");
     sb.append("}");
     return sb.toString();
   }

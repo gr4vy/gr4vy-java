@@ -310,11 +310,11 @@ public class PaymentServiceToken {
   }
 
    /**
-   * The token value.
+   * The token value. Will be present if succeeded.
    * @return token
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "The token value.")
+  @ApiModelProperty(value = "The token value. Will be present if succeeded.")
 
   public String getToken() {
     return token;

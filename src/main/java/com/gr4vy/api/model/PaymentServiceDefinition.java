@@ -22,6 +22,7 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import com.gr4vy.api.model.AntiFraudServiceDefinitionFields;
 import com.gr4vy.api.model.PaymentServiceDefinitionConfiguration;
+import com.gr4vy.api.model.PaymentServiceDefinitionReportingFields;
 import com.gr4vy.api.model.PaymentServiceDefinitionSupportedFeatures;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -139,11 +140,15 @@ public class PaymentServiceDefinition {
     
     EBANX("ebanx"),
     
+    EFECTY("efecty"),
+    
     EPS("eps"),
     
     EVERYDAYPAY("everydaypay"),
     
     GCASH("gcash"),
+    
+    GIFT_CARD("gift-card"),
     
     GIROPAY("giropay"),
     
@@ -177,9 +182,13 @@ public class PaymentServiceDefinition {
     
     MAYBANKQRPAY("maybankqrpay"),
     
+    MERCADOPAGO("mercadopago"),
+    
     MULTIBANCO("multibanco"),
     
     MULTIPAGO("multipago"),
+    
+    NETBANKING("netbanking"),
     
     NETWORK_TOKEN("network-token"),
     
@@ -211,6 +220,8 @@ public class PaymentServiceDefinition {
     
     PIX("pix"),
     
+    PSE("pse"),
+    
     RABBITLINEPAY("rabbitlinepay"),
     
     RAZORPAY("razorpay"),
@@ -241,9 +252,13 @@ public class PaymentServiceDefinition {
     
     TRUSTLYEUROPE("trustlyeurope"),
     
+    UPI("upi"),
+    
     VIPPS("vipps"),
     
     WAAVE("waave"),
+    
+    WEBPAY("webpay"),
     
     WECHAT("wechat"),
     
@@ -294,6 +309,10 @@ public class PaymentServiceDefinition {
   public static final String SERIALIZED_NAME_FIELDS = "fields";
   @SerializedName(SERIALIZED_NAME_FIELDS)
   private List<AntiFraudServiceDefinitionFields> fields = null;
+
+  public static final String SERIALIZED_NAME_REPORTING_FIELDS = "reporting_fields";
+  @SerializedName(SERIALIZED_NAME_REPORTING_FIELDS)
+  private List<PaymentServiceDefinitionReportingFields> reportingFields = null;
 
   public static final String SERIALIZED_NAME_SUPPORTED_CURRENCIES = "supported_currencies";
   @SerializedName(SERIALIZED_NAME_SUPPORTED_CURRENCIES)
@@ -498,6 +517,37 @@ public class PaymentServiceDefinition {
   }
 
 
+  public PaymentServiceDefinition reportingFields(List<PaymentServiceDefinitionReportingFields> reportingFields) {
+    
+    this.reportingFields = reportingFields;
+    return this;
+  }
+
+  public PaymentServiceDefinition addReportingFieldsItem(PaymentServiceDefinitionReportingFields reportingFieldsItem) {
+    if (this.reportingFields == null) {
+      this.reportingFields = new ArrayList<PaymentServiceDefinitionReportingFields>();
+    }
+    this.reportingFields.add(reportingFieldsItem);
+    return this;
+  }
+
+   /**
+   * A list of fields that need to be submitted when enabling the payment service settlement reporting.
+   * @return reportingFields
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "A list of fields that need to be submitted when enabling the payment service settlement reporting.")
+
+  public List<PaymentServiceDefinitionReportingFields> getReportingFields() {
+    return reportingFields;
+  }
+
+
+  public void setReportingFields(List<PaymentServiceDefinitionReportingFields> reportingFields) {
+    this.reportingFields = reportingFields;
+  }
+
+
   public PaymentServiceDefinition supportedCurrencies(List<String> supportedCurrencies) {
     
     this.supportedCurrencies = supportedCurrencies;
@@ -666,6 +716,7 @@ public class PaymentServiceDefinition {
         Objects.equals(this.displayName, paymentServiceDefinition.displayName) &&
         Objects.equals(this.method, paymentServiceDefinition.method) &&
         Objects.equals(this.fields, paymentServiceDefinition.fields) &&
+        Objects.equals(this.reportingFields, paymentServiceDefinition.reportingFields) &&
         Objects.equals(this.supportedCurrencies, paymentServiceDefinition.supportedCurrencies) &&
         Objects.equals(this.supportedCountries, paymentServiceDefinition.supportedCountries) &&
         Objects.equals(this.mode, paymentServiceDefinition.mode) &&
@@ -676,7 +727,7 @@ public class PaymentServiceDefinition {
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, type, displayName, method, fields, supportedCurrencies, supportedCountries, mode, supportedFeatures, iconUrl, _configuration);
+    return Objects.hash(id, type, displayName, method, fields, reportingFields, supportedCurrencies, supportedCountries, mode, supportedFeatures, iconUrl, _configuration);
   }
 
   @Override
@@ -688,6 +739,7 @@ public class PaymentServiceDefinition {
     sb.append("    displayName: ").append(toIndentedString(displayName)).append("\n");
     sb.append("    method: ").append(toIndentedString(method)).append("\n");
     sb.append("    fields: ").append(toIndentedString(fields)).append("\n");
+    sb.append("    reportingFields: ").append(toIndentedString(reportingFields)).append("\n");
     sb.append("    supportedCurrencies: ").append(toIndentedString(supportedCurrencies)).append("\n");
     sb.append("    supportedCountries: ").append(toIndentedString(supportedCountries)).append("\n");
     sb.append("    mode: ").append(toIndentedString(mode)).append("\n");
