@@ -1,4 +1,3 @@
-
 package com.gr4vy.sdk;
 
 import java.io.File;
@@ -21,6 +20,11 @@ import java.util.Map;
 import java.util.UUID;
 
 import java.time.Duration;
+
+import javax.crypto.Mac;
+import javax.crypto.spec.SecretKeySpec;
+import java.nio.charset.StandardCharsets;
+import java.util.Base64;
 
 import org.bouncycastle.asn1.pkcs.PrivateKeyInfo;
 import org.bouncycastle.jce.ECNamedCurveTable;
@@ -242,6 +246,58 @@ public class Gr4vyClient {
 	    String token = signedJWT.serialize();
 	    cachedToken = new CachedToken(token, expire.getTime());
 	    return token;
+	}
+
+	public static void verifyWebhook(
+	    String secret,
+	    String payload,
+	    String signatureHeader,
+	    String timestampHeader,
+	    int timestampTolerance
+	) {
+	    if (signatureHeader == null || timestampHeader == null) {
+	        throw new IllegalArgumentException("Missing header values");
+	    }
+
+	    long timestamp;
+	    try {
+	        timestamp = Long.parseLong(timestampHeader);
+	    } catch (NumberFormatException e) {
+	        throw new IllegalArgumentException("Invalid header timestamp", e);
+	    }
+
+	    String[] signatures = signatureHeader.split(",");
+	    String message = timestamp + "." + payload;
+		StringBuilder expectedSignature;
+
+	    try {
+	        Mac mac = Mac.getInstance("HmacSHA256");
+	        SecretKeySpec secretKeySpec = new SecretKeySpec(secret.getBytes(StandardCharsets.UTF_8), "HmacSHA256");
+	        mac.init(secretKeySpec);
+	        byte[] expectedSignatureBytes = mac.doFinal(message.getBytes(StandardCharsets.UTF_8));
+	        expectedSignature = new StringBuilder();
+	        for (byte b : expectedSignatureBytes) {
+	            expectedSignature.append(String.format("%02x", b));
+	        }
+		} catch (Exception e) {
+	        throw new IllegalStateException("Error verifying webhook signature", e);
+	    }
+
+		boolean signatureMatch = false;
+		for (String signature : signatures) {
+			if (expectedSignature.toString().equals(signature)) {
+				signatureMatch = true;
+				break;
+			}
+		}
+
+		if (!signatureMatch) {
+			throw new IllegalStateException("No matching signature found");
+		}
+
+		if (timestampTolerance > 0 && timestamp < (System.currentTimeMillis() / 1000L) - timestampTolerance) {
+			throw new IllegalStateException("Timestamp too old");
+		}
 	}
 	
 	private static ECPublicKey publicFromPrivate(ECPrivateKey key) throws NoSuchAlgorithmException, NoSuchProviderException, InvalidKeySpecException {
@@ -645,4 +701,3 @@ public class Gr4vyClient {
 		return this.delete("/payment-methods/" + paymentMethodId + "/payment-service-tokens/" + paymentServiceTokenId);
 	}
 }
-
