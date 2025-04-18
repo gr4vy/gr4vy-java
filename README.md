@@ -221,6 +221,29 @@ You can also use the SDK to generate a stand-alone API Token by calling the `get
 	String token = client.getToken(scopes);
 ```
 
+## Verifying Webhook Signatures
+
+The SDK provides a method to verify webhook signatures to ensure the payload is authentic and has not been tampered with. Use the `verifyWebhook` method to validate the signature.
+
+### Example
+
+```java
+try {
+    Gr4vyClient.verifyWebhook(
+        "[YOUR_WEBHOOK_SECRET]", // The webhook secret
+        payload,                 // The raw payload received from the webhook
+        signatureHeader,         // The `X-Gr4vy-Signatures` header from the webhook
+        timestampHeader,         // The `X-Gr4vy-Timestamp` header from the webhook
+        300                      // Timestamp tolerance in seconds (optional)
+    );
+    System.out.println("Webhook verified successfully.");
+} catch (IllegalArgumentException e) {
+    System.err.println("Invalid input: " + e.getMessage());
+} catch (IllegalStateException e) {
+    System.err.println("Webhook verification failed: " + e.getMessage());
+}
+```
+
 ## Development
 
 ### Updating models

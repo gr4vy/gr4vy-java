@@ -1,6 +1,7 @@
 package com.gr4vy.sdk;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
 
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
@@ -102,6 +103,8 @@ public class Gr4vyClientTest {
 		
         assert token != null;
     }
+
+	
 	
 	@Test
 	public void addBuyersTest() throws Gr4vyException {
@@ -510,4 +513,72 @@ public class Gr4vyClientTest {
         assert response != null;
 	}
 
+	@Test
+    public void testVerifyWebhookHappyCase() {
+        String secret = "Ik4L-8FH0ihWczctcIPXZRR_8F0fPNgmhEfVBbZ3zNwqQVa1Or4tBz4Pgw2eNaVDod7H56Y268h_wohEUaWbUg";
+        String signatureHeader = "78aca0c78005107a654a957b8566fa6e0e5e06aea92d7da72a6da9e5a690d013,other";
+        String timestampHeader = "1744018920";
+        String payload = "payload";
+
+        Gr4vyClient.verifyWebhook(secret, payload, signatureHeader, timestampHeader, 0);
+    }
+
+    @Test
+    public void testVerifyWebhookOldTimestamp() {
+        String secret = "Ik4L-8FH0ihWczctcIPXZRR_8F0fPNgmhEfVBbZ3zNwqQVa1Or4tBz4Pgw2eNaVDod7H56Y268h_wohEUaWbUg";
+        String signatureHeader = "78aca0c78005107a654a957b8566fa6e0e5e06aea92d7da72a6da9e5a690d013,other";
+        String timestampHeader = "1744018920";
+        String payload = "payload";
+
+        try {
+            Gr4vyClient.verifyWebhook(secret, payload, signatureHeader, timestampHeader, 60);
+            fail("Expected IllegalStateException");
+        } catch (IllegalStateException e) {
+            assertEquals("Timestamp too old", e.getMessage());
+        }
+    }
+
+    @Test
+    public void testVerifyWebhookWrongSignature() {
+        String secret = "Ik4L-8FH0ihWczctcIPXZRR_8F0fPNgmhEfVBbZ3zNwqQVa1Or4tBz4Pgw2eNaVDod7H56Y268h_wohEUaWbUg";
+        String signatureHeader = "other";
+        String timestampHeader = "1744018920";
+        String payload = "payload";
+
+        try {
+            Gr4vyClient.verifyWebhook(secret, payload, signatureHeader, timestampHeader, 0);
+            fail("Expected IllegalStateException");
+        } catch (IllegalStateException e) {
+            assertEquals("No matching signature found", e.getMessage());
+        }
+    }
+
+    @Test
+    public void testVerifyWebhookInvalidTimestamp() {
+        String secret = "Ik4L-8FH0ihWczctcIPXZRR_8F0fPNgmhEfVBbZ3zNwqQVa1Or4tBz4Pgw2eNaVDod7H56Y268h_wohEUaWbUg";
+        String signatureHeader = "78aca0c78005107a654a957b8566fa6e0e5e06aea92d7da72a6da9e5a690d013,other";
+        String timestampHeader = "wrong";
+        String payload = "payload";
+
+        try {
+            Gr4vyClient.verifyWebhook(secret, payload, signatureHeader, timestampHeader, 0);
+            fail("Expected IllegalArgumentException");
+        } catch (IllegalArgumentException e) {
+            assertEquals("Invalid header timestamp", e.getMessage());
+        }
+    }
+
+    @Test
+    public void testVerifyWebhookMissingHeader() {
+        String secret = "Ik4L-8FH0ihWczctcIPXZRR_8F0fPNgmhEfVBbZ3zNwqQVa1Or4tBz4Pgw2eNaVDod7H56Y268h_wohEUaWbUg";
+        String timestampHeader = "1744018920";
+        String payload = "payload";
+
+        try {
+            Gr4vyClient.verifyWebhook(secret, payload, null, timestampHeader, 0);
+            fail("Expected IllegalArgumentException");
+        } catch (IllegalArgumentException e) {
+            assertEquals("Missing header values", e.getMessage());
+        }
+    }
 }
