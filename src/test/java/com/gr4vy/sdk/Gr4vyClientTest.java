@@ -513,8 +513,8 @@ public class Gr4vyClientTest {
         assert response != null;
 	}
 
-    @Test
-    public void testVerifyWebhookHappyCase() throws Gr4vySignatureVerificationError {
+	@Test
+    public void testVerifyWebhookHappyCase() {
         String secret = "Ik4L-8FH0ihWczctcIPXZRR_8F0fPNgmhEfVBbZ3zNwqQVa1Or4tBz4Pgw2eNaVDod7H56Y268h_wohEUaWbUg";
         String signatureHeader = "78aca0c78005107a654a957b8566fa6e0e5e06aea92d7da72a6da9e5a690d013,other";
         String timestampHeader = "1744018920";
@@ -532,8 +532,8 @@ public class Gr4vyClientTest {
 
         try {
             Gr4vyClient.verifyWebhook(secret, payload, signatureHeader, timestampHeader, 60);
-            fail("Expected Gr4vySignatureVerificationError");
-        } catch (Gr4vySignatureVerificationError e) {
+            fail("Expected IllegalStateException");
+        } catch (IllegalStateException e) {
             assertEquals("Timestamp too old", e.getMessage());
         }
     }
@@ -547,8 +547,8 @@ public class Gr4vyClientTest {
 
         try {
             Gr4vyClient.verifyWebhook(secret, payload, signatureHeader, timestampHeader, 0);
-            fail("Expected Gr4vySignatureVerificationError");
-        } catch (Gr4vySignatureVerificationError e) {
+            fail("Expected IllegalStateException");
+        } catch (IllegalStateException e) {
             assertEquals("No matching signature found", e.getMessage());
         }
     }
@@ -562,8 +562,8 @@ public class Gr4vyClientTest {
 
         try {
             Gr4vyClient.verifyWebhook(secret, payload, signatureHeader, timestampHeader, 0);
-            fail("Expected Gr4vySignatureVerificationError");
-        } catch (Gr4vySignatureVerificationError e) {
+            fail("Expected IllegalArgumentException");
+        } catch (IllegalArgumentException e) {
             assertEquals("Invalid header timestamp", e.getMessage());
         }
     }
@@ -576,8 +576,8 @@ public class Gr4vyClientTest {
 
         try {
             Gr4vyClient.verifyWebhook(secret, payload, null, timestampHeader, 0);
-            fail("Expected Gr4vySignatureVerificationError");
-        } catch (Gr4vySignatureVerificationError e) {
+            fail("Expected IllegalArgumentException");
+        } catch (IllegalArgumentException e) {
             assertEquals("Missing header values", e.getMessage());
         }
     }
