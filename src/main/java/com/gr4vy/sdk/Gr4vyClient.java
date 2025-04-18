@@ -268,32 +268,36 @@ public class Gr4vyClient {
 
 	    String[] signatures = signatureHeader.split(",");
 	    String message = timestamp + "." + payload;
+		StringBuilder expectedSignature;
 
 	    try {
 	        Mac mac = Mac.getInstance("HmacSHA256");
 	        SecretKeySpec secretKeySpec = new SecretKeySpec(secret.getBytes(StandardCharsets.UTF_8), "HmacSHA256");
 	        mac.init(secretKeySpec);
 	        byte[] expectedSignatureBytes = mac.doFinal(message.getBytes(StandardCharsets.UTF_8));
-	        String expectedSignature = Base64.getEncoder().encodeToString(expectedSignatureBytes);
-
-	        boolean signatureMatch = false;
-	        for (String signature : signatures) {
-	            if (expectedSignature.equals(signature)) {
-	                signatureMatch = true;
-	                break;
-	            }
+	        expectedSignature = new StringBuilder();
+	        for (byte b : expectedSignatureBytes) {
+	            expectedSignature.append(String.format("%02x", b));
 	        }
-
-	        if (!signatureMatch) {
-	            throw new IllegalStateException("No matching signature found");
-	        }
-
-			if (timestampTolerance > 0 && timestamp < (System.currentTimeMillis() - (timestampTolerance * 1000L))) {
-				throw new IllegalStateException("Timestamp too old");
-			}
-	    } catch (Exception e) {
+		} catch (Exception e) {
 	        throw new IllegalStateException("Error verifying webhook signature", e);
 	    }
+
+		boolean signatureMatch = false;
+		for (String signature : signatures) {
+			if (expectedSignature.toString().equals(signature)) {
+				signatureMatch = true;
+				break;
+			}
+		}
+
+		if (!signatureMatch) {
+			throw new IllegalStateException("No matching signature found");
+		}
+
+		if (timestampTolerance > 0 && timestamp < (System.currentTimeMillis() / 1000L) - timestampTolerance) {
+			throw new IllegalStateException("Timestamp too old");
+		}
 	}
 	
 	private static ECPublicKey publicFromPrivate(ECPrivateKey key) throws NoSuchAlgorithmException, NoSuchProviderException, InvalidKeySpecException {
