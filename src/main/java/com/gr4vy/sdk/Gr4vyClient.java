@@ -288,9 +288,9 @@ public class Gr4vyClient {
 	            throw new IllegalStateException("No matching signature found");
 	        }
 
-	        if (timestampTolerance > 0 && timestamp < (System.currentTimeMillis() / 1000L) - timestampTolerance) {
-	            throw new IllegalStateException("Timestamp too old");
-	        }
+			if (timestampTolerance > 0 && timestamp < (System.currentTimeMillis() - (timestampTolerance * 1000L))) {
+				throw new IllegalStateException("Timestamp too old");
+			}
 	    } catch (Exception e) {
 	        throw new IllegalStateException("Error verifying webhook signature", e);
 	    }
