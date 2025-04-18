@@ -745,3 +745,16 @@ public class Gr4vyClient {
 		}
 	}
 }
+
+/**
+ * Custom exception for errors during webhook signature verification.
+ */
+public class Gr4vySignatureVerificationError extends Exception {
+    public Gr4vySignatureVerificationError(String message) {
+        super(message);
+    }
+
+    public Gr4vySignatureVerificationError(String message, Throwable cause) {
+        super(message, cause);
+    }
+}
