@@ -744,3 +744,4 @@ public class Gr4vyClient {
 			throw new Gr4vySignatureVerificationError("Error verifying webhook signature", e);
 		}
 	}
+}
