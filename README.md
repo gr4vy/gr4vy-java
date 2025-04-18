@@ -237,9 +237,12 @@ try {
         300                      // Timestamp tolerance in seconds (optional)
     );
     System.out.println("Webhook verified successfully.");
-} catch (Gr4vySignatureVerificationError e) {
+} catch (IllegalArgumentException e) {
+    System.err.println("Invalid input: " + e.getMessage());
+} catch (IllegalStateException e) {
     System.err.println("Webhook verification failed: " + e.getMessage());
 }
+```
 
 ## Development
 
