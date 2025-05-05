@@ -148,6 +148,10 @@ public class PaymentServiceDefinition {
     
     GCASH("gcash"),
     
+    GEM("gem"),
+    
+    GEMDS("gemds"),
+    
     GIFT_CARD("gift-card"),
     
     GIROPAY("giropay"),
@@ -173,6 +177,10 @@ public class PaymentServiceDefinition {
     KCP("kcp"),
     
     KLARNA("klarna"),
+    
+    LATITUDE("latitude"),
+    
+    LATITUDEDS("latitudeds"),
     
     LAYBUY("laybuy"),
     

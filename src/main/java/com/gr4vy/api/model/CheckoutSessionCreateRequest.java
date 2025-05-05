@@ -37,6 +37,10 @@ import java.util.Map;
 @ApiModel(description = "A request to create a checkout session.")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class CheckoutSessionCreateRequest {
+  public static final String SERIALIZED_NAME_EXPIRES_IN = "expires_in";
+  @SerializedName(SERIALIZED_NAME_EXPIRES_IN)
+  private Integer expiresIn = 3600;
+
   public static final String SERIALIZED_NAME_CART_ITEMS = "cart_items";
   @SerializedName(SERIALIZED_NAME_CART_ITEMS)
   private List<CartItem> cartItems = null;
@@ -52,6 +56,31 @@ public class CheckoutSessionCreateRequest {
   public static final String SERIALIZED_NAME_BUYER = "buyer";
   @SerializedName(SERIALIZED_NAME_BUYER)
   private TransactionBuyerRequest buyer;
+
+
+  public CheckoutSessionCreateRequest expiresIn(Integer expiresIn) {
+    
+    this.expiresIn = expiresIn;
+    return this;
+  }
+
+   /**
+   * Defines when the checkout session will expire (in seconds). Defaults to an hour (3600 seconds).
+   * minimum: 3600
+   * maximum: 86400
+   * @return expiresIn
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "7200", value = "Defines when the checkout session will expire (in seconds). Defaults to an hour (3600 seconds).")
+
+  public Integer getExpiresIn() {
+    return expiresIn;
+  }
+
+
+  public void setExpiresIn(Integer expiresIn) {
+    this.expiresIn = expiresIn;
+  }
 
 
   public CheckoutSessionCreateRequest cartItems(List<CartItem> cartItems) {
@@ -171,7 +200,8 @@ public class CheckoutSessionCreateRequest {
       return false;
     }
     CheckoutSessionCreateRequest checkoutSessionCreateRequest = (CheckoutSessionCreateRequest) o;
-    return Objects.equals(this.cartItems, checkoutSessionCreateRequest.cartItems) &&
+    return Objects.equals(this.expiresIn, checkoutSessionCreateRequest.expiresIn) &&
+        Objects.equals(this.cartItems, checkoutSessionCreateRequest.cartItems) &&
         Objects.equals(this.metadata, checkoutSessionCreateRequest.metadata) &&
         Objects.equals(this.airline, checkoutSessionCreateRequest.airline) &&
         Objects.equals(this.buyer, checkoutSessionCreateRequest.buyer);
@@ -179,13 +209,14 @@ public class CheckoutSessionCreateRequest {
 
   @Override
   public int hashCode() {
-    return Objects.hash(cartItems, metadata, airline, buyer);
+    return Objects.hash(expiresIn, cartItems, metadata, airline, buyer);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class CheckoutSessionCreateRequest {\n");
+    sb.append("    expiresIn: ").append(toIndentedString(expiresIn)).append("\n");
     sb.append("    cartItems: ").append(toIndentedString(cartItems)).append("\n");
     sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
     sb.append("    airline: ").append(toIndentedString(airline)).append("\n");

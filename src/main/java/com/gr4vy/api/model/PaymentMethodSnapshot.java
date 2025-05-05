@@ -224,6 +224,10 @@ public class PaymentMethodSnapshot {
     
     GCASH("gcash"),
     
+    GEM("gem"),
+    
+    GEMDS("gemds"),
+    
     GIFT_CARD("gift-card"),
     
     GIROPAY("giropay"),
@@ -249,6 +253,10 @@ public class PaymentMethodSnapshot {
     KCP("kcp"),
     
     KLARNA("klarna"),
+    
+    LATITUDE("latitude"),
+    
+    LATITUDEDS("latitudeds"),
     
     LAYBUY("laybuy"),
     

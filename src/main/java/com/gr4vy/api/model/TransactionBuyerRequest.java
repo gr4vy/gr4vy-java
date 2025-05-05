@@ -48,6 +48,10 @@ public class TransactionBuyerRequest {
   @SerializedName(SERIALIZED_NAME_SHIPPING_DETAILS)
   private ShippingDetail shippingDetails;
 
+  public static final String SERIALIZED_NAME_ACCOUNT_NUMBER = "account_number";
+  @SerializedName(SERIALIZED_NAME_ACCOUNT_NUMBER)
+  private String accountNumber;
+
 
   public TransactionBuyerRequest externalIdentifier(String externalIdentifier) {
     
@@ -141,6 +145,29 @@ public class TransactionBuyerRequest {
   }
 
 
+  public TransactionBuyerRequest accountNumber(String accountNumber) {
+    
+    this.accountNumber = accountNumber;
+    return this;
+  }
+
+   /**
+   * The source account number to perform an account funding transaction.
+   * @return accountNumber
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "1234567", value = "The source account number to perform an account funding transaction.")
+
+  public String getAccountNumber() {
+    return accountNumber;
+  }
+
+
+  public void setAccountNumber(String accountNumber) {
+    this.accountNumber = accountNumber;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -153,12 +180,13 @@ public class TransactionBuyerRequest {
     return Objects.equals(this.externalIdentifier, transactionBuyerRequest.externalIdentifier) &&
         Objects.equals(this.displayName, transactionBuyerRequest.displayName) &&
         Objects.equals(this.billingDetails, transactionBuyerRequest.billingDetails) &&
-        Objects.equals(this.shippingDetails, transactionBuyerRequest.shippingDetails);
+        Objects.equals(this.shippingDetails, transactionBuyerRequest.shippingDetails) &&
+        Objects.equals(this.accountNumber, transactionBuyerRequest.accountNumber);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(externalIdentifier, displayName, billingDetails, shippingDetails);
+    return Objects.hash(externalIdentifier, displayName, billingDetails, shippingDetails, accountNumber);
   }
 
   @Override
@@ -169,6 +197,7 @@ public class TransactionBuyerRequest {
     sb.append("    displayName: ").append(toIndentedString(displayName)).append("\n");
     sb.append("    billingDetails: ").append(toIndentedString(billingDetails)).append("\n");
     sb.append("    shippingDetails: ").append(toIndentedString(shippingDetails)).append("\n");
+    sb.append("    accountNumber: ").append(toIndentedString(accountNumber)).append("\n");
     sb.append("}");
     return sb.toString();
   }

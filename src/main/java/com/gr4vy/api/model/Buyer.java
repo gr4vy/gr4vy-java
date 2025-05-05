@@ -109,6 +109,10 @@ public class Buyer {
   @SerializedName(SERIALIZED_NAME_UPDATED_AT)
   private String updatedAt;
 
+  public static final String SERIALIZED_NAME_ACCOUNT_NUMBER = "account_number";
+  @SerializedName(SERIALIZED_NAME_ACCOUNT_NUMBER)
+  private String accountNumber;
+
 
   public Buyer type(TypeEnum type) {
     
@@ -294,6 +298,29 @@ public class Buyer {
   }
 
 
+  public Buyer accountNumber(String accountNumber) {
+    
+    this.accountNumber = accountNumber;
+    return this;
+  }
+
+   /**
+   * The source account number to perform an account funding transaction.
+   * @return accountNumber
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "1234567", value = "The source account number to perform an account funding transaction.")
+
+  public String getAccountNumber() {
+    return accountNumber;
+  }
+
+
+  public void setAccountNumber(String accountNumber) {
+    this.accountNumber = accountNumber;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -310,12 +337,13 @@ public class Buyer {
         Objects.equals(this.displayName, buyer.displayName) &&
         Objects.equals(this.externalIdentifier, buyer.externalIdentifier) &&
         Objects.equals(this.merchantAccountId, buyer.merchantAccountId) &&
-        Objects.equals(this.updatedAt, buyer.updatedAt);
+        Objects.equals(this.updatedAt, buyer.updatedAt) &&
+        Objects.equals(this.accountNumber, buyer.accountNumber);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(type, id, billingDetails, createdAt, displayName, externalIdentifier, merchantAccountId, updatedAt);
+    return Objects.hash(type, id, billingDetails, createdAt, displayName, externalIdentifier, merchantAccountId, updatedAt, accountNumber);
   }
 
   @Override
@@ -330,6 +358,7 @@ public class Buyer {
     sb.append("    externalIdentifier: ").append(toIndentedString(externalIdentifier)).append("\n");
     sb.append("    merchantAccountId: ").append(toIndentedString(merchantAccountId)).append("\n");
     sb.append("    updatedAt: ").append(toIndentedString(updatedAt)).append("\n");
+    sb.append("    accountNumber: ").append(toIndentedString(accountNumber)).append("\n");
     sb.append("}");
     return sb.toString();
   }

@@ -135,6 +135,10 @@ public class PaymentOption {
     
     GCASH("gcash"),
     
+    GEM("gem"),
+    
+    GEMDS("gemds"),
+    
     GIFT_CARD("gift-card"),
     
     GIROPAY("giropay"),
@@ -156,12 +160,14 @@ public class PaymentOption {
     IDEAL("ideal"),
     
     KAKAOPAY("kakaopay"),
-
-    BCP("bcp"),
     
     KCP("kcp"),
     
     KLARNA("klarna"),
+    
+    LATITUDE("latitude"),
+    
+    LATITUDEDS("latitudeds"),
     
     LAYBUY("laybuy"),
     
@@ -180,8 +186,6 @@ public class PaymentOption {
     NETBANKING("netbanking"),
     
     NETWORK_TOKEN("network-token"),
-
-    NUPAY("nupay"),
     
     ONEY_3X("oney_3x"),
     
@@ -208,18 +212,6 @@ public class PaymentOption {
     PAYTO("payto"),
     
     VENMO("venmo"),
-
-    PICPAY("picpay"),
-
-    PAYVALIDA("payvalida"),
-
-    PAGOEFECTIVO("pagoefectivo"),
-    
-    NEQUI("nequi"),
-
-    KHIPU("khipu"),
-
-    ABITAB("abitab"),
     
     PIX("pix"),
     
@@ -228,14 +220,10 @@ public class PaymentOption {
     RABBITLINEPAY("rabbitlinepay"),
     
     RAZORPAY("razorpay"),
-
-    REDPAGOS("redpagos"),
     
     SCALAPAY("scalapay"),
     
     SEPA("sepa"),
-
-    SERVIPAG("servipag"),
     
     SHOPEEPAY("shopeepay"),
     
@@ -268,8 +256,6 @@ public class PaymentOption {
     WEBPAY("webpay"),
     
     WECHAT("wechat"),
-
-    YAPE("yape"),
     
     ZIPPAY("zippay");
 

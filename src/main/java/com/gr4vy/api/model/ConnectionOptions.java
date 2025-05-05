@@ -29,9 +29,12 @@ import com.gr4vy.api.model.ConnectionOptionsCybersourceKcp;
 import com.gr4vy.api.model.ConnectionOptionsFiservCard;
 import com.gr4vy.api.model.ConnectionOptionsForterAntiFraud;
 import com.gr4vy.api.model.ConnectionOptionsGivingblockGivingblock;
+import com.gr4vy.api.model.ConnectionOptionsLatitudeLatitude;
+import com.gr4vy.api.model.ConnectionOptionsNuveiCard;
 import com.gr4vy.api.model.ConnectionOptionsPaypalPaypal;
 import com.gr4vy.api.model.ConnectionOptionsPowertranzCard;
 import com.gr4vy.api.model.ConnectionOptionsStripeCard;
+import com.gr4vy.api.model.ConnectionOptionsTravelhubCard;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
@@ -92,6 +95,30 @@ public class ConnectionOptions {
   public static final String SERIALIZED_NAME_FISERV_CARD = "fiserv-card";
   @SerializedName(SERIALIZED_NAME_FISERV_CARD)
   private ConnectionOptionsFiservCard fiservCard;
+
+  public static final String SERIALIZED_NAME_LATITUDE_LATITUDE = "latitude-latitude";
+  @SerializedName(SERIALIZED_NAME_LATITUDE_LATITUDE)
+  private ConnectionOptionsLatitudeLatitude latitudeLatitude;
+
+  public static final String SERIALIZED_NAME_LATITUDE_LATITUDEDS = "latitude-latitudeds";
+  @SerializedName(SERIALIZED_NAME_LATITUDE_LATITUDEDS)
+  private ConnectionOptionsLatitudeLatitude latitudeLatitudeds;
+
+  public static final String SERIALIZED_NAME_GEM_GEM = "gem-gem";
+  @SerializedName(SERIALIZED_NAME_GEM_GEM)
+  private ConnectionOptionsLatitudeLatitude gemGem;
+
+  public static final String SERIALIZED_NAME_GEM_GEMDS = "gem-gemds";
+  @SerializedName(SERIALIZED_NAME_GEM_GEMDS)
+  private ConnectionOptionsLatitudeLatitude gemGemds;
+
+  public static final String SERIALIZED_NAME_NUVEI_CARD = "nuvei-card";
+  @SerializedName(SERIALIZED_NAME_NUVEI_CARD)
+  private ConnectionOptionsNuveiCard nuveiCard;
+
+  public static final String SERIALIZED_NAME_TRAVELHUB_CARD = "travelhub-card";
+  @SerializedName(SERIALIZED_NAME_TRAVELHUB_CARD)
+  private ConnectionOptionsTravelhubCard travelhubCard;
 
 
   public ConnectionOptions cybersourceCard(ConnectionOptionsCybersourceCard cybersourceCard) {
@@ -393,6 +420,144 @@ public class ConnectionOptions {
   }
 
 
+  public ConnectionOptions latitudeLatitude(ConnectionOptionsLatitudeLatitude latitudeLatitude) {
+    
+    this.latitudeLatitude = latitudeLatitude;
+    return this;
+  }
+
+   /**
+   * Get latitudeLatitude
+   * @return latitudeLatitude
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public ConnectionOptionsLatitudeLatitude getLatitudeLatitude() {
+    return latitudeLatitude;
+  }
+
+
+  public void setLatitudeLatitude(ConnectionOptionsLatitudeLatitude latitudeLatitude) {
+    this.latitudeLatitude = latitudeLatitude;
+  }
+
+
+  public ConnectionOptions latitudeLatitudeds(ConnectionOptionsLatitudeLatitude latitudeLatitudeds) {
+    
+    this.latitudeLatitudeds = latitudeLatitudeds;
+    return this;
+  }
+
+   /**
+   * Get latitudeLatitudeds
+   * @return latitudeLatitudeds
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public ConnectionOptionsLatitudeLatitude getLatitudeLatitudeds() {
+    return latitudeLatitudeds;
+  }
+
+
+  public void setLatitudeLatitudeds(ConnectionOptionsLatitudeLatitude latitudeLatitudeds) {
+    this.latitudeLatitudeds = latitudeLatitudeds;
+  }
+
+
+  public ConnectionOptions gemGem(ConnectionOptionsLatitudeLatitude gemGem) {
+    
+    this.gemGem = gemGem;
+    return this;
+  }
+
+   /**
+   * Get gemGem
+   * @return gemGem
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public ConnectionOptionsLatitudeLatitude getGemGem() {
+    return gemGem;
+  }
+
+
+  public void setGemGem(ConnectionOptionsLatitudeLatitude gemGem) {
+    this.gemGem = gemGem;
+  }
+
+
+  public ConnectionOptions gemGemds(ConnectionOptionsLatitudeLatitude gemGemds) {
+    
+    this.gemGemds = gemGemds;
+    return this;
+  }
+
+   /**
+   * Get gemGemds
+   * @return gemGemds
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public ConnectionOptionsLatitudeLatitude getGemGemds() {
+    return gemGemds;
+  }
+
+
+  public void setGemGemds(ConnectionOptionsLatitudeLatitude gemGemds) {
+    this.gemGemds = gemGemds;
+  }
+
+
+  public ConnectionOptions nuveiCard(ConnectionOptionsNuveiCard nuveiCard) {
+    
+    this.nuveiCard = nuveiCard;
+    return this;
+  }
+
+   /**
+   * Get nuveiCard
+   * @return nuveiCard
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public ConnectionOptionsNuveiCard getNuveiCard() {
+    return nuveiCard;
+  }
+
+
+  public void setNuveiCard(ConnectionOptionsNuveiCard nuveiCard) {
+    this.nuveiCard = nuveiCard;
+  }
+
+
+  public ConnectionOptions travelhubCard(ConnectionOptionsTravelhubCard travelhubCard) {
+    
+    this.travelhubCard = travelhubCard;
+    return this;
+  }
+
+   /**
+   * Get travelhubCard
+   * @return travelhubCard
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public ConnectionOptionsTravelhubCard getTravelhubCard() {
+    return travelhubCard;
+  }
+
+
+  public void setTravelhubCard(ConnectionOptionsTravelhubCard travelhubCard) {
+    this.travelhubCard = travelhubCard;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -414,12 +579,18 @@ public class ConnectionOptions {
         Objects.equals(this.paypalPaypalpaylater, connectionOptions.paypalPaypalpaylater) &&
         Objects.equals(this.powertranzCard, connectionOptions.powertranzCard) &&
         Objects.equals(this.stripeCard, connectionOptions.stripeCard) &&
-        Objects.equals(this.fiservCard, connectionOptions.fiservCard);
+        Objects.equals(this.fiservCard, connectionOptions.fiservCard) &&
+        Objects.equals(this.latitudeLatitude, connectionOptions.latitudeLatitude) &&
+        Objects.equals(this.latitudeLatitudeds, connectionOptions.latitudeLatitudeds) &&
+        Objects.equals(this.gemGem, connectionOptions.gemGem) &&
+        Objects.equals(this.gemGemds, connectionOptions.gemGemds) &&
+        Objects.equals(this.nuveiCard, connectionOptions.nuveiCard) &&
+        Objects.equals(this.travelhubCard, connectionOptions.travelhubCard);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(cybersourceCard, cybersourceKcp, cybersourceIdeal, cybersourceAntiFraud, givingblockGivingblock, forterAntiFraud, adyenCard, adyenSepa, paypalPaypal, paypalPaypalpaylater, powertranzCard, stripeCard, fiservCard);
+    return Objects.hash(cybersourceCard, cybersourceKcp, cybersourceIdeal, cybersourceAntiFraud, givingblockGivingblock, forterAntiFraud, adyenCard, adyenSepa, paypalPaypal, paypalPaypalpaylater, powertranzCard, stripeCard, fiservCard, latitudeLatitude, latitudeLatitudeds, gemGem, gemGemds, nuveiCard, travelhubCard);
   }
 
   @Override
@@ -439,6 +610,12 @@ public class ConnectionOptions {
     sb.append("    powertranzCard: ").append(toIndentedString(powertranzCard)).append("\n");
     sb.append("    stripeCard: ").append(toIndentedString(stripeCard)).append("\n");
     sb.append("    fiservCard: ").append(toIndentedString(fiservCard)).append("\n");
+    sb.append("    latitudeLatitude: ").append(toIndentedString(latitudeLatitude)).append("\n");
+    sb.append("    latitudeLatitudeds: ").append(toIndentedString(latitudeLatitudeds)).append("\n");
+    sb.append("    gemGem: ").append(toIndentedString(gemGem)).append("\n");
+    sb.append("    gemGemds: ").append(toIndentedString(gemGemds)).append("\n");
+    sb.append("    nuveiCard: ").append(toIndentedString(nuveiCard)).append("\n");
+    sb.append("    travelhubCard: ").append(toIndentedString(travelhubCard)).append("\n");
     sb.append("}");
     return sb.toString();
   }
