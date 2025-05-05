@@ -298,6 +298,10 @@ public class PaymentMethod {
     
     APPLEPAY("applepay"),
     
+    AFFIRM("affirm"),
+
+    ARCUSPAYNETWORK("arcuspaynetwork"),
+    
     BACS("bacs"),
     
     BANCONTACT("bancontact"),
