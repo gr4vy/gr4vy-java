@@ -226,7 +226,7 @@ public class Gr4vyClientTest {
 	 	}
 	 	catch (Gr4vyException ex) {
 	 		ErrorGeneric error = ex.getError();
-	 		assertEquals(error.getDetails().get(0).getMessage(), "Unknown ISO 4217 currency code: ABC"); 
+	 		assertEquals(error.getDetails().get(0).getMessage(), "Value error, Unknown ISO 4217 currency code: ABC"); 
 	 	}
 	 }
 
