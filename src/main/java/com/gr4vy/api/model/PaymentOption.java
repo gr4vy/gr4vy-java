@@ -143,7 +143,7 @@ public class PaymentOption {
     
     GEMDS("gemds"),
     
-    GIFT-CARD("gift-card"),
+    GIFT_CARD("gift-card"),
     
     GIROPAY("giropay"),
     
