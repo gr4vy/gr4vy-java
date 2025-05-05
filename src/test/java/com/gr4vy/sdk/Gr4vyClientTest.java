@@ -489,7 +489,7 @@ public class Gr4vyClientTest {
 	@Test
 	public void listBuyerPaymentMethodsTest() throws Gr4vyException {
 		try {
-	     	PaymentMethods response = shared.listBuyerPaymentMethods("");
+	     	PaymentMethods response = shared.listBuyerPaymentMethods("baa7b3b3-a4f1-49e3-afb0-0f41b48f5aa2");
 	        assert response != null;
 		}
 		catch (Gr4vyException ex) {
