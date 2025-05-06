@@ -72,6 +72,63 @@ public class PaymentLinkRequest {
   @SerializedName(SERIALIZED_NAME_STATEMENT_DESCRIPTOR)
   private StatementDescriptor statementDescriptor;
 
+  /**
+   * The locale used to translate text within the payment link.
+   */
+  @JsonAdapter(LocaleEnum.Adapter.class)
+  public enum LocaleEnum {
+    EN("en"),
+    
+    EN_GB("en-GB"),
+    
+    ES("es"),
+    
+    PT("pt"),
+    
+    PT_BR("pt-BR");
+
+    private String value;
+
+    LocaleEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static LocaleEnum fromValue(String value) {
+      for (LocaleEnum b : LocaleEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      return null;
+    }
+
+    public static class Adapter extends TypeAdapter<LocaleEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final LocaleEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public LocaleEnum read(final JsonReader jsonReader) throws IOException {
+        String value =  jsonReader.nextString();
+        return LocaleEnum.fromValue(value);
+      }
+    }
+  }
+
+  public static final String SERIALIZED_NAME_LOCALE = "locale";
+  @SerializedName(SERIALIZED_NAME_LOCALE)
+  private LocaleEnum locale;
+
   public static final String SERIALIZED_NAME_MERCHANT_NAME = "merchant_name";
   @SerializedName(SERIALIZED_NAME_MERCHANT_NAME)
   private String merchantName;
@@ -95,6 +152,10 @@ public class PaymentLinkRequest {
   public static final String SERIALIZED_NAME_MERCHANT_TERMS_AND_CONDITIONS_URL = "merchant_terms_and_conditions_url";
   @SerializedName(SERIALIZED_NAME_MERCHANT_TERMS_AND_CONDITIONS_URL)
   private String merchantTermsAndConditionsUrl;
+
+  public static final String SERIALIZED_NAME_MERCHANT_FAVICON_URL = "merchant_favicon_url";
+  @SerializedName(SERIALIZED_NAME_MERCHANT_FAVICON_URL)
+  private String merchantFaviconUrl;
 
   /**
    * The intent of the payment link.
@@ -400,6 +461,29 @@ public class PaymentLinkRequest {
   }
 
 
+  public PaymentLinkRequest locale(LocaleEnum locale) {
+    
+    this.locale = locale;
+    return this;
+  }
+
+   /**
+   * The locale used to translate text within the payment link.
+   * @return locale
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "en", value = "The locale used to translate text within the payment link.")
+
+  public LocaleEnum getLocale() {
+    return locale;
+  }
+
+
+  public void setLocale(LocaleEnum locale) {
+    this.locale = locale;
+  }
+
+
   public PaymentLinkRequest merchantName(String merchantName) {
     
     this.merchantName = merchantName;
@@ -535,6 +619,29 @@ public class PaymentLinkRequest {
 
   public void setMerchantTermsAndConditionsUrl(String merchantTermsAndConditionsUrl) {
     this.merchantTermsAndConditionsUrl = merchantTermsAndConditionsUrl;
+  }
+
+
+  public PaymentLinkRequest merchantFaviconUrl(String merchantFaviconUrl) {
+    
+    this.merchantFaviconUrl = merchantFaviconUrl;
+    return this;
+  }
+
+   /**
+   * The URL of the merchant favicon icon.
+   * @return merchantFaviconUrl
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "https://gr4vy.com/favicon.png", value = "The URL of the merchant favicon icon.")
+
+  public String getMerchantFaviconUrl() {
+    return merchantFaviconUrl;
+  }
+
+
+  public void setMerchantFaviconUrl(String merchantFaviconUrl) {
+    this.merchantFaviconUrl = merchantFaviconUrl;
   }
 
 
@@ -686,12 +793,14 @@ public class PaymentLinkRequest {
         Objects.equals(this.connectionOptions, paymentLinkRequest.connectionOptions) &&
         Objects.equals(this.externalIdentifier, paymentLinkRequest.externalIdentifier) &&
         Objects.equals(this.statementDescriptor, paymentLinkRequest.statementDescriptor) &&
+        Objects.equals(this.locale, paymentLinkRequest.locale) &&
         Objects.equals(this.merchantName, paymentLinkRequest.merchantName) &&
         Objects.equals(this.merchantUrl, paymentLinkRequest.merchantUrl) &&
         Objects.equals(this.merchantBannerUrl, paymentLinkRequest.merchantBannerUrl) &&
         Objects.equals(this.merchantColor, paymentLinkRequest.merchantColor) &&
         Objects.equals(this.merchantMessage, paymentLinkRequest.merchantMessage) &&
         Objects.equals(this.merchantTermsAndConditionsUrl, paymentLinkRequest.merchantTermsAndConditionsUrl) &&
+        Objects.equals(this.merchantFaviconUrl, paymentLinkRequest.merchantFaviconUrl) &&
         Objects.equals(this.intent, paymentLinkRequest.intent) &&
         Objects.equals(this.returnUrl, paymentLinkRequest.returnUrl) &&
         Objects.equals(this.cartItems, paymentLinkRequest.cartItems) &&
@@ -701,7 +810,7 @@ public class PaymentLinkRequest {
 
   @Override
   public int hashCode() {
-    return Objects.hash(amount, currency, country, buyer, expiresAt, connectionOptions, externalIdentifier, statementDescriptor, merchantName, merchantUrl, merchantBannerUrl, merchantColor, merchantMessage, merchantTermsAndConditionsUrl, intent, returnUrl, cartItems, metadata, paymentSource);
+    return Objects.hash(amount, currency, country, buyer, expiresAt, connectionOptions, externalIdentifier, statementDescriptor, locale, merchantName, merchantUrl, merchantBannerUrl, merchantColor, merchantMessage, merchantTermsAndConditionsUrl, merchantFaviconUrl, intent, returnUrl, cartItems, metadata, paymentSource);
   }
 
   @Override
@@ -716,12 +825,14 @@ public class PaymentLinkRequest {
     sb.append("    connectionOptions: ").append(toIndentedString(connectionOptions)).append("\n");
     sb.append("    externalIdentifier: ").append(toIndentedString(externalIdentifier)).append("\n");
     sb.append("    statementDescriptor: ").append(toIndentedString(statementDescriptor)).append("\n");
+    sb.append("    locale: ").append(toIndentedString(locale)).append("\n");
     sb.append("    merchantName: ").append(toIndentedString(merchantName)).append("\n");
     sb.append("    merchantUrl: ").append(toIndentedString(merchantUrl)).append("\n");
     sb.append("    merchantBannerUrl: ").append(toIndentedString(merchantBannerUrl)).append("\n");
     sb.append("    merchantColor: ").append(toIndentedString(merchantColor)).append("\n");
     sb.append("    merchantMessage: ").append(toIndentedString(merchantMessage)).append("\n");
     sb.append("    merchantTermsAndConditionsUrl: ").append(toIndentedString(merchantTermsAndConditionsUrl)).append("\n");
+    sb.append("    merchantFaviconUrl: ").append(toIndentedString(merchantFaviconUrl)).append("\n");
     sb.append("    intent: ").append(toIndentedString(intent)).append("\n");
     sb.append("    returnUrl: ").append(toIndentedString(returnUrl)).append("\n");
     sb.append("    cartItems: ").append(toIndentedString(cartItems)).append("\n");

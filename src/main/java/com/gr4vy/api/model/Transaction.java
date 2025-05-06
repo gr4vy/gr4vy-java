@@ -28,6 +28,7 @@ import com.gr4vy.api.model.GiftCardRedemption;
 import com.gr4vy.api.model.GiftCardServiceSnapshot;
 import com.gr4vy.api.model.PaymentMethodSnapshot;
 import com.gr4vy.api.model.PaymentServiceSnapshot;
+import com.gr4vy.api.model.RecipientSnapshot;
 import com.gr4vy.api.model.ShippingDetail;
 import com.gr4vy.api.model.StatementDescriptor;
 import com.gr4vy.api.model.ThreeDSecureSummary;
@@ -520,6 +521,10 @@ public class Transaction {
     
     GCASH("gcash"),
     
+    GEM("gem"),
+    
+    GEMDS("gemds"),
+    
     GIFT_CARD("gift-card"),
     
     GIROPAY("giropay"),
@@ -545,6 +550,10 @@ public class Transaction {
     KCP("kcp"),
     
     KLARNA("klarna"),
+    
+    LATITUDE("latitude"),
+    
+    LATITUDEDS("latitudeds"),
     
     LAYBUY("laybuy"),
     
@@ -755,6 +764,65 @@ public class Transaction {
   @SerializedName(SERIALIZED_NAME_PENDING_REVIEW)
   private Boolean pendingReview;
 
+  /**
+   * The mapped decision received from the anti-fraud service. In case of a review decision this field is not updated once the review is resolved.
+   */
+  @JsonAdapter(AntiFraudDecisionEnum.Adapter.class)
+  public enum AntiFraudDecisionEnum {
+    ACCEPT("accept"),
+    
+    ERROR("error"),
+    
+    EXCEPTION("exception"),
+    
+    REJECT("reject"),
+    
+    REVIEW("review"),
+    
+    SKIPPED("skipped");
+
+    private String value;
+
+    AntiFraudDecisionEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static AntiFraudDecisionEnum fromValue(String value) {
+      for (AntiFraudDecisionEnum b : AntiFraudDecisionEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      return null;
+    }
+
+    public static class Adapter extends TypeAdapter<AntiFraudDecisionEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final AntiFraudDecisionEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public AntiFraudDecisionEnum read(final JsonReader jsonReader) throws IOException {
+        String value =  jsonReader.nextString();
+        return AntiFraudDecisionEnum.fromValue(value);
+      }
+    }
+  }
+
+  public static final String SERIALIZED_NAME_ANTI_FRAUD_DECISION = "anti_fraud_decision";
+  @SerializedName(SERIALIZED_NAME_ANTI_FRAUD_DECISION)
+  private AntiFraudDecisionEnum antiFraudDecision;
+
   public static final String SERIALIZED_NAME_RAW_RESPONSE_CODE = "raw_response_code";
   @SerializedName(SERIALIZED_NAME_RAW_RESPONSE_CODE)
   private String rawResponseCode;
@@ -875,6 +943,18 @@ public class Transaction {
   public static final String SERIALIZED_NAME_SETTLED = "settled";
   @SerializedName(SERIALIZED_NAME_SETTLED)
   private Boolean settled;
+
+  public static final String SERIALIZED_NAME_ACCOUNT_FUNDING_TRANSACTION = "account_funding_transaction";
+  @SerializedName(SERIALIZED_NAME_ACCOUNT_FUNDING_TRANSACTION)
+  private Boolean accountFundingTransaction = false;
+
+  public static final String SERIALIZED_NAME_RECIPIENT = "recipient";
+  @SerializedName(SERIALIZED_NAME_RECIPIENT)
+  private RecipientSnapshot recipient;
+
+  public static final String SERIALIZED_NAME_MERCHANT_ADVICE_CODE = "merchant_advice_code";
+  @SerializedName(SERIALIZED_NAME_MERCHANT_ADVICE_CODE)
+  private String merchantAdviceCode;
 
 
   public Transaction type(TypeEnum type) {
@@ -1735,6 +1815,29 @@ public class Transaction {
   }
 
 
+  public Transaction antiFraudDecision(AntiFraudDecisionEnum antiFraudDecision) {
+    
+    this.antiFraudDecision = antiFraudDecision;
+    return this;
+  }
+
+   /**
+   * The mapped decision received from the anti-fraud service. In case of a review decision this field is not updated once the review is resolved.
+   * @return antiFraudDecision
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "accept", value = "The mapped decision received from the anti-fraud service. In case of a review decision this field is not updated once the review is resolved.")
+
+  public AntiFraudDecisionEnum getAntiFraudDecision() {
+    return antiFraudDecision;
+  }
+
+
+  public void setAntiFraudDecision(AntiFraudDecisionEnum antiFraudDecision) {
+    this.antiFraudDecision = antiFraudDecision;
+  }
+
+
   public Transaction rawResponseCode(String rawResponseCode) {
     
     this.rawResponseCode = rawResponseCode;
@@ -2082,6 +2185,75 @@ public class Transaction {
   }
 
 
+  public Transaction accountFundingTransaction(Boolean accountFundingTransaction) {
+    
+    this.accountFundingTransaction = accountFundingTransaction;
+    return this;
+  }
+
+   /**
+   * Whether or not the transaction is an account funding transaction.
+   * @return accountFundingTransaction
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "true", value = "Whether or not the transaction is an account funding transaction.")
+
+  public Boolean getAccountFundingTransaction() {
+    return accountFundingTransaction;
+  }
+
+
+  public void setAccountFundingTransaction(Boolean accountFundingTransaction) {
+    this.accountFundingTransaction = accountFundingTransaction;
+  }
+
+
+  public Transaction recipient(RecipientSnapshot recipient) {
+    
+    this.recipient = recipient;
+    return this;
+  }
+
+   /**
+   * The recipient of an account funding transaction.
+   * @return recipient
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "The recipient of an account funding transaction.")
+
+  public RecipientSnapshot getRecipient() {
+    return recipient;
+  }
+
+
+  public void setRecipient(RecipientSnapshot recipient) {
+    this.recipient = recipient;
+  }
+
+
+  public Transaction merchantAdviceCode(String merchantAdviceCode) {
+    
+    this.merchantAdviceCode = merchantAdviceCode;
+    return this;
+  }
+
+   /**
+   * The merchant advice code received from the payment service. This code is used to provide additional information about the card used.
+   * @return merchantAdviceCode
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "01", value = "The merchant advice code received from the payment service. This code is used to provide additional information about the card used.")
+
+  public String getMerchantAdviceCode() {
+    return merchantAdviceCode;
+  }
+
+
+  public void setMerchantAdviceCode(String merchantAdviceCode) {
+    this.merchantAdviceCode = merchantAdviceCode;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -2127,6 +2299,7 @@ public class Transaction {
         Objects.equals(this.paymentServiceTransactionId, transaction.paymentServiceTransactionId) &&
         Objects.equals(this.paymentSource, transaction.paymentSource) &&
         Objects.equals(this.pendingReview, transaction.pendingReview) &&
+        Objects.equals(this.antiFraudDecision, transaction.antiFraudDecision) &&
         Objects.equals(this.rawResponseCode, transaction.rawResponseCode) &&
         Objects.equals(this.rawResponseDescription, transaction.rawResponseDescription) &&
         Objects.equals(this.reconciliationId, transaction.reconciliationId) &&
@@ -2141,12 +2314,15 @@ public class Transaction {
         Objects.equals(this.voidedAt, transaction.voidedAt) &&
         Objects.equals(this.settledCurrency, transaction.settledCurrency) &&
         Objects.equals(this.settledAmount, transaction.settledAmount) &&
-        Objects.equals(this.settled, transaction.settled);
+        Objects.equals(this.settled, transaction.settled) &&
+        Objects.equals(this.accountFundingTransaction, transaction.accountFundingTransaction) &&
+        Objects.equals(this.recipient, transaction.recipient) &&
+        Objects.equals(this.merchantAdviceCode, transaction.merchantAdviceCode);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(type, id, amount, additionalIdentifiers, authResponseCode, authorizedAmount, authorizedAt, approvalExpiresAt, avsResponseCode, buyer, capturedAmount, capturedAt, cartItems, checkoutSessionId, country, createdAt, currency, cvvResponseCode, errorCode, externalIdentifier, giftCardService, giftCardRedemptions, instrumentType, intent, intentOutcome, isSubsequentPayment, merchantAccountId, merchantInitiated, metadata, method, multiTender, paymentMethod, paymentService, paymentServiceTransactionId, paymentSource, pendingReview, rawResponseCode, rawResponseDescription, reconciliationId, refundedAmount, schemeTransactionId, shippingDetails, statementDescriptor, status, threeDSecure, airline, updatedAt, voidedAt, settledCurrency, settledAmount, settled);
+    return Objects.hash(type, id, amount, additionalIdentifiers, authResponseCode, authorizedAmount, authorizedAt, approvalExpiresAt, avsResponseCode, buyer, capturedAmount, capturedAt, cartItems, checkoutSessionId, country, createdAt, currency, cvvResponseCode, errorCode, externalIdentifier, giftCardService, giftCardRedemptions, instrumentType, intent, intentOutcome, isSubsequentPayment, merchantAccountId, merchantInitiated, metadata, method, multiTender, paymentMethod, paymentService, paymentServiceTransactionId, paymentSource, pendingReview, antiFraudDecision, rawResponseCode, rawResponseDescription, reconciliationId, refundedAmount, schemeTransactionId, shippingDetails, statementDescriptor, status, threeDSecure, airline, updatedAt, voidedAt, settledCurrency, settledAmount, settled, accountFundingTransaction, recipient, merchantAdviceCode);
   }
 
   @Override
@@ -2189,6 +2365,7 @@ public class Transaction {
     sb.append("    paymentServiceTransactionId: ").append(toIndentedString(paymentServiceTransactionId)).append("\n");
     sb.append("    paymentSource: ").append(toIndentedString(paymentSource)).append("\n");
     sb.append("    pendingReview: ").append(toIndentedString(pendingReview)).append("\n");
+    sb.append("    antiFraudDecision: ").append(toIndentedString(antiFraudDecision)).append("\n");
     sb.append("    rawResponseCode: ").append(toIndentedString(rawResponseCode)).append("\n");
     sb.append("    rawResponseDescription: ").append(toIndentedString(rawResponseDescription)).append("\n");
     sb.append("    reconciliationId: ").append(toIndentedString(reconciliationId)).append("\n");
@@ -2204,6 +2381,9 @@ public class Transaction {
     sb.append("    settledCurrency: ").append(toIndentedString(settledCurrency)).append("\n");
     sb.append("    settledAmount: ").append(toIndentedString(settledAmount)).append("\n");
     sb.append("    settled: ").append(toIndentedString(settled)).append("\n");
+    sb.append("    accountFundingTransaction: ").append(toIndentedString(accountFundingTransaction)).append("\n");
+    sb.append("    recipient: ").append(toIndentedString(recipient)).append("\n");
+    sb.append("    merchantAdviceCode: ").append(toIndentedString(merchantAdviceCode)).append("\n");
     sb.append("}");
     return sb.toString();
   }

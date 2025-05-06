@@ -97,6 +97,10 @@ public class BuyerSnapshot {
   @SerializedName(SERIALIZED_NAME_EXTERNAL_IDENTIFIER)
   private String externalIdentifier;
 
+  public static final String SERIALIZED_NAME_ACCOUNT_NUMBER = "account_number";
+  @SerializedName(SERIALIZED_NAME_ACCOUNT_NUMBER)
+  private String accountNumber;
+
 
   public BuyerSnapshot type(TypeEnum type) {
     
@@ -213,6 +217,29 @@ public class BuyerSnapshot {
   }
 
 
+  public BuyerSnapshot accountNumber(String accountNumber) {
+    
+    this.accountNumber = accountNumber;
+    return this;
+  }
+
+   /**
+   * The source account number to perform an account funding transaction.
+   * @return accountNumber
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "1234567", value = "The source account number to perform an account funding transaction.")
+
+  public String getAccountNumber() {
+    return accountNumber;
+  }
+
+
+  public void setAccountNumber(String accountNumber) {
+    this.accountNumber = accountNumber;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -226,12 +253,13 @@ public class BuyerSnapshot {
         Objects.equals(this.id, buyerSnapshot.id) &&
         Objects.equals(this.billingDetails, buyerSnapshot.billingDetails) &&
         Objects.equals(this.displayName, buyerSnapshot.displayName) &&
-        Objects.equals(this.externalIdentifier, buyerSnapshot.externalIdentifier);
+        Objects.equals(this.externalIdentifier, buyerSnapshot.externalIdentifier) &&
+        Objects.equals(this.accountNumber, buyerSnapshot.accountNumber);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(type, id, billingDetails, displayName, externalIdentifier);
+    return Objects.hash(type, id, billingDetails, displayName, externalIdentifier, accountNumber);
   }
 
   @Override
@@ -243,6 +271,7 @@ public class BuyerSnapshot {
     sb.append("    billingDetails: ").append(toIndentedString(billingDetails)).append("\n");
     sb.append("    displayName: ").append(toIndentedString(displayName)).append("\n");
     sb.append("    externalIdentifier: ").append(toIndentedString(externalIdentifier)).append("\n");
+    sb.append("    accountNumber: ").append(toIndentedString(accountNumber)).append("\n");
     sb.append("}");
     return sb.toString();
   }

@@ -24,6 +24,7 @@ import com.gr4vy.api.model.Airline;
 import com.gr4vy.api.model.BrowserInfo;
 import com.gr4vy.api.model.CartItem;
 import com.gr4vy.api.model.ConnectionOptions;
+import com.gr4vy.api.model.Recipient;
 import com.gr4vy.api.model.StatementDescriptor;
 import com.gr4vy.api.model.ThreeDSecureDataV1V2;
 import com.gr4vy.api.model.TransactionBuyerRequest;
@@ -247,6 +248,18 @@ public class TransactionRequest {
   public static final String SERIALIZED_NAME_AIRLINE = "airline";
   @SerializedName(SERIALIZED_NAME_AIRLINE)
   private Airline airline;
+
+  public static final String SERIALIZED_NAME_ACCOUNT_FUNDING_TRANSACTION = "account_funding_transaction";
+  @SerializedName(SERIALIZED_NAME_ACCOUNT_FUNDING_TRANSACTION)
+  private Boolean accountFundingTransaction = false;
+
+  public static final String SERIALIZED_NAME_RECIPIENT = "recipient";
+  @SerializedName(SERIALIZED_NAME_RECIPIENT)
+  private Recipient recipient;
+
+  public static final String SERIALIZED_NAME_ALLOW_PARTIAL_AUTHORIZATION = "allow_partial_authorization";
+  @SerializedName(SERIALIZED_NAME_ALLOW_PARTIAL_AUTHORIZATION)
+  private Boolean allowPartialAuthorization = false;
 
 
   public TransactionRequest amount(Integer amount) {
@@ -871,6 +884,75 @@ public class TransactionRequest {
   }
 
 
+  public TransactionRequest accountFundingTransaction(Boolean accountFundingTransaction) {
+    
+    this.accountFundingTransaction = accountFundingTransaction;
+    return this;
+  }
+
+   /**
+   * Whether or not the transaction is an account funding transaction.
+   * @return accountFundingTransaction
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "true", value = "Whether or not the transaction is an account funding transaction.")
+
+  public Boolean getAccountFundingTransaction() {
+    return accountFundingTransaction;
+  }
+
+
+  public void setAccountFundingTransaction(Boolean accountFundingTransaction) {
+    this.accountFundingTransaction = accountFundingTransaction;
+  }
+
+
+  public TransactionRequest recipient(Recipient recipient) {
+    
+    this.recipient = recipient;
+    return this;
+  }
+
+   /**
+   * The recipient of an account funding transaction.
+   * @return recipient
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "The recipient of an account funding transaction.")
+
+  public Recipient getRecipient() {
+    return recipient;
+  }
+
+
+  public void setRecipient(Recipient recipient) {
+    this.recipient = recipient;
+  }
+
+
+  public TransactionRequest allowPartialAuthorization(Boolean allowPartialAuthorization) {
+    
+    this.allowPartialAuthorization = allowPartialAuthorization;
+    return this;
+  }
+
+   /**
+   * Whether or not to allow partial authorization of the transaction. Support for this will depend on the connector used. When a connector does not support partial authorization, and the user does not have sufficient funds, the transaction will be declined.
+   * @return allowPartialAuthorization
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "true", value = "Whether or not to allow partial authorization of the transaction. Support for this will depend on the connector used. When a connector does not support partial authorization, and the user does not have sufficient funds, the transaction will be declined.")
+
+  public Boolean getAllowPartialAuthorization() {
+    return allowPartialAuthorization;
+  }
+
+
+  public void setAllowPartialAuthorization(Boolean allowPartialAuthorization) {
+    this.allowPartialAuthorization = allowPartialAuthorization;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -905,12 +987,15 @@ public class TransactionRequest {
         Objects.equals(this.store, transactionRequest.store) &&
         Objects.equals(this.threeDSecureData, transactionRequest.threeDSecureData) &&
         Objects.equals(this.paymentServiceId, transactionRequest.paymentServiceId) &&
-        Objects.equals(this.airline, transactionRequest.airline);
+        Objects.equals(this.airline, transactionRequest.airline) &&
+        Objects.equals(this.accountFundingTransaction, transactionRequest.accountFundingTransaction) &&
+        Objects.equals(this.recipient, transactionRequest.recipient) &&
+        Objects.equals(this.allowPartialAuthorization, transactionRequest.allowPartialAuthorization);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(amount, currency, paymentMethod, antiFraudFingerprint, asyncCapture, browserInfo, buyerExternalIdentifier, buyerId, buyer, cartItems, connectionOptions, country, externalIdentifier, giftCards, intent, isSubsequentPayment, merchantInitiated, metadata, paymentSource, previousSchemeTransactionId, shippingDetailsId, statementDescriptor, store, threeDSecureData, paymentServiceId, airline);
+    return Objects.hash(amount, currency, paymentMethod, antiFraudFingerprint, asyncCapture, browserInfo, buyerExternalIdentifier, buyerId, buyer, cartItems, connectionOptions, country, externalIdentifier, giftCards, intent, isSubsequentPayment, merchantInitiated, metadata, paymentSource, previousSchemeTransactionId, shippingDetailsId, statementDescriptor, store, threeDSecureData, paymentServiceId, airline, accountFundingTransaction, recipient, allowPartialAuthorization);
   }
 
   @Override
@@ -943,6 +1028,9 @@ public class TransactionRequest {
     sb.append("    threeDSecureData: ").append(toIndentedString(threeDSecureData)).append("\n");
     sb.append("    paymentServiceId: ").append(toIndentedString(paymentServiceId)).append("\n");
     sb.append("    airline: ").append(toIndentedString(airline)).append("\n");
+    sb.append("    accountFundingTransaction: ").append(toIndentedString(accountFundingTransaction)).append("\n");
+    sb.append("    recipient: ").append(toIndentedString(recipient)).append("\n");
+    sb.append("    allowPartialAuthorization: ").append(toIndentedString(allowPartialAuthorization)).append("\n");
     sb.append("}");
     return sb.toString();
   }

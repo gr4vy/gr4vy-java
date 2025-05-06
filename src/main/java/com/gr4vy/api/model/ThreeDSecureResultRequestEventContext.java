@@ -66,9 +66,9 @@ public class ThreeDSecureResultRequestEventContext {
   @SerializedName(SERIALIZED_NAME_DIRECTORY_TRANSACTION_ID)
   private String directoryTransactionId;
 
-  public static final String SERIALIZED_NAME_VERSION = "version";
-  @SerializedName(SERIALIZED_NAME_VERSION)
-  private String version;
+  public static final String SERIALIZED_NAME_IS_CHALLENGE_CANCELLED = "is_challenge_cancelled";
+  @SerializedName(SERIALIZED_NAME_IS_CHALLENGE_CANCELLED)
+  private Boolean isChallengeCancelled;
 
 
   public ThreeDSecureResultRequestEventContext url(String url) {
@@ -278,26 +278,26 @@ public class ThreeDSecureResultRequestEventContext {
   }
 
 
-  public ThreeDSecureResultRequestEventContext version(String version) {
+  public ThreeDSecureResultRequestEventContext isChallengeCancelled(Boolean isChallengeCancelled) {
     
-    this.version = version;
+    this.isChallengeCancelled = isChallengeCancelled;
     return this;
   }
 
    /**
-   * The version of 3DS used.
-   * @return version
+   * Flag to indicate whether the buyer cancelled 3DS authentication.
+   * @return isChallengeCancelled
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "2.2.0", value = "The version of 3DS used.")
+  @ApiModelProperty(example = "false", value = "Flag to indicate whether the buyer cancelled 3DS authentication.")
 
-  public String getVersion() {
-    return version;
+  public Boolean getIsChallengeCancelled() {
+    return isChallengeCancelled;
   }
 
 
-  public void setVersion(String version) {
-    this.version = version;
+  public void setIsChallengeCancelled(Boolean isChallengeCancelled) {
+    this.isChallengeCancelled = isChallengeCancelled;
   }
 
 
@@ -319,12 +319,12 @@ public class ThreeDSecureResultRequestEventContext {
         Objects.equals(this.authenticationResponse, threeDSecureResultRequestEventContext.authenticationResponse) &&
         Objects.equals(this.directoryResponse, threeDSecureResultRequestEventContext.directoryResponse) &&
         Objects.equals(this.directoryTransactionId, threeDSecureResultRequestEventContext.directoryTransactionId) &&
-        Objects.equals(this.version, threeDSecureResultRequestEventContext.version);
+        Objects.equals(this.isChallengeCancelled, threeDSecureResultRequestEventContext.isChallengeCancelled);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(url, request, response, responseStatusCode, cavv, eci, authenticationResponse, directoryResponse, directoryTransactionId, version);
+    return Objects.hash(url, request, response, responseStatusCode, cavv, eci, authenticationResponse, directoryResponse, directoryTransactionId, isChallengeCancelled);
   }
 
   @Override
@@ -340,7 +340,7 @@ public class ThreeDSecureResultRequestEventContext {
     sb.append("    authenticationResponse: ").append(toIndentedString(authenticationResponse)).append("\n");
     sb.append("    directoryResponse: ").append(toIndentedString(directoryResponse)).append("\n");
     sb.append("    directoryTransactionId: ").append(toIndentedString(directoryTransactionId)).append("\n");
-    sb.append("    version: ").append(toIndentedString(version)).append("\n");
+    sb.append("    isChallengeCancelled: ").append(toIndentedString(isChallengeCancelled)).append("\n");
     sb.append("}");
     return sb.toString();
   }
