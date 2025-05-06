@@ -472,12 +472,16 @@ public class Transaction {
   @JsonAdapter(MethodEnum.Adapter.class)
   public enum MethodEnum {
     AFTERPAY("afterpay"),
+
+    AFFIRM("affirm"),
     
     ALIPAY("alipay"),
     
     ALIPAYHK("alipayhk"),
     
     APPLEPAY("applepay"),
+
+    ARCUSPAYNETWORK("arcuspaynetwork"),
     
     BACS("bacs"),
     
