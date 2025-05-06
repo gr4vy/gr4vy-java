@@ -302,6 +302,10 @@ public class TransactionSummary {
     
     GCASH("gcash"),
     
+    GEM("gem"),
+    
+    GEMDS("gemds"),
+    
     GIFT_CARD("gift-card"),
     
     GIROPAY("giropay"),
@@ -327,6 +331,10 @@ public class TransactionSummary {
     KCP("kcp"),
     
     KLARNA("klarna"),
+    
+    LATITUDE("latitude"),
+    
+    LATITUDEDS("latitudeds"),
     
     LAYBUY("laybuy"),
     

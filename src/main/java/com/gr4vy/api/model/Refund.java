@@ -94,7 +94,7 @@ public class Refund {
   private String paymentServiceRefundId;
 
   /**
-   * The status of the refund. It may change over time as asynchronous processing events occur.  - &#x60;processing&#x60; - The refund is being processed. - &#x60;succeeded&#x60; - The refund was successful. - &#x60;declined&#x60; - The refund was declined by the underlying PSP. - &#x60;failed&#x60; - The refund could not proceed due to a technical issue. - &#x60;voided&#x60; - The refund was voided and will not proceed.
+   * The status of the refund. It may change over time as asynchronous processing events occur.  - &#x60;processing&#x60; - The refund is being processed. - &#x60;succeeded&#x60; - The refund was successful. - &#x60;declined&#x60; - The refund was declined by the underlying PSP. - &#x60;failed&#x60; - The refund could not proceed due to a technical issue.
    */
   @JsonAdapter(StatusEnum.Adapter.class)
   public enum StatusEnum {
@@ -104,9 +104,7 @@ public class Refund {
     
     DECLINED("declined"),
     
-    FAILED("failed"),
-    
-    VOIDED("voided");
+    FAILED("failed");
 
     private String value;
 
@@ -341,11 +339,11 @@ public class Refund {
   }
 
    /**
-   * The status of the refund. It may change over time as asynchronous processing events occur.  - &#x60;processing&#x60; - The refund is being processed. - &#x60;succeeded&#x60; - The refund was successful. - &#x60;declined&#x60; - The refund was declined by the underlying PSP. - &#x60;failed&#x60; - The refund could not proceed due to a technical issue. - &#x60;voided&#x60; - The refund was voided and will not proceed.
+   * The status of the refund. It may change over time as asynchronous processing events occur.  - &#x60;processing&#x60; - The refund is being processed. - &#x60;succeeded&#x60; - The refund was successful. - &#x60;declined&#x60; - The refund was declined by the underlying PSP. - &#x60;failed&#x60; - The refund could not proceed due to a technical issue.
    * @return status
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "processing", value = "The status of the refund. It may change over time as asynchronous processing events occur.  - `processing` - The refund is being processed. - `succeeded` - The refund was successful. - `declined` - The refund was declined by the underlying PSP. - `failed` - The refund could not proceed due to a technical issue. - `voided` - The refund was voided and will not proceed.")
+  @ApiModelProperty(example = "processing", value = "The status of the refund. It may change over time as asynchronous processing events occur.  - `processing` - The refund is being processed. - `succeeded` - The refund was successful. - `declined` - The refund was declined by the underlying PSP. - `failed` - The refund could not proceed due to a technical issue.")
 
   public StatusEnum getStatus() {
     return status;

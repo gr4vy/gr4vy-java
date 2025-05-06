@@ -169,6 +169,10 @@ public class PaymentConnectorResponseTransactionAuthorizationSucceededEventConte
   @SerializedName(SERIALIZED_NAME_RAW_RESPONSE_DESCRIPTION)
   private String rawResponseDescription;
 
+  public static final String SERIALIZED_NAME_AUTH_RESPONSE_CODE = "auth_response_code";
+  @SerializedName(SERIALIZED_NAME_AUTH_RESPONSE_CODE)
+  private String authResponseCode;
+
   /**
    * The response code received from the payment service for the Address Verification Check (AVS). This code is mapped to a standardized Gr4vy AVS response code.  - &#x60;no_match&#x60; - neither address or postal code match - &#x60;match&#x60; - both address and postal code match - &#x60;partial_match_address&#x60; - address matches but postal code does not - &#x60;partial_match_postcode&#x60; - postal code matches but address does not - &#x60;unavailable &#x60; - AVS is unavailable for card/country  The value of this field can be &#x60;null&#x60; if the payment service did not provide a response.
    */
@@ -584,6 +588,29 @@ public class PaymentConnectorResponseTransactionAuthorizationSucceededEventConte
   }
 
 
+  public PaymentConnectorResponseTransactionAuthorizationSucceededEventContext authResponseCode(String authResponseCode) {
+    
+    this.authResponseCode = authResponseCode;
+    return this;
+  }
+
+   /**
+   * This is the response description received from the processor.
+   * @return authResponseCode
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "00", value = "This is the response description received from the processor.")
+
+  public String getAuthResponseCode() {
+    return authResponseCode;
+  }
+
+
+  public void setAuthResponseCode(String authResponseCode) {
+    this.authResponseCode = authResponseCode;
+  }
+
+
   public PaymentConnectorResponseTransactionAuthorizationSucceededEventContext avsResponseCode(AvsResponseCodeEnum avsResponseCode) {
     
     this.avsResponseCode = avsResponseCode;
@@ -671,6 +698,7 @@ public class PaymentConnectorResponseTransactionAuthorizationSucceededEventConte
         Objects.equals(this.retryRule, paymentConnectorResponseTransactionAuthorizationSucceededEventContext.retryRule) &&
         Objects.equals(this.rawResponseCode, paymentConnectorResponseTransactionAuthorizationSucceededEventContext.rawResponseCode) &&
         Objects.equals(this.rawResponseDescription, paymentConnectorResponseTransactionAuthorizationSucceededEventContext.rawResponseDescription) &&
+        Objects.equals(this.authResponseCode, paymentConnectorResponseTransactionAuthorizationSucceededEventContext.authResponseCode) &&
         Objects.equals(this.avsResponseCode, paymentConnectorResponseTransactionAuthorizationSucceededEventContext.avsResponseCode) &&
         Objects.equals(this.cvvResponseCode, paymentConnectorResponseTransactionAuthorizationSucceededEventContext.cvvResponseCode) &&
         Objects.equals(this.paymentMethodScheme, paymentConnectorResponseTransactionAuthorizationSucceededEventContext.paymentMethodScheme);
@@ -678,7 +706,7 @@ public class PaymentConnectorResponseTransactionAuthorizationSucceededEventConte
 
   @Override
   public int hashCode() {
-    return Objects.hash(paymentServiceId, paymentServiceDisplayName, paymentServiceDefinitionId, paymentServiceTransactionId, status, instrumentType, retryRule, rawResponseCode, rawResponseDescription, avsResponseCode, cvvResponseCode, paymentMethodScheme);
+    return Objects.hash(paymentServiceId, paymentServiceDisplayName, paymentServiceDefinitionId, paymentServiceTransactionId, status, instrumentType, retryRule, rawResponseCode, rawResponseDescription, authResponseCode, avsResponseCode, cvvResponseCode, paymentMethodScheme);
   }
 
   @Override
@@ -694,6 +722,7 @@ public class PaymentConnectorResponseTransactionAuthorizationSucceededEventConte
     sb.append("    retryRule: ").append(toIndentedString(retryRule)).append("\n");
     sb.append("    rawResponseCode: ").append(toIndentedString(rawResponseCode)).append("\n");
     sb.append("    rawResponseDescription: ").append(toIndentedString(rawResponseDescription)).append("\n");
+    sb.append("    authResponseCode: ").append(toIndentedString(authResponseCode)).append("\n");
     sb.append("    avsResponseCode: ").append(toIndentedString(avsResponseCode)).append("\n");
     sb.append("    cvvResponseCode: ").append(toIndentedString(cvvResponseCode)).append("\n");
     sb.append("    paymentMethodScheme: ").append(toIndentedString(paymentMethodScheme)).append("\n");

@@ -36,15 +36,167 @@ public class RedirectRequest {
    */
   @JsonAdapter(MethodEnum.Adapter.class)
   public enum MethodEnum {
-    PAYPAL("paypal"),
+    AFTERPAY("afterpay"),
+    
+    ALIPAY("alipay"),
+    
+    ALIPAYHK("alipayhk"),
+    
+    BACS("bacs"),
+    
+    BANCONTACT("bancontact"),
     
     BANKED("banked"),
     
+    BECS("becs"),
+    
     BITPAY("bitpay"),
+    
+    BOLETO("boleto"),
+    
+    BOOST("boost"),
+    
+    CASHAPP("cashapp"),
+    
+    CHASEORBITAL("chaseorbital"),
+    
+    CHECKOUT_SESSION("checkout-session"),
+    
+    CLEARPAY("clearpay"),
+    
+    DANA("dana"),
+    
+    DCB("dcb"),
+    
+    DLOCAL("dlocal"),
+    
+    EBANX("ebanx"),
+    
+    EFECTY("efecty"),
+    
+    EPS("eps"),
+    
+    EVERYDAYPAY("everydaypay"),
+    
+    GCASH("gcash"),
+    
+    GEM("gem"),
+    
+    GEMDS("gemds"),
+    
+    GIFT_CARD("gift-card"),
+    
+    GIROPAY("giropay"),
+    
+    GIVINGBLOCK("givingblock"),
     
     GOCARDLESS("gocardless"),
     
-    STRIPEDD("stripedd");
+    GOPAY("gopay"),
+    
+    GRABPAY("grabpay"),
+    
+    IDEAL("ideal"),
+    
+    KAKAOPAY("kakaopay"),
+    
+    KCP("kcp"),
+    
+    KLARNA("klarna"),
+    
+    LATITUDE("latitude"),
+    
+    LATITUDEDS("latitudeds"),
+    
+    LAYBUY("laybuy"),
+    
+    LINEPAY("linepay"),
+    
+    LINKAJA("linkaja"),
+    
+    MAYBANKQRPAY("maybankqrpay"),
+    
+    MERCADOPAGO("mercadopago"),
+    
+    MULTIBANCO("multibanco"),
+    
+    MULTIPAGO("multipago"),
+    
+    NETBANKING("netbanking"),
+    
+    NETWORK_TOKEN("network-token"),
+    
+    ONEY_10X("oney_10x"),
+    
+    ONEY_12X("oney_12x"),
+    
+    ONEY_3X("oney_3x"),
+    
+    ONEY_4X("oney_4x"),
+    
+    ONEY_6X("oney_6x"),
+    
+    OVO("ovo"),
+    
+    OXXO("oxxo"),
+    
+    PAYID("payid"),
+    
+    PAYMAYA("paymaya"),
+    
+    PAYPAL("paypal"),
+    
+    PAYPALPAYLATER("paypalpaylater"),
+    
+    PAYTO("payto"),
+    
+    PIX("pix"),
+    
+    PSE("pse"),
+    
+    RABBITLINEPAY("rabbitlinepay"),
+    
+    RAZORPAY("razorpay"),
+    
+    SCALAPAY("scalapay"),
+    
+    SEPA("sepa"),
+    
+    SHOPEEPAY("shopeepay"),
+    
+    SINGTELDASH("singteldash"),
+    
+    SMARTPAY("smartpay"),
+    
+    SOFORT("sofort"),
+    
+    SPEI("spei"),
+    
+    STRIPEDD("stripedd"),
+    
+    THAIQR("thaiqr"),
+    
+    TOUCHNGO("touchngo"),
+    
+    TRUEMONEY("truemoney"),
+    
+    TRUSTLY("trustly"),
+    
+    TRUSTLYEUROPE("trustlyeurope"),
+    
+    UPI("upi"),
+    
+    VENMO("venmo"),
+    
+    VIPPS("vipps"),
+    
+    WAAVE("waave"),
+    
+    WEBPAY("webpay"),
+    
+    WECHAT("wechat"),
+    
+    ZIPPAY("zippay");
 
     private String value;
 

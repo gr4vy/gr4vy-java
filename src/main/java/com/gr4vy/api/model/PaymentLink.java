@@ -119,7 +119,11 @@ public class PaymentLink {
   public enum StatusEnum {
     ACTIVE("active"),
     
-    EXPIRED("expired");
+    COMPLETED("completed"),
+    
+    EXPIRED("expired"),
+    
+    PROCESSING("processing");
 
     private String value;
 
@@ -171,6 +175,63 @@ public class PaymentLink {
   @SerializedName(SERIALIZED_NAME_STATEMENT_DESCRIPTOR)
   private StatementDescriptor statementDescriptor;
 
+  /**
+   * The locale used to translate text within the payment link.
+   */
+  @JsonAdapter(LocaleEnum.Adapter.class)
+  public enum LocaleEnum {
+    EN("en"),
+    
+    EN_GB("en-GB"),
+    
+    ES("es"),
+    
+    PT("pt"),
+    
+    PT_BR("pt-BR");
+
+    private String value;
+
+    LocaleEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static LocaleEnum fromValue(String value) {
+      for (LocaleEnum b : LocaleEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      return null;
+    }
+
+    public static class Adapter extends TypeAdapter<LocaleEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final LocaleEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public LocaleEnum read(final JsonReader jsonReader) throws IOException {
+        String value =  jsonReader.nextString();
+        return LocaleEnum.fromValue(value);
+      }
+    }
+  }
+
+  public static final String SERIALIZED_NAME_LOCALE = "locale";
+  @SerializedName(SERIALIZED_NAME_LOCALE)
+  private LocaleEnum locale;
+
   public static final String SERIALIZED_NAME_MERCHANT_NAME = "merchant_name";
   @SerializedName(SERIALIZED_NAME_MERCHANT_NAME)
   private String merchantName;
@@ -194,6 +255,10 @@ public class PaymentLink {
   public static final String SERIALIZED_NAME_MERCHANT_TERMS_AND_CONDITIONS_URL = "merchant_terms_and_conditions_url";
   @SerializedName(SERIALIZED_NAME_MERCHANT_TERMS_AND_CONDITIONS_URL)
   private String merchantTermsAndConditionsUrl;
+
+  public static final String SERIALIZED_NAME_MERCHANT_FAVICON_URL = "merchant_favicon_url";
+  @SerializedName(SERIALIZED_NAME_MERCHANT_FAVICON_URL)
+  private String merchantFaviconUrl;
 
   public static final String SERIALIZED_NAME_COUNTRY = "country";
   @SerializedName(SERIALIZED_NAME_COUNTRY)
@@ -558,6 +623,29 @@ public class PaymentLink {
   }
 
 
+  public PaymentLink locale(LocaleEnum locale) {
+    
+    this.locale = locale;
+    return this;
+  }
+
+   /**
+   * The locale used to translate text within the payment link.
+   * @return locale
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "en", value = "The locale used to translate text within the payment link.")
+
+  public LocaleEnum getLocale() {
+    return locale;
+  }
+
+
+  public void setLocale(LocaleEnum locale) {
+    this.locale = locale;
+  }
+
+
   public PaymentLink merchantName(String merchantName) {
     
     this.merchantName = merchantName;
@@ -693,6 +781,29 @@ public class PaymentLink {
 
   public void setMerchantTermsAndConditionsUrl(String merchantTermsAndConditionsUrl) {
     this.merchantTermsAndConditionsUrl = merchantTermsAndConditionsUrl;
+  }
+
+
+  public PaymentLink merchantFaviconUrl(String merchantFaviconUrl) {
+    
+    this.merchantFaviconUrl = merchantFaviconUrl;
+    return this;
+  }
+
+   /**
+   * The URL of the merchant favicon icon.
+   * @return merchantFaviconUrl
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "https://gr4vy.com/favicon.png", value = "The URL of the merchant favicon icon.")
+
+  public String getMerchantFaviconUrl() {
+    return merchantFaviconUrl;
+  }
+
+
+  public void setMerchantFaviconUrl(String merchantFaviconUrl) {
+    this.merchantFaviconUrl = merchantFaviconUrl;
   }
 
 
@@ -915,12 +1026,14 @@ public class PaymentLink {
         Objects.equals(this.status, paymentLink.status) &&
         Objects.equals(this.externalIdentifier, paymentLink.externalIdentifier) &&
         Objects.equals(this.statementDescriptor, paymentLink.statementDescriptor) &&
+        Objects.equals(this.locale, paymentLink.locale) &&
         Objects.equals(this.merchantName, paymentLink.merchantName) &&
         Objects.equals(this.merchantUrl, paymentLink.merchantUrl) &&
         Objects.equals(this.merchantBannerUrl, paymentLink.merchantBannerUrl) &&
         Objects.equals(this.merchantColor, paymentLink.merchantColor) &&
         Objects.equals(this.merchantMessage, paymentLink.merchantMessage) &&
         Objects.equals(this.merchantTermsAndConditionsUrl, paymentLink.merchantTermsAndConditionsUrl) &&
+        Objects.equals(this.merchantFaviconUrl, paymentLink.merchantFaviconUrl) &&
         Objects.equals(this.country, paymentLink.country) &&
         Objects.equals(this.intent, paymentLink.intent) &&
         Objects.equals(this.returnUrl, paymentLink.returnUrl) &&
@@ -933,7 +1046,7 @@ public class PaymentLink {
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, type, amount, currency, createdAt, updatedAt, expiresAt, status, externalIdentifier, statementDescriptor, merchantName, merchantUrl, merchantBannerUrl, merchantColor, merchantMessage, merchantTermsAndConditionsUrl, country, intent, returnUrl, cartItems, metadata, paymentSource, buyer, shippingDetails);
+    return Objects.hash(id, type, amount, currency, createdAt, updatedAt, expiresAt, status, externalIdentifier, statementDescriptor, locale, merchantName, merchantUrl, merchantBannerUrl, merchantColor, merchantMessage, merchantTermsAndConditionsUrl, merchantFaviconUrl, country, intent, returnUrl, cartItems, metadata, paymentSource, buyer, shippingDetails);
   }
 
   @Override
@@ -950,12 +1063,14 @@ public class PaymentLink {
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("    externalIdentifier: ").append(toIndentedString(externalIdentifier)).append("\n");
     sb.append("    statementDescriptor: ").append(toIndentedString(statementDescriptor)).append("\n");
+    sb.append("    locale: ").append(toIndentedString(locale)).append("\n");
     sb.append("    merchantName: ").append(toIndentedString(merchantName)).append("\n");
     sb.append("    merchantUrl: ").append(toIndentedString(merchantUrl)).append("\n");
     sb.append("    merchantBannerUrl: ").append(toIndentedString(merchantBannerUrl)).append("\n");
     sb.append("    merchantColor: ").append(toIndentedString(merchantColor)).append("\n");
     sb.append("    merchantMessage: ").append(toIndentedString(merchantMessage)).append("\n");
     sb.append("    merchantTermsAndConditionsUrl: ").append(toIndentedString(merchantTermsAndConditionsUrl)).append("\n");
+    sb.append("    merchantFaviconUrl: ").append(toIndentedString(merchantFaviconUrl)).append("\n");
     sb.append("    country: ").append(toIndentedString(country)).append("\n");
     sb.append("    intent: ").append(toIndentedString(intent)).append("\n");
     sb.append("    returnUrl: ").append(toIndentedString(returnUrl)).append("\n");

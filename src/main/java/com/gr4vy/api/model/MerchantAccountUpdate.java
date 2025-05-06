@@ -186,6 +186,26 @@ public class MerchantAccountUpdate {
   @SerializedName(SERIALIZED_NAME_OVER_CAPTURE_PERCENTAGE)
   private BigDecimal overCapturePercentage;
 
+  public static final String SERIALIZED_NAME_ACCOUNT_UPDATER_ENABLED = "account_updater_enabled";
+  @SerializedName(SERIALIZED_NAME_ACCOUNT_UPDATER_ENABLED)
+  private Boolean accountUpdaterEnabled = false;
+
+  public static final String SERIALIZED_NAME_ACCOUNT_UPDATER_REQUEST_ENCRYPTION_KEY = "account_updater_request_encryption_key";
+  @SerializedName(SERIALIZED_NAME_ACCOUNT_UPDATER_REQUEST_ENCRYPTION_KEY)
+  private String accountUpdaterRequestEncryptionKey;
+
+  public static final String SERIALIZED_NAME_ACCOUNT_UPDATER_REQUEST_ENCRYPTION_KEY_ID = "account_updater_request_encryption_key_id";
+  @SerializedName(SERIALIZED_NAME_ACCOUNT_UPDATER_REQUEST_ENCRYPTION_KEY_ID)
+  private String accountUpdaterRequestEncryptionKeyId;
+
+  public static final String SERIALIZED_NAME_ACCOUNT_UPDATER_RESPONSE_DECRYPTION_KEY = "account_updater_response_decryption_key";
+  @SerializedName(SERIALIZED_NAME_ACCOUNT_UPDATER_RESPONSE_DECRYPTION_KEY)
+  private String accountUpdaterResponseDecryptionKey;
+
+  public static final String SERIALIZED_NAME_ACCOUNT_UPDATER_RESPONSE_DECRYPTION_KEY_ID = "account_updater_response_decryption_key_id";
+  @SerializedName(SERIALIZED_NAME_ACCOUNT_UPDATER_RESPONSE_DECRYPTION_KEY_ID)
+  private String accountUpdaterResponseDecryptionKeyId;
+
 
   public MerchantAccountUpdate displayName(String displayName) {
     
@@ -544,6 +564,121 @@ public class MerchantAccountUpdate {
   }
 
 
+  public MerchantAccountUpdate accountUpdaterEnabled(Boolean accountUpdaterEnabled) {
+    
+    this.accountUpdaterEnabled = accountUpdaterEnabled;
+    return this;
+  }
+
+   /**
+   * Whether the Realtime Account Updater service is enabled for this merchant account. The Account Updater service is used to update card details when cards are lost, stolen or expired.  * If the field is not set or if it&#39;s set to &#x60;false&#x60;, the Account Updater service doesn&#39;t get called if a payment fails with expired or invalid card details. * If the field is set to &#x60;true&#x60;, the service is called. Please note that for this to work the other &#x60;account_updater_*&#x60; fields must be set as well.
+   * @return accountUpdaterEnabled
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "true", value = "Whether the Realtime Account Updater service is enabled for this merchant account. The Account Updater service is used to update card details when cards are lost, stolen or expired.  * If the field is not set or if it's set to `false`, the Account Updater service doesn't get called if a payment fails with expired or invalid card details. * If the field is set to `true`, the service is called. Please note that for this to work the other `account_updater_*` fields must be set as well.")
+
+  public Boolean getAccountUpdaterEnabled() {
+    return accountUpdaterEnabled;
+  }
+
+
+  public void setAccountUpdaterEnabled(Boolean accountUpdaterEnabled) {
+    this.accountUpdaterEnabled = accountUpdaterEnabled;
+  }
+
+
+  public MerchantAccountUpdate accountUpdaterRequestEncryptionKey(String accountUpdaterRequestEncryptionKey) {
+    
+    this.accountUpdaterRequestEncryptionKey = accountUpdaterRequestEncryptionKey;
+    return this;
+  }
+
+   /**
+   * The public key used to encrypt the request to the Realtime Account Updater service. The Account Updater service is used to update card details when cards are lost, stolen or expired.  * If the field is not set or if it&#39;s set to &#x60;null&#x60;, the Account Updater service doesn&#39;t get called. * If the field is set, the other &#x60;account_updater_*&#x60; fields must be set as well.
+   * @return accountUpdaterRequestEncryptionKey
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "example-encryption-key", value = "The public key used to encrypt the request to the Realtime Account Updater service. The Account Updater service is used to update card details when cards are lost, stolen or expired.  * If the field is not set or if it's set to `null`, the Account Updater service doesn't get called. * If the field is set, the other `account_updater_*` fields must be set as well.")
+
+  public String getAccountUpdaterRequestEncryptionKey() {
+    return accountUpdaterRequestEncryptionKey;
+  }
+
+
+  public void setAccountUpdaterRequestEncryptionKey(String accountUpdaterRequestEncryptionKey) {
+    this.accountUpdaterRequestEncryptionKey = accountUpdaterRequestEncryptionKey;
+  }
+
+
+  public MerchantAccountUpdate accountUpdaterRequestEncryptionKeyId(String accountUpdaterRequestEncryptionKeyId) {
+    
+    this.accountUpdaterRequestEncryptionKeyId = accountUpdaterRequestEncryptionKeyId;
+    return this;
+  }
+
+   /**
+   * The public key ID used to encrypt the request to the Realtime Account Updater service. The Account Updater service is used to update card details when cards are lost, stolen or expired.  * If the field is not set or if it&#39;s set to &#x60;null&#x60;, the Account Updater service doesn&#39;t get called. * If the field is set, the other &#x60;account_updater_*&#x60; fields must be set as well.
+   * @return accountUpdaterRequestEncryptionKeyId
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "example-encryption-key-id", value = "The public key ID used to encrypt the request to the Realtime Account Updater service. The Account Updater service is used to update card details when cards are lost, stolen or expired.  * If the field is not set or if it's set to `null`, the Account Updater service doesn't get called. * If the field is set, the other `account_updater_*` fields must be set as well.")
+
+  public String getAccountUpdaterRequestEncryptionKeyId() {
+    return accountUpdaterRequestEncryptionKeyId;
+  }
+
+
+  public void setAccountUpdaterRequestEncryptionKeyId(String accountUpdaterRequestEncryptionKeyId) {
+    this.accountUpdaterRequestEncryptionKeyId = accountUpdaterRequestEncryptionKeyId;
+  }
+
+
+  public MerchantAccountUpdate accountUpdaterResponseDecryptionKey(String accountUpdaterResponseDecryptionKey) {
+    
+    this.accountUpdaterResponseDecryptionKey = accountUpdaterResponseDecryptionKey;
+    return this;
+  }
+
+   /**
+   * The private key used to decrypt the response from the Realtime Account Updater service. The Account Updater service is used to update card details when cards are lost, stolen or expired.  * If the field is not set or if it&#39;s set to &#x60;null&#x60;, the Account Updater service doesn&#39;t get called. * If the field is set, the other &#x60;account_updater_*&#x60; fields must be set as well.
+   * @return accountUpdaterResponseDecryptionKey
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "example-decryption-key", value = "The private key used to decrypt the response from the Realtime Account Updater service. The Account Updater service is used to update card details when cards are lost, stolen or expired.  * If the field is not set or if it's set to `null`, the Account Updater service doesn't get called. * If the field is set, the other `account_updater_*` fields must be set as well.")
+
+  public String getAccountUpdaterResponseDecryptionKey() {
+    return accountUpdaterResponseDecryptionKey;
+  }
+
+
+  public void setAccountUpdaterResponseDecryptionKey(String accountUpdaterResponseDecryptionKey) {
+    this.accountUpdaterResponseDecryptionKey = accountUpdaterResponseDecryptionKey;
+  }
+
+
+  public MerchantAccountUpdate accountUpdaterResponseDecryptionKeyId(String accountUpdaterResponseDecryptionKeyId) {
+    
+    this.accountUpdaterResponseDecryptionKeyId = accountUpdaterResponseDecryptionKeyId;
+    return this;
+  }
+
+   /**
+   * The private key ID used to decrypt the response from the Realtime Account Updater service. The Account Updater service is used to update card details when cards are lost, stolen or expired.  * If the field is not set or if it&#39;s set to &#x60;null&#x60;, the Account Updater service doesn&#39;t get called. * If the field is set, the other &#x60;account_updater_*&#x60; fields must be set as well.
+   * @return accountUpdaterResponseDecryptionKeyId
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "example-decryption-key-id", value = "The private key ID used to decrypt the response from the Realtime Account Updater service. The Account Updater service is used to update card details when cards are lost, stolen or expired.  * If the field is not set or if it's set to `null`, the Account Updater service doesn't get called. * If the field is set, the other `account_updater_*` fields must be set as well.")
+
+  public String getAccountUpdaterResponseDecryptionKeyId() {
+    return accountUpdaterResponseDecryptionKeyId;
+  }
+
+
+  public void setAccountUpdaterResponseDecryptionKeyId(String accountUpdaterResponseDecryptionKeyId) {
+    this.accountUpdaterResponseDecryptionKeyId = accountUpdaterResponseDecryptionKeyId;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -567,12 +702,17 @@ public class MerchantAccountUpdate {
         Objects.equals(this.loonSecretKey, merchantAccountUpdate.loonSecretKey) &&
         Objects.equals(this.loonAcceptedSchemes, merchantAccountUpdate.loonAcceptedSchemes) &&
         Objects.equals(this.overCaptureAmount, merchantAccountUpdate.overCaptureAmount) &&
-        Objects.equals(this.overCapturePercentage, merchantAccountUpdate.overCapturePercentage);
+        Objects.equals(this.overCapturePercentage, merchantAccountUpdate.overCapturePercentage) &&
+        Objects.equals(this.accountUpdaterEnabled, merchantAccountUpdate.accountUpdaterEnabled) &&
+        Objects.equals(this.accountUpdaterRequestEncryptionKey, merchantAccountUpdate.accountUpdaterRequestEncryptionKey) &&
+        Objects.equals(this.accountUpdaterRequestEncryptionKeyId, merchantAccountUpdate.accountUpdaterRequestEncryptionKeyId) &&
+        Objects.equals(this.accountUpdaterResponseDecryptionKey, merchantAccountUpdate.accountUpdaterResponseDecryptionKey) &&
+        Objects.equals(this.accountUpdaterResponseDecryptionKeyId, merchantAccountUpdate.accountUpdaterResponseDecryptionKeyId);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(displayName, outboundWebhookUrl, outboundWebhookUsername, outboundWebhookPassword, visaNetworkTokensRequestorId, visaNetworkTokensAppId, amexNetworkTokensRequestorId, amexNetworkTokensAppId, mastercardNetworkTokensRequestorId, mastercardNetworkTokensAppId, loonClientKey, loonSecretKey, loonAcceptedSchemes, overCaptureAmount, overCapturePercentage);
+    return Objects.hash(displayName, outboundWebhookUrl, outboundWebhookUsername, outboundWebhookPassword, visaNetworkTokensRequestorId, visaNetworkTokensAppId, amexNetworkTokensRequestorId, amexNetworkTokensAppId, mastercardNetworkTokensRequestorId, mastercardNetworkTokensAppId, loonClientKey, loonSecretKey, loonAcceptedSchemes, overCaptureAmount, overCapturePercentage, accountUpdaterEnabled, accountUpdaterRequestEncryptionKey, accountUpdaterRequestEncryptionKeyId, accountUpdaterResponseDecryptionKey, accountUpdaterResponseDecryptionKeyId);
   }
 
   @Override
@@ -594,6 +734,11 @@ public class MerchantAccountUpdate {
     sb.append("    loonAcceptedSchemes: ").append(toIndentedString(loonAcceptedSchemes)).append("\n");
     sb.append("    overCaptureAmount: ").append(toIndentedString(overCaptureAmount)).append("\n");
     sb.append("    overCapturePercentage: ").append(toIndentedString(overCapturePercentage)).append("\n");
+    sb.append("    accountUpdaterEnabled: ").append(toIndentedString(accountUpdaterEnabled)).append("\n");
+    sb.append("    accountUpdaterRequestEncryptionKey: ").append(toIndentedString(accountUpdaterRequestEncryptionKey)).append("\n");
+    sb.append("    accountUpdaterRequestEncryptionKeyId: ").append(toIndentedString(accountUpdaterRequestEncryptionKeyId)).append("\n");
+    sb.append("    accountUpdaterResponseDecryptionKey: ").append(toIndentedString(accountUpdaterResponseDecryptionKey)).append("\n");
+    sb.append("    accountUpdaterResponseDecryptionKeyId: ").append(toIndentedString(accountUpdaterResponseDecryptionKeyId)).append("\n");
     sb.append("}");
     return sb.toString();
   }

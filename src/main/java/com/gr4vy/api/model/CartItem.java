@@ -137,6 +137,10 @@ public class CartItem {
   @SerializedName(SERIALIZED_NAME_PRODUCT_TYPE)
   private ProductTypeEnum productType;
 
+  public static final String SERIALIZED_NAME_SELLER_COUNTRY = "seller_country";
+  @SerializedName(SERIALIZED_NAME_SELLER_COUNTRY)
+  private String sellerCountry;
+
 
   public CartItem name(String name) {
     
@@ -404,6 +408,29 @@ public class CartItem {
   }
 
 
+  public CartItem sellerCountry(String sellerCountry) {
+    
+    this.sellerCountry = sellerCountry;
+    return this;
+  }
+
+   /**
+   * The country code of the seller of the item. For some connectors, if this country code does not match the &#x60;country&#x60; then the transaction will be marked to Visa as a foreign seller transaction to meet Marketplace reporting requirements.
+   * @return sellerCountry
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "US", value = "The country code of the seller of the item. For some connectors, if this country code does not match the `country` then the transaction will be marked to Visa as a foreign seller transaction to meet Marketplace reporting requirements.")
+
+  public String getSellerCountry() {
+    return sellerCountry;
+  }
+
+
+  public void setSellerCountry(String sellerCountry) {
+    this.sellerCountry = sellerCountry;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -423,12 +450,13 @@ public class CartItem {
         Objects.equals(this.productUrl, cartItem.productUrl) &&
         Objects.equals(this.imageUrl, cartItem.imageUrl) &&
         Objects.equals(this.categories, cartItem.categories) &&
-        Objects.equals(this.productType, cartItem.productType);
+        Objects.equals(this.productType, cartItem.productType) &&
+        Objects.equals(this.sellerCountry, cartItem.sellerCountry);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, quantity, unitAmount, discountAmount, taxAmount, externalIdentifier, sku, productUrl, imageUrl, categories, productType);
+    return Objects.hash(name, quantity, unitAmount, discountAmount, taxAmount, externalIdentifier, sku, productUrl, imageUrl, categories, productType, sellerCountry);
   }
 
   @Override
@@ -446,6 +474,7 @@ public class CartItem {
     sb.append("    imageUrl: ").append(toIndentedString(imageUrl)).append("\n");
     sb.append("    categories: ").append(toIndentedString(categories)).append("\n");
     sb.append("    productType: ").append(toIndentedString(productType)).append("\n");
+    sb.append("    sellerCountry: ").append(toIndentedString(sellerCountry)).append("\n");
     sb.append("}");
     return sb.toString();
   }
