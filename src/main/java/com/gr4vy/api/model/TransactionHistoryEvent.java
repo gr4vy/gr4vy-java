@@ -166,6 +166,8 @@ public class TransactionHistoryEvent {
     THREE_D_SECURE_SUCCESS("three-d-secure-success"),
     
     TRANSACTION_API_REQUEST("transaction-api-request"),
+
+    REAL_TIME_ACCOUNT_UPDATE("real-time-account-update"),
     
     TRANSACTION_API_RESPONSE("transaction-api-response");
 
