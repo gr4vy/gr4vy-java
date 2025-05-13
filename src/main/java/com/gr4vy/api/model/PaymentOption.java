@@ -322,7 +322,7 @@ public class PaymentOption {
     
     CLICK_TO_PAY("click-to-pay"),
     
-    CHECKOUT_SESSION("checkout-session");
+    CHECKOUT_SESSION("checkout-session"),
 
     GIFT_CARD("gift-card");
 
