@@ -146,6 +146,8 @@ public class PaymentOption {
     GIROPAY("giropay"),
     
     GIVINGBLOCK("givingblock"),
+
+    GIFT_CARD("gift-card"),
     
     GOCARDLESS("gocardless"),
     
