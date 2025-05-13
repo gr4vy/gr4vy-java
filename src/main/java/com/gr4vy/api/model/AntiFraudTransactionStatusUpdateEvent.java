@@ -28,9 +28,9 @@ import java.util.UUID;
 
 
 /**
- * This event logs the request and response details of HTTP calls made to an anti-fraud provider to update a transaction.
+ * This event logs the request and response details of HTTP calls made to an anti-fraud provider to update on a transaction status.  For example, when a capture is successful.
  */
-@ApiModel(description = "This event logs the request and response details of HTTP calls made to an anti-fraud provider to update a transaction.")
+@ApiModel(description = "This event logs the request and response details of HTTP calls made to an anti-fraud provider to update on a transaction status.  For example, when a capture is successful.")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class AntiFraudTransactionStatusUpdateEvent {
   /**

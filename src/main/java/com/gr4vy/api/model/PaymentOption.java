@@ -85,17 +85,15 @@ public class PaymentOption {
    */
   @JsonAdapter(MethodEnum.Adapter.class)
   public enum MethodEnum {
-    AFTERPAY("afterpay"),
-
     AFFIRM("affirm"),
+    
+    AFTERPAY("afterpay"),
     
     ALIPAY("alipay"),
     
     ALIPAYHK("alipayhk"),
     
     APPLEPAY("applepay"),
-
-    ARCUSPAYNETWORK("arcuspaynetwork"),
     
     BACS("bacs"),
     
@@ -324,10 +322,7 @@ public class PaymentOption {
     
     CLICK_TO_PAY("click-to-pay"),
     
-    CHECKOUT_SESSION("checkout-session"),
-    
-    GIFT_CARD("gift-card");
-
+    CHECKOUT_SESSION("checkout-session");
 
     private String value;
 
