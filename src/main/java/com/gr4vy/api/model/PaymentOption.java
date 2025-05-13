@@ -94,6 +94,8 @@ public class PaymentOption {
     ALIPAYHK("alipayhk"),
     
     APPLEPAY("applepay"),
+
+    ARCUSPAYNETWORK("arcuspaynetwork"),
     
     BACS("bacs"),
     
@@ -140,9 +142,7 @@ public class PaymentOption {
     GEM("gem"),
     
     GEMDS("gemds"),
-    
-    GIFT_CARD("gift-card"),
-    
+        
     GIROPAY("giropay"),
     
     GIVINGBLOCK("givingblock"),
@@ -323,6 +323,8 @@ public class PaymentOption {
     CLICK_TO_PAY("click-to-pay"),
     
     CHECKOUT_SESSION("checkout-session");
+
+    GIFT_CARD("gift-card");
 
     private String value;
 

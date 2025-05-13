@@ -155,6 +155,8 @@ public class TransactionHistoryEvent {
     
     PAYMENT_CONNECTOR_EXTERNAL_TRANSACTION_REQUEST("payment-connector-external-transaction-request"),
     
+    REAL_TIME_ACCOUNT_UPDATE("real-time-account-update"),
+    
     THREE_D_SECURE_AUTHENTICATION_REQUEST("three-d-secure-authentication-request"),
     
     THREE_D_SECURE_PREPARATION_REQUEST("three-d-secure-preparation-request"),

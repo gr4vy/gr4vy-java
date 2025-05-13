@@ -480,6 +480,8 @@ public class Transaction {
     ALIPAYHK("alipayhk"),
     
     APPLEPAY("applepay"),
+
+    ARCUSPAYNETWORK("arcuspaynetwork"),
     
     BACS("bacs"),
     
