@@ -97,6 +97,11 @@ src/main/java/com/gr4vy/api/model/ConnectionDefinitions.java
 src/main/java/com/gr4vy/api/model/ConnectionOptions.java
 src/main/java/com/gr4vy/api/model/ConnectionOptionsAdyenCard.java
 src/main/java/com/gr4vy/api/model/ConnectionOptionsAdyenSepa.java
+src/main/java/com/gr4vy/api/model/ConnectionOptionsAffirmAffirm.java
+src/main/java/com/gr4vy/api/model/ConnectionOptionsAffirmAffirmDiscountCode.java
+src/main/java/com/gr4vy/api/model/ConnectionOptionsAffirmAffirmDiscounts.java
+src/main/java/com/gr4vy/api/model/ConnectionOptionsBraintreeCard.java
+src/main/java/com/gr4vy/api/model/ConnectionOptionsBraintreeCardDynamicDataFields.java
 src/main/java/com/gr4vy/api/model/ConnectionOptionsCybersourceAntiFraud.java
 src/main/java/com/gr4vy/api/model/ConnectionOptionsCybersourceCard.java
 src/main/java/com/gr4vy/api/model/ConnectionOptionsCybersourceIdeal.java
@@ -117,6 +122,7 @@ src/main/java/com/gr4vy/api/model/ConnectionOptionsForterAntiFraudTotalDiscountC
 src/main/java/com/gr4vy/api/model/ConnectionOptionsGivingblockGivingblock.java
 src/main/java/com/gr4vy/api/model/ConnectionOptionsLatitudeLatitude.java
 src/main/java/com/gr4vy/api/model/ConnectionOptionsNuveiCard.java
+src/main/java/com/gr4vy/api/model/ConnectionOptionsNuveiCardAirlineData.java
 src/main/java/com/gr4vy/api/model/ConnectionOptionsPaypalPaypal.java
 src/main/java/com/gr4vy/api/model/ConnectionOptionsPaypalPaypalAdditionalData.java
 src/main/java/com/gr4vy/api/model/ConnectionOptionsPowertranzCard.java
@@ -216,6 +222,8 @@ src/main/java/com/gr4vy/api/model/PaymentConnectorResponseTransactionCaptureSucc
 src/main/java/com/gr4vy/api/model/PaymentConnectorResponseTransactionCaptureSucceededEventContext.java
 src/main/java/com/gr4vy/api/model/PaymentConnectorResponseTransactionDeclinedEvent.java
 src/main/java/com/gr4vy/api/model/PaymentConnectorResponseTransactionDeclinedEventContext.java
+src/main/java/com/gr4vy/api/model/PaymentConnectorResponseTransactionSync.java
+src/main/java/com/gr4vy/api/model/PaymentConnectorResponseTransactionSyncContext.java
 src/main/java/com/gr4vy/api/model/PaymentConnectorResponseTransactionVoidDeclinedEvent.java
 src/main/java/com/gr4vy/api/model/PaymentConnectorResponseTransactionVoidDeclinedEventContext.java
 src/main/java/com/gr4vy/api/model/PaymentConnectorResponseTransactionVoidFailedEvent.java
@@ -266,6 +274,8 @@ src/main/java/com/gr4vy/api/model/PayoutPaymentMethodRequest.java
 src/main/java/com/gr4vy/api/model/PayoutRequest.java
 src/main/java/com/gr4vy/api/model/PayoutStoredCardRequest.java
 src/main/java/com/gr4vy/api/model/Payouts.java
+src/main/java/com/gr4vy/api/model/RealTimeAccountUpdate.java
+src/main/java/com/gr4vy/api/model/RealTimeAccountUpdateContext.java
 src/main/java/com/gr4vy/api/model/Recipient.java
 src/main/java/com/gr4vy/api/model/RecipientSnapshot.java
 src/main/java/com/gr4vy/api/model/RedirectRequest.java
@@ -464,6 +474,11 @@ src/test/java/com/gr4vy/api/model/ConnectionDefinitionTest.java
 src/test/java/com/gr4vy/api/model/ConnectionDefinitionsTest.java
 src/test/java/com/gr4vy/api/model/ConnectionOptionsAdyenCardTest.java
 src/test/java/com/gr4vy/api/model/ConnectionOptionsAdyenSepaTest.java
+src/test/java/com/gr4vy/api/model/ConnectionOptionsAffirmAffirmDiscountCodeTest.java
+src/test/java/com/gr4vy/api/model/ConnectionOptionsAffirmAffirmDiscountsTest.java
+src/test/java/com/gr4vy/api/model/ConnectionOptionsAffirmAffirmTest.java
+src/test/java/com/gr4vy/api/model/ConnectionOptionsBraintreeCardDynamicDataFieldsTest.java
+src/test/java/com/gr4vy/api/model/ConnectionOptionsBraintreeCardTest.java
 src/test/java/com/gr4vy/api/model/ConnectionOptionsCybersourceAntiFraudTest.java
 src/test/java/com/gr4vy/api/model/ConnectionOptionsCybersourceCardTest.java
 src/test/java/com/gr4vy/api/model/ConnectionOptionsCybersourceIdealTest.java
@@ -483,6 +498,7 @@ src/test/java/com/gr4vy/api/model/ConnectionOptionsForterAntiFraudTotalDiscountC
 src/test/java/com/gr4vy/api/model/ConnectionOptionsForterAntiFraudTotalDiscountTest.java
 src/test/java/com/gr4vy/api/model/ConnectionOptionsGivingblockGivingblockTest.java
 src/test/java/com/gr4vy/api/model/ConnectionOptionsLatitudeLatitudeTest.java
+src/test/java/com/gr4vy/api/model/ConnectionOptionsNuveiCardAirlineDataTest.java
 src/test/java/com/gr4vy/api/model/ConnectionOptionsNuveiCardTest.java
 src/test/java/com/gr4vy/api/model/ConnectionOptionsPaypalPaypalAdditionalDataTest.java
 src/test/java/com/gr4vy/api/model/ConnectionOptionsPaypalPaypalTest.java
@@ -585,6 +601,8 @@ src/test/java/com/gr4vy/api/model/PaymentConnectorResponseTransactionCaptureSucc
 src/test/java/com/gr4vy/api/model/PaymentConnectorResponseTransactionCaptureSucceededEventTest.java
 src/test/java/com/gr4vy/api/model/PaymentConnectorResponseTransactionDeclinedEventContextTest.java
 src/test/java/com/gr4vy/api/model/PaymentConnectorResponseTransactionDeclinedEventTest.java
+src/test/java/com/gr4vy/api/model/PaymentConnectorResponseTransactionSyncContextTest.java
+src/test/java/com/gr4vy/api/model/PaymentConnectorResponseTransactionSyncTest.java
 src/test/java/com/gr4vy/api/model/PaymentConnectorResponseTransactionVoidDeclinedEventContextTest.java
 src/test/java/com/gr4vy/api/model/PaymentConnectorResponseTransactionVoidDeclinedEventTest.java
 src/test/java/com/gr4vy/api/model/PaymentConnectorResponseTransactionVoidFailedEventContextTest.java
@@ -635,6 +653,8 @@ src/test/java/com/gr4vy/api/model/PayoutRequestTest.java
 src/test/java/com/gr4vy/api/model/PayoutStoredCardRequestTest.java
 src/test/java/com/gr4vy/api/model/PayoutTest.java
 src/test/java/com/gr4vy/api/model/PayoutsTest.java
+src/test/java/com/gr4vy/api/model/RealTimeAccountUpdateContextTest.java
+src/test/java/com/gr4vy/api/model/RealTimeAccountUpdateTest.java
 src/test/java/com/gr4vy/api/model/RecipientSnapshotTest.java
 src/test/java/com/gr4vy/api/model/RecipientTest.java
 src/test/java/com/gr4vy/api/model/RedirectRequestTest.java

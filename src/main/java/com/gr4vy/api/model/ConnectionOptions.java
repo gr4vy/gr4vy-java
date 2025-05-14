@@ -22,6 +22,8 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import com.gr4vy.api.model.ConnectionOptionsAdyenCard;
 import com.gr4vy.api.model.ConnectionOptionsAdyenSepa;
+import com.gr4vy.api.model.ConnectionOptionsAffirmAffirm;
+import com.gr4vy.api.model.ConnectionOptionsBraintreeCard;
 import com.gr4vy.api.model.ConnectionOptionsCybersourceAntiFraud;
 import com.gr4vy.api.model.ConnectionOptionsCybersourceCard;
 import com.gr4vy.api.model.ConnectionOptionsCybersourceIdeal;
@@ -119,6 +121,14 @@ public class ConnectionOptions {
   public static final String SERIALIZED_NAME_TRAVELHUB_CARD = "travelhub-card";
   @SerializedName(SERIALIZED_NAME_TRAVELHUB_CARD)
   private ConnectionOptionsTravelhubCard travelhubCard;
+
+  public static final String SERIALIZED_NAME_AFFIRM_AFFIRM = "affirm-affirm";
+  @SerializedName(SERIALIZED_NAME_AFFIRM_AFFIRM)
+  private ConnectionOptionsAffirmAffirm affirmAffirm;
+
+  public static final String SERIALIZED_NAME_BRAINTREE_CARD = "braintree-card";
+  @SerializedName(SERIALIZED_NAME_BRAINTREE_CARD)
+  private ConnectionOptionsBraintreeCard braintreeCard;
 
 
   public ConnectionOptions cybersourceCard(ConnectionOptionsCybersourceCard cybersourceCard) {
@@ -558,6 +568,52 @@ public class ConnectionOptions {
   }
 
 
+  public ConnectionOptions affirmAffirm(ConnectionOptionsAffirmAffirm affirmAffirm) {
+    
+    this.affirmAffirm = affirmAffirm;
+    return this;
+  }
+
+   /**
+   * Get affirmAffirm
+   * @return affirmAffirm
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public ConnectionOptionsAffirmAffirm getAffirmAffirm() {
+    return affirmAffirm;
+  }
+
+
+  public void setAffirmAffirm(ConnectionOptionsAffirmAffirm affirmAffirm) {
+    this.affirmAffirm = affirmAffirm;
+  }
+
+
+  public ConnectionOptions braintreeCard(ConnectionOptionsBraintreeCard braintreeCard) {
+    
+    this.braintreeCard = braintreeCard;
+    return this;
+  }
+
+   /**
+   * Get braintreeCard
+   * @return braintreeCard
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public ConnectionOptionsBraintreeCard getBraintreeCard() {
+    return braintreeCard;
+  }
+
+
+  public void setBraintreeCard(ConnectionOptionsBraintreeCard braintreeCard) {
+    this.braintreeCard = braintreeCard;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -585,12 +641,14 @@ public class ConnectionOptions {
         Objects.equals(this.gemGem, connectionOptions.gemGem) &&
         Objects.equals(this.gemGemds, connectionOptions.gemGemds) &&
         Objects.equals(this.nuveiCard, connectionOptions.nuveiCard) &&
-        Objects.equals(this.travelhubCard, connectionOptions.travelhubCard);
+        Objects.equals(this.travelhubCard, connectionOptions.travelhubCard) &&
+        Objects.equals(this.affirmAffirm, connectionOptions.affirmAffirm) &&
+        Objects.equals(this.braintreeCard, connectionOptions.braintreeCard);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(cybersourceCard, cybersourceKcp, cybersourceIdeal, cybersourceAntiFraud, givingblockGivingblock, forterAntiFraud, adyenCard, adyenSepa, paypalPaypal, paypalPaypalpaylater, powertranzCard, stripeCard, fiservCard, latitudeLatitude, latitudeLatitudeds, gemGem, gemGemds, nuveiCard, travelhubCard);
+    return Objects.hash(cybersourceCard, cybersourceKcp, cybersourceIdeal, cybersourceAntiFraud, givingblockGivingblock, forterAntiFraud, adyenCard, adyenSepa, paypalPaypal, paypalPaypalpaylater, powertranzCard, stripeCard, fiservCard, latitudeLatitude, latitudeLatitudeds, gemGem, gemGemds, nuveiCard, travelhubCard, affirmAffirm, braintreeCard);
   }
 
   @Override
@@ -616,6 +674,8 @@ public class ConnectionOptions {
     sb.append("    gemGemds: ").append(toIndentedString(gemGemds)).append("\n");
     sb.append("    nuveiCard: ").append(toIndentedString(nuveiCard)).append("\n");
     sb.append("    travelhubCard: ").append(toIndentedString(travelhubCard)).append("\n");
+    sb.append("    affirmAffirm: ").append(toIndentedString(affirmAffirm)).append("\n");
+    sb.append("    braintreeCard: ").append(toIndentedString(braintreeCard)).append("\n");
     sb.append("}");
     return sb.toString();
   }

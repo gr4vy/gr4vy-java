@@ -20,6 +20,7 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import com.gr4vy.api.model.ConnectionOptionsNuveiCardAirlineData;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
@@ -33,6 +34,10 @@ public class ConnectionOptionsNuveiCard {
   public static final String SERIALIZED_NAME_CUSTOM_DATA = "customData";
   @SerializedName(SERIALIZED_NAME_CUSTOM_DATA)
   private String customData;
+
+  public static final String SERIALIZED_NAME_AIRLINE_DATA = "airlineData";
+  @SerializedName(SERIALIZED_NAME_AIRLINE_DATA)
+  private ConnectionOptionsNuveiCardAirlineData airlineData;
 
 
   public ConnectionOptionsNuveiCard customData(String customData) {
@@ -58,6 +63,29 @@ public class ConnectionOptionsNuveiCard {
   }
 
 
+  public ConnectionOptionsNuveiCard airlineData(ConnectionOptionsNuveiCardAirlineData airlineData) {
+    
+    this.airlineData = airlineData;
+    return this;
+  }
+
+   /**
+   * Get airlineData
+   * @return airlineData
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public ConnectionOptionsNuveiCardAirlineData getAirlineData() {
+    return airlineData;
+  }
+
+
+  public void setAirlineData(ConnectionOptionsNuveiCardAirlineData airlineData) {
+    this.airlineData = airlineData;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -67,12 +95,13 @@ public class ConnectionOptionsNuveiCard {
       return false;
     }
     ConnectionOptionsNuveiCard connectionOptionsNuveiCard = (ConnectionOptionsNuveiCard) o;
-    return Objects.equals(this.customData, connectionOptionsNuveiCard.customData);
+    return Objects.equals(this.customData, connectionOptionsNuveiCard.customData) &&
+        Objects.equals(this.airlineData, connectionOptionsNuveiCard.airlineData);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(customData);
+    return Objects.hash(customData, airlineData);
   }
 
   @Override
@@ -80,6 +109,7 @@ public class ConnectionOptionsNuveiCard {
     StringBuilder sb = new StringBuilder();
     sb.append("class ConnectionOptionsNuveiCard {\n");
     sb.append("    customData: ").append(toIndentedString(customData)).append("\n");
+    sb.append("    airlineData: ").append(toIndentedString(airlineData)).append("\n");
     sb.append("}");
     return sb.toString();
   }

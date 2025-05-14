@@ -103,6 +103,10 @@ public class WebhookSubscription {
   @SerializedName(SERIALIZED_NAME_SECRET)
   private String secret;
 
+  public static final String SERIALIZED_NAME_ROTATING = "rotating";
+  @SerializedName(SERIALIZED_NAME_ROTATING)
+  private Boolean rotating;
+
 
   public WebhookSubscription type(TypeEnum type) {
     
@@ -265,6 +269,29 @@ public class WebhookSubscription {
   }
 
 
+  public WebhookSubscription rotating(Boolean rotating) {
+    
+    this.rotating = rotating;
+    return this;
+  }
+
+   /**
+   * Flag to determine whether the subscription has a secret rotation in progress or not.
+   * @return rotating
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "false", value = "Flag to determine whether the subscription has a secret rotation in progress or not.")
+
+  public Boolean getRotating() {
+    return rotating;
+  }
+
+
+  public void setRotating(Boolean rotating) {
+    this.rotating = rotating;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -280,12 +307,13 @@ public class WebhookSubscription {
         Objects.equals(this.active, webhookSubscription.active) &&
         Objects.equals(this.url, webhookSubscription.url) &&
         Objects.equals(this.authentication, webhookSubscription.authentication) &&
-        Objects.equals(this.secret, webhookSubscription.secret);
+        Objects.equals(this.secret, webhookSubscription.secret) &&
+        Objects.equals(this.rotating, webhookSubscription.rotating);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(type, id, merchantAccountId, active, url, authentication, secret);
+    return Objects.hash(type, id, merchantAccountId, active, url, authentication, secret, rotating);
   }
 
   @Override
@@ -299,6 +327,7 @@ public class WebhookSubscription {
     sb.append("    url: ").append(toIndentedString(url)).append("\n");
     sb.append("    authentication: ").append(toIndentedString(authentication)).append("\n");
     sb.append("    secret: ").append(toIndentedString(secret)).append("\n");
+    sb.append("    rotating: ").append(toIndentedString(rotating)).append("\n");
     sb.append("}");
     return sb.toString();
   }
