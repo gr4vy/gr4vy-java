@@ -290,6 +290,8 @@ public class PaymentMethod {
    */
   @JsonAdapter(MethodEnum.Adapter.class)
   public enum MethodEnum {
+    AFFIRM("affirm"),
+    
     AFTERPAY("afterpay"),
     
     ALIPAY("alipay"),
@@ -297,10 +299,6 @@ public class PaymentMethod {
     ALIPAYHK("alipayhk"),
     
     APPLEPAY("applepay"),
-    
-    AFFIRM("affirm"),
-
-    ARCUSPAYNETWORK("arcuspaynetwork"),
     
     BACS("bacs"),
     

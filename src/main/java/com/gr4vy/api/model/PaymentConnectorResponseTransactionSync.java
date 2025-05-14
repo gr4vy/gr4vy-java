@@ -20,7 +20,7 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import com.gr4vy.api.model.AntiFraudTransactionStatusUpdateEventContext;
+import com.gr4vy.api.model.PaymentConnectorResponseTransactionSyncContext;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
@@ -28,11 +28,11 @@ import java.util.UUID;
 
 
 /**
- * This event logs the request and response details of HTTP calls made to an anti-fraud provider to update on a transaction status.  For example, when a capture is successful.
+ * This event logs the exact parsed details for a transaction sync / refresh as reported by our connector.
  */
-@ApiModel(description = "This event logs the request and response details of HTTP calls made to an anti-fraud provider to update on a transaction status.  For example, when a capture is successful.")
+@ApiModel(description = "This event logs the exact parsed details for a transaction sync / refresh as reported by our connector.")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class AntiFraudTransactionStatusUpdateEvent {
+public class PaymentConnectorResponseTransactionSync {
   /**
    * The type of this resource. Is always &#x60;transaction-event&#x60;.
    */
@@ -87,11 +87,11 @@ public class AntiFraudTransactionStatusUpdateEvent {
   private UUID id;
 
   /**
-   * The name of this resource. Is always &#x60;anti-fraud-transaction-status-update&#x60;.
+   * The name of this resource. Is always &#x60;transaction-sync-event&#x60;.
    */
   @JsonAdapter(NameEnum.Adapter.class)
   public enum NameEnum {
-    ANTI_FRAUD_TRANSACTION_STATUS_UPDATE("anti-fraud-transaction-status-update");
+    TRANSACTION_SYNC_EVENT("transaction-sync-event");
 
     private String value;
 
@@ -141,10 +141,10 @@ public class AntiFraudTransactionStatusUpdateEvent {
 
   public static final String SERIALIZED_NAME_CONTEXT = "context";
   @SerializedName(SERIALIZED_NAME_CONTEXT)
-  private AntiFraudTransactionStatusUpdateEventContext context;
+  private PaymentConnectorResponseTransactionSyncContext context;
 
 
-  public AntiFraudTransactionStatusUpdateEvent type(TypeEnum type) {
+  public PaymentConnectorResponseTransactionSync type(TypeEnum type) {
     
     this.type = type;
     return this;
@@ -167,7 +167,7 @@ public class AntiFraudTransactionStatusUpdateEvent {
   }
 
 
-  public AntiFraudTransactionStatusUpdateEvent id(UUID id) {
+  public PaymentConnectorResponseTransactionSync id(UUID id) {
     
     this.id = id;
     return this;
@@ -190,18 +190,18 @@ public class AntiFraudTransactionStatusUpdateEvent {
   }
 
 
-  public AntiFraudTransactionStatusUpdateEvent name(NameEnum name) {
+  public PaymentConnectorResponseTransactionSync name(NameEnum name) {
     
     this.name = name;
     return this;
   }
 
    /**
-   * The name of this resource. Is always &#x60;anti-fraud-transaction-status-update&#x60;.
+   * The name of this resource. Is always &#x60;transaction-sync-event&#x60;.
    * @return name
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "anti-fraud-transaction-status-update", value = "The name of this resource. Is always `anti-fraud-transaction-status-update`.")
+  @ApiModelProperty(example = "transaction-sync-event", value = "The name of this resource. Is always `transaction-sync-event`.")
 
   public NameEnum getName() {
     return name;
@@ -213,18 +213,18 @@ public class AntiFraudTransactionStatusUpdateEvent {
   }
 
 
-  public AntiFraudTransactionStatusUpdateEvent createdAt(String createdAt) {
+  public PaymentConnectorResponseTransactionSync createdAt(String createdAt) {
     
     this.createdAt = createdAt;
     return this;
   }
 
    /**
-   * The date and time when this transaction event was created in our system.
+   * The date and time when this transaction was created in our system.
    * @return createdAt
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "2013-07-16T19:23Z", value = "The date and time when this transaction event was created in our system.")
+  @ApiModelProperty(example = "2025-01-16T19:23Z", value = "The date and time when this transaction was created in our system.")
 
   public String getCreatedAt() {
     return createdAt;
@@ -236,7 +236,7 @@ public class AntiFraudTransactionStatusUpdateEvent {
   }
 
 
-  public AntiFraudTransactionStatusUpdateEvent context(AntiFraudTransactionStatusUpdateEventContext context) {
+  public PaymentConnectorResponseTransactionSync context(PaymentConnectorResponseTransactionSyncContext context) {
     
     this.context = context;
     return this;
@@ -249,12 +249,12 @@ public class AntiFraudTransactionStatusUpdateEvent {
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
 
-  public AntiFraudTransactionStatusUpdateEventContext getContext() {
+  public PaymentConnectorResponseTransactionSyncContext getContext() {
     return context;
   }
 
 
-  public void setContext(AntiFraudTransactionStatusUpdateEventContext context) {
+  public void setContext(PaymentConnectorResponseTransactionSyncContext context) {
     this.context = context;
   }
 
@@ -267,12 +267,12 @@ public class AntiFraudTransactionStatusUpdateEvent {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    AntiFraudTransactionStatusUpdateEvent antiFraudTransactionStatusUpdateEvent = (AntiFraudTransactionStatusUpdateEvent) o;
-    return Objects.equals(this.type, antiFraudTransactionStatusUpdateEvent.type) &&
-        Objects.equals(this.id, antiFraudTransactionStatusUpdateEvent.id) &&
-        Objects.equals(this.name, antiFraudTransactionStatusUpdateEvent.name) &&
-        Objects.equals(this.createdAt, antiFraudTransactionStatusUpdateEvent.createdAt) &&
-        Objects.equals(this.context, antiFraudTransactionStatusUpdateEvent.context);
+    PaymentConnectorResponseTransactionSync paymentConnectorResponseTransactionSync = (PaymentConnectorResponseTransactionSync) o;
+    return Objects.equals(this.type, paymentConnectorResponseTransactionSync.type) &&
+        Objects.equals(this.id, paymentConnectorResponseTransactionSync.id) &&
+        Objects.equals(this.name, paymentConnectorResponseTransactionSync.name) &&
+        Objects.equals(this.createdAt, paymentConnectorResponseTransactionSync.createdAt) &&
+        Objects.equals(this.context, paymentConnectorResponseTransactionSync.context);
   }
 
   @Override
@@ -283,7 +283,7 @@ public class AntiFraudTransactionStatusUpdateEvent {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class AntiFraudTransactionStatusUpdateEvent {\n");
+    sb.append("class PaymentConnectorResponseTransactionSync {\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");

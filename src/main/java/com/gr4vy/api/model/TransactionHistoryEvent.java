@@ -155,6 +155,8 @@ public class TransactionHistoryEvent {
     
     PAYMENT_CONNECTOR_EXTERNAL_TRANSACTION_REQUEST("payment-connector-external-transaction-request"),
     
+    REAL_TIME_ACCOUNT_UPDATE("real-time-account-update"),
+    
     THREE_D_SECURE_AUTHENTICATION_REQUEST("three-d-secure-authentication-request"),
     
     THREE_D_SECURE_PREPARATION_REQUEST("three-d-secure-preparation-request"),
@@ -166,8 +168,6 @@ public class TransactionHistoryEvent {
     THREE_D_SECURE_SUCCESS("three-d-secure-success"),
     
     TRANSACTION_API_REQUEST("transaction-api-request"),
-
-    REAL_TIME_ACCOUNT_UPDATE("real-time-account-update"),
     
     TRANSACTION_API_RESPONSE("transaction-api-response");
 

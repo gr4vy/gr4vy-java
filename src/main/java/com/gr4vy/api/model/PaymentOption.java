@@ -85,9 +85,9 @@ public class PaymentOption {
    */
   @JsonAdapter(MethodEnum.Adapter.class)
   public enum MethodEnum {
-    AFTERPAY("afterpay"),
-
     AFFIRM("affirm"),
+    
+    AFTERPAY("afterpay"),
     
     ALIPAY("alipay"),
     
@@ -142,12 +142,12 @@ public class PaymentOption {
     GEM("gem"),
     
     GEMDS("gemds"),
-    
-    GIFT_CARD("gift-card"),
-    
+        
     GIROPAY("giropay"),
     
     GIVINGBLOCK("givingblock"),
+
+    GIFT_CARD("gift-card"),
     
     GOCARDLESS("gocardless"),
     
@@ -325,9 +325,8 @@ public class PaymentOption {
     CLICK_TO_PAY("click-to-pay"),
     
     CHECKOUT_SESSION("checkout-session"),
-    
-    GIFT_CARD("gift-card");
 
+    GIFT_CARD("gift-card");
 
     private String value;
 

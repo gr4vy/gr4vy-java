@@ -131,6 +131,8 @@ public class PaymentService {
    */
   @JsonAdapter(MethodEnum.Adapter.class)
   public enum MethodEnum {
+    AFFIRM("affirm"),
+    
     AFTERPAY("afterpay"),
     
     ALIPAY("alipay"),

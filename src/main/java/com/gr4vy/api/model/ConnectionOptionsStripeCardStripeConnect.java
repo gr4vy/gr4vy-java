@@ -43,6 +43,10 @@ public class ConnectionOptionsStripeCardStripeConnect {
   @SerializedName(SERIALIZED_NAME_ON_BEHALF_OF)
   private String onBehalfOf;
 
+  public static final String SERIALIZED_NAME_TRANSFER_DATA_DESTINATION = "transfer_data_destination";
+  @SerializedName(SERIALIZED_NAME_TRANSFER_DATA_DESTINATION)
+  private String transferDataDestination;
+
 
   public ConnectionOptionsStripeCardStripeConnect stripeAccount(String stripeAccount) {
     
@@ -113,6 +117,29 @@ public class ConnectionOptionsStripeCardStripeConnect {
   }
 
 
+  public ConnectionOptionsStripeCardStripeConnect transferDataDestination(String transferDataDestination) {
+    
+    this.transferDataDestination = transferDataDestination;
+    return this;
+  }
+
+   /**
+   * The Stripe account ID that these funds are to be transferred to.
+   * @return transferDataDestination
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "The Stripe account ID that these funds are to be transferred to.")
+
+  public String getTransferDataDestination() {
+    return transferDataDestination;
+  }
+
+
+  public void setTransferDataDestination(String transferDataDestination) {
+    this.transferDataDestination = transferDataDestination;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -124,12 +151,13 @@ public class ConnectionOptionsStripeCardStripeConnect {
     ConnectionOptionsStripeCardStripeConnect connectionOptionsStripeCardStripeConnect = (ConnectionOptionsStripeCardStripeConnect) o;
     return Objects.equals(this.stripeAccount, connectionOptionsStripeCardStripeConnect.stripeAccount) &&
         Objects.equals(this.applicationFeeAmount, connectionOptionsStripeCardStripeConnect.applicationFeeAmount) &&
-        Objects.equals(this.onBehalfOf, connectionOptionsStripeCardStripeConnect.onBehalfOf);
+        Objects.equals(this.onBehalfOf, connectionOptionsStripeCardStripeConnect.onBehalfOf) &&
+        Objects.equals(this.transferDataDestination, connectionOptionsStripeCardStripeConnect.transferDataDestination);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(stripeAccount, applicationFeeAmount, onBehalfOf);
+    return Objects.hash(stripeAccount, applicationFeeAmount, onBehalfOf, transferDataDestination);
   }
 
   @Override
@@ -139,6 +167,7 @@ public class ConnectionOptionsStripeCardStripeConnect {
     sb.append("    stripeAccount: ").append(toIndentedString(stripeAccount)).append("\n");
     sb.append("    applicationFeeAmount: ").append(toIndentedString(applicationFeeAmount)).append("\n");
     sb.append("    onBehalfOf: ").append(toIndentedString(onBehalfOf)).append("\n");
+    sb.append("    transferDataDestination: ").append(toIndentedString(transferDataDestination)).append("\n");
     sb.append("}");
     return sb.toString();
   }
