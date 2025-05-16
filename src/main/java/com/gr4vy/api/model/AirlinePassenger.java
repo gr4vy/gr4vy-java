@@ -65,7 +65,7 @@ public class AirlinePassenger {
 
   public static final String SERIALIZED_NAME_DATE_OF_BIRTH = "date_of_birth";
   @SerializedName(SERIALIZED_NAME_DATE_OF_BIRTH)
-  private LocalDate dateOfBirth;
+  private String dateOfBirth;
 
   /**
    * Gets or Sets ageGroup
@@ -303,7 +303,7 @@ public class AirlinePassenger {
   }
 
 
-  public AirlinePassenger dateOfBirth(LocalDate dateOfBirth) {
+  public AirlinePassenger dateOfBirth(String dateOfBirth) {
     
     this.dateOfBirth = dateOfBirth;
     return this;
@@ -316,12 +316,12 @@ public class AirlinePassenger {
   @javax.annotation.Nullable
   @ApiModelProperty(example = "Tue Jul 16 00:00:00 UTC 2013", value = "The passenger's date of birth.")
 
-  public LocalDate getDateOfBirth() {
+  public String getDateOfBirth() {
     return dateOfBirth;
   }
 
 
-  public void setDateOfBirth(LocalDate dateOfBirth) {
+  public void setDateOfBirth(String dateOfBirth) {
     this.dateOfBirth = dateOfBirth;
   }
 

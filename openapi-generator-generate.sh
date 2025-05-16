@@ -43,3 +43,10 @@ var1='AnyOfBINLookupRequestThreeDSecureAuthenticationRequestEventThreeDSecureSuc
 rep1='TransactionHistoryEvent'
 sed -i '' "s/$var1/$rep1/g" src/main/java/com/gr4vy/api/model/TransactionHistoryEvents.java
 
+# Patch AirlinePassenger's dateOfBirth field's type to String as required
+sed -i '' 's/LocalDate dateOfBirth;/String dateOfBirth;/g' src/main/java/com/gr4vy/api/model/AirlinePassenger.java
+sed -i '' 's/dateOfBirth(LocalDate dateOfBirth)/dateOfBirth(String dateOfBirth)/g' src/main/java/com/gr4vy/api/model/AirlinePassenger.java
+sed -i '' 's/LocalDate getDateOfBirth()/String getDateOfBirth()/g' src/main/java/com/gr4vy/api/model/AirlinePassenger.java
+sed -i '' 's/setDateOfBirth(LocalDate/setDateOfBirth(String/g' src/main/java/com/gr4vy/api/model/AirlinePassenger.java
+# Remove import as LocalDate is no longer used in AirlinePassenger
+sed -i '' '/import java.time.LocalDate;/d' src/main/java/com/gr4vy/api/model/AirlinePassenger.java
