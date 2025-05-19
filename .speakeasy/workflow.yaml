@@ -1,0 +1,18 @@
+workflowVersion: 1.0.0
+speakeasyVersion: latest
+sources:
+    Gr4vy:
+        inputs:
+            - location: https://gr4vy.github.io/gr4vy-openapi/core/openapi.json
+        registry:
+            location: registry.speakeasyapi.dev/gr4vy/gr4vy/gr-4-vy
+targets:
+    gr-4-vy:
+        target: java
+        source: Gr4vy
+        codeSamples:
+            registry:
+                location: registry.speakeasyapi.dev/gr4vy/gr4vy/gr-4-vy-java-code-samples
+            labelOverride:
+                fixedValue: Java (SDK)
+            blocking: false
