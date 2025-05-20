@@ -1,0 +1,342 @@
+# NetworkTokens
+(*paymentMethods().networkTokens()*)
+
+## Overview
+
+### Available Operations
+
+* [list](#list) - List network tokens
+* [create](#create) - Provision network token
+* [suspend](#suspend) - Suspend network token
+* [resume](#resume) - Resume network token
+* [delete](#delete) - Delete network token
+
+## list
+
+List all network tokens stored for a payment method.
+
+### Example Usage
+
+```java
+package hello.world;
+
+import com.github.gr4vy.gr4vy_java.Gr4vy;
+import com.github.gr4vy.gr4vy_java.models.errors.*;
+import com.github.gr4vy.gr4vy_java.models.operations.ListPaymentMethodNetworkTokensResponse;
+import java.lang.Exception;
+
+public class Application {
+
+    public static void main(String[] args) throws Exception {
+
+        Gr4vy sdk = Gr4vy.builder()
+                .oAuth2PasswordBearer("<YOUR_O_AUTH2_PASSWORD_BEARER_HERE>")
+            .build();
+
+        ListPaymentMethodNetworkTokensResponse res = sdk.paymentMethods().networkTokens().list()
+                .paymentMethodId("ef9496d8-53a5-4aad-8ca2-00eb68334389")
+                .xGr4vyMerchantAccountId("default")
+                .call();
+
+        if (res.collectionNoCursorNetworkToken().isPresent()) {
+            // handle response
+        }
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                               | Type                                                    | Required                                                | Description                                             | Example                                                 |
+| ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- |
+| `paymentMethodId`                                       | *String*                                                | :heavy_check_mark:                                      | The ID of the payment method                            | ef9496d8-53a5-4aad-8ca2-00eb68334389                    |
+| `xGr4vyMerchantAccountId`                               | *JsonNullable\<String>*                                 | :heavy_minus_sign:                                      | The ID of the merchant account to use for this request. | default                                                 |
+
+### Response
+
+**[ListPaymentMethodNetworkTokensResponse](../../models/operations/ListPaymentMethodNetworkTokensResponse.md)**
+
+### Errors
+
+| Error Type                        | Status Code                       | Content Type                      |
+| --------------------------------- | --------------------------------- | --------------------------------- |
+| models/errors/Error400            | 400                               | application/json                  |
+| models/errors/Error401            | 401                               | application/json                  |
+| models/errors/Error403            | 403                               | application/json                  |
+| models/errors/Error404            | 404                               | application/json                  |
+| models/errors/Error405            | 405                               | application/json                  |
+| models/errors/Error409            | 409                               | application/json                  |
+| models/errors/HTTPValidationError | 422                               | application/json                  |
+| models/errors/Error425            | 425                               | application/json                  |
+| models/errors/Error429            | 429                               | application/json                  |
+| models/errors/Error500            | 500                               | application/json                  |
+| models/errors/Error502            | 502                               | application/json                  |
+| models/errors/Error504            | 504                               | application/json                  |
+| models/errors/APIException        | 4XX, 5XX                          | \*/\*                             |
+
+## create
+
+Provision a network token for a payment method.
+
+### Example Usage
+
+```java
+package hello.world;
+
+import com.github.gr4vy.gr4vy_java.Gr4vy;
+import com.github.gr4vy.gr4vy_java.models.components.NetworkTokenCreate;
+import com.github.gr4vy.gr4vy_java.models.errors.*;
+import com.github.gr4vy.gr4vy_java.models.operations.CreatePaymentMethodNetworkTokenResponse;
+import java.lang.Exception;
+
+public class Application {
+
+    public static void main(String[] args) throws Exception {
+
+        Gr4vy sdk = Gr4vy.builder()
+                .oAuth2PasswordBearer("<YOUR_O_AUTH2_PASSWORD_BEARER_HERE>")
+            .build();
+
+        CreatePaymentMethodNetworkTokenResponse res = sdk.paymentMethods().networkTokens().create()
+                .paymentMethodId("ef9496d8-53a5-4aad-8ca2-00eb68334389")
+                .xGr4vyMerchantAccountId("default")
+                .networkTokenCreate(NetworkTokenCreate.builder()
+                    .merchantInitiated(false)
+                    .isSubsequentPayment(false)
+                    .securityCode("123")
+                    .build())
+                .call();
+
+        if (res.networkToken().isPresent()) {
+            // handle response
+        }
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                           | Type                                                                | Required                                                            | Description                                                         | Example                                                             |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| `paymentMethodId`                                                   | *String*                                                            | :heavy_check_mark:                                                  | The ID of the payment method                                        | ef9496d8-53a5-4aad-8ca2-00eb68334389                                |
+| `timeoutInSeconds`                                                  | *Optional\<Double>*                                                 | :heavy_minus_sign:                                                  | N/A                                                                 |                                                                     |
+| `xGr4vyMerchantAccountId`                                           | *JsonNullable\<String>*                                             | :heavy_minus_sign:                                                  | The ID of the merchant account to use for this request.             | default                                                             |
+| `networkTokenCreate`                                                | [NetworkTokenCreate](../../models/components/NetworkTokenCreate.md) | :heavy_check_mark:                                                  | N/A                                                                 |                                                                     |
+
+### Response
+
+**[CreatePaymentMethodNetworkTokenResponse](../../models/operations/CreatePaymentMethodNetworkTokenResponse.md)**
+
+### Errors
+
+| Error Type                        | Status Code                       | Content Type                      |
+| --------------------------------- | --------------------------------- | --------------------------------- |
+| models/errors/Error400            | 400                               | application/json                  |
+| models/errors/Error401            | 401                               | application/json                  |
+| models/errors/Error403            | 403                               | application/json                  |
+| models/errors/Error404            | 404                               | application/json                  |
+| models/errors/Error405            | 405                               | application/json                  |
+| models/errors/Error409            | 409                               | application/json                  |
+| models/errors/HTTPValidationError | 422                               | application/json                  |
+| models/errors/Error425            | 425                               | application/json                  |
+| models/errors/Error429            | 429                               | application/json                  |
+| models/errors/Error500            | 500                               | application/json                  |
+| models/errors/Error502            | 502                               | application/json                  |
+| models/errors/Error504            | 504                               | application/json                  |
+| models/errors/APIException        | 4XX, 5XX                          | \*/\*                             |
+
+## suspend
+
+Suspend a network token for a payment method.
+
+### Example Usage
+
+```java
+package hello.world;
+
+import com.github.gr4vy.gr4vy_java.Gr4vy;
+import com.github.gr4vy.gr4vy_java.models.errors.*;
+import com.github.gr4vy.gr4vy_java.models.operations.SuspendPaymentMethodNetworkTokenResponse;
+import java.lang.Exception;
+
+public class Application {
+
+    public static void main(String[] args) throws Exception {
+
+        Gr4vy sdk = Gr4vy.builder()
+                .oAuth2PasswordBearer("<YOUR_O_AUTH2_PASSWORD_BEARER_HERE>")
+            .build();
+
+        SuspendPaymentMethodNetworkTokenResponse res = sdk.paymentMethods().networkTokens().suspend()
+                .paymentMethodId("ef9496d8-53a5-4aad-8ca2-00eb68334389")
+                .networkTokenId("f8dd5cfc-7834-4847-95dc-f75a360e2298")
+                .xGr4vyMerchantAccountId("default")
+                .call();
+
+        if (res.networkToken().isPresent()) {
+            // handle response
+        }
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                               | Type                                                    | Required                                                | Description                                             | Example                                                 |
+| ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- |
+| `paymentMethodId`                                       | *String*                                                | :heavy_check_mark:                                      | The ID of the payment method                            | ef9496d8-53a5-4aad-8ca2-00eb68334389                    |
+| `networkTokenId`                                        | *String*                                                | :heavy_check_mark:                                      | The ID of the network token                             | f8dd5cfc-7834-4847-95dc-f75a360e2298                    |
+| `timeoutInSeconds`                                      | *Optional\<Double>*                                     | :heavy_minus_sign:                                      | N/A                                                     |                                                         |
+| `xGr4vyMerchantAccountId`                               | *JsonNullable\<String>*                                 | :heavy_minus_sign:                                      | The ID of the merchant account to use for this request. | default                                                 |
+
+### Response
+
+**[SuspendPaymentMethodNetworkTokenResponse](../../models/operations/SuspendPaymentMethodNetworkTokenResponse.md)**
+
+### Errors
+
+| Error Type                        | Status Code                       | Content Type                      |
+| --------------------------------- | --------------------------------- | --------------------------------- |
+| models/errors/Error400            | 400                               | application/json                  |
+| models/errors/Error401            | 401                               | application/json                  |
+| models/errors/Error403            | 403                               | application/json                  |
+| models/errors/Error404            | 404                               | application/json                  |
+| models/errors/Error405            | 405                               | application/json                  |
+| models/errors/Error409            | 409                               | application/json                  |
+| models/errors/HTTPValidationError | 422                               | application/json                  |
+| models/errors/Error425            | 425                               | application/json                  |
+| models/errors/Error429            | 429                               | application/json                  |
+| models/errors/Error500            | 500                               | application/json                  |
+| models/errors/Error502            | 502                               | application/json                  |
+| models/errors/Error504            | 504                               | application/json                  |
+| models/errors/APIException        | 4XX, 5XX                          | \*/\*                             |
+
+## resume
+
+Resume a suspended network token for a payment method.
+
+### Example Usage
+
+```java
+package hello.world;
+
+import com.github.gr4vy.gr4vy_java.Gr4vy;
+import com.github.gr4vy.gr4vy_java.models.errors.*;
+import com.github.gr4vy.gr4vy_java.models.operations.ResumePaymentMethodNetworkTokenResponse;
+import java.lang.Exception;
+
+public class Application {
+
+    public static void main(String[] args) throws Exception {
+
+        Gr4vy sdk = Gr4vy.builder()
+                .oAuth2PasswordBearer("<YOUR_O_AUTH2_PASSWORD_BEARER_HERE>")
+            .build();
+
+        ResumePaymentMethodNetworkTokenResponse res = sdk.paymentMethods().networkTokens().resume()
+                .paymentMethodId("ef9496d8-53a5-4aad-8ca2-00eb68334389")
+                .networkTokenId("f8dd5cfc-7834-4847-95dc-f75a360e2298")
+                .xGr4vyMerchantAccountId("default")
+                .call();
+
+        if (res.networkToken().isPresent()) {
+            // handle response
+        }
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                               | Type                                                    | Required                                                | Description                                             | Example                                                 |
+| ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- |
+| `paymentMethodId`                                       | *String*                                                | :heavy_check_mark:                                      | The ID of the payment method                            | ef9496d8-53a5-4aad-8ca2-00eb68334389                    |
+| `networkTokenId`                                        | *String*                                                | :heavy_check_mark:                                      | The ID of the network token                             | f8dd5cfc-7834-4847-95dc-f75a360e2298                    |
+| `timeoutInSeconds`                                      | *Optional\<Double>*                                     | :heavy_minus_sign:                                      | N/A                                                     |                                                         |
+| `xGr4vyMerchantAccountId`                               | *JsonNullable\<String>*                                 | :heavy_minus_sign:                                      | The ID of the merchant account to use for this request. | default                                                 |
+
+### Response
+
+**[ResumePaymentMethodNetworkTokenResponse](../../models/operations/ResumePaymentMethodNetworkTokenResponse.md)**
+
+### Errors
+
+| Error Type                        | Status Code                       | Content Type                      |
+| --------------------------------- | --------------------------------- | --------------------------------- |
+| models/errors/Error400            | 400                               | application/json                  |
+| models/errors/Error401            | 401                               | application/json                  |
+| models/errors/Error403            | 403                               | application/json                  |
+| models/errors/Error404            | 404                               | application/json                  |
+| models/errors/Error405            | 405                               | application/json                  |
+| models/errors/Error409            | 409                               | application/json                  |
+| models/errors/HTTPValidationError | 422                               | application/json                  |
+| models/errors/Error425            | 425                               | application/json                  |
+| models/errors/Error429            | 429                               | application/json                  |
+| models/errors/Error500            | 500                               | application/json                  |
+| models/errors/Error502            | 502                               | application/json                  |
+| models/errors/Error504            | 504                               | application/json                  |
+| models/errors/APIException        | 4XX, 5XX                          | \*/\*                             |
+
+## delete
+
+Delete a network token for a payment method.
+
+### Example Usage
+
+```java
+package hello.world;
+
+import com.github.gr4vy.gr4vy_java.Gr4vy;
+import com.github.gr4vy.gr4vy_java.models.errors.*;
+import com.github.gr4vy.gr4vy_java.models.operations.DeletePaymentMethodNetworkTokenResponse;
+import java.lang.Exception;
+
+public class Application {
+
+    public static void main(String[] args) throws Exception {
+
+        Gr4vy sdk = Gr4vy.builder()
+                .oAuth2PasswordBearer("<YOUR_O_AUTH2_PASSWORD_BEARER_HERE>")
+            .build();
+
+        DeletePaymentMethodNetworkTokenResponse res = sdk.paymentMethods().networkTokens().delete()
+                .paymentMethodId("ef9496d8-53a5-4aad-8ca2-00eb68334389")
+                .networkTokenId("f8dd5cfc-7834-4847-95dc-f75a360e2298")
+                .xGr4vyMerchantAccountId("default")
+                .call();
+
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                               | Type                                                    | Required                                                | Description                                             | Example                                                 |
+| ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- |
+| `paymentMethodId`                                       | *String*                                                | :heavy_check_mark:                                      | The ID of the payment method                            | ef9496d8-53a5-4aad-8ca2-00eb68334389                    |
+| `networkTokenId`                                        | *String*                                                | :heavy_check_mark:                                      | The ID of the network token                             | f8dd5cfc-7834-4847-95dc-f75a360e2298                    |
+| `timeoutInSeconds`                                      | *Optional\<Double>*                                     | :heavy_minus_sign:                                      | N/A                                                     |                                                         |
+| `xGr4vyMerchantAccountId`                               | *JsonNullable\<String>*                                 | :heavy_minus_sign:                                      | The ID of the merchant account to use for this request. | default                                                 |
+
+### Response
+
+**[DeletePaymentMethodNetworkTokenResponse](../../models/operations/DeletePaymentMethodNetworkTokenResponse.md)**
+
+### Errors
+
+| Error Type                        | Status Code                       | Content Type                      |
+| --------------------------------- | --------------------------------- | --------------------------------- |
+| models/errors/Error400            | 400                               | application/json                  |
+| models/errors/Error401            | 401                               | application/json                  |
+| models/errors/Error403            | 403                               | application/json                  |
+| models/errors/Error404            | 404                               | application/json                  |
+| models/errors/Error405            | 405                               | application/json                  |
+| models/errors/Error409            | 409                               | application/json                  |
+| models/errors/HTTPValidationError | 422                               | application/json                  |
+| models/errors/Error425            | 425                               | application/json                  |
+| models/errors/Error429            | 429                               | application/json                  |
+| models/errors/Error500            | 500                               | application/json                  |
+| models/errors/Error502            | 502                               | application/json                  |
+| models/errors/Error504            | 504                               | application/json                  |
+| models/errors/APIException        | 4XX, 5XX                          | \*/\*                             |

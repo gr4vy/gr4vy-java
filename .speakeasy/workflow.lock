@@ -1,0 +1,43 @@
+speakeasyVersion: 1.548.1
+sources:
+    Gr4vy:
+        sourceNamespace: openapi
+        sourceRevisionDigest: sha256:3f338bfcf03dc04145ad3dca56c3354bffb54a671d80a1ce8fb1388b13718cb9
+        sourceBlobDigest: sha256:c40be85dbb3e03fdac0ebc0e969f25be6124ede6c25b94562b49a5e0cd7f6ad6
+        tags:
+            - latest
+            - 1.0.0
+targets:
+    gr-4-vy:
+        source: Gr4vy
+        sourceNamespace: gr-4-vy
+        sourceRevisionDigest: sha256:3f338bfcf03dc04145ad3dca56c3354bffb54a671d80a1ce8fb1388b13718cb9
+        sourceBlobDigest: sha256:c40be85dbb3e03fdac0ebc0e969f25be6124ede6c25b94562b49a5e0cd7f6ad6
+        codeSamplesNamespace: gr-4-vy-java-code-samples
+        codeSamplesRevisionDigest: sha256:f79c15417323cbccf724cdab468431afb8887a9c0a72ca2398c3b343c8c8862f
+    java:
+        source: Gr4vy
+        sourceNamespace: openapi
+        sourceRevisionDigest: sha256:3f338bfcf03dc04145ad3dca56c3354bffb54a671d80a1ce8fb1388b13718cb9
+        sourceBlobDigest: sha256:c40be85dbb3e03fdac0ebc0e969f25be6124ede6c25b94562b49a5e0cd7f6ad6
+        codeSamplesNamespace: openapi-java-code-samples
+        codeSamplesRevisionDigest: sha256:8acf196158a962bd6cbf333a331983ca55ba8486722d56fd77ac5dfa1616b43b
+workflow:
+    workflowVersion: 1.0.0
+    speakeasyVersion: latest
+    sources:
+        Gr4vy:
+            inputs:
+                - location: https://gr4vy.github.io/gr4vy-openapi/core/openapi.json
+            registry:
+                location: registry.speakeasyapi.dev/gr4vy/gr4vy/openapi
+    targets:
+        java:
+            target: java
+            source: Gr4vy
+            codeSamples:
+                registry:
+                    location: registry.speakeasyapi.dev/gr4vy/gr4vy/openapi-java-code-samples
+                labelOverride:
+                    fixedValue: Java
+                blocking: false

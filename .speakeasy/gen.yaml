@@ -1,6 +1,6 @@
 configVersion: 2.0.0
 generation:
-  sdkClassName: Gr4Vy
+  sdkClassName: Gr4vy
   maintainOpenAPIOrder: true
   usageSnippets:
     optionalPropertyRendering: withExample
@@ -13,21 +13,21 @@ generation:
     securityFeb2025: true
     sharedErrorComponentsApr2025: true
   auth:
-    oAuth2ClientCredentialsEnabled: true
-    oAuth2PasswordEnabled: true
+    oAuth2ClientCredentialsEnabled: false
+    oAuth2PasswordEnabled: false
   sdkHooksConfigAccess: true
 java:
-  version: 0.0.1
+  version: 0.0.2
   additionalDependencies: []
   additionalPlugins: []
   artifactID: gr4vy-java
   clientServerStatusCodesAsErrors: true
-  companyEmail: info@mycompany.com
-  companyName: My Company
-  companyURL: www.mycompany.com
+  companyEmail: code@gr4vy.com
+  companyName: Gr4vy
+  companyURL: www.gr4vy.com
   defaultErrorName: APIException
   flattenGlobalSecurity: true
-  githubURL: github.com/owner/repo
+  githubURL: github.com/gr4vy/gr4vy-java
   groupID: com.github.gr4vy
   imports:
     option: openapi
