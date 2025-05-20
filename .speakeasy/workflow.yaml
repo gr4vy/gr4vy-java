@@ -5,14 +5,14 @@ sources:
         inputs:
             - location: https://gr4vy.github.io/gr4vy-openapi/core/openapi.json
         registry:
-            location: registry.speakeasyapi.dev/gr4vy/gr4vy/gr-4-vy
+            location: registry.speakeasyapi.dev/gr4vy/gr4vy/openapi
 targets:
-    gr-4-vy:
+    java:
         target: java
         source: Gr4vy
         codeSamples:
             registry:
-                location: registry.speakeasyapi.dev/gr4vy/gr4vy/gr-4-vy-java-code-samples
+                location: registry.speakeasyapi.dev/gr4vy/gr4vy/openapi-java-code-samples
             labelOverride:
-                fixedValue: Java (SDK)
+                fixedValue: Java
             blocking: false
