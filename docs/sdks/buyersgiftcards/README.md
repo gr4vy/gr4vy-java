@@ -26,11 +26,10 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Gr4vy sdk = Gr4vy.builder()
-                .oAuth2PasswordBearer("<YOUR_O_AUTH2_PASSWORD_BEARER_HERE>")
+                .bearerAuth("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
         ListBuyerGiftCardsResponse res = sdk.buyers().giftCards().list()
-                .xGr4vyMerchantAccountId("default")
                 .call();
 
         if (res.collectionNoCursorGiftCardSummary().isPresent()) {
@@ -42,12 +41,12 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                               | Type                                                    | Required                                                | Description                                             | Example                                                 |
-| ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- |
-| `buyerExternalIdentifier`                               | *JsonNullable\<String>*                                 | :heavy_minus_sign:                                      | N/A                                                     |                                                         |
-| `buyerId`                                               | *JsonNullable\<String>*                                 | :heavy_minus_sign:                                      | N/A                                                     |                                                         |
-| `timeoutInSeconds`                                      | *Optional\<Double>*                                     | :heavy_minus_sign:                                      | N/A                                                     |                                                         |
-| `xGr4vyMerchantAccountId`                               | *JsonNullable\<String>*                                 | :heavy_minus_sign:                                      | The ID of the merchant account to use for this request. | default                                                 |
+| Parameter                                               | Type                                                    | Required                                                | Description                                             |
+| ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- |
+| `buyerExternalIdentifier`                               | *JsonNullable\<String>*                                 | :heavy_minus_sign:                                      | N/A                                                     |
+| `buyerId`                                               | *JsonNullable\<String>*                                 | :heavy_minus_sign:                                      | N/A                                                     |
+| `timeoutInSeconds`                                      | *Optional\<Double>*                                     | :heavy_minus_sign:                                      | N/A                                                     |
+| `merchantAccountId`                                     | *JsonNullable\<String>*                                 | :heavy_minus_sign:                                      | The ID of the merchant account to use for this request. |
 
 ### Response
 

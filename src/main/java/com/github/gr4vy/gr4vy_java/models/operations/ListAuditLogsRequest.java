@@ -54,7 +54,7 @@ public class ListAuditLogsRequest {
      * The ID of the merchant account to use for this request.
      */
     @SpeakeasyMetadata("header:style=simple,explode=false,name=x-gr4vy-merchant-account-id")
-    private JsonNullable<String> xGr4vyMerchantAccountId;
+    private JsonNullable<String> merchantAccountId;
 
     @JsonCreator
     public ListAuditLogsRequest(
@@ -63,19 +63,19 @@ public class ListAuditLogsRequest {
             JsonNullable<? extends AuditLogAction> action,
             JsonNullable<String> userId,
             JsonNullable<String> resourceType,
-            JsonNullable<String> xGr4vyMerchantAccountId) {
+            JsonNullable<String> merchantAccountId) {
         Utils.checkNotNull(cursor, "cursor");
         Utils.checkNotNull(limit, "limit");
         Utils.checkNotNull(action, "action");
         Utils.checkNotNull(userId, "userId");
         Utils.checkNotNull(resourceType, "resourceType");
-        Utils.checkNotNull(xGr4vyMerchantAccountId, "xGr4vyMerchantAccountId");
+        Utils.checkNotNull(merchantAccountId, "merchantAccountId");
         this.cursor = cursor;
         this.limit = limit;
         this.action = action;
         this.userId = userId;
         this.resourceType = resourceType;
-        this.xGr4vyMerchantAccountId = xGr4vyMerchantAccountId;
+        this.merchantAccountId = merchantAccountId;
     }
     
     public ListAuditLogsRequest() {
@@ -127,8 +127,8 @@ public class ListAuditLogsRequest {
      * The ID of the merchant account to use for this request.
      */
     @JsonIgnore
-    public JsonNullable<String> xGr4vyMerchantAccountId() {
-        return xGr4vyMerchantAccountId;
+    public JsonNullable<String> merchantAccountId() {
+        return merchantAccountId;
     }
 
     public final static Builder builder() {
@@ -228,18 +228,18 @@ public class ListAuditLogsRequest {
     /**
      * The ID of the merchant account to use for this request.
      */
-    public ListAuditLogsRequest withXGr4vyMerchantAccountId(String xGr4vyMerchantAccountId) {
-        Utils.checkNotNull(xGr4vyMerchantAccountId, "xGr4vyMerchantAccountId");
-        this.xGr4vyMerchantAccountId = JsonNullable.of(xGr4vyMerchantAccountId);
+    public ListAuditLogsRequest withMerchantAccountId(String merchantAccountId) {
+        Utils.checkNotNull(merchantAccountId, "merchantAccountId");
+        this.merchantAccountId = JsonNullable.of(merchantAccountId);
         return this;
     }
 
     /**
      * The ID of the merchant account to use for this request.
      */
-    public ListAuditLogsRequest withXGr4vyMerchantAccountId(JsonNullable<String> xGr4vyMerchantAccountId) {
-        Utils.checkNotNull(xGr4vyMerchantAccountId, "xGr4vyMerchantAccountId");
-        this.xGr4vyMerchantAccountId = xGr4vyMerchantAccountId;
+    public ListAuditLogsRequest withMerchantAccountId(JsonNullable<String> merchantAccountId) {
+        Utils.checkNotNull(merchantAccountId, "merchantAccountId");
+        this.merchantAccountId = merchantAccountId;
         return this;
     }
 
@@ -259,7 +259,7 @@ public class ListAuditLogsRequest {
             Objects.deepEquals(this.action, other.action) &&
             Objects.deepEquals(this.userId, other.userId) &&
             Objects.deepEquals(this.resourceType, other.resourceType) &&
-            Objects.deepEquals(this.xGr4vyMerchantAccountId, other.xGr4vyMerchantAccountId);
+            Objects.deepEquals(this.merchantAccountId, other.merchantAccountId);
     }
     
     @Override
@@ -270,7 +270,7 @@ public class ListAuditLogsRequest {
             action,
             userId,
             resourceType,
-            xGr4vyMerchantAccountId);
+            merchantAccountId);
     }
     
     @Override
@@ -281,7 +281,7 @@ public class ListAuditLogsRequest {
                 "action", action,
                 "userId", userId,
                 "resourceType", resourceType,
-                "xGr4vyMerchantAccountId", xGr4vyMerchantAccountId);
+                "merchantAccountId", merchantAccountId);
     }
     
     public final static class Builder {
@@ -296,7 +296,7 @@ public class ListAuditLogsRequest {
  
         private JsonNullable<String> resourceType = JsonNullable.undefined();
  
-        private JsonNullable<String> xGr4vyMerchantAccountId = JsonNullable.undefined();
+        private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
         
         private Builder() {
           // force use of static builder() method
@@ -395,18 +395,18 @@ public class ListAuditLogsRequest {
         /**
          * The ID of the merchant account to use for this request.
          */
-        public Builder xGr4vyMerchantAccountId(String xGr4vyMerchantAccountId) {
-            Utils.checkNotNull(xGr4vyMerchantAccountId, "xGr4vyMerchantAccountId");
-            this.xGr4vyMerchantAccountId = JsonNullable.of(xGr4vyMerchantAccountId);
+        public Builder merchantAccountId(String merchantAccountId) {
+            Utils.checkNotNull(merchantAccountId, "merchantAccountId");
+            this.merchantAccountId = JsonNullable.of(merchantAccountId);
             return this;
         }
 
         /**
          * The ID of the merchant account to use for this request.
          */
-        public Builder xGr4vyMerchantAccountId(JsonNullable<String> xGr4vyMerchantAccountId) {
-            Utils.checkNotNull(xGr4vyMerchantAccountId, "xGr4vyMerchantAccountId");
-            this.xGr4vyMerchantAccountId = xGr4vyMerchantAccountId;
+        public Builder merchantAccountId(JsonNullable<String> merchantAccountId) {
+            Utils.checkNotNull(merchantAccountId, "merchantAccountId");
+            this.merchantAccountId = merchantAccountId;
             return this;
         }
         
@@ -420,7 +420,7 @@ public class ListAuditLogsRequest {
                 action,
                 userId,
                 resourceType,
-                xGr4vyMerchantAccountId);
+                merchantAccountId);
         }
 
         private static final LazySingletonValue<Optional<Long>> _SINGLETON_VALUE_Limit =

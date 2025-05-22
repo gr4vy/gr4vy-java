@@ -19,7 +19,7 @@ public class DeleteBuyerRequestBuilder {
                             "timeoutInSeconds",
                             "1",
                             new TypeReference<Optional<Double>>() {});
-    private JsonNullable<String> xGr4vyMerchantAccountId = JsonNullable.undefined();
+    private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
     private final SDKMethodInterfaces.MethodCallDeleteBuyer sdk;
 
     public DeleteBuyerRequestBuilder(SDKMethodInterfaces.MethodCallDeleteBuyer sdk) {
@@ -44,15 +44,15 @@ public class DeleteBuyerRequestBuilder {
         return this;
     }
 
-    public DeleteBuyerRequestBuilder xGr4vyMerchantAccountId(String xGr4vyMerchantAccountId) {
-        Utils.checkNotNull(xGr4vyMerchantAccountId, "xGr4vyMerchantAccountId");
-        this.xGr4vyMerchantAccountId = JsonNullable.of(xGr4vyMerchantAccountId);
+    public DeleteBuyerRequestBuilder merchantAccountId(String merchantAccountId) {
+        Utils.checkNotNull(merchantAccountId, "merchantAccountId");
+        this.merchantAccountId = JsonNullable.of(merchantAccountId);
         return this;
     }
 
-    public DeleteBuyerRequestBuilder xGr4vyMerchantAccountId(JsonNullable<String> xGr4vyMerchantAccountId) {
-        Utils.checkNotNull(xGr4vyMerchantAccountId, "xGr4vyMerchantAccountId");
-        this.xGr4vyMerchantAccountId = xGr4vyMerchantAccountId;
+    public DeleteBuyerRequestBuilder merchantAccountId(JsonNullable<String> merchantAccountId) {
+        Utils.checkNotNull(merchantAccountId, "merchantAccountId");
+        this.merchantAccountId = merchantAccountId;
         return this;
     }
 
@@ -63,7 +63,7 @@ public class DeleteBuyerRequestBuilder {
         return sdk.delete(
             buyerId,
             timeoutInSeconds,
-            xGr4vyMerchantAccountId);
+            merchantAccountId);
     }
 
     private static final LazySingletonValue<Optional<Double>> _SINGLETON_VALUE_TimeoutInSeconds =

@@ -11,7 +11,7 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 public class CreateGooglePayDigitalWalletSessionRequestBuilder {
 
-    private JsonNullable<String> xGr4vyMerchantAccountId = JsonNullable.undefined();
+    private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
     private GooglePaySessionRequest googlePaySessionRequest;
     private final SDKMethodInterfaces.MethodCallCreateGooglePayDigitalWalletSession sdk;
 
@@ -19,15 +19,15 @@ public class CreateGooglePayDigitalWalletSessionRequestBuilder {
         this.sdk = sdk;
     }
 
-    public CreateGooglePayDigitalWalletSessionRequestBuilder xGr4vyMerchantAccountId(String xGr4vyMerchantAccountId) {
-        Utils.checkNotNull(xGr4vyMerchantAccountId, "xGr4vyMerchantAccountId");
-        this.xGr4vyMerchantAccountId = JsonNullable.of(xGr4vyMerchantAccountId);
+    public CreateGooglePayDigitalWalletSessionRequestBuilder merchantAccountId(String merchantAccountId) {
+        Utils.checkNotNull(merchantAccountId, "merchantAccountId");
+        this.merchantAccountId = JsonNullable.of(merchantAccountId);
         return this;
     }
 
-    public CreateGooglePayDigitalWalletSessionRequestBuilder xGr4vyMerchantAccountId(JsonNullable<String> xGr4vyMerchantAccountId) {
-        Utils.checkNotNull(xGr4vyMerchantAccountId, "xGr4vyMerchantAccountId");
-        this.xGr4vyMerchantAccountId = xGr4vyMerchantAccountId;
+    public CreateGooglePayDigitalWalletSessionRequestBuilder merchantAccountId(JsonNullable<String> merchantAccountId) {
+        Utils.checkNotNull(merchantAccountId, "merchantAccountId");
+        this.merchantAccountId = merchantAccountId;
         return this;
     }
 
@@ -40,7 +40,7 @@ public class CreateGooglePayDigitalWalletSessionRequestBuilder {
     public CreateGooglePayDigitalWalletSessionResponse call() throws Exception {
 
         return sdk.googlePay(
-            xGr4vyMerchantAccountId,
+            merchantAccountId,
             googlePaySessionRequest);
     }
 }

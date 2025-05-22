@@ -221,7 +221,7 @@ public class ListTransactionsRequest {
      * The ID of the merchant account to use for this request.
      */
     @SpeakeasyMetadata("header:style=simple,explode=false,name=x-gr4vy-merchant-account-id")
-    private JsonNullable<String> xGr4vyMerchantAccountId;
+    private JsonNullable<String> merchantAccountId;
 
     @JsonCreator
     public ListTransactionsRequest(
@@ -262,7 +262,7 @@ public class ListTransactionsRequest {
             JsonNullable<? extends List<TransactionPaymentSource>> paymentSource,
             JsonNullable<Boolean> isSubsequentPayment,
             JsonNullable<Boolean> merchantInitiated,
-            JsonNullable<String> xGr4vyMerchantAccountId) {
+            JsonNullable<String> merchantAccountId) {
         Utils.checkNotNull(cursor, "cursor");
         Utils.checkNotNull(limit, "limit");
         Utils.checkNotNull(createdAtLte, "createdAtLte");
@@ -300,7 +300,7 @@ public class ListTransactionsRequest {
         Utils.checkNotNull(paymentSource, "paymentSource");
         Utils.checkNotNull(isSubsequentPayment, "isSubsequentPayment");
         Utils.checkNotNull(merchantInitiated, "merchantInitiated");
-        Utils.checkNotNull(xGr4vyMerchantAccountId, "xGr4vyMerchantAccountId");
+        Utils.checkNotNull(merchantAccountId, "merchantAccountId");
         this.cursor = cursor;
         this.limit = limit;
         this.createdAtLte = createdAtLte;
@@ -338,7 +338,7 @@ public class ListTransactionsRequest {
         this.paymentSource = paymentSource;
         this.isSubsequentPayment = isSubsequentPayment;
         this.merchantInitiated = merchantInitiated;
-        this.xGr4vyMerchantAccountId = xGr4vyMerchantAccountId;
+        this.merchantAccountId = merchantAccountId;
     }
     
     public ListTransactionsRequest() {
@@ -622,8 +622,8 @@ public class ListTransactionsRequest {
      * The ID of the merchant account to use for this request.
      */
     @JsonIgnore
-    public JsonNullable<String> xGr4vyMerchantAccountId() {
-        return xGr4vyMerchantAccountId;
+    public JsonNullable<String> merchantAccountId() {
+        return merchantAccountId;
     }
 
     public final static Builder builder() {
@@ -1239,18 +1239,18 @@ public class ListTransactionsRequest {
     /**
      * The ID of the merchant account to use for this request.
      */
-    public ListTransactionsRequest withXGr4vyMerchantAccountId(String xGr4vyMerchantAccountId) {
-        Utils.checkNotNull(xGr4vyMerchantAccountId, "xGr4vyMerchantAccountId");
-        this.xGr4vyMerchantAccountId = JsonNullable.of(xGr4vyMerchantAccountId);
+    public ListTransactionsRequest withMerchantAccountId(String merchantAccountId) {
+        Utils.checkNotNull(merchantAccountId, "merchantAccountId");
+        this.merchantAccountId = JsonNullable.of(merchantAccountId);
         return this;
     }
 
     /**
      * The ID of the merchant account to use for this request.
      */
-    public ListTransactionsRequest withXGr4vyMerchantAccountId(JsonNullable<String> xGr4vyMerchantAccountId) {
-        Utils.checkNotNull(xGr4vyMerchantAccountId, "xGr4vyMerchantAccountId");
-        this.xGr4vyMerchantAccountId = xGr4vyMerchantAccountId;
+    public ListTransactionsRequest withMerchantAccountId(JsonNullable<String> merchantAccountId) {
+        Utils.checkNotNull(merchantAccountId, "merchantAccountId");
+        this.merchantAccountId = merchantAccountId;
         return this;
     }
 
@@ -1302,7 +1302,7 @@ public class ListTransactionsRequest {
             Objects.deepEquals(this.paymentSource, other.paymentSource) &&
             Objects.deepEquals(this.isSubsequentPayment, other.isSubsequentPayment) &&
             Objects.deepEquals(this.merchantInitiated, other.merchantInitiated) &&
-            Objects.deepEquals(this.xGr4vyMerchantAccountId, other.xGr4vyMerchantAccountId);
+            Objects.deepEquals(this.merchantAccountId, other.merchantAccountId);
     }
     
     @Override
@@ -1345,7 +1345,7 @@ public class ListTransactionsRequest {
             paymentSource,
             isSubsequentPayment,
             merchantInitiated,
-            xGr4vyMerchantAccountId);
+            merchantAccountId);
     }
     
     @Override
@@ -1388,7 +1388,7 @@ public class ListTransactionsRequest {
                 "paymentSource", paymentSource,
                 "isSubsequentPayment", isSubsequentPayment,
                 "merchantInitiated", merchantInitiated,
-                "xGr4vyMerchantAccountId", xGr4vyMerchantAccountId);
+                "merchantAccountId", merchantAccountId);
     }
     
     public final static class Builder {
@@ -1467,7 +1467,7 @@ public class ListTransactionsRequest {
  
         private JsonNullable<Boolean> merchantInitiated = JsonNullable.undefined();
  
-        private JsonNullable<String> xGr4vyMerchantAccountId = JsonNullable.undefined();
+        private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
         
         private Builder() {
           // force use of static builder() method
@@ -2082,18 +2082,18 @@ public class ListTransactionsRequest {
         /**
          * The ID of the merchant account to use for this request.
          */
-        public Builder xGr4vyMerchantAccountId(String xGr4vyMerchantAccountId) {
-            Utils.checkNotNull(xGr4vyMerchantAccountId, "xGr4vyMerchantAccountId");
-            this.xGr4vyMerchantAccountId = JsonNullable.of(xGr4vyMerchantAccountId);
+        public Builder merchantAccountId(String merchantAccountId) {
+            Utils.checkNotNull(merchantAccountId, "merchantAccountId");
+            this.merchantAccountId = JsonNullable.of(merchantAccountId);
             return this;
         }
 
         /**
          * The ID of the merchant account to use for this request.
          */
-        public Builder xGr4vyMerchantAccountId(JsonNullable<String> xGr4vyMerchantAccountId) {
-            Utils.checkNotNull(xGr4vyMerchantAccountId, "xGr4vyMerchantAccountId");
-            this.xGr4vyMerchantAccountId = xGr4vyMerchantAccountId;
+        public Builder merchantAccountId(JsonNullable<String> merchantAccountId) {
+            Utils.checkNotNull(merchantAccountId, "merchantAccountId");
+            this.merchantAccountId = merchantAccountId;
             return this;
         }
         
@@ -2139,7 +2139,7 @@ public class ListTransactionsRequest {
                 paymentSource,
                 isSubsequentPayment,
                 merchantInitiated,
-                xGr4vyMerchantAccountId);
+                merchantAccountId);
         }
 
         private static final LazySingletonValue<Optional<Long>> _SINGLETON_VALUE_Limit =

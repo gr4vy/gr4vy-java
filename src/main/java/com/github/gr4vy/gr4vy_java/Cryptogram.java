@@ -70,12 +70,13 @@ public class Cryptogram implements
      */
     public CreatePaymentMethodNetworkTokenCryptogramResponse create(
             CreatePaymentMethodNetworkTokenCryptogramRequest request) throws Exception {
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 CreatePaymentMethodNetworkTokenCryptogramRequest.class,
                 _baseUrl,
                 "/payment-methods/{payment_method_id}/network-tokens/{network_token_id}/cryptogram",
-                request, null);
+                request, this.sdkConfiguration.globals);
         
         HTTPRequest _req = new HTTPRequest(_url, "POST");
         Object _convertedRequest = Utils.convertToShape(
@@ -98,8 +99,8 @@ public class Cryptogram implements
         _req.addQueryParams(Utils.getQueryParams(
                 CreatePaymentMethodNetworkTokenCryptogramRequest.class,
                 request, 
-                null));
-        _req.addHeaders(Utils.getHeadersFromMetadata(request, null));
+                this.sdkConfiguration.globals));
+        _req.addHeaders(Utils.getHeadersFromMetadata(request, this.sdkConfiguration.globals));
         
         Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  

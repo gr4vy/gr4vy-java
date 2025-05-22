@@ -14,28 +14,28 @@ import java.util.Objects;
 
 public class Security implements HasSecurity {
 
-    @SpeakeasyMetadata("security:scheme=true,type=oauth2,name=Authorization")
-    private String oAuth2PasswordBearer;
+    @SpeakeasyMetadata("security:scheme=true,type=http,subtype=bearer,name=Authorization")
+    private String bearerAuth;
 
     @JsonCreator
     public Security(
-            String oAuth2PasswordBearer) {
-        Utils.checkNotNull(oAuth2PasswordBearer, "oAuth2PasswordBearer");
-        this.oAuth2PasswordBearer = oAuth2PasswordBearer;
+            String bearerAuth) {
+        Utils.checkNotNull(bearerAuth, "bearerAuth");
+        this.bearerAuth = bearerAuth;
     }
 
     @JsonIgnore
-    public String oAuth2PasswordBearer() {
-        return oAuth2PasswordBearer;
+    public String bearerAuth() {
+        return bearerAuth;
     }
 
     public final static Builder builder() {
         return new Builder();
     }    
 
-    public Security withOAuth2PasswordBearer(String oAuth2PasswordBearer) {
-        Utils.checkNotNull(oAuth2PasswordBearer, "oAuth2PasswordBearer");
-        this.oAuth2PasswordBearer = oAuth2PasswordBearer;
+    public Security withBearerAuth(String bearerAuth) {
+        Utils.checkNotNull(bearerAuth, "bearerAuth");
+        this.bearerAuth = bearerAuth;
         return this;
     }
 
@@ -50,38 +50,38 @@ public class Security implements HasSecurity {
         }
         Security other = (Security) o;
         return 
-            Objects.deepEquals(this.oAuth2PasswordBearer, other.oAuth2PasswordBearer);
+            Objects.deepEquals(this.bearerAuth, other.bearerAuth);
     }
     
     @Override
     public int hashCode() {
         return Objects.hash(
-            oAuth2PasswordBearer);
+            bearerAuth);
     }
     
     @Override
     public String toString() {
         return Utils.toString(Security.class,
-                "oAuth2PasswordBearer", oAuth2PasswordBearer);
+                "bearerAuth", bearerAuth);
     }
     
     public final static class Builder {
  
-        private String oAuth2PasswordBearer;
+        private String bearerAuth;
         
         private Builder() {
           // force use of static builder() method
         }
 
-        public Builder oAuth2PasswordBearer(String oAuth2PasswordBearer) {
-            Utils.checkNotNull(oAuth2PasswordBearer, "oAuth2PasswordBearer");
-            this.oAuth2PasswordBearer = oAuth2PasswordBearer;
+        public Builder bearerAuth(String bearerAuth) {
+            Utils.checkNotNull(bearerAuth, "bearerAuth");
+            this.bearerAuth = bearerAuth;
             return this;
         }
         
         public Security build() {
             return new Security(
-                oAuth2PasswordBearer);
+                bearerAuth);
         }
     }
 }

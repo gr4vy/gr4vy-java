@@ -26,7 +26,7 @@ public class CreatePaymentServiceSessionRequest {
      * The ID of the merchant account to use for this request.
      */
     @SpeakeasyMetadata("header:style=simple,explode=false,name=x-gr4vy-merchant-account-id")
-    private JsonNullable<String> xGr4vyMerchantAccountId;
+    private JsonNullable<String> merchantAccountId;
 
     @SpeakeasyMetadata("request:mediaType=application/json")
     private Map<String, Object> requestBody;
@@ -34,13 +34,13 @@ public class CreatePaymentServiceSessionRequest {
     @JsonCreator
     public CreatePaymentServiceSessionRequest(
             String paymentServiceId,
-            JsonNullable<String> xGr4vyMerchantAccountId,
+            JsonNullable<String> merchantAccountId,
             Map<String, Object> requestBody) {
         Utils.checkNotNull(paymentServiceId, "paymentServiceId");
-        Utils.checkNotNull(xGr4vyMerchantAccountId, "xGr4vyMerchantAccountId");
+        Utils.checkNotNull(merchantAccountId, "merchantAccountId");
         requestBody = Utils.emptyMapIfNull(requestBody);
         this.paymentServiceId = paymentServiceId;
-        this.xGr4vyMerchantAccountId = xGr4vyMerchantAccountId;
+        this.merchantAccountId = merchantAccountId;
         this.requestBody = requestBody;
     }
     
@@ -62,8 +62,8 @@ public class CreatePaymentServiceSessionRequest {
      * The ID of the merchant account to use for this request.
      */
     @JsonIgnore
-    public JsonNullable<String> xGr4vyMerchantAccountId() {
-        return xGr4vyMerchantAccountId;
+    public JsonNullable<String> merchantAccountId() {
+        return merchantAccountId;
     }
 
     @JsonIgnore
@@ -87,18 +87,18 @@ public class CreatePaymentServiceSessionRequest {
     /**
      * The ID of the merchant account to use for this request.
      */
-    public CreatePaymentServiceSessionRequest withXGr4vyMerchantAccountId(String xGr4vyMerchantAccountId) {
-        Utils.checkNotNull(xGr4vyMerchantAccountId, "xGr4vyMerchantAccountId");
-        this.xGr4vyMerchantAccountId = JsonNullable.of(xGr4vyMerchantAccountId);
+    public CreatePaymentServiceSessionRequest withMerchantAccountId(String merchantAccountId) {
+        Utils.checkNotNull(merchantAccountId, "merchantAccountId");
+        this.merchantAccountId = JsonNullable.of(merchantAccountId);
         return this;
     }
 
     /**
      * The ID of the merchant account to use for this request.
      */
-    public CreatePaymentServiceSessionRequest withXGr4vyMerchantAccountId(JsonNullable<String> xGr4vyMerchantAccountId) {
-        Utils.checkNotNull(xGr4vyMerchantAccountId, "xGr4vyMerchantAccountId");
-        this.xGr4vyMerchantAccountId = xGr4vyMerchantAccountId;
+    public CreatePaymentServiceSessionRequest withMerchantAccountId(JsonNullable<String> merchantAccountId) {
+        Utils.checkNotNull(merchantAccountId, "merchantAccountId");
+        this.merchantAccountId = merchantAccountId;
         return this;
     }
 
@@ -120,7 +120,7 @@ public class CreatePaymentServiceSessionRequest {
         CreatePaymentServiceSessionRequest other = (CreatePaymentServiceSessionRequest) o;
         return 
             Objects.deepEquals(this.paymentServiceId, other.paymentServiceId) &&
-            Objects.deepEquals(this.xGr4vyMerchantAccountId, other.xGr4vyMerchantAccountId) &&
+            Objects.deepEquals(this.merchantAccountId, other.merchantAccountId) &&
             Objects.deepEquals(this.requestBody, other.requestBody);
     }
     
@@ -128,7 +128,7 @@ public class CreatePaymentServiceSessionRequest {
     public int hashCode() {
         return Objects.hash(
             paymentServiceId,
-            xGr4vyMerchantAccountId,
+            merchantAccountId,
             requestBody);
     }
     
@@ -136,7 +136,7 @@ public class CreatePaymentServiceSessionRequest {
     public String toString() {
         return Utils.toString(CreatePaymentServiceSessionRequest.class,
                 "paymentServiceId", paymentServiceId,
-                "xGr4vyMerchantAccountId", xGr4vyMerchantAccountId,
+                "merchantAccountId", merchantAccountId,
                 "requestBody", requestBody);
     }
     
@@ -144,7 +144,7 @@ public class CreatePaymentServiceSessionRequest {
  
         private String paymentServiceId;
  
-        private JsonNullable<String> xGr4vyMerchantAccountId = JsonNullable.undefined();
+        private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
  
         private Map<String, Object> requestBody;
         
@@ -164,18 +164,18 @@ public class CreatePaymentServiceSessionRequest {
         /**
          * The ID of the merchant account to use for this request.
          */
-        public Builder xGr4vyMerchantAccountId(String xGr4vyMerchantAccountId) {
-            Utils.checkNotNull(xGr4vyMerchantAccountId, "xGr4vyMerchantAccountId");
-            this.xGr4vyMerchantAccountId = JsonNullable.of(xGr4vyMerchantAccountId);
+        public Builder merchantAccountId(String merchantAccountId) {
+            Utils.checkNotNull(merchantAccountId, "merchantAccountId");
+            this.merchantAccountId = JsonNullable.of(merchantAccountId);
             return this;
         }
 
         /**
          * The ID of the merchant account to use for this request.
          */
-        public Builder xGr4vyMerchantAccountId(JsonNullable<String> xGr4vyMerchantAccountId) {
-            Utils.checkNotNull(xGr4vyMerchantAccountId, "xGr4vyMerchantAccountId");
-            this.xGr4vyMerchantAccountId = xGr4vyMerchantAccountId;
+        public Builder merchantAccountId(JsonNullable<String> merchantAccountId) {
+            Utils.checkNotNull(merchantAccountId, "merchantAccountId");
+            this.merchantAccountId = merchantAccountId;
             return this;
         }
 
@@ -188,7 +188,7 @@ public class CreatePaymentServiceSessionRequest {
         public CreatePaymentServiceSessionRequest build() {
             return new CreatePaymentServiceSessionRequest(
                 paymentServiceId,
-                xGr4vyMerchantAccountId,
+                merchantAccountId,
                 requestBody);
         }
     }

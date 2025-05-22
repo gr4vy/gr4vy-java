@@ -11,7 +11,7 @@ import org.openapitools.jackson.nullable.JsonNullable;
 public class DeletePaymentMethodRequestBuilder {
 
     private String paymentMethodId;
-    private JsonNullable<String> xGr4vyMerchantAccountId = JsonNullable.undefined();
+    private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
     private final SDKMethodInterfaces.MethodCallDeletePaymentMethod sdk;
 
     public DeletePaymentMethodRequestBuilder(SDKMethodInterfaces.MethodCallDeletePaymentMethod sdk) {
@@ -24,15 +24,15 @@ public class DeletePaymentMethodRequestBuilder {
         return this;
     }
 
-    public DeletePaymentMethodRequestBuilder xGr4vyMerchantAccountId(String xGr4vyMerchantAccountId) {
-        Utils.checkNotNull(xGr4vyMerchantAccountId, "xGr4vyMerchantAccountId");
-        this.xGr4vyMerchantAccountId = JsonNullable.of(xGr4vyMerchantAccountId);
+    public DeletePaymentMethodRequestBuilder merchantAccountId(String merchantAccountId) {
+        Utils.checkNotNull(merchantAccountId, "merchantAccountId");
+        this.merchantAccountId = JsonNullable.of(merchantAccountId);
         return this;
     }
 
-    public DeletePaymentMethodRequestBuilder xGr4vyMerchantAccountId(JsonNullable<String> xGr4vyMerchantAccountId) {
-        Utils.checkNotNull(xGr4vyMerchantAccountId, "xGr4vyMerchantAccountId");
-        this.xGr4vyMerchantAccountId = xGr4vyMerchantAccountId;
+    public DeletePaymentMethodRequestBuilder merchantAccountId(JsonNullable<String> merchantAccountId) {
+        Utils.checkNotNull(merchantAccountId, "merchantAccountId");
+        this.merchantAccountId = merchantAccountId;
         return this;
     }
 
@@ -40,6 +40,6 @@ public class DeletePaymentMethodRequestBuilder {
 
         return sdk.delete(
             paymentMethodId,
-            xGr4vyMerchantAccountId);
+            merchantAccountId);
     }
 }

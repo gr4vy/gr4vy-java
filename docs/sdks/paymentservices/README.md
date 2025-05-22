@@ -32,13 +32,12 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Gr4vy sdk = Gr4vy.builder()
-                .oAuth2PasswordBearer("<YOUR_O_AUTH2_PASSWORD_BEARER_HERE>")
+                .bearerAuth("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
         ListPaymentServicesRequest req = ListPaymentServicesRequest.builder()
                 .cursor("ZXhhbXBsZTE")
                 .deleted(true)
-                .xGr4vyMerchantAccountId("default")
                 .build();
 
         sdk.paymentServices().list()
@@ -102,11 +101,10 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Gr4vy sdk = Gr4vy.builder()
-                .oAuth2PasswordBearer("<YOUR_O_AUTH2_PASSWORD_BEARER_HERE>")
+                .bearerAuth("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
         UpdatePaymentServiceResponse res = sdk.paymentServices().create()
-                .xGr4vyMerchantAccountId("default")
                 .paymentServiceCreate(PaymentServiceCreate.builder()
                     .displayName("Stripe")
                     .paymentServiceDefinitionId("stripe-card")
@@ -182,10 +180,10 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                               | Type                                                                    | Required                                                                | Description                                                             | Example                                                                 |
-| ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- |
-| `xGr4vyMerchantAccountId`                                               | *JsonNullable\<String>*                                                 | :heavy_minus_sign:                                                      | The ID of the merchant account to use for this request.                 | default                                                                 |
-| `paymentServiceCreate`                                                  | [PaymentServiceCreate](../../models/components/PaymentServiceCreate.md) | :heavy_check_mark:                                                      | N/A                                                                     |                                                                         |
+| Parameter                                                               | Type                                                                    | Required                                                                | Description                                                             |
+| ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- |
+| `merchantAccountId`                                                     | *JsonNullable\<String>*                                                 | :heavy_minus_sign:                                                      | The ID of the merchant account to use for this request.                 |
+| `paymentServiceCreate`                                                  | [PaymentServiceCreate](../../models/components/PaymentServiceCreate.md) | :heavy_check_mark:                                                      | N/A                                                                     |
 
 ### Response
 
@@ -228,12 +226,11 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Gr4vy sdk = Gr4vy.builder()
-                .oAuth2PasswordBearer("<YOUR_O_AUTH2_PASSWORD_BEARER_HERE>")
+                .bearerAuth("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
         GetPaymentServiceResponse res = sdk.paymentServices().get()
                 .paymentServiceId("fffd152a-9532-4087-9a4f-de58754210f0")
-                .xGr4vyMerchantAccountId("default")
                 .call();
 
         if (res.paymentService().isPresent()) {
@@ -248,7 +245,7 @@ public class Application {
 | Parameter                                               | Type                                                    | Required                                                | Description                                             | Example                                                 |
 | ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- |
 | `paymentServiceId`                                      | *String*                                                | :heavy_check_mark:                                      | the ID of the payment service                           | fffd152a-9532-4087-9a4f-de58754210f0                    |
-| `xGr4vyMerchantAccountId`                               | *JsonNullable\<String>*                                 | :heavy_minus_sign:                                      | The ID of the merchant account to use for this request. | default                                                 |
+| `merchantAccountId`                                     | *JsonNullable\<String>*                                 | :heavy_minus_sign:                                      | The ID of the merchant account to use for this request. |                                                         |
 
 ### Response
 
@@ -294,12 +291,11 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Gr4vy sdk = Gr4vy.builder()
-                .oAuth2PasswordBearer("<YOUR_O_AUTH2_PASSWORD_BEARER_HERE>")
+                .bearerAuth("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
         CreatePaymentServiceResponse res = sdk.paymentServices().update()
                 .paymentServiceId("fffd152a-9532-4087-9a4f-de58754210f0")
-                .xGr4vyMerchantAccountId("default")
                 .paymentServiceUpdate(PaymentServiceUpdate.builder()
                     .displayName("Stripe")
                     .position(1L)
@@ -311,7 +307,7 @@ public class Application {
                         "US",
                         "DE",
                         "GB"))
-                    .active(false)
+                    .active(true)
                     .threeDSecureEnabled(true)
                     .merchantProfile(JsonNullable.of(null))
                     .paymentMethodTokenizationEnabled(true)
@@ -332,7 +328,7 @@ public class Application {
 | Parameter                                                               | Type                                                                    | Required                                                                | Description                                                             | Example                                                                 |
 | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- |
 | `paymentServiceId`                                                      | *String*                                                                | :heavy_check_mark:                                                      | the ID of the payment service                                           | fffd152a-9532-4087-9a4f-de58754210f0                                    |
-| `xGr4vyMerchantAccountId`                                               | *JsonNullable\<String>*                                                 | :heavy_minus_sign:                                                      | The ID of the merchant account to use for this request.                 | default                                                                 |
+| `merchantAccountId`                                                     | *JsonNullable\<String>*                                                 | :heavy_minus_sign:                                                      | The ID of the merchant account to use for this request.                 |                                                                         |
 | `paymentServiceUpdate`                                                  | [PaymentServiceUpdate](../../models/components/PaymentServiceUpdate.md) | :heavy_check_mark:                                                      | N/A                                                                     |                                                                         |
 
 ### Response
@@ -376,12 +372,11 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Gr4vy sdk = Gr4vy.builder()
-                .oAuth2PasswordBearer("<YOUR_O_AUTH2_PASSWORD_BEARER_HERE>")
+                .bearerAuth("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
         DeletePaymentServiceResponse res = sdk.paymentServices().delete()
                 .paymentServiceId("fffd152a-9532-4087-9a4f-de58754210f0")
-                .xGr4vyMerchantAccountId("default")
                 .call();
 
         if (res.any().isPresent()) {
@@ -397,7 +392,7 @@ public class Application {
 | ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- |
 | `paymentServiceId`                                      | *String*                                                | :heavy_check_mark:                                      | the ID of the payment service                           | fffd152a-9532-4087-9a4f-de58754210f0                    |
 | `timeoutInSeconds`                                      | *Optional\<Double>*                                     | :heavy_minus_sign:                                      | N/A                                                     |                                                         |
-| `xGr4vyMerchantAccountId`                               | *JsonNullable\<String>*                                 | :heavy_minus_sign:                                      | The ID of the merchant account to use for this request. | default                                                 |
+| `merchantAccountId`                                     | *JsonNullable\<String>*                                 | :heavy_minus_sign:                                      | The ID of the merchant account to use for this request. |                                                         |
 
 ### Response
 
@@ -442,11 +437,10 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Gr4vy sdk = Gr4vy.builder()
-                .oAuth2PasswordBearer("<YOUR_O_AUTH2_PASSWORD_BEARER_HERE>")
+                .bearerAuth("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
         VerifyPaymentServiceCredentialsResponse res = sdk.paymentServices().verify()
-                .xGr4vyMerchantAccountId("default")
                 .verifyCredentials(VerifyCredentials.builder()
                     .paymentServiceDefinitionId("stripe-card")
                     .fields(List.of())
@@ -463,11 +457,11 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                         | Type                                                              | Required                                                          | Description                                                       | Example                                                           |
-| ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- |
-| `timeoutInSeconds`                                                | *Optional\<Double>*                                               | :heavy_minus_sign:                                                | N/A                                                               |                                                                   |
-| `xGr4vyMerchantAccountId`                                         | *JsonNullable\<String>*                                           | :heavy_minus_sign:                                                | The ID of the merchant account to use for this request.           | default                                                           |
-| `verifyCredentials`                                               | [VerifyCredentials](../../models/components/VerifyCredentials.md) | :heavy_check_mark:                                                | N/A                                                               |                                                                   |
+| Parameter                                                         | Type                                                              | Required                                                          | Description                                                       |
+| ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- |
+| `timeoutInSeconds`                                                | *Optional\<Double>*                                               | :heavy_minus_sign:                                                | N/A                                                               |
+| `merchantAccountId`                                               | *JsonNullable\<String>*                                           | :heavy_minus_sign:                                                | The ID of the merchant account to use for this request.           |
+| `verifyCredentials`                                               | [VerifyCredentials](../../models/components/VerifyCredentials.md) | :heavy_check_mark:                                                | N/A                                                               |
 
 ### Response
 
@@ -511,12 +505,11 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Gr4vy sdk = Gr4vy.builder()
-                .oAuth2PasswordBearer("<YOUR_O_AUTH2_PASSWORD_BEARER_HERE>")
+                .bearerAuth("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
         CreatePaymentServiceSessionResponse res = sdk.paymentServices().session()
                 .paymentServiceId("fffd152a-9532-4087-9a4f-de58754210f0")
-                .xGr4vyMerchantAccountId("default")
                 .requestBody(Map.ofEntries(
                 ))
                 .call();
@@ -533,7 +526,7 @@ public class Application {
 | Parameter                                               | Type                                                    | Required                                                | Description                                             | Example                                                 |
 | ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- |
 | `paymentServiceId`                                      | *String*                                                | :heavy_check_mark:                                      | the ID of the payment service                           | fffd152a-9532-4087-9a4f-de58754210f0                    |
-| `xGr4vyMerchantAccountId`                               | *JsonNullable\<String>*                                 | :heavy_minus_sign:                                      | The ID of the merchant account to use for this request. | default                                                 |
+| `merchantAccountId`                                     | *JsonNullable\<String>*                                 | :heavy_minus_sign:                                      | The ID of the merchant account to use for this request. |                                                         |
 | `requestBody`                                           | Map\<String, *Object*>                                  | :heavy_check_mark:                                      | N/A                                                     |                                                         |
 
 ### Response

@@ -5,7 +5,7 @@ package com.github.gr4vy.gr4vy_java;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.github.gr4vy.gr4vy_java.models.components.CheckoutSession;
-import com.github.gr4vy.gr4vy_java.models.components.CheckoutSessionUpdate;
+import com.github.gr4vy.gr4vy_java.models.components.CheckoutSessionCreate;
 import com.github.gr4vy.gr4vy_java.models.errors.APIException;
 import com.github.gr4vy.gr4vy_java.models.errors.Error400;
 import com.github.gr4vy.gr4vy_java.models.errors.Error401;
@@ -19,7 +19,6 @@ import com.github.gr4vy.gr4vy_java.models.errors.Error500;
 import com.github.gr4vy.gr4vy_java.models.errors.Error502;
 import com.github.gr4vy.gr4vy_java.models.errors.Error504;
 import com.github.gr4vy.gr4vy_java.models.errors.HTTPValidationError;
-import com.github.gr4vy.gr4vy_java.models.operations.CreateCheckoutSessionBody;
 import com.github.gr4vy.gr4vy_java.models.operations.CreateCheckoutSessionRequest;
 import com.github.gr4vy.gr4vy_java.models.operations.CreateCheckoutSessionRequestBuilder;
 import com.github.gr4vy.gr4vy_java.models.operations.CreateCheckoutSessionResponse;
@@ -33,11 +32,16 @@ import com.github.gr4vy.gr4vy_java.models.operations.SDKMethodInterfaces.*;
 import com.github.gr4vy.gr4vy_java.models.operations.UpdateCheckoutSessionRequest;
 import com.github.gr4vy.gr4vy_java.models.operations.UpdateCheckoutSessionRequestBuilder;
 import com.github.gr4vy.gr4vy_java.models.operations.UpdateCheckoutSessionResponse;
+import com.github.gr4vy.gr4vy_java.utils.BackoffStrategy;
 import com.github.gr4vy.gr4vy_java.utils.HTTPClient;
 import com.github.gr4vy.gr4vy_java.utils.HTTPRequest;
 import com.github.gr4vy.gr4vy_java.utils.Hook.AfterErrorContextImpl;
 import com.github.gr4vy.gr4vy_java.utils.Hook.AfterSuccessContextImpl;
 import com.github.gr4vy.gr4vy_java.utils.Hook.BeforeRequestContextImpl;
+import com.github.gr4vy.gr4vy_java.utils.Options;
+import com.github.gr4vy.gr4vy_java.utils.Retries.NonRetryableException;
+import com.github.gr4vy.gr4vy_java.utils.Retries;
+import com.github.gr4vy.gr4vy_java.utils.RetryConfig;
 import com.github.gr4vy.gr4vy_java.utils.SerializedBody;
 import com.github.gr4vy.gr4vy_java.utils.Utils.JsonShape;
 import com.github.gr4vy.gr4vy_java.utils.Utils;
@@ -48,8 +52,11 @@ import java.lang.Object;
 import java.lang.String;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
+import java.util.concurrent.TimeUnit;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 public class CheckoutSessions implements
@@ -85,7 +92,7 @@ public class CheckoutSessions implements
      * @throws Exception if the API call fails
      */
     public CreateCheckoutSessionResponse createDirect() throws Exception {
-        return create(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined());
+        return create(Optional.empty(), JsonNullable.undefined(), Optional.empty());
     }
     
     /**
@@ -94,24 +101,25 @@ public class CheckoutSessions implements
      * <p>Create a new checkout session.
      * 
      * @param timeoutInSeconds 
-     * @param xGr4vyMerchantAccountId The ID of the merchant account to use for this request.
-     * @param requestBody 
+     * @param merchantAccountId 
+     * @param checkoutSessionCreate 
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public CreateCheckoutSessionResponse create(
             Optional<Double> timeoutInSeconds,
-            JsonNullable<String> xGr4vyMerchantAccountId,
-            JsonNullable<? extends CreateCheckoutSessionBody> requestBody) throws Exception {
+            JsonNullable<String> merchantAccountId,
+            Optional<? extends CheckoutSessionCreate> checkoutSessionCreate) throws Exception {
         CreateCheckoutSessionRequest request =
             CreateCheckoutSessionRequest
                 .builder()
                 .timeoutInSeconds(timeoutInSeconds)
-                .xGr4vyMerchantAccountId(xGr4vyMerchantAccountId)
-                .requestBody(requestBody)
+                .merchantAccountId(merchantAccountId)
+                .checkoutSessionCreate(checkoutSessionCreate)
                 .build();
         
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 _baseUrl,
                 "/checkout/sessions");
@@ -123,9 +131,9 @@ public class CheckoutSessions implements
                 new TypeReference<Object>() {});
         SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
                 _convertedRequest, 
-                "requestBody",
+                "checkoutSessionCreate",
                 "json",
-                true);
+                false);
         _req.setBody(Optional.ofNullable(_serializedRequestBody));
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
@@ -134,8 +142,8 @@ public class CheckoutSessions implements
         _req.addQueryParams(Utils.getQueryParams(
                 CreateCheckoutSessionRequest.class,
                 request, 
-                null));
-        _req.addHeaders(Utils.getHeadersFromMetadata(request, null));
+                this.sdkConfiguration.globals));
+        _req.addHeaders(Utils.getHeadersFromMetadata(request, this.sdkConfiguration.globals));
         
         Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
@@ -446,14 +454,14 @@ public class CheckoutSessions implements
      * <p>Update the information stored on a checkout session.
      * 
      * @param sessionId The ID of the checkout session.
-     * @param checkoutSessionUpdate 
+     * @param checkoutSessionCreate 
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public UpdateCheckoutSessionResponse update(
             String sessionId,
-            CheckoutSessionUpdate checkoutSessionUpdate) throws Exception {
-        return update(sessionId, Optional.empty(), JsonNullable.undefined(), checkoutSessionUpdate);
+            CheckoutSessionCreate checkoutSessionCreate) throws Exception {
+        return update(sessionId, Optional.empty(), JsonNullable.undefined(), checkoutSessionCreate);
     }
     
     /**
@@ -463,31 +471,32 @@ public class CheckoutSessions implements
      * 
      * @param sessionId The ID of the checkout session.
      * @param timeoutInSeconds 
-     * @param xGr4vyMerchantAccountId The ID of the merchant account to use for this request.
-     * @param checkoutSessionUpdate 
+     * @param merchantAccountId 
+     * @param checkoutSessionCreate 
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public UpdateCheckoutSessionResponse update(
             String sessionId,
             Optional<Double> timeoutInSeconds,
-            JsonNullable<String> xGr4vyMerchantAccountId,
-            CheckoutSessionUpdate checkoutSessionUpdate) throws Exception {
+            JsonNullable<String> merchantAccountId,
+            CheckoutSessionCreate checkoutSessionCreate) throws Exception {
         UpdateCheckoutSessionRequest request =
             UpdateCheckoutSessionRequest
                 .builder()
                 .sessionId(sessionId)
                 .timeoutInSeconds(timeoutInSeconds)
-                .xGr4vyMerchantAccountId(xGr4vyMerchantAccountId)
-                .checkoutSessionUpdate(checkoutSessionUpdate)
+                .merchantAccountId(merchantAccountId)
+                .checkoutSessionCreate(checkoutSessionCreate)
                 .build();
         
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 UpdateCheckoutSessionRequest.class,
                 _baseUrl,
                 "/checkout/sessions/{session_id}",
-                request, null);
+                request, this.sdkConfiguration.globals);
         
         HTTPRequest _req = new HTTPRequest(_url, "PUT");
         Object _convertedRequest = Utils.convertToShape(
@@ -496,7 +505,7 @@ public class CheckoutSessions implements
                 new TypeReference<Object>() {});
         SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
                 _convertedRequest, 
-                "checkoutSessionUpdate",
+                "checkoutSessionCreate",
                 "json",
                 false);
         if (_serializedRequestBody == null) {
@@ -510,8 +519,8 @@ public class CheckoutSessions implements
         _req.addQueryParams(Utils.getQueryParams(
                 UpdateCheckoutSessionRequest.class,
                 request, 
-                null));
-        _req.addHeaders(Utils.getHeadersFromMetadata(request, null));
+                this.sdkConfiguration.globals));
+        _req.addHeaders(Utils.getHeadersFromMetadata(request, this.sdkConfiguration.globals));
         
         Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
@@ -827,7 +836,7 @@ public class CheckoutSessions implements
      */
     public GetCheckoutSessionResponse get(
             String sessionId) throws Exception {
-        return get(sessionId, Optional.empty(), JsonNullable.undefined());
+        return get(sessionId, Optional.empty(), JsonNullable.undefined(), Optional.empty());
     }
     
     /**
@@ -837,28 +846,35 @@ public class CheckoutSessions implements
      * 
      * @param sessionId The ID of the checkout session.
      * @param timeoutInSeconds 
-     * @param xGr4vyMerchantAccountId The ID of the merchant account to use for this request.
+     * @param merchantAccountId 
+     * @param options additional options
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public GetCheckoutSessionResponse get(
             String sessionId,
             Optional<Double> timeoutInSeconds,
-            JsonNullable<String> xGr4vyMerchantAccountId) throws Exception {
+            JsonNullable<String> merchantAccountId,
+            Optional<Options> options) throws Exception {
+
+        if (options.isPresent()) {
+          options.get().validate(Arrays.asList(Options.Option.RETRY_CONFIG));
+        }
         GetCheckoutSessionRequest request =
             GetCheckoutSessionRequest
                 .builder()
                 .sessionId(sessionId)
                 .timeoutInSeconds(timeoutInSeconds)
-                .xGr4vyMerchantAccountId(xGr4vyMerchantAccountId)
+                .merchantAccountId(merchantAccountId)
                 .build();
         
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 GetCheckoutSessionRequest.class,
                 _baseUrl,
                 "/checkout/sessions/{session_id}",
-                request, null);
+                request, this.sdkConfiguration.globals);
         
         HTTPRequest _req = new HTTPRequest(_url, "GET");
         _req.addHeader("Accept", "application/json")
@@ -868,56 +884,72 @@ public class CheckoutSessions implements
         _req.addQueryParams(Utils.getQueryParams(
                 GetCheckoutSessionRequest.class,
                 request, 
-                null));
-        _req.addHeaders(Utils.getHeadersFromMetadata(request, null));
+                this.sdkConfiguration.globals));
+        _req.addHeaders(Utils.getHeadersFromMetadata(request, this.sdkConfiguration.globals));
         
         Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
         HTTPClient _client = this.sdkConfiguration.defaultClient;
-        HttpRequest _r = 
-            sdkConfiguration.hooks()
-               .beforeRequest(
-                  new BeforeRequestContextImpl(
-                      _baseUrl,
-                      "get_checkout_session", 
-                      Optional.of(List.of()), 
-                      _hookSecuritySource),
-                  _req.build());
-        HttpResponse<InputStream> _httpRes;
-        try {
-            _httpRes = _client.send(_r);
-            if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "401", "403", "404", "405", "409", "422", "425", "429", "4XX", "500", "502", "504", "5XX")) {
-                _httpRes = sdkConfiguration.hooks()
-                    .afterError(
-                        new AfterErrorContextImpl(
-                            _baseUrl,
-                            "get_checkout_session",
-                            Optional.of(List.of()),
-                            _hookSecuritySource),
-                        Optional.of(_httpRes),
-                        Optional.empty());
-            } else {
-                _httpRes = sdkConfiguration.hooks()
-                    .afterSuccess(
-                        new AfterSuccessContextImpl(
-                            _baseUrl,
-                            "get_checkout_session",
-                            Optional.of(List.of()), 
-                            _hookSecuritySource),
-                         _httpRes);
-            }
-        } catch (Exception _e) {
-            _httpRes = sdkConfiguration.hooks()
-                    .afterError(
-                        new AfterErrorContextImpl(
-                            _baseUrl,
-                            "get_checkout_session",
-                            Optional.of(List.of()),
-                            _hookSecuritySource), 
-                        Optional.empty(),
-                        Optional.of(_e));
+        HTTPRequest _finalReq = _req;
+        RetryConfig _retryConfig;
+        if (options.isPresent() && options.get().retryConfig().isPresent()) {
+            _retryConfig = options.get().retryConfig().get();
+        } else if (this.sdkConfiguration.retryConfig.isPresent()) {
+            _retryConfig = this.sdkConfiguration.retryConfig.get();
+        } else {
+            _retryConfig = RetryConfig.builder()
+                .backoff(BackoffStrategy.builder()
+                            .initialInterval(200, TimeUnit.MILLISECONDS)
+                            .maxInterval(200, TimeUnit.MILLISECONDS)
+                            .baseFactor((double)(1))
+                            .maxElapsedTime(1000, TimeUnit.MILLISECONDS)
+                            .retryConnectError(true)
+                            .build())
+                .build();
         }
+        List<String> _statusCodes = new ArrayList<>();
+        _statusCodes.add("5XX");
+        Retries _retries = Retries.builder()
+            .action(() -> {
+                HttpRequest _r = null;
+                try {
+                    _r = sdkConfiguration.hooks()
+                        .beforeRequest(
+                            new BeforeRequestContextImpl(
+                                _baseUrl,
+                                "get_checkout_session", 
+                                Optional.of(List.of()), 
+                                _hookSecuritySource),
+                            _finalReq.build());
+                } catch (Exception _e) {
+                    throw new NonRetryableException(_e);
+                }
+                try {
+                    return _client.send(_r);
+                } catch (Exception _e) {
+                    return sdkConfiguration.hooks()
+                        .afterError(
+                            new AfterErrorContextImpl(
+                                _baseUrl,
+                                "get_checkout_session",
+                                 Optional.of(List.of()),
+                                 _hookSecuritySource), 
+                            Optional.empty(),
+                            Optional.of(_e));
+                }
+            })
+            .retryConfig(_retryConfig)
+            .statusCodes(_statusCodes)
+            .build();
+        HttpResponse<InputStream> _httpRes = sdkConfiguration.hooks()
+                 .afterSuccess(
+                     new AfterSuccessContextImpl(
+                          _baseUrl,
+                         "get_checkout_session", 
+                         Optional.of(List.of()), 
+                         _hookSecuritySource),
+                     _retries.run());
         String _contentType = _httpRes
             .headers()
             .firstValue("Content-Type")
@@ -1179,28 +1211,29 @@ public class CheckoutSessions implements
      * 
      * @param sessionId The ID of the checkout session.
      * @param timeoutInSeconds 
-     * @param xGr4vyMerchantAccountId The ID of the merchant account to use for this request.
+     * @param merchantAccountId 
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public DeleteCheckoutSessionResponse delete(
             String sessionId,
             Optional<Double> timeoutInSeconds,
-            JsonNullable<String> xGr4vyMerchantAccountId) throws Exception {
+            JsonNullable<String> merchantAccountId) throws Exception {
         DeleteCheckoutSessionRequest request =
             DeleteCheckoutSessionRequest
                 .builder()
                 .sessionId(sessionId)
                 .timeoutInSeconds(timeoutInSeconds)
-                .xGr4vyMerchantAccountId(xGr4vyMerchantAccountId)
+                .merchantAccountId(merchantAccountId)
                 .build();
         
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 DeleteCheckoutSessionRequest.class,
                 _baseUrl,
                 "/checkout/sessions/{session_id}",
-                request, null);
+                request, this.sdkConfiguration.globals);
         
         HTTPRequest _req = new HTTPRequest(_url, "DELETE");
         _req.addHeader("Accept", "application/json")
@@ -1210,8 +1243,8 @@ public class CheckoutSessions implements
         _req.addQueryParams(Utils.getQueryParams(
                 DeleteCheckoutSessionRequest.class,
                 request, 
-                null));
-        _req.addHeaders(Utils.getHeadersFromMetadata(request, null));
+                this.sdkConfiguration.globals));
+        _req.addHeaders(Utils.getHeadersFromMetadata(request, this.sdkConfiguration.globals));
         
         Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  

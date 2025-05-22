@@ -19,7 +19,7 @@ public class AddBuyerRequestBuilder {
                             "timeoutInSeconds",
                             "1",
                             new TypeReference<Optional<Double>>() {});
-    private JsonNullable<String> xGr4vyMerchantAccountId = JsonNullable.undefined();
+    private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
     private BuyerCreate buyerCreate;
     private final SDKMethodInterfaces.MethodCallAddBuyer sdk;
 
@@ -39,15 +39,15 @@ public class AddBuyerRequestBuilder {
         return this;
     }
 
-    public AddBuyerRequestBuilder xGr4vyMerchantAccountId(String xGr4vyMerchantAccountId) {
-        Utils.checkNotNull(xGr4vyMerchantAccountId, "xGr4vyMerchantAccountId");
-        this.xGr4vyMerchantAccountId = JsonNullable.of(xGr4vyMerchantAccountId);
+    public AddBuyerRequestBuilder merchantAccountId(String merchantAccountId) {
+        Utils.checkNotNull(merchantAccountId, "merchantAccountId");
+        this.merchantAccountId = JsonNullable.of(merchantAccountId);
         return this;
     }
 
-    public AddBuyerRequestBuilder xGr4vyMerchantAccountId(JsonNullable<String> xGr4vyMerchantAccountId) {
-        Utils.checkNotNull(xGr4vyMerchantAccountId, "xGr4vyMerchantAccountId");
-        this.xGr4vyMerchantAccountId = xGr4vyMerchantAccountId;
+    public AddBuyerRequestBuilder merchantAccountId(JsonNullable<String> merchantAccountId) {
+        Utils.checkNotNull(merchantAccountId, "merchantAccountId");
+        this.merchantAccountId = merchantAccountId;
         return this;
     }
 
@@ -63,7 +63,7 @@ public class AddBuyerRequestBuilder {
         }
         return sdk.create(
             timeoutInSeconds,
-            xGr4vyMerchantAccountId,
+            merchantAccountId,
             buyerCreate);
     }
 

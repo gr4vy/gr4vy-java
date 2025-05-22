@@ -30,12 +30,11 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Gr4vy sdk = Gr4vy.builder()
-                .oAuth2PasswordBearer("<YOUR_O_AUTH2_PASSWORD_BEARER_HERE>")
+                .bearerAuth("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
         ListPaymentMethodNetworkTokensResponse res = sdk.paymentMethods().networkTokens().list()
                 .paymentMethodId("ef9496d8-53a5-4aad-8ca2-00eb68334389")
-                .xGr4vyMerchantAccountId("default")
                 .call();
 
         if (res.collectionNoCursorNetworkToken().isPresent()) {
@@ -50,7 +49,7 @@ public class Application {
 | Parameter                                               | Type                                                    | Required                                                | Description                                             | Example                                                 |
 | ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- |
 | `paymentMethodId`                                       | *String*                                                | :heavy_check_mark:                                      | The ID of the payment method                            | ef9496d8-53a5-4aad-8ca2-00eb68334389                    |
-| `xGr4vyMerchantAccountId`                               | *JsonNullable\<String>*                                 | :heavy_minus_sign:                                      | The ID of the merchant account to use for this request. | default                                                 |
+| `merchantAccountId`                                     | *JsonNullable\<String>*                                 | :heavy_minus_sign:                                      | The ID of the merchant account to use for this request. |                                                         |
 
 ### Response
 
@@ -94,12 +93,11 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Gr4vy sdk = Gr4vy.builder()
-                .oAuth2PasswordBearer("<YOUR_O_AUTH2_PASSWORD_BEARER_HERE>")
+                .bearerAuth("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
         CreatePaymentMethodNetworkTokenResponse res = sdk.paymentMethods().networkTokens().create()
                 .paymentMethodId("ef9496d8-53a5-4aad-8ca2-00eb68334389")
-                .xGr4vyMerchantAccountId("default")
                 .networkTokenCreate(NetworkTokenCreate.builder()
                     .merchantInitiated(false)
                     .isSubsequentPayment(false)
@@ -120,7 +118,7 @@ public class Application {
 | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
 | `paymentMethodId`                                                   | *String*                                                            | :heavy_check_mark:                                                  | The ID of the payment method                                        | ef9496d8-53a5-4aad-8ca2-00eb68334389                                |
 | `timeoutInSeconds`                                                  | *Optional\<Double>*                                                 | :heavy_minus_sign:                                                  | N/A                                                                 |                                                                     |
-| `xGr4vyMerchantAccountId`                                           | *JsonNullable\<String>*                                             | :heavy_minus_sign:                                                  | The ID of the merchant account to use for this request.             | default                                                             |
+| `merchantAccountId`                                                 | *JsonNullable\<String>*                                             | :heavy_minus_sign:                                                  | The ID of the merchant account to use for this request.             |                                                                     |
 | `networkTokenCreate`                                                | [NetworkTokenCreate](../../models/components/NetworkTokenCreate.md) | :heavy_check_mark:                                                  | N/A                                                                 |                                                                     |
 
 ### Response
@@ -164,13 +162,12 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Gr4vy sdk = Gr4vy.builder()
-                .oAuth2PasswordBearer("<YOUR_O_AUTH2_PASSWORD_BEARER_HERE>")
+                .bearerAuth("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
         SuspendPaymentMethodNetworkTokenResponse res = sdk.paymentMethods().networkTokens().suspend()
                 .paymentMethodId("ef9496d8-53a5-4aad-8ca2-00eb68334389")
                 .networkTokenId("f8dd5cfc-7834-4847-95dc-f75a360e2298")
-                .xGr4vyMerchantAccountId("default")
                 .call();
 
         if (res.networkToken().isPresent()) {
@@ -187,7 +184,7 @@ public class Application {
 | `paymentMethodId`                                       | *String*                                                | :heavy_check_mark:                                      | The ID of the payment method                            | ef9496d8-53a5-4aad-8ca2-00eb68334389                    |
 | `networkTokenId`                                        | *String*                                                | :heavy_check_mark:                                      | The ID of the network token                             | f8dd5cfc-7834-4847-95dc-f75a360e2298                    |
 | `timeoutInSeconds`                                      | *Optional\<Double>*                                     | :heavy_minus_sign:                                      | N/A                                                     |                                                         |
-| `xGr4vyMerchantAccountId`                               | *JsonNullable\<String>*                                 | :heavy_minus_sign:                                      | The ID of the merchant account to use for this request. | default                                                 |
+| `merchantAccountId`                                     | *JsonNullable\<String>*                                 | :heavy_minus_sign:                                      | The ID of the merchant account to use for this request. |                                                         |
 
 ### Response
 
@@ -230,13 +227,12 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Gr4vy sdk = Gr4vy.builder()
-                .oAuth2PasswordBearer("<YOUR_O_AUTH2_PASSWORD_BEARER_HERE>")
+                .bearerAuth("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
         ResumePaymentMethodNetworkTokenResponse res = sdk.paymentMethods().networkTokens().resume()
                 .paymentMethodId("ef9496d8-53a5-4aad-8ca2-00eb68334389")
                 .networkTokenId("f8dd5cfc-7834-4847-95dc-f75a360e2298")
-                .xGr4vyMerchantAccountId("default")
                 .call();
 
         if (res.networkToken().isPresent()) {
@@ -253,7 +249,7 @@ public class Application {
 | `paymentMethodId`                                       | *String*                                                | :heavy_check_mark:                                      | The ID of the payment method                            | ef9496d8-53a5-4aad-8ca2-00eb68334389                    |
 | `networkTokenId`                                        | *String*                                                | :heavy_check_mark:                                      | The ID of the network token                             | f8dd5cfc-7834-4847-95dc-f75a360e2298                    |
 | `timeoutInSeconds`                                      | *Optional\<Double>*                                     | :heavy_minus_sign:                                      | N/A                                                     |                                                         |
-| `xGr4vyMerchantAccountId`                               | *JsonNullable\<String>*                                 | :heavy_minus_sign:                                      | The ID of the merchant account to use for this request. | default                                                 |
+| `merchantAccountId`                                     | *JsonNullable\<String>*                                 | :heavy_minus_sign:                                      | The ID of the merchant account to use for this request. |                                                         |
 
 ### Response
 
@@ -296,13 +292,12 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Gr4vy sdk = Gr4vy.builder()
-                .oAuth2PasswordBearer("<YOUR_O_AUTH2_PASSWORD_BEARER_HERE>")
+                .bearerAuth("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
         DeletePaymentMethodNetworkTokenResponse res = sdk.paymentMethods().networkTokens().delete()
                 .paymentMethodId("ef9496d8-53a5-4aad-8ca2-00eb68334389")
                 .networkTokenId("f8dd5cfc-7834-4847-95dc-f75a360e2298")
-                .xGr4vyMerchantAccountId("default")
                 .call();
 
         // handle response
@@ -317,7 +312,7 @@ public class Application {
 | `paymentMethodId`                                       | *String*                                                | :heavy_check_mark:                                      | The ID of the payment method                            | ef9496d8-53a5-4aad-8ca2-00eb68334389                    |
 | `networkTokenId`                                        | *String*                                                | :heavy_check_mark:                                      | The ID of the network token                             | f8dd5cfc-7834-4847-95dc-f75a360e2298                    |
 | `timeoutInSeconds`                                      | *Optional\<Double>*                                     | :heavy_minus_sign:                                      | N/A                                                     |                                                         |
-| `xGr4vyMerchantAccountId`                               | *JsonNullable\<String>*                                 | :heavy_minus_sign:                                      | The ID of the merchant account to use for this request. | default                                                 |
+| `merchantAccountId`                                     | *JsonNullable\<String>*                                 | :heavy_minus_sign:                                      | The ID of the merchant account to use for this request. |                                                         |
 
 ### Response
 

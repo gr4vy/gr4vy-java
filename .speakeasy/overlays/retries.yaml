@@ -1,0 +1,17 @@
+overlay: 1.0.0
+info:
+  title: Enable retries on all GET APIs
+  version: 0.0.1
+actions:
+  - target: $.paths.*.get
+    update:
+      x-speakeasy-retries:
+        strategy: backoff
+        backoff:
+          initialInterval: 200 # 200 milliseconds
+          maxInterval: 200 # 60 seconds
+          maxElapsedTime: 1000 # 1 second
+          exponent: 1 # constant backoff
+        statusCodes:
+          - 5XX
+        retryConnectionErrors: true

@@ -20,7 +20,7 @@ public class CreateTransactionRefundRequestBuilder {
                             "timeoutInSeconds",
                             "1",
                             new TypeReference<Optional<Double>>() {});
-    private JsonNullable<String> xGr4vyMerchantAccountId = JsonNullable.undefined();
+    private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
     private TransactionRefundCreate transactionRefundCreate;
     private final SDKMethodInterfaces.MethodCallCreateTransactionRefund sdk;
 
@@ -46,15 +46,15 @@ public class CreateTransactionRefundRequestBuilder {
         return this;
     }
 
-    public CreateTransactionRefundRequestBuilder xGr4vyMerchantAccountId(String xGr4vyMerchantAccountId) {
-        Utils.checkNotNull(xGr4vyMerchantAccountId, "xGr4vyMerchantAccountId");
-        this.xGr4vyMerchantAccountId = JsonNullable.of(xGr4vyMerchantAccountId);
+    public CreateTransactionRefundRequestBuilder merchantAccountId(String merchantAccountId) {
+        Utils.checkNotNull(merchantAccountId, "merchantAccountId");
+        this.merchantAccountId = JsonNullable.of(merchantAccountId);
         return this;
     }
 
-    public CreateTransactionRefundRequestBuilder xGr4vyMerchantAccountId(JsonNullable<String> xGr4vyMerchantAccountId) {
-        Utils.checkNotNull(xGr4vyMerchantAccountId, "xGr4vyMerchantAccountId");
-        this.xGr4vyMerchantAccountId = xGr4vyMerchantAccountId;
+    public CreateTransactionRefundRequestBuilder merchantAccountId(JsonNullable<String> merchantAccountId) {
+        Utils.checkNotNull(merchantAccountId, "merchantAccountId");
+        this.merchantAccountId = merchantAccountId;
         return this;
     }
 
@@ -71,7 +71,7 @@ public class CreateTransactionRefundRequestBuilder {
         return sdk.create(
             transactionId,
             timeoutInSeconds,
-            xGr4vyMerchantAccountId,
+            merchantAccountId,
             transactionRefundCreate);
     }
 

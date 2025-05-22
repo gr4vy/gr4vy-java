@@ -3,13 +3,17 @@
  */
 package com.github.gr4vy.gr4vy_java.models.operations;
 
+import com.github.gr4vy.gr4vy_java.utils.Options;
+import com.github.gr4vy.gr4vy_java.utils.RetryConfig;
 import com.github.gr4vy.gr4vy_java.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
+import java.util.Optional;
 
 public class GetMerchantAccountRequestBuilder {
 
     private String merchantAccountId;
+    private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKMethodInterfaces.MethodCallGetMerchantAccount sdk;
 
     public GetMerchantAccountRequestBuilder(SDKMethodInterfaces.MethodCallGetMerchantAccount sdk) {
@@ -21,10 +25,25 @@ public class GetMerchantAccountRequestBuilder {
         this.merchantAccountId = merchantAccountId;
         return this;
     }
+                
+    public GetMerchantAccountRequestBuilder retryConfig(RetryConfig retryConfig) {
+        Utils.checkNotNull(retryConfig, "retryConfig");
+        this.retryConfig = Optional.of(retryConfig);
+        return this;
+    }
+
+    public GetMerchantAccountRequestBuilder retryConfig(Optional<RetryConfig> retryConfig) {
+        Utils.checkNotNull(retryConfig, "retryConfig");
+        this.retryConfig = retryConfig;
+        return this;
+    }
 
     public GetMerchantAccountResponse call() throws Exception {
-
+        Optional<Options> options = Optional.of(Options.builder()
+                                                    .retryConfig(retryConfig)
+                                                    .build());
         return sdk.get(
-            merchantAccountId);
+            merchantAccountId,
+            options);
     }
 }

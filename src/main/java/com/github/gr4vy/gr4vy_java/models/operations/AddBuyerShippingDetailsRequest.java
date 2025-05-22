@@ -32,7 +32,7 @@ public class AddBuyerShippingDetailsRequest {
      * The ID of the merchant account to use for this request.
      */
     @SpeakeasyMetadata("header:style=simple,explode=false,name=x-gr4vy-merchant-account-id")
-    private JsonNullable<String> xGr4vyMerchantAccountId;
+    private JsonNullable<String> merchantAccountId;
 
     @SpeakeasyMetadata("request:mediaType=application/json")
     private ShippingDetailsCreate shippingDetailsCreate;
@@ -41,15 +41,15 @@ public class AddBuyerShippingDetailsRequest {
     public AddBuyerShippingDetailsRequest(
             String buyerId,
             Optional<Double> timeoutInSeconds,
-            JsonNullable<String> xGr4vyMerchantAccountId,
+            JsonNullable<String> merchantAccountId,
             ShippingDetailsCreate shippingDetailsCreate) {
         Utils.checkNotNull(buyerId, "buyerId");
         Utils.checkNotNull(timeoutInSeconds, "timeoutInSeconds");
-        Utils.checkNotNull(xGr4vyMerchantAccountId, "xGr4vyMerchantAccountId");
+        Utils.checkNotNull(merchantAccountId, "merchantAccountId");
         Utils.checkNotNull(shippingDetailsCreate, "shippingDetailsCreate");
         this.buyerId = buyerId;
         this.timeoutInSeconds = timeoutInSeconds;
-        this.xGr4vyMerchantAccountId = xGr4vyMerchantAccountId;
+        this.merchantAccountId = merchantAccountId;
         this.shippingDetailsCreate = shippingDetailsCreate;
     }
     
@@ -76,8 +76,8 @@ public class AddBuyerShippingDetailsRequest {
      * The ID of the merchant account to use for this request.
      */
     @JsonIgnore
-    public JsonNullable<String> xGr4vyMerchantAccountId() {
-        return xGr4vyMerchantAccountId;
+    public JsonNullable<String> merchantAccountId() {
+        return merchantAccountId;
     }
 
     @JsonIgnore
@@ -113,18 +113,18 @@ public class AddBuyerShippingDetailsRequest {
     /**
      * The ID of the merchant account to use for this request.
      */
-    public AddBuyerShippingDetailsRequest withXGr4vyMerchantAccountId(String xGr4vyMerchantAccountId) {
-        Utils.checkNotNull(xGr4vyMerchantAccountId, "xGr4vyMerchantAccountId");
-        this.xGr4vyMerchantAccountId = JsonNullable.of(xGr4vyMerchantAccountId);
+    public AddBuyerShippingDetailsRequest withMerchantAccountId(String merchantAccountId) {
+        Utils.checkNotNull(merchantAccountId, "merchantAccountId");
+        this.merchantAccountId = JsonNullable.of(merchantAccountId);
         return this;
     }
 
     /**
      * The ID of the merchant account to use for this request.
      */
-    public AddBuyerShippingDetailsRequest withXGr4vyMerchantAccountId(JsonNullable<String> xGr4vyMerchantAccountId) {
-        Utils.checkNotNull(xGr4vyMerchantAccountId, "xGr4vyMerchantAccountId");
-        this.xGr4vyMerchantAccountId = xGr4vyMerchantAccountId;
+    public AddBuyerShippingDetailsRequest withMerchantAccountId(JsonNullable<String> merchantAccountId) {
+        Utils.checkNotNull(merchantAccountId, "merchantAccountId");
+        this.merchantAccountId = merchantAccountId;
         return this;
     }
 
@@ -147,7 +147,7 @@ public class AddBuyerShippingDetailsRequest {
         return 
             Objects.deepEquals(this.buyerId, other.buyerId) &&
             Objects.deepEquals(this.timeoutInSeconds, other.timeoutInSeconds) &&
-            Objects.deepEquals(this.xGr4vyMerchantAccountId, other.xGr4vyMerchantAccountId) &&
+            Objects.deepEquals(this.merchantAccountId, other.merchantAccountId) &&
             Objects.deepEquals(this.shippingDetailsCreate, other.shippingDetailsCreate);
     }
     
@@ -156,7 +156,7 @@ public class AddBuyerShippingDetailsRequest {
         return Objects.hash(
             buyerId,
             timeoutInSeconds,
-            xGr4vyMerchantAccountId,
+            merchantAccountId,
             shippingDetailsCreate);
     }
     
@@ -165,7 +165,7 @@ public class AddBuyerShippingDetailsRequest {
         return Utils.toString(AddBuyerShippingDetailsRequest.class,
                 "buyerId", buyerId,
                 "timeoutInSeconds", timeoutInSeconds,
-                "xGr4vyMerchantAccountId", xGr4vyMerchantAccountId,
+                "merchantAccountId", merchantAccountId,
                 "shippingDetailsCreate", shippingDetailsCreate);
     }
     
@@ -175,7 +175,7 @@ public class AddBuyerShippingDetailsRequest {
  
         private Optional<Double> timeoutInSeconds;
  
-        private JsonNullable<String> xGr4vyMerchantAccountId = JsonNullable.undefined();
+        private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
  
         private ShippingDetailsCreate shippingDetailsCreate;
         
@@ -207,18 +207,18 @@ public class AddBuyerShippingDetailsRequest {
         /**
          * The ID of the merchant account to use for this request.
          */
-        public Builder xGr4vyMerchantAccountId(String xGr4vyMerchantAccountId) {
-            Utils.checkNotNull(xGr4vyMerchantAccountId, "xGr4vyMerchantAccountId");
-            this.xGr4vyMerchantAccountId = JsonNullable.of(xGr4vyMerchantAccountId);
+        public Builder merchantAccountId(String merchantAccountId) {
+            Utils.checkNotNull(merchantAccountId, "merchantAccountId");
+            this.merchantAccountId = JsonNullable.of(merchantAccountId);
             return this;
         }
 
         /**
          * The ID of the merchant account to use for this request.
          */
-        public Builder xGr4vyMerchantAccountId(JsonNullable<String> xGr4vyMerchantAccountId) {
-            Utils.checkNotNull(xGr4vyMerchantAccountId, "xGr4vyMerchantAccountId");
-            this.xGr4vyMerchantAccountId = xGr4vyMerchantAccountId;
+        public Builder merchantAccountId(JsonNullable<String> merchantAccountId) {
+            Utils.checkNotNull(merchantAccountId, "merchantAccountId");
+            this.merchantAccountId = merchantAccountId;
             return this;
         }
 
@@ -235,7 +235,7 @@ public class AddBuyerShippingDetailsRequest {
             return new AddBuyerShippingDetailsRequest(
                 buyerId,
                 timeoutInSeconds,
-                xGr4vyMerchantAccountId,
+                merchantAccountId,
                 shippingDetailsCreate);
         }
 

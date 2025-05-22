@@ -32,16 +32,15 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Gr4vy sdk = Gr4vy.builder()
-                .oAuth2PasswordBearer("<YOUR_O_AUTH2_PASSWORD_BEARER_HERE>")
+                .bearerAuth("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
         ConfigureDigitalWalletResponse res = sdk.digitalWallets().create()
-                .xGr4vyMerchantAccountId("default")
                 .digitalWalletCreate(DigitalWalletCreate.builder()
                     .provider(DigitalWalletProvider.CLICK_TO_PAY)
                     .merchantName("<value>")
                     .acceptTermsAndConditions(false)
-                    .merchantCountryCode("US")
+                    .merchantCountryCode("DE")
                     .build())
                 .call();
 
@@ -54,11 +53,11 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                             | Type                                                                  | Required                                                              | Description                                                           | Example                                                               |
-| --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- |
-| `timeoutInSeconds`                                                    | *Optional\<Double>*                                                   | :heavy_minus_sign:                                                    | N/A                                                                   |                                                                       |
-| `xGr4vyMerchantAccountId`                                             | *JsonNullable\<String>*                                               | :heavy_minus_sign:                                                    | The ID of the merchant account to use for this request.               | default                                                               |
-| `digitalWalletCreate`                                                 | [DigitalWalletCreate](../../models/components/DigitalWalletCreate.md) | :heavy_check_mark:                                                    | N/A                                                                   |                                                                       |
+| Parameter                                                             | Type                                                                  | Required                                                              | Description                                                           |
+| --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- |
+| `timeoutInSeconds`                                                    | *Optional\<Double>*                                                   | :heavy_minus_sign:                                                    | N/A                                                                   |
+| `merchantAccountId`                                                   | *JsonNullable\<String>*                                               | :heavy_minus_sign:                                                    | The ID of the merchant account to use for this request.               |
+| `digitalWalletCreate`                                                 | [DigitalWalletCreate](../../models/components/DigitalWalletCreate.md) | :heavy_check_mark:                                                    | N/A                                                                   |
 
 ### Response
 
@@ -101,11 +100,10 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Gr4vy sdk = Gr4vy.builder()
-                .oAuth2PasswordBearer("<YOUR_O_AUTH2_PASSWORD_BEARER_HERE>")
+                .bearerAuth("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
         ListDigitalWalletsResponse res = sdk.digitalWallets().list()
-                .xGr4vyMerchantAccountId("default")
                 .call();
 
         if (res.collectionNoCursorDigitalWallet().isPresent()) {
@@ -117,9 +115,9 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                               | Type                                                    | Required                                                | Description                                             | Example                                                 |
-| ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- |
-| `xGr4vyMerchantAccountId`                               | *JsonNullable\<String>*                                 | :heavy_minus_sign:                                      | The ID of the merchant account to use for this request. | default                                                 |
+| Parameter                                               | Type                                                    | Required                                                | Description                                             |
+| ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- |
+| `merchantAccountId`                                     | *JsonNullable\<String>*                                 | :heavy_minus_sign:                                      | The ID of the merchant account to use for this request. |
 
 ### Response
 
@@ -162,12 +160,11 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Gr4vy sdk = Gr4vy.builder()
-                .oAuth2PasswordBearer("<YOUR_O_AUTH2_PASSWORD_BEARER_HERE>")
+                .bearerAuth("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
         GetDigitalWalletResponse res = sdk.digitalWallets().get()
                 .digitalWalletId("1808f5e6-b49c-4db9-94fa-22371ea352f5")
-                .xGr4vyMerchantAccountId("default")
                 .call();
 
         if (res.digitalWallet().isPresent()) {
@@ -182,7 +179,7 @@ public class Application {
 | Parameter                                               | Type                                                    | Required                                                | Description                                             | Example                                                 |
 | ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- |
 | `digitalWalletId`                                       | *String*                                                | :heavy_check_mark:                                      | The ID of the digital wallet to read.                   | 1808f5e6-b49c-4db9-94fa-22371ea352f5                    |
-| `xGr4vyMerchantAccountId`                               | *JsonNullable\<String>*                                 | :heavy_minus_sign:                                      | The ID of the merchant account to use for this request. | default                                                 |
+| `merchantAccountId`                                     | *JsonNullable\<String>*                                 | :heavy_minus_sign:                                      | The ID of the merchant account to use for this request. |                                                         |
 
 ### Response
 
@@ -225,12 +222,11 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Gr4vy sdk = Gr4vy.builder()
-                .oAuth2PasswordBearer("<YOUR_O_AUTH2_PASSWORD_BEARER_HERE>")
+                .bearerAuth("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
         DeleteDigitalWalletResponse res = sdk.digitalWallets().delete()
                 .digitalWalletId("1808f5e6-b49c-4db9-94fa-22371ea352f5")
-                .xGr4vyMerchantAccountId("default")
                 .call();
 
         if (res.any().isPresent()) {
@@ -246,7 +242,7 @@ public class Application {
 | ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- |
 | `digitalWalletId`                                       | *String*                                                | :heavy_check_mark:                                      | The ID of the digital wallet to delete.                 | 1808f5e6-b49c-4db9-94fa-22371ea352f5                    |
 | `timeoutInSeconds`                                      | *Optional\<Double>*                                     | :heavy_minus_sign:                                      | N/A                                                     |                                                         |
-| `xGr4vyMerchantAccountId`                               | *JsonNullable\<String>*                                 | :heavy_minus_sign:                                      | The ID of the merchant account to use for this request. | default                                                 |
+| `merchantAccountId`                                     | *JsonNullable\<String>*                                 | :heavy_minus_sign:                                      | The ID of the merchant account to use for this request. |                                                         |
 
 ### Response
 
@@ -290,12 +286,11 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Gr4vy sdk = Gr4vy.builder()
-                .oAuth2PasswordBearer("<YOUR_O_AUTH2_PASSWORD_BEARER_HERE>")
+                .bearerAuth("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
         UpdateDigitalWalletResponse res = sdk.digitalWallets().update()
                 .digitalWalletId("1808f5e6-b49c-4db9-94fa-22371ea352f5")
-                .xGr4vyMerchantAccountId("default")
                 .digitalWalletUpdate(DigitalWalletUpdate.builder()
                     .merchantCountryCode("DE")
                     .build())
@@ -314,7 +309,7 @@ public class Application {
 | --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- |
 | `digitalWalletId`                                                     | *String*                                                              | :heavy_check_mark:                                                    | The ID of the digital wallet to edit.                                 | 1808f5e6-b49c-4db9-94fa-22371ea352f5                                  |
 | `timeoutInSeconds`                                                    | *Optional\<Double>*                                                   | :heavy_minus_sign:                                                    | N/A                                                                   |                                                                       |
-| `xGr4vyMerchantAccountId`                                             | *JsonNullable\<String>*                                               | :heavy_minus_sign:                                                    | The ID of the merchant account to use for this request.               | default                                                               |
+| `merchantAccountId`                                                   | *JsonNullable\<String>*                                               | :heavy_minus_sign:                                                    | The ID of the merchant account to use for this request.               |                                                                       |
 | `digitalWalletUpdate`                                                 | [DigitalWalletUpdate](../../models/components/DigitalWalletUpdate.md) | :heavy_check_mark:                                                    | N/A                                                                   |                                                                       |
 
 ### Response

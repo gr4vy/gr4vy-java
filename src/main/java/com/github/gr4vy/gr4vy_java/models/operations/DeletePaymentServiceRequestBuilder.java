@@ -19,7 +19,7 @@ public class DeletePaymentServiceRequestBuilder {
                             "timeoutInSeconds",
                             "1",
                             new TypeReference<Optional<Double>>() {});
-    private JsonNullable<String> xGr4vyMerchantAccountId = JsonNullable.undefined();
+    private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
     private final SDKMethodInterfaces.MethodCallDeletePaymentService sdk;
 
     public DeletePaymentServiceRequestBuilder(SDKMethodInterfaces.MethodCallDeletePaymentService sdk) {
@@ -44,15 +44,15 @@ public class DeletePaymentServiceRequestBuilder {
         return this;
     }
 
-    public DeletePaymentServiceRequestBuilder xGr4vyMerchantAccountId(String xGr4vyMerchantAccountId) {
-        Utils.checkNotNull(xGr4vyMerchantAccountId, "xGr4vyMerchantAccountId");
-        this.xGr4vyMerchantAccountId = JsonNullable.of(xGr4vyMerchantAccountId);
+    public DeletePaymentServiceRequestBuilder merchantAccountId(String merchantAccountId) {
+        Utils.checkNotNull(merchantAccountId, "merchantAccountId");
+        this.merchantAccountId = JsonNullable.of(merchantAccountId);
         return this;
     }
 
-    public DeletePaymentServiceRequestBuilder xGr4vyMerchantAccountId(JsonNullable<String> xGr4vyMerchantAccountId) {
-        Utils.checkNotNull(xGr4vyMerchantAccountId, "xGr4vyMerchantAccountId");
-        this.xGr4vyMerchantAccountId = xGr4vyMerchantAccountId;
+    public DeletePaymentServiceRequestBuilder merchantAccountId(JsonNullable<String> merchantAccountId) {
+        Utils.checkNotNull(merchantAccountId, "merchantAccountId");
+        this.merchantAccountId = merchantAccountId;
         return this;
     }
 
@@ -63,7 +63,7 @@ public class DeletePaymentServiceRequestBuilder {
         return sdk.delete(
             paymentServiceId,
             timeoutInSeconds,
-            xGr4vyMerchantAccountId);
+            merchantAccountId);
     }
 
     private static final LazySingletonValue<Optional<Double>> _SINGLETON_VALUE_TimeoutInSeconds =

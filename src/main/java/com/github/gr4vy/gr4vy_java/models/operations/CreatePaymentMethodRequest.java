@@ -25,26 +25,26 @@ public class CreatePaymentMethodRequest {
      * The ID of the merchant account to use for this request.
      */
     @SpeakeasyMetadata("header:style=simple,explode=false,name=x-gr4vy-merchant-account-id")
-    private JsonNullable<String> xGr4vyMerchantAccountId;
+    private JsonNullable<String> merchantAccountId;
 
     @SpeakeasyMetadata("request:mediaType=application/json")
-    private CreatePaymentMethodBody requestBody;
+    private Body requestBody;
 
     @JsonCreator
     public CreatePaymentMethodRequest(
             Optional<Double> timeoutInSeconds,
-            JsonNullable<String> xGr4vyMerchantAccountId,
-            CreatePaymentMethodBody requestBody) {
+            JsonNullable<String> merchantAccountId,
+            Body requestBody) {
         Utils.checkNotNull(timeoutInSeconds, "timeoutInSeconds");
-        Utils.checkNotNull(xGr4vyMerchantAccountId, "xGr4vyMerchantAccountId");
+        Utils.checkNotNull(merchantAccountId, "merchantAccountId");
         Utils.checkNotNull(requestBody, "requestBody");
         this.timeoutInSeconds = timeoutInSeconds;
-        this.xGr4vyMerchantAccountId = xGr4vyMerchantAccountId;
+        this.merchantAccountId = merchantAccountId;
         this.requestBody = requestBody;
     }
     
     public CreatePaymentMethodRequest(
-            CreatePaymentMethodBody requestBody) {
+            Body requestBody) {
         this(Optional.empty(), JsonNullable.undefined(), requestBody);
     }
 
@@ -57,12 +57,12 @@ public class CreatePaymentMethodRequest {
      * The ID of the merchant account to use for this request.
      */
     @JsonIgnore
-    public JsonNullable<String> xGr4vyMerchantAccountId() {
-        return xGr4vyMerchantAccountId;
+    public JsonNullable<String> merchantAccountId() {
+        return merchantAccountId;
     }
 
     @JsonIgnore
-    public CreatePaymentMethodBody requestBody() {
+    public Body requestBody() {
         return requestBody;
     }
 
@@ -85,22 +85,22 @@ public class CreatePaymentMethodRequest {
     /**
      * The ID of the merchant account to use for this request.
      */
-    public CreatePaymentMethodRequest withXGr4vyMerchantAccountId(String xGr4vyMerchantAccountId) {
-        Utils.checkNotNull(xGr4vyMerchantAccountId, "xGr4vyMerchantAccountId");
-        this.xGr4vyMerchantAccountId = JsonNullable.of(xGr4vyMerchantAccountId);
+    public CreatePaymentMethodRequest withMerchantAccountId(String merchantAccountId) {
+        Utils.checkNotNull(merchantAccountId, "merchantAccountId");
+        this.merchantAccountId = JsonNullable.of(merchantAccountId);
         return this;
     }
 
     /**
      * The ID of the merchant account to use for this request.
      */
-    public CreatePaymentMethodRequest withXGr4vyMerchantAccountId(JsonNullable<String> xGr4vyMerchantAccountId) {
-        Utils.checkNotNull(xGr4vyMerchantAccountId, "xGr4vyMerchantAccountId");
-        this.xGr4vyMerchantAccountId = xGr4vyMerchantAccountId;
+    public CreatePaymentMethodRequest withMerchantAccountId(JsonNullable<String> merchantAccountId) {
+        Utils.checkNotNull(merchantAccountId, "merchantAccountId");
+        this.merchantAccountId = merchantAccountId;
         return this;
     }
 
-    public CreatePaymentMethodRequest withRequestBody(CreatePaymentMethodBody requestBody) {
+    public CreatePaymentMethodRequest withRequestBody(Body requestBody) {
         Utils.checkNotNull(requestBody, "requestBody");
         this.requestBody = requestBody;
         return this;
@@ -118,7 +118,7 @@ public class CreatePaymentMethodRequest {
         CreatePaymentMethodRequest other = (CreatePaymentMethodRequest) o;
         return 
             Objects.deepEquals(this.timeoutInSeconds, other.timeoutInSeconds) &&
-            Objects.deepEquals(this.xGr4vyMerchantAccountId, other.xGr4vyMerchantAccountId) &&
+            Objects.deepEquals(this.merchantAccountId, other.merchantAccountId) &&
             Objects.deepEquals(this.requestBody, other.requestBody);
     }
     
@@ -126,7 +126,7 @@ public class CreatePaymentMethodRequest {
     public int hashCode() {
         return Objects.hash(
             timeoutInSeconds,
-            xGr4vyMerchantAccountId,
+            merchantAccountId,
             requestBody);
     }
     
@@ -134,7 +134,7 @@ public class CreatePaymentMethodRequest {
     public String toString() {
         return Utils.toString(CreatePaymentMethodRequest.class,
                 "timeoutInSeconds", timeoutInSeconds,
-                "xGr4vyMerchantAccountId", xGr4vyMerchantAccountId,
+                "merchantAccountId", merchantAccountId,
                 "requestBody", requestBody);
     }
     
@@ -142,9 +142,9 @@ public class CreatePaymentMethodRequest {
  
         private Optional<Double> timeoutInSeconds;
  
-        private JsonNullable<String> xGr4vyMerchantAccountId = JsonNullable.undefined();
+        private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
  
-        private CreatePaymentMethodBody requestBody;
+        private Body requestBody;
         
         private Builder() {
           // force use of static builder() method
@@ -165,22 +165,22 @@ public class CreatePaymentMethodRequest {
         /**
          * The ID of the merchant account to use for this request.
          */
-        public Builder xGr4vyMerchantAccountId(String xGr4vyMerchantAccountId) {
-            Utils.checkNotNull(xGr4vyMerchantAccountId, "xGr4vyMerchantAccountId");
-            this.xGr4vyMerchantAccountId = JsonNullable.of(xGr4vyMerchantAccountId);
+        public Builder merchantAccountId(String merchantAccountId) {
+            Utils.checkNotNull(merchantAccountId, "merchantAccountId");
+            this.merchantAccountId = JsonNullable.of(merchantAccountId);
             return this;
         }
 
         /**
          * The ID of the merchant account to use for this request.
          */
-        public Builder xGr4vyMerchantAccountId(JsonNullable<String> xGr4vyMerchantAccountId) {
-            Utils.checkNotNull(xGr4vyMerchantAccountId, "xGr4vyMerchantAccountId");
-            this.xGr4vyMerchantAccountId = xGr4vyMerchantAccountId;
+        public Builder merchantAccountId(JsonNullable<String> merchantAccountId) {
+            Utils.checkNotNull(merchantAccountId, "merchantAccountId");
+            this.merchantAccountId = merchantAccountId;
             return this;
         }
 
-        public Builder requestBody(CreatePaymentMethodBody requestBody) {
+        public Builder requestBody(Body requestBody) {
             Utils.checkNotNull(requestBody, "requestBody");
             this.requestBody = requestBody;
             return this;
@@ -192,7 +192,7 @@ public class CreatePaymentMethodRequest {
             }
             return new CreatePaymentMethodRequest(
                 timeoutInSeconds,
-                xGr4vyMerchantAccountId,
+                merchantAccountId,
                 requestBody);
         }
 

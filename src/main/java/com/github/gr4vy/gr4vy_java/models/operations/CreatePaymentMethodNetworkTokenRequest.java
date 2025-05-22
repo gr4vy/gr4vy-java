@@ -32,7 +32,7 @@ public class CreatePaymentMethodNetworkTokenRequest {
      * The ID of the merchant account to use for this request.
      */
     @SpeakeasyMetadata("header:style=simple,explode=false,name=x-gr4vy-merchant-account-id")
-    private JsonNullable<String> xGr4vyMerchantAccountId;
+    private JsonNullable<String> merchantAccountId;
 
     @SpeakeasyMetadata("request:mediaType=application/json")
     private NetworkTokenCreate networkTokenCreate;
@@ -41,15 +41,15 @@ public class CreatePaymentMethodNetworkTokenRequest {
     public CreatePaymentMethodNetworkTokenRequest(
             String paymentMethodId,
             Optional<Double> timeoutInSeconds,
-            JsonNullable<String> xGr4vyMerchantAccountId,
+            JsonNullable<String> merchantAccountId,
             NetworkTokenCreate networkTokenCreate) {
         Utils.checkNotNull(paymentMethodId, "paymentMethodId");
         Utils.checkNotNull(timeoutInSeconds, "timeoutInSeconds");
-        Utils.checkNotNull(xGr4vyMerchantAccountId, "xGr4vyMerchantAccountId");
+        Utils.checkNotNull(merchantAccountId, "merchantAccountId");
         Utils.checkNotNull(networkTokenCreate, "networkTokenCreate");
         this.paymentMethodId = paymentMethodId;
         this.timeoutInSeconds = timeoutInSeconds;
-        this.xGr4vyMerchantAccountId = xGr4vyMerchantAccountId;
+        this.merchantAccountId = merchantAccountId;
         this.networkTokenCreate = networkTokenCreate;
     }
     
@@ -76,8 +76,8 @@ public class CreatePaymentMethodNetworkTokenRequest {
      * The ID of the merchant account to use for this request.
      */
     @JsonIgnore
-    public JsonNullable<String> xGr4vyMerchantAccountId() {
-        return xGr4vyMerchantAccountId;
+    public JsonNullable<String> merchantAccountId() {
+        return merchantAccountId;
     }
 
     @JsonIgnore
@@ -113,18 +113,18 @@ public class CreatePaymentMethodNetworkTokenRequest {
     /**
      * The ID of the merchant account to use for this request.
      */
-    public CreatePaymentMethodNetworkTokenRequest withXGr4vyMerchantAccountId(String xGr4vyMerchantAccountId) {
-        Utils.checkNotNull(xGr4vyMerchantAccountId, "xGr4vyMerchantAccountId");
-        this.xGr4vyMerchantAccountId = JsonNullable.of(xGr4vyMerchantAccountId);
+    public CreatePaymentMethodNetworkTokenRequest withMerchantAccountId(String merchantAccountId) {
+        Utils.checkNotNull(merchantAccountId, "merchantAccountId");
+        this.merchantAccountId = JsonNullable.of(merchantAccountId);
         return this;
     }
 
     /**
      * The ID of the merchant account to use for this request.
      */
-    public CreatePaymentMethodNetworkTokenRequest withXGr4vyMerchantAccountId(JsonNullable<String> xGr4vyMerchantAccountId) {
-        Utils.checkNotNull(xGr4vyMerchantAccountId, "xGr4vyMerchantAccountId");
-        this.xGr4vyMerchantAccountId = xGr4vyMerchantAccountId;
+    public CreatePaymentMethodNetworkTokenRequest withMerchantAccountId(JsonNullable<String> merchantAccountId) {
+        Utils.checkNotNull(merchantAccountId, "merchantAccountId");
+        this.merchantAccountId = merchantAccountId;
         return this;
     }
 
@@ -147,7 +147,7 @@ public class CreatePaymentMethodNetworkTokenRequest {
         return 
             Objects.deepEquals(this.paymentMethodId, other.paymentMethodId) &&
             Objects.deepEquals(this.timeoutInSeconds, other.timeoutInSeconds) &&
-            Objects.deepEquals(this.xGr4vyMerchantAccountId, other.xGr4vyMerchantAccountId) &&
+            Objects.deepEquals(this.merchantAccountId, other.merchantAccountId) &&
             Objects.deepEquals(this.networkTokenCreate, other.networkTokenCreate);
     }
     
@@ -156,7 +156,7 @@ public class CreatePaymentMethodNetworkTokenRequest {
         return Objects.hash(
             paymentMethodId,
             timeoutInSeconds,
-            xGr4vyMerchantAccountId,
+            merchantAccountId,
             networkTokenCreate);
     }
     
@@ -165,7 +165,7 @@ public class CreatePaymentMethodNetworkTokenRequest {
         return Utils.toString(CreatePaymentMethodNetworkTokenRequest.class,
                 "paymentMethodId", paymentMethodId,
                 "timeoutInSeconds", timeoutInSeconds,
-                "xGr4vyMerchantAccountId", xGr4vyMerchantAccountId,
+                "merchantAccountId", merchantAccountId,
                 "networkTokenCreate", networkTokenCreate);
     }
     
@@ -175,7 +175,7 @@ public class CreatePaymentMethodNetworkTokenRequest {
  
         private Optional<Double> timeoutInSeconds;
  
-        private JsonNullable<String> xGr4vyMerchantAccountId = JsonNullable.undefined();
+        private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
  
         private NetworkTokenCreate networkTokenCreate;
         
@@ -207,18 +207,18 @@ public class CreatePaymentMethodNetworkTokenRequest {
         /**
          * The ID of the merchant account to use for this request.
          */
-        public Builder xGr4vyMerchantAccountId(String xGr4vyMerchantAccountId) {
-            Utils.checkNotNull(xGr4vyMerchantAccountId, "xGr4vyMerchantAccountId");
-            this.xGr4vyMerchantAccountId = JsonNullable.of(xGr4vyMerchantAccountId);
+        public Builder merchantAccountId(String merchantAccountId) {
+            Utils.checkNotNull(merchantAccountId, "merchantAccountId");
+            this.merchantAccountId = JsonNullable.of(merchantAccountId);
             return this;
         }
 
         /**
          * The ID of the merchant account to use for this request.
          */
-        public Builder xGr4vyMerchantAccountId(JsonNullable<String> xGr4vyMerchantAccountId) {
-            Utils.checkNotNull(xGr4vyMerchantAccountId, "xGr4vyMerchantAccountId");
-            this.xGr4vyMerchantAccountId = xGr4vyMerchantAccountId;
+        public Builder merchantAccountId(JsonNullable<String> merchantAccountId) {
+            Utils.checkNotNull(merchantAccountId, "merchantAccountId");
+            this.merchantAccountId = merchantAccountId;
             return this;
         }
 
@@ -235,7 +235,7 @@ public class CreatePaymentMethodNetworkTokenRequest {
             return new CreatePaymentMethodNetworkTokenRequest(
                 paymentMethodId,
                 timeoutInSeconds,
-                xGr4vyMerchantAccountId,
+                merchantAccountId,
                 networkTokenCreate);
         }
 

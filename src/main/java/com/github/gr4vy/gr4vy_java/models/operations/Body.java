@@ -19,29 +19,29 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.Objects;
 
-@JsonDeserialize(using = CreatePaymentMethodBody._Deserializer.class)
-public class CreatePaymentMethodBody {
+@JsonDeserialize(using = Body._Deserializer.class)
+public class Body {
 
     @JsonValue
     private TypedObject value;
     
-    private CreatePaymentMethodBody(TypedObject value) {
+    private Body(TypedObject value) {
         this.value = value;
     }
 
-    public static CreatePaymentMethodBody of(CardPaymentMethodCreate value) {
+    public static Body of(CardPaymentMethodCreate value) {
         Utils.checkNotNull(value, "value");
-        return new CreatePaymentMethodBody(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<CardPaymentMethodCreate>(){}));
+        return new Body(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<CardPaymentMethodCreate>(){}));
     }
 
-    public static CreatePaymentMethodBody of(RedirectPaymentMethodCreate value) {
+    public static Body of(RedirectPaymentMethodCreate value) {
         Utils.checkNotNull(value, "value");
-        return new CreatePaymentMethodBody(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<RedirectPaymentMethodCreate>(){}));
+        return new Body(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<RedirectPaymentMethodCreate>(){}));
     }
 
-    public static CreatePaymentMethodBody of(CheckoutSessionPaymentMethodCreate value) {
+    public static Body of(CheckoutSessionPaymentMethodCreate value) {
         Utils.checkNotNull(value, "value");
-        return new CreatePaymentMethodBody(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<CheckoutSessionPaymentMethodCreate>(){}));
+        return new Body(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<CheckoutSessionPaymentMethodCreate>(){}));
     }
     
     /**
@@ -75,7 +75,7 @@ public class CreatePaymentMethodBody {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        CreatePaymentMethodBody other = (CreatePaymentMethodBody) o;
+        Body other = (Body) o;
         return Objects.deepEquals(this.value.value(), other.value.value()); 
     }
     
@@ -85,10 +85,10 @@ public class CreatePaymentMethodBody {
     }
     
     @SuppressWarnings("serial")
-    public static final class _Deserializer extends OneOfDeserializer<CreatePaymentMethodBody> {
+    public static final class _Deserializer extends OneOfDeserializer<Body> {
 
         public _Deserializer() {
-            super(CreatePaymentMethodBody.class, false,
+            super(Body.class, false,
                   TypeReferenceWithShape.of(new TypeReference<CardPaymentMethodCreate>() {}, JsonShape.DEFAULT),
                   TypeReferenceWithShape.of(new TypeReference<RedirectPaymentMethodCreate>() {}, JsonShape.DEFAULT),
                   TypeReferenceWithShape.of(new TypeReference<CheckoutSessionPaymentMethodCreate>() {}, JsonShape.DEFAULT));
@@ -97,7 +97,7 @@ public class CreatePaymentMethodBody {
     
     @Override
     public String toString() {
-        return Utils.toString(CreatePaymentMethodBody.class,
+        return Utils.toString(Body.class,
                 "value", value);
     }
  

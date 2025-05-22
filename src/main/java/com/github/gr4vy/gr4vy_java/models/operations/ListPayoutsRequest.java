@@ -34,19 +34,19 @@ public class ListPayoutsRequest {
      * The ID of the merchant account to use for this request.
      */
     @SpeakeasyMetadata("header:style=simple,explode=false,name=x-gr4vy-merchant-account-id")
-    private JsonNullable<String> xGr4vyMerchantAccountId;
+    private JsonNullable<String> merchantAccountId;
 
     @JsonCreator
     public ListPayoutsRequest(
             JsonNullable<String> cursor,
             Optional<Long> limit,
-            JsonNullable<String> xGr4vyMerchantAccountId) {
+            JsonNullable<String> merchantAccountId) {
         Utils.checkNotNull(cursor, "cursor");
         Utils.checkNotNull(limit, "limit");
-        Utils.checkNotNull(xGr4vyMerchantAccountId, "xGr4vyMerchantAccountId");
+        Utils.checkNotNull(merchantAccountId, "merchantAccountId");
         this.cursor = cursor;
         this.limit = limit;
-        this.xGr4vyMerchantAccountId = xGr4vyMerchantAccountId;
+        this.merchantAccountId = merchantAccountId;
     }
     
     public ListPayoutsRequest() {
@@ -73,8 +73,8 @@ public class ListPayoutsRequest {
      * The ID of the merchant account to use for this request.
      */
     @JsonIgnore
-    public JsonNullable<String> xGr4vyMerchantAccountId() {
-        return xGr4vyMerchantAccountId;
+    public JsonNullable<String> merchantAccountId() {
+        return merchantAccountId;
     }
 
     public final static Builder builder() {
@@ -120,18 +120,18 @@ public class ListPayoutsRequest {
     /**
      * The ID of the merchant account to use for this request.
      */
-    public ListPayoutsRequest withXGr4vyMerchantAccountId(String xGr4vyMerchantAccountId) {
-        Utils.checkNotNull(xGr4vyMerchantAccountId, "xGr4vyMerchantAccountId");
-        this.xGr4vyMerchantAccountId = JsonNullable.of(xGr4vyMerchantAccountId);
+    public ListPayoutsRequest withMerchantAccountId(String merchantAccountId) {
+        Utils.checkNotNull(merchantAccountId, "merchantAccountId");
+        this.merchantAccountId = JsonNullable.of(merchantAccountId);
         return this;
     }
 
     /**
      * The ID of the merchant account to use for this request.
      */
-    public ListPayoutsRequest withXGr4vyMerchantAccountId(JsonNullable<String> xGr4vyMerchantAccountId) {
-        Utils.checkNotNull(xGr4vyMerchantAccountId, "xGr4vyMerchantAccountId");
-        this.xGr4vyMerchantAccountId = xGr4vyMerchantAccountId;
+    public ListPayoutsRequest withMerchantAccountId(JsonNullable<String> merchantAccountId) {
+        Utils.checkNotNull(merchantAccountId, "merchantAccountId");
+        this.merchantAccountId = merchantAccountId;
         return this;
     }
 
@@ -148,7 +148,7 @@ public class ListPayoutsRequest {
         return 
             Objects.deepEquals(this.cursor, other.cursor) &&
             Objects.deepEquals(this.limit, other.limit) &&
-            Objects.deepEquals(this.xGr4vyMerchantAccountId, other.xGr4vyMerchantAccountId);
+            Objects.deepEquals(this.merchantAccountId, other.merchantAccountId);
     }
     
     @Override
@@ -156,7 +156,7 @@ public class ListPayoutsRequest {
         return Objects.hash(
             cursor,
             limit,
-            xGr4vyMerchantAccountId);
+            merchantAccountId);
     }
     
     @Override
@@ -164,7 +164,7 @@ public class ListPayoutsRequest {
         return Utils.toString(ListPayoutsRequest.class,
                 "cursor", cursor,
                 "limit", limit,
-                "xGr4vyMerchantAccountId", xGr4vyMerchantAccountId);
+                "merchantAccountId", merchantAccountId);
     }
     
     public final static class Builder {
@@ -173,7 +173,7 @@ public class ListPayoutsRequest {
  
         private Optional<Long> limit;
  
-        private JsonNullable<String> xGr4vyMerchantAccountId = JsonNullable.undefined();
+        private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
         
         private Builder() {
           // force use of static builder() method
@@ -218,18 +218,18 @@ public class ListPayoutsRequest {
         /**
          * The ID of the merchant account to use for this request.
          */
-        public Builder xGr4vyMerchantAccountId(String xGr4vyMerchantAccountId) {
-            Utils.checkNotNull(xGr4vyMerchantAccountId, "xGr4vyMerchantAccountId");
-            this.xGr4vyMerchantAccountId = JsonNullable.of(xGr4vyMerchantAccountId);
+        public Builder merchantAccountId(String merchantAccountId) {
+            Utils.checkNotNull(merchantAccountId, "merchantAccountId");
+            this.merchantAccountId = JsonNullable.of(merchantAccountId);
             return this;
         }
 
         /**
          * The ID of the merchant account to use for this request.
          */
-        public Builder xGr4vyMerchantAccountId(JsonNullable<String> xGr4vyMerchantAccountId) {
-            Utils.checkNotNull(xGr4vyMerchantAccountId, "xGr4vyMerchantAccountId");
-            this.xGr4vyMerchantAccountId = xGr4vyMerchantAccountId;
+        public Builder merchantAccountId(JsonNullable<String> merchantAccountId) {
+            Utils.checkNotNull(merchantAccountId, "merchantAccountId");
+            this.merchantAccountId = merchantAccountId;
             return this;
         }
         
@@ -240,7 +240,7 @@ public class ListPayoutsRequest {
             return new ListPayoutsRequest(
                 cursor,
                 limit,
-                xGr4vyMerchantAccountId);
+                merchantAccountId);
         }
 
         private static final LazySingletonValue<Optional<Long>> _SINGLETON_VALUE_Limit =

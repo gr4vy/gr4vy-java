@@ -3,16 +3,20 @@
  */
 package com.github.gr4vy.gr4vy_java.models.operations;
 
+import com.github.gr4vy.gr4vy_java.utils.Options;
+import com.github.gr4vy.gr4vy_java.utils.RetryConfig;
 import com.github.gr4vy.gr4vy_java.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
+import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 public class GetBuyerShippingDetailsRequestBuilder {
 
     private String buyerId;
     private String shippingDetailsId;
-    private JsonNullable<String> xGr4vyMerchantAccountId = JsonNullable.undefined();
+    private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
+    private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKMethodInterfaces.MethodCallGetBuyerShippingDetails sdk;
 
     public GetBuyerShippingDetailsRequestBuilder(SDKMethodInterfaces.MethodCallGetBuyerShippingDetails sdk) {
@@ -31,23 +35,38 @@ public class GetBuyerShippingDetailsRequestBuilder {
         return this;
     }
 
-    public GetBuyerShippingDetailsRequestBuilder xGr4vyMerchantAccountId(String xGr4vyMerchantAccountId) {
-        Utils.checkNotNull(xGr4vyMerchantAccountId, "xGr4vyMerchantAccountId");
-        this.xGr4vyMerchantAccountId = JsonNullable.of(xGr4vyMerchantAccountId);
+    public GetBuyerShippingDetailsRequestBuilder merchantAccountId(String merchantAccountId) {
+        Utils.checkNotNull(merchantAccountId, "merchantAccountId");
+        this.merchantAccountId = JsonNullable.of(merchantAccountId);
         return this;
     }
 
-    public GetBuyerShippingDetailsRequestBuilder xGr4vyMerchantAccountId(JsonNullable<String> xGr4vyMerchantAccountId) {
-        Utils.checkNotNull(xGr4vyMerchantAccountId, "xGr4vyMerchantAccountId");
-        this.xGr4vyMerchantAccountId = xGr4vyMerchantAccountId;
+    public GetBuyerShippingDetailsRequestBuilder merchantAccountId(JsonNullable<String> merchantAccountId) {
+        Utils.checkNotNull(merchantAccountId, "merchantAccountId");
+        this.merchantAccountId = merchantAccountId;
+        return this;
+    }
+                
+    public GetBuyerShippingDetailsRequestBuilder retryConfig(RetryConfig retryConfig) {
+        Utils.checkNotNull(retryConfig, "retryConfig");
+        this.retryConfig = Optional.of(retryConfig);
+        return this;
+    }
+
+    public GetBuyerShippingDetailsRequestBuilder retryConfig(Optional<RetryConfig> retryConfig) {
+        Utils.checkNotNull(retryConfig, "retryConfig");
+        this.retryConfig = retryConfig;
         return this;
     }
 
     public GetBuyerShippingDetailsResponse call() throws Exception {
-
+        Optional<Options> options = Optional.of(Options.builder()
+                                                    .retryConfig(retryConfig)
+                                                    .build());
         return sdk.get(
             buyerId,
             shippingDetailsId,
-            xGr4vyMerchantAccountId);
+            merchantAccountId,
+            options);
     }
 }

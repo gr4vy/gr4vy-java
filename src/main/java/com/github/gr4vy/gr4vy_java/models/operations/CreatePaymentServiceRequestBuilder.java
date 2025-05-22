@@ -12,7 +12,7 @@ import org.openapitools.jackson.nullable.JsonNullable;
 public class CreatePaymentServiceRequestBuilder {
 
     private String paymentServiceId;
-    private JsonNullable<String> xGr4vyMerchantAccountId = JsonNullable.undefined();
+    private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
     private PaymentServiceUpdate paymentServiceUpdate;
     private final SDKMethodInterfaces.MethodCallCreatePaymentService sdk;
 
@@ -26,15 +26,15 @@ public class CreatePaymentServiceRequestBuilder {
         return this;
     }
 
-    public CreatePaymentServiceRequestBuilder xGr4vyMerchantAccountId(String xGr4vyMerchantAccountId) {
-        Utils.checkNotNull(xGr4vyMerchantAccountId, "xGr4vyMerchantAccountId");
-        this.xGr4vyMerchantAccountId = JsonNullable.of(xGr4vyMerchantAccountId);
+    public CreatePaymentServiceRequestBuilder merchantAccountId(String merchantAccountId) {
+        Utils.checkNotNull(merchantAccountId, "merchantAccountId");
+        this.merchantAccountId = JsonNullable.of(merchantAccountId);
         return this;
     }
 
-    public CreatePaymentServiceRequestBuilder xGr4vyMerchantAccountId(JsonNullable<String> xGr4vyMerchantAccountId) {
-        Utils.checkNotNull(xGr4vyMerchantAccountId, "xGr4vyMerchantAccountId");
-        this.xGr4vyMerchantAccountId = xGr4vyMerchantAccountId;
+    public CreatePaymentServiceRequestBuilder merchantAccountId(JsonNullable<String> merchantAccountId) {
+        Utils.checkNotNull(merchantAccountId, "merchantAccountId");
+        this.merchantAccountId = merchantAccountId;
         return this;
     }
 
@@ -48,7 +48,7 @@ public class CreatePaymentServiceRequestBuilder {
 
         return sdk.update(
             paymentServiceId,
-            xGr4vyMerchantAccountId,
+            merchantAccountId,
             paymentServiceUpdate);
     }
 }

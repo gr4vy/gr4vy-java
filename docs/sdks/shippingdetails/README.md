@@ -32,12 +32,11 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Gr4vy sdk = Gr4vy.builder()
-                .oAuth2PasswordBearer("<YOUR_O_AUTH2_PASSWORD_BEARER_HERE>")
+                .bearerAuth("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
         AddBuyerShippingDetailsResponse res = sdk.buyers().shippingDetails().create()
                 .buyerId("fe26475d-ec3e-4884-9553-f7356683f7f9")
-                .xGr4vyMerchantAccountId("default")
                 .shippingDetailsCreate(ShippingDetailsCreate.builder()
                     .firstName("John")
                     .lastName("Doe")
@@ -70,7 +69,7 @@ public class Application {
 | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
 | `buyerId`                                                                 | *String*                                                                  | :heavy_check_mark:                                                        | The ID of the buyer to add shipping details to.                           | fe26475d-ec3e-4884-9553-f7356683f7f9                                      |
 | `timeoutInSeconds`                                                        | *Optional\<Double>*                                                       | :heavy_minus_sign:                                                        | N/A                                                                       |                                                                           |
-| `xGr4vyMerchantAccountId`                                                 | *JsonNullable\<String>*                                                   | :heavy_minus_sign:                                                        | The ID of the merchant account to use for this request.                   | default                                                                   |
+| `merchantAccountId`                                                       | *JsonNullable\<String>*                                                   | :heavy_minus_sign:                                                        | The ID of the merchant account to use for this request.                   |                                                                           |
 | `shippingDetailsCreate`                                                   | [ShippingDetailsCreate](../../models/components/ShippingDetailsCreate.md) | :heavy_check_mark:                                                        | N/A                                                                       |                                                                           |
 
 ### Response
@@ -114,12 +113,11 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Gr4vy sdk = Gr4vy.builder()
-                .oAuth2PasswordBearer("<YOUR_O_AUTH2_PASSWORD_BEARER_HERE>")
+                .bearerAuth("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
         ListBuyerShippingDetailsResponse res = sdk.buyers().shippingDetails().list()
                 .buyerId("fe26475d-ec3e-4884-9553-f7356683f7f9")
-                .xGr4vyMerchantAccountId("default")
                 .call();
 
         if (res.collectionNoCursorShippingDetails().isPresent()) {
@@ -134,7 +132,7 @@ public class Application {
 | Parameter                                               | Type                                                    | Required                                                | Description                                             | Example                                                 |
 | ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- |
 | `buyerId`                                               | *String*                                                | :heavy_check_mark:                                      | The ID of the buyer to retrieve shipping details for.   | fe26475d-ec3e-4884-9553-f7356683f7f9                    |
-| `xGr4vyMerchantAccountId`                               | *JsonNullable\<String>*                                 | :heavy_minus_sign:                                      | The ID of the merchant account to use for this request. | default                                                 |
+| `merchantAccountId`                                     | *JsonNullable\<String>*                                 | :heavy_minus_sign:                                      | The ID of the merchant account to use for this request. |                                                         |
 
 ### Response
 
@@ -177,13 +175,12 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Gr4vy sdk = Gr4vy.builder()
-                .oAuth2PasswordBearer("<YOUR_O_AUTH2_PASSWORD_BEARER_HERE>")
+                .bearerAuth("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
         GetBuyerShippingDetailsResponse res = sdk.buyers().shippingDetails().get()
                 .buyerId("fe26475d-ec3e-4884-9553-f7356683f7f9")
                 .shippingDetailsId("bf8c36ad-02d9-4904-b0f9-a230b149e341")
-                .xGr4vyMerchantAccountId("default")
                 .call();
 
         if (res.shippingDetails().isPresent()) {
@@ -199,7 +196,7 @@ public class Application {
 | ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- |
 | `buyerId`                                               | *String*                                                | :heavy_check_mark:                                      | The ID of the buyer to retrieve shipping details for.   | fe26475d-ec3e-4884-9553-f7356683f7f9                    |
 | `shippingDetailsId`                                     | *String*                                                | :heavy_check_mark:                                      | The ID of the shipping details to retrieve.             | bf8c36ad-02d9-4904-b0f9-a230b149e341                    |
-| `xGr4vyMerchantAccountId`                               | *JsonNullable\<String>*                                 | :heavy_minus_sign:                                      | The ID of the merchant account to use for this request. | default                                                 |
+| `merchantAccountId`                                     | *JsonNullable\<String>*                                 | :heavy_minus_sign:                                      | The ID of the merchant account to use for this request. |                                                         |
 
 ### Response
 
@@ -245,7 +242,7 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Gr4vy sdk = Gr4vy.builder()
-                .oAuth2PasswordBearer("<YOUR_O_AUTH2_PASSWORD_BEARER_HERE>")
+                .bearerAuth("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
         UpdateBuyerShippingDetailsRequest req = UpdateBuyerShippingDetailsRequest.builder()
@@ -268,7 +265,6 @@ public class Application {
                         .organization("Gr4vy")
                         .build())
                     .build())
-                .xGr4vyMerchantAccountId("default")
                 .build();
 
         UpdateBuyerShippingDetailsResponse res = sdk.buyers().shippingDetails().update()
@@ -329,13 +325,12 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Gr4vy sdk = Gr4vy.builder()
-                .oAuth2PasswordBearer("<YOUR_O_AUTH2_PASSWORD_BEARER_HERE>")
+                .bearerAuth("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
         DeleteBuyerShippingDetailsResponse res = sdk.buyers().shippingDetails().delete()
                 .buyerId("fe26475d-ec3e-4884-9553-f7356683f7f9")
                 .shippingDetailsId("bf8c36ad-02d9-4904-b0f9-a230b149e341")
-                .xGr4vyMerchantAccountId("default")
                 .call();
 
         if (res.any().isPresent()) {
@@ -352,7 +347,7 @@ public class Application {
 | `buyerId`                                               | *String*                                                | :heavy_check_mark:                                      | The ID of the buyer to delete shipping details for.     | fe26475d-ec3e-4884-9553-f7356683f7f9                    |
 | `shippingDetailsId`                                     | *String*                                                | :heavy_check_mark:                                      | The ID of the shipping details to delete.               | bf8c36ad-02d9-4904-b0f9-a230b149e341                    |
 | `timeoutInSeconds`                                      | *Optional\<Double>*                                     | :heavy_minus_sign:                                      | N/A                                                     |                                                         |
-| `xGr4vyMerchantAccountId`                               | *JsonNullable\<String>*                                 | :heavy_minus_sign:                                      | The ID of the merchant account to use for this request. | default                                                 |
+| `merchantAccountId`                                     | *JsonNullable\<String>*                                 | :heavy_minus_sign:                                      | The ID of the merchant account to use for this request. |                                                         |
 
 ### Response
 

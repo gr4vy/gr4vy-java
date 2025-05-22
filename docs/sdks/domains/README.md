@@ -28,12 +28,11 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Gr4vy sdk = Gr4vy.builder()
-                .oAuth2PasswordBearer("<YOUR_O_AUTH2_PASSWORD_BEARER_HERE>")
+                .bearerAuth("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
         RegisterDigitalWalletDomainResponse res = sdk.digitalWallets().domains().create()
                 .digitalWalletId("1808f5e6-b49c-4db9-94fa-22371ea352f5")
-                .xGr4vyMerchantAccountId("default")
                 .digitalWalletDomain(DigitalWalletDomain.builder()
                     .domainName("example.com")
                     .build())
@@ -52,7 +51,7 @@ public class Application {
 | --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- |
 | `digitalWalletId`                                                     | *String*                                                              | :heavy_check_mark:                                                    | The ID of the digital wallet to remove a domain for.                  | 1808f5e6-b49c-4db9-94fa-22371ea352f5                                  |
 | `timeoutInSeconds`                                                    | *Optional\<Double>*                                                   | :heavy_minus_sign:                                                    | N/A                                                                   |                                                                       |
-| `xGr4vyMerchantAccountId`                                             | *JsonNullable\<String>*                                               | :heavy_minus_sign:                                                    | The ID of the merchant account to use for this request.               | default                                                               |
+| `merchantAccountId`                                                   | *JsonNullable\<String>*                                               | :heavy_minus_sign:                                                    | The ID of the merchant account to use for this request.               |                                                                       |
 | `digitalWalletDomain`                                                 | [DigitalWalletDomain](../../models/components/DigitalWalletDomain.md) | :heavy_check_mark:                                                    | N/A                                                                   |                                                                       |
 
 ### Response
@@ -97,12 +96,11 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Gr4vy sdk = Gr4vy.builder()
-                .oAuth2PasswordBearer("<YOUR_O_AUTH2_PASSWORD_BEARER_HERE>")
+                .bearerAuth("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
         UnregisterDigitalWalletDomainResponse res = sdk.digitalWallets().domains().delete()
                 .digitalWalletId("")
-                .xGr4vyMerchantAccountId("default")
                 .digitalWalletDomain(DigitalWalletDomain.builder()
                     .domainName("example.com")
                     .build())
@@ -121,7 +119,7 @@ public class Application {
 | --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- |
 | `digitalWalletId`                                                     | *String*                                                              | :heavy_check_mark:                                                    | N/A                                                                   |                                                                       |
 | `timeoutInSeconds`                                                    | *Optional\<Double>*                                                   | :heavy_minus_sign:                                                    | N/A                                                                   |                                                                       |
-| `xGr4vyMerchantAccountId`                                             | *JsonNullable\<String>*                                               | :heavy_minus_sign:                                                    | The ID of the merchant account to use for this request.               | default                                                               |
+| `merchantAccountId`                                                   | *JsonNullable\<String>*                                               | :heavy_minus_sign:                                                    | The ID of the merchant account to use for this request.               |                                                                       |
 | `digitalWalletDomain`                                                 | [DigitalWalletDomain](../../models/components/DigitalWalletDomain.md) | :heavy_check_mark:                                                    | N/A                                                                   |                                                                       |
 
 ### Response

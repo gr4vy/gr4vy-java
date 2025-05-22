@@ -26,7 +26,7 @@ public class AddBuyerRequest {
      * The ID of the merchant account to use for this request.
      */
     @SpeakeasyMetadata("header:style=simple,explode=false,name=x-gr4vy-merchant-account-id")
-    private JsonNullable<String> xGr4vyMerchantAccountId;
+    private JsonNullable<String> merchantAccountId;
 
     @SpeakeasyMetadata("request:mediaType=application/json")
     private BuyerCreate buyerCreate;
@@ -34,13 +34,13 @@ public class AddBuyerRequest {
     @JsonCreator
     public AddBuyerRequest(
             Optional<Double> timeoutInSeconds,
-            JsonNullable<String> xGr4vyMerchantAccountId,
+            JsonNullable<String> merchantAccountId,
             BuyerCreate buyerCreate) {
         Utils.checkNotNull(timeoutInSeconds, "timeoutInSeconds");
-        Utils.checkNotNull(xGr4vyMerchantAccountId, "xGr4vyMerchantAccountId");
+        Utils.checkNotNull(merchantAccountId, "merchantAccountId");
         Utils.checkNotNull(buyerCreate, "buyerCreate");
         this.timeoutInSeconds = timeoutInSeconds;
-        this.xGr4vyMerchantAccountId = xGr4vyMerchantAccountId;
+        this.merchantAccountId = merchantAccountId;
         this.buyerCreate = buyerCreate;
     }
     
@@ -58,8 +58,8 @@ public class AddBuyerRequest {
      * The ID of the merchant account to use for this request.
      */
     @JsonIgnore
-    public JsonNullable<String> xGr4vyMerchantAccountId() {
-        return xGr4vyMerchantAccountId;
+    public JsonNullable<String> merchantAccountId() {
+        return merchantAccountId;
     }
 
     @JsonIgnore
@@ -86,18 +86,18 @@ public class AddBuyerRequest {
     /**
      * The ID of the merchant account to use for this request.
      */
-    public AddBuyerRequest withXGr4vyMerchantAccountId(String xGr4vyMerchantAccountId) {
-        Utils.checkNotNull(xGr4vyMerchantAccountId, "xGr4vyMerchantAccountId");
-        this.xGr4vyMerchantAccountId = JsonNullable.of(xGr4vyMerchantAccountId);
+    public AddBuyerRequest withMerchantAccountId(String merchantAccountId) {
+        Utils.checkNotNull(merchantAccountId, "merchantAccountId");
+        this.merchantAccountId = JsonNullable.of(merchantAccountId);
         return this;
     }
 
     /**
      * The ID of the merchant account to use for this request.
      */
-    public AddBuyerRequest withXGr4vyMerchantAccountId(JsonNullable<String> xGr4vyMerchantAccountId) {
-        Utils.checkNotNull(xGr4vyMerchantAccountId, "xGr4vyMerchantAccountId");
-        this.xGr4vyMerchantAccountId = xGr4vyMerchantAccountId;
+    public AddBuyerRequest withMerchantAccountId(JsonNullable<String> merchantAccountId) {
+        Utils.checkNotNull(merchantAccountId, "merchantAccountId");
+        this.merchantAccountId = merchantAccountId;
         return this;
     }
 
@@ -119,7 +119,7 @@ public class AddBuyerRequest {
         AddBuyerRequest other = (AddBuyerRequest) o;
         return 
             Objects.deepEquals(this.timeoutInSeconds, other.timeoutInSeconds) &&
-            Objects.deepEquals(this.xGr4vyMerchantAccountId, other.xGr4vyMerchantAccountId) &&
+            Objects.deepEquals(this.merchantAccountId, other.merchantAccountId) &&
             Objects.deepEquals(this.buyerCreate, other.buyerCreate);
     }
     
@@ -127,7 +127,7 @@ public class AddBuyerRequest {
     public int hashCode() {
         return Objects.hash(
             timeoutInSeconds,
-            xGr4vyMerchantAccountId,
+            merchantAccountId,
             buyerCreate);
     }
     
@@ -135,7 +135,7 @@ public class AddBuyerRequest {
     public String toString() {
         return Utils.toString(AddBuyerRequest.class,
                 "timeoutInSeconds", timeoutInSeconds,
-                "xGr4vyMerchantAccountId", xGr4vyMerchantAccountId,
+                "merchantAccountId", merchantAccountId,
                 "buyerCreate", buyerCreate);
     }
     
@@ -143,7 +143,7 @@ public class AddBuyerRequest {
  
         private Optional<Double> timeoutInSeconds;
  
-        private JsonNullable<String> xGr4vyMerchantAccountId = JsonNullable.undefined();
+        private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
  
         private BuyerCreate buyerCreate;
         
@@ -166,18 +166,18 @@ public class AddBuyerRequest {
         /**
          * The ID of the merchant account to use for this request.
          */
-        public Builder xGr4vyMerchantAccountId(String xGr4vyMerchantAccountId) {
-            Utils.checkNotNull(xGr4vyMerchantAccountId, "xGr4vyMerchantAccountId");
-            this.xGr4vyMerchantAccountId = JsonNullable.of(xGr4vyMerchantAccountId);
+        public Builder merchantAccountId(String merchantAccountId) {
+            Utils.checkNotNull(merchantAccountId, "merchantAccountId");
+            this.merchantAccountId = JsonNullable.of(merchantAccountId);
             return this;
         }
 
         /**
          * The ID of the merchant account to use for this request.
          */
-        public Builder xGr4vyMerchantAccountId(JsonNullable<String> xGr4vyMerchantAccountId) {
-            Utils.checkNotNull(xGr4vyMerchantAccountId, "xGr4vyMerchantAccountId");
-            this.xGr4vyMerchantAccountId = xGr4vyMerchantAccountId;
+        public Builder merchantAccountId(JsonNullable<String> merchantAccountId) {
+            Utils.checkNotNull(merchantAccountId, "merchantAccountId");
+            this.merchantAccountId = merchantAccountId;
             return this;
         }
 
@@ -193,7 +193,7 @@ public class AddBuyerRequest {
             }
             return new AddBuyerRequest(
                 timeoutInSeconds,
-                xGr4vyMerchantAccountId,
+                merchantAccountId,
                 buyerCreate);
         }
 

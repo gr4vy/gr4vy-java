@@ -89,7 +89,7 @@ public class Domains implements
      * 
      * @param digitalWalletId The ID of the digital wallet to remove a domain for.
      * @param timeoutInSeconds 
-     * @param xGr4vyMerchantAccountId The ID of the merchant account to use for this request.
+     * @param merchantAccountId 
      * @param digitalWalletDomain 
      * @return The response from the API call
      * @throws Exception if the API call fails
@@ -97,23 +97,24 @@ public class Domains implements
     public RegisterDigitalWalletDomainResponse create(
             String digitalWalletId,
             Optional<Double> timeoutInSeconds,
-            JsonNullable<String> xGr4vyMerchantAccountId,
+            JsonNullable<String> merchantAccountId,
             DigitalWalletDomain digitalWalletDomain) throws Exception {
         RegisterDigitalWalletDomainRequest request =
             RegisterDigitalWalletDomainRequest
                 .builder()
                 .digitalWalletId(digitalWalletId)
                 .timeoutInSeconds(timeoutInSeconds)
-                .xGr4vyMerchantAccountId(xGr4vyMerchantAccountId)
+                .merchantAccountId(merchantAccountId)
                 .digitalWalletDomain(digitalWalletDomain)
                 .build();
         
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 RegisterDigitalWalletDomainRequest.class,
                 _baseUrl,
                 "/digital-wallets/{digital_wallet_id}/domains",
-                request, null);
+                request, this.sdkConfiguration.globals);
         
         HTTPRequest _req = new HTTPRequest(_url, "POST");
         Object _convertedRequest = Utils.convertToShape(
@@ -136,8 +137,8 @@ public class Domains implements
         _req.addQueryParams(Utils.getQueryParams(
                 RegisterDigitalWalletDomainRequest.class,
                 request, 
-                null));
-        _req.addHeaders(Utils.getHeadersFromMetadata(request, null));
+                this.sdkConfiguration.globals));
+        _req.addHeaders(Utils.getHeadersFromMetadata(request, this.sdkConfiguration.globals));
         
         Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
@@ -465,7 +466,7 @@ public class Domains implements
      * 
      * @param digitalWalletId 
      * @param timeoutInSeconds 
-     * @param xGr4vyMerchantAccountId The ID of the merchant account to use for this request.
+     * @param merchantAccountId 
      * @param digitalWalletDomain 
      * @return The response from the API call
      * @throws Exception if the API call fails
@@ -473,23 +474,24 @@ public class Domains implements
     public UnregisterDigitalWalletDomainResponse delete(
             String digitalWalletId,
             Optional<Double> timeoutInSeconds,
-            JsonNullable<String> xGr4vyMerchantAccountId,
+            JsonNullable<String> merchantAccountId,
             DigitalWalletDomain digitalWalletDomain) throws Exception {
         UnregisterDigitalWalletDomainRequest request =
             UnregisterDigitalWalletDomainRequest
                 .builder()
                 .digitalWalletId(digitalWalletId)
                 .timeoutInSeconds(timeoutInSeconds)
-                .xGr4vyMerchantAccountId(xGr4vyMerchantAccountId)
+                .merchantAccountId(merchantAccountId)
                 .digitalWalletDomain(digitalWalletDomain)
                 .build();
         
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 UnregisterDigitalWalletDomainRequest.class,
                 _baseUrl,
                 "/digital-wallets/{digital_wallet_id}/domains",
-                request, null);
+                request, this.sdkConfiguration.globals);
         
         HTTPRequest _req = new HTTPRequest(_url, "DELETE");
         Object _convertedRequest = Utils.convertToShape(
@@ -512,8 +514,8 @@ public class Domains implements
         _req.addQueryParams(Utils.getQueryParams(
                 UnregisterDigitalWalletDomainRequest.class,
                 request, 
-                null));
-        _req.addHeaders(Utils.getHeadersFromMetadata(request, null));
+                this.sdkConfiguration.globals));
+        _req.addHeaders(Utils.getHeadersFromMetadata(request, this.sdkConfiguration.globals));
         
         Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  

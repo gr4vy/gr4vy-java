@@ -20,7 +20,7 @@ public class CreateFullTransactionRefundRequestBuilder {
                             "timeoutInSeconds",
                             "1",
                             new TypeReference<Optional<Double>>() {});
-    private JsonNullable<String> xGr4vyMerchantAccountId = JsonNullable.undefined();
+    private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
     private JsonNullable<? extends TransactionRefundAllCreate> transactionRefundAllCreate = JsonNullable.undefined();
     private final SDKMethodInterfaces.MethodCallCreateFullTransactionRefund sdk;
 
@@ -46,15 +46,15 @@ public class CreateFullTransactionRefundRequestBuilder {
         return this;
     }
 
-    public CreateFullTransactionRefundRequestBuilder xGr4vyMerchantAccountId(String xGr4vyMerchantAccountId) {
-        Utils.checkNotNull(xGr4vyMerchantAccountId, "xGr4vyMerchantAccountId");
-        this.xGr4vyMerchantAccountId = JsonNullable.of(xGr4vyMerchantAccountId);
+    public CreateFullTransactionRefundRequestBuilder merchantAccountId(String merchantAccountId) {
+        Utils.checkNotNull(merchantAccountId, "merchantAccountId");
+        this.merchantAccountId = JsonNullable.of(merchantAccountId);
         return this;
     }
 
-    public CreateFullTransactionRefundRequestBuilder xGr4vyMerchantAccountId(JsonNullable<String> xGr4vyMerchantAccountId) {
-        Utils.checkNotNull(xGr4vyMerchantAccountId, "xGr4vyMerchantAccountId");
-        this.xGr4vyMerchantAccountId = xGr4vyMerchantAccountId;
+    public CreateFullTransactionRefundRequestBuilder merchantAccountId(JsonNullable<String> merchantAccountId) {
+        Utils.checkNotNull(merchantAccountId, "merchantAccountId");
+        this.merchantAccountId = merchantAccountId;
         return this;
     }
 
@@ -77,7 +77,7 @@ public class CreateFullTransactionRefundRequestBuilder {
         return sdk.create(
             transactionId,
             timeoutInSeconds,
-            xGr4vyMerchantAccountId,
+            merchantAccountId,
             transactionRefundAllCreate);
     }
 

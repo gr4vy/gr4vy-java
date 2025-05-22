@@ -28,19 +28,19 @@ public class VoidTransactionRequest {
      * The ID of the merchant account to use for this request.
      */
     @SpeakeasyMetadata("header:style=simple,explode=false,name=x-gr4vy-merchant-account-id")
-    private JsonNullable<String> xGr4vyMerchantAccountId;
+    private JsonNullable<String> merchantAccountId;
 
     @JsonCreator
     public VoidTransactionRequest(
             String transactionId,
             Optional<Double> timeoutInSeconds,
-            JsonNullable<String> xGr4vyMerchantAccountId) {
+            JsonNullable<String> merchantAccountId) {
         Utils.checkNotNull(transactionId, "transactionId");
         Utils.checkNotNull(timeoutInSeconds, "timeoutInSeconds");
-        Utils.checkNotNull(xGr4vyMerchantAccountId, "xGr4vyMerchantAccountId");
+        Utils.checkNotNull(merchantAccountId, "merchantAccountId");
         this.transactionId = transactionId;
         this.timeoutInSeconds = timeoutInSeconds;
-        this.xGr4vyMerchantAccountId = xGr4vyMerchantAccountId;
+        this.merchantAccountId = merchantAccountId;
     }
     
     public VoidTransactionRequest(
@@ -62,8 +62,8 @@ public class VoidTransactionRequest {
      * The ID of the merchant account to use for this request.
      */
     @JsonIgnore
-    public JsonNullable<String> xGr4vyMerchantAccountId() {
-        return xGr4vyMerchantAccountId;
+    public JsonNullable<String> merchantAccountId() {
+        return merchantAccountId;
     }
 
     public final static Builder builder() {
@@ -91,18 +91,18 @@ public class VoidTransactionRequest {
     /**
      * The ID of the merchant account to use for this request.
      */
-    public VoidTransactionRequest withXGr4vyMerchantAccountId(String xGr4vyMerchantAccountId) {
-        Utils.checkNotNull(xGr4vyMerchantAccountId, "xGr4vyMerchantAccountId");
-        this.xGr4vyMerchantAccountId = JsonNullable.of(xGr4vyMerchantAccountId);
+    public VoidTransactionRequest withMerchantAccountId(String merchantAccountId) {
+        Utils.checkNotNull(merchantAccountId, "merchantAccountId");
+        this.merchantAccountId = JsonNullable.of(merchantAccountId);
         return this;
     }
 
     /**
      * The ID of the merchant account to use for this request.
      */
-    public VoidTransactionRequest withXGr4vyMerchantAccountId(JsonNullable<String> xGr4vyMerchantAccountId) {
-        Utils.checkNotNull(xGr4vyMerchantAccountId, "xGr4vyMerchantAccountId");
-        this.xGr4vyMerchantAccountId = xGr4vyMerchantAccountId;
+    public VoidTransactionRequest withMerchantAccountId(JsonNullable<String> merchantAccountId) {
+        Utils.checkNotNull(merchantAccountId, "merchantAccountId");
+        this.merchantAccountId = merchantAccountId;
         return this;
     }
 
@@ -119,7 +119,7 @@ public class VoidTransactionRequest {
         return 
             Objects.deepEquals(this.transactionId, other.transactionId) &&
             Objects.deepEquals(this.timeoutInSeconds, other.timeoutInSeconds) &&
-            Objects.deepEquals(this.xGr4vyMerchantAccountId, other.xGr4vyMerchantAccountId);
+            Objects.deepEquals(this.merchantAccountId, other.merchantAccountId);
     }
     
     @Override
@@ -127,7 +127,7 @@ public class VoidTransactionRequest {
         return Objects.hash(
             transactionId,
             timeoutInSeconds,
-            xGr4vyMerchantAccountId);
+            merchantAccountId);
     }
     
     @Override
@@ -135,7 +135,7 @@ public class VoidTransactionRequest {
         return Utils.toString(VoidTransactionRequest.class,
                 "transactionId", transactionId,
                 "timeoutInSeconds", timeoutInSeconds,
-                "xGr4vyMerchantAccountId", xGr4vyMerchantAccountId);
+                "merchantAccountId", merchantAccountId);
     }
     
     public final static class Builder {
@@ -144,7 +144,7 @@ public class VoidTransactionRequest {
  
         private Optional<Double> timeoutInSeconds;
  
-        private JsonNullable<String> xGr4vyMerchantAccountId = JsonNullable.undefined();
+        private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
         
         private Builder() {
           // force use of static builder() method
@@ -171,18 +171,18 @@ public class VoidTransactionRequest {
         /**
          * The ID of the merchant account to use for this request.
          */
-        public Builder xGr4vyMerchantAccountId(String xGr4vyMerchantAccountId) {
-            Utils.checkNotNull(xGr4vyMerchantAccountId, "xGr4vyMerchantAccountId");
-            this.xGr4vyMerchantAccountId = JsonNullable.of(xGr4vyMerchantAccountId);
+        public Builder merchantAccountId(String merchantAccountId) {
+            Utils.checkNotNull(merchantAccountId, "merchantAccountId");
+            this.merchantAccountId = JsonNullable.of(merchantAccountId);
             return this;
         }
 
         /**
          * The ID of the merchant account to use for this request.
          */
-        public Builder xGr4vyMerchantAccountId(JsonNullable<String> xGr4vyMerchantAccountId) {
-            Utils.checkNotNull(xGr4vyMerchantAccountId, "xGr4vyMerchantAccountId");
-            this.xGr4vyMerchantAccountId = xGr4vyMerchantAccountId;
+        public Builder merchantAccountId(JsonNullable<String> merchantAccountId) {
+            Utils.checkNotNull(merchantAccountId, "merchantAccountId");
+            this.merchantAccountId = merchantAccountId;
             return this;
         }
         
@@ -193,7 +193,7 @@ public class VoidTransactionRequest {
             return new VoidTransactionRequest(
                 transactionId,
                 timeoutInSeconds,
-                xGr4vyMerchantAccountId);
+                merchantAccountId);
         }
 
         private static final LazySingletonValue<Optional<Double>> _SINGLETON_VALUE_TimeoutInSeconds =

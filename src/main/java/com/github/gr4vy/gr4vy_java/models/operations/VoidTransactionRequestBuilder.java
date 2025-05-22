@@ -19,7 +19,7 @@ public class VoidTransactionRequestBuilder {
                             "timeoutInSeconds",
                             "1",
                             new TypeReference<Optional<Double>>() {});
-    private JsonNullable<String> xGr4vyMerchantAccountId = JsonNullable.undefined();
+    private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
     private final SDKMethodInterfaces.MethodCallVoidTransaction sdk;
 
     public VoidTransactionRequestBuilder(SDKMethodInterfaces.MethodCallVoidTransaction sdk) {
@@ -44,15 +44,15 @@ public class VoidTransactionRequestBuilder {
         return this;
     }
 
-    public VoidTransactionRequestBuilder xGr4vyMerchantAccountId(String xGr4vyMerchantAccountId) {
-        Utils.checkNotNull(xGr4vyMerchantAccountId, "xGr4vyMerchantAccountId");
-        this.xGr4vyMerchantAccountId = JsonNullable.of(xGr4vyMerchantAccountId);
+    public VoidTransactionRequestBuilder merchantAccountId(String merchantAccountId) {
+        Utils.checkNotNull(merchantAccountId, "merchantAccountId");
+        this.merchantAccountId = JsonNullable.of(merchantAccountId);
         return this;
     }
 
-    public VoidTransactionRequestBuilder xGr4vyMerchantAccountId(JsonNullable<String> xGr4vyMerchantAccountId) {
-        Utils.checkNotNull(xGr4vyMerchantAccountId, "xGr4vyMerchantAccountId");
-        this.xGr4vyMerchantAccountId = xGr4vyMerchantAccountId;
+    public VoidTransactionRequestBuilder merchantAccountId(JsonNullable<String> merchantAccountId) {
+        Utils.checkNotNull(merchantAccountId, "merchantAccountId");
+        this.merchantAccountId = merchantAccountId;
         return this;
     }
 
@@ -63,7 +63,7 @@ public class VoidTransactionRequestBuilder {
         return sdk.void_(
             transactionId,
             timeoutInSeconds,
-            xGr4vyMerchantAccountId);
+            merchantAccountId);
     }
 
     private static final LazySingletonValue<Optional<Double>> _SINGLETON_VALUE_TimeoutInSeconds =

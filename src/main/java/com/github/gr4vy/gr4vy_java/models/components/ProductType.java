@@ -3,39 +3,201 @@
  */
 package com.github.gr4vy.gr4vy_java.models.components;
 
-import com.fasterxml.jackson.annotation.JsonValue;
+import com.fasterxml.jackson.core.JacksonException;
+import com.fasterxml.jackson.core.JsonGenerator;
+import com.fasterxml.jackson.core.JsonParser;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.DeserializationContext;
+import com.fasterxml.jackson.databind.SerializerProvider;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.databind.deser.std.StdDeserializer;
+import com.fasterxml.jackson.databind.ser.std.StdSerializer;
+import java.io.IOException;
+import java.lang.Override;
 import java.lang.String;
+import java.lang.SuppressWarnings;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
-public enum ProductType {
-    PHYSICAL("physical"),
-    DISCOUNT("discount"),
-    SHIPPING_FEE("shipping_fee"),
-    SALES_TAX("sales_tax"),
-    DIGITAL("digital"),
-    GIFT_CARD("gift_card"),
-    STORE_CREDIT("store_credit"),
-    SURCHARGE("surcharge");
+/**
+ * <p>Wrapper class for an "open" enum. "Open" enums are those that are expected
+ * to evolve (particularly with the addition of enum members over time). If an
+ * open enum is used then the appearance of unexpected enum values (say in a 
+ * response from an updated an API) will not bring about a runtime error thus 
+ * ensuring that non-updated client versions can continue to work without error.
+ *
+ * <p>Note that instances are immutable and are singletons (an internal thread-safe
+ * cache is maintained to ensure that). As a consequence instances created with the 
+ * same value will satisfy reference equality (via {@code ==}).
+ * 
+ * <p>This class is intended to emulate an enum (in terms of common usage and with 
+ * reference equality) but with the ability to carry unknown values. Unfortunately
+ * Java does not permit the use of an instance in a switch expression but you can 
+ * use the {@code asEnum()} method (after dealing with the `Optional` appropriately).
+ *
+ */
+@JsonDeserialize(using = ProductType._Deserializer.class)
+@JsonSerialize(using = ProductType._Serializer.class)
+public class ProductType {
 
-    @JsonValue
+    public static final ProductType PHYSICAL = new ProductType("physical");
+    public static final ProductType DISCOUNT = new ProductType("discount");
+    public static final ProductType SHIPPING_FEE = new ProductType("shipping_fee");
+    public static final ProductType SALES_TAX = new ProductType("sales_tax");
+    public static final ProductType DIGITAL = new ProductType("digital");
+    public static final ProductType GIFT_CARD = new ProductType("gift_card");
+    public static final ProductType STORE_CREDIT = new ProductType("store_credit");
+    public static final ProductType SURCHARGE = new ProductType("surcharge");
+
+    // This map will grow whenever a Color gets created with a new
+    // unrecognized value (a potential memory leak if the user is not
+    // careful). Keep this field lower case to avoid clashing with
+    // generated member names which will always be upper cased (Java
+    // convention)
+    private static final Map<String, ProductType> values = createValuesMap();
+    private static final Map<String, ProductTypeEnum> enums = createEnumsMap();
+
     private final String value;
 
     private ProductType(String value) {
         this.value = value;
     }
-    
+
+    /**
+     * Returns a ProductType with the given value. For a specific value the 
+     * returned object will always be a singleton so reference equality 
+     * is satisfied when the values are the same.
+     * 
+     * @param value value to be wrapped as ProductType
+     */ 
+    public static ProductType of(String value) {
+        synchronized (ProductType.class) {
+            return values.computeIfAbsent(value, v -> new ProductType(v));
+        }
+    }
+
     public String value() {
         return value;
     }
-    
-    public static Optional<ProductType> fromValue(String value) {
-        for (ProductType o: ProductType.values()) {
-            if (Objects.deepEquals(o.value, value)) {
-                return Optional.of(o);
-            }
+
+    public Optional<ProductTypeEnum> asEnum() {
+        return Optional.ofNullable(enums.getOrDefault(value, null));
+    }
+
+    public boolean isKnown() {
+        return asEnum().isPresent();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(value);
+    }
+
+    @Override
+    public boolean equals(java.lang.Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        ProductType other = (ProductType) obj;
+        return Objects.equals(value, other.value);
+    }
+
+    @Override
+    public String toString() {
+        return "ProductType [value=" + value + "]";
+    }
+
+    // return an array just like an enum
+    public static ProductType[] values() {
+        synchronized (ProductType.class) {
+            return values.values().toArray(new ProductType[] {});
         }
-        return Optional.empty();
+    }
+
+    private static final Map<String, ProductType> createValuesMap() {
+        Map<String, ProductType> map = new LinkedHashMap<>();
+        map.put("physical", PHYSICAL);
+        map.put("discount", DISCOUNT);
+        map.put("shipping_fee", SHIPPING_FEE);
+        map.put("sales_tax", SALES_TAX);
+        map.put("digital", DIGITAL);
+        map.put("gift_card", GIFT_CARD);
+        map.put("store_credit", STORE_CREDIT);
+        map.put("surcharge", SURCHARGE);
+        return map;
+    }
+
+    private static final Map<String, ProductTypeEnum> createEnumsMap() {
+        Map<String, ProductTypeEnum> map = new HashMap<>();
+        map.put("physical", ProductTypeEnum.PHYSICAL);
+        map.put("discount", ProductTypeEnum.DISCOUNT);
+        map.put("shipping_fee", ProductTypeEnum.SHIPPING_FEE);
+        map.put("sales_tax", ProductTypeEnum.SALES_TAX);
+        map.put("digital", ProductTypeEnum.DIGITAL);
+        map.put("gift_card", ProductTypeEnum.GIFT_CARD);
+        map.put("store_credit", ProductTypeEnum.STORE_CREDIT);
+        map.put("surcharge", ProductTypeEnum.SURCHARGE);
+        return map;
+    }
+    
+    @SuppressWarnings("serial")
+    public static final class _Serializer extends StdSerializer<ProductType> {
+
+        protected _Serializer() {
+            super(ProductType.class);
+        }
+
+        @Override
+        public void serialize(ProductType value, JsonGenerator g, SerializerProvider provider)
+                throws IOException, JsonProcessingException {
+            g.writeObject(value.value);
+        }
+    }
+
+    @SuppressWarnings("serial")
+    public static final class _Deserializer extends StdDeserializer<ProductType> {
+
+        protected _Deserializer() {
+            super(ProductType.class);
+        }
+
+        @Override
+        public ProductType deserialize(JsonParser p, DeserializationContext ctxt)
+                throws IOException, JacksonException {
+            String v = p.readValueAs(new TypeReference<String>() {});
+            // use the factory method to ensure we get singletons
+            return ProductType.of(v);
+        }
+    }
+    
+    public enum ProductTypeEnum {
+
+        PHYSICAL("physical"),
+        DISCOUNT("discount"),
+        SHIPPING_FEE("shipping_fee"),
+        SALES_TAX("sales_tax"),
+        DIGITAL("digital"),
+        GIFT_CARD("gift_card"),
+        STORE_CREDIT("store_credit"),
+        SURCHARGE("surcharge"),;
+
+        private final String value;
+
+        private ProductTypeEnum(String value) {
+            this.value = value;
+        }
+
+        public String value() {
+            return value;
+        }
     }
 }
 

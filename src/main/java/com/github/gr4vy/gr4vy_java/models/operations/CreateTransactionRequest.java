@@ -26,7 +26,7 @@ public class CreateTransactionRequest {
      * The ID of the merchant account to use for this request.
      */
     @SpeakeasyMetadata("header:style=simple,explode=false,name=x-gr4vy-merchant-account-id")
-    private JsonNullable<String> xGr4vyMerchantAccountId;
+    private JsonNullable<String> merchantAccountId;
 
     /**
      * A unique key that identifies this request. Providing this header will make this an idempotent request. We recommend using V4 UUIDs, or another random string with enough entropy to avoid collisions.
@@ -40,15 +40,15 @@ public class CreateTransactionRequest {
     @JsonCreator
     public CreateTransactionRequest(
             Optional<Double> timeoutInSeconds,
-            JsonNullable<String> xGr4vyMerchantAccountId,
+            JsonNullable<String> merchantAccountId,
             JsonNullable<String> idempotencyKey,
             TransactionCreate transactionCreate) {
         Utils.checkNotNull(timeoutInSeconds, "timeoutInSeconds");
-        Utils.checkNotNull(xGr4vyMerchantAccountId, "xGr4vyMerchantAccountId");
+        Utils.checkNotNull(merchantAccountId, "merchantAccountId");
         Utils.checkNotNull(idempotencyKey, "idempotencyKey");
         Utils.checkNotNull(transactionCreate, "transactionCreate");
         this.timeoutInSeconds = timeoutInSeconds;
-        this.xGr4vyMerchantAccountId = xGr4vyMerchantAccountId;
+        this.merchantAccountId = merchantAccountId;
         this.idempotencyKey = idempotencyKey;
         this.transactionCreate = transactionCreate;
     }
@@ -67,8 +67,8 @@ public class CreateTransactionRequest {
      * The ID of the merchant account to use for this request.
      */
     @JsonIgnore
-    public JsonNullable<String> xGr4vyMerchantAccountId() {
-        return xGr4vyMerchantAccountId;
+    public JsonNullable<String> merchantAccountId() {
+        return merchantAccountId;
     }
 
     /**
@@ -103,18 +103,18 @@ public class CreateTransactionRequest {
     /**
      * The ID of the merchant account to use for this request.
      */
-    public CreateTransactionRequest withXGr4vyMerchantAccountId(String xGr4vyMerchantAccountId) {
-        Utils.checkNotNull(xGr4vyMerchantAccountId, "xGr4vyMerchantAccountId");
-        this.xGr4vyMerchantAccountId = JsonNullable.of(xGr4vyMerchantAccountId);
+    public CreateTransactionRequest withMerchantAccountId(String merchantAccountId) {
+        Utils.checkNotNull(merchantAccountId, "merchantAccountId");
+        this.merchantAccountId = JsonNullable.of(merchantAccountId);
         return this;
     }
 
     /**
      * The ID of the merchant account to use for this request.
      */
-    public CreateTransactionRequest withXGr4vyMerchantAccountId(JsonNullable<String> xGr4vyMerchantAccountId) {
-        Utils.checkNotNull(xGr4vyMerchantAccountId, "xGr4vyMerchantAccountId");
-        this.xGr4vyMerchantAccountId = xGr4vyMerchantAccountId;
+    public CreateTransactionRequest withMerchantAccountId(JsonNullable<String> merchantAccountId) {
+        Utils.checkNotNull(merchantAccountId, "merchantAccountId");
+        this.merchantAccountId = merchantAccountId;
         return this;
     }
 
@@ -154,7 +154,7 @@ public class CreateTransactionRequest {
         CreateTransactionRequest other = (CreateTransactionRequest) o;
         return 
             Objects.deepEquals(this.timeoutInSeconds, other.timeoutInSeconds) &&
-            Objects.deepEquals(this.xGr4vyMerchantAccountId, other.xGr4vyMerchantAccountId) &&
+            Objects.deepEquals(this.merchantAccountId, other.merchantAccountId) &&
             Objects.deepEquals(this.idempotencyKey, other.idempotencyKey) &&
             Objects.deepEquals(this.transactionCreate, other.transactionCreate);
     }
@@ -163,7 +163,7 @@ public class CreateTransactionRequest {
     public int hashCode() {
         return Objects.hash(
             timeoutInSeconds,
-            xGr4vyMerchantAccountId,
+            merchantAccountId,
             idempotencyKey,
             transactionCreate);
     }
@@ -172,7 +172,7 @@ public class CreateTransactionRequest {
     public String toString() {
         return Utils.toString(CreateTransactionRequest.class,
                 "timeoutInSeconds", timeoutInSeconds,
-                "xGr4vyMerchantAccountId", xGr4vyMerchantAccountId,
+                "merchantAccountId", merchantAccountId,
                 "idempotencyKey", idempotencyKey,
                 "transactionCreate", transactionCreate);
     }
@@ -181,7 +181,7 @@ public class CreateTransactionRequest {
  
         private Optional<Double> timeoutInSeconds;
  
-        private JsonNullable<String> xGr4vyMerchantAccountId = JsonNullable.undefined();
+        private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
  
         private JsonNullable<String> idempotencyKey = JsonNullable.undefined();
  
@@ -206,18 +206,18 @@ public class CreateTransactionRequest {
         /**
          * The ID of the merchant account to use for this request.
          */
-        public Builder xGr4vyMerchantAccountId(String xGr4vyMerchantAccountId) {
-            Utils.checkNotNull(xGr4vyMerchantAccountId, "xGr4vyMerchantAccountId");
-            this.xGr4vyMerchantAccountId = JsonNullable.of(xGr4vyMerchantAccountId);
+        public Builder merchantAccountId(String merchantAccountId) {
+            Utils.checkNotNull(merchantAccountId, "merchantAccountId");
+            this.merchantAccountId = JsonNullable.of(merchantAccountId);
             return this;
         }
 
         /**
          * The ID of the merchant account to use for this request.
          */
-        public Builder xGr4vyMerchantAccountId(JsonNullable<String> xGr4vyMerchantAccountId) {
-            Utils.checkNotNull(xGr4vyMerchantAccountId, "xGr4vyMerchantAccountId");
-            this.xGr4vyMerchantAccountId = xGr4vyMerchantAccountId;
+        public Builder merchantAccountId(JsonNullable<String> merchantAccountId) {
+            Utils.checkNotNull(merchantAccountId, "merchantAccountId");
+            this.merchantAccountId = merchantAccountId;
             return this;
         }
 
@@ -251,7 +251,7 @@ public class CreateTransactionRequest {
             }
             return new CreateTransactionRequest(
                 timeoutInSeconds,
-                xGr4vyMerchantAccountId,
+                merchantAccountId,
                 idempotencyKey,
                 transactionCreate);
         }

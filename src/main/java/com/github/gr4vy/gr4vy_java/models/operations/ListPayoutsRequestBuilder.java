@@ -6,6 +6,8 @@ package com.github.gr4vy.gr4vy_java.models.operations;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.github.gr4vy.gr4vy_java.models.errors.APIException;
 import com.github.gr4vy.gr4vy_java.utils.LazySingletonValue;
+import com.github.gr4vy.gr4vy_java.utils.Options;
+import com.github.gr4vy.gr4vy_java.utils.RetryConfig;
 import com.github.gr4vy.gr4vy_java.utils.Utils;
 import java.lang.Exception;
 import java.lang.Long;
@@ -21,7 +23,8 @@ public class ListPayoutsRequestBuilder {
                             "limit",
                             "20",
                             new TypeReference<Optional<Long>>() {});
-    private JsonNullable<String> xGr4vyMerchantAccountId = JsonNullable.undefined();
+    private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
+    private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKMethodInterfaces.MethodCallListPayouts sdk;
 
     public ListPayoutsRequestBuilder(SDKMethodInterfaces.MethodCallListPayouts sdk) {
@@ -52,26 +55,41 @@ public class ListPayoutsRequestBuilder {
         return this;
     }
 
-    public ListPayoutsRequestBuilder xGr4vyMerchantAccountId(String xGr4vyMerchantAccountId) {
-        Utils.checkNotNull(xGr4vyMerchantAccountId, "xGr4vyMerchantAccountId");
-        this.xGr4vyMerchantAccountId = JsonNullable.of(xGr4vyMerchantAccountId);
+    public ListPayoutsRequestBuilder merchantAccountId(String merchantAccountId) {
+        Utils.checkNotNull(merchantAccountId, "merchantAccountId");
+        this.merchantAccountId = JsonNullable.of(merchantAccountId);
         return this;
     }
 
-    public ListPayoutsRequestBuilder xGr4vyMerchantAccountId(JsonNullable<String> xGr4vyMerchantAccountId) {
-        Utils.checkNotNull(xGr4vyMerchantAccountId, "xGr4vyMerchantAccountId");
-        this.xGr4vyMerchantAccountId = xGr4vyMerchantAccountId;
+    public ListPayoutsRequestBuilder merchantAccountId(JsonNullable<String> merchantAccountId) {
+        Utils.checkNotNull(merchantAccountId, "merchantAccountId");
+        this.merchantAccountId = merchantAccountId;
+        return this;
+    }
+                
+    public ListPayoutsRequestBuilder retryConfig(RetryConfig retryConfig) {
+        Utils.checkNotNull(retryConfig, "retryConfig");
+        this.retryConfig = Optional.of(retryConfig);
+        return this;
+    }
+
+    public ListPayoutsRequestBuilder retryConfig(Optional<RetryConfig> retryConfig) {
+        Utils.checkNotNull(retryConfig, "retryConfig");
+        this.retryConfig = retryConfig;
         return this;
     }
 
     public ListPayoutsResponse call() throws Exception {
         if (limit == null) {
             limit = _SINGLETON_VALUE_Limit.value();
-        }
+        }        Optional<Options> options = Optional.of(Options.builder()
+                                                    .retryConfig(retryConfig)
+                                                    .build());
         return sdk.list(
             cursor,
             limit,
-            xGr4vyMerchantAccountId);
+            merchantAccountId,
+            options);
     }
     
     /**

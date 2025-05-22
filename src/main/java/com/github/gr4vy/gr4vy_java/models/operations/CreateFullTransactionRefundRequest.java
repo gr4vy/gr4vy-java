@@ -30,7 +30,7 @@ public class CreateFullTransactionRefundRequest {
      * The ID of the merchant account to use for this request.
      */
     @SpeakeasyMetadata("header:style=simple,explode=false,name=x-gr4vy-merchant-account-id")
-    private JsonNullable<String> xGr4vyMerchantAccountId;
+    private JsonNullable<String> merchantAccountId;
 
     @SpeakeasyMetadata("request:mediaType=application/json")
     private JsonNullable<? extends TransactionRefundAllCreate> transactionRefundAllCreate;
@@ -39,15 +39,15 @@ public class CreateFullTransactionRefundRequest {
     public CreateFullTransactionRefundRequest(
             String transactionId,
             Optional<Double> timeoutInSeconds,
-            JsonNullable<String> xGr4vyMerchantAccountId,
+            JsonNullable<String> merchantAccountId,
             JsonNullable<? extends TransactionRefundAllCreate> transactionRefundAllCreate) {
         Utils.checkNotNull(transactionId, "transactionId");
         Utils.checkNotNull(timeoutInSeconds, "timeoutInSeconds");
-        Utils.checkNotNull(xGr4vyMerchantAccountId, "xGr4vyMerchantAccountId");
+        Utils.checkNotNull(merchantAccountId, "merchantAccountId");
         Utils.checkNotNull(transactionRefundAllCreate, "transactionRefundAllCreate");
         this.transactionId = transactionId;
         this.timeoutInSeconds = timeoutInSeconds;
-        this.xGr4vyMerchantAccountId = xGr4vyMerchantAccountId;
+        this.merchantAccountId = merchantAccountId;
         this.transactionRefundAllCreate = transactionRefundAllCreate;
     }
     
@@ -70,8 +70,8 @@ public class CreateFullTransactionRefundRequest {
      * The ID of the merchant account to use for this request.
      */
     @JsonIgnore
-    public JsonNullable<String> xGr4vyMerchantAccountId() {
-        return xGr4vyMerchantAccountId;
+    public JsonNullable<String> merchantAccountId() {
+        return merchantAccountId;
     }
 
     @SuppressWarnings("unchecked")
@@ -105,18 +105,18 @@ public class CreateFullTransactionRefundRequest {
     /**
      * The ID of the merchant account to use for this request.
      */
-    public CreateFullTransactionRefundRequest withXGr4vyMerchantAccountId(String xGr4vyMerchantAccountId) {
-        Utils.checkNotNull(xGr4vyMerchantAccountId, "xGr4vyMerchantAccountId");
-        this.xGr4vyMerchantAccountId = JsonNullable.of(xGr4vyMerchantAccountId);
+    public CreateFullTransactionRefundRequest withMerchantAccountId(String merchantAccountId) {
+        Utils.checkNotNull(merchantAccountId, "merchantAccountId");
+        this.merchantAccountId = JsonNullable.of(merchantAccountId);
         return this;
     }
 
     /**
      * The ID of the merchant account to use for this request.
      */
-    public CreateFullTransactionRefundRequest withXGr4vyMerchantAccountId(JsonNullable<String> xGr4vyMerchantAccountId) {
-        Utils.checkNotNull(xGr4vyMerchantAccountId, "xGr4vyMerchantAccountId");
-        this.xGr4vyMerchantAccountId = xGr4vyMerchantAccountId;
+    public CreateFullTransactionRefundRequest withMerchantAccountId(JsonNullable<String> merchantAccountId) {
+        Utils.checkNotNull(merchantAccountId, "merchantAccountId");
+        this.merchantAccountId = merchantAccountId;
         return this;
     }
 
@@ -145,7 +145,7 @@ public class CreateFullTransactionRefundRequest {
         return 
             Objects.deepEquals(this.transactionId, other.transactionId) &&
             Objects.deepEquals(this.timeoutInSeconds, other.timeoutInSeconds) &&
-            Objects.deepEquals(this.xGr4vyMerchantAccountId, other.xGr4vyMerchantAccountId) &&
+            Objects.deepEquals(this.merchantAccountId, other.merchantAccountId) &&
             Objects.deepEquals(this.transactionRefundAllCreate, other.transactionRefundAllCreate);
     }
     
@@ -154,7 +154,7 @@ public class CreateFullTransactionRefundRequest {
         return Objects.hash(
             transactionId,
             timeoutInSeconds,
-            xGr4vyMerchantAccountId,
+            merchantAccountId,
             transactionRefundAllCreate);
     }
     
@@ -163,7 +163,7 @@ public class CreateFullTransactionRefundRequest {
         return Utils.toString(CreateFullTransactionRefundRequest.class,
                 "transactionId", transactionId,
                 "timeoutInSeconds", timeoutInSeconds,
-                "xGr4vyMerchantAccountId", xGr4vyMerchantAccountId,
+                "merchantAccountId", merchantAccountId,
                 "transactionRefundAllCreate", transactionRefundAllCreate);
     }
     
@@ -173,7 +173,7 @@ public class CreateFullTransactionRefundRequest {
  
         private Optional<Double> timeoutInSeconds;
  
-        private JsonNullable<String> xGr4vyMerchantAccountId = JsonNullable.undefined();
+        private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
  
         private JsonNullable<? extends TransactionRefundAllCreate> transactionRefundAllCreate = JsonNullable.undefined();
         
@@ -202,18 +202,18 @@ public class CreateFullTransactionRefundRequest {
         /**
          * The ID of the merchant account to use for this request.
          */
-        public Builder xGr4vyMerchantAccountId(String xGr4vyMerchantAccountId) {
-            Utils.checkNotNull(xGr4vyMerchantAccountId, "xGr4vyMerchantAccountId");
-            this.xGr4vyMerchantAccountId = JsonNullable.of(xGr4vyMerchantAccountId);
+        public Builder merchantAccountId(String merchantAccountId) {
+            Utils.checkNotNull(merchantAccountId, "merchantAccountId");
+            this.merchantAccountId = JsonNullable.of(merchantAccountId);
             return this;
         }
 
         /**
          * The ID of the merchant account to use for this request.
          */
-        public Builder xGr4vyMerchantAccountId(JsonNullable<String> xGr4vyMerchantAccountId) {
-            Utils.checkNotNull(xGr4vyMerchantAccountId, "xGr4vyMerchantAccountId");
-            this.xGr4vyMerchantAccountId = xGr4vyMerchantAccountId;
+        public Builder merchantAccountId(JsonNullable<String> merchantAccountId) {
+            Utils.checkNotNull(merchantAccountId, "merchantAccountId");
+            this.merchantAccountId = merchantAccountId;
             return this;
         }
 
@@ -236,7 +236,7 @@ public class CreateFullTransactionRefundRequest {
             return new CreateFullTransactionRefundRequest(
                 transactionId,
                 timeoutInSeconds,
-                xGr4vyMerchantAccountId,
+                merchantAccountId,
                 transactionRefundAllCreate);
         }
 

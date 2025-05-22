@@ -3,36 +3,189 @@
  */
 package com.github.gr4vy.gr4vy_java.models.components;
 
-import com.fasterxml.jackson.annotation.JsonValue;
+import com.fasterxml.jackson.core.JacksonException;
+import com.fasterxml.jackson.core.JsonGenerator;
+import com.fasterxml.jackson.core.JsonParser;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.DeserializationContext;
+import com.fasterxml.jackson.databind.SerializerProvider;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.databind.deser.std.StdDeserializer;
+import com.fasterxml.jackson.databind.ser.std.StdSerializer;
+import java.io.IOException;
+import java.lang.Override;
 import java.lang.String;
+import java.lang.SuppressWarnings;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
-public enum RefundStatus {
-    PROCESSING("processing"),
-    SUCCEEDED("succeeded"),
-    FAILED("failed"),
-    DECLINED("declined"),
-    VOIDED("voided");
+/**
+ * <p>Wrapper class for an "open" enum. "Open" enums are those that are expected
+ * to evolve (particularly with the addition of enum members over time). If an
+ * open enum is used then the appearance of unexpected enum values (say in a 
+ * response from an updated an API) will not bring about a runtime error thus 
+ * ensuring that non-updated client versions can continue to work without error.
+ *
+ * <p>Note that instances are immutable and are singletons (an internal thread-safe
+ * cache is maintained to ensure that). As a consequence instances created with the 
+ * same value will satisfy reference equality (via {@code ==}).
+ * 
+ * <p>This class is intended to emulate an enum (in terms of common usage and with 
+ * reference equality) but with the ability to carry unknown values. Unfortunately
+ * Java does not permit the use of an instance in a switch expression but you can 
+ * use the {@code asEnum()} method (after dealing with the `Optional` appropriately).
+ *
+ */
+@JsonDeserialize(using = RefundStatus._Deserializer.class)
+@JsonSerialize(using = RefundStatus._Serializer.class)
+public class RefundStatus {
 
-    @JsonValue
+    public static final RefundStatus PROCESSING = new RefundStatus("processing");
+    public static final RefundStatus SUCCEEDED = new RefundStatus("succeeded");
+    public static final RefundStatus FAILED = new RefundStatus("failed");
+    public static final RefundStatus DECLINED = new RefundStatus("declined");
+    public static final RefundStatus VOIDED = new RefundStatus("voided");
+
+    // This map will grow whenever a Color gets created with a new
+    // unrecognized value (a potential memory leak if the user is not
+    // careful). Keep this field lower case to avoid clashing with
+    // generated member names which will always be upper cased (Java
+    // convention)
+    private static final Map<String, RefundStatus> values = createValuesMap();
+    private static final Map<String, RefundStatusEnum> enums = createEnumsMap();
+
     private final String value;
 
     private RefundStatus(String value) {
         this.value = value;
     }
-    
+
+    /**
+     * Returns a RefundStatus with the given value. For a specific value the 
+     * returned object will always be a singleton so reference equality 
+     * is satisfied when the values are the same.
+     * 
+     * @param value value to be wrapped as RefundStatus
+     */ 
+    public static RefundStatus of(String value) {
+        synchronized (RefundStatus.class) {
+            return values.computeIfAbsent(value, v -> new RefundStatus(v));
+        }
+    }
+
     public String value() {
         return value;
     }
-    
-    public static Optional<RefundStatus> fromValue(String value) {
-        for (RefundStatus o: RefundStatus.values()) {
-            if (Objects.deepEquals(o.value, value)) {
-                return Optional.of(o);
-            }
+
+    public Optional<RefundStatusEnum> asEnum() {
+        return Optional.ofNullable(enums.getOrDefault(value, null));
+    }
+
+    public boolean isKnown() {
+        return asEnum().isPresent();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(value);
+    }
+
+    @Override
+    public boolean equals(java.lang.Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        RefundStatus other = (RefundStatus) obj;
+        return Objects.equals(value, other.value);
+    }
+
+    @Override
+    public String toString() {
+        return "RefundStatus [value=" + value + "]";
+    }
+
+    // return an array just like an enum
+    public static RefundStatus[] values() {
+        synchronized (RefundStatus.class) {
+            return values.values().toArray(new RefundStatus[] {});
         }
-        return Optional.empty();
+    }
+
+    private static final Map<String, RefundStatus> createValuesMap() {
+        Map<String, RefundStatus> map = new LinkedHashMap<>();
+        map.put("processing", PROCESSING);
+        map.put("succeeded", SUCCEEDED);
+        map.put("failed", FAILED);
+        map.put("declined", DECLINED);
+        map.put("voided", VOIDED);
+        return map;
+    }
+
+    private static final Map<String, RefundStatusEnum> createEnumsMap() {
+        Map<String, RefundStatusEnum> map = new HashMap<>();
+        map.put("processing", RefundStatusEnum.PROCESSING);
+        map.put("succeeded", RefundStatusEnum.SUCCEEDED);
+        map.put("failed", RefundStatusEnum.FAILED);
+        map.put("declined", RefundStatusEnum.DECLINED);
+        map.put("voided", RefundStatusEnum.VOIDED);
+        return map;
+    }
+    
+    @SuppressWarnings("serial")
+    public static final class _Serializer extends StdSerializer<RefundStatus> {
+
+        protected _Serializer() {
+            super(RefundStatus.class);
+        }
+
+        @Override
+        public void serialize(RefundStatus value, JsonGenerator g, SerializerProvider provider)
+                throws IOException, JsonProcessingException {
+            g.writeObject(value.value);
+        }
+    }
+
+    @SuppressWarnings("serial")
+    public static final class _Deserializer extends StdDeserializer<RefundStatus> {
+
+        protected _Deserializer() {
+            super(RefundStatus.class);
+        }
+
+        @Override
+        public RefundStatus deserialize(JsonParser p, DeserializationContext ctxt)
+                throws IOException, JacksonException {
+            String v = p.readValueAs(new TypeReference<String>() {});
+            // use the factory method to ensure we get singletons
+            return RefundStatus.of(v);
+        }
+    }
+    
+    public enum RefundStatusEnum {
+
+        PROCESSING("processing"),
+        SUCCEEDED("succeeded"),
+        FAILED("failed"),
+        DECLINED("declined"),
+        VOIDED("voided"),;
+
+        private final String value;
+
+        private RefundStatusEnum(String value) {
+            this.value = value;
+        }
+
+        public String value() {
+            return value;
+        }
     }
 }
 

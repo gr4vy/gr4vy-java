@@ -30,19 +30,19 @@ public class GetBuyerShippingDetailsRequest {
      * The ID of the merchant account to use for this request.
      */
     @SpeakeasyMetadata("header:style=simple,explode=false,name=x-gr4vy-merchant-account-id")
-    private JsonNullable<String> xGr4vyMerchantAccountId;
+    private JsonNullable<String> merchantAccountId;
 
     @JsonCreator
     public GetBuyerShippingDetailsRequest(
             String buyerId,
             String shippingDetailsId,
-            JsonNullable<String> xGr4vyMerchantAccountId) {
+            JsonNullable<String> merchantAccountId) {
         Utils.checkNotNull(buyerId, "buyerId");
         Utils.checkNotNull(shippingDetailsId, "shippingDetailsId");
-        Utils.checkNotNull(xGr4vyMerchantAccountId, "xGr4vyMerchantAccountId");
+        Utils.checkNotNull(merchantAccountId, "merchantAccountId");
         this.buyerId = buyerId;
         this.shippingDetailsId = shippingDetailsId;
-        this.xGr4vyMerchantAccountId = xGr4vyMerchantAccountId;
+        this.merchantAccountId = merchantAccountId;
     }
     
     public GetBuyerShippingDetailsRequest(
@@ -71,8 +71,8 @@ public class GetBuyerShippingDetailsRequest {
      * The ID of the merchant account to use for this request.
      */
     @JsonIgnore
-    public JsonNullable<String> xGr4vyMerchantAccountId() {
-        return xGr4vyMerchantAccountId;
+    public JsonNullable<String> merchantAccountId() {
+        return merchantAccountId;
     }
 
     public final static Builder builder() {
@@ -100,18 +100,18 @@ public class GetBuyerShippingDetailsRequest {
     /**
      * The ID of the merchant account to use for this request.
      */
-    public GetBuyerShippingDetailsRequest withXGr4vyMerchantAccountId(String xGr4vyMerchantAccountId) {
-        Utils.checkNotNull(xGr4vyMerchantAccountId, "xGr4vyMerchantAccountId");
-        this.xGr4vyMerchantAccountId = JsonNullable.of(xGr4vyMerchantAccountId);
+    public GetBuyerShippingDetailsRequest withMerchantAccountId(String merchantAccountId) {
+        Utils.checkNotNull(merchantAccountId, "merchantAccountId");
+        this.merchantAccountId = JsonNullable.of(merchantAccountId);
         return this;
     }
 
     /**
      * The ID of the merchant account to use for this request.
      */
-    public GetBuyerShippingDetailsRequest withXGr4vyMerchantAccountId(JsonNullable<String> xGr4vyMerchantAccountId) {
-        Utils.checkNotNull(xGr4vyMerchantAccountId, "xGr4vyMerchantAccountId");
-        this.xGr4vyMerchantAccountId = xGr4vyMerchantAccountId;
+    public GetBuyerShippingDetailsRequest withMerchantAccountId(JsonNullable<String> merchantAccountId) {
+        Utils.checkNotNull(merchantAccountId, "merchantAccountId");
+        this.merchantAccountId = merchantAccountId;
         return this;
     }
 
@@ -128,7 +128,7 @@ public class GetBuyerShippingDetailsRequest {
         return 
             Objects.deepEquals(this.buyerId, other.buyerId) &&
             Objects.deepEquals(this.shippingDetailsId, other.shippingDetailsId) &&
-            Objects.deepEquals(this.xGr4vyMerchantAccountId, other.xGr4vyMerchantAccountId);
+            Objects.deepEquals(this.merchantAccountId, other.merchantAccountId);
     }
     
     @Override
@@ -136,7 +136,7 @@ public class GetBuyerShippingDetailsRequest {
         return Objects.hash(
             buyerId,
             shippingDetailsId,
-            xGr4vyMerchantAccountId);
+            merchantAccountId);
     }
     
     @Override
@@ -144,7 +144,7 @@ public class GetBuyerShippingDetailsRequest {
         return Utils.toString(GetBuyerShippingDetailsRequest.class,
                 "buyerId", buyerId,
                 "shippingDetailsId", shippingDetailsId,
-                "xGr4vyMerchantAccountId", xGr4vyMerchantAccountId);
+                "merchantAccountId", merchantAccountId);
     }
     
     public final static class Builder {
@@ -153,7 +153,7 @@ public class GetBuyerShippingDetailsRequest {
  
         private String shippingDetailsId;
  
-        private JsonNullable<String> xGr4vyMerchantAccountId = JsonNullable.undefined();
+        private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
         
         private Builder() {
           // force use of static builder() method
@@ -180,18 +180,18 @@ public class GetBuyerShippingDetailsRequest {
         /**
          * The ID of the merchant account to use for this request.
          */
-        public Builder xGr4vyMerchantAccountId(String xGr4vyMerchantAccountId) {
-            Utils.checkNotNull(xGr4vyMerchantAccountId, "xGr4vyMerchantAccountId");
-            this.xGr4vyMerchantAccountId = JsonNullable.of(xGr4vyMerchantAccountId);
+        public Builder merchantAccountId(String merchantAccountId) {
+            Utils.checkNotNull(merchantAccountId, "merchantAccountId");
+            this.merchantAccountId = JsonNullable.of(merchantAccountId);
             return this;
         }
 
         /**
          * The ID of the merchant account to use for this request.
          */
-        public Builder xGr4vyMerchantAccountId(JsonNullable<String> xGr4vyMerchantAccountId) {
-            Utils.checkNotNull(xGr4vyMerchantAccountId, "xGr4vyMerchantAccountId");
-            this.xGr4vyMerchantAccountId = xGr4vyMerchantAccountId;
+        public Builder merchantAccountId(JsonNullable<String> merchantAccountId) {
+            Utils.checkNotNull(merchantAccountId, "merchantAccountId");
+            this.merchantAccountId = merchantAccountId;
             return this;
         }
         
@@ -199,7 +199,7 @@ public class GetBuyerShippingDetailsRequest {
             return new GetBuyerShippingDetailsRequest(
                 buyerId,
                 shippingDetailsId,
-                xGr4vyMerchantAccountId);
+                merchantAccountId);
         }
     }
 }

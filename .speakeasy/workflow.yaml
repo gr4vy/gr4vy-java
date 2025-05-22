@@ -1,15 +1,29 @@
 workflowVersion: 1.0.0
 speakeasyVersion: latest
 sources:
-    Gr4vy:
+    openapi:
         inputs:
             - location: https://gr4vy.github.io/gr4vy-openapi/core/openapi.json
+        overlays:
+            - location: ./.speakeasy/overlays/servers.yaml
+            - location: ./.speakeasy/overlays/security.yaml
+            - location: ./.speakeasy/overlays/enums.yaml
+            - location: ./.speakeasy/overlays/retries.yaml
+            - location: ./.speakeasy/overlays/mid-global.yaml
+            - location: ./.speakeasy/overlays/fix-base-model.yaml
+            - location: ./.speakeasy/overlays/fix-checkout-session-body.yaml
         registry:
             location: registry.speakeasyapi.dev/gr4vy/gr4vy/openapi
 targets:
     java:
         target: java
-        source: Gr4vy
+        source: openapi
+        publish:
+            java:
+                ossrhUsername: $ossrh_username
+                ossrhPassword: $ossrh_password
+                gpgSecretKey: $java_gpg_secret_key
+                gpgPassPhrase: $java_gpg_passphrase
         codeSamples:
             registry:
                 location: registry.speakeasyapi.dev/gr4vy/gr4vy/openapi-java-code-samples

@@ -27,7 +27,7 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Gr4vy sdk = Gr4vy.builder()
-                .oAuth2PasswordBearer("<YOUR_O_AUTH2_PASSWORD_BEARER_HERE>")
+                .bearerAuth("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
         ListAuditLogsRequest req = ListAuditLogsRequest.builder()
@@ -35,7 +35,6 @@ public class Application {
                 .action(AuditLogAction.CREATED)
                 .userId("14b7b8c5-a6ba-4fb6-bbab-52d43c7f37ef")
                 .resourceType("user")
-                .xGr4vyMerchantAccountId("default")
                 .build();
 
         sdk.auditLogs().list()

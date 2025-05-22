@@ -11,7 +11,7 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 public class CreateApplePayDigitalWalletSessionRequestBuilder {
 
-    private JsonNullable<String> xGr4vyMerchantAccountId = JsonNullable.undefined();
+    private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
     private ApplePaySessionRequest applePaySessionRequest;
     private final SDKMethodInterfaces.MethodCallCreateApplePayDigitalWalletSession sdk;
 
@@ -19,15 +19,15 @@ public class CreateApplePayDigitalWalletSessionRequestBuilder {
         this.sdk = sdk;
     }
 
-    public CreateApplePayDigitalWalletSessionRequestBuilder xGr4vyMerchantAccountId(String xGr4vyMerchantAccountId) {
-        Utils.checkNotNull(xGr4vyMerchantAccountId, "xGr4vyMerchantAccountId");
-        this.xGr4vyMerchantAccountId = JsonNullable.of(xGr4vyMerchantAccountId);
+    public CreateApplePayDigitalWalletSessionRequestBuilder merchantAccountId(String merchantAccountId) {
+        Utils.checkNotNull(merchantAccountId, "merchantAccountId");
+        this.merchantAccountId = JsonNullable.of(merchantAccountId);
         return this;
     }
 
-    public CreateApplePayDigitalWalletSessionRequestBuilder xGr4vyMerchantAccountId(JsonNullable<String> xGr4vyMerchantAccountId) {
-        Utils.checkNotNull(xGr4vyMerchantAccountId, "xGr4vyMerchantAccountId");
-        this.xGr4vyMerchantAccountId = xGr4vyMerchantAccountId;
+    public CreateApplePayDigitalWalletSessionRequestBuilder merchantAccountId(JsonNullable<String> merchantAccountId) {
+        Utils.checkNotNull(merchantAccountId, "merchantAccountId");
+        this.merchantAccountId = merchantAccountId;
         return this;
     }
 
@@ -40,7 +40,7 @@ public class CreateApplePayDigitalWalletSessionRequestBuilder {
     public CreateApplePayDigitalWalletSessionResponse call() throws Exception {
 
         return sdk.applePay(
-            xGr4vyMerchantAccountId,
+            merchantAccountId,
             applePaySessionRequest);
     }
 }

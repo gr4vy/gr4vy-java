@@ -28,11 +28,10 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Gr4vy sdk = Gr4vy.builder()
-                .oAuth2PasswordBearer("<YOUR_O_AUTH2_PASSWORD_BEARER_HERE>")
+                .bearerAuth("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
         ListGiftCardBalancesResponse res = sdk.giftCards().balances().list()
-                .xGr4vyMerchantAccountId("default")
                 .giftCardBalanceRequest(GiftCardBalanceRequest.builder()
                     .items(List.of(
                         Item.of(GiftCardStoredRequest.builder()
@@ -57,11 +56,11 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                   | Type                                                                        | Required                                                                    | Description                                                                 | Example                                                                     |
-| --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- |
-| `timeoutInSeconds`                                                          | *Optional\<Double>*                                                         | :heavy_minus_sign:                                                          | N/A                                                                         |                                                                             |
-| `xGr4vyMerchantAccountId`                                                   | *JsonNullable\<String>*                                                     | :heavy_minus_sign:                                                          | The ID of the merchant account to use for this request.                     | default                                                                     |
-| `giftCardBalanceRequest`                                                    | [GiftCardBalanceRequest](../../models/components/GiftCardBalanceRequest.md) | :heavy_check_mark:                                                          | N/A                                                                         |                                                                             |
+| Parameter                                                                   | Type                                                                        | Required                                                                    | Description                                                                 |
+| --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- |
+| `timeoutInSeconds`                                                          | *Optional\<Double>*                                                         | :heavy_minus_sign:                                                          | N/A                                                                         |
+| `merchantAccountId`                                                         | *JsonNullable\<String>*                                                     | :heavy_minus_sign:                                                          | The ID of the merchant account to use for this request.                     |
+| `giftCardBalanceRequest`                                                    | [GiftCardBalanceRequest](../../models/components/GiftCardBalanceRequest.md) | :heavy_check_mark:                                                          | N/A                                                                         |
 
 ### Response
 

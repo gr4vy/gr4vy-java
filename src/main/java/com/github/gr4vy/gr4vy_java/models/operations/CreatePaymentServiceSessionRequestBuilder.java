@@ -14,7 +14,7 @@ import org.openapitools.jackson.nullable.JsonNullable;
 public class CreatePaymentServiceSessionRequestBuilder {
 
     private String paymentServiceId;
-    private JsonNullable<String> xGr4vyMerchantAccountId = JsonNullable.undefined();
+    private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
     private Map<String, Object> requestBody = new HashMap<>();
     private final SDKMethodInterfaces.MethodCallCreatePaymentServiceSession sdk;
 
@@ -28,15 +28,15 @@ public class CreatePaymentServiceSessionRequestBuilder {
         return this;
     }
 
-    public CreatePaymentServiceSessionRequestBuilder xGr4vyMerchantAccountId(String xGr4vyMerchantAccountId) {
-        Utils.checkNotNull(xGr4vyMerchantAccountId, "xGr4vyMerchantAccountId");
-        this.xGr4vyMerchantAccountId = JsonNullable.of(xGr4vyMerchantAccountId);
+    public CreatePaymentServiceSessionRequestBuilder merchantAccountId(String merchantAccountId) {
+        Utils.checkNotNull(merchantAccountId, "merchantAccountId");
+        this.merchantAccountId = JsonNullable.of(merchantAccountId);
         return this;
     }
 
-    public CreatePaymentServiceSessionRequestBuilder xGr4vyMerchantAccountId(JsonNullable<String> xGr4vyMerchantAccountId) {
-        Utils.checkNotNull(xGr4vyMerchantAccountId, "xGr4vyMerchantAccountId");
-        this.xGr4vyMerchantAccountId = xGr4vyMerchantAccountId;
+    public CreatePaymentServiceSessionRequestBuilder merchantAccountId(JsonNullable<String> merchantAccountId) {
+        Utils.checkNotNull(merchantAccountId, "merchantAccountId");
+        this.merchantAccountId = merchantAccountId;
         return this;
     }
 
@@ -50,7 +50,7 @@ public class CreatePaymentServiceSessionRequestBuilder {
 
         return sdk.session(
             paymentServiceId,
-            xGr4vyMerchantAccountId,
+            merchantAccountId,
             requestBody);
     }
 }

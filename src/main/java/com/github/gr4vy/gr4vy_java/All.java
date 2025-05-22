@@ -84,7 +84,7 @@ public class All implements
      * 
      * @param transactionId 
      * @param timeoutInSeconds 
-     * @param xGr4vyMerchantAccountId The ID of the merchant account to use for this request.
+     * @param merchantAccountId 
      * @param transactionRefundAllCreate 
      * @return The response from the API call
      * @throws Exception if the API call fails
@@ -92,23 +92,24 @@ public class All implements
     public CreateFullTransactionRefundResponse create(
             String transactionId,
             Optional<Double> timeoutInSeconds,
-            JsonNullable<String> xGr4vyMerchantAccountId,
+            JsonNullable<String> merchantAccountId,
             JsonNullable<? extends TransactionRefundAllCreate> transactionRefundAllCreate) throws Exception {
         CreateFullTransactionRefundRequest request =
             CreateFullTransactionRefundRequest
                 .builder()
                 .transactionId(transactionId)
                 .timeoutInSeconds(timeoutInSeconds)
-                .xGr4vyMerchantAccountId(xGr4vyMerchantAccountId)
+                .merchantAccountId(merchantAccountId)
                 .transactionRefundAllCreate(transactionRefundAllCreate)
                 .build();
         
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 CreateFullTransactionRefundRequest.class,
                 _baseUrl,
                 "/transactions/{transaction_id}/refunds/all",
-                request, null);
+                request, this.sdkConfiguration.globals);
         
         HTTPRequest _req = new HTTPRequest(_url, "POST");
         Object _convertedRequest = Utils.convertToShape(
@@ -128,8 +129,8 @@ public class All implements
         _req.addQueryParams(Utils.getQueryParams(
                 CreateFullTransactionRefundRequest.class,
                 request, 
-                null));
-        _req.addHeaders(Utils.getHeadersFromMetadata(request, null));
+                this.sdkConfiguration.globals));
+        _req.addHeaders(Utils.getHeadersFromMetadata(request, this.sdkConfiguration.globals));
         
         Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  

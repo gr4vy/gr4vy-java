@@ -6,7 +6,12 @@ package com.github.gr4vy.gr4vy_java;
 import com.github.gr4vy.gr4vy_java.utils.HTTPClient;
 import com.github.gr4vy.gr4vy_java.utils.Hooks;
 import com.github.gr4vy.gr4vy_java.utils.RetryConfig;
+import com.github.gr4vy.gr4vy_java.utils.Utils;
+import java.lang.Object;
 import java.lang.String;
+import java.lang.SuppressWarnings;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Optional;
 
 class SDKConfiguration {
@@ -21,13 +26,22 @@ class SDKConfiguration {
     public String serverUrl;
     
     public String resolvedServerUrl() {
-        return serverUrl;
+        return Utils.templateUrl(serverUrl, getServerVariableDefaults());
     }
-    public int serverIdx = 0;
+    public String server;
+    @SuppressWarnings("serial")
+    Map<String, Map<String, String>> serverDefaults = new HashMap<>(){ {
+        put("production", new HashMap<>(){ {
+            put("id", "example");
+        } });
+        put("sandbox", new HashMap<>(){ {
+            put("id", "example");
+        } });
+    } };
     private static final String LANGUAGE = "java";
     public static final String OPENAPI_DOC_VERSION = "1.0.0";
-    public static final String SDK_VERSION = "0.0.2";
-    public static final String GEN_VERSION = "2.605.0";
+    public static final String SDK_VERSION = "0.1.0";
+    public static final String GEN_VERSION = "2.607.1";
     private static final String BASE_PACKAGE = "com.github.gr4vy.gr4vy_java";
     public static final String USER_AGENT = 
             String.format("speakeasy-sdk/%s %s %s %s %s",
@@ -55,7 +69,13 @@ class SDKConfiguration {
 
     }
 
+    @SuppressWarnings("serial")
+    public Map<String, Map<String, Map<String,Object>>> globals = new HashMap<>(){ {
+        put("parameters", new HashMap<>());
+    } };
     
-    
+     public Map<String, String> getServerVariableDefaults() {
+         return serverDefaults.get(this.server);
+     }
     public Optional<RetryConfig> retryConfig = Optional.empty();
 }
