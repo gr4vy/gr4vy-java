@@ -1,0 +1,18 @@
+overlay: 1.0.0
+x-speakeasy-jsonpath: rfc9535
+info:
+    title: Enable the X-GR4VY-MERCHANT-ACCOUNT-ID header as a global
+    version: 0.0.1
+actions:
+    - target: $
+      update:
+        x-speakeasy-globals:
+            parameters:
+                - name: x-gr4vy-merchant-account-id
+                  x-speakeasy-name-override: merchantAccountId
+                  in: header
+                  schema:
+                    type: string
+    - target: $.paths.*.*.parameters[?(@.name=="x-gr4vy-merchant-account-id")]
+      update:
+        x-speakeasy-name-override: merchantAccountId
