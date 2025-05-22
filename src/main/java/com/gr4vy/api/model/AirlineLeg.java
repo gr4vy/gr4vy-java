@@ -35,6 +35,18 @@ public class AirlineLeg {
   @SerializedName(SERIALIZED_NAME_CARRIER_CODE)
   private String carrierCode;
 
+  public static final String SERIALIZED_NAME_CARRIER_NAME = "carrier_name";
+  @SerializedName(SERIALIZED_NAME_CARRIER_NAME)
+  private String carrierName;
+
+  public static final String SERIALIZED_NAME_IATA_DESIGNATOR = "iata_designator";
+  @SerializedName(SERIALIZED_NAME_IATA_DESIGNATOR)
+  private String iataDesignator;
+
+  public static final String SERIALIZED_NAME_ICAO_CODE = "icao_code";
+  @SerializedName(SERIALIZED_NAME_ICAO_CODE)
+  private String icaoCode;
+
   public static final String SERIALIZED_NAME_FLIGHT_NUMBER = "flight_number";
   @SerializedName(SERIALIZED_NAME_FLIGHT_NUMBER)
   private String flightNumber;
@@ -154,6 +166,10 @@ public class AirlineLeg {
   @SerializedName(SERIALIZED_NAME_DEPARTURE_TAX_AMOUNT)
   private Integer departureTaxAmount;
 
+  public static final String SERIALIZED_NAME_SEAT_CLASS = "seat_class";
+  @SerializedName(SERIALIZED_NAME_SEAT_CLASS)
+  private String seatClass;
+
 
   public AirlineLeg carrierCode(String carrierCode) {
     
@@ -175,6 +191,75 @@ public class AirlineLeg {
 
   public void setCarrierCode(String carrierCode) {
     this.carrierCode = carrierCode;
+  }
+
+
+  public AirlineLeg carrierName(String carrierName) {
+    
+    this.carrierName = carrierName;
+    return this;
+  }
+
+   /**
+   * The name of the airline.
+   * @return carrierName
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "El Al Israel Airlines", value = "The name of the airline.")
+
+  public String getCarrierName() {
+    return carrierName;
+  }
+
+
+  public void setCarrierName(String carrierName) {
+    this.carrierName = carrierName;
+  }
+
+
+  public AirlineLeg iataDesignator(String iataDesignator) {
+    
+    this.iataDesignator = iataDesignator;
+    return this;
+  }
+
+   /**
+   * 2 character IATA code of the airline.
+   * @return iataDesignator
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "LY", value = "2 character IATA code of the airline.")
+
+  public String getIataDesignator() {
+    return iataDesignator;
+  }
+
+
+  public void setIataDesignator(String iataDesignator) {
+    this.iataDesignator = iataDesignator;
+  }
+
+
+  public AirlineLeg icaoCode(String icaoCode) {
+    
+    this.icaoCode = icaoCode;
+    return this;
+  }
+
+   /**
+   * 3 character ICAO code of the airline.
+   * @return icaoCode
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "ELY", value = "3 character ICAO code of the airline.")
+
+  public String getIcaoCode() {
+    return icaoCode;
+  }
+
+
+  public void setIcaoCode(String icaoCode) {
+    this.icaoCode = icaoCode;
   }
 
 
@@ -600,6 +685,29 @@ public class AirlineLeg {
   }
 
 
+  public AirlineLeg seatClass(String seatClass) {
+    
+    this.seatClass = seatClass;
+    return this;
+  }
+
+   /**
+   * Indicates seat class (first class, business class, etc.).
+   * @return seatClass
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "F", value = "Indicates seat class (first class, business class, etc.).")
+
+  public String getSeatClass() {
+    return seatClass;
+  }
+
+
+  public void setSeatClass(String seatClass) {
+    this.seatClass = seatClass;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -610,6 +718,9 @@ public class AirlineLeg {
     }
     AirlineLeg airlineLeg = (AirlineLeg) o;
     return Objects.equals(this.carrierCode, airlineLeg.carrierCode) &&
+        Objects.equals(this.carrierName, airlineLeg.carrierName) &&
+        Objects.equals(this.iataDesignator, airlineLeg.iataDesignator) &&
+        Objects.equals(this.icaoCode, airlineLeg.icaoCode) &&
         Objects.equals(this.flightNumber, airlineLeg.flightNumber) &&
         Objects.equals(this.departureAt, airlineLeg.departureAt) &&
         Objects.equals(this.departureCountry, airlineLeg.departureCountry) &&
@@ -627,12 +738,13 @@ public class AirlineLeg {
         Objects.equals(this.fareAmount, airlineLeg.fareAmount) &&
         Objects.equals(this.feeAmount, airlineLeg.feeAmount) &&
         Objects.equals(this.taxAmount, airlineLeg.taxAmount) &&
-        Objects.equals(this.departureTaxAmount, airlineLeg.departureTaxAmount);
+        Objects.equals(this.departureTaxAmount, airlineLeg.departureTaxAmount) &&
+        Objects.equals(this.seatClass, airlineLeg.seatClass);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(carrierCode, flightNumber, departureAt, departureCountry, departureCity, departureAirport, arrivalAt, arrivalCountry, arrivalCity, arrivalAirport, fareBasisCode, flightClass, stopOver, routeType, couponNumber, fareAmount, feeAmount, taxAmount, departureTaxAmount);
+    return Objects.hash(carrierCode, carrierName, iataDesignator, icaoCode, flightNumber, departureAt, departureCountry, departureCity, departureAirport, arrivalAt, arrivalCountry, arrivalCity, arrivalAirport, fareBasisCode, flightClass, stopOver, routeType, couponNumber, fareAmount, feeAmount, taxAmount, departureTaxAmount, seatClass);
   }
 
   @Override
@@ -640,6 +752,9 @@ public class AirlineLeg {
     StringBuilder sb = new StringBuilder();
     sb.append("class AirlineLeg {\n");
     sb.append("    carrierCode: ").append(toIndentedString(carrierCode)).append("\n");
+    sb.append("    carrierName: ").append(toIndentedString(carrierName)).append("\n");
+    sb.append("    iataDesignator: ").append(toIndentedString(iataDesignator)).append("\n");
+    sb.append("    icaoCode: ").append(toIndentedString(icaoCode)).append("\n");
     sb.append("    flightNumber: ").append(toIndentedString(flightNumber)).append("\n");
     sb.append("    departureAt: ").append(toIndentedString(departureAt)).append("\n");
     sb.append("    departureCountry: ").append(toIndentedString(departureCountry)).append("\n");
@@ -658,6 +773,7 @@ public class AirlineLeg {
     sb.append("    feeAmount: ").append(toIndentedString(feeAmount)).append("\n");
     sb.append("    taxAmount: ").append(toIndentedString(taxAmount)).append("\n");
     sb.append("    departureTaxAmount: ").append(toIndentedString(departureTaxAmount)).append("\n");
+    sb.append("    seatClass: ").append(toIndentedString(seatClass)).append("\n");
     sb.append("}");
     return sb.toString();
   }
