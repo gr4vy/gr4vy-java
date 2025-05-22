@@ -40,7 +40,7 @@ class SDKConfiguration {
     } };
     private static final String LANGUAGE = "java";
     public static final String OPENAPI_DOC_VERSION = "1.0.0";
-    public static final String SDK_VERSION = "0.1.0";
+    public static final String SDK_VERSION = "0.1.1";
     public static final String GEN_VERSION = "2.607.1";
     private static final String BASE_PACKAGE = "com.github.gr4vy.gr4vy_java";
     public static final String USER_AGENT = 

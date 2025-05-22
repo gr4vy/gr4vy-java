@@ -9,7 +9,7 @@ sources:
             - 1.0.0
     openapi:
         sourceNamespace: openapi
-        sourceRevisionDigest: sha256:28900c55f36113f4c0d9eb530c5d401c8666cbda6c4a877d111e7f8aa918a395
+        sourceRevisionDigest: sha256:b359e9aa9717a17e31a2d1f43e2a8a73ae968d016ab4a7c5cd02cec80c3a1912
         sourceBlobDigest: sha256:5bf12efa78cfa862f2eb31be3af16e99b575919b265a3b5f5febc20e699bad01
         tags:
             - latest
@@ -25,10 +25,10 @@ targets:
     java:
         source: openapi
         sourceNamespace: openapi
-        sourceRevisionDigest: sha256:28900c55f36113f4c0d9eb530c5d401c8666cbda6c4a877d111e7f8aa918a395
+        sourceRevisionDigest: sha256:b359e9aa9717a17e31a2d1f43e2a8a73ae968d016ab4a7c5cd02cec80c3a1912
         sourceBlobDigest: sha256:5bf12efa78cfa862f2eb31be3af16e99b575919b265a3b5f5febc20e699bad01
         codeSamplesNamespace: openapi-java-code-samples
-        codeSamplesRevisionDigest: sha256:a45dffb47a3508f323daa2d120419a8bb36d01da75a38b59d395874722e6da66
+        codeSamplesRevisionDigest: sha256:e2ec6f92c954b56bdd25a0c04873788c39fdd54d497e419d03e146251057047b
 workflow:
     workflowVersion: 1.0.0
     speakeasyVersion: latest
@@ -50,6 +50,12 @@ workflow:
         java:
             target: java
             source: openapi
+            publish:
+                java:
+                    ossrhUsername: $ossrh_username
+                    ossrhPassword: $ossrh_password
+                    gpgSecretKey: $java_gpg_secret_key
+                    gpgPassPhrase: $java_gpg_passphrase
             codeSamples:
                 registry:
                     location: registry.speakeasyapi.dev/gr4vy/gr4vy/openapi-java-code-samples
