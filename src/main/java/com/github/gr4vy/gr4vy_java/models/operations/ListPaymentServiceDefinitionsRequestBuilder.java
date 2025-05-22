@@ -6,6 +6,8 @@ package com.github.gr4vy.gr4vy_java.models.operations;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.github.gr4vy.gr4vy_java.models.errors.APIException;
 import com.github.gr4vy.gr4vy_java.utils.LazySingletonValue;
+import com.github.gr4vy.gr4vy_java.utils.Options;
+import com.github.gr4vy.gr4vy_java.utils.RetryConfig;
 import com.github.gr4vy.gr4vy_java.utils.Utils;
 import java.lang.Exception;
 import java.lang.Long;
@@ -21,6 +23,7 @@ public class ListPaymentServiceDefinitionsRequestBuilder {
                             "limit",
                             "20",
                             new TypeReference<Optional<Long>>() {});
+    private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKMethodInterfaces.MethodCallListPaymentServiceDefinitions sdk;
 
     public ListPaymentServiceDefinitionsRequestBuilder(SDKMethodInterfaces.MethodCallListPaymentServiceDefinitions sdk) {
@@ -50,14 +53,29 @@ public class ListPaymentServiceDefinitionsRequestBuilder {
         this.limit = limit;
         return this;
     }
+                
+    public ListPaymentServiceDefinitionsRequestBuilder retryConfig(RetryConfig retryConfig) {
+        Utils.checkNotNull(retryConfig, "retryConfig");
+        this.retryConfig = Optional.of(retryConfig);
+        return this;
+    }
+
+    public ListPaymentServiceDefinitionsRequestBuilder retryConfig(Optional<RetryConfig> retryConfig) {
+        Utils.checkNotNull(retryConfig, "retryConfig");
+        this.retryConfig = retryConfig;
+        return this;
+    }
 
     public ListPaymentServiceDefinitionsResponse call() throws Exception {
         if (limit == null) {
             limit = _SINGLETON_VALUE_Limit.value();
-        }
+        }        Optional<Options> options = Optional.of(Options.builder()
+                                                    .retryConfig(retryConfig)
+                                                    .build());
         return sdk.list(
             cursor,
-            limit);
+            limit,
+            options);
     }
     
     /**

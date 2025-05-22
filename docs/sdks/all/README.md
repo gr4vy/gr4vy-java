@@ -27,12 +27,11 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Gr4vy sdk = Gr4vy.builder()
-                .oAuth2PasswordBearer("<YOUR_O_AUTH2_PASSWORD_BEARER_HERE>")
+                .bearerAuth("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
         CreateFullTransactionRefundResponse res = sdk.transactions().refunds().all().create()
                 .transactionId("7099948d-7286-47e4-aad8-b68f7eb44591")
-                .xGr4vyMerchantAccountId("default")
                 .transactionRefundAllCreate(TransactionRefundAllCreate.builder()
                     .reason("Refund due to user request.")
                     .externalIdentifier("refund-12345")
@@ -52,7 +51,7 @@ public class Application {
 | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
 | `transactionId`                                                                                    | *String*                                                                                           | :heavy_check_mark:                                                                                 | N/A                                                                                                | 7099948d-7286-47e4-aad8-b68f7eb44591                                                               |
 | `timeoutInSeconds`                                                                                 | *Optional\<Double>*                                                                                | :heavy_minus_sign:                                                                                 | N/A                                                                                                |                                                                                                    |
-| `xGr4vyMerchantAccountId`                                                                          | *JsonNullable\<String>*                                                                            | :heavy_minus_sign:                                                                                 | The ID of the merchant account to use for this request.                                            | default                                                                                            |
+| `merchantAccountId`                                                                                | *JsonNullable\<String>*                                                                            | :heavy_minus_sign:                                                                                 | The ID of the merchant account to use for this request.                                            |                                                                                                    |
 | `transactionRefundAllCreate`                                                                       | [JsonNullable\<TransactionRefundAllCreate>](../../models/components/TransactionRefundAllCreate.md) | :heavy_minus_sign:                                                                                 | N/A                                                                                                |                                                                                                    |
 
 ### Response

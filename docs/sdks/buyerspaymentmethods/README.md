@@ -27,7 +27,7 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Gr4vy sdk = Gr4vy.builder()
-                .oAuth2PasswordBearer("<YOUR_O_AUTH2_PASSWORD_BEARER_HERE>")
+                .bearerAuth("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
         ListBuyerPaymentMethodsRequest req = ListBuyerPaymentMethodsRequest.builder()
@@ -35,7 +35,6 @@ public class Application {
                 .buyerExternalIdentifier("buyer-12345")
                 .country("US")
                 .currency("USD")
-                .xGr4vyMerchantAccountId("default")
                 .build();
 
         ListBuyerPaymentMethodsResponse res = sdk.buyers().paymentMethods().list()

@@ -28,7 +28,9 @@ Gr4vy: The Gr4vy API.
   * [Authentication](#authentication)
   * [Available Resources and Operations](#available-resources-and-operations)
   * [Pagination](#pagination)
+  * [Retries](#retries)
   * [Error Handling](#error-handling)
+  * [Server Selection](#server-selection)
 * [Development](#development)
   * [Maturity](#maturity)
   * [Contributions](#contributions)
@@ -46,7 +48,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'com.github.gr4vy:gr4vy-java:0.0.2'
+implementation 'com.github.gr4vy:gr4vy-java:0.1.0'
 ```
 
 Maven:
@@ -54,7 +56,7 @@ Maven:
 <dependency>
     <groupId>com.github.gr4vy</groupId>
     <artifactId>gr4vy-java</artifactId>
-    <version>0.0.2</version>
+    <version>0.1.0</version>
 </dependency>
 ```
 
@@ -116,11 +118,10 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Gr4vy sdk = Gr4vy.builder()
-                .oAuth2PasswordBearer("<YOUR_O_AUTH2_PASSWORD_BEARER_HERE>")
+                .bearerAuth("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
         CreateAccountUpdaterJobResponse res = sdk.accountUpdater().jobs().create()
-                .xGr4vyMerchantAccountId("default")
                 .accountUpdaterJobCreate(AccountUpdaterJobCreate.builder()
                     .paymentMethodIds(List.of(
                         "ef9496d8-53a5-4aad-8ca2-00eb68334389",
@@ -143,11 +144,11 @@ public class Application {
 
 This SDK supports the following security scheme globally:
 
-| Name                   | Type   | Scheme       |
-| ---------------------- | ------ | ------------ |
-| `oAuth2PasswordBearer` | oauth2 | OAuth2 token |
+| Name         | Type | Scheme      |
+| ------------ | ---- | ----------- |
+| `bearerAuth` | http | HTTP Bearer |
 
-To authenticate with the API the `oAuth2PasswordBearer` parameter must be set when initializing the SDK client instance. For example:
+To authenticate with the API the `bearerAuth` parameter must be set when initializing the SDK client instance. For example:
 ```java
 package hello.world;
 
@@ -163,11 +164,10 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Gr4vy sdk = Gr4vy.builder()
-                .oAuth2PasswordBearer("<YOUR_O_AUTH2_PASSWORD_BEARER_HERE>")
+                .bearerAuth("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
         CreateAccountUpdaterJobResponse res = sdk.accountUpdater().jobs().create()
-                .xGr4vyMerchantAccountId("default")
                 .accountUpdaterJobCreate(AccountUpdaterJobCreate.builder()
                     .paymentMethodIds(List.of(
                         "ef9496d8-53a5-4aad-8ca2-00eb68334389",
@@ -372,14 +372,13 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Gr4vy sdk = Gr4vy.builder()
-                .oAuth2PasswordBearer("<YOUR_O_AUTH2_PASSWORD_BEARER_HERE>")
+                .bearerAuth("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
         ListBuyersRequest req = ListBuyersRequest.builder()
                 .cursor("ZXhhbXBsZTE")
                 .search("John")
                 .externalIdentifier("buyer-12345")
-                .xGr4vyMerchantAccountId("default")
                 .build();
 
         sdk.buyers().list()
@@ -393,6 +392,106 @@ public class Application {
 }
 ```
 <!-- End Pagination [pagination] -->
+
+<!-- Start Retries [retries] -->
+## Retries
+
+Some of the endpoints in this SDK support retries. If you use the SDK without any configuration, it will fall back to the default retry strategy provided by the API. However, the default retry strategy can be overridden on a per-operation basis, or across the entire SDK.
+
+To change the default retry strategy for a single API call, you can provide a `RetryConfig` object through the `retryConfig` builder method:
+```java
+package hello.world;
+
+import com.github.gr4vy.gr4vy_java.Gr4vy;
+import com.github.gr4vy.gr4vy_java.models.errors.*;
+import com.github.gr4vy.gr4vy_java.models.operations.ListBuyersRequest;
+import com.github.gr4vy.gr4vy_java.utils.BackoffStrategy;
+import com.github.gr4vy.gr4vy_java.utils.RetryConfig;
+import java.lang.Exception;
+import java.util.concurrent.TimeUnit;
+
+public class Application {
+
+    public static void main(String[] args) throws Exception {
+
+        Gr4vy sdk = Gr4vy.builder()
+                .bearerAuth("<YOUR_BEARER_TOKEN_HERE>")
+            .build();
+
+        ListBuyersRequest req = ListBuyersRequest.builder()
+                .cursor("ZXhhbXBsZTE")
+                .search("John")
+                .externalIdentifier("buyer-12345")
+                .build();
+
+        sdk.buyers().list()
+                .request(req)
+                .retryConfig(RetryConfig.builder()
+                    .backoff(BackoffStrategy.builder()
+                        .initialInterval(1L, TimeUnit.MILLISECONDS)
+                        .maxInterval(50L, TimeUnit.MILLISECONDS)
+                        .maxElapsedTime(1000L, TimeUnit.MILLISECONDS)
+                        .baseFactor(1.1)
+                        .jitterFactor(0.15)
+                        .retryConnectError(false)
+                        .build())
+                    .build())
+                .callAsStream()
+                .forEach(item -> {
+                   // handle item
+                });
+
+    }
+}
+```
+
+If you'd like to override the default retry strategy for all operations that support retries, you can provide a configuration at SDK initialization:
+```java
+package hello.world;
+
+import com.github.gr4vy.gr4vy_java.Gr4vy;
+import com.github.gr4vy.gr4vy_java.models.errors.*;
+import com.github.gr4vy.gr4vy_java.models.operations.ListBuyersRequest;
+import com.github.gr4vy.gr4vy_java.utils.BackoffStrategy;
+import com.github.gr4vy.gr4vy_java.utils.RetryConfig;
+import java.lang.Exception;
+import java.util.concurrent.TimeUnit;
+
+public class Application {
+
+    public static void main(String[] args) throws Exception {
+
+        Gr4vy sdk = Gr4vy.builder()
+                .retryConfig(RetryConfig.builder()
+                    .backoff(BackoffStrategy.builder()
+                        .initialInterval(1L, TimeUnit.MILLISECONDS)
+                        .maxInterval(50L, TimeUnit.MILLISECONDS)
+                        .maxElapsedTime(1000L, TimeUnit.MILLISECONDS)
+                        .baseFactor(1.1)
+                        .jitterFactor(0.15)
+                        .retryConnectError(false)
+                        .build())
+                    .build())
+                .bearerAuth("<YOUR_BEARER_TOKEN_HERE>")
+            .build();
+
+        ListBuyersRequest req = ListBuyersRequest.builder()
+                .cursor("ZXhhbXBsZTE")
+                .search("John")
+                .externalIdentifier("buyer-12345")
+                .build();
+
+        sdk.buyers().list()
+                .request(req)
+                .callAsStream()
+                .forEach(item -> {
+                   // handle item
+                });
+
+    }
+}
+```
+<!-- End Retries [retries] -->
 
 <!-- Start Error Handling [errors] -->
 ## Error Handling
@@ -434,11 +533,10 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Gr4vy sdk = Gr4vy.builder()
-                .oAuth2PasswordBearer("<YOUR_O_AUTH2_PASSWORD_BEARER_HERE>")
+                .bearerAuth("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
         CreateAccountUpdaterJobResponse res = sdk.accountUpdater().jobs().create()
-                .xGr4vyMerchantAccountId("default")
                 .accountUpdaterJobCreate(AccountUpdaterJobCreate.builder()
                     .paymentMethodIds(List.of(
                         "ef9496d8-53a5-4aad-8ca2-00eb68334389",
@@ -453,6 +551,99 @@ public class Application {
 }
 ```
 <!-- End Error Handling [errors] -->
+
+<!-- Start Server Selection [server] -->
+## Server Selection
+
+### Select Server by Name
+
+You can override the default server globally using the `.server(AvailableServers server)` builder method when initializing the SDK client instance. The selected server will then be used as the default on the operations that use it. This table lists the names associated with the available servers:
+
+| Name         | Server                               | Variables | Description |
+| ------------ | ------------------------------------ | --------- | ----------- |
+| `production` | `https://api.{id}.gr4vy.app`         | `id`      |             |
+| `sandbox`    | `https://api.sandbox.{id}.gr4vy.app` | `id`      |             |
+
+If the selected server has variables, you may override its default values using the associated builder method(s):
+
+| Variable | BuilderMethod   | Default     | Description                            |
+| -------- | --------------- | ----------- | -------------------------------------- |
+| `id`     | `id(String id)` | `"example"` | The subdomain for your Gr4vy instance. |
+
+#### Example
+
+```java
+package hello.world;
+
+import com.github.gr4vy.gr4vy_java.Gr4vy;
+import com.github.gr4vy.gr4vy_java.models.components.AccountUpdaterJobCreate;
+import com.github.gr4vy.gr4vy_java.models.errors.*;
+import com.github.gr4vy.gr4vy_java.models.operations.CreateAccountUpdaterJobResponse;
+import java.lang.Exception;
+import java.util.List;
+
+public class Application {
+
+    public static void main(String[] args) throws Exception {
+
+        Gr4vy sdk = Gr4vy.builder()
+                .server(Gr4vy.AvailableServers.SANDBOX)
+                .id("<id>")
+                .bearerAuth("<YOUR_BEARER_TOKEN_HERE>")
+            .build();
+
+        CreateAccountUpdaterJobResponse res = sdk.accountUpdater().jobs().create()
+                .accountUpdaterJobCreate(AccountUpdaterJobCreate.builder()
+                    .paymentMethodIds(List.of(
+                        "ef9496d8-53a5-4aad-8ca2-00eb68334389",
+                        "f29e886e-93cc-4714-b4a3-12b7a718e595"))
+                    .build())
+                .call();
+
+        if (res.accountUpdaterJob().isPresent()) {
+            // handle response
+        }
+    }
+}
+```
+
+### Override Server URL Per-Client
+
+The default server can also be overridden globally using the `.serverURL(String serverUrl)` builder method when initializing the SDK client instance. For example:
+```java
+package hello.world;
+
+import com.github.gr4vy.gr4vy_java.Gr4vy;
+import com.github.gr4vy.gr4vy_java.models.components.AccountUpdaterJobCreate;
+import com.github.gr4vy.gr4vy_java.models.errors.*;
+import com.github.gr4vy.gr4vy_java.models.operations.CreateAccountUpdaterJobResponse;
+import java.lang.Exception;
+import java.util.List;
+
+public class Application {
+
+    public static void main(String[] args) throws Exception {
+
+        Gr4vy sdk = Gr4vy.builder()
+                .serverURL("https://api.example.gr4vy.app")
+                .bearerAuth("<YOUR_BEARER_TOKEN_HERE>")
+            .build();
+
+        CreateAccountUpdaterJobResponse res = sdk.accountUpdater().jobs().create()
+                .accountUpdaterJobCreate(AccountUpdaterJobCreate.builder()
+                    .paymentMethodIds(List.of(
+                        "ef9496d8-53a5-4aad-8ca2-00eb68334389",
+                        "f29e886e-93cc-4714-b4a3-12b7a718e595"))
+                    .build())
+                .call();
+
+        if (res.accountUpdaterJob().isPresent()) {
+            // handle response
+        }
+    }
+}
+```
+<!-- End Server Selection [server] -->
 
 <!-- Placeholder for Future Speakeasy SDK Sections -->
 

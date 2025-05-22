@@ -83,24 +83,25 @@ public class Balances implements
      * <p>Fetch the balances for one or more gift cards.
      * 
      * @param timeoutInSeconds 
-     * @param xGr4vyMerchantAccountId The ID of the merchant account to use for this request.
+     * @param merchantAccountId 
      * @param giftCardBalanceRequest 
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public ListGiftCardBalancesResponse list(
             Optional<Double> timeoutInSeconds,
-            JsonNullable<String> xGr4vyMerchantAccountId,
+            JsonNullable<String> merchantAccountId,
             GiftCardBalanceRequest giftCardBalanceRequest) throws Exception {
         ListGiftCardBalancesRequest request =
             ListGiftCardBalancesRequest
                 .builder()
                 .timeoutInSeconds(timeoutInSeconds)
-                .xGr4vyMerchantAccountId(xGr4vyMerchantAccountId)
+                .merchantAccountId(merchantAccountId)
                 .giftCardBalanceRequest(giftCardBalanceRequest)
                 .build();
         
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 _baseUrl,
                 "/gift-cards/balances");
@@ -126,8 +127,8 @@ public class Balances implements
         _req.addQueryParams(Utils.getQueryParams(
                 ListGiftCardBalancesRequest.class,
                 request, 
-                null));
-        _req.addHeaders(Utils.getHeadersFromMetadata(request, null));
+                this.sdkConfiguration.globals));
+        _req.addHeaders(Utils.getHeadersFromMetadata(request, this.sdkConfiguration.globals));
         
         Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  

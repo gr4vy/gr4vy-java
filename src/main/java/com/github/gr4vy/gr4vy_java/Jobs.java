@@ -83,24 +83,25 @@ public class Jobs implements
      * <p>Schedule one or more stored cards for an account update.
      * 
      * @param timeoutInSeconds 
-     * @param xGr4vyMerchantAccountId The ID of the merchant account to use for this request.
+     * @param merchantAccountId 
      * @param accountUpdaterJobCreate 
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public CreateAccountUpdaterJobResponse create(
             Optional<Double> timeoutInSeconds,
-            JsonNullable<String> xGr4vyMerchantAccountId,
+            JsonNullable<String> merchantAccountId,
             AccountUpdaterJobCreate accountUpdaterJobCreate) throws Exception {
         CreateAccountUpdaterJobRequest request =
             CreateAccountUpdaterJobRequest
                 .builder()
                 .timeoutInSeconds(timeoutInSeconds)
-                .xGr4vyMerchantAccountId(xGr4vyMerchantAccountId)
+                .merchantAccountId(merchantAccountId)
                 .accountUpdaterJobCreate(accountUpdaterJobCreate)
                 .build();
         
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 _baseUrl,
                 "/account-updater/jobs");
@@ -126,8 +127,8 @@ public class Jobs implements
         _req.addQueryParams(Utils.getQueryParams(
                 CreateAccountUpdaterJobRequest.class,
                 request, 
-                null));
-        _req.addHeaders(Utils.getHeadersFromMetadata(request, null));
+                this.sdkConfiguration.globals));
+        _req.addHeaders(Utils.getHeadersFromMetadata(request, this.sdkConfiguration.globals));
         
         Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  

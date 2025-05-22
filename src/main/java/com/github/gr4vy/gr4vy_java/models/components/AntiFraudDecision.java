@@ -3,37 +3,193 @@
  */
 package com.github.gr4vy.gr4vy_java.models.components;
 
-import com.fasterxml.jackson.annotation.JsonValue;
+import com.fasterxml.jackson.core.JacksonException;
+import com.fasterxml.jackson.core.JsonGenerator;
+import com.fasterxml.jackson.core.JsonParser;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.DeserializationContext;
+import com.fasterxml.jackson.databind.SerializerProvider;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.databind.deser.std.StdDeserializer;
+import com.fasterxml.jackson.databind.ser.std.StdSerializer;
+import java.io.IOException;
+import java.lang.Override;
 import java.lang.String;
+import java.lang.SuppressWarnings;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
-public enum AntiFraudDecision {
-    ACCEPT("accept"),
-    ERROR("error"),
-    EXCEPTION("exception"),
-    REJECT("reject"),
-    REVIEW("review"),
-    SKIPPED("skipped");
+/**
+ * <p>Wrapper class for an "open" enum. "Open" enums are those that are expected
+ * to evolve (particularly with the addition of enum members over time). If an
+ * open enum is used then the appearance of unexpected enum values (say in a 
+ * response from an updated an API) will not bring about a runtime error thus 
+ * ensuring that non-updated client versions can continue to work without error.
+ *
+ * <p>Note that instances are immutable and are singletons (an internal thread-safe
+ * cache is maintained to ensure that). As a consequence instances created with the 
+ * same value will satisfy reference equality (via {@code ==}).
+ * 
+ * <p>This class is intended to emulate an enum (in terms of common usage and with 
+ * reference equality) but with the ability to carry unknown values. Unfortunately
+ * Java does not permit the use of an instance in a switch expression but you can 
+ * use the {@code asEnum()} method (after dealing with the `Optional` appropriately).
+ *
+ */
+@JsonDeserialize(using = AntiFraudDecision._Deserializer.class)
+@JsonSerialize(using = AntiFraudDecision._Serializer.class)
+public class AntiFraudDecision {
 
-    @JsonValue
+    public static final AntiFraudDecision ACCEPT = new AntiFraudDecision("accept");
+    public static final AntiFraudDecision ERROR = new AntiFraudDecision("error");
+    public static final AntiFraudDecision EXCEPTION = new AntiFraudDecision("exception");
+    public static final AntiFraudDecision REJECT = new AntiFraudDecision("reject");
+    public static final AntiFraudDecision REVIEW = new AntiFraudDecision("review");
+    public static final AntiFraudDecision SKIPPED = new AntiFraudDecision("skipped");
+
+    // This map will grow whenever a Color gets created with a new
+    // unrecognized value (a potential memory leak if the user is not
+    // careful). Keep this field lower case to avoid clashing with
+    // generated member names which will always be upper cased (Java
+    // convention)
+    private static final Map<String, AntiFraudDecision> values = createValuesMap();
+    private static final Map<String, AntiFraudDecisionEnum> enums = createEnumsMap();
+
     private final String value;
 
     private AntiFraudDecision(String value) {
         this.value = value;
     }
-    
+
+    /**
+     * Returns a AntiFraudDecision with the given value. For a specific value the 
+     * returned object will always be a singleton so reference equality 
+     * is satisfied when the values are the same.
+     * 
+     * @param value value to be wrapped as AntiFraudDecision
+     */ 
+    public static AntiFraudDecision of(String value) {
+        synchronized (AntiFraudDecision.class) {
+            return values.computeIfAbsent(value, v -> new AntiFraudDecision(v));
+        }
+    }
+
     public String value() {
         return value;
     }
-    
-    public static Optional<AntiFraudDecision> fromValue(String value) {
-        for (AntiFraudDecision o: AntiFraudDecision.values()) {
-            if (Objects.deepEquals(o.value, value)) {
-                return Optional.of(o);
-            }
+
+    public Optional<AntiFraudDecisionEnum> asEnum() {
+        return Optional.ofNullable(enums.getOrDefault(value, null));
+    }
+
+    public boolean isKnown() {
+        return asEnum().isPresent();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(value);
+    }
+
+    @Override
+    public boolean equals(java.lang.Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        AntiFraudDecision other = (AntiFraudDecision) obj;
+        return Objects.equals(value, other.value);
+    }
+
+    @Override
+    public String toString() {
+        return "AntiFraudDecision [value=" + value + "]";
+    }
+
+    // return an array just like an enum
+    public static AntiFraudDecision[] values() {
+        synchronized (AntiFraudDecision.class) {
+            return values.values().toArray(new AntiFraudDecision[] {});
         }
-        return Optional.empty();
+    }
+
+    private static final Map<String, AntiFraudDecision> createValuesMap() {
+        Map<String, AntiFraudDecision> map = new LinkedHashMap<>();
+        map.put("accept", ACCEPT);
+        map.put("error", ERROR);
+        map.put("exception", EXCEPTION);
+        map.put("reject", REJECT);
+        map.put("review", REVIEW);
+        map.put("skipped", SKIPPED);
+        return map;
+    }
+
+    private static final Map<String, AntiFraudDecisionEnum> createEnumsMap() {
+        Map<String, AntiFraudDecisionEnum> map = new HashMap<>();
+        map.put("accept", AntiFraudDecisionEnum.ACCEPT);
+        map.put("error", AntiFraudDecisionEnum.ERROR);
+        map.put("exception", AntiFraudDecisionEnum.EXCEPTION);
+        map.put("reject", AntiFraudDecisionEnum.REJECT);
+        map.put("review", AntiFraudDecisionEnum.REVIEW);
+        map.put("skipped", AntiFraudDecisionEnum.SKIPPED);
+        return map;
+    }
+    
+    @SuppressWarnings("serial")
+    public static final class _Serializer extends StdSerializer<AntiFraudDecision> {
+
+        protected _Serializer() {
+            super(AntiFraudDecision.class);
+        }
+
+        @Override
+        public void serialize(AntiFraudDecision value, JsonGenerator g, SerializerProvider provider)
+                throws IOException, JsonProcessingException {
+            g.writeObject(value.value);
+        }
+    }
+
+    @SuppressWarnings("serial")
+    public static final class _Deserializer extends StdDeserializer<AntiFraudDecision> {
+
+        protected _Deserializer() {
+            super(AntiFraudDecision.class);
+        }
+
+        @Override
+        public AntiFraudDecision deserialize(JsonParser p, DeserializationContext ctxt)
+                throws IOException, JacksonException {
+            String v = p.readValueAs(new TypeReference<String>() {});
+            // use the factory method to ensure we get singletons
+            return AntiFraudDecision.of(v);
+        }
+    }
+    
+    public enum AntiFraudDecisionEnum {
+
+        ACCEPT("accept"),
+        ERROR("error"),
+        EXCEPTION("exception"),
+        REJECT("reject"),
+        REVIEW("review"),
+        SKIPPED("skipped"),;
+
+        private final String value;
+
+        private AntiFraudDecisionEnum(String value) {
+            this.value = value;
+        }
+
+        public String value() {
+            return value;
+        }
     }
 }
 

@@ -4,6 +4,8 @@
 package com.github.gr4vy.gr4vy_java.models.operations;
 
 import com.github.gr4vy.gr4vy_java.models.errors.APIException;
+import com.github.gr4vy.gr4vy_java.utils.Options;
+import com.github.gr4vy.gr4vy_java.utils.RetryConfig;
 import com.github.gr4vy.gr4vy_java.utils.Utils;
 import java.lang.Exception;
 import java.util.Optional;
@@ -12,6 +14,7 @@ import java.util.stream.Stream;
 public class ListPaymentServicesRequestBuilder {
 
     private ListPaymentServicesRequest request;
+    private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKMethodInterfaces.MethodCallListPaymentServices sdk;
 
     public ListPaymentServicesRequestBuilder(SDKMethodInterfaces.MethodCallListPaymentServices sdk) {
@@ -23,11 +26,26 @@ public class ListPaymentServicesRequestBuilder {
         this.request = request;
         return this;
     }
+                
+    public ListPaymentServicesRequestBuilder retryConfig(RetryConfig retryConfig) {
+        Utils.checkNotNull(retryConfig, "retryConfig");
+        this.retryConfig = Optional.of(retryConfig);
+        return this;
+    }
+
+    public ListPaymentServicesRequestBuilder retryConfig(Optional<RetryConfig> retryConfig) {
+        Utils.checkNotNull(retryConfig, "retryConfig");
+        this.retryConfig = retryConfig;
+        return this;
+    }
 
     public ListPaymentServicesResponse call() throws Exception {
-
+        Optional<Options> options = Optional.of(Options.builder()
+                                                    .retryConfig(retryConfig)
+                                                    .build());
         return sdk.list(
-            request);
+            request,
+            options);
     }
     
     /**

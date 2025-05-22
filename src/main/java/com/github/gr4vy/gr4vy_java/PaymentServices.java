@@ -45,11 +45,16 @@ import com.github.gr4vy.gr4vy_java.models.operations.UpdatePaymentServiceRespons
 import com.github.gr4vy.gr4vy_java.models.operations.VerifyPaymentServiceCredentialsRequest;
 import com.github.gr4vy.gr4vy_java.models.operations.VerifyPaymentServiceCredentialsRequestBuilder;
 import com.github.gr4vy.gr4vy_java.models.operations.VerifyPaymentServiceCredentialsResponse;
+import com.github.gr4vy.gr4vy_java.utils.BackoffStrategy;
 import com.github.gr4vy.gr4vy_java.utils.HTTPClient;
 import com.github.gr4vy.gr4vy_java.utils.HTTPRequest;
 import com.github.gr4vy.gr4vy_java.utils.Hook.AfterErrorContextImpl;
 import com.github.gr4vy.gr4vy_java.utils.Hook.AfterSuccessContextImpl;
 import com.github.gr4vy.gr4vy_java.utils.Hook.BeforeRequestContextImpl;
+import com.github.gr4vy.gr4vy_java.utils.Options;
+import com.github.gr4vy.gr4vy_java.utils.Retries.NonRetryableException;
+import com.github.gr4vy.gr4vy_java.utils.Retries;
+import com.github.gr4vy.gr4vy_java.utils.RetryConfig;
 import com.github.gr4vy.gr4vy_java.utils.SerializedBody;
 import com.github.gr4vy.gr4vy_java.utils.Utils.JsonShape;
 import com.github.gr4vy.gr4vy_java.utils.Utils;
@@ -66,9 +71,12 @@ import java.lang.SuppressWarnings;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.concurrent.TimeUnit;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 public class PaymentServices implements
@@ -109,7 +117,28 @@ public class PaymentServices implements
      */
     public ListPaymentServicesResponse list(
             ListPaymentServicesRequest request) throws Exception {
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        return list(request, Optional.empty());
+    }
+    
+    /**
+     * List payment services
+     * 
+     * <p>List the configured payment services.
+     * 
+     * @param request The request object containing all of the parameters for the API call.
+     * @param options additional options
+     * @return The response from the API call
+     * @throws Exception if the API call fails
+     */
+    public ListPaymentServicesResponse list(
+            ListPaymentServicesRequest request,
+            Optional<Options> options) throws Exception {
+
+        if (options.isPresent()) {
+          options.get().validate(Arrays.asList(Options.Option.RETRY_CONFIG));
+        }
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 _baseUrl,
                 "/payment-services");
@@ -122,56 +151,72 @@ public class PaymentServices implements
         _req.addQueryParams(Utils.getQueryParams(
                 ListPaymentServicesRequest.class,
                 request, 
-                null));
-        _req.addHeaders(Utils.getHeadersFromMetadata(request, null));
+                this.sdkConfiguration.globals));
+        _req.addHeaders(Utils.getHeadersFromMetadata(request, this.sdkConfiguration.globals));
         
         Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
         HTTPClient _client = this.sdkConfiguration.defaultClient;
-        HttpRequest _r = 
-            sdkConfiguration.hooks()
-               .beforeRequest(
-                  new BeforeRequestContextImpl(
-                      _baseUrl,
-                      "list_payment_services", 
-                      Optional.of(List.of()), 
-                      _hookSecuritySource),
-                  _req.build());
-        HttpResponse<InputStream> _httpRes;
-        try {
-            _httpRes = _client.send(_r);
-            if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "401", "403", "404", "405", "409", "422", "425", "429", "4XX", "500", "502", "504", "5XX")) {
-                _httpRes = sdkConfiguration.hooks()
-                    .afterError(
-                        new AfterErrorContextImpl(
-                            _baseUrl,
-                            "list_payment_services",
-                            Optional.of(List.of()),
-                            _hookSecuritySource),
-                        Optional.of(_httpRes),
-                        Optional.empty());
-            } else {
-                _httpRes = sdkConfiguration.hooks()
-                    .afterSuccess(
-                        new AfterSuccessContextImpl(
-                            _baseUrl,
-                            "list_payment_services",
-                            Optional.of(List.of()), 
-                            _hookSecuritySource),
-                         _httpRes);
-            }
-        } catch (Exception _e) {
-            _httpRes = sdkConfiguration.hooks()
-                    .afterError(
-                        new AfterErrorContextImpl(
-                            _baseUrl,
-                            "list_payment_services",
-                            Optional.of(List.of()),
-                            _hookSecuritySource), 
-                        Optional.empty(),
-                        Optional.of(_e));
+        HTTPRequest _finalReq = _req;
+        RetryConfig _retryConfig;
+        if (options.isPresent() && options.get().retryConfig().isPresent()) {
+            _retryConfig = options.get().retryConfig().get();
+        } else if (this.sdkConfiguration.retryConfig.isPresent()) {
+            _retryConfig = this.sdkConfiguration.retryConfig.get();
+        } else {
+            _retryConfig = RetryConfig.builder()
+                .backoff(BackoffStrategy.builder()
+                            .initialInterval(200, TimeUnit.MILLISECONDS)
+                            .maxInterval(200, TimeUnit.MILLISECONDS)
+                            .baseFactor((double)(1))
+                            .maxElapsedTime(1000, TimeUnit.MILLISECONDS)
+                            .retryConnectError(true)
+                            .build())
+                .build();
         }
+        List<String> _statusCodes = new ArrayList<>();
+        _statusCodes.add("5XX");
+        Retries _retries = Retries.builder()
+            .action(() -> {
+                HttpRequest _r = null;
+                try {
+                    _r = sdkConfiguration.hooks()
+                        .beforeRequest(
+                            new BeforeRequestContextImpl(
+                                _baseUrl,
+                                "list_payment_services", 
+                                Optional.of(List.of()), 
+                                _hookSecuritySource),
+                            _finalReq.build());
+                } catch (Exception _e) {
+                    throw new NonRetryableException(_e);
+                }
+                try {
+                    return _client.send(_r);
+                } catch (Exception _e) {
+                    return sdkConfiguration.hooks()
+                        .afterError(
+                            new AfterErrorContextImpl(
+                                _baseUrl,
+                                "list_payment_services",
+                                 Optional.of(List.of()),
+                                 _hookSecuritySource), 
+                            Optional.empty(),
+                            Optional.of(_e));
+                }
+            })
+            .retryConfig(_retryConfig)
+            .statusCodes(_statusCodes)
+            .build();
+        HttpResponse<InputStream> _httpRes = sdkConfiguration.hooks()
+                 .afterSuccess(
+                     new AfterSuccessContextImpl(
+                          _baseUrl,
+                         "list_payment_services", 
+                         Optional.of(List.of()), 
+                         _hookSecuritySource),
+                     _retries.run());
         String _contentType = _httpRes
             .headers()
             .firstValue("Content-Type")
@@ -203,7 +248,7 @@ public class PaymentServices implements
                         JsonNullable.of(_nextCursor),
                         request.limit(),
                         request.deleted(),
-                        request.xGr4vyMerchantAccountId()
+                        request.merchantAccountId()
                              ));
                     return Optional.of(_nextRequest.call());
                 });
@@ -472,22 +517,23 @@ public class PaymentServices implements
      * 
      * <p>Updates the configuration of a payment service.
      * 
-     * @param xGr4vyMerchantAccountId The ID of the merchant account to use for this request.
+     * @param merchantAccountId 
      * @param paymentServiceCreate Request body for activating a payment service
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public UpdatePaymentServiceResponse create(
-            JsonNullable<String> xGr4vyMerchantAccountId,
+            JsonNullable<String> merchantAccountId,
             PaymentServiceCreate paymentServiceCreate) throws Exception {
         UpdatePaymentServiceRequest request =
             UpdatePaymentServiceRequest
                 .builder()
-                .xGr4vyMerchantAccountId(xGr4vyMerchantAccountId)
+                .merchantAccountId(merchantAccountId)
                 .paymentServiceCreate(paymentServiceCreate)
                 .build();
         
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 _baseUrl,
                 "/payment-services");
@@ -509,7 +555,7 @@ public class PaymentServices implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-        _req.addHeaders(Utils.getHeadersFromMetadata(request, null));
+        _req.addHeaders(Utils.getHeadersFromMetadata(request, this.sdkConfiguration.globals));
         
         Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
@@ -825,7 +871,7 @@ public class PaymentServices implements
      */
     public GetPaymentServiceResponse get(
             String paymentServiceId) throws Exception {
-        return get(paymentServiceId, JsonNullable.undefined());
+        return get(paymentServiceId, JsonNullable.undefined(), Optional.empty());
     }
     
     /**
@@ -834,80 +880,103 @@ public class PaymentServices implements
      * <p>Get the details of a configured payment service.
      * 
      * @param paymentServiceId the ID of the payment service
-     * @param xGr4vyMerchantAccountId The ID of the merchant account to use for this request.
+     * @param merchantAccountId 
+     * @param options additional options
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public GetPaymentServiceResponse get(
             String paymentServiceId,
-            JsonNullable<String> xGr4vyMerchantAccountId) throws Exception {
+            JsonNullable<String> merchantAccountId,
+            Optional<Options> options) throws Exception {
+
+        if (options.isPresent()) {
+          options.get().validate(Arrays.asList(Options.Option.RETRY_CONFIG));
+        }
         GetPaymentServiceRequest request =
             GetPaymentServiceRequest
                 .builder()
                 .paymentServiceId(paymentServiceId)
-                .xGr4vyMerchantAccountId(xGr4vyMerchantAccountId)
+                .merchantAccountId(merchantAccountId)
                 .build();
         
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 GetPaymentServiceRequest.class,
                 _baseUrl,
                 "/payment-services/{payment_service_id}",
-                request, null);
+                request, this.sdkConfiguration.globals);
         
         HTTPRequest _req = new HTTPRequest(_url, "GET");
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-        _req.addHeaders(Utils.getHeadersFromMetadata(request, null));
+        _req.addHeaders(Utils.getHeadersFromMetadata(request, this.sdkConfiguration.globals));
         
         Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
         HTTPClient _client = this.sdkConfiguration.defaultClient;
-        HttpRequest _r = 
-            sdkConfiguration.hooks()
-               .beforeRequest(
-                  new BeforeRequestContextImpl(
-                      _baseUrl,
-                      "get_payment_service", 
-                      Optional.of(List.of()), 
-                      _hookSecuritySource),
-                  _req.build());
-        HttpResponse<InputStream> _httpRes;
-        try {
-            _httpRes = _client.send(_r);
-            if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "401", "403", "404", "405", "409", "422", "425", "429", "4XX", "500", "502", "504", "5XX")) {
-                _httpRes = sdkConfiguration.hooks()
-                    .afterError(
-                        new AfterErrorContextImpl(
-                            _baseUrl,
-                            "get_payment_service",
-                            Optional.of(List.of()),
-                            _hookSecuritySource),
-                        Optional.of(_httpRes),
-                        Optional.empty());
-            } else {
-                _httpRes = sdkConfiguration.hooks()
-                    .afterSuccess(
-                        new AfterSuccessContextImpl(
-                            _baseUrl,
-                            "get_payment_service",
-                            Optional.of(List.of()), 
-                            _hookSecuritySource),
-                         _httpRes);
-            }
-        } catch (Exception _e) {
-            _httpRes = sdkConfiguration.hooks()
-                    .afterError(
-                        new AfterErrorContextImpl(
-                            _baseUrl,
-                            "get_payment_service",
-                            Optional.of(List.of()),
-                            _hookSecuritySource), 
-                        Optional.empty(),
-                        Optional.of(_e));
+        HTTPRequest _finalReq = _req;
+        RetryConfig _retryConfig;
+        if (options.isPresent() && options.get().retryConfig().isPresent()) {
+            _retryConfig = options.get().retryConfig().get();
+        } else if (this.sdkConfiguration.retryConfig.isPresent()) {
+            _retryConfig = this.sdkConfiguration.retryConfig.get();
+        } else {
+            _retryConfig = RetryConfig.builder()
+                .backoff(BackoffStrategy.builder()
+                            .initialInterval(200, TimeUnit.MILLISECONDS)
+                            .maxInterval(200, TimeUnit.MILLISECONDS)
+                            .baseFactor((double)(1))
+                            .maxElapsedTime(1000, TimeUnit.MILLISECONDS)
+                            .retryConnectError(true)
+                            .build())
+                .build();
         }
+        List<String> _statusCodes = new ArrayList<>();
+        _statusCodes.add("5XX");
+        Retries _retries = Retries.builder()
+            .action(() -> {
+                HttpRequest _r = null;
+                try {
+                    _r = sdkConfiguration.hooks()
+                        .beforeRequest(
+                            new BeforeRequestContextImpl(
+                                _baseUrl,
+                                "get_payment_service", 
+                                Optional.of(List.of()), 
+                                _hookSecuritySource),
+                            _finalReq.build());
+                } catch (Exception _e) {
+                    throw new NonRetryableException(_e);
+                }
+                try {
+                    return _client.send(_r);
+                } catch (Exception _e) {
+                    return sdkConfiguration.hooks()
+                        .afterError(
+                            new AfterErrorContextImpl(
+                                _baseUrl,
+                                "get_payment_service",
+                                 Optional.of(List.of()),
+                                 _hookSecuritySource), 
+                            Optional.empty(),
+                            Optional.of(_e));
+                }
+            })
+            .retryConfig(_retryConfig)
+            .statusCodes(_statusCodes)
+            .build();
+        HttpResponse<InputStream> _httpRes = sdkConfiguration.hooks()
+                 .afterSuccess(
+                     new AfterSuccessContextImpl(
+                          _baseUrl,
+                         "get_payment_service", 
+                         Optional.of(List.of()), 
+                         _hookSecuritySource),
+                     _retries.run());
         String _contentType = _httpRes
             .headers()
             .firstValue("Content-Type")
@@ -1186,29 +1255,30 @@ public class PaymentServices implements
      * <p>Configures a new payment service for use by merchants.
      * 
      * @param paymentServiceId the ID of the payment service
-     * @param xGr4vyMerchantAccountId The ID of the merchant account to use for this request.
+     * @param merchantAccountId 
      * @param paymentServiceUpdate Request body for updating a Payment Service
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public CreatePaymentServiceResponse update(
             String paymentServiceId,
-            JsonNullable<String> xGr4vyMerchantAccountId,
+            JsonNullable<String> merchantAccountId,
             PaymentServiceUpdate paymentServiceUpdate) throws Exception {
         CreatePaymentServiceRequest request =
             CreatePaymentServiceRequest
                 .builder()
                 .paymentServiceId(paymentServiceId)
-                .xGr4vyMerchantAccountId(xGr4vyMerchantAccountId)
+                .merchantAccountId(merchantAccountId)
                 .paymentServiceUpdate(paymentServiceUpdate)
                 .build();
         
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 CreatePaymentServiceRequest.class,
                 _baseUrl,
                 "/payment-services/{payment_service_id}",
-                request, null);
+                request, this.sdkConfiguration.globals);
         
         HTTPRequest _req = new HTTPRequest(_url, "PUT");
         Object _convertedRequest = Utils.convertToShape(
@@ -1227,7 +1297,7 @@ public class PaymentServices implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-        _req.addHeaders(Utils.getHeadersFromMetadata(request, null));
+        _req.addHeaders(Utils.getHeadersFromMetadata(request, this.sdkConfiguration.globals));
         
         Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
@@ -1553,28 +1623,29 @@ public class PaymentServices implements
      * 
      * @param paymentServiceId the ID of the payment service
      * @param timeoutInSeconds 
-     * @param xGr4vyMerchantAccountId The ID of the merchant account to use for this request.
+     * @param merchantAccountId 
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public DeletePaymentServiceResponse delete(
             String paymentServiceId,
             Optional<Double> timeoutInSeconds,
-            JsonNullable<String> xGr4vyMerchantAccountId) throws Exception {
+            JsonNullable<String> merchantAccountId) throws Exception {
         DeletePaymentServiceRequest request =
             DeletePaymentServiceRequest
                 .builder()
                 .paymentServiceId(paymentServiceId)
                 .timeoutInSeconds(timeoutInSeconds)
-                .xGr4vyMerchantAccountId(xGr4vyMerchantAccountId)
+                .merchantAccountId(merchantAccountId)
                 .build();
         
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 DeletePaymentServiceRequest.class,
                 _baseUrl,
                 "/payment-services/{payment_service_id}",
-                request, null);
+                request, this.sdkConfiguration.globals);
         
         HTTPRequest _req = new HTTPRequest(_url, "DELETE");
         _req.addHeader("Accept", "application/json")
@@ -1584,8 +1655,8 @@ public class PaymentServices implements
         _req.addQueryParams(Utils.getQueryParams(
                 DeletePaymentServiceRequest.class,
                 request, 
-                null));
-        _req.addHeaders(Utils.getHeadersFromMetadata(request, null));
+                this.sdkConfiguration.globals));
+        _req.addHeaders(Utils.getHeadersFromMetadata(request, this.sdkConfiguration.globals));
         
         Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
@@ -1910,24 +1981,25 @@ public class PaymentServices implements
      * <p>Verify the credentials of a configured payment service
      * 
      * @param timeoutInSeconds 
-     * @param xGr4vyMerchantAccountId The ID of the merchant account to use for this request.
+     * @param merchantAccountId 
      * @param verifyCredentials 
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public VerifyPaymentServiceCredentialsResponse verify(
             Optional<Double> timeoutInSeconds,
-            JsonNullable<String> xGr4vyMerchantAccountId,
+            JsonNullable<String> merchantAccountId,
             VerifyCredentials verifyCredentials) throws Exception {
         VerifyPaymentServiceCredentialsRequest request =
             VerifyPaymentServiceCredentialsRequest
                 .builder()
                 .timeoutInSeconds(timeoutInSeconds)
-                .xGr4vyMerchantAccountId(xGr4vyMerchantAccountId)
+                .merchantAccountId(merchantAccountId)
                 .verifyCredentials(verifyCredentials)
                 .build();
         
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 _baseUrl,
                 "/payment-services/verify");
@@ -1953,8 +2025,8 @@ public class PaymentServices implements
         _req.addQueryParams(Utils.getQueryParams(
                 VerifyPaymentServiceCredentialsRequest.class,
                 request, 
-                null));
-        _req.addHeaders(Utils.getHeadersFromMetadata(request, null));
+                this.sdkConfiguration.globals));
+        _req.addHeaders(Utils.getHeadersFromMetadata(request, this.sdkConfiguration.globals));
         
         Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
@@ -2281,29 +2353,30 @@ public class PaymentServices implements
      * <p>Creates a session for a payment service that supports sessions.
      * 
      * @param paymentServiceId the ID of the payment service
-     * @param xGr4vyMerchantAccountId The ID of the merchant account to use for this request.
+     * @param merchantAccountId 
      * @param requestBody 
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public CreatePaymentServiceSessionResponse session(
             String paymentServiceId,
-            JsonNullable<String> xGr4vyMerchantAccountId,
+            JsonNullable<String> merchantAccountId,
             Map<String, Object> requestBody) throws Exception {
         CreatePaymentServiceSessionRequest request =
             CreatePaymentServiceSessionRequest
                 .builder()
                 .paymentServiceId(paymentServiceId)
-                .xGr4vyMerchantAccountId(xGr4vyMerchantAccountId)
+                .merchantAccountId(merchantAccountId)
                 .requestBody(requestBody)
                 .build();
         
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 CreatePaymentServiceSessionRequest.class,
                 _baseUrl,
                 "/payment-services/{payment_service_id}/sessions",
-                request, null);
+                request, this.sdkConfiguration.globals);
         
         HTTPRequest _req = new HTTPRequest(_url, "POST");
         Object _convertedRequest = Utils.convertToShape(
@@ -2322,7 +2395,7 @@ public class PaymentServices implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-        _req.addHeaders(Utils.getHeadersFromMetadata(request, null));
+        _req.addHeaders(Utils.getHeadersFromMetadata(request, this.sdkConfiguration.globals));
         
         Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  

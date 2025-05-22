@@ -3,13 +3,17 @@
  */
 package com.github.gr4vy.gr4vy_java.models.operations;
 
+import com.github.gr4vy.gr4vy_java.utils.Options;
+import com.github.gr4vy.gr4vy_java.utils.RetryConfig;
 import com.github.gr4vy.gr4vy_java.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
+import java.util.Optional;
 
 public class GetPaymentServiceDefinitionRequestBuilder {
 
     private String paymentServiceDefinitionId;
+    private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKMethodInterfaces.MethodCallGetPaymentServiceDefinition sdk;
 
     public GetPaymentServiceDefinitionRequestBuilder(SDKMethodInterfaces.MethodCallGetPaymentServiceDefinition sdk) {
@@ -21,10 +25,25 @@ public class GetPaymentServiceDefinitionRequestBuilder {
         this.paymentServiceDefinitionId = paymentServiceDefinitionId;
         return this;
     }
+                
+    public GetPaymentServiceDefinitionRequestBuilder retryConfig(RetryConfig retryConfig) {
+        Utils.checkNotNull(retryConfig, "retryConfig");
+        this.retryConfig = Optional.of(retryConfig);
+        return this;
+    }
+
+    public GetPaymentServiceDefinitionRequestBuilder retryConfig(Optional<RetryConfig> retryConfig) {
+        Utils.checkNotNull(retryConfig, "retryConfig");
+        this.retryConfig = retryConfig;
+        return this;
+    }
 
     public GetPaymentServiceDefinitionResponse call() throws Exception {
-
+        Optional<Options> options = Optional.of(Options.builder()
+                                                    .retryConfig(retryConfig)
+                                                    .build());
         return sdk.get(
-            paymentServiceDefinitionId);
+            paymentServiceDefinitionId,
+            options);
     }
 }

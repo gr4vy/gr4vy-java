@@ -19,7 +19,7 @@ public class CreateAccountUpdaterJobRequestBuilder {
                             "timeoutInSeconds",
                             "1",
                             new TypeReference<Optional<Double>>() {});
-    private JsonNullable<String> xGr4vyMerchantAccountId = JsonNullable.undefined();
+    private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
     private AccountUpdaterJobCreate accountUpdaterJobCreate;
     private final SDKMethodInterfaces.MethodCallCreateAccountUpdaterJob sdk;
 
@@ -39,15 +39,15 @@ public class CreateAccountUpdaterJobRequestBuilder {
         return this;
     }
 
-    public CreateAccountUpdaterJobRequestBuilder xGr4vyMerchantAccountId(String xGr4vyMerchantAccountId) {
-        Utils.checkNotNull(xGr4vyMerchantAccountId, "xGr4vyMerchantAccountId");
-        this.xGr4vyMerchantAccountId = JsonNullable.of(xGr4vyMerchantAccountId);
+    public CreateAccountUpdaterJobRequestBuilder merchantAccountId(String merchantAccountId) {
+        Utils.checkNotNull(merchantAccountId, "merchantAccountId");
+        this.merchantAccountId = JsonNullable.of(merchantAccountId);
         return this;
     }
 
-    public CreateAccountUpdaterJobRequestBuilder xGr4vyMerchantAccountId(JsonNullable<String> xGr4vyMerchantAccountId) {
-        Utils.checkNotNull(xGr4vyMerchantAccountId, "xGr4vyMerchantAccountId");
-        this.xGr4vyMerchantAccountId = xGr4vyMerchantAccountId;
+    public CreateAccountUpdaterJobRequestBuilder merchantAccountId(JsonNullable<String> merchantAccountId) {
+        Utils.checkNotNull(merchantAccountId, "merchantAccountId");
+        this.merchantAccountId = merchantAccountId;
         return this;
     }
 
@@ -63,7 +63,7 @@ public class CreateAccountUpdaterJobRequestBuilder {
         }
         return sdk.create(
             timeoutInSeconds,
-            xGr4vyMerchantAccountId,
+            merchantAccountId,
             accountUpdaterJobCreate);
     }
 

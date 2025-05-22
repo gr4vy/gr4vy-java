@@ -1,4 +1,4 @@
-# CheckoutSessionUpdate
+# CheckoutSessionCreate
 
 
 ## Fields

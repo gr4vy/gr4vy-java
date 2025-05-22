@@ -1,0 +1,10 @@
+overlay: 1.0.0
+x-speakeasy-jsonpath: rfc9535
+info:
+    title: Fixes a conflict with the SDK base model
+    version: 0.0.1
+actions:
+    - target: $.components.schemas.BaseModel~
+      update: GenericModel
+    - target: $..[?@['$ref'] == '#/components/schemas/BaseModel']['$ref']
+      update: '#/components/schemas/GenericModel'

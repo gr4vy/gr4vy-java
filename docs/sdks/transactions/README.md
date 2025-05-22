@@ -35,7 +35,7 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Gr4vy sdk = Gr4vy.builder()
-                .oAuth2PasswordBearer("<YOUR_O_AUTH2_PASSWORD_BEARER_HERE>")
+                .bearerAuth("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
         ListTransactionsRequest req = ListTransactionsRequest.builder()
@@ -82,7 +82,6 @@ public class Application {
                     TransactionPaymentSource.RECURRING))
                 .isSubsequentPayment(true)
                 .merchantInitiated(true)
-                .xGr4vyMerchantAccountId("default")
                 .build();
 
         sdk.transactions().list()
@@ -149,11 +148,10 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Gr4vy sdk = Gr4vy.builder()
-                .oAuth2PasswordBearer("<YOUR_O_AUTH2_PASSWORD_BEARER_HERE>")
+                .bearerAuth("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
         CreateTransactionResponse res = sdk.transactions().create()
-                .xGr4vyMerchantAccountId("default")
                 .idempotencyKey("request-12345")
                 .transactionCreate(TransactionCreate.builder()
                     .amount(1299L)
@@ -416,7 +414,7 @@ public class Application {
 | Parameter                                                                                                                                                                                             | Type                                                                                                                                                                                                  | Required                                                                                                                                                                                              | Description                                                                                                                                                                                           | Example                                                                                                                                                                                               |
 | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `timeoutInSeconds`                                                                                                                                                                                    | *Optional\<Double>*                                                                                                                                                                                   | :heavy_minus_sign:                                                                                                                                                                                    | N/A                                                                                                                                                                                                   |                                                                                                                                                                                                       |
-| `xGr4vyMerchantAccountId`                                                                                                                                                                             | *JsonNullable\<String>*                                                                                                                                                                               | :heavy_minus_sign:                                                                                                                                                                                    | The ID of the merchant account to use for this request.                                                                                                                                               | default                                                                                                                                                                                               |
+| `merchantAccountId`                                                                                                                                                                                   | *JsonNullable\<String>*                                                                                                                                                                               | :heavy_minus_sign:                                                                                                                                                                                    | The ID of the merchant account to use for this request.                                                                                                                                               |                                                                                                                                                                                                       |
 | `idempotencyKey`                                                                                                                                                                                      | *JsonNullable\<String>*                                                                                                                                                                               | :heavy_minus_sign:                                                                                                                                                                                    | A unique key that identifies this request. Providing this header will make this an idempotent request. We recommend using V4 UUIDs, or another random string with enough entropy to avoid collisions. | request-12345                                                                                                                                                                                         |
 | `transactionCreate`                                                                                                                                                                                   | [TransactionCreate](../../models/components/TransactionCreate.md)                                                                                                                                     | :heavy_check_mark:                                                                                                                                                                                    | N/A                                                                                                                                                                                                   |                                                                                                                                                                                                       |
 
@@ -461,12 +459,11 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Gr4vy sdk = Gr4vy.builder()
-                .oAuth2PasswordBearer("<YOUR_O_AUTH2_PASSWORD_BEARER_HERE>")
+                .bearerAuth("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
         GetTransactionResponse res = sdk.transactions().get()
                 .transactionId("bde12786-dce8-4654-b031-196961d1ddcc")
-                .xGr4vyMerchantAccountId("default")
                 .call();
 
         if (res.transaction().isPresent()) {
@@ -478,10 +475,10 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                               | Type                                                    | Required                                                | Description                                             | Example                                                 |
-| ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- |
-| `transactionId`                                         | *String*                                                | :heavy_check_mark:                                      | N/A                                                     |                                                         |
-| `xGr4vyMerchantAccountId`                               | *JsonNullable\<String>*                                 | :heavy_minus_sign:                                      | The ID of the merchant account to use for this request. | default                                                 |
+| Parameter                                               | Type                                                    | Required                                                | Description                                             |
+| ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- |
+| `transactionId`                                         | *String*                                                | :heavy_check_mark:                                      | N/A                                                     |
+| `merchantAccountId`                                     | *JsonNullable\<String>*                                 | :heavy_minus_sign:                                      | The ID of the merchant account to use for this request. |
 
 ### Response
 
@@ -528,12 +525,11 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Gr4vy sdk = Gr4vy.builder()
-                .oAuth2PasswordBearer("<YOUR_O_AUTH2_PASSWORD_BEARER_HERE>")
+                .bearerAuth("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
         CaptureTransactionResponse res = sdk.transactions().capture()
                 .transactionId("49029b95-85dd-46d7-ad7f-9fc92c411127")
-                .xGr4vyMerchantAccountId("default")
                 .transactionCapture(TransactionCapture.builder()
                     .amount(1299L)
                     .airline(Airline.builder()
@@ -632,12 +628,12 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                           | Type                                                                | Required                                                            | Description                                                         | Example                                                             |
-| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
-| `transactionId`                                                     | *String*                                                            | :heavy_check_mark:                                                  | N/A                                                                 |                                                                     |
-| `timeoutInSeconds`                                                  | *Optional\<Double>*                                                 | :heavy_minus_sign:                                                  | N/A                                                                 |                                                                     |
-| `xGr4vyMerchantAccountId`                                           | *JsonNullable\<String>*                                             | :heavy_minus_sign:                                                  | The ID of the merchant account to use for this request.             | default                                                             |
-| `transactionCapture`                                                | [TransactionCapture](../../models/components/TransactionCapture.md) | :heavy_check_mark:                                                  | N/A                                                                 |                                                                     |
+| Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| `transactionId`                                                     | *String*                                                            | :heavy_check_mark:                                                  | N/A                                                                 |
+| `timeoutInSeconds`                                                  | *Optional\<Double>*                                                 | :heavy_minus_sign:                                                  | N/A                                                                 |
+| `merchantAccountId`                                                 | *JsonNullable\<String>*                                             | :heavy_minus_sign:                                                  | The ID of the merchant account to use for this request.             |
+| `transactionCapture`                                                | [TransactionCapture](../../models/components/TransactionCapture.md) | :heavy_check_mark:                                                  | N/A                                                                 |
 
 ### Response
 
@@ -680,12 +676,11 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Gr4vy sdk = Gr4vy.builder()
-                .oAuth2PasswordBearer("<YOUR_O_AUTH2_PASSWORD_BEARER_HERE>")
+                .bearerAuth("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
         VoidTransactionResponse res = sdk.transactions().void_()
                 .transactionId("7dbc44c9-1ea3-4853-87be-9923dd281b0d")
-                .xGr4vyMerchantAccountId("default")
                 .call();
 
         if (res.transaction().isPresent()) {
@@ -697,11 +692,11 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                               | Type                                                    | Required                                                | Description                                             | Example                                                 |
-| ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- |
-| `transactionId`                                         | *String*                                                | :heavy_check_mark:                                      | N/A                                                     |                                                         |
-| `timeoutInSeconds`                                      | *Optional\<Double>*                                     | :heavy_minus_sign:                                      | N/A                                                     |                                                         |
-| `xGr4vyMerchantAccountId`                               | *JsonNullable\<String>*                                 | :heavy_minus_sign:                                      | The ID of the merchant account to use for this request. | default                                                 |
+| Parameter                                               | Type                                                    | Required                                                | Description                                             |
+| ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- |
+| `transactionId`                                         | *String*                                                | :heavy_check_mark:                                      | N/A                                                     |
+| `timeoutInSeconds`                                      | *Optional\<Double>*                                     | :heavy_minus_sign:                                      | N/A                                                     |
+| `merchantAccountId`                                     | *JsonNullable\<String>*                                 | :heavy_minus_sign:                                      | The ID of the merchant account to use for this request. |
 
 ### Response
 
@@ -744,12 +739,11 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Gr4vy sdk = Gr4vy.builder()
-                .oAuth2PasswordBearer("<YOUR_O_AUTH2_PASSWORD_BEARER_HERE>")
+                .bearerAuth("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
         GetTransactionSummaryResponse res = sdk.transactions().summary()
                 .transactionId("7099948d-7286-47e4-aad8-b68f7eb44591")
-                .xGr4vyMerchantAccountId("default")
                 .call();
 
         if (res.transactionStatusSummary().isPresent()) {
@@ -764,7 +758,7 @@ public class Application {
 | Parameter                                               | Type                                                    | Required                                                | Description                                             | Example                                                 |
 | ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- |
 | `transactionId`                                         | *String*                                                | :heavy_check_mark:                                      | N/A                                                     | 7099948d-7286-47e4-aad8-b68f7eb44591                    |
-| `xGr4vyMerchantAccountId`                               | *JsonNullable\<String>*                                 | :heavy_minus_sign:                                      | The ID of the merchant account to use for this request. | default                                                 |
+| `merchantAccountId`                                     | *JsonNullable\<String>*                                 | :heavy_minus_sign:                                      | The ID of the merchant account to use for this request. |                                                         |
 
 ### Response
 
@@ -807,12 +801,11 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Gr4vy sdk = Gr4vy.builder()
-                .oAuth2PasswordBearer("<YOUR_O_AUTH2_PASSWORD_BEARER_HERE>")
+                .bearerAuth("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
         SyncTransactionResponse res = sdk.transactions().sync()
                 .transactionId("2ee546e0-3b11-478e-afec-fdb362611e22")
-                .xGr4vyMerchantAccountId("default")
                 .call();
 
         if (res.transaction().isPresent()) {
@@ -824,11 +817,11 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                               | Type                                                    | Required                                                | Description                                             | Example                                                 |
-| ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- |
-| `transactionId`                                         | *String*                                                | :heavy_check_mark:                                      | N/A                                                     |                                                         |
-| `timeoutInSeconds`                                      | *Optional\<Double>*                                     | :heavy_minus_sign:                                      | N/A                                                     |                                                         |
-| `xGr4vyMerchantAccountId`                               | *JsonNullable\<String>*                                 | :heavy_minus_sign:                                      | The ID of the merchant account to use for this request. | default                                                 |
+| Parameter                                               | Type                                                    | Required                                                | Description                                             |
+| ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- |
+| `transactionId`                                         | *String*                                                | :heavy_check_mark:                                      | N/A                                                     |
+| `timeoutInSeconds`                                      | *Optional\<Double>*                                     | :heavy_minus_sign:                                      | N/A                                                     |
+| `merchantAccountId`                                     | *JsonNullable\<String>*                                 | :heavy_minus_sign:                                      | The ID of the merchant account to use for this request. |
 
 ### Response
 

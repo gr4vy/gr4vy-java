@@ -20,7 +20,7 @@ public class UnregisterDigitalWalletDomainRequestBuilder {
                             "timeoutInSeconds",
                             "1",
                             new TypeReference<Optional<Double>>() {});
-    private JsonNullable<String> xGr4vyMerchantAccountId = JsonNullable.undefined();
+    private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
     private DigitalWalletDomain digitalWalletDomain;
     private final SDKMethodInterfaces.MethodCallUnregisterDigitalWalletDomain sdk;
 
@@ -46,15 +46,15 @@ public class UnregisterDigitalWalletDomainRequestBuilder {
         return this;
     }
 
-    public UnregisterDigitalWalletDomainRequestBuilder xGr4vyMerchantAccountId(String xGr4vyMerchantAccountId) {
-        Utils.checkNotNull(xGr4vyMerchantAccountId, "xGr4vyMerchantAccountId");
-        this.xGr4vyMerchantAccountId = JsonNullable.of(xGr4vyMerchantAccountId);
+    public UnregisterDigitalWalletDomainRequestBuilder merchantAccountId(String merchantAccountId) {
+        Utils.checkNotNull(merchantAccountId, "merchantAccountId");
+        this.merchantAccountId = JsonNullable.of(merchantAccountId);
         return this;
     }
 
-    public UnregisterDigitalWalletDomainRequestBuilder xGr4vyMerchantAccountId(JsonNullable<String> xGr4vyMerchantAccountId) {
-        Utils.checkNotNull(xGr4vyMerchantAccountId, "xGr4vyMerchantAccountId");
-        this.xGr4vyMerchantAccountId = xGr4vyMerchantAccountId;
+    public UnregisterDigitalWalletDomainRequestBuilder merchantAccountId(JsonNullable<String> merchantAccountId) {
+        Utils.checkNotNull(merchantAccountId, "merchantAccountId");
+        this.merchantAccountId = merchantAccountId;
         return this;
     }
 
@@ -71,7 +71,7 @@ public class UnregisterDigitalWalletDomainRequestBuilder {
         return sdk.delete(
             digitalWalletId,
             timeoutInSeconds,
-            xGr4vyMerchantAccountId,
+            merchantAccountId,
             digitalWalletDomain);
     }
 

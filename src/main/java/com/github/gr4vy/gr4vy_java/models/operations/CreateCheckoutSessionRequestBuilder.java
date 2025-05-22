@@ -4,6 +4,7 @@
 package com.github.gr4vy.gr4vy_java.models.operations;
 
 import com.fasterxml.jackson.core.type.TypeReference;
+import com.github.gr4vy.gr4vy_java.models.components.CheckoutSessionCreate;
 import com.github.gr4vy.gr4vy_java.utils.LazySingletonValue;
 import com.github.gr4vy.gr4vy_java.utils.Utils;
 import java.lang.Double;
@@ -18,8 +19,8 @@ public class CreateCheckoutSessionRequestBuilder {
                             "timeoutInSeconds",
                             "1",
                             new TypeReference<Optional<Double>>() {});
-    private JsonNullable<String> xGr4vyMerchantAccountId = JsonNullable.undefined();
-    private JsonNullable<? extends CreateCheckoutSessionBody> requestBody = JsonNullable.undefined();
+    private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
+    private Optional<? extends CheckoutSessionCreate> checkoutSessionCreate = Optional.empty();
     private final SDKMethodInterfaces.MethodCallCreateCheckoutSession sdk;
 
     public CreateCheckoutSessionRequestBuilder(SDKMethodInterfaces.MethodCallCreateCheckoutSession sdk) {
@@ -38,27 +39,27 @@ public class CreateCheckoutSessionRequestBuilder {
         return this;
     }
 
-    public CreateCheckoutSessionRequestBuilder xGr4vyMerchantAccountId(String xGr4vyMerchantAccountId) {
-        Utils.checkNotNull(xGr4vyMerchantAccountId, "xGr4vyMerchantAccountId");
-        this.xGr4vyMerchantAccountId = JsonNullable.of(xGr4vyMerchantAccountId);
+    public CreateCheckoutSessionRequestBuilder merchantAccountId(String merchantAccountId) {
+        Utils.checkNotNull(merchantAccountId, "merchantAccountId");
+        this.merchantAccountId = JsonNullable.of(merchantAccountId);
         return this;
     }
 
-    public CreateCheckoutSessionRequestBuilder xGr4vyMerchantAccountId(JsonNullable<String> xGr4vyMerchantAccountId) {
-        Utils.checkNotNull(xGr4vyMerchantAccountId, "xGr4vyMerchantAccountId");
-        this.xGr4vyMerchantAccountId = xGr4vyMerchantAccountId;
+    public CreateCheckoutSessionRequestBuilder merchantAccountId(JsonNullable<String> merchantAccountId) {
+        Utils.checkNotNull(merchantAccountId, "merchantAccountId");
+        this.merchantAccountId = merchantAccountId;
+        return this;
+    }
+                
+    public CreateCheckoutSessionRequestBuilder checkoutSessionCreate(CheckoutSessionCreate checkoutSessionCreate) {
+        Utils.checkNotNull(checkoutSessionCreate, "checkoutSessionCreate");
+        this.checkoutSessionCreate = Optional.of(checkoutSessionCreate);
         return this;
     }
 
-    public CreateCheckoutSessionRequestBuilder requestBody(CreateCheckoutSessionBody requestBody) {
-        Utils.checkNotNull(requestBody, "requestBody");
-        this.requestBody = JsonNullable.of(requestBody);
-        return this;
-    }
-
-    public CreateCheckoutSessionRequestBuilder requestBody(JsonNullable<? extends CreateCheckoutSessionBody> requestBody) {
-        Utils.checkNotNull(requestBody, "requestBody");
-        this.requestBody = requestBody;
+    public CreateCheckoutSessionRequestBuilder checkoutSessionCreate(Optional<? extends CheckoutSessionCreate> checkoutSessionCreate) {
+        Utils.checkNotNull(checkoutSessionCreate, "checkoutSessionCreate");
+        this.checkoutSessionCreate = checkoutSessionCreate;
         return this;
     }
 
@@ -68,8 +69,8 @@ public class CreateCheckoutSessionRequestBuilder {
         }
         return sdk.create(
             timeoutInSeconds,
-            xGr4vyMerchantAccountId,
-            requestBody);
+            merchantAccountId,
+            checkoutSessionCreate);
     }
 
     private static final LazySingletonValue<Optional<Double>> _SINGLETON_VALUE_TimeoutInSeconds =

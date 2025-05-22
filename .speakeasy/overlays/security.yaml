@@ -1,0 +1,20 @@
+overlay: 1.0.0
+info:
+  title: Replace global security scheme
+  version: 0.0.1
+actions:
+  - target: "$.components.securitySchemes.OAuth2PasswordBearer"
+    remove: true
+  - target: "$.components.securitySchemes"
+    update:
+      {
+        "bearerAuth":
+          { "type": "http", "scheme": "bearer", "bearerFormat": "JWT" },
+      }
+  - target: "$.paths.*.*.security"
+    remove: true
+  - target: "$"
+    update:
+      {
+        "security": [{ "bearerAuth": [] }]
+      }

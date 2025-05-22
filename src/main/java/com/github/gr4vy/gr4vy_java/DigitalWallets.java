@@ -37,11 +37,16 @@ import com.github.gr4vy.gr4vy_java.models.operations.SDKMethodInterfaces.*;
 import com.github.gr4vy.gr4vy_java.models.operations.UpdateDigitalWalletRequest;
 import com.github.gr4vy.gr4vy_java.models.operations.UpdateDigitalWalletRequestBuilder;
 import com.github.gr4vy.gr4vy_java.models.operations.UpdateDigitalWalletResponse;
+import com.github.gr4vy.gr4vy_java.utils.BackoffStrategy;
 import com.github.gr4vy.gr4vy_java.utils.HTTPClient;
 import com.github.gr4vy.gr4vy_java.utils.HTTPRequest;
 import com.github.gr4vy.gr4vy_java.utils.Hook.AfterErrorContextImpl;
 import com.github.gr4vy.gr4vy_java.utils.Hook.AfterSuccessContextImpl;
 import com.github.gr4vy.gr4vy_java.utils.Hook.BeforeRequestContextImpl;
+import com.github.gr4vy.gr4vy_java.utils.Options;
+import com.github.gr4vy.gr4vy_java.utils.Retries.NonRetryableException;
+import com.github.gr4vy.gr4vy_java.utils.Retries;
+import com.github.gr4vy.gr4vy_java.utils.RetryConfig;
 import com.github.gr4vy.gr4vy_java.utils.SerializedBody;
 import com.github.gr4vy.gr4vy_java.utils.Utils.JsonShape;
 import com.github.gr4vy.gr4vy_java.utils.Utils;
@@ -52,8 +57,11 @@ import java.lang.Object;
 import java.lang.String;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
+import java.util.concurrent.TimeUnit;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 public class DigitalWallets implements
@@ -113,24 +121,25 @@ public class DigitalWallets implements
      * <p>Register a digital wallet like Apple Pay, Google Pay, or Click to Pay.
      * 
      * @param timeoutInSeconds 
-     * @param xGr4vyMerchantAccountId The ID of the merchant account to use for this request.
+     * @param merchantAccountId 
      * @param digitalWalletCreate Request body for registering a new digital wallet
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public ConfigureDigitalWalletResponse create(
             Optional<Double> timeoutInSeconds,
-            JsonNullable<String> xGr4vyMerchantAccountId,
+            JsonNullable<String> merchantAccountId,
             DigitalWalletCreate digitalWalletCreate) throws Exception {
         ConfigureDigitalWalletRequest request =
             ConfigureDigitalWalletRequest
                 .builder()
                 .timeoutInSeconds(timeoutInSeconds)
-                .xGr4vyMerchantAccountId(xGr4vyMerchantAccountId)
+                .merchantAccountId(merchantAccountId)
                 .digitalWalletCreate(digitalWalletCreate)
                 .build();
         
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 _baseUrl,
                 "/digital-wallets");
@@ -156,8 +165,8 @@ public class DigitalWallets implements
         _req.addQueryParams(Utils.getQueryParams(
                 ConfigureDigitalWalletRequest.class,
                 request, 
-                null));
-        _req.addHeaders(Utils.getHeadersFromMetadata(request, null));
+                this.sdkConfiguration.globals));
+        _req.addHeaders(Utils.getHeadersFromMetadata(request, this.sdkConfiguration.globals));
         
         Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
@@ -471,7 +480,7 @@ public class DigitalWallets implements
      * @throws Exception if the API call fails
      */
     public ListDigitalWalletsResponse listDirect() throws Exception {
-        return list(JsonNullable.undefined());
+        return list(JsonNullable.undefined(), Optional.empty());
     }
     
     /**
@@ -479,19 +488,26 @@ public class DigitalWallets implements
      * 
      * <p>List configured digital wallets.
      * 
-     * @param xGr4vyMerchantAccountId The ID of the merchant account to use for this request.
+     * @param merchantAccountId 
+     * @param options additional options
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public ListDigitalWalletsResponse list(
-            JsonNullable<String> xGr4vyMerchantAccountId) throws Exception {
+            JsonNullable<String> merchantAccountId,
+            Optional<Options> options) throws Exception {
+
+        if (options.isPresent()) {
+          options.get().validate(Arrays.asList(Options.Option.RETRY_CONFIG));
+        }
         ListDigitalWalletsRequest request =
             ListDigitalWalletsRequest
                 .builder()
-                .xGr4vyMerchantAccountId(xGr4vyMerchantAccountId)
+                .merchantAccountId(merchantAccountId)
                 .build();
         
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 _baseUrl,
                 "/digital-wallets");
@@ -500,55 +516,71 @@ public class DigitalWallets implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-        _req.addHeaders(Utils.getHeadersFromMetadata(request, null));
+        _req.addHeaders(Utils.getHeadersFromMetadata(request, this.sdkConfiguration.globals));
         
         Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
         HTTPClient _client = this.sdkConfiguration.defaultClient;
-        HttpRequest _r = 
-            sdkConfiguration.hooks()
-               .beforeRequest(
-                  new BeforeRequestContextImpl(
-                      _baseUrl,
-                      "list_digital_wallets", 
-                      Optional.of(List.of()), 
-                      _hookSecuritySource),
-                  _req.build());
-        HttpResponse<InputStream> _httpRes;
-        try {
-            _httpRes = _client.send(_r);
-            if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "401", "403", "404", "405", "409", "422", "425", "429", "4XX", "500", "502", "504", "5XX")) {
-                _httpRes = sdkConfiguration.hooks()
-                    .afterError(
-                        new AfterErrorContextImpl(
-                            _baseUrl,
-                            "list_digital_wallets",
-                            Optional.of(List.of()),
-                            _hookSecuritySource),
-                        Optional.of(_httpRes),
-                        Optional.empty());
-            } else {
-                _httpRes = sdkConfiguration.hooks()
-                    .afterSuccess(
-                        new AfterSuccessContextImpl(
-                            _baseUrl,
-                            "list_digital_wallets",
-                            Optional.of(List.of()), 
-                            _hookSecuritySource),
-                         _httpRes);
-            }
-        } catch (Exception _e) {
-            _httpRes = sdkConfiguration.hooks()
-                    .afterError(
-                        new AfterErrorContextImpl(
-                            _baseUrl,
-                            "list_digital_wallets",
-                            Optional.of(List.of()),
-                            _hookSecuritySource), 
-                        Optional.empty(),
-                        Optional.of(_e));
+        HTTPRequest _finalReq = _req;
+        RetryConfig _retryConfig;
+        if (options.isPresent() && options.get().retryConfig().isPresent()) {
+            _retryConfig = options.get().retryConfig().get();
+        } else if (this.sdkConfiguration.retryConfig.isPresent()) {
+            _retryConfig = this.sdkConfiguration.retryConfig.get();
+        } else {
+            _retryConfig = RetryConfig.builder()
+                .backoff(BackoffStrategy.builder()
+                            .initialInterval(200, TimeUnit.MILLISECONDS)
+                            .maxInterval(200, TimeUnit.MILLISECONDS)
+                            .baseFactor((double)(1))
+                            .maxElapsedTime(1000, TimeUnit.MILLISECONDS)
+                            .retryConnectError(true)
+                            .build())
+                .build();
         }
+        List<String> _statusCodes = new ArrayList<>();
+        _statusCodes.add("5XX");
+        Retries _retries = Retries.builder()
+            .action(() -> {
+                HttpRequest _r = null;
+                try {
+                    _r = sdkConfiguration.hooks()
+                        .beforeRequest(
+                            new BeforeRequestContextImpl(
+                                _baseUrl,
+                                "list_digital_wallets", 
+                                Optional.of(List.of()), 
+                                _hookSecuritySource),
+                            _finalReq.build());
+                } catch (Exception _e) {
+                    throw new NonRetryableException(_e);
+                }
+                try {
+                    return _client.send(_r);
+                } catch (Exception _e) {
+                    return sdkConfiguration.hooks()
+                        .afterError(
+                            new AfterErrorContextImpl(
+                                _baseUrl,
+                                "list_digital_wallets",
+                                 Optional.of(List.of()),
+                                 _hookSecuritySource), 
+                            Optional.empty(),
+                            Optional.of(_e));
+                }
+            })
+            .retryConfig(_retryConfig)
+            .statusCodes(_statusCodes)
+            .build();
+        HttpResponse<InputStream> _httpRes = sdkConfiguration.hooks()
+                 .afterSuccess(
+                     new AfterSuccessContextImpl(
+                          _baseUrl,
+                         "list_digital_wallets", 
+                         Optional.of(List.of()), 
+                         _hookSecuritySource),
+                     _retries.run());
         String _contentType = _httpRes
             .headers()
             .firstValue("Content-Type")
@@ -816,7 +848,7 @@ public class DigitalWallets implements
      */
     public GetDigitalWalletResponse get(
             String digitalWalletId) throws Exception {
-        return get(digitalWalletId, JsonNullable.undefined());
+        return get(digitalWalletId, JsonNullable.undefined(), Optional.empty());
     }
     
     /**
@@ -825,80 +857,103 @@ public class DigitalWallets implements
      * <p>Fetch the details a digital wallet.
      * 
      * @param digitalWalletId The ID of the digital wallet to read.
-     * @param xGr4vyMerchantAccountId The ID of the merchant account to use for this request.
+     * @param merchantAccountId 
+     * @param options additional options
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public GetDigitalWalletResponse get(
             String digitalWalletId,
-            JsonNullable<String> xGr4vyMerchantAccountId) throws Exception {
+            JsonNullable<String> merchantAccountId,
+            Optional<Options> options) throws Exception {
+
+        if (options.isPresent()) {
+          options.get().validate(Arrays.asList(Options.Option.RETRY_CONFIG));
+        }
         GetDigitalWalletRequest request =
             GetDigitalWalletRequest
                 .builder()
                 .digitalWalletId(digitalWalletId)
-                .xGr4vyMerchantAccountId(xGr4vyMerchantAccountId)
+                .merchantAccountId(merchantAccountId)
                 .build();
         
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 GetDigitalWalletRequest.class,
                 _baseUrl,
                 "/digital-wallets/{digital_wallet_id}",
-                request, null);
+                request, this.sdkConfiguration.globals);
         
         HTTPRequest _req = new HTTPRequest(_url, "GET");
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-        _req.addHeaders(Utils.getHeadersFromMetadata(request, null));
+        _req.addHeaders(Utils.getHeadersFromMetadata(request, this.sdkConfiguration.globals));
         
         Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
         HTTPClient _client = this.sdkConfiguration.defaultClient;
-        HttpRequest _r = 
-            sdkConfiguration.hooks()
-               .beforeRequest(
-                  new BeforeRequestContextImpl(
-                      _baseUrl,
-                      "get_digital_wallet", 
-                      Optional.of(List.of()), 
-                      _hookSecuritySource),
-                  _req.build());
-        HttpResponse<InputStream> _httpRes;
-        try {
-            _httpRes = _client.send(_r);
-            if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "401", "403", "404", "405", "409", "422", "425", "429", "4XX", "500", "502", "504", "5XX")) {
-                _httpRes = sdkConfiguration.hooks()
-                    .afterError(
-                        new AfterErrorContextImpl(
-                            _baseUrl,
-                            "get_digital_wallet",
-                            Optional.of(List.of()),
-                            _hookSecuritySource),
-                        Optional.of(_httpRes),
-                        Optional.empty());
-            } else {
-                _httpRes = sdkConfiguration.hooks()
-                    .afterSuccess(
-                        new AfterSuccessContextImpl(
-                            _baseUrl,
-                            "get_digital_wallet",
-                            Optional.of(List.of()), 
-                            _hookSecuritySource),
-                         _httpRes);
-            }
-        } catch (Exception _e) {
-            _httpRes = sdkConfiguration.hooks()
-                    .afterError(
-                        new AfterErrorContextImpl(
-                            _baseUrl,
-                            "get_digital_wallet",
-                            Optional.of(List.of()),
-                            _hookSecuritySource), 
-                        Optional.empty(),
-                        Optional.of(_e));
+        HTTPRequest _finalReq = _req;
+        RetryConfig _retryConfig;
+        if (options.isPresent() && options.get().retryConfig().isPresent()) {
+            _retryConfig = options.get().retryConfig().get();
+        } else if (this.sdkConfiguration.retryConfig.isPresent()) {
+            _retryConfig = this.sdkConfiguration.retryConfig.get();
+        } else {
+            _retryConfig = RetryConfig.builder()
+                .backoff(BackoffStrategy.builder()
+                            .initialInterval(200, TimeUnit.MILLISECONDS)
+                            .maxInterval(200, TimeUnit.MILLISECONDS)
+                            .baseFactor((double)(1))
+                            .maxElapsedTime(1000, TimeUnit.MILLISECONDS)
+                            .retryConnectError(true)
+                            .build())
+                .build();
         }
+        List<String> _statusCodes = new ArrayList<>();
+        _statusCodes.add("5XX");
+        Retries _retries = Retries.builder()
+            .action(() -> {
+                HttpRequest _r = null;
+                try {
+                    _r = sdkConfiguration.hooks()
+                        .beforeRequest(
+                            new BeforeRequestContextImpl(
+                                _baseUrl,
+                                "get_digital_wallet", 
+                                Optional.of(List.of()), 
+                                _hookSecuritySource),
+                            _finalReq.build());
+                } catch (Exception _e) {
+                    throw new NonRetryableException(_e);
+                }
+                try {
+                    return _client.send(_r);
+                } catch (Exception _e) {
+                    return sdkConfiguration.hooks()
+                        .afterError(
+                            new AfterErrorContextImpl(
+                                _baseUrl,
+                                "get_digital_wallet",
+                                 Optional.of(List.of()),
+                                 _hookSecuritySource), 
+                            Optional.empty(),
+                            Optional.of(_e));
+                }
+            })
+            .retryConfig(_retryConfig)
+            .statusCodes(_statusCodes)
+            .build();
+        HttpResponse<InputStream> _httpRes = sdkConfiguration.hooks()
+                 .afterSuccess(
+                     new AfterSuccessContextImpl(
+                          _baseUrl,
+                         "get_digital_wallet", 
+                         Optional.of(List.of()), 
+                         _hookSecuritySource),
+                     _retries.run());
         String _contentType = _httpRes
             .headers()
             .firstValue("Content-Type")
@@ -1176,28 +1231,29 @@ public class DigitalWallets implements
      * 
      * @param digitalWalletId The ID of the digital wallet to delete.
      * @param timeoutInSeconds 
-     * @param xGr4vyMerchantAccountId The ID of the merchant account to use for this request.
+     * @param merchantAccountId 
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public DeleteDigitalWalletResponse delete(
             String digitalWalletId,
             Optional<Double> timeoutInSeconds,
-            JsonNullable<String> xGr4vyMerchantAccountId) throws Exception {
+            JsonNullable<String> merchantAccountId) throws Exception {
         DeleteDigitalWalletRequest request =
             DeleteDigitalWalletRequest
                 .builder()
                 .digitalWalletId(digitalWalletId)
                 .timeoutInSeconds(timeoutInSeconds)
-                .xGr4vyMerchantAccountId(xGr4vyMerchantAccountId)
+                .merchantAccountId(merchantAccountId)
                 .build();
         
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 DeleteDigitalWalletRequest.class,
                 _baseUrl,
                 "/digital-wallets/{digital_wallet_id}",
-                request, null);
+                request, this.sdkConfiguration.globals);
         
         HTTPRequest _req = new HTTPRequest(_url, "DELETE");
         _req.addHeader("Accept", "application/json")
@@ -1207,8 +1263,8 @@ public class DigitalWallets implements
         _req.addQueryParams(Utils.getQueryParams(
                 DeleteDigitalWalletRequest.class,
                 request, 
-                null));
-        _req.addHeaders(Utils.getHeadersFromMetadata(request, null));
+                this.sdkConfiguration.globals));
+        _req.addHeaders(Utils.getHeadersFromMetadata(request, this.sdkConfiguration.globals));
         
         Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
@@ -1536,7 +1592,7 @@ public class DigitalWallets implements
      * 
      * @param digitalWalletId The ID of the digital wallet to edit.
      * @param timeoutInSeconds 
-     * @param xGr4vyMerchantAccountId The ID of the merchant account to use for this request.
+     * @param merchantAccountId 
      * @param digitalWalletUpdate Request body for editing a registered digital wallet
      * @return The response from the API call
      * @throws Exception if the API call fails
@@ -1544,23 +1600,24 @@ public class DigitalWallets implements
     public UpdateDigitalWalletResponse update(
             String digitalWalletId,
             Optional<Double> timeoutInSeconds,
-            JsonNullable<String> xGr4vyMerchantAccountId,
+            JsonNullable<String> merchantAccountId,
             DigitalWalletUpdate digitalWalletUpdate) throws Exception {
         UpdateDigitalWalletRequest request =
             UpdateDigitalWalletRequest
                 .builder()
                 .digitalWalletId(digitalWalletId)
                 .timeoutInSeconds(timeoutInSeconds)
-                .xGr4vyMerchantAccountId(xGr4vyMerchantAccountId)
+                .merchantAccountId(merchantAccountId)
                 .digitalWalletUpdate(digitalWalletUpdate)
                 .build();
         
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 UpdateDigitalWalletRequest.class,
                 _baseUrl,
                 "/digital-wallets/{digital_wallet_id}",
-                request, null);
+                request, this.sdkConfiguration.globals);
         
         HTTPRequest _req = new HTTPRequest(_url, "PUT");
         Object _convertedRequest = Utils.convertToShape(
@@ -1583,8 +1640,8 @@ public class DigitalWallets implements
         _req.addQueryParams(Utils.getQueryParams(
                 UpdateDigitalWalletRequest.class,
                 request, 
-                null));
-        _req.addHeaders(Utils.getHeadersFromMetadata(request, null));
+                this.sdkConfiguration.globals));
+        _req.addHeaders(Utils.getHeadersFromMetadata(request, this.sdkConfiguration.globals));
         
         Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  

@@ -29,11 +29,10 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Gr4vy sdk = Gr4vy.builder()
-                .oAuth2PasswordBearer("<YOUR_O_AUTH2_PASSWORD_BEARER_HERE>")
+                .bearerAuth("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
         CreateGooglePayDigitalWalletSessionResponse res = sdk.digitalWallets().sessions().googlePay()
-                .xGr4vyMerchantAccountId("default")
                 .googlePaySessionRequest(GooglePaySessionRequest.builder()
                     .originDomain("example.com")
                     .build())
@@ -48,10 +47,10 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                     | Type                                                                          | Required                                                                      | Description                                                                   | Example                                                                       |
-| ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
-| `xGr4vyMerchantAccountId`                                                     | *JsonNullable\<String>*                                                       | :heavy_minus_sign:                                                            | The ID of the merchant account to use for this request.                       | default                                                                       |
-| `googlePaySessionRequest`                                                     | [GooglePaySessionRequest](../../models/components/GooglePaySessionRequest.md) | :heavy_check_mark:                                                            | N/A                                                                           |                                                                               |
+| Parameter                                                                     | Type                                                                          | Required                                                                      | Description                                                                   |
+| ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
+| `merchantAccountId`                                                           | *JsonNullable\<String>*                                                       | :heavy_minus_sign:                                                            | The ID of the merchant account to use for this request.                       |
+| `googlePaySessionRequest`                                                     | [GooglePaySessionRequest](../../models/components/GooglePaySessionRequest.md) | :heavy_check_mark:                                                            | N/A                                                                           |
 
 ### Response
 
@@ -95,11 +94,10 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Gr4vy sdk = Gr4vy.builder()
-                .oAuth2PasswordBearer("<YOUR_O_AUTH2_PASSWORD_BEARER_HERE>")
+                .bearerAuth("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
         CreateApplePayDigitalWalletSessionResponse res = sdk.digitalWallets().sessions().applePay()
-                .xGr4vyMerchantAccountId("default")
                 .applePaySessionRequest(ApplePaySessionRequest.builder()
                     .validationUrl("https://apple-pay-gateway-cert.apple.com")
                     .domainName("example.com")
@@ -115,10 +113,10 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                   | Type                                                                        | Required                                                                    | Description                                                                 | Example                                                                     |
-| --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- |
-| `xGr4vyMerchantAccountId`                                                   | *JsonNullable\<String>*                                                     | :heavy_minus_sign:                                                          | The ID of the merchant account to use for this request.                     | default                                                                     |
-| `applePaySessionRequest`                                                    | [ApplePaySessionRequest](../../models/components/ApplePaySessionRequest.md) | :heavy_check_mark:                                                          | N/A                                                                         |                                                                             |
+| Parameter                                                                   | Type                                                                        | Required                                                                    | Description                                                                 |
+| --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- |
+| `merchantAccountId`                                                         | *JsonNullable\<String>*                                                     | :heavy_minus_sign:                                                          | The ID of the merchant account to use for this request.                     |
+| `applePaySessionRequest`                                                    | [ApplePaySessionRequest](../../models/components/ApplePaySessionRequest.md) | :heavy_check_mark:                                                          | N/A                                                                         |
 
 ### Response
 
@@ -162,7 +160,7 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Gr4vy sdk = Gr4vy.builder()
-                .oAuth2PasswordBearer("<YOUR_O_AUTH2_PASSWORD_BEARER_HERE>")
+                .bearerAuth("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
         ClickToPaySessionRequest req = ClickToPaySessionRequest.builder()

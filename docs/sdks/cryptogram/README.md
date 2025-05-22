@@ -28,7 +28,7 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Gr4vy sdk = Gr4vy.builder()
-                .oAuth2PasswordBearer("<YOUR_O_AUTH2_PASSWORD_BEARER_HERE>")
+                .bearerAuth("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
         CreatePaymentMethodNetworkTokenCryptogramRequest req = CreatePaymentMethodNetworkTokenCryptogramRequest.builder()
@@ -37,7 +37,6 @@ public class Application {
                 .cryptogramCreate(CryptogramCreate.builder()
                     .merchantInitiated(false)
                     .build())
-                .xGr4vyMerchantAccountId("default")
                 .build();
 
         CreatePaymentMethodNetworkTokenCryptogramResponse res = sdk.paymentMethods().networkTokens().cryptogram().create()

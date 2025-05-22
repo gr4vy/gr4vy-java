@@ -3,131 +3,569 @@
  */
 package com.github.gr4vy.gr4vy_java.models.components;
 
-import com.fasterxml.jackson.annotation.JsonValue;
+import com.fasterxml.jackson.core.JacksonException;
+import com.fasterxml.jackson.core.JsonGenerator;
+import com.fasterxml.jackson.core.JsonParser;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.DeserializationContext;
+import com.fasterxml.jackson.databind.SerializerProvider;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.databind.deser.std.StdDeserializer;
+import com.fasterxml.jackson.databind.ser.std.StdSerializer;
+import java.io.IOException;
+import java.lang.Override;
 import java.lang.String;
+import java.lang.SuppressWarnings;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
-public enum Method {
-    ABITAB("abitab"),
-    AFFIRM("affirm"),
-    AFTERPAY("afterpay"),
-    ALIPAY("alipay"),
-    ALIPAYHK("alipayhk"),
-    APPLEPAY("applepay"),
-    ARCUSPAYNETWORK("arcuspaynetwork"),
-    BACS("bacs"),
-    BANCONTACT("bancontact"),
-    BANKED("banked"),
-    BCP("bcp"),
-    BECS("becs"),
-    BITPAY("bitpay"),
-    BOLETO("boleto"),
-    BOOST("boost"),
-    CARD("card"),
-    CASHAPP("cashapp"),
-    CHASEORBITAL("chaseorbital"),
-    CLEARPAY("clearpay"),
-    CLICK_TO_PAY("click-to-pay"),
-    DANA("dana"),
-    DCB("dcb"),
-    DLOCAL("dlocal"),
-    EBANX("ebanx"),
-    EFECTY("efecty"),
-    EPS("eps"),
-    EVERYDAYPAY("everydaypay"),
-    GCASH("gcash"),
-    GEM("gem"),
-    GEMDS("gemds"),
-    GIFT_CARD("gift-card"),
-    GIROPAY("giropay"),
-    GIVINGBLOCK("givingblock"),
-    GOCARDLESS("gocardless"),
-    GOOGLEPAY("googlepay"),
-    GOOGLEPAY_PAN_ONLY("googlepay_pan_only"),
-    GOPAY("gopay"),
-    GRABPAY("grabpay"),
-    IDEAL("ideal"),
-    KAKAOPAY("kakaopay"),
-    KCP("kcp"),
-    KHIPU("khipu"),
-    KLARNA("klarna"),
-    LATITUDE("latitude"),
-    LATITUDEDS("latitudeds"),
-    LAYBUY("laybuy"),
-    LINEPAY("linepay"),
-    LINKAJA("linkaja"),
-    MAYBANKQRPAY("maybankqrpay"),
-    MERCADOPAGO("mercadopago"),
-    MULTIBANCO("multibanco"),
-    MULTIPAGO("multipago"),
-    NEQUI("nequi"),
-    NETBANKING("netbanking"),
-    NETWORK_TOKEN("network-token"),
-    NUPAY("nupay"),
-    ONEY10X("oney_10x"),
-    ONEY12X("oney_12x"),
-    ONEY3X("oney_3x"),
-    ONEY4X("oney_4x"),
-    ONEY6X("oney_6x"),
-    OVO("ovo"),
-    OXXO("oxxo"),
-    PAGOEFECTIVO("pagoefectivo"),
-    PAYID("payid"),
-    PAYMAYA("paymaya"),
-    PAYPAL("paypal"),
-    PAYPALPAYLATER("paypalpaylater"),
-    PAYTO("payto"),
-    PAYVALIDA("payvalida"),
-    PICPAY("picpay"),
-    PIX("pix"),
-    PSE("pse"),
-    RABBITLINEPAY("rabbitlinepay"),
-    RAZORPAY("razorpay"),
-    RAPIPAGO("rapipago"),
-    REDPAGOS("redpagos"),
-    SCALAPAY("scalapay"),
-    SEPA("sepa"),
-    SERVIPAG("servipag"),
-    SHOPEEPAY("shopeepay"),
-    SINGTELDASH("singteldash"),
-    SMARTPAY("smartpay"),
-    SOFORT("sofort"),
-    SPEI("spei"),
-    STITCH("stitch"),
-    STRIPEDD("stripedd"),
-    THAIQR("thaiqr"),
-    TOUCHNGO("touchngo"),
-    TRUEMONEY("truemoney"),
-    TRUSTLY("trustly"),
-    TRUSTLYEUROPE("trustlyeurope"),
-    UPI("upi"),
-    VENMO("venmo"),
-    VIPPS("vipps"),
-    WAAVE("waave"),
-    WEBPAY("webpay"),
-    WECHAT("wechat"),
-    YAPE("yape"),
-    ZIPPAY("zippay");
+/**
+ * <p>Wrapper class for an "open" enum. "Open" enums are those that are expected
+ * to evolve (particularly with the addition of enum members over time). If an
+ * open enum is used then the appearance of unexpected enum values (say in a 
+ * response from an updated an API) will not bring about a runtime error thus 
+ * ensuring that non-updated client versions can continue to work without error.
+ *
+ * <p>Note that instances are immutable and are singletons (an internal thread-safe
+ * cache is maintained to ensure that). As a consequence instances created with the 
+ * same value will satisfy reference equality (via {@code ==}).
+ * 
+ * <p>This class is intended to emulate an enum (in terms of common usage and with 
+ * reference equality) but with the ability to carry unknown values. Unfortunately
+ * Java does not permit the use of an instance in a switch expression but you can 
+ * use the {@code asEnum()} method (after dealing with the `Optional` appropriately).
+ *
+ */
+@JsonDeserialize(using = Method._Deserializer.class)
+@JsonSerialize(using = Method._Serializer.class)
+public class Method {
 
-    @JsonValue
+    public static final Method ABITAB = new Method("abitab");
+    public static final Method AFFIRM = new Method("affirm");
+    public static final Method AFTERPAY = new Method("afterpay");
+    public static final Method ALIPAY = new Method("alipay");
+    public static final Method ALIPAYHK = new Method("alipayhk");
+    public static final Method APPLEPAY = new Method("applepay");
+    public static final Method ARCUSPAYNETWORK = new Method("arcuspaynetwork");
+    public static final Method BACS = new Method("bacs");
+    public static final Method BANCONTACT = new Method("bancontact");
+    public static final Method BANKED = new Method("banked");
+    public static final Method BCP = new Method("bcp");
+    public static final Method BECS = new Method("becs");
+    public static final Method BITPAY = new Method("bitpay");
+    public static final Method BOLETO = new Method("boleto");
+    public static final Method BOOST = new Method("boost");
+    public static final Method CARD = new Method("card");
+    public static final Method CASHAPP = new Method("cashapp");
+    public static final Method CHASEORBITAL = new Method("chaseorbital");
+    public static final Method CLEARPAY = new Method("clearpay");
+    public static final Method CLICK_TO_PAY = new Method("click-to-pay");
+    public static final Method DANA = new Method("dana");
+    public static final Method DCB = new Method("dcb");
+    public static final Method DLOCAL = new Method("dlocal");
+    public static final Method EBANX = new Method("ebanx");
+    public static final Method EFECTY = new Method("efecty");
+    public static final Method EPS = new Method("eps");
+    public static final Method EVERYDAYPAY = new Method("everydaypay");
+    public static final Method GCASH = new Method("gcash");
+    public static final Method GEM = new Method("gem");
+    public static final Method GEMDS = new Method("gemds");
+    public static final Method GIFT_CARD = new Method("gift-card");
+    public static final Method GIROPAY = new Method("giropay");
+    public static final Method GIVINGBLOCK = new Method("givingblock");
+    public static final Method GOCARDLESS = new Method("gocardless");
+    public static final Method GOOGLEPAY = new Method("googlepay");
+    public static final Method GOOGLEPAY_PAN_ONLY = new Method("googlepay_pan_only");
+    public static final Method GOPAY = new Method("gopay");
+    public static final Method GRABPAY = new Method("grabpay");
+    public static final Method IDEAL = new Method("ideal");
+    public static final Method KAKAOPAY = new Method("kakaopay");
+    public static final Method KCP = new Method("kcp");
+    public static final Method KHIPU = new Method("khipu");
+    public static final Method KLARNA = new Method("klarna");
+    public static final Method LATITUDE = new Method("latitude");
+    public static final Method LATITUDEDS = new Method("latitudeds");
+    public static final Method LAYBUY = new Method("laybuy");
+    public static final Method LINEPAY = new Method("linepay");
+    public static final Method LINKAJA = new Method("linkaja");
+    public static final Method MAYBANKQRPAY = new Method("maybankqrpay");
+    public static final Method MERCADOPAGO = new Method("mercadopago");
+    public static final Method MULTIBANCO = new Method("multibanco");
+    public static final Method MULTIPAGO = new Method("multipago");
+    public static final Method NEQUI = new Method("nequi");
+    public static final Method NETBANKING = new Method("netbanking");
+    public static final Method NETWORK_TOKEN = new Method("network-token");
+    public static final Method NUPAY = new Method("nupay");
+    public static final Method ONEY10X = new Method("oney_10x");
+    public static final Method ONEY12X = new Method("oney_12x");
+    public static final Method ONEY3X = new Method("oney_3x");
+    public static final Method ONEY4X = new Method("oney_4x");
+    public static final Method ONEY6X = new Method("oney_6x");
+    public static final Method OVO = new Method("ovo");
+    public static final Method OXXO = new Method("oxxo");
+    public static final Method PAGOEFECTIVO = new Method("pagoefectivo");
+    public static final Method PAYID = new Method("payid");
+    public static final Method PAYMAYA = new Method("paymaya");
+    public static final Method PAYPAL = new Method("paypal");
+    public static final Method PAYPALPAYLATER = new Method("paypalpaylater");
+    public static final Method PAYTO = new Method("payto");
+    public static final Method PAYVALIDA = new Method("payvalida");
+    public static final Method PICPAY = new Method("picpay");
+    public static final Method PIX = new Method("pix");
+    public static final Method PSE = new Method("pse");
+    public static final Method RABBITLINEPAY = new Method("rabbitlinepay");
+    public static final Method RAZORPAY = new Method("razorpay");
+    public static final Method RAPIPAGO = new Method("rapipago");
+    public static final Method REDPAGOS = new Method("redpagos");
+    public static final Method SCALAPAY = new Method("scalapay");
+    public static final Method SEPA = new Method("sepa");
+    public static final Method SERVIPAG = new Method("servipag");
+    public static final Method SHOPEEPAY = new Method("shopeepay");
+    public static final Method SINGTELDASH = new Method("singteldash");
+    public static final Method SMARTPAY = new Method("smartpay");
+    public static final Method SOFORT = new Method("sofort");
+    public static final Method SPEI = new Method("spei");
+    public static final Method STITCH = new Method("stitch");
+    public static final Method STRIPEDD = new Method("stripedd");
+    public static final Method THAIQR = new Method("thaiqr");
+    public static final Method TOUCHNGO = new Method("touchngo");
+    public static final Method TRUEMONEY = new Method("truemoney");
+    public static final Method TRUSTLY = new Method("trustly");
+    public static final Method TRUSTLYEUROPE = new Method("trustlyeurope");
+    public static final Method UPI = new Method("upi");
+    public static final Method VENMO = new Method("venmo");
+    public static final Method VIPPS = new Method("vipps");
+    public static final Method WAAVE = new Method("waave");
+    public static final Method WEBPAY = new Method("webpay");
+    public static final Method WECHAT = new Method("wechat");
+    public static final Method YAPE = new Method("yape");
+    public static final Method ZIPPAY = new Method("zippay");
+
+    // This map will grow whenever a Color gets created with a new
+    // unrecognized value (a potential memory leak if the user is not
+    // careful). Keep this field lower case to avoid clashing with
+    // generated member names which will always be upper cased (Java
+    // convention)
+    private static final Map<String, Method> values = createValuesMap();
+    private static final Map<String, MethodEnum> enums = createEnumsMap();
+
     private final String value;
 
     private Method(String value) {
         this.value = value;
     }
-    
+
+    /**
+     * Returns a Method with the given value. For a specific value the 
+     * returned object will always be a singleton so reference equality 
+     * is satisfied when the values are the same.
+     * 
+     * @param value value to be wrapped as Method
+     */ 
+    public static Method of(String value) {
+        synchronized (Method.class) {
+            return values.computeIfAbsent(value, v -> new Method(v));
+        }
+    }
+
     public String value() {
         return value;
     }
-    
-    public static Optional<Method> fromValue(String value) {
-        for (Method o: Method.values()) {
-            if (Objects.deepEquals(o.value, value)) {
-                return Optional.of(o);
-            }
+
+    public Optional<MethodEnum> asEnum() {
+        return Optional.ofNullable(enums.getOrDefault(value, null));
+    }
+
+    public boolean isKnown() {
+        return asEnum().isPresent();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(value);
+    }
+
+    @Override
+    public boolean equals(java.lang.Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Method other = (Method) obj;
+        return Objects.equals(value, other.value);
+    }
+
+    @Override
+    public String toString() {
+        return "Method [value=" + value + "]";
+    }
+
+    // return an array just like an enum
+    public static Method[] values() {
+        synchronized (Method.class) {
+            return values.values().toArray(new Method[] {});
         }
-        return Optional.empty();
+    }
+
+    private static final Map<String, Method> createValuesMap() {
+        Map<String, Method> map = new LinkedHashMap<>();
+        map.put("abitab", ABITAB);
+        map.put("affirm", AFFIRM);
+        map.put("afterpay", AFTERPAY);
+        map.put("alipay", ALIPAY);
+        map.put("alipayhk", ALIPAYHK);
+        map.put("applepay", APPLEPAY);
+        map.put("arcuspaynetwork", ARCUSPAYNETWORK);
+        map.put("bacs", BACS);
+        map.put("bancontact", BANCONTACT);
+        map.put("banked", BANKED);
+        map.put("bcp", BCP);
+        map.put("becs", BECS);
+        map.put("bitpay", BITPAY);
+        map.put("boleto", BOLETO);
+        map.put("boost", BOOST);
+        map.put("card", CARD);
+        map.put("cashapp", CASHAPP);
+        map.put("chaseorbital", CHASEORBITAL);
+        map.put("clearpay", CLEARPAY);
+        map.put("click-to-pay", CLICK_TO_PAY);
+        map.put("dana", DANA);
+        map.put("dcb", DCB);
+        map.put("dlocal", DLOCAL);
+        map.put("ebanx", EBANX);
+        map.put("efecty", EFECTY);
+        map.put("eps", EPS);
+        map.put("everydaypay", EVERYDAYPAY);
+        map.put("gcash", GCASH);
+        map.put("gem", GEM);
+        map.put("gemds", GEMDS);
+        map.put("gift-card", GIFT_CARD);
+        map.put("giropay", GIROPAY);
+        map.put("givingblock", GIVINGBLOCK);
+        map.put("gocardless", GOCARDLESS);
+        map.put("googlepay", GOOGLEPAY);
+        map.put("googlepay_pan_only", GOOGLEPAY_PAN_ONLY);
+        map.put("gopay", GOPAY);
+        map.put("grabpay", GRABPAY);
+        map.put("ideal", IDEAL);
+        map.put("kakaopay", KAKAOPAY);
+        map.put("kcp", KCP);
+        map.put("khipu", KHIPU);
+        map.put("klarna", KLARNA);
+        map.put("latitude", LATITUDE);
+        map.put("latitudeds", LATITUDEDS);
+        map.put("laybuy", LAYBUY);
+        map.put("linepay", LINEPAY);
+        map.put("linkaja", LINKAJA);
+        map.put("maybankqrpay", MAYBANKQRPAY);
+        map.put("mercadopago", MERCADOPAGO);
+        map.put("multibanco", MULTIBANCO);
+        map.put("multipago", MULTIPAGO);
+        map.put("nequi", NEQUI);
+        map.put("netbanking", NETBANKING);
+        map.put("network-token", NETWORK_TOKEN);
+        map.put("nupay", NUPAY);
+        map.put("oney_10x", ONEY10X);
+        map.put("oney_12x", ONEY12X);
+        map.put("oney_3x", ONEY3X);
+        map.put("oney_4x", ONEY4X);
+        map.put("oney_6x", ONEY6X);
+        map.put("ovo", OVO);
+        map.put("oxxo", OXXO);
+        map.put("pagoefectivo", PAGOEFECTIVO);
+        map.put("payid", PAYID);
+        map.put("paymaya", PAYMAYA);
+        map.put("paypal", PAYPAL);
+        map.put("paypalpaylater", PAYPALPAYLATER);
+        map.put("payto", PAYTO);
+        map.put("payvalida", PAYVALIDA);
+        map.put("picpay", PICPAY);
+        map.put("pix", PIX);
+        map.put("pse", PSE);
+        map.put("rabbitlinepay", RABBITLINEPAY);
+        map.put("razorpay", RAZORPAY);
+        map.put("rapipago", RAPIPAGO);
+        map.put("redpagos", REDPAGOS);
+        map.put("scalapay", SCALAPAY);
+        map.put("sepa", SEPA);
+        map.put("servipag", SERVIPAG);
+        map.put("shopeepay", SHOPEEPAY);
+        map.put("singteldash", SINGTELDASH);
+        map.put("smartpay", SMARTPAY);
+        map.put("sofort", SOFORT);
+        map.put("spei", SPEI);
+        map.put("stitch", STITCH);
+        map.put("stripedd", STRIPEDD);
+        map.put("thaiqr", THAIQR);
+        map.put("touchngo", TOUCHNGO);
+        map.put("truemoney", TRUEMONEY);
+        map.put("trustly", TRUSTLY);
+        map.put("trustlyeurope", TRUSTLYEUROPE);
+        map.put("upi", UPI);
+        map.put("venmo", VENMO);
+        map.put("vipps", VIPPS);
+        map.put("waave", WAAVE);
+        map.put("webpay", WEBPAY);
+        map.put("wechat", WECHAT);
+        map.put("yape", YAPE);
+        map.put("zippay", ZIPPAY);
+        return map;
+    }
+
+    private static final Map<String, MethodEnum> createEnumsMap() {
+        Map<String, MethodEnum> map = new HashMap<>();
+        map.put("abitab", MethodEnum.ABITAB);
+        map.put("affirm", MethodEnum.AFFIRM);
+        map.put("afterpay", MethodEnum.AFTERPAY);
+        map.put("alipay", MethodEnum.ALIPAY);
+        map.put("alipayhk", MethodEnum.ALIPAYHK);
+        map.put("applepay", MethodEnum.APPLEPAY);
+        map.put("arcuspaynetwork", MethodEnum.ARCUSPAYNETWORK);
+        map.put("bacs", MethodEnum.BACS);
+        map.put("bancontact", MethodEnum.BANCONTACT);
+        map.put("banked", MethodEnum.BANKED);
+        map.put("bcp", MethodEnum.BCP);
+        map.put("becs", MethodEnum.BECS);
+        map.put("bitpay", MethodEnum.BITPAY);
+        map.put("boleto", MethodEnum.BOLETO);
+        map.put("boost", MethodEnum.BOOST);
+        map.put("card", MethodEnum.CARD);
+        map.put("cashapp", MethodEnum.CASHAPP);
+        map.put("chaseorbital", MethodEnum.CHASEORBITAL);
+        map.put("clearpay", MethodEnum.CLEARPAY);
+        map.put("click-to-pay", MethodEnum.CLICK_TO_PAY);
+        map.put("dana", MethodEnum.DANA);
+        map.put("dcb", MethodEnum.DCB);
+        map.put("dlocal", MethodEnum.DLOCAL);
+        map.put("ebanx", MethodEnum.EBANX);
+        map.put("efecty", MethodEnum.EFECTY);
+        map.put("eps", MethodEnum.EPS);
+        map.put("everydaypay", MethodEnum.EVERYDAYPAY);
+        map.put("gcash", MethodEnum.GCASH);
+        map.put("gem", MethodEnum.GEM);
+        map.put("gemds", MethodEnum.GEMDS);
+        map.put("gift-card", MethodEnum.GIFT_CARD);
+        map.put("giropay", MethodEnum.GIROPAY);
+        map.put("givingblock", MethodEnum.GIVINGBLOCK);
+        map.put("gocardless", MethodEnum.GOCARDLESS);
+        map.put("googlepay", MethodEnum.GOOGLEPAY);
+        map.put("googlepay_pan_only", MethodEnum.GOOGLEPAY_PAN_ONLY);
+        map.put("gopay", MethodEnum.GOPAY);
+        map.put("grabpay", MethodEnum.GRABPAY);
+        map.put("ideal", MethodEnum.IDEAL);
+        map.put("kakaopay", MethodEnum.KAKAOPAY);
+        map.put("kcp", MethodEnum.KCP);
+        map.put("khipu", MethodEnum.KHIPU);
+        map.put("klarna", MethodEnum.KLARNA);
+        map.put("latitude", MethodEnum.LATITUDE);
+        map.put("latitudeds", MethodEnum.LATITUDEDS);
+        map.put("laybuy", MethodEnum.LAYBUY);
+        map.put("linepay", MethodEnum.LINEPAY);
+        map.put("linkaja", MethodEnum.LINKAJA);
+        map.put("maybankqrpay", MethodEnum.MAYBANKQRPAY);
+        map.put("mercadopago", MethodEnum.MERCADOPAGO);
+        map.put("multibanco", MethodEnum.MULTIBANCO);
+        map.put("multipago", MethodEnum.MULTIPAGO);
+        map.put("nequi", MethodEnum.NEQUI);
+        map.put("netbanking", MethodEnum.NETBANKING);
+        map.put("network-token", MethodEnum.NETWORK_TOKEN);
+        map.put("nupay", MethodEnum.NUPAY);
+        map.put("oney_10x", MethodEnum.ONEY10X);
+        map.put("oney_12x", MethodEnum.ONEY12X);
+        map.put("oney_3x", MethodEnum.ONEY3X);
+        map.put("oney_4x", MethodEnum.ONEY4X);
+        map.put("oney_6x", MethodEnum.ONEY6X);
+        map.put("ovo", MethodEnum.OVO);
+        map.put("oxxo", MethodEnum.OXXO);
+        map.put("pagoefectivo", MethodEnum.PAGOEFECTIVO);
+        map.put("payid", MethodEnum.PAYID);
+        map.put("paymaya", MethodEnum.PAYMAYA);
+        map.put("paypal", MethodEnum.PAYPAL);
+        map.put("paypalpaylater", MethodEnum.PAYPALPAYLATER);
+        map.put("payto", MethodEnum.PAYTO);
+        map.put("payvalida", MethodEnum.PAYVALIDA);
+        map.put("picpay", MethodEnum.PICPAY);
+        map.put("pix", MethodEnum.PIX);
+        map.put("pse", MethodEnum.PSE);
+        map.put("rabbitlinepay", MethodEnum.RABBITLINEPAY);
+        map.put("razorpay", MethodEnum.RAZORPAY);
+        map.put("rapipago", MethodEnum.RAPIPAGO);
+        map.put("redpagos", MethodEnum.REDPAGOS);
+        map.put("scalapay", MethodEnum.SCALAPAY);
+        map.put("sepa", MethodEnum.SEPA);
+        map.put("servipag", MethodEnum.SERVIPAG);
+        map.put("shopeepay", MethodEnum.SHOPEEPAY);
+        map.put("singteldash", MethodEnum.SINGTELDASH);
+        map.put("smartpay", MethodEnum.SMARTPAY);
+        map.put("sofort", MethodEnum.SOFORT);
+        map.put("spei", MethodEnum.SPEI);
+        map.put("stitch", MethodEnum.STITCH);
+        map.put("stripedd", MethodEnum.STRIPEDD);
+        map.put("thaiqr", MethodEnum.THAIQR);
+        map.put("touchngo", MethodEnum.TOUCHNGO);
+        map.put("truemoney", MethodEnum.TRUEMONEY);
+        map.put("trustly", MethodEnum.TRUSTLY);
+        map.put("trustlyeurope", MethodEnum.TRUSTLYEUROPE);
+        map.put("upi", MethodEnum.UPI);
+        map.put("venmo", MethodEnum.VENMO);
+        map.put("vipps", MethodEnum.VIPPS);
+        map.put("waave", MethodEnum.WAAVE);
+        map.put("webpay", MethodEnum.WEBPAY);
+        map.put("wechat", MethodEnum.WECHAT);
+        map.put("yape", MethodEnum.YAPE);
+        map.put("zippay", MethodEnum.ZIPPAY);
+        return map;
+    }
+    
+    @SuppressWarnings("serial")
+    public static final class _Serializer extends StdSerializer<Method> {
+
+        protected _Serializer() {
+            super(Method.class);
+        }
+
+        @Override
+        public void serialize(Method value, JsonGenerator g, SerializerProvider provider)
+                throws IOException, JsonProcessingException {
+            g.writeObject(value.value);
+        }
+    }
+
+    @SuppressWarnings("serial")
+    public static final class _Deserializer extends StdDeserializer<Method> {
+
+        protected _Deserializer() {
+            super(Method.class);
+        }
+
+        @Override
+        public Method deserialize(JsonParser p, DeserializationContext ctxt)
+                throws IOException, JacksonException {
+            String v = p.readValueAs(new TypeReference<String>() {});
+            // use the factory method to ensure we get singletons
+            return Method.of(v);
+        }
+    }
+    
+    public enum MethodEnum {
+
+        ABITAB("abitab"),
+        AFFIRM("affirm"),
+        AFTERPAY("afterpay"),
+        ALIPAY("alipay"),
+        ALIPAYHK("alipayhk"),
+        APPLEPAY("applepay"),
+        ARCUSPAYNETWORK("arcuspaynetwork"),
+        BACS("bacs"),
+        BANCONTACT("bancontact"),
+        BANKED("banked"),
+        BCP("bcp"),
+        BECS("becs"),
+        BITPAY("bitpay"),
+        BOLETO("boleto"),
+        BOOST("boost"),
+        CARD("card"),
+        CASHAPP("cashapp"),
+        CHASEORBITAL("chaseorbital"),
+        CLEARPAY("clearpay"),
+        CLICK_TO_PAY("click-to-pay"),
+        DANA("dana"),
+        DCB("dcb"),
+        DLOCAL("dlocal"),
+        EBANX("ebanx"),
+        EFECTY("efecty"),
+        EPS("eps"),
+        EVERYDAYPAY("everydaypay"),
+        GCASH("gcash"),
+        GEM("gem"),
+        GEMDS("gemds"),
+        GIFT_CARD("gift-card"),
+        GIROPAY("giropay"),
+        GIVINGBLOCK("givingblock"),
+        GOCARDLESS("gocardless"),
+        GOOGLEPAY("googlepay"),
+        GOOGLEPAY_PAN_ONLY("googlepay_pan_only"),
+        GOPAY("gopay"),
+        GRABPAY("grabpay"),
+        IDEAL("ideal"),
+        KAKAOPAY("kakaopay"),
+        KCP("kcp"),
+        KHIPU("khipu"),
+        KLARNA("klarna"),
+        LATITUDE("latitude"),
+        LATITUDEDS("latitudeds"),
+        LAYBUY("laybuy"),
+        LINEPAY("linepay"),
+        LINKAJA("linkaja"),
+        MAYBANKQRPAY("maybankqrpay"),
+        MERCADOPAGO("mercadopago"),
+        MULTIBANCO("multibanco"),
+        MULTIPAGO("multipago"),
+        NEQUI("nequi"),
+        NETBANKING("netbanking"),
+        NETWORK_TOKEN("network-token"),
+        NUPAY("nupay"),
+        ONEY10X("oney_10x"),
+        ONEY12X("oney_12x"),
+        ONEY3X("oney_3x"),
+        ONEY4X("oney_4x"),
+        ONEY6X("oney_6x"),
+        OVO("ovo"),
+        OXXO("oxxo"),
+        PAGOEFECTIVO("pagoefectivo"),
+        PAYID("payid"),
+        PAYMAYA("paymaya"),
+        PAYPAL("paypal"),
+        PAYPALPAYLATER("paypalpaylater"),
+        PAYTO("payto"),
+        PAYVALIDA("payvalida"),
+        PICPAY("picpay"),
+        PIX("pix"),
+        PSE("pse"),
+        RABBITLINEPAY("rabbitlinepay"),
+        RAZORPAY("razorpay"),
+        RAPIPAGO("rapipago"),
+        REDPAGOS("redpagos"),
+        SCALAPAY("scalapay"),
+        SEPA("sepa"),
+        SERVIPAG("servipag"),
+        SHOPEEPAY("shopeepay"),
+        SINGTELDASH("singteldash"),
+        SMARTPAY("smartpay"),
+        SOFORT("sofort"),
+        SPEI("spei"),
+        STITCH("stitch"),
+        STRIPEDD("stripedd"),
+        THAIQR("thaiqr"),
+        TOUCHNGO("touchngo"),
+        TRUEMONEY("truemoney"),
+        TRUSTLY("trustly"),
+        TRUSTLYEUROPE("trustlyeurope"),
+        UPI("upi"),
+        VENMO("venmo"),
+        VIPPS("vipps"),
+        WAAVE("waave"),
+        WEBPAY("webpay"),
+        WECHAT("wechat"),
+        YAPE("yape"),
+        ZIPPAY("zippay"),;
+
+        private final String value;
+
+        private MethodEnum(String value) {
+            this.value = value;
+        }
+
+        public String value() {
+            return value;
+        }
     }
 }
 

@@ -6,6 +6,8 @@ package com.github.gr4vy.gr4vy_java.models.operations;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.github.gr4vy.gr4vy_java.models.errors.APIException;
 import com.github.gr4vy.gr4vy_java.utils.LazySingletonValue;
+import com.github.gr4vy.gr4vy_java.utils.Options;
+import com.github.gr4vy.gr4vy_java.utils.RetryConfig;
 import com.github.gr4vy.gr4vy_java.utils.Utils;
 import java.lang.Exception;
 import java.lang.Long;
@@ -22,6 +24,7 @@ public class ListMerchantAccountsRequestBuilder {
                             "20",
                             new TypeReference<Optional<Long>>() {});
     private JsonNullable<String> search = JsonNullable.undefined();
+    private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKMethodInterfaces.MethodCallListMerchantAccounts sdk;
 
     public ListMerchantAccountsRequestBuilder(SDKMethodInterfaces.MethodCallListMerchantAccounts sdk) {
@@ -63,15 +66,30 @@ public class ListMerchantAccountsRequestBuilder {
         this.search = search;
         return this;
     }
+                
+    public ListMerchantAccountsRequestBuilder retryConfig(RetryConfig retryConfig) {
+        Utils.checkNotNull(retryConfig, "retryConfig");
+        this.retryConfig = Optional.of(retryConfig);
+        return this;
+    }
+
+    public ListMerchantAccountsRequestBuilder retryConfig(Optional<RetryConfig> retryConfig) {
+        Utils.checkNotNull(retryConfig, "retryConfig");
+        this.retryConfig = retryConfig;
+        return this;
+    }
 
     public ListMerchantAccountsResponse call() throws Exception {
         if (limit == null) {
             limit = _SINGLETON_VALUE_Limit.value();
-        }
+        }        Optional<Options> options = Optional.of(Options.builder()
+                                                    .retryConfig(retryConfig)
+                                                    .build());
         return sdk.list(
             cursor,
             limit,
-            search);
+            search,
+            options);
     }
     
     /**

@@ -92,22 +92,23 @@ public class Sessions implements
      * 
      * <p>Create a session for use with Google Pay.
      * 
-     * @param xGr4vyMerchantAccountId The ID of the merchant account to use for this request.
+     * @param merchantAccountId 
      * @param googlePaySessionRequest 
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public CreateGooglePayDigitalWalletSessionResponse googlePay(
-            JsonNullable<String> xGr4vyMerchantAccountId,
+            JsonNullable<String> merchantAccountId,
             GooglePaySessionRequest googlePaySessionRequest) throws Exception {
         CreateGooglePayDigitalWalletSessionRequest request =
             CreateGooglePayDigitalWalletSessionRequest
                 .builder()
-                .xGr4vyMerchantAccountId(xGr4vyMerchantAccountId)
+                .merchantAccountId(merchantAccountId)
                 .googlePaySessionRequest(googlePaySessionRequest)
                 .build();
         
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 _baseUrl,
                 "/digital-wallets/google/session");
@@ -129,7 +130,7 @@ public class Sessions implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-        _req.addHeaders(Utils.getHeadersFromMetadata(request, null));
+        _req.addHeaders(Utils.getHeadersFromMetadata(request, this.sdkConfiguration.globals));
         
         Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
@@ -453,22 +454,23 @@ public class Sessions implements
      * 
      * <p>Create a session for use with Apple Pay.
      * 
-     * @param xGr4vyMerchantAccountId The ID of the merchant account to use for this request.
+     * @param merchantAccountId 
      * @param applePaySessionRequest 
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public CreateApplePayDigitalWalletSessionResponse applePay(
-            JsonNullable<String> xGr4vyMerchantAccountId,
+            JsonNullable<String> merchantAccountId,
             ApplePaySessionRequest applePaySessionRequest) throws Exception {
         CreateApplePayDigitalWalletSessionRequest request =
             CreateApplePayDigitalWalletSessionRequest
                 .builder()
-                .xGr4vyMerchantAccountId(xGr4vyMerchantAccountId)
+                .merchantAccountId(merchantAccountId)
                 .applePaySessionRequest(applePaySessionRequest)
                 .build();
         
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 _baseUrl,
                 "/digital-wallets/apple/session");
@@ -490,7 +492,7 @@ public class Sessions implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-        _req.addHeaders(Utils.getHeadersFromMetadata(request, null));
+        _req.addHeaders(Utils.getHeadersFromMetadata(request, this.sdkConfiguration.globals));
         
         Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
@@ -806,7 +808,8 @@ public class Sessions implements
      */
     public CreateClickToPayDigitalWalletSessionResponse clickToPay(
             ClickToPaySessionRequest request) throws Exception {
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 _baseUrl,
                 "/digital-wallets/click-to-pay/session");

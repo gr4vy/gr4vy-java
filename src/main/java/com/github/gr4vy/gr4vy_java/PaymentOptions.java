@@ -81,22 +81,23 @@ public class PaymentOptions implements
      * 
      * <p>List the payment options available at checkout. filtering by country, currency, and additional fields passed to Flow rules.
      * 
-     * @param xGr4vyMerchantAccountId The ID of the merchant account to use for this request.
+     * @param merchantAccountId 
      * @param paymentOptionRequest 
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public ListPaymentOptionsResponse list(
-            JsonNullable<String> xGr4vyMerchantAccountId,
+            JsonNullable<String> merchantAccountId,
             PaymentOptionRequest paymentOptionRequest) throws Exception {
         ListPaymentOptionsRequest request =
             ListPaymentOptionsRequest
                 .builder()
-                .xGr4vyMerchantAccountId(xGr4vyMerchantAccountId)
+                .merchantAccountId(merchantAccountId)
                 .paymentOptionRequest(paymentOptionRequest)
                 .build();
         
-        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 _baseUrl,
                 "/payment-options");
@@ -118,7 +119,7 @@ public class PaymentOptions implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-        _req.addHeaders(Utils.getHeadersFromMetadata(request, null));
+        _req.addHeaders(Utils.getHeadersFromMetadata(request, this.sdkConfiguration.globals));
         
         Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  

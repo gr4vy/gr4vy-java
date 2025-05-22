@@ -20,7 +20,7 @@ public class ResumePaymentMethodNetworkTokenRequestBuilder {
                             "timeoutInSeconds",
                             "1",
                             new TypeReference<Optional<Double>>() {});
-    private JsonNullable<String> xGr4vyMerchantAccountId = JsonNullable.undefined();
+    private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
     private final SDKMethodInterfaces.MethodCallResumePaymentMethodNetworkToken sdk;
 
     public ResumePaymentMethodNetworkTokenRequestBuilder(SDKMethodInterfaces.MethodCallResumePaymentMethodNetworkToken sdk) {
@@ -51,15 +51,15 @@ public class ResumePaymentMethodNetworkTokenRequestBuilder {
         return this;
     }
 
-    public ResumePaymentMethodNetworkTokenRequestBuilder xGr4vyMerchantAccountId(String xGr4vyMerchantAccountId) {
-        Utils.checkNotNull(xGr4vyMerchantAccountId, "xGr4vyMerchantAccountId");
-        this.xGr4vyMerchantAccountId = JsonNullable.of(xGr4vyMerchantAccountId);
+    public ResumePaymentMethodNetworkTokenRequestBuilder merchantAccountId(String merchantAccountId) {
+        Utils.checkNotNull(merchantAccountId, "merchantAccountId");
+        this.merchantAccountId = JsonNullable.of(merchantAccountId);
         return this;
     }
 
-    public ResumePaymentMethodNetworkTokenRequestBuilder xGr4vyMerchantAccountId(JsonNullable<String> xGr4vyMerchantAccountId) {
-        Utils.checkNotNull(xGr4vyMerchantAccountId, "xGr4vyMerchantAccountId");
-        this.xGr4vyMerchantAccountId = xGr4vyMerchantAccountId;
+    public ResumePaymentMethodNetworkTokenRequestBuilder merchantAccountId(JsonNullable<String> merchantAccountId) {
+        Utils.checkNotNull(merchantAccountId, "merchantAccountId");
+        this.merchantAccountId = merchantAccountId;
         return this;
     }
 
@@ -71,7 +71,7 @@ public class ResumePaymentMethodNetworkTokenRequestBuilder {
             paymentMethodId,
             networkTokenId,
             timeoutInSeconds,
-            xGr4vyMerchantAccountId);
+            merchantAccountId);
     }
 
     private static final LazySingletonValue<Optional<Double>> _SINGLETON_VALUE_TimeoutInSeconds =

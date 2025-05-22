@@ -6,7 +6,7 @@ package com.github.gr4vy.gr4vy_java.models.operations;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.type.TypeReference;
-import com.github.gr4vy.gr4vy_java.models.components.CheckoutSessionUpdate;
+import com.github.gr4vy.gr4vy_java.models.components.CheckoutSessionCreate;
 import com.github.gr4vy.gr4vy_java.utils.LazySingletonValue;
 import com.github.gr4vy.gr4vy_java.utils.SpeakeasyMetadata;
 import com.github.gr4vy.gr4vy_java.utils.Utils;
@@ -32,31 +32,31 @@ public class UpdateCheckoutSessionRequest {
      * The ID of the merchant account to use for this request.
      */
     @SpeakeasyMetadata("header:style=simple,explode=false,name=x-gr4vy-merchant-account-id")
-    private JsonNullable<String> xGr4vyMerchantAccountId;
+    private JsonNullable<String> merchantAccountId;
 
     @SpeakeasyMetadata("request:mediaType=application/json")
-    private CheckoutSessionUpdate checkoutSessionUpdate;
+    private CheckoutSessionCreate checkoutSessionCreate;
 
     @JsonCreator
     public UpdateCheckoutSessionRequest(
             String sessionId,
             Optional<Double> timeoutInSeconds,
-            JsonNullable<String> xGr4vyMerchantAccountId,
-            CheckoutSessionUpdate checkoutSessionUpdate) {
+            JsonNullable<String> merchantAccountId,
+            CheckoutSessionCreate checkoutSessionCreate) {
         Utils.checkNotNull(sessionId, "sessionId");
         Utils.checkNotNull(timeoutInSeconds, "timeoutInSeconds");
-        Utils.checkNotNull(xGr4vyMerchantAccountId, "xGr4vyMerchantAccountId");
-        Utils.checkNotNull(checkoutSessionUpdate, "checkoutSessionUpdate");
+        Utils.checkNotNull(merchantAccountId, "merchantAccountId");
+        Utils.checkNotNull(checkoutSessionCreate, "checkoutSessionCreate");
         this.sessionId = sessionId;
         this.timeoutInSeconds = timeoutInSeconds;
-        this.xGr4vyMerchantAccountId = xGr4vyMerchantAccountId;
-        this.checkoutSessionUpdate = checkoutSessionUpdate;
+        this.merchantAccountId = merchantAccountId;
+        this.checkoutSessionCreate = checkoutSessionCreate;
     }
     
     public UpdateCheckoutSessionRequest(
             String sessionId,
-            CheckoutSessionUpdate checkoutSessionUpdate) {
-        this(sessionId, Optional.empty(), JsonNullable.undefined(), checkoutSessionUpdate);
+            CheckoutSessionCreate checkoutSessionCreate) {
+        this(sessionId, Optional.empty(), JsonNullable.undefined(), checkoutSessionCreate);
     }
 
     /**
@@ -76,13 +76,13 @@ public class UpdateCheckoutSessionRequest {
      * The ID of the merchant account to use for this request.
      */
     @JsonIgnore
-    public JsonNullable<String> xGr4vyMerchantAccountId() {
-        return xGr4vyMerchantAccountId;
+    public JsonNullable<String> merchantAccountId() {
+        return merchantAccountId;
     }
 
     @JsonIgnore
-    public CheckoutSessionUpdate checkoutSessionUpdate() {
-        return checkoutSessionUpdate;
+    public CheckoutSessionCreate checkoutSessionCreate() {
+        return checkoutSessionCreate;
     }
 
     public final static Builder builder() {
@@ -113,24 +113,24 @@ public class UpdateCheckoutSessionRequest {
     /**
      * The ID of the merchant account to use for this request.
      */
-    public UpdateCheckoutSessionRequest withXGr4vyMerchantAccountId(String xGr4vyMerchantAccountId) {
-        Utils.checkNotNull(xGr4vyMerchantAccountId, "xGr4vyMerchantAccountId");
-        this.xGr4vyMerchantAccountId = JsonNullable.of(xGr4vyMerchantAccountId);
+    public UpdateCheckoutSessionRequest withMerchantAccountId(String merchantAccountId) {
+        Utils.checkNotNull(merchantAccountId, "merchantAccountId");
+        this.merchantAccountId = JsonNullable.of(merchantAccountId);
         return this;
     }
 
     /**
      * The ID of the merchant account to use for this request.
      */
-    public UpdateCheckoutSessionRequest withXGr4vyMerchantAccountId(JsonNullable<String> xGr4vyMerchantAccountId) {
-        Utils.checkNotNull(xGr4vyMerchantAccountId, "xGr4vyMerchantAccountId");
-        this.xGr4vyMerchantAccountId = xGr4vyMerchantAccountId;
+    public UpdateCheckoutSessionRequest withMerchantAccountId(JsonNullable<String> merchantAccountId) {
+        Utils.checkNotNull(merchantAccountId, "merchantAccountId");
+        this.merchantAccountId = merchantAccountId;
         return this;
     }
 
-    public UpdateCheckoutSessionRequest withCheckoutSessionUpdate(CheckoutSessionUpdate checkoutSessionUpdate) {
-        Utils.checkNotNull(checkoutSessionUpdate, "checkoutSessionUpdate");
-        this.checkoutSessionUpdate = checkoutSessionUpdate;
+    public UpdateCheckoutSessionRequest withCheckoutSessionCreate(CheckoutSessionCreate checkoutSessionCreate) {
+        Utils.checkNotNull(checkoutSessionCreate, "checkoutSessionCreate");
+        this.checkoutSessionCreate = checkoutSessionCreate;
         return this;
     }
 
@@ -147,8 +147,8 @@ public class UpdateCheckoutSessionRequest {
         return 
             Objects.deepEquals(this.sessionId, other.sessionId) &&
             Objects.deepEquals(this.timeoutInSeconds, other.timeoutInSeconds) &&
-            Objects.deepEquals(this.xGr4vyMerchantAccountId, other.xGr4vyMerchantAccountId) &&
-            Objects.deepEquals(this.checkoutSessionUpdate, other.checkoutSessionUpdate);
+            Objects.deepEquals(this.merchantAccountId, other.merchantAccountId) &&
+            Objects.deepEquals(this.checkoutSessionCreate, other.checkoutSessionCreate);
     }
     
     @Override
@@ -156,8 +156,8 @@ public class UpdateCheckoutSessionRequest {
         return Objects.hash(
             sessionId,
             timeoutInSeconds,
-            xGr4vyMerchantAccountId,
-            checkoutSessionUpdate);
+            merchantAccountId,
+            checkoutSessionCreate);
     }
     
     @Override
@@ -165,8 +165,8 @@ public class UpdateCheckoutSessionRequest {
         return Utils.toString(UpdateCheckoutSessionRequest.class,
                 "sessionId", sessionId,
                 "timeoutInSeconds", timeoutInSeconds,
-                "xGr4vyMerchantAccountId", xGr4vyMerchantAccountId,
-                "checkoutSessionUpdate", checkoutSessionUpdate);
+                "merchantAccountId", merchantAccountId,
+                "checkoutSessionCreate", checkoutSessionCreate);
     }
     
     public final static class Builder {
@@ -175,9 +175,9 @@ public class UpdateCheckoutSessionRequest {
  
         private Optional<Double> timeoutInSeconds;
  
-        private JsonNullable<String> xGr4vyMerchantAccountId = JsonNullable.undefined();
+        private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
  
-        private CheckoutSessionUpdate checkoutSessionUpdate;
+        private CheckoutSessionCreate checkoutSessionCreate;
         
         private Builder() {
           // force use of static builder() method
@@ -207,24 +207,24 @@ public class UpdateCheckoutSessionRequest {
         /**
          * The ID of the merchant account to use for this request.
          */
-        public Builder xGr4vyMerchantAccountId(String xGr4vyMerchantAccountId) {
-            Utils.checkNotNull(xGr4vyMerchantAccountId, "xGr4vyMerchantAccountId");
-            this.xGr4vyMerchantAccountId = JsonNullable.of(xGr4vyMerchantAccountId);
+        public Builder merchantAccountId(String merchantAccountId) {
+            Utils.checkNotNull(merchantAccountId, "merchantAccountId");
+            this.merchantAccountId = JsonNullable.of(merchantAccountId);
             return this;
         }
 
         /**
          * The ID of the merchant account to use for this request.
          */
-        public Builder xGr4vyMerchantAccountId(JsonNullable<String> xGr4vyMerchantAccountId) {
-            Utils.checkNotNull(xGr4vyMerchantAccountId, "xGr4vyMerchantAccountId");
-            this.xGr4vyMerchantAccountId = xGr4vyMerchantAccountId;
+        public Builder merchantAccountId(JsonNullable<String> merchantAccountId) {
+            Utils.checkNotNull(merchantAccountId, "merchantAccountId");
+            this.merchantAccountId = merchantAccountId;
             return this;
         }
 
-        public Builder checkoutSessionUpdate(CheckoutSessionUpdate checkoutSessionUpdate) {
-            Utils.checkNotNull(checkoutSessionUpdate, "checkoutSessionUpdate");
-            this.checkoutSessionUpdate = checkoutSessionUpdate;
+        public Builder checkoutSessionCreate(CheckoutSessionCreate checkoutSessionCreate) {
+            Utils.checkNotNull(checkoutSessionCreate, "checkoutSessionCreate");
+            this.checkoutSessionCreate = checkoutSessionCreate;
             return this;
         }
         
@@ -235,8 +235,8 @@ public class UpdateCheckoutSessionRequest {
             return new UpdateCheckoutSessionRequest(
                 sessionId,
                 timeoutInSeconds,
-                xGr4vyMerchantAccountId,
-                checkoutSessionUpdate);
+                merchantAccountId,
+                checkoutSessionCreate);
         }
 
         private static final LazySingletonValue<Optional<Double>> _SINGLETON_VALUE_TimeoutInSeconds =

@@ -38,7 +38,7 @@ public class CreatePaymentMethodNetworkTokenCryptogramRequest {
      * The ID of the merchant account to use for this request.
      */
     @SpeakeasyMetadata("header:style=simple,explode=false,name=x-gr4vy-merchant-account-id")
-    private JsonNullable<String> xGr4vyMerchantAccountId;
+    private JsonNullable<String> merchantAccountId;
 
     @SpeakeasyMetadata("request:mediaType=application/json")
     private CryptogramCreate cryptogramCreate;
@@ -48,17 +48,17 @@ public class CreatePaymentMethodNetworkTokenCryptogramRequest {
             String paymentMethodId,
             String networkTokenId,
             Optional<Double> timeoutInSeconds,
-            JsonNullable<String> xGr4vyMerchantAccountId,
+            JsonNullable<String> merchantAccountId,
             CryptogramCreate cryptogramCreate) {
         Utils.checkNotNull(paymentMethodId, "paymentMethodId");
         Utils.checkNotNull(networkTokenId, "networkTokenId");
         Utils.checkNotNull(timeoutInSeconds, "timeoutInSeconds");
-        Utils.checkNotNull(xGr4vyMerchantAccountId, "xGr4vyMerchantAccountId");
+        Utils.checkNotNull(merchantAccountId, "merchantAccountId");
         Utils.checkNotNull(cryptogramCreate, "cryptogramCreate");
         this.paymentMethodId = paymentMethodId;
         this.networkTokenId = networkTokenId;
         this.timeoutInSeconds = timeoutInSeconds;
-        this.xGr4vyMerchantAccountId = xGr4vyMerchantAccountId;
+        this.merchantAccountId = merchantAccountId;
         this.cryptogramCreate = cryptogramCreate;
     }
     
@@ -94,8 +94,8 @@ public class CreatePaymentMethodNetworkTokenCryptogramRequest {
      * The ID of the merchant account to use for this request.
      */
     @JsonIgnore
-    public JsonNullable<String> xGr4vyMerchantAccountId() {
-        return xGr4vyMerchantAccountId;
+    public JsonNullable<String> merchantAccountId() {
+        return merchantAccountId;
     }
 
     @JsonIgnore
@@ -140,18 +140,18 @@ public class CreatePaymentMethodNetworkTokenCryptogramRequest {
     /**
      * The ID of the merchant account to use for this request.
      */
-    public CreatePaymentMethodNetworkTokenCryptogramRequest withXGr4vyMerchantAccountId(String xGr4vyMerchantAccountId) {
-        Utils.checkNotNull(xGr4vyMerchantAccountId, "xGr4vyMerchantAccountId");
-        this.xGr4vyMerchantAccountId = JsonNullable.of(xGr4vyMerchantAccountId);
+    public CreatePaymentMethodNetworkTokenCryptogramRequest withMerchantAccountId(String merchantAccountId) {
+        Utils.checkNotNull(merchantAccountId, "merchantAccountId");
+        this.merchantAccountId = JsonNullable.of(merchantAccountId);
         return this;
     }
 
     /**
      * The ID of the merchant account to use for this request.
      */
-    public CreatePaymentMethodNetworkTokenCryptogramRequest withXGr4vyMerchantAccountId(JsonNullable<String> xGr4vyMerchantAccountId) {
-        Utils.checkNotNull(xGr4vyMerchantAccountId, "xGr4vyMerchantAccountId");
-        this.xGr4vyMerchantAccountId = xGr4vyMerchantAccountId;
+    public CreatePaymentMethodNetworkTokenCryptogramRequest withMerchantAccountId(JsonNullable<String> merchantAccountId) {
+        Utils.checkNotNull(merchantAccountId, "merchantAccountId");
+        this.merchantAccountId = merchantAccountId;
         return this;
     }
 
@@ -175,7 +175,7 @@ public class CreatePaymentMethodNetworkTokenCryptogramRequest {
             Objects.deepEquals(this.paymentMethodId, other.paymentMethodId) &&
             Objects.deepEquals(this.networkTokenId, other.networkTokenId) &&
             Objects.deepEquals(this.timeoutInSeconds, other.timeoutInSeconds) &&
-            Objects.deepEquals(this.xGr4vyMerchantAccountId, other.xGr4vyMerchantAccountId) &&
+            Objects.deepEquals(this.merchantAccountId, other.merchantAccountId) &&
             Objects.deepEquals(this.cryptogramCreate, other.cryptogramCreate);
     }
     
@@ -185,7 +185,7 @@ public class CreatePaymentMethodNetworkTokenCryptogramRequest {
             paymentMethodId,
             networkTokenId,
             timeoutInSeconds,
-            xGr4vyMerchantAccountId,
+            merchantAccountId,
             cryptogramCreate);
     }
     
@@ -195,7 +195,7 @@ public class CreatePaymentMethodNetworkTokenCryptogramRequest {
                 "paymentMethodId", paymentMethodId,
                 "networkTokenId", networkTokenId,
                 "timeoutInSeconds", timeoutInSeconds,
-                "xGr4vyMerchantAccountId", xGr4vyMerchantAccountId,
+                "merchantAccountId", merchantAccountId,
                 "cryptogramCreate", cryptogramCreate);
     }
     
@@ -207,7 +207,7 @@ public class CreatePaymentMethodNetworkTokenCryptogramRequest {
  
         private Optional<Double> timeoutInSeconds;
  
-        private JsonNullable<String> xGr4vyMerchantAccountId = JsonNullable.undefined();
+        private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
  
         private CryptogramCreate cryptogramCreate;
         
@@ -248,18 +248,18 @@ public class CreatePaymentMethodNetworkTokenCryptogramRequest {
         /**
          * The ID of the merchant account to use for this request.
          */
-        public Builder xGr4vyMerchantAccountId(String xGr4vyMerchantAccountId) {
-            Utils.checkNotNull(xGr4vyMerchantAccountId, "xGr4vyMerchantAccountId");
-            this.xGr4vyMerchantAccountId = JsonNullable.of(xGr4vyMerchantAccountId);
+        public Builder merchantAccountId(String merchantAccountId) {
+            Utils.checkNotNull(merchantAccountId, "merchantAccountId");
+            this.merchantAccountId = JsonNullable.of(merchantAccountId);
             return this;
         }
 
         /**
          * The ID of the merchant account to use for this request.
          */
-        public Builder xGr4vyMerchantAccountId(JsonNullable<String> xGr4vyMerchantAccountId) {
-            Utils.checkNotNull(xGr4vyMerchantAccountId, "xGr4vyMerchantAccountId");
-            this.xGr4vyMerchantAccountId = xGr4vyMerchantAccountId;
+        public Builder merchantAccountId(JsonNullable<String> merchantAccountId) {
+            Utils.checkNotNull(merchantAccountId, "merchantAccountId");
+            this.merchantAccountId = merchantAccountId;
             return this;
         }
 
@@ -277,7 +277,7 @@ public class CreatePaymentMethodNetworkTokenCryptogramRequest {
                 paymentMethodId,
                 networkTokenId,
                 timeoutInSeconds,
-                xGr4vyMerchantAccountId,
+                merchantAccountId,
                 cryptogramCreate);
         }
 

@@ -5,6 +5,8 @@ package com.github.gr4vy.gr4vy_java.models.operations;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.github.gr4vy.gr4vy_java.utils.LazySingletonValue;
+import com.github.gr4vy.gr4vy_java.utils.Options;
+import com.github.gr4vy.gr4vy_java.utils.RetryConfig;
 import com.github.gr4vy.gr4vy_java.utils.Utils;
 import java.lang.Double;
 import java.lang.Exception;
@@ -20,7 +22,8 @@ public class ListBuyerGiftCardsRequestBuilder {
                             "timeoutInSeconds",
                             "1",
                             new TypeReference<Optional<Double>>() {});
-    private JsonNullable<String> xGr4vyMerchantAccountId = JsonNullable.undefined();
+    private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
+    private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKMethodInterfaces.MethodCallListBuyerGiftCards sdk;
 
     public ListBuyerGiftCardsRequestBuilder(SDKMethodInterfaces.MethodCallListBuyerGiftCards sdk) {
@@ -63,27 +66,42 @@ public class ListBuyerGiftCardsRequestBuilder {
         return this;
     }
 
-    public ListBuyerGiftCardsRequestBuilder xGr4vyMerchantAccountId(String xGr4vyMerchantAccountId) {
-        Utils.checkNotNull(xGr4vyMerchantAccountId, "xGr4vyMerchantAccountId");
-        this.xGr4vyMerchantAccountId = JsonNullable.of(xGr4vyMerchantAccountId);
+    public ListBuyerGiftCardsRequestBuilder merchantAccountId(String merchantAccountId) {
+        Utils.checkNotNull(merchantAccountId, "merchantAccountId");
+        this.merchantAccountId = JsonNullable.of(merchantAccountId);
         return this;
     }
 
-    public ListBuyerGiftCardsRequestBuilder xGr4vyMerchantAccountId(JsonNullable<String> xGr4vyMerchantAccountId) {
-        Utils.checkNotNull(xGr4vyMerchantAccountId, "xGr4vyMerchantAccountId");
-        this.xGr4vyMerchantAccountId = xGr4vyMerchantAccountId;
+    public ListBuyerGiftCardsRequestBuilder merchantAccountId(JsonNullable<String> merchantAccountId) {
+        Utils.checkNotNull(merchantAccountId, "merchantAccountId");
+        this.merchantAccountId = merchantAccountId;
+        return this;
+    }
+                
+    public ListBuyerGiftCardsRequestBuilder retryConfig(RetryConfig retryConfig) {
+        Utils.checkNotNull(retryConfig, "retryConfig");
+        this.retryConfig = Optional.of(retryConfig);
+        return this;
+    }
+
+    public ListBuyerGiftCardsRequestBuilder retryConfig(Optional<RetryConfig> retryConfig) {
+        Utils.checkNotNull(retryConfig, "retryConfig");
+        this.retryConfig = retryConfig;
         return this;
     }
 
     public ListBuyerGiftCardsResponse call() throws Exception {
         if (timeoutInSeconds == null) {
             timeoutInSeconds = _SINGLETON_VALUE_TimeoutInSeconds.value();
-        }
+        }        Optional<Options> options = Optional.of(Options.builder()
+                                                    .retryConfig(retryConfig)
+                                                    .build());
         return sdk.list(
             buyerExternalIdentifier,
             buyerId,
             timeoutInSeconds,
-            xGr4vyMerchantAccountId);
+            merchantAccountId,
+            options);
     }
 
     private static final LazySingletonValue<Optional<Double>> _SINGLETON_VALUE_TimeoutInSeconds =

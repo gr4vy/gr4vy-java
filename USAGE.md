@@ -14,11 +14,10 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Gr4vy sdk = Gr4vy.builder()
-                .oAuth2PasswordBearer("<YOUR_O_AUTH2_PASSWORD_BEARER_HERE>")
+                .bearerAuth("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
         CreateAccountUpdaterJobResponse res = sdk.accountUpdater().jobs().create()
-                .xGr4vyMerchantAccountId("default")
                 .accountUpdaterJobCreate(AccountUpdaterJobCreate.builder()
                     .paymentMethodIds(List.of(
                         "ef9496d8-53a5-4aad-8ca2-00eb68334389",

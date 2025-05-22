@@ -38,7 +38,7 @@ public class UpdateBuyerShippingDetailsRequest {
      * The ID of the merchant account to use for this request.
      */
     @SpeakeasyMetadata("header:style=simple,explode=false,name=x-gr4vy-merchant-account-id")
-    private JsonNullable<String> xGr4vyMerchantAccountId;
+    private JsonNullable<String> merchantAccountId;
 
     @SpeakeasyMetadata("request:mediaType=application/json")
     private ShippingDetailsUpdate shippingDetailsUpdate;
@@ -48,17 +48,17 @@ public class UpdateBuyerShippingDetailsRequest {
             String buyerId,
             String shippingDetailsId,
             Optional<Double> timeoutInSeconds,
-            JsonNullable<String> xGr4vyMerchantAccountId,
+            JsonNullable<String> merchantAccountId,
             ShippingDetailsUpdate shippingDetailsUpdate) {
         Utils.checkNotNull(buyerId, "buyerId");
         Utils.checkNotNull(shippingDetailsId, "shippingDetailsId");
         Utils.checkNotNull(timeoutInSeconds, "timeoutInSeconds");
-        Utils.checkNotNull(xGr4vyMerchantAccountId, "xGr4vyMerchantAccountId");
+        Utils.checkNotNull(merchantAccountId, "merchantAccountId");
         Utils.checkNotNull(shippingDetailsUpdate, "shippingDetailsUpdate");
         this.buyerId = buyerId;
         this.shippingDetailsId = shippingDetailsId;
         this.timeoutInSeconds = timeoutInSeconds;
-        this.xGr4vyMerchantAccountId = xGr4vyMerchantAccountId;
+        this.merchantAccountId = merchantAccountId;
         this.shippingDetailsUpdate = shippingDetailsUpdate;
     }
     
@@ -94,8 +94,8 @@ public class UpdateBuyerShippingDetailsRequest {
      * The ID of the merchant account to use for this request.
      */
     @JsonIgnore
-    public JsonNullable<String> xGr4vyMerchantAccountId() {
-        return xGr4vyMerchantAccountId;
+    public JsonNullable<String> merchantAccountId() {
+        return merchantAccountId;
     }
 
     @JsonIgnore
@@ -140,18 +140,18 @@ public class UpdateBuyerShippingDetailsRequest {
     /**
      * The ID of the merchant account to use for this request.
      */
-    public UpdateBuyerShippingDetailsRequest withXGr4vyMerchantAccountId(String xGr4vyMerchantAccountId) {
-        Utils.checkNotNull(xGr4vyMerchantAccountId, "xGr4vyMerchantAccountId");
-        this.xGr4vyMerchantAccountId = JsonNullable.of(xGr4vyMerchantAccountId);
+    public UpdateBuyerShippingDetailsRequest withMerchantAccountId(String merchantAccountId) {
+        Utils.checkNotNull(merchantAccountId, "merchantAccountId");
+        this.merchantAccountId = JsonNullable.of(merchantAccountId);
         return this;
     }
 
     /**
      * The ID of the merchant account to use for this request.
      */
-    public UpdateBuyerShippingDetailsRequest withXGr4vyMerchantAccountId(JsonNullable<String> xGr4vyMerchantAccountId) {
-        Utils.checkNotNull(xGr4vyMerchantAccountId, "xGr4vyMerchantAccountId");
-        this.xGr4vyMerchantAccountId = xGr4vyMerchantAccountId;
+    public UpdateBuyerShippingDetailsRequest withMerchantAccountId(JsonNullable<String> merchantAccountId) {
+        Utils.checkNotNull(merchantAccountId, "merchantAccountId");
+        this.merchantAccountId = merchantAccountId;
         return this;
     }
 
@@ -175,7 +175,7 @@ public class UpdateBuyerShippingDetailsRequest {
             Objects.deepEquals(this.buyerId, other.buyerId) &&
             Objects.deepEquals(this.shippingDetailsId, other.shippingDetailsId) &&
             Objects.deepEquals(this.timeoutInSeconds, other.timeoutInSeconds) &&
-            Objects.deepEquals(this.xGr4vyMerchantAccountId, other.xGr4vyMerchantAccountId) &&
+            Objects.deepEquals(this.merchantAccountId, other.merchantAccountId) &&
             Objects.deepEquals(this.shippingDetailsUpdate, other.shippingDetailsUpdate);
     }
     
@@ -185,7 +185,7 @@ public class UpdateBuyerShippingDetailsRequest {
             buyerId,
             shippingDetailsId,
             timeoutInSeconds,
-            xGr4vyMerchantAccountId,
+            merchantAccountId,
             shippingDetailsUpdate);
     }
     
@@ -195,7 +195,7 @@ public class UpdateBuyerShippingDetailsRequest {
                 "buyerId", buyerId,
                 "shippingDetailsId", shippingDetailsId,
                 "timeoutInSeconds", timeoutInSeconds,
-                "xGr4vyMerchantAccountId", xGr4vyMerchantAccountId,
+                "merchantAccountId", merchantAccountId,
                 "shippingDetailsUpdate", shippingDetailsUpdate);
     }
     
@@ -207,7 +207,7 @@ public class UpdateBuyerShippingDetailsRequest {
  
         private Optional<Double> timeoutInSeconds;
  
-        private JsonNullable<String> xGr4vyMerchantAccountId = JsonNullable.undefined();
+        private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
  
         private ShippingDetailsUpdate shippingDetailsUpdate;
         
@@ -248,18 +248,18 @@ public class UpdateBuyerShippingDetailsRequest {
         /**
          * The ID of the merchant account to use for this request.
          */
-        public Builder xGr4vyMerchantAccountId(String xGr4vyMerchantAccountId) {
-            Utils.checkNotNull(xGr4vyMerchantAccountId, "xGr4vyMerchantAccountId");
-            this.xGr4vyMerchantAccountId = JsonNullable.of(xGr4vyMerchantAccountId);
+        public Builder merchantAccountId(String merchantAccountId) {
+            Utils.checkNotNull(merchantAccountId, "merchantAccountId");
+            this.merchantAccountId = JsonNullable.of(merchantAccountId);
             return this;
         }
 
         /**
          * The ID of the merchant account to use for this request.
          */
-        public Builder xGr4vyMerchantAccountId(JsonNullable<String> xGr4vyMerchantAccountId) {
-            Utils.checkNotNull(xGr4vyMerchantAccountId, "xGr4vyMerchantAccountId");
-            this.xGr4vyMerchantAccountId = xGr4vyMerchantAccountId;
+        public Builder merchantAccountId(JsonNullable<String> merchantAccountId) {
+            Utils.checkNotNull(merchantAccountId, "merchantAccountId");
+            this.merchantAccountId = merchantAccountId;
             return this;
         }
 
@@ -277,7 +277,7 @@ public class UpdateBuyerShippingDetailsRequest {
                 buyerId,
                 shippingDetailsId,
                 timeoutInSeconds,
-                xGr4vyMerchantAccountId,
+                merchantAccountId,
                 shippingDetailsUpdate);
         }
 

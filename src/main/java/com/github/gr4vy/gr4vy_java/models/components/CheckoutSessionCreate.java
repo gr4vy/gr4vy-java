@@ -21,7 +21,7 @@ import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class CheckoutSessionUpdate {
+public class CheckoutSessionCreate {
 
     /**
      * An array of cart items that represents the line items of a transaction.
@@ -56,7 +56,7 @@ public class CheckoutSessionUpdate {
     private Optional<Double> expiresIn;
 
     @JsonCreator
-    public CheckoutSessionUpdate(
+    public CheckoutSessionCreate(
             @JsonProperty("cart_items") JsonNullable<? extends List<CartItem>> cartItems,
             @JsonProperty("metadata") JsonNullable<? extends Map<String, String>> metadata,
             @JsonProperty("buyer") JsonNullable<? extends GuestBuyerInput> buyer,
@@ -74,7 +74,7 @@ public class CheckoutSessionUpdate {
         this.expiresIn = expiresIn;
     }
     
-    public CheckoutSessionUpdate() {
+    public CheckoutSessionCreate() {
         this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty());
     }
 
@@ -126,7 +126,7 @@ public class CheckoutSessionUpdate {
     /**
      * An array of cart items that represents the line items of a transaction.
      */
-    public CheckoutSessionUpdate withCartItems(List<CartItem> cartItems) {
+    public CheckoutSessionCreate withCartItems(List<CartItem> cartItems) {
         Utils.checkNotNull(cartItems, "cartItems");
         this.cartItems = JsonNullable.of(cartItems);
         return this;
@@ -135,7 +135,7 @@ public class CheckoutSessionUpdate {
     /**
      * An array of cart items that represents the line items of a transaction.
      */
-    public CheckoutSessionUpdate withCartItems(JsonNullable<? extends List<CartItem>> cartItems) {
+    public CheckoutSessionCreate withCartItems(JsonNullable<? extends List<CartItem>> cartItems) {
         Utils.checkNotNull(cartItems, "cartItems");
         this.cartItems = cartItems;
         return this;
@@ -144,7 +144,7 @@ public class CheckoutSessionUpdate {
     /**
      * Any additional information about the transaction that you would like to store as key-value pairs. This data is passed to payment service providers that support it.
      */
-    public CheckoutSessionUpdate withMetadata(Map<String, String> metadata) {
+    public CheckoutSessionCreate withMetadata(Map<String, String> metadata) {
         Utils.checkNotNull(metadata, "metadata");
         this.metadata = JsonNullable.of(metadata);
         return this;
@@ -153,7 +153,7 @@ public class CheckoutSessionUpdate {
     /**
      * Any additional information about the transaction that you would like to store as key-value pairs. This data is passed to payment service providers that support it.
      */
-    public CheckoutSessionUpdate withMetadata(JsonNullable<? extends Map<String, String>> metadata) {
+    public CheckoutSessionCreate withMetadata(JsonNullable<? extends Map<String, String>> metadata) {
         Utils.checkNotNull(metadata, "metadata");
         this.metadata = metadata;
         return this;
@@ -162,7 +162,7 @@ public class CheckoutSessionUpdate {
     /**
      * Provide buyer details for the transaction. No buyer resource will be created on Gr4vy when used.
      */
-    public CheckoutSessionUpdate withBuyer(GuestBuyerInput buyer) {
+    public CheckoutSessionCreate withBuyer(GuestBuyerInput buyer) {
         Utils.checkNotNull(buyer, "buyer");
         this.buyer = JsonNullable.of(buyer);
         return this;
@@ -171,7 +171,7 @@ public class CheckoutSessionUpdate {
     /**
      * Provide buyer details for the transaction. No buyer resource will be created on Gr4vy when used.
      */
-    public CheckoutSessionUpdate withBuyer(JsonNullable<? extends GuestBuyerInput> buyer) {
+    public CheckoutSessionCreate withBuyer(JsonNullable<? extends GuestBuyerInput> buyer) {
         Utils.checkNotNull(buyer, "buyer");
         this.buyer = buyer;
         return this;
@@ -180,7 +180,7 @@ public class CheckoutSessionUpdate {
     /**
      * The airline addendum data which describes the airline booking associated with this transaction.
      */
-    public CheckoutSessionUpdate withAirline(Airline airline) {
+    public CheckoutSessionCreate withAirline(Airline airline) {
         Utils.checkNotNull(airline, "airline");
         this.airline = JsonNullable.of(airline);
         return this;
@@ -189,19 +189,19 @@ public class CheckoutSessionUpdate {
     /**
      * The airline addendum data which describes the airline booking associated with this transaction.
      */
-    public CheckoutSessionUpdate withAirline(JsonNullable<? extends Airline> airline) {
+    public CheckoutSessionCreate withAirline(JsonNullable<? extends Airline> airline) {
         Utils.checkNotNull(airline, "airline");
         this.airline = airline;
         return this;
     }
 
-    public CheckoutSessionUpdate withExpiresIn(double expiresIn) {
+    public CheckoutSessionCreate withExpiresIn(double expiresIn) {
         Utils.checkNotNull(expiresIn, "expiresIn");
         this.expiresIn = Optional.ofNullable(expiresIn);
         return this;
     }
 
-    public CheckoutSessionUpdate withExpiresIn(Optional<Double> expiresIn) {
+    public CheckoutSessionCreate withExpiresIn(Optional<Double> expiresIn) {
         Utils.checkNotNull(expiresIn, "expiresIn");
         this.expiresIn = expiresIn;
         return this;
@@ -216,7 +216,7 @@ public class CheckoutSessionUpdate {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        CheckoutSessionUpdate other = (CheckoutSessionUpdate) o;
+        CheckoutSessionCreate other = (CheckoutSessionCreate) o;
         return 
             Objects.deepEquals(this.cartItems, other.cartItems) &&
             Objects.deepEquals(this.metadata, other.metadata) &&
@@ -237,7 +237,7 @@ public class CheckoutSessionUpdate {
     
     @Override
     public String toString() {
-        return Utils.toString(CheckoutSessionUpdate.class,
+        return Utils.toString(CheckoutSessionCreate.class,
                 "cartItems", cartItems,
                 "metadata", metadata,
                 "buyer", buyer,
@@ -345,11 +345,11 @@ public class CheckoutSessionUpdate {
             return this;
         }
         
-        public CheckoutSessionUpdate build() {
+        public CheckoutSessionCreate build() {
             if (expiresIn == null) {
                 expiresIn = _SINGLETON_VALUE_ExpiresIn.value();
             }
-            return new CheckoutSessionUpdate(
+            return new CheckoutSessionCreate(
                 cartItems,
                 metadata,
                 buyer,
