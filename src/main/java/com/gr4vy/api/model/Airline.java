@@ -130,9 +130,25 @@ public class Airline {
   @SerializedName(SERIALIZED_NAME_ISSUING_CARRIER_CODE)
   private String issuingCarrierCode;
 
+  public static final String SERIALIZED_NAME_ISSUING_CARRIER_NAME = "issuing_carrier_name";
+  @SerializedName(SERIALIZED_NAME_ISSUING_CARRIER_NAME)
+  private String issuingCarrierName;
+
+  public static final String SERIALIZED_NAME_ISSUING_IATA_DESIGNATOR = "issuing_iata_designator";
+  @SerializedName(SERIALIZED_NAME_ISSUING_IATA_DESIGNATOR)
+  private String issuingIataDesignator;
+
+  public static final String SERIALIZED_NAME_ISSUING_ICAO_CODE = "issuing_icao_code";
+  @SerializedName(SERIALIZED_NAME_ISSUING_ICAO_CODE)
+  private String issuingIcaoCode;
+
   public static final String SERIALIZED_NAME_RESERVATION_SYSTEM = "reservation_system";
   @SerializedName(SERIALIZED_NAME_RESERVATION_SYSTEM)
   private String reservationSystem;
+
+  public static final String SERIALIZED_NAME_IS_CARDHOLDER_TRAVELING = "is_cardholder_traveling";
+  @SerializedName(SERIALIZED_NAME_IS_CARDHOLDER_TRAVELING)
+  private Boolean isCardholderTraveling;
 
   public static final String SERIALIZED_NAME_PASSENGERS = "passengers";
   @SerializedName(SERIALIZED_NAME_PASSENGERS)
@@ -419,6 +435,75 @@ public class Airline {
   }
 
 
+  public Airline issuingCarrierName(String issuingCarrierName) {
+    
+    this.issuingCarrierName = issuingCarrierName;
+    return this;
+  }
+
+   /**
+   * The name of the airline issuing the ticket.
+   * @return issuingCarrierName
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "Aegean Airlines", value = "The name of the airline issuing the ticket.")
+
+  public String getIssuingCarrierName() {
+    return issuingCarrierName;
+  }
+
+
+  public void setIssuingCarrierName(String issuingCarrierName) {
+    this.issuingCarrierName = issuingCarrierName;
+  }
+
+
+  public Airline issuingIataDesignator(String issuingIataDesignator) {
+    
+    this.issuingIataDesignator = issuingIataDesignator;
+    return this;
+  }
+
+   /**
+   * 2 character IATA code of the airline issuing the ticket.
+   * @return issuingIataDesignator
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "A3", value = "2 character IATA code of the airline issuing the ticket.")
+
+  public String getIssuingIataDesignator() {
+    return issuingIataDesignator;
+  }
+
+
+  public void setIssuingIataDesignator(String issuingIataDesignator) {
+    this.issuingIataDesignator = issuingIataDesignator;
+  }
+
+
+  public Airline issuingIcaoCode(String issuingIcaoCode) {
+    
+    this.issuingIcaoCode = issuingIcaoCode;
+    return this;
+  }
+
+   /**
+   * 3 character ICAO code of the airline issuing the ticket.
+   * @return issuingIcaoCode
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "AEE", value = "3 character ICAO code of the airline issuing the ticket.")
+
+  public String getIssuingIcaoCode() {
+    return issuingIcaoCode;
+  }
+
+
+  public void setIssuingIcaoCode(String issuingIcaoCode) {
+    this.issuingIcaoCode = issuingIcaoCode;
+  }
+
+
   public Airline reservationSystem(String reservationSystem) {
     
     this.reservationSystem = reservationSystem;
@@ -439,6 +524,29 @@ public class Airline {
 
   public void setReservationSystem(String reservationSystem) {
     this.reservationSystem = reservationSystem;
+  }
+
+
+  public Airline isCardholderTraveling(Boolean isCardholderTraveling) {
+    
+    this.isCardholderTraveling = isCardholderTraveling;
+    return this;
+  }
+
+   /**
+   * Indicates whether the cardholder is present in the flight.
+   * @return isCardholderTraveling
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "false", value = "Indicates whether the cardholder is present in the flight.")
+
+  public Boolean getIsCardholderTraveling() {
+    return isCardholderTraveling;
+  }
+
+
+  public void setIsCardholderTraveling(Boolean isCardholderTraveling) {
+    this.isCardholderTraveling = isCardholderTraveling;
   }
 
 
@@ -525,14 +633,18 @@ public class Airline {
         Objects.equals(this.travelAgencyPlanName, airline.travelAgencyPlanName) &&
         Objects.equals(this.restrictedTicket, airline.restrictedTicket) &&
         Objects.equals(this.issuingCarrierCode, airline.issuingCarrierCode) &&
+        Objects.equals(this.issuingCarrierName, airline.issuingCarrierName) &&
+        Objects.equals(this.issuingIataDesignator, airline.issuingIataDesignator) &&
+        Objects.equals(this.issuingIcaoCode, airline.issuingIcaoCode) &&
         Objects.equals(this.reservationSystem, airline.reservationSystem) &&
+        Objects.equals(this.isCardholderTraveling, airline.isCardholderTraveling) &&
         Objects.equals(this.passengers, airline.passengers) &&
         Objects.equals(this.legs, airline.legs);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(passengerNameRecord, bookingCode, ticketNumber, ticketDeliveryMethod, issuedAt, issuedAddress, travelAgencyCode, travelAgencyName, travelAgencyInvoiceNumber, travelAgencyPlanName, restrictedTicket, issuingCarrierCode, reservationSystem, passengers, legs);
+    return Objects.hash(passengerNameRecord, bookingCode, ticketNumber, ticketDeliveryMethod, issuedAt, issuedAddress, travelAgencyCode, travelAgencyName, travelAgencyInvoiceNumber, travelAgencyPlanName, restrictedTicket, issuingCarrierCode, issuingCarrierName, issuingIataDesignator, issuingIcaoCode, reservationSystem, isCardholderTraveling, passengers, legs);
   }
 
   @Override
@@ -551,7 +663,11 @@ public class Airline {
     sb.append("    travelAgencyPlanName: ").append(toIndentedString(travelAgencyPlanName)).append("\n");
     sb.append("    restrictedTicket: ").append(toIndentedString(restrictedTicket)).append("\n");
     sb.append("    issuingCarrierCode: ").append(toIndentedString(issuingCarrierCode)).append("\n");
+    sb.append("    issuingCarrierName: ").append(toIndentedString(issuingCarrierName)).append("\n");
+    sb.append("    issuingIataDesignator: ").append(toIndentedString(issuingIataDesignator)).append("\n");
+    sb.append("    issuingIcaoCode: ").append(toIndentedString(issuingIcaoCode)).append("\n");
     sb.append("    reservationSystem: ").append(toIndentedString(reservationSystem)).append("\n");
+    sb.append("    isCardholderTraveling: ").append(toIndentedString(isCardholderTraveling)).append("\n");
     sb.append("    passengers: ").append(toIndentedString(passengers)).append("\n");
     sb.append("    legs: ").append(toIndentedString(legs)).append("\n");
     sb.append("}");
