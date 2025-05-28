@@ -16,10 +16,10 @@ Create a refund for all instruments on a transaction.
 ```java
 package hello.world;
 
-import com.github.gr4vy.gr4vy_java.Gr4vy;
-import com.github.gr4vy.gr4vy_java.models.components.TransactionRefundAllCreate;
-import com.github.gr4vy.gr4vy_java.models.errors.*;
-import com.github.gr4vy.gr4vy_java.models.operations.CreateFullTransactionRefundResponse;
+import com.gr4vy.sdk.Gr4vy;
+import com.gr4vy.sdk.models.components.TransactionRefundAllCreate;
+import com.gr4vy.sdk.models.errors.*;
+import com.gr4vy.sdk.models.operations.CreateFullTransactionRefundResponse;
 import java.lang.Exception;
 
 public class Application {

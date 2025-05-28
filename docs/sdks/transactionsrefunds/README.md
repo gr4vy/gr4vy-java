@@ -18,9 +18,9 @@ List refunds for a transaction.
 ```java
 package hello.world;
 
-import com.github.gr4vy.gr4vy_java.Gr4vy;
-import com.github.gr4vy.gr4vy_java.models.errors.*;
-import com.github.gr4vy.gr4vy_java.models.operations.ListTransactionRefundsResponse;
+import com.gr4vy.sdk.Gr4vy;
+import com.gr4vy.sdk.models.errors.*;
+import com.gr4vy.sdk.models.operations.ListTransactionRefundsResponse;
 import java.lang.Exception;
 
 public class Application {
@@ -80,10 +80,10 @@ Create a refund for a transaction.
 ```java
 package hello.world;
 
-import com.github.gr4vy.gr4vy_java.Gr4vy;
-import com.github.gr4vy.gr4vy_java.models.components.TransactionRefundCreate;
-import com.github.gr4vy.gr4vy_java.models.errors.*;
-import com.github.gr4vy.gr4vy_java.models.operations.CreateTransactionRefundResponse;
+import com.gr4vy.sdk.Gr4vy;
+import com.gr4vy.sdk.models.components.TransactionRefundCreate;
+import com.gr4vy.sdk.models.errors.*;
+import com.gr4vy.sdk.models.operations.CreateTransactionRefundResponse;
 import java.lang.Exception;
 
 public class Application {
@@ -151,9 +151,9 @@ Fetch refund for a transaction.
 ```java
 package hello.world;
 
-import com.github.gr4vy.gr4vy_java.Gr4vy;
-import com.github.gr4vy.gr4vy_java.models.errors.*;
-import com.github.gr4vy.gr4vy_java.models.operations.GetTransactionRefundResponse;
+import com.gr4vy.sdk.Gr4vy;
+import com.gr4vy.sdk.models.errors.*;
+import com.gr4vy.sdk.models.operations.GetTransactionRefundResponse;
 import java.lang.Exception;
 
 public class Application {

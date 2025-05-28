@@ -16,10 +16,10 @@ List the payment options available at checkout. filtering by country, currency, 
 ```java
 package hello.world;
 
-import com.github.gr4vy.gr4vy_java.Gr4vy;
-import com.github.gr4vy.gr4vy_java.models.components.PaymentOptionRequest;
-import com.github.gr4vy.gr4vy_java.models.errors.*;
-import com.github.gr4vy.gr4vy_java.models.operations.ListPaymentOptionsResponse;
+import com.gr4vy.sdk.Gr4vy;
+import com.gr4vy.sdk.models.components.PaymentOptionRequest;
+import com.gr4vy.sdk.models.errors.*;
+import com.gr4vy.sdk.models.operations.ListPaymentOptionsResponse;
 import java.lang.Exception;
 import java.util.Map;
 import org.openapitools.jackson.nullable.JsonNullable;

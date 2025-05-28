@@ -22,9 +22,9 @@ List the configured payment services.
 ```java
 package hello.world;
 
-import com.github.gr4vy.gr4vy_java.Gr4vy;
-import com.github.gr4vy.gr4vy_java.models.errors.*;
-import com.github.gr4vy.gr4vy_java.models.operations.ListPaymentServicesRequest;
+import com.gr4vy.sdk.Gr4vy;
+import com.gr4vy.sdk.models.errors.*;
+import com.gr4vy.sdk.models.operations.ListPaymentServicesRequest;
 import java.lang.Exception;
 
 public class Application {
@@ -88,10 +88,10 @@ Updates the configuration of a payment service.
 ```java
 package hello.world;
 
-import com.github.gr4vy.gr4vy_java.Gr4vy;
-import com.github.gr4vy.gr4vy_java.models.components.*;
-import com.github.gr4vy.gr4vy_java.models.errors.*;
-import com.github.gr4vy.gr4vy_java.models.operations.UpdatePaymentServiceResponse;
+import com.gr4vy.sdk.Gr4vy;
+import com.gr4vy.sdk.models.components.*;
+import com.gr4vy.sdk.models.errors.*;
+import com.gr4vy.sdk.models.operations.UpdatePaymentServiceResponse;
 import java.lang.Exception;
 import java.util.List;
 import java.util.Map;
@@ -216,9 +216,9 @@ Get the details of a configured payment service.
 ```java
 package hello.world;
 
-import com.github.gr4vy.gr4vy_java.Gr4vy;
-import com.github.gr4vy.gr4vy_java.models.errors.*;
-import com.github.gr4vy.gr4vy_java.models.operations.GetPaymentServiceResponse;
+import com.gr4vy.sdk.Gr4vy;
+import com.gr4vy.sdk.models.errors.*;
+import com.gr4vy.sdk.models.operations.GetPaymentServiceResponse;
 import java.lang.Exception;
 
 public class Application {
@@ -278,10 +278,10 @@ Configures a new payment service for use by merchants.
 ```java
 package hello.world;
 
-import com.github.gr4vy.gr4vy_java.Gr4vy;
-import com.github.gr4vy.gr4vy_java.models.components.PaymentServiceUpdate;
-import com.github.gr4vy.gr4vy_java.models.errors.*;
-import com.github.gr4vy.gr4vy_java.models.operations.CreatePaymentServiceResponse;
+import com.gr4vy.sdk.Gr4vy;
+import com.gr4vy.sdk.models.components.PaymentServiceUpdate;
+import com.gr4vy.sdk.models.errors.*;
+import com.gr4vy.sdk.models.operations.CreatePaymentServiceResponse;
 import java.lang.Exception;
 import java.util.List;
 import org.openapitools.jackson.nullable.JsonNullable;
@@ -362,9 +362,9 @@ Deletes all the configuration of a payment service.
 ```java
 package hello.world;
 
-import com.github.gr4vy.gr4vy_java.Gr4vy;
-import com.github.gr4vy.gr4vy_java.models.errors.*;
-import com.github.gr4vy.gr4vy_java.models.operations.DeletePaymentServiceResponse;
+import com.gr4vy.sdk.Gr4vy;
+import com.gr4vy.sdk.models.errors.*;
+import com.gr4vy.sdk.models.operations.DeletePaymentServiceResponse;
 import java.lang.Exception;
 
 public class Application {
@@ -425,10 +425,10 @@ Verify the credentials of a configured payment service
 ```java
 package hello.world;
 
-import com.github.gr4vy.gr4vy_java.Gr4vy;
-import com.github.gr4vy.gr4vy_java.models.components.VerifyCredentials;
-import com.github.gr4vy.gr4vy_java.models.errors.*;
-import com.github.gr4vy.gr4vy_java.models.operations.VerifyPaymentServiceCredentialsResponse;
+import com.gr4vy.sdk.Gr4vy;
+import com.gr4vy.sdk.models.components.VerifyCredentials;
+import com.gr4vy.sdk.models.errors.*;
+import com.gr4vy.sdk.models.operations.VerifyPaymentServiceCredentialsResponse;
 import java.lang.Exception;
 import java.util.List;
 
@@ -494,9 +494,9 @@ Creates a session for a payment service that supports sessions.
 ```java
 package hello.world;
 
-import com.github.gr4vy.gr4vy_java.Gr4vy;
-import com.github.gr4vy.gr4vy_java.models.errors.*;
-import com.github.gr4vy.gr4vy_java.models.operations.CreatePaymentServiceSessionResponse;
+import com.gr4vy.sdk.Gr4vy;
+import com.gr4vy.sdk.models.errors.*;
+import com.gr4vy.sdk.models.operations.CreatePaymentServiceSessionResponse;
 import java.lang.Exception;
 import java.util.Map;
 

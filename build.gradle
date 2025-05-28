@@ -46,7 +46,7 @@ jar {
     dependsOn(":generatePomFileForMavenPublication")
     archiveBaseName = "${artifactId}"
 
-    into("META-INF/maven/com.github.gr4vy/gr4vy-java") {
+    into("META-INF/maven/com.gr4vy/sdk") {
         from("$buildDir/pom.xml")
     }
 }
@@ -101,9 +101,9 @@ publishing {
         maven(MavenPublication) {
             // note that properties can't yet be used below!
             // https://github.com/gradle/gradle/issues/18619
-            groupId = "com.github.gr4vy"
-            artifactId = "gr4vy-java"
-            version = "0.1.1"
+            groupId = "com.gr4vy"
+            artifactId = "sdk"
+            version = "0.1.3"
 
             from components.java
 

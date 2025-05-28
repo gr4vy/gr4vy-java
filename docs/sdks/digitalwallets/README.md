@@ -20,11 +20,11 @@ Register a digital wallet like Apple Pay, Google Pay, or Click to Pay.
 ```java
 package hello.world;
 
-import com.github.gr4vy.gr4vy_java.Gr4vy;
-import com.github.gr4vy.gr4vy_java.models.components.DigitalWalletCreate;
-import com.github.gr4vy.gr4vy_java.models.components.DigitalWalletProvider;
-import com.github.gr4vy.gr4vy_java.models.errors.*;
-import com.github.gr4vy.gr4vy_java.models.operations.ConfigureDigitalWalletResponse;
+import com.gr4vy.sdk.Gr4vy;
+import com.gr4vy.sdk.models.components.DigitalWalletCreate;
+import com.gr4vy.sdk.models.components.DigitalWalletProvider;
+import com.gr4vy.sdk.models.errors.*;
+import com.gr4vy.sdk.models.operations.ConfigureDigitalWalletResponse;
 import java.lang.Exception;
 
 public class Application {
@@ -90,9 +90,9 @@ List configured digital wallets.
 ```java
 package hello.world;
 
-import com.github.gr4vy.gr4vy_java.Gr4vy;
-import com.github.gr4vy.gr4vy_java.models.errors.*;
-import com.github.gr4vy.gr4vy_java.models.operations.ListDigitalWalletsResponse;
+import com.gr4vy.sdk.Gr4vy;
+import com.gr4vy.sdk.models.errors.*;
+import com.gr4vy.sdk.models.operations.ListDigitalWalletsResponse;
 import java.lang.Exception;
 
 public class Application {
@@ -150,9 +150,9 @@ Fetch the details a digital wallet.
 ```java
 package hello.world;
 
-import com.github.gr4vy.gr4vy_java.Gr4vy;
-import com.github.gr4vy.gr4vy_java.models.errors.*;
-import com.github.gr4vy.gr4vy_java.models.operations.GetDigitalWalletResponse;
+import com.gr4vy.sdk.Gr4vy;
+import com.gr4vy.sdk.models.errors.*;
+import com.gr4vy.sdk.models.operations.GetDigitalWalletResponse;
 import java.lang.Exception;
 
 public class Application {
@@ -212,9 +212,9 @@ Delete a configured digital wallet.
 ```java
 package hello.world;
 
-import com.github.gr4vy.gr4vy_java.Gr4vy;
-import com.github.gr4vy.gr4vy_java.models.errors.*;
-import com.github.gr4vy.gr4vy_java.models.operations.DeleteDigitalWalletResponse;
+import com.gr4vy.sdk.Gr4vy;
+import com.gr4vy.sdk.models.errors.*;
+import com.gr4vy.sdk.models.operations.DeleteDigitalWalletResponse;
 import java.lang.Exception;
 
 public class Application {
@@ -275,10 +275,10 @@ Update a digital wallet.
 ```java
 package hello.world;
 
-import com.github.gr4vy.gr4vy_java.Gr4vy;
-import com.github.gr4vy.gr4vy_java.models.components.DigitalWalletUpdate;
-import com.github.gr4vy.gr4vy_java.models.errors.*;
-import com.github.gr4vy.gr4vy_java.models.operations.UpdateDigitalWalletResponse;
+import com.gr4vy.sdk.Gr4vy;
+import com.gr4vy.sdk.models.components.DigitalWalletUpdate;
+import com.gr4vy.sdk.models.errors.*;
+import com.gr4vy.sdk.models.operations.UpdateDigitalWalletResponse;
 import java.lang.Exception;
 
 public class Application {

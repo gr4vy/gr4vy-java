@@ -18,10 +18,10 @@ Create a session for use with Google Pay.
 ```java
 package hello.world;
 
-import com.github.gr4vy.gr4vy_java.Gr4vy;
-import com.github.gr4vy.gr4vy_java.models.components.GooglePaySessionRequest;
-import com.github.gr4vy.gr4vy_java.models.errors.*;
-import com.github.gr4vy.gr4vy_java.models.operations.CreateGooglePayDigitalWalletSessionResponse;
+import com.gr4vy.sdk.Gr4vy;
+import com.gr4vy.sdk.models.components.GooglePaySessionRequest;
+import com.gr4vy.sdk.models.errors.*;
+import com.gr4vy.sdk.models.operations.CreateGooglePayDigitalWalletSessionResponse;
 import java.lang.Exception;
 
 public class Application {
@@ -83,10 +83,10 @@ Create a session for use with Apple Pay.
 ```java
 package hello.world;
 
-import com.github.gr4vy.gr4vy_java.Gr4vy;
-import com.github.gr4vy.gr4vy_java.models.components.ApplePaySessionRequest;
-import com.github.gr4vy.gr4vy_java.models.errors.*;
-import com.github.gr4vy.gr4vy_java.models.operations.CreateApplePayDigitalWalletSessionResponse;
+import com.gr4vy.sdk.Gr4vy;
+import com.gr4vy.sdk.models.components.ApplePaySessionRequest;
+import com.gr4vy.sdk.models.errors.*;
+import com.gr4vy.sdk.models.operations.CreateApplePayDigitalWalletSessionResponse;
 import java.lang.Exception;
 
 public class Application {
@@ -149,10 +149,10 @@ Create a session for use with Click to Pay.
 ```java
 package hello.world;
 
-import com.github.gr4vy.gr4vy_java.Gr4vy;
-import com.github.gr4vy.gr4vy_java.models.components.ClickToPaySessionRequest;
-import com.github.gr4vy.gr4vy_java.models.errors.*;
-import com.github.gr4vy.gr4vy_java.models.operations.CreateClickToPayDigitalWalletSessionResponse;
+import com.gr4vy.sdk.Gr4vy;
+import com.gr4vy.sdk.models.components.ClickToPaySessionRequest;
+import com.gr4vy.sdk.models.errors.*;
+import com.gr4vy.sdk.models.operations.CreateClickToPayDigitalWalletSessionResponse;
 import java.lang.Exception;
 
 public class Application {

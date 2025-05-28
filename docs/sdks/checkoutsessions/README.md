@@ -19,10 +19,10 @@ Create a new checkout session.
 ```java
 package hello.world;
 
-import com.github.gr4vy.gr4vy_java.Gr4vy;
-import com.github.gr4vy.gr4vy_java.models.components.*;
-import com.github.gr4vy.gr4vy_java.models.errors.*;
-import com.github.gr4vy.gr4vy_java.models.operations.CreateCheckoutSessionResponse;
+import com.gr4vy.sdk.Gr4vy;
+import com.gr4vy.sdk.models.components.*;
+import com.gr4vy.sdk.models.errors.*;
+import com.gr4vy.sdk.models.operations.CreateCheckoutSessionResponse;
 import java.lang.Exception;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
@@ -200,10 +200,10 @@ Update the information stored on a checkout session.
 ```java
 package hello.world;
 
-import com.github.gr4vy.gr4vy_java.Gr4vy;
-import com.github.gr4vy.gr4vy_java.models.components.*;
-import com.github.gr4vy.gr4vy_java.models.errors.*;
-import com.github.gr4vy.gr4vy_java.models.operations.UpdateCheckoutSessionResponse;
+import com.gr4vy.sdk.Gr4vy;
+import com.gr4vy.sdk.models.components.*;
+import com.gr4vy.sdk.models.errors.*;
+import com.gr4vy.sdk.models.operations.UpdateCheckoutSessionResponse;
 import java.lang.Exception;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
@@ -427,9 +427,9 @@ Retrieve the information stored on a checkout session.
 ```java
 package hello.world;
 
-import com.github.gr4vy.gr4vy_java.Gr4vy;
-import com.github.gr4vy.gr4vy_java.models.errors.*;
-import com.github.gr4vy.gr4vy_java.models.operations.GetCheckoutSessionResponse;
+import com.gr4vy.sdk.Gr4vy;
+import com.gr4vy.sdk.models.errors.*;
+import com.gr4vy.sdk.models.operations.GetCheckoutSessionResponse;
 import java.lang.Exception;
 
 public class Application {
@@ -489,9 +489,9 @@ Deleta a checkout session and all of its (PCI) data.
 ```java
 package hello.world;
 
-import com.github.gr4vy.gr4vy_java.Gr4vy;
-import com.github.gr4vy.gr4vy_java.models.errors.*;
-import com.github.gr4vy.gr4vy_java.models.operations.DeleteCheckoutSessionResponse;
+import com.gr4vy.sdk.Gr4vy;
+import com.gr4vy.sdk.models.errors.*;
+import com.gr4vy.sdk.models.operations.DeleteCheckoutSessionResponse;
 import java.lang.Exception;
 
 public class Application {

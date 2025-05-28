@@ -48,15 +48,15 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'com.github.gr4vy:gr4vy-java:0.1.1'
+implementation 'com.gr4vy:sdk:0.1.3'
 ```
 
 Maven:
 ```xml
 <dependency>
-    <groupId>com.github.gr4vy</groupId>
-    <artifactId>gr4vy-java</artifactId>
-    <version>0.1.1</version>
+    <groupId>com.gr4vy</groupId>
+    <artifactId>sdk</artifactId>
+    <version>0.1.3</version>
 </dependency>
 ```
 
@@ -106,10 +106,10 @@ Another option is to set the System property `-Djdk.httpclient.HttpClient.log=al
 ```java
 package hello.world;
 
-import com.github.gr4vy.gr4vy_java.Gr4vy;
-import com.github.gr4vy.gr4vy_java.models.components.AccountUpdaterJobCreate;
-import com.github.gr4vy.gr4vy_java.models.errors.*;
-import com.github.gr4vy.gr4vy_java.models.operations.CreateAccountUpdaterJobResponse;
+import com.gr4vy.sdk.Gr4vy;
+import com.gr4vy.sdk.models.components.AccountUpdaterJobCreate;
+import com.gr4vy.sdk.models.errors.*;
+import com.gr4vy.sdk.models.operations.CreateAccountUpdaterJobResponse;
 import java.lang.Exception;
 import java.util.List;
 
@@ -152,10 +152,10 @@ To authenticate with the API the `bearerAuth` parameter must be set when initial
 ```java
 package hello.world;
 
-import com.github.gr4vy.gr4vy_java.Gr4vy;
-import com.github.gr4vy.gr4vy_java.models.components.AccountUpdaterJobCreate;
-import com.github.gr4vy.gr4vy_java.models.errors.*;
-import com.github.gr4vy.gr4vy_java.models.operations.CreateAccountUpdaterJobResponse;
+import com.gr4vy.sdk.Gr4vy;
+import com.gr4vy.sdk.models.components.AccountUpdaterJobCreate;
+import com.gr4vy.sdk.models.errors.*;
+import com.gr4vy.sdk.models.operations.CreateAccountUpdaterJobResponse;
 import java.lang.Exception;
 import java.util.List;
 
@@ -362,9 +362,9 @@ Here's an example of one such pagination call:
 ```java
 package hello.world;
 
-import com.github.gr4vy.gr4vy_java.Gr4vy;
-import com.github.gr4vy.gr4vy_java.models.errors.*;
-import com.github.gr4vy.gr4vy_java.models.operations.ListBuyersRequest;
+import com.gr4vy.sdk.Gr4vy;
+import com.gr4vy.sdk.models.errors.*;
+import com.gr4vy.sdk.models.operations.ListBuyersRequest;
 import java.lang.Exception;
 
 public class Application {
@@ -402,11 +402,11 @@ To change the default retry strategy for a single API call, you can provide a `R
 ```java
 package hello.world;
 
-import com.github.gr4vy.gr4vy_java.Gr4vy;
-import com.github.gr4vy.gr4vy_java.models.errors.*;
-import com.github.gr4vy.gr4vy_java.models.operations.ListBuyersRequest;
-import com.github.gr4vy.gr4vy_java.utils.BackoffStrategy;
-import com.github.gr4vy.gr4vy_java.utils.RetryConfig;
+import com.gr4vy.sdk.Gr4vy;
+import com.gr4vy.sdk.models.errors.*;
+import com.gr4vy.sdk.models.operations.ListBuyersRequest;
+import com.gr4vy.sdk.utils.BackoffStrategy;
+import com.gr4vy.sdk.utils.RetryConfig;
 import java.lang.Exception;
 import java.util.concurrent.TimeUnit;
 
@@ -449,11 +449,11 @@ If you'd like to override the default retry strategy for all operations that sup
 ```java
 package hello.world;
 
-import com.github.gr4vy.gr4vy_java.Gr4vy;
-import com.github.gr4vy.gr4vy_java.models.errors.*;
-import com.github.gr4vy.gr4vy_java.models.operations.ListBuyersRequest;
-import com.github.gr4vy.gr4vy_java.utils.BackoffStrategy;
-import com.github.gr4vy.gr4vy_java.utils.RetryConfig;
+import com.gr4vy.sdk.Gr4vy;
+import com.gr4vy.sdk.models.errors.*;
+import com.gr4vy.sdk.models.operations.ListBuyersRequest;
+import com.gr4vy.sdk.utils.BackoffStrategy;
+import com.gr4vy.sdk.utils.RetryConfig;
 import java.lang.Exception;
 import java.util.concurrent.TimeUnit;
 
@@ -521,10 +521,10 @@ By default, an API error will throw a `models/errors/APIException` exception. Wh
 ```java
 package hello.world;
 
-import com.github.gr4vy.gr4vy_java.Gr4vy;
-import com.github.gr4vy.gr4vy_java.models.components.AccountUpdaterJobCreate;
-import com.github.gr4vy.gr4vy_java.models.errors.*;
-import com.github.gr4vy.gr4vy_java.models.operations.CreateAccountUpdaterJobResponse;
+import com.gr4vy.sdk.Gr4vy;
+import com.gr4vy.sdk.models.components.AccountUpdaterJobCreate;
+import com.gr4vy.sdk.models.errors.*;
+import com.gr4vy.sdk.models.operations.CreateAccountUpdaterJobResponse;
 import java.lang.Exception;
 import java.util.List;
 
@@ -575,10 +575,10 @@ If the selected server has variables, you may override its default values using 
 ```java
 package hello.world;
 
-import com.github.gr4vy.gr4vy_java.Gr4vy;
-import com.github.gr4vy.gr4vy_java.models.components.AccountUpdaterJobCreate;
-import com.github.gr4vy.gr4vy_java.models.errors.*;
-import com.github.gr4vy.gr4vy_java.models.operations.CreateAccountUpdaterJobResponse;
+import com.gr4vy.sdk.Gr4vy;
+import com.gr4vy.sdk.models.components.AccountUpdaterJobCreate;
+import com.gr4vy.sdk.models.errors.*;
+import com.gr4vy.sdk.models.operations.CreateAccountUpdaterJobResponse;
 import java.lang.Exception;
 import java.util.List;
 
@@ -613,10 +613,10 @@ The default server can also be overridden globally using the `.serverURL(String 
 ```java
 package hello.world;
 
-import com.github.gr4vy.gr4vy_java.Gr4vy;
-import com.github.gr4vy.gr4vy_java.models.components.AccountUpdaterJobCreate;
-import com.github.gr4vy.gr4vy_java.models.errors.*;
-import com.github.gr4vy.gr4vy_java.models.operations.CreateAccountUpdaterJobResponse;
+import com.gr4vy.sdk.Gr4vy;
+import com.gr4vy.sdk.models.components.AccountUpdaterJobCreate;
+import com.gr4vy.sdk.models.errors.*;
+import com.gr4vy.sdk.models.operations.CreateAccountUpdaterJobResponse;
 import java.lang.Exception;
 import java.util.List;
 

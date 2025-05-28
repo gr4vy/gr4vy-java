@@ -16,10 +16,10 @@ Returns a list of activity by dashboard users.
 ```java
 package hello.world;
 
-import com.github.gr4vy.gr4vy_java.Gr4vy;
-import com.github.gr4vy.gr4vy_java.models.components.AuditLogAction;
-import com.github.gr4vy.gr4vy_java.models.errors.*;
-import com.github.gr4vy.gr4vy_java.models.operations.ListAuditLogsRequest;
+import com.gr4vy.sdk.Gr4vy;
+import com.gr4vy.sdk.models.components.AuditLogAction;
+import com.gr4vy.sdk.models.errors.*;
+import com.gr4vy.sdk.models.operations.ListAuditLogsRequest;
 import java.lang.Exception;
 
 public class Application {

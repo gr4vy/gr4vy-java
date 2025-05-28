@@ -22,10 +22,10 @@ List all transactions for a specific merchant account sorted by most recently cr
 ```java
 package hello.world;
 
-import com.github.gr4vy.gr4vy_java.Gr4vy;
-import com.github.gr4vy.gr4vy_java.models.components.*;
-import com.github.gr4vy.gr4vy_java.models.errors.*;
-import com.github.gr4vy.gr4vy_java.models.operations.ListTransactionsRequest;
+import com.gr4vy.sdk.Gr4vy;
+import com.gr4vy.sdk.models.components.*;
+import com.gr4vy.sdk.models.errors.*;
+import com.gr4vy.sdk.models.operations.ListTransactionsRequest;
 import java.lang.Exception;
 import java.time.OffsetDateTime;
 import java.util.List;
@@ -48,6 +48,8 @@ public class Application {
                 .buyerExternalIdentifier("buyer-12345")
                 .buyerId("fe26475d-ec3e-4884-9553-f7356683f7f9")
                 .buyerEmailAddress("john@example.com")
+                .buyerSearch("John")
+                .ipAddress("8.214.133.47")
                 .status(List.of(
                     TransactionStatus.AUTHORIZATION_SUCCEEDED))
                 .id("7099948d-7286-47e4-aad8-b68f7eb44591")
@@ -60,10 +62,14 @@ public class Application {
                 .amountGte(1299L)
                 .currency(List.of(
                     "USD"))
+                .country(List.of(
+                    "US"))
                 .paymentServiceId(List.of(
                     "fffd152a-9532-4087-9a4f-de58754210f0"))
                 .paymentMethodId("ef9496d8-53a5-4aad-8ca2-00eb68334389")
                 .paymentMethodLabel("1234")
+                .paymentMethodScheme("[\"visa\"]")
+                .paymentMethodCountry("[\"US\"]")
                 .paymentMethodFingerprint("a50b85c200ee0795d6fd33a5c66f37a4564f554355c5b46a756aac485dd168a4")
                 .method(List.of(
                     Method.CARD))
@@ -82,6 +88,7 @@ public class Application {
                     TransactionPaymentSource.RECURRING))
                 .isSubsequentPayment(true)
                 .merchantInitiated(true)
+                .used3ds(true)
                 .build();
 
         sdk.transactions().list()
@@ -132,10 +139,10 @@ Create a transaction.
 ```java
 package hello.world;
 
-import com.github.gr4vy.gr4vy_java.Gr4vy;
-import com.github.gr4vy.gr4vy_java.models.components.*;
-import com.github.gr4vy.gr4vy_java.models.errors.*;
-import com.github.gr4vy.gr4vy_java.models.operations.CreateTransactionResponse;
+import com.gr4vy.sdk.Gr4vy;
+import com.gr4vy.sdk.models.components.*;
+import com.gr4vy.sdk.models.errors.*;
+import com.gr4vy.sdk.models.operations.CreateTransactionResponse;
 import java.lang.Exception;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
@@ -449,9 +456,9 @@ Fetch a single transaction by its ID.
 ```java
 package hello.world;
 
-import com.github.gr4vy.gr4vy_java.Gr4vy;
-import com.github.gr4vy.gr4vy_java.models.errors.*;
-import com.github.gr4vy.gr4vy_java.models.operations.GetTransactionResponse;
+import com.gr4vy.sdk.Gr4vy;
+import com.gr4vy.sdk.models.errors.*;
+import com.gr4vy.sdk.models.operations.GetTransactionResponse;
 import java.lang.Exception;
 
 public class Application {
@@ -511,10 +518,10 @@ Capture a previously authorized transaction.
 ```java
 package hello.world;
 
-import com.github.gr4vy.gr4vy_java.Gr4vy;
-import com.github.gr4vy.gr4vy_java.models.components.*;
-import com.github.gr4vy.gr4vy_java.models.errors.*;
-import com.github.gr4vy.gr4vy_java.models.operations.CaptureTransactionResponse;
+import com.gr4vy.sdk.Gr4vy;
+import com.gr4vy.sdk.models.components.*;
+import com.gr4vy.sdk.models.errors.*;
+import com.gr4vy.sdk.models.operations.CaptureTransactionResponse;
 import java.lang.Exception;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
@@ -666,9 +673,9 @@ Void a previously authorized transaction.
 ```java
 package hello.world;
 
-import com.github.gr4vy.gr4vy_java.Gr4vy;
-import com.github.gr4vy.gr4vy_java.models.errors.*;
-import com.github.gr4vy.gr4vy_java.models.operations.VoidTransactionResponse;
+import com.gr4vy.sdk.Gr4vy;
+import com.gr4vy.sdk.models.errors.*;
+import com.gr4vy.sdk.models.operations.VoidTransactionResponse;
 import java.lang.Exception;
 
 public class Application {
@@ -729,9 +736,9 @@ Fetch a summary for a transaction.
 ```java
 package hello.world;
 
-import com.github.gr4vy.gr4vy_java.Gr4vy;
-import com.github.gr4vy.gr4vy_java.models.errors.*;
-import com.github.gr4vy.gr4vy_java.models.operations.GetTransactionSummaryResponse;
+import com.gr4vy.sdk.Gr4vy;
+import com.gr4vy.sdk.models.errors.*;
+import com.gr4vy.sdk.models.operations.GetTransactionSummaryResponse;
 import java.lang.Exception;
 
 public class Application {
@@ -791,9 +798,9 @@ Fetch the latest status for a transaction.
 ```java
 package hello.world;
 
-import com.github.gr4vy.gr4vy_java.Gr4vy;
-import com.github.gr4vy.gr4vy_java.models.errors.*;
-import com.github.gr4vy.gr4vy_java.models.operations.SyncTransactionResponse;
+import com.gr4vy.sdk.Gr4vy;
+import com.gr4vy.sdk.models.errors.*;
+import com.gr4vy.sdk.models.operations.SyncTransactionResponse;
 import java.lang.Exception;
 
 public class Application {

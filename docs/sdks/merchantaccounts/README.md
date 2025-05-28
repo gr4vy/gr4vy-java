@@ -19,8 +19,8 @@ List all merchant accounts in an instance.
 ```java
 package hello.world;
 
-import com.github.gr4vy.gr4vy_java.Gr4vy;
-import com.github.gr4vy.gr4vy_java.models.errors.*;
+import com.gr4vy.sdk.Gr4vy;
+import com.gr4vy.sdk.models.errors.*;
 import java.lang.Exception;
 
 public class Application {
@@ -82,11 +82,11 @@ Create a new merchant account in an instance.
 ```java
 package hello.world;
 
-import com.github.gr4vy.gr4vy_java.Gr4vy;
-import com.github.gr4vy.gr4vy_java.models.components.CardScheme;
-import com.github.gr4vy.gr4vy_java.models.components.MerchantAccountCreate;
-import com.github.gr4vy.gr4vy_java.models.errors.*;
-import com.github.gr4vy.gr4vy_java.models.operations.CreateMerchantAccountResponse;
+import com.gr4vy.sdk.Gr4vy;
+import com.gr4vy.sdk.models.components.CardScheme;
+import com.gr4vy.sdk.models.components.MerchantAccountCreate;
+import com.gr4vy.sdk.models.errors.*;
+import com.gr4vy.sdk.models.operations.CreateMerchantAccountResponse;
 import java.lang.Exception;
 import java.util.List;
 
@@ -169,9 +169,9 @@ Get info about a merchant account in an instance.
 ```java
 package hello.world;
 
-import com.github.gr4vy.gr4vy_java.Gr4vy;
-import com.github.gr4vy.gr4vy_java.models.errors.*;
-import com.github.gr4vy.gr4vy_java.models.operations.GetMerchantAccountResponse;
+import com.gr4vy.sdk.Gr4vy;
+import com.gr4vy.sdk.models.errors.*;
+import com.gr4vy.sdk.models.operations.GetMerchantAccountResponse;
 import java.lang.Exception;
 
 public class Application {
@@ -230,11 +230,11 @@ Update info for a merchant account in an instance.
 ```java
 package hello.world;
 
-import com.github.gr4vy.gr4vy_java.Gr4vy;
-import com.github.gr4vy.gr4vy_java.models.components.CardScheme;
-import com.github.gr4vy.gr4vy_java.models.components.MerchantAccountUpdate;
-import com.github.gr4vy.gr4vy_java.models.errors.*;
-import com.github.gr4vy.gr4vy_java.models.operations.UpdateMerchantAccountResponse;
+import com.gr4vy.sdk.Gr4vy;
+import com.gr4vy.sdk.models.components.CardScheme;
+import com.gr4vy.sdk.models.components.MerchantAccountUpdate;
+import com.gr4vy.sdk.models.errors.*;
+import com.gr4vy.sdk.models.operations.UpdateMerchantAccountResponse;
 import java.lang.Exception;
 import java.util.List;
 

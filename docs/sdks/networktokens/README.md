@@ -20,9 +20,9 @@ List all network tokens stored for a payment method.
 ```java
 package hello.world;
 
-import com.github.gr4vy.gr4vy_java.Gr4vy;
-import com.github.gr4vy.gr4vy_java.models.errors.*;
-import com.github.gr4vy.gr4vy_java.models.operations.ListPaymentMethodNetworkTokensResponse;
+import com.gr4vy.sdk.Gr4vy;
+import com.gr4vy.sdk.models.errors.*;
+import com.gr4vy.sdk.models.operations.ListPaymentMethodNetworkTokensResponse;
 import java.lang.Exception;
 
 public class Application {
@@ -82,10 +82,10 @@ Provision a network token for a payment method.
 ```java
 package hello.world;
 
-import com.github.gr4vy.gr4vy_java.Gr4vy;
-import com.github.gr4vy.gr4vy_java.models.components.NetworkTokenCreate;
-import com.github.gr4vy.gr4vy_java.models.errors.*;
-import com.github.gr4vy.gr4vy_java.models.operations.CreatePaymentMethodNetworkTokenResponse;
+import com.gr4vy.sdk.Gr4vy;
+import com.gr4vy.sdk.models.components.NetworkTokenCreate;
+import com.gr4vy.sdk.models.errors.*;
+import com.gr4vy.sdk.models.operations.CreatePaymentMethodNetworkTokenResponse;
 import java.lang.Exception;
 
 public class Application {
@@ -152,9 +152,9 @@ Suspend a network token for a payment method.
 ```java
 package hello.world;
 
-import com.github.gr4vy.gr4vy_java.Gr4vy;
-import com.github.gr4vy.gr4vy_java.models.errors.*;
-import com.github.gr4vy.gr4vy_java.models.operations.SuspendPaymentMethodNetworkTokenResponse;
+import com.gr4vy.sdk.Gr4vy;
+import com.gr4vy.sdk.models.errors.*;
+import com.gr4vy.sdk.models.operations.SuspendPaymentMethodNetworkTokenResponse;
 import java.lang.Exception;
 
 public class Application {
@@ -217,9 +217,9 @@ Resume a suspended network token for a payment method.
 ```java
 package hello.world;
 
-import com.github.gr4vy.gr4vy_java.Gr4vy;
-import com.github.gr4vy.gr4vy_java.models.errors.*;
-import com.github.gr4vy.gr4vy_java.models.operations.ResumePaymentMethodNetworkTokenResponse;
+import com.gr4vy.sdk.Gr4vy;
+import com.gr4vy.sdk.models.errors.*;
+import com.gr4vy.sdk.models.operations.ResumePaymentMethodNetworkTokenResponse;
 import java.lang.Exception;
 
 public class Application {
@@ -282,9 +282,9 @@ Delete a network token for a payment method.
 ```java
 package hello.world;
 
-import com.github.gr4vy.gr4vy_java.Gr4vy;
-import com.github.gr4vy.gr4vy_java.models.errors.*;
-import com.github.gr4vy.gr4vy_java.models.operations.DeletePaymentMethodNetworkTokenResponse;
+import com.gr4vy.sdk.Gr4vy;
+import com.gr4vy.sdk.models.errors.*;
+import com.gr4vy.sdk.models.operations.DeletePaymentMethodNetworkTokenResponse;
 import java.lang.Exception;
 
 public class Application {

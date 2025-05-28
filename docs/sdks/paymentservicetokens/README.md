@@ -18,9 +18,9 @@ List all gateway tokens stored for a payment method.
 ```java
 package hello.world;
 
-import com.github.gr4vy.gr4vy_java.Gr4vy;
-import com.github.gr4vy.gr4vy_java.models.errors.*;
-import com.github.gr4vy.gr4vy_java.models.operations.ListPaymentMethodPaymentServiceTokensResponse;
+import com.gr4vy.sdk.Gr4vy;
+import com.gr4vy.sdk.models.errors.*;
+import com.gr4vy.sdk.models.operations.ListPaymentMethodPaymentServiceTokensResponse;
 import java.lang.Exception;
 
 public class Application {
@@ -82,10 +82,10 @@ Create a gateway tokens for a payment method.
 ```java
 package hello.world;
 
-import com.github.gr4vy.gr4vy_java.Gr4vy;
-import com.github.gr4vy.gr4vy_java.models.components.PaymentServiceTokenCreate;
-import com.github.gr4vy.gr4vy_java.models.errors.*;
-import com.github.gr4vy.gr4vy_java.models.operations.CreatePaymentMethodPaymentServiceTokenResponse;
+import com.gr4vy.sdk.Gr4vy;
+import com.gr4vy.sdk.models.components.PaymentServiceTokenCreate;
+import com.gr4vy.sdk.models.errors.*;
+import com.gr4vy.sdk.models.operations.CreatePaymentMethodPaymentServiceTokenResponse;
 import java.lang.Exception;
 
 public class Application {
@@ -152,9 +152,9 @@ Delete a gateway tokens for a payment method.
 ```java
 package hello.world;
 
-import com.github.gr4vy.gr4vy_java.Gr4vy;
-import com.github.gr4vy.gr4vy_java.models.errors.*;
-import com.github.gr4vy.gr4vy_java.models.operations.DeletePaymentMethodPaymentServiceTokenResponse;
+import com.gr4vy.sdk.Gr4vy;
+import com.gr4vy.sdk.models.errors.*;
+import com.gr4vy.sdk.models.operations.DeletePaymentMethodPaymentServiceTokenResponse;
 import java.lang.Exception;
 
 public class Application {

@@ -20,11 +20,11 @@ Associate shipping details to a buyer.
 ```java
 package hello.world;
 
-import com.github.gr4vy.gr4vy_java.Gr4vy;
-import com.github.gr4vy.gr4vy_java.models.components.Address;
-import com.github.gr4vy.gr4vy_java.models.components.ShippingDetailsCreate;
-import com.github.gr4vy.gr4vy_java.models.errors.*;
-import com.github.gr4vy.gr4vy_java.models.operations.AddBuyerShippingDetailsResponse;
+import com.gr4vy.sdk.Gr4vy;
+import com.gr4vy.sdk.models.components.Address;
+import com.gr4vy.sdk.models.components.ShippingDetailsCreate;
+import com.gr4vy.sdk.models.errors.*;
+import com.gr4vy.sdk.models.operations.AddBuyerShippingDetailsResponse;
 import java.lang.Exception;
 
 public class Application {
@@ -103,9 +103,9 @@ List all the shipping details associated to a specific buyer.
 ```java
 package hello.world;
 
-import com.github.gr4vy.gr4vy_java.Gr4vy;
-import com.github.gr4vy.gr4vy_java.models.errors.*;
-import com.github.gr4vy.gr4vy_java.models.operations.ListBuyerShippingDetailsResponse;
+import com.gr4vy.sdk.Gr4vy;
+import com.gr4vy.sdk.models.errors.*;
+import com.gr4vy.sdk.models.operations.ListBuyerShippingDetailsResponse;
 import java.lang.Exception;
 
 public class Application {
@@ -165,9 +165,9 @@ Get a buyer's shipping details.
 ```java
 package hello.world;
 
-import com.github.gr4vy.gr4vy_java.Gr4vy;
-import com.github.gr4vy.gr4vy_java.models.errors.*;
-import com.github.gr4vy.gr4vy_java.models.operations.GetBuyerShippingDetailsResponse;
+import com.gr4vy.sdk.Gr4vy;
+import com.gr4vy.sdk.models.errors.*;
+import com.gr4vy.sdk.models.operations.GetBuyerShippingDetailsResponse;
 import java.lang.Exception;
 
 public class Application {
@@ -229,12 +229,12 @@ Update the shipping details associated to a specific buyer.
 ```java
 package hello.world;
 
-import com.github.gr4vy.gr4vy_java.Gr4vy;
-import com.github.gr4vy.gr4vy_java.models.components.Address;
-import com.github.gr4vy.gr4vy_java.models.components.ShippingDetailsUpdate;
-import com.github.gr4vy.gr4vy_java.models.errors.*;
-import com.github.gr4vy.gr4vy_java.models.operations.UpdateBuyerShippingDetailsRequest;
-import com.github.gr4vy.gr4vy_java.models.operations.UpdateBuyerShippingDetailsResponse;
+import com.gr4vy.sdk.Gr4vy;
+import com.gr4vy.sdk.models.components.Address;
+import com.gr4vy.sdk.models.components.ShippingDetailsUpdate;
+import com.gr4vy.sdk.models.errors.*;
+import com.gr4vy.sdk.models.operations.UpdateBuyerShippingDetailsRequest;
+import com.gr4vy.sdk.models.operations.UpdateBuyerShippingDetailsResponse;
 import java.lang.Exception;
 
 public class Application {
@@ -315,9 +315,9 @@ Delete the shipping details associated to a specific buyer.
 ```java
 package hello.world;
 
-import com.github.gr4vy.gr4vy_java.Gr4vy;
-import com.github.gr4vy.gr4vy_java.models.errors.*;
-import com.github.gr4vy.gr4vy_java.models.operations.DeleteBuyerShippingDetailsResponse;
+import com.gr4vy.sdk.Gr4vy;
+import com.gr4vy.sdk.models.errors.*;
+import com.gr4vy.sdk.models.operations.DeleteBuyerShippingDetailsResponse;
 import java.lang.Exception;
 
 public class Application {

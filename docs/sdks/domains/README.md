@@ -17,10 +17,10 @@ Register a digital wallet domain (Apple Pay only).
 ```java
 package hello.world;
 
-import com.github.gr4vy.gr4vy_java.Gr4vy;
-import com.github.gr4vy.gr4vy_java.models.components.DigitalWalletDomain;
-import com.github.gr4vy.gr4vy_java.models.errors.*;
-import com.github.gr4vy.gr4vy_java.models.operations.RegisterDigitalWalletDomainResponse;
+import com.gr4vy.sdk.Gr4vy;
+import com.gr4vy.sdk.models.components.DigitalWalletDomain;
+import com.gr4vy.sdk.models.errors.*;
+import com.gr4vy.sdk.models.operations.RegisterDigitalWalletDomainResponse;
 import java.lang.Exception;
 
 public class Application {
@@ -85,10 +85,10 @@ Remove a digital wallet domain (Apple Pay only).
 ```java
 package hello.world;
 
-import com.github.gr4vy.gr4vy_java.Gr4vy;
-import com.github.gr4vy.gr4vy_java.models.components.DigitalWalletDomain;
-import com.github.gr4vy.gr4vy_java.models.errors.*;
-import com.github.gr4vy.gr4vy_java.models.operations.UnregisterDigitalWalletDomainResponse;
+import com.gr4vy.sdk.Gr4vy;
+import com.gr4vy.sdk.models.components.DigitalWalletDomain;
+import com.gr4vy.sdk.models.errors.*;
+import com.gr4vy.sdk.models.operations.UnregisterDigitalWalletDomainResponse;
 import java.lang.Exception;
 
 public class Application {

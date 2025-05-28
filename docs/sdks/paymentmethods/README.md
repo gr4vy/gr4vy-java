@@ -19,9 +19,9 @@ List all stored payment method.
 ```java
 package hello.world;
 
-import com.github.gr4vy.gr4vy_java.Gr4vy;
-import com.github.gr4vy.gr4vy_java.models.errors.*;
-import com.github.gr4vy.gr4vy_java.models.operations.ListPaymentMethodsRequest;
+import com.gr4vy.sdk.Gr4vy;
+import com.gr4vy.sdk.models.errors.*;
+import com.gr4vy.sdk.models.operations.ListPaymentMethodsRequest;
 import java.lang.Exception;
 
 public class Application {
@@ -87,11 +87,11 @@ Store a new payment method.
 ```java
 package hello.world;
 
-import com.github.gr4vy.gr4vy_java.Gr4vy;
-import com.github.gr4vy.gr4vy_java.models.components.CheckoutSessionPaymentMethodCreate;
-import com.github.gr4vy.gr4vy_java.models.errors.*;
-import com.github.gr4vy.gr4vy_java.models.operations.Body;
-import com.github.gr4vy.gr4vy_java.models.operations.CreatePaymentMethodResponse;
+import com.gr4vy.sdk.Gr4vy;
+import com.gr4vy.sdk.models.components.CheckoutSessionPaymentMethodCreate;
+import com.gr4vy.sdk.models.errors.*;
+import com.gr4vy.sdk.models.operations.Body;
+import com.gr4vy.sdk.models.operations.CreatePaymentMethodResponse;
 import java.lang.Exception;
 
 public class Application {
@@ -157,9 +157,9 @@ Retrieve a payment method.
 ```java
 package hello.world;
 
-import com.github.gr4vy.gr4vy_java.Gr4vy;
-import com.github.gr4vy.gr4vy_java.models.errors.*;
-import com.github.gr4vy.gr4vy_java.models.operations.GetPaymentMethodResponse;
+import com.gr4vy.sdk.Gr4vy;
+import com.gr4vy.sdk.models.errors.*;
+import com.gr4vy.sdk.models.operations.GetPaymentMethodResponse;
 import java.lang.Exception;
 
 public class Application {
@@ -219,9 +219,9 @@ Delete a payment method.
 ```java
 package hello.world;
 
-import com.github.gr4vy.gr4vy_java.Gr4vy;
-import com.github.gr4vy.gr4vy_java.models.errors.*;
-import com.github.gr4vy.gr4vy_java.models.operations.DeletePaymentMethodResponse;
+import com.gr4vy.sdk.Gr4vy;
+import com.gr4vy.sdk.models.errors.*;
+import com.gr4vy.sdk.models.operations.DeletePaymentMethodResponse;
 import java.lang.Exception;
 
 public class Application {

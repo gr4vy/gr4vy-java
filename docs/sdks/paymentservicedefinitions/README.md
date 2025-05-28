@@ -18,8 +18,8 @@ List the definitions of each payment service that can be configured.
 ```java
 package hello.world;
 
-import com.github.gr4vy.gr4vy_java.Gr4vy;
-import com.github.gr4vy.gr4vy_java.models.errors.*;
+import com.gr4vy.sdk.Gr4vy;
+import com.gr4vy.sdk.models.errors.*;
 import java.lang.Exception;
 
 public class Application {
@@ -79,9 +79,9 @@ Get the definition of a payment service that can be configured.
 ```java
 package hello.world;
 
-import com.github.gr4vy.gr4vy_java.Gr4vy;
-import com.github.gr4vy.gr4vy_java.models.errors.*;
-import com.github.gr4vy.gr4vy_java.models.operations.GetPaymentServiceDefinitionResponse;
+import com.gr4vy.sdk.Gr4vy;
+import com.gr4vy.sdk.models.errors.*;
+import com.gr4vy.sdk.models.operations.GetPaymentServiceDefinitionResponse;
 import java.lang.Exception;
 
 public class Application {
@@ -140,9 +140,9 @@ Creates a session for a payment service that supports sessions.
 ```java
 package hello.world;
 
-import com.github.gr4vy.gr4vy_java.Gr4vy;
-import com.github.gr4vy.gr4vy_java.models.errors.*;
-import com.github.gr4vy.gr4vy_java.models.operations.CreatePaymentServiceDefinitionSessionResponse;
+import com.gr4vy.sdk.Gr4vy;
+import com.gr4vy.sdk.models.errors.*;
+import com.gr4vy.sdk.models.operations.CreatePaymentServiceDefinitionSessionResponse;
 import java.lang.Exception;
 import java.util.Map;
 
