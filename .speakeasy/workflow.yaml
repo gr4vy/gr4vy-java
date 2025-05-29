@@ -12,6 +12,7 @@ sources:
             - location: ./.speakeasy/overlays/mid-global.yaml
             - location: ./.speakeasy/overlays/fix-base-model.yaml
             - location: ./.speakeasy/overlays/fix-checkout-session-body.yaml
+            - location: ./.speakeasy/overlays/fix-remove-timeout-in-seconds.yaml
         registry:
             location: registry.speakeasyapi.dev/gr4vy/gr4vy/openapi
 targets:
