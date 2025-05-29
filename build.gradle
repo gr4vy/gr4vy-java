@@ -103,7 +103,7 @@ publishing {
             // https://github.com/gradle/gradle/issues/18619
             groupId = "com.gr4vy"
             artifactId = "sdk"
-            version = "0.1.7"
+            version = "0.1.8"
 
             from components.java
 
@@ -152,9 +152,7 @@ dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter:5.10.0'
     implementation 'com.auth0:java-jwt:4.5.0'
     implementation 'org.json:json:20240303'
-    implementation 'org.bouncycastle:bcprov-jdk18on:1.77'
     implementation 'org.bouncycastle:bcpkix-jdk18on:1.80'
-    implementation 'org.slf4j:slf4j-api:2.0.7'
     implementation 'org.slf4j:slf4j-simple:2.0.7'
     api 'com.fasterxml.jackson.core:jackson-annotations:2.18.2'
     implementation 'com.fasterxml.jackson.core:jackson-databind:2.18.2'

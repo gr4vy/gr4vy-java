@@ -12,7 +12,6 @@ import com.gr4vy.sdk.Gr4vy.AvailableServers;
 import com.gr4vy.sdk.models.components.Field;
 import com.gr4vy.sdk.models.components.MerchantAccount;
 import com.gr4vy.sdk.models.components.MerchantAccountCreate;
-import com.gr4vy.sdk.models.components.PaymentService;
 import com.gr4vy.sdk.models.components.PaymentServiceCreate;
 import com.gr4vy.sdk.models.operations.CreateMerchantAccountResponse;
 import com.gr4vy.sdk.models.operations.UpdatePaymentServiceResponse;
@@ -108,7 +107,7 @@ public abstract class BaseTest {
                     .build())
                 .call();
 
-        PaymentService paymentService = paymentServiceResponse.paymentService().orElse(null);
+        paymentServiceResponse.paymentService().orElse(null);
     }
 
     protected void cleanupEnvironment() {
