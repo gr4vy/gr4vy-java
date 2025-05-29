@@ -113,7 +113,7 @@ public class CheckoutSessionsTest extends BaseTest {
     }
 
     @Test
-    void test_handle_stored_payment_method() throws Exception {
+    void testHandleStoredPaymentMethod() throws Exception {
         // Create a card payment method
         CreatePaymentMethodResponse createPaymentMethodResponse = gr4vyClient.paymentMethods().create()
                 .requestBody(Body.of(CardPaymentMethodCreate.builder()

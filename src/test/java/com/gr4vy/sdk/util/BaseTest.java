@@ -92,9 +92,6 @@ public abstract class BaseTest {
                 .call();
 
         MerchantAccount merchantAccount = res.merchantAccount().orElse(null);
-        if (merchantAccount == null) {
-            // handle error
-        }
 
         this.gr4vyClient = createGr4vyClient(privateKey, merchantAccount.id());
         UpdatePaymentServiceResponse paymentServiceResponse = this.gr4vyClient.paymentServices().create()
@@ -112,9 +109,6 @@ public abstract class BaseTest {
                 .call();
 
         PaymentService paymentService = paymentServiceResponse.paymentService().orElse(null);
-        if (paymentService == null) {
-            // handle error
-        }
     }
 
     protected void cleanupEnvironment() {
