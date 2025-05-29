@@ -2,177 +2,175 @@ package com.gr4vy.sdk;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.auth0.jwt.exceptions.JWTDecodeException;
+import com.auth0.jwt.interfaces.Claim;
+import com.auth0.jwt.interfaces.DecodedJWT;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import java.nio.charset.StandardCharsets;
-import java.security.KeyFactory;
-import java.security.MessageDigest;
-import java.security.interfaces.ECPrivateKey;
-import java.security.spec.PKCS8EncodedKeySpec;
+import java.security.PrivateKey;
+import java.security.interfaces.ECPrivateKey; // Import for ECPrivateKey
 import java.time.Instant;
-import java.util.Arrays;
-import java.util.Base64;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
-import java.util.UUID;
+import java.time.temporal.ChronoUnit;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class Auth {
 
-    public enum JWTScope {
-        READ_ALL("*.read"),
-        WRITE_ALL("*.write"),
-        EMBED("embed"),
-        ANTI_FRAUD_SERVICE_DEFINITIONS_READ("anti-fraud-service-definitions.read"),
-        ANTI_FRAUD_SERVICE_DEFINITIONS_WRITE("anti-fraud-service-definitions.write"),
-        ANTI_FRAUD_SERVICES_READ("anti-fraud-services.read"),
-        ANTI_FRAUD_SERVICES_WRITE("anti-fraud-services.write"),
-        AUDIT_LOGS_READ("audit-logs.read"),
-        BUYERS_READ("buyers.read"),
-        BUYERS_WRITE("buyers.write"),
-        BUYERS_BILLING_DETAILS_READ("buyers.billing-details.read"),
-        BUYERS_BILLING_DETAILS_WRITE("buyers.billing-details.write"),
-        CARD_SCHEME_DEFINITIONS_READ("card-scheme-definitions.read"),
-        CHECKOUT_SESSIONS_READ("checkout-sessions.read"),
-        CHECKOUT_SESSIONS_WRITE("checkout-sessions.write"),
-        CONNECTIONS_READ("connections.read"),
-        CONNECTIONS_WRITE("connections.write"),
-        DIGITAL_WALLETS_READ("digital-wallets.read"),
-        DIGITAL_WALLETS_WRITE("digital-wallets.write"),
-        FLOWS_READ("flows.read"),
-        FLOWS_WRITE("flows.write"),
-        GIFT_CARD_SERVICE_DEFINITIONS_READ("gift-card-service-definitions.read"),
-        GIFT_CARD_SERVICES_READ("gift-card-services.read"),
-        GIFT_CARD_SERVICES_WRITE("gift-card-services.write"),
-        GIFT_CARDS_READ("gift-cards.read"),
-        GIFT_CARDS_WRITE("gift-cards.write"),
-        MERCHANT_ACCOUNT_READ("merchant-accounts.reads"),
-        MERCHANT_ACCOUNT_WRITE("merchant-accounts.write"),
-        PAYMENT_METHOD_DEFINITIONS_READ("payment-method-definitions.read"),
-        PAYMENT_METHOD_READ("payment-methods.read"),
-        PAYMENT_METHOD_WRITE("payment-methods.write"),
-        PAYMENT_OPTIONS_READ("payment-options.read"),
-        PAYMENT_SERVICE_DEFINITIONS_READ("payment-service-definitions.read"),
-        PAYMENT_SERVICES_READ("payment-services.read"),
-        PAYMENT_SERVICES_WRITE("payment-services.write"),
-        REPORTS_READ("reports.read"),
-        REPORTS_WRITE("reports.write"),
-        TRANSACTIONS_READ("transactions.read"),
-        TRANSACTIONS_WRITE("transactions.write"),
-        VAULT_FORWARD_WRITE("vault-forward.write");
+    private static final Logger logger = LoggerFactory.getLogger(Auth.class);
+    private static final String USER_AGENT = "java-sdk"; // Replace with your actual user agent
 
-        private final String value;
-
-        JWTScope(String value) {
-            this.value = value;
-        }
-
-        public String getValue() {
-            return value;
-        }
-
-        // Optional: Override toString() to return the string value directly
-        @Override
-        public String toString() {
-            return value;
-        }
-
-        // Optional: Static method to get enum from string value
-        public static JWTScope fromValue(String value) {
-            for (JWTScope scope : JWTScope.values()) {
-                if (scope.value.equals(value)) {
-                    return scope;
-                }
-            }
-            throw new IllegalArgumentException("Unknown scope: " + value);
-        }
-    }
-
-    public static String generateToken(String privateKeyPem,
-                                       List<String> scopes,
-                                       long expiresInSeconds,
-                                       Map<String, Object> embedParams,
-                                       String checkoutSessionId,
-                                       String issuer) throws Exception {
-
+    /**
+     * Generates a token for an API request.
+     *
+     * @param privateKeyPem     The EC private key in string-PEM format.
+     * @param scopes            List of scopes. If not set, all access will be set as default.
+     * @param expiresIn         The expiration time in seconds. Defaults to 3600.
+     * @param embedParams       An optional map of Embed params to pin. Defaults to null.
+     * @param checkoutSessionId An optional checkout session ID to link the transaction to. Defaults to null.
+     * @return A bearer auth token.
+     */
+    public static String getToken(
+            String privateKeyPem,
+            List<JWTScope> scopes,
+            long expiresIn,
+            Map<String, Object> embedParams,
+            String checkoutSessionId,
+            String issuer
+    ) {
         if (scopes == null || scopes.isEmpty()) {
-            scopes = Arrays.asList("*.read", "*.write");
+            scopes = Arrays.asList(JWTScope.READ_ALL, JWTScope.WRITE_ALL);
         }
 
-        ECPrivateKey privateKey = parseECPrivateKey(privateKeyPem);
-        String kid = calculateThumbprint(privateKey);
+        try {
+            PrivateKey privateKey = PemUtils.getPrivateKeyFromPem(privateKeyPem);
+            // Ensure the key is an EC private key for ES512
+            if (!(privateKey instanceof ECPrivateKey)) {
+                throw new IllegalArgumentException("The provided private key is not an EC private key. ES512 requires an EC key.");
+            }
 
-        Instant now = Instant.now();
+            // Algorithm for ES512 requires an ECPrivateKey
+            Algorithm algorithm = Algorithm.ECDSA512((ECPrivateKey) privateKey);
 
-        Map<String, Object> claims = new LinkedHashMap<>();
-        claims.put("scopes", scopes);
-        claims.put("iss", issuer);
-        claims.put("iat", now.getEpochSecond());
-        claims.put("nbf", now.getEpochSecond());
-        claims.put("exp", now.plusSeconds(expiresInSeconds).getEpochSecond());
-        claims.put("jti", UUID.randomUUID().toString());
+            Instant now = Instant.now();
+            Instant expiration = now.plus(expiresIn, ChronoUnit.SECONDS);
 
-        if (checkoutSessionId != null) {
-            claims.put("checkout_session_id", checkoutSessionId);
+            Map<String, Object> headers = new HashMap<>();
+            // Calculate and add 'kid' to headers
+            headers.put("kid", PemUtils.calculateJwkThumbprint(privateKey));
+
+            // Convert JWTScope enums to their string values
+            List<String> scopeStrings = scopes.stream()
+                    .map(JWTScope::getValue)
+                    .collect(Collectors.toList());
+
+            // Build claims
+            Map<String, Object> claims = new HashMap<>();
+            claims.put("scopes", scopeStrings);
+            claims.put("iss", USER_AGENT);
+            claims.put("iat", Date.from(now));
+            claims.put("nbf", Date.from(now));
+            claims.put("exp", Date.from(expiration));
+            claims.put("jti", UUID.randomUUID().toString());
+
+            if (checkoutSessionId != null) {
+                claims.put("checkout_session_id", checkoutSessionId);
+            }
+
+            if (scopes.contains(JWTScope.EMBED) && embedParams != null) {
+                claims.put("embed", embedParams);
+            }
+
+            return JWT.create()
+                    .withHeader(headers)
+                    .withPayload(claims)
+                    .sign(algorithm);
+
+        } catch (Exception e) {
+            logger.error("Error generating JWT: {}", e.getMessage(), e);
+            throw new RuntimeException("Failed to generate JWT", e);
         }
-        if (scopes.contains("embed") && embedParams != null) {
-            claims.put("embed", embedParams);
+    }
+
+    /**
+     * Updates an existing token with a new signature, and optionally new data.
+     *
+     * @param token             The previously generated token.
+     * @param privateKeyPem     The EC private key in string-PEM format.
+     * @param scopes            List of scopes. If not set, all access will be set as default.
+     * @param expiresIn         The expiration time in seconds. Defaults to 3600.
+     * @param embedParams       An optional map of Embed params to pin. Defaults to null.
+     * @param checkoutSessionId An optional checkout session ID to link the transaction to. Defaults to null.
+     * @return A bearer auth token.
+     */
+    public static String updateToken(
+            String token,
+            String privateKeyPem,
+            List<JWTScope> scopes,
+            long expiresIn,
+            Map<String, Object> embedParams,
+            String checkoutSessionId,
+            String issuer
+    ) {
+        try {
+            // Decode the token without verifying the signature to get existing claims
+            DecodedJWT decodedJWT = JWT.decode(token);
+            Map<String, Object> existingClaims = decodedJWT.getClaims().entrySet().stream()
+                .collect(Collectors.toMap(
+                    Map.Entry::getKey,
+                    entry -> {
+                        var claim = entry.getValue();
+                        if (claim == null) return null;
+                        try {
+                            Map<String, Object> asMap = claim.asMap();
+                            if (asMap != null) return asMap;
+                        } catch (Exception ignored) {}
+                        try {
+                            String asString = claim.asString();
+                            if (asString != null) return asString;
+                        } catch (Exception ignored) {}
+                        return claim.toString(); // fallback
+                    }
+                ));
+
+            // Extract previous scopes
+            List<String> previousScopeStrings = decodedJWT.getClaim("scopes").asList(String.class);
+            List<JWTScope> previousScopes = (previousScopeStrings != null) ?
+                    JWTScope.fromStringList(previousScopeStrings) :
+                    Collections.emptyList();
+
+
+            // Use new scopes or previous scopes
+            List<JWTScope> finalScopes = (scopes != null && !scopes.isEmpty()) ? scopes : previousScopes;
+
+            // Use new embed params or previous embed params
+            Map<String, Object> finalEmbedParams = (embedParams != null) ? embedParams : (Map<String, Object>) existingClaims.get("embed");
+
+            // Use new checkout session ID or previous
+            String finalCheckoutSessionId = (checkoutSessionId != null) ? checkoutSessionId : (String) existingClaims.get("checkout_session_id");
+
+            return getToken(privateKeyPem, finalScopes, expiresIn, finalEmbedParams, finalCheckoutSessionId, issuer);
+
+        } catch (JWTDecodeException e) {
+            logger.error("Error decoding token for update: {}", e.getMessage(), e);
+            throw new RuntimeException("Failed to decode existing token", e);
         }
-
-        Algorithm algorithm = Algorithm.ECDSA512(null, privateKey);
-        return JWT.create()
-                .withHeader(Map.of("kid", kid))
-                .withPayload(claims)
-                .sign(algorithm);
     }
 
-    public static String updateToken(String token,
-                                     String privateKeyPem,
-                                     List<String> scopes,
-                                     long expiresInSeconds,
-                                     Map<String, Object> embedParams,
-                                     String checkoutSessionId,
-                                     String issuer) throws Exception {
-        // This version doesn't decode token but reuses logic with new claims
-        return generateToken(privateKeyPem, scopes, expiresInSeconds, embedParams, checkoutSessionId, issuer);
-    }
-
-    public static String getEmbedToken(String privateKeyPem,
-                                       Map<String, Object> embedParams,
-                                       String checkoutSessionId,
-                                       String issuer) throws Exception {
-        return generateToken(privateKeyPem, List.of("embed"), 3600, embedParams, checkoutSessionId, issuer);
-    }
-
-    private static ECPrivateKey parseECPrivateKey(String pem) throws Exception {
-        String privKeyPEM = pem.replace("-----BEGIN PRIVATE KEY-----", "")
-                .replace("-----END PRIVATE KEY-----", "")
-                .replaceAll("\\s", "");
-
-        byte[] decoded = Base64.getDecoder().decode(privKeyPEM);
-        PKCS8EncodedKeySpec keySpec = new PKCS8EncodedKeySpec(decoded);
-
-        KeyFactory kf = KeyFactory.getInstance("EC");
-        return (ECPrivateKey) kf.generatePrivate(keySpec);
-    }
-
-    private static String base64UrlEncode(byte[] input) {
-        return Base64.getUrlEncoder().withoutPadding().encodeToString(input);
-    }
-
-    private static String calculateThumbprint(ECPrivateKey key) throws Exception {
-        Map<String, String> jwk = Map.of(
-                "kty", "EC",
-                "crv", "P-521",
-                "x", base64UrlEncode(key.getParams().getGenerator().getAffineX().toByteArray()),
-                "y", base64UrlEncode(key.getParams().getGenerator().getAffineY().toByteArray())
-        );
-
-        ObjectMapper mapper = new ObjectMapper();
-        String jwkJson = mapper.writeValueAsString(new TreeMap<>(jwk));
-        MessageDigest digest = MessageDigest.getInstance("SHA-256");
-        byte[] hashed = digest.digest(jwkJson.getBytes(StandardCharsets.UTF_8));
-        return base64UrlEncode(hashed);
+    /**
+     * Generates a token for use with Embed.
+     *
+     * @param privateKeyPem     The EC private key in string-PEM format.
+     * @param embedParams       An optional map of Embed params to pin. Defaults to null.
+     * @param checkoutSessionId An optional checkout session ID to link the transaction to. Defaults to null.
+     * @return A bearer auth token.
+     */
+    public static String getEmbedToken(
+            String privateKeyPem,
+            Map<String, Object> embedParams,
+            String checkoutSessionId,
+            String issuer
+    ) {
+        return getToken(privateKeyPem, Arrays.asList(JWTScope.EMBED), 3600, embedParams, checkoutSessionId, issuer);
     }
 }

@@ -6,7 +6,7 @@ import com.gr4vy.sdk.models.components.Security;
 
 public class BearerSecuritySource implements SecuritySource {
     private final String privateKey;
-    private final List<String> scopes;
+    private final List<JWTScope> scopes;
     private final long expiresInSeconds;
     private final String issuer;
 
@@ -20,7 +20,7 @@ public class BearerSecuritySource implements SecuritySource {
     public Security getSecurity() {
         String token = null;
         try {
-            token = Auth.generateToken(this.privateKey, this.scopes, this.expiresInSeconds, null, null, this.issuer);
+            token = Auth.getToken(this.privateKey, this.scopes, this.expiresInSeconds, null, null, this.issuer);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -31,7 +31,7 @@ public class BearerSecuritySource implements SecuritySource {
 
     public static class Builder {
         private final String privateKey;
-        private List<String> scopes = null;
+        private List<JWTScope> scopes = null;
         private long expiresInSeconds = 3600;
         private String issuer = null;
 
@@ -39,7 +39,7 @@ public class BearerSecuritySource implements SecuritySource {
             this.privateKey = privateKey;
         }
 
-        public Builder scopes(List<String> scopes) {
+        public Builder scopes(List<JWTScope> scopes) {
             this.scopes = scopes;
             return this;
         }
