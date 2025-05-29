@@ -19,6 +19,7 @@ jobs:
     strategy:
       matrix:
         java:
+          - 23
           - 24
           - 25
 

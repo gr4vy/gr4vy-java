@@ -1,23 +1,31 @@
 # Gr4vy Java SDK (Beta)
 
-Developer-friendly & type-safe Java SDK specifically catered to leverage *openapi* API.
+Developer-friendly & type-safe Java SDK specifically catered to leverage *Gr4vy* API.
 
 <div align="left">
+    <img alt="Maven Central Version" src="https://img.shields.io/maven-central/v/com.gr4vy/sdk?style=for-the-badge">
     <a href="https://www.speakeasy.com/?utm_source=openapi&utm_campaign=java"><img src="https://custom-icon-badges.demolab.com/badge/-Built%20By%20Speakeasy-212015?style=for-the-badge&logoColor=FBE331&logo=speakeasy&labelColor=545454" /></a>
-    <a href="https://mit-license.org/">
-        <img src="https://img.shields.io/badge/License-MIT-blue.svg" style="width: 100px; height: 28px;" />
-    </a>
 </div>
 
 <br /><br />
 > [!IMPORTANT]
 > This is a Beta release of our latest SDK. Please refer to the [legacy Java SDK](https://github.com/gr4vy/gr4vy-java/tree/legacy) for the latest stable build.
 
-<!-- Start Summary [summary] -->
 ## Summary
 
-Gr4vy: The Gr4vy API.
-<!-- End Summary [summary] -->
+Gr4vy Python SDK
+
+The official Gr4vy SDK for Python provides a convenient way to interact with the Gr4vy API from your server-side application. This SDK allows you to seamlessly integrate Gr4vy's powerful payment orchestration capabilities, including:
+
+* Creating Transactions: Initiate and process payments with various payment methods and services.
+* Managing Buyers: Store and manage buyer information securely.
+* Storing Payment Methods: Securely store and tokenize payment methods for future use.
+* Handling Webhooks: Easily process and respond to webhook events from Gr4vy.
+* And much more: Access the full suite of Gr4vy API payment features.
+
+This SDK is designed to simplify development, reduce boilerplate code, and help you get up and running with Gr4vy quickly and efficiently. It handles authentication, request signing, and provides easy-to-use methods for most API endpoints.
+
+<!-- No Summary [summary] -->
 
 <!-- Start Table of Contents [toc] -->
 ## Table of Contents
@@ -648,6 +656,14 @@ public class Application {
 <!-- Placeholder for Future Speakeasy SDK Sections -->
 
 # Development
+
+## Testing
+
+To run the tests, install Java, ensure to download the `private_key.pem` for the test environment, and run the following.
+
+```sh
+./gradlew test
+```
 
 ## Maturity
 
