@@ -33,7 +33,10 @@ This SDK is designed to simplify development, reduce boilerplate code, and help 
 * [Gr4vy Java SDK (Beta)](#gr4vy-java-sdk-beta)
   * [SDK Installation](#sdk-installation)
   * [SDK Example Usage](#sdk-example-usage)
-  * [Authentication](#authentication)
+  * [Bearer token generation](#bearer-token-generation)
+  * [Embed token generation](#embed-token-generation)
+  * [Merchant account ID selection](#merchant-account-id-selection)
+  * [Webhooks verification](#webhooks-verification)
   * [Available Resources and Operations](#available-resources-and-operations)
   * [Pagination](#pagination)
   * [Retries](#retries)
@@ -57,7 +60,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'com.gr4vy:sdk:0.2.0'
+implementation 'com.gr4vy:sdk:1.0.0-beta.1'
 ```
 
 Maven:
@@ -65,7 +68,7 @@ Maven:
 <dependency>
     <groupId>com.gr4vy</groupId>
     <artifactId>sdk</artifactId>
-    <version>0.2.0</version>
+    <version>1.0.0-beta.1</version>
 </dependency>
 ```
 
