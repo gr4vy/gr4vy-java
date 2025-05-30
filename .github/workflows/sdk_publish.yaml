@@ -12,8 +12,6 @@ permissions:
     paths:
       - .speakeasy/gen.lock
   workflow_dispatch: {}
-env:
-  PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
 jobs:
   publish:
     uses: speakeasy-api/sdk-generation-action/.github/workflows/sdk-publish.yaml@v15
@@ -26,7 +24,8 @@ jobs:
       ossrh_password: ${{ secrets.OSSRH_PASSWORD }}
       ossrh_username: ${{ secrets.OSSRH_USERNAME }}
       speakeasy_api_key: ${{ secrets.SPEAKEASY_API_KEY }}
-    
+    env:
+      PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
 
   notify:
     needs: publish
