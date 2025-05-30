@@ -13,9 +13,9 @@ Developer-friendly & type-safe Java SDK specifically catered to leverage *Gr4vy*
 
 ## Summary
 
-Gr4vy Python SDK
+Gr4vy Java SDK
 
-The official Gr4vy SDK for Python provides a convenient way to interact with the Gr4vy API from your server-side application. This SDK allows you to seamlessly integrate Gr4vy's powerful payment orchestration capabilities, including:
+The official Gr4vy SDK for Java provides a convenient way to interact with the Gr4vy API from your server-side application. This SDK allows you to seamlessly integrate Gr4vy's powerful payment orchestration capabilities, including:
 
 * Creating Transactions: Initiate and process payments with various payment methods and services.
 * Managing Buyers: Store and manage buyer information securely.
