@@ -716,8 +716,8 @@ public class Application {
 To run the tests, install Java, ensure to download the `private_key.pem` for the test environment, and run the following.
 
 ```sh
-./gradlew test --rerun-tasks
-```
+E2E=true ./gradlew clean test
+ ```
 
 ## Maturity
 

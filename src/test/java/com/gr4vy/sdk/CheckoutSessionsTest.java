@@ -1,6 +1,8 @@
 package com.gr4vy.sdk;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.condition.EnabledIfEnvironmentVariable;
+
 import com.gr4vy.sdk.models.components.CardPaymentMethodCreate;
 import com.gr4vy.sdk.models.components.CheckoutSession;
 import com.gr4vy.sdk.models.components.CheckoutSessionCreate;
@@ -33,6 +35,7 @@ public class CheckoutSessionsTest extends BaseTest {
     }
 
     @Test
+    @EnabledIfEnvironmentVariable(named = "E2E", matches = "true")
     void testProcessPaymentWithCheckoutSession() throws Exception {
         // Create a checkout session
         CreateCheckoutSessionResponse checkoutSessionResponse = gr4vyClient.checkoutSessions().create()
@@ -85,6 +88,7 @@ public class CheckoutSessionsTest extends BaseTest {
     }
 
     @Test
+    @EnabledIfEnvironmentVariable(named = "E2E", matches = "true")
     void testHandleErrorOnMissingCardData() throws Exception {
         // Create a checkout session
         CreateCheckoutSessionResponse checkoutSessionResponse = gr4vyClient.checkoutSessions().create()
@@ -113,6 +117,7 @@ public class CheckoutSessionsTest extends BaseTest {
     }
 
     @Test
+    @EnabledIfEnvironmentVariable(named = "E2E", matches = "true")
     void testHandleStoredPaymentMethod() throws Exception {
         // Create a card payment method
         CreatePaymentMethodResponse createPaymentMethodResponse = gr4vyClient.paymentMethods().create()

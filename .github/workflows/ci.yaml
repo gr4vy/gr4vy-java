@@ -38,6 +38,7 @@ jobs:
       - name: Run tests
         env:
           PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
+          E2E: true
         run: |
           ./gradlew test
 
