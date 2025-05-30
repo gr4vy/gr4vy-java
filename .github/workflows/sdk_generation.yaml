@@ -37,7 +37,7 @@ jobs:
   notify:
     needs: generate
     runs-on: ubuntu-latest
-    if: always()
+    if: ${{ contains(needs.*.result, 'failure') }}
     steps:
       - name: Slack Notification
         uses: rtCamp/action-slack-notify@v2
@@ -49,7 +49,6 @@ jobs:
             SLACK_CHANNEL: sdk-updates
             SLACK_MSG_AUTHOR: gr4vy-code
             SLACK_ICON_EMOJI: ":gr4vy:"
-            SLACK_COLOR: "${{ contains(needs.*.result, 'failure') && 'failure' || 'success' }}"
-            SLACK_MESSAGE_ON_SUCCESS: "SDK generation succeeded"
+            SLACK_COLOR: "failure"
             SLACK_MESSAGE_ON_FAILURE: "SDK generation failed"
             SLACK_FOOTER: ""
