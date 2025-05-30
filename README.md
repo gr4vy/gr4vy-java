@@ -156,7 +156,7 @@ Alternatively, you can create a token for use with the SDK or with your own clie
 ```java
 import com.gr4vy.sdk.Auth;
 
-Auth.getToken(privateKey, Arrays.asList(JWTScope.READ_ALL, JWTScope.WRITE_ALL), 3600, null, null, null);
+Auth.getToken(privateKey, Arrays.asList(JWTScope.READ_ALL, JWTScope.WRITE_ALL), 3600);
 ```
 
 > **Note:** This will only create a token once. Use `securitySource` when initializing the SDK 

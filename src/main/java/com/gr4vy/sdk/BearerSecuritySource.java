@@ -18,7 +18,7 @@ public class BearerSecuritySource implements SecuritySource {
     public Security getSecurity() {
         String token = null;
         try {
-            token = Auth.getToken(this.privateKey, this.scopes, this.expiresInSeconds, null, null);
+            token = Auth.getToken(this.privateKey, this.scopes, this.expiresInSeconds);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -31,7 +31,6 @@ public class BearerSecuritySource implements SecuritySource {
         private final String privateKey;
         private List<JWTScope> scopes = null;
         private long expiresInSeconds = 3600;
-        private String issuer = null;
 
         public Builder (String privateKey) {
             this.privateKey = privateKey;
@@ -44,11 +43,6 @@ public class BearerSecuritySource implements SecuritySource {
 
         public Builder expiresInSeconds(long expiresInSeconds) {
             this.expiresInSeconds = expiresInSeconds;
-            return this;
-        }
-
-        public Builder issuer(String issuer) {
-            this.issuer = issuer;
             return this;
         }
 
