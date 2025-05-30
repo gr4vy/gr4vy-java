@@ -35,7 +35,6 @@ public class Auth {
             long expiresIn,
             Map<String, Object> embedParams,
             String checkoutSessionId,
-            String issuer
     ) {
         if (scopes == null || scopes.isEmpty()) {
             scopes = Arrays.asList(JWTScope.READ_ALL, JWTScope.WRITE_ALL);
@@ -109,7 +108,6 @@ public class Auth {
             long expiresIn,
             Map<String, Object> embedParams,
             String checkoutSessionId,
-            String issuer
     ) {
         try {
             // Decode the token without verifying the signature to get existing claims
@@ -143,12 +141,13 @@ public class Auth {
             List<JWTScope> finalScopes = (scopes != null && !scopes.isEmpty()) ? scopes : previousScopes;
 
             // Use new embed params or previous embed params
-            Map<String, Object> finalEmbedParams = (embedParams != null) ? embedParams : (Map<String, Object>) existingClaims.get("embed");
+            @SuppressWarnings("unchecked")
+            Map<String, Object> finalEmbedParams = (embedParams != null) ? embedParams : (Map<String, Object>) existingClaims.get("embed"); 
 
             // Use new checkout session ID or previous
             String finalCheckoutSessionId = (checkoutSessionId != null) ? checkoutSessionId : (String) existingClaims.get("checkout_session_id");
 
-            return getToken(privateKeyPem, finalScopes, expiresIn, finalEmbedParams, finalCheckoutSessionId, issuer);
+            return getToken(privateKeyPem, finalScopes, expiresIn, finalEmbedParams, finalCheckoutSessionId);
 
         } catch (JWTDecodeException e) {
             logger.error("Error decoding token for update: {}", e.getMessage(), e);
@@ -168,8 +167,7 @@ public class Auth {
             String privateKeyPem,
             Map<String, Object> embedParams,
             String checkoutSessionId,
-            String issuer
     ) {
-        return getToken(privateKeyPem, Arrays.asList(JWTScope.EMBED), 3600, embedParams, checkoutSessionId, issuer);
+        return getToken(privateKeyPem, Arrays.asList(JWTScope.EMBED), 3600, embedParams, checkoutSessionId);
     }
 }

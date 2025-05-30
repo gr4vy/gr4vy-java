@@ -107,7 +107,6 @@ WARNING: This should only used for temporary debugging purposes. Leaving this op
 Another option is to set the System property `-Djdk.httpclient.HttpClient.log=all`. However, this second option does not log bodies.
 <!-- End SDK Installation [installation] -->
 
-<!-- Start SDK Example Usage [usage] -->
 ## SDK Example Usage
 
 ### Example
@@ -115,10 +114,12 @@ Another option is to set the System property `-Djdk.httpclient.HttpClient.log=al
 ```java
 package hello.world;
 
+import com.gr4vy.sdk.BearerSecuritySource;
 import com.gr4vy.sdk.Gr4vy;
+import com.gr4vy.sdk.Gr4vy.AvailableServers;
 import com.gr4vy.sdk.models.components.AccountUpdaterJobCreate;
 import com.gr4vy.sdk.models.errors.*;
-import com.gr4vy.sdk.models.operations.CreateAccountUpdaterJobResponse;
+import com.gr4vy.sdk.models.operations.ListTransactionsRequest;
 import java.lang.Exception;
 import java.util.List;
 
@@ -126,71 +127,116 @@ public class Application {
 
     public static void main(String[] args) throws Exception {
 
+        String privateKey = "-----BEGIN PRIVATE KEY-----\n...."; // a valid private key
+
         Gr4vy sdk = Gr4vy.builder()
-                .bearerAuth("<YOUR_BEARER_TOKEN_HERE>")
+                .id("example")
+                .server(AvailableServers.SANDBOX)
+                .merchantAccountId("default")
+                .securitySource(new BearerSecuritySource.Builder(privateKey).build())
             .build();
 
-        CreateAccountUpdaterJobResponse res = sdk.accountUpdater().jobs().create()
-                .accountUpdaterJobCreate(AccountUpdaterJobCreate.builder()
-                    .paymentMethodIds(List.of(
-                        "ef9496d8-53a5-4aad-8ca2-00eb68334389",
-                        "f29e886e-93cc-4714-b4a3-12b7a718e595"))
-                    .build())
-                .call();
+        ListTransactionsRequest req = ListTransactionsRequest.builder()          
+            .build();
 
-        if (res.accountUpdaterJob().isPresent()) {
-            // handle response
-        }
+        sdk.transactions().list()
+            .request(req)
+            .callAsStream()
+            .forEach(item -> {
+                // handle item
+            });
     }
 }
 ```
-<!-- End SDK Example Usage [usage] -->
 
-<!-- Start Authentication [security] -->
-## Authentication
+## Bearer token generation
 
-### Per-Client Security Schemes
+Alternatively, you can create a token for use with the SDK or with your own client library.
 
-This SDK supports the following security scheme globally:
-
-| Name         | Type | Scheme      |
-| ------------ | ---- | ----------- |
-| `bearerAuth` | http | HTTP Bearer |
-
-To authenticate with the API the `bearerAuth` parameter must be set when initializing the SDK client instance. For example:
 ```java
-package hello.world;
+import com.gr4vy.sdk.Auth;
 
-import com.gr4vy.sdk.Gr4vy;
-import com.gr4vy.sdk.models.components.AccountUpdaterJobCreate;
-import com.gr4vy.sdk.models.errors.*;
-import com.gr4vy.sdk.models.operations.CreateAccountUpdaterJobResponse;
-import java.lang.Exception;
-import java.util.List;
+Auth.getToken(privateKey, Arrays.asList(JWTScope.READ_ALL, JWTScope.WRITE_ALL), 3600, null, null, null);
+```
 
-public class Application {
+> **Note:** This will only create a token once. Use `securitySource` when initializing the SDK 
+> to dynamically generate a token for every request.
 
-    public static void main(String[] args) throws Exception {
 
-        Gr4vy sdk = Gr4vy.builder()
-                .bearerAuth("<YOUR_BEARER_TOKEN_HERE>")
-            .build();
+## Embed token generation
 
-        CreateAccountUpdaterJobResponse res = sdk.accountUpdater().jobs().create()
-                .accountUpdaterJobCreate(AccountUpdaterJobCreate.builder()
-                    .paymentMethodIds(List.of(
-                        "ef9496d8-53a5-4aad-8ca2-00eb68334389",
-                        "f29e886e-93cc-4714-b4a3-12b7a718e595"))
-                    .build())
-                .call();
+Alternatively, you can create a token for use with Embed as follows.
 
-        if (res.accountUpdaterJob().isPresent()) {
-            // handle response
-        }
-    }
+```java
+import com.gr4vy.sdk.Auth;
+
+Map<String, Object> embedParams = ...; // a map of extra params to use with Embed
+String privateKey = "-----BEGIN PRIVATE KEY-----\n...."; // a valid private key
+String checkoutSessionId = ""; // a valid ID for a checkout session
+String token = Auth.getEmbedToken(privateKey, embedParams, checkoutSessionId);
+```
+
+> **Note:** This will only create a token once. Use `securitySource` when initializing the SDK 
+> to dynamically generate a token for every request.
+
+## Merchant account ID selection
+
+Depending on the key used, you might need to explicitly define a merchant account ID to use. In our API, 
+this uses the `X-GR4VY-MERCHANT-ACCOUNT-ID` header. When using the SDK, you can set the `merchantAccountId`
+on every request.
+
+```java
+sdk.transactions().list()
+    .request(request)
+    .merchantAccountId("my-merchant-account-id")
+    .callAsStream()
+    .forEach(item -> {
+        // handle item
+    });
+```
+
+Alternatively, the merchant account ID can also be set when initializing the SDK.
+
+```java
+Gr4vy sdk = Gr4vy.builder()
+        .id("example")
+        .server(AvailableServers.SANDBOX)
+        .merchantAccountId("my-merchant-account-id")
+        .securitySource(new BearerSecuritySource.Builder(privateKey).build())
+    .build()
+```
+
+## Webhooks verification
+
+The SDK provides a `verifyWebhook` method to validate incoming webhook requests from Gr4vy. This ensures that the webhook payload is authentic and has not been tampered with.
+
+```java
+import com.gr4vy.sdk.Webhooks;
+
+String payload = 'your-webhook-payload';
+String secret = 'your-webhook-secret';
+String signatureHeader = 'signatures-from-header';
+String timestampHeader = 'timestamp-from-header';
+String timestampTolerance = 300; // optional, in seconds (default: 0)
+
+try {
+    Webhooks.verifyWebhook(payload, secret, wrongSignatureHeader, timestampTolerance, timestampHeader);
+    System.out.println("Webhook verified successfully.");
+} catch (IllegalArgumentException e) {
+    System.err.println("Invalid input: " + e.getMessage());
 }
 ```
-<!-- End Authentication [security] -->
+
+### Parameters
+
+- **`payload`**: The raw payload string received in the webhook request.
+- **`secret`**: The secret used to sign the webhook. This is provided in your Gr4vy dashboard.
+- **`signatureHeader`**: The `X-Gr4vy-Signature` header from the webhook request.
+- **`timestampHeader`**: The `X-Gr4vy-Timestamp` header from the webhook request.
+- **`timestampTolerance`**: _(Optional)_ The maximum allowed difference (in seconds) between the current time and the timestamp in the webhook. Defaults to `0` (no tolerance).
+
+<!-- No SDK Example Usage [usage] -->
+<!-- No Authentication [security] -->
 
 <!-- Start Available Resources and Operations [operations] -->
 ## Available Resources and Operations
@@ -667,7 +713,7 @@ public class Application {
 To run the tests, install Java, ensure to download the `private_key.pem` for the test environment, and run the following.
 
 ```sh
-./gradlew test
+./gradlew test --rerun-tasks
 ```
 
 ## Maturity

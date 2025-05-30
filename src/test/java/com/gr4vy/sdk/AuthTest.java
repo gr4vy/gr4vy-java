@@ -139,7 +139,7 @@ public class AuthTest {
     @Test
     void testGetEmbedTokenCreatesJwtForEmbed() throws Exception {
         JSONObject jsonObject = new JSONObject(EMBED_PARAMS);
-         Map<String, Object> embedParams = toMap(jsonObject);
+        Map<String, Object> embedParams = toMap(jsonObject);
         String token = Auth.getEmbedToken(PRIVATE_KEY, embedParams, null, null);
         DecodedJWT decodedJWT = JWT.decode(token);
 
