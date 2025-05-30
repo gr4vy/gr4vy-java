@@ -1,0 +1,14 @@
+overlay: 1.0.0
+x-speakeasy-jsonpath: rfc9535
+info:
+  title: Simplify checkout session body
+  version: 0.0.1
+actions:
+  - target: $.paths["/checkout/sessions"].post.requestBody.content["application/json"].schema
+    update:
+      "$ref": "#/components/schemas/CheckoutSessionUpdate"
+  - target: $.components.schemas.CheckoutSessionUpdate~
+    update: CheckoutSessionCreate
+  - target: $..[?@['$ref'] == '#/components/schemas/CheckoutSessionUpdate']['$ref']
+    update: '#/components/schemas/CheckoutSessionCreate'
+      

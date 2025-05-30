@@ -1,0 +1,13 @@
+# BuyerCreate
+
+Request body for creating a new buyer
+
+
+## Fields
+
+| Field                                                                                | Type                                                                                 | Required                                                                             | Description                                                                          | Example                                                                              |
+| ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
+| `displayName`                                                                        | *JsonNullable\<String>*                                                              | :heavy_minus_sign:                                                                   | The display name for the buyer.                                                      | John Doe                                                                             |
+| `externalIdentifier`                                                                 | *JsonNullable\<String>*                                                              | :heavy_minus_sign:                                                                   | The merchant identifier for this buyer.                                              | buyer-12345                                                                          |
+| `billingDetails`                                                                     | [JsonNullable\<BillingDetailsInput>](../../models/components/BillingDetailsInput.md) | :heavy_minus_sign:                                                                   | The billing name, address, email, and other fields for this buyer.                   |                                                                                      |
+| `accountNumber`                                                                      | *JsonNullable\<String>*                                                              | :heavy_minus_sign:                                                                   | The buyer account number                                                             |                                                                                      |

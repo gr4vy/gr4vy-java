@@ -1,0 +1,65 @@
+speakeasyVersion: 1.554.1
+sources:
+    Gr4vy:
+        sourceNamespace: openapi
+        sourceRevisionDigest: sha256:86d73caf7e6f0358c51f775ae84aa3d5298d1c35f8a145ade534ce73fa5d3d3a
+        sourceBlobDigest: sha256:c40be85dbb3e03fdac0ebc0e969f25be6124ede6c25b94562b49a5e0cd7f6ad6
+        tags:
+            - latest
+            - 1.0.0
+    openapi:
+        sourceNamespace: openapi
+        sourceRevisionDigest: sha256:b35afcb536d2c490f318ced0f241054d4893ca942c3eb644af012ad547d4b4f4
+        sourceBlobDigest: sha256:bfffda46dfb49e59b29f3d18f9c344bef39175f270b9c9692302184400d4575e
+        tags:
+            - latest
+            - 1.0.0
+targets:
+    gr-4-vy:
+        source: Gr4vy
+        sourceNamespace: gr-4-vy
+        sourceRevisionDigest: sha256:3f338bfcf03dc04145ad3dca56c3354bffb54a671d80a1ce8fb1388b13718cb9
+        sourceBlobDigest: sha256:c40be85dbb3e03fdac0ebc0e969f25be6124ede6c25b94562b49a5e0cd7f6ad6
+        codeSamplesNamespace: gr-4-vy-java-code-samples
+        codeSamplesRevisionDigest: sha256:f79c15417323cbccf724cdab468431afb8887a9c0a72ca2398c3b343c8c8862f
+    java:
+        source: openapi
+        sourceNamespace: openapi
+        sourceRevisionDigest: sha256:b35afcb536d2c490f318ced0f241054d4893ca942c3eb644af012ad547d4b4f4
+        sourceBlobDigest: sha256:bfffda46dfb49e59b29f3d18f9c344bef39175f270b9c9692302184400d4575e
+        codeSamplesNamespace: openapi-java-code-samples
+        codeSamplesRevisionDigest: sha256:b80af70085bd7c2d15484aa87d7823b368f32d0e7649a87fb8a9d8d3afbff02a
+workflow:
+    workflowVersion: 1.0.0
+    speakeasyVersion: latest
+    sources:
+        openapi:
+            inputs:
+                - location: https://gr4vy.github.io/gr4vy-openapi/core/openapi.json
+            overlays:
+                - location: ./.speakeasy/overlays/servers.yaml
+                - location: ./.speakeasy/overlays/security.yaml
+                - location: ./.speakeasy/overlays/enums.yaml
+                - location: ./.speakeasy/overlays/retries.yaml
+                - location: ./.speakeasy/overlays/mid-global.yaml
+                - location: ./.speakeasy/overlays/fix-base-model.yaml
+                - location: ./.speakeasy/overlays/fix-checkout-session-body.yaml
+                - location: ./.speakeasy/overlays/fix-remove-timeout-in-seconds.yaml
+            registry:
+                location: registry.speakeasyapi.dev/gr4vy/gr4vy/openapi
+    targets:
+        java:
+            target: java
+            source: openapi
+            publish:
+                java:
+                    ossrhUsername: $ossrh_username
+                    ossrhPassword: $ossrh_password
+                    gpgSecretKey: $java_gpg_secret_key
+                    gpgPassPhrase: $java_gpg_passphrase
+            codeSamples:
+                registry:
+                    location: registry.speakeasyapi.dev/gr4vy/gr4vy/openapi-java-code-samples
+                labelOverride:
+                    fixedValue: Java
+                blocking: false

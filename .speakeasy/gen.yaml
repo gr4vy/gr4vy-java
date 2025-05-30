@@ -1,0 +1,54 @@
+configVersion: 2.0.0
+generation:
+  sdkClassName: Gr4vy
+  maintainOpenAPIOrder: true
+  usageSnippets:
+    optionalPropertyRendering: withExample
+    sdkInitStyle: constructor
+  useClassNamesForArrayFields: true
+  fixes:
+    nameResolutionDec2023: true
+    nameResolutionFeb2025: true
+    parameterOrderingFeb2024: true
+    requestResponseComponentNamesFeb2024: true
+    securityFeb2025: true
+    sharedErrorComponentsApr2025: true
+  auth:
+    oAuth2ClientCredentialsEnabled: false
+    oAuth2PasswordEnabled: false
+  sdkHooksConfigAccess: true
+java:
+  version: 1.0.0-beta.1
+  additionalDependencies:
+    - testImplementation:org.junit.jupiter:junit-jupiter:5.10.0
+    - implementation:com.auth0:java-jwt:4.5.0
+    - implementation:org.json:json:20240303
+    - implementation:org.bouncycastle:bcpkix-jdk18on:1.80
+    - implementation:org.slf4j:slf4j-simple:2.0.7
+  additionalPlugins: []
+  artifactID: sdk
+  clientServerStatusCodesAsErrors: true
+  companyEmail: code@gr4vy.com
+  companyName: Gr4vy
+  companyURL: www.gr4vy.com
+  defaultErrorName: APIException
+  flattenGlobalSecurity: true
+  githubURL: github.com/gr4vy/gr4vy-java
+  groupID: com.gr4vy
+  imports:
+    option: openapi
+    paths:
+      callbacks: models/callbacks
+      errors: models/errors
+      operations: models/operations
+      shared: models/components
+      webhooks: models/webhooks
+  inputModelSuffix: input
+  license:
+    name: The MIT License (MIT)
+    shortName: MIT
+    url: https://mit-license.org/
+  maxMethodParams: 4
+  outputModelSuffix: output
+  projectName: openapi
+  templateVersion: v2

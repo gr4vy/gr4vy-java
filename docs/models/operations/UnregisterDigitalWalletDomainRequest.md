@@ -1,0 +1,10 @@
+# UnregisterDigitalWalletDomainRequest
+
+
+## Fields
+
+| Field                                                                 | Type                                                                  | Required                                                              | Description                                                           | Example                                                               |
+| --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- |
+| `digitalWalletId`                                                     | *String*                                                              | :heavy_check_mark:                                                    | N/A                                                                   |                                                                       |
+| `merchantAccountId`                                                   | *JsonNullable\<String>*                                               | :heavy_minus_sign:                                                    | The ID of the merchant account to use for this request.               |                                                                       |
+| `digitalWalletDomain`                                                 | [DigitalWalletDomain](../../models/components/DigitalWalletDomain.md) | :heavy_check_mark:                                                    | N/A                                                                   |                                                                       |

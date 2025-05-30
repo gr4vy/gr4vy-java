@@ -1,0 +1,90 @@
+name: CI
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch: {}
+  schedule:
+    # “At 08:30 on every day-of-week from Monday through Friday.”
+    - cron: 30 8 * * 1-5
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    
+    timeout-minutes: 3
+    strategy:
+      matrix:
+        java:
+           - 21
+
+    permissions:
+      contents: write
+      pull-requests: write
+
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v2
+
+      - name: Use Java ${{ matrix.java }}
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'corretto'
+          java-version: ${{ matrix.java }}
+
+      - name: Run tests
+        env:
+          PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
+        run: |
+          ./gradlew test
+
+      - uses: hmarr/auto-approve-action@v4
+        if: "github.event.pull_request.user.login == 'github-actions[bot]'"
+        with:
+          github-token: ${{ secrets.DISPATCH_ACCESS_TOKEN }}
+
+  merge:
+    needs: test
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+      pull-requests: write
+
+    steps:
+      - id: automerge
+        name: automerge
+        if: "github.event.pull_request.user.login == 'github-actions[bot]'"
+        uses: "pascalgn/automerge-action@v0.16.4"
+        env:
+          GITHUB_TOKEN: ${{ secrets.DISPATCH_ACCESS_TOKEN }}
+          MERGE_LABELS: ''
+          MERGE_REQUIRED_APPROVALS: 0
+          MERGE_METHOD: squash
+          MERGE_COMMIT_MESSAGE: "pull-request-title"
+          MERGE_ERROR_FAIL: true
+          MERGE_DELETE_BRANCH: true
+          MERGE_FORKS: false
+          UPDATE_METHOD: rebase
+
+  notify:
+    needs: test
+    runs-on: ubuntu-latest
+    if: ${{ contains(needs.*.result, 'failure') }}
+    steps:
+      - name: Slack Notification
+        uses: rtCamp/action-slack-notify@v2
+        if: github.ref == 'refs/heads/main' || (github.event_name == 'pull_request' && github.event.pull_request.user.login == 'github-actions[bot]')
+        env:
+            SLACK_USERNAME: Java SDK 
+            SLACK_TITLE: Java SDK
+            SLACK_WEBHOOK: ${{ secrets.SLACK_SDK_WEBHOOK_URL }}
+            SLACK_CHANNEL: sdk-updates
+            SLACK_MSG_AUTHOR: gr4vy-code
+            SLACK_ICON_EMOJI: ":gr4vy:"
+            SLACK_COLOR: "failure"
+            SLACK_MESSAGE_ON_FAILURE: "CI failed - `${{ github.event.commits[0].message }}`"
+            SLACK_FOOTER: ""

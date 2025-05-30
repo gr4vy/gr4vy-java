@@ -1,0 +1,10 @@
+overlay: 1.0.0
+x-speakeasy-jsonpath: rfc9535
+info:
+    title: Mark all enums as open enums
+    version: 0.0.0
+actions: 
+  - target: $..*[?@.enum]
+    update:
+      x-speakeasy-unknown-values: allow
+      overlay: 1.0.0

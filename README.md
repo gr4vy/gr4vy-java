@@ -1,269 +1,733 @@
-# Gr4vy SDK for Java
+# Gr4vy Java SDK (Beta)
 
-Gr4vy provides any of your payment integrations through one unified API. For
-more details, visit [gr4vy.com](https://gr4vy.com).
+Developer-friendly & type-safe Java SDK specifically catered to leverage *Gr4vy* API.
 
-## Installation
+<div align="left">
+    <img alt="Maven Central Version" src="https://img.shields.io/maven-central/v/com.gr4vy/sdk?style=for-the-badge">
+    <a href="https://www.speakeasy.com/?utm_source=openapi&utm_campaign=java"><img src="https://custom-icon-badges.demolab.com/badge/-Built%20By%20Speakeasy-212015?style=for-the-badge&logoColor=FBE331&logo=speakeasy&labelColor=545454" /></a>
+</div>
 
-Add the jitpack.io repository to your pom.xml:
-```java
-	<repository>
-	    <id>jitpack.io</id>
-	    <url>https://jitpack.io</url>
-	</repository>
-```
-Add the `gr4vy-java` dependency to your pom.xml:
-```java
-  	<dependency>
-	    <groupId>com.github.gr4vy</groupId>
-	    <artifactId>gr4vy-java</artifactId>
-	    <version>0.33.0</version>
-	</dependency>
-```
+<br /><br />
+> [!IMPORTANT]
+> This is a Beta release of our latest SDK. Please refer to the [legacy Java SDK](https://github.com/gr4vy/gr4vy-java/tree/legacy) for the latest stable build.
 
-## Getting Started
+## Summary
 
-To make your first API call, you will need to [request](https://gr4vy.com) a
-Gr4vy instance to be set up. Please contact our sales team for a demo. Please ensure 
-that you have the latest version of com.squareup.okhttp3
+Gr4vy Python SDK
 
-Once you have been set up with a Gr4vy account you will need to head over to the
-**Integrations** panel and generate a private key. We recommend storing this key
-in a secure location but in this code sample we simply read the file from disk.
+The official Gr4vy SDK for Python provides a convenient way to interact with the Gr4vy API from your server-side application. This SDK allows you to seamlessly integrate Gr4vy's powerful payment orchestration capabilities, including:
 
-Import Gr4vy:
-```java
-import com.gr4vy.sdk.*;
-import com.gr4vy.api.model.*;
-```
+* Creating Transactions: Initiate and process payments with various payment methods and services.
+* Managing Buyers: Store and manage buyer information securely.
+* Storing Payment Methods: Securely store and tokenize payment methods for future use.
+* Handling Webhooks: Easily process and respond to webhook events from Gr4vy.
+* And much more: Access the full suite of Gr4vy API payment features.
 
-Call the API:
-```java
-	Gr4vyClient client = new Gr4vyClient.Builder()
-				.gr4vyId("[YOUR_GR4VY_ID]")
-				.privateKeyLocation("private_key.pem")
-				.build();
+This SDK is designed to simplify development, reduce boilerplate code, and help you get up and running with Gr4vy quickly and efficiently. It handles authentication, request signing, and provides easy-to-use methods for most API endpoints.
 
-	try {
-		Buyers result = gr4vyClient.listBuyers(null, null, null);
-		System.out.println(result);
-	} catch (Gr4vyException e) {
-		System.err.println("Exception when calling Gr4vyClient#listBuyers");
-		System.err.println("Status code: " + e.getCode());
-		System.err.println("Reason: " + e.getResponseBody());
-		System.err.println("Response headers: " + e.getResponseHeaders());
-	}
-```
+<!-- No Summary [summary] -->
 
-## Environment
+<!-- Start Table of Contents [toc] -->
+## Table of Contents
+<!-- $toc-max-depth=2 -->
+* [Gr4vy Java SDK (Beta)](#gr4vy-java-sdk-beta)
+  * [SDK Installation](#sdk-installation)
+  * [SDK Example Usage](#sdk-example-usage)
+  * [Bearer token generation](#bearer-token-generation)
+  * [Embed token generation](#embed-token-generation)
+  * [Merchant account ID selection](#merchant-account-id-selection)
+  * [Webhooks verification](#webhooks-verification)
+  * [Available Resources and Operations](#available-resources-and-operations)
+  * [Pagination](#pagination)
+  * [Retries](#retries)
+  * [Error Handling](#error-handling)
+  * [Server Selection](#server-selection)
+* [Development](#development)
+  * [Testing](#testing)
+  * [Maturity](#maturity)
+  * [Contributions](#contributions)
 
-The SDK defaults the environment to "sandbox", to send transactions to production, set the environment in `Gr4vyClient`:
+<!-- End Table of Contents [toc] -->
 
-```java
+<!-- Start SDK Installation [installation] -->
+## SDK Installation
 
-	Gr4vyClient client = new Gr4vyClient.Builder()
-				.gr4vyId("[YOUR_GR4VY_ID]")
-				.privateKeyLocation("private_key.pem")
-				.environment("sandbox")
-				.build();
+### Getting started
 
-	Gr4vyClient client = new Gr4vyClient.Builder()
-				.gr4vyId("[YOUR_GR4VY_ID]")
-				.privateKeyLocation("private_key.pem")
-				.environment("production")
-				.build();
+JDK 11 or later is required.
 
+The samples below show how a published SDK artifact is used:
+
+Gradle:
+```groovy
+implementation 'com.gr4vy:sdk:1.0.0-beta.1'
 ```
 
-## Multi merchant
-
-In a multi-merchant environment, the merchant account ID can be set after the SDK has been initialized.
-
-```java
-	Gr4vyClient client = new Gr4vyClient.Builder()
-				.gr4vyId("[YOUR_GR4VY_ID]")
-				.privateKeyLocation("private_key.pem")
-				.merchantAccountId("default")
-				.build();
+Maven:
+```xml
+<dependency>
+    <groupId>com.gr4vy</groupId>
+    <artifactId>sdk</artifactId>
+    <version>1.0.0-beta.1</version>
+</dependency>
 ```
 
-## Gr4vy Embed
+### How to build
+After cloning the git repository to your file system you can build the SDK artifact from source to the `build` directory by running `./gradlew build` on *nix systems or `gradlew.bat` on Windows systems.
 
-To create a token for Gr4vy Embed, call the `client.getEmbedToken(embed)`
-function with the amount, currency, and optional checkout session and optional buyer information for Gr4vy
-Embed.
+If you wish to build from source and publish the SDK artifact to your local Maven repository (on your filesystem) then use the following command (after cloning the git repo locally):
 
-```java
-	Gr4vyClient client = new Gr4vyClient.Builder()
-				.gr4vyId("[YOUR_GR4VY_ID]")
-				.privateKeyLocation("private_key.pem")
-				.build();
-			
-	Map<String, Object> embed = new HashMap<String, Object>();
-	embed.put("amount", 1299);
-	embed.put("currency", "USD");
-
-	String token = client.getEmbedToken(embed);
+On *nix:
+```bash
+./gradlew publishToMavenLocal -Pskip.signing
+```
+On Windows:
+```bash
+gradlew.bat publishToMavenLocal -Pskip.signing
 ```
 
-You can now pass this token to your front-end where it can be used to
-authenticate Gr4vy Embed.
+### Logging
+A logging framework/facade has not yet been adopted but is under consideration.
 
-The `buyer_id` and/or `buyer_external_identifier` fields can be used to allow
-the token to pull in previously stored payment methods for a user. A buyer
-needs to be created before it can be used in this way.
-
+For request and response logging (especially json bodies) use:
 ```java
-	Gr4vyClient client = new Gr4vyClient.Builder()
-				.gr4vyId("[YOUR_GR4VY_ID]")
-				.privateKeyLocation("private_key.pem")
-				.build();
-	
-	BuyerRequest buyer = new BuyerRequest();
-	buyer.setDisplayName("Tester T.");
-	try {
-		Buyer result = gr4vyClient.newBuyer(buyer);
-		System.out.println(result);
-	} catch (ApiException e) {
-		
-	}
+SpeakeasyHTTPClient.setDebugLogging(true); // experimental API only (may change without warning)
 ```
-
-## Builder
-
-The Gr4vy client can be initialized with the `Gr4vyClient.Builder`.
-The following fields can be optionally set using the builder:
-
-```java
-  	Gr4vyClient client = new Gr4vyClient.Builder()
-				.gr4vyId("[YOUR_GR4VY_ID]") // required
-				.privateKeyLocation("private_key.pem") // conditional
-				.privateKeyString("-----BEGIN PRIVATE KEY-----\n...") // conditional
-				.environment("sandbox") // optional, defaults to sandbox
-				.host(null) // optional - allows setting a custom host
-				.client(null) // optional - allows setting the http client
-				.merchantAccountId("default") // optional, defaults to default
-				.connectTimeout(Duration.ofSeconds(10)) // optional, defaults to 10s
-				.writeTimeout(Duration.ofSeconds(10)) // optional, defaults to 10s
-				.readTimeout(Duration.ofSeconds(30)) // optional, defaults to 30s
-				.build();
+Example output:
 ```
-
-## Setting Private Key
-
-Your API private key can be created in your admin panel on the **Integrations**
-tab.
-
-There are three methods of setting the private key when using the SDK:
-
-1. Setting the `privateKeyLocation`, which is a path to the location of the pem file
-	e.g. 
-	```java
-		Gr4vyClient client = new Gr4vyClient.Builder()
-			.gr4vyId("[YOUR_GR4VY_ID]")
-			.privateKeyLocation("./path/to/private_key.pem")
-			.build();
-	```
-2. Setting the `privateKeyString` to the value of the private key
-	e.g. 
-	```java
-		Gr4vyClient client = new Gr4vyClient.Builder()
-			.gr4vyId("[YOUR_GR4VY_ID]")
-			.privateKeyString("-----BEGIN PRIVATE KEY-----\n...")
-			.build();
-	```
-3. Setting the environment variable `PRIVATE_KEY`
-
-
-## Making API calls
-
-This library conveniently maps every API path to a separate function. For
-example, `GET /buyers?limit=2` would be:
-
-```java
-	Map<String, Object> params = new HashMap<String, Object>();
-    params.put("limit", 2);
-	Buyers response = client.listBuyers(params);
+Sending request: http://localhost:35123/bearer#global GET
+Request headers: {Accept=[application/json], Authorization=[******], Client-Level-Header=[added by client], Idempotency-Key=[some-key], x-speakeasy-user-agent=[speakeasy-sdk/java 0.0.1 internal 0.1.0 org.openapis.openapi]}
+Received response: (GET http://localhost:35123/bearer#global) 200
+Response headers: {access-control-allow-credentials=[true], access-control-allow-origin=[*], connection=[keep-alive], content-length=[50], content-type=[application/json], date=[Wed, 09 Apr 2025 01:43:29 GMT], server=[gunicorn/19.9.0]}
+Response body:
+{
+  "authenticated": true, 
+  "token": "global"
+}
 ```
+WARNING: This should only used for temporary debugging purposes. Leaving this option on in a production system could expose credentials/secrets in logs. <i>Authorization</i> headers are redacted by default and there is the ability to specify redacted header names via `SpeakeasyHTTPClient.setRedactedHeaders`.
 
-To create, the API requires a request object for that resource that is conveniently
-named `<Resource>Request`.  To update, the API requires a request object
-for that resource that is named `<Resource>Update`.
+Another option is to set the System property `-Djdk.httpclient.HttpClient.log=all`. However, this second option does not log bodies.
+<!-- End SDK Installation [installation] -->
 
-For example, to create a buyer you will need to pass a `BuyerRequest` object to
-the `addBuyer` method.
-
-```java
-	BuyerRequest buyer = new BuyerRequest();
-	buyer.setDisplayName("Tester T.");
-	Buyer result = client.addBuyer(buyer);
-```
-
-So to update a buyer you will need to pass in the `BuyerUpdate` object to the
-`updateBuyer` method.
-
-```java
-	BuyerUpdate buyer = new BuyerUpdate();
-	buyer.setDisplayName("Tester T.");
-	Buyer result = client.updateBuyer(buyerId, buyer);
-```
-
-## Generating an API Token for calls outside the SDK
-
-You can also use the SDK to generate a stand-alone API Token by calling the `getToken` method:
-
-```java
-	Gr4vyClient client = new Gr4vyClient.Builder()
-			.gr4vyId("[YOUR_GR4VY_ID]")
-			.privateKeyString("-----BEGIN PRIVATE KEY-----\n...")
-			.build();
-	String[] scopes = {"*.read", "*.write"};
-	String token = client.getToken(scopes);
-```
-
-## Verifying Webhook Signatures
-
-The SDK provides a method to verify webhook signatures to ensure the payload is authentic and has not been tampered with. Use the `verifyWebhook` method to validate the signature.
+## SDK Example Usage
 
 ### Example
 
 ```java
-try {
-    Gr4vyClient.verifyWebhook(
-        "[YOUR_WEBHOOK_SECRET]", // The webhook secret
-        payload,                 // The raw payload received from the webhook
-        signatureHeader,         // The `X-Gr4vy-Signatures` header from the webhook
-        timestampHeader,         // The `X-Gr4vy-Timestamp` header from the webhook
-        300                      // Timestamp tolerance in seconds (optional)
-    );
-    System.out.println("Webhook verified successfully.");
-} catch (IllegalArgumentException e) {
-    System.err.println("Invalid input: " + e.getMessage());
-} catch (IllegalStateException e) {
-    System.err.println("Webhook verification failed: " + e.getMessage());
+package hello.world;
+
+import com.gr4vy.sdk.BearerSecuritySource;
+import com.gr4vy.sdk.Gr4vy;
+import com.gr4vy.sdk.Gr4vy.AvailableServers;
+import com.gr4vy.sdk.models.components.AccountUpdaterJobCreate;
+import com.gr4vy.sdk.models.errors.*;
+import com.gr4vy.sdk.models.operations.ListTransactionsRequest;
+import java.lang.Exception;
+import java.util.List;
+
+public class Application {
+
+    public static void main(String[] args) throws Exception {
+
+        String privateKey = "-----BEGIN PRIVATE KEY-----\n...."; // a valid private key
+
+        Gr4vy sdk = Gr4vy.builder()
+                .id("example")
+                .server(AvailableServers.SANDBOX)
+                .merchantAccountId("default")
+                .securitySource(new BearerSecuritySource.Builder(privateKey).build())
+            .build();
+
+        ListTransactionsRequest req = ListTransactionsRequest.builder()          
+            .build();
+
+        sdk.transactions().list()
+            .request(req)
+            .callAsStream()
+            .forEach(item -> {
+                // handle item
+            });
+    }
 }
 ```
 
-## Development
+## Bearer token generation
 
-### Updating models
+Alternatively, you can create a token for use with the SDK or with your own client library.
 
-To update API models, run the following command:
+```java
+import com.gr4vy.sdk.Auth;
 
-```sh
-./openapi-generator-generate.sh
+Auth.getToken(privateKey, Arrays.asList(JWTScope.READ_ALL, JWTScope.WRITE_ALL), 3600);
 ```
 
-Run the tests to ensure the changes do not break any existing tests.
+> **Note:** This will only create a token once. Use `securitySource` when initializing the SDK 
+> to dynamically generate a token for every request.
 
-```sh
-mvn test
+
+## Embed token generation
+
+Alternatively, you can create a token for use with Embed as follows.
+
+```java
+import com.gr4vy.sdk.Auth;
+
+Map<String, Object> embedParams = ...; // a map of extra params to use with Embed
+String privateKey = "-----BEGIN PRIVATE KEY-----\n...."; // a valid private key
+String checkoutSessionId = ""; // a valid ID for a checkout session
+String token = Auth.getEmbedToken(privateKey, embedParams, checkoutSessionId);
 ```
 
-### Publishing
+> **Note:** This will only create a token once. Use `securitySource` when initializing the SDK 
+> to dynamically generate a token for every request.
 
-This library is published using Maven.
+## Merchant account ID selection
 
-## License
+Depending on the key used, you might need to explicitly define a merchant account ID to use. In our API, 
+this uses the `X-GR4VY-MERCHANT-ACCOUNT-ID` header. When using the SDK, you can set the `merchantAccountId`
+on every request.
 
-This library is released under the [MIT License](LICENSE).
+```java
+sdk.transactions().list()
+    .request(request)
+    .merchantAccountId("my-merchant-account-id")
+    .callAsStream()
+    .forEach(item -> {
+        // handle item
+    });
+```
+
+Alternatively, the merchant account ID can also be set when initializing the SDK.
+
+```java
+Gr4vy sdk = Gr4vy.builder()
+        .id("example")
+        .server(AvailableServers.SANDBOX)
+        .merchantAccountId("my-merchant-account-id")
+        .securitySource(new BearerSecuritySource.Builder(privateKey).build())
+    .build()
+```
+
+## Webhooks verification
+
+The SDK provides a `verifyWebhook` method to validate incoming webhook requests from Gr4vy. This ensures that the webhook payload is authentic and has not been tampered with.
+
+```java
+import com.gr4vy.sdk.Webhooks;
+
+String payload = 'your-webhook-payload';
+String secret = 'your-webhook-secret';
+String signatureHeader = 'signatures-from-header';
+String timestampHeader = 'timestamp-from-header';
+String timestampTolerance = 300; // optional, in seconds (default: 0)
+
+try {
+    Webhooks.verifyWebhook(payload, secret, wrongSignatureHeader, timestampTolerance, timestampHeader);
+    System.out.println("Webhook verified successfully.");
+} catch (IllegalArgumentException e) {
+    System.err.println("Invalid input: " + e.getMessage());
+}
+```
+
+### Parameters
+
+- **`payload`**: The raw payload string received in the webhook request.
+- **`secret`**: The secret used to sign the webhook. This is provided in your Gr4vy dashboard.
+- **`signatureHeader`**: The `X-Gr4vy-Signature` header from the webhook request.
+- **`timestampHeader`**: The `X-Gr4vy-Timestamp` header from the webhook request.
+- **`timestampTolerance`**: _(Optional)_ The maximum allowed difference (in seconds) between the current time and the timestamp in the webhook. Defaults to `0` (no tolerance).
+
+<!-- No SDK Example Usage [usage] -->
+<!-- No Authentication [security] -->
+
+<!-- Start Available Resources and Operations [operations] -->
+## Available Resources and Operations
+
+<details open>
+<summary>Available methods</summary>
+
+### [accountUpdater()](docs/sdks/accountupdater/README.md)
+
+
+#### [accountUpdater().jobs()](docs/sdks/jobs/README.md)
+
+* [create](docs/sdks/jobs/README.md#create) - Create account updater job
+
+### [auditLogs()](docs/sdks/auditlogs/README.md)
+
+* [list](docs/sdks/auditlogs/README.md#list) - List audit log entries
+
+### [buyers()](docs/sdks/buyers/README.md)
+
+* [list](docs/sdks/buyers/README.md#list) - List all buyers
+* [create](docs/sdks/buyers/README.md#create) - Add a buyer
+* [get](docs/sdks/buyers/README.md#get) - Get a buyer
+* [update](docs/sdks/buyers/README.md#update) - Update a buyer
+* [delete](docs/sdks/buyers/README.md#delete) - Delete a buyer
+
+#### [buyers().giftCards()](docs/sdks/buyersgiftcards/README.md)
+
+* [list](docs/sdks/buyersgiftcards/README.md#list) - List gift cards for a buyer
+
+#### [buyers().paymentMethods()](docs/sdks/buyerspaymentmethods/README.md)
+
+* [list](docs/sdks/buyerspaymentmethods/README.md#list) - List payment methods for a buyer
+
+#### [buyers().shippingDetails()](docs/sdks/shippingdetails/README.md)
+
+* [create](docs/sdks/shippingdetails/README.md#create) - Add buyer shipping details
+* [list](docs/sdks/shippingdetails/README.md#list) - List a buyer's shipping details
+* [get](docs/sdks/shippingdetails/README.md#get) - Get buyer shipping details
+* [update](docs/sdks/shippingdetails/README.md#update) - Update a buyer's shipping details
+* [delete](docs/sdks/shippingdetails/README.md#delete) - Delete a buyer's shipping details
+
+### [cardSchemeDefinitions()](docs/sdks/cardschemedefinitions/README.md)
+
+* [list](docs/sdks/cardschemedefinitions/README.md#list) - List card scheme definitions
+
+### [checkoutSessions()](docs/sdks/checkoutsessions/README.md)
+
+* [create](docs/sdks/checkoutsessions/README.md#create) - Create checkout session
+* [update](docs/sdks/checkoutsessions/README.md#update) - Update checkout session
+* [get](docs/sdks/checkoutsessions/README.md#get) - Get checkout session
+* [delete](docs/sdks/checkoutsessions/README.md#delete) - Delete checkout session
+
+### [digitalWallets()](docs/sdks/digitalwallets/README.md)
+
+* [create](docs/sdks/digitalwallets/README.md#create) - Register digital wallet
+* [list](docs/sdks/digitalwallets/README.md#list) - List digital wallets
+* [get](docs/sdks/digitalwallets/README.md#get) - Get digital wallet
+* [delete](docs/sdks/digitalwallets/README.md#delete) - Delete digital wallet
+* [update](docs/sdks/digitalwallets/README.md#update) - Update digital wallet
+
+#### [digitalWallets().domains()](docs/sdks/domains/README.md)
+
+* [create](docs/sdks/domains/README.md#create) - Register a digital wallet domain
+* [delete](docs/sdks/domains/README.md#delete) - Remove a digital wallet domain
+
+#### [digitalWallets().sessions()](docs/sdks/sessions/README.md)
+
+* [googlePay](docs/sdks/sessions/README.md#googlepay) - Create a Google Pay session
+* [applePay](docs/sdks/sessions/README.md#applepay) - Create a Apple Pay session
+* [clickToPay](docs/sdks/sessions/README.md#clicktopay) - Create a Click to Pay session
+
+### [giftCards()](docs/sdks/giftcards/README.md)
+
+* [get](docs/sdks/giftcards/README.md#get) - Get gift card
+* [delete](docs/sdks/giftcards/README.md#delete) - Delete a gift card
+* [create](docs/sdks/giftcards/README.md#create) - Create gift card
+* [list](docs/sdks/giftcards/README.md#list) - List gift cards
+
+#### [giftCards().balances()](docs/sdks/balances/README.md)
+
+* [list](docs/sdks/balances/README.md#list) - List gift card balances
+
+
+### [merchantAccounts()](docs/sdks/merchantaccounts/README.md)
+
+* [list](docs/sdks/merchantaccounts/README.md#list) - List all merchant accounts
+* [create](docs/sdks/merchantaccounts/README.md#create) - Create a merchant account
+* [get](docs/sdks/merchantaccounts/README.md#get) - Get a merchant account
+* [update](docs/sdks/merchantaccounts/README.md#update) - Update a merchant account
+
+### [paymentMethods()](docs/sdks/paymentmethods/README.md)
+
+* [list](docs/sdks/paymentmethods/README.md#list) - List all payment methods
+* [create](docs/sdks/paymentmethods/README.md#create) - Create payment method
+* [get](docs/sdks/paymentmethods/README.md#get) - Get payment method
+* [delete](docs/sdks/paymentmethods/README.md#delete) - Delete payment method
+
+#### [paymentMethods().networkTokens()](docs/sdks/networktokens/README.md)
+
+* [list](docs/sdks/networktokens/README.md#list) - List network tokens
+* [create](docs/sdks/networktokens/README.md#create) - Provision network token
+* [suspend](docs/sdks/networktokens/README.md#suspend) - Suspend network token
+* [resume](docs/sdks/networktokens/README.md#resume) - Resume network token
+* [delete](docs/sdks/networktokens/README.md#delete) - Delete network token
+
+#### [paymentMethods().networkTokens().cryptogram()](docs/sdks/cryptogram/README.md)
+
+* [create](docs/sdks/cryptogram/README.md#create) - Provision network token cryptogram
+
+#### [paymentMethods().paymentServiceTokens()](docs/sdks/paymentservicetokens/README.md)
+
+* [list](docs/sdks/paymentservicetokens/README.md#list) - List payment service tokens
+* [create](docs/sdks/paymentservicetokens/README.md#create) - Create payment service token
+* [delete](docs/sdks/paymentservicetokens/README.md#delete) - Delete payment service token
+
+### [paymentOptions()](docs/sdks/paymentoptions/README.md)
+
+* [list](docs/sdks/paymentoptions/README.md#list) - List payment options
+
+### [paymentServiceDefinitions()](docs/sdks/paymentservicedefinitions/README.md)
+
+* [list](docs/sdks/paymentservicedefinitions/README.md#list) - List payment service definitions
+* [get](docs/sdks/paymentservicedefinitions/README.md#get) - Get a payment service definition
+* [session](docs/sdks/paymentservicedefinitions/README.md#session) - Create a session for apayment service definition
+
+### [paymentServices()](docs/sdks/paymentservices/README.md)
+
+* [list](docs/sdks/paymentservices/README.md#list) - List payment services
+* [create](docs/sdks/paymentservices/README.md#create) - Update a configured payment service
+* [get](docs/sdks/paymentservices/README.md#get) - Get payment service
+* [update](docs/sdks/paymentservices/README.md#update) - Configure a payment service
+* [delete](docs/sdks/paymentservices/README.md#delete) - Delete a configured payment service
+* [verify](docs/sdks/paymentservices/README.md#verify) - Verify payment service credentials
+* [session](docs/sdks/paymentservices/README.md#session) - Create a session for apayment service definition
+
+### [payouts()](docs/sdks/payouts/README.md)
+
+* [list](docs/sdks/payouts/README.md#list) - List payouts created.
+* [create](docs/sdks/payouts/README.md#create) - Create a payout.
+* [get](docs/sdks/payouts/README.md#get) - Get a payout.
+
+### [refunds()](docs/sdks/refunds/README.md)
+
+* [get](docs/sdks/refunds/README.md#get) - Get refund
+
+### [transactions()](docs/sdks/transactions/README.md)
+
+* [list](docs/sdks/transactions/README.md#list) - List transactions
+* [create](docs/sdks/transactions/README.md#create) - Create transaction
+* [get](docs/sdks/transactions/README.md#get) - Get transaction
+* [capture](docs/sdks/transactions/README.md#capture) - Capture transaction
+* [void_](docs/sdks/transactions/README.md#void_) - Void transaction
+* [summary](docs/sdks/transactions/README.md#summary) - Get transaction summary
+* [sync](docs/sdks/transactions/README.md#sync) - Sync transaction
+
+#### [transactions().events()](docs/sdks/events/README.md)
+
+* [list](docs/sdks/events/README.md#list) - List transaction events
+
+#### [transactions().refunds()](docs/sdks/transactionsrefunds/README.md)
+
+* [list](docs/sdks/transactionsrefunds/README.md#list) - List transaction refunds
+* [create](docs/sdks/transactionsrefunds/README.md#create) - Create transaction refund
+* [get](docs/sdks/transactionsrefunds/README.md#get) - Get transaction refund
+
+#### [transactions().refunds().all()](docs/sdks/all/README.md)
+
+* [create](docs/sdks/all/README.md#create) - Create batch transaction refund
+
+</details>
+<!-- End Available Resources and Operations [operations] -->
+
+<!-- Start Pagination [pagination] -->
+## Pagination
+
+Some of the endpoints in this SDK support pagination. To use pagination, you make your SDK calls as usual, but the
+returned response object will have a `next` method that can be called to pull down the next group of results. The `next`
+function returns an `Optional` value, which `isPresent` until there are no more pages to be fetched.
+
+Here's an example of one such pagination call:
+```java
+package hello.world;
+
+import com.gr4vy.sdk.Gr4vy;
+import com.gr4vy.sdk.models.errors.*;
+import com.gr4vy.sdk.models.operations.ListBuyersRequest;
+import java.lang.Exception;
+
+public class Application {
+
+    public static void main(String[] args) throws Exception {
+
+        Gr4vy sdk = Gr4vy.builder()
+                .bearerAuth("<YOUR_BEARER_TOKEN_HERE>")
+            .build();
+
+        ListBuyersRequest req = ListBuyersRequest.builder()
+                .cursor("ZXhhbXBsZTE")
+                .search("John")
+                .externalIdentifier("buyer-12345")
+                .build();
+
+        sdk.buyers().list()
+                .request(req)
+                .callAsStream()
+                .forEach(item -> {
+                   // handle item
+                });
+
+    }
+}
+```
+<!-- End Pagination [pagination] -->
+
+<!-- Start Retries [retries] -->
+## Retries
+
+Some of the endpoints in this SDK support retries. If you use the SDK without any configuration, it will fall back to the default retry strategy provided by the API. However, the default retry strategy can be overridden on a per-operation basis, or across the entire SDK.
+
+To change the default retry strategy for a single API call, you can provide a `RetryConfig` object through the `retryConfig` builder method:
+```java
+package hello.world;
+
+import com.gr4vy.sdk.Gr4vy;
+import com.gr4vy.sdk.models.errors.*;
+import com.gr4vy.sdk.models.operations.ListBuyersRequest;
+import com.gr4vy.sdk.utils.BackoffStrategy;
+import com.gr4vy.sdk.utils.RetryConfig;
+import java.lang.Exception;
+import java.util.concurrent.TimeUnit;
+
+public class Application {
+
+    public static void main(String[] args) throws Exception {
+
+        Gr4vy sdk = Gr4vy.builder()
+                .bearerAuth("<YOUR_BEARER_TOKEN_HERE>")
+            .build();
+
+        ListBuyersRequest req = ListBuyersRequest.builder()
+                .cursor("ZXhhbXBsZTE")
+                .search("John")
+                .externalIdentifier("buyer-12345")
+                .build();
+
+        sdk.buyers().list()
+                .request(req)
+                .retryConfig(RetryConfig.builder()
+                    .backoff(BackoffStrategy.builder()
+                        .initialInterval(1L, TimeUnit.MILLISECONDS)
+                        .maxInterval(50L, TimeUnit.MILLISECONDS)
+                        .maxElapsedTime(1000L, TimeUnit.MILLISECONDS)
+                        .baseFactor(1.1)
+                        .jitterFactor(0.15)
+                        .retryConnectError(false)
+                        .build())
+                    .build())
+                .callAsStream()
+                .forEach(item -> {
+                   // handle item
+                });
+
+    }
+}
+```
+
+If you'd like to override the default retry strategy for all operations that support retries, you can provide a configuration at SDK initialization:
+```java
+package hello.world;
+
+import com.gr4vy.sdk.Gr4vy;
+import com.gr4vy.sdk.models.errors.*;
+import com.gr4vy.sdk.models.operations.ListBuyersRequest;
+import com.gr4vy.sdk.utils.BackoffStrategy;
+import com.gr4vy.sdk.utils.RetryConfig;
+import java.lang.Exception;
+import java.util.concurrent.TimeUnit;
+
+public class Application {
+
+    public static void main(String[] args) throws Exception {
+
+        Gr4vy sdk = Gr4vy.builder()
+                .retryConfig(RetryConfig.builder()
+                    .backoff(BackoffStrategy.builder()
+                        .initialInterval(1L, TimeUnit.MILLISECONDS)
+                        .maxInterval(50L, TimeUnit.MILLISECONDS)
+                        .maxElapsedTime(1000L, TimeUnit.MILLISECONDS)
+                        .baseFactor(1.1)
+                        .jitterFactor(0.15)
+                        .retryConnectError(false)
+                        .build())
+                    .build())
+                .bearerAuth("<YOUR_BEARER_TOKEN_HERE>")
+            .build();
+
+        ListBuyersRequest req = ListBuyersRequest.builder()
+                .cursor("ZXhhbXBsZTE")
+                .search("John")
+                .externalIdentifier("buyer-12345")
+                .build();
+
+        sdk.buyers().list()
+                .request(req)
+                .callAsStream()
+                .forEach(item -> {
+                   // handle item
+                });
+
+    }
+}
+```
+<!-- End Retries [retries] -->
+
+<!-- Start Error Handling [errors] -->
+## Error Handling
+
+Handling errors in this SDK should largely match your expectations. All operations return a response object or raise an exception.
+
+By default, an API error will throw a `models/errors/APIException` exception. When custom error responses are specified for an operation, the SDK may also throw their associated exception. You can refer to respective *Errors* tables in SDK docs for more details on possible exception types for each operation. For example, the `create` method throws the following exceptions:
+
+| Error Type                        | Status Code | Content Type     |
+| --------------------------------- | ----------- | ---------------- |
+| models/errors/Error400            | 400         | application/json |
+| models/errors/Error401            | 401         | application/json |
+| models/errors/Error403            | 403         | application/json |
+| models/errors/Error404            | 404         | application/json |
+| models/errors/Error405            | 405         | application/json |
+| models/errors/Error409            | 409         | application/json |
+| models/errors/HTTPValidationError | 422         | application/json |
+| models/errors/Error425            | 425         | application/json |
+| models/errors/Error429            | 429         | application/json |
+| models/errors/Error500            | 500         | application/json |
+| models/errors/Error502            | 502         | application/json |
+| models/errors/Error504            | 504         | application/json |
+| models/errors/APIException        | 4XX, 5XX    | \*/\*            |
+
+### Example
+
+```java
+package hello.world;
+
+import com.gr4vy.sdk.Gr4vy;
+import com.gr4vy.sdk.models.components.AccountUpdaterJobCreate;
+import com.gr4vy.sdk.models.errors.*;
+import com.gr4vy.sdk.models.operations.CreateAccountUpdaterJobResponse;
+import java.lang.Exception;
+import java.util.List;
+
+public class Application {
+
+    public static void main(String[] args) throws Exception {
+
+        Gr4vy sdk = Gr4vy.builder()
+                .bearerAuth("<YOUR_BEARER_TOKEN_HERE>")
+            .build();
+
+        CreateAccountUpdaterJobResponse res = sdk.accountUpdater().jobs().create()
+                .accountUpdaterJobCreate(AccountUpdaterJobCreate.builder()
+                    .paymentMethodIds(List.of(
+                        "ef9496d8-53a5-4aad-8ca2-00eb68334389",
+                        "f29e886e-93cc-4714-b4a3-12b7a718e595"))
+                    .build())
+                .call();
+
+        if (res.accountUpdaterJob().isPresent()) {
+            // handle response
+        }
+    }
+}
+```
+<!-- End Error Handling [errors] -->
+
+<!-- Start Server Selection [server] -->
+## Server Selection
+
+### Select Server by Name
+
+You can override the default server globally using the `.server(AvailableServers server)` builder method when initializing the SDK client instance. The selected server will then be used as the default on the operations that use it. This table lists the names associated with the available servers:
+
+| Name         | Server                               | Variables | Description |
+| ------------ | ------------------------------------ | --------- | ----------- |
+| `production` | `https://api.{id}.gr4vy.app`         | `id`      |             |
+| `sandbox`    | `https://api.sandbox.{id}.gr4vy.app` | `id`      |             |
+
+If the selected server has variables, you may override its default values using the associated builder method(s):
+
+| Variable | BuilderMethod   | Default     | Description                            |
+| -------- | --------------- | ----------- | -------------------------------------- |
+| `id`     | `id(String id)` | `"example"` | The subdomain for your Gr4vy instance. |
+
+#### Example
+
+```java
+package hello.world;
+
+import com.gr4vy.sdk.Gr4vy;
+import com.gr4vy.sdk.models.components.AccountUpdaterJobCreate;
+import com.gr4vy.sdk.models.errors.*;
+import com.gr4vy.sdk.models.operations.CreateAccountUpdaterJobResponse;
+import java.lang.Exception;
+import java.util.List;
+
+public class Application {
+
+    public static void main(String[] args) throws Exception {
+
+        Gr4vy sdk = Gr4vy.builder()
+                .server(Gr4vy.AvailableServers.SANDBOX)
+                .id("<id>")
+                .bearerAuth("<YOUR_BEARER_TOKEN_HERE>")
+            .build();
+
+        CreateAccountUpdaterJobResponse res = sdk.accountUpdater().jobs().create()
+                .accountUpdaterJobCreate(AccountUpdaterJobCreate.builder()
+                    .paymentMethodIds(List.of(
+                        "ef9496d8-53a5-4aad-8ca2-00eb68334389",
+                        "f29e886e-93cc-4714-b4a3-12b7a718e595"))
+                    .build())
+                .call();
+
+        if (res.accountUpdaterJob().isPresent()) {
+            // handle response
+        }
+    }
+}
+```
+
+### Override Server URL Per-Client
+
+The default server can also be overridden globally using the `.serverURL(String serverUrl)` builder method when initializing the SDK client instance. For example:
+```java
+package hello.world;
+
+import com.gr4vy.sdk.Gr4vy;
+import com.gr4vy.sdk.models.components.AccountUpdaterJobCreate;
+import com.gr4vy.sdk.models.errors.*;
+import com.gr4vy.sdk.models.operations.CreateAccountUpdaterJobResponse;
+import java.lang.Exception;
+import java.util.List;
+
+public class Application {
+
+    public static void main(String[] args) throws Exception {
+
+        Gr4vy sdk = Gr4vy.builder()
+                .serverURL("https://api.example.gr4vy.app")
+                .bearerAuth("<YOUR_BEARER_TOKEN_HERE>")
+            .build();
+
+        CreateAccountUpdaterJobResponse res = sdk.accountUpdater().jobs().create()
+                .accountUpdaterJobCreate(AccountUpdaterJobCreate.builder()
+                    .paymentMethodIds(List.of(
+                        "ef9496d8-53a5-4aad-8ca2-00eb68334389",
+                        "f29e886e-93cc-4714-b4a3-12b7a718e595"))
+                    .build())
+                .call();
+
+        if (res.accountUpdaterJob().isPresent()) {
+            // handle response
+        }
+    }
+}
+```
+<!-- End Server Selection [server] -->
+
+<!-- Placeholder for Future Speakeasy SDK Sections -->
+
+# Development
+
+## Testing
+
+To run the tests, install Java, ensure to download the `private_key.pem` for the test environment, and run the following.
+
+```sh
+./gradlew test --rerun-tasks
+```
+
+## Maturity
+
+This SDK is in beta, and there may be breaking changes between versions without a major version update. Therefore, we recommend pinning usage
+to a specific package version. This way, you can install the same version each time without breaking changes unless you are intentionally
+looking for the latest version.
+
+## Contributions
+
+While we value open-source contributions to this SDK, this library is generated programmatically. Any manual changes added to internal files will be overwritten on the next generation. 
+We look forward to hearing your feedback. Feel free to open a PR or an issue with a proof of concept and we'll do our best to include it in a future release. 
+
+### SDK Created by [Speakeasy](https://www.speakeasy.com/?utm_source=openapi&utm_campaign=java)

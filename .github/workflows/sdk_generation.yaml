@@ -1,0 +1,54 @@
+name: Generate SDK
+permissions:
+  checks: write
+  contents: write
+  pull-requests: write
+  statuses: write
+  id-token: write
+"on":
+  repository_dispatch:
+    types: openapi_published
+  workflow_dispatch:
+    inputs:
+      force:
+        description: Force generation of SDKs
+        type: boolean
+        default: false
+      set_version:
+        description: optionally set a specific SDK version
+        type: string
+  schedule:
+    - cron: 0 0 * * *
+jobs:
+  generate:
+    uses: speakeasy-api/sdk-generation-action/.github/workflows/workflow-executor.yaml@v15
+    with:
+      force: ${{ github.event.inputs.force }}
+      mode: pr
+      set_version: ${{ github.event.inputs.set_version }}
+    secrets:
+      github_access_token: ${{ secrets.GITHUB_TOKEN }}
+      java_gpg_passphrase: ${{ secrets.JAVA_GPG_PASSPHRASE }}
+      java_gpg_secret_key: ${{ secrets.JAVA_GPG_SECRET_KEY }}
+      ossrh_password: ${{ secrets.OSSRH_PASSWORD }}
+      ossrh_username: ${{ secrets.OSSRH_USERNAME }}
+      speakeasy_api_key: ${{ secrets.SPEAKEASY_API_KEY }}
+
+  notify:
+    needs: generate
+    runs-on: ubuntu-latest
+    if: ${{ contains(needs.*.result, 'failure') }}
+    steps:
+      - name: Slack Notification
+        uses: rtCamp/action-slack-notify@v2
+        if: github.ref == 'refs/heads/main'
+        env:
+            SLACK_USERNAME: Java SDK 
+            SLACK_TITLE: Java SDK
+            SLACK_WEBHOOK: ${{ secrets.SLACK_SDK_WEBHOOK_URL }}
+            SLACK_CHANNEL: sdk-updates
+            SLACK_MSG_AUTHOR: gr4vy-code
+            SLACK_ICON_EMOJI: ":gr4vy:"
+            SLACK_COLOR: "failure"
+            SLACK_MESSAGE_ON_FAILURE: "SDK generation failed"
+            SLACK_FOOTER: ""
