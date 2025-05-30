@@ -17,7 +17,6 @@ import java.util.stream.Collectors;
 public class Auth {
 
     private static final Logger logger = LoggerFactory.getLogger(Auth.class);
-    private static final String USER_AGENT = "java-sdk"; // Replace with your actual user agent
 
     /**
      * Generates a token for an API request.
@@ -34,7 +33,7 @@ public class Auth {
             List<JWTScope> scopes,
             long expiresIn,
             Map<String, Object> embedParams,
-            String checkoutSessionId,
+            String checkoutSessionId
     ) {
         if (scopes == null || scopes.isEmpty()) {
             scopes = Arrays.asList(JWTScope.READ_ALL, JWTScope.WRITE_ALL);
@@ -65,7 +64,7 @@ public class Auth {
             // Build claims
             Map<String, Object> claims = new HashMap<>();
             claims.put("scopes", scopeStrings);
-            claims.put("iss", USER_AGENT);
+            claims.put("iss", SDKConfiguration.USER_AGENT);
             claims.put("iat", Date.from(now));
             claims.put("nbf", Date.from(now));
             claims.put("exp", Date.from(expiration));
@@ -107,7 +106,7 @@ public class Auth {
             List<JWTScope> scopes,
             long expiresIn,
             Map<String, Object> embedParams,
-            String checkoutSessionId,
+            String checkoutSessionId
     ) {
         try {
             // Decode the token without verifying the signature to get existing claims
@@ -166,7 +165,7 @@ public class Auth {
     public static String getEmbedToken(
             String privateKeyPem,
             Map<String, Object> embedParams,
-            String checkoutSessionId,
+            String checkoutSessionId
     ) {
         return getToken(privateKeyPem, Arrays.asList(JWTScope.EMBED), 3600, embedParams, checkoutSessionId);
     }

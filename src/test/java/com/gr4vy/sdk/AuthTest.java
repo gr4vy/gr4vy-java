@@ -93,7 +93,7 @@ public class AuthTest {
 
     @Test
     void tesGetTokenCreatesValidSignedJWT() throws Exception {
-        String token = Auth.getToken(PRIVATE_KEY, Arrays.asList(JWTScope.READ_ALL, JWTScope.WRITE_ALL), 3600, null, null, null);
+        String token = Auth.getToken(PRIVATE_KEY, Arrays.asList(JWTScope.READ_ALL, JWTScope.WRITE_ALL), 3600, null, null);
         DecodedJWT decodedJWT = JWT.decode(token);
 
         Map<String, Claim> claims = decodedJWT.getClaims();
@@ -102,14 +102,14 @@ public class AuthTest {
         assertTrue(claims.containsKey("nbf"));
         assertTrue(claims.containsKey("exp"));
         assertTrue(claims.containsKey("iss"));
-        assertEquals(claims.get("iss").toString(), "\"java-sdk\"");
+        assertEquals(claims.get("iss").asString(), SDKConfiguration.USER_AGENT);
     }
 
     @Test
     void testGetTokenAcceptsOptionalEmbedData() throws Exception {
         JSONObject jsonObject = new JSONObject(EMBED_PARAMS);
-         Map<String, Object> embedParams = toMap(jsonObject);
-        String token = Auth.getToken(PRIVATE_KEY, Arrays.asList(JWTScope.EMBED), 3600, embedParams, null, null);
+        Map<String, Object> embedParams = toMap(jsonObject);
+        String token = Auth.getToken(PRIVATE_KEY, Arrays.asList(JWTScope.EMBED), 3600, embedParams, null);
         DecodedJWT decodedJWT = JWT.decode(token);
 
         Map<String, Claim> claims = decodedJWT.getClaims();
@@ -118,7 +118,7 @@ public class AuthTest {
         assertTrue(claims.containsKey("nbf"));
         assertTrue(claims.containsKey("exp"));
         assertTrue(claims.containsKey("iss"));
-        assertEquals(claims.get("iss").toString(), "\"java-sdk\"");
+        assertEquals(claims.get("iss").asString(), SDKConfiguration.USER_AGENT);
         String embedParamsString = claims.get("embed").toString();
         JSONObject embedParamsJson = new JSONObject(embedParamsString);
         assertEquals(toMap(embedParamsJson), embedParams);
@@ -127,8 +127,8 @@ public class AuthTest {
     @Test
     void testGetTokenIgnoresEmbedDataWithoutEmbedScope() throws Exception {
         JSONObject jsonObject = new JSONObject(EMBED_PARAMS);
-         Map<String, Object> embedParams = toMap(jsonObject);
-        String token = Auth.getToken(PRIVATE_KEY, Arrays.asList(JWTScope.READ_ALL), 3600, embedParams, null, null);
+        Map<String, Object> embedParams = toMap(jsonObject);
+        String token = Auth.getToken(PRIVATE_KEY, Arrays.asList(JWTScope.READ_ALL), 3600, embedParams, null);
         DecodedJWT decodedJWT = JWT.decode(token);
 
         Map<String, Claim> claims = decodedJWT.getClaims();
@@ -140,7 +140,7 @@ public class AuthTest {
     void testGetEmbedTokenCreatesJwtForEmbed() throws Exception {
         JSONObject jsonObject = new JSONObject(EMBED_PARAMS);
         Map<String, Object> embedParams = toMap(jsonObject);
-        String token = Auth.getEmbedToken(PRIVATE_KEY, embedParams, null, null);
+        String token = Auth.getEmbedToken(PRIVATE_KEY, embedParams, null);
         DecodedJWT decodedJWT = JWT.decode(token);
 
         Map<String, Claim> claims = decodedJWT.getClaims();
@@ -154,7 +154,7 @@ public class AuthTest {
     void testGetEmbedTokenTakesOptionalCheckoutSession_id() throws Exception {
         JSONObject jsonObject = new JSONObject(EMBED_PARAMS);
          Map<String, Object> embedParams = toMap(jsonObject);
-        String token = Auth.getEmbedToken(PRIVATE_KEY, embedParams, CHECKOUT_SESSION_ID, null);
+        String token = Auth.getEmbedToken(PRIVATE_KEY, embedParams, CHECKOUT_SESSION_ID);
         DecodedJWT decodedJWT = JWT.decode(token);
 
         Map<String, Claim> claims = decodedJWT.getClaims();
@@ -167,11 +167,11 @@ public class AuthTest {
 
     @Test
     void testUpdateTokenResignsWithNewSignatureAndExpiration() throws Exception {
-        String originalToken = Auth.getToken(PRIVATE_KEY, null, 60, null, null, null);
+        String originalToken = Auth.getToken(PRIVATE_KEY, null, 60, null, null);
         DecodedJWT decodedOriginalJWT = JWT.decode(originalToken);
 
         Thread.sleep(1000);
-        String newToken = Auth.updateToken(originalToken, PRIVATE_KEY, null, 60, null, null, null);
+        String newToken = Auth.updateToken(originalToken, PRIVATE_KEY, null, 60, null, null);
         DecodedJWT decodedNewJWT = JWT.decode(newToken);
 
         Map<String, Claim> originalClaims = decodedOriginalJWT.getClaims();
@@ -195,14 +195,14 @@ public class AuthTest {
     void test_update_token_allows_embed_token_update_with_new_params() throws Exception {
         JSONObject jsonObject = new JSONObject(EMBED_PARAMS);
          Map<String, Object> embedParams = toMap(jsonObject);
-        String originalToken = Auth.getEmbedToken(PRIVATE_KEY, embedParams, CHECKOUT_SESSION_ID, null);
+        String originalToken = Auth.getEmbedToken(PRIVATE_KEY, embedParams, CHECKOUT_SESSION_ID);
 
         String newEmbedParams = "{\"amount\": 1299,\"currency\": \"USD\"}";
 
         Thread.sleep(1000);
         JSONObject newEmbedParamsJson = new JSONObject(newEmbedParams);
-         Map<String, Object> newEmbedParamsMap = toMap(newEmbedParamsJson);
-        String newToken = Auth.updateToken(originalToken, PRIVATE_KEY, null, 60, newEmbedParamsMap, null, null);
+        Map<String, Object> newEmbedParamsMap = toMap(newEmbedParamsJson);
+        String newToken = Auth.updateToken(originalToken, PRIVATE_KEY, null, 60, newEmbedParamsMap, null);
         DecodedJWT decodedNewJWT = JWT.decode(newToken);
 
         Map<String, Claim> newClaims = decodedNewJWT.getClaims();
