@@ -3,40 +3,20 @@
  */
 package com.gr4vy.sdk.models.operations;
 
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.gr4vy.sdk.models.components.BuyerCreate;
-import com.gr4vy.sdk.utils.LazySingletonValue;
 import com.gr4vy.sdk.utils.Utils;
-import java.lang.Double;
 import java.lang.Exception;
 import java.lang.String;
-import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 public class AddBuyerRequestBuilder {
 
-    private Optional<Double> timeoutInSeconds = Utils.readDefaultOrConstValue(
-                            "timeoutInSeconds",
-                            "1",
-                            new TypeReference<Optional<Double>>() {});
     private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
     private BuyerCreate buyerCreate;
     private final SDKMethodInterfaces.MethodCallAddBuyer sdk;
 
     public AddBuyerRequestBuilder(SDKMethodInterfaces.MethodCallAddBuyer sdk) {
         this.sdk = sdk;
-    }
-                
-    public AddBuyerRequestBuilder timeoutInSeconds(double timeoutInSeconds) {
-        Utils.checkNotNull(timeoutInSeconds, "timeoutInSeconds");
-        this.timeoutInSeconds = Optional.of(timeoutInSeconds);
-        return this;
-    }
-
-    public AddBuyerRequestBuilder timeoutInSeconds(Optional<Double> timeoutInSeconds) {
-        Utils.checkNotNull(timeoutInSeconds, "timeoutInSeconds");
-        this.timeoutInSeconds = timeoutInSeconds;
-        return this;
     }
 
     public AddBuyerRequestBuilder merchantAccountId(String merchantAccountId) {
@@ -58,18 +38,9 @@ public class AddBuyerRequestBuilder {
     }
 
     public AddBuyerResponse call() throws Exception {
-        if (timeoutInSeconds == null) {
-            timeoutInSeconds = _SINGLETON_VALUE_TimeoutInSeconds.value();
-        }
+
         return sdk.create(
-            timeoutInSeconds,
             merchantAccountId,
             buyerCreate);
     }
-
-    private static final LazySingletonValue<Optional<Double>> _SINGLETON_VALUE_TimeoutInSeconds =
-            new LazySingletonValue<>(
-                    "timeoutInSeconds",
-                    "1",
-                    new TypeReference<Optional<Double>>() {});
 }

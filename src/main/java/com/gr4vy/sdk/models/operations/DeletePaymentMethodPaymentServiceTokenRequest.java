@@ -5,15 +5,11 @@ package com.gr4vy.sdk.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.gr4vy.sdk.utils.LazySingletonValue;
 import com.gr4vy.sdk.utils.SpeakeasyMetadata;
 import com.gr4vy.sdk.utils.Utils;
-import java.lang.Double;
 import java.lang.Override;
 import java.lang.String;
 import java.util.Objects;
-import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 public class DeletePaymentMethodPaymentServiceTokenRequest {
@@ -30,9 +26,6 @@ public class DeletePaymentMethodPaymentServiceTokenRequest {
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=payment_service_token_id")
     private String paymentServiceTokenId;
 
-    @SpeakeasyMetadata("queryParam:style=form,explode=true,name=timeout_in_seconds")
-    private Optional<Double> timeoutInSeconds;
-
     /**
      * The ID of the merchant account to use for this request.
      */
@@ -43,22 +36,19 @@ public class DeletePaymentMethodPaymentServiceTokenRequest {
     public DeletePaymentMethodPaymentServiceTokenRequest(
             String paymentMethodId,
             String paymentServiceTokenId,
-            Optional<Double> timeoutInSeconds,
             JsonNullable<String> merchantAccountId) {
         Utils.checkNotNull(paymentMethodId, "paymentMethodId");
         Utils.checkNotNull(paymentServiceTokenId, "paymentServiceTokenId");
-        Utils.checkNotNull(timeoutInSeconds, "timeoutInSeconds");
         Utils.checkNotNull(merchantAccountId, "merchantAccountId");
         this.paymentMethodId = paymentMethodId;
         this.paymentServiceTokenId = paymentServiceTokenId;
-        this.timeoutInSeconds = timeoutInSeconds;
         this.merchantAccountId = merchantAccountId;
     }
     
     public DeletePaymentMethodPaymentServiceTokenRequest(
             String paymentMethodId,
             String paymentServiceTokenId) {
-        this(paymentMethodId, paymentServiceTokenId, Optional.empty(), JsonNullable.undefined());
+        this(paymentMethodId, paymentServiceTokenId, JsonNullable.undefined());
     }
 
     /**
@@ -75,11 +65,6 @@ public class DeletePaymentMethodPaymentServiceTokenRequest {
     @JsonIgnore
     public String paymentServiceTokenId() {
         return paymentServiceTokenId;
-    }
-
-    @JsonIgnore
-    public Optional<Double> timeoutInSeconds() {
-        return timeoutInSeconds;
     }
 
     /**
@@ -109,18 +94,6 @@ public class DeletePaymentMethodPaymentServiceTokenRequest {
     public DeletePaymentMethodPaymentServiceTokenRequest withPaymentServiceTokenId(String paymentServiceTokenId) {
         Utils.checkNotNull(paymentServiceTokenId, "paymentServiceTokenId");
         this.paymentServiceTokenId = paymentServiceTokenId;
-        return this;
-    }
-
-    public DeletePaymentMethodPaymentServiceTokenRequest withTimeoutInSeconds(double timeoutInSeconds) {
-        Utils.checkNotNull(timeoutInSeconds, "timeoutInSeconds");
-        this.timeoutInSeconds = Optional.ofNullable(timeoutInSeconds);
-        return this;
-    }
-
-    public DeletePaymentMethodPaymentServiceTokenRequest withTimeoutInSeconds(Optional<Double> timeoutInSeconds) {
-        Utils.checkNotNull(timeoutInSeconds, "timeoutInSeconds");
-        this.timeoutInSeconds = timeoutInSeconds;
         return this;
     }
 
@@ -155,7 +128,6 @@ public class DeletePaymentMethodPaymentServiceTokenRequest {
         return 
             Objects.deepEquals(this.paymentMethodId, other.paymentMethodId) &&
             Objects.deepEquals(this.paymentServiceTokenId, other.paymentServiceTokenId) &&
-            Objects.deepEquals(this.timeoutInSeconds, other.timeoutInSeconds) &&
             Objects.deepEquals(this.merchantAccountId, other.merchantAccountId);
     }
     
@@ -164,7 +136,6 @@ public class DeletePaymentMethodPaymentServiceTokenRequest {
         return Objects.hash(
             paymentMethodId,
             paymentServiceTokenId,
-            timeoutInSeconds,
             merchantAccountId);
     }
     
@@ -173,7 +144,6 @@ public class DeletePaymentMethodPaymentServiceTokenRequest {
         return Utils.toString(DeletePaymentMethodPaymentServiceTokenRequest.class,
                 "paymentMethodId", paymentMethodId,
                 "paymentServiceTokenId", paymentServiceTokenId,
-                "timeoutInSeconds", timeoutInSeconds,
                 "merchantAccountId", merchantAccountId);
     }
     
@@ -182,8 +152,6 @@ public class DeletePaymentMethodPaymentServiceTokenRequest {
         private String paymentMethodId;
  
         private String paymentServiceTokenId;
- 
-        private Optional<Double> timeoutInSeconds;
  
         private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
         
@@ -209,18 +177,6 @@ public class DeletePaymentMethodPaymentServiceTokenRequest {
             return this;
         }
 
-        public Builder timeoutInSeconds(double timeoutInSeconds) {
-            Utils.checkNotNull(timeoutInSeconds, "timeoutInSeconds");
-            this.timeoutInSeconds = Optional.ofNullable(timeoutInSeconds);
-            return this;
-        }
-
-        public Builder timeoutInSeconds(Optional<Double> timeoutInSeconds) {
-            Utils.checkNotNull(timeoutInSeconds, "timeoutInSeconds");
-            this.timeoutInSeconds = timeoutInSeconds;
-            return this;
-        }
-
         /**
          * The ID of the merchant account to use for this request.
          */
@@ -240,20 +196,10 @@ public class DeletePaymentMethodPaymentServiceTokenRequest {
         }
         
         public DeletePaymentMethodPaymentServiceTokenRequest build() {
-            if (timeoutInSeconds == null) {
-                timeoutInSeconds = _SINGLETON_VALUE_TimeoutInSeconds.value();
-            }
             return new DeletePaymentMethodPaymentServiceTokenRequest(
                 paymentMethodId,
                 paymentServiceTokenId,
-                timeoutInSeconds,
                 merchantAccountId);
         }
-
-        private static final LazySingletonValue<Optional<Double>> _SINGLETON_VALUE_TimeoutInSeconds =
-                new LazySingletonValue<>(
-                        "timeout_in_seconds",
-                        "1",
-                        new TypeReference<Optional<Double>>() {});
     }
 }

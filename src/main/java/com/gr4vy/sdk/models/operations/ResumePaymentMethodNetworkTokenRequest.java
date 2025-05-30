@@ -5,15 +5,11 @@ package com.gr4vy.sdk.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.gr4vy.sdk.utils.LazySingletonValue;
 import com.gr4vy.sdk.utils.SpeakeasyMetadata;
 import com.gr4vy.sdk.utils.Utils;
-import java.lang.Double;
 import java.lang.Override;
 import java.lang.String;
 import java.util.Objects;
-import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 public class ResumePaymentMethodNetworkTokenRequest {
@@ -30,9 +26,6 @@ public class ResumePaymentMethodNetworkTokenRequest {
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=network_token_id")
     private String networkTokenId;
 
-    @SpeakeasyMetadata("queryParam:style=form,explode=true,name=timeout_in_seconds")
-    private Optional<Double> timeoutInSeconds;
-
     /**
      * The ID of the merchant account to use for this request.
      */
@@ -43,22 +36,19 @@ public class ResumePaymentMethodNetworkTokenRequest {
     public ResumePaymentMethodNetworkTokenRequest(
             String paymentMethodId,
             String networkTokenId,
-            Optional<Double> timeoutInSeconds,
             JsonNullable<String> merchantAccountId) {
         Utils.checkNotNull(paymentMethodId, "paymentMethodId");
         Utils.checkNotNull(networkTokenId, "networkTokenId");
-        Utils.checkNotNull(timeoutInSeconds, "timeoutInSeconds");
         Utils.checkNotNull(merchantAccountId, "merchantAccountId");
         this.paymentMethodId = paymentMethodId;
         this.networkTokenId = networkTokenId;
-        this.timeoutInSeconds = timeoutInSeconds;
         this.merchantAccountId = merchantAccountId;
     }
     
     public ResumePaymentMethodNetworkTokenRequest(
             String paymentMethodId,
             String networkTokenId) {
-        this(paymentMethodId, networkTokenId, Optional.empty(), JsonNullable.undefined());
+        this(paymentMethodId, networkTokenId, JsonNullable.undefined());
     }
 
     /**
@@ -75,11 +65,6 @@ public class ResumePaymentMethodNetworkTokenRequest {
     @JsonIgnore
     public String networkTokenId() {
         return networkTokenId;
-    }
-
-    @JsonIgnore
-    public Optional<Double> timeoutInSeconds() {
-        return timeoutInSeconds;
     }
 
     /**
@@ -109,18 +94,6 @@ public class ResumePaymentMethodNetworkTokenRequest {
     public ResumePaymentMethodNetworkTokenRequest withNetworkTokenId(String networkTokenId) {
         Utils.checkNotNull(networkTokenId, "networkTokenId");
         this.networkTokenId = networkTokenId;
-        return this;
-    }
-
-    public ResumePaymentMethodNetworkTokenRequest withTimeoutInSeconds(double timeoutInSeconds) {
-        Utils.checkNotNull(timeoutInSeconds, "timeoutInSeconds");
-        this.timeoutInSeconds = Optional.ofNullable(timeoutInSeconds);
-        return this;
-    }
-
-    public ResumePaymentMethodNetworkTokenRequest withTimeoutInSeconds(Optional<Double> timeoutInSeconds) {
-        Utils.checkNotNull(timeoutInSeconds, "timeoutInSeconds");
-        this.timeoutInSeconds = timeoutInSeconds;
         return this;
     }
 
@@ -155,7 +128,6 @@ public class ResumePaymentMethodNetworkTokenRequest {
         return 
             Objects.deepEquals(this.paymentMethodId, other.paymentMethodId) &&
             Objects.deepEquals(this.networkTokenId, other.networkTokenId) &&
-            Objects.deepEquals(this.timeoutInSeconds, other.timeoutInSeconds) &&
             Objects.deepEquals(this.merchantAccountId, other.merchantAccountId);
     }
     
@@ -164,7 +136,6 @@ public class ResumePaymentMethodNetworkTokenRequest {
         return Objects.hash(
             paymentMethodId,
             networkTokenId,
-            timeoutInSeconds,
             merchantAccountId);
     }
     
@@ -173,7 +144,6 @@ public class ResumePaymentMethodNetworkTokenRequest {
         return Utils.toString(ResumePaymentMethodNetworkTokenRequest.class,
                 "paymentMethodId", paymentMethodId,
                 "networkTokenId", networkTokenId,
-                "timeoutInSeconds", timeoutInSeconds,
                 "merchantAccountId", merchantAccountId);
     }
     
@@ -182,8 +152,6 @@ public class ResumePaymentMethodNetworkTokenRequest {
         private String paymentMethodId;
  
         private String networkTokenId;
- 
-        private Optional<Double> timeoutInSeconds;
  
         private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
         
@@ -209,18 +177,6 @@ public class ResumePaymentMethodNetworkTokenRequest {
             return this;
         }
 
-        public Builder timeoutInSeconds(double timeoutInSeconds) {
-            Utils.checkNotNull(timeoutInSeconds, "timeoutInSeconds");
-            this.timeoutInSeconds = Optional.ofNullable(timeoutInSeconds);
-            return this;
-        }
-
-        public Builder timeoutInSeconds(Optional<Double> timeoutInSeconds) {
-            Utils.checkNotNull(timeoutInSeconds, "timeoutInSeconds");
-            this.timeoutInSeconds = timeoutInSeconds;
-            return this;
-        }
-
         /**
          * The ID of the merchant account to use for this request.
          */
@@ -240,20 +196,10 @@ public class ResumePaymentMethodNetworkTokenRequest {
         }
         
         public ResumePaymentMethodNetworkTokenRequest build() {
-            if (timeoutInSeconds == null) {
-                timeoutInSeconds = _SINGLETON_VALUE_TimeoutInSeconds.value();
-            }
             return new ResumePaymentMethodNetworkTokenRequest(
                 paymentMethodId,
                 networkTokenId,
-                timeoutInSeconds,
                 merchantAccountId);
         }
-
-        private static final LazySingletonValue<Optional<Double>> _SINGLETON_VALUE_TimeoutInSeconds =
-                new LazySingletonValue<>(
-                        "timeout_in_seconds",
-                        "1",
-                        new TypeReference<Optional<Double>>() {});
     }
 }

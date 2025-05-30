@@ -3,11 +3,8 @@
  */
 package com.gr4vy.sdk.models.operations;
 
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.gr4vy.sdk.models.components.CheckoutSessionCreate;
-import com.gr4vy.sdk.utils.LazySingletonValue;
 import com.gr4vy.sdk.utils.Utils;
-import java.lang.Double;
 import java.lang.Exception;
 import java.lang.String;
 import java.util.Optional;
@@ -15,28 +12,12 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 public class CreateCheckoutSessionRequestBuilder {
 
-    private Optional<Double> timeoutInSeconds = Utils.readDefaultOrConstValue(
-                            "timeoutInSeconds",
-                            "1",
-                            new TypeReference<Optional<Double>>() {});
     private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
     private Optional<? extends CheckoutSessionCreate> checkoutSessionCreate = Optional.empty();
     private final SDKMethodInterfaces.MethodCallCreateCheckoutSession sdk;
 
     public CreateCheckoutSessionRequestBuilder(SDKMethodInterfaces.MethodCallCreateCheckoutSession sdk) {
         this.sdk = sdk;
-    }
-                
-    public CreateCheckoutSessionRequestBuilder timeoutInSeconds(double timeoutInSeconds) {
-        Utils.checkNotNull(timeoutInSeconds, "timeoutInSeconds");
-        this.timeoutInSeconds = Optional.of(timeoutInSeconds);
-        return this;
-    }
-
-    public CreateCheckoutSessionRequestBuilder timeoutInSeconds(Optional<Double> timeoutInSeconds) {
-        Utils.checkNotNull(timeoutInSeconds, "timeoutInSeconds");
-        this.timeoutInSeconds = timeoutInSeconds;
-        return this;
     }
 
     public CreateCheckoutSessionRequestBuilder merchantAccountId(String merchantAccountId) {
@@ -64,18 +45,9 @@ public class CreateCheckoutSessionRequestBuilder {
     }
 
     public CreateCheckoutSessionResponse call() throws Exception {
-        if (timeoutInSeconds == null) {
-            timeoutInSeconds = _SINGLETON_VALUE_TimeoutInSeconds.value();
-        }
+
         return sdk.create(
-            timeoutInSeconds,
             merchantAccountId,
             checkoutSessionCreate);
     }
-
-    private static final LazySingletonValue<Optional<Double>> _SINGLETON_VALUE_TimeoutInSeconds =
-            new LazySingletonValue<>(
-                    "timeoutInSeconds",
-                    "1",
-                    new TypeReference<Optional<Double>>() {});
 }

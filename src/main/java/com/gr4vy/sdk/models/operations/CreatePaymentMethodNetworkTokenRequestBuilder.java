@@ -3,23 +3,15 @@
  */
 package com.gr4vy.sdk.models.operations;
 
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.gr4vy.sdk.models.components.NetworkTokenCreate;
-import com.gr4vy.sdk.utils.LazySingletonValue;
 import com.gr4vy.sdk.utils.Utils;
-import java.lang.Double;
 import java.lang.Exception;
 import java.lang.String;
-import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 public class CreatePaymentMethodNetworkTokenRequestBuilder {
 
     private String paymentMethodId;
-    private Optional<Double> timeoutInSeconds = Utils.readDefaultOrConstValue(
-                            "timeoutInSeconds",
-                            "1",
-                            new TypeReference<Optional<Double>>() {});
     private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
     private NetworkTokenCreate networkTokenCreate;
     private final SDKMethodInterfaces.MethodCallCreatePaymentMethodNetworkToken sdk;
@@ -31,18 +23,6 @@ public class CreatePaymentMethodNetworkTokenRequestBuilder {
     public CreatePaymentMethodNetworkTokenRequestBuilder paymentMethodId(String paymentMethodId) {
         Utils.checkNotNull(paymentMethodId, "paymentMethodId");
         this.paymentMethodId = paymentMethodId;
-        return this;
-    }
-                
-    public CreatePaymentMethodNetworkTokenRequestBuilder timeoutInSeconds(double timeoutInSeconds) {
-        Utils.checkNotNull(timeoutInSeconds, "timeoutInSeconds");
-        this.timeoutInSeconds = Optional.of(timeoutInSeconds);
-        return this;
-    }
-
-    public CreatePaymentMethodNetworkTokenRequestBuilder timeoutInSeconds(Optional<Double> timeoutInSeconds) {
-        Utils.checkNotNull(timeoutInSeconds, "timeoutInSeconds");
-        this.timeoutInSeconds = timeoutInSeconds;
         return this;
     }
 
@@ -65,19 +45,10 @@ public class CreatePaymentMethodNetworkTokenRequestBuilder {
     }
 
     public CreatePaymentMethodNetworkTokenResponse call() throws Exception {
-        if (timeoutInSeconds == null) {
-            timeoutInSeconds = _SINGLETON_VALUE_TimeoutInSeconds.value();
-        }
+
         return sdk.create(
             paymentMethodId,
-            timeoutInSeconds,
             merchantAccountId,
             networkTokenCreate);
     }
-
-    private static final LazySingletonValue<Optional<Double>> _SINGLETON_VALUE_TimeoutInSeconds =
-            new LazySingletonValue<>(
-                    "timeoutInSeconds",
-                    "1",
-                    new TypeReference<Optional<Double>>() {});
 }

@@ -32,7 +32,6 @@ import com.gr4vy.sdk.utils.SerializedBody;
 import com.gr4vy.sdk.utils.Utils.JsonShape;
 import com.gr4vy.sdk.utils.Utils;
 import java.io.InputStream;
-import java.lang.Double;
 import java.lang.Exception;
 import java.lang.Object;
 import java.lang.String;
@@ -74,7 +73,7 @@ public class Jobs implements
      */
     public CreateAccountUpdaterJobResponse create(
             AccountUpdaterJobCreate accountUpdaterJobCreate) throws Exception {
-        return create(Optional.empty(), JsonNullable.undefined(), accountUpdaterJobCreate);
+        return create(JsonNullable.undefined(), accountUpdaterJobCreate);
     }
     
     /**
@@ -82,26 +81,23 @@ public class Jobs implements
      * 
      * <p>Schedule one or more stored cards for an account update.
      * 
-     * @param timeoutInSeconds 
      * @param merchantAccountId 
      * @param accountUpdaterJobCreate 
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public CreateAccountUpdaterJobResponse create(
-            Optional<Double> timeoutInSeconds,
             JsonNullable<String> merchantAccountId,
             AccountUpdaterJobCreate accountUpdaterJobCreate) throws Exception {
         CreateAccountUpdaterJobRequest request =
             CreateAccountUpdaterJobRequest
                 .builder()
-                .timeoutInSeconds(timeoutInSeconds)
                 .merchantAccountId(merchantAccountId)
                 .accountUpdaterJobCreate(accountUpdaterJobCreate)
                 .build();
         
         String _baseUrl = Utils.templateUrl(
-                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
+                this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 _baseUrl,
                 "/account-updater/jobs");
@@ -123,21 +119,17 @@ public class Jobs implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
-        _req.addQueryParams(Utils.getQueryParams(
-                CreateAccountUpdaterJobRequest.class,
-                request, 
-                this.sdkConfiguration.globals));
         _req.addHeaders(Utils.getHeadersFromMetadata(request, this.sdkConfiguration.globals));
         
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
+        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
         Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
+                this.sdkConfiguration.securitySource().getSecurity());
+        HTTPClient _client = this.sdkConfiguration.client();
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      this.sdkConfiguration,
                       _baseUrl,
                       "create_account_updater_job", 
                       Optional.of(List.of()), 
@@ -150,6 +142,7 @@ public class Jobs implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "create_account_updater_job",
                             Optional.of(List.of()),
@@ -160,6 +153,7 @@ public class Jobs implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "create_account_updater_job",
                             Optional.of(List.of()), 
@@ -170,6 +164,7 @@ public class Jobs implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "create_account_updater_job",
                             Optional.of(List.of()),

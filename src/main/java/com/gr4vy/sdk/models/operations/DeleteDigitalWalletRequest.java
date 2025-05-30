@@ -5,15 +5,11 @@ package com.gr4vy.sdk.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.gr4vy.sdk.utils.LazySingletonValue;
 import com.gr4vy.sdk.utils.SpeakeasyMetadata;
 import com.gr4vy.sdk.utils.Utils;
-import java.lang.Double;
 import java.lang.Override;
 import java.lang.String;
 import java.util.Objects;
-import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 public class DeleteDigitalWalletRequest {
@@ -24,9 +20,6 @@ public class DeleteDigitalWalletRequest {
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=digital_wallet_id")
     private String digitalWalletId;
 
-    @SpeakeasyMetadata("queryParam:style=form,explode=true,name=timeout_in_seconds")
-    private Optional<Double> timeoutInSeconds;
-
     /**
      * The ID of the merchant account to use for this request.
      */
@@ -36,19 +29,16 @@ public class DeleteDigitalWalletRequest {
     @JsonCreator
     public DeleteDigitalWalletRequest(
             String digitalWalletId,
-            Optional<Double> timeoutInSeconds,
             JsonNullable<String> merchantAccountId) {
         Utils.checkNotNull(digitalWalletId, "digitalWalletId");
-        Utils.checkNotNull(timeoutInSeconds, "timeoutInSeconds");
         Utils.checkNotNull(merchantAccountId, "merchantAccountId");
         this.digitalWalletId = digitalWalletId;
-        this.timeoutInSeconds = timeoutInSeconds;
         this.merchantAccountId = merchantAccountId;
     }
     
     public DeleteDigitalWalletRequest(
             String digitalWalletId) {
-        this(digitalWalletId, Optional.empty(), JsonNullable.undefined());
+        this(digitalWalletId, JsonNullable.undefined());
     }
 
     /**
@@ -57,11 +47,6 @@ public class DeleteDigitalWalletRequest {
     @JsonIgnore
     public String digitalWalletId() {
         return digitalWalletId;
-    }
-
-    @JsonIgnore
-    public Optional<Double> timeoutInSeconds() {
-        return timeoutInSeconds;
     }
 
     /**
@@ -82,18 +67,6 @@ public class DeleteDigitalWalletRequest {
     public DeleteDigitalWalletRequest withDigitalWalletId(String digitalWalletId) {
         Utils.checkNotNull(digitalWalletId, "digitalWalletId");
         this.digitalWalletId = digitalWalletId;
-        return this;
-    }
-
-    public DeleteDigitalWalletRequest withTimeoutInSeconds(double timeoutInSeconds) {
-        Utils.checkNotNull(timeoutInSeconds, "timeoutInSeconds");
-        this.timeoutInSeconds = Optional.ofNullable(timeoutInSeconds);
-        return this;
-    }
-
-    public DeleteDigitalWalletRequest withTimeoutInSeconds(Optional<Double> timeoutInSeconds) {
-        Utils.checkNotNull(timeoutInSeconds, "timeoutInSeconds");
-        this.timeoutInSeconds = timeoutInSeconds;
         return this;
     }
 
@@ -127,7 +100,6 @@ public class DeleteDigitalWalletRequest {
         DeleteDigitalWalletRequest other = (DeleteDigitalWalletRequest) o;
         return 
             Objects.deepEquals(this.digitalWalletId, other.digitalWalletId) &&
-            Objects.deepEquals(this.timeoutInSeconds, other.timeoutInSeconds) &&
             Objects.deepEquals(this.merchantAccountId, other.merchantAccountId);
     }
     
@@ -135,7 +107,6 @@ public class DeleteDigitalWalletRequest {
     public int hashCode() {
         return Objects.hash(
             digitalWalletId,
-            timeoutInSeconds,
             merchantAccountId);
     }
     
@@ -143,15 +114,12 @@ public class DeleteDigitalWalletRequest {
     public String toString() {
         return Utils.toString(DeleteDigitalWalletRequest.class,
                 "digitalWalletId", digitalWalletId,
-                "timeoutInSeconds", timeoutInSeconds,
                 "merchantAccountId", merchantAccountId);
     }
     
     public final static class Builder {
  
         private String digitalWalletId;
- 
-        private Optional<Double> timeoutInSeconds;
  
         private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
         
@@ -165,18 +133,6 @@ public class DeleteDigitalWalletRequest {
         public Builder digitalWalletId(String digitalWalletId) {
             Utils.checkNotNull(digitalWalletId, "digitalWalletId");
             this.digitalWalletId = digitalWalletId;
-            return this;
-        }
-
-        public Builder timeoutInSeconds(double timeoutInSeconds) {
-            Utils.checkNotNull(timeoutInSeconds, "timeoutInSeconds");
-            this.timeoutInSeconds = Optional.ofNullable(timeoutInSeconds);
-            return this;
-        }
-
-        public Builder timeoutInSeconds(Optional<Double> timeoutInSeconds) {
-            Utils.checkNotNull(timeoutInSeconds, "timeoutInSeconds");
-            this.timeoutInSeconds = timeoutInSeconds;
             return this;
         }
 
@@ -199,19 +155,9 @@ public class DeleteDigitalWalletRequest {
         }
         
         public DeleteDigitalWalletRequest build() {
-            if (timeoutInSeconds == null) {
-                timeoutInSeconds = _SINGLETON_VALUE_TimeoutInSeconds.value();
-            }
             return new DeleteDigitalWalletRequest(
                 digitalWalletId,
-                timeoutInSeconds,
                 merchantAccountId);
         }
-
-        private static final LazySingletonValue<Optional<Double>> _SINGLETON_VALUE_TimeoutInSeconds =
-                new LazySingletonValue<>(
-                        "timeout_in_seconds",
-                        "1",
-                        new TypeReference<Optional<Double>>() {});
     }
 }

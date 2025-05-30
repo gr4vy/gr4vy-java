@@ -5,26 +5,19 @@ package com.gr4vy.sdk.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.gr4vy.sdk.models.components.TransactionRefundAllCreate;
-import com.gr4vy.sdk.utils.LazySingletonValue;
 import com.gr4vy.sdk.utils.SpeakeasyMetadata;
 import com.gr4vy.sdk.utils.Utils;
-import java.lang.Double;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.Objects;
-import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 public class CreateFullTransactionRefundRequest {
 
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=transaction_id")
     private String transactionId;
-
-    @SpeakeasyMetadata("queryParam:style=form,explode=true,name=timeout_in_seconds")
-    private Optional<Double> timeoutInSeconds;
 
     /**
      * The ID of the merchant account to use for this request.
@@ -38,32 +31,24 @@ public class CreateFullTransactionRefundRequest {
     @JsonCreator
     public CreateFullTransactionRefundRequest(
             String transactionId,
-            Optional<Double> timeoutInSeconds,
             JsonNullable<String> merchantAccountId,
             JsonNullable<? extends TransactionRefundAllCreate> transactionRefundAllCreate) {
         Utils.checkNotNull(transactionId, "transactionId");
-        Utils.checkNotNull(timeoutInSeconds, "timeoutInSeconds");
         Utils.checkNotNull(merchantAccountId, "merchantAccountId");
         Utils.checkNotNull(transactionRefundAllCreate, "transactionRefundAllCreate");
         this.transactionId = transactionId;
-        this.timeoutInSeconds = timeoutInSeconds;
         this.merchantAccountId = merchantAccountId;
         this.transactionRefundAllCreate = transactionRefundAllCreate;
     }
     
     public CreateFullTransactionRefundRequest(
             String transactionId) {
-        this(transactionId, Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined());
+        this(transactionId, JsonNullable.undefined(), JsonNullable.undefined());
     }
 
     @JsonIgnore
     public String transactionId() {
         return transactionId;
-    }
-
-    @JsonIgnore
-    public Optional<Double> timeoutInSeconds() {
-        return timeoutInSeconds;
     }
 
     /**
@@ -87,18 +72,6 @@ public class CreateFullTransactionRefundRequest {
     public CreateFullTransactionRefundRequest withTransactionId(String transactionId) {
         Utils.checkNotNull(transactionId, "transactionId");
         this.transactionId = transactionId;
-        return this;
-    }
-
-    public CreateFullTransactionRefundRequest withTimeoutInSeconds(double timeoutInSeconds) {
-        Utils.checkNotNull(timeoutInSeconds, "timeoutInSeconds");
-        this.timeoutInSeconds = Optional.ofNullable(timeoutInSeconds);
-        return this;
-    }
-
-    public CreateFullTransactionRefundRequest withTimeoutInSeconds(Optional<Double> timeoutInSeconds) {
-        Utils.checkNotNull(timeoutInSeconds, "timeoutInSeconds");
-        this.timeoutInSeconds = timeoutInSeconds;
         return this;
     }
 
@@ -144,7 +117,6 @@ public class CreateFullTransactionRefundRequest {
         CreateFullTransactionRefundRequest other = (CreateFullTransactionRefundRequest) o;
         return 
             Objects.deepEquals(this.transactionId, other.transactionId) &&
-            Objects.deepEquals(this.timeoutInSeconds, other.timeoutInSeconds) &&
             Objects.deepEquals(this.merchantAccountId, other.merchantAccountId) &&
             Objects.deepEquals(this.transactionRefundAllCreate, other.transactionRefundAllCreate);
     }
@@ -153,7 +125,6 @@ public class CreateFullTransactionRefundRequest {
     public int hashCode() {
         return Objects.hash(
             transactionId,
-            timeoutInSeconds,
             merchantAccountId,
             transactionRefundAllCreate);
     }
@@ -162,7 +133,6 @@ public class CreateFullTransactionRefundRequest {
     public String toString() {
         return Utils.toString(CreateFullTransactionRefundRequest.class,
                 "transactionId", transactionId,
-                "timeoutInSeconds", timeoutInSeconds,
                 "merchantAccountId", merchantAccountId,
                 "transactionRefundAllCreate", transactionRefundAllCreate);
     }
@@ -170,8 +140,6 @@ public class CreateFullTransactionRefundRequest {
     public final static class Builder {
  
         private String transactionId;
- 
-        private Optional<Double> timeoutInSeconds;
  
         private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
  
@@ -184,18 +152,6 @@ public class CreateFullTransactionRefundRequest {
         public Builder transactionId(String transactionId) {
             Utils.checkNotNull(transactionId, "transactionId");
             this.transactionId = transactionId;
-            return this;
-        }
-
-        public Builder timeoutInSeconds(double timeoutInSeconds) {
-            Utils.checkNotNull(timeoutInSeconds, "timeoutInSeconds");
-            this.timeoutInSeconds = Optional.ofNullable(timeoutInSeconds);
-            return this;
-        }
-
-        public Builder timeoutInSeconds(Optional<Double> timeoutInSeconds) {
-            Utils.checkNotNull(timeoutInSeconds, "timeoutInSeconds");
-            this.timeoutInSeconds = timeoutInSeconds;
             return this;
         }
 
@@ -230,20 +186,10 @@ public class CreateFullTransactionRefundRequest {
         }
         
         public CreateFullTransactionRefundRequest build() {
-            if (timeoutInSeconds == null) {
-                timeoutInSeconds = _SINGLETON_VALUE_TimeoutInSeconds.value();
-            }
             return new CreateFullTransactionRefundRequest(
                 transactionId,
-                timeoutInSeconds,
                 merchantAccountId,
                 transactionRefundAllCreate);
         }
-
-        private static final LazySingletonValue<Optional<Double>> _SINGLETON_VALUE_TimeoutInSeconds =
-                new LazySingletonValue<>(
-                        "timeout_in_seconds",
-                        "1",
-                        new TypeReference<Optional<Double>>() {});
     }
 }

@@ -5,15 +5,11 @@ package com.gr4vy.sdk.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.gr4vy.sdk.utils.LazySingletonValue;
 import com.gr4vy.sdk.utils.SpeakeasyMetadata;
 import com.gr4vy.sdk.utils.Utils;
-import java.lang.Double;
 import java.lang.Override;
 import java.lang.String;
 import java.util.Objects;
-import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 public class DeleteBuyerShippingDetailsRequest {
@@ -30,9 +26,6 @@ public class DeleteBuyerShippingDetailsRequest {
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=shipping_details_id")
     private String shippingDetailsId;
 
-    @SpeakeasyMetadata("queryParam:style=form,explode=true,name=timeout_in_seconds")
-    private Optional<Double> timeoutInSeconds;
-
     /**
      * The ID of the merchant account to use for this request.
      */
@@ -43,22 +36,19 @@ public class DeleteBuyerShippingDetailsRequest {
     public DeleteBuyerShippingDetailsRequest(
             String buyerId,
             String shippingDetailsId,
-            Optional<Double> timeoutInSeconds,
             JsonNullable<String> merchantAccountId) {
         Utils.checkNotNull(buyerId, "buyerId");
         Utils.checkNotNull(shippingDetailsId, "shippingDetailsId");
-        Utils.checkNotNull(timeoutInSeconds, "timeoutInSeconds");
         Utils.checkNotNull(merchantAccountId, "merchantAccountId");
         this.buyerId = buyerId;
         this.shippingDetailsId = shippingDetailsId;
-        this.timeoutInSeconds = timeoutInSeconds;
         this.merchantAccountId = merchantAccountId;
     }
     
     public DeleteBuyerShippingDetailsRequest(
             String buyerId,
             String shippingDetailsId) {
-        this(buyerId, shippingDetailsId, Optional.empty(), JsonNullable.undefined());
+        this(buyerId, shippingDetailsId, JsonNullable.undefined());
     }
 
     /**
@@ -75,11 +65,6 @@ public class DeleteBuyerShippingDetailsRequest {
     @JsonIgnore
     public String shippingDetailsId() {
         return shippingDetailsId;
-    }
-
-    @JsonIgnore
-    public Optional<Double> timeoutInSeconds() {
-        return timeoutInSeconds;
     }
 
     /**
@@ -109,18 +94,6 @@ public class DeleteBuyerShippingDetailsRequest {
     public DeleteBuyerShippingDetailsRequest withShippingDetailsId(String shippingDetailsId) {
         Utils.checkNotNull(shippingDetailsId, "shippingDetailsId");
         this.shippingDetailsId = shippingDetailsId;
-        return this;
-    }
-
-    public DeleteBuyerShippingDetailsRequest withTimeoutInSeconds(double timeoutInSeconds) {
-        Utils.checkNotNull(timeoutInSeconds, "timeoutInSeconds");
-        this.timeoutInSeconds = Optional.ofNullable(timeoutInSeconds);
-        return this;
-    }
-
-    public DeleteBuyerShippingDetailsRequest withTimeoutInSeconds(Optional<Double> timeoutInSeconds) {
-        Utils.checkNotNull(timeoutInSeconds, "timeoutInSeconds");
-        this.timeoutInSeconds = timeoutInSeconds;
         return this;
     }
 
@@ -155,7 +128,6 @@ public class DeleteBuyerShippingDetailsRequest {
         return 
             Objects.deepEquals(this.buyerId, other.buyerId) &&
             Objects.deepEquals(this.shippingDetailsId, other.shippingDetailsId) &&
-            Objects.deepEquals(this.timeoutInSeconds, other.timeoutInSeconds) &&
             Objects.deepEquals(this.merchantAccountId, other.merchantAccountId);
     }
     
@@ -164,7 +136,6 @@ public class DeleteBuyerShippingDetailsRequest {
         return Objects.hash(
             buyerId,
             shippingDetailsId,
-            timeoutInSeconds,
             merchantAccountId);
     }
     
@@ -173,7 +144,6 @@ public class DeleteBuyerShippingDetailsRequest {
         return Utils.toString(DeleteBuyerShippingDetailsRequest.class,
                 "buyerId", buyerId,
                 "shippingDetailsId", shippingDetailsId,
-                "timeoutInSeconds", timeoutInSeconds,
                 "merchantAccountId", merchantAccountId);
     }
     
@@ -182,8 +152,6 @@ public class DeleteBuyerShippingDetailsRequest {
         private String buyerId;
  
         private String shippingDetailsId;
- 
-        private Optional<Double> timeoutInSeconds;
  
         private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
         
@@ -209,18 +177,6 @@ public class DeleteBuyerShippingDetailsRequest {
             return this;
         }
 
-        public Builder timeoutInSeconds(double timeoutInSeconds) {
-            Utils.checkNotNull(timeoutInSeconds, "timeoutInSeconds");
-            this.timeoutInSeconds = Optional.ofNullable(timeoutInSeconds);
-            return this;
-        }
-
-        public Builder timeoutInSeconds(Optional<Double> timeoutInSeconds) {
-            Utils.checkNotNull(timeoutInSeconds, "timeoutInSeconds");
-            this.timeoutInSeconds = timeoutInSeconds;
-            return this;
-        }
-
         /**
          * The ID of the merchant account to use for this request.
          */
@@ -240,20 +196,10 @@ public class DeleteBuyerShippingDetailsRequest {
         }
         
         public DeleteBuyerShippingDetailsRequest build() {
-            if (timeoutInSeconds == null) {
-                timeoutInSeconds = _SINGLETON_VALUE_TimeoutInSeconds.value();
-            }
             return new DeleteBuyerShippingDetailsRequest(
                 buyerId,
                 shippingDetailsId,
-                timeoutInSeconds,
                 merchantAccountId);
         }
-
-        private static final LazySingletonValue<Optional<Double>> _SINGLETON_VALUE_TimeoutInSeconds =
-                new LazySingletonValue<>(
-                        "timeout_in_seconds",
-                        "1",
-                        new TypeReference<Optional<Double>>() {});
     }
 }

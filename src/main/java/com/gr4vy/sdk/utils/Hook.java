@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
+import com.gr4vy.sdk.SDKConfiguration;
 import com.gr4vy.sdk.SecuritySource;
 
 /**
@@ -26,6 +27,7 @@ public final class Hook {
      * Context for a hook call.
      */
     public interface HookContext {
+        SDKConfiguration sdkConfiguration();
         String baseUrl();
         String operationId();
         Optional<List<String>> oauthScopes();
@@ -40,16 +42,23 @@ public final class Hook {
     
     public static final class BeforeRequestContextImpl implements BeforeRequestContext {
         
+        private final SDKConfiguration sdkConfiguration;
         private final String baseUrl;
         private final String operationId;
         private final Optional<List<String>> oauthScopes;
         private final Optional<SecuritySource> securitySource;
         
-        public BeforeRequestContextImpl(String baseUrl, String operationId, Optional<List<String>> oauthScopes, Optional<SecuritySource> securitySource) {
+        public BeforeRequestContextImpl(SDKConfiguration sdkConfiguration, String baseUrl, String operationId, Optional<List<String>> oauthScopes, Optional<SecuritySource> securitySource) {
+            this.sdkConfiguration = sdkConfiguration;
             this.baseUrl = baseUrl;
             this.operationId = operationId;
             this.oauthScopes = oauthScopes;
             this.securitySource = securitySource;
+        }
+        
+        @Override
+        public SDKConfiguration sdkConfiguration() {
+            return sdkConfiguration;
         }
         
         @Override
@@ -81,17 +90,24 @@ public final class Hook {
     
     public static final class AfterSuccessContextImpl implements AfterSuccessContext {
         
+        private final SDKConfiguration sdkConfiguration;
         private final String baseUrl;
         private final String operationId;
         private final Optional<List<String>> oauthScopes;
         private final Optional<SecuritySource> securitySource;
         
-        public AfterSuccessContextImpl(String baseUrl, String operationId, Optional<List<String>> oauthScopes, Optional<SecuritySource> securitySource) {
+        public AfterSuccessContextImpl(SDKConfiguration sdkConfiguration, String baseUrl, String operationId, Optional<List<String>> oauthScopes, Optional<SecuritySource> securitySource) {
             Utils.checkNotNull(securitySource, "securitySource");
+            this.sdkConfiguration = sdkConfiguration;
             this.baseUrl = baseUrl;
             this.operationId = operationId;
             this.oauthScopes = oauthScopes;
             this.securitySource = securitySource;
+        }
+        
+        @Override
+        public SDKConfiguration sdkConfiguration() {
+            return sdkConfiguration;
         }
         
         @Override
@@ -123,19 +139,26 @@ public final class Hook {
     
     public static final class AfterErrorContextImpl implements AfterErrorContext {
         
+        private final SDKConfiguration sdkConfiguration;
         private final String baseUrl;
         private final String operationId;
         private final Optional<List<String>> oauthScopes;
         private final Optional<SecuritySource> securitySource;
         
-        public AfterErrorContextImpl(String baseUrl, String operationId, Optional<List<String>> oauthScopes, Optional<SecuritySource> securitySource) {
+        public AfterErrorContextImpl(SDKConfiguration sdkConfiguration, String baseUrl, String operationId, Optional<List<String>> oauthScopes, Optional<SecuritySource> securitySource) {
             Utils.checkNotNull(securitySource, "securitySource");
+            this.sdkConfiguration = sdkConfiguration;
             this.baseUrl = baseUrl;
             this.operationId = operationId;
             this.oauthScopes = oauthScopes;
             this.securitySource = securitySource;
         }
 
+        @Override
+        public SDKConfiguration sdkConfiguration() {
+            return sdkConfiguration;
+        }
+        
         @Override
         public String baseUrl() {
             return baseUrl;
@@ -242,42 +265,25 @@ public final class Hook {
             }
         };
     }
-
-    public static final class SdkInitData {
-         private final String baseUrl;
-         private final HTTPClient client;
-         
-         public SdkInitData(String baseUrl, HTTPClient client) {
-             this.baseUrl = baseUrl;
-             this.client = client;
-         }
-         
-         public String baseUrl() {
-             return baseUrl;
-         }
-         
-         public HTTPClient client() {
-             return client;
-         }
-    }
-
+    
     /**
      * Transforms the HTTPClient before use.
      */
     public interface SdkInit {
-
+        
         /**
-         * Returns a transformed {@link HTTPClient} and {@code baseUrl} for use in requests.
+         * Returns a transformed {@link SDKConfiguration} for use in initialized SDKs.
          * 
-         * @param data data to transform
-         * @return the transformed data
+         * @param config config to transform
+         * @return the transformed config
          */
-        SdkInitData sdkInit(SdkInitData data);
-
+        SDKConfiguration sdkInit(SDKConfiguration config); 
+        
         /**
-         * The default action is to return the client untouched.
+         * The default action is to return the config untouched.
          */
-        static SdkInit DEFAULT = data -> data;
+        static SdkInit DEFAULT = config -> config;       
+        
 
     }
     

@@ -5,25 +5,18 @@ package com.gr4vy.sdk.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.gr4vy.sdk.models.components.TransactionCapture;
-import com.gr4vy.sdk.utils.LazySingletonValue;
 import com.gr4vy.sdk.utils.SpeakeasyMetadata;
 import com.gr4vy.sdk.utils.Utils;
-import java.lang.Double;
 import java.lang.Override;
 import java.lang.String;
 import java.util.Objects;
-import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 public class CaptureTransactionRequest {
 
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=transaction_id")
     private String transactionId;
-
-    @SpeakeasyMetadata("queryParam:style=form,explode=true,name=timeout_in_seconds")
-    private Optional<Double> timeoutInSeconds;
 
     /**
      * The ID of the merchant account to use for this request.
@@ -37,15 +30,12 @@ public class CaptureTransactionRequest {
     @JsonCreator
     public CaptureTransactionRequest(
             String transactionId,
-            Optional<Double> timeoutInSeconds,
             JsonNullable<String> merchantAccountId,
             TransactionCapture transactionCapture) {
         Utils.checkNotNull(transactionId, "transactionId");
-        Utils.checkNotNull(timeoutInSeconds, "timeoutInSeconds");
         Utils.checkNotNull(merchantAccountId, "merchantAccountId");
         Utils.checkNotNull(transactionCapture, "transactionCapture");
         this.transactionId = transactionId;
-        this.timeoutInSeconds = timeoutInSeconds;
         this.merchantAccountId = merchantAccountId;
         this.transactionCapture = transactionCapture;
     }
@@ -53,17 +43,12 @@ public class CaptureTransactionRequest {
     public CaptureTransactionRequest(
             String transactionId,
             TransactionCapture transactionCapture) {
-        this(transactionId, Optional.empty(), JsonNullable.undefined(), transactionCapture);
+        this(transactionId, JsonNullable.undefined(), transactionCapture);
     }
 
     @JsonIgnore
     public String transactionId() {
         return transactionId;
-    }
-
-    @JsonIgnore
-    public Optional<Double> timeoutInSeconds() {
-        return timeoutInSeconds;
     }
 
     /**
@@ -86,18 +71,6 @@ public class CaptureTransactionRequest {
     public CaptureTransactionRequest withTransactionId(String transactionId) {
         Utils.checkNotNull(transactionId, "transactionId");
         this.transactionId = transactionId;
-        return this;
-    }
-
-    public CaptureTransactionRequest withTimeoutInSeconds(double timeoutInSeconds) {
-        Utils.checkNotNull(timeoutInSeconds, "timeoutInSeconds");
-        this.timeoutInSeconds = Optional.ofNullable(timeoutInSeconds);
-        return this;
-    }
-
-    public CaptureTransactionRequest withTimeoutInSeconds(Optional<Double> timeoutInSeconds) {
-        Utils.checkNotNull(timeoutInSeconds, "timeoutInSeconds");
-        this.timeoutInSeconds = timeoutInSeconds;
         return this;
     }
 
@@ -137,7 +110,6 @@ public class CaptureTransactionRequest {
         CaptureTransactionRequest other = (CaptureTransactionRequest) o;
         return 
             Objects.deepEquals(this.transactionId, other.transactionId) &&
-            Objects.deepEquals(this.timeoutInSeconds, other.timeoutInSeconds) &&
             Objects.deepEquals(this.merchantAccountId, other.merchantAccountId) &&
             Objects.deepEquals(this.transactionCapture, other.transactionCapture);
     }
@@ -146,7 +118,6 @@ public class CaptureTransactionRequest {
     public int hashCode() {
         return Objects.hash(
             transactionId,
-            timeoutInSeconds,
             merchantAccountId,
             transactionCapture);
     }
@@ -155,7 +126,6 @@ public class CaptureTransactionRequest {
     public String toString() {
         return Utils.toString(CaptureTransactionRequest.class,
                 "transactionId", transactionId,
-                "timeoutInSeconds", timeoutInSeconds,
                 "merchantAccountId", merchantAccountId,
                 "transactionCapture", transactionCapture);
     }
@@ -163,8 +133,6 @@ public class CaptureTransactionRequest {
     public final static class Builder {
  
         private String transactionId;
- 
-        private Optional<Double> timeoutInSeconds;
  
         private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
  
@@ -177,18 +145,6 @@ public class CaptureTransactionRequest {
         public Builder transactionId(String transactionId) {
             Utils.checkNotNull(transactionId, "transactionId");
             this.transactionId = transactionId;
-            return this;
-        }
-
-        public Builder timeoutInSeconds(double timeoutInSeconds) {
-            Utils.checkNotNull(timeoutInSeconds, "timeoutInSeconds");
-            this.timeoutInSeconds = Optional.ofNullable(timeoutInSeconds);
-            return this;
-        }
-
-        public Builder timeoutInSeconds(Optional<Double> timeoutInSeconds) {
-            Utils.checkNotNull(timeoutInSeconds, "timeoutInSeconds");
-            this.timeoutInSeconds = timeoutInSeconds;
             return this;
         }
 
@@ -217,20 +173,10 @@ public class CaptureTransactionRequest {
         }
         
         public CaptureTransactionRequest build() {
-            if (timeoutInSeconds == null) {
-                timeoutInSeconds = _SINGLETON_VALUE_TimeoutInSeconds.value();
-            }
             return new CaptureTransactionRequest(
                 transactionId,
-                timeoutInSeconds,
                 merchantAccountId,
                 transactionCapture);
         }
-
-        private static final LazySingletonValue<Optional<Double>> _SINGLETON_VALUE_TimeoutInSeconds =
-                new LazySingletonValue<>(
-                        "timeout_in_seconds",
-                        "1",
-                        new TypeReference<Optional<Double>>() {});
     }
 }

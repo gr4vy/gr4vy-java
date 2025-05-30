@@ -6,6 +6,7 @@ package com.gr4vy.sdk;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.gr4vy.sdk.models.components.CollectionNoCursorShippingDetails;
 import com.gr4vy.sdk.models.components.ShippingDetailsCreate;
+import com.gr4vy.sdk.models.components.ShippingDetailsUpdate;
 import com.gr4vy.sdk.models.errors.APIException;
 import com.gr4vy.sdk.models.errors.Error400;
 import com.gr4vy.sdk.models.errors.Error401;
@@ -49,7 +50,6 @@ import com.gr4vy.sdk.utils.SerializedBody;
 import com.gr4vy.sdk.utils.Utils.JsonShape;
 import com.gr4vy.sdk.utils.Utils;
 import java.io.InputStream;
-import java.lang.Double;
 import java.lang.Exception;
 import java.lang.Object;
 import java.lang.String;
@@ -100,7 +100,7 @@ public class ShippingDetails implements
     public AddBuyerShippingDetailsResponse create(
             String buyerId,
             ShippingDetailsCreate shippingDetailsCreate) throws Exception {
-        return create(buyerId, Optional.empty(), JsonNullable.undefined(), shippingDetailsCreate);
+        return create(buyerId, JsonNullable.undefined(), shippingDetailsCreate);
     }
     
     /**
@@ -109,7 +109,6 @@ public class ShippingDetails implements
      * <p>Associate shipping details to a buyer.
      * 
      * @param buyerId The ID of the buyer to add shipping details to.
-     * @param timeoutInSeconds 
      * @param merchantAccountId 
      * @param shippingDetailsCreate 
      * @return The response from the API call
@@ -117,20 +116,18 @@ public class ShippingDetails implements
      */
     public AddBuyerShippingDetailsResponse create(
             String buyerId,
-            Optional<Double> timeoutInSeconds,
             JsonNullable<String> merchantAccountId,
             ShippingDetailsCreate shippingDetailsCreate) throws Exception {
         AddBuyerShippingDetailsRequest request =
             AddBuyerShippingDetailsRequest
                 .builder()
                 .buyerId(buyerId)
-                .timeoutInSeconds(timeoutInSeconds)
                 .merchantAccountId(merchantAccountId)
                 .shippingDetailsCreate(shippingDetailsCreate)
                 .build();
         
         String _baseUrl = Utils.templateUrl(
-                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
+                this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 AddBuyerShippingDetailsRequest.class,
                 _baseUrl,
@@ -154,21 +151,17 @@ public class ShippingDetails implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
-        _req.addQueryParams(Utils.getQueryParams(
-                AddBuyerShippingDetailsRequest.class,
-                request, 
-                this.sdkConfiguration.globals));
         _req.addHeaders(Utils.getHeadersFromMetadata(request, this.sdkConfiguration.globals));
         
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
+        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
         Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
+                this.sdkConfiguration.securitySource().getSecurity());
+        HTTPClient _client = this.sdkConfiguration.client();
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      this.sdkConfiguration,
                       _baseUrl,
                       "add_buyer_shipping_details", 
                       Optional.of(List.of()), 
@@ -181,6 +174,7 @@ public class ShippingDetails implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "add_buyer_shipping_details",
                             Optional.of(List.of()),
@@ -191,6 +185,7 @@ public class ShippingDetails implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "add_buyer_shipping_details",
                             Optional.of(List.of()), 
@@ -201,6 +196,7 @@ public class ShippingDetails implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "add_buyer_shipping_details",
                             Optional.of(List.of()),
@@ -505,7 +501,7 @@ public class ShippingDetails implements
                 .build();
         
         String _baseUrl = Utils.templateUrl(
-                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
+                this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 ListBuyerShippingDetailsRequest.class,
                 _baseUrl,
@@ -518,16 +514,16 @@ public class ShippingDetails implements
                 SDKConfiguration.USER_AGENT);
         _req.addHeaders(Utils.getHeadersFromMetadata(request, this.sdkConfiguration.globals));
         
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
+        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
         Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
+                this.sdkConfiguration.securitySource().getSecurity());
+        HTTPClient _client = this.sdkConfiguration.client();
         HTTPRequest _finalReq = _req;
         RetryConfig _retryConfig;
         if (options.isPresent() && options.get().retryConfig().isPresent()) {
             _retryConfig = options.get().retryConfig().get();
-        } else if (this.sdkConfiguration.retryConfig.isPresent()) {
-            _retryConfig = this.sdkConfiguration.retryConfig.get();
+        } else if (this.sdkConfiguration.retryConfig().isPresent()) {
+            _retryConfig = this.sdkConfiguration.retryConfig().get();
         } else {
             _retryConfig = RetryConfig.builder()
                 .backoff(BackoffStrategy.builder()
@@ -548,6 +544,7 @@ public class ShippingDetails implements
                     _r = sdkConfiguration.hooks()
                         .beforeRequest(
                             new BeforeRequestContextImpl(
+                                this.sdkConfiguration,
                                 _baseUrl,
                                 "list_buyer_shipping_details", 
                                 Optional.of(List.of()), 
@@ -562,6 +559,7 @@ public class ShippingDetails implements
                     return sdkConfiguration.hooks()
                         .afterError(
                             new AfterErrorContextImpl(
+                                this.sdkConfiguration,
                                 _baseUrl,
                                 "list_buyer_shipping_details",
                                  Optional.of(List.of()),
@@ -576,7 +574,8 @@ public class ShippingDetails implements
         HttpResponse<InputStream> _httpRes = sdkConfiguration.hooks()
                  .afterSuccess(
                      new AfterSuccessContextImpl(
-                          _baseUrl,
+                         this.sdkConfiguration,
+                         _baseUrl,
                          "list_buyer_shipping_details", 
                          Optional.of(List.of()), 
                          _hookSecuritySource),
@@ -883,7 +882,7 @@ public class ShippingDetails implements
                 .build();
         
         String _baseUrl = Utils.templateUrl(
-                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
+                this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 GetBuyerShippingDetailsRequest.class,
                 _baseUrl,
@@ -896,16 +895,16 @@ public class ShippingDetails implements
                 SDKConfiguration.USER_AGENT);
         _req.addHeaders(Utils.getHeadersFromMetadata(request, this.sdkConfiguration.globals));
         
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
+        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
         Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
+                this.sdkConfiguration.securitySource().getSecurity());
+        HTTPClient _client = this.sdkConfiguration.client();
         HTTPRequest _finalReq = _req;
         RetryConfig _retryConfig;
         if (options.isPresent() && options.get().retryConfig().isPresent()) {
             _retryConfig = options.get().retryConfig().get();
-        } else if (this.sdkConfiguration.retryConfig.isPresent()) {
-            _retryConfig = this.sdkConfiguration.retryConfig.get();
+        } else if (this.sdkConfiguration.retryConfig().isPresent()) {
+            _retryConfig = this.sdkConfiguration.retryConfig().get();
         } else {
             _retryConfig = RetryConfig.builder()
                 .backoff(BackoffStrategy.builder()
@@ -926,6 +925,7 @@ public class ShippingDetails implements
                     _r = sdkConfiguration.hooks()
                         .beforeRequest(
                             new BeforeRequestContextImpl(
+                                this.sdkConfiguration,
                                 _baseUrl,
                                 "get_buyer_shipping_details", 
                                 Optional.of(List.of()), 
@@ -940,6 +940,7 @@ public class ShippingDetails implements
                     return sdkConfiguration.hooks()
                         .afterError(
                             new AfterErrorContextImpl(
+                                this.sdkConfiguration,
                                 _baseUrl,
                                 "get_buyer_shipping_details",
                                  Optional.of(List.of()),
@@ -954,7 +955,8 @@ public class ShippingDetails implements
         HttpResponse<InputStream> _httpRes = sdkConfiguration.hooks()
                  .afterSuccess(
                      new AfterSuccessContextImpl(
-                          _baseUrl,
+                         this.sdkConfiguration,
+                         _baseUrl,
                          "get_buyer_shipping_details", 
                          Optional.of(List.of()), 
                          _hookSecuritySource),
@@ -1220,14 +1222,47 @@ public class ShippingDetails implements
      * 
      * <p>Update the shipping details associated to a specific buyer.
      * 
-     * @param request The request object containing all of the parameters for the API call.
+     * @param buyerId The ID of the buyer to update shipping details for.
+     * @param shippingDetailsId The ID of the shipping details to update.
+     * @param shippingDetailsUpdate 
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public UpdateBuyerShippingDetailsResponse update(
-            UpdateBuyerShippingDetailsRequest request) throws Exception {
+            String buyerId,
+            String shippingDetailsId,
+            ShippingDetailsUpdate shippingDetailsUpdate) throws Exception {
+        return update(buyerId, shippingDetailsId, JsonNullable.undefined(), shippingDetailsUpdate);
+    }
+    
+    /**
+     * Update a buyer's shipping details
+     * 
+     * <p>Update the shipping details associated to a specific buyer.
+     * 
+     * @param buyerId The ID of the buyer to update shipping details for.
+     * @param shippingDetailsId The ID of the shipping details to update.
+     * @param merchantAccountId 
+     * @param shippingDetailsUpdate 
+     * @return The response from the API call
+     * @throws Exception if the API call fails
+     */
+    public UpdateBuyerShippingDetailsResponse update(
+            String buyerId,
+            String shippingDetailsId,
+            JsonNullable<String> merchantAccountId,
+            ShippingDetailsUpdate shippingDetailsUpdate) throws Exception {
+        UpdateBuyerShippingDetailsRequest request =
+            UpdateBuyerShippingDetailsRequest
+                .builder()
+                .buyerId(buyerId)
+                .shippingDetailsId(shippingDetailsId)
+                .merchantAccountId(merchantAccountId)
+                .shippingDetailsUpdate(shippingDetailsUpdate)
+                .build();
+        
         String _baseUrl = Utils.templateUrl(
-                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
+                this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 UpdateBuyerShippingDetailsRequest.class,
                 _baseUrl,
@@ -1238,7 +1273,7 @@ public class ShippingDetails implements
         Object _convertedRequest = Utils.convertToShape(
                 request, 
                 JsonShape.DEFAULT,
-                new TypeReference<UpdateBuyerShippingDetailsRequest>() {});
+                new TypeReference<Object>() {});
         SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
                 _convertedRequest, 
                 "shippingDetailsUpdate",
@@ -1251,21 +1286,17 @@ public class ShippingDetails implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
-        _req.addQueryParams(Utils.getQueryParams(
-                UpdateBuyerShippingDetailsRequest.class,
-                request, 
-                this.sdkConfiguration.globals));
         _req.addHeaders(Utils.getHeadersFromMetadata(request, this.sdkConfiguration.globals));
         
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
+        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
         Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
+                this.sdkConfiguration.securitySource().getSecurity());
+        HTTPClient _client = this.sdkConfiguration.client();
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      this.sdkConfiguration,
                       _baseUrl,
                       "update_buyer_shipping_details", 
                       Optional.of(List.of()), 
@@ -1278,6 +1309,7 @@ public class ShippingDetails implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "update_buyer_shipping_details",
                             Optional.of(List.of()),
@@ -1288,6 +1320,7 @@ public class ShippingDetails implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "update_buyer_shipping_details",
                             Optional.of(List.of()), 
@@ -1298,6 +1331,7 @@ public class ShippingDetails implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "update_buyer_shipping_details",
                             Optional.of(List.of()),
@@ -1574,7 +1608,7 @@ public class ShippingDetails implements
     public DeleteBuyerShippingDetailsResponse delete(
             String buyerId,
             String shippingDetailsId) throws Exception {
-        return delete(buyerId, shippingDetailsId, Optional.empty(), JsonNullable.undefined());
+        return delete(buyerId, shippingDetailsId, JsonNullable.undefined());
     }
     
     /**
@@ -1584,7 +1618,6 @@ public class ShippingDetails implements
      * 
      * @param buyerId The ID of the buyer to delete shipping details for.
      * @param shippingDetailsId The ID of the shipping details to delete.
-     * @param timeoutInSeconds 
      * @param merchantAccountId 
      * @return The response from the API call
      * @throws Exception if the API call fails
@@ -1592,19 +1625,17 @@ public class ShippingDetails implements
     public DeleteBuyerShippingDetailsResponse delete(
             String buyerId,
             String shippingDetailsId,
-            Optional<Double> timeoutInSeconds,
             JsonNullable<String> merchantAccountId) throws Exception {
         DeleteBuyerShippingDetailsRequest request =
             DeleteBuyerShippingDetailsRequest
                 .builder()
                 .buyerId(buyerId)
                 .shippingDetailsId(shippingDetailsId)
-                .timeoutInSeconds(timeoutInSeconds)
                 .merchantAccountId(merchantAccountId)
                 .build();
         
         String _baseUrl = Utils.templateUrl(
-                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
+                this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 DeleteBuyerShippingDetailsRequest.class,
                 _baseUrl,
@@ -1615,21 +1646,17 @@ public class ShippingDetails implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
-        _req.addQueryParams(Utils.getQueryParams(
-                DeleteBuyerShippingDetailsRequest.class,
-                request, 
-                this.sdkConfiguration.globals));
         _req.addHeaders(Utils.getHeadersFromMetadata(request, this.sdkConfiguration.globals));
         
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
+        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
         Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
+                this.sdkConfiguration.securitySource().getSecurity());
+        HTTPClient _client = this.sdkConfiguration.client();
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      this.sdkConfiguration,
                       _baseUrl,
                       "delete_buyer_shipping_details", 
                       Optional.of(List.of()), 
@@ -1642,6 +1669,7 @@ public class ShippingDetails implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "delete_buyer_shipping_details",
                             Optional.of(List.of()),
@@ -1652,6 +1680,7 @@ public class ShippingDetails implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "delete_buyer_shipping_details",
                             Optional.of(List.of()), 
@@ -1662,6 +1691,7 @@ public class ShippingDetails implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "delete_buyer_shipping_details",
                             Optional.of(List.of()),

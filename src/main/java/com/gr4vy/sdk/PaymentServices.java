@@ -63,7 +63,6 @@ import com.jayway.jsonpath.JsonPath;
 import com.jayway.jsonpath.Option;
 import com.jayway.jsonpath.ReadContext;
 import java.io.InputStream;
-import java.lang.Double;
 import java.lang.Exception;
 import java.lang.Object;
 import java.lang.String;
@@ -138,7 +137,7 @@ public class PaymentServices implements
           options.get().validate(Arrays.asList(Options.Option.RETRY_CONFIG));
         }
         String _baseUrl = Utils.templateUrl(
-                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
+                this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 _baseUrl,
                 "/payment-services");
@@ -154,16 +153,16 @@ public class PaymentServices implements
                 this.sdkConfiguration.globals));
         _req.addHeaders(Utils.getHeadersFromMetadata(request, this.sdkConfiguration.globals));
         
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
+        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
         Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
+                this.sdkConfiguration.securitySource().getSecurity());
+        HTTPClient _client = this.sdkConfiguration.client();
         HTTPRequest _finalReq = _req;
         RetryConfig _retryConfig;
         if (options.isPresent() && options.get().retryConfig().isPresent()) {
             _retryConfig = options.get().retryConfig().get();
-        } else if (this.sdkConfiguration.retryConfig.isPresent()) {
-            _retryConfig = this.sdkConfiguration.retryConfig.get();
+        } else if (this.sdkConfiguration.retryConfig().isPresent()) {
+            _retryConfig = this.sdkConfiguration.retryConfig().get();
         } else {
             _retryConfig = RetryConfig.builder()
                 .backoff(BackoffStrategy.builder()
@@ -184,6 +183,7 @@ public class PaymentServices implements
                     _r = sdkConfiguration.hooks()
                         .beforeRequest(
                             new BeforeRequestContextImpl(
+                                this.sdkConfiguration,
                                 _baseUrl,
                                 "list_payment_services", 
                                 Optional.of(List.of()), 
@@ -198,6 +198,7 @@ public class PaymentServices implements
                     return sdkConfiguration.hooks()
                         .afterError(
                             new AfterErrorContextImpl(
+                                this.sdkConfiguration,
                                 _baseUrl,
                                 "list_payment_services",
                                  Optional.of(List.of()),
@@ -212,7 +213,8 @@ public class PaymentServices implements
         HttpResponse<InputStream> _httpRes = sdkConfiguration.hooks()
                  .afterSuccess(
                      new AfterSuccessContextImpl(
-                          _baseUrl,
+                         this.sdkConfiguration,
+                         _baseUrl,
                          "list_payment_services", 
                          Optional.of(List.of()), 
                          _hookSecuritySource),
@@ -533,7 +535,7 @@ public class PaymentServices implements
                 .build();
         
         String _baseUrl = Utils.templateUrl(
-                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
+                this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 _baseUrl,
                 "/payment-services");
@@ -557,14 +559,15 @@ public class PaymentServices implements
                 SDKConfiguration.USER_AGENT);
         _req.addHeaders(Utils.getHeadersFromMetadata(request, this.sdkConfiguration.globals));
         
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
+        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
         Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
+                this.sdkConfiguration.securitySource().getSecurity());
+        HTTPClient _client = this.sdkConfiguration.client();
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      this.sdkConfiguration,
                       _baseUrl,
                       "update_payment_service", 
                       Optional.of(List.of()), 
@@ -577,6 +580,7 @@ public class PaymentServices implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "update_payment_service",
                             Optional.of(List.of()),
@@ -587,6 +591,7 @@ public class PaymentServices implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "update_payment_service",
                             Optional.of(List.of()), 
@@ -597,6 +602,7 @@ public class PaymentServices implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "update_payment_service",
                             Optional.of(List.of()),
@@ -901,7 +907,7 @@ public class PaymentServices implements
                 .build();
         
         String _baseUrl = Utils.templateUrl(
-                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
+                this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 GetPaymentServiceRequest.class,
                 _baseUrl,
@@ -914,16 +920,16 @@ public class PaymentServices implements
                 SDKConfiguration.USER_AGENT);
         _req.addHeaders(Utils.getHeadersFromMetadata(request, this.sdkConfiguration.globals));
         
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
+        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
         Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
+                this.sdkConfiguration.securitySource().getSecurity());
+        HTTPClient _client = this.sdkConfiguration.client();
         HTTPRequest _finalReq = _req;
         RetryConfig _retryConfig;
         if (options.isPresent() && options.get().retryConfig().isPresent()) {
             _retryConfig = options.get().retryConfig().get();
-        } else if (this.sdkConfiguration.retryConfig.isPresent()) {
-            _retryConfig = this.sdkConfiguration.retryConfig.get();
+        } else if (this.sdkConfiguration.retryConfig().isPresent()) {
+            _retryConfig = this.sdkConfiguration.retryConfig().get();
         } else {
             _retryConfig = RetryConfig.builder()
                 .backoff(BackoffStrategy.builder()
@@ -944,6 +950,7 @@ public class PaymentServices implements
                     _r = sdkConfiguration.hooks()
                         .beforeRequest(
                             new BeforeRequestContextImpl(
+                                this.sdkConfiguration,
                                 _baseUrl,
                                 "get_payment_service", 
                                 Optional.of(List.of()), 
@@ -958,6 +965,7 @@ public class PaymentServices implements
                     return sdkConfiguration.hooks()
                         .afterError(
                             new AfterErrorContextImpl(
+                                this.sdkConfiguration,
                                 _baseUrl,
                                 "get_payment_service",
                                  Optional.of(List.of()),
@@ -972,7 +980,8 @@ public class PaymentServices implements
         HttpResponse<InputStream> _httpRes = sdkConfiguration.hooks()
                  .afterSuccess(
                      new AfterSuccessContextImpl(
-                          _baseUrl,
+                         this.sdkConfiguration,
+                         _baseUrl,
                          "get_payment_service", 
                          Optional.of(List.of()), 
                          _hookSecuritySource),
@@ -1273,7 +1282,7 @@ public class PaymentServices implements
                 .build();
         
         String _baseUrl = Utils.templateUrl(
-                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
+                this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 CreatePaymentServiceRequest.class,
                 _baseUrl,
@@ -1299,14 +1308,15 @@ public class PaymentServices implements
                 SDKConfiguration.USER_AGENT);
         _req.addHeaders(Utils.getHeadersFromMetadata(request, this.sdkConfiguration.globals));
         
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
+        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
         Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
+                this.sdkConfiguration.securitySource().getSecurity());
+        HTTPClient _client = this.sdkConfiguration.client();
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      this.sdkConfiguration,
                       _baseUrl,
                       "create_payment_service", 
                       Optional.of(List.of()), 
@@ -1319,6 +1329,7 @@ public class PaymentServices implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "create_payment_service",
                             Optional.of(List.of()),
@@ -1329,6 +1340,7 @@ public class PaymentServices implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "create_payment_service",
                             Optional.of(List.of()), 
@@ -1339,6 +1351,7 @@ public class PaymentServices implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "create_payment_service",
                             Optional.of(List.of()),
@@ -1613,7 +1626,7 @@ public class PaymentServices implements
      */
     public DeletePaymentServiceResponse delete(
             String paymentServiceId) throws Exception {
-        return delete(paymentServiceId, Optional.empty(), JsonNullable.undefined());
+        return delete(paymentServiceId, JsonNullable.undefined());
     }
     
     /**
@@ -1622,25 +1635,22 @@ public class PaymentServices implements
      * <p>Deletes all the configuration of a payment service.
      * 
      * @param paymentServiceId the ID of the payment service
-     * @param timeoutInSeconds 
      * @param merchantAccountId 
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public DeletePaymentServiceResponse delete(
             String paymentServiceId,
-            Optional<Double> timeoutInSeconds,
             JsonNullable<String> merchantAccountId) throws Exception {
         DeletePaymentServiceRequest request =
             DeletePaymentServiceRequest
                 .builder()
                 .paymentServiceId(paymentServiceId)
-                .timeoutInSeconds(timeoutInSeconds)
                 .merchantAccountId(merchantAccountId)
                 .build();
         
         String _baseUrl = Utils.templateUrl(
-                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
+                this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 DeletePaymentServiceRequest.class,
                 _baseUrl,
@@ -1651,21 +1661,17 @@ public class PaymentServices implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
-        _req.addQueryParams(Utils.getQueryParams(
-                DeletePaymentServiceRequest.class,
-                request, 
-                this.sdkConfiguration.globals));
         _req.addHeaders(Utils.getHeadersFromMetadata(request, this.sdkConfiguration.globals));
         
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
+        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
         Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
+                this.sdkConfiguration.securitySource().getSecurity());
+        HTTPClient _client = this.sdkConfiguration.client();
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      this.sdkConfiguration,
                       _baseUrl,
                       "delete_payment_service", 
                       Optional.of(List.of()), 
@@ -1678,6 +1684,7 @@ public class PaymentServices implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "delete_payment_service",
                             Optional.of(List.of()),
@@ -1688,6 +1695,7 @@ public class PaymentServices implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "delete_payment_service",
                             Optional.of(List.of()), 
@@ -1698,6 +1706,7 @@ public class PaymentServices implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "delete_payment_service",
                             Optional.of(List.of()),
@@ -1972,7 +1981,7 @@ public class PaymentServices implements
      */
     public VerifyPaymentServiceCredentialsResponse verify(
             VerifyCredentials verifyCredentials) throws Exception {
-        return verify(Optional.empty(), JsonNullable.undefined(), verifyCredentials);
+        return verify(JsonNullable.undefined(), verifyCredentials);
     }
     
     /**
@@ -1980,26 +1989,23 @@ public class PaymentServices implements
      * 
      * <p>Verify the credentials of a configured payment service
      * 
-     * @param timeoutInSeconds 
      * @param merchantAccountId 
      * @param verifyCredentials 
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public VerifyPaymentServiceCredentialsResponse verify(
-            Optional<Double> timeoutInSeconds,
             JsonNullable<String> merchantAccountId,
             VerifyCredentials verifyCredentials) throws Exception {
         VerifyPaymentServiceCredentialsRequest request =
             VerifyPaymentServiceCredentialsRequest
                 .builder()
-                .timeoutInSeconds(timeoutInSeconds)
                 .merchantAccountId(merchantAccountId)
                 .verifyCredentials(verifyCredentials)
                 .build();
         
         String _baseUrl = Utils.templateUrl(
-                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
+                this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 _baseUrl,
                 "/payment-services/verify");
@@ -2021,21 +2027,17 @@ public class PaymentServices implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
-        _req.addQueryParams(Utils.getQueryParams(
-                VerifyPaymentServiceCredentialsRequest.class,
-                request, 
-                this.sdkConfiguration.globals));
         _req.addHeaders(Utils.getHeadersFromMetadata(request, this.sdkConfiguration.globals));
         
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
+        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
         Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
+                this.sdkConfiguration.securitySource().getSecurity());
+        HTTPClient _client = this.sdkConfiguration.client();
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      this.sdkConfiguration,
                       _baseUrl,
                       "verify_payment_service_credentials", 
                       Optional.of(List.of()), 
@@ -2048,6 +2050,7 @@ public class PaymentServices implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "verify_payment_service_credentials",
                             Optional.of(List.of()),
@@ -2058,6 +2061,7 @@ public class PaymentServices implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "verify_payment_service_credentials",
                             Optional.of(List.of()), 
@@ -2068,6 +2072,7 @@ public class PaymentServices implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "verify_payment_service_credentials",
                             Optional.of(List.of()),
@@ -2371,7 +2376,7 @@ public class PaymentServices implements
                 .build();
         
         String _baseUrl = Utils.templateUrl(
-                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
+                this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 CreatePaymentServiceSessionRequest.class,
                 _baseUrl,
@@ -2397,14 +2402,15 @@ public class PaymentServices implements
                 SDKConfiguration.USER_AGENT);
         _req.addHeaders(Utils.getHeadersFromMetadata(request, this.sdkConfiguration.globals));
         
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
+        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
         Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
+                this.sdkConfiguration.securitySource().getSecurity());
+        HTTPClient _client = this.sdkConfiguration.client();
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      this.sdkConfiguration,
                       _baseUrl,
                       "create_payment_service_session", 
                       Optional.of(List.of()), 
@@ -2417,6 +2423,7 @@ public class PaymentServices implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "create_payment_service_session",
                             Optional.of(List.of()),
@@ -2427,6 +2434,7 @@ public class PaymentServices implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "create_payment_service_session",
                             Optional.of(List.of()), 
@@ -2437,6 +2445,7 @@ public class PaymentServices implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "create_payment_service_session",
                             Optional.of(List.of()),

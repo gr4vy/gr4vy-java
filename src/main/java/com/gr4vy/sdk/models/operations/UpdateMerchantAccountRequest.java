@@ -5,16 +5,12 @@ package com.gr4vy.sdk.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.gr4vy.sdk.models.components.MerchantAccountUpdate;
-import com.gr4vy.sdk.utils.LazySingletonValue;
 import com.gr4vy.sdk.utils.SpeakeasyMetadata;
 import com.gr4vy.sdk.utils.Utils;
-import java.lang.Double;
 import java.lang.Override;
 import java.lang.String;
 import java.util.Objects;
-import java.util.Optional;
 
 public class UpdateMerchantAccountRequest {
 
@@ -24,29 +20,17 @@ public class UpdateMerchantAccountRequest {
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=merchant_account_id")
     private String merchantAccountId;
 
-    @SpeakeasyMetadata("queryParam:style=form,explode=true,name=timeout_in_seconds")
-    private Optional<Double> timeoutInSeconds;
-
     @SpeakeasyMetadata("request:mediaType=application/json")
     private MerchantAccountUpdate merchantAccountUpdate;
 
     @JsonCreator
     public UpdateMerchantAccountRequest(
             String merchantAccountId,
-            Optional<Double> timeoutInSeconds,
             MerchantAccountUpdate merchantAccountUpdate) {
         Utils.checkNotNull(merchantAccountId, "merchantAccountId");
-        Utils.checkNotNull(timeoutInSeconds, "timeoutInSeconds");
         Utils.checkNotNull(merchantAccountUpdate, "merchantAccountUpdate");
         this.merchantAccountId = merchantAccountId;
-        this.timeoutInSeconds = timeoutInSeconds;
         this.merchantAccountUpdate = merchantAccountUpdate;
-    }
-    
-    public UpdateMerchantAccountRequest(
-            String merchantAccountId,
-            MerchantAccountUpdate merchantAccountUpdate) {
-        this(merchantAccountId, Optional.empty(), merchantAccountUpdate);
     }
 
     /**
@@ -55,11 +39,6 @@ public class UpdateMerchantAccountRequest {
     @JsonIgnore
     public String merchantAccountId() {
         return merchantAccountId;
-    }
-
-    @JsonIgnore
-    public Optional<Double> timeoutInSeconds() {
-        return timeoutInSeconds;
     }
 
     @JsonIgnore
@@ -77,18 +56,6 @@ public class UpdateMerchantAccountRequest {
     public UpdateMerchantAccountRequest withMerchantAccountId(String merchantAccountId) {
         Utils.checkNotNull(merchantAccountId, "merchantAccountId");
         this.merchantAccountId = merchantAccountId;
-        return this;
-    }
-
-    public UpdateMerchantAccountRequest withTimeoutInSeconds(double timeoutInSeconds) {
-        Utils.checkNotNull(timeoutInSeconds, "timeoutInSeconds");
-        this.timeoutInSeconds = Optional.ofNullable(timeoutInSeconds);
-        return this;
-    }
-
-    public UpdateMerchantAccountRequest withTimeoutInSeconds(Optional<Double> timeoutInSeconds) {
-        Utils.checkNotNull(timeoutInSeconds, "timeoutInSeconds");
-        this.timeoutInSeconds = timeoutInSeconds;
         return this;
     }
 
@@ -110,7 +77,6 @@ public class UpdateMerchantAccountRequest {
         UpdateMerchantAccountRequest other = (UpdateMerchantAccountRequest) o;
         return 
             Objects.deepEquals(this.merchantAccountId, other.merchantAccountId) &&
-            Objects.deepEquals(this.timeoutInSeconds, other.timeoutInSeconds) &&
             Objects.deepEquals(this.merchantAccountUpdate, other.merchantAccountUpdate);
     }
     
@@ -118,7 +84,6 @@ public class UpdateMerchantAccountRequest {
     public int hashCode() {
         return Objects.hash(
             merchantAccountId,
-            timeoutInSeconds,
             merchantAccountUpdate);
     }
     
@@ -126,15 +91,12 @@ public class UpdateMerchantAccountRequest {
     public String toString() {
         return Utils.toString(UpdateMerchantAccountRequest.class,
                 "merchantAccountId", merchantAccountId,
-                "timeoutInSeconds", timeoutInSeconds,
                 "merchantAccountUpdate", merchantAccountUpdate);
     }
     
     public final static class Builder {
  
         private String merchantAccountId;
- 
-        private Optional<Double> timeoutInSeconds;
  
         private MerchantAccountUpdate merchantAccountUpdate;
         
@@ -151,18 +113,6 @@ public class UpdateMerchantAccountRequest {
             return this;
         }
 
-        public Builder timeoutInSeconds(double timeoutInSeconds) {
-            Utils.checkNotNull(timeoutInSeconds, "timeoutInSeconds");
-            this.timeoutInSeconds = Optional.ofNullable(timeoutInSeconds);
-            return this;
-        }
-
-        public Builder timeoutInSeconds(Optional<Double> timeoutInSeconds) {
-            Utils.checkNotNull(timeoutInSeconds, "timeoutInSeconds");
-            this.timeoutInSeconds = timeoutInSeconds;
-            return this;
-        }
-
         public Builder merchantAccountUpdate(MerchantAccountUpdate merchantAccountUpdate) {
             Utils.checkNotNull(merchantAccountUpdate, "merchantAccountUpdate");
             this.merchantAccountUpdate = merchantAccountUpdate;
@@ -170,19 +120,9 @@ public class UpdateMerchantAccountRequest {
         }
         
         public UpdateMerchantAccountRequest build() {
-            if (timeoutInSeconds == null) {
-                timeoutInSeconds = _SINGLETON_VALUE_TimeoutInSeconds.value();
-            }
             return new UpdateMerchantAccountRequest(
                 merchantAccountId,
-                timeoutInSeconds,
                 merchantAccountUpdate);
         }
-
-        private static final LazySingletonValue<Optional<Double>> _SINGLETON_VALUE_TimeoutInSeconds =
-                new LazySingletonValue<>(
-                        "timeout_in_seconds",
-                        "1",
-                        new TypeReference<Optional<Double>>() {});
     }
 }

@@ -44,7 +44,6 @@ import com.gr4vy.sdk.utils.SerializedBody;
 import com.gr4vy.sdk.utils.Utils.JsonShape;
 import com.gr4vy.sdk.utils.Utils;
 import java.io.InputStream;
-import java.lang.Double;
 import java.lang.Exception;
 import java.lang.Object;
 import java.lang.String;
@@ -124,7 +123,7 @@ public class PaymentServiceTokens implements
                 .build();
         
         String _baseUrl = Utils.templateUrl(
-                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
+                this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 ListPaymentMethodPaymentServiceTokensRequest.class,
                 _baseUrl,
@@ -142,16 +141,16 @@ public class PaymentServiceTokens implements
                 this.sdkConfiguration.globals));
         _req.addHeaders(Utils.getHeadersFromMetadata(request, this.sdkConfiguration.globals));
         
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
+        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
         Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
+                this.sdkConfiguration.securitySource().getSecurity());
+        HTTPClient _client = this.sdkConfiguration.client();
         HTTPRequest _finalReq = _req;
         RetryConfig _retryConfig;
         if (options.isPresent() && options.get().retryConfig().isPresent()) {
             _retryConfig = options.get().retryConfig().get();
-        } else if (this.sdkConfiguration.retryConfig.isPresent()) {
-            _retryConfig = this.sdkConfiguration.retryConfig.get();
+        } else if (this.sdkConfiguration.retryConfig().isPresent()) {
+            _retryConfig = this.sdkConfiguration.retryConfig().get();
         } else {
             _retryConfig = RetryConfig.builder()
                 .backoff(BackoffStrategy.builder()
@@ -172,6 +171,7 @@ public class PaymentServiceTokens implements
                     _r = sdkConfiguration.hooks()
                         .beforeRequest(
                             new BeforeRequestContextImpl(
+                                this.sdkConfiguration,
                                 _baseUrl,
                                 "list_payment_method_payment_service_tokens", 
                                 Optional.of(List.of()), 
@@ -186,6 +186,7 @@ public class PaymentServiceTokens implements
                     return sdkConfiguration.hooks()
                         .afterError(
                             new AfterErrorContextImpl(
+                                this.sdkConfiguration,
                                 _baseUrl,
                                 "list_payment_method_payment_service_tokens",
                                  Optional.of(List.of()),
@@ -200,7 +201,8 @@ public class PaymentServiceTokens implements
         HttpResponse<InputStream> _httpRes = sdkConfiguration.hooks()
                  .afterSuccess(
                      new AfterSuccessContextImpl(
-                          _baseUrl,
+                         this.sdkConfiguration,
+                         _baseUrl,
                          "list_payment_method_payment_service_tokens", 
                          Optional.of(List.of()), 
                          _hookSecuritySource),
@@ -474,7 +476,7 @@ public class PaymentServiceTokens implements
     public CreatePaymentMethodPaymentServiceTokenResponse create(
             String paymentMethodId,
             PaymentServiceTokenCreate paymentServiceTokenCreate) throws Exception {
-        return create(paymentMethodId, Optional.empty(), JsonNullable.undefined(), paymentServiceTokenCreate);
+        return create(paymentMethodId, JsonNullable.undefined(), paymentServiceTokenCreate);
     }
     
     /**
@@ -483,7 +485,6 @@ public class PaymentServiceTokens implements
      * <p>Create a gateway tokens for a payment method.
      * 
      * @param paymentMethodId The ID of the payment method
-     * @param timeoutInSeconds 
      * @param merchantAccountId 
      * @param paymentServiceTokenCreate 
      * @return The response from the API call
@@ -491,20 +492,18 @@ public class PaymentServiceTokens implements
      */
     public CreatePaymentMethodPaymentServiceTokenResponse create(
             String paymentMethodId,
-            Optional<Double> timeoutInSeconds,
             JsonNullable<String> merchantAccountId,
             PaymentServiceTokenCreate paymentServiceTokenCreate) throws Exception {
         CreatePaymentMethodPaymentServiceTokenRequest request =
             CreatePaymentMethodPaymentServiceTokenRequest
                 .builder()
                 .paymentMethodId(paymentMethodId)
-                .timeoutInSeconds(timeoutInSeconds)
                 .merchantAccountId(merchantAccountId)
                 .paymentServiceTokenCreate(paymentServiceTokenCreate)
                 .build();
         
         String _baseUrl = Utils.templateUrl(
-                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
+                this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 CreatePaymentMethodPaymentServiceTokenRequest.class,
                 _baseUrl,
@@ -528,21 +527,17 @@ public class PaymentServiceTokens implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
-        _req.addQueryParams(Utils.getQueryParams(
-                CreatePaymentMethodPaymentServiceTokenRequest.class,
-                request, 
-                this.sdkConfiguration.globals));
         _req.addHeaders(Utils.getHeadersFromMetadata(request, this.sdkConfiguration.globals));
         
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
+        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
         Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
+                this.sdkConfiguration.securitySource().getSecurity());
+        HTTPClient _client = this.sdkConfiguration.client();
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      this.sdkConfiguration,
                       _baseUrl,
                       "create_payment_method_payment_service_token", 
                       Optional.of(List.of()), 
@@ -555,6 +550,7 @@ public class PaymentServiceTokens implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "create_payment_method_payment_service_token",
                             Optional.of(List.of()),
@@ -565,6 +561,7 @@ public class PaymentServiceTokens implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "create_payment_method_payment_service_token",
                             Optional.of(List.of()), 
@@ -575,6 +572,7 @@ public class PaymentServiceTokens implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "create_payment_method_payment_service_token",
                             Optional.of(List.of()),
@@ -851,7 +849,7 @@ public class PaymentServiceTokens implements
     public DeletePaymentMethodPaymentServiceTokenResponse delete(
             String paymentMethodId,
             String paymentServiceTokenId) throws Exception {
-        return delete(paymentMethodId, paymentServiceTokenId, Optional.empty(), JsonNullable.undefined());
+        return delete(paymentMethodId, paymentServiceTokenId, JsonNullable.undefined());
     }
     
     /**
@@ -861,7 +859,6 @@ public class PaymentServiceTokens implements
      * 
      * @param paymentMethodId The ID of the payment method
      * @param paymentServiceTokenId The ID of the payment service token
-     * @param timeoutInSeconds 
      * @param merchantAccountId 
      * @return The response from the API call
      * @throws Exception if the API call fails
@@ -869,19 +866,17 @@ public class PaymentServiceTokens implements
     public DeletePaymentMethodPaymentServiceTokenResponse delete(
             String paymentMethodId,
             String paymentServiceTokenId,
-            Optional<Double> timeoutInSeconds,
             JsonNullable<String> merchantAccountId) throws Exception {
         DeletePaymentMethodPaymentServiceTokenRequest request =
             DeletePaymentMethodPaymentServiceTokenRequest
                 .builder()
                 .paymentMethodId(paymentMethodId)
                 .paymentServiceTokenId(paymentServiceTokenId)
-                .timeoutInSeconds(timeoutInSeconds)
                 .merchantAccountId(merchantAccountId)
                 .build();
         
         String _baseUrl = Utils.templateUrl(
-                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
+                this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 DeletePaymentMethodPaymentServiceTokenRequest.class,
                 _baseUrl,
@@ -892,21 +887,17 @@ public class PaymentServiceTokens implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
-        _req.addQueryParams(Utils.getQueryParams(
-                DeletePaymentMethodPaymentServiceTokenRequest.class,
-                request, 
-                this.sdkConfiguration.globals));
         _req.addHeaders(Utils.getHeadersFromMetadata(request, this.sdkConfiguration.globals));
         
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
+        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
         Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
+                this.sdkConfiguration.securitySource().getSecurity());
+        HTTPClient _client = this.sdkConfiguration.client();
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      this.sdkConfiguration,
                       _baseUrl,
                       "delete_payment_method_payment_service_token", 
                       Optional.of(List.of()), 
@@ -919,6 +910,7 @@ public class PaymentServiceTokens implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "delete_payment_method_payment_service_token",
                             Optional.of(List.of()),
@@ -929,6 +921,7 @@ public class PaymentServiceTokens implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "delete_payment_method_payment_service_token",
                             Optional.of(List.of()), 
@@ -939,6 +932,7 @@ public class PaymentServiceTokens implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "delete_payment_method_payment_service_token",
                             Optional.of(List.of()),

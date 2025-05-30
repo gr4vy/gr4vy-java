@@ -34,7 +34,6 @@ import com.gr4vy.sdk.utils.SerializedBody;
 import com.gr4vy.sdk.utils.Utils.JsonShape;
 import com.gr4vy.sdk.utils.Utils;
 import java.io.InputStream;
-import java.lang.Double;
 import java.lang.Exception;
 import java.lang.Object;
 import java.lang.String;
@@ -79,7 +78,7 @@ public class Domains implements
     public RegisterDigitalWalletDomainResponse create(
             String digitalWalletId,
             DigitalWalletDomain digitalWalletDomain) throws Exception {
-        return create(digitalWalletId, Optional.empty(), JsonNullable.undefined(), digitalWalletDomain);
+        return create(digitalWalletId, JsonNullable.undefined(), digitalWalletDomain);
     }
     
     /**
@@ -88,7 +87,6 @@ public class Domains implements
      * <p>Register a digital wallet domain (Apple Pay only).
      * 
      * @param digitalWalletId The ID of the digital wallet to remove a domain for.
-     * @param timeoutInSeconds 
      * @param merchantAccountId 
      * @param digitalWalletDomain 
      * @return The response from the API call
@@ -96,20 +94,18 @@ public class Domains implements
      */
     public RegisterDigitalWalletDomainResponse create(
             String digitalWalletId,
-            Optional<Double> timeoutInSeconds,
             JsonNullable<String> merchantAccountId,
             DigitalWalletDomain digitalWalletDomain) throws Exception {
         RegisterDigitalWalletDomainRequest request =
             RegisterDigitalWalletDomainRequest
                 .builder()
                 .digitalWalletId(digitalWalletId)
-                .timeoutInSeconds(timeoutInSeconds)
                 .merchantAccountId(merchantAccountId)
                 .digitalWalletDomain(digitalWalletDomain)
                 .build();
         
         String _baseUrl = Utils.templateUrl(
-                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
+                this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 RegisterDigitalWalletDomainRequest.class,
                 _baseUrl,
@@ -133,21 +129,17 @@ public class Domains implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
-        _req.addQueryParams(Utils.getQueryParams(
-                RegisterDigitalWalletDomainRequest.class,
-                request, 
-                this.sdkConfiguration.globals));
         _req.addHeaders(Utils.getHeadersFromMetadata(request, this.sdkConfiguration.globals));
         
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
+        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
         Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
+                this.sdkConfiguration.securitySource().getSecurity());
+        HTTPClient _client = this.sdkConfiguration.client();
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      this.sdkConfiguration,
                       _baseUrl,
                       "register_digital_wallet_domain", 
                       Optional.of(List.of()), 
@@ -160,6 +152,7 @@ public class Domains implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "register_digital_wallet_domain",
                             Optional.of(List.of()),
@@ -170,6 +163,7 @@ public class Domains implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "register_digital_wallet_domain",
                             Optional.of(List.of()), 
@@ -180,6 +174,7 @@ public class Domains implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "register_digital_wallet_domain",
                             Optional.of(List.of()),
@@ -456,7 +451,7 @@ public class Domains implements
     public UnregisterDigitalWalletDomainResponse delete(
             String digitalWalletId,
             DigitalWalletDomain digitalWalletDomain) throws Exception {
-        return delete(digitalWalletId, Optional.empty(), JsonNullable.undefined(), digitalWalletDomain);
+        return delete(digitalWalletId, JsonNullable.undefined(), digitalWalletDomain);
     }
     
     /**
@@ -465,7 +460,6 @@ public class Domains implements
      * <p>Remove a digital wallet domain (Apple Pay only).
      * 
      * @param digitalWalletId 
-     * @param timeoutInSeconds 
      * @param merchantAccountId 
      * @param digitalWalletDomain 
      * @return The response from the API call
@@ -473,20 +467,18 @@ public class Domains implements
      */
     public UnregisterDigitalWalletDomainResponse delete(
             String digitalWalletId,
-            Optional<Double> timeoutInSeconds,
             JsonNullable<String> merchantAccountId,
             DigitalWalletDomain digitalWalletDomain) throws Exception {
         UnregisterDigitalWalletDomainRequest request =
             UnregisterDigitalWalletDomainRequest
                 .builder()
                 .digitalWalletId(digitalWalletId)
-                .timeoutInSeconds(timeoutInSeconds)
                 .merchantAccountId(merchantAccountId)
                 .digitalWalletDomain(digitalWalletDomain)
                 .build();
         
         String _baseUrl = Utils.templateUrl(
-                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
+                this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 UnregisterDigitalWalletDomainRequest.class,
                 _baseUrl,
@@ -510,21 +502,17 @@ public class Domains implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
-        _req.addQueryParams(Utils.getQueryParams(
-                UnregisterDigitalWalletDomainRequest.class,
-                request, 
-                this.sdkConfiguration.globals));
         _req.addHeaders(Utils.getHeadersFromMetadata(request, this.sdkConfiguration.globals));
         
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
+        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
         Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
+                this.sdkConfiguration.securitySource().getSecurity());
+        HTTPClient _client = this.sdkConfiguration.client();
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      this.sdkConfiguration,
                       _baseUrl,
                       "unregister_digital_wallet_domain", 
                       Optional.of(List.of()), 
@@ -537,6 +525,7 @@ public class Domains implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "unregister_digital_wallet_domain",
                             Optional.of(List.of()),
@@ -547,6 +536,7 @@ public class Domains implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "unregister_digital_wallet_domain",
                             Optional.of(List.of()), 
@@ -557,6 +547,7 @@ public class Domains implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "unregister_digital_wallet_domain",
                             Optional.of(List.of()),

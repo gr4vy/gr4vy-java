@@ -3,23 +3,15 @@
  */
 package com.gr4vy.sdk.models.operations;
 
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.gr4vy.sdk.models.components.DigitalWalletUpdate;
-import com.gr4vy.sdk.utils.LazySingletonValue;
 import com.gr4vy.sdk.utils.Utils;
-import java.lang.Double;
 import java.lang.Exception;
 import java.lang.String;
-import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 public class UpdateDigitalWalletRequestBuilder {
 
     private String digitalWalletId;
-    private Optional<Double> timeoutInSeconds = Utils.readDefaultOrConstValue(
-                            "timeoutInSeconds",
-                            "1",
-                            new TypeReference<Optional<Double>>() {});
     private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
     private DigitalWalletUpdate digitalWalletUpdate;
     private final SDKMethodInterfaces.MethodCallUpdateDigitalWallet sdk;
@@ -31,18 +23,6 @@ public class UpdateDigitalWalletRequestBuilder {
     public UpdateDigitalWalletRequestBuilder digitalWalletId(String digitalWalletId) {
         Utils.checkNotNull(digitalWalletId, "digitalWalletId");
         this.digitalWalletId = digitalWalletId;
-        return this;
-    }
-                
-    public UpdateDigitalWalletRequestBuilder timeoutInSeconds(double timeoutInSeconds) {
-        Utils.checkNotNull(timeoutInSeconds, "timeoutInSeconds");
-        this.timeoutInSeconds = Optional.of(timeoutInSeconds);
-        return this;
-    }
-
-    public UpdateDigitalWalletRequestBuilder timeoutInSeconds(Optional<Double> timeoutInSeconds) {
-        Utils.checkNotNull(timeoutInSeconds, "timeoutInSeconds");
-        this.timeoutInSeconds = timeoutInSeconds;
         return this;
     }
 
@@ -65,19 +45,10 @@ public class UpdateDigitalWalletRequestBuilder {
     }
 
     public UpdateDigitalWalletResponse call() throws Exception {
-        if (timeoutInSeconds == null) {
-            timeoutInSeconds = _SINGLETON_VALUE_TimeoutInSeconds.value();
-        }
+
         return sdk.update(
             digitalWalletId,
-            timeoutInSeconds,
             merchantAccountId,
             digitalWalletUpdate);
     }
-
-    private static final LazySingletonValue<Optional<Double>> _SINGLETON_VALUE_TimeoutInSeconds =
-            new LazySingletonValue<>(
-                    "timeoutInSeconds",
-                    "1",
-                    new TypeReference<Optional<Double>>() {});
 }

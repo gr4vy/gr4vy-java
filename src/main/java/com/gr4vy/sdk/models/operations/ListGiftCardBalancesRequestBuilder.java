@@ -3,40 +3,20 @@
  */
 package com.gr4vy.sdk.models.operations;
 
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.gr4vy.sdk.models.components.GiftCardBalanceRequest;
-import com.gr4vy.sdk.utils.LazySingletonValue;
 import com.gr4vy.sdk.utils.Utils;
-import java.lang.Double;
 import java.lang.Exception;
 import java.lang.String;
-import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 public class ListGiftCardBalancesRequestBuilder {
 
-    private Optional<Double> timeoutInSeconds = Utils.readDefaultOrConstValue(
-                            "timeoutInSeconds",
-                            "1",
-                            new TypeReference<Optional<Double>>() {});
     private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
     private GiftCardBalanceRequest giftCardBalanceRequest;
     private final SDKMethodInterfaces.MethodCallListGiftCardBalances sdk;
 
     public ListGiftCardBalancesRequestBuilder(SDKMethodInterfaces.MethodCallListGiftCardBalances sdk) {
         this.sdk = sdk;
-    }
-                
-    public ListGiftCardBalancesRequestBuilder timeoutInSeconds(double timeoutInSeconds) {
-        Utils.checkNotNull(timeoutInSeconds, "timeoutInSeconds");
-        this.timeoutInSeconds = Optional.of(timeoutInSeconds);
-        return this;
-    }
-
-    public ListGiftCardBalancesRequestBuilder timeoutInSeconds(Optional<Double> timeoutInSeconds) {
-        Utils.checkNotNull(timeoutInSeconds, "timeoutInSeconds");
-        this.timeoutInSeconds = timeoutInSeconds;
-        return this;
     }
 
     public ListGiftCardBalancesRequestBuilder merchantAccountId(String merchantAccountId) {
@@ -58,18 +38,9 @@ public class ListGiftCardBalancesRequestBuilder {
     }
 
     public ListGiftCardBalancesResponse call() throws Exception {
-        if (timeoutInSeconds == null) {
-            timeoutInSeconds = _SINGLETON_VALUE_TimeoutInSeconds.value();
-        }
+
         return sdk.list(
-            timeoutInSeconds,
             merchantAccountId,
             giftCardBalanceRequest);
     }
-
-    private static final LazySingletonValue<Optional<Double>> _SINGLETON_VALUE_TimeoutInSeconds =
-            new LazySingletonValue<>(
-                    "timeoutInSeconds",
-                    "1",
-                    new TypeReference<Optional<Double>>() {});
 }

@@ -32,7 +32,6 @@ import com.gr4vy.sdk.utils.SerializedBody;
 import com.gr4vy.sdk.utils.Utils.JsonShape;
 import com.gr4vy.sdk.utils.Utils;
 import java.io.InputStream;
-import java.lang.Double;
 import java.lang.Exception;
 import java.lang.Object;
 import java.lang.String;
@@ -74,7 +73,7 @@ public class All implements
      */
     public CreateFullTransactionRefundResponse create(
             String transactionId) throws Exception {
-        return create(transactionId, Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined());
+        return create(transactionId, JsonNullable.undefined(), JsonNullable.undefined());
     }
     
     /**
@@ -83,7 +82,6 @@ public class All implements
      * <p>Create a refund for all instruments on a transaction.
      * 
      * @param transactionId 
-     * @param timeoutInSeconds 
      * @param merchantAccountId 
      * @param transactionRefundAllCreate 
      * @return The response from the API call
@@ -91,20 +89,18 @@ public class All implements
      */
     public CreateFullTransactionRefundResponse create(
             String transactionId,
-            Optional<Double> timeoutInSeconds,
             JsonNullable<String> merchantAccountId,
             JsonNullable<? extends TransactionRefundAllCreate> transactionRefundAllCreate) throws Exception {
         CreateFullTransactionRefundRequest request =
             CreateFullTransactionRefundRequest
                 .builder()
                 .transactionId(transactionId)
-                .timeoutInSeconds(timeoutInSeconds)
                 .merchantAccountId(merchantAccountId)
                 .transactionRefundAllCreate(transactionRefundAllCreate)
                 .build();
         
         String _baseUrl = Utils.templateUrl(
-                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
+                this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 CreateFullTransactionRefundRequest.class,
                 _baseUrl,
@@ -125,21 +121,17 @@ public class All implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
-        _req.addQueryParams(Utils.getQueryParams(
-                CreateFullTransactionRefundRequest.class,
-                request, 
-                this.sdkConfiguration.globals));
         _req.addHeaders(Utils.getHeadersFromMetadata(request, this.sdkConfiguration.globals));
         
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
+        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
         Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
+                this.sdkConfiguration.securitySource().getSecurity());
+        HTTPClient _client = this.sdkConfiguration.client();
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      this.sdkConfiguration,
                       _baseUrl,
                       "create_full_transaction_refund", 
                       Optional.of(List.of()), 
@@ -152,6 +144,7 @@ public class All implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "create_full_transaction_refund",
                             Optional.of(List.of()),
@@ -162,6 +155,7 @@ public class All implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "create_full_transaction_refund",
                             Optional.of(List.of()), 
@@ -172,6 +166,7 @@ public class All implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "create_full_transaction_refund",
                             Optional.of(List.of()),

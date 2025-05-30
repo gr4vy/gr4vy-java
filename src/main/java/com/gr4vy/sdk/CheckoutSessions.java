@@ -46,7 +46,6 @@ import com.gr4vy.sdk.utils.SerializedBody;
 import com.gr4vy.sdk.utils.Utils.JsonShape;
 import com.gr4vy.sdk.utils.Utils;
 import java.io.InputStream;
-import java.lang.Double;
 import java.lang.Exception;
 import java.lang.Object;
 import java.lang.String;
@@ -92,7 +91,7 @@ public class CheckoutSessions implements
      * @throws Exception if the API call fails
      */
     public CreateCheckoutSessionResponse createDirect() throws Exception {
-        return create(Optional.empty(), JsonNullable.undefined(), Optional.empty());
+        return create(JsonNullable.undefined(), Optional.empty());
     }
     
     /**
@@ -100,26 +99,23 @@ public class CheckoutSessions implements
      * 
      * <p>Create a new checkout session.
      * 
-     * @param timeoutInSeconds 
      * @param merchantAccountId 
      * @param checkoutSessionCreate 
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public CreateCheckoutSessionResponse create(
-            Optional<Double> timeoutInSeconds,
             JsonNullable<String> merchantAccountId,
             Optional<? extends CheckoutSessionCreate> checkoutSessionCreate) throws Exception {
         CreateCheckoutSessionRequest request =
             CreateCheckoutSessionRequest
                 .builder()
-                .timeoutInSeconds(timeoutInSeconds)
                 .merchantAccountId(merchantAccountId)
                 .checkoutSessionCreate(checkoutSessionCreate)
                 .build();
         
         String _baseUrl = Utils.templateUrl(
-                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
+                this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 _baseUrl,
                 "/checkout/sessions");
@@ -138,21 +134,17 @@ public class CheckoutSessions implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
-        _req.addQueryParams(Utils.getQueryParams(
-                CreateCheckoutSessionRequest.class,
-                request, 
-                this.sdkConfiguration.globals));
         _req.addHeaders(Utils.getHeadersFromMetadata(request, this.sdkConfiguration.globals));
         
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
+        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
         Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
+                this.sdkConfiguration.securitySource().getSecurity());
+        HTTPClient _client = this.sdkConfiguration.client();
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      this.sdkConfiguration,
                       _baseUrl,
                       "create_checkout_session", 
                       Optional.of(List.of()), 
@@ -165,6 +157,7 @@ public class CheckoutSessions implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "create_checkout_session",
                             Optional.of(List.of()),
@@ -175,6 +168,7 @@ public class CheckoutSessions implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "create_checkout_session",
                             Optional.of(List.of()), 
@@ -185,6 +179,7 @@ public class CheckoutSessions implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "create_checkout_session",
                             Optional.of(List.of()),
@@ -461,7 +456,7 @@ public class CheckoutSessions implements
     public UpdateCheckoutSessionResponse update(
             String sessionId,
             CheckoutSessionCreate checkoutSessionCreate) throws Exception {
-        return update(sessionId, Optional.empty(), JsonNullable.undefined(), checkoutSessionCreate);
+        return update(sessionId, JsonNullable.undefined(), checkoutSessionCreate);
     }
     
     /**
@@ -470,7 +465,6 @@ public class CheckoutSessions implements
      * <p>Update the information stored on a checkout session.
      * 
      * @param sessionId The ID of the checkout session.
-     * @param timeoutInSeconds 
      * @param merchantAccountId 
      * @param checkoutSessionCreate 
      * @return The response from the API call
@@ -478,20 +472,18 @@ public class CheckoutSessions implements
      */
     public UpdateCheckoutSessionResponse update(
             String sessionId,
-            Optional<Double> timeoutInSeconds,
             JsonNullable<String> merchantAccountId,
             CheckoutSessionCreate checkoutSessionCreate) throws Exception {
         UpdateCheckoutSessionRequest request =
             UpdateCheckoutSessionRequest
                 .builder()
                 .sessionId(sessionId)
-                .timeoutInSeconds(timeoutInSeconds)
                 .merchantAccountId(merchantAccountId)
                 .checkoutSessionCreate(checkoutSessionCreate)
                 .build();
         
         String _baseUrl = Utils.templateUrl(
-                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
+                this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 UpdateCheckoutSessionRequest.class,
                 _baseUrl,
@@ -515,21 +507,17 @@ public class CheckoutSessions implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
-        _req.addQueryParams(Utils.getQueryParams(
-                UpdateCheckoutSessionRequest.class,
-                request, 
-                this.sdkConfiguration.globals));
         _req.addHeaders(Utils.getHeadersFromMetadata(request, this.sdkConfiguration.globals));
         
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
+        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
         Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
+                this.sdkConfiguration.securitySource().getSecurity());
+        HTTPClient _client = this.sdkConfiguration.client();
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      this.sdkConfiguration,
                       _baseUrl,
                       "update_checkout_session", 
                       Optional.of(List.of()), 
@@ -542,6 +530,7 @@ public class CheckoutSessions implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "update_checkout_session",
                             Optional.of(List.of()),
@@ -552,6 +541,7 @@ public class CheckoutSessions implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "update_checkout_session",
                             Optional.of(List.of()), 
@@ -562,6 +552,7 @@ public class CheckoutSessions implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "update_checkout_session",
                             Optional.of(List.of()),
@@ -836,7 +827,7 @@ public class CheckoutSessions implements
      */
     public GetCheckoutSessionResponse get(
             String sessionId) throws Exception {
-        return get(sessionId, Optional.empty(), JsonNullable.undefined(), Optional.empty());
+        return get(sessionId, JsonNullable.undefined(), Optional.empty());
     }
     
     /**
@@ -845,7 +836,6 @@ public class CheckoutSessions implements
      * <p>Retrieve the information stored on a checkout session.
      * 
      * @param sessionId The ID of the checkout session.
-     * @param timeoutInSeconds 
      * @param merchantAccountId 
      * @param options additional options
      * @return The response from the API call
@@ -853,7 +843,6 @@ public class CheckoutSessions implements
      */
     public GetCheckoutSessionResponse get(
             String sessionId,
-            Optional<Double> timeoutInSeconds,
             JsonNullable<String> merchantAccountId,
             Optional<Options> options) throws Exception {
 
@@ -864,12 +853,11 @@ public class CheckoutSessions implements
             GetCheckoutSessionRequest
                 .builder()
                 .sessionId(sessionId)
-                .timeoutInSeconds(timeoutInSeconds)
                 .merchantAccountId(merchantAccountId)
                 .build();
         
         String _baseUrl = Utils.templateUrl(
-                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
+                this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 GetCheckoutSessionRequest.class,
                 _baseUrl,
@@ -880,23 +868,18 @@ public class CheckoutSessions implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
-        _req.addQueryParams(Utils.getQueryParams(
-                GetCheckoutSessionRequest.class,
-                request, 
-                this.sdkConfiguration.globals));
         _req.addHeaders(Utils.getHeadersFromMetadata(request, this.sdkConfiguration.globals));
         
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
+        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
         Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
+                this.sdkConfiguration.securitySource().getSecurity());
+        HTTPClient _client = this.sdkConfiguration.client();
         HTTPRequest _finalReq = _req;
         RetryConfig _retryConfig;
         if (options.isPresent() && options.get().retryConfig().isPresent()) {
             _retryConfig = options.get().retryConfig().get();
-        } else if (this.sdkConfiguration.retryConfig.isPresent()) {
-            _retryConfig = this.sdkConfiguration.retryConfig.get();
+        } else if (this.sdkConfiguration.retryConfig().isPresent()) {
+            _retryConfig = this.sdkConfiguration.retryConfig().get();
         } else {
             _retryConfig = RetryConfig.builder()
                 .backoff(BackoffStrategy.builder()
@@ -917,6 +900,7 @@ public class CheckoutSessions implements
                     _r = sdkConfiguration.hooks()
                         .beforeRequest(
                             new BeforeRequestContextImpl(
+                                this.sdkConfiguration,
                                 _baseUrl,
                                 "get_checkout_session", 
                                 Optional.of(List.of()), 
@@ -931,6 +915,7 @@ public class CheckoutSessions implements
                     return sdkConfiguration.hooks()
                         .afterError(
                             new AfterErrorContextImpl(
+                                this.sdkConfiguration,
                                 _baseUrl,
                                 "get_checkout_session",
                                  Optional.of(List.of()),
@@ -945,7 +930,8 @@ public class CheckoutSessions implements
         HttpResponse<InputStream> _httpRes = sdkConfiguration.hooks()
                  .afterSuccess(
                      new AfterSuccessContextImpl(
-                          _baseUrl,
+                         this.sdkConfiguration,
+                         _baseUrl,
                          "get_checkout_session", 
                          Optional.of(List.of()), 
                          _hookSecuritySource),
@@ -1201,7 +1187,7 @@ public class CheckoutSessions implements
      */
     public DeleteCheckoutSessionResponse delete(
             String sessionId) throws Exception {
-        return delete(sessionId, Optional.empty(), JsonNullable.undefined());
+        return delete(sessionId, JsonNullable.undefined());
     }
     
     /**
@@ -1210,25 +1196,22 @@ public class CheckoutSessions implements
      * <p>Deleta a checkout session and all of its (PCI) data.
      * 
      * @param sessionId The ID of the checkout session.
-     * @param timeoutInSeconds 
      * @param merchantAccountId 
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public DeleteCheckoutSessionResponse delete(
             String sessionId,
-            Optional<Double> timeoutInSeconds,
             JsonNullable<String> merchantAccountId) throws Exception {
         DeleteCheckoutSessionRequest request =
             DeleteCheckoutSessionRequest
                 .builder()
                 .sessionId(sessionId)
-                .timeoutInSeconds(timeoutInSeconds)
                 .merchantAccountId(merchantAccountId)
                 .build();
         
         String _baseUrl = Utils.templateUrl(
-                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
+                this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 DeleteCheckoutSessionRequest.class,
                 _baseUrl,
@@ -1239,21 +1222,17 @@ public class CheckoutSessions implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
-        _req.addQueryParams(Utils.getQueryParams(
-                DeleteCheckoutSessionRequest.class,
-                request, 
-                this.sdkConfiguration.globals));
         _req.addHeaders(Utils.getHeadersFromMetadata(request, this.sdkConfiguration.globals));
         
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
+        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
         Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
+                this.sdkConfiguration.securitySource().getSecurity());
+        HTTPClient _client = this.sdkConfiguration.client();
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      this.sdkConfiguration,
                       _baseUrl,
                       "delete_checkout_session", 
                       Optional.of(List.of()), 
@@ -1266,6 +1245,7 @@ public class CheckoutSessions implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "delete_checkout_session",
                             Optional.of(List.of()),
@@ -1276,6 +1256,7 @@ public class CheckoutSessions implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "delete_checkout_session",
                             Optional.of(List.of()), 
@@ -1286,6 +1267,7 @@ public class CheckoutSessions implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "delete_checkout_session",
                             Optional.of(List.of()),

@@ -55,7 +55,6 @@ import com.jayway.jsonpath.JsonPath;
 import com.jayway.jsonpath.Option;
 import com.jayway.jsonpath.ReadContext;
 import java.io.InputStream;
-import java.lang.Double;
 import java.lang.Exception;
 import java.lang.Object;
 import java.lang.String;
@@ -145,7 +144,7 @@ public class Buyers implements
           options.get().validate(Arrays.asList(Options.Option.RETRY_CONFIG));
         }
         String _baseUrl = Utils.templateUrl(
-                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
+                this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 _baseUrl,
                 "/buyers");
@@ -161,16 +160,16 @@ public class Buyers implements
                 this.sdkConfiguration.globals));
         _req.addHeaders(Utils.getHeadersFromMetadata(request, this.sdkConfiguration.globals));
         
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
+        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
         Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
+                this.sdkConfiguration.securitySource().getSecurity());
+        HTTPClient _client = this.sdkConfiguration.client();
         HTTPRequest _finalReq = _req;
         RetryConfig _retryConfig;
         if (options.isPresent() && options.get().retryConfig().isPresent()) {
             _retryConfig = options.get().retryConfig().get();
-        } else if (this.sdkConfiguration.retryConfig.isPresent()) {
-            _retryConfig = this.sdkConfiguration.retryConfig.get();
+        } else if (this.sdkConfiguration.retryConfig().isPresent()) {
+            _retryConfig = this.sdkConfiguration.retryConfig().get();
         } else {
             _retryConfig = RetryConfig.builder()
                 .backoff(BackoffStrategy.builder()
@@ -191,6 +190,7 @@ public class Buyers implements
                     _r = sdkConfiguration.hooks()
                         .beforeRequest(
                             new BeforeRequestContextImpl(
+                                this.sdkConfiguration,
                                 _baseUrl,
                                 "list_buyers", 
                                 Optional.of(List.of()), 
@@ -205,6 +205,7 @@ public class Buyers implements
                     return sdkConfiguration.hooks()
                         .afterError(
                             new AfterErrorContextImpl(
+                                this.sdkConfiguration,
                                 _baseUrl,
                                 "list_buyers",
                                  Optional.of(List.of()),
@@ -219,7 +220,8 @@ public class Buyers implements
         HttpResponse<InputStream> _httpRes = sdkConfiguration.hooks()
                  .afterSuccess(
                      new AfterSuccessContextImpl(
-                          _baseUrl,
+                         this.sdkConfiguration,
+                         _baseUrl,
                          "list_buyers", 
                          Optional.of(List.of()), 
                          _hookSecuritySource),
@@ -516,7 +518,7 @@ public class Buyers implements
      */
     public AddBuyerResponse create(
             BuyerCreate buyerCreate) throws Exception {
-        return create(Optional.empty(), JsonNullable.undefined(), buyerCreate);
+        return create(JsonNullable.undefined(), buyerCreate);
     }
     
     /**
@@ -524,26 +526,23 @@ public class Buyers implements
      * 
      * <p>Create a new buyer record.
      * 
-     * @param timeoutInSeconds 
      * @param merchantAccountId 
      * @param buyerCreate Request body for creating a new buyer
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public AddBuyerResponse create(
-            Optional<Double> timeoutInSeconds,
             JsonNullable<String> merchantAccountId,
             BuyerCreate buyerCreate) throws Exception {
         AddBuyerRequest request =
             AddBuyerRequest
                 .builder()
-                .timeoutInSeconds(timeoutInSeconds)
                 .merchantAccountId(merchantAccountId)
                 .buyerCreate(buyerCreate)
                 .build();
         
         String _baseUrl = Utils.templateUrl(
-                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
+                this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 _baseUrl,
                 "/buyers");
@@ -565,21 +564,17 @@ public class Buyers implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
-        _req.addQueryParams(Utils.getQueryParams(
-                AddBuyerRequest.class,
-                request, 
-                this.sdkConfiguration.globals));
         _req.addHeaders(Utils.getHeadersFromMetadata(request, this.sdkConfiguration.globals));
         
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
+        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
         Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
+                this.sdkConfiguration.securitySource().getSecurity());
+        HTTPClient _client = this.sdkConfiguration.client();
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      this.sdkConfiguration,
                       _baseUrl,
                       "add_buyer", 
                       Optional.of(List.of()), 
@@ -592,6 +587,7 @@ public class Buyers implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "add_buyer",
                             Optional.of(List.of()),
@@ -602,6 +598,7 @@ public class Buyers implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "add_buyer",
                             Optional.of(List.of()), 
@@ -612,6 +609,7 @@ public class Buyers implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "add_buyer",
                             Optional.of(List.of()),
@@ -916,7 +914,7 @@ public class Buyers implements
                 .build();
         
         String _baseUrl = Utils.templateUrl(
-                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
+                this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 GetBuyerRequest.class,
                 _baseUrl,
@@ -929,16 +927,16 @@ public class Buyers implements
                 SDKConfiguration.USER_AGENT);
         _req.addHeaders(Utils.getHeadersFromMetadata(request, this.sdkConfiguration.globals));
         
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
+        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
         Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
+                this.sdkConfiguration.securitySource().getSecurity());
+        HTTPClient _client = this.sdkConfiguration.client();
         HTTPRequest _finalReq = _req;
         RetryConfig _retryConfig;
         if (options.isPresent() && options.get().retryConfig().isPresent()) {
             _retryConfig = options.get().retryConfig().get();
-        } else if (this.sdkConfiguration.retryConfig.isPresent()) {
-            _retryConfig = this.sdkConfiguration.retryConfig.get();
+        } else if (this.sdkConfiguration.retryConfig().isPresent()) {
+            _retryConfig = this.sdkConfiguration.retryConfig().get();
         } else {
             _retryConfig = RetryConfig.builder()
                 .backoff(BackoffStrategy.builder()
@@ -959,6 +957,7 @@ public class Buyers implements
                     _r = sdkConfiguration.hooks()
                         .beforeRequest(
                             new BeforeRequestContextImpl(
+                                this.sdkConfiguration,
                                 _baseUrl,
                                 "get_buyer", 
                                 Optional.of(List.of()), 
@@ -973,6 +972,7 @@ public class Buyers implements
                     return sdkConfiguration.hooks()
                         .afterError(
                             new AfterErrorContextImpl(
+                                this.sdkConfiguration,
                                 _baseUrl,
                                 "get_buyer",
                                  Optional.of(List.of()),
@@ -987,7 +987,8 @@ public class Buyers implements
         HttpResponse<InputStream> _httpRes = sdkConfiguration.hooks()
                  .afterSuccess(
                      new AfterSuccessContextImpl(
-                          _baseUrl,
+                         this.sdkConfiguration,
+                         _baseUrl,
                          "get_buyer", 
                          Optional.of(List.of()), 
                          _hookSecuritySource),
@@ -1261,7 +1262,7 @@ public class Buyers implements
     public UpdateBuyerResponse update(
             String buyerId,
             BuyerUpdate buyerUpdate) throws Exception {
-        return update(buyerId, Optional.empty(), JsonNullable.undefined(), buyerUpdate);
+        return update(buyerId, JsonNullable.undefined(), buyerUpdate);
     }
     
     /**
@@ -1270,7 +1271,6 @@ public class Buyers implements
      * <p>Updates a buyer record.
      * 
      * @param buyerId The ID of the buyer to edit.
-     * @param timeoutInSeconds 
      * @param merchantAccountId 
      * @param buyerUpdate Request body for updating an existing buyer
      * @return The response from the API call
@@ -1278,20 +1278,18 @@ public class Buyers implements
      */
     public UpdateBuyerResponse update(
             String buyerId,
-            Optional<Double> timeoutInSeconds,
             JsonNullable<String> merchantAccountId,
             BuyerUpdate buyerUpdate) throws Exception {
         UpdateBuyerRequest request =
             UpdateBuyerRequest
                 .builder()
                 .buyerId(buyerId)
-                .timeoutInSeconds(timeoutInSeconds)
                 .merchantAccountId(merchantAccountId)
                 .buyerUpdate(buyerUpdate)
                 .build();
         
         String _baseUrl = Utils.templateUrl(
-                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
+                this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 UpdateBuyerRequest.class,
                 _baseUrl,
@@ -1315,21 +1313,17 @@ public class Buyers implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
-        _req.addQueryParams(Utils.getQueryParams(
-                UpdateBuyerRequest.class,
-                request, 
-                this.sdkConfiguration.globals));
         _req.addHeaders(Utils.getHeadersFromMetadata(request, this.sdkConfiguration.globals));
         
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
+        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
         Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
+                this.sdkConfiguration.securitySource().getSecurity());
+        HTTPClient _client = this.sdkConfiguration.client();
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      this.sdkConfiguration,
                       _baseUrl,
                       "update_buyer", 
                       Optional.of(List.of()), 
@@ -1342,6 +1336,7 @@ public class Buyers implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "update_buyer",
                             Optional.of(List.of()),
@@ -1352,6 +1347,7 @@ public class Buyers implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "update_buyer",
                             Optional.of(List.of()), 
@@ -1362,6 +1358,7 @@ public class Buyers implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "update_buyer",
                             Optional.of(List.of()),
@@ -1636,7 +1633,7 @@ public class Buyers implements
      */
     public DeleteBuyerResponse delete(
             String buyerId) throws Exception {
-        return delete(buyerId, Optional.empty(), JsonNullable.undefined());
+        return delete(buyerId, JsonNullable.undefined());
     }
     
     /**
@@ -1645,25 +1642,22 @@ public class Buyers implements
      * <p>Permanently removes a buyer record.
      * 
      * @param buyerId The ID of the buyer to delete.
-     * @param timeoutInSeconds 
      * @param merchantAccountId 
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public DeleteBuyerResponse delete(
             String buyerId,
-            Optional<Double> timeoutInSeconds,
             JsonNullable<String> merchantAccountId) throws Exception {
         DeleteBuyerRequest request =
             DeleteBuyerRequest
                 .builder()
                 .buyerId(buyerId)
-                .timeoutInSeconds(timeoutInSeconds)
                 .merchantAccountId(merchantAccountId)
                 .build();
         
         String _baseUrl = Utils.templateUrl(
-                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
+                this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 DeleteBuyerRequest.class,
                 _baseUrl,
@@ -1674,21 +1668,17 @@ public class Buyers implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
-        _req.addQueryParams(Utils.getQueryParams(
-                DeleteBuyerRequest.class,
-                request, 
-                this.sdkConfiguration.globals));
         _req.addHeaders(Utils.getHeadersFromMetadata(request, this.sdkConfiguration.globals));
         
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
+        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
         Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
+                this.sdkConfiguration.securitySource().getSecurity());
+        HTTPClient _client = this.sdkConfiguration.client();
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      this.sdkConfiguration,
                       _baseUrl,
                       "delete_buyer", 
                       Optional.of(List.of()), 
@@ -1701,6 +1691,7 @@ public class Buyers implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "delete_buyer",
                             Optional.of(List.of()),
@@ -1711,6 +1702,7 @@ public class Buyers implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "delete_buyer",
                             Optional.of(List.of()), 
@@ -1721,6 +1713,7 @@ public class Buyers implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "delete_buyer",
                             Optional.of(List.of()),

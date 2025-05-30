@@ -5,15 +5,11 @@ package com.gr4vy.sdk.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.gr4vy.sdk.utils.LazySingletonValue;
 import com.gr4vy.sdk.utils.SpeakeasyMetadata;
 import com.gr4vy.sdk.utils.Utils;
-import java.lang.Double;
 import java.lang.Override;
 import java.lang.String;
 import java.util.Objects;
-import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 public class DeleteBuyerRequest {
@@ -24,9 +20,6 @@ public class DeleteBuyerRequest {
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=buyer_id")
     private String buyerId;
 
-    @SpeakeasyMetadata("queryParam:style=form,explode=true,name=timeout_in_seconds")
-    private Optional<Double> timeoutInSeconds;
-
     /**
      * The ID of the merchant account to use for this request.
      */
@@ -36,19 +29,16 @@ public class DeleteBuyerRequest {
     @JsonCreator
     public DeleteBuyerRequest(
             String buyerId,
-            Optional<Double> timeoutInSeconds,
             JsonNullable<String> merchantAccountId) {
         Utils.checkNotNull(buyerId, "buyerId");
-        Utils.checkNotNull(timeoutInSeconds, "timeoutInSeconds");
         Utils.checkNotNull(merchantAccountId, "merchantAccountId");
         this.buyerId = buyerId;
-        this.timeoutInSeconds = timeoutInSeconds;
         this.merchantAccountId = merchantAccountId;
     }
     
     public DeleteBuyerRequest(
             String buyerId) {
-        this(buyerId, Optional.empty(), JsonNullable.undefined());
+        this(buyerId, JsonNullable.undefined());
     }
 
     /**
@@ -57,11 +47,6 @@ public class DeleteBuyerRequest {
     @JsonIgnore
     public String buyerId() {
         return buyerId;
-    }
-
-    @JsonIgnore
-    public Optional<Double> timeoutInSeconds() {
-        return timeoutInSeconds;
     }
 
     /**
@@ -82,18 +67,6 @@ public class DeleteBuyerRequest {
     public DeleteBuyerRequest withBuyerId(String buyerId) {
         Utils.checkNotNull(buyerId, "buyerId");
         this.buyerId = buyerId;
-        return this;
-    }
-
-    public DeleteBuyerRequest withTimeoutInSeconds(double timeoutInSeconds) {
-        Utils.checkNotNull(timeoutInSeconds, "timeoutInSeconds");
-        this.timeoutInSeconds = Optional.ofNullable(timeoutInSeconds);
-        return this;
-    }
-
-    public DeleteBuyerRequest withTimeoutInSeconds(Optional<Double> timeoutInSeconds) {
-        Utils.checkNotNull(timeoutInSeconds, "timeoutInSeconds");
-        this.timeoutInSeconds = timeoutInSeconds;
         return this;
     }
 
@@ -127,7 +100,6 @@ public class DeleteBuyerRequest {
         DeleteBuyerRequest other = (DeleteBuyerRequest) o;
         return 
             Objects.deepEquals(this.buyerId, other.buyerId) &&
-            Objects.deepEquals(this.timeoutInSeconds, other.timeoutInSeconds) &&
             Objects.deepEquals(this.merchantAccountId, other.merchantAccountId);
     }
     
@@ -135,7 +107,6 @@ public class DeleteBuyerRequest {
     public int hashCode() {
         return Objects.hash(
             buyerId,
-            timeoutInSeconds,
             merchantAccountId);
     }
     
@@ -143,15 +114,12 @@ public class DeleteBuyerRequest {
     public String toString() {
         return Utils.toString(DeleteBuyerRequest.class,
                 "buyerId", buyerId,
-                "timeoutInSeconds", timeoutInSeconds,
                 "merchantAccountId", merchantAccountId);
     }
     
     public final static class Builder {
  
         private String buyerId;
- 
-        private Optional<Double> timeoutInSeconds;
  
         private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
         
@@ -165,18 +133,6 @@ public class DeleteBuyerRequest {
         public Builder buyerId(String buyerId) {
             Utils.checkNotNull(buyerId, "buyerId");
             this.buyerId = buyerId;
-            return this;
-        }
-
-        public Builder timeoutInSeconds(double timeoutInSeconds) {
-            Utils.checkNotNull(timeoutInSeconds, "timeoutInSeconds");
-            this.timeoutInSeconds = Optional.ofNullable(timeoutInSeconds);
-            return this;
-        }
-
-        public Builder timeoutInSeconds(Optional<Double> timeoutInSeconds) {
-            Utils.checkNotNull(timeoutInSeconds, "timeoutInSeconds");
-            this.timeoutInSeconds = timeoutInSeconds;
             return this;
         }
 
@@ -199,19 +155,9 @@ public class DeleteBuyerRequest {
         }
         
         public DeleteBuyerRequest build() {
-            if (timeoutInSeconds == null) {
-                timeoutInSeconds = _SINGLETON_VALUE_TimeoutInSeconds.value();
-            }
             return new DeleteBuyerRequest(
                 buyerId,
-                timeoutInSeconds,
                 merchantAccountId);
         }
-
-        private static final LazySingletonValue<Optional<Double>> _SINGLETON_VALUE_TimeoutInSeconds =
-                new LazySingletonValue<>(
-                        "timeout_in_seconds",
-                        "1",
-                        new TypeReference<Optional<Double>>() {});
     }
 }

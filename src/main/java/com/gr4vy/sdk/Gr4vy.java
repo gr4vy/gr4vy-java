@@ -5,7 +5,6 @@ package com.gr4vy.sdk;
 
 import com.gr4vy.sdk.utils.HTTPClient;
 import com.gr4vy.sdk.utils.RetryConfig;
-import com.gr4vy.sdk.utils.SpeakeasyHTTPClient;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.String;
 import java.lang.SuppressWarnings;
@@ -137,7 +136,7 @@ public class Gr4vy {
         return payouts;
     }
 
-    private final SDKConfiguration sdkConfiguration;
+    private SDKConfiguration sdkConfiguration;
 
     /**
      * The Builder class allows the configuration of a new instance of the SDK.
@@ -145,6 +144,9 @@ public class Gr4vy {
     public static class Builder {
 
         private final SDKConfiguration sdkConfiguration = new SDKConfiguration();
+        private String serverUrl;
+        private String server;
+        
 
         private Builder() {
         }
@@ -156,7 +158,7 @@ public class Gr4vy {
          * @return The builder instance.
          */
         public Builder client(HTTPClient client) {
-            this.sdkConfiguration.defaultClient = client;
+            this.sdkConfiguration.setClient(client);
             return this;
         }
         /**
@@ -166,9 +168,9 @@ public class Gr4vy {
          * @return The builder instance.
          */
         public Builder bearerAuth(String bearerAuth) {
-            this.sdkConfiguration.securitySource = SecuritySource.of(com.gr4vy.sdk.models.components.Security.builder()
+            this.sdkConfiguration.setSecuritySource(SecuritySource.of(com.gr4vy.sdk.models.components.Security.builder()
               .bearerAuth(bearerAuth)
-              .build());
+              .build()));
             return this;
         }
 
@@ -179,7 +181,8 @@ public class Gr4vy {
          * @return The builder instance.
          */
         public Builder securitySource(SecuritySource securitySource) {
-            this.sdkConfiguration.securitySource = securitySource;
+            Utils.checkNotNull(securitySource, "securitySource");
+            this.sdkConfiguration.setSecuritySource(securitySource);
             return this;
         }
         
@@ -190,7 +193,7 @@ public class Gr4vy {
          * @return The builder instance.
          */
         public Builder serverURL(String serverUrl) {
-            this.sdkConfiguration.serverUrl = serverUrl;
+            this.serverUrl = serverUrl;
             return this;
         }
 
@@ -202,7 +205,7 @@ public class Gr4vy {
          * @return The builder instance.
          */
         public Builder serverURL(String serverUrl, Map<String, String> params) {
-            this.sdkConfiguration.serverUrl = Utils.templateUrl(serverUrl, params);
+            this.serverUrl = Utils.templateUrl(serverUrl, params);
             return this;
         }
         
@@ -213,8 +216,8 @@ public class Gr4vy {
          * @return The builder instance.
          */
         public Builder server(AvailableServers server) {
-            this.sdkConfiguration.server = server.server();
-            this.sdkConfiguration.serverUrl = SERVERS.get(server);
+            this.server = server.server();
+            this.serverUrl = SERVERS.get(server);
             return this;
         }
         
@@ -225,7 +228,7 @@ public class Gr4vy {
          * @return The builder instance.
          */
         public Builder retryConfig(RetryConfig retryConfig) {
-            this.sdkConfiguration.retryConfig = Optional.of(retryConfig);
+            this.sdkConfiguration.setRetryConfig(Optional.of(retryConfig));
             return this;
         }
         /**
@@ -235,7 +238,7 @@ public class Gr4vy {
          * @return The builder instance.
          */
         public Builder id(String id) {
-            for (Entry<String, Map<String, String>> entry : this.sdkConfiguration.serverDefaults.entrySet()) {
+            for (Entry<String, Map<String, String>> entry : this.sdkConfiguration.serverVariables().entrySet()) {
                 Map<String, String> server = entry.getValue();
 
                 if (!server.containsKey("id")) {
@@ -269,18 +272,13 @@ public class Gr4vy {
          * @return The SDK instance.
          */
         public Gr4vy build() {
-            if (sdkConfiguration.defaultClient == null) {
-                sdkConfiguration.defaultClient = new SpeakeasyHTTPClient();
+            if (serverUrl == null || serverUrl.isBlank()) {
+                serverUrl = SERVERS.get(AvailableServers.PRODUCTION);
+                server = AvailableServers.PRODUCTION.server();
             }
-	        if (sdkConfiguration.securitySource == null) {
-	    	    sdkConfiguration.securitySource = SecuritySource.of(null);
-	        }
-            if (sdkConfiguration.serverUrl == null || sdkConfiguration.serverUrl.isBlank()) {
-                sdkConfiguration.serverUrl = SERVERS.get(AvailableServers.PRODUCTION);
-                sdkConfiguration.server = AvailableServers.PRODUCTION.server();
-            }
-            if (sdkConfiguration.serverUrl.endsWith("/")) {
-                sdkConfiguration.serverUrl = sdkConfiguration.serverUrl.substring(0, sdkConfiguration.serverUrl.length() - 1);
+            sdkConfiguration.setServerUrl(serverUrl);
+            if (server != null) {
+                sdkConfiguration.setServer(server);
             }
             return new Gr4vy(sdkConfiguration);
         }
@@ -297,6 +295,7 @@ public class Gr4vy {
 
     private Gr4vy(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.sdkConfiguration.initialize();
         this.accountUpdater = new AccountUpdater(sdkConfiguration);
         this.buyers = new Buyers(sdkConfiguration);
         this.paymentMethods = new PaymentMethods(sdkConfiguration);
@@ -312,6 +311,6 @@ public class Gr4vy {
         this.checkoutSessions = new CheckoutSessions(sdkConfiguration);
         this.merchantAccounts = new MerchantAccounts(sdkConfiguration);
         this.payouts = new Payouts(sdkConfiguration);
-        this.sdkConfiguration.initialize();
+        
     }
 }

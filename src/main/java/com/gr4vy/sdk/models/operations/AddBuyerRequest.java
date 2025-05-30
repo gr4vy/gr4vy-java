@@ -5,22 +5,15 @@ package com.gr4vy.sdk.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.gr4vy.sdk.models.components.BuyerCreate;
-import com.gr4vy.sdk.utils.LazySingletonValue;
 import com.gr4vy.sdk.utils.SpeakeasyMetadata;
 import com.gr4vy.sdk.utils.Utils;
-import java.lang.Double;
 import java.lang.Override;
 import java.lang.String;
 import java.util.Objects;
-import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 public class AddBuyerRequest {
-
-    @SpeakeasyMetadata("queryParam:style=form,explode=true,name=timeout_in_seconds")
-    private Optional<Double> timeoutInSeconds;
 
     /**
      * The ID of the merchant account to use for this request.
@@ -33,25 +26,17 @@ public class AddBuyerRequest {
 
     @JsonCreator
     public AddBuyerRequest(
-            Optional<Double> timeoutInSeconds,
             JsonNullable<String> merchantAccountId,
             BuyerCreate buyerCreate) {
-        Utils.checkNotNull(timeoutInSeconds, "timeoutInSeconds");
         Utils.checkNotNull(merchantAccountId, "merchantAccountId");
         Utils.checkNotNull(buyerCreate, "buyerCreate");
-        this.timeoutInSeconds = timeoutInSeconds;
         this.merchantAccountId = merchantAccountId;
         this.buyerCreate = buyerCreate;
     }
     
     public AddBuyerRequest(
             BuyerCreate buyerCreate) {
-        this(Optional.empty(), JsonNullable.undefined(), buyerCreate);
-    }
-
-    @JsonIgnore
-    public Optional<Double> timeoutInSeconds() {
-        return timeoutInSeconds;
+        this(JsonNullable.undefined(), buyerCreate);
     }
 
     /**
@@ -70,18 +55,6 @@ public class AddBuyerRequest {
     public final static Builder builder() {
         return new Builder();
     }    
-
-    public AddBuyerRequest withTimeoutInSeconds(double timeoutInSeconds) {
-        Utils.checkNotNull(timeoutInSeconds, "timeoutInSeconds");
-        this.timeoutInSeconds = Optional.ofNullable(timeoutInSeconds);
-        return this;
-    }
-
-    public AddBuyerRequest withTimeoutInSeconds(Optional<Double> timeoutInSeconds) {
-        Utils.checkNotNull(timeoutInSeconds, "timeoutInSeconds");
-        this.timeoutInSeconds = timeoutInSeconds;
-        return this;
-    }
 
     /**
      * The ID of the merchant account to use for this request.
@@ -118,7 +91,6 @@ public class AddBuyerRequest {
         }
         AddBuyerRequest other = (AddBuyerRequest) o;
         return 
-            Objects.deepEquals(this.timeoutInSeconds, other.timeoutInSeconds) &&
             Objects.deepEquals(this.merchantAccountId, other.merchantAccountId) &&
             Objects.deepEquals(this.buyerCreate, other.buyerCreate);
     }
@@ -126,7 +98,6 @@ public class AddBuyerRequest {
     @Override
     public int hashCode() {
         return Objects.hash(
-            timeoutInSeconds,
             merchantAccountId,
             buyerCreate);
     }
@@ -134,14 +105,11 @@ public class AddBuyerRequest {
     @Override
     public String toString() {
         return Utils.toString(AddBuyerRequest.class,
-                "timeoutInSeconds", timeoutInSeconds,
                 "merchantAccountId", merchantAccountId,
                 "buyerCreate", buyerCreate);
     }
     
     public final static class Builder {
- 
-        private Optional<Double> timeoutInSeconds;
  
         private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
  
@@ -149,18 +117,6 @@ public class AddBuyerRequest {
         
         private Builder() {
           // force use of static builder() method
-        }
-
-        public Builder timeoutInSeconds(double timeoutInSeconds) {
-            Utils.checkNotNull(timeoutInSeconds, "timeoutInSeconds");
-            this.timeoutInSeconds = Optional.ofNullable(timeoutInSeconds);
-            return this;
-        }
-
-        public Builder timeoutInSeconds(Optional<Double> timeoutInSeconds) {
-            Utils.checkNotNull(timeoutInSeconds, "timeoutInSeconds");
-            this.timeoutInSeconds = timeoutInSeconds;
-            return this;
         }
 
         /**
@@ -188,19 +144,9 @@ public class AddBuyerRequest {
         }
         
         public AddBuyerRequest build() {
-            if (timeoutInSeconds == null) {
-                timeoutInSeconds = _SINGLETON_VALUE_TimeoutInSeconds.value();
-            }
             return new AddBuyerRequest(
-                timeoutInSeconds,
                 merchantAccountId,
                 buyerCreate);
         }
-
-        private static final LazySingletonValue<Optional<Double>> _SINGLETON_VALUE_TimeoutInSeconds =
-                new LazySingletonValue<>(
-                        "timeout_in_seconds",
-                        "1",
-                        new TypeReference<Optional<Double>>() {});
     }
 }

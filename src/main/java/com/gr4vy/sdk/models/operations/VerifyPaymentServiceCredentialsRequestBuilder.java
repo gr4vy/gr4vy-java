@@ -3,40 +3,20 @@
  */
 package com.gr4vy.sdk.models.operations;
 
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.gr4vy.sdk.models.components.VerifyCredentials;
-import com.gr4vy.sdk.utils.LazySingletonValue;
 import com.gr4vy.sdk.utils.Utils;
-import java.lang.Double;
 import java.lang.Exception;
 import java.lang.String;
-import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 public class VerifyPaymentServiceCredentialsRequestBuilder {
 
-    private Optional<Double> timeoutInSeconds = Utils.readDefaultOrConstValue(
-                            "timeoutInSeconds",
-                            "1",
-                            new TypeReference<Optional<Double>>() {});
     private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
     private VerifyCredentials verifyCredentials;
     private final SDKMethodInterfaces.MethodCallVerifyPaymentServiceCredentials sdk;
 
     public VerifyPaymentServiceCredentialsRequestBuilder(SDKMethodInterfaces.MethodCallVerifyPaymentServiceCredentials sdk) {
         this.sdk = sdk;
-    }
-                
-    public VerifyPaymentServiceCredentialsRequestBuilder timeoutInSeconds(double timeoutInSeconds) {
-        Utils.checkNotNull(timeoutInSeconds, "timeoutInSeconds");
-        this.timeoutInSeconds = Optional.of(timeoutInSeconds);
-        return this;
-    }
-
-    public VerifyPaymentServiceCredentialsRequestBuilder timeoutInSeconds(Optional<Double> timeoutInSeconds) {
-        Utils.checkNotNull(timeoutInSeconds, "timeoutInSeconds");
-        this.timeoutInSeconds = timeoutInSeconds;
-        return this;
     }
 
     public VerifyPaymentServiceCredentialsRequestBuilder merchantAccountId(String merchantAccountId) {
@@ -58,18 +38,9 @@ public class VerifyPaymentServiceCredentialsRequestBuilder {
     }
 
     public VerifyPaymentServiceCredentialsResponse call() throws Exception {
-        if (timeoutInSeconds == null) {
-            timeoutInSeconds = _SINGLETON_VALUE_TimeoutInSeconds.value();
-        }
+
         return sdk.verify(
-            timeoutInSeconds,
             merchantAccountId,
             verifyCredentials);
     }
-
-    private static final LazySingletonValue<Optional<Double>> _SINGLETON_VALUE_TimeoutInSeconds =
-            new LazySingletonValue<>(
-                    "timeoutInSeconds",
-                    "1",
-                    new TypeReference<Optional<Double>>() {});
 }

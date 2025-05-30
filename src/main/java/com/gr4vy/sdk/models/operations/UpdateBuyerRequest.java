@@ -5,16 +5,12 @@ package com.gr4vy.sdk.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.gr4vy.sdk.models.components.BuyerUpdate;
-import com.gr4vy.sdk.utils.LazySingletonValue;
 import com.gr4vy.sdk.utils.SpeakeasyMetadata;
 import com.gr4vy.sdk.utils.Utils;
-import java.lang.Double;
 import java.lang.Override;
 import java.lang.String;
 import java.util.Objects;
-import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 public class UpdateBuyerRequest {
@@ -24,9 +20,6 @@ public class UpdateBuyerRequest {
      */
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=buyer_id")
     private String buyerId;
-
-    @SpeakeasyMetadata("queryParam:style=form,explode=true,name=timeout_in_seconds")
-    private Optional<Double> timeoutInSeconds;
 
     /**
      * The ID of the merchant account to use for this request.
@@ -40,15 +33,12 @@ public class UpdateBuyerRequest {
     @JsonCreator
     public UpdateBuyerRequest(
             String buyerId,
-            Optional<Double> timeoutInSeconds,
             JsonNullable<String> merchantAccountId,
             BuyerUpdate buyerUpdate) {
         Utils.checkNotNull(buyerId, "buyerId");
-        Utils.checkNotNull(timeoutInSeconds, "timeoutInSeconds");
         Utils.checkNotNull(merchantAccountId, "merchantAccountId");
         Utils.checkNotNull(buyerUpdate, "buyerUpdate");
         this.buyerId = buyerId;
-        this.timeoutInSeconds = timeoutInSeconds;
         this.merchantAccountId = merchantAccountId;
         this.buyerUpdate = buyerUpdate;
     }
@@ -56,7 +46,7 @@ public class UpdateBuyerRequest {
     public UpdateBuyerRequest(
             String buyerId,
             BuyerUpdate buyerUpdate) {
-        this(buyerId, Optional.empty(), JsonNullable.undefined(), buyerUpdate);
+        this(buyerId, JsonNullable.undefined(), buyerUpdate);
     }
 
     /**
@@ -65,11 +55,6 @@ public class UpdateBuyerRequest {
     @JsonIgnore
     public String buyerId() {
         return buyerId;
-    }
-
-    @JsonIgnore
-    public Optional<Double> timeoutInSeconds() {
-        return timeoutInSeconds;
     }
 
     /**
@@ -95,18 +80,6 @@ public class UpdateBuyerRequest {
     public UpdateBuyerRequest withBuyerId(String buyerId) {
         Utils.checkNotNull(buyerId, "buyerId");
         this.buyerId = buyerId;
-        return this;
-    }
-
-    public UpdateBuyerRequest withTimeoutInSeconds(double timeoutInSeconds) {
-        Utils.checkNotNull(timeoutInSeconds, "timeoutInSeconds");
-        this.timeoutInSeconds = Optional.ofNullable(timeoutInSeconds);
-        return this;
-    }
-
-    public UpdateBuyerRequest withTimeoutInSeconds(Optional<Double> timeoutInSeconds) {
-        Utils.checkNotNull(timeoutInSeconds, "timeoutInSeconds");
-        this.timeoutInSeconds = timeoutInSeconds;
         return this;
     }
 
@@ -146,7 +119,6 @@ public class UpdateBuyerRequest {
         UpdateBuyerRequest other = (UpdateBuyerRequest) o;
         return 
             Objects.deepEquals(this.buyerId, other.buyerId) &&
-            Objects.deepEquals(this.timeoutInSeconds, other.timeoutInSeconds) &&
             Objects.deepEquals(this.merchantAccountId, other.merchantAccountId) &&
             Objects.deepEquals(this.buyerUpdate, other.buyerUpdate);
     }
@@ -155,7 +127,6 @@ public class UpdateBuyerRequest {
     public int hashCode() {
         return Objects.hash(
             buyerId,
-            timeoutInSeconds,
             merchantAccountId,
             buyerUpdate);
     }
@@ -164,7 +135,6 @@ public class UpdateBuyerRequest {
     public String toString() {
         return Utils.toString(UpdateBuyerRequest.class,
                 "buyerId", buyerId,
-                "timeoutInSeconds", timeoutInSeconds,
                 "merchantAccountId", merchantAccountId,
                 "buyerUpdate", buyerUpdate);
     }
@@ -172,8 +142,6 @@ public class UpdateBuyerRequest {
     public final static class Builder {
  
         private String buyerId;
- 
-        private Optional<Double> timeoutInSeconds;
  
         private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
  
@@ -189,18 +157,6 @@ public class UpdateBuyerRequest {
         public Builder buyerId(String buyerId) {
             Utils.checkNotNull(buyerId, "buyerId");
             this.buyerId = buyerId;
-            return this;
-        }
-
-        public Builder timeoutInSeconds(double timeoutInSeconds) {
-            Utils.checkNotNull(timeoutInSeconds, "timeoutInSeconds");
-            this.timeoutInSeconds = Optional.ofNullable(timeoutInSeconds);
-            return this;
-        }
-
-        public Builder timeoutInSeconds(Optional<Double> timeoutInSeconds) {
-            Utils.checkNotNull(timeoutInSeconds, "timeoutInSeconds");
-            this.timeoutInSeconds = timeoutInSeconds;
             return this;
         }
 
@@ -229,20 +185,10 @@ public class UpdateBuyerRequest {
         }
         
         public UpdateBuyerRequest build() {
-            if (timeoutInSeconds == null) {
-                timeoutInSeconds = _SINGLETON_VALUE_TimeoutInSeconds.value();
-            }
             return new UpdateBuyerRequest(
                 buyerId,
-                timeoutInSeconds,
                 merchantAccountId,
                 buyerUpdate);
         }
-
-        private static final LazySingletonValue<Optional<Double>> _SINGLETON_VALUE_TimeoutInSeconds =
-                new LazySingletonValue<>(
-                        "timeout_in_seconds",
-                        "1",
-                        new TypeReference<Optional<Double>>() {});
     }
 }

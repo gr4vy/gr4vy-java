@@ -51,7 +51,6 @@ import com.gr4vy.sdk.utils.SerializedBody;
 import com.gr4vy.sdk.utils.Utils.JsonShape;
 import com.gr4vy.sdk.utils.Utils;
 import java.io.InputStream;
-import java.lang.Double;
 import java.lang.Exception;
 import java.lang.Object;
 import java.lang.String;
@@ -112,7 +111,7 @@ public class DigitalWallets implements
      */
     public ConfigureDigitalWalletResponse create(
             DigitalWalletCreate digitalWalletCreate) throws Exception {
-        return create(Optional.empty(), JsonNullable.undefined(), digitalWalletCreate);
+        return create(JsonNullable.undefined(), digitalWalletCreate);
     }
     
     /**
@@ -120,26 +119,23 @@ public class DigitalWallets implements
      * 
      * <p>Register a digital wallet like Apple Pay, Google Pay, or Click to Pay.
      * 
-     * @param timeoutInSeconds 
      * @param merchantAccountId 
      * @param digitalWalletCreate Request body for registering a new digital wallet
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public ConfigureDigitalWalletResponse create(
-            Optional<Double> timeoutInSeconds,
             JsonNullable<String> merchantAccountId,
             DigitalWalletCreate digitalWalletCreate) throws Exception {
         ConfigureDigitalWalletRequest request =
             ConfigureDigitalWalletRequest
                 .builder()
-                .timeoutInSeconds(timeoutInSeconds)
                 .merchantAccountId(merchantAccountId)
                 .digitalWalletCreate(digitalWalletCreate)
                 .build();
         
         String _baseUrl = Utils.templateUrl(
-                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
+                this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 _baseUrl,
                 "/digital-wallets");
@@ -161,21 +157,17 @@ public class DigitalWallets implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
-        _req.addQueryParams(Utils.getQueryParams(
-                ConfigureDigitalWalletRequest.class,
-                request, 
-                this.sdkConfiguration.globals));
         _req.addHeaders(Utils.getHeadersFromMetadata(request, this.sdkConfiguration.globals));
         
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
+        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
         Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
+                this.sdkConfiguration.securitySource().getSecurity());
+        HTTPClient _client = this.sdkConfiguration.client();
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      this.sdkConfiguration,
                       _baseUrl,
                       "configure_digital_wallet", 
                       Optional.of(List.of()), 
@@ -188,6 +180,7 @@ public class DigitalWallets implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "configure_digital_wallet",
                             Optional.of(List.of()),
@@ -198,6 +191,7 @@ public class DigitalWallets implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "configure_digital_wallet",
                             Optional.of(List.of()), 
@@ -208,6 +202,7 @@ public class DigitalWallets implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "configure_digital_wallet",
                             Optional.of(List.of()),
@@ -507,7 +502,7 @@ public class DigitalWallets implements
                 .build();
         
         String _baseUrl = Utils.templateUrl(
-                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
+                this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 _baseUrl,
                 "/digital-wallets");
@@ -518,16 +513,16 @@ public class DigitalWallets implements
                 SDKConfiguration.USER_AGENT);
         _req.addHeaders(Utils.getHeadersFromMetadata(request, this.sdkConfiguration.globals));
         
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
+        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
         Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
+                this.sdkConfiguration.securitySource().getSecurity());
+        HTTPClient _client = this.sdkConfiguration.client();
         HTTPRequest _finalReq = _req;
         RetryConfig _retryConfig;
         if (options.isPresent() && options.get().retryConfig().isPresent()) {
             _retryConfig = options.get().retryConfig().get();
-        } else if (this.sdkConfiguration.retryConfig.isPresent()) {
-            _retryConfig = this.sdkConfiguration.retryConfig.get();
+        } else if (this.sdkConfiguration.retryConfig().isPresent()) {
+            _retryConfig = this.sdkConfiguration.retryConfig().get();
         } else {
             _retryConfig = RetryConfig.builder()
                 .backoff(BackoffStrategy.builder()
@@ -548,6 +543,7 @@ public class DigitalWallets implements
                     _r = sdkConfiguration.hooks()
                         .beforeRequest(
                             new BeforeRequestContextImpl(
+                                this.sdkConfiguration,
                                 _baseUrl,
                                 "list_digital_wallets", 
                                 Optional.of(List.of()), 
@@ -562,6 +558,7 @@ public class DigitalWallets implements
                     return sdkConfiguration.hooks()
                         .afterError(
                             new AfterErrorContextImpl(
+                                this.sdkConfiguration,
                                 _baseUrl,
                                 "list_digital_wallets",
                                  Optional.of(List.of()),
@@ -576,7 +573,8 @@ public class DigitalWallets implements
         HttpResponse<InputStream> _httpRes = sdkConfiguration.hooks()
                  .afterSuccess(
                      new AfterSuccessContextImpl(
-                          _baseUrl,
+                         this.sdkConfiguration,
+                         _baseUrl,
                          "list_digital_wallets", 
                          Optional.of(List.of()), 
                          _hookSecuritySource),
@@ -878,7 +876,7 @@ public class DigitalWallets implements
                 .build();
         
         String _baseUrl = Utils.templateUrl(
-                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
+                this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 GetDigitalWalletRequest.class,
                 _baseUrl,
@@ -891,16 +889,16 @@ public class DigitalWallets implements
                 SDKConfiguration.USER_AGENT);
         _req.addHeaders(Utils.getHeadersFromMetadata(request, this.sdkConfiguration.globals));
         
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
+        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
         Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
+                this.sdkConfiguration.securitySource().getSecurity());
+        HTTPClient _client = this.sdkConfiguration.client();
         HTTPRequest _finalReq = _req;
         RetryConfig _retryConfig;
         if (options.isPresent() && options.get().retryConfig().isPresent()) {
             _retryConfig = options.get().retryConfig().get();
-        } else if (this.sdkConfiguration.retryConfig.isPresent()) {
-            _retryConfig = this.sdkConfiguration.retryConfig.get();
+        } else if (this.sdkConfiguration.retryConfig().isPresent()) {
+            _retryConfig = this.sdkConfiguration.retryConfig().get();
         } else {
             _retryConfig = RetryConfig.builder()
                 .backoff(BackoffStrategy.builder()
@@ -921,6 +919,7 @@ public class DigitalWallets implements
                     _r = sdkConfiguration.hooks()
                         .beforeRequest(
                             new BeforeRequestContextImpl(
+                                this.sdkConfiguration,
                                 _baseUrl,
                                 "get_digital_wallet", 
                                 Optional.of(List.of()), 
@@ -935,6 +934,7 @@ public class DigitalWallets implements
                     return sdkConfiguration.hooks()
                         .afterError(
                             new AfterErrorContextImpl(
+                                this.sdkConfiguration,
                                 _baseUrl,
                                 "get_digital_wallet",
                                  Optional.of(List.of()),
@@ -949,7 +949,8 @@ public class DigitalWallets implements
         HttpResponse<InputStream> _httpRes = sdkConfiguration.hooks()
                  .afterSuccess(
                      new AfterSuccessContextImpl(
-                          _baseUrl,
+                         this.sdkConfiguration,
+                         _baseUrl,
                          "get_digital_wallet", 
                          Optional.of(List.of()), 
                          _hookSecuritySource),
@@ -1221,7 +1222,7 @@ public class DigitalWallets implements
      */
     public DeleteDigitalWalletResponse delete(
             String digitalWalletId) throws Exception {
-        return delete(digitalWalletId, Optional.empty(), JsonNullable.undefined());
+        return delete(digitalWalletId, JsonNullable.undefined());
     }
     
     /**
@@ -1230,25 +1231,22 @@ public class DigitalWallets implements
      * <p>Delete a configured digital wallet.
      * 
      * @param digitalWalletId The ID of the digital wallet to delete.
-     * @param timeoutInSeconds 
      * @param merchantAccountId 
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public DeleteDigitalWalletResponse delete(
             String digitalWalletId,
-            Optional<Double> timeoutInSeconds,
             JsonNullable<String> merchantAccountId) throws Exception {
         DeleteDigitalWalletRequest request =
             DeleteDigitalWalletRequest
                 .builder()
                 .digitalWalletId(digitalWalletId)
-                .timeoutInSeconds(timeoutInSeconds)
                 .merchantAccountId(merchantAccountId)
                 .build();
         
         String _baseUrl = Utils.templateUrl(
-                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
+                this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 DeleteDigitalWalletRequest.class,
                 _baseUrl,
@@ -1259,21 +1257,17 @@ public class DigitalWallets implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
-        _req.addQueryParams(Utils.getQueryParams(
-                DeleteDigitalWalletRequest.class,
-                request, 
-                this.sdkConfiguration.globals));
         _req.addHeaders(Utils.getHeadersFromMetadata(request, this.sdkConfiguration.globals));
         
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
+        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
         Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
+                this.sdkConfiguration.securitySource().getSecurity());
+        HTTPClient _client = this.sdkConfiguration.client();
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      this.sdkConfiguration,
                       _baseUrl,
                       "delete_digital_wallet", 
                       Optional.of(List.of()), 
@@ -1286,6 +1280,7 @@ public class DigitalWallets implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "delete_digital_wallet",
                             Optional.of(List.of()),
@@ -1296,6 +1291,7 @@ public class DigitalWallets implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "delete_digital_wallet",
                             Optional.of(List.of()), 
@@ -1306,6 +1302,7 @@ public class DigitalWallets implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "delete_digital_wallet",
                             Optional.of(List.of()),
@@ -1582,7 +1579,7 @@ public class DigitalWallets implements
     public UpdateDigitalWalletResponse update(
             String digitalWalletId,
             DigitalWalletUpdate digitalWalletUpdate) throws Exception {
-        return update(digitalWalletId, Optional.empty(), JsonNullable.undefined(), digitalWalletUpdate);
+        return update(digitalWalletId, JsonNullable.undefined(), digitalWalletUpdate);
     }
     
     /**
@@ -1591,7 +1588,6 @@ public class DigitalWallets implements
      * <p>Update a digital wallet.
      * 
      * @param digitalWalletId The ID of the digital wallet to edit.
-     * @param timeoutInSeconds 
      * @param merchantAccountId 
      * @param digitalWalletUpdate Request body for editing a registered digital wallet
      * @return The response from the API call
@@ -1599,20 +1595,18 @@ public class DigitalWallets implements
      */
     public UpdateDigitalWalletResponse update(
             String digitalWalletId,
-            Optional<Double> timeoutInSeconds,
             JsonNullable<String> merchantAccountId,
             DigitalWalletUpdate digitalWalletUpdate) throws Exception {
         UpdateDigitalWalletRequest request =
             UpdateDigitalWalletRequest
                 .builder()
                 .digitalWalletId(digitalWalletId)
-                .timeoutInSeconds(timeoutInSeconds)
                 .merchantAccountId(merchantAccountId)
                 .digitalWalletUpdate(digitalWalletUpdate)
                 .build();
         
         String _baseUrl = Utils.templateUrl(
-                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
+                this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 UpdateDigitalWalletRequest.class,
                 _baseUrl,
@@ -1636,21 +1630,17 @@ public class DigitalWallets implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
-        _req.addQueryParams(Utils.getQueryParams(
-                UpdateDigitalWalletRequest.class,
-                request, 
-                this.sdkConfiguration.globals));
         _req.addHeaders(Utils.getHeadersFromMetadata(request, this.sdkConfiguration.globals));
         
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
+        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
         Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
+                this.sdkConfiguration.securitySource().getSecurity());
+        HTTPClient _client = this.sdkConfiguration.client();
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      this.sdkConfiguration,
                       _baseUrl,
                       "update_digital_wallet", 
                       Optional.of(List.of()), 
@@ -1663,6 +1653,7 @@ public class DigitalWallets implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "update_digital_wallet",
                             Optional.of(List.of()),
@@ -1673,6 +1664,7 @@ public class DigitalWallets implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "update_digital_wallet",
                             Optional.of(List.of()), 
@@ -1683,6 +1675,7 @@ public class DigitalWallets implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "update_digital_wallet",
                             Optional.of(List.of()),

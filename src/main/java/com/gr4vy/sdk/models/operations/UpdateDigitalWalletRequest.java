@@ -5,16 +5,12 @@ package com.gr4vy.sdk.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.gr4vy.sdk.models.components.DigitalWalletUpdate;
-import com.gr4vy.sdk.utils.LazySingletonValue;
 import com.gr4vy.sdk.utils.SpeakeasyMetadata;
 import com.gr4vy.sdk.utils.Utils;
-import java.lang.Double;
 import java.lang.Override;
 import java.lang.String;
 import java.util.Objects;
-import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 public class UpdateDigitalWalletRequest {
@@ -24,9 +20,6 @@ public class UpdateDigitalWalletRequest {
      */
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=digital_wallet_id")
     private String digitalWalletId;
-
-    @SpeakeasyMetadata("queryParam:style=form,explode=true,name=timeout_in_seconds")
-    private Optional<Double> timeoutInSeconds;
 
     /**
      * The ID of the merchant account to use for this request.
@@ -40,15 +33,12 @@ public class UpdateDigitalWalletRequest {
     @JsonCreator
     public UpdateDigitalWalletRequest(
             String digitalWalletId,
-            Optional<Double> timeoutInSeconds,
             JsonNullable<String> merchantAccountId,
             DigitalWalletUpdate digitalWalletUpdate) {
         Utils.checkNotNull(digitalWalletId, "digitalWalletId");
-        Utils.checkNotNull(timeoutInSeconds, "timeoutInSeconds");
         Utils.checkNotNull(merchantAccountId, "merchantAccountId");
         Utils.checkNotNull(digitalWalletUpdate, "digitalWalletUpdate");
         this.digitalWalletId = digitalWalletId;
-        this.timeoutInSeconds = timeoutInSeconds;
         this.merchantAccountId = merchantAccountId;
         this.digitalWalletUpdate = digitalWalletUpdate;
     }
@@ -56,7 +46,7 @@ public class UpdateDigitalWalletRequest {
     public UpdateDigitalWalletRequest(
             String digitalWalletId,
             DigitalWalletUpdate digitalWalletUpdate) {
-        this(digitalWalletId, Optional.empty(), JsonNullable.undefined(), digitalWalletUpdate);
+        this(digitalWalletId, JsonNullable.undefined(), digitalWalletUpdate);
     }
 
     /**
@@ -65,11 +55,6 @@ public class UpdateDigitalWalletRequest {
     @JsonIgnore
     public String digitalWalletId() {
         return digitalWalletId;
-    }
-
-    @JsonIgnore
-    public Optional<Double> timeoutInSeconds() {
-        return timeoutInSeconds;
     }
 
     /**
@@ -95,18 +80,6 @@ public class UpdateDigitalWalletRequest {
     public UpdateDigitalWalletRequest withDigitalWalletId(String digitalWalletId) {
         Utils.checkNotNull(digitalWalletId, "digitalWalletId");
         this.digitalWalletId = digitalWalletId;
-        return this;
-    }
-
-    public UpdateDigitalWalletRequest withTimeoutInSeconds(double timeoutInSeconds) {
-        Utils.checkNotNull(timeoutInSeconds, "timeoutInSeconds");
-        this.timeoutInSeconds = Optional.ofNullable(timeoutInSeconds);
-        return this;
-    }
-
-    public UpdateDigitalWalletRequest withTimeoutInSeconds(Optional<Double> timeoutInSeconds) {
-        Utils.checkNotNull(timeoutInSeconds, "timeoutInSeconds");
-        this.timeoutInSeconds = timeoutInSeconds;
         return this;
     }
 
@@ -146,7 +119,6 @@ public class UpdateDigitalWalletRequest {
         UpdateDigitalWalletRequest other = (UpdateDigitalWalletRequest) o;
         return 
             Objects.deepEquals(this.digitalWalletId, other.digitalWalletId) &&
-            Objects.deepEquals(this.timeoutInSeconds, other.timeoutInSeconds) &&
             Objects.deepEquals(this.merchantAccountId, other.merchantAccountId) &&
             Objects.deepEquals(this.digitalWalletUpdate, other.digitalWalletUpdate);
     }
@@ -155,7 +127,6 @@ public class UpdateDigitalWalletRequest {
     public int hashCode() {
         return Objects.hash(
             digitalWalletId,
-            timeoutInSeconds,
             merchantAccountId,
             digitalWalletUpdate);
     }
@@ -164,7 +135,6 @@ public class UpdateDigitalWalletRequest {
     public String toString() {
         return Utils.toString(UpdateDigitalWalletRequest.class,
                 "digitalWalletId", digitalWalletId,
-                "timeoutInSeconds", timeoutInSeconds,
                 "merchantAccountId", merchantAccountId,
                 "digitalWalletUpdate", digitalWalletUpdate);
     }
@@ -172,8 +142,6 @@ public class UpdateDigitalWalletRequest {
     public final static class Builder {
  
         private String digitalWalletId;
- 
-        private Optional<Double> timeoutInSeconds;
  
         private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
  
@@ -189,18 +157,6 @@ public class UpdateDigitalWalletRequest {
         public Builder digitalWalletId(String digitalWalletId) {
             Utils.checkNotNull(digitalWalletId, "digitalWalletId");
             this.digitalWalletId = digitalWalletId;
-            return this;
-        }
-
-        public Builder timeoutInSeconds(double timeoutInSeconds) {
-            Utils.checkNotNull(timeoutInSeconds, "timeoutInSeconds");
-            this.timeoutInSeconds = Optional.ofNullable(timeoutInSeconds);
-            return this;
-        }
-
-        public Builder timeoutInSeconds(Optional<Double> timeoutInSeconds) {
-            Utils.checkNotNull(timeoutInSeconds, "timeoutInSeconds");
-            this.timeoutInSeconds = timeoutInSeconds;
             return this;
         }
 
@@ -229,20 +185,10 @@ public class UpdateDigitalWalletRequest {
         }
         
         public UpdateDigitalWalletRequest build() {
-            if (timeoutInSeconds == null) {
-                timeoutInSeconds = _SINGLETON_VALUE_TimeoutInSeconds.value();
-            }
             return new UpdateDigitalWalletRequest(
                 digitalWalletId,
-                timeoutInSeconds,
                 merchantAccountId,
                 digitalWalletUpdate);
         }
-
-        private static final LazySingletonValue<Optional<Double>> _SINGLETON_VALUE_TimeoutInSeconds =
-                new LazySingletonValue<>(
-                        "timeout_in_seconds",
-                        "1",
-                        new TypeReference<Optional<Double>>() {});
     }
 }

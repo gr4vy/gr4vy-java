@@ -21,7 +21,6 @@ import com.gr4vy.sdk.models.errors.Error500;
 import com.gr4vy.sdk.models.errors.Error502;
 import com.gr4vy.sdk.models.errors.Error504;
 import com.gr4vy.sdk.models.errors.HTTPValidationError;
-import com.gr4vy.sdk.models.operations.CreateMerchantAccountRequest;
 import com.gr4vy.sdk.models.operations.CreateMerchantAccountRequestBuilder;
 import com.gr4vy.sdk.models.operations.CreateMerchantAccountResponse;
 import com.gr4vy.sdk.models.operations.GetMerchantAccountRequest;
@@ -52,7 +51,6 @@ import com.jayway.jsonpath.JsonPath;
 import com.jayway.jsonpath.Option;
 import com.jayway.jsonpath.ReadContext;
 import java.io.InputStream;
-import java.lang.Double;
 import java.lang.Exception;
 import java.lang.Long;
 import java.lang.Object;
@@ -134,7 +132,7 @@ public class MerchantAccounts implements
                 .build();
         
         String _baseUrl = Utils.templateUrl(
-                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
+                this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 _baseUrl,
                 "/merchant-accounts");
@@ -149,16 +147,16 @@ public class MerchantAccounts implements
                 request, 
                 this.sdkConfiguration.globals));
         
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
+        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
         Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
+                this.sdkConfiguration.securitySource().getSecurity());
+        HTTPClient _client = this.sdkConfiguration.client();
         HTTPRequest _finalReq = _req;
         RetryConfig _retryConfig;
         if (options.isPresent() && options.get().retryConfig().isPresent()) {
             _retryConfig = options.get().retryConfig().get();
-        } else if (this.sdkConfiguration.retryConfig.isPresent()) {
-            _retryConfig = this.sdkConfiguration.retryConfig.get();
+        } else if (this.sdkConfiguration.retryConfig().isPresent()) {
+            _retryConfig = this.sdkConfiguration.retryConfig().get();
         } else {
             _retryConfig = RetryConfig.builder()
                 .backoff(BackoffStrategy.builder()
@@ -179,6 +177,7 @@ public class MerchantAccounts implements
                     _r = sdkConfiguration.hooks()
                         .beforeRequest(
                             new BeforeRequestContextImpl(
+                                this.sdkConfiguration,
                                 _baseUrl,
                                 "list_merchant_accounts", 
                                 Optional.of(List.of()), 
@@ -193,6 +192,7 @@ public class MerchantAccounts implements
                     return sdkConfiguration.hooks()
                         .afterError(
                             new AfterErrorContextImpl(
+                                this.sdkConfiguration,
                                 _baseUrl,
                                 "list_merchant_accounts",
                                  Optional.of(List.of()),
@@ -207,7 +207,8 @@ public class MerchantAccounts implements
         HttpResponse<InputStream> _httpRes = sdkConfiguration.hooks()
                  .afterSuccess(
                      new AfterSuccessContextImpl(
-                          _baseUrl,
+                         this.sdkConfiguration,
+                         _baseUrl,
                          "list_merchant_accounts", 
                          Optional.of(List.of()), 
                          _hookSecuritySource),
@@ -494,37 +495,14 @@ public class MerchantAccounts implements
      * 
      * <p>Create a new merchant account in an instance.
      * 
-     * @param merchantAccountCreate 
+     * @param request The request object containing all of the parameters for the API call.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public CreateMerchantAccountResponse create(
-            MerchantAccountCreate merchantAccountCreate) throws Exception {
-        return create(Optional.empty(), merchantAccountCreate);
-    }
-    
-    /**
-     * Create a merchant account
-     * 
-     * <p>Create a new merchant account in an instance.
-     * 
-     * @param timeoutInSeconds 
-     * @param merchantAccountCreate 
-     * @return The response from the API call
-     * @throws Exception if the API call fails
-     */
-    public CreateMerchantAccountResponse create(
-            Optional<Double> timeoutInSeconds,
-            MerchantAccountCreate merchantAccountCreate) throws Exception {
-        CreateMerchantAccountRequest request =
-            CreateMerchantAccountRequest
-                .builder()
-                .timeoutInSeconds(timeoutInSeconds)
-                .merchantAccountCreate(merchantAccountCreate)
-                .build();
-        
+            MerchantAccountCreate request) throws Exception {
         String _baseUrl = Utils.templateUrl(
-                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
+                this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 _baseUrl,
                 "/merchant-accounts");
@@ -533,10 +511,10 @@ public class MerchantAccounts implements
         Object _convertedRequest = Utils.convertToShape(
                 request, 
                 JsonShape.DEFAULT,
-                new TypeReference<Object>() {});
+                new TypeReference<MerchantAccountCreate>() {});
         SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
                 _convertedRequest, 
-                "merchantAccountCreate",
+                "request",
                 "json",
                 false);
         if (_serializedRequestBody == null) {
@@ -546,20 +524,16 @@ public class MerchantAccounts implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
-        _req.addQueryParams(Utils.getQueryParams(
-                CreateMerchantAccountRequest.class,
-                request, 
-                this.sdkConfiguration.globals));
         
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
+        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
         Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
+                this.sdkConfiguration.securitySource().getSecurity());
+        HTTPClient _client = this.sdkConfiguration.client();
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      this.sdkConfiguration,
                       _baseUrl,
                       "create_merchant_account", 
                       Optional.of(List.of()), 
@@ -572,6 +546,7 @@ public class MerchantAccounts implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "create_merchant_account",
                             Optional.of(List.of()),
@@ -582,6 +557,7 @@ public class MerchantAccounts implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "create_merchant_account",
                             Optional.of(List.of()), 
@@ -592,6 +568,7 @@ public class MerchantAccounts implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "create_merchant_account",
                             Optional.of(List.of()),
@@ -893,7 +870,7 @@ public class MerchantAccounts implements
                 .build();
         
         String _baseUrl = Utils.templateUrl(
-                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
+                this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 GetMerchantAccountRequest.class,
                 _baseUrl,
@@ -905,16 +882,16 @@ public class MerchantAccounts implements
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
         
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
+        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
         Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
+                this.sdkConfiguration.securitySource().getSecurity());
+        HTTPClient _client = this.sdkConfiguration.client();
         HTTPRequest _finalReq = _req;
         RetryConfig _retryConfig;
         if (options.isPresent() && options.get().retryConfig().isPresent()) {
             _retryConfig = options.get().retryConfig().get();
-        } else if (this.sdkConfiguration.retryConfig.isPresent()) {
-            _retryConfig = this.sdkConfiguration.retryConfig.get();
+        } else if (this.sdkConfiguration.retryConfig().isPresent()) {
+            _retryConfig = this.sdkConfiguration.retryConfig().get();
         } else {
             _retryConfig = RetryConfig.builder()
                 .backoff(BackoffStrategy.builder()
@@ -935,6 +912,7 @@ public class MerchantAccounts implements
                     _r = sdkConfiguration.hooks()
                         .beforeRequest(
                             new BeforeRequestContextImpl(
+                                this.sdkConfiguration,
                                 _baseUrl,
                                 "get_merchant_account", 
                                 Optional.of(List.of()), 
@@ -949,6 +927,7 @@ public class MerchantAccounts implements
                     return sdkConfiguration.hooks()
                         .afterError(
                             new AfterErrorContextImpl(
+                                this.sdkConfiguration,
                                 _baseUrl,
                                 "get_merchant_account",
                                  Optional.of(List.of()),
@@ -963,7 +942,8 @@ public class MerchantAccounts implements
         HttpResponse<InputStream> _httpRes = sdkConfiguration.hooks()
                  .afterSuccess(
                      new AfterSuccessContextImpl(
-                          _baseUrl,
+                         this.sdkConfiguration,
+                         _baseUrl,
                          "get_merchant_account", 
                          Optional.of(List.of()), 
                          _hookSecuritySource),
@@ -1237,34 +1217,15 @@ public class MerchantAccounts implements
     public UpdateMerchantAccountResponse update(
             String merchantAccountId,
             MerchantAccountUpdate merchantAccountUpdate) throws Exception {
-        return update(merchantAccountId, Optional.empty(), merchantAccountUpdate);
-    }
-    
-    /**
-     * Update a merchant account
-     * 
-     * <p>Update info for a merchant account in an instance.
-     * 
-     * @param merchantAccountId The ID of the merchant account
-     * @param timeoutInSeconds 
-     * @param merchantAccountUpdate 
-     * @return The response from the API call
-     * @throws Exception if the API call fails
-     */
-    public UpdateMerchantAccountResponse update(
-            String merchantAccountId,
-            Optional<Double> timeoutInSeconds,
-            MerchantAccountUpdate merchantAccountUpdate) throws Exception {
         UpdateMerchantAccountRequest request =
             UpdateMerchantAccountRequest
                 .builder()
                 .merchantAccountId(merchantAccountId)
-                .timeoutInSeconds(timeoutInSeconds)
                 .merchantAccountUpdate(merchantAccountUpdate)
                 .build();
         
         String _baseUrl = Utils.templateUrl(
-                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
+                this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 UpdateMerchantAccountRequest.class,
                 _baseUrl,
@@ -1288,20 +1249,16 @@ public class MerchantAccounts implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
-        _req.addQueryParams(Utils.getQueryParams(
-                UpdateMerchantAccountRequest.class,
-                request, 
-                this.sdkConfiguration.globals));
         
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
+        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
         Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
+                this.sdkConfiguration.securitySource().getSecurity());
+        HTTPClient _client = this.sdkConfiguration.client();
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      this.sdkConfiguration,
                       _baseUrl,
                       "update_merchant_account", 
                       Optional.of(List.of()), 
@@ -1314,6 +1271,7 @@ public class MerchantAccounts implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "update_merchant_account",
                             Optional.of(List.of()),
@@ -1324,6 +1282,7 @@ public class MerchantAccounts implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "update_merchant_account",
                             Optional.of(List.of()), 
@@ -1334,6 +1293,7 @@ public class MerchantAccounts implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "update_merchant_account",
                             Optional.of(List.of()),

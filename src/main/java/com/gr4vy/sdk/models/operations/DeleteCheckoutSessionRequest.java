@@ -5,15 +5,11 @@ package com.gr4vy.sdk.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.gr4vy.sdk.utils.LazySingletonValue;
 import com.gr4vy.sdk.utils.SpeakeasyMetadata;
 import com.gr4vy.sdk.utils.Utils;
-import java.lang.Double;
 import java.lang.Override;
 import java.lang.String;
 import java.util.Objects;
-import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 public class DeleteCheckoutSessionRequest {
@@ -24,9 +20,6 @@ public class DeleteCheckoutSessionRequest {
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=session_id")
     private String sessionId;
 
-    @SpeakeasyMetadata("queryParam:style=form,explode=true,name=timeout_in_seconds")
-    private Optional<Double> timeoutInSeconds;
-
     /**
      * The ID of the merchant account to use for this request.
      */
@@ -36,19 +29,16 @@ public class DeleteCheckoutSessionRequest {
     @JsonCreator
     public DeleteCheckoutSessionRequest(
             String sessionId,
-            Optional<Double> timeoutInSeconds,
             JsonNullable<String> merchantAccountId) {
         Utils.checkNotNull(sessionId, "sessionId");
-        Utils.checkNotNull(timeoutInSeconds, "timeoutInSeconds");
         Utils.checkNotNull(merchantAccountId, "merchantAccountId");
         this.sessionId = sessionId;
-        this.timeoutInSeconds = timeoutInSeconds;
         this.merchantAccountId = merchantAccountId;
     }
     
     public DeleteCheckoutSessionRequest(
             String sessionId) {
-        this(sessionId, Optional.empty(), JsonNullable.undefined());
+        this(sessionId, JsonNullable.undefined());
     }
 
     /**
@@ -57,11 +47,6 @@ public class DeleteCheckoutSessionRequest {
     @JsonIgnore
     public String sessionId() {
         return sessionId;
-    }
-
-    @JsonIgnore
-    public Optional<Double> timeoutInSeconds() {
-        return timeoutInSeconds;
     }
 
     /**
@@ -82,18 +67,6 @@ public class DeleteCheckoutSessionRequest {
     public DeleteCheckoutSessionRequest withSessionId(String sessionId) {
         Utils.checkNotNull(sessionId, "sessionId");
         this.sessionId = sessionId;
-        return this;
-    }
-
-    public DeleteCheckoutSessionRequest withTimeoutInSeconds(double timeoutInSeconds) {
-        Utils.checkNotNull(timeoutInSeconds, "timeoutInSeconds");
-        this.timeoutInSeconds = Optional.ofNullable(timeoutInSeconds);
-        return this;
-    }
-
-    public DeleteCheckoutSessionRequest withTimeoutInSeconds(Optional<Double> timeoutInSeconds) {
-        Utils.checkNotNull(timeoutInSeconds, "timeoutInSeconds");
-        this.timeoutInSeconds = timeoutInSeconds;
         return this;
     }
 
@@ -127,7 +100,6 @@ public class DeleteCheckoutSessionRequest {
         DeleteCheckoutSessionRequest other = (DeleteCheckoutSessionRequest) o;
         return 
             Objects.deepEquals(this.sessionId, other.sessionId) &&
-            Objects.deepEquals(this.timeoutInSeconds, other.timeoutInSeconds) &&
             Objects.deepEquals(this.merchantAccountId, other.merchantAccountId);
     }
     
@@ -135,7 +107,6 @@ public class DeleteCheckoutSessionRequest {
     public int hashCode() {
         return Objects.hash(
             sessionId,
-            timeoutInSeconds,
             merchantAccountId);
     }
     
@@ -143,15 +114,12 @@ public class DeleteCheckoutSessionRequest {
     public String toString() {
         return Utils.toString(DeleteCheckoutSessionRequest.class,
                 "sessionId", sessionId,
-                "timeoutInSeconds", timeoutInSeconds,
                 "merchantAccountId", merchantAccountId);
     }
     
     public final static class Builder {
  
         private String sessionId;
- 
-        private Optional<Double> timeoutInSeconds;
  
         private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
         
@@ -165,18 +133,6 @@ public class DeleteCheckoutSessionRequest {
         public Builder sessionId(String sessionId) {
             Utils.checkNotNull(sessionId, "sessionId");
             this.sessionId = sessionId;
-            return this;
-        }
-
-        public Builder timeoutInSeconds(double timeoutInSeconds) {
-            Utils.checkNotNull(timeoutInSeconds, "timeoutInSeconds");
-            this.timeoutInSeconds = Optional.ofNullable(timeoutInSeconds);
-            return this;
-        }
-
-        public Builder timeoutInSeconds(Optional<Double> timeoutInSeconds) {
-            Utils.checkNotNull(timeoutInSeconds, "timeoutInSeconds");
-            this.timeoutInSeconds = timeoutInSeconds;
             return this;
         }
 
@@ -199,19 +155,9 @@ public class DeleteCheckoutSessionRequest {
         }
         
         public DeleteCheckoutSessionRequest build() {
-            if (timeoutInSeconds == null) {
-                timeoutInSeconds = _SINGLETON_VALUE_TimeoutInSeconds.value();
-            }
             return new DeleteCheckoutSessionRequest(
                 sessionId,
-                timeoutInSeconds,
                 merchantAccountId);
         }
-
-        private static final LazySingletonValue<Optional<Double>> _SINGLETON_VALUE_TimeoutInSeconds =
-                new LazySingletonValue<>(
-                        "timeout_in_seconds",
-                        "1",
-                        new TypeReference<Optional<Double>>() {});
     }
 }

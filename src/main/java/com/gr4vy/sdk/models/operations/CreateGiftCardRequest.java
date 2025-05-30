@@ -5,22 +5,15 @@ package com.gr4vy.sdk.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.gr4vy.sdk.models.components.GiftCardCreate;
-import com.gr4vy.sdk.utils.LazySingletonValue;
 import com.gr4vy.sdk.utils.SpeakeasyMetadata;
 import com.gr4vy.sdk.utils.Utils;
-import java.lang.Double;
 import java.lang.Override;
 import java.lang.String;
 import java.util.Objects;
-import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 public class CreateGiftCardRequest {
-
-    @SpeakeasyMetadata("queryParam:style=form,explode=true,name=timeout_in_seconds")
-    private Optional<Double> timeoutInSeconds;
 
     /**
      * The ID of the merchant account to use for this request.
@@ -33,25 +26,17 @@ public class CreateGiftCardRequest {
 
     @JsonCreator
     public CreateGiftCardRequest(
-            Optional<Double> timeoutInSeconds,
             JsonNullable<String> merchantAccountId,
             GiftCardCreate giftCardCreate) {
-        Utils.checkNotNull(timeoutInSeconds, "timeoutInSeconds");
         Utils.checkNotNull(merchantAccountId, "merchantAccountId");
         Utils.checkNotNull(giftCardCreate, "giftCardCreate");
-        this.timeoutInSeconds = timeoutInSeconds;
         this.merchantAccountId = merchantAccountId;
         this.giftCardCreate = giftCardCreate;
     }
     
     public CreateGiftCardRequest(
             GiftCardCreate giftCardCreate) {
-        this(Optional.empty(), JsonNullable.undefined(), giftCardCreate);
-    }
-
-    @JsonIgnore
-    public Optional<Double> timeoutInSeconds() {
-        return timeoutInSeconds;
+        this(JsonNullable.undefined(), giftCardCreate);
     }
 
     /**
@@ -70,18 +55,6 @@ public class CreateGiftCardRequest {
     public final static Builder builder() {
         return new Builder();
     }    
-
-    public CreateGiftCardRequest withTimeoutInSeconds(double timeoutInSeconds) {
-        Utils.checkNotNull(timeoutInSeconds, "timeoutInSeconds");
-        this.timeoutInSeconds = Optional.ofNullable(timeoutInSeconds);
-        return this;
-    }
-
-    public CreateGiftCardRequest withTimeoutInSeconds(Optional<Double> timeoutInSeconds) {
-        Utils.checkNotNull(timeoutInSeconds, "timeoutInSeconds");
-        this.timeoutInSeconds = timeoutInSeconds;
-        return this;
-    }
 
     /**
      * The ID of the merchant account to use for this request.
@@ -118,7 +91,6 @@ public class CreateGiftCardRequest {
         }
         CreateGiftCardRequest other = (CreateGiftCardRequest) o;
         return 
-            Objects.deepEquals(this.timeoutInSeconds, other.timeoutInSeconds) &&
             Objects.deepEquals(this.merchantAccountId, other.merchantAccountId) &&
             Objects.deepEquals(this.giftCardCreate, other.giftCardCreate);
     }
@@ -126,7 +98,6 @@ public class CreateGiftCardRequest {
     @Override
     public int hashCode() {
         return Objects.hash(
-            timeoutInSeconds,
             merchantAccountId,
             giftCardCreate);
     }
@@ -134,14 +105,11 @@ public class CreateGiftCardRequest {
     @Override
     public String toString() {
         return Utils.toString(CreateGiftCardRequest.class,
-                "timeoutInSeconds", timeoutInSeconds,
                 "merchantAccountId", merchantAccountId,
                 "giftCardCreate", giftCardCreate);
     }
     
     public final static class Builder {
- 
-        private Optional<Double> timeoutInSeconds;
  
         private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
  
@@ -149,18 +117,6 @@ public class CreateGiftCardRequest {
         
         private Builder() {
           // force use of static builder() method
-        }
-
-        public Builder timeoutInSeconds(double timeoutInSeconds) {
-            Utils.checkNotNull(timeoutInSeconds, "timeoutInSeconds");
-            this.timeoutInSeconds = Optional.ofNullable(timeoutInSeconds);
-            return this;
-        }
-
-        public Builder timeoutInSeconds(Optional<Double> timeoutInSeconds) {
-            Utils.checkNotNull(timeoutInSeconds, "timeoutInSeconds");
-            this.timeoutInSeconds = timeoutInSeconds;
-            return this;
         }
 
         /**
@@ -188,19 +144,9 @@ public class CreateGiftCardRequest {
         }
         
         public CreateGiftCardRequest build() {
-            if (timeoutInSeconds == null) {
-                timeoutInSeconds = _SINGLETON_VALUE_TimeoutInSeconds.value();
-            }
             return new CreateGiftCardRequest(
-                timeoutInSeconds,
                 merchantAccountId,
                 giftCardCreate);
         }
-
-        private static final LazySingletonValue<Optional<Double>> _SINGLETON_VALUE_TimeoutInSeconds =
-                new LazySingletonValue<>(
-                        "timeout_in_seconds",
-                        "1",
-                        new TypeReference<Optional<Double>>() {});
     }
 }

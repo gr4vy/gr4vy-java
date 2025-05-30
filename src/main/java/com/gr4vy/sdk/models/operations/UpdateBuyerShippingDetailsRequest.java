@@ -5,16 +5,12 @@ package com.gr4vy.sdk.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.gr4vy.sdk.models.components.ShippingDetailsUpdate;
-import com.gr4vy.sdk.utils.LazySingletonValue;
 import com.gr4vy.sdk.utils.SpeakeasyMetadata;
 import com.gr4vy.sdk.utils.Utils;
-import java.lang.Double;
 import java.lang.Override;
 import java.lang.String;
 import java.util.Objects;
-import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 public class UpdateBuyerShippingDetailsRequest {
@@ -31,9 +27,6 @@ public class UpdateBuyerShippingDetailsRequest {
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=shipping_details_id")
     private String shippingDetailsId;
 
-    @SpeakeasyMetadata("queryParam:style=form,explode=true,name=timeout_in_seconds")
-    private Optional<Double> timeoutInSeconds;
-
     /**
      * The ID of the merchant account to use for this request.
      */
@@ -47,17 +40,14 @@ public class UpdateBuyerShippingDetailsRequest {
     public UpdateBuyerShippingDetailsRequest(
             String buyerId,
             String shippingDetailsId,
-            Optional<Double> timeoutInSeconds,
             JsonNullable<String> merchantAccountId,
             ShippingDetailsUpdate shippingDetailsUpdate) {
         Utils.checkNotNull(buyerId, "buyerId");
         Utils.checkNotNull(shippingDetailsId, "shippingDetailsId");
-        Utils.checkNotNull(timeoutInSeconds, "timeoutInSeconds");
         Utils.checkNotNull(merchantAccountId, "merchantAccountId");
         Utils.checkNotNull(shippingDetailsUpdate, "shippingDetailsUpdate");
         this.buyerId = buyerId;
         this.shippingDetailsId = shippingDetailsId;
-        this.timeoutInSeconds = timeoutInSeconds;
         this.merchantAccountId = merchantAccountId;
         this.shippingDetailsUpdate = shippingDetailsUpdate;
     }
@@ -66,7 +56,7 @@ public class UpdateBuyerShippingDetailsRequest {
             String buyerId,
             String shippingDetailsId,
             ShippingDetailsUpdate shippingDetailsUpdate) {
-        this(buyerId, shippingDetailsId, Optional.empty(), JsonNullable.undefined(), shippingDetailsUpdate);
+        this(buyerId, shippingDetailsId, JsonNullable.undefined(), shippingDetailsUpdate);
     }
 
     /**
@@ -83,11 +73,6 @@ public class UpdateBuyerShippingDetailsRequest {
     @JsonIgnore
     public String shippingDetailsId() {
         return shippingDetailsId;
-    }
-
-    @JsonIgnore
-    public Optional<Double> timeoutInSeconds() {
-        return timeoutInSeconds;
     }
 
     /**
@@ -122,18 +107,6 @@ public class UpdateBuyerShippingDetailsRequest {
     public UpdateBuyerShippingDetailsRequest withShippingDetailsId(String shippingDetailsId) {
         Utils.checkNotNull(shippingDetailsId, "shippingDetailsId");
         this.shippingDetailsId = shippingDetailsId;
-        return this;
-    }
-
-    public UpdateBuyerShippingDetailsRequest withTimeoutInSeconds(double timeoutInSeconds) {
-        Utils.checkNotNull(timeoutInSeconds, "timeoutInSeconds");
-        this.timeoutInSeconds = Optional.ofNullable(timeoutInSeconds);
-        return this;
-    }
-
-    public UpdateBuyerShippingDetailsRequest withTimeoutInSeconds(Optional<Double> timeoutInSeconds) {
-        Utils.checkNotNull(timeoutInSeconds, "timeoutInSeconds");
-        this.timeoutInSeconds = timeoutInSeconds;
         return this;
     }
 
@@ -174,7 +147,6 @@ public class UpdateBuyerShippingDetailsRequest {
         return 
             Objects.deepEquals(this.buyerId, other.buyerId) &&
             Objects.deepEquals(this.shippingDetailsId, other.shippingDetailsId) &&
-            Objects.deepEquals(this.timeoutInSeconds, other.timeoutInSeconds) &&
             Objects.deepEquals(this.merchantAccountId, other.merchantAccountId) &&
             Objects.deepEquals(this.shippingDetailsUpdate, other.shippingDetailsUpdate);
     }
@@ -184,7 +156,6 @@ public class UpdateBuyerShippingDetailsRequest {
         return Objects.hash(
             buyerId,
             shippingDetailsId,
-            timeoutInSeconds,
             merchantAccountId,
             shippingDetailsUpdate);
     }
@@ -194,7 +165,6 @@ public class UpdateBuyerShippingDetailsRequest {
         return Utils.toString(UpdateBuyerShippingDetailsRequest.class,
                 "buyerId", buyerId,
                 "shippingDetailsId", shippingDetailsId,
-                "timeoutInSeconds", timeoutInSeconds,
                 "merchantAccountId", merchantAccountId,
                 "shippingDetailsUpdate", shippingDetailsUpdate);
     }
@@ -204,8 +174,6 @@ public class UpdateBuyerShippingDetailsRequest {
         private String buyerId;
  
         private String shippingDetailsId;
- 
-        private Optional<Double> timeoutInSeconds;
  
         private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
  
@@ -230,18 +198,6 @@ public class UpdateBuyerShippingDetailsRequest {
         public Builder shippingDetailsId(String shippingDetailsId) {
             Utils.checkNotNull(shippingDetailsId, "shippingDetailsId");
             this.shippingDetailsId = shippingDetailsId;
-            return this;
-        }
-
-        public Builder timeoutInSeconds(double timeoutInSeconds) {
-            Utils.checkNotNull(timeoutInSeconds, "timeoutInSeconds");
-            this.timeoutInSeconds = Optional.ofNullable(timeoutInSeconds);
-            return this;
-        }
-
-        public Builder timeoutInSeconds(Optional<Double> timeoutInSeconds) {
-            Utils.checkNotNull(timeoutInSeconds, "timeoutInSeconds");
-            this.timeoutInSeconds = timeoutInSeconds;
             return this;
         }
 
@@ -270,21 +226,11 @@ public class UpdateBuyerShippingDetailsRequest {
         }
         
         public UpdateBuyerShippingDetailsRequest build() {
-            if (timeoutInSeconds == null) {
-                timeoutInSeconds = _SINGLETON_VALUE_TimeoutInSeconds.value();
-            }
             return new UpdateBuyerShippingDetailsRequest(
                 buyerId,
                 shippingDetailsId,
-                timeoutInSeconds,
                 merchantAccountId,
                 shippingDetailsUpdate);
         }
-
-        private static final LazySingletonValue<Optional<Double>> _SINGLETON_VALUE_TimeoutInSeconds =
-                new LazySingletonValue<>(
-                        "timeout_in_seconds",
-                        "1",
-                        new TypeReference<Optional<Double>>() {});
     }
 }

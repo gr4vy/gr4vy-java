@@ -3,57 +3,28 @@
  */
 package com.gr4vy.sdk.models.operations;
 
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.gr4vy.sdk.models.components.MerchantAccountCreate;
-import com.gr4vy.sdk.utils.LazySingletonValue;
 import com.gr4vy.sdk.utils.Utils;
-import java.lang.Double;
 import java.lang.Exception;
-import java.util.Optional;
 
 public class CreateMerchantAccountRequestBuilder {
 
-    private Optional<Double> timeoutInSeconds = Utils.readDefaultOrConstValue(
-                            "timeoutInSeconds",
-                            "1",
-                            new TypeReference<Optional<Double>>() {});
-    private MerchantAccountCreate merchantAccountCreate;
+    private MerchantAccountCreate request;
     private final SDKMethodInterfaces.MethodCallCreateMerchantAccount sdk;
 
     public CreateMerchantAccountRequestBuilder(SDKMethodInterfaces.MethodCallCreateMerchantAccount sdk) {
         this.sdk = sdk;
     }
-                
-    public CreateMerchantAccountRequestBuilder timeoutInSeconds(double timeoutInSeconds) {
-        Utils.checkNotNull(timeoutInSeconds, "timeoutInSeconds");
-        this.timeoutInSeconds = Optional.of(timeoutInSeconds);
-        return this;
-    }
 
-    public CreateMerchantAccountRequestBuilder timeoutInSeconds(Optional<Double> timeoutInSeconds) {
-        Utils.checkNotNull(timeoutInSeconds, "timeoutInSeconds");
-        this.timeoutInSeconds = timeoutInSeconds;
-        return this;
-    }
-
-    public CreateMerchantAccountRequestBuilder merchantAccountCreate(MerchantAccountCreate merchantAccountCreate) {
-        Utils.checkNotNull(merchantAccountCreate, "merchantAccountCreate");
-        this.merchantAccountCreate = merchantAccountCreate;
+    public CreateMerchantAccountRequestBuilder request(MerchantAccountCreate request) {
+        Utils.checkNotNull(request, "request");
+        this.request = request;
         return this;
     }
 
     public CreateMerchantAccountResponse call() throws Exception {
-        if (timeoutInSeconds == null) {
-            timeoutInSeconds = _SINGLETON_VALUE_TimeoutInSeconds.value();
-        }
-        return sdk.create(
-            timeoutInSeconds,
-            merchantAccountCreate);
-    }
 
-    private static final LazySingletonValue<Optional<Double>> _SINGLETON_VALUE_TimeoutInSeconds =
-            new LazySingletonValue<>(
-                    "timeoutInSeconds",
-                    "1",
-                    new TypeReference<Optional<Double>>() {});
+        return sdk.create(
+            request);
+    }
 }

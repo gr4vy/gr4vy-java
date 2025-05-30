@@ -50,7 +50,6 @@ import com.gr4vy.sdk.utils.SerializedBody;
 import com.gr4vy.sdk.utils.Utils.JsonShape;
 import com.gr4vy.sdk.utils.Utils;
 import java.io.InputStream;
-import java.lang.Double;
 import java.lang.Exception;
 import java.lang.Object;
 import java.lang.String;
@@ -135,7 +134,7 @@ public class NetworkTokens implements
                 .build();
         
         String _baseUrl = Utils.templateUrl(
-                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
+                this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 ListPaymentMethodNetworkTokensRequest.class,
                 _baseUrl,
@@ -148,16 +147,16 @@ public class NetworkTokens implements
                 SDKConfiguration.USER_AGENT);
         _req.addHeaders(Utils.getHeadersFromMetadata(request, this.sdkConfiguration.globals));
         
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
+        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
         Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
+                this.sdkConfiguration.securitySource().getSecurity());
+        HTTPClient _client = this.sdkConfiguration.client();
         HTTPRequest _finalReq = _req;
         RetryConfig _retryConfig;
         if (options.isPresent() && options.get().retryConfig().isPresent()) {
             _retryConfig = options.get().retryConfig().get();
-        } else if (this.sdkConfiguration.retryConfig.isPresent()) {
-            _retryConfig = this.sdkConfiguration.retryConfig.get();
+        } else if (this.sdkConfiguration.retryConfig().isPresent()) {
+            _retryConfig = this.sdkConfiguration.retryConfig().get();
         } else {
             _retryConfig = RetryConfig.builder()
                 .backoff(BackoffStrategy.builder()
@@ -178,6 +177,7 @@ public class NetworkTokens implements
                     _r = sdkConfiguration.hooks()
                         .beforeRequest(
                             new BeforeRequestContextImpl(
+                                this.sdkConfiguration,
                                 _baseUrl,
                                 "list_payment_method_network_tokens", 
                                 Optional.of(List.of()), 
@@ -192,6 +192,7 @@ public class NetworkTokens implements
                     return sdkConfiguration.hooks()
                         .afterError(
                             new AfterErrorContextImpl(
+                                this.sdkConfiguration,
                                 _baseUrl,
                                 "list_payment_method_network_tokens",
                                  Optional.of(List.of()),
@@ -206,7 +207,8 @@ public class NetworkTokens implements
         HttpResponse<InputStream> _httpRes = sdkConfiguration.hooks()
                  .afterSuccess(
                      new AfterSuccessContextImpl(
-                          _baseUrl,
+                         this.sdkConfiguration,
+                         _baseUrl,
                          "list_payment_method_network_tokens", 
                          Optional.of(List.of()), 
                          _hookSecuritySource),
@@ -480,7 +482,7 @@ public class NetworkTokens implements
     public CreatePaymentMethodNetworkTokenResponse create(
             String paymentMethodId,
             NetworkTokenCreate networkTokenCreate) throws Exception {
-        return create(paymentMethodId, Optional.empty(), JsonNullable.undefined(), networkTokenCreate);
+        return create(paymentMethodId, JsonNullable.undefined(), networkTokenCreate);
     }
     
     /**
@@ -489,7 +491,6 @@ public class NetworkTokens implements
      * <p>Provision a network token for a payment method.
      * 
      * @param paymentMethodId The ID of the payment method
-     * @param timeoutInSeconds 
      * @param merchantAccountId 
      * @param networkTokenCreate 
      * @return The response from the API call
@@ -497,20 +498,18 @@ public class NetworkTokens implements
      */
     public CreatePaymentMethodNetworkTokenResponse create(
             String paymentMethodId,
-            Optional<Double> timeoutInSeconds,
             JsonNullable<String> merchantAccountId,
             NetworkTokenCreate networkTokenCreate) throws Exception {
         CreatePaymentMethodNetworkTokenRequest request =
             CreatePaymentMethodNetworkTokenRequest
                 .builder()
                 .paymentMethodId(paymentMethodId)
-                .timeoutInSeconds(timeoutInSeconds)
                 .merchantAccountId(merchantAccountId)
                 .networkTokenCreate(networkTokenCreate)
                 .build();
         
         String _baseUrl = Utils.templateUrl(
-                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
+                this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 CreatePaymentMethodNetworkTokenRequest.class,
                 _baseUrl,
@@ -534,21 +533,17 @@ public class NetworkTokens implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
-        _req.addQueryParams(Utils.getQueryParams(
-                CreatePaymentMethodNetworkTokenRequest.class,
-                request, 
-                this.sdkConfiguration.globals));
         _req.addHeaders(Utils.getHeadersFromMetadata(request, this.sdkConfiguration.globals));
         
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
+        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
         Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
+                this.sdkConfiguration.securitySource().getSecurity());
+        HTTPClient _client = this.sdkConfiguration.client();
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      this.sdkConfiguration,
                       _baseUrl,
                       "create_payment_method_network_token", 
                       Optional.of(List.of()), 
@@ -561,6 +556,7 @@ public class NetworkTokens implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "create_payment_method_network_token",
                             Optional.of(List.of()),
@@ -571,6 +567,7 @@ public class NetworkTokens implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "create_payment_method_network_token",
                             Optional.of(List.of()), 
@@ -581,6 +578,7 @@ public class NetworkTokens implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "create_payment_method_network_token",
                             Optional.of(List.of()),
@@ -857,7 +855,7 @@ public class NetworkTokens implements
     public SuspendPaymentMethodNetworkTokenResponse suspend(
             String paymentMethodId,
             String networkTokenId) throws Exception {
-        return suspend(paymentMethodId, networkTokenId, Optional.empty(), JsonNullable.undefined());
+        return suspend(paymentMethodId, networkTokenId, JsonNullable.undefined());
     }
     
     /**
@@ -867,7 +865,6 @@ public class NetworkTokens implements
      * 
      * @param paymentMethodId The ID of the payment method
      * @param networkTokenId The ID of the network token
-     * @param timeoutInSeconds 
      * @param merchantAccountId 
      * @return The response from the API call
      * @throws Exception if the API call fails
@@ -875,19 +872,17 @@ public class NetworkTokens implements
     public SuspendPaymentMethodNetworkTokenResponse suspend(
             String paymentMethodId,
             String networkTokenId,
-            Optional<Double> timeoutInSeconds,
             JsonNullable<String> merchantAccountId) throws Exception {
         SuspendPaymentMethodNetworkTokenRequest request =
             SuspendPaymentMethodNetworkTokenRequest
                 .builder()
                 .paymentMethodId(paymentMethodId)
                 .networkTokenId(networkTokenId)
-                .timeoutInSeconds(timeoutInSeconds)
                 .merchantAccountId(merchantAccountId)
                 .build();
         
         String _baseUrl = Utils.templateUrl(
-                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
+                this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 SuspendPaymentMethodNetworkTokenRequest.class,
                 _baseUrl,
@@ -898,21 +893,17 @@ public class NetworkTokens implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
-        _req.addQueryParams(Utils.getQueryParams(
-                SuspendPaymentMethodNetworkTokenRequest.class,
-                request, 
-                this.sdkConfiguration.globals));
         _req.addHeaders(Utils.getHeadersFromMetadata(request, this.sdkConfiguration.globals));
         
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
+        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
         Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
+                this.sdkConfiguration.securitySource().getSecurity());
+        HTTPClient _client = this.sdkConfiguration.client();
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      this.sdkConfiguration,
                       _baseUrl,
                       "suspend_payment_method_network_token", 
                       Optional.of(List.of()), 
@@ -925,6 +916,7 @@ public class NetworkTokens implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "suspend_payment_method_network_token",
                             Optional.of(List.of()),
@@ -935,6 +927,7 @@ public class NetworkTokens implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "suspend_payment_method_network_token",
                             Optional.of(List.of()), 
@@ -945,6 +938,7 @@ public class NetworkTokens implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "suspend_payment_method_network_token",
                             Optional.of(List.of()),
@@ -1221,7 +1215,7 @@ public class NetworkTokens implements
     public ResumePaymentMethodNetworkTokenResponse resume(
             String paymentMethodId,
             String networkTokenId) throws Exception {
-        return resume(paymentMethodId, networkTokenId, Optional.empty(), JsonNullable.undefined());
+        return resume(paymentMethodId, networkTokenId, JsonNullable.undefined());
     }
     
     /**
@@ -1231,7 +1225,6 @@ public class NetworkTokens implements
      * 
      * @param paymentMethodId The ID of the payment method
      * @param networkTokenId The ID of the network token
-     * @param timeoutInSeconds 
      * @param merchantAccountId 
      * @return The response from the API call
      * @throws Exception if the API call fails
@@ -1239,19 +1232,17 @@ public class NetworkTokens implements
     public ResumePaymentMethodNetworkTokenResponse resume(
             String paymentMethodId,
             String networkTokenId,
-            Optional<Double> timeoutInSeconds,
             JsonNullable<String> merchantAccountId) throws Exception {
         ResumePaymentMethodNetworkTokenRequest request =
             ResumePaymentMethodNetworkTokenRequest
                 .builder()
                 .paymentMethodId(paymentMethodId)
                 .networkTokenId(networkTokenId)
-                .timeoutInSeconds(timeoutInSeconds)
                 .merchantAccountId(merchantAccountId)
                 .build();
         
         String _baseUrl = Utils.templateUrl(
-                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
+                this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 ResumePaymentMethodNetworkTokenRequest.class,
                 _baseUrl,
@@ -1262,21 +1253,17 @@ public class NetworkTokens implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
-        _req.addQueryParams(Utils.getQueryParams(
-                ResumePaymentMethodNetworkTokenRequest.class,
-                request, 
-                this.sdkConfiguration.globals));
         _req.addHeaders(Utils.getHeadersFromMetadata(request, this.sdkConfiguration.globals));
         
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
+        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
         Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
+                this.sdkConfiguration.securitySource().getSecurity());
+        HTTPClient _client = this.sdkConfiguration.client();
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      this.sdkConfiguration,
                       _baseUrl,
                       "resume_payment_method_network_token", 
                       Optional.of(List.of()), 
@@ -1289,6 +1276,7 @@ public class NetworkTokens implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "resume_payment_method_network_token",
                             Optional.of(List.of()),
@@ -1299,6 +1287,7 @@ public class NetworkTokens implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "resume_payment_method_network_token",
                             Optional.of(List.of()), 
@@ -1309,6 +1298,7 @@ public class NetworkTokens implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "resume_payment_method_network_token",
                             Optional.of(List.of()),
@@ -1585,7 +1575,7 @@ public class NetworkTokens implements
     public DeletePaymentMethodNetworkTokenResponse delete(
             String paymentMethodId,
             String networkTokenId) throws Exception {
-        return delete(paymentMethodId, networkTokenId, Optional.empty(), JsonNullable.undefined());
+        return delete(paymentMethodId, networkTokenId, JsonNullable.undefined());
     }
     
     /**
@@ -1595,7 +1585,6 @@ public class NetworkTokens implements
      * 
      * @param paymentMethodId The ID of the payment method
      * @param networkTokenId The ID of the network token
-     * @param timeoutInSeconds 
      * @param merchantAccountId 
      * @return The response from the API call
      * @throws Exception if the API call fails
@@ -1603,19 +1592,17 @@ public class NetworkTokens implements
     public DeletePaymentMethodNetworkTokenResponse delete(
             String paymentMethodId,
             String networkTokenId,
-            Optional<Double> timeoutInSeconds,
             JsonNullable<String> merchantAccountId) throws Exception {
         DeletePaymentMethodNetworkTokenRequest request =
             DeletePaymentMethodNetworkTokenRequest
                 .builder()
                 .paymentMethodId(paymentMethodId)
                 .networkTokenId(networkTokenId)
-                .timeoutInSeconds(timeoutInSeconds)
                 .merchantAccountId(merchantAccountId)
                 .build();
         
         String _baseUrl = Utils.templateUrl(
-                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
+                this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 DeletePaymentMethodNetworkTokenRequest.class,
                 _baseUrl,
@@ -1626,21 +1613,17 @@ public class NetworkTokens implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
-        _req.addQueryParams(Utils.getQueryParams(
-                DeletePaymentMethodNetworkTokenRequest.class,
-                request, 
-                this.sdkConfiguration.globals));
         _req.addHeaders(Utils.getHeadersFromMetadata(request, this.sdkConfiguration.globals));
         
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
+        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
         Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
+                this.sdkConfiguration.securitySource().getSecurity());
+        HTTPClient _client = this.sdkConfiguration.client();
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      this.sdkConfiguration,
                       _baseUrl,
                       "delete_payment_method_network_token", 
                       Optional.of(List.of()), 
@@ -1653,6 +1636,7 @@ public class NetworkTokens implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "delete_payment_method_network_token",
                             Optional.of(List.of()),
@@ -1663,6 +1647,7 @@ public class NetworkTokens implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "delete_payment_method_network_token",
                             Optional.of(List.of()), 
@@ -1673,6 +1658,7 @@ public class NetworkTokens implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "delete_payment_method_network_token",
                             Optional.of(List.of()),

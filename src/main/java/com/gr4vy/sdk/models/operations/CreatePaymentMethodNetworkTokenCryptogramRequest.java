@@ -5,16 +5,12 @@ package com.gr4vy.sdk.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.gr4vy.sdk.models.components.CryptogramCreate;
-import com.gr4vy.sdk.utils.LazySingletonValue;
 import com.gr4vy.sdk.utils.SpeakeasyMetadata;
 import com.gr4vy.sdk.utils.Utils;
-import java.lang.Double;
 import java.lang.Override;
 import java.lang.String;
 import java.util.Objects;
-import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 public class CreatePaymentMethodNetworkTokenCryptogramRequest {
@@ -31,9 +27,6 @@ public class CreatePaymentMethodNetworkTokenCryptogramRequest {
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=network_token_id")
     private String networkTokenId;
 
-    @SpeakeasyMetadata("queryParam:style=form,explode=true,name=timeout_in_seconds")
-    private Optional<Double> timeoutInSeconds;
-
     /**
      * The ID of the merchant account to use for this request.
      */
@@ -47,17 +40,14 @@ public class CreatePaymentMethodNetworkTokenCryptogramRequest {
     public CreatePaymentMethodNetworkTokenCryptogramRequest(
             String paymentMethodId,
             String networkTokenId,
-            Optional<Double> timeoutInSeconds,
             JsonNullable<String> merchantAccountId,
             CryptogramCreate cryptogramCreate) {
         Utils.checkNotNull(paymentMethodId, "paymentMethodId");
         Utils.checkNotNull(networkTokenId, "networkTokenId");
-        Utils.checkNotNull(timeoutInSeconds, "timeoutInSeconds");
         Utils.checkNotNull(merchantAccountId, "merchantAccountId");
         Utils.checkNotNull(cryptogramCreate, "cryptogramCreate");
         this.paymentMethodId = paymentMethodId;
         this.networkTokenId = networkTokenId;
-        this.timeoutInSeconds = timeoutInSeconds;
         this.merchantAccountId = merchantAccountId;
         this.cryptogramCreate = cryptogramCreate;
     }
@@ -66,7 +56,7 @@ public class CreatePaymentMethodNetworkTokenCryptogramRequest {
             String paymentMethodId,
             String networkTokenId,
             CryptogramCreate cryptogramCreate) {
-        this(paymentMethodId, networkTokenId, Optional.empty(), JsonNullable.undefined(), cryptogramCreate);
+        this(paymentMethodId, networkTokenId, JsonNullable.undefined(), cryptogramCreate);
     }
 
     /**
@@ -83,11 +73,6 @@ public class CreatePaymentMethodNetworkTokenCryptogramRequest {
     @JsonIgnore
     public String networkTokenId() {
         return networkTokenId;
-    }
-
-    @JsonIgnore
-    public Optional<Double> timeoutInSeconds() {
-        return timeoutInSeconds;
     }
 
     /**
@@ -122,18 +107,6 @@ public class CreatePaymentMethodNetworkTokenCryptogramRequest {
     public CreatePaymentMethodNetworkTokenCryptogramRequest withNetworkTokenId(String networkTokenId) {
         Utils.checkNotNull(networkTokenId, "networkTokenId");
         this.networkTokenId = networkTokenId;
-        return this;
-    }
-
-    public CreatePaymentMethodNetworkTokenCryptogramRequest withTimeoutInSeconds(double timeoutInSeconds) {
-        Utils.checkNotNull(timeoutInSeconds, "timeoutInSeconds");
-        this.timeoutInSeconds = Optional.ofNullable(timeoutInSeconds);
-        return this;
-    }
-
-    public CreatePaymentMethodNetworkTokenCryptogramRequest withTimeoutInSeconds(Optional<Double> timeoutInSeconds) {
-        Utils.checkNotNull(timeoutInSeconds, "timeoutInSeconds");
-        this.timeoutInSeconds = timeoutInSeconds;
         return this;
     }
 
@@ -174,7 +147,6 @@ public class CreatePaymentMethodNetworkTokenCryptogramRequest {
         return 
             Objects.deepEquals(this.paymentMethodId, other.paymentMethodId) &&
             Objects.deepEquals(this.networkTokenId, other.networkTokenId) &&
-            Objects.deepEquals(this.timeoutInSeconds, other.timeoutInSeconds) &&
             Objects.deepEquals(this.merchantAccountId, other.merchantAccountId) &&
             Objects.deepEquals(this.cryptogramCreate, other.cryptogramCreate);
     }
@@ -184,7 +156,6 @@ public class CreatePaymentMethodNetworkTokenCryptogramRequest {
         return Objects.hash(
             paymentMethodId,
             networkTokenId,
-            timeoutInSeconds,
             merchantAccountId,
             cryptogramCreate);
     }
@@ -194,7 +165,6 @@ public class CreatePaymentMethodNetworkTokenCryptogramRequest {
         return Utils.toString(CreatePaymentMethodNetworkTokenCryptogramRequest.class,
                 "paymentMethodId", paymentMethodId,
                 "networkTokenId", networkTokenId,
-                "timeoutInSeconds", timeoutInSeconds,
                 "merchantAccountId", merchantAccountId,
                 "cryptogramCreate", cryptogramCreate);
     }
@@ -204,8 +174,6 @@ public class CreatePaymentMethodNetworkTokenCryptogramRequest {
         private String paymentMethodId;
  
         private String networkTokenId;
- 
-        private Optional<Double> timeoutInSeconds;
  
         private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
  
@@ -230,18 +198,6 @@ public class CreatePaymentMethodNetworkTokenCryptogramRequest {
         public Builder networkTokenId(String networkTokenId) {
             Utils.checkNotNull(networkTokenId, "networkTokenId");
             this.networkTokenId = networkTokenId;
-            return this;
-        }
-
-        public Builder timeoutInSeconds(double timeoutInSeconds) {
-            Utils.checkNotNull(timeoutInSeconds, "timeoutInSeconds");
-            this.timeoutInSeconds = Optional.ofNullable(timeoutInSeconds);
-            return this;
-        }
-
-        public Builder timeoutInSeconds(Optional<Double> timeoutInSeconds) {
-            Utils.checkNotNull(timeoutInSeconds, "timeoutInSeconds");
-            this.timeoutInSeconds = timeoutInSeconds;
             return this;
         }
 
@@ -270,21 +226,11 @@ public class CreatePaymentMethodNetworkTokenCryptogramRequest {
         }
         
         public CreatePaymentMethodNetworkTokenCryptogramRequest build() {
-            if (timeoutInSeconds == null) {
-                timeoutInSeconds = _SINGLETON_VALUE_TimeoutInSeconds.value();
-            }
             return new CreatePaymentMethodNetworkTokenCryptogramRequest(
                 paymentMethodId,
                 networkTokenId,
-                timeoutInSeconds,
                 merchantAccountId,
                 cryptogramCreate);
         }
-
-        private static final LazySingletonValue<Optional<Double>> _SINGLETON_VALUE_TimeoutInSeconds =
-                new LazySingletonValue<>(
-                        "timeout_in_seconds",
-                        "1",
-                        new TypeReference<Optional<Double>>() {});
     }
 }

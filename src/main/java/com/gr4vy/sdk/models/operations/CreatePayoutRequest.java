@@ -5,22 +5,15 @@ package com.gr4vy.sdk.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.gr4vy.sdk.models.components.PayoutCreate;
-import com.gr4vy.sdk.utils.LazySingletonValue;
 import com.gr4vy.sdk.utils.SpeakeasyMetadata;
 import com.gr4vy.sdk.utils.Utils;
-import java.lang.Double;
 import java.lang.Override;
 import java.lang.String;
 import java.util.Objects;
-import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 public class CreatePayoutRequest {
-
-    @SpeakeasyMetadata("queryParam:style=form,explode=true,name=timeout_in_seconds")
-    private Optional<Double> timeoutInSeconds;
 
     /**
      * The ID of the merchant account to use for this request.
@@ -33,25 +26,17 @@ public class CreatePayoutRequest {
 
     @JsonCreator
     public CreatePayoutRequest(
-            Optional<Double> timeoutInSeconds,
             JsonNullable<String> merchantAccountId,
             PayoutCreate payoutCreate) {
-        Utils.checkNotNull(timeoutInSeconds, "timeoutInSeconds");
         Utils.checkNotNull(merchantAccountId, "merchantAccountId");
         Utils.checkNotNull(payoutCreate, "payoutCreate");
-        this.timeoutInSeconds = timeoutInSeconds;
         this.merchantAccountId = merchantAccountId;
         this.payoutCreate = payoutCreate;
     }
     
     public CreatePayoutRequest(
             PayoutCreate payoutCreate) {
-        this(Optional.empty(), JsonNullable.undefined(), payoutCreate);
-    }
-
-    @JsonIgnore
-    public Optional<Double> timeoutInSeconds() {
-        return timeoutInSeconds;
+        this(JsonNullable.undefined(), payoutCreate);
     }
 
     /**
@@ -70,18 +55,6 @@ public class CreatePayoutRequest {
     public final static Builder builder() {
         return new Builder();
     }    
-
-    public CreatePayoutRequest withTimeoutInSeconds(double timeoutInSeconds) {
-        Utils.checkNotNull(timeoutInSeconds, "timeoutInSeconds");
-        this.timeoutInSeconds = Optional.ofNullable(timeoutInSeconds);
-        return this;
-    }
-
-    public CreatePayoutRequest withTimeoutInSeconds(Optional<Double> timeoutInSeconds) {
-        Utils.checkNotNull(timeoutInSeconds, "timeoutInSeconds");
-        this.timeoutInSeconds = timeoutInSeconds;
-        return this;
-    }
 
     /**
      * The ID of the merchant account to use for this request.
@@ -118,7 +91,6 @@ public class CreatePayoutRequest {
         }
         CreatePayoutRequest other = (CreatePayoutRequest) o;
         return 
-            Objects.deepEquals(this.timeoutInSeconds, other.timeoutInSeconds) &&
             Objects.deepEquals(this.merchantAccountId, other.merchantAccountId) &&
             Objects.deepEquals(this.payoutCreate, other.payoutCreate);
     }
@@ -126,7 +98,6 @@ public class CreatePayoutRequest {
     @Override
     public int hashCode() {
         return Objects.hash(
-            timeoutInSeconds,
             merchantAccountId,
             payoutCreate);
     }
@@ -134,14 +105,11 @@ public class CreatePayoutRequest {
     @Override
     public String toString() {
         return Utils.toString(CreatePayoutRequest.class,
-                "timeoutInSeconds", timeoutInSeconds,
                 "merchantAccountId", merchantAccountId,
                 "payoutCreate", payoutCreate);
     }
     
     public final static class Builder {
- 
-        private Optional<Double> timeoutInSeconds;
  
         private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
  
@@ -149,18 +117,6 @@ public class CreatePayoutRequest {
         
         private Builder() {
           // force use of static builder() method
-        }
-
-        public Builder timeoutInSeconds(double timeoutInSeconds) {
-            Utils.checkNotNull(timeoutInSeconds, "timeoutInSeconds");
-            this.timeoutInSeconds = Optional.ofNullable(timeoutInSeconds);
-            return this;
-        }
-
-        public Builder timeoutInSeconds(Optional<Double> timeoutInSeconds) {
-            Utils.checkNotNull(timeoutInSeconds, "timeoutInSeconds");
-            this.timeoutInSeconds = timeoutInSeconds;
-            return this;
         }
 
         /**
@@ -188,19 +144,9 @@ public class CreatePayoutRequest {
         }
         
         public CreatePayoutRequest build() {
-            if (timeoutInSeconds == null) {
-                timeoutInSeconds = _SINGLETON_VALUE_TimeoutInSeconds.value();
-            }
             return new CreatePayoutRequest(
-                timeoutInSeconds,
                 merchantAccountId,
                 payoutCreate);
         }
-
-        private static final LazySingletonValue<Optional<Double>> _SINGLETON_VALUE_TimeoutInSeconds =
-                new LazySingletonValue<>(
-                        "timeout_in_seconds",
-                        "1",
-                        new TypeReference<Optional<Double>>() {});
     }
 }

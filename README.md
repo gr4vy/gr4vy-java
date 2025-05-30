@@ -40,6 +40,7 @@ This SDK is designed to simplify development, reduce boilerplate code, and help 
   * [Error Handling](#error-handling)
   * [Server Selection](#server-selection)
 * [Development](#development)
+  * [Testing](#testing)
   * [Maturity](#maturity)
   * [Contributions](#contributions)
 
@@ -56,7 +57,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'com.gr4vy:sdk:0.1.8'
+implementation 'com.gr4vy:sdk:0.2.0'
 ```
 
 Maven:
@@ -64,7 +65,7 @@ Maven:
 <dependency>
     <groupId>com.gr4vy</groupId>
     <artifactId>sdk</artifactId>
-    <version>0.1.8</version>
+    <version>0.2.0</version>
 </dependency>
 ```
 
@@ -345,6 +346,10 @@ public class Application {
 * [void_](docs/sdks/transactions/README.md#void_) - Void transaction
 * [summary](docs/sdks/transactions/README.md#summary) - Get transaction summary
 * [sync](docs/sdks/transactions/README.md#sync) - Sync transaction
+
+#### [transactions().events()](docs/sdks/events/README.md)
+
+* [list](docs/sdks/events/README.md#list) - List transaction events
 
 #### [transactions().refunds()](docs/sdks/transactionsrefunds/README.md)
 

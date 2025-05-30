@@ -5,15 +5,11 @@ package com.gr4vy.sdk.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.gr4vy.sdk.utils.LazySingletonValue;
 import com.gr4vy.sdk.utils.SpeakeasyMetadata;
 import com.gr4vy.sdk.utils.Utils;
-import java.lang.Double;
 import java.lang.Override;
 import java.lang.String;
 import java.util.Objects;
-import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 public class DeleteGiftCardRequest {
@@ -24,9 +20,6 @@ public class DeleteGiftCardRequest {
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=gift_card_id")
     private String giftCardId;
 
-    @SpeakeasyMetadata("queryParam:style=form,explode=true,name=timeout_in_seconds")
-    private Optional<Double> timeoutInSeconds;
-
     /**
      * The ID of the merchant account to use for this request.
      */
@@ -36,19 +29,16 @@ public class DeleteGiftCardRequest {
     @JsonCreator
     public DeleteGiftCardRequest(
             String giftCardId,
-            Optional<Double> timeoutInSeconds,
             JsonNullable<String> merchantAccountId) {
         Utils.checkNotNull(giftCardId, "giftCardId");
-        Utils.checkNotNull(timeoutInSeconds, "timeoutInSeconds");
         Utils.checkNotNull(merchantAccountId, "merchantAccountId");
         this.giftCardId = giftCardId;
-        this.timeoutInSeconds = timeoutInSeconds;
         this.merchantAccountId = merchantAccountId;
     }
     
     public DeleteGiftCardRequest(
             String giftCardId) {
-        this(giftCardId, Optional.empty(), JsonNullable.undefined());
+        this(giftCardId, JsonNullable.undefined());
     }
 
     /**
@@ -57,11 +47,6 @@ public class DeleteGiftCardRequest {
     @JsonIgnore
     public String giftCardId() {
         return giftCardId;
-    }
-
-    @JsonIgnore
-    public Optional<Double> timeoutInSeconds() {
-        return timeoutInSeconds;
     }
 
     /**
@@ -82,18 +67,6 @@ public class DeleteGiftCardRequest {
     public DeleteGiftCardRequest withGiftCardId(String giftCardId) {
         Utils.checkNotNull(giftCardId, "giftCardId");
         this.giftCardId = giftCardId;
-        return this;
-    }
-
-    public DeleteGiftCardRequest withTimeoutInSeconds(double timeoutInSeconds) {
-        Utils.checkNotNull(timeoutInSeconds, "timeoutInSeconds");
-        this.timeoutInSeconds = Optional.ofNullable(timeoutInSeconds);
-        return this;
-    }
-
-    public DeleteGiftCardRequest withTimeoutInSeconds(Optional<Double> timeoutInSeconds) {
-        Utils.checkNotNull(timeoutInSeconds, "timeoutInSeconds");
-        this.timeoutInSeconds = timeoutInSeconds;
         return this;
     }
 
@@ -127,7 +100,6 @@ public class DeleteGiftCardRequest {
         DeleteGiftCardRequest other = (DeleteGiftCardRequest) o;
         return 
             Objects.deepEquals(this.giftCardId, other.giftCardId) &&
-            Objects.deepEquals(this.timeoutInSeconds, other.timeoutInSeconds) &&
             Objects.deepEquals(this.merchantAccountId, other.merchantAccountId);
     }
     
@@ -135,7 +107,6 @@ public class DeleteGiftCardRequest {
     public int hashCode() {
         return Objects.hash(
             giftCardId,
-            timeoutInSeconds,
             merchantAccountId);
     }
     
@@ -143,15 +114,12 @@ public class DeleteGiftCardRequest {
     public String toString() {
         return Utils.toString(DeleteGiftCardRequest.class,
                 "giftCardId", giftCardId,
-                "timeoutInSeconds", timeoutInSeconds,
                 "merchantAccountId", merchantAccountId);
     }
     
     public final static class Builder {
  
         private String giftCardId;
- 
-        private Optional<Double> timeoutInSeconds;
  
         private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
         
@@ -165,18 +133,6 @@ public class DeleteGiftCardRequest {
         public Builder giftCardId(String giftCardId) {
             Utils.checkNotNull(giftCardId, "giftCardId");
             this.giftCardId = giftCardId;
-            return this;
-        }
-
-        public Builder timeoutInSeconds(double timeoutInSeconds) {
-            Utils.checkNotNull(timeoutInSeconds, "timeoutInSeconds");
-            this.timeoutInSeconds = Optional.ofNullable(timeoutInSeconds);
-            return this;
-        }
-
-        public Builder timeoutInSeconds(Optional<Double> timeoutInSeconds) {
-            Utils.checkNotNull(timeoutInSeconds, "timeoutInSeconds");
-            this.timeoutInSeconds = timeoutInSeconds;
             return this;
         }
 
@@ -199,19 +155,9 @@ public class DeleteGiftCardRequest {
         }
         
         public DeleteGiftCardRequest build() {
-            if (timeoutInSeconds == null) {
-                timeoutInSeconds = _SINGLETON_VALUE_TimeoutInSeconds.value();
-            }
             return new DeleteGiftCardRequest(
                 giftCardId,
-                timeoutInSeconds,
                 merchantAccountId);
         }
-
-        private static final LazySingletonValue<Optional<Double>> _SINGLETON_VALUE_TimeoutInSeconds =
-                new LazySingletonValue<>(
-                        "timeout_in_seconds",
-                        "1",
-                        new TypeReference<Optional<Double>>() {});
     }
 }

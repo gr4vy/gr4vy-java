@@ -32,7 +32,6 @@ import com.gr4vy.sdk.utils.SerializedBody;
 import com.gr4vy.sdk.utils.Utils.JsonShape;
 import com.gr4vy.sdk.utils.Utils;
 import java.io.InputStream;
-import java.lang.Double;
 import java.lang.Exception;
 import java.lang.Object;
 import java.lang.String;
@@ -74,7 +73,7 @@ public class Balances implements
      */
     public ListGiftCardBalancesResponse list(
             GiftCardBalanceRequest giftCardBalanceRequest) throws Exception {
-        return list(Optional.empty(), JsonNullable.undefined(), giftCardBalanceRequest);
+        return list(JsonNullable.undefined(), giftCardBalanceRequest);
     }
     
     /**
@@ -82,26 +81,23 @@ public class Balances implements
      * 
      * <p>Fetch the balances for one or more gift cards.
      * 
-     * @param timeoutInSeconds 
      * @param merchantAccountId 
      * @param giftCardBalanceRequest 
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public ListGiftCardBalancesResponse list(
-            Optional<Double> timeoutInSeconds,
             JsonNullable<String> merchantAccountId,
             GiftCardBalanceRequest giftCardBalanceRequest) throws Exception {
         ListGiftCardBalancesRequest request =
             ListGiftCardBalancesRequest
                 .builder()
-                .timeoutInSeconds(timeoutInSeconds)
                 .merchantAccountId(merchantAccountId)
                 .giftCardBalanceRequest(giftCardBalanceRequest)
                 .build();
         
         String _baseUrl = Utils.templateUrl(
-                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
+                this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 _baseUrl,
                 "/gift-cards/balances");
@@ -123,21 +119,17 @@ public class Balances implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
-        _req.addQueryParams(Utils.getQueryParams(
-                ListGiftCardBalancesRequest.class,
-                request, 
-                this.sdkConfiguration.globals));
         _req.addHeaders(Utils.getHeadersFromMetadata(request, this.sdkConfiguration.globals));
         
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
+        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
         Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
+                this.sdkConfiguration.securitySource().getSecurity());
+        HTTPClient _client = this.sdkConfiguration.client();
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      this.sdkConfiguration,
                       _baseUrl,
                       "list_gift_card_balances", 
                       Optional.of(List.of()), 
@@ -150,6 +142,7 @@ public class Balances implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "list_gift_card_balances",
                             Optional.of(List.of()),
@@ -160,6 +153,7 @@ public class Balances implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "list_gift_card_balances",
                             Optional.of(List.of()), 
@@ -170,6 +164,7 @@ public class Balances implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "list_gift_card_balances",
                             Optional.of(List.of()),

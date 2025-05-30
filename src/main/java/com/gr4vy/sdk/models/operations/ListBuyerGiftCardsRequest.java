@@ -5,15 +5,11 @@ package com.gr4vy.sdk.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.gr4vy.sdk.utils.LazySingletonValue;
 import com.gr4vy.sdk.utils.SpeakeasyMetadata;
 import com.gr4vy.sdk.utils.Utils;
-import java.lang.Double;
 import java.lang.Override;
 import java.lang.String;
 import java.util.Objects;
-import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 public class ListBuyerGiftCardsRequest {
@@ -23,9 +19,6 @@ public class ListBuyerGiftCardsRequest {
 
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=buyer_id")
     private JsonNullable<String> buyerId;
-
-    @SpeakeasyMetadata("queryParam:style=form,explode=true,name=timeout_in_seconds")
-    private Optional<Double> timeoutInSeconds;
 
     /**
      * The ID of the merchant account to use for this request.
@@ -37,20 +30,17 @@ public class ListBuyerGiftCardsRequest {
     public ListBuyerGiftCardsRequest(
             JsonNullable<String> buyerExternalIdentifier,
             JsonNullable<String> buyerId,
-            Optional<Double> timeoutInSeconds,
             JsonNullable<String> merchantAccountId) {
         Utils.checkNotNull(buyerExternalIdentifier, "buyerExternalIdentifier");
         Utils.checkNotNull(buyerId, "buyerId");
-        Utils.checkNotNull(timeoutInSeconds, "timeoutInSeconds");
         Utils.checkNotNull(merchantAccountId, "merchantAccountId");
         this.buyerExternalIdentifier = buyerExternalIdentifier;
         this.buyerId = buyerId;
-        this.timeoutInSeconds = timeoutInSeconds;
         this.merchantAccountId = merchantAccountId;
     }
     
     public ListBuyerGiftCardsRequest() {
-        this(JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined());
+        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
     }
 
     @JsonIgnore
@@ -61,11 +51,6 @@ public class ListBuyerGiftCardsRequest {
     @JsonIgnore
     public JsonNullable<String> buyerId() {
         return buyerId;
-    }
-
-    @JsonIgnore
-    public Optional<Double> timeoutInSeconds() {
-        return timeoutInSeconds;
     }
 
     /**
@@ -104,18 +89,6 @@ public class ListBuyerGiftCardsRequest {
         return this;
     }
 
-    public ListBuyerGiftCardsRequest withTimeoutInSeconds(double timeoutInSeconds) {
-        Utils.checkNotNull(timeoutInSeconds, "timeoutInSeconds");
-        this.timeoutInSeconds = Optional.ofNullable(timeoutInSeconds);
-        return this;
-    }
-
-    public ListBuyerGiftCardsRequest withTimeoutInSeconds(Optional<Double> timeoutInSeconds) {
-        Utils.checkNotNull(timeoutInSeconds, "timeoutInSeconds");
-        this.timeoutInSeconds = timeoutInSeconds;
-        return this;
-    }
-
     /**
      * The ID of the merchant account to use for this request.
      */
@@ -147,7 +120,6 @@ public class ListBuyerGiftCardsRequest {
         return 
             Objects.deepEquals(this.buyerExternalIdentifier, other.buyerExternalIdentifier) &&
             Objects.deepEquals(this.buyerId, other.buyerId) &&
-            Objects.deepEquals(this.timeoutInSeconds, other.timeoutInSeconds) &&
             Objects.deepEquals(this.merchantAccountId, other.merchantAccountId);
     }
     
@@ -156,7 +128,6 @@ public class ListBuyerGiftCardsRequest {
         return Objects.hash(
             buyerExternalIdentifier,
             buyerId,
-            timeoutInSeconds,
             merchantAccountId);
     }
     
@@ -165,7 +136,6 @@ public class ListBuyerGiftCardsRequest {
         return Utils.toString(ListBuyerGiftCardsRequest.class,
                 "buyerExternalIdentifier", buyerExternalIdentifier,
                 "buyerId", buyerId,
-                "timeoutInSeconds", timeoutInSeconds,
                 "merchantAccountId", merchantAccountId);
     }
     
@@ -174,8 +144,6 @@ public class ListBuyerGiftCardsRequest {
         private JsonNullable<String> buyerExternalIdentifier = JsonNullable.undefined();
  
         private JsonNullable<String> buyerId = JsonNullable.undefined();
- 
-        private Optional<Double> timeoutInSeconds;
  
         private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
         
@@ -207,18 +175,6 @@ public class ListBuyerGiftCardsRequest {
             return this;
         }
 
-        public Builder timeoutInSeconds(double timeoutInSeconds) {
-            Utils.checkNotNull(timeoutInSeconds, "timeoutInSeconds");
-            this.timeoutInSeconds = Optional.ofNullable(timeoutInSeconds);
-            return this;
-        }
-
-        public Builder timeoutInSeconds(Optional<Double> timeoutInSeconds) {
-            Utils.checkNotNull(timeoutInSeconds, "timeoutInSeconds");
-            this.timeoutInSeconds = timeoutInSeconds;
-            return this;
-        }
-
         /**
          * The ID of the merchant account to use for this request.
          */
@@ -238,20 +194,10 @@ public class ListBuyerGiftCardsRequest {
         }
         
         public ListBuyerGiftCardsRequest build() {
-            if (timeoutInSeconds == null) {
-                timeoutInSeconds = _SINGLETON_VALUE_TimeoutInSeconds.value();
-            }
             return new ListBuyerGiftCardsRequest(
                 buyerExternalIdentifier,
                 buyerId,
-                timeoutInSeconds,
                 merchantAccountId);
         }
-
-        private static final LazySingletonValue<Optional<Double>> _SINGLETON_VALUE_TimeoutInSeconds =
-                new LazySingletonValue<>(
-                        "timeout_in_seconds",
-                        "1",
-                        new TypeReference<Optional<Double>>() {});
     }
 }

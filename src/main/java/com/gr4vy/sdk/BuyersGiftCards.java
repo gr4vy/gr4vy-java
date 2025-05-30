@@ -34,7 +34,6 @@ import com.gr4vy.sdk.utils.Retries;
 import com.gr4vy.sdk.utils.RetryConfig;
 import com.gr4vy.sdk.utils.Utils;
 import java.io.InputStream;
-import java.lang.Double;
 import java.lang.Exception;
 import java.lang.String;
 import java.net.http.HttpRequest;
@@ -76,7 +75,7 @@ public class BuyersGiftCards implements
      * @throws Exception if the API call fails
      */
     public ListBuyerGiftCardsResponse listDirect() throws Exception {
-        return list(JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), Optional.empty());
+        return list(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty());
     }
     
     /**
@@ -86,7 +85,6 @@ public class BuyersGiftCards implements
      * 
      * @param buyerExternalIdentifier 
      * @param buyerId 
-     * @param timeoutInSeconds 
      * @param merchantAccountId 
      * @param options additional options
      * @return The response from the API call
@@ -95,7 +93,6 @@ public class BuyersGiftCards implements
     public ListBuyerGiftCardsResponse list(
             JsonNullable<String> buyerExternalIdentifier,
             JsonNullable<String> buyerId,
-            Optional<Double> timeoutInSeconds,
             JsonNullable<String> merchantAccountId,
             Optional<Options> options) throws Exception {
 
@@ -107,12 +104,11 @@ public class BuyersGiftCards implements
                 .builder()
                 .buyerExternalIdentifier(buyerExternalIdentifier)
                 .buyerId(buyerId)
-                .timeoutInSeconds(timeoutInSeconds)
                 .merchantAccountId(merchantAccountId)
                 .build();
         
         String _baseUrl = Utils.templateUrl(
-                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
+                this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 _baseUrl,
                 "/buyers/gift-cards");
@@ -128,16 +124,16 @@ public class BuyersGiftCards implements
                 this.sdkConfiguration.globals));
         _req.addHeaders(Utils.getHeadersFromMetadata(request, this.sdkConfiguration.globals));
         
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
+        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
         Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
+                this.sdkConfiguration.securitySource().getSecurity());
+        HTTPClient _client = this.sdkConfiguration.client();
         HTTPRequest _finalReq = _req;
         RetryConfig _retryConfig;
         if (options.isPresent() && options.get().retryConfig().isPresent()) {
             _retryConfig = options.get().retryConfig().get();
-        } else if (this.sdkConfiguration.retryConfig.isPresent()) {
-            _retryConfig = this.sdkConfiguration.retryConfig.get();
+        } else if (this.sdkConfiguration.retryConfig().isPresent()) {
+            _retryConfig = this.sdkConfiguration.retryConfig().get();
         } else {
             _retryConfig = RetryConfig.builder()
                 .backoff(BackoffStrategy.builder()
@@ -158,6 +154,7 @@ public class BuyersGiftCards implements
                     _r = sdkConfiguration.hooks()
                         .beforeRequest(
                             new BeforeRequestContextImpl(
+                                this.sdkConfiguration,
                                 _baseUrl,
                                 "list_buyer_gift_cards", 
                                 Optional.of(List.of()), 
@@ -172,6 +169,7 @@ public class BuyersGiftCards implements
                     return sdkConfiguration.hooks()
                         .afterError(
                             new AfterErrorContextImpl(
+                                this.sdkConfiguration,
                                 _baseUrl,
                                 "list_buyer_gift_cards",
                                  Optional.of(List.of()),
@@ -186,7 +184,8 @@ public class BuyersGiftCards implements
         HttpResponse<InputStream> _httpRes = sdkConfiguration.hooks()
                  .afterSuccess(
                      new AfterSuccessContextImpl(
-                          _baseUrl,
+                         this.sdkConfiguration,
+                         _baseUrl,
                          "list_buyer_gift_cards", 
                          Optional.of(List.of()), 
                          _hookSecuritySource),
