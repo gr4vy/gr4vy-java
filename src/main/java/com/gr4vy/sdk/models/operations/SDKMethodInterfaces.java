@@ -9,7 +9,6 @@ import com.gr4vy.sdk.models.components.BuyerCreate;
 import com.gr4vy.sdk.models.components.BuyerUpdate;
 import com.gr4vy.sdk.models.components.CheckoutSessionCreate;
 import com.gr4vy.sdk.models.components.ClickToPaySessionRequest;
-import com.gr4vy.sdk.models.components.CryptogramCreate;
 import com.gr4vy.sdk.models.components.DigitalWalletCreate;
 import com.gr4vy.sdk.models.components.DigitalWalletDomain;
 import com.gr4vy.sdk.models.components.DigitalWalletUpdate;
@@ -25,7 +24,6 @@ import com.gr4vy.sdk.models.components.PaymentServiceTokenCreate;
 import com.gr4vy.sdk.models.components.PaymentServiceUpdate;
 import com.gr4vy.sdk.models.components.PayoutCreate;
 import com.gr4vy.sdk.models.components.ShippingDetailsCreate;
-import com.gr4vy.sdk.models.components.ShippingDetailsUpdate;
 import com.gr4vy.sdk.models.components.TransactionCapture;
 import com.gr4vy.sdk.models.components.TransactionCreate;
 import com.gr4vy.sdk.models.components.TransactionRefundAllCreate;
@@ -44,6 +42,7 @@ public class SDKMethodInterfaces {
 
     public interface MethodCallCreateAccountUpdaterJob {
         CreateAccountUpdaterJobResponse create(
+            Optional<String> applicationName,
             JsonNullable<String> merchantAccountId,
             AccountUpdaterJobCreate accountUpdaterJobCreate) throws Exception;
     }
@@ -56,6 +55,7 @@ public class SDKMethodInterfaces {
 
     public interface MethodCallAddBuyer {
         AddBuyerResponse create(
+            Optional<String> applicationName,
             JsonNullable<String> merchantAccountId,
             BuyerCreate buyerCreate) throws Exception;
     }
@@ -63,6 +63,7 @@ public class SDKMethodInterfaces {
     public interface MethodCallGetBuyer {
         GetBuyerResponse get(
             String buyerId,
+            Optional<String> applicationName,
             JsonNullable<String> merchantAccountId,
             Optional<Options> options) throws Exception;
     }
@@ -70,6 +71,7 @@ public class SDKMethodInterfaces {
     public interface MethodCallUpdateBuyer {
         UpdateBuyerResponse update(
             String buyerId,
+            Optional<String> applicationName,
             JsonNullable<String> merchantAccountId,
             BuyerUpdate buyerUpdate) throws Exception;
     }
@@ -77,6 +79,7 @@ public class SDKMethodInterfaces {
     public interface MethodCallDeleteBuyer {
         DeleteBuyerResponse delete(
             String buyerId,
+            Optional<String> applicationName,
             JsonNullable<String> merchantAccountId) throws Exception;
     }
 
@@ -90,6 +93,7 @@ public class SDKMethodInterfaces {
         ListBuyerGiftCardsResponse list(
             JsonNullable<String> buyerExternalIdentifier,
             JsonNullable<String> buyerId,
+            Optional<String> applicationName,
             JsonNullable<String> merchantAccountId,
             Optional<Options> options) throws Exception;
     }
@@ -97,6 +101,7 @@ public class SDKMethodInterfaces {
     public interface MethodCallAddBuyerShippingDetails {
         AddBuyerShippingDetailsResponse create(
             String buyerId,
+            Optional<String> applicationName,
             JsonNullable<String> merchantAccountId,
             ShippingDetailsCreate shippingDetailsCreate) throws Exception;
     }
@@ -104,6 +109,7 @@ public class SDKMethodInterfaces {
     public interface MethodCallListBuyerShippingDetails {
         ListBuyerShippingDetailsResponse list(
             String buyerId,
+            Optional<String> applicationName,
             JsonNullable<String> merchantAccountId,
             Optional<Options> options) throws Exception;
     }
@@ -112,22 +118,21 @@ public class SDKMethodInterfaces {
         GetBuyerShippingDetailsResponse get(
             String buyerId,
             String shippingDetailsId,
+            Optional<String> applicationName,
             JsonNullable<String> merchantAccountId,
             Optional<Options> options) throws Exception;
     }
 
     public interface MethodCallUpdateBuyerShippingDetails {
         UpdateBuyerShippingDetailsResponse update(
-            String buyerId,
-            String shippingDetailsId,
-            JsonNullable<String> merchantAccountId,
-            ShippingDetailsUpdate shippingDetailsUpdate) throws Exception;
+            UpdateBuyerShippingDetailsRequest request) throws Exception;
     }
 
     public interface MethodCallDeleteBuyerShippingDetails {
         DeleteBuyerShippingDetailsResponse delete(
             String buyerId,
             String shippingDetailsId,
+            Optional<String> applicationName,
             JsonNullable<String> merchantAccountId) throws Exception;
     }
 
@@ -139,6 +144,7 @@ public class SDKMethodInterfaces {
 
     public interface MethodCallCreatePaymentMethod {
         CreatePaymentMethodResponse create(
+            Optional<String> applicationName,
             JsonNullable<String> merchantAccountId,
             Body requestBody) throws Exception;
     }
@@ -146,6 +152,7 @@ public class SDKMethodInterfaces {
     public interface MethodCallGetPaymentMethod {
         GetPaymentMethodResponse get(
             String paymentMethodId,
+            Optional<String> applicationName,
             JsonNullable<String> merchantAccountId,
             Optional<Options> options) throws Exception;
     }
@@ -153,6 +160,7 @@ public class SDKMethodInterfaces {
     public interface MethodCallDeletePaymentMethod {
         DeletePaymentMethodResponse delete(
             String paymentMethodId,
+            Optional<String> applicationName,
             JsonNullable<String> merchantAccountId) throws Exception;
     }
 
@@ -160,6 +168,7 @@ public class SDKMethodInterfaces {
         ListPaymentMethodPaymentServiceTokensResponse list(
             String paymentMethodId,
             JsonNullable<String> paymentServiceId,
+            Optional<String> applicationName,
             JsonNullable<String> merchantAccountId,
             Optional<Options> options) throws Exception;
     }
@@ -167,6 +176,7 @@ public class SDKMethodInterfaces {
     public interface MethodCallCreatePaymentMethodPaymentServiceToken {
         CreatePaymentMethodPaymentServiceTokenResponse create(
             String paymentMethodId,
+            Optional<String> applicationName,
             JsonNullable<String> merchantAccountId,
             PaymentServiceTokenCreate paymentServiceTokenCreate) throws Exception;
     }
@@ -175,12 +185,14 @@ public class SDKMethodInterfaces {
         DeletePaymentMethodPaymentServiceTokenResponse delete(
             String paymentMethodId,
             String paymentServiceTokenId,
+            Optional<String> applicationName,
             JsonNullable<String> merchantAccountId) throws Exception;
     }
 
     public interface MethodCallListPaymentMethodNetworkTokens {
         ListPaymentMethodNetworkTokensResponse list(
             String paymentMethodId,
+            Optional<String> applicationName,
             JsonNullable<String> merchantAccountId,
             Optional<Options> options) throws Exception;
     }
@@ -188,6 +200,7 @@ public class SDKMethodInterfaces {
     public interface MethodCallCreatePaymentMethodNetworkToken {
         CreatePaymentMethodNetworkTokenResponse create(
             String paymentMethodId,
+            Optional<String> applicationName,
             JsonNullable<String> merchantAccountId,
             NetworkTokenCreate networkTokenCreate) throws Exception;
     }
@@ -196,6 +209,7 @@ public class SDKMethodInterfaces {
         SuspendPaymentMethodNetworkTokenResponse suspend(
             String paymentMethodId,
             String networkTokenId,
+            Optional<String> applicationName,
             JsonNullable<String> merchantAccountId) throws Exception;
     }
 
@@ -203,6 +217,7 @@ public class SDKMethodInterfaces {
         ResumePaymentMethodNetworkTokenResponse resume(
             String paymentMethodId,
             String networkTokenId,
+            Optional<String> applicationName,
             JsonNullable<String> merchantAccountId) throws Exception;
     }
 
@@ -210,20 +225,19 @@ public class SDKMethodInterfaces {
         DeletePaymentMethodNetworkTokenResponse delete(
             String paymentMethodId,
             String networkTokenId,
+            Optional<String> applicationName,
             JsonNullable<String> merchantAccountId) throws Exception;
     }
 
     public interface MethodCallCreatePaymentMethodNetworkTokenCryptogram {
         CreatePaymentMethodNetworkTokenCryptogramResponse create(
-            String paymentMethodId,
-            String networkTokenId,
-            JsonNullable<String> merchantAccountId,
-            CryptogramCreate cryptogramCreate) throws Exception;
+            CreatePaymentMethodNetworkTokenCryptogramRequest request) throws Exception;
     }
 
     public interface MethodCallGetGiftCard {
         GetGiftCardResponse get(
             String giftCardId,
+            Optional<String> applicationName,
             JsonNullable<String> merchantAccountId,
             Optional<Options> options) throws Exception;
     }
@@ -231,11 +245,13 @@ public class SDKMethodInterfaces {
     public interface MethodCallDeleteGiftCard {
         DeleteGiftCardResponse delete(
             String giftCardId,
+            Optional<String> applicationName,
             JsonNullable<String> merchantAccountId) throws Exception;
     }
 
     public interface MethodCallCreateGiftCard {
         CreateGiftCardResponse create(
+            Optional<String> applicationName,
             JsonNullable<String> merchantAccountId,
             GiftCardCreate giftCardCreate) throws Exception;
     }
@@ -248,24 +264,28 @@ public class SDKMethodInterfaces {
 
     public interface MethodCallListGiftCardBalances {
         ListGiftCardBalancesResponse list(
+            Optional<String> applicationName,
             JsonNullable<String> merchantAccountId,
             GiftCardBalanceRequest giftCardBalanceRequest) throws Exception;
     }
 
     public interface MethodCallListCardSchemeDefinitions {
         ListCardSchemeDefinitionsResponse list(
+            Optional<String> applicationName,
             JsonNullable<String> merchantAccountId,
             Optional<Options> options) throws Exception;
     }
 
     public interface MethodCallConfigureDigitalWallet {
         ConfigureDigitalWalletResponse create(
+            Optional<String> applicationName,
             JsonNullable<String> merchantAccountId,
             DigitalWalletCreate digitalWalletCreate) throws Exception;
     }
 
     public interface MethodCallListDigitalWallets {
         ListDigitalWalletsResponse list(
+            Optional<String> applicationName,
             JsonNullable<String> merchantAccountId,
             Optional<Options> options) throws Exception;
     }
@@ -273,6 +293,7 @@ public class SDKMethodInterfaces {
     public interface MethodCallGetDigitalWallet {
         GetDigitalWalletResponse get(
             String digitalWalletId,
+            Optional<String> applicationName,
             JsonNullable<String> merchantAccountId,
             Optional<Options> options) throws Exception;
     }
@@ -280,36 +301,42 @@ public class SDKMethodInterfaces {
     public interface MethodCallDeleteDigitalWallet {
         DeleteDigitalWalletResponse delete(
             String digitalWalletId,
+            Optional<String> applicationName,
             JsonNullable<String> merchantAccountId) throws Exception;
     }
 
     public interface MethodCallUpdateDigitalWallet {
         UpdateDigitalWalletResponse update(
             String digitalWalletId,
+            Optional<String> applicationName,
             JsonNullable<String> merchantAccountId,
             DigitalWalletUpdate digitalWalletUpdate) throws Exception;
     }
 
     public interface MethodCallCreateGooglePayDigitalWalletSession {
         CreateGooglePayDigitalWalletSessionResponse googlePay(
+            Optional<String> applicationName,
             JsonNullable<String> merchantAccountId,
             GooglePaySessionRequest googlePaySessionRequest) throws Exception;
     }
 
     public interface MethodCallCreateApplePayDigitalWalletSession {
         CreateApplePayDigitalWalletSessionResponse applePay(
+            Optional<String> applicationName,
             JsonNullable<String> merchantAccountId,
             ApplePaySessionRequest applePaySessionRequest) throws Exception;
     }
 
     public interface MethodCallCreateClickToPayDigitalWalletSession {
         CreateClickToPayDigitalWalletSessionResponse clickToPay(
-            ClickToPaySessionRequest request) throws Exception;
+            Optional<String> applicationName,
+            ClickToPaySessionRequest clickToPaySessionRequest) throws Exception;
     }
 
     public interface MethodCallRegisterDigitalWalletDomain {
         RegisterDigitalWalletDomainResponse create(
             String digitalWalletId,
+            Optional<String> applicationName,
             JsonNullable<String> merchantAccountId,
             DigitalWalletDomain digitalWalletDomain) throws Exception;
     }
@@ -317,6 +344,7 @@ public class SDKMethodInterfaces {
     public interface MethodCallUnregisterDigitalWalletDomain {
         UnregisterDigitalWalletDomainResponse delete(
             String digitalWalletId,
+            Optional<String> applicationName,
             JsonNullable<String> merchantAccountId,
             DigitalWalletDomain digitalWalletDomain) throws Exception;
     }
@@ -329,6 +357,7 @@ public class SDKMethodInterfaces {
 
     public interface MethodCallCreateTransaction {
         CreateTransactionResponse create(
+            Optional<String> applicationName,
             JsonNullable<String> merchantAccountId,
             JsonNullable<String> idempotencyKey,
             TransactionCreate transactionCreate) throws Exception;
@@ -337,6 +366,7 @@ public class SDKMethodInterfaces {
     public interface MethodCallGetTransaction {
         GetTransactionResponse get(
             String transactionId,
+            Optional<String> applicationName,
             JsonNullable<String> merchantAccountId,
             Optional<Options> options) throws Exception;
     }
@@ -344,6 +374,7 @@ public class SDKMethodInterfaces {
     public interface MethodCallCaptureTransaction {
         CaptureTransactionResponse capture(
             String transactionId,
+            Optional<String> applicationName,
             JsonNullable<String> merchantAccountId,
             TransactionCapture transactionCapture) throws Exception;
     }
@@ -351,18 +382,21 @@ public class SDKMethodInterfaces {
     public interface MethodCallVoidTransaction {
         VoidTransactionResponse void_(
             String transactionId,
+            Optional<String> applicationName,
             JsonNullable<String> merchantAccountId) throws Exception;
     }
 
     public interface MethodCallSyncTransaction {
         SyncTransactionResponse sync(
             String transactionId,
+            Optional<String> applicationName,
             JsonNullable<String> merchantAccountId) throws Exception;
     }
 
     public interface MethodCallListTransactionRefunds {
         ListTransactionRefundsResponse list(
             String transactionId,
+            Optional<String> applicationName,
             JsonNullable<String> merchantAccountId,
             Optional<Options> options) throws Exception;
     }
@@ -370,6 +404,7 @@ public class SDKMethodInterfaces {
     public interface MethodCallCreateTransactionRefund {
         CreateTransactionRefundResponse create(
             String transactionId,
+            Optional<String> applicationName,
             JsonNullable<String> merchantAccountId,
             TransactionRefundCreate transactionRefundCreate) throws Exception;
     }
@@ -378,6 +413,7 @@ public class SDKMethodInterfaces {
         GetTransactionRefundResponse get(
             String transactionId,
             String refundId,
+            Optional<String> applicationName,
             JsonNullable<String> merchantAccountId,
             Optional<Options> options) throws Exception;
     }
@@ -385,28 +421,28 @@ public class SDKMethodInterfaces {
     public interface MethodCallCreateFullTransactionRefund {
         CreateFullTransactionRefundResponse create(
             String transactionId,
+            Optional<String> applicationName,
             JsonNullable<String> merchantAccountId,
             JsonNullable<? extends TransactionRefundAllCreate> transactionRefundAllCreate) throws Exception;
     }
 
     public interface MethodCallListTransactionEvents {
         ListTransactionEventsResponse list(
-            String transactionId,
-            JsonNullable<String> cursor,
-            Optional<Long> limit,
-            JsonNullable<String> merchantAccountId,
+            ListTransactionEventsRequest request,
             Optional<Options> options) throws Exception;
     }
 
     public interface MethodCallGetRefund {
         GetRefundResponse get(
             String refundId,
+            Optional<String> applicationName,
             JsonNullable<String> merchantAccountId,
             Optional<Options> options) throws Exception;
     }
 
     public interface MethodCallListPaymentOptions {
         ListPaymentOptionsResponse list(
+            Optional<String> applicationName,
             JsonNullable<String> merchantAccountId,
             PaymentOptionRequest paymentOptionRequest) throws Exception;
     }
@@ -415,18 +451,21 @@ public class SDKMethodInterfaces {
         ListPaymentServiceDefinitionsResponse list(
             JsonNullable<String> cursor,
             Optional<Long> limit,
+            Optional<String> applicationName,
             Optional<Options> options) throws Exception;
     }
 
     public interface MethodCallGetPaymentServiceDefinition {
         GetPaymentServiceDefinitionResponse get(
             String paymentServiceDefinitionId,
+            Optional<String> applicationName,
             Optional<Options> options) throws Exception;
     }
 
     public interface MethodCallCreatePaymentServiceDefinitionSession {
         CreatePaymentServiceDefinitionSessionResponse session(
             String paymentServiceDefinitionId,
+            Optional<String> applicationName,
             Map<String, Object> requestBody) throws Exception;
     }
 
@@ -438,6 +477,7 @@ public class SDKMethodInterfaces {
 
     public interface MethodCallUpdatePaymentService {
         UpdatePaymentServiceResponse create(
+            Optional<String> applicationName,
             JsonNullable<String> merchantAccountId,
             PaymentServiceCreate paymentServiceCreate) throws Exception;
     }
@@ -445,6 +485,7 @@ public class SDKMethodInterfaces {
     public interface MethodCallGetPaymentService {
         GetPaymentServiceResponse get(
             String paymentServiceId,
+            Optional<String> applicationName,
             JsonNullable<String> merchantAccountId,
             Optional<Options> options) throws Exception;
     }
@@ -452,6 +493,7 @@ public class SDKMethodInterfaces {
     public interface MethodCallCreatePaymentService {
         CreatePaymentServiceResponse update(
             String paymentServiceId,
+            Optional<String> applicationName,
             JsonNullable<String> merchantAccountId,
             PaymentServiceUpdate paymentServiceUpdate) throws Exception;
     }
@@ -459,11 +501,13 @@ public class SDKMethodInterfaces {
     public interface MethodCallDeletePaymentService {
         DeletePaymentServiceResponse delete(
             String paymentServiceId,
+            Optional<String> applicationName,
             JsonNullable<String> merchantAccountId) throws Exception;
     }
 
     public interface MethodCallVerifyPaymentServiceCredentials {
         VerifyPaymentServiceCredentialsResponse verify(
+            Optional<String> applicationName,
             JsonNullable<String> merchantAccountId,
             VerifyCredentials verifyCredentials) throws Exception;
     }
@@ -471,6 +515,7 @@ public class SDKMethodInterfaces {
     public interface MethodCallCreatePaymentServiceSession {
         CreatePaymentServiceSessionResponse session(
             String paymentServiceId,
+            Optional<String> applicationName,
             JsonNullable<String> merchantAccountId,
             Map<String, Object> requestBody) throws Exception;
     }
@@ -483,6 +528,7 @@ public class SDKMethodInterfaces {
 
     public interface MethodCallCreateCheckoutSession {
         CreateCheckoutSessionResponse create(
+            Optional<String> applicationName,
             JsonNullable<String> merchantAccountId,
             Optional<? extends CheckoutSessionCreate> checkoutSessionCreate) throws Exception;
     }
@@ -490,6 +536,7 @@ public class SDKMethodInterfaces {
     public interface MethodCallUpdateCheckoutSession {
         UpdateCheckoutSessionResponse update(
             String sessionId,
+            Optional<String> applicationName,
             JsonNullable<String> merchantAccountId,
             CheckoutSessionCreate checkoutSessionCreate) throws Exception;
     }
@@ -497,6 +544,7 @@ public class SDKMethodInterfaces {
     public interface MethodCallGetCheckoutSession {
         GetCheckoutSessionResponse get(
             String sessionId,
+            Optional<String> applicationName,
             JsonNullable<String> merchantAccountId,
             Optional<Options> options) throws Exception;
     }
@@ -504,6 +552,7 @@ public class SDKMethodInterfaces {
     public interface MethodCallDeleteCheckoutSession {
         DeleteCheckoutSessionResponse delete(
             String sessionId,
+            Optional<String> applicationName,
             JsonNullable<String> merchantAccountId) throws Exception;
     }
 
@@ -512,23 +561,27 @@ public class SDKMethodInterfaces {
             JsonNullable<String> cursor,
             Optional<Long> limit,
             JsonNullable<String> search,
+            Optional<String> applicationName,
             Optional<Options> options) throws Exception;
     }
 
     public interface MethodCallCreateMerchantAccount {
         CreateMerchantAccountResponse create(
-            MerchantAccountCreate request) throws Exception;
+            Optional<String> applicationName,
+            MerchantAccountCreate merchantAccountCreate) throws Exception;
     }
 
     public interface MethodCallGetMerchantAccount {
         GetMerchantAccountResponse get(
             String merchantAccountId,
+            Optional<String> applicationName,
             Optional<Options> options) throws Exception;
     }
 
     public interface MethodCallUpdateMerchantAccount {
         UpdateMerchantAccountResponse update(
             String merchantAccountId,
+            Optional<String> applicationName,
             MerchantAccountUpdate merchantAccountUpdate) throws Exception;
     }
 
@@ -536,12 +589,14 @@ public class SDKMethodInterfaces {
         ListPayoutsResponse list(
             JsonNullable<String> cursor,
             Optional<Long> limit,
+            Optional<String> applicationName,
             JsonNullable<String> merchantAccountId,
             Optional<Options> options) throws Exception;
     }
 
     public interface MethodCallCreatePayout {
         CreatePayoutResponse create(
+            Optional<String> applicationName,
             JsonNullable<String> merchantAccountId,
             PayoutCreate payoutCreate) throws Exception;
     }
@@ -549,6 +604,7 @@ public class SDKMethodInterfaces {
     public interface MethodCallGetPayout {
         GetPayoutResponse get(
             String payoutId,
+            Optional<String> applicationName,
             JsonNullable<String> merchantAccountId,
             Optional<Options> options) throws Exception;
     }

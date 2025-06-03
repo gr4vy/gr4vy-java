@@ -5,15 +5,21 @@ package com.gr4vy.sdk.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.gr4vy.sdk.models.components.BuyerCreate;
+import com.gr4vy.sdk.utils.LazySingletonValue;
 import com.gr4vy.sdk.utils.SpeakeasyMetadata;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.util.Objects;
+import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 public class AddBuyerRequest {
+
+    @SpeakeasyMetadata("queryParam:style=form,explode=true,name=application_name")
+    private Optional<String> applicationName;
 
     /**
      * The ID of the merchant account to use for this request.
@@ -26,17 +32,25 @@ public class AddBuyerRequest {
 
     @JsonCreator
     public AddBuyerRequest(
+            Optional<String> applicationName,
             JsonNullable<String> merchantAccountId,
             BuyerCreate buyerCreate) {
+        Utils.checkNotNull(applicationName, "applicationName");
         Utils.checkNotNull(merchantAccountId, "merchantAccountId");
         Utils.checkNotNull(buyerCreate, "buyerCreate");
+        this.applicationName = applicationName;
         this.merchantAccountId = merchantAccountId;
         this.buyerCreate = buyerCreate;
     }
     
     public AddBuyerRequest(
             BuyerCreate buyerCreate) {
-        this(JsonNullable.undefined(), buyerCreate);
+        this(Optional.empty(), JsonNullable.undefined(), buyerCreate);
+    }
+
+    @JsonIgnore
+    public Optional<String> applicationName() {
+        return applicationName;
     }
 
     /**
@@ -55,6 +69,18 @@ public class AddBuyerRequest {
     public final static Builder builder() {
         return new Builder();
     }    
+
+    public AddBuyerRequest withApplicationName(String applicationName) {
+        Utils.checkNotNull(applicationName, "applicationName");
+        this.applicationName = Optional.ofNullable(applicationName);
+        return this;
+    }
+
+    public AddBuyerRequest withApplicationName(Optional<String> applicationName) {
+        Utils.checkNotNull(applicationName, "applicationName");
+        this.applicationName = applicationName;
+        return this;
+    }
 
     /**
      * The ID of the merchant account to use for this request.
@@ -91,6 +117,7 @@ public class AddBuyerRequest {
         }
         AddBuyerRequest other = (AddBuyerRequest) o;
         return 
+            Objects.deepEquals(this.applicationName, other.applicationName) &&
             Objects.deepEquals(this.merchantAccountId, other.merchantAccountId) &&
             Objects.deepEquals(this.buyerCreate, other.buyerCreate);
     }
@@ -98,6 +125,7 @@ public class AddBuyerRequest {
     @Override
     public int hashCode() {
         return Objects.hash(
+            applicationName,
             merchantAccountId,
             buyerCreate);
     }
@@ -105,11 +133,14 @@ public class AddBuyerRequest {
     @Override
     public String toString() {
         return Utils.toString(AddBuyerRequest.class,
+                "applicationName", applicationName,
                 "merchantAccountId", merchantAccountId,
                 "buyerCreate", buyerCreate);
     }
     
     public final static class Builder {
+ 
+        private Optional<String> applicationName;
  
         private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
  
@@ -117,6 +148,18 @@ public class AddBuyerRequest {
         
         private Builder() {
           // force use of static builder() method
+        }
+
+        public Builder applicationName(String applicationName) {
+            Utils.checkNotNull(applicationName, "applicationName");
+            this.applicationName = Optional.ofNullable(applicationName);
+            return this;
+        }
+
+        public Builder applicationName(Optional<String> applicationName) {
+            Utils.checkNotNull(applicationName, "applicationName");
+            this.applicationName = applicationName;
+            return this;
         }
 
         /**
@@ -144,9 +187,19 @@ public class AddBuyerRequest {
         }
         
         public AddBuyerRequest build() {
+            if (applicationName == null) {
+                applicationName = _SINGLETON_VALUE_ApplicationName.value();
+            }
             return new AddBuyerRequest(
+                applicationName,
                 merchantAccountId,
                 buyerCreate);
         }
+
+        private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_ApplicationName =
+                new LazySingletonValue<>(
+                        "application_name",
+                        "\"core-api\"",
+                        new TypeReference<Optional<String>>() {});
     }
 }

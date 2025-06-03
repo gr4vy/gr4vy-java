@@ -78,7 +78,7 @@ public class Domains implements
     public RegisterDigitalWalletDomainResponse create(
             String digitalWalletId,
             DigitalWalletDomain digitalWalletDomain) throws Exception {
-        return create(digitalWalletId, JsonNullable.undefined(), digitalWalletDomain);
+        return create(digitalWalletId, Optional.empty(), JsonNullable.undefined(), digitalWalletDomain);
     }
     
     /**
@@ -87,6 +87,7 @@ public class Domains implements
      * <p>Register a digital wallet domain (Apple Pay only).
      * 
      * @param digitalWalletId The ID of the digital wallet to remove a domain for.
+     * @param applicationName 
      * @param merchantAccountId 
      * @param digitalWalletDomain 
      * @return The response from the API call
@@ -94,12 +95,14 @@ public class Domains implements
      */
     public RegisterDigitalWalletDomainResponse create(
             String digitalWalletId,
+            Optional<String> applicationName,
             JsonNullable<String> merchantAccountId,
             DigitalWalletDomain digitalWalletDomain) throws Exception {
         RegisterDigitalWalletDomainRequest request =
             RegisterDigitalWalletDomainRequest
                 .builder()
                 .digitalWalletId(digitalWalletId)
+                .applicationName(applicationName)
                 .merchantAccountId(merchantAccountId)
                 .digitalWalletDomain(digitalWalletDomain)
                 .build();
@@ -129,6 +132,11 @@ public class Domains implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
+
+        _req.addQueryParams(Utils.getQueryParams(
+                RegisterDigitalWalletDomainRequest.class,
+                request, 
+                this.sdkConfiguration.globals));
         _req.addHeaders(Utils.getHeadersFromMetadata(request, this.sdkConfiguration.globals));
         
         Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
@@ -451,7 +459,7 @@ public class Domains implements
     public UnregisterDigitalWalletDomainResponse delete(
             String digitalWalletId,
             DigitalWalletDomain digitalWalletDomain) throws Exception {
-        return delete(digitalWalletId, JsonNullable.undefined(), digitalWalletDomain);
+        return delete(digitalWalletId, Optional.empty(), JsonNullable.undefined(), digitalWalletDomain);
     }
     
     /**
@@ -460,6 +468,7 @@ public class Domains implements
      * <p>Remove a digital wallet domain (Apple Pay only).
      * 
      * @param digitalWalletId 
+     * @param applicationName 
      * @param merchantAccountId 
      * @param digitalWalletDomain 
      * @return The response from the API call
@@ -467,12 +476,14 @@ public class Domains implements
      */
     public UnregisterDigitalWalletDomainResponse delete(
             String digitalWalletId,
+            Optional<String> applicationName,
             JsonNullable<String> merchantAccountId,
             DigitalWalletDomain digitalWalletDomain) throws Exception {
         UnregisterDigitalWalletDomainRequest request =
             UnregisterDigitalWalletDomainRequest
                 .builder()
                 .digitalWalletId(digitalWalletId)
+                .applicationName(applicationName)
                 .merchantAccountId(merchantAccountId)
                 .digitalWalletDomain(digitalWalletDomain)
                 .build();
@@ -502,6 +513,11 @@ public class Domains implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
+
+        _req.addQueryParams(Utils.getQueryParams(
+                UnregisterDigitalWalletDomainRequest.class,
+                request, 
+                this.sdkConfiguration.globals));
         _req.addHeaders(Utils.getHeadersFromMetadata(request, this.sdkConfiguration.globals));
         
         Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());

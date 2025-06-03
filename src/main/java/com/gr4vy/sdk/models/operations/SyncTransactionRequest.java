@@ -5,17 +5,23 @@ package com.gr4vy.sdk.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.gr4vy.sdk.utils.LazySingletonValue;
 import com.gr4vy.sdk.utils.SpeakeasyMetadata;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.util.Objects;
+import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 public class SyncTransactionRequest {
 
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=transaction_id")
     private String transactionId;
+
+    @SpeakeasyMetadata("queryParam:style=form,explode=true,name=application_name")
+    private Optional<String> applicationName;
 
     /**
      * The ID of the merchant account to use for this request.
@@ -26,21 +32,29 @@ public class SyncTransactionRequest {
     @JsonCreator
     public SyncTransactionRequest(
             String transactionId,
+            Optional<String> applicationName,
             JsonNullable<String> merchantAccountId) {
         Utils.checkNotNull(transactionId, "transactionId");
+        Utils.checkNotNull(applicationName, "applicationName");
         Utils.checkNotNull(merchantAccountId, "merchantAccountId");
         this.transactionId = transactionId;
+        this.applicationName = applicationName;
         this.merchantAccountId = merchantAccountId;
     }
     
     public SyncTransactionRequest(
             String transactionId) {
-        this(transactionId, JsonNullable.undefined());
+        this(transactionId, Optional.empty(), JsonNullable.undefined());
     }
 
     @JsonIgnore
     public String transactionId() {
         return transactionId;
+    }
+
+    @JsonIgnore
+    public Optional<String> applicationName() {
+        return applicationName;
     }
 
     /**
@@ -58,6 +72,18 @@ public class SyncTransactionRequest {
     public SyncTransactionRequest withTransactionId(String transactionId) {
         Utils.checkNotNull(transactionId, "transactionId");
         this.transactionId = transactionId;
+        return this;
+    }
+
+    public SyncTransactionRequest withApplicationName(String applicationName) {
+        Utils.checkNotNull(applicationName, "applicationName");
+        this.applicationName = Optional.ofNullable(applicationName);
+        return this;
+    }
+
+    public SyncTransactionRequest withApplicationName(Optional<String> applicationName) {
+        Utils.checkNotNull(applicationName, "applicationName");
+        this.applicationName = applicationName;
         return this;
     }
 
@@ -91,6 +117,7 @@ public class SyncTransactionRequest {
         SyncTransactionRequest other = (SyncTransactionRequest) o;
         return 
             Objects.deepEquals(this.transactionId, other.transactionId) &&
+            Objects.deepEquals(this.applicationName, other.applicationName) &&
             Objects.deepEquals(this.merchantAccountId, other.merchantAccountId);
     }
     
@@ -98,6 +125,7 @@ public class SyncTransactionRequest {
     public int hashCode() {
         return Objects.hash(
             transactionId,
+            applicationName,
             merchantAccountId);
     }
     
@@ -105,12 +133,15 @@ public class SyncTransactionRequest {
     public String toString() {
         return Utils.toString(SyncTransactionRequest.class,
                 "transactionId", transactionId,
+                "applicationName", applicationName,
                 "merchantAccountId", merchantAccountId);
     }
     
     public final static class Builder {
  
         private String transactionId;
+ 
+        private Optional<String> applicationName;
  
         private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
         
@@ -121,6 +152,18 @@ public class SyncTransactionRequest {
         public Builder transactionId(String transactionId) {
             Utils.checkNotNull(transactionId, "transactionId");
             this.transactionId = transactionId;
+            return this;
+        }
+
+        public Builder applicationName(String applicationName) {
+            Utils.checkNotNull(applicationName, "applicationName");
+            this.applicationName = Optional.ofNullable(applicationName);
+            return this;
+        }
+
+        public Builder applicationName(Optional<String> applicationName) {
+            Utils.checkNotNull(applicationName, "applicationName");
+            this.applicationName = applicationName;
             return this;
         }
 
@@ -143,9 +186,19 @@ public class SyncTransactionRequest {
         }
         
         public SyncTransactionRequest build() {
+            if (applicationName == null) {
+                applicationName = _SINGLETON_VALUE_ApplicationName.value();
+            }
             return new SyncTransactionRequest(
                 transactionId,
+                applicationName,
                 merchantAccountId);
         }
+
+        private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_ApplicationName =
+                new LazySingletonValue<>(
+                        "application_name",
+                        "\"core-api\"",
+                        new TypeReference<Optional<String>>() {});
     }
 }

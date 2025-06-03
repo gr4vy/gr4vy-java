@@ -257,6 +257,7 @@ public class Buyers implements
                         request.limit(),
                         request.search(),
                         request.externalIdentifier(),
+                        request.applicationName(),
                         request.merchantAccountId()
                              ));
                     return Optional.of(_nextRequest.call());
@@ -518,7 +519,7 @@ public class Buyers implements
      */
     public AddBuyerResponse create(
             BuyerCreate buyerCreate) throws Exception {
-        return create(JsonNullable.undefined(), buyerCreate);
+        return create(Optional.empty(), JsonNullable.undefined(), buyerCreate);
     }
     
     /**
@@ -526,17 +527,20 @@ public class Buyers implements
      * 
      * <p>Create a new buyer record.
      * 
+     * @param applicationName 
      * @param merchantAccountId 
      * @param buyerCreate Request body for creating a new buyer
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public AddBuyerResponse create(
+            Optional<String> applicationName,
             JsonNullable<String> merchantAccountId,
             BuyerCreate buyerCreate) throws Exception {
         AddBuyerRequest request =
             AddBuyerRequest
                 .builder()
+                .applicationName(applicationName)
                 .merchantAccountId(merchantAccountId)
                 .buyerCreate(buyerCreate)
                 .build();
@@ -564,6 +568,11 @@ public class Buyers implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
+
+        _req.addQueryParams(Utils.getQueryParams(
+                AddBuyerRequest.class,
+                request, 
+                this.sdkConfiguration.globals));
         _req.addHeaders(Utils.getHeadersFromMetadata(request, this.sdkConfiguration.globals));
         
         Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
@@ -884,7 +893,7 @@ public class Buyers implements
      */
     public GetBuyerResponse get(
             String buyerId) throws Exception {
-        return get(buyerId, JsonNullable.undefined(), Optional.empty());
+        return get(buyerId, Optional.empty(), JsonNullable.undefined(), Optional.empty());
     }
     
     /**
@@ -893,6 +902,7 @@ public class Buyers implements
      * <p>Fetches a buyer by its ID.
      * 
      * @param buyerId The ID of the buyer to retrieve.
+     * @param applicationName 
      * @param merchantAccountId 
      * @param options additional options
      * @return The response from the API call
@@ -900,6 +910,7 @@ public class Buyers implements
      */
     public GetBuyerResponse get(
             String buyerId,
+            Optional<String> applicationName,
             JsonNullable<String> merchantAccountId,
             Optional<Options> options) throws Exception {
 
@@ -910,6 +921,7 @@ public class Buyers implements
             GetBuyerRequest
                 .builder()
                 .buyerId(buyerId)
+                .applicationName(applicationName)
                 .merchantAccountId(merchantAccountId)
                 .build();
         
@@ -925,6 +937,11 @@ public class Buyers implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
+
+        _req.addQueryParams(Utils.getQueryParams(
+                GetBuyerRequest.class,
+                request, 
+                this.sdkConfiguration.globals));
         _req.addHeaders(Utils.getHeadersFromMetadata(request, this.sdkConfiguration.globals));
         
         Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
@@ -1262,7 +1279,7 @@ public class Buyers implements
     public UpdateBuyerResponse update(
             String buyerId,
             BuyerUpdate buyerUpdate) throws Exception {
-        return update(buyerId, JsonNullable.undefined(), buyerUpdate);
+        return update(buyerId, Optional.empty(), JsonNullable.undefined(), buyerUpdate);
     }
     
     /**
@@ -1271,6 +1288,7 @@ public class Buyers implements
      * <p>Updates a buyer record.
      * 
      * @param buyerId The ID of the buyer to edit.
+     * @param applicationName 
      * @param merchantAccountId 
      * @param buyerUpdate Request body for updating an existing buyer
      * @return The response from the API call
@@ -1278,12 +1296,14 @@ public class Buyers implements
      */
     public UpdateBuyerResponse update(
             String buyerId,
+            Optional<String> applicationName,
             JsonNullable<String> merchantAccountId,
             BuyerUpdate buyerUpdate) throws Exception {
         UpdateBuyerRequest request =
             UpdateBuyerRequest
                 .builder()
                 .buyerId(buyerId)
+                .applicationName(applicationName)
                 .merchantAccountId(merchantAccountId)
                 .buyerUpdate(buyerUpdate)
                 .build();
@@ -1313,6 +1333,11 @@ public class Buyers implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
+
+        _req.addQueryParams(Utils.getQueryParams(
+                UpdateBuyerRequest.class,
+                request, 
+                this.sdkConfiguration.globals));
         _req.addHeaders(Utils.getHeadersFromMetadata(request, this.sdkConfiguration.globals));
         
         Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
@@ -1633,7 +1658,7 @@ public class Buyers implements
      */
     public DeleteBuyerResponse delete(
             String buyerId) throws Exception {
-        return delete(buyerId, JsonNullable.undefined());
+        return delete(buyerId, Optional.empty(), JsonNullable.undefined());
     }
     
     /**
@@ -1642,17 +1667,20 @@ public class Buyers implements
      * <p>Permanently removes a buyer record.
      * 
      * @param buyerId The ID of the buyer to delete.
+     * @param applicationName 
      * @param merchantAccountId 
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public DeleteBuyerResponse delete(
             String buyerId,
+            Optional<String> applicationName,
             JsonNullable<String> merchantAccountId) throws Exception {
         DeleteBuyerRequest request =
             DeleteBuyerRequest
                 .builder()
                 .buyerId(buyerId)
+                .applicationName(applicationName)
                 .merchantAccountId(merchantAccountId)
                 .build();
         
@@ -1668,6 +1696,11 @@ public class Buyers implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
+
+        _req.addQueryParams(Utils.getQueryParams(
+                DeleteBuyerRequest.class,
+                request, 
+                this.sdkConfiguration.globals));
         _req.addHeaders(Utils.getHeadersFromMetadata(request, this.sdkConfiguration.globals));
         
         Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());

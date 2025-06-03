@@ -36,21 +36,27 @@ public class ListMerchantAccountsRequest {
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=search")
     private JsonNullable<String> search;
 
+    @SpeakeasyMetadata("queryParam:style=form,explode=true,name=application_name")
+    private Optional<String> applicationName;
+
     @JsonCreator
     public ListMerchantAccountsRequest(
             JsonNullable<String> cursor,
             Optional<Long> limit,
-            JsonNullable<String> search) {
+            JsonNullable<String> search,
+            Optional<String> applicationName) {
         Utils.checkNotNull(cursor, "cursor");
         Utils.checkNotNull(limit, "limit");
         Utils.checkNotNull(search, "search");
+        Utils.checkNotNull(applicationName, "applicationName");
         this.cursor = cursor;
         this.limit = limit;
         this.search = search;
+        this.applicationName = applicationName;
     }
     
     public ListMerchantAccountsRequest() {
-        this(JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined());
+        this(JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), Optional.empty());
     }
 
     /**
@@ -75,6 +81,11 @@ public class ListMerchantAccountsRequest {
     @JsonIgnore
     public JsonNullable<String> search() {
         return search;
+    }
+
+    @JsonIgnore
+    public Optional<String> applicationName() {
+        return applicationName;
     }
 
     public final static Builder builder() {
@@ -135,6 +146,18 @@ public class ListMerchantAccountsRequest {
         return this;
     }
 
+    public ListMerchantAccountsRequest withApplicationName(String applicationName) {
+        Utils.checkNotNull(applicationName, "applicationName");
+        this.applicationName = Optional.ofNullable(applicationName);
+        return this;
+    }
+
+    public ListMerchantAccountsRequest withApplicationName(Optional<String> applicationName) {
+        Utils.checkNotNull(applicationName, "applicationName");
+        this.applicationName = applicationName;
+        return this;
+    }
+
     
     @Override
     public boolean equals(java.lang.Object o) {
@@ -148,7 +171,8 @@ public class ListMerchantAccountsRequest {
         return 
             Objects.deepEquals(this.cursor, other.cursor) &&
             Objects.deepEquals(this.limit, other.limit) &&
-            Objects.deepEquals(this.search, other.search);
+            Objects.deepEquals(this.search, other.search) &&
+            Objects.deepEquals(this.applicationName, other.applicationName);
     }
     
     @Override
@@ -156,7 +180,8 @@ public class ListMerchantAccountsRequest {
         return Objects.hash(
             cursor,
             limit,
-            search);
+            search,
+            applicationName);
     }
     
     @Override
@@ -164,7 +189,8 @@ public class ListMerchantAccountsRequest {
         return Utils.toString(ListMerchantAccountsRequest.class,
                 "cursor", cursor,
                 "limit", limit,
-                "search", search);
+                "search", search,
+                "applicationName", applicationName);
     }
     
     public final static class Builder {
@@ -174,6 +200,8 @@ public class ListMerchantAccountsRequest {
         private Optional<Long> limit;
  
         private JsonNullable<String> search = JsonNullable.undefined();
+ 
+        private Optional<String> applicationName;
         
         private Builder() {
           // force use of static builder() method
@@ -232,15 +260,31 @@ public class ListMerchantAccountsRequest {
             this.search = search;
             return this;
         }
+
+        public Builder applicationName(String applicationName) {
+            Utils.checkNotNull(applicationName, "applicationName");
+            this.applicationName = Optional.ofNullable(applicationName);
+            return this;
+        }
+
+        public Builder applicationName(Optional<String> applicationName) {
+            Utils.checkNotNull(applicationName, "applicationName");
+            this.applicationName = applicationName;
+            return this;
+        }
         
         public ListMerchantAccountsRequest build() {
             if (limit == null) {
                 limit = _SINGLETON_VALUE_Limit.value();
             }
+            if (applicationName == null) {
+                applicationName = _SINGLETON_VALUE_ApplicationName.value();
+            }
             return new ListMerchantAccountsRequest(
                 cursor,
                 limit,
-                search);
+                search,
+                applicationName);
         }
 
         private static final LazySingletonValue<Optional<Long>> _SINGLETON_VALUE_Limit =
@@ -248,5 +292,11 @@ public class ListMerchantAccountsRequest {
                         "limit",
                         "20",
                         new TypeReference<Optional<Long>>() {});
+
+        private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_ApplicationName =
+                new LazySingletonValue<>(
+                        "application_name",
+                        "\"core-api\"",
+                        new TypeReference<Optional<String>>() {});
     }
 }

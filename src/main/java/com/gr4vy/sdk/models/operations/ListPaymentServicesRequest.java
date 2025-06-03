@@ -45,6 +45,9 @@ public class ListPaymentServicesRequest {
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=deleted")
     private JsonNullable<Boolean> deleted;
 
+    @SpeakeasyMetadata("queryParam:style=form,explode=true,name=application_name")
+    private Optional<String> applicationName;
+
     /**
      * The ID of the merchant account to use for this request.
      */
@@ -57,21 +60,24 @@ public class ListPaymentServicesRequest {
             JsonNullable<String> cursor,
             Optional<Long> limit,
             JsonNullable<Boolean> deleted,
+            Optional<String> applicationName,
             JsonNullable<String> merchantAccountId) {
         Utils.checkNotNull(method, "method");
         Utils.checkNotNull(cursor, "cursor");
         Utils.checkNotNull(limit, "limit");
         Utils.checkNotNull(deleted, "deleted");
+        Utils.checkNotNull(applicationName, "applicationName");
         Utils.checkNotNull(merchantAccountId, "merchantAccountId");
         this.method = method;
         this.cursor = cursor;
         this.limit = limit;
         this.deleted = deleted;
+        this.applicationName = applicationName;
         this.merchantAccountId = merchantAccountId;
     }
     
     public ListPaymentServicesRequest() {
-        this(JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined());
+        this(JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined());
     }
 
     /**
@@ -105,6 +111,11 @@ public class ListPaymentServicesRequest {
     @JsonIgnore
     public JsonNullable<Boolean> deleted() {
         return deleted;
+    }
+
+    @JsonIgnore
+    public Optional<String> applicationName() {
+        return applicationName;
     }
 
     /**
@@ -191,6 +202,18 @@ public class ListPaymentServicesRequest {
         return this;
     }
 
+    public ListPaymentServicesRequest withApplicationName(String applicationName) {
+        Utils.checkNotNull(applicationName, "applicationName");
+        this.applicationName = Optional.ofNullable(applicationName);
+        return this;
+    }
+
+    public ListPaymentServicesRequest withApplicationName(Optional<String> applicationName) {
+        Utils.checkNotNull(applicationName, "applicationName");
+        this.applicationName = applicationName;
+        return this;
+    }
+
     /**
      * The ID of the merchant account to use for this request.
      */
@@ -224,6 +247,7 @@ public class ListPaymentServicesRequest {
             Objects.deepEquals(this.cursor, other.cursor) &&
             Objects.deepEquals(this.limit, other.limit) &&
             Objects.deepEquals(this.deleted, other.deleted) &&
+            Objects.deepEquals(this.applicationName, other.applicationName) &&
             Objects.deepEquals(this.merchantAccountId, other.merchantAccountId);
     }
     
@@ -234,6 +258,7 @@ public class ListPaymentServicesRequest {
             cursor,
             limit,
             deleted,
+            applicationName,
             merchantAccountId);
     }
     
@@ -244,6 +269,7 @@ public class ListPaymentServicesRequest {
                 "cursor", cursor,
                 "limit", limit,
                 "deleted", deleted,
+                "applicationName", applicationName,
                 "merchantAccountId", merchantAccountId);
     }
     
@@ -256,6 +282,8 @@ public class ListPaymentServicesRequest {
         private Optional<Long> limit;
  
         private JsonNullable<Boolean> deleted = JsonNullable.undefined();
+ 
+        private Optional<String> applicationName;
  
         private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
         
@@ -335,6 +363,18 @@ public class ListPaymentServicesRequest {
             return this;
         }
 
+        public Builder applicationName(String applicationName) {
+            Utils.checkNotNull(applicationName, "applicationName");
+            this.applicationName = Optional.ofNullable(applicationName);
+            return this;
+        }
+
+        public Builder applicationName(Optional<String> applicationName) {
+            Utils.checkNotNull(applicationName, "applicationName");
+            this.applicationName = applicationName;
+            return this;
+        }
+
         /**
          * The ID of the merchant account to use for this request.
          */
@@ -357,11 +397,15 @@ public class ListPaymentServicesRequest {
             if (limit == null) {
                 limit = _SINGLETON_VALUE_Limit.value();
             }
+            if (applicationName == null) {
+                applicationName = _SINGLETON_VALUE_ApplicationName.value();
+            }
             return new ListPaymentServicesRequest(
                 method,
                 cursor,
                 limit,
                 deleted,
+                applicationName,
                 merchantAccountId);
         }
 
@@ -370,5 +414,11 @@ public class ListPaymentServicesRequest {
                         "limit",
                         "20",
                         new TypeReference<Optional<Long>>() {});
+
+        private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_ApplicationName =
+                new LazySingletonValue<>(
+                        "application_name",
+                        "\"core-api\"",
+                        new TypeReference<Optional<String>>() {});
     }
 }

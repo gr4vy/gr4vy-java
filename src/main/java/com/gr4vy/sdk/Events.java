@@ -35,7 +35,6 @@ import com.gr4vy.sdk.utils.RetryConfig;
 import com.gr4vy.sdk.utils.Utils;
 import java.io.InputStream;
 import java.lang.Exception;
-import java.lang.Long;
 import java.lang.String;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
@@ -44,7 +43,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.TimeUnit;
-import org.openapitools.jackson.nullable.JsonNullable;
 
 public class Events implements
             MethodCallListTransactionEvents {
@@ -72,13 +70,13 @@ public class Events implements
      * 
      * <p>Fetch a list of events for a transaction.
      * 
-     * @param transactionId 
+     * @param request The request object containing all of the parameters for the API call.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public ListTransactionEventsResponse list(
-            String transactionId) throws Exception {
-        return list(transactionId, JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), Optional.empty());
+            ListTransactionEventsRequest request) throws Exception {
+        return list(request, Optional.empty());
     }
     
     /**
@@ -86,33 +84,18 @@ public class Events implements
      * 
      * <p>Fetch a list of events for a transaction.
      * 
-     * @param transactionId 
-     * @param cursor A pointer to the page of results to return.
-     * @param limit The maximum number of items that are at returned.
-     * @param merchantAccountId 
+     * @param request The request object containing all of the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public ListTransactionEventsResponse list(
-            String transactionId,
-            JsonNullable<String> cursor,
-            Optional<Long> limit,
-            JsonNullable<String> merchantAccountId,
+            ListTransactionEventsRequest request,
             Optional<Options> options) throws Exception {
 
         if (options.isPresent()) {
           options.get().validate(Arrays.asList(Options.Option.RETRY_CONFIG));
         }
-        ListTransactionEventsRequest request =
-            ListTransactionEventsRequest
-                .builder()
-                .transactionId(transactionId)
-                .cursor(cursor)
-                .limit(limit)
-                .merchantAccountId(merchantAccountId)
-                .build();
-        
         String _baseUrl = Utils.templateUrl(
                 this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(

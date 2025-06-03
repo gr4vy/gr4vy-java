@@ -3,7 +3,9 @@
  */
 package com.gr4vy.sdk.models.operations;
 
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.gr4vy.sdk.models.components.CheckoutSessionCreate;
+import com.gr4vy.sdk.utils.LazySingletonValue;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -12,12 +14,28 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 public class CreateCheckoutSessionRequestBuilder {
 
+    private Optional<String> applicationName = Utils.readDefaultOrConstValue(
+                            "applicationName",
+                            "\"core-api\"",
+                            new TypeReference<Optional<String>>() {});
     private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
     private Optional<? extends CheckoutSessionCreate> checkoutSessionCreate = Optional.empty();
     private final SDKMethodInterfaces.MethodCallCreateCheckoutSession sdk;
 
     public CreateCheckoutSessionRequestBuilder(SDKMethodInterfaces.MethodCallCreateCheckoutSession sdk) {
         this.sdk = sdk;
+    }
+                
+    public CreateCheckoutSessionRequestBuilder applicationName(String applicationName) {
+        Utils.checkNotNull(applicationName, "applicationName");
+        this.applicationName = Optional.of(applicationName);
+        return this;
+    }
+
+    public CreateCheckoutSessionRequestBuilder applicationName(Optional<String> applicationName) {
+        Utils.checkNotNull(applicationName, "applicationName");
+        this.applicationName = applicationName;
+        return this;
     }
 
     public CreateCheckoutSessionRequestBuilder merchantAccountId(String merchantAccountId) {
@@ -45,9 +63,18 @@ public class CreateCheckoutSessionRequestBuilder {
     }
 
     public CreateCheckoutSessionResponse call() throws Exception {
-
+        if (applicationName == null) {
+            applicationName = _SINGLETON_VALUE_ApplicationName.value();
+        }
         return sdk.create(
+            applicationName,
             merchantAccountId,
             checkoutSessionCreate);
     }
+
+    private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_ApplicationName =
+            new LazySingletonValue<>(
+                    "applicationName",
+                    "\"core-api\"",
+                    new TypeReference<Optional<String>>() {});
 }

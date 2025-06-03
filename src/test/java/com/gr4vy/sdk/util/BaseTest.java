@@ -84,7 +84,7 @@ public abstract class BaseTest {
         Gr4vy gr4vyAdminClient = createGr4vyClient(privateKey);
         String merchantAccountId = generateRandomMerchantId(8);
         CreateMerchantAccountResponse res = gr4vyAdminClient.merchantAccounts().create()
-                .request(MerchantAccountCreate.builder()
+                .merchantAccountCreate(MerchantAccountCreate.builder()
                     .id(merchantAccountId)
                     .displayName(merchantAccountId)
                     .build())

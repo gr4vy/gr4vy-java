@@ -5,11 +5,14 @@ package com.gr4vy.sdk.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.gr4vy.sdk.utils.LazySingletonValue;
 import com.gr4vy.sdk.utils.SpeakeasyMetadata;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.util.Objects;
+import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 public class DeletePaymentServiceRequest {
@@ -20,6 +23,9 @@ public class DeletePaymentServiceRequest {
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=payment_service_id")
     private String paymentServiceId;
 
+    @SpeakeasyMetadata("queryParam:style=form,explode=true,name=application_name")
+    private Optional<String> applicationName;
+
     /**
      * The ID of the merchant account to use for this request.
      */
@@ -29,16 +35,19 @@ public class DeletePaymentServiceRequest {
     @JsonCreator
     public DeletePaymentServiceRequest(
             String paymentServiceId,
+            Optional<String> applicationName,
             JsonNullable<String> merchantAccountId) {
         Utils.checkNotNull(paymentServiceId, "paymentServiceId");
+        Utils.checkNotNull(applicationName, "applicationName");
         Utils.checkNotNull(merchantAccountId, "merchantAccountId");
         this.paymentServiceId = paymentServiceId;
+        this.applicationName = applicationName;
         this.merchantAccountId = merchantAccountId;
     }
     
     public DeletePaymentServiceRequest(
             String paymentServiceId) {
-        this(paymentServiceId, JsonNullable.undefined());
+        this(paymentServiceId, Optional.empty(), JsonNullable.undefined());
     }
 
     /**
@@ -47,6 +56,11 @@ public class DeletePaymentServiceRequest {
     @JsonIgnore
     public String paymentServiceId() {
         return paymentServiceId;
+    }
+
+    @JsonIgnore
+    public Optional<String> applicationName() {
+        return applicationName;
     }
 
     /**
@@ -67,6 +81,18 @@ public class DeletePaymentServiceRequest {
     public DeletePaymentServiceRequest withPaymentServiceId(String paymentServiceId) {
         Utils.checkNotNull(paymentServiceId, "paymentServiceId");
         this.paymentServiceId = paymentServiceId;
+        return this;
+    }
+
+    public DeletePaymentServiceRequest withApplicationName(String applicationName) {
+        Utils.checkNotNull(applicationName, "applicationName");
+        this.applicationName = Optional.ofNullable(applicationName);
+        return this;
+    }
+
+    public DeletePaymentServiceRequest withApplicationName(Optional<String> applicationName) {
+        Utils.checkNotNull(applicationName, "applicationName");
+        this.applicationName = applicationName;
         return this;
     }
 
@@ -100,6 +126,7 @@ public class DeletePaymentServiceRequest {
         DeletePaymentServiceRequest other = (DeletePaymentServiceRequest) o;
         return 
             Objects.deepEquals(this.paymentServiceId, other.paymentServiceId) &&
+            Objects.deepEquals(this.applicationName, other.applicationName) &&
             Objects.deepEquals(this.merchantAccountId, other.merchantAccountId);
     }
     
@@ -107,6 +134,7 @@ public class DeletePaymentServiceRequest {
     public int hashCode() {
         return Objects.hash(
             paymentServiceId,
+            applicationName,
             merchantAccountId);
     }
     
@@ -114,12 +142,15 @@ public class DeletePaymentServiceRequest {
     public String toString() {
         return Utils.toString(DeletePaymentServiceRequest.class,
                 "paymentServiceId", paymentServiceId,
+                "applicationName", applicationName,
                 "merchantAccountId", merchantAccountId);
     }
     
     public final static class Builder {
  
         private String paymentServiceId;
+ 
+        private Optional<String> applicationName;
  
         private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
         
@@ -133,6 +164,18 @@ public class DeletePaymentServiceRequest {
         public Builder paymentServiceId(String paymentServiceId) {
             Utils.checkNotNull(paymentServiceId, "paymentServiceId");
             this.paymentServiceId = paymentServiceId;
+            return this;
+        }
+
+        public Builder applicationName(String applicationName) {
+            Utils.checkNotNull(applicationName, "applicationName");
+            this.applicationName = Optional.ofNullable(applicationName);
+            return this;
+        }
+
+        public Builder applicationName(Optional<String> applicationName) {
+            Utils.checkNotNull(applicationName, "applicationName");
+            this.applicationName = applicationName;
             return this;
         }
 
@@ -155,9 +198,19 @@ public class DeletePaymentServiceRequest {
         }
         
         public DeletePaymentServiceRequest build() {
+            if (applicationName == null) {
+                applicationName = _SINGLETON_VALUE_ApplicationName.value();
+            }
             return new DeletePaymentServiceRequest(
                 paymentServiceId,
+                applicationName,
                 merchantAccountId);
         }
+
+        private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_ApplicationName =
+                new LazySingletonValue<>(
+                        "application_name",
+                        "\"core-api\"",
+                        new TypeReference<Optional<String>>() {});
     }
 }

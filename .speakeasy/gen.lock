@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 5bbaa3a9-baa0-471b-ba6a-13fd88e8c119
 management:
-  docChecksum: fa78a4fc643f1b73e1f52fea1820c023
+  docChecksum: 85ba7707907d8021dc9141b223acede6
   docVersion: 1.0.0
-  speakeasyVersion: 1.554.1
-  generationVersion: 2.616.1
-  releaseVersion: 1.0.0-beta.3
-  configChecksum: 2787e0e4d2d82946d30f146f8dd114ce
+  speakeasyVersion: 1.555.0
+  generationVersion: 2.618.0
+  releaseVersion: 1.0.0-beta.4
+  configChecksum: 353f214a9f22051e9829006a837efd05
   repoURL: https://github.com/gr4vy/gr4vy-java.git
   published: true
 features:
@@ -86,7 +86,6 @@ generatedFiles:
   - docs/models/components/CollectionNoCursorPaymentMethodSummary.md
   - docs/models/components/CollectionNoCursorPaymentOption.md
   - docs/models/components/CollectionNoCursorPaymentServiceToken.md
-  - docs/models/components/CollectionNoCursorRefund.md
   - docs/models/components/CollectionNoCursorShippingDetails.md
   - docs/models/components/CollectionPaymentMethod.md
   - docs/models/components/CollectionPaymentService.md
@@ -254,6 +253,7 @@ generatedFiles:
   - docs/models/operations/CreateApplePayDigitalWalletSessionResponse.md
   - docs/models/operations/CreateCheckoutSessionRequest.md
   - docs/models/operations/CreateCheckoutSessionResponse.md
+  - docs/models/operations/CreateClickToPayDigitalWalletSessionRequest.md
   - docs/models/operations/CreateClickToPayDigitalWalletSessionResponse.md
   - docs/models/operations/CreateFullTransactionRefundRequest.md
   - docs/models/operations/CreateFullTransactionRefundResponse.md
@@ -261,6 +261,7 @@ generatedFiles:
   - docs/models/operations/CreateGiftCardResponse.md
   - docs/models/operations/CreateGooglePayDigitalWalletSessionRequest.md
   - docs/models/operations/CreateGooglePayDigitalWalletSessionResponse.md
+  - docs/models/operations/CreateMerchantAccountRequest.md
   - docs/models/operations/CreateMerchantAccountResponse.md
   - docs/models/operations/CreatePaymentMethodNetworkTokenCryptogramRequest.md
   - docs/models/operations/CreatePaymentMethodNetworkTokenCryptogramResponse.md
@@ -512,7 +513,6 @@ generatedFiles:
   - src/main/java/com/gr4vy/sdk/models/components/CollectionNoCursorPaymentMethodSummary.java
   - src/main/java/com/gr4vy/sdk/models/components/CollectionNoCursorPaymentOption.java
   - src/main/java/com/gr4vy/sdk/models/components/CollectionNoCursorPaymentServiceToken.java
-  - src/main/java/com/gr4vy/sdk/models/components/CollectionNoCursorRefund.java
   - src/main/java/com/gr4vy/sdk/models/components/CollectionNoCursorShippingDetails.java
   - src/main/java/com/gr4vy/sdk/models/components/CollectionPaymentMethod.java
   - src/main/java/com/gr4vy/sdk/models/components/CollectionPaymentService.java
@@ -689,6 +689,7 @@ generatedFiles:
   - src/main/java/com/gr4vy/sdk/models/operations/CreateCheckoutSessionRequest.java
   - src/main/java/com/gr4vy/sdk/models/operations/CreateCheckoutSessionRequestBuilder.java
   - src/main/java/com/gr4vy/sdk/models/operations/CreateCheckoutSessionResponse.java
+  - src/main/java/com/gr4vy/sdk/models/operations/CreateClickToPayDigitalWalletSessionRequest.java
   - src/main/java/com/gr4vy/sdk/models/operations/CreateClickToPayDigitalWalletSessionRequestBuilder.java
   - src/main/java/com/gr4vy/sdk/models/operations/CreateClickToPayDigitalWalletSessionResponse.java
   - src/main/java/com/gr4vy/sdk/models/operations/CreateFullTransactionRefundRequest.java
@@ -700,6 +701,7 @@ generatedFiles:
   - src/main/java/com/gr4vy/sdk/models/operations/CreateGooglePayDigitalWalletSessionRequest.java
   - src/main/java/com/gr4vy/sdk/models/operations/CreateGooglePayDigitalWalletSessionRequestBuilder.java
   - src/main/java/com/gr4vy/sdk/models/operations/CreateGooglePayDigitalWalletSessionResponse.java
+  - src/main/java/com/gr4vy/sdk/models/operations/CreateMerchantAccountRequest.java
   - src/main/java/com/gr4vy/sdk/models/operations/CreateMerchantAccountRequestBuilder.java
   - src/main/java/com/gr4vy/sdk/models/operations/CreateMerchantAccountResponse.java
   - src/main/java/com/gr4vy/sdk/models/operations/CreatePaymentMethodNetworkTokenCryptogramRequest.java
@@ -951,6 +953,7 @@ examples:
       parameters:
         query:
           timeout_in_seconds: 1
+          application_name: "core-api"
         header:
           x-gr4vy-merchant-account-id: "default"
       requestBody:
@@ -990,6 +993,7 @@ examples:
           limit: 20
           search: "John"
           external_identifier: "buyer-12345"
+          application_name: "core-api"
         header:
           x-gr4vy-merchant-account-id: "default"
       responses:
@@ -1024,6 +1028,7 @@ examples:
       parameters:
         query:
           timeout_in_seconds: 1
+          application_name: "core-api"
         header:
           x-gr4vy-merchant-account-id: "default"
       requestBody:
@@ -1060,6 +1065,8 @@ examples:
       parameters:
         path:
           buyer_id: "fe26475d-ec3e-4884-9553-f7356683f7f9"
+        query:
+          application_name: "core-api"
         header:
           x-gr4vy-merchant-account-id: "default"
       responses:
@@ -1096,6 +1103,7 @@ examples:
           buyer_id: "fe26475d-ec3e-4884-9553-f7356683f7f9"
         query:
           timeout_in_seconds: 1
+          application_name: "core-api"
         header:
           x-gr4vy-merchant-account-id: "default"
       requestBody:
@@ -1134,6 +1142,7 @@ examples:
           buyer_id: "fe26475d-ec3e-4884-9553-f7356683f7f9"
         query:
           timeout_in_seconds: 1
+          application_name: "core-api"
         header:
           x-gr4vy-merchant-account-id: "default"
       responses:
@@ -1171,6 +1180,7 @@ examples:
           order_by: "desc"
           country: "US"
           currency: "USD"
+          application_name: "core-api"
         header:
           x-gr4vy-merchant-account-id: "default"
       responses:
@@ -1205,6 +1215,7 @@ examples:
       parameters:
         query:
           timeout_in_seconds: 1
+          application_name: "core-api"
         header:
           x-gr4vy-merchant-account-id: "default"
       responses:
@@ -1241,6 +1252,7 @@ examples:
           buyer_id: "fe26475d-ec3e-4884-9553-f7356683f7f9"
         query:
           timeout_in_seconds: 1
+          application_name: "core-api"
         header:
           x-gr4vy-merchant-account-id: "default"
       requestBody:
@@ -1277,6 +1289,8 @@ examples:
       parameters:
         path:
           buyer_id: "fe26475d-ec3e-4884-9553-f7356683f7f9"
+        query:
+          application_name: "core-api"
         header:
           x-gr4vy-merchant-account-id: "default"
       responses:
@@ -1312,6 +1326,8 @@ examples:
         path:
           buyer_id: "fe26475d-ec3e-4884-9553-f7356683f7f9"
           shipping_details_id: "bf8c36ad-02d9-4904-b0f9-a230b149e341"
+        query:
+          application_name: "core-api"
         header:
           x-gr4vy-merchant-account-id: "default"
       responses:
@@ -1349,6 +1365,7 @@ examples:
           shipping_details_id: "bf8c36ad-02d9-4904-b0f9-a230b149e341"
         query:
           timeout_in_seconds: 1
+          application_name: "core-api"
         header:
           x-gr4vy-merchant-account-id: "default"
       requestBody:
@@ -1388,6 +1405,7 @@ examples:
           shipping_details_id: "bf8c36ad-02d9-4904-b0f9-a230b149e341"
         query:
           timeout_in_seconds: 1
+          application_name: "core-api"
         header:
           x-gr4vy-merchant-account-id: "default"
       responses:
@@ -1426,6 +1444,7 @@ examples:
           buyer_id: "fe26475d-ec3e-4884-9553-f7356683f7f9"
           buyer_external_identifier: "buyer-12345"
           external_identifier: "payment-method-12345"
+          application_name: "core-api"
         header:
           x-gr4vy-merchant-account-id: "default"
       responses:
@@ -1460,6 +1479,7 @@ examples:
       parameters:
         query:
           timeout_in_seconds: 1
+          application_name: "core-api"
         header:
           x-gr4vy-merchant-account-id: "default"
       requestBody:
@@ -1496,6 +1516,8 @@ examples:
       parameters:
         path:
           payment_method_id: "ef9496d8-53a5-4aad-8ca2-00eb68334389"
+        query:
+          application_name: "core-api"
         header:
           x-gr4vy-merchant-account-id: "default"
       responses:
@@ -1530,6 +1552,8 @@ examples:
       parameters:
         path:
           payment_method_id: "ef9496d8-53a5-4aad-8ca2-00eb68334389"
+        query:
+          application_name: "core-api"
         header:
           x-gr4vy-merchant-account-id: "default"
       responses:
@@ -1564,6 +1588,7 @@ examples:
           payment_method_id: "ef9496d8-53a5-4aad-8ca2-00eb68334389"
         query:
           payment_service_id: "fffd152a-9532-4087-9a4f-de58754210f0"
+          application_name: "core-api"
         header:
           x-gr4vy-merchant-account-id: "default"
       responses:
@@ -1600,6 +1625,7 @@ examples:
           payment_method_id: "ef9496d8-53a5-4aad-8ca2-00eb68334389"
         query:
           timeout_in_seconds: 1
+          application_name: "core-api"
         header:
           x-gr4vy-merchant-account-id: "default"
       requestBody:
@@ -1639,6 +1665,7 @@ examples:
           payment_service_token_id: "703f2d99-3fd1-44bc-9cbd-a25a2d597886"
         query:
           timeout_in_seconds: 1
+          application_name: "core-api"
         header:
           x-gr4vy-merchant-account-id: "default"
       responses:
@@ -1671,6 +1698,8 @@ examples:
       parameters:
         path:
           payment_method_id: "ef9496d8-53a5-4aad-8ca2-00eb68334389"
+        query:
+          application_name: "core-api"
         header:
           x-gr4vy-merchant-account-id: "default"
       responses:
@@ -1707,6 +1736,7 @@ examples:
           payment_method_id: "ef9496d8-53a5-4aad-8ca2-00eb68334389"
         query:
           timeout_in_seconds: 1
+          application_name: "core-api"
         header:
           x-gr4vy-merchant-account-id: "default"
       requestBody:
@@ -1746,6 +1776,7 @@ examples:
           network_token_id: "f8dd5cfc-7834-4847-95dc-f75a360e2298"
         query:
           timeout_in_seconds: 1
+          application_name: "core-api"
         header:
           x-gr4vy-merchant-account-id: "default"
       responses:
@@ -1783,6 +1814,7 @@ examples:
           network_token_id: "f8dd5cfc-7834-4847-95dc-f75a360e2298"
         query:
           timeout_in_seconds: 1
+          application_name: "core-api"
         header:
           x-gr4vy-merchant-account-id: "default"
       responses:
@@ -1820,6 +1852,7 @@ examples:
           network_token_id: "f8dd5cfc-7834-4847-95dc-f75a360e2298"
         query:
           timeout_in_seconds: 1
+          application_name: "core-api"
         header:
           x-gr4vy-merchant-account-id: "default"
       responses:
@@ -1855,6 +1888,7 @@ examples:
           network_token_id: "f8dd5cfc-7834-4847-95dc-f75a360e2298"
         query:
           timeout_in_seconds: 1
+          application_name: "core-api"
         header:
           x-gr4vy-merchant-account-id: "default"
       requestBody:
@@ -1891,6 +1925,8 @@ examples:
       parameters:
         path:
           gift_card_id: "356d56e5-fe16-42ae-97ee-8d55d846ae2e"
+        query:
+          application_name: "core-api"
         header:
           x-gr4vy-merchant-account-id: "default"
       responses:
@@ -1927,6 +1963,7 @@ examples:
           gift_card_id: "356d56e5-fe16-42ae-97ee-8d55d846ae2e"
         query:
           timeout_in_seconds: 1
+          application_name: "core-api"
         header:
           x-gr4vy-merchant-account-id: "default"
       responses:
@@ -1961,6 +1998,7 @@ examples:
       parameters:
         query:
           timeout_in_seconds: 1
+          application_name: "core-api"
         header:
           x-gr4vy-merchant-account-id: "default"
       requestBody:
@@ -1997,6 +2035,7 @@ examples:
       parameters:
         query:
           limit: 20
+          application_name: "core-api"
         header:
           x-gr4vy-merchant-account-id: "default"
       responses:
@@ -2031,6 +2070,7 @@ examples:
       parameters:
         query:
           timeout_in_seconds: 1
+          application_name: "core-api"
         header:
           x-gr4vy-merchant-account-id: "default"
       requestBody:
@@ -2065,6 +2105,8 @@ examples:
   list_card_scheme_definitions:
     speakeasy-default-list-card-scheme-definitions:
       parameters:
+        query:
+          application_name: "core-api"
         header:
           x-gr4vy-merchant-account-id: "default"
       responses:
@@ -2099,6 +2141,7 @@ examples:
       parameters:
         query:
           timeout_in_seconds: 1
+          application_name: "core-api"
         header:
           x-gr4vy-merchant-account-id: "default"
       requestBody:
@@ -2133,6 +2176,8 @@ examples:
   list_digital_wallets:
     speakeasy-default-list-digital-wallets:
       parameters:
+        query:
+          application_name: "core-api"
         header:
           x-gr4vy-merchant-account-id: "default"
       responses:
@@ -2167,6 +2212,8 @@ examples:
       parameters:
         path:
           digital_wallet_id: "1808f5e6-b49c-4db9-94fa-22371ea352f5"
+        query:
+          application_name: "core-api"
         header:
           x-gr4vy-merchant-account-id: "default"
       responses:
@@ -2203,6 +2250,7 @@ examples:
           digital_wallet_id: "1808f5e6-b49c-4db9-94fa-22371ea352f5"
         query:
           timeout_in_seconds: 1
+          application_name: "core-api"
         header:
           x-gr4vy-merchant-account-id: "default"
       responses:
@@ -2239,6 +2287,7 @@ examples:
           digital_wallet_id: "1808f5e6-b49c-4db9-94fa-22371ea352f5"
         query:
           timeout_in_seconds: 1
+          application_name: "core-api"
         header:
           x-gr4vy-merchant-account-id: "default"
       requestBody:
@@ -2273,6 +2322,8 @@ examples:
   create_google_pay_digital_wallet_session:
     speakeasy-default-create-google-pay-digital-wallet-session:
       parameters:
+        query:
+          application_name: "core-api"
         header:
           x-gr4vy-merchant-account-id: "default"
       requestBody:
@@ -2307,6 +2358,8 @@ examples:
   create_apple_pay_digital_wallet_session:
     speakeasy-default-create-apple-pay-digital-wallet-session:
       parameters:
+        query:
+          application_name: "core-api"
         header:
           x-gr4vy-merchant-account-id: "default"
       requestBody:
@@ -2340,6 +2393,9 @@ examples:
           application/json: {"type": "error", "code": "gateway_timeout", "status": 504, "message": "Request could not be processed", "details": [{"location": "path", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}, {"location": "path", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}, {"location": "path", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}]}
   create_click_to_pay_digital_wallet_session:
     speakeasy-default-create-click-to-pay-digital-wallet-session:
+      parameters:
+        query:
+          application_name: "core-api"
       requestBody:
         application/json: {"checkout_session_id": "4137b1cf-39ac-42a8-bad6-1c680d5dab6b"}
       responses:
@@ -2376,6 +2432,7 @@ examples:
           digital_wallet_id: "1808f5e6-b49c-4db9-94fa-22371ea352f5"
         query:
           timeout_in_seconds: 1
+          application_name: "core-api"
         header:
           x-gr4vy-merchant-account-id: "default"
       requestBody:
@@ -2414,6 +2471,7 @@ examples:
           digital_wallet_id: ""
         query:
           timeout_in_seconds: 1
+          application_name: "core-api"
         header:
           x-gr4vy-merchant-account-id: "default"
       requestBody:
@@ -2492,6 +2550,7 @@ examples:
           payment_method_scheme: "[\"visa\"]"
           payment_method_country: "[\"US\"]"
           used_3ds: true
+          application_name: "core-api"
         header:
           x-gr4vy-merchant-account-id: "default"
       responses:
@@ -2526,6 +2585,7 @@ examples:
       parameters:
         query:
           timeout_in_seconds: 1
+          application_name: "core-api"
         header:
           x-gr4vy-merchant-account-id: "default"
           idempotency-key: "request-12345"
@@ -2563,6 +2623,8 @@ examples:
       parameters:
         path:
           transaction_id: "7099948d-7286-47e4-aad8-b68f7eb44591"
+        query:
+          application_name: "core-api"
         header:
           x-gr4vy-merchant-account-id: "default"
       responses:
@@ -2599,6 +2661,7 @@ examples:
           transaction_id: "7099948d-7286-47e4-aad8-b68f7eb44591"
         query:
           timeout_in_seconds: 1
+          application_name: "core-api"
         header:
           x-gr4vy-merchant-account-id: "default"
       requestBody:
@@ -2637,6 +2700,7 @@ examples:
           transaction_id: "7099948d-7286-47e4-aad8-b68f7eb44591"
         query:
           timeout_in_seconds: 1
+          application_name: "core-api"
         header:
           x-gr4vy-merchant-account-id: "default"
       responses:
@@ -2707,6 +2771,7 @@ examples:
           transaction_id: "2ee546e0-3b11-478e-afec-fdb362611e22"
         query:
           timeout_in_seconds: 1
+          application_name: "core-api"
         header:
           x-gr4vy-merchant-account-id: "default"
       responses:
@@ -2741,6 +2806,8 @@ examples:
       parameters:
         path:
           transaction_id: "7099948d-7286-47e4-aad8-b68f7eb44591"
+        query:
+          application_name: "core-api"
         header:
           x-gr4vy-merchant-account-id: "default"
       responses:
@@ -2777,6 +2844,7 @@ examples:
           transaction_id: "7099948d-7286-47e4-aad8-b68f7eb44591"
         query:
           timeout_in_seconds: 1
+          application_name: "core-api"
         header:
           x-gr4vy-merchant-account-id: "default"
       requestBody:
@@ -2814,6 +2882,8 @@ examples:
         path:
           transaction_id: "7099948d-7286-47e4-aad8-b68f7eb44591"
           refund_id: "6a1d4e46-14ed-4fe1-a45f-eff4e025d211"
+        query:
+          application_name: "core-api"
         header:
           x-gr4vy-merchant-account-id: "default"
       responses:
@@ -2850,13 +2920,14 @@ examples:
           transaction_id: "7099948d-7286-47e4-aad8-b68f7eb44591"
         query:
           timeout_in_seconds: 1
+          application_name: "core-api"
         header:
           x-gr4vy-merchant-account-id: "default"
       requestBody:
         application/json: {"reason": "Refund due to user request.", "external_identifier": "refund-12345"}
       responses:
         "201":
-          application/json: {"items": [{"type": "refund", "id": "6a1d4e46-14ed-4fe1-a45f-eff4e025d211", "transaction_id": "7099948d-7286-47e4-aad8-b68f7eb44591", "payment_service_refund_id": "refund_xYqd43gySMtori", "status": "failed", "currency": "EUR", "amount": 1299, "reason": "Refund due to user request.", "target_type": "payment-method", "target_id": "07e70d14-a0c0-4ff5-bd4a-509959af0e4d", "reconciliation_id": "7jZXl4gBUNl0CnaLEnfXbt", "external_identifier": "refund-12345", "transaction_reconciliation_id": "aLEnfXbt7jZXl4gBUNl0Cn", "transaction_external_identifier": "transaction-12345", "created_at": "2013-07-16T19:23:00.000+00:00", "updated_at": "2013-07-16T19:23:00.000+00:00", "creator": {"id": "07e70d14-a0c0-4ff5-bd4a-509959af0e4d", "name": "Jhon Doe", "email_address": "jhon.doe@gr4vy.com"}}, {"type": "refund", "id": "6a1d4e46-14ed-4fe1-a45f-eff4e025d211", "transaction_id": "7099948d-7286-47e4-aad8-b68f7eb44591", "payment_service_refund_id": "refund_xYqd43gySMtori", "status": "failed", "currency": "EUR", "amount": 1299, "reason": "Refund due to user request.", "target_type": "payment-method", "target_id": "07e70d14-a0c0-4ff5-bd4a-509959af0e4d", "reconciliation_id": "7jZXl4gBUNl0CnaLEnfXbt", "external_identifier": "refund-12345", "transaction_reconciliation_id": "aLEnfXbt7jZXl4gBUNl0Cn", "transaction_external_identifier": "transaction-12345", "created_at": "2013-07-16T19:23:00.000+00:00", "updated_at": "2013-07-16T19:23:00.000+00:00", "creator": {"id": "07e70d14-a0c0-4ff5-bd4a-509959af0e4d", "name": "Jhon Doe", "email_address": "jhon.doe@gr4vy.com"}}, {"type": "refund", "id": "6a1d4e46-14ed-4fe1-a45f-eff4e025d211", "transaction_id": "7099948d-7286-47e4-aad8-b68f7eb44591", "payment_service_refund_id": "refund_xYqd43gySMtori", "status": "failed", "currency": "EUR", "amount": 1299, "reason": "Refund due to user request.", "target_type": "payment-method", "target_id": "07e70d14-a0c0-4ff5-bd4a-509959af0e4d", "reconciliation_id": "7jZXl4gBUNl0CnaLEnfXbt", "external_identifier": "refund-12345", "transaction_reconciliation_id": "aLEnfXbt7jZXl4gBUNl0Cn", "transaction_external_identifier": "transaction-12345", "created_at": "2013-07-16T19:23:00.000+00:00", "updated_at": "2013-07-16T19:23:00.000+00:00", "creator": {"id": "07e70d14-a0c0-4ff5-bd4a-509959af0e4d", "name": "Jhon Doe", "email_address": "jhon.doe@gr4vy.com"}}]}
+          application/json: {"items": [{"type": "refund", "id": "6a1d4e46-14ed-4fe1-a45f-eff4e025d211", "transaction_id": "7099948d-7286-47e4-aad8-b68f7eb44591", "payment_service_refund_id": "refund_xYqd43gySMtori", "status": "failed", "currency": "EUR", "amount": 1299, "reason": "Refund due to user request.", "target_type": "payment-method", "target_id": "07e70d14-a0c0-4ff5-bd4a-509959af0e4d", "reconciliation_id": "7jZXl4gBUNl0CnaLEnfXbt", "external_identifier": "refund-12345", "transaction_reconciliation_id": "aLEnfXbt7jZXl4gBUNl0Cn", "transaction_external_identifier": "transaction-12345", "created_at": "2013-07-16T19:23:00.000+00:00", "updated_at": "2013-07-16T19:23:00.000+00:00", "creator": {"id": "07e70d14-a0c0-4ff5-bd4a-509959af0e4d", "name": "Jhon Doe", "email_address": "jhon.doe@gr4vy.com"}}, {"type": "refund", "id": "6a1d4e46-14ed-4fe1-a45f-eff4e025d211", "transaction_id": "7099948d-7286-47e4-aad8-b68f7eb44591", "payment_service_refund_id": "refund_xYqd43gySMtori", "status": "failed", "currency": "EUR", "amount": 1299, "reason": "Refund due to user request.", "target_type": "payment-method", "target_id": "07e70d14-a0c0-4ff5-bd4a-509959af0e4d", "reconciliation_id": "7jZXl4gBUNl0CnaLEnfXbt", "external_identifier": "refund-12345", "transaction_reconciliation_id": "aLEnfXbt7jZXl4gBUNl0Cn", "transaction_external_identifier": "transaction-12345", "created_at": "2013-07-16T19:23:00.000+00:00", "updated_at": "2013-07-16T19:23:00.000+00:00", "creator": {"id": "07e70d14-a0c0-4ff5-bd4a-509959af0e4d", "name": "Jhon Doe", "email_address": "jhon.doe@gr4vy.com"}}, {"type": "refund", "id": "6a1d4e46-14ed-4fe1-a45f-eff4e025d211", "transaction_id": "7099948d-7286-47e4-aad8-b68f7eb44591", "payment_service_refund_id": "refund_xYqd43gySMtori", "status": "failed", "currency": "EUR", "amount": 1299, "reason": "Refund due to user request.", "target_type": "payment-method", "target_id": "07e70d14-a0c0-4ff5-bd4a-509959af0e4d", "reconciliation_id": "7jZXl4gBUNl0CnaLEnfXbt", "external_identifier": "refund-12345", "transaction_reconciliation_id": "aLEnfXbt7jZXl4gBUNl0Cn", "transaction_external_identifier": "transaction-12345", "created_at": "2013-07-16T19:23:00.000+00:00", "updated_at": "2013-07-16T19:23:00.000+00:00", "creator": {"id": "07e70d14-a0c0-4ff5-bd4a-509959af0e4d", "name": "Jhon Doe", "email_address": "jhon.doe@gr4vy.com"}}], "limit": 20, "next_cursor": "ZXhhbXBsZTE", "previous_cursor": "Xkjss7asS"}
         "400":
           application/json: {"type": "error", "code": "bad_request", "status": 400, "message": "Request failed validation", "details": [{"location": "header", "pointer": "<value>", "message": "Unknown ISO 4217 currency code: USX", "type": "value_error"}]}
         "401":
@@ -2886,6 +2957,8 @@ examples:
       parameters:
         path:
           refund_id: "6a1d4e46-14ed-4fe1-a45f-eff4e025d211"
+        query:
+          application_name: "core-api"
         header:
           x-gr4vy-merchant-account-id: "default"
       responses:
@@ -2918,6 +2991,8 @@ examples:
   list_payment_options:
     speakeasy-default-list-payment-options:
       parameters:
+        query:
+          application_name: "core-api"
         header:
           x-gr4vy-merchant-account-id: "default"
       requestBody:
@@ -2955,6 +3030,7 @@ examples:
         query:
           cursor: "ZXhhbXBsZTE"
           limit: 20
+          application_name: "core-api"
       responses:
         "200":
           application/json: {"items": [], "limit": 20, "next_cursor": "ZXhhbXBsZTE", "previous_cursor": "Xkjss7asS"}
@@ -2987,6 +3063,8 @@ examples:
       parameters:
         path:
           payment_service_definition_id: "adyen-ideal"
+        query:
+          application_name: "core-api"
       responses:
         "200":
           application/json: {"id": "adyen-ideal", "type": "payment-service-definition", "display_name": "iDEAL", "method": "multibanco", "fields": [{"key": "private_api_key", "display_name": "Private API key", "required": true, "format": "boolean", "secret": true}], "reporting_fields": [{"key": "private_api_key", "display_name": "Private API key", "required": true, "format": "multiline", "secret": true}, {"key": "private_api_key", "display_name": "Private API key", "required": true, "format": "multiline", "secret": true}], "supported_currencies": ["USD", "GBP", "EUR", "AUD"], "supported_countries": ["US"], "mode": "card", "icon_url": "https://example.com/icons/adyen-ideal.svg", "supported_features": {"key": true, "key1": false}, "required_checkout_fields": [{"required_fields": ["address.line1", "address.country", "address.city", "address.postal_code"], "conditions": {"country": ["IN"]}}, {"required_fields": ["address.line1", "address.country", "address.city", "address.postal_code"], "conditions": {"country": ["IN"]}}, {"required_fields": ["address.line1", "address.country", "address.city", "address.postal_code"], "conditions": {"country": ["IN"]}}], "configuration": {"approval_ui_target": "any", "approval_ui_height": "100px", "approval_ui_width": "100px", "cart_items_limit": 100, "cart_items_required": true, "cart_items_should_match_amount": true}}
@@ -3019,6 +3097,8 @@ examples:
       parameters:
         path:
           payment_service_definition_id: "adyen-ideal"
+        query:
+          application_name: "core-api"
       requestBody:
         application/json: {}
       responses:
@@ -3055,6 +3135,7 @@ examples:
           cursor: "ZXhhbXBsZTE"
           limit: 20
           deleted: true
+          application_name: "core-api"
         header:
           x-gr4vy-merchant-account-id: "default"
       responses:
@@ -3087,6 +3168,8 @@ examples:
   update_payment_service:
     speakeasy-default-update-payment-service:
       parameters:
+        query:
+          application_name: "core-api"
         header:
           x-gr4vy-merchant-account-id: "default"
       requestBody:
@@ -3123,6 +3206,8 @@ examples:
       parameters:
         path:
           payment_service_id: "fffd152a-9532-4087-9a4f-de58754210f0"
+        query:
+          application_name: "core-api"
         header:
           x-gr4vy-merchant-account-id: "default"
       responses:
@@ -3157,6 +3242,8 @@ examples:
       parameters:
         path:
           payment_service_id: "fffd152a-9532-4087-9a4f-de58754210f0"
+        query:
+          application_name: "core-api"
         header:
           x-gr4vy-merchant-account-id: "default"
       requestBody:
@@ -3195,6 +3282,7 @@ examples:
           payment_service_id: "fffd152a-9532-4087-9a4f-de58754210f0"
         query:
           timeout_in_seconds: 1
+          application_name: "core-api"
         header:
           x-gr4vy-merchant-account-id: "default"
       responses:
@@ -3229,6 +3317,7 @@ examples:
       parameters:
         query:
           timeout_in_seconds: 1
+          application_name: "core-api"
         header:
           x-gr4vy-merchant-account-id: "default"
       requestBody:
@@ -3265,6 +3354,8 @@ examples:
       parameters:
         path:
           payment_service_id: "fffd152a-9532-4087-9a4f-de58754210f0"
+        query:
+          application_name: "core-api"
         header:
           x-gr4vy-merchant-account-id: "default"
       requestBody:
@@ -3305,6 +3396,7 @@ examples:
           action: "created"
           user_id: "14b7b8c5-a6ba-4fb6-bbab-52d43c7f37ef"
           resource_type: "user"
+          application_name: "core-api"
         header:
           x-gr4vy-merchant-account-id: "default"
       responses:
@@ -3339,6 +3431,7 @@ examples:
       parameters:
         query:
           timeout_in_seconds: 1
+          application_name: "core-api"
         header:
           x-gr4vy-merchant-account-id: "default"
       requestBody:
@@ -3377,6 +3470,7 @@ examples:
           session_id: "4137b1cf-39ac-42a8-bad6-1c680d5dab6b"
         query:
           timeout_in_seconds: 1
+          application_name: "core-api"
         header:
           x-gr4vy-merchant-account-id: "default"
       requestBody:
@@ -3415,6 +3509,7 @@ examples:
           session_id: "4137b1cf-39ac-42a8-bad6-1c680d5dab6b"
         query:
           timeout_in_seconds: 1
+          application_name: "core-api"
         header:
           x-gr4vy-merchant-account-id: "default"
       responses:
@@ -3449,6 +3544,7 @@ examples:
           session_id: "4137b1cf-39ac-42a8-bad6-1c680d5dab6b"
         query:
           timeout_in_seconds: 1
+          application_name: "core-api"
         header:
           x-gr4vy-merchant-account-id: "default"
       responses:
@@ -3483,6 +3579,7 @@ examples:
           cursor: "ZXhhbXBsZTE"
           limit: 20
           search: "merchant-12345"
+          application_name: "core-api"
       responses:
         "200":
           application/json: {"items": [], "limit": 20, "next_cursor": "ZXhhbXBsZTE", "previous_cursor": "Xkjss7asS"}
@@ -3515,6 +3612,7 @@ examples:
       parameters:
         query:
           timeout_in_seconds: 1
+          application_name: "core-api"
       requestBody:
         application/json: {"account_updater_enabled": true, "account_updater_request_encryption_key": "key-1234", "account_updater_request_encryption_key_id": "key-id-1234", "account_updater_response_decryption_key": "key-1234", "account_updater_response_decryption_key_id": "key-id-1234", "over_capture_amount": 1299, "over_capture_percentage": 25, "loon_client_key": "client-key-1234", "loon_secret_key": "key-12345", "loon_accepted_schemes": ["visa"], "visa_network_tokens_requestor_id": "id-12345", "visa_network_tokens_app_id": "id-12345", "amex_network_tokens_requestor_id": "id-12345", "amex_network_tokens_app_id": "id-12345", "mastercard_network_tokens_requestor_id": "id-12345", "mastercard_network_tokens_app_id": "id-12345", "outbound_webhook_url": "https://example.com/callback", "outbound_webhook_username": "user-12345", "outbound_webhook_password": "password-12345", "id": "merchant-12345", "display_name": "Example"}
       responses:
@@ -3549,6 +3647,8 @@ examples:
       parameters:
         path:
           merchant_account_id: "merchant-12345"
+        query:
+          application_name: "core-api"
       responses:
         "200":
           application/json: {"type": "merchant-account", "id": "merchant-12345", "display_name": "John Doe", "outbound_webhook_url": "https://example.com/callback", "outbound_webhook_username": "user-12345", "outbound_webhook_password": "password-12345", "loon_client_key": "client-key-1234", "loon_secret_key": "key-12345", "loon_accepted_schemes": ["visa"], "account_updater_request_encryption_key": "key-1234", "account_updater_request_encryption_key_id": "key-id-1234", "account_updater_response_decryption_key": "key-1234", "account_updater_response_decryption_key_id": "key-id-1234", "account_updater_enabled": true, "over_capture_amount": 1299, "over_capture_percentage": 25, "visa_network_tokens_requestor_id": "id-12345", "visa_network_tokens_app_id": "id-12345", "amex_network_tokens_requestor_id": "id-12345", "amex_network_tokens_app_id": "id-12345", "mastercard_network_tokens_requestor_id": "id-12345", "mastercard_network_tokens_app_id": "id-12345", "created_at": "2013-07-16T19:23:00.000+00:00", "updated_at": "2013-07-16T19:23:00.000+00:00"}
@@ -3583,6 +3683,7 @@ examples:
           merchant_account_id: "merchant-12345"
         query:
           timeout_in_seconds: 1
+          application_name: "core-api"
       requestBody:
         application/json: {"account_updater_enabled": true, "account_updater_request_encryption_key": "key-1234", "account_updater_request_encryption_key_id": "key-id-1234", "account_updater_response_decryption_key": "key-1234", "account_updater_response_decryption_key_id": "key-id-1234", "over_capture_amount": 1299, "over_capture_percentage": 25, "loon_client_key": "client-key-1234", "loon_secret_key": "key-12345", "loon_accepted_schemes": ["visa"], "visa_network_tokens_requestor_id": "id-12345", "visa_network_tokens_app_id": "id-12345", "amex_network_tokens_requestor_id": "id-12345", "amex_network_tokens_app_id": "id-12345", "mastercard_network_tokens_requestor_id": "id-12345", "mastercard_network_tokens_app_id": "id-12345", "display_name": "Example", "outbound_webhook_url": "https://example.com/callback", "outbound_webhook_username": "user-12345", "outbound_webhook_password": "password-12345"}
       responses:
@@ -3618,6 +3719,7 @@ examples:
         query:
           cursor: "ZXhhbXBsZTE"
           limit: 20
+          application_name: "core-api"
         header:
           x-gr4vy-merchant-account-id: "default"
       responses:
@@ -3652,6 +3754,7 @@ examples:
       parameters:
         query:
           timeout_in_seconds: 1
+          application_name: "core-api"
         header:
           x-gr4vy-merchant-account-id: "default"
       requestBody:
@@ -3688,6 +3791,8 @@ examples:
       parameters:
         path:
           payout_id: "4344fef2-bc2f-49a6-924f-343e62f67224"
+        query:
+          application_name: "core-api"
         header:
           x-gr4vy-merchant-account-id: "default"
       responses:
@@ -3725,6 +3830,7 @@ examples:
         query:
           cursor: "ZXhhbXBsZTE"
           limit: 100
+          application_name: "core-api"
       responses:
         "200":
           application/json: {"items": [{"type": "transaction-event", "id": "f133a3b7-e67e-4d83-bcd3-3e438fedf348", "name": "transaction-api-request", "created_at": "2013-07-16T19:23:00.000+00:00", "context": {}}], "limit": 20, "next_cursor": "ZXhhbXBsZTE", "previous_cursor": "Xkjss7asS"}

@@ -250,6 +250,7 @@ public class PaymentServices implements
                         JsonNullable.of(_nextCursor),
                         request.limit(),
                         request.deleted(),
+                        request.applicationName(),
                         request.merchantAccountId()
                              ));
                     return Optional.of(_nextRequest.call());
@@ -511,7 +512,7 @@ public class PaymentServices implements
      */
     public UpdatePaymentServiceResponse create(
             PaymentServiceCreate paymentServiceCreate) throws Exception {
-        return create(JsonNullable.undefined(), paymentServiceCreate);
+        return create(Optional.empty(), JsonNullable.undefined(), paymentServiceCreate);
     }
     
     /**
@@ -519,17 +520,20 @@ public class PaymentServices implements
      * 
      * <p>Updates the configuration of a payment service.
      * 
+     * @param applicationName 
      * @param merchantAccountId 
      * @param paymentServiceCreate Request body for activating a payment service
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public UpdatePaymentServiceResponse create(
+            Optional<String> applicationName,
             JsonNullable<String> merchantAccountId,
             PaymentServiceCreate paymentServiceCreate) throws Exception {
         UpdatePaymentServiceRequest request =
             UpdatePaymentServiceRequest
                 .builder()
+                .applicationName(applicationName)
                 .merchantAccountId(merchantAccountId)
                 .paymentServiceCreate(paymentServiceCreate)
                 .build();
@@ -557,6 +561,11 @@ public class PaymentServices implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
+
+        _req.addQueryParams(Utils.getQueryParams(
+                UpdatePaymentServiceRequest.class,
+                request, 
+                this.sdkConfiguration.globals));
         _req.addHeaders(Utils.getHeadersFromMetadata(request, this.sdkConfiguration.globals));
         
         Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
@@ -877,7 +886,7 @@ public class PaymentServices implements
      */
     public GetPaymentServiceResponse get(
             String paymentServiceId) throws Exception {
-        return get(paymentServiceId, JsonNullable.undefined(), Optional.empty());
+        return get(paymentServiceId, Optional.empty(), JsonNullable.undefined(), Optional.empty());
     }
     
     /**
@@ -886,6 +895,7 @@ public class PaymentServices implements
      * <p>Get the details of a configured payment service.
      * 
      * @param paymentServiceId the ID of the payment service
+     * @param applicationName 
      * @param merchantAccountId 
      * @param options additional options
      * @return The response from the API call
@@ -893,6 +903,7 @@ public class PaymentServices implements
      */
     public GetPaymentServiceResponse get(
             String paymentServiceId,
+            Optional<String> applicationName,
             JsonNullable<String> merchantAccountId,
             Optional<Options> options) throws Exception {
 
@@ -903,6 +914,7 @@ public class PaymentServices implements
             GetPaymentServiceRequest
                 .builder()
                 .paymentServiceId(paymentServiceId)
+                .applicationName(applicationName)
                 .merchantAccountId(merchantAccountId)
                 .build();
         
@@ -918,6 +930,11 @@ public class PaymentServices implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
+
+        _req.addQueryParams(Utils.getQueryParams(
+                GetPaymentServiceRequest.class,
+                request, 
+                this.sdkConfiguration.globals));
         _req.addHeaders(Utils.getHeadersFromMetadata(request, this.sdkConfiguration.globals));
         
         Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
@@ -1255,7 +1272,7 @@ public class PaymentServices implements
     public CreatePaymentServiceResponse update(
             String paymentServiceId,
             PaymentServiceUpdate paymentServiceUpdate) throws Exception {
-        return update(paymentServiceId, JsonNullable.undefined(), paymentServiceUpdate);
+        return update(paymentServiceId, Optional.empty(), JsonNullable.undefined(), paymentServiceUpdate);
     }
     
     /**
@@ -1264,6 +1281,7 @@ public class PaymentServices implements
      * <p>Configures a new payment service for use by merchants.
      * 
      * @param paymentServiceId the ID of the payment service
+     * @param applicationName 
      * @param merchantAccountId 
      * @param paymentServiceUpdate Request body for updating a Payment Service
      * @return The response from the API call
@@ -1271,12 +1289,14 @@ public class PaymentServices implements
      */
     public CreatePaymentServiceResponse update(
             String paymentServiceId,
+            Optional<String> applicationName,
             JsonNullable<String> merchantAccountId,
             PaymentServiceUpdate paymentServiceUpdate) throws Exception {
         CreatePaymentServiceRequest request =
             CreatePaymentServiceRequest
                 .builder()
                 .paymentServiceId(paymentServiceId)
+                .applicationName(applicationName)
                 .merchantAccountId(merchantAccountId)
                 .paymentServiceUpdate(paymentServiceUpdate)
                 .build();
@@ -1306,6 +1326,11 @@ public class PaymentServices implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
+
+        _req.addQueryParams(Utils.getQueryParams(
+                CreatePaymentServiceRequest.class,
+                request, 
+                this.sdkConfiguration.globals));
         _req.addHeaders(Utils.getHeadersFromMetadata(request, this.sdkConfiguration.globals));
         
         Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
@@ -1626,7 +1651,7 @@ public class PaymentServices implements
      */
     public DeletePaymentServiceResponse delete(
             String paymentServiceId) throws Exception {
-        return delete(paymentServiceId, JsonNullable.undefined());
+        return delete(paymentServiceId, Optional.empty(), JsonNullable.undefined());
     }
     
     /**
@@ -1635,17 +1660,20 @@ public class PaymentServices implements
      * <p>Deletes all the configuration of a payment service.
      * 
      * @param paymentServiceId the ID of the payment service
+     * @param applicationName 
      * @param merchantAccountId 
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public DeletePaymentServiceResponse delete(
             String paymentServiceId,
+            Optional<String> applicationName,
             JsonNullable<String> merchantAccountId) throws Exception {
         DeletePaymentServiceRequest request =
             DeletePaymentServiceRequest
                 .builder()
                 .paymentServiceId(paymentServiceId)
+                .applicationName(applicationName)
                 .merchantAccountId(merchantAccountId)
                 .build();
         
@@ -1661,6 +1689,11 @@ public class PaymentServices implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
+
+        _req.addQueryParams(Utils.getQueryParams(
+                DeletePaymentServiceRequest.class,
+                request, 
+                this.sdkConfiguration.globals));
         _req.addHeaders(Utils.getHeadersFromMetadata(request, this.sdkConfiguration.globals));
         
         Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
@@ -1981,7 +2014,7 @@ public class PaymentServices implements
      */
     public VerifyPaymentServiceCredentialsResponse verify(
             VerifyCredentials verifyCredentials) throws Exception {
-        return verify(JsonNullable.undefined(), verifyCredentials);
+        return verify(Optional.empty(), JsonNullable.undefined(), verifyCredentials);
     }
     
     /**
@@ -1989,17 +2022,20 @@ public class PaymentServices implements
      * 
      * <p>Verify the credentials of a configured payment service
      * 
+     * @param applicationName 
      * @param merchantAccountId 
      * @param verifyCredentials 
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public VerifyPaymentServiceCredentialsResponse verify(
+            Optional<String> applicationName,
             JsonNullable<String> merchantAccountId,
             VerifyCredentials verifyCredentials) throws Exception {
         VerifyPaymentServiceCredentialsRequest request =
             VerifyPaymentServiceCredentialsRequest
                 .builder()
+                .applicationName(applicationName)
                 .merchantAccountId(merchantAccountId)
                 .verifyCredentials(verifyCredentials)
                 .build();
@@ -2027,6 +2063,11 @@ public class PaymentServices implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
+
+        _req.addQueryParams(Utils.getQueryParams(
+                VerifyPaymentServiceCredentialsRequest.class,
+                request, 
+                this.sdkConfiguration.globals));
         _req.addHeaders(Utils.getHeadersFromMetadata(request, this.sdkConfiguration.globals));
         
         Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
@@ -2349,7 +2390,7 @@ public class PaymentServices implements
     public CreatePaymentServiceSessionResponse session(
             String paymentServiceId,
             Map<String, Object> requestBody) throws Exception {
-        return session(paymentServiceId, JsonNullable.undefined(), requestBody);
+        return session(paymentServiceId, Optional.empty(), JsonNullable.undefined(), requestBody);
     }
     
     /**
@@ -2358,6 +2399,7 @@ public class PaymentServices implements
      * <p>Creates a session for a payment service that supports sessions.
      * 
      * @param paymentServiceId the ID of the payment service
+     * @param applicationName 
      * @param merchantAccountId 
      * @param requestBody 
      * @return The response from the API call
@@ -2365,12 +2407,14 @@ public class PaymentServices implements
      */
     public CreatePaymentServiceSessionResponse session(
             String paymentServiceId,
+            Optional<String> applicationName,
             JsonNullable<String> merchantAccountId,
             Map<String, Object> requestBody) throws Exception {
         CreatePaymentServiceSessionRequest request =
             CreatePaymentServiceSessionRequest
                 .builder()
                 .paymentServiceId(paymentServiceId)
+                .applicationName(applicationName)
                 .merchantAccountId(merchantAccountId)
                 .requestBody(requestBody)
                 .build();
@@ -2400,6 +2444,11 @@ public class PaymentServices implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
+
+        _req.addQueryParams(Utils.getQueryParams(
+                CreatePaymentServiceSessionRequest.class,
+                request, 
+                this.sdkConfiguration.globals));
         _req.addHeaders(Utils.getHeadersFromMetadata(request, this.sdkConfiguration.globals));
         
         Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());

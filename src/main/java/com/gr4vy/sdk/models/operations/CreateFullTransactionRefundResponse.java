@@ -5,7 +5,7 @@ package com.gr4vy.sdk.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.gr4vy.sdk.models.components.CollectionNoCursorRefund;
+import com.gr4vy.sdk.models.components.CollectionRefund;
 import com.gr4vy.sdk.utils.Response;
 import com.gr4vy.sdk.utils.Utils;
 import java.io.InputStream;
@@ -37,22 +37,22 @@ public class CreateFullTransactionRefundResponse implements Response {
     /**
      * Successful Response
      */
-    private Optional<? extends CollectionNoCursorRefund> collectionNoCursorRefund;
+    private Optional<? extends CollectionRefund> collectionRefund;
 
     @JsonCreator
     public CreateFullTransactionRefundResponse(
             String contentType,
             int statusCode,
             HttpResponse<InputStream> rawResponse,
-            Optional<? extends CollectionNoCursorRefund> collectionNoCursorRefund) {
+            Optional<? extends CollectionRefund> collectionRefund) {
         Utils.checkNotNull(contentType, "contentType");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
-        Utils.checkNotNull(collectionNoCursorRefund, "collectionNoCursorRefund");
+        Utils.checkNotNull(collectionRefund, "collectionRefund");
         this.contentType = contentType;
         this.statusCode = statusCode;
         this.rawResponse = rawResponse;
-        this.collectionNoCursorRefund = collectionNoCursorRefund;
+        this.collectionRefund = collectionRefund;
     }
     
     public CreateFullTransactionRefundResponse(
@@ -91,8 +91,8 @@ public class CreateFullTransactionRefundResponse implements Response {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<CollectionNoCursorRefund> collectionNoCursorRefund() {
-        return (Optional<CollectionNoCursorRefund>) collectionNoCursorRefund;
+    public Optional<CollectionRefund> collectionRefund() {
+        return (Optional<CollectionRefund>) collectionRefund;
     }
 
     public final static Builder builder() {
@@ -129,18 +129,18 @@ public class CreateFullTransactionRefundResponse implements Response {
     /**
      * Successful Response
      */
-    public CreateFullTransactionRefundResponse withCollectionNoCursorRefund(CollectionNoCursorRefund collectionNoCursorRefund) {
-        Utils.checkNotNull(collectionNoCursorRefund, "collectionNoCursorRefund");
-        this.collectionNoCursorRefund = Optional.ofNullable(collectionNoCursorRefund);
+    public CreateFullTransactionRefundResponse withCollectionRefund(CollectionRefund collectionRefund) {
+        Utils.checkNotNull(collectionRefund, "collectionRefund");
+        this.collectionRefund = Optional.ofNullable(collectionRefund);
         return this;
     }
 
     /**
      * Successful Response
      */
-    public CreateFullTransactionRefundResponse withCollectionNoCursorRefund(Optional<? extends CollectionNoCursorRefund> collectionNoCursorRefund) {
-        Utils.checkNotNull(collectionNoCursorRefund, "collectionNoCursorRefund");
-        this.collectionNoCursorRefund = collectionNoCursorRefund;
+    public CreateFullTransactionRefundResponse withCollectionRefund(Optional<? extends CollectionRefund> collectionRefund) {
+        Utils.checkNotNull(collectionRefund, "collectionRefund");
+        this.collectionRefund = collectionRefund;
         return this;
     }
 
@@ -158,7 +158,7 @@ public class CreateFullTransactionRefundResponse implements Response {
             Objects.deepEquals(this.contentType, other.contentType) &&
             Objects.deepEquals(this.statusCode, other.statusCode) &&
             Objects.deepEquals(this.rawResponse, other.rawResponse) &&
-            Objects.deepEquals(this.collectionNoCursorRefund, other.collectionNoCursorRefund);
+            Objects.deepEquals(this.collectionRefund, other.collectionRefund);
     }
     
     @Override
@@ -167,7 +167,7 @@ public class CreateFullTransactionRefundResponse implements Response {
             contentType,
             statusCode,
             rawResponse,
-            collectionNoCursorRefund);
+            collectionRefund);
     }
     
     @Override
@@ -176,7 +176,7 @@ public class CreateFullTransactionRefundResponse implements Response {
                 "contentType", contentType,
                 "statusCode", statusCode,
                 "rawResponse", rawResponse,
-                "collectionNoCursorRefund", collectionNoCursorRefund);
+                "collectionRefund", collectionRefund);
     }
     
     public final static class Builder {
@@ -187,7 +187,7 @@ public class CreateFullTransactionRefundResponse implements Response {
  
         private HttpResponse<InputStream> rawResponse;
  
-        private Optional<? extends CollectionNoCursorRefund> collectionNoCursorRefund = Optional.empty();
+        private Optional<? extends CollectionRefund> collectionRefund = Optional.empty();
         
         private Builder() {
           // force use of static builder() method
@@ -223,18 +223,18 @@ public class CreateFullTransactionRefundResponse implements Response {
         /**
          * Successful Response
          */
-        public Builder collectionNoCursorRefund(CollectionNoCursorRefund collectionNoCursorRefund) {
-            Utils.checkNotNull(collectionNoCursorRefund, "collectionNoCursorRefund");
-            this.collectionNoCursorRefund = Optional.ofNullable(collectionNoCursorRefund);
+        public Builder collectionRefund(CollectionRefund collectionRefund) {
+            Utils.checkNotNull(collectionRefund, "collectionRefund");
+            this.collectionRefund = Optional.ofNullable(collectionRefund);
             return this;
         }
 
         /**
          * Successful Response
          */
-        public Builder collectionNoCursorRefund(Optional<? extends CollectionNoCursorRefund> collectionNoCursorRefund) {
-            Utils.checkNotNull(collectionNoCursorRefund, "collectionNoCursorRefund");
-            this.collectionNoCursorRefund = collectionNoCursorRefund;
+        public Builder collectionRefund(Optional<? extends CollectionRefund> collectionRefund) {
+            Utils.checkNotNull(collectionRefund, "collectionRefund");
+            this.collectionRefund = collectionRefund;
             return this;
         }
         
@@ -243,7 +243,7 @@ public class CreateFullTransactionRefundResponse implements Response {
                 contentType,
                 statusCode,
                 rawResponse,
-                collectionNoCursorRefund);
+                collectionRefund);
         }
     }
 }

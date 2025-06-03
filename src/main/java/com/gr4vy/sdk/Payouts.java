@@ -95,7 +95,7 @@ public class Payouts implements
      * @throws Exception if the API call fails
      */
     public ListPayoutsResponse listDirect() throws Exception {
-        return list(JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), Optional.empty());
+        return list(JsonNullable.undefined(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), Optional.empty());
     }
     
     /**
@@ -105,6 +105,7 @@ public class Payouts implements
      * 
      * @param cursor A pointer to the page of results to return.
      * @param limit The maximum number of items that are at returned.
+     * @param applicationName 
      * @param merchantAccountId 
      * @param options additional options
      * @return The response from the API call
@@ -113,6 +114,7 @@ public class Payouts implements
     public ListPayoutsResponse list(
             JsonNullable<String> cursor,
             Optional<Long> limit,
+            Optional<String> applicationName,
             JsonNullable<String> merchantAccountId,
             Optional<Options> options) throws Exception {
 
@@ -124,6 +126,7 @@ public class Payouts implements
                 .builder()
                 .cursor(cursor)
                 .limit(limit)
+                .applicationName(applicationName)
                 .merchantAccountId(merchantAccountId)
                 .build();
         
@@ -238,6 +241,7 @@ public class Payouts implements
                     ListPayoutsRequestBuilder _nextRequest = list()
                             .cursor(_nextCursor)
                             .limit(limit)
+                            .applicationName(applicationName)
                             .merchantAccountId(merchantAccountId);
                     return Optional.of(_nextRequest.call());
                 });
@@ -500,7 +504,7 @@ public class Payouts implements
      */
     public CreatePayoutResponse create(
             PayoutCreate payoutCreate) throws Exception {
-        return create(JsonNullable.undefined(), payoutCreate);
+        return create(Optional.empty(), JsonNullable.undefined(), payoutCreate);
     }
     
     /**
@@ -508,6 +512,7 @@ public class Payouts implements
      * 
      * <p>Creates a new payout.
      * 
+     * @param applicationName 
      * @param merchantAccountId 
      * @param payoutCreate PayoutCreate
      *         
@@ -516,11 +521,13 @@ public class Payouts implements
      * @throws Exception if the API call fails
      */
     public CreatePayoutResponse create(
+            Optional<String> applicationName,
             JsonNullable<String> merchantAccountId,
             PayoutCreate payoutCreate) throws Exception {
         CreatePayoutRequest request =
             CreatePayoutRequest
                 .builder()
+                .applicationName(applicationName)
                 .merchantAccountId(merchantAccountId)
                 .payoutCreate(payoutCreate)
                 .build();
@@ -548,6 +555,11 @@ public class Payouts implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
+
+        _req.addQueryParams(Utils.getQueryParams(
+                CreatePayoutRequest.class,
+                request, 
+                this.sdkConfiguration.globals));
         _req.addHeaders(Utils.getHeadersFromMetadata(request, this.sdkConfiguration.globals));
         
         Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
@@ -868,7 +880,7 @@ public class Payouts implements
      */
     public GetPayoutResponse get(
             String payoutId) throws Exception {
-        return get(payoutId, JsonNullable.undefined(), Optional.empty());
+        return get(payoutId, Optional.empty(), JsonNullable.undefined(), Optional.empty());
     }
     
     /**
@@ -877,6 +889,7 @@ public class Payouts implements
      * <p>Retreives a payout.
      * 
      * @param payoutId 
+     * @param applicationName 
      * @param merchantAccountId 
      * @param options additional options
      * @return The response from the API call
@@ -884,6 +897,7 @@ public class Payouts implements
      */
     public GetPayoutResponse get(
             String payoutId,
+            Optional<String> applicationName,
             JsonNullable<String> merchantAccountId,
             Optional<Options> options) throws Exception {
 
@@ -894,6 +908,7 @@ public class Payouts implements
             GetPayoutRequest
                 .builder()
                 .payoutId(payoutId)
+                .applicationName(applicationName)
                 .merchantAccountId(merchantAccountId)
                 .build();
         
@@ -909,6 +924,11 @@ public class Payouts implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
+
+        _req.addQueryParams(Utils.getQueryParams(
+                GetPayoutRequest.class,
+                request, 
+                this.sdkConfiguration.globals));
         _req.addHeaders(Utils.getHeadersFromMetadata(request, this.sdkConfiguration.globals));
         
         Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());

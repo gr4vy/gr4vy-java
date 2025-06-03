@@ -5,27 +5,46 @@ package com.gr4vy.sdk.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.gr4vy.sdk.utils.LazySingletonValue;
 import com.gr4vy.sdk.utils.SpeakeasyMetadata;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.util.Objects;
+import java.util.Optional;
 
 public class GetPaymentServiceDefinitionRequest {
 
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=payment_service_definition_id")
     private String paymentServiceDefinitionId;
 
+    @SpeakeasyMetadata("queryParam:style=form,explode=true,name=application_name")
+    private Optional<String> applicationName;
+
     @JsonCreator
     public GetPaymentServiceDefinitionRequest(
-            String paymentServiceDefinitionId) {
+            String paymentServiceDefinitionId,
+            Optional<String> applicationName) {
         Utils.checkNotNull(paymentServiceDefinitionId, "paymentServiceDefinitionId");
+        Utils.checkNotNull(applicationName, "applicationName");
         this.paymentServiceDefinitionId = paymentServiceDefinitionId;
+        this.applicationName = applicationName;
+    }
+    
+    public GetPaymentServiceDefinitionRequest(
+            String paymentServiceDefinitionId) {
+        this(paymentServiceDefinitionId, Optional.empty());
     }
 
     @JsonIgnore
     public String paymentServiceDefinitionId() {
         return paymentServiceDefinitionId;
+    }
+
+    @JsonIgnore
+    public Optional<String> applicationName() {
+        return applicationName;
     }
 
     public final static Builder builder() {
@@ -35,6 +54,18 @@ public class GetPaymentServiceDefinitionRequest {
     public GetPaymentServiceDefinitionRequest withPaymentServiceDefinitionId(String paymentServiceDefinitionId) {
         Utils.checkNotNull(paymentServiceDefinitionId, "paymentServiceDefinitionId");
         this.paymentServiceDefinitionId = paymentServiceDefinitionId;
+        return this;
+    }
+
+    public GetPaymentServiceDefinitionRequest withApplicationName(String applicationName) {
+        Utils.checkNotNull(applicationName, "applicationName");
+        this.applicationName = Optional.ofNullable(applicationName);
+        return this;
+    }
+
+    public GetPaymentServiceDefinitionRequest withApplicationName(Optional<String> applicationName) {
+        Utils.checkNotNull(applicationName, "applicationName");
+        this.applicationName = applicationName;
         return this;
     }
 
@@ -49,24 +80,29 @@ public class GetPaymentServiceDefinitionRequest {
         }
         GetPaymentServiceDefinitionRequest other = (GetPaymentServiceDefinitionRequest) o;
         return 
-            Objects.deepEquals(this.paymentServiceDefinitionId, other.paymentServiceDefinitionId);
+            Objects.deepEquals(this.paymentServiceDefinitionId, other.paymentServiceDefinitionId) &&
+            Objects.deepEquals(this.applicationName, other.applicationName);
     }
     
     @Override
     public int hashCode() {
         return Objects.hash(
-            paymentServiceDefinitionId);
+            paymentServiceDefinitionId,
+            applicationName);
     }
     
     @Override
     public String toString() {
         return Utils.toString(GetPaymentServiceDefinitionRequest.class,
-                "paymentServiceDefinitionId", paymentServiceDefinitionId);
+                "paymentServiceDefinitionId", paymentServiceDefinitionId,
+                "applicationName", applicationName);
     }
     
     public final static class Builder {
  
         private String paymentServiceDefinitionId;
+ 
+        private Optional<String> applicationName;
         
         private Builder() {
           // force use of static builder() method
@@ -77,10 +113,32 @@ public class GetPaymentServiceDefinitionRequest {
             this.paymentServiceDefinitionId = paymentServiceDefinitionId;
             return this;
         }
+
+        public Builder applicationName(String applicationName) {
+            Utils.checkNotNull(applicationName, "applicationName");
+            this.applicationName = Optional.ofNullable(applicationName);
+            return this;
+        }
+
+        public Builder applicationName(Optional<String> applicationName) {
+            Utils.checkNotNull(applicationName, "applicationName");
+            this.applicationName = applicationName;
+            return this;
+        }
         
         public GetPaymentServiceDefinitionRequest build() {
+            if (applicationName == null) {
+                applicationName = _SINGLETON_VALUE_ApplicationName.value();
+            }
             return new GetPaymentServiceDefinitionRequest(
-                paymentServiceDefinitionId);
+                paymentServiceDefinitionId,
+                applicationName);
         }
+
+        private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_ApplicationName =
+                new LazySingletonValue<>(
+                        "application_name",
+                        "\"core-api\"",
+                        new TypeReference<Optional<String>>() {});
     }
 }

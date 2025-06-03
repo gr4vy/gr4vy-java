@@ -38,7 +38,7 @@ public class Application {
                     .build())
                 .call();
 
-        if (res.collectionNoCursorRefund().isPresent()) {
+        if (res.collectionRefund().isPresent()) {
             // handle response
         }
     }
@@ -50,6 +50,7 @@ public class Application {
 | Parameter                                                                                          | Type                                                                                               | Required                                                                                           | Description                                                                                        | Example                                                                                            |
 | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
 | `transactionId`                                                                                    | *String*                                                                                           | :heavy_check_mark:                                                                                 | N/A                                                                                                | 7099948d-7286-47e4-aad8-b68f7eb44591                                                               |
+| `applicationName`                                                                                  | *Optional\<String>*                                                                                | :heavy_minus_sign:                                                                                 | N/A                                                                                                |                                                                                                    |
 | `merchantAccountId`                                                                                | *JsonNullable\<String>*                                                                            | :heavy_minus_sign:                                                                                 | The ID of the merchant account to use for this request.                                            |                                                                                                    |
 | `transactionRefundAllCreate`                                                                       | [JsonNullable\<TransactionRefundAllCreate>](../../models/components/TransactionRefundAllCreate.md) | :heavy_minus_sign:                                                                                 | N/A                                                                                                |                                                                                                    |
 

@@ -25,6 +25,7 @@ import com.gr4vy.sdk.models.errors.HTTPValidationError;
 import com.gr4vy.sdk.models.operations.CreateApplePayDigitalWalletSessionRequest;
 import com.gr4vy.sdk.models.operations.CreateApplePayDigitalWalletSessionRequestBuilder;
 import com.gr4vy.sdk.models.operations.CreateApplePayDigitalWalletSessionResponse;
+import com.gr4vy.sdk.models.operations.CreateClickToPayDigitalWalletSessionRequest;
 import com.gr4vy.sdk.models.operations.CreateClickToPayDigitalWalletSessionRequestBuilder;
 import com.gr4vy.sdk.models.operations.CreateClickToPayDigitalWalletSessionResponse;
 import com.gr4vy.sdk.models.operations.CreateGooglePayDigitalWalletSessionRequest;
@@ -84,7 +85,7 @@ public class Sessions implements
      */
     public CreateGooglePayDigitalWalletSessionResponse googlePay(
             GooglePaySessionRequest googlePaySessionRequest) throws Exception {
-        return googlePay(JsonNullable.undefined(), googlePaySessionRequest);
+        return googlePay(Optional.empty(), JsonNullable.undefined(), googlePaySessionRequest);
     }
     
     /**
@@ -92,17 +93,20 @@ public class Sessions implements
      * 
      * <p>Create a session for use with Google Pay.
      * 
+     * @param applicationName 
      * @param merchantAccountId 
      * @param googlePaySessionRequest 
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public CreateGooglePayDigitalWalletSessionResponse googlePay(
+            Optional<String> applicationName,
             JsonNullable<String> merchantAccountId,
             GooglePaySessionRequest googlePaySessionRequest) throws Exception {
         CreateGooglePayDigitalWalletSessionRequest request =
             CreateGooglePayDigitalWalletSessionRequest
                 .builder()
+                .applicationName(applicationName)
                 .merchantAccountId(merchantAccountId)
                 .googlePaySessionRequest(googlePaySessionRequest)
                 .build();
@@ -130,6 +134,11 @@ public class Sessions implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
+
+        _req.addQueryParams(Utils.getQueryParams(
+                CreateGooglePayDigitalWalletSessionRequest.class,
+                request, 
+                this.sdkConfiguration.globals));
         _req.addHeaders(Utils.getHeadersFromMetadata(request, this.sdkConfiguration.globals));
         
         Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
@@ -450,7 +459,7 @@ public class Sessions implements
      */
     public CreateApplePayDigitalWalletSessionResponse applePay(
             ApplePaySessionRequest applePaySessionRequest) throws Exception {
-        return applePay(JsonNullable.undefined(), applePaySessionRequest);
+        return applePay(Optional.empty(), JsonNullable.undefined(), applePaySessionRequest);
     }
     
     /**
@@ -458,17 +467,20 @@ public class Sessions implements
      * 
      * <p>Create a session for use with Apple Pay.
      * 
+     * @param applicationName 
      * @param merchantAccountId 
      * @param applePaySessionRequest 
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public CreateApplePayDigitalWalletSessionResponse applePay(
+            Optional<String> applicationName,
             JsonNullable<String> merchantAccountId,
             ApplePaySessionRequest applePaySessionRequest) throws Exception {
         CreateApplePayDigitalWalletSessionRequest request =
             CreateApplePayDigitalWalletSessionRequest
                 .builder()
+                .applicationName(applicationName)
                 .merchantAccountId(merchantAccountId)
                 .applePaySessionRequest(applePaySessionRequest)
                 .build();
@@ -496,6 +508,11 @@ public class Sessions implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
+
+        _req.addQueryParams(Utils.getQueryParams(
+                CreateApplePayDigitalWalletSessionRequest.class,
+                request, 
+                this.sdkConfiguration.globals));
         _req.addHeaders(Utils.getHeadersFromMetadata(request, this.sdkConfiguration.globals));
         
         Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
@@ -810,12 +827,35 @@ public class Sessions implements
      * 
      * <p>Create a session for use with Click to Pay.
      * 
-     * @param request The request object containing all of the parameters for the API call.
+     * @param clickToPaySessionRequest 
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public CreateClickToPayDigitalWalletSessionResponse clickToPay(
-            ClickToPaySessionRequest request) throws Exception {
+            ClickToPaySessionRequest clickToPaySessionRequest) throws Exception {
+        return clickToPay(Optional.empty(), clickToPaySessionRequest);
+    }
+    
+    /**
+     * Create a Click to Pay session
+     * 
+     * <p>Create a session for use with Click to Pay.
+     * 
+     * @param applicationName 
+     * @param clickToPaySessionRequest 
+     * @return The response from the API call
+     * @throws Exception if the API call fails
+     */
+    public CreateClickToPayDigitalWalletSessionResponse clickToPay(
+            Optional<String> applicationName,
+            ClickToPaySessionRequest clickToPaySessionRequest) throws Exception {
+        CreateClickToPayDigitalWalletSessionRequest request =
+            CreateClickToPayDigitalWalletSessionRequest
+                .builder()
+                .applicationName(applicationName)
+                .clickToPaySessionRequest(clickToPaySessionRequest)
+                .build();
+        
         String _baseUrl = Utils.templateUrl(
                 this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
@@ -826,10 +866,10 @@ public class Sessions implements
         Object _convertedRequest = Utils.convertToShape(
                 request, 
                 JsonShape.DEFAULT,
-                new TypeReference<ClickToPaySessionRequest>() {});
+                new TypeReference<Object>() {});
         SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
                 _convertedRequest, 
-                "request",
+                "clickToPaySessionRequest",
                 "json",
                 false);
         if (_serializedRequestBody == null) {
@@ -839,6 +879,11 @@ public class Sessions implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
+
+        _req.addQueryParams(Utils.getQueryParams(
+                CreateClickToPayDigitalWalletSessionRequest.class,
+                request, 
+                this.sdkConfiguration.globals));
         
         Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
         Utils.configureSecurity(_req,  
