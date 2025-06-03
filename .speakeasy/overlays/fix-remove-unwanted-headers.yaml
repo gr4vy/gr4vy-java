@@ -1,8 +1,10 @@
 overlay: 1.0.0
 x-speakeasy-jsonpath: rfc9535
 info:
-    title: Remove unwanted timeout_in_seconds params
+    title: Remove unwanted headers
     version: 0.0.1
 actions:
     - target: $.paths.*.*.parameters[?(@.name=="timeout_in_seconds")]
+      remove: true
+    - target: $.paths.*.*.parameters[?(@.name=="application_name")]
       remove: true

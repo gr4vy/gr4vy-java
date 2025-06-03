@@ -3,7 +3,7 @@ generation:
   sdkClassName: Gr4vy
   maintainOpenAPIOrder: true
   usageSnippets:
-    optionalPropertyRendering: withExample
+    optionalPropertyRendering: never
     sdkInitStyle: constructor
   useClassNamesForArrayFields: true
   fixes:

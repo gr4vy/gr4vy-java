@@ -87,5 +87,5 @@ jobs:
             SLACK_MSG_AUTHOR: gr4vy-code
             SLACK_ICON_EMOJI: ":gr4vy:"
             SLACK_COLOR: "failure"
-            SLACK_MESSAGE_ON_FAILURE: "CI failed - `${{ github.event.commits[0].message }}`"
+            SLACK_MESSAGE_ON_FAILURE: "CI failed"
             SLACK_FOOTER: ""
