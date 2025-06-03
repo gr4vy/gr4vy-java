@@ -3,22 +3,15 @@
  */
 package com.gr4vy.sdk.models.operations;
 
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.gr4vy.sdk.models.components.TransactionRefundCreate;
-import com.gr4vy.sdk.utils.LazySingletonValue;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
-import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 public class CreateTransactionRefundRequestBuilder {
 
     private String transactionId;
-    private Optional<String> applicationName = Utils.readDefaultOrConstValue(
-                            "applicationName",
-                            "\"core-api\"",
-                            new TypeReference<Optional<String>>() {});
     private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
     private TransactionRefundCreate transactionRefundCreate;
     private final SDKMethodInterfaces.MethodCallCreateTransactionRefund sdk;
@@ -30,18 +23,6 @@ public class CreateTransactionRefundRequestBuilder {
     public CreateTransactionRefundRequestBuilder transactionId(String transactionId) {
         Utils.checkNotNull(transactionId, "transactionId");
         this.transactionId = transactionId;
-        return this;
-    }
-                
-    public CreateTransactionRefundRequestBuilder applicationName(String applicationName) {
-        Utils.checkNotNull(applicationName, "applicationName");
-        this.applicationName = Optional.of(applicationName);
-        return this;
-    }
-
-    public CreateTransactionRefundRequestBuilder applicationName(Optional<String> applicationName) {
-        Utils.checkNotNull(applicationName, "applicationName");
-        this.applicationName = applicationName;
         return this;
     }
 
@@ -64,19 +45,10 @@ public class CreateTransactionRefundRequestBuilder {
     }
 
     public CreateTransactionRefundResponse call() throws Exception {
-        if (applicationName == null) {
-            applicationName = _SINGLETON_VALUE_ApplicationName.value();
-        }
+
         return sdk.create(
             transactionId,
-            applicationName,
             merchantAccountId,
             transactionRefundCreate);
     }
-
-    private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_ApplicationName =
-            new LazySingletonValue<>(
-                    "applicationName",
-                    "\"core-api\"",
-                    new TypeReference<Optional<String>>() {});
 }

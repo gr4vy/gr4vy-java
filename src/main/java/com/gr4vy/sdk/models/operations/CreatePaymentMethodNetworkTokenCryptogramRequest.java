@@ -5,15 +5,12 @@ package com.gr4vy.sdk.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.gr4vy.sdk.models.components.CryptogramCreate;
-import com.gr4vy.sdk.utils.LazySingletonValue;
 import com.gr4vy.sdk.utils.SpeakeasyMetadata;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.util.Objects;
-import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 public class CreatePaymentMethodNetworkTokenCryptogramRequest {
@@ -30,9 +27,6 @@ public class CreatePaymentMethodNetworkTokenCryptogramRequest {
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=network_token_id")
     private String networkTokenId;
 
-    @SpeakeasyMetadata("queryParam:style=form,explode=true,name=application_name")
-    private Optional<String> applicationName;
-
     /**
      * The ID of the merchant account to use for this request.
      */
@@ -46,17 +40,14 @@ public class CreatePaymentMethodNetworkTokenCryptogramRequest {
     public CreatePaymentMethodNetworkTokenCryptogramRequest(
             String paymentMethodId,
             String networkTokenId,
-            Optional<String> applicationName,
             JsonNullable<String> merchantAccountId,
             CryptogramCreate cryptogramCreate) {
         Utils.checkNotNull(paymentMethodId, "paymentMethodId");
         Utils.checkNotNull(networkTokenId, "networkTokenId");
-        Utils.checkNotNull(applicationName, "applicationName");
         Utils.checkNotNull(merchantAccountId, "merchantAccountId");
         Utils.checkNotNull(cryptogramCreate, "cryptogramCreate");
         this.paymentMethodId = paymentMethodId;
         this.networkTokenId = networkTokenId;
-        this.applicationName = applicationName;
         this.merchantAccountId = merchantAccountId;
         this.cryptogramCreate = cryptogramCreate;
     }
@@ -65,7 +56,7 @@ public class CreatePaymentMethodNetworkTokenCryptogramRequest {
             String paymentMethodId,
             String networkTokenId,
             CryptogramCreate cryptogramCreate) {
-        this(paymentMethodId, networkTokenId, Optional.empty(), JsonNullable.undefined(), cryptogramCreate);
+        this(paymentMethodId, networkTokenId, JsonNullable.undefined(), cryptogramCreate);
     }
 
     /**
@@ -82,11 +73,6 @@ public class CreatePaymentMethodNetworkTokenCryptogramRequest {
     @JsonIgnore
     public String networkTokenId() {
         return networkTokenId;
-    }
-
-    @JsonIgnore
-    public Optional<String> applicationName() {
-        return applicationName;
     }
 
     /**
@@ -121,18 +107,6 @@ public class CreatePaymentMethodNetworkTokenCryptogramRequest {
     public CreatePaymentMethodNetworkTokenCryptogramRequest withNetworkTokenId(String networkTokenId) {
         Utils.checkNotNull(networkTokenId, "networkTokenId");
         this.networkTokenId = networkTokenId;
-        return this;
-    }
-
-    public CreatePaymentMethodNetworkTokenCryptogramRequest withApplicationName(String applicationName) {
-        Utils.checkNotNull(applicationName, "applicationName");
-        this.applicationName = Optional.ofNullable(applicationName);
-        return this;
-    }
-
-    public CreatePaymentMethodNetworkTokenCryptogramRequest withApplicationName(Optional<String> applicationName) {
-        Utils.checkNotNull(applicationName, "applicationName");
-        this.applicationName = applicationName;
         return this;
     }
 
@@ -173,7 +147,6 @@ public class CreatePaymentMethodNetworkTokenCryptogramRequest {
         return 
             Objects.deepEquals(this.paymentMethodId, other.paymentMethodId) &&
             Objects.deepEquals(this.networkTokenId, other.networkTokenId) &&
-            Objects.deepEquals(this.applicationName, other.applicationName) &&
             Objects.deepEquals(this.merchantAccountId, other.merchantAccountId) &&
             Objects.deepEquals(this.cryptogramCreate, other.cryptogramCreate);
     }
@@ -183,7 +156,6 @@ public class CreatePaymentMethodNetworkTokenCryptogramRequest {
         return Objects.hash(
             paymentMethodId,
             networkTokenId,
-            applicationName,
             merchantAccountId,
             cryptogramCreate);
     }
@@ -193,7 +165,6 @@ public class CreatePaymentMethodNetworkTokenCryptogramRequest {
         return Utils.toString(CreatePaymentMethodNetworkTokenCryptogramRequest.class,
                 "paymentMethodId", paymentMethodId,
                 "networkTokenId", networkTokenId,
-                "applicationName", applicationName,
                 "merchantAccountId", merchantAccountId,
                 "cryptogramCreate", cryptogramCreate);
     }
@@ -203,8 +174,6 @@ public class CreatePaymentMethodNetworkTokenCryptogramRequest {
         private String paymentMethodId;
  
         private String networkTokenId;
- 
-        private Optional<String> applicationName;
  
         private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
  
@@ -229,18 +198,6 @@ public class CreatePaymentMethodNetworkTokenCryptogramRequest {
         public Builder networkTokenId(String networkTokenId) {
             Utils.checkNotNull(networkTokenId, "networkTokenId");
             this.networkTokenId = networkTokenId;
-            return this;
-        }
-
-        public Builder applicationName(String applicationName) {
-            Utils.checkNotNull(applicationName, "applicationName");
-            this.applicationName = Optional.ofNullable(applicationName);
-            return this;
-        }
-
-        public Builder applicationName(Optional<String> applicationName) {
-            Utils.checkNotNull(applicationName, "applicationName");
-            this.applicationName = applicationName;
             return this;
         }
 
@@ -269,21 +226,11 @@ public class CreatePaymentMethodNetworkTokenCryptogramRequest {
         }
         
         public CreatePaymentMethodNetworkTokenCryptogramRequest build() {
-            if (applicationName == null) {
-                applicationName = _SINGLETON_VALUE_ApplicationName.value();
-            }
             return new CreatePaymentMethodNetworkTokenCryptogramRequest(
                 paymentMethodId,
                 networkTokenId,
-                applicationName,
                 merchantAccountId,
                 cryptogramCreate);
         }
-
-        private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_ApplicationName =
-                new LazySingletonValue<>(
-                        "application_name",
-                        "\"core-api\"",
-                        new TypeReference<Optional<String>>() {});
     }
 }

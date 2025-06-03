@@ -217,7 +217,6 @@ public class AuditLogs implements
                         request.limit(),
                         request.action(),
                         request.userId(),
-                        request.applicationName(),
                         request.resourceType(),
                         request.merchantAccountId()
                              ));

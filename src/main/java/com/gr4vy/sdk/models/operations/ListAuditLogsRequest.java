@@ -44,9 +44,6 @@ public class ListAuditLogsRequest {
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=user_id")
     private JsonNullable<String> userId;
 
-    @SpeakeasyMetadata("queryParam:style=form,explode=true,name=application_name")
-    private Optional<String> applicationName;
-
     /**
      * Filters the results to only the items for which the `audit-log` has a `resource` that matches this type value.
      */
@@ -65,27 +62,24 @@ public class ListAuditLogsRequest {
             Optional<Long> limit,
             JsonNullable<? extends AuditLogAction> action,
             JsonNullable<String> userId,
-            Optional<String> applicationName,
             JsonNullable<String> resourceType,
             JsonNullable<String> merchantAccountId) {
         Utils.checkNotNull(cursor, "cursor");
         Utils.checkNotNull(limit, "limit");
         Utils.checkNotNull(action, "action");
         Utils.checkNotNull(userId, "userId");
-        Utils.checkNotNull(applicationName, "applicationName");
         Utils.checkNotNull(resourceType, "resourceType");
         Utils.checkNotNull(merchantAccountId, "merchantAccountId");
         this.cursor = cursor;
         this.limit = limit;
         this.action = action;
         this.userId = userId;
-        this.applicationName = applicationName;
         this.resourceType = resourceType;
         this.merchantAccountId = merchantAccountId;
     }
     
     public ListAuditLogsRequest() {
-        this(JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined());
+        this(JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
     }
 
     /**
@@ -119,11 +113,6 @@ public class ListAuditLogsRequest {
     @JsonIgnore
     public JsonNullable<String> userId() {
         return userId;
-    }
-
-    @JsonIgnore
-    public Optional<String> applicationName() {
-        return applicationName;
     }
 
     /**
@@ -218,18 +207,6 @@ public class ListAuditLogsRequest {
         return this;
     }
 
-    public ListAuditLogsRequest withApplicationName(String applicationName) {
-        Utils.checkNotNull(applicationName, "applicationName");
-        this.applicationName = Optional.ofNullable(applicationName);
-        return this;
-    }
-
-    public ListAuditLogsRequest withApplicationName(Optional<String> applicationName) {
-        Utils.checkNotNull(applicationName, "applicationName");
-        this.applicationName = applicationName;
-        return this;
-    }
-
     /**
      * Filters the results to only the items for which the `audit-log` has a `resource` that matches this type value.
      */
@@ -281,7 +258,6 @@ public class ListAuditLogsRequest {
             Objects.deepEquals(this.limit, other.limit) &&
             Objects.deepEquals(this.action, other.action) &&
             Objects.deepEquals(this.userId, other.userId) &&
-            Objects.deepEquals(this.applicationName, other.applicationName) &&
             Objects.deepEquals(this.resourceType, other.resourceType) &&
             Objects.deepEquals(this.merchantAccountId, other.merchantAccountId);
     }
@@ -293,7 +269,6 @@ public class ListAuditLogsRequest {
             limit,
             action,
             userId,
-            applicationName,
             resourceType,
             merchantAccountId);
     }
@@ -305,7 +280,6 @@ public class ListAuditLogsRequest {
                 "limit", limit,
                 "action", action,
                 "userId", userId,
-                "applicationName", applicationName,
                 "resourceType", resourceType,
                 "merchantAccountId", merchantAccountId);
     }
@@ -319,8 +293,6 @@ public class ListAuditLogsRequest {
         private JsonNullable<? extends AuditLogAction> action = JsonNullable.undefined();
  
         private JsonNullable<String> userId = JsonNullable.undefined();
- 
-        private Optional<String> applicationName;
  
         private JsonNullable<String> resourceType = JsonNullable.undefined();
  
@@ -402,18 +374,6 @@ public class ListAuditLogsRequest {
             return this;
         }
 
-        public Builder applicationName(String applicationName) {
-            Utils.checkNotNull(applicationName, "applicationName");
-            this.applicationName = Optional.ofNullable(applicationName);
-            return this;
-        }
-
-        public Builder applicationName(Optional<String> applicationName) {
-            Utils.checkNotNull(applicationName, "applicationName");
-            this.applicationName = applicationName;
-            return this;
-        }
-
         /**
          * Filters the results to only the items for which the `audit-log` has a `resource` that matches this type value.
          */
@@ -454,15 +414,11 @@ public class ListAuditLogsRequest {
             if (limit == null) {
                 limit = _SINGLETON_VALUE_Limit.value();
             }
-            if (applicationName == null) {
-                applicationName = _SINGLETON_VALUE_ApplicationName.value();
-            }
             return new ListAuditLogsRequest(
                 cursor,
                 limit,
                 action,
                 userId,
-                applicationName,
                 resourceType,
                 merchantAccountId);
         }
@@ -472,11 +428,5 @@ public class ListAuditLogsRequest {
                         "limit",
                         "20",
                         new TypeReference<Optional<Long>>() {});
-
-        private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_ApplicationName =
-                new LazySingletonValue<>(
-                        "application_name",
-                        "\"core-api\"",
-                        new TypeReference<Optional<String>>() {});
     }
 }

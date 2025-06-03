@@ -54,9 +54,6 @@ public class ListBuyerPaymentMethodsRequest {
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=currency")
     private JsonNullable<String> currency;
 
-    @SpeakeasyMetadata("queryParam:style=form,explode=true,name=application_name")
-    private Optional<String> applicationName;
-
     /**
      * The ID of the merchant account to use for this request.
      */
@@ -70,14 +67,12 @@ public class ListBuyerPaymentMethodsRequest {
             Optional<? extends OrderBy> orderBy,
             JsonNullable<String> country,
             JsonNullable<String> currency,
-            Optional<String> applicationName,
             JsonNullable<String> merchantAccountId) {
         Utils.checkNotNull(buyerId, "buyerId");
         Utils.checkNotNull(buyerExternalIdentifier, "buyerExternalIdentifier");
         Utils.checkNotNull(orderBy, "orderBy");
         Utils.checkNotNull(country, "country");
         Utils.checkNotNull(currency, "currency");
-        Utils.checkNotNull(applicationName, "applicationName");
         Utils.checkNotNull(merchantAccountId, "merchantAccountId");
         this.buyerId = buyerId;
         this.buyerExternalIdentifier = buyerExternalIdentifier;
@@ -85,12 +80,11 @@ public class ListBuyerPaymentMethodsRequest {
         this.orderBy = orderBy;
         this.country = country;
         this.currency = currency;
-        this.applicationName = applicationName;
         this.merchantAccountId = merchantAccountId;
     }
     
     public ListBuyerPaymentMethodsRequest() {
-        this(JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined());
+        this(JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
     }
 
     /**
@@ -140,11 +134,6 @@ public class ListBuyerPaymentMethodsRequest {
     @JsonIgnore
     public JsonNullable<String> currency() {
         return currency;
-    }
-
-    @JsonIgnore
-    public Optional<String> applicationName() {
-        return applicationName;
     }
 
     /**
@@ -249,18 +238,6 @@ public class ListBuyerPaymentMethodsRequest {
         return this;
     }
 
-    public ListBuyerPaymentMethodsRequest withApplicationName(String applicationName) {
-        Utils.checkNotNull(applicationName, "applicationName");
-        this.applicationName = Optional.ofNullable(applicationName);
-        return this;
-    }
-
-    public ListBuyerPaymentMethodsRequest withApplicationName(Optional<String> applicationName) {
-        Utils.checkNotNull(applicationName, "applicationName");
-        this.applicationName = applicationName;
-        return this;
-    }
-
     /**
      * The ID of the merchant account to use for this request.
      */
@@ -296,7 +273,6 @@ public class ListBuyerPaymentMethodsRequest {
             Objects.deepEquals(this.orderBy, other.orderBy) &&
             Objects.deepEquals(this.country, other.country) &&
             Objects.deepEquals(this.currency, other.currency) &&
-            Objects.deepEquals(this.applicationName, other.applicationName) &&
             Objects.deepEquals(this.merchantAccountId, other.merchantAccountId);
     }
     
@@ -309,7 +285,6 @@ public class ListBuyerPaymentMethodsRequest {
             orderBy,
             country,
             currency,
-            applicationName,
             merchantAccountId);
     }
     
@@ -322,7 +297,6 @@ public class ListBuyerPaymentMethodsRequest {
                 "orderBy", orderBy,
                 "country", country,
                 "currency", currency,
-                "applicationName", applicationName,
                 "merchantAccountId", merchantAccountId);
     }
     
@@ -337,8 +311,6 @@ public class ListBuyerPaymentMethodsRequest {
         private JsonNullable<String> country = JsonNullable.undefined();
  
         private JsonNullable<String> currency = JsonNullable.undefined();
- 
-        private Optional<String> applicationName;
  
         private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
         
@@ -436,18 +408,6 @@ public class ListBuyerPaymentMethodsRequest {
             return this;
         }
 
-        public Builder applicationName(String applicationName) {
-            Utils.checkNotNull(applicationName, "applicationName");
-            this.applicationName = Optional.ofNullable(applicationName);
-            return this;
-        }
-
-        public Builder applicationName(Optional<String> applicationName) {
-            Utils.checkNotNull(applicationName, "applicationName");
-            this.applicationName = applicationName;
-            return this;
-        }
-
         /**
          * The ID of the merchant account to use for this request.
          */
@@ -470,16 +430,12 @@ public class ListBuyerPaymentMethodsRequest {
             if (orderBy == null) {
                 orderBy = _SINGLETON_VALUE_OrderBy.value();
             }
-            if (applicationName == null) {
-                applicationName = _SINGLETON_VALUE_ApplicationName.value();
-            }
             return new ListBuyerPaymentMethodsRequest(
                 buyerId,
                 buyerExternalIdentifier,
                 orderBy,
                 country,
                 currency,
-                applicationName,
                 merchantAccountId);
         }
 
@@ -494,11 +450,5 @@ public class ListBuyerPaymentMethodsRequest {
                         "order_by",
                         "\"desc\"",
                         new TypeReference<Optional<? extends OrderBy>>() {});
-
-        private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_ApplicationName =
-                new LazySingletonValue<>(
-                        "application_name",
-                        "\"core-api\"",
-                        new TypeReference<Optional<String>>() {});
     }
 }

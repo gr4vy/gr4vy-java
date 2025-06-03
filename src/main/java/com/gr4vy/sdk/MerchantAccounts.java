@@ -21,7 +21,6 @@ import com.gr4vy.sdk.models.errors.Error500;
 import com.gr4vy.sdk.models.errors.Error502;
 import com.gr4vy.sdk.models.errors.Error504;
 import com.gr4vy.sdk.models.errors.HTTPValidationError;
-import com.gr4vy.sdk.models.operations.CreateMerchantAccountRequest;
 import com.gr4vy.sdk.models.operations.CreateMerchantAccountRequestBuilder;
 import com.gr4vy.sdk.models.operations.CreateMerchantAccountResponse;
 import com.gr4vy.sdk.models.operations.GetMerchantAccountRequest;
@@ -100,7 +99,7 @@ public class MerchantAccounts implements
      * @throws Exception if the API call fails
      */
     public ListMerchantAccountsResponse listDirect() throws Exception {
-        return list(JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), Optional.empty(), Optional.empty());
+        return list(JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), Optional.empty());
     }
     
     /**
@@ -111,7 +110,6 @@ public class MerchantAccounts implements
      * @param cursor A pointer to the page of results to return.
      * @param limit The maximum number of items that are at returned.
      * @param search The search term to filter merchant accounts by.
-     * @param applicationName 
      * @param options additional options
      * @return The response from the API call
      * @throws Exception if the API call fails
@@ -120,7 +118,6 @@ public class MerchantAccounts implements
             JsonNullable<String> cursor,
             Optional<Long> limit,
             JsonNullable<String> search,
-            Optional<String> applicationName,
             Optional<Options> options) throws Exception {
 
         if (options.isPresent()) {
@@ -132,7 +129,6 @@ public class MerchantAccounts implements
                 .cursor(cursor)
                 .limit(limit)
                 .search(search)
-                .applicationName(applicationName)
                 .build();
         
         String _baseUrl = Utils.templateUrl(
@@ -245,8 +241,7 @@ public class MerchantAccounts implements
                     ListMerchantAccountsRequestBuilder _nextRequest = list()
                             .cursor(_nextCursor)
                             .limit(limit)
-                            .search(search)
-                            .applicationName(applicationName);
+                            .search(search);
                     return Optional.of(_nextRequest.call());
                 });
 
@@ -500,35 +495,12 @@ public class MerchantAccounts implements
      * 
      * <p>Create a new merchant account in an instance.
      * 
-     * @param merchantAccountCreate 
+     * @param request The request object containing all of the parameters for the API call.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public CreateMerchantAccountResponse create(
-            MerchantAccountCreate merchantAccountCreate) throws Exception {
-        return create(Optional.empty(), merchantAccountCreate);
-    }
-    
-    /**
-     * Create a merchant account
-     * 
-     * <p>Create a new merchant account in an instance.
-     * 
-     * @param applicationName 
-     * @param merchantAccountCreate 
-     * @return The response from the API call
-     * @throws Exception if the API call fails
-     */
-    public CreateMerchantAccountResponse create(
-            Optional<String> applicationName,
-            MerchantAccountCreate merchantAccountCreate) throws Exception {
-        CreateMerchantAccountRequest request =
-            CreateMerchantAccountRequest
-                .builder()
-                .applicationName(applicationName)
-                .merchantAccountCreate(merchantAccountCreate)
-                .build();
-        
+            MerchantAccountCreate request) throws Exception {
         String _baseUrl = Utils.templateUrl(
                 this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
@@ -539,10 +511,10 @@ public class MerchantAccounts implements
         Object _convertedRequest = Utils.convertToShape(
                 request, 
                 JsonShape.DEFAULT,
-                new TypeReference<Object>() {});
+                new TypeReference<MerchantAccountCreate>() {});
         SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
                 _convertedRequest, 
-                "merchantAccountCreate",
+                "request",
                 "json",
                 false);
         if (_serializedRequestBody == null) {
@@ -552,11 +524,6 @@ public class MerchantAccounts implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
-        _req.addQueryParams(Utils.getQueryParams(
-                CreateMerchantAccountRequest.class,
-                request, 
-                this.sdkConfiguration.globals));
         
         Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
         Utils.configureSecurity(_req,  
@@ -876,7 +843,7 @@ public class MerchantAccounts implements
      */
     public GetMerchantAccountResponse get(
             String merchantAccountId) throws Exception {
-        return get(merchantAccountId, Optional.empty(), Optional.empty());
+        return get(merchantAccountId, Optional.empty());
     }
     
     /**
@@ -885,14 +852,12 @@ public class MerchantAccounts implements
      * <p>Get info about a merchant account in an instance.
      * 
      * @param merchantAccountId The ID of the merchant account
-     * @param applicationName 
      * @param options additional options
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public GetMerchantAccountResponse get(
             String merchantAccountId,
-            Optional<String> applicationName,
             Optional<Options> options) throws Exception {
 
         if (options.isPresent()) {
@@ -902,7 +867,6 @@ public class MerchantAccounts implements
             GetMerchantAccountRequest
                 .builder()
                 .merchantAccountId(merchantAccountId)
-                .applicationName(applicationName)
                 .build();
         
         String _baseUrl = Utils.templateUrl(
@@ -917,11 +881,6 @@ public class MerchantAccounts implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
-        _req.addQueryParams(Utils.getQueryParams(
-                GetMerchantAccountRequest.class,
-                request, 
-                this.sdkConfiguration.globals));
         
         Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
         Utils.configureSecurity(_req,  
@@ -1258,29 +1217,10 @@ public class MerchantAccounts implements
     public UpdateMerchantAccountResponse update(
             String merchantAccountId,
             MerchantAccountUpdate merchantAccountUpdate) throws Exception {
-        return update(merchantAccountId, Optional.empty(), merchantAccountUpdate);
-    }
-    
-    /**
-     * Update a merchant account
-     * 
-     * <p>Update info for a merchant account in an instance.
-     * 
-     * @param merchantAccountId The ID of the merchant account
-     * @param applicationName 
-     * @param merchantAccountUpdate 
-     * @return The response from the API call
-     * @throws Exception if the API call fails
-     */
-    public UpdateMerchantAccountResponse update(
-            String merchantAccountId,
-            Optional<String> applicationName,
-            MerchantAccountUpdate merchantAccountUpdate) throws Exception {
         UpdateMerchantAccountRequest request =
             UpdateMerchantAccountRequest
                 .builder()
                 .merchantAccountId(merchantAccountId)
-                .applicationName(applicationName)
                 .merchantAccountUpdate(merchantAccountUpdate)
                 .build();
         
@@ -1309,11 +1249,6 @@ public class MerchantAccounts implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
-        _req.addQueryParams(Utils.getQueryParams(
-                UpdateMerchantAccountRequest.class,
-                request, 
-                this.sdkConfiguration.globals));
         
         Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
         Utils.configureSecurity(_req,  

@@ -3,15 +3,26 @@
  */
 package com.gr4vy.sdk.models.operations;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.gr4vy.sdk.utils.LazySingletonValue;
 import com.gr4vy.sdk.utils.Options;
 import com.gr4vy.sdk.utils.RetryConfig;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Exception;
+import java.lang.Long;
+import java.lang.String;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 
 public class ListTransactionEventsRequestBuilder {
 
-    private ListTransactionEventsRequest request;
+    private String transactionId;
+    private JsonNullable<String> cursor = JsonNullable.undefined();
+    private Optional<Long> limit = Utils.readDefaultOrConstValue(
+                            "limit",
+                            "100",
+                            new TypeReference<Optional<Long>>() {});
+    private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKMethodInterfaces.MethodCallListTransactionEvents sdk;
 
@@ -19,9 +30,45 @@ public class ListTransactionEventsRequestBuilder {
         this.sdk = sdk;
     }
 
-    public ListTransactionEventsRequestBuilder request(ListTransactionEventsRequest request) {
-        Utils.checkNotNull(request, "request");
-        this.request = request;
+    public ListTransactionEventsRequestBuilder transactionId(String transactionId) {
+        Utils.checkNotNull(transactionId, "transactionId");
+        this.transactionId = transactionId;
+        return this;
+    }
+
+    public ListTransactionEventsRequestBuilder cursor(String cursor) {
+        Utils.checkNotNull(cursor, "cursor");
+        this.cursor = JsonNullable.of(cursor);
+        return this;
+    }
+
+    public ListTransactionEventsRequestBuilder cursor(JsonNullable<String> cursor) {
+        Utils.checkNotNull(cursor, "cursor");
+        this.cursor = cursor;
+        return this;
+    }
+                
+    public ListTransactionEventsRequestBuilder limit(long limit) {
+        Utils.checkNotNull(limit, "limit");
+        this.limit = Optional.of(limit);
+        return this;
+    }
+
+    public ListTransactionEventsRequestBuilder limit(Optional<Long> limit) {
+        Utils.checkNotNull(limit, "limit");
+        this.limit = limit;
+        return this;
+    }
+
+    public ListTransactionEventsRequestBuilder merchantAccountId(String merchantAccountId) {
+        Utils.checkNotNull(merchantAccountId, "merchantAccountId");
+        this.merchantAccountId = JsonNullable.of(merchantAccountId);
+        return this;
+    }
+
+    public ListTransactionEventsRequestBuilder merchantAccountId(JsonNullable<String> merchantAccountId) {
+        Utils.checkNotNull(merchantAccountId, "merchantAccountId");
+        this.merchantAccountId = merchantAccountId;
         return this;
     }
                 
@@ -38,11 +85,22 @@ public class ListTransactionEventsRequestBuilder {
     }
 
     public ListTransactionEventsResponse call() throws Exception {
-        Optional<Options> options = Optional.of(Options.builder()
+        if (limit == null) {
+            limit = _SINGLETON_VALUE_Limit.value();
+        }        Optional<Options> options = Optional.of(Options.builder()
                                                     .retryConfig(retryConfig)
                                                     .build());
         return sdk.list(
-            request,
+            transactionId,
+            cursor,
+            limit,
+            merchantAccountId,
             options);
     }
+
+    private static final LazySingletonValue<Optional<Long>> _SINGLETON_VALUE_Limit =
+            new LazySingletonValue<>(
+                    "limit",
+                    "100",
+                    new TypeReference<Optional<Long>>() {});
 }

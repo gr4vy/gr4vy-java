@@ -33,10 +33,6 @@ public class Application {
             .build();
 
         ListPaymentMethodsRequest req = ListPaymentMethodsRequest.builder()
-                .cursor("ZXhhbXBsZTE")
-                .buyerId("fe26475d-ec3e-4884-9553-f7356683f7f9")
-                .buyerExternalIdentifier("buyer-12345")
-                .externalIdentifier("payment-method-12345")
                 .build();
 
         sdk.paymentMethods().list()
@@ -105,9 +101,6 @@ public class Application {
         CreatePaymentMethodResponse res = sdk.paymentMethods().create()
                 .requestBody(Body.of(CheckoutSessionPaymentMethodCreate.builder()
                     .id("4137b1cf-39ac-42a8-bad6-1c680d5dab6b")
-                    .externalIdentifier("card-12345")
-                    .buyerId("fe26475d-ec3e-4884-9553-f7356683f7f9")
-                    .buyerExternalIdentifier("buyer-12345")
                     .build()))
                 .call();
 
@@ -122,7 +115,6 @@ public class Application {
 
 | Parameter                                               | Type                                                    | Required                                                | Description                                             |
 | ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- |
-| `applicationName`                                       | *Optional\<String>*                                     | :heavy_minus_sign:                                      | N/A                                                     |
 | `merchantAccountId`                                     | *JsonNullable\<String>*                                 | :heavy_minus_sign:                                      | The ID of the merchant account to use for this request. |
 | `requestBody`                                           | [Body](../../models/operations/Body.md)                 | :heavy_check_mark:                                      | N/A                                                     |
 
@@ -186,7 +178,6 @@ public class Application {
 | Parameter                                               | Type                                                    | Required                                                | Description                                             | Example                                                 |
 | ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- |
 | `paymentMethodId`                                       | *String*                                                | :heavy_check_mark:                                      | The ID of the payment method                            | ef9496d8-53a5-4aad-8ca2-00eb68334389                    |
-| `applicationName`                                       | *Optional\<String>*                                     | :heavy_minus_sign:                                      | N/A                                                     |                                                         |
 | `merchantAccountId`                                     | *JsonNullable\<String>*                                 | :heavy_minus_sign:                                      | The ID of the merchant account to use for this request. |                                                         |
 
 ### Response
@@ -247,7 +238,6 @@ public class Application {
 | Parameter                                               | Type                                                    | Required                                                | Description                                             | Example                                                 |
 | ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- |
 | `paymentMethodId`                                       | *String*                                                | :heavy_check_mark:                                      | The ID of the payment method                            | ef9496d8-53a5-4aad-8ca2-00eb68334389                    |
-| `applicationName`                                       | *Optional\<String>*                                     | :heavy_minus_sign:                                      | N/A                                                     |                                                         |
 | `merchantAccountId`                                     | *JsonNullable\<String>*                                 | :heavy_minus_sign:                                      | The ID of the merchant account to use for this request. |                                                         |
 
 ### Response

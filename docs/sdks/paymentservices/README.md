@@ -36,8 +36,6 @@ public class Application {
             .build();
 
         ListPaymentServicesRequest req = ListPaymentServicesRequest.builder()
-                .cursor("ZXhhbXBsZTE")
-                .deleted(true)
                 .build();
 
         sdk.paymentServices().list()
@@ -89,12 +87,12 @@ Updates the configuration of a payment service.
 package hello.world;
 
 import com.gr4vy.sdk.Gr4vy;
-import com.gr4vy.sdk.models.components.*;
+import com.gr4vy.sdk.models.components.Field;
+import com.gr4vy.sdk.models.components.PaymentServiceCreate;
 import com.gr4vy.sdk.models.errors.*;
 import com.gr4vy.sdk.models.operations.UpdatePaymentServiceResponse;
 import java.lang.Exception;
 import java.util.List;
-import java.util.Map;
 
 public class Application {
 
@@ -125,49 +123,6 @@ public class Application {
                         "US",
                         "DE",
                         "GB"))
-                    .reportingFields(List.of(
-                        Field.builder()
-                            .key("api_key")
-                            .value("key-12345")
-                            .build(),
-                        Field.builder()
-                            .key("api_key")
-                            .value("key-12345")
-                            .build(),
-                        Field.builder()
-                            .key("api_key")
-                            .value("key-12345")
-                            .build()))
-                    .position(1L)
-                    .active(true)
-                    .merchantProfile(Map.ofEntries(
-                        Map.entry("key", MerchantProfileScheme.builder()
-                            .merchantAcquirerBin("516327")
-                            .merchantUrl("https://example.com")
-                            .merchantAcquirerId("123456789012345")
-                            .merchantName("Acme Inc.")
-                            .merchantCountryCode("USD")
-                            .merchantCategoryCode("1234")
-                            .build()),
-                        Map.entry("key1", MerchantProfileScheme.builder()
-                            .merchantAcquirerBin("516327")
-                            .merchantUrl("https://example.com")
-                            .merchantAcquirerId("123456789012345")
-                            .merchantName("Acme Inc.")
-                            .merchantCountryCode("USD")
-                            .merchantCategoryCode("1234")
-                            .build()),
-                        Map.entry("key2", MerchantProfileScheme.builder()
-                            .merchantAcquirerBin("516327")
-                            .merchantUrl("https://example.com")
-                            .merchantAcquirerId("123456789012345")
-                            .merchantName("Acme Inc.")
-                            .merchantCountryCode("USD")
-                            .merchantCategoryCode("1234")
-                            .build())))
-                    .paymentMethodTokenizationEnabled(true)
-                    .networkTokensEnabled(true)
-                    .openLoop(true)
                     .build())
                 .call();
 
@@ -182,7 +137,6 @@ public class Application {
 
 | Parameter                                                               | Type                                                                    | Required                                                                | Description                                                             |
 | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- |
-| `applicationName`                                                       | *Optional\<String>*                                                     | :heavy_minus_sign:                                                      | N/A                                                                     |
 | `merchantAccountId`                                                     | *JsonNullable\<String>*                                                 | :heavy_minus_sign:                                                      | The ID of the merchant account to use for this request.                 |
 | `paymentServiceCreate`                                                  | [PaymentServiceCreate](../../models/components/PaymentServiceCreate.md) | :heavy_check_mark:                                                      | N/A                                                                     |
 
@@ -246,7 +200,6 @@ public class Application {
 | Parameter                                               | Type                                                    | Required                                                | Description                                             | Example                                                 |
 | ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- |
 | `paymentServiceId`                                      | *String*                                                | :heavy_check_mark:                                      | the ID of the payment service                           | fffd152a-9532-4087-9a4f-de58754210f0                    |
-| `applicationName`                                       | *Optional\<String>*                                     | :heavy_minus_sign:                                      | N/A                                                     |                                                         |
 | `merchantAccountId`                                     | *JsonNullable\<String>*                                 | :heavy_minus_sign:                                      | The ID of the merchant account to use for this request. |                                                         |
 
 ### Response
@@ -285,8 +238,6 @@ import com.gr4vy.sdk.models.components.PaymentServiceUpdate;
 import com.gr4vy.sdk.models.errors.*;
 import com.gr4vy.sdk.models.operations.CreatePaymentServiceResponse;
 import java.lang.Exception;
-import java.util.List;
-import org.openapitools.jackson.nullable.JsonNullable;
 
 public class Application {
 
@@ -299,22 +250,6 @@ public class Application {
         CreatePaymentServiceResponse res = sdk.paymentServices().update()
                 .paymentServiceId("fffd152a-9532-4087-9a4f-de58754210f0")
                 .paymentServiceUpdate(PaymentServiceUpdate.builder()
-                    .displayName("Stripe")
-                    .position(1L)
-                    .acceptedCurrencies(List.of(
-                        "USD",
-                        "EUR",
-                        "GBP"))
-                    .acceptedCountries(List.of(
-                        "US",
-                        "DE",
-                        "GB"))
-                    .active(true)
-                    .threeDSecureEnabled(true)
-                    .merchantProfile(JsonNullable.of(null))
-                    .paymentMethodTokenizationEnabled(true)
-                    .networkTokensEnabled(true)
-                    .openLoop(true)
                     .build())
                 .call();
 
@@ -330,7 +265,6 @@ public class Application {
 | Parameter                                                               | Type                                                                    | Required                                                                | Description                                                             | Example                                                                 |
 | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- |
 | `paymentServiceId`                                                      | *String*                                                                | :heavy_check_mark:                                                      | the ID of the payment service                                           | fffd152a-9532-4087-9a4f-de58754210f0                                    |
-| `applicationName`                                                       | *Optional\<String>*                                                     | :heavy_minus_sign:                                                      | N/A                                                                     |                                                                         |
 | `merchantAccountId`                                                     | *JsonNullable\<String>*                                                 | :heavy_minus_sign:                                                      | The ID of the merchant account to use for this request.                 |                                                                         |
 | `paymentServiceUpdate`                                                  | [PaymentServiceUpdate](../../models/components/PaymentServiceUpdate.md) | :heavy_check_mark:                                                      | N/A                                                                     |                                                                         |
 
@@ -394,7 +328,6 @@ public class Application {
 | Parameter                                               | Type                                                    | Required                                                | Description                                             | Example                                                 |
 | ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- |
 | `paymentServiceId`                                      | *String*                                                | :heavy_check_mark:                                      | the ID of the payment service                           | fffd152a-9532-4087-9a4f-de58754210f0                    |
-| `applicationName`                                       | *Optional\<String>*                                     | :heavy_minus_sign:                                      | N/A                                                     |                                                         |
 | `merchantAccountId`                                     | *JsonNullable\<String>*                                 | :heavy_minus_sign:                                      | The ID of the merchant account to use for this request. |                                                         |
 
 ### Response
@@ -447,7 +380,6 @@ public class Application {
                 .verifyCredentials(VerifyCredentials.builder()
                     .paymentServiceDefinitionId("stripe-card")
                     .fields(List.of())
-                    .paymentServiceId("fffd152a-9532-4087-9a4f-de58754210f0")
                     .build())
                 .call();
 
@@ -462,7 +394,6 @@ public class Application {
 
 | Parameter                                                         | Type                                                              | Required                                                          | Description                                                       |
 | ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- |
-| `applicationName`                                                 | *Optional\<String>*                                               | :heavy_minus_sign:                                                | N/A                                                               |
 | `merchantAccountId`                                               | *JsonNullable\<String>*                                           | :heavy_minus_sign:                                                | The ID of the merchant account to use for this request.           |
 | `verifyCredentials`                                               | [VerifyCredentials](../../models/components/VerifyCredentials.md) | :heavy_check_mark:                                                | N/A                                                               |
 
@@ -529,7 +460,6 @@ public class Application {
 | Parameter                                               | Type                                                    | Required                                                | Description                                             | Example                                                 |
 | ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- |
 | `paymentServiceId`                                      | *String*                                                | :heavy_check_mark:                                      | the ID of the payment service                           | fffd152a-9532-4087-9a4f-de58754210f0                    |
-| `applicationName`                                       | *Optional\<String>*                                     | :heavy_minus_sign:                                      | N/A                                                     |                                                         |
 | `merchantAccountId`                                     | *JsonNullable\<String>*                                 | :heavy_minus_sign:                                      | The ID of the merchant account to use for this request. |                                                         |
 | `requestBody`                                           | Map\<String, *Object*>                                  | :heavy_check_mark:                                      | N/A                                                     |                                                         |
 

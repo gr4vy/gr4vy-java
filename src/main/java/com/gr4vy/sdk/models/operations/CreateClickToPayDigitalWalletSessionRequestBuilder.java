@@ -3,57 +3,28 @@
  */
 package com.gr4vy.sdk.models.operations;
 
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.gr4vy.sdk.models.components.ClickToPaySessionRequest;
-import com.gr4vy.sdk.utils.LazySingletonValue;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Exception;
-import java.lang.String;
-import java.util.Optional;
 
 public class CreateClickToPayDigitalWalletSessionRequestBuilder {
 
-    private Optional<String> applicationName = Utils.readDefaultOrConstValue(
-                            "applicationName",
-                            "\"core-api\"",
-                            new TypeReference<Optional<String>>() {});
-    private ClickToPaySessionRequest clickToPaySessionRequest;
+    private ClickToPaySessionRequest request;
     private final SDKMethodInterfaces.MethodCallCreateClickToPayDigitalWalletSession sdk;
 
     public CreateClickToPayDigitalWalletSessionRequestBuilder(SDKMethodInterfaces.MethodCallCreateClickToPayDigitalWalletSession sdk) {
         this.sdk = sdk;
     }
-                
-    public CreateClickToPayDigitalWalletSessionRequestBuilder applicationName(String applicationName) {
-        Utils.checkNotNull(applicationName, "applicationName");
-        this.applicationName = Optional.of(applicationName);
-        return this;
-    }
 
-    public CreateClickToPayDigitalWalletSessionRequestBuilder applicationName(Optional<String> applicationName) {
-        Utils.checkNotNull(applicationName, "applicationName");
-        this.applicationName = applicationName;
-        return this;
-    }
-
-    public CreateClickToPayDigitalWalletSessionRequestBuilder clickToPaySessionRequest(ClickToPaySessionRequest clickToPaySessionRequest) {
-        Utils.checkNotNull(clickToPaySessionRequest, "clickToPaySessionRequest");
-        this.clickToPaySessionRequest = clickToPaySessionRequest;
+    public CreateClickToPayDigitalWalletSessionRequestBuilder request(ClickToPaySessionRequest request) {
+        Utils.checkNotNull(request, "request");
+        this.request = request;
         return this;
     }
 
     public CreateClickToPayDigitalWalletSessionResponse call() throws Exception {
-        if (applicationName == null) {
-            applicationName = _SINGLETON_VALUE_ApplicationName.value();
-        }
-        return sdk.clickToPay(
-            applicationName,
-            clickToPaySessionRequest);
-    }
 
-    private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_ApplicationName =
-            new LazySingletonValue<>(
-                    "applicationName",
-                    "\"core-api\"",
-                    new TypeReference<Optional<String>>() {});
+        return sdk.clickToPay(
+            request);
+    }
 }

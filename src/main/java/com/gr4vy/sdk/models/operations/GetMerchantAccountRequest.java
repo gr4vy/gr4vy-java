@@ -5,14 +5,11 @@ package com.gr4vy.sdk.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.gr4vy.sdk.utils.LazySingletonValue;
 import com.gr4vy.sdk.utils.SpeakeasyMetadata;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.util.Objects;
-import java.util.Optional;
 
 public class GetMerchantAccountRequest {
 
@@ -22,22 +19,11 @@ public class GetMerchantAccountRequest {
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=merchant_account_id")
     private String merchantAccountId;
 
-    @SpeakeasyMetadata("queryParam:style=form,explode=true,name=application_name")
-    private Optional<String> applicationName;
-
     @JsonCreator
     public GetMerchantAccountRequest(
-            String merchantAccountId,
-            Optional<String> applicationName) {
-        Utils.checkNotNull(merchantAccountId, "merchantAccountId");
-        Utils.checkNotNull(applicationName, "applicationName");
-        this.merchantAccountId = merchantAccountId;
-        this.applicationName = applicationName;
-    }
-    
-    public GetMerchantAccountRequest(
             String merchantAccountId) {
-        this(merchantAccountId, Optional.empty());
+        Utils.checkNotNull(merchantAccountId, "merchantAccountId");
+        this.merchantAccountId = merchantAccountId;
     }
 
     /**
@@ -46,11 +32,6 @@ public class GetMerchantAccountRequest {
     @JsonIgnore
     public String merchantAccountId() {
         return merchantAccountId;
-    }
-
-    @JsonIgnore
-    public Optional<String> applicationName() {
-        return applicationName;
     }
 
     public final static Builder builder() {
@@ -66,18 +47,6 @@ public class GetMerchantAccountRequest {
         return this;
     }
 
-    public GetMerchantAccountRequest withApplicationName(String applicationName) {
-        Utils.checkNotNull(applicationName, "applicationName");
-        this.applicationName = Optional.ofNullable(applicationName);
-        return this;
-    }
-
-    public GetMerchantAccountRequest withApplicationName(Optional<String> applicationName) {
-        Utils.checkNotNull(applicationName, "applicationName");
-        this.applicationName = applicationName;
-        return this;
-    }
-
     
     @Override
     public boolean equals(java.lang.Object o) {
@@ -89,29 +58,24 @@ public class GetMerchantAccountRequest {
         }
         GetMerchantAccountRequest other = (GetMerchantAccountRequest) o;
         return 
-            Objects.deepEquals(this.merchantAccountId, other.merchantAccountId) &&
-            Objects.deepEquals(this.applicationName, other.applicationName);
+            Objects.deepEquals(this.merchantAccountId, other.merchantAccountId);
     }
     
     @Override
     public int hashCode() {
         return Objects.hash(
-            merchantAccountId,
-            applicationName);
+            merchantAccountId);
     }
     
     @Override
     public String toString() {
         return Utils.toString(GetMerchantAccountRequest.class,
-                "merchantAccountId", merchantAccountId,
-                "applicationName", applicationName);
+                "merchantAccountId", merchantAccountId);
     }
     
     public final static class Builder {
  
         private String merchantAccountId;
- 
-        private Optional<String> applicationName;
         
         private Builder() {
           // force use of static builder() method
@@ -125,32 +89,10 @@ public class GetMerchantAccountRequest {
             this.merchantAccountId = merchantAccountId;
             return this;
         }
-
-        public Builder applicationName(String applicationName) {
-            Utils.checkNotNull(applicationName, "applicationName");
-            this.applicationName = Optional.ofNullable(applicationName);
-            return this;
-        }
-
-        public Builder applicationName(Optional<String> applicationName) {
-            Utils.checkNotNull(applicationName, "applicationName");
-            this.applicationName = applicationName;
-            return this;
-        }
         
         public GetMerchantAccountRequest build() {
-            if (applicationName == null) {
-                applicationName = _SINGLETON_VALUE_ApplicationName.value();
-            }
             return new GetMerchantAccountRequest(
-                merchantAccountId,
-                applicationName);
+                merchantAccountId);
         }
-
-        private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_ApplicationName =
-                new LazySingletonValue<>(
-                        "application_name",
-                        "\"core-api\"",
-                        new TypeReference<Optional<String>>() {});
     }
 }

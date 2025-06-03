@@ -75,7 +75,7 @@ public class BuyersGiftCards implements
      * @throws Exception if the API call fails
      */
     public ListBuyerGiftCardsResponse listDirect() throws Exception {
-        return list(JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), Optional.empty());
+        return list(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty());
     }
     
     /**
@@ -85,7 +85,6 @@ public class BuyersGiftCards implements
      * 
      * @param buyerExternalIdentifier 
      * @param buyerId 
-     * @param applicationName 
      * @param merchantAccountId 
      * @param options additional options
      * @return The response from the API call
@@ -94,7 +93,6 @@ public class BuyersGiftCards implements
     public ListBuyerGiftCardsResponse list(
             JsonNullable<String> buyerExternalIdentifier,
             JsonNullable<String> buyerId,
-            Optional<String> applicationName,
             JsonNullable<String> merchantAccountId,
             Optional<Options> options) throws Exception {
 
@@ -106,7 +104,6 @@ public class BuyersGiftCards implements
                 .builder()
                 .buyerExternalIdentifier(buyerExternalIdentifier)
                 .buyerId(buyerId)
-                .applicationName(applicationName)
                 .merchantAccountId(merchantAccountId)
                 .build();
         

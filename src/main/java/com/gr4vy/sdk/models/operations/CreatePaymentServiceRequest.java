@@ -5,15 +5,12 @@ package com.gr4vy.sdk.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.gr4vy.sdk.models.components.PaymentServiceUpdate;
-import com.gr4vy.sdk.utils.LazySingletonValue;
 import com.gr4vy.sdk.utils.SpeakeasyMetadata;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.util.Objects;
-import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 public class CreatePaymentServiceRequest {
@@ -23,9 +20,6 @@ public class CreatePaymentServiceRequest {
      */
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=payment_service_id")
     private String paymentServiceId;
-
-    @SpeakeasyMetadata("queryParam:style=form,explode=true,name=application_name")
-    private Optional<String> applicationName;
 
     /**
      * The ID of the merchant account to use for this request.
@@ -39,15 +33,12 @@ public class CreatePaymentServiceRequest {
     @JsonCreator
     public CreatePaymentServiceRequest(
             String paymentServiceId,
-            Optional<String> applicationName,
             JsonNullable<String> merchantAccountId,
             PaymentServiceUpdate paymentServiceUpdate) {
         Utils.checkNotNull(paymentServiceId, "paymentServiceId");
-        Utils.checkNotNull(applicationName, "applicationName");
         Utils.checkNotNull(merchantAccountId, "merchantAccountId");
         Utils.checkNotNull(paymentServiceUpdate, "paymentServiceUpdate");
         this.paymentServiceId = paymentServiceId;
-        this.applicationName = applicationName;
         this.merchantAccountId = merchantAccountId;
         this.paymentServiceUpdate = paymentServiceUpdate;
     }
@@ -55,7 +46,7 @@ public class CreatePaymentServiceRequest {
     public CreatePaymentServiceRequest(
             String paymentServiceId,
             PaymentServiceUpdate paymentServiceUpdate) {
-        this(paymentServiceId, Optional.empty(), JsonNullable.undefined(), paymentServiceUpdate);
+        this(paymentServiceId, JsonNullable.undefined(), paymentServiceUpdate);
     }
 
     /**
@@ -64,11 +55,6 @@ public class CreatePaymentServiceRequest {
     @JsonIgnore
     public String paymentServiceId() {
         return paymentServiceId;
-    }
-
-    @JsonIgnore
-    public Optional<String> applicationName() {
-        return applicationName;
     }
 
     /**
@@ -94,18 +80,6 @@ public class CreatePaymentServiceRequest {
     public CreatePaymentServiceRequest withPaymentServiceId(String paymentServiceId) {
         Utils.checkNotNull(paymentServiceId, "paymentServiceId");
         this.paymentServiceId = paymentServiceId;
-        return this;
-    }
-
-    public CreatePaymentServiceRequest withApplicationName(String applicationName) {
-        Utils.checkNotNull(applicationName, "applicationName");
-        this.applicationName = Optional.ofNullable(applicationName);
-        return this;
-    }
-
-    public CreatePaymentServiceRequest withApplicationName(Optional<String> applicationName) {
-        Utils.checkNotNull(applicationName, "applicationName");
-        this.applicationName = applicationName;
         return this;
     }
 
@@ -145,7 +119,6 @@ public class CreatePaymentServiceRequest {
         CreatePaymentServiceRequest other = (CreatePaymentServiceRequest) o;
         return 
             Objects.deepEquals(this.paymentServiceId, other.paymentServiceId) &&
-            Objects.deepEquals(this.applicationName, other.applicationName) &&
             Objects.deepEquals(this.merchantAccountId, other.merchantAccountId) &&
             Objects.deepEquals(this.paymentServiceUpdate, other.paymentServiceUpdate);
     }
@@ -154,7 +127,6 @@ public class CreatePaymentServiceRequest {
     public int hashCode() {
         return Objects.hash(
             paymentServiceId,
-            applicationName,
             merchantAccountId,
             paymentServiceUpdate);
     }
@@ -163,7 +135,6 @@ public class CreatePaymentServiceRequest {
     public String toString() {
         return Utils.toString(CreatePaymentServiceRequest.class,
                 "paymentServiceId", paymentServiceId,
-                "applicationName", applicationName,
                 "merchantAccountId", merchantAccountId,
                 "paymentServiceUpdate", paymentServiceUpdate);
     }
@@ -171,8 +142,6 @@ public class CreatePaymentServiceRequest {
     public final static class Builder {
  
         private String paymentServiceId;
- 
-        private Optional<String> applicationName;
  
         private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
  
@@ -188,18 +157,6 @@ public class CreatePaymentServiceRequest {
         public Builder paymentServiceId(String paymentServiceId) {
             Utils.checkNotNull(paymentServiceId, "paymentServiceId");
             this.paymentServiceId = paymentServiceId;
-            return this;
-        }
-
-        public Builder applicationName(String applicationName) {
-            Utils.checkNotNull(applicationName, "applicationName");
-            this.applicationName = Optional.ofNullable(applicationName);
-            return this;
-        }
-
-        public Builder applicationName(Optional<String> applicationName) {
-            Utils.checkNotNull(applicationName, "applicationName");
-            this.applicationName = applicationName;
             return this;
         }
 
@@ -228,20 +185,10 @@ public class CreatePaymentServiceRequest {
         }
         
         public CreatePaymentServiceRequest build() {
-            if (applicationName == null) {
-                applicationName = _SINGLETON_VALUE_ApplicationName.value();
-            }
             return new CreatePaymentServiceRequest(
                 paymentServiceId,
-                applicationName,
                 merchantAccountId,
                 paymentServiceUpdate);
         }
-
-        private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_ApplicationName =
-                new LazySingletonValue<>(
-                        "application_name",
-                        "\"core-api\"",
-                        new TypeReference<Optional<String>>() {});
     }
 }

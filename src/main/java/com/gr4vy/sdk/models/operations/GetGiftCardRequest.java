@@ -5,14 +5,11 @@ package com.gr4vy.sdk.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.gr4vy.sdk.utils.LazySingletonValue;
 import com.gr4vy.sdk.utils.SpeakeasyMetadata;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.util.Objects;
-import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 public class GetGiftCardRequest {
@@ -23,9 +20,6 @@ public class GetGiftCardRequest {
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=gift_card_id")
     private String giftCardId;
 
-    @SpeakeasyMetadata("queryParam:style=form,explode=true,name=application_name")
-    private Optional<String> applicationName;
-
     /**
      * The ID of the merchant account to use for this request.
      */
@@ -35,19 +29,16 @@ public class GetGiftCardRequest {
     @JsonCreator
     public GetGiftCardRequest(
             String giftCardId,
-            Optional<String> applicationName,
             JsonNullable<String> merchantAccountId) {
         Utils.checkNotNull(giftCardId, "giftCardId");
-        Utils.checkNotNull(applicationName, "applicationName");
         Utils.checkNotNull(merchantAccountId, "merchantAccountId");
         this.giftCardId = giftCardId;
-        this.applicationName = applicationName;
         this.merchantAccountId = merchantAccountId;
     }
     
     public GetGiftCardRequest(
             String giftCardId) {
-        this(giftCardId, Optional.empty(), JsonNullable.undefined());
+        this(giftCardId, JsonNullable.undefined());
     }
 
     /**
@@ -56,11 +47,6 @@ public class GetGiftCardRequest {
     @JsonIgnore
     public String giftCardId() {
         return giftCardId;
-    }
-
-    @JsonIgnore
-    public Optional<String> applicationName() {
-        return applicationName;
     }
 
     /**
@@ -81,18 +67,6 @@ public class GetGiftCardRequest {
     public GetGiftCardRequest withGiftCardId(String giftCardId) {
         Utils.checkNotNull(giftCardId, "giftCardId");
         this.giftCardId = giftCardId;
-        return this;
-    }
-
-    public GetGiftCardRequest withApplicationName(String applicationName) {
-        Utils.checkNotNull(applicationName, "applicationName");
-        this.applicationName = Optional.ofNullable(applicationName);
-        return this;
-    }
-
-    public GetGiftCardRequest withApplicationName(Optional<String> applicationName) {
-        Utils.checkNotNull(applicationName, "applicationName");
-        this.applicationName = applicationName;
         return this;
     }
 
@@ -126,7 +100,6 @@ public class GetGiftCardRequest {
         GetGiftCardRequest other = (GetGiftCardRequest) o;
         return 
             Objects.deepEquals(this.giftCardId, other.giftCardId) &&
-            Objects.deepEquals(this.applicationName, other.applicationName) &&
             Objects.deepEquals(this.merchantAccountId, other.merchantAccountId);
     }
     
@@ -134,7 +107,6 @@ public class GetGiftCardRequest {
     public int hashCode() {
         return Objects.hash(
             giftCardId,
-            applicationName,
             merchantAccountId);
     }
     
@@ -142,15 +114,12 @@ public class GetGiftCardRequest {
     public String toString() {
         return Utils.toString(GetGiftCardRequest.class,
                 "giftCardId", giftCardId,
-                "applicationName", applicationName,
                 "merchantAccountId", merchantAccountId);
     }
     
     public final static class Builder {
  
         private String giftCardId;
- 
-        private Optional<String> applicationName;
  
         private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
         
@@ -164,18 +133,6 @@ public class GetGiftCardRequest {
         public Builder giftCardId(String giftCardId) {
             Utils.checkNotNull(giftCardId, "giftCardId");
             this.giftCardId = giftCardId;
-            return this;
-        }
-
-        public Builder applicationName(String applicationName) {
-            Utils.checkNotNull(applicationName, "applicationName");
-            this.applicationName = Optional.ofNullable(applicationName);
-            return this;
-        }
-
-        public Builder applicationName(Optional<String> applicationName) {
-            Utils.checkNotNull(applicationName, "applicationName");
-            this.applicationName = applicationName;
             return this;
         }
 
@@ -198,19 +155,9 @@ public class GetGiftCardRequest {
         }
         
         public GetGiftCardRequest build() {
-            if (applicationName == null) {
-                applicationName = _SINGLETON_VALUE_ApplicationName.value();
-            }
             return new GetGiftCardRequest(
                 giftCardId,
-                applicationName,
                 merchantAccountId);
         }
-
-        private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_ApplicationName =
-                new LazySingletonValue<>(
-                        "application_name",
-                        "\"core-api\"",
-                        new TypeReference<Optional<String>>() {});
     }
 }

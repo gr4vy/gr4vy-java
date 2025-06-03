@@ -3,39 +3,20 @@
  */
 package com.gr4vy.sdk.models.operations;
 
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.gr4vy.sdk.models.components.ApplePaySessionRequest;
-import com.gr4vy.sdk.utils.LazySingletonValue;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
-import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 public class CreateApplePayDigitalWalletSessionRequestBuilder {
 
-    private Optional<String> applicationName = Utils.readDefaultOrConstValue(
-                            "applicationName",
-                            "\"core-api\"",
-                            new TypeReference<Optional<String>>() {});
     private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
     private ApplePaySessionRequest applePaySessionRequest;
     private final SDKMethodInterfaces.MethodCallCreateApplePayDigitalWalletSession sdk;
 
     public CreateApplePayDigitalWalletSessionRequestBuilder(SDKMethodInterfaces.MethodCallCreateApplePayDigitalWalletSession sdk) {
         this.sdk = sdk;
-    }
-                
-    public CreateApplePayDigitalWalletSessionRequestBuilder applicationName(String applicationName) {
-        Utils.checkNotNull(applicationName, "applicationName");
-        this.applicationName = Optional.of(applicationName);
-        return this;
-    }
-
-    public CreateApplePayDigitalWalletSessionRequestBuilder applicationName(Optional<String> applicationName) {
-        Utils.checkNotNull(applicationName, "applicationName");
-        this.applicationName = applicationName;
-        return this;
     }
 
     public CreateApplePayDigitalWalletSessionRequestBuilder merchantAccountId(String merchantAccountId) {
@@ -57,18 +38,9 @@ public class CreateApplePayDigitalWalletSessionRequestBuilder {
     }
 
     public CreateApplePayDigitalWalletSessionResponse call() throws Exception {
-        if (applicationName == null) {
-            applicationName = _SINGLETON_VALUE_ApplicationName.value();
-        }
+
         return sdk.applePay(
-            applicationName,
             merchantAccountId,
             applePaySessionRequest);
     }
-
-    private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_ApplicationName =
-            new LazySingletonValue<>(
-                    "applicationName",
-                    "\"core-api\"",
-                    new TypeReference<Optional<String>>() {});
 }
