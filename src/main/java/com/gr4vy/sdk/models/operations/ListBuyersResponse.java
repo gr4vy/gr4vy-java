@@ -5,7 +5,7 @@ package com.gr4vy.sdk.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.gr4vy.sdk.models.components.CollectionBuyer;
+import com.gr4vy.sdk.models.components.Buyers;
 import com.gr4vy.sdk.utils.Response;
 import com.gr4vy.sdk.utils.Utils;
 import java.io.InputStream;
@@ -40,7 +40,7 @@ public class ListBuyersResponse implements Response {
     /**
      * Successful Response
      */
-    private Optional<? extends CollectionBuyer> collectionBuyer;
+    private Optional<? extends Buyers> buyers;
 
     private Callable<Optional<ListBuyersResponse>> next = () -> Optional.empty();
 
@@ -49,15 +49,15 @@ public class ListBuyersResponse implements Response {
             String contentType,
             int statusCode,
             HttpResponse<InputStream> rawResponse,
-            Optional<? extends CollectionBuyer> collectionBuyer) {
+            Optional<? extends Buyers> buyers) {
         Utils.checkNotNull(contentType, "contentType");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
-        Utils.checkNotNull(collectionBuyer, "collectionBuyer");
+        Utils.checkNotNull(buyers, "buyers");
         this.contentType = contentType;
         this.statusCode = statusCode;
         this.rawResponse = rawResponse;
-        this.collectionBuyer = collectionBuyer;
+        this.buyers = buyers;
     }
     
     public ListBuyersResponse(
@@ -96,8 +96,8 @@ public class ListBuyersResponse implements Response {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<CollectionBuyer> collectionBuyer() {
-        return (Optional<CollectionBuyer>) collectionBuyer;
+    public Optional<Buyers> buyers() {
+        return (Optional<Buyers>) buyers;
     }
 
     public Optional<ListBuyersResponse> next() throws Exception {
@@ -144,18 +144,18 @@ public class ListBuyersResponse implements Response {
     /**
      * Successful Response
      */
-    public ListBuyersResponse withCollectionBuyer(CollectionBuyer collectionBuyer) {
-        Utils.checkNotNull(collectionBuyer, "collectionBuyer");
-        this.collectionBuyer = Optional.ofNullable(collectionBuyer);
+    public ListBuyersResponse withBuyers(Buyers buyers) {
+        Utils.checkNotNull(buyers, "buyers");
+        this.buyers = Optional.ofNullable(buyers);
         return this;
     }
 
     /**
      * Successful Response
      */
-    public ListBuyersResponse withCollectionBuyer(Optional<? extends CollectionBuyer> collectionBuyer) {
-        Utils.checkNotNull(collectionBuyer, "collectionBuyer");
-        this.collectionBuyer = collectionBuyer;
+    public ListBuyersResponse withBuyers(Optional<? extends Buyers> buyers) {
+        Utils.checkNotNull(buyers, "buyers");
+        this.buyers = buyers;
         return this;
     }
 
@@ -173,7 +173,7 @@ public class ListBuyersResponse implements Response {
             Objects.deepEquals(this.contentType, other.contentType) &&
             Objects.deepEquals(this.statusCode, other.statusCode) &&
             Objects.deepEquals(this.rawResponse, other.rawResponse) &&
-            Objects.deepEquals(this.collectionBuyer, other.collectionBuyer);
+            Objects.deepEquals(this.buyers, other.buyers);
     }
     
     @Override
@@ -182,7 +182,7 @@ public class ListBuyersResponse implements Response {
             contentType,
             statusCode,
             rawResponse,
-            collectionBuyer);
+            buyers);
     }
     
     @Override
@@ -191,7 +191,7 @@ public class ListBuyersResponse implements Response {
                 "contentType", contentType,
                 "statusCode", statusCode,
                 "rawResponse", rawResponse,
-                "collectionBuyer", collectionBuyer);
+                "buyers", buyers);
     }
     
     public final static class Builder {
@@ -203,7 +203,7 @@ public class ListBuyersResponse implements Response {
  
         private HttpResponse<InputStream> rawResponse;
  
-        private Optional<? extends CollectionBuyer> collectionBuyer = Optional.empty();
+        private Optional<? extends Buyers> buyers = Optional.empty();
         
         private Builder() {
           // force use of static builder() method
@@ -239,18 +239,18 @@ public class ListBuyersResponse implements Response {
         /**
          * Successful Response
          */
-        public Builder collectionBuyer(CollectionBuyer collectionBuyer) {
-            Utils.checkNotNull(collectionBuyer, "collectionBuyer");
-            this.collectionBuyer = Optional.ofNullable(collectionBuyer);
+        public Builder buyers(Buyers buyers) {
+            Utils.checkNotNull(buyers, "buyers");
+            this.buyers = Optional.ofNullable(buyers);
             return this;
         }
 
         /**
          * Successful Response
          */
-        public Builder collectionBuyer(Optional<? extends CollectionBuyer> collectionBuyer) {
-            Utils.checkNotNull(collectionBuyer, "collectionBuyer");
-            this.collectionBuyer = collectionBuyer;
+        public Builder buyers(Optional<? extends Buyers> buyers) {
+            Utils.checkNotNull(buyers, "buyers");
+            this.buyers = buyers;
             return this;
         }
 
@@ -271,7 +271,7 @@ public class ListBuyersResponse implements Response {
                 contentType,
                 statusCode,
                 rawResponse,
-                collectionBuyer)
+                buyers)
                 .withNext(next);
         }
     }

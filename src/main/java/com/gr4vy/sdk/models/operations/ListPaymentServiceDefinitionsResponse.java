@@ -5,7 +5,7 @@ package com.gr4vy.sdk.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.gr4vy.sdk.models.components.CollectionPaymentServiceDefinition;
+import com.gr4vy.sdk.models.components.PaymentServiceDefinitions;
 import com.gr4vy.sdk.utils.Response;
 import com.gr4vy.sdk.utils.Utils;
 import java.io.InputStream;
@@ -40,7 +40,7 @@ public class ListPaymentServiceDefinitionsResponse implements Response {
     /**
      * Successful Response
      */
-    private Optional<? extends CollectionPaymentServiceDefinition> collectionPaymentServiceDefinition;
+    private Optional<? extends PaymentServiceDefinitions> paymentServiceDefinitions;
 
     private Callable<Optional<ListPaymentServiceDefinitionsResponse>> next = () -> Optional.empty();
 
@@ -49,15 +49,15 @@ public class ListPaymentServiceDefinitionsResponse implements Response {
             String contentType,
             int statusCode,
             HttpResponse<InputStream> rawResponse,
-            Optional<? extends CollectionPaymentServiceDefinition> collectionPaymentServiceDefinition) {
+            Optional<? extends PaymentServiceDefinitions> paymentServiceDefinitions) {
         Utils.checkNotNull(contentType, "contentType");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
-        Utils.checkNotNull(collectionPaymentServiceDefinition, "collectionPaymentServiceDefinition");
+        Utils.checkNotNull(paymentServiceDefinitions, "paymentServiceDefinitions");
         this.contentType = contentType;
         this.statusCode = statusCode;
         this.rawResponse = rawResponse;
-        this.collectionPaymentServiceDefinition = collectionPaymentServiceDefinition;
+        this.paymentServiceDefinitions = paymentServiceDefinitions;
     }
     
     public ListPaymentServiceDefinitionsResponse(
@@ -96,8 +96,8 @@ public class ListPaymentServiceDefinitionsResponse implements Response {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<CollectionPaymentServiceDefinition> collectionPaymentServiceDefinition() {
-        return (Optional<CollectionPaymentServiceDefinition>) collectionPaymentServiceDefinition;
+    public Optional<PaymentServiceDefinitions> paymentServiceDefinitions() {
+        return (Optional<PaymentServiceDefinitions>) paymentServiceDefinitions;
     }
 
     public Optional<ListPaymentServiceDefinitionsResponse> next() throws Exception {
@@ -144,18 +144,18 @@ public class ListPaymentServiceDefinitionsResponse implements Response {
     /**
      * Successful Response
      */
-    public ListPaymentServiceDefinitionsResponse withCollectionPaymentServiceDefinition(CollectionPaymentServiceDefinition collectionPaymentServiceDefinition) {
-        Utils.checkNotNull(collectionPaymentServiceDefinition, "collectionPaymentServiceDefinition");
-        this.collectionPaymentServiceDefinition = Optional.ofNullable(collectionPaymentServiceDefinition);
+    public ListPaymentServiceDefinitionsResponse withPaymentServiceDefinitions(PaymentServiceDefinitions paymentServiceDefinitions) {
+        Utils.checkNotNull(paymentServiceDefinitions, "paymentServiceDefinitions");
+        this.paymentServiceDefinitions = Optional.ofNullable(paymentServiceDefinitions);
         return this;
     }
 
     /**
      * Successful Response
      */
-    public ListPaymentServiceDefinitionsResponse withCollectionPaymentServiceDefinition(Optional<? extends CollectionPaymentServiceDefinition> collectionPaymentServiceDefinition) {
-        Utils.checkNotNull(collectionPaymentServiceDefinition, "collectionPaymentServiceDefinition");
-        this.collectionPaymentServiceDefinition = collectionPaymentServiceDefinition;
+    public ListPaymentServiceDefinitionsResponse withPaymentServiceDefinitions(Optional<? extends PaymentServiceDefinitions> paymentServiceDefinitions) {
+        Utils.checkNotNull(paymentServiceDefinitions, "paymentServiceDefinitions");
+        this.paymentServiceDefinitions = paymentServiceDefinitions;
         return this;
     }
 
@@ -173,7 +173,7 @@ public class ListPaymentServiceDefinitionsResponse implements Response {
             Objects.deepEquals(this.contentType, other.contentType) &&
             Objects.deepEquals(this.statusCode, other.statusCode) &&
             Objects.deepEquals(this.rawResponse, other.rawResponse) &&
-            Objects.deepEquals(this.collectionPaymentServiceDefinition, other.collectionPaymentServiceDefinition);
+            Objects.deepEquals(this.paymentServiceDefinitions, other.paymentServiceDefinitions);
     }
     
     @Override
@@ -182,7 +182,7 @@ public class ListPaymentServiceDefinitionsResponse implements Response {
             contentType,
             statusCode,
             rawResponse,
-            collectionPaymentServiceDefinition);
+            paymentServiceDefinitions);
     }
     
     @Override
@@ -191,7 +191,7 @@ public class ListPaymentServiceDefinitionsResponse implements Response {
                 "contentType", contentType,
                 "statusCode", statusCode,
                 "rawResponse", rawResponse,
-                "collectionPaymentServiceDefinition", collectionPaymentServiceDefinition);
+                "paymentServiceDefinitions", paymentServiceDefinitions);
     }
     
     public final static class Builder {
@@ -203,7 +203,7 @@ public class ListPaymentServiceDefinitionsResponse implements Response {
  
         private HttpResponse<InputStream> rawResponse;
  
-        private Optional<? extends CollectionPaymentServiceDefinition> collectionPaymentServiceDefinition = Optional.empty();
+        private Optional<? extends PaymentServiceDefinitions> paymentServiceDefinitions = Optional.empty();
         
         private Builder() {
           // force use of static builder() method
@@ -239,18 +239,18 @@ public class ListPaymentServiceDefinitionsResponse implements Response {
         /**
          * Successful Response
          */
-        public Builder collectionPaymentServiceDefinition(CollectionPaymentServiceDefinition collectionPaymentServiceDefinition) {
-            Utils.checkNotNull(collectionPaymentServiceDefinition, "collectionPaymentServiceDefinition");
-            this.collectionPaymentServiceDefinition = Optional.ofNullable(collectionPaymentServiceDefinition);
+        public Builder paymentServiceDefinitions(PaymentServiceDefinitions paymentServiceDefinitions) {
+            Utils.checkNotNull(paymentServiceDefinitions, "paymentServiceDefinitions");
+            this.paymentServiceDefinitions = Optional.ofNullable(paymentServiceDefinitions);
             return this;
         }
 
         /**
          * Successful Response
          */
-        public Builder collectionPaymentServiceDefinition(Optional<? extends CollectionPaymentServiceDefinition> collectionPaymentServiceDefinition) {
-            Utils.checkNotNull(collectionPaymentServiceDefinition, "collectionPaymentServiceDefinition");
-            this.collectionPaymentServiceDefinition = collectionPaymentServiceDefinition;
+        public Builder paymentServiceDefinitions(Optional<? extends PaymentServiceDefinitions> paymentServiceDefinitions) {
+            Utils.checkNotNull(paymentServiceDefinitions, "paymentServiceDefinitions");
+            this.paymentServiceDefinitions = paymentServiceDefinitions;
             return this;
         }
 
@@ -271,7 +271,7 @@ public class ListPaymentServiceDefinitionsResponse implements Response {
                 contentType,
                 statusCode,
                 rawResponse,
-                collectionPaymentServiceDefinition)
+                paymentServiceDefinitions)
                 .withNext(next);
         }
     }

@@ -5,7 +5,7 @@ package com.gr4vy.sdk.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.gr4vy.sdk.models.components.CollectionAuditLogEntry;
+import com.gr4vy.sdk.models.components.AuditLogEntries;
 import com.gr4vy.sdk.utils.Response;
 import com.gr4vy.sdk.utils.Utils;
 import java.io.InputStream;
@@ -40,7 +40,7 @@ public class ListAuditLogsResponse implements Response {
     /**
      * Successful Response
      */
-    private Optional<? extends CollectionAuditLogEntry> collectionAuditLogEntry;
+    private Optional<? extends AuditLogEntries> auditLogEntries;
 
     private Callable<Optional<ListAuditLogsResponse>> next = () -> Optional.empty();
 
@@ -49,15 +49,15 @@ public class ListAuditLogsResponse implements Response {
             String contentType,
             int statusCode,
             HttpResponse<InputStream> rawResponse,
-            Optional<? extends CollectionAuditLogEntry> collectionAuditLogEntry) {
+            Optional<? extends AuditLogEntries> auditLogEntries) {
         Utils.checkNotNull(contentType, "contentType");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
-        Utils.checkNotNull(collectionAuditLogEntry, "collectionAuditLogEntry");
+        Utils.checkNotNull(auditLogEntries, "auditLogEntries");
         this.contentType = contentType;
         this.statusCode = statusCode;
         this.rawResponse = rawResponse;
-        this.collectionAuditLogEntry = collectionAuditLogEntry;
+        this.auditLogEntries = auditLogEntries;
     }
     
     public ListAuditLogsResponse(
@@ -96,8 +96,8 @@ public class ListAuditLogsResponse implements Response {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<CollectionAuditLogEntry> collectionAuditLogEntry() {
-        return (Optional<CollectionAuditLogEntry>) collectionAuditLogEntry;
+    public Optional<AuditLogEntries> auditLogEntries() {
+        return (Optional<AuditLogEntries>) auditLogEntries;
     }
 
     public Optional<ListAuditLogsResponse> next() throws Exception {
@@ -144,18 +144,18 @@ public class ListAuditLogsResponse implements Response {
     /**
      * Successful Response
      */
-    public ListAuditLogsResponse withCollectionAuditLogEntry(CollectionAuditLogEntry collectionAuditLogEntry) {
-        Utils.checkNotNull(collectionAuditLogEntry, "collectionAuditLogEntry");
-        this.collectionAuditLogEntry = Optional.ofNullable(collectionAuditLogEntry);
+    public ListAuditLogsResponse withAuditLogEntries(AuditLogEntries auditLogEntries) {
+        Utils.checkNotNull(auditLogEntries, "auditLogEntries");
+        this.auditLogEntries = Optional.ofNullable(auditLogEntries);
         return this;
     }
 
     /**
      * Successful Response
      */
-    public ListAuditLogsResponse withCollectionAuditLogEntry(Optional<? extends CollectionAuditLogEntry> collectionAuditLogEntry) {
-        Utils.checkNotNull(collectionAuditLogEntry, "collectionAuditLogEntry");
-        this.collectionAuditLogEntry = collectionAuditLogEntry;
+    public ListAuditLogsResponse withAuditLogEntries(Optional<? extends AuditLogEntries> auditLogEntries) {
+        Utils.checkNotNull(auditLogEntries, "auditLogEntries");
+        this.auditLogEntries = auditLogEntries;
         return this;
     }
 
@@ -173,7 +173,7 @@ public class ListAuditLogsResponse implements Response {
             Objects.deepEquals(this.contentType, other.contentType) &&
             Objects.deepEquals(this.statusCode, other.statusCode) &&
             Objects.deepEquals(this.rawResponse, other.rawResponse) &&
-            Objects.deepEquals(this.collectionAuditLogEntry, other.collectionAuditLogEntry);
+            Objects.deepEquals(this.auditLogEntries, other.auditLogEntries);
     }
     
     @Override
@@ -182,7 +182,7 @@ public class ListAuditLogsResponse implements Response {
             contentType,
             statusCode,
             rawResponse,
-            collectionAuditLogEntry);
+            auditLogEntries);
     }
     
     @Override
@@ -191,7 +191,7 @@ public class ListAuditLogsResponse implements Response {
                 "contentType", contentType,
                 "statusCode", statusCode,
                 "rawResponse", rawResponse,
-                "collectionAuditLogEntry", collectionAuditLogEntry);
+                "auditLogEntries", auditLogEntries);
     }
     
     public final static class Builder {
@@ -203,7 +203,7 @@ public class ListAuditLogsResponse implements Response {
  
         private HttpResponse<InputStream> rawResponse;
  
-        private Optional<? extends CollectionAuditLogEntry> collectionAuditLogEntry = Optional.empty();
+        private Optional<? extends AuditLogEntries> auditLogEntries = Optional.empty();
         
         private Builder() {
           // force use of static builder() method
@@ -239,18 +239,18 @@ public class ListAuditLogsResponse implements Response {
         /**
          * Successful Response
          */
-        public Builder collectionAuditLogEntry(CollectionAuditLogEntry collectionAuditLogEntry) {
-            Utils.checkNotNull(collectionAuditLogEntry, "collectionAuditLogEntry");
-            this.collectionAuditLogEntry = Optional.ofNullable(collectionAuditLogEntry);
+        public Builder auditLogEntries(AuditLogEntries auditLogEntries) {
+            Utils.checkNotNull(auditLogEntries, "auditLogEntries");
+            this.auditLogEntries = Optional.ofNullable(auditLogEntries);
             return this;
         }
 
         /**
          * Successful Response
          */
-        public Builder collectionAuditLogEntry(Optional<? extends CollectionAuditLogEntry> collectionAuditLogEntry) {
-            Utils.checkNotNull(collectionAuditLogEntry, "collectionAuditLogEntry");
-            this.collectionAuditLogEntry = collectionAuditLogEntry;
+        public Builder auditLogEntries(Optional<? extends AuditLogEntries> auditLogEntries) {
+            Utils.checkNotNull(auditLogEntries, "auditLogEntries");
+            this.auditLogEntries = auditLogEntries;
             return this;
         }
 
@@ -271,7 +271,7 @@ public class ListAuditLogsResponse implements Response {
                 contentType,
                 statusCode,
                 rawResponse,
-                collectionAuditLogEntry)
+                auditLogEntries)
                 .withNext(next);
         }
     }

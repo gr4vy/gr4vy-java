@@ -4,7 +4,7 @@
 package com.gr4vy.sdk;
 
 import com.fasterxml.jackson.core.type.TypeReference;
-import com.gr4vy.sdk.models.components.CollectionTransactionEvent;
+import com.gr4vy.sdk.models.components.TransactionEvents;
 import com.gr4vy.sdk.models.errors.APIException;
 import com.gr4vy.sdk.models.errors.Error400;
 import com.gr4vy.sdk.models.errors.Error401;
@@ -213,10 +213,10 @@ public class Events implements
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                CollectionTransactionEvent _out = Utils.mapper().readValue(
+                TransactionEvents _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<CollectionTransactionEvent>() {});
-                _res.withCollectionTransactionEvent(Optional.ofNullable(_out));
+                    new TypeReference<TransactionEvents>() {});
+                _res.withTransactionEvents(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new APIException(

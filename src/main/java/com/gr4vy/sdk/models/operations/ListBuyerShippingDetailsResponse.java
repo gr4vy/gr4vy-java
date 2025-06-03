@@ -5,7 +5,7 @@ package com.gr4vy.sdk.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.gr4vy.sdk.models.components.CollectionNoCursorShippingDetails;
+import com.gr4vy.sdk.models.components.ShippingDetailsList;
 import com.gr4vy.sdk.utils.Response;
 import com.gr4vy.sdk.utils.Utils;
 import java.io.InputStream;
@@ -37,22 +37,22 @@ public class ListBuyerShippingDetailsResponse implements Response {
     /**
      * Successful Response
      */
-    private Optional<? extends CollectionNoCursorShippingDetails> collectionNoCursorShippingDetails;
+    private Optional<? extends ShippingDetailsList> shippingDetailsList;
 
     @JsonCreator
     public ListBuyerShippingDetailsResponse(
             String contentType,
             int statusCode,
             HttpResponse<InputStream> rawResponse,
-            Optional<? extends CollectionNoCursorShippingDetails> collectionNoCursorShippingDetails) {
+            Optional<? extends ShippingDetailsList> shippingDetailsList) {
         Utils.checkNotNull(contentType, "contentType");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
-        Utils.checkNotNull(collectionNoCursorShippingDetails, "collectionNoCursorShippingDetails");
+        Utils.checkNotNull(shippingDetailsList, "shippingDetailsList");
         this.contentType = contentType;
         this.statusCode = statusCode;
         this.rawResponse = rawResponse;
-        this.collectionNoCursorShippingDetails = collectionNoCursorShippingDetails;
+        this.shippingDetailsList = shippingDetailsList;
     }
     
     public ListBuyerShippingDetailsResponse(
@@ -91,8 +91,8 @@ public class ListBuyerShippingDetailsResponse implements Response {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<CollectionNoCursorShippingDetails> collectionNoCursorShippingDetails() {
-        return (Optional<CollectionNoCursorShippingDetails>) collectionNoCursorShippingDetails;
+    public Optional<ShippingDetailsList> shippingDetailsList() {
+        return (Optional<ShippingDetailsList>) shippingDetailsList;
     }
 
     public final static Builder builder() {
@@ -129,18 +129,18 @@ public class ListBuyerShippingDetailsResponse implements Response {
     /**
      * Successful Response
      */
-    public ListBuyerShippingDetailsResponse withCollectionNoCursorShippingDetails(CollectionNoCursorShippingDetails collectionNoCursorShippingDetails) {
-        Utils.checkNotNull(collectionNoCursorShippingDetails, "collectionNoCursorShippingDetails");
-        this.collectionNoCursorShippingDetails = Optional.ofNullable(collectionNoCursorShippingDetails);
+    public ListBuyerShippingDetailsResponse withShippingDetailsList(ShippingDetailsList shippingDetailsList) {
+        Utils.checkNotNull(shippingDetailsList, "shippingDetailsList");
+        this.shippingDetailsList = Optional.ofNullable(shippingDetailsList);
         return this;
     }
 
     /**
      * Successful Response
      */
-    public ListBuyerShippingDetailsResponse withCollectionNoCursorShippingDetails(Optional<? extends CollectionNoCursorShippingDetails> collectionNoCursorShippingDetails) {
-        Utils.checkNotNull(collectionNoCursorShippingDetails, "collectionNoCursorShippingDetails");
-        this.collectionNoCursorShippingDetails = collectionNoCursorShippingDetails;
+    public ListBuyerShippingDetailsResponse withShippingDetailsList(Optional<? extends ShippingDetailsList> shippingDetailsList) {
+        Utils.checkNotNull(shippingDetailsList, "shippingDetailsList");
+        this.shippingDetailsList = shippingDetailsList;
         return this;
     }
 
@@ -158,7 +158,7 @@ public class ListBuyerShippingDetailsResponse implements Response {
             Objects.deepEquals(this.contentType, other.contentType) &&
             Objects.deepEquals(this.statusCode, other.statusCode) &&
             Objects.deepEquals(this.rawResponse, other.rawResponse) &&
-            Objects.deepEquals(this.collectionNoCursorShippingDetails, other.collectionNoCursorShippingDetails);
+            Objects.deepEquals(this.shippingDetailsList, other.shippingDetailsList);
     }
     
     @Override
@@ -167,7 +167,7 @@ public class ListBuyerShippingDetailsResponse implements Response {
             contentType,
             statusCode,
             rawResponse,
-            collectionNoCursorShippingDetails);
+            shippingDetailsList);
     }
     
     @Override
@@ -176,7 +176,7 @@ public class ListBuyerShippingDetailsResponse implements Response {
                 "contentType", contentType,
                 "statusCode", statusCode,
                 "rawResponse", rawResponse,
-                "collectionNoCursorShippingDetails", collectionNoCursorShippingDetails);
+                "shippingDetailsList", shippingDetailsList);
     }
     
     public final static class Builder {
@@ -187,7 +187,7 @@ public class ListBuyerShippingDetailsResponse implements Response {
  
         private HttpResponse<InputStream> rawResponse;
  
-        private Optional<? extends CollectionNoCursorShippingDetails> collectionNoCursorShippingDetails = Optional.empty();
+        private Optional<? extends ShippingDetailsList> shippingDetailsList = Optional.empty();
         
         private Builder() {
           // force use of static builder() method
@@ -223,18 +223,18 @@ public class ListBuyerShippingDetailsResponse implements Response {
         /**
          * Successful Response
          */
-        public Builder collectionNoCursorShippingDetails(CollectionNoCursorShippingDetails collectionNoCursorShippingDetails) {
-            Utils.checkNotNull(collectionNoCursorShippingDetails, "collectionNoCursorShippingDetails");
-            this.collectionNoCursorShippingDetails = Optional.ofNullable(collectionNoCursorShippingDetails);
+        public Builder shippingDetailsList(ShippingDetailsList shippingDetailsList) {
+            Utils.checkNotNull(shippingDetailsList, "shippingDetailsList");
+            this.shippingDetailsList = Optional.ofNullable(shippingDetailsList);
             return this;
         }
 
         /**
          * Successful Response
          */
-        public Builder collectionNoCursorShippingDetails(Optional<? extends CollectionNoCursorShippingDetails> collectionNoCursorShippingDetails) {
-            Utils.checkNotNull(collectionNoCursorShippingDetails, "collectionNoCursorShippingDetails");
-            this.collectionNoCursorShippingDetails = collectionNoCursorShippingDetails;
+        public Builder shippingDetailsList(Optional<? extends ShippingDetailsList> shippingDetailsList) {
+            Utils.checkNotNull(shippingDetailsList, "shippingDetailsList");
+            this.shippingDetailsList = shippingDetailsList;
             return this;
         }
         
@@ -243,7 +243,7 @@ public class ListBuyerShippingDetailsResponse implements Response {
                 contentType,
                 statusCode,
                 rawResponse,
-                collectionNoCursorShippingDetails);
+                shippingDetailsList);
         }
     }
 }

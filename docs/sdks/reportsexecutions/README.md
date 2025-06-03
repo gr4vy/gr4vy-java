@@ -38,7 +38,7 @@ public class Application {
                 .request(req)
                 .call();
 
-        if (res.collectionReportExecution().isPresent()) {
+        if (res.reportExecutions().isPresent()) {
             // handle response
         }
     }

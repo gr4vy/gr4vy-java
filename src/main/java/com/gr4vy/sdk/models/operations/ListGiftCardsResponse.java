@@ -5,7 +5,7 @@ package com.gr4vy.sdk.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.gr4vy.sdk.models.components.CollectionGiftCard;
+import com.gr4vy.sdk.models.components.GiftCards;
 import com.gr4vy.sdk.utils.Response;
 import com.gr4vy.sdk.utils.Utils;
 import java.io.InputStream;
@@ -40,7 +40,7 @@ public class ListGiftCardsResponse implements Response {
     /**
      * Successful Response
      */
-    private Optional<? extends CollectionGiftCard> collectionGiftCard;
+    private Optional<? extends GiftCards> giftCards;
 
     private Callable<Optional<ListGiftCardsResponse>> next = () -> Optional.empty();
 
@@ -49,15 +49,15 @@ public class ListGiftCardsResponse implements Response {
             String contentType,
             int statusCode,
             HttpResponse<InputStream> rawResponse,
-            Optional<? extends CollectionGiftCard> collectionGiftCard) {
+            Optional<? extends GiftCards> giftCards) {
         Utils.checkNotNull(contentType, "contentType");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
-        Utils.checkNotNull(collectionGiftCard, "collectionGiftCard");
+        Utils.checkNotNull(giftCards, "giftCards");
         this.contentType = contentType;
         this.statusCode = statusCode;
         this.rawResponse = rawResponse;
-        this.collectionGiftCard = collectionGiftCard;
+        this.giftCards = giftCards;
     }
     
     public ListGiftCardsResponse(
@@ -96,8 +96,8 @@ public class ListGiftCardsResponse implements Response {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<CollectionGiftCard> collectionGiftCard() {
-        return (Optional<CollectionGiftCard>) collectionGiftCard;
+    public Optional<GiftCards> giftCards() {
+        return (Optional<GiftCards>) giftCards;
     }
 
     public Optional<ListGiftCardsResponse> next() throws Exception {
@@ -144,18 +144,18 @@ public class ListGiftCardsResponse implements Response {
     /**
      * Successful Response
      */
-    public ListGiftCardsResponse withCollectionGiftCard(CollectionGiftCard collectionGiftCard) {
-        Utils.checkNotNull(collectionGiftCard, "collectionGiftCard");
-        this.collectionGiftCard = Optional.ofNullable(collectionGiftCard);
+    public ListGiftCardsResponse withGiftCards(GiftCards giftCards) {
+        Utils.checkNotNull(giftCards, "giftCards");
+        this.giftCards = Optional.ofNullable(giftCards);
         return this;
     }
 
     /**
      * Successful Response
      */
-    public ListGiftCardsResponse withCollectionGiftCard(Optional<? extends CollectionGiftCard> collectionGiftCard) {
-        Utils.checkNotNull(collectionGiftCard, "collectionGiftCard");
-        this.collectionGiftCard = collectionGiftCard;
+    public ListGiftCardsResponse withGiftCards(Optional<? extends GiftCards> giftCards) {
+        Utils.checkNotNull(giftCards, "giftCards");
+        this.giftCards = giftCards;
         return this;
     }
 
@@ -173,7 +173,7 @@ public class ListGiftCardsResponse implements Response {
             Objects.deepEquals(this.contentType, other.contentType) &&
             Objects.deepEquals(this.statusCode, other.statusCode) &&
             Objects.deepEquals(this.rawResponse, other.rawResponse) &&
-            Objects.deepEquals(this.collectionGiftCard, other.collectionGiftCard);
+            Objects.deepEquals(this.giftCards, other.giftCards);
     }
     
     @Override
@@ -182,7 +182,7 @@ public class ListGiftCardsResponse implements Response {
             contentType,
             statusCode,
             rawResponse,
-            collectionGiftCard);
+            giftCards);
     }
     
     @Override
@@ -191,7 +191,7 @@ public class ListGiftCardsResponse implements Response {
                 "contentType", contentType,
                 "statusCode", statusCode,
                 "rawResponse", rawResponse,
-                "collectionGiftCard", collectionGiftCard);
+                "giftCards", giftCards);
     }
     
     public final static class Builder {
@@ -203,7 +203,7 @@ public class ListGiftCardsResponse implements Response {
  
         private HttpResponse<InputStream> rawResponse;
  
-        private Optional<? extends CollectionGiftCard> collectionGiftCard = Optional.empty();
+        private Optional<? extends GiftCards> giftCards = Optional.empty();
         
         private Builder() {
           // force use of static builder() method
@@ -239,18 +239,18 @@ public class ListGiftCardsResponse implements Response {
         /**
          * Successful Response
          */
-        public Builder collectionGiftCard(CollectionGiftCard collectionGiftCard) {
-            Utils.checkNotNull(collectionGiftCard, "collectionGiftCard");
-            this.collectionGiftCard = Optional.ofNullable(collectionGiftCard);
+        public Builder giftCards(GiftCards giftCards) {
+            Utils.checkNotNull(giftCards, "giftCards");
+            this.giftCards = Optional.ofNullable(giftCards);
             return this;
         }
 
         /**
          * Successful Response
          */
-        public Builder collectionGiftCard(Optional<? extends CollectionGiftCard> collectionGiftCard) {
-            Utils.checkNotNull(collectionGiftCard, "collectionGiftCard");
-            this.collectionGiftCard = collectionGiftCard;
+        public Builder giftCards(Optional<? extends GiftCards> giftCards) {
+            Utils.checkNotNull(giftCards, "giftCards");
+            this.giftCards = giftCards;
             return this;
         }
 
@@ -271,7 +271,7 @@ public class ListGiftCardsResponse implements Response {
                 contentType,
                 statusCode,
                 rawResponse,
-                collectionGiftCard)
+                giftCards)
                 .withNext(next);
         }
     }

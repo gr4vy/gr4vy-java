@@ -5,7 +5,7 @@ package com.gr4vy.sdk.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.gr4vy.sdk.models.components.CollectionNoCursorCardSchemeDefinition;
+import com.gr4vy.sdk.models.components.CardSchemeDefinitions;
 import com.gr4vy.sdk.utils.Response;
 import com.gr4vy.sdk.utils.Utils;
 import java.io.InputStream;
@@ -37,22 +37,22 @@ public class ListCardSchemeDefinitionsResponse implements Response {
     /**
      * Successful Response
      */
-    private Optional<? extends CollectionNoCursorCardSchemeDefinition> collectionNoCursorCardSchemeDefinition;
+    private Optional<? extends CardSchemeDefinitions> cardSchemeDefinitions;
 
     @JsonCreator
     public ListCardSchemeDefinitionsResponse(
             String contentType,
             int statusCode,
             HttpResponse<InputStream> rawResponse,
-            Optional<? extends CollectionNoCursorCardSchemeDefinition> collectionNoCursorCardSchemeDefinition) {
+            Optional<? extends CardSchemeDefinitions> cardSchemeDefinitions) {
         Utils.checkNotNull(contentType, "contentType");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
-        Utils.checkNotNull(collectionNoCursorCardSchemeDefinition, "collectionNoCursorCardSchemeDefinition");
+        Utils.checkNotNull(cardSchemeDefinitions, "cardSchemeDefinitions");
         this.contentType = contentType;
         this.statusCode = statusCode;
         this.rawResponse = rawResponse;
-        this.collectionNoCursorCardSchemeDefinition = collectionNoCursorCardSchemeDefinition;
+        this.cardSchemeDefinitions = cardSchemeDefinitions;
     }
     
     public ListCardSchemeDefinitionsResponse(
@@ -91,8 +91,8 @@ public class ListCardSchemeDefinitionsResponse implements Response {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<CollectionNoCursorCardSchemeDefinition> collectionNoCursorCardSchemeDefinition() {
-        return (Optional<CollectionNoCursorCardSchemeDefinition>) collectionNoCursorCardSchemeDefinition;
+    public Optional<CardSchemeDefinitions> cardSchemeDefinitions() {
+        return (Optional<CardSchemeDefinitions>) cardSchemeDefinitions;
     }
 
     public final static Builder builder() {
@@ -129,18 +129,18 @@ public class ListCardSchemeDefinitionsResponse implements Response {
     /**
      * Successful Response
      */
-    public ListCardSchemeDefinitionsResponse withCollectionNoCursorCardSchemeDefinition(CollectionNoCursorCardSchemeDefinition collectionNoCursorCardSchemeDefinition) {
-        Utils.checkNotNull(collectionNoCursorCardSchemeDefinition, "collectionNoCursorCardSchemeDefinition");
-        this.collectionNoCursorCardSchemeDefinition = Optional.ofNullable(collectionNoCursorCardSchemeDefinition);
+    public ListCardSchemeDefinitionsResponse withCardSchemeDefinitions(CardSchemeDefinitions cardSchemeDefinitions) {
+        Utils.checkNotNull(cardSchemeDefinitions, "cardSchemeDefinitions");
+        this.cardSchemeDefinitions = Optional.ofNullable(cardSchemeDefinitions);
         return this;
     }
 
     /**
      * Successful Response
      */
-    public ListCardSchemeDefinitionsResponse withCollectionNoCursorCardSchemeDefinition(Optional<? extends CollectionNoCursorCardSchemeDefinition> collectionNoCursorCardSchemeDefinition) {
-        Utils.checkNotNull(collectionNoCursorCardSchemeDefinition, "collectionNoCursorCardSchemeDefinition");
-        this.collectionNoCursorCardSchemeDefinition = collectionNoCursorCardSchemeDefinition;
+    public ListCardSchemeDefinitionsResponse withCardSchemeDefinitions(Optional<? extends CardSchemeDefinitions> cardSchemeDefinitions) {
+        Utils.checkNotNull(cardSchemeDefinitions, "cardSchemeDefinitions");
+        this.cardSchemeDefinitions = cardSchemeDefinitions;
         return this;
     }
 
@@ -158,7 +158,7 @@ public class ListCardSchemeDefinitionsResponse implements Response {
             Objects.deepEquals(this.contentType, other.contentType) &&
             Objects.deepEquals(this.statusCode, other.statusCode) &&
             Objects.deepEquals(this.rawResponse, other.rawResponse) &&
-            Objects.deepEquals(this.collectionNoCursorCardSchemeDefinition, other.collectionNoCursorCardSchemeDefinition);
+            Objects.deepEquals(this.cardSchemeDefinitions, other.cardSchemeDefinitions);
     }
     
     @Override
@@ -167,7 +167,7 @@ public class ListCardSchemeDefinitionsResponse implements Response {
             contentType,
             statusCode,
             rawResponse,
-            collectionNoCursorCardSchemeDefinition);
+            cardSchemeDefinitions);
     }
     
     @Override
@@ -176,7 +176,7 @@ public class ListCardSchemeDefinitionsResponse implements Response {
                 "contentType", contentType,
                 "statusCode", statusCode,
                 "rawResponse", rawResponse,
-                "collectionNoCursorCardSchemeDefinition", collectionNoCursorCardSchemeDefinition);
+                "cardSchemeDefinitions", cardSchemeDefinitions);
     }
     
     public final static class Builder {
@@ -187,7 +187,7 @@ public class ListCardSchemeDefinitionsResponse implements Response {
  
         private HttpResponse<InputStream> rawResponse;
  
-        private Optional<? extends CollectionNoCursorCardSchemeDefinition> collectionNoCursorCardSchemeDefinition = Optional.empty();
+        private Optional<? extends CardSchemeDefinitions> cardSchemeDefinitions = Optional.empty();
         
         private Builder() {
           // force use of static builder() method
@@ -223,18 +223,18 @@ public class ListCardSchemeDefinitionsResponse implements Response {
         /**
          * Successful Response
          */
-        public Builder collectionNoCursorCardSchemeDefinition(CollectionNoCursorCardSchemeDefinition collectionNoCursorCardSchemeDefinition) {
-            Utils.checkNotNull(collectionNoCursorCardSchemeDefinition, "collectionNoCursorCardSchemeDefinition");
-            this.collectionNoCursorCardSchemeDefinition = Optional.ofNullable(collectionNoCursorCardSchemeDefinition);
+        public Builder cardSchemeDefinitions(CardSchemeDefinitions cardSchemeDefinitions) {
+            Utils.checkNotNull(cardSchemeDefinitions, "cardSchemeDefinitions");
+            this.cardSchemeDefinitions = Optional.ofNullable(cardSchemeDefinitions);
             return this;
         }
 
         /**
          * Successful Response
          */
-        public Builder collectionNoCursorCardSchemeDefinition(Optional<? extends CollectionNoCursorCardSchemeDefinition> collectionNoCursorCardSchemeDefinition) {
-            Utils.checkNotNull(collectionNoCursorCardSchemeDefinition, "collectionNoCursorCardSchemeDefinition");
-            this.collectionNoCursorCardSchemeDefinition = collectionNoCursorCardSchemeDefinition;
+        public Builder cardSchemeDefinitions(Optional<? extends CardSchemeDefinitions> cardSchemeDefinitions) {
+            Utils.checkNotNull(cardSchemeDefinitions, "cardSchemeDefinitions");
+            this.cardSchemeDefinitions = cardSchemeDefinitions;
             return this;
         }
         
@@ -243,7 +243,7 @@ public class ListCardSchemeDefinitionsResponse implements Response {
                 contentType,
                 statusCode,
                 rawResponse,
-                collectionNoCursorCardSchemeDefinition);
+                cardSchemeDefinitions);
         }
     }
 }

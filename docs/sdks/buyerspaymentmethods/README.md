@@ -37,7 +37,7 @@ public class Application {
                 .request(req)
                 .call();
 
-        if (res.collectionNoCursorPaymentMethodSummary().isPresent()) {
+        if (res.paymentMethodSummaries().isPresent()) {
             // handle response
         }
     }

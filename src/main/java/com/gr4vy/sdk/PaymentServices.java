@@ -4,7 +4,6 @@
 package com.gr4vy.sdk;
 
 import com.fasterxml.jackson.core.type.TypeReference;
-import com.gr4vy.sdk.models.components.CollectionPaymentService;
 import com.gr4vy.sdk.models.components.CreateSession;
 import com.gr4vy.sdk.models.components.PaymentService;
 import com.gr4vy.sdk.models.components.PaymentServiceCreate;
@@ -259,10 +258,10 @@ public class PaymentServices implements
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                CollectionPaymentService _out = Utils.mapper().readValue(
+                com.gr4vy.sdk.models.components.PaymentServices _out = Utils.mapper().readValue(
                     new String(_fullResponse, StandardCharsets.UTF_8),
-                    new TypeReference<CollectionPaymentService>() {});
-                _res.withCollectionPaymentService(Optional.ofNullable(_out));
+                    new TypeReference<com.gr4vy.sdk.models.components.PaymentServices>() {});
+                _res.withPaymentServices(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new APIException(

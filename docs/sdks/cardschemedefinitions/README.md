@@ -32,7 +32,7 @@ public class Application {
         ListCardSchemeDefinitionsResponse res = sdk.cardSchemeDefinitions().list()
                 .call();
 
-        if (res.collectionNoCursorCardSchemeDefinition().isPresent()) {
+        if (res.cardSchemeDefinitions().isPresent()) {
             // handle response
         }
     }

@@ -4,7 +4,7 @@
 package com.gr4vy.sdk;
 
 import com.fasterxml.jackson.core.type.TypeReference;
-import com.gr4vy.sdk.models.components.CollectionAuditLogEntry;
+import com.gr4vy.sdk.models.components.AuditLogEntries;
 import com.gr4vy.sdk.models.errors.APIException;
 import com.gr4vy.sdk.models.errors.Error400;
 import com.gr4vy.sdk.models.errors.Error401;
@@ -227,10 +227,10 @@ public class AuditLogs implements
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                CollectionAuditLogEntry _out = Utils.mapper().readValue(
+                AuditLogEntries _out = Utils.mapper().readValue(
                     new String(_fullResponse, StandardCharsets.UTF_8),
-                    new TypeReference<CollectionAuditLogEntry>() {});
-                _res.withCollectionAuditLogEntry(Optional.ofNullable(_out));
+                    new TypeReference<AuditLogEntries>() {});
+                _res.withAuditLogEntries(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new APIException(

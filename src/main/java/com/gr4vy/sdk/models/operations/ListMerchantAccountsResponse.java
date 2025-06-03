@@ -5,7 +5,7 @@ package com.gr4vy.sdk.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.gr4vy.sdk.models.components.CollectionMerchantAccount;
+import com.gr4vy.sdk.models.components.MerchantAccounts;
 import com.gr4vy.sdk.utils.Response;
 import com.gr4vy.sdk.utils.Utils;
 import java.io.InputStream;
@@ -40,7 +40,7 @@ public class ListMerchantAccountsResponse implements Response {
     /**
      * Successful Response
      */
-    private Optional<? extends CollectionMerchantAccount> collectionMerchantAccount;
+    private Optional<? extends MerchantAccounts> merchantAccounts;
 
     private Callable<Optional<ListMerchantAccountsResponse>> next = () -> Optional.empty();
 
@@ -49,15 +49,15 @@ public class ListMerchantAccountsResponse implements Response {
             String contentType,
             int statusCode,
             HttpResponse<InputStream> rawResponse,
-            Optional<? extends CollectionMerchantAccount> collectionMerchantAccount) {
+            Optional<? extends MerchantAccounts> merchantAccounts) {
         Utils.checkNotNull(contentType, "contentType");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
-        Utils.checkNotNull(collectionMerchantAccount, "collectionMerchantAccount");
+        Utils.checkNotNull(merchantAccounts, "merchantAccounts");
         this.contentType = contentType;
         this.statusCode = statusCode;
         this.rawResponse = rawResponse;
-        this.collectionMerchantAccount = collectionMerchantAccount;
+        this.merchantAccounts = merchantAccounts;
     }
     
     public ListMerchantAccountsResponse(
@@ -96,8 +96,8 @@ public class ListMerchantAccountsResponse implements Response {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<CollectionMerchantAccount> collectionMerchantAccount() {
-        return (Optional<CollectionMerchantAccount>) collectionMerchantAccount;
+    public Optional<MerchantAccounts> merchantAccounts() {
+        return (Optional<MerchantAccounts>) merchantAccounts;
     }
 
     public Optional<ListMerchantAccountsResponse> next() throws Exception {
@@ -144,18 +144,18 @@ public class ListMerchantAccountsResponse implements Response {
     /**
      * Successful Response
      */
-    public ListMerchantAccountsResponse withCollectionMerchantAccount(CollectionMerchantAccount collectionMerchantAccount) {
-        Utils.checkNotNull(collectionMerchantAccount, "collectionMerchantAccount");
-        this.collectionMerchantAccount = Optional.ofNullable(collectionMerchantAccount);
+    public ListMerchantAccountsResponse withMerchantAccounts(MerchantAccounts merchantAccounts) {
+        Utils.checkNotNull(merchantAccounts, "merchantAccounts");
+        this.merchantAccounts = Optional.ofNullable(merchantAccounts);
         return this;
     }
 
     /**
      * Successful Response
      */
-    public ListMerchantAccountsResponse withCollectionMerchantAccount(Optional<? extends CollectionMerchantAccount> collectionMerchantAccount) {
-        Utils.checkNotNull(collectionMerchantAccount, "collectionMerchantAccount");
-        this.collectionMerchantAccount = collectionMerchantAccount;
+    public ListMerchantAccountsResponse withMerchantAccounts(Optional<? extends MerchantAccounts> merchantAccounts) {
+        Utils.checkNotNull(merchantAccounts, "merchantAccounts");
+        this.merchantAccounts = merchantAccounts;
         return this;
     }
 
@@ -173,7 +173,7 @@ public class ListMerchantAccountsResponse implements Response {
             Objects.deepEquals(this.contentType, other.contentType) &&
             Objects.deepEquals(this.statusCode, other.statusCode) &&
             Objects.deepEquals(this.rawResponse, other.rawResponse) &&
-            Objects.deepEquals(this.collectionMerchantAccount, other.collectionMerchantAccount);
+            Objects.deepEquals(this.merchantAccounts, other.merchantAccounts);
     }
     
     @Override
@@ -182,7 +182,7 @@ public class ListMerchantAccountsResponse implements Response {
             contentType,
             statusCode,
             rawResponse,
-            collectionMerchantAccount);
+            merchantAccounts);
     }
     
     @Override
@@ -191,7 +191,7 @@ public class ListMerchantAccountsResponse implements Response {
                 "contentType", contentType,
                 "statusCode", statusCode,
                 "rawResponse", rawResponse,
-                "collectionMerchantAccount", collectionMerchantAccount);
+                "merchantAccounts", merchantAccounts);
     }
     
     public final static class Builder {
@@ -203,7 +203,7 @@ public class ListMerchantAccountsResponse implements Response {
  
         private HttpResponse<InputStream> rawResponse;
  
-        private Optional<? extends CollectionMerchantAccount> collectionMerchantAccount = Optional.empty();
+        private Optional<? extends MerchantAccounts> merchantAccounts = Optional.empty();
         
         private Builder() {
           // force use of static builder() method
@@ -239,18 +239,18 @@ public class ListMerchantAccountsResponse implements Response {
         /**
          * Successful Response
          */
-        public Builder collectionMerchantAccount(CollectionMerchantAccount collectionMerchantAccount) {
-            Utils.checkNotNull(collectionMerchantAccount, "collectionMerchantAccount");
-            this.collectionMerchantAccount = Optional.ofNullable(collectionMerchantAccount);
+        public Builder merchantAccounts(MerchantAccounts merchantAccounts) {
+            Utils.checkNotNull(merchantAccounts, "merchantAccounts");
+            this.merchantAccounts = Optional.ofNullable(merchantAccounts);
             return this;
         }
 
         /**
          * Successful Response
          */
-        public Builder collectionMerchantAccount(Optional<? extends CollectionMerchantAccount> collectionMerchantAccount) {
-            Utils.checkNotNull(collectionMerchantAccount, "collectionMerchantAccount");
-            this.collectionMerchantAccount = collectionMerchantAccount;
+        public Builder merchantAccounts(Optional<? extends MerchantAccounts> merchantAccounts) {
+            Utils.checkNotNull(merchantAccounts, "merchantAccounts");
+            this.merchantAccounts = merchantAccounts;
             return this;
         }
 
@@ -271,7 +271,7 @@ public class ListMerchantAccountsResponse implements Response {
                 contentType,
                 statusCode,
                 rawResponse,
-                collectionMerchantAccount)
+                merchantAccounts)
                 .withNext(next);
         }
     }

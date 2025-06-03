@@ -4,7 +4,6 @@
 package com.gr4vy.sdk;
 
 import com.fasterxml.jackson.core.type.TypeReference;
-import com.gr4vy.sdk.models.components.CollectionNoCursorPaymentServiceToken;
 import com.gr4vy.sdk.models.components.PaymentServiceToken;
 import com.gr4vy.sdk.models.components.PaymentServiceTokenCreate;
 import com.gr4vy.sdk.models.errors.APIException;
@@ -222,10 +221,10 @@ public class PaymentServiceTokens implements
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                CollectionNoCursorPaymentServiceToken _out = Utils.mapper().readValue(
+                com.gr4vy.sdk.models.components.PaymentServiceTokens _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<CollectionNoCursorPaymentServiceToken>() {});
-                _res.withCollectionNoCursorPaymentServiceToken(Optional.ofNullable(_out));
+                    new TypeReference<com.gr4vy.sdk.models.components.PaymentServiceTokens>() {});
+                _res.withPaymentServiceTokens(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new APIException(

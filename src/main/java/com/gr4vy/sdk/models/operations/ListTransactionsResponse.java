@@ -5,7 +5,7 @@ package com.gr4vy.sdk.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.gr4vy.sdk.models.components.CollectionTransactionSummary;
+import com.gr4vy.sdk.models.components.TransactionSummaries;
 import com.gr4vy.sdk.utils.Response;
 import com.gr4vy.sdk.utils.Utils;
 import java.io.InputStream;
@@ -40,7 +40,7 @@ public class ListTransactionsResponse implements Response {
     /**
      * Successful Response
      */
-    private Optional<? extends CollectionTransactionSummary> collectionTransactionSummary;
+    private Optional<? extends TransactionSummaries> transactionSummaries;
 
     private Callable<Optional<ListTransactionsResponse>> next = () -> Optional.empty();
 
@@ -49,15 +49,15 @@ public class ListTransactionsResponse implements Response {
             String contentType,
             int statusCode,
             HttpResponse<InputStream> rawResponse,
-            Optional<? extends CollectionTransactionSummary> collectionTransactionSummary) {
+            Optional<? extends TransactionSummaries> transactionSummaries) {
         Utils.checkNotNull(contentType, "contentType");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
-        Utils.checkNotNull(collectionTransactionSummary, "collectionTransactionSummary");
+        Utils.checkNotNull(transactionSummaries, "transactionSummaries");
         this.contentType = contentType;
         this.statusCode = statusCode;
         this.rawResponse = rawResponse;
-        this.collectionTransactionSummary = collectionTransactionSummary;
+        this.transactionSummaries = transactionSummaries;
     }
     
     public ListTransactionsResponse(
@@ -96,8 +96,8 @@ public class ListTransactionsResponse implements Response {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<CollectionTransactionSummary> collectionTransactionSummary() {
-        return (Optional<CollectionTransactionSummary>) collectionTransactionSummary;
+    public Optional<TransactionSummaries> transactionSummaries() {
+        return (Optional<TransactionSummaries>) transactionSummaries;
     }
 
     public Optional<ListTransactionsResponse> next() throws Exception {
@@ -144,18 +144,18 @@ public class ListTransactionsResponse implements Response {
     /**
      * Successful Response
      */
-    public ListTransactionsResponse withCollectionTransactionSummary(CollectionTransactionSummary collectionTransactionSummary) {
-        Utils.checkNotNull(collectionTransactionSummary, "collectionTransactionSummary");
-        this.collectionTransactionSummary = Optional.ofNullable(collectionTransactionSummary);
+    public ListTransactionsResponse withTransactionSummaries(TransactionSummaries transactionSummaries) {
+        Utils.checkNotNull(transactionSummaries, "transactionSummaries");
+        this.transactionSummaries = Optional.ofNullable(transactionSummaries);
         return this;
     }
 
     /**
      * Successful Response
      */
-    public ListTransactionsResponse withCollectionTransactionSummary(Optional<? extends CollectionTransactionSummary> collectionTransactionSummary) {
-        Utils.checkNotNull(collectionTransactionSummary, "collectionTransactionSummary");
-        this.collectionTransactionSummary = collectionTransactionSummary;
+    public ListTransactionsResponse withTransactionSummaries(Optional<? extends TransactionSummaries> transactionSummaries) {
+        Utils.checkNotNull(transactionSummaries, "transactionSummaries");
+        this.transactionSummaries = transactionSummaries;
         return this;
     }
 
@@ -173,7 +173,7 @@ public class ListTransactionsResponse implements Response {
             Objects.deepEquals(this.contentType, other.contentType) &&
             Objects.deepEquals(this.statusCode, other.statusCode) &&
             Objects.deepEquals(this.rawResponse, other.rawResponse) &&
-            Objects.deepEquals(this.collectionTransactionSummary, other.collectionTransactionSummary);
+            Objects.deepEquals(this.transactionSummaries, other.transactionSummaries);
     }
     
     @Override
@@ -182,7 +182,7 @@ public class ListTransactionsResponse implements Response {
             contentType,
             statusCode,
             rawResponse,
-            collectionTransactionSummary);
+            transactionSummaries);
     }
     
     @Override
@@ -191,7 +191,7 @@ public class ListTransactionsResponse implements Response {
                 "contentType", contentType,
                 "statusCode", statusCode,
                 "rawResponse", rawResponse,
-                "collectionTransactionSummary", collectionTransactionSummary);
+                "transactionSummaries", transactionSummaries);
     }
     
     public final static class Builder {
@@ -203,7 +203,7 @@ public class ListTransactionsResponse implements Response {
  
         private HttpResponse<InputStream> rawResponse;
  
-        private Optional<? extends CollectionTransactionSummary> collectionTransactionSummary = Optional.empty();
+        private Optional<? extends TransactionSummaries> transactionSummaries = Optional.empty();
         
         private Builder() {
           // force use of static builder() method
@@ -239,18 +239,18 @@ public class ListTransactionsResponse implements Response {
         /**
          * Successful Response
          */
-        public Builder collectionTransactionSummary(CollectionTransactionSummary collectionTransactionSummary) {
-            Utils.checkNotNull(collectionTransactionSummary, "collectionTransactionSummary");
-            this.collectionTransactionSummary = Optional.ofNullable(collectionTransactionSummary);
+        public Builder transactionSummaries(TransactionSummaries transactionSummaries) {
+            Utils.checkNotNull(transactionSummaries, "transactionSummaries");
+            this.transactionSummaries = Optional.ofNullable(transactionSummaries);
             return this;
         }
 
         /**
          * Successful Response
          */
-        public Builder collectionTransactionSummary(Optional<? extends CollectionTransactionSummary> collectionTransactionSummary) {
-            Utils.checkNotNull(collectionTransactionSummary, "collectionTransactionSummary");
-            this.collectionTransactionSummary = collectionTransactionSummary;
+        public Builder transactionSummaries(Optional<? extends TransactionSummaries> transactionSummaries) {
+            Utils.checkNotNull(transactionSummaries, "transactionSummaries");
+            this.transactionSummaries = transactionSummaries;
             return this;
         }
 
@@ -271,7 +271,7 @@ public class ListTransactionsResponse implements Response {
                 contentType,
                 statusCode,
                 rawResponse,
-                collectionTransactionSummary)
+                transactionSummaries)
                 .withNext(next);
         }
     }

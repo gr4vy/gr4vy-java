@@ -103,7 +103,7 @@ public class Application {
                 .buyerId("fe26475d-ec3e-4884-9553-f7356683f7f9")
                 .call();
 
-        if (res.collectionNoCursorShippingDetails().isPresent()) {
+        if (res.shippingDetailsList().isPresent()) {
             // handle response
         }
     }

@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 5bbaa3a9-baa0-471b-ba6a-13fd88e8c119
 management:
-  docChecksum: e3771e00aea360bab79ef413c9e57e99
+  docChecksum: 8a4b3ebc8f237643115c054cca75d13d
   docVersion: 1.0.0
   speakeasyVersion: 1.555.0
   generationVersion: 2.618.0
-  releaseVersion: 1.0.0-beta.6
-  configChecksum: ea7055c48ab992bf7a79e145ea4f9f5a
+  releaseVersion: 1.0.0-beta.7
+  configChecksum: e7aac6e8b5dd41783d1083c4c4765adf
   repoURL: https://github.com/gr4vy/gr4vy-java.git
   published: true
 features:
@@ -47,6 +47,7 @@ generatedFiles:
   - docs/models/components/ApplePaySessionRequest.md
   - docs/models/components/ApprovalTarget.md
   - docs/models/components/AuditLogAction.md
+  - docs/models/components/AuditLogEntries.md
   - docs/models/components/AuditLogEntry.md
   - docs/models/components/AuditLogEntryResource.md
   - docs/models/components/AuditLogEntryUser.md
@@ -56,10 +57,12 @@ generatedFiles:
   - docs/models/components/Buyer.md
   - docs/models/components/BuyerCreate.md
   - docs/models/components/BuyerUpdate.md
+  - docs/models/components/Buyers.md
   - docs/models/components/CVVResponseCode.md
   - docs/models/components/CardPaymentMethodCreate.md
   - docs/models/components/CardScheme.md
   - docs/models/components/CardSchemeDefinition.md
+  - docs/models/components/CardSchemeDefinitions.md
   - docs/models/components/CardSource.md
   - docs/models/components/CardType.md
   - docs/models/components/CardWithUrlPaymentMethodCreate.md
@@ -75,27 +78,6 @@ generatedFiles:
   - docs/models/components/ClickToPayPaymentMethodCreate.md
   - docs/models/components/ClickToPaySession.md
   - docs/models/components/ClickToPaySessionRequest.md
-  - docs/models/components/CollectionAuditLogEntry.md
-  - docs/models/components/CollectionBuyer.md
-  - docs/models/components/CollectionGiftCard.md
-  - docs/models/components/CollectionMerchantAccount.md
-  - docs/models/components/CollectionNoCursorCardSchemeDefinition.md
-  - docs/models/components/CollectionNoCursorDigitalWallet.md
-  - docs/models/components/CollectionNoCursorGiftCardSummary.md
-  - docs/models/components/CollectionNoCursorNetworkToken.md
-  - docs/models/components/CollectionNoCursorPaymentMethodSummary.md
-  - docs/models/components/CollectionNoCursorPaymentOption.md
-  - docs/models/components/CollectionNoCursorPaymentServiceToken.md
-  - docs/models/components/CollectionNoCursorShippingDetails.md
-  - docs/models/components/CollectionPaymentMethod.md
-  - docs/models/components/CollectionPaymentService.md
-  - docs/models/components/CollectionPaymentServiceDefinition.md
-  - docs/models/components/CollectionPayoutSummary.md
-  - docs/models/components/CollectionRefund.md
-  - docs/models/components/CollectionReport.md
-  - docs/models/components/CollectionReportExecution.md
-  - docs/models/components/CollectionTransactionEvent.md
-  - docs/models/components/CollectionTransactionSummary.md
   - docs/models/components/ConnectionOptions.md
   - docs/models/components/Context.md
   - docs/models/components/CreateSession.md
@@ -111,6 +93,7 @@ generatedFiles:
   - docs/models/components/DigitalWalletDomain.md
   - docs/models/components/DigitalWalletProvider.md
   - docs/models/components/DigitalWalletUpdate.md
+  - docs/models/components/DigitalWallets.md
   - docs/models/components/ErrorDetail.md
   - docs/models/components/ErrorLocation.md
   - docs/models/components/Field.md
@@ -124,10 +107,12 @@ generatedFiles:
   - docs/models/components/GiftCardService.md
   - docs/models/components/GiftCardServiceProvider.md
   - docs/models/components/GiftCardStoredRequest.md
+  - docs/models/components/GiftCardSummaries.md
   - docs/models/components/GiftCardSummary.md
   - docs/models/components/GiftCardTokenTransactionCreate.md
   - docs/models/components/GiftCardTransactionCreate.md
   - docs/models/components/GiftCardUnion.md
+  - docs/models/components/GiftCards.md
   - docs/models/components/GooglePayAssuranceDetails.md
   - docs/models/components/GooglePayFPANPaymentMethodCreate.md
   - docs/models/components/GooglePayPaymentMethodCreate.md
@@ -142,6 +127,7 @@ generatedFiles:
   - docs/models/components/MerchantAccount.md
   - docs/models/components/MerchantAccountCreate.md
   - docs/models/components/MerchantAccountUpdate.md
+  - docs/models/components/MerchantAccounts.md
   - docs/models/components/MerchantProfileScheme.md
   - docs/models/components/MerchantProfileSchemeSummary.md
   - docs/models/components/Method.md
@@ -151,24 +137,31 @@ generatedFiles:
   - docs/models/components/NetworkTokenCreate.md
   - docs/models/components/NetworkTokenPaymentMethodCreate.md
   - docs/models/components/NetworkTokenStatus.md
+  - docs/models/components/NetworkTokens.md
   - docs/models/components/PaymentMethod.md
   - docs/models/components/PaymentMethodCard.md
   - docs/models/components/PaymentMethodDetailsCard.md
   - docs/models/components/PaymentMethodStatus.md
   - docs/models/components/PaymentMethodStoredCard.md
+  - docs/models/components/PaymentMethodSummaries.md
   - docs/models/components/PaymentMethodSummary.md
+  - docs/models/components/PaymentMethods.md
   - docs/models/components/PaymentOption.md
   - docs/models/components/PaymentOptionContext.md
   - docs/models/components/PaymentOptionContextApprovalUI.md
   - docs/models/components/PaymentOptionRequest.md
+  - docs/models/components/PaymentOptions.md
   - docs/models/components/PaymentService.md
   - docs/models/components/PaymentServiceConfiguration.md
   - docs/models/components/PaymentServiceCreate.md
   - docs/models/components/PaymentServiceDefinition.md
+  - docs/models/components/PaymentServiceDefinitions.md
   - docs/models/components/PaymentServiceStatus.md
   - docs/models/components/PaymentServiceToken.md
   - docs/models/components/PaymentServiceTokenCreate.md
+  - docs/models/components/PaymentServiceTokens.md
   - docs/models/components/PaymentServiceUpdate.md
+  - docs/models/components/PaymentServices.md
   - docs/models/components/PayoutCategory.md
   - docs/models/components/PayoutCreate.md
   - docs/models/components/PayoutCreatePaymentMethod.md
@@ -176,6 +169,7 @@ generatedFiles:
   - docs/models/components/PayoutMerchantSummary.md
   - docs/models/components/PayoutPaymentService.md
   - docs/models/components/PayoutStatus.md
+  - docs/models/components/PayoutSummaries.md
   - docs/models/components/PayoutSummary.md
   - docs/models/components/ProductType.md
   - docs/models/components/Recipient.md
@@ -184,6 +178,7 @@ generatedFiles:
   - docs/models/components/Refund.md
   - docs/models/components/RefundStatus.md
   - docs/models/components/RefundTargetType.md
+  - docs/models/components/Refunds.md
   - docs/models/components/Report.md
   - docs/models/components/ReportCreate.md
   - docs/models/components/ReportCreatorType.md
@@ -192,11 +187,13 @@ generatedFiles:
   - docs/models/components/ReportExecutionStatus.md
   - docs/models/components/ReportExecutionSummary.md
   - docs/models/components/ReportExecutionUrl.md
+  - docs/models/components/ReportExecutions.md
   - docs/models/components/ReportSchedule.md
   - docs/models/components/ReportSpec.md
   - docs/models/components/ReportSpecModel.md
   - docs/models/components/ReportSummary.md
   - docs/models/components/ReportUpdate.md
+  - docs/models/components/Reports.md
   - docs/models/components/RequiredCheckoutFields.md
   - docs/models/components/RequiredFields1.md
   - docs/models/components/RequiredFields2.md
@@ -205,6 +202,7 @@ generatedFiles:
   - docs/models/components/Security.md
   - docs/models/components/ShippingDetails.md
   - docs/models/components/ShippingDetailsCreate.md
+  - docs/models/components/ShippingDetailsList.md
   - docs/models/components/ShippingDetailsUpdate.md
   - docs/models/components/Spec.md
   - docs/models/components/StatementDescriptor.md
@@ -226,6 +224,7 @@ generatedFiles:
   - docs/models/components/TransactionCreate.md
   - docs/models/components/TransactionCreatePaymentMethod.md
   - docs/models/components/TransactionEvent.md
+  - docs/models/components/TransactionEvents.md
   - docs/models/components/TransactionGiftCard.md
   - docs/models/components/TransactionIntent.md
   - docs/models/components/TransactionIntentOutcome.md
@@ -236,6 +235,7 @@ generatedFiles:
   - docs/models/components/TransactionRefundCreate.md
   - docs/models/components/TransactionRetriesReportSpec.md
   - docs/models/components/TransactionStatus.md
+  - docs/models/components/TransactionSummaries.md
   - docs/models/components/TransactionSummary.md
   - docs/models/components/TransactionThreeDSecureSummary.md
   - docs/models/components/TransactionsReportSpec.md
@@ -513,6 +513,7 @@ generatedFiles:
   - src/main/java/com/gr4vy/sdk/models/components/ApplePaySessionRequest.java
   - src/main/java/com/gr4vy/sdk/models/components/ApprovalTarget.java
   - src/main/java/com/gr4vy/sdk/models/components/AuditLogAction.java
+  - src/main/java/com/gr4vy/sdk/models/components/AuditLogEntries.java
   - src/main/java/com/gr4vy/sdk/models/components/AuditLogEntry.java
   - src/main/java/com/gr4vy/sdk/models/components/AuditLogEntryResource.java
   - src/main/java/com/gr4vy/sdk/models/components/AuditLogEntryUser.java
@@ -522,10 +523,12 @@ generatedFiles:
   - src/main/java/com/gr4vy/sdk/models/components/Buyer.java
   - src/main/java/com/gr4vy/sdk/models/components/BuyerCreate.java
   - src/main/java/com/gr4vy/sdk/models/components/BuyerUpdate.java
+  - src/main/java/com/gr4vy/sdk/models/components/Buyers.java
   - src/main/java/com/gr4vy/sdk/models/components/CVVResponseCode.java
   - src/main/java/com/gr4vy/sdk/models/components/CardPaymentMethodCreate.java
   - src/main/java/com/gr4vy/sdk/models/components/CardScheme.java
   - src/main/java/com/gr4vy/sdk/models/components/CardSchemeDefinition.java
+  - src/main/java/com/gr4vy/sdk/models/components/CardSchemeDefinitions.java
   - src/main/java/com/gr4vy/sdk/models/components/CardSource.java
   - src/main/java/com/gr4vy/sdk/models/components/CardType.java
   - src/main/java/com/gr4vy/sdk/models/components/CardWithUrlPaymentMethodCreate.java
@@ -541,27 +544,6 @@ generatedFiles:
   - src/main/java/com/gr4vy/sdk/models/components/ClickToPayPaymentMethodCreate.java
   - src/main/java/com/gr4vy/sdk/models/components/ClickToPaySession.java
   - src/main/java/com/gr4vy/sdk/models/components/ClickToPaySessionRequest.java
-  - src/main/java/com/gr4vy/sdk/models/components/CollectionAuditLogEntry.java
-  - src/main/java/com/gr4vy/sdk/models/components/CollectionBuyer.java
-  - src/main/java/com/gr4vy/sdk/models/components/CollectionGiftCard.java
-  - src/main/java/com/gr4vy/sdk/models/components/CollectionMerchantAccount.java
-  - src/main/java/com/gr4vy/sdk/models/components/CollectionNoCursorCardSchemeDefinition.java
-  - src/main/java/com/gr4vy/sdk/models/components/CollectionNoCursorDigitalWallet.java
-  - src/main/java/com/gr4vy/sdk/models/components/CollectionNoCursorGiftCardSummary.java
-  - src/main/java/com/gr4vy/sdk/models/components/CollectionNoCursorNetworkToken.java
-  - src/main/java/com/gr4vy/sdk/models/components/CollectionNoCursorPaymentMethodSummary.java
-  - src/main/java/com/gr4vy/sdk/models/components/CollectionNoCursorPaymentOption.java
-  - src/main/java/com/gr4vy/sdk/models/components/CollectionNoCursorPaymentServiceToken.java
-  - src/main/java/com/gr4vy/sdk/models/components/CollectionNoCursorShippingDetails.java
-  - src/main/java/com/gr4vy/sdk/models/components/CollectionPaymentMethod.java
-  - src/main/java/com/gr4vy/sdk/models/components/CollectionPaymentService.java
-  - src/main/java/com/gr4vy/sdk/models/components/CollectionPaymentServiceDefinition.java
-  - src/main/java/com/gr4vy/sdk/models/components/CollectionPayoutSummary.java
-  - src/main/java/com/gr4vy/sdk/models/components/CollectionRefund.java
-  - src/main/java/com/gr4vy/sdk/models/components/CollectionReport.java
-  - src/main/java/com/gr4vy/sdk/models/components/CollectionReportExecution.java
-  - src/main/java/com/gr4vy/sdk/models/components/CollectionTransactionEvent.java
-  - src/main/java/com/gr4vy/sdk/models/components/CollectionTransactionSummary.java
   - src/main/java/com/gr4vy/sdk/models/components/ConnectionOptions.java
   - src/main/java/com/gr4vy/sdk/models/components/Context.java
   - src/main/java/com/gr4vy/sdk/models/components/CreateSession.java
@@ -577,6 +559,7 @@ generatedFiles:
   - src/main/java/com/gr4vy/sdk/models/components/DigitalWalletDomain.java
   - src/main/java/com/gr4vy/sdk/models/components/DigitalWalletProvider.java
   - src/main/java/com/gr4vy/sdk/models/components/DigitalWalletUpdate.java
+  - src/main/java/com/gr4vy/sdk/models/components/DigitalWallets.java
   - src/main/java/com/gr4vy/sdk/models/components/ErrorDetail.java
   - src/main/java/com/gr4vy/sdk/models/components/ErrorLocation.java
   - src/main/java/com/gr4vy/sdk/models/components/Field.java
@@ -590,10 +573,12 @@ generatedFiles:
   - src/main/java/com/gr4vy/sdk/models/components/GiftCardService.java
   - src/main/java/com/gr4vy/sdk/models/components/GiftCardServiceProvider.java
   - src/main/java/com/gr4vy/sdk/models/components/GiftCardStoredRequest.java
+  - src/main/java/com/gr4vy/sdk/models/components/GiftCardSummaries.java
   - src/main/java/com/gr4vy/sdk/models/components/GiftCardSummary.java
   - src/main/java/com/gr4vy/sdk/models/components/GiftCardTokenTransactionCreate.java
   - src/main/java/com/gr4vy/sdk/models/components/GiftCardTransactionCreate.java
   - src/main/java/com/gr4vy/sdk/models/components/GiftCardUnion.java
+  - src/main/java/com/gr4vy/sdk/models/components/GiftCards.java
   - src/main/java/com/gr4vy/sdk/models/components/GooglePayAssuranceDetails.java
   - src/main/java/com/gr4vy/sdk/models/components/GooglePayFPANPaymentMethodCreate.java
   - src/main/java/com/gr4vy/sdk/models/components/GooglePayPaymentMethodCreate.java
@@ -608,6 +593,7 @@ generatedFiles:
   - src/main/java/com/gr4vy/sdk/models/components/MerchantAccount.java
   - src/main/java/com/gr4vy/sdk/models/components/MerchantAccountCreate.java
   - src/main/java/com/gr4vy/sdk/models/components/MerchantAccountUpdate.java
+  - src/main/java/com/gr4vy/sdk/models/components/MerchantAccounts.java
   - src/main/java/com/gr4vy/sdk/models/components/MerchantProfileScheme.java
   - src/main/java/com/gr4vy/sdk/models/components/MerchantProfileSchemeSummary.java
   - src/main/java/com/gr4vy/sdk/models/components/Method.java
@@ -617,24 +603,31 @@ generatedFiles:
   - src/main/java/com/gr4vy/sdk/models/components/NetworkTokenCreate.java
   - src/main/java/com/gr4vy/sdk/models/components/NetworkTokenPaymentMethodCreate.java
   - src/main/java/com/gr4vy/sdk/models/components/NetworkTokenStatus.java
+  - src/main/java/com/gr4vy/sdk/models/components/NetworkTokens.java
   - src/main/java/com/gr4vy/sdk/models/components/PaymentMethod.java
   - src/main/java/com/gr4vy/sdk/models/components/PaymentMethodCard.java
   - src/main/java/com/gr4vy/sdk/models/components/PaymentMethodDetailsCard.java
   - src/main/java/com/gr4vy/sdk/models/components/PaymentMethodStatus.java
   - src/main/java/com/gr4vy/sdk/models/components/PaymentMethodStoredCard.java
+  - src/main/java/com/gr4vy/sdk/models/components/PaymentMethodSummaries.java
   - src/main/java/com/gr4vy/sdk/models/components/PaymentMethodSummary.java
+  - src/main/java/com/gr4vy/sdk/models/components/PaymentMethods.java
   - src/main/java/com/gr4vy/sdk/models/components/PaymentOption.java
   - src/main/java/com/gr4vy/sdk/models/components/PaymentOptionContext.java
   - src/main/java/com/gr4vy/sdk/models/components/PaymentOptionContextApprovalUI.java
   - src/main/java/com/gr4vy/sdk/models/components/PaymentOptionRequest.java
+  - src/main/java/com/gr4vy/sdk/models/components/PaymentOptions.java
   - src/main/java/com/gr4vy/sdk/models/components/PaymentService.java
   - src/main/java/com/gr4vy/sdk/models/components/PaymentServiceConfiguration.java
   - src/main/java/com/gr4vy/sdk/models/components/PaymentServiceCreate.java
   - src/main/java/com/gr4vy/sdk/models/components/PaymentServiceDefinition.java
+  - src/main/java/com/gr4vy/sdk/models/components/PaymentServiceDefinitions.java
   - src/main/java/com/gr4vy/sdk/models/components/PaymentServiceStatus.java
   - src/main/java/com/gr4vy/sdk/models/components/PaymentServiceToken.java
   - src/main/java/com/gr4vy/sdk/models/components/PaymentServiceTokenCreate.java
+  - src/main/java/com/gr4vy/sdk/models/components/PaymentServiceTokens.java
   - src/main/java/com/gr4vy/sdk/models/components/PaymentServiceUpdate.java
+  - src/main/java/com/gr4vy/sdk/models/components/PaymentServices.java
   - src/main/java/com/gr4vy/sdk/models/components/PayoutCategory.java
   - src/main/java/com/gr4vy/sdk/models/components/PayoutCreate.java
   - src/main/java/com/gr4vy/sdk/models/components/PayoutCreatePaymentMethod.java
@@ -642,6 +635,7 @@ generatedFiles:
   - src/main/java/com/gr4vy/sdk/models/components/PayoutMerchantSummary.java
   - src/main/java/com/gr4vy/sdk/models/components/PayoutPaymentService.java
   - src/main/java/com/gr4vy/sdk/models/components/PayoutStatus.java
+  - src/main/java/com/gr4vy/sdk/models/components/PayoutSummaries.java
   - src/main/java/com/gr4vy/sdk/models/components/PayoutSummary.java
   - src/main/java/com/gr4vy/sdk/models/components/ProductType.java
   - src/main/java/com/gr4vy/sdk/models/components/Recipient.java
@@ -650,6 +644,7 @@ generatedFiles:
   - src/main/java/com/gr4vy/sdk/models/components/Refund.java
   - src/main/java/com/gr4vy/sdk/models/components/RefundStatus.java
   - src/main/java/com/gr4vy/sdk/models/components/RefundTargetType.java
+  - src/main/java/com/gr4vy/sdk/models/components/Refunds.java
   - src/main/java/com/gr4vy/sdk/models/components/Report.java
   - src/main/java/com/gr4vy/sdk/models/components/ReportCreate.java
   - src/main/java/com/gr4vy/sdk/models/components/ReportCreatorType.java
@@ -658,11 +653,13 @@ generatedFiles:
   - src/main/java/com/gr4vy/sdk/models/components/ReportExecutionStatus.java
   - src/main/java/com/gr4vy/sdk/models/components/ReportExecutionSummary.java
   - src/main/java/com/gr4vy/sdk/models/components/ReportExecutionUrl.java
+  - src/main/java/com/gr4vy/sdk/models/components/ReportExecutions.java
   - src/main/java/com/gr4vy/sdk/models/components/ReportSchedule.java
   - src/main/java/com/gr4vy/sdk/models/components/ReportSpec.java
   - src/main/java/com/gr4vy/sdk/models/components/ReportSpecModel.java
   - src/main/java/com/gr4vy/sdk/models/components/ReportSummary.java
   - src/main/java/com/gr4vy/sdk/models/components/ReportUpdate.java
+  - src/main/java/com/gr4vy/sdk/models/components/Reports.java
   - src/main/java/com/gr4vy/sdk/models/components/RequiredCheckoutFields.java
   - src/main/java/com/gr4vy/sdk/models/components/RequiredFields1.java
   - src/main/java/com/gr4vy/sdk/models/components/RequiredFields2.java
@@ -671,6 +668,7 @@ generatedFiles:
   - src/main/java/com/gr4vy/sdk/models/components/Security.java
   - src/main/java/com/gr4vy/sdk/models/components/ShippingDetails.java
   - src/main/java/com/gr4vy/sdk/models/components/ShippingDetailsCreate.java
+  - src/main/java/com/gr4vy/sdk/models/components/ShippingDetailsList.java
   - src/main/java/com/gr4vy/sdk/models/components/ShippingDetailsUpdate.java
   - src/main/java/com/gr4vy/sdk/models/components/Spec.java
   - src/main/java/com/gr4vy/sdk/models/components/StatementDescriptor.java
@@ -692,6 +690,7 @@ generatedFiles:
   - src/main/java/com/gr4vy/sdk/models/components/TransactionCreate.java
   - src/main/java/com/gr4vy/sdk/models/components/TransactionCreatePaymentMethod.java
   - src/main/java/com/gr4vy/sdk/models/components/TransactionEvent.java
+  - src/main/java/com/gr4vy/sdk/models/components/TransactionEvents.java
   - src/main/java/com/gr4vy/sdk/models/components/TransactionGiftCard.java
   - src/main/java/com/gr4vy/sdk/models/components/TransactionIntent.java
   - src/main/java/com/gr4vy/sdk/models/components/TransactionIntentOutcome.java
@@ -702,6 +701,7 @@ generatedFiles:
   - src/main/java/com/gr4vy/sdk/models/components/TransactionRefundCreate.java
   - src/main/java/com/gr4vy/sdk/models/components/TransactionRetriesReportSpec.java
   - src/main/java/com/gr4vy/sdk/models/components/TransactionStatus.java
+  - src/main/java/com/gr4vy/sdk/models/components/TransactionSummaries.java
   - src/main/java/com/gr4vy/sdk/models/components/TransactionSummary.java
   - src/main/java/com/gr4vy/sdk/models/components/TransactionThreeDSecureSummary.java
   - src/main/java/com/gr4vy/sdk/models/components/TransactionsReportSpec.java

@@ -4,10 +4,10 @@
 package com.gr4vy.sdk;
 
 import com.fasterxml.jackson.core.type.TypeReference;
-import com.gr4vy.sdk.models.components.CollectionTransactionSummary;
 import com.gr4vy.sdk.models.components.Transaction;
 import com.gr4vy.sdk.models.components.TransactionCapture;
 import com.gr4vy.sdk.models.components.TransactionCreate;
+import com.gr4vy.sdk.models.components.TransactionSummaries;
 import com.gr4vy.sdk.models.errors.APIException;
 import com.gr4vy.sdk.models.errors.Error400;
 import com.gr4vy.sdk.models.errors.Error401;
@@ -303,10 +303,10 @@ public class Transactions implements
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                CollectionTransactionSummary _out = Utils.mapper().readValue(
+                TransactionSummaries _out = Utils.mapper().readValue(
                     new String(_fullResponse, StandardCharsets.UTF_8),
-                    new TypeReference<CollectionTransactionSummary>() {});
-                _res.withCollectionTransactionSummary(Optional.ofNullable(_out));
+                    new TypeReference<TransactionSummaries>() {});
+                _res.withTransactionSummaries(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new APIException(

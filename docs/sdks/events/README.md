@@ -33,7 +33,7 @@ public class Application {
                 .transactionId("7099948d-7286-47e4-aad8-b68f7eb44591")
                 .call();
 
-        if (res.collectionTransactionEvent().isPresent()) {
+        if (res.transactionEvents().isPresent()) {
             // handle response
         }
     }

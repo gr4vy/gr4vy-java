@@ -5,7 +5,7 @@ package com.gr4vy.sdk.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.gr4vy.sdk.models.components.CollectionPaymentService;
+import com.gr4vy.sdk.models.components.PaymentServices;
 import com.gr4vy.sdk.utils.Response;
 import com.gr4vy.sdk.utils.Utils;
 import java.io.InputStream;
@@ -40,7 +40,7 @@ public class ListPaymentServicesResponse implements Response {
     /**
      * Successful Response
      */
-    private Optional<? extends CollectionPaymentService> collectionPaymentService;
+    private Optional<? extends PaymentServices> paymentServices;
 
     private Callable<Optional<ListPaymentServicesResponse>> next = () -> Optional.empty();
 
@@ -49,15 +49,15 @@ public class ListPaymentServicesResponse implements Response {
             String contentType,
             int statusCode,
             HttpResponse<InputStream> rawResponse,
-            Optional<? extends CollectionPaymentService> collectionPaymentService) {
+            Optional<? extends PaymentServices> paymentServices) {
         Utils.checkNotNull(contentType, "contentType");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
-        Utils.checkNotNull(collectionPaymentService, "collectionPaymentService");
+        Utils.checkNotNull(paymentServices, "paymentServices");
         this.contentType = contentType;
         this.statusCode = statusCode;
         this.rawResponse = rawResponse;
-        this.collectionPaymentService = collectionPaymentService;
+        this.paymentServices = paymentServices;
     }
     
     public ListPaymentServicesResponse(
@@ -96,8 +96,8 @@ public class ListPaymentServicesResponse implements Response {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<CollectionPaymentService> collectionPaymentService() {
-        return (Optional<CollectionPaymentService>) collectionPaymentService;
+    public Optional<PaymentServices> paymentServices() {
+        return (Optional<PaymentServices>) paymentServices;
     }
 
     public Optional<ListPaymentServicesResponse> next() throws Exception {
@@ -144,18 +144,18 @@ public class ListPaymentServicesResponse implements Response {
     /**
      * Successful Response
      */
-    public ListPaymentServicesResponse withCollectionPaymentService(CollectionPaymentService collectionPaymentService) {
-        Utils.checkNotNull(collectionPaymentService, "collectionPaymentService");
-        this.collectionPaymentService = Optional.ofNullable(collectionPaymentService);
+    public ListPaymentServicesResponse withPaymentServices(PaymentServices paymentServices) {
+        Utils.checkNotNull(paymentServices, "paymentServices");
+        this.paymentServices = Optional.ofNullable(paymentServices);
         return this;
     }
 
     /**
      * Successful Response
      */
-    public ListPaymentServicesResponse withCollectionPaymentService(Optional<? extends CollectionPaymentService> collectionPaymentService) {
-        Utils.checkNotNull(collectionPaymentService, "collectionPaymentService");
-        this.collectionPaymentService = collectionPaymentService;
+    public ListPaymentServicesResponse withPaymentServices(Optional<? extends PaymentServices> paymentServices) {
+        Utils.checkNotNull(paymentServices, "paymentServices");
+        this.paymentServices = paymentServices;
         return this;
     }
 
@@ -173,7 +173,7 @@ public class ListPaymentServicesResponse implements Response {
             Objects.deepEquals(this.contentType, other.contentType) &&
             Objects.deepEquals(this.statusCode, other.statusCode) &&
             Objects.deepEquals(this.rawResponse, other.rawResponse) &&
-            Objects.deepEquals(this.collectionPaymentService, other.collectionPaymentService);
+            Objects.deepEquals(this.paymentServices, other.paymentServices);
     }
     
     @Override
@@ -182,7 +182,7 @@ public class ListPaymentServicesResponse implements Response {
             contentType,
             statusCode,
             rawResponse,
-            collectionPaymentService);
+            paymentServices);
     }
     
     @Override
@@ -191,7 +191,7 @@ public class ListPaymentServicesResponse implements Response {
                 "contentType", contentType,
                 "statusCode", statusCode,
                 "rawResponse", rawResponse,
-                "collectionPaymentService", collectionPaymentService);
+                "paymentServices", paymentServices);
     }
     
     public final static class Builder {
@@ -203,7 +203,7 @@ public class ListPaymentServicesResponse implements Response {
  
         private HttpResponse<InputStream> rawResponse;
  
-        private Optional<? extends CollectionPaymentService> collectionPaymentService = Optional.empty();
+        private Optional<? extends PaymentServices> paymentServices = Optional.empty();
         
         private Builder() {
           // force use of static builder() method
@@ -239,18 +239,18 @@ public class ListPaymentServicesResponse implements Response {
         /**
          * Successful Response
          */
-        public Builder collectionPaymentService(CollectionPaymentService collectionPaymentService) {
-            Utils.checkNotNull(collectionPaymentService, "collectionPaymentService");
-            this.collectionPaymentService = Optional.ofNullable(collectionPaymentService);
+        public Builder paymentServices(PaymentServices paymentServices) {
+            Utils.checkNotNull(paymentServices, "paymentServices");
+            this.paymentServices = Optional.ofNullable(paymentServices);
             return this;
         }
 
         /**
          * Successful Response
          */
-        public Builder collectionPaymentService(Optional<? extends CollectionPaymentService> collectionPaymentService) {
-            Utils.checkNotNull(collectionPaymentService, "collectionPaymentService");
-            this.collectionPaymentService = collectionPaymentService;
+        public Builder paymentServices(Optional<? extends PaymentServices> paymentServices) {
+            Utils.checkNotNull(paymentServices, "paymentServices");
+            this.paymentServices = paymentServices;
             return this;
         }
 
@@ -271,7 +271,7 @@ public class ListPaymentServicesResponse implements Response {
                 contentType,
                 statusCode,
                 rawResponse,
-                collectionPaymentService)
+                paymentServices)
                 .withNext(next);
         }
     }

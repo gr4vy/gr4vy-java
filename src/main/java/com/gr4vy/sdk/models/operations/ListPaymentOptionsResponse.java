@@ -5,7 +5,7 @@ package com.gr4vy.sdk.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.gr4vy.sdk.models.components.CollectionNoCursorPaymentOption;
+import com.gr4vy.sdk.models.components.PaymentOptions;
 import com.gr4vy.sdk.utils.Response;
 import com.gr4vy.sdk.utils.Utils;
 import java.io.InputStream;
@@ -37,22 +37,22 @@ public class ListPaymentOptionsResponse implements Response {
     /**
      * Successful Response
      */
-    private Optional<? extends CollectionNoCursorPaymentOption> collectionNoCursorPaymentOption;
+    private Optional<? extends PaymentOptions> paymentOptions;
 
     @JsonCreator
     public ListPaymentOptionsResponse(
             String contentType,
             int statusCode,
             HttpResponse<InputStream> rawResponse,
-            Optional<? extends CollectionNoCursorPaymentOption> collectionNoCursorPaymentOption) {
+            Optional<? extends PaymentOptions> paymentOptions) {
         Utils.checkNotNull(contentType, "contentType");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
-        Utils.checkNotNull(collectionNoCursorPaymentOption, "collectionNoCursorPaymentOption");
+        Utils.checkNotNull(paymentOptions, "paymentOptions");
         this.contentType = contentType;
         this.statusCode = statusCode;
         this.rawResponse = rawResponse;
-        this.collectionNoCursorPaymentOption = collectionNoCursorPaymentOption;
+        this.paymentOptions = paymentOptions;
     }
     
     public ListPaymentOptionsResponse(
@@ -91,8 +91,8 @@ public class ListPaymentOptionsResponse implements Response {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<CollectionNoCursorPaymentOption> collectionNoCursorPaymentOption() {
-        return (Optional<CollectionNoCursorPaymentOption>) collectionNoCursorPaymentOption;
+    public Optional<PaymentOptions> paymentOptions() {
+        return (Optional<PaymentOptions>) paymentOptions;
     }
 
     public final static Builder builder() {
@@ -129,18 +129,18 @@ public class ListPaymentOptionsResponse implements Response {
     /**
      * Successful Response
      */
-    public ListPaymentOptionsResponse withCollectionNoCursorPaymentOption(CollectionNoCursorPaymentOption collectionNoCursorPaymentOption) {
-        Utils.checkNotNull(collectionNoCursorPaymentOption, "collectionNoCursorPaymentOption");
-        this.collectionNoCursorPaymentOption = Optional.ofNullable(collectionNoCursorPaymentOption);
+    public ListPaymentOptionsResponse withPaymentOptions(PaymentOptions paymentOptions) {
+        Utils.checkNotNull(paymentOptions, "paymentOptions");
+        this.paymentOptions = Optional.ofNullable(paymentOptions);
         return this;
     }
 
     /**
      * Successful Response
      */
-    public ListPaymentOptionsResponse withCollectionNoCursorPaymentOption(Optional<? extends CollectionNoCursorPaymentOption> collectionNoCursorPaymentOption) {
-        Utils.checkNotNull(collectionNoCursorPaymentOption, "collectionNoCursorPaymentOption");
-        this.collectionNoCursorPaymentOption = collectionNoCursorPaymentOption;
+    public ListPaymentOptionsResponse withPaymentOptions(Optional<? extends PaymentOptions> paymentOptions) {
+        Utils.checkNotNull(paymentOptions, "paymentOptions");
+        this.paymentOptions = paymentOptions;
         return this;
     }
 
@@ -158,7 +158,7 @@ public class ListPaymentOptionsResponse implements Response {
             Objects.deepEquals(this.contentType, other.contentType) &&
             Objects.deepEquals(this.statusCode, other.statusCode) &&
             Objects.deepEquals(this.rawResponse, other.rawResponse) &&
-            Objects.deepEquals(this.collectionNoCursorPaymentOption, other.collectionNoCursorPaymentOption);
+            Objects.deepEquals(this.paymentOptions, other.paymentOptions);
     }
     
     @Override
@@ -167,7 +167,7 @@ public class ListPaymentOptionsResponse implements Response {
             contentType,
             statusCode,
             rawResponse,
-            collectionNoCursorPaymentOption);
+            paymentOptions);
     }
     
     @Override
@@ -176,7 +176,7 @@ public class ListPaymentOptionsResponse implements Response {
                 "contentType", contentType,
                 "statusCode", statusCode,
                 "rawResponse", rawResponse,
-                "collectionNoCursorPaymentOption", collectionNoCursorPaymentOption);
+                "paymentOptions", paymentOptions);
     }
     
     public final static class Builder {
@@ -187,7 +187,7 @@ public class ListPaymentOptionsResponse implements Response {
  
         private HttpResponse<InputStream> rawResponse;
  
-        private Optional<? extends CollectionNoCursorPaymentOption> collectionNoCursorPaymentOption = Optional.empty();
+        private Optional<? extends PaymentOptions> paymentOptions = Optional.empty();
         
         private Builder() {
           // force use of static builder() method
@@ -223,18 +223,18 @@ public class ListPaymentOptionsResponse implements Response {
         /**
          * Successful Response
          */
-        public Builder collectionNoCursorPaymentOption(CollectionNoCursorPaymentOption collectionNoCursorPaymentOption) {
-            Utils.checkNotNull(collectionNoCursorPaymentOption, "collectionNoCursorPaymentOption");
-            this.collectionNoCursorPaymentOption = Optional.ofNullable(collectionNoCursorPaymentOption);
+        public Builder paymentOptions(PaymentOptions paymentOptions) {
+            Utils.checkNotNull(paymentOptions, "paymentOptions");
+            this.paymentOptions = Optional.ofNullable(paymentOptions);
             return this;
         }
 
         /**
          * Successful Response
          */
-        public Builder collectionNoCursorPaymentOption(Optional<? extends CollectionNoCursorPaymentOption> collectionNoCursorPaymentOption) {
-            Utils.checkNotNull(collectionNoCursorPaymentOption, "collectionNoCursorPaymentOption");
-            this.collectionNoCursorPaymentOption = collectionNoCursorPaymentOption;
+        public Builder paymentOptions(Optional<? extends PaymentOptions> paymentOptions) {
+            Utils.checkNotNull(paymentOptions, "paymentOptions");
+            this.paymentOptions = paymentOptions;
             return this;
         }
         
@@ -243,7 +243,7 @@ public class ListPaymentOptionsResponse implements Response {
                 contentType,
                 statusCode,
                 rawResponse,
-                collectionNoCursorPaymentOption);
+                paymentOptions);
         }
     }
 }
