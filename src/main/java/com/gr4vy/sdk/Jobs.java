@@ -73,7 +73,7 @@ public class Jobs implements
      */
     public CreateAccountUpdaterJobResponse create(
             AccountUpdaterJobCreate accountUpdaterJobCreate) throws Exception {
-        return create(Optional.empty(), JsonNullable.undefined(), accountUpdaterJobCreate);
+        return create(JsonNullable.undefined(), accountUpdaterJobCreate);
     }
     
     /**
@@ -81,20 +81,17 @@ public class Jobs implements
      * 
      * <p>Schedule one or more stored cards for an account update.
      * 
-     * @param applicationName 
      * @param merchantAccountId 
      * @param accountUpdaterJobCreate 
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public CreateAccountUpdaterJobResponse create(
-            Optional<String> applicationName,
             JsonNullable<String> merchantAccountId,
             AccountUpdaterJobCreate accountUpdaterJobCreate) throws Exception {
         CreateAccountUpdaterJobRequest request =
             CreateAccountUpdaterJobRequest
                 .builder()
-                .applicationName(applicationName)
                 .merchantAccountId(merchantAccountId)
                 .accountUpdaterJobCreate(accountUpdaterJobCreate)
                 .build();
@@ -122,11 +119,6 @@ public class Jobs implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
-        _req.addQueryParams(Utils.getQueryParams(
-                CreateAccountUpdaterJobRequest.class,
-                request, 
-                this.sdkConfiguration.globals));
         _req.addHeaders(Utils.getHeadersFromMetadata(request, this.sdkConfiguration.globals));
         
         Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());

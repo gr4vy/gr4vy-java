@@ -19,7 +19,6 @@ package hello.world;
 import com.gr4vy.sdk.Gr4vy;
 import com.gr4vy.sdk.models.components.CryptogramCreate;
 import com.gr4vy.sdk.models.errors.*;
-import com.gr4vy.sdk.models.operations.CreatePaymentMethodNetworkTokenCryptogramRequest;
 import com.gr4vy.sdk.models.operations.CreatePaymentMethodNetworkTokenCryptogramResponse;
 import java.lang.Exception;
 
@@ -31,16 +30,12 @@ public class Application {
                 .bearerAuth("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
-        CreatePaymentMethodNetworkTokenCryptogramRequest req = CreatePaymentMethodNetworkTokenCryptogramRequest.builder()
+        CreatePaymentMethodNetworkTokenCryptogramResponse res = sdk.paymentMethods().networkTokens().cryptogram().create()
                 .paymentMethodId("ef9496d8-53a5-4aad-8ca2-00eb68334389")
                 .networkTokenId("f8dd5cfc-7834-4847-95dc-f75a360e2298")
                 .cryptogramCreate(CryptogramCreate.builder()
                     .merchantInitiated(false)
                     .build())
-                .build();
-
-        CreatePaymentMethodNetworkTokenCryptogramResponse res = sdk.paymentMethods().networkTokens().cryptogram().create()
-                .request(req)
                 .call();
 
         if (res.cryptogram().isPresent()) {
@@ -52,9 +47,12 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                                       | Type                                                                                                                            | Required                                                                                                                        | Description                                                                                                                     |
-| ------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------- |
-| `request`                                                                                                                       | [CreatePaymentMethodNetworkTokenCryptogramRequest](../../models/operations/CreatePaymentMethodNetworkTokenCryptogramRequest.md) | :heavy_check_mark:                                                                                                              | The request object to use for the request.                                                                                      |
+| Parameter                                                       | Type                                                            | Required                                                        | Description                                                     | Example                                                         |
+| --------------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- |
+| `paymentMethodId`                                               | *String*                                                        | :heavy_check_mark:                                              | The ID of the payment method                                    | ef9496d8-53a5-4aad-8ca2-00eb68334389                            |
+| `networkTokenId`                                                | *String*                                                        | :heavy_check_mark:                                              | The ID of the network token                                     | f8dd5cfc-7834-4847-95dc-f75a360e2298                            |
+| `merchantAccountId`                                             | *JsonNullable\<String>*                                         | :heavy_minus_sign:                                              | The ID of the merchant account to use for this request.         |                                                                 |
+| `cryptogramCreate`                                              | [CryptogramCreate](../../models/components/CryptogramCreate.md) | :heavy_check_mark:                                              | N/A                                                             |                                                                 |
 
 ### Response
 

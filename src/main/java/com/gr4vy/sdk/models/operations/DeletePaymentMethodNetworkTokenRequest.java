@@ -5,14 +5,11 @@ package com.gr4vy.sdk.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.gr4vy.sdk.utils.LazySingletonValue;
 import com.gr4vy.sdk.utils.SpeakeasyMetadata;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.util.Objects;
-import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 public class DeletePaymentMethodNetworkTokenRequest {
@@ -29,9 +26,6 @@ public class DeletePaymentMethodNetworkTokenRequest {
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=network_token_id")
     private String networkTokenId;
 
-    @SpeakeasyMetadata("queryParam:style=form,explode=true,name=application_name")
-    private Optional<String> applicationName;
-
     /**
      * The ID of the merchant account to use for this request.
      */
@@ -42,22 +36,19 @@ public class DeletePaymentMethodNetworkTokenRequest {
     public DeletePaymentMethodNetworkTokenRequest(
             String paymentMethodId,
             String networkTokenId,
-            Optional<String> applicationName,
             JsonNullable<String> merchantAccountId) {
         Utils.checkNotNull(paymentMethodId, "paymentMethodId");
         Utils.checkNotNull(networkTokenId, "networkTokenId");
-        Utils.checkNotNull(applicationName, "applicationName");
         Utils.checkNotNull(merchantAccountId, "merchantAccountId");
         this.paymentMethodId = paymentMethodId;
         this.networkTokenId = networkTokenId;
-        this.applicationName = applicationName;
         this.merchantAccountId = merchantAccountId;
     }
     
     public DeletePaymentMethodNetworkTokenRequest(
             String paymentMethodId,
             String networkTokenId) {
-        this(paymentMethodId, networkTokenId, Optional.empty(), JsonNullable.undefined());
+        this(paymentMethodId, networkTokenId, JsonNullable.undefined());
     }
 
     /**
@@ -74,11 +65,6 @@ public class DeletePaymentMethodNetworkTokenRequest {
     @JsonIgnore
     public String networkTokenId() {
         return networkTokenId;
-    }
-
-    @JsonIgnore
-    public Optional<String> applicationName() {
-        return applicationName;
     }
 
     /**
@@ -108,18 +94,6 @@ public class DeletePaymentMethodNetworkTokenRequest {
     public DeletePaymentMethodNetworkTokenRequest withNetworkTokenId(String networkTokenId) {
         Utils.checkNotNull(networkTokenId, "networkTokenId");
         this.networkTokenId = networkTokenId;
-        return this;
-    }
-
-    public DeletePaymentMethodNetworkTokenRequest withApplicationName(String applicationName) {
-        Utils.checkNotNull(applicationName, "applicationName");
-        this.applicationName = Optional.ofNullable(applicationName);
-        return this;
-    }
-
-    public DeletePaymentMethodNetworkTokenRequest withApplicationName(Optional<String> applicationName) {
-        Utils.checkNotNull(applicationName, "applicationName");
-        this.applicationName = applicationName;
         return this;
     }
 
@@ -154,7 +128,6 @@ public class DeletePaymentMethodNetworkTokenRequest {
         return 
             Objects.deepEquals(this.paymentMethodId, other.paymentMethodId) &&
             Objects.deepEquals(this.networkTokenId, other.networkTokenId) &&
-            Objects.deepEquals(this.applicationName, other.applicationName) &&
             Objects.deepEquals(this.merchantAccountId, other.merchantAccountId);
     }
     
@@ -163,7 +136,6 @@ public class DeletePaymentMethodNetworkTokenRequest {
         return Objects.hash(
             paymentMethodId,
             networkTokenId,
-            applicationName,
             merchantAccountId);
     }
     
@@ -172,7 +144,6 @@ public class DeletePaymentMethodNetworkTokenRequest {
         return Utils.toString(DeletePaymentMethodNetworkTokenRequest.class,
                 "paymentMethodId", paymentMethodId,
                 "networkTokenId", networkTokenId,
-                "applicationName", applicationName,
                 "merchantAccountId", merchantAccountId);
     }
     
@@ -181,8 +152,6 @@ public class DeletePaymentMethodNetworkTokenRequest {
         private String paymentMethodId;
  
         private String networkTokenId;
- 
-        private Optional<String> applicationName;
  
         private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
         
@@ -208,18 +177,6 @@ public class DeletePaymentMethodNetworkTokenRequest {
             return this;
         }
 
-        public Builder applicationName(String applicationName) {
-            Utils.checkNotNull(applicationName, "applicationName");
-            this.applicationName = Optional.ofNullable(applicationName);
-            return this;
-        }
-
-        public Builder applicationName(Optional<String> applicationName) {
-            Utils.checkNotNull(applicationName, "applicationName");
-            this.applicationName = applicationName;
-            return this;
-        }
-
         /**
          * The ID of the merchant account to use for this request.
          */
@@ -239,20 +196,10 @@ public class DeletePaymentMethodNetworkTokenRequest {
         }
         
         public DeletePaymentMethodNetworkTokenRequest build() {
-            if (applicationName == null) {
-                applicationName = _SINGLETON_VALUE_ApplicationName.value();
-            }
             return new DeletePaymentMethodNetworkTokenRequest(
                 paymentMethodId,
                 networkTokenId,
-                applicationName,
                 merchantAccountId);
         }
-
-        private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_ApplicationName =
-                new LazySingletonValue<>(
-                        "application_name",
-                        "\"core-api\"",
-                        new TypeReference<Optional<String>>() {});
     }
 }

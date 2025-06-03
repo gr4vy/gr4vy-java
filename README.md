@@ -60,7 +60,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'com.gr4vy:sdk:1.0.0-beta.4'
+implementation 'com.gr4vy:sdk:1.0.0-beta.5'
 ```
 
 Maven:
@@ -68,7 +68,7 @@ Maven:
 <dependency>
     <groupId>com.gr4vy</groupId>
     <artifactId>sdk</artifactId>
-    <version>1.0.0-beta.4</version>
+    <version>1.0.0-beta.5</version>
 </dependency>
 ```
 
@@ -437,9 +437,6 @@ public class Application {
             .build();
 
         ListBuyersRequest req = ListBuyersRequest.builder()
-                .cursor("ZXhhbXBsZTE")
-                .search("John")
-                .externalIdentifier("buyer-12345")
                 .build();
 
         sdk.buyers().list()
@@ -480,9 +477,6 @@ public class Application {
             .build();
 
         ListBuyersRequest req = ListBuyersRequest.builder()
-                .cursor("ZXhhbXBsZTE")
-                .search("John")
-                .externalIdentifier("buyer-12345")
                 .build();
 
         sdk.buyers().list()
@@ -537,9 +531,6 @@ public class Application {
             .build();
 
         ListBuyersRequest req = ListBuyersRequest.builder()
-                .cursor("ZXhhbXBsZTE")
-                .search("John")
-                .externalIdentifier("buyer-12345")
                 .build();
 
         sdk.buyers().list()

@@ -48,7 +48,6 @@ public class Application {
 | Parameter                                               | Type                                                    | Required                                                | Description                                             | Example                                                 |
 | ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- |
 | `giftCardId`                                            | *String*                                                | :heavy_check_mark:                                      | The ID of the gift card.                                | 356d56e5-fe16-42ae-97ee-8d55d846ae2e                    |
-| `applicationName`                                       | *Optional\<String>*                                     | :heavy_minus_sign:                                      | N/A                                                     |                                                         |
 | `merchantAccountId`                                     | *JsonNullable\<String>*                                 | :heavy_minus_sign:                                      | The ID of the merchant account to use for this request. |                                                         |
 
 ### Response
@@ -111,7 +110,6 @@ public class Application {
 | Parameter                                               | Type                                                    | Required                                                | Description                                             | Example                                                 |
 | ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- |
 | `giftCardId`                                            | *String*                                                | :heavy_check_mark:                                      | The ID of the gift card.                                | 356d56e5-fe16-42ae-97ee-8d55d846ae2e                    |
-| `applicationName`                                       | *Optional\<String>*                                     | :heavy_minus_sign:                                      | N/A                                                     |                                                         |
 | `merchantAccountId`                                     | *JsonNullable\<String>*                                 | :heavy_minus_sign:                                      | The ID of the merchant account to use for this request. |                                                         |
 
 ### Response
@@ -163,8 +161,6 @@ public class Application {
                 .giftCardCreate(GiftCardCreate.builder()
                     .number("4123455541234561234")
                     .pin("1234")
-                    .buyerId("fe26475d-ec3e-4884-9553-f7356683f7f9")
-                    .buyerExternalIdentifier("buyer-12345")
                     .build())
                 .call();
 
@@ -179,7 +175,6 @@ public class Application {
 
 | Parameter                                                   | Type                                                        | Required                                                    | Description                                                 |
 | ----------------------------------------------------------- | ----------------------------------------------------------- | ----------------------------------------------------------- | ----------------------------------------------------------- |
-| `applicationName`                                           | *Optional\<String>*                                         | :heavy_minus_sign:                                          | N/A                                                         |
 | `merchantAccountId`                                         | *JsonNullable\<String>*                                     | :heavy_minus_sign:                                          | The ID of the merchant account to use for this request.     |
 | `giftCardCreate`                                            | [GiftCardCreate](../../models/components/GiftCardCreate.md) | :heavy_check_mark:                                          | N/A                                                         |
 

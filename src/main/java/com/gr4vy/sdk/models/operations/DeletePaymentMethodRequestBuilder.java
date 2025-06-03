@@ -3,21 +3,14 @@
  */
 package com.gr4vy.sdk.models.operations;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.gr4vy.sdk.utils.LazySingletonValue;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
-import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 public class DeletePaymentMethodRequestBuilder {
 
     private String paymentMethodId;
-    private Optional<String> applicationName = Utils.readDefaultOrConstValue(
-                            "applicationName",
-                            "\"core-api\"",
-                            new TypeReference<Optional<String>>() {});
     private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
     private final SDKMethodInterfaces.MethodCallDeletePaymentMethod sdk;
 
@@ -28,18 +21,6 @@ public class DeletePaymentMethodRequestBuilder {
     public DeletePaymentMethodRequestBuilder paymentMethodId(String paymentMethodId) {
         Utils.checkNotNull(paymentMethodId, "paymentMethodId");
         this.paymentMethodId = paymentMethodId;
-        return this;
-    }
-                
-    public DeletePaymentMethodRequestBuilder applicationName(String applicationName) {
-        Utils.checkNotNull(applicationName, "applicationName");
-        this.applicationName = Optional.of(applicationName);
-        return this;
-    }
-
-    public DeletePaymentMethodRequestBuilder applicationName(Optional<String> applicationName) {
-        Utils.checkNotNull(applicationName, "applicationName");
-        this.applicationName = applicationName;
         return this;
     }
 
@@ -56,18 +37,9 @@ public class DeletePaymentMethodRequestBuilder {
     }
 
     public DeletePaymentMethodResponse call() throws Exception {
-        if (applicationName == null) {
-            applicationName = _SINGLETON_VALUE_ApplicationName.value();
-        }
+
         return sdk.delete(
             paymentMethodId,
-            applicationName,
             merchantAccountId);
     }
-
-    private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_ApplicationName =
-            new LazySingletonValue<>(
-                    "applicationName",
-                    "\"core-api\"",
-                    new TypeReference<Optional<String>>() {});
 }

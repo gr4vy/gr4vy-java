@@ -104,7 +104,7 @@ public class NetworkTokens implements
      */
     public ListPaymentMethodNetworkTokensResponse list(
             String paymentMethodId) throws Exception {
-        return list(paymentMethodId, Optional.empty(), JsonNullable.undefined(), Optional.empty());
+        return list(paymentMethodId, JsonNullable.undefined(), Optional.empty());
     }
     
     /**
@@ -113,7 +113,6 @@ public class NetworkTokens implements
      * <p>List all network tokens stored for a payment method.
      * 
      * @param paymentMethodId The ID of the payment method
-     * @param applicationName 
      * @param merchantAccountId 
      * @param options additional options
      * @return The response from the API call
@@ -121,7 +120,6 @@ public class NetworkTokens implements
      */
     public ListPaymentMethodNetworkTokensResponse list(
             String paymentMethodId,
-            Optional<String> applicationName,
             JsonNullable<String> merchantAccountId,
             Optional<Options> options) throws Exception {
 
@@ -132,7 +130,6 @@ public class NetworkTokens implements
             ListPaymentMethodNetworkTokensRequest
                 .builder()
                 .paymentMethodId(paymentMethodId)
-                .applicationName(applicationName)
                 .merchantAccountId(merchantAccountId)
                 .build();
         
@@ -148,11 +145,6 @@ public class NetworkTokens implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
-        _req.addQueryParams(Utils.getQueryParams(
-                ListPaymentMethodNetworkTokensRequest.class,
-                request, 
-                this.sdkConfiguration.globals));
         _req.addHeaders(Utils.getHeadersFromMetadata(request, this.sdkConfiguration.globals));
         
         Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
@@ -490,7 +482,7 @@ public class NetworkTokens implements
     public CreatePaymentMethodNetworkTokenResponse create(
             String paymentMethodId,
             NetworkTokenCreate networkTokenCreate) throws Exception {
-        return create(paymentMethodId, Optional.empty(), JsonNullable.undefined(), networkTokenCreate);
+        return create(paymentMethodId, JsonNullable.undefined(), networkTokenCreate);
     }
     
     /**
@@ -499,7 +491,6 @@ public class NetworkTokens implements
      * <p>Provision a network token for a payment method.
      * 
      * @param paymentMethodId The ID of the payment method
-     * @param applicationName 
      * @param merchantAccountId 
      * @param networkTokenCreate 
      * @return The response from the API call
@@ -507,14 +498,12 @@ public class NetworkTokens implements
      */
     public CreatePaymentMethodNetworkTokenResponse create(
             String paymentMethodId,
-            Optional<String> applicationName,
             JsonNullable<String> merchantAccountId,
             NetworkTokenCreate networkTokenCreate) throws Exception {
         CreatePaymentMethodNetworkTokenRequest request =
             CreatePaymentMethodNetworkTokenRequest
                 .builder()
                 .paymentMethodId(paymentMethodId)
-                .applicationName(applicationName)
                 .merchantAccountId(merchantAccountId)
                 .networkTokenCreate(networkTokenCreate)
                 .build();
@@ -544,11 +533,6 @@ public class NetworkTokens implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
-        _req.addQueryParams(Utils.getQueryParams(
-                CreatePaymentMethodNetworkTokenRequest.class,
-                request, 
-                this.sdkConfiguration.globals));
         _req.addHeaders(Utils.getHeadersFromMetadata(request, this.sdkConfiguration.globals));
         
         Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
@@ -871,7 +855,7 @@ public class NetworkTokens implements
     public SuspendPaymentMethodNetworkTokenResponse suspend(
             String paymentMethodId,
             String networkTokenId) throws Exception {
-        return suspend(paymentMethodId, networkTokenId, Optional.empty(), JsonNullable.undefined());
+        return suspend(paymentMethodId, networkTokenId, JsonNullable.undefined());
     }
     
     /**
@@ -881,7 +865,6 @@ public class NetworkTokens implements
      * 
      * @param paymentMethodId The ID of the payment method
      * @param networkTokenId The ID of the network token
-     * @param applicationName 
      * @param merchantAccountId 
      * @return The response from the API call
      * @throws Exception if the API call fails
@@ -889,14 +872,12 @@ public class NetworkTokens implements
     public SuspendPaymentMethodNetworkTokenResponse suspend(
             String paymentMethodId,
             String networkTokenId,
-            Optional<String> applicationName,
             JsonNullable<String> merchantAccountId) throws Exception {
         SuspendPaymentMethodNetworkTokenRequest request =
             SuspendPaymentMethodNetworkTokenRequest
                 .builder()
                 .paymentMethodId(paymentMethodId)
                 .networkTokenId(networkTokenId)
-                .applicationName(applicationName)
                 .merchantAccountId(merchantAccountId)
                 .build();
         
@@ -912,11 +893,6 @@ public class NetworkTokens implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
-        _req.addQueryParams(Utils.getQueryParams(
-                SuspendPaymentMethodNetworkTokenRequest.class,
-                request, 
-                this.sdkConfiguration.globals));
         _req.addHeaders(Utils.getHeadersFromMetadata(request, this.sdkConfiguration.globals));
         
         Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
@@ -1239,7 +1215,7 @@ public class NetworkTokens implements
     public ResumePaymentMethodNetworkTokenResponse resume(
             String paymentMethodId,
             String networkTokenId) throws Exception {
-        return resume(paymentMethodId, networkTokenId, Optional.empty(), JsonNullable.undefined());
+        return resume(paymentMethodId, networkTokenId, JsonNullable.undefined());
     }
     
     /**
@@ -1249,7 +1225,6 @@ public class NetworkTokens implements
      * 
      * @param paymentMethodId The ID of the payment method
      * @param networkTokenId The ID of the network token
-     * @param applicationName 
      * @param merchantAccountId 
      * @return The response from the API call
      * @throws Exception if the API call fails
@@ -1257,14 +1232,12 @@ public class NetworkTokens implements
     public ResumePaymentMethodNetworkTokenResponse resume(
             String paymentMethodId,
             String networkTokenId,
-            Optional<String> applicationName,
             JsonNullable<String> merchantAccountId) throws Exception {
         ResumePaymentMethodNetworkTokenRequest request =
             ResumePaymentMethodNetworkTokenRequest
                 .builder()
                 .paymentMethodId(paymentMethodId)
                 .networkTokenId(networkTokenId)
-                .applicationName(applicationName)
                 .merchantAccountId(merchantAccountId)
                 .build();
         
@@ -1280,11 +1253,6 @@ public class NetworkTokens implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
-        _req.addQueryParams(Utils.getQueryParams(
-                ResumePaymentMethodNetworkTokenRequest.class,
-                request, 
-                this.sdkConfiguration.globals));
         _req.addHeaders(Utils.getHeadersFromMetadata(request, this.sdkConfiguration.globals));
         
         Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
@@ -1607,7 +1575,7 @@ public class NetworkTokens implements
     public DeletePaymentMethodNetworkTokenResponse delete(
             String paymentMethodId,
             String networkTokenId) throws Exception {
-        return delete(paymentMethodId, networkTokenId, Optional.empty(), JsonNullable.undefined());
+        return delete(paymentMethodId, networkTokenId, JsonNullable.undefined());
     }
     
     /**
@@ -1617,7 +1585,6 @@ public class NetworkTokens implements
      * 
      * @param paymentMethodId The ID of the payment method
      * @param networkTokenId The ID of the network token
-     * @param applicationName 
      * @param merchantAccountId 
      * @return The response from the API call
      * @throws Exception if the API call fails
@@ -1625,14 +1592,12 @@ public class NetworkTokens implements
     public DeletePaymentMethodNetworkTokenResponse delete(
             String paymentMethodId,
             String networkTokenId,
-            Optional<String> applicationName,
             JsonNullable<String> merchantAccountId) throws Exception {
         DeletePaymentMethodNetworkTokenRequest request =
             DeletePaymentMethodNetworkTokenRequest
                 .builder()
                 .paymentMethodId(paymentMethodId)
                 .networkTokenId(networkTokenId)
-                .applicationName(applicationName)
                 .merchantAccountId(merchantAccountId)
                 .build();
         
@@ -1648,11 +1613,6 @@ public class NetworkTokens implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
-        _req.addQueryParams(Utils.getQueryParams(
-                DeletePaymentMethodNetworkTokenRequest.class,
-                request, 
-                this.sdkConfiguration.globals));
         _req.addHeaders(Utils.getHeadersFromMetadata(request, this.sdkConfiguration.globals));
         
         Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());

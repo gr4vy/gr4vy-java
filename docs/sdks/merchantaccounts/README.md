@@ -32,8 +32,6 @@ public class Application {
             .build();
 
         sdk.merchantAccounts().list()
-                .cursor("ZXhhbXBsZTE")
-                .search("merchant-12345")
                 .callAsStream()
                 .forEach(item -> {
                    // handle item
@@ -50,7 +48,6 @@ public class Application {
 | `cursor`                                          | *JsonNullable\<String>*                           | :heavy_minus_sign:                                | A pointer to the page of results to return.       | ZXhhbXBsZTE                                       |
 | `limit`                                           | *Optional\<Long>*                                 | :heavy_minus_sign:                                | The maximum number of items that are at returned. | 20                                                |
 | `search`                                          | *JsonNullable\<String>*                           | :heavy_minus_sign:                                | The search term to filter merchant accounts by.   | merchant-12345                                    |
-| `applicationName`                                 | *Optional\<String>*                               | :heavy_minus_sign:                                | N/A                                               |                                                   |
 
 ### Response
 
@@ -84,12 +81,10 @@ Create a new merchant account in an instance.
 package hello.world;
 
 import com.gr4vy.sdk.Gr4vy;
-import com.gr4vy.sdk.models.components.CardScheme;
 import com.gr4vy.sdk.models.components.MerchantAccountCreate;
 import com.gr4vy.sdk.models.errors.*;
 import com.gr4vy.sdk.models.operations.CreateMerchantAccountResponse;
 import java.lang.Exception;
-import java.util.List;
 
 public class Application {
 
@@ -99,30 +94,13 @@ public class Application {
                 .bearerAuth("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
+        MerchantAccountCreate req = MerchantAccountCreate.builder()
+                .id("merchant-12345")
+                .displayName("Example")
+                .build();
+
         CreateMerchantAccountResponse res = sdk.merchantAccounts().create()
-                .merchantAccountCreate(MerchantAccountCreate.builder()
-                    .id("merchant-12345")
-                    .displayName("Example")
-                    .accountUpdaterRequestEncryptionKey("key-1234")
-                    .accountUpdaterRequestEncryptionKeyId("key-id-1234")
-                    .accountUpdaterResponseDecryptionKey("key-1234")
-                    .accountUpdaterResponseDecryptionKeyId("key-id-1234")
-                    .overCaptureAmount(1299L)
-                    .overCapturePercentage(25L)
-                    .loonClientKey("client-key-1234")
-                    .loonSecretKey("key-12345")
-                    .loonAcceptedSchemes(List.of(
-                        CardScheme.VISA))
-                    .visaNetworkTokensRequestorId("id-12345")
-                    .visaNetworkTokensAppId("id-12345")
-                    .amexNetworkTokensRequestorId("id-12345")
-                    .amexNetworkTokensAppId("id-12345")
-                    .mastercardNetworkTokensRequestorId("id-12345")
-                    .mastercardNetworkTokensAppId("id-12345")
-                    .outboundWebhookUrl("https://example.com/callback")
-                    .outboundWebhookUsername("user-12345")
-                    .outboundWebhookPassword("password-12345")
-                    .build())
+                .request(req)
                 .call();
 
         if (res.merchantAccount().isPresent()) {
@@ -134,10 +112,9 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                 | Type                                                                      | Required                                                                  | Description                                                               |
-| ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
-| `applicationName`                                                         | *Optional\<String>*                                                       | :heavy_minus_sign:                                                        | N/A                                                                       |
-| `merchantAccountCreate`                                                   | [MerchantAccountCreate](../../models/components/MerchantAccountCreate.md) | :heavy_check_mark:                                                        | N/A                                                                       |
+| Parameter                                                             | Type                                                                  | Required                                                              | Description                                                           |
+| --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- |
+| `request`                                                             | [MerchantAccountCreate](../../models/shared/MerchantAccountCreate.md) | :heavy_check_mark:                                                    | The request object to use for the request.                            |
 
 ### Response
 
@@ -199,7 +176,6 @@ public class Application {
 | Parameter                      | Type                           | Required                       | Description                    | Example                        |
 | ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
 | `merchantAccountId`            | *String*                       | :heavy_check_mark:             | The ID of the merchant account | merchant-12345                 |
-| `applicationName`              | *Optional\<String>*            | :heavy_minus_sign:             | N/A                            |                                |
 
 ### Response
 
@@ -233,12 +209,10 @@ Update info for a merchant account in an instance.
 package hello.world;
 
 import com.gr4vy.sdk.Gr4vy;
-import com.gr4vy.sdk.models.components.CardScheme;
 import com.gr4vy.sdk.models.components.MerchantAccountUpdate;
 import com.gr4vy.sdk.models.errors.*;
 import com.gr4vy.sdk.models.operations.UpdateMerchantAccountResponse;
 import java.lang.Exception;
-import java.util.List;
 
 public class Application {
 
@@ -251,26 +225,6 @@ public class Application {
         UpdateMerchantAccountResponse res = sdk.merchantAccounts().update()
                 .merchantAccountId("merchant-12345")
                 .merchantAccountUpdate(MerchantAccountUpdate.builder()
-                    .accountUpdaterRequestEncryptionKey("key-1234")
-                    .accountUpdaterRequestEncryptionKeyId("key-id-1234")
-                    .accountUpdaterResponseDecryptionKey("key-1234")
-                    .accountUpdaterResponseDecryptionKeyId("key-id-1234")
-                    .overCaptureAmount(1299L)
-                    .overCapturePercentage(25L)
-                    .loonClientKey("client-key-1234")
-                    .loonSecretKey("key-12345")
-                    .loonAcceptedSchemes(List.of(
-                        CardScheme.VISA))
-                    .visaNetworkTokensRequestorId("id-12345")
-                    .visaNetworkTokensAppId("id-12345")
-                    .amexNetworkTokensRequestorId("id-12345")
-                    .amexNetworkTokensAppId("id-12345")
-                    .mastercardNetworkTokensRequestorId("id-12345")
-                    .mastercardNetworkTokensAppId("id-12345")
-                    .displayName("Example")
-                    .outboundWebhookUrl("https://example.com/callback")
-                    .outboundWebhookUsername("user-12345")
-                    .outboundWebhookPassword("password-12345")
                     .build())
                 .call();
 
@@ -286,7 +240,6 @@ public class Application {
 | Parameter                                                                 | Type                                                                      | Required                                                                  | Description                                                               | Example                                                                   |
 | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
 | `merchantAccountId`                                                       | *String*                                                                  | :heavy_check_mark:                                                        | The ID of the merchant account                                            | merchant-12345                                                            |
-| `applicationName`                                                         | *Optional\<String>*                                                       | :heavy_minus_sign:                                                        | N/A                                                                       |                                                                           |
 | `merchantAccountUpdate`                                                   | [MerchantAccountUpdate](../../models/components/MerchantAccountUpdate.md) | :heavy_check_mark:                                                        | N/A                                                                       |                                                                           |
 
 ### Response

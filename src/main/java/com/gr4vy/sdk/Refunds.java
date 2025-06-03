@@ -77,7 +77,7 @@ public class Refunds implements
      */
     public GetRefundResponse get(
             String refundId) throws Exception {
-        return get(refundId, Optional.empty(), JsonNullable.undefined(), Optional.empty());
+        return get(refundId, JsonNullable.undefined(), Optional.empty());
     }
     
     /**
@@ -86,7 +86,6 @@ public class Refunds implements
      * <p>Fetch a refund.
      * 
      * @param refundId 
-     * @param applicationName 
      * @param merchantAccountId 
      * @param options additional options
      * @return The response from the API call
@@ -94,7 +93,6 @@ public class Refunds implements
      */
     public GetRefundResponse get(
             String refundId,
-            Optional<String> applicationName,
             JsonNullable<String> merchantAccountId,
             Optional<Options> options) throws Exception {
 
@@ -105,7 +103,6 @@ public class Refunds implements
             GetRefundRequest
                 .builder()
                 .refundId(refundId)
-                .applicationName(applicationName)
                 .merchantAccountId(merchantAccountId)
                 .build();
         
@@ -121,11 +118,6 @@ public class Refunds implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
-        _req.addQueryParams(Utils.getQueryParams(
-                GetRefundRequest.class,
-                request, 
-                this.sdkConfiguration.globals));
         _req.addHeaders(Utils.getHeadersFromMetadata(request, this.sdkConfiguration.globals));
         
         Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());

@@ -40,7 +40,6 @@ public class Application {
                     .provider(DigitalWalletProvider.CLICK_TO_PAY)
                     .merchantName("<value>")
                     .acceptTermsAndConditions(false)
-                    .merchantCountryCode("DE")
                     .build())
                 .call();
 
@@ -55,7 +54,6 @@ public class Application {
 
 | Parameter                                                             | Type                                                                  | Required                                                              | Description                                                           |
 | --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- |
-| `applicationName`                                                     | *Optional\<String>*                                                   | :heavy_minus_sign:                                                    | N/A                                                                   |
 | `merchantAccountId`                                                   | *JsonNullable\<String>*                                               | :heavy_minus_sign:                                                    | The ID of the merchant account to use for this request.               |
 | `digitalWalletCreate`                                                 | [DigitalWalletCreate](../../models/components/DigitalWalletCreate.md) | :heavy_check_mark:                                                    | N/A                                                                   |
 
@@ -117,7 +115,6 @@ public class Application {
 
 | Parameter                                               | Type                                                    | Required                                                | Description                                             |
 | ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- |
-| `applicationName`                                       | *Optional\<String>*                                     | :heavy_minus_sign:                                      | N/A                                                     |
 | `merchantAccountId`                                     | *JsonNullable\<String>*                                 | :heavy_minus_sign:                                      | The ID of the merchant account to use for this request. |
 
 ### Response
@@ -180,7 +177,6 @@ public class Application {
 | Parameter                                               | Type                                                    | Required                                                | Description                                             | Example                                                 |
 | ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- |
 | `digitalWalletId`                                       | *String*                                                | :heavy_check_mark:                                      | The ID of the digital wallet to read.                   | 1808f5e6-b49c-4db9-94fa-22371ea352f5                    |
-| `applicationName`                                       | *Optional\<String>*                                     | :heavy_minus_sign:                                      | N/A                                                     |                                                         |
 | `merchantAccountId`                                     | *JsonNullable\<String>*                                 | :heavy_minus_sign:                                      | The ID of the merchant account to use for this request. |                                                         |
 
 ### Response
@@ -243,7 +239,6 @@ public class Application {
 | Parameter                                               | Type                                                    | Required                                                | Description                                             | Example                                                 |
 | ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- |
 | `digitalWalletId`                                       | *String*                                                | :heavy_check_mark:                                      | The ID of the digital wallet to delete.                 | 1808f5e6-b49c-4db9-94fa-22371ea352f5                    |
-| `applicationName`                                       | *Optional\<String>*                                     | :heavy_minus_sign:                                      | N/A                                                     |                                                         |
 | `merchantAccountId`                                     | *JsonNullable\<String>*                                 | :heavy_minus_sign:                                      | The ID of the merchant account to use for this request. |                                                         |
 
 ### Response
@@ -294,7 +289,6 @@ public class Application {
         UpdateDigitalWalletResponse res = sdk.digitalWallets().update()
                 .digitalWalletId("1808f5e6-b49c-4db9-94fa-22371ea352f5")
                 .digitalWalletUpdate(DigitalWalletUpdate.builder()
-                    .merchantCountryCode("DE")
                     .build())
                 .call();
 
@@ -310,7 +304,6 @@ public class Application {
 | Parameter                                                             | Type                                                                  | Required                                                              | Description                                                           | Example                                                               |
 | --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- |
 | `digitalWalletId`                                                     | *String*                                                              | :heavy_check_mark:                                                    | The ID of the digital wallet to edit.                                 | 1808f5e6-b49c-4db9-94fa-22371ea352f5                                  |
-| `applicationName`                                                     | *Optional\<String>*                                                   | :heavy_minus_sign:                                                    | N/A                                                                   |                                                                       |
 | `merchantAccountId`                                                   | *JsonNullable\<String>*                                               | :heavy_minus_sign:                                                    | The ID of the merchant account to use for this request.               |                                                                       |
 | `digitalWalletUpdate`                                                 | [DigitalWalletUpdate](../../models/components/DigitalWalletUpdate.md) | :heavy_check_mark:                                                    | N/A                                                                   |                                                                       |
 

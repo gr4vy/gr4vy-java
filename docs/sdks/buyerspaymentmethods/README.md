@@ -31,10 +31,6 @@ public class Application {
             .build();
 
         ListBuyerPaymentMethodsRequest req = ListBuyerPaymentMethodsRequest.builder()
-                .buyerId("fe26475d-ec3e-4884-9553-f7356683f7f9")
-                .buyerExternalIdentifier("buyer-12345")
-                .country("US")
-                .currency("USD")
                 .build();
 
         ListBuyerPaymentMethodsResponse res = sdk.buyers().paymentMethods().list()

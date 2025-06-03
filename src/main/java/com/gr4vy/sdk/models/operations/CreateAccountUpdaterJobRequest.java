@@ -5,21 +5,15 @@ package com.gr4vy.sdk.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.gr4vy.sdk.models.components.AccountUpdaterJobCreate;
-import com.gr4vy.sdk.utils.LazySingletonValue;
 import com.gr4vy.sdk.utils.SpeakeasyMetadata;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.util.Objects;
-import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 public class CreateAccountUpdaterJobRequest {
-
-    @SpeakeasyMetadata("queryParam:style=form,explode=true,name=application_name")
-    private Optional<String> applicationName;
 
     /**
      * The ID of the merchant account to use for this request.
@@ -32,25 +26,17 @@ public class CreateAccountUpdaterJobRequest {
 
     @JsonCreator
     public CreateAccountUpdaterJobRequest(
-            Optional<String> applicationName,
             JsonNullable<String> merchantAccountId,
             AccountUpdaterJobCreate accountUpdaterJobCreate) {
-        Utils.checkNotNull(applicationName, "applicationName");
         Utils.checkNotNull(merchantAccountId, "merchantAccountId");
         Utils.checkNotNull(accountUpdaterJobCreate, "accountUpdaterJobCreate");
-        this.applicationName = applicationName;
         this.merchantAccountId = merchantAccountId;
         this.accountUpdaterJobCreate = accountUpdaterJobCreate;
     }
     
     public CreateAccountUpdaterJobRequest(
             AccountUpdaterJobCreate accountUpdaterJobCreate) {
-        this(Optional.empty(), JsonNullable.undefined(), accountUpdaterJobCreate);
-    }
-
-    @JsonIgnore
-    public Optional<String> applicationName() {
-        return applicationName;
+        this(JsonNullable.undefined(), accountUpdaterJobCreate);
     }
 
     /**
@@ -69,18 +55,6 @@ public class CreateAccountUpdaterJobRequest {
     public final static Builder builder() {
         return new Builder();
     }    
-
-    public CreateAccountUpdaterJobRequest withApplicationName(String applicationName) {
-        Utils.checkNotNull(applicationName, "applicationName");
-        this.applicationName = Optional.ofNullable(applicationName);
-        return this;
-    }
-
-    public CreateAccountUpdaterJobRequest withApplicationName(Optional<String> applicationName) {
-        Utils.checkNotNull(applicationName, "applicationName");
-        this.applicationName = applicationName;
-        return this;
-    }
 
     /**
      * The ID of the merchant account to use for this request.
@@ -117,7 +91,6 @@ public class CreateAccountUpdaterJobRequest {
         }
         CreateAccountUpdaterJobRequest other = (CreateAccountUpdaterJobRequest) o;
         return 
-            Objects.deepEquals(this.applicationName, other.applicationName) &&
             Objects.deepEquals(this.merchantAccountId, other.merchantAccountId) &&
             Objects.deepEquals(this.accountUpdaterJobCreate, other.accountUpdaterJobCreate);
     }
@@ -125,7 +98,6 @@ public class CreateAccountUpdaterJobRequest {
     @Override
     public int hashCode() {
         return Objects.hash(
-            applicationName,
             merchantAccountId,
             accountUpdaterJobCreate);
     }
@@ -133,14 +105,11 @@ public class CreateAccountUpdaterJobRequest {
     @Override
     public String toString() {
         return Utils.toString(CreateAccountUpdaterJobRequest.class,
-                "applicationName", applicationName,
                 "merchantAccountId", merchantAccountId,
                 "accountUpdaterJobCreate", accountUpdaterJobCreate);
     }
     
     public final static class Builder {
- 
-        private Optional<String> applicationName;
  
         private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
  
@@ -148,18 +117,6 @@ public class CreateAccountUpdaterJobRequest {
         
         private Builder() {
           // force use of static builder() method
-        }
-
-        public Builder applicationName(String applicationName) {
-            Utils.checkNotNull(applicationName, "applicationName");
-            this.applicationName = Optional.ofNullable(applicationName);
-            return this;
-        }
-
-        public Builder applicationName(Optional<String> applicationName) {
-            Utils.checkNotNull(applicationName, "applicationName");
-            this.applicationName = applicationName;
-            return this;
         }
 
         /**
@@ -187,19 +144,9 @@ public class CreateAccountUpdaterJobRequest {
         }
         
         public CreateAccountUpdaterJobRequest build() {
-            if (applicationName == null) {
-                applicationName = _SINGLETON_VALUE_ApplicationName.value();
-            }
             return new CreateAccountUpdaterJobRequest(
-                applicationName,
                 merchantAccountId,
                 accountUpdaterJobCreate);
         }
-
-        private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_ApplicationName =
-                new LazySingletonValue<>(
-                        "application_name",
-                        "\"core-api\"",
-                        new TypeReference<Optional<String>>() {});
     }
 }

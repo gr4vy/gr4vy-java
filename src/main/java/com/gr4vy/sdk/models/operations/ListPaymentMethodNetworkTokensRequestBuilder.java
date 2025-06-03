@@ -3,8 +3,6 @@
  */
 package com.gr4vy.sdk.models.operations;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.gr4vy.sdk.utils.LazySingletonValue;
 import com.gr4vy.sdk.utils.Options;
 import com.gr4vy.sdk.utils.RetryConfig;
 import com.gr4vy.sdk.utils.Utils;
@@ -16,10 +14,6 @@ import org.openapitools.jackson.nullable.JsonNullable;
 public class ListPaymentMethodNetworkTokensRequestBuilder {
 
     private String paymentMethodId;
-    private Optional<String> applicationName = Utils.readDefaultOrConstValue(
-                            "applicationName",
-                            "\"core-api\"",
-                            new TypeReference<Optional<String>>() {});
     private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKMethodInterfaces.MethodCallListPaymentMethodNetworkTokens sdk;
@@ -31,18 +25,6 @@ public class ListPaymentMethodNetworkTokensRequestBuilder {
     public ListPaymentMethodNetworkTokensRequestBuilder paymentMethodId(String paymentMethodId) {
         Utils.checkNotNull(paymentMethodId, "paymentMethodId");
         this.paymentMethodId = paymentMethodId;
-        return this;
-    }
-                
-    public ListPaymentMethodNetworkTokensRequestBuilder applicationName(String applicationName) {
-        Utils.checkNotNull(applicationName, "applicationName");
-        this.applicationName = Optional.of(applicationName);
-        return this;
-    }
-
-    public ListPaymentMethodNetworkTokensRequestBuilder applicationName(Optional<String> applicationName) {
-        Utils.checkNotNull(applicationName, "applicationName");
-        this.applicationName = applicationName;
         return this;
     }
 
@@ -71,21 +53,12 @@ public class ListPaymentMethodNetworkTokensRequestBuilder {
     }
 
     public ListPaymentMethodNetworkTokensResponse call() throws Exception {
-        if (applicationName == null) {
-            applicationName = _SINGLETON_VALUE_ApplicationName.value();
-        }        Optional<Options> options = Optional.of(Options.builder()
+        Optional<Options> options = Optional.of(Options.builder()
                                                     .retryConfig(retryConfig)
                                                     .build());
         return sdk.list(
             paymentMethodId,
-            applicationName,
             merchantAccountId,
             options);
     }
-
-    private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_ApplicationName =
-            new LazySingletonValue<>(
-                    "applicationName",
-                    "\"core-api\"",
-                    new TypeReference<Optional<String>>() {});
 }

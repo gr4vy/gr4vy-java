@@ -34,9 +34,6 @@ public class Application {
             .build();
 
         ListBuyersRequest req = ListBuyersRequest.builder()
-                .cursor("ZXhhbXBsZTE")
-                .search("John")
-                .externalIdentifier("buyer-12345")
                 .build();
 
         sdk.buyers().list()
@@ -88,7 +85,7 @@ Create a new buyer record.
 package hello.world;
 
 import com.gr4vy.sdk.Gr4vy;
-import com.gr4vy.sdk.models.components.*;
+import com.gr4vy.sdk.models.components.BuyerCreate;
 import com.gr4vy.sdk.models.errors.*;
 import com.gr4vy.sdk.models.operations.AddBuyerResponse;
 import java.lang.Exception;
@@ -103,29 +100,6 @@ public class Application {
 
         AddBuyerResponse res = sdk.buyers().create()
                 .buyerCreate(BuyerCreate.builder()
-                    .displayName("John Doe")
-                    .externalIdentifier("buyer-12345")
-                    .billingDetails(BillingDetailsInput.builder()
-                        .firstName("John")
-                        .lastName("Doe")
-                        .emailAddress("john@example.com")
-                        .phoneNumber("+1234567890")
-                        .address(Address.builder()
-                            .city("San Jose")
-                            .country("US")
-                            .postalCode("94560")
-                            .state("California")
-                            .stateCode("US-CA")
-                            .houseNumberOrName("10")
-                            .line1("Stafford Appartments")
-                            .line2("29th Street")
-                            .organization("Gr4vy")
-                            .build())
-                        .taxId(TaxId.builder()
-                            .value("12345678931")
-                            .kind(TaxIdKind.AR_CUIT)
-                            .build())
-                        .build())
                     .build())
                 .call();
 
@@ -140,7 +114,6 @@ public class Application {
 
 | Parameter                                               | Type                                                    | Required                                                | Description                                             |
 | ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- |
-| `applicationName`                                       | *Optional\<String>*                                     | :heavy_minus_sign:                                      | N/A                                                     |
 | `merchantAccountId`                                     | *JsonNullable\<String>*                                 | :heavy_minus_sign:                                      | The ID of the merchant account to use for this request. |
 | `buyerCreate`                                           | [BuyerCreate](../../models/components/BuyerCreate.md)   | :heavy_check_mark:                                      | N/A                                                     |
 
@@ -204,7 +177,6 @@ public class Application {
 | Parameter                                               | Type                                                    | Required                                                | Description                                             | Example                                                 |
 | ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- |
 | `buyerId`                                               | *String*                                                | :heavy_check_mark:                                      | The ID of the buyer to retrieve.                        | fe26475d-ec3e-4884-9553-f7356683f7f9                    |
-| `applicationName`                                       | *Optional\<String>*                                     | :heavy_minus_sign:                                      | N/A                                                     |                                                         |
 | `merchantAccountId`                                     | *JsonNullable\<String>*                                 | :heavy_minus_sign:                                      | The ID of the merchant account to use for this request. |                                                         |
 
 ### Response
@@ -243,7 +215,6 @@ import com.gr4vy.sdk.models.components.BuyerUpdate;
 import com.gr4vy.sdk.models.errors.*;
 import com.gr4vy.sdk.models.operations.UpdateBuyerResponse;
 import java.lang.Exception;
-import org.openapitools.jackson.nullable.JsonNullable;
 
 public class Application {
 
@@ -256,9 +227,6 @@ public class Application {
         UpdateBuyerResponse res = sdk.buyers().update()
                 .buyerId("fe26475d-ec3e-4884-9553-f7356683f7f9")
                 .buyerUpdate(BuyerUpdate.builder()
-                    .displayName("John Doe")
-                    .externalIdentifier("buyer-12345")
-                    .billingDetails(JsonNullable.of(null))
                     .build())
                 .call();
 
@@ -274,7 +242,6 @@ public class Application {
 | Parameter                                               | Type                                                    | Required                                                | Description                                             | Example                                                 |
 | ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- |
 | `buyerId`                                               | *String*                                                | :heavy_check_mark:                                      | The ID of the buyer to edit.                            | fe26475d-ec3e-4884-9553-f7356683f7f9                    |
-| `applicationName`                                       | *Optional\<String>*                                     | :heavy_minus_sign:                                      | N/A                                                     |                                                         |
 | `merchantAccountId`                                     | *JsonNullable\<String>*                                 | :heavy_minus_sign:                                      | The ID of the merchant account to use for this request. |                                                         |
 | `buyerUpdate`                                           | [BuyerUpdate](../../models/components/BuyerUpdate.md)   | :heavy_check_mark:                                      | N/A                                                     |                                                         |
 
@@ -336,7 +303,6 @@ public class Application {
 | Parameter                                               | Type                                                    | Required                                                | Description                                             | Example                                                 |
 | ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- |
 | `buyerId`                                               | *String*                                                | :heavy_check_mark:                                      | The ID of the buyer to delete.                          | fe26475d-ec3e-4884-9553-f7356683f7f9                    |
-| `applicationName`                                       | *Optional\<String>*                                     | :heavy_minus_sign:                                      | N/A                                                     |                                                         |
 | `merchantAccountId`                                     | *JsonNullable\<String>*                                 | :heavy_minus_sign:                                      | The ID of the merchant account to use for this request. |                                                         |
 
 ### Response

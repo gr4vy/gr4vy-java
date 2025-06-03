@@ -96,7 +96,7 @@ public class PaymentServiceDefinitions implements
      * @throws Exception if the API call fails
      */
     public ListPaymentServiceDefinitionsResponse listDirect() throws Exception {
-        return list(JsonNullable.undefined(), Optional.empty(), Optional.empty(), Optional.empty());
+        return list(JsonNullable.undefined(), Optional.empty(), Optional.empty());
     }
     
     /**
@@ -106,7 +106,6 @@ public class PaymentServiceDefinitions implements
      * 
      * @param cursor A pointer to the page of results to return.
      * @param limit The maximum number of items that are at returned.
-     * @param applicationName 
      * @param options additional options
      * @return The response from the API call
      * @throws Exception if the API call fails
@@ -114,7 +113,6 @@ public class PaymentServiceDefinitions implements
     public ListPaymentServiceDefinitionsResponse list(
             JsonNullable<String> cursor,
             Optional<Long> limit,
-            Optional<String> applicationName,
             Optional<Options> options) throws Exception {
 
         if (options.isPresent()) {
@@ -125,7 +123,6 @@ public class PaymentServiceDefinitions implements
                 .builder()
                 .cursor(cursor)
                 .limit(limit)
-                .applicationName(applicationName)
                 .build();
         
         String _baseUrl = Utils.templateUrl(
@@ -237,8 +234,7 @@ public class PaymentServiceDefinitions implements
                     } 
                     ListPaymentServiceDefinitionsRequestBuilder _nextRequest = list()
                             .cursor(_nextCursor)
-                            .limit(limit)
-                            .applicationName(applicationName);
+                            .limit(limit);
                     return Optional.of(_nextRequest.call());
                 });
 
@@ -498,7 +494,7 @@ public class PaymentServiceDefinitions implements
      */
     public GetPaymentServiceDefinitionResponse get(
             String paymentServiceDefinitionId) throws Exception {
-        return get(paymentServiceDefinitionId, Optional.empty(), Optional.empty());
+        return get(paymentServiceDefinitionId, Optional.empty());
     }
     
     /**
@@ -507,14 +503,12 @@ public class PaymentServiceDefinitions implements
      * <p>Get the definition of a payment service that can be configured.
      * 
      * @param paymentServiceDefinitionId 
-     * @param applicationName 
      * @param options additional options
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public GetPaymentServiceDefinitionResponse get(
             String paymentServiceDefinitionId,
-            Optional<String> applicationName,
             Optional<Options> options) throws Exception {
 
         if (options.isPresent()) {
@@ -524,7 +518,6 @@ public class PaymentServiceDefinitions implements
             GetPaymentServiceDefinitionRequest
                 .builder()
                 .paymentServiceDefinitionId(paymentServiceDefinitionId)
-                .applicationName(applicationName)
                 .build();
         
         String _baseUrl = Utils.templateUrl(
@@ -539,11 +532,6 @@ public class PaymentServiceDefinitions implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
-        _req.addQueryParams(Utils.getQueryParams(
-                GetPaymentServiceDefinitionRequest.class,
-                request, 
-                this.sdkConfiguration.globals));
         
         Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
         Utils.configureSecurity(_req,  
@@ -880,29 +868,10 @@ public class PaymentServiceDefinitions implements
     public CreatePaymentServiceDefinitionSessionResponse session(
             String paymentServiceDefinitionId,
             Map<String, Object> requestBody) throws Exception {
-        return session(paymentServiceDefinitionId, Optional.empty(), requestBody);
-    }
-    
-    /**
-     * Create a session for apayment service definition
-     * 
-     * <p>Creates a session for a payment service that supports sessions.
-     * 
-     * @param paymentServiceDefinitionId 
-     * @param applicationName 
-     * @param requestBody 
-     * @return The response from the API call
-     * @throws Exception if the API call fails
-     */
-    public CreatePaymentServiceDefinitionSessionResponse session(
-            String paymentServiceDefinitionId,
-            Optional<String> applicationName,
-            Map<String, Object> requestBody) throws Exception {
         CreatePaymentServiceDefinitionSessionRequest request =
             CreatePaymentServiceDefinitionSessionRequest
                 .builder()
                 .paymentServiceDefinitionId(paymentServiceDefinitionId)
-                .applicationName(applicationName)
                 .requestBody(requestBody)
                 .build();
         
@@ -931,11 +900,6 @@ public class PaymentServiceDefinitions implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
-        _req.addQueryParams(Utils.getQueryParams(
-                CreatePaymentServiceDefinitionSessionRequest.class,
-                request, 
-                this.sdkConfiguration.globals));
         
         Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
         Utils.configureSecurity(_req,  

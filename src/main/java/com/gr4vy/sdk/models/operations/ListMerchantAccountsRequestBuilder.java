@@ -24,10 +24,6 @@ public class ListMerchantAccountsRequestBuilder {
                             "20",
                             new TypeReference<Optional<Long>>() {});
     private JsonNullable<String> search = JsonNullable.undefined();
-    private Optional<String> applicationName = Utils.readDefaultOrConstValue(
-                            "applicationName",
-                            "\"core-api\"",
-                            new TypeReference<Optional<String>>() {});
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKMethodInterfaces.MethodCallListMerchantAccounts sdk;
 
@@ -71,18 +67,6 @@ public class ListMerchantAccountsRequestBuilder {
         return this;
     }
                 
-    public ListMerchantAccountsRequestBuilder applicationName(String applicationName) {
-        Utils.checkNotNull(applicationName, "applicationName");
-        this.applicationName = Optional.of(applicationName);
-        return this;
-    }
-
-    public ListMerchantAccountsRequestBuilder applicationName(Optional<String> applicationName) {
-        Utils.checkNotNull(applicationName, "applicationName");
-        this.applicationName = applicationName;
-        return this;
-    }
-                
     public ListMerchantAccountsRequestBuilder retryConfig(RetryConfig retryConfig) {
         Utils.checkNotNull(retryConfig, "retryConfig");
         this.retryConfig = Optional.of(retryConfig);
@@ -98,9 +82,6 @@ public class ListMerchantAccountsRequestBuilder {
     public ListMerchantAccountsResponse call() throws Exception {
         if (limit == null) {
             limit = _SINGLETON_VALUE_Limit.value();
-        }
-        if (applicationName == null) {
-            applicationName = _SINGLETON_VALUE_ApplicationName.value();
         }        Optional<Options> options = Optional.of(Options.builder()
                                                     .retryConfig(retryConfig)
                                                     .build());
@@ -108,7 +89,6 @@ public class ListMerchantAccountsRequestBuilder {
             cursor,
             limit,
             search,
-            applicationName,
             options);
     }
     
@@ -138,10 +118,4 @@ public class ListMerchantAccountsRequestBuilder {
                     "limit",
                     "20",
                     new TypeReference<Optional<Long>>() {});
-
-    private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_ApplicationName =
-            new LazySingletonValue<>(
-                    "applicationName",
-                    "\"core-api\"",
-                    new TypeReference<Optional<String>>() {});
 }

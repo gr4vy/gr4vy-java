@@ -5,8 +5,6 @@ package com.gr4vy.sdk.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.gr4vy.sdk.utils.LazySingletonValue;
 import com.gr4vy.sdk.utils.SpeakeasyMetadata;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Object;
@@ -14,15 +12,11 @@ import java.lang.Override;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
-import java.util.Optional;
 
 public class CreatePaymentServiceDefinitionSessionRequest {
 
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=payment_service_definition_id")
     private String paymentServiceDefinitionId;
-
-    @SpeakeasyMetadata("queryParam:style=form,explode=true,name=application_name")
-    private Optional<String> applicationName;
 
     @SpeakeasyMetadata("request:mediaType=application/json")
     private Map<String, Object> requestBody;
@@ -30,30 +24,16 @@ public class CreatePaymentServiceDefinitionSessionRequest {
     @JsonCreator
     public CreatePaymentServiceDefinitionSessionRequest(
             String paymentServiceDefinitionId,
-            Optional<String> applicationName,
             Map<String, Object> requestBody) {
         Utils.checkNotNull(paymentServiceDefinitionId, "paymentServiceDefinitionId");
-        Utils.checkNotNull(applicationName, "applicationName");
         requestBody = Utils.emptyMapIfNull(requestBody);
         this.paymentServiceDefinitionId = paymentServiceDefinitionId;
-        this.applicationName = applicationName;
         this.requestBody = requestBody;
-    }
-    
-    public CreatePaymentServiceDefinitionSessionRequest(
-            String paymentServiceDefinitionId,
-            Map<String, Object> requestBody) {
-        this(paymentServiceDefinitionId, Optional.empty(), requestBody);
     }
 
     @JsonIgnore
     public String paymentServiceDefinitionId() {
         return paymentServiceDefinitionId;
-    }
-
-    @JsonIgnore
-    public Optional<String> applicationName() {
-        return applicationName;
     }
 
     @JsonIgnore
@@ -68,18 +48,6 @@ public class CreatePaymentServiceDefinitionSessionRequest {
     public CreatePaymentServiceDefinitionSessionRequest withPaymentServiceDefinitionId(String paymentServiceDefinitionId) {
         Utils.checkNotNull(paymentServiceDefinitionId, "paymentServiceDefinitionId");
         this.paymentServiceDefinitionId = paymentServiceDefinitionId;
-        return this;
-    }
-
-    public CreatePaymentServiceDefinitionSessionRequest withApplicationName(String applicationName) {
-        Utils.checkNotNull(applicationName, "applicationName");
-        this.applicationName = Optional.ofNullable(applicationName);
-        return this;
-    }
-
-    public CreatePaymentServiceDefinitionSessionRequest withApplicationName(Optional<String> applicationName) {
-        Utils.checkNotNull(applicationName, "applicationName");
-        this.applicationName = applicationName;
         return this;
     }
 
@@ -101,7 +69,6 @@ public class CreatePaymentServiceDefinitionSessionRequest {
         CreatePaymentServiceDefinitionSessionRequest other = (CreatePaymentServiceDefinitionSessionRequest) o;
         return 
             Objects.deepEquals(this.paymentServiceDefinitionId, other.paymentServiceDefinitionId) &&
-            Objects.deepEquals(this.applicationName, other.applicationName) &&
             Objects.deepEquals(this.requestBody, other.requestBody);
     }
     
@@ -109,7 +76,6 @@ public class CreatePaymentServiceDefinitionSessionRequest {
     public int hashCode() {
         return Objects.hash(
             paymentServiceDefinitionId,
-            applicationName,
             requestBody);
     }
     
@@ -117,15 +83,12 @@ public class CreatePaymentServiceDefinitionSessionRequest {
     public String toString() {
         return Utils.toString(CreatePaymentServiceDefinitionSessionRequest.class,
                 "paymentServiceDefinitionId", paymentServiceDefinitionId,
-                "applicationName", applicationName,
                 "requestBody", requestBody);
     }
     
     public final static class Builder {
  
         private String paymentServiceDefinitionId;
- 
-        private Optional<String> applicationName;
  
         private Map<String, Object> requestBody;
         
@@ -139,18 +102,6 @@ public class CreatePaymentServiceDefinitionSessionRequest {
             return this;
         }
 
-        public Builder applicationName(String applicationName) {
-            Utils.checkNotNull(applicationName, "applicationName");
-            this.applicationName = Optional.ofNullable(applicationName);
-            return this;
-        }
-
-        public Builder applicationName(Optional<String> applicationName) {
-            Utils.checkNotNull(applicationName, "applicationName");
-            this.applicationName = applicationName;
-            return this;
-        }
-
         public Builder requestBody(Map<String, Object> requestBody) {
             Utils.checkNotNull(requestBody, "requestBody");
             this.requestBody = requestBody;
@@ -158,19 +109,9 @@ public class CreatePaymentServiceDefinitionSessionRequest {
         }
         
         public CreatePaymentServiceDefinitionSessionRequest build() {
-            if (applicationName == null) {
-                applicationName = _SINGLETON_VALUE_ApplicationName.value();
-            }
             return new CreatePaymentServiceDefinitionSessionRequest(
                 paymentServiceDefinitionId,
-                applicationName,
                 requestBody);
         }
-
-        private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_ApplicationName =
-                new LazySingletonValue<>(
-                        "application_name",
-                        "\"core-api\"",
-                        new TypeReference<Optional<String>>() {});
     }
 }

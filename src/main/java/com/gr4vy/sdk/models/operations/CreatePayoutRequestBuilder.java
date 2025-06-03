@@ -3,39 +3,20 @@
  */
 package com.gr4vy.sdk.models.operations;
 
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.gr4vy.sdk.models.components.PayoutCreate;
-import com.gr4vy.sdk.utils.LazySingletonValue;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
-import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 public class CreatePayoutRequestBuilder {
 
-    private Optional<String> applicationName = Utils.readDefaultOrConstValue(
-                            "applicationName",
-                            "\"core-api\"",
-                            new TypeReference<Optional<String>>() {});
     private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
     private PayoutCreate payoutCreate;
     private final SDKMethodInterfaces.MethodCallCreatePayout sdk;
 
     public CreatePayoutRequestBuilder(SDKMethodInterfaces.MethodCallCreatePayout sdk) {
         this.sdk = sdk;
-    }
-                
-    public CreatePayoutRequestBuilder applicationName(String applicationName) {
-        Utils.checkNotNull(applicationName, "applicationName");
-        this.applicationName = Optional.of(applicationName);
-        return this;
-    }
-
-    public CreatePayoutRequestBuilder applicationName(Optional<String> applicationName) {
-        Utils.checkNotNull(applicationName, "applicationName");
-        this.applicationName = applicationName;
-        return this;
     }
 
     public CreatePayoutRequestBuilder merchantAccountId(String merchantAccountId) {
@@ -57,18 +38,9 @@ public class CreatePayoutRequestBuilder {
     }
 
     public CreatePayoutResponse call() throws Exception {
-        if (applicationName == null) {
-            applicationName = _SINGLETON_VALUE_ApplicationName.value();
-        }
+
         return sdk.create(
-            applicationName,
             merchantAccountId,
             payoutCreate);
     }
-
-    private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_ApplicationName =
-            new LazySingletonValue<>(
-                    "applicationName",
-                    "\"core-api\"",
-                    new TypeReference<Optional<String>>() {});
 }

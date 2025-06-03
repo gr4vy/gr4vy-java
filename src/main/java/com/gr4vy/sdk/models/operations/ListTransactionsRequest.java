@@ -247,9 +247,6 @@ public class ListTransactionsRequest {
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=used_3ds")
     private JsonNullable<Boolean> used3ds;
 
-    @SpeakeasyMetadata("queryParam:style=form,explode=true,name=application_name")
-    private Optional<String> applicationName;
-
     /**
      * The ID of the merchant account to use for this request.
      */
@@ -301,7 +298,6 @@ public class ListTransactionsRequest {
             JsonNullable<Boolean> isSubsequentPayment,
             JsonNullable<Boolean> merchantInitiated,
             JsonNullable<Boolean> used3ds,
-            Optional<String> applicationName,
             JsonNullable<String> merchantAccountId) {
         Utils.checkNotNull(cursor, "cursor");
         Utils.checkNotNull(limit, "limit");
@@ -346,7 +342,6 @@ public class ListTransactionsRequest {
         Utils.checkNotNull(isSubsequentPayment, "isSubsequentPayment");
         Utils.checkNotNull(merchantInitiated, "merchantInitiated");
         Utils.checkNotNull(used3ds, "used3ds");
-        Utils.checkNotNull(applicationName, "applicationName");
         Utils.checkNotNull(merchantAccountId, "merchantAccountId");
         this.cursor = cursor;
         this.limit = limit;
@@ -391,12 +386,11 @@ public class ListTransactionsRequest {
         this.isSubsequentPayment = isSubsequentPayment;
         this.merchantInitiated = merchantInitiated;
         this.used3ds = used3ds;
-        this.applicationName = applicationName;
         this.merchantAccountId = merchantAccountId;
     }
     
     public ListTransactionsRequest() {
-        this(JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined());
+        this(JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
     }
 
     /**
@@ -713,11 +707,6 @@ public class ListTransactionsRequest {
     @JsonIgnore
     public JsonNullable<Boolean> used3ds() {
         return used3ds;
-    }
-
-    @JsonIgnore
-    public Optional<String> applicationName() {
-        return applicationName;
     }
 
     /**
@@ -1434,18 +1423,6 @@ public class ListTransactionsRequest {
         return this;
     }
 
-    public ListTransactionsRequest withApplicationName(String applicationName) {
-        Utils.checkNotNull(applicationName, "applicationName");
-        this.applicationName = Optional.ofNullable(applicationName);
-        return this;
-    }
-
-    public ListTransactionsRequest withApplicationName(Optional<String> applicationName) {
-        Utils.checkNotNull(applicationName, "applicationName");
-        this.applicationName = applicationName;
-        return this;
-    }
-
     /**
      * The ID of the merchant account to use for this request.
      */
@@ -1518,7 +1495,6 @@ public class ListTransactionsRequest {
             Objects.deepEquals(this.isSubsequentPayment, other.isSubsequentPayment) &&
             Objects.deepEquals(this.merchantInitiated, other.merchantInitiated) &&
             Objects.deepEquals(this.used3ds, other.used3ds) &&
-            Objects.deepEquals(this.applicationName, other.applicationName) &&
             Objects.deepEquals(this.merchantAccountId, other.merchantAccountId);
     }
     
@@ -1568,7 +1544,6 @@ public class ListTransactionsRequest {
             isSubsequentPayment,
             merchantInitiated,
             used3ds,
-            applicationName,
             merchantAccountId);
     }
     
@@ -1618,7 +1593,6 @@ public class ListTransactionsRequest {
                 "isSubsequentPayment", isSubsequentPayment,
                 "merchantInitiated", merchantInitiated,
                 "used3ds", used3ds,
-                "applicationName", applicationName,
                 "merchantAccountId", merchantAccountId);
     }
     
@@ -1709,8 +1683,6 @@ public class ListTransactionsRequest {
         private JsonNullable<Boolean> merchantInitiated = JsonNullable.undefined();
  
         private JsonNullable<Boolean> used3ds = JsonNullable.undefined();
- 
-        private Optional<String> applicationName;
  
         private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
         
@@ -2420,18 +2392,6 @@ public class ListTransactionsRequest {
             return this;
         }
 
-        public Builder applicationName(String applicationName) {
-            Utils.checkNotNull(applicationName, "applicationName");
-            this.applicationName = Optional.ofNullable(applicationName);
-            return this;
-        }
-
-        public Builder applicationName(Optional<String> applicationName) {
-            Utils.checkNotNull(applicationName, "applicationName");
-            this.applicationName = applicationName;
-            return this;
-        }
-
         /**
          * The ID of the merchant account to use for this request.
          */
@@ -2453,9 +2413,6 @@ public class ListTransactionsRequest {
         public ListTransactionsRequest build() {
             if (limit == null) {
                 limit = _SINGLETON_VALUE_Limit.value();
-            }
-            if (applicationName == null) {
-                applicationName = _SINGLETON_VALUE_ApplicationName.value();
             }
             return new ListTransactionsRequest(
                 cursor,
@@ -2501,7 +2458,6 @@ public class ListTransactionsRequest {
                 isSubsequentPayment,
                 merchantInitiated,
                 used3ds,
-                applicationName,
                 merchantAccountId);
         }
 
@@ -2510,11 +2466,5 @@ public class ListTransactionsRequest {
                         "limit",
                         "20",
                         new TypeReference<Optional<Long>>() {});
-
-        private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_ApplicationName =
-                new LazySingletonValue<>(
-                        "application_name",
-                        "\"core-api\"",
-                        new TypeReference<Optional<String>>() {});
     }
 }

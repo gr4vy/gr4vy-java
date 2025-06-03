@@ -90,7 +90,7 @@ public class PaymentServiceTokens implements
      */
     public ListPaymentMethodPaymentServiceTokensResponse list(
             String paymentMethodId) throws Exception {
-        return list(paymentMethodId, JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), Optional.empty());
+        return list(paymentMethodId, JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty());
     }
     
     /**
@@ -100,7 +100,6 @@ public class PaymentServiceTokens implements
      * 
      * @param paymentMethodId The ID of the payment method
      * @param paymentServiceId The ID of the payment service
-     * @param applicationName 
      * @param merchantAccountId 
      * @param options additional options
      * @return The response from the API call
@@ -109,7 +108,6 @@ public class PaymentServiceTokens implements
     public ListPaymentMethodPaymentServiceTokensResponse list(
             String paymentMethodId,
             JsonNullable<String> paymentServiceId,
-            Optional<String> applicationName,
             JsonNullable<String> merchantAccountId,
             Optional<Options> options) throws Exception {
 
@@ -121,7 +119,6 @@ public class PaymentServiceTokens implements
                 .builder()
                 .paymentMethodId(paymentMethodId)
                 .paymentServiceId(paymentServiceId)
-                .applicationName(applicationName)
                 .merchantAccountId(merchantAccountId)
                 .build();
         
@@ -479,7 +476,7 @@ public class PaymentServiceTokens implements
     public CreatePaymentMethodPaymentServiceTokenResponse create(
             String paymentMethodId,
             PaymentServiceTokenCreate paymentServiceTokenCreate) throws Exception {
-        return create(paymentMethodId, Optional.empty(), JsonNullable.undefined(), paymentServiceTokenCreate);
+        return create(paymentMethodId, JsonNullable.undefined(), paymentServiceTokenCreate);
     }
     
     /**
@@ -488,7 +485,6 @@ public class PaymentServiceTokens implements
      * <p>Create a gateway tokens for a payment method.
      * 
      * @param paymentMethodId The ID of the payment method
-     * @param applicationName 
      * @param merchantAccountId 
      * @param paymentServiceTokenCreate 
      * @return The response from the API call
@@ -496,14 +492,12 @@ public class PaymentServiceTokens implements
      */
     public CreatePaymentMethodPaymentServiceTokenResponse create(
             String paymentMethodId,
-            Optional<String> applicationName,
             JsonNullable<String> merchantAccountId,
             PaymentServiceTokenCreate paymentServiceTokenCreate) throws Exception {
         CreatePaymentMethodPaymentServiceTokenRequest request =
             CreatePaymentMethodPaymentServiceTokenRequest
                 .builder()
                 .paymentMethodId(paymentMethodId)
-                .applicationName(applicationName)
                 .merchantAccountId(merchantAccountId)
                 .paymentServiceTokenCreate(paymentServiceTokenCreate)
                 .build();
@@ -533,11 +527,6 @@ public class PaymentServiceTokens implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
-        _req.addQueryParams(Utils.getQueryParams(
-                CreatePaymentMethodPaymentServiceTokenRequest.class,
-                request, 
-                this.sdkConfiguration.globals));
         _req.addHeaders(Utils.getHeadersFromMetadata(request, this.sdkConfiguration.globals));
         
         Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
@@ -860,7 +849,7 @@ public class PaymentServiceTokens implements
     public DeletePaymentMethodPaymentServiceTokenResponse delete(
             String paymentMethodId,
             String paymentServiceTokenId) throws Exception {
-        return delete(paymentMethodId, paymentServiceTokenId, Optional.empty(), JsonNullable.undefined());
+        return delete(paymentMethodId, paymentServiceTokenId, JsonNullable.undefined());
     }
     
     /**
@@ -870,7 +859,6 @@ public class PaymentServiceTokens implements
      * 
      * @param paymentMethodId The ID of the payment method
      * @param paymentServiceTokenId The ID of the payment service token
-     * @param applicationName 
      * @param merchantAccountId 
      * @return The response from the API call
      * @throws Exception if the API call fails
@@ -878,14 +866,12 @@ public class PaymentServiceTokens implements
     public DeletePaymentMethodPaymentServiceTokenResponse delete(
             String paymentMethodId,
             String paymentServiceTokenId,
-            Optional<String> applicationName,
             JsonNullable<String> merchantAccountId) throws Exception {
         DeletePaymentMethodPaymentServiceTokenRequest request =
             DeletePaymentMethodPaymentServiceTokenRequest
                 .builder()
                 .paymentMethodId(paymentMethodId)
                 .paymentServiceTokenId(paymentServiceTokenId)
-                .applicationName(applicationName)
                 .merchantAccountId(merchantAccountId)
                 .build();
         
@@ -901,11 +887,6 @@ public class PaymentServiceTokens implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
-        _req.addQueryParams(Utils.getQueryParams(
-                DeletePaymentMethodPaymentServiceTokenRequest.class,
-                request, 
-                this.sdkConfiguration.globals));
         _req.addHeaders(Utils.getHeadersFromMetadata(request, this.sdkConfiguration.globals));
         
         Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());

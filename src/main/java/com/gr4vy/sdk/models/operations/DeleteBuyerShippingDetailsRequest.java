@@ -5,14 +5,11 @@ package com.gr4vy.sdk.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.gr4vy.sdk.utils.LazySingletonValue;
 import com.gr4vy.sdk.utils.SpeakeasyMetadata;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.util.Objects;
-import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 public class DeleteBuyerShippingDetailsRequest {
@@ -29,9 +26,6 @@ public class DeleteBuyerShippingDetailsRequest {
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=shipping_details_id")
     private String shippingDetailsId;
 
-    @SpeakeasyMetadata("queryParam:style=form,explode=true,name=application_name")
-    private Optional<String> applicationName;
-
     /**
      * The ID of the merchant account to use for this request.
      */
@@ -42,22 +36,19 @@ public class DeleteBuyerShippingDetailsRequest {
     public DeleteBuyerShippingDetailsRequest(
             String buyerId,
             String shippingDetailsId,
-            Optional<String> applicationName,
             JsonNullable<String> merchantAccountId) {
         Utils.checkNotNull(buyerId, "buyerId");
         Utils.checkNotNull(shippingDetailsId, "shippingDetailsId");
-        Utils.checkNotNull(applicationName, "applicationName");
         Utils.checkNotNull(merchantAccountId, "merchantAccountId");
         this.buyerId = buyerId;
         this.shippingDetailsId = shippingDetailsId;
-        this.applicationName = applicationName;
         this.merchantAccountId = merchantAccountId;
     }
     
     public DeleteBuyerShippingDetailsRequest(
             String buyerId,
             String shippingDetailsId) {
-        this(buyerId, shippingDetailsId, Optional.empty(), JsonNullable.undefined());
+        this(buyerId, shippingDetailsId, JsonNullable.undefined());
     }
 
     /**
@@ -74,11 +65,6 @@ public class DeleteBuyerShippingDetailsRequest {
     @JsonIgnore
     public String shippingDetailsId() {
         return shippingDetailsId;
-    }
-
-    @JsonIgnore
-    public Optional<String> applicationName() {
-        return applicationName;
     }
 
     /**
@@ -108,18 +94,6 @@ public class DeleteBuyerShippingDetailsRequest {
     public DeleteBuyerShippingDetailsRequest withShippingDetailsId(String shippingDetailsId) {
         Utils.checkNotNull(shippingDetailsId, "shippingDetailsId");
         this.shippingDetailsId = shippingDetailsId;
-        return this;
-    }
-
-    public DeleteBuyerShippingDetailsRequest withApplicationName(String applicationName) {
-        Utils.checkNotNull(applicationName, "applicationName");
-        this.applicationName = Optional.ofNullable(applicationName);
-        return this;
-    }
-
-    public DeleteBuyerShippingDetailsRequest withApplicationName(Optional<String> applicationName) {
-        Utils.checkNotNull(applicationName, "applicationName");
-        this.applicationName = applicationName;
         return this;
     }
 
@@ -154,7 +128,6 @@ public class DeleteBuyerShippingDetailsRequest {
         return 
             Objects.deepEquals(this.buyerId, other.buyerId) &&
             Objects.deepEquals(this.shippingDetailsId, other.shippingDetailsId) &&
-            Objects.deepEquals(this.applicationName, other.applicationName) &&
             Objects.deepEquals(this.merchantAccountId, other.merchantAccountId);
     }
     
@@ -163,7 +136,6 @@ public class DeleteBuyerShippingDetailsRequest {
         return Objects.hash(
             buyerId,
             shippingDetailsId,
-            applicationName,
             merchantAccountId);
     }
     
@@ -172,7 +144,6 @@ public class DeleteBuyerShippingDetailsRequest {
         return Utils.toString(DeleteBuyerShippingDetailsRequest.class,
                 "buyerId", buyerId,
                 "shippingDetailsId", shippingDetailsId,
-                "applicationName", applicationName,
                 "merchantAccountId", merchantAccountId);
     }
     
@@ -181,8 +152,6 @@ public class DeleteBuyerShippingDetailsRequest {
         private String buyerId;
  
         private String shippingDetailsId;
- 
-        private Optional<String> applicationName;
  
         private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
         
@@ -208,18 +177,6 @@ public class DeleteBuyerShippingDetailsRequest {
             return this;
         }
 
-        public Builder applicationName(String applicationName) {
-            Utils.checkNotNull(applicationName, "applicationName");
-            this.applicationName = Optional.ofNullable(applicationName);
-            return this;
-        }
-
-        public Builder applicationName(Optional<String> applicationName) {
-            Utils.checkNotNull(applicationName, "applicationName");
-            this.applicationName = applicationName;
-            return this;
-        }
-
         /**
          * The ID of the merchant account to use for this request.
          */
@@ -239,20 +196,10 @@ public class DeleteBuyerShippingDetailsRequest {
         }
         
         public DeleteBuyerShippingDetailsRequest build() {
-            if (applicationName == null) {
-                applicationName = _SINGLETON_VALUE_ApplicationName.value();
-            }
             return new DeleteBuyerShippingDetailsRequest(
                 buyerId,
                 shippingDetailsId,
-                applicationName,
                 merchantAccountId);
         }
-
-        private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_ApplicationName =
-                new LazySingletonValue<>(
-                        "application_name",
-                        "\"core-api\"",
-                        new TypeReference<Optional<String>>() {});
     }
 }

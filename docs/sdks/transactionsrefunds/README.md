@@ -47,7 +47,6 @@ public class Application {
 | Parameter                                               | Type                                                    | Required                                                | Description                                             | Example                                                 |
 | ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- |
 | `transactionId`                                         | *String*                                                | :heavy_check_mark:                                      | N/A                                                     | 7099948d-7286-47e4-aad8-b68f7eb44591                    |
-| `applicationName`                                       | *Optional\<String>*                                     | :heavy_minus_sign:                                      | N/A                                                     |                                                         |
 | `merchantAccountId`                                     | *JsonNullable\<String>*                                 | :heavy_minus_sign:                                      | The ID of the merchant account to use for this request. |                                                         |
 
 ### Response
@@ -98,10 +97,6 @@ public class Application {
         CreateTransactionRefundResponse res = sdk.transactions().refunds().create()
                 .transactionId("7099948d-7286-47e4-aad8-b68f7eb44591")
                 .transactionRefundCreate(TransactionRefundCreate.builder()
-                    .amount(1299L)
-                    .targetId("7a6c366d-9205-45ab-8021-0d9ee37f20f2")
-                    .reason("Refund due to user request.")
-                    .externalIdentifier("refund-12345")
                     .build())
                 .call();
 
@@ -117,7 +112,6 @@ public class Application {
 | Parameter                                                                     | Type                                                                          | Required                                                                      | Description                                                                   | Example                                                                       |
 | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
 | `transactionId`                                                               | *String*                                                                      | :heavy_check_mark:                                                            | N/A                                                                           | 7099948d-7286-47e4-aad8-b68f7eb44591                                          |
-| `applicationName`                                                             | *Optional\<String>*                                                           | :heavy_minus_sign:                                                            | N/A                                                                           |                                                                               |
 | `merchantAccountId`                                                           | *JsonNullable\<String>*                                                       | :heavy_minus_sign:                                                            | The ID of the merchant account to use for this request.                       |                                                                               |
 | `transactionRefundCreate`                                                     | [TransactionRefundCreate](../../models/components/TransactionRefundCreate.md) | :heavy_check_mark:                                                            | N/A                                                                           |                                                                               |
 
@@ -183,7 +177,6 @@ public class Application {
 | ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- |
 | `transactionId`                                         | *String*                                                | :heavy_check_mark:                                      | N/A                                                     | 7099948d-7286-47e4-aad8-b68f7eb44591                    |
 | `refundId`                                              | *String*                                                | :heavy_check_mark:                                      | N/A                                                     | 6a1d4e46-14ed-4fe1-a45f-eff4e025d211                    |
-| `applicationName`                                       | *Optional\<String>*                                     | :heavy_minus_sign:                                      | N/A                                                     |                                                         |
 | `merchantAccountId`                                     | *JsonNullable\<String>*                                 | :heavy_minus_sign:                                      | The ID of the merchant account to use for this request. |                                                         |
 
 ### Response

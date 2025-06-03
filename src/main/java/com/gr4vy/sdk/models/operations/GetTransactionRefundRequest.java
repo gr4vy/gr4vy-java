@@ -5,14 +5,11 @@ package com.gr4vy.sdk.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.gr4vy.sdk.utils.LazySingletonValue;
 import com.gr4vy.sdk.utils.SpeakeasyMetadata;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.util.Objects;
-import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 public class GetTransactionRefundRequest {
@@ -22,9 +19,6 @@ public class GetTransactionRefundRequest {
 
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=refund_id")
     private String refundId;
-
-    @SpeakeasyMetadata("queryParam:style=form,explode=true,name=application_name")
-    private Optional<String> applicationName;
 
     /**
      * The ID of the merchant account to use for this request.
@@ -36,22 +30,19 @@ public class GetTransactionRefundRequest {
     public GetTransactionRefundRequest(
             String transactionId,
             String refundId,
-            Optional<String> applicationName,
             JsonNullable<String> merchantAccountId) {
         Utils.checkNotNull(transactionId, "transactionId");
         Utils.checkNotNull(refundId, "refundId");
-        Utils.checkNotNull(applicationName, "applicationName");
         Utils.checkNotNull(merchantAccountId, "merchantAccountId");
         this.transactionId = transactionId;
         this.refundId = refundId;
-        this.applicationName = applicationName;
         this.merchantAccountId = merchantAccountId;
     }
     
     public GetTransactionRefundRequest(
             String transactionId,
             String refundId) {
-        this(transactionId, refundId, Optional.empty(), JsonNullable.undefined());
+        this(transactionId, refundId, JsonNullable.undefined());
     }
 
     @JsonIgnore
@@ -62,11 +53,6 @@ public class GetTransactionRefundRequest {
     @JsonIgnore
     public String refundId() {
         return refundId;
-    }
-
-    @JsonIgnore
-    public Optional<String> applicationName() {
-        return applicationName;
     }
 
     /**
@@ -90,18 +76,6 @@ public class GetTransactionRefundRequest {
     public GetTransactionRefundRequest withRefundId(String refundId) {
         Utils.checkNotNull(refundId, "refundId");
         this.refundId = refundId;
-        return this;
-    }
-
-    public GetTransactionRefundRequest withApplicationName(String applicationName) {
-        Utils.checkNotNull(applicationName, "applicationName");
-        this.applicationName = Optional.ofNullable(applicationName);
-        return this;
-    }
-
-    public GetTransactionRefundRequest withApplicationName(Optional<String> applicationName) {
-        Utils.checkNotNull(applicationName, "applicationName");
-        this.applicationName = applicationName;
         return this;
     }
 
@@ -136,7 +110,6 @@ public class GetTransactionRefundRequest {
         return 
             Objects.deepEquals(this.transactionId, other.transactionId) &&
             Objects.deepEquals(this.refundId, other.refundId) &&
-            Objects.deepEquals(this.applicationName, other.applicationName) &&
             Objects.deepEquals(this.merchantAccountId, other.merchantAccountId);
     }
     
@@ -145,7 +118,6 @@ public class GetTransactionRefundRequest {
         return Objects.hash(
             transactionId,
             refundId,
-            applicationName,
             merchantAccountId);
     }
     
@@ -154,7 +126,6 @@ public class GetTransactionRefundRequest {
         return Utils.toString(GetTransactionRefundRequest.class,
                 "transactionId", transactionId,
                 "refundId", refundId,
-                "applicationName", applicationName,
                 "merchantAccountId", merchantAccountId);
     }
     
@@ -163,8 +134,6 @@ public class GetTransactionRefundRequest {
         private String transactionId;
  
         private String refundId;
- 
-        private Optional<String> applicationName;
  
         private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
         
@@ -181,18 +150,6 @@ public class GetTransactionRefundRequest {
         public Builder refundId(String refundId) {
             Utils.checkNotNull(refundId, "refundId");
             this.refundId = refundId;
-            return this;
-        }
-
-        public Builder applicationName(String applicationName) {
-            Utils.checkNotNull(applicationName, "applicationName");
-            this.applicationName = Optional.ofNullable(applicationName);
-            return this;
-        }
-
-        public Builder applicationName(Optional<String> applicationName) {
-            Utils.checkNotNull(applicationName, "applicationName");
-            this.applicationName = applicationName;
             return this;
         }
 
@@ -215,20 +172,10 @@ public class GetTransactionRefundRequest {
         }
         
         public GetTransactionRefundRequest build() {
-            if (applicationName == null) {
-                applicationName = _SINGLETON_VALUE_ApplicationName.value();
-            }
             return new GetTransactionRefundRequest(
                 transactionId,
                 refundId,
-                applicationName,
                 merchantAccountId);
         }
-
-        private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_ApplicationName =
-                new LazySingletonValue<>(
-                        "application_name",
-                        "\"core-api\"",
-                        new TypeReference<Optional<String>>() {});
     }
 }
