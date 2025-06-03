@@ -1,0 +1,13 @@
+# ReportCreate
+
+
+## Fields
+
+| Field                                                       | Type                                                        | Required                                                    | Description                                                 | Example                                                     |
+| ----------------------------------------------------------- | ----------------------------------------------------------- | ----------------------------------------------------------- | ----------------------------------------------------------- | ----------------------------------------------------------- |
+| `name`                                                      | *String*                                                    | :heavy_check_mark:                                          | The name of the report.                                     | Monthly Transaction Report                                  |
+| `description`                                               | *JsonNullable\<String>*                                     | :heavy_minus_sign:                                          | A description of the report.                                | Monthly transaction summary for May 2024.                   |
+| `schedule`                                                  | [ReportSchedule](../../models/components/ReportSchedule.md) | :heavy_check_mark:                                          | N/A                                                         |                                                             |
+| `scheduleEnabled`                                           | *boolean*                                                   | :heavy_check_mark:                                          | Whether the report schedule is enabled.                     | true                                                        |
+| `scheduleTimezone`                                          | *Optional\<String>*                                         | :heavy_minus_sign:                                          | The timezone for the report schedule.                       | UTC                                                         |
+| `spec`                                                      | [Spec](../../models/components/Spec.md)                     | :heavy_check_mark:                                          | The report specification.                                   |                                                             |

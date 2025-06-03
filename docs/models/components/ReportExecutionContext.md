@@ -1,0 +1,9 @@
+# ReportExecutionContext
+
+
+## Fields
+
+| Field                                                                                     | Type                                                                                      | Required                                                                                  | Description                                                                               | Example                                                                                   |
+| ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
+| `referenceTimestamp`                                                                      | [OffsetDateTime](https://docs.oracle.com/javase/8/docs/api/java/time/OffsetDateTime.html) | :heavy_check_mark:                                                                        | The reference timestamp for the report execution context.                                 | 2024-05-30T12:34:56.000Z                                                                  |
+| `referenceTimezone`                                                                       | *String*                                                                                  | :heavy_check_mark:                                                                        | The reference timezone for the report execution context.                                  | UTC                                                                                       |

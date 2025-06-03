@@ -70,6 +70,10 @@ public class Gr4vy {
 
     private final AuditLogs auditLogs;
 
+    private final Reports reports;
+
+    private final ReportsExecutions reportsExecutions;
+
     private final CheckoutSessions checkoutSessions;
 
     private final MerchantAccounts merchantAccounts;
@@ -122,6 +126,14 @@ public class Gr4vy {
 
     public AuditLogs auditLogs() {
         return auditLogs;
+    }
+
+    public Reports reports() {
+        return reports;
+    }
+
+    public ReportsExecutions reportsExecutions() {
+        return reportsExecutions;
     }
 
     public CheckoutSessions checkoutSessions() {
@@ -308,6 +320,8 @@ public class Gr4vy {
         this.paymentServiceDefinitions = new PaymentServiceDefinitions(sdkConfiguration);
         this.paymentServices = new PaymentServices(sdkConfiguration);
         this.auditLogs = new AuditLogs(sdkConfiguration);
+        this.reports = new Reports(sdkConfiguration);
+        this.reportsExecutions = new ReportsExecutions(sdkConfiguration);
         this.checkoutSessions = new CheckoutSessions(sdkConfiguration);
         this.merchantAccounts = new MerchantAccounts(sdkConfiguration);
         this.payouts = new Payouts(sdkConfiguration);
