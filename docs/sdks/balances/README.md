@@ -47,7 +47,7 @@ public class Application {
                     .build())
                 .call();
 
-        if (res.collectionNoCursorGiftCardSummary().isPresent()) {
+        if (res.giftCardSummaries().isPresent()) {
             // handle response
         }
     }

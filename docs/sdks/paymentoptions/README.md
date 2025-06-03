@@ -35,7 +35,7 @@ public class Application {
                     .build())
                 .call();
 
-        if (res.collectionNoCursorPaymentOption().isPresent()) {
+        if (res.paymentOptions().isPresent()) {
             // handle response
         }
     }

@@ -4,7 +4,6 @@
 package com.gr4vy.sdk;
 
 import com.fasterxml.jackson.core.type.TypeReference;
-import com.gr4vy.sdk.models.components.CollectionNoCursorDigitalWallet;
 import com.gr4vy.sdk.models.components.DigitalWallet;
 import com.gr4vy.sdk.models.components.DigitalWalletCreate;
 import com.gr4vy.sdk.models.components.DigitalWalletUpdate;
@@ -594,10 +593,10 @@ public class DigitalWallets implements
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                CollectionNoCursorDigitalWallet _out = Utils.mapper().readValue(
+                com.gr4vy.sdk.models.components.DigitalWallets _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<CollectionNoCursorDigitalWallet>() {});
-                _res.withCollectionNoCursorDigitalWallet(Optional.ofNullable(_out));
+                    new TypeReference<com.gr4vy.sdk.models.components.DigitalWallets>() {});
+                _res.withDigitalWallets(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new APIException(

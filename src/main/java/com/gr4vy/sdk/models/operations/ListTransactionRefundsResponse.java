@@ -5,7 +5,7 @@ package com.gr4vy.sdk.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.gr4vy.sdk.models.components.CollectionRefund;
+import com.gr4vy.sdk.models.components.Refunds;
 import com.gr4vy.sdk.utils.Response;
 import com.gr4vy.sdk.utils.Utils;
 import java.io.InputStream;
@@ -37,22 +37,22 @@ public class ListTransactionRefundsResponse implements Response {
     /**
      * Successful Response
      */
-    private Optional<? extends CollectionRefund> collectionRefund;
+    private Optional<? extends Refunds> refunds;
 
     @JsonCreator
     public ListTransactionRefundsResponse(
             String contentType,
             int statusCode,
             HttpResponse<InputStream> rawResponse,
-            Optional<? extends CollectionRefund> collectionRefund) {
+            Optional<? extends Refunds> refunds) {
         Utils.checkNotNull(contentType, "contentType");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
-        Utils.checkNotNull(collectionRefund, "collectionRefund");
+        Utils.checkNotNull(refunds, "refunds");
         this.contentType = contentType;
         this.statusCode = statusCode;
         this.rawResponse = rawResponse;
-        this.collectionRefund = collectionRefund;
+        this.refunds = refunds;
     }
     
     public ListTransactionRefundsResponse(
@@ -91,8 +91,8 @@ public class ListTransactionRefundsResponse implements Response {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<CollectionRefund> collectionRefund() {
-        return (Optional<CollectionRefund>) collectionRefund;
+    public Optional<Refunds> refunds() {
+        return (Optional<Refunds>) refunds;
     }
 
     public final static Builder builder() {
@@ -129,18 +129,18 @@ public class ListTransactionRefundsResponse implements Response {
     /**
      * Successful Response
      */
-    public ListTransactionRefundsResponse withCollectionRefund(CollectionRefund collectionRefund) {
-        Utils.checkNotNull(collectionRefund, "collectionRefund");
-        this.collectionRefund = Optional.ofNullable(collectionRefund);
+    public ListTransactionRefundsResponse withRefunds(Refunds refunds) {
+        Utils.checkNotNull(refunds, "refunds");
+        this.refunds = Optional.ofNullable(refunds);
         return this;
     }
 
     /**
      * Successful Response
      */
-    public ListTransactionRefundsResponse withCollectionRefund(Optional<? extends CollectionRefund> collectionRefund) {
-        Utils.checkNotNull(collectionRefund, "collectionRefund");
-        this.collectionRefund = collectionRefund;
+    public ListTransactionRefundsResponse withRefunds(Optional<? extends Refunds> refunds) {
+        Utils.checkNotNull(refunds, "refunds");
+        this.refunds = refunds;
         return this;
     }
 
@@ -158,7 +158,7 @@ public class ListTransactionRefundsResponse implements Response {
             Objects.deepEquals(this.contentType, other.contentType) &&
             Objects.deepEquals(this.statusCode, other.statusCode) &&
             Objects.deepEquals(this.rawResponse, other.rawResponse) &&
-            Objects.deepEquals(this.collectionRefund, other.collectionRefund);
+            Objects.deepEquals(this.refunds, other.refunds);
     }
     
     @Override
@@ -167,7 +167,7 @@ public class ListTransactionRefundsResponse implements Response {
             contentType,
             statusCode,
             rawResponse,
-            collectionRefund);
+            refunds);
     }
     
     @Override
@@ -176,7 +176,7 @@ public class ListTransactionRefundsResponse implements Response {
                 "contentType", contentType,
                 "statusCode", statusCode,
                 "rawResponse", rawResponse,
-                "collectionRefund", collectionRefund);
+                "refunds", refunds);
     }
     
     public final static class Builder {
@@ -187,7 +187,7 @@ public class ListTransactionRefundsResponse implements Response {
  
         private HttpResponse<InputStream> rawResponse;
  
-        private Optional<? extends CollectionRefund> collectionRefund = Optional.empty();
+        private Optional<? extends Refunds> refunds = Optional.empty();
         
         private Builder() {
           // force use of static builder() method
@@ -223,18 +223,18 @@ public class ListTransactionRefundsResponse implements Response {
         /**
          * Successful Response
          */
-        public Builder collectionRefund(CollectionRefund collectionRefund) {
-            Utils.checkNotNull(collectionRefund, "collectionRefund");
-            this.collectionRefund = Optional.ofNullable(collectionRefund);
+        public Builder refunds(Refunds refunds) {
+            Utils.checkNotNull(refunds, "refunds");
+            this.refunds = Optional.ofNullable(refunds);
             return this;
         }
 
         /**
          * Successful Response
          */
-        public Builder collectionRefund(Optional<? extends CollectionRefund> collectionRefund) {
-            Utils.checkNotNull(collectionRefund, "collectionRefund");
-            this.collectionRefund = collectionRefund;
+        public Builder refunds(Optional<? extends Refunds> refunds) {
+            Utils.checkNotNull(refunds, "refunds");
+            this.refunds = refunds;
             return this;
         }
         
@@ -243,7 +243,7 @@ public class ListTransactionRefundsResponse implements Response {
                 contentType,
                 statusCode,
                 rawResponse,
-                collectionRefund);
+                refunds);
         }
     }
 }

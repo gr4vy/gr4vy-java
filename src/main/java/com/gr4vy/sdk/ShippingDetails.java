@@ -4,8 +4,8 @@
 package com.gr4vy.sdk;
 
 import com.fasterxml.jackson.core.type.TypeReference;
-import com.gr4vy.sdk.models.components.CollectionNoCursorShippingDetails;
 import com.gr4vy.sdk.models.components.ShippingDetailsCreate;
+import com.gr4vy.sdk.models.components.ShippingDetailsList;
 import com.gr4vy.sdk.models.components.ShippingDetailsUpdate;
 import com.gr4vy.sdk.models.errors.APIException;
 import com.gr4vy.sdk.models.errors.Error400;
@@ -595,10 +595,10 @@ public class ShippingDetails implements
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                CollectionNoCursorShippingDetails _out = Utils.mapper().readValue(
+                ShippingDetailsList _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<CollectionNoCursorShippingDetails>() {});
-                _res.withCollectionNoCursorShippingDetails(Optional.ofNullable(_out));
+                    new TypeReference<ShippingDetailsList>() {});
+                _res.withShippingDetailsList(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new APIException(

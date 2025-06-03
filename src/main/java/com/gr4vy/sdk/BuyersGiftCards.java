@@ -4,7 +4,7 @@
 package com.gr4vy.sdk;
 
 import com.fasterxml.jackson.core.type.TypeReference;
-import com.gr4vy.sdk.models.components.CollectionNoCursorGiftCardSummary;
+import com.gr4vy.sdk.models.components.GiftCardSummaries;
 import com.gr4vy.sdk.models.errors.APIException;
 import com.gr4vy.sdk.models.errors.Error400;
 import com.gr4vy.sdk.models.errors.Error401;
@@ -205,10 +205,10 @@ public class BuyersGiftCards implements
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                CollectionNoCursorGiftCardSummary _out = Utils.mapper().readValue(
+                GiftCardSummaries _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<CollectionNoCursorGiftCardSummary>() {});
-                _res.withCollectionNoCursorGiftCardSummary(Optional.ofNullable(_out));
+                    new TypeReference<GiftCardSummaries>() {});
+                _res.withGiftCardSummaries(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new APIException(

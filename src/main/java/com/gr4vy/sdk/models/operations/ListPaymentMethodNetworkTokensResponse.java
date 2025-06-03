@@ -5,7 +5,7 @@ package com.gr4vy.sdk.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.gr4vy.sdk.models.components.CollectionNoCursorNetworkToken;
+import com.gr4vy.sdk.models.components.NetworkTokens;
 import com.gr4vy.sdk.utils.Response;
 import com.gr4vy.sdk.utils.Utils;
 import java.io.InputStream;
@@ -37,22 +37,22 @@ public class ListPaymentMethodNetworkTokensResponse implements Response {
     /**
      * Successful Response
      */
-    private Optional<? extends CollectionNoCursorNetworkToken> collectionNoCursorNetworkToken;
+    private Optional<? extends NetworkTokens> networkTokens;
 
     @JsonCreator
     public ListPaymentMethodNetworkTokensResponse(
             String contentType,
             int statusCode,
             HttpResponse<InputStream> rawResponse,
-            Optional<? extends CollectionNoCursorNetworkToken> collectionNoCursorNetworkToken) {
+            Optional<? extends NetworkTokens> networkTokens) {
         Utils.checkNotNull(contentType, "contentType");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
-        Utils.checkNotNull(collectionNoCursorNetworkToken, "collectionNoCursorNetworkToken");
+        Utils.checkNotNull(networkTokens, "networkTokens");
         this.contentType = contentType;
         this.statusCode = statusCode;
         this.rawResponse = rawResponse;
-        this.collectionNoCursorNetworkToken = collectionNoCursorNetworkToken;
+        this.networkTokens = networkTokens;
     }
     
     public ListPaymentMethodNetworkTokensResponse(
@@ -91,8 +91,8 @@ public class ListPaymentMethodNetworkTokensResponse implements Response {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<CollectionNoCursorNetworkToken> collectionNoCursorNetworkToken() {
-        return (Optional<CollectionNoCursorNetworkToken>) collectionNoCursorNetworkToken;
+    public Optional<NetworkTokens> networkTokens() {
+        return (Optional<NetworkTokens>) networkTokens;
     }
 
     public final static Builder builder() {
@@ -129,18 +129,18 @@ public class ListPaymentMethodNetworkTokensResponse implements Response {
     /**
      * Successful Response
      */
-    public ListPaymentMethodNetworkTokensResponse withCollectionNoCursorNetworkToken(CollectionNoCursorNetworkToken collectionNoCursorNetworkToken) {
-        Utils.checkNotNull(collectionNoCursorNetworkToken, "collectionNoCursorNetworkToken");
-        this.collectionNoCursorNetworkToken = Optional.ofNullable(collectionNoCursorNetworkToken);
+    public ListPaymentMethodNetworkTokensResponse withNetworkTokens(NetworkTokens networkTokens) {
+        Utils.checkNotNull(networkTokens, "networkTokens");
+        this.networkTokens = Optional.ofNullable(networkTokens);
         return this;
     }
 
     /**
      * Successful Response
      */
-    public ListPaymentMethodNetworkTokensResponse withCollectionNoCursorNetworkToken(Optional<? extends CollectionNoCursorNetworkToken> collectionNoCursorNetworkToken) {
-        Utils.checkNotNull(collectionNoCursorNetworkToken, "collectionNoCursorNetworkToken");
-        this.collectionNoCursorNetworkToken = collectionNoCursorNetworkToken;
+    public ListPaymentMethodNetworkTokensResponse withNetworkTokens(Optional<? extends NetworkTokens> networkTokens) {
+        Utils.checkNotNull(networkTokens, "networkTokens");
+        this.networkTokens = networkTokens;
         return this;
     }
 
@@ -158,7 +158,7 @@ public class ListPaymentMethodNetworkTokensResponse implements Response {
             Objects.deepEquals(this.contentType, other.contentType) &&
             Objects.deepEquals(this.statusCode, other.statusCode) &&
             Objects.deepEquals(this.rawResponse, other.rawResponse) &&
-            Objects.deepEquals(this.collectionNoCursorNetworkToken, other.collectionNoCursorNetworkToken);
+            Objects.deepEquals(this.networkTokens, other.networkTokens);
     }
     
     @Override
@@ -167,7 +167,7 @@ public class ListPaymentMethodNetworkTokensResponse implements Response {
             contentType,
             statusCode,
             rawResponse,
-            collectionNoCursorNetworkToken);
+            networkTokens);
     }
     
     @Override
@@ -176,7 +176,7 @@ public class ListPaymentMethodNetworkTokensResponse implements Response {
                 "contentType", contentType,
                 "statusCode", statusCode,
                 "rawResponse", rawResponse,
-                "collectionNoCursorNetworkToken", collectionNoCursorNetworkToken);
+                "networkTokens", networkTokens);
     }
     
     public final static class Builder {
@@ -187,7 +187,7 @@ public class ListPaymentMethodNetworkTokensResponse implements Response {
  
         private HttpResponse<InputStream> rawResponse;
  
-        private Optional<? extends CollectionNoCursorNetworkToken> collectionNoCursorNetworkToken = Optional.empty();
+        private Optional<? extends NetworkTokens> networkTokens = Optional.empty();
         
         private Builder() {
           // force use of static builder() method
@@ -223,18 +223,18 @@ public class ListPaymentMethodNetworkTokensResponse implements Response {
         /**
          * Successful Response
          */
-        public Builder collectionNoCursorNetworkToken(CollectionNoCursorNetworkToken collectionNoCursorNetworkToken) {
-            Utils.checkNotNull(collectionNoCursorNetworkToken, "collectionNoCursorNetworkToken");
-            this.collectionNoCursorNetworkToken = Optional.ofNullable(collectionNoCursorNetworkToken);
+        public Builder networkTokens(NetworkTokens networkTokens) {
+            Utils.checkNotNull(networkTokens, "networkTokens");
+            this.networkTokens = Optional.ofNullable(networkTokens);
             return this;
         }
 
         /**
          * Successful Response
          */
-        public Builder collectionNoCursorNetworkToken(Optional<? extends CollectionNoCursorNetworkToken> collectionNoCursorNetworkToken) {
-            Utils.checkNotNull(collectionNoCursorNetworkToken, "collectionNoCursorNetworkToken");
-            this.collectionNoCursorNetworkToken = collectionNoCursorNetworkToken;
+        public Builder networkTokens(Optional<? extends NetworkTokens> networkTokens) {
+            Utils.checkNotNull(networkTokens, "networkTokens");
+            this.networkTokens = networkTokens;
             return this;
         }
         
@@ -243,7 +243,7 @@ public class ListPaymentMethodNetworkTokensResponse implements Response {
                 contentType,
                 statusCode,
                 rawResponse,
-                collectionNoCursorNetworkToken);
+                networkTokens);
         }
     }
 }

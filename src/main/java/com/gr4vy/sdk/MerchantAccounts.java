@@ -4,7 +4,6 @@
 package com.gr4vy.sdk;
 
 import com.fasterxml.jackson.core.type.TypeReference;
-import com.gr4vy.sdk.models.components.CollectionMerchantAccount;
 import com.gr4vy.sdk.models.components.MerchantAccount;
 import com.gr4vy.sdk.models.components.MerchantAccountCreate;
 import com.gr4vy.sdk.models.components.MerchantAccountUpdate;
@@ -249,10 +248,10 @@ public class MerchantAccounts implements
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                CollectionMerchantAccount _out = Utils.mapper().readValue(
+                com.gr4vy.sdk.models.components.MerchantAccounts _out = Utils.mapper().readValue(
                     new String(_fullResponse, StandardCharsets.UTF_8),
-                    new TypeReference<CollectionMerchantAccount>() {});
-                _res.withCollectionMerchantAccount(Optional.ofNullable(_out));
+                    new TypeReference<com.gr4vy.sdk.models.components.MerchantAccounts>() {});
+                _res.withMerchantAccounts(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new APIException(

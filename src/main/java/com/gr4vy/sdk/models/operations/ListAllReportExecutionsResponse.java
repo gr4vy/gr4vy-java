@@ -5,7 +5,7 @@ package com.gr4vy.sdk.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.gr4vy.sdk.models.components.CollectionReportExecution;
+import com.gr4vy.sdk.models.components.ReportExecutions;
 import com.gr4vy.sdk.utils.Response;
 import com.gr4vy.sdk.utils.Utils;
 import java.io.InputStream;
@@ -37,22 +37,22 @@ public class ListAllReportExecutionsResponse implements Response {
     /**
      * Successful Response
      */
-    private Optional<? extends CollectionReportExecution> collectionReportExecution;
+    private Optional<? extends ReportExecutions> reportExecutions;
 
     @JsonCreator
     public ListAllReportExecutionsResponse(
             String contentType,
             int statusCode,
             HttpResponse<InputStream> rawResponse,
-            Optional<? extends CollectionReportExecution> collectionReportExecution) {
+            Optional<? extends ReportExecutions> reportExecutions) {
         Utils.checkNotNull(contentType, "contentType");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
-        Utils.checkNotNull(collectionReportExecution, "collectionReportExecution");
+        Utils.checkNotNull(reportExecutions, "reportExecutions");
         this.contentType = contentType;
         this.statusCode = statusCode;
         this.rawResponse = rawResponse;
-        this.collectionReportExecution = collectionReportExecution;
+        this.reportExecutions = reportExecutions;
     }
     
     public ListAllReportExecutionsResponse(
@@ -91,8 +91,8 @@ public class ListAllReportExecutionsResponse implements Response {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<CollectionReportExecution> collectionReportExecution() {
-        return (Optional<CollectionReportExecution>) collectionReportExecution;
+    public Optional<ReportExecutions> reportExecutions() {
+        return (Optional<ReportExecutions>) reportExecutions;
     }
 
     public final static Builder builder() {
@@ -129,18 +129,18 @@ public class ListAllReportExecutionsResponse implements Response {
     /**
      * Successful Response
      */
-    public ListAllReportExecutionsResponse withCollectionReportExecution(CollectionReportExecution collectionReportExecution) {
-        Utils.checkNotNull(collectionReportExecution, "collectionReportExecution");
-        this.collectionReportExecution = Optional.ofNullable(collectionReportExecution);
+    public ListAllReportExecutionsResponse withReportExecutions(ReportExecutions reportExecutions) {
+        Utils.checkNotNull(reportExecutions, "reportExecutions");
+        this.reportExecutions = Optional.ofNullable(reportExecutions);
         return this;
     }
 
     /**
      * Successful Response
      */
-    public ListAllReportExecutionsResponse withCollectionReportExecution(Optional<? extends CollectionReportExecution> collectionReportExecution) {
-        Utils.checkNotNull(collectionReportExecution, "collectionReportExecution");
-        this.collectionReportExecution = collectionReportExecution;
+    public ListAllReportExecutionsResponse withReportExecutions(Optional<? extends ReportExecutions> reportExecutions) {
+        Utils.checkNotNull(reportExecutions, "reportExecutions");
+        this.reportExecutions = reportExecutions;
         return this;
     }
 
@@ -158,7 +158,7 @@ public class ListAllReportExecutionsResponse implements Response {
             Objects.deepEquals(this.contentType, other.contentType) &&
             Objects.deepEquals(this.statusCode, other.statusCode) &&
             Objects.deepEquals(this.rawResponse, other.rawResponse) &&
-            Objects.deepEquals(this.collectionReportExecution, other.collectionReportExecution);
+            Objects.deepEquals(this.reportExecutions, other.reportExecutions);
     }
     
     @Override
@@ -167,7 +167,7 @@ public class ListAllReportExecutionsResponse implements Response {
             contentType,
             statusCode,
             rawResponse,
-            collectionReportExecution);
+            reportExecutions);
     }
     
     @Override
@@ -176,7 +176,7 @@ public class ListAllReportExecutionsResponse implements Response {
                 "contentType", contentType,
                 "statusCode", statusCode,
                 "rawResponse", rawResponse,
-                "collectionReportExecution", collectionReportExecution);
+                "reportExecutions", reportExecutions);
     }
     
     public final static class Builder {
@@ -187,7 +187,7 @@ public class ListAllReportExecutionsResponse implements Response {
  
         private HttpResponse<InputStream> rawResponse;
  
-        private Optional<? extends CollectionReportExecution> collectionReportExecution = Optional.empty();
+        private Optional<? extends ReportExecutions> reportExecutions = Optional.empty();
         
         private Builder() {
           // force use of static builder() method
@@ -223,18 +223,18 @@ public class ListAllReportExecutionsResponse implements Response {
         /**
          * Successful Response
          */
-        public Builder collectionReportExecution(CollectionReportExecution collectionReportExecution) {
-            Utils.checkNotNull(collectionReportExecution, "collectionReportExecution");
-            this.collectionReportExecution = Optional.ofNullable(collectionReportExecution);
+        public Builder reportExecutions(ReportExecutions reportExecutions) {
+            Utils.checkNotNull(reportExecutions, "reportExecutions");
+            this.reportExecutions = Optional.ofNullable(reportExecutions);
             return this;
         }
 
         /**
          * Successful Response
          */
-        public Builder collectionReportExecution(Optional<? extends CollectionReportExecution> collectionReportExecution) {
-            Utils.checkNotNull(collectionReportExecution, "collectionReportExecution");
-            this.collectionReportExecution = collectionReportExecution;
+        public Builder reportExecutions(Optional<? extends ReportExecutions> reportExecutions) {
+            Utils.checkNotNull(reportExecutions, "reportExecutions");
+            this.reportExecutions = reportExecutions;
             return this;
         }
         
@@ -243,7 +243,7 @@ public class ListAllReportExecutionsResponse implements Response {
                 contentType,
                 statusCode,
                 rawResponse,
-                collectionReportExecution);
+                reportExecutions);
         }
     }
 }

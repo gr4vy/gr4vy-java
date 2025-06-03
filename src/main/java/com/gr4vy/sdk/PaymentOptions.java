@@ -4,7 +4,6 @@
 package com.gr4vy.sdk;
 
 import com.fasterxml.jackson.core.type.TypeReference;
-import com.gr4vy.sdk.models.components.CollectionNoCursorPaymentOption;
 import com.gr4vy.sdk.models.components.PaymentOptionRequest;
 import com.gr4vy.sdk.models.errors.APIException;
 import com.gr4vy.sdk.models.errors.Error400;
@@ -187,10 +186,10 @@ public class PaymentOptions implements
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                CollectionNoCursorPaymentOption _out = Utils.mapper().readValue(
+                com.gr4vy.sdk.models.components.PaymentOptions _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<CollectionNoCursorPaymentOption>() {});
-                _res.withCollectionNoCursorPaymentOption(Optional.ofNullable(_out));
+                    new TypeReference<com.gr4vy.sdk.models.components.PaymentOptions>() {});
+                _res.withPaymentOptions(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new APIException(

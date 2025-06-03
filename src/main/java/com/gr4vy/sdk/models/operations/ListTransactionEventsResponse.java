@@ -5,7 +5,7 @@ package com.gr4vy.sdk.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.gr4vy.sdk.models.components.CollectionTransactionEvent;
+import com.gr4vy.sdk.models.components.TransactionEvents;
 import com.gr4vy.sdk.utils.Response;
 import com.gr4vy.sdk.utils.Utils;
 import java.io.InputStream;
@@ -37,22 +37,22 @@ public class ListTransactionEventsResponse implements Response {
     /**
      * Successful Response
      */
-    private Optional<? extends CollectionTransactionEvent> collectionTransactionEvent;
+    private Optional<? extends TransactionEvents> transactionEvents;
 
     @JsonCreator
     public ListTransactionEventsResponse(
             String contentType,
             int statusCode,
             HttpResponse<InputStream> rawResponse,
-            Optional<? extends CollectionTransactionEvent> collectionTransactionEvent) {
+            Optional<? extends TransactionEvents> transactionEvents) {
         Utils.checkNotNull(contentType, "contentType");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
-        Utils.checkNotNull(collectionTransactionEvent, "collectionTransactionEvent");
+        Utils.checkNotNull(transactionEvents, "transactionEvents");
         this.contentType = contentType;
         this.statusCode = statusCode;
         this.rawResponse = rawResponse;
-        this.collectionTransactionEvent = collectionTransactionEvent;
+        this.transactionEvents = transactionEvents;
     }
     
     public ListTransactionEventsResponse(
@@ -91,8 +91,8 @@ public class ListTransactionEventsResponse implements Response {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<CollectionTransactionEvent> collectionTransactionEvent() {
-        return (Optional<CollectionTransactionEvent>) collectionTransactionEvent;
+    public Optional<TransactionEvents> transactionEvents() {
+        return (Optional<TransactionEvents>) transactionEvents;
     }
 
     public final static Builder builder() {
@@ -129,18 +129,18 @@ public class ListTransactionEventsResponse implements Response {
     /**
      * Successful Response
      */
-    public ListTransactionEventsResponse withCollectionTransactionEvent(CollectionTransactionEvent collectionTransactionEvent) {
-        Utils.checkNotNull(collectionTransactionEvent, "collectionTransactionEvent");
-        this.collectionTransactionEvent = Optional.ofNullable(collectionTransactionEvent);
+    public ListTransactionEventsResponse withTransactionEvents(TransactionEvents transactionEvents) {
+        Utils.checkNotNull(transactionEvents, "transactionEvents");
+        this.transactionEvents = Optional.ofNullable(transactionEvents);
         return this;
     }
 
     /**
      * Successful Response
      */
-    public ListTransactionEventsResponse withCollectionTransactionEvent(Optional<? extends CollectionTransactionEvent> collectionTransactionEvent) {
-        Utils.checkNotNull(collectionTransactionEvent, "collectionTransactionEvent");
-        this.collectionTransactionEvent = collectionTransactionEvent;
+    public ListTransactionEventsResponse withTransactionEvents(Optional<? extends TransactionEvents> transactionEvents) {
+        Utils.checkNotNull(transactionEvents, "transactionEvents");
+        this.transactionEvents = transactionEvents;
         return this;
     }
 
@@ -158,7 +158,7 @@ public class ListTransactionEventsResponse implements Response {
             Objects.deepEquals(this.contentType, other.contentType) &&
             Objects.deepEquals(this.statusCode, other.statusCode) &&
             Objects.deepEquals(this.rawResponse, other.rawResponse) &&
-            Objects.deepEquals(this.collectionTransactionEvent, other.collectionTransactionEvent);
+            Objects.deepEquals(this.transactionEvents, other.transactionEvents);
     }
     
     @Override
@@ -167,7 +167,7 @@ public class ListTransactionEventsResponse implements Response {
             contentType,
             statusCode,
             rawResponse,
-            collectionTransactionEvent);
+            transactionEvents);
     }
     
     @Override
@@ -176,7 +176,7 @@ public class ListTransactionEventsResponse implements Response {
                 "contentType", contentType,
                 "statusCode", statusCode,
                 "rawResponse", rawResponse,
-                "collectionTransactionEvent", collectionTransactionEvent);
+                "transactionEvents", transactionEvents);
     }
     
     public final static class Builder {
@@ -187,7 +187,7 @@ public class ListTransactionEventsResponse implements Response {
  
         private HttpResponse<InputStream> rawResponse;
  
-        private Optional<? extends CollectionTransactionEvent> collectionTransactionEvent = Optional.empty();
+        private Optional<? extends TransactionEvents> transactionEvents = Optional.empty();
         
         private Builder() {
           // force use of static builder() method
@@ -223,18 +223,18 @@ public class ListTransactionEventsResponse implements Response {
         /**
          * Successful Response
          */
-        public Builder collectionTransactionEvent(CollectionTransactionEvent collectionTransactionEvent) {
-            Utils.checkNotNull(collectionTransactionEvent, "collectionTransactionEvent");
-            this.collectionTransactionEvent = Optional.ofNullable(collectionTransactionEvent);
+        public Builder transactionEvents(TransactionEvents transactionEvents) {
+            Utils.checkNotNull(transactionEvents, "transactionEvents");
+            this.transactionEvents = Optional.ofNullable(transactionEvents);
             return this;
         }
 
         /**
          * Successful Response
          */
-        public Builder collectionTransactionEvent(Optional<? extends CollectionTransactionEvent> collectionTransactionEvent) {
-            Utils.checkNotNull(collectionTransactionEvent, "collectionTransactionEvent");
-            this.collectionTransactionEvent = collectionTransactionEvent;
+        public Builder transactionEvents(Optional<? extends TransactionEvents> transactionEvents) {
+            Utils.checkNotNull(transactionEvents, "transactionEvents");
+            this.transactionEvents = transactionEvents;
             return this;
         }
         
@@ -243,7 +243,7 @@ public class ListTransactionEventsResponse implements Response {
                 contentType,
                 statusCode,
                 rawResponse,
-                collectionTransactionEvent);
+                transactionEvents);
         }
     }
 }

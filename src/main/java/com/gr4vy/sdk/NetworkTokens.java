@@ -4,7 +4,6 @@
 package com.gr4vy.sdk;
 
 import com.fasterxml.jackson.core.type.TypeReference;
-import com.gr4vy.sdk.models.components.CollectionNoCursorNetworkToken;
 import com.gr4vy.sdk.models.components.NetworkToken;
 import com.gr4vy.sdk.models.components.NetworkTokenCreate;
 import com.gr4vy.sdk.models.errors.APIException;
@@ -228,10 +227,10 @@ public class NetworkTokens implements
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                CollectionNoCursorNetworkToken _out = Utils.mapper().readValue(
+                com.gr4vy.sdk.models.components.NetworkTokens _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<CollectionNoCursorNetworkToken>() {});
-                _res.withCollectionNoCursorNetworkToken(Optional.ofNullable(_out));
+                    new TypeReference<com.gr4vy.sdk.models.components.NetworkTokens>() {});
+                _res.withNetworkTokens(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new APIException(

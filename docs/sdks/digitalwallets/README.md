@@ -104,7 +104,7 @@ public class Application {
         ListDigitalWalletsResponse res = sdk.digitalWallets().list()
                 .call();
 
-        if (res.collectionNoCursorDigitalWallet().isPresent()) {
+        if (res.digitalWallets().isPresent()) {
             // handle response
         }
     }

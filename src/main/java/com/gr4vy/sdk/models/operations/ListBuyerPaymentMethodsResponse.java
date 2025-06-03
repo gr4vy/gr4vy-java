@@ -5,7 +5,7 @@ package com.gr4vy.sdk.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.gr4vy.sdk.models.components.CollectionNoCursorPaymentMethodSummary;
+import com.gr4vy.sdk.models.components.PaymentMethodSummaries;
 import com.gr4vy.sdk.utils.Response;
 import com.gr4vy.sdk.utils.Utils;
 import java.io.InputStream;
@@ -37,22 +37,22 @@ public class ListBuyerPaymentMethodsResponse implements Response {
     /**
      * Successful Response
      */
-    private Optional<? extends CollectionNoCursorPaymentMethodSummary> collectionNoCursorPaymentMethodSummary;
+    private Optional<? extends PaymentMethodSummaries> paymentMethodSummaries;
 
     @JsonCreator
     public ListBuyerPaymentMethodsResponse(
             String contentType,
             int statusCode,
             HttpResponse<InputStream> rawResponse,
-            Optional<? extends CollectionNoCursorPaymentMethodSummary> collectionNoCursorPaymentMethodSummary) {
+            Optional<? extends PaymentMethodSummaries> paymentMethodSummaries) {
         Utils.checkNotNull(contentType, "contentType");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
-        Utils.checkNotNull(collectionNoCursorPaymentMethodSummary, "collectionNoCursorPaymentMethodSummary");
+        Utils.checkNotNull(paymentMethodSummaries, "paymentMethodSummaries");
         this.contentType = contentType;
         this.statusCode = statusCode;
         this.rawResponse = rawResponse;
-        this.collectionNoCursorPaymentMethodSummary = collectionNoCursorPaymentMethodSummary;
+        this.paymentMethodSummaries = paymentMethodSummaries;
     }
     
     public ListBuyerPaymentMethodsResponse(
@@ -91,8 +91,8 @@ public class ListBuyerPaymentMethodsResponse implements Response {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<CollectionNoCursorPaymentMethodSummary> collectionNoCursorPaymentMethodSummary() {
-        return (Optional<CollectionNoCursorPaymentMethodSummary>) collectionNoCursorPaymentMethodSummary;
+    public Optional<PaymentMethodSummaries> paymentMethodSummaries() {
+        return (Optional<PaymentMethodSummaries>) paymentMethodSummaries;
     }
 
     public final static Builder builder() {
@@ -129,18 +129,18 @@ public class ListBuyerPaymentMethodsResponse implements Response {
     /**
      * Successful Response
      */
-    public ListBuyerPaymentMethodsResponse withCollectionNoCursorPaymentMethodSummary(CollectionNoCursorPaymentMethodSummary collectionNoCursorPaymentMethodSummary) {
-        Utils.checkNotNull(collectionNoCursorPaymentMethodSummary, "collectionNoCursorPaymentMethodSummary");
-        this.collectionNoCursorPaymentMethodSummary = Optional.ofNullable(collectionNoCursorPaymentMethodSummary);
+    public ListBuyerPaymentMethodsResponse withPaymentMethodSummaries(PaymentMethodSummaries paymentMethodSummaries) {
+        Utils.checkNotNull(paymentMethodSummaries, "paymentMethodSummaries");
+        this.paymentMethodSummaries = Optional.ofNullable(paymentMethodSummaries);
         return this;
     }
 
     /**
      * Successful Response
      */
-    public ListBuyerPaymentMethodsResponse withCollectionNoCursorPaymentMethodSummary(Optional<? extends CollectionNoCursorPaymentMethodSummary> collectionNoCursorPaymentMethodSummary) {
-        Utils.checkNotNull(collectionNoCursorPaymentMethodSummary, "collectionNoCursorPaymentMethodSummary");
-        this.collectionNoCursorPaymentMethodSummary = collectionNoCursorPaymentMethodSummary;
+    public ListBuyerPaymentMethodsResponse withPaymentMethodSummaries(Optional<? extends PaymentMethodSummaries> paymentMethodSummaries) {
+        Utils.checkNotNull(paymentMethodSummaries, "paymentMethodSummaries");
+        this.paymentMethodSummaries = paymentMethodSummaries;
         return this;
     }
 
@@ -158,7 +158,7 @@ public class ListBuyerPaymentMethodsResponse implements Response {
             Objects.deepEquals(this.contentType, other.contentType) &&
             Objects.deepEquals(this.statusCode, other.statusCode) &&
             Objects.deepEquals(this.rawResponse, other.rawResponse) &&
-            Objects.deepEquals(this.collectionNoCursorPaymentMethodSummary, other.collectionNoCursorPaymentMethodSummary);
+            Objects.deepEquals(this.paymentMethodSummaries, other.paymentMethodSummaries);
     }
     
     @Override
@@ -167,7 +167,7 @@ public class ListBuyerPaymentMethodsResponse implements Response {
             contentType,
             statusCode,
             rawResponse,
-            collectionNoCursorPaymentMethodSummary);
+            paymentMethodSummaries);
     }
     
     @Override
@@ -176,7 +176,7 @@ public class ListBuyerPaymentMethodsResponse implements Response {
                 "contentType", contentType,
                 "statusCode", statusCode,
                 "rawResponse", rawResponse,
-                "collectionNoCursorPaymentMethodSummary", collectionNoCursorPaymentMethodSummary);
+                "paymentMethodSummaries", paymentMethodSummaries);
     }
     
     public final static class Builder {
@@ -187,7 +187,7 @@ public class ListBuyerPaymentMethodsResponse implements Response {
  
         private HttpResponse<InputStream> rawResponse;
  
-        private Optional<? extends CollectionNoCursorPaymentMethodSummary> collectionNoCursorPaymentMethodSummary = Optional.empty();
+        private Optional<? extends PaymentMethodSummaries> paymentMethodSummaries = Optional.empty();
         
         private Builder() {
           // force use of static builder() method
@@ -223,18 +223,18 @@ public class ListBuyerPaymentMethodsResponse implements Response {
         /**
          * Successful Response
          */
-        public Builder collectionNoCursorPaymentMethodSummary(CollectionNoCursorPaymentMethodSummary collectionNoCursorPaymentMethodSummary) {
-            Utils.checkNotNull(collectionNoCursorPaymentMethodSummary, "collectionNoCursorPaymentMethodSummary");
-            this.collectionNoCursorPaymentMethodSummary = Optional.ofNullable(collectionNoCursorPaymentMethodSummary);
+        public Builder paymentMethodSummaries(PaymentMethodSummaries paymentMethodSummaries) {
+            Utils.checkNotNull(paymentMethodSummaries, "paymentMethodSummaries");
+            this.paymentMethodSummaries = Optional.ofNullable(paymentMethodSummaries);
             return this;
         }
 
         /**
          * Successful Response
          */
-        public Builder collectionNoCursorPaymentMethodSummary(Optional<? extends CollectionNoCursorPaymentMethodSummary> collectionNoCursorPaymentMethodSummary) {
-            Utils.checkNotNull(collectionNoCursorPaymentMethodSummary, "collectionNoCursorPaymentMethodSummary");
-            this.collectionNoCursorPaymentMethodSummary = collectionNoCursorPaymentMethodSummary;
+        public Builder paymentMethodSummaries(Optional<? extends PaymentMethodSummaries> paymentMethodSummaries) {
+            Utils.checkNotNull(paymentMethodSummaries, "paymentMethodSummaries");
+            this.paymentMethodSummaries = paymentMethodSummaries;
             return this;
         }
         
@@ -243,7 +243,7 @@ public class ListBuyerPaymentMethodsResponse implements Response {
                 contentType,
                 statusCode,
                 rawResponse,
-                collectionNoCursorPaymentMethodSummary);
+                paymentMethodSummaries);
         }
     }
 }

@@ -5,7 +5,7 @@ package com.gr4vy.sdk.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.gr4vy.sdk.models.components.CollectionNoCursorDigitalWallet;
+import com.gr4vy.sdk.models.components.DigitalWallets;
 import com.gr4vy.sdk.utils.Response;
 import com.gr4vy.sdk.utils.Utils;
 import java.io.InputStream;
@@ -37,22 +37,22 @@ public class ListDigitalWalletsResponse implements Response {
     /**
      * Successful Response
      */
-    private Optional<? extends CollectionNoCursorDigitalWallet> collectionNoCursorDigitalWallet;
+    private Optional<? extends DigitalWallets> digitalWallets;
 
     @JsonCreator
     public ListDigitalWalletsResponse(
             String contentType,
             int statusCode,
             HttpResponse<InputStream> rawResponse,
-            Optional<? extends CollectionNoCursorDigitalWallet> collectionNoCursorDigitalWallet) {
+            Optional<? extends DigitalWallets> digitalWallets) {
         Utils.checkNotNull(contentType, "contentType");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
-        Utils.checkNotNull(collectionNoCursorDigitalWallet, "collectionNoCursorDigitalWallet");
+        Utils.checkNotNull(digitalWallets, "digitalWallets");
         this.contentType = contentType;
         this.statusCode = statusCode;
         this.rawResponse = rawResponse;
-        this.collectionNoCursorDigitalWallet = collectionNoCursorDigitalWallet;
+        this.digitalWallets = digitalWallets;
     }
     
     public ListDigitalWalletsResponse(
@@ -91,8 +91,8 @@ public class ListDigitalWalletsResponse implements Response {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<CollectionNoCursorDigitalWallet> collectionNoCursorDigitalWallet() {
-        return (Optional<CollectionNoCursorDigitalWallet>) collectionNoCursorDigitalWallet;
+    public Optional<DigitalWallets> digitalWallets() {
+        return (Optional<DigitalWallets>) digitalWallets;
     }
 
     public final static Builder builder() {
@@ -129,18 +129,18 @@ public class ListDigitalWalletsResponse implements Response {
     /**
      * Successful Response
      */
-    public ListDigitalWalletsResponse withCollectionNoCursorDigitalWallet(CollectionNoCursorDigitalWallet collectionNoCursorDigitalWallet) {
-        Utils.checkNotNull(collectionNoCursorDigitalWallet, "collectionNoCursorDigitalWallet");
-        this.collectionNoCursorDigitalWallet = Optional.ofNullable(collectionNoCursorDigitalWallet);
+    public ListDigitalWalletsResponse withDigitalWallets(DigitalWallets digitalWallets) {
+        Utils.checkNotNull(digitalWallets, "digitalWallets");
+        this.digitalWallets = Optional.ofNullable(digitalWallets);
         return this;
     }
 
     /**
      * Successful Response
      */
-    public ListDigitalWalletsResponse withCollectionNoCursorDigitalWallet(Optional<? extends CollectionNoCursorDigitalWallet> collectionNoCursorDigitalWallet) {
-        Utils.checkNotNull(collectionNoCursorDigitalWallet, "collectionNoCursorDigitalWallet");
-        this.collectionNoCursorDigitalWallet = collectionNoCursorDigitalWallet;
+    public ListDigitalWalletsResponse withDigitalWallets(Optional<? extends DigitalWallets> digitalWallets) {
+        Utils.checkNotNull(digitalWallets, "digitalWallets");
+        this.digitalWallets = digitalWallets;
         return this;
     }
 
@@ -158,7 +158,7 @@ public class ListDigitalWalletsResponse implements Response {
             Objects.deepEquals(this.contentType, other.contentType) &&
             Objects.deepEquals(this.statusCode, other.statusCode) &&
             Objects.deepEquals(this.rawResponse, other.rawResponse) &&
-            Objects.deepEquals(this.collectionNoCursorDigitalWallet, other.collectionNoCursorDigitalWallet);
+            Objects.deepEquals(this.digitalWallets, other.digitalWallets);
     }
     
     @Override
@@ -167,7 +167,7 @@ public class ListDigitalWalletsResponse implements Response {
             contentType,
             statusCode,
             rawResponse,
-            collectionNoCursorDigitalWallet);
+            digitalWallets);
     }
     
     @Override
@@ -176,7 +176,7 @@ public class ListDigitalWalletsResponse implements Response {
                 "contentType", contentType,
                 "statusCode", statusCode,
                 "rawResponse", rawResponse,
-                "collectionNoCursorDigitalWallet", collectionNoCursorDigitalWallet);
+                "digitalWallets", digitalWallets);
     }
     
     public final static class Builder {
@@ -187,7 +187,7 @@ public class ListDigitalWalletsResponse implements Response {
  
         private HttpResponse<InputStream> rawResponse;
  
-        private Optional<? extends CollectionNoCursorDigitalWallet> collectionNoCursorDigitalWallet = Optional.empty();
+        private Optional<? extends DigitalWallets> digitalWallets = Optional.empty();
         
         private Builder() {
           // force use of static builder() method
@@ -223,18 +223,18 @@ public class ListDigitalWalletsResponse implements Response {
         /**
          * Successful Response
          */
-        public Builder collectionNoCursorDigitalWallet(CollectionNoCursorDigitalWallet collectionNoCursorDigitalWallet) {
-            Utils.checkNotNull(collectionNoCursorDigitalWallet, "collectionNoCursorDigitalWallet");
-            this.collectionNoCursorDigitalWallet = Optional.ofNullable(collectionNoCursorDigitalWallet);
+        public Builder digitalWallets(DigitalWallets digitalWallets) {
+            Utils.checkNotNull(digitalWallets, "digitalWallets");
+            this.digitalWallets = Optional.ofNullable(digitalWallets);
             return this;
         }
 
         /**
          * Successful Response
          */
-        public Builder collectionNoCursorDigitalWallet(Optional<? extends CollectionNoCursorDigitalWallet> collectionNoCursorDigitalWallet) {
-            Utils.checkNotNull(collectionNoCursorDigitalWallet, "collectionNoCursorDigitalWallet");
-            this.collectionNoCursorDigitalWallet = collectionNoCursorDigitalWallet;
+        public Builder digitalWallets(Optional<? extends DigitalWallets> digitalWallets) {
+            Utils.checkNotNull(digitalWallets, "digitalWallets");
+            this.digitalWallets = digitalWallets;
             return this;
         }
         
@@ -243,7 +243,7 @@ public class ListDigitalWalletsResponse implements Response {
                 contentType,
                 statusCode,
                 rawResponse,
-                collectionNoCursorDigitalWallet);
+                digitalWallets);
         }
     }
 }

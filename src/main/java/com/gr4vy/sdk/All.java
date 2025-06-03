@@ -4,7 +4,7 @@
 package com.gr4vy.sdk;
 
 import com.fasterxml.jackson.core.type.TypeReference;
-import com.gr4vy.sdk.models.components.CollectionRefund;
+import com.gr4vy.sdk.models.components.Refunds;
 import com.gr4vy.sdk.models.components.TransactionRefundAllCreate;
 import com.gr4vy.sdk.models.errors.APIException;
 import com.gr4vy.sdk.models.errors.Error400;
@@ -189,10 +189,10 @@ public class All implements
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "201")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                CollectionRefund _out = Utils.mapper().readValue(
+                Refunds _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<CollectionRefund>() {});
-                _res.withCollectionRefund(Optional.ofNullable(_out));
+                    new TypeReference<Refunds>() {});
+                _res.withRefunds(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new APIException(

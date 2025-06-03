@@ -4,7 +4,6 @@
 package com.gr4vy.sdk;
 
 import com.fasterxml.jackson.core.type.TypeReference;
-import com.gr4vy.sdk.models.components.CollectionReport;
 import com.gr4vy.sdk.models.components.Report;
 import com.gr4vy.sdk.models.components.ReportCreate;
 import com.gr4vy.sdk.models.components.ReportUpdate;
@@ -251,10 +250,10 @@ public class Reports implements
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                CollectionReport _out = Utils.mapper().readValue(
+                com.gr4vy.sdk.models.components.Reports _out = Utils.mapper().readValue(
                     new String(_fullResponse, StandardCharsets.UTF_8),
-                    new TypeReference<CollectionReport>() {});
-                _res.withCollectionReport(Optional.ofNullable(_out));
+                    new TypeReference<com.gr4vy.sdk.models.components.Reports>() {});
+                _res.withReports(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new APIException(

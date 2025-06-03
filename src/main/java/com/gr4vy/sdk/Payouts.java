@@ -4,8 +4,8 @@
 package com.gr4vy.sdk;
 
 import com.fasterxml.jackson.core.type.TypeReference;
-import com.gr4vy.sdk.models.components.CollectionPayoutSummary;
 import com.gr4vy.sdk.models.components.PayoutCreate;
+import com.gr4vy.sdk.models.components.PayoutSummaries;
 import com.gr4vy.sdk.models.components.PayoutSummary;
 import com.gr4vy.sdk.models.errors.APIException;
 import com.gr4vy.sdk.models.errors.Error400;
@@ -246,10 +246,10 @@ public class Payouts implements
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                CollectionPayoutSummary _out = Utils.mapper().readValue(
+                PayoutSummaries _out = Utils.mapper().readValue(
                     new String(_fullResponse, StandardCharsets.UTF_8),
-                    new TypeReference<CollectionPayoutSummary>() {});
-                _res.withCollectionPayoutSummary(Optional.ofNullable(_out));
+                    new TypeReference<PayoutSummaries>() {});
+                _res.withPayoutSummaries(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new APIException(

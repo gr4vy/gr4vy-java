@@ -5,7 +5,7 @@ package com.gr4vy.sdk.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.gr4vy.sdk.models.components.CollectionNoCursorPaymentServiceToken;
+import com.gr4vy.sdk.models.components.PaymentServiceTokens;
 import com.gr4vy.sdk.utils.Response;
 import com.gr4vy.sdk.utils.Utils;
 import java.io.InputStream;
@@ -37,22 +37,22 @@ public class ListPaymentMethodPaymentServiceTokensResponse implements Response {
     /**
      * Successful Response
      */
-    private Optional<? extends CollectionNoCursorPaymentServiceToken> collectionNoCursorPaymentServiceToken;
+    private Optional<? extends PaymentServiceTokens> paymentServiceTokens;
 
     @JsonCreator
     public ListPaymentMethodPaymentServiceTokensResponse(
             String contentType,
             int statusCode,
             HttpResponse<InputStream> rawResponse,
-            Optional<? extends CollectionNoCursorPaymentServiceToken> collectionNoCursorPaymentServiceToken) {
+            Optional<? extends PaymentServiceTokens> paymentServiceTokens) {
         Utils.checkNotNull(contentType, "contentType");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
-        Utils.checkNotNull(collectionNoCursorPaymentServiceToken, "collectionNoCursorPaymentServiceToken");
+        Utils.checkNotNull(paymentServiceTokens, "paymentServiceTokens");
         this.contentType = contentType;
         this.statusCode = statusCode;
         this.rawResponse = rawResponse;
-        this.collectionNoCursorPaymentServiceToken = collectionNoCursorPaymentServiceToken;
+        this.paymentServiceTokens = paymentServiceTokens;
     }
     
     public ListPaymentMethodPaymentServiceTokensResponse(
@@ -91,8 +91,8 @@ public class ListPaymentMethodPaymentServiceTokensResponse implements Response {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<CollectionNoCursorPaymentServiceToken> collectionNoCursorPaymentServiceToken() {
-        return (Optional<CollectionNoCursorPaymentServiceToken>) collectionNoCursorPaymentServiceToken;
+    public Optional<PaymentServiceTokens> paymentServiceTokens() {
+        return (Optional<PaymentServiceTokens>) paymentServiceTokens;
     }
 
     public final static Builder builder() {
@@ -129,18 +129,18 @@ public class ListPaymentMethodPaymentServiceTokensResponse implements Response {
     /**
      * Successful Response
      */
-    public ListPaymentMethodPaymentServiceTokensResponse withCollectionNoCursorPaymentServiceToken(CollectionNoCursorPaymentServiceToken collectionNoCursorPaymentServiceToken) {
-        Utils.checkNotNull(collectionNoCursorPaymentServiceToken, "collectionNoCursorPaymentServiceToken");
-        this.collectionNoCursorPaymentServiceToken = Optional.ofNullable(collectionNoCursorPaymentServiceToken);
+    public ListPaymentMethodPaymentServiceTokensResponse withPaymentServiceTokens(PaymentServiceTokens paymentServiceTokens) {
+        Utils.checkNotNull(paymentServiceTokens, "paymentServiceTokens");
+        this.paymentServiceTokens = Optional.ofNullable(paymentServiceTokens);
         return this;
     }
 
     /**
      * Successful Response
      */
-    public ListPaymentMethodPaymentServiceTokensResponse withCollectionNoCursorPaymentServiceToken(Optional<? extends CollectionNoCursorPaymentServiceToken> collectionNoCursorPaymentServiceToken) {
-        Utils.checkNotNull(collectionNoCursorPaymentServiceToken, "collectionNoCursorPaymentServiceToken");
-        this.collectionNoCursorPaymentServiceToken = collectionNoCursorPaymentServiceToken;
+    public ListPaymentMethodPaymentServiceTokensResponse withPaymentServiceTokens(Optional<? extends PaymentServiceTokens> paymentServiceTokens) {
+        Utils.checkNotNull(paymentServiceTokens, "paymentServiceTokens");
+        this.paymentServiceTokens = paymentServiceTokens;
         return this;
     }
 
@@ -158,7 +158,7 @@ public class ListPaymentMethodPaymentServiceTokensResponse implements Response {
             Objects.deepEquals(this.contentType, other.contentType) &&
             Objects.deepEquals(this.statusCode, other.statusCode) &&
             Objects.deepEquals(this.rawResponse, other.rawResponse) &&
-            Objects.deepEquals(this.collectionNoCursorPaymentServiceToken, other.collectionNoCursorPaymentServiceToken);
+            Objects.deepEquals(this.paymentServiceTokens, other.paymentServiceTokens);
     }
     
     @Override
@@ -167,7 +167,7 @@ public class ListPaymentMethodPaymentServiceTokensResponse implements Response {
             contentType,
             statusCode,
             rawResponse,
-            collectionNoCursorPaymentServiceToken);
+            paymentServiceTokens);
     }
     
     @Override
@@ -176,7 +176,7 @@ public class ListPaymentMethodPaymentServiceTokensResponse implements Response {
                 "contentType", contentType,
                 "statusCode", statusCode,
                 "rawResponse", rawResponse,
-                "collectionNoCursorPaymentServiceToken", collectionNoCursorPaymentServiceToken);
+                "paymentServiceTokens", paymentServiceTokens);
     }
     
     public final static class Builder {
@@ -187,7 +187,7 @@ public class ListPaymentMethodPaymentServiceTokensResponse implements Response {
  
         private HttpResponse<InputStream> rawResponse;
  
-        private Optional<? extends CollectionNoCursorPaymentServiceToken> collectionNoCursorPaymentServiceToken = Optional.empty();
+        private Optional<? extends PaymentServiceTokens> paymentServiceTokens = Optional.empty();
         
         private Builder() {
           // force use of static builder() method
@@ -223,18 +223,18 @@ public class ListPaymentMethodPaymentServiceTokensResponse implements Response {
         /**
          * Successful Response
          */
-        public Builder collectionNoCursorPaymentServiceToken(CollectionNoCursorPaymentServiceToken collectionNoCursorPaymentServiceToken) {
-            Utils.checkNotNull(collectionNoCursorPaymentServiceToken, "collectionNoCursorPaymentServiceToken");
-            this.collectionNoCursorPaymentServiceToken = Optional.ofNullable(collectionNoCursorPaymentServiceToken);
+        public Builder paymentServiceTokens(PaymentServiceTokens paymentServiceTokens) {
+            Utils.checkNotNull(paymentServiceTokens, "paymentServiceTokens");
+            this.paymentServiceTokens = Optional.ofNullable(paymentServiceTokens);
             return this;
         }
 
         /**
          * Successful Response
          */
-        public Builder collectionNoCursorPaymentServiceToken(Optional<? extends CollectionNoCursorPaymentServiceToken> collectionNoCursorPaymentServiceToken) {
-            Utils.checkNotNull(collectionNoCursorPaymentServiceToken, "collectionNoCursorPaymentServiceToken");
-            this.collectionNoCursorPaymentServiceToken = collectionNoCursorPaymentServiceToken;
+        public Builder paymentServiceTokens(Optional<? extends PaymentServiceTokens> paymentServiceTokens) {
+            Utils.checkNotNull(paymentServiceTokens, "paymentServiceTokens");
+            this.paymentServiceTokens = paymentServiceTokens;
             return this;
         }
         
@@ -243,7 +243,7 @@ public class ListPaymentMethodPaymentServiceTokensResponse implements Response {
                 contentType,
                 statusCode,
                 rawResponse,
-                collectionNoCursorPaymentServiceToken);
+                paymentServiceTokens);
         }
     }
 }

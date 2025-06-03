@@ -4,7 +4,6 @@
 package com.gr4vy.sdk;
 
 import com.fasterxml.jackson.core.type.TypeReference;
-import com.gr4vy.sdk.models.components.CollectionNoCursorCardSchemeDefinition;
 import com.gr4vy.sdk.models.errors.APIException;
 import com.gr4vy.sdk.models.errors.Error400;
 import com.gr4vy.sdk.models.errors.Error401;
@@ -194,10 +193,10 @@ public class CardSchemeDefinitions implements
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                CollectionNoCursorCardSchemeDefinition _out = Utils.mapper().readValue(
+                com.gr4vy.sdk.models.components.CardSchemeDefinitions _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<CollectionNoCursorCardSchemeDefinition>() {});
-                _res.withCollectionNoCursorCardSchemeDefinition(Optional.ofNullable(_out));
+                    new TypeReference<com.gr4vy.sdk.models.components.CardSchemeDefinitions>() {});
+                _res.withCardSchemeDefinitions(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new APIException(

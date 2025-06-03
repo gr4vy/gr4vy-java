@@ -32,7 +32,7 @@ public class Application {
         ListBuyerGiftCardsResponse res = sdk.buyers().giftCards().list()
                 .call();
 
-        if (res.collectionNoCursorGiftCardSummary().isPresent()) {
+        if (res.giftCardSummaries().isPresent()) {
             // handle response
         }
     }

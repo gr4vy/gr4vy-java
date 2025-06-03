@@ -4,8 +4,8 @@
 package com.gr4vy.sdk;
 
 import com.fasterxml.jackson.core.type.TypeReference;
-import com.gr4vy.sdk.models.components.CollectionReportExecution;
 import com.gr4vy.sdk.models.components.ReportExecution;
+import com.gr4vy.sdk.models.components.ReportExecutions;
 import com.gr4vy.sdk.models.errors.APIException;
 import com.gr4vy.sdk.models.errors.Error400;
 import com.gr4vy.sdk.models.errors.Error401;
@@ -200,10 +200,10 @@ public class ReportsExecutions implements
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                CollectionReportExecution _out = Utils.mapper().readValue(
+                ReportExecutions _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<CollectionReportExecution>() {});
-                _res.withCollectionReportExecution(Optional.ofNullable(_out));
+                    new TypeReference<ReportExecutions>() {});
+                _res.withReportExecutions(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new APIException(

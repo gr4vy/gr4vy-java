@@ -5,7 +5,7 @@ package com.gr4vy.sdk.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.gr4vy.sdk.models.components.CollectionNoCursorGiftCardSummary;
+import com.gr4vy.sdk.models.components.GiftCardSummaries;
 import com.gr4vy.sdk.utils.Response;
 import com.gr4vy.sdk.utils.Utils;
 import java.io.InputStream;
@@ -37,22 +37,22 @@ public class ListGiftCardBalancesResponse implements Response {
     /**
      * Successful Response
      */
-    private Optional<? extends CollectionNoCursorGiftCardSummary> collectionNoCursorGiftCardSummary;
+    private Optional<? extends GiftCardSummaries> giftCardSummaries;
 
     @JsonCreator
     public ListGiftCardBalancesResponse(
             String contentType,
             int statusCode,
             HttpResponse<InputStream> rawResponse,
-            Optional<? extends CollectionNoCursorGiftCardSummary> collectionNoCursorGiftCardSummary) {
+            Optional<? extends GiftCardSummaries> giftCardSummaries) {
         Utils.checkNotNull(contentType, "contentType");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
-        Utils.checkNotNull(collectionNoCursorGiftCardSummary, "collectionNoCursorGiftCardSummary");
+        Utils.checkNotNull(giftCardSummaries, "giftCardSummaries");
         this.contentType = contentType;
         this.statusCode = statusCode;
         this.rawResponse = rawResponse;
-        this.collectionNoCursorGiftCardSummary = collectionNoCursorGiftCardSummary;
+        this.giftCardSummaries = giftCardSummaries;
     }
     
     public ListGiftCardBalancesResponse(
@@ -91,8 +91,8 @@ public class ListGiftCardBalancesResponse implements Response {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<CollectionNoCursorGiftCardSummary> collectionNoCursorGiftCardSummary() {
-        return (Optional<CollectionNoCursorGiftCardSummary>) collectionNoCursorGiftCardSummary;
+    public Optional<GiftCardSummaries> giftCardSummaries() {
+        return (Optional<GiftCardSummaries>) giftCardSummaries;
     }
 
     public final static Builder builder() {
@@ -129,18 +129,18 @@ public class ListGiftCardBalancesResponse implements Response {
     /**
      * Successful Response
      */
-    public ListGiftCardBalancesResponse withCollectionNoCursorGiftCardSummary(CollectionNoCursorGiftCardSummary collectionNoCursorGiftCardSummary) {
-        Utils.checkNotNull(collectionNoCursorGiftCardSummary, "collectionNoCursorGiftCardSummary");
-        this.collectionNoCursorGiftCardSummary = Optional.ofNullable(collectionNoCursorGiftCardSummary);
+    public ListGiftCardBalancesResponse withGiftCardSummaries(GiftCardSummaries giftCardSummaries) {
+        Utils.checkNotNull(giftCardSummaries, "giftCardSummaries");
+        this.giftCardSummaries = Optional.ofNullable(giftCardSummaries);
         return this;
     }
 
     /**
      * Successful Response
      */
-    public ListGiftCardBalancesResponse withCollectionNoCursorGiftCardSummary(Optional<? extends CollectionNoCursorGiftCardSummary> collectionNoCursorGiftCardSummary) {
-        Utils.checkNotNull(collectionNoCursorGiftCardSummary, "collectionNoCursorGiftCardSummary");
-        this.collectionNoCursorGiftCardSummary = collectionNoCursorGiftCardSummary;
+    public ListGiftCardBalancesResponse withGiftCardSummaries(Optional<? extends GiftCardSummaries> giftCardSummaries) {
+        Utils.checkNotNull(giftCardSummaries, "giftCardSummaries");
+        this.giftCardSummaries = giftCardSummaries;
         return this;
     }
 
@@ -158,7 +158,7 @@ public class ListGiftCardBalancesResponse implements Response {
             Objects.deepEquals(this.contentType, other.contentType) &&
             Objects.deepEquals(this.statusCode, other.statusCode) &&
             Objects.deepEquals(this.rawResponse, other.rawResponse) &&
-            Objects.deepEquals(this.collectionNoCursorGiftCardSummary, other.collectionNoCursorGiftCardSummary);
+            Objects.deepEquals(this.giftCardSummaries, other.giftCardSummaries);
     }
     
     @Override
@@ -167,7 +167,7 @@ public class ListGiftCardBalancesResponse implements Response {
             contentType,
             statusCode,
             rawResponse,
-            collectionNoCursorGiftCardSummary);
+            giftCardSummaries);
     }
     
     @Override
@@ -176,7 +176,7 @@ public class ListGiftCardBalancesResponse implements Response {
                 "contentType", contentType,
                 "statusCode", statusCode,
                 "rawResponse", rawResponse,
-                "collectionNoCursorGiftCardSummary", collectionNoCursorGiftCardSummary);
+                "giftCardSummaries", giftCardSummaries);
     }
     
     public final static class Builder {
@@ -187,7 +187,7 @@ public class ListGiftCardBalancesResponse implements Response {
  
         private HttpResponse<InputStream> rawResponse;
  
-        private Optional<? extends CollectionNoCursorGiftCardSummary> collectionNoCursorGiftCardSummary = Optional.empty();
+        private Optional<? extends GiftCardSummaries> giftCardSummaries = Optional.empty();
         
         private Builder() {
           // force use of static builder() method
@@ -223,18 +223,18 @@ public class ListGiftCardBalancesResponse implements Response {
         /**
          * Successful Response
          */
-        public Builder collectionNoCursorGiftCardSummary(CollectionNoCursorGiftCardSummary collectionNoCursorGiftCardSummary) {
-            Utils.checkNotNull(collectionNoCursorGiftCardSummary, "collectionNoCursorGiftCardSummary");
-            this.collectionNoCursorGiftCardSummary = Optional.ofNullable(collectionNoCursorGiftCardSummary);
+        public Builder giftCardSummaries(GiftCardSummaries giftCardSummaries) {
+            Utils.checkNotNull(giftCardSummaries, "giftCardSummaries");
+            this.giftCardSummaries = Optional.ofNullable(giftCardSummaries);
             return this;
         }
 
         /**
          * Successful Response
          */
-        public Builder collectionNoCursorGiftCardSummary(Optional<? extends CollectionNoCursorGiftCardSummary> collectionNoCursorGiftCardSummary) {
-            Utils.checkNotNull(collectionNoCursorGiftCardSummary, "collectionNoCursorGiftCardSummary");
-            this.collectionNoCursorGiftCardSummary = collectionNoCursorGiftCardSummary;
+        public Builder giftCardSummaries(Optional<? extends GiftCardSummaries> giftCardSummaries) {
+            Utils.checkNotNull(giftCardSummaries, "giftCardSummaries");
+            this.giftCardSummaries = giftCardSummaries;
             return this;
         }
         
@@ -243,7 +243,7 @@ public class ListGiftCardBalancesResponse implements Response {
                 contentType,
                 statusCode,
                 rawResponse,
-                collectionNoCursorGiftCardSummary);
+                giftCardSummaries);
         }
     }
 }

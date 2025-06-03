@@ -5,7 +5,7 @@ package com.gr4vy.sdk.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.gr4vy.sdk.models.components.CollectionPayoutSummary;
+import com.gr4vy.sdk.models.components.PayoutSummaries;
 import com.gr4vy.sdk.utils.Response;
 import com.gr4vy.sdk.utils.Utils;
 import java.io.InputStream;
@@ -40,7 +40,7 @@ public class ListPayoutsResponse implements Response {
     /**
      * Successful Response
      */
-    private Optional<? extends CollectionPayoutSummary> collectionPayoutSummary;
+    private Optional<? extends PayoutSummaries> payoutSummaries;
 
     private Callable<Optional<ListPayoutsResponse>> next = () -> Optional.empty();
 
@@ -49,15 +49,15 @@ public class ListPayoutsResponse implements Response {
             String contentType,
             int statusCode,
             HttpResponse<InputStream> rawResponse,
-            Optional<? extends CollectionPayoutSummary> collectionPayoutSummary) {
+            Optional<? extends PayoutSummaries> payoutSummaries) {
         Utils.checkNotNull(contentType, "contentType");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
-        Utils.checkNotNull(collectionPayoutSummary, "collectionPayoutSummary");
+        Utils.checkNotNull(payoutSummaries, "payoutSummaries");
         this.contentType = contentType;
         this.statusCode = statusCode;
         this.rawResponse = rawResponse;
-        this.collectionPayoutSummary = collectionPayoutSummary;
+        this.payoutSummaries = payoutSummaries;
     }
     
     public ListPayoutsResponse(
@@ -96,8 +96,8 @@ public class ListPayoutsResponse implements Response {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<CollectionPayoutSummary> collectionPayoutSummary() {
-        return (Optional<CollectionPayoutSummary>) collectionPayoutSummary;
+    public Optional<PayoutSummaries> payoutSummaries() {
+        return (Optional<PayoutSummaries>) payoutSummaries;
     }
 
     public Optional<ListPayoutsResponse> next() throws Exception {
@@ -144,18 +144,18 @@ public class ListPayoutsResponse implements Response {
     /**
      * Successful Response
      */
-    public ListPayoutsResponse withCollectionPayoutSummary(CollectionPayoutSummary collectionPayoutSummary) {
-        Utils.checkNotNull(collectionPayoutSummary, "collectionPayoutSummary");
-        this.collectionPayoutSummary = Optional.ofNullable(collectionPayoutSummary);
+    public ListPayoutsResponse withPayoutSummaries(PayoutSummaries payoutSummaries) {
+        Utils.checkNotNull(payoutSummaries, "payoutSummaries");
+        this.payoutSummaries = Optional.ofNullable(payoutSummaries);
         return this;
     }
 
     /**
      * Successful Response
      */
-    public ListPayoutsResponse withCollectionPayoutSummary(Optional<? extends CollectionPayoutSummary> collectionPayoutSummary) {
-        Utils.checkNotNull(collectionPayoutSummary, "collectionPayoutSummary");
-        this.collectionPayoutSummary = collectionPayoutSummary;
+    public ListPayoutsResponse withPayoutSummaries(Optional<? extends PayoutSummaries> payoutSummaries) {
+        Utils.checkNotNull(payoutSummaries, "payoutSummaries");
+        this.payoutSummaries = payoutSummaries;
         return this;
     }
 
@@ -173,7 +173,7 @@ public class ListPayoutsResponse implements Response {
             Objects.deepEquals(this.contentType, other.contentType) &&
             Objects.deepEquals(this.statusCode, other.statusCode) &&
             Objects.deepEquals(this.rawResponse, other.rawResponse) &&
-            Objects.deepEquals(this.collectionPayoutSummary, other.collectionPayoutSummary);
+            Objects.deepEquals(this.payoutSummaries, other.payoutSummaries);
     }
     
     @Override
@@ -182,7 +182,7 @@ public class ListPayoutsResponse implements Response {
             contentType,
             statusCode,
             rawResponse,
-            collectionPayoutSummary);
+            payoutSummaries);
     }
     
     @Override
@@ -191,7 +191,7 @@ public class ListPayoutsResponse implements Response {
                 "contentType", contentType,
                 "statusCode", statusCode,
                 "rawResponse", rawResponse,
-                "collectionPayoutSummary", collectionPayoutSummary);
+                "payoutSummaries", payoutSummaries);
     }
     
     public final static class Builder {
@@ -203,7 +203,7 @@ public class ListPayoutsResponse implements Response {
  
         private HttpResponse<InputStream> rawResponse;
  
-        private Optional<? extends CollectionPayoutSummary> collectionPayoutSummary = Optional.empty();
+        private Optional<? extends PayoutSummaries> payoutSummaries = Optional.empty();
         
         private Builder() {
           // force use of static builder() method
@@ -239,18 +239,18 @@ public class ListPayoutsResponse implements Response {
         /**
          * Successful Response
          */
-        public Builder collectionPayoutSummary(CollectionPayoutSummary collectionPayoutSummary) {
-            Utils.checkNotNull(collectionPayoutSummary, "collectionPayoutSummary");
-            this.collectionPayoutSummary = Optional.ofNullable(collectionPayoutSummary);
+        public Builder payoutSummaries(PayoutSummaries payoutSummaries) {
+            Utils.checkNotNull(payoutSummaries, "payoutSummaries");
+            this.payoutSummaries = Optional.ofNullable(payoutSummaries);
             return this;
         }
 
         /**
          * Successful Response
          */
-        public Builder collectionPayoutSummary(Optional<? extends CollectionPayoutSummary> collectionPayoutSummary) {
-            Utils.checkNotNull(collectionPayoutSummary, "collectionPayoutSummary");
-            this.collectionPayoutSummary = collectionPayoutSummary;
+        public Builder payoutSummaries(Optional<? extends PayoutSummaries> payoutSummaries) {
+            Utils.checkNotNull(payoutSummaries, "payoutSummaries");
+            this.payoutSummaries = payoutSummaries;
             return this;
         }
 
@@ -271,7 +271,7 @@ public class ListPayoutsResponse implements Response {
                 contentType,
                 statusCode,
                 rawResponse,
-                collectionPayoutSummary)
+                payoutSummaries)
                 .withNext(next);
         }
     }

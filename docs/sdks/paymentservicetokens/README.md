@@ -35,7 +35,7 @@ public class Application {
                 .paymentMethodId("ef9496d8-53a5-4aad-8ca2-00eb68334389")
                 .call();
 
-        if (res.collectionNoCursorPaymentServiceToken().isPresent()) {
+        if (res.paymentServiceTokens().isPresent()) {
             // handle response
         }
     }

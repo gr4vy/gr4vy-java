@@ -7,7 +7,6 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.gr4vy.sdk.models.components.Buyer;
 import com.gr4vy.sdk.models.components.BuyerCreate;
 import com.gr4vy.sdk.models.components.BuyerUpdate;
-import com.gr4vy.sdk.models.components.CollectionBuyer;
 import com.gr4vy.sdk.models.errors.APIException;
 import com.gr4vy.sdk.models.errors.Error400;
 import com.gr4vy.sdk.models.errors.Error401;
@@ -266,10 +265,10 @@ public class Buyers implements
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                CollectionBuyer _out = Utils.mapper().readValue(
+                com.gr4vy.sdk.models.components.Buyers _out = Utils.mapper().readValue(
                     new String(_fullResponse, StandardCharsets.UTF_8),
-                    new TypeReference<CollectionBuyer>() {});
-                _res.withCollectionBuyer(Optional.ofNullable(_out));
+                    new TypeReference<com.gr4vy.sdk.models.components.Buyers>() {});
+                _res.withBuyers(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new APIException(
