@@ -23,6 +23,10 @@ public class ListPaymentServiceDefinitionsRequestBuilder {
                             "limit",
                             "20",
                             new TypeReference<Optional<Long>>() {});
+    private Optional<String> applicationName = Utils.readDefaultOrConstValue(
+                            "applicationName",
+                            "\"core-api\"",
+                            new TypeReference<Optional<String>>() {});
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKMethodInterfaces.MethodCallListPaymentServiceDefinitions sdk;
 
@@ -54,6 +58,18 @@ public class ListPaymentServiceDefinitionsRequestBuilder {
         return this;
     }
                 
+    public ListPaymentServiceDefinitionsRequestBuilder applicationName(String applicationName) {
+        Utils.checkNotNull(applicationName, "applicationName");
+        this.applicationName = Optional.of(applicationName);
+        return this;
+    }
+
+    public ListPaymentServiceDefinitionsRequestBuilder applicationName(Optional<String> applicationName) {
+        Utils.checkNotNull(applicationName, "applicationName");
+        this.applicationName = applicationName;
+        return this;
+    }
+                
     public ListPaymentServiceDefinitionsRequestBuilder retryConfig(RetryConfig retryConfig) {
         Utils.checkNotNull(retryConfig, "retryConfig");
         this.retryConfig = Optional.of(retryConfig);
@@ -69,12 +85,16 @@ public class ListPaymentServiceDefinitionsRequestBuilder {
     public ListPaymentServiceDefinitionsResponse call() throws Exception {
         if (limit == null) {
             limit = _SINGLETON_VALUE_Limit.value();
+        }
+        if (applicationName == null) {
+            applicationName = _SINGLETON_VALUE_ApplicationName.value();
         }        Optional<Options> options = Optional.of(Options.builder()
                                                     .retryConfig(retryConfig)
                                                     .build());
         return sdk.list(
             cursor,
             limit,
+            applicationName,
             options);
     }
     
@@ -104,4 +124,10 @@ public class ListPaymentServiceDefinitionsRequestBuilder {
                     "limit",
                     "20",
                     new TypeReference<Optional<Long>>() {});
+
+    private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_ApplicationName =
+            new LazySingletonValue<>(
+                    "applicationName",
+                    "\"core-api\"",
+                    new TypeReference<Optional<String>>() {});
 }

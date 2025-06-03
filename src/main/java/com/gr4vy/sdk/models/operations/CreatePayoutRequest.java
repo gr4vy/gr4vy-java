@@ -5,15 +5,21 @@ package com.gr4vy.sdk.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.gr4vy.sdk.models.components.PayoutCreate;
+import com.gr4vy.sdk.utils.LazySingletonValue;
 import com.gr4vy.sdk.utils.SpeakeasyMetadata;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.util.Objects;
+import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 public class CreatePayoutRequest {
+
+    @SpeakeasyMetadata("queryParam:style=form,explode=true,name=application_name")
+    private Optional<String> applicationName;
 
     /**
      * The ID of the merchant account to use for this request.
@@ -26,17 +32,25 @@ public class CreatePayoutRequest {
 
     @JsonCreator
     public CreatePayoutRequest(
+            Optional<String> applicationName,
             JsonNullable<String> merchantAccountId,
             PayoutCreate payoutCreate) {
+        Utils.checkNotNull(applicationName, "applicationName");
         Utils.checkNotNull(merchantAccountId, "merchantAccountId");
         Utils.checkNotNull(payoutCreate, "payoutCreate");
+        this.applicationName = applicationName;
         this.merchantAccountId = merchantAccountId;
         this.payoutCreate = payoutCreate;
     }
     
     public CreatePayoutRequest(
             PayoutCreate payoutCreate) {
-        this(JsonNullable.undefined(), payoutCreate);
+        this(Optional.empty(), JsonNullable.undefined(), payoutCreate);
+    }
+
+    @JsonIgnore
+    public Optional<String> applicationName() {
+        return applicationName;
     }
 
     /**
@@ -55,6 +69,18 @@ public class CreatePayoutRequest {
     public final static Builder builder() {
         return new Builder();
     }    
+
+    public CreatePayoutRequest withApplicationName(String applicationName) {
+        Utils.checkNotNull(applicationName, "applicationName");
+        this.applicationName = Optional.ofNullable(applicationName);
+        return this;
+    }
+
+    public CreatePayoutRequest withApplicationName(Optional<String> applicationName) {
+        Utils.checkNotNull(applicationName, "applicationName");
+        this.applicationName = applicationName;
+        return this;
+    }
 
     /**
      * The ID of the merchant account to use for this request.
@@ -91,6 +117,7 @@ public class CreatePayoutRequest {
         }
         CreatePayoutRequest other = (CreatePayoutRequest) o;
         return 
+            Objects.deepEquals(this.applicationName, other.applicationName) &&
             Objects.deepEquals(this.merchantAccountId, other.merchantAccountId) &&
             Objects.deepEquals(this.payoutCreate, other.payoutCreate);
     }
@@ -98,6 +125,7 @@ public class CreatePayoutRequest {
     @Override
     public int hashCode() {
         return Objects.hash(
+            applicationName,
             merchantAccountId,
             payoutCreate);
     }
@@ -105,11 +133,14 @@ public class CreatePayoutRequest {
     @Override
     public String toString() {
         return Utils.toString(CreatePayoutRequest.class,
+                "applicationName", applicationName,
                 "merchantAccountId", merchantAccountId,
                 "payoutCreate", payoutCreate);
     }
     
     public final static class Builder {
+ 
+        private Optional<String> applicationName;
  
         private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
  
@@ -117,6 +148,18 @@ public class CreatePayoutRequest {
         
         private Builder() {
           // force use of static builder() method
+        }
+
+        public Builder applicationName(String applicationName) {
+            Utils.checkNotNull(applicationName, "applicationName");
+            this.applicationName = Optional.ofNullable(applicationName);
+            return this;
+        }
+
+        public Builder applicationName(Optional<String> applicationName) {
+            Utils.checkNotNull(applicationName, "applicationName");
+            this.applicationName = applicationName;
+            return this;
         }
 
         /**
@@ -144,9 +187,19 @@ public class CreatePayoutRequest {
         }
         
         public CreatePayoutRequest build() {
+            if (applicationName == null) {
+                applicationName = _SINGLETON_VALUE_ApplicationName.value();
+            }
             return new CreatePayoutRequest(
+                applicationName,
                 merchantAccountId,
                 payoutCreate);
         }
+
+        private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_ApplicationName =
+                new LazySingletonValue<>(
+                        "application_name",
+                        "\"core-api\"",
+                        new TypeReference<Optional<String>>() {});
     }
 }

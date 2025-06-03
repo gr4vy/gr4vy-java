@@ -4,7 +4,6 @@
 package com.gr4vy.sdk;
 
 import com.fasterxml.jackson.core.type.TypeReference;
-import com.gr4vy.sdk.models.components.CryptogramCreate;
 import com.gr4vy.sdk.models.errors.APIException;
 import com.gr4vy.sdk.models.errors.Error400;
 import com.gr4vy.sdk.models.errors.Error401;
@@ -38,7 +37,6 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.util.List;
 import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
 
 public class Cryptogram implements
             MethodCallCreatePaymentMethodNetworkTokenCryptogram {
@@ -66,45 +64,12 @@ public class Cryptogram implements
      * 
      * <p>Provision a cryptogram for a network token.
      * 
-     * @param paymentMethodId The ID of the payment method
-     * @param networkTokenId The ID of the network token
-     * @param cryptogramCreate 
+     * @param request The request object containing all of the parameters for the API call.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public CreatePaymentMethodNetworkTokenCryptogramResponse create(
-            String paymentMethodId,
-            String networkTokenId,
-            CryptogramCreate cryptogramCreate) throws Exception {
-        return create(paymentMethodId, networkTokenId, JsonNullable.undefined(), cryptogramCreate);
-    }
-    
-    /**
-     * Provision network token cryptogram
-     * 
-     * <p>Provision a cryptogram for a network token.
-     * 
-     * @param paymentMethodId The ID of the payment method
-     * @param networkTokenId The ID of the network token
-     * @param merchantAccountId 
-     * @param cryptogramCreate 
-     * @return The response from the API call
-     * @throws Exception if the API call fails
-     */
-    public CreatePaymentMethodNetworkTokenCryptogramResponse create(
-            String paymentMethodId,
-            String networkTokenId,
-            JsonNullable<String> merchantAccountId,
-            CryptogramCreate cryptogramCreate) throws Exception {
-        CreatePaymentMethodNetworkTokenCryptogramRequest request =
-            CreatePaymentMethodNetworkTokenCryptogramRequest
-                .builder()
-                .paymentMethodId(paymentMethodId)
-                .networkTokenId(networkTokenId)
-                .merchantAccountId(merchantAccountId)
-                .cryptogramCreate(cryptogramCreate)
-                .build();
-        
+            CreatePaymentMethodNetworkTokenCryptogramRequest request) throws Exception {
         String _baseUrl = Utils.templateUrl(
                 this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
@@ -117,7 +82,7 @@ public class Cryptogram implements
         Object _convertedRequest = Utils.convertToShape(
                 request, 
                 JsonShape.DEFAULT,
-                new TypeReference<Object>() {});
+                new TypeReference<CreatePaymentMethodNetworkTokenCryptogramRequest>() {});
         SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
                 _convertedRequest, 
                 "cryptogramCreate",
@@ -130,6 +95,11 @@ public class Cryptogram implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
+
+        _req.addQueryParams(Utils.getQueryParams(
+                CreatePaymentMethodNetworkTokenCryptogramRequest.class,
+                request, 
+                this.sdkConfiguration.globals));
         _req.addHeaders(Utils.getHeadersFromMetadata(request, this.sdkConfiguration.globals));
         
         Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());

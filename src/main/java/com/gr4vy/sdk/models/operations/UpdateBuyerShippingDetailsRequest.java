@@ -5,12 +5,15 @@ package com.gr4vy.sdk.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.gr4vy.sdk.models.components.ShippingDetailsUpdate;
+import com.gr4vy.sdk.utils.LazySingletonValue;
 import com.gr4vy.sdk.utils.SpeakeasyMetadata;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.util.Objects;
+import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 public class UpdateBuyerShippingDetailsRequest {
@@ -27,6 +30,9 @@ public class UpdateBuyerShippingDetailsRequest {
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=shipping_details_id")
     private String shippingDetailsId;
 
+    @SpeakeasyMetadata("queryParam:style=form,explode=true,name=application_name")
+    private Optional<String> applicationName;
+
     /**
      * The ID of the merchant account to use for this request.
      */
@@ -40,14 +46,17 @@ public class UpdateBuyerShippingDetailsRequest {
     public UpdateBuyerShippingDetailsRequest(
             String buyerId,
             String shippingDetailsId,
+            Optional<String> applicationName,
             JsonNullable<String> merchantAccountId,
             ShippingDetailsUpdate shippingDetailsUpdate) {
         Utils.checkNotNull(buyerId, "buyerId");
         Utils.checkNotNull(shippingDetailsId, "shippingDetailsId");
+        Utils.checkNotNull(applicationName, "applicationName");
         Utils.checkNotNull(merchantAccountId, "merchantAccountId");
         Utils.checkNotNull(shippingDetailsUpdate, "shippingDetailsUpdate");
         this.buyerId = buyerId;
         this.shippingDetailsId = shippingDetailsId;
+        this.applicationName = applicationName;
         this.merchantAccountId = merchantAccountId;
         this.shippingDetailsUpdate = shippingDetailsUpdate;
     }
@@ -56,7 +65,7 @@ public class UpdateBuyerShippingDetailsRequest {
             String buyerId,
             String shippingDetailsId,
             ShippingDetailsUpdate shippingDetailsUpdate) {
-        this(buyerId, shippingDetailsId, JsonNullable.undefined(), shippingDetailsUpdate);
+        this(buyerId, shippingDetailsId, Optional.empty(), JsonNullable.undefined(), shippingDetailsUpdate);
     }
 
     /**
@@ -73,6 +82,11 @@ public class UpdateBuyerShippingDetailsRequest {
     @JsonIgnore
     public String shippingDetailsId() {
         return shippingDetailsId;
+    }
+
+    @JsonIgnore
+    public Optional<String> applicationName() {
+        return applicationName;
     }
 
     /**
@@ -107,6 +121,18 @@ public class UpdateBuyerShippingDetailsRequest {
     public UpdateBuyerShippingDetailsRequest withShippingDetailsId(String shippingDetailsId) {
         Utils.checkNotNull(shippingDetailsId, "shippingDetailsId");
         this.shippingDetailsId = shippingDetailsId;
+        return this;
+    }
+
+    public UpdateBuyerShippingDetailsRequest withApplicationName(String applicationName) {
+        Utils.checkNotNull(applicationName, "applicationName");
+        this.applicationName = Optional.ofNullable(applicationName);
+        return this;
+    }
+
+    public UpdateBuyerShippingDetailsRequest withApplicationName(Optional<String> applicationName) {
+        Utils.checkNotNull(applicationName, "applicationName");
+        this.applicationName = applicationName;
         return this;
     }
 
@@ -147,6 +173,7 @@ public class UpdateBuyerShippingDetailsRequest {
         return 
             Objects.deepEquals(this.buyerId, other.buyerId) &&
             Objects.deepEquals(this.shippingDetailsId, other.shippingDetailsId) &&
+            Objects.deepEquals(this.applicationName, other.applicationName) &&
             Objects.deepEquals(this.merchantAccountId, other.merchantAccountId) &&
             Objects.deepEquals(this.shippingDetailsUpdate, other.shippingDetailsUpdate);
     }
@@ -156,6 +183,7 @@ public class UpdateBuyerShippingDetailsRequest {
         return Objects.hash(
             buyerId,
             shippingDetailsId,
+            applicationName,
             merchantAccountId,
             shippingDetailsUpdate);
     }
@@ -165,6 +193,7 @@ public class UpdateBuyerShippingDetailsRequest {
         return Utils.toString(UpdateBuyerShippingDetailsRequest.class,
                 "buyerId", buyerId,
                 "shippingDetailsId", shippingDetailsId,
+                "applicationName", applicationName,
                 "merchantAccountId", merchantAccountId,
                 "shippingDetailsUpdate", shippingDetailsUpdate);
     }
@@ -174,6 +203,8 @@ public class UpdateBuyerShippingDetailsRequest {
         private String buyerId;
  
         private String shippingDetailsId;
+ 
+        private Optional<String> applicationName;
  
         private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
  
@@ -198,6 +229,18 @@ public class UpdateBuyerShippingDetailsRequest {
         public Builder shippingDetailsId(String shippingDetailsId) {
             Utils.checkNotNull(shippingDetailsId, "shippingDetailsId");
             this.shippingDetailsId = shippingDetailsId;
+            return this;
+        }
+
+        public Builder applicationName(String applicationName) {
+            Utils.checkNotNull(applicationName, "applicationName");
+            this.applicationName = Optional.ofNullable(applicationName);
+            return this;
+        }
+
+        public Builder applicationName(Optional<String> applicationName) {
+            Utils.checkNotNull(applicationName, "applicationName");
+            this.applicationName = applicationName;
             return this;
         }
 
@@ -226,11 +269,21 @@ public class UpdateBuyerShippingDetailsRequest {
         }
         
         public UpdateBuyerShippingDetailsRequest build() {
+            if (applicationName == null) {
+                applicationName = _SINGLETON_VALUE_ApplicationName.value();
+            }
             return new UpdateBuyerShippingDetailsRequest(
                 buyerId,
                 shippingDetailsId,
+                applicationName,
                 merchantAccountId,
                 shippingDetailsUpdate);
         }
+
+        private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_ApplicationName =
+                new LazySingletonValue<>(
+                        "application_name",
+                        "\"core-api\"",
+                        new TypeReference<Optional<String>>() {});
     }
 }

@@ -96,7 +96,7 @@ public class TransactionsRefunds implements
      */
     public ListTransactionRefundsResponse list(
             String transactionId) throws Exception {
-        return list(transactionId, JsonNullable.undefined(), Optional.empty());
+        return list(transactionId, Optional.empty(), JsonNullable.undefined(), Optional.empty());
     }
     
     /**
@@ -105,6 +105,7 @@ public class TransactionsRefunds implements
      * <p>List refunds for a transaction.
      * 
      * @param transactionId 
+     * @param applicationName 
      * @param merchantAccountId 
      * @param options additional options
      * @return The response from the API call
@@ -112,6 +113,7 @@ public class TransactionsRefunds implements
      */
     public ListTransactionRefundsResponse list(
             String transactionId,
+            Optional<String> applicationName,
             JsonNullable<String> merchantAccountId,
             Optional<Options> options) throws Exception {
 
@@ -122,6 +124,7 @@ public class TransactionsRefunds implements
             ListTransactionRefundsRequest
                 .builder()
                 .transactionId(transactionId)
+                .applicationName(applicationName)
                 .merchantAccountId(merchantAccountId)
                 .build();
         
@@ -137,6 +140,11 @@ public class TransactionsRefunds implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
+
+        _req.addQueryParams(Utils.getQueryParams(
+                ListTransactionRefundsRequest.class,
+                request, 
+                this.sdkConfiguration.globals));
         _req.addHeaders(Utils.getHeadersFromMetadata(request, this.sdkConfiguration.globals));
         
         Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
@@ -474,7 +482,7 @@ public class TransactionsRefunds implements
     public CreateTransactionRefundResponse create(
             String transactionId,
             TransactionRefundCreate transactionRefundCreate) throws Exception {
-        return create(transactionId, JsonNullable.undefined(), transactionRefundCreate);
+        return create(transactionId, Optional.empty(), JsonNullable.undefined(), transactionRefundCreate);
     }
     
     /**
@@ -483,6 +491,7 @@ public class TransactionsRefunds implements
      * <p>Create a refund for a transaction.
      * 
      * @param transactionId 
+     * @param applicationName 
      * @param merchantAccountId 
      * @param transactionRefundCreate 
      * @return The response from the API call
@@ -490,12 +499,14 @@ public class TransactionsRefunds implements
      */
     public CreateTransactionRefundResponse create(
             String transactionId,
+            Optional<String> applicationName,
             JsonNullable<String> merchantAccountId,
             TransactionRefundCreate transactionRefundCreate) throws Exception {
         CreateTransactionRefundRequest request =
             CreateTransactionRefundRequest
                 .builder()
                 .transactionId(transactionId)
+                .applicationName(applicationName)
                 .merchantAccountId(merchantAccountId)
                 .transactionRefundCreate(transactionRefundCreate)
                 .build();
@@ -525,6 +536,11 @@ public class TransactionsRefunds implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
+
+        _req.addQueryParams(Utils.getQueryParams(
+                CreateTransactionRefundRequest.class,
+                request, 
+                this.sdkConfiguration.globals));
         _req.addHeaders(Utils.getHeadersFromMetadata(request, this.sdkConfiguration.globals));
         
         Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
@@ -847,7 +863,7 @@ public class TransactionsRefunds implements
     public GetTransactionRefundResponse get(
             String transactionId,
             String refundId) throws Exception {
-        return get(transactionId, refundId, JsonNullable.undefined(), Optional.empty());
+        return get(transactionId, refundId, Optional.empty(), JsonNullable.undefined(), Optional.empty());
     }
     
     /**
@@ -857,6 +873,7 @@ public class TransactionsRefunds implements
      * 
      * @param transactionId 
      * @param refundId 
+     * @param applicationName 
      * @param merchantAccountId 
      * @param options additional options
      * @return The response from the API call
@@ -865,6 +882,7 @@ public class TransactionsRefunds implements
     public GetTransactionRefundResponse get(
             String transactionId,
             String refundId,
+            Optional<String> applicationName,
             JsonNullable<String> merchantAccountId,
             Optional<Options> options) throws Exception {
 
@@ -876,6 +894,7 @@ public class TransactionsRefunds implements
                 .builder()
                 .transactionId(transactionId)
                 .refundId(refundId)
+                .applicationName(applicationName)
                 .merchantAccountId(merchantAccountId)
                 .build();
         
@@ -891,6 +910,11 @@ public class TransactionsRefunds implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
+
+        _req.addQueryParams(Utils.getQueryParams(
+                GetTransactionRefundRequest.class,
+                request, 
+                this.sdkConfiguration.globals));
         _req.addHeaders(Utils.getHeadersFromMetadata(request, this.sdkConfiguration.globals));
         
         Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());

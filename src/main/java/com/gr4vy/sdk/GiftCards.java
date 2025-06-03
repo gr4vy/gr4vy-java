@@ -106,7 +106,7 @@ public class GiftCards implements
      */
     public GetGiftCardResponse get(
             String giftCardId) throws Exception {
-        return get(giftCardId, JsonNullable.undefined(), Optional.empty());
+        return get(giftCardId, Optional.empty(), JsonNullable.undefined(), Optional.empty());
     }
     
     /**
@@ -115,6 +115,7 @@ public class GiftCards implements
      * <p>Fetch details about a gift card.
      * 
      * @param giftCardId The ID of the gift card.
+     * @param applicationName 
      * @param merchantAccountId 
      * @param options additional options
      * @return The response from the API call
@@ -122,6 +123,7 @@ public class GiftCards implements
      */
     public GetGiftCardResponse get(
             String giftCardId,
+            Optional<String> applicationName,
             JsonNullable<String> merchantAccountId,
             Optional<Options> options) throws Exception {
 
@@ -132,6 +134,7 @@ public class GiftCards implements
             GetGiftCardRequest
                 .builder()
                 .giftCardId(giftCardId)
+                .applicationName(applicationName)
                 .merchantAccountId(merchantAccountId)
                 .build();
         
@@ -147,6 +150,11 @@ public class GiftCards implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
+
+        _req.addQueryParams(Utils.getQueryParams(
+                GetGiftCardRequest.class,
+                request, 
+                this.sdkConfiguration.globals));
         _req.addHeaders(Utils.getHeadersFromMetadata(request, this.sdkConfiguration.globals));
         
         Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
@@ -482,7 +490,7 @@ public class GiftCards implements
      */
     public DeleteGiftCardResponse delete(
             String giftCardId) throws Exception {
-        return delete(giftCardId, JsonNullable.undefined());
+        return delete(giftCardId, Optional.empty(), JsonNullable.undefined());
     }
     
     /**
@@ -491,17 +499,20 @@ public class GiftCards implements
      * <p>Removes a gift card from our system.
      * 
      * @param giftCardId The ID of the gift card.
+     * @param applicationName 
      * @param merchantAccountId 
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public DeleteGiftCardResponse delete(
             String giftCardId,
+            Optional<String> applicationName,
             JsonNullable<String> merchantAccountId) throws Exception {
         DeleteGiftCardRequest request =
             DeleteGiftCardRequest
                 .builder()
                 .giftCardId(giftCardId)
+                .applicationName(applicationName)
                 .merchantAccountId(merchantAccountId)
                 .build();
         
@@ -517,6 +528,11 @@ public class GiftCards implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
+
+        _req.addQueryParams(Utils.getQueryParams(
+                DeleteGiftCardRequest.class,
+                request, 
+                this.sdkConfiguration.globals));
         _req.addHeaders(Utils.getHeadersFromMetadata(request, this.sdkConfiguration.globals));
         
         Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
@@ -837,7 +853,7 @@ public class GiftCards implements
      */
     public CreateGiftCardResponse create(
             GiftCardCreate giftCardCreate) throws Exception {
-        return create(JsonNullable.undefined(), giftCardCreate);
+        return create(Optional.empty(), JsonNullable.undefined(), giftCardCreate);
     }
     
     /**
@@ -845,17 +861,20 @@ public class GiftCards implements
      * 
      * <p>Store a new gift card in the vault.
      * 
+     * @param applicationName 
      * @param merchantAccountId 
      * @param giftCardCreate 
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public CreateGiftCardResponse create(
+            Optional<String> applicationName,
             JsonNullable<String> merchantAccountId,
             GiftCardCreate giftCardCreate) throws Exception {
         CreateGiftCardRequest request =
             CreateGiftCardRequest
                 .builder()
+                .applicationName(applicationName)
                 .merchantAccountId(merchantAccountId)
                 .giftCardCreate(giftCardCreate)
                 .build();
@@ -883,6 +902,11 @@ public class GiftCards implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
+
+        _req.addQueryParams(Utils.getQueryParams(
+                CreateGiftCardRequest.class,
+                request, 
+                this.sdkConfiguration.globals));
         _req.addHeaders(Utils.getHeadersFromMetadata(request, this.sdkConfiguration.globals));
         
         Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
@@ -1337,6 +1361,7 @@ public class GiftCards implements
                         request.buyerId(),
                         JsonNullable.of(_nextCursor),
                         request.limit(),
+                        request.applicationName(),
                         request.merchantAccountId()
                              ));
                     return Optional.of(_nextRequest.call());

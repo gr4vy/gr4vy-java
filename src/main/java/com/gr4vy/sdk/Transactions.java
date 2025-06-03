@@ -294,6 +294,7 @@ public class Transactions implements
                         request.isSubsequentPayment(),
                         request.merchantInitiated(),
                         request.used3ds(),
+                        request.applicationName(),
                         request.merchantAccountId()
                              ));
                     return Optional.of(_nextRequest.call());
@@ -555,7 +556,7 @@ public class Transactions implements
      */
     public CreateTransactionResponse create(
             TransactionCreate transactionCreate) throws Exception {
-        return create(JsonNullable.undefined(), JsonNullable.undefined(), transactionCreate);
+        return create(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), transactionCreate);
     }
     
     /**
@@ -563,6 +564,7 @@ public class Transactions implements
      * 
      * <p>Create a transaction.
      * 
+     * @param applicationName 
      * @param merchantAccountId 
      * @param idempotencyKey A unique key that identifies this request. Providing this header will make this an idempotent request. We recommend using V4 UUIDs, or another random string with enough entropy to avoid collisions.
      * @param transactionCreate 
@@ -570,12 +572,14 @@ public class Transactions implements
      * @throws Exception if the API call fails
      */
     public CreateTransactionResponse create(
+            Optional<String> applicationName,
             JsonNullable<String> merchantAccountId,
             JsonNullable<String> idempotencyKey,
             TransactionCreate transactionCreate) throws Exception {
         CreateTransactionRequest request =
             CreateTransactionRequest
                 .builder()
+                .applicationName(applicationName)
                 .merchantAccountId(merchantAccountId)
                 .idempotencyKey(idempotencyKey)
                 .transactionCreate(transactionCreate)
@@ -604,6 +608,11 @@ public class Transactions implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
+
+        _req.addQueryParams(Utils.getQueryParams(
+                CreateTransactionRequest.class,
+                request, 
+                this.sdkConfiguration.globals));
         _req.addHeaders(Utils.getHeadersFromMetadata(request, this.sdkConfiguration.globals));
         
         Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
@@ -924,7 +933,7 @@ public class Transactions implements
      */
     public GetTransactionResponse get(
             String transactionId) throws Exception {
-        return get(transactionId, JsonNullable.undefined(), Optional.empty());
+        return get(transactionId, Optional.empty(), JsonNullable.undefined(), Optional.empty());
     }
     
     /**
@@ -933,6 +942,7 @@ public class Transactions implements
      * <p>Fetch a single transaction by its ID.
      * 
      * @param transactionId 
+     * @param applicationName 
      * @param merchantAccountId 
      * @param options additional options
      * @return The response from the API call
@@ -940,6 +950,7 @@ public class Transactions implements
      */
     public GetTransactionResponse get(
             String transactionId,
+            Optional<String> applicationName,
             JsonNullable<String> merchantAccountId,
             Optional<Options> options) throws Exception {
 
@@ -950,6 +961,7 @@ public class Transactions implements
             GetTransactionRequest
                 .builder()
                 .transactionId(transactionId)
+                .applicationName(applicationName)
                 .merchantAccountId(merchantAccountId)
                 .build();
         
@@ -965,6 +977,11 @@ public class Transactions implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
+
+        _req.addQueryParams(Utils.getQueryParams(
+                GetTransactionRequest.class,
+                request, 
+                this.sdkConfiguration.globals));
         _req.addHeaders(Utils.getHeadersFromMetadata(request, this.sdkConfiguration.globals));
         
         Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
@@ -1302,7 +1319,7 @@ public class Transactions implements
     public CaptureTransactionResponse capture(
             String transactionId,
             TransactionCapture transactionCapture) throws Exception {
-        return capture(transactionId, JsonNullable.undefined(), transactionCapture);
+        return capture(transactionId, Optional.empty(), JsonNullable.undefined(), transactionCapture);
     }
     
     /**
@@ -1311,6 +1328,7 @@ public class Transactions implements
      * <p>Capture a previously authorized transaction.
      * 
      * @param transactionId 
+     * @param applicationName 
      * @param merchantAccountId 
      * @param transactionCapture Request body for capturing an authorized transaction
      * @return The response from the API call
@@ -1318,12 +1336,14 @@ public class Transactions implements
      */
     public CaptureTransactionResponse capture(
             String transactionId,
+            Optional<String> applicationName,
             JsonNullable<String> merchantAccountId,
             TransactionCapture transactionCapture) throws Exception {
         CaptureTransactionRequest request =
             CaptureTransactionRequest
                 .builder()
                 .transactionId(transactionId)
+                .applicationName(applicationName)
                 .merchantAccountId(merchantAccountId)
                 .transactionCapture(transactionCapture)
                 .build();
@@ -1353,6 +1373,11 @@ public class Transactions implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
+
+        _req.addQueryParams(Utils.getQueryParams(
+                CaptureTransactionRequest.class,
+                request, 
+                this.sdkConfiguration.globals));
         _req.addHeaders(Utils.getHeadersFromMetadata(request, this.sdkConfiguration.globals));
         
         Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
@@ -1673,7 +1698,7 @@ public class Transactions implements
      */
     public VoidTransactionResponse void_(
             String transactionId) throws Exception {
-        return void_(transactionId, JsonNullable.undefined());
+        return void_(transactionId, Optional.empty(), JsonNullable.undefined());
     }
     
     /**
@@ -1682,17 +1707,20 @@ public class Transactions implements
      * <p>Void a previously authorized transaction.
      * 
      * @param transactionId 
+     * @param applicationName 
      * @param merchantAccountId 
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public VoidTransactionResponse void_(
             String transactionId,
+            Optional<String> applicationName,
             JsonNullable<String> merchantAccountId) throws Exception {
         VoidTransactionRequest request =
             VoidTransactionRequest
                 .builder()
                 .transactionId(transactionId)
+                .applicationName(applicationName)
                 .merchantAccountId(merchantAccountId)
                 .build();
         
@@ -1708,6 +1736,11 @@ public class Transactions implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
+
+        _req.addQueryParams(Utils.getQueryParams(
+                VoidTransactionRequest.class,
+                request, 
+                this.sdkConfiguration.globals));
         _req.addHeaders(Utils.getHeadersFromMetadata(request, this.sdkConfiguration.globals));
         
         Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
@@ -2028,7 +2061,7 @@ public class Transactions implements
      */
     public SyncTransactionResponse sync(
             String transactionId) throws Exception {
-        return sync(transactionId, JsonNullable.undefined());
+        return sync(transactionId, Optional.empty(), JsonNullable.undefined());
     }
     
     /**
@@ -2037,17 +2070,20 @@ public class Transactions implements
      * <p>Fetch the latest status for a transaction.
      * 
      * @param transactionId 
+     * @param applicationName 
      * @param merchantAccountId 
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public SyncTransactionResponse sync(
             String transactionId,
+            Optional<String> applicationName,
             JsonNullable<String> merchantAccountId) throws Exception {
         SyncTransactionRequest request =
             SyncTransactionRequest
                 .builder()
                 .transactionId(transactionId)
+                .applicationName(applicationName)
                 .merchantAccountId(merchantAccountId)
                 .build();
         
@@ -2063,6 +2099,11 @@ public class Transactions implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
+
+        _req.addQueryParams(Utils.getQueryParams(
+                SyncTransactionRequest.class,
+                request, 
+                this.sdkConfiguration.globals));
         _req.addHeaders(Utils.getHeadersFromMetadata(request, this.sdkConfiguration.globals));
         
         Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());

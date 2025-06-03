@@ -5,7 +5,9 @@ package com.gr4vy.sdk.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.gr4vy.sdk.models.components.CheckoutSessionCreate;
+import com.gr4vy.sdk.utils.LazySingletonValue;
 import com.gr4vy.sdk.utils.SpeakeasyMetadata;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Override;
@@ -16,6 +18,9 @@ import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 public class CreateCheckoutSessionRequest {
+
+    @SpeakeasyMetadata("queryParam:style=form,explode=true,name=application_name")
+    private Optional<String> applicationName;
 
     /**
      * The ID of the merchant account to use for this request.
@@ -28,16 +33,24 @@ public class CreateCheckoutSessionRequest {
 
     @JsonCreator
     public CreateCheckoutSessionRequest(
+            Optional<String> applicationName,
             JsonNullable<String> merchantAccountId,
             Optional<? extends CheckoutSessionCreate> checkoutSessionCreate) {
+        Utils.checkNotNull(applicationName, "applicationName");
         Utils.checkNotNull(merchantAccountId, "merchantAccountId");
         Utils.checkNotNull(checkoutSessionCreate, "checkoutSessionCreate");
+        this.applicationName = applicationName;
         this.merchantAccountId = merchantAccountId;
         this.checkoutSessionCreate = checkoutSessionCreate;
     }
     
     public CreateCheckoutSessionRequest() {
-        this(JsonNullable.undefined(), Optional.empty());
+        this(Optional.empty(), JsonNullable.undefined(), Optional.empty());
+    }
+
+    @JsonIgnore
+    public Optional<String> applicationName() {
+        return applicationName;
     }
 
     /**
@@ -57,6 +70,18 @@ public class CreateCheckoutSessionRequest {
     public final static Builder builder() {
         return new Builder();
     }    
+
+    public CreateCheckoutSessionRequest withApplicationName(String applicationName) {
+        Utils.checkNotNull(applicationName, "applicationName");
+        this.applicationName = Optional.ofNullable(applicationName);
+        return this;
+    }
+
+    public CreateCheckoutSessionRequest withApplicationName(Optional<String> applicationName) {
+        Utils.checkNotNull(applicationName, "applicationName");
+        this.applicationName = applicationName;
+        return this;
+    }
 
     /**
      * The ID of the merchant account to use for this request.
@@ -99,6 +124,7 @@ public class CreateCheckoutSessionRequest {
         }
         CreateCheckoutSessionRequest other = (CreateCheckoutSessionRequest) o;
         return 
+            Objects.deepEquals(this.applicationName, other.applicationName) &&
             Objects.deepEquals(this.merchantAccountId, other.merchantAccountId) &&
             Objects.deepEquals(this.checkoutSessionCreate, other.checkoutSessionCreate);
     }
@@ -106,6 +132,7 @@ public class CreateCheckoutSessionRequest {
     @Override
     public int hashCode() {
         return Objects.hash(
+            applicationName,
             merchantAccountId,
             checkoutSessionCreate);
     }
@@ -113,11 +140,14 @@ public class CreateCheckoutSessionRequest {
     @Override
     public String toString() {
         return Utils.toString(CreateCheckoutSessionRequest.class,
+                "applicationName", applicationName,
                 "merchantAccountId", merchantAccountId,
                 "checkoutSessionCreate", checkoutSessionCreate);
     }
     
     public final static class Builder {
+ 
+        private Optional<String> applicationName;
  
         private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
  
@@ -125,6 +155,18 @@ public class CreateCheckoutSessionRequest {
         
         private Builder() {
           // force use of static builder() method
+        }
+
+        public Builder applicationName(String applicationName) {
+            Utils.checkNotNull(applicationName, "applicationName");
+            this.applicationName = Optional.ofNullable(applicationName);
+            return this;
+        }
+
+        public Builder applicationName(Optional<String> applicationName) {
+            Utils.checkNotNull(applicationName, "applicationName");
+            this.applicationName = applicationName;
+            return this;
         }
 
         /**
@@ -158,9 +200,19 @@ public class CreateCheckoutSessionRequest {
         }
         
         public CreateCheckoutSessionRequest build() {
+            if (applicationName == null) {
+                applicationName = _SINGLETON_VALUE_ApplicationName.value();
+            }
             return new CreateCheckoutSessionRequest(
+                applicationName,
                 merchantAccountId,
                 checkoutSessionCreate);
         }
+
+        private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_ApplicationName =
+                new LazySingletonValue<>(
+                        "application_name",
+                        "\"core-api\"",
+                        new TypeReference<Optional<String>>() {});
     }
 }

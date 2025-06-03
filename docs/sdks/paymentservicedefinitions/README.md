@@ -47,6 +47,7 @@ public class Application {
 | ------------------------------------------------- | ------------------------------------------------- | ------------------------------------------------- | ------------------------------------------------- | ------------------------------------------------- |
 | `cursor`                                          | *JsonNullable\<String>*                           | :heavy_minus_sign:                                | A pointer to the page of results to return.       | ZXhhbXBsZTE                                       |
 | `limit`                                           | *Optional\<Long>*                                 | :heavy_minus_sign:                                | The maximum number of items that are at returned. | 20                                                |
+| `applicationName`                                 | *Optional\<String>*                               | :heavy_minus_sign:                                | N/A                                               |                                                   |
 
 ### Response
 
@@ -108,6 +109,7 @@ public class Application {
 | Parameter                    | Type                         | Required                     | Description                  | Example                      |
 | ---------------------------- | ---------------------------- | ---------------------------- | ---------------------------- | ---------------------------- |
 | `paymentServiceDefinitionId` | *String*                     | :heavy_check_mark:           | N/A                          | adyen-ideal                  |
+| `applicationName`            | *Optional\<String>*          | :heavy_minus_sign:           | N/A                          |                              |
 
 ### Response
 
@@ -172,6 +174,7 @@ public class Application {
 | Parameter                    | Type                         | Required                     | Description                  | Example                      |
 | ---------------------------- | ---------------------------- | ---------------------------- | ---------------------------- | ---------------------------- |
 | `paymentServiceDefinitionId` | *String*                     | :heavy_check_mark:           | N/A                          | adyen-ideal                  |
+| `applicationName`            | *Optional\<String>*          | :heavy_minus_sign:           | N/A                          |                              |
 | `requestBody`                | Map\<String, *Object*>       | :heavy_check_mark:           | N/A                          |                              |
 
 ### Response

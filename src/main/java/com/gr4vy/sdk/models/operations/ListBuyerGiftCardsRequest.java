@@ -5,11 +5,14 @@ package com.gr4vy.sdk.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.gr4vy.sdk.utils.LazySingletonValue;
 import com.gr4vy.sdk.utils.SpeakeasyMetadata;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.util.Objects;
+import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 public class ListBuyerGiftCardsRequest {
@@ -19,6 +22,9 @@ public class ListBuyerGiftCardsRequest {
 
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=buyer_id")
     private JsonNullable<String> buyerId;
+
+    @SpeakeasyMetadata("queryParam:style=form,explode=true,name=application_name")
+    private Optional<String> applicationName;
 
     /**
      * The ID of the merchant account to use for this request.
@@ -30,17 +36,20 @@ public class ListBuyerGiftCardsRequest {
     public ListBuyerGiftCardsRequest(
             JsonNullable<String> buyerExternalIdentifier,
             JsonNullable<String> buyerId,
+            Optional<String> applicationName,
             JsonNullable<String> merchantAccountId) {
         Utils.checkNotNull(buyerExternalIdentifier, "buyerExternalIdentifier");
         Utils.checkNotNull(buyerId, "buyerId");
+        Utils.checkNotNull(applicationName, "applicationName");
         Utils.checkNotNull(merchantAccountId, "merchantAccountId");
         this.buyerExternalIdentifier = buyerExternalIdentifier;
         this.buyerId = buyerId;
+        this.applicationName = applicationName;
         this.merchantAccountId = merchantAccountId;
     }
     
     public ListBuyerGiftCardsRequest() {
-        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
+        this(JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined());
     }
 
     @JsonIgnore
@@ -51,6 +60,11 @@ public class ListBuyerGiftCardsRequest {
     @JsonIgnore
     public JsonNullable<String> buyerId() {
         return buyerId;
+    }
+
+    @JsonIgnore
+    public Optional<String> applicationName() {
+        return applicationName;
     }
 
     /**
@@ -89,6 +103,18 @@ public class ListBuyerGiftCardsRequest {
         return this;
     }
 
+    public ListBuyerGiftCardsRequest withApplicationName(String applicationName) {
+        Utils.checkNotNull(applicationName, "applicationName");
+        this.applicationName = Optional.ofNullable(applicationName);
+        return this;
+    }
+
+    public ListBuyerGiftCardsRequest withApplicationName(Optional<String> applicationName) {
+        Utils.checkNotNull(applicationName, "applicationName");
+        this.applicationName = applicationName;
+        return this;
+    }
+
     /**
      * The ID of the merchant account to use for this request.
      */
@@ -120,6 +146,7 @@ public class ListBuyerGiftCardsRequest {
         return 
             Objects.deepEquals(this.buyerExternalIdentifier, other.buyerExternalIdentifier) &&
             Objects.deepEquals(this.buyerId, other.buyerId) &&
+            Objects.deepEquals(this.applicationName, other.applicationName) &&
             Objects.deepEquals(this.merchantAccountId, other.merchantAccountId);
     }
     
@@ -128,6 +155,7 @@ public class ListBuyerGiftCardsRequest {
         return Objects.hash(
             buyerExternalIdentifier,
             buyerId,
+            applicationName,
             merchantAccountId);
     }
     
@@ -136,6 +164,7 @@ public class ListBuyerGiftCardsRequest {
         return Utils.toString(ListBuyerGiftCardsRequest.class,
                 "buyerExternalIdentifier", buyerExternalIdentifier,
                 "buyerId", buyerId,
+                "applicationName", applicationName,
                 "merchantAccountId", merchantAccountId);
     }
     
@@ -144,6 +173,8 @@ public class ListBuyerGiftCardsRequest {
         private JsonNullable<String> buyerExternalIdentifier = JsonNullable.undefined();
  
         private JsonNullable<String> buyerId = JsonNullable.undefined();
+ 
+        private Optional<String> applicationName;
  
         private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
         
@@ -175,6 +206,18 @@ public class ListBuyerGiftCardsRequest {
             return this;
         }
 
+        public Builder applicationName(String applicationName) {
+            Utils.checkNotNull(applicationName, "applicationName");
+            this.applicationName = Optional.ofNullable(applicationName);
+            return this;
+        }
+
+        public Builder applicationName(Optional<String> applicationName) {
+            Utils.checkNotNull(applicationName, "applicationName");
+            this.applicationName = applicationName;
+            return this;
+        }
+
         /**
          * The ID of the merchant account to use for this request.
          */
@@ -194,10 +237,20 @@ public class ListBuyerGiftCardsRequest {
         }
         
         public ListBuyerGiftCardsRequest build() {
+            if (applicationName == null) {
+                applicationName = _SINGLETON_VALUE_ApplicationName.value();
+            }
             return new ListBuyerGiftCardsRequest(
                 buyerExternalIdentifier,
                 buyerId,
+                applicationName,
                 merchantAccountId);
         }
+
+        private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_ApplicationName =
+                new LazySingletonValue<>(
+                        "application_name",
+                        "\"core-api\"",
+                        new TypeReference<Optional<String>>() {});
     }
 }

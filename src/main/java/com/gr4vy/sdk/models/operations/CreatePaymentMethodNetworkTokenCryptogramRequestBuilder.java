@@ -3,60 +3,27 @@
  */
 package com.gr4vy.sdk.models.operations;
 
-import com.gr4vy.sdk.models.components.CryptogramCreate;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Exception;
-import java.lang.String;
-import org.openapitools.jackson.nullable.JsonNullable;
 
 public class CreatePaymentMethodNetworkTokenCryptogramRequestBuilder {
 
-    private String paymentMethodId;
-    private String networkTokenId;
-    private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
-    private CryptogramCreate cryptogramCreate;
+    private CreatePaymentMethodNetworkTokenCryptogramRequest request;
     private final SDKMethodInterfaces.MethodCallCreatePaymentMethodNetworkTokenCryptogram sdk;
 
     public CreatePaymentMethodNetworkTokenCryptogramRequestBuilder(SDKMethodInterfaces.MethodCallCreatePaymentMethodNetworkTokenCryptogram sdk) {
         this.sdk = sdk;
     }
 
-    public CreatePaymentMethodNetworkTokenCryptogramRequestBuilder paymentMethodId(String paymentMethodId) {
-        Utils.checkNotNull(paymentMethodId, "paymentMethodId");
-        this.paymentMethodId = paymentMethodId;
-        return this;
-    }
-
-    public CreatePaymentMethodNetworkTokenCryptogramRequestBuilder networkTokenId(String networkTokenId) {
-        Utils.checkNotNull(networkTokenId, "networkTokenId");
-        this.networkTokenId = networkTokenId;
-        return this;
-    }
-
-    public CreatePaymentMethodNetworkTokenCryptogramRequestBuilder merchantAccountId(String merchantAccountId) {
-        Utils.checkNotNull(merchantAccountId, "merchantAccountId");
-        this.merchantAccountId = JsonNullable.of(merchantAccountId);
-        return this;
-    }
-
-    public CreatePaymentMethodNetworkTokenCryptogramRequestBuilder merchantAccountId(JsonNullable<String> merchantAccountId) {
-        Utils.checkNotNull(merchantAccountId, "merchantAccountId");
-        this.merchantAccountId = merchantAccountId;
-        return this;
-    }
-
-    public CreatePaymentMethodNetworkTokenCryptogramRequestBuilder cryptogramCreate(CryptogramCreate cryptogramCreate) {
-        Utils.checkNotNull(cryptogramCreate, "cryptogramCreate");
-        this.cryptogramCreate = cryptogramCreate;
+    public CreatePaymentMethodNetworkTokenCryptogramRequestBuilder request(CreatePaymentMethodNetworkTokenCryptogramRequest request) {
+        Utils.checkNotNull(request, "request");
+        this.request = request;
         return this;
     }
 
     public CreatePaymentMethodNetworkTokenCryptogramResponse call() throws Exception {
 
         return sdk.create(
-            paymentMethodId,
-            networkTokenId,
-            merchantAccountId,
-            cryptogramCreate);
+            request);
     }
 }

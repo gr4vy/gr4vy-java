@@ -4,7 +4,7 @@
 package com.gr4vy.sdk;
 
 import com.fasterxml.jackson.core.type.TypeReference;
-import com.gr4vy.sdk.models.components.CollectionNoCursorRefund;
+import com.gr4vy.sdk.models.components.CollectionRefund;
 import com.gr4vy.sdk.models.components.TransactionRefundAllCreate;
 import com.gr4vy.sdk.models.errors.APIException;
 import com.gr4vy.sdk.models.errors.Error400;
@@ -73,7 +73,7 @@ public class All implements
      */
     public CreateFullTransactionRefundResponse create(
             String transactionId) throws Exception {
-        return create(transactionId, JsonNullable.undefined(), JsonNullable.undefined());
+        return create(transactionId, Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined());
     }
     
     /**
@@ -82,6 +82,7 @@ public class All implements
      * <p>Create a refund for all instruments on a transaction.
      * 
      * @param transactionId 
+     * @param applicationName 
      * @param merchantAccountId 
      * @param transactionRefundAllCreate 
      * @return The response from the API call
@@ -89,12 +90,14 @@ public class All implements
      */
     public CreateFullTransactionRefundResponse create(
             String transactionId,
+            Optional<String> applicationName,
             JsonNullable<String> merchantAccountId,
             JsonNullable<? extends TransactionRefundAllCreate> transactionRefundAllCreate) throws Exception {
         CreateFullTransactionRefundRequest request =
             CreateFullTransactionRefundRequest
                 .builder()
                 .transactionId(transactionId)
+                .applicationName(applicationName)
                 .merchantAccountId(merchantAccountId)
                 .transactionRefundAllCreate(transactionRefundAllCreate)
                 .build();
@@ -121,6 +124,11 @@ public class All implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
+
+        _req.addQueryParams(Utils.getQueryParams(
+                CreateFullTransactionRefundRequest.class,
+                request, 
+                this.sdkConfiguration.globals));
         _req.addHeaders(Utils.getHeadersFromMetadata(request, this.sdkConfiguration.globals));
         
         Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
@@ -189,10 +197,10 @@ public class All implements
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "201")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                CollectionNoCursorRefund _out = Utils.mapper().readValue(
+                CollectionRefund _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<CollectionNoCursorRefund>() {});
-                _res.withCollectionNoCursorRefund(Optional.ofNullable(_out));
+                    new TypeReference<CollectionRefund>() {});
+                _res.withCollectionRefund(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new APIException(

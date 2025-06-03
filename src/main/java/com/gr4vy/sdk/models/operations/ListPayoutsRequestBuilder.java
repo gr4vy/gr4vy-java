@@ -23,6 +23,10 @@ public class ListPayoutsRequestBuilder {
                             "limit",
                             "20",
                             new TypeReference<Optional<Long>>() {});
+    private Optional<String> applicationName = Utils.readDefaultOrConstValue(
+                            "applicationName",
+                            "\"core-api\"",
+                            new TypeReference<Optional<String>>() {});
     private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKMethodInterfaces.MethodCallListPayouts sdk;
@@ -54,6 +58,18 @@ public class ListPayoutsRequestBuilder {
         this.limit = limit;
         return this;
     }
+                
+    public ListPayoutsRequestBuilder applicationName(String applicationName) {
+        Utils.checkNotNull(applicationName, "applicationName");
+        this.applicationName = Optional.of(applicationName);
+        return this;
+    }
+
+    public ListPayoutsRequestBuilder applicationName(Optional<String> applicationName) {
+        Utils.checkNotNull(applicationName, "applicationName");
+        this.applicationName = applicationName;
+        return this;
+    }
 
     public ListPayoutsRequestBuilder merchantAccountId(String merchantAccountId) {
         Utils.checkNotNull(merchantAccountId, "merchantAccountId");
@@ -82,12 +98,16 @@ public class ListPayoutsRequestBuilder {
     public ListPayoutsResponse call() throws Exception {
         if (limit == null) {
             limit = _SINGLETON_VALUE_Limit.value();
+        }
+        if (applicationName == null) {
+            applicationName = _SINGLETON_VALUE_ApplicationName.value();
         }        Optional<Options> options = Optional.of(Options.builder()
                                                     .retryConfig(retryConfig)
                                                     .build());
         return sdk.list(
             cursor,
             limit,
+            applicationName,
             merchantAccountId,
             options);
     }
@@ -118,4 +138,10 @@ public class ListPayoutsRequestBuilder {
                     "limit",
                     "20",
                     new TypeReference<Optional<Long>>() {});
+
+    private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_ApplicationName =
+            new LazySingletonValue<>(
+                    "applicationName",
+                    "\"core-api\"",
+                    new TypeReference<Optional<String>>() {});
 }

@@ -5,11 +5,14 @@ package com.gr4vy.sdk.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.gr4vy.sdk.utils.LazySingletonValue;
 import com.gr4vy.sdk.utils.SpeakeasyMetadata;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.util.Objects;
+import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 public class ListBuyerShippingDetailsRequest {
@@ -20,6 +23,9 @@ public class ListBuyerShippingDetailsRequest {
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=buyer_id")
     private String buyerId;
 
+    @SpeakeasyMetadata("queryParam:style=form,explode=true,name=application_name")
+    private Optional<String> applicationName;
+
     /**
      * The ID of the merchant account to use for this request.
      */
@@ -29,16 +35,19 @@ public class ListBuyerShippingDetailsRequest {
     @JsonCreator
     public ListBuyerShippingDetailsRequest(
             String buyerId,
+            Optional<String> applicationName,
             JsonNullable<String> merchantAccountId) {
         Utils.checkNotNull(buyerId, "buyerId");
+        Utils.checkNotNull(applicationName, "applicationName");
         Utils.checkNotNull(merchantAccountId, "merchantAccountId");
         this.buyerId = buyerId;
+        this.applicationName = applicationName;
         this.merchantAccountId = merchantAccountId;
     }
     
     public ListBuyerShippingDetailsRequest(
             String buyerId) {
-        this(buyerId, JsonNullable.undefined());
+        this(buyerId, Optional.empty(), JsonNullable.undefined());
     }
 
     /**
@@ -47,6 +56,11 @@ public class ListBuyerShippingDetailsRequest {
     @JsonIgnore
     public String buyerId() {
         return buyerId;
+    }
+
+    @JsonIgnore
+    public Optional<String> applicationName() {
+        return applicationName;
     }
 
     /**
@@ -67,6 +81,18 @@ public class ListBuyerShippingDetailsRequest {
     public ListBuyerShippingDetailsRequest withBuyerId(String buyerId) {
         Utils.checkNotNull(buyerId, "buyerId");
         this.buyerId = buyerId;
+        return this;
+    }
+
+    public ListBuyerShippingDetailsRequest withApplicationName(String applicationName) {
+        Utils.checkNotNull(applicationName, "applicationName");
+        this.applicationName = Optional.ofNullable(applicationName);
+        return this;
+    }
+
+    public ListBuyerShippingDetailsRequest withApplicationName(Optional<String> applicationName) {
+        Utils.checkNotNull(applicationName, "applicationName");
+        this.applicationName = applicationName;
         return this;
     }
 
@@ -100,6 +126,7 @@ public class ListBuyerShippingDetailsRequest {
         ListBuyerShippingDetailsRequest other = (ListBuyerShippingDetailsRequest) o;
         return 
             Objects.deepEquals(this.buyerId, other.buyerId) &&
+            Objects.deepEquals(this.applicationName, other.applicationName) &&
             Objects.deepEquals(this.merchantAccountId, other.merchantAccountId);
     }
     
@@ -107,6 +134,7 @@ public class ListBuyerShippingDetailsRequest {
     public int hashCode() {
         return Objects.hash(
             buyerId,
+            applicationName,
             merchantAccountId);
     }
     
@@ -114,12 +142,15 @@ public class ListBuyerShippingDetailsRequest {
     public String toString() {
         return Utils.toString(ListBuyerShippingDetailsRequest.class,
                 "buyerId", buyerId,
+                "applicationName", applicationName,
                 "merchantAccountId", merchantAccountId);
     }
     
     public final static class Builder {
  
         private String buyerId;
+ 
+        private Optional<String> applicationName;
  
         private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
         
@@ -133,6 +164,18 @@ public class ListBuyerShippingDetailsRequest {
         public Builder buyerId(String buyerId) {
             Utils.checkNotNull(buyerId, "buyerId");
             this.buyerId = buyerId;
+            return this;
+        }
+
+        public Builder applicationName(String applicationName) {
+            Utils.checkNotNull(applicationName, "applicationName");
+            this.applicationName = Optional.ofNullable(applicationName);
+            return this;
+        }
+
+        public Builder applicationName(Optional<String> applicationName) {
+            Utils.checkNotNull(applicationName, "applicationName");
+            this.applicationName = applicationName;
             return this;
         }
 
@@ -155,9 +198,19 @@ public class ListBuyerShippingDetailsRequest {
         }
         
         public ListBuyerShippingDetailsRequest build() {
+            if (applicationName == null) {
+                applicationName = _SINGLETON_VALUE_ApplicationName.value();
+            }
             return new ListBuyerShippingDetailsRequest(
                 buyerId,
+                applicationName,
                 merchantAccountId);
         }
+
+        private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_ApplicationName =
+                new LazySingletonValue<>(
+                        "application_name",
+                        "\"core-api\"",
+                        new TypeReference<Optional<String>>() {});
     }
 }

@@ -3,28 +3,57 @@
  */
 package com.gr4vy.sdk.models.operations;
 
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.gr4vy.sdk.models.components.MerchantAccountCreate;
+import com.gr4vy.sdk.utils.LazySingletonValue;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Exception;
+import java.lang.String;
+import java.util.Optional;
 
 public class CreateMerchantAccountRequestBuilder {
 
-    private MerchantAccountCreate request;
+    private Optional<String> applicationName = Utils.readDefaultOrConstValue(
+                            "applicationName",
+                            "\"core-api\"",
+                            new TypeReference<Optional<String>>() {});
+    private MerchantAccountCreate merchantAccountCreate;
     private final SDKMethodInterfaces.MethodCallCreateMerchantAccount sdk;
 
     public CreateMerchantAccountRequestBuilder(SDKMethodInterfaces.MethodCallCreateMerchantAccount sdk) {
         this.sdk = sdk;
     }
+                
+    public CreateMerchantAccountRequestBuilder applicationName(String applicationName) {
+        Utils.checkNotNull(applicationName, "applicationName");
+        this.applicationName = Optional.of(applicationName);
+        return this;
+    }
 
-    public CreateMerchantAccountRequestBuilder request(MerchantAccountCreate request) {
-        Utils.checkNotNull(request, "request");
-        this.request = request;
+    public CreateMerchantAccountRequestBuilder applicationName(Optional<String> applicationName) {
+        Utils.checkNotNull(applicationName, "applicationName");
+        this.applicationName = applicationName;
+        return this;
+    }
+
+    public CreateMerchantAccountRequestBuilder merchantAccountCreate(MerchantAccountCreate merchantAccountCreate) {
+        Utils.checkNotNull(merchantAccountCreate, "merchantAccountCreate");
+        this.merchantAccountCreate = merchantAccountCreate;
         return this;
     }
 
     public CreateMerchantAccountResponse call() throws Exception {
-
+        if (applicationName == null) {
+            applicationName = _SINGLETON_VALUE_ApplicationName.value();
+        }
         return sdk.create(
-            request);
+            applicationName,
+            merchantAccountCreate);
     }
+
+    private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_ApplicationName =
+            new LazySingletonValue<>(
+                    "applicationName",
+                    "\"core-api\"",
+                    new TypeReference<Optional<String>>() {});
 }

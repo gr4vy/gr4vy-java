@@ -5,12 +5,15 @@ package com.gr4vy.sdk.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.gr4vy.sdk.models.components.DigitalWalletUpdate;
+import com.gr4vy.sdk.utils.LazySingletonValue;
 import com.gr4vy.sdk.utils.SpeakeasyMetadata;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.util.Objects;
+import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 public class UpdateDigitalWalletRequest {
@@ -20,6 +23,9 @@ public class UpdateDigitalWalletRequest {
      */
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=digital_wallet_id")
     private String digitalWalletId;
+
+    @SpeakeasyMetadata("queryParam:style=form,explode=true,name=application_name")
+    private Optional<String> applicationName;
 
     /**
      * The ID of the merchant account to use for this request.
@@ -33,12 +39,15 @@ public class UpdateDigitalWalletRequest {
     @JsonCreator
     public UpdateDigitalWalletRequest(
             String digitalWalletId,
+            Optional<String> applicationName,
             JsonNullable<String> merchantAccountId,
             DigitalWalletUpdate digitalWalletUpdate) {
         Utils.checkNotNull(digitalWalletId, "digitalWalletId");
+        Utils.checkNotNull(applicationName, "applicationName");
         Utils.checkNotNull(merchantAccountId, "merchantAccountId");
         Utils.checkNotNull(digitalWalletUpdate, "digitalWalletUpdate");
         this.digitalWalletId = digitalWalletId;
+        this.applicationName = applicationName;
         this.merchantAccountId = merchantAccountId;
         this.digitalWalletUpdate = digitalWalletUpdate;
     }
@@ -46,7 +55,7 @@ public class UpdateDigitalWalletRequest {
     public UpdateDigitalWalletRequest(
             String digitalWalletId,
             DigitalWalletUpdate digitalWalletUpdate) {
-        this(digitalWalletId, JsonNullable.undefined(), digitalWalletUpdate);
+        this(digitalWalletId, Optional.empty(), JsonNullable.undefined(), digitalWalletUpdate);
     }
 
     /**
@@ -55,6 +64,11 @@ public class UpdateDigitalWalletRequest {
     @JsonIgnore
     public String digitalWalletId() {
         return digitalWalletId;
+    }
+
+    @JsonIgnore
+    public Optional<String> applicationName() {
+        return applicationName;
     }
 
     /**
@@ -80,6 +94,18 @@ public class UpdateDigitalWalletRequest {
     public UpdateDigitalWalletRequest withDigitalWalletId(String digitalWalletId) {
         Utils.checkNotNull(digitalWalletId, "digitalWalletId");
         this.digitalWalletId = digitalWalletId;
+        return this;
+    }
+
+    public UpdateDigitalWalletRequest withApplicationName(String applicationName) {
+        Utils.checkNotNull(applicationName, "applicationName");
+        this.applicationName = Optional.ofNullable(applicationName);
+        return this;
+    }
+
+    public UpdateDigitalWalletRequest withApplicationName(Optional<String> applicationName) {
+        Utils.checkNotNull(applicationName, "applicationName");
+        this.applicationName = applicationName;
         return this;
     }
 
@@ -119,6 +145,7 @@ public class UpdateDigitalWalletRequest {
         UpdateDigitalWalletRequest other = (UpdateDigitalWalletRequest) o;
         return 
             Objects.deepEquals(this.digitalWalletId, other.digitalWalletId) &&
+            Objects.deepEquals(this.applicationName, other.applicationName) &&
             Objects.deepEquals(this.merchantAccountId, other.merchantAccountId) &&
             Objects.deepEquals(this.digitalWalletUpdate, other.digitalWalletUpdate);
     }
@@ -127,6 +154,7 @@ public class UpdateDigitalWalletRequest {
     public int hashCode() {
         return Objects.hash(
             digitalWalletId,
+            applicationName,
             merchantAccountId,
             digitalWalletUpdate);
     }
@@ -135,6 +163,7 @@ public class UpdateDigitalWalletRequest {
     public String toString() {
         return Utils.toString(UpdateDigitalWalletRequest.class,
                 "digitalWalletId", digitalWalletId,
+                "applicationName", applicationName,
                 "merchantAccountId", merchantAccountId,
                 "digitalWalletUpdate", digitalWalletUpdate);
     }
@@ -142,6 +171,8 @@ public class UpdateDigitalWalletRequest {
     public final static class Builder {
  
         private String digitalWalletId;
+ 
+        private Optional<String> applicationName;
  
         private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
  
@@ -157,6 +188,18 @@ public class UpdateDigitalWalletRequest {
         public Builder digitalWalletId(String digitalWalletId) {
             Utils.checkNotNull(digitalWalletId, "digitalWalletId");
             this.digitalWalletId = digitalWalletId;
+            return this;
+        }
+
+        public Builder applicationName(String applicationName) {
+            Utils.checkNotNull(applicationName, "applicationName");
+            this.applicationName = Optional.ofNullable(applicationName);
+            return this;
+        }
+
+        public Builder applicationName(Optional<String> applicationName) {
+            Utils.checkNotNull(applicationName, "applicationName");
+            this.applicationName = applicationName;
             return this;
         }
 
@@ -185,10 +228,20 @@ public class UpdateDigitalWalletRequest {
         }
         
         public UpdateDigitalWalletRequest build() {
+            if (applicationName == null) {
+                applicationName = _SINGLETON_VALUE_ApplicationName.value();
+            }
             return new UpdateDigitalWalletRequest(
                 digitalWalletId,
+                applicationName,
                 merchantAccountId,
                 digitalWalletUpdate);
         }
+
+        private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_ApplicationName =
+                new LazySingletonValue<>(
+                        "application_name",
+                        "\"core-api\"",
+                        new TypeReference<Optional<String>>() {});
     }
 }

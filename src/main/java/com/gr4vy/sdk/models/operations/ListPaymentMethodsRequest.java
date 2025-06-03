@@ -54,6 +54,9 @@ public class ListPaymentMethodsRequest {
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=external_identifier")
     private JsonNullable<String> externalIdentifier;
 
+    @SpeakeasyMetadata("queryParam:style=form,explode=true,name=application_name")
+    private Optional<String> applicationName;
+
     /**
      * The ID of the merchant account to use for this request.
      */
@@ -68,6 +71,7 @@ public class ListPaymentMethodsRequest {
             JsonNullable<String> buyerExternalIdentifier,
             JsonNullable<? extends List<PaymentMethodStatus>> status,
             JsonNullable<String> externalIdentifier,
+            Optional<String> applicationName,
             JsonNullable<String> merchantAccountId) {
         Utils.checkNotNull(cursor, "cursor");
         Utils.checkNotNull(limit, "limit");
@@ -75,6 +79,7 @@ public class ListPaymentMethodsRequest {
         Utils.checkNotNull(buyerExternalIdentifier, "buyerExternalIdentifier");
         Utils.checkNotNull(status, "status");
         Utils.checkNotNull(externalIdentifier, "externalIdentifier");
+        Utils.checkNotNull(applicationName, "applicationName");
         Utils.checkNotNull(merchantAccountId, "merchantAccountId");
         this.cursor = cursor;
         this.limit = limit;
@@ -82,11 +87,12 @@ public class ListPaymentMethodsRequest {
         this.buyerExternalIdentifier = buyerExternalIdentifier;
         this.status = status;
         this.externalIdentifier = externalIdentifier;
+        this.applicationName = applicationName;
         this.merchantAccountId = merchantAccountId;
     }
     
     public ListPaymentMethodsRequest() {
-        this(JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
+        this(JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined());
     }
 
     /**
@@ -133,6 +139,11 @@ public class ListPaymentMethodsRequest {
     @JsonIgnore
     public JsonNullable<String> externalIdentifier() {
         return externalIdentifier;
+    }
+
+    @JsonIgnore
+    public Optional<String> applicationName() {
+        return applicationName;
     }
 
     /**
@@ -249,6 +260,18 @@ public class ListPaymentMethodsRequest {
         return this;
     }
 
+    public ListPaymentMethodsRequest withApplicationName(String applicationName) {
+        Utils.checkNotNull(applicationName, "applicationName");
+        this.applicationName = Optional.ofNullable(applicationName);
+        return this;
+    }
+
+    public ListPaymentMethodsRequest withApplicationName(Optional<String> applicationName) {
+        Utils.checkNotNull(applicationName, "applicationName");
+        this.applicationName = applicationName;
+        return this;
+    }
+
     /**
      * The ID of the merchant account to use for this request.
      */
@@ -284,6 +307,7 @@ public class ListPaymentMethodsRequest {
             Objects.deepEquals(this.buyerExternalIdentifier, other.buyerExternalIdentifier) &&
             Objects.deepEquals(this.status, other.status) &&
             Objects.deepEquals(this.externalIdentifier, other.externalIdentifier) &&
+            Objects.deepEquals(this.applicationName, other.applicationName) &&
             Objects.deepEquals(this.merchantAccountId, other.merchantAccountId);
     }
     
@@ -296,6 +320,7 @@ public class ListPaymentMethodsRequest {
             buyerExternalIdentifier,
             status,
             externalIdentifier,
+            applicationName,
             merchantAccountId);
     }
     
@@ -308,6 +333,7 @@ public class ListPaymentMethodsRequest {
                 "buyerExternalIdentifier", buyerExternalIdentifier,
                 "status", status,
                 "externalIdentifier", externalIdentifier,
+                "applicationName", applicationName,
                 "merchantAccountId", merchantAccountId);
     }
     
@@ -324,6 +350,8 @@ public class ListPaymentMethodsRequest {
         private JsonNullable<? extends List<PaymentMethodStatus>> status = JsonNullable.undefined();
  
         private JsonNullable<String> externalIdentifier = JsonNullable.undefined();
+ 
+        private Optional<String> applicationName;
  
         private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
         
@@ -433,6 +461,18 @@ public class ListPaymentMethodsRequest {
             return this;
         }
 
+        public Builder applicationName(String applicationName) {
+            Utils.checkNotNull(applicationName, "applicationName");
+            this.applicationName = Optional.ofNullable(applicationName);
+            return this;
+        }
+
+        public Builder applicationName(Optional<String> applicationName) {
+            Utils.checkNotNull(applicationName, "applicationName");
+            this.applicationName = applicationName;
+            return this;
+        }
+
         /**
          * The ID of the merchant account to use for this request.
          */
@@ -455,6 +495,9 @@ public class ListPaymentMethodsRequest {
             if (limit == null) {
                 limit = _SINGLETON_VALUE_Limit.value();
             }
+            if (applicationName == null) {
+                applicationName = _SINGLETON_VALUE_ApplicationName.value();
+            }
             return new ListPaymentMethodsRequest(
                 cursor,
                 limit,
@@ -462,6 +505,7 @@ public class ListPaymentMethodsRequest {
                 buyerExternalIdentifier,
                 status,
                 externalIdentifier,
+                applicationName,
                 merchantAccountId);
         }
 
@@ -470,5 +514,11 @@ public class ListPaymentMethodsRequest {
                         "limit",
                         "20",
                         new TypeReference<Optional<Long>>() {});
+
+        private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_ApplicationName =
+                new LazySingletonValue<>(
+                        "application_name",
+                        "\"core-api\"",
+                        new TypeReference<Optional<String>>() {});
     }
 }

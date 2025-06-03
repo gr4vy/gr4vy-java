@@ -3,6 +3,8 @@
  */
 package com.gr4vy.sdk.models.operations;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.gr4vy.sdk.utils.LazySingletonValue;
 import com.gr4vy.sdk.utils.Options;
 import com.gr4vy.sdk.utils.RetryConfig;
 import com.gr4vy.sdk.utils.Utils;
@@ -13,6 +15,10 @@ import java.util.Optional;
 public class GetMerchantAccountRequestBuilder {
 
     private String merchantAccountId;
+    private Optional<String> applicationName = Utils.readDefaultOrConstValue(
+                            "applicationName",
+                            "\"core-api\"",
+                            new TypeReference<Optional<String>>() {});
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKMethodInterfaces.MethodCallGetMerchantAccount sdk;
 
@@ -23,6 +29,18 @@ public class GetMerchantAccountRequestBuilder {
     public GetMerchantAccountRequestBuilder merchantAccountId(String merchantAccountId) {
         Utils.checkNotNull(merchantAccountId, "merchantAccountId");
         this.merchantAccountId = merchantAccountId;
+        return this;
+    }
+                
+    public GetMerchantAccountRequestBuilder applicationName(String applicationName) {
+        Utils.checkNotNull(applicationName, "applicationName");
+        this.applicationName = Optional.of(applicationName);
+        return this;
+    }
+
+    public GetMerchantAccountRequestBuilder applicationName(Optional<String> applicationName) {
+        Utils.checkNotNull(applicationName, "applicationName");
+        this.applicationName = applicationName;
         return this;
     }
                 
@@ -39,11 +57,20 @@ public class GetMerchantAccountRequestBuilder {
     }
 
     public GetMerchantAccountResponse call() throws Exception {
-        Optional<Options> options = Optional.of(Options.builder()
+        if (applicationName == null) {
+            applicationName = _SINGLETON_VALUE_ApplicationName.value();
+        }        Optional<Options> options = Optional.of(Options.builder()
                                                     .retryConfig(retryConfig)
                                                     .build());
         return sdk.get(
             merchantAccountId,
+            applicationName,
             options);
     }
+
+    private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_ApplicationName =
+            new LazySingletonValue<>(
+                    "applicationName",
+                    "\"core-api\"",
+                    new TypeReference<Optional<String>>() {});
 }

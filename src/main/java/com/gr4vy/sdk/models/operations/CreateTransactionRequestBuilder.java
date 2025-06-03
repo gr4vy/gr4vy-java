@@ -3,14 +3,21 @@
  */
 package com.gr4vy.sdk.models.operations;
 
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.gr4vy.sdk.models.components.TransactionCreate;
+import com.gr4vy.sdk.utils.LazySingletonValue;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
+import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 public class CreateTransactionRequestBuilder {
 
+    private Optional<String> applicationName = Utils.readDefaultOrConstValue(
+                            "applicationName",
+                            "\"core-api\"",
+                            new TypeReference<Optional<String>>() {});
     private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
     private JsonNullable<String> idempotencyKey = JsonNullable.undefined();
     private TransactionCreate transactionCreate;
@@ -18,6 +25,18 @@ public class CreateTransactionRequestBuilder {
 
     public CreateTransactionRequestBuilder(SDKMethodInterfaces.MethodCallCreateTransaction sdk) {
         this.sdk = sdk;
+    }
+                
+    public CreateTransactionRequestBuilder applicationName(String applicationName) {
+        Utils.checkNotNull(applicationName, "applicationName");
+        this.applicationName = Optional.of(applicationName);
+        return this;
+    }
+
+    public CreateTransactionRequestBuilder applicationName(Optional<String> applicationName) {
+        Utils.checkNotNull(applicationName, "applicationName");
+        this.applicationName = applicationName;
+        return this;
     }
 
     public CreateTransactionRequestBuilder merchantAccountId(String merchantAccountId) {
@@ -51,10 +70,19 @@ public class CreateTransactionRequestBuilder {
     }
 
     public CreateTransactionResponse call() throws Exception {
-
+        if (applicationName == null) {
+            applicationName = _SINGLETON_VALUE_ApplicationName.value();
+        }
         return sdk.create(
+            applicationName,
             merchantAccountId,
             idempotencyKey,
             transactionCreate);
     }
+
+    private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_ApplicationName =
+            new LazySingletonValue<>(
+                    "applicationName",
+                    "\"core-api\"",
+                    new TypeReference<Optional<String>>() {});
 }

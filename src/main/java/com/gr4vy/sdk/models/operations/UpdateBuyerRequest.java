@@ -5,12 +5,15 @@ package com.gr4vy.sdk.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.gr4vy.sdk.models.components.BuyerUpdate;
+import com.gr4vy.sdk.utils.LazySingletonValue;
 import com.gr4vy.sdk.utils.SpeakeasyMetadata;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.util.Objects;
+import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 public class UpdateBuyerRequest {
@@ -20,6 +23,9 @@ public class UpdateBuyerRequest {
      */
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=buyer_id")
     private String buyerId;
+
+    @SpeakeasyMetadata("queryParam:style=form,explode=true,name=application_name")
+    private Optional<String> applicationName;
 
     /**
      * The ID of the merchant account to use for this request.
@@ -33,12 +39,15 @@ public class UpdateBuyerRequest {
     @JsonCreator
     public UpdateBuyerRequest(
             String buyerId,
+            Optional<String> applicationName,
             JsonNullable<String> merchantAccountId,
             BuyerUpdate buyerUpdate) {
         Utils.checkNotNull(buyerId, "buyerId");
+        Utils.checkNotNull(applicationName, "applicationName");
         Utils.checkNotNull(merchantAccountId, "merchantAccountId");
         Utils.checkNotNull(buyerUpdate, "buyerUpdate");
         this.buyerId = buyerId;
+        this.applicationName = applicationName;
         this.merchantAccountId = merchantAccountId;
         this.buyerUpdate = buyerUpdate;
     }
@@ -46,7 +55,7 @@ public class UpdateBuyerRequest {
     public UpdateBuyerRequest(
             String buyerId,
             BuyerUpdate buyerUpdate) {
-        this(buyerId, JsonNullable.undefined(), buyerUpdate);
+        this(buyerId, Optional.empty(), JsonNullable.undefined(), buyerUpdate);
     }
 
     /**
@@ -55,6 +64,11 @@ public class UpdateBuyerRequest {
     @JsonIgnore
     public String buyerId() {
         return buyerId;
+    }
+
+    @JsonIgnore
+    public Optional<String> applicationName() {
+        return applicationName;
     }
 
     /**
@@ -80,6 +94,18 @@ public class UpdateBuyerRequest {
     public UpdateBuyerRequest withBuyerId(String buyerId) {
         Utils.checkNotNull(buyerId, "buyerId");
         this.buyerId = buyerId;
+        return this;
+    }
+
+    public UpdateBuyerRequest withApplicationName(String applicationName) {
+        Utils.checkNotNull(applicationName, "applicationName");
+        this.applicationName = Optional.ofNullable(applicationName);
+        return this;
+    }
+
+    public UpdateBuyerRequest withApplicationName(Optional<String> applicationName) {
+        Utils.checkNotNull(applicationName, "applicationName");
+        this.applicationName = applicationName;
         return this;
     }
 
@@ -119,6 +145,7 @@ public class UpdateBuyerRequest {
         UpdateBuyerRequest other = (UpdateBuyerRequest) o;
         return 
             Objects.deepEquals(this.buyerId, other.buyerId) &&
+            Objects.deepEquals(this.applicationName, other.applicationName) &&
             Objects.deepEquals(this.merchantAccountId, other.merchantAccountId) &&
             Objects.deepEquals(this.buyerUpdate, other.buyerUpdate);
     }
@@ -127,6 +154,7 @@ public class UpdateBuyerRequest {
     public int hashCode() {
         return Objects.hash(
             buyerId,
+            applicationName,
             merchantAccountId,
             buyerUpdate);
     }
@@ -135,6 +163,7 @@ public class UpdateBuyerRequest {
     public String toString() {
         return Utils.toString(UpdateBuyerRequest.class,
                 "buyerId", buyerId,
+                "applicationName", applicationName,
                 "merchantAccountId", merchantAccountId,
                 "buyerUpdate", buyerUpdate);
     }
@@ -142,6 +171,8 @@ public class UpdateBuyerRequest {
     public final static class Builder {
  
         private String buyerId;
+ 
+        private Optional<String> applicationName;
  
         private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
  
@@ -157,6 +188,18 @@ public class UpdateBuyerRequest {
         public Builder buyerId(String buyerId) {
             Utils.checkNotNull(buyerId, "buyerId");
             this.buyerId = buyerId;
+            return this;
+        }
+
+        public Builder applicationName(String applicationName) {
+            Utils.checkNotNull(applicationName, "applicationName");
+            this.applicationName = Optional.ofNullable(applicationName);
+            return this;
+        }
+
+        public Builder applicationName(Optional<String> applicationName) {
+            Utils.checkNotNull(applicationName, "applicationName");
+            this.applicationName = applicationName;
             return this;
         }
 
@@ -185,10 +228,20 @@ public class UpdateBuyerRequest {
         }
         
         public UpdateBuyerRequest build() {
+            if (applicationName == null) {
+                applicationName = _SINGLETON_VALUE_ApplicationName.value();
+            }
             return new UpdateBuyerRequest(
                 buyerId,
+                applicationName,
                 merchantAccountId,
                 buyerUpdate);
         }
+
+        private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_ApplicationName =
+                new LazySingletonValue<>(
+                        "application_name",
+                        "\"core-api\"",
+                        new TypeReference<Optional<String>>() {});
     }
 }

@@ -75,7 +75,7 @@ public class CardSchemeDefinitions implements
      * @throws Exception if the API call fails
      */
     public ListCardSchemeDefinitionsResponse listDirect() throws Exception {
-        return list(JsonNullable.undefined(), Optional.empty());
+        return list(Optional.empty(), JsonNullable.undefined(), Optional.empty());
     }
     
     /**
@@ -83,12 +83,14 @@ public class CardSchemeDefinitions implements
      * 
      * <p>Fetch a list of the definitions of each card scheme.
      * 
+     * @param applicationName 
      * @param merchantAccountId 
      * @param options additional options
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public ListCardSchemeDefinitionsResponse list(
+            Optional<String> applicationName,
             JsonNullable<String> merchantAccountId,
             Optional<Options> options) throws Exception {
 
@@ -98,6 +100,7 @@ public class CardSchemeDefinitions implements
         ListCardSchemeDefinitionsRequest request =
             ListCardSchemeDefinitionsRequest
                 .builder()
+                .applicationName(applicationName)
                 .merchantAccountId(merchantAccountId)
                 .build();
         
@@ -111,6 +114,11 @@ public class CardSchemeDefinitions implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
+
+        _req.addQueryParams(Utils.getQueryParams(
+                ListCardSchemeDefinitionsRequest.class,
+                request, 
+                this.sdkConfiguration.globals));
         _req.addHeaders(Utils.getHeadersFromMetadata(request, this.sdkConfiguration.globals));
         
         Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());

@@ -5,15 +5,21 @@ package com.gr4vy.sdk.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.gr4vy.sdk.models.components.PaymentServiceCreate;
+import com.gr4vy.sdk.utils.LazySingletonValue;
 import com.gr4vy.sdk.utils.SpeakeasyMetadata;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.util.Objects;
+import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 public class UpdatePaymentServiceRequest {
+
+    @SpeakeasyMetadata("queryParam:style=form,explode=true,name=application_name")
+    private Optional<String> applicationName;
 
     /**
      * The ID of the merchant account to use for this request.
@@ -26,17 +32,25 @@ public class UpdatePaymentServiceRequest {
 
     @JsonCreator
     public UpdatePaymentServiceRequest(
+            Optional<String> applicationName,
             JsonNullable<String> merchantAccountId,
             PaymentServiceCreate paymentServiceCreate) {
+        Utils.checkNotNull(applicationName, "applicationName");
         Utils.checkNotNull(merchantAccountId, "merchantAccountId");
         Utils.checkNotNull(paymentServiceCreate, "paymentServiceCreate");
+        this.applicationName = applicationName;
         this.merchantAccountId = merchantAccountId;
         this.paymentServiceCreate = paymentServiceCreate;
     }
     
     public UpdatePaymentServiceRequest(
             PaymentServiceCreate paymentServiceCreate) {
-        this(JsonNullable.undefined(), paymentServiceCreate);
+        this(Optional.empty(), JsonNullable.undefined(), paymentServiceCreate);
+    }
+
+    @JsonIgnore
+    public Optional<String> applicationName() {
+        return applicationName;
     }
 
     /**
@@ -55,6 +69,18 @@ public class UpdatePaymentServiceRequest {
     public final static Builder builder() {
         return new Builder();
     }    
+
+    public UpdatePaymentServiceRequest withApplicationName(String applicationName) {
+        Utils.checkNotNull(applicationName, "applicationName");
+        this.applicationName = Optional.ofNullable(applicationName);
+        return this;
+    }
+
+    public UpdatePaymentServiceRequest withApplicationName(Optional<String> applicationName) {
+        Utils.checkNotNull(applicationName, "applicationName");
+        this.applicationName = applicationName;
+        return this;
+    }
 
     /**
      * The ID of the merchant account to use for this request.
@@ -91,6 +117,7 @@ public class UpdatePaymentServiceRequest {
         }
         UpdatePaymentServiceRequest other = (UpdatePaymentServiceRequest) o;
         return 
+            Objects.deepEquals(this.applicationName, other.applicationName) &&
             Objects.deepEquals(this.merchantAccountId, other.merchantAccountId) &&
             Objects.deepEquals(this.paymentServiceCreate, other.paymentServiceCreate);
     }
@@ -98,6 +125,7 @@ public class UpdatePaymentServiceRequest {
     @Override
     public int hashCode() {
         return Objects.hash(
+            applicationName,
             merchantAccountId,
             paymentServiceCreate);
     }
@@ -105,11 +133,14 @@ public class UpdatePaymentServiceRequest {
     @Override
     public String toString() {
         return Utils.toString(UpdatePaymentServiceRequest.class,
+                "applicationName", applicationName,
                 "merchantAccountId", merchantAccountId,
                 "paymentServiceCreate", paymentServiceCreate);
     }
     
     public final static class Builder {
+ 
+        private Optional<String> applicationName;
  
         private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
  
@@ -117,6 +148,18 @@ public class UpdatePaymentServiceRequest {
         
         private Builder() {
           // force use of static builder() method
+        }
+
+        public Builder applicationName(String applicationName) {
+            Utils.checkNotNull(applicationName, "applicationName");
+            this.applicationName = Optional.ofNullable(applicationName);
+            return this;
+        }
+
+        public Builder applicationName(Optional<String> applicationName) {
+            Utils.checkNotNull(applicationName, "applicationName");
+            this.applicationName = applicationName;
+            return this;
         }
 
         /**
@@ -144,9 +187,19 @@ public class UpdatePaymentServiceRequest {
         }
         
         public UpdatePaymentServiceRequest build() {
+            if (applicationName == null) {
+                applicationName = _SINGLETON_VALUE_ApplicationName.value();
+            }
             return new UpdatePaymentServiceRequest(
+                applicationName,
                 merchantAccountId,
                 paymentServiceCreate);
         }
+
+        private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_ApplicationName =
+                new LazySingletonValue<>(
+                        "application_name",
+                        "\"core-api\"",
+                        new TypeReference<Optional<String>>() {});
     }
 }

@@ -5,11 +5,14 @@ package com.gr4vy.sdk.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.gr4vy.sdk.utils.LazySingletonValue;
 import com.gr4vy.sdk.utils.SpeakeasyMetadata;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.util.Objects;
+import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 public class GetPaymentMethodRequest {
@@ -20,6 +23,9 @@ public class GetPaymentMethodRequest {
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=payment_method_id")
     private String paymentMethodId;
 
+    @SpeakeasyMetadata("queryParam:style=form,explode=true,name=application_name")
+    private Optional<String> applicationName;
+
     /**
      * The ID of the merchant account to use for this request.
      */
@@ -29,16 +35,19 @@ public class GetPaymentMethodRequest {
     @JsonCreator
     public GetPaymentMethodRequest(
             String paymentMethodId,
+            Optional<String> applicationName,
             JsonNullable<String> merchantAccountId) {
         Utils.checkNotNull(paymentMethodId, "paymentMethodId");
+        Utils.checkNotNull(applicationName, "applicationName");
         Utils.checkNotNull(merchantAccountId, "merchantAccountId");
         this.paymentMethodId = paymentMethodId;
+        this.applicationName = applicationName;
         this.merchantAccountId = merchantAccountId;
     }
     
     public GetPaymentMethodRequest(
             String paymentMethodId) {
-        this(paymentMethodId, JsonNullable.undefined());
+        this(paymentMethodId, Optional.empty(), JsonNullable.undefined());
     }
 
     /**
@@ -47,6 +56,11 @@ public class GetPaymentMethodRequest {
     @JsonIgnore
     public String paymentMethodId() {
         return paymentMethodId;
+    }
+
+    @JsonIgnore
+    public Optional<String> applicationName() {
+        return applicationName;
     }
 
     /**
@@ -67,6 +81,18 @@ public class GetPaymentMethodRequest {
     public GetPaymentMethodRequest withPaymentMethodId(String paymentMethodId) {
         Utils.checkNotNull(paymentMethodId, "paymentMethodId");
         this.paymentMethodId = paymentMethodId;
+        return this;
+    }
+
+    public GetPaymentMethodRequest withApplicationName(String applicationName) {
+        Utils.checkNotNull(applicationName, "applicationName");
+        this.applicationName = Optional.ofNullable(applicationName);
+        return this;
+    }
+
+    public GetPaymentMethodRequest withApplicationName(Optional<String> applicationName) {
+        Utils.checkNotNull(applicationName, "applicationName");
+        this.applicationName = applicationName;
         return this;
     }
 
@@ -100,6 +126,7 @@ public class GetPaymentMethodRequest {
         GetPaymentMethodRequest other = (GetPaymentMethodRequest) o;
         return 
             Objects.deepEquals(this.paymentMethodId, other.paymentMethodId) &&
+            Objects.deepEquals(this.applicationName, other.applicationName) &&
             Objects.deepEquals(this.merchantAccountId, other.merchantAccountId);
     }
     
@@ -107,6 +134,7 @@ public class GetPaymentMethodRequest {
     public int hashCode() {
         return Objects.hash(
             paymentMethodId,
+            applicationName,
             merchantAccountId);
     }
     
@@ -114,12 +142,15 @@ public class GetPaymentMethodRequest {
     public String toString() {
         return Utils.toString(GetPaymentMethodRequest.class,
                 "paymentMethodId", paymentMethodId,
+                "applicationName", applicationName,
                 "merchantAccountId", merchantAccountId);
     }
     
     public final static class Builder {
  
         private String paymentMethodId;
+ 
+        private Optional<String> applicationName;
  
         private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
         
@@ -133,6 +164,18 @@ public class GetPaymentMethodRequest {
         public Builder paymentMethodId(String paymentMethodId) {
             Utils.checkNotNull(paymentMethodId, "paymentMethodId");
             this.paymentMethodId = paymentMethodId;
+            return this;
+        }
+
+        public Builder applicationName(String applicationName) {
+            Utils.checkNotNull(applicationName, "applicationName");
+            this.applicationName = Optional.ofNullable(applicationName);
+            return this;
+        }
+
+        public Builder applicationName(Optional<String> applicationName) {
+            Utils.checkNotNull(applicationName, "applicationName");
+            this.applicationName = applicationName;
             return this;
         }
 
@@ -155,9 +198,19 @@ public class GetPaymentMethodRequest {
         }
         
         public GetPaymentMethodRequest build() {
+            if (applicationName == null) {
+                applicationName = _SINGLETON_VALUE_ApplicationName.value();
+            }
             return new GetPaymentMethodRequest(
                 paymentMethodId,
+                applicationName,
                 merchantAccountId);
         }
+
+        private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_ApplicationName =
+                new LazySingletonValue<>(
+                        "application_name",
+                        "\"core-api\"",
+                        new TypeReference<Optional<String>>() {});
     }
 }

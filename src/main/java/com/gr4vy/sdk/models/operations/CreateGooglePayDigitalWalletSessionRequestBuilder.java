@@ -3,20 +3,39 @@
  */
 package com.gr4vy.sdk.models.operations;
 
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.gr4vy.sdk.models.components.GooglePaySessionRequest;
+import com.gr4vy.sdk.utils.LazySingletonValue;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
+import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 public class CreateGooglePayDigitalWalletSessionRequestBuilder {
 
+    private Optional<String> applicationName = Utils.readDefaultOrConstValue(
+                            "applicationName",
+                            "\"core-api\"",
+                            new TypeReference<Optional<String>>() {});
     private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
     private GooglePaySessionRequest googlePaySessionRequest;
     private final SDKMethodInterfaces.MethodCallCreateGooglePayDigitalWalletSession sdk;
 
     public CreateGooglePayDigitalWalletSessionRequestBuilder(SDKMethodInterfaces.MethodCallCreateGooglePayDigitalWalletSession sdk) {
         this.sdk = sdk;
+    }
+                
+    public CreateGooglePayDigitalWalletSessionRequestBuilder applicationName(String applicationName) {
+        Utils.checkNotNull(applicationName, "applicationName");
+        this.applicationName = Optional.of(applicationName);
+        return this;
+    }
+
+    public CreateGooglePayDigitalWalletSessionRequestBuilder applicationName(Optional<String> applicationName) {
+        Utils.checkNotNull(applicationName, "applicationName");
+        this.applicationName = applicationName;
+        return this;
     }
 
     public CreateGooglePayDigitalWalletSessionRequestBuilder merchantAccountId(String merchantAccountId) {
@@ -38,9 +57,18 @@ public class CreateGooglePayDigitalWalletSessionRequestBuilder {
     }
 
     public CreateGooglePayDigitalWalletSessionResponse call() throws Exception {
-
+        if (applicationName == null) {
+            applicationName = _SINGLETON_VALUE_ApplicationName.value();
+        }
         return sdk.googlePay(
+            applicationName,
             merchantAccountId,
             googlePaySessionRequest);
     }
+
+    private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_ApplicationName =
+            new LazySingletonValue<>(
+                    "applicationName",
+                    "\"core-api\"",
+                    new TypeReference<Optional<String>>() {});
 }

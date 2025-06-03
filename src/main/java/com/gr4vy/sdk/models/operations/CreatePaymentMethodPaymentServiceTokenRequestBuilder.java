@@ -3,15 +3,22 @@
  */
 package com.gr4vy.sdk.models.operations;
 
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.gr4vy.sdk.models.components.PaymentServiceTokenCreate;
+import com.gr4vy.sdk.utils.LazySingletonValue;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
+import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 public class CreatePaymentMethodPaymentServiceTokenRequestBuilder {
 
     private String paymentMethodId;
+    private Optional<String> applicationName = Utils.readDefaultOrConstValue(
+                            "applicationName",
+                            "\"core-api\"",
+                            new TypeReference<Optional<String>>() {});
     private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
     private PaymentServiceTokenCreate paymentServiceTokenCreate;
     private final SDKMethodInterfaces.MethodCallCreatePaymentMethodPaymentServiceToken sdk;
@@ -23,6 +30,18 @@ public class CreatePaymentMethodPaymentServiceTokenRequestBuilder {
     public CreatePaymentMethodPaymentServiceTokenRequestBuilder paymentMethodId(String paymentMethodId) {
         Utils.checkNotNull(paymentMethodId, "paymentMethodId");
         this.paymentMethodId = paymentMethodId;
+        return this;
+    }
+                
+    public CreatePaymentMethodPaymentServiceTokenRequestBuilder applicationName(String applicationName) {
+        Utils.checkNotNull(applicationName, "applicationName");
+        this.applicationName = Optional.of(applicationName);
+        return this;
+    }
+
+    public CreatePaymentMethodPaymentServiceTokenRequestBuilder applicationName(Optional<String> applicationName) {
+        Utils.checkNotNull(applicationName, "applicationName");
+        this.applicationName = applicationName;
         return this;
     }
 
@@ -45,10 +64,19 @@ public class CreatePaymentMethodPaymentServiceTokenRequestBuilder {
     }
 
     public CreatePaymentMethodPaymentServiceTokenResponse call() throws Exception {
-
+        if (applicationName == null) {
+            applicationName = _SINGLETON_VALUE_ApplicationName.value();
+        }
         return sdk.create(
             paymentMethodId,
+            applicationName,
             merchantAccountId,
             paymentServiceTokenCreate);
     }
+
+    private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_ApplicationName =
+            new LazySingletonValue<>(
+                    "applicationName",
+                    "\"core-api\"",
+                    new TypeReference<Optional<String>>() {});
 }

@@ -5,14 +5,20 @@ package com.gr4vy.sdk.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.gr4vy.sdk.utils.LazySingletonValue;
 import com.gr4vy.sdk.utils.SpeakeasyMetadata;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.util.Objects;
+import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 public class ListCardSchemeDefinitionsRequest {
+
+    @SpeakeasyMetadata("queryParam:style=form,explode=true,name=application_name")
+    private Optional<String> applicationName;
 
     /**
      * The ID of the merchant account to use for this request.
@@ -22,13 +28,21 @@ public class ListCardSchemeDefinitionsRequest {
 
     @JsonCreator
     public ListCardSchemeDefinitionsRequest(
+            Optional<String> applicationName,
             JsonNullable<String> merchantAccountId) {
+        Utils.checkNotNull(applicationName, "applicationName");
         Utils.checkNotNull(merchantAccountId, "merchantAccountId");
+        this.applicationName = applicationName;
         this.merchantAccountId = merchantAccountId;
     }
     
     public ListCardSchemeDefinitionsRequest() {
-        this(JsonNullable.undefined());
+        this(Optional.empty(), JsonNullable.undefined());
+    }
+
+    @JsonIgnore
+    public Optional<String> applicationName() {
+        return applicationName;
     }
 
     /**
@@ -42,6 +56,18 @@ public class ListCardSchemeDefinitionsRequest {
     public final static Builder builder() {
         return new Builder();
     }    
+
+    public ListCardSchemeDefinitionsRequest withApplicationName(String applicationName) {
+        Utils.checkNotNull(applicationName, "applicationName");
+        this.applicationName = Optional.ofNullable(applicationName);
+        return this;
+    }
+
+    public ListCardSchemeDefinitionsRequest withApplicationName(Optional<String> applicationName) {
+        Utils.checkNotNull(applicationName, "applicationName");
+        this.applicationName = applicationName;
+        return this;
+    }
 
     /**
      * The ID of the merchant account to use for this request.
@@ -72,27 +98,44 @@ public class ListCardSchemeDefinitionsRequest {
         }
         ListCardSchemeDefinitionsRequest other = (ListCardSchemeDefinitionsRequest) o;
         return 
+            Objects.deepEquals(this.applicationName, other.applicationName) &&
             Objects.deepEquals(this.merchantAccountId, other.merchantAccountId);
     }
     
     @Override
     public int hashCode() {
         return Objects.hash(
+            applicationName,
             merchantAccountId);
     }
     
     @Override
     public String toString() {
         return Utils.toString(ListCardSchemeDefinitionsRequest.class,
+                "applicationName", applicationName,
                 "merchantAccountId", merchantAccountId);
     }
     
     public final static class Builder {
  
+        private Optional<String> applicationName;
+ 
         private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
         
         private Builder() {
           // force use of static builder() method
+        }
+
+        public Builder applicationName(String applicationName) {
+            Utils.checkNotNull(applicationName, "applicationName");
+            this.applicationName = Optional.ofNullable(applicationName);
+            return this;
+        }
+
+        public Builder applicationName(Optional<String> applicationName) {
+            Utils.checkNotNull(applicationName, "applicationName");
+            this.applicationName = applicationName;
+            return this;
         }
 
         /**
@@ -114,8 +157,18 @@ public class ListCardSchemeDefinitionsRequest {
         }
         
         public ListCardSchemeDefinitionsRequest build() {
+            if (applicationName == null) {
+                applicationName = _SINGLETON_VALUE_ApplicationName.value();
+            }
             return new ListCardSchemeDefinitionsRequest(
+                applicationName,
                 merchantAccountId);
         }
+
+        private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_ApplicationName =
+                new LazySingletonValue<>(
+                        "application_name",
+                        "\"core-api\"",
+                        new TypeReference<Optional<String>>() {});
     }
 }

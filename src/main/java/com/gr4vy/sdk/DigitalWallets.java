@@ -111,7 +111,7 @@ public class DigitalWallets implements
      */
     public ConfigureDigitalWalletResponse create(
             DigitalWalletCreate digitalWalletCreate) throws Exception {
-        return create(JsonNullable.undefined(), digitalWalletCreate);
+        return create(Optional.empty(), JsonNullable.undefined(), digitalWalletCreate);
     }
     
     /**
@@ -119,17 +119,20 @@ public class DigitalWallets implements
      * 
      * <p>Register a digital wallet like Apple Pay, Google Pay, or Click to Pay.
      * 
+     * @param applicationName 
      * @param merchantAccountId 
      * @param digitalWalletCreate Request body for registering a new digital wallet
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public ConfigureDigitalWalletResponse create(
+            Optional<String> applicationName,
             JsonNullable<String> merchantAccountId,
             DigitalWalletCreate digitalWalletCreate) throws Exception {
         ConfigureDigitalWalletRequest request =
             ConfigureDigitalWalletRequest
                 .builder()
+                .applicationName(applicationName)
                 .merchantAccountId(merchantAccountId)
                 .digitalWalletCreate(digitalWalletCreate)
                 .build();
@@ -157,6 +160,11 @@ public class DigitalWallets implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
+
+        _req.addQueryParams(Utils.getQueryParams(
+                ConfigureDigitalWalletRequest.class,
+                request, 
+                this.sdkConfiguration.globals));
         _req.addHeaders(Utils.getHeadersFromMetadata(request, this.sdkConfiguration.globals));
         
         Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
@@ -475,7 +483,7 @@ public class DigitalWallets implements
      * @throws Exception if the API call fails
      */
     public ListDigitalWalletsResponse listDirect() throws Exception {
-        return list(JsonNullable.undefined(), Optional.empty());
+        return list(Optional.empty(), JsonNullable.undefined(), Optional.empty());
     }
     
     /**
@@ -483,12 +491,14 @@ public class DigitalWallets implements
      * 
      * <p>List configured digital wallets.
      * 
+     * @param applicationName 
      * @param merchantAccountId 
      * @param options additional options
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public ListDigitalWalletsResponse list(
+            Optional<String> applicationName,
             JsonNullable<String> merchantAccountId,
             Optional<Options> options) throws Exception {
 
@@ -498,6 +508,7 @@ public class DigitalWallets implements
         ListDigitalWalletsRequest request =
             ListDigitalWalletsRequest
                 .builder()
+                .applicationName(applicationName)
                 .merchantAccountId(merchantAccountId)
                 .build();
         
@@ -511,6 +522,11 @@ public class DigitalWallets implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
+
+        _req.addQueryParams(Utils.getQueryParams(
+                ListDigitalWalletsRequest.class,
+                request, 
+                this.sdkConfiguration.globals));
         _req.addHeaders(Utils.getHeadersFromMetadata(request, this.sdkConfiguration.globals));
         
         Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
@@ -846,7 +862,7 @@ public class DigitalWallets implements
      */
     public GetDigitalWalletResponse get(
             String digitalWalletId) throws Exception {
-        return get(digitalWalletId, JsonNullable.undefined(), Optional.empty());
+        return get(digitalWalletId, Optional.empty(), JsonNullable.undefined(), Optional.empty());
     }
     
     /**
@@ -855,6 +871,7 @@ public class DigitalWallets implements
      * <p>Fetch the details a digital wallet.
      * 
      * @param digitalWalletId The ID of the digital wallet to read.
+     * @param applicationName 
      * @param merchantAccountId 
      * @param options additional options
      * @return The response from the API call
@@ -862,6 +879,7 @@ public class DigitalWallets implements
      */
     public GetDigitalWalletResponse get(
             String digitalWalletId,
+            Optional<String> applicationName,
             JsonNullable<String> merchantAccountId,
             Optional<Options> options) throws Exception {
 
@@ -872,6 +890,7 @@ public class DigitalWallets implements
             GetDigitalWalletRequest
                 .builder()
                 .digitalWalletId(digitalWalletId)
+                .applicationName(applicationName)
                 .merchantAccountId(merchantAccountId)
                 .build();
         
@@ -887,6 +906,11 @@ public class DigitalWallets implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
+
+        _req.addQueryParams(Utils.getQueryParams(
+                GetDigitalWalletRequest.class,
+                request, 
+                this.sdkConfiguration.globals));
         _req.addHeaders(Utils.getHeadersFromMetadata(request, this.sdkConfiguration.globals));
         
         Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
@@ -1222,7 +1246,7 @@ public class DigitalWallets implements
      */
     public DeleteDigitalWalletResponse delete(
             String digitalWalletId) throws Exception {
-        return delete(digitalWalletId, JsonNullable.undefined());
+        return delete(digitalWalletId, Optional.empty(), JsonNullable.undefined());
     }
     
     /**
@@ -1231,17 +1255,20 @@ public class DigitalWallets implements
      * <p>Delete a configured digital wallet.
      * 
      * @param digitalWalletId The ID of the digital wallet to delete.
+     * @param applicationName 
      * @param merchantAccountId 
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public DeleteDigitalWalletResponse delete(
             String digitalWalletId,
+            Optional<String> applicationName,
             JsonNullable<String> merchantAccountId) throws Exception {
         DeleteDigitalWalletRequest request =
             DeleteDigitalWalletRequest
                 .builder()
                 .digitalWalletId(digitalWalletId)
+                .applicationName(applicationName)
                 .merchantAccountId(merchantAccountId)
                 .build();
         
@@ -1257,6 +1284,11 @@ public class DigitalWallets implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
+
+        _req.addQueryParams(Utils.getQueryParams(
+                DeleteDigitalWalletRequest.class,
+                request, 
+                this.sdkConfiguration.globals));
         _req.addHeaders(Utils.getHeadersFromMetadata(request, this.sdkConfiguration.globals));
         
         Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
@@ -1579,7 +1611,7 @@ public class DigitalWallets implements
     public UpdateDigitalWalletResponse update(
             String digitalWalletId,
             DigitalWalletUpdate digitalWalletUpdate) throws Exception {
-        return update(digitalWalletId, JsonNullable.undefined(), digitalWalletUpdate);
+        return update(digitalWalletId, Optional.empty(), JsonNullable.undefined(), digitalWalletUpdate);
     }
     
     /**
@@ -1588,6 +1620,7 @@ public class DigitalWallets implements
      * <p>Update a digital wallet.
      * 
      * @param digitalWalletId The ID of the digital wallet to edit.
+     * @param applicationName 
      * @param merchantAccountId 
      * @param digitalWalletUpdate Request body for editing a registered digital wallet
      * @return The response from the API call
@@ -1595,12 +1628,14 @@ public class DigitalWallets implements
      */
     public UpdateDigitalWalletResponse update(
             String digitalWalletId,
+            Optional<String> applicationName,
             JsonNullable<String> merchantAccountId,
             DigitalWalletUpdate digitalWalletUpdate) throws Exception {
         UpdateDigitalWalletRequest request =
             UpdateDigitalWalletRequest
                 .builder()
                 .digitalWalletId(digitalWalletId)
+                .applicationName(applicationName)
                 .merchantAccountId(merchantAccountId)
                 .digitalWalletUpdate(digitalWalletUpdate)
                 .build();
@@ -1630,6 +1665,11 @@ public class DigitalWallets implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
+
+        _req.addQueryParams(Utils.getQueryParams(
+                UpdateDigitalWalletRequest.class,
+                request, 
+                this.sdkConfiguration.globals));
         _req.addHeaders(Utils.getHeadersFromMetadata(request, this.sdkConfiguration.globals));
         
         Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());

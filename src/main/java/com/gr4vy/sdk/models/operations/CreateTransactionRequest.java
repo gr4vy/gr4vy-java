@@ -5,15 +5,21 @@ package com.gr4vy.sdk.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.gr4vy.sdk.models.components.TransactionCreate;
+import com.gr4vy.sdk.utils.LazySingletonValue;
 import com.gr4vy.sdk.utils.SpeakeasyMetadata;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.util.Objects;
+import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 public class CreateTransactionRequest {
+
+    @SpeakeasyMetadata("queryParam:style=form,explode=true,name=application_name")
+    private Optional<String> applicationName;
 
     /**
      * The ID of the merchant account to use for this request.
@@ -32,12 +38,15 @@ public class CreateTransactionRequest {
 
     @JsonCreator
     public CreateTransactionRequest(
+            Optional<String> applicationName,
             JsonNullable<String> merchantAccountId,
             JsonNullable<String> idempotencyKey,
             TransactionCreate transactionCreate) {
+        Utils.checkNotNull(applicationName, "applicationName");
         Utils.checkNotNull(merchantAccountId, "merchantAccountId");
         Utils.checkNotNull(idempotencyKey, "idempotencyKey");
         Utils.checkNotNull(transactionCreate, "transactionCreate");
+        this.applicationName = applicationName;
         this.merchantAccountId = merchantAccountId;
         this.idempotencyKey = idempotencyKey;
         this.transactionCreate = transactionCreate;
@@ -45,7 +54,12 @@ public class CreateTransactionRequest {
     
     public CreateTransactionRequest(
             TransactionCreate transactionCreate) {
-        this(JsonNullable.undefined(), JsonNullable.undefined(), transactionCreate);
+        this(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), transactionCreate);
+    }
+
+    @JsonIgnore
+    public Optional<String> applicationName() {
+        return applicationName;
     }
 
     /**
@@ -72,6 +86,18 @@ public class CreateTransactionRequest {
     public final static Builder builder() {
         return new Builder();
     }    
+
+    public CreateTransactionRequest withApplicationName(String applicationName) {
+        Utils.checkNotNull(applicationName, "applicationName");
+        this.applicationName = Optional.ofNullable(applicationName);
+        return this;
+    }
+
+    public CreateTransactionRequest withApplicationName(Optional<String> applicationName) {
+        Utils.checkNotNull(applicationName, "applicationName");
+        this.applicationName = applicationName;
+        return this;
+    }
 
     /**
      * The ID of the merchant account to use for this request.
@@ -126,6 +152,7 @@ public class CreateTransactionRequest {
         }
         CreateTransactionRequest other = (CreateTransactionRequest) o;
         return 
+            Objects.deepEquals(this.applicationName, other.applicationName) &&
             Objects.deepEquals(this.merchantAccountId, other.merchantAccountId) &&
             Objects.deepEquals(this.idempotencyKey, other.idempotencyKey) &&
             Objects.deepEquals(this.transactionCreate, other.transactionCreate);
@@ -134,6 +161,7 @@ public class CreateTransactionRequest {
     @Override
     public int hashCode() {
         return Objects.hash(
+            applicationName,
             merchantAccountId,
             idempotencyKey,
             transactionCreate);
@@ -142,12 +170,15 @@ public class CreateTransactionRequest {
     @Override
     public String toString() {
         return Utils.toString(CreateTransactionRequest.class,
+                "applicationName", applicationName,
                 "merchantAccountId", merchantAccountId,
                 "idempotencyKey", idempotencyKey,
                 "transactionCreate", transactionCreate);
     }
     
     public final static class Builder {
+ 
+        private Optional<String> applicationName;
  
         private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
  
@@ -157,6 +188,18 @@ public class CreateTransactionRequest {
         
         private Builder() {
           // force use of static builder() method
+        }
+
+        public Builder applicationName(String applicationName) {
+            Utils.checkNotNull(applicationName, "applicationName");
+            this.applicationName = Optional.ofNullable(applicationName);
+            return this;
+        }
+
+        public Builder applicationName(Optional<String> applicationName) {
+            Utils.checkNotNull(applicationName, "applicationName");
+            this.applicationName = applicationName;
+            return this;
         }
 
         /**
@@ -202,10 +245,20 @@ public class CreateTransactionRequest {
         }
         
         public CreateTransactionRequest build() {
+            if (applicationName == null) {
+                applicationName = _SINGLETON_VALUE_ApplicationName.value();
+            }
             return new CreateTransactionRequest(
+                applicationName,
                 merchantAccountId,
                 idempotencyKey,
                 transactionCreate);
         }
+
+        private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_ApplicationName =
+                new LazySingletonValue<>(
+                        "application_name",
+                        "\"core-api\"",
+                        new TypeReference<Optional<String>>() {});
     }
 }

@@ -30,6 +30,9 @@ public class ListPayoutsRequest {
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=limit")
     private Optional<Long> limit;
 
+    @SpeakeasyMetadata("queryParam:style=form,explode=true,name=application_name")
+    private Optional<String> applicationName;
+
     /**
      * The ID of the merchant account to use for this request.
      */
@@ -40,17 +43,20 @@ public class ListPayoutsRequest {
     public ListPayoutsRequest(
             JsonNullable<String> cursor,
             Optional<Long> limit,
+            Optional<String> applicationName,
             JsonNullable<String> merchantAccountId) {
         Utils.checkNotNull(cursor, "cursor");
         Utils.checkNotNull(limit, "limit");
+        Utils.checkNotNull(applicationName, "applicationName");
         Utils.checkNotNull(merchantAccountId, "merchantAccountId");
         this.cursor = cursor;
         this.limit = limit;
+        this.applicationName = applicationName;
         this.merchantAccountId = merchantAccountId;
     }
     
     public ListPayoutsRequest() {
-        this(JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined());
+        this(JsonNullable.undefined(), Optional.empty(), Optional.empty(), JsonNullable.undefined());
     }
 
     /**
@@ -67,6 +73,11 @@ public class ListPayoutsRequest {
     @JsonIgnore
     public Optional<Long> limit() {
         return limit;
+    }
+
+    @JsonIgnore
+    public Optional<String> applicationName() {
+        return applicationName;
     }
 
     /**
@@ -117,6 +128,18 @@ public class ListPayoutsRequest {
         return this;
     }
 
+    public ListPayoutsRequest withApplicationName(String applicationName) {
+        Utils.checkNotNull(applicationName, "applicationName");
+        this.applicationName = Optional.ofNullable(applicationName);
+        return this;
+    }
+
+    public ListPayoutsRequest withApplicationName(Optional<String> applicationName) {
+        Utils.checkNotNull(applicationName, "applicationName");
+        this.applicationName = applicationName;
+        return this;
+    }
+
     /**
      * The ID of the merchant account to use for this request.
      */
@@ -148,6 +171,7 @@ public class ListPayoutsRequest {
         return 
             Objects.deepEquals(this.cursor, other.cursor) &&
             Objects.deepEquals(this.limit, other.limit) &&
+            Objects.deepEquals(this.applicationName, other.applicationName) &&
             Objects.deepEquals(this.merchantAccountId, other.merchantAccountId);
     }
     
@@ -156,6 +180,7 @@ public class ListPayoutsRequest {
         return Objects.hash(
             cursor,
             limit,
+            applicationName,
             merchantAccountId);
     }
     
@@ -164,6 +189,7 @@ public class ListPayoutsRequest {
         return Utils.toString(ListPayoutsRequest.class,
                 "cursor", cursor,
                 "limit", limit,
+                "applicationName", applicationName,
                 "merchantAccountId", merchantAccountId);
     }
     
@@ -172,6 +198,8 @@ public class ListPayoutsRequest {
         private JsonNullable<String> cursor = JsonNullable.undefined();
  
         private Optional<Long> limit;
+ 
+        private Optional<String> applicationName;
  
         private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
         
@@ -215,6 +243,18 @@ public class ListPayoutsRequest {
             return this;
         }
 
+        public Builder applicationName(String applicationName) {
+            Utils.checkNotNull(applicationName, "applicationName");
+            this.applicationName = Optional.ofNullable(applicationName);
+            return this;
+        }
+
+        public Builder applicationName(Optional<String> applicationName) {
+            Utils.checkNotNull(applicationName, "applicationName");
+            this.applicationName = applicationName;
+            return this;
+        }
+
         /**
          * The ID of the merchant account to use for this request.
          */
@@ -237,9 +277,13 @@ public class ListPayoutsRequest {
             if (limit == null) {
                 limit = _SINGLETON_VALUE_Limit.value();
             }
+            if (applicationName == null) {
+                applicationName = _SINGLETON_VALUE_ApplicationName.value();
+            }
             return new ListPayoutsRequest(
                 cursor,
                 limit,
+                applicationName,
                 merchantAccountId);
         }
 
@@ -248,5 +292,11 @@ public class ListPayoutsRequest {
                         "limit",
                         "20",
                         new TypeReference<Optional<Long>>() {});
+
+        private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_ApplicationName =
+                new LazySingletonValue<>(
+                        "application_name",
+                        "\"core-api\"",
+                        new TypeReference<Optional<String>>() {});
     }
 }

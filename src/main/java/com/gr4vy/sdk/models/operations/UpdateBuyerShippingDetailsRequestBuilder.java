@@ -3,60 +3,27 @@
  */
 package com.gr4vy.sdk.models.operations;
 
-import com.gr4vy.sdk.models.components.ShippingDetailsUpdate;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Exception;
-import java.lang.String;
-import org.openapitools.jackson.nullable.JsonNullable;
 
 public class UpdateBuyerShippingDetailsRequestBuilder {
 
-    private String buyerId;
-    private String shippingDetailsId;
-    private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
-    private ShippingDetailsUpdate shippingDetailsUpdate;
+    private UpdateBuyerShippingDetailsRequest request;
     private final SDKMethodInterfaces.MethodCallUpdateBuyerShippingDetails sdk;
 
     public UpdateBuyerShippingDetailsRequestBuilder(SDKMethodInterfaces.MethodCallUpdateBuyerShippingDetails sdk) {
         this.sdk = sdk;
     }
 
-    public UpdateBuyerShippingDetailsRequestBuilder buyerId(String buyerId) {
-        Utils.checkNotNull(buyerId, "buyerId");
-        this.buyerId = buyerId;
-        return this;
-    }
-
-    public UpdateBuyerShippingDetailsRequestBuilder shippingDetailsId(String shippingDetailsId) {
-        Utils.checkNotNull(shippingDetailsId, "shippingDetailsId");
-        this.shippingDetailsId = shippingDetailsId;
-        return this;
-    }
-
-    public UpdateBuyerShippingDetailsRequestBuilder merchantAccountId(String merchantAccountId) {
-        Utils.checkNotNull(merchantAccountId, "merchantAccountId");
-        this.merchantAccountId = JsonNullable.of(merchantAccountId);
-        return this;
-    }
-
-    public UpdateBuyerShippingDetailsRequestBuilder merchantAccountId(JsonNullable<String> merchantAccountId) {
-        Utils.checkNotNull(merchantAccountId, "merchantAccountId");
-        this.merchantAccountId = merchantAccountId;
-        return this;
-    }
-
-    public UpdateBuyerShippingDetailsRequestBuilder shippingDetailsUpdate(ShippingDetailsUpdate shippingDetailsUpdate) {
-        Utils.checkNotNull(shippingDetailsUpdate, "shippingDetailsUpdate");
-        this.shippingDetailsUpdate = shippingDetailsUpdate;
+    public UpdateBuyerShippingDetailsRequestBuilder request(UpdateBuyerShippingDetailsRequest request) {
+        Utils.checkNotNull(request, "request");
+        this.request = request;
         return this;
     }
 
     public UpdateBuyerShippingDetailsResponse call() throws Exception {
 
         return sdk.update(
-            buyerId,
-            shippingDetailsId,
-            merchantAccountId,
-            shippingDetailsUpdate);
+            request);
     }
 }

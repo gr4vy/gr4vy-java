@@ -49,6 +49,7 @@ public class Application {
 
 | Parameter                                                                     | Type                                                                          | Required                                                                      | Description                                                                   |
 | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
+| `applicationName`                                                             | *Optional\<String>*                                                           | :heavy_minus_sign:                                                            | N/A                                                                           |
 | `merchantAccountId`                                                           | *JsonNullable\<String>*                                                       | :heavy_minus_sign:                                                            | The ID of the merchant account to use for this request.                       |
 | `googlePaySessionRequest`                                                     | [GooglePaySessionRequest](../../models/components/GooglePaySessionRequest.md) | :heavy_check_mark:                                                            | N/A                                                                           |
 
@@ -115,6 +116,7 @@ public class Application {
 
 | Parameter                                                                   | Type                                                                        | Required                                                                    | Description                                                                 |
 | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- |
+| `applicationName`                                                           | *Optional\<String>*                                                         | :heavy_minus_sign:                                                          | N/A                                                                         |
 | `merchantAccountId`                                                         | *JsonNullable\<String>*                                                     | :heavy_minus_sign:                                                          | The ID of the merchant account to use for this request.                     |
 | `applePaySessionRequest`                                                    | [ApplePaySessionRequest](../../models/components/ApplePaySessionRequest.md) | :heavy_check_mark:                                                          | N/A                                                                         |
 
@@ -163,12 +165,10 @@ public class Application {
                 .bearerAuth("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
-        ClickToPaySessionRequest req = ClickToPaySessionRequest.builder()
-                .checkoutSessionId("4137b1cf-39ac-42a8-bad6-1c680d5dab6b")
-                .build();
-
         CreateClickToPayDigitalWalletSessionResponse res = sdk.digitalWallets().sessions().clickToPay()
-                .request(req)
+                .clickToPaySessionRequest(ClickToPaySessionRequest.builder()
+                    .checkoutSessionId("4137b1cf-39ac-42a8-bad6-1c680d5dab6b")
+                    .build())
                 .call();
 
         if (res.clickToPaySession().isPresent()) {
@@ -180,9 +180,10 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                   | Type                                                                        | Required                                                                    | Description                                                                 |
-| --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- |
-| `request`                                                                   | [ClickToPaySessionRequest](../../models/shared/ClickToPaySessionRequest.md) | :heavy_check_mark:                                                          | The request object to use for the request.                                  |
+| Parameter                                                                       | Type                                                                            | Required                                                                        | Description                                                                     |
+| ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
+| `applicationName`                                                               | *Optional\<String>*                                                             | :heavy_minus_sign:                                                              | N/A                                                                             |
+| `clickToPaySessionRequest`                                                      | [ClickToPaySessionRequest](../../models/components/ClickToPaySessionRequest.md) | :heavy_check_mark:                                                              | N/A                                                                             |
 
 ### Response
 
