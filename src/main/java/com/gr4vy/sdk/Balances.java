@@ -73,7 +73,7 @@ public class Balances implements
      */
     public ListGiftCardBalancesResponse list(
             GiftCardBalanceRequest giftCardBalanceRequest) throws Exception {
-        return list(Optional.empty(), JsonNullable.undefined(), giftCardBalanceRequest);
+        return list(JsonNullable.undefined(), giftCardBalanceRequest);
     }
     
     /**
@@ -81,20 +81,17 @@ public class Balances implements
      * 
      * <p>Fetch the balances for one or more gift cards.
      * 
-     * @param applicationName 
      * @param merchantAccountId 
      * @param giftCardBalanceRequest 
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public ListGiftCardBalancesResponse list(
-            Optional<String> applicationName,
             JsonNullable<String> merchantAccountId,
             GiftCardBalanceRequest giftCardBalanceRequest) throws Exception {
         ListGiftCardBalancesRequest request =
             ListGiftCardBalancesRequest
                 .builder()
-                .applicationName(applicationName)
                 .merchantAccountId(merchantAccountId)
                 .giftCardBalanceRequest(giftCardBalanceRequest)
                 .build();
@@ -122,11 +119,6 @@ public class Balances implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
-        _req.addQueryParams(Utils.getQueryParams(
-                ListGiftCardBalancesRequest.class,
-                request, 
-                this.sdkConfiguration.globals));
         _req.addHeaders(Utils.getHeadersFromMetadata(request, this.sdkConfiguration.globals));
         
         Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());

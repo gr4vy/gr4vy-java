@@ -17,7 +17,6 @@ Returns a list of activity by dashboard users.
 package hello.world;
 
 import com.gr4vy.sdk.Gr4vy;
-import com.gr4vy.sdk.models.components.AuditLogAction;
 import com.gr4vy.sdk.models.errors.*;
 import com.gr4vy.sdk.models.operations.ListAuditLogsRequest;
 import java.lang.Exception;
@@ -31,10 +30,6 @@ public class Application {
             .build();
 
         ListAuditLogsRequest req = ListAuditLogsRequest.builder()
-                .cursor("ZXhhbXBsZTE")
-                .action(AuditLogAction.CREATED)
-                .userId("14b7b8c5-a6ba-4fb6-bbab-52d43c7f37ef")
-                .resourceType("user")
                 .build();
 
         sdk.auditLogs().list()

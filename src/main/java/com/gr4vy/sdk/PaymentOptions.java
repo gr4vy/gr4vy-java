@@ -73,7 +73,7 @@ public class PaymentOptions implements
      */
     public ListPaymentOptionsResponse list(
             PaymentOptionRequest paymentOptionRequest) throws Exception {
-        return list(Optional.empty(), JsonNullable.undefined(), paymentOptionRequest);
+        return list(JsonNullable.undefined(), paymentOptionRequest);
     }
     
     /**
@@ -81,20 +81,17 @@ public class PaymentOptions implements
      * 
      * <p>List the payment options available at checkout. filtering by country, currency, and additional fields passed to Flow rules.
      * 
-     * @param applicationName 
      * @param merchantAccountId 
      * @param paymentOptionRequest 
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public ListPaymentOptionsResponse list(
-            Optional<String> applicationName,
             JsonNullable<String> merchantAccountId,
             PaymentOptionRequest paymentOptionRequest) throws Exception {
         ListPaymentOptionsRequest request =
             ListPaymentOptionsRequest
                 .builder()
-                .applicationName(applicationName)
                 .merchantAccountId(merchantAccountId)
                 .paymentOptionRequest(paymentOptionRequest)
                 .build();
@@ -122,11 +119,6 @@ public class PaymentOptions implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
-        _req.addQueryParams(Utils.getQueryParams(
-                ListPaymentOptionsRequest.class,
-                request, 
-                this.sdkConfiguration.globals));
         _req.addHeaders(Utils.getHeadersFromMetadata(request, this.sdkConfiguration.globals));
         
         Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());

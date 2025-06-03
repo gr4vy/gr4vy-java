@@ -3,8 +3,6 @@
  */
 package com.gr4vy.sdk.models.operations;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.gr4vy.sdk.utils.LazySingletonValue;
 import com.gr4vy.sdk.utils.Options;
 import com.gr4vy.sdk.utils.RetryConfig;
 import com.gr4vy.sdk.utils.Utils;
@@ -17,10 +15,6 @@ public class GetBuyerShippingDetailsRequestBuilder {
 
     private String buyerId;
     private String shippingDetailsId;
-    private Optional<String> applicationName = Utils.readDefaultOrConstValue(
-                            "applicationName",
-                            "\"core-api\"",
-                            new TypeReference<Optional<String>>() {});
     private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKMethodInterfaces.MethodCallGetBuyerShippingDetails sdk;
@@ -38,18 +32,6 @@ public class GetBuyerShippingDetailsRequestBuilder {
     public GetBuyerShippingDetailsRequestBuilder shippingDetailsId(String shippingDetailsId) {
         Utils.checkNotNull(shippingDetailsId, "shippingDetailsId");
         this.shippingDetailsId = shippingDetailsId;
-        return this;
-    }
-                
-    public GetBuyerShippingDetailsRequestBuilder applicationName(String applicationName) {
-        Utils.checkNotNull(applicationName, "applicationName");
-        this.applicationName = Optional.of(applicationName);
-        return this;
-    }
-
-    public GetBuyerShippingDetailsRequestBuilder applicationName(Optional<String> applicationName) {
-        Utils.checkNotNull(applicationName, "applicationName");
-        this.applicationName = applicationName;
         return this;
     }
 
@@ -78,22 +60,13 @@ public class GetBuyerShippingDetailsRequestBuilder {
     }
 
     public GetBuyerShippingDetailsResponse call() throws Exception {
-        if (applicationName == null) {
-            applicationName = _SINGLETON_VALUE_ApplicationName.value();
-        }        Optional<Options> options = Optional.of(Options.builder()
+        Optional<Options> options = Optional.of(Options.builder()
                                                     .retryConfig(retryConfig)
                                                     .build());
         return sdk.get(
             buyerId,
             shippingDetailsId,
-            applicationName,
             merchantAccountId,
             options);
     }
-
-    private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_ApplicationName =
-            new LazySingletonValue<>(
-                    "applicationName",
-                    "\"core-api\"",
-                    new TypeReference<Optional<String>>() {});
 }

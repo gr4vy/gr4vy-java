@@ -6,6 +6,7 @@ package com.gr4vy.sdk;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.gr4vy.sdk.models.components.CollectionNoCursorShippingDetails;
 import com.gr4vy.sdk.models.components.ShippingDetailsCreate;
+import com.gr4vy.sdk.models.components.ShippingDetailsUpdate;
 import com.gr4vy.sdk.models.errors.APIException;
 import com.gr4vy.sdk.models.errors.Error400;
 import com.gr4vy.sdk.models.errors.Error401;
@@ -99,7 +100,7 @@ public class ShippingDetails implements
     public AddBuyerShippingDetailsResponse create(
             String buyerId,
             ShippingDetailsCreate shippingDetailsCreate) throws Exception {
-        return create(buyerId, Optional.empty(), JsonNullable.undefined(), shippingDetailsCreate);
+        return create(buyerId, JsonNullable.undefined(), shippingDetailsCreate);
     }
     
     /**
@@ -108,7 +109,6 @@ public class ShippingDetails implements
      * <p>Associate shipping details to a buyer.
      * 
      * @param buyerId The ID of the buyer to add shipping details to.
-     * @param applicationName 
      * @param merchantAccountId 
      * @param shippingDetailsCreate 
      * @return The response from the API call
@@ -116,14 +116,12 @@ public class ShippingDetails implements
      */
     public AddBuyerShippingDetailsResponse create(
             String buyerId,
-            Optional<String> applicationName,
             JsonNullable<String> merchantAccountId,
             ShippingDetailsCreate shippingDetailsCreate) throws Exception {
         AddBuyerShippingDetailsRequest request =
             AddBuyerShippingDetailsRequest
                 .builder()
                 .buyerId(buyerId)
-                .applicationName(applicationName)
                 .merchantAccountId(merchantAccountId)
                 .shippingDetailsCreate(shippingDetailsCreate)
                 .build();
@@ -153,11 +151,6 @@ public class ShippingDetails implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
-        _req.addQueryParams(Utils.getQueryParams(
-                AddBuyerShippingDetailsRequest.class,
-                request, 
-                this.sdkConfiguration.globals));
         _req.addHeaders(Utils.getHeadersFromMetadata(request, this.sdkConfiguration.globals));
         
         Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
@@ -478,7 +471,7 @@ public class ShippingDetails implements
      */
     public ListBuyerShippingDetailsResponse list(
             String buyerId) throws Exception {
-        return list(buyerId, Optional.empty(), JsonNullable.undefined(), Optional.empty());
+        return list(buyerId, JsonNullable.undefined(), Optional.empty());
     }
     
     /**
@@ -487,7 +480,6 @@ public class ShippingDetails implements
      * <p>List all the shipping details associated to a specific buyer.
      * 
      * @param buyerId The ID of the buyer to retrieve shipping details for.
-     * @param applicationName 
      * @param merchantAccountId 
      * @param options additional options
      * @return The response from the API call
@@ -495,7 +487,6 @@ public class ShippingDetails implements
      */
     public ListBuyerShippingDetailsResponse list(
             String buyerId,
-            Optional<String> applicationName,
             JsonNullable<String> merchantAccountId,
             Optional<Options> options) throws Exception {
 
@@ -506,7 +497,6 @@ public class ShippingDetails implements
             ListBuyerShippingDetailsRequest
                 .builder()
                 .buyerId(buyerId)
-                .applicationName(applicationName)
                 .merchantAccountId(merchantAccountId)
                 .build();
         
@@ -522,11 +512,6 @@ public class ShippingDetails implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
-        _req.addQueryParams(Utils.getQueryParams(
-                ListBuyerShippingDetailsRequest.class,
-                request, 
-                this.sdkConfiguration.globals));
         _req.addHeaders(Utils.getHeadersFromMetadata(request, this.sdkConfiguration.globals));
         
         Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
@@ -864,7 +849,7 @@ public class ShippingDetails implements
     public GetBuyerShippingDetailsResponse get(
             String buyerId,
             String shippingDetailsId) throws Exception {
-        return get(buyerId, shippingDetailsId, Optional.empty(), JsonNullable.undefined(), Optional.empty());
+        return get(buyerId, shippingDetailsId, JsonNullable.undefined(), Optional.empty());
     }
     
     /**
@@ -874,7 +859,6 @@ public class ShippingDetails implements
      * 
      * @param buyerId The ID of the buyer to retrieve shipping details for.
      * @param shippingDetailsId The ID of the shipping details to retrieve.
-     * @param applicationName 
      * @param merchantAccountId 
      * @param options additional options
      * @return The response from the API call
@@ -883,7 +867,6 @@ public class ShippingDetails implements
     public GetBuyerShippingDetailsResponse get(
             String buyerId,
             String shippingDetailsId,
-            Optional<String> applicationName,
             JsonNullable<String> merchantAccountId,
             Optional<Options> options) throws Exception {
 
@@ -895,7 +878,6 @@ public class ShippingDetails implements
                 .builder()
                 .buyerId(buyerId)
                 .shippingDetailsId(shippingDetailsId)
-                .applicationName(applicationName)
                 .merchantAccountId(merchantAccountId)
                 .build();
         
@@ -911,11 +893,6 @@ public class ShippingDetails implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
-        _req.addQueryParams(Utils.getQueryParams(
-                GetBuyerShippingDetailsRequest.class,
-                request, 
-                this.sdkConfiguration.globals));
         _req.addHeaders(Utils.getHeadersFromMetadata(request, this.sdkConfiguration.globals));
         
         Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
@@ -1245,12 +1222,45 @@ public class ShippingDetails implements
      * 
      * <p>Update the shipping details associated to a specific buyer.
      * 
-     * @param request The request object containing all of the parameters for the API call.
+     * @param buyerId The ID of the buyer to update shipping details for.
+     * @param shippingDetailsId The ID of the shipping details to update.
+     * @param shippingDetailsUpdate 
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public UpdateBuyerShippingDetailsResponse update(
-            UpdateBuyerShippingDetailsRequest request) throws Exception {
+            String buyerId,
+            String shippingDetailsId,
+            ShippingDetailsUpdate shippingDetailsUpdate) throws Exception {
+        return update(buyerId, shippingDetailsId, JsonNullable.undefined(), shippingDetailsUpdate);
+    }
+    
+    /**
+     * Update a buyer's shipping details
+     * 
+     * <p>Update the shipping details associated to a specific buyer.
+     * 
+     * @param buyerId The ID of the buyer to update shipping details for.
+     * @param shippingDetailsId The ID of the shipping details to update.
+     * @param merchantAccountId 
+     * @param shippingDetailsUpdate 
+     * @return The response from the API call
+     * @throws Exception if the API call fails
+     */
+    public UpdateBuyerShippingDetailsResponse update(
+            String buyerId,
+            String shippingDetailsId,
+            JsonNullable<String> merchantAccountId,
+            ShippingDetailsUpdate shippingDetailsUpdate) throws Exception {
+        UpdateBuyerShippingDetailsRequest request =
+            UpdateBuyerShippingDetailsRequest
+                .builder()
+                .buyerId(buyerId)
+                .shippingDetailsId(shippingDetailsId)
+                .merchantAccountId(merchantAccountId)
+                .shippingDetailsUpdate(shippingDetailsUpdate)
+                .build();
+        
         String _baseUrl = Utils.templateUrl(
                 this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
@@ -1263,7 +1273,7 @@ public class ShippingDetails implements
         Object _convertedRequest = Utils.convertToShape(
                 request, 
                 JsonShape.DEFAULT,
-                new TypeReference<UpdateBuyerShippingDetailsRequest>() {});
+                new TypeReference<Object>() {});
         SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
                 _convertedRequest, 
                 "shippingDetailsUpdate",
@@ -1276,11 +1286,6 @@ public class ShippingDetails implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
-        _req.addQueryParams(Utils.getQueryParams(
-                UpdateBuyerShippingDetailsRequest.class,
-                request, 
-                this.sdkConfiguration.globals));
         _req.addHeaders(Utils.getHeadersFromMetadata(request, this.sdkConfiguration.globals));
         
         Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
@@ -1603,7 +1608,7 @@ public class ShippingDetails implements
     public DeleteBuyerShippingDetailsResponse delete(
             String buyerId,
             String shippingDetailsId) throws Exception {
-        return delete(buyerId, shippingDetailsId, Optional.empty(), JsonNullable.undefined());
+        return delete(buyerId, shippingDetailsId, JsonNullable.undefined());
     }
     
     /**
@@ -1613,7 +1618,6 @@ public class ShippingDetails implements
      * 
      * @param buyerId The ID of the buyer to delete shipping details for.
      * @param shippingDetailsId The ID of the shipping details to delete.
-     * @param applicationName 
      * @param merchantAccountId 
      * @return The response from the API call
      * @throws Exception if the API call fails
@@ -1621,14 +1625,12 @@ public class ShippingDetails implements
     public DeleteBuyerShippingDetailsResponse delete(
             String buyerId,
             String shippingDetailsId,
-            Optional<String> applicationName,
             JsonNullable<String> merchantAccountId) throws Exception {
         DeleteBuyerShippingDetailsRequest request =
             DeleteBuyerShippingDetailsRequest
                 .builder()
                 .buyerId(buyerId)
                 .shippingDetailsId(shippingDetailsId)
-                .applicationName(applicationName)
                 .merchantAccountId(merchantAccountId)
                 .build();
         
@@ -1644,11 +1646,6 @@ public class ShippingDetails implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
-        _req.addQueryParams(Utils.getQueryParams(
-                DeleteBuyerShippingDetailsRequest.class,
-                request, 
-                this.sdkConfiguration.globals));
         _req.addHeaders(Utils.getHeadersFromMetadata(request, this.sdkConfiguration.globals));
         
         Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());

@@ -5,15 +5,12 @@ package com.gr4vy.sdk.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.gr4vy.sdk.models.components.MerchantAccountUpdate;
-import com.gr4vy.sdk.utils.LazySingletonValue;
 import com.gr4vy.sdk.utils.SpeakeasyMetadata;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.util.Objects;
-import java.util.Optional;
 
 public class UpdateMerchantAccountRequest {
 
@@ -23,29 +20,17 @@ public class UpdateMerchantAccountRequest {
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=merchant_account_id")
     private String merchantAccountId;
 
-    @SpeakeasyMetadata("queryParam:style=form,explode=true,name=application_name")
-    private Optional<String> applicationName;
-
     @SpeakeasyMetadata("request:mediaType=application/json")
     private MerchantAccountUpdate merchantAccountUpdate;
 
     @JsonCreator
     public UpdateMerchantAccountRequest(
             String merchantAccountId,
-            Optional<String> applicationName,
             MerchantAccountUpdate merchantAccountUpdate) {
         Utils.checkNotNull(merchantAccountId, "merchantAccountId");
-        Utils.checkNotNull(applicationName, "applicationName");
         Utils.checkNotNull(merchantAccountUpdate, "merchantAccountUpdate");
         this.merchantAccountId = merchantAccountId;
-        this.applicationName = applicationName;
         this.merchantAccountUpdate = merchantAccountUpdate;
-    }
-    
-    public UpdateMerchantAccountRequest(
-            String merchantAccountId,
-            MerchantAccountUpdate merchantAccountUpdate) {
-        this(merchantAccountId, Optional.empty(), merchantAccountUpdate);
     }
 
     /**
@@ -54,11 +39,6 @@ public class UpdateMerchantAccountRequest {
     @JsonIgnore
     public String merchantAccountId() {
         return merchantAccountId;
-    }
-
-    @JsonIgnore
-    public Optional<String> applicationName() {
-        return applicationName;
     }
 
     @JsonIgnore
@@ -76,18 +56,6 @@ public class UpdateMerchantAccountRequest {
     public UpdateMerchantAccountRequest withMerchantAccountId(String merchantAccountId) {
         Utils.checkNotNull(merchantAccountId, "merchantAccountId");
         this.merchantAccountId = merchantAccountId;
-        return this;
-    }
-
-    public UpdateMerchantAccountRequest withApplicationName(String applicationName) {
-        Utils.checkNotNull(applicationName, "applicationName");
-        this.applicationName = Optional.ofNullable(applicationName);
-        return this;
-    }
-
-    public UpdateMerchantAccountRequest withApplicationName(Optional<String> applicationName) {
-        Utils.checkNotNull(applicationName, "applicationName");
-        this.applicationName = applicationName;
         return this;
     }
 
@@ -109,7 +77,6 @@ public class UpdateMerchantAccountRequest {
         UpdateMerchantAccountRequest other = (UpdateMerchantAccountRequest) o;
         return 
             Objects.deepEquals(this.merchantAccountId, other.merchantAccountId) &&
-            Objects.deepEquals(this.applicationName, other.applicationName) &&
             Objects.deepEquals(this.merchantAccountUpdate, other.merchantAccountUpdate);
     }
     
@@ -117,7 +84,6 @@ public class UpdateMerchantAccountRequest {
     public int hashCode() {
         return Objects.hash(
             merchantAccountId,
-            applicationName,
             merchantAccountUpdate);
     }
     
@@ -125,15 +91,12 @@ public class UpdateMerchantAccountRequest {
     public String toString() {
         return Utils.toString(UpdateMerchantAccountRequest.class,
                 "merchantAccountId", merchantAccountId,
-                "applicationName", applicationName,
                 "merchantAccountUpdate", merchantAccountUpdate);
     }
     
     public final static class Builder {
  
         private String merchantAccountId;
- 
-        private Optional<String> applicationName;
  
         private MerchantAccountUpdate merchantAccountUpdate;
         
@@ -150,18 +113,6 @@ public class UpdateMerchantAccountRequest {
             return this;
         }
 
-        public Builder applicationName(String applicationName) {
-            Utils.checkNotNull(applicationName, "applicationName");
-            this.applicationName = Optional.ofNullable(applicationName);
-            return this;
-        }
-
-        public Builder applicationName(Optional<String> applicationName) {
-            Utils.checkNotNull(applicationName, "applicationName");
-            this.applicationName = applicationName;
-            return this;
-        }
-
         public Builder merchantAccountUpdate(MerchantAccountUpdate merchantAccountUpdate) {
             Utils.checkNotNull(merchantAccountUpdate, "merchantAccountUpdate");
             this.merchantAccountUpdate = merchantAccountUpdate;
@@ -169,19 +120,9 @@ public class UpdateMerchantAccountRequest {
         }
         
         public UpdateMerchantAccountRequest build() {
-            if (applicationName == null) {
-                applicationName = _SINGLETON_VALUE_ApplicationName.value();
-            }
             return new UpdateMerchantAccountRequest(
                 merchantAccountId,
-                applicationName,
                 merchantAccountUpdate);
         }
-
-        private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_ApplicationName =
-                new LazySingletonValue<>(
-                        "application_name",
-                        "\"core-api\"",
-                        new TypeReference<Optional<String>>() {});
     }
 }

@@ -3,39 +3,20 @@
  */
 package com.gr4vy.sdk.models.operations;
 
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.gr4vy.sdk.models.components.DigitalWalletCreate;
-import com.gr4vy.sdk.utils.LazySingletonValue;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
-import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 public class ConfigureDigitalWalletRequestBuilder {
 
-    private Optional<String> applicationName = Utils.readDefaultOrConstValue(
-                            "applicationName",
-                            "\"core-api\"",
-                            new TypeReference<Optional<String>>() {});
     private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
     private DigitalWalletCreate digitalWalletCreate;
     private final SDKMethodInterfaces.MethodCallConfigureDigitalWallet sdk;
 
     public ConfigureDigitalWalletRequestBuilder(SDKMethodInterfaces.MethodCallConfigureDigitalWallet sdk) {
         this.sdk = sdk;
-    }
-                
-    public ConfigureDigitalWalletRequestBuilder applicationName(String applicationName) {
-        Utils.checkNotNull(applicationName, "applicationName");
-        this.applicationName = Optional.of(applicationName);
-        return this;
-    }
-
-    public ConfigureDigitalWalletRequestBuilder applicationName(Optional<String> applicationName) {
-        Utils.checkNotNull(applicationName, "applicationName");
-        this.applicationName = applicationName;
-        return this;
     }
 
     public ConfigureDigitalWalletRequestBuilder merchantAccountId(String merchantAccountId) {
@@ -57,18 +38,9 @@ public class ConfigureDigitalWalletRequestBuilder {
     }
 
     public ConfigureDigitalWalletResponse call() throws Exception {
-        if (applicationName == null) {
-            applicationName = _SINGLETON_VALUE_ApplicationName.value();
-        }
+
         return sdk.create(
-            applicationName,
             merchantAccountId,
             digitalWalletCreate);
     }
-
-    private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_ApplicationName =
-            new LazySingletonValue<>(
-                    "applicationName",
-                    "\"core-api\"",
-                    new TypeReference<Optional<String>>() {});
 }

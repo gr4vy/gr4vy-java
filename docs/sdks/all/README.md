@@ -17,7 +17,6 @@ Create a refund for all instruments on a transaction.
 package hello.world;
 
 import com.gr4vy.sdk.Gr4vy;
-import com.gr4vy.sdk.models.components.TransactionRefundAllCreate;
 import com.gr4vy.sdk.models.errors.*;
 import com.gr4vy.sdk.models.operations.CreateFullTransactionRefundResponse;
 import java.lang.Exception;
@@ -32,10 +31,6 @@ public class Application {
 
         CreateFullTransactionRefundResponse res = sdk.transactions().refunds().all().create()
                 .transactionId("7099948d-7286-47e4-aad8-b68f7eb44591")
-                .transactionRefundAllCreate(TransactionRefundAllCreate.builder()
-                    .reason("Refund due to user request.")
-                    .externalIdentifier("refund-12345")
-                    .build())
                 .call();
 
         if (res.collectionRefund().isPresent()) {
@@ -50,7 +45,6 @@ public class Application {
 | Parameter                                                                                          | Type                                                                                               | Required                                                                                           | Description                                                                                        | Example                                                                                            |
 | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
 | `transactionId`                                                                                    | *String*                                                                                           | :heavy_check_mark:                                                                                 | N/A                                                                                                | 7099948d-7286-47e4-aad8-b68f7eb44591                                                               |
-| `applicationName`                                                                                  | *Optional\<String>*                                                                                | :heavy_minus_sign:                                                                                 | N/A                                                                                                |                                                                                                    |
 | `merchantAccountId`                                                                                | *JsonNullable\<String>*                                                                            | :heavy_minus_sign:                                                                                 | The ID of the merchant account to use for this request.                                            |                                                                                                    |
 | `transactionRefundAllCreate`                                                                       | [JsonNullable\<TransactionRefundAllCreate>](../../models/components/TransactionRefundAllCreate.md) | :heavy_minus_sign:                                                                                 | N/A                                                                                                |                                                                                                    |
 

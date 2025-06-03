@@ -5,15 +5,12 @@ package com.gr4vy.sdk.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.gr4vy.sdk.models.components.PaymentServiceTokenCreate;
-import com.gr4vy.sdk.utils.LazySingletonValue;
 import com.gr4vy.sdk.utils.SpeakeasyMetadata;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.util.Objects;
-import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 public class CreatePaymentMethodPaymentServiceTokenRequest {
@@ -23,9 +20,6 @@ public class CreatePaymentMethodPaymentServiceTokenRequest {
      */
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=payment_method_id")
     private String paymentMethodId;
-
-    @SpeakeasyMetadata("queryParam:style=form,explode=true,name=application_name")
-    private Optional<String> applicationName;
 
     /**
      * The ID of the merchant account to use for this request.
@@ -39,15 +33,12 @@ public class CreatePaymentMethodPaymentServiceTokenRequest {
     @JsonCreator
     public CreatePaymentMethodPaymentServiceTokenRequest(
             String paymentMethodId,
-            Optional<String> applicationName,
             JsonNullable<String> merchantAccountId,
             PaymentServiceTokenCreate paymentServiceTokenCreate) {
         Utils.checkNotNull(paymentMethodId, "paymentMethodId");
-        Utils.checkNotNull(applicationName, "applicationName");
         Utils.checkNotNull(merchantAccountId, "merchantAccountId");
         Utils.checkNotNull(paymentServiceTokenCreate, "paymentServiceTokenCreate");
         this.paymentMethodId = paymentMethodId;
-        this.applicationName = applicationName;
         this.merchantAccountId = merchantAccountId;
         this.paymentServiceTokenCreate = paymentServiceTokenCreate;
     }
@@ -55,7 +46,7 @@ public class CreatePaymentMethodPaymentServiceTokenRequest {
     public CreatePaymentMethodPaymentServiceTokenRequest(
             String paymentMethodId,
             PaymentServiceTokenCreate paymentServiceTokenCreate) {
-        this(paymentMethodId, Optional.empty(), JsonNullable.undefined(), paymentServiceTokenCreate);
+        this(paymentMethodId, JsonNullable.undefined(), paymentServiceTokenCreate);
     }
 
     /**
@@ -64,11 +55,6 @@ public class CreatePaymentMethodPaymentServiceTokenRequest {
     @JsonIgnore
     public String paymentMethodId() {
         return paymentMethodId;
-    }
-
-    @JsonIgnore
-    public Optional<String> applicationName() {
-        return applicationName;
     }
 
     /**
@@ -94,18 +80,6 @@ public class CreatePaymentMethodPaymentServiceTokenRequest {
     public CreatePaymentMethodPaymentServiceTokenRequest withPaymentMethodId(String paymentMethodId) {
         Utils.checkNotNull(paymentMethodId, "paymentMethodId");
         this.paymentMethodId = paymentMethodId;
-        return this;
-    }
-
-    public CreatePaymentMethodPaymentServiceTokenRequest withApplicationName(String applicationName) {
-        Utils.checkNotNull(applicationName, "applicationName");
-        this.applicationName = Optional.ofNullable(applicationName);
-        return this;
-    }
-
-    public CreatePaymentMethodPaymentServiceTokenRequest withApplicationName(Optional<String> applicationName) {
-        Utils.checkNotNull(applicationName, "applicationName");
-        this.applicationName = applicationName;
         return this;
     }
 
@@ -145,7 +119,6 @@ public class CreatePaymentMethodPaymentServiceTokenRequest {
         CreatePaymentMethodPaymentServiceTokenRequest other = (CreatePaymentMethodPaymentServiceTokenRequest) o;
         return 
             Objects.deepEquals(this.paymentMethodId, other.paymentMethodId) &&
-            Objects.deepEquals(this.applicationName, other.applicationName) &&
             Objects.deepEquals(this.merchantAccountId, other.merchantAccountId) &&
             Objects.deepEquals(this.paymentServiceTokenCreate, other.paymentServiceTokenCreate);
     }
@@ -154,7 +127,6 @@ public class CreatePaymentMethodPaymentServiceTokenRequest {
     public int hashCode() {
         return Objects.hash(
             paymentMethodId,
-            applicationName,
             merchantAccountId,
             paymentServiceTokenCreate);
     }
@@ -163,7 +135,6 @@ public class CreatePaymentMethodPaymentServiceTokenRequest {
     public String toString() {
         return Utils.toString(CreatePaymentMethodPaymentServiceTokenRequest.class,
                 "paymentMethodId", paymentMethodId,
-                "applicationName", applicationName,
                 "merchantAccountId", merchantAccountId,
                 "paymentServiceTokenCreate", paymentServiceTokenCreate);
     }
@@ -171,8 +142,6 @@ public class CreatePaymentMethodPaymentServiceTokenRequest {
     public final static class Builder {
  
         private String paymentMethodId;
- 
-        private Optional<String> applicationName;
  
         private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
  
@@ -188,18 +157,6 @@ public class CreatePaymentMethodPaymentServiceTokenRequest {
         public Builder paymentMethodId(String paymentMethodId) {
             Utils.checkNotNull(paymentMethodId, "paymentMethodId");
             this.paymentMethodId = paymentMethodId;
-            return this;
-        }
-
-        public Builder applicationName(String applicationName) {
-            Utils.checkNotNull(applicationName, "applicationName");
-            this.applicationName = Optional.ofNullable(applicationName);
-            return this;
-        }
-
-        public Builder applicationName(Optional<String> applicationName) {
-            Utils.checkNotNull(applicationName, "applicationName");
-            this.applicationName = applicationName;
             return this;
         }
 
@@ -228,20 +185,10 @@ public class CreatePaymentMethodPaymentServiceTokenRequest {
         }
         
         public CreatePaymentMethodPaymentServiceTokenRequest build() {
-            if (applicationName == null) {
-                applicationName = _SINGLETON_VALUE_ApplicationName.value();
-            }
             return new CreatePaymentMethodPaymentServiceTokenRequest(
                 paymentMethodId,
-                applicationName,
                 merchantAccountId,
                 paymentServiceTokenCreate);
         }
-
-        private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_ApplicationName =
-                new LazySingletonValue<>(
-                        "application_name",
-                        "\"core-api\"",
-                        new TypeReference<Optional<String>>() {});
     }
 }

@@ -5,14 +5,11 @@ package com.gr4vy.sdk.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.gr4vy.sdk.utils.LazySingletonValue;
 import com.gr4vy.sdk.utils.SpeakeasyMetadata;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.util.Objects;
-import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 public class ListPaymentMethodPaymentServiceTokensRequest {
@@ -29,9 +26,6 @@ public class ListPaymentMethodPaymentServiceTokensRequest {
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=payment_service_id")
     private JsonNullable<String> paymentServiceId;
 
-    @SpeakeasyMetadata("queryParam:style=form,explode=true,name=application_name")
-    private Optional<String> applicationName;
-
     /**
      * The ID of the merchant account to use for this request.
      */
@@ -42,21 +36,18 @@ public class ListPaymentMethodPaymentServiceTokensRequest {
     public ListPaymentMethodPaymentServiceTokensRequest(
             String paymentMethodId,
             JsonNullable<String> paymentServiceId,
-            Optional<String> applicationName,
             JsonNullable<String> merchantAccountId) {
         Utils.checkNotNull(paymentMethodId, "paymentMethodId");
         Utils.checkNotNull(paymentServiceId, "paymentServiceId");
-        Utils.checkNotNull(applicationName, "applicationName");
         Utils.checkNotNull(merchantAccountId, "merchantAccountId");
         this.paymentMethodId = paymentMethodId;
         this.paymentServiceId = paymentServiceId;
-        this.applicationName = applicationName;
         this.merchantAccountId = merchantAccountId;
     }
     
     public ListPaymentMethodPaymentServiceTokensRequest(
             String paymentMethodId) {
-        this(paymentMethodId, JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined());
+        this(paymentMethodId, JsonNullable.undefined(), JsonNullable.undefined());
     }
 
     /**
@@ -73,11 +64,6 @@ public class ListPaymentMethodPaymentServiceTokensRequest {
     @JsonIgnore
     public JsonNullable<String> paymentServiceId() {
         return paymentServiceId;
-    }
-
-    @JsonIgnore
-    public Optional<String> applicationName() {
-        return applicationName;
     }
 
     /**
@@ -119,18 +105,6 @@ public class ListPaymentMethodPaymentServiceTokensRequest {
         return this;
     }
 
-    public ListPaymentMethodPaymentServiceTokensRequest withApplicationName(String applicationName) {
-        Utils.checkNotNull(applicationName, "applicationName");
-        this.applicationName = Optional.ofNullable(applicationName);
-        return this;
-    }
-
-    public ListPaymentMethodPaymentServiceTokensRequest withApplicationName(Optional<String> applicationName) {
-        Utils.checkNotNull(applicationName, "applicationName");
-        this.applicationName = applicationName;
-        return this;
-    }
-
     /**
      * The ID of the merchant account to use for this request.
      */
@@ -162,7 +136,6 @@ public class ListPaymentMethodPaymentServiceTokensRequest {
         return 
             Objects.deepEquals(this.paymentMethodId, other.paymentMethodId) &&
             Objects.deepEquals(this.paymentServiceId, other.paymentServiceId) &&
-            Objects.deepEquals(this.applicationName, other.applicationName) &&
             Objects.deepEquals(this.merchantAccountId, other.merchantAccountId);
     }
     
@@ -171,7 +144,6 @@ public class ListPaymentMethodPaymentServiceTokensRequest {
         return Objects.hash(
             paymentMethodId,
             paymentServiceId,
-            applicationName,
             merchantAccountId);
     }
     
@@ -180,7 +152,6 @@ public class ListPaymentMethodPaymentServiceTokensRequest {
         return Utils.toString(ListPaymentMethodPaymentServiceTokensRequest.class,
                 "paymentMethodId", paymentMethodId,
                 "paymentServiceId", paymentServiceId,
-                "applicationName", applicationName,
                 "merchantAccountId", merchantAccountId);
     }
     
@@ -189,8 +160,6 @@ public class ListPaymentMethodPaymentServiceTokensRequest {
         private String paymentMethodId;
  
         private JsonNullable<String> paymentServiceId = JsonNullable.undefined();
- 
-        private Optional<String> applicationName;
  
         private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
         
@@ -225,18 +194,6 @@ public class ListPaymentMethodPaymentServiceTokensRequest {
             return this;
         }
 
-        public Builder applicationName(String applicationName) {
-            Utils.checkNotNull(applicationName, "applicationName");
-            this.applicationName = Optional.ofNullable(applicationName);
-            return this;
-        }
-
-        public Builder applicationName(Optional<String> applicationName) {
-            Utils.checkNotNull(applicationName, "applicationName");
-            this.applicationName = applicationName;
-            return this;
-        }
-
         /**
          * The ID of the merchant account to use for this request.
          */
@@ -256,20 +213,10 @@ public class ListPaymentMethodPaymentServiceTokensRequest {
         }
         
         public ListPaymentMethodPaymentServiceTokensRequest build() {
-            if (applicationName == null) {
-                applicationName = _SINGLETON_VALUE_ApplicationName.value();
-            }
             return new ListPaymentMethodPaymentServiceTokensRequest(
                 paymentMethodId,
                 paymentServiceId,
-                applicationName,
                 merchantAccountId);
         }
-
-        private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_ApplicationName =
-                new LazySingletonValue<>(
-                        "application_name",
-                        "\"core-api\"",
-                        new TypeReference<Optional<String>>() {});
     }
 }

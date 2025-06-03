@@ -5,14 +5,11 @@ package com.gr4vy.sdk.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.gr4vy.sdk.utils.LazySingletonValue;
 import com.gr4vy.sdk.utils.SpeakeasyMetadata;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.util.Objects;
-import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 public class GetDigitalWalletRequest {
@@ -23,9 +20,6 @@ public class GetDigitalWalletRequest {
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=digital_wallet_id")
     private String digitalWalletId;
 
-    @SpeakeasyMetadata("queryParam:style=form,explode=true,name=application_name")
-    private Optional<String> applicationName;
-
     /**
      * The ID of the merchant account to use for this request.
      */
@@ -35,19 +29,16 @@ public class GetDigitalWalletRequest {
     @JsonCreator
     public GetDigitalWalletRequest(
             String digitalWalletId,
-            Optional<String> applicationName,
             JsonNullable<String> merchantAccountId) {
         Utils.checkNotNull(digitalWalletId, "digitalWalletId");
-        Utils.checkNotNull(applicationName, "applicationName");
         Utils.checkNotNull(merchantAccountId, "merchantAccountId");
         this.digitalWalletId = digitalWalletId;
-        this.applicationName = applicationName;
         this.merchantAccountId = merchantAccountId;
     }
     
     public GetDigitalWalletRequest(
             String digitalWalletId) {
-        this(digitalWalletId, Optional.empty(), JsonNullable.undefined());
+        this(digitalWalletId, JsonNullable.undefined());
     }
 
     /**
@@ -56,11 +47,6 @@ public class GetDigitalWalletRequest {
     @JsonIgnore
     public String digitalWalletId() {
         return digitalWalletId;
-    }
-
-    @JsonIgnore
-    public Optional<String> applicationName() {
-        return applicationName;
     }
 
     /**
@@ -81,18 +67,6 @@ public class GetDigitalWalletRequest {
     public GetDigitalWalletRequest withDigitalWalletId(String digitalWalletId) {
         Utils.checkNotNull(digitalWalletId, "digitalWalletId");
         this.digitalWalletId = digitalWalletId;
-        return this;
-    }
-
-    public GetDigitalWalletRequest withApplicationName(String applicationName) {
-        Utils.checkNotNull(applicationName, "applicationName");
-        this.applicationName = Optional.ofNullable(applicationName);
-        return this;
-    }
-
-    public GetDigitalWalletRequest withApplicationName(Optional<String> applicationName) {
-        Utils.checkNotNull(applicationName, "applicationName");
-        this.applicationName = applicationName;
         return this;
     }
 
@@ -126,7 +100,6 @@ public class GetDigitalWalletRequest {
         GetDigitalWalletRequest other = (GetDigitalWalletRequest) o;
         return 
             Objects.deepEquals(this.digitalWalletId, other.digitalWalletId) &&
-            Objects.deepEquals(this.applicationName, other.applicationName) &&
             Objects.deepEquals(this.merchantAccountId, other.merchantAccountId);
     }
     
@@ -134,7 +107,6 @@ public class GetDigitalWalletRequest {
     public int hashCode() {
         return Objects.hash(
             digitalWalletId,
-            applicationName,
             merchantAccountId);
     }
     
@@ -142,15 +114,12 @@ public class GetDigitalWalletRequest {
     public String toString() {
         return Utils.toString(GetDigitalWalletRequest.class,
                 "digitalWalletId", digitalWalletId,
-                "applicationName", applicationName,
                 "merchantAccountId", merchantAccountId);
     }
     
     public final static class Builder {
  
         private String digitalWalletId;
- 
-        private Optional<String> applicationName;
  
         private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
         
@@ -164,18 +133,6 @@ public class GetDigitalWalletRequest {
         public Builder digitalWalletId(String digitalWalletId) {
             Utils.checkNotNull(digitalWalletId, "digitalWalletId");
             this.digitalWalletId = digitalWalletId;
-            return this;
-        }
-
-        public Builder applicationName(String applicationName) {
-            Utils.checkNotNull(applicationName, "applicationName");
-            this.applicationName = Optional.ofNullable(applicationName);
-            return this;
-        }
-
-        public Builder applicationName(Optional<String> applicationName) {
-            Utils.checkNotNull(applicationName, "applicationName");
-            this.applicationName = applicationName;
             return this;
         }
 
@@ -198,19 +155,9 @@ public class GetDigitalWalletRequest {
         }
         
         public GetDigitalWalletRequest build() {
-            if (applicationName == null) {
-                applicationName = _SINGLETON_VALUE_ApplicationName.value();
-            }
             return new GetDigitalWalletRequest(
                 digitalWalletId,
-                applicationName,
                 merchantAccountId);
         }
-
-        private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_ApplicationName =
-                new LazySingletonValue<>(
-                        "application_name",
-                        "\"core-api\"",
-                        new TypeReference<Optional<String>>() {});
     }
 }

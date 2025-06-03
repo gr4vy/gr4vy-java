@@ -21,8 +21,6 @@ import com.gr4vy.sdk.models.components.PaymentOptionRequest;
 import com.gr4vy.sdk.models.errors.*;
 import com.gr4vy.sdk.models.operations.ListPaymentOptionsResponse;
 import java.lang.Exception;
-import java.util.Map;
-import org.openapitools.jackson.nullable.JsonNullable;
 
 public class Application {
 
@@ -34,12 +32,6 @@ public class Application {
 
         ListPaymentOptionsResponse res = sdk.paymentOptions().list()
                 .paymentOptionRequest(PaymentOptionRequest.builder()
-                    .metadata(Map.ofEntries(
-                        Map.entry("cohort", "a")))
-                    .country("US")
-                    .currency("USD")
-                    .amount(1299L)
-                    .cartItems(JsonNullable.of(null))
                     .build())
                 .call();
 
@@ -54,7 +46,6 @@ public class Application {
 
 | Parameter                                                               | Type                                                                    | Required                                                                | Description                                                             |
 | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- |
-| `applicationName`                                                       | *Optional\<String>*                                                     | :heavy_minus_sign:                                                      | N/A                                                                     |
 | `merchantAccountId`                                                     | *JsonNullable\<String>*                                                 | :heavy_minus_sign:                                                      | The ID of the merchant account to use for this request.                 |
 | `paymentOptionRequest`                                                  | [PaymentOptionRequest](../../models/components/PaymentOptionRequest.md) | :heavy_check_mark:                                                      | N/A                                                                     |
 

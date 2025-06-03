@@ -31,7 +31,6 @@ public class Application {
             .build();
 
         sdk.payouts().list()
-                .cursor("ZXhhbXBsZTE")
                 .callAsStream()
                 .forEach(item -> {
                    // handle item
@@ -47,7 +46,6 @@ public class Application {
 | ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- |
 | `cursor`                                                | *JsonNullable\<String>*                                 | :heavy_minus_sign:                                      | A pointer to the page of results to return.             | ZXhhbXBsZTE                                             |
 | `limit`                                                 | *Optional\<Long>*                                       | :heavy_minus_sign:                                      | The maximum number of items that are at returned.       | 20                                                      |
-| `applicationName`                                       | *Optional\<String>*                                     | :heavy_minus_sign:                                      | N/A                                                     |                                                         |
 | `merchantAccountId`                                     | *JsonNullable\<String>*                                 | :heavy_minus_sign:                                      | The ID of the merchant account to use for this request. |                                                         |
 
 ### Response
@@ -86,7 +84,6 @@ import com.gr4vy.sdk.models.components.*;
 import com.gr4vy.sdk.models.errors.*;
 import com.gr4vy.sdk.models.operations.CreatePayoutResponse;
 import java.lang.Exception;
-import org.openapitools.jackson.nullable.JsonNullable;
 
 public class Application {
 
@@ -104,59 +101,6 @@ public class Application {
                     .paymentMethod(PayoutCreatePaymentMethod.of(PaymentMethodStoredCard.builder()
                         .id("852b951c-d7ea-4c98-b09e-4a1c9e97c077")
                         .build()))
-                    .category(PayoutCategory.ONLINE_GAMBLING)
-                    .externalIdentifier("payout-12345")
-                    .buyerId("fe26475d-ec3e-4884-9553-f7356683f7f9")
-                    .buyer(GuestBuyerInput.builder()
-                        .displayName("John Doe")
-                        .externalIdentifier("buyer-12345")
-                        .billingDetails(BillingDetailsInput.builder()
-                            .firstName("John")
-                            .lastName("Doe")
-                            .emailAddress("john@example.com")
-                            .phoneNumber("+1234567890")
-                            .address(Address.builder()
-                                .city("San Jose")
-                                .country("US")
-                                .postalCode("94560")
-                                .state("California")
-                                .stateCode("US-CA")
-                                .houseNumberOrName("10")
-                                .line1("Stafford Appartments")
-                                .line2("29th Street")
-                                .organization("Gr4vy")
-                                .build())
-                            .taxId(TaxId.builder()
-                                .value("12345678931")
-                                .kind(TaxIdKind.IN_GST)
-                                .build())
-                            .build())
-                        .shippingDetails(ShippingDetailsCreate.builder()
-                            .firstName("John")
-                            .lastName("Doe")
-                            .emailAddress("john@example.com")
-                            .phoneNumber("+1234567890")
-                            .address(Address.builder()
-                                .city("San Jose")
-                                .country("US")
-                                .postalCode("94560")
-                                .state("California")
-                                .stateCode("US-CA")
-                                .houseNumberOrName("10")
-                                .line1("Stafford Appartments")
-                                .line2("29th Street")
-                                .organization("Gr4vy")
-                                .build())
-                            .build())
-                        .build())
-                    .buyerExternalIdentifier("buyer-12345")
-                    .merchant(JsonNullable.of(null))
-                    .connectionOptions(ConnectionOptions.builder()
-                        .checkoutCard(CheckoutCardConnectionOptions.builder()
-                            .processingChannelId("channel-1234")
-                            .sourceId("acct-1234")
-                            .build())
-                        .build())
                     .build())
                 .call();
 
@@ -171,7 +115,6 @@ public class Application {
 
 | Parameter                                               | Type                                                    | Required                                                | Description                                             |
 | ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- |
-| `applicationName`                                       | *Optional\<String>*                                     | :heavy_minus_sign:                                      | N/A                                                     |
 | `merchantAccountId`                                     | *JsonNullable\<String>*                                 | :heavy_minus_sign:                                      | The ID of the merchant account to use for this request. |
 | `payoutCreate`                                          | [PayoutCreate](../../models/components/PayoutCreate.md) | :heavy_check_mark:                                      | N/A                                                     |
 
@@ -235,7 +178,6 @@ public class Application {
 | Parameter                                               | Type                                                    | Required                                                | Description                                             |
 | ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- |
 | `payoutId`                                              | *String*                                                | :heavy_check_mark:                                      | N/A                                                     |
-| `applicationName`                                       | *Optional\<String>*                                     | :heavy_minus_sign:                                      | N/A                                                     |
 | `merchantAccountId`                                     | *JsonNullable\<String>*                                 | :heavy_minus_sign:                                      | The ID of the merchant account to use for this request. |
 
 ### Response

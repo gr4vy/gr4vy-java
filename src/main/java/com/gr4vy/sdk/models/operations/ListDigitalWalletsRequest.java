@@ -5,20 +5,14 @@ package com.gr4vy.sdk.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.gr4vy.sdk.utils.LazySingletonValue;
 import com.gr4vy.sdk.utils.SpeakeasyMetadata;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.util.Objects;
-import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 public class ListDigitalWalletsRequest {
-
-    @SpeakeasyMetadata("queryParam:style=form,explode=true,name=application_name")
-    private Optional<String> applicationName;
 
     /**
      * The ID of the merchant account to use for this request.
@@ -28,21 +22,13 @@ public class ListDigitalWalletsRequest {
 
     @JsonCreator
     public ListDigitalWalletsRequest(
-            Optional<String> applicationName,
             JsonNullable<String> merchantAccountId) {
-        Utils.checkNotNull(applicationName, "applicationName");
         Utils.checkNotNull(merchantAccountId, "merchantAccountId");
-        this.applicationName = applicationName;
         this.merchantAccountId = merchantAccountId;
     }
     
     public ListDigitalWalletsRequest() {
-        this(Optional.empty(), JsonNullable.undefined());
-    }
-
-    @JsonIgnore
-    public Optional<String> applicationName() {
-        return applicationName;
+        this(JsonNullable.undefined());
     }
 
     /**
@@ -56,18 +42,6 @@ public class ListDigitalWalletsRequest {
     public final static Builder builder() {
         return new Builder();
     }    
-
-    public ListDigitalWalletsRequest withApplicationName(String applicationName) {
-        Utils.checkNotNull(applicationName, "applicationName");
-        this.applicationName = Optional.ofNullable(applicationName);
-        return this;
-    }
-
-    public ListDigitalWalletsRequest withApplicationName(Optional<String> applicationName) {
-        Utils.checkNotNull(applicationName, "applicationName");
-        this.applicationName = applicationName;
-        return this;
-    }
 
     /**
      * The ID of the merchant account to use for this request.
@@ -98,44 +72,27 @@ public class ListDigitalWalletsRequest {
         }
         ListDigitalWalletsRequest other = (ListDigitalWalletsRequest) o;
         return 
-            Objects.deepEquals(this.applicationName, other.applicationName) &&
             Objects.deepEquals(this.merchantAccountId, other.merchantAccountId);
     }
     
     @Override
     public int hashCode() {
         return Objects.hash(
-            applicationName,
             merchantAccountId);
     }
     
     @Override
     public String toString() {
         return Utils.toString(ListDigitalWalletsRequest.class,
-                "applicationName", applicationName,
                 "merchantAccountId", merchantAccountId);
     }
     
     public final static class Builder {
  
-        private Optional<String> applicationName;
- 
         private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
         
         private Builder() {
           // force use of static builder() method
-        }
-
-        public Builder applicationName(String applicationName) {
-            Utils.checkNotNull(applicationName, "applicationName");
-            this.applicationName = Optional.ofNullable(applicationName);
-            return this;
-        }
-
-        public Builder applicationName(Optional<String> applicationName) {
-            Utils.checkNotNull(applicationName, "applicationName");
-            this.applicationName = applicationName;
-            return this;
         }
 
         /**
@@ -157,18 +114,8 @@ public class ListDigitalWalletsRequest {
         }
         
         public ListDigitalWalletsRequest build() {
-            if (applicationName == null) {
-                applicationName = _SINGLETON_VALUE_ApplicationName.value();
-            }
             return new ListDigitalWalletsRequest(
-                applicationName,
                 merchantAccountId);
         }
-
-        private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_ApplicationName =
-                new LazySingletonValue<>(
-                        "application_name",
-                        "\"core-api\"",
-                        new TypeReference<Optional<String>>() {});
     }
 }

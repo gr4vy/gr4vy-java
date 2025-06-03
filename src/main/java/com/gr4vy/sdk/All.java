@@ -73,7 +73,7 @@ public class All implements
      */
     public CreateFullTransactionRefundResponse create(
             String transactionId) throws Exception {
-        return create(transactionId, Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined());
+        return create(transactionId, JsonNullable.undefined(), JsonNullable.undefined());
     }
     
     /**
@@ -82,7 +82,6 @@ public class All implements
      * <p>Create a refund for all instruments on a transaction.
      * 
      * @param transactionId 
-     * @param applicationName 
      * @param merchantAccountId 
      * @param transactionRefundAllCreate 
      * @return The response from the API call
@@ -90,14 +89,12 @@ public class All implements
      */
     public CreateFullTransactionRefundResponse create(
             String transactionId,
-            Optional<String> applicationName,
             JsonNullable<String> merchantAccountId,
             JsonNullable<? extends TransactionRefundAllCreate> transactionRefundAllCreate) throws Exception {
         CreateFullTransactionRefundRequest request =
             CreateFullTransactionRefundRequest
                 .builder()
                 .transactionId(transactionId)
-                .applicationName(applicationName)
                 .merchantAccountId(merchantAccountId)
                 .transactionRefundAllCreate(transactionRefundAllCreate)
                 .build();
@@ -124,11 +121,6 @@ public class All implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
-        _req.addQueryParams(Utils.getQueryParams(
-                CreateFullTransactionRefundRequest.class,
-                request, 
-                this.sdkConfiguration.globals));
         _req.addHeaders(Utils.getHeadersFromMetadata(request, this.sdkConfiguration.globals));
         
         Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
