@@ -24,6 +24,8 @@ import com.gr4vy.sdk.models.components.PaymentServiceCreate;
 import com.gr4vy.sdk.models.components.PaymentServiceTokenCreate;
 import com.gr4vy.sdk.models.components.PaymentServiceUpdate;
 import com.gr4vy.sdk.models.components.PayoutCreate;
+import com.gr4vy.sdk.models.components.ReportCreate;
+import com.gr4vy.sdk.models.components.ReportUpdate;
 import com.gr4vy.sdk.models.components.ShippingDetailsCreate;
 import com.gr4vy.sdk.models.components.ShippingDetailsUpdate;
 import com.gr4vy.sdk.models.components.TransactionCapture;
@@ -478,6 +480,61 @@ public class SDKMethodInterfaces {
     public interface MethodCallListAuditLogs {
         ListAuditLogsResponse list(
             ListAuditLogsRequest request,
+            Optional<Options> options) throws Exception;
+    }
+
+    public interface MethodCallListReports {
+        ListReportsResponse list(
+            ListReportsRequest request,
+            Optional<Options> options) throws Exception;
+    }
+
+    public interface MethodCallAddReport {
+        AddReportResponse create(
+            JsonNullable<String> merchantAccountId,
+            ReportCreate reportCreate) throws Exception;
+    }
+
+    public interface MethodCallGetReport {
+        GetReportResponse get(
+            String reportId,
+            JsonNullable<String> merchantAccountId,
+            Optional<Options> options) throws Exception;
+    }
+
+    public interface MethodCallUpdateReport {
+        UpdateReportResponse put(
+            String reportId,
+            JsonNullable<String> merchantAccountId,
+            ReportUpdate reportUpdate) throws Exception;
+    }
+
+    public interface MethodCallListReportExecutions {
+        ListReportExecutionsResponse list(
+            String reportId,
+            JsonNullable<String> cursor,
+            Optional<Long> limit,
+            JsonNullable<String> merchantAccountId,
+            Optional<Options> options) throws Exception;
+    }
+
+    public interface MethodCallCreateReportExecutionUrl {
+        CreateReportExecutionUrlResponse url(
+            String reportId,
+            String reportExecutionId,
+            JsonNullable<String> merchantAccountId) throws Exception;
+    }
+
+    public interface MethodCallListAllReportExecutions {
+        ListAllReportExecutionsResponse list(
+            ListAllReportExecutionsRequest request,
+            Optional<Options> options) throws Exception;
+    }
+
+    public interface MethodCallGetReportExecution {
+        GetReportExecutionResponse get(
+            String reportExecutionId,
+            JsonNullable<String> merchantAccountId,
             Optional<Options> options) throws Exception;
     }
 

@@ -1,0 +1,9 @@
+# ReportExecutionUrl
+
+
+## Fields
+
+| Field                                                                                     | Type                                                                                      | Required                                                                                  | Description                                                                               | Example                                                                                   |
+| ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
+| `url`                                                                                     | *String*                                                                                  | :heavy_check_mark:                                                                        | A signed URL to download the report execution file.                                       | https://example.com/download/report.csv?signature=abc123                                  |
+| `expiresAt`                                                                               | [OffsetDateTime](https://docs.oracle.com/javase/8/docs/api/java/time/OffsetDateTime.html) | :heavy_check_mark:                                                                        | The date and time when the download URL expires.                                          | 2024-06-01T00:00:00.000Z                                                                  |
