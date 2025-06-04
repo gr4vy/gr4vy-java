@@ -3,11 +3,13 @@
  */
 package com.gr4vy.sdk.models.operations;
 
+import com.gr4vy.sdk.models.errors.APIException;
 import com.gr4vy.sdk.utils.Options;
 import com.gr4vy.sdk.utils.RetryConfig;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Exception;
 import java.util.Optional;
+import java.util.stream.Stream;
 
 public class ListAllReportExecutionsRequestBuilder {
 
@@ -44,5 +46,26 @@ public class ListAllReportExecutionsRequestBuilder {
         return sdk.list(
             request,
             options);
+    }
+    
+    /**
+     * Returns a stream that performs next page calls till no more pages
+     * are returned. Unlike the {@link #call()} method this method will
+     * throw an {@link APIException} if any page retrieval has an HTTP status 
+     * code >= 300 (Note that 3XX is not an error range but will need 
+     * special handling by the user if for example the HTTP client is 
+     * not configured to follow redirects).
+     * 
+     * @throws {@link APIException} if HTTP status code >= 300 is encountered
+     **/  
+    public Stream<ListAllReportExecutionsResponse> callAsStream() {
+        return Utils.stream(() -> Optional.of(call()), x -> {
+            if (x.statusCode() >= 300) {
+                byte[] body = Utils.toByteArrayAndClose(x.rawResponse().body());
+                throw new APIException(x.rawResponse(), x.statusCode(), x.contentType(), body);
+            } else {
+                return x.next();
+            }
+        });
     }
 }
