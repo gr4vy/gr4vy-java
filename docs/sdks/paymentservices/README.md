@@ -32,10 +32,13 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Gr4vy sdk = Gr4vy.builder()
+                .merchantAccountId("default")
                 .bearerAuth("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
         ListPaymentServicesRequest req = ListPaymentServicesRequest.builder()
+                .cursor("ZXhhbXBsZTE")
+                .deleted(true)
                 .build();
 
         sdk.paymentServices().list()
@@ -99,6 +102,7 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Gr4vy sdk = Gr4vy.builder()
+                .merchantAccountId("default")
                 .bearerAuth("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
@@ -123,6 +127,8 @@ public class Application {
                         "US",
                         "DE",
                         "GB"))
+                    .threeDSecureEnabled(true)
+                    .settlementReportingEnabled(true)
                     .build())
                 .call();
 
@@ -181,6 +187,7 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Gr4vy sdk = Gr4vy.builder()
+                .merchantAccountId("default")
                 .bearerAuth("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
@@ -244,12 +251,14 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Gr4vy sdk = Gr4vy.builder()
+                .merchantAccountId("default")
                 .bearerAuth("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
         CreatePaymentServiceResponse res = sdk.paymentServices().update()
                 .paymentServiceId("fffd152a-9532-4087-9a4f-de58754210f0")
                 .paymentServiceUpdate(PaymentServiceUpdate.builder()
+                    .settlementReportingEnabled(true)
                     .build())
                 .call();
 
@@ -309,6 +318,7 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Gr4vy sdk = Gr4vy.builder()
+                .merchantAccountId("default")
                 .bearerAuth("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
@@ -373,6 +383,7 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Gr4vy sdk = Gr4vy.builder()
+                .merchantAccountId("default")
                 .bearerAuth("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
@@ -439,6 +450,7 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Gr4vy sdk = Gr4vy.builder()
+                .merchantAccountId("default")
                 .bearerAuth("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 

@@ -29,6 +29,7 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Gr4vy sdk = Gr4vy.builder()
+                .merchantAccountId("<id>")
                 .bearerAuth("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
@@ -95,6 +96,7 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Gr4vy sdk = Gr4vy.builder()
+                .merchantAccountId("<id>")
                 .bearerAuth("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
@@ -110,6 +112,7 @@ public class Application {
                                     Map.entry("end", "day_end"),
                                     Map.entry("start", "day_start")))))))
                         .build())
+                    .scheduleTimezone("UTC")
                     .build())
                 .call();
 
@@ -168,6 +171,7 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Gr4vy sdk = Gr4vy.builder()
+                .merchantAccountId("<id>")
                 .bearerAuth("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
@@ -231,6 +235,7 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Gr4vy sdk = Gr4vy.builder()
+                .merchantAccountId("<id>")
                 .bearerAuth("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 

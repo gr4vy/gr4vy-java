@@ -19,6 +19,7 @@ import com.gr4vy.sdk.models.components.GooglePaySessionRequest;
 import com.gr4vy.sdk.models.components.MerchantAccountCreate;
 import com.gr4vy.sdk.models.components.MerchantAccountUpdate;
 import com.gr4vy.sdk.models.components.NetworkTokenCreate;
+import com.gr4vy.sdk.models.components.PaymentLinkCreate;
 import com.gr4vy.sdk.models.components.PaymentOptionRequest;
 import com.gr4vy.sdk.models.components.PaymentServiceCreate;
 import com.gr4vy.sdk.models.components.PaymentServiceTokenCreate;
@@ -606,6 +607,33 @@ public class SDKMethodInterfaces {
     public interface MethodCallGetPayout {
         GetPayoutResponse get(
             String payoutId,
+            JsonNullable<String> merchantAccountId,
+            Optional<Options> options) throws Exception;
+    }
+
+    public interface MethodCallAddPaymentLink {
+        AddPaymentLinkResponse create(
+            JsonNullable<String> merchantAccountId,
+            PaymentLinkCreate paymentLinkCreate) throws Exception;
+    }
+
+    public interface MethodCallListPaymentLinks {
+        ListPaymentLinksResponse list(
+            JsonNullable<String> cursor,
+            Optional<Long> limit,
+            JsonNullable<String> merchantAccountId,
+            Optional<Options> options) throws Exception;
+    }
+
+    public interface MethodCallExpirePaymentLink {
+        ExpirePaymentLinkResponse expire(
+            String paymentLinkId,
+            JsonNullable<String> merchantAccountId) throws Exception;
+    }
+
+    public interface MethodCallGetPaymentLink {
+        GetPaymentLinkResponse get(
+            String paymentLinkId,
             JsonNullable<String> merchantAccountId,
             Optional<Options> options) throws Exception;
     }

@@ -26,11 +26,13 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Gr4vy sdk = Gr4vy.builder()
+                .merchantAccountId("<id>")
                 .bearerAuth("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
         sdk.reports().executions().list()
                 .reportId("4d4c7123-b794-4fad-b1b9-5ab2606e6bbe")
+                .limit(20L)
                 .callAsStream()
                 .forEach(item -> {
                    // handle item
@@ -90,6 +92,7 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Gr4vy sdk = Gr4vy.builder()
+                .merchantAccountId("<id>")
                 .bearerAuth("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 

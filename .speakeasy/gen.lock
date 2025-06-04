@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 5bbaa3a9-baa0-471b-ba6a-13fd88e8c119
 management:
-  docChecksum: 8a4b3ebc8f237643115c054cca75d13d
+  docChecksum: 18c6516bb55583b76843d64969c1d642
   docVersion: 1.0.0
-  speakeasyVersion: 1.555.0
-  generationVersion: 2.618.0
-  releaseVersion: 1.0.0-beta.7
-  configChecksum: e7aac6e8b5dd41783d1083c4c4765adf
+  speakeasyVersion: 1.555.2
+  generationVersion: 2.620.2
+  releaseVersion: 1.0.0-beta.8
+  configChecksum: d043c1b0c3ee14241ba7dac567c4ae76
   repoURL: https://github.com/gr4vy/gr4vy-java.git
   published: true
 features:
@@ -78,6 +78,7 @@ generatedFiles:
   - docs/models/components/ClickToPayPaymentMethodCreate.md
   - docs/models/components/ClickToPaySession.md
   - docs/models/components/ClickToPaySessionRequest.md
+  - docs/models/components/CollectionPaymentLink.md
   - docs/models/components/ConnectionOptions.md
   - docs/models/components/Context.md
   - docs/models/components/CreateSession.md
@@ -124,6 +125,7 @@ generatedFiles:
   - docs/models/components/InstrumentType.md
   - docs/models/components/Item.md
   - docs/models/components/Loc.md
+  - docs/models/components/Locale.md
   - docs/models/components/MerchantAccount.md
   - docs/models/components/MerchantAccountCreate.md
   - docs/models/components/MerchantAccountUpdate.md
@@ -138,6 +140,9 @@ generatedFiles:
   - docs/models/components/NetworkTokenPaymentMethodCreate.md
   - docs/models/components/NetworkTokenStatus.md
   - docs/models/components/NetworkTokens.md
+  - docs/models/components/PaymentLink.md
+  - docs/models/components/PaymentLinkCreate.md
+  - docs/models/components/PaymentLinkStatus.md
   - docs/models/components/PaymentMethod.md
   - docs/models/components/PaymentMethodCard.md
   - docs/models/components/PaymentMethodDetailsCard.md
@@ -261,6 +266,8 @@ generatedFiles:
   - docs/models/operations/AddBuyerResponse.md
   - docs/models/operations/AddBuyerShippingDetailsRequest.md
   - docs/models/operations/AddBuyerShippingDetailsResponse.md
+  - docs/models/operations/AddPaymentLinkRequest.md
+  - docs/models/operations/AddPaymentLinkResponse.md
   - docs/models/operations/AddReportRequest.md
   - docs/models/operations/AddReportResponse.md
   - docs/models/operations/Body.md
@@ -322,6 +329,8 @@ generatedFiles:
   - docs/models/operations/DeletePaymentMethodResponse.md
   - docs/models/operations/DeletePaymentServiceRequest.md
   - docs/models/operations/DeletePaymentServiceResponse.md
+  - docs/models/operations/ExpirePaymentLinkRequest.md
+  - docs/models/operations/ExpirePaymentLinkResponse.md
   - docs/models/operations/GetBuyerRequest.md
   - docs/models/operations/GetBuyerResponse.md
   - docs/models/operations/GetBuyerShippingDetailsRequest.md
@@ -334,6 +343,8 @@ generatedFiles:
   - docs/models/operations/GetGiftCardResponse.md
   - docs/models/operations/GetMerchantAccountRequest.md
   - docs/models/operations/GetMerchantAccountResponse.md
+  - docs/models/operations/GetPaymentLinkRequest.md
+  - docs/models/operations/GetPaymentLinkResponse.md
   - docs/models/operations/GetPaymentMethodRequest.md
   - docs/models/operations/GetPaymentMethodResponse.md
   - docs/models/operations/GetPaymentServiceDefinitionRequest.md
@@ -374,6 +385,8 @@ generatedFiles:
   - docs/models/operations/ListGiftCardsResponse.md
   - docs/models/operations/ListMerchantAccountsRequest.md
   - docs/models/operations/ListMerchantAccountsResponse.md
+  - docs/models/operations/ListPaymentLinksRequest.md
+  - docs/models/operations/ListPaymentLinksResponse.md
   - docs/models/operations/ListPaymentMethodNetworkTokensRequest.md
   - docs/models/operations/ListPaymentMethodNetworkTokensResponse.md
   - docs/models/operations/ListPaymentMethodPaymentServiceTokensRequest.md
@@ -446,6 +459,7 @@ generatedFiles:
   - docs/sdks/jobs/README.md
   - docs/sdks/merchantaccounts/README.md
   - docs/sdks/networktokens/README.md
+  - docs/sdks/paymentlinks/README.md
   - docs/sdks/paymentmethods/README.md
   - docs/sdks/paymentoptions/README.md
   - docs/sdks/paymentservicedefinitions/README.md
@@ -484,6 +498,7 @@ generatedFiles:
   - src/main/java/com/gr4vy/sdk/Jobs.java
   - src/main/java/com/gr4vy/sdk/MerchantAccounts.java
   - src/main/java/com/gr4vy/sdk/NetworkTokens.java
+  - src/main/java/com/gr4vy/sdk/PaymentLinks.java
   - src/main/java/com/gr4vy/sdk/PaymentMethods.java
   - src/main/java/com/gr4vy/sdk/PaymentOptions.java
   - src/main/java/com/gr4vy/sdk/PaymentServiceDefinitions.java
@@ -544,6 +559,7 @@ generatedFiles:
   - src/main/java/com/gr4vy/sdk/models/components/ClickToPayPaymentMethodCreate.java
   - src/main/java/com/gr4vy/sdk/models/components/ClickToPaySession.java
   - src/main/java/com/gr4vy/sdk/models/components/ClickToPaySessionRequest.java
+  - src/main/java/com/gr4vy/sdk/models/components/CollectionPaymentLink.java
   - src/main/java/com/gr4vy/sdk/models/components/ConnectionOptions.java
   - src/main/java/com/gr4vy/sdk/models/components/Context.java
   - src/main/java/com/gr4vy/sdk/models/components/CreateSession.java
@@ -590,6 +606,7 @@ generatedFiles:
   - src/main/java/com/gr4vy/sdk/models/components/InstrumentType.java
   - src/main/java/com/gr4vy/sdk/models/components/Item.java
   - src/main/java/com/gr4vy/sdk/models/components/Loc.java
+  - src/main/java/com/gr4vy/sdk/models/components/Locale.java
   - src/main/java/com/gr4vy/sdk/models/components/MerchantAccount.java
   - src/main/java/com/gr4vy/sdk/models/components/MerchantAccountCreate.java
   - src/main/java/com/gr4vy/sdk/models/components/MerchantAccountUpdate.java
@@ -604,6 +621,9 @@ generatedFiles:
   - src/main/java/com/gr4vy/sdk/models/components/NetworkTokenPaymentMethodCreate.java
   - src/main/java/com/gr4vy/sdk/models/components/NetworkTokenStatus.java
   - src/main/java/com/gr4vy/sdk/models/components/NetworkTokens.java
+  - src/main/java/com/gr4vy/sdk/models/components/PaymentLink.java
+  - src/main/java/com/gr4vy/sdk/models/components/PaymentLinkCreate.java
+  - src/main/java/com/gr4vy/sdk/models/components/PaymentLinkStatus.java
   - src/main/java/com/gr4vy/sdk/models/components/PaymentMethod.java
   - src/main/java/com/gr4vy/sdk/models/components/PaymentMethodCard.java
   - src/main/java/com/gr4vy/sdk/models/components/PaymentMethodDetailsCard.java
@@ -731,6 +751,9 @@ generatedFiles:
   - src/main/java/com/gr4vy/sdk/models/operations/AddBuyerShippingDetailsRequest.java
   - src/main/java/com/gr4vy/sdk/models/operations/AddBuyerShippingDetailsRequestBuilder.java
   - src/main/java/com/gr4vy/sdk/models/operations/AddBuyerShippingDetailsResponse.java
+  - src/main/java/com/gr4vy/sdk/models/operations/AddPaymentLinkRequest.java
+  - src/main/java/com/gr4vy/sdk/models/operations/AddPaymentLinkRequestBuilder.java
+  - src/main/java/com/gr4vy/sdk/models/operations/AddPaymentLinkResponse.java
   - src/main/java/com/gr4vy/sdk/models/operations/AddReportRequest.java
   - src/main/java/com/gr4vy/sdk/models/operations/AddReportRequestBuilder.java
   - src/main/java/com/gr4vy/sdk/models/operations/AddReportResponse.java
@@ -823,6 +846,9 @@ generatedFiles:
   - src/main/java/com/gr4vy/sdk/models/operations/DeletePaymentServiceRequest.java
   - src/main/java/com/gr4vy/sdk/models/operations/DeletePaymentServiceRequestBuilder.java
   - src/main/java/com/gr4vy/sdk/models/operations/DeletePaymentServiceResponse.java
+  - src/main/java/com/gr4vy/sdk/models/operations/ExpirePaymentLinkRequest.java
+  - src/main/java/com/gr4vy/sdk/models/operations/ExpirePaymentLinkRequestBuilder.java
+  - src/main/java/com/gr4vy/sdk/models/operations/ExpirePaymentLinkResponse.java
   - src/main/java/com/gr4vy/sdk/models/operations/GetBuyerRequest.java
   - src/main/java/com/gr4vy/sdk/models/operations/GetBuyerRequestBuilder.java
   - src/main/java/com/gr4vy/sdk/models/operations/GetBuyerResponse.java
@@ -841,6 +867,9 @@ generatedFiles:
   - src/main/java/com/gr4vy/sdk/models/operations/GetMerchantAccountRequest.java
   - src/main/java/com/gr4vy/sdk/models/operations/GetMerchantAccountRequestBuilder.java
   - src/main/java/com/gr4vy/sdk/models/operations/GetMerchantAccountResponse.java
+  - src/main/java/com/gr4vy/sdk/models/operations/GetPaymentLinkRequest.java
+  - src/main/java/com/gr4vy/sdk/models/operations/GetPaymentLinkRequestBuilder.java
+  - src/main/java/com/gr4vy/sdk/models/operations/GetPaymentLinkResponse.java
   - src/main/java/com/gr4vy/sdk/models/operations/GetPaymentMethodRequest.java
   - src/main/java/com/gr4vy/sdk/models/operations/GetPaymentMethodRequestBuilder.java
   - src/main/java/com/gr4vy/sdk/models/operations/GetPaymentMethodResponse.java
@@ -901,6 +930,9 @@ generatedFiles:
   - src/main/java/com/gr4vy/sdk/models/operations/ListMerchantAccountsRequest.java
   - src/main/java/com/gr4vy/sdk/models/operations/ListMerchantAccountsRequestBuilder.java
   - src/main/java/com/gr4vy/sdk/models/operations/ListMerchantAccountsResponse.java
+  - src/main/java/com/gr4vy/sdk/models/operations/ListPaymentLinksRequest.java
+  - src/main/java/com/gr4vy/sdk/models/operations/ListPaymentLinksRequestBuilder.java
+  - src/main/java/com/gr4vy/sdk/models/operations/ListPaymentLinksResponse.java
   - src/main/java/com/gr4vy/sdk/models/operations/ListPaymentMethodNetworkTokensRequest.java
   - src/main/java/com/gr4vy/sdk/models/operations/ListPaymentMethodNetworkTokensRequestBuilder.java
   - src/main/java/com/gr4vy/sdk/models/operations/ListPaymentMethodNetworkTokensResponse.java
@@ -4174,6 +4206,131 @@ examples:
       responses:
         "200":
           application/json: {"type": "report-execution", "id": "a1b2c3d4-5678-90ab-cdef-1234567890ab", "created_at": "2024-05-30T12:34:56.000Z", "updated_at": "2024-05-30T13:00:00.000Z", "status": "dispatched", "context": {"reference_timestamp": "2024-05-30T12:34:56.000Z", "reference_timezone": "UTC"}, "report": {"type": "report", "id": "a1b2c3d4-5678-90ab-cdef-1234567890ab", "merchant_account_id": "merchant-account-12345", "name": "Monthly Transaction Report"}}
+        "400":
+          application/json: {"type": "error", "code": "bad_request", "status": 400, "message": "Request failed validation"}
+        "401":
+          application/json: {"type": "error", "code": "unauthorized", "status": 401, "message": "No valid API authentication found"}
+        "403":
+          application/json: {"type": "error", "code": "forbidden", "status": 403, "message": "Request failed validation"}
+        "404":
+          application/json: {"type": "error", "code": "not_found", "status": 404, "message": "The resource could not be found"}
+        "405":
+          application/json: {"type": "error", "code": "method_not_allowed", "status": 405, "message": "Method Not Allowed"}
+        "409":
+          application/json: {"type": "error", "code": "duplicate_record", "status": 409, "message": "Request failed validation"}
+        "422":
+          application/json: {}
+        "425":
+          application/json: {"type": "error", "code": "too_early", "status": 425, "message": "Request failed validation"}
+        "429":
+          application/json: {"type": "error", "code": "too_many_requests", "status": 429, "message": "Request failed validation"}
+        "500":
+          application/json: {"type": "error", "code": "server_error", "status": 500, "message": "Request could not be processed"}
+        "502":
+          application/json: {"type": "error", "code": "bad_gateway", "status": 502, "message": "Request could not be processed"}
+        "504":
+          application/json: {"type": "error", "code": "gateway_timeout", "status": 504, "message": "Request could not be processed"}
+  add_payment_link:
+    speakeasy-default-add-payment-link:
+      requestBody:
+        application/json: {"amount": 1299, "country": "DE", "currency": "EUR"}
+      responses:
+        "201":
+          application/json: {"id": "a1b2c3d4-5678-90ab-cdef-1234567890ab", "type": "payment-link", "url": "https://example.com/link/a1b2c3d4-5678-90ab-cdef-1234567890ab", "amount": 1299, "country": "DE", "currency": "EUR", "intent": "capture", "cart_items": [{"name": "Widget", "quantity": 2, "unit_amount": 1299}], "payment_source": "moto", "created_at": "2024-05-30T12:34:56.000Z", "updated_at": "2024-05-30T13:00:00.000Z", "status": "completed"}
+        "400":
+          application/json: {"type": "error", "code": "bad_request", "status": 400, "message": "Request failed validation"}
+        "401":
+          application/json: {"type": "error", "code": "unauthorized", "status": 401, "message": "No valid API authentication found"}
+        "403":
+          application/json: {"type": "error", "code": "forbidden", "status": 403, "message": "Request failed validation"}
+        "404":
+          application/json: {"type": "error", "code": "not_found", "status": 404, "message": "The resource could not be found"}
+        "405":
+          application/json: {"type": "error", "code": "method_not_allowed", "status": 405, "message": "Method Not Allowed"}
+        "409":
+          application/json: {"type": "error", "code": "duplicate_record", "status": 409, "message": "Request failed validation"}
+        "422":
+          application/json: {}
+        "425":
+          application/json: {"type": "error", "code": "too_early", "status": 425, "message": "Request failed validation"}
+        "429":
+          application/json: {"type": "error", "code": "too_many_requests", "status": 429, "message": "Request failed validation"}
+        "500":
+          application/json: {"type": "error", "code": "server_error", "status": 500, "message": "Request could not be processed"}
+        "502":
+          application/json: {"type": "error", "code": "bad_gateway", "status": 502, "message": "Request could not be processed"}
+        "504":
+          application/json: {"type": "error", "code": "gateway_timeout", "status": 504, "message": "Request could not be processed"}
+  list_payment_links:
+    speakeasy-default-list-payment-links:
+      parameters:
+        query:
+          limit: 20
+      responses:
+        "200":
+          application/json: {"items": [], "limit": 20}
+        "400":
+          application/json: {"type": "error", "code": "bad_request", "status": 400, "message": "Request failed validation"}
+        "401":
+          application/json: {"type": "error", "code": "unauthorized", "status": 401, "message": "No valid API authentication found"}
+        "403":
+          application/json: {"type": "error", "code": "forbidden", "status": 403, "message": "Request failed validation"}
+        "404":
+          application/json: {"type": "error", "code": "not_found", "status": 404, "message": "The resource could not be found"}
+        "405":
+          application/json: {"type": "error", "code": "method_not_allowed", "status": 405, "message": "Method Not Allowed"}
+        "409":
+          application/json: {"type": "error", "code": "duplicate_record", "status": 409, "message": "Request failed validation"}
+        "422":
+          application/json: {}
+        "425":
+          application/json: {"type": "error", "code": "too_early", "status": 425, "message": "Request failed validation"}
+        "429":
+          application/json: {"type": "error", "code": "too_many_requests", "status": 429, "message": "Request failed validation"}
+        "500":
+          application/json: {"type": "error", "code": "server_error", "status": 500, "message": "Request could not be processed"}
+        "502":
+          application/json: {"type": "error", "code": "bad_gateway", "status": 502, "message": "Request could not be processed"}
+        "504":
+          application/json: {"type": "error", "code": "gateway_timeout", "status": 504, "message": "Request could not be processed"}
+  expire_payment_link:
+    speakeasy-default-expire-payment-link:
+      parameters:
+        path:
+          payment_link_id: "a1b2c3d4-5678-90ab-cdef-1234567890ab"
+      responses:
+        "400":
+          application/json: {"type": "error", "code": "bad_request", "status": 400, "message": "Request failed validation"}
+        "401":
+          application/json: {"type": "error", "code": "unauthorized", "status": 401, "message": "No valid API authentication found"}
+        "403":
+          application/json: {"type": "error", "code": "forbidden", "status": 403, "message": "Request failed validation"}
+        "404":
+          application/json: {"type": "error", "code": "not_found", "status": 404, "message": "The resource could not be found"}
+        "405":
+          application/json: {"type": "error", "code": "method_not_allowed", "status": 405, "message": "Method Not Allowed"}
+        "409":
+          application/json: {"type": "error", "code": "duplicate_record", "status": 409, "message": "Request failed validation"}
+        "422":
+          application/json: {}
+        "425":
+          application/json: {"type": "error", "code": "too_early", "status": 425, "message": "Request failed validation"}
+        "429":
+          application/json: {"type": "error", "code": "too_many_requests", "status": 429, "message": "Request failed validation"}
+        "500":
+          application/json: {"type": "error", "code": "server_error", "status": 500, "message": "Request could not be processed"}
+        "502":
+          application/json: {"type": "error", "code": "bad_gateway", "status": 502, "message": "Request could not be processed"}
+        "504":
+          application/json: {"type": "error", "code": "gateway_timeout", "status": 504, "message": "Request could not be processed"}
+  get_payment_link:
+    speakeasy-default-get-payment-link:
+      parameters:
+        path:
+          payment_link_id: "a1b2c3d4-5678-90ab-cdef-1234567890ab"
+      responses:
+        "200":
+          application/json: {"id": "a1b2c3d4-5678-90ab-cdef-1234567890ab", "type": "payment-link", "url": "https://example.com/link/a1b2c3d4-5678-90ab-cdef-1234567890ab", "amount": 1299, "country": "DE", "currency": "EUR", "intent": "authorize", "cart_items": [{"name": "Widget", "quantity": 2, "unit_amount": 1299}], "payment_source": "recurring", "created_at": "2024-05-30T12:34:56.000Z", "updated_at": "2024-05-30T13:00:00.000Z", "status": "active"}
         "400":
           application/json: {"type": "error", "code": "bad_request", "status": 400, "message": "Request failed validation"}
         "401":

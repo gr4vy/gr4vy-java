@@ -80,6 +80,8 @@ public class Gr4vy {
 
     private final Payouts payouts;
 
+    private final PaymentLinks paymentLinks;
+
     public AccountUpdater accountUpdater() {
         return accountUpdater;
     }
@@ -146,6 +148,10 @@ public class Gr4vy {
 
     public Payouts payouts() {
         return payouts;
+    }
+
+    public PaymentLinks paymentLinks() {
+        return paymentLinks;
     }
 
     private SDKConfiguration sdkConfiguration;
@@ -325,6 +331,7 @@ public class Gr4vy {
         this.checkoutSessions = new CheckoutSessions(sdkConfiguration);
         this.merchantAccounts = new MerchantAccounts(sdkConfiguration);
         this.payouts = new Payouts(sdkConfiguration);
+        this.paymentLinks = new PaymentLinks(sdkConfiguration);
         
     }
 }
