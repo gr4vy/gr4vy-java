@@ -32,6 +32,9 @@ public class Application {
             .build();
 
         sdk.merchantAccounts().list()
+                .cursor("ZXhhbXBsZTE")
+                .limit(20L)
+                .search("merchant-12345")
                 .callAsStream()
                 .forEach(item -> {
                    // handle item
@@ -97,6 +100,7 @@ public class Application {
         MerchantAccountCreate req = MerchantAccountCreate.builder()
                 .id("merchant-12345")
                 .displayName("Example")
+                .accountUpdaterEnabled(true)
                 .build();
 
         CreateMerchantAccountResponse res = sdk.merchantAccounts().create()
@@ -225,6 +229,7 @@ public class Application {
         UpdateMerchantAccountResponse res = sdk.merchantAccounts().update()
                 .merchantAccountId("merchant-12345")
                 .merchantAccountUpdate(MerchantAccountUpdate.builder()
+                    .accountUpdaterEnabled(true)
                     .build())
                 .call();
 

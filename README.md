@@ -60,7 +60,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'com.gr4vy:sdk:1.0.0-beta.7'
+implementation 'com.gr4vy:sdk:1.0.0-beta.8'
 ```
 
 Maven:
@@ -68,7 +68,7 @@ Maven:
 <dependency>
     <groupId>com.gr4vy</groupId>
     <artifactId>sdk</artifactId>
-    <version>1.0.0-beta.7</version>
+    <version>1.0.0-beta.8</version>
 </dependency>
 ```
 
@@ -331,6 +331,13 @@ try {
 * [get](docs/sdks/merchantaccounts/README.md#get) - Get a merchant account
 * [update](docs/sdks/merchantaccounts/README.md#update) - Update a merchant account
 
+### [paymentLinks()](docs/sdks/paymentlinks/README.md)
+
+* [create](docs/sdks/paymentlinks/README.md#create) - Add a payment link
+* [list](docs/sdks/paymentlinks/README.md#list) - List all payment links
+* [expire](docs/sdks/paymentlinks/README.md#expire) - Expire a payment link
+* [get](docs/sdks/paymentlinks/README.md#get) - Get payment link
+
 ### [paymentMethods()](docs/sdks/paymentmethods/README.md)
 
 * [list](docs/sdks/paymentmethods/README.md#list) - List all payment methods
@@ -450,10 +457,14 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Gr4vy sdk = Gr4vy.builder()
+                .merchantAccountId("default")
                 .bearerAuth("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
         ListBuyersRequest req = ListBuyersRequest.builder()
+                .cursor("ZXhhbXBsZTE")
+                .search("John")
+                .externalIdentifier("buyer-12345")
                 .build();
 
         sdk.buyers().list()
@@ -490,10 +501,14 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Gr4vy sdk = Gr4vy.builder()
+                .merchantAccountId("default")
                 .bearerAuth("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
         ListBuyersRequest req = ListBuyersRequest.builder()
+                .cursor("ZXhhbXBsZTE")
+                .search("John")
+                .externalIdentifier("buyer-12345")
                 .build();
 
         sdk.buyers().list()
@@ -544,10 +559,14 @@ public class Application {
                         .retryConnectError(false)
                         .build())
                     .build())
+                .merchantAccountId("default")
                 .bearerAuth("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
         ListBuyersRequest req = ListBuyersRequest.builder()
+                .cursor("ZXhhbXBsZTE")
+                .search("John")
+                .externalIdentifier("buyer-12345")
                 .build();
 
         sdk.buyers().list()
@@ -602,6 +621,7 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Gr4vy sdk = Gr4vy.builder()
+                .merchantAccountId("default")
                 .bearerAuth("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
@@ -658,6 +678,7 @@ public class Application {
         Gr4vy sdk = Gr4vy.builder()
                 .server(Gr4vy.AvailableServers.SANDBOX)
                 .id("<id>")
+                .merchantAccountId("default")
                 .bearerAuth("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
@@ -695,6 +716,7 @@ public class Application {
 
         Gr4vy sdk = Gr4vy.builder()
                 .serverURL("https://api.example.gr4vy.app")
+                .merchantAccountId("default")
                 .bearerAuth("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 

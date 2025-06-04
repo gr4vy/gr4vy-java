@@ -31,6 +31,8 @@ public class Application {
             .build();
 
         sdk.paymentServiceDefinitions().list()
+                .cursor("ZXhhbXBsZTE")
+                .limit(20L)
                 .callAsStream()
                 .forEach(item -> {
                    // handle item

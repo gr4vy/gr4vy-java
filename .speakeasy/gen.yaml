@@ -18,7 +18,7 @@ generation:
     oAuth2PasswordEnabled: false
   sdkHooksConfigAccess: true
 java:
-  version: 1.0.0-beta.7
+  version: 1.0.0-beta.8
   additionalDependencies:
     - testImplementation:org.junit.jupiter:junit-jupiter:5.10.0
     - implementation:com.auth0:java-jwt:4.5.0

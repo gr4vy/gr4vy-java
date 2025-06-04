@@ -26,11 +26,14 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Gr4vy sdk = Gr4vy.builder()
+                .merchantAccountId("<id>")
                 .bearerAuth("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
         ListTransactionEventsResponse res = sdk.transactions().events().list()
                 .transactionId("7099948d-7286-47e4-aad8-b68f7eb44591")
+                .cursor("ZXhhbXBsZTE")
+                .limit(100L)
                 .call();
 
         if (res.transactionEvents().isPresent()) {

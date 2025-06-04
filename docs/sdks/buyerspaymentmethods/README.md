@@ -27,10 +27,15 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Gr4vy sdk = Gr4vy.builder()
+                .merchantAccountId("default")
                 .bearerAuth("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
         ListBuyerPaymentMethodsRequest req = ListBuyerPaymentMethodsRequest.builder()
+                .buyerId("fe26475d-ec3e-4884-9553-f7356683f7f9")
+                .buyerExternalIdentifier("buyer-12345")
+                .country("US")
+                .currency("USD")
                 .build();
 
         ListBuyerPaymentMethodsResponse res = sdk.buyers().paymentMethods().list()

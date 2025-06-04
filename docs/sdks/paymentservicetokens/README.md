@@ -28,11 +28,13 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Gr4vy sdk = Gr4vy.builder()
+                .merchantAccountId("default")
                 .bearerAuth("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
         ListPaymentMethodPaymentServiceTokensResponse res = sdk.paymentMethods().paymentServiceTokens().list()
                 .paymentMethodId("ef9496d8-53a5-4aad-8ca2-00eb68334389")
+                .paymentServiceId("fffd152a-9532-4087-9a4f-de58754210f0")
                 .call();
 
         if (res.paymentServiceTokens().isPresent()) {
@@ -92,6 +94,7 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Gr4vy sdk = Gr4vy.builder()
+                .merchantAccountId("default")
                 .bearerAuth("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
@@ -159,6 +162,7 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Gr4vy sdk = Gr4vy.builder()
+                .merchantAccountId("default")
                 .bearerAuth("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
