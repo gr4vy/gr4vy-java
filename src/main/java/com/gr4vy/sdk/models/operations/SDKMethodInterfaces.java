@@ -527,7 +527,7 @@ public class SDKMethodInterfaces {
     }
 
     public interface MethodCallListAllReportExecutions {
-        ListAllReportExecutionsResponse list(
+        ListAllReportExecutionsResponse all(
             ListAllReportExecutionsRequest request,
             Optional<Options> options) throws Exception;
     }
