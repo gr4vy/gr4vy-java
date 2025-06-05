@@ -12,19 +12,13 @@ import java.lang.String;
 import java.util.Objects;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class GetTransactionRefundRequest {
+public class ListTransactionSettlementsRequest {
 
     /**
-     * The ID of the transaction
+     * The unique identifier of the transaction.
      */
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=transaction_id")
     private String transactionId;
-
-    /**
-     * The ID of the refund
-     */
-    @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=refund_id")
-    private String refundId;
 
     /**
      * The ID of the merchant account to use for this request.
@@ -33,38 +27,26 @@ public class GetTransactionRefundRequest {
     private JsonNullable<String> merchantAccountId;
 
     @JsonCreator
-    public GetTransactionRefundRequest(
+    public ListTransactionSettlementsRequest(
             String transactionId,
-            String refundId,
             JsonNullable<String> merchantAccountId) {
         Utils.checkNotNull(transactionId, "transactionId");
-        Utils.checkNotNull(refundId, "refundId");
         Utils.checkNotNull(merchantAccountId, "merchantAccountId");
         this.transactionId = transactionId;
-        this.refundId = refundId;
         this.merchantAccountId = merchantAccountId;
     }
     
-    public GetTransactionRefundRequest(
-            String transactionId,
-            String refundId) {
-        this(transactionId, refundId, JsonNullable.undefined());
+    public ListTransactionSettlementsRequest(
+            String transactionId) {
+        this(transactionId, JsonNullable.undefined());
     }
 
     /**
-     * The ID of the transaction
+     * The unique identifier of the transaction.
      */
     @JsonIgnore
     public String transactionId() {
         return transactionId;
-    }
-
-    /**
-     * The ID of the refund
-     */
-    @JsonIgnore
-    public String refundId() {
-        return refundId;
     }
 
     /**
@@ -80,27 +62,18 @@ public class GetTransactionRefundRequest {
     }    
 
     /**
-     * The ID of the transaction
+     * The unique identifier of the transaction.
      */
-    public GetTransactionRefundRequest withTransactionId(String transactionId) {
+    public ListTransactionSettlementsRequest withTransactionId(String transactionId) {
         Utils.checkNotNull(transactionId, "transactionId");
         this.transactionId = transactionId;
         return this;
     }
 
     /**
-     * The ID of the refund
-     */
-    public GetTransactionRefundRequest withRefundId(String refundId) {
-        Utils.checkNotNull(refundId, "refundId");
-        this.refundId = refundId;
-        return this;
-    }
-
-    /**
      * The ID of the merchant account to use for this request.
      */
-    public GetTransactionRefundRequest withMerchantAccountId(String merchantAccountId) {
+    public ListTransactionSettlementsRequest withMerchantAccountId(String merchantAccountId) {
         Utils.checkNotNull(merchantAccountId, "merchantAccountId");
         this.merchantAccountId = JsonNullable.of(merchantAccountId);
         return this;
@@ -109,7 +82,7 @@ public class GetTransactionRefundRequest {
     /**
      * The ID of the merchant account to use for this request.
      */
-    public GetTransactionRefundRequest withMerchantAccountId(JsonNullable<String> merchantAccountId) {
+    public ListTransactionSettlementsRequest withMerchantAccountId(JsonNullable<String> merchantAccountId) {
         Utils.checkNotNull(merchantAccountId, "merchantAccountId");
         this.merchantAccountId = merchantAccountId;
         return this;
@@ -124,10 +97,9 @@ public class GetTransactionRefundRequest {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        GetTransactionRefundRequest other = (GetTransactionRefundRequest) o;
+        ListTransactionSettlementsRequest other = (ListTransactionSettlementsRequest) o;
         return 
             Objects.deepEquals(this.transactionId, other.transactionId) &&
-            Objects.deepEquals(this.refundId, other.refundId) &&
             Objects.deepEquals(this.merchantAccountId, other.merchantAccountId);
     }
     
@@ -135,23 +107,19 @@ public class GetTransactionRefundRequest {
     public int hashCode() {
         return Objects.hash(
             transactionId,
-            refundId,
             merchantAccountId);
     }
     
     @Override
     public String toString() {
-        return Utils.toString(GetTransactionRefundRequest.class,
+        return Utils.toString(ListTransactionSettlementsRequest.class,
                 "transactionId", transactionId,
-                "refundId", refundId,
                 "merchantAccountId", merchantAccountId);
     }
     
     public final static class Builder {
  
         private String transactionId;
- 
-        private String refundId;
  
         private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
         
@@ -160,20 +128,11 @@ public class GetTransactionRefundRequest {
         }
 
         /**
-         * The ID of the transaction
+         * The unique identifier of the transaction.
          */
         public Builder transactionId(String transactionId) {
             Utils.checkNotNull(transactionId, "transactionId");
             this.transactionId = transactionId;
-            return this;
-        }
-
-        /**
-         * The ID of the refund
-         */
-        public Builder refundId(String refundId) {
-            Utils.checkNotNull(refundId, "refundId");
-            this.refundId = refundId;
             return this;
         }
 
@@ -195,10 +154,9 @@ public class GetTransactionRefundRequest {
             return this;
         }
         
-        public GetTransactionRefundRequest build() {
-            return new GetTransactionRefundRequest(
+        public ListTransactionSettlementsRequest build() {
+            return new ListTransactionSettlementsRequest(
                 transactionId,
-                refundId,
                 merchantAccountId);
         }
     }

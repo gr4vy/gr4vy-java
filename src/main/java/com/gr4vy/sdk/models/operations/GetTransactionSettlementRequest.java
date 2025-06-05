@@ -12,19 +12,19 @@ import java.lang.String;
 import java.util.Objects;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class GetTransactionRefundRequest {
+public class GetTransactionSettlementRequest {
 
     /**
-     * The ID of the transaction
+     * The unique identifier of the transaction.
      */
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=transaction_id")
     private String transactionId;
 
     /**
-     * The ID of the refund
+     * The unique identifier of the settlement.
      */
-    @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=refund_id")
-    private String refundId;
+    @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=settlement_id")
+    private String settlementId;
 
     /**
      * The ID of the merchant account to use for this request.
@@ -33,26 +33,26 @@ public class GetTransactionRefundRequest {
     private JsonNullable<String> merchantAccountId;
 
     @JsonCreator
-    public GetTransactionRefundRequest(
+    public GetTransactionSettlementRequest(
             String transactionId,
-            String refundId,
+            String settlementId,
             JsonNullable<String> merchantAccountId) {
         Utils.checkNotNull(transactionId, "transactionId");
-        Utils.checkNotNull(refundId, "refundId");
+        Utils.checkNotNull(settlementId, "settlementId");
         Utils.checkNotNull(merchantAccountId, "merchantAccountId");
         this.transactionId = transactionId;
-        this.refundId = refundId;
+        this.settlementId = settlementId;
         this.merchantAccountId = merchantAccountId;
     }
     
-    public GetTransactionRefundRequest(
+    public GetTransactionSettlementRequest(
             String transactionId,
-            String refundId) {
-        this(transactionId, refundId, JsonNullable.undefined());
+            String settlementId) {
+        this(transactionId, settlementId, JsonNullable.undefined());
     }
 
     /**
-     * The ID of the transaction
+     * The unique identifier of the transaction.
      */
     @JsonIgnore
     public String transactionId() {
@@ -60,11 +60,11 @@ public class GetTransactionRefundRequest {
     }
 
     /**
-     * The ID of the refund
+     * The unique identifier of the settlement.
      */
     @JsonIgnore
-    public String refundId() {
-        return refundId;
+    public String settlementId() {
+        return settlementId;
     }
 
     /**
@@ -80,27 +80,27 @@ public class GetTransactionRefundRequest {
     }    
 
     /**
-     * The ID of the transaction
+     * The unique identifier of the transaction.
      */
-    public GetTransactionRefundRequest withTransactionId(String transactionId) {
+    public GetTransactionSettlementRequest withTransactionId(String transactionId) {
         Utils.checkNotNull(transactionId, "transactionId");
         this.transactionId = transactionId;
         return this;
     }
 
     /**
-     * The ID of the refund
+     * The unique identifier of the settlement.
      */
-    public GetTransactionRefundRequest withRefundId(String refundId) {
-        Utils.checkNotNull(refundId, "refundId");
-        this.refundId = refundId;
+    public GetTransactionSettlementRequest withSettlementId(String settlementId) {
+        Utils.checkNotNull(settlementId, "settlementId");
+        this.settlementId = settlementId;
         return this;
     }
 
     /**
      * The ID of the merchant account to use for this request.
      */
-    public GetTransactionRefundRequest withMerchantAccountId(String merchantAccountId) {
+    public GetTransactionSettlementRequest withMerchantAccountId(String merchantAccountId) {
         Utils.checkNotNull(merchantAccountId, "merchantAccountId");
         this.merchantAccountId = JsonNullable.of(merchantAccountId);
         return this;
@@ -109,7 +109,7 @@ public class GetTransactionRefundRequest {
     /**
      * The ID of the merchant account to use for this request.
      */
-    public GetTransactionRefundRequest withMerchantAccountId(JsonNullable<String> merchantAccountId) {
+    public GetTransactionSettlementRequest withMerchantAccountId(JsonNullable<String> merchantAccountId) {
         Utils.checkNotNull(merchantAccountId, "merchantAccountId");
         this.merchantAccountId = merchantAccountId;
         return this;
@@ -124,10 +124,10 @@ public class GetTransactionRefundRequest {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        GetTransactionRefundRequest other = (GetTransactionRefundRequest) o;
+        GetTransactionSettlementRequest other = (GetTransactionSettlementRequest) o;
         return 
             Objects.deepEquals(this.transactionId, other.transactionId) &&
-            Objects.deepEquals(this.refundId, other.refundId) &&
+            Objects.deepEquals(this.settlementId, other.settlementId) &&
             Objects.deepEquals(this.merchantAccountId, other.merchantAccountId);
     }
     
@@ -135,15 +135,15 @@ public class GetTransactionRefundRequest {
     public int hashCode() {
         return Objects.hash(
             transactionId,
-            refundId,
+            settlementId,
             merchantAccountId);
     }
     
     @Override
     public String toString() {
-        return Utils.toString(GetTransactionRefundRequest.class,
+        return Utils.toString(GetTransactionSettlementRequest.class,
                 "transactionId", transactionId,
-                "refundId", refundId,
+                "settlementId", settlementId,
                 "merchantAccountId", merchantAccountId);
     }
     
@@ -151,7 +151,7 @@ public class GetTransactionRefundRequest {
  
         private String transactionId;
  
-        private String refundId;
+        private String settlementId;
  
         private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
         
@@ -160,7 +160,7 @@ public class GetTransactionRefundRequest {
         }
 
         /**
-         * The ID of the transaction
+         * The unique identifier of the transaction.
          */
         public Builder transactionId(String transactionId) {
             Utils.checkNotNull(transactionId, "transactionId");
@@ -169,11 +169,11 @@ public class GetTransactionRefundRequest {
         }
 
         /**
-         * The ID of the refund
+         * The unique identifier of the settlement.
          */
-        public Builder refundId(String refundId) {
-            Utils.checkNotNull(refundId, "refundId");
-            this.refundId = refundId;
+        public Builder settlementId(String settlementId) {
+            Utils.checkNotNull(settlementId, "settlementId");
+            this.settlementId = settlementId;
             return this;
         }
 
@@ -195,10 +195,10 @@ public class GetTransactionRefundRequest {
             return this;
         }
         
-        public GetTransactionRefundRequest build() {
-            return new GetTransactionRefundRequest(
+        public GetTransactionSettlementRequest build() {
+            return new GetTransactionSettlementRequest(
                 transactionId,
-                refundId,
+                settlementId,
                 merchantAccountId);
         }
     }

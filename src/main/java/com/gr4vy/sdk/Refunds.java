@@ -71,7 +71,7 @@ public class Refunds implements
      * 
      * <p>Fetch a refund.
      * 
-     * @param refundId 
+     * @param refundId The ID of the refund
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
@@ -85,7 +85,7 @@ public class Refunds implements
      * 
      * <p>Fetch a refund.
      * 
-     * @param refundId 
+     * @param refundId The ID of the refund
      * @param merchantAccountId 
      * @param options additional options
      * @return The response from the API call

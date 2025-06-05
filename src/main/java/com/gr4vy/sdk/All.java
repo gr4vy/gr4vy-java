@@ -67,7 +67,7 @@ public class All implements
      * 
      * <p>Create a refund for all instruments on a transaction.
      * 
-     * @param transactionId 
+     * @param transactionId The ID of the transaction
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
@@ -81,7 +81,7 @@ public class All implements
      * 
      * <p>Create a refund for all instruments on a transaction.
      * 
-     * @param transactionId 
+     * @param transactionId The ID of the transaction
      * @param merchantAccountId 
      * @param transactionRefundAllCreate 
      * @return The response from the API call

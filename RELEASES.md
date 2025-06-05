@@ -89,3 +89,13 @@ Based on:
 - [java v1.0.0-beta.10] .
 ### Releases
 - [Maven Central v1.0.0-beta.10] https://central.sonatype.com/artifact/com.gr4vy/sdk/1.0.0-beta.10 - .
+
+## 2025-06-05 16:32:07
+### Changes
+Based on:
+- OpenAPI Doc  
+- Speakeasy CLI 1.556.2 (2.621.3) https://github.com/speakeasy-api/speakeasy
+### Generated
+- [java v1.0.0-beta.11] .
+### Releases
+- [Maven Central v1.0.0-beta.11] https://central.sonatype.com/artifact/com.gr4vy/sdk/1.0.0-beta.11 - .

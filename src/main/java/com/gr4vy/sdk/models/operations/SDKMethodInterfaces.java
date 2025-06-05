@@ -401,6 +401,21 @@ public class SDKMethodInterfaces {
             Optional<Options> options) throws Exception;
     }
 
+    public interface MethodCallGetTransactionSettlement {
+        GetTransactionSettlementResponse get(
+            String transactionId,
+            String settlementId,
+            JsonNullable<String> merchantAccountId,
+            Optional<Options> options) throws Exception;
+    }
+
+    public interface MethodCallListTransactionSettlements {
+        ListTransactionSettlementsResponse list(
+            String transactionId,
+            JsonNullable<String> merchantAccountId,
+            Optional<Options> options) throws Exception;
+    }
+
     public interface MethodCallGetRefund {
         GetRefundResponse get(
             String refundId,

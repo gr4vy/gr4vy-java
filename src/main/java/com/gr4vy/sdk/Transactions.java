@@ -83,11 +83,13 @@ public class Transactions implements
     private final SDKConfiguration sdkConfiguration;
     private final TransactionsRefunds refunds;
     private final Events events;
+    private final Settlements settlements;
 
     Transactions(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
         this.refunds = new TransactionsRefunds(this.sdkConfiguration);
         this.events = new Events(this.sdkConfiguration);
+        this.settlements = new Settlements(this.sdkConfiguration);
     }
 
     public final TransactionsRefunds refunds() {
@@ -96,6 +98,10 @@ public class Transactions implements
 
     public final Events events() {
         return events;
+    }
+
+    public final Settlements settlements() {
+        return settlements;
     }
 
 
@@ -918,7 +924,7 @@ public class Transactions implements
      * 
      * <p>Fetch a single transaction by its ID.
      * 
-     * @param transactionId 
+     * @param transactionId The ID of the transaction
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
@@ -932,7 +938,7 @@ public class Transactions implements
      * 
      * <p>Fetch a single transaction by its ID.
      * 
-     * @param transactionId 
+     * @param transactionId The ID of the transaction
      * @param merchantAccountId 
      * @param options additional options
      * @return The response from the API call
@@ -1294,7 +1300,7 @@ public class Transactions implements
      * 
      * <p>Capture a previously authorized transaction.
      * 
-     * @param transactionId 
+     * @param transactionId The ID of the transaction
      * @param transactionCapture Request body for capturing an authorized transaction
      * @return The response from the API call
      * @throws Exception if the API call fails
@@ -1310,7 +1316,7 @@ public class Transactions implements
      * 
      * <p>Capture a previously authorized transaction.
      * 
-     * @param transactionId 
+     * @param transactionId The ID of the transaction
      * @param merchantAccountId 
      * @param transactionCapture Request body for capturing an authorized transaction
      * @return The response from the API call
@@ -1667,7 +1673,7 @@ public class Transactions implements
      * 
      * <p>Void a previously authorized transaction.
      * 
-     * @param transactionId 
+     * @param transactionId The ID of the transaction
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
@@ -1681,7 +1687,7 @@ public class Transactions implements
      * 
      * <p>Void a previously authorized transaction.
      * 
-     * @param transactionId 
+     * @param transactionId The ID of the transaction
      * @param merchantAccountId 
      * @return The response from the API call
      * @throws Exception if the API call fails

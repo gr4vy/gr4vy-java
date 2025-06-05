@@ -72,7 +72,7 @@ public class Events implements
      * 
      * <p>Fetch a list of events for a transaction.
      * 
-     * @param transactionId 
+     * @param transactionId The ID of the transaction
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
@@ -86,7 +86,7 @@ public class Events implements
      * 
      * <p>Fetch a list of events for a transaction.
      * 
-     * @param transactionId 
+     * @param transactionId The ID of the transaction
      * @param cursor A pointer to the page of results to return.
      * @param limit The maximum number of items that are at returned.
      * @param merchantAccountId 
