@@ -14,6 +14,9 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 public class GetRefundRequest {
 
+    /**
+     * The ID of the refund
+     */
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=refund_id")
     private String refundId;
 
@@ -38,6 +41,9 @@ public class GetRefundRequest {
         this(refundId, JsonNullable.undefined());
     }
 
+    /**
+     * The ID of the refund
+     */
     @JsonIgnore
     public String refundId() {
         return refundId;
@@ -55,6 +61,9 @@ public class GetRefundRequest {
         return new Builder();
     }    
 
+    /**
+     * The ID of the refund
+     */
     public GetRefundRequest withRefundId(String refundId) {
         Utils.checkNotNull(refundId, "refundId");
         this.refundId = refundId;
@@ -118,6 +127,9 @@ public class GetRefundRequest {
           // force use of static builder() method
         }
 
+        /**
+         * The ID of the refund
+         */
         public Builder refundId(String refundId) {
             Utils.checkNotNull(refundId, "refundId");
             this.refundId = refundId;

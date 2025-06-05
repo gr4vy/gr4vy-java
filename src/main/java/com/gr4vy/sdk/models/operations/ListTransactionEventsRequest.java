@@ -18,6 +18,9 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 public class ListTransactionEventsRequest {
 
+    /**
+     * The ID of the transaction
+     */
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=transaction_id")
     private String transactionId;
 
@@ -60,6 +63,9 @@ public class ListTransactionEventsRequest {
         this(transactionId, JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined());
     }
 
+    /**
+     * The ID of the transaction
+     */
     @JsonIgnore
     public String transactionId() {
         return transactionId;
@@ -93,6 +99,9 @@ public class ListTransactionEventsRequest {
         return new Builder();
     }    
 
+    /**
+     * The ID of the transaction
+     */
     public ListTransactionEventsRequest withTransactionId(String transactionId) {
         Utils.checkNotNull(transactionId, "transactionId");
         this.transactionId = transactionId;
@@ -202,6 +211,9 @@ public class ListTransactionEventsRequest {
           // force use of static builder() method
         }
 
+        /**
+         * The ID of the transaction
+         */
         public Builder transactionId(String transactionId) {
             Utils.checkNotNull(transactionId, "transactionId");
             this.transactionId = transactionId;
