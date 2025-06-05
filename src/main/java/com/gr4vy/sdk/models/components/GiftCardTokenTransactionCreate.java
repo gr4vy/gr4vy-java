@@ -21,7 +21,7 @@ public class GiftCardTokenTransactionCreate {
     private String id;
 
     /**
-     * The monetary amount for this transaction to charge against the gift card, in the smallest currency unit for the given currency, for example `1299` cents to create an authorization for `$12.99`.
+     * The monetary amount for this transaction to charge against the gift card, in the smallest currency unit (for example, cents or pence).
      */
     @JsonProperty("amount")
     private long amount;
@@ -45,7 +45,7 @@ public class GiftCardTokenTransactionCreate {
     }
 
     /**
-     * The monetary amount for this transaction to charge against the gift card, in the smallest currency unit for the given currency, for example `1299` cents to create an authorization for `$12.99`.
+     * The monetary amount for this transaction to charge against the gift card, in the smallest currency unit (for example, cents or pence).
      */
     @JsonIgnore
     public long amount() {
@@ -66,7 +66,7 @@ public class GiftCardTokenTransactionCreate {
     }
 
     /**
-     * The monetary amount for this transaction to charge against the gift card, in the smallest currency unit for the given currency, for example `1299` cents to create an authorization for `$12.99`.
+     * The monetary amount for this transaction to charge against the gift card, in the smallest currency unit (for example, cents or pence).
      */
     public GiftCardTokenTransactionCreate withAmount(long amount) {
         Utils.checkNotNull(amount, "amount");
@@ -123,7 +123,7 @@ public class GiftCardTokenTransactionCreate {
         }
 
         /**
-         * The monetary amount for this transaction to charge against the gift card, in the smallest currency unit for the given currency, for example `1299` cents to create an authorization for `$12.99`.
+         * The monetary amount for this transaction to charge against the gift card, in the smallest currency unit (for example, cents or pence).
          */
         public Builder amount(long amount) {
             Utils.checkNotNull(amount, "amount");

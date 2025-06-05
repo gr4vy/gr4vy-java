@@ -35,7 +35,7 @@ public class CreateTransactionResponse implements Response {
     private HttpResponse<InputStream> rawResponse;
 
     /**
-     * Returns the transaction.
+     * Returns the created transaction.
      */
     private Optional<? extends Transaction> transaction;
 
@@ -87,7 +87,7 @@ public class CreateTransactionResponse implements Response {
     }
 
     /**
-     * Returns the transaction.
+     * Returns the created transaction.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -127,7 +127,7 @@ public class CreateTransactionResponse implements Response {
     }
 
     /**
-     * Returns the transaction.
+     * Returns the created transaction.
      */
     public CreateTransactionResponse withTransaction(Transaction transaction) {
         Utils.checkNotNull(transaction, "transaction");
@@ -136,7 +136,7 @@ public class CreateTransactionResponse implements Response {
     }
 
     /**
-     * Returns the transaction.
+     * Returns the created transaction.
      */
     public CreateTransactionResponse withTransaction(Optional<? extends Transaction> transaction) {
         Utils.checkNotNull(transaction, "transaction");
@@ -221,7 +221,7 @@ public class CreateTransactionResponse implements Response {
         }
 
         /**
-         * Returns the transaction.
+         * Returns the created transaction.
          */
         public Builder transaction(Transaction transaction) {
             Utils.checkNotNull(transaction, "transaction");
@@ -230,7 +230,7 @@ public class CreateTransactionResponse implements Response {
         }
 
         /**
-         * Returns the transaction.
+         * Returns the created transaction.
          */
         public Builder transaction(Optional<? extends Transaction> transaction) {
             Utils.checkNotNull(transaction, "transaction");

@@ -30,7 +30,7 @@ public class Refund {
     private Optional<String> type;
 
     /**
-     * The ID for the refund.
+     * The unique identifier for the refund.
      */
     @JsonProperty("id")
     private String id;
@@ -52,13 +52,13 @@ public class Refund {
     private RefundStatus status;
 
     /**
-     * The currency code for this refund.  Will always match that of the associated transaction.
+     * The ISO 4217 currency code for this refund. Will always match that of the associated transaction.
      */
     @JsonProperty("currency")
     private String currency;
 
     /**
-     * The amount requested for this refund.
+     * The amount of this refund, in the smallest currency unit (for example, cents or pence).
      */
     @JsonProperty("amount")
     private long amount;
@@ -201,7 +201,7 @@ public class Refund {
     }
 
     /**
-     * The ID for the refund.
+     * The unique identifier for the refund.
      */
     @JsonIgnore
     public String id() {
@@ -230,7 +230,7 @@ public class Refund {
     }
 
     /**
-     * The currency code for this refund.  Will always match that of the associated transaction.
+     * The ISO 4217 currency code for this refund. Will always match that of the associated transaction.
      */
     @JsonIgnore
     public String currency() {
@@ -238,7 +238,7 @@ public class Refund {
     }
 
     /**
-     * The amount requested for this refund.
+     * The amount of this refund, in the smallest currency unit (for example, cents or pence).
      */
     @JsonIgnore
     public long amount() {
@@ -328,7 +328,7 @@ public class Refund {
     }    
 
     /**
-     * The ID for the refund.
+     * The unique identifier for the refund.
      */
     public Refund withId(String id) {
         Utils.checkNotNull(id, "id");
@@ -370,7 +370,7 @@ public class Refund {
     }
 
     /**
-     * The currency code for this refund.  Will always match that of the associated transaction.
+     * The ISO 4217 currency code for this refund. Will always match that of the associated transaction.
      */
     public Refund withCurrency(String currency) {
         Utils.checkNotNull(currency, "currency");
@@ -379,7 +379,7 @@ public class Refund {
     }
 
     /**
-     * The amount requested for this refund.
+     * The amount of this refund, in the smallest currency unit (for example, cents or pence).
      */
     public Refund withAmount(long amount) {
         Utils.checkNotNull(amount, "amount");
@@ -632,7 +632,7 @@ public class Refund {
         }
 
         /**
-         * The ID for the refund.
+         * The unique identifier for the refund.
          */
         public Builder id(String id) {
             Utils.checkNotNull(id, "id");
@@ -674,7 +674,7 @@ public class Refund {
         }
 
         /**
-         * The currency code for this refund.  Will always match that of the associated transaction.
+         * The ISO 4217 currency code for this refund. Will always match that of the associated transaction.
          */
         public Builder currency(String currency) {
             Utils.checkNotNull(currency, "currency");
@@ -683,7 +683,7 @@ public class Refund {
         }
 
         /**
-         * The amount requested for this refund.
+         * The amount of this refund, in the smallest currency unit (for example, cents or pence).
          */
         public Builder amount(long amount) {
             Utils.checkNotNull(amount, "amount");

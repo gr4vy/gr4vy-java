@@ -48,25 +48,25 @@ public class Settlement {
     private String merchantAccountId;
 
     /**
-     * Date and time the settlement was created.
+     * The date and time the settlement was created, in ISO 8601 format.
      */
     @JsonProperty("created_at")
     private OffsetDateTime createdAt;
 
     /**
-     * Date and time the settlement was last updated.
+     * The date and time the settlement was last updated, in ISO 8601 format.
      */
     @JsonProperty("updated_at")
     private OffsetDateTime updatedAt;
 
     /**
-     * Date and time the settlement was posted.
+     * The date and time the settlement was posted, in ISO 8601 format.
      */
     @JsonProperty("posted_at")
     private OffsetDateTime postedAt;
 
     /**
-     * Date and time the settlement was ingested.
+     * The date and time the settlement was ingested, in ISO 8601 format.
      */
     @JsonProperty("ingested_at")
     private OffsetDateTime ingestedAt;
@@ -229,7 +229,7 @@ public class Settlement {
     }
 
     /**
-     * Date and time the settlement was created.
+     * The date and time the settlement was created, in ISO 8601 format.
      */
     @JsonIgnore
     public OffsetDateTime createdAt() {
@@ -237,7 +237,7 @@ public class Settlement {
     }
 
     /**
-     * Date and time the settlement was last updated.
+     * The date and time the settlement was last updated, in ISO 8601 format.
      */
     @JsonIgnore
     public OffsetDateTime updatedAt() {
@@ -245,7 +245,7 @@ public class Settlement {
     }
 
     /**
-     * Date and time the settlement was posted.
+     * The date and time the settlement was posted, in ISO 8601 format.
      */
     @JsonIgnore
     public OffsetDateTime postedAt() {
@@ -253,7 +253,7 @@ public class Settlement {
     }
 
     /**
-     * Date and time the settlement was ingested.
+     * The date and time the settlement was ingested, in ISO 8601 format.
      */
     @JsonIgnore
     public OffsetDateTime ingestedAt() {
@@ -363,7 +363,7 @@ public class Settlement {
     }
 
     /**
-     * Date and time the settlement was created.
+     * The date and time the settlement was created, in ISO 8601 format.
      */
     public Settlement withCreatedAt(OffsetDateTime createdAt) {
         Utils.checkNotNull(createdAt, "createdAt");
@@ -372,7 +372,7 @@ public class Settlement {
     }
 
     /**
-     * Date and time the settlement was last updated.
+     * The date and time the settlement was last updated, in ISO 8601 format.
      */
     public Settlement withUpdatedAt(OffsetDateTime updatedAt) {
         Utils.checkNotNull(updatedAt, "updatedAt");
@@ -381,7 +381,7 @@ public class Settlement {
     }
 
     /**
-     * Date and time the settlement was posted.
+     * The date and time the settlement was posted, in ISO 8601 format.
      */
     public Settlement withPostedAt(OffsetDateTime postedAt) {
         Utils.checkNotNull(postedAt, "postedAt");
@@ -390,7 +390,7 @@ public class Settlement {
     }
 
     /**
-     * Date and time the settlement was ingested.
+     * The date and time the settlement was ingested, in ISO 8601 format.
      */
     public Settlement withIngestedAt(OffsetDateTime ingestedAt) {
         Utils.checkNotNull(ingestedAt, "ingestedAt");
@@ -655,7 +655,7 @@ public class Settlement {
         }
 
         /**
-         * Date and time the settlement was created.
+         * The date and time the settlement was created, in ISO 8601 format.
          */
         public Builder createdAt(OffsetDateTime createdAt) {
             Utils.checkNotNull(createdAt, "createdAt");
@@ -664,7 +664,7 @@ public class Settlement {
         }
 
         /**
-         * Date and time the settlement was last updated.
+         * The date and time the settlement was last updated, in ISO 8601 format.
          */
         public Builder updatedAt(OffsetDateTime updatedAt) {
             Utils.checkNotNull(updatedAt, "updatedAt");
@@ -673,7 +673,7 @@ public class Settlement {
         }
 
         /**
-         * Date and time the settlement was posted.
+         * The date and time the settlement was posted, in ISO 8601 format.
          */
         public Builder postedAt(OffsetDateTime postedAt) {
             Utils.checkNotNull(postedAt, "postedAt");
@@ -682,7 +682,7 @@ public class Settlement {
         }
 
         /**
-         * Date and time the settlement was ingested.
+         * The date and time the settlement was ingested, in ISO 8601 format.
          */
         public Builder ingestedAt(OffsetDateTime ingestedAt) {
             Utils.checkNotNull(ingestedAt, "ingestedAt");

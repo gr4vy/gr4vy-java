@@ -19,12 +19,12 @@ import org.openapitools.jackson.nullable.JsonNullable;
 /**
  * TransactionCapture
  * 
- * <p>Request body for capturing an authorized transaction
+ * <p>Request body for capturing an authorized transaction.
  */
 public class TransactionCapture {
 
     /**
-     * The amount to capture. This normally needs to be equal or less than the authorized amount, unless over-capture is available.
+     * The amount to capture, in the smallest currency unit (e.g., cents). This must be less than or equal to the authorized amount, unless over-capture is available.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("amount")
@@ -52,7 +52,7 @@ public class TransactionCapture {
     }
 
     /**
-     * The amount to capture. This normally needs to be equal or less than the authorized amount, unless over-capture is available.
+     * The amount to capture, in the smallest currency unit (e.g., cents). This must be less than or equal to the authorized amount, unless over-capture is available.
      */
     @JsonIgnore
     public JsonNullable<Long> amount() {
@@ -73,7 +73,7 @@ public class TransactionCapture {
     }    
 
     /**
-     * The amount to capture. This normally needs to be equal or less than the authorized amount, unless over-capture is available.
+     * The amount to capture, in the smallest currency unit (e.g., cents). This must be less than or equal to the authorized amount, unless over-capture is available.
      */
     public TransactionCapture withAmount(long amount) {
         Utils.checkNotNull(amount, "amount");
@@ -82,7 +82,7 @@ public class TransactionCapture {
     }
 
     /**
-     * The amount to capture. This normally needs to be equal or less than the authorized amount, unless over-capture is available.
+     * The amount to capture, in the smallest currency unit (e.g., cents). This must be less than or equal to the authorized amount, unless over-capture is available.
      */
     public TransactionCapture withAmount(JsonNullable<Long> amount) {
         Utils.checkNotNull(amount, "amount");
@@ -148,7 +148,7 @@ public class TransactionCapture {
         }
 
         /**
-         * The amount to capture. This normally needs to be equal or less than the authorized amount, unless over-capture is available.
+         * The amount to capture, in the smallest currency unit (e.g., cents). This must be less than or equal to the authorized amount, unless over-capture is available.
          */
         public Builder amount(long amount) {
             Utils.checkNotNull(amount, "amount");
@@ -157,7 +157,7 @@ public class TransactionCapture {
         }
 
         /**
-         * The amount to capture. This normally needs to be equal or less than the authorized amount, unless over-capture is available.
+         * The amount to capture, in the smallest currency unit (e.g., cents). This must be less than or equal to the authorized amount, unless over-capture is available.
          */
         public Builder amount(JsonNullable<Long> amount) {
             Utils.checkNotNull(amount, "amount");

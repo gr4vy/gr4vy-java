@@ -541,16 +541,16 @@ public class SDKMethodInterfaces {
             JsonNullable<String> merchantAccountId) throws Exception;
     }
 
-    public interface MethodCallListAllReportExecutions {
-        ListAllReportExecutionsResponse all(
-            ListAllReportExecutionsRequest request,
-            Optional<Options> options) throws Exception;
-    }
-
     public interface MethodCallGetReportExecution {
         GetReportExecutionResponse get(
             String reportExecutionId,
             JsonNullable<String> merchantAccountId,
+            Optional<Options> options) throws Exception;
+    }
+
+    public interface MethodCallListAllReportExecutions {
+        ListAllReportExecutionsResponse list(
+            ListAllReportExecutionsRequest request,
             Optional<Options> options) throws Exception;
     }
 
