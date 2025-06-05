@@ -73,8 +73,11 @@ public class ListTransactionsRequest {
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=buyer_email_address")
     private JsonNullable<String> buyerEmailAddress;
 
+    /**
+     * Filters the results to only get the items for which some of the buyer data contains exactly the provided `buyer_search` values.
+     */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=buyer_search")
-    private JsonNullable<String> buyerSearch;
+    private JsonNullable<? extends List<String>> buyerSearch;
 
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=ip_address")
     private JsonNullable<String> ipAddress;
@@ -265,7 +268,7 @@ public class ListTransactionsRequest {
             JsonNullable<String> buyerExternalIdentifier,
             JsonNullable<String> buyerId,
             JsonNullable<String> buyerEmailAddress,
-            JsonNullable<String> buyerSearch,
+            JsonNullable<? extends List<String>> buyerSearch,
             JsonNullable<String> ipAddress,
             JsonNullable<? extends List<TransactionStatus>> status,
             JsonNullable<String> id,
@@ -461,9 +464,13 @@ public class ListTransactionsRequest {
         return buyerEmailAddress;
     }
 
+    /**
+     * Filters the results to only get the items for which some of the buyer data contains exactly the provided `buyer_search` values.
+     */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<String> buyerSearch() {
-        return buyerSearch;
+    public JsonNullable<List<String>> buyerSearch() {
+        return (JsonNullable<List<String>>) buyerSearch;
     }
 
     @JsonIgnore
@@ -877,13 +884,19 @@ public class ListTransactionsRequest {
         return this;
     }
 
-    public ListTransactionsRequest withBuyerSearch(String buyerSearch) {
+    /**
+     * Filters the results to only get the items for which some of the buyer data contains exactly the provided `buyer_search` values.
+     */
+    public ListTransactionsRequest withBuyerSearch(List<String> buyerSearch) {
         Utils.checkNotNull(buyerSearch, "buyerSearch");
         this.buyerSearch = JsonNullable.of(buyerSearch);
         return this;
     }
 
-    public ListTransactionsRequest withBuyerSearch(JsonNullable<String> buyerSearch) {
+    /**
+     * Filters the results to only get the items for which some of the buyer data contains exactly the provided `buyer_search` values.
+     */
+    public ListTransactionsRequest withBuyerSearch(JsonNullable<? extends List<String>> buyerSearch) {
         Utils.checkNotNull(buyerSearch, "buyerSearch");
         this.buyerSearch = buyerSearch;
         return this;
@@ -1618,7 +1631,7 @@ public class ListTransactionsRequest {
  
         private JsonNullable<String> buyerEmailAddress = JsonNullable.undefined();
  
-        private JsonNullable<String> buyerSearch = JsonNullable.undefined();
+        private JsonNullable<? extends List<String>> buyerSearch = JsonNullable.undefined();
  
         private JsonNullable<String> ipAddress = JsonNullable.undefined();
  
@@ -1846,13 +1859,19 @@ public class ListTransactionsRequest {
             return this;
         }
 
-        public Builder buyerSearch(String buyerSearch) {
+        /**
+         * Filters the results to only get the items for which some of the buyer data contains exactly the provided `buyer_search` values.
+         */
+        public Builder buyerSearch(List<String> buyerSearch) {
             Utils.checkNotNull(buyerSearch, "buyerSearch");
             this.buyerSearch = JsonNullable.of(buyerSearch);
             return this;
         }
 
-        public Builder buyerSearch(JsonNullable<String> buyerSearch) {
+        /**
+         * Filters the results to only get the items for which some of the buyer data contains exactly the provided `buyer_search` values.
+         */
+        public Builder buyerSearch(JsonNullable<? extends List<String>> buyerSearch) {
             Utils.checkNotNull(buyerSearch, "buyerSearch");
             this.buyerSearch = buyerSearch;
             return this;
