@@ -76,26 +76,26 @@ public class TransactionSummary {
     private long authorizedAmount;
 
     /**
-     * The captured amount for this transaction. This can be the full value of the `authorized_amount` or less.
+     * The total amount captured for this transaction, in the smallest currency unit (for example, cents or pence). This can be the full value of the `authorized_amount` or less.
      */
     @JsonProperty("captured_amount")
     private long capturedAmount;
 
     /**
-     * The refunded amount for this transaction. This can be the full value of the `captured_amount` or less.
+     * The total amount refunded for this transaction, in the smallest currency unit (for example, cents or pence). This can be the full value of the `captured_amount` or less.
      */
     @JsonProperty("refunded_amount")
     private long refundedAmount;
 
     /**
-     * The currency of this transaction's settlement in ISO 4217 three-letter code format.
+     * The ISO 4217 currency code of this transaction's settlement.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("settled_currency")
     private JsonNullable<String> settledCurrency;
 
     /**
-     * The net amount settled for this transaction.
+     * The net amount settled for this transaction, in the smallest currency unit (for example, cents or pence).
      */
     @JsonProperty("settled_amount")
     private long settledAmount;
@@ -107,7 +107,7 @@ public class TransactionSummary {
     private boolean settled;
 
     /**
-     * The 2-letter ISO code of the country of the transaction. This is used to filter the payment services that is used to process the transaction.
+     * The 2-letter ISO 3166-1 alpha-2 country code for the transaction. Used to filter payment services for processing.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("country")
@@ -214,13 +214,13 @@ public class TransactionSummary {
     private JsonNullable<? extends GiftCardService> giftCardService;
 
     /**
-     * The date this buyer was created at.
+     * The date and time when the transaction was created, in ISO 8601 format.
      */
     @JsonProperty("created_at")
     private OffsetDateTime createdAt;
 
     /**
-     * The date this buyer was last updated at.
+     * The date and time when the transaction was last updated, in ISO 8601 format.
      */
     @JsonProperty("updated_at")
     private OffsetDateTime updatedAt;
@@ -401,7 +401,7 @@ public class TransactionSummary {
     }
 
     /**
-     * The captured amount for this transaction. This can be the full value of the `authorized_amount` or less.
+     * The total amount captured for this transaction, in the smallest currency unit (for example, cents or pence). This can be the full value of the `authorized_amount` or less.
      */
     @JsonIgnore
     public long capturedAmount() {
@@ -409,7 +409,7 @@ public class TransactionSummary {
     }
 
     /**
-     * The refunded amount for this transaction. This can be the full value of the `captured_amount` or less.
+     * The total amount refunded for this transaction, in the smallest currency unit (for example, cents or pence). This can be the full value of the `captured_amount` or less.
      */
     @JsonIgnore
     public long refundedAmount() {
@@ -417,7 +417,7 @@ public class TransactionSummary {
     }
 
     /**
-     * The currency of this transaction's settlement in ISO 4217 three-letter code format.
+     * The ISO 4217 currency code of this transaction's settlement.
      */
     @JsonIgnore
     public JsonNullable<String> settledCurrency() {
@@ -425,7 +425,7 @@ public class TransactionSummary {
     }
 
     /**
-     * The net amount settled for this transaction.
+     * The net amount settled for this transaction, in the smallest currency unit (for example, cents or pence).
      */
     @JsonIgnore
     public long settledAmount() {
@@ -441,7 +441,7 @@ public class TransactionSummary {
     }
 
     /**
-     * The 2-letter ISO code of the country of the transaction. This is used to filter the payment services that is used to process the transaction.
+     * The 2-letter ISO 3166-1 alpha-2 country code for the transaction. Used to filter payment services for processing.
      */
     @JsonIgnore
     public JsonNullable<String> country() {
@@ -573,7 +573,7 @@ public class TransactionSummary {
     }
 
     /**
-     * The date this buyer was created at.
+     * The date and time when the transaction was created, in ISO 8601 format.
      */
     @JsonIgnore
     public OffsetDateTime createdAt() {
@@ -581,7 +581,7 @@ public class TransactionSummary {
     }
 
     /**
-     * The date this buyer was last updated at.
+     * The date and time when the transaction was last updated, in ISO 8601 format.
      */
     @JsonIgnore
     public OffsetDateTime updatedAt() {
@@ -653,7 +653,7 @@ public class TransactionSummary {
     }
 
     /**
-     * The captured amount for this transaction. This can be the full value of the `authorized_amount` or less.
+     * The total amount captured for this transaction, in the smallest currency unit (for example, cents or pence). This can be the full value of the `authorized_amount` or less.
      */
     public TransactionSummary withCapturedAmount(long capturedAmount) {
         Utils.checkNotNull(capturedAmount, "capturedAmount");
@@ -662,7 +662,7 @@ public class TransactionSummary {
     }
 
     /**
-     * The refunded amount for this transaction. This can be the full value of the `captured_amount` or less.
+     * The total amount refunded for this transaction, in the smallest currency unit (for example, cents or pence). This can be the full value of the `captured_amount` or less.
      */
     public TransactionSummary withRefundedAmount(long refundedAmount) {
         Utils.checkNotNull(refundedAmount, "refundedAmount");
@@ -671,7 +671,7 @@ public class TransactionSummary {
     }
 
     /**
-     * The currency of this transaction's settlement in ISO 4217 three-letter code format.
+     * The ISO 4217 currency code of this transaction's settlement.
      */
     public TransactionSummary withSettledCurrency(String settledCurrency) {
         Utils.checkNotNull(settledCurrency, "settledCurrency");
@@ -680,7 +680,7 @@ public class TransactionSummary {
     }
 
     /**
-     * The currency of this transaction's settlement in ISO 4217 three-letter code format.
+     * The ISO 4217 currency code of this transaction's settlement.
      */
     public TransactionSummary withSettledCurrency(JsonNullable<String> settledCurrency) {
         Utils.checkNotNull(settledCurrency, "settledCurrency");
@@ -689,7 +689,7 @@ public class TransactionSummary {
     }
 
     /**
-     * The net amount settled for this transaction.
+     * The net amount settled for this transaction, in the smallest currency unit (for example, cents or pence).
      */
     public TransactionSummary withSettledAmount(long settledAmount) {
         Utils.checkNotNull(settledAmount, "settledAmount");
@@ -707,7 +707,7 @@ public class TransactionSummary {
     }
 
     /**
-     * The 2-letter ISO code of the country of the transaction. This is used to filter the payment services that is used to process the transaction.
+     * The 2-letter ISO 3166-1 alpha-2 country code for the transaction. Used to filter payment services for processing.
      */
     public TransactionSummary withCountry(String country) {
         Utils.checkNotNull(country, "country");
@@ -716,7 +716,7 @@ public class TransactionSummary {
     }
 
     /**
-     * The 2-letter ISO code of the country of the transaction. This is used to filter the payment services that is used to process the transaction.
+     * The 2-letter ISO 3166-1 alpha-2 country code for the transaction. Used to filter payment services for processing.
      */
     public TransactionSummary withCountry(JsonNullable<String> country) {
         Utils.checkNotNull(country, "country");
@@ -974,7 +974,7 @@ public class TransactionSummary {
     }
 
     /**
-     * The date this buyer was created at.
+     * The date and time when the transaction was created, in ISO 8601 format.
      */
     public TransactionSummary withCreatedAt(OffsetDateTime createdAt) {
         Utils.checkNotNull(createdAt, "createdAt");
@@ -983,7 +983,7 @@ public class TransactionSummary {
     }
 
     /**
-     * The date this buyer was last updated at.
+     * The date and time when the transaction was last updated, in ISO 8601 format.
      */
     public TransactionSummary withUpdatedAt(OffsetDateTime updatedAt) {
         Utils.checkNotNull(updatedAt, "updatedAt");
@@ -1234,7 +1234,7 @@ public class TransactionSummary {
         }
 
         /**
-         * The captured amount for this transaction. This can be the full value of the `authorized_amount` or less.
+         * The total amount captured for this transaction, in the smallest currency unit (for example, cents or pence). This can be the full value of the `authorized_amount` or less.
          */
         public Builder capturedAmount(long capturedAmount) {
             Utils.checkNotNull(capturedAmount, "capturedAmount");
@@ -1243,7 +1243,7 @@ public class TransactionSummary {
         }
 
         /**
-         * The refunded amount for this transaction. This can be the full value of the `captured_amount` or less.
+         * The total amount refunded for this transaction, in the smallest currency unit (for example, cents or pence). This can be the full value of the `captured_amount` or less.
          */
         public Builder refundedAmount(long refundedAmount) {
             Utils.checkNotNull(refundedAmount, "refundedAmount");
@@ -1252,7 +1252,7 @@ public class TransactionSummary {
         }
 
         /**
-         * The currency of this transaction's settlement in ISO 4217 three-letter code format.
+         * The ISO 4217 currency code of this transaction's settlement.
          */
         public Builder settledCurrency(String settledCurrency) {
             Utils.checkNotNull(settledCurrency, "settledCurrency");
@@ -1261,7 +1261,7 @@ public class TransactionSummary {
         }
 
         /**
-         * The currency of this transaction's settlement in ISO 4217 three-letter code format.
+         * The ISO 4217 currency code of this transaction's settlement.
          */
         public Builder settledCurrency(JsonNullable<String> settledCurrency) {
             Utils.checkNotNull(settledCurrency, "settledCurrency");
@@ -1270,7 +1270,7 @@ public class TransactionSummary {
         }
 
         /**
-         * The net amount settled for this transaction.
+         * The net amount settled for this transaction, in the smallest currency unit (for example, cents or pence).
          */
         public Builder settledAmount(long settledAmount) {
             Utils.checkNotNull(settledAmount, "settledAmount");
@@ -1288,7 +1288,7 @@ public class TransactionSummary {
         }
 
         /**
-         * The 2-letter ISO code of the country of the transaction. This is used to filter the payment services that is used to process the transaction.
+         * The 2-letter ISO 3166-1 alpha-2 country code for the transaction. Used to filter payment services for processing.
          */
         public Builder country(String country) {
             Utils.checkNotNull(country, "country");
@@ -1297,7 +1297,7 @@ public class TransactionSummary {
         }
 
         /**
-         * The 2-letter ISO code of the country of the transaction. This is used to filter the payment services that is used to process the transaction.
+         * The 2-letter ISO 3166-1 alpha-2 country code for the transaction. Used to filter payment services for processing.
          */
         public Builder country(JsonNullable<String> country) {
             Utils.checkNotNull(country, "country");
@@ -1555,7 +1555,7 @@ public class TransactionSummary {
         }
 
         /**
-         * The date this buyer was created at.
+         * The date and time when the transaction was created, in ISO 8601 format.
          */
         public Builder createdAt(OffsetDateTime createdAt) {
             Utils.checkNotNull(createdAt, "createdAt");
@@ -1564,7 +1564,7 @@ public class TransactionSummary {
         }
 
         /**
-         * The date this buyer was last updated at.
+         * The date and time when the transaction was last updated, in ISO 8601 format.
          */
         public Builder updatedAt(OffsetDateTime updatedAt) {
             Utils.checkNotNull(updatedAt, "updatedAt");

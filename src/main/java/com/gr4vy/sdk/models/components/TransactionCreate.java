@@ -32,7 +32,7 @@ public class TransactionCreate {
     private long amount;
 
     /**
-     * A supported ISO-4217 currency code. For redirect requests, this value must match the one specified for `currency` in `payment_method`.
+     * A supported ISO 4217 currency code. For redirect requests, this value must match the one specified for `currency` in `payment_method`.
      */
     @JsonProperty("currency")
     private String currency;
@@ -347,7 +347,7 @@ public class TransactionCreate {
     }
 
     /**
-     * A supported ISO-4217 currency code. For redirect requests, this value must match the one specified for `currency` in `payment_method`.
+     * A supported ISO 4217 currency code. For redirect requests, this value must match the one specified for `currency` in `payment_method`.
      */
     @JsonIgnore
     public String currency() {
@@ -612,7 +612,7 @@ public class TransactionCreate {
     }
 
     /**
-     * A supported ISO-4217 currency code. For redirect requests, this value must match the one specified for `currency` in `payment_method`.
+     * A supported ISO 4217 currency code. For redirect requests, this value must match the one specified for `currency` in `payment_method`.
      */
     public TransactionCreate withCurrency(String currency) {
         Utils.checkNotNull(currency, "currency");
@@ -1320,7 +1320,7 @@ public class TransactionCreate {
         }
 
         /**
-         * A supported ISO-4217 currency code. For redirect requests, this value must match the one specified for `currency` in `payment_method`.
+         * A supported ISO 4217 currency code. For redirect requests, this value must match the one specified for `currency` in `payment_method`.
          */
         public Builder currency(String currency) {
             Utils.checkNotNull(currency, "currency");

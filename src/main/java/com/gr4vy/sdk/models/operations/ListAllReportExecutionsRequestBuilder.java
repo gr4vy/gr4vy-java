@@ -43,7 +43,7 @@ public class ListAllReportExecutionsRequestBuilder {
         Optional<Options> options = Optional.of(Options.builder()
                                                     .retryConfig(retryConfig)
                                                     .build());
-        return sdk.all(
+        return sdk.list(
             request,
             options);
     }

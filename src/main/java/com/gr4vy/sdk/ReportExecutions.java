@@ -4,7 +4,6 @@
 package com.gr4vy.sdk;
 
 import com.fasterxml.jackson.core.type.TypeReference;
-import com.gr4vy.sdk.models.components.TransactionEvents;
 import com.gr4vy.sdk.models.errors.APIException;
 import com.gr4vy.sdk.models.errors.Error400;
 import com.gr4vy.sdk.models.errors.Error401;
@@ -18,9 +17,9 @@ import com.gr4vy.sdk.models.errors.Error500;
 import com.gr4vy.sdk.models.errors.Error502;
 import com.gr4vy.sdk.models.errors.Error504;
 import com.gr4vy.sdk.models.errors.HTTPValidationError;
-import com.gr4vy.sdk.models.operations.ListTransactionEventsRequest;
-import com.gr4vy.sdk.models.operations.ListTransactionEventsRequestBuilder;
-import com.gr4vy.sdk.models.operations.ListTransactionEventsResponse;
+import com.gr4vy.sdk.models.operations.ListAllReportExecutionsRequest;
+import com.gr4vy.sdk.models.operations.ListAllReportExecutionsRequestBuilder;
+import com.gr4vy.sdk.models.operations.ListAllReportExecutionsResponse;
 import com.gr4vy.sdk.models.operations.SDKMethodInterfaces.*;
 import com.gr4vy.sdk.utils.BackoffStrategy;
 import com.gr4vy.sdk.utils.HTTPClient;
@@ -33,12 +32,17 @@ import com.gr4vy.sdk.utils.Retries.NonRetryableException;
 import com.gr4vy.sdk.utils.Retries;
 import com.gr4vy.sdk.utils.RetryConfig;
 import com.gr4vy.sdk.utils.Utils;
+import com.jayway.jsonpath.Configuration;
+import com.jayway.jsonpath.JsonPath;
+import com.jayway.jsonpath.Option;
+import com.jayway.jsonpath.ReadContext;
 import java.io.InputStream;
 import java.lang.Exception;
-import java.lang.Long;
 import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -46,80 +50,63 @@ import java.util.Optional;
 import java.util.concurrent.TimeUnit;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class Events implements
-            MethodCallListTransactionEvents {
+public class ReportExecutions implements
+            MethodCallListAllReportExecutions {
 
     private final SDKConfiguration sdkConfiguration;
 
-    Events(SDKConfiguration sdkConfiguration) {
+    ReportExecutions(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
 
 
     /**
-     * List transaction events
+     * List executed reports
      * 
-     * <p>Retrieve a paginated list of events related to processing a transaction, including status changes, API requests, and webhook delivery attempts. Events are listed in chronological order, with the most recent events first.
+     * <p>List all executed reports that have been generated.
      * 
      * @return The call builder
      */
-    public ListTransactionEventsRequestBuilder list() {
-        return new ListTransactionEventsRequestBuilder(this);
+    public ListAllReportExecutionsRequestBuilder list() {
+        return new ListAllReportExecutionsRequestBuilder(this);
     }
 
     /**
-     * List transaction events
+     * List executed reports
      * 
-     * <p>Retrieve a paginated list of events related to processing a transaction, including status changes, API requests, and webhook delivery attempts. Events are listed in chronological order, with the most recent events first.
+     * <p>List all executed reports that have been generated.
      * 
-     * @param transactionId The ID of the transaction
+     * @param request The request object containing all of the parameters for the API call.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public ListTransactionEventsResponse list(
-            String transactionId) throws Exception {
-        return list(transactionId, JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), Optional.empty());
+    public ListAllReportExecutionsResponse list(
+            ListAllReportExecutionsRequest request) throws Exception {
+        return list(request, Optional.empty());
     }
     
     /**
-     * List transaction events
+     * List executed reports
      * 
-     * <p>Retrieve a paginated list of events related to processing a transaction, including status changes, API requests, and webhook delivery attempts. Events are listed in chronological order, with the most recent events first.
+     * <p>List all executed reports that have been generated.
      * 
-     * @param transactionId The ID of the transaction
-     * @param cursor A pointer to the page of results to return.
-     * @param limit The maximum number of items that are at returned.
-     * @param merchantAccountId 
+     * @param request The request object containing all of the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public ListTransactionEventsResponse list(
-            String transactionId,
-            JsonNullable<String> cursor,
-            Optional<Long> limit,
-            JsonNullable<String> merchantAccountId,
+    public ListAllReportExecutionsResponse list(
+            ListAllReportExecutionsRequest request,
             Optional<Options> options) throws Exception {
 
         if (options.isPresent()) {
           options.get().validate(Arrays.asList(Options.Option.RETRY_CONFIG));
         }
-        ListTransactionEventsRequest request =
-            ListTransactionEventsRequest
-                .builder()
-                .transactionId(transactionId)
-                .cursor(cursor)
-                .limit(limit)
-                .merchantAccountId(merchantAccountId)
-                .build();
-        
         String _baseUrl = Utils.templateUrl(
                 this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
-                ListTransactionEventsRequest.class,
                 _baseUrl,
-                "/transactions/{transaction_id}/events",
-                request, this.sdkConfiguration.globals);
+                "/report-executions");
         
         HTTPRequest _req = new HTTPRequest(_url, "GET");
         _req.addHeader("Accept", "application/json")
@@ -127,7 +114,7 @@ public class Events implements
                 SDKConfiguration.USER_AGENT);
 
         _req.addQueryParams(Utils.getQueryParams(
-                ListTransactionEventsRequest.class,
+                ListAllReportExecutionsRequest.class,
                 request, 
                 this.sdkConfiguration.globals));
         _req.addHeaders(Utils.getHeadersFromMetadata(request, this.sdkConfiguration.globals));
@@ -164,7 +151,7 @@ public class Events implements
                             new BeforeRequestContextImpl(
                                 this.sdkConfiguration,
                                 _baseUrl,
-                                "list_transaction_events", 
+                                "list_all_report_executions", 
                                 Optional.of(List.of()), 
                                 _hookSecuritySource),
                             _finalReq.build());
@@ -179,7 +166,7 @@ public class Events implements
                             new AfterErrorContextImpl(
                                 this.sdkConfiguration,
                                 _baseUrl,
-                                "list_transaction_events",
+                                "list_all_report_executions",
                                  Optional.of(List.of()),
                                  _hookSecuritySource), 
                             Optional.empty(),
@@ -194,7 +181,7 @@ public class Events implements
                      new AfterSuccessContextImpl(
                          this.sdkConfiguration,
                          _baseUrl,
-                         "list_transaction_events", 
+                         "list_all_report_executions", 
                          Optional.of(List.of()), 
                          _hookSecuritySource),
                      _retries.run());
@@ -202,34 +189,62 @@ public class Events implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        ListTransactionEventsResponse.Builder _resBuilder = 
-            ListTransactionEventsResponse
+        byte[] _fullResponse = Utils.extractByteArrayFromBody(_httpRes);
+        
+        @SuppressWarnings("deprecation")
+        ListAllReportExecutionsResponse.Builder _resBuilder = 
+            ListAllReportExecutionsResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
-                .rawResponse(_httpRes);
+                .rawResponse(_httpRes)
+                .next(() -> {
+                    if (request == null) {
+                        return Optional.empty();
+                    }
+                    String _stringBody = new String(_fullResponse, StandardCharsets.UTF_8);
+                    Configuration _config = Configuration.defaultConfiguration()
+                            .addOptions(Option.SUPPRESS_EXCEPTIONS);
+                    ReadContext _body = JsonPath.using(_config).parse(_stringBody);
+                    String _nextCursor = _body.read("$.next_cursor", String.class);
+                    if (_nextCursor == null) {
+                        return Optional.empty();
+                    } 
+                    ListAllReportExecutionsRequestBuilder _nextRequest = list()
+                            .request(new ListAllReportExecutionsRequest(
+                                JsonNullable.of(_nextCursor),
+                        request.limit(),
+                        request.reportName(),
+                        request.createdAtLte(),
+                        request.createdAtGte(),
+                        request.status(),
+                        request.creatorId(),
+                        request.merchantAccountId()
+                             ));
+                    return Optional.of(_nextRequest.call());
+                });
 
-        ListTransactionEventsResponse _res = _resBuilder.build();
+        ListAllReportExecutionsResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                TransactionEvents _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<TransactionEvents>() {});
-                _res.withTransactionEvents(Optional.ofNullable(_out));
+                com.gr4vy.sdk.models.components.ReportExecutions _out = Utils.mapper().readValue(
+                    new String(_fullResponse, StandardCharsets.UTF_8),
+                    new TypeReference<com.gr4vy.sdk.models.components.ReportExecutions>() {});
+                _res.withReportExecutions(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new APIException(
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
+                    _fullResponse);
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "400")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
                 Error400 _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
+                    new String(_fullResponse, StandardCharsets.UTF_8),
                     new TypeReference<Error400>() {});
                     _out.withRawResponse(Optional.ofNullable(_httpRes));
                 
@@ -239,13 +254,13 @@ public class Events implements
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
+                    _fullResponse);
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "401")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
                 Error401 _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
+                    new String(_fullResponse, StandardCharsets.UTF_8),
                     new TypeReference<Error401>() {});
                     _out.withRawResponse(Optional.ofNullable(_httpRes));
                 
@@ -255,13 +270,13 @@ public class Events implements
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
+                    _fullResponse);
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "403")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
                 Error403 _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
+                    new String(_fullResponse, StandardCharsets.UTF_8),
                     new TypeReference<Error403>() {});
                     _out.withRawResponse(Optional.ofNullable(_httpRes));
                 
@@ -271,13 +286,13 @@ public class Events implements
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
+                    _fullResponse);
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "404")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
                 Error404 _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
+                    new String(_fullResponse, StandardCharsets.UTF_8),
                     new TypeReference<Error404>() {});
                     _out.withRawResponse(Optional.ofNullable(_httpRes));
                 
@@ -287,13 +302,13 @@ public class Events implements
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
+                    _fullResponse);
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "405")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
                 Error405 _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
+                    new String(_fullResponse, StandardCharsets.UTF_8),
                     new TypeReference<Error405>() {});
                     _out.withRawResponse(Optional.ofNullable(_httpRes));
                 
@@ -303,13 +318,13 @@ public class Events implements
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
+                    _fullResponse);
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "409")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
                 Error409 _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
+                    new String(_fullResponse, StandardCharsets.UTF_8),
                     new TypeReference<Error409>() {});
                     _out.withRawResponse(Optional.ofNullable(_httpRes));
                 
@@ -319,13 +334,13 @@ public class Events implements
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
+                    _fullResponse);
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "422")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
                 HTTPValidationError _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
+                    new String(_fullResponse, StandardCharsets.UTF_8),
                     new TypeReference<HTTPValidationError>() {});
                     _out.withRawResponse(Optional.ofNullable(_httpRes));
                 
@@ -335,13 +350,13 @@ public class Events implements
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
+                    _fullResponse);
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "425")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
                 Error425 _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
+                    new String(_fullResponse, StandardCharsets.UTF_8),
                     new TypeReference<Error425>() {});
                     _out.withRawResponse(Optional.ofNullable(_httpRes));
                 
@@ -351,13 +366,13 @@ public class Events implements
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
+                    _fullResponse);
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "429")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
                 Error429 _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
+                    new String(_fullResponse, StandardCharsets.UTF_8),
                     new TypeReference<Error429>() {});
                     _out.withRawResponse(Optional.ofNullable(_httpRes));
                 
@@ -367,13 +382,13 @@ public class Events implements
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
+                    _fullResponse);
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "500")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
                 Error500 _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
+                    new String(_fullResponse, StandardCharsets.UTF_8),
                     new TypeReference<Error500>() {});
                     _out.withRawResponse(Optional.ofNullable(_httpRes));
                 
@@ -383,13 +398,13 @@ public class Events implements
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
+                    _fullResponse);
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "502")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
                 Error502 _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
+                    new String(_fullResponse, StandardCharsets.UTF_8),
                     new TypeReference<Error502>() {});
                     _out.withRawResponse(Optional.ofNullable(_httpRes));
                 
@@ -399,13 +414,13 @@ public class Events implements
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
+                    _fullResponse);
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "504")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
                 Error504 _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
+                    new String(_fullResponse, StandardCharsets.UTF_8),
                     new TypeReference<Error504>() {});
                     _out.withRawResponse(Optional.ofNullable(_httpRes));
                 
@@ -415,7 +430,7 @@ public class Events implements
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
+                    _fullResponse);
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "4XX")) {
@@ -424,7 +439,7 @@ public class Events implements
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "API error occurred", 
-                    Utils.extractByteArrayFromBody(_httpRes));
+                    _fullResponse);
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "5XX")) {
             // no content 
@@ -432,13 +447,13 @@ public class Events implements
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "API error occurred", 
-                    Utils.extractByteArrayFromBody(_httpRes));
+                    _fullResponse);
         }
         throw new APIException(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.extractByteArrayFromBody(_httpRes));
+            _fullResponse);
     }
 
 }

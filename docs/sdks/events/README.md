@@ -9,7 +9,7 @@
 
 ## list
 
-Fetch a list of events for a transaction.
+Retrieve a paginated list of events related to processing a transaction, including status changes, API requests, and webhook delivery attempts. Events are listed in chronological order, with the most recent events first.
 
 ### Example Usage
 

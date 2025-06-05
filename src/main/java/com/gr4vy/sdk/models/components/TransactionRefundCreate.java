@@ -20,7 +20,7 @@ import org.openapitools.jackson.nullable.JsonNullable;
 public class TransactionRefundCreate {
 
     /**
-     * The amount requested to refund. If omitted, a full refund will be requested.
+     * The amount to refund, in the smallest currency unit (e.g., cents). If omitted, a full refund will be requested.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("amount")
@@ -75,7 +75,7 @@ public class TransactionRefundCreate {
     }
 
     /**
-     * The amount requested to refund. If omitted, a full refund will be requested.
+     * The amount to refund, in the smallest currency unit (e.g., cents). If omitted, a full refund will be requested.
      */
     @JsonIgnore
     public JsonNullable<Long> amount() {
@@ -117,7 +117,7 @@ public class TransactionRefundCreate {
     }    
 
     /**
-     * The amount requested to refund. If omitted, a full refund will be requested.
+     * The amount to refund, in the smallest currency unit (e.g., cents). If omitted, a full refund will be requested.
      */
     public TransactionRefundCreate withAmount(long amount) {
         Utils.checkNotNull(amount, "amount");
@@ -126,7 +126,7 @@ public class TransactionRefundCreate {
     }
 
     /**
-     * The amount requested to refund. If omitted, a full refund will be requested.
+     * The amount to refund, in the smallest currency unit (e.g., cents). If omitted, a full refund will be requested.
      */
     public TransactionRefundCreate withAmount(JsonNullable<Long> amount) {
         Utils.checkNotNull(amount, "amount");
@@ -255,7 +255,7 @@ public class TransactionRefundCreate {
         }
 
         /**
-         * The amount requested to refund. If omitted, a full refund will be requested.
+         * The amount to refund, in the smallest currency unit (e.g., cents). If omitted, a full refund will be requested.
          */
         public Builder amount(long amount) {
             Utils.checkNotNull(amount, "amount");
@@ -264,7 +264,7 @@ public class TransactionRefundCreate {
         }
 
         /**
-         * The amount requested to refund. If omitted, a full refund will be requested.
+         * The amount to refund, in the smallest currency unit (e.g., cents). If omitted, a full refund will be requested.
          */
         public Builder amount(JsonNullable<Long> amount) {
             Utils.checkNotNull(amount, "amount");
