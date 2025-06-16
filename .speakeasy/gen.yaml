@@ -18,7 +18,7 @@ generation:
     oAuth2PasswordEnabled: false
   sdkHooksConfigAccess: true
 java:
-  version: 1.0.0-beta.13
+  version: 1.0.0-beta.14
   additionalDependencies:
     - testImplementation:org.junit.jupiter:junit-jupiter:5.10.0
     - implementation:com.auth0:java-jwt:4.5.0
@@ -27,11 +27,13 @@ java:
     - implementation:org.slf4j:slf4j-simple:2.0.7
   additionalPlugins: []
   artifactID: sdk
+  baseErrorName: Gr4vyError
   clientServerStatusCodesAsErrors: true
   companyEmail: code@gr4vy.com
   companyName: Gr4vy
   companyURL: www.gr4vy.com
   defaultErrorName: APIException
+  enableCustomCodeRegions: false
   flattenGlobalSecurity: true
   githubURL: github.com/gr4vy/gr4vy-java
   groupID: com.gr4vy

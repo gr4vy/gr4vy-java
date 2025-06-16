@@ -49,7 +49,6 @@ public class Cryptogram implements
         this.sdkConfiguration = sdkConfiguration;
     }
 
-
     /**
      * Provision network token cryptogram
      * 

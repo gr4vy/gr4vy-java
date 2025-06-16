@@ -54,7 +54,6 @@ public class BuyersGiftCards implements
         this.sdkConfiguration = sdkConfiguration;
     }
 
-
     /**
      * List gift cards for a buyer
      * 

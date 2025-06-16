@@ -357,6 +357,13 @@ public class SDKMethodInterfaces {
             JsonNullable<String> merchantAccountId) throws Exception;
     }
 
+    public interface MethodCallGetTransactionSummary {
+        GetTransactionSummaryResponse summary(
+            String transactionId,
+            JsonNullable<String> merchantAccountId,
+            Optional<Options> options) throws Exception;
+    }
+
     public interface MethodCallSyncTransaction {
         SyncTransactionResponse sync(
             String transactionId,

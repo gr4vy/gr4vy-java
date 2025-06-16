@@ -73,7 +73,6 @@ public class TransactionsRefunds implements
         return all;
     }
 
-
     /**
      * List transaction refunds
      * 
@@ -449,7 +448,6 @@ public class TransactionsRefunds implements
     }
 
 
-
     /**
      * Create transaction refund
      * 
@@ -820,7 +818,6 @@ public class TransactionsRefunds implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**

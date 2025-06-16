@@ -82,7 +82,6 @@ public class GiftCards implements
         return balances;
     }
 
-
     /**
      * Get gift card
      * 
@@ -458,7 +457,6 @@ public class GiftCards implements
     }
 
 
-
     /**
      * Delete a gift card
      * 
@@ -811,7 +809,6 @@ public class GiftCards implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**
@@ -1177,7 +1174,6 @@ public class GiftCards implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**

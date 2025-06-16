@@ -50,7 +50,6 @@ public class Jobs implements
         this.sdkConfiguration = sdkConfiguration;
     }
 
-
     /**
      * Create account updater job
      * 

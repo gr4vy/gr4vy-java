@@ -50,7 +50,6 @@ public class All implements
         this.sdkConfiguration = sdkConfiguration;
     }
 
-
     /**
      * Create batch transaction refund
      * 

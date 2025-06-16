@@ -61,7 +61,6 @@ public class Sessions implements
         this.sdkConfiguration = sdkConfiguration;
     }
 
-
     /**
      * Create a Google Pay session
      * 
@@ -427,7 +426,6 @@ public class Sessions implements
     }
 
 
-
     /**
      * Create a Apple Pay session
      * 
@@ -791,7 +789,6 @@ public class Sessions implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**

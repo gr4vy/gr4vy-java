@@ -55,7 +55,6 @@ public class Events implements
         this.sdkConfiguration = sdkConfiguration;
     }
 
-
     /**
      * List transaction events
      * 

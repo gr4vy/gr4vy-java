@@ -92,7 +92,6 @@ public class PaymentServices implements
         this.sdkConfiguration = sdkConfiguration;
     }
 
-
     /**
      * List payment services
      * 
@@ -487,7 +486,6 @@ public class PaymentServices implements
     }
 
 
-
     /**
      * Update a configured payment service
      * 
@@ -851,7 +849,6 @@ public class PaymentServices implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**
@@ -1229,7 +1226,6 @@ public class PaymentServices implements
     }
 
 
-
     /**
      * Configure a payment service
      * 
@@ -1602,7 +1598,6 @@ public class PaymentServices implements
     }
 
 
-
     /**
      * Delete a configured payment service
      * 
@@ -1955,7 +1950,6 @@ public class PaymentServices implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**
@@ -2321,7 +2315,6 @@ public class PaymentServices implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**

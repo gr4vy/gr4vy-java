@@ -70,7 +70,6 @@ public class CheckoutSessions implements
         this.sdkConfiguration = sdkConfiguration;
     }
 
-
     /**
      * Create checkout session
      * 
@@ -429,7 +428,6 @@ public class CheckoutSessions implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**
@@ -804,7 +802,6 @@ public class CheckoutSessions implements
     }
 
 
-
     /**
      * Get checkout session
      * 
@@ -1162,7 +1159,6 @@ public class CheckoutSessions implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**

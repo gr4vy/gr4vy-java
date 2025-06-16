@@ -99,7 +99,6 @@ public class Buyers implements
         return shippingDetails;
     }
 
-
     /**
      * List all buyers
      * 
@@ -494,7 +493,6 @@ public class Buyers implements
     }
 
 
-
     /**
      * Add a buyer
      * 
@@ -858,7 +856,6 @@ public class Buyers implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**
@@ -1236,7 +1233,6 @@ public class Buyers implements
     }
 
 
-
     /**
      * Update a buyer
      * 
@@ -1607,7 +1603,6 @@ public class Buyers implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**

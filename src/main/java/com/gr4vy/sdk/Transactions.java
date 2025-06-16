@@ -7,6 +7,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.gr4vy.sdk.models.components.Transaction;
 import com.gr4vy.sdk.models.components.TransactionCapture;
 import com.gr4vy.sdk.models.components.TransactionCreate;
+import com.gr4vy.sdk.models.components.TransactionStatusSummary;
 import com.gr4vy.sdk.models.components.TransactionSummaries;
 import com.gr4vy.sdk.models.errors.APIException;
 import com.gr4vy.sdk.models.errors.Error400;
@@ -30,6 +31,9 @@ import com.gr4vy.sdk.models.operations.CreateTransactionResponse;
 import com.gr4vy.sdk.models.operations.GetTransactionRequest;
 import com.gr4vy.sdk.models.operations.GetTransactionRequestBuilder;
 import com.gr4vy.sdk.models.operations.GetTransactionResponse;
+import com.gr4vy.sdk.models.operations.GetTransactionSummaryRequest;
+import com.gr4vy.sdk.models.operations.GetTransactionSummaryRequestBuilder;
+import com.gr4vy.sdk.models.operations.GetTransactionSummaryResponse;
 import com.gr4vy.sdk.models.operations.ListTransactionsRequest;
 import com.gr4vy.sdk.models.operations.ListTransactionsRequestBuilder;
 import com.gr4vy.sdk.models.operations.ListTransactionsResponse;
@@ -78,6 +82,7 @@ public class Transactions implements
             MethodCallGetTransaction,
             MethodCallCaptureTransaction,
             MethodCallVoidTransaction,
+            MethodCallGetTransactionSummary,
             MethodCallSyncTransaction {
 
     private final SDKConfiguration sdkConfiguration;
@@ -103,7 +108,6 @@ public class Transactions implements
     public final Settlements settlements() {
         return settlements;
     }
-
 
     /**
      * List transactions
@@ -538,7 +542,6 @@ public class Transactions implements
     }
 
 
-
     /**
      * Create transaction
      * 
@@ -905,7 +908,6 @@ public class Transactions implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**
@@ -1283,7 +1285,6 @@ public class Transactions implements
     }
 
 
-
     /**
      * Capture transaction
      * 
@@ -1656,7 +1657,6 @@ public class Transactions implements
     }
 
 
-
     /**
      * Void transaction
      * 
@@ -2010,6 +2010,380 @@ public class Transactions implements
             Utils.extractByteArrayFromBody(_httpRes));
     }
 
+
+    /**
+     * Get transaction summary
+     * 
+     * <p>Fetch a summary for a transaction.
+     * 
+     * @return The call builder
+     */
+    public GetTransactionSummaryRequestBuilder summary() {
+        return new GetTransactionSummaryRequestBuilder(this);
+    }
+
+    /**
+     * Get transaction summary
+     * 
+     * <p>Fetch a summary for a transaction.
+     * 
+     * @param transactionId The ID of the transaction
+     * @return The response from the API call
+     * @throws Exception if the API call fails
+     */
+    public GetTransactionSummaryResponse summary(
+            String transactionId) throws Exception {
+        return summary(transactionId, JsonNullable.undefined(), Optional.empty());
+    }
+    
+    /**
+     * Get transaction summary
+     * 
+     * <p>Fetch a summary for a transaction.
+     * 
+     * @param transactionId The ID of the transaction
+     * @param merchantAccountId 
+     * @param options additional options
+     * @return The response from the API call
+     * @throws Exception if the API call fails
+     */
+    public GetTransactionSummaryResponse summary(
+            String transactionId,
+            JsonNullable<String> merchantAccountId,
+            Optional<Options> options) throws Exception {
+
+        if (options.isPresent()) {
+          options.get().validate(Arrays.asList(Options.Option.RETRY_CONFIG));
+        }
+        GetTransactionSummaryRequest request =
+            GetTransactionSummaryRequest
+                .builder()
+                .transactionId(transactionId)
+                .merchantAccountId(merchantAccountId)
+                .build();
+        
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
+        String _url = Utils.generateURL(
+                GetTransactionSummaryRequest.class,
+                _baseUrl,
+                "/transactions/{transaction_id}/summary",
+                request, this.sdkConfiguration.globals);
+        
+        HTTPRequest _req = new HTTPRequest(_url, "GET");
+        _req.addHeader("Accept", "application/json")
+            .addHeader("user-agent", 
+                SDKConfiguration.USER_AGENT);
+        _req.addHeaders(Utils.getHeadersFromMetadata(request, this.sdkConfiguration.globals));
+        
+        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
+        Utils.configureSecurity(_req,  
+                this.sdkConfiguration.securitySource().getSecurity());
+        HTTPClient _client = this.sdkConfiguration.client();
+        HTTPRequest _finalReq = _req;
+        RetryConfig _retryConfig;
+        if (options.isPresent() && options.get().retryConfig().isPresent()) {
+            _retryConfig = options.get().retryConfig().get();
+        } else if (this.sdkConfiguration.retryConfig().isPresent()) {
+            _retryConfig = this.sdkConfiguration.retryConfig().get();
+        } else {
+            _retryConfig = RetryConfig.builder()
+                .backoff(BackoffStrategy.builder()
+                            .initialInterval(200, TimeUnit.MILLISECONDS)
+                            .maxInterval(200, TimeUnit.MILLISECONDS)
+                            .baseFactor((double)(1))
+                            .maxElapsedTime(1000, TimeUnit.MILLISECONDS)
+                            .retryConnectError(true)
+                            .build())
+                .build();
+        }
+        List<String> _statusCodes = new ArrayList<>();
+        _statusCodes.add("5XX");
+        Retries _retries = Retries.builder()
+            .action(() -> {
+                HttpRequest _r = null;
+                try {
+                    _r = sdkConfiguration.hooks()
+                        .beforeRequest(
+                            new BeforeRequestContextImpl(
+                                this.sdkConfiguration,
+                                _baseUrl,
+                                "get_transaction_summary", 
+                                Optional.of(List.of()), 
+                                _hookSecuritySource),
+                            _finalReq.build());
+                } catch (Exception _e) {
+                    throw new NonRetryableException(_e);
+                }
+                try {
+                    return _client.send(_r);
+                } catch (Exception _e) {
+                    return sdkConfiguration.hooks()
+                        .afterError(
+                            new AfterErrorContextImpl(
+                                this.sdkConfiguration,
+                                _baseUrl,
+                                "get_transaction_summary",
+                                 Optional.of(List.of()),
+                                 _hookSecuritySource), 
+                            Optional.empty(),
+                            Optional.of(_e));
+                }
+            })
+            .retryConfig(_retryConfig)
+            .statusCodes(_statusCodes)
+            .build();
+        HttpResponse<InputStream> _httpRes = sdkConfiguration.hooks()
+                 .afterSuccess(
+                     new AfterSuccessContextImpl(
+                         this.sdkConfiguration,
+                         _baseUrl,
+                         "get_transaction_summary", 
+                         Optional.of(List.of()), 
+                         _hookSecuritySource),
+                     _retries.run());
+        String _contentType = _httpRes
+            .headers()
+            .firstValue("Content-Type")
+            .orElse("application/octet-stream");
+        GetTransactionSummaryResponse.Builder _resBuilder = 
+            GetTransactionSummaryResponse
+                .builder()
+                .contentType(_contentType)
+                .statusCode(_httpRes.statusCode())
+                .rawResponse(_httpRes);
+
+        GetTransactionSummaryResponse _res = _resBuilder.build();
+        
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
+            if (Utils.contentTypeMatches(_contentType, "application/json")) {
+                TransactionStatusSummary _out = Utils.mapper().readValue(
+                    Utils.toUtf8AndClose(_httpRes.body()),
+                    new TypeReference<TransactionStatusSummary>() {});
+                _res.withTransactionStatusSummary(Optional.ofNullable(_out));
+                return _res;
+            } else {
+                throw new APIException(
+                    _httpRes, 
+                    _httpRes.statusCode(), 
+                    "Unexpected content-type received: " + _contentType, 
+                    Utils.extractByteArrayFromBody(_httpRes));
+            }
+        }
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "400")) {
+            if (Utils.contentTypeMatches(_contentType, "application/json")) {
+                Error400 _out = Utils.mapper().readValue(
+                    Utils.toUtf8AndClose(_httpRes.body()),
+                    new TypeReference<Error400>() {});
+                    _out.withRawResponse(Optional.ofNullable(_httpRes));
+                
+                throw _out;
+            } else {
+                throw new APIException(
+                    _httpRes, 
+                    _httpRes.statusCode(), 
+                    "Unexpected content-type received: " + _contentType, 
+                    Utils.extractByteArrayFromBody(_httpRes));
+            }
+        }
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "401")) {
+            if (Utils.contentTypeMatches(_contentType, "application/json")) {
+                Error401 _out = Utils.mapper().readValue(
+                    Utils.toUtf8AndClose(_httpRes.body()),
+                    new TypeReference<Error401>() {});
+                    _out.withRawResponse(Optional.ofNullable(_httpRes));
+                
+                throw _out;
+            } else {
+                throw new APIException(
+                    _httpRes, 
+                    _httpRes.statusCode(), 
+                    "Unexpected content-type received: " + _contentType, 
+                    Utils.extractByteArrayFromBody(_httpRes));
+            }
+        }
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "403")) {
+            if (Utils.contentTypeMatches(_contentType, "application/json")) {
+                Error403 _out = Utils.mapper().readValue(
+                    Utils.toUtf8AndClose(_httpRes.body()),
+                    new TypeReference<Error403>() {});
+                    _out.withRawResponse(Optional.ofNullable(_httpRes));
+                
+                throw _out;
+            } else {
+                throw new APIException(
+                    _httpRes, 
+                    _httpRes.statusCode(), 
+                    "Unexpected content-type received: " + _contentType, 
+                    Utils.extractByteArrayFromBody(_httpRes));
+            }
+        }
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "404")) {
+            if (Utils.contentTypeMatches(_contentType, "application/json")) {
+                Error404 _out = Utils.mapper().readValue(
+                    Utils.toUtf8AndClose(_httpRes.body()),
+                    new TypeReference<Error404>() {});
+                    _out.withRawResponse(Optional.ofNullable(_httpRes));
+                
+                throw _out;
+            } else {
+                throw new APIException(
+                    _httpRes, 
+                    _httpRes.statusCode(), 
+                    "Unexpected content-type received: " + _contentType, 
+                    Utils.extractByteArrayFromBody(_httpRes));
+            }
+        }
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "405")) {
+            if (Utils.contentTypeMatches(_contentType, "application/json")) {
+                Error405 _out = Utils.mapper().readValue(
+                    Utils.toUtf8AndClose(_httpRes.body()),
+                    new TypeReference<Error405>() {});
+                    _out.withRawResponse(Optional.ofNullable(_httpRes));
+                
+                throw _out;
+            } else {
+                throw new APIException(
+                    _httpRes, 
+                    _httpRes.statusCode(), 
+                    "Unexpected content-type received: " + _contentType, 
+                    Utils.extractByteArrayFromBody(_httpRes));
+            }
+        }
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "409")) {
+            if (Utils.contentTypeMatches(_contentType, "application/json")) {
+                Error409 _out = Utils.mapper().readValue(
+                    Utils.toUtf8AndClose(_httpRes.body()),
+                    new TypeReference<Error409>() {});
+                    _out.withRawResponse(Optional.ofNullable(_httpRes));
+                
+                throw _out;
+            } else {
+                throw new APIException(
+                    _httpRes, 
+                    _httpRes.statusCode(), 
+                    "Unexpected content-type received: " + _contentType, 
+                    Utils.extractByteArrayFromBody(_httpRes));
+            }
+        }
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "422")) {
+            if (Utils.contentTypeMatches(_contentType, "application/json")) {
+                HTTPValidationError _out = Utils.mapper().readValue(
+                    Utils.toUtf8AndClose(_httpRes.body()),
+                    new TypeReference<HTTPValidationError>() {});
+                    _out.withRawResponse(Optional.ofNullable(_httpRes));
+                
+                throw _out;
+            } else {
+                throw new APIException(
+                    _httpRes, 
+                    _httpRes.statusCode(), 
+                    "Unexpected content-type received: " + _contentType, 
+                    Utils.extractByteArrayFromBody(_httpRes));
+            }
+        }
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "425")) {
+            if (Utils.contentTypeMatches(_contentType, "application/json")) {
+                Error425 _out = Utils.mapper().readValue(
+                    Utils.toUtf8AndClose(_httpRes.body()),
+                    new TypeReference<Error425>() {});
+                    _out.withRawResponse(Optional.ofNullable(_httpRes));
+                
+                throw _out;
+            } else {
+                throw new APIException(
+                    _httpRes, 
+                    _httpRes.statusCode(), 
+                    "Unexpected content-type received: " + _contentType, 
+                    Utils.extractByteArrayFromBody(_httpRes));
+            }
+        }
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "429")) {
+            if (Utils.contentTypeMatches(_contentType, "application/json")) {
+                Error429 _out = Utils.mapper().readValue(
+                    Utils.toUtf8AndClose(_httpRes.body()),
+                    new TypeReference<Error429>() {});
+                    _out.withRawResponse(Optional.ofNullable(_httpRes));
+                
+                throw _out;
+            } else {
+                throw new APIException(
+                    _httpRes, 
+                    _httpRes.statusCode(), 
+                    "Unexpected content-type received: " + _contentType, 
+                    Utils.extractByteArrayFromBody(_httpRes));
+            }
+        }
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "500")) {
+            if (Utils.contentTypeMatches(_contentType, "application/json")) {
+                Error500 _out = Utils.mapper().readValue(
+                    Utils.toUtf8AndClose(_httpRes.body()),
+                    new TypeReference<Error500>() {});
+                    _out.withRawResponse(Optional.ofNullable(_httpRes));
+                
+                throw _out;
+            } else {
+                throw new APIException(
+                    _httpRes, 
+                    _httpRes.statusCode(), 
+                    "Unexpected content-type received: " + _contentType, 
+                    Utils.extractByteArrayFromBody(_httpRes));
+            }
+        }
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "502")) {
+            if (Utils.contentTypeMatches(_contentType, "application/json")) {
+                Error502 _out = Utils.mapper().readValue(
+                    Utils.toUtf8AndClose(_httpRes.body()),
+                    new TypeReference<Error502>() {});
+                    _out.withRawResponse(Optional.ofNullable(_httpRes));
+                
+                throw _out;
+            } else {
+                throw new APIException(
+                    _httpRes, 
+                    _httpRes.statusCode(), 
+                    "Unexpected content-type received: " + _contentType, 
+                    Utils.extractByteArrayFromBody(_httpRes));
+            }
+        }
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "504")) {
+            if (Utils.contentTypeMatches(_contentType, "application/json")) {
+                Error504 _out = Utils.mapper().readValue(
+                    Utils.toUtf8AndClose(_httpRes.body()),
+                    new TypeReference<Error504>() {});
+                    _out.withRawResponse(Optional.ofNullable(_httpRes));
+                
+                throw _out;
+            } else {
+                throw new APIException(
+                    _httpRes, 
+                    _httpRes.statusCode(), 
+                    "Unexpected content-type received: " + _contentType, 
+                    Utils.extractByteArrayFromBody(_httpRes));
+            }
+        }
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "4XX")) {
+            // no content 
+            throw new APIException(
+                    _httpRes, 
+                    _httpRes.statusCode(), 
+                    "API error occurred", 
+                    Utils.extractByteArrayFromBody(_httpRes));
+        }
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "5XX")) {
+            // no content 
+            throw new APIException(
+                    _httpRes, 
+                    _httpRes.statusCode(), 
+                    "API error occurred", 
+                    Utils.extractByteArrayFromBody(_httpRes));
+        }
+        throw new APIException(
+            _httpRes, 
+            _httpRes.statusCode(), 
+            "Unexpected status code received: " + _httpRes.statusCode(), 
+            Utils.extractByteArrayFromBody(_httpRes));
+    }
 
 
     /**

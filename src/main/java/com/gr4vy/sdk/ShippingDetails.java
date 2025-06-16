@@ -75,7 +75,6 @@ public class ShippingDetails implements
         this.sdkConfiguration = sdkConfiguration;
     }
 
-
     /**
      * Add buyer shipping details
      * 
@@ -446,7 +445,6 @@ public class ShippingDetails implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**
@@ -822,7 +820,6 @@ public class ShippingDetails implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**
@@ -1205,7 +1202,6 @@ public class ShippingDetails implements
     }
 
 
-
     /**
      * Update a buyer's shipping details
      * 
@@ -1581,7 +1577,6 @@ public class ShippingDetails implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**

@@ -54,7 +54,6 @@ public class Refunds implements
         this.sdkConfiguration = sdkConfiguration;
     }
 
-
     /**
      * Get refund
      * 
