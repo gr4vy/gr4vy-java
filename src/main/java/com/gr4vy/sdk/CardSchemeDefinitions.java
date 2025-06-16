@@ -53,7 +53,6 @@ public class CardSchemeDefinitions implements
         this.sdkConfiguration = sdkConfiguration;
     }
 
-
     /**
      * List card scheme definitions
      * 

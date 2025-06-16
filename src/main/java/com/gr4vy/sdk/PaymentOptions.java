@@ -49,7 +49,6 @@ public class PaymentOptions implements
         this.sdkConfiguration = sdkConfiguration;
     }
 
-
     /**
      * List payment options
      * 

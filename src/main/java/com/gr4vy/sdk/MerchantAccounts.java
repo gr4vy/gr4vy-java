@@ -77,7 +77,6 @@ public class MerchantAccounts implements
         this.sdkConfiguration = sdkConfiguration;
     }
 
-
     /**
      * List all merchant accounts
      * 
@@ -477,7 +476,6 @@ public class MerchantAccounts implements
     }
 
 
-
     /**
      * Create a merchant account
      * 
@@ -817,7 +815,6 @@ public class MerchantAccounts implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**
@@ -1189,7 +1186,6 @@ public class MerchantAccounts implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**

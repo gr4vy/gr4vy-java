@@ -66,7 +66,6 @@ public class PaymentServiceTokens implements
         this.sdkConfiguration = sdkConfiguration;
     }
 
-
     /**
      * List payment service tokens
      * 
@@ -450,7 +449,6 @@ public class PaymentServiceTokens implements
     }
 
 
-
     /**
      * Create payment service token
      * 
@@ -821,7 +819,6 @@ public class PaymentServiceTokens implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**

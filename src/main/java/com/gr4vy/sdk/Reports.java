@@ -83,7 +83,6 @@ public class Reports implements
         return executions;
     }
 
-
     /**
      * List configured reports
      * 
@@ -479,7 +478,6 @@ public class Reports implements
     }
 
 
-
     /**
      * Add a report
      * 
@@ -843,7 +841,6 @@ public class Reports implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**
@@ -1219,7 +1216,6 @@ public class Reports implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**

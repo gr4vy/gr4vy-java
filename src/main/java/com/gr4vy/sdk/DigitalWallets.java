@@ -87,7 +87,6 @@ public class DigitalWallets implements
         return domains;
     }
 
-
     /**
      * Register digital wallet
      * 
@@ -451,7 +450,6 @@ public class DigitalWallets implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**
@@ -820,7 +818,6 @@ public class DigitalWallets implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**
@@ -1198,7 +1195,6 @@ public class DigitalWallets implements
     }
 
 
-
     /**
      * Delete digital wallet
      * 
@@ -1551,7 +1547,6 @@ public class DigitalWallets implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**

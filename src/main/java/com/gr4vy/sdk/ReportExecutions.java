@@ -59,7 +59,6 @@ public class ReportExecutions implements
         this.sdkConfiguration = sdkConfiguration;
     }
 
-
     /**
      * List executed reports
      * 

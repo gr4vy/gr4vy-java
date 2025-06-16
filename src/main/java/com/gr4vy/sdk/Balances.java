@@ -50,7 +50,6 @@ public class Balances implements
         this.sdkConfiguration = sdkConfiguration;
     }
 
-
     /**
      * List gift card balances
      * 

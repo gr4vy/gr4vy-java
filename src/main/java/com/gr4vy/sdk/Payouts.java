@@ -74,7 +74,6 @@ public class Payouts implements
         this.sdkConfiguration = sdkConfiguration;
     }
 
-
     /**
      * List payouts created.
      * 
@@ -475,7 +474,6 @@ public class Payouts implements
     }
 
 
-
     /**
      * Create a payout.
      * 
@@ -843,7 +841,6 @@ public class Payouts implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**

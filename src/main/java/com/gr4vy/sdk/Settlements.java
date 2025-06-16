@@ -58,7 +58,6 @@ public class Settlements implements
         this.sdkConfiguration = sdkConfiguration;
     }
 
-
     /**
      * Get transaction settlement
      * 
@@ -437,7 +436,6 @@ public class Settlements implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**

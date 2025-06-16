@@ -88,7 +88,6 @@ public class PaymentMethods implements
         return networkTokens;
     }
 
-
     /**
      * List all payment methods
      * 
@@ -485,7 +484,6 @@ public class PaymentMethods implements
     }
 
 
-
     /**
      * Create payment method
      * 
@@ -849,7 +847,6 @@ public class PaymentMethods implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**
@@ -1225,7 +1222,6 @@ public class PaymentMethods implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**

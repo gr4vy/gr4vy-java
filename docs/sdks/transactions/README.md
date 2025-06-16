@@ -10,6 +10,7 @@
 * [get](#get) - Get transaction
 * [capture](#capture) - Capture transaction
 * [void_](#void_) - Void transaction
+* [summary](#summary) - Get transaction summary
 * [sync](#sync) - Sync transaction
 
 ## list
@@ -382,6 +383,69 @@ public class Application {
 ### Response
 
 **[VoidTransactionResponse](../../models/operations/VoidTransactionResponse.md)**
+
+### Errors
+
+| Error Type                        | Status Code                       | Content Type                      |
+| --------------------------------- | --------------------------------- | --------------------------------- |
+| models/errors/Error400            | 400                               | application/json                  |
+| models/errors/Error401            | 401                               | application/json                  |
+| models/errors/Error403            | 403                               | application/json                  |
+| models/errors/Error404            | 404                               | application/json                  |
+| models/errors/Error405            | 405                               | application/json                  |
+| models/errors/Error409            | 409                               | application/json                  |
+| models/errors/HTTPValidationError | 422                               | application/json                  |
+| models/errors/Error425            | 425                               | application/json                  |
+| models/errors/Error429            | 429                               | application/json                  |
+| models/errors/Error500            | 500                               | application/json                  |
+| models/errors/Error502            | 502                               | application/json                  |
+| models/errors/Error504            | 504                               | application/json                  |
+| models/errors/APIException        | 4XX, 5XX                          | \*/\*                             |
+
+## summary
+
+Fetch a summary for a transaction.
+
+### Example Usage
+
+```java
+package hello.world;
+
+import com.gr4vy.sdk.Gr4vy;
+import com.gr4vy.sdk.models.errors.*;
+import com.gr4vy.sdk.models.operations.GetTransactionSummaryResponse;
+import java.lang.Exception;
+
+public class Application {
+
+    public static void main(String[] args) throws Exception {
+
+        Gr4vy sdk = Gr4vy.builder()
+                .merchantAccountId("default")
+                .bearerAuth("<YOUR_BEARER_TOKEN_HERE>")
+            .build();
+
+        GetTransactionSummaryResponse res = sdk.transactions().summary()
+                .transactionId("7099948d-7286-47e4-aad8-b68f7eb44591")
+                .call();
+
+        if (res.transactionStatusSummary().isPresent()) {
+            // handle response
+        }
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                               | Type                                                    | Required                                                | Description                                             | Example                                                 |
+| ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- |
+| `transactionId`                                         | *String*                                                | :heavy_check_mark:                                      | The ID of the transaction                               | 7099948d-7286-47e4-aad8-b68f7eb44591                    |
+| `merchantAccountId`                                     | *JsonNullable\<String>*                                 | :heavy_minus_sign:                                      | The ID of the merchant account to use for this request. |                                                         |
+
+### Response
+
+**[GetTransactionSummaryResponse](../../models/operations/GetTransactionSummaryResponse.md)**
 
 ### Errors
 

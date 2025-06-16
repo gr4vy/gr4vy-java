@@ -80,7 +80,6 @@ public class NetworkTokens implements
         return cryptogram;
     }
 
-
     /**
      * List network tokens
      * 
@@ -456,7 +455,6 @@ public class NetworkTokens implements
     }
 
 
-
     /**
      * Provision network token
      * 
@@ -829,7 +827,6 @@ public class NetworkTokens implements
     }
 
 
-
     /**
      * Suspend network token
      * 
@@ -1189,7 +1186,6 @@ public class NetworkTokens implements
     }
 
 
-
     /**
      * Resume network token
      * 
@@ -1547,7 +1543,6 @@ public class NetworkTokens implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**

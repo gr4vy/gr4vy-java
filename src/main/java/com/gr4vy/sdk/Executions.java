@@ -71,7 +71,6 @@ public class Executions implements
         this.sdkConfiguration = sdkConfiguration;
     }
 
-
     /**
      * List executions for report
      * 
@@ -480,7 +479,6 @@ public class Executions implements
     }
 
 
-
     /**
      * Create URL for executed report
      * 
@@ -838,7 +836,6 @@ public class Executions implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**

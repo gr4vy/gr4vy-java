@@ -74,7 +74,6 @@ public class PaymentServiceDefinitions implements
         this.sdkConfiguration = sdkConfiguration;
     }
 
-
     /**
      * List payment service definitions
      * 
@@ -470,7 +469,6 @@ public class PaymentServiceDefinitions implements
     }
 
 
-
     /**
      * Get a payment service definition
      * 
@@ -840,7 +838,6 @@ public class PaymentServiceDefinitions implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**

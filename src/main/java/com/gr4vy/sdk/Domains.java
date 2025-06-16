@@ -53,7 +53,6 @@ public class Domains implements
         this.sdkConfiguration = sdkConfiguration;
     }
 
-
     /**
      * Register a digital wallet domain
      * 
@@ -424,7 +423,6 @@ public class Domains implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**

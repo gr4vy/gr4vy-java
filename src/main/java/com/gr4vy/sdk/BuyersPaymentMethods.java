@@ -53,7 +53,6 @@ public class BuyersPaymentMethods implements
         this.sdkConfiguration = sdkConfiguration;
     }
 
-
     /**
      * List payment methods for a buyer
      * 

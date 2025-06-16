@@ -60,7 +60,6 @@ public class AuditLogs implements
         this.sdkConfiguration = sdkConfiguration;
     }
 
-
     /**
      * List audit log entries
      * 
