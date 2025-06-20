@@ -1,4 +1,4 @@
-# Gr4vy Java SDK (Beta)
+# Gr4vy Java SDK
 
 Developer-friendly & type-safe Java SDK specifically catered to leverage *Gr4vy* API.
 
@@ -30,7 +30,7 @@ This SDK is designed to simplify development, reduce boilerplate code, and help 
 <!-- Start Table of Contents [toc] -->
 ## Table of Contents
 <!-- $toc-max-depth=2 -->
-* [Gr4vy Java SDK (Beta)](#gr4vy-java-sdk-beta)
+* [Gr4vy Java SDK](#gr4vy-java-sdk)
   * [SDK Installation](#sdk-installation)
   * [SDK Example Usage](#sdk-example-usage)
   * [Bearer token generation](#bearer-token-generation)
@@ -752,12 +752,6 @@ To run the tests, install Java, ensure to download the `private_key.pem` for the
 ```sh
 E2E=true ./gradlew clean test
  ```
-
-## Maturity
-
-This SDK is in beta, and there may be breaking changes between versions without a major version update. Therefore, we recommend pinning usage
-to a specific package version. This way, you can install the same version each time without breaking changes unless you are intentionally
-looking for the latest version.
 
 ## Contributions
 
