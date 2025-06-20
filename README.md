@@ -7,10 +7,6 @@ Developer-friendly & type-safe Java SDK specifically catered to leverage *Gr4vy*
     <a href="https://www.speakeasy.com/?utm_source=openapi&utm_campaign=java"><img src="https://custom-icon-badges.demolab.com/badge/-Built%20By%20Speakeasy-212015?style=for-the-badge&logoColor=FBE331&logo=speakeasy&labelColor=545454" /></a>
 </div>
 
-<br /><br />
-> [!IMPORTANT]
-> This is a Beta release of our latest SDK. Please refer to the [legacy Java SDK](https://github.com/gr4vy/gr4vy-java/tree/legacy) for the latest stable build.
-
 ## Summary
 
 Gr4vy Java SDK
