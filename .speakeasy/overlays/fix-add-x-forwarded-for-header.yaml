@@ -1,0 +1,17 @@
+overlay: 1.0.0
+x-speakeasy-jsonpath: rfc9535
+info:
+    title: Adds the x-forwarded-for-header where needed
+    version: 0.0.1
+actions:
+    - target: $.paths["/transactions"].post.parameters
+      update:
+        - name: X-Forwarded-For
+          schema:
+            type: string
+            example: 192.168.0.2
+          in: header  
+          description: |-
+            The IP address to forward from the customer. Use this when calling
+            our API from the server side to ensure the customer's address is
+            passed to downstream services, rather than your server IP.
