@@ -3,10 +3,10 @@ id: 5bbaa3a9-baa0-471b-ba6a-13fd88e8c119
 management:
   docChecksum: a82d7958a105d56a1a17fb8e317ce7f5
   docVersion: 1.0.0
-  speakeasyVersion: 1.570.0
-  generationVersion: 2.638.0
-  releaseVersion: 2.0.0
-  configChecksum: 943f435680daac42b2c27a6978a7f71e
+  speakeasyVersion: 1.570.1
+  generationVersion: 2.638.1
+  releaseVersion: 1.0.1
+  configChecksum: 95aee8a9bab89f6f6c7e5e9357b04f57
   repoURL: https://github.com/gr4vy/gr4vy-java.git
   published: true
 features:
