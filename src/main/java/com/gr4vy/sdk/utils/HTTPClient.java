@@ -28,4 +28,13 @@ public interface HTTPClient {
      */    
     HttpResponse<InputStream> send(HttpRequest request)
             throws IOException, InterruptedException, URISyntaxException;
+
+    /**
+     * Enables debug logging for HTTP requests and responses, including JSON body content.
+     * Currently implemented in SpeakeasyHTTPClient, custom client implementations are free
+     * to use this method similarly if they wish.
+     */
+    default void enableDebugLogging() {
+        // do nothing
+    }
 }

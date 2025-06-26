@@ -3,15 +3,27 @@
  */
 package com.gr4vy.sdk.models.operations;
 
+import static com.gr4vy.sdk.operations.Operations.RequestOperation;
+import static com.gr4vy.sdk.utils.Exceptions.unchecked;
+import static com.gr4vy.sdk.utils.Utils.transform;
+import static com.gr4vy.sdk.utils.Utils.toStream;
+
 import com.fasterxml.jackson.core.type.TypeReference;
-import com.gr4vy.sdk.models.errors.APIException;
+import com.gr4vy.sdk.SDKConfiguration;
+import com.gr4vy.sdk.operations.ListMerchantAccountsOperation;
 import com.gr4vy.sdk.utils.LazySingletonValue;
 import com.gr4vy.sdk.utils.Options;
 import com.gr4vy.sdk.utils.RetryConfig;
 import com.gr4vy.sdk.utils.Utils;
+import com.gr4vy.sdk.utils.pagination.CursorTracker;
+import com.gr4vy.sdk.utils.pagination.Paginator;
+import java.io.InputStream;
 import java.lang.Exception;
+import java.lang.Iterable;
 import java.lang.Long;
 import java.lang.String;
+import java.net.http.HttpResponse;
+import java.util.Iterator;
 import java.util.Optional;
 import java.util.stream.Stream;
 import org.openapitools.jackson.nullable.JsonNullable;
@@ -25,10 +37,10 @@ public class ListMerchantAccountsRequestBuilder {
                             new TypeReference<Optional<Long>>() {});
     private JsonNullable<String> search = JsonNullable.undefined();
     private Optional<RetryConfig> retryConfig = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallListMerchantAccounts sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public ListMerchantAccountsRequestBuilder(SDKMethodInterfaces.MethodCallListMerchantAccounts sdk) {
-        this.sdk = sdk;
+    public ListMerchantAccountsRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public ListMerchantAccountsRequestBuilder cursor(String cursor) {
@@ -79,39 +91,73 @@ public class ListMerchantAccountsRequestBuilder {
         return this;
     }
 
-    public ListMerchantAccountsResponse call() throws Exception {
+
+    private ListMerchantAccountsRequest buildRequest() {
         if (limit == null) {
             limit = _SINGLETON_VALUE_Limit.value();
-        }        Optional<Options> options = Optional.of(Options.builder()
-                                                    .retryConfig(retryConfig)
-                                                    .build());
-        return sdk.list(
-            cursor,
+        }
+
+        ListMerchantAccountsRequest request = new ListMerchantAccountsRequest(cursor,
             limit,
-            search,
-            options);
+            search);
+
+        return request;
     }
-    
+
+    public ListMerchantAccountsResponse call() throws Exception {
+        Optional<Options> options = Optional.of(Options.builder()
+            .retryConfig(retryConfig)
+            .build());
+
+        RequestOperation<ListMerchantAccountsRequest, ListMerchantAccountsResponse> operation
+              = new ListMerchantAccountsOperation(
+                 sdkConfiguration,
+                 options);
+        ListMerchantAccountsRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
+    }
+
+    /**
+    * Returns an iterable that performs next page calls till no more pages
+    * are returned.
+    *
+    * <p>The returned iterable can be used in a for-each loop:
+    * <pre><code>
+    * for (ListMerchantAccountsResponse page : builder.callAsIterable()) {
+    *     // Process each page
+    * }
+    * </code></pre>
+    * 
+    * @return An iterable that can be used to iterate through all pages
+    */
+    public Iterable<ListMerchantAccountsResponse> callAsIterable() {
+        Optional<Options> options = Optional.of(Options.builder()
+            .retryConfig(retryConfig)
+            .build());
+
+        RequestOperation<ListMerchantAccountsRequest, ListMerchantAccountsResponse> operation
+              = new ListMerchantAccountsOperation(
+                 sdkConfiguration,
+                 options);
+        ListMerchantAccountsRequest request = buildRequest();
+        Iterator<HttpResponse<InputStream>> iterator = new Paginator<>(
+            request,
+            new CursorTracker<>("$.next_cursor", String.class),
+                ListMerchantAccountsRequest::withCursor,
+            nextRequest -> unchecked(() -> operation.doRequest(request)).get());
+        
+        return () -> transform(iterator, operation::handleResponse);
+    }
+
     /**
      * Returns a stream that performs next page calls till no more pages
-     * are returned. Unlike the {@link #call()} method this method will
-     * throw an {@link APIException} if any page retrieval has an HTTP status 
-     * code >= 300 (Note that 3XX is not an error range but will need 
-     * special handling by the user if for example the HTTP client is 
-     * not configured to follow redirects).
-     * 
-     * @throws {@link APIException} if HTTP status code >= 300 is encountered
+     * are returned.
      **/  
     public Stream<ListMerchantAccountsResponse> callAsStream() {
-        return Utils.stream(() -> Optional.of(call()), x -> {
-            if (x.statusCode() >= 300) {
-                byte[] body = Utils.toByteArrayAndClose(x.rawResponse().body());
-                throw new APIException(x.rawResponse(), x.statusCode(), x.contentType(), body);
-            } else {
-                return x.next();
-            }
-        });
+        return toStream(callAsIterable());
     }
+
 
     private static final LazySingletonValue<Optional<Long>> _SINGLETON_VALUE_Limit =
             new LazySingletonValue<>(

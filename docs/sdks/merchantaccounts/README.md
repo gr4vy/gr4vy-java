@@ -21,6 +21,7 @@ package hello.world;
 
 import com.gr4vy.sdk.Gr4vy;
 import com.gr4vy.sdk.models.errors.*;
+import com.gr4vy.sdk.models.operations.ListMerchantAccountsResponse;
 import java.lang.Exception;
 
 public class Application {
@@ -36,8 +37,8 @@ public class Application {
                 .limit(20L)
                 .search("merchant-12345")
                 .callAsStream()
-                .forEach(item -> {
-                   // handle item
+                .forEach((ListMerchantAccountsResponse item) -> {
+                   // handle page
                 });
 
     }

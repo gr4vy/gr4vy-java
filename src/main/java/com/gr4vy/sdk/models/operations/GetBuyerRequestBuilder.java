@@ -3,6 +3,10 @@
  */
 package com.gr4vy.sdk.models.operations;
 
+import static com.gr4vy.sdk.operations.Operations.RequestOperation;
+
+import com.gr4vy.sdk.SDKConfiguration;
+import com.gr4vy.sdk.operations.GetBuyerOperation;
 import com.gr4vy.sdk.utils.Options;
 import com.gr4vy.sdk.utils.RetryConfig;
 import com.gr4vy.sdk.utils.Utils;
@@ -16,10 +20,10 @@ public class GetBuyerRequestBuilder {
     private String buyerId;
     private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
     private Optional<RetryConfig> retryConfig = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallGetBuyer sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public GetBuyerRequestBuilder(SDKMethodInterfaces.MethodCallGetBuyer sdk) {
-        this.sdk = sdk;
+    public GetBuyerRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public GetBuyerRequestBuilder buyerId(String buyerId) {
@@ -52,13 +56,26 @@ public class GetBuyerRequestBuilder {
         return this;
     }
 
+
+    private GetBuyerRequest buildRequest() {
+
+        GetBuyerRequest request = new GetBuyerRequest(buyerId,
+            merchantAccountId);
+
+        return request;
+    }
+
     public GetBuyerResponse call() throws Exception {
         Optional<Options> options = Optional.of(Options.builder()
-                                                    .retryConfig(retryConfig)
-                                                    .build());
-        return sdk.get(
-            buyerId,
-            merchantAccountId,
-            options);
+            .retryConfig(retryConfig)
+            .build());
+
+        RequestOperation<GetBuyerRequest, GetBuyerResponse> operation
+              = new GetBuyerOperation(
+                 sdkConfiguration,
+                 options);
+        GetBuyerRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

@@ -3,6 +3,10 @@
  */
 package com.gr4vy.sdk.models.operations;
 
+import static com.gr4vy.sdk.operations.Operations.RequestOperation;
+
+import com.gr4vy.sdk.SDKConfiguration;
+import com.gr4vy.sdk.operations.GetPaymentServiceOperation;
 import com.gr4vy.sdk.utils.Options;
 import com.gr4vy.sdk.utils.RetryConfig;
 import com.gr4vy.sdk.utils.Utils;
@@ -16,10 +20,10 @@ public class GetPaymentServiceRequestBuilder {
     private String paymentServiceId;
     private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
     private Optional<RetryConfig> retryConfig = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallGetPaymentService sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public GetPaymentServiceRequestBuilder(SDKMethodInterfaces.MethodCallGetPaymentService sdk) {
-        this.sdk = sdk;
+    public GetPaymentServiceRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public GetPaymentServiceRequestBuilder paymentServiceId(String paymentServiceId) {
@@ -52,13 +56,26 @@ public class GetPaymentServiceRequestBuilder {
         return this;
     }
 
+
+    private GetPaymentServiceRequest buildRequest() {
+
+        GetPaymentServiceRequest request = new GetPaymentServiceRequest(paymentServiceId,
+            merchantAccountId);
+
+        return request;
+    }
+
     public GetPaymentServiceResponse call() throws Exception {
         Optional<Options> options = Optional.of(Options.builder()
-                                                    .retryConfig(retryConfig)
-                                                    .build());
-        return sdk.get(
-            paymentServiceId,
-            merchantAccountId,
-            options);
+            .retryConfig(retryConfig)
+            .build());
+
+        RequestOperation<GetPaymentServiceRequest, GetPaymentServiceResponse> operation
+              = new GetPaymentServiceOperation(
+                 sdkConfiguration,
+                 options);
+        GetPaymentServiceRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

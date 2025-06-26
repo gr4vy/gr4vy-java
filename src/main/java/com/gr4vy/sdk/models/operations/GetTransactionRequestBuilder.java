@@ -3,6 +3,10 @@
  */
 package com.gr4vy.sdk.models.operations;
 
+import static com.gr4vy.sdk.operations.Operations.RequestOperation;
+
+import com.gr4vy.sdk.SDKConfiguration;
+import com.gr4vy.sdk.operations.GetTransactionOperation;
 import com.gr4vy.sdk.utils.Options;
 import com.gr4vy.sdk.utils.RetryConfig;
 import com.gr4vy.sdk.utils.Utils;
@@ -16,10 +20,10 @@ public class GetTransactionRequestBuilder {
     private String transactionId;
     private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
     private Optional<RetryConfig> retryConfig = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallGetTransaction sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public GetTransactionRequestBuilder(SDKMethodInterfaces.MethodCallGetTransaction sdk) {
-        this.sdk = sdk;
+    public GetTransactionRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public GetTransactionRequestBuilder transactionId(String transactionId) {
@@ -52,13 +56,26 @@ public class GetTransactionRequestBuilder {
         return this;
     }
 
+
+    private GetTransactionRequest buildRequest() {
+
+        GetTransactionRequest request = new GetTransactionRequest(transactionId,
+            merchantAccountId);
+
+        return request;
+    }
+
     public GetTransactionResponse call() throws Exception {
         Optional<Options> options = Optional.of(Options.builder()
-                                                    .retryConfig(retryConfig)
-                                                    .build());
-        return sdk.get(
-            transactionId,
-            merchantAccountId,
-            options);
+            .retryConfig(retryConfig)
+            .build());
+
+        RequestOperation<GetTransactionRequest, GetTransactionResponse> operation
+              = new GetTransactionOperation(
+                 sdkConfiguration,
+                 options);
+        GetTransactionRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

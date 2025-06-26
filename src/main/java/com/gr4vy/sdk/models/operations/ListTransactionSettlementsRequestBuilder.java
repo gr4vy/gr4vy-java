@@ -3,6 +3,10 @@
  */
 package com.gr4vy.sdk.models.operations;
 
+import static com.gr4vy.sdk.operations.Operations.RequestOperation;
+
+import com.gr4vy.sdk.SDKConfiguration;
+import com.gr4vy.sdk.operations.ListTransactionSettlementsOperation;
 import com.gr4vy.sdk.utils.Options;
 import com.gr4vy.sdk.utils.RetryConfig;
 import com.gr4vy.sdk.utils.Utils;
@@ -16,10 +20,10 @@ public class ListTransactionSettlementsRequestBuilder {
     private String transactionId;
     private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
     private Optional<RetryConfig> retryConfig = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallListTransactionSettlements sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public ListTransactionSettlementsRequestBuilder(SDKMethodInterfaces.MethodCallListTransactionSettlements sdk) {
-        this.sdk = sdk;
+    public ListTransactionSettlementsRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public ListTransactionSettlementsRequestBuilder transactionId(String transactionId) {
@@ -52,13 +56,26 @@ public class ListTransactionSettlementsRequestBuilder {
         return this;
     }
 
+
+    private ListTransactionSettlementsRequest buildRequest() {
+
+        ListTransactionSettlementsRequest request = new ListTransactionSettlementsRequest(transactionId,
+            merchantAccountId);
+
+        return request;
+    }
+
     public ListTransactionSettlementsResponse call() throws Exception {
         Optional<Options> options = Optional.of(Options.builder()
-                                                    .retryConfig(retryConfig)
-                                                    .build());
-        return sdk.list(
-            transactionId,
-            merchantAccountId,
-            options);
+            .retryConfig(retryConfig)
+            .build());
+
+        RequestOperation<ListTransactionSettlementsRequest, ListTransactionSettlementsResponse> operation
+              = new ListTransactionSettlementsOperation(
+                 sdkConfiguration,
+                 options);
+        ListTransactionSettlementsRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

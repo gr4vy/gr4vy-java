@@ -3,7 +3,11 @@
  */
 package com.gr4vy.sdk.models.operations;
 
+import static com.gr4vy.sdk.operations.Operations.RequestOperation;
+
+import com.gr4vy.sdk.SDKConfiguration;
 import com.gr4vy.sdk.models.components.ReportCreate;
+import com.gr4vy.sdk.operations.AddReportOperation;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -13,10 +17,10 @@ public class AddReportRequestBuilder {
 
     private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
     private ReportCreate reportCreate;
-    private final SDKMethodInterfaces.MethodCallAddReport sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public AddReportRequestBuilder(SDKMethodInterfaces.MethodCallAddReport sdk) {
-        this.sdk = sdk;
+    public AddReportRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public AddReportRequestBuilder merchantAccountId(String merchantAccountId) {
@@ -37,10 +41,21 @@ public class AddReportRequestBuilder {
         return this;
     }
 
-    public AddReportResponse call() throws Exception {
 
-        return sdk.create(
-            merchantAccountId,
+    private AddReportRequest buildRequest() {
+
+        AddReportRequest request = new AddReportRequest(merchantAccountId,
             reportCreate);
+
+        return request;
+    }
+
+    public AddReportResponse call() throws Exception {
+        
+        RequestOperation<AddReportRequest, AddReportResponse> operation
+              = new AddReportOperation( sdkConfiguration);
+        AddReportRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

@@ -11,6 +11,7 @@ import com.gr4vy.sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.util.Objects;
+import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 public class CreateTransactionRequest {
@@ -27,6 +28,14 @@ public class CreateTransactionRequest {
     @SpeakeasyMetadata("header:style=simple,explode=false,name=idempotency-key")
     private JsonNullable<String> idempotencyKey;
 
+    /**
+     * The IP address to forward from the customer. Use this when calling
+     * our API from the server side to ensure the customer's address is
+     * passed to downstream services, rather than your server IP.
+     */
+    @SpeakeasyMetadata("header:style=simple,explode=false,name=X-Forwarded-For")
+    private Optional<String> xForwardedFor;
+
     @SpeakeasyMetadata("request:mediaType=application/json")
     private TransactionCreate transactionCreate;
 
@@ -34,18 +43,21 @@ public class CreateTransactionRequest {
     public CreateTransactionRequest(
             JsonNullable<String> merchantAccountId,
             JsonNullable<String> idempotencyKey,
+            Optional<String> xForwardedFor,
             TransactionCreate transactionCreate) {
         Utils.checkNotNull(merchantAccountId, "merchantAccountId");
         Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+        Utils.checkNotNull(xForwardedFor, "xForwardedFor");
         Utils.checkNotNull(transactionCreate, "transactionCreate");
         this.merchantAccountId = merchantAccountId;
         this.idempotencyKey = idempotencyKey;
+        this.xForwardedFor = xForwardedFor;
         this.transactionCreate = transactionCreate;
     }
     
     public CreateTransactionRequest(
             TransactionCreate transactionCreate) {
-        this(JsonNullable.undefined(), JsonNullable.undefined(), transactionCreate);
+        this(JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), transactionCreate);
     }
 
     /**
@@ -62,6 +74,16 @@ public class CreateTransactionRequest {
     @JsonIgnore
     public JsonNullable<String> idempotencyKey() {
         return idempotencyKey;
+    }
+
+    /**
+     * The IP address to forward from the customer. Use this when calling
+     * our API from the server side to ensure the customer's address is
+     * passed to downstream services, rather than your server IP.
+     */
+    @JsonIgnore
+    public Optional<String> xForwardedFor() {
+        return xForwardedFor;
     }
 
     @JsonIgnore
@@ -109,6 +131,28 @@ public class CreateTransactionRequest {
         return this;
     }
 
+    /**
+     * The IP address to forward from the customer. Use this when calling
+     * our API from the server side to ensure the customer's address is
+     * passed to downstream services, rather than your server IP.
+     */
+    public CreateTransactionRequest withXForwardedFor(String xForwardedFor) {
+        Utils.checkNotNull(xForwardedFor, "xForwardedFor");
+        this.xForwardedFor = Optional.ofNullable(xForwardedFor);
+        return this;
+    }
+
+    /**
+     * The IP address to forward from the customer. Use this when calling
+     * our API from the server side to ensure the customer's address is
+     * passed to downstream services, rather than your server IP.
+     */
+    public CreateTransactionRequest withXForwardedFor(Optional<String> xForwardedFor) {
+        Utils.checkNotNull(xForwardedFor, "xForwardedFor");
+        this.xForwardedFor = xForwardedFor;
+        return this;
+    }
+
     public CreateTransactionRequest withTransactionCreate(TransactionCreate transactionCreate) {
         Utils.checkNotNull(transactionCreate, "transactionCreate");
         this.transactionCreate = transactionCreate;
@@ -128,6 +172,7 @@ public class CreateTransactionRequest {
         return 
             Objects.deepEquals(this.merchantAccountId, other.merchantAccountId) &&
             Objects.deepEquals(this.idempotencyKey, other.idempotencyKey) &&
+            Objects.deepEquals(this.xForwardedFor, other.xForwardedFor) &&
             Objects.deepEquals(this.transactionCreate, other.transactionCreate);
     }
     
@@ -136,6 +181,7 @@ public class CreateTransactionRequest {
         return Objects.hash(
             merchantAccountId,
             idempotencyKey,
+            xForwardedFor,
             transactionCreate);
     }
     
@@ -144,6 +190,7 @@ public class CreateTransactionRequest {
         return Utils.toString(CreateTransactionRequest.class,
                 "merchantAccountId", merchantAccountId,
                 "idempotencyKey", idempotencyKey,
+                "xForwardedFor", xForwardedFor,
                 "transactionCreate", transactionCreate);
     }
     
@@ -152,6 +199,8 @@ public class CreateTransactionRequest {
         private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
  
         private JsonNullable<String> idempotencyKey = JsonNullable.undefined();
+ 
+        private Optional<String> xForwardedFor = Optional.empty();
  
         private TransactionCreate transactionCreate;
         
@@ -195,6 +244,28 @@ public class CreateTransactionRequest {
             return this;
         }
 
+        /**
+         * The IP address to forward from the customer. Use this when calling
+         * our API from the server side to ensure the customer's address is
+         * passed to downstream services, rather than your server IP.
+         */
+        public Builder xForwardedFor(String xForwardedFor) {
+            Utils.checkNotNull(xForwardedFor, "xForwardedFor");
+            this.xForwardedFor = Optional.ofNullable(xForwardedFor);
+            return this;
+        }
+
+        /**
+         * The IP address to forward from the customer. Use this when calling
+         * our API from the server side to ensure the customer's address is
+         * passed to downstream services, rather than your server IP.
+         */
+        public Builder xForwardedFor(Optional<String> xForwardedFor) {
+            Utils.checkNotNull(xForwardedFor, "xForwardedFor");
+            this.xForwardedFor = xForwardedFor;
+            return this;
+        }
+
         public Builder transactionCreate(TransactionCreate transactionCreate) {
             Utils.checkNotNull(transactionCreate, "transactionCreate");
             this.transactionCreate = transactionCreate;
@@ -205,6 +276,7 @@ public class CreateTransactionRequest {
             return new CreateTransactionRequest(
                 merchantAccountId,
                 idempotencyKey,
+                xForwardedFor,
                 transactionCreate);
         }
     }

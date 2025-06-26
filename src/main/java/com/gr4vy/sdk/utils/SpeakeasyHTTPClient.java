@@ -44,6 +44,15 @@ public class SpeakeasyHTTPClient implements HTTPClient {
         debugEnabled = enabled;
     }
 
+    public static boolean getDebugLoggingEnabled() {
+        return debugEnabled;
+    }
+
+    @Override
+    public void enableDebugLogging() {
+        debugEnabled = true;
+    }
+
     /**
      * Experimental, may be changed anytime. When debug logging is enabled this
      * method controls the suppression of header values in the logs. By default,

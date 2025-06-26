@@ -3,6 +3,10 @@
  */
 package com.gr4vy.sdk.models.operations;
 
+import static com.gr4vy.sdk.operations.Operations.RequestOperation;
+
+import com.gr4vy.sdk.SDKConfiguration;
+import com.gr4vy.sdk.operations.ListDigitalWalletsOperation;
 import com.gr4vy.sdk.utils.Options;
 import com.gr4vy.sdk.utils.RetryConfig;
 import com.gr4vy.sdk.utils.Utils;
@@ -15,10 +19,10 @@ public class ListDigitalWalletsRequestBuilder {
 
     private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
     private Optional<RetryConfig> retryConfig = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallListDigitalWallets sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public ListDigitalWalletsRequestBuilder(SDKMethodInterfaces.MethodCallListDigitalWallets sdk) {
-        this.sdk = sdk;
+    public ListDigitalWalletsRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public ListDigitalWalletsRequestBuilder merchantAccountId(String merchantAccountId) {
@@ -45,12 +49,25 @@ public class ListDigitalWalletsRequestBuilder {
         return this;
     }
 
+
+    private ListDigitalWalletsRequest buildRequest() {
+
+        ListDigitalWalletsRequest request = new ListDigitalWalletsRequest(merchantAccountId);
+
+        return request;
+    }
+
     public ListDigitalWalletsResponse call() throws Exception {
         Optional<Options> options = Optional.of(Options.builder()
-                                                    .retryConfig(retryConfig)
-                                                    .build());
-        return sdk.list(
-            merchantAccountId,
-            options);
+            .retryConfig(retryConfig)
+            .build());
+
+        RequestOperation<ListDigitalWalletsRequest, ListDigitalWalletsResponse> operation
+              = new ListDigitalWalletsOperation(
+                 sdkConfiguration,
+                 options);
+        ListDigitalWalletsRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

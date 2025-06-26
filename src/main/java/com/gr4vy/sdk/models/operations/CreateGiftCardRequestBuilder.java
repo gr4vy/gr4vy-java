@@ -3,7 +3,11 @@
  */
 package com.gr4vy.sdk.models.operations;
 
+import static com.gr4vy.sdk.operations.Operations.RequestOperation;
+
+import com.gr4vy.sdk.SDKConfiguration;
 import com.gr4vy.sdk.models.components.GiftCardCreate;
+import com.gr4vy.sdk.operations.CreateGiftCardOperation;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -13,10 +17,10 @@ public class CreateGiftCardRequestBuilder {
 
     private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
     private GiftCardCreate giftCardCreate;
-    private final SDKMethodInterfaces.MethodCallCreateGiftCard sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public CreateGiftCardRequestBuilder(SDKMethodInterfaces.MethodCallCreateGiftCard sdk) {
-        this.sdk = sdk;
+    public CreateGiftCardRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public CreateGiftCardRequestBuilder merchantAccountId(String merchantAccountId) {
@@ -37,10 +41,21 @@ public class CreateGiftCardRequestBuilder {
         return this;
     }
 
-    public CreateGiftCardResponse call() throws Exception {
 
-        return sdk.create(
-            merchantAccountId,
+    private CreateGiftCardRequest buildRequest() {
+
+        CreateGiftCardRequest request = new CreateGiftCardRequest(merchantAccountId,
             giftCardCreate);
+
+        return request;
+    }
+
+    public CreateGiftCardResponse call() throws Exception {
+        
+        RequestOperation<CreateGiftCardRequest, CreateGiftCardResponse> operation
+              = new CreateGiftCardOperation( sdkConfiguration);
+        CreateGiftCardRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

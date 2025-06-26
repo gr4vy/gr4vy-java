@@ -3,7 +3,11 @@
  */
 package com.gr4vy.sdk.models.operations;
 
+import static com.gr4vy.sdk.operations.Operations.RequestOperation;
+
+import com.gr4vy.sdk.SDKConfiguration;
 import com.gr4vy.sdk.models.components.ReportUpdate;
+import com.gr4vy.sdk.operations.UpdateReportOperation;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -14,10 +18,10 @@ public class UpdateReportRequestBuilder {
     private String reportId;
     private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
     private ReportUpdate reportUpdate;
-    private final SDKMethodInterfaces.MethodCallUpdateReport sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public UpdateReportRequestBuilder(SDKMethodInterfaces.MethodCallUpdateReport sdk) {
-        this.sdk = sdk;
+    public UpdateReportRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public UpdateReportRequestBuilder reportId(String reportId) {
@@ -44,11 +48,22 @@ public class UpdateReportRequestBuilder {
         return this;
     }
 
-    public UpdateReportResponse call() throws Exception {
 
-        return sdk.put(
-            reportId,
+    private UpdateReportRequest buildRequest() {
+
+        UpdateReportRequest request = new UpdateReportRequest(reportId,
             merchantAccountId,
             reportUpdate);
+
+        return request;
+    }
+
+    public UpdateReportResponse call() throws Exception {
+        
+        RequestOperation<UpdateReportRequest, UpdateReportResponse> operation
+              = new UpdateReportOperation( sdkConfiguration);
+        UpdateReportRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

@@ -3,6 +3,10 @@
  */
 package com.gr4vy.sdk.models.operations;
 
+import static com.gr4vy.sdk.operations.Operations.RequestOperation;
+
+import com.gr4vy.sdk.SDKConfiguration;
+import com.gr4vy.sdk.operations.DeleteBuyerOperation;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -12,10 +16,10 @@ public class DeleteBuyerRequestBuilder {
 
     private String buyerId;
     private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
-    private final SDKMethodInterfaces.MethodCallDeleteBuyer sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public DeleteBuyerRequestBuilder(SDKMethodInterfaces.MethodCallDeleteBuyer sdk) {
-        this.sdk = sdk;
+    public DeleteBuyerRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public DeleteBuyerRequestBuilder buyerId(String buyerId) {
@@ -36,10 +40,21 @@ public class DeleteBuyerRequestBuilder {
         return this;
     }
 
-    public DeleteBuyerResponse call() throws Exception {
 
-        return sdk.delete(
-            buyerId,
+    private DeleteBuyerRequest buildRequest() {
+
+        DeleteBuyerRequest request = new DeleteBuyerRequest(buyerId,
             merchantAccountId);
+
+        return request;
+    }
+
+    public DeleteBuyerResponse call() throws Exception {
+        
+        RequestOperation<DeleteBuyerRequest, DeleteBuyerResponse> operation
+              = new DeleteBuyerOperation( sdkConfiguration);
+        DeleteBuyerRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

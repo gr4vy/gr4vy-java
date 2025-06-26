@@ -20,6 +20,7 @@ package hello.world;
 
 import com.gr4vy.sdk.Gr4vy;
 import com.gr4vy.sdk.models.errors.*;
+import com.gr4vy.sdk.models.operations.ListReportExecutionsResponse;
 import java.lang.Exception;
 
 public class Application {
@@ -35,8 +36,8 @@ public class Application {
                 .reportId("4d4c7123-b794-4fad-b1b9-5ab2606e6bbe")
                 .limit(20L)
                 .callAsStream()
-                .forEach(item -> {
-                   // handle item
+                .forEach((ListReportExecutionsResponse item) -> {
+                   // handle page
                 });
 
     }

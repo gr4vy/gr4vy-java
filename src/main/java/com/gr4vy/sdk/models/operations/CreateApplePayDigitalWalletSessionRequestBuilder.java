@@ -3,7 +3,11 @@
  */
 package com.gr4vy.sdk.models.operations;
 
+import static com.gr4vy.sdk.operations.Operations.RequestOperation;
+
+import com.gr4vy.sdk.SDKConfiguration;
 import com.gr4vy.sdk.models.components.ApplePaySessionRequest;
+import com.gr4vy.sdk.operations.CreateApplePayDigitalWalletSessionOperation;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -13,10 +17,10 @@ public class CreateApplePayDigitalWalletSessionRequestBuilder {
 
     private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
     private ApplePaySessionRequest applePaySessionRequest;
-    private final SDKMethodInterfaces.MethodCallCreateApplePayDigitalWalletSession sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public CreateApplePayDigitalWalletSessionRequestBuilder(SDKMethodInterfaces.MethodCallCreateApplePayDigitalWalletSession sdk) {
-        this.sdk = sdk;
+    public CreateApplePayDigitalWalletSessionRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public CreateApplePayDigitalWalletSessionRequestBuilder merchantAccountId(String merchantAccountId) {
@@ -37,10 +41,21 @@ public class CreateApplePayDigitalWalletSessionRequestBuilder {
         return this;
     }
 
-    public CreateApplePayDigitalWalletSessionResponse call() throws Exception {
 
-        return sdk.applePay(
-            merchantAccountId,
+    private CreateApplePayDigitalWalletSessionRequest buildRequest() {
+
+        CreateApplePayDigitalWalletSessionRequest request = new CreateApplePayDigitalWalletSessionRequest(merchantAccountId,
             applePaySessionRequest);
+
+        return request;
+    }
+
+    public CreateApplePayDigitalWalletSessionResponse call() throws Exception {
+        
+        RequestOperation<CreateApplePayDigitalWalletSessionRequest, CreateApplePayDigitalWalletSessionResponse> operation
+              = new CreateApplePayDigitalWalletSessionOperation( sdkConfiguration);
+        CreateApplePayDigitalWalletSessionRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

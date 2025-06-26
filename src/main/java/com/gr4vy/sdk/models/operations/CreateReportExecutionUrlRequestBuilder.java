@@ -3,6 +3,10 @@
  */
 package com.gr4vy.sdk.models.operations;
 
+import static com.gr4vy.sdk.operations.Operations.RequestOperation;
+
+import com.gr4vy.sdk.SDKConfiguration;
+import com.gr4vy.sdk.operations.CreateReportExecutionUrlOperation;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -13,10 +17,10 @@ public class CreateReportExecutionUrlRequestBuilder {
     private String reportId;
     private String reportExecutionId;
     private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
-    private final SDKMethodInterfaces.MethodCallCreateReportExecutionUrl sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public CreateReportExecutionUrlRequestBuilder(SDKMethodInterfaces.MethodCallCreateReportExecutionUrl sdk) {
-        this.sdk = sdk;
+    public CreateReportExecutionUrlRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public CreateReportExecutionUrlRequestBuilder reportId(String reportId) {
@@ -43,11 +47,22 @@ public class CreateReportExecutionUrlRequestBuilder {
         return this;
     }
 
-    public CreateReportExecutionUrlResponse call() throws Exception {
 
-        return sdk.url(
-            reportId,
+    private CreateReportExecutionUrlRequest buildRequest() {
+
+        CreateReportExecutionUrlRequest request = new CreateReportExecutionUrlRequest(reportId,
             reportExecutionId,
             merchantAccountId);
+
+        return request;
+    }
+
+    public CreateReportExecutionUrlResponse call() throws Exception {
+        
+        RequestOperation<CreateReportExecutionUrlRequest, CreateReportExecutionUrlResponse> operation
+              = new CreateReportExecutionUrlOperation( sdkConfiguration);
+        CreateReportExecutionUrlRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

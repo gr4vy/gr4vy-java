@@ -3,7 +3,11 @@
  */
 package com.gr4vy.sdk.models.operations;
 
+import static com.gr4vy.sdk.operations.Operations.RequestOperation;
+
+import com.gr4vy.sdk.SDKConfiguration;
 import com.gr4vy.sdk.models.components.TransactionRefundCreate;
+import com.gr4vy.sdk.operations.CreateTransactionRefundOperation;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -14,10 +18,10 @@ public class CreateTransactionRefundRequestBuilder {
     private String transactionId;
     private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
     private TransactionRefundCreate transactionRefundCreate;
-    private final SDKMethodInterfaces.MethodCallCreateTransactionRefund sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public CreateTransactionRefundRequestBuilder(SDKMethodInterfaces.MethodCallCreateTransactionRefund sdk) {
-        this.sdk = sdk;
+    public CreateTransactionRefundRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public CreateTransactionRefundRequestBuilder transactionId(String transactionId) {
@@ -44,11 +48,22 @@ public class CreateTransactionRefundRequestBuilder {
         return this;
     }
 
-    public CreateTransactionRefundResponse call() throws Exception {
 
-        return sdk.create(
-            transactionId,
+    private CreateTransactionRefundRequest buildRequest() {
+
+        CreateTransactionRefundRequest request = new CreateTransactionRefundRequest(transactionId,
             merchantAccountId,
             transactionRefundCreate);
+
+        return request;
+    }
+
+    public CreateTransactionRefundResponse call() throws Exception {
+        
+        RequestOperation<CreateTransactionRefundRequest, CreateTransactionRefundResponse> operation
+              = new CreateTransactionRefundOperation( sdkConfiguration);
+        CreateTransactionRefundRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

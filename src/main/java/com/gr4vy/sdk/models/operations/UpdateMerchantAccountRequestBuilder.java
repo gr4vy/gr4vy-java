@@ -3,7 +3,11 @@
  */
 package com.gr4vy.sdk.models.operations;
 
+import static com.gr4vy.sdk.operations.Operations.RequestOperation;
+
+import com.gr4vy.sdk.SDKConfiguration;
 import com.gr4vy.sdk.models.components.MerchantAccountUpdate;
+import com.gr4vy.sdk.operations.UpdateMerchantAccountOperation;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -12,10 +16,10 @@ public class UpdateMerchantAccountRequestBuilder {
 
     private String merchantAccountId;
     private MerchantAccountUpdate merchantAccountUpdate;
-    private final SDKMethodInterfaces.MethodCallUpdateMerchantAccount sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public UpdateMerchantAccountRequestBuilder(SDKMethodInterfaces.MethodCallUpdateMerchantAccount sdk) {
-        this.sdk = sdk;
+    public UpdateMerchantAccountRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public UpdateMerchantAccountRequestBuilder merchantAccountId(String merchantAccountId) {
@@ -30,10 +34,21 @@ public class UpdateMerchantAccountRequestBuilder {
         return this;
     }
 
-    public UpdateMerchantAccountResponse call() throws Exception {
 
-        return sdk.update(
-            merchantAccountId,
+    private UpdateMerchantAccountRequest buildRequest() {
+
+        UpdateMerchantAccountRequest request = new UpdateMerchantAccountRequest(merchantAccountId,
             merchantAccountUpdate);
+
+        return request;
+    }
+
+    public UpdateMerchantAccountResponse call() throws Exception {
+        
+        RequestOperation<UpdateMerchantAccountRequest, UpdateMerchantAccountResponse> operation
+              = new UpdateMerchantAccountOperation( sdkConfiguration);
+        UpdateMerchantAccountRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

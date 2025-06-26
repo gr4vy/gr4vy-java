@@ -3,6 +3,10 @@
  */
 package com.gr4vy.sdk.models.operations;
 
+import static com.gr4vy.sdk.operations.Operations.RequestOperation;
+
+import com.gr4vy.sdk.SDKConfiguration;
+import com.gr4vy.sdk.operations.ListPaymentMethodPaymentServiceTokensOperation;
 import com.gr4vy.sdk.utils.Options;
 import com.gr4vy.sdk.utils.RetryConfig;
 import com.gr4vy.sdk.utils.Utils;
@@ -17,10 +21,10 @@ public class ListPaymentMethodPaymentServiceTokensRequestBuilder {
     private JsonNullable<String> paymentServiceId = JsonNullable.undefined();
     private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
     private Optional<RetryConfig> retryConfig = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallListPaymentMethodPaymentServiceTokens sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public ListPaymentMethodPaymentServiceTokensRequestBuilder(SDKMethodInterfaces.MethodCallListPaymentMethodPaymentServiceTokens sdk) {
-        this.sdk = sdk;
+    public ListPaymentMethodPaymentServiceTokensRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public ListPaymentMethodPaymentServiceTokensRequestBuilder paymentMethodId(String paymentMethodId) {
@@ -65,14 +69,27 @@ public class ListPaymentMethodPaymentServiceTokensRequestBuilder {
         return this;
     }
 
+
+    private ListPaymentMethodPaymentServiceTokensRequest buildRequest() {
+
+        ListPaymentMethodPaymentServiceTokensRequest request = new ListPaymentMethodPaymentServiceTokensRequest(paymentMethodId,
+            paymentServiceId,
+            merchantAccountId);
+
+        return request;
+    }
+
     public ListPaymentMethodPaymentServiceTokensResponse call() throws Exception {
         Optional<Options> options = Optional.of(Options.builder()
-                                                    .retryConfig(retryConfig)
-                                                    .build());
-        return sdk.list(
-            paymentMethodId,
-            paymentServiceId,
-            merchantAccountId,
-            options);
+            .retryConfig(retryConfig)
+            .build());
+
+        RequestOperation<ListPaymentMethodPaymentServiceTokensRequest, ListPaymentMethodPaymentServiceTokensResponse> operation
+              = new ListPaymentMethodPaymentServiceTokensOperation(
+                 sdkConfiguration,
+                 options);
+        ListPaymentMethodPaymentServiceTokensRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

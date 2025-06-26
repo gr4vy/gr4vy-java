@@ -3,12 +3,12 @@
  */
 package com.gr4vy.sdk;
 
+import com.gr4vy.sdk.utils.Globals;
 import com.gr4vy.sdk.utils.HTTPClient;
 import com.gr4vy.sdk.utils.Hooks;
 import com.gr4vy.sdk.utils.RetryConfig;
 import com.gr4vy.sdk.utils.SpeakeasyHTTPClient;
 import com.gr4vy.sdk.utils.Utils;
-import java.lang.Object;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.HashMap;
@@ -19,8 +19,8 @@ public class SDKConfiguration {
 
     private static final String LANGUAGE = "java";
     public static final String OPENAPI_DOC_VERSION = "1.0.0";
-    public static final String SDK_VERSION = "1.0.0";
-    public static final String GEN_VERSION = "2.632.2";
+    public static final String SDK_VERSION = "2.0.0";
+    public static final String GEN_VERSION = "2.638.0";
     private static final String BASE_PACKAGE = "com.gr4vy.sdk";
     public static final String USER_AGENT = 
             String.format("speakeasy-sdk/%s %s %s %s %s",
@@ -122,9 +122,7 @@ public class SDKConfiguration {
     }
 
     @SuppressWarnings("serial")
-    public Map<String, Map<String, Map<String,Object>>> globals = new HashMap<>(){ {
-        put("parameters", new HashMap<>());
-    } };
+    public Globals globals = new Globals();
     
      public Map<String, String> getServerVariableDefaults() {
          return serverVariables.get(this.server);

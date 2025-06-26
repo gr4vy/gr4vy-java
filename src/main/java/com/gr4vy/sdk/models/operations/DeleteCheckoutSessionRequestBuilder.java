@@ -3,6 +3,10 @@
  */
 package com.gr4vy.sdk.models.operations;
 
+import static com.gr4vy.sdk.operations.Operations.RequestOperation;
+
+import com.gr4vy.sdk.SDKConfiguration;
+import com.gr4vy.sdk.operations.DeleteCheckoutSessionOperation;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -12,10 +16,10 @@ public class DeleteCheckoutSessionRequestBuilder {
 
     private String sessionId;
     private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
-    private final SDKMethodInterfaces.MethodCallDeleteCheckoutSession sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public DeleteCheckoutSessionRequestBuilder(SDKMethodInterfaces.MethodCallDeleteCheckoutSession sdk) {
-        this.sdk = sdk;
+    public DeleteCheckoutSessionRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public DeleteCheckoutSessionRequestBuilder sessionId(String sessionId) {
@@ -36,10 +40,21 @@ public class DeleteCheckoutSessionRequestBuilder {
         return this;
     }
 
-    public DeleteCheckoutSessionResponse call() throws Exception {
 
-        return sdk.delete(
-            sessionId,
+    private DeleteCheckoutSessionRequest buildRequest() {
+
+        DeleteCheckoutSessionRequest request = new DeleteCheckoutSessionRequest(sessionId,
             merchantAccountId);
+
+        return request;
+    }
+
+    public DeleteCheckoutSessionResponse call() throws Exception {
+        
+        RequestOperation<DeleteCheckoutSessionRequest, DeleteCheckoutSessionResponse> operation
+              = new DeleteCheckoutSessionOperation( sdkConfiguration);
+        DeleteCheckoutSessionRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

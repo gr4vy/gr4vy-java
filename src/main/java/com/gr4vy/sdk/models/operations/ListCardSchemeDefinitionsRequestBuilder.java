@@ -3,6 +3,10 @@
  */
 package com.gr4vy.sdk.models.operations;
 
+import static com.gr4vy.sdk.operations.Operations.RequestOperation;
+
+import com.gr4vy.sdk.SDKConfiguration;
+import com.gr4vy.sdk.operations.ListCardSchemeDefinitionsOperation;
 import com.gr4vy.sdk.utils.Options;
 import com.gr4vy.sdk.utils.RetryConfig;
 import com.gr4vy.sdk.utils.Utils;
@@ -15,10 +19,10 @@ public class ListCardSchemeDefinitionsRequestBuilder {
 
     private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
     private Optional<RetryConfig> retryConfig = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallListCardSchemeDefinitions sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public ListCardSchemeDefinitionsRequestBuilder(SDKMethodInterfaces.MethodCallListCardSchemeDefinitions sdk) {
-        this.sdk = sdk;
+    public ListCardSchemeDefinitionsRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public ListCardSchemeDefinitionsRequestBuilder merchantAccountId(String merchantAccountId) {
@@ -45,12 +49,25 @@ public class ListCardSchemeDefinitionsRequestBuilder {
         return this;
     }
 
+
+    private ListCardSchemeDefinitionsRequest buildRequest() {
+
+        ListCardSchemeDefinitionsRequest request = new ListCardSchemeDefinitionsRequest(merchantAccountId);
+
+        return request;
+    }
+
     public ListCardSchemeDefinitionsResponse call() throws Exception {
         Optional<Options> options = Optional.of(Options.builder()
-                                                    .retryConfig(retryConfig)
-                                                    .build());
-        return sdk.list(
-            merchantAccountId,
-            options);
+            .retryConfig(retryConfig)
+            .build());
+
+        RequestOperation<ListCardSchemeDefinitionsRequest, ListCardSchemeDefinitionsResponse> operation
+              = new ListCardSchemeDefinitionsOperation(
+                 sdkConfiguration,
+                 options);
+        ListCardSchemeDefinitionsRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

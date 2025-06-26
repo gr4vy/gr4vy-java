@@ -3,7 +3,11 @@
  */
 package com.gr4vy.sdk.models.operations;
 
+import static com.gr4vy.sdk.operations.Operations.RequestOperation;
+
+import com.gr4vy.sdk.SDKConfiguration;
 import com.gr4vy.sdk.models.components.PaymentServiceTokenCreate;
+import com.gr4vy.sdk.operations.CreatePaymentMethodPaymentServiceTokenOperation;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -14,10 +18,10 @@ public class CreatePaymentMethodPaymentServiceTokenRequestBuilder {
     private String paymentMethodId;
     private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
     private PaymentServiceTokenCreate paymentServiceTokenCreate;
-    private final SDKMethodInterfaces.MethodCallCreatePaymentMethodPaymentServiceToken sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public CreatePaymentMethodPaymentServiceTokenRequestBuilder(SDKMethodInterfaces.MethodCallCreatePaymentMethodPaymentServiceToken sdk) {
-        this.sdk = sdk;
+    public CreatePaymentMethodPaymentServiceTokenRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public CreatePaymentMethodPaymentServiceTokenRequestBuilder paymentMethodId(String paymentMethodId) {
@@ -44,11 +48,22 @@ public class CreatePaymentMethodPaymentServiceTokenRequestBuilder {
         return this;
     }
 
-    public CreatePaymentMethodPaymentServiceTokenResponse call() throws Exception {
 
-        return sdk.create(
-            paymentMethodId,
+    private CreatePaymentMethodPaymentServiceTokenRequest buildRequest() {
+
+        CreatePaymentMethodPaymentServiceTokenRequest request = new CreatePaymentMethodPaymentServiceTokenRequest(paymentMethodId,
             merchantAccountId,
             paymentServiceTokenCreate);
+
+        return request;
+    }
+
+    public CreatePaymentMethodPaymentServiceTokenResponse call() throws Exception {
+        
+        RequestOperation<CreatePaymentMethodPaymentServiceTokenRequest, CreatePaymentMethodPaymentServiceTokenResponse> operation
+              = new CreatePaymentMethodPaymentServiceTokenOperation( sdkConfiguration);
+        CreatePaymentMethodPaymentServiceTokenRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

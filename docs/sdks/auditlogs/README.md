@@ -20,6 +20,7 @@ import com.gr4vy.sdk.Gr4vy;
 import com.gr4vy.sdk.models.components.AuditLogAction;
 import com.gr4vy.sdk.models.errors.*;
 import com.gr4vy.sdk.models.operations.ListAuditLogsRequest;
+import com.gr4vy.sdk.models.operations.ListAuditLogsResponse;
 import java.lang.Exception;
 
 public class Application {
@@ -41,8 +42,8 @@ public class Application {
         sdk.auditLogs().list()
                 .request(req)
                 .callAsStream()
-                .forEach(item -> {
-                   // handle item
+                .forEach((ListAuditLogsResponse item) -> {
+                   // handle page
                 });
 
     }

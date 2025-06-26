@@ -3,6 +3,10 @@
  */
 package com.gr4vy.sdk.models.operations;
 
+import static com.gr4vy.sdk.operations.Operations.RequestOperation;
+
+import com.gr4vy.sdk.SDKConfiguration;
+import com.gr4vy.sdk.operations.CreatePaymentServiceSessionOperation;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.Object;
@@ -16,10 +20,10 @@ public class CreatePaymentServiceSessionRequestBuilder {
     private String paymentServiceId;
     private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
     private Map<String, Object> requestBody = new HashMap<>();
-    private final SDKMethodInterfaces.MethodCallCreatePaymentServiceSession sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public CreatePaymentServiceSessionRequestBuilder(SDKMethodInterfaces.MethodCallCreatePaymentServiceSession sdk) {
-        this.sdk = sdk;
+    public CreatePaymentServiceSessionRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public CreatePaymentServiceSessionRequestBuilder paymentServiceId(String paymentServiceId) {
@@ -46,11 +50,22 @@ public class CreatePaymentServiceSessionRequestBuilder {
         return this;
     }
 
-    public CreatePaymentServiceSessionResponse call() throws Exception {
 
-        return sdk.session(
-            paymentServiceId,
+    private CreatePaymentServiceSessionRequest buildRequest() {
+
+        CreatePaymentServiceSessionRequest request = new CreatePaymentServiceSessionRequest(paymentServiceId,
             merchantAccountId,
             requestBody);
+
+        return request;
+    }
+
+    public CreatePaymentServiceSessionResponse call() throws Exception {
+        
+        RequestOperation<CreatePaymentServiceSessionRequest, CreatePaymentServiceSessionResponse> operation
+              = new CreatePaymentServiceSessionOperation( sdkConfiguration);
+        CreatePaymentServiceSessionRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }
