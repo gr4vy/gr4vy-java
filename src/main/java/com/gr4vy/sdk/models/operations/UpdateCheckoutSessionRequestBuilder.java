@@ -3,7 +3,11 @@
  */
 package com.gr4vy.sdk.models.operations;
 
+import static com.gr4vy.sdk.operations.Operations.RequestOperation;
+
+import com.gr4vy.sdk.SDKConfiguration;
 import com.gr4vy.sdk.models.components.CheckoutSessionCreate;
+import com.gr4vy.sdk.operations.UpdateCheckoutSessionOperation;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -14,10 +18,10 @@ public class UpdateCheckoutSessionRequestBuilder {
     private String sessionId;
     private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
     private CheckoutSessionCreate checkoutSessionCreate;
-    private final SDKMethodInterfaces.MethodCallUpdateCheckoutSession sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public UpdateCheckoutSessionRequestBuilder(SDKMethodInterfaces.MethodCallUpdateCheckoutSession sdk) {
-        this.sdk = sdk;
+    public UpdateCheckoutSessionRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public UpdateCheckoutSessionRequestBuilder sessionId(String sessionId) {
@@ -44,11 +48,22 @@ public class UpdateCheckoutSessionRequestBuilder {
         return this;
     }
 
-    public UpdateCheckoutSessionResponse call() throws Exception {
 
-        return sdk.update(
-            sessionId,
+    private UpdateCheckoutSessionRequest buildRequest() {
+
+        UpdateCheckoutSessionRequest request = new UpdateCheckoutSessionRequest(sessionId,
             merchantAccountId,
             checkoutSessionCreate);
+
+        return request;
+    }
+
+    public UpdateCheckoutSessionResponse call() throws Exception {
+        
+        RequestOperation<UpdateCheckoutSessionRequest, UpdateCheckoutSessionResponse> operation
+              = new UpdateCheckoutSessionOperation( sdkConfiguration);
+        UpdateCheckoutSessionRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

@@ -40,7 +40,6 @@ This SDK is designed to simplify development, reduce boilerplate code, and help 
   * [Server Selection](#server-selection)
 * [Development](#development)
   * [Testing](#testing)
-  * [Maturity](#maturity)
   * [Contributions](#contributions)
 
 <!-- End Table of Contents [toc] -->
@@ -56,7 +55,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'com.gr4vy:sdk:1.0.0'
+implementation 'com.gr4vy:sdk:2.0.0'
 ```
 
 Maven:
@@ -64,7 +63,7 @@ Maven:
 <dependency>
     <groupId>com.gr4vy</groupId>
     <artifactId>sdk</artifactId>
-    <version>1.0.0</version>
+    <version>2.0.0</version>
 </dependency>
 ```
 
@@ -85,9 +84,11 @@ gradlew.bat publishToMavenLocal -Pskip.signing
 ### Logging
 A logging framework/facade has not yet been adopted but is under consideration.
 
-For request and response logging (especially json bodies) use:
+For request and response logging (especially json bodies), call `enableHTTPDebugLogging(boolean)` on the SDK builder like so:
 ```java
-SpeakeasyHTTPClient.setDebugLogging(true); // experimental API only (may change without warning)
+SDK.builder()
+    .enableHTTPDebugLogging(true)
+    .build();
 ```
 Example output:
 ```
@@ -101,7 +102,9 @@ Response body:
   "token": "global"
 }
 ```
-WARNING: This should only used for temporary debugging purposes. Leaving this option on in a production system could expose credentials/secrets in logs. <i>Authorization</i> headers are redacted by default and there is the ability to specify redacted header names via `SpeakeasyHTTPClient.setRedactedHeaders`.
+__WARNING__: This should only used for temporary debugging purposes. Leaving this option on in a production system could expose credentials/secrets in logs. <i>Authorization</i> headers are redacted by default and there is the ability to specify redacted header names via `SpeakeasyHTTPClient.setRedactedHeaders`.
+
+__NOTE__: This is a convenience method that calls `HTTPClient.enableDebugLogging()`. The `SpeakeasyHTTPClient` honors this setting. If you are using a custom HTTP client, it is up to the custom client to honor this setting.
 
 Another option is to set the System property `-Djdk.httpclient.HttpClient.log=all`. However, this second option does not log bodies.
 <!-- End SDK Installation [installation] -->
@@ -440,18 +443,21 @@ try {
 <!-- Start Pagination [pagination] -->
 ## Pagination
 
-Some of the endpoints in this SDK support pagination. To use pagination, you make your SDK calls as usual, but the
-returned response object will have a `next` method that can be called to pull down the next group of results. The `next`
-function returns an `Optional` value, which `isPresent` until there are no more pages to be fetched.
+Some of the endpoints in this SDK support pagination. To use pagination, you can make your SDK calls using the `callAsIterable` or `callAsStream` methods.
+For certain operations, you can also use the `callAsStreamUnwrapped` method that streams individual page items directly.
 
-Here's an example of one such pagination call:
+Here's an example depicting the different ways to use pagination:
+
+
 ```java
 package hello.world;
 
 import com.gr4vy.sdk.Gr4vy;
 import com.gr4vy.sdk.models.errors.*;
 import com.gr4vy.sdk.models.operations.ListBuyersRequest;
+import com.gr4vy.sdk.models.operations.ListBuyersResponse;
 import java.lang.Exception;
+import java.lang.Iterable;
 
 public class Application {
 
@@ -468,12 +474,24 @@ public class Application {
                 .externalIdentifier("buyer-12345")
                 .build();
 
-        sdk.buyers().list()
-                .request(req)
-                .callAsStream()
-                .forEach(item -> {
-                   // handle item
-                });
+        var b = sdk.buyers().list()
+                .request(req);
+
+        // Iterate through all pages using a traditional for-each loop
+        // Each iteration returns a complete page response
+        Iterable<ListBuyersResponse> iterable = b.callAsIterable();
+        for (ListBuyersResponse page : iterable) {
+            // handle page
+        }
+
+        // Stream through all pages and process individual items
+        // callAsStreamUnwrapped() flattens pages into individual items
+
+        // Stream through pages without unwrapping (each item is a complete page)
+        b.callAsStream()
+            .forEach((ListBuyersResponse page) -> {
+                // handle page
+            });
 
     }
 }
@@ -492,6 +510,7 @@ package hello.world;
 import com.gr4vy.sdk.Gr4vy;
 import com.gr4vy.sdk.models.errors.*;
 import com.gr4vy.sdk.models.operations.ListBuyersRequest;
+import com.gr4vy.sdk.models.operations.ListBuyersResponse;
 import com.gr4vy.sdk.utils.BackoffStrategy;
 import com.gr4vy.sdk.utils.RetryConfig;
 import java.lang.Exception;
@@ -525,8 +544,8 @@ public class Application {
                         .build())
                     .build())
                 .callAsStream()
-                .forEach(item -> {
-                   // handle item
+                .forEach((ListBuyersResponse item) -> {
+                   // handle page
                 });
 
     }
@@ -540,6 +559,7 @@ package hello.world;
 import com.gr4vy.sdk.Gr4vy;
 import com.gr4vy.sdk.models.errors.*;
 import com.gr4vy.sdk.models.operations.ListBuyersRequest;
+import com.gr4vy.sdk.models.operations.ListBuyersResponse;
 import com.gr4vy.sdk.utils.BackoffStrategy;
 import com.gr4vy.sdk.utils.RetryConfig;
 import java.lang.Exception;
@@ -573,8 +593,8 @@ public class Application {
         sdk.buyers().list()
                 .request(req)
                 .callAsStream()
-                .forEach(item -> {
-                   // handle item
+                .forEach((ListBuyersResponse item) -> {
+                   // handle page
                 });
 
     }

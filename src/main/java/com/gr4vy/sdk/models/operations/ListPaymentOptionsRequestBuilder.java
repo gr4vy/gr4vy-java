@@ -3,7 +3,11 @@
  */
 package com.gr4vy.sdk.models.operations;
 
+import static com.gr4vy.sdk.operations.Operations.RequestOperation;
+
+import com.gr4vy.sdk.SDKConfiguration;
 import com.gr4vy.sdk.models.components.PaymentOptionRequest;
+import com.gr4vy.sdk.operations.ListPaymentOptionsOperation;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -13,10 +17,10 @@ public class ListPaymentOptionsRequestBuilder {
 
     private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
     private PaymentOptionRequest paymentOptionRequest;
-    private final SDKMethodInterfaces.MethodCallListPaymentOptions sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public ListPaymentOptionsRequestBuilder(SDKMethodInterfaces.MethodCallListPaymentOptions sdk) {
-        this.sdk = sdk;
+    public ListPaymentOptionsRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public ListPaymentOptionsRequestBuilder merchantAccountId(String merchantAccountId) {
@@ -37,10 +41,21 @@ public class ListPaymentOptionsRequestBuilder {
         return this;
     }
 
-    public ListPaymentOptionsResponse call() throws Exception {
 
-        return sdk.list(
-            merchantAccountId,
+    private ListPaymentOptionsRequest buildRequest() {
+
+        ListPaymentOptionsRequest request = new ListPaymentOptionsRequest(merchantAccountId,
             paymentOptionRequest);
+
+        return request;
+    }
+
+    public ListPaymentOptionsResponse call() throws Exception {
+        
+        RequestOperation<ListPaymentOptionsRequest, ListPaymentOptionsResponse> operation
+              = new ListPaymentOptionsOperation( sdkConfiguration);
+        ListPaymentOptionsRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

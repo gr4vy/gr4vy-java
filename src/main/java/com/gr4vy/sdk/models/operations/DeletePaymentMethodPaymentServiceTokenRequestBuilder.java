@@ -3,6 +3,10 @@
  */
 package com.gr4vy.sdk.models.operations;
 
+import static com.gr4vy.sdk.operations.Operations.RequestOperation;
+
+import com.gr4vy.sdk.SDKConfiguration;
+import com.gr4vy.sdk.operations.DeletePaymentMethodPaymentServiceTokenOperation;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -13,10 +17,10 @@ public class DeletePaymentMethodPaymentServiceTokenRequestBuilder {
     private String paymentMethodId;
     private String paymentServiceTokenId;
     private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
-    private final SDKMethodInterfaces.MethodCallDeletePaymentMethodPaymentServiceToken sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public DeletePaymentMethodPaymentServiceTokenRequestBuilder(SDKMethodInterfaces.MethodCallDeletePaymentMethodPaymentServiceToken sdk) {
-        this.sdk = sdk;
+    public DeletePaymentMethodPaymentServiceTokenRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public DeletePaymentMethodPaymentServiceTokenRequestBuilder paymentMethodId(String paymentMethodId) {
@@ -43,11 +47,22 @@ public class DeletePaymentMethodPaymentServiceTokenRequestBuilder {
         return this;
     }
 
-    public DeletePaymentMethodPaymentServiceTokenResponse call() throws Exception {
 
-        return sdk.delete(
-            paymentMethodId,
+    private DeletePaymentMethodPaymentServiceTokenRequest buildRequest() {
+
+        DeletePaymentMethodPaymentServiceTokenRequest request = new DeletePaymentMethodPaymentServiceTokenRequest(paymentMethodId,
             paymentServiceTokenId,
             merchantAccountId);
+
+        return request;
+    }
+
+    public DeletePaymentMethodPaymentServiceTokenResponse call() throws Exception {
+        
+        RequestOperation<DeletePaymentMethodPaymentServiceTokenRequest, DeletePaymentMethodPaymentServiceTokenResponse> operation
+              = new DeletePaymentMethodPaymentServiceTokenOperation( sdkConfiguration);
+        DeletePaymentMethodPaymentServiceTokenRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

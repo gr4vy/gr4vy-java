@@ -3,6 +3,10 @@
  */
 package com.gr4vy.sdk.models.operations;
 
+import static com.gr4vy.sdk.operations.Operations.RequestOperation;
+
+import com.gr4vy.sdk.SDKConfiguration;
+import com.gr4vy.sdk.operations.ListBuyerGiftCardsOperation;
 import com.gr4vy.sdk.utils.Options;
 import com.gr4vy.sdk.utils.RetryConfig;
 import com.gr4vy.sdk.utils.Utils;
@@ -17,10 +21,10 @@ public class ListBuyerGiftCardsRequestBuilder {
     private JsonNullable<String> buyerId = JsonNullable.undefined();
     private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
     private Optional<RetryConfig> retryConfig = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallListBuyerGiftCards sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public ListBuyerGiftCardsRequestBuilder(SDKMethodInterfaces.MethodCallListBuyerGiftCards sdk) {
-        this.sdk = sdk;
+    public ListBuyerGiftCardsRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public ListBuyerGiftCardsRequestBuilder buyerExternalIdentifier(String buyerExternalIdentifier) {
@@ -71,14 +75,27 @@ public class ListBuyerGiftCardsRequestBuilder {
         return this;
     }
 
+
+    private ListBuyerGiftCardsRequest buildRequest() {
+
+        ListBuyerGiftCardsRequest request = new ListBuyerGiftCardsRequest(buyerExternalIdentifier,
+            buyerId,
+            merchantAccountId);
+
+        return request;
+    }
+
     public ListBuyerGiftCardsResponse call() throws Exception {
         Optional<Options> options = Optional.of(Options.builder()
-                                                    .retryConfig(retryConfig)
-                                                    .build());
-        return sdk.list(
-            buyerExternalIdentifier,
-            buyerId,
-            merchantAccountId,
-            options);
+            .retryConfig(retryConfig)
+            .build());
+
+        RequestOperation<ListBuyerGiftCardsRequest, ListBuyerGiftCardsResponse> operation
+              = new ListBuyerGiftCardsOperation(
+                 sdkConfiguration,
+                 options);
+        ListBuyerGiftCardsRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

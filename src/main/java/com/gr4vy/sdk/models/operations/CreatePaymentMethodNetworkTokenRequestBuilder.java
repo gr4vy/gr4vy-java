@@ -3,7 +3,11 @@
  */
 package com.gr4vy.sdk.models.operations;
 
+import static com.gr4vy.sdk.operations.Operations.RequestOperation;
+
+import com.gr4vy.sdk.SDKConfiguration;
 import com.gr4vy.sdk.models.components.NetworkTokenCreate;
+import com.gr4vy.sdk.operations.CreatePaymentMethodNetworkTokenOperation;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -14,10 +18,10 @@ public class CreatePaymentMethodNetworkTokenRequestBuilder {
     private String paymentMethodId;
     private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
     private NetworkTokenCreate networkTokenCreate;
-    private final SDKMethodInterfaces.MethodCallCreatePaymentMethodNetworkToken sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public CreatePaymentMethodNetworkTokenRequestBuilder(SDKMethodInterfaces.MethodCallCreatePaymentMethodNetworkToken sdk) {
-        this.sdk = sdk;
+    public CreatePaymentMethodNetworkTokenRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public CreatePaymentMethodNetworkTokenRequestBuilder paymentMethodId(String paymentMethodId) {
@@ -44,11 +48,22 @@ public class CreatePaymentMethodNetworkTokenRequestBuilder {
         return this;
     }
 
-    public CreatePaymentMethodNetworkTokenResponse call() throws Exception {
 
-        return sdk.create(
-            paymentMethodId,
+    private CreatePaymentMethodNetworkTokenRequest buildRequest() {
+
+        CreatePaymentMethodNetworkTokenRequest request = new CreatePaymentMethodNetworkTokenRequest(paymentMethodId,
             merchantAccountId,
             networkTokenCreate);
+
+        return request;
+    }
+
+    public CreatePaymentMethodNetworkTokenResponse call() throws Exception {
+        
+        RequestOperation<CreatePaymentMethodNetworkTokenRequest, CreatePaymentMethodNetworkTokenResponse> operation
+              = new CreatePaymentMethodNetworkTokenOperation( sdkConfiguration);
+        CreatePaymentMethodNetworkTokenRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

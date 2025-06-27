@@ -3,7 +3,11 @@
  */
 package com.gr4vy.sdk.models.operations;
 
+import static com.gr4vy.sdk.operations.Operations.RequestOperation;
+
+import com.gr4vy.sdk.SDKConfiguration;
 import com.gr4vy.sdk.models.components.PayoutCreate;
+import com.gr4vy.sdk.operations.CreatePayoutOperation;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -13,10 +17,10 @@ public class CreatePayoutRequestBuilder {
 
     private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
     private PayoutCreate payoutCreate;
-    private final SDKMethodInterfaces.MethodCallCreatePayout sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public CreatePayoutRequestBuilder(SDKMethodInterfaces.MethodCallCreatePayout sdk) {
-        this.sdk = sdk;
+    public CreatePayoutRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public CreatePayoutRequestBuilder merchantAccountId(String merchantAccountId) {
@@ -37,10 +41,21 @@ public class CreatePayoutRequestBuilder {
         return this;
     }
 
-    public CreatePayoutResponse call() throws Exception {
 
-        return sdk.create(
-            merchantAccountId,
+    private CreatePayoutRequest buildRequest() {
+
+        CreatePayoutRequest request = new CreatePayoutRequest(merchantAccountId,
             payoutCreate);
+
+        return request;
+    }
+
+    public CreatePayoutResponse call() throws Exception {
+        
+        RequestOperation<CreatePayoutRequest, CreatePayoutResponse> operation
+              = new CreatePayoutOperation( sdkConfiguration);
+        CreatePayoutRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

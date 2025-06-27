@@ -3,7 +3,11 @@
  */
 package com.gr4vy.sdk.models.operations;
 
+import static com.gr4vy.sdk.operations.Operations.RequestOperation;
+
+import com.gr4vy.sdk.SDKConfiguration;
 import com.gr4vy.sdk.models.components.TransactionCapture;
+import com.gr4vy.sdk.operations.CaptureTransactionOperation;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -14,10 +18,10 @@ public class CaptureTransactionRequestBuilder {
     private String transactionId;
     private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
     private TransactionCapture transactionCapture;
-    private final SDKMethodInterfaces.MethodCallCaptureTransaction sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public CaptureTransactionRequestBuilder(SDKMethodInterfaces.MethodCallCaptureTransaction sdk) {
-        this.sdk = sdk;
+    public CaptureTransactionRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public CaptureTransactionRequestBuilder transactionId(String transactionId) {
@@ -44,11 +48,22 @@ public class CaptureTransactionRequestBuilder {
         return this;
     }
 
-    public CaptureTransactionResponse call() throws Exception {
 
-        return sdk.capture(
-            transactionId,
+    private CaptureTransactionRequest buildRequest() {
+
+        CaptureTransactionRequest request = new CaptureTransactionRequest(transactionId,
             merchantAccountId,
             transactionCapture);
+
+        return request;
+    }
+
+    public CaptureTransactionResponse call() throws Exception {
+        
+        RequestOperation<CaptureTransactionRequest, CaptureTransactionResponse> operation
+              = new CaptureTransactionOperation( sdkConfiguration);
+        CaptureTransactionRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

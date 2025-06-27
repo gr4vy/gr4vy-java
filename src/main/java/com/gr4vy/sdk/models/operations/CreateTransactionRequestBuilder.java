@@ -3,21 +3,27 @@
  */
 package com.gr4vy.sdk.models.operations;
 
+import static com.gr4vy.sdk.operations.Operations.RequestOperation;
+
+import com.gr4vy.sdk.SDKConfiguration;
 import com.gr4vy.sdk.models.components.TransactionCreate;
+import com.gr4vy.sdk.operations.CreateTransactionOperation;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
+import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 public class CreateTransactionRequestBuilder {
 
     private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
     private JsonNullable<String> idempotencyKey = JsonNullable.undefined();
+    private Optional<String> xForwardedFor = Optional.empty();
     private TransactionCreate transactionCreate;
-    private final SDKMethodInterfaces.MethodCallCreateTransaction sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public CreateTransactionRequestBuilder(SDKMethodInterfaces.MethodCallCreateTransaction sdk) {
-        this.sdk = sdk;
+    public CreateTransactionRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public CreateTransactionRequestBuilder merchantAccountId(String merchantAccountId) {
@@ -43,6 +49,18 @@ public class CreateTransactionRequestBuilder {
         this.idempotencyKey = idempotencyKey;
         return this;
     }
+                
+    public CreateTransactionRequestBuilder xForwardedFor(String xForwardedFor) {
+        Utils.checkNotNull(xForwardedFor, "xForwardedFor");
+        this.xForwardedFor = Optional.of(xForwardedFor);
+        return this;
+    }
+
+    public CreateTransactionRequestBuilder xForwardedFor(Optional<String> xForwardedFor) {
+        Utils.checkNotNull(xForwardedFor, "xForwardedFor");
+        this.xForwardedFor = xForwardedFor;
+        return this;
+    }
 
     public CreateTransactionRequestBuilder transactionCreate(TransactionCreate transactionCreate) {
         Utils.checkNotNull(transactionCreate, "transactionCreate");
@@ -50,11 +68,23 @@ public class CreateTransactionRequestBuilder {
         return this;
     }
 
-    public CreateTransactionResponse call() throws Exception {
 
-        return sdk.create(
-            merchantAccountId,
+    private CreateTransactionRequest buildRequest() {
+
+        CreateTransactionRequest request = new CreateTransactionRequest(merchantAccountId,
             idempotencyKey,
+            xForwardedFor,
             transactionCreate);
+
+        return request;
+    }
+
+    public CreateTransactionResponse call() throws Exception {
+        
+        RequestOperation<CreateTransactionRequest, CreateTransactionResponse> operation
+              = new CreateTransactionOperation( sdkConfiguration);
+        CreateTransactionRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

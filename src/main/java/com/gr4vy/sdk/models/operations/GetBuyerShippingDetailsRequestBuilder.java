@@ -3,6 +3,10 @@
  */
 package com.gr4vy.sdk.models.operations;
 
+import static com.gr4vy.sdk.operations.Operations.RequestOperation;
+
+import com.gr4vy.sdk.SDKConfiguration;
+import com.gr4vy.sdk.operations.GetBuyerShippingDetailsOperation;
 import com.gr4vy.sdk.utils.Options;
 import com.gr4vy.sdk.utils.RetryConfig;
 import com.gr4vy.sdk.utils.Utils;
@@ -17,10 +21,10 @@ public class GetBuyerShippingDetailsRequestBuilder {
     private String shippingDetailsId;
     private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
     private Optional<RetryConfig> retryConfig = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallGetBuyerShippingDetails sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public GetBuyerShippingDetailsRequestBuilder(SDKMethodInterfaces.MethodCallGetBuyerShippingDetails sdk) {
-        this.sdk = sdk;
+    public GetBuyerShippingDetailsRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public GetBuyerShippingDetailsRequestBuilder buyerId(String buyerId) {
@@ -59,14 +63,27 @@ public class GetBuyerShippingDetailsRequestBuilder {
         return this;
     }
 
+
+    private GetBuyerShippingDetailsRequest buildRequest() {
+
+        GetBuyerShippingDetailsRequest request = new GetBuyerShippingDetailsRequest(buyerId,
+            shippingDetailsId,
+            merchantAccountId);
+
+        return request;
+    }
+
     public GetBuyerShippingDetailsResponse call() throws Exception {
         Optional<Options> options = Optional.of(Options.builder()
-                                                    .retryConfig(retryConfig)
-                                                    .build());
-        return sdk.get(
-            buyerId,
-            shippingDetailsId,
-            merchantAccountId,
-            options);
+            .retryConfig(retryConfig)
+            .build());
+
+        RequestOperation<GetBuyerShippingDetailsRequest, GetBuyerShippingDetailsResponse> operation
+              = new GetBuyerShippingDetailsOperation(
+                 sdkConfiguration,
+                 options);
+        GetBuyerShippingDetailsRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

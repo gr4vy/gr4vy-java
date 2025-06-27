@@ -9,8 +9,6 @@ import com.gr4vy.sdk.models.components.PaymentMethods;
 import com.gr4vy.sdk.utils.Response;
 import com.gr4vy.sdk.utils.Utils;
 import java.io.InputStream;
-import java.lang.Deprecated;
-import java.lang.Exception;
 import java.lang.Integer;
 import java.lang.Override;
 import java.lang.String;
@@ -18,7 +16,6 @@ import java.lang.SuppressWarnings;
 import java.net.http.HttpResponse;
 import java.util.Objects;
 import java.util.Optional;
-import java.util.concurrent.Callable;
 
 public class ListPaymentMethodsResponse implements Response {
 
@@ -41,8 +38,6 @@ public class ListPaymentMethodsResponse implements Response {
      * Successful Response
      */
     private Optional<? extends PaymentMethods> paymentMethods;
-
-    private Callable<Optional<ListPaymentMethodsResponse>> next = () -> Optional.empty();
 
     @JsonCreator
     public ListPaymentMethodsResponse(
@@ -98,16 +93,6 @@ public class ListPaymentMethodsResponse implements Response {
     @JsonIgnore
     public Optional<PaymentMethods> paymentMethods() {
         return (Optional<PaymentMethods>) paymentMethods;
-    }
-
-    public Optional<ListPaymentMethodsResponse> next() throws Exception {
-        return this.next.call();
-    }
-    
-    // internal use only
-    private ListPaymentMethodsResponse withNext(Callable<Optional<ListPaymentMethodsResponse>> next) {
-        this.next = next;
-        return this;
     }
 
     public final static Builder builder() {
@@ -195,7 +180,6 @@ public class ListPaymentMethodsResponse implements Response {
     }
     
     public final static class Builder {
-        private Callable<Optional<ListPaymentMethodsResponse>> next;
  
         private String contentType;
  
@@ -253,26 +237,13 @@ public class ListPaymentMethodsResponse implements Response {
             this.paymentMethods = paymentMethods;
             return this;
         }
-
-        /**
-         * Internal API. Not for public use. Sets the provider of the next page.
-         *
-         * @deprecated not part of the public API, may be removed without notice
-         */
-        @Deprecated
-        public Builder next(Callable<Optional<ListPaymentMethodsResponse>> next) {
-            Utils.checkNotNull(next, "next");
-            this.next = next;
-            return this;
-        }
         
         public ListPaymentMethodsResponse build() {
             return new ListPaymentMethodsResponse(
                 contentType,
                 statusCode,
                 rawResponse,
-                paymentMethods)
-                .withNext(next);
+                paymentMethods);
         }
     }
 }

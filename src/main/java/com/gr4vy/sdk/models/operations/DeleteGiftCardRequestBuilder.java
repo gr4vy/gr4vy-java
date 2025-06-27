@@ -3,6 +3,10 @@
  */
 package com.gr4vy.sdk.models.operations;
 
+import static com.gr4vy.sdk.operations.Operations.RequestOperation;
+
+import com.gr4vy.sdk.SDKConfiguration;
+import com.gr4vy.sdk.operations.DeleteGiftCardOperation;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -12,10 +16,10 @@ public class DeleteGiftCardRequestBuilder {
 
     private String giftCardId;
     private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
-    private final SDKMethodInterfaces.MethodCallDeleteGiftCard sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public DeleteGiftCardRequestBuilder(SDKMethodInterfaces.MethodCallDeleteGiftCard sdk) {
-        this.sdk = sdk;
+    public DeleteGiftCardRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public DeleteGiftCardRequestBuilder giftCardId(String giftCardId) {
@@ -36,10 +40,21 @@ public class DeleteGiftCardRequestBuilder {
         return this;
     }
 
-    public DeleteGiftCardResponse call() throws Exception {
 
-        return sdk.delete(
-            giftCardId,
+    private DeleteGiftCardRequest buildRequest() {
+
+        DeleteGiftCardRequest request = new DeleteGiftCardRequest(giftCardId,
             merchantAccountId);
+
+        return request;
+    }
+
+    public DeleteGiftCardResponse call() throws Exception {
+        
+        RequestOperation<DeleteGiftCardRequest, DeleteGiftCardResponse> operation
+              = new DeleteGiftCardOperation( sdkConfiguration);
+        DeleteGiftCardRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

@@ -3,6 +3,10 @@
  */
 package com.gr4vy.sdk.models.operations;
 
+import static com.gr4vy.sdk.operations.Operations.RequestOperation;
+
+import com.gr4vy.sdk.SDKConfiguration;
+import com.gr4vy.sdk.operations.DeletePaymentMethodNetworkTokenOperation;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -13,10 +17,10 @@ public class DeletePaymentMethodNetworkTokenRequestBuilder {
     private String paymentMethodId;
     private String networkTokenId;
     private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
-    private final SDKMethodInterfaces.MethodCallDeletePaymentMethodNetworkToken sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public DeletePaymentMethodNetworkTokenRequestBuilder(SDKMethodInterfaces.MethodCallDeletePaymentMethodNetworkToken sdk) {
-        this.sdk = sdk;
+    public DeletePaymentMethodNetworkTokenRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public DeletePaymentMethodNetworkTokenRequestBuilder paymentMethodId(String paymentMethodId) {
@@ -43,11 +47,22 @@ public class DeletePaymentMethodNetworkTokenRequestBuilder {
         return this;
     }
 
-    public DeletePaymentMethodNetworkTokenResponse call() throws Exception {
 
-        return sdk.delete(
-            paymentMethodId,
+    private DeletePaymentMethodNetworkTokenRequest buildRequest() {
+
+        DeletePaymentMethodNetworkTokenRequest request = new DeletePaymentMethodNetworkTokenRequest(paymentMethodId,
             networkTokenId,
             merchantAccountId);
+
+        return request;
+    }
+
+    public DeletePaymentMethodNetworkTokenResponse call() throws Exception {
+        
+        RequestOperation<DeletePaymentMethodNetworkTokenRequest, DeletePaymentMethodNetworkTokenResponse> operation
+              = new DeletePaymentMethodNetworkTokenOperation( sdkConfiguration);
+        DeletePaymentMethodNetworkTokenRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

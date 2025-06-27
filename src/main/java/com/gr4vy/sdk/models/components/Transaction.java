@@ -392,6 +392,13 @@ public class Transaction {
     @JsonProperty("merchant_advice_code")
     private JsonNullable<String> merchantAdviceCode;
 
+    /**
+     * The number of installments for this transaction, if applicable.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("installment_count")
+    private JsonNullable<Long> installmentCount;
+
     @JsonCreator
     public Transaction(
             @JsonProperty("id") String id,
@@ -448,7 +455,8 @@ public class Transaction {
             @JsonProperty("multi_tender") boolean multiTender,
             @JsonProperty("account_funding_transaction") boolean accountFundingTransaction,
             @JsonProperty("recipient") JsonNullable<? extends Recipient> recipient,
-            @JsonProperty("merchant_advice_code") JsonNullable<String> merchantAdviceCode) {
+            @JsonProperty("merchant_advice_code") JsonNullable<String> merchantAdviceCode,
+            @JsonProperty("installment_count") JsonNullable<Long> installmentCount) {
         Utils.checkNotNull(id, "id");
         Utils.checkNotNull(reconciliationId, "reconciliationId");
         Utils.checkNotNull(merchantAccountId, "merchantAccountId");
@@ -504,6 +512,7 @@ public class Transaction {
         Utils.checkNotNull(accountFundingTransaction, "accountFundingTransaction");
         Utils.checkNotNull(recipient, "recipient");
         Utils.checkNotNull(merchantAdviceCode, "merchantAdviceCode");
+        Utils.checkNotNull(installmentCount, "installmentCount");
         this.type = Builder._SINGLETON_VALUE_Type.value();
         this.id = id;
         this.reconciliationId = reconciliationId;
@@ -560,6 +569,7 @@ public class Transaction {
         this.accountFundingTransaction = accountFundingTransaction;
         this.recipient = recipient;
         this.merchantAdviceCode = merchantAdviceCode;
+        this.installmentCount = installmentCount;
     }
     
     public Transaction(
@@ -584,7 +594,7 @@ public class Transaction {
             TransactionIntentOutcome intentOutcome,
             boolean multiTender,
             boolean accountFundingTransaction) {
-        this(id, reconciliationId, merchantAccountId, currency, amount, status, authorizedAmount, capturedAmount, refundedAmount, JsonNullable.undefined(), settledAmount, settled, JsonNullable.undefined(), JsonNullable.undefined(), intent, JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), giftCardRedemptions, JsonNullable.undefined(), createdAt, updatedAt, JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), paymentSource, merchantInitiated, isSubsequentPayment, JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), intentOutcome, multiTender, accountFundingTransaction, JsonNullable.undefined(), JsonNullable.undefined());
+        this(id, reconciliationId, merchantAccountId, currency, amount, status, authorizedAmount, capturedAmount, refundedAmount, JsonNullable.undefined(), settledAmount, settled, JsonNullable.undefined(), JsonNullable.undefined(), intent, JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), giftCardRedemptions, JsonNullable.undefined(), createdAt, updatedAt, JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), paymentSource, merchantInitiated, isSubsequentPayment, JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), intentOutcome, multiTender, accountFundingTransaction, JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
     }
 
     /**
@@ -1041,6 +1051,14 @@ public class Transaction {
     @JsonIgnore
     public JsonNullable<String> merchantAdviceCode() {
         return merchantAdviceCode;
+    }
+
+    /**
+     * The number of installments for this transaction, if applicable.
+     */
+    @JsonIgnore
+    public JsonNullable<Long> installmentCount() {
+        return installmentCount;
     }
 
     public final static Builder builder() {
@@ -1839,6 +1857,24 @@ public class Transaction {
         return this;
     }
 
+    /**
+     * The number of installments for this transaction, if applicable.
+     */
+    public Transaction withInstallmentCount(long installmentCount) {
+        Utils.checkNotNull(installmentCount, "installmentCount");
+        this.installmentCount = JsonNullable.of(installmentCount);
+        return this;
+    }
+
+    /**
+     * The number of installments for this transaction, if applicable.
+     */
+    public Transaction withInstallmentCount(JsonNullable<Long> installmentCount) {
+        Utils.checkNotNull(installmentCount, "installmentCount");
+        this.installmentCount = installmentCount;
+        return this;
+    }
+
     
     @Override
     public boolean equals(java.lang.Object o) {
@@ -1905,7 +1941,8 @@ public class Transaction {
             Objects.deepEquals(this.multiTender, other.multiTender) &&
             Objects.deepEquals(this.accountFundingTransaction, other.accountFundingTransaction) &&
             Objects.deepEquals(this.recipient, other.recipient) &&
-            Objects.deepEquals(this.merchantAdviceCode, other.merchantAdviceCode);
+            Objects.deepEquals(this.merchantAdviceCode, other.merchantAdviceCode) &&
+            Objects.deepEquals(this.installmentCount, other.installmentCount);
     }
     
     @Override
@@ -1966,7 +2003,8 @@ public class Transaction {
             multiTender,
             accountFundingTransaction,
             recipient,
-            merchantAdviceCode);
+            merchantAdviceCode,
+            installmentCount);
     }
     
     @Override
@@ -2027,7 +2065,8 @@ public class Transaction {
                 "multiTender", multiTender,
                 "accountFundingTransaction", accountFundingTransaction,
                 "recipient", recipient,
-                "merchantAdviceCode", merchantAdviceCode);
+                "merchantAdviceCode", merchantAdviceCode,
+                "installmentCount", installmentCount);
     }
     
     public final static class Builder {
@@ -2141,6 +2180,8 @@ public class Transaction {
         private JsonNullable<? extends Recipient> recipient = JsonNullable.undefined();
  
         private JsonNullable<String> merchantAdviceCode = JsonNullable.undefined();
+ 
+        private JsonNullable<Long> installmentCount = JsonNullable.undefined();
         
         private Builder() {
           // force use of static builder() method
@@ -2937,6 +2978,24 @@ public class Transaction {
             this.merchantAdviceCode = merchantAdviceCode;
             return this;
         }
+
+        /**
+         * The number of installments for this transaction, if applicable.
+         */
+        public Builder installmentCount(long installmentCount) {
+            Utils.checkNotNull(installmentCount, "installmentCount");
+            this.installmentCount = JsonNullable.of(installmentCount);
+            return this;
+        }
+
+        /**
+         * The number of installments for this transaction, if applicable.
+         */
+        public Builder installmentCount(JsonNullable<Long> installmentCount) {
+            Utils.checkNotNull(installmentCount, "installmentCount");
+            this.installmentCount = installmentCount;
+            return this;
+        }
         
         public Transaction build() {
             if (pendingReview == null) {
@@ -2997,7 +3056,8 @@ public class Transaction {
                 multiTender,
                 accountFundingTransaction,
                 recipient,
-                merchantAdviceCode);
+                merchantAdviceCode,
+                installmentCount);
         }
 
         private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_Type =

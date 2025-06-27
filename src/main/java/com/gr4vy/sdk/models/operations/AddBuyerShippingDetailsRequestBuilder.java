@@ -3,7 +3,11 @@
  */
 package com.gr4vy.sdk.models.operations;
 
+import static com.gr4vy.sdk.operations.Operations.RequestOperation;
+
+import com.gr4vy.sdk.SDKConfiguration;
 import com.gr4vy.sdk.models.components.ShippingDetailsCreate;
+import com.gr4vy.sdk.operations.AddBuyerShippingDetailsOperation;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -14,10 +18,10 @@ public class AddBuyerShippingDetailsRequestBuilder {
     private String buyerId;
     private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
     private ShippingDetailsCreate shippingDetailsCreate;
-    private final SDKMethodInterfaces.MethodCallAddBuyerShippingDetails sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public AddBuyerShippingDetailsRequestBuilder(SDKMethodInterfaces.MethodCallAddBuyerShippingDetails sdk) {
-        this.sdk = sdk;
+    public AddBuyerShippingDetailsRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public AddBuyerShippingDetailsRequestBuilder buyerId(String buyerId) {
@@ -44,11 +48,22 @@ public class AddBuyerShippingDetailsRequestBuilder {
         return this;
     }
 
-    public AddBuyerShippingDetailsResponse call() throws Exception {
 
-        return sdk.create(
-            buyerId,
+    private AddBuyerShippingDetailsRequest buildRequest() {
+
+        AddBuyerShippingDetailsRequest request = new AddBuyerShippingDetailsRequest(buyerId,
             merchantAccountId,
             shippingDetailsCreate);
+
+        return request;
+    }
+
+    public AddBuyerShippingDetailsResponse call() throws Exception {
+        
+        RequestOperation<AddBuyerShippingDetailsRequest, AddBuyerShippingDetailsResponse> operation
+              = new AddBuyerShippingDetailsOperation( sdkConfiguration);
+        AddBuyerShippingDetailsRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

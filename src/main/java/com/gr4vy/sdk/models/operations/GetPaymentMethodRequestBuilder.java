@@ -3,6 +3,10 @@
  */
 package com.gr4vy.sdk.models.operations;
 
+import static com.gr4vy.sdk.operations.Operations.RequestOperation;
+
+import com.gr4vy.sdk.SDKConfiguration;
+import com.gr4vy.sdk.operations.GetPaymentMethodOperation;
 import com.gr4vy.sdk.utils.Options;
 import com.gr4vy.sdk.utils.RetryConfig;
 import com.gr4vy.sdk.utils.Utils;
@@ -16,10 +20,10 @@ public class GetPaymentMethodRequestBuilder {
     private String paymentMethodId;
     private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
     private Optional<RetryConfig> retryConfig = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallGetPaymentMethod sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public GetPaymentMethodRequestBuilder(SDKMethodInterfaces.MethodCallGetPaymentMethod sdk) {
-        this.sdk = sdk;
+    public GetPaymentMethodRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public GetPaymentMethodRequestBuilder paymentMethodId(String paymentMethodId) {
@@ -52,13 +56,26 @@ public class GetPaymentMethodRequestBuilder {
         return this;
     }
 
+
+    private GetPaymentMethodRequest buildRequest() {
+
+        GetPaymentMethodRequest request = new GetPaymentMethodRequest(paymentMethodId,
+            merchantAccountId);
+
+        return request;
+    }
+
     public GetPaymentMethodResponse call() throws Exception {
         Optional<Options> options = Optional.of(Options.builder()
-                                                    .retryConfig(retryConfig)
-                                                    .build());
-        return sdk.get(
-            paymentMethodId,
-            merchantAccountId,
-            options);
+            .retryConfig(retryConfig)
+            .build());
+
+        RequestOperation<GetPaymentMethodRequest, GetPaymentMethodResponse> operation
+              = new GetPaymentMethodOperation(
+                 sdkConfiguration,
+                 options);
+        GetPaymentMethodRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

@@ -3,6 +3,10 @@
  */
 package com.gr4vy.sdk.models.operations;
 
+import static com.gr4vy.sdk.operations.Operations.RequestOperation;
+
+import com.gr4vy.sdk.SDKConfiguration;
+import com.gr4vy.sdk.operations.ListTransactionRefundsOperation;
 import com.gr4vy.sdk.utils.Options;
 import com.gr4vy.sdk.utils.RetryConfig;
 import com.gr4vy.sdk.utils.Utils;
@@ -16,10 +20,10 @@ public class ListTransactionRefundsRequestBuilder {
     private String transactionId;
     private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
     private Optional<RetryConfig> retryConfig = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallListTransactionRefunds sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public ListTransactionRefundsRequestBuilder(SDKMethodInterfaces.MethodCallListTransactionRefunds sdk) {
-        this.sdk = sdk;
+    public ListTransactionRefundsRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public ListTransactionRefundsRequestBuilder transactionId(String transactionId) {
@@ -52,13 +56,26 @@ public class ListTransactionRefundsRequestBuilder {
         return this;
     }
 
+
+    private ListTransactionRefundsRequest buildRequest() {
+
+        ListTransactionRefundsRequest request = new ListTransactionRefundsRequest(transactionId,
+            merchantAccountId);
+
+        return request;
+    }
+
     public ListTransactionRefundsResponse call() throws Exception {
         Optional<Options> options = Optional.of(Options.builder()
-                                                    .retryConfig(retryConfig)
-                                                    .build());
-        return sdk.list(
-            transactionId,
-            merchantAccountId,
-            options);
+            .retryConfig(retryConfig)
+            .build());
+
+        RequestOperation<ListTransactionRefundsRequest, ListTransactionRefundsResponse> operation
+              = new ListTransactionRefundsOperation(
+                 sdkConfiguration,
+                 options);
+        ListTransactionRefundsRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

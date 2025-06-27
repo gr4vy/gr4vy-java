@@ -3,6 +3,10 @@
  */
 package com.gr4vy.sdk.models.operations;
 
+import static com.gr4vy.sdk.operations.Operations.RequestOperation;
+
+import com.gr4vy.sdk.SDKConfiguration;
+import com.gr4vy.sdk.operations.SyncTransactionOperation;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -12,10 +16,10 @@ public class SyncTransactionRequestBuilder {
 
     private String transactionId;
     private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
-    private final SDKMethodInterfaces.MethodCallSyncTransaction sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public SyncTransactionRequestBuilder(SDKMethodInterfaces.MethodCallSyncTransaction sdk) {
-        this.sdk = sdk;
+    public SyncTransactionRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public SyncTransactionRequestBuilder transactionId(String transactionId) {
@@ -36,10 +40,21 @@ public class SyncTransactionRequestBuilder {
         return this;
     }
 
-    public SyncTransactionResponse call() throws Exception {
 
-        return sdk.sync(
-            transactionId,
+    private SyncTransactionRequest buildRequest() {
+
+        SyncTransactionRequest request = new SyncTransactionRequest(transactionId,
             merchantAccountId);
+
+        return request;
+    }
+
+    public SyncTransactionResponse call() throws Exception {
+        
+        RequestOperation<SyncTransactionRequest, SyncTransactionResponse> operation
+              = new SyncTransactionOperation( sdkConfiguration);
+        SyncTransactionRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

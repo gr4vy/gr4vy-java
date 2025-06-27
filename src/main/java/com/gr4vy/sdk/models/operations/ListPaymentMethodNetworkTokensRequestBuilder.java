@@ -3,6 +3,10 @@
  */
 package com.gr4vy.sdk.models.operations;
 
+import static com.gr4vy.sdk.operations.Operations.RequestOperation;
+
+import com.gr4vy.sdk.SDKConfiguration;
+import com.gr4vy.sdk.operations.ListPaymentMethodNetworkTokensOperation;
 import com.gr4vy.sdk.utils.Options;
 import com.gr4vy.sdk.utils.RetryConfig;
 import com.gr4vy.sdk.utils.Utils;
@@ -16,10 +20,10 @@ public class ListPaymentMethodNetworkTokensRequestBuilder {
     private String paymentMethodId;
     private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
     private Optional<RetryConfig> retryConfig = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallListPaymentMethodNetworkTokens sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public ListPaymentMethodNetworkTokensRequestBuilder(SDKMethodInterfaces.MethodCallListPaymentMethodNetworkTokens sdk) {
-        this.sdk = sdk;
+    public ListPaymentMethodNetworkTokensRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public ListPaymentMethodNetworkTokensRequestBuilder paymentMethodId(String paymentMethodId) {
@@ -52,13 +56,26 @@ public class ListPaymentMethodNetworkTokensRequestBuilder {
         return this;
     }
 
+
+    private ListPaymentMethodNetworkTokensRequest buildRequest() {
+
+        ListPaymentMethodNetworkTokensRequest request = new ListPaymentMethodNetworkTokensRequest(paymentMethodId,
+            merchantAccountId);
+
+        return request;
+    }
+
     public ListPaymentMethodNetworkTokensResponse call() throws Exception {
         Optional<Options> options = Optional.of(Options.builder()
-                                                    .retryConfig(retryConfig)
-                                                    .build());
-        return sdk.list(
-            paymentMethodId,
-            merchantAccountId,
-            options);
+            .retryConfig(retryConfig)
+            .build());
+
+        RequestOperation<ListPaymentMethodNetworkTokensRequest, ListPaymentMethodNetworkTokensResponse> operation
+              = new ListPaymentMethodNetworkTokensOperation(
+                 sdkConfiguration,
+                 options);
+        ListPaymentMethodNetworkTokensRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

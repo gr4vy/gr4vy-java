@@ -3,17 +3,21 @@
  */
 package com.gr4vy.sdk.models.operations;
 
+import static com.gr4vy.sdk.operations.Operations.RequestOperation;
+
+import com.gr4vy.sdk.SDKConfiguration;
 import com.gr4vy.sdk.models.components.MerchantAccountCreate;
+import com.gr4vy.sdk.operations.CreateMerchantAccountOperation;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Exception;
 
 public class CreateMerchantAccountRequestBuilder {
 
     private MerchantAccountCreate request;
-    private final SDKMethodInterfaces.MethodCallCreateMerchantAccount sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public CreateMerchantAccountRequestBuilder(SDKMethodInterfaces.MethodCallCreateMerchantAccount sdk) {
-        this.sdk = sdk;
+    public CreateMerchantAccountRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public CreateMerchantAccountRequestBuilder request(MerchantAccountCreate request) {
@@ -23,8 +27,10 @@ public class CreateMerchantAccountRequestBuilder {
     }
 
     public CreateMerchantAccountResponse call() throws Exception {
+        
+        RequestOperation<MerchantAccountCreate, CreateMerchantAccountResponse> operation
+              = new CreateMerchantAccountOperation( sdkConfiguration);
 
-        return sdk.create(
-            request);
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

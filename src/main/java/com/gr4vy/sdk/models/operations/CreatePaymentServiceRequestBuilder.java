@@ -3,7 +3,11 @@
  */
 package com.gr4vy.sdk.models.operations;
 
+import static com.gr4vy.sdk.operations.Operations.RequestOperation;
+
+import com.gr4vy.sdk.SDKConfiguration;
 import com.gr4vy.sdk.models.components.PaymentServiceUpdate;
+import com.gr4vy.sdk.operations.CreatePaymentServiceOperation;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -14,10 +18,10 @@ public class CreatePaymentServiceRequestBuilder {
     private String paymentServiceId;
     private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
     private PaymentServiceUpdate paymentServiceUpdate;
-    private final SDKMethodInterfaces.MethodCallCreatePaymentService sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public CreatePaymentServiceRequestBuilder(SDKMethodInterfaces.MethodCallCreatePaymentService sdk) {
-        this.sdk = sdk;
+    public CreatePaymentServiceRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public CreatePaymentServiceRequestBuilder paymentServiceId(String paymentServiceId) {
@@ -44,11 +48,22 @@ public class CreatePaymentServiceRequestBuilder {
         return this;
     }
 
-    public CreatePaymentServiceResponse call() throws Exception {
 
-        return sdk.update(
-            paymentServiceId,
+    private CreatePaymentServiceRequest buildRequest() {
+
+        CreatePaymentServiceRequest request = new CreatePaymentServiceRequest(paymentServiceId,
             merchantAccountId,
             paymentServiceUpdate);
+
+        return request;
+    }
+
+    public CreatePaymentServiceResponse call() throws Exception {
+        
+        RequestOperation<CreatePaymentServiceRequest, CreatePaymentServiceResponse> operation
+              = new CreatePaymentServiceOperation( sdkConfiguration);
+        CreatePaymentServiceRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

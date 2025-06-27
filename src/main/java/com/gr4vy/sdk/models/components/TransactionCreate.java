@@ -241,6 +241,13 @@ public class TransactionCreate {
     @JsonProperty("recipient")
     private JsonNullable<? extends Recipient> recipient;
 
+    /**
+     * The number of installments a buyer is required to make.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("installment_count")
+    private JsonNullable<Long> installmentCount;
+
     @JsonCreator
     public TransactionCreate(
             @JsonProperty("amount") long amount,
@@ -271,7 +278,8 @@ public class TransactionCreate {
             @JsonProperty("payment_service_id") JsonNullable<String> paymentServiceId,
             @JsonProperty("account_funding_transaction") Optional<Boolean> accountFundingTransaction,
             @JsonProperty("allow_partial_authorization") Optional<Boolean> allowPartialAuthorization,
-            @JsonProperty("recipient") JsonNullable<? extends Recipient> recipient) {
+            @JsonProperty("recipient") JsonNullable<? extends Recipient> recipient,
+            @JsonProperty("installment_count") JsonNullable<Long> installmentCount) {
         Utils.checkNotNull(amount, "amount");
         Utils.checkNotNull(currency, "currency");
         Utils.checkNotNull(country, "country");
@@ -301,6 +309,7 @@ public class TransactionCreate {
         Utils.checkNotNull(accountFundingTransaction, "accountFundingTransaction");
         Utils.checkNotNull(allowPartialAuthorization, "allowPartialAuthorization");
         Utils.checkNotNull(recipient, "recipient");
+        Utils.checkNotNull(installmentCount, "installmentCount");
         this.amount = amount;
         this.currency = currency;
         this.country = country;
@@ -330,12 +339,13 @@ public class TransactionCreate {
         this.accountFundingTransaction = accountFundingTransaction;
         this.allowPartialAuthorization = allowPartialAuthorization;
         this.recipient = recipient;
+        this.installmentCount = installmentCount;
     }
     
     public TransactionCreate(
             long amount,
             String currency) {
-        this(amount, currency, JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), Optional.empty(), JsonNullable.undefined());
+        this(amount, currency, JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined());
     }
 
     /**
@@ -596,6 +606,14 @@ public class TransactionCreate {
     @JsonIgnore
     public JsonNullable<Recipient> recipient() {
         return (JsonNullable<Recipient>) recipient;
+    }
+
+    /**
+     * The number of installments a buyer is required to make.
+     */
+    @JsonIgnore
+    public JsonNullable<Long> installmentCount() {
+        return installmentCount;
     }
 
     public final static Builder builder() {
@@ -1136,6 +1154,24 @@ public class TransactionCreate {
         return this;
     }
 
+    /**
+     * The number of installments a buyer is required to make.
+     */
+    public TransactionCreate withInstallmentCount(long installmentCount) {
+        Utils.checkNotNull(installmentCount, "installmentCount");
+        this.installmentCount = JsonNullable.of(installmentCount);
+        return this;
+    }
+
+    /**
+     * The number of installments a buyer is required to make.
+     */
+    public TransactionCreate withInstallmentCount(JsonNullable<Long> installmentCount) {
+        Utils.checkNotNull(installmentCount, "installmentCount");
+        this.installmentCount = installmentCount;
+        return this;
+    }
+
     
     @Override
     public boolean equals(java.lang.Object o) {
@@ -1175,7 +1211,8 @@ public class TransactionCreate {
             Objects.deepEquals(this.paymentServiceId, other.paymentServiceId) &&
             Objects.deepEquals(this.accountFundingTransaction, other.accountFundingTransaction) &&
             Objects.deepEquals(this.allowPartialAuthorization, other.allowPartialAuthorization) &&
-            Objects.deepEquals(this.recipient, other.recipient);
+            Objects.deepEquals(this.recipient, other.recipient) &&
+            Objects.deepEquals(this.installmentCount, other.installmentCount);
     }
     
     @Override
@@ -1209,7 +1246,8 @@ public class TransactionCreate {
             paymentServiceId,
             accountFundingTransaction,
             allowPartialAuthorization,
-            recipient);
+            recipient,
+            installmentCount);
     }
     
     @Override
@@ -1243,7 +1281,8 @@ public class TransactionCreate {
                 "paymentServiceId", paymentServiceId,
                 "accountFundingTransaction", accountFundingTransaction,
                 "allowPartialAuthorization", allowPartialAuthorization,
-                "recipient", recipient);
+                "recipient", recipient,
+                "installmentCount", installmentCount);
     }
     
     public final static class Builder {
@@ -1305,6 +1344,8 @@ public class TransactionCreate {
         private Optional<Boolean> allowPartialAuthorization;
  
         private JsonNullable<? extends Recipient> recipient = JsonNullable.undefined();
+ 
+        private JsonNullable<Long> installmentCount = JsonNullable.undefined();
         
         private Builder() {
           // force use of static builder() method
@@ -1843,6 +1884,24 @@ public class TransactionCreate {
             this.recipient = recipient;
             return this;
         }
+
+        /**
+         * The number of installments a buyer is required to make.
+         */
+        public Builder installmentCount(long installmentCount) {
+            Utils.checkNotNull(installmentCount, "installmentCount");
+            this.installmentCount = JsonNullable.of(installmentCount);
+            return this;
+        }
+
+        /**
+         * The number of installments a buyer is required to make.
+         */
+        public Builder installmentCount(JsonNullable<Long> installmentCount) {
+            Utils.checkNotNull(installmentCount, "installmentCount");
+            this.installmentCount = installmentCount;
+            return this;
+        }
         
         public TransactionCreate build() {
             if (store == null) {
@@ -1892,7 +1951,8 @@ public class TransactionCreate {
                 paymentServiceId,
                 accountFundingTransaction,
                 allowPartialAuthorization,
-                recipient);
+                recipient,
+                installmentCount);
         }
 
         private static final LazySingletonValue<Optional<Boolean>> _SINGLETON_VALUE_Store =
