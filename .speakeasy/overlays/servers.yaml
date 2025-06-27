@@ -8,14 +8,14 @@ actions:
   - target: "$"
     update:
       servers:
-        - url: https://api.{id}.gr4vy.app
-          x-speakeasy-server-id: production
+        - url: https://api.sandbox.{id}.gr4vy.app
+          x-speakeasy-server-id: sandbox
           variables:
             id:
               default: example
               description: The subdomain for your Gr4vy instance.
-        - url: https://api.sandbox.{id}.gr4vy.app
-          x-speakeasy-server-id: sandbox
+        - url: https://api.{id}.gr4vy.app
+          x-speakeasy-server-id: production
           variables:
             id:
               default: example
