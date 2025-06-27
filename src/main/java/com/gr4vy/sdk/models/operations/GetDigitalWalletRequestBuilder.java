@@ -3,6 +3,10 @@
  */
 package com.gr4vy.sdk.models.operations;
 
+import static com.gr4vy.sdk.operations.Operations.RequestOperation;
+
+import com.gr4vy.sdk.SDKConfiguration;
+import com.gr4vy.sdk.operations.GetDigitalWalletOperation;
 import com.gr4vy.sdk.utils.Options;
 import com.gr4vy.sdk.utils.RetryConfig;
 import com.gr4vy.sdk.utils.Utils;
@@ -16,10 +20,10 @@ public class GetDigitalWalletRequestBuilder {
     private String digitalWalletId;
     private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
     private Optional<RetryConfig> retryConfig = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallGetDigitalWallet sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public GetDigitalWalletRequestBuilder(SDKMethodInterfaces.MethodCallGetDigitalWallet sdk) {
-        this.sdk = sdk;
+    public GetDigitalWalletRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public GetDigitalWalletRequestBuilder digitalWalletId(String digitalWalletId) {
@@ -52,13 +56,26 @@ public class GetDigitalWalletRequestBuilder {
         return this;
     }
 
+
+    private GetDigitalWalletRequest buildRequest() {
+
+        GetDigitalWalletRequest request = new GetDigitalWalletRequest(digitalWalletId,
+            merchantAccountId);
+
+        return request;
+    }
+
     public GetDigitalWalletResponse call() throws Exception {
         Optional<Options> options = Optional.of(Options.builder()
-                                                    .retryConfig(retryConfig)
-                                                    .build());
-        return sdk.get(
-            digitalWalletId,
-            merchantAccountId,
-            options);
+            .retryConfig(retryConfig)
+            .build());
+
+        RequestOperation<GetDigitalWalletRequest, GetDigitalWalletResponse> operation
+              = new GetDigitalWalletOperation(
+                 sdkConfiguration,
+                 options);
+        GetDigitalWalletRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

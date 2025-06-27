@@ -22,6 +22,7 @@ package hello.world;
 import com.gr4vy.sdk.Gr4vy;
 import com.gr4vy.sdk.models.errors.*;
 import com.gr4vy.sdk.models.operations.ListReportsRequest;
+import com.gr4vy.sdk.models.operations.ListReportsResponse;
 import java.lang.Exception;
 
 public class Application {
@@ -39,8 +40,8 @@ public class Application {
         sdk.reports().list()
                 .request(req)
                 .callAsStream()
-                .forEach(item -> {
-                   // handle item
+                .forEach((ListReportsResponse item) -> {
+                   // handle page
                 });
 
     }

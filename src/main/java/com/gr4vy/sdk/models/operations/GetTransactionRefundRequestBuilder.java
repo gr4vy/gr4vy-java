@@ -3,6 +3,10 @@
  */
 package com.gr4vy.sdk.models.operations;
 
+import static com.gr4vy.sdk.operations.Operations.RequestOperation;
+
+import com.gr4vy.sdk.SDKConfiguration;
+import com.gr4vy.sdk.operations.GetTransactionRefundOperation;
 import com.gr4vy.sdk.utils.Options;
 import com.gr4vy.sdk.utils.RetryConfig;
 import com.gr4vy.sdk.utils.Utils;
@@ -17,10 +21,10 @@ public class GetTransactionRefundRequestBuilder {
     private String refundId;
     private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
     private Optional<RetryConfig> retryConfig = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallGetTransactionRefund sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public GetTransactionRefundRequestBuilder(SDKMethodInterfaces.MethodCallGetTransactionRefund sdk) {
-        this.sdk = sdk;
+    public GetTransactionRefundRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public GetTransactionRefundRequestBuilder transactionId(String transactionId) {
@@ -59,14 +63,27 @@ public class GetTransactionRefundRequestBuilder {
         return this;
     }
 
+
+    private GetTransactionRefundRequest buildRequest() {
+
+        GetTransactionRefundRequest request = new GetTransactionRefundRequest(transactionId,
+            refundId,
+            merchantAccountId);
+
+        return request;
+    }
+
     public GetTransactionRefundResponse call() throws Exception {
         Optional<Options> options = Optional.of(Options.builder()
-                                                    .retryConfig(retryConfig)
-                                                    .build());
-        return sdk.get(
-            transactionId,
-            refundId,
-            merchantAccountId,
-            options);
+            .retryConfig(retryConfig)
+            .build());
+
+        RequestOperation<GetTransactionRefundRequest, GetTransactionRefundResponse> operation
+              = new GetTransactionRefundOperation(
+                 sdkConfiguration,
+                 options);
+        GetTransactionRefundRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

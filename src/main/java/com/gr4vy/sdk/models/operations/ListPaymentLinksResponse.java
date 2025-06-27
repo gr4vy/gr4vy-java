@@ -9,8 +9,6 @@ import com.gr4vy.sdk.models.components.CollectionPaymentLink;
 import com.gr4vy.sdk.utils.Response;
 import com.gr4vy.sdk.utils.Utils;
 import java.io.InputStream;
-import java.lang.Deprecated;
-import java.lang.Exception;
 import java.lang.Integer;
 import java.lang.Override;
 import java.lang.String;
@@ -18,7 +16,6 @@ import java.lang.SuppressWarnings;
 import java.net.http.HttpResponse;
 import java.util.Objects;
 import java.util.Optional;
-import java.util.concurrent.Callable;
 
 public class ListPaymentLinksResponse implements Response {
 
@@ -41,8 +38,6 @@ public class ListPaymentLinksResponse implements Response {
      * Successful Response
      */
     private Optional<? extends CollectionPaymentLink> collectionPaymentLink;
-
-    private Callable<Optional<ListPaymentLinksResponse>> next = () -> Optional.empty();
 
     @JsonCreator
     public ListPaymentLinksResponse(
@@ -98,16 +93,6 @@ public class ListPaymentLinksResponse implements Response {
     @JsonIgnore
     public Optional<CollectionPaymentLink> collectionPaymentLink() {
         return (Optional<CollectionPaymentLink>) collectionPaymentLink;
-    }
-
-    public Optional<ListPaymentLinksResponse> next() throws Exception {
-        return this.next.call();
-    }
-    
-    // internal use only
-    private ListPaymentLinksResponse withNext(Callable<Optional<ListPaymentLinksResponse>> next) {
-        this.next = next;
-        return this;
     }
 
     public final static Builder builder() {
@@ -195,7 +180,6 @@ public class ListPaymentLinksResponse implements Response {
     }
     
     public final static class Builder {
-        private Callable<Optional<ListPaymentLinksResponse>> next;
  
         private String contentType;
  
@@ -253,26 +237,13 @@ public class ListPaymentLinksResponse implements Response {
             this.collectionPaymentLink = collectionPaymentLink;
             return this;
         }
-
-        /**
-         * Internal API. Not for public use. Sets the provider of the next page.
-         *
-         * @deprecated not part of the public API, may be removed without notice
-         */
-        @Deprecated
-        public Builder next(Callable<Optional<ListPaymentLinksResponse>> next) {
-            Utils.checkNotNull(next, "next");
-            this.next = next;
-            return this;
-        }
         
         public ListPaymentLinksResponse build() {
             return new ListPaymentLinksResponse(
                 contentType,
                 statusCode,
                 rawResponse,
-                collectionPaymentLink)
-                .withNext(next);
+                collectionPaymentLink);
         }
     }
 }

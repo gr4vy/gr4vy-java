@@ -3,7 +3,11 @@
  */
 package com.gr4vy.sdk.models.operations;
 
+import static com.gr4vy.sdk.operations.Operations.RequestOperation;
+
+import com.gr4vy.sdk.SDKConfiguration;
 import com.gr4vy.sdk.models.components.GiftCardBalanceRequest;
+import com.gr4vy.sdk.operations.ListGiftCardBalancesOperation;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -13,10 +17,10 @@ public class ListGiftCardBalancesRequestBuilder {
 
     private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
     private GiftCardBalanceRequest giftCardBalanceRequest;
-    private final SDKMethodInterfaces.MethodCallListGiftCardBalances sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public ListGiftCardBalancesRequestBuilder(SDKMethodInterfaces.MethodCallListGiftCardBalances sdk) {
-        this.sdk = sdk;
+    public ListGiftCardBalancesRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public ListGiftCardBalancesRequestBuilder merchantAccountId(String merchantAccountId) {
@@ -37,10 +41,21 @@ public class ListGiftCardBalancesRequestBuilder {
         return this;
     }
 
-    public ListGiftCardBalancesResponse call() throws Exception {
 
-        return sdk.list(
-            merchantAccountId,
+    private ListGiftCardBalancesRequest buildRequest() {
+
+        ListGiftCardBalancesRequest request = new ListGiftCardBalancesRequest(merchantAccountId,
             giftCardBalanceRequest);
+
+        return request;
+    }
+
+    public ListGiftCardBalancesResponse call() throws Exception {
+        
+        RequestOperation<ListGiftCardBalancesRequest, ListGiftCardBalancesResponse> operation
+              = new ListGiftCardBalancesOperation( sdkConfiguration);
+        ListGiftCardBalancesRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

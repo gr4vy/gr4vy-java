@@ -3,6 +3,10 @@
  */
 package com.gr4vy.sdk.models.operations;
 
+import static com.gr4vy.sdk.operations.Operations.RequestOperation;
+
+import com.gr4vy.sdk.SDKConfiguration;
+import com.gr4vy.sdk.operations.GetRefundOperation;
 import com.gr4vy.sdk.utils.Options;
 import com.gr4vy.sdk.utils.RetryConfig;
 import com.gr4vy.sdk.utils.Utils;
@@ -16,10 +20,10 @@ public class GetRefundRequestBuilder {
     private String refundId;
     private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
     private Optional<RetryConfig> retryConfig = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallGetRefund sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public GetRefundRequestBuilder(SDKMethodInterfaces.MethodCallGetRefund sdk) {
-        this.sdk = sdk;
+    public GetRefundRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public GetRefundRequestBuilder refundId(String refundId) {
@@ -52,13 +56,26 @@ public class GetRefundRequestBuilder {
         return this;
     }
 
+
+    private GetRefundRequest buildRequest() {
+
+        GetRefundRequest request = new GetRefundRequest(refundId,
+            merchantAccountId);
+
+        return request;
+    }
+
     public GetRefundResponse call() throws Exception {
         Optional<Options> options = Optional.of(Options.builder()
-                                                    .retryConfig(retryConfig)
-                                                    .build());
-        return sdk.get(
-            refundId,
-            merchantAccountId,
-            options);
+            .retryConfig(retryConfig)
+            .build());
+
+        RequestOperation<GetRefundRequest, GetRefundResponse> operation
+              = new GetRefundOperation(
+                 sdkConfiguration,
+                 options);
+        GetRefundRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

@@ -3,6 +3,10 @@
  */
 package com.gr4vy.sdk.models.operations;
 
+import static com.gr4vy.sdk.operations.Operations.RequestOperation;
+
+import com.gr4vy.sdk.SDKConfiguration;
+import com.gr4vy.sdk.operations.VoidTransactionOperation;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -12,10 +16,10 @@ public class VoidTransactionRequestBuilder {
 
     private String transactionId;
     private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
-    private final SDKMethodInterfaces.MethodCallVoidTransaction sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public VoidTransactionRequestBuilder(SDKMethodInterfaces.MethodCallVoidTransaction sdk) {
-        this.sdk = sdk;
+    public VoidTransactionRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public VoidTransactionRequestBuilder transactionId(String transactionId) {
@@ -36,10 +40,21 @@ public class VoidTransactionRequestBuilder {
         return this;
     }
 
-    public VoidTransactionResponse call() throws Exception {
 
-        return sdk.void_(
-            transactionId,
+    private VoidTransactionRequest buildRequest() {
+
+        VoidTransactionRequest request = new VoidTransactionRequest(transactionId,
             merchantAccountId);
+
+        return request;
+    }
+
+    public VoidTransactionResponse call() throws Exception {
+        
+        RequestOperation<VoidTransactionRequest, VoidTransactionResponse> operation
+              = new VoidTransactionOperation( sdkConfiguration);
+        VoidTransactionRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

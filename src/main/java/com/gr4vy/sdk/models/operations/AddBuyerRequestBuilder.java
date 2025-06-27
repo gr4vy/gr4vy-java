@@ -3,7 +3,11 @@
  */
 package com.gr4vy.sdk.models.operations;
 
+import static com.gr4vy.sdk.operations.Operations.RequestOperation;
+
+import com.gr4vy.sdk.SDKConfiguration;
 import com.gr4vy.sdk.models.components.BuyerCreate;
+import com.gr4vy.sdk.operations.AddBuyerOperation;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -13,10 +17,10 @@ public class AddBuyerRequestBuilder {
 
     private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
     private BuyerCreate buyerCreate;
-    private final SDKMethodInterfaces.MethodCallAddBuyer sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public AddBuyerRequestBuilder(SDKMethodInterfaces.MethodCallAddBuyer sdk) {
-        this.sdk = sdk;
+    public AddBuyerRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public AddBuyerRequestBuilder merchantAccountId(String merchantAccountId) {
@@ -37,10 +41,21 @@ public class AddBuyerRequestBuilder {
         return this;
     }
 
-    public AddBuyerResponse call() throws Exception {
 
-        return sdk.create(
-            merchantAccountId,
+    private AddBuyerRequest buildRequest() {
+
+        AddBuyerRequest request = new AddBuyerRequest(merchantAccountId,
             buyerCreate);
+
+        return request;
+    }
+
+    public AddBuyerResponse call() throws Exception {
+        
+        RequestOperation<AddBuyerRequest, AddBuyerResponse> operation
+              = new AddBuyerOperation( sdkConfiguration);
+        AddBuyerRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

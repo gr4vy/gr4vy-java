@@ -3,6 +3,10 @@
  */
 package com.gr4vy.sdk.models.operations;
 
+import static com.gr4vy.sdk.operations.Operations.RequestOperation;
+
+import com.gr4vy.sdk.SDKConfiguration;
+import com.gr4vy.sdk.operations.ListBuyerPaymentMethodsOperation;
 import com.gr4vy.sdk.utils.Options;
 import com.gr4vy.sdk.utils.RetryConfig;
 import com.gr4vy.sdk.utils.Utils;
@@ -13,10 +17,10 @@ public class ListBuyerPaymentMethodsRequestBuilder {
 
     private ListBuyerPaymentMethodsRequest request;
     private Optional<RetryConfig> retryConfig = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallListBuyerPaymentMethods sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public ListBuyerPaymentMethodsRequestBuilder(SDKMethodInterfaces.MethodCallListBuyerPaymentMethods sdk) {
-        this.sdk = sdk;
+    public ListBuyerPaymentMethodsRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public ListBuyerPaymentMethodsRequestBuilder request(ListBuyerPaymentMethodsRequest request) {
@@ -39,10 +43,14 @@ public class ListBuyerPaymentMethodsRequestBuilder {
 
     public ListBuyerPaymentMethodsResponse call() throws Exception {
         Optional<Options> options = Optional.of(Options.builder()
-                                                    .retryConfig(retryConfig)
-                                                    .build());
-        return sdk.list(
-            request,
-            options);
+            .retryConfig(retryConfig)
+            .build());
+
+        RequestOperation<ListBuyerPaymentMethodsRequest, ListBuyerPaymentMethodsResponse> operation
+              = new ListBuyerPaymentMethodsOperation(
+                 sdkConfiguration,
+                 options);
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

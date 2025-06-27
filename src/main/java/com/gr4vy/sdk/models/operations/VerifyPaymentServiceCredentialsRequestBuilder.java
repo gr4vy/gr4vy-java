@@ -3,7 +3,11 @@
  */
 package com.gr4vy.sdk.models.operations;
 
+import static com.gr4vy.sdk.operations.Operations.RequestOperation;
+
+import com.gr4vy.sdk.SDKConfiguration;
 import com.gr4vy.sdk.models.components.VerifyCredentials;
+import com.gr4vy.sdk.operations.VerifyPaymentServiceCredentialsOperation;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -13,10 +17,10 @@ public class VerifyPaymentServiceCredentialsRequestBuilder {
 
     private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
     private VerifyCredentials verifyCredentials;
-    private final SDKMethodInterfaces.MethodCallVerifyPaymentServiceCredentials sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public VerifyPaymentServiceCredentialsRequestBuilder(SDKMethodInterfaces.MethodCallVerifyPaymentServiceCredentials sdk) {
-        this.sdk = sdk;
+    public VerifyPaymentServiceCredentialsRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public VerifyPaymentServiceCredentialsRequestBuilder merchantAccountId(String merchantAccountId) {
@@ -37,10 +41,21 @@ public class VerifyPaymentServiceCredentialsRequestBuilder {
         return this;
     }
 
-    public VerifyPaymentServiceCredentialsResponse call() throws Exception {
 
-        return sdk.verify(
-            merchantAccountId,
+    private VerifyPaymentServiceCredentialsRequest buildRequest() {
+
+        VerifyPaymentServiceCredentialsRequest request = new VerifyPaymentServiceCredentialsRequest(merchantAccountId,
             verifyCredentials);
+
+        return request;
+    }
+
+    public VerifyPaymentServiceCredentialsResponse call() throws Exception {
+        
+        RequestOperation<VerifyPaymentServiceCredentialsRequest, VerifyPaymentServiceCredentialsResponse> operation
+              = new VerifyPaymentServiceCredentialsOperation( sdkConfiguration);
+        VerifyPaymentServiceCredentialsRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

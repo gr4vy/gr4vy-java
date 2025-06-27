@@ -3,6 +3,10 @@
  */
 package com.gr4vy.sdk.models.operations;
 
+import static com.gr4vy.sdk.operations.Operations.RequestOperation;
+
+import com.gr4vy.sdk.SDKConfiguration;
+import com.gr4vy.sdk.operations.CreatePaymentServiceDefinitionSessionOperation;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.Object;
@@ -14,10 +18,10 @@ public class CreatePaymentServiceDefinitionSessionRequestBuilder {
 
     private String paymentServiceDefinitionId;
     private Map<String, Object> requestBody = new HashMap<>();
-    private final SDKMethodInterfaces.MethodCallCreatePaymentServiceDefinitionSession sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public CreatePaymentServiceDefinitionSessionRequestBuilder(SDKMethodInterfaces.MethodCallCreatePaymentServiceDefinitionSession sdk) {
-        this.sdk = sdk;
+    public CreatePaymentServiceDefinitionSessionRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public CreatePaymentServiceDefinitionSessionRequestBuilder paymentServiceDefinitionId(String paymentServiceDefinitionId) {
@@ -32,10 +36,21 @@ public class CreatePaymentServiceDefinitionSessionRequestBuilder {
         return this;
     }
 
-    public CreatePaymentServiceDefinitionSessionResponse call() throws Exception {
 
-        return sdk.session(
-            paymentServiceDefinitionId,
+    private CreatePaymentServiceDefinitionSessionRequest buildRequest() {
+
+        CreatePaymentServiceDefinitionSessionRequest request = new CreatePaymentServiceDefinitionSessionRequest(paymentServiceDefinitionId,
             requestBody);
+
+        return request;
+    }
+
+    public CreatePaymentServiceDefinitionSessionResponse call() throws Exception {
+        
+        RequestOperation<CreatePaymentServiceDefinitionSessionRequest, CreatePaymentServiceDefinitionSessionResponse> operation
+              = new CreatePaymentServiceDefinitionSessionOperation( sdkConfiguration);
+        CreatePaymentServiceDefinitionSessionRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

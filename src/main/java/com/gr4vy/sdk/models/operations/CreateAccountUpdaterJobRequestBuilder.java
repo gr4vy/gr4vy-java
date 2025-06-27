@@ -3,7 +3,11 @@
  */
 package com.gr4vy.sdk.models.operations;
 
+import static com.gr4vy.sdk.operations.Operations.RequestOperation;
+
+import com.gr4vy.sdk.SDKConfiguration;
 import com.gr4vy.sdk.models.components.AccountUpdaterJobCreate;
+import com.gr4vy.sdk.operations.CreateAccountUpdaterJobOperation;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -13,10 +17,10 @@ public class CreateAccountUpdaterJobRequestBuilder {
 
     private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
     private AccountUpdaterJobCreate accountUpdaterJobCreate;
-    private final SDKMethodInterfaces.MethodCallCreateAccountUpdaterJob sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public CreateAccountUpdaterJobRequestBuilder(SDKMethodInterfaces.MethodCallCreateAccountUpdaterJob sdk) {
-        this.sdk = sdk;
+    public CreateAccountUpdaterJobRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public CreateAccountUpdaterJobRequestBuilder merchantAccountId(String merchantAccountId) {
@@ -37,10 +41,21 @@ public class CreateAccountUpdaterJobRequestBuilder {
         return this;
     }
 
-    public CreateAccountUpdaterJobResponse call() throws Exception {
 
-        return sdk.create(
-            merchantAccountId,
+    private CreateAccountUpdaterJobRequest buildRequest() {
+
+        CreateAccountUpdaterJobRequest request = new CreateAccountUpdaterJobRequest(merchantAccountId,
             accountUpdaterJobCreate);
+
+        return request;
+    }
+
+    public CreateAccountUpdaterJobResponse call() throws Exception {
+        
+        RequestOperation<CreateAccountUpdaterJobRequest, CreateAccountUpdaterJobResponse> operation
+              = new CreateAccountUpdaterJobOperation( sdkConfiguration);
+        CreateAccountUpdaterJobRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

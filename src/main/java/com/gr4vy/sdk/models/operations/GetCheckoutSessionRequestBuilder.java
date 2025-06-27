@@ -3,6 +3,10 @@
  */
 package com.gr4vy.sdk.models.operations;
 
+import static com.gr4vy.sdk.operations.Operations.RequestOperation;
+
+import com.gr4vy.sdk.SDKConfiguration;
+import com.gr4vy.sdk.operations.GetCheckoutSessionOperation;
 import com.gr4vy.sdk.utils.Options;
 import com.gr4vy.sdk.utils.RetryConfig;
 import com.gr4vy.sdk.utils.Utils;
@@ -16,10 +20,10 @@ public class GetCheckoutSessionRequestBuilder {
     private String sessionId;
     private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
     private Optional<RetryConfig> retryConfig = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallGetCheckoutSession sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public GetCheckoutSessionRequestBuilder(SDKMethodInterfaces.MethodCallGetCheckoutSession sdk) {
-        this.sdk = sdk;
+    public GetCheckoutSessionRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public GetCheckoutSessionRequestBuilder sessionId(String sessionId) {
@@ -52,13 +56,26 @@ public class GetCheckoutSessionRequestBuilder {
         return this;
     }
 
+
+    private GetCheckoutSessionRequest buildRequest() {
+
+        GetCheckoutSessionRequest request = new GetCheckoutSessionRequest(sessionId,
+            merchantAccountId);
+
+        return request;
+    }
+
     public GetCheckoutSessionResponse call() throws Exception {
         Optional<Options> options = Optional.of(Options.builder()
-                                                    .retryConfig(retryConfig)
-                                                    .build());
-        return sdk.get(
-            sessionId,
-            merchantAccountId,
-            options);
+            .retryConfig(retryConfig)
+            .build());
+
+        RequestOperation<GetCheckoutSessionRequest, GetCheckoutSessionResponse> operation
+              = new GetCheckoutSessionOperation(
+                 sdkConfiguration,
+                 options);
+        GetCheckoutSessionRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

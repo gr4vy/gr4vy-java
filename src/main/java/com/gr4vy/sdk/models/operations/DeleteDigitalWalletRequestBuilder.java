@@ -3,6 +3,10 @@
  */
 package com.gr4vy.sdk.models.operations;
 
+import static com.gr4vy.sdk.operations.Operations.RequestOperation;
+
+import com.gr4vy.sdk.SDKConfiguration;
+import com.gr4vy.sdk.operations.DeleteDigitalWalletOperation;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -12,10 +16,10 @@ public class DeleteDigitalWalletRequestBuilder {
 
     private String digitalWalletId;
     private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
-    private final SDKMethodInterfaces.MethodCallDeleteDigitalWallet sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public DeleteDigitalWalletRequestBuilder(SDKMethodInterfaces.MethodCallDeleteDigitalWallet sdk) {
-        this.sdk = sdk;
+    public DeleteDigitalWalletRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public DeleteDigitalWalletRequestBuilder digitalWalletId(String digitalWalletId) {
@@ -36,10 +40,21 @@ public class DeleteDigitalWalletRequestBuilder {
         return this;
     }
 
-    public DeleteDigitalWalletResponse call() throws Exception {
 
-        return sdk.delete(
-            digitalWalletId,
+    private DeleteDigitalWalletRequest buildRequest() {
+
+        DeleteDigitalWalletRequest request = new DeleteDigitalWalletRequest(digitalWalletId,
             merchantAccountId);
+
+        return request;
+    }
+
+    public DeleteDigitalWalletResponse call() throws Exception {
+        
+        RequestOperation<DeleteDigitalWalletRequest, DeleteDigitalWalletResponse> operation
+              = new DeleteDigitalWalletOperation( sdkConfiguration);
+        DeleteDigitalWalletRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

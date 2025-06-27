@@ -3,7 +3,11 @@
  */
 package com.gr4vy.sdk.models.operations;
 
+import static com.gr4vy.sdk.operations.Operations.RequestOperation;
+
+import com.gr4vy.sdk.SDKConfiguration;
 import com.gr4vy.sdk.models.components.ShippingDetailsUpdate;
+import com.gr4vy.sdk.operations.UpdateBuyerShippingDetailsOperation;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -15,10 +19,10 @@ public class UpdateBuyerShippingDetailsRequestBuilder {
     private String shippingDetailsId;
     private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
     private ShippingDetailsUpdate shippingDetailsUpdate;
-    private final SDKMethodInterfaces.MethodCallUpdateBuyerShippingDetails sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public UpdateBuyerShippingDetailsRequestBuilder(SDKMethodInterfaces.MethodCallUpdateBuyerShippingDetails sdk) {
-        this.sdk = sdk;
+    public UpdateBuyerShippingDetailsRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public UpdateBuyerShippingDetailsRequestBuilder buyerId(String buyerId) {
@@ -51,12 +55,23 @@ public class UpdateBuyerShippingDetailsRequestBuilder {
         return this;
     }
 
-    public UpdateBuyerShippingDetailsResponse call() throws Exception {
 
-        return sdk.update(
-            buyerId,
+    private UpdateBuyerShippingDetailsRequest buildRequest() {
+
+        UpdateBuyerShippingDetailsRequest request = new UpdateBuyerShippingDetailsRequest(buyerId,
             shippingDetailsId,
             merchantAccountId,
             shippingDetailsUpdate);
+
+        return request;
+    }
+
+    public UpdateBuyerShippingDetailsResponse call() throws Exception {
+        
+        RequestOperation<UpdateBuyerShippingDetailsRequest, UpdateBuyerShippingDetailsResponse> operation
+              = new UpdateBuyerShippingDetailsOperation( sdkConfiguration);
+        UpdateBuyerShippingDetailsRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

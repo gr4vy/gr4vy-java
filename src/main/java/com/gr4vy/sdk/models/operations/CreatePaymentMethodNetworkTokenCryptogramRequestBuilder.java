@@ -3,7 +3,11 @@
  */
 package com.gr4vy.sdk.models.operations;
 
+import static com.gr4vy.sdk.operations.Operations.RequestOperation;
+
+import com.gr4vy.sdk.SDKConfiguration;
 import com.gr4vy.sdk.models.components.CryptogramCreate;
+import com.gr4vy.sdk.operations.CreatePaymentMethodNetworkTokenCryptogramOperation;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -15,10 +19,10 @@ public class CreatePaymentMethodNetworkTokenCryptogramRequestBuilder {
     private String networkTokenId;
     private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
     private CryptogramCreate cryptogramCreate;
-    private final SDKMethodInterfaces.MethodCallCreatePaymentMethodNetworkTokenCryptogram sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public CreatePaymentMethodNetworkTokenCryptogramRequestBuilder(SDKMethodInterfaces.MethodCallCreatePaymentMethodNetworkTokenCryptogram sdk) {
-        this.sdk = sdk;
+    public CreatePaymentMethodNetworkTokenCryptogramRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public CreatePaymentMethodNetworkTokenCryptogramRequestBuilder paymentMethodId(String paymentMethodId) {
@@ -51,12 +55,23 @@ public class CreatePaymentMethodNetworkTokenCryptogramRequestBuilder {
         return this;
     }
 
-    public CreatePaymentMethodNetworkTokenCryptogramResponse call() throws Exception {
 
-        return sdk.create(
-            paymentMethodId,
+    private CreatePaymentMethodNetworkTokenCryptogramRequest buildRequest() {
+
+        CreatePaymentMethodNetworkTokenCryptogramRequest request = new CreatePaymentMethodNetworkTokenCryptogramRequest(paymentMethodId,
             networkTokenId,
             merchantAccountId,
             cryptogramCreate);
+
+        return request;
+    }
+
+    public CreatePaymentMethodNetworkTokenCryptogramResponse call() throws Exception {
+        
+        RequestOperation<CreatePaymentMethodNetworkTokenCryptogramRequest, CreatePaymentMethodNetworkTokenCryptogramResponse> operation
+              = new CreatePaymentMethodNetworkTokenCryptogramOperation( sdkConfiguration);
+        CreatePaymentMethodNetworkTokenCryptogramRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

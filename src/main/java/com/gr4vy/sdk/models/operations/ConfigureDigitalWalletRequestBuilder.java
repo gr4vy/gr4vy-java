@@ -3,7 +3,11 @@
  */
 package com.gr4vy.sdk.models.operations;
 
+import static com.gr4vy.sdk.operations.Operations.RequestOperation;
+
+import com.gr4vy.sdk.SDKConfiguration;
 import com.gr4vy.sdk.models.components.DigitalWalletCreate;
+import com.gr4vy.sdk.operations.ConfigureDigitalWalletOperation;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -13,10 +17,10 @@ public class ConfigureDigitalWalletRequestBuilder {
 
     private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
     private DigitalWalletCreate digitalWalletCreate;
-    private final SDKMethodInterfaces.MethodCallConfigureDigitalWallet sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public ConfigureDigitalWalletRequestBuilder(SDKMethodInterfaces.MethodCallConfigureDigitalWallet sdk) {
-        this.sdk = sdk;
+    public ConfigureDigitalWalletRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public ConfigureDigitalWalletRequestBuilder merchantAccountId(String merchantAccountId) {
@@ -37,10 +41,21 @@ public class ConfigureDigitalWalletRequestBuilder {
         return this;
     }
 
-    public ConfigureDigitalWalletResponse call() throws Exception {
 
-        return sdk.create(
-            merchantAccountId,
+    private ConfigureDigitalWalletRequest buildRequest() {
+
+        ConfigureDigitalWalletRequest request = new ConfigureDigitalWalletRequest(merchantAccountId,
             digitalWalletCreate);
+
+        return request;
+    }
+
+    public ConfigureDigitalWalletResponse call() throws Exception {
+        
+        RequestOperation<ConfigureDigitalWalletRequest, ConfigureDigitalWalletResponse> operation
+              = new ConfigureDigitalWalletOperation( sdkConfiguration);
+        ConfigureDigitalWalletRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

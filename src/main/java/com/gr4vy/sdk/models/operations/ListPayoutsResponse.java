@@ -9,8 +9,6 @@ import com.gr4vy.sdk.models.components.PayoutSummaries;
 import com.gr4vy.sdk.utils.Response;
 import com.gr4vy.sdk.utils.Utils;
 import java.io.InputStream;
-import java.lang.Deprecated;
-import java.lang.Exception;
 import java.lang.Integer;
 import java.lang.Override;
 import java.lang.String;
@@ -18,7 +16,6 @@ import java.lang.SuppressWarnings;
 import java.net.http.HttpResponse;
 import java.util.Objects;
 import java.util.Optional;
-import java.util.concurrent.Callable;
 
 public class ListPayoutsResponse implements Response {
 
@@ -41,8 +38,6 @@ public class ListPayoutsResponse implements Response {
      * Successful Response
      */
     private Optional<? extends PayoutSummaries> payoutSummaries;
-
-    private Callable<Optional<ListPayoutsResponse>> next = () -> Optional.empty();
 
     @JsonCreator
     public ListPayoutsResponse(
@@ -98,16 +93,6 @@ public class ListPayoutsResponse implements Response {
     @JsonIgnore
     public Optional<PayoutSummaries> payoutSummaries() {
         return (Optional<PayoutSummaries>) payoutSummaries;
-    }
-
-    public Optional<ListPayoutsResponse> next() throws Exception {
-        return this.next.call();
-    }
-    
-    // internal use only
-    private ListPayoutsResponse withNext(Callable<Optional<ListPayoutsResponse>> next) {
-        this.next = next;
-        return this;
     }
 
     public final static Builder builder() {
@@ -195,7 +180,6 @@ public class ListPayoutsResponse implements Response {
     }
     
     public final static class Builder {
-        private Callable<Optional<ListPayoutsResponse>> next;
  
         private String contentType;
  
@@ -253,26 +237,13 @@ public class ListPayoutsResponse implements Response {
             this.payoutSummaries = payoutSummaries;
             return this;
         }
-
-        /**
-         * Internal API. Not for public use. Sets the provider of the next page.
-         *
-         * @deprecated not part of the public API, may be removed without notice
-         */
-        @Deprecated
-        public Builder next(Callable<Optional<ListPayoutsResponse>> next) {
-            Utils.checkNotNull(next, "next");
-            this.next = next;
-            return this;
-        }
         
         public ListPayoutsResponse build() {
             return new ListPayoutsResponse(
                 contentType,
                 statusCode,
                 rawResponse,
-                payoutSummaries)
-                .withNext(next);
+                payoutSummaries);
         }
     }
 }

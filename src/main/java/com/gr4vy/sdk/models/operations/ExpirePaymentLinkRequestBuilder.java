@@ -3,6 +3,10 @@
  */
 package com.gr4vy.sdk.models.operations;
 
+import static com.gr4vy.sdk.operations.Operations.RequestOperation;
+
+import com.gr4vy.sdk.SDKConfiguration;
+import com.gr4vy.sdk.operations.ExpirePaymentLinkOperation;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -12,10 +16,10 @@ public class ExpirePaymentLinkRequestBuilder {
 
     private String paymentLinkId;
     private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
-    private final SDKMethodInterfaces.MethodCallExpirePaymentLink sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public ExpirePaymentLinkRequestBuilder(SDKMethodInterfaces.MethodCallExpirePaymentLink sdk) {
-        this.sdk = sdk;
+    public ExpirePaymentLinkRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public ExpirePaymentLinkRequestBuilder paymentLinkId(String paymentLinkId) {
@@ -36,10 +40,21 @@ public class ExpirePaymentLinkRequestBuilder {
         return this;
     }
 
-    public ExpirePaymentLinkResponse call() throws Exception {
 
-        return sdk.expire(
-            paymentLinkId,
+    private ExpirePaymentLinkRequest buildRequest() {
+
+        ExpirePaymentLinkRequest request = new ExpirePaymentLinkRequest(paymentLinkId,
             merchantAccountId);
+
+        return request;
+    }
+
+    public ExpirePaymentLinkResponse call() throws Exception {
+        
+        RequestOperation<ExpirePaymentLinkRequest, ExpirePaymentLinkResponse> operation
+              = new ExpirePaymentLinkOperation( sdkConfiguration);
+        ExpirePaymentLinkRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

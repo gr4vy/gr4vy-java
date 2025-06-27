@@ -3,7 +3,11 @@
  */
 package com.gr4vy.sdk.models.operations;
 
+import static com.gr4vy.sdk.operations.Operations.RequestOperation;
+
 import com.fasterxml.jackson.core.type.TypeReference;
+import com.gr4vy.sdk.SDKConfiguration;
+import com.gr4vy.sdk.operations.ListTransactionEventsOperation;
 import com.gr4vy.sdk.utils.LazySingletonValue;
 import com.gr4vy.sdk.utils.Options;
 import com.gr4vy.sdk.utils.RetryConfig;
@@ -24,10 +28,10 @@ public class ListTransactionEventsRequestBuilder {
                             new TypeReference<Optional<Long>>() {});
     private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
     private Optional<RetryConfig> retryConfig = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallListTransactionEvents sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public ListTransactionEventsRequestBuilder(SDKMethodInterfaces.MethodCallListTransactionEvents sdk) {
-        this.sdk = sdk;
+    public ListTransactionEventsRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public ListTransactionEventsRequestBuilder transactionId(String transactionId) {
@@ -84,18 +88,32 @@ public class ListTransactionEventsRequestBuilder {
         return this;
     }
 
-    public ListTransactionEventsResponse call() throws Exception {
+
+    private ListTransactionEventsRequest buildRequest() {
         if (limit == null) {
             limit = _SINGLETON_VALUE_Limit.value();
-        }        Optional<Options> options = Optional.of(Options.builder()
-                                                    .retryConfig(retryConfig)
-                                                    .build());
-        return sdk.list(
-            transactionId,
+        }
+
+        ListTransactionEventsRequest request = new ListTransactionEventsRequest(transactionId,
             cursor,
             limit,
-            merchantAccountId,
-            options);
+            merchantAccountId);
+
+        return request;
+    }
+
+    public ListTransactionEventsResponse call() throws Exception {
+        Optional<Options> options = Optional.of(Options.builder()
+            .retryConfig(retryConfig)
+            .build());
+
+        RequestOperation<ListTransactionEventsRequest, ListTransactionEventsResponse> operation
+              = new ListTransactionEventsOperation(
+                 sdkConfiguration,
+                 options);
+        ListTransactionEventsRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 
     private static final LazySingletonValue<Optional<Long>> _SINGLETON_VALUE_Limit =

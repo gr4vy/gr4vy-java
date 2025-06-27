@@ -3,6 +3,10 @@
  */
 package com.gr4vy.sdk.models.operations;
 
+import static com.gr4vy.sdk.operations.Operations.RequestOperation;
+
+import com.gr4vy.sdk.SDKConfiguration;
+import com.gr4vy.sdk.operations.GetMerchantAccountOperation;
 import com.gr4vy.sdk.utils.Options;
 import com.gr4vy.sdk.utils.RetryConfig;
 import com.gr4vy.sdk.utils.Utils;
@@ -14,10 +18,10 @@ public class GetMerchantAccountRequestBuilder {
 
     private String merchantAccountId;
     private Optional<RetryConfig> retryConfig = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallGetMerchantAccount sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public GetMerchantAccountRequestBuilder(SDKMethodInterfaces.MethodCallGetMerchantAccount sdk) {
-        this.sdk = sdk;
+    public GetMerchantAccountRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public GetMerchantAccountRequestBuilder merchantAccountId(String merchantAccountId) {
@@ -38,12 +42,25 @@ public class GetMerchantAccountRequestBuilder {
         return this;
     }
 
+
+    private GetMerchantAccountRequest buildRequest() {
+
+        GetMerchantAccountRequest request = new GetMerchantAccountRequest(merchantAccountId);
+
+        return request;
+    }
+
     public GetMerchantAccountResponse call() throws Exception {
         Optional<Options> options = Optional.of(Options.builder()
-                                                    .retryConfig(retryConfig)
-                                                    .build());
-        return sdk.get(
-            merchantAccountId,
-            options);
+            .retryConfig(retryConfig)
+            .build());
+
+        RequestOperation<GetMerchantAccountRequest, GetMerchantAccountResponse> operation
+              = new GetMerchantAccountOperation(
+                 sdkConfiguration,
+                 options);
+        GetMerchantAccountRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

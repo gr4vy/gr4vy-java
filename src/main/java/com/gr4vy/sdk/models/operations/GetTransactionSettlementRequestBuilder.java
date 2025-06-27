@@ -3,6 +3,10 @@
  */
 package com.gr4vy.sdk.models.operations;
 
+import static com.gr4vy.sdk.operations.Operations.RequestOperation;
+
+import com.gr4vy.sdk.SDKConfiguration;
+import com.gr4vy.sdk.operations.GetTransactionSettlementOperation;
 import com.gr4vy.sdk.utils.Options;
 import com.gr4vy.sdk.utils.RetryConfig;
 import com.gr4vy.sdk.utils.Utils;
@@ -17,10 +21,10 @@ public class GetTransactionSettlementRequestBuilder {
     private String settlementId;
     private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
     private Optional<RetryConfig> retryConfig = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallGetTransactionSettlement sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public GetTransactionSettlementRequestBuilder(SDKMethodInterfaces.MethodCallGetTransactionSettlement sdk) {
-        this.sdk = sdk;
+    public GetTransactionSettlementRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public GetTransactionSettlementRequestBuilder transactionId(String transactionId) {
@@ -59,14 +63,27 @@ public class GetTransactionSettlementRequestBuilder {
         return this;
     }
 
+
+    private GetTransactionSettlementRequest buildRequest() {
+
+        GetTransactionSettlementRequest request = new GetTransactionSettlementRequest(transactionId,
+            settlementId,
+            merchantAccountId);
+
+        return request;
+    }
+
     public GetTransactionSettlementResponse call() throws Exception {
         Optional<Options> options = Optional.of(Options.builder()
-                                                    .retryConfig(retryConfig)
-                                                    .build());
-        return sdk.get(
-            transactionId,
-            settlementId,
-            merchantAccountId,
-            options);
+            .retryConfig(retryConfig)
+            .build());
+
+        RequestOperation<GetTransactionSettlementRequest, GetTransactionSettlementResponse> operation
+              = new GetTransactionSettlementOperation(
+                 sdkConfiguration,
+                 options);
+        GetTransactionSettlementRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

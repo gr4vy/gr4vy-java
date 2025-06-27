@@ -3,7 +3,11 @@
  */
 package com.gr4vy.sdk.models.operations;
 
+import static com.gr4vy.sdk.operations.Operations.RequestOperation;
+
+import com.gr4vy.sdk.SDKConfiguration;
 import com.gr4vy.sdk.models.components.GooglePaySessionRequest;
+import com.gr4vy.sdk.operations.CreateGooglePayDigitalWalletSessionOperation;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -13,10 +17,10 @@ public class CreateGooglePayDigitalWalletSessionRequestBuilder {
 
     private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
     private GooglePaySessionRequest googlePaySessionRequest;
-    private final SDKMethodInterfaces.MethodCallCreateGooglePayDigitalWalletSession sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public CreateGooglePayDigitalWalletSessionRequestBuilder(SDKMethodInterfaces.MethodCallCreateGooglePayDigitalWalletSession sdk) {
-        this.sdk = sdk;
+    public CreateGooglePayDigitalWalletSessionRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public CreateGooglePayDigitalWalletSessionRequestBuilder merchantAccountId(String merchantAccountId) {
@@ -37,10 +41,21 @@ public class CreateGooglePayDigitalWalletSessionRequestBuilder {
         return this;
     }
 
-    public CreateGooglePayDigitalWalletSessionResponse call() throws Exception {
 
-        return sdk.googlePay(
-            merchantAccountId,
+    private CreateGooglePayDigitalWalletSessionRequest buildRequest() {
+
+        CreateGooglePayDigitalWalletSessionRequest request = new CreateGooglePayDigitalWalletSessionRequest(merchantAccountId,
             googlePaySessionRequest);
+
+        return request;
+    }
+
+    public CreateGooglePayDigitalWalletSessionResponse call() throws Exception {
+        
+        RequestOperation<CreateGooglePayDigitalWalletSessionRequest, CreateGooglePayDigitalWalletSessionResponse> operation
+              = new CreateGooglePayDigitalWalletSessionOperation( sdkConfiguration);
+        CreateGooglePayDigitalWalletSessionRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

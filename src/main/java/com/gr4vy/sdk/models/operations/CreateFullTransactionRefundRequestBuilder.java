@@ -3,7 +3,11 @@
  */
 package com.gr4vy.sdk.models.operations;
 
+import static com.gr4vy.sdk.operations.Operations.RequestOperation;
+
+import com.gr4vy.sdk.SDKConfiguration;
 import com.gr4vy.sdk.models.components.TransactionRefundAllCreate;
+import com.gr4vy.sdk.operations.CreateFullTransactionRefundOperation;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -14,10 +18,10 @@ public class CreateFullTransactionRefundRequestBuilder {
     private String transactionId;
     private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
     private JsonNullable<? extends TransactionRefundAllCreate> transactionRefundAllCreate = JsonNullable.undefined();
-    private final SDKMethodInterfaces.MethodCallCreateFullTransactionRefund sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public CreateFullTransactionRefundRequestBuilder(SDKMethodInterfaces.MethodCallCreateFullTransactionRefund sdk) {
-        this.sdk = sdk;
+    public CreateFullTransactionRefundRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public CreateFullTransactionRefundRequestBuilder transactionId(String transactionId) {
@@ -50,11 +54,22 @@ public class CreateFullTransactionRefundRequestBuilder {
         return this;
     }
 
-    public CreateFullTransactionRefundResponse call() throws Exception {
 
-        return sdk.create(
-            transactionId,
+    private CreateFullTransactionRefundRequest buildRequest() {
+
+        CreateFullTransactionRefundRequest request = new CreateFullTransactionRefundRequest(transactionId,
             merchantAccountId,
             transactionRefundAllCreate);
+
+        return request;
+    }
+
+    public CreateFullTransactionRefundResponse call() throws Exception {
+        
+        RequestOperation<CreateFullTransactionRefundRequest, CreateFullTransactionRefundResponse> operation
+              = new CreateFullTransactionRefundOperation( sdkConfiguration);
+        CreateFullTransactionRefundRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

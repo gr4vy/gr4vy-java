@@ -3,7 +3,11 @@
  */
 package com.gr4vy.sdk.models.operations;
 
+import static com.gr4vy.sdk.operations.Operations.RequestOperation;
+
+import com.gr4vy.sdk.SDKConfiguration;
 import com.gr4vy.sdk.models.components.PaymentLinkCreate;
+import com.gr4vy.sdk.operations.AddPaymentLinkOperation;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -13,10 +17,10 @@ public class AddPaymentLinkRequestBuilder {
 
     private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
     private PaymentLinkCreate paymentLinkCreate;
-    private final SDKMethodInterfaces.MethodCallAddPaymentLink sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public AddPaymentLinkRequestBuilder(SDKMethodInterfaces.MethodCallAddPaymentLink sdk) {
-        this.sdk = sdk;
+    public AddPaymentLinkRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public AddPaymentLinkRequestBuilder merchantAccountId(String merchantAccountId) {
@@ -37,10 +41,21 @@ public class AddPaymentLinkRequestBuilder {
         return this;
     }
 
-    public AddPaymentLinkResponse call() throws Exception {
 
-        return sdk.create(
-            merchantAccountId,
+    private AddPaymentLinkRequest buildRequest() {
+
+        AddPaymentLinkRequest request = new AddPaymentLinkRequest(merchantAccountId,
             paymentLinkCreate);
+
+        return request;
+    }
+
+    public AddPaymentLinkResponse call() throws Exception {
+        
+        RequestOperation<AddPaymentLinkRequest, AddPaymentLinkResponse> operation
+              = new AddPaymentLinkOperation( sdkConfiguration);
+        AddPaymentLinkRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

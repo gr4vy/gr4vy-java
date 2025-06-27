@@ -20,6 +20,7 @@ package hello.world;
 
 import com.gr4vy.sdk.Gr4vy;
 import com.gr4vy.sdk.models.errors.*;
+import com.gr4vy.sdk.models.operations.ListPaymentServiceDefinitionsResponse;
 import java.lang.Exception;
 
 public class Application {
@@ -34,8 +35,8 @@ public class Application {
                 .cursor("ZXhhbXBsZTE")
                 .limit(20L)
                 .callAsStream()
-                .forEach(item -> {
-                   // handle item
+                .forEach((ListPaymentServiceDefinitionsResponse item) -> {
+                   // handle page
                 });
 
     }

@@ -3,7 +3,11 @@
  */
 package com.gr4vy.sdk.models.operations;
 
+import static com.gr4vy.sdk.operations.Operations.RequestOperation;
+
+import com.gr4vy.sdk.SDKConfiguration;
 import com.gr4vy.sdk.models.components.DigitalWalletDomain;
+import com.gr4vy.sdk.operations.RegisterDigitalWalletDomainOperation;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -14,10 +18,10 @@ public class RegisterDigitalWalletDomainRequestBuilder {
     private String digitalWalletId;
     private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
     private DigitalWalletDomain digitalWalletDomain;
-    private final SDKMethodInterfaces.MethodCallRegisterDigitalWalletDomain sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public RegisterDigitalWalletDomainRequestBuilder(SDKMethodInterfaces.MethodCallRegisterDigitalWalletDomain sdk) {
-        this.sdk = sdk;
+    public RegisterDigitalWalletDomainRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public RegisterDigitalWalletDomainRequestBuilder digitalWalletId(String digitalWalletId) {
@@ -44,11 +48,22 @@ public class RegisterDigitalWalletDomainRequestBuilder {
         return this;
     }
 
-    public RegisterDigitalWalletDomainResponse call() throws Exception {
 
-        return sdk.create(
-            digitalWalletId,
+    private RegisterDigitalWalletDomainRequest buildRequest() {
+
+        RegisterDigitalWalletDomainRequest request = new RegisterDigitalWalletDomainRequest(digitalWalletId,
             merchantAccountId,
             digitalWalletDomain);
+
+        return request;
+    }
+
+    public RegisterDigitalWalletDomainResponse call() throws Exception {
+        
+        RequestOperation<RegisterDigitalWalletDomainRequest, RegisterDigitalWalletDomainResponse> operation
+              = new RegisterDigitalWalletDomainOperation( sdkConfiguration);
+        RegisterDigitalWalletDomainRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

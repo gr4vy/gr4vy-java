@@ -5,6 +5,7 @@ package com.gr4vy.sdk;
 
 import com.gr4vy.sdk.utils.HTTPClient;
 import com.gr4vy.sdk.utils.RetryConfig;
+import com.gr4vy.sdk.utils.SpeakeasyHTTPClient;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.String;
 import java.lang.SuppressWarnings;
@@ -18,7 +19,6 @@ import java.util.Optional;
  */
 public class Gr4vy {
 
-  
     /**
      * AvailableServers contains identifiers for the servers available to the SDK.
      */
@@ -45,6 +45,8 @@ public class Gr4vy {
     put(AvailableServers.PRODUCTION, "https://api.{id}.gr4vy.app");
     put(AvailableServers.SANDBOX, "https://api.sandbox.{id}.gr4vy.app");
     }};
+
+    
 
     private final AccountUpdater accountUpdater;
 
@@ -153,7 +155,6 @@ public class Gr4vy {
     public PaymentLinks paymentLinks() {
         return paymentLinks;
     }
-
     private SDKConfiguration sdkConfiguration;
 
     /**
@@ -249,6 +250,21 @@ public class Gr4vy {
             this.sdkConfiguration.setRetryConfig(Optional.of(retryConfig));
             return this;
         }
+
+        /**
+         * Enables debug logging for HTTP requests and responses, including JSON body content.
+         *
+         * Convenience method that calls {@link HTTPClient#enableDebugging(boolean)}.
+         * {@link SpeakeasyHTTPClient} honors this setting. If you are using a custom HTTP client,
+         * it is up to the custom client to honor this setting.
+         *
+         * @return The builder instance.
+         */
+        public Builder enableHTTPDebugLogging(boolean enabled) {
+            this.sdkConfiguration.client().enableDebugging(enabled);
+            return this;
+        }
+
         /**
          * Sets the id variable for url substitution.
          *
@@ -275,12 +291,7 @@ public class Gr4vy {
          * @return The builder instance.
          */
         public Builder merchantAccountId(String merchantAccountId) {
-            if (!this.sdkConfiguration.globals.get("parameters").containsKey("header")) {
-                this.sdkConfiguration.globals.get("parameters").put("header", new HashMap<>());
-            }
-
-            this.sdkConfiguration.globals.get("parameters").get("header").put("merchantAccountId", merchantAccountId);
-
+            this.sdkConfiguration.globals.putParam("header", "merchantAccountId", merchantAccountId);
             return this;
         }
         

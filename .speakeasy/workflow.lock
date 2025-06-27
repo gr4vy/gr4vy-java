@@ -1,4 +1,4 @@
-speakeasyVersion: 1.567.3
+speakeasyVersion: 1.570.2
 sources:
     Gr4vy:
         sourceNamespace: openapi
@@ -9,11 +9,11 @@ sources:
             - 1.0.0
     openapi:
         sourceNamespace: openapi
-        sourceRevisionDigest: sha256:2dfa87c24696b900d2f7dc7560406fed474fcda88aa0f5eb923ba4ec90b5197b
-        sourceBlobDigest: sha256:5f3a7d451428b7c636172d3d1e73557d3733bf5240a7ec1d37aa0015d30cccfc
+        sourceRevisionDigest: sha256:384d0efe5aefa5f9c76e2b5f98aa20c1ba000a6aa9e9c43ae37faaa21a15689e
+        sourceBlobDigest: sha256:9e0c4ddd70916fd26b2bc8ef27aaa5f5d23a6a5a68a88e1406803d47cf5ea544
         tags:
             - latest
-            - speakeasy-sdk-regen-1750430231
+            - speakeasy-sdk-regen-1750934915
             - 1.0.0
 targets:
     gr-4-vy:
@@ -26,10 +26,10 @@ targets:
     java:
         source: openapi
         sourceNamespace: openapi
-        sourceRevisionDigest: sha256:2dfa87c24696b900d2f7dc7560406fed474fcda88aa0f5eb923ba4ec90b5197b
-        sourceBlobDigest: sha256:5f3a7d451428b7c636172d3d1e73557d3733bf5240a7ec1d37aa0015d30cccfc
+        sourceRevisionDigest: sha256:384d0efe5aefa5f9c76e2b5f98aa20c1ba000a6aa9e9c43ae37faaa21a15689e
+        sourceBlobDigest: sha256:9e0c4ddd70916fd26b2bc8ef27aaa5f5d23a6a5a68a88e1406803d47cf5ea544
         codeSamplesNamespace: openapi-java-code-samples
-        codeSamplesRevisionDigest: sha256:82bd9358ffa1e6f49dc7b98cf1255c78aa58c5dea93c6382000090656216ad33
+        codeSamplesRevisionDigest: sha256:530816ca87910547b37992173385ea6b8b0a180dbebe23ad4e4c4cd3907b664f
 workflow:
     workflowVersion: 1.0.0
     speakeasyVersion: latest
@@ -46,6 +46,7 @@ workflow:
                 - location: ./.speakeasy/overlays/fix-base-model.yaml
                 - location: ./.speakeasy/overlays/fix-checkout-session-body.yaml
                 - location: ./.speakeasy/overlays/fix-remove-unwanted-headers.yaml
+                - location: ./.speakeasy/overlays/fix-add-x-forwarded-for-header.yaml
             registry:
                 location: registry.speakeasyapi.dev/gr4vy/gr4vy/openapi
     targets:

@@ -89,6 +89,7 @@ package hello.world;
 
 import com.gr4vy.sdk.Gr4vy;
 import com.gr4vy.sdk.models.errors.*;
+import com.gr4vy.sdk.models.operations.ListPaymentLinksResponse;
 import java.lang.Exception;
 
 public class Application {
@@ -103,8 +104,8 @@ public class Application {
         sdk.paymentLinks().list()
                 .limit(20L)
                 .callAsStream()
-                .forEach(item -> {
-                   // handle item
+                .forEach((ListPaymentLinksResponse item) -> {
+                   // handle page
                 });
 
     }
