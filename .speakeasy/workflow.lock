@@ -36,7 +36,7 @@ workflow:
     sources:
         openapi:
             inputs:
-                - location: https://gr4vy.github.io/gr4vy-openapi/core/openapi.json
+                - location: https://gr4vy.github.io/openapi/core/openapi.json
             overlays:
                 - location: ./.speakeasy/overlays/servers.yaml
                 - location: ./.speakeasy/overlays/security.yaml
