@@ -23,8 +23,8 @@ public class Gr4vy {
      * AvailableServers contains identifiers for the servers available to the SDK.
      */
     public enum AvailableServers {
-      PRODUCTION("production"),
-      SANDBOX("sandbox");
+      SANDBOX("sandbox"),
+      PRODUCTION("production");
 
         private final String server;
 
@@ -42,8 +42,8 @@ public class Gr4vy {
      */
     @SuppressWarnings("serial")
     public static final Map<AvailableServers, String> SERVERS = new HashMap<>() { {
-    put(AvailableServers.PRODUCTION, "https://api.{id}.gr4vy.app");
     put(AvailableServers.SANDBOX, "https://api.sandbox.{id}.gr4vy.app");
+    put(AvailableServers.PRODUCTION, "https://api.{id}.gr4vy.app");
     }};
 
     
@@ -302,8 +302,8 @@ public class Gr4vy {
          */
         public Gr4vy build() {
             if (serverUrl == null || serverUrl.isBlank()) {
-                serverUrl = SERVERS.get(AvailableServers.PRODUCTION);
-                server = AvailableServers.PRODUCTION.server();
+                serverUrl = SERVERS.get(AvailableServers.SANDBOX);
+                server = AvailableServers.SANDBOX.server();
             }
             sdkConfiguration.setServerUrl(serverUrl);
             if (server != null) {

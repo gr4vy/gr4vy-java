@@ -19,7 +19,7 @@ public class SDKConfiguration {
 
     private static final String LANGUAGE = "java";
     public static final String OPENAPI_DOC_VERSION = "1.0.0";
-    public static final String SDK_VERSION = "2.0.0";
+    public static final String SDK_VERSION = "2.1.1";
     public static final String GEN_VERSION = "2.638.5";
     private static final String BASE_PACKAGE = "com.gr4vy.sdk";
     public static final String USER_AGENT = 
@@ -87,10 +87,10 @@ public class SDKConfiguration {
     
     @SuppressWarnings("serial")
     private Map<String, Map<String, String>> serverVariables = new HashMap<>(){ {
-        put("production", new HashMap<>(){ {
+        put("sandbox", new HashMap<>(){ {
             put("id", "example");
         } });
-        put("sandbox", new HashMap<>(){ {
+        put("production", new HashMap<>(){ {
             put("id", "example");
         } });
     } };
