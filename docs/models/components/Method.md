@@ -18,6 +18,7 @@
 | `BCP`                | bcp                  |
 | `BECS`               | becs                 |
 | `BITPAY`             | bitpay               |
+| `BLIK`               | blik                 |
 | `BOLETO`             | boleto               |
 | `BOOST`              | boost                |
 | `CARD`               | card                 |

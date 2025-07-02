@@ -19,6 +19,7 @@ The method to use, this can be any of the methods that support redirect requests
 | `BCP`             | bcp               |
 | `BECS`            | becs              |
 | `BITPAY`          | bitpay            |
+| `BLIK`            | blik              |
 | `BOLETO`          | boleto            |
 | `BOOST`           | boost             |
 | `CASHAPP`         | cashapp           |

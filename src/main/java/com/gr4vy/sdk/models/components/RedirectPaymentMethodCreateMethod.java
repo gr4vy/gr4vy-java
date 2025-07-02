@@ -62,6 +62,7 @@ public class RedirectPaymentMethodCreateMethod {
     public static final RedirectPaymentMethodCreateMethod BCP = new RedirectPaymentMethodCreateMethod("bcp");
     public static final RedirectPaymentMethodCreateMethod BECS = new RedirectPaymentMethodCreateMethod("becs");
     public static final RedirectPaymentMethodCreateMethod BITPAY = new RedirectPaymentMethodCreateMethod("bitpay");
+    public static final RedirectPaymentMethodCreateMethod BLIK = new RedirectPaymentMethodCreateMethod("blik");
     public static final RedirectPaymentMethodCreateMethod BOLETO = new RedirectPaymentMethodCreateMethod("boleto");
     public static final RedirectPaymentMethodCreateMethod BOOST = new RedirectPaymentMethodCreateMethod("boost");
     public static final RedirectPaymentMethodCreateMethod CASHAPP = new RedirectPaymentMethodCreateMethod("cashapp");
@@ -225,6 +226,7 @@ public class RedirectPaymentMethodCreateMethod {
         map.put("bcp", BCP);
         map.put("becs", BECS);
         map.put("bitpay", BITPAY);
+        map.put("blik", BLIK);
         map.put("boleto", BOLETO);
         map.put("boost", BOOST);
         map.put("cashapp", CASHAPP);
@@ -322,6 +324,7 @@ public class RedirectPaymentMethodCreateMethod {
         map.put("bcp", RedirectPaymentMethodCreateMethodEnum.BCP);
         map.put("becs", RedirectPaymentMethodCreateMethodEnum.BECS);
         map.put("bitpay", RedirectPaymentMethodCreateMethodEnum.BITPAY);
+        map.put("blik", RedirectPaymentMethodCreateMethodEnum.BLIK);
         map.put("boleto", RedirectPaymentMethodCreateMethodEnum.BOLETO);
         map.put("boost", RedirectPaymentMethodCreateMethodEnum.BOOST);
         map.put("cashapp", RedirectPaymentMethodCreateMethodEnum.CASHAPP);
@@ -449,6 +452,7 @@ public class RedirectPaymentMethodCreateMethod {
         BCP("bcp"),
         BECS("becs"),
         BITPAY("bitpay"),
+        BLIK("blik"),
         BOLETO("boleto"),
         BOOST("boost"),
         CASHAPP("cashapp"),
