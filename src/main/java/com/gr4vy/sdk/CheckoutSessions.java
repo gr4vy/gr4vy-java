@@ -196,7 +196,7 @@ public class CheckoutSessions {
     /**
      * Delete checkout session
      * 
-     * <p>Deleta a checkout session and all of its (PCI) data.
+     * <p>Delete a checkout session and all of its (PCI) data.
      * 
      * @return The call builder
      */
@@ -207,7 +207,7 @@ public class CheckoutSessions {
     /**
      * Delete checkout session
      * 
-     * <p>Deleta a checkout session and all of its (PCI) data.
+     * <p>Delete a checkout session and all of its (PCI) data.
      * 
      * @param sessionId The ID of the checkout session.
      * @return The response from the API call
@@ -220,7 +220,7 @@ public class CheckoutSessions {
     /**
      * Delete checkout session
      * 
-     * <p>Deleta a checkout session and all of its (PCI) data.
+     * <p>Delete a checkout session and all of its (PCI) data.
      * 
      * @param sessionId The ID of the checkout session.
      * @param merchantAccountId 
