@@ -49,6 +49,7 @@ public class AVSResponseCode {
     public static final AVSResponseCode NO_MATCH = new AVSResponseCode("no_match");
     public static final AVSResponseCode PARTIAL_MATCH_ADDRESS = new AVSResponseCode("partial_match_address");
     public static final AVSResponseCode PARTIAL_MATCH_POSTCODE = new AVSResponseCode("partial_match_postcode");
+    public static final AVSResponseCode PARTIAL_MATCH_NAME = new AVSResponseCode("partial_match_name");
     public static final AVSResponseCode UNAVAILABLE = new AVSResponseCode("unavailable");
 
     // This map will grow whenever a Color gets created with a new
@@ -125,6 +126,7 @@ public class AVSResponseCode {
         map.put("no_match", NO_MATCH);
         map.put("partial_match_address", PARTIAL_MATCH_ADDRESS);
         map.put("partial_match_postcode", PARTIAL_MATCH_POSTCODE);
+        map.put("partial_match_name", PARTIAL_MATCH_NAME);
         map.put("unavailable", UNAVAILABLE);
         return map;
     }
@@ -135,6 +137,7 @@ public class AVSResponseCode {
         map.put("no_match", AVSResponseCodeEnum.NO_MATCH);
         map.put("partial_match_address", AVSResponseCodeEnum.PARTIAL_MATCH_ADDRESS);
         map.put("partial_match_postcode", AVSResponseCodeEnum.PARTIAL_MATCH_POSTCODE);
+        map.put("partial_match_name", AVSResponseCodeEnum.PARTIAL_MATCH_NAME);
         map.put("unavailable", AVSResponseCodeEnum.UNAVAILABLE);
         return map;
     }
@@ -175,6 +178,7 @@ public class AVSResponseCode {
         NO_MATCH("no_match"),
         PARTIAL_MATCH_ADDRESS("partial_match_address"),
         PARTIAL_MATCH_POSTCODE("partial_match_postcode"),
+        PARTIAL_MATCH_NAME("partial_match_name"),
         UNAVAILABLE("unavailable"),;
 
         private final String value;
