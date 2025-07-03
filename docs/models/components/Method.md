@@ -93,6 +93,7 @@
 | `SPEI`               | spei                 |
 | `STITCH`             | stitch               |
 | `STRIPEDD`           | stripedd             |
+| `TAPI`               | tapi                 |
 | `THAIQR`             | thaiqr               |
 | `TOUCHNGO`           | touchngo             |
 | `TRUEMONEY`          | truemoney            |

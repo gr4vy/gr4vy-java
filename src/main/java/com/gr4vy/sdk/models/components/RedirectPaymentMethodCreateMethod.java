@@ -130,6 +130,7 @@ public class RedirectPaymentMethodCreateMethod {
     public static final RedirectPaymentMethodCreateMethod SPEI = new RedirectPaymentMethodCreateMethod("spei");
     public static final RedirectPaymentMethodCreateMethod STITCH = new RedirectPaymentMethodCreateMethod("stitch");
     public static final RedirectPaymentMethodCreateMethod STRIPEDD = new RedirectPaymentMethodCreateMethod("stripedd");
+    public static final RedirectPaymentMethodCreateMethod TAPI = new RedirectPaymentMethodCreateMethod("tapi");
     public static final RedirectPaymentMethodCreateMethod THAIQR = new RedirectPaymentMethodCreateMethod("thaiqr");
     public static final RedirectPaymentMethodCreateMethod TOUCHNGO = new RedirectPaymentMethodCreateMethod("touchngo");
     public static final RedirectPaymentMethodCreateMethod TRUEMONEY = new RedirectPaymentMethodCreateMethod("truemoney");
@@ -294,6 +295,7 @@ public class RedirectPaymentMethodCreateMethod {
         map.put("spei", SPEI);
         map.put("stitch", STITCH);
         map.put("stripedd", STRIPEDD);
+        map.put("tapi", TAPI);
         map.put("thaiqr", THAIQR);
         map.put("touchngo", TOUCHNGO);
         map.put("truemoney", TRUEMONEY);
@@ -392,6 +394,7 @@ public class RedirectPaymentMethodCreateMethod {
         map.put("spei", RedirectPaymentMethodCreateMethodEnum.SPEI);
         map.put("stitch", RedirectPaymentMethodCreateMethodEnum.STITCH);
         map.put("stripedd", RedirectPaymentMethodCreateMethodEnum.STRIPEDD);
+        map.put("tapi", RedirectPaymentMethodCreateMethodEnum.TAPI);
         map.put("thaiqr", RedirectPaymentMethodCreateMethodEnum.THAIQR);
         map.put("touchngo", RedirectPaymentMethodCreateMethodEnum.TOUCHNGO);
         map.put("truemoney", RedirectPaymentMethodCreateMethodEnum.TRUEMONEY);
@@ -520,6 +523,7 @@ public class RedirectPaymentMethodCreateMethod {
         SPEI("spei"),
         STITCH("stitch"),
         STRIPEDD("stripedd"),
+        TAPI("tapi"),
         THAIQR("thaiqr"),
         TOUCHNGO("touchngo"),
         TRUEMONEY("truemoney"),

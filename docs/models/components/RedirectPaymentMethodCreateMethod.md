@@ -87,6 +87,7 @@ The method to use, this can be any of the methods that support redirect requests
 | `SPEI`            | spei              |
 | `STITCH`          | stitch            |
 | `STRIPEDD`        | stripedd          |
+| `TAPI`            | tapi              |
 | `THAIQR`          | thaiqr            |
 | `TOUCHNGO`        | touchngo          |
 | `TRUEMONEY`       | truemoney         |
