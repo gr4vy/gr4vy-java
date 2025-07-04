@@ -9,7 +9,6 @@ import com.gr4vy.sdk.utils.SpeakeasyMetadata;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 public class GetCheckoutSessionRequest {
@@ -99,13 +98,13 @@ public class GetCheckoutSessionRequest {
         }
         GetCheckoutSessionRequest other = (GetCheckoutSessionRequest) o;
         return 
-            Objects.deepEquals(this.sessionId, other.sessionId) &&
-            Objects.deepEquals(this.merchantAccountId, other.merchantAccountId);
+            Utils.enhancedDeepEquals(this.sessionId, other.sessionId) &&
+            Utils.enhancedDeepEquals(this.merchantAccountId, other.merchantAccountId);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             sessionId,
             merchantAccountId);
     }

@@ -16,7 +16,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.Map;
-import java.util.Objects;
 
 @JsonDeserialize(using = RequiredFields2._Deserializer.class)
 public class RequiredFields2 {
@@ -69,12 +68,12 @@ public class RequiredFields2 {
             return false;
         }
         RequiredFields2 other = (RequiredFields2) o;
-        return Objects.deepEquals(this.value.value(), other.value.value()); 
+        return Utils.enhancedDeepEquals(this.value.value(), other.value.value()); 
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(value.value());
+        return Utils.enhancedHash(value.value());
     }
     
     @SuppressWarnings("serial")

@@ -14,7 +14,6 @@ import com.gr4vy.sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 /**
@@ -378,21 +377,21 @@ public class GooglePayPaymentMethodCreate {
         }
         GooglePayPaymentMethodCreate other = (GooglePayPaymentMethodCreate) o;
         return 
-            Objects.deepEquals(this.buyerExternalIdentifier, other.buyerExternalIdentifier) &&
-            Objects.deepEquals(this.buyerId, other.buyerId) &&
-            Objects.deepEquals(this.cardholderName, other.cardholderName) &&
-            Objects.deepEquals(this.redirectUrl, other.redirectUrl) &&
-            Objects.deepEquals(this.cardSuffix, other.cardSuffix) &&
-            Objects.deepEquals(this.cardScheme, other.cardScheme) &&
-            Objects.deepEquals(this.cardType, other.cardType) &&
-            Objects.deepEquals(this.method, other.method) &&
-            Objects.deepEquals(this.token, other.token) &&
-            Objects.deepEquals(this.assuranceDetails, other.assuranceDetails);
+            Utils.enhancedDeepEquals(this.buyerExternalIdentifier, other.buyerExternalIdentifier) &&
+            Utils.enhancedDeepEquals(this.buyerId, other.buyerId) &&
+            Utils.enhancedDeepEquals(this.cardholderName, other.cardholderName) &&
+            Utils.enhancedDeepEquals(this.redirectUrl, other.redirectUrl) &&
+            Utils.enhancedDeepEquals(this.cardSuffix, other.cardSuffix) &&
+            Utils.enhancedDeepEquals(this.cardScheme, other.cardScheme) &&
+            Utils.enhancedDeepEquals(this.cardType, other.cardType) &&
+            Utils.enhancedDeepEquals(this.method, other.method) &&
+            Utils.enhancedDeepEquals(this.token, other.token) &&
+            Utils.enhancedDeepEquals(this.assuranceDetails, other.assuranceDetails);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             buyerExternalIdentifier,
             buyerId,
             cardholderName,

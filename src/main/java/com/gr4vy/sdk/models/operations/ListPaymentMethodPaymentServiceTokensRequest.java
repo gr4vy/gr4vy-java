@@ -9,7 +9,6 @@ import com.gr4vy.sdk.utils.SpeakeasyMetadata;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 public class ListPaymentMethodPaymentServiceTokensRequest {
@@ -134,14 +133,14 @@ public class ListPaymentMethodPaymentServiceTokensRequest {
         }
         ListPaymentMethodPaymentServiceTokensRequest other = (ListPaymentMethodPaymentServiceTokensRequest) o;
         return 
-            Objects.deepEquals(this.paymentMethodId, other.paymentMethodId) &&
-            Objects.deepEquals(this.paymentServiceId, other.paymentServiceId) &&
-            Objects.deepEquals(this.merchantAccountId, other.merchantAccountId);
+            Utils.enhancedDeepEquals(this.paymentMethodId, other.paymentMethodId) &&
+            Utils.enhancedDeepEquals(this.paymentServiceId, other.paymentServiceId) &&
+            Utils.enhancedDeepEquals(this.merchantAccountId, other.merchantAccountId);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             paymentMethodId,
             paymentServiceId,
             merchantAccountId);

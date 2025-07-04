@@ -17,7 +17,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.time.OffsetDateTime;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -535,28 +534,28 @@ public class Settlement {
         }
         Settlement other = (Settlement) o;
         return 
-            Objects.deepEquals(this.type, other.type) &&
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.merchantAccountId, other.merchantAccountId) &&
-            Objects.deepEquals(this.createdAt, other.createdAt) &&
-            Objects.deepEquals(this.updatedAt, other.updatedAt) &&
-            Objects.deepEquals(this.postedAt, other.postedAt) &&
-            Objects.deepEquals(this.ingestedAt, other.ingestedAt) &&
-            Objects.deepEquals(this.currency, other.currency) &&
-            Objects.deepEquals(this.amount, other.amount) &&
-            Objects.deepEquals(this.exchangeRate, other.exchangeRate) &&
-            Objects.deepEquals(this.commission, other.commission) &&
-            Objects.deepEquals(this.interchange, other.interchange) &&
-            Objects.deepEquals(this.markup, other.markup) &&
-            Objects.deepEquals(this.schemeFee, other.schemeFee) &&
-            Objects.deepEquals(this.paymentServiceReportId, other.paymentServiceReportId) &&
-            Objects.deepEquals(this.paymentServiceReportFileIds, other.paymentServiceReportFileIds) &&
-            Objects.deepEquals(this.transactionId, other.transactionId);
+            Utils.enhancedDeepEquals(this.type, other.type) &&
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.merchantAccountId, other.merchantAccountId) &&
+            Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
+            Utils.enhancedDeepEquals(this.updatedAt, other.updatedAt) &&
+            Utils.enhancedDeepEquals(this.postedAt, other.postedAt) &&
+            Utils.enhancedDeepEquals(this.ingestedAt, other.ingestedAt) &&
+            Utils.enhancedDeepEquals(this.currency, other.currency) &&
+            Utils.enhancedDeepEquals(this.amount, other.amount) &&
+            Utils.enhancedDeepEquals(this.exchangeRate, other.exchangeRate) &&
+            Utils.enhancedDeepEquals(this.commission, other.commission) &&
+            Utils.enhancedDeepEquals(this.interchange, other.interchange) &&
+            Utils.enhancedDeepEquals(this.markup, other.markup) &&
+            Utils.enhancedDeepEquals(this.schemeFee, other.schemeFee) &&
+            Utils.enhancedDeepEquals(this.paymentServiceReportId, other.paymentServiceReportId) &&
+            Utils.enhancedDeepEquals(this.paymentServiceReportFileIds, other.paymentServiceReportFileIds) &&
+            Utils.enhancedDeepEquals(this.transactionId, other.transactionId);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             type,
             id,
             merchantAccountId,

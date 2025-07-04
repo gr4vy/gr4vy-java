@@ -17,7 +17,6 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.net.http.HttpResponse;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 @SuppressWarnings("serial")
@@ -38,6 +37,7 @@ public class HTTPValidationError extends RuntimeException {
     public HTTPValidationError(
             @JsonProperty("detail") Optional<? extends List<ValidationError>> detail,
             @JsonProperty("RawResponse") Optional<? extends HttpResponse<InputStream>> rawResponse) {
+        super("API error occurred");
         Utils.checkNotNull(detail, "detail");
         Utils.checkNotNull(rawResponse, "rawResponse");
         this.detail = detail;
@@ -108,13 +108,13 @@ public class HTTPValidationError extends RuntimeException {
         }
         HTTPValidationError other = (HTTPValidationError) o;
         return 
-            Objects.deepEquals(this.detail, other.detail) &&
-            Objects.deepEquals(this.rawResponse, other.rawResponse);
+            Utils.enhancedDeepEquals(this.detail, other.detail) &&
+            Utils.enhancedDeepEquals(this.rawResponse, other.rawResponse);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             detail,
             rawResponse);
     }

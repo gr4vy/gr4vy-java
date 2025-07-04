@@ -12,7 +12,6 @@ import com.gr4vy.sdk.utils.Utils;
 import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 /**
@@ -117,13 +116,13 @@ public class GooglePayAssuranceDetails {
         }
         GooglePayAssuranceDetails other = (GooglePayAssuranceDetails) o;
         return 
-            Objects.deepEquals(this.accountVerified, other.accountVerified) &&
-            Objects.deepEquals(this.cardHolderAuthenticated, other.cardHolderAuthenticated);
+            Utils.enhancedDeepEquals(this.accountVerified, other.accountVerified) &&
+            Utils.enhancedDeepEquals(this.cardHolderAuthenticated, other.cardHolderAuthenticated);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             accountVerified,
             cardHolderAuthenticated);
     }

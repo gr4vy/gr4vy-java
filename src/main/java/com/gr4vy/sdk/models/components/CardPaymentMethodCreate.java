@@ -13,7 +13,6 @@ import com.gr4vy.sdk.utils.LazySingletonValue;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -292,19 +291,19 @@ public class CardPaymentMethodCreate {
         }
         CardPaymentMethodCreate other = (CardPaymentMethodCreate) o;
         return 
-            Objects.deepEquals(this.expirationDate, other.expirationDate) &&
-            Objects.deepEquals(this.number, other.number) &&
-            Objects.deepEquals(this.buyerExternalIdentifier, other.buyerExternalIdentifier) &&
-            Objects.deepEquals(this.buyerId, other.buyerId) &&
-            Objects.deepEquals(this.externalIdentifier, other.externalIdentifier) &&
-            Objects.deepEquals(this.cardType, other.cardType) &&
-            Objects.deepEquals(this.method, other.method) &&
-            Objects.deepEquals(this.securityCode, other.securityCode);
+            Utils.enhancedDeepEquals(this.expirationDate, other.expirationDate) &&
+            Utils.enhancedDeepEquals(this.number, other.number) &&
+            Utils.enhancedDeepEquals(this.buyerExternalIdentifier, other.buyerExternalIdentifier) &&
+            Utils.enhancedDeepEquals(this.buyerId, other.buyerId) &&
+            Utils.enhancedDeepEquals(this.externalIdentifier, other.externalIdentifier) &&
+            Utils.enhancedDeepEquals(this.cardType, other.cardType) &&
+            Utils.enhancedDeepEquals(this.method, other.method) &&
+            Utils.enhancedDeepEquals(this.securityCode, other.securityCode);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             expirationDate,
             number,
             buyerExternalIdentifier,

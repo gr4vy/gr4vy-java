@@ -15,7 +15,6 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
 import java.util.List;
-import java.util.Objects;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 /**
@@ -735,30 +734,30 @@ public class Airline {
         }
         Airline other = (Airline) o;
         return 
-            Objects.deepEquals(this.bookingCode, other.bookingCode) &&
-            Objects.deepEquals(this.isCardholderTraveling, other.isCardholderTraveling) &&
-            Objects.deepEquals(this.issuedAddress, other.issuedAddress) &&
-            Objects.deepEquals(this.issuedAt, other.issuedAt) &&
-            Objects.deepEquals(this.issuingCarrierCode, other.issuingCarrierCode) &&
-            Objects.deepEquals(this.issuingCarrierName, other.issuingCarrierName) &&
-            Objects.deepEquals(this.issuingIataDesignator, other.issuingIataDesignator) &&
-            Objects.deepEquals(this.issuingIcaoCode, other.issuingIcaoCode) &&
-            Objects.deepEquals(this.legs, other.legs) &&
-            Objects.deepEquals(this.passengerNameRecord, other.passengerNameRecord) &&
-            Objects.deepEquals(this.passengers, other.passengers) &&
-            Objects.deepEquals(this.reservationSystem, other.reservationSystem) &&
-            Objects.deepEquals(this.restrictedTicket, other.restrictedTicket) &&
-            Objects.deepEquals(this.ticketDeliveryMethod, other.ticketDeliveryMethod) &&
-            Objects.deepEquals(this.ticketNumber, other.ticketNumber) &&
-            Objects.deepEquals(this.travelAgencyCode, other.travelAgencyCode) &&
-            Objects.deepEquals(this.travelAgencyInvoiceNumber, other.travelAgencyInvoiceNumber) &&
-            Objects.deepEquals(this.travelAgencyName, other.travelAgencyName) &&
-            Objects.deepEquals(this.travelAgencyPlanName, other.travelAgencyPlanName);
+            Utils.enhancedDeepEquals(this.bookingCode, other.bookingCode) &&
+            Utils.enhancedDeepEquals(this.isCardholderTraveling, other.isCardholderTraveling) &&
+            Utils.enhancedDeepEquals(this.issuedAddress, other.issuedAddress) &&
+            Utils.enhancedDeepEquals(this.issuedAt, other.issuedAt) &&
+            Utils.enhancedDeepEquals(this.issuingCarrierCode, other.issuingCarrierCode) &&
+            Utils.enhancedDeepEquals(this.issuingCarrierName, other.issuingCarrierName) &&
+            Utils.enhancedDeepEquals(this.issuingIataDesignator, other.issuingIataDesignator) &&
+            Utils.enhancedDeepEquals(this.issuingIcaoCode, other.issuingIcaoCode) &&
+            Utils.enhancedDeepEquals(this.legs, other.legs) &&
+            Utils.enhancedDeepEquals(this.passengerNameRecord, other.passengerNameRecord) &&
+            Utils.enhancedDeepEquals(this.passengers, other.passengers) &&
+            Utils.enhancedDeepEquals(this.reservationSystem, other.reservationSystem) &&
+            Utils.enhancedDeepEquals(this.restrictedTicket, other.restrictedTicket) &&
+            Utils.enhancedDeepEquals(this.ticketDeliveryMethod, other.ticketDeliveryMethod) &&
+            Utils.enhancedDeepEquals(this.ticketNumber, other.ticketNumber) &&
+            Utils.enhancedDeepEquals(this.travelAgencyCode, other.travelAgencyCode) &&
+            Utils.enhancedDeepEquals(this.travelAgencyInvoiceNumber, other.travelAgencyInvoiceNumber) &&
+            Utils.enhancedDeepEquals(this.travelAgencyName, other.travelAgencyName) &&
+            Utils.enhancedDeepEquals(this.travelAgencyPlanName, other.travelAgencyPlanName);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             bookingCode,
             isCardholderTraveling,
             issuedAddress,

@@ -9,7 +9,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 
 /**
  * Field
@@ -89,13 +88,13 @@ public class Field {
         }
         Field other = (Field) o;
         return 
-            Objects.deepEquals(this.key, other.key) &&
-            Objects.deepEquals(this.value, other.value);
+            Utils.enhancedDeepEquals(this.key, other.key) &&
+            Utils.enhancedDeepEquals(this.value, other.value);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             key,
             value);
     }

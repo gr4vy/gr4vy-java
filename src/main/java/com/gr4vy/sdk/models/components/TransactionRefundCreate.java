@@ -13,7 +13,6 @@ import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -211,16 +210,16 @@ public class TransactionRefundCreate {
         }
         TransactionRefundCreate other = (TransactionRefundCreate) o;
         return 
-            Objects.deepEquals(this.amount, other.amount) &&
-            Objects.deepEquals(this.targetType, other.targetType) &&
-            Objects.deepEquals(this.targetId, other.targetId) &&
-            Objects.deepEquals(this.reason, other.reason) &&
-            Objects.deepEquals(this.externalIdentifier, other.externalIdentifier);
+            Utils.enhancedDeepEquals(this.amount, other.amount) &&
+            Utils.enhancedDeepEquals(this.targetType, other.targetType) &&
+            Utils.enhancedDeepEquals(this.targetId, other.targetId) &&
+            Utils.enhancedDeepEquals(this.reason, other.reason) &&
+            Utils.enhancedDeepEquals(this.externalIdentifier, other.externalIdentifier);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             amount,
             targetType,
             targetId,

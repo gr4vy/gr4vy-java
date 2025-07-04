@@ -18,7 +18,6 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -525,24 +524,24 @@ public class PaymentServiceUpdate {
         }
         PaymentServiceUpdate other = (PaymentServiceUpdate) o;
         return 
-            Objects.deepEquals(this.displayName, other.displayName) &&
-            Objects.deepEquals(this.fields, other.fields) &&
-            Objects.deepEquals(this.reportingFields, other.reportingFields) &&
-            Objects.deepEquals(this.position, other.position) &&
-            Objects.deepEquals(this.acceptedCurrencies, other.acceptedCurrencies) &&
-            Objects.deepEquals(this.acceptedCountries, other.acceptedCountries) &&
-            Objects.deepEquals(this.active, other.active) &&
-            Objects.deepEquals(this.threeDSecureEnabled, other.threeDSecureEnabled) &&
-            Objects.deepEquals(this.merchantProfile, other.merchantProfile) &&
-            Objects.deepEquals(this.paymentMethodTokenizationEnabled, other.paymentMethodTokenizationEnabled) &&
-            Objects.deepEquals(this.networkTokensEnabled, other.networkTokensEnabled) &&
-            Objects.deepEquals(this.openLoop, other.openLoop) &&
-            Objects.deepEquals(this.settlementReportingEnabled, other.settlementReportingEnabled);
+            Utils.enhancedDeepEquals(this.displayName, other.displayName) &&
+            Utils.enhancedDeepEquals(this.fields, other.fields) &&
+            Utils.enhancedDeepEquals(this.reportingFields, other.reportingFields) &&
+            Utils.enhancedDeepEquals(this.position, other.position) &&
+            Utils.enhancedDeepEquals(this.acceptedCurrencies, other.acceptedCurrencies) &&
+            Utils.enhancedDeepEquals(this.acceptedCountries, other.acceptedCountries) &&
+            Utils.enhancedDeepEquals(this.active, other.active) &&
+            Utils.enhancedDeepEquals(this.threeDSecureEnabled, other.threeDSecureEnabled) &&
+            Utils.enhancedDeepEquals(this.merchantProfile, other.merchantProfile) &&
+            Utils.enhancedDeepEquals(this.paymentMethodTokenizationEnabled, other.paymentMethodTokenizationEnabled) &&
+            Utils.enhancedDeepEquals(this.networkTokensEnabled, other.networkTokensEnabled) &&
+            Utils.enhancedDeepEquals(this.openLoop, other.openLoop) &&
+            Utils.enhancedDeepEquals(this.settlementReportingEnabled, other.settlementReportingEnabled);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             displayName,
             fields,
             reportingFields,

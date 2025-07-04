@@ -9,7 +9,6 @@ import com.gr4vy.sdk.utils.SpeakeasyMetadata;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 
 public class GetMerchantAccountRequest {
 
@@ -58,12 +57,12 @@ public class GetMerchantAccountRequest {
         }
         GetMerchantAccountRequest other = (GetMerchantAccountRequest) o;
         return 
-            Objects.deepEquals(this.merchantAccountId, other.merchantAccountId);
+            Utils.enhancedDeepEquals(this.merchantAccountId, other.merchantAccountId);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             merchantAccountId);
     }
     

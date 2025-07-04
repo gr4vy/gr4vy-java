@@ -14,7 +14,6 @@ import com.gr4vy.sdk.utils.Utils;
 import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -214,17 +213,17 @@ public class ReportCreate {
         }
         ReportCreate other = (ReportCreate) o;
         return 
-            Objects.deepEquals(this.name, other.name) &&
-            Objects.deepEquals(this.description, other.description) &&
-            Objects.deepEquals(this.schedule, other.schedule) &&
-            Objects.deepEquals(this.scheduleEnabled, other.scheduleEnabled) &&
-            Objects.deepEquals(this.scheduleTimezone, other.scheduleTimezone) &&
-            Objects.deepEquals(this.spec, other.spec);
+            Utils.enhancedDeepEquals(this.name, other.name) &&
+            Utils.enhancedDeepEquals(this.description, other.description) &&
+            Utils.enhancedDeepEquals(this.schedule, other.schedule) &&
+            Utils.enhancedDeepEquals(this.scheduleEnabled, other.scheduleEnabled) &&
+            Utils.enhancedDeepEquals(this.scheduleTimezone, other.scheduleTimezone) &&
+            Utils.enhancedDeepEquals(this.spec, other.spec);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             name,
             description,
             schedule,

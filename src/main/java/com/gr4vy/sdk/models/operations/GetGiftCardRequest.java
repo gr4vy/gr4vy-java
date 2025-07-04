@@ -9,7 +9,6 @@ import com.gr4vy.sdk.utils.SpeakeasyMetadata;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 public class GetGiftCardRequest {
@@ -99,13 +98,13 @@ public class GetGiftCardRequest {
         }
         GetGiftCardRequest other = (GetGiftCardRequest) o;
         return 
-            Objects.deepEquals(this.giftCardId, other.giftCardId) &&
-            Objects.deepEquals(this.merchantAccountId, other.merchantAccountId);
+            Utils.enhancedDeepEquals(this.giftCardId, other.giftCardId) &&
+            Utils.enhancedDeepEquals(this.merchantAccountId, other.merchantAccountId);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             giftCardId,
             merchantAccountId);
     }

@@ -10,7 +10,6 @@ import com.gr4vy.sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.util.List;
-import java.util.Objects;
 
 public class GooglePayPaymentOptionContext {
 
@@ -101,15 +100,15 @@ public class GooglePayPaymentOptionContext {
         }
         GooglePayPaymentOptionContext other = (GooglePayPaymentOptionContext) o;
         return 
-            Objects.deepEquals(this.merchantName, other.merchantName) &&
-            Objects.deepEquals(this.supportedSchemes, other.supportedSchemes) &&
-            Objects.deepEquals(this.gateway, other.gateway) &&
-            Objects.deepEquals(this.gatewayMerchantId, other.gatewayMerchantId);
+            Utils.enhancedDeepEquals(this.merchantName, other.merchantName) &&
+            Utils.enhancedDeepEquals(this.supportedSchemes, other.supportedSchemes) &&
+            Utils.enhancedDeepEquals(this.gateway, other.gateway) &&
+            Utils.enhancedDeepEquals(this.gatewayMerchantId, other.gatewayMerchantId);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             merchantName,
             supportedSchemes,
             gateway,

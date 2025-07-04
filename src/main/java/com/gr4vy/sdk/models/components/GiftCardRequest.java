@@ -9,7 +9,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 
 /**
  * GiftCardRequest
@@ -89,13 +88,13 @@ public class GiftCardRequest {
         }
         GiftCardRequest other = (GiftCardRequest) o;
         return 
-            Objects.deepEquals(this.number, other.number) &&
-            Objects.deepEquals(this.pin, other.pin);
+            Utils.enhancedDeepEquals(this.number, other.number) &&
+            Utils.enhancedDeepEquals(this.pin, other.pin);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             number,
             pin);
     }

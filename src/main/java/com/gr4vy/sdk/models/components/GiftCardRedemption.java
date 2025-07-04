@@ -15,7 +15,6 @@ import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -322,21 +321,21 @@ public class GiftCardRedemption {
         }
         GiftCardRedemption other = (GiftCardRedemption) o;
         return 
-            Objects.deepEquals(this.type, other.type) &&
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.status, other.status) &&
-            Objects.deepEquals(this.amount, other.amount) &&
-            Objects.deepEquals(this.refundedAmount, other.refundedAmount) &&
-            Objects.deepEquals(this.giftCardServiceRedemptionId, other.giftCardServiceRedemptionId) &&
-            Objects.deepEquals(this.errorCode, other.errorCode) &&
-            Objects.deepEquals(this.rawErrorCode, other.rawErrorCode) &&
-            Objects.deepEquals(this.rawErrorMessage, other.rawErrorMessage) &&
-            Objects.deepEquals(this.giftCard, other.giftCard);
+            Utils.enhancedDeepEquals(this.type, other.type) &&
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.status, other.status) &&
+            Utils.enhancedDeepEquals(this.amount, other.amount) &&
+            Utils.enhancedDeepEquals(this.refundedAmount, other.refundedAmount) &&
+            Utils.enhancedDeepEquals(this.giftCardServiceRedemptionId, other.giftCardServiceRedemptionId) &&
+            Utils.enhancedDeepEquals(this.errorCode, other.errorCode) &&
+            Utils.enhancedDeepEquals(this.rawErrorCode, other.rawErrorCode) &&
+            Utils.enhancedDeepEquals(this.rawErrorMessage, other.rawErrorMessage) &&
+            Utils.enhancedDeepEquals(this.giftCard, other.giftCard);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             type,
             id,
             status,

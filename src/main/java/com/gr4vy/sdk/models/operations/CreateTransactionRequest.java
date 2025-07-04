@@ -10,7 +10,6 @@ import com.gr4vy.sdk.utils.SpeakeasyMetadata;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -170,15 +169,15 @@ public class CreateTransactionRequest {
         }
         CreateTransactionRequest other = (CreateTransactionRequest) o;
         return 
-            Objects.deepEquals(this.merchantAccountId, other.merchantAccountId) &&
-            Objects.deepEquals(this.idempotencyKey, other.idempotencyKey) &&
-            Objects.deepEquals(this.xForwardedFor, other.xForwardedFor) &&
-            Objects.deepEquals(this.transactionCreate, other.transactionCreate);
+            Utils.enhancedDeepEquals(this.merchantAccountId, other.merchantAccountId) &&
+            Utils.enhancedDeepEquals(this.idempotencyKey, other.idempotencyKey) &&
+            Utils.enhancedDeepEquals(this.xForwardedFor, other.xForwardedFor) &&
+            Utils.enhancedDeepEquals(this.transactionCreate, other.transactionCreate);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             merchantAccountId,
             idempotencyKey,
             xForwardedFor,

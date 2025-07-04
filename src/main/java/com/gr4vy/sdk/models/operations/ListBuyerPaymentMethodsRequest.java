@@ -12,7 +12,6 @@ import com.gr4vy.sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -267,18 +266,18 @@ public class ListBuyerPaymentMethodsRequest {
         }
         ListBuyerPaymentMethodsRequest other = (ListBuyerPaymentMethodsRequest) o;
         return 
-            Objects.deepEquals(this.buyerId, other.buyerId) &&
-            Objects.deepEquals(this.buyerExternalIdentifier, other.buyerExternalIdentifier) &&
-            Objects.deepEquals(this.sortBy, other.sortBy) &&
-            Objects.deepEquals(this.orderBy, other.orderBy) &&
-            Objects.deepEquals(this.country, other.country) &&
-            Objects.deepEquals(this.currency, other.currency) &&
-            Objects.deepEquals(this.merchantAccountId, other.merchantAccountId);
+            Utils.enhancedDeepEquals(this.buyerId, other.buyerId) &&
+            Utils.enhancedDeepEquals(this.buyerExternalIdentifier, other.buyerExternalIdentifier) &&
+            Utils.enhancedDeepEquals(this.sortBy, other.sortBy) &&
+            Utils.enhancedDeepEquals(this.orderBy, other.orderBy) &&
+            Utils.enhancedDeepEquals(this.country, other.country) &&
+            Utils.enhancedDeepEquals(this.currency, other.currency) &&
+            Utils.enhancedDeepEquals(this.merchantAccountId, other.merchantAccountId);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             buyerId,
             buyerExternalIdentifier,
             sortBy,

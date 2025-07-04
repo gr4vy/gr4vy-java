@@ -20,7 +20,6 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.net.http.HttpResponse;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 @SuppressWarnings("serial")
@@ -72,7 +71,7 @@ public class Error504 extends RuntimeException {
             @JsonProperty("message") Optional<String> message,
             @JsonProperty("details") Optional<? extends List<ErrorDetail>> details,
             @JsonProperty("RawResponse") Optional<? extends HttpResponse<InputStream>> rawResponse) {
-        super(message.orElse(null));
+        super("API error occurred");
         Utils.checkNotNull(code, "code");
         Utils.checkNotNull(status, "status");
         Utils.checkNotNull(message, "message");
@@ -242,17 +241,17 @@ public class Error504 extends RuntimeException {
         }
         Error504 other = (Error504) o;
         return 
-            Objects.deepEquals(this.type, other.type) &&
-            Objects.deepEquals(this.code, other.code) &&
-            Objects.deepEquals(this.status, other.status) &&
-            Objects.deepEquals(this.message, other.message) &&
-            Objects.deepEquals(this.details, other.details) &&
-            Objects.deepEquals(this.rawResponse, other.rawResponse);
+            Utils.enhancedDeepEquals(this.type, other.type) &&
+            Utils.enhancedDeepEquals(this.code, other.code) &&
+            Utils.enhancedDeepEquals(this.status, other.status) &&
+            Utils.enhancedDeepEquals(this.message, other.message) &&
+            Utils.enhancedDeepEquals(this.details, other.details) &&
+            Utils.enhancedDeepEquals(this.rawResponse, other.rawResponse);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             type,
             code,
             status,

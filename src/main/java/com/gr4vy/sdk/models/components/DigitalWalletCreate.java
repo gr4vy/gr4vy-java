@@ -14,7 +14,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -199,18 +198,18 @@ public class DigitalWalletCreate {
         }
         DigitalWalletCreate other = (DigitalWalletCreate) o;
         return 
-            Objects.deepEquals(this.provider, other.provider) &&
-            Objects.deepEquals(this.merchantName, other.merchantName) &&
-            Objects.deepEquals(this.merchantDisplayName, other.merchantDisplayName) &&
-            Objects.deepEquals(this.merchantUrl, other.merchantUrl) &&
-            Objects.deepEquals(this.merchantCountryCode, other.merchantCountryCode) &&
-            Objects.deepEquals(this.domainNames, other.domainNames) &&
-            Objects.deepEquals(this.acceptTermsAndConditions, other.acceptTermsAndConditions);
+            Utils.enhancedDeepEquals(this.provider, other.provider) &&
+            Utils.enhancedDeepEquals(this.merchantName, other.merchantName) &&
+            Utils.enhancedDeepEquals(this.merchantDisplayName, other.merchantDisplayName) &&
+            Utils.enhancedDeepEquals(this.merchantUrl, other.merchantUrl) &&
+            Utils.enhancedDeepEquals(this.merchantCountryCode, other.merchantCountryCode) &&
+            Utils.enhancedDeepEquals(this.domainNames, other.domainNames) &&
+            Utils.enhancedDeepEquals(this.acceptTermsAndConditions, other.acceptTermsAndConditions);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             provider,
             merchantName,
             merchantDisplayName,

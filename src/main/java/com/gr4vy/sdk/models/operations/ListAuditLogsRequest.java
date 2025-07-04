@@ -14,7 +14,6 @@ import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -254,17 +253,17 @@ public class ListAuditLogsRequest {
         }
         ListAuditLogsRequest other = (ListAuditLogsRequest) o;
         return 
-            Objects.deepEquals(this.cursor, other.cursor) &&
-            Objects.deepEquals(this.limit, other.limit) &&
-            Objects.deepEquals(this.action, other.action) &&
-            Objects.deepEquals(this.userId, other.userId) &&
-            Objects.deepEquals(this.resourceType, other.resourceType) &&
-            Objects.deepEquals(this.merchantAccountId, other.merchantAccountId);
+            Utils.enhancedDeepEquals(this.cursor, other.cursor) &&
+            Utils.enhancedDeepEquals(this.limit, other.limit) &&
+            Utils.enhancedDeepEquals(this.action, other.action) &&
+            Utils.enhancedDeepEquals(this.userId, other.userId) &&
+            Utils.enhancedDeepEquals(this.resourceType, other.resourceType) &&
+            Utils.enhancedDeepEquals(this.merchantAccountId, other.merchantAccountId);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             cursor,
             limit,
             action,

@@ -15,7 +15,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -340,22 +339,22 @@ public class GiftCard {
         }
         GiftCard other = (GiftCard) o;
         return 
-            Objects.deepEquals(this.type, other.type) &&
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.merchantAccountId, other.merchantAccountId) &&
-            Objects.deepEquals(this.giftCardService, other.giftCardService) &&
-            Objects.deepEquals(this.bin, other.bin) &&
-            Objects.deepEquals(this.subBin, other.subBin) &&
-            Objects.deepEquals(this.last4, other.last4) &&
-            Objects.deepEquals(this.expirationDate, other.expirationDate) &&
-            Objects.deepEquals(this.buyer, other.buyer) &&
-            Objects.deepEquals(this.createdAt, other.createdAt) &&
-            Objects.deepEquals(this.updatedAt, other.updatedAt);
+            Utils.enhancedDeepEquals(this.type, other.type) &&
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.merchantAccountId, other.merchantAccountId) &&
+            Utils.enhancedDeepEquals(this.giftCardService, other.giftCardService) &&
+            Utils.enhancedDeepEquals(this.bin, other.bin) &&
+            Utils.enhancedDeepEquals(this.subBin, other.subBin) &&
+            Utils.enhancedDeepEquals(this.last4, other.last4) &&
+            Utils.enhancedDeepEquals(this.expirationDate, other.expirationDate) &&
+            Utils.enhancedDeepEquals(this.buyer, other.buyer) &&
+            Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
+            Utils.enhancedDeepEquals(this.updatedAt, other.updatedAt);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             type,
             id,
             merchantAccountId,

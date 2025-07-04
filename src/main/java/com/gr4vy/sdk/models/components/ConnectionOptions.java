@@ -12,7 +12,6 @@ import com.gr4vy.sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 public class ConnectionOptions {
@@ -77,12 +76,12 @@ public class ConnectionOptions {
         }
         ConnectionOptions other = (ConnectionOptions) o;
         return 
-            Objects.deepEquals(this.checkoutCard, other.checkoutCard);
+            Utils.enhancedDeepEquals(this.checkoutCard, other.checkoutCard);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             checkoutCard);
     }
     

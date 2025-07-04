@@ -15,7 +15,6 @@ import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -199,19 +198,19 @@ public class PaymentOption {
         }
         PaymentOption other = (PaymentOption) o;
         return 
-            Objects.deepEquals(this.type, other.type) &&
-            Objects.deepEquals(this.method, other.method) &&
-            Objects.deepEquals(this.iconUrl, other.iconUrl) &&
-            Objects.deepEquals(this.mode, other.mode) &&
-            Objects.deepEquals(this.label, other.label) &&
-            Objects.deepEquals(this.canStorePaymentMethod, other.canStorePaymentMethod) &&
-            Objects.deepEquals(this.canDelayCapture, other.canDelayCapture) &&
-            Objects.deepEquals(this.context, other.context);
+            Utils.enhancedDeepEquals(this.type, other.type) &&
+            Utils.enhancedDeepEquals(this.method, other.method) &&
+            Utils.enhancedDeepEquals(this.iconUrl, other.iconUrl) &&
+            Utils.enhancedDeepEquals(this.mode, other.mode) &&
+            Utils.enhancedDeepEquals(this.label, other.label) &&
+            Utils.enhancedDeepEquals(this.canStorePaymentMethod, other.canStorePaymentMethod) &&
+            Utils.enhancedDeepEquals(this.canDelayCapture, other.canDelayCapture) &&
+            Utils.enhancedDeepEquals(this.context, other.context);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             type,
             method,
             iconUrl,

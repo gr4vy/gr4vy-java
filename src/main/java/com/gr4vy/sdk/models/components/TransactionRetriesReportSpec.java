@@ -15,7 +15,6 @@ import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
 
 public class TransactionRetriesReportSpec implements Spec {
@@ -82,13 +81,13 @@ public class TransactionRetriesReportSpec implements Spec {
         }
         TransactionRetriesReportSpec other = (TransactionRetriesReportSpec) o;
         return 
-            Objects.deepEquals(this.model, other.model) &&
-            Objects.deepEquals(this.params, other.params);
+            Utils.enhancedDeepEquals(this.model, other.model) &&
+            Utils.enhancedDeepEquals(this.params, other.params);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             model,
             params);
     }

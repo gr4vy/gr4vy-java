@@ -14,7 +14,6 @@ import com.gr4vy.sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 public class NetworkTokenPaymentMethodCreate {
@@ -365,21 +364,21 @@ public class NetworkTokenPaymentMethodCreate {
         }
         NetworkTokenPaymentMethodCreate other = (NetworkTokenPaymentMethodCreate) o;
         return 
-            Objects.deepEquals(this.method, other.method) &&
-            Objects.deepEquals(this.token, other.token) &&
-            Objects.deepEquals(this.expirationDate, other.expirationDate) &&
-            Objects.deepEquals(this.cryptogram, other.cryptogram) &&
-            Objects.deepEquals(this.redirectUrl, other.redirectUrl) &&
-            Objects.deepEquals(this.cardSource, other.cardSource) &&
-            Objects.deepEquals(this.cardScheme, other.cardScheme) &&
-            Objects.deepEquals(this.cardSuffix, other.cardSuffix) &&
-            Objects.deepEquals(this.cardholderName, other.cardholderName) &&
-            Objects.deepEquals(this.eci, other.eci);
+            Utils.enhancedDeepEquals(this.method, other.method) &&
+            Utils.enhancedDeepEquals(this.token, other.token) &&
+            Utils.enhancedDeepEquals(this.expirationDate, other.expirationDate) &&
+            Utils.enhancedDeepEquals(this.cryptogram, other.cryptogram) &&
+            Utils.enhancedDeepEquals(this.redirectUrl, other.redirectUrl) &&
+            Utils.enhancedDeepEquals(this.cardSource, other.cardSource) &&
+            Utils.enhancedDeepEquals(this.cardScheme, other.cardScheme) &&
+            Utils.enhancedDeepEquals(this.cardSuffix, other.cardSuffix) &&
+            Utils.enhancedDeepEquals(this.cardholderName, other.cardholderName) &&
+            Utils.enhancedDeepEquals(this.eci, other.eci);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             method,
             token,
             expirationDate,

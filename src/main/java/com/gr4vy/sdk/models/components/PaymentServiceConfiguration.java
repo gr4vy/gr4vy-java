@@ -11,7 +11,6 @@ import java.lang.Boolean;
 import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 
 public class PaymentServiceConfiguration {
 
@@ -181,17 +180,17 @@ public class PaymentServiceConfiguration {
         }
         PaymentServiceConfiguration other = (PaymentServiceConfiguration) o;
         return 
-            Objects.deepEquals(this.approvalUiTarget, other.approvalUiTarget) &&
-            Objects.deepEquals(this.approvalUiHeight, other.approvalUiHeight) &&
-            Objects.deepEquals(this.approvalUiWidth, other.approvalUiWidth) &&
-            Objects.deepEquals(this.cartItemsLimit, other.cartItemsLimit) &&
-            Objects.deepEquals(this.cartItemsRequired, other.cartItemsRequired) &&
-            Objects.deepEquals(this.cartItemsShouldMatchAmount, other.cartItemsShouldMatchAmount);
+            Utils.enhancedDeepEquals(this.approvalUiTarget, other.approvalUiTarget) &&
+            Utils.enhancedDeepEquals(this.approvalUiHeight, other.approvalUiHeight) &&
+            Utils.enhancedDeepEquals(this.approvalUiWidth, other.approvalUiWidth) &&
+            Utils.enhancedDeepEquals(this.cartItemsLimit, other.cartItemsLimit) &&
+            Utils.enhancedDeepEquals(this.cartItemsRequired, other.cartItemsRequired) &&
+            Utils.enhancedDeepEquals(this.cartItemsShouldMatchAmount, other.cartItemsShouldMatchAmount);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             approvalUiTarget,
             approvalUiHeight,
             approvalUiWidth,

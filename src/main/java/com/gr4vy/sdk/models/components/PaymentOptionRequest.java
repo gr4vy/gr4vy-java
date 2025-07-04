@@ -17,7 +17,6 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -264,17 +263,17 @@ public class PaymentOptionRequest {
         }
         PaymentOptionRequest other = (PaymentOptionRequest) o;
         return 
-            Objects.deepEquals(this.metadata, other.metadata) &&
-            Objects.deepEquals(this.country, other.country) &&
-            Objects.deepEquals(this.currency, other.currency) &&
-            Objects.deepEquals(this.amount, other.amount) &&
-            Objects.deepEquals(this.locale, other.locale) &&
-            Objects.deepEquals(this.cartItems, other.cartItems);
+            Utils.enhancedDeepEquals(this.metadata, other.metadata) &&
+            Utils.enhancedDeepEquals(this.country, other.country) &&
+            Utils.enhancedDeepEquals(this.currency, other.currency) &&
+            Utils.enhancedDeepEquals(this.amount, other.amount) &&
+            Utils.enhancedDeepEquals(this.locale, other.locale) &&
+            Utils.enhancedDeepEquals(this.cartItems, other.cartItems);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             metadata,
             country,
             currency,

@@ -17,7 +17,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -785,32 +784,32 @@ public class MerchantAccountCreate {
         }
         MerchantAccountCreate other = (MerchantAccountCreate) o;
         return 
-            Objects.deepEquals(this.accountUpdaterEnabled, other.accountUpdaterEnabled) &&
-            Objects.deepEquals(this.accountUpdaterRequestEncryptionKey, other.accountUpdaterRequestEncryptionKey) &&
-            Objects.deepEquals(this.accountUpdaterRequestEncryptionKeyId, other.accountUpdaterRequestEncryptionKeyId) &&
-            Objects.deepEquals(this.accountUpdaterResponseDecryptionKey, other.accountUpdaterResponseDecryptionKey) &&
-            Objects.deepEquals(this.accountUpdaterResponseDecryptionKeyId, other.accountUpdaterResponseDecryptionKeyId) &&
-            Objects.deepEquals(this.overCaptureAmount, other.overCaptureAmount) &&
-            Objects.deepEquals(this.overCapturePercentage, other.overCapturePercentage) &&
-            Objects.deepEquals(this.loonClientKey, other.loonClientKey) &&
-            Objects.deepEquals(this.loonSecretKey, other.loonSecretKey) &&
-            Objects.deepEquals(this.loonAcceptedSchemes, other.loonAcceptedSchemes) &&
-            Objects.deepEquals(this.visaNetworkTokensRequestorId, other.visaNetworkTokensRequestorId) &&
-            Objects.deepEquals(this.visaNetworkTokensAppId, other.visaNetworkTokensAppId) &&
-            Objects.deepEquals(this.amexNetworkTokensRequestorId, other.amexNetworkTokensRequestorId) &&
-            Objects.deepEquals(this.amexNetworkTokensAppId, other.amexNetworkTokensAppId) &&
-            Objects.deepEquals(this.mastercardNetworkTokensRequestorId, other.mastercardNetworkTokensRequestorId) &&
-            Objects.deepEquals(this.mastercardNetworkTokensAppId, other.mastercardNetworkTokensAppId) &&
-            Objects.deepEquals(this.outboundWebhookUrl, other.outboundWebhookUrl) &&
-            Objects.deepEquals(this.outboundWebhookUsername, other.outboundWebhookUsername) &&
-            Objects.deepEquals(this.outboundWebhookPassword, other.outboundWebhookPassword) &&
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.displayName, other.displayName);
+            Utils.enhancedDeepEquals(this.accountUpdaterEnabled, other.accountUpdaterEnabled) &&
+            Utils.enhancedDeepEquals(this.accountUpdaterRequestEncryptionKey, other.accountUpdaterRequestEncryptionKey) &&
+            Utils.enhancedDeepEquals(this.accountUpdaterRequestEncryptionKeyId, other.accountUpdaterRequestEncryptionKeyId) &&
+            Utils.enhancedDeepEquals(this.accountUpdaterResponseDecryptionKey, other.accountUpdaterResponseDecryptionKey) &&
+            Utils.enhancedDeepEquals(this.accountUpdaterResponseDecryptionKeyId, other.accountUpdaterResponseDecryptionKeyId) &&
+            Utils.enhancedDeepEquals(this.overCaptureAmount, other.overCaptureAmount) &&
+            Utils.enhancedDeepEquals(this.overCapturePercentage, other.overCapturePercentage) &&
+            Utils.enhancedDeepEquals(this.loonClientKey, other.loonClientKey) &&
+            Utils.enhancedDeepEquals(this.loonSecretKey, other.loonSecretKey) &&
+            Utils.enhancedDeepEquals(this.loonAcceptedSchemes, other.loonAcceptedSchemes) &&
+            Utils.enhancedDeepEquals(this.visaNetworkTokensRequestorId, other.visaNetworkTokensRequestorId) &&
+            Utils.enhancedDeepEquals(this.visaNetworkTokensAppId, other.visaNetworkTokensAppId) &&
+            Utils.enhancedDeepEquals(this.amexNetworkTokensRequestorId, other.amexNetworkTokensRequestorId) &&
+            Utils.enhancedDeepEquals(this.amexNetworkTokensAppId, other.amexNetworkTokensAppId) &&
+            Utils.enhancedDeepEquals(this.mastercardNetworkTokensRequestorId, other.mastercardNetworkTokensRequestorId) &&
+            Utils.enhancedDeepEquals(this.mastercardNetworkTokensAppId, other.mastercardNetworkTokensAppId) &&
+            Utils.enhancedDeepEquals(this.outboundWebhookUrl, other.outboundWebhookUrl) &&
+            Utils.enhancedDeepEquals(this.outboundWebhookUsername, other.outboundWebhookUsername) &&
+            Utils.enhancedDeepEquals(this.outboundWebhookPassword, other.outboundWebhookPassword) &&
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.displayName, other.displayName);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             accountUpdaterEnabled,
             accountUpdaterRequestEncryptionKey,
             accountUpdaterRequestEncryptionKeyId,

@@ -11,7 +11,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 public class PaymentServiceTokenCreate {
@@ -129,14 +128,14 @@ public class PaymentServiceTokenCreate {
         }
         PaymentServiceTokenCreate other = (PaymentServiceTokenCreate) o;
         return 
-            Objects.deepEquals(this.securityCode, other.securityCode) &&
-            Objects.deepEquals(this.paymentServiceId, other.paymentServiceId) &&
-            Objects.deepEquals(this.redirectUrl, other.redirectUrl);
+            Utils.enhancedDeepEquals(this.securityCode, other.securityCode) &&
+            Utils.enhancedDeepEquals(this.paymentServiceId, other.paymentServiceId) &&
+            Utils.enhancedDeepEquals(this.redirectUrl, other.redirectUrl);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             securityCode,
             paymentServiceId,
             redirectUrl);

@@ -14,7 +14,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 public class CartItem {
@@ -449,23 +448,23 @@ public class CartItem {
         }
         CartItem other = (CartItem) o;
         return 
-            Objects.deepEquals(this.name, other.name) &&
-            Objects.deepEquals(this.quantity, other.quantity) &&
-            Objects.deepEquals(this.unitAmount, other.unitAmount) &&
-            Objects.deepEquals(this.discountAmount, other.discountAmount) &&
-            Objects.deepEquals(this.taxAmount, other.taxAmount) &&
-            Objects.deepEquals(this.externalIdentifier, other.externalIdentifier) &&
-            Objects.deepEquals(this.sku, other.sku) &&
-            Objects.deepEquals(this.productUrl, other.productUrl) &&
-            Objects.deepEquals(this.imageUrl, other.imageUrl) &&
-            Objects.deepEquals(this.categories, other.categories) &&
-            Objects.deepEquals(this.productType, other.productType) &&
-            Objects.deepEquals(this.sellerCountry, other.sellerCountry);
+            Utils.enhancedDeepEquals(this.name, other.name) &&
+            Utils.enhancedDeepEquals(this.quantity, other.quantity) &&
+            Utils.enhancedDeepEquals(this.unitAmount, other.unitAmount) &&
+            Utils.enhancedDeepEquals(this.discountAmount, other.discountAmount) &&
+            Utils.enhancedDeepEquals(this.taxAmount, other.taxAmount) &&
+            Utils.enhancedDeepEquals(this.externalIdentifier, other.externalIdentifier) &&
+            Utils.enhancedDeepEquals(this.sku, other.sku) &&
+            Utils.enhancedDeepEquals(this.productUrl, other.productUrl) &&
+            Utils.enhancedDeepEquals(this.imageUrl, other.imageUrl) &&
+            Utils.enhancedDeepEquals(this.categories, other.categories) &&
+            Utils.enhancedDeepEquals(this.productType, other.productType) &&
+            Utils.enhancedDeepEquals(this.sellerCountry, other.sellerCountry);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             name,
             quantity,
             unitAmount,

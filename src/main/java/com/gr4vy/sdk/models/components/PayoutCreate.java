@@ -13,7 +13,6 @@ import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 /**
@@ -412,22 +411,22 @@ public class PayoutCreate {
         }
         PayoutCreate other = (PayoutCreate) o;
         return 
-            Objects.deepEquals(this.amount, other.amount) &&
-            Objects.deepEquals(this.currency, other.currency) &&
-            Objects.deepEquals(this.paymentServiceId, other.paymentServiceId) &&
-            Objects.deepEquals(this.paymentMethod, other.paymentMethod) &&
-            Objects.deepEquals(this.category, other.category) &&
-            Objects.deepEquals(this.externalIdentifier, other.externalIdentifier) &&
-            Objects.deepEquals(this.buyerId, other.buyerId) &&
-            Objects.deepEquals(this.buyer, other.buyer) &&
-            Objects.deepEquals(this.buyerExternalIdentifier, other.buyerExternalIdentifier) &&
-            Objects.deepEquals(this.merchant, other.merchant) &&
-            Objects.deepEquals(this.connectionOptions, other.connectionOptions);
+            Utils.enhancedDeepEquals(this.amount, other.amount) &&
+            Utils.enhancedDeepEquals(this.currency, other.currency) &&
+            Utils.enhancedDeepEquals(this.paymentServiceId, other.paymentServiceId) &&
+            Utils.enhancedDeepEquals(this.paymentMethod, other.paymentMethod) &&
+            Utils.enhancedDeepEquals(this.category, other.category) &&
+            Utils.enhancedDeepEquals(this.externalIdentifier, other.externalIdentifier) &&
+            Utils.enhancedDeepEquals(this.buyerId, other.buyerId) &&
+            Utils.enhancedDeepEquals(this.buyer, other.buyer) &&
+            Utils.enhancedDeepEquals(this.buyerExternalIdentifier, other.buyerExternalIdentifier) &&
+            Utils.enhancedDeepEquals(this.merchant, other.merchant) &&
+            Utils.enhancedDeepEquals(this.connectionOptions, other.connectionOptions);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             amount,
             currency,
             paymentServiceId,

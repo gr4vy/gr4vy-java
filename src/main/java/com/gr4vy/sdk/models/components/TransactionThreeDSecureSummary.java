@@ -12,7 +12,6 @@ import com.gr4vy.sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 public class TransactionThreeDSecureSummary {
@@ -224,16 +223,16 @@ public class TransactionThreeDSecureSummary {
         }
         TransactionThreeDSecureSummary other = (TransactionThreeDSecureSummary) o;
         return 
-            Objects.deepEquals(this.version, other.version) &&
-            Objects.deepEquals(this.status, other.status) &&
-            Objects.deepEquals(this.method, other.method) &&
-            Objects.deepEquals(this.responseData, other.responseData) &&
-            Objects.deepEquals(this.errorData, other.errorData);
+            Utils.enhancedDeepEquals(this.version, other.version) &&
+            Utils.enhancedDeepEquals(this.status, other.status) &&
+            Utils.enhancedDeepEquals(this.method, other.method) &&
+            Utils.enhancedDeepEquals(this.responseData, other.responseData) &&
+            Utils.enhancedDeepEquals(this.errorData, other.errorData);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             version,
             status,
             method,

@@ -11,7 +11,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 public class PaymentOptionContextApprovalUI {
@@ -87,13 +86,13 @@ public class PaymentOptionContextApprovalUI {
         }
         PaymentOptionContextApprovalUI other = (PaymentOptionContextApprovalUI) o;
         return 
-            Objects.deepEquals(this.height, other.height) &&
-            Objects.deepEquals(this.width, other.width);
+            Utils.enhancedDeepEquals(this.height, other.height) &&
+            Utils.enhancedDeepEquals(this.width, other.width);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             height,
             width);
     }

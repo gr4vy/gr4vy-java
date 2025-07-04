@@ -13,7 +13,6 @@ import com.gr4vy.sdk.utils.LazySingletonValue;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
 public class GiftCardService {
@@ -122,15 +121,15 @@ public class GiftCardService {
         }
         GiftCardService other = (GiftCardService) o;
         return 
-            Objects.deepEquals(this.type, other.type) &&
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.giftCardServiceDefinitionId, other.giftCardServiceDefinitionId) &&
-            Objects.deepEquals(this.displayName, other.displayName);
+            Utils.enhancedDeepEquals(this.type, other.type) &&
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.giftCardServiceDefinitionId, other.giftCardServiceDefinitionId) &&
+            Utils.enhancedDeepEquals(this.displayName, other.displayName);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             type,
             id,
             giftCardServiceDefinitionId,

@@ -18,7 +18,6 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -695,31 +694,31 @@ public class PaymentMethodSummary {
         }
         PaymentMethodSummary other = (PaymentMethodSummary) o;
         return 
-            Objects.deepEquals(this.type, other.type) &&
-            Objects.deepEquals(this.approvalUrl, other.approvalUrl) &&
-            Objects.deepEquals(this.country, other.country) &&
-            Objects.deepEquals(this.currency, other.currency) &&
-            Objects.deepEquals(this.details, other.details) &&
-            Objects.deepEquals(this.expirationDate, other.expirationDate) &&
-            Objects.deepEquals(this.fingerprint, other.fingerprint) &&
-            Objects.deepEquals(this.label, other.label) &&
-            Objects.deepEquals(this.lastReplacedAt, other.lastReplacedAt) &&
-            Objects.deepEquals(this.method, other.method) &&
-            Objects.deepEquals(this.mode, other.mode) &&
-            Objects.deepEquals(this.scheme, other.scheme) &&
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.merchantAccountId, other.merchantAccountId) &&
-            Objects.deepEquals(this.additionalSchemes, other.additionalSchemes) &&
-            Objects.deepEquals(this.citLastUsedAt, other.citLastUsedAt) &&
-            Objects.deepEquals(this.citUsageCount, other.citUsageCount) &&
-            Objects.deepEquals(this.hasReplacement, other.hasReplacement) &&
-            Objects.deepEquals(this.lastUsedAt, other.lastUsedAt) &&
-            Objects.deepEquals(this.usageCount, other.usageCount);
+            Utils.enhancedDeepEquals(this.type, other.type) &&
+            Utils.enhancedDeepEquals(this.approvalUrl, other.approvalUrl) &&
+            Utils.enhancedDeepEquals(this.country, other.country) &&
+            Utils.enhancedDeepEquals(this.currency, other.currency) &&
+            Utils.enhancedDeepEquals(this.details, other.details) &&
+            Utils.enhancedDeepEquals(this.expirationDate, other.expirationDate) &&
+            Utils.enhancedDeepEquals(this.fingerprint, other.fingerprint) &&
+            Utils.enhancedDeepEquals(this.label, other.label) &&
+            Utils.enhancedDeepEquals(this.lastReplacedAt, other.lastReplacedAt) &&
+            Utils.enhancedDeepEquals(this.method, other.method) &&
+            Utils.enhancedDeepEquals(this.mode, other.mode) &&
+            Utils.enhancedDeepEquals(this.scheme, other.scheme) &&
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.merchantAccountId, other.merchantAccountId) &&
+            Utils.enhancedDeepEquals(this.additionalSchemes, other.additionalSchemes) &&
+            Utils.enhancedDeepEquals(this.citLastUsedAt, other.citLastUsedAt) &&
+            Utils.enhancedDeepEquals(this.citUsageCount, other.citUsageCount) &&
+            Utils.enhancedDeepEquals(this.hasReplacement, other.hasReplacement) &&
+            Utils.enhancedDeepEquals(this.lastUsedAt, other.lastUsedAt) &&
+            Utils.enhancedDeepEquals(this.usageCount, other.usageCount);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             type,
             approvalUrl,
             country,

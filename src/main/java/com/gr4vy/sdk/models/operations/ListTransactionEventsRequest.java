@@ -12,7 +12,6 @@ import com.gr4vy.sdk.utils.Utils;
 import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -173,15 +172,15 @@ public class ListTransactionEventsRequest {
         }
         ListTransactionEventsRequest other = (ListTransactionEventsRequest) o;
         return 
-            Objects.deepEquals(this.transactionId, other.transactionId) &&
-            Objects.deepEquals(this.cursor, other.cursor) &&
-            Objects.deepEquals(this.limit, other.limit) &&
-            Objects.deepEquals(this.merchantAccountId, other.merchantAccountId);
+            Utils.enhancedDeepEquals(this.transactionId, other.transactionId) &&
+            Utils.enhancedDeepEquals(this.cursor, other.cursor) &&
+            Utils.enhancedDeepEquals(this.limit, other.limit) &&
+            Utils.enhancedDeepEquals(this.merchantAccountId, other.merchantAccountId);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             transactionId,
             cursor,
             limit,

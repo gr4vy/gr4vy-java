@@ -13,7 +13,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.time.LocalDate;
-import java.util.Objects;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 public class AirlinePassenger {
@@ -438,22 +437,22 @@ public class AirlinePassenger {
         }
         AirlinePassenger other = (AirlinePassenger) o;
         return 
-            Objects.deepEquals(this.ageGroup, other.ageGroup) &&
-            Objects.deepEquals(this.dateOfBirth, other.dateOfBirth) &&
-            Objects.deepEquals(this.emailAddress, other.emailAddress) &&
-            Objects.deepEquals(this.firstName, other.firstName) &&
-            Objects.deepEquals(this.frequentFlyerNumber, other.frequentFlyerNumber) &&
-            Objects.deepEquals(this.lastName, other.lastName) &&
-            Objects.deepEquals(this.passportNumber, other.passportNumber) &&
-            Objects.deepEquals(this.phoneNumber, other.phoneNumber) &&
-            Objects.deepEquals(this.ticketNumber, other.ticketNumber) &&
-            Objects.deepEquals(this.title, other.title) &&
-            Objects.deepEquals(this.countryCode, other.countryCode);
+            Utils.enhancedDeepEquals(this.ageGroup, other.ageGroup) &&
+            Utils.enhancedDeepEquals(this.dateOfBirth, other.dateOfBirth) &&
+            Utils.enhancedDeepEquals(this.emailAddress, other.emailAddress) &&
+            Utils.enhancedDeepEquals(this.firstName, other.firstName) &&
+            Utils.enhancedDeepEquals(this.frequentFlyerNumber, other.frequentFlyerNumber) &&
+            Utils.enhancedDeepEquals(this.lastName, other.lastName) &&
+            Utils.enhancedDeepEquals(this.passportNumber, other.passportNumber) &&
+            Utils.enhancedDeepEquals(this.phoneNumber, other.phoneNumber) &&
+            Utils.enhancedDeepEquals(this.ticketNumber, other.ticketNumber) &&
+            Utils.enhancedDeepEquals(this.title, other.title) &&
+            Utils.enhancedDeepEquals(this.countryCode, other.countryCode);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             ageGroup,
             dateOfBirth,
             emailAddress,

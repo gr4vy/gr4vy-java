@@ -10,7 +10,6 @@ import com.gr4vy.sdk.utils.SpeakeasyMetadata;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 public class UpdateBuyerShippingDetailsRequest {
@@ -145,15 +144,15 @@ public class UpdateBuyerShippingDetailsRequest {
         }
         UpdateBuyerShippingDetailsRequest other = (UpdateBuyerShippingDetailsRequest) o;
         return 
-            Objects.deepEquals(this.buyerId, other.buyerId) &&
-            Objects.deepEquals(this.shippingDetailsId, other.shippingDetailsId) &&
-            Objects.deepEquals(this.merchantAccountId, other.merchantAccountId) &&
-            Objects.deepEquals(this.shippingDetailsUpdate, other.shippingDetailsUpdate);
+            Utils.enhancedDeepEquals(this.buyerId, other.buyerId) &&
+            Utils.enhancedDeepEquals(this.shippingDetailsId, other.shippingDetailsId) &&
+            Utils.enhancedDeepEquals(this.merchantAccountId, other.merchantAccountId) &&
+            Utils.enhancedDeepEquals(this.shippingDetailsUpdate, other.shippingDetailsUpdate);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             buyerId,
             shippingDetailsId,
             merchantAccountId,

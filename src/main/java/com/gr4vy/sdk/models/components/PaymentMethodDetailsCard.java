@@ -12,7 +12,6 @@ import com.gr4vy.sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 public class PaymentMethodDetailsCard {
@@ -113,14 +112,14 @@ public class PaymentMethodDetailsCard {
         }
         PaymentMethodDetailsCard other = (PaymentMethodDetailsCard) o;
         return 
-            Objects.deepEquals(this.bin, other.bin) &&
-            Objects.deepEquals(this.cardType, other.cardType) &&
-            Objects.deepEquals(this.cardIssuerName, other.cardIssuerName);
+            Utils.enhancedDeepEquals(this.bin, other.bin) &&
+            Utils.enhancedDeepEquals(this.cardType, other.cardType) &&
+            Utils.enhancedDeepEquals(this.cardIssuerName, other.cardIssuerName);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             bin,
             cardType,
             cardIssuerName);

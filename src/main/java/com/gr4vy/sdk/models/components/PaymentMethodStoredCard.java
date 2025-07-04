@@ -13,7 +13,6 @@ import com.gr4vy.sdk.utils.LazySingletonValue;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
 public class PaymentMethodStoredCard {
@@ -79,13 +78,13 @@ public class PaymentMethodStoredCard {
         }
         PaymentMethodStoredCard other = (PaymentMethodStoredCard) o;
         return 
-            Objects.deepEquals(this.method, other.method) &&
-            Objects.deepEquals(this.id, other.id);
+            Utils.enhancedDeepEquals(this.method, other.method) &&
+            Utils.enhancedDeepEquals(this.id, other.id);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             method,
             id);
     }

@@ -14,7 +14,6 @@ import com.gr4vy.sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.time.OffsetDateTime;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -284,20 +283,20 @@ public class PaymentServiceToken {
         }
         PaymentServiceToken other = (PaymentServiceToken) o;
         return 
-            Objects.deepEquals(this.type, other.type) &&
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.approvalUrl, other.approvalUrl) &&
-            Objects.deepEquals(this.paymentMethodId, other.paymentMethodId) &&
-            Objects.deepEquals(this.paymentServiceId, other.paymentServiceId) &&
-            Objects.deepEquals(this.status, other.status) &&
-            Objects.deepEquals(this.token, other.token) &&
-            Objects.deepEquals(this.createdAt, other.createdAt) &&
-            Objects.deepEquals(this.updatedAt, other.updatedAt);
+            Utils.enhancedDeepEquals(this.type, other.type) &&
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.approvalUrl, other.approvalUrl) &&
+            Utils.enhancedDeepEquals(this.paymentMethodId, other.paymentMethodId) &&
+            Utils.enhancedDeepEquals(this.paymentServiceId, other.paymentServiceId) &&
+            Utils.enhancedDeepEquals(this.status, other.status) &&
+            Utils.enhancedDeepEquals(this.token, other.token) &&
+            Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
+            Utils.enhancedDeepEquals(this.updatedAt, other.updatedAt);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             type,
             id,
             approvalUrl,

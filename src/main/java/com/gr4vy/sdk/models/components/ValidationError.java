@@ -10,7 +10,6 @@ import com.gr4vy.sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.util.List;
-import java.util.Objects;
 
 public class ValidationError {
 
@@ -84,14 +83,14 @@ public class ValidationError {
         }
         ValidationError other = (ValidationError) o;
         return 
-            Objects.deepEquals(this.loc, other.loc) &&
-            Objects.deepEquals(this.msg, other.msg) &&
-            Objects.deepEquals(this.type, other.type);
+            Utils.enhancedDeepEquals(this.loc, other.loc) &&
+            Utils.enhancedDeepEquals(this.msg, other.msg) &&
+            Utils.enhancedDeepEquals(this.type, other.type);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             loc,
             msg,
             type);

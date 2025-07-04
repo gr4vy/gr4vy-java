@@ -19,7 +19,6 @@ import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -897,38 +896,38 @@ public class PaymentLink {
         }
         PaymentLink other = (PaymentLink) o;
         return 
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.type, other.type) &&
-            Objects.deepEquals(this.url, other.url) &&
-            Objects.deepEquals(this.expiresAt, other.expiresAt) &&
-            Objects.deepEquals(this.externalIdentifier, other.externalIdentifier) &&
-            Objects.deepEquals(this.statementDescriptor, other.statementDescriptor) &&
-            Objects.deepEquals(this.locale, other.locale) &&
-            Objects.deepEquals(this.merchantName, other.merchantName) &&
-            Objects.deepEquals(this.merchantUrl, other.merchantUrl) &&
-            Objects.deepEquals(this.merchantBannerUrl, other.merchantBannerUrl) &&
-            Objects.deepEquals(this.merchantColor, other.merchantColor) &&
-            Objects.deepEquals(this.merchantMessage, other.merchantMessage) &&
-            Objects.deepEquals(this.merchantTermsAndConditionsUrl, other.merchantTermsAndConditionsUrl) &&
-            Objects.deepEquals(this.merchantFaviconUrl, other.merchantFaviconUrl) &&
-            Objects.deepEquals(this.amount, other.amount) &&
-            Objects.deepEquals(this.country, other.country) &&
-            Objects.deepEquals(this.currency, other.currency) &&
-            Objects.deepEquals(this.intent, other.intent) &&
-            Objects.deepEquals(this.returnUrl, other.returnUrl) &&
-            Objects.deepEquals(this.cartItems, other.cartItems) &&
-            Objects.deepEquals(this.metadata, other.metadata) &&
-            Objects.deepEquals(this.paymentSource, other.paymentSource) &&
-            Objects.deepEquals(this.createdAt, other.createdAt) &&
-            Objects.deepEquals(this.updatedAt, other.updatedAt) &&
-            Objects.deepEquals(this.status, other.status) &&
-            Objects.deepEquals(this.buyer, other.buyer) &&
-            Objects.deepEquals(this.shippingDetails, other.shippingDetails);
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.type, other.type) &&
+            Utils.enhancedDeepEquals(this.url, other.url) &&
+            Utils.enhancedDeepEquals(this.expiresAt, other.expiresAt) &&
+            Utils.enhancedDeepEquals(this.externalIdentifier, other.externalIdentifier) &&
+            Utils.enhancedDeepEquals(this.statementDescriptor, other.statementDescriptor) &&
+            Utils.enhancedDeepEquals(this.locale, other.locale) &&
+            Utils.enhancedDeepEquals(this.merchantName, other.merchantName) &&
+            Utils.enhancedDeepEquals(this.merchantUrl, other.merchantUrl) &&
+            Utils.enhancedDeepEquals(this.merchantBannerUrl, other.merchantBannerUrl) &&
+            Utils.enhancedDeepEquals(this.merchantColor, other.merchantColor) &&
+            Utils.enhancedDeepEquals(this.merchantMessage, other.merchantMessage) &&
+            Utils.enhancedDeepEquals(this.merchantTermsAndConditionsUrl, other.merchantTermsAndConditionsUrl) &&
+            Utils.enhancedDeepEquals(this.merchantFaviconUrl, other.merchantFaviconUrl) &&
+            Utils.enhancedDeepEquals(this.amount, other.amount) &&
+            Utils.enhancedDeepEquals(this.country, other.country) &&
+            Utils.enhancedDeepEquals(this.currency, other.currency) &&
+            Utils.enhancedDeepEquals(this.intent, other.intent) &&
+            Utils.enhancedDeepEquals(this.returnUrl, other.returnUrl) &&
+            Utils.enhancedDeepEquals(this.cartItems, other.cartItems) &&
+            Utils.enhancedDeepEquals(this.metadata, other.metadata) &&
+            Utils.enhancedDeepEquals(this.paymentSource, other.paymentSource) &&
+            Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
+            Utils.enhancedDeepEquals(this.updatedAt, other.updatedAt) &&
+            Utils.enhancedDeepEquals(this.status, other.status) &&
+            Utils.enhancedDeepEquals(this.buyer, other.buyer) &&
+            Utils.enhancedDeepEquals(this.shippingDetails, other.shippingDetails);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             id,
             type,
             url,

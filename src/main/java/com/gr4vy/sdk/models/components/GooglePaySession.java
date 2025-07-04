@@ -9,7 +9,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 
 public class GooglePaySession {
 
@@ -84,13 +83,13 @@ public class GooglePaySession {
         }
         GooglePaySession other = (GooglePaySession) o;
         return 
-            Objects.deepEquals(this.gatewayMerchantId, other.gatewayMerchantId) &&
-            Objects.deepEquals(this.token, other.token);
+            Utils.enhancedDeepEquals(this.gatewayMerchantId, other.gatewayMerchantId) &&
+            Utils.enhancedDeepEquals(this.token, other.token);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             gatewayMerchantId,
             token);
     }

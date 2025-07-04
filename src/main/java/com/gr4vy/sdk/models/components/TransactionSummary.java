@@ -18,7 +18,6 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -1002,42 +1001,42 @@ public class TransactionSummary {
         }
         TransactionSummary other = (TransactionSummary) o;
         return 
-            Objects.deepEquals(this.type, other.type) &&
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.reconciliationId, other.reconciliationId) &&
-            Objects.deepEquals(this.merchantAccountId, other.merchantAccountId) &&
-            Objects.deepEquals(this.currency, other.currency) &&
-            Objects.deepEquals(this.amount, other.amount) &&
-            Objects.deepEquals(this.status, other.status) &&
-            Objects.deepEquals(this.authorizedAmount, other.authorizedAmount) &&
-            Objects.deepEquals(this.capturedAmount, other.capturedAmount) &&
-            Objects.deepEquals(this.refundedAmount, other.refundedAmount) &&
-            Objects.deepEquals(this.settledCurrency, other.settledCurrency) &&
-            Objects.deepEquals(this.settledAmount, other.settledAmount) &&
-            Objects.deepEquals(this.settled, other.settled) &&
-            Objects.deepEquals(this.country, other.country) &&
-            Objects.deepEquals(this.externalIdentifier, other.externalIdentifier) &&
-            Objects.deepEquals(this.intent, other.intent) &&
-            Objects.deepEquals(this.paymentMethod, other.paymentMethod) &&
-            Objects.deepEquals(this.method, other.method) &&
-            Objects.deepEquals(this.instrumentType, other.instrumentType) &&
-            Objects.deepEquals(this.errorCode, other.errorCode) &&
-            Objects.deepEquals(this.paymentService, other.paymentService) &&
-            Objects.deepEquals(this.pendingReview, other.pendingReview) &&
-            Objects.deepEquals(this.buyer, other.buyer) &&
-            Objects.deepEquals(this.rawResponseCode, other.rawResponseCode) &&
-            Objects.deepEquals(this.rawResponseDescription, other.rawResponseDescription) &&
-            Objects.deepEquals(this.shippingDetails, other.shippingDetails) &&
-            Objects.deepEquals(this.checkoutSessionId, other.checkoutSessionId) &&
-            Objects.deepEquals(this.giftCardRedemptions, other.giftCardRedemptions) &&
-            Objects.deepEquals(this.giftCardService, other.giftCardService) &&
-            Objects.deepEquals(this.createdAt, other.createdAt) &&
-            Objects.deepEquals(this.updatedAt, other.updatedAt);
+            Utils.enhancedDeepEquals(this.type, other.type) &&
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.reconciliationId, other.reconciliationId) &&
+            Utils.enhancedDeepEquals(this.merchantAccountId, other.merchantAccountId) &&
+            Utils.enhancedDeepEquals(this.currency, other.currency) &&
+            Utils.enhancedDeepEquals(this.amount, other.amount) &&
+            Utils.enhancedDeepEquals(this.status, other.status) &&
+            Utils.enhancedDeepEquals(this.authorizedAmount, other.authorizedAmount) &&
+            Utils.enhancedDeepEquals(this.capturedAmount, other.capturedAmount) &&
+            Utils.enhancedDeepEquals(this.refundedAmount, other.refundedAmount) &&
+            Utils.enhancedDeepEquals(this.settledCurrency, other.settledCurrency) &&
+            Utils.enhancedDeepEquals(this.settledAmount, other.settledAmount) &&
+            Utils.enhancedDeepEquals(this.settled, other.settled) &&
+            Utils.enhancedDeepEquals(this.country, other.country) &&
+            Utils.enhancedDeepEquals(this.externalIdentifier, other.externalIdentifier) &&
+            Utils.enhancedDeepEquals(this.intent, other.intent) &&
+            Utils.enhancedDeepEquals(this.paymentMethod, other.paymentMethod) &&
+            Utils.enhancedDeepEquals(this.method, other.method) &&
+            Utils.enhancedDeepEquals(this.instrumentType, other.instrumentType) &&
+            Utils.enhancedDeepEquals(this.errorCode, other.errorCode) &&
+            Utils.enhancedDeepEquals(this.paymentService, other.paymentService) &&
+            Utils.enhancedDeepEquals(this.pendingReview, other.pendingReview) &&
+            Utils.enhancedDeepEquals(this.buyer, other.buyer) &&
+            Utils.enhancedDeepEquals(this.rawResponseCode, other.rawResponseCode) &&
+            Utils.enhancedDeepEquals(this.rawResponseDescription, other.rawResponseDescription) &&
+            Utils.enhancedDeepEquals(this.shippingDetails, other.shippingDetails) &&
+            Utils.enhancedDeepEquals(this.checkoutSessionId, other.checkoutSessionId) &&
+            Utils.enhancedDeepEquals(this.giftCardRedemptions, other.giftCardRedemptions) &&
+            Utils.enhancedDeepEquals(this.giftCardService, other.giftCardService) &&
+            Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
+            Utils.enhancedDeepEquals(this.updatedAt, other.updatedAt);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             type,
             id,
             reconciliationId,

@@ -10,7 +10,6 @@ import com.gr4vy.sdk.utils.Utils;
 import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 
 /**
  * GiftCardTransactionCreate
@@ -116,14 +115,14 @@ public class GiftCardTransactionCreate {
         }
         GiftCardTransactionCreate other = (GiftCardTransactionCreate) o;
         return 
-            Objects.deepEquals(this.number, other.number) &&
-            Objects.deepEquals(this.pin, other.pin) &&
-            Objects.deepEquals(this.amount, other.amount);
+            Utils.enhancedDeepEquals(this.number, other.number) &&
+            Utils.enhancedDeepEquals(this.pin, other.pin) &&
+            Utils.enhancedDeepEquals(this.amount, other.amount);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             number,
             pin,
             amount);

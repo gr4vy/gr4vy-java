@@ -14,7 +14,6 @@ import com.gr4vy.sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -257,18 +256,18 @@ public class CheckoutSessionPaymentMethod {
         }
         CheckoutSessionPaymentMethod other = (CheckoutSessionPaymentMethod) o;
         return 
-            Objects.deepEquals(this.type, other.type) &&
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.details, other.details) &&
-            Objects.deepEquals(this.label, other.label) &&
-            Objects.deepEquals(this.method, other.method) &&
-            Objects.deepEquals(this.scheme, other.scheme) &&
-            Objects.deepEquals(this.fingerprint, other.fingerprint);
+            Utils.enhancedDeepEquals(this.type, other.type) &&
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.details, other.details) &&
+            Utils.enhancedDeepEquals(this.label, other.label) &&
+            Utils.enhancedDeepEquals(this.method, other.method) &&
+            Utils.enhancedDeepEquals(this.scheme, other.scheme) &&
+            Utils.enhancedDeepEquals(this.fingerprint, other.fingerprint);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             type,
             id,
             details,

@@ -10,7 +10,6 @@ import com.gr4vy.sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.time.OffsetDateTime;
-import java.util.Objects;
 
 public class MerchantProfileSchemeSummary {
 
@@ -206,18 +205,18 @@ public class MerchantProfileSchemeSummary {
         }
         MerchantProfileSchemeSummary other = (MerchantProfileSchemeSummary) o;
         return 
-            Objects.deepEquals(this.merchantAcquirerBin, other.merchantAcquirerBin) &&
-            Objects.deepEquals(this.merchantUrl, other.merchantUrl) &&
-            Objects.deepEquals(this.merchantAcquirerId, other.merchantAcquirerId) &&
-            Objects.deepEquals(this.merchantName, other.merchantName) &&
-            Objects.deepEquals(this.merchantCountryCode, other.merchantCountryCode) &&
-            Objects.deepEquals(this.merchantCategoryCode, other.merchantCategoryCode) &&
-            Objects.deepEquals(this.createdAt, other.createdAt);
+            Utils.enhancedDeepEquals(this.merchantAcquirerBin, other.merchantAcquirerBin) &&
+            Utils.enhancedDeepEquals(this.merchantUrl, other.merchantUrl) &&
+            Utils.enhancedDeepEquals(this.merchantAcquirerId, other.merchantAcquirerId) &&
+            Utils.enhancedDeepEquals(this.merchantName, other.merchantName) &&
+            Utils.enhancedDeepEquals(this.merchantCountryCode, other.merchantCountryCode) &&
+            Utils.enhancedDeepEquals(this.merchantCategoryCode, other.merchantCategoryCode) &&
+            Utils.enhancedDeepEquals(this.createdAt, other.createdAt);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             merchantAcquirerBin,
             merchantUrl,
             merchantAcquirerId,

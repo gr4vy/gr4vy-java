@@ -19,7 +19,6 @@ import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -710,34 +709,34 @@ public class PaymentService {
         }
         PaymentService other = (PaymentService) o;
         return 
-            Objects.deepEquals(this.type, other.type) &&
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.merchantAccountId, other.merchantAccountId) &&
-            Objects.deepEquals(this.paymentServiceDefinitionId, other.paymentServiceDefinitionId) &&
-            Objects.deepEquals(this.active, other.active) &&
-            Objects.deepEquals(this.method, other.method) &&
-            Objects.deepEquals(this.displayName, other.displayName) &&
-            Objects.deepEquals(this.position, other.position) &&
-            Objects.deepEquals(this.status, other.status) &&
-            Objects.deepEquals(this.acceptedCurrencies, other.acceptedCurrencies) &&
-            Objects.deepEquals(this.acceptedCountries, other.acceptedCountries) &&
-            Objects.deepEquals(this.paymentMethodTokenizationEnabled, other.paymentMethodTokenizationEnabled) &&
-            Objects.deepEquals(this.networkTokensEnabled, other.networkTokensEnabled) &&
-            Objects.deepEquals(this.openLoop, other.openLoop) &&
-            Objects.deepEquals(this.settlementReportingEnabled, other.settlementReportingEnabled) &&
-            Objects.deepEquals(this.threeDSecureEnabled, other.threeDSecureEnabled) &&
-            Objects.deepEquals(this.merchantProfile, other.merchantProfile) &&
-            Objects.deepEquals(this.webhookUrl, other.webhookUrl) &&
-            Objects.deepEquals(this.fields, other.fields) &&
-            Objects.deepEquals(this.reportingFields, other.reportingFields) &&
-            Objects.deepEquals(this.isDeleted, other.isDeleted) &&
-            Objects.deepEquals(this.createdAt, other.createdAt) &&
-            Objects.deepEquals(this.updatedAt, other.updatedAt);
+            Utils.enhancedDeepEquals(this.type, other.type) &&
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.merchantAccountId, other.merchantAccountId) &&
+            Utils.enhancedDeepEquals(this.paymentServiceDefinitionId, other.paymentServiceDefinitionId) &&
+            Utils.enhancedDeepEquals(this.active, other.active) &&
+            Utils.enhancedDeepEquals(this.method, other.method) &&
+            Utils.enhancedDeepEquals(this.displayName, other.displayName) &&
+            Utils.enhancedDeepEquals(this.position, other.position) &&
+            Utils.enhancedDeepEquals(this.status, other.status) &&
+            Utils.enhancedDeepEquals(this.acceptedCurrencies, other.acceptedCurrencies) &&
+            Utils.enhancedDeepEquals(this.acceptedCountries, other.acceptedCountries) &&
+            Utils.enhancedDeepEquals(this.paymentMethodTokenizationEnabled, other.paymentMethodTokenizationEnabled) &&
+            Utils.enhancedDeepEquals(this.networkTokensEnabled, other.networkTokensEnabled) &&
+            Utils.enhancedDeepEquals(this.openLoop, other.openLoop) &&
+            Utils.enhancedDeepEquals(this.settlementReportingEnabled, other.settlementReportingEnabled) &&
+            Utils.enhancedDeepEquals(this.threeDSecureEnabled, other.threeDSecureEnabled) &&
+            Utils.enhancedDeepEquals(this.merchantProfile, other.merchantProfile) &&
+            Utils.enhancedDeepEquals(this.webhookUrl, other.webhookUrl) &&
+            Utils.enhancedDeepEquals(this.fields, other.fields) &&
+            Utils.enhancedDeepEquals(this.reportingFields, other.reportingFields) &&
+            Utils.enhancedDeepEquals(this.isDeleted, other.isDeleted) &&
+            Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
+            Utils.enhancedDeepEquals(this.updatedAt, other.updatedAt);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             type,
             id,
             merchantAccountId,

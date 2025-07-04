@@ -16,7 +16,6 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -327,19 +326,19 @@ public class ListAllReportExecutionsRequest {
         }
         ListAllReportExecutionsRequest other = (ListAllReportExecutionsRequest) o;
         return 
-            Objects.deepEquals(this.cursor, other.cursor) &&
-            Objects.deepEquals(this.limit, other.limit) &&
-            Objects.deepEquals(this.reportName, other.reportName) &&
-            Objects.deepEquals(this.createdAtLte, other.createdAtLte) &&
-            Objects.deepEquals(this.createdAtGte, other.createdAtGte) &&
-            Objects.deepEquals(this.status, other.status) &&
-            Objects.deepEquals(this.creatorId, other.creatorId) &&
-            Objects.deepEquals(this.merchantAccountId, other.merchantAccountId);
+            Utils.enhancedDeepEquals(this.cursor, other.cursor) &&
+            Utils.enhancedDeepEquals(this.limit, other.limit) &&
+            Utils.enhancedDeepEquals(this.reportName, other.reportName) &&
+            Utils.enhancedDeepEquals(this.createdAtLte, other.createdAtLte) &&
+            Utils.enhancedDeepEquals(this.createdAtGte, other.createdAtGte) &&
+            Utils.enhancedDeepEquals(this.status, other.status) &&
+            Utils.enhancedDeepEquals(this.creatorId, other.creatorId) &&
+            Utils.enhancedDeepEquals(this.merchantAccountId, other.merchantAccountId);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             cursor,
             limit,
             reportName,

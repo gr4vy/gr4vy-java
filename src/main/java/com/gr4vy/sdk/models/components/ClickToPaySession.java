@@ -9,7 +9,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 
 public class ClickToPaySession {
 
@@ -84,13 +83,13 @@ public class ClickToPaySession {
         }
         ClickToPaySession other = (ClickToPaySession) o;
         return 
-            Objects.deepEquals(this.digitalPaymentApplicationId, other.digitalPaymentApplicationId) &&
-            Objects.deepEquals(this.digitalPaymentApplicationName, other.digitalPaymentApplicationName);
+            Utils.enhancedDeepEquals(this.digitalPaymentApplicationId, other.digitalPaymentApplicationId) &&
+            Utils.enhancedDeepEquals(this.digitalPaymentApplicationName, other.digitalPaymentApplicationName);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             digitalPaymentApplicationId,
             digitalPaymentApplicationName);
     }
