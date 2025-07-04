@@ -19,7 +19,6 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -1183,41 +1182,41 @@ public class TransactionCreate {
         }
         TransactionCreate other = (TransactionCreate) o;
         return 
-            Objects.deepEquals(this.amount, other.amount) &&
-            Objects.deepEquals(this.currency, other.currency) &&
-            Objects.deepEquals(this.country, other.country) &&
-            Objects.deepEquals(this.paymentMethod, other.paymentMethod) &&
-            Objects.deepEquals(this.buyer, other.buyer) &&
-            Objects.deepEquals(this.buyerId, other.buyerId) &&
-            Objects.deepEquals(this.buyerExternalIdentifier, other.buyerExternalIdentifier) &&
-            Objects.deepEquals(this.giftCards, other.giftCards) &&
-            Objects.deepEquals(this.externalIdentifier, other.externalIdentifier) &&
-            Objects.deepEquals(this.intent, other.intent) &&
-            Objects.deepEquals(this.store, other.store) &&
-            Objects.deepEquals(this.threeDSecureData, other.threeDSecureData) &&
-            Objects.deepEquals(this.metadata, other.metadata) &&
-            Objects.deepEquals(this.isSubsequentPayment, other.isSubsequentPayment) &&
-            Objects.deepEquals(this.merchantInitiated, other.merchantInitiated) &&
-            Objects.deepEquals(this.paymentSource, other.paymentSource) &&
-            Objects.deepEquals(this.airline, other.airline) &&
-            Objects.deepEquals(this.cartItems, other.cartItems) &&
-            Objects.deepEquals(this.statementDescriptor, other.statementDescriptor) &&
-            Objects.deepEquals(this.previousSchemeTransactionId, other.previousSchemeTransactionId) &&
-            Objects.deepEquals(this.browserInfo, other.browserInfo) &&
-            Objects.deepEquals(this.shippingDetailsId, other.shippingDetailsId) &&
-            Objects.deepEquals(this.connectionOptions, other.connectionOptions) &&
-            Objects.deepEquals(this.asyncCapture, other.asyncCapture) &&
-            Objects.deepEquals(this.antiFraudFingerprint, other.antiFraudFingerprint) &&
-            Objects.deepEquals(this.paymentServiceId, other.paymentServiceId) &&
-            Objects.deepEquals(this.accountFundingTransaction, other.accountFundingTransaction) &&
-            Objects.deepEquals(this.allowPartialAuthorization, other.allowPartialAuthorization) &&
-            Objects.deepEquals(this.recipient, other.recipient) &&
-            Objects.deepEquals(this.installmentCount, other.installmentCount);
+            Utils.enhancedDeepEquals(this.amount, other.amount) &&
+            Utils.enhancedDeepEquals(this.currency, other.currency) &&
+            Utils.enhancedDeepEquals(this.country, other.country) &&
+            Utils.enhancedDeepEquals(this.paymentMethod, other.paymentMethod) &&
+            Utils.enhancedDeepEquals(this.buyer, other.buyer) &&
+            Utils.enhancedDeepEquals(this.buyerId, other.buyerId) &&
+            Utils.enhancedDeepEquals(this.buyerExternalIdentifier, other.buyerExternalIdentifier) &&
+            Utils.enhancedDeepEquals(this.giftCards, other.giftCards) &&
+            Utils.enhancedDeepEquals(this.externalIdentifier, other.externalIdentifier) &&
+            Utils.enhancedDeepEquals(this.intent, other.intent) &&
+            Utils.enhancedDeepEquals(this.store, other.store) &&
+            Utils.enhancedDeepEquals(this.threeDSecureData, other.threeDSecureData) &&
+            Utils.enhancedDeepEquals(this.metadata, other.metadata) &&
+            Utils.enhancedDeepEquals(this.isSubsequentPayment, other.isSubsequentPayment) &&
+            Utils.enhancedDeepEquals(this.merchantInitiated, other.merchantInitiated) &&
+            Utils.enhancedDeepEquals(this.paymentSource, other.paymentSource) &&
+            Utils.enhancedDeepEquals(this.airline, other.airline) &&
+            Utils.enhancedDeepEquals(this.cartItems, other.cartItems) &&
+            Utils.enhancedDeepEquals(this.statementDescriptor, other.statementDescriptor) &&
+            Utils.enhancedDeepEquals(this.previousSchemeTransactionId, other.previousSchemeTransactionId) &&
+            Utils.enhancedDeepEquals(this.browserInfo, other.browserInfo) &&
+            Utils.enhancedDeepEquals(this.shippingDetailsId, other.shippingDetailsId) &&
+            Utils.enhancedDeepEquals(this.connectionOptions, other.connectionOptions) &&
+            Utils.enhancedDeepEquals(this.asyncCapture, other.asyncCapture) &&
+            Utils.enhancedDeepEquals(this.antiFraudFingerprint, other.antiFraudFingerprint) &&
+            Utils.enhancedDeepEquals(this.paymentServiceId, other.paymentServiceId) &&
+            Utils.enhancedDeepEquals(this.accountFundingTransaction, other.accountFundingTransaction) &&
+            Utils.enhancedDeepEquals(this.allowPartialAuthorization, other.allowPartialAuthorization) &&
+            Utils.enhancedDeepEquals(this.recipient, other.recipient) &&
+            Utils.enhancedDeepEquals(this.installmentCount, other.installmentCount);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             amount,
             currency,
             country,

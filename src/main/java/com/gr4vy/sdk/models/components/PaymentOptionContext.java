@@ -14,7 +14,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.Map;
-import java.util.Objects;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 public class PaymentOptionContext {
@@ -128,15 +127,15 @@ public class PaymentOptionContext {
         }
         PaymentOptionContext other = (PaymentOptionContext) o;
         return 
-            Objects.deepEquals(this.approvalUi, other.approvalUi) &&
-            Objects.deepEquals(this.requiredFields, other.requiredFields) &&
-            Objects.deepEquals(this.redirectRequiresPopup, other.redirectRequiresPopup) &&
-            Objects.deepEquals(this.requiresTokenizedRedirectPopup, other.requiresTokenizedRedirectPopup);
+            Utils.enhancedDeepEquals(this.approvalUi, other.approvalUi) &&
+            Utils.enhancedDeepEquals(this.requiredFields, other.requiredFields) &&
+            Utils.enhancedDeepEquals(this.redirectRequiresPopup, other.redirectRequiresPopup) &&
+            Utils.enhancedDeepEquals(this.requiresTokenizedRedirectPopup, other.requiresTokenizedRedirectPopup);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             approvalUi,
             requiredFields,
             redirectRequiresPopup,

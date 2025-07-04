@@ -50,12 +50,17 @@ public class SpeakeasyHTTPClient implements HTTPClient {
         debugEnabled = enabled;
     }
 
-    public boolean isDebugEnabled() {
+    public static boolean getDebugLoggingEnabled() {
+        return debugEnabled;
+    }
+
+    @Override
+    public boolean isDebugLoggingEnabled() {
         return Optional.ofNullable(localDebugEnabled).orElse(debugEnabled);
     }
 
     @Override
-    public void enableDebugging(boolean enabled) {
+    public void enableDebugLogging(boolean enabled) {
         localDebugEnabled = enabled;
     }
 
@@ -82,11 +87,11 @@ public class SpeakeasyHTTPClient implements HTTPClient {
     @Override
     public HttpResponse<InputStream> send(HttpRequest request)
             throws IOException, InterruptedException, URISyntaxException {
-        if (isDebugEnabled()) {
+        if (isDebugLoggingEnabled()) {
             request = logRequest(request);
         }
         var response = client.send(request, HttpResponse.BodyHandlers.ofInputStream());
-        if (isDebugEnabled()) {
+        if (isDebugLoggingEnabled()) {
             response = logResponse(response);
         }
         return response;

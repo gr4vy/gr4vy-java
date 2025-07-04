@@ -10,7 +10,6 @@ import com.gr4vy.sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.util.List;
-import java.util.Objects;
 
 public class AccountUpdaterJobCreate {
 
@@ -59,12 +58,12 @@ public class AccountUpdaterJobCreate {
         }
         AccountUpdaterJobCreate other = (AccountUpdaterJobCreate) o;
         return 
-            Objects.deepEquals(this.paymentMethodIds, other.paymentMethodIds);
+            Utils.enhancedDeepEquals(this.paymentMethodIds, other.paymentMethodIds);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             paymentMethodIds);
     }
     

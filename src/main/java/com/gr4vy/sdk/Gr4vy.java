@@ -254,14 +254,14 @@ public class Gr4vy {
         /**
          * Enables debug logging for HTTP requests and responses, including JSON body content.
          *
-         * Convenience method that calls {@link HTTPClient#enableDebugging(boolean)}.
+         * Convenience method that calls {@link HTTPClient#enableDebugLogging(boolean)}.
          * {@link SpeakeasyHTTPClient} honors this setting. If you are using a custom HTTP client,
          * it is up to the custom client to honor this setting.
          *
          * @return The builder instance.
          */
         public Builder enableHTTPDebugLogging(boolean enabled) {
-            this.sdkConfiguration.client().enableDebugging(enabled);
+            this.sdkConfiguration.client().enableDebugLogging(enabled);
             return this;
         }
 

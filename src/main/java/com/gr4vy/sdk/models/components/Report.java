@@ -16,7 +16,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -504,27 +503,27 @@ public class Report {
         }
         Report other = (Report) o;
         return 
-            Objects.deepEquals(this.type, other.type) &&
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.merchantAccountId, other.merchantAccountId) &&
-            Objects.deepEquals(this.name, other.name) &&
-            Objects.deepEquals(this.creatorId, other.creatorId) &&
-            Objects.deepEquals(this.creatorDisplayName, other.creatorDisplayName) &&
-            Objects.deepEquals(this.creatorType, other.creatorType) &&
-            Objects.deepEquals(this.createdAt, other.createdAt) &&
-            Objects.deepEquals(this.updatedAt, other.updatedAt) &&
-            Objects.deepEquals(this.nextExecutionAt, other.nextExecutionAt) &&
-            Objects.deepEquals(this.description, other.description) &&
-            Objects.deepEquals(this.schedule, other.schedule) &&
-            Objects.deepEquals(this.scheduleEnabled, other.scheduleEnabled) &&
-            Objects.deepEquals(this.scheduleTimezone, other.scheduleTimezone) &&
-            Objects.deepEquals(this.spec, other.spec) &&
-            Objects.deepEquals(this.latestExecution, other.latestExecution);
+            Utils.enhancedDeepEquals(this.type, other.type) &&
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.merchantAccountId, other.merchantAccountId) &&
+            Utils.enhancedDeepEquals(this.name, other.name) &&
+            Utils.enhancedDeepEquals(this.creatorId, other.creatorId) &&
+            Utils.enhancedDeepEquals(this.creatorDisplayName, other.creatorDisplayName) &&
+            Utils.enhancedDeepEquals(this.creatorType, other.creatorType) &&
+            Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
+            Utils.enhancedDeepEquals(this.updatedAt, other.updatedAt) &&
+            Utils.enhancedDeepEquals(this.nextExecutionAt, other.nextExecutionAt) &&
+            Utils.enhancedDeepEquals(this.description, other.description) &&
+            Utils.enhancedDeepEquals(this.schedule, other.schedule) &&
+            Utils.enhancedDeepEquals(this.scheduleEnabled, other.scheduleEnabled) &&
+            Utils.enhancedDeepEquals(this.scheduleTimezone, other.scheduleTimezone) &&
+            Utils.enhancedDeepEquals(this.spec, other.spec) &&
+            Utils.enhancedDeepEquals(this.latestExecution, other.latestExecution);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             type,
             id,
             merchantAccountId,

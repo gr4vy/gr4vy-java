@@ -10,7 +10,6 @@ import com.gr4vy.sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.time.OffsetDateTime;
-import java.util.Objects;
 
 public class ReportExecutionUrl {
 
@@ -85,13 +84,13 @@ public class ReportExecutionUrl {
         }
         ReportExecutionUrl other = (ReportExecutionUrl) o;
         return 
-            Objects.deepEquals(this.url, other.url) &&
-            Objects.deepEquals(this.expiresAt, other.expiresAt);
+            Utils.enhancedDeepEquals(this.url, other.url) &&
+            Utils.enhancedDeepEquals(this.expiresAt, other.expiresAt);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             url,
             expiresAt);
     }

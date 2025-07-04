@@ -13,7 +13,6 @@ import com.gr4vy.sdk.utils.LazySingletonValue;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -175,16 +174,16 @@ public class TransactionGiftCard {
         }
         TransactionGiftCard other = (TransactionGiftCard) o;
         return 
-            Objects.deepEquals(this.type, other.type) &&
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.bin, other.bin) &&
-            Objects.deepEquals(this.subBin, other.subBin) &&
-            Objects.deepEquals(this.last4, other.last4);
+            Utils.enhancedDeepEquals(this.type, other.type) &&
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.bin, other.bin) &&
+            Utils.enhancedDeepEquals(this.subBin, other.subBin) &&
+            Utils.enhancedDeepEquals(this.last4, other.last4);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             type,
             id,
             bin,

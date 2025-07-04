@@ -12,7 +12,6 @@ import com.gr4vy.sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 public class ThreeDSecureDataV1 {
@@ -266,19 +265,19 @@ public class ThreeDSecureDataV1 {
         }
         ThreeDSecureDataV1 other = (ThreeDSecureDataV1) o;
         return 
-            Objects.deepEquals(this.cavv, other.cavv) &&
-            Objects.deepEquals(this.eci, other.eci) &&
-            Objects.deepEquals(this.version, other.version) &&
-            Objects.deepEquals(this.directoryResponse, other.directoryResponse) &&
-            Objects.deepEquals(this.scheme, other.scheme) &&
-            Objects.deepEquals(this.authenticationResponse, other.authenticationResponse) &&
-            Objects.deepEquals(this.cavvAlgorithm, other.cavvAlgorithm) &&
-            Objects.deepEquals(this.xid, other.xid);
+            Utils.enhancedDeepEquals(this.cavv, other.cavv) &&
+            Utils.enhancedDeepEquals(this.eci, other.eci) &&
+            Utils.enhancedDeepEquals(this.version, other.version) &&
+            Utils.enhancedDeepEquals(this.directoryResponse, other.directoryResponse) &&
+            Utils.enhancedDeepEquals(this.scheme, other.scheme) &&
+            Utils.enhancedDeepEquals(this.authenticationResponse, other.authenticationResponse) &&
+            Utils.enhancedDeepEquals(this.cavvAlgorithm, other.cavvAlgorithm) &&
+            Utils.enhancedDeepEquals(this.xid, other.xid);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             cavv,
             eci,
             version,

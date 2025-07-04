@@ -15,7 +15,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
-import java.util.Objects;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 public class AirlineLeg {
@@ -872,34 +871,34 @@ public class AirlineLeg {
         }
         AirlineLeg other = (AirlineLeg) o;
         return 
-            Objects.deepEquals(this.arrivalAirport, other.arrivalAirport) &&
-            Objects.deepEquals(this.arrivalAt, other.arrivalAt) &&
-            Objects.deepEquals(this.arrivalCity, other.arrivalCity) &&
-            Objects.deepEquals(this.arrivalCountry, other.arrivalCountry) &&
-            Objects.deepEquals(this.carrierCode, other.carrierCode) &&
-            Objects.deepEquals(this.carrierName, other.carrierName) &&
-            Objects.deepEquals(this.iataDesignator, other.iataDesignator) &&
-            Objects.deepEquals(this.icaoCode, other.icaoCode) &&
-            Objects.deepEquals(this.couponNumber, other.couponNumber) &&
-            Objects.deepEquals(this.departureAirport, other.departureAirport) &&
-            Objects.deepEquals(this.departureAt, other.departureAt) &&
-            Objects.deepEquals(this.departureCity, other.departureCity) &&
-            Objects.deepEquals(this.departureCountry, other.departureCountry) &&
-            Objects.deepEquals(this.departureTaxAmount, other.departureTaxAmount) &&
-            Objects.deepEquals(this.fareAmount, other.fareAmount) &&
-            Objects.deepEquals(this.fareBasisCode, other.fareBasisCode) &&
-            Objects.deepEquals(this.feeAmount, other.feeAmount) &&
-            Objects.deepEquals(this.flightClass, other.flightClass) &&
-            Objects.deepEquals(this.flightNumber, other.flightNumber) &&
-            Objects.deepEquals(this.routeType, other.routeType) &&
-            Objects.deepEquals(this.seatClass, other.seatClass) &&
-            Objects.deepEquals(this.stopOver, other.stopOver) &&
-            Objects.deepEquals(this.taxAmount, other.taxAmount);
+            Utils.enhancedDeepEquals(this.arrivalAirport, other.arrivalAirport) &&
+            Utils.enhancedDeepEquals(this.arrivalAt, other.arrivalAt) &&
+            Utils.enhancedDeepEquals(this.arrivalCity, other.arrivalCity) &&
+            Utils.enhancedDeepEquals(this.arrivalCountry, other.arrivalCountry) &&
+            Utils.enhancedDeepEquals(this.carrierCode, other.carrierCode) &&
+            Utils.enhancedDeepEquals(this.carrierName, other.carrierName) &&
+            Utils.enhancedDeepEquals(this.iataDesignator, other.iataDesignator) &&
+            Utils.enhancedDeepEquals(this.icaoCode, other.icaoCode) &&
+            Utils.enhancedDeepEquals(this.couponNumber, other.couponNumber) &&
+            Utils.enhancedDeepEquals(this.departureAirport, other.departureAirport) &&
+            Utils.enhancedDeepEquals(this.departureAt, other.departureAt) &&
+            Utils.enhancedDeepEquals(this.departureCity, other.departureCity) &&
+            Utils.enhancedDeepEquals(this.departureCountry, other.departureCountry) &&
+            Utils.enhancedDeepEquals(this.departureTaxAmount, other.departureTaxAmount) &&
+            Utils.enhancedDeepEquals(this.fareAmount, other.fareAmount) &&
+            Utils.enhancedDeepEquals(this.fareBasisCode, other.fareBasisCode) &&
+            Utils.enhancedDeepEquals(this.feeAmount, other.feeAmount) &&
+            Utils.enhancedDeepEquals(this.flightClass, other.flightClass) &&
+            Utils.enhancedDeepEquals(this.flightNumber, other.flightNumber) &&
+            Utils.enhancedDeepEquals(this.routeType, other.routeType) &&
+            Utils.enhancedDeepEquals(this.seatClass, other.seatClass) &&
+            Utils.enhancedDeepEquals(this.stopOver, other.stopOver) &&
+            Utils.enhancedDeepEquals(this.taxAmount, other.taxAmount);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             arrivalAirport,
             arrivalAt,
             arrivalCity,

@@ -10,7 +10,6 @@ import com.gr4vy.sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.util.List;
-import java.util.Objects;
 
 public class PaymentOptions {
 
@@ -59,12 +58,12 @@ public class PaymentOptions {
         }
         PaymentOptions other = (PaymentOptions) o;
         return 
-            Objects.deepEquals(this.items, other.items);
+            Utils.enhancedDeepEquals(this.items, other.items);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             items);
     }
     

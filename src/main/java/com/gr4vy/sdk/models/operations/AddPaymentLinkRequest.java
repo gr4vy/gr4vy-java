@@ -10,7 +10,6 @@ import com.gr4vy.sdk.utils.SpeakeasyMetadata;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 public class AddPaymentLinkRequest {
@@ -91,13 +90,13 @@ public class AddPaymentLinkRequest {
         }
         AddPaymentLinkRequest other = (AddPaymentLinkRequest) o;
         return 
-            Objects.deepEquals(this.merchantAccountId, other.merchantAccountId) &&
-            Objects.deepEquals(this.paymentLinkCreate, other.paymentLinkCreate);
+            Utils.enhancedDeepEquals(this.merchantAccountId, other.merchantAccountId) &&
+            Utils.enhancedDeepEquals(this.paymentLinkCreate, other.paymentLinkCreate);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             merchantAccountId,
             paymentLinkCreate);
     }

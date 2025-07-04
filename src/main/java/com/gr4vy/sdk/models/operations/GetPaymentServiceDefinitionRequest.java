@@ -9,7 +9,6 @@ import com.gr4vy.sdk.utils.SpeakeasyMetadata;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 
 public class GetPaymentServiceDefinitionRequest {
 
@@ -49,12 +48,12 @@ public class GetPaymentServiceDefinitionRequest {
         }
         GetPaymentServiceDefinitionRequest other = (GetPaymentServiceDefinitionRequest) o;
         return 
-            Objects.deepEquals(this.paymentServiceDefinitionId, other.paymentServiceDefinitionId);
+            Utils.enhancedDeepEquals(this.paymentServiceDefinitionId, other.paymentServiceDefinitionId);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             paymentServiceDefinitionId);
     }
     

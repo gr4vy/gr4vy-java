@@ -11,7 +11,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 public class TransactionRefundAllCreate {
@@ -111,13 +110,13 @@ public class TransactionRefundAllCreate {
         }
         TransactionRefundAllCreate other = (TransactionRefundAllCreate) o;
         return 
-            Objects.deepEquals(this.reason, other.reason) &&
-            Objects.deepEquals(this.externalIdentifier, other.externalIdentifier);
+            Utils.enhancedDeepEquals(this.reason, other.reason) &&
+            Utils.enhancedDeepEquals(this.externalIdentifier, other.externalIdentifier);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             reason,
             externalIdentifier);
     }

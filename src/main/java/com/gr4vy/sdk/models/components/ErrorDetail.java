@@ -9,7 +9,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 
 public class ErrorDetail {
 
@@ -127,15 +126,15 @@ public class ErrorDetail {
         }
         ErrorDetail other = (ErrorDetail) o;
         return 
-            Objects.deepEquals(this.location, other.location) &&
-            Objects.deepEquals(this.pointer, other.pointer) &&
-            Objects.deepEquals(this.message, other.message) &&
-            Objects.deepEquals(this.type, other.type);
+            Utils.enhancedDeepEquals(this.location, other.location) &&
+            Utils.enhancedDeepEquals(this.pointer, other.pointer) &&
+            Utils.enhancedDeepEquals(this.message, other.message) &&
+            Utils.enhancedDeepEquals(this.type, other.type);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             location,
             pointer,
             message,

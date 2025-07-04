@@ -14,7 +14,6 @@ import com.gr4vy.sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -249,18 +248,18 @@ public class ReportSummary {
         }
         ReportSummary other = (ReportSummary) o;
         return 
-            Objects.deepEquals(this.type, other.type) &&
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.merchantAccountId, other.merchantAccountId) &&
-            Objects.deepEquals(this.name, other.name) &&
-            Objects.deepEquals(this.creatorId, other.creatorId) &&
-            Objects.deepEquals(this.creatorDisplayName, other.creatorDisplayName) &&
-            Objects.deepEquals(this.creatorType, other.creatorType);
+            Utils.enhancedDeepEquals(this.type, other.type) &&
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.merchantAccountId, other.merchantAccountId) &&
+            Utils.enhancedDeepEquals(this.name, other.name) &&
+            Utils.enhancedDeepEquals(this.creatorId, other.creatorId) &&
+            Utils.enhancedDeepEquals(this.creatorDisplayName, other.creatorDisplayName) &&
+            Utils.enhancedDeepEquals(this.creatorType, other.creatorType);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             type,
             id,
             merchantAccountId,

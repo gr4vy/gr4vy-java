@@ -17,7 +17,6 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -218,16 +217,16 @@ public class CheckoutSessionCreate {
         }
         CheckoutSessionCreate other = (CheckoutSessionCreate) o;
         return 
-            Objects.deepEquals(this.cartItems, other.cartItems) &&
-            Objects.deepEquals(this.metadata, other.metadata) &&
-            Objects.deepEquals(this.buyer, other.buyer) &&
-            Objects.deepEquals(this.airline, other.airline) &&
-            Objects.deepEquals(this.expiresIn, other.expiresIn);
+            Utils.enhancedDeepEquals(this.cartItems, other.cartItems) &&
+            Utils.enhancedDeepEquals(this.metadata, other.metadata) &&
+            Utils.enhancedDeepEquals(this.buyer, other.buyer) &&
+            Utils.enhancedDeepEquals(this.airline, other.airline) &&
+            Utils.enhancedDeepEquals(this.expiresIn, other.expiresIn);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             cartItems,
             metadata,
             buyer,

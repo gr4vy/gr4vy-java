@@ -10,7 +10,6 @@ import com.gr4vy.sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.time.OffsetDateTime;
-import java.util.Objects;
 
 public class ReportExecutionContext {
 
@@ -85,13 +84,13 @@ public class ReportExecutionContext {
         }
         ReportExecutionContext other = (ReportExecutionContext) o;
         return 
-            Objects.deepEquals(this.referenceTimestamp, other.referenceTimestamp) &&
-            Objects.deepEquals(this.referenceTimezone, other.referenceTimezone);
+            Utils.enhancedDeepEquals(this.referenceTimestamp, other.referenceTimestamp) &&
+            Utils.enhancedDeepEquals(this.referenceTimezone, other.referenceTimezone);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             referenceTimestamp,
             referenceTimezone);
     }

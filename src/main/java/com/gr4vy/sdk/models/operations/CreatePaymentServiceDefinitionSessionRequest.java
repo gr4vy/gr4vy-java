@@ -11,7 +11,6 @@ import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.util.Map;
-import java.util.Objects;
 
 public class CreatePaymentServiceDefinitionSessionRequest {
 
@@ -68,13 +67,13 @@ public class CreatePaymentServiceDefinitionSessionRequest {
         }
         CreatePaymentServiceDefinitionSessionRequest other = (CreatePaymentServiceDefinitionSessionRequest) o;
         return 
-            Objects.deepEquals(this.paymentServiceDefinitionId, other.paymentServiceDefinitionId) &&
-            Objects.deepEquals(this.requestBody, other.requestBody);
+            Utils.enhancedDeepEquals(this.paymentServiceDefinitionId, other.paymentServiceDefinitionId) &&
+            Utils.enhancedDeepEquals(this.requestBody, other.requestBody);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             paymentServiceDefinitionId,
             requestBody);
     }

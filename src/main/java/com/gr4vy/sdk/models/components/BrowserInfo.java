@@ -13,7 +13,6 @@ import java.lang.Boolean;
 import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 /**
@@ -262,21 +261,21 @@ public class BrowserInfo {
         }
         BrowserInfo other = (BrowserInfo) o;
         return 
-            Objects.deepEquals(this.javascriptEnabled, other.javascriptEnabled) &&
-            Objects.deepEquals(this.javaEnabled, other.javaEnabled) &&
-            Objects.deepEquals(this.language, other.language) &&
-            Objects.deepEquals(this.colorDepth, other.colorDepth) &&
-            Objects.deepEquals(this.screenHeight, other.screenHeight) &&
-            Objects.deepEquals(this.screenWidth, other.screenWidth) &&
-            Objects.deepEquals(this.timeZoneOffset, other.timeZoneOffset) &&
-            Objects.deepEquals(this.userAgent, other.userAgent) &&
-            Objects.deepEquals(this.userDevice, other.userDevice) &&
-            Objects.deepEquals(this.acceptHeader, other.acceptHeader);
+            Utils.enhancedDeepEquals(this.javascriptEnabled, other.javascriptEnabled) &&
+            Utils.enhancedDeepEquals(this.javaEnabled, other.javaEnabled) &&
+            Utils.enhancedDeepEquals(this.language, other.language) &&
+            Utils.enhancedDeepEquals(this.colorDepth, other.colorDepth) &&
+            Utils.enhancedDeepEquals(this.screenHeight, other.screenHeight) &&
+            Utils.enhancedDeepEquals(this.screenWidth, other.screenWidth) &&
+            Utils.enhancedDeepEquals(this.timeZoneOffset, other.timeZoneOffset) &&
+            Utils.enhancedDeepEquals(this.userAgent, other.userAgent) &&
+            Utils.enhancedDeepEquals(this.userDevice, other.userDevice) &&
+            Utils.enhancedDeepEquals(this.acceptHeader, other.acceptHeader);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             javascriptEnabled,
             javaEnabled,
             language,

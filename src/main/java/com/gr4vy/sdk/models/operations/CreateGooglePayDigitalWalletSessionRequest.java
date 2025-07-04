@@ -10,7 +10,6 @@ import com.gr4vy.sdk.utils.SpeakeasyMetadata;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 public class CreateGooglePayDigitalWalletSessionRequest {
@@ -91,13 +90,13 @@ public class CreateGooglePayDigitalWalletSessionRequest {
         }
         CreateGooglePayDigitalWalletSessionRequest other = (CreateGooglePayDigitalWalletSessionRequest) o;
         return 
-            Objects.deepEquals(this.merchantAccountId, other.merchantAccountId) &&
-            Objects.deepEquals(this.googlePaySessionRequest, other.googlePaySessionRequest);
+            Utils.enhancedDeepEquals(this.merchantAccountId, other.merchantAccountId) &&
+            Utils.enhancedDeepEquals(this.googlePaySessionRequest, other.googlePaySessionRequest);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             merchantAccountId,
             googlePaySessionRequest);
     }

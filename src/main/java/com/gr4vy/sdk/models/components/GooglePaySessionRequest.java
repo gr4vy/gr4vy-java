@@ -9,7 +9,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 
 public class GooglePaySessionRequest {
 
@@ -58,12 +57,12 @@ public class GooglePaySessionRequest {
         }
         GooglePaySessionRequest other = (GooglePaySessionRequest) o;
         return 
-            Objects.deepEquals(this.originDomain, other.originDomain);
+            Utils.enhancedDeepEquals(this.originDomain, other.originDomain);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             originDomain);
     }
     

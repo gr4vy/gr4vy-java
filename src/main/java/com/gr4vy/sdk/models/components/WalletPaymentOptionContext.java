@@ -10,7 +10,6 @@ import com.gr4vy.sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.util.List;
-import java.util.Objects;
 
 public class WalletPaymentOptionContext {
 
@@ -67,13 +66,13 @@ public class WalletPaymentOptionContext {
         }
         WalletPaymentOptionContext other = (WalletPaymentOptionContext) o;
         return 
-            Objects.deepEquals(this.merchantName, other.merchantName) &&
-            Objects.deepEquals(this.supportedSchemes, other.supportedSchemes);
+            Utils.enhancedDeepEquals(this.merchantName, other.merchantName) &&
+            Utils.enhancedDeepEquals(this.supportedSchemes, other.supportedSchemes);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             merchantName,
             supportedSchemes);
     }

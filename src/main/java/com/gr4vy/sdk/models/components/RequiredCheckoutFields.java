@@ -15,7 +15,6 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 /**
@@ -112,13 +111,13 @@ public class RequiredCheckoutFields {
         }
         RequiredCheckoutFields other = (RequiredCheckoutFields) o;
         return 
-            Objects.deepEquals(this.requiredFields, other.requiredFields) &&
-            Objects.deepEquals(this.conditions, other.conditions);
+            Utils.enhancedDeepEquals(this.requiredFields, other.requiredFields) &&
+            Utils.enhancedDeepEquals(this.conditions, other.conditions);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             requiredFields,
             conditions);
     }

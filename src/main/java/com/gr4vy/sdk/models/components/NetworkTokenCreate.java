@@ -12,7 +12,6 @@ import com.gr4vy.sdk.utils.Utils;
 import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 public class NetworkTokenCreate {
@@ -130,14 +129,14 @@ public class NetworkTokenCreate {
         }
         NetworkTokenCreate other = (NetworkTokenCreate) o;
         return 
-            Objects.deepEquals(this.securityCode, other.securityCode) &&
-            Objects.deepEquals(this.merchantInitiated, other.merchantInitiated) &&
-            Objects.deepEquals(this.isSubsequentPayment, other.isSubsequentPayment);
+            Utils.enhancedDeepEquals(this.securityCode, other.securityCode) &&
+            Utils.enhancedDeepEquals(this.merchantInitiated, other.merchantInitiated) &&
+            Utils.enhancedDeepEquals(this.isSubsequentPayment, other.isSubsequentPayment);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             securityCode,
             merchantInitiated,
             isSubsequentPayment);

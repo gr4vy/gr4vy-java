@@ -10,7 +10,6 @@ import com.gr4vy.sdk.utils.Utils;
 import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 
 /**
  * DefinitionField
@@ -159,16 +158,16 @@ public class DefinitionField {
         }
         DefinitionField other = (DefinitionField) o;
         return 
-            Objects.deepEquals(this.key, other.key) &&
-            Objects.deepEquals(this.displayName, other.displayName) &&
-            Objects.deepEquals(this.required, other.required) &&
-            Objects.deepEquals(this.format, other.format) &&
-            Objects.deepEquals(this.secret, other.secret);
+            Utils.enhancedDeepEquals(this.key, other.key) &&
+            Utils.enhancedDeepEquals(this.displayName, other.displayName) &&
+            Utils.enhancedDeepEquals(this.required, other.required) &&
+            Utils.enhancedDeepEquals(this.format, other.format) &&
+            Utils.enhancedDeepEquals(this.secret, other.secret);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             key,
             displayName,
             required,

@@ -9,7 +9,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 
 public class CheckoutCardConnectionOptions {
 
@@ -84,13 +83,13 @@ public class CheckoutCardConnectionOptions {
         }
         CheckoutCardConnectionOptions other = (CheckoutCardConnectionOptions) o;
         return 
-            Objects.deepEquals(this.processingChannelId, other.processingChannelId) &&
-            Objects.deepEquals(this.sourceId, other.sourceId);
+            Utils.enhancedDeepEquals(this.processingChannelId, other.processingChannelId) &&
+            Utils.enhancedDeepEquals(this.sourceId, other.sourceId);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             processingChannelId,
             sourceId);
     }

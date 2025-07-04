@@ -11,7 +11,6 @@ import com.gr4vy.sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -99,13 +98,13 @@ public class CreateCheckoutSessionRequest {
         }
         CreateCheckoutSessionRequest other = (CreateCheckoutSessionRequest) o;
         return 
-            Objects.deepEquals(this.merchantAccountId, other.merchantAccountId) &&
-            Objects.deepEquals(this.checkoutSessionCreate, other.checkoutSessionCreate);
+            Utils.enhancedDeepEquals(this.merchantAccountId, other.merchantAccountId) &&
+            Utils.enhancedDeepEquals(this.checkoutSessionCreate, other.checkoutSessionCreate);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             merchantAccountId,
             checkoutSessionCreate);
     }

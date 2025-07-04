@@ -11,7 +11,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 public class Address {
@@ -363,20 +362,20 @@ public class Address {
         }
         Address other = (Address) o;
         return 
-            Objects.deepEquals(this.city, other.city) &&
-            Objects.deepEquals(this.country, other.country) &&
-            Objects.deepEquals(this.postalCode, other.postalCode) &&
-            Objects.deepEquals(this.state, other.state) &&
-            Objects.deepEquals(this.stateCode, other.stateCode) &&
-            Objects.deepEquals(this.houseNumberOrName, other.houseNumberOrName) &&
-            Objects.deepEquals(this.line1, other.line1) &&
-            Objects.deepEquals(this.line2, other.line2) &&
-            Objects.deepEquals(this.organization, other.organization);
+            Utils.enhancedDeepEquals(this.city, other.city) &&
+            Utils.enhancedDeepEquals(this.country, other.country) &&
+            Utils.enhancedDeepEquals(this.postalCode, other.postalCode) &&
+            Utils.enhancedDeepEquals(this.state, other.state) &&
+            Utils.enhancedDeepEquals(this.stateCode, other.stateCode) &&
+            Utils.enhancedDeepEquals(this.houseNumberOrName, other.houseNumberOrName) &&
+            Utils.enhancedDeepEquals(this.line1, other.line1) &&
+            Utils.enhancedDeepEquals(this.line2, other.line2) &&
+            Utils.enhancedDeepEquals(this.organization, other.organization);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             city,
             country,
             postalCode,

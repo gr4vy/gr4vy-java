@@ -16,7 +16,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -422,23 +421,23 @@ public class GiftCardSummary {
         }
         GiftCardSummary other = (GiftCardSummary) o;
         return 
-            Objects.deepEquals(this.type, other.type) &&
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.merchantAccountId, other.merchantAccountId) &&
-            Objects.deepEquals(this.bin, other.bin) &&
-            Objects.deepEquals(this.subBin, other.subBin) &&
-            Objects.deepEquals(this.last4, other.last4) &&
-            Objects.deepEquals(this.currency, other.currency) &&
-            Objects.deepEquals(this.expirationDate, other.expirationDate) &&
-            Objects.deepEquals(this.balance, other.balance) &&
-            Objects.deepEquals(this.balanceErrorCode, other.balanceErrorCode) &&
-            Objects.deepEquals(this.balanceRawErrorCode, other.balanceRawErrorCode) &&
-            Objects.deepEquals(this.balanceRawErrorMessage, other.balanceRawErrorMessage);
+            Utils.enhancedDeepEquals(this.type, other.type) &&
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.merchantAccountId, other.merchantAccountId) &&
+            Utils.enhancedDeepEquals(this.bin, other.bin) &&
+            Utils.enhancedDeepEquals(this.subBin, other.subBin) &&
+            Utils.enhancedDeepEquals(this.last4, other.last4) &&
+            Utils.enhancedDeepEquals(this.currency, other.currency) &&
+            Utils.enhancedDeepEquals(this.expirationDate, other.expirationDate) &&
+            Utils.enhancedDeepEquals(this.balance, other.balance) &&
+            Utils.enhancedDeepEquals(this.balanceErrorCode, other.balanceErrorCode) &&
+            Utils.enhancedDeepEquals(this.balanceRawErrorCode, other.balanceRawErrorCode) &&
+            Utils.enhancedDeepEquals(this.balanceRawErrorMessage, other.balanceRawErrorMessage);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             type,
             id,
             merchantAccountId,

@@ -16,7 +16,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -367,24 +366,24 @@ public class PaymentServiceDefinition {
         }
         PaymentServiceDefinition other = (PaymentServiceDefinition) o;
         return 
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.type, other.type) &&
-            Objects.deepEquals(this.displayName, other.displayName) &&
-            Objects.deepEquals(this.method, other.method) &&
-            Objects.deepEquals(this.fields, other.fields) &&
-            Objects.deepEquals(this.reportingFields, other.reportingFields) &&
-            Objects.deepEquals(this.supportedCurrencies, other.supportedCurrencies) &&
-            Objects.deepEquals(this.supportedCountries, other.supportedCountries) &&
-            Objects.deepEquals(this.mode, other.mode) &&
-            Objects.deepEquals(this.iconUrl, other.iconUrl) &&
-            Objects.deepEquals(this.supportedFeatures, other.supportedFeatures) &&
-            Objects.deepEquals(this.requiredCheckoutFields, other.requiredCheckoutFields) &&
-            Objects.deepEquals(this.configuration, other.configuration);
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.type, other.type) &&
+            Utils.enhancedDeepEquals(this.displayName, other.displayName) &&
+            Utils.enhancedDeepEquals(this.method, other.method) &&
+            Utils.enhancedDeepEquals(this.fields, other.fields) &&
+            Utils.enhancedDeepEquals(this.reportingFields, other.reportingFields) &&
+            Utils.enhancedDeepEquals(this.supportedCurrencies, other.supportedCurrencies) &&
+            Utils.enhancedDeepEquals(this.supportedCountries, other.supportedCountries) &&
+            Utils.enhancedDeepEquals(this.mode, other.mode) &&
+            Utils.enhancedDeepEquals(this.iconUrl, other.iconUrl) &&
+            Utils.enhancedDeepEquals(this.supportedFeatures, other.supportedFeatures) &&
+            Utils.enhancedDeepEquals(this.requiredCheckoutFields, other.requiredCheckoutFields) &&
+            Utils.enhancedDeepEquals(this.configuration, other.configuration);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             id,
             type,
             displayName,

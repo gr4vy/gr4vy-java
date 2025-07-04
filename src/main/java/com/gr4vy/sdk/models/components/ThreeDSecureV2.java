@@ -11,7 +11,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 public class ThreeDSecureV2 {
@@ -225,19 +224,19 @@ public class ThreeDSecureV2 {
         }
         ThreeDSecureV2 other = (ThreeDSecureV2) o;
         return 
-            Objects.deepEquals(this.version, other.version) &&
-            Objects.deepEquals(this.authenticationResponse, other.authenticationResponse) &&
-            Objects.deepEquals(this.directoryResponse, other.directoryResponse) &&
-            Objects.deepEquals(this.directoryTransactionId, other.directoryTransactionId) &&
-            Objects.deepEquals(this.transactionReason, other.transactionReason) &&
-            Objects.deepEquals(this.cavv, other.cavv) &&
-            Objects.deepEquals(this.eci, other.eci) &&
-            Objects.deepEquals(this.cardholderInfo, other.cardholderInfo);
+            Utils.enhancedDeepEquals(this.version, other.version) &&
+            Utils.enhancedDeepEquals(this.authenticationResponse, other.authenticationResponse) &&
+            Utils.enhancedDeepEquals(this.directoryResponse, other.directoryResponse) &&
+            Utils.enhancedDeepEquals(this.directoryTransactionId, other.directoryTransactionId) &&
+            Utils.enhancedDeepEquals(this.transactionReason, other.transactionReason) &&
+            Utils.enhancedDeepEquals(this.cavv, other.cavv) &&
+            Utils.enhancedDeepEquals(this.eci, other.eci) &&
+            Utils.enhancedDeepEquals(this.cardholderInfo, other.cardholderInfo);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             version,
             authenticationResponse,
             directoryResponse,

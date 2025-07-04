@@ -13,7 +13,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.time.LocalDate;
-import java.util.Objects;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 /**
@@ -209,16 +208,16 @@ public class Recipient {
         }
         Recipient other = (Recipient) o;
         return 
-            Objects.deepEquals(this.firstName, other.firstName) &&
-            Objects.deepEquals(this.lastName, other.lastName) &&
-            Objects.deepEquals(this.address, other.address) &&
-            Objects.deepEquals(this.accountNumber, other.accountNumber) &&
-            Objects.deepEquals(this.dateOfBirth, other.dateOfBirth);
+            Utils.enhancedDeepEquals(this.firstName, other.firstName) &&
+            Utils.enhancedDeepEquals(this.lastName, other.lastName) &&
+            Utils.enhancedDeepEquals(this.address, other.address) &&
+            Utils.enhancedDeepEquals(this.accountNumber, other.accountNumber) &&
+            Utils.enhancedDeepEquals(this.dateOfBirth, other.dateOfBirth);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             firstName,
             lastName,
             address,

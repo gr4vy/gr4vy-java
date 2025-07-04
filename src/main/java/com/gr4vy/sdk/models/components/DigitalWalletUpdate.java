@@ -13,7 +13,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 /**
@@ -167,16 +166,16 @@ public class DigitalWalletUpdate {
         }
         DigitalWalletUpdate other = (DigitalWalletUpdate) o;
         return 
-            Objects.deepEquals(this.merchantName, other.merchantName) &&
-            Objects.deepEquals(this.domainNames, other.domainNames) &&
-            Objects.deepEquals(this.merchantDisplayName, other.merchantDisplayName) &&
-            Objects.deepEquals(this.merchantUrl, other.merchantUrl) &&
-            Objects.deepEquals(this.merchantCountryCode, other.merchantCountryCode);
+            Utils.enhancedDeepEquals(this.merchantName, other.merchantName) &&
+            Utils.enhancedDeepEquals(this.domainNames, other.domainNames) &&
+            Utils.enhancedDeepEquals(this.merchantDisplayName, other.merchantDisplayName) &&
+            Utils.enhancedDeepEquals(this.merchantUrl, other.merchantUrl) &&
+            Utils.enhancedDeepEquals(this.merchantCountryCode, other.merchantCountryCode);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             merchantName,
             domainNames,
             merchantDisplayName,
