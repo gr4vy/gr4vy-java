@@ -23,7 +23,6 @@ import org.openapitools.jackson.nullable.JsonNullable;
  * <p>Information about an airline travel.
  */
 public class Airline {
-
     /**
      * The unique identifier of the reservation in the global distribution system.
      */
@@ -219,7 +218,13 @@ public class Airline {
     }
     
     public Airline() {
-        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
+        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined());
     }
 
     /**
@@ -377,9 +382,10 @@ public class Airline {
         return travelAgencyPlanName;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The unique identifier of the reservation in the global distribution system.
@@ -723,7 +729,6 @@ public class Airline {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -758,24 +763,12 @@ public class Airline {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            bookingCode,
-            isCardholderTraveling,
-            issuedAddress,
-            issuedAt,
-            issuingCarrierCode,
-            issuingCarrierName,
-            issuingIataDesignator,
-            issuingIcaoCode,
-            legs,
-            passengerNameRecord,
-            passengers,
-            reservationSystem,
-            restrictedTicket,
-            ticketDeliveryMethod,
-            ticketNumber,
-            travelAgencyCode,
-            travelAgencyInvoiceNumber,
-            travelAgencyName,
+            bookingCode, isCardholderTraveling, issuedAddress,
+            issuedAt, issuingCarrierCode, issuingCarrierName,
+            issuingIataDesignator, issuingIcaoCode, legs,
+            passengerNameRecord, passengers, reservationSystem,
+            restrictedTicket, ticketDeliveryMethod, ticketNumber,
+            travelAgencyCode, travelAgencyInvoiceNumber, travelAgencyName,
             travelAgencyPlanName);
     }
     
@@ -802,50 +795,52 @@ public class Airline {
                 "travelAgencyName", travelAgencyName,
                 "travelAgencyPlanName", travelAgencyPlanName);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private JsonNullable<String> bookingCode = JsonNullable.undefined();
- 
+
         private JsonNullable<Boolean> isCardholderTraveling = JsonNullable.undefined();
- 
+
         private JsonNullable<String> issuedAddress = JsonNullable.undefined();
- 
+
         private JsonNullable<OffsetDateTime> issuedAt = JsonNullable.undefined();
- 
+
         private JsonNullable<String> issuingCarrierCode = JsonNullable.undefined();
- 
+
         private JsonNullable<String> issuingCarrierName = JsonNullable.undefined();
- 
+
         private JsonNullable<String> issuingIataDesignator = JsonNullable.undefined();
- 
+
         private JsonNullable<String> issuingIcaoCode = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends List<AirlineLeg>> legs = JsonNullable.undefined();
- 
+
         private JsonNullable<String> passengerNameRecord = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends List<AirlinePassenger>> passengers = JsonNullable.undefined();
- 
+
         private JsonNullable<String> reservationSystem = JsonNullable.undefined();
- 
+
         private JsonNullable<Boolean> restrictedTicket = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends TicketDeliveryMethod> ticketDeliveryMethod = JsonNullable.undefined();
- 
+
         private JsonNullable<String> ticketNumber = JsonNullable.undefined();
- 
+
         private JsonNullable<String> travelAgencyCode = JsonNullable.undefined();
- 
+
         private JsonNullable<String> travelAgencyInvoiceNumber = JsonNullable.undefined();
- 
+
         private JsonNullable<String> travelAgencyName = JsonNullable.undefined();
- 
+
         private JsonNullable<String> travelAgencyPlanName = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The unique identifier of the reservation in the global distribution system.
@@ -865,6 +860,7 @@ public class Airline {
             return this;
         }
 
+
         /**
          * Indicates whether the cardholder is traveling.
          */
@@ -882,6 +878,7 @@ public class Airline {
             this.isCardholderTraveling = isCardholderTraveling;
             return this;
         }
+
 
         /**
          * The address of the place/agency that issued the ticket.
@@ -901,6 +898,7 @@ public class Airline {
             return this;
         }
 
+
         /**
          * The date that the ticket was last issued in the airline reservation system.
          */
@@ -918,6 +916,7 @@ public class Airline {
             this.issuedAt = issuedAt;
             return this;
         }
+
 
         /**
          * For airline aggregators, three-character IATA code of the airline issuing the ticket.
@@ -937,6 +936,7 @@ public class Airline {
             return this;
         }
 
+
         /**
          * For airline aggregators, name of the airline issuing the ticket.
          */
@@ -954,6 +954,7 @@ public class Airline {
             this.issuingCarrierName = issuingCarrierName;
             return this;
         }
+
 
         /**
          * For airline aggregators, two-character IATA code of the airline issuing the ticket.
@@ -973,6 +974,7 @@ public class Airline {
             return this;
         }
 
+
         /**
          * For airline aggregators, three-character ICAO code of the airline issuing the ticket.
          */
@@ -990,6 +992,7 @@ public class Airline {
             this.issuingIcaoCode = issuingIcaoCode;
             return this;
         }
+
 
         /**
          * An array of separate trip segments. Each leg contains detailed itinerary information.
@@ -1009,6 +1012,7 @@ public class Airline {
             return this;
         }
 
+
         /**
          * The Passenger Name Record (PNR) in the airline reservation system.
          */
@@ -1026,6 +1030,7 @@ public class Airline {
             this.passengerNameRecord = passengerNameRecord;
             return this;
         }
+
 
         /**
          * An array of the travelling passengers.
@@ -1045,6 +1050,7 @@ public class Airline {
             return this;
         }
 
+
         /**
          * The name of the reservation system.
          */
@@ -1062,6 +1068,7 @@ public class Airline {
             this.reservationSystem = reservationSystem;
             return this;
         }
+
 
         /**
          * Indicates whether the ticket is restricted (refundable).
@@ -1081,6 +1088,7 @@ public class Airline {
             return this;
         }
 
+
         /**
          * The delivery method of the ticket.
          */
@@ -1098,6 +1106,7 @@ public class Airline {
             this.ticketDeliveryMethod = ticketDeliveryMethod;
             return this;
         }
+
 
         /**
          * The airline's unique ticket number.
@@ -1117,6 +1126,7 @@ public class Airline {
             return this;
         }
 
+
         /**
          * The IATA travel agency code.
          */
@@ -1134,6 +1144,7 @@ public class Airline {
             this.travelAgencyCode = travelAgencyCode;
             return this;
         }
+
 
         /**
          * The reference number of the invoice that was issued by the travel agency.
@@ -1153,6 +1164,7 @@ public class Airline {
             return this;
         }
 
+
         /**
          * The name of the travel agency.
          */
@@ -1171,6 +1183,7 @@ public class Airline {
             return this;
         }
 
+
         /**
          * The name of the travel agency plan.
          */
@@ -1188,28 +1201,18 @@ public class Airline {
             this.travelAgencyPlanName = travelAgencyPlanName;
             return this;
         }
-        
+
         public Airline build() {
+
             return new Airline(
-                bookingCode,
-                isCardholderTraveling,
-                issuedAddress,
-                issuedAt,
-                issuingCarrierCode,
-                issuingCarrierName,
-                issuingIataDesignator,
-                issuingIcaoCode,
-                legs,
-                passengerNameRecord,
-                passengers,
-                reservationSystem,
-                restrictedTicket,
-                ticketDeliveryMethod,
-                ticketNumber,
-                travelAgencyCode,
-                travelAgencyInvoiceNumber,
-                travelAgencyName,
+                bookingCode, isCardholderTraveling, issuedAddress,
+                issuedAt, issuingCarrierCode, issuingCarrierName,
+                issuingIataDesignator, issuingIcaoCode, legs,
+                passengerNameRecord, passengers, reservationSystem,
+                restrictedTicket, ticketDeliveryMethod, ticketNumber,
+                travelAgencyCode, travelAgencyInvoiceNumber, travelAgencyName,
                 travelAgencyPlanName);
         }
+
     }
 }

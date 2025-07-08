@@ -15,8 +15,8 @@ import java.lang.String;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class ListPaymentLinksRequest {
 
+public class ListPaymentLinksRequest {
     /**
      * A pointer to the page of results to return.
      */
@@ -76,9 +76,10 @@ public class ListPaymentLinksRequest {
         return merchantAccountId;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * A pointer to the page of results to return.
@@ -107,6 +108,7 @@ public class ListPaymentLinksRequest {
         return this;
     }
 
+
     /**
      * The maximum number of items that are returned.
      */
@@ -134,7 +136,6 @@ public class ListPaymentLinksRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -153,9 +154,7 @@ public class ListPaymentLinksRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            cursor,
-            limit,
-            merchantAccountId);
+            cursor, limit, merchantAccountId);
     }
     
     @Override
@@ -165,18 +164,20 @@ public class ListPaymentLinksRequest {
                 "limit", limit,
                 "merchantAccountId", merchantAccountId);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private JsonNullable<String> cursor = JsonNullable.undefined();
- 
+
         private Optional<Long> limit;
- 
+
         private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * A pointer to the page of results to return.
@@ -196,6 +197,7 @@ public class ListPaymentLinksRequest {
             return this;
         }
 
+
         /**
          * The maximum number of items that are returned.
          */
@@ -214,6 +216,7 @@ public class ListPaymentLinksRequest {
             return this;
         }
 
+
         /**
          * The ID of the merchant account to use for this request.
          */
@@ -231,16 +234,16 @@ public class ListPaymentLinksRequest {
             this.merchantAccountId = merchantAccountId;
             return this;
         }
-        
+
         public ListPaymentLinksRequest build() {
             if (limit == null) {
                 limit = _SINGLETON_VALUE_Limit.value();
             }
+
             return new ListPaymentLinksRequest(
-                cursor,
-                limit,
-                merchantAccountId);
+                cursor, limit, merchantAccountId);
         }
+
 
         private static final LazySingletonValue<Optional<Long>> _SINGLETON_VALUE_Limit =
                 new LazySingletonValue<>(

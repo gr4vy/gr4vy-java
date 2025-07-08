@@ -53,7 +53,7 @@ public class CreateApplePayDigitalWalletSessionRequestBuilder {
     public CreateApplePayDigitalWalletSessionResponse call() throws Exception {
         
         RequestOperation<CreateApplePayDigitalWalletSessionRequest, CreateApplePayDigitalWalletSessionResponse> operation
-              = new CreateApplePayDigitalWalletSessionOperation( sdkConfiguration);
+              = new CreateApplePayDigitalWalletSessionOperation(sdkConfiguration);
         CreateApplePayDigitalWalletSessionRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

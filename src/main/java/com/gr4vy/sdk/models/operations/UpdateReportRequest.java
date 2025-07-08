@@ -12,8 +12,8 @@ import java.lang.Override;
 import java.lang.String;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class UpdateReportRequest {
 
+public class UpdateReportRequest {
     /**
      * The ID of the report to edit.
      */
@@ -25,6 +25,7 @@ public class UpdateReportRequest {
      */
     @SpeakeasyMetadata("header:style=simple,explode=false,name=x-gr4vy-merchant-account-id")
     private JsonNullable<String> merchantAccountId;
+
 
     @SpeakeasyMetadata("request:mediaType=application/json")
     private ReportUpdate reportUpdate;
@@ -69,9 +70,10 @@ public class UpdateReportRequest {
         return reportUpdate;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The ID of the report to edit.
@@ -106,7 +108,6 @@ public class UpdateReportRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -125,9 +126,7 @@ public class UpdateReportRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            reportId,
-            merchantAccountId,
-            reportUpdate);
+            reportId, merchantAccountId, reportUpdate);
     }
     
     @Override
@@ -137,18 +136,20 @@ public class UpdateReportRequest {
                 "merchantAccountId", merchantAccountId,
                 "reportUpdate", reportUpdate);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String reportId;
- 
+
         private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
- 
+
         private ReportUpdate reportUpdate;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The ID of the report to edit.
@@ -158,6 +159,7 @@ public class UpdateReportRequest {
             this.reportId = reportId;
             return this;
         }
+
 
         /**
          * The ID of the merchant account to use for this request.
@@ -177,17 +179,18 @@ public class UpdateReportRequest {
             return this;
         }
 
+
         public Builder reportUpdate(ReportUpdate reportUpdate) {
             Utils.checkNotNull(reportUpdate, "reportUpdate");
             this.reportUpdate = reportUpdate;
             return this;
         }
-        
+
         public UpdateReportRequest build() {
+
             return new UpdateReportRequest(
-                reportId,
-                merchantAccountId,
-                reportUpdate);
+                reportId, merchantAccountId, reportUpdate);
         }
+
     }
 }

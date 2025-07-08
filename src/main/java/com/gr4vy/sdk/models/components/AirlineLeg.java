@@ -17,8 +17,8 @@ import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class AirlineLeg {
 
+public class AirlineLeg {
     /**
      * Arrival airport code of leg. 3-letter ISO code according to IATA official directory.
      */
@@ -254,7 +254,14 @@ public class AirlineLeg {
     }
     
     public AirlineLeg() {
-        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
+        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined());
     }
 
     /**
@@ -442,9 +449,10 @@ public class AirlineLeg {
         return taxAmount;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Arrival airport code of leg. 3-letter ISO code according to IATA official directory.
@@ -860,7 +868,6 @@ public class AirlineLeg {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -899,29 +906,14 @@ public class AirlineLeg {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            arrivalAirport,
-            arrivalAt,
-            arrivalCity,
-            arrivalCountry,
-            carrierCode,
-            carrierName,
-            iataDesignator,
-            icaoCode,
-            couponNumber,
-            departureAirport,
-            departureAt,
-            departureCity,
-            departureCountry,
-            departureTaxAmount,
-            fareAmount,
-            fareBasisCode,
-            feeAmount,
-            flightClass,
-            flightNumber,
-            routeType,
-            seatClass,
-            stopOver,
-            taxAmount);
+            arrivalAirport, arrivalAt, arrivalCity,
+            arrivalCountry, carrierCode, carrierName,
+            iataDesignator, icaoCode, couponNumber,
+            departureAirport, departureAt, departureCity,
+            departureCountry, departureTaxAmount, fareAmount,
+            fareBasisCode, feeAmount, flightClass,
+            flightNumber, routeType, seatClass,
+            stopOver, taxAmount);
     }
     
     @Override
@@ -951,58 +943,60 @@ public class AirlineLeg {
                 "stopOver", stopOver,
                 "taxAmount", taxAmount);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private JsonNullable<String> arrivalAirport = JsonNullable.undefined();
- 
+
         private JsonNullable<OffsetDateTime> arrivalAt = JsonNullable.undefined();
- 
+
         private JsonNullable<String> arrivalCity = JsonNullable.undefined();
- 
+
         private JsonNullable<String> arrivalCountry = JsonNullable.undefined();
- 
+
         private JsonNullable<String> carrierCode = JsonNullable.undefined();
- 
+
         private JsonNullable<String> carrierName = JsonNullable.undefined();
- 
+
         private JsonNullable<String> iataDesignator = JsonNullable.undefined();
- 
+
         private JsonNullable<String> icaoCode = JsonNullable.undefined();
- 
+
         private JsonNullable<String> couponNumber = JsonNullable.undefined();
- 
+
         private JsonNullable<String> departureAirport = JsonNullable.undefined();
- 
+
         private JsonNullable<OffsetDateTime> departureAt = JsonNullable.undefined();
- 
+
         private JsonNullable<String> departureCity = JsonNullable.undefined();
- 
+
         private JsonNullable<String> departureCountry = JsonNullable.undefined();
- 
+
         private JsonNullable<Long> departureTaxAmount = JsonNullable.undefined();
- 
+
         private JsonNullable<Long> fareAmount = JsonNullable.undefined();
- 
+
         private JsonNullable<String> fareBasisCode = JsonNullable.undefined();
- 
+
         private JsonNullable<Long> feeAmount = JsonNullable.undefined();
- 
+
         private JsonNullable<String> flightClass = JsonNullable.undefined();
- 
+
         private JsonNullable<String> flightNumber = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends RouteType> routeType = JsonNullable.undefined();
- 
+
         private JsonNullable<String> seatClass = JsonNullable.undefined();
- 
+
         private JsonNullable<Boolean> stopOver = JsonNullable.undefined();
- 
+
         private JsonNullable<Long> taxAmount = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Arrival airport code of leg. 3-letter ISO code according to IATA official directory.
@@ -1022,6 +1016,7 @@ public class AirlineLeg {
             return this;
         }
 
+
         /**
          * The date and time of travel in local time at the arrival airport.
          */
@@ -1039,6 +1034,7 @@ public class AirlineLeg {
             this.arrivalAt = arrivalAt;
             return this;
         }
+
 
         /**
          * Arrival city name.
@@ -1058,6 +1054,7 @@ public class AirlineLeg {
             return this;
         }
 
+
         /**
          * Arrival country code in ISO 3166 format.
          */
@@ -1075,6 +1072,7 @@ public class AirlineLeg {
             this.arrivalCountry = arrivalCountry;
             return this;
         }
+
 
         /**
          * 3 character airline code as set by IATA.
@@ -1094,6 +1092,7 @@ public class AirlineLeg {
             return this;
         }
 
+
         /**
          * Name of the airline.
          */
@@ -1111,6 +1110,7 @@ public class AirlineLeg {
             this.carrierName = carrierName;
             return this;
         }
+
 
         /**
          * Two-character IATA code of the airline.
@@ -1130,6 +1130,7 @@ public class AirlineLeg {
             return this;
         }
 
+
         /**
          * Three-character ICAO code of the airline.
          */
@@ -1147,6 +1148,7 @@ public class AirlineLeg {
             this.icaoCode = icaoCode;
             return this;
         }
+
 
         /**
          * Coupon number associated with the leg.
@@ -1166,6 +1168,7 @@ public class AirlineLeg {
             return this;
         }
 
+
         /**
          * Departure airport code of leg. 3-letter ISO code according to IATA official directory.
          */
@@ -1183,6 +1186,7 @@ public class AirlineLeg {
             this.departureAirport = departureAirport;
             return this;
         }
+
 
         /**
          * The date and time of travel in local time at the departure airport.
@@ -1202,6 +1206,7 @@ public class AirlineLeg {
             return this;
         }
 
+
         /**
          * Departure city name.
          */
@@ -1219,6 +1224,7 @@ public class AirlineLeg {
             this.departureCity = departureCity;
             return this;
         }
+
 
         /**
          * Departure airport code of leg. 3-letter ISO code according to IATA official directory.
@@ -1238,6 +1244,7 @@ public class AirlineLeg {
             return this;
         }
 
+
         /**
          * Departure tax amount charged by a country when a person is leaving the country.
          */
@@ -1255,6 +1262,7 @@ public class AirlineLeg {
             this.departureTaxAmount = departureTaxAmount;
             return this;
         }
+
 
         /**
          * Amount of the ticket, for current leg of the trip, excluding taxes and fees.
@@ -1274,6 +1282,7 @@ public class AirlineLeg {
             return this;
         }
 
+
         /**
          * The alphanumeric code for the booking class of a ticket.
          */
@@ -1291,6 +1300,7 @@ public class AirlineLeg {
             this.fareBasisCode = fareBasisCode;
             return this;
         }
+
 
         /**
          * Fee amount for current leg of the trip.
@@ -1310,6 +1320,7 @@ public class AirlineLeg {
             return this;
         }
 
+
         /**
          * Indicates service class (first class, business class, etc.).
          */
@@ -1327,6 +1338,7 @@ public class AirlineLeg {
             this.flightClass = flightClass;
             return this;
         }
+
 
         /**
          * Unique identifier of the flight number.
@@ -1346,6 +1358,7 @@ public class AirlineLeg {
             return this;
         }
 
+
         /**
          * The route type of the flight.
          */
@@ -1363,6 +1376,7 @@ public class AirlineLeg {
             this.routeType = routeType;
             return this;
         }
+
 
         /**
          * Indicates seat class (first class, business class, etc.).
@@ -1382,6 +1396,7 @@ public class AirlineLeg {
             return this;
         }
 
+
         /**
          * Indicates whether a stopover is allowed on this ticket.
          */
@@ -1400,6 +1415,7 @@ public class AirlineLeg {
             return this;
         }
 
+
         /**
          * Amount of the taxes for current leg of the trip.
          */
@@ -1417,32 +1433,19 @@ public class AirlineLeg {
             this.taxAmount = taxAmount;
             return this;
         }
-        
+
         public AirlineLeg build() {
+
             return new AirlineLeg(
-                arrivalAirport,
-                arrivalAt,
-                arrivalCity,
-                arrivalCountry,
-                carrierCode,
-                carrierName,
-                iataDesignator,
-                icaoCode,
-                couponNumber,
-                departureAirport,
-                departureAt,
-                departureCity,
-                departureCountry,
-                departureTaxAmount,
-                fareAmount,
-                fareBasisCode,
-                feeAmount,
-                flightClass,
-                flightNumber,
-                routeType,
-                seatClass,
-                stopOver,
-                taxAmount);
+                arrivalAirport, arrivalAt, arrivalCity,
+                arrivalCountry, carrierCode, carrierName,
+                iataDesignator, icaoCode, couponNumber,
+                departureAirport, departureAt, departureCity,
+                departureCountry, departureTaxAmount, fareAmount,
+                fareBasisCode, feeAmount, flightClass,
+                flightNumber, routeType, seatClass,
+                stopOver, taxAmount);
         }
+
     }
 }

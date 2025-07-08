@@ -46,7 +46,7 @@ public class UpdateMerchantAccountRequestBuilder {
     public UpdateMerchantAccountResponse call() throws Exception {
         
         RequestOperation<UpdateMerchantAccountRequest, UpdateMerchantAccountResponse> operation
-              = new UpdateMerchantAccountOperation( sdkConfiguration);
+              = new UpdateMerchantAccountOperation(sdkConfiguration);
         UpdateMerchantAccountRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

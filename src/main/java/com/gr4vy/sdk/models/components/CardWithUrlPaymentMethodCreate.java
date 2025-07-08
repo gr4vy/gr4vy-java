@@ -22,7 +22,6 @@ import org.openapitools.jackson.nullable.JsonNullable;
  * <p>Create a transaction with raw card details
  */
 public class CardWithUrlPaymentMethodCreate {
-
     /**
      * The expiration date of the card, formatted `MM/YY`.
      */
@@ -116,7 +115,9 @@ public class CardWithUrlPaymentMethodCreate {
     public CardWithUrlPaymentMethodCreate(
             String expirationDate,
             String number) {
-        this(expirationDate, number, JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
+        this(expirationDate, number, JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined());
     }
 
     /**
@@ -191,9 +192,10 @@ public class CardWithUrlPaymentMethodCreate {
         return redirectUrl;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The expiration date of the card, formatted `MM/YY`.
@@ -321,7 +323,6 @@ public class CardWithUrlPaymentMethodCreate {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -346,15 +347,9 @@ public class CardWithUrlPaymentMethodCreate {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            expirationDate,
-            number,
-            buyerExternalIdentifier,
-            buyerId,
-            externalIdentifier,
-            cardType,
-            method,
-            securityCode,
-            redirectUrl);
+            expirationDate, number, buyerExternalIdentifier,
+            buyerId, externalIdentifier, cardType,
+            method, securityCode, redirectUrl);
     }
     
     @Override
@@ -370,28 +365,30 @@ public class CardWithUrlPaymentMethodCreate {
                 "securityCode", securityCode,
                 "redirectUrl", redirectUrl);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String expirationDate;
- 
+
         private String number;
- 
+
         private JsonNullable<String> buyerExternalIdentifier = JsonNullable.undefined();
- 
+
         private JsonNullable<String> buyerId = JsonNullable.undefined();
- 
+
         private JsonNullable<String> externalIdentifier = JsonNullable.undefined();
- 
+
         private JsonNullable<String> cardType = JsonNullable.undefined();
- 
+
         private JsonNullable<String> securityCode = JsonNullable.undefined();
- 
+
         private JsonNullable<String> redirectUrl = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The expiration date of the card, formatted `MM/YY`.
@@ -402,6 +399,7 @@ public class CardWithUrlPaymentMethodCreate {
             return this;
         }
 
+
         /**
          * The 13-19 digit number for this card.
          */
@@ -410,6 +408,7 @@ public class CardWithUrlPaymentMethodCreate {
             this.number = number;
             return this;
         }
+
 
         /**
          * The external identifier of the buyer to attach the method to.
@@ -429,6 +428,7 @@ public class CardWithUrlPaymentMethodCreate {
             return this;
         }
 
+
         /**
          * The ID of the buyer to attach the method to.
          */
@@ -446,6 +446,7 @@ public class CardWithUrlPaymentMethodCreate {
             this.buyerId = buyerId;
             return this;
         }
+
 
         /**
          * The merchant reference for this payment method.
@@ -465,6 +466,7 @@ public class CardWithUrlPaymentMethodCreate {
             return this;
         }
 
+
         /**
          * The type of the card used
          */
@@ -482,6 +484,7 @@ public class CardWithUrlPaymentMethodCreate {
             this.cardType = cardType;
             return this;
         }
+
 
         /**
          * The 3 or 4 digit security code often found on the card. This often referred to as the CVV or CVD.
@@ -501,6 +504,7 @@ public class CardWithUrlPaymentMethodCreate {
             return this;
         }
 
+
         /**
          * The URL to redirect a user back to after the complete 3DS in browser.
          */
@@ -518,18 +522,15 @@ public class CardWithUrlPaymentMethodCreate {
             this.redirectUrl = redirectUrl;
             return this;
         }
-        
+
         public CardWithUrlPaymentMethodCreate build() {
+
             return new CardWithUrlPaymentMethodCreate(
-                expirationDate,
-                number,
-                buyerExternalIdentifier,
-                buyerId,
-                externalIdentifier,
-                cardType,
-                securityCode,
-                redirectUrl);
+                expirationDate, number, buyerExternalIdentifier,
+                buyerId, externalIdentifier, cardType,
+                securityCode, redirectUrl);
         }
+
 
         private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_Method =
                 new LazySingletonValue<>(

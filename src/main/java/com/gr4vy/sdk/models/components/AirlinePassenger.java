@@ -15,8 +15,8 @@ import java.lang.SuppressWarnings;
 import java.time.LocalDate;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class AirlinePassenger {
 
+public class AirlinePassenger {
     /**
      * The age group for the passenger.
      */
@@ -132,7 +132,10 @@ public class AirlinePassenger {
     }
     
     public AirlinePassenger() {
-        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
+        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined());
     }
 
     /**
@@ -224,9 +227,10 @@ public class AirlinePassenger {
         return countryCode;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The age group for the passenger.
@@ -426,7 +430,6 @@ public class AirlinePassenger {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -453,17 +456,10 @@ public class AirlinePassenger {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            ageGroup,
-            dateOfBirth,
-            emailAddress,
-            firstName,
-            frequentFlyerNumber,
-            lastName,
-            passportNumber,
-            phoneNumber,
-            ticketNumber,
-            title,
-            countryCode);
+            ageGroup, dateOfBirth, emailAddress,
+            firstName, frequentFlyerNumber, lastName,
+            passportNumber, phoneNumber, ticketNumber,
+            title, countryCode);
     }
     
     @Override
@@ -481,34 +477,36 @@ public class AirlinePassenger {
                 "title", title,
                 "countryCode", countryCode);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private JsonNullable<? extends AgeGroup> ageGroup = JsonNullable.undefined();
- 
+
         private JsonNullable<LocalDate> dateOfBirth = JsonNullable.undefined();
- 
+
         private JsonNullable<String> emailAddress = JsonNullable.undefined();
- 
+
         private JsonNullable<String> firstName = JsonNullable.undefined();
- 
+
         private JsonNullable<String> frequentFlyerNumber = JsonNullable.undefined();
- 
+
         private JsonNullable<String> lastName = JsonNullable.undefined();
- 
+
         private JsonNullable<String> passportNumber = JsonNullable.undefined();
- 
+
         private JsonNullable<String> phoneNumber = JsonNullable.undefined();
- 
+
         private JsonNullable<String> ticketNumber = JsonNullable.undefined();
- 
+
         private JsonNullable<String> title = JsonNullable.undefined();
- 
+
         private JsonNullable<String> countryCode = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The age group for the passenger.
@@ -528,6 +526,7 @@ public class AirlinePassenger {
             return this;
         }
 
+
         /**
          * The passenger's date of birth in YYYY-MM-YY format.
          */
@@ -545,6 +544,7 @@ public class AirlinePassenger {
             this.dateOfBirth = dateOfBirth;
             return this;
         }
+
 
         /**
          * The email address of the passenger.
@@ -564,6 +564,7 @@ public class AirlinePassenger {
             return this;
         }
 
+
         /**
          * The first name(s) or given name of the passenger.
          */
@@ -581,6 +582,7 @@ public class AirlinePassenger {
             this.firstName = firstName;
             return this;
         }
+
 
         /**
          * The passenger's frequent flyer number.
@@ -600,6 +602,7 @@ public class AirlinePassenger {
             return this;
         }
 
+
         /**
          * The last name, or family name, of the passenger.
          */
@@ -617,6 +620,7 @@ public class AirlinePassenger {
             this.lastName = lastName;
             return this;
         }
+
 
         /**
          * The passenger's unique passport number.
@@ -636,6 +640,7 @@ public class AirlinePassenger {
             return this;
         }
 
+
         /**
          * The phone number of the passenger. This number is formatted according to the E164 number standard.
          */
@@ -653,6 +658,7 @@ public class AirlinePassenger {
             this.phoneNumber = phoneNumber;
             return this;
         }
+
 
         /**
          * The ticket number for a flight.
@@ -672,6 +678,7 @@ public class AirlinePassenger {
             return this;
         }
 
+
         /**
          * Title of the passenger.
          */
@@ -690,6 +697,7 @@ public class AirlinePassenger {
             return this;
         }
 
+
         /**
          * The country of residence of the passenger
          */
@@ -707,20 +715,15 @@ public class AirlinePassenger {
             this.countryCode = countryCode;
             return this;
         }
-        
+
         public AirlinePassenger build() {
+
             return new AirlinePassenger(
-                ageGroup,
-                dateOfBirth,
-                emailAddress,
-                firstName,
-                frequentFlyerNumber,
-                lastName,
-                passportNumber,
-                phoneNumber,
-                ticketNumber,
-                title,
-                countryCode);
+                ageGroup, dateOfBirth, emailAddress,
+                firstName, frequentFlyerNumber, lastName,
+                passportNumber, phoneNumber, ticketNumber,
+                title, countryCode);
         }
+
     }
 }

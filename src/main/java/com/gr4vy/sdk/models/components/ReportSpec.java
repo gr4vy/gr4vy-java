@@ -12,6 +12,7 @@ import java.lang.Override;
 import java.lang.String;
 import java.util.Map;
 
+
 public class ReportSpec {
 
     @JsonProperty("model")
@@ -29,6 +30,7 @@ public class ReportSpec {
             @JsonProperty("params") Map<String, Object> params) {
         Utils.checkNotNull(model, "model");
         params = Utils.emptyMapIfNull(params);
+        Utils.checkNotNull(params, "params");
         this.model = model;
         this.params = params;
     }
@@ -46,9 +48,10 @@ public class ReportSpec {
         return params;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public ReportSpec withModel(ReportSpecModel model) {
         Utils.checkNotNull(model, "model");
@@ -65,7 +68,6 @@ public class ReportSpec {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -83,8 +85,7 @@ public class ReportSpec {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            model,
-            params);
+            model, params);
     }
     
     @Override
@@ -93,22 +94,25 @@ public class ReportSpec {
                 "model", model,
                 "params", params);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private ReportSpecModel model;
- 
+
         private Map<String, Object> params;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder model(ReportSpecModel model) {
             Utils.checkNotNull(model, "model");
             this.model = model;
             return this;
         }
+
 
         /**
          * The parameters for the report model.
@@ -118,11 +122,12 @@ public class ReportSpec {
             this.params = params;
             return this;
         }
-        
+
         public ReportSpec build() {
+
             return new ReportSpec(
-                model,
-                params);
+                model, params);
         }
+
     }
 }

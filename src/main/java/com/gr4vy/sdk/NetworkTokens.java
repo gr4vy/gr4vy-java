@@ -45,7 +45,6 @@ private final Cryptogram cryptogram;
 public final Cryptogram cryptogram() {
         return cryptogram;
     }
-
     /**
      * List network tokens
      * 
@@ -93,11 +92,10 @@ public final Cryptogram cryptogram() {
                 .build();
         RequestOperation<ListPaymentMethodNetworkTokensRequest, ListPaymentMethodNetworkTokensResponse> operation
               = new ListPaymentMethodNetworkTokensOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Provision network token
@@ -149,10 +147,9 @@ public final Cryptogram cryptogram() {
                 .networkTokenCreate(networkTokenCreate)
                 .build();
         RequestOperation<CreatePaymentMethodNetworkTokenRequest, CreatePaymentMethodNetworkTokenResponse> operation
-              = new CreatePaymentMethodNetworkTokenOperation( sdkConfiguration);
+              = new CreatePaymentMethodNetworkTokenOperation(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Suspend network token
@@ -204,10 +201,9 @@ public final Cryptogram cryptogram() {
                 .merchantAccountId(merchantAccountId)
                 .build();
         RequestOperation<SuspendPaymentMethodNetworkTokenRequest, SuspendPaymentMethodNetworkTokenResponse> operation
-              = new SuspendPaymentMethodNetworkTokenOperation( sdkConfiguration);
+              = new SuspendPaymentMethodNetworkTokenOperation(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Resume network token
@@ -259,10 +255,9 @@ public final Cryptogram cryptogram() {
                 .merchantAccountId(merchantAccountId)
                 .build();
         RequestOperation<ResumePaymentMethodNetworkTokenRequest, ResumePaymentMethodNetworkTokenResponse> operation
-              = new ResumePaymentMethodNetworkTokenOperation( sdkConfiguration);
+              = new ResumePaymentMethodNetworkTokenOperation(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Delete network token
@@ -314,7 +309,7 @@ public final Cryptogram cryptogram() {
                 .merchantAccountId(merchantAccountId)
                 .build();
         RequestOperation<DeletePaymentMethodNetworkTokenRequest, DeletePaymentMethodNetworkTokenResponse> operation
-              = new DeletePaymentMethodNetworkTokenOperation( sdkConfiguration);
+              = new DeletePaymentMethodNetworkTokenOperation(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
 

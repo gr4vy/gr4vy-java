@@ -10,6 +10,7 @@ import com.gr4vy.sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 
+
 public class ErrorDetail {
 
     @JsonProperty("location")
@@ -78,9 +79,10 @@ public class ErrorDetail {
         return type;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public ErrorDetail withLocation(ErrorLocation location) {
         Utils.checkNotNull(location, "location");
@@ -115,7 +117,6 @@ public class ErrorDetail {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -135,9 +136,7 @@ public class ErrorDetail {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            location,
-            pointer,
-            message,
+            location, pointer, message,
             type);
     }
     
@@ -149,26 +148,29 @@ public class ErrorDetail {
                 "message", message,
                 "type", type);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private ErrorLocation location;
- 
+
         private String pointer;
- 
+
         private String message;
- 
+
         private String type;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder location(ErrorLocation location) {
             Utils.checkNotNull(location, "location");
             this.location = location;
             return this;
         }
+
 
         /**
          * A JSON pointer for the particular property that caused the error.
@@ -179,6 +181,7 @@ public class ErrorDetail {
             return this;
         }
 
+
         /**
          * A human-readdable explanation of the error.
          */
@@ -188,6 +191,7 @@ public class ErrorDetail {
             return this;
         }
 
+
         /**
          * The type of error that was raised for this property.
          */
@@ -196,13 +200,13 @@ public class ErrorDetail {
             this.type = type;
             return this;
         }
-        
+
         public ErrorDetail build() {
+
             return new ErrorDetail(
-                location,
-                pointer,
-                message,
+                location, pointer, message,
                 type);
         }
+
     }
 }

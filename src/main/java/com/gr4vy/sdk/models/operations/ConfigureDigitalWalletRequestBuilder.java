@@ -53,7 +53,7 @@ public class ConfigureDigitalWalletRequestBuilder {
     public ConfigureDigitalWalletResponse call() throws Exception {
         
         RequestOperation<ConfigureDigitalWalletRequest, ConfigureDigitalWalletResponse> operation
-              = new ConfigureDigitalWalletOperation( sdkConfiguration);
+              = new ConfigureDigitalWalletOperation(sdkConfiguration);
         ConfigureDigitalWalletRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

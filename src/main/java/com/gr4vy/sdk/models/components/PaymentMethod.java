@@ -29,7 +29,6 @@ import org.openapitools.jackson.nullable.JsonNullable;
  * <p>A stored payment method.
  */
 public class PaymentMethod {
-
     /**
      * Always `payment-method`.
      */
@@ -92,6 +91,7 @@ public class PaymentMethod {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("last_replaced_at")
     private JsonNullable<OffsetDateTime> lastReplacedAt;
+
 
     @JsonProperty("method")
     private Method method;
@@ -174,6 +174,7 @@ public class PaymentMethod {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("external_identifier")
     private JsonNullable<String> externalIdentifier;
+
 
     @JsonProperty("status")
     private PaymentMethodStatus status;
@@ -277,7 +278,14 @@ public class PaymentMethod {
             PaymentMethodStatus status,
             OffsetDateTime createdAt,
             OffsetDateTime updatedAt) {
-        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), method, JsonNullable.undefined(), JsonNullable.undefined(), id, merchantAccountId, JsonNullable.undefined(), JsonNullable.undefined(), citUsageCount, hasReplacement, JsonNullable.undefined(), usageCount, JsonNullable.undefined(), JsonNullable.undefined(), status, createdAt, updatedAt);
+        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), method,
+            JsonNullable.undefined(), JsonNullable.undefined(), id,
+            merchantAccountId, JsonNullable.undefined(), JsonNullable.undefined(),
+            citUsageCount, hasReplacement, JsonNullable.undefined(),
+            usageCount, JsonNullable.undefined(), JsonNullable.undefined(),
+            status, createdAt, updatedAt);
     }
 
     /**
@@ -479,9 +487,10 @@ public class PaymentMethod {
         return updatedAt;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The optional URL that the buyer needs to be redirected to to further authorize their payment.
@@ -828,7 +837,6 @@ public class PaymentMethod {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -869,30 +877,14 @@ public class PaymentMethod {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            type,
-            approvalUrl,
-            country,
-            currency,
-            details,
-            expirationDate,
-            fingerprint,
-            label,
-            lastReplacedAt,
-            method,
-            mode,
-            scheme,
-            id,
-            merchantAccountId,
-            additionalSchemes,
-            citLastUsedAt,
-            citUsageCount,
-            hasReplacement,
-            lastUsedAt,
-            usageCount,
-            buyer,
-            externalIdentifier,
-            status,
-            createdAt,
+            type, approvalUrl, country,
+            currency, details, expirationDate,
+            fingerprint, label, lastReplacedAt,
+            method, mode, scheme,
+            id, merchantAccountId, additionalSchemes,
+            citLastUsedAt, citUsageCount, hasReplacement,
+            lastUsedAt, usageCount, buyer,
+            externalIdentifier, status, createdAt,
             updatedAt);
     }
     
@@ -925,60 +917,62 @@ public class PaymentMethod {
                 "createdAt", createdAt,
                 "updatedAt", updatedAt);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private JsonNullable<String> approvalUrl = JsonNullable.undefined();
- 
+
         private JsonNullable<String> country = JsonNullable.undefined();
- 
+
         private JsonNullable<String> currency = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends PaymentMethodDetailsCard> details = JsonNullable.undefined();
- 
+
         private JsonNullable<String> expirationDate = JsonNullable.undefined();
- 
+
         private JsonNullable<String> fingerprint = JsonNullable.undefined();
- 
+
         private JsonNullable<String> label = JsonNullable.undefined();
- 
+
         private JsonNullable<OffsetDateTime> lastReplacedAt = JsonNullable.undefined();
- 
+
         private Method method;
- 
+
         private JsonNullable<? extends Mode> mode = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends CardScheme> scheme = JsonNullable.undefined();
- 
+
         private String id;
- 
+
         private String merchantAccountId;
- 
+
         private JsonNullable<? extends List<CardScheme>> additionalSchemes = JsonNullable.undefined();
- 
+
         private JsonNullable<OffsetDateTime> citLastUsedAt = JsonNullable.undefined();
- 
+
         private Long citUsageCount;
- 
+
         private Boolean hasReplacement;
- 
+
         private JsonNullable<OffsetDateTime> lastUsedAt = JsonNullable.undefined();
- 
+
         private Long usageCount;
- 
+
         private JsonNullable<? extends Buyer> buyer = JsonNullable.undefined();
- 
+
         private JsonNullable<String> externalIdentifier = JsonNullable.undefined();
- 
+
         private PaymentMethodStatus status;
- 
+
         private OffsetDateTime createdAt;
- 
+
         private OffsetDateTime updatedAt;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The optional URL that the buyer needs to be redirected to to further authorize their payment.
@@ -998,6 +992,7 @@ public class PaymentMethod {
             return this;
         }
 
+
         /**
          * The 2-letter ISO code of the country this payment method can be used for. If this value is null the payment method may be used in multiple countries.
          */
@@ -1015,6 +1010,7 @@ public class PaymentMethod {
             this.country = country;
             return this;
         }
+
 
         /**
          * The ISO-4217 currency code that this payment method can be used for. If this value is null the payment method may be used for multiple currencies.
@@ -1034,6 +1030,7 @@ public class PaymentMethod {
             return this;
         }
 
+
         /**
          * Details for credit or debit card payment method.
          */
@@ -1051,6 +1048,7 @@ public class PaymentMethod {
             this.details = details;
             return this;
         }
+
 
         /**
          * The expiration date for the payment method.
@@ -1070,6 +1068,7 @@ public class PaymentMethod {
             return this;
         }
 
+
         /**
          * The unique hash derived from the payment method identifier (e.g. card number).
          */
@@ -1087,6 +1086,7 @@ public class PaymentMethod {
             this.fingerprint = fingerprint;
             return this;
         }
+
 
         /**
          * A label for the card or the account. For a paypal payment method this is the user's email address. For a card it is the last 4 digits of the card.
@@ -1106,6 +1106,7 @@ public class PaymentMethod {
             return this;
         }
 
+
         /**
          * The date and time when this card was last replaced by the account updater.
          */
@@ -1124,11 +1125,13 @@ public class PaymentMethod {
             return this;
         }
 
+
         public Builder method(Method method) {
             Utils.checkNotNull(method, "method");
             this.method = method;
             return this;
         }
+
 
         /**
          * The mode to use with this payment method.
@@ -1148,6 +1151,7 @@ public class PaymentMethod {
             return this;
         }
 
+
         /**
          * The scheme of the card. Only applies to card payments.
          */
@@ -1166,6 +1170,7 @@ public class PaymentMethod {
             return this;
         }
 
+
         /**
          * The ID for the payment method.
          */
@@ -1175,6 +1180,7 @@ public class PaymentMethod {
             return this;
         }
 
+
         /**
          * The ID of the merchant account this buyer belongs to.
          */
@@ -1183,6 +1189,7 @@ public class PaymentMethod {
             this.merchantAccountId = merchantAccountId;
             return this;
         }
+
 
         /**
          * Additional schemes of the card besides the primary scheme. Only applies to card payment methods.
@@ -1202,6 +1209,7 @@ public class PaymentMethod {
             return this;
         }
 
+
         /**
          * The timestamp when this payment method was last used in a transaction for client initiated transactions.
          */
@@ -1220,6 +1228,7 @@ public class PaymentMethod {
             return this;
         }
 
+
         /**
          * The number of times this payment method has been used in transactions for client initiated transactions.
          */
@@ -1229,6 +1238,7 @@ public class PaymentMethod {
             return this;
         }
 
+
         /**
          * Whether this card has a pending replacement that hasn't been applied yet.
          */
@@ -1237,6 +1247,7 @@ public class PaymentMethod {
             this.hasReplacement = hasReplacement;
             return this;
         }
+
 
         /**
          * The timestamp when this payment method was last used in a transaction.
@@ -1256,6 +1267,7 @@ public class PaymentMethod {
             return this;
         }
 
+
         /**
          * The number of times this payment method has been used in transactions.
          */
@@ -1264,6 +1276,7 @@ public class PaymentMethod {
             this.usageCount = usageCount;
             return this;
         }
+
 
         /**
          * The optional buyer for which this payment method has been stored.
@@ -1283,6 +1296,7 @@ public class PaymentMethod {
             return this;
         }
 
+
         /**
          * The merchant reference that can be used to match the payment method against your own records.
          */
@@ -1301,11 +1315,13 @@ public class PaymentMethod {
             return this;
         }
 
+
         public Builder status(PaymentMethodStatus status) {
             Utils.checkNotNull(status, "status");
             this.status = status;
             return this;
         }
+
 
         /**
          * The date and time when this payment method was first created in our system.
@@ -1316,6 +1332,7 @@ public class PaymentMethod {
             return this;
         }
 
+
         /**
          * The date and time when this payment method was last updated in our system.
          */
@@ -1324,34 +1341,20 @@ public class PaymentMethod {
             this.updatedAt = updatedAt;
             return this;
         }
-        
+
         public PaymentMethod build() {
+
             return new PaymentMethod(
-                approvalUrl,
-                country,
-                currency,
-                details,
-                expirationDate,
-                fingerprint,
-                label,
-                lastReplacedAt,
-                method,
-                mode,
-                scheme,
-                id,
-                merchantAccountId,
-                additionalSchemes,
-                citLastUsedAt,
-                citUsageCount,
-                hasReplacement,
-                lastUsedAt,
-                usageCount,
-                buyer,
-                externalIdentifier,
-                status,
-                createdAt,
-                updatedAt);
+                approvalUrl, country, currency,
+                details, expirationDate, fingerprint,
+                label, lastReplacedAt, method,
+                mode, scheme, id,
+                merchantAccountId, additionalSchemes, citLastUsedAt,
+                citUsageCount, hasReplacement, lastUsedAt,
+                usageCount, buyer, externalIdentifier,
+                status, createdAt, updatedAt);
         }
+
 
         private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_Type =
                 new LazySingletonValue<>(

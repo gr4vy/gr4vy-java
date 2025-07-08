@@ -12,8 +12,8 @@ import java.lang.Override;
 import java.lang.String;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class CreatePaymentMethodNetworkTokenRequest {
 
+public class CreatePaymentMethodNetworkTokenRequest {
     /**
      * The ID of the payment method
      */
@@ -25,6 +25,7 @@ public class CreatePaymentMethodNetworkTokenRequest {
      */
     @SpeakeasyMetadata("header:style=simple,explode=false,name=x-gr4vy-merchant-account-id")
     private JsonNullable<String> merchantAccountId;
+
 
     @SpeakeasyMetadata("request:mediaType=application/json")
     private NetworkTokenCreate networkTokenCreate;
@@ -69,9 +70,10 @@ public class CreatePaymentMethodNetworkTokenRequest {
         return networkTokenCreate;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The ID of the payment method
@@ -106,7 +108,6 @@ public class CreatePaymentMethodNetworkTokenRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -125,9 +126,7 @@ public class CreatePaymentMethodNetworkTokenRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            paymentMethodId,
-            merchantAccountId,
-            networkTokenCreate);
+            paymentMethodId, merchantAccountId, networkTokenCreate);
     }
     
     @Override
@@ -137,18 +136,20 @@ public class CreatePaymentMethodNetworkTokenRequest {
                 "merchantAccountId", merchantAccountId,
                 "networkTokenCreate", networkTokenCreate);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String paymentMethodId;
- 
+
         private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
- 
+
         private NetworkTokenCreate networkTokenCreate;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The ID of the payment method
@@ -158,6 +159,7 @@ public class CreatePaymentMethodNetworkTokenRequest {
             this.paymentMethodId = paymentMethodId;
             return this;
         }
+
 
         /**
          * The ID of the merchant account to use for this request.
@@ -177,17 +179,18 @@ public class CreatePaymentMethodNetworkTokenRequest {
             return this;
         }
 
+
         public Builder networkTokenCreate(NetworkTokenCreate networkTokenCreate) {
             Utils.checkNotNull(networkTokenCreate, "networkTokenCreate");
             this.networkTokenCreate = networkTokenCreate;
             return this;
         }
-        
+
         public CreatePaymentMethodNetworkTokenRequest build() {
+
             return new CreatePaymentMethodNetworkTokenRequest(
-                paymentMethodId,
-                merchantAccountId,
-                networkTokenCreate);
+                paymentMethodId, merchantAccountId, networkTokenCreate);
         }
+
     }
 }

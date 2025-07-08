@@ -19,8 +19,8 @@ import java.time.OffsetDateTime;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class Refund {
 
+public class Refund {
     /**
      * Always `refund`.
      */
@@ -47,6 +47,7 @@ public class Refund {
     @JsonProperty("payment_service_refund_id")
     private JsonNullable<String> paymentServiceRefundId;
 
+
     @JsonProperty("status")
     private RefundStatus status;
 
@@ -68,6 +69,7 @@ public class Refund {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("reason")
     private JsonNullable<String> reason;
+
 
     @JsonProperty("target_type")
     private RefundTargetType targetType;
@@ -188,7 +190,12 @@ public class Refund {
             String transactionReconciliationId,
             OffsetDateTime createdAt,
             OffsetDateTime updatedAt) {
-        this(id, transactionId, JsonNullable.undefined(), status, currency, amount, JsonNullable.undefined(), targetType, JsonNullable.undefined(), reconciliationId, JsonNullable.undefined(), transactionReconciliationId, JsonNullable.undefined(), createdAt, updatedAt, JsonNullable.undefined());
+        this(id, transactionId, JsonNullable.undefined(),
+            status, currency, amount,
+            JsonNullable.undefined(), targetType, JsonNullable.undefined(),
+            reconciliationId, JsonNullable.undefined(), transactionReconciliationId,
+            JsonNullable.undefined(), createdAt, updatedAt,
+            JsonNullable.undefined());
     }
 
     /**
@@ -322,9 +329,10 @@ public class Refund {
         return (JsonNullable<Creator>) creator;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The unique identifier for the refund.
@@ -518,7 +526,6 @@ public class Refund {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -551,23 +558,12 @@ public class Refund {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            type,
-            id,
-            transactionId,
-            paymentServiceRefundId,
-            status,
-            currency,
-            amount,
-            reason,
-            targetType,
-            targetId,
-            reconciliationId,
-            externalIdentifier,
-            transactionReconciliationId,
-            transactionExternalIdentifier,
-            createdAt,
-            updatedAt,
-            creator);
+            type, id, transactionId,
+            paymentServiceRefundId, status, currency,
+            amount, reason, targetType,
+            targetId, reconciliationId, externalIdentifier,
+            transactionReconciliationId, transactionExternalIdentifier, createdAt,
+            updatedAt, creator);
     }
     
     @Override
@@ -591,44 +587,46 @@ public class Refund {
                 "updatedAt", updatedAt,
                 "creator", creator);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String id;
- 
+
         private String transactionId;
- 
+
         private JsonNullable<String> paymentServiceRefundId = JsonNullable.undefined();
- 
+
         private RefundStatus status;
- 
+
         private String currency;
- 
+
         private Long amount;
- 
+
         private JsonNullable<String> reason = JsonNullable.undefined();
- 
+
         private RefundTargetType targetType;
- 
+
         private JsonNullable<String> targetId = JsonNullable.undefined();
- 
+
         private String reconciliationId;
- 
+
         private JsonNullable<String> externalIdentifier = JsonNullable.undefined();
- 
+
         private String transactionReconciliationId;
- 
+
         private JsonNullable<String> transactionExternalIdentifier = JsonNullable.undefined();
- 
+
         private OffsetDateTime createdAt;
- 
+
         private OffsetDateTime updatedAt;
- 
+
         private JsonNullable<? extends Creator> creator = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The unique identifier for the refund.
@@ -639,6 +637,7 @@ public class Refund {
             return this;
         }
 
+
         /**
          * The ID of the transaction associated with this refund.
          */
@@ -647,6 +646,7 @@ public class Refund {
             this.transactionId = transactionId;
             return this;
         }
+
 
         /**
          * The payment service's unique ID for the refund.
@@ -666,11 +666,13 @@ public class Refund {
             return this;
         }
 
+
         public Builder status(RefundStatus status) {
             Utils.checkNotNull(status, "status");
             this.status = status;
             return this;
         }
+
 
         /**
          * The ISO 4217 currency code for this refund. Will always match that of the associated transaction.
@@ -681,6 +683,7 @@ public class Refund {
             return this;
         }
 
+
         /**
          * The amount of this refund, in the smallest currency unit (for example, cents or pence).
          */
@@ -689,6 +692,7 @@ public class Refund {
             this.amount = amount;
             return this;
         }
+
 
         /**
          * The reason for this refund. Could be a multiline string.
@@ -708,11 +712,13 @@ public class Refund {
             return this;
         }
 
+
         public Builder targetType(RefundTargetType targetType) {
             Utils.checkNotNull(targetType, "targetType");
             this.targetType = targetType;
             return this;
         }
+
 
         /**
          * The optional ID of the instrument that was refunded. This may be `null` if the instrument was not stored.
@@ -732,6 +738,7 @@ public class Refund {
             return this;
         }
 
+
         /**
          * The base62 encoded refund ID. This represents a shorter version of this refund's `id` which is sent to payment services, anti-fraud services, and other connectors. You can use this ID to reconcile a payment service's refund against our system.
          */
@@ -740,6 +747,7 @@ public class Refund {
             this.reconciliationId = reconciliationId;
             return this;
         }
+
 
         /**
          * An external identifier that can be used to match the refund against your own records.
@@ -759,6 +767,7 @@ public class Refund {
             return this;
         }
 
+
         /**
          * The base62 encoded transaction ID. This represents a shorter version of the related transaction's `id` which is sent to payment services, anti-fraud services, and other connectors. You can use this ID to reconcile a payment service's transaction against our system.
          */
@@ -767,6 +776,7 @@ public class Refund {
             this.transactionReconciliationId = transactionReconciliationId;
             return this;
         }
+
 
         /**
          * An external identifier that can be used to match the transaction against your own records.
@@ -786,6 +796,7 @@ public class Refund {
             return this;
         }
 
+
         /**
          * The date this refund was created at.
          */
@@ -795,6 +806,7 @@ public class Refund {
             return this;
         }
 
+
         /**
          * The date this refund was last updated at.
          */
@@ -803,6 +815,7 @@ public class Refund {
             this.updatedAt = updatedAt;
             return this;
         }
+
 
         /**
          * The user that created this resource
@@ -821,26 +834,18 @@ public class Refund {
             this.creator = creator;
             return this;
         }
-        
+
         public Refund build() {
+
             return new Refund(
-                id,
-                transactionId,
-                paymentServiceRefundId,
-                status,
-                currency,
-                amount,
-                reason,
-                targetType,
-                targetId,
-                reconciliationId,
-                externalIdentifier,
-                transactionReconciliationId,
-                transactionExternalIdentifier,
-                createdAt,
-                updatedAt,
+                id, transactionId, paymentServiceRefundId,
+                status, currency, amount,
+                reason, targetType, targetId,
+                reconciliationId, externalIdentifier, transactionReconciliationId,
+                transactionExternalIdentifier, createdAt, updatedAt,
                 creator);
         }
+
 
         private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_Type =
                 new LazySingletonValue<>(

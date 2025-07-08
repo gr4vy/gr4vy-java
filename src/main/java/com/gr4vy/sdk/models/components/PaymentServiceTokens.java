@@ -11,8 +11,8 @@ import java.lang.Override;
 import java.lang.String;
 import java.util.List;
 
-public class PaymentServiceTokens {
 
+public class PaymentServiceTokens {
     /**
      * A list of items returned for this request.
      */
@@ -34,9 +34,10 @@ public class PaymentServiceTokens {
         return items;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * A list of items returned for this request.
@@ -47,7 +48,6 @@ public class PaymentServiceTokens {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -72,14 +72,16 @@ public class PaymentServiceTokens {
         return Utils.toString(PaymentServiceTokens.class,
                 "items", items);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private List<PaymentServiceToken> items;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * A list of items returned for this request.
@@ -89,10 +91,12 @@ public class PaymentServiceTokens {
             this.items = items;
             return this;
         }
-        
+
         public PaymentServiceTokens build() {
+
             return new PaymentServiceTokens(
                 items);
         }
+
     }
 }

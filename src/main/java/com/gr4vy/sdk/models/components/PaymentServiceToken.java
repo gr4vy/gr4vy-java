@@ -17,8 +17,8 @@ import java.time.OffsetDateTime;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class PaymentServiceToken {
 
+public class PaymentServiceToken {
     /**
      * Always `payment-service-token`.
      */
@@ -50,6 +50,7 @@ public class PaymentServiceToken {
      */
     @JsonProperty("payment_service_id")
     private String paymentServiceId;
+
 
     @JsonProperty("status")
     private PaymentMethodStatus status;
@@ -109,7 +110,9 @@ public class PaymentServiceToken {
             PaymentMethodStatus status,
             OffsetDateTime createdAt,
             OffsetDateTime updatedAt) {
-        this(id, JsonNullable.undefined(), paymentMethodId, paymentServiceId, status, JsonNullable.undefined(), createdAt, updatedAt);
+        this(id, JsonNullable.undefined(), paymentMethodId,
+            paymentServiceId, status, JsonNullable.undefined(),
+            createdAt, updatedAt);
     }
 
     /**
@@ -181,9 +184,10 @@ public class PaymentServiceToken {
         return updatedAt;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The ID for the payment service token.
@@ -272,7 +276,6 @@ public class PaymentServiceToken {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -297,15 +300,9 @@ public class PaymentServiceToken {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            type,
-            id,
-            approvalUrl,
-            paymentMethodId,
-            paymentServiceId,
-            status,
-            token,
-            createdAt,
-            updatedAt);
+            type, id, approvalUrl,
+            paymentMethodId, paymentServiceId, status,
+            token, createdAt, updatedAt);
     }
     
     @Override
@@ -321,28 +318,30 @@ public class PaymentServiceToken {
                 "createdAt", createdAt,
                 "updatedAt", updatedAt);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String id;
- 
+
         private JsonNullable<String> approvalUrl = JsonNullable.undefined();
- 
+
         private String paymentMethodId;
- 
+
         private String paymentServiceId;
- 
+
         private PaymentMethodStatus status;
- 
+
         private JsonNullable<String> token = JsonNullable.undefined();
- 
+
         private OffsetDateTime createdAt;
- 
+
         private OffsetDateTime updatedAt;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The ID for the payment service token.
@@ -352,6 +351,7 @@ public class PaymentServiceToken {
             this.id = id;
             return this;
         }
+
 
         /**
          * The optional URL that the buyer needs to be redirected to to further authorize the token creation.
@@ -371,6 +371,7 @@ public class PaymentServiceToken {
             return this;
         }
 
+
         /**
          * The ID of the payment method used to generate this token
          */
@@ -379,6 +380,7 @@ public class PaymentServiceToken {
             this.paymentMethodId = paymentMethodId;
             return this;
         }
+
 
         /**
          * The ID of the payment method used to generate this token.
@@ -389,11 +391,13 @@ public class PaymentServiceToken {
             return this;
         }
 
+
         public Builder status(PaymentMethodStatus status) {
             Utils.checkNotNull(status, "status");
             this.status = status;
             return this;
         }
+
 
         /**
          * The token value. Will be present if succeeded.
@@ -413,6 +417,7 @@ public class PaymentServiceToken {
             return this;
         }
 
+
         /**
          * The date and time when this payment service token was first created in our system.
          */
@@ -422,6 +427,7 @@ public class PaymentServiceToken {
             return this;
         }
 
+
         /**
          * The date and time when this payment service token was last updated in our system.
          */
@@ -430,18 +436,15 @@ public class PaymentServiceToken {
             this.updatedAt = updatedAt;
             return this;
         }
-        
+
         public PaymentServiceToken build() {
+
             return new PaymentServiceToken(
-                id,
-                approvalUrl,
-                paymentMethodId,
-                paymentServiceId,
-                status,
-                token,
-                createdAt,
-                updatedAt);
+                id, approvalUrl, paymentMethodId,
+                paymentServiceId, status, token,
+                createdAt, updatedAt);
         }
+
 
         private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_Type =
                 new LazySingletonValue<>(

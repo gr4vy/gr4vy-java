@@ -11,8 +11,8 @@ import java.lang.Override;
 import java.lang.String;
 import java.util.List;
 
-public class GiftCardBalanceRequest {
 
+public class GiftCardBalanceRequest {
     /**
      * A list of gift cards to request a balance for.
      */
@@ -34,9 +34,10 @@ public class GiftCardBalanceRequest {
         return items;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * A list of gift cards to request a balance for.
@@ -47,7 +48,6 @@ public class GiftCardBalanceRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -72,14 +72,16 @@ public class GiftCardBalanceRequest {
         return Utils.toString(GiftCardBalanceRequest.class,
                 "items", items);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private List<Item> items;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * A list of gift cards to request a balance for.
@@ -89,10 +91,12 @@ public class GiftCardBalanceRequest {
             this.items = items;
             return this;
         }
-        
+
         public GiftCardBalanceRequest build() {
+
             return new GiftCardBalanceRequest(
                 items);
         }
+
     }
 }

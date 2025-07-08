@@ -80,8 +80,8 @@ public class GetTransactionSettlementRequestBuilder {
 
         RequestOperation<GetTransactionSettlementRequest, GetTransactionSettlementResponse> operation
               = new GetTransactionSettlementOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         GetTransactionSettlementRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

@@ -23,7 +23,6 @@ import org.openapitools.jackson.nullable.JsonNullable;
  * integration.
  */
 public class ClickToPayPaymentMethodCreate {
-
     /**
      * Aways `click-to-pay`.
      */
@@ -106,7 +105,9 @@ public class ClickToPayPaymentMethodCreate {
             String token,
             String cryptogram,
             String expirationDate) {
-        this(token, cryptogram, expirationDate, JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
+        this(token, cryptogram, expirationDate,
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined());
     }
 
     /**
@@ -173,9 +174,10 @@ public class ClickToPayPaymentMethodCreate {
         return redirectUrl;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The device token.
@@ -276,7 +278,6 @@ public class ClickToPayPaymentMethodCreate {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -300,14 +301,9 @@ public class ClickToPayPaymentMethodCreate {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            method,
-            token,
-            cryptogram,
-            expirationDate,
-            buyerId,
-            buyerExternalIdentifier,
-            externalIdentifier,
-            redirectUrl);
+            method, token, cryptogram,
+            expirationDate, buyerId, buyerExternalIdentifier,
+            externalIdentifier, redirectUrl);
     }
     
     @Override
@@ -322,26 +318,28 @@ public class ClickToPayPaymentMethodCreate {
                 "externalIdentifier", externalIdentifier,
                 "redirectUrl", redirectUrl);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String token;
- 
+
         private String cryptogram;
- 
+
         private String expirationDate;
- 
+
         private JsonNullable<String> buyerId = JsonNullable.undefined();
- 
+
         private JsonNullable<String> buyerExternalIdentifier = JsonNullable.undefined();
- 
+
         private JsonNullable<String> externalIdentifier = JsonNullable.undefined();
- 
+
         private JsonNullable<String> redirectUrl = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The device token.
@@ -352,6 +350,7 @@ public class ClickToPayPaymentMethodCreate {
             return this;
         }
 
+
         /**
          * The payment cryptogram for the device token.
          */
@@ -361,6 +360,7 @@ public class ClickToPayPaymentMethodCreate {
             return this;
         }
 
+
         /**
          * The expiration date of the device token.
          */
@@ -369,6 +369,7 @@ public class ClickToPayPaymentMethodCreate {
             this.expirationDate = expirationDate;
             return this;
         }
+
 
         /**
          * The ID of the buyer to associate this transaction to.
@@ -388,6 +389,7 @@ public class ClickToPayPaymentMethodCreate {
             return this;
         }
 
+
         /**
          * The external identifier of the buyer to create a transaction for.
          */
@@ -405,6 +407,7 @@ public class ClickToPayPaymentMethodCreate {
             this.buyerExternalIdentifier = buyerExternalIdentifier;
             return this;
         }
+
 
         /**
          * The external identifier of the payment method to filter by.
@@ -424,6 +427,7 @@ public class ClickToPayPaymentMethodCreate {
             return this;
         }
 
+
         /**
          * The URL to redirect a user back to after the complete 3DS in browser.
          */
@@ -441,17 +445,15 @@ public class ClickToPayPaymentMethodCreate {
             this.redirectUrl = redirectUrl;
             return this;
         }
-        
+
         public ClickToPayPaymentMethodCreate build() {
+
             return new ClickToPayPaymentMethodCreate(
-                token,
-                cryptogram,
-                expirationDate,
-                buyerId,
-                buyerExternalIdentifier,
-                externalIdentifier,
+                token, cryptogram, expirationDate,
+                buyerId, buyerExternalIdentifier, externalIdentifier,
                 redirectUrl);
         }
+
 
         private static final LazySingletonValue<String> _SINGLETON_VALUE_Method =
                 new LazySingletonValue<>(

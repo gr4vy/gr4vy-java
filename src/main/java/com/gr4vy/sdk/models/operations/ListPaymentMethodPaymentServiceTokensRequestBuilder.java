@@ -86,8 +86,8 @@ public class ListPaymentMethodPaymentServiceTokensRequestBuilder {
 
         RequestOperation<ListPaymentMethodPaymentServiceTokensRequest, ListPaymentMethodPaymentServiceTokensResponse> operation
               = new ListPaymentMethodPaymentServiceTokensOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         ListPaymentMethodPaymentServiceTokensRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

@@ -42,7 +42,6 @@ private final Executions executions;
 public final Executions executions() {
         return executions;
     }
-
     /**
      * List configured reports
      * 
@@ -82,11 +81,10 @@ public final Executions executions() {
             Optional<Options> options) throws Exception {
         RequestOperation<ListReportsRequest, ListReportsResponse> operation
               = new ListReportsOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Add a report
@@ -132,10 +130,9 @@ public final Executions executions() {
                 .reportCreate(reportCreate)
                 .build();
         RequestOperation<AddReportRequest, AddReportResponse> operation
-              = new AddReportOperation( sdkConfiguration);
+              = new AddReportOperation(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Get a report
@@ -184,11 +181,10 @@ public final Executions executions() {
                 .build();
         RequestOperation<GetReportRequest, GetReportResponse> operation
               = new GetReportOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Update a report
@@ -240,7 +236,7 @@ public final Executions executions() {
                 .reportUpdate(reportUpdate)
                 .build();
         RequestOperation<UpdateReportRequest, UpdateReportResponse> operation
-              = new UpdateReportOperation( sdkConfiguration);
+              = new UpdateReportOperation(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
 

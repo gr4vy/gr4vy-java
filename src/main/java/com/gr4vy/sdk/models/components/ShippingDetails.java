@@ -17,8 +17,8 @@ import java.lang.SuppressWarnings;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class ShippingDetails {
 
+public class ShippingDetails {
     /**
      * The first name(s) or given name for the buyer.
      */
@@ -102,7 +102,9 @@ public class ShippingDetails {
     }
     
     public ShippingDetails() {
-        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
+        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined());
     }
 
     /**
@@ -170,9 +172,10 @@ public class ShippingDetails {
         return type;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The first name(s) or given name for the buyer.
@@ -300,7 +303,6 @@ public class ShippingDetails {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -324,14 +326,9 @@ public class ShippingDetails {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            firstName,
-            lastName,
-            emailAddress,
-            phoneNumber,
-            address,
-            id,
-            buyerId,
-            type);
+            firstName, lastName, emailAddress,
+            phoneNumber, address, id,
+            buyerId, type);
     }
     
     @Override
@@ -346,26 +343,28 @@ public class ShippingDetails {
                 "buyerId", buyerId,
                 "type", type);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private JsonNullable<String> firstName = JsonNullable.undefined();
- 
+
         private JsonNullable<String> lastName = JsonNullable.undefined();
- 
+
         private JsonNullable<String> emailAddress = JsonNullable.undefined();
- 
+
         private JsonNullable<String> phoneNumber = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends Address> address = JsonNullable.undefined();
- 
+
         private JsonNullable<String> id = JsonNullable.undefined();
- 
+
         private JsonNullable<String> buyerId = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The first name(s) or given name for the buyer.
@@ -385,6 +384,7 @@ public class ShippingDetails {
             return this;
         }
 
+
         /**
          * The last name, or family name, of the buyer.
          */
@@ -402,6 +402,7 @@ public class ShippingDetails {
             this.lastName = lastName;
             return this;
         }
+
 
         /**
          * The email address for the buyer.
@@ -421,6 +422,7 @@ public class ShippingDetails {
             return this;
         }
 
+
         /**
          * The phone number for the buyer which should be formatted according to the E164 number standard.
          */
@@ -438,6 +440,7 @@ public class ShippingDetails {
             this.phoneNumber = phoneNumber;
             return this;
         }
+
 
         /**
          * The billing address for the buyer.
@@ -457,6 +460,7 @@ public class ShippingDetails {
             return this;
         }
 
+
         /**
          * The ID for the shipping details.
          */
@@ -475,6 +479,7 @@ public class ShippingDetails {
             return this;
         }
 
+
         /**
          * The ID for the buyer.
          */
@@ -492,17 +497,15 @@ public class ShippingDetails {
             this.buyerId = buyerId;
             return this;
         }
-        
+
         public ShippingDetails build() {
+
             return new ShippingDetails(
-                firstName,
-                lastName,
-                emailAddress,
-                phoneNumber,
-                address,
-                id,
+                firstName, lastName, emailAddress,
+                phoneNumber, address, id,
                 buyerId);
         }
+
 
         private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_Type =
                 new LazySingletonValue<>(

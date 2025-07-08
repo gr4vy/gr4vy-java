@@ -60,7 +60,8 @@ public class ListReportsOperation implements RequestOperation<ListReportsRequest
     
     @Override
     public HttpResponse<InputStream> doRequest(ListReportsRequest request) throws Exception {
-        options.ifPresent(o -> o.validate(List.of(Options.Option.RETRY_CONFIG)));
+        options
+                .ifPresent(o -> o.validate(List.of(Options.Option.RETRY_CONFIG)));
         String baseUrl = Utils.templateUrl(
                 this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
         String url = Utils.generateURL(

@@ -11,6 +11,7 @@ import java.lang.Override;
 import java.lang.String;
 import org.openapitools.jackson.nullable.JsonNullable;
 
+
 public class GetPayoutRequest {
 
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=payout_id")
@@ -50,9 +51,10 @@ public class GetPayoutRequest {
         return merchantAccountId;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public GetPayoutRequest withPayoutId(String payoutId) {
         Utils.checkNotNull(payoutId, "payoutId");
@@ -78,7 +80,6 @@ public class GetPayoutRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -96,8 +97,7 @@ public class GetPayoutRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            payoutId,
-            merchantAccountId);
+            payoutId, merchantAccountId);
     }
     
     @Override
@@ -106,22 +106,25 @@ public class GetPayoutRequest {
                 "payoutId", payoutId,
                 "merchantAccountId", merchantAccountId);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String payoutId;
- 
+
         private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder payoutId(String payoutId) {
             Utils.checkNotNull(payoutId, "payoutId");
             this.payoutId = payoutId;
             return this;
         }
+
 
         /**
          * The ID of the merchant account to use for this request.
@@ -140,11 +143,12 @@ public class GetPayoutRequest {
             this.merchantAccountId = merchantAccountId;
             return this;
         }
-        
+
         public GetPayoutRequest build() {
+
             return new GetPayoutRequest(
-                payoutId,
-                merchantAccountId);
+                payoutId, merchantAccountId);
         }
+
     }
 }

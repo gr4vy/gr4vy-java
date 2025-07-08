@@ -57,8 +57,8 @@ public class GetPaymentServiceDefinitionRequestBuilder {
 
         RequestOperation<GetPaymentServiceDefinitionRequest, GetPaymentServiceDefinitionResponse> operation
               = new GetPaymentServiceDefinitionOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         GetPaymentServiceDefinitionRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

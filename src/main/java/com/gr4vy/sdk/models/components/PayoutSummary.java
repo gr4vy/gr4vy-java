@@ -27,7 +27,6 @@ import org.openapitools.jackson.nullable.JsonNullable;
  * <p>Represents a summary of a payout.
  */
 public class PayoutSummary {
-
     /**
      * Always `payout`.
      */
@@ -95,8 +94,10 @@ public class PayoutSummary {
     @JsonProperty("merchant_account_id")
     private JsonNullable<String> merchantAccountId;
 
+
     @JsonProperty("payment_method")
     private TransactionPaymentMethod paymentMethod;
+
 
     @JsonProperty("payment_service")
     private PayoutPaymentService paymentService;
@@ -107,6 +108,7 @@ public class PayoutSummary {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("payment_service_payout_id")
     private JsonNullable<String> paymentServicePayoutId;
+
 
     @JsonProperty("status")
     private PayoutStatus status;
@@ -172,7 +174,11 @@ public class PayoutSummary {
             PayoutPaymentService paymentService,
             PayoutStatus status,
             OffsetDateTime updatedAt) {
-        this(JsonNullable.undefined(), amount, JsonNullable.undefined(), JsonNullable.undefined(), createdAt, currency, JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), paymentMethod, paymentService, JsonNullable.undefined(), status, updatedAt);
+        this(JsonNullable.undefined(), amount, JsonNullable.undefined(),
+            JsonNullable.undefined(), createdAt, currency,
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            paymentMethod, paymentService, JsonNullable.undefined(),
+            status, updatedAt);
     }
 
     /**
@@ -289,9 +295,10 @@ public class PayoutSummary {
         return updatedAt;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The ID for the payout.
@@ -473,7 +480,6 @@ public class PayoutSummary {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -504,21 +510,11 @@ public class PayoutSummary {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            type,
-            id,
-            amount,
-            buyer,
-            category,
-            createdAt,
-            currency,
-            externalIdentifier,
-            merchant,
-            merchantAccountId,
-            paymentMethod,
-            paymentService,
-            paymentServicePayoutId,
-            status,
-            updatedAt);
+            type, id, amount,
+            buyer, category, createdAt,
+            currency, externalIdentifier, merchant,
+            merchantAccountId, paymentMethod, paymentService,
+            paymentServicePayoutId, status, updatedAt);
     }
     
     @Override
@@ -540,40 +536,42 @@ public class PayoutSummary {
                 "status", status,
                 "updatedAt", updatedAt);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private JsonNullable<String> id = JsonNullable.undefined();
- 
+
         private Long amount;
- 
+
         private JsonNullable<? extends TransactionBuyer> buyer = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends PayoutCategory> category = JsonNullable.undefined();
- 
+
         private OffsetDateTime createdAt;
- 
+
         private String currency;
- 
+
         private JsonNullable<String> externalIdentifier = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends PayoutMerchantSummary> merchant = JsonNullable.undefined();
- 
+
         private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
- 
+
         private TransactionPaymentMethod paymentMethod;
- 
+
         private PayoutPaymentService paymentService;
- 
+
         private JsonNullable<String> paymentServicePayoutId = JsonNullable.undefined();
- 
+
         private PayoutStatus status;
- 
+
         private OffsetDateTime updatedAt;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The ID for the payout.
@@ -593,6 +591,7 @@ public class PayoutSummary {
             return this;
         }
 
+
         /**
          * The monetary amount for this payout, in the smallest currency unit for the given currency, for example `1299` cents to create an authorization for $12.99.
          */
@@ -601,6 +600,7 @@ public class PayoutSummary {
             this.amount = amount;
             return this;
         }
+
 
         /**
          * The buyer used for this payout.
@@ -620,6 +620,7 @@ public class PayoutSummary {
             return this;
         }
 
+
         /**
          * The type of payout to process.
          */
@@ -638,6 +639,7 @@ public class PayoutSummary {
             return this;
         }
 
+
         /**
          * The date this payout was created at.
          */
@@ -647,6 +649,7 @@ public class PayoutSummary {
             return this;
         }
 
+
         /**
          * A supported ISO-4217 currency code.
          */
@@ -655,6 +658,7 @@ public class PayoutSummary {
             this.currency = currency;
             return this;
         }
+
 
         /**
          * The merchant identifier for this payout.
@@ -674,6 +678,7 @@ public class PayoutSummary {
             return this;
         }
 
+
         /**
          * The merchant details associated to this payout.
          */
@@ -691,6 +696,7 @@ public class PayoutSummary {
             this.merchant = merchant;
             return this;
         }
+
 
         /**
          * The ID of the merchant account this payout was created for.
@@ -710,17 +716,20 @@ public class PayoutSummary {
             return this;
         }
 
+
         public Builder paymentMethod(TransactionPaymentMethod paymentMethod) {
             Utils.checkNotNull(paymentMethod, "paymentMethod");
             this.paymentMethod = paymentMethod;
             return this;
         }
 
+
         public Builder paymentService(PayoutPaymentService paymentService) {
             Utils.checkNotNull(paymentService, "paymentService");
             this.paymentService = paymentService;
             return this;
         }
+
 
         /**
          * The ID of the payout in the underlying payment service.
@@ -740,11 +749,13 @@ public class PayoutSummary {
             return this;
         }
 
+
         public Builder status(PayoutStatus status) {
             Utils.checkNotNull(status, "status");
             this.status = status;
             return this;
         }
+
 
         /**
          * The date this payout was last updated at.
@@ -754,24 +765,17 @@ public class PayoutSummary {
             this.updatedAt = updatedAt;
             return this;
         }
-        
+
         public PayoutSummary build() {
+
             return new PayoutSummary(
-                id,
-                amount,
-                buyer,
-                category,
-                createdAt,
-                currency,
-                externalIdentifier,
-                merchant,
-                merchantAccountId,
-                paymentMethod,
-                paymentService,
-                paymentServicePayoutId,
-                status,
-                updatedAt);
+                id, amount, buyer,
+                category, createdAt, currency,
+                externalIdentifier, merchant, merchantAccountId,
+                paymentMethod, paymentService, paymentServicePayoutId,
+                status, updatedAt);
         }
+
 
         private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_Type =
                 new LazySingletonValue<>(

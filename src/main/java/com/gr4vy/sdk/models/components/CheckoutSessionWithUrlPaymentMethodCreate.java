@@ -22,7 +22,6 @@ import org.openapitools.jackson.nullable.JsonNullable;
  * <p>Create a payment with a checkout session ID (and an optional URL for 3DS).
  */
 public class CheckoutSessionWithUrlPaymentMethodCreate {
-
     /**
      * Always `checkout-session`
      */
@@ -86,7 +85,8 @@ public class CheckoutSessionWithUrlPaymentMethodCreate {
     
     public CheckoutSessionWithUrlPaymentMethodCreate(
             String id) {
-        this(id, JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
+        this(id, JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined());
     }
 
     /**
@@ -137,9 +137,10 @@ public class CheckoutSessionWithUrlPaymentMethodCreate {
         return redirectUrl;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The ID for the checkout session.
@@ -222,7 +223,6 @@ public class CheckoutSessionWithUrlPaymentMethodCreate {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -244,12 +244,8 @@ public class CheckoutSessionWithUrlPaymentMethodCreate {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            method,
-            id,
-            externalIdentifier,
-            buyerId,
-            buyerExternalIdentifier,
-            redirectUrl);
+            method, id, externalIdentifier,
+            buyerId, buyerExternalIdentifier, redirectUrl);
     }
     
     @Override
@@ -262,22 +258,24 @@ public class CheckoutSessionWithUrlPaymentMethodCreate {
                 "buyerExternalIdentifier", buyerExternalIdentifier,
                 "redirectUrl", redirectUrl);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String id;
- 
+
         private JsonNullable<String> externalIdentifier = JsonNullable.undefined();
- 
+
         private JsonNullable<String> buyerId = JsonNullable.undefined();
- 
+
         private JsonNullable<String> buyerExternalIdentifier = JsonNullable.undefined();
- 
+
         private JsonNullable<String> redirectUrl = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The ID for the checkout session.
@@ -287,6 +285,7 @@ public class CheckoutSessionWithUrlPaymentMethodCreate {
             this.id = id;
             return this;
         }
+
 
         /**
          * The merchant reference that can be used to match the payment method against your own records.
@@ -306,6 +305,7 @@ public class CheckoutSessionWithUrlPaymentMethodCreate {
             return this;
         }
 
+
         /**
          * The `id` of a stored buyer to use Use this instead of the `buyer_external_identifier`.
          */
@@ -323,6 +323,7 @@ public class CheckoutSessionWithUrlPaymentMethodCreate {
             this.buyerId = buyerId;
             return this;
         }
+
 
         /**
          * The `external_identifier` of a stored buyer to use. Use this instead of the `buyer_id`.
@@ -342,6 +343,7 @@ public class CheckoutSessionWithUrlPaymentMethodCreate {
             return this;
         }
 
+
         /**
          * The URL to redirect a user back to after the complete 3DS in browser.
          */
@@ -359,15 +361,14 @@ public class CheckoutSessionWithUrlPaymentMethodCreate {
             this.redirectUrl = redirectUrl;
             return this;
         }
-        
+
         public CheckoutSessionWithUrlPaymentMethodCreate build() {
+
             return new CheckoutSessionWithUrlPaymentMethodCreate(
-                id,
-                externalIdentifier,
-                buyerId,
-                buyerExternalIdentifier,
-                redirectUrl);
+                id, externalIdentifier, buyerId,
+                buyerExternalIdentifier, redirectUrl);
         }
+
 
         private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_Method =
                 new LazySingletonValue<>(

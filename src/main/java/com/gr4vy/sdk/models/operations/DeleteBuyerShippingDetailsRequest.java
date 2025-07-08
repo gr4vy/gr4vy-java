@@ -11,8 +11,8 @@ import java.lang.Override;
 import java.lang.String;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class DeleteBuyerShippingDetailsRequest {
 
+public class DeleteBuyerShippingDetailsRequest {
     /**
      * The ID of the buyer to delete shipping details for.
      */
@@ -74,9 +74,10 @@ public class DeleteBuyerShippingDetailsRequest {
         return merchantAccountId;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The ID of the buyer to delete shipping details for.
@@ -114,7 +115,6 @@ public class DeleteBuyerShippingDetailsRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -133,9 +133,7 @@ public class DeleteBuyerShippingDetailsRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            buyerId,
-            shippingDetailsId,
-            merchantAccountId);
+            buyerId, shippingDetailsId, merchantAccountId);
     }
     
     @Override
@@ -145,18 +143,20 @@ public class DeleteBuyerShippingDetailsRequest {
                 "shippingDetailsId", shippingDetailsId,
                 "merchantAccountId", merchantAccountId);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String buyerId;
- 
+
         private String shippingDetailsId;
- 
+
         private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The ID of the buyer to delete shipping details for.
@@ -167,6 +167,7 @@ public class DeleteBuyerShippingDetailsRequest {
             return this;
         }
 
+
         /**
          * The ID of the shipping details to delete.
          */
@@ -175,6 +176,7 @@ public class DeleteBuyerShippingDetailsRequest {
             this.shippingDetailsId = shippingDetailsId;
             return this;
         }
+
 
         /**
          * The ID of the merchant account to use for this request.
@@ -193,12 +195,12 @@ public class DeleteBuyerShippingDetailsRequest {
             this.merchantAccountId = merchantAccountId;
             return this;
         }
-        
+
         public DeleteBuyerShippingDetailsRequest build() {
+
             return new DeleteBuyerShippingDetailsRequest(
-                buyerId,
-                shippingDetailsId,
-                merchantAccountId);
+                buyerId, shippingDetailsId, merchantAccountId);
         }
+
     }
 }

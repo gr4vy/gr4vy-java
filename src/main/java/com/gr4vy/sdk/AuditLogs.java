@@ -21,7 +21,6 @@ public class AuditLogs {
     AuditLogs(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-
     /**
      * List audit log entries
      * 
@@ -61,8 +60,8 @@ public class AuditLogs {
             Optional<Options> options) throws Exception {
         RequestOperation<ListAuditLogsRequest, ListAuditLogsResponse> operation
               = new ListAuditLogsOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

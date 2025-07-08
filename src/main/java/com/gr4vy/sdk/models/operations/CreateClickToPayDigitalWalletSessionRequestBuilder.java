@@ -29,7 +29,7 @@ public class CreateClickToPayDigitalWalletSessionRequestBuilder {
     public CreateClickToPayDigitalWalletSessionResponse call() throws Exception {
         
         RequestOperation<ClickToPaySessionRequest, CreateClickToPayDigitalWalletSessionResponse> operation
-              = new CreateClickToPayDigitalWalletSessionOperation( sdkConfiguration);
+              = new CreateClickToPayDigitalWalletSessionOperation(sdkConfiguration);
 
         return operation.handleResponse(operation.doRequest(request));
     }

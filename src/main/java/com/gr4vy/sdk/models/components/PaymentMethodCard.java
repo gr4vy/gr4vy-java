@@ -17,8 +17,8 @@ import java.lang.SuppressWarnings;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class PaymentMethodCard {
 
+public class PaymentMethodCard {
     /**
      * Set to `card` to use a new card.
      */
@@ -72,7 +72,8 @@ public class PaymentMethodCard {
     public PaymentMethodCard(
             String number,
             String expirationDate) {
-        this(number, expirationDate, JsonNullable.undefined(), JsonNullable.undefined());
+        this(number, expirationDate, JsonNullable.undefined(),
+            JsonNullable.undefined());
     }
 
     /**
@@ -116,9 +117,10 @@ public class PaymentMethodCard {
         return externalIdentifier;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The 13-19 digit number for this card as it can be found on the front of the card.
@@ -174,7 +176,6 @@ public class PaymentMethodCard {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -195,11 +196,8 @@ public class PaymentMethodCard {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            method,
-            number,
-            expirationDate,
-            cardScheme,
-            externalIdentifier);
+            method, number, expirationDate,
+            cardScheme, externalIdentifier);
     }
     
     @Override
@@ -211,20 +209,22 @@ public class PaymentMethodCard {
                 "cardScheme", cardScheme,
                 "externalIdentifier", externalIdentifier);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String number;
- 
+
         private String expirationDate;
- 
+
         private JsonNullable<? extends CardScheme> cardScheme = JsonNullable.undefined();
- 
+
         private JsonNullable<String> externalIdentifier = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The 13-19 digit number for this card as it can be found on the front of the card.
@@ -235,6 +235,7 @@ public class PaymentMethodCard {
             return this;
         }
 
+
         /**
          * The expiration date of the card, formatted `MM/YY`.
          */
@@ -243,6 +244,7 @@ public class PaymentMethodCard {
             this.expirationDate = expirationDate;
             return this;
         }
+
 
         /**
          * The optional card's network scheme.
@@ -262,6 +264,7 @@ public class PaymentMethodCard {
             return this;
         }
 
+
         /**
          * The merchant identifier for this card.
          */
@@ -279,14 +282,14 @@ public class PaymentMethodCard {
             this.externalIdentifier = externalIdentifier;
             return this;
         }
-        
+
         public PaymentMethodCard build() {
+
             return new PaymentMethodCard(
-                number,
-                expirationDate,
-                cardScheme,
+                number, expirationDate, cardScheme,
                 externalIdentifier);
         }
+
 
         private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_Method =
                 new LazySingletonValue<>(

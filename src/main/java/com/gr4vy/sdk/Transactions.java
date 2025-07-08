@@ -60,7 +60,6 @@ public final Events events() {
 public final Settlements settlements() {
         return settlements;
     }
-
     /**
      * List transactions
      * 
@@ -100,11 +99,10 @@ public final Settlements settlements() {
             Optional<Options> options) throws Exception {
         RequestOperation<ListTransactionsRequest, ListTransactionsResponse> operation
               = new ListTransactionsOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Create transaction
@@ -127,7 +125,8 @@ public final Settlements settlements() {
      * @throws Exception if the API call fails
      */
     public CreateTransactionResponse create(TransactionCreate transactionCreate) throws Exception {
-        return create(JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), transactionCreate);
+        return create(JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
+            transactionCreate);
     }
 
     /**
@@ -158,10 +157,9 @@ public final Settlements settlements() {
                 .transactionCreate(transactionCreate)
                 .build();
         RequestOperation<CreateTransactionRequest, CreateTransactionResponse> operation
-              = new CreateTransactionOperation( sdkConfiguration);
+              = new CreateTransactionOperation(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Get transaction
@@ -210,11 +208,10 @@ public final Settlements settlements() {
                 .build();
         RequestOperation<GetTransactionRequest, GetTransactionResponse> operation
               = new GetTransactionOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Capture transaction
@@ -266,10 +263,9 @@ public final Settlements settlements() {
                 .transactionCapture(transactionCapture)
                 .build();
         RequestOperation<CaptureTransactionRequest, CaptureTransactionResponse> operation
-              = new CaptureTransactionOperation( sdkConfiguration);
+              = new CaptureTransactionOperation(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Void transaction
@@ -315,10 +311,9 @@ public final Settlements settlements() {
                 .merchantAccountId(merchantAccountId)
                 .build();
         RequestOperation<VoidTransactionRequest, VoidTransactionResponse> operation
-              = new VoidTransactionOperation( sdkConfiguration);
+              = new VoidTransactionOperation(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Sync transaction
@@ -364,7 +359,7 @@ public final Settlements settlements() {
                 .merchantAccountId(merchantAccountId)
                 .build();
         RequestOperation<SyncTransactionRequest, SyncTransactionResponse> operation
-              = new SyncTransactionOperation( sdkConfiguration);
+              = new SyncTransactionOperation(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
 

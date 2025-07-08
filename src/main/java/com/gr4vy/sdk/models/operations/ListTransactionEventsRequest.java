@@ -15,8 +15,8 @@ import java.lang.String;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class ListTransactionEventsRequest {
 
+public class ListTransactionEventsRequest {
     /**
      * The ID of the transaction
      */
@@ -59,7 +59,8 @@ public class ListTransactionEventsRequest {
     
     public ListTransactionEventsRequest(
             String transactionId) {
-        this(transactionId, JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined());
+        this(transactionId, JsonNullable.undefined(), Optional.empty(),
+            JsonNullable.undefined());
     }
 
     /**
@@ -94,9 +95,10 @@ public class ListTransactionEventsRequest {
         return merchantAccountId;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The ID of the transaction
@@ -134,6 +136,7 @@ public class ListTransactionEventsRequest {
         return this;
     }
 
+
     /**
      * The maximum number of items that are at returned.
      */
@@ -161,7 +164,6 @@ public class ListTransactionEventsRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -181,9 +183,7 @@ public class ListTransactionEventsRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            transactionId,
-            cursor,
-            limit,
+            transactionId, cursor, limit,
             merchantAccountId);
     }
     
@@ -195,20 +195,22 @@ public class ListTransactionEventsRequest {
                 "limit", limit,
                 "merchantAccountId", merchantAccountId);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String transactionId;
- 
+
         private JsonNullable<String> cursor = JsonNullable.undefined();
- 
+
         private Optional<Long> limit;
- 
+
         private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The ID of the transaction
@@ -218,6 +220,7 @@ public class ListTransactionEventsRequest {
             this.transactionId = transactionId;
             return this;
         }
+
 
         /**
          * A pointer to the page of results to return.
@@ -237,6 +240,7 @@ public class ListTransactionEventsRequest {
             return this;
         }
 
+
         /**
          * The maximum number of items that are at returned.
          */
@@ -255,6 +259,7 @@ public class ListTransactionEventsRequest {
             return this;
         }
 
+
         /**
          * The ID of the merchant account to use for this request.
          */
@@ -272,17 +277,17 @@ public class ListTransactionEventsRequest {
             this.merchantAccountId = merchantAccountId;
             return this;
         }
-        
+
         public ListTransactionEventsRequest build() {
             if (limit == null) {
                 limit = _SINGLETON_VALUE_Limit.value();
             }
+
             return new ListTransactionEventsRequest(
-                transactionId,
-                cursor,
-                limit,
+                transactionId, cursor, limit,
                 merchantAccountId);
         }
+
 
         private static final LazySingletonValue<Optional<Long>> _SINGLETON_VALUE_Limit =
                 new LazySingletonValue<>(

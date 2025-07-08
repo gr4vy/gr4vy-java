@@ -22,14 +22,15 @@ import java.util.Map;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class PaymentService {
 
+public class PaymentService {
     /**
      * Always `payment-service`
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("type")
     private Optional<String> type;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("id")
@@ -54,6 +55,7 @@ public class PaymentService {
     @JsonProperty("active")
     private Optional<Boolean> active;
 
+
     @JsonProperty("method")
     private Method method;
 
@@ -68,6 +70,7 @@ public class PaymentService {
      */
     @JsonProperty("position")
     private long position;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("status")
@@ -248,7 +251,14 @@ public class PaymentService {
             boolean settlementReportingEnabled,
             OffsetDateTime createdAt,
             OffsetDateTime updatedAt) {
-        this(Optional.empty(), merchantAccountId, paymentServiceDefinitionId, Optional.empty(), method, displayName, position, Optional.empty(), acceptedCurrencies, acceptedCountries, paymentMethodTokenizationEnabled, networkTokensEnabled, openLoop, settlementReportingEnabled, JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), createdAt, updatedAt);
+        this(Optional.empty(), merchantAccountId, paymentServiceDefinitionId,
+            Optional.empty(), method, displayName,
+            position, Optional.empty(), acceptedCurrencies,
+            acceptedCountries, paymentMethodTokenizationEnabled, networkTokensEnabled,
+            openLoop, settlementReportingEnabled, JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), Optional.empty(), createdAt,
+            updatedAt);
     }
 
     /**
@@ -430,15 +440,17 @@ public class PaymentService {
         return updatedAt;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public PaymentService withId(String id) {
         Utils.checkNotNull(id, "id");
         this.id = Optional.ofNullable(id);
         return this;
     }
+
 
     public PaymentService withId(Optional<String> id) {
         Utils.checkNotNull(id, "id");
@@ -472,6 +484,7 @@ public class PaymentService {
         this.active = Optional.ofNullable(active);
         return this;
     }
+
 
     /**
      * Defines if this payment service is currently active.
@@ -511,6 +524,7 @@ public class PaymentService {
         this.status = Optional.ofNullable(status);
         return this;
     }
+
 
     public PaymentService withStatus(Optional<? extends PaymentServiceStatus> status) {
         Utils.checkNotNull(status, "status");
@@ -671,6 +685,7 @@ public class PaymentService {
         return this;
     }
 
+
     /**
      * Defines if this payment service has been deleted
      */
@@ -698,7 +713,6 @@ public class PaymentService {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -737,29 +751,14 @@ public class PaymentService {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            type,
-            id,
-            merchantAccountId,
-            paymentServiceDefinitionId,
-            active,
-            method,
-            displayName,
-            position,
-            status,
-            acceptedCurrencies,
-            acceptedCountries,
-            paymentMethodTokenizationEnabled,
-            networkTokensEnabled,
-            openLoop,
-            settlementReportingEnabled,
-            threeDSecureEnabled,
-            merchantProfile,
-            webhookUrl,
-            fields,
-            reportingFields,
-            isDeleted,
-            createdAt,
-            updatedAt);
+            type, id, merchantAccountId,
+            paymentServiceDefinitionId, active, method,
+            displayName, position, status,
+            acceptedCurrencies, acceptedCountries, paymentMethodTokenizationEnabled,
+            networkTokensEnabled, openLoop, settlementReportingEnabled,
+            threeDSecureEnabled, merchantProfile, webhookUrl,
+            fields, reportingFields, isDeleted,
+            createdAt, updatedAt);
     }
     
     @Override
@@ -789,56 +788,58 @@ public class PaymentService {
                 "createdAt", createdAt,
                 "updatedAt", updatedAt);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> id;
- 
+
         private String merchantAccountId;
- 
+
         private String paymentServiceDefinitionId;
- 
+
         private Optional<Boolean> active;
- 
+
         private Method method;
- 
+
         private String displayName;
- 
+
         private Long position;
- 
+
         private Optional<? extends PaymentServiceStatus> status = Optional.empty();
- 
+
         private List<String> acceptedCurrencies;
- 
+
         private List<String> acceptedCountries;
- 
+
         private Boolean paymentMethodTokenizationEnabled;
- 
+
         private Boolean networkTokensEnabled;
- 
+
         private Boolean openLoop;
- 
+
         private Boolean settlementReportingEnabled;
- 
+
         private JsonNullable<Boolean> threeDSecureEnabled = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends Map<String, MerchantProfileSchemeSummary>> merchantProfile = JsonNullable.undefined();
- 
+
         private JsonNullable<String> webhookUrl = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends List<Field>> fields = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends List<Field>> reportingFields = JsonNullable.undefined();
- 
+
         private Optional<Boolean> isDeleted;
- 
+
         private OffsetDateTime createdAt;
- 
+
         private OffsetDateTime updatedAt;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder id(String id) {
             Utils.checkNotNull(id, "id");
@@ -852,6 +853,7 @@ public class PaymentService {
             return this;
         }
 
+
         /**
          * The ID of the merchant account this job belongs to.
          */
@@ -861,6 +863,7 @@ public class PaymentService {
             return this;
         }
 
+
         /**
          * The definition ID of the service that has been configured.
          */
@@ -869,6 +872,7 @@ public class PaymentService {
             this.paymentServiceDefinitionId = paymentServiceDefinitionId;
             return this;
         }
+
 
         /**
          * Defines if this payment service is currently active.
@@ -888,11 +892,13 @@ public class PaymentService {
             return this;
         }
 
+
         public Builder method(Method method) {
             Utils.checkNotNull(method, "method");
             this.method = method;
             return this;
         }
+
 
         /**
          * The display name for the payment service.
@@ -903,6 +909,7 @@ public class PaymentService {
             return this;
         }
 
+
         /**
          * Deprecated field used to define the order in which to process payment services
          */
@@ -911,6 +918,7 @@ public class PaymentService {
             this.position = position;
             return this;
         }
+
 
         public Builder status(PaymentServiceStatus status) {
             Utils.checkNotNull(status, "status");
@@ -924,6 +932,7 @@ public class PaymentService {
             return this;
         }
 
+
         /**
          * A list of currencies for which this service is enabled, in ISO 4217 three-letter code format.
          */
@@ -932,6 +941,7 @@ public class PaymentService {
             this.acceptedCurrencies = acceptedCurrencies;
             return this;
         }
+
 
         /**
          * A list of countries for which this service is enabled, in ISO two-letter code format.
@@ -942,6 +952,7 @@ public class PaymentService {
             return this;
         }
 
+
         /**
          * Defines if this payment service support payment method tokenization.
          */
@@ -950,6 +961,7 @@ public class PaymentService {
             this.paymentMethodTokenizationEnabled = paymentMethodTokenizationEnabled;
             return this;
         }
+
 
         /**
          * Defines if this payment service supports network tokens.
@@ -960,6 +972,7 @@ public class PaymentService {
             return this;
         }
 
+
         /**
          * Defines if this payment service is open loop.
          */
@@ -969,6 +982,7 @@ public class PaymentService {
             return this;
         }
 
+
         /**
          * Defines if this payment service has settlement reporting enabled.
          */
@@ -977,6 +991,7 @@ public class PaymentService {
             this.settlementReportingEnabled = settlementReportingEnabled;
             return this;
         }
+
 
         /**
          * Defines if this payment service has 3DS enabled.
@@ -996,6 +1011,7 @@ public class PaymentService {
             return this;
         }
 
+
         /**
          * An object containing a key for each supported card schemes, and for each key an object with the 3DS profile for this service for that scheme.
          */
@@ -1013,6 +1029,7 @@ public class PaymentService {
             this.merchantProfile = merchantProfile;
             return this;
         }
+
 
         /**
          * The URL that needs to be configured with this payment service as the receiving endpoint for webhooks from the service to our system. Currently, we dp not yet automatically register webhooks on setup, and therefore webhooks need to be registered manually by the merchant.
@@ -1032,6 +1049,7 @@ public class PaymentService {
             return this;
         }
 
+
         /**
          * The non-secret credential fields that have been configured for this payment service. Any secret fields are omitted.
          */
@@ -1049,6 +1067,7 @@ public class PaymentService {
             this.fields = fields;
             return this;
         }
+
 
         /**
          * The non-secret reporting fields that have been configured for this payment service. Any secret fields are omitted.
@@ -1068,6 +1087,7 @@ public class PaymentService {
             return this;
         }
 
+
         /**
          * Defines if this payment service has been deleted
          */
@@ -1086,6 +1106,7 @@ public class PaymentService {
             return this;
         }
 
+
         /**
          * The date and time when this payment service was first created in our system.
          */
@@ -1095,6 +1116,7 @@ public class PaymentService {
             return this;
         }
 
+
         /**
          * The date and time when this payment service was last updated in our system.
          */
@@ -1103,7 +1125,7 @@ public class PaymentService {
             this.updatedAt = updatedAt;
             return this;
         }
-        
+
         public PaymentService build() {
             if (id == null) {
                 id = _SINGLETON_VALUE_Id.value();
@@ -1114,30 +1136,18 @@ public class PaymentService {
             if (isDeleted == null) {
                 isDeleted = _SINGLETON_VALUE_IsDeleted.value();
             }
+
             return new PaymentService(
-                id,
-                merchantAccountId,
-                paymentServiceDefinitionId,
-                active,
-                method,
-                displayName,
-                position,
-                status,
-                acceptedCurrencies,
-                acceptedCountries,
-                paymentMethodTokenizationEnabled,
-                networkTokensEnabled,
-                openLoop,
-                settlementReportingEnabled,
-                threeDSecureEnabled,
-                merchantProfile,
-                webhookUrl,
-                fields,
-                reportingFields,
-                isDeleted,
-                createdAt,
+                id, merchantAccountId, paymentServiceDefinitionId,
+                active, method, displayName,
+                position, status, acceptedCurrencies,
+                acceptedCountries, paymentMethodTokenizationEnabled, networkTokensEnabled,
+                openLoop, settlementReportingEnabled, threeDSecureEnabled,
+                merchantProfile, webhookUrl, fields,
+                reportingFields, isDeleted, createdAt,
                 updatedAt);
         }
+
 
         private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_Type =
                 new LazySingletonValue<>(

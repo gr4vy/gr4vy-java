@@ -60,7 +60,7 @@ public class CreateCheckoutSessionRequestBuilder {
     public CreateCheckoutSessionResponse call() throws Exception {
         
         RequestOperation<CreateCheckoutSessionRequest, CreateCheckoutSessionResponse> operation
-              = new CreateCheckoutSessionOperation( sdkConfiguration);
+              = new CreateCheckoutSessionOperation(sdkConfiguration);
         CreateCheckoutSessionRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

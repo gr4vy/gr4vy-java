@@ -26,17 +26,21 @@ public class DigitalWalletUpdate {
     @JsonProperty("merchant_name")
     private JsonNullable<String> merchantName;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("domain_names")
     private JsonNullable<? extends List<String>> domainNames;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("merchant_display_name")
     private JsonNullable<String> merchantDisplayName;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("merchant_url")
     private JsonNullable<String> merchantUrl;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("merchant_country_code")
@@ -62,7 +66,8 @@ public class DigitalWalletUpdate {
     }
     
     public DigitalWalletUpdate() {
-        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
+        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined());
     }
 
     @JsonIgnore
@@ -91,9 +96,10 @@ public class DigitalWalletUpdate {
         return merchantCountryCode;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public DigitalWalletUpdate withMerchantName(String merchantName) {
         Utils.checkNotNull(merchantName, "merchantName");
@@ -155,7 +161,6 @@ public class DigitalWalletUpdate {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -176,11 +181,8 @@ public class DigitalWalletUpdate {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            merchantName,
-            domainNames,
-            merchantDisplayName,
-            merchantUrl,
-            merchantCountryCode);
+            merchantName, domainNames, merchantDisplayName,
+            merchantUrl, merchantCountryCode);
     }
     
     @Override
@@ -192,22 +194,24 @@ public class DigitalWalletUpdate {
                 "merchantUrl", merchantUrl,
                 "merchantCountryCode", merchantCountryCode);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private JsonNullable<String> merchantName = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends List<String>> domainNames = JsonNullable.undefined();
- 
+
         private JsonNullable<String> merchantDisplayName = JsonNullable.undefined();
- 
+
         private JsonNullable<String> merchantUrl = JsonNullable.undefined();
- 
+
         private JsonNullable<String> merchantCountryCode = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder merchantName(String merchantName) {
             Utils.checkNotNull(merchantName, "merchantName");
@@ -221,6 +225,7 @@ public class DigitalWalletUpdate {
             return this;
         }
 
+
         public Builder domainNames(List<String> domainNames) {
             Utils.checkNotNull(domainNames, "domainNames");
             this.domainNames = JsonNullable.of(domainNames);
@@ -232,6 +237,7 @@ public class DigitalWalletUpdate {
             this.domainNames = domainNames;
             return this;
         }
+
 
         public Builder merchantDisplayName(String merchantDisplayName) {
             Utils.checkNotNull(merchantDisplayName, "merchantDisplayName");
@@ -245,6 +251,7 @@ public class DigitalWalletUpdate {
             return this;
         }
 
+
         public Builder merchantUrl(String merchantUrl) {
             Utils.checkNotNull(merchantUrl, "merchantUrl");
             this.merchantUrl = JsonNullable.of(merchantUrl);
@@ -257,6 +264,7 @@ public class DigitalWalletUpdate {
             return this;
         }
 
+
         public Builder merchantCountryCode(String merchantCountryCode) {
             Utils.checkNotNull(merchantCountryCode, "merchantCountryCode");
             this.merchantCountryCode = JsonNullable.of(merchantCountryCode);
@@ -268,14 +276,13 @@ public class DigitalWalletUpdate {
             this.merchantCountryCode = merchantCountryCode;
             return this;
         }
-        
+
         public DigitalWalletUpdate build() {
+
             return new DigitalWalletUpdate(
-                merchantName,
-                domainNames,
-                merchantDisplayName,
-                merchantUrl,
-                merchantCountryCode);
+                merchantName, domainNames, merchantDisplayName,
+                merchantUrl, merchantCountryCode);
         }
+
     }
 }

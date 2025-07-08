@@ -20,8 +20,8 @@ import java.util.Map;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class PaymentOptionRequest {
 
+public class PaymentOptionRequest {
     /**
      * The metadata to used to evaluate checkout rules, which will help determine the right payment options to display.
      */
@@ -87,7 +87,8 @@ public class PaymentOptionRequest {
     }
     
     public PaymentOptionRequest() {
-        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined());
+        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined());
     }
 
     /**
@@ -140,9 +141,10 @@ public class PaymentOptionRequest {
         return (JsonNullable<List<CartItem>>) cartItems;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The metadata to used to evaluate checkout rules, which will help determine the right payment options to display.
@@ -225,6 +227,7 @@ public class PaymentOptionRequest {
         return this;
     }
 
+
     /**
      * The locale used to determine the labels for each payment option.
      */
@@ -252,7 +255,6 @@ public class PaymentOptionRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -274,12 +276,8 @@ public class PaymentOptionRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            metadata,
-            country,
-            currency,
-            amount,
-            locale,
-            cartItems);
+            metadata, country, currency,
+            amount, locale, cartItems);
     }
     
     @Override
@@ -292,24 +290,26 @@ public class PaymentOptionRequest {
                 "locale", locale,
                 "cartItems", cartItems);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private JsonNullable<? extends Map<String, String>> metadata = JsonNullable.undefined();
- 
+
         private JsonNullable<String> country = JsonNullable.undefined();
- 
+
         private JsonNullable<String> currency = JsonNullable.undefined();
- 
+
         private JsonNullable<Long> amount = JsonNullable.undefined();
- 
+
         private Optional<String> locale;
- 
+
         private JsonNullable<? extends List<CartItem>> cartItems = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The metadata to used to evaluate checkout rules, which will help determine the right payment options to display.
@@ -329,6 +329,7 @@ public class PaymentOptionRequest {
             return this;
         }
 
+
         /**
          * The country code used to evaluate checkout rules, and which are used to help determine the right payment options to display.
          */
@@ -346,6 +347,7 @@ public class PaymentOptionRequest {
             this.country = country;
             return this;
         }
+
 
         /**
          * The currency code used to evaluate checkout rules, and which are used to help determine the right payment options to display.
@@ -365,6 +367,7 @@ public class PaymentOptionRequest {
             return this;
         }
 
+
         /**
          * The amount used to evaluate checkout rules, and which are used to help determine the right payment options to display.
          */
@@ -382,6 +385,7 @@ public class PaymentOptionRequest {
             this.amount = amount;
             return this;
         }
+
 
         /**
          * The locale used to determine the labels for each payment option.
@@ -401,6 +405,7 @@ public class PaymentOptionRequest {
             return this;
         }
 
+
         /**
          * The cart items used to evaluate checkout rules, and which are used to help determine the right payment options to display.
          */
@@ -418,19 +423,17 @@ public class PaymentOptionRequest {
             this.cartItems = cartItems;
             return this;
         }
-        
+
         public PaymentOptionRequest build() {
             if (locale == null) {
                 locale = _SINGLETON_VALUE_Locale.value();
             }
+
             return new PaymentOptionRequest(
-                metadata,
-                country,
-                currency,
-                amount,
-                locale,
-                cartItems);
+                metadata, country, currency,
+                amount, locale, cartItems);
         }
+
 
         private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_Locale =
                 new LazySingletonValue<>(

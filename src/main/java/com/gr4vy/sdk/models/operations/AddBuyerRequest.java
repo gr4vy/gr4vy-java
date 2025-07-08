@@ -12,13 +12,14 @@ import java.lang.Override;
 import java.lang.String;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class AddBuyerRequest {
 
+public class AddBuyerRequest {
     /**
      * The ID of the merchant account to use for this request.
      */
     @SpeakeasyMetadata("header:style=simple,explode=false,name=x-gr4vy-merchant-account-id")
     private JsonNullable<String> merchantAccountId;
+
 
     @SpeakeasyMetadata("request:mediaType=application/json")
     private BuyerCreate buyerCreate;
@@ -51,9 +52,10 @@ public class AddBuyerRequest {
         return buyerCreate;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The ID of the merchant account to use for this request.
@@ -79,7 +81,6 @@ public class AddBuyerRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -97,8 +98,7 @@ public class AddBuyerRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            merchantAccountId,
-            buyerCreate);
+            merchantAccountId, buyerCreate);
     }
     
     @Override
@@ -107,16 +107,18 @@ public class AddBuyerRequest {
                 "merchantAccountId", merchantAccountId,
                 "buyerCreate", buyerCreate);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
- 
+
         private BuyerCreate buyerCreate;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The ID of the merchant account to use for this request.
@@ -136,16 +138,18 @@ public class AddBuyerRequest {
             return this;
         }
 
+
         public Builder buyerCreate(BuyerCreate buyerCreate) {
             Utils.checkNotNull(buyerCreate, "buyerCreate");
             this.buyerCreate = buyerCreate;
             return this;
         }
-        
+
         public AddBuyerRequest build() {
+
             return new AddBuyerRequest(
-                merchantAccountId,
-                buyerCreate);
+                merchantAccountId, buyerCreate);
         }
+
     }
 }

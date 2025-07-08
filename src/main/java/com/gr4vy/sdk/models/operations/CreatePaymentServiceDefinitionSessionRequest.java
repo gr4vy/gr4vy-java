@@ -12,10 +12,12 @@ import java.lang.Override;
 import java.lang.String;
 import java.util.Map;
 
+
 public class CreatePaymentServiceDefinitionSessionRequest {
 
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=payment_service_definition_id")
     private String paymentServiceDefinitionId;
+
 
     @SpeakeasyMetadata("request:mediaType=application/json")
     private Map<String, Object> requestBody;
@@ -26,6 +28,7 @@ public class CreatePaymentServiceDefinitionSessionRequest {
             Map<String, Object> requestBody) {
         Utils.checkNotNull(paymentServiceDefinitionId, "paymentServiceDefinitionId");
         requestBody = Utils.emptyMapIfNull(requestBody);
+        Utils.checkNotNull(requestBody, "requestBody");
         this.paymentServiceDefinitionId = paymentServiceDefinitionId;
         this.requestBody = requestBody;
     }
@@ -40,9 +43,10 @@ public class CreatePaymentServiceDefinitionSessionRequest {
         return requestBody;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public CreatePaymentServiceDefinitionSessionRequest withPaymentServiceDefinitionId(String paymentServiceDefinitionId) {
         Utils.checkNotNull(paymentServiceDefinitionId, "paymentServiceDefinitionId");
@@ -56,7 +60,6 @@ public class CreatePaymentServiceDefinitionSessionRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -74,8 +77,7 @@ public class CreatePaymentServiceDefinitionSessionRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            paymentServiceDefinitionId,
-            requestBody);
+            paymentServiceDefinitionId, requestBody);
     }
     
     @Override
@@ -84,16 +86,18 @@ public class CreatePaymentServiceDefinitionSessionRequest {
                 "paymentServiceDefinitionId", paymentServiceDefinitionId,
                 "requestBody", requestBody);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String paymentServiceDefinitionId;
- 
+
         private Map<String, Object> requestBody;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder paymentServiceDefinitionId(String paymentServiceDefinitionId) {
             Utils.checkNotNull(paymentServiceDefinitionId, "paymentServiceDefinitionId");
@@ -101,16 +105,18 @@ public class CreatePaymentServiceDefinitionSessionRequest {
             return this;
         }
 
+
         public Builder requestBody(Map<String, Object> requestBody) {
             Utils.checkNotNull(requestBody, "requestBody");
             this.requestBody = requestBody;
             return this;
         }
-        
+
         public CreatePaymentServiceDefinitionSessionRequest build() {
+
             return new CreatePaymentServiceDefinitionSessionRequest(
-                paymentServiceDefinitionId,
-                requestBody);
+                paymentServiceDefinitionId, requestBody);
         }
+
     }
 }

@@ -18,8 +18,8 @@ import java.util.List;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class MerchantAccounts {
 
+public class MerchantAccounts {
     /**
      * A list of items returned for this request.
      */
@@ -65,7 +65,8 @@ public class MerchantAccounts {
     
     public MerchantAccounts(
             List<MerchantAccount> items) {
-        this(items, Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined());
+        this(items, Optional.empty(), JsonNullable.undefined(),
+            JsonNullable.undefined());
     }
 
     /**
@@ -100,9 +101,10 @@ public class MerchantAccounts {
         return previousCursor;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * A list of items returned for this request.
@@ -121,6 +123,7 @@ public class MerchantAccounts {
         this.limit = Optional.ofNullable(limit);
         return this;
     }
+
 
     /**
      * The number of items for this page.
@@ -167,7 +170,6 @@ public class MerchantAccounts {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -187,9 +189,7 @@ public class MerchantAccounts {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            items,
-            limit,
-            nextCursor,
+            items, limit, nextCursor,
             previousCursor);
     }
     
@@ -201,20 +201,22 @@ public class MerchantAccounts {
                 "nextCursor", nextCursor,
                 "previousCursor", previousCursor);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private List<MerchantAccount> items;
- 
+
         private Optional<Long> limit;
- 
+
         private JsonNullable<String> nextCursor = JsonNullable.undefined();
- 
+
         private JsonNullable<String> previousCursor = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * A list of items returned for this request.
@@ -224,6 +226,7 @@ public class MerchantAccounts {
             this.items = items;
             return this;
         }
+
 
         /**
          * The number of items for this page.
@@ -243,6 +246,7 @@ public class MerchantAccounts {
             return this;
         }
 
+
         /**
          * The cursor pointing at the next page of items.
          */
@@ -261,6 +265,7 @@ public class MerchantAccounts {
             return this;
         }
 
+
         /**
          * The cursor pointing at the previous page of items.
          */
@@ -278,17 +283,17 @@ public class MerchantAccounts {
             this.previousCursor = previousCursor;
             return this;
         }
-        
+
         public MerchantAccounts build() {
             if (limit == null) {
                 limit = _SINGLETON_VALUE_Limit.value();
             }
+
             return new MerchantAccounts(
-                items,
-                limit,
-                nextCursor,
+                items, limit, nextCursor,
                 previousCursor);
         }
+
 
         private static final LazySingletonValue<Optional<Long>> _SINGLETON_VALUE_Limit =
                 new LazySingletonValue<>(

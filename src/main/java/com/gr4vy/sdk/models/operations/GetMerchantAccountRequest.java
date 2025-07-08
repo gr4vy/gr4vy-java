@@ -10,8 +10,8 @@ import com.gr4vy.sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 
-public class GetMerchantAccountRequest {
 
+public class GetMerchantAccountRequest {
     /**
      * The ID of the merchant account
      */
@@ -33,9 +33,10 @@ public class GetMerchantAccountRequest {
         return merchantAccountId;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The ID of the merchant account
@@ -46,7 +47,6 @@ public class GetMerchantAccountRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -71,14 +71,16 @@ public class GetMerchantAccountRequest {
         return Utils.toString(GetMerchantAccountRequest.class,
                 "merchantAccountId", merchantAccountId);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String merchantAccountId;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The ID of the merchant account
@@ -88,10 +90,12 @@ public class GetMerchantAccountRequest {
             this.merchantAccountId = merchantAccountId;
             return this;
         }
-        
+
         public GetMerchantAccountRequest build() {
+
             return new GetMerchantAccountRequest(
                 merchantAccountId);
         }
+
     }
 }

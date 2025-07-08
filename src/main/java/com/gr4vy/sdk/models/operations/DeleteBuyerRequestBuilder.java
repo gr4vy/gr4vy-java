@@ -52,7 +52,7 @@ public class DeleteBuyerRequestBuilder {
     public DeleteBuyerResponse call() throws Exception {
         
         RequestOperation<DeleteBuyerRequest, DeleteBuyerResponse> operation
-              = new DeleteBuyerOperation( sdkConfiguration);
+              = new DeleteBuyerOperation(sdkConfiguration);
         DeleteBuyerRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

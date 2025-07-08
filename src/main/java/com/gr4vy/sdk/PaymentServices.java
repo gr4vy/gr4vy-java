@@ -52,7 +52,6 @@ public class PaymentServices {
     PaymentServices(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-
     /**
      * List payment services
      * 
@@ -92,11 +91,10 @@ public class PaymentServices {
             Optional<Options> options) throws Exception {
         RequestOperation<ListPaymentServicesRequest, ListPaymentServicesResponse> operation
               = new ListPaymentServicesOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Update a configured payment service
@@ -142,10 +140,9 @@ public class PaymentServices {
                 .paymentServiceCreate(paymentServiceCreate)
                 .build();
         RequestOperation<UpdatePaymentServiceRequest, UpdatePaymentServiceResponse> operation
-              = new UpdatePaymentServiceOperation( sdkConfiguration);
+              = new UpdatePaymentServiceOperation(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Get payment service
@@ -194,11 +191,10 @@ public class PaymentServices {
                 .build();
         RequestOperation<GetPaymentServiceRequest, GetPaymentServiceResponse> operation
               = new GetPaymentServiceOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Configure a payment service
@@ -250,10 +246,9 @@ public class PaymentServices {
                 .paymentServiceUpdate(paymentServiceUpdate)
                 .build();
         RequestOperation<CreatePaymentServiceRequest, CreatePaymentServiceResponse> operation
-              = new CreatePaymentServiceOperation( sdkConfiguration);
+              = new CreatePaymentServiceOperation(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Delete a configured payment service
@@ -299,10 +294,9 @@ public class PaymentServices {
                 .merchantAccountId(merchantAccountId)
                 .build();
         RequestOperation<DeletePaymentServiceRequest, DeletePaymentServiceResponse> operation
-              = new DeletePaymentServiceOperation( sdkConfiguration);
+              = new DeletePaymentServiceOperation(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Verify payment service credentials
@@ -348,10 +342,9 @@ public class PaymentServices {
                 .verifyCredentials(verifyCredentials)
                 .build();
         RequestOperation<VerifyPaymentServiceCredentialsRequest, VerifyPaymentServiceCredentialsResponse> operation
-              = new VerifyPaymentServiceCredentialsOperation( sdkConfiguration);
+              = new VerifyPaymentServiceCredentialsOperation(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Create a session for apayment service definition
@@ -403,7 +396,7 @@ public class PaymentServices {
                 .requestBody(requestBody)
                 .build();
         RequestOperation<CreatePaymentServiceSessionRequest, CreatePaymentServiceSessionResponse> operation
-              = new CreatePaymentServiceSessionOperation( sdkConfiguration);
+              = new CreatePaymentServiceSessionOperation(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
 

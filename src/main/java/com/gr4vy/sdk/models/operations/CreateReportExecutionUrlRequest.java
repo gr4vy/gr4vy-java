@@ -11,8 +11,8 @@ import java.lang.Override;
 import java.lang.String;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class CreateReportExecutionUrlRequest {
 
+public class CreateReportExecutionUrlRequest {
     /**
      * The ID of the report to retrieve a URL for.
      */
@@ -74,9 +74,10 @@ public class CreateReportExecutionUrlRequest {
         return merchantAccountId;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The ID of the report to retrieve a URL for.
@@ -114,7 +115,6 @@ public class CreateReportExecutionUrlRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -133,9 +133,7 @@ public class CreateReportExecutionUrlRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            reportId,
-            reportExecutionId,
-            merchantAccountId);
+            reportId, reportExecutionId, merchantAccountId);
     }
     
     @Override
@@ -145,18 +143,20 @@ public class CreateReportExecutionUrlRequest {
                 "reportExecutionId", reportExecutionId,
                 "merchantAccountId", merchantAccountId);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String reportId;
- 
+
         private String reportExecutionId;
- 
+
         private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The ID of the report to retrieve a URL for.
@@ -167,6 +167,7 @@ public class CreateReportExecutionUrlRequest {
             return this;
         }
 
+
         /**
          * The ID of the execution of a report to retrieve a URL for.
          */
@@ -175,6 +176,7 @@ public class CreateReportExecutionUrlRequest {
             this.reportExecutionId = reportExecutionId;
             return this;
         }
+
 
         /**
          * The ID of the merchant account to use for this request.
@@ -193,12 +195,12 @@ public class CreateReportExecutionUrlRequest {
             this.merchantAccountId = merchantAccountId;
             return this;
         }
-        
+
         public CreateReportExecutionUrlRequest build() {
+
             return new CreateReportExecutionUrlRequest(
-                reportId,
-                reportExecutionId,
-                merchantAccountId);
+                reportId, reportExecutionId, merchantAccountId);
         }
+
     }
 }

@@ -59,8 +59,8 @@ public class ListTransactionsRequestBuilder {
 
         RequestOperation<ListTransactionsRequest, ListTransactionsResponse> operation
               = new ListTransactionsOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
 
         return operation.handleResponse(operation.doRequest(request));
     }
@@ -85,8 +85,8 @@ public class ListTransactionsRequestBuilder {
 
         RequestOperation<ListTransactionsRequest, ListTransactionsResponse> operation
               = new ListTransactionsOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         Iterator<HttpResponse<InputStream>> iterator = new Paginator<>(
             request,
             new CursorTracker<>("$.next_cursor", String.class),

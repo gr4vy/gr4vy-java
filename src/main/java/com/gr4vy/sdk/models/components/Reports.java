@@ -18,8 +18,8 @@ import java.util.List;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class Reports {
 
+public class Reports {
     /**
      * A list of items returned for this request.
      */
@@ -65,7 +65,8 @@ public class Reports {
     
     public Reports(
             List<Report> items) {
-        this(items, Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined());
+        this(items, Optional.empty(), JsonNullable.undefined(),
+            JsonNullable.undefined());
     }
 
     /**
@@ -100,9 +101,10 @@ public class Reports {
         return previousCursor;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * A list of items returned for this request.
@@ -121,6 +123,7 @@ public class Reports {
         this.limit = Optional.ofNullable(limit);
         return this;
     }
+
 
     /**
      * The number of items for this page.
@@ -167,7 +170,6 @@ public class Reports {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -187,9 +189,7 @@ public class Reports {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            items,
-            limit,
-            nextCursor,
+            items, limit, nextCursor,
             previousCursor);
     }
     
@@ -201,20 +201,22 @@ public class Reports {
                 "nextCursor", nextCursor,
                 "previousCursor", previousCursor);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private List<Report> items;
- 
+
         private Optional<Long> limit;
- 
+
         private JsonNullable<String> nextCursor = JsonNullable.undefined();
- 
+
         private JsonNullable<String> previousCursor = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * A list of items returned for this request.
@@ -224,6 +226,7 @@ public class Reports {
             this.items = items;
             return this;
         }
+
 
         /**
          * The number of items for this page.
@@ -243,6 +246,7 @@ public class Reports {
             return this;
         }
 
+
         /**
          * The cursor pointing at the next page of items.
          */
@@ -261,6 +265,7 @@ public class Reports {
             return this;
         }
 
+
         /**
          * The cursor pointing at the previous page of items.
          */
@@ -278,17 +283,17 @@ public class Reports {
             this.previousCursor = previousCursor;
             return this;
         }
-        
+
         public Reports build() {
             if (limit == null) {
                 limit = _SINGLETON_VALUE_Limit.value();
             }
+
             return new Reports(
-                items,
-                limit,
-                nextCursor,
+                items, limit, nextCursor,
                 previousCursor);
         }
+
 
         private static final LazySingletonValue<Optional<Long>> _SINGLETON_VALUE_Limit =
                 new LazySingletonValue<>(

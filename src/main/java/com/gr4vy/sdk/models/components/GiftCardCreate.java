@@ -13,8 +13,8 @@ import java.lang.Override;
 import java.lang.String;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class GiftCardCreate {
 
+public class GiftCardCreate {
     /**
      * The 16-19 digit number for the gift card.
      */
@@ -60,7 +60,8 @@ public class GiftCardCreate {
     public GiftCardCreate(
             String number,
             String pin) {
-        this(number, pin, JsonNullable.undefined(), JsonNullable.undefined());
+        this(number, pin, JsonNullable.undefined(),
+            JsonNullable.undefined());
     }
 
     /**
@@ -95,9 +96,10 @@ public class GiftCardCreate {
         return buyerExternalIdentifier;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The 16-19 digit number for the gift card.
@@ -153,7 +155,6 @@ public class GiftCardCreate {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -173,9 +174,7 @@ public class GiftCardCreate {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            number,
-            pin,
-            buyerId,
+            number, pin, buyerId,
             buyerExternalIdentifier);
     }
     
@@ -187,20 +186,22 @@ public class GiftCardCreate {
                 "buyerId", buyerId,
                 "buyerExternalIdentifier", buyerExternalIdentifier);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String number;
- 
+
         private String pin;
- 
+
         private JsonNullable<String> buyerId = JsonNullable.undefined();
- 
+
         private JsonNullable<String> buyerExternalIdentifier = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The 16-19 digit number for the gift card.
@@ -211,6 +212,7 @@ public class GiftCardCreate {
             return this;
         }
 
+
         /**
          * The PIN for this gift card.
          */
@@ -219,6 +221,7 @@ public class GiftCardCreate {
             this.pin = pin;
             return this;
         }
+
 
         /**
          * The ID of the buyer to associate this gift card to. If this field is provided then the `buyer_external_identifier` field needs to be unset.
@@ -238,6 +241,7 @@ public class GiftCardCreate {
             return this;
         }
 
+
         /**
          * The `external_identifier` of the buyer to associate this gift card to. If this field is provided then the `buyer_id` field needs to be unset.
          */
@@ -255,13 +259,13 @@ public class GiftCardCreate {
             this.buyerExternalIdentifier = buyerExternalIdentifier;
             return this;
         }
-        
+
         public GiftCardCreate build() {
+
             return new GiftCardCreate(
-                number,
-                pin,
-                buyerId,
+                number, pin, buyerId,
                 buyerExternalIdentifier);
         }
+
     }
 }

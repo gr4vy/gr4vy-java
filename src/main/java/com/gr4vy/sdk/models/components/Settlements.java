@@ -17,7 +17,6 @@ import java.util.List;
  * <p>A list of settlement records for a transaction.
  */
 public class Settlements {
-
     /**
      * The list of settlement objects.
      */
@@ -39,9 +38,10 @@ public class Settlements {
         return items;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The list of settlement objects.
@@ -52,7 +52,6 @@ public class Settlements {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -77,14 +76,16 @@ public class Settlements {
         return Utils.toString(Settlements.class,
                 "items", items);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private List<Settlement> items;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The list of settlement objects.
@@ -94,10 +95,12 @@ public class Settlements {
             this.items = items;
             return this;
         }
-        
+
         public Settlements build() {
+
             return new Settlements(
                 items);
         }
+
     }
 }

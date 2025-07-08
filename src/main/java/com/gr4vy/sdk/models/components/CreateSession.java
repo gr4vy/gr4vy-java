@@ -26,13 +26,13 @@ import org.openapitools.jackson.nullable.JsonNullable;
  * <p>The session data received from the payment service.
  */
 public class CreateSession {
-
     /**
      * Always `payment-service-session`.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("type")
     private Optional<String> type;
+
 
     @JsonProperty("status")
     private CreateSessionStatus status;
@@ -77,7 +77,8 @@ public class CreateSession {
     
     public CreateSession(
             CreateSessionStatus status) {
-        this(status, JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
+        this(status, JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined());
     }
 
     /**
@@ -118,9 +119,10 @@ public class CreateSession {
         return (JsonNullable<Map<String, Object>>) responseBody;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public CreateSession withStatus(CreateSessionStatus status) {
         Utils.checkNotNull(status, "status");
@@ -182,7 +184,6 @@ public class CreateSession {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -203,11 +204,8 @@ public class CreateSession {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            type,
-            status,
-            code,
-            statusCode,
-            responseBody);
+            type, status, code,
+            statusCode, responseBody);
     }
     
     @Override
@@ -219,26 +217,29 @@ public class CreateSession {
                 "statusCode", statusCode,
                 "responseBody", responseBody);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private CreateSessionStatus status;
- 
+
         private JsonNullable<String> code = JsonNullable.undefined();
- 
+
         private JsonNullable<Long> statusCode = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends Map<String, Object>> responseBody = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder status(CreateSessionStatus status) {
             Utils.checkNotNull(status, "status");
             this.status = status;
             return this;
         }
+
 
         /**
          * A generic error code that may be returned when the session could not be generated.
@@ -258,6 +259,7 @@ public class CreateSession {
             return this;
         }
 
+
         /**
          * The HTTP status code received from the payment service.
          */
@@ -276,6 +278,7 @@ public class CreateSession {
             return this;
         }
 
+
         /**
          * The JSON response body received from the payment service.
          */
@@ -293,14 +296,14 @@ public class CreateSession {
             this.responseBody = responseBody;
             return this;
         }
-        
+
         public CreateSession build() {
+
             return new CreateSession(
-                status,
-                code,
-                statusCode,
+                status, code, statusCode,
                 responseBody);
         }
+
 
         private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_Type =
                 new LazySingletonValue<>(

@@ -20,8 +20,8 @@ import java.util.List;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class MerchantAccountCreate {
 
+public class MerchantAccountCreate {
     /**
      * Whether the Real-Time Account Updater service is enabled for this merchant account. The Account Updater service is used to update card details when cards are lost, stolen or expired. If the field is not set or if it's set to `false`, the Account Updater service doesn't get called if a payment fails with expired or invalid card details. If the field is set to `true`, the service is called. Please note that for this to work the other `account_updater_* fields` must be set as well.
      */
@@ -207,7 +207,12 @@ public class MerchantAccountCreate {
     public MerchantAccountCreate(
             String id,
             String displayName) {
-        this(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), id, displayName);
+        this(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), id, displayName);
     }
 
     /**
@@ -355,9 +360,10 @@ public class MerchantAccountCreate {
         return displayName;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Whether the Real-Time Account Updater service is enabled for this merchant account. The Account Updater service is used to update card details when cards are lost, stolen or expired. If the field is not set or if it's set to `false`, the Account Updater service doesn't get called if a payment fails with expired or invalid card details. If the field is set to `true`, the service is called. Please note that for this to work the other `account_updater_* fields` must be set as well.
@@ -367,6 +373,7 @@ public class MerchantAccountCreate {
         this.accountUpdaterEnabled = Optional.ofNullable(accountUpdaterEnabled);
         return this;
     }
+
 
     /**
      * Whether the Real-Time Account Updater service is enabled for this merchant account. The Account Updater service is used to update card details when cards are lost, stolen or expired. If the field is not set or if it's set to `false`, the Account Updater service doesn't get called if a payment fails with expired or invalid card details. If the field is set to `true`, the service is called. Please note that for this to work the other `account_updater_* fields` must be set as well.
@@ -665,7 +672,6 @@ public class MerchantAccountCreate {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -699,24 +705,12 @@ public class MerchantAccountCreate {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            accountUpdaterEnabled,
-            accountUpdaterRequestEncryptionKey,
-            accountUpdaterRequestEncryptionKeyId,
-            accountUpdaterResponseDecryptionKey,
-            accountUpdaterResponseDecryptionKeyId,
-            overCaptureAmount,
-            overCapturePercentage,
-            loonClientKey,
-            loonSecretKey,
-            loonAcceptedSchemes,
-            visaNetworkTokensRequestorId,
-            visaNetworkTokensAppId,
-            amexNetworkTokensRequestorId,
-            amexNetworkTokensAppId,
-            mastercardNetworkTokensRequestorId,
-            mastercardNetworkTokensAppId,
-            id,
-            displayName);
+            accountUpdaterEnabled, accountUpdaterRequestEncryptionKey, accountUpdaterRequestEncryptionKeyId,
+            accountUpdaterResponseDecryptionKey, accountUpdaterResponseDecryptionKeyId, overCaptureAmount,
+            overCapturePercentage, loonClientKey, loonSecretKey,
+            loonAcceptedSchemes, visaNetworkTokensRequestorId, visaNetworkTokensAppId,
+            amexNetworkTokensRequestorId, amexNetworkTokensAppId, mastercardNetworkTokensRequestorId,
+            mastercardNetworkTokensAppId, id, displayName);
     }
     
     @Override
@@ -741,48 +735,50 @@ public class MerchantAccountCreate {
                 "id", id,
                 "displayName", displayName);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<Boolean> accountUpdaterEnabled;
- 
+
         private JsonNullable<String> accountUpdaterRequestEncryptionKey = JsonNullable.undefined();
- 
+
         private JsonNullable<String> accountUpdaterRequestEncryptionKeyId = JsonNullable.undefined();
- 
+
         private JsonNullable<String> accountUpdaterResponseDecryptionKey = JsonNullable.undefined();
- 
+
         private JsonNullable<String> accountUpdaterResponseDecryptionKeyId = JsonNullable.undefined();
- 
+
         private JsonNullable<Long> overCaptureAmount = JsonNullable.undefined();
- 
+
         private JsonNullable<Long> overCapturePercentage = JsonNullable.undefined();
- 
+
         private JsonNullable<String> loonClientKey = JsonNullable.undefined();
- 
+
         private JsonNullable<String> loonSecretKey = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends List<CardScheme>> loonAcceptedSchemes = JsonNullable.undefined();
- 
+
         private JsonNullable<String> visaNetworkTokensRequestorId = JsonNullable.undefined();
- 
+
         private JsonNullable<String> visaNetworkTokensAppId = JsonNullable.undefined();
- 
+
         private JsonNullable<String> amexNetworkTokensRequestorId = JsonNullable.undefined();
- 
+
         private JsonNullable<String> amexNetworkTokensAppId = JsonNullable.undefined();
- 
+
         private JsonNullable<String> mastercardNetworkTokensRequestorId = JsonNullable.undefined();
- 
+
         private JsonNullable<String> mastercardNetworkTokensAppId = JsonNullable.undefined();
- 
+
         private String id;
- 
+
         private String displayName;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Whether the Real-Time Account Updater service is enabled for this merchant account. The Account Updater service is used to update card details when cards are lost, stolen or expired. If the field is not set or if it's set to `false`, the Account Updater service doesn't get called if a payment fails with expired or invalid card details. If the field is set to `true`, the service is called. Please note that for this to work the other `account_updater_* fields` must be set as well.
@@ -802,6 +798,7 @@ public class MerchantAccountCreate {
             return this;
         }
 
+
         /**
          * The public key used to encrypt the request to the Real-Time Account Updater service. The Account Updater service is used to update card details when cards are lost, stolen or expired. If the field is not set or if it's set to `null`, the Account Updater service doesn't get called. If the field is set, the other `account_updater_*` fields must be set as well.
          */
@@ -819,6 +816,7 @@ public class MerchantAccountCreate {
             this.accountUpdaterRequestEncryptionKey = accountUpdaterRequestEncryptionKey;
             return this;
         }
+
 
         /**
          * The ID of the key used to encrypt the request to the Real-Time Account Updater service. The Account Updater service is used to update card details when cards are lost, stolen or expired. If the field is not set or if it's set to `null`, the Account Updater service doesn't get called. If the field is set, the other `account_updater_*` fields must be set as well.
@@ -838,6 +836,7 @@ public class MerchantAccountCreate {
             return this;
         }
 
+
         /**
          * The key used to decrypt the response from the Real-Time Account Updater service. The Account Updater service is used to update card details when cards are lost, stolen or expired. If the field is not set or if it's set to `null`, the Account Updater service doesn't get called. If the field is set, the other `account_updater_*` fields must be set as well.
          */
@@ -855,6 +854,7 @@ public class MerchantAccountCreate {
             this.accountUpdaterResponseDecryptionKey = accountUpdaterResponseDecryptionKey;
             return this;
         }
+
 
         /**
          * The ID of the key used to decrypt the request from the Real-Time Account Updater service. The Account Updater service is used to update card details when cards are lost, stolen or expired. If the field is not set or if it's set to `null`, the Account Updater service doesn't get called. If the field is set, the other `account_updater_*` fields must be set as well.
@@ -874,6 +874,7 @@ public class MerchantAccountCreate {
             return this;
         }
 
+
         /**
          * The maximum monetary amount allowed for over-capture, in the smallest currency unit, for example `1299` cents to allow for an over-capture of `$12.99`.
          */
@@ -891,6 +892,7 @@ public class MerchantAccountCreate {
             this.overCaptureAmount = overCaptureAmount;
             return this;
         }
+
 
         /**
          * The maximum percentage allowed for over-capture, for example `25` to allow for an over-capture of `25%` of the original transaction amount.
@@ -910,6 +912,7 @@ public class MerchantAccountCreate {
             return this;
         }
 
+
         /**
          * Client key provided by Pagos to authenticate to the Loon API. Loon is the Account Updater service we use and if the field is not set or if it's set to null, the Account Updater service doesn't get configured. If the field is set to `null`, the other `loon_*` fields must be set to null as well.
          */
@@ -927,6 +930,7 @@ public class MerchantAccountCreate {
             this.loonClientKey = loonClientKey;
             return this;
         }
+
 
         /**
          * Secret key provided by Pagos to authenticate to the Loon API. Loon is the Account Updater service we use and if the field is not set or if it's set to null, the Account Updater service doesn't get configured. If the field is set to `null`, the other `loon_*` fields must be set to null as well.
@@ -946,6 +950,7 @@ public class MerchantAccountCreate {
             return this;
         }
 
+
         /**
          * Card schemes accepted when creating jobs using this set of Loon API keys. Loon is the Account Updater service we use and if the field is not set or if it's set to null, the Account Updater service doesn't get configured. If the field is set to `null`, the other `loon_*` fields must be set to null as well.
          */
@@ -963,6 +968,7 @@ public class MerchantAccountCreate {
             this.loonAcceptedSchemes = loonAcceptedSchemes;
             return this;
         }
+
 
         /**
          * Requestor ID provided for Visa after onboarding to use Network Tokens.
@@ -982,6 +988,7 @@ public class MerchantAccountCreate {
             return this;
         }
 
+
         /**
          * Application ID provided for Visa after onboarding to use Network Tokens.
          */
@@ -999,6 +1006,7 @@ public class MerchantAccountCreate {
             this.visaNetworkTokensAppId = visaNetworkTokensAppId;
             return this;
         }
+
 
         /**
          * Requestor ID provided for American Express after onboarding to use Network Tokens.
@@ -1018,6 +1026,7 @@ public class MerchantAccountCreate {
             return this;
         }
 
+
         /**
          * Application ID provided for American Express after onboarding to use Network Tokens.
          */
@@ -1035,6 +1044,7 @@ public class MerchantAccountCreate {
             this.amexNetworkTokensAppId = amexNetworkTokensAppId;
             return this;
         }
+
 
         /**
          * Requestor ID provided for Mastercard after onboarding to use Network Tokens.
@@ -1054,6 +1064,7 @@ public class MerchantAccountCreate {
             return this;
         }
 
+
         /**
          * Application ID provided for Mastercard after onboarding to use Network Tokens.
          */
@@ -1072,6 +1083,7 @@ public class MerchantAccountCreate {
             return this;
         }
 
+
         /**
          * The ID for the merchant account.
          */
@@ -1081,6 +1093,7 @@ public class MerchantAccountCreate {
             return this;
         }
 
+
         /**
          * The display name for the merchant account.
          */
@@ -1089,31 +1102,21 @@ public class MerchantAccountCreate {
             this.displayName = displayName;
             return this;
         }
-        
+
         public MerchantAccountCreate build() {
             if (accountUpdaterEnabled == null) {
                 accountUpdaterEnabled = _SINGLETON_VALUE_AccountUpdaterEnabled.value();
             }
+
             return new MerchantAccountCreate(
-                accountUpdaterEnabled,
-                accountUpdaterRequestEncryptionKey,
-                accountUpdaterRequestEncryptionKeyId,
-                accountUpdaterResponseDecryptionKey,
-                accountUpdaterResponseDecryptionKeyId,
-                overCaptureAmount,
-                overCapturePercentage,
-                loonClientKey,
-                loonSecretKey,
-                loonAcceptedSchemes,
-                visaNetworkTokensRequestorId,
-                visaNetworkTokensAppId,
-                amexNetworkTokensRequestorId,
-                amexNetworkTokensAppId,
-                mastercardNetworkTokensRequestorId,
-                mastercardNetworkTokensAppId,
-                id,
-                displayName);
+                accountUpdaterEnabled, accountUpdaterRequestEncryptionKey, accountUpdaterRequestEncryptionKeyId,
+                accountUpdaterResponseDecryptionKey, accountUpdaterResponseDecryptionKeyId, overCaptureAmount,
+                overCapturePercentage, loonClientKey, loonSecretKey,
+                loonAcceptedSchemes, visaNetworkTokensRequestorId, visaNetworkTokensAppId,
+                amexNetworkTokensRequestorId, amexNetworkTokensAppId, mastercardNetworkTokensRequestorId,
+                mastercardNetworkTokensAppId, id, displayName);
         }
+
 
         private static final LazySingletonValue<Optional<Boolean>> _SINGLETON_VALUE_AccountUpdaterEnabled =
                 new LazySingletonValue<>(

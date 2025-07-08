@@ -61,7 +61,7 @@ public class CreatePaymentServiceRequestBuilder {
     public CreatePaymentServiceResponse call() throws Exception {
         
         RequestOperation<CreatePaymentServiceRequest, CreatePaymentServiceResponse> operation
-              = new CreatePaymentServiceOperation( sdkConfiguration);
+              = new CreatePaymentServiceOperation(sdkConfiguration);
         CreatePaymentServiceRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

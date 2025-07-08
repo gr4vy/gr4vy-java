@@ -51,7 +51,6 @@ public final Sessions sessions() {
 public final Domains domains() {
         return domains;
     }
-
     /**
      * Register digital wallet
      * 
@@ -96,10 +95,9 @@ public final Domains domains() {
                 .digitalWalletCreate(digitalWalletCreate)
                 .build();
         RequestOperation<ConfigureDigitalWalletRequest, ConfigureDigitalWalletResponse> operation
-              = new ConfigureDigitalWalletOperation( sdkConfiguration);
+              = new ConfigureDigitalWalletOperation(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * List digital wallets
@@ -144,11 +142,10 @@ public final Domains domains() {
                 .build();
         RequestOperation<ListDigitalWalletsRequest, ListDigitalWalletsResponse> operation
               = new ListDigitalWalletsOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Get digital wallet
@@ -197,11 +194,10 @@ public final Domains domains() {
                 .build();
         RequestOperation<GetDigitalWalletRequest, GetDigitalWalletResponse> operation
               = new GetDigitalWalletOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Delete digital wallet
@@ -247,10 +243,9 @@ public final Domains domains() {
                 .merchantAccountId(merchantAccountId)
                 .build();
         RequestOperation<DeleteDigitalWalletRequest, DeleteDigitalWalletResponse> operation
-              = new DeleteDigitalWalletOperation( sdkConfiguration);
+              = new DeleteDigitalWalletOperation(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Update digital wallet
@@ -302,7 +297,7 @@ public final Domains domains() {
                 .digitalWalletUpdate(digitalWalletUpdate)
                 .build();
         RequestOperation<UpdateDigitalWalletRequest, UpdateDigitalWalletResponse> operation
-              = new UpdateDigitalWalletOperation( sdkConfiguration);
+              = new UpdateDigitalWalletOperation(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
 

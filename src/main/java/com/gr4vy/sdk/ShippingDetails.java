@@ -41,7 +41,6 @@ public class ShippingDetails {
     ShippingDetails(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-
     /**
      * Add buyer shipping details
      * 
@@ -92,10 +91,9 @@ public class ShippingDetails {
                 .shippingDetailsCreate(shippingDetailsCreate)
                 .build();
         RequestOperation<AddBuyerShippingDetailsRequest, AddBuyerShippingDetailsResponse> operation
-              = new AddBuyerShippingDetailsOperation( sdkConfiguration);
+              = new AddBuyerShippingDetailsOperation(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * List a buyer's shipping details
@@ -144,11 +142,10 @@ public class ShippingDetails {
                 .build();
         RequestOperation<ListBuyerShippingDetailsRequest, ListBuyerShippingDetailsResponse> operation
               = new ListBuyerShippingDetailsOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Get buyer shipping details
@@ -174,7 +171,8 @@ public class ShippingDetails {
     public GetBuyerShippingDetailsResponse get(
             String buyerId,
             String shippingDetailsId) throws Exception {
-        return get(buyerId, shippingDetailsId, JsonNullable.undefined(), Optional.empty());
+        return get(buyerId, shippingDetailsId, JsonNullable.undefined(),
+            Optional.empty());
     }
 
     /**
@@ -203,11 +201,10 @@ public class ShippingDetails {
                 .build();
         RequestOperation<GetBuyerShippingDetailsRequest, GetBuyerShippingDetailsResponse> operation
               = new GetBuyerShippingDetailsOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Update a buyer's shipping details
@@ -235,7 +232,8 @@ public class ShippingDetails {
             String buyerId,
             String shippingDetailsId,
             ShippingDetailsUpdate shippingDetailsUpdate) throws Exception {
-        return update(buyerId, shippingDetailsId, JsonNullable.undefined(), shippingDetailsUpdate);
+        return update(buyerId, shippingDetailsId, JsonNullable.undefined(),
+            shippingDetailsUpdate);
     }
 
     /**
@@ -264,10 +262,9 @@ public class ShippingDetails {
                 .shippingDetailsUpdate(shippingDetailsUpdate)
                 .build();
         RequestOperation<UpdateBuyerShippingDetailsRequest, UpdateBuyerShippingDetailsResponse> operation
-              = new UpdateBuyerShippingDetailsOperation( sdkConfiguration);
+              = new UpdateBuyerShippingDetailsOperation(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Delete a buyer's shipping details
@@ -319,7 +316,7 @@ public class ShippingDetails {
                 .merchantAccountId(merchantAccountId)
                 .build();
         RequestOperation<DeleteBuyerShippingDetailsRequest, DeleteBuyerShippingDetailsResponse> operation
-              = new DeleteBuyerShippingDetailsOperation( sdkConfiguration);
+              = new DeleteBuyerShippingDetailsOperation(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
 

@@ -12,13 +12,14 @@ import java.lang.Override;
 import java.lang.String;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class ListGiftCardBalancesRequest {
 
+public class ListGiftCardBalancesRequest {
     /**
      * The ID of the merchant account to use for this request.
      */
     @SpeakeasyMetadata("header:style=simple,explode=false,name=x-gr4vy-merchant-account-id")
     private JsonNullable<String> merchantAccountId;
+
 
     @SpeakeasyMetadata("request:mediaType=application/json")
     private GiftCardBalanceRequest giftCardBalanceRequest;
@@ -51,9 +52,10 @@ public class ListGiftCardBalancesRequest {
         return giftCardBalanceRequest;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The ID of the merchant account to use for this request.
@@ -79,7 +81,6 @@ public class ListGiftCardBalancesRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -97,8 +98,7 @@ public class ListGiftCardBalancesRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            merchantAccountId,
-            giftCardBalanceRequest);
+            merchantAccountId, giftCardBalanceRequest);
     }
     
     @Override
@@ -107,16 +107,18 @@ public class ListGiftCardBalancesRequest {
                 "merchantAccountId", merchantAccountId,
                 "giftCardBalanceRequest", giftCardBalanceRequest);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
- 
+
         private GiftCardBalanceRequest giftCardBalanceRequest;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The ID of the merchant account to use for this request.
@@ -136,16 +138,18 @@ public class ListGiftCardBalancesRequest {
             return this;
         }
 
+
         public Builder giftCardBalanceRequest(GiftCardBalanceRequest giftCardBalanceRequest) {
             Utils.checkNotNull(giftCardBalanceRequest, "giftCardBalanceRequest");
             this.giftCardBalanceRequest = giftCardBalanceRequest;
             return this;
         }
-        
+
         public ListGiftCardBalancesRequest build() {
+
             return new ListGiftCardBalancesRequest(
-                merchantAccountId,
-                giftCardBalanceRequest);
+                merchantAccountId, giftCardBalanceRequest);
         }
+
     }
 }

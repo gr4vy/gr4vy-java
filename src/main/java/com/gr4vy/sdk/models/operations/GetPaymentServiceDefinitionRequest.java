@@ -10,6 +10,7 @@ import com.gr4vy.sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 
+
 public class GetPaymentServiceDefinitionRequest {
 
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=payment_service_definition_id")
@@ -27,9 +28,10 @@ public class GetPaymentServiceDefinitionRequest {
         return paymentServiceDefinitionId;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public GetPaymentServiceDefinitionRequest withPaymentServiceDefinitionId(String paymentServiceDefinitionId) {
         Utils.checkNotNull(paymentServiceDefinitionId, "paymentServiceDefinitionId");
@@ -37,7 +39,6 @@ public class GetPaymentServiceDefinitionRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -62,24 +63,28 @@ public class GetPaymentServiceDefinitionRequest {
         return Utils.toString(GetPaymentServiceDefinitionRequest.class,
                 "paymentServiceDefinitionId", paymentServiceDefinitionId);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String paymentServiceDefinitionId;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder paymentServiceDefinitionId(String paymentServiceDefinitionId) {
             Utils.checkNotNull(paymentServiceDefinitionId, "paymentServiceDefinitionId");
             this.paymentServiceDefinitionId = paymentServiceDefinitionId;
             return this;
         }
-        
+
         public GetPaymentServiceDefinitionRequest build() {
+
             return new GetPaymentServiceDefinitionRequest(
                 paymentServiceDefinitionId);
         }
+
     }
 }

@@ -48,8 +48,8 @@ public class ListBuyerPaymentMethodsRequestBuilder {
 
         RequestOperation<ListBuyerPaymentMethodsRequest, ListBuyerPaymentMethodsResponse> operation
               = new ListBuyerPaymentMethodsOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
 
         return operation.handleResponse(operation.doRequest(request));
     }

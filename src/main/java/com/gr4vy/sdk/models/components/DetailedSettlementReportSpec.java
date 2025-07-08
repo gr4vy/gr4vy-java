@@ -17,8 +17,8 @@ import java.lang.String;
 import java.util.Map;
 import java.util.Optional;
 
-public class DetailedSettlementReportSpec implements Spec {
 
+public class DetailedSettlementReportSpec implements Spec {
     /**
      * The report model type.
      */
@@ -36,6 +36,7 @@ public class DetailedSettlementReportSpec implements Spec {
     public DetailedSettlementReportSpec(
             @JsonProperty("params") Map<String, Object> params) {
         params = Utils.emptyMapIfNull(params);
+        Utils.checkNotNull(params, "params");
         this.model = Builder._SINGLETON_VALUE_Model.value();
         this.params = params;
     }
@@ -57,9 +58,10 @@ public class DetailedSettlementReportSpec implements Spec {
         return params;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The parameters for the detailed settlement report model.
@@ -70,7 +72,6 @@ public class DetailedSettlementReportSpec implements Spec {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -88,8 +89,7 @@ public class DetailedSettlementReportSpec implements Spec {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            model,
-            params);
+            model, params);
     }
     
     @Override
@@ -98,14 +98,16 @@ public class DetailedSettlementReportSpec implements Spec {
                 "model", model,
                 "params", params);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Map<String, Object> params;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The parameters for the detailed settlement report model.
@@ -115,11 +117,13 @@ public class DetailedSettlementReportSpec implements Spec {
             this.params = params;
             return this;
         }
-        
+
         public DetailedSettlementReportSpec build() {
+
             return new DetailedSettlementReportSpec(
                 params);
         }
+
 
         private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_Model =
                 new LazySingletonValue<>(

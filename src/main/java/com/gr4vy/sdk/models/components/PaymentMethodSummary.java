@@ -29,7 +29,6 @@ import org.openapitools.jackson.nullable.JsonNullable;
  * <p>A summary of a payment method.
  */
 public class PaymentMethodSummary {
-
     /**
      * Always `payment-method`.
      */
@@ -92,6 +91,7 @@ public class PaymentMethodSummary {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("last_replaced_at")
     private JsonNullable<OffsetDateTime> lastReplacedAt;
+
 
     @JsonProperty("method")
     private Method method;
@@ -230,7 +230,13 @@ public class PaymentMethodSummary {
             long citUsageCount,
             boolean hasReplacement,
             long usageCount) {
-        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), method, JsonNullable.undefined(), JsonNullable.undefined(), id, merchantAccountId, JsonNullable.undefined(), JsonNullable.undefined(), citUsageCount, hasReplacement, JsonNullable.undefined(), usageCount);
+        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), method,
+            JsonNullable.undefined(), JsonNullable.undefined(), id,
+            merchantAccountId, JsonNullable.undefined(), JsonNullable.undefined(),
+            citUsageCount, hasReplacement, JsonNullable.undefined(),
+            usageCount);
     }
 
     /**
@@ -394,9 +400,10 @@ public class PaymentMethodSummary {
         return usageCount;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The optional URL that the buyer needs to be redirected to to further authorize their payment.
@@ -683,7 +690,6 @@ public class PaymentMethodSummary {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -719,26 +725,13 @@ public class PaymentMethodSummary {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            type,
-            approvalUrl,
-            country,
-            currency,
-            details,
-            expirationDate,
-            fingerprint,
-            label,
-            lastReplacedAt,
-            method,
-            mode,
-            scheme,
-            id,
-            merchantAccountId,
-            additionalSchemes,
-            citLastUsedAt,
-            citUsageCount,
-            hasReplacement,
-            lastUsedAt,
-            usageCount);
+            type, approvalUrl, country,
+            currency, details, expirationDate,
+            fingerprint, label, lastReplacedAt,
+            method, mode, scheme,
+            id, merchantAccountId, additionalSchemes,
+            citLastUsedAt, citUsageCount, hasReplacement,
+            lastUsedAt, usageCount);
     }
     
     @Override
@@ -765,50 +758,52 @@ public class PaymentMethodSummary {
                 "lastUsedAt", lastUsedAt,
                 "usageCount", usageCount);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private JsonNullable<String> approvalUrl = JsonNullable.undefined();
- 
+
         private JsonNullable<String> country = JsonNullable.undefined();
- 
+
         private JsonNullable<String> currency = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends PaymentMethodDetailsCard> details = JsonNullable.undefined();
- 
+
         private JsonNullable<String> expirationDate = JsonNullable.undefined();
- 
+
         private JsonNullable<String> fingerprint = JsonNullable.undefined();
- 
+
         private JsonNullable<String> label = JsonNullable.undefined();
- 
+
         private JsonNullable<OffsetDateTime> lastReplacedAt = JsonNullable.undefined();
- 
+
         private Method method;
- 
+
         private JsonNullable<? extends Mode> mode = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends CardScheme> scheme = JsonNullable.undefined();
- 
+
         private String id;
- 
+
         private String merchantAccountId;
- 
+
         private JsonNullable<? extends List<CardScheme>> additionalSchemes = JsonNullable.undefined();
- 
+
         private JsonNullable<OffsetDateTime> citLastUsedAt = JsonNullable.undefined();
- 
+
         private Long citUsageCount;
- 
+
         private Boolean hasReplacement;
- 
+
         private JsonNullable<OffsetDateTime> lastUsedAt = JsonNullable.undefined();
- 
+
         private Long usageCount;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The optional URL that the buyer needs to be redirected to to further authorize their payment.
@@ -828,6 +823,7 @@ public class PaymentMethodSummary {
             return this;
         }
 
+
         /**
          * The 2-letter ISO code of the country this payment method can be used for. If this value is null the payment method may be used in multiple countries.
          */
@@ -845,6 +841,7 @@ public class PaymentMethodSummary {
             this.country = country;
             return this;
         }
+
 
         /**
          * The ISO-4217 currency code that this payment method can be used for. If this value is null the payment method may be used for multiple currencies.
@@ -864,6 +861,7 @@ public class PaymentMethodSummary {
             return this;
         }
 
+
         /**
          * Details for credit or debit card payment method.
          */
@@ -881,6 +879,7 @@ public class PaymentMethodSummary {
             this.details = details;
             return this;
         }
+
 
         /**
          * The expiration date for the payment method.
@@ -900,6 +899,7 @@ public class PaymentMethodSummary {
             return this;
         }
 
+
         /**
          * The unique hash derived from the payment method identifier (e.g. card number).
          */
@@ -917,6 +917,7 @@ public class PaymentMethodSummary {
             this.fingerprint = fingerprint;
             return this;
         }
+
 
         /**
          * A label for the card or the account. For a paypal payment method this is the user's email address. For a card it is the last 4 digits of the card.
@@ -936,6 +937,7 @@ public class PaymentMethodSummary {
             return this;
         }
 
+
         /**
          * The date and time when this card was last replaced by the account updater.
          */
@@ -954,11 +956,13 @@ public class PaymentMethodSummary {
             return this;
         }
 
+
         public Builder method(Method method) {
             Utils.checkNotNull(method, "method");
             this.method = method;
             return this;
         }
+
 
         /**
          * The mode to use with this payment method.
@@ -978,6 +982,7 @@ public class PaymentMethodSummary {
             return this;
         }
 
+
         /**
          * The scheme of the card. Only applies to card payments.
          */
@@ -996,6 +1001,7 @@ public class PaymentMethodSummary {
             return this;
         }
 
+
         /**
          * The ID for the payment method.
          */
@@ -1005,6 +1011,7 @@ public class PaymentMethodSummary {
             return this;
         }
 
+
         /**
          * The ID of the merchant account this buyer belongs to.
          */
@@ -1013,6 +1020,7 @@ public class PaymentMethodSummary {
             this.merchantAccountId = merchantAccountId;
             return this;
         }
+
 
         /**
          * Additional schemes of the card besides the primary scheme. Only applies to card payment methods.
@@ -1032,6 +1040,7 @@ public class PaymentMethodSummary {
             return this;
         }
 
+
         /**
          * The timestamp when this payment method was last used in a transaction for client initiated transactions.
          */
@@ -1050,6 +1059,7 @@ public class PaymentMethodSummary {
             return this;
         }
 
+
         /**
          * The number of times this payment method has been used in transactions for client initiated transactions.
          */
@@ -1059,6 +1069,7 @@ public class PaymentMethodSummary {
             return this;
         }
 
+
         /**
          * Whether this card has a pending replacement that hasn't been applied yet.
          */
@@ -1067,6 +1078,7 @@ public class PaymentMethodSummary {
             this.hasReplacement = hasReplacement;
             return this;
         }
+
 
         /**
          * The timestamp when this payment method was last used in a transaction.
@@ -1086,6 +1098,7 @@ public class PaymentMethodSummary {
             return this;
         }
 
+
         /**
          * The number of times this payment method has been used in transactions.
          */
@@ -1094,29 +1107,19 @@ public class PaymentMethodSummary {
             this.usageCount = usageCount;
             return this;
         }
-        
+
         public PaymentMethodSummary build() {
+
             return new PaymentMethodSummary(
-                approvalUrl,
-                country,
-                currency,
-                details,
-                expirationDate,
-                fingerprint,
-                label,
-                lastReplacedAt,
-                method,
-                mode,
-                scheme,
-                id,
-                merchantAccountId,
-                additionalSchemes,
-                citLastUsedAt,
-                citUsageCount,
-                hasReplacement,
-                lastUsedAt,
+                approvalUrl, country, currency,
+                details, expirationDate, fingerprint,
+                label, lastReplacedAt, method,
+                mode, scheme, id,
+                merchantAccountId, additionalSchemes, citLastUsedAt,
+                citUsageCount, hasReplacement, lastUsedAt,
                 usageCount);
         }
+
 
         private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_Type =
                 new LazySingletonValue<>(

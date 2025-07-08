@@ -11,8 +11,8 @@ import java.lang.Override;
 import java.lang.String;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class GetReportRequest {
 
+public class GetReportRequest {
     /**
      * The ID of the report to retrieve details for.
      */
@@ -56,9 +56,10 @@ public class GetReportRequest {
         return merchantAccountId;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The ID of the report to retrieve details for.
@@ -87,7 +88,6 @@ public class GetReportRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -105,8 +105,7 @@ public class GetReportRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            reportId,
-            merchantAccountId);
+            reportId, merchantAccountId);
     }
     
     @Override
@@ -115,16 +114,18 @@ public class GetReportRequest {
                 "reportId", reportId,
                 "merchantAccountId", merchantAccountId);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String reportId;
- 
+
         private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The ID of the report to retrieve details for.
@@ -134,6 +135,7 @@ public class GetReportRequest {
             this.reportId = reportId;
             return this;
         }
+
 
         /**
          * The ID of the merchant account to use for this request.
@@ -152,11 +154,12 @@ public class GetReportRequest {
             this.merchantAccountId = merchantAccountId;
             return this;
         }
-        
+
         public GetReportRequest build() {
+
             return new GetReportRequest(
-                reportId,
-                merchantAccountId);
+                reportId, merchantAccountId);
         }
+
     }
 }

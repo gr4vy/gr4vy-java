@@ -53,7 +53,7 @@ public class AddReportRequestBuilder {
     public AddReportResponse call() throws Exception {
         
         RequestOperation<AddReportRequest, AddReportResponse> operation
-              = new AddReportOperation( sdkConfiguration);
+              = new AddReportOperation(sdkConfiguration);
         AddReportRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

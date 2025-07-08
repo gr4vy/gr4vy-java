@@ -18,8 +18,8 @@ import java.lang.SuppressWarnings;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class ListPaymentServicesRequest {
 
+public class ListPaymentServicesRequest {
     /**
      * Return any payment service for this method.
      */
@@ -70,7 +70,8 @@ public class ListPaymentServicesRequest {
     }
     
     public ListPaymentServicesRequest() {
-        this(JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined());
+        this(JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
+            JsonNullable.undefined(), JsonNullable.undefined());
     }
 
     /**
@@ -114,9 +115,10 @@ public class ListPaymentServicesRequest {
         return merchantAccountId;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Return any payment service for this method.
@@ -163,6 +165,7 @@ public class ListPaymentServicesRequest {
         return this;
     }
 
+
     /**
      * The maximum number of items that are at returned.
      */
@@ -208,7 +211,6 @@ public class ListPaymentServicesRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -229,11 +231,8 @@ public class ListPaymentServicesRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            method,
-            cursor,
-            limit,
-            deleted,
-            merchantAccountId);
+            method, cursor, limit,
+            deleted, merchantAccountId);
     }
     
     @Override
@@ -245,22 +244,24 @@ public class ListPaymentServicesRequest {
                 "deleted", deleted,
                 "merchantAccountId", merchantAccountId);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private JsonNullable<? extends Method> method = JsonNullable.undefined();
- 
+
         private JsonNullable<String> cursor = JsonNullable.undefined();
- 
+
         private Optional<Long> limit;
- 
+
         private JsonNullable<Boolean> deleted = JsonNullable.undefined();
- 
+
         private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Return any payment service for this method.
@@ -280,6 +281,7 @@ public class ListPaymentServicesRequest {
             return this;
         }
 
+
         /**
          * A pointer to the page of results to return.
          */
@@ -297,6 +299,7 @@ public class ListPaymentServicesRequest {
             this.cursor = cursor;
             return this;
         }
+
 
         /**
          * The maximum number of items that are at returned.
@@ -316,6 +319,7 @@ public class ListPaymentServicesRequest {
             return this;
         }
 
+
         /**
          * Return any deleted payment service.
          */
@@ -334,6 +338,7 @@ public class ListPaymentServicesRequest {
             return this;
         }
 
+
         /**
          * The ID of the merchant account to use for this request.
          */
@@ -351,18 +356,17 @@ public class ListPaymentServicesRequest {
             this.merchantAccountId = merchantAccountId;
             return this;
         }
-        
+
         public ListPaymentServicesRequest build() {
             if (limit == null) {
                 limit = _SINGLETON_VALUE_Limit.value();
             }
+
             return new ListPaymentServicesRequest(
-                method,
-                cursor,
-                limit,
-                deleted,
-                merchantAccountId);
+                method, cursor, limit,
+                deleted, merchantAccountId);
         }
+
 
         private static final LazySingletonValue<Optional<Long>> _SINGLETON_VALUE_Limit =
                 new LazySingletonValue<>(

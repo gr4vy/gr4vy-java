@@ -24,7 +24,6 @@ public class Events {
     Events(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-
     /**
      * List transaction events
      * 
@@ -46,7 +45,8 @@ public class Events {
      * @throws Exception if the API call fails
      */
     public ListTransactionEventsResponse list(String transactionId) throws Exception {
-        return list(transactionId, JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), Optional.empty());
+        return list(transactionId, JsonNullable.undefined(), Optional.empty(),
+            JsonNullable.undefined(), Optional.empty());
     }
 
     /**
@@ -78,8 +78,8 @@ public class Events {
                 .build();
         RequestOperation<ListTransactionEventsRequest, ListTransactionEventsResponse> operation
               = new ListTransactionEventsOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

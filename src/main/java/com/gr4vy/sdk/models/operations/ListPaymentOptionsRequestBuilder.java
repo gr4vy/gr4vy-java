@@ -53,7 +53,7 @@ public class ListPaymentOptionsRequestBuilder {
     public ListPaymentOptionsResponse call() throws Exception {
         
         RequestOperation<ListPaymentOptionsRequest, ListPaymentOptionsResponse> operation
-              = new ListPaymentOptionsOperation( sdkConfiguration);
+              = new ListPaymentOptionsOperation(sdkConfiguration);
         ListPaymentOptionsRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

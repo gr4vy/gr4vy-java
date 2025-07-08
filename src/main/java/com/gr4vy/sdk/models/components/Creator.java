@@ -10,13 +10,16 @@ import com.gr4vy.sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 
+
 public class Creator {
 
     @JsonProperty("id")
     private String id;
 
+
     @JsonProperty("name")
     private String name;
+
 
     @JsonProperty("email_address")
     private String emailAddress;
@@ -49,9 +52,10 @@ public class Creator {
         return emailAddress;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public Creator withId(String id) {
         Utils.checkNotNull(id, "id");
@@ -71,7 +75,6 @@ public class Creator {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -90,9 +93,7 @@ public class Creator {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            id,
-            name,
-            emailAddress);
+            id, name, emailAddress);
     }
     
     @Override
@@ -102,18 +103,20 @@ public class Creator {
                 "name", name,
                 "emailAddress", emailAddress);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String id;
- 
+
         private String name;
- 
+
         private String emailAddress;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder id(String id) {
             Utils.checkNotNull(id, "id");
@@ -121,23 +124,25 @@ public class Creator {
             return this;
         }
 
+
         public Builder name(String name) {
             Utils.checkNotNull(name, "name");
             this.name = name;
             return this;
         }
 
+
         public Builder emailAddress(String emailAddress) {
             Utils.checkNotNull(emailAddress, "emailAddress");
             this.emailAddress = emailAddress;
             return this;
         }
-        
+
         public Creator build() {
+
             return new Creator(
-                id,
-                name,
-                emailAddress);
+                id, name, emailAddress);
         }
+
     }
 }

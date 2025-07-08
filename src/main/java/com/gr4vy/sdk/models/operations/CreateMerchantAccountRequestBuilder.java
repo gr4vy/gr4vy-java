@@ -29,7 +29,7 @@ public class CreateMerchantAccountRequestBuilder {
     public CreateMerchantAccountResponse call() throws Exception {
         
         RequestOperation<MerchantAccountCreate, CreateMerchantAccountResponse> operation
-              = new CreateMerchantAccountOperation( sdkConfiguration);
+              = new CreateMerchantAccountOperation(sdkConfiguration);
 
         return operation.handleResponse(operation.doRequest(request));
     }

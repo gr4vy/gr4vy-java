@@ -12,13 +12,14 @@ import java.lang.Override;
 import java.lang.String;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class CreateAccountUpdaterJobRequest {
 
+public class CreateAccountUpdaterJobRequest {
     /**
      * The ID of the merchant account to use for this request.
      */
     @SpeakeasyMetadata("header:style=simple,explode=false,name=x-gr4vy-merchant-account-id")
     private JsonNullable<String> merchantAccountId;
+
 
     @SpeakeasyMetadata("request:mediaType=application/json")
     private AccountUpdaterJobCreate accountUpdaterJobCreate;
@@ -51,9 +52,10 @@ public class CreateAccountUpdaterJobRequest {
         return accountUpdaterJobCreate;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The ID of the merchant account to use for this request.
@@ -79,7 +81,6 @@ public class CreateAccountUpdaterJobRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -97,8 +98,7 @@ public class CreateAccountUpdaterJobRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            merchantAccountId,
-            accountUpdaterJobCreate);
+            merchantAccountId, accountUpdaterJobCreate);
     }
     
     @Override
@@ -107,16 +107,18 @@ public class CreateAccountUpdaterJobRequest {
                 "merchantAccountId", merchantAccountId,
                 "accountUpdaterJobCreate", accountUpdaterJobCreate);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
- 
+
         private AccountUpdaterJobCreate accountUpdaterJobCreate;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The ID of the merchant account to use for this request.
@@ -136,16 +138,18 @@ public class CreateAccountUpdaterJobRequest {
             return this;
         }
 
+
         public Builder accountUpdaterJobCreate(AccountUpdaterJobCreate accountUpdaterJobCreate) {
             Utils.checkNotNull(accountUpdaterJobCreate, "accountUpdaterJobCreate");
             this.accountUpdaterJobCreate = accountUpdaterJobCreate;
             return this;
         }
-        
+
         public CreateAccountUpdaterJobRequest build() {
+
             return new CreateAccountUpdaterJobRequest(
-                merchantAccountId,
-                accountUpdaterJobCreate);
+                merchantAccountId, accountUpdaterJobCreate);
         }
+
     }
 }

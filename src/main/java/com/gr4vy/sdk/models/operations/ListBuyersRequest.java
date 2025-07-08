@@ -15,8 +15,8 @@ import java.lang.String;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class ListBuyersRequest {
 
+public class ListBuyersRequest {
     /**
      * A pointer to the page of results to return.
      */
@@ -67,7 +67,8 @@ public class ListBuyersRequest {
     }
     
     public ListBuyersRequest() {
-        this(JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
+        this(JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined());
     }
 
     /**
@@ -110,9 +111,10 @@ public class ListBuyersRequest {
         return merchantAccountId;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * A pointer to the page of results to return.
@@ -140,6 +142,7 @@ public class ListBuyersRequest {
         this.limit = Optional.ofNullable(limit);
         return this;
     }
+
 
     /**
      * The maximum number of items that are at returned.
@@ -204,7 +207,6 @@ public class ListBuyersRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -225,11 +227,8 @@ public class ListBuyersRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            cursor,
-            limit,
-            search,
-            externalIdentifier,
-            merchantAccountId);
+            cursor, limit, search,
+            externalIdentifier, merchantAccountId);
     }
     
     @Override
@@ -241,22 +240,24 @@ public class ListBuyersRequest {
                 "externalIdentifier", externalIdentifier,
                 "merchantAccountId", merchantAccountId);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private JsonNullable<String> cursor = JsonNullable.undefined();
- 
+
         private Optional<Long> limit;
- 
+
         private JsonNullable<String> search = JsonNullable.undefined();
- 
+
         private JsonNullable<String> externalIdentifier = JsonNullable.undefined();
- 
+
         private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * A pointer to the page of results to return.
@@ -276,6 +277,7 @@ public class ListBuyersRequest {
             return this;
         }
 
+
         /**
          * The maximum number of items that are at returned.
          */
@@ -293,6 +295,7 @@ public class ListBuyersRequest {
             this.limit = limit;
             return this;
         }
+
 
         /**
          * Filters the results to only the buyers for which the `display_name` or `external_identifier` matches this value.
@@ -312,6 +315,7 @@ public class ListBuyersRequest {
             return this;
         }
 
+
         /**
          * Filters the results to only the buyers for which the `external_identifier` matches this value.
          */
@@ -330,6 +334,7 @@ public class ListBuyersRequest {
             return this;
         }
 
+
         /**
          * The ID of the merchant account to use for this request.
          */
@@ -347,18 +352,17 @@ public class ListBuyersRequest {
             this.merchantAccountId = merchantAccountId;
             return this;
         }
-        
+
         public ListBuyersRequest build() {
             if (limit == null) {
                 limit = _SINGLETON_VALUE_Limit.value();
             }
+
             return new ListBuyersRequest(
-                cursor,
-                limit,
-                search,
-                externalIdentifier,
-                merchantAccountId);
+                cursor, limit, search,
+                externalIdentifier, merchantAccountId);
         }
+
 
         private static final LazySingletonValue<Optional<Long>> _SINGLETON_VALUE_Limit =
                 new LazySingletonValue<>(

@@ -72,8 +72,8 @@ public class GetDigitalWalletRequestBuilder {
 
         RequestOperation<GetDigitalWalletRequest, GetDigitalWalletResponse> operation
               = new GetDigitalWalletOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         GetDigitalWalletRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

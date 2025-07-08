@@ -12,8 +12,8 @@ import java.lang.Override;
 import java.lang.String;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class AddBuyerShippingDetailsRequest {
 
+public class AddBuyerShippingDetailsRequest {
     /**
      * The ID of the buyer to add shipping details to.
      */
@@ -25,6 +25,7 @@ public class AddBuyerShippingDetailsRequest {
      */
     @SpeakeasyMetadata("header:style=simple,explode=false,name=x-gr4vy-merchant-account-id")
     private JsonNullable<String> merchantAccountId;
+
 
     @SpeakeasyMetadata("request:mediaType=application/json")
     private ShippingDetailsCreate shippingDetailsCreate;
@@ -69,9 +70,10 @@ public class AddBuyerShippingDetailsRequest {
         return shippingDetailsCreate;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The ID of the buyer to add shipping details to.
@@ -106,7 +108,6 @@ public class AddBuyerShippingDetailsRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -125,9 +126,7 @@ public class AddBuyerShippingDetailsRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            buyerId,
-            merchantAccountId,
-            shippingDetailsCreate);
+            buyerId, merchantAccountId, shippingDetailsCreate);
     }
     
     @Override
@@ -137,18 +136,20 @@ public class AddBuyerShippingDetailsRequest {
                 "merchantAccountId", merchantAccountId,
                 "shippingDetailsCreate", shippingDetailsCreate);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String buyerId;
- 
+
         private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
- 
+
         private ShippingDetailsCreate shippingDetailsCreate;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The ID of the buyer to add shipping details to.
@@ -158,6 +159,7 @@ public class AddBuyerShippingDetailsRequest {
             this.buyerId = buyerId;
             return this;
         }
+
 
         /**
          * The ID of the merchant account to use for this request.
@@ -177,17 +179,18 @@ public class AddBuyerShippingDetailsRequest {
             return this;
         }
 
+
         public Builder shippingDetailsCreate(ShippingDetailsCreate shippingDetailsCreate) {
             Utils.checkNotNull(shippingDetailsCreate, "shippingDetailsCreate");
             this.shippingDetailsCreate = shippingDetailsCreate;
             return this;
         }
-        
+
         public AddBuyerShippingDetailsRequest build() {
+
             return new AddBuyerShippingDetailsRequest(
-                buyerId,
-                merchantAccountId,
-                shippingDetailsCreate);
+                buyerId, merchantAccountId, shippingDetailsCreate);
         }
+
     }
 }

@@ -22,9 +22,9 @@ import java.net.http.HttpResponse;
 import java.util.List;
 import java.util.Optional;
 
+
 @SuppressWarnings("serial")
 public class Error504 extends RuntimeException {
-
     /**
      * Always `error`.
      */
@@ -38,6 +38,7 @@ public class Error504 extends RuntimeException {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("code")
     private Optional<String> code;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("status")
@@ -86,7 +87,8 @@ public class Error504 extends RuntimeException {
     }
     
     public Error504() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty());
     }
 
     /**
@@ -142,9 +144,10 @@ public class Error504 extends RuntimeException {
         return (Optional<HttpResponse<InputStream>>) rawResponse;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Always `gateway_timeout`
@@ -154,6 +157,7 @@ public class Error504 extends RuntimeException {
         this.code = Optional.ofNullable(code);
         return this;
     }
+
 
     /**
      * Always `gateway_timeout`
@@ -170,6 +174,7 @@ public class Error504 extends RuntimeException {
         return this;
     }
 
+
     public Error504 withStatus(Optional<Long> status) {
         Utils.checkNotNull(status, "status");
         this.status = status;
@@ -184,6 +189,7 @@ public class Error504 extends RuntimeException {
         this.message = Optional.ofNullable(message);
         return this;
     }
+
 
     /**
      * A human readable message that provides more context to the error.
@@ -203,6 +209,7 @@ public class Error504 extends RuntimeException {
         return this;
     }
 
+
     /**
      * A list of details that further ellaborate on the error.
      */
@@ -221,6 +228,7 @@ public class Error504 extends RuntimeException {
         return this;
     }
 
+
     /**
      * Raw HTTP response; suitable for custom response parsing
      */
@@ -230,7 +238,6 @@ public class Error504 extends RuntimeException {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -252,12 +259,8 @@ public class Error504 extends RuntimeException {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            type,
-            code,
-            status,
-            message,
-            details,
-            rawResponse);
+            type, code, status,
+            message, details, rawResponse);
     }
     
     @Override
@@ -270,22 +273,24 @@ public class Error504 extends RuntimeException {
                 "details", details,
                 "rawResponse", rawResponse);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> code;
- 
+
         private Optional<Long> status;
- 
+
         private Optional<String> message;
- 
+
         private Optional<? extends List<ErrorDetail>> details = Optional.empty();
- 
+
         private Optional<? extends HttpResponse<InputStream>> rawResponse;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Always `gateway_timeout`
@@ -305,6 +310,7 @@ public class Error504 extends RuntimeException {
             return this;
         }
 
+
         public Builder status(long status) {
             Utils.checkNotNull(status, "status");
             this.status = Optional.ofNullable(status);
@@ -316,6 +322,7 @@ public class Error504 extends RuntimeException {
             this.status = status;
             return this;
         }
+
 
         /**
          * A human readable message that provides more context to the error.
@@ -335,6 +342,7 @@ public class Error504 extends RuntimeException {
             return this;
         }
 
+
         /**
          * A list of details that further ellaborate on the error.
          */
@@ -353,6 +361,7 @@ public class Error504 extends RuntimeException {
             return this;
         }
 
+
         /**
          * Raw HTTP response; suitable for custom response parsing
          */
@@ -370,7 +379,7 @@ public class Error504 extends RuntimeException {
             this.rawResponse = rawResponse;
             return this;
         }
-        
+
         public Error504 build() {
             if (code == null) {
                 code = _SINGLETON_VALUE_Code.value();
@@ -381,13 +390,12 @@ public class Error504 extends RuntimeException {
             if (message == null) {
                 message = _SINGLETON_VALUE_Message.value();
             }
+
             return new Error504(
-                code,
-                status,
-                message,
-                details,
-                rawResponse);
+                code, status, message,
+                details, rawResponse);
         }
+
 
         private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_Type =
                 new LazySingletonValue<>(

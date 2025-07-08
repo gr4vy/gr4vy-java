@@ -11,10 +11,12 @@ import java.lang.Override;
 import java.lang.String;
 import org.openapitools.jackson.nullable.JsonNullable;
 
+
 public class ListBuyerGiftCardsRequest {
 
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=buyer_external_identifier")
     private JsonNullable<String> buyerExternalIdentifier;
+
 
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=buyer_id")
     private JsonNullable<String> buyerId;
@@ -60,9 +62,10 @@ public class ListBuyerGiftCardsRequest {
         return merchantAccountId;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public ListBuyerGiftCardsRequest withBuyerExternalIdentifier(String buyerExternalIdentifier) {
         Utils.checkNotNull(buyerExternalIdentifier, "buyerExternalIdentifier");
@@ -106,7 +109,6 @@ public class ListBuyerGiftCardsRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -125,9 +127,7 @@ public class ListBuyerGiftCardsRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            buyerExternalIdentifier,
-            buyerId,
-            merchantAccountId);
+            buyerExternalIdentifier, buyerId, merchantAccountId);
     }
     
     @Override
@@ -137,18 +137,20 @@ public class ListBuyerGiftCardsRequest {
                 "buyerId", buyerId,
                 "merchantAccountId", merchantAccountId);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private JsonNullable<String> buyerExternalIdentifier = JsonNullable.undefined();
- 
+
         private JsonNullable<String> buyerId = JsonNullable.undefined();
- 
+
         private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder buyerExternalIdentifier(String buyerExternalIdentifier) {
             Utils.checkNotNull(buyerExternalIdentifier, "buyerExternalIdentifier");
@@ -162,6 +164,7 @@ public class ListBuyerGiftCardsRequest {
             return this;
         }
 
+
         public Builder buyerId(String buyerId) {
             Utils.checkNotNull(buyerId, "buyerId");
             this.buyerId = JsonNullable.of(buyerId);
@@ -173,6 +176,7 @@ public class ListBuyerGiftCardsRequest {
             this.buyerId = buyerId;
             return this;
         }
+
 
         /**
          * The ID of the merchant account to use for this request.
@@ -191,12 +195,12 @@ public class ListBuyerGiftCardsRequest {
             this.merchantAccountId = merchantAccountId;
             return this;
         }
-        
+
         public ListBuyerGiftCardsRequest build() {
+
             return new ListBuyerGiftCardsRequest(
-                buyerExternalIdentifier,
-                buyerId,
-                merchantAccountId);
+                buyerExternalIdentifier, buyerId, merchantAccountId);
         }
+
     }
 }

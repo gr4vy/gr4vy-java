@@ -11,8 +11,8 @@ import java.lang.Override;
 import java.lang.String;
 import java.time.OffsetDateTime;
 
-public class ReportExecutionUrl {
 
+public class ReportExecutionUrl {
     /**
      * A signed URL to download the report execution file.
      */
@@ -51,9 +51,10 @@ public class ReportExecutionUrl {
         return expiresAt;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * A signed URL to download the report execution file.
@@ -73,7 +74,6 @@ public class ReportExecutionUrl {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -91,8 +91,7 @@ public class ReportExecutionUrl {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            url,
-            expiresAt);
+            url, expiresAt);
     }
     
     @Override
@@ -101,16 +100,18 @@ public class ReportExecutionUrl {
                 "url", url,
                 "expiresAt", expiresAt);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String url;
- 
+
         private OffsetDateTime expiresAt;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * A signed URL to download the report execution file.
@@ -121,6 +122,7 @@ public class ReportExecutionUrl {
             return this;
         }
 
+
         /**
          * The date and time when the download URL expires.
          */
@@ -129,11 +131,12 @@ public class ReportExecutionUrl {
             this.expiresAt = expiresAt;
             return this;
         }
-        
+
         public ReportExecutionUrl build() {
+
             return new ReportExecutionUrl(
-                url,
-                expiresAt);
+                url, expiresAt);
         }
+
     }
 }

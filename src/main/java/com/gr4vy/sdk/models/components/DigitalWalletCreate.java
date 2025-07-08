@@ -27,24 +27,30 @@ public class DigitalWalletCreate {
     @JsonProperty("provider")
     private DigitalWalletProvider provider;
 
+
     @JsonProperty("merchant_name")
     private String merchantName;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("merchant_display_name")
     private JsonNullable<String> merchantDisplayName;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("merchant_url")
     private JsonNullable<String> merchantUrl;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("merchant_country_code")
     private JsonNullable<String> merchantCountryCode;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("domain_names")
     private Optional<? extends List<String>> domainNames;
+
 
     @JsonProperty("accept_terms_and_conditions")
     private boolean acceptTermsAndConditions;
@@ -78,7 +84,9 @@ public class DigitalWalletCreate {
             DigitalWalletProvider provider,
             String merchantName,
             boolean acceptTermsAndConditions) {
-        this(provider, merchantName, JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), acceptTermsAndConditions);
+        this(provider, merchantName, JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
+            acceptTermsAndConditions);
     }
 
     @JsonIgnore
@@ -117,9 +125,10 @@ public class DigitalWalletCreate {
         return acceptTermsAndConditions;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public DigitalWalletCreate withProvider(DigitalWalletProvider provider) {
         Utils.checkNotNull(provider, "provider");
@@ -175,6 +184,7 @@ public class DigitalWalletCreate {
         return this;
     }
 
+
     public DigitalWalletCreate withDomainNames(Optional<? extends List<String>> domainNames) {
         Utils.checkNotNull(domainNames, "domainNames");
         this.domainNames = domainNames;
@@ -187,7 +197,6 @@ public class DigitalWalletCreate {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -210,12 +219,8 @@ public class DigitalWalletCreate {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            provider,
-            merchantName,
-            merchantDisplayName,
-            merchantUrl,
-            merchantCountryCode,
-            domainNames,
+            provider, merchantName, merchantDisplayName,
+            merchantUrl, merchantCountryCode, domainNames,
             acceptTermsAndConditions);
     }
     
@@ -230,26 +235,28 @@ public class DigitalWalletCreate {
                 "domainNames", domainNames,
                 "acceptTermsAndConditions", acceptTermsAndConditions);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private DigitalWalletProvider provider;
- 
+
         private String merchantName;
- 
+
         private JsonNullable<String> merchantDisplayName = JsonNullable.undefined();
- 
+
         private JsonNullable<String> merchantUrl = JsonNullable.undefined();
- 
+
         private JsonNullable<String> merchantCountryCode = JsonNullable.undefined();
- 
+
         private Optional<? extends List<String>> domainNames = Optional.empty();
- 
+
         private Boolean acceptTermsAndConditions;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder provider(DigitalWalletProvider provider) {
             Utils.checkNotNull(provider, "provider");
@@ -257,11 +264,13 @@ public class DigitalWalletCreate {
             return this;
         }
 
+
         public Builder merchantName(String merchantName) {
             Utils.checkNotNull(merchantName, "merchantName");
             this.merchantName = merchantName;
             return this;
         }
+
 
         public Builder merchantDisplayName(String merchantDisplayName) {
             Utils.checkNotNull(merchantDisplayName, "merchantDisplayName");
@@ -275,6 +284,7 @@ public class DigitalWalletCreate {
             return this;
         }
 
+
         public Builder merchantUrl(String merchantUrl) {
             Utils.checkNotNull(merchantUrl, "merchantUrl");
             this.merchantUrl = JsonNullable.of(merchantUrl);
@@ -286,6 +296,7 @@ public class DigitalWalletCreate {
             this.merchantUrl = merchantUrl;
             return this;
         }
+
 
         public Builder merchantCountryCode(String merchantCountryCode) {
             Utils.checkNotNull(merchantCountryCode, "merchantCountryCode");
@@ -299,6 +310,7 @@ public class DigitalWalletCreate {
             return this;
         }
 
+
         public Builder domainNames(List<String> domainNames) {
             Utils.checkNotNull(domainNames, "domainNames");
             this.domainNames = Optional.ofNullable(domainNames);
@@ -311,21 +323,20 @@ public class DigitalWalletCreate {
             return this;
         }
 
+
         public Builder acceptTermsAndConditions(boolean acceptTermsAndConditions) {
             Utils.checkNotNull(acceptTermsAndConditions, "acceptTermsAndConditions");
             this.acceptTermsAndConditions = acceptTermsAndConditions;
             return this;
         }
-        
+
         public DigitalWalletCreate build() {
+
             return new DigitalWalletCreate(
-                provider,
-                merchantName,
-                merchantDisplayName,
-                merchantUrl,
-                merchantCountryCode,
-                domainNames,
+                provider, merchantName, merchantDisplayName,
+                merchantUrl, merchantCountryCode, domainNames,
                 acceptTermsAndConditions);
         }
+
     }
 }

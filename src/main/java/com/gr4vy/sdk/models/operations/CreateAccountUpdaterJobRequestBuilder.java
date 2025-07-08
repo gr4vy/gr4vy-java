@@ -53,7 +53,7 @@ public class CreateAccountUpdaterJobRequestBuilder {
     public CreateAccountUpdaterJobResponse call() throws Exception {
         
         RequestOperation<CreateAccountUpdaterJobRequest, CreateAccountUpdaterJobResponse> operation
-              = new CreateAccountUpdaterJobOperation( sdkConfiguration);
+              = new CreateAccountUpdaterJobOperation(sdkConfiguration);
         CreateAccountUpdaterJobRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

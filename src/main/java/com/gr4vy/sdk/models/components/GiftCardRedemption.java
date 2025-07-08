@@ -18,8 +18,8 @@ import java.lang.SuppressWarnings;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class GiftCardRedemption {
 
+public class GiftCardRedemption {
     /**
      * Always `gift-card-redemption`.
      */
@@ -32,6 +32,7 @@ public class GiftCardRedemption {
      */
     @JsonProperty("id")
     private String id;
+
 
     @JsonProperty("status")
     private GiftCardRedemptionStatus status;
@@ -76,6 +77,7 @@ public class GiftCardRedemption {
     @JsonProperty("raw_error_message")
     private JsonNullable<String> rawErrorMessage;
 
+
     @JsonProperty("gift_card")
     private TransactionGiftCard giftCard;
 
@@ -117,7 +119,9 @@ public class GiftCardRedemption {
             long amount,
             long refundedAmount,
             TransactionGiftCard giftCard) {
-        this(id, status, amount, refundedAmount, JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), giftCard);
+        this(id, status, amount,
+            refundedAmount, JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), giftCard);
     }
 
     /**
@@ -195,9 +199,10 @@ public class GiftCardRedemption {
         return giftCard;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The ID for the gift card redemption.
@@ -310,7 +315,6 @@ public class GiftCardRedemption {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -336,15 +340,9 @@ public class GiftCardRedemption {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            type,
-            id,
-            status,
-            amount,
-            refundedAmount,
-            giftCardServiceRedemptionId,
-            errorCode,
-            rawErrorCode,
-            rawErrorMessage,
+            type, id, status,
+            amount, refundedAmount, giftCardServiceRedemptionId,
+            errorCode, rawErrorCode, rawErrorMessage,
             giftCard);
     }
     
@@ -362,30 +360,32 @@ public class GiftCardRedemption {
                 "rawErrorMessage", rawErrorMessage,
                 "giftCard", giftCard);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String id;
- 
+
         private GiftCardRedemptionStatus status;
- 
+
         private Long amount;
- 
+
         private Long refundedAmount;
- 
+
         private JsonNullable<String> giftCardServiceRedemptionId = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends GiftCardErrorCode> errorCode = JsonNullable.undefined();
- 
+
         private JsonNullable<String> rawErrorCode = JsonNullable.undefined();
- 
+
         private JsonNullable<String> rawErrorMessage = JsonNullable.undefined();
- 
+
         private TransactionGiftCard giftCard;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The ID for the gift card redemption.
@@ -396,11 +396,13 @@ public class GiftCardRedemption {
             return this;
         }
 
+
         public Builder status(GiftCardRedemptionStatus status) {
             Utils.checkNotNull(status, "status");
             this.status = status;
             return this;
         }
+
 
         /**
          * The amount redeemed for this gift card.
@@ -411,6 +413,7 @@ public class GiftCardRedemption {
             return this;
         }
 
+
         /**
          * The amount refunded for this gift card. This can not be larger than `amount`.
          */
@@ -419,6 +422,7 @@ public class GiftCardRedemption {
             this.refundedAmount = refundedAmount;
             return this;
         }
+
 
         /**
          * The gift card service's unique ID for the redemption.
@@ -438,6 +442,7 @@ public class GiftCardRedemption {
             return this;
         }
 
+
         /**
          * If this gift card redemption resulted in an error, this will contain the internal code for the error.
          */
@@ -455,6 +460,7 @@ public class GiftCardRedemption {
             this.errorCode = errorCode;
             return this;
         }
+
 
         /**
          * If this gift card redemption resulted in an error, this will contain the raw error code received from the gift card provider.
@@ -474,6 +480,7 @@ public class GiftCardRedemption {
             return this;
         }
 
+
         /**
          * If this gift card redemption resulted in an error, this will contain the raw error message received from the gift card provider.
          */
@@ -492,24 +499,21 @@ public class GiftCardRedemption {
             return this;
         }
 
+
         public Builder giftCard(TransactionGiftCard giftCard) {
             Utils.checkNotNull(giftCard, "giftCard");
             this.giftCard = giftCard;
             return this;
         }
-        
+
         public GiftCardRedemption build() {
+
             return new GiftCardRedemption(
-                id,
-                status,
-                amount,
-                refundedAmount,
-                giftCardServiceRedemptionId,
-                errorCode,
-                rawErrorCode,
-                rawErrorMessage,
-                giftCard);
+                id, status, amount,
+                refundedAmount, giftCardServiceRedemptionId, errorCode,
+                rawErrorCode, rawErrorMessage, giftCard);
         }
+
 
         private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_Type =
                 new LazySingletonValue<>(

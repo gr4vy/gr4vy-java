@@ -15,8 +15,8 @@ import java.lang.Override;
 import java.lang.String;
 import java.util.Optional;
 
-public class TransactionPaymentService {
 
+public class TransactionPaymentService {
     /**
      * Always `payment-service`.
      */
@@ -35,6 +35,7 @@ public class TransactionPaymentService {
      */
     @JsonProperty("payment_service_definition_id")
     private String paymentServiceDefinitionId;
+
 
     @JsonProperty("method")
     private Method method;
@@ -99,9 +100,10 @@ public class TransactionPaymentService {
         return displayName;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The ID for the payment-service.
@@ -136,7 +138,6 @@ public class TransactionPaymentService {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -157,11 +158,8 @@ public class TransactionPaymentService {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            type,
-            id,
-            paymentServiceDefinitionId,
-            method,
-            displayName);
+            type, id, paymentServiceDefinitionId,
+            method, displayName);
     }
     
     @Override
@@ -173,20 +171,22 @@ public class TransactionPaymentService {
                 "method", method,
                 "displayName", displayName);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String id;
- 
+
         private String paymentServiceDefinitionId;
- 
+
         private Method method;
- 
+
         private String displayName;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The ID for the payment-service.
@@ -197,6 +197,7 @@ public class TransactionPaymentService {
             return this;
         }
 
+
         /**
          * The definition ID of the service used to process this payment.
          */
@@ -206,11 +207,13 @@ public class TransactionPaymentService {
             return this;
         }
 
+
         public Builder method(Method method) {
             Utils.checkNotNull(method, "method");
             this.method = method;
             return this;
         }
+
 
         /**
          * The display name for the payment service.
@@ -220,14 +223,14 @@ public class TransactionPaymentService {
             this.displayName = displayName;
             return this;
         }
-        
+
         public TransactionPaymentService build() {
+
             return new TransactionPaymentService(
-                id,
-                paymentServiceDefinitionId,
-                method,
+                id, paymentServiceDefinitionId, method,
                 displayName);
         }
+
 
         private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_Type =
                 new LazySingletonValue<>(

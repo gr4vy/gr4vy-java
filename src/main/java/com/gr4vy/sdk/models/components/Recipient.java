@@ -21,7 +21,6 @@ import org.openapitools.jackson.nullable.JsonNullable;
  * <p>Recipient of an account funding transaction
  */
 public class Recipient {
-
     /**
      * The first name of the recipient.
      */
@@ -77,7 +76,8 @@ public class Recipient {
     public Recipient(
             String firstName,
             String lastName) {
-        this(firstName, lastName, JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
+        this(firstName, lastName, JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined());
     }
 
     /**
@@ -121,9 +121,10 @@ public class Recipient {
         return dateOfBirth;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The first name of the recipient.
@@ -197,7 +198,6 @@ public class Recipient {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -218,11 +218,8 @@ public class Recipient {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            firstName,
-            lastName,
-            address,
-            accountNumber,
-            dateOfBirth);
+            firstName, lastName, address,
+            accountNumber, dateOfBirth);
     }
     
     @Override
@@ -234,22 +231,24 @@ public class Recipient {
                 "accountNumber", accountNumber,
                 "dateOfBirth", dateOfBirth);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String firstName;
- 
+
         private String lastName;
- 
+
         private JsonNullable<? extends Address> address = JsonNullable.undefined();
- 
+
         private JsonNullable<String> accountNumber = JsonNullable.undefined();
- 
+
         private JsonNullable<LocalDate> dateOfBirth = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The first name of the recipient.
@@ -260,6 +259,7 @@ public class Recipient {
             return this;
         }
 
+
         /**
          * The last name of the recipient.
          */
@@ -268,6 +268,7 @@ public class Recipient {
             this.lastName = lastName;
             return this;
         }
+
 
         /**
          * The recipient of the fund's address.
@@ -287,6 +288,7 @@ public class Recipient {
             return this;
         }
 
+
         /**
          * The account number of the recipient. Depending on the type of funds transfer, this could be a wallet ID, bank accoutn number, or email address.
          */
@@ -305,6 +307,7 @@ public class Recipient {
             return this;
         }
 
+
         /**
          * The date of birth of the recipient.
          */
@@ -322,14 +325,13 @@ public class Recipient {
             this.dateOfBirth = dateOfBirth;
             return this;
         }
-        
+
         public Recipient build() {
+
             return new Recipient(
-                firstName,
-                lastName,
-                address,
-                accountNumber,
-                dateOfBirth);
+                firstName, lastName, address,
+                accountNumber, dateOfBirth);
         }
+
     }
 }

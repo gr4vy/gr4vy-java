@@ -11,8 +11,8 @@ import java.lang.Override;
 import java.lang.String;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class GetTransactionSettlementRequest {
 
+public class GetTransactionSettlementRequest {
     /**
      * The unique identifier of the transaction.
      */
@@ -74,9 +74,10 @@ public class GetTransactionSettlementRequest {
         return merchantAccountId;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The unique identifier of the transaction.
@@ -114,7 +115,6 @@ public class GetTransactionSettlementRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -133,9 +133,7 @@ public class GetTransactionSettlementRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            transactionId,
-            settlementId,
-            merchantAccountId);
+            transactionId, settlementId, merchantAccountId);
     }
     
     @Override
@@ -145,18 +143,20 @@ public class GetTransactionSettlementRequest {
                 "settlementId", settlementId,
                 "merchantAccountId", merchantAccountId);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String transactionId;
- 
+
         private String settlementId;
- 
+
         private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The unique identifier of the transaction.
@@ -167,6 +167,7 @@ public class GetTransactionSettlementRequest {
             return this;
         }
 
+
         /**
          * The unique identifier of the settlement.
          */
@@ -175,6 +176,7 @@ public class GetTransactionSettlementRequest {
             this.settlementId = settlementId;
             return this;
         }
+
 
         /**
          * The ID of the merchant account to use for this request.
@@ -193,12 +195,12 @@ public class GetTransactionSettlementRequest {
             this.merchantAccountId = merchantAccountId;
             return this;
         }
-        
+
         public GetTransactionSettlementRequest build() {
+
             return new GetTransactionSettlementRequest(
-                transactionId,
-                settlementId,
-                merchantAccountId);
+                transactionId, settlementId, merchantAccountId);
         }
+
     }
 }

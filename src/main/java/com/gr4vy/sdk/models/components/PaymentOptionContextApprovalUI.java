@@ -13,11 +13,13 @@ import java.lang.Override;
 import java.lang.String;
 import org.openapitools.jackson.nullable.JsonNullable;
 
+
 public class PaymentOptionContextApprovalUI {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("height")
     private JsonNullable<String> height;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("width")
@@ -47,9 +49,10 @@ public class PaymentOptionContextApprovalUI {
         return width;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public PaymentOptionContextApprovalUI withHeight(String height) {
         Utils.checkNotNull(height, "height");
@@ -75,7 +78,6 @@ public class PaymentOptionContextApprovalUI {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -93,8 +95,7 @@ public class PaymentOptionContextApprovalUI {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            height,
-            width);
+            height, width);
     }
     
     @Override
@@ -103,16 +104,18 @@ public class PaymentOptionContextApprovalUI {
                 "height", height,
                 "width", width);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private JsonNullable<String> height = JsonNullable.undefined();
- 
+
         private JsonNullable<String> width = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder height(String height) {
             Utils.checkNotNull(height, "height");
@@ -126,6 +129,7 @@ public class PaymentOptionContextApprovalUI {
             return this;
         }
 
+
         public Builder width(String width) {
             Utils.checkNotNull(width, "width");
             this.width = JsonNullable.of(width);
@@ -137,11 +141,12 @@ public class PaymentOptionContextApprovalUI {
             this.width = width;
             return this;
         }
-        
+
         public PaymentOptionContextApprovalUI build() {
+
             return new PaymentOptionContextApprovalUI(
-                height,
-                width);
+                height, width);
         }
+
     }
 }

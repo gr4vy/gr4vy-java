@@ -52,7 +52,7 @@ public class DeleteCheckoutSessionRequestBuilder {
     public DeleteCheckoutSessionResponse call() throws Exception {
         
         RequestOperation<DeleteCheckoutSessionRequest, DeleteCheckoutSessionResponse> operation
-              = new DeleteCheckoutSessionOperation( sdkConfiguration);
+              = new DeleteCheckoutSessionOperation(sdkConfiguration);
         DeleteCheckoutSessionRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

@@ -15,8 +15,8 @@ import java.lang.Override;
 import java.lang.String;
 import java.util.Optional;
 
-public class GiftCardService {
 
+public class GiftCardService {
     /**
      * Always `gift-card-service`.
      */
@@ -29,6 +29,7 @@ public class GiftCardService {
      */
     @JsonProperty("id")
     private String id;
+
 
     @JsonProperty("gift_card_service_definition_id")
     private GiftCardServiceProvider giftCardServiceDefinitionId;
@@ -82,9 +83,10 @@ public class GiftCardService {
         return displayName;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The ID for the gift card service.
@@ -110,7 +112,6 @@ public class GiftCardService {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -130,9 +131,7 @@ public class GiftCardService {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            type,
-            id,
-            giftCardServiceDefinitionId,
+            type, id, giftCardServiceDefinitionId,
             displayName);
     }
     
@@ -144,18 +143,20 @@ public class GiftCardService {
                 "giftCardServiceDefinitionId", giftCardServiceDefinitionId,
                 "displayName", displayName);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String id;
- 
+
         private GiftCardServiceProvider giftCardServiceDefinitionId;
- 
+
         private String displayName;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The ID for the gift card service.
@@ -166,11 +167,13 @@ public class GiftCardService {
             return this;
         }
 
+
         public Builder giftCardServiceDefinitionId(GiftCardServiceProvider giftCardServiceDefinitionId) {
             Utils.checkNotNull(giftCardServiceDefinitionId, "giftCardServiceDefinitionId");
             this.giftCardServiceDefinitionId = giftCardServiceDefinitionId;
             return this;
         }
+
 
         /**
          * The display name for the gift card service.
@@ -180,13 +183,13 @@ public class GiftCardService {
             this.displayName = displayName;
             return this;
         }
-        
+
         public GiftCardService build() {
+
             return new GiftCardService(
-                id,
-                giftCardServiceDefinitionId,
-                displayName);
+                id, giftCardServiceDefinitionId, displayName);
         }
+
 
         private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_Type =
                 new LazySingletonValue<>(

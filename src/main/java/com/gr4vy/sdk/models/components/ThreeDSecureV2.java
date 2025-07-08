@@ -13,34 +13,42 @@ import java.lang.Override;
 import java.lang.String;
 import org.openapitools.jackson.nullable.JsonNullable;
 
+
 public class ThreeDSecureV2 {
 
     @JsonProperty("version")
     private String version;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("authentication_response")
     private JsonNullable<String> authenticationResponse;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("directory_response")
     private JsonNullable<String> directoryResponse;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("directory_transaction_id")
     private JsonNullable<String> directoryTransactionId;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("transaction_reason")
     private JsonNullable<String> transactionReason;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("cavv")
     private JsonNullable<String> cavv;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("eci")
     private JsonNullable<String> eci;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("cardholder_info")
@@ -76,7 +84,9 @@ public class ThreeDSecureV2 {
     
     public ThreeDSecureV2(
             String version) {
-        this(version, JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
+        this(version, JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined());
     }
 
     @JsonIgnore
@@ -119,9 +129,10 @@ public class ThreeDSecureV2 {
         return cardholderInfo;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public ThreeDSecureV2 withVersion(String version) {
         Utils.checkNotNull(version, "version");
@@ -213,7 +224,6 @@ public class ThreeDSecureV2 {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -237,14 +247,9 @@ public class ThreeDSecureV2 {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            version,
-            authenticationResponse,
-            directoryResponse,
-            directoryTransactionId,
-            transactionReason,
-            cavv,
-            eci,
-            cardholderInfo);
+            version, authenticationResponse, directoryResponse,
+            directoryTransactionId, transactionReason, cavv,
+            eci, cardholderInfo);
     }
     
     @Override
@@ -259,34 +264,37 @@ public class ThreeDSecureV2 {
                 "eci", eci,
                 "cardholderInfo", cardholderInfo);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String version;
- 
+
         private JsonNullable<String> authenticationResponse = JsonNullable.undefined();
- 
+
         private JsonNullable<String> directoryResponse = JsonNullable.undefined();
- 
+
         private JsonNullable<String> directoryTransactionId = JsonNullable.undefined();
- 
+
         private JsonNullable<String> transactionReason = JsonNullable.undefined();
- 
+
         private JsonNullable<String> cavv = JsonNullable.undefined();
- 
+
         private JsonNullable<String> eci = JsonNullable.undefined();
- 
+
         private JsonNullable<String> cardholderInfo = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder version(String version) {
             Utils.checkNotNull(version, "version");
             this.version = version;
             return this;
         }
+
 
         public Builder authenticationResponse(String authenticationResponse) {
             Utils.checkNotNull(authenticationResponse, "authenticationResponse");
@@ -300,6 +308,7 @@ public class ThreeDSecureV2 {
             return this;
         }
 
+
         public Builder directoryResponse(String directoryResponse) {
             Utils.checkNotNull(directoryResponse, "directoryResponse");
             this.directoryResponse = JsonNullable.of(directoryResponse);
@@ -311,6 +320,7 @@ public class ThreeDSecureV2 {
             this.directoryResponse = directoryResponse;
             return this;
         }
+
 
         public Builder directoryTransactionId(String directoryTransactionId) {
             Utils.checkNotNull(directoryTransactionId, "directoryTransactionId");
@@ -324,6 +334,7 @@ public class ThreeDSecureV2 {
             return this;
         }
 
+
         public Builder transactionReason(String transactionReason) {
             Utils.checkNotNull(transactionReason, "transactionReason");
             this.transactionReason = JsonNullable.of(transactionReason);
@@ -335,6 +346,7 @@ public class ThreeDSecureV2 {
             this.transactionReason = transactionReason;
             return this;
         }
+
 
         public Builder cavv(String cavv) {
             Utils.checkNotNull(cavv, "cavv");
@@ -348,6 +360,7 @@ public class ThreeDSecureV2 {
             return this;
         }
 
+
         public Builder eci(String eci) {
             Utils.checkNotNull(eci, "eci");
             this.eci = JsonNullable.of(eci);
@@ -360,6 +373,7 @@ public class ThreeDSecureV2 {
             return this;
         }
 
+
         public Builder cardholderInfo(String cardholderInfo) {
             Utils.checkNotNull(cardholderInfo, "cardholderInfo");
             this.cardholderInfo = JsonNullable.of(cardholderInfo);
@@ -371,17 +385,14 @@ public class ThreeDSecureV2 {
             this.cardholderInfo = cardholderInfo;
             return this;
         }
-        
+
         public ThreeDSecureV2 build() {
+
             return new ThreeDSecureV2(
-                version,
-                authenticationResponse,
-                directoryResponse,
-                directoryTransactionId,
-                transactionReason,
-                cavv,
-                eci,
-                cardholderInfo);
+                version, authenticationResponse, directoryResponse,
+                directoryTransactionId, transactionReason, cavv,
+                eci, cardholderInfo);
         }
+
     }
 }

@@ -15,8 +15,8 @@ import java.lang.Override;
 import java.lang.String;
 import java.util.Optional;
 
-public class AccountUpdaterInquirySummary {
 
+public class AccountUpdaterInquirySummary {
     /**
      * Always `account-updater-inquiry`
      */
@@ -71,9 +71,10 @@ public class AccountUpdaterInquirySummary {
         return paymentMethodId;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The ID for the account updater inquiry.
@@ -93,7 +94,6 @@ public class AccountUpdaterInquirySummary {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -112,9 +112,7 @@ public class AccountUpdaterInquirySummary {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            type,
-            id,
-            paymentMethodId);
+            type, id, paymentMethodId);
     }
     
     @Override
@@ -124,16 +122,18 @@ public class AccountUpdaterInquirySummary {
                 "id", id,
                 "paymentMethodId", paymentMethodId);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String id;
- 
+
         private String paymentMethodId;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The ID for the account updater inquiry.
@@ -144,6 +144,7 @@ public class AccountUpdaterInquirySummary {
             return this;
         }
 
+
         /**
          * The ID of the payment method
          */
@@ -152,12 +153,13 @@ public class AccountUpdaterInquirySummary {
             this.paymentMethodId = paymentMethodId;
             return this;
         }
-        
+
         public AccountUpdaterInquirySummary build() {
+
             return new AccountUpdaterInquirySummary(
-                id,
-                paymentMethodId);
+                id, paymentMethodId);
         }
+
 
         private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_Type =
                 new LazySingletonValue<>(

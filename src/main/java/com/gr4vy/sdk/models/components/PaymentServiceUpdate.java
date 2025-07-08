@@ -27,7 +27,6 @@ import org.openapitools.jackson.nullable.JsonNullable;
  * <p>Request body for updating a Payment Service
  */
 public class PaymentServiceUpdate {
-
     /**
      * The display name for the payment service.
      */
@@ -163,7 +162,11 @@ public class PaymentServiceUpdate {
     }
     
     public PaymentServiceUpdate() {
-        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty());
+        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            Optional.empty());
     }
 
     /**
@@ -275,9 +278,10 @@ public class PaymentServiceUpdate {
         return settlementReportingEnabled;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The display name for the payment service.
@@ -504,6 +508,7 @@ public class PaymentServiceUpdate {
         return this;
     }
 
+
     /**
      * Defines if this payment service has settlement reporting enabled.
      */
@@ -513,7 +518,6 @@ public class PaymentServiceUpdate {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -542,18 +546,10 @@ public class PaymentServiceUpdate {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            displayName,
-            fields,
-            reportingFields,
-            position,
-            acceptedCurrencies,
-            acceptedCountries,
-            active,
-            threeDSecureEnabled,
-            merchantProfile,
-            paymentMethodTokenizationEnabled,
-            networkTokensEnabled,
-            openLoop,
+            displayName, fields, reportingFields,
+            position, acceptedCurrencies, acceptedCountries,
+            active, threeDSecureEnabled, merchantProfile,
+            paymentMethodTokenizationEnabled, networkTokensEnabled, openLoop,
             settlementReportingEnabled);
     }
     
@@ -574,38 +570,40 @@ public class PaymentServiceUpdate {
                 "openLoop", openLoop,
                 "settlementReportingEnabled", settlementReportingEnabled);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private JsonNullable<String> displayName = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends List<VoidableField>> fields = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends List<VoidableField>> reportingFields = JsonNullable.undefined();
- 
+
         private JsonNullable<Long> position = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends List<String>> acceptedCurrencies = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends List<String>> acceptedCountries = JsonNullable.undefined();
- 
+
         private JsonNullable<Boolean> active = JsonNullable.undefined();
- 
+
         private JsonNullable<Boolean> threeDSecureEnabled = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends Map<String, MerchantProfileScheme>> merchantProfile = JsonNullable.undefined();
- 
+
         private JsonNullable<Boolean> paymentMethodTokenizationEnabled = JsonNullable.undefined();
- 
+
         private JsonNullable<Boolean> networkTokensEnabled = JsonNullable.undefined();
- 
+
         private JsonNullable<Boolean> openLoop = JsonNullable.undefined();
- 
+
         private Optional<Boolean> settlementReportingEnabled;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The display name for the payment service.
@@ -625,6 +623,7 @@ public class PaymentServiceUpdate {
             return this;
         }
 
+
         /**
          * The non-secret credential fields that have been configured for this payment service. Any secret fields are omitted.
          */
@@ -642,6 +641,7 @@ public class PaymentServiceUpdate {
             this.fields = fields;
             return this;
         }
+
 
         /**
          * The non-secret reporting fields that have been configured for this payment service. Any secret fields are omitted.
@@ -661,6 +661,7 @@ public class PaymentServiceUpdate {
             return this;
         }
 
+
         /**
          * Deprecated field used to define the order in which to process payment services
          */
@@ -678,6 +679,7 @@ public class PaymentServiceUpdate {
             this.position = position;
             return this;
         }
+
 
         /**
          * A list of currencies for which this service is enabled, in ISO 4217 three-letter code format.
@@ -697,6 +699,7 @@ public class PaymentServiceUpdate {
             return this;
         }
 
+
         /**
          * A list of countries for which this service is enabled, in ISO two-letter code format.
          */
@@ -714,6 +717,7 @@ public class PaymentServiceUpdate {
             this.acceptedCountries = acceptedCountries;
             return this;
         }
+
 
         /**
          * Defines if this payment service is currently active.
@@ -733,6 +737,7 @@ public class PaymentServiceUpdate {
             return this;
         }
 
+
         /**
          * Defines if this payment service has 3DS enabled.
          */
@@ -750,6 +755,7 @@ public class PaymentServiceUpdate {
             this.threeDSecureEnabled = threeDSecureEnabled;
             return this;
         }
+
 
         /**
          * An object containing a key for each supported card schemes, and for each key an object with the 3DS profile for this service for that scheme.
@@ -769,6 +775,7 @@ public class PaymentServiceUpdate {
             return this;
         }
 
+
         /**
          * Defines if this payment service support payment method tokenization.
          */
@@ -786,6 +793,7 @@ public class PaymentServiceUpdate {
             this.paymentMethodTokenizationEnabled = paymentMethodTokenizationEnabled;
             return this;
         }
+
 
         /**
          * Defines if this payment service supports network tokens.
@@ -805,6 +813,7 @@ public class PaymentServiceUpdate {
             return this;
         }
 
+
         /**
          * Defines if this payment service is open loop.
          */
@@ -823,6 +832,7 @@ public class PaymentServiceUpdate {
             return this;
         }
 
+
         /**
          * Defines if this payment service has settlement reporting enabled.
          */
@@ -840,26 +850,20 @@ public class PaymentServiceUpdate {
             this.settlementReportingEnabled = settlementReportingEnabled;
             return this;
         }
-        
+
         public PaymentServiceUpdate build() {
             if (settlementReportingEnabled == null) {
                 settlementReportingEnabled = _SINGLETON_VALUE_SettlementReportingEnabled.value();
             }
+
             return new PaymentServiceUpdate(
-                displayName,
-                fields,
-                reportingFields,
-                position,
-                acceptedCurrencies,
-                acceptedCountries,
-                active,
-                threeDSecureEnabled,
-                merchantProfile,
-                paymentMethodTokenizationEnabled,
-                networkTokensEnabled,
-                openLoop,
+                displayName, fields, reportingFields,
+                position, acceptedCurrencies, acceptedCountries,
+                active, threeDSecureEnabled, merchantProfile,
+                paymentMethodTokenizationEnabled, networkTokensEnabled, openLoop,
                 settlementReportingEnabled);
         }
+
 
         private static final LazySingletonValue<Optional<Boolean>> _SINGLETON_VALUE_SettlementReportingEnabled =
                 new LazySingletonValue<>(

@@ -14,8 +14,8 @@ import java.lang.Override;
 import java.lang.String;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class ReportUpdate {
 
+public class ReportUpdate {
     /**
      * The name of the report.
      */
@@ -78,9 +78,10 @@ public class ReportUpdate {
         return scheduleEnabled;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The name of the report.
@@ -136,7 +137,6 @@ public class ReportUpdate {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -155,9 +155,7 @@ public class ReportUpdate {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            name,
-            description,
-            scheduleEnabled);
+            name, description, scheduleEnabled);
     }
     
     @Override
@@ -167,18 +165,20 @@ public class ReportUpdate {
                 "description", description,
                 "scheduleEnabled", scheduleEnabled);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private JsonNullable<String> name = JsonNullable.undefined();
- 
+
         private JsonNullable<String> description = JsonNullable.undefined();
- 
+
         private JsonNullable<Boolean> scheduleEnabled = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The name of the report.
@@ -198,6 +198,7 @@ public class ReportUpdate {
             return this;
         }
 
+
         /**
          * A description of the report.
          */
@@ -216,6 +217,7 @@ public class ReportUpdate {
             return this;
         }
 
+
         /**
          * Whether the report schedule is enabled.
          */
@@ -233,12 +235,12 @@ public class ReportUpdate {
             this.scheduleEnabled = scheduleEnabled;
             return this;
         }
-        
+
         public ReportUpdate build() {
+
             return new ReportUpdate(
-                name,
-                description,
-                scheduleEnabled);
+                name, description, scheduleEnabled);
         }
+
     }
 }

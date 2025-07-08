@@ -15,8 +15,8 @@ import java.lang.String;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class ListMerchantAccountsRequest {
 
+public class ListMerchantAccountsRequest {
     /**
      * A pointer to the page of results to return.
      */
@@ -76,9 +76,10 @@ public class ListMerchantAccountsRequest {
         return search;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * A pointer to the page of results to return.
@@ -107,6 +108,7 @@ public class ListMerchantAccountsRequest {
         return this;
     }
 
+
     /**
      * The maximum number of items that are at returned.
      */
@@ -134,7 +136,6 @@ public class ListMerchantAccountsRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -153,9 +154,7 @@ public class ListMerchantAccountsRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            cursor,
-            limit,
-            search);
+            cursor, limit, search);
     }
     
     @Override
@@ -165,18 +164,20 @@ public class ListMerchantAccountsRequest {
                 "limit", limit,
                 "search", search);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private JsonNullable<String> cursor = JsonNullable.undefined();
- 
+
         private Optional<Long> limit;
- 
+
         private JsonNullable<String> search = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * A pointer to the page of results to return.
@@ -196,6 +197,7 @@ public class ListMerchantAccountsRequest {
             return this;
         }
 
+
         /**
          * The maximum number of items that are at returned.
          */
@@ -214,6 +216,7 @@ public class ListMerchantAccountsRequest {
             return this;
         }
 
+
         /**
          * The search term to filter merchant accounts by.
          */
@@ -231,16 +234,16 @@ public class ListMerchantAccountsRequest {
             this.search = search;
             return this;
         }
-        
+
         public ListMerchantAccountsRequest build() {
             if (limit == null) {
                 limit = _SINGLETON_VALUE_Limit.value();
             }
+
             return new ListMerchantAccountsRequest(
-                cursor,
-                limit,
-                search);
+                cursor, limit, search);
         }
+
 
         private static final LazySingletonValue<Optional<Long>> _SINGLETON_VALUE_Limit =
                 new LazySingletonValue<>(

@@ -10,8 +10,8 @@ import com.gr4vy.sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 
-public class CheckoutCardConnectionOptions {
 
+public class CheckoutCardConnectionOptions {
     /**
      * The processing channel to be used for the payment.
      */
@@ -50,9 +50,10 @@ public class CheckoutCardConnectionOptions {
         return sourceId;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The processing channel to be used for the payment.
@@ -72,7 +73,6 @@ public class CheckoutCardConnectionOptions {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -90,8 +90,7 @@ public class CheckoutCardConnectionOptions {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            processingChannelId,
-            sourceId);
+            processingChannelId, sourceId);
     }
     
     @Override
@@ -100,16 +99,18 @@ public class CheckoutCardConnectionOptions {
                 "processingChannelId", processingChannelId,
                 "sourceId", sourceId);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String processingChannelId;
- 
+
         private String sourceId;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The processing channel to be used for the payment.
@@ -120,6 +121,7 @@ public class CheckoutCardConnectionOptions {
             return this;
         }
 
+
         /**
          * The ID of the currency account that will fund the payout.
          */
@@ -128,11 +130,12 @@ public class CheckoutCardConnectionOptions {
             this.sourceId = sourceId;
             return this;
         }
-        
+
         public CheckoutCardConnectionOptions build() {
+
             return new CheckoutCardConnectionOptions(
-                processingChannelId,
-                sourceId);
+                processingChannelId, sourceId);
         }
+
     }
 }

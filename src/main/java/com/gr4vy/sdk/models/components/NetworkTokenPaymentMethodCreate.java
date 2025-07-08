@@ -16,8 +16,8 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class NetworkTokenPaymentMethodCreate {
 
+public class NetworkTokenPaymentMethodCreate {
     /**
      * Always `network-token`.
      */
@@ -120,7 +120,9 @@ public class NetworkTokenPaymentMethodCreate {
     public NetworkTokenPaymentMethodCreate(
             String token,
             String expirationDate) {
-        this(token, expirationDate, JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
+        this(token, expirationDate, JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
     }
 
     /**
@@ -205,9 +207,10 @@ public class NetworkTokenPaymentMethodCreate {
         return eci;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The scheme token.
@@ -353,7 +356,6 @@ public class NetworkTokenPaymentMethodCreate {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -379,15 +381,9 @@ public class NetworkTokenPaymentMethodCreate {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            method,
-            token,
-            expirationDate,
-            cryptogram,
-            redirectUrl,
-            cardSource,
-            cardScheme,
-            cardSuffix,
-            cardholderName,
+            method, token, expirationDate,
+            cryptogram, redirectUrl, cardSource,
+            cardScheme, cardSuffix, cardholderName,
             eci);
     }
     
@@ -405,30 +401,32 @@ public class NetworkTokenPaymentMethodCreate {
                 "cardholderName", cardholderName,
                 "eci", eci);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String token;
- 
+
         private String expirationDate;
- 
+
         private JsonNullable<String> cryptogram = JsonNullable.undefined();
- 
+
         private JsonNullable<String> redirectUrl = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends CardSource> cardSource = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends CardScheme> cardScheme = JsonNullable.undefined();
- 
+
         private JsonNullable<String> cardSuffix = JsonNullable.undefined();
- 
+
         private JsonNullable<String> cardholderName = JsonNullable.undefined();
- 
+
         private JsonNullable<String> eci = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The scheme token.
@@ -439,6 +437,7 @@ public class NetworkTokenPaymentMethodCreate {
             return this;
         }
 
+
         /**
          * The expiration date of the token.
          */
@@ -447,6 +446,7 @@ public class NetworkTokenPaymentMethodCreate {
             this.expirationDate = expirationDate;
             return this;
         }
+
 
         /**
          * The payment cryptogram for the network token.
@@ -466,6 +466,7 @@ public class NetworkTokenPaymentMethodCreate {
             return this;
         }
 
+
         /**
          * The URL to redirect a user back to after the complete 3DS in browser.
          */
@@ -483,6 +484,7 @@ public class NetworkTokenPaymentMethodCreate {
             this.redirectUrl = redirectUrl;
             return this;
         }
+
 
         /**
          * The optional source of the decrypted device token.
@@ -502,6 +504,7 @@ public class NetworkTokenPaymentMethodCreate {
             return this;
         }
 
+
         /**
          * The original card scheme for which the token was generated.
          */
@@ -519,6 +522,7 @@ public class NetworkTokenPaymentMethodCreate {
             this.cardScheme = cardScheme;
             return this;
         }
+
 
         /**
          * The last 4 digits of the original card used to generate the token.
@@ -538,6 +542,7 @@ public class NetworkTokenPaymentMethodCreate {
             return this;
         }
 
+
         /**
          * The card holder name associated to the original card for the token.
          */
@@ -556,6 +561,7 @@ public class NetworkTokenPaymentMethodCreate {
             return this;
         }
 
+
         /**
          * The ecommerce indicator for the token.
          */
@@ -573,19 +579,15 @@ public class NetworkTokenPaymentMethodCreate {
             this.eci = eci;
             return this;
         }
-        
+
         public NetworkTokenPaymentMethodCreate build() {
+
             return new NetworkTokenPaymentMethodCreate(
-                token,
-                expirationDate,
-                cryptogram,
-                redirectUrl,
-                cardSource,
-                cardScheme,
-                cardSuffix,
-                cardholderName,
-                eci);
+                token, expirationDate, cryptogram,
+                redirectUrl, cardSource, cardScheme,
+                cardSuffix, cardholderName, eci);
         }
+
 
         private static final LazySingletonValue<String> _SINGLETON_VALUE_Method =
                 new LazySingletonValue<>(

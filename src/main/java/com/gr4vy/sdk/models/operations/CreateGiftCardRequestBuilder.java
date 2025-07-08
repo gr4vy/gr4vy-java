@@ -53,7 +53,7 @@ public class CreateGiftCardRequestBuilder {
     public CreateGiftCardResponse call() throws Exception {
         
         RequestOperation<CreateGiftCardRequest, CreateGiftCardResponse> operation
-              = new CreateGiftCardOperation( sdkConfiguration);
+              = new CreateGiftCardOperation(sdkConfiguration);
         CreateGiftCardRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

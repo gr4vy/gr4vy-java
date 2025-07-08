@@ -11,8 +11,8 @@ import java.lang.Override;
 import java.lang.String;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class ListPaymentMethodPaymentServiceTokensRequest {
 
+public class ListPaymentMethodPaymentServiceTokensRequest {
     /**
      * The ID of the payment method
      */
@@ -73,9 +73,10 @@ public class ListPaymentMethodPaymentServiceTokensRequest {
         return merchantAccountId;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The ID of the payment method
@@ -122,7 +123,6 @@ public class ListPaymentMethodPaymentServiceTokensRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -141,9 +141,7 @@ public class ListPaymentMethodPaymentServiceTokensRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            paymentMethodId,
-            paymentServiceId,
-            merchantAccountId);
+            paymentMethodId, paymentServiceId, merchantAccountId);
     }
     
     @Override
@@ -153,18 +151,20 @@ public class ListPaymentMethodPaymentServiceTokensRequest {
                 "paymentServiceId", paymentServiceId,
                 "merchantAccountId", merchantAccountId);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String paymentMethodId;
- 
+
         private JsonNullable<String> paymentServiceId = JsonNullable.undefined();
- 
+
         private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The ID of the payment method
@@ -174,6 +174,7 @@ public class ListPaymentMethodPaymentServiceTokensRequest {
             this.paymentMethodId = paymentMethodId;
             return this;
         }
+
 
         /**
          * The ID of the payment service
@@ -193,6 +194,7 @@ public class ListPaymentMethodPaymentServiceTokensRequest {
             return this;
         }
 
+
         /**
          * The ID of the merchant account to use for this request.
          */
@@ -210,12 +212,12 @@ public class ListPaymentMethodPaymentServiceTokensRequest {
             this.merchantAccountId = merchantAccountId;
             return this;
         }
-        
+
         public ListPaymentMethodPaymentServiceTokensRequest build() {
+
             return new ListPaymentMethodPaymentServiceTokensRequest(
-                paymentMethodId,
-                paymentServiceId,
-                merchantAccountId);
+                paymentMethodId, paymentServiceId, merchantAccountId);
         }
+
     }
 }

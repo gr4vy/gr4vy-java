@@ -53,7 +53,7 @@ public class VerifyPaymentServiceCredentialsRequestBuilder {
     public VerifyPaymentServiceCredentialsResponse call() throws Exception {
         
         RequestOperation<VerifyPaymentServiceCredentialsRequest, VerifyPaymentServiceCredentialsResponse> operation
-              = new VerifyPaymentServiceCredentialsOperation( sdkConfiguration);
+              = new VerifyPaymentServiceCredentialsOperation(sdkConfiguration);
         VerifyPaymentServiceCredentialsRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

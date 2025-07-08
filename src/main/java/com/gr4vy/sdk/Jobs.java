@@ -23,7 +23,6 @@ public class Jobs {
     Jobs(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-
     /**
      * Create account updater job
      * 
@@ -68,7 +67,7 @@ public class Jobs {
                 .accountUpdaterJobCreate(accountUpdaterJobCreate)
                 .build();
         RequestOperation<CreateAccountUpdaterJobRequest, CreateAccountUpdaterJobResponse> operation
-              = new CreateAccountUpdaterJobOperation( sdkConfiguration);
+              = new CreateAccountUpdaterJobOperation(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
 

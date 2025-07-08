@@ -11,8 +11,8 @@ import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
 
-public class CryptogramCreate {
 
+public class CryptogramCreate {
     /**
      * Defines if the request is merchant initiated or not.
      */
@@ -34,9 +34,10 @@ public class CryptogramCreate {
         return merchantInitiated;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Defines if the request is merchant initiated or not.
@@ -47,7 +48,6 @@ public class CryptogramCreate {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -72,14 +72,16 @@ public class CryptogramCreate {
         return Utils.toString(CryptogramCreate.class,
                 "merchantInitiated", merchantInitiated);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Boolean merchantInitiated;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Defines if the request is merchant initiated or not.
@@ -89,10 +91,12 @@ public class CryptogramCreate {
             this.merchantInitiated = merchantInitiated;
             return this;
         }
-        
+
         public CryptogramCreate build() {
+
             return new CryptogramCreate(
                 merchantInitiated);
         }
+
     }
 }

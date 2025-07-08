@@ -12,8 +12,8 @@ import java.lang.Override;
 import java.lang.String;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class CreateTransactionRefundRequest {
 
+public class CreateTransactionRefundRequest {
     /**
      * The ID of the transaction
      */
@@ -25,6 +25,7 @@ public class CreateTransactionRefundRequest {
      */
     @SpeakeasyMetadata("header:style=simple,explode=false,name=x-gr4vy-merchant-account-id")
     private JsonNullable<String> merchantAccountId;
+
 
     @SpeakeasyMetadata("request:mediaType=application/json")
     private TransactionRefundCreate transactionRefundCreate;
@@ -69,9 +70,10 @@ public class CreateTransactionRefundRequest {
         return transactionRefundCreate;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The ID of the transaction
@@ -106,7 +108,6 @@ public class CreateTransactionRefundRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -125,9 +126,7 @@ public class CreateTransactionRefundRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            transactionId,
-            merchantAccountId,
-            transactionRefundCreate);
+            transactionId, merchantAccountId, transactionRefundCreate);
     }
     
     @Override
@@ -137,18 +136,20 @@ public class CreateTransactionRefundRequest {
                 "merchantAccountId", merchantAccountId,
                 "transactionRefundCreate", transactionRefundCreate);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String transactionId;
- 
+
         private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
- 
+
         private TransactionRefundCreate transactionRefundCreate;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The ID of the transaction
@@ -158,6 +159,7 @@ public class CreateTransactionRefundRequest {
             this.transactionId = transactionId;
             return this;
         }
+
 
         /**
          * The ID of the merchant account to use for this request.
@@ -177,17 +179,18 @@ public class CreateTransactionRefundRequest {
             return this;
         }
 
+
         public Builder transactionRefundCreate(TransactionRefundCreate transactionRefundCreate) {
             Utils.checkNotNull(transactionRefundCreate, "transactionRefundCreate");
             this.transactionRefundCreate = transactionRefundCreate;
             return this;
         }
-        
+
         public CreateTransactionRefundRequest build() {
+
             return new CreateTransactionRefundRequest(
-                transactionId,
-                merchantAccountId,
-                transactionRefundCreate);
+                transactionId, merchantAccountId, transactionRefundCreate);
         }
+
     }
 }

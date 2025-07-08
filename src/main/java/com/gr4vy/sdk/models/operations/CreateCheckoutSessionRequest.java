@@ -14,13 +14,14 @@ import java.lang.SuppressWarnings;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class CreateCheckoutSessionRequest {
 
+public class CreateCheckoutSessionRequest {
     /**
      * The ID of the merchant account to use for this request.
      */
     @SpeakeasyMetadata("header:style=simple,explode=false,name=x-gr4vy-merchant-account-id")
     private JsonNullable<String> merchantAccountId;
+
 
     @SpeakeasyMetadata("request:mediaType=application/json")
     private Optional<? extends CheckoutSessionCreate> checkoutSessionCreate;
@@ -53,9 +54,10 @@ public class CreateCheckoutSessionRequest {
         return (Optional<CheckoutSessionCreate>) checkoutSessionCreate;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The ID of the merchant account to use for this request.
@@ -81,13 +83,13 @@ public class CreateCheckoutSessionRequest {
         return this;
     }
 
+
     public CreateCheckoutSessionRequest withCheckoutSessionCreate(Optional<? extends CheckoutSessionCreate> checkoutSessionCreate) {
         Utils.checkNotNull(checkoutSessionCreate, "checkoutSessionCreate");
         this.checkoutSessionCreate = checkoutSessionCreate;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -105,8 +107,7 @@ public class CreateCheckoutSessionRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            merchantAccountId,
-            checkoutSessionCreate);
+            merchantAccountId, checkoutSessionCreate);
     }
     
     @Override
@@ -115,16 +116,18 @@ public class CreateCheckoutSessionRequest {
                 "merchantAccountId", merchantAccountId,
                 "checkoutSessionCreate", checkoutSessionCreate);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
- 
+
         private Optional<? extends CheckoutSessionCreate> checkoutSessionCreate = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The ID of the merchant account to use for this request.
@@ -144,6 +147,7 @@ public class CreateCheckoutSessionRequest {
             return this;
         }
 
+
         public Builder checkoutSessionCreate(CheckoutSessionCreate checkoutSessionCreate) {
             Utils.checkNotNull(checkoutSessionCreate, "checkoutSessionCreate");
             this.checkoutSessionCreate = Optional.ofNullable(checkoutSessionCreate);
@@ -155,11 +159,12 @@ public class CreateCheckoutSessionRequest {
             this.checkoutSessionCreate = checkoutSessionCreate;
             return this;
         }
-        
+
         public CreateCheckoutSessionRequest build() {
+
             return new CreateCheckoutSessionRequest(
-                merchantAccountId,
-                checkoutSessionCreate);
+                merchantAccountId, checkoutSessionCreate);
         }
+
     }
 }

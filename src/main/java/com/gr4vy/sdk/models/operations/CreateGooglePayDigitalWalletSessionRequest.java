@@ -12,13 +12,14 @@ import java.lang.Override;
 import java.lang.String;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class CreateGooglePayDigitalWalletSessionRequest {
 
+public class CreateGooglePayDigitalWalletSessionRequest {
     /**
      * The ID of the merchant account to use for this request.
      */
     @SpeakeasyMetadata("header:style=simple,explode=false,name=x-gr4vy-merchant-account-id")
     private JsonNullable<String> merchantAccountId;
+
 
     @SpeakeasyMetadata("request:mediaType=application/json")
     private GooglePaySessionRequest googlePaySessionRequest;
@@ -51,9 +52,10 @@ public class CreateGooglePayDigitalWalletSessionRequest {
         return googlePaySessionRequest;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The ID of the merchant account to use for this request.
@@ -79,7 +81,6 @@ public class CreateGooglePayDigitalWalletSessionRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -97,8 +98,7 @@ public class CreateGooglePayDigitalWalletSessionRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            merchantAccountId,
-            googlePaySessionRequest);
+            merchantAccountId, googlePaySessionRequest);
     }
     
     @Override
@@ -107,16 +107,18 @@ public class CreateGooglePayDigitalWalletSessionRequest {
                 "merchantAccountId", merchantAccountId,
                 "googlePaySessionRequest", googlePaySessionRequest);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
- 
+
         private GooglePaySessionRequest googlePaySessionRequest;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The ID of the merchant account to use for this request.
@@ -136,16 +138,18 @@ public class CreateGooglePayDigitalWalletSessionRequest {
             return this;
         }
 
+
         public Builder googlePaySessionRequest(GooglePaySessionRequest googlePaySessionRequest) {
             Utils.checkNotNull(googlePaySessionRequest, "googlePaySessionRequest");
             this.googlePaySessionRequest = googlePaySessionRequest;
             return this;
         }
-        
+
         public CreateGooglePayDigitalWalletSessionRequest build() {
+
             return new CreateGooglePayDigitalWalletSessionRequest(
-                merchantAccountId,
-                googlePaySessionRequest);
+                merchantAccountId, googlePaySessionRequest);
         }
+
     }
 }

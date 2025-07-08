@@ -12,8 +12,8 @@ import java.lang.Override;
 import java.lang.String;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class CreatePaymentMethodNetworkTokenCryptogramRequest {
 
+public class CreatePaymentMethodNetworkTokenCryptogramRequest {
     /**
      * The ID of the payment method
      */
@@ -31,6 +31,7 @@ public class CreatePaymentMethodNetworkTokenCryptogramRequest {
      */
     @SpeakeasyMetadata("header:style=simple,explode=false,name=x-gr4vy-merchant-account-id")
     private JsonNullable<String> merchantAccountId;
+
 
     @SpeakeasyMetadata("request:mediaType=application/json")
     private CryptogramCreate cryptogramCreate;
@@ -55,7 +56,8 @@ public class CreatePaymentMethodNetworkTokenCryptogramRequest {
             String paymentMethodId,
             String networkTokenId,
             CryptogramCreate cryptogramCreate) {
-        this(paymentMethodId, networkTokenId, JsonNullable.undefined(), cryptogramCreate);
+        this(paymentMethodId, networkTokenId, JsonNullable.undefined(),
+            cryptogramCreate);
     }
 
     /**
@@ -87,9 +89,10 @@ public class CreatePaymentMethodNetworkTokenCryptogramRequest {
         return cryptogramCreate;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The ID of the payment method
@@ -133,7 +136,6 @@ public class CreatePaymentMethodNetworkTokenCryptogramRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -153,9 +155,7 @@ public class CreatePaymentMethodNetworkTokenCryptogramRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            paymentMethodId,
-            networkTokenId,
-            merchantAccountId,
+            paymentMethodId, networkTokenId, merchantAccountId,
             cryptogramCreate);
     }
     
@@ -167,20 +167,22 @@ public class CreatePaymentMethodNetworkTokenCryptogramRequest {
                 "merchantAccountId", merchantAccountId,
                 "cryptogramCreate", cryptogramCreate);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String paymentMethodId;
- 
+
         private String networkTokenId;
- 
+
         private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
- 
+
         private CryptogramCreate cryptogramCreate;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The ID of the payment method
@@ -191,6 +193,7 @@ public class CreatePaymentMethodNetworkTokenCryptogramRequest {
             return this;
         }
 
+
         /**
          * The ID of the network token
          */
@@ -199,6 +202,7 @@ public class CreatePaymentMethodNetworkTokenCryptogramRequest {
             this.networkTokenId = networkTokenId;
             return this;
         }
+
 
         /**
          * The ID of the merchant account to use for this request.
@@ -218,18 +222,19 @@ public class CreatePaymentMethodNetworkTokenCryptogramRequest {
             return this;
         }
 
+
         public Builder cryptogramCreate(CryptogramCreate cryptogramCreate) {
             Utils.checkNotNull(cryptogramCreate, "cryptogramCreate");
             this.cryptogramCreate = cryptogramCreate;
             return this;
         }
-        
+
         public CreatePaymentMethodNetworkTokenCryptogramRequest build() {
+
             return new CreatePaymentMethodNetworkTokenCryptogramRequest(
-                paymentMethodId,
-                networkTokenId,
-                merchantAccountId,
+                paymentMethodId, networkTokenId, merchantAccountId,
                 cryptogramCreate);
         }
+
     }
 }

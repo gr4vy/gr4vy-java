@@ -19,8 +19,8 @@ import java.util.List;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class ListReportsRequest {
 
+public class ListReportsRequest {
     /**
      * A pointer to the page of results to return.
      */
@@ -80,7 +80,8 @@ public class ListReportsRequest {
     }
     
     public ListReportsRequest() {
-        this(JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
+        this(JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
     }
 
     /**
@@ -132,9 +133,10 @@ public class ListReportsRequest {
         return merchantAccountId;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * A pointer to the page of results to return.
@@ -162,6 +164,7 @@ public class ListReportsRequest {
         this.limit = Optional.ofNullable(limit);
         return this;
     }
+
 
     /**
      * The maximum number of items that are at returned.
@@ -244,7 +247,6 @@ public class ListReportsRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -266,12 +268,8 @@ public class ListReportsRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            cursor,
-            limit,
-            schedule,
-            scheduleEnabled,
-            name,
-            merchantAccountId);
+            cursor, limit, schedule,
+            scheduleEnabled, name, merchantAccountId);
     }
     
     @Override
@@ -284,24 +282,26 @@ public class ListReportsRequest {
                 "name", name,
                 "merchantAccountId", merchantAccountId);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private JsonNullable<String> cursor = JsonNullable.undefined();
- 
+
         private Optional<Long> limit;
- 
+
         private JsonNullable<? extends List<ReportSchedule>> schedule = JsonNullable.undefined();
- 
+
         private JsonNullable<Boolean> scheduleEnabled = JsonNullable.undefined();
- 
+
         private JsonNullable<String> name = JsonNullable.undefined();
- 
+
         private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * A pointer to the page of results to return.
@@ -321,6 +321,7 @@ public class ListReportsRequest {
             return this;
         }
 
+
         /**
          * The maximum number of items that are at returned.
          */
@@ -338,6 +339,7 @@ public class ListReportsRequest {
             this.limit = limit;
             return this;
         }
+
 
         /**
          * Filters the reports by the type of schedule at which they run.
@@ -357,6 +359,7 @@ public class ListReportsRequest {
             return this;
         }
 
+
         /**
          * Filters the reports by wether their schedule is enabled.
          */
@@ -374,6 +377,7 @@ public class ListReportsRequest {
             this.scheduleEnabled = scheduleEnabled;
             return this;
         }
+
 
         /**
          * Filters the reports by searching their name for (partial) matches.
@@ -393,6 +397,7 @@ public class ListReportsRequest {
             return this;
         }
 
+
         /**
          * The ID of the merchant account to use for this request.
          */
@@ -410,19 +415,17 @@ public class ListReportsRequest {
             this.merchantAccountId = merchantAccountId;
             return this;
         }
-        
+
         public ListReportsRequest build() {
             if (limit == null) {
                 limit = _SINGLETON_VALUE_Limit.value();
             }
+
             return new ListReportsRequest(
-                cursor,
-                limit,
-                schedule,
-                scheduleEnabled,
-                name,
-                merchantAccountId);
+                cursor, limit, schedule,
+                scheduleEnabled, name, merchantAccountId);
         }
+
 
         private static final LazySingletonValue<Optional<Long>> _SINGLETON_VALUE_Limit =
                 new LazySingletonValue<>(

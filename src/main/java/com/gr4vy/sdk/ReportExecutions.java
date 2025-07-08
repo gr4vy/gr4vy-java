@@ -21,7 +21,6 @@ public class ReportExecutions {
     ReportExecutions(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-
     /**
      * List executed reports
      * 
@@ -61,8 +60,8 @@ public class ReportExecutions {
             Optional<Options> options) throws Exception {
         RequestOperation<ListAllReportExecutionsRequest, ListAllReportExecutionsResponse> operation
               = new ListAllReportExecutionsOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

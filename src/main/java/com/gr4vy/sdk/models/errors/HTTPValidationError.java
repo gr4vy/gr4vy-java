@@ -19,6 +19,7 @@ import java.net.http.HttpResponse;
 import java.util.List;
 import java.util.Optional;
 
+
 @SuppressWarnings("serial")
 public class HTTPValidationError extends RuntimeException {
 
@@ -63,15 +64,17 @@ public class HTTPValidationError extends RuntimeException {
         return (Optional<HttpResponse<InputStream>>) rawResponse;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public HTTPValidationError withDetail(List<ValidationError> detail) {
         Utils.checkNotNull(detail, "detail");
         this.detail = Optional.ofNullable(detail);
         return this;
     }
+
 
     public HTTPValidationError withDetail(Optional<? extends List<ValidationError>> detail) {
         Utils.checkNotNull(detail, "detail");
@@ -88,6 +91,7 @@ public class HTTPValidationError extends RuntimeException {
         return this;
     }
 
+
     /**
      * Raw HTTP response; suitable for custom response parsing
      */
@@ -97,7 +101,6 @@ public class HTTPValidationError extends RuntimeException {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -115,8 +118,7 @@ public class HTTPValidationError extends RuntimeException {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            detail,
-            rawResponse);
+            detail, rawResponse);
     }
     
     @Override
@@ -125,16 +127,18 @@ public class HTTPValidationError extends RuntimeException {
                 "detail", detail,
                 "rawResponse", rawResponse);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends List<ValidationError>> detail = Optional.empty();
- 
+
         private Optional<? extends HttpResponse<InputStream>> rawResponse;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder detail(List<ValidationError> detail) {
             Utils.checkNotNull(detail, "detail");
@@ -147,6 +151,7 @@ public class HTTPValidationError extends RuntimeException {
             this.detail = detail;
             return this;
         }
+
 
         /**
          * Raw HTTP response; suitable for custom response parsing
@@ -165,12 +170,13 @@ public class HTTPValidationError extends RuntimeException {
             this.rawResponse = rawResponse;
             return this;
         }
-        
+
         public HTTPValidationError build() {
+
             return new HTTPValidationError(
-                detail,
-                rawResponse);
+                detail, rawResponse);
         }
+
     }
 }
 

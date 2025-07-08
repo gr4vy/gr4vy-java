@@ -10,8 +10,8 @@ import com.gr4vy.sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 
-public class MerchantProfileScheme {
 
+public class MerchantProfileScheme {
     /**
      * Acquirer BIN to use when calling 3DS through this scheme.
      */
@@ -29,6 +29,7 @@ public class MerchantProfileScheme {
      */
     @JsonProperty("merchant_acquirer_id")
     private String merchantAcquirerId;
+
 
     @JsonProperty("merchant_name")
     private String merchantName;
@@ -112,9 +113,10 @@ public class MerchantProfileScheme {
         return merchantCategoryCode;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Acquirer BIN to use when calling 3DS through this scheme.
@@ -167,7 +169,6 @@ public class MerchantProfileScheme {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -189,12 +190,8 @@ public class MerchantProfileScheme {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            merchantAcquirerBin,
-            merchantUrl,
-            merchantAcquirerId,
-            merchantName,
-            merchantCountryCode,
-            merchantCategoryCode);
+            merchantAcquirerBin, merchantUrl, merchantAcquirerId,
+            merchantName, merchantCountryCode, merchantCategoryCode);
     }
     
     @Override
@@ -207,24 +204,26 @@ public class MerchantProfileScheme {
                 "merchantCountryCode", merchantCountryCode,
                 "merchantCategoryCode", merchantCategoryCode);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String merchantAcquirerBin;
- 
+
         private String merchantUrl;
- 
+
         private String merchantAcquirerId;
- 
+
         private String merchantName;
- 
+
         private String merchantCountryCode;
- 
+
         private String merchantCategoryCode;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Acquirer BIN to use when calling 3DS through this scheme.
@@ -235,6 +234,7 @@ public class MerchantProfileScheme {
             return this;
         }
 
+
         /**
          * URL to send when calling 3DS through this scheme.
          */
@@ -243,6 +243,7 @@ public class MerchantProfileScheme {
             this.merchantUrl = merchantUrl;
             return this;
         }
+
 
         /**
          * Merchant ID to use when calling 3DS through this scheme.
@@ -253,11 +254,13 @@ public class MerchantProfileScheme {
             return this;
         }
 
+
         public Builder merchantName(String merchantName) {
             Utils.checkNotNull(merchantName, "merchantName");
             this.merchantName = merchantName;
             return this;
         }
+
 
         /**
          * Merchant country code to use when calling 3DS through this scheme.
@@ -268,6 +271,7 @@ public class MerchantProfileScheme {
             return this;
         }
 
+
         /**
          * Merchant category code to use when calling 3DS through this scheme.
          */
@@ -276,15 +280,13 @@ public class MerchantProfileScheme {
             this.merchantCategoryCode = merchantCategoryCode;
             return this;
         }
-        
+
         public MerchantProfileScheme build() {
+
             return new MerchantProfileScheme(
-                merchantAcquirerBin,
-                merchantUrl,
-                merchantAcquirerId,
-                merchantName,
-                merchantCountryCode,
-                merchantCategoryCode);
+                merchantAcquirerBin, merchantUrl, merchantAcquirerId,
+                merchantName, merchantCountryCode, merchantCategoryCode);
         }
+
     }
 }

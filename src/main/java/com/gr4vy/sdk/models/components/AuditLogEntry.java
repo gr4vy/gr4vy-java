@@ -17,8 +17,8 @@ import java.time.OffsetDateTime;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class AuditLogEntry {
 
+public class AuditLogEntry {
     /**
      * Always `audit-log`.
      */
@@ -40,11 +40,14 @@ public class AuditLogEntry {
     @JsonProperty("merchant_account_id")
     private JsonNullable<String> merchantAccountId;
 
+
     @JsonProperty("resource")
     private AuditLogEntryResource resource;
 
+
     @JsonProperty("action")
     private AuditLogAction action;
+
 
     @JsonProperty("user")
     private AuditLogEntryUser user;
@@ -83,7 +86,8 @@ public class AuditLogEntry {
             AuditLogAction action,
             AuditLogEntryUser user,
             OffsetDateTime timestamp) {
-        this(JsonNullable.undefined(), JsonNullable.undefined(), resource, action, user, timestamp);
+        this(JsonNullable.undefined(), JsonNullable.undefined(), resource,
+            action, user, timestamp);
     }
 
     /**
@@ -133,9 +137,10 @@ public class AuditLogEntry {
         return timestamp;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The ID for the audit log entry.
@@ -200,7 +205,6 @@ public class AuditLogEntry {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -223,12 +227,8 @@ public class AuditLogEntry {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            type,
-            id,
-            merchantAccountId,
-            resource,
-            action,
-            user,
+            type, id, merchantAccountId,
+            resource, action, user,
             timestamp);
     }
     
@@ -243,24 +243,26 @@ public class AuditLogEntry {
                 "user", user,
                 "timestamp", timestamp);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private JsonNullable<String> id = JsonNullable.undefined();
- 
+
         private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
- 
+
         private AuditLogEntryResource resource;
- 
+
         private AuditLogAction action;
- 
+
         private AuditLogEntryUser user;
- 
+
         private OffsetDateTime timestamp;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The ID for the audit log entry.
@@ -280,6 +282,7 @@ public class AuditLogEntry {
             return this;
         }
 
+
         /**
          * The ID of the merchant account this entry was created for.
          */
@@ -298,11 +301,13 @@ public class AuditLogEntry {
             return this;
         }
 
+
         public Builder resource(AuditLogEntryResource resource) {
             Utils.checkNotNull(resource, "resource");
             this.resource = resource;
             return this;
         }
+
 
         public Builder action(AuditLogAction action) {
             Utils.checkNotNull(action, "action");
@@ -310,11 +315,13 @@ public class AuditLogEntry {
             return this;
         }
 
+
         public Builder user(AuditLogEntryUser user) {
             Utils.checkNotNull(user, "user");
             this.user = user;
             return this;
         }
+
 
         /**
          * The date and time that the action was performed.
@@ -324,16 +331,14 @@ public class AuditLogEntry {
             this.timestamp = timestamp;
             return this;
         }
-        
+
         public AuditLogEntry build() {
+
             return new AuditLogEntry(
-                id,
-                merchantAccountId,
-                resource,
-                action,
-                user,
-                timestamp);
+                id, merchantAccountId, resource,
+                action, user, timestamp);
         }
+
 
         private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_Type =
                 new LazySingletonValue<>(

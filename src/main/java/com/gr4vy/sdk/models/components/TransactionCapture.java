@@ -21,7 +21,6 @@ import org.openapitools.jackson.nullable.JsonNullable;
  * <p>Request body for capturing an authorized transaction.
  */
 public class TransactionCapture {
-
     /**
      * The amount to capture, in the smallest currency unit (e.g., cents). This must be less than or equal to the authorized amount, unless over-capture is available.
      */
@@ -67,9 +66,10 @@ public class TransactionCapture {
         return (JsonNullable<Airline>) airline;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The amount to capture, in the smallest currency unit (e.g., cents). This must be less than or equal to the authorized amount, unless over-capture is available.
@@ -107,7 +107,6 @@ public class TransactionCapture {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -125,8 +124,7 @@ public class TransactionCapture {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            amount,
-            airline);
+            amount, airline);
     }
     
     @Override
@@ -135,16 +133,18 @@ public class TransactionCapture {
                 "amount", amount,
                 "airline", airline);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private JsonNullable<Long> amount = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends Airline> airline = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The amount to capture, in the smallest currency unit (e.g., cents). This must be less than or equal to the authorized amount, unless over-capture is available.
@@ -164,6 +164,7 @@ public class TransactionCapture {
             return this;
         }
 
+
         /**
          * The airline data to submit to the payment service during the capture call.
          */
@@ -181,11 +182,12 @@ public class TransactionCapture {
             this.airline = airline;
             return this;
         }
-        
+
         public TransactionCapture build() {
+
             return new TransactionCapture(
-                amount,
-                airline);
+                amount, airline);
         }
+
     }
 }

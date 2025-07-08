@@ -10,8 +10,8 @@ import com.gr4vy.sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 
-public class DigitalWalletDomain {
 
+public class DigitalWalletDomain {
     /**
      * The domain to add or remove.
      */
@@ -33,9 +33,10 @@ public class DigitalWalletDomain {
         return domainName;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The domain to add or remove.
@@ -46,7 +47,6 @@ public class DigitalWalletDomain {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -71,14 +71,16 @@ public class DigitalWalletDomain {
         return Utils.toString(DigitalWalletDomain.class,
                 "domainName", domainName);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String domainName;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The domain to add or remove.
@@ -88,10 +90,12 @@ public class DigitalWalletDomain {
             this.domainName = domainName;
             return this;
         }
-        
+
         public DigitalWalletDomain build() {
+
             return new DigitalWalletDomain(
                 domainName);
         }
+
     }
 }

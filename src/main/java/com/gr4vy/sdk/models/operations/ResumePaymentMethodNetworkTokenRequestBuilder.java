@@ -60,7 +60,7 @@ public class ResumePaymentMethodNetworkTokenRequestBuilder {
     public ResumePaymentMethodNetworkTokenResponse call() throws Exception {
         
         RequestOperation<ResumePaymentMethodNetworkTokenRequest, ResumePaymentMethodNetworkTokenResponse> operation
-              = new ResumePaymentMethodNetworkTokenOperation( sdkConfiguration);
+              = new ResumePaymentMethodNetworkTokenOperation(sdkConfiguration);
         ResumePaymentMethodNetworkTokenRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

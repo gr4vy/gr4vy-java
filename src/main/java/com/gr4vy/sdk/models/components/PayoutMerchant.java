@@ -14,8 +14,8 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class PayoutMerchant {
 
+public class PayoutMerchant {
     /**
      * The name of the merchant.
      */
@@ -91,7 +91,9 @@ public class PayoutMerchant {
             String url,
             String statementDescriptor,
             String merchantCategoryCode) {
-        this(name, identificationNumber, phoneNumber, url, statementDescriptor, merchantCategoryCode, JsonNullable.undefined());
+        this(name, identificationNumber, phoneNumber,
+            url, statementDescriptor, merchantCategoryCode,
+            JsonNullable.undefined());
     }
 
     /**
@@ -151,9 +153,10 @@ public class PayoutMerchant {
         return (JsonNullable<Address>) address;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The name of the merchant.
@@ -227,7 +230,6 @@ public class PayoutMerchant {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -250,12 +252,8 @@ public class PayoutMerchant {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            name,
-            identificationNumber,
-            phoneNumber,
-            url,
-            statementDescriptor,
-            merchantCategoryCode,
+            name, identificationNumber, phoneNumber,
+            url, statementDescriptor, merchantCategoryCode,
             address);
     }
     
@@ -270,26 +268,28 @@ public class PayoutMerchant {
                 "merchantCategoryCode", merchantCategoryCode,
                 "address", address);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String name;
- 
+
         private String identificationNumber;
- 
+
         private String phoneNumber;
- 
+
         private String url;
- 
+
         private String statementDescriptor;
- 
+
         private String merchantCategoryCode;
- 
+
         private JsonNullable<? extends Address> address = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The name of the merchant.
@@ -300,6 +300,7 @@ public class PayoutMerchant {
             return this;
         }
 
+
         /**
          * Unique value which identifies a merchant for processing transactions, also known as a MID.
          */
@@ -308,6 +309,7 @@ public class PayoutMerchant {
             this.identificationNumber = identificationNumber;
             return this;
         }
+
 
         /**
          * The phone number for the merchant which should be formatted according to the E164 number standard.
@@ -318,6 +320,7 @@ public class PayoutMerchant {
             return this;
         }
 
+
         /**
          * Merchant website URL.
          */
@@ -326,6 +329,7 @@ public class PayoutMerchant {
             this.url = url;
             return this;
         }
+
 
         /**
          * Value to explain charges or payments on bank statements.
@@ -336,6 +340,7 @@ public class PayoutMerchant {
             return this;
         }
 
+
         /**
          * Merchant classification for the type of goods or services it provides.
          */
@@ -344,6 +349,7 @@ public class PayoutMerchant {
             this.merchantCategoryCode = merchantCategoryCode;
             return this;
         }
+
 
         /**
          * The address for the merchant.
@@ -362,16 +368,14 @@ public class PayoutMerchant {
             this.address = address;
             return this;
         }
-        
+
         public PayoutMerchant build() {
+
             return new PayoutMerchant(
-                name,
-                identificationNumber,
-                phoneNumber,
-                url,
-                statementDescriptor,
-                merchantCategoryCode,
+                name, identificationNumber, phoneNumber,
+                url, statementDescriptor, merchantCategoryCode,
                 address);
         }
+
     }
 }

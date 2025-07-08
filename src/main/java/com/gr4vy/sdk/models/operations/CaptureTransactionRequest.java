@@ -12,8 +12,8 @@ import java.lang.Override;
 import java.lang.String;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class CaptureTransactionRequest {
 
+public class CaptureTransactionRequest {
     /**
      * The ID of the transaction
      */
@@ -25,6 +25,7 @@ public class CaptureTransactionRequest {
      */
     @SpeakeasyMetadata("header:style=simple,explode=false,name=x-gr4vy-merchant-account-id")
     private JsonNullable<String> merchantAccountId;
+
 
     @SpeakeasyMetadata("request:mediaType=application/json")
     private TransactionCapture transactionCapture;
@@ -69,9 +70,10 @@ public class CaptureTransactionRequest {
         return transactionCapture;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The ID of the transaction
@@ -106,7 +108,6 @@ public class CaptureTransactionRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -125,9 +126,7 @@ public class CaptureTransactionRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            transactionId,
-            merchantAccountId,
-            transactionCapture);
+            transactionId, merchantAccountId, transactionCapture);
     }
     
     @Override
@@ -137,18 +136,20 @@ public class CaptureTransactionRequest {
                 "merchantAccountId", merchantAccountId,
                 "transactionCapture", transactionCapture);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String transactionId;
- 
+
         private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
- 
+
         private TransactionCapture transactionCapture;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The ID of the transaction
@@ -158,6 +159,7 @@ public class CaptureTransactionRequest {
             this.transactionId = transactionId;
             return this;
         }
+
 
         /**
          * The ID of the merchant account to use for this request.
@@ -177,17 +179,18 @@ public class CaptureTransactionRequest {
             return this;
         }
 
+
         public Builder transactionCapture(TransactionCapture transactionCapture) {
             Utils.checkNotNull(transactionCapture, "transactionCapture");
             this.transactionCapture = transactionCapture;
             return this;
         }
-        
+
         public CaptureTransactionRequest build() {
+
             return new CaptureTransactionRequest(
-                transactionId,
-                merchantAccountId,
-                transactionCapture);
+                transactionId, merchantAccountId, transactionCapture);
         }
+
     }
 }

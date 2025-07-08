@@ -60,7 +60,7 @@ public class SuspendPaymentMethodNetworkTokenRequestBuilder {
     public SuspendPaymentMethodNetworkTokenResponse call() throws Exception {
         
         RequestOperation<SuspendPaymentMethodNetworkTokenRequest, SuspendPaymentMethodNetworkTokenResponse> operation
-              = new SuspendPaymentMethodNetworkTokenOperation( sdkConfiguration);
+              = new SuspendPaymentMethodNetworkTokenOperation(sdkConfiguration);
         SuspendPaymentMethodNetworkTokenRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

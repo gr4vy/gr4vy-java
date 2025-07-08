@@ -11,8 +11,8 @@ import java.lang.Override;
 import java.lang.String;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class ListTransactionSettlementsRequest {
 
+public class ListTransactionSettlementsRequest {
     /**
      * The unique identifier of the transaction.
      */
@@ -56,9 +56,10 @@ public class ListTransactionSettlementsRequest {
         return merchantAccountId;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The unique identifier of the transaction.
@@ -87,7 +88,6 @@ public class ListTransactionSettlementsRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -105,8 +105,7 @@ public class ListTransactionSettlementsRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            transactionId,
-            merchantAccountId);
+            transactionId, merchantAccountId);
     }
     
     @Override
@@ -115,16 +114,18 @@ public class ListTransactionSettlementsRequest {
                 "transactionId", transactionId,
                 "merchantAccountId", merchantAccountId);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String transactionId;
- 
+
         private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The unique identifier of the transaction.
@@ -134,6 +135,7 @@ public class ListTransactionSettlementsRequest {
             this.transactionId = transactionId;
             return this;
         }
+
 
         /**
          * The ID of the merchant account to use for this request.
@@ -152,11 +154,12 @@ public class ListTransactionSettlementsRequest {
             this.merchantAccountId = merchantAccountId;
             return this;
         }
-        
+
         public ListTransactionSettlementsRequest build() {
+
             return new ListTransactionSettlementsRequest(
-                transactionId,
-                merchantAccountId);
+                transactionId, merchantAccountId);
         }
+
     }
 }

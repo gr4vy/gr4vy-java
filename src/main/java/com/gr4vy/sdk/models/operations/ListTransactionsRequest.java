@@ -22,8 +22,8 @@ import java.util.List;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class ListTransactionsRequest {
 
+public class ListTransactionsRequest {
     /**
      * A pointer to the page of results to return.
      */
@@ -60,14 +60,18 @@ public class ListTransactionsRequest {
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=updated_at_gte")
     private JsonNullable<OffsetDateTime> updatedAtGte;
 
+
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=search")
     private JsonNullable<String> search;
+
 
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=buyer_external_identifier")
     private JsonNullable<String> buyerExternalIdentifier;
 
+
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=buyer_id")
     private JsonNullable<String> buyerId;
+
 
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=buyer_email_address")
     private JsonNullable<String> buyerEmailAddress;
@@ -78,6 +82,7 @@ public class ListTransactionsRequest {
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=buyer_search")
     private JsonNullable<? extends List<String>> buyerSearch;
 
+
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=ip_address")
     private JsonNullable<String> ipAddress;
 
@@ -87,11 +92,14 @@ public class ListTransactionsRequest {
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=status")
     private JsonNullable<? extends List<TransactionStatus>> status;
 
+
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=id")
     private JsonNullable<String> id;
 
+
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=payment_service_transaction_id")
     private JsonNullable<String> paymentServiceTransactionId;
+
 
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=external_identifier")
     private JsonNullable<String> externalIdentifier;
@@ -138,8 +146,10 @@ public class ListTransactionsRequest {
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=payment_service_id")
     private JsonNullable<? extends List<String>> paymentServiceId;
 
+
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=payment_method_id")
     private JsonNullable<String> paymentMethodId;
+
 
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=payment_method_label")
     private JsonNullable<String> paymentMethodLabel;
@@ -155,6 +165,7 @@ public class ListTransactionsRequest {
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=payment_method_country")
     private JsonNullable<String> paymentMethodCountry;
+
 
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=payment_method_fingerprint")
     private JsonNullable<String> paymentMethodFingerprint;
@@ -392,7 +403,21 @@ public class ListTransactionsRequest {
     }
     
     public ListTransactionsRequest() {
-        this(JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
+        this(JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined());
     }
 
     /**
@@ -723,9 +748,10 @@ public class ListTransactionsRequest {
         return merchantAccountId;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * A pointer to the page of results to return.
@@ -753,6 +779,7 @@ public class ListTransactionsRequest {
         this.limit = Optional.ofNullable(limit);
         return this;
     }
+
 
     /**
      * The maximum number of items that are at returned.
@@ -1453,7 +1480,6 @@ public class ListTransactionsRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -1513,50 +1539,21 @@ public class ListTransactionsRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            cursor,
-            limit,
-            createdAtLte,
-            createdAtGte,
-            updatedAtLte,
-            updatedAtGte,
-            search,
-            buyerExternalIdentifier,
-            buyerId,
-            buyerEmailAddress,
-            buyerSearch,
-            ipAddress,
-            status,
-            id,
-            paymentServiceTransactionId,
-            externalIdentifier,
-            metadata,
-            amountEq,
-            amountLte,
-            amountGte,
-            currency,
-            country,
-            paymentServiceId,
-            paymentMethodId,
-            paymentMethodLabel,
-            paymentMethodScheme,
-            paymentMethodCountry,
-            paymentMethodFingerprint,
-            method,
-            errorCode,
-            hasRefunds,
-            pendingReview,
-            checkoutSessionId,
-            reconciliationId,
-            hasGiftCardRedemptions,
-            giftCardId,
-            giftCardLast4,
-            hasSettlements,
-            paymentMethodBin,
-            paymentSource,
-            isSubsequentPayment,
-            merchantInitiated,
-            used3ds,
-            merchantAccountId);
+            cursor, limit, createdAtLte,
+            createdAtGte, updatedAtLte, updatedAtGte,
+            search, buyerExternalIdentifier, buyerId,
+            buyerEmailAddress, buyerSearch, ipAddress,
+            status, id, paymentServiceTransactionId,
+            externalIdentifier, metadata, amountEq,
+            amountLte, amountGte, currency,
+            country, paymentServiceId, paymentMethodId,
+            paymentMethodLabel, paymentMethodScheme, paymentMethodCountry,
+            paymentMethodFingerprint, method, errorCode,
+            hasRefunds, pendingReview, checkoutSessionId,
+            reconciliationId, hasGiftCardRedemptions, giftCardId,
+            giftCardLast4, hasSettlements, paymentMethodBin,
+            paymentSource, isSubsequentPayment, merchantInitiated,
+            used3ds, merchantAccountId);
     }
     
     @Override
@@ -1607,100 +1604,102 @@ public class ListTransactionsRequest {
                 "used3ds", used3ds,
                 "merchantAccountId", merchantAccountId);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private JsonNullable<String> cursor = JsonNullable.undefined();
- 
+
         private Optional<Long> limit;
- 
+
         private JsonNullable<OffsetDateTime> createdAtLte = JsonNullable.undefined();
- 
+
         private JsonNullable<OffsetDateTime> createdAtGte = JsonNullable.undefined();
- 
+
         private JsonNullable<OffsetDateTime> updatedAtLte = JsonNullable.undefined();
- 
+
         private JsonNullable<OffsetDateTime> updatedAtGte = JsonNullable.undefined();
- 
+
         private JsonNullable<String> search = JsonNullable.undefined();
- 
+
         private JsonNullable<String> buyerExternalIdentifier = JsonNullable.undefined();
- 
+
         private JsonNullable<String> buyerId = JsonNullable.undefined();
- 
+
         private JsonNullable<String> buyerEmailAddress = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends List<String>> buyerSearch = JsonNullable.undefined();
- 
+
         private JsonNullable<String> ipAddress = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends List<TransactionStatus>> status = JsonNullable.undefined();
- 
+
         private JsonNullable<String> id = JsonNullable.undefined();
- 
+
         private JsonNullable<String> paymentServiceTransactionId = JsonNullable.undefined();
- 
+
         private JsonNullable<String> externalIdentifier = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends List<String>> metadata = JsonNullable.undefined();
- 
+
         private JsonNullable<Long> amountEq = JsonNullable.undefined();
- 
+
         private JsonNullable<Long> amountLte = JsonNullable.undefined();
- 
+
         private JsonNullable<Long> amountGte = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends List<String>> currency = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends List<String>> country = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends List<String>> paymentServiceId = JsonNullable.undefined();
- 
+
         private JsonNullable<String> paymentMethodId = JsonNullable.undefined();
- 
+
         private JsonNullable<String> paymentMethodLabel = JsonNullable.undefined();
- 
+
         private JsonNullable<String> paymentMethodScheme = JsonNullable.undefined();
- 
+
         private JsonNullable<String> paymentMethodCountry = JsonNullable.undefined();
- 
+
         private JsonNullable<String> paymentMethodFingerprint = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends List<Method>> method = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends List<String>> errorCode = JsonNullable.undefined();
- 
+
         private JsonNullable<Boolean> hasRefunds = JsonNullable.undefined();
- 
+
         private JsonNullable<Boolean> pendingReview = JsonNullable.undefined();
- 
+
         private JsonNullable<String> checkoutSessionId = JsonNullable.undefined();
- 
+
         private JsonNullable<String> reconciliationId = JsonNullable.undefined();
- 
+
         private JsonNullable<Boolean> hasGiftCardRedemptions = JsonNullable.undefined();
- 
+
         private JsonNullable<String> giftCardId = JsonNullable.undefined();
- 
+
         private JsonNullable<String> giftCardLast4 = JsonNullable.undefined();
- 
+
         private JsonNullable<Boolean> hasSettlements = JsonNullable.undefined();
- 
+
         private JsonNullable<String> paymentMethodBin = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends List<TransactionPaymentSource>> paymentSource = JsonNullable.undefined();
- 
+
         private JsonNullable<Boolean> isSubsequentPayment = JsonNullable.undefined();
- 
+
         private JsonNullable<Boolean> merchantInitiated = JsonNullable.undefined();
- 
+
         private JsonNullable<Boolean> used3ds = JsonNullable.undefined();
- 
+
         private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * A pointer to the page of results to return.
@@ -1720,6 +1719,7 @@ public class ListTransactionsRequest {
             return this;
         }
 
+
         /**
          * The maximum number of items that are at returned.
          */
@@ -1737,6 +1737,7 @@ public class ListTransactionsRequest {
             this.limit = limit;
             return this;
         }
+
 
         /**
          * Filters the results to only transactions created before this ISO date-time string. The time zone must be included. Ensure that the date-time string is URL encoded, e.g. `2022-01-01T12:00:00+08:00` must be encoded as `2022-01-01T12%3A00%3A00%2B08%3A00`.
@@ -1756,6 +1757,7 @@ public class ListTransactionsRequest {
             return this;
         }
 
+
         /**
          * Filters the results to only transactions created after this ISO date-time string. The time zone must be included. Ensure that the date-time string is URL encoded, e.g. `2022-01-01T12:00:00+08:00` must be encoded as `2022-01-01T12%3A00%3A00%2B08%3A00`.
          */
@@ -1773,6 +1775,7 @@ public class ListTransactionsRequest {
             this.createdAtGte = createdAtGte;
             return this;
         }
+
 
         /**
          * Filters the results to only transactions updated before this ISO date-time string. The time zone must be included. Ensure that the date-time string is URL encoded, e.g. `2022-01-01T12:00:00+08:00` must be encoded as `2022-01-01T12%3A00%3A00%2B08%3A00`.
@@ -1792,6 +1795,7 @@ public class ListTransactionsRequest {
             return this;
         }
 
+
         /**
          * Filters the results to only transactions updated after this ISO date-time string. The time zone must be included. Ensure that the date-time string is URL encoded, e.g. `2022-01-01T12:00:00+08:00` must be encoded as `2022-01-01T12%3A00%3A00%2B08%3A00`.
          */
@@ -1810,6 +1814,7 @@ public class ListTransactionsRequest {
             return this;
         }
 
+
         public Builder search(String search) {
             Utils.checkNotNull(search, "search");
             this.search = JsonNullable.of(search);
@@ -1821,6 +1826,7 @@ public class ListTransactionsRequest {
             this.search = search;
             return this;
         }
+
 
         public Builder buyerExternalIdentifier(String buyerExternalIdentifier) {
             Utils.checkNotNull(buyerExternalIdentifier, "buyerExternalIdentifier");
@@ -1834,6 +1840,7 @@ public class ListTransactionsRequest {
             return this;
         }
 
+
         public Builder buyerId(String buyerId) {
             Utils.checkNotNull(buyerId, "buyerId");
             this.buyerId = JsonNullable.of(buyerId);
@@ -1846,6 +1853,7 @@ public class ListTransactionsRequest {
             return this;
         }
 
+
         public Builder buyerEmailAddress(String buyerEmailAddress) {
             Utils.checkNotNull(buyerEmailAddress, "buyerEmailAddress");
             this.buyerEmailAddress = JsonNullable.of(buyerEmailAddress);
@@ -1857,6 +1865,7 @@ public class ListTransactionsRequest {
             this.buyerEmailAddress = buyerEmailAddress;
             return this;
         }
+
 
         /**
          * Filters the results to only get the items for which some of the buyer data contains exactly the provided `buyer_search` values.
@@ -1876,6 +1885,7 @@ public class ListTransactionsRequest {
             return this;
         }
 
+
         public Builder ipAddress(String ipAddress) {
             Utils.checkNotNull(ipAddress, "ipAddress");
             this.ipAddress = JsonNullable.of(ipAddress);
@@ -1887,6 +1897,7 @@ public class ListTransactionsRequest {
             this.ipAddress = ipAddress;
             return this;
         }
+
 
         /**
          * Filters the results to only the transactions that have a `status` that matches with any of the provided status values.
@@ -1906,6 +1917,7 @@ public class ListTransactionsRequest {
             return this;
         }
 
+
         public Builder id(String id) {
             Utils.checkNotNull(id, "id");
             this.id = JsonNullable.of(id);
@@ -1917,6 +1929,7 @@ public class ListTransactionsRequest {
             this.id = id;
             return this;
         }
+
 
         public Builder paymentServiceTransactionId(String paymentServiceTransactionId) {
             Utils.checkNotNull(paymentServiceTransactionId, "paymentServiceTransactionId");
@@ -1930,6 +1943,7 @@ public class ListTransactionsRequest {
             return this;
         }
 
+
         public Builder externalIdentifier(String externalIdentifier) {
             Utils.checkNotNull(externalIdentifier, "externalIdentifier");
             this.externalIdentifier = JsonNullable.of(externalIdentifier);
@@ -1941,6 +1955,7 @@ public class ListTransactionsRequest {
             this.externalIdentifier = externalIdentifier;
             return this;
         }
+
 
         /**
          * Filters for transactions where their `metadata` values contain all of the provided `metadata` keys. The value sent for `metadata` must be formatted as a JSON string, and all keys and values must be strings. This value should also be URL encoded.
@@ -1960,6 +1975,7 @@ public class ListTransactionsRequest {
             return this;
         }
 
+
         /**
          * Filters for transactions that have an `amount` that is equal to the provided `amount_eq` value.
          */
@@ -1977,6 +1993,7 @@ public class ListTransactionsRequest {
             this.amountEq = amountEq;
             return this;
         }
+
 
         /**
          * Filters for transactions that have an `amount` that is less than or equal to the `amount_lte` value.
@@ -1996,6 +2013,7 @@ public class ListTransactionsRequest {
             return this;
         }
 
+
         /**
          * Filters for transactions that have an `amount` that is greater than or equal to the `amount_gte` value.
          */
@@ -2013,6 +2031,7 @@ public class ListTransactionsRequest {
             this.amountGte = amountGte;
             return this;
         }
+
 
         /**
          * Filters for transactions that have matching `currency` values. The `currency` values provided must be formatted as 3-letter ISO currency code.
@@ -2032,6 +2051,7 @@ public class ListTransactionsRequest {
             return this;
         }
 
+
         /**
          * Filters for transactions that have matching `country` values.
          */
@@ -2049,6 +2069,7 @@ public class ListTransactionsRequest {
             this.country = country;
             return this;
         }
+
 
         /**
          * Filters for transactions that were processed by the provided `payment_service_id` values.
@@ -2068,6 +2089,7 @@ public class ListTransactionsRequest {
             return this;
         }
 
+
         public Builder paymentMethodId(String paymentMethodId) {
             Utils.checkNotNull(paymentMethodId, "paymentMethodId");
             this.paymentMethodId = JsonNullable.of(paymentMethodId);
@@ -2080,6 +2102,7 @@ public class ListTransactionsRequest {
             return this;
         }
 
+
         public Builder paymentMethodLabel(String paymentMethodLabel) {
             Utils.checkNotNull(paymentMethodLabel, "paymentMethodLabel");
             this.paymentMethodLabel = JsonNullable.of(paymentMethodLabel);
@@ -2091,6 +2114,7 @@ public class ListTransactionsRequest {
             this.paymentMethodLabel = paymentMethodLabel;
             return this;
         }
+
 
         /**
          * Filters for transactions that have a payment method with a scheme that matches with the provided value.
@@ -2110,6 +2134,7 @@ public class ListTransactionsRequest {
             return this;
         }
 
+
         /**
          * Filters for transactions that have a payment method with a country that matches with the provided value.
          */
@@ -2128,6 +2153,7 @@ public class ListTransactionsRequest {
             return this;
         }
 
+
         public Builder paymentMethodFingerprint(String paymentMethodFingerprint) {
             Utils.checkNotNull(paymentMethodFingerprint, "paymentMethodFingerprint");
             this.paymentMethodFingerprint = JsonNullable.of(paymentMethodFingerprint);
@@ -2139,6 +2165,7 @@ public class ListTransactionsRequest {
             this.paymentMethodFingerprint = paymentMethodFingerprint;
             return this;
         }
+
 
         /**
          * Filters for transactions that have matching `method` values.
@@ -2158,6 +2185,7 @@ public class ListTransactionsRequest {
             return this;
         }
 
+
         /**
          * Filters for transactions where the `error_code` matches one for the provided values.
          */
@@ -2175,6 +2203,7 @@ public class ListTransactionsRequest {
             this.errorCode = errorCode;
             return this;
         }
+
 
         /**
          * Filters for transactions with refunds.
@@ -2194,6 +2223,7 @@ public class ListTransactionsRequest {
             return this;
         }
 
+
         /**
          * Filters for transactions with a pending manual anti-fraud review.
          */
@@ -2211,6 +2241,7 @@ public class ListTransactionsRequest {
             this.pendingReview = pendingReview;
             return this;
         }
+
 
         /**
          * Filters for transactions where the `checkout_session_id` matches the provided value.
@@ -2230,6 +2261,7 @@ public class ListTransactionsRequest {
             return this;
         }
 
+
         /**
          * Filters for transactions where the `reconciliation_id` matches the provided value.
          */
@@ -2247,6 +2279,7 @@ public class ListTransactionsRequest {
             this.reconciliationId = reconciliationId;
             return this;
         }
+
 
         /**
          * Filters for transactions with gift card redemptions.
@@ -2266,6 +2299,7 @@ public class ListTransactionsRequest {
             return this;
         }
 
+
         /**
          * Filters for transactions where a gift card used has an `id` that matches the provided value.
          */
@@ -2283,6 +2317,7 @@ public class ListTransactionsRequest {
             this.giftCardId = giftCardId;
             return this;
         }
+
 
         /**
          * Filters for transactions that have at least one gift card redemption where the last 4 digits of its gift card number matches exactly with the provided value.
@@ -2302,6 +2337,7 @@ public class ListTransactionsRequest {
             return this;
         }
 
+
         /**
          * Filters for transactions that have at least one associated settlement record.
          */
@@ -2319,6 +2355,7 @@ public class ListTransactionsRequest {
             this.hasSettlements = hasSettlements;
             return this;
         }
+
 
         /**
          * Filter for transactions that have a card with a BIN that matches exactly with the provided value.
@@ -2338,6 +2375,7 @@ public class ListTransactionsRequest {
             return this;
         }
 
+
         /**
          * Filters the results to only the transactions that have a payment source that matches with any of the provided values.
          */
@@ -2355,6 +2393,7 @@ public class ListTransactionsRequest {
             this.paymentSource = paymentSource;
             return this;
         }
+
 
         /**
          * Filters for transactions where the `is_subsequent_payment` matches the provided value.
@@ -2374,6 +2413,7 @@ public class ListTransactionsRequest {
             return this;
         }
 
+
         /**
          * Filters for transactions where the `merchant_initiated` matches the provided value.
          */
@@ -2391,6 +2431,7 @@ public class ListTransactionsRequest {
             this.merchantInitiated = merchantInitiated;
             return this;
         }
+
 
         /**
          * Filters for transactions that attempted 3DS authentication or not.
@@ -2410,6 +2451,7 @@ public class ListTransactionsRequest {
             return this;
         }
 
+
         /**
          * The ID of the merchant account to use for this request.
          */
@@ -2427,57 +2469,30 @@ public class ListTransactionsRequest {
             this.merchantAccountId = merchantAccountId;
             return this;
         }
-        
+
         public ListTransactionsRequest build() {
             if (limit == null) {
                 limit = _SINGLETON_VALUE_Limit.value();
             }
+
             return new ListTransactionsRequest(
-                cursor,
-                limit,
-                createdAtLte,
-                createdAtGte,
-                updatedAtLte,
-                updatedAtGte,
-                search,
-                buyerExternalIdentifier,
-                buyerId,
-                buyerEmailAddress,
-                buyerSearch,
-                ipAddress,
-                status,
-                id,
-                paymentServiceTransactionId,
-                externalIdentifier,
-                metadata,
-                amountEq,
-                amountLte,
-                amountGte,
-                currency,
-                country,
-                paymentServiceId,
-                paymentMethodId,
-                paymentMethodLabel,
-                paymentMethodScheme,
-                paymentMethodCountry,
-                paymentMethodFingerprint,
-                method,
-                errorCode,
-                hasRefunds,
-                pendingReview,
-                checkoutSessionId,
-                reconciliationId,
-                hasGiftCardRedemptions,
-                giftCardId,
-                giftCardLast4,
-                hasSettlements,
-                paymentMethodBin,
-                paymentSource,
-                isSubsequentPayment,
-                merchantInitiated,
-                used3ds,
-                merchantAccountId);
+                cursor, limit, createdAtLte,
+                createdAtGte, updatedAtLte, updatedAtGte,
+                search, buyerExternalIdentifier, buyerId,
+                buyerEmailAddress, buyerSearch, ipAddress,
+                status, id, paymentServiceTransactionId,
+                externalIdentifier, metadata, amountEq,
+                amountLte, amountGte, currency,
+                country, paymentServiceId, paymentMethodId,
+                paymentMethodLabel, paymentMethodScheme, paymentMethodCountry,
+                paymentMethodFingerprint, method, errorCode,
+                hasRefunds, pendingReview, checkoutSessionId,
+                reconciliationId, hasGiftCardRedemptions, giftCardId,
+                giftCardLast4, hasSettlements, paymentMethodBin,
+                paymentSource, isSubsequentPayment, merchantInitiated,
+                used3ds, merchantAccountId);
         }
+
 
         private static final LazySingletonValue<Optional<Long>> _SINGLETON_VALUE_Limit =
                 new LazySingletonValue<>(

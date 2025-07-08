@@ -19,8 +19,8 @@ import java.util.List;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class ListAllReportExecutionsRequest {
 
+public class ListAllReportExecutionsRequest {
     /**
      * A pointer to the page of results to return.
      */
@@ -98,7 +98,9 @@ public class ListAllReportExecutionsRequest {
     }
     
     public ListAllReportExecutionsRequest() {
-        this(JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
+        this(JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined());
     }
 
     /**
@@ -167,9 +169,10 @@ public class ListAllReportExecutionsRequest {
         return merchantAccountId;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * A pointer to the page of results to return.
@@ -197,6 +200,7 @@ public class ListAllReportExecutionsRequest {
         this.limit = Optional.ofNullable(limit);
         return this;
     }
+
 
     /**
      * The maximum number of items that are at returned.
@@ -315,7 +319,6 @@ public class ListAllReportExecutionsRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -339,14 +342,9 @@ public class ListAllReportExecutionsRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            cursor,
-            limit,
-            reportName,
-            createdAtLte,
-            createdAtGte,
-            status,
-            creatorId,
-            merchantAccountId);
+            cursor, limit, reportName,
+            createdAtLte, createdAtGte, status,
+            creatorId, merchantAccountId);
     }
     
     @Override
@@ -361,28 +359,30 @@ public class ListAllReportExecutionsRequest {
                 "creatorId", creatorId,
                 "merchantAccountId", merchantAccountId);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private JsonNullable<String> cursor = JsonNullable.undefined();
- 
+
         private Optional<Long> limit;
- 
+
         private JsonNullable<String> reportName = JsonNullable.undefined();
- 
+
         private JsonNullable<OffsetDateTime> createdAtLte = JsonNullable.undefined();
- 
+
         private JsonNullable<OffsetDateTime> createdAtGte = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends List<ReportExecutionStatus>> status = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends List<String>> creatorId = JsonNullable.undefined();
- 
+
         private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * A pointer to the page of results to return.
@@ -402,6 +402,7 @@ public class ListAllReportExecutionsRequest {
             return this;
         }
 
+
         /**
          * The maximum number of items that are at returned.
          */
@@ -419,6 +420,7 @@ public class ListAllReportExecutionsRequest {
             this.limit = limit;
             return this;
         }
+
 
         /**
          * Filters the reports by searching their name for (partial) matches.
@@ -438,6 +440,7 @@ public class ListAllReportExecutionsRequest {
             return this;
         }
 
+
         /**
          * Filters the results to only reports created before this ISO date-time string. The time zone must be included. Ensure that the date-time string is URL encoded, e.g. `2022-01-01T12:00:00+08:00` must be encoded as `2022-01-01T12%3A00%3A00%2B08%3A00`.
          */
@@ -455,6 +458,7 @@ public class ListAllReportExecutionsRequest {
             this.createdAtLte = createdAtLte;
             return this;
         }
+
 
         /**
          * Filters the results to only reports created after this ISO date-time string. The time zone must be included. Ensure that the date-time string is URL encoded, e.g. `2022-01-01T12:00:00+08:00` must be encoded as `2022-01-01T12%3A00%3A00%2B08%3A00`.
@@ -474,6 +478,7 @@ public class ListAllReportExecutionsRequest {
             return this;
         }
 
+
         /**
          * Filters the results to only the reports that have a `status` that matches with any of the provided status values.
          */
@@ -491,6 +496,7 @@ public class ListAllReportExecutionsRequest {
             this.status = status;
             return this;
         }
+
 
         /**
          * Filters the results to only the reports that were created by the users with these IDs.
@@ -510,6 +516,7 @@ public class ListAllReportExecutionsRequest {
             return this;
         }
 
+
         /**
          * The ID of the merchant account to use for this request.
          */
@@ -527,21 +534,18 @@ public class ListAllReportExecutionsRequest {
             this.merchantAccountId = merchantAccountId;
             return this;
         }
-        
+
         public ListAllReportExecutionsRequest build() {
             if (limit == null) {
                 limit = _SINGLETON_VALUE_Limit.value();
             }
+
             return new ListAllReportExecutionsRequest(
-                cursor,
-                limit,
-                reportName,
-                createdAtLte,
-                createdAtGte,
-                status,
-                creatorId,
-                merchantAccountId);
+                cursor, limit, reportName,
+                createdAtLte, createdAtGte, status,
+                creatorId, merchantAccountId);
         }
+
 
         private static final LazySingletonValue<Optional<Long>> _SINGLETON_VALUE_Limit =
                 new LazySingletonValue<>(

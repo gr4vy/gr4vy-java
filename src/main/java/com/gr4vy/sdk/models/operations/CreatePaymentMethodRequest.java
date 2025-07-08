@@ -11,13 +11,14 @@ import java.lang.Override;
 import java.lang.String;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class CreatePaymentMethodRequest {
 
+public class CreatePaymentMethodRequest {
     /**
      * The ID of the merchant account to use for this request.
      */
     @SpeakeasyMetadata("header:style=simple,explode=false,name=x-gr4vy-merchant-account-id")
     private JsonNullable<String> merchantAccountId;
+
 
     @SpeakeasyMetadata("request:mediaType=application/json")
     private Body requestBody;
@@ -50,9 +51,10 @@ public class CreatePaymentMethodRequest {
         return requestBody;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The ID of the merchant account to use for this request.
@@ -78,7 +80,6 @@ public class CreatePaymentMethodRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -96,8 +97,7 @@ public class CreatePaymentMethodRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            merchantAccountId,
-            requestBody);
+            merchantAccountId, requestBody);
     }
     
     @Override
@@ -106,16 +106,18 @@ public class CreatePaymentMethodRequest {
                 "merchantAccountId", merchantAccountId,
                 "requestBody", requestBody);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
- 
+
         private Body requestBody;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The ID of the merchant account to use for this request.
@@ -135,16 +137,18 @@ public class CreatePaymentMethodRequest {
             return this;
         }
 
+
         public Builder requestBody(Body requestBody) {
             Utils.checkNotNull(requestBody, "requestBody");
             this.requestBody = requestBody;
             return this;
         }
-        
+
         public CreatePaymentMethodRequest build() {
+
             return new CreatePaymentMethodRequest(
-                merchantAccountId,
-                requestBody);
+                merchantAccountId, requestBody);
         }
+
     }
 }

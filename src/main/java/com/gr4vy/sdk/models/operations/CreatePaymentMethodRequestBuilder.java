@@ -52,7 +52,7 @@ public class CreatePaymentMethodRequestBuilder {
     public CreatePaymentMethodResponse call() throws Exception {
         
         RequestOperation<CreatePaymentMethodRequest, CreatePaymentMethodResponse> operation
-              = new CreatePaymentMethodOperation( sdkConfiguration);
+              = new CreatePaymentMethodOperation(sdkConfiguration);
         CreatePaymentMethodRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

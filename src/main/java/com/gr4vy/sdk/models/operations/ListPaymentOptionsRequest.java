@@ -12,13 +12,14 @@ import java.lang.Override;
 import java.lang.String;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class ListPaymentOptionsRequest {
 
+public class ListPaymentOptionsRequest {
     /**
      * The ID of the merchant account to use for this request.
      */
     @SpeakeasyMetadata("header:style=simple,explode=false,name=x-gr4vy-merchant-account-id")
     private JsonNullable<String> merchantAccountId;
+
 
     @SpeakeasyMetadata("request:mediaType=application/json")
     private PaymentOptionRequest paymentOptionRequest;
@@ -51,9 +52,10 @@ public class ListPaymentOptionsRequest {
         return paymentOptionRequest;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The ID of the merchant account to use for this request.
@@ -79,7 +81,6 @@ public class ListPaymentOptionsRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -97,8 +98,7 @@ public class ListPaymentOptionsRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            merchantAccountId,
-            paymentOptionRequest);
+            merchantAccountId, paymentOptionRequest);
     }
     
     @Override
@@ -107,16 +107,18 @@ public class ListPaymentOptionsRequest {
                 "merchantAccountId", merchantAccountId,
                 "paymentOptionRequest", paymentOptionRequest);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
- 
+
         private PaymentOptionRequest paymentOptionRequest;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The ID of the merchant account to use for this request.
@@ -136,16 +138,18 @@ public class ListPaymentOptionsRequest {
             return this;
         }
 
+
         public Builder paymentOptionRequest(PaymentOptionRequest paymentOptionRequest) {
             Utils.checkNotNull(paymentOptionRequest, "paymentOptionRequest");
             this.paymentOptionRequest = paymentOptionRequest;
             return this;
         }
-        
+
         public ListPaymentOptionsRequest build() {
+
             return new ListPaymentOptionsRequest(
-                merchantAccountId,
-                paymentOptionRequest);
+                merchantAccountId, paymentOptionRequest);
         }
+
     }
 }

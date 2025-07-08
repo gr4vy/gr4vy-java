@@ -15,8 +15,8 @@ import java.lang.Override;
 import java.lang.String;
 import java.util.Optional;
 
-public class CardSchemeDefinition {
 
+public class CardSchemeDefinition {
     /**
      * Always `card-scheme-definition`.
      */
@@ -88,9 +88,10 @@ public class CardSchemeDefinition {
         return displayName;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The ID for the card scheme.
@@ -119,7 +120,6 @@ public class CardSchemeDefinition {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -139,9 +139,7 @@ public class CardSchemeDefinition {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            type,
-            id,
-            iconUrl,
+            type, id, iconUrl,
             displayName);
     }
     
@@ -153,18 +151,20 @@ public class CardSchemeDefinition {
                 "iconUrl", iconUrl,
                 "displayName", displayName);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String id;
- 
+
         private String iconUrl;
- 
+
         private String displayName;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The ID for the card scheme.
@@ -175,6 +175,7 @@ public class CardSchemeDefinition {
             return this;
         }
 
+
         /**
          * The icon for this card scheme.
          */
@@ -184,6 +185,7 @@ public class CardSchemeDefinition {
             return this;
         }
 
+
         /**
          * The display name of this card scheme.
          */
@@ -192,13 +194,13 @@ public class CardSchemeDefinition {
             this.displayName = displayName;
             return this;
         }
-        
+
         public CardSchemeDefinition build() {
+
             return new CardSchemeDefinition(
-                id,
-                iconUrl,
-                displayName);
+                id, iconUrl, displayName);
         }
+
 
         private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_Type =
                 new LazySingletonValue<>(

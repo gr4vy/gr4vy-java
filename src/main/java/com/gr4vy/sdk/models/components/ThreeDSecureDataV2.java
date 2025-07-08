@@ -14,8 +14,8 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class ThreeDSecureDataV2 {
 
+public class ThreeDSecureDataV2 {
     /**
      * The cardholder authentication value or AAV.
      */
@@ -91,7 +91,9 @@ public class ThreeDSecureDataV2 {
             String version,
             String directoryResponse,
             String directoryTransactionId) {
-        this(cavv, eci, version, directoryResponse, JsonNullable.undefined(), JsonNullable.undefined(), directoryTransactionId);
+        this(cavv, eci, version,
+            directoryResponse, JsonNullable.undefined(), JsonNullable.undefined(),
+            directoryTransactionId);
     }
 
     /**
@@ -151,9 +153,10 @@ public class ThreeDSecureDataV2 {
         return directoryTransactionId;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The cardholder authentication value or AAV.
@@ -236,7 +239,6 @@ public class ThreeDSecureDataV2 {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -259,12 +261,8 @@ public class ThreeDSecureDataV2 {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            cavv,
-            eci,
-            version,
-            directoryResponse,
-            scheme,
-            authenticationResponse,
+            cavv, eci, version,
+            directoryResponse, scheme, authenticationResponse,
             directoryTransactionId);
     }
     
@@ -279,26 +277,28 @@ public class ThreeDSecureDataV2 {
                 "authenticationResponse", authenticationResponse,
                 "directoryTransactionId", directoryTransactionId);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String cavv;
- 
+
         private String eci;
- 
+
         private String version;
- 
+
         private String directoryResponse;
- 
+
         private JsonNullable<? extends CardScheme> scheme = JsonNullable.undefined();
- 
+
         private JsonNullable<String> authenticationResponse = JsonNullable.undefined();
- 
+
         private String directoryTransactionId;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The cardholder authentication value or AAV.
@@ -309,6 +309,7 @@ public class ThreeDSecureDataV2 {
             return this;
         }
 
+
         /**
          * The ecommerce indicator for the 3DS transaction.
          */
@@ -317,6 +318,7 @@ public class ThreeDSecureDataV2 {
             this.eci = eci;
             return this;
         }
+
 
         /**
          * The version of 3-D Secure that was used.
@@ -327,6 +329,7 @@ public class ThreeDSecureDataV2 {
             return this;
         }
 
+
         /**
          * For 3-D Secure version 1, the enrolment response. For 3-D Secure version 2 and above, the transaction status from the `ARes`.
          */
@@ -335,6 +338,7 @@ public class ThreeDSecureDataV2 {
             this.directoryResponse = directoryResponse;
             return this;
         }
+
 
         /**
          * The scheme/brand of the card that is used for 3-D Secure.
@@ -354,6 +358,7 @@ public class ThreeDSecureDataV2 {
             return this;
         }
 
+
         /**
          * The transaction status after a the 3DS challenge. This will be null in case of a frictionless 3DS flow.
          */
@@ -372,6 +377,7 @@ public class ThreeDSecureDataV2 {
             return this;
         }
 
+
         /**
          * The transaction identifier.
          */
@@ -380,16 +386,14 @@ public class ThreeDSecureDataV2 {
             this.directoryTransactionId = directoryTransactionId;
             return this;
         }
-        
+
         public ThreeDSecureDataV2 build() {
+
             return new ThreeDSecureDataV2(
-                cavv,
-                eci,
-                version,
-                directoryResponse,
-                scheme,
-                authenticationResponse,
+                cavv, eci, version,
+                directoryResponse, scheme, authenticationResponse,
                 directoryTransactionId);
         }
+
     }
 }

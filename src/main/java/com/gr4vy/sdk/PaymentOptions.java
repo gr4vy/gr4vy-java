@@ -23,7 +23,6 @@ public class PaymentOptions {
     PaymentOptions(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-
     /**
      * List payment options
      * 
@@ -68,7 +67,7 @@ public class PaymentOptions {
                 .paymentOptionRequest(paymentOptionRequest)
                 .build();
         RequestOperation<ListPaymentOptionsRequest, ListPaymentOptionsResponse> operation
-              = new ListPaymentOptionsOperation( sdkConfiguration);
+              = new ListPaymentOptionsOperation(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
 

@@ -23,7 +23,6 @@ import org.openapitools.jackson.nullable.JsonNullable;
  * <p>A collection of checkout fields and the conditions under which they are required.
  */
 public class RequiredCheckoutFields {
-
     /**
      * A list of transaction fields that are required to process a payment for this service.
      */
@@ -69,9 +68,10 @@ public class RequiredCheckoutFields {
         return (JsonNullable<Map<String, Object>>) conditions;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * A list of transaction fields that are required to process a payment for this service.
@@ -100,7 +100,6 @@ public class RequiredCheckoutFields {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -118,8 +117,7 @@ public class RequiredCheckoutFields {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            requiredFields,
-            conditions);
+            requiredFields, conditions);
     }
     
     @Override
@@ -128,16 +126,18 @@ public class RequiredCheckoutFields {
                 "requiredFields", requiredFields,
                 "conditions", conditions);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private List<String> requiredFields;
- 
+
         private JsonNullable<? extends Map<String, Object>> conditions = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * A list of transaction fields that are required to process a payment for this service.
@@ -147,6 +147,7 @@ public class RequiredCheckoutFields {
             this.requiredFields = requiredFields;
             return this;
         }
+
 
         /**
          * The conditions under which these fields are required
@@ -165,11 +166,12 @@ public class RequiredCheckoutFields {
             this.conditions = conditions;
             return this;
         }
-        
+
         public RequiredCheckoutFields build() {
+
             return new RequiredCheckoutFields(
-                requiredFields,
-                conditions);
+                requiredFields, conditions);
         }
+
     }
 }

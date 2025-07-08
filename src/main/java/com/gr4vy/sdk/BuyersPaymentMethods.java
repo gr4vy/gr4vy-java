@@ -21,7 +21,6 @@ public class BuyersPaymentMethods {
     BuyersPaymentMethods(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-
     /**
      * List payment methods for a buyer
      * 
@@ -61,8 +60,8 @@ public class BuyersPaymentMethods {
             Optional<Options> options) throws Exception {
         RequestOperation<ListBuyerPaymentMethodsRequest, ListBuyerPaymentMethodsResponse> operation
               = new ListBuyerPaymentMethodsOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

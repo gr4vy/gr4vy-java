@@ -17,8 +17,8 @@ import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Optional;
 
-public class AccountUpdaterJob {
 
+public class AccountUpdaterJob {
     /**
      * Always `account-updater-job`
      */
@@ -124,9 +124,10 @@ public class AccountUpdaterJob {
         return updatedAt;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The ID for the account updater job.
@@ -173,7 +174,6 @@ public class AccountUpdaterJob {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -195,12 +195,8 @@ public class AccountUpdaterJob {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            type,
-            id,
-            merchantAccountId,
-            inquiries,
-            createdAt,
-            updatedAt);
+            type, id, merchantAccountId,
+            inquiries, createdAt, updatedAt);
     }
     
     @Override
@@ -213,22 +209,24 @@ public class AccountUpdaterJob {
                 "createdAt", createdAt,
                 "updatedAt", updatedAt);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String id;
- 
+
         private String merchantAccountId;
- 
+
         private List<AccountUpdaterInquirySummary> inquiries;
- 
+
         private OffsetDateTime createdAt;
- 
+
         private OffsetDateTime updatedAt;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The ID for the account updater job.
@@ -239,6 +237,7 @@ public class AccountUpdaterJob {
             return this;
         }
 
+
         /**
          * The ID of the merchant account this job belongs to.
          */
@@ -247,6 +246,7 @@ public class AccountUpdaterJob {
             this.merchantAccountId = merchantAccountId;
             return this;
         }
+
 
         /**
          * A list of the payment methods that have been scheduled for an update.
@@ -257,6 +257,7 @@ public class AccountUpdaterJob {
             return this;
         }
 
+
         /**
          * The date and time when this payment method was first created in our system.
          */
@@ -266,6 +267,7 @@ public class AccountUpdaterJob {
             return this;
         }
 
+
         /**
          * The date and time when this payment method was last updated in our system.
          */
@@ -274,15 +276,14 @@ public class AccountUpdaterJob {
             this.updatedAt = updatedAt;
             return this;
         }
-        
+
         public AccountUpdaterJob build() {
+
             return new AccountUpdaterJob(
-                id,
-                merchantAccountId,
-                inquiries,
-                createdAt,
-                updatedAt);
+                id, merchantAccountId, inquiries,
+                createdAt, updatedAt);
         }
+
 
         private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_Type =
                 new LazySingletonValue<>(

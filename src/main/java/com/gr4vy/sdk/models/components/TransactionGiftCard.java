@@ -16,8 +16,8 @@ import java.lang.String;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class TransactionGiftCard {
 
+public class TransactionGiftCard {
     /**
      * Always `gift-card`.
      */
@@ -71,7 +71,8 @@ public class TransactionGiftCard {
             String bin,
             String subBin,
             String last4) {
-        this(JsonNullable.undefined(), bin, subBin, last4);
+        this(JsonNullable.undefined(), bin, subBin,
+            last4);
     }
 
     /**
@@ -114,9 +115,10 @@ public class TransactionGiftCard {
         return last4;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The ID for the gift card.
@@ -163,7 +165,6 @@ public class TransactionGiftCard {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -184,11 +185,8 @@ public class TransactionGiftCard {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            type,
-            id,
-            bin,
-            subBin,
-            last4);
+            type, id, bin,
+            subBin, last4);
     }
     
     @Override
@@ -200,20 +198,22 @@ public class TransactionGiftCard {
                 "subBin", subBin,
                 "last4", last4);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private JsonNullable<String> id = JsonNullable.undefined();
- 
+
         private String bin;
- 
+
         private String subBin;
- 
+
         private String last4;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The ID for the gift card.
@@ -233,6 +233,7 @@ public class TransactionGiftCard {
             return this;
         }
 
+
         /**
          * The first 6 digits of the full gift card number.
          */
@@ -241,6 +242,7 @@ public class TransactionGiftCard {
             this.bin = bin;
             return this;
         }
+
 
         /**
          * The 3 digits after the `bin` of the full gift card number.
@@ -251,6 +253,7 @@ public class TransactionGiftCard {
             return this;
         }
 
+
         /**
          * The last 4 digits for the gift card.
          */
@@ -259,14 +262,14 @@ public class TransactionGiftCard {
             this.last4 = last4;
             return this;
         }
-        
+
         public TransactionGiftCard build() {
+
             return new TransactionGiftCard(
-                id,
-                bin,
-                subBin,
+                id, bin, subBin,
                 last4);
         }
+
 
         private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_Type =
                 new LazySingletonValue<>(

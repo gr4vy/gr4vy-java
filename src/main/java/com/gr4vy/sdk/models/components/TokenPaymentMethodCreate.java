@@ -22,7 +22,6 @@ import org.openapitools.jackson.nullable.JsonNullable;
  * <p>Create a transaction with the ID (token) of a stored payment method (and an optional URL for approval)
  */
 public class TokenPaymentMethodCreate {
-
     /**
      * The ID for the payment method.
      */
@@ -101,9 +100,10 @@ public class TokenPaymentMethodCreate {
         return redirectUrl;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The ID for the payment method.
@@ -150,7 +150,6 @@ public class TokenPaymentMethodCreate {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -170,9 +169,7 @@ public class TokenPaymentMethodCreate {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            id,
-            method,
-            securityCode,
+            id, method, securityCode,
             redirectUrl);
     }
     
@@ -184,18 +181,20 @@ public class TokenPaymentMethodCreate {
                 "securityCode", securityCode,
                 "redirectUrl", redirectUrl);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String id;
- 
+
         private JsonNullable<String> securityCode = JsonNullable.undefined();
- 
+
         private JsonNullable<String> redirectUrl = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The ID for the payment method.
@@ -205,6 +204,7 @@ public class TokenPaymentMethodCreate {
             this.id = id;
             return this;
         }
+
 
         /**
          * The 3 or 4 digit security code often found on the card. This often referred to as the CVV or CVD.
@@ -224,6 +224,7 @@ public class TokenPaymentMethodCreate {
             return this;
         }
 
+
         /**
          * The URL to redirect a user back to after they approve the transaction in the browser.
          */
@@ -241,13 +242,13 @@ public class TokenPaymentMethodCreate {
             this.redirectUrl = redirectUrl;
             return this;
         }
-        
+
         public TokenPaymentMethodCreate build() {
+
             return new TokenPaymentMethodCreate(
-                id,
-                securityCode,
-                redirectUrl);
+                id, securityCode, redirectUrl);
         }
+
 
         private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_Method =
                 new LazySingletonValue<>(

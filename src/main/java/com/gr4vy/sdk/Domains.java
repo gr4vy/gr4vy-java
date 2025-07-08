@@ -27,7 +27,6 @@ public class Domains {
     Domains(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-
     /**
      * Register a digital wallet domain
      * 
@@ -78,10 +77,9 @@ public class Domains {
                 .digitalWalletDomain(digitalWalletDomain)
                 .build();
         RequestOperation<RegisterDigitalWalletDomainRequest, RegisterDigitalWalletDomainResponse> operation
-              = new RegisterDigitalWalletDomainOperation( sdkConfiguration);
+              = new RegisterDigitalWalletDomainOperation(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Remove a digital wallet domain
@@ -133,7 +131,7 @@ public class Domains {
                 .digitalWalletDomain(digitalWalletDomain)
                 .build();
         RequestOperation<UnregisterDigitalWalletDomainRequest, UnregisterDigitalWalletDomainResponse> operation
-              = new UnregisterDigitalWalletDomainOperation( sdkConfiguration);
+              = new UnregisterDigitalWalletDomainOperation(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
 

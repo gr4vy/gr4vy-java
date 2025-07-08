@@ -19,8 +19,8 @@ import java.time.OffsetDateTime;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class GiftCardSummary {
 
+public class GiftCardSummary {
     /**
      * Always `gift-card`.
      */
@@ -144,7 +144,10 @@ public class GiftCardSummary {
             String bin,
             String subBin,
             String last4) {
-        this(JsonNullable.undefined(), merchantAccountId, bin, subBin, last4, JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
+        this(JsonNullable.undefined(), merchantAccountId, bin,
+            subBin, last4, JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined());
     }
 
     /**
@@ -244,9 +247,10 @@ public class GiftCardSummary {
         return balanceRawErrorMessage;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The ID for the gift card.
@@ -410,7 +414,6 @@ public class GiftCardSummary {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -438,18 +441,10 @@ public class GiftCardSummary {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            type,
-            id,
-            merchantAccountId,
-            bin,
-            subBin,
-            last4,
-            currency,
-            expirationDate,
-            balance,
-            balanceErrorCode,
-            balanceRawErrorCode,
-            balanceRawErrorMessage);
+            type, id, merchantAccountId,
+            bin, subBin, last4,
+            currency, expirationDate, balance,
+            balanceErrorCode, balanceRawErrorCode, balanceRawErrorMessage);
     }
     
     @Override
@@ -468,34 +463,36 @@ public class GiftCardSummary {
                 "balanceRawErrorCode", balanceRawErrorCode,
                 "balanceRawErrorMessage", balanceRawErrorMessage);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private JsonNullable<String> id = JsonNullable.undefined();
- 
+
         private String merchantAccountId;
- 
+
         private String bin;
- 
+
         private String subBin;
- 
+
         private String last4;
- 
+
         private JsonNullable<String> currency = JsonNullable.undefined();
- 
+
         private JsonNullable<OffsetDateTime> expirationDate = JsonNullable.undefined();
- 
+
         private JsonNullable<Long> balance = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends GiftCardErrorCode> balanceErrorCode = JsonNullable.undefined();
- 
+
         private JsonNullable<String> balanceRawErrorCode = JsonNullable.undefined();
- 
+
         private JsonNullable<String> balanceRawErrorMessage = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The ID for the gift card.
@@ -515,6 +512,7 @@ public class GiftCardSummary {
             return this;
         }
 
+
         /**
          * The ID of the merchant account this buyer belongs to.
          */
@@ -523,6 +521,7 @@ public class GiftCardSummary {
             this.merchantAccountId = merchantAccountId;
             return this;
         }
+
 
         /**
          * The first 6 digits of the full gift card number.
@@ -533,6 +532,7 @@ public class GiftCardSummary {
             return this;
         }
 
+
         /**
          * The 3 digits after the `bin` of the full gift card number.
          */
@@ -542,6 +542,7 @@ public class GiftCardSummary {
             return this;
         }
 
+
         /**
          * The last 4 digits for the gift card.
          */
@@ -550,6 +551,7 @@ public class GiftCardSummary {
             this.last4 = last4;
             return this;
         }
+
 
         /**
          * The ISO-4217 currency code that this gift card has a balance for.
@@ -569,6 +571,7 @@ public class GiftCardSummary {
             return this;
         }
 
+
         /**
          * The date and time when this gift card expires. This is a full date/time and may be more accurate than the actual expiry date received by the gift card service.
          */
@@ -586,6 +589,7 @@ public class GiftCardSummary {
             this.expirationDate = expirationDate;
             return this;
         }
+
 
         /**
          * The amount remaining on the balance for this gift card according to the gift card service. This may be `null` if the balance could not be fetched.
@@ -605,6 +609,7 @@ public class GiftCardSummary {
             return this;
         }
 
+
         /**
          * If the last balance update failed, this will contain the internal code for this error.
          */
@@ -622,6 +627,7 @@ public class GiftCardSummary {
             this.balanceErrorCode = balanceErrorCode;
             return this;
         }
+
 
         /**
          * If the last balance update failed, this will contain the the raw error code received from the gift card provider.
@@ -641,6 +647,7 @@ public class GiftCardSummary {
             return this;
         }
 
+
         /**
          * If the last balance update failed, this will contain the the raw error message received from the gift card provider.
          */
@@ -658,21 +665,16 @@ public class GiftCardSummary {
             this.balanceRawErrorMessage = balanceRawErrorMessage;
             return this;
         }
-        
+
         public GiftCardSummary build() {
+
             return new GiftCardSummary(
-                id,
-                merchantAccountId,
-                bin,
-                subBin,
-                last4,
-                currency,
-                expirationDate,
-                balance,
-                balanceErrorCode,
-                balanceRawErrorCode,
-                balanceRawErrorMessage);
+                id, merchantAccountId, bin,
+                subBin, last4, currency,
+                expirationDate, balance, balanceErrorCode,
+                balanceRawErrorCode, balanceRawErrorMessage);
         }
+
 
         private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_Type =
                 new LazySingletonValue<>(

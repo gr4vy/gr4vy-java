@@ -52,7 +52,7 @@ public class VoidTransactionRequestBuilder {
     public VoidTransactionResponse call() throws Exception {
         
         RequestOperation<VoidTransactionRequest, VoidTransactionResponse> operation
-              = new VoidTransactionOperation( sdkConfiguration);
+              = new VoidTransactionOperation(sdkConfiguration);
         VoidTransactionRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

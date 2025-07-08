@@ -16,18 +16,22 @@ import java.lang.SuppressWarnings;
 import java.util.Map;
 import org.openapitools.jackson.nullable.JsonNullable;
 
+
 public class PaymentOptionContext {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("approval_ui")
     private JsonNullable<? extends PaymentOptionContextApprovalUI> approvalUi;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("required_fields")
     private JsonNullable<? extends Map<String, RequiredFields2>> requiredFields;
 
+
     @JsonProperty("redirect_requires_popup")
     private boolean redirectRequiresPopup;
+
 
     @JsonProperty("requires_tokenized_redirect_popup")
     private boolean requiresTokenizedRedirectPopup;
@@ -51,7 +55,8 @@ public class PaymentOptionContext {
     public PaymentOptionContext(
             boolean redirectRequiresPopup,
             boolean requiresTokenizedRedirectPopup) {
-        this(JsonNullable.undefined(), JsonNullable.undefined(), redirectRequiresPopup, requiresTokenizedRedirectPopup);
+        this(JsonNullable.undefined(), JsonNullable.undefined(), redirectRequiresPopup,
+            requiresTokenizedRedirectPopup);
     }
 
     @SuppressWarnings("unchecked")
@@ -76,9 +81,10 @@ public class PaymentOptionContext {
         return requiresTokenizedRedirectPopup;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public PaymentOptionContext withApprovalUi(PaymentOptionContextApprovalUI approvalUi) {
         Utils.checkNotNull(approvalUi, "approvalUi");
@@ -116,7 +122,6 @@ public class PaymentOptionContext {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -136,9 +141,7 @@ public class PaymentOptionContext {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            approvalUi,
-            requiredFields,
-            redirectRequiresPopup,
+            approvalUi, requiredFields, redirectRequiresPopup,
             requiresTokenizedRedirectPopup);
     }
     
@@ -150,20 +153,22 @@ public class PaymentOptionContext {
                 "redirectRequiresPopup", redirectRequiresPopup,
                 "requiresTokenizedRedirectPopup", requiresTokenizedRedirectPopup);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private JsonNullable<? extends PaymentOptionContextApprovalUI> approvalUi = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends Map<String, RequiredFields2>> requiredFields = JsonNullable.undefined();
- 
+
         private Boolean redirectRequiresPopup;
- 
+
         private Boolean requiresTokenizedRedirectPopup;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder approvalUi(PaymentOptionContextApprovalUI approvalUi) {
             Utils.checkNotNull(approvalUi, "approvalUi");
@@ -177,6 +182,7 @@ public class PaymentOptionContext {
             return this;
         }
 
+
         public Builder requiredFields(Map<String, RequiredFields2> requiredFields) {
             Utils.checkNotNull(requiredFields, "requiredFields");
             this.requiredFields = JsonNullable.of(requiredFields);
@@ -189,24 +195,26 @@ public class PaymentOptionContext {
             return this;
         }
 
+
         public Builder redirectRequiresPopup(boolean redirectRequiresPopup) {
             Utils.checkNotNull(redirectRequiresPopup, "redirectRequiresPopup");
             this.redirectRequiresPopup = redirectRequiresPopup;
             return this;
         }
 
+
         public Builder requiresTokenizedRedirectPopup(boolean requiresTokenizedRedirectPopup) {
             Utils.checkNotNull(requiresTokenizedRedirectPopup, "requiresTokenizedRedirectPopup");
             this.requiresTokenizedRedirectPopup = requiresTokenizedRedirectPopup;
             return this;
         }
-        
+
         public PaymentOptionContext build() {
+
             return new PaymentOptionContext(
-                approvalUi,
-                requiredFields,
-                redirectRequiresPopup,
+                approvalUi, requiredFields, redirectRequiresPopup,
                 requiresTokenizedRedirectPopup);
         }
+
     }
 }

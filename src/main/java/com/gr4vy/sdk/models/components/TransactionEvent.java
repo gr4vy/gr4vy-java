@@ -18,8 +18,8 @@ import java.time.OffsetDateTime;
 import java.util.Map;
 import java.util.Optional;
 
-public class TransactionEvent {
 
+public class TransactionEvent {
     /**
      * Always `transaction-event`.
      */
@@ -45,6 +45,7 @@ public class TransactionEvent {
     @JsonProperty("created_at")
     private OffsetDateTime createdAt;
 
+
     @JsonProperty("context")
     private Map<String, Object> context;
 
@@ -58,6 +59,7 @@ public class TransactionEvent {
         Utils.checkNotNull(name, "name");
         Utils.checkNotNull(createdAt, "createdAt");
         context = Utils.emptyMapIfNull(context);
+        Utils.checkNotNull(context, "context");
         this.type = Builder._SINGLETON_VALUE_Type.value();
         this.id = id;
         this.name = name;
@@ -102,9 +104,10 @@ public class TransactionEvent {
         return context;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The ID for the event.
@@ -139,7 +142,6 @@ public class TransactionEvent {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -160,11 +162,8 @@ public class TransactionEvent {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            type,
-            id,
-            name,
-            createdAt,
-            context);
+            type, id, name,
+            createdAt, context);
     }
     
     @Override
@@ -176,20 +175,22 @@ public class TransactionEvent {
                 "createdAt", createdAt,
                 "context", context);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String id;
- 
+
         private Name name;
- 
+
         private OffsetDateTime createdAt;
- 
+
         private Map<String, Object> context;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The ID for the event.
@@ -200,6 +201,7 @@ public class TransactionEvent {
             return this;
         }
 
+
         /**
          * The specific event name.
          */
@@ -208,6 +210,7 @@ public class TransactionEvent {
             this.name = name;
             return this;
         }
+
 
         /**
          * The date this event was created at.
@@ -218,19 +221,20 @@ public class TransactionEvent {
             return this;
         }
 
+
         public Builder context(Map<String, Object> context) {
             Utils.checkNotNull(context, "context");
             this.context = context;
             return this;
         }
-        
+
         public TransactionEvent build() {
+
             return new TransactionEvent(
-                id,
-                name,
-                createdAt,
+                id, name, createdAt,
                 context);
         }
+
 
         private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_Type =
                 new LazySingletonValue<>(

@@ -17,8 +17,8 @@ import java.lang.String;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class ReportCreate {
 
+public class ReportCreate {
     /**
      * The name of the report.
      */
@@ -31,6 +31,7 @@ public class ReportCreate {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("description")
     private JsonNullable<String> description;
+
 
     @JsonProperty("schedule")
     private ReportSchedule schedule;
@@ -81,7 +82,8 @@ public class ReportCreate {
             ReportSchedule schedule,
             boolean scheduleEnabled,
             Spec spec) {
-        this(name, JsonNullable.undefined(), schedule, scheduleEnabled, Optional.empty(), spec);
+        this(name, JsonNullable.undefined(), schedule,
+            scheduleEnabled, Optional.empty(), spec);
     }
 
     /**
@@ -129,9 +131,10 @@ public class ReportCreate {
         return spec;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The name of the report.
@@ -184,6 +187,7 @@ public class ReportCreate {
         return this;
     }
 
+
     /**
      * The timezone for the report schedule.
      */
@@ -202,7 +206,6 @@ public class ReportCreate {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -224,12 +227,8 @@ public class ReportCreate {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            name,
-            description,
-            schedule,
-            scheduleEnabled,
-            scheduleTimezone,
-            spec);
+            name, description, schedule,
+            scheduleEnabled, scheduleTimezone, spec);
     }
     
     @Override
@@ -242,24 +241,26 @@ public class ReportCreate {
                 "scheduleTimezone", scheduleTimezone,
                 "spec", spec);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String name;
- 
+
         private JsonNullable<String> description = JsonNullable.undefined();
- 
+
         private ReportSchedule schedule;
- 
+
         private Boolean scheduleEnabled;
- 
+
         private Optional<String> scheduleTimezone;
- 
+
         private Spec spec;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The name of the report.
@@ -269,6 +270,7 @@ public class ReportCreate {
             this.name = name;
             return this;
         }
+
 
         /**
          * A description of the report.
@@ -288,11 +290,13 @@ public class ReportCreate {
             return this;
         }
 
+
         public Builder schedule(ReportSchedule schedule) {
             Utils.checkNotNull(schedule, "schedule");
             this.schedule = schedule;
             return this;
         }
+
 
         /**
          * Whether the report schedule is enabled.
@@ -302,6 +306,7 @@ public class ReportCreate {
             this.scheduleEnabled = scheduleEnabled;
             return this;
         }
+
 
         /**
          * The timezone for the report schedule.
@@ -321,6 +326,7 @@ public class ReportCreate {
             return this;
         }
 
+
         /**
          * The report specification.
          */
@@ -329,19 +335,17 @@ public class ReportCreate {
             this.spec = spec;
             return this;
         }
-        
+
         public ReportCreate build() {
             if (scheduleTimezone == null) {
                 scheduleTimezone = _SINGLETON_VALUE_ScheduleTimezone.value();
             }
+
             return new ReportCreate(
-                name,
-                description,
-                schedule,
-                scheduleEnabled,
-                scheduleTimezone,
-                spec);
+                name, description, schedule,
+                scheduleEnabled, scheduleTimezone, spec);
         }
+
 
         private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_ScheduleTimezone =
                 new LazySingletonValue<>(

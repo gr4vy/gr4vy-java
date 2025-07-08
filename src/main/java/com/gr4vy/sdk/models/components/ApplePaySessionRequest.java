@@ -10,8 +10,8 @@ import com.gr4vy.sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 
-public class ApplePaySessionRequest {
 
+public class ApplePaySessionRequest {
     /**
      * The validation URL as provided by the Apple SDK when processing a payment.
      */
@@ -50,9 +50,10 @@ public class ApplePaySessionRequest {
         return domainName;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The validation URL as provided by the Apple SDK when processing a payment.
@@ -72,7 +73,6 @@ public class ApplePaySessionRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -90,8 +90,7 @@ public class ApplePaySessionRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            validationUrl,
-            domainName);
+            validationUrl, domainName);
     }
     
     @Override
@@ -100,16 +99,18 @@ public class ApplePaySessionRequest {
                 "validationUrl", validationUrl,
                 "domainName", domainName);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String validationUrl;
- 
+
         private String domainName;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The validation URL as provided by the Apple SDK when processing a payment.
@@ -120,6 +121,7 @@ public class ApplePaySessionRequest {
             return this;
         }
 
+
         /**
          * The domain on which Apple Pay is being loaded.
          */
@@ -128,11 +130,12 @@ public class ApplePaySessionRequest {
             this.domainName = domainName;
             return this;
         }
-        
+
         public ApplePaySessionRequest build() {
+
             return new ApplePaySessionRequest(
-                validationUrl,
-                domainName);
+                validationUrl, domainName);
         }
+
     }
 }

@@ -37,7 +37,6 @@ public class PaymentLinks {
     PaymentLinks(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-
     /**
      * Add a payment link
      * 
@@ -82,10 +81,9 @@ public class PaymentLinks {
                 .paymentLinkCreate(paymentLinkCreate)
                 .build();
         RequestOperation<AddPaymentLinkRequest, AddPaymentLinkResponse> operation
-              = new AddPaymentLinkOperation( sdkConfiguration);
+              = new AddPaymentLinkOperation(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * List all payment links
@@ -107,7 +105,8 @@ public class PaymentLinks {
      * @throws Exception if the API call fails
      */
     public ListPaymentLinksResponse listDirect() throws Exception {
-        return list(JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), Optional.empty());
+        return list(JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
+            Optional.empty());
     }
 
     /**
@@ -136,11 +135,10 @@ public class PaymentLinks {
                 .build();
         RequestOperation<ListPaymentLinksRequest, ListPaymentLinksResponse> operation
               = new ListPaymentLinksOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Expire a payment link
@@ -186,10 +184,9 @@ public class PaymentLinks {
                 .merchantAccountId(merchantAccountId)
                 .build();
         RequestOperation<ExpirePaymentLinkRequest, ExpirePaymentLinkResponse> operation
-              = new ExpirePaymentLinkOperation( sdkConfiguration);
+              = new ExpirePaymentLinkOperation(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Get payment link
@@ -238,8 +235,8 @@ public class PaymentLinks {
                 .build();
         RequestOperation<GetPaymentLinkRequest, GetPaymentLinkResponse> operation
               = new GetPaymentLinkOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

@@ -14,8 +14,8 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class TransactionThreeDSecureSummary {
 
+public class TransactionThreeDSecureSummary {
     /**
      * The version of 3DS used for this transaction.
      */
@@ -71,7 +71,8 @@ public class TransactionThreeDSecureSummary {
     }
     
     public TransactionThreeDSecureSummary() {
-        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
+        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined());
     }
 
     /**
@@ -118,9 +119,10 @@ public class TransactionThreeDSecureSummary {
         return (JsonNullable<ThreeDSecureError>) errorData;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The version of 3DS used for this transaction.
@@ -212,7 +214,6 @@ public class TransactionThreeDSecureSummary {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -233,11 +234,8 @@ public class TransactionThreeDSecureSummary {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            version,
-            status,
-            method,
-            responseData,
-            errorData);
+            version, status, method,
+            responseData, errorData);
     }
     
     @Override
@@ -249,22 +247,24 @@ public class TransactionThreeDSecureSummary {
                 "responseData", responseData,
                 "errorData", errorData);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private JsonNullable<String> version = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends ThreeDSecureStatus> status = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends ThreeDSecureMethod> method = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends ResponseData> responseData = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends ThreeDSecureError> errorData = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The version of 3DS used for this transaction.
@@ -284,6 +284,7 @@ public class TransactionThreeDSecureSummary {
             return this;
         }
 
+
         /**
          * The status of the 3DS challenge for this transaction.
          */
@@ -301,6 +302,7 @@ public class TransactionThreeDSecureSummary {
             this.status = status;
             return this;
         }
+
 
         /**
          * The method used for 3DS authentication for this transaction.
@@ -320,6 +322,7 @@ public class TransactionThreeDSecureSummary {
             return this;
         }
 
+
         /**
          * The 3DS data sent to the payment service for this transaction. This will only be populated if external 3DS data was passed in directly as part of the transaction API call, or if our 3DS server returned a status code of `Y` or `A`. In case of a failure to authenticate (status `N`, `R`, or `U`) this field will not be populated. To see full details about the 3DS calls please use our transaction events API.
          */
@@ -338,6 +341,7 @@ public class TransactionThreeDSecureSummary {
             return this;
         }
 
+
         /**
          * The error data received from our 3DS server. This will not be populated if the customer failed the authentication with a status code of `N`, `R`, or `U`.  To see full details about the 3DS calls in those situations please use our transaction events API.
          */
@@ -355,14 +359,13 @@ public class TransactionThreeDSecureSummary {
             this.errorData = errorData;
             return this;
         }
-        
+
         public TransactionThreeDSecureSummary build() {
+
             return new TransactionThreeDSecureSummary(
-                version,
-                status,
-                method,
-                responseData,
-                errorData);
+                version, status, method,
+                responseData, errorData);
         }
+
     }
 }

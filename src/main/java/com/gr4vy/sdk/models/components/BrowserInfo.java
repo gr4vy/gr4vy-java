@@ -25,20 +25,26 @@ public class BrowserInfo {
     @JsonProperty("javascript_enabled")
     private boolean javascriptEnabled;
 
+
     @JsonProperty("java_enabled")
     private boolean javaEnabled;
+
 
     @JsonProperty("language")
     private String language;
 
+
     @JsonProperty("color_depth")
     private long colorDepth;
+
 
     @JsonProperty("screen_height")
     private long screenHeight;
 
+
     @JsonProperty("screen_width")
     private long screenWidth;
+
 
     @JsonProperty("time_zone_offset")
     private long timeZoneOffset;
@@ -106,7 +112,10 @@ public class BrowserInfo {
             long timeZoneOffset,
             String userAgent,
             UserDevice userDevice) {
-        this(javascriptEnabled, javaEnabled, language, colorDepth, screenHeight, screenWidth, timeZoneOffset, userAgent, userDevice, JsonNullable.undefined());
+        this(javascriptEnabled, javaEnabled, language,
+            colorDepth, screenHeight, screenWidth,
+            timeZoneOffset, userAgent, userDevice,
+            JsonNullable.undefined());
     }
 
     @JsonIgnore
@@ -168,9 +177,10 @@ public class BrowserInfo {
         return acceptHeader;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public BrowserInfo withJavascriptEnabled(boolean javascriptEnabled) {
         Utils.checkNotNull(javascriptEnabled, "javascriptEnabled");
@@ -250,7 +260,6 @@ public class BrowserInfo {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -276,15 +285,9 @@ public class BrowserInfo {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            javascriptEnabled,
-            javaEnabled,
-            language,
-            colorDepth,
-            screenHeight,
-            screenWidth,
-            timeZoneOffset,
-            userAgent,
-            userDevice,
+            javascriptEnabled, javaEnabled, language,
+            colorDepth, screenHeight, screenWidth,
+            timeZoneOffset, userAgent, userDevice,
             acceptHeader);
     }
     
@@ -302,32 +305,34 @@ public class BrowserInfo {
                 "userDevice", userDevice,
                 "acceptHeader", acceptHeader);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Boolean javascriptEnabled;
- 
+
         private Boolean javaEnabled;
- 
+
         private String language;
- 
+
         private Long colorDepth;
- 
+
         private Long screenHeight;
- 
+
         private Long screenWidth;
- 
+
         private Long timeZoneOffset;
- 
+
         private String userAgent;
- 
+
         private UserDevice userDevice;
- 
+
         private JsonNullable<String> acceptHeader = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder javascriptEnabled(boolean javascriptEnabled) {
             Utils.checkNotNull(javascriptEnabled, "javascriptEnabled");
@@ -335,11 +340,13 @@ public class BrowserInfo {
             return this;
         }
 
+
         public Builder javaEnabled(boolean javaEnabled) {
             Utils.checkNotNull(javaEnabled, "javaEnabled");
             this.javaEnabled = javaEnabled;
             return this;
         }
+
 
         public Builder language(String language) {
             Utils.checkNotNull(language, "language");
@@ -347,11 +354,13 @@ public class BrowserInfo {
             return this;
         }
 
+
         public Builder colorDepth(long colorDepth) {
             Utils.checkNotNull(colorDepth, "colorDepth");
             this.colorDepth = colorDepth;
             return this;
         }
+
 
         public Builder screenHeight(long screenHeight) {
             Utils.checkNotNull(screenHeight, "screenHeight");
@@ -359,17 +368,20 @@ public class BrowserInfo {
             return this;
         }
 
+
         public Builder screenWidth(long screenWidth) {
             Utils.checkNotNull(screenWidth, "screenWidth");
             this.screenWidth = screenWidth;
             return this;
         }
 
+
         public Builder timeZoneOffset(long timeZoneOffset) {
             Utils.checkNotNull(timeZoneOffset, "timeZoneOffset");
             this.timeZoneOffset = timeZoneOffset;
             return this;
         }
+
 
         /**
          * Exact content of the HTTP user-agent header.
@@ -380,6 +392,7 @@ public class BrowserInfo {
             return this;
         }
 
+
         /**
          * The platform that is being used to access the website.
          */
@@ -388,6 +401,7 @@ public class BrowserInfo {
             this.userDevice = userDevice;
             return this;
         }
+
 
         /**
          * The Accept header of the request from the buyer's browser.
@@ -406,19 +420,15 @@ public class BrowserInfo {
             this.acceptHeader = acceptHeader;
             return this;
         }
-        
+
         public BrowserInfo build() {
+
             return new BrowserInfo(
-                javascriptEnabled,
-                javaEnabled,
-                language,
-                colorDepth,
-                screenHeight,
-                screenWidth,
-                timeZoneOffset,
-                userAgent,
-                userDevice,
+                javascriptEnabled, javaEnabled, language,
+                colorDepth, screenHeight, screenWidth,
+                timeZoneOffset, userAgent, userDevice,
                 acceptHeader);
         }
+
     }
 }

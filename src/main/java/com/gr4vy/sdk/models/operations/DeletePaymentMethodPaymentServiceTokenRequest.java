@@ -11,8 +11,8 @@ import java.lang.Override;
 import java.lang.String;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class DeletePaymentMethodPaymentServiceTokenRequest {
 
+public class DeletePaymentMethodPaymentServiceTokenRequest {
     /**
      * The ID of the payment method
      */
@@ -74,9 +74,10 @@ public class DeletePaymentMethodPaymentServiceTokenRequest {
         return merchantAccountId;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The ID of the payment method
@@ -114,7 +115,6 @@ public class DeletePaymentMethodPaymentServiceTokenRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -133,9 +133,7 @@ public class DeletePaymentMethodPaymentServiceTokenRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            paymentMethodId,
-            paymentServiceTokenId,
-            merchantAccountId);
+            paymentMethodId, paymentServiceTokenId, merchantAccountId);
     }
     
     @Override
@@ -145,18 +143,20 @@ public class DeletePaymentMethodPaymentServiceTokenRequest {
                 "paymentServiceTokenId", paymentServiceTokenId,
                 "merchantAccountId", merchantAccountId);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String paymentMethodId;
- 
+
         private String paymentServiceTokenId;
- 
+
         private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The ID of the payment method
@@ -167,6 +167,7 @@ public class DeletePaymentMethodPaymentServiceTokenRequest {
             return this;
         }
 
+
         /**
          * The ID of the payment service token
          */
@@ -175,6 +176,7 @@ public class DeletePaymentMethodPaymentServiceTokenRequest {
             this.paymentServiceTokenId = paymentServiceTokenId;
             return this;
         }
+
 
         /**
          * The ID of the merchant account to use for this request.
@@ -193,12 +195,12 @@ public class DeletePaymentMethodPaymentServiceTokenRequest {
             this.merchantAccountId = merchantAccountId;
             return this;
         }
-        
+
         public DeletePaymentMethodPaymentServiceTokenRequest build() {
+
             return new DeletePaymentMethodPaymentServiceTokenRequest(
-                paymentMethodId,
-                paymentServiceTokenId,
-                merchantAccountId);
+                paymentMethodId, paymentServiceTokenId, merchantAccountId);
         }
+
     }
 }

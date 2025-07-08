@@ -12,8 +12,8 @@ import java.lang.Override;
 import java.lang.String;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class UpdateBuyerRequest {
 
+public class UpdateBuyerRequest {
     /**
      * The ID of the buyer to edit.
      */
@@ -25,6 +25,7 @@ public class UpdateBuyerRequest {
      */
     @SpeakeasyMetadata("header:style=simple,explode=false,name=x-gr4vy-merchant-account-id")
     private JsonNullable<String> merchantAccountId;
+
 
     @SpeakeasyMetadata("request:mediaType=application/json")
     private BuyerUpdate buyerUpdate;
@@ -69,9 +70,10 @@ public class UpdateBuyerRequest {
         return buyerUpdate;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The ID of the buyer to edit.
@@ -106,7 +108,6 @@ public class UpdateBuyerRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -125,9 +126,7 @@ public class UpdateBuyerRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            buyerId,
-            merchantAccountId,
-            buyerUpdate);
+            buyerId, merchantAccountId, buyerUpdate);
     }
     
     @Override
@@ -137,18 +136,20 @@ public class UpdateBuyerRequest {
                 "merchantAccountId", merchantAccountId,
                 "buyerUpdate", buyerUpdate);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String buyerId;
- 
+
         private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
- 
+
         private BuyerUpdate buyerUpdate;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The ID of the buyer to edit.
@@ -158,6 +159,7 @@ public class UpdateBuyerRequest {
             this.buyerId = buyerId;
             return this;
         }
+
 
         /**
          * The ID of the merchant account to use for this request.
@@ -177,17 +179,18 @@ public class UpdateBuyerRequest {
             return this;
         }
 
+
         public Builder buyerUpdate(BuyerUpdate buyerUpdate) {
             Utils.checkNotNull(buyerUpdate, "buyerUpdate");
             this.buyerUpdate = buyerUpdate;
             return this;
         }
-        
+
         public UpdateBuyerRequest build() {
+
             return new UpdateBuyerRequest(
-                buyerId,
-                merchantAccountId,
-                buyerUpdate);
+                buyerId, merchantAccountId, buyerUpdate);
         }
+
     }
 }

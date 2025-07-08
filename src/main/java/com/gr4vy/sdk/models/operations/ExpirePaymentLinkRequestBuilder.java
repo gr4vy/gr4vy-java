@@ -52,7 +52,7 @@ public class ExpirePaymentLinkRequestBuilder {
     public ExpirePaymentLinkResponse call() throws Exception {
         
         RequestOperation<ExpirePaymentLinkRequest, ExpirePaymentLinkResponse> operation
-              = new ExpirePaymentLinkOperation( sdkConfiguration);
+              = new ExpirePaymentLinkOperation(sdkConfiguration);
         ExpirePaymentLinkRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

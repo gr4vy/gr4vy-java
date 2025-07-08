@@ -11,10 +11,12 @@ import java.lang.Override;
 import java.lang.String;
 import java.util.List;
 
+
 public class WalletPaymentOptionContext {
 
     @JsonProperty("merchant_name")
     private String merchantName;
+
 
     @JsonProperty("supported_schemes")
     private List<String> supportedSchemes;
@@ -39,9 +41,10 @@ public class WalletPaymentOptionContext {
         return supportedSchemes;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public WalletPaymentOptionContext withMerchantName(String merchantName) {
         Utils.checkNotNull(merchantName, "merchantName");
@@ -55,7 +58,6 @@ public class WalletPaymentOptionContext {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -73,8 +75,7 @@ public class WalletPaymentOptionContext {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            merchantName,
-            supportedSchemes);
+            merchantName, supportedSchemes);
     }
     
     @Override
@@ -83,16 +84,18 @@ public class WalletPaymentOptionContext {
                 "merchantName", merchantName,
                 "supportedSchemes", supportedSchemes);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String merchantName;
- 
+
         private List<String> supportedSchemes;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder merchantName(String merchantName) {
             Utils.checkNotNull(merchantName, "merchantName");
@@ -100,16 +103,18 @@ public class WalletPaymentOptionContext {
             return this;
         }
 
+
         public Builder supportedSchemes(List<String> supportedSchemes) {
             Utils.checkNotNull(supportedSchemes, "supportedSchemes");
             this.supportedSchemes = supportedSchemes;
             return this;
         }
-        
+
         public WalletPaymentOptionContext build() {
+
             return new WalletPaymentOptionContext(
-                merchantName,
-                supportedSchemes);
+                merchantName, supportedSchemes);
         }
+
     }
 }

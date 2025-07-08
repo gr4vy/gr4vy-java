@@ -61,7 +61,7 @@ public class CaptureTransactionRequestBuilder {
     public CaptureTransactionResponse call() throws Exception {
         
         RequestOperation<CaptureTransactionRequest, CaptureTransactionResponse> operation
-              = new CaptureTransactionOperation( sdkConfiguration);
+              = new CaptureTransactionOperation(sdkConfiguration);
         CaptureTransactionRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

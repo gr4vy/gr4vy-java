@@ -13,8 +13,8 @@ import java.lang.Override;
 import java.lang.String;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class PaymentServiceTokenCreate {
 
+public class PaymentServiceTokenCreate {
     /**
      * The 3 or 4 digit security code often found on the card. This often referred to as the CVV or CVD.
      */
@@ -77,9 +77,10 @@ public class PaymentServiceTokenCreate {
         return redirectUrl;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The 3 or 4 digit security code often found on the card. This often referred to as the CVV or CVD.
@@ -117,7 +118,6 @@ public class PaymentServiceTokenCreate {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -136,9 +136,7 @@ public class PaymentServiceTokenCreate {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            securityCode,
-            paymentServiceId,
-            redirectUrl);
+            securityCode, paymentServiceId, redirectUrl);
     }
     
     @Override
@@ -148,18 +146,20 @@ public class PaymentServiceTokenCreate {
                 "paymentServiceId", paymentServiceId,
                 "redirectUrl", redirectUrl);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private JsonNullable<String> securityCode = JsonNullable.undefined();
- 
+
         private String paymentServiceId;
- 
+
         private String redirectUrl;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The 3 or 4 digit security code often found on the card. This often referred to as the CVV or CVD.
@@ -179,6 +179,7 @@ public class PaymentServiceTokenCreate {
             return this;
         }
 
+
         /**
          * The ID of the payment method to use.
          */
@@ -188,6 +189,7 @@ public class PaymentServiceTokenCreate {
             return this;
         }
 
+
         /**
          * The redirect URL to redirect a buyer to after they have authorized the payment method.
          */
@@ -196,12 +198,12 @@ public class PaymentServiceTokenCreate {
             this.redirectUrl = redirectUrl;
             return this;
         }
-        
+
         public PaymentServiceTokenCreate build() {
+
             return new PaymentServiceTokenCreate(
-                securityCode,
-                paymentServiceId,
-                redirectUrl);
+                securityCode, paymentServiceId, redirectUrl);
         }
+
     }
 }

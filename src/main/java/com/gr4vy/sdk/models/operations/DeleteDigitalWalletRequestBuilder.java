@@ -52,7 +52,7 @@ public class DeleteDigitalWalletRequestBuilder {
     public DeleteDigitalWalletResponse call() throws Exception {
         
         RequestOperation<DeleteDigitalWalletRequest, DeleteDigitalWalletResponse> operation
-              = new DeleteDigitalWalletOperation( sdkConfiguration);
+              = new DeleteDigitalWalletOperation(sdkConfiguration);
         DeleteDigitalWalletRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

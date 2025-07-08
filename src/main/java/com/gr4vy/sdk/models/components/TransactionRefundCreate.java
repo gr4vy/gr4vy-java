@@ -16,14 +16,15 @@ import java.lang.SuppressWarnings;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class TransactionRefundCreate {
 
+public class TransactionRefundCreate {
     /**
      * The amount to refund, in the smallest currency unit (e.g., cents). If omitted, a full refund will be requested.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("amount")
     private JsonNullable<Long> amount;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("target_type")
@@ -70,7 +71,8 @@ public class TransactionRefundCreate {
     }
     
     public TransactionRefundCreate() {
-        this(JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
+        this(JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined());
     }
 
     /**
@@ -111,9 +113,10 @@ public class TransactionRefundCreate {
         return externalIdentifier;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The amount to refund, in the smallest currency unit (e.g., cents). If omitted, a full refund will be requested.
@@ -138,6 +141,7 @@ public class TransactionRefundCreate {
         this.targetType = Optional.ofNullable(targetType);
         return this;
     }
+
 
     public TransactionRefundCreate withTargetType(Optional<? extends RefundTargetType> targetType) {
         Utils.checkNotNull(targetType, "targetType");
@@ -199,7 +203,6 @@ public class TransactionRefundCreate {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -220,11 +223,8 @@ public class TransactionRefundCreate {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            amount,
-            targetType,
-            targetId,
-            reason,
-            externalIdentifier);
+            amount, targetType, targetId,
+            reason, externalIdentifier);
     }
     
     @Override
@@ -236,22 +236,24 @@ public class TransactionRefundCreate {
                 "reason", reason,
                 "externalIdentifier", externalIdentifier);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private JsonNullable<Long> amount = JsonNullable.undefined();
- 
+
         private Optional<? extends RefundTargetType> targetType = Optional.empty();
- 
+
         private JsonNullable<String> targetId = JsonNullable.undefined();
- 
+
         private JsonNullable<String> reason = JsonNullable.undefined();
- 
+
         private JsonNullable<String> externalIdentifier = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The amount to refund, in the smallest currency unit (e.g., cents). If omitted, a full refund will be requested.
@@ -271,6 +273,7 @@ public class TransactionRefundCreate {
             return this;
         }
 
+
         public Builder targetType(RefundTargetType targetType) {
             Utils.checkNotNull(targetType, "targetType");
             this.targetType = Optional.ofNullable(targetType);
@@ -282,6 +285,7 @@ public class TransactionRefundCreate {
             this.targetType = targetType;
             return this;
         }
+
 
         /**
          * The optional ID of the instrument to refund for. This is only required when the `target_type` is set to `gift-card-redemption`.
@@ -301,6 +305,7 @@ public class TransactionRefundCreate {
             return this;
         }
 
+
         /**
          * An optional reason to attach extra context to the refund request.
          */
@@ -319,6 +324,7 @@ public class TransactionRefundCreate {
             return this;
         }
 
+
         /**
          * An external identifier that can be used to match the refund against your own records.
          */
@@ -336,14 +342,13 @@ public class TransactionRefundCreate {
             this.externalIdentifier = externalIdentifier;
             return this;
         }
-        
+
         public TransactionRefundCreate build() {
+
             return new TransactionRefundCreate(
-                amount,
-                targetType,
-                targetId,
-                reason,
-                externalIdentifier);
+                amount, targetType, targetId,
+                reason, externalIdentifier);
         }
+
     }
 }

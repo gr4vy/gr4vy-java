@@ -56,7 +56,6 @@ public final BuyersGiftCards giftCards() {
 public final ShippingDetails shippingDetails() {
         return shippingDetails;
     }
-
     /**
      * List all buyers
      * 
@@ -96,11 +95,10 @@ public final ShippingDetails shippingDetails() {
             Optional<Options> options) throws Exception {
         RequestOperation<ListBuyersRequest, ListBuyersResponse> operation
               = new ListBuyersOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Add a buyer
@@ -146,10 +144,9 @@ public final ShippingDetails shippingDetails() {
                 .buyerCreate(buyerCreate)
                 .build();
         RequestOperation<AddBuyerRequest, AddBuyerResponse> operation
-              = new AddBuyerOperation( sdkConfiguration);
+              = new AddBuyerOperation(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Get a buyer
@@ -198,11 +195,10 @@ public final ShippingDetails shippingDetails() {
                 .build();
         RequestOperation<GetBuyerRequest, GetBuyerResponse> operation
               = new GetBuyerOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Update a buyer
@@ -254,10 +250,9 @@ public final ShippingDetails shippingDetails() {
                 .buyerUpdate(buyerUpdate)
                 .build();
         RequestOperation<UpdateBuyerRequest, UpdateBuyerResponse> operation
-              = new UpdateBuyerOperation( sdkConfiguration);
+              = new UpdateBuyerOperation(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Delete a buyer
@@ -303,7 +298,7 @@ public final ShippingDetails shippingDetails() {
                 .merchantAccountId(merchantAccountId)
                 .build();
         RequestOperation<DeleteBuyerRequest, DeleteBuyerResponse> operation
-              = new DeleteBuyerOperation( sdkConfiguration);
+              = new DeleteBuyerOperation(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
 

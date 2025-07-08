@@ -17,7 +17,6 @@ import java.lang.String;
  * <p>A single field that needs to be submitted for a payment service when it is created.
  */
 public class DefinitionField {
-
     /**
      * The key of a field that can be submitted.
      */
@@ -35,6 +34,7 @@ public class DefinitionField {
      */
     @JsonProperty("required")
     private boolean required;
+
 
     @JsonProperty("format")
     private DefinitionFieldFormat format;
@@ -101,9 +101,10 @@ public class DefinitionField {
         return secret;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The key of a field that can be submitted.
@@ -147,7 +148,6 @@ public class DefinitionField {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -168,11 +168,8 @@ public class DefinitionField {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            key,
-            displayName,
-            required,
-            format,
-            secret);
+            key, displayName, required,
+            format, secret);
     }
     
     @Override
@@ -184,22 +181,24 @@ public class DefinitionField {
                 "format", format,
                 "secret", secret);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String key;
- 
+
         private String displayName;
- 
+
         private Boolean required;
- 
+
         private DefinitionFieldFormat format;
- 
+
         private Boolean secret;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The key of a field that can be submitted.
@@ -210,6 +209,7 @@ public class DefinitionField {
             return this;
         }
 
+
         /**
          * The human readable name for this field.
          */
@@ -218,6 +218,7 @@ public class DefinitionField {
             this.displayName = displayName;
             return this;
         }
+
 
         /**
          * Defines if this field is required when the service is created.
@@ -228,11 +229,13 @@ public class DefinitionField {
             return this;
         }
 
+
         public Builder format(DefinitionFieldFormat format) {
             Utils.checkNotNull(format, "format");
             this.format = format;
             return this;
         }
+
 
         /**
          * Defines if this field is secret. When `true` the field's value is not returned when querying the payment service information.
@@ -242,14 +245,13 @@ public class DefinitionField {
             this.secret = secret;
             return this;
         }
-        
+
         public DefinitionField build() {
+
             return new DefinitionField(
-                key,
-                displayName,
-                required,
-                format,
-                secret);
+                key, displayName, required,
+                format, secret);
         }
+
     }
 }

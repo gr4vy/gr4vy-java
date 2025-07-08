@@ -11,8 +11,8 @@ import java.lang.Override;
 import java.lang.String;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class DeletePaymentMethodNetworkTokenRequest {
 
+public class DeletePaymentMethodNetworkTokenRequest {
     /**
      * The ID of the payment method
      */
@@ -74,9 +74,10 @@ public class DeletePaymentMethodNetworkTokenRequest {
         return merchantAccountId;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The ID of the payment method
@@ -114,7 +115,6 @@ public class DeletePaymentMethodNetworkTokenRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -133,9 +133,7 @@ public class DeletePaymentMethodNetworkTokenRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            paymentMethodId,
-            networkTokenId,
-            merchantAccountId);
+            paymentMethodId, networkTokenId, merchantAccountId);
     }
     
     @Override
@@ -145,18 +143,20 @@ public class DeletePaymentMethodNetworkTokenRequest {
                 "networkTokenId", networkTokenId,
                 "merchantAccountId", merchantAccountId);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String paymentMethodId;
- 
+
         private String networkTokenId;
- 
+
         private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The ID of the payment method
@@ -167,6 +167,7 @@ public class DeletePaymentMethodNetworkTokenRequest {
             return this;
         }
 
+
         /**
          * The ID of the network token
          */
@@ -175,6 +176,7 @@ public class DeletePaymentMethodNetworkTokenRequest {
             this.networkTokenId = networkTokenId;
             return this;
         }
+
 
         /**
          * The ID of the merchant account to use for this request.
@@ -193,12 +195,12 @@ public class DeletePaymentMethodNetworkTokenRequest {
             this.merchantAccountId = merchantAccountId;
             return this;
         }
-        
+
         public DeletePaymentMethodNetworkTokenRequest build() {
+
             return new DeletePaymentMethodNetworkTokenRequest(
-                paymentMethodId,
-                networkTokenId,
-                merchantAccountId);
+                paymentMethodId, networkTokenId, merchantAccountId);
         }
+
     }
 }
