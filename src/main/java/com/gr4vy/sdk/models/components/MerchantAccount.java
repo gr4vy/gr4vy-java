@@ -43,27 +43,6 @@ public class MerchantAccount {
     private String displayName;
 
     /**
-     * An optional endpoint URL to deliver webhook notifications to.
-     */
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("outbound_webhook_url")
-    private JsonNullable<String> outboundWebhookUrl;
-
-    /**
-     * The optional username to use when `outbound_webhook_url` is configured and requires basic authentication.
-     */
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("outbound_webhook_username")
-    private JsonNullable<String> outboundWebhookUsername;
-
-    /**
-     * The optional password to use when `outbound_webhook_url` is configured and requires basic authentication
-     */
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("outbound_webhook_password")
-    private JsonNullable<String> outboundWebhookPassword;
-
-    /**
      * Client key provided by Pagos to authenticate to the Loon API. Loon is the Account Updater service we use and if the field is not set or if it's set to null, the Account Updater service doesn't get configured. If the field is set to `null`, the other `loon_*` fields must be set to null as well.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -190,9 +169,6 @@ public class MerchantAccount {
     public MerchantAccount(
             @JsonProperty("id") String id,
             @JsonProperty("display_name") String displayName,
-            @JsonProperty("outbound_webhook_url") JsonNullable<String> outboundWebhookUrl,
-            @JsonProperty("outbound_webhook_username") JsonNullable<String> outboundWebhookUsername,
-            @JsonProperty("outbound_webhook_password") JsonNullable<String> outboundWebhookPassword,
             @JsonProperty("loon_client_key") JsonNullable<String> loonClientKey,
             @JsonProperty("loon_secret_key") JsonNullable<String> loonSecretKey,
             @JsonProperty("loon_accepted_schemes") JsonNullable<? extends List<CardScheme>> loonAcceptedSchemes,
@@ -213,9 +189,6 @@ public class MerchantAccount {
             @JsonProperty("updated_at") OffsetDateTime updatedAt) {
         Utils.checkNotNull(id, "id");
         Utils.checkNotNull(displayName, "displayName");
-        Utils.checkNotNull(outboundWebhookUrl, "outboundWebhookUrl");
-        Utils.checkNotNull(outboundWebhookUsername, "outboundWebhookUsername");
-        Utils.checkNotNull(outboundWebhookPassword, "outboundWebhookPassword");
         Utils.checkNotNull(loonClientKey, "loonClientKey");
         Utils.checkNotNull(loonSecretKey, "loonSecretKey");
         Utils.checkNotNull(loonAcceptedSchemes, "loonAcceptedSchemes");
@@ -237,9 +210,6 @@ public class MerchantAccount {
         this.type = Builder._SINGLETON_VALUE_Type.value();
         this.id = id;
         this.displayName = displayName;
-        this.outboundWebhookUrl = outboundWebhookUrl;
-        this.outboundWebhookUsername = outboundWebhookUsername;
-        this.outboundWebhookPassword = outboundWebhookPassword;
         this.loonClientKey = loonClientKey;
         this.loonSecretKey = loonSecretKey;
         this.loonAcceptedSchemes = loonAcceptedSchemes;
@@ -266,7 +236,7 @@ public class MerchantAccount {
             boolean accountUpdaterEnabled,
             OffsetDateTime createdAt,
             OffsetDateTime updatedAt) {
-        this(id, displayName, JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), accountUpdaterEnabled, JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), createdAt, updatedAt);
+        this(id, displayName, JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), accountUpdaterEnabled, JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), createdAt, updatedAt);
     }
 
     /**
@@ -291,30 +261,6 @@ public class MerchantAccount {
     @JsonIgnore
     public String displayName() {
         return displayName;
-    }
-
-    /**
-     * An optional endpoint URL to deliver webhook notifications to.
-     */
-    @JsonIgnore
-    public JsonNullable<String> outboundWebhookUrl() {
-        return outboundWebhookUrl;
-    }
-
-    /**
-     * The optional username to use when `outbound_webhook_url` is configured and requires basic authentication.
-     */
-    @JsonIgnore
-    public JsonNullable<String> outboundWebhookUsername() {
-        return outboundWebhookUsername;
-    }
-
-    /**
-     * The optional password to use when `outbound_webhook_url` is configured and requires basic authentication
-     */
-    @JsonIgnore
-    public JsonNullable<String> outboundWebhookPassword() {
-        return outboundWebhookPassword;
     }
 
     /**
@@ -481,60 +427,6 @@ public class MerchantAccount {
     public MerchantAccount withDisplayName(String displayName) {
         Utils.checkNotNull(displayName, "displayName");
         this.displayName = displayName;
-        return this;
-    }
-
-    /**
-     * An optional endpoint URL to deliver webhook notifications to.
-     */
-    public MerchantAccount withOutboundWebhookUrl(String outboundWebhookUrl) {
-        Utils.checkNotNull(outboundWebhookUrl, "outboundWebhookUrl");
-        this.outboundWebhookUrl = JsonNullable.of(outboundWebhookUrl);
-        return this;
-    }
-
-    /**
-     * An optional endpoint URL to deliver webhook notifications to.
-     */
-    public MerchantAccount withOutboundWebhookUrl(JsonNullable<String> outboundWebhookUrl) {
-        Utils.checkNotNull(outboundWebhookUrl, "outboundWebhookUrl");
-        this.outboundWebhookUrl = outboundWebhookUrl;
-        return this;
-    }
-
-    /**
-     * The optional username to use when `outbound_webhook_url` is configured and requires basic authentication.
-     */
-    public MerchantAccount withOutboundWebhookUsername(String outboundWebhookUsername) {
-        Utils.checkNotNull(outboundWebhookUsername, "outboundWebhookUsername");
-        this.outboundWebhookUsername = JsonNullable.of(outboundWebhookUsername);
-        return this;
-    }
-
-    /**
-     * The optional username to use when `outbound_webhook_url` is configured and requires basic authentication.
-     */
-    public MerchantAccount withOutboundWebhookUsername(JsonNullable<String> outboundWebhookUsername) {
-        Utils.checkNotNull(outboundWebhookUsername, "outboundWebhookUsername");
-        this.outboundWebhookUsername = outboundWebhookUsername;
-        return this;
-    }
-
-    /**
-     * The optional password to use when `outbound_webhook_url` is configured and requires basic authentication
-     */
-    public MerchantAccount withOutboundWebhookPassword(String outboundWebhookPassword) {
-        Utils.checkNotNull(outboundWebhookPassword, "outboundWebhookPassword");
-        this.outboundWebhookPassword = JsonNullable.of(outboundWebhookPassword);
-        return this;
-    }
-
-    /**
-     * The optional password to use when `outbound_webhook_url` is configured and requires basic authentication
-     */
-    public MerchantAccount withOutboundWebhookPassword(JsonNullable<String> outboundWebhookPassword) {
-        Utils.checkNotNull(outboundWebhookPassword, "outboundWebhookPassword");
-        this.outboundWebhookPassword = outboundWebhookPassword;
         return this;
     }
 
@@ -849,9 +741,6 @@ public class MerchantAccount {
             Utils.enhancedDeepEquals(this.type, other.type) &&
             Utils.enhancedDeepEquals(this.id, other.id) &&
             Utils.enhancedDeepEquals(this.displayName, other.displayName) &&
-            Utils.enhancedDeepEquals(this.outboundWebhookUrl, other.outboundWebhookUrl) &&
-            Utils.enhancedDeepEquals(this.outboundWebhookUsername, other.outboundWebhookUsername) &&
-            Utils.enhancedDeepEquals(this.outboundWebhookPassword, other.outboundWebhookPassword) &&
             Utils.enhancedDeepEquals(this.loonClientKey, other.loonClientKey) &&
             Utils.enhancedDeepEquals(this.loonSecretKey, other.loonSecretKey) &&
             Utils.enhancedDeepEquals(this.loonAcceptedSchemes, other.loonAcceptedSchemes) &&
@@ -878,9 +767,6 @@ public class MerchantAccount {
             type,
             id,
             displayName,
-            outboundWebhookUrl,
-            outboundWebhookUsername,
-            outboundWebhookPassword,
             loonClientKey,
             loonSecretKey,
             loonAcceptedSchemes,
@@ -907,9 +793,6 @@ public class MerchantAccount {
                 "type", type,
                 "id", id,
                 "displayName", displayName,
-                "outboundWebhookUrl", outboundWebhookUrl,
-                "outboundWebhookUsername", outboundWebhookUsername,
-                "outboundWebhookPassword", outboundWebhookPassword,
                 "loonClientKey", loonClientKey,
                 "loonSecretKey", loonSecretKey,
                 "loonAcceptedSchemes", loonAcceptedSchemes,
@@ -935,12 +818,6 @@ public class MerchantAccount {
         private String id;
  
         private String displayName;
- 
-        private JsonNullable<String> outboundWebhookUrl = JsonNullable.undefined();
- 
-        private JsonNullable<String> outboundWebhookUsername = JsonNullable.undefined();
- 
-        private JsonNullable<String> outboundWebhookPassword = JsonNullable.undefined();
  
         private JsonNullable<String> loonClientKey = JsonNullable.undefined();
  
@@ -997,60 +874,6 @@ public class MerchantAccount {
         public Builder displayName(String displayName) {
             Utils.checkNotNull(displayName, "displayName");
             this.displayName = displayName;
-            return this;
-        }
-
-        /**
-         * An optional endpoint URL to deliver webhook notifications to.
-         */
-        public Builder outboundWebhookUrl(String outboundWebhookUrl) {
-            Utils.checkNotNull(outboundWebhookUrl, "outboundWebhookUrl");
-            this.outboundWebhookUrl = JsonNullable.of(outboundWebhookUrl);
-            return this;
-        }
-
-        /**
-         * An optional endpoint URL to deliver webhook notifications to.
-         */
-        public Builder outboundWebhookUrl(JsonNullable<String> outboundWebhookUrl) {
-            Utils.checkNotNull(outboundWebhookUrl, "outboundWebhookUrl");
-            this.outboundWebhookUrl = outboundWebhookUrl;
-            return this;
-        }
-
-        /**
-         * The optional username to use when `outbound_webhook_url` is configured and requires basic authentication.
-         */
-        public Builder outboundWebhookUsername(String outboundWebhookUsername) {
-            Utils.checkNotNull(outboundWebhookUsername, "outboundWebhookUsername");
-            this.outboundWebhookUsername = JsonNullable.of(outboundWebhookUsername);
-            return this;
-        }
-
-        /**
-         * The optional username to use when `outbound_webhook_url` is configured and requires basic authentication.
-         */
-        public Builder outboundWebhookUsername(JsonNullable<String> outboundWebhookUsername) {
-            Utils.checkNotNull(outboundWebhookUsername, "outboundWebhookUsername");
-            this.outboundWebhookUsername = outboundWebhookUsername;
-            return this;
-        }
-
-        /**
-         * The optional password to use when `outbound_webhook_url` is configured and requires basic authentication
-         */
-        public Builder outboundWebhookPassword(String outboundWebhookPassword) {
-            Utils.checkNotNull(outboundWebhookPassword, "outboundWebhookPassword");
-            this.outboundWebhookPassword = JsonNullable.of(outboundWebhookPassword);
-            return this;
-        }
-
-        /**
-         * The optional password to use when `outbound_webhook_url` is configured and requires basic authentication
-         */
-        public Builder outboundWebhookPassword(JsonNullable<String> outboundWebhookPassword) {
-            Utils.checkNotNull(outboundWebhookPassword, "outboundWebhookPassword");
-            this.outboundWebhookPassword = outboundWebhookPassword;
             return this;
         }
 
@@ -1355,9 +1178,6 @@ public class MerchantAccount {
             return new MerchantAccount(
                 id,
                 displayName,
-                outboundWebhookUrl,
-                outboundWebhookUsername,
-                outboundWebhookPassword,
                 loonClientKey,
                 loonSecretKey,
                 loonAcceptedSchemes,
