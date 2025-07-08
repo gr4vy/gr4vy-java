@@ -33,7 +33,6 @@ public class Payouts {
     Payouts(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-
     /**
      * List payouts created.
      * 
@@ -54,7 +53,8 @@ public class Payouts {
      * @throws Exception if the API call fails
      */
     public ListPayoutsResponse listDirect() throws Exception {
-        return list(JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), Optional.empty());
+        return list(JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
+            Optional.empty());
     }
 
     /**
@@ -83,11 +83,10 @@ public class Payouts {
                 .build();
         RequestOperation<ListPayoutsRequest, ListPayoutsResponse> operation
               = new ListPayoutsOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Create a payout.
@@ -137,10 +136,9 @@ public class Payouts {
                 .payoutCreate(payoutCreate)
                 .build();
         RequestOperation<CreatePayoutRequest, CreatePayoutResponse> operation
-              = new CreatePayoutOperation( sdkConfiguration);
+              = new CreatePayoutOperation(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Get a payout.
@@ -189,8 +187,8 @@ public class Payouts {
                 .build();
         RequestOperation<GetPayoutRequest, GetPayoutResponse> operation
               = new GetPayoutOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

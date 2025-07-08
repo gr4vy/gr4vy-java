@@ -15,8 +15,8 @@ import java.lang.SuppressWarnings;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class ListBuyerPaymentMethodsRequest {
 
+public class ListBuyerPaymentMethodsRequest {
     /**
      * The ID of the buyer to query payment methods for.
      */
@@ -83,7 +83,8 @@ public class ListBuyerPaymentMethodsRequest {
     }
     
     public ListBuyerPaymentMethodsRequest() {
-        this(JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
+        this(JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
     }
 
     /**
@@ -143,9 +144,10 @@ public class ListBuyerPaymentMethodsRequest {
         return merchantAccountId;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The ID of the buyer to query payment methods for.
@@ -191,6 +193,7 @@ public class ListBuyerPaymentMethodsRequest {
         this.orderBy = Optional.ofNullable(orderBy);
         return this;
     }
+
 
     /**
      * The direction to sort the payment methods in.
@@ -255,7 +258,6 @@ public class ListBuyerPaymentMethodsRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -278,12 +280,8 @@ public class ListBuyerPaymentMethodsRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            buyerId,
-            buyerExternalIdentifier,
-            sortBy,
-            orderBy,
-            country,
-            currency,
+            buyerId, buyerExternalIdentifier, sortBy,
+            orderBy, country, currency,
             merchantAccountId);
     }
     
@@ -298,24 +296,26 @@ public class ListBuyerPaymentMethodsRequest {
                 "currency", currency,
                 "merchantAccountId", merchantAccountId);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private JsonNullable<String> buyerId = JsonNullable.undefined();
- 
+
         private JsonNullable<String> buyerExternalIdentifier = JsonNullable.undefined();
- 
+
         private Optional<? extends OrderBy> orderBy;
- 
+
         private JsonNullable<String> country = JsonNullable.undefined();
- 
+
         private JsonNullable<String> currency = JsonNullable.undefined();
- 
+
         private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The ID of the buyer to query payment methods for.
@@ -335,6 +335,7 @@ public class ListBuyerPaymentMethodsRequest {
             return this;
         }
 
+
         /**
          * The external identifier of the buyer to query payment methods for.
          */
@@ -352,6 +353,7 @@ public class ListBuyerPaymentMethodsRequest {
             this.buyerExternalIdentifier = buyerExternalIdentifier;
             return this;
         }
+
 
         /**
          * The direction to sort the payment methods in.
@@ -371,6 +373,7 @@ public class ListBuyerPaymentMethodsRequest {
             return this;
         }
 
+
         /**
          * The country code to filter payment methods by. This only applies to payment methods with a `country` value.
          */
@@ -388,6 +391,7 @@ public class ListBuyerPaymentMethodsRequest {
             this.country = country;
             return this;
         }
+
 
         /**
          * The currency code to filter payment methods by. This only applies to payment methods with a `currency` value.
@@ -407,6 +411,7 @@ public class ListBuyerPaymentMethodsRequest {
             return this;
         }
 
+
         /**
          * The ID of the merchant account to use for this request.
          */
@@ -424,19 +429,17 @@ public class ListBuyerPaymentMethodsRequest {
             this.merchantAccountId = merchantAccountId;
             return this;
         }
-        
+
         public ListBuyerPaymentMethodsRequest build() {
             if (orderBy == null) {
                 orderBy = _SINGLETON_VALUE_OrderBy.value();
             }
+
             return new ListBuyerPaymentMethodsRequest(
-                buyerId,
-                buyerExternalIdentifier,
-                orderBy,
-                country,
-                currency,
-                merchantAccountId);
+                buyerId, buyerExternalIdentifier, orderBy,
+                country, currency, merchantAccountId);
         }
+
 
         private static final LazySingletonValue<JsonNullable<String>> _SINGLETON_VALUE_SortBy =
                 new LazySingletonValue<>(

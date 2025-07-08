@@ -37,7 +37,6 @@ private final All all;
 public final All all() {
         return all;
     }
-
     /**
      * List transaction refunds
      * 
@@ -85,11 +84,10 @@ public final All all() {
                 .build();
         RequestOperation<ListTransactionRefundsRequest, ListTransactionRefundsResponse> operation
               = new ListTransactionRefundsOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Create transaction refund
@@ -141,10 +139,9 @@ public final All all() {
                 .transactionRefundCreate(transactionRefundCreate)
                 .build();
         RequestOperation<CreateTransactionRefundRequest, CreateTransactionRefundResponse> operation
-              = new CreateTransactionRefundOperation( sdkConfiguration);
+              = new CreateTransactionRefundOperation(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Get transaction refund
@@ -170,7 +167,8 @@ public final All all() {
     public GetTransactionRefundResponse get(
             String transactionId,
             String refundId) throws Exception {
-        return get(transactionId, refundId, JsonNullable.undefined(), Optional.empty());
+        return get(transactionId, refundId, JsonNullable.undefined(),
+            Optional.empty());
     }
 
     /**
@@ -199,8 +197,8 @@ public final All all() {
                 .build();
         RequestOperation<GetTransactionRefundRequest, GetTransactionRefundResponse> operation
               = new GetTransactionRefundOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

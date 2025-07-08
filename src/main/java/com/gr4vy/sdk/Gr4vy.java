@@ -23,12 +23,14 @@ public class Gr4vy {
      * AvailableServers contains identifiers for the servers available to the SDK.
      */
     public enum AvailableServers {
-      SANDBOX("sandbox"),
-      PRODUCTION("production");
+
+        SANDBOX("sandbox"),
+
+        PRODUCTION("production");
 
         private final String server;
 
-        private AvailableServers(String server) {
+        AvailableServers(String server) {
             this.server = server;
         }
 
@@ -42,120 +44,155 @@ public class Gr4vy {
      */
     @SuppressWarnings("serial")
     public static final Map<AvailableServers, String> SERVERS = new HashMap<>() { {
-    put(AvailableServers.SANDBOX, "https://api.sandbox.{id}.gr4vy.app");
-    put(AvailableServers.PRODUCTION, "https://api.{id}.gr4vy.app");
+        put(AvailableServers.SANDBOX, "https://api.sandbox.{id}.gr4vy.app");
+        put(AvailableServers.PRODUCTION, "https://api.{id}.gr4vy.app");
     }};
 
-    
 
     private final AccountUpdater accountUpdater;
 
+
     private final Buyers buyers;
+
 
     private final PaymentMethods paymentMethods;
 
+
     private final GiftCards giftCards;
+
 
     private final CardSchemeDefinitions cardSchemeDefinitions;
 
+
     private final DigitalWallets digitalWallets;
+
 
     private final Transactions transactions;
 
+
     private final Refunds refunds;
+
 
     private final PaymentOptions paymentOptions;
 
+
     private final PaymentServiceDefinitions paymentServiceDefinitions;
+
 
     private final PaymentServices paymentServices;
 
+
     private final AuditLogs auditLogs;
+
 
     private final Reports reports;
 
+
     private final ReportExecutions reportExecutions;
+
 
     private final CheckoutSessions checkoutSessions;
 
+
     private final MerchantAccounts merchantAccounts;
+
 
     private final Payouts payouts;
 
+
     private final PaymentLinks paymentLinks;
+
 
     public AccountUpdater accountUpdater() {
         return accountUpdater;
     }
 
+
     public Buyers buyers() {
         return buyers;
     }
+
 
     public PaymentMethods paymentMethods() {
         return paymentMethods;
     }
 
+
     public GiftCards giftCards() {
         return giftCards;
     }
+
 
     public CardSchemeDefinitions cardSchemeDefinitions() {
         return cardSchemeDefinitions;
     }
 
+
     public DigitalWallets digitalWallets() {
         return digitalWallets;
     }
+
 
     public Transactions transactions() {
         return transactions;
     }
 
+
     public Refunds refunds() {
         return refunds;
     }
+
 
     public PaymentOptions paymentOptions() {
         return paymentOptions;
     }
 
+
     public PaymentServiceDefinitions paymentServiceDefinitions() {
         return paymentServiceDefinitions;
     }
+
 
     public PaymentServices paymentServices() {
         return paymentServices;
     }
 
+
     public AuditLogs auditLogs() {
         return auditLogs;
     }
+
 
     public Reports reports() {
         return reports;
     }
 
+
     public ReportExecutions reportExecutions() {
         return reportExecutions;
     }
+
 
     public CheckoutSessions checkoutSessions() {
         return checkoutSessions;
     }
 
+
     public MerchantAccounts merchantAccounts() {
         return merchantAccounts;
     }
+
 
     public Payouts payouts() {
         return payouts;
     }
 
+
     public PaymentLinks paymentLinks() {
         return paymentLinks;
     }
-    private SDKConfiguration sdkConfiguration;
+
+    private final SDKConfiguration sdkConfiguration;
 
     /**
      * The Builder class allows the configuration of a new instance of the SDK.
@@ -253,11 +290,13 @@ public class Gr4vy {
 
         /**
          * Enables debug logging for HTTP requests and responses, including JSON body content.
-         *
+         * <p>
          * Convenience method that calls {@link HTTPClient#enableDebugLogging(boolean)}.
          * {@link SpeakeasyHTTPClient} honors this setting. If you are using a custom HTTP client,
          * it is up to the custom client to honor this setting.
+         * </p>
          *
+         * @param enabled Whether to enable debug logging.
          * @return The builder instance.
          */
         public Builder enableHTTPDebugLogging(boolean enabled) {
@@ -343,6 +382,5 @@ public class Gr4vy {
         this.merchantAccounts = new MerchantAccounts(sdkConfiguration);
         this.payouts = new Payouts(sdkConfiguration);
         this.paymentLinks = new PaymentLinks(sdkConfiguration);
-        
     }
 }

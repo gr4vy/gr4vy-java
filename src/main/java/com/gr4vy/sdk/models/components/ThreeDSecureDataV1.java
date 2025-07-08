@@ -14,8 +14,8 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class ThreeDSecureDataV1 {
 
+public class ThreeDSecureDataV1 {
     /**
      * The cardholder authentication value or AAV.
      */
@@ -101,7 +101,9 @@ public class ThreeDSecureDataV1 {
             String authenticationResponse,
             String cavvAlgorithm,
             String xid) {
-        this(cavv, eci, version, directoryResponse, JsonNullable.undefined(), authenticationResponse, cavvAlgorithm, xid);
+        this(cavv, eci, version,
+            directoryResponse, JsonNullable.undefined(), authenticationResponse,
+            cavvAlgorithm, xid);
     }
 
     /**
@@ -169,9 +171,10 @@ public class ThreeDSecureDataV1 {
         return xid;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The cardholder authentication value or AAV.
@@ -254,7 +257,6 @@ public class ThreeDSecureDataV1 {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -278,14 +280,9 @@ public class ThreeDSecureDataV1 {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            cavv,
-            eci,
-            version,
-            directoryResponse,
-            scheme,
-            authenticationResponse,
-            cavvAlgorithm,
-            xid);
+            cavv, eci, version,
+            directoryResponse, scheme, authenticationResponse,
+            cavvAlgorithm, xid);
     }
     
     @Override
@@ -300,28 +297,30 @@ public class ThreeDSecureDataV1 {
                 "cavvAlgorithm", cavvAlgorithm,
                 "xid", xid);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String cavv;
- 
+
         private String eci;
- 
+
         private String version;
- 
+
         private String directoryResponse;
- 
+
         private JsonNullable<? extends CardScheme> scheme = JsonNullable.undefined();
- 
+
         private String authenticationResponse;
- 
+
         private String cavvAlgorithm;
- 
+
         private String xid;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The cardholder authentication value or AAV.
@@ -332,6 +331,7 @@ public class ThreeDSecureDataV1 {
             return this;
         }
 
+
         /**
          * The ecommerce indicator for the 3DS transaction.
          */
@@ -340,6 +340,7 @@ public class ThreeDSecureDataV1 {
             this.eci = eci;
             return this;
         }
+
 
         /**
          * The version of 3-D Secure that was used.
@@ -350,6 +351,7 @@ public class ThreeDSecureDataV1 {
             return this;
         }
 
+
         /**
          * For 3-D Secure version 1, the enrolment response. For 3-D Secure version 2 and above, the transaction status from the `ARes`.
          */
@@ -358,6 +360,7 @@ public class ThreeDSecureDataV1 {
             this.directoryResponse = directoryResponse;
             return this;
         }
+
 
         /**
          * The scheme/brand of the card that is used for 3-D Secure.
@@ -377,6 +380,7 @@ public class ThreeDSecureDataV1 {
             return this;
         }
 
+
         /**
          * The response for the 3DS authentication call.
          */
@@ -385,6 +389,7 @@ public class ThreeDSecureDataV1 {
             this.authenticationResponse = authenticationResponse;
             return this;
         }
+
 
         /**
          * The CAVV algorithm used.
@@ -395,6 +400,7 @@ public class ThreeDSecureDataV1 {
             return this;
         }
 
+
         /**
          * The transaction identifier.
          */
@@ -403,17 +409,14 @@ public class ThreeDSecureDataV1 {
             this.xid = xid;
             return this;
         }
-        
+
         public ThreeDSecureDataV1 build() {
+
             return new ThreeDSecureDataV1(
-                cavv,
-                eci,
-                version,
-                directoryResponse,
-                scheme,
-                authenticationResponse,
-                cavvAlgorithm,
-                xid);
+                cavv, eci, version,
+                directoryResponse, scheme, authenticationResponse,
+                cavvAlgorithm, xid);
         }
+
     }
 }

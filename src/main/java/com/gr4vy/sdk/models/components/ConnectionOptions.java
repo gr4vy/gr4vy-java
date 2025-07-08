@@ -14,8 +14,8 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class ConnectionOptions {
 
+public class ConnectionOptions {
     /**
      * Custom options for `checkout-card` payment service.
      */
@@ -43,9 +43,10 @@ public class ConnectionOptions {
         return (JsonNullable<CheckoutCardConnectionOptions>) checkoutCard;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Custom options for `checkout-card` payment service.
@@ -65,7 +66,6 @@ public class ConnectionOptions {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -90,14 +90,16 @@ public class ConnectionOptions {
         return Utils.toString(ConnectionOptions.class,
                 "checkoutCard", checkoutCard);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private JsonNullable<? extends CheckoutCardConnectionOptions> checkoutCard = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Custom options for `checkout-card` payment service.
@@ -116,10 +118,12 @@ public class ConnectionOptions {
             this.checkoutCard = checkoutCard;
             return this;
         }
-        
+
         public ConnectionOptions build() {
+
             return new ConnectionOptions(
                 checkoutCard);
         }
+
     }
 }

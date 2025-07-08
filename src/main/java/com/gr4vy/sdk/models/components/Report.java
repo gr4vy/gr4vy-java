@@ -19,8 +19,8 @@ import java.time.OffsetDateTime;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class Report {
 
+public class Report {
     /**
      * Always `report`.
      */
@@ -93,6 +93,7 @@ public class Report {
     @JsonProperty("description")
     private JsonNullable<String> description;
 
+
     @JsonProperty("schedule")
     private ReportSchedule schedule;
 
@@ -107,6 +108,7 @@ public class Report {
      */
     @JsonProperty("schedule_timezone")
     private String scheduleTimezone;
+
 
     @JsonProperty("spec")
     private ReportSpec spec;
@@ -178,7 +180,11 @@ public class Report {
             boolean scheduleEnabled,
             String scheduleTimezone,
             ReportSpec spec) {
-        this(id, merchantAccountId, name, JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), createdAt, updatedAt, JsonNullable.undefined(), JsonNullable.undefined(), schedule, scheduleEnabled, scheduleTimezone, spec, JsonNullable.undefined());
+        this(id, merchantAccountId, name,
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            createdAt, updatedAt, JsonNullable.undefined(),
+            JsonNullable.undefined(), schedule, scheduleEnabled,
+            scheduleTimezone, spec, JsonNullable.undefined());
     }
 
     /**
@@ -305,9 +311,10 @@ public class Report {
         return (JsonNullable<ReportExecutionSummary>) latestExecution;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The unique ID for the report.
@@ -492,7 +499,6 @@ public class Report {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -524,21 +530,11 @@ public class Report {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            type,
-            id,
-            merchantAccountId,
-            name,
-            creatorId,
-            creatorDisplayName,
-            creatorType,
-            createdAt,
-            updatedAt,
-            nextExecutionAt,
-            description,
-            schedule,
-            scheduleEnabled,
-            scheduleTimezone,
-            spec,
+            type, id, merchantAccountId,
+            name, creatorId, creatorDisplayName,
+            creatorType, createdAt, updatedAt,
+            nextExecutionAt, description, schedule,
+            scheduleEnabled, scheduleTimezone, spec,
             latestExecution);
     }
     
@@ -562,42 +558,44 @@ public class Report {
                 "spec", spec,
                 "latestExecution", latestExecution);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String id;
- 
+
         private String merchantAccountId;
- 
+
         private String name;
- 
+
         private JsonNullable<String> creatorId = JsonNullable.undefined();
- 
+
         private JsonNullable<String> creatorDisplayName = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends ReportCreatorType> creatorType = JsonNullable.undefined();
- 
+
         private OffsetDateTime createdAt;
- 
+
         private OffsetDateTime updatedAt;
- 
+
         private JsonNullable<OffsetDateTime> nextExecutionAt = JsonNullable.undefined();
- 
+
         private JsonNullable<String> description = JsonNullable.undefined();
- 
+
         private ReportSchedule schedule;
- 
+
         private Boolean scheduleEnabled;
- 
+
         private String scheduleTimezone;
- 
+
         private ReportSpec spec;
- 
+
         private JsonNullable<? extends ReportExecutionSummary> latestExecution = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The unique ID for the report.
@@ -608,6 +606,7 @@ public class Report {
             return this;
         }
 
+
         /**
          * The merchant account ID this report belongs to.
          */
@@ -617,6 +616,7 @@ public class Report {
             return this;
         }
 
+
         /**
          * The name of the report.
          */
@@ -625,6 +625,7 @@ public class Report {
             this.name = name;
             return this;
         }
+
 
         /**
          * The ID of the user who created the report.
@@ -644,6 +645,7 @@ public class Report {
             return this;
         }
 
+
         /**
          * The display name of the report creator.
          */
@@ -661,6 +663,7 @@ public class Report {
             this.creatorDisplayName = creatorDisplayName;
             return this;
         }
+
 
         /**
          * The type of the report creator.
@@ -680,6 +683,7 @@ public class Report {
             return this;
         }
 
+
         /**
          * The date this report was created at.
          */
@@ -689,6 +693,7 @@ public class Report {
             return this;
         }
 
+
         /**
          * The date this report was last updated.
          */
@@ -697,6 +702,7 @@ public class Report {
             this.updatedAt = updatedAt;
             return this;
         }
+
 
         /**
          * The next scheduled execution time for the report.
@@ -716,6 +722,7 @@ public class Report {
             return this;
         }
 
+
         /**
          * A description of the report.
          */
@@ -734,11 +741,13 @@ public class Report {
             return this;
         }
 
+
         public Builder schedule(ReportSchedule schedule) {
             Utils.checkNotNull(schedule, "schedule");
             this.schedule = schedule;
             return this;
         }
+
 
         /**
          * Whether the report schedule is enabled.
@@ -749,6 +758,7 @@ public class Report {
             return this;
         }
 
+
         /**
          * The timezone for the report schedule.
          */
@@ -758,11 +768,13 @@ public class Report {
             return this;
         }
 
+
         public Builder spec(ReportSpec spec) {
             Utils.checkNotNull(spec, "spec");
             this.spec = spec;
             return this;
         }
+
 
         /**
          * The latest execution summary for the report.
@@ -781,25 +793,17 @@ public class Report {
             this.latestExecution = latestExecution;
             return this;
         }
-        
+
         public Report build() {
+
             return new Report(
-                id,
-                merchantAccountId,
-                name,
-                creatorId,
-                creatorDisplayName,
-                creatorType,
-                createdAt,
-                updatedAt,
-                nextExecutionAt,
-                description,
-                schedule,
-                scheduleEnabled,
-                scheduleTimezone,
-                spec,
-                latestExecution);
+                id, merchantAccountId, name,
+                creatorId, creatorDisplayName, creatorType,
+                createdAt, updatedAt, nextExecutionAt,
+                description, schedule, scheduleEnabled,
+                scheduleTimezone, spec, latestExecution);
         }
+
 
         private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_Type =
                 new LazySingletonValue<>(

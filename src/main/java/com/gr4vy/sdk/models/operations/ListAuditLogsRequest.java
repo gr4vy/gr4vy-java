@@ -17,8 +17,8 @@ import java.lang.SuppressWarnings;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class ListAuditLogsRequest {
 
+public class ListAuditLogsRequest {
     /**
      * A pointer to the page of results to return.
      */
@@ -78,7 +78,8 @@ public class ListAuditLogsRequest {
     }
     
     public ListAuditLogsRequest() {
-        this(JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
+        this(JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
     }
 
     /**
@@ -130,9 +131,10 @@ public class ListAuditLogsRequest {
         return merchantAccountId;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * A pointer to the page of results to return.
@@ -160,6 +162,7 @@ public class ListAuditLogsRequest {
         this.limit = Optional.ofNullable(limit);
         return this;
     }
+
 
     /**
      * The maximum number of items that are at returned.
@@ -242,7 +245,6 @@ public class ListAuditLogsRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -264,12 +266,8 @@ public class ListAuditLogsRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            cursor,
-            limit,
-            action,
-            userId,
-            resourceType,
-            merchantAccountId);
+            cursor, limit, action,
+            userId, resourceType, merchantAccountId);
     }
     
     @Override
@@ -282,24 +280,26 @@ public class ListAuditLogsRequest {
                 "resourceType", resourceType,
                 "merchantAccountId", merchantAccountId);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private JsonNullable<String> cursor = JsonNullable.undefined();
- 
+
         private Optional<Long> limit;
- 
+
         private JsonNullable<? extends AuditLogAction> action = JsonNullable.undefined();
- 
+
         private JsonNullable<String> userId = JsonNullable.undefined();
- 
+
         private JsonNullable<String> resourceType = JsonNullable.undefined();
- 
+
         private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * A pointer to the page of results to return.
@@ -319,6 +319,7 @@ public class ListAuditLogsRequest {
             return this;
         }
 
+
         /**
          * The maximum number of items that are at returned.
          */
@@ -336,6 +337,7 @@ public class ListAuditLogsRequest {
             this.limit = limit;
             return this;
         }
+
 
         /**
          * Filters the results to only the items for which the `audit-log` has an `action` that matches this value.
@@ -355,6 +357,7 @@ public class ListAuditLogsRequest {
             return this;
         }
 
+
         /**
          * Filters the results to only the items for which the `user` has an `id` that matches this value.
          */
@@ -372,6 +375,7 @@ public class ListAuditLogsRequest {
             this.userId = userId;
             return this;
         }
+
 
         /**
          * Filters the results to only the items for which the `audit-log` has a `resource` that matches this type value.
@@ -391,6 +395,7 @@ public class ListAuditLogsRequest {
             return this;
         }
 
+
         /**
          * The ID of the merchant account to use for this request.
          */
@@ -408,19 +413,17 @@ public class ListAuditLogsRequest {
             this.merchantAccountId = merchantAccountId;
             return this;
         }
-        
+
         public ListAuditLogsRequest build() {
             if (limit == null) {
                 limit = _SINGLETON_VALUE_Limit.value();
             }
+
             return new ListAuditLogsRequest(
-                cursor,
-                limit,
-                action,
-                userId,
-                resourceType,
-                merchantAccountId);
+                cursor, limit, action,
+                userId, resourceType, merchantAccountId);
         }
+
 
         private static final LazySingletonValue<Optional<Long>> _SINGLETON_VALUE_Limit =
                 new LazySingletonValue<>(

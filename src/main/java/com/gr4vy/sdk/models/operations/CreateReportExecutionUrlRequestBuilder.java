@@ -60,7 +60,7 @@ public class CreateReportExecutionUrlRequestBuilder {
     public CreateReportExecutionUrlResponse call() throws Exception {
         
         RequestOperation<CreateReportExecutionUrlRequest, CreateReportExecutionUrlResponse> operation
-              = new CreateReportExecutionUrlOperation( sdkConfiguration);
+              = new CreateReportExecutionUrlOperation(sdkConfiguration);
         CreateReportExecutionUrlRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

@@ -10,13 +10,14 @@ import com.gr4vy.sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 
-public class TaxId {
 
+public class TaxId {
     /**
      * The tax ID for the buyer.
      */
     @JsonProperty("value")
     private String value;
+
 
     @JsonProperty("kind")
     private TaxIdKind kind;
@@ -44,9 +45,10 @@ public class TaxId {
         return kind;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The tax ID for the buyer.
@@ -63,7 +65,6 @@ public class TaxId {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -81,8 +82,7 @@ public class TaxId {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            value,
-            kind);
+            value, kind);
     }
     
     @Override
@@ -91,16 +91,18 @@ public class TaxId {
                 "value", value,
                 "kind", kind);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String value;
- 
+
         private TaxIdKind kind;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The tax ID for the buyer.
@@ -111,16 +113,18 @@ public class TaxId {
             return this;
         }
 
+
         public Builder kind(TaxIdKind kind) {
             Utils.checkNotNull(kind, "kind");
             this.kind = kind;
             return this;
         }
-        
+
         public TaxId build() {
+
             return new TaxId(
-                value,
-                kind);
+                value, kind);
         }
+
     }
 }

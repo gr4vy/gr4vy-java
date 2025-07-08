@@ -19,8 +19,8 @@ import java.util.Map;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class PaymentServiceDefinition {
 
+public class PaymentServiceDefinition {
     /**
      * The definition ID of the payment service that can be configured. This is the underlying provider followed by a dash followed by the method.
      */
@@ -39,6 +39,7 @@ public class PaymentServiceDefinition {
      */
     @JsonProperty("display_name")
     private String displayName;
+
 
     @JsonProperty("method")
     private Method method;
@@ -67,6 +68,7 @@ public class PaymentServiceDefinition {
     @JsonProperty("supported_countries")
     private List<String> supportedCountries;
 
+
     @JsonProperty("mode")
     private Mode mode;
 
@@ -88,6 +90,7 @@ public class PaymentServiceDefinition {
      */
     @JsonProperty("required_checkout_fields")
     private List<RequiredCheckoutFields> requiredCheckoutFields;
+
 
     @JsonProperty("configuration")
     private PaymentServiceConfiguration configuration;
@@ -116,6 +119,7 @@ public class PaymentServiceDefinition {
         Utils.checkNotNull(mode, "mode");
         Utils.checkNotNull(iconUrl, "iconUrl");
         supportedFeatures = Utils.emptyMapIfNull(supportedFeatures);
+        Utils.checkNotNull(supportedFeatures, "supportedFeatures");
         Utils.checkNotNull(requiredCheckoutFields, "requiredCheckoutFields");
         Utils.checkNotNull(configuration, "configuration");
         this.id = id;
@@ -145,7 +149,10 @@ public class PaymentServiceDefinition {
             Map<String, Boolean> supportedFeatures,
             List<RequiredCheckoutFields> requiredCheckoutFields,
             PaymentServiceConfiguration configuration) {
-        this(id, displayName, method, fields, reportingFields, supportedCurrencies, supportedCountries, mode, JsonNullable.undefined(), supportedFeatures, requiredCheckoutFields, configuration);
+        this(id, displayName, method,
+            fields, reportingFields, supportedCurrencies,
+            supportedCountries, mode, JsonNullable.undefined(),
+            supportedFeatures, requiredCheckoutFields, configuration);
     }
 
     /**
@@ -243,9 +250,10 @@ public class PaymentServiceDefinition {
         return configuration;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The definition ID of the payment service that can be configured. This is the underlying provider followed by a dash followed by the method.
@@ -355,7 +363,6 @@ public class PaymentServiceDefinition {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -384,18 +391,10 @@ public class PaymentServiceDefinition {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            id,
-            type,
-            displayName,
-            method,
-            fields,
-            reportingFields,
-            supportedCurrencies,
-            supportedCountries,
-            mode,
-            iconUrl,
-            supportedFeatures,
-            requiredCheckoutFields,
+            id, type, displayName,
+            method, fields, reportingFields,
+            supportedCurrencies, supportedCountries, mode,
+            iconUrl, supportedFeatures, requiredCheckoutFields,
             configuration);
     }
     
@@ -416,36 +415,38 @@ public class PaymentServiceDefinition {
                 "requiredCheckoutFields", requiredCheckoutFields,
                 "configuration", configuration);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String id;
- 
+
         private String displayName;
- 
+
         private Method method;
- 
+
         private List<DefinitionField> fields;
- 
+
         private List<DefinitionField> reportingFields;
- 
+
         private List<String> supportedCurrencies;
- 
+
         private List<String> supportedCountries;
- 
+
         private Mode mode;
- 
+
         private JsonNullable<String> iconUrl = JsonNullable.undefined();
- 
+
         private Map<String, Boolean> supportedFeatures;
- 
+
         private List<RequiredCheckoutFields> requiredCheckoutFields;
- 
+
         private PaymentServiceConfiguration configuration;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The definition ID of the payment service that can be configured. This is the underlying provider followed by a dash followed by the method.
@@ -456,6 +457,7 @@ public class PaymentServiceDefinition {
             return this;
         }
 
+
         /**
          * A human friendly name for this service.
          */
@@ -465,11 +467,13 @@ public class PaymentServiceDefinition {
             return this;
         }
 
+
         public Builder method(Method method) {
             Utils.checkNotNull(method, "method");
             this.method = method;
             return this;
         }
+
 
         /**
          * A list of credentials and related fields which can be configured for this service.
@@ -480,6 +484,7 @@ public class PaymentServiceDefinition {
             return this;
         }
 
+
         /**
          * A list of reporting fields which can be configured for this service.
          */
@@ -488,6 +493,7 @@ public class PaymentServiceDefinition {
             this.reportingFields = reportingFields;
             return this;
         }
+
 
         /**
          * A list of three-letter ISO currency codes that this service supports.
@@ -498,6 +504,7 @@ public class PaymentServiceDefinition {
             return this;
         }
 
+
         /**
          * A list of two-letter ISO country codes that this service supports.
          */
@@ -507,11 +514,13 @@ public class PaymentServiceDefinition {
             return this;
         }
 
+
         public Builder mode(Mode mode) {
             Utils.checkNotNull(mode, "mode");
             this.mode = mode;
             return this;
         }
+
 
         /**
          * An icon to display for the payment service.
@@ -531,6 +540,7 @@ public class PaymentServiceDefinition {
             return this;
         }
 
+
         /**
          * Features supported by the payment service.
          */
@@ -539,6 +549,7 @@ public class PaymentServiceDefinition {
             this.supportedFeatures = supportedFeatures;
             return this;
         }
+
 
         /**
          * A list of condition that define when some fields must be provided with a transaction request.
@@ -549,27 +560,22 @@ public class PaymentServiceDefinition {
             return this;
         }
 
+
         public Builder configuration(PaymentServiceConfiguration configuration) {
             Utils.checkNotNull(configuration, "configuration");
             this.configuration = configuration;
             return this;
         }
-        
+
         public PaymentServiceDefinition build() {
+
             return new PaymentServiceDefinition(
-                id,
-                displayName,
-                method,
-                fields,
-                reportingFields,
-                supportedCurrencies,
-                supportedCountries,
-                mode,
-                iconUrl,
-                supportedFeatures,
-                requiredCheckoutFields,
-                configuration);
+                id, displayName, method,
+                fields, reportingFields, supportedCurrencies,
+                supportedCountries, mode, iconUrl,
+                supportedFeatures, requiredCheckoutFields, configuration);
         }
+
 
         private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_Type =
                 new LazySingletonValue<>(

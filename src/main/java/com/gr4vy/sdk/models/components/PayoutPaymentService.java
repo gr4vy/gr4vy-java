@@ -16,8 +16,8 @@ import java.lang.String;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class PayoutPaymentService {
 
+public class PayoutPaymentService {
     /**
      * Always `payment-service`.
      */
@@ -112,9 +112,10 @@ public class PayoutPaymentService {
         return displayName;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The ID for the payout service.
@@ -161,7 +162,6 @@ public class PayoutPaymentService {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -182,11 +182,8 @@ public class PayoutPaymentService {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            type,
-            id,
-            method,
-            paymentServiceDefinitionId,
-            displayName);
+            type, id, method,
+            paymentServiceDefinitionId, displayName);
     }
     
     @Override
@@ -198,18 +195,20 @@ public class PayoutPaymentService {
                 "paymentServiceDefinitionId", paymentServiceDefinitionId,
                 "displayName", displayName);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private JsonNullable<String> id = JsonNullable.undefined();
- 
+
         private String paymentServiceDefinitionId;
- 
+
         private JsonNullable<String> displayName = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The ID for the payout service.
@@ -229,6 +228,7 @@ public class PayoutPaymentService {
             return this;
         }
 
+
         /**
          * The ID of the connection used for this payout.
          */
@@ -237,6 +237,7 @@ public class PayoutPaymentService {
             this.paymentServiceDefinitionId = paymentServiceDefinitionId;
             return this;
         }
+
 
         /**
          * The display name of the connection used for this payout.
@@ -255,13 +256,13 @@ public class PayoutPaymentService {
             this.displayName = displayName;
             return this;
         }
-        
+
         public PayoutPaymentService build() {
+
             return new PayoutPaymentService(
-                id,
-                paymentServiceDefinitionId,
-                displayName);
+                id, paymentServiceDefinitionId, displayName);
         }
+
 
         private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_Type =
                 new LazySingletonValue<>(

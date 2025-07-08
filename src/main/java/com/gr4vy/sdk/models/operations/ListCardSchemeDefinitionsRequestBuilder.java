@@ -64,8 +64,8 @@ public class ListCardSchemeDefinitionsRequestBuilder {
 
         RequestOperation<ListCardSchemeDefinitionsRequest, ListCardSchemeDefinitionsResponse> operation
               = new ListCardSchemeDefinitionsOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         ListCardSchemeDefinitionsRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

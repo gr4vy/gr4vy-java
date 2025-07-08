@@ -22,7 +22,6 @@ import org.openapitools.jackson.nullable.JsonNullable;
  * <p>Create a Google Pay transaction with a device token.
  */
 public class GooglePayPaymentMethodCreate {
-
     /**
      * The external identifier of the buyer to create a payment for.
      */
@@ -125,7 +124,9 @@ public class GooglePayPaymentMethodCreate {
     
     public GooglePayPaymentMethodCreate(
             Token token) {
-        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), token, JsonNullable.undefined());
+        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), token, JsonNullable.undefined());
     }
 
     /**
@@ -209,9 +210,10 @@ public class GooglePayPaymentMethodCreate {
         return (JsonNullable<GooglePayAssuranceDetails>) assuranceDetails;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The external identifier of the buyer to create a payment for.
@@ -366,7 +368,6 @@ public class GooglePayPaymentMethodCreate {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -392,15 +393,9 @@ public class GooglePayPaymentMethodCreate {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            buyerExternalIdentifier,
-            buyerId,
-            cardholderName,
-            redirectUrl,
-            cardSuffix,
-            cardScheme,
-            cardType,
-            method,
-            token,
+            buyerExternalIdentifier, buyerId, cardholderName,
+            redirectUrl, cardSuffix, cardScheme,
+            cardType, method, token,
             assuranceDetails);
     }
     
@@ -418,30 +413,32 @@ public class GooglePayPaymentMethodCreate {
                 "token", token,
                 "assuranceDetails", assuranceDetails);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private JsonNullable<String> buyerExternalIdentifier = JsonNullable.undefined();
- 
+
         private JsonNullable<String> buyerId = JsonNullable.undefined();
- 
+
         private JsonNullable<String> cardholderName = JsonNullable.undefined();
- 
+
         private JsonNullable<String> redirectUrl = JsonNullable.undefined();
- 
+
         private JsonNullable<String> cardSuffix = JsonNullable.undefined();
- 
+
         private JsonNullable<String> cardScheme = JsonNullable.undefined();
- 
+
         private JsonNullable<String> cardType = JsonNullable.undefined();
- 
+
         private Token token;
- 
+
         private JsonNullable<? extends GooglePayAssuranceDetails> assuranceDetails = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The external identifier of the buyer to create a payment for.
@@ -461,6 +458,7 @@ public class GooglePayPaymentMethodCreate {
             return this;
         }
 
+
         /**
          * The ID of the buyer to retrieve billing details for.
          */
@@ -478,6 +476,7 @@ public class GooglePayPaymentMethodCreate {
             this.buyerId = buyerId;
             return this;
         }
+
 
         /**
          * The card holder name associated to the original card for the token.
@@ -497,6 +496,7 @@ public class GooglePayPaymentMethodCreate {
             return this;
         }
 
+
         /**
          * The URL to redirect a user back to after the complete 3DS in browser.
          */
@@ -514,6 +514,7 @@ public class GooglePayPaymentMethodCreate {
             this.redirectUrl = redirectUrl;
             return this;
         }
+
 
         /**
          * The last 4 digits of the original card used to generate the token.
@@ -533,6 +534,7 @@ public class GooglePayPaymentMethodCreate {
             return this;
         }
 
+
         /**
          * The original card scheme for which the token was generated.
          */
@@ -550,6 +552,7 @@ public class GooglePayPaymentMethodCreate {
             this.cardScheme = cardScheme;
             return this;
         }
+
 
         /**
          * The payment scheme of the card.
@@ -569,6 +572,7 @@ public class GooglePayPaymentMethodCreate {
             return this;
         }
 
+
         /**
          * The opaque token as received from the Google Pay JS library. This format may change between JS library versions.
          */
@@ -577,6 +581,7 @@ public class GooglePayPaymentMethodCreate {
             this.token = token;
             return this;
         }
+
 
         /**
          * The assurance details provided by Google Pay
@@ -595,19 +600,15 @@ public class GooglePayPaymentMethodCreate {
             this.assuranceDetails = assuranceDetails;
             return this;
         }
-        
+
         public GooglePayPaymentMethodCreate build() {
+
             return new GooglePayPaymentMethodCreate(
-                buyerExternalIdentifier,
-                buyerId,
-                cardholderName,
-                redirectUrl,
-                cardSuffix,
-                cardScheme,
-                cardType,
-                token,
-                assuranceDetails);
+                buyerExternalIdentifier, buyerId, cardholderName,
+                redirectUrl, cardSuffix, cardScheme,
+                cardType, token, assuranceDetails);
         }
+
 
         private static final LazySingletonValue<String> _SINGLETON_VALUE_Method =
                 new LazySingletonValue<>(

@@ -63,7 +63,7 @@ public class CreatePaymentServiceSessionRequestBuilder {
     public CreatePaymentServiceSessionResponse call() throws Exception {
         
         RequestOperation<CreatePaymentServiceSessionRequest, CreatePaymentServiceSessionResponse> operation
-              = new CreatePaymentServiceSessionOperation( sdkConfiguration);
+              = new CreatePaymentServiceSessionOperation(sdkConfiguration);
         CreatePaymentServiceSessionRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

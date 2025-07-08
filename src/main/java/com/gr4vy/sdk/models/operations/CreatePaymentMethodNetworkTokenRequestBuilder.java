@@ -61,7 +61,7 @@ public class CreatePaymentMethodNetworkTokenRequestBuilder {
     public CreatePaymentMethodNetworkTokenResponse call() throws Exception {
         
         RequestOperation<CreatePaymentMethodNetworkTokenRequest, CreatePaymentMethodNetworkTokenResponse> operation
-              = new CreatePaymentMethodNetworkTokenOperation( sdkConfiguration);
+              = new CreatePaymentMethodNetworkTokenOperation(sdkConfiguration);
         CreatePaymentMethodNetworkTokenRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

@@ -69,7 +69,7 @@ public class CreatePaymentMethodNetworkTokenCryptogramRequestBuilder {
     public CreatePaymentMethodNetworkTokenCryptogramResponse call() throws Exception {
         
         RequestOperation<CreatePaymentMethodNetworkTokenCryptogramRequest, CreatePaymentMethodNetworkTokenCryptogramResponse> operation
-              = new CreatePaymentMethodNetworkTokenCryptogramOperation( sdkConfiguration);
+              = new CreatePaymentMethodNetworkTokenCryptogramOperation(sdkConfiguration);
         CreatePaymentMethodNetworkTokenCryptogramRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

@@ -27,7 +27,6 @@ public class Settlements {
     Settlements(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-
     /**
      * Get transaction settlement
      * 
@@ -52,7 +51,8 @@ public class Settlements {
     public GetTransactionSettlementResponse get(
             String transactionId,
             String settlementId) throws Exception {
-        return get(transactionId, settlementId, JsonNullable.undefined(), Optional.empty());
+        return get(transactionId, settlementId, JsonNullable.undefined(),
+            Optional.empty());
     }
 
     /**
@@ -81,11 +81,10 @@ public class Settlements {
                 .build();
         RequestOperation<GetTransactionSettlementRequest, GetTransactionSettlementResponse> operation
               = new GetTransactionSettlementOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * List transaction settlements
@@ -134,8 +133,8 @@ public class Settlements {
                 .build();
         RequestOperation<ListTransactionSettlementsRequest, ListTransactionSettlementsResponse> operation
               = new ListTransactionSettlementsOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

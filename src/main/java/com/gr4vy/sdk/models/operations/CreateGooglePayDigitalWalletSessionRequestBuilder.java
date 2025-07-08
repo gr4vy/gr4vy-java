@@ -53,7 +53,7 @@ public class CreateGooglePayDigitalWalletSessionRequestBuilder {
     public CreateGooglePayDigitalWalletSessionResponse call() throws Exception {
         
         RequestOperation<CreateGooglePayDigitalWalletSessionRequest, CreateGooglePayDigitalWalletSessionResponse> operation
-              = new CreateGooglePayDigitalWalletSessionOperation( sdkConfiguration);
+              = new CreateGooglePayDigitalWalletSessionOperation(sdkConfiguration);
         CreateGooglePayDigitalWalletSessionRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

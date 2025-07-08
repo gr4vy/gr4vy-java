@@ -12,8 +12,8 @@ import java.lang.Override;
 import java.lang.String;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class CreatePaymentServiceRequest {
 
+public class CreatePaymentServiceRequest {
     /**
      * the ID of the payment service
      */
@@ -25,6 +25,7 @@ public class CreatePaymentServiceRequest {
      */
     @SpeakeasyMetadata("header:style=simple,explode=false,name=x-gr4vy-merchant-account-id")
     private JsonNullable<String> merchantAccountId;
+
 
     @SpeakeasyMetadata("request:mediaType=application/json")
     private PaymentServiceUpdate paymentServiceUpdate;
@@ -69,9 +70,10 @@ public class CreatePaymentServiceRequest {
         return paymentServiceUpdate;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * the ID of the payment service
@@ -106,7 +108,6 @@ public class CreatePaymentServiceRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -125,9 +126,7 @@ public class CreatePaymentServiceRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            paymentServiceId,
-            merchantAccountId,
-            paymentServiceUpdate);
+            paymentServiceId, merchantAccountId, paymentServiceUpdate);
     }
     
     @Override
@@ -137,18 +136,20 @@ public class CreatePaymentServiceRequest {
                 "merchantAccountId", merchantAccountId,
                 "paymentServiceUpdate", paymentServiceUpdate);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String paymentServiceId;
- 
+
         private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
- 
+
         private PaymentServiceUpdate paymentServiceUpdate;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * the ID of the payment service
@@ -158,6 +159,7 @@ public class CreatePaymentServiceRequest {
             this.paymentServiceId = paymentServiceId;
             return this;
         }
+
 
         /**
          * The ID of the merchant account to use for this request.
@@ -177,17 +179,18 @@ public class CreatePaymentServiceRequest {
             return this;
         }
 
+
         public Builder paymentServiceUpdate(PaymentServiceUpdate paymentServiceUpdate) {
             Utils.checkNotNull(paymentServiceUpdate, "paymentServiceUpdate");
             this.paymentServiceUpdate = paymentServiceUpdate;
             return this;
         }
-        
+
         public CreatePaymentServiceRequest build() {
+
             return new CreatePaymentServiceRequest(
-                paymentServiceId,
-                merchantAccountId,
-                paymentServiceUpdate);
+                paymentServiceId, merchantAccountId, paymentServiceUpdate);
         }
+
     }
 }

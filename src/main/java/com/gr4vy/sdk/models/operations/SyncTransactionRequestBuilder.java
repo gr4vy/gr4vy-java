@@ -52,7 +52,7 @@ public class SyncTransactionRequestBuilder {
     public SyncTransactionResponse call() throws Exception {
         
         RequestOperation<SyncTransactionRequest, SyncTransactionResponse> operation
-              = new SyncTransactionOperation( sdkConfiguration);
+              = new SyncTransactionOperation(sdkConfiguration);
         SyncTransactionRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

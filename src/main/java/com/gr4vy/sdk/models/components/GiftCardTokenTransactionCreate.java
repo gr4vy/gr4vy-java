@@ -11,8 +11,8 @@ import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
 
-public class GiftCardTokenTransactionCreate {
 
+public class GiftCardTokenTransactionCreate {
     /**
      * The ID for the gift card to charge.
      */
@@ -51,9 +51,10 @@ public class GiftCardTokenTransactionCreate {
         return amount;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The ID for the gift card to charge.
@@ -73,7 +74,6 @@ public class GiftCardTokenTransactionCreate {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -91,8 +91,7 @@ public class GiftCardTokenTransactionCreate {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            id,
-            amount);
+            id, amount);
     }
     
     @Override
@@ -101,16 +100,18 @@ public class GiftCardTokenTransactionCreate {
                 "id", id,
                 "amount", amount);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String id;
- 
+
         private Long amount;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The ID for the gift card to charge.
@@ -121,6 +122,7 @@ public class GiftCardTokenTransactionCreate {
             return this;
         }
 
+
         /**
          * The monetary amount for this transaction to charge against the gift card, in the smallest currency unit (for example, cents or pence).
          */
@@ -129,11 +131,12 @@ public class GiftCardTokenTransactionCreate {
             this.amount = amount;
             return this;
         }
-        
+
         public GiftCardTokenTransactionCreate build() {
+
             return new GiftCardTokenTransactionCreate(
-                id,
-                amount);
+                id, amount);
         }
+
     }
 }

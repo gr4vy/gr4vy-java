@@ -12,8 +12,8 @@ import java.lang.Override;
 import java.lang.String;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class UpdateDigitalWalletRequest {
 
+public class UpdateDigitalWalletRequest {
     /**
      * The ID of the digital wallet to edit.
      */
@@ -25,6 +25,7 @@ public class UpdateDigitalWalletRequest {
      */
     @SpeakeasyMetadata("header:style=simple,explode=false,name=x-gr4vy-merchant-account-id")
     private JsonNullable<String> merchantAccountId;
+
 
     @SpeakeasyMetadata("request:mediaType=application/json")
     private DigitalWalletUpdate digitalWalletUpdate;
@@ -69,9 +70,10 @@ public class UpdateDigitalWalletRequest {
         return digitalWalletUpdate;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The ID of the digital wallet to edit.
@@ -106,7 +108,6 @@ public class UpdateDigitalWalletRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -125,9 +126,7 @@ public class UpdateDigitalWalletRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            digitalWalletId,
-            merchantAccountId,
-            digitalWalletUpdate);
+            digitalWalletId, merchantAccountId, digitalWalletUpdate);
     }
     
     @Override
@@ -137,18 +136,20 @@ public class UpdateDigitalWalletRequest {
                 "merchantAccountId", merchantAccountId,
                 "digitalWalletUpdate", digitalWalletUpdate);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String digitalWalletId;
- 
+
         private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
- 
+
         private DigitalWalletUpdate digitalWalletUpdate;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The ID of the digital wallet to edit.
@@ -158,6 +159,7 @@ public class UpdateDigitalWalletRequest {
             this.digitalWalletId = digitalWalletId;
             return this;
         }
+
 
         /**
          * The ID of the merchant account to use for this request.
@@ -177,17 +179,18 @@ public class UpdateDigitalWalletRequest {
             return this;
         }
 
+
         public Builder digitalWalletUpdate(DigitalWalletUpdate digitalWalletUpdate) {
             Utils.checkNotNull(digitalWalletUpdate, "digitalWalletUpdate");
             this.digitalWalletUpdate = digitalWalletUpdate;
             return this;
         }
-        
+
         public UpdateDigitalWalletRequest build() {
+
             return new UpdateDigitalWalletRequest(
-                digitalWalletId,
-                merchantAccountId,
-                digitalWalletUpdate);
+                digitalWalletId, merchantAccountId, digitalWalletUpdate);
         }
+
     }
 }

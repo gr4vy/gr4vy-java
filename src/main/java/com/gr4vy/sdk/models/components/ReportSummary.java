@@ -17,8 +17,8 @@ import java.lang.SuppressWarnings;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class ReportSummary {
 
+public class ReportSummary {
     /**
      * Always `report`.
      */
@@ -92,7 +92,8 @@ public class ReportSummary {
             String id,
             String merchantAccountId,
             String name) {
-        this(id, merchantAccountId, name, JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
+        this(id, merchantAccountId, name,
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
     }
 
     /**
@@ -152,9 +153,10 @@ public class ReportSummary {
         return (JsonNullable<ReportCreatorType>) creatorType;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The unique ID for the report.
@@ -237,7 +239,6 @@ public class ReportSummary {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -260,12 +261,8 @@ public class ReportSummary {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            type,
-            id,
-            merchantAccountId,
-            name,
-            creatorId,
-            creatorDisplayName,
+            type, id, merchantAccountId,
+            name, creatorId, creatorDisplayName,
             creatorType);
     }
     
@@ -280,24 +277,26 @@ public class ReportSummary {
                 "creatorDisplayName", creatorDisplayName,
                 "creatorType", creatorType);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String id;
- 
+
         private String merchantAccountId;
- 
+
         private String name;
- 
+
         private JsonNullable<String> creatorId = JsonNullable.undefined();
- 
+
         private JsonNullable<String> creatorDisplayName = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends ReportCreatorType> creatorType = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The unique ID for the report.
@@ -308,6 +307,7 @@ public class ReportSummary {
             return this;
         }
 
+
         /**
          * The merchant account ID this report belongs to.
          */
@@ -317,6 +317,7 @@ public class ReportSummary {
             return this;
         }
 
+
         /**
          * The name of the report.
          */
@@ -325,6 +326,7 @@ public class ReportSummary {
             this.name = name;
             return this;
         }
+
 
         /**
          * The ID of the user who created the report.
@@ -344,6 +346,7 @@ public class ReportSummary {
             return this;
         }
 
+
         /**
          * The display name of the report creator.
          */
@@ -362,6 +365,7 @@ public class ReportSummary {
             return this;
         }
 
+
         /**
          * The type of the report creator.
          */
@@ -379,16 +383,14 @@ public class ReportSummary {
             this.creatorType = creatorType;
             return this;
         }
-        
+
         public ReportSummary build() {
+
             return new ReportSummary(
-                id,
-                merchantAccountId,
-                name,
-                creatorId,
-                creatorDisplayName,
-                creatorType);
+                id, merchantAccountId, name,
+                creatorId, creatorDisplayName, creatorType);
         }
+
 
         private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_Type =
                 new LazySingletonValue<>(

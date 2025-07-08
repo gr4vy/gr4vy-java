@@ -16,7 +16,6 @@ import java.lang.String;
  * <p>The number and pin for a gift card to fetch a balance for.
  */
 public class GiftCardRequest {
-
     /**
      * The 16-19 digit number for the gift card.
      */
@@ -55,9 +54,10 @@ public class GiftCardRequest {
         return pin;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The 16-19 digit number for the gift card.
@@ -77,7 +77,6 @@ public class GiftCardRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -95,8 +94,7 @@ public class GiftCardRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            number,
-            pin);
+            number, pin);
     }
     
     @Override
@@ -105,16 +103,18 @@ public class GiftCardRequest {
                 "number", number,
                 "pin", pin);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String number;
- 
+
         private String pin;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The 16-19 digit number for the gift card.
@@ -125,6 +125,7 @@ public class GiftCardRequest {
             return this;
         }
 
+
         /**
          * The PIN for this gift card.
          */
@@ -133,11 +134,12 @@ public class GiftCardRequest {
             this.pin = pin;
             return this;
         }
-        
+
         public GiftCardRequest build() {
+
             return new GiftCardRequest(
-                number,
-                pin);
+                number, pin);
         }
+
     }
 }

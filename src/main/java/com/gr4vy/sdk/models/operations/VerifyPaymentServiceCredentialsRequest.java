@@ -12,13 +12,14 @@ import java.lang.Override;
 import java.lang.String;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class VerifyPaymentServiceCredentialsRequest {
 
+public class VerifyPaymentServiceCredentialsRequest {
     /**
      * The ID of the merchant account to use for this request.
      */
     @SpeakeasyMetadata("header:style=simple,explode=false,name=x-gr4vy-merchant-account-id")
     private JsonNullable<String> merchantAccountId;
+
 
     @SpeakeasyMetadata("request:mediaType=application/json")
     private VerifyCredentials verifyCredentials;
@@ -51,9 +52,10 @@ public class VerifyPaymentServiceCredentialsRequest {
         return verifyCredentials;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The ID of the merchant account to use for this request.
@@ -79,7 +81,6 @@ public class VerifyPaymentServiceCredentialsRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -97,8 +98,7 @@ public class VerifyPaymentServiceCredentialsRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            merchantAccountId,
-            verifyCredentials);
+            merchantAccountId, verifyCredentials);
     }
     
     @Override
@@ -107,16 +107,18 @@ public class VerifyPaymentServiceCredentialsRequest {
                 "merchantAccountId", merchantAccountId,
                 "verifyCredentials", verifyCredentials);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
- 
+
         private VerifyCredentials verifyCredentials;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The ID of the merchant account to use for this request.
@@ -136,16 +138,18 @@ public class VerifyPaymentServiceCredentialsRequest {
             return this;
         }
 
+
         public Builder verifyCredentials(VerifyCredentials verifyCredentials) {
             Utils.checkNotNull(verifyCredentials, "verifyCredentials");
             this.verifyCredentials = verifyCredentials;
             return this;
         }
-        
+
         public VerifyPaymentServiceCredentialsRequest build() {
+
             return new VerifyPaymentServiceCredentialsRequest(
-                merchantAccountId,
-                verifyCredentials);
+                merchantAccountId, verifyCredentials);
         }
+
     }
 }

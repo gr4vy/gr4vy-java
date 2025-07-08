@@ -25,7 +25,6 @@ import org.openapitools.jackson.nullable.JsonNullable;
  * <p>Represents a summary of a merchant.
  */
 public class PayoutMerchantSummary {
-
     /**
      * Always `merchant`.
      */
@@ -109,7 +108,9 @@ public class PayoutMerchantSummary {
             String phoneNumber,
             String url,
             String merchantCategoryCode) {
-        this(name, identificationNumber, phoneNumber, url, JsonNullable.undefined(), merchantCategoryCode, JsonNullable.undefined());
+        this(name, identificationNumber, phoneNumber,
+            url, JsonNullable.undefined(), merchantCategoryCode,
+            JsonNullable.undefined());
     }
 
     /**
@@ -177,9 +178,10 @@ public class PayoutMerchantSummary {
         return (JsonNullable<Address>) address;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The name of the merchant.
@@ -262,7 +264,6 @@ public class PayoutMerchantSummary {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -286,14 +287,9 @@ public class PayoutMerchantSummary {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            type,
-            name,
-            identificationNumber,
-            phoneNumber,
-            url,
-            statementDescriptor,
-            merchantCategoryCode,
-            address);
+            type, name, identificationNumber,
+            phoneNumber, url, statementDescriptor,
+            merchantCategoryCode, address);
     }
     
     @Override
@@ -308,26 +304,28 @@ public class PayoutMerchantSummary {
                 "merchantCategoryCode", merchantCategoryCode,
                 "address", address);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String name;
- 
+
         private String identificationNumber;
- 
+
         private String phoneNumber;
- 
+
         private String url;
- 
+
         private JsonNullable<String> statementDescriptor = JsonNullable.undefined();
- 
+
         private String merchantCategoryCode;
- 
+
         private JsonNullable<? extends Address> address = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The name of the merchant.
@@ -338,6 +336,7 @@ public class PayoutMerchantSummary {
             return this;
         }
 
+
         /**
          * Unique value which identifies a merchant for processing transactions, also known as a MID.
          */
@@ -346,6 +345,7 @@ public class PayoutMerchantSummary {
             this.identificationNumber = identificationNumber;
             return this;
         }
+
 
         /**
          * The phone number for the merchant which should be formatted according to the E164 number standard.
@@ -356,6 +356,7 @@ public class PayoutMerchantSummary {
             return this;
         }
 
+
         /**
          * Merchant website URL.
          */
@@ -364,6 +365,7 @@ public class PayoutMerchantSummary {
             this.url = url;
             return this;
         }
+
 
         /**
          * Value to explain charges or payments on bank statements.
@@ -383,6 +385,7 @@ public class PayoutMerchantSummary {
             return this;
         }
 
+
         /**
          * Merchant classification for the type of goods or services it provides.
          */
@@ -391,6 +394,7 @@ public class PayoutMerchantSummary {
             this.merchantCategoryCode = merchantCategoryCode;
             return this;
         }
+
 
         /**
          * The address for the merchant.
@@ -409,17 +413,15 @@ public class PayoutMerchantSummary {
             this.address = address;
             return this;
         }
-        
+
         public PayoutMerchantSummary build() {
+
             return new PayoutMerchantSummary(
-                name,
-                identificationNumber,
-                phoneNumber,
-                url,
-                statementDescriptor,
-                merchantCategoryCode,
+                name, identificationNumber, phoneNumber,
+                url, statementDescriptor, merchantCategoryCode,
                 address);
         }
+
 
         private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_Type =
                 new LazySingletonValue<>(

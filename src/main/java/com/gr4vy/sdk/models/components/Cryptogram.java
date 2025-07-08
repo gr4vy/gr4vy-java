@@ -15,8 +15,8 @@ import java.lang.Override;
 import java.lang.String;
 import java.util.Optional;
 
-public class Cryptogram {
 
+public class Cryptogram {
     /**
      * Always `network-token-cryptogram`.
      */
@@ -54,9 +54,10 @@ public class Cryptogram {
         return cryptogram;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The cryptogram of the network token.
@@ -67,7 +68,6 @@ public class Cryptogram {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -85,8 +85,7 @@ public class Cryptogram {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            type,
-            cryptogram);
+            type, cryptogram);
     }
     
     @Override
@@ -95,14 +94,16 @@ public class Cryptogram {
                 "type", type,
                 "cryptogram", cryptogram);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String cryptogram;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The cryptogram of the network token.
@@ -112,11 +113,13 @@ public class Cryptogram {
             this.cryptogram = cryptogram;
             return this;
         }
-        
+
         public Cryptogram build() {
+
             return new Cryptogram(
                 cryptogram);
         }
+
 
         private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_Type =
                 new LazySingletonValue<>(

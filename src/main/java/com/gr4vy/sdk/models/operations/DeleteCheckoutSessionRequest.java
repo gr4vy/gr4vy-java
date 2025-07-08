@@ -11,8 +11,8 @@ import java.lang.Override;
 import java.lang.String;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class DeleteCheckoutSessionRequest {
 
+public class DeleteCheckoutSessionRequest {
     /**
      * The ID of the checkout session.
      */
@@ -56,9 +56,10 @@ public class DeleteCheckoutSessionRequest {
         return merchantAccountId;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The ID of the checkout session.
@@ -87,7 +88,6 @@ public class DeleteCheckoutSessionRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -105,8 +105,7 @@ public class DeleteCheckoutSessionRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            sessionId,
-            merchantAccountId);
+            sessionId, merchantAccountId);
     }
     
     @Override
@@ -115,16 +114,18 @@ public class DeleteCheckoutSessionRequest {
                 "sessionId", sessionId,
                 "merchantAccountId", merchantAccountId);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String sessionId;
- 
+
         private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The ID of the checkout session.
@@ -134,6 +135,7 @@ public class DeleteCheckoutSessionRequest {
             this.sessionId = sessionId;
             return this;
         }
+
 
         /**
          * The ID of the merchant account to use for this request.
@@ -152,11 +154,12 @@ public class DeleteCheckoutSessionRequest {
             this.merchantAccountId = merchantAccountId;
             return this;
         }
-        
+
         public DeleteCheckoutSessionRequest build() {
+
             return new DeleteCheckoutSessionRequest(
-                sessionId,
-                merchantAccountId);
+                sessionId, merchantAccountId);
         }
+
     }
 }

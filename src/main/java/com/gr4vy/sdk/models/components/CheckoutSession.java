@@ -20,8 +20,8 @@ import java.util.Map;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class CheckoutSession {
 
+public class CheckoutSession {
     /**
      * An array of cart items that represents the line items of a transaction.
      */
@@ -105,7 +105,9 @@ public class CheckoutSession {
     public CheckoutSession(
             String id,
             OffsetDateTime expiresAt) {
-        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), id, expiresAt, JsonNullable.undefined());
+        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), id, expiresAt,
+            JsonNullable.undefined());
     }
 
     /**
@@ -177,9 +179,10 @@ public class CheckoutSession {
         return (JsonNullable<CheckoutSessionPaymentMethod>) paymentMethod;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * An array of cart items that represents the line items of a transaction.
@@ -289,7 +292,6 @@ public class CheckoutSession {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -313,14 +315,9 @@ public class CheckoutSession {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            cartItems,
-            metadata,
-            buyer,
-            airline,
-            type,
-            id,
-            expiresAt,
-            paymentMethod);
+            cartItems, metadata, buyer,
+            airline, type, id,
+            expiresAt, paymentMethod);
     }
     
     @Override
@@ -335,26 +332,28 @@ public class CheckoutSession {
                 "expiresAt", expiresAt,
                 "paymentMethod", paymentMethod);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private JsonNullable<? extends List<CartItem>> cartItems = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends Map<String, String>> metadata = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends GuestBuyerOutput> buyer = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends Airline> airline = JsonNullable.undefined();
- 
+
         private String id;
- 
+
         private OffsetDateTime expiresAt;
- 
+
         private JsonNullable<? extends CheckoutSessionPaymentMethod> paymentMethod = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * An array of cart items that represents the line items of a transaction.
@@ -374,6 +373,7 @@ public class CheckoutSession {
             return this;
         }
 
+
         /**
          * Any additional information about the transaction that you would like to store as key-value pairs. This data is passed to payment service providers that support it.
          */
@@ -391,6 +391,7 @@ public class CheckoutSession {
             this.metadata = metadata;
             return this;
         }
+
 
         /**
          * Provide buyer details for the transaction. No buyer resource will be created on Gr4vy when used.
@@ -410,6 +411,7 @@ public class CheckoutSession {
             return this;
         }
 
+
         /**
          * The airline addendum data which describes the airline booking associated with this transaction.
          */
@@ -428,6 +430,7 @@ public class CheckoutSession {
             return this;
         }
 
+
         /**
          * The ID for the checkout session.
          */
@@ -437,6 +440,7 @@ public class CheckoutSession {
             return this;
         }
 
+
         /**
          * The date and time when this checkout session expires.
          */
@@ -445,6 +449,7 @@ public class CheckoutSession {
             this.expiresAt = expiresAt;
             return this;
         }
+
 
         /**
          * Information about the payment method stored on the checkout session.
@@ -463,17 +468,15 @@ public class CheckoutSession {
             this.paymentMethod = paymentMethod;
             return this;
         }
-        
+
         public CheckoutSession build() {
+
             return new CheckoutSession(
-                cartItems,
-                metadata,
-                buyer,
-                airline,
-                id,
-                expiresAt,
+                cartItems, metadata, buyer,
+                airline, id, expiresAt,
                 paymentMethod);
         }
+
 
         private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_Type =
                 new LazySingletonValue<>(

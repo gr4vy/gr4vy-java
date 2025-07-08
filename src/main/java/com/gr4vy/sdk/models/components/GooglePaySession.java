@@ -10,8 +10,8 @@ import com.gr4vy.sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 
-public class GooglePaySession {
 
+public class GooglePaySession {
     /**
      * The gateway ID for the merchant as assigned by our platform.
      */
@@ -50,9 +50,10 @@ public class GooglePaySession {
         return token;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The gateway ID for the merchant as assigned by our platform.
@@ -72,7 +73,6 @@ public class GooglePaySession {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -90,8 +90,7 @@ public class GooglePaySession {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            gatewayMerchantId,
-            token);
+            gatewayMerchantId, token);
     }
     
     @Override
@@ -100,16 +99,18 @@ public class GooglePaySession {
                 "gatewayMerchantId", gatewayMerchantId,
                 "token", token);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String gatewayMerchantId;
- 
+
         private String token;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The gateway ID for the merchant as assigned by our platform.
@@ -120,6 +121,7 @@ public class GooglePaySession {
             return this;
         }
 
+
         /**
          * The session token for Google Pay.
          */
@@ -128,11 +130,12 @@ public class GooglePaySession {
             this.token = token;
             return this;
         }
-        
+
         public GooglePaySession build() {
+
             return new GooglePaySession(
-                gatewayMerchantId,
-                token);
+                gatewayMerchantId, token);
         }
+
     }
 }

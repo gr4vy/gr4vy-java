@@ -17,8 +17,8 @@ import java.lang.String;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class AuditLogEntryUser {
 
+public class AuditLogEntryUser {
     /**
      * Always `user`.
      */
@@ -52,6 +52,7 @@ public class AuditLogEntryUser {
     @JsonProperty("is_staff")
     private boolean isStaff;
 
+
     @JsonProperty("status")
     private UserStatus status;
 
@@ -79,7 +80,8 @@ public class AuditLogEntryUser {
             String name,
             boolean isStaff,
             UserStatus status) {
-        this(JsonNullable.undefined(), name, JsonNullable.undefined(), isStaff, status);
+        this(JsonNullable.undefined(), name, JsonNullable.undefined(),
+            isStaff, status);
     }
 
     /**
@@ -127,9 +129,10 @@ public class AuditLogEntryUser {
         return status;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The ID of the user.
@@ -191,7 +194,6 @@ public class AuditLogEntryUser {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -213,12 +215,8 @@ public class AuditLogEntryUser {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            type,
-            id,
-            name,
-            emailAddress,
-            isStaff,
-            status);
+            type, id, name,
+            emailAddress, isStaff, status);
     }
     
     @Override
@@ -231,22 +229,24 @@ public class AuditLogEntryUser {
                 "isStaff", isStaff,
                 "status", status);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private JsonNullable<String> id = JsonNullable.undefined();
- 
+
         private String name;
- 
+
         private JsonNullable<String> emailAddress = JsonNullable.undefined();
- 
+
         private Boolean isStaff;
- 
+
         private UserStatus status;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The ID of the user.
@@ -266,6 +266,7 @@ public class AuditLogEntryUser {
             return this;
         }
 
+
         /**
          * The name of the user.
          */
@@ -274,6 +275,7 @@ public class AuditLogEntryUser {
             this.name = name;
             return this;
         }
+
 
         /**
          * The email address for this user.
@@ -293,6 +295,7 @@ public class AuditLogEntryUser {
             return this;
         }
 
+
         /**
          * Whether this is a Gr4vy staff user.
          */
@@ -302,20 +305,20 @@ public class AuditLogEntryUser {
             return this;
         }
 
+
         public Builder status(UserStatus status) {
             Utils.checkNotNull(status, "status");
             this.status = status;
             return this;
         }
-        
+
         public AuditLogEntryUser build() {
+
             return new AuditLogEntryUser(
-                id,
-                name,
-                emailAddress,
-                isStaff,
-                status);
+                id, name, emailAddress,
+                isStaff, status);
         }
+
 
         private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_Type =
                 new LazySingletonValue<>(

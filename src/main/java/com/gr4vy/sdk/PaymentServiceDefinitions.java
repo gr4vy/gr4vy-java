@@ -34,7 +34,6 @@ public class PaymentServiceDefinitions {
     PaymentServiceDefinitions(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-
     /**
      * List payment service definitions
      * 
@@ -81,11 +80,10 @@ public class PaymentServiceDefinitions {
                 .build();
         RequestOperation<ListPaymentServiceDefinitionsRequest, ListPaymentServiceDefinitionsResponse> operation
               = new ListPaymentServiceDefinitionsOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Get a payment service definition
@@ -131,11 +129,10 @@ public class PaymentServiceDefinitions {
                 .build();
         RequestOperation<GetPaymentServiceDefinitionRequest, GetPaymentServiceDefinitionResponse> operation
               = new GetPaymentServiceDefinitionOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Create a session for apayment service definition
@@ -168,7 +165,7 @@ public class PaymentServiceDefinitions {
                 .requestBody(requestBody)
                 .build();
         RequestOperation<CreatePaymentServiceDefinitionSessionRequest, CreatePaymentServiceDefinitionSessionResponse> operation
-              = new CreatePaymentServiceDefinitionSessionOperation( sdkConfiguration);
+              = new CreatePaymentServiceDefinitionSessionOperation(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
 

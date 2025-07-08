@@ -15,8 +15,8 @@ import java.lang.Override;
 import java.lang.String;
 import java.util.Optional;
 
-public class PaymentMethodStoredCard {
 
+public class PaymentMethodStoredCard {
     /**
      * Set to `id` to use a stored card.
      */
@@ -54,9 +54,10 @@ public class PaymentMethodStoredCard {
         return id;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The ID of the stored card to use.
@@ -67,7 +68,6 @@ public class PaymentMethodStoredCard {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -85,8 +85,7 @@ public class PaymentMethodStoredCard {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            method,
-            id);
+            method, id);
     }
     
     @Override
@@ -95,14 +94,16 @@ public class PaymentMethodStoredCard {
                 "method", method,
                 "id", id);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String id;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The ID of the stored card to use.
@@ -112,11 +113,13 @@ public class PaymentMethodStoredCard {
             this.id = id;
             return this;
         }
-        
+
         public PaymentMethodStoredCard build() {
+
             return new PaymentMethodStoredCard(
                 id);
         }
+
 
         private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_Method =
                 new LazySingletonValue<>(

@@ -32,7 +32,6 @@ public class PaymentServiceTokens {
     PaymentServiceTokens(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-
     /**
      * List payment service tokens
      * 
@@ -54,7 +53,8 @@ public class PaymentServiceTokens {
      * @throws Exception if the API call fails
      */
     public ListPaymentMethodPaymentServiceTokensResponse list(String paymentMethodId) throws Exception {
-        return list(paymentMethodId, JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty());
+        return list(paymentMethodId, JsonNullable.undefined(), JsonNullable.undefined(),
+            Optional.empty());
     }
 
     /**
@@ -83,11 +83,10 @@ public class PaymentServiceTokens {
                 .build();
         RequestOperation<ListPaymentMethodPaymentServiceTokensRequest, ListPaymentMethodPaymentServiceTokensResponse> operation
               = new ListPaymentMethodPaymentServiceTokensOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Create payment service token
@@ -139,10 +138,9 @@ public class PaymentServiceTokens {
                 .paymentServiceTokenCreate(paymentServiceTokenCreate)
                 .build();
         RequestOperation<CreatePaymentMethodPaymentServiceTokenRequest, CreatePaymentMethodPaymentServiceTokenResponse> operation
-              = new CreatePaymentMethodPaymentServiceTokenOperation( sdkConfiguration);
+              = new CreatePaymentMethodPaymentServiceTokenOperation(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Delete payment service token
@@ -194,7 +192,7 @@ public class PaymentServiceTokens {
                 .merchantAccountId(merchantAccountId)
                 .build();
         RequestOperation<DeletePaymentMethodPaymentServiceTokenRequest, DeletePaymentMethodPaymentServiceTokenResponse> operation
-              = new DeletePaymentMethodPaymentServiceTokenOperation( sdkConfiguration);
+              = new DeletePaymentMethodPaymentServiceTokenOperation(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
 

@@ -23,7 +23,6 @@ import org.openapitools.jackson.nullable.JsonNullable;
  * <p>Create an Apple Pay transaction with a device or merchant token.
  */
 public class ApplePayPaymentMethodCreate {
-
     /**
      * The external identifier of the buyer to create a payment for.
      */
@@ -103,6 +102,7 @@ public class ApplePayPaymentMethodCreate {
         Utils.checkNotNull(cardScheme, "cardScheme");
         Utils.checkNotNull(cardType, "cardType");
         token = Utils.emptyMapIfNull(token);
+        Utils.checkNotNull(token, "token");
         this.buyerExternalIdentifier = buyerExternalIdentifier;
         this.buyerId = buyerId;
         this.cardholderName = cardholderName;
@@ -116,7 +116,9 @@ public class ApplePayPaymentMethodCreate {
     
     public ApplePayPaymentMethodCreate(
             Map<String, Object> token) {
-        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), token);
+        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), token);
     }
 
     /**
@@ -191,9 +193,10 @@ public class ApplePayPaymentMethodCreate {
         return token;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The external identifier of the buyer to create a payment for.
@@ -330,7 +333,6 @@ public class ApplePayPaymentMethodCreate {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -355,15 +357,9 @@ public class ApplePayPaymentMethodCreate {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            buyerExternalIdentifier,
-            buyerId,
-            cardholderName,
-            redirectUrl,
-            cardSuffix,
-            cardScheme,
-            cardType,
-            method,
-            token);
+            buyerExternalIdentifier, buyerId, cardholderName,
+            redirectUrl, cardSuffix, cardScheme,
+            cardType, method, token);
     }
     
     @Override
@@ -379,28 +375,30 @@ public class ApplePayPaymentMethodCreate {
                 "method", method,
                 "token", token);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private JsonNullable<String> buyerExternalIdentifier = JsonNullable.undefined();
- 
+
         private JsonNullable<String> buyerId = JsonNullable.undefined();
- 
+
         private JsonNullable<String> cardholderName = JsonNullable.undefined();
- 
+
         private JsonNullable<String> redirectUrl = JsonNullable.undefined();
- 
+
         private JsonNullable<String> cardSuffix = JsonNullable.undefined();
- 
+
         private JsonNullable<String> cardScheme = JsonNullable.undefined();
- 
+
         private JsonNullable<String> cardType = JsonNullable.undefined();
- 
+
         private Map<String, Object> token;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The external identifier of the buyer to create a payment for.
@@ -420,6 +418,7 @@ public class ApplePayPaymentMethodCreate {
             return this;
         }
 
+
         /**
          * The ID of the buyer to retrieve billing details for.
          */
@@ -437,6 +436,7 @@ public class ApplePayPaymentMethodCreate {
             this.buyerId = buyerId;
             return this;
         }
+
 
         /**
          * The card holder name associated to the original card for the token.
@@ -456,6 +456,7 @@ public class ApplePayPaymentMethodCreate {
             return this;
         }
 
+
         /**
          * The URL to redirect a user back to after the complete 3DS in browser.
          */
@@ -473,6 +474,7 @@ public class ApplePayPaymentMethodCreate {
             this.redirectUrl = redirectUrl;
             return this;
         }
+
 
         /**
          * The last 4 digits of the original card used to generate the token.
@@ -492,6 +494,7 @@ public class ApplePayPaymentMethodCreate {
             return this;
         }
 
+
         /**
          * The original card scheme for which the token was generated.
          */
@@ -509,6 +512,7 @@ public class ApplePayPaymentMethodCreate {
             this.cardScheme = cardScheme;
             return this;
         }
+
 
         /**
          * The payment scheme of the card.
@@ -528,6 +532,7 @@ public class ApplePayPaymentMethodCreate {
             return this;
         }
 
+
         /**
          * The opaque token as received from the Apple Pay JS library. This format may change between JS library versions.
          */
@@ -536,18 +541,15 @@ public class ApplePayPaymentMethodCreate {
             this.token = token;
             return this;
         }
-        
+
         public ApplePayPaymentMethodCreate build() {
+
             return new ApplePayPaymentMethodCreate(
-                buyerExternalIdentifier,
-                buyerId,
-                cardholderName,
-                redirectUrl,
-                cardSuffix,
-                cardScheme,
-                cardType,
-                token);
+                buyerExternalIdentifier, buyerId, cardholderName,
+                redirectUrl, cardSuffix, cardScheme,
+                cardType, token);
         }
+
 
         private static final LazySingletonValue<String> _SINGLETON_VALUE_Method =
                 new LazySingletonValue<>(

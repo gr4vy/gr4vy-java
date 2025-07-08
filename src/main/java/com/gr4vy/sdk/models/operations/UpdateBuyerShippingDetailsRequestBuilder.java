@@ -69,7 +69,7 @@ public class UpdateBuyerShippingDetailsRequestBuilder {
     public UpdateBuyerShippingDetailsResponse call() throws Exception {
         
         RequestOperation<UpdateBuyerShippingDetailsRequest, UpdateBuyerShippingDetailsResponse> operation
-              = new UpdateBuyerShippingDetailsOperation( sdkConfiguration);
+              = new UpdateBuyerShippingDetailsOperation(sdkConfiguration);
         UpdateBuyerShippingDetailsRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

@@ -11,8 +11,8 @@ import java.lang.Override;
 import java.lang.String;
 import java.time.OffsetDateTime;
 
-public class ReportExecutionContext {
 
+public class ReportExecutionContext {
     /**
      * The reference timestamp for the report execution context.
      */
@@ -51,9 +51,10 @@ public class ReportExecutionContext {
         return referenceTimezone;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The reference timestamp for the report execution context.
@@ -73,7 +74,6 @@ public class ReportExecutionContext {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -91,8 +91,7 @@ public class ReportExecutionContext {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            referenceTimestamp,
-            referenceTimezone);
+            referenceTimestamp, referenceTimezone);
     }
     
     @Override
@@ -101,16 +100,18 @@ public class ReportExecutionContext {
                 "referenceTimestamp", referenceTimestamp,
                 "referenceTimezone", referenceTimezone);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private OffsetDateTime referenceTimestamp;
- 
+
         private String referenceTimezone;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The reference timestamp for the report execution context.
@@ -121,6 +122,7 @@ public class ReportExecutionContext {
             return this;
         }
 
+
         /**
          * The reference timezone for the report execution context.
          */
@@ -129,11 +131,12 @@ public class ReportExecutionContext {
             this.referenceTimezone = referenceTimezone;
             return this;
         }
-        
+
         public ReportExecutionContext build() {
+
             return new ReportExecutionContext(
-                referenceTimestamp,
-                referenceTimezone);
+                referenceTimestamp, referenceTimezone);
         }
+
     }
 }

@@ -11,8 +11,8 @@ import java.lang.Override;
 import java.lang.String;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class GetBuyerRequest {
 
+public class GetBuyerRequest {
     /**
      * The ID of the buyer to retrieve.
      */
@@ -56,9 +56,10 @@ public class GetBuyerRequest {
         return merchantAccountId;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The ID of the buyer to retrieve.
@@ -87,7 +88,6 @@ public class GetBuyerRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -105,8 +105,7 @@ public class GetBuyerRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            buyerId,
-            merchantAccountId);
+            buyerId, merchantAccountId);
     }
     
     @Override
@@ -115,16 +114,18 @@ public class GetBuyerRequest {
                 "buyerId", buyerId,
                 "merchantAccountId", merchantAccountId);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String buyerId;
- 
+
         private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The ID of the buyer to retrieve.
@@ -134,6 +135,7 @@ public class GetBuyerRequest {
             this.buyerId = buyerId;
             return this;
         }
+
 
         /**
          * The ID of the merchant account to use for this request.
@@ -152,11 +154,12 @@ public class GetBuyerRequest {
             this.merchantAccountId = merchantAccountId;
             return this;
         }
-        
+
         public GetBuyerRequest build() {
+
             return new GetBuyerRequest(
-                buyerId,
-                merchantAccountId);
+                buyerId, merchantAccountId);
         }
+
     }
 }

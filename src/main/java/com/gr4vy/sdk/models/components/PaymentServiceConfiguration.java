@@ -12,6 +12,7 @@ import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
 
+
 public class PaymentServiceConfiguration {
 
     @JsonProperty("approval_ui_target")
@@ -114,9 +115,10 @@ public class PaymentServiceConfiguration {
         return cartItemsShouldMatchAmount;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public PaymentServiceConfiguration withApprovalUiTarget(ApprovalTarget approvalUiTarget) {
         Utils.checkNotNull(approvalUiTarget, "approvalUiTarget");
@@ -169,7 +171,6 @@ public class PaymentServiceConfiguration {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -191,12 +192,8 @@ public class PaymentServiceConfiguration {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            approvalUiTarget,
-            approvalUiHeight,
-            approvalUiWidth,
-            cartItemsLimit,
-            cartItemsRequired,
-            cartItemsShouldMatchAmount);
+            approvalUiTarget, approvalUiHeight, approvalUiWidth,
+            cartItemsLimit, cartItemsRequired, cartItemsShouldMatchAmount);
     }
     
     @Override
@@ -209,30 +206,33 @@ public class PaymentServiceConfiguration {
                 "cartItemsRequired", cartItemsRequired,
                 "cartItemsShouldMatchAmount", cartItemsShouldMatchAmount);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private ApprovalTarget approvalUiTarget;
- 
+
         private String approvalUiHeight;
- 
+
         private String approvalUiWidth;
- 
+
         private Long cartItemsLimit;
- 
+
         private Boolean cartItemsRequired;
- 
+
         private Boolean cartItemsShouldMatchAmount;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder approvalUiTarget(ApprovalTarget approvalUiTarget) {
             Utils.checkNotNull(approvalUiTarget, "approvalUiTarget");
             this.approvalUiTarget = approvalUiTarget;
             return this;
         }
+
 
         /**
          * Height of the approval interface in either pixels or view height (vh).
@@ -243,6 +243,7 @@ public class PaymentServiceConfiguration {
             return this;
         }
 
+
         /**
          * Width of the approval interface in either pixels or view width (vw).
          */
@@ -251,6 +252,7 @@ public class PaymentServiceConfiguration {
             this.approvalUiWidth = approvalUiWidth;
             return this;
         }
+
 
         /**
          * The maximum number of cart items supported by this connector before we will truncate the list.
@@ -261,6 +263,7 @@ public class PaymentServiceConfiguration {
             return this;
         }
 
+
         /**
          * Defines if cart items are required by this connector.
          */
@@ -270,6 +273,7 @@ public class PaymentServiceConfiguration {
             return this;
         }
 
+
         /**
          * Defines if the cart items sum value should match the transaction amount.
          */
@@ -278,15 +282,13 @@ public class PaymentServiceConfiguration {
             this.cartItemsShouldMatchAmount = cartItemsShouldMatchAmount;
             return this;
         }
-        
+
         public PaymentServiceConfiguration build() {
+
             return new PaymentServiceConfiguration(
-                approvalUiTarget,
-                approvalUiHeight,
-                approvalUiWidth,
-                cartItemsLimit,
-                cartItemsRequired,
-                cartItemsShouldMatchAmount);
+                approvalUiTarget, approvalUiHeight, approvalUiWidth,
+                cartItemsLimit, cartItemsRequired, cartItemsShouldMatchAmount);
         }
+
     }
 }

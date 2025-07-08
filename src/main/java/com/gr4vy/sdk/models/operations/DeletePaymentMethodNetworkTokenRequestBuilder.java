@@ -60,7 +60,7 @@ public class DeletePaymentMethodNetworkTokenRequestBuilder {
     public DeletePaymentMethodNetworkTokenResponse call() throws Exception {
         
         RequestOperation<DeletePaymentMethodNetworkTokenRequest, DeletePaymentMethodNetworkTokenResponse> operation
-              = new DeletePaymentMethodNetworkTokenOperation( sdkConfiguration);
+              = new DeletePaymentMethodNetworkTokenOperation(sdkConfiguration);
         DeletePaymentMethodNetworkTokenRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

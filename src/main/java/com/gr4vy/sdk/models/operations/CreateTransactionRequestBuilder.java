@@ -82,7 +82,7 @@ public class CreateTransactionRequestBuilder {
     public CreateTransactionResponse call() throws Exception {
         
         RequestOperation<CreateTransactionRequest, CreateTransactionResponse> operation
-              = new CreateTransactionOperation( sdkConfiguration);
+              = new CreateTransactionOperation(sdkConfiguration);
         CreateTransactionRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

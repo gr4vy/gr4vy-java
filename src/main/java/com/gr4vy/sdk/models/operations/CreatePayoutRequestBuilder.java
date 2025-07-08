@@ -53,7 +53,7 @@ public class CreatePayoutRequestBuilder {
     public CreatePayoutResponse call() throws Exception {
         
         RequestOperation<CreatePayoutRequest, CreatePayoutResponse> operation
-              = new CreatePayoutOperation( sdkConfiguration);
+              = new CreatePayoutOperation(sdkConfiguration);
         CreatePayoutRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

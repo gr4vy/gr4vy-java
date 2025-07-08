@@ -61,7 +61,7 @@ public class UpdateCheckoutSessionRequestBuilder {
     public UpdateCheckoutSessionResponse call() throws Exception {
         
         RequestOperation<UpdateCheckoutSessionRequest, UpdateCheckoutSessionResponse> operation
-              = new UpdateCheckoutSessionOperation( sdkConfiguration);
+              = new UpdateCheckoutSessionOperation(sdkConfiguration);
         UpdateCheckoutSessionRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

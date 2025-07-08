@@ -17,8 +17,8 @@ import java.lang.SuppressWarnings;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class TransactionBuyer {
 
+public class TransactionBuyer {
     /**
      * Always `buyer`.
      */
@@ -82,7 +82,8 @@ public class TransactionBuyer {
     }
     
     public TransactionBuyer() {
-        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
+        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined());
     }
 
     /**
@@ -134,9 +135,10 @@ public class TransactionBuyer {
         return accountNumber;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The ID for the buyer.
@@ -228,7 +230,6 @@ public class TransactionBuyer {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -250,12 +251,8 @@ public class TransactionBuyer {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            type,
-            id,
-            displayName,
-            externalIdentifier,
-            billingDetails,
-            accountNumber);
+            type, id, displayName,
+            externalIdentifier, billingDetails, accountNumber);
     }
     
     @Override
@@ -268,22 +265,24 @@ public class TransactionBuyer {
                 "billingDetails", billingDetails,
                 "accountNumber", accountNumber);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private JsonNullable<String> id = JsonNullable.undefined();
- 
+
         private JsonNullable<String> displayName = JsonNullable.undefined();
- 
+
         private JsonNullable<String> externalIdentifier = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends BillingDetailsOutput> billingDetails = JsonNullable.undefined();
- 
+
         private JsonNullable<String> accountNumber = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The ID for the buyer.
@@ -303,6 +302,7 @@ public class TransactionBuyer {
             return this;
         }
 
+
         /**
          * The display name for the buyer.
          */
@@ -320,6 +320,7 @@ public class TransactionBuyer {
             this.displayName = displayName;
             return this;
         }
+
 
         /**
          * The merchant identifier for this buyer.
@@ -339,6 +340,7 @@ public class TransactionBuyer {
             return this;
         }
 
+
         /**
          * The billing name, address, email, and other fields for this buyer.
          */
@@ -357,6 +359,7 @@ public class TransactionBuyer {
             return this;
         }
 
+
         /**
          * The buyer account number.
          */
@@ -374,15 +377,14 @@ public class TransactionBuyer {
             this.accountNumber = accountNumber;
             return this;
         }
-        
+
         public TransactionBuyer build() {
+
             return new TransactionBuyer(
-                id,
-                displayName,
-                externalIdentifier,
-                billingDetails,
-                accountNumber);
+                id, displayName, externalIdentifier,
+                billingDetails, accountNumber);
         }
+
 
         private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_Type =
                 new LazySingletonValue<>(

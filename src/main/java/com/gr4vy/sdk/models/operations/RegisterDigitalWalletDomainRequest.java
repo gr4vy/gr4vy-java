@@ -12,8 +12,8 @@ import java.lang.Override;
 import java.lang.String;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class RegisterDigitalWalletDomainRequest {
 
+public class RegisterDigitalWalletDomainRequest {
     /**
      * The ID of the digital wallet to remove a domain for.
      */
@@ -25,6 +25,7 @@ public class RegisterDigitalWalletDomainRequest {
      */
     @SpeakeasyMetadata("header:style=simple,explode=false,name=x-gr4vy-merchant-account-id")
     private JsonNullable<String> merchantAccountId;
+
 
     @SpeakeasyMetadata("request:mediaType=application/json")
     private DigitalWalletDomain digitalWalletDomain;
@@ -69,9 +70,10 @@ public class RegisterDigitalWalletDomainRequest {
         return digitalWalletDomain;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The ID of the digital wallet to remove a domain for.
@@ -106,7 +108,6 @@ public class RegisterDigitalWalletDomainRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -125,9 +126,7 @@ public class RegisterDigitalWalletDomainRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            digitalWalletId,
-            merchantAccountId,
-            digitalWalletDomain);
+            digitalWalletId, merchantAccountId, digitalWalletDomain);
     }
     
     @Override
@@ -137,18 +136,20 @@ public class RegisterDigitalWalletDomainRequest {
                 "merchantAccountId", merchantAccountId,
                 "digitalWalletDomain", digitalWalletDomain);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String digitalWalletId;
- 
+
         private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
- 
+
         private DigitalWalletDomain digitalWalletDomain;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The ID of the digital wallet to remove a domain for.
@@ -158,6 +159,7 @@ public class RegisterDigitalWalletDomainRequest {
             this.digitalWalletId = digitalWalletId;
             return this;
         }
+
 
         /**
          * The ID of the merchant account to use for this request.
@@ -177,17 +179,18 @@ public class RegisterDigitalWalletDomainRequest {
             return this;
         }
 
+
         public Builder digitalWalletDomain(DigitalWalletDomain digitalWalletDomain) {
             Utils.checkNotNull(digitalWalletDomain, "digitalWalletDomain");
             this.digitalWalletDomain = digitalWalletDomain;
             return this;
         }
-        
+
         public RegisterDigitalWalletDomainRequest build() {
+
             return new RegisterDigitalWalletDomainRequest(
-                digitalWalletId,
-                merchantAccountId,
-                digitalWalletDomain);
+                digitalWalletId, merchantAccountId, digitalWalletDomain);
         }
+
     }
 }

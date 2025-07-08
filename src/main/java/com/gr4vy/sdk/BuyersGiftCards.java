@@ -23,7 +23,6 @@ public class BuyersGiftCards {
     BuyersGiftCards(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-
     /**
      * List gift cards for a buyer
      * 
@@ -44,7 +43,8 @@ public class BuyersGiftCards {
      * @throws Exception if the API call fails
      */
     public ListBuyerGiftCardsResponse listDirect() throws Exception {
-        return list(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty());
+        return list(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            Optional.empty());
     }
 
     /**
@@ -73,8 +73,8 @@ public class BuyersGiftCards {
                 .build();
         RequestOperation<ListBuyerGiftCardsRequest, ListBuyerGiftCardsResponse> operation
               = new ListBuyerGiftCardsOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

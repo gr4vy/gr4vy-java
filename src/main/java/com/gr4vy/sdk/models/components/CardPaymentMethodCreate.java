@@ -16,8 +16,8 @@ import java.lang.String;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class CardPaymentMethodCreate {
 
+public class CardPaymentMethodCreate {
     /**
      * The expiration date of the card, formatted `MM/YY`.
      */
@@ -101,7 +101,9 @@ public class CardPaymentMethodCreate {
     public CardPaymentMethodCreate(
             String expirationDate,
             String number) {
-        this(expirationDate, number, JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
+        this(expirationDate, number, JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined());
     }
 
     /**
@@ -168,9 +170,10 @@ public class CardPaymentMethodCreate {
         return securityCode;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The expiration date of the card, formatted `MM/YY`.
@@ -280,7 +283,6 @@ public class CardPaymentMethodCreate {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -304,14 +306,9 @@ public class CardPaymentMethodCreate {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            expirationDate,
-            number,
-            buyerExternalIdentifier,
-            buyerId,
-            externalIdentifier,
-            cardType,
-            method,
-            securityCode);
+            expirationDate, number, buyerExternalIdentifier,
+            buyerId, externalIdentifier, cardType,
+            method, securityCode);
     }
     
     @Override
@@ -326,26 +323,28 @@ public class CardPaymentMethodCreate {
                 "method", method,
                 "securityCode", securityCode);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String expirationDate;
- 
+
         private String number;
- 
+
         private JsonNullable<String> buyerExternalIdentifier = JsonNullable.undefined();
- 
+
         private JsonNullable<String> buyerId = JsonNullable.undefined();
- 
+
         private JsonNullable<String> externalIdentifier = JsonNullable.undefined();
- 
+
         private JsonNullable<String> cardType = JsonNullable.undefined();
- 
+
         private JsonNullable<String> securityCode = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The expiration date of the card, formatted `MM/YY`.
@@ -356,6 +355,7 @@ public class CardPaymentMethodCreate {
             return this;
         }
 
+
         /**
          * The 13-19 digit number for this card.
          */
@@ -364,6 +364,7 @@ public class CardPaymentMethodCreate {
             this.number = number;
             return this;
         }
+
 
         /**
          * The external identifier of the buyer to attach the method to.
@@ -383,6 +384,7 @@ public class CardPaymentMethodCreate {
             return this;
         }
 
+
         /**
          * The ID of the buyer to attach the method to.
          */
@@ -400,6 +402,7 @@ public class CardPaymentMethodCreate {
             this.buyerId = buyerId;
             return this;
         }
+
 
         /**
          * The merchant reference for this payment method.
@@ -419,6 +422,7 @@ public class CardPaymentMethodCreate {
             return this;
         }
 
+
         /**
          * The type of the card used
          */
@@ -437,6 +441,7 @@ public class CardPaymentMethodCreate {
             return this;
         }
 
+
         /**
          * The 3 or 4 digit security code often found on the card. This often referred to as the CVV or CVD.
          */
@@ -454,17 +459,15 @@ public class CardPaymentMethodCreate {
             this.securityCode = securityCode;
             return this;
         }
-        
+
         public CardPaymentMethodCreate build() {
+
             return new CardPaymentMethodCreate(
-                expirationDate,
-                number,
-                buyerExternalIdentifier,
-                buyerId,
-                externalIdentifier,
-                cardType,
+                expirationDate, number, buyerExternalIdentifier,
+                buyerId, externalIdentifier, cardType,
                 securityCode);
         }
+
 
         private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_Method =
                 new LazySingletonValue<>(

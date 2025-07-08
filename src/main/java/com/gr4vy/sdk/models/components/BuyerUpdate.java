@@ -20,7 +20,6 @@ import org.openapitools.jackson.nullable.JsonNullable;
  * <p>Request body for updating an existing buyer
  */
 public class BuyerUpdate {
-
     /**
      * The display name for the buyer.
      */
@@ -66,7 +65,8 @@ public class BuyerUpdate {
     }
     
     public BuyerUpdate() {
-        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
+        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined());
     }
 
     /**
@@ -102,9 +102,10 @@ public class BuyerUpdate {
         return (JsonNullable<BillingDetailsInput>) billingDetails;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The display name for the buyer.
@@ -178,7 +179,6 @@ public class BuyerUpdate {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -198,9 +198,7 @@ public class BuyerUpdate {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            displayName,
-            externalIdentifier,
-            accountNumber,
+            displayName, externalIdentifier, accountNumber,
             billingDetails);
     }
     
@@ -212,20 +210,22 @@ public class BuyerUpdate {
                 "accountNumber", accountNumber,
                 "billingDetails", billingDetails);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private JsonNullable<String> displayName = JsonNullable.undefined();
- 
+
         private JsonNullable<String> externalIdentifier = JsonNullable.undefined();
- 
+
         private JsonNullable<String> accountNumber = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends BillingDetailsInput> billingDetails = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The display name for the buyer.
@@ -245,6 +245,7 @@ public class BuyerUpdate {
             return this;
         }
 
+
         /**
          * The merchant identifier for this buyer.
          */
@@ -262,6 +263,7 @@ public class BuyerUpdate {
             this.externalIdentifier = externalIdentifier;
             return this;
         }
+
 
         /**
          * The buyer account number
@@ -281,6 +283,7 @@ public class BuyerUpdate {
             return this;
         }
 
+
         /**
          * The billing name, address, email, and other fields for this buyer.
          */
@@ -298,13 +301,13 @@ public class BuyerUpdate {
             this.billingDetails = billingDetails;
             return this;
         }
-        
+
         public BuyerUpdate build() {
+
             return new BuyerUpdate(
-                displayName,
-                externalIdentifier,
-                accountNumber,
+                displayName, externalIdentifier, accountNumber,
                 billingDetails);
         }
+
     }
 }

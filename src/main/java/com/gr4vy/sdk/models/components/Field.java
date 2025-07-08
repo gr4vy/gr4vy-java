@@ -16,7 +16,6 @@ import java.lang.String;
  * <p>A field used in a payment service
  */
 public class Field {
-
     /**
      * The ID of the configured field.
      */
@@ -55,9 +54,10 @@ public class Field {
         return value;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The ID of the configured field.
@@ -77,7 +77,6 @@ public class Field {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -95,8 +94,7 @@ public class Field {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            key,
-            value);
+            key, value);
     }
     
     @Override
@@ -105,16 +103,18 @@ public class Field {
                 "key", key,
                 "value", value);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String key;
- 
+
         private String value;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The ID of the configured field.
@@ -125,6 +125,7 @@ public class Field {
             return this;
         }
 
+
         /**
          * The value of the configured field.
          */
@@ -133,11 +134,12 @@ public class Field {
             this.value = value;
             return this;
         }
-        
+
         public Field build() {
+
             return new Field(
-                key,
-                value);
+                key, value);
         }
+
     }
 }

@@ -11,8 +11,8 @@ import java.lang.Override;
 import java.lang.String;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class GetDigitalWalletRequest {
 
+public class GetDigitalWalletRequest {
     /**
      * The ID of the digital wallet to read.
      */
@@ -56,9 +56,10 @@ public class GetDigitalWalletRequest {
         return merchantAccountId;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The ID of the digital wallet to read.
@@ -87,7 +88,6 @@ public class GetDigitalWalletRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -105,8 +105,7 @@ public class GetDigitalWalletRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            digitalWalletId,
-            merchantAccountId);
+            digitalWalletId, merchantAccountId);
     }
     
     @Override
@@ -115,16 +114,18 @@ public class GetDigitalWalletRequest {
                 "digitalWalletId", digitalWalletId,
                 "merchantAccountId", merchantAccountId);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String digitalWalletId;
- 
+
         private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The ID of the digital wallet to read.
@@ -134,6 +135,7 @@ public class GetDigitalWalletRequest {
             this.digitalWalletId = digitalWalletId;
             return this;
         }
+
 
         /**
          * The ID of the merchant account to use for this request.
@@ -152,11 +154,12 @@ public class GetDigitalWalletRequest {
             this.merchantAccountId = merchantAccountId;
             return this;
         }
-        
+
         public GetDigitalWalletRequest build() {
+
             return new GetDigitalWalletRequest(
-                digitalWalletId,
-                merchantAccountId);
+                digitalWalletId, merchantAccountId);
         }
+
     }
 }

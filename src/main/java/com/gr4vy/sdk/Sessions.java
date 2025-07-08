@@ -32,7 +32,6 @@ public class Sessions {
     Sessions(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-
     /**
      * Create a Google Pay session
      * 
@@ -77,10 +76,9 @@ public class Sessions {
                 .googlePaySessionRequest(googlePaySessionRequest)
                 .build();
         RequestOperation<CreateGooglePayDigitalWalletSessionRequest, CreateGooglePayDigitalWalletSessionResponse> operation
-              = new CreateGooglePayDigitalWalletSessionOperation( sdkConfiguration);
+              = new CreateGooglePayDigitalWalletSessionOperation(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Create a Apple Pay session
@@ -126,10 +124,9 @@ public class Sessions {
                 .applePaySessionRequest(applePaySessionRequest)
                 .build();
         RequestOperation<CreateApplePayDigitalWalletSessionRequest, CreateApplePayDigitalWalletSessionResponse> operation
-              = new CreateApplePayDigitalWalletSessionOperation( sdkConfiguration);
+              = new CreateApplePayDigitalWalletSessionOperation(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Create a Click to Pay session
@@ -151,10 +148,9 @@ public class Sessions {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public CreateClickToPayDigitalWalletSessionResponse clickToPay(
-            ClickToPaySessionRequest request) throws Exception {
+    public CreateClickToPayDigitalWalletSessionResponse clickToPay(ClickToPaySessionRequest request) throws Exception {
         RequestOperation<ClickToPaySessionRequest, CreateClickToPayDigitalWalletSessionResponse> operation
-              = new CreateClickToPayDigitalWalletSessionOperation( sdkConfiguration);
+              = new CreateClickToPayDigitalWalletSessionOperation(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
 

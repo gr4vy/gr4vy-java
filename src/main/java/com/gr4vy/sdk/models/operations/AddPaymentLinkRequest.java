@@ -12,13 +12,14 @@ import java.lang.Override;
 import java.lang.String;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class AddPaymentLinkRequest {
 
+public class AddPaymentLinkRequest {
     /**
      * The ID of the merchant account to use for this request.
      */
     @SpeakeasyMetadata("header:style=simple,explode=false,name=x-gr4vy-merchant-account-id")
     private JsonNullable<String> merchantAccountId;
+
 
     @SpeakeasyMetadata("request:mediaType=application/json")
     private PaymentLinkCreate paymentLinkCreate;
@@ -51,9 +52,10 @@ public class AddPaymentLinkRequest {
         return paymentLinkCreate;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The ID of the merchant account to use for this request.
@@ -79,7 +81,6 @@ public class AddPaymentLinkRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -97,8 +98,7 @@ public class AddPaymentLinkRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            merchantAccountId,
-            paymentLinkCreate);
+            merchantAccountId, paymentLinkCreate);
     }
     
     @Override
@@ -107,16 +107,18 @@ public class AddPaymentLinkRequest {
                 "merchantAccountId", merchantAccountId,
                 "paymentLinkCreate", paymentLinkCreate);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
- 
+
         private PaymentLinkCreate paymentLinkCreate;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The ID of the merchant account to use for this request.
@@ -136,16 +138,18 @@ public class AddPaymentLinkRequest {
             return this;
         }
 
+
         public Builder paymentLinkCreate(PaymentLinkCreate paymentLinkCreate) {
             Utils.checkNotNull(paymentLinkCreate, "paymentLinkCreate");
             this.paymentLinkCreate = paymentLinkCreate;
             return this;
         }
-        
+
         public AddPaymentLinkRequest build() {
+
             return new AddPaymentLinkRequest(
-                merchantAccountId,
-                paymentLinkCreate);
+                merchantAccountId, paymentLinkCreate);
         }
+
     }
 }

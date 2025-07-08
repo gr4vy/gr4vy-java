@@ -11,13 +11,14 @@ import com.gr4vy.sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 
-public class UpdateMerchantAccountRequest {
 
+public class UpdateMerchantAccountRequest {
     /**
      * The ID of the merchant account
      */
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=merchant_account_id")
     private String merchantAccountId;
+
 
     @SpeakeasyMetadata("request:mediaType=application/json")
     private MerchantAccountUpdate merchantAccountUpdate;
@@ -45,9 +46,10 @@ public class UpdateMerchantAccountRequest {
         return merchantAccountUpdate;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The ID of the merchant account
@@ -64,7 +66,6 @@ public class UpdateMerchantAccountRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -82,8 +83,7 @@ public class UpdateMerchantAccountRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            merchantAccountId,
-            merchantAccountUpdate);
+            merchantAccountId, merchantAccountUpdate);
     }
     
     @Override
@@ -92,16 +92,18 @@ public class UpdateMerchantAccountRequest {
                 "merchantAccountId", merchantAccountId,
                 "merchantAccountUpdate", merchantAccountUpdate);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String merchantAccountId;
- 
+
         private MerchantAccountUpdate merchantAccountUpdate;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The ID of the merchant account
@@ -112,16 +114,18 @@ public class UpdateMerchantAccountRequest {
             return this;
         }
 
+
         public Builder merchantAccountUpdate(MerchantAccountUpdate merchantAccountUpdate) {
             Utils.checkNotNull(merchantAccountUpdate, "merchantAccountUpdate");
             this.merchantAccountUpdate = merchantAccountUpdate;
             return this;
         }
-        
+
         public UpdateMerchantAccountRequest build() {
+
             return new UpdateMerchantAccountRequest(
-                merchantAccountId,
-                merchantAccountUpdate);
+                merchantAccountId, merchantAccountUpdate);
         }
+
     }
 }

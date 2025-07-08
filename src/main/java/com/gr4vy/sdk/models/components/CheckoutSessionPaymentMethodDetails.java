@@ -14,8 +14,8 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class CheckoutSessionPaymentMethodDetails {
 
+public class CheckoutSessionPaymentMethodDetails {
     /**
      * The first 6 digit of the card.
      */
@@ -61,7 +61,8 @@ public class CheckoutSessionPaymentMethodDetails {
     }
     
     public CheckoutSessionPaymentMethodDetails() {
-        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
+        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined());
     }
 
     /**
@@ -97,9 +98,10 @@ public class CheckoutSessionPaymentMethodDetails {
         return cardIssuerName;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The first 6 digit of the card.
@@ -173,7 +175,6 @@ public class CheckoutSessionPaymentMethodDetails {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -193,9 +194,7 @@ public class CheckoutSessionPaymentMethodDetails {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            bin,
-            cardCountry,
-            cardType,
+            bin, cardCountry, cardType,
             cardIssuerName);
     }
     
@@ -207,20 +206,22 @@ public class CheckoutSessionPaymentMethodDetails {
                 "cardType", cardType,
                 "cardIssuerName", cardIssuerName);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private JsonNullable<String> bin = JsonNullable.undefined();
- 
+
         private JsonNullable<String> cardCountry = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends CardType> cardType = JsonNullable.undefined();
- 
+
         private JsonNullable<String> cardIssuerName = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The first 6 digit of the card.
@@ -240,6 +241,7 @@ public class CheckoutSessionPaymentMethodDetails {
             return this;
         }
 
+
         /**
          * The country of the card issuer.
          */
@@ -257,6 +259,7 @@ public class CheckoutSessionPaymentMethodDetails {
             this.cardCountry = cardCountry;
             return this;
         }
+
 
         /**
          * The payment scheme of the card.
@@ -276,6 +279,7 @@ public class CheckoutSessionPaymentMethodDetails {
             return this;
         }
 
+
         /**
          * The card issuer.
          */
@@ -293,13 +297,13 @@ public class CheckoutSessionPaymentMethodDetails {
             this.cardIssuerName = cardIssuerName;
             return this;
         }
-        
+
         public CheckoutSessionPaymentMethodDetails build() {
+
             return new CheckoutSessionPaymentMethodDetails(
-                bin,
-                cardCountry,
-                cardType,
+                bin, cardCountry, cardType,
                 cardIssuerName);
         }
+
     }
 }

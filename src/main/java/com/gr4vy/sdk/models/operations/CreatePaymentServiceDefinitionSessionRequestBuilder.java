@@ -48,7 +48,7 @@ public class CreatePaymentServiceDefinitionSessionRequestBuilder {
     public CreatePaymentServiceDefinitionSessionResponse call() throws Exception {
         
         RequestOperation<CreatePaymentServiceDefinitionSessionRequest, CreatePaymentServiceDefinitionSessionResponse> operation
-              = new CreatePaymentServiceDefinitionSessionOperation( sdkConfiguration);
+              = new CreatePaymentServiceDefinitionSessionOperation(sdkConfiguration);
         CreatePaymentServiceDefinitionSessionRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

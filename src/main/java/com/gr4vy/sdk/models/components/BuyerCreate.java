@@ -20,7 +20,6 @@ import org.openapitools.jackson.nullable.JsonNullable;
  * <p>Request body for creating a new buyer
  */
 public class BuyerCreate {
-
     /**
      * The display name for the buyer.
      */
@@ -66,7 +65,8 @@ public class BuyerCreate {
     }
     
     public BuyerCreate() {
-        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
+        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined());
     }
 
     /**
@@ -102,9 +102,10 @@ public class BuyerCreate {
         return accountNumber;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The display name for the buyer.
@@ -178,7 +179,6 @@ public class BuyerCreate {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -198,9 +198,7 @@ public class BuyerCreate {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            displayName,
-            externalIdentifier,
-            billingDetails,
+            displayName, externalIdentifier, billingDetails,
             accountNumber);
     }
     
@@ -212,20 +210,22 @@ public class BuyerCreate {
                 "billingDetails", billingDetails,
                 "accountNumber", accountNumber);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private JsonNullable<String> displayName = JsonNullable.undefined();
- 
+
         private JsonNullable<String> externalIdentifier = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends BillingDetailsInput> billingDetails = JsonNullable.undefined();
- 
+
         private JsonNullable<String> accountNumber = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The display name for the buyer.
@@ -245,6 +245,7 @@ public class BuyerCreate {
             return this;
         }
 
+
         /**
          * The merchant identifier for this buyer.
          */
@@ -262,6 +263,7 @@ public class BuyerCreate {
             this.externalIdentifier = externalIdentifier;
             return this;
         }
+
 
         /**
          * The billing name, address, email, and other fields for this buyer.
@@ -281,6 +283,7 @@ public class BuyerCreate {
             return this;
         }
 
+
         /**
          * The buyer account number
          */
@@ -298,13 +301,13 @@ public class BuyerCreate {
             this.accountNumber = accountNumber;
             return this;
         }
-        
+
         public BuyerCreate build() {
+
             return new BuyerCreate(
-                displayName,
-                externalIdentifier,
-                billingDetails,
+                displayName, externalIdentifier, billingDetails,
                 accountNumber);
         }
+
     }
 }

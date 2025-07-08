@@ -80,8 +80,8 @@ public class GetBuyerShippingDetailsRequestBuilder {
 
         RequestOperation<GetBuyerShippingDetailsRequest, GetBuyerShippingDetailsResponse> operation
               = new GetBuyerShippingDetailsOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         GetBuyerShippingDetailsRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

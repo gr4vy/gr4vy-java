@@ -12,8 +12,8 @@ import java.lang.Override;
 import java.lang.String;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class UpdateCheckoutSessionRequest {
 
+public class UpdateCheckoutSessionRequest {
     /**
      * The ID of the checkout session.
      */
@@ -25,6 +25,7 @@ public class UpdateCheckoutSessionRequest {
      */
     @SpeakeasyMetadata("header:style=simple,explode=false,name=x-gr4vy-merchant-account-id")
     private JsonNullable<String> merchantAccountId;
+
 
     @SpeakeasyMetadata("request:mediaType=application/json")
     private CheckoutSessionCreate checkoutSessionCreate;
@@ -69,9 +70,10 @@ public class UpdateCheckoutSessionRequest {
         return checkoutSessionCreate;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The ID of the checkout session.
@@ -106,7 +108,6 @@ public class UpdateCheckoutSessionRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -125,9 +126,7 @@ public class UpdateCheckoutSessionRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            sessionId,
-            merchantAccountId,
-            checkoutSessionCreate);
+            sessionId, merchantAccountId, checkoutSessionCreate);
     }
     
     @Override
@@ -137,18 +136,20 @@ public class UpdateCheckoutSessionRequest {
                 "merchantAccountId", merchantAccountId,
                 "checkoutSessionCreate", checkoutSessionCreate);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String sessionId;
- 
+
         private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
- 
+
         private CheckoutSessionCreate checkoutSessionCreate;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The ID of the checkout session.
@@ -158,6 +159,7 @@ public class UpdateCheckoutSessionRequest {
             this.sessionId = sessionId;
             return this;
         }
+
 
         /**
          * The ID of the merchant account to use for this request.
@@ -177,17 +179,18 @@ public class UpdateCheckoutSessionRequest {
             return this;
         }
 
+
         public Builder checkoutSessionCreate(CheckoutSessionCreate checkoutSessionCreate) {
             Utils.checkNotNull(checkoutSessionCreate, "checkoutSessionCreate");
             this.checkoutSessionCreate = checkoutSessionCreate;
             return this;
         }
-        
+
         public UpdateCheckoutSessionRequest build() {
+
             return new UpdateCheckoutSessionRequest(
-                sessionId,
-                merchantAccountId,
-                checkoutSessionCreate);
+                sessionId, merchantAccountId, checkoutSessionCreate);
         }
+
     }
 }

@@ -36,7 +36,6 @@ public class CheckoutSessions {
     CheckoutSessions(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-
     /**
      * Create checkout session
      * 
@@ -80,10 +79,9 @@ public class CheckoutSessions {
                 .checkoutSessionCreate(checkoutSessionCreate)
                 .build();
         RequestOperation<CreateCheckoutSessionRequest, CreateCheckoutSessionResponse> operation
-              = new CreateCheckoutSessionOperation( sdkConfiguration);
+              = new CreateCheckoutSessionOperation(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Update checkout session
@@ -135,10 +133,9 @@ public class CheckoutSessions {
                 .checkoutSessionCreate(checkoutSessionCreate)
                 .build();
         RequestOperation<UpdateCheckoutSessionRequest, UpdateCheckoutSessionResponse> operation
-              = new UpdateCheckoutSessionOperation( sdkConfiguration);
+              = new UpdateCheckoutSessionOperation(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Get checkout session
@@ -187,11 +184,10 @@ public class CheckoutSessions {
                 .build();
         RequestOperation<GetCheckoutSessionRequest, GetCheckoutSessionResponse> operation
               = new GetCheckoutSessionOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Delete checkout session
@@ -237,7 +233,7 @@ public class CheckoutSessions {
                 .merchantAccountId(merchantAccountId)
                 .build();
         RequestOperation<DeleteCheckoutSessionRequest, DeleteCheckoutSessionResponse> operation
-              = new DeleteCheckoutSessionOperation( sdkConfiguration);
+              = new DeleteCheckoutSessionOperation(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
 

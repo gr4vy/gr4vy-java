@@ -16,7 +16,6 @@ import java.lang.String;
  * <p>The ID of a stored gift card to fetch a balance for.
  */
 public class GiftCardStoredRequest {
-
     /**
      * The ID of the field to fetch a balance for.
      */
@@ -38,9 +37,10 @@ public class GiftCardStoredRequest {
         return id;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The ID of the field to fetch a balance for.
@@ -51,7 +51,6 @@ public class GiftCardStoredRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -76,14 +75,16 @@ public class GiftCardStoredRequest {
         return Utils.toString(GiftCardStoredRequest.class,
                 "id", id);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String id;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The ID of the field to fetch a balance for.
@@ -93,10 +94,12 @@ public class GiftCardStoredRequest {
             this.id = id;
             return this;
         }
-        
+
         public GiftCardStoredRequest build() {
+
             return new GiftCardStoredRequest(
                 id);
         }
+
     }
 }

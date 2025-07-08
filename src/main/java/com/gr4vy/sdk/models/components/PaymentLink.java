@@ -22,8 +22,8 @@ import java.util.Map;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class PaymentLink {
 
+public class PaymentLink {
     /**
      * The unique identifier for the payment link.
      */
@@ -138,6 +138,7 @@ public class PaymentLink {
     @JsonProperty("currency")
     private String currency;
 
+
     @JsonProperty("intent")
     private TransactionIntent intent;
 
@@ -163,10 +164,10 @@ public class PaymentLink {
     private JsonNullable<? extends Map<String, Object>> metadata;
 
     /**
-     * The way payment method information made it to this transaction.
+     * The payment source for the payment link.
      */
     @JsonProperty("payment_source")
-    private TransactionPaymentSource paymentSource;
+    private PaymentLinkPaymentSource paymentSource;
 
     /**
      * The date and time the payment link was created.
@@ -179,6 +180,7 @@ public class PaymentLink {
      */
     @JsonProperty("updated_at")
     private OffsetDateTime updatedAt;
+
 
     @JsonProperty("status")
     private PaymentLinkStatus status;
@@ -219,7 +221,7 @@ public class PaymentLink {
             @JsonProperty("return_url") JsonNullable<String> returnUrl,
             @JsonProperty("cart_items") Optional<? extends List<CartItem>> cartItems,
             @JsonProperty("metadata") JsonNullable<? extends Map<String, Object>> metadata,
-            @JsonProperty("payment_source") TransactionPaymentSource paymentSource,
+            @JsonProperty("payment_source") PaymentLinkPaymentSource paymentSource,
             @JsonProperty("created_at") OffsetDateTime createdAt,
             @JsonProperty("updated_at") OffsetDateTime updatedAt,
             @JsonProperty("status") PaymentLinkStatus status,
@@ -287,11 +289,19 @@ public class PaymentLink {
             String country,
             String currency,
             TransactionIntent intent,
-            TransactionPaymentSource paymentSource,
+            PaymentLinkPaymentSource paymentSource,
             OffsetDateTime createdAt,
             OffsetDateTime updatedAt,
             PaymentLinkStatus status) {
-        this(id, url, JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), amount, country, currency, intent, JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), paymentSource, createdAt, updatedAt, status, JsonNullable.undefined(), JsonNullable.undefined());
+        this(id, url, JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), amount, country,
+            currency, intent, JsonNullable.undefined(),
+            Optional.empty(), JsonNullable.undefined(), paymentSource,
+            createdAt, updatedAt, status,
+            JsonNullable.undefined(), JsonNullable.undefined());
     }
 
     /**
@@ -463,10 +473,10 @@ public class PaymentLink {
     }
 
     /**
-     * The way payment method information made it to this transaction.
+     * The payment source for the payment link.
      */
     @JsonIgnore
-    public TransactionPaymentSource paymentSource() {
+    public PaymentLinkPaymentSource paymentSource() {
         return paymentSource;
     }
 
@@ -509,9 +519,10 @@ public class PaymentLink {
         return (JsonNullable<ShippingDetails>) shippingDetails;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The unique identifier for the payment link.
@@ -789,6 +800,7 @@ public class PaymentLink {
         return this;
     }
 
+
     /**
      * The cart items for the payment link.
      */
@@ -817,9 +829,9 @@ public class PaymentLink {
     }
 
     /**
-     * The way payment method information made it to this transaction.
+     * The payment source for the payment link.
      */
-    public PaymentLink withPaymentSource(TransactionPaymentSource paymentSource) {
+    public PaymentLink withPaymentSource(PaymentLinkPaymentSource paymentSource) {
         Utils.checkNotNull(paymentSource, "paymentSource");
         this.paymentSource = paymentSource;
         return this;
@@ -885,7 +897,6 @@ public class PaymentLink {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -928,33 +939,15 @@ public class PaymentLink {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            id,
-            type,
-            url,
-            expiresAt,
-            externalIdentifier,
-            statementDescriptor,
-            locale,
-            merchantName,
-            merchantUrl,
-            merchantBannerUrl,
-            merchantColor,
-            merchantMessage,
-            merchantTermsAndConditionsUrl,
-            merchantFaviconUrl,
-            amount,
-            country,
-            currency,
-            intent,
-            returnUrl,
-            cartItems,
-            metadata,
-            paymentSource,
-            createdAt,
-            updatedAt,
-            status,
-            buyer,
-            shippingDetails);
+            id, type, url,
+            expiresAt, externalIdentifier, statementDescriptor,
+            locale, merchantName, merchantUrl,
+            merchantBannerUrl, merchantColor, merchantMessage,
+            merchantTermsAndConditionsUrl, merchantFaviconUrl, amount,
+            country, currency, intent,
+            returnUrl, cartItems, metadata,
+            paymentSource, createdAt, updatedAt,
+            status, buyer, shippingDetails);
     }
     
     @Override
@@ -988,64 +981,66 @@ public class PaymentLink {
                 "buyer", buyer,
                 "shippingDetails", shippingDetails);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String id;
- 
+
         private String url;
- 
+
         private JsonNullable<OffsetDateTime> expiresAt = JsonNullable.undefined();
- 
+
         private JsonNullable<String> externalIdentifier = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends StatementDescriptor> statementDescriptor = JsonNullable.undefined();
- 
+
         private JsonNullable<String> locale = JsonNullable.undefined();
- 
+
         private JsonNullable<String> merchantName = JsonNullable.undefined();
- 
+
         private JsonNullable<String> merchantUrl = JsonNullable.undefined();
- 
+
         private JsonNullable<String> merchantBannerUrl = JsonNullable.undefined();
- 
+
         private JsonNullable<String> merchantColor = JsonNullable.undefined();
- 
+
         private JsonNullable<String> merchantMessage = JsonNullable.undefined();
- 
+
         private JsonNullable<String> merchantTermsAndConditionsUrl = JsonNullable.undefined();
- 
+
         private JsonNullable<String> merchantFaviconUrl = JsonNullable.undefined();
- 
+
         private Long amount;
- 
+
         private String country;
- 
+
         private String currency;
- 
+
         private TransactionIntent intent;
- 
+
         private JsonNullable<String> returnUrl = JsonNullable.undefined();
- 
+
         private Optional<? extends List<CartItem>> cartItems = Optional.empty();
- 
+
         private JsonNullable<? extends Map<String, Object>> metadata = JsonNullable.undefined();
- 
-        private TransactionPaymentSource paymentSource;
- 
+
+        private PaymentLinkPaymentSource paymentSource;
+
         private OffsetDateTime createdAt;
- 
+
         private OffsetDateTime updatedAt;
- 
+
         private PaymentLinkStatus status;
- 
+
         private JsonNullable<? extends TransactionBuyer> buyer = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends ShippingDetails> shippingDetails = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The unique identifier for the payment link.
@@ -1056,6 +1051,7 @@ public class PaymentLink {
             return this;
         }
 
+
         /**
          * The URL for the payment link.
          */
@@ -1064,6 +1060,7 @@ public class PaymentLink {
             this.url = url;
             return this;
         }
+
 
         /**
          * The expiration date and time for the payment link.
@@ -1083,6 +1080,7 @@ public class PaymentLink {
             return this;
         }
 
+
         /**
          * The merchant reference for the payment link.
          */
@@ -1100,6 +1098,7 @@ public class PaymentLink {
             this.externalIdentifier = externalIdentifier;
             return this;
         }
+
 
         /**
          * The statement descriptor for the payment link.
@@ -1119,6 +1118,7 @@ public class PaymentLink {
             return this;
         }
 
+
         /**
          * The locale for the payment link.
          */
@@ -1136,6 +1136,7 @@ public class PaymentLink {
             this.locale = locale;
             return this;
         }
+
 
         /**
          * The merchant's display name.
@@ -1155,6 +1156,7 @@ public class PaymentLink {
             return this;
         }
 
+
         /**
          * The merchant's website URL.
          */
@@ -1172,6 +1174,7 @@ public class PaymentLink {
             this.merchantUrl = merchantUrl;
             return this;
         }
+
 
         /**
          * The merchant's banner image URL.
@@ -1191,6 +1194,7 @@ public class PaymentLink {
             return this;
         }
 
+
         /**
          * The merchant's brand color.
          */
@@ -1208,6 +1212,7 @@ public class PaymentLink {
             this.merchantColor = merchantColor;
             return this;
         }
+
 
         /**
          * A message from the merchant.
@@ -1227,6 +1232,7 @@ public class PaymentLink {
             return this;
         }
 
+
         /**
          * URL to the merchant's terms and conditions.
          */
@@ -1244,6 +1250,7 @@ public class PaymentLink {
             this.merchantTermsAndConditionsUrl = merchantTermsAndConditionsUrl;
             return this;
         }
+
 
         /**
          * URL to the merchant's favicon.
@@ -1263,6 +1270,7 @@ public class PaymentLink {
             return this;
         }
 
+
         /**
          * The amount for the payment link.
          */
@@ -1271,6 +1279,7 @@ public class PaymentLink {
             this.amount = amount;
             return this;
         }
+
 
         /**
          * The country code for the payment link.
@@ -1281,6 +1290,7 @@ public class PaymentLink {
             return this;
         }
 
+
         /**
          * The currency code for the payment link.
          */
@@ -1290,11 +1300,13 @@ public class PaymentLink {
             return this;
         }
 
+
         public Builder intent(TransactionIntent intent) {
             Utils.checkNotNull(intent, "intent");
             this.intent = intent;
             return this;
         }
+
 
         /**
          * The return URL after payment completion.
@@ -1314,6 +1326,7 @@ public class PaymentLink {
             return this;
         }
 
+
         /**
          * The cart items for the payment link.
          */
@@ -1331,6 +1344,7 @@ public class PaymentLink {
             this.cartItems = cartItems;
             return this;
         }
+
 
         /**
          * Arbitrary metadata for the payment link.
@@ -1350,14 +1364,16 @@ public class PaymentLink {
             return this;
         }
 
+
         /**
-         * The way payment method information made it to this transaction.
+         * The payment source for the payment link.
          */
-        public Builder paymentSource(TransactionPaymentSource paymentSource) {
+        public Builder paymentSource(PaymentLinkPaymentSource paymentSource) {
             Utils.checkNotNull(paymentSource, "paymentSource");
             this.paymentSource = paymentSource;
             return this;
         }
+
 
         /**
          * The date and time the payment link was created.
@@ -1368,6 +1384,7 @@ public class PaymentLink {
             return this;
         }
 
+
         /**
          * The date and time the payment link was last updated.
          */
@@ -1377,11 +1394,13 @@ public class PaymentLink {
             return this;
         }
 
+
         public Builder status(PaymentLinkStatus status) {
             Utils.checkNotNull(status, "status");
             this.status = status;
             return this;
         }
+
 
         /**
          * The buyer associated with the payment link.
@@ -1401,6 +1420,7 @@ public class PaymentLink {
             return this;
         }
 
+
         /**
          * The shipping details for the payment link.
          */
@@ -1418,36 +1438,21 @@ public class PaymentLink {
             this.shippingDetails = shippingDetails;
             return this;
         }
-        
+
         public PaymentLink build() {
+
             return new PaymentLink(
-                id,
-                url,
-                expiresAt,
-                externalIdentifier,
-                statementDescriptor,
-                locale,
-                merchantName,
-                merchantUrl,
-                merchantBannerUrl,
-                merchantColor,
-                merchantMessage,
-                merchantTermsAndConditionsUrl,
-                merchantFaviconUrl,
-                amount,
-                country,
-                currency,
-                intent,
-                returnUrl,
-                cartItems,
-                metadata,
-                paymentSource,
-                createdAt,
-                updatedAt,
-                status,
-                buyer,
-                shippingDetails);
+                id, url, expiresAt,
+                externalIdentifier, statementDescriptor, locale,
+                merchantName, merchantUrl, merchantBannerUrl,
+                merchantColor, merchantMessage, merchantTermsAndConditionsUrl,
+                merchantFaviconUrl, amount, country,
+                currency, intent, returnUrl,
+                cartItems, metadata, paymentSource,
+                createdAt, updatedAt, status,
+                buyer, shippingDetails);
         }
+
 
         private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_Type =
                 new LazySingletonValue<>(

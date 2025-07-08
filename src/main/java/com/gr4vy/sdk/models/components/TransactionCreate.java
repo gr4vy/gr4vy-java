@@ -22,8 +22,8 @@ import java.util.Map;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class TransactionCreate {
 
+public class TransactionCreate {
     /**
      * The monetary amount for this transaction, in the smallest currency unit for the given currency, for example `1299` cents to create an authorization for `$12.99`. If the `intent` is set to `capture`, an amount greater than zero must be supplied. All gift card amounts are subtracted from this amount before the remainder is charged to the provided `payment_method`.
      */
@@ -85,6 +85,7 @@ public class TransactionCreate {
     @JsonProperty("external_identifier")
     private JsonNullable<String> externalIdentifier;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("intent")
     private Optional<? extends TransactionIntent> intent;
@@ -138,11 +139,11 @@ public class TransactionCreate {
     private Optional<Boolean> merchantInitiated;
 
     /**
-     * The way payment method information made it to this transaction.
+     * The use-case for the the transaction.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("payment_source")
-    private Optional<? extends TransactionPaymentSource> paymentSource;
+    private Optional<? extends TransactionCreatePaymentSource> paymentSource;
 
     /**
      * The airline addendum data which describes the airline booking associated with this transaction.
@@ -264,7 +265,7 @@ public class TransactionCreate {
             @JsonProperty("metadata") JsonNullable<? extends Map<String, String>> metadata,
             @JsonProperty("is_subsequent_payment") Optional<Boolean> isSubsequentPayment,
             @JsonProperty("merchant_initiated") Optional<Boolean> merchantInitiated,
-            @JsonProperty("payment_source") Optional<? extends TransactionPaymentSource> paymentSource,
+            @JsonProperty("payment_source") Optional<? extends TransactionCreatePaymentSource> paymentSource,
             @JsonProperty("airline") JsonNullable<? extends Airline> airline,
             @JsonProperty("cart_items") JsonNullable<? extends List<CartItem>> cartItems,
             @JsonProperty("statement_descriptor") JsonNullable<? extends StatementDescriptor> statementDescriptor,
@@ -344,7 +345,16 @@ public class TransactionCreate {
     public TransactionCreate(
             long amount,
             String currency) {
-        this(amount, currency, JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined());
+        this(amount, currency, JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            Optional.empty(), Optional.empty(), JsonNullable.undefined(),
+            JsonNullable.undefined(), Optional.empty(), Optional.empty(),
+            Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
+            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
+            Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined());
     }
 
     /**
@@ -484,12 +494,12 @@ public class TransactionCreate {
     }
 
     /**
-     * The way payment method information made it to this transaction.
+     * The use-case for the the transaction.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<TransactionPaymentSource> paymentSource() {
-        return (Optional<TransactionPaymentSource>) paymentSource;
+    public Optional<TransactionCreatePaymentSource> paymentSource() {
+        return (Optional<TransactionCreatePaymentSource>) paymentSource;
     }
 
     /**
@@ -615,9 +625,10 @@ public class TransactionCreate {
         return installmentCount;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The monetary amount for this transaction, in the smallest currency unit for the given currency, for example `1299` cents to create an authorization for `$12.99`. If the `intent` is set to `capture`, an amount greater than zero must be supplied. All gift card amounts are subtracted from this amount before the remainder is charged to the provided `payment_method`.
@@ -769,6 +780,7 @@ public class TransactionCreate {
         return this;
     }
 
+
     public TransactionCreate withIntent(Optional<? extends TransactionIntent> intent) {
         Utils.checkNotNull(intent, "intent");
         this.intent = intent;
@@ -786,6 +798,7 @@ public class TransactionCreate {
         this.store = Optional.ofNullable(store);
         return this;
     }
+
 
     /**
      * Whether or not to also try and store the payment method with us so that it can be used again for future use. This is only supported for payment methods that support this feature. There are also a few restrictions on how the flag may be set:
@@ -854,6 +867,7 @@ public class TransactionCreate {
         return this;
     }
 
+
     /**
      * Indicates whether the transaction represents a subsequent payment coming from a setup recurring payment. Please note there are some restrictions on how this flag may be used.
      * 
@@ -882,6 +896,7 @@ public class TransactionCreate {
         return this;
     }
 
+
     /**
      * Indicates whether the transaction was initiated by the merchant (true) or customer (false).
      */
@@ -892,18 +907,19 @@ public class TransactionCreate {
     }
 
     /**
-     * The way payment method information made it to this transaction.
+     * The use-case for the the transaction.
      */
-    public TransactionCreate withPaymentSource(TransactionPaymentSource paymentSource) {
+    public TransactionCreate withPaymentSource(TransactionCreatePaymentSource paymentSource) {
         Utils.checkNotNull(paymentSource, "paymentSource");
         this.paymentSource = Optional.ofNullable(paymentSource);
         return this;
     }
 
+
     /**
-     * The way payment method information made it to this transaction.
+     * The use-case for the the transaction.
      */
-    public TransactionCreate withPaymentSource(Optional<? extends TransactionPaymentSource> paymentSource) {
+    public TransactionCreate withPaymentSource(Optional<? extends TransactionCreatePaymentSource> paymentSource) {
         Utils.checkNotNull(paymentSource, "paymentSource");
         this.paymentSource = paymentSource;
         return this;
@@ -1049,6 +1065,7 @@ public class TransactionCreate {
         return this;
     }
 
+
     /**
      * Whether to capture the transaction asynchronously.
      * 
@@ -1108,6 +1125,7 @@ public class TransactionCreate {
         return this;
     }
 
+
     /**
      * Marks the transaction as an AFT. Requires the payment service to support this feature, and might `recipient` and `buyer` data
      */
@@ -1125,6 +1143,7 @@ public class TransactionCreate {
         this.allowPartialAuthorization = Optional.ofNullable(allowPartialAuthorization);
         return this;
     }
+
 
     /**
      * Defines if the transaction will allow for a partial authorization.
@@ -1171,7 +1190,6 @@ public class TransactionCreate {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -1217,36 +1235,16 @@ public class TransactionCreate {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            amount,
-            currency,
-            country,
-            paymentMethod,
-            buyer,
-            buyerId,
-            buyerExternalIdentifier,
-            giftCards,
-            externalIdentifier,
-            intent,
-            store,
-            threeDSecureData,
-            metadata,
-            isSubsequentPayment,
-            merchantInitiated,
-            paymentSource,
-            airline,
-            cartItems,
-            statementDescriptor,
-            previousSchemeTransactionId,
-            browserInfo,
-            shippingDetailsId,
-            connectionOptions,
-            asyncCapture,
-            antiFraudFingerprint,
-            paymentServiceId,
-            accountFundingTransaction,
-            allowPartialAuthorization,
-            recipient,
-            installmentCount);
+            amount, currency, country,
+            paymentMethod, buyer, buyerId,
+            buyerExternalIdentifier, giftCards, externalIdentifier,
+            intent, store, threeDSecureData,
+            metadata, isSubsequentPayment, merchantInitiated,
+            paymentSource, airline, cartItems,
+            statementDescriptor, previousSchemeTransactionId, browserInfo,
+            shippingDetailsId, connectionOptions, asyncCapture,
+            antiFraudFingerprint, paymentServiceId, accountFundingTransaction,
+            allowPartialAuthorization, recipient, installmentCount);
     }
     
     @Override
@@ -1283,72 +1281,74 @@ public class TransactionCreate {
                 "recipient", recipient,
                 "installmentCount", installmentCount);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Long amount;
- 
+
         private String currency;
- 
+
         private JsonNullable<String> country = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends TransactionCreatePaymentMethod> paymentMethod = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends GuestBuyerInput> buyer = JsonNullable.undefined();
- 
+
         private JsonNullable<String> buyerId = JsonNullable.undefined();
- 
+
         private JsonNullable<String> buyerExternalIdentifier = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends List<GiftCardUnion>> giftCards = JsonNullable.undefined();
- 
+
         private JsonNullable<String> externalIdentifier = JsonNullable.undefined();
- 
+
         private Optional<? extends TransactionIntent> intent = Optional.empty();
- 
+
         private Optional<Boolean> store;
- 
+
         private JsonNullable<? extends ThreeDSecureData> threeDSecureData = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends Map<String, String>> metadata = JsonNullable.undefined();
- 
+
         private Optional<Boolean> isSubsequentPayment;
- 
+
         private Optional<Boolean> merchantInitiated;
- 
-        private Optional<? extends TransactionPaymentSource> paymentSource = Optional.empty();
- 
+
+        private Optional<? extends TransactionCreatePaymentSource> paymentSource;
+
         private JsonNullable<? extends Airline> airline = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends List<CartItem>> cartItems = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends StatementDescriptor> statementDescriptor = JsonNullable.undefined();
- 
+
         private JsonNullable<String> previousSchemeTransactionId = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends BrowserInfo> browserInfo = JsonNullable.undefined();
- 
+
         private JsonNullable<String> shippingDetailsId = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends Map<String, Map<String, Object>>> connectionOptions = JsonNullable.undefined();
- 
+
         private Optional<Boolean> asyncCapture;
- 
+
         private JsonNullable<String> antiFraudFingerprint = JsonNullable.undefined();
- 
+
         private JsonNullable<String> paymentServiceId = JsonNullable.undefined();
- 
+
         private Optional<Boolean> accountFundingTransaction;
- 
+
         private Optional<Boolean> allowPartialAuthorization;
- 
+
         private JsonNullable<? extends Recipient> recipient = JsonNullable.undefined();
- 
+
         private JsonNullable<Long> installmentCount = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The monetary amount for this transaction, in the smallest currency unit for the given currency, for example `1299` cents to create an authorization for `$12.99`. If the `intent` is set to `capture`, an amount greater than zero must be supplied. All gift card amounts are subtracted from this amount before the remainder is charged to the provided `payment_method`.
@@ -1359,6 +1359,7 @@ public class TransactionCreate {
             return this;
         }
 
+
         /**
          * A supported ISO 4217 currency code. For redirect requests, this value must match the one specified for `currency` in `payment_method`.
          */
@@ -1367,6 +1368,7 @@ public class TransactionCreate {
             this.currency = currency;
             return this;
         }
+
 
         /**
          * The 2-letter ISO code of the country where the transaction is processed. This is also used to filter the payment services that can process the transaction. If this value is provided for redirect requests and it's not `null`, it must match the one specified for `country` in `payment_method`. Otherwise, the value specified for `country` in `payment_method` will be assumed implicitly.
@@ -1386,6 +1388,7 @@ public class TransactionCreate {
             return this;
         }
 
+
         /**
          * The optional payment method to use for this transaction. This field is required if no `gift_cards` have been added.
          */
@@ -1403,6 +1406,7 @@ public class TransactionCreate {
             this.paymentMethod = paymentMethod;
             return this;
         }
+
 
         /**
          * Guest buyer details provided inline rather than creating a buyer resource beforehand and using the `buyer_id` or `buyer_external_identifier` keys. No buyer resource will be created on Gr4vy when used.
@@ -1422,6 +1426,7 @@ public class TransactionCreate {
             return this;
         }
 
+
         /**
          * The ID of the buyer to associate this payment method to. If this field is provided then the `buyer_external_identifier` field needs to be unset. If a stored payment method or gift card is provided, then the buyer for that payment method needs to match the buyer for this field.
          */
@@ -1439,6 +1444,7 @@ public class TransactionCreate {
             this.buyerId = buyerId;
             return this;
         }
+
 
         /**
          * The `external_identifier` of the buyer to associate this payment method to. If this field is provided then the `buyer_id` field needs to be unset. If a stored payment method or gift card is provided, then the buyer for that payment method needs to match the buyer for this field.
@@ -1458,6 +1464,7 @@ public class TransactionCreate {
             return this;
         }
 
+
         /**
          * The optional gift card(s) to use for this transaction. At least one gift card is required if no other `payment_method` has been added. By default, only a maximum limit of 10 gift cards may be used in a single transaction. Please contact our team to change this limit.
          */
@@ -1475,6 +1482,7 @@ public class TransactionCreate {
             this.giftCards = giftCards;
             return this;
         }
+
 
         /**
          * An external identifier that can be used to match the transaction against your own records.
@@ -1494,6 +1502,7 @@ public class TransactionCreate {
             return this;
         }
 
+
         public Builder intent(TransactionIntent intent) {
             Utils.checkNotNull(intent, "intent");
             this.intent = Optional.ofNullable(intent);
@@ -1505,6 +1514,7 @@ public class TransactionCreate {
             this.intent = intent;
             return this;
         }
+
 
         /**
          * Whether or not to also try and store the payment method with us so that it can be used again for future use. This is only supported for payment methods that support this feature. There are also a few restrictions on how the flag may be set:
@@ -1530,6 +1540,7 @@ public class TransactionCreate {
             return this;
         }
 
+
         /**
          * Pass through 3-D Secure data to support external 3-D Secure authorisation. If using an external 3-D Secure provider, you should not pass a `redirect_url` in the `payment_method` object for a transaction.
          */
@@ -1548,6 +1559,7 @@ public class TransactionCreate {
             return this;
         }
 
+
         /**
          * Any additional information about the transaction that you would like to store as key-value pairs. This data is passed to payment service providers that support it.
          */
@@ -1565,6 +1577,7 @@ public class TransactionCreate {
             this.metadata = metadata;
             return this;
         }
+
 
         /**
          * Indicates whether the transaction represents a subsequent payment coming from a setup recurring payment. Please note there are some restrictions on how this flag may be used.
@@ -1604,6 +1617,7 @@ public class TransactionCreate {
             return this;
         }
 
+
         /**
          * Indicates whether the transaction was initiated by the merchant (true) or customer (false).
          */
@@ -1622,23 +1636,25 @@ public class TransactionCreate {
             return this;
         }
 
+
         /**
-         * The way payment method information made it to this transaction.
+         * The use-case for the the transaction.
          */
-        public Builder paymentSource(TransactionPaymentSource paymentSource) {
+        public Builder paymentSource(TransactionCreatePaymentSource paymentSource) {
             Utils.checkNotNull(paymentSource, "paymentSource");
             this.paymentSource = Optional.ofNullable(paymentSource);
             return this;
         }
 
         /**
-         * The way payment method information made it to this transaction.
+         * The use-case for the the transaction.
          */
-        public Builder paymentSource(Optional<? extends TransactionPaymentSource> paymentSource) {
+        public Builder paymentSource(Optional<? extends TransactionCreatePaymentSource> paymentSource) {
             Utils.checkNotNull(paymentSource, "paymentSource");
             this.paymentSource = paymentSource;
             return this;
         }
+
 
         /**
          * The airline addendum data which describes the airline booking associated with this transaction.
@@ -1658,6 +1674,7 @@ public class TransactionCreate {
             return this;
         }
 
+
         /**
          * An array of cart items that represents the line items of a transaction.
          */
@@ -1675,6 +1692,7 @@ public class TransactionCreate {
             this.cartItems = cartItems;
             return this;
         }
+
 
         /**
          * Details about the payment and the merchant which may end up on the (bank) statement for the payment.
@@ -1694,6 +1712,7 @@ public class TransactionCreate {
             return this;
         }
 
+
         /**
          * A scheme's transaction identifier to use in connecting a merchant initiated transaction to a previous customer initiated transaction. If not provided, and a qualifying customer initiated transaction has been previously made with the stored payment method, then Gr4vy will populate this value with the identifier returned for that transaction. This field is also know as the Visa Transaction Identifier, or Mastercard Trace ID.
          */
@@ -1711,6 +1730,7 @@ public class TransactionCreate {
             this.previousSchemeTransactionId = previousSchemeTransactionId;
             return this;
         }
+
 
         /**
          * Information about the browser used by the buyer. This can be used by anti-fraud services.
@@ -1730,6 +1750,7 @@ public class TransactionCreate {
             return this;
         }
 
+
         /**
          * The unique identifier of a set of shipping details stored for the buyer. If provided, the created transaction will include a copy of the details at the point of transaction creation; i.e. it will not be affected by later changes to the detail in the database.
          */
@@ -1748,6 +1769,7 @@ public class TransactionCreate {
             return this;
         }
 
+
         /**
          * Allows for passing optional configuration per connection to take advantage of connection specific features. When provided, the data is only passed to the target connection type to prevent sharing configuration across connections. Please note that each of the keys this object are in kebab-case, for example `cybersource-anti-fraud` as they represent the ID of the connector. All the other keys will be snake case, for example `merchant_defined_data` or camel case to match an external API that the connector uses.
          */
@@ -1765,6 +1787,7 @@ public class TransactionCreate {
             this.connectionOptions = connectionOptions;
             return this;
         }
+
 
         /**
          * Whether to capture the transaction asynchronously.
@@ -1794,6 +1817,7 @@ public class TransactionCreate {
             return this;
         }
 
+
         /**
          * This field represents the fingerprint data to be passed to the active anti-fraud service.
          */
@@ -1811,6 +1835,7 @@ public class TransactionCreate {
             this.antiFraudFingerprint = antiFraudFingerprint;
             return this;
         }
+
 
         /**
          * The unique identifier of an existing payment service. When provided, the created transaction will be processed by the given payment service and any routing rules will be skipped.
@@ -1830,6 +1855,7 @@ public class TransactionCreate {
             return this;
         }
 
+
         /**
          * Marks the transaction as an AFT. Requires the payment service to support this feature, and might `recipient` and `buyer` data
          */
@@ -1847,6 +1873,7 @@ public class TransactionCreate {
             this.accountFundingTransaction = accountFundingTransaction;
             return this;
         }
+
 
         /**
          * Defines if the transaction will allow for a partial authorization.
@@ -1866,6 +1893,7 @@ public class TransactionCreate {
             return this;
         }
 
+
         /**
          * The recipient of any account to account funding. For use with AFTs.
          */
@@ -1884,6 +1912,7 @@ public class TransactionCreate {
             return this;
         }
 
+
         /**
          * The number of installments a buyer is required to make.
          */
@@ -1901,7 +1930,7 @@ public class TransactionCreate {
             this.installmentCount = installmentCount;
             return this;
         }
-        
+
         public TransactionCreate build() {
             if (store == null) {
                 store = _SINGLETON_VALUE_Store.value();
@@ -1912,6 +1941,9 @@ public class TransactionCreate {
             if (merchantInitiated == null) {
                 merchantInitiated = _SINGLETON_VALUE_MerchantInitiated.value();
             }
+            if (paymentSource == null) {
+                paymentSource = _SINGLETON_VALUE_PaymentSource.value();
+            }
             if (asyncCapture == null) {
                 asyncCapture = _SINGLETON_VALUE_AsyncCapture.value();
             }
@@ -1921,38 +1953,20 @@ public class TransactionCreate {
             if (allowPartialAuthorization == null) {
                 allowPartialAuthorization = _SINGLETON_VALUE_AllowPartialAuthorization.value();
             }
+
             return new TransactionCreate(
-                amount,
-                currency,
-                country,
-                paymentMethod,
-                buyer,
-                buyerId,
-                buyerExternalIdentifier,
-                giftCards,
-                externalIdentifier,
-                intent,
-                store,
-                threeDSecureData,
-                metadata,
-                isSubsequentPayment,
-                merchantInitiated,
-                paymentSource,
-                airline,
-                cartItems,
-                statementDescriptor,
-                previousSchemeTransactionId,
-                browserInfo,
-                shippingDetailsId,
-                connectionOptions,
-                asyncCapture,
-                antiFraudFingerprint,
-                paymentServiceId,
-                accountFundingTransaction,
-                allowPartialAuthorization,
-                recipient,
-                installmentCount);
+                amount, currency, country,
+                paymentMethod, buyer, buyerId,
+                buyerExternalIdentifier, giftCards, externalIdentifier,
+                intent, store, threeDSecureData,
+                metadata, isSubsequentPayment, merchantInitiated,
+                paymentSource, airline, cartItems,
+                statementDescriptor, previousSchemeTransactionId, browserInfo,
+                shippingDetailsId, connectionOptions, asyncCapture,
+                antiFraudFingerprint, paymentServiceId, accountFundingTransaction,
+                allowPartialAuthorization, recipient, installmentCount);
         }
+
 
         private static final LazySingletonValue<Optional<Boolean>> _SINGLETON_VALUE_Store =
                 new LazySingletonValue<>(
@@ -1971,6 +1985,12 @@ public class TransactionCreate {
                         "merchant_initiated",
                         "false",
                         new TypeReference<Optional<Boolean>>() {});
+
+        private static final LazySingletonValue<Optional<? extends TransactionCreatePaymentSource>> _SINGLETON_VALUE_PaymentSource =
+                new LazySingletonValue<>(
+                        "payment_source",
+                        "\"ecommerce\"",
+                        new TypeReference<Optional<? extends TransactionCreatePaymentSource>>() {});
 
         private static final LazySingletonValue<Optional<Boolean>> _SINGLETON_VALUE_AsyncCapture =
                 new LazySingletonValue<>(

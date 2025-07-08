@@ -28,7 +28,6 @@ import org.openapitools.jackson.nullable.JsonNullable;
  * <p>A full transaction resource.
  */
 public class Transaction {
-
     /**
      * Always `transaction`.
      */
@@ -65,6 +64,7 @@ public class Transaction {
      */
     @JsonProperty("amount")
     private long amount;
+
 
     @JsonProperty("status")
     private TransactionStatus status;
@@ -119,6 +119,7 @@ public class Transaction {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("external_identifier")
     private JsonNullable<String> externalIdentifier;
+
 
     @JsonProperty("intent")
     private TransactionIntent intent;
@@ -261,10 +262,10 @@ public class Transaction {
     private JsonNullable<? extends AntiFraudDecision> antiFraudDecision;
 
     /**
-     * The way payment method information made it to this transaction.
+     * The source of the transaction.
      */
     @JsonProperty("payment_source")
-    private TransactionPaymentSource paymentSource;
+    private TransactionPaymentSource1 paymentSource;
 
     /**
      * Indicates whether the transaction was initiated by the merchant or the customer.
@@ -362,6 +363,7 @@ public class Transaction {
     @JsonProperty("buyer_approval_timedout_at")
     private JsonNullable<OffsetDateTime> buyerApprovalTimedoutAt;
 
+
     @JsonProperty("intent_outcome")
     private TransactionIntentOutcome intentOutcome;
 
@@ -435,7 +437,7 @@ public class Transaction {
             @JsonProperty("avs_response_code") JsonNullable<? extends AVSResponseCode> avsResponseCode,
             @JsonProperty("cvv_response_code") JsonNullable<? extends CVVResponseCode> cvvResponseCode,
             @JsonProperty("anti_fraud_decision") JsonNullable<? extends AntiFraudDecision> antiFraudDecision,
-            @JsonProperty("payment_source") TransactionPaymentSource paymentSource,
+            @JsonProperty("payment_source") TransactionPaymentSource1 paymentSource,
             @JsonProperty("merchant_initiated") boolean merchantInitiated,
             @JsonProperty("is_subsequent_payment") boolean isSubsequentPayment,
             @JsonProperty("cart_items") JsonNullable<? extends List<CartItem>> cartItems,
@@ -587,13 +589,31 @@ public class Transaction {
             List<GiftCardRedemption> giftCardRedemptions,
             OffsetDateTime createdAt,
             OffsetDateTime updatedAt,
-            TransactionPaymentSource paymentSource,
+            TransactionPaymentSource1 paymentSource,
             boolean merchantInitiated,
             boolean isSubsequentPayment,
             TransactionIntentOutcome intentOutcome,
             boolean multiTender,
             boolean accountFundingTransaction) {
-        this(id, reconciliationId, merchantAccountId, currency, amount, status, authorizedAmount, capturedAmount, refundedAmount, JsonNullable.undefined(), settledAmount, settled, JsonNullable.undefined(), JsonNullable.undefined(), intent, JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), giftCardRedemptions, JsonNullable.undefined(), createdAt, updatedAt, JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), paymentSource, merchantInitiated, isSubsequentPayment, JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), intentOutcome, multiTender, accountFundingTransaction, JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
+        this(id, reconciliationId, merchantAccountId,
+            currency, amount, status,
+            authorizedAmount, capturedAmount, refundedAmount,
+            JsonNullable.undefined(), settledAmount, settled,
+            JsonNullable.undefined(), JsonNullable.undefined(), intent,
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), giftCardRedemptions,
+            JsonNullable.undefined(), createdAt, updatedAt,
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), paymentSource,
+            merchantInitiated, isSubsequentPayment, JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), intentOutcome,
+            multiTender, accountFundingTransaction, JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined());
     }
 
     /**
@@ -890,10 +910,10 @@ public class Transaction {
     }
 
     /**
-     * The way payment method information made it to this transaction.
+     * The source of the transaction.
      */
     @JsonIgnore
-    public TransactionPaymentSource paymentSource() {
+    public TransactionPaymentSource1 paymentSource() {
         return paymentSource;
     }
 
@@ -1060,9 +1080,10 @@ public class Transaction {
         return installmentCount;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The ID for the transaction.
@@ -1319,6 +1340,7 @@ public class Transaction {
         return this;
     }
 
+
     /**
      * Whether a manual anti fraud review is pending with an anti fraud service.
      */
@@ -1554,9 +1576,9 @@ public class Transaction {
     }
 
     /**
-     * The way payment method information made it to this transaction.
+     * The source of the transaction.
      */
-    public Transaction withPaymentSource(TransactionPaymentSource paymentSource) {
+    public Transaction withPaymentSource(TransactionPaymentSource1 paymentSource) {
         Utils.checkNotNull(paymentSource, "paymentSource");
         this.paymentSource = paymentSource;
         return this;
@@ -1678,6 +1700,7 @@ public class Transaction {
         this.additionalIdentifiers = Optional.ofNullable(additionalIdentifiers);
         return this;
     }
+
 
     /**
      * A list of additional identifiers that we may keep track of to manage this transaction. This may include the authorization ID, capture ID, and processor ID, as well as an undefined list of additional identifiers.
@@ -1874,7 +1897,6 @@ public class Transaction {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -1947,63 +1969,25 @@ public class Transaction {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            type,
-            id,
-            reconciliationId,
-            merchantAccountId,
-            currency,
-            amount,
-            status,
-            authorizedAmount,
-            capturedAmount,
-            refundedAmount,
-            settledCurrency,
-            settledAmount,
-            settled,
-            country,
-            externalIdentifier,
-            intent,
-            paymentMethod,
-            method,
-            instrumentType,
-            errorCode,
-            paymentService,
-            pendingReview,
-            buyer,
-            rawResponseCode,
-            rawResponseDescription,
-            shippingDetails,
-            checkoutSessionId,
-            giftCardRedemptions,
-            giftCardService,
-            createdAt,
-            updatedAt,
-            airline,
-            authResponseCode,
-            avsResponseCode,
-            cvvResponseCode,
-            antiFraudDecision,
-            paymentSource,
-            merchantInitiated,
-            isSubsequentPayment,
-            cartItems,
-            statementDescriptor,
-            schemeTransactionId,
-            threeDSecure,
-            paymentServiceTransactionId,
-            additionalIdentifiers,
-            metadata,
-            authorizedAt,
-            capturedAt,
-            voidedAt,
-            approvalExpiresAt,
-            buyerApprovalTimedoutAt,
-            intentOutcome,
-            multiTender,
-            accountFundingTransaction,
-            recipient,
-            merchantAdviceCode,
-            installmentCount);
+            type, id, reconciliationId,
+            merchantAccountId, currency, amount,
+            status, authorizedAmount, capturedAmount,
+            refundedAmount, settledCurrency, settledAmount,
+            settled, country, externalIdentifier,
+            intent, paymentMethod, method,
+            instrumentType, errorCode, paymentService,
+            pendingReview, buyer, rawResponseCode,
+            rawResponseDescription, shippingDetails, checkoutSessionId,
+            giftCardRedemptions, giftCardService, createdAt,
+            updatedAt, airline, authResponseCode,
+            avsResponseCode, cvvResponseCode, antiFraudDecision,
+            paymentSource, merchantInitiated, isSubsequentPayment,
+            cartItems, statementDescriptor, schemeTransactionId,
+            threeDSecure, paymentServiceTransactionId, additionalIdentifiers,
+            metadata, authorizedAt, capturedAt,
+            voidedAt, approvalExpiresAt, buyerApprovalTimedoutAt,
+            intentOutcome, multiTender, accountFundingTransaction,
+            recipient, merchantAdviceCode, installmentCount);
     }
     
     @Override
@@ -2067,124 +2051,126 @@ public class Transaction {
                 "merchantAdviceCode", merchantAdviceCode,
                 "installmentCount", installmentCount);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String id;
- 
+
         private String reconciliationId;
- 
+
         private String merchantAccountId;
- 
+
         private String currency;
- 
+
         private Long amount;
- 
+
         private TransactionStatus status;
- 
+
         private Long authorizedAmount;
- 
+
         private Long capturedAmount;
- 
+
         private Long refundedAmount;
- 
+
         private JsonNullable<String> settledCurrency = JsonNullable.undefined();
- 
+
         private Long settledAmount;
- 
+
         private Boolean settled;
- 
+
         private JsonNullable<String> country = JsonNullable.undefined();
- 
+
         private JsonNullable<String> externalIdentifier = JsonNullable.undefined();
- 
+
         private TransactionIntent intent;
- 
+
         private JsonNullable<? extends TransactionPaymentMethod> paymentMethod = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends Method> method = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends InstrumentType> instrumentType = JsonNullable.undefined();
- 
+
         private JsonNullable<String> errorCode = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends TransactionPaymentService> paymentService = JsonNullable.undefined();
- 
+
         private Optional<Boolean> pendingReview;
- 
+
         private JsonNullable<? extends TransactionBuyer> buyer = JsonNullable.undefined();
- 
+
         private JsonNullable<String> rawResponseCode = JsonNullable.undefined();
- 
+
         private JsonNullable<String> rawResponseDescription = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends ShippingDetails> shippingDetails = JsonNullable.undefined();
- 
+
         private JsonNullable<String> checkoutSessionId = JsonNullable.undefined();
- 
+
         private List<GiftCardRedemption> giftCardRedemptions;
- 
+
         private JsonNullable<? extends GiftCardService> giftCardService = JsonNullable.undefined();
- 
+
         private OffsetDateTime createdAt;
- 
+
         private OffsetDateTime updatedAt;
- 
+
         private JsonNullable<? extends Airline> airline = JsonNullable.undefined();
- 
+
         private JsonNullable<String> authResponseCode = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends AVSResponseCode> avsResponseCode = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends CVVResponseCode> cvvResponseCode = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends AntiFraudDecision> antiFraudDecision = JsonNullable.undefined();
- 
-        private TransactionPaymentSource paymentSource;
- 
+
+        private TransactionPaymentSource1 paymentSource;
+
         private Boolean merchantInitiated;
- 
+
         private Boolean isSubsequentPayment;
- 
+
         private JsonNullable<? extends List<CartItem>> cartItems = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends StatementDescriptor> statementDescriptor = JsonNullable.undefined();
- 
+
         private JsonNullable<String> schemeTransactionId = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends TransactionThreeDSecureSummary> threeDSecure = JsonNullable.undefined();
- 
+
         private JsonNullable<String> paymentServiceTransactionId = JsonNullable.undefined();
- 
+
         private Optional<? extends Map<String, String>> additionalIdentifiers = Optional.empty();
- 
+
         private JsonNullable<? extends Map<String, String>> metadata = JsonNullable.undefined();
- 
+
         private JsonNullable<OffsetDateTime> authorizedAt = JsonNullable.undefined();
- 
+
         private JsonNullable<OffsetDateTime> capturedAt = JsonNullable.undefined();
- 
+
         private JsonNullable<OffsetDateTime> voidedAt = JsonNullable.undefined();
- 
+
         private JsonNullable<OffsetDateTime> approvalExpiresAt = JsonNullable.undefined();
- 
+
         private JsonNullable<OffsetDateTime> buyerApprovalTimedoutAt = JsonNullable.undefined();
- 
+
         private TransactionIntentOutcome intentOutcome;
- 
+
         private Boolean multiTender;
- 
+
         private Boolean accountFundingTransaction;
- 
+
         private JsonNullable<? extends Recipient> recipient = JsonNullable.undefined();
- 
+
         private JsonNullable<String> merchantAdviceCode = JsonNullable.undefined();
- 
+
         private JsonNullable<Long> installmentCount = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The ID for the transaction.
@@ -2195,6 +2181,7 @@ public class Transaction {
             return this;
         }
 
+
         /**
          * The base62 encoded transaction ID. This represents a shorter version of this transaction's `id` which is sent to payment services, anti-fraud services, and other connectors. You can use this ID to reconcile a payment service's transaction against our system. This ID is sent instead of the transaction ID because not all services support 36 digit identifiers.
          */
@@ -2203,6 +2190,7 @@ public class Transaction {
             this.reconciliationId = reconciliationId;
             return this;
         }
+
 
         /**
          * The ID of the merchant account this transaction belongs to.
@@ -2213,6 +2201,7 @@ public class Transaction {
             return this;
         }
 
+
         /**
          * The currency code for this transaction.
          */
@@ -2221,6 +2210,7 @@ public class Transaction {
             this.currency = currency;
             return this;
         }
+
 
         /**
          * The total amount for this transaction across all funding sources including gift cards.
@@ -2231,11 +2221,13 @@ public class Transaction {
             return this;
         }
 
+
         public Builder status(TransactionStatus status) {
             Utils.checkNotNull(status, "status");
             this.status = status;
             return this;
         }
+
 
         /**
          * The amount for this transaction that has been authorized for the `payment_method`. This can be less than the `amount` if gift cards were used.
@@ -2246,6 +2238,7 @@ public class Transaction {
             return this;
         }
 
+
         /**
          * The total amount captured for this transaction, in the smallest currency unit (for example, cents or pence). This can be the full value of the `authorized_amount` or less.
          */
@@ -2255,6 +2248,7 @@ public class Transaction {
             return this;
         }
 
+
         /**
          * The total amount refunded for this transaction, in the smallest currency unit (for example, cents or pence). This can be the full value of the `captured_amount` or less.
          */
@@ -2263,6 +2257,7 @@ public class Transaction {
             this.refundedAmount = refundedAmount;
             return this;
         }
+
 
         /**
          * The ISO 4217 currency code of this transaction's settlement.
@@ -2282,6 +2277,7 @@ public class Transaction {
             return this;
         }
 
+
         /**
          * The net amount settled for this transaction, in the smallest currency unit (for example, cents or pence).
          */
@@ -2291,6 +2287,7 @@ public class Transaction {
             return this;
         }
 
+
         /**
          * Indicates whether this transaction has been settled.
          */
@@ -2299,6 +2296,7 @@ public class Transaction {
             this.settled = settled;
             return this;
         }
+
 
         /**
          * The 2-letter ISO 3166-1 alpha-2 country code for the transaction. Used to filter payment services for processing.
@@ -2318,6 +2316,7 @@ public class Transaction {
             return this;
         }
 
+
         /**
          * An external identifier that can be used to match the transaction against your own records.
          */
@@ -2336,11 +2335,13 @@ public class Transaction {
             return this;
         }
 
+
         public Builder intent(TransactionIntent intent) {
             Utils.checkNotNull(intent, "intent");
             this.intent = intent;
             return this;
         }
+
 
         /**
          * The payment method used for this transaction.
@@ -2360,6 +2361,7 @@ public class Transaction {
             return this;
         }
 
+
         /**
          * The method used for the transaction.
          */
@@ -2377,6 +2379,7 @@ public class Transaction {
             this.method = method;
             return this;
         }
+
 
         /**
          * The name of the instrument used to process the transaction.
@@ -2396,6 +2399,7 @@ public class Transaction {
             return this;
         }
 
+
         /**
          * The standardized error code set by Gr4vy.
          */
@@ -2413,6 +2417,7 @@ public class Transaction {
             this.errorCode = errorCode;
             return this;
         }
+
 
         /**
          * The payment service used for this transaction.
@@ -2432,6 +2437,7 @@ public class Transaction {
             return this;
         }
 
+
         /**
          * Whether a manual anti fraud review is pending with an anti fraud service.
          */
@@ -2449,6 +2455,7 @@ public class Transaction {
             this.pendingReview = pendingReview;
             return this;
         }
+
 
         /**
          * The buyer used for this transaction.
@@ -2468,6 +2475,7 @@ public class Transaction {
             return this;
         }
 
+
         /**
          * This is the response code received from the payment service. This can be set to any value and is not standardized across different payment services.
          */
@@ -2485,6 +2493,7 @@ public class Transaction {
             this.rawResponseCode = rawResponseCode;
             return this;
         }
+
 
         /**
          * This is the response description received from the payment service. This can be set to any value and is not standardized across different payment services.
@@ -2504,6 +2513,7 @@ public class Transaction {
             return this;
         }
 
+
         /**
          * The shipping details associated with the transaction.
          */
@@ -2521,6 +2531,7 @@ public class Transaction {
             this.shippingDetails = shippingDetails;
             return this;
         }
+
 
         /**
          * The identifier for the checkout session this transaction is associated with.
@@ -2540,6 +2551,7 @@ public class Transaction {
             return this;
         }
 
+
         /**
          * The gift cards redeemed for this transaction.
          */
@@ -2548,6 +2560,7 @@ public class Transaction {
             this.giftCardRedemptions = giftCardRedemptions;
             return this;
         }
+
 
         /**
          * The gift card service used for this transaction.
@@ -2567,6 +2580,7 @@ public class Transaction {
             return this;
         }
 
+
         /**
          * The date and time when the transaction was created, in ISO 8601 format.
          */
@@ -2576,6 +2590,7 @@ public class Transaction {
             return this;
         }
 
+
         /**
          * The date and time when the transaction was last updated, in ISO 8601 format.
          */
@@ -2584,6 +2599,7 @@ public class Transaction {
             this.updatedAt = updatedAt;
             return this;
         }
+
 
         /**
          * Contains information about an airline travel, if applicable.
@@ -2603,6 +2619,7 @@ public class Transaction {
             return this;
         }
 
+
         /**
          * This is the response description received from the processor.
          */
@@ -2620,6 +2637,7 @@ public class Transaction {
             this.authResponseCode = authResponseCode;
             return this;
         }
+
 
         /**
          * The response code received from the payment service for the Address Verification Check (AVS). This code is mapped to a standardized Gr4vy AVS response code.
@@ -2639,6 +2657,7 @@ public class Transaction {
             return this;
         }
 
+
         /**
          * The response code received from the payment service for the Card Verification Value (CVV). This code is mapped to a standardized Gr4vy CVV response code.
          */
@@ -2656,6 +2675,7 @@ public class Transaction {
             this.cvvResponseCode = cvvResponseCode;
             return this;
         }
+
 
         /**
          * The mapped decision received from the anti-fraud service. In case of a review decision this field is not updated once the review is resolved.
@@ -2675,14 +2695,16 @@ public class Transaction {
             return this;
         }
 
+
         /**
-         * The way payment method information made it to this transaction.
+         * The source of the transaction.
          */
-        public Builder paymentSource(TransactionPaymentSource paymentSource) {
+        public Builder paymentSource(TransactionPaymentSource1 paymentSource) {
             Utils.checkNotNull(paymentSource, "paymentSource");
             this.paymentSource = paymentSource;
             return this;
         }
+
 
         /**
          * Indicates whether the transaction was initiated by the merchant or the customer.
@@ -2693,6 +2715,7 @@ public class Transaction {
             return this;
         }
 
+
         /**
          * Indicates whether the transaction represents a subsequent payment or an initial one.
          */
@@ -2701,6 +2724,7 @@ public class Transaction {
             this.isSubsequentPayment = isSubsequentPayment;
             return this;
         }
+
 
         /**
          * An array of cart items that represents the line items of a transaction.
@@ -2720,6 +2744,7 @@ public class Transaction {
             return this;
         }
 
+
         /**
          * The statement descriptor is the text to be shown on the buyer's statements.
          */
@@ -2737,6 +2762,7 @@ public class Transaction {
             this.statementDescriptor = statementDescriptor;
             return this;
         }
+
 
         /**
          * An identifier for the transaction used by the scheme itself, when available.
@@ -2756,6 +2782,7 @@ public class Transaction {
             return this;
         }
 
+
         /**
          * The 3-D Secure data that was sent to the payment service for the transaction.
          */
@@ -2773,6 +2800,7 @@ public class Transaction {
             this.threeDSecure = threeDSecure;
             return this;
         }
+
 
         /**
          * The payment service's unique ID for the transaction.
@@ -2792,6 +2820,7 @@ public class Transaction {
             return this;
         }
 
+
         /**
          * A list of additional identifiers that we may keep track of to manage this transaction. This may include the authorization ID, capture ID, and processor ID, as well as an undefined list of additional identifiers.
          */
@@ -2809,6 +2838,7 @@ public class Transaction {
             this.additionalIdentifiers = additionalIdentifiers;
             return this;
         }
+
 
         /**
          * Additional information about the transaction stored as key-value pairs.
@@ -2828,6 +2858,7 @@ public class Transaction {
             return this;
         }
 
+
         /**
          * The date this transaction was authorized at.
          */
@@ -2845,6 +2876,7 @@ public class Transaction {
             this.authorizedAt = authorizedAt;
             return this;
         }
+
 
         /**
          * The date this transaction was captured at.
@@ -2864,6 +2896,7 @@ public class Transaction {
             return this;
         }
 
+
         /**
          * The date this transaction was voided at.
          */
@@ -2881,6 +2914,7 @@ public class Transaction {
             this.voidedAt = voidedAt;
             return this;
         }
+
 
         /**
          * The date this transaction's approval URL will expire at.
@@ -2900,6 +2934,7 @@ public class Transaction {
             return this;
         }
 
+
         /**
          * The date this transaction's approval timed out at.
          */
@@ -2918,11 +2953,13 @@ public class Transaction {
             return this;
         }
 
+
         public Builder intentOutcome(TransactionIntentOutcome intentOutcome) {
             Utils.checkNotNull(intentOutcome, "intentOutcome");
             this.intentOutcome = intentOutcome;
             return this;
         }
+
 
         /**
          * The outcome of the original intent of a transaction. This allows you to understand if the intent of the transaction (e.g. `capture` or `authorize`) has been achieved when dealing with multiple payment instruments.
@@ -2933,6 +2970,7 @@ public class Transaction {
             return this;
         }
 
+
         /**
          * Marks the transaction as an AFT. Requires the payment service to support this feature, and might `recipient` and `buyer` data
          */
@@ -2941,6 +2979,7 @@ public class Transaction {
             this.accountFundingTransaction = accountFundingTransaction;
             return this;
         }
+
 
         /**
          * The recipient of any account to account funding. For use with AFTs.
@@ -2960,6 +2999,7 @@ public class Transaction {
             return this;
         }
 
+
         /**
          * An optional merchant advice code which provides insight into the type of transaction or reason why the payment failed.
          */
@@ -2978,6 +3018,7 @@ public class Transaction {
             return this;
         }
 
+
         /**
          * The number of installments for this transaction, if applicable.
          */
@@ -2995,69 +3036,34 @@ public class Transaction {
             this.installmentCount = installmentCount;
             return this;
         }
-        
+
         public Transaction build() {
             if (pendingReview == null) {
                 pendingReview = _SINGLETON_VALUE_PendingReview.value();
             }
+
             return new Transaction(
-                id,
-                reconciliationId,
-                merchantAccountId,
-                currency,
-                amount,
-                status,
-                authorizedAmount,
-                capturedAmount,
-                refundedAmount,
-                settledCurrency,
-                settledAmount,
-                settled,
-                country,
-                externalIdentifier,
-                intent,
-                paymentMethod,
-                method,
-                instrumentType,
-                errorCode,
-                paymentService,
-                pendingReview,
-                buyer,
-                rawResponseCode,
-                rawResponseDescription,
-                shippingDetails,
-                checkoutSessionId,
-                giftCardRedemptions,
-                giftCardService,
-                createdAt,
-                updatedAt,
-                airline,
-                authResponseCode,
-                avsResponseCode,
-                cvvResponseCode,
-                antiFraudDecision,
-                paymentSource,
-                merchantInitiated,
-                isSubsequentPayment,
-                cartItems,
-                statementDescriptor,
-                schemeTransactionId,
-                threeDSecure,
-                paymentServiceTransactionId,
-                additionalIdentifiers,
-                metadata,
-                authorizedAt,
-                capturedAt,
-                voidedAt,
-                approvalExpiresAt,
-                buyerApprovalTimedoutAt,
-                intentOutcome,
-                multiTender,
-                accountFundingTransaction,
-                recipient,
-                merchantAdviceCode,
-                installmentCount);
+                id, reconciliationId, merchantAccountId,
+                currency, amount, status,
+                authorizedAmount, capturedAmount, refundedAmount,
+                settledCurrency, settledAmount, settled,
+                country, externalIdentifier, intent,
+                paymentMethod, method, instrumentType,
+                errorCode, paymentService, pendingReview,
+                buyer, rawResponseCode, rawResponseDescription,
+                shippingDetails, checkoutSessionId, giftCardRedemptions,
+                giftCardService, createdAt, updatedAt,
+                airline, authResponseCode, avsResponseCode,
+                cvvResponseCode, antiFraudDecision, paymentSource,
+                merchantInitiated, isSubsequentPayment, cartItems,
+                statementDescriptor, schemeTransactionId, threeDSecure,
+                paymentServiceTransactionId, additionalIdentifiers, metadata,
+                authorizedAt, capturedAt, voidedAt,
+                approvalExpiresAt, buyerApprovalTimedoutAt, intentOutcome,
+                multiTender, accountFundingTransaction, recipient,
+                merchantAdviceCode, installmentCount);
         }
+
 
         private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_Type =
                 new LazySingletonValue<>(

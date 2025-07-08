@@ -11,13 +11,16 @@ import java.lang.Override;
 import java.lang.String;
 import java.util.List;
 
+
 public class ValidationError {
 
     @JsonProperty("loc")
     private List<Loc> loc;
 
+
     @JsonProperty("msg")
     private String msg;
+
 
     @JsonProperty("type")
     private String type;
@@ -50,9 +53,10 @@ public class ValidationError {
         return type;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public ValidationError withLoc(List<Loc> loc) {
         Utils.checkNotNull(loc, "loc");
@@ -72,7 +76,6 @@ public class ValidationError {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -91,9 +94,7 @@ public class ValidationError {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            loc,
-            msg,
-            type);
+            loc, msg, type);
     }
     
     @Override
@@ -103,18 +104,20 @@ public class ValidationError {
                 "msg", msg,
                 "type", type);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private List<Loc> loc;
- 
+
         private String msg;
- 
+
         private String type;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder loc(List<Loc> loc) {
             Utils.checkNotNull(loc, "loc");
@@ -122,23 +125,25 @@ public class ValidationError {
             return this;
         }
 
+
         public Builder msg(String msg) {
             Utils.checkNotNull(msg, "msg");
             this.msg = msg;
             return this;
         }
 
+
         public Builder type(String type) {
             Utils.checkNotNull(type, "type");
             this.type = type;
             return this;
         }
-        
+
         public ValidationError build() {
+
             return new ValidationError(
-                loc,
-                msg,
-                type);
+                loc, msg, type);
         }
+
     }
 }

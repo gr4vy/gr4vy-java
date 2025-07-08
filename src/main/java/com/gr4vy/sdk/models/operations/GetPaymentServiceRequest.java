@@ -11,8 +11,8 @@ import java.lang.Override;
 import java.lang.String;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class GetPaymentServiceRequest {
 
+public class GetPaymentServiceRequest {
     /**
      * the ID of the payment service
      */
@@ -56,9 +56,10 @@ public class GetPaymentServiceRequest {
         return merchantAccountId;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * the ID of the payment service
@@ -87,7 +88,6 @@ public class GetPaymentServiceRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -105,8 +105,7 @@ public class GetPaymentServiceRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            paymentServiceId,
-            merchantAccountId);
+            paymentServiceId, merchantAccountId);
     }
     
     @Override
@@ -115,16 +114,18 @@ public class GetPaymentServiceRequest {
                 "paymentServiceId", paymentServiceId,
                 "merchantAccountId", merchantAccountId);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String paymentServiceId;
- 
+
         private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * the ID of the payment service
@@ -134,6 +135,7 @@ public class GetPaymentServiceRequest {
             this.paymentServiceId = paymentServiceId;
             return this;
         }
+
 
         /**
          * The ID of the merchant account to use for this request.
@@ -152,11 +154,12 @@ public class GetPaymentServiceRequest {
             this.merchantAccountId = merchantAccountId;
             return this;
         }
-        
+
         public GetPaymentServiceRequest build() {
+
             return new GetPaymentServiceRequest(
-                paymentServiceId,
-                merchantAccountId);
+                paymentServiceId, merchantAccountId);
         }
+
     }
 }

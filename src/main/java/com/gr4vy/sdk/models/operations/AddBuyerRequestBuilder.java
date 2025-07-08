@@ -53,7 +53,7 @@ public class AddBuyerRequestBuilder {
     public AddBuyerResponse call() throws Exception {
         
         RequestOperation<AddBuyerRequest, AddBuyerResponse> operation
-              = new AddBuyerOperation( sdkConfiguration);
+              = new AddBuyerOperation(sdkConfiguration);
         AddBuyerRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

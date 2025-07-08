@@ -18,8 +18,8 @@ import java.time.OffsetDateTime;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class GiftCard {
 
+public class GiftCard {
     /**
      * Always `gift-card`.
      */
@@ -38,6 +38,7 @@ public class GiftCard {
      */
     @JsonProperty("merchant_account_id")
     private String merchantAccountId;
+
 
     @JsonProperty("gift_card_service")
     private GiftCardService giftCardService;
@@ -130,7 +131,10 @@ public class GiftCard {
             String last4,
             OffsetDateTime createdAt,
             OffsetDateTime updatedAt) {
-        this(id, merchantAccountId, giftCardService, bin, subBin, last4, JsonNullable.undefined(), JsonNullable.undefined(), createdAt, updatedAt);
+        this(id, merchantAccountId, giftCardService,
+            bin, subBin, last4,
+            JsonNullable.undefined(), JsonNullable.undefined(), createdAt,
+            updatedAt);
     }
 
     /**
@@ -219,9 +223,10 @@ public class GiftCard {
         return updatedAt;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The ID for the gift card.
@@ -328,7 +333,6 @@ public class GiftCard {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -355,17 +359,10 @@ public class GiftCard {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            type,
-            id,
-            merchantAccountId,
-            giftCardService,
-            bin,
-            subBin,
-            last4,
-            expirationDate,
-            buyer,
-            createdAt,
-            updatedAt);
+            type, id, merchantAccountId,
+            giftCardService, bin, subBin,
+            last4, expirationDate, buyer,
+            createdAt, updatedAt);
     }
     
     @Override
@@ -383,32 +380,34 @@ public class GiftCard {
                 "createdAt", createdAt,
                 "updatedAt", updatedAt);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String id;
- 
+
         private String merchantAccountId;
- 
+
         private GiftCardService giftCardService;
- 
+
         private String bin;
- 
+
         private String subBin;
- 
+
         private String last4;
- 
+
         private JsonNullable<OffsetDateTime> expirationDate = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends Buyer> buyer = JsonNullable.undefined();
- 
+
         private OffsetDateTime createdAt;
- 
+
         private OffsetDateTime updatedAt;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The ID for the gift card.
@@ -419,6 +418,7 @@ public class GiftCard {
             return this;
         }
 
+
         /**
          * The ID of the merchant account this buyer belongs to.
          */
@@ -428,11 +428,13 @@ public class GiftCard {
             return this;
         }
 
+
         public Builder giftCardService(GiftCardService giftCardService) {
             Utils.checkNotNull(giftCardService, "giftCardService");
             this.giftCardService = giftCardService;
             return this;
         }
+
 
         /**
          * The first 6 digits of the full gift card number.
@@ -443,6 +445,7 @@ public class GiftCard {
             return this;
         }
 
+
         /**
          * The 3 digits after the `bin` of the full gift card number.
          */
@@ -452,6 +455,7 @@ public class GiftCard {
             return this;
         }
 
+
         /**
          * The last 4 digits for the gift card.
          */
@@ -460,6 +464,7 @@ public class GiftCard {
             this.last4 = last4;
             return this;
         }
+
 
         /**
          * The date and time when this gift card expires. This is a full date/time and may be more accurate than the actual expiry date received by the gift card service.
@@ -479,6 +484,7 @@ public class GiftCard {
             return this;
         }
 
+
         /**
          * The buyer for which this gift card is stored.
          */
@@ -497,6 +503,7 @@ public class GiftCard {
             return this;
         }
 
+
         /**
          * The date this gift card record was created at.
          */
@@ -506,6 +513,7 @@ public class GiftCard {
             return this;
         }
 
+
         /**
          * The date this gift card record was last updated at.
          */
@@ -514,20 +522,16 @@ public class GiftCard {
             this.updatedAt = updatedAt;
             return this;
         }
-        
+
         public GiftCard build() {
+
             return new GiftCard(
-                id,
-                merchantAccountId,
-                giftCardService,
-                bin,
-                subBin,
-                last4,
-                expirationDate,
-                buyer,
-                createdAt,
+                id, merchantAccountId, giftCardService,
+                bin, subBin, last4,
+                expirationDate, buyer, createdAt,
                 updatedAt);
         }
+
 
         private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_Type =
                 new LazySingletonValue<>(

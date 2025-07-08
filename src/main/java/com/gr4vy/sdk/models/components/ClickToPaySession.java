@@ -10,8 +10,8 @@ import com.gr4vy.sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 
-public class ClickToPaySession {
 
+public class ClickToPaySession {
     /**
      * The ID of the Click to Pay application.
      */
@@ -50,9 +50,10 @@ public class ClickToPaySession {
         return digitalPaymentApplicationName;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The ID of the Click to Pay application.
@@ -72,7 +73,6 @@ public class ClickToPaySession {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -90,8 +90,7 @@ public class ClickToPaySession {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            digitalPaymentApplicationId,
-            digitalPaymentApplicationName);
+            digitalPaymentApplicationId, digitalPaymentApplicationName);
     }
     
     @Override
@@ -100,16 +99,18 @@ public class ClickToPaySession {
                 "digitalPaymentApplicationId", digitalPaymentApplicationId,
                 "digitalPaymentApplicationName", digitalPaymentApplicationName);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String digitalPaymentApplicationId;
- 
+
         private String digitalPaymentApplicationName;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The ID of the Click to Pay application.
@@ -120,6 +121,7 @@ public class ClickToPaySession {
             return this;
         }
 
+
         /**
          * The merchant name as configured ont he the Click to Pay wallet.
          */
@@ -128,11 +130,12 @@ public class ClickToPaySession {
             this.digitalPaymentApplicationName = digitalPaymentApplicationName;
             return this;
         }
-        
+
         public ClickToPaySession build() {
+
             return new ClickToPaySession(
-                digitalPaymentApplicationId,
-                digitalPaymentApplicationName);
+                digitalPaymentApplicationId, digitalPaymentApplicationName);
         }
+
     }
 }

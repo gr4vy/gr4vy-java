@@ -67,7 +67,7 @@ public class CreateFullTransactionRefundRequestBuilder {
     public CreateFullTransactionRefundResponse call() throws Exception {
         
         RequestOperation<CreateFullTransactionRefundRequest, CreateFullTransactionRefundResponse> operation
-              = new CreateFullTransactionRefundOperation( sdkConfiguration);
+              = new CreateFullTransactionRefundOperation(sdkConfiguration);
         CreateFullTransactionRefundRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

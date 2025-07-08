@@ -16,8 +16,8 @@ import java.lang.String;
 import java.time.OffsetDateTime;
 import java.util.Optional;
 
-public class NetworkToken {
 
+public class NetworkToken {
     /**
      * Always `network-token`.
      */
@@ -42,6 +42,7 @@ public class NetworkToken {
      */
     @JsonProperty("payment_method_id")
     private String paymentMethodId;
+
 
     @JsonProperty("status")
     private NetworkTokenStatus status;
@@ -151,9 +152,10 @@ public class NetworkToken {
         return updatedAt;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The ID for the network token.
@@ -215,7 +217,6 @@ public class NetworkToken {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -239,14 +240,9 @@ public class NetworkToken {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            type,
-            id,
-            expirationDate,
-            paymentMethodId,
-            status,
-            token,
-            createdAt,
-            updatedAt);
+            type, id, expirationDate,
+            paymentMethodId, status, token,
+            createdAt, updatedAt);
     }
     
     @Override
@@ -261,26 +257,28 @@ public class NetworkToken {
                 "createdAt", createdAt,
                 "updatedAt", updatedAt);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String id;
- 
+
         private String expirationDate;
- 
+
         private String paymentMethodId;
- 
+
         private NetworkTokenStatus status;
- 
+
         private String token;
- 
+
         private OffsetDateTime createdAt;
- 
+
         private OffsetDateTime updatedAt;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The ID for the network token.
@@ -291,6 +289,7 @@ public class NetworkToken {
             return this;
         }
 
+
         /**
          * The expiration date for the network token.
          */
@@ -299,6 +298,7 @@ public class NetworkToken {
             this.expirationDate = expirationDate;
             return this;
         }
+
 
         /**
          * The ID of the payment method used to generate this token
@@ -309,11 +309,13 @@ public class NetworkToken {
             return this;
         }
 
+
         public Builder status(NetworkTokenStatus status) {
             Utils.checkNotNull(status, "status");
             this.status = status;
             return this;
         }
+
 
         /**
          * The token value. Will be present if succeeded.
@@ -324,6 +326,7 @@ public class NetworkToken {
             return this;
         }
 
+
         /**
          * The date and time when this network token was first created in our system.
          */
@@ -333,6 +336,7 @@ public class NetworkToken {
             return this;
         }
 
+
         /**
          * The date and time when this network token was last updated in our system.
          */
@@ -341,17 +345,15 @@ public class NetworkToken {
             this.updatedAt = updatedAt;
             return this;
         }
-        
+
         public NetworkToken build() {
+
             return new NetworkToken(
-                id,
-                expirationDate,
-                paymentMethodId,
-                status,
-                token,
-                createdAt,
+                id, expirationDate, paymentMethodId,
+                status, token, createdAt,
                 updatedAt);
         }
+
 
         private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_Type =
                 new LazySingletonValue<>(

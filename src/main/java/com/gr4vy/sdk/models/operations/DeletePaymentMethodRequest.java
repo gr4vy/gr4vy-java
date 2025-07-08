@@ -11,8 +11,8 @@ import java.lang.Override;
 import java.lang.String;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class DeletePaymentMethodRequest {
 
+public class DeletePaymentMethodRequest {
     /**
      * The ID of the payment method
      */
@@ -56,9 +56,10 @@ public class DeletePaymentMethodRequest {
         return merchantAccountId;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The ID of the payment method
@@ -87,7 +88,6 @@ public class DeletePaymentMethodRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -105,8 +105,7 @@ public class DeletePaymentMethodRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            paymentMethodId,
-            merchantAccountId);
+            paymentMethodId, merchantAccountId);
     }
     
     @Override
@@ -115,16 +114,18 @@ public class DeletePaymentMethodRequest {
                 "paymentMethodId", paymentMethodId,
                 "merchantAccountId", merchantAccountId);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String paymentMethodId;
- 
+
         private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The ID of the payment method
@@ -134,6 +135,7 @@ public class DeletePaymentMethodRequest {
             this.paymentMethodId = paymentMethodId;
             return this;
         }
+
 
         /**
          * The ID of the merchant account to use for this request.
@@ -152,11 +154,12 @@ public class DeletePaymentMethodRequest {
             this.merchantAccountId = merchantAccountId;
             return this;
         }
-        
+
         public DeletePaymentMethodRequest build() {
+
             return new DeletePaymentMethodRequest(
-                paymentMethodId,
-                merchantAccountId);
+                paymentMethodId, merchantAccountId);
         }
+
     }
 }

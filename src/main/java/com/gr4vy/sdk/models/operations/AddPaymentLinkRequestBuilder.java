@@ -53,7 +53,7 @@ public class AddPaymentLinkRequestBuilder {
     public AddPaymentLinkResponse call() throws Exception {
         
         RequestOperation<AddPaymentLinkRequest, AddPaymentLinkResponse> operation
-              = new AddPaymentLinkOperation( sdkConfiguration);
+              = new AddPaymentLinkOperation(sdkConfiguration);
         AddPaymentLinkRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

@@ -11,16 +11,20 @@ import java.lang.Override;
 import java.lang.String;
 import java.util.List;
 
+
 public class GooglePayPaymentOptionContext {
 
     @JsonProperty("merchant_name")
     private String merchantName;
 
+
     @JsonProperty("supported_schemes")
     private List<String> supportedSchemes;
 
+
     @JsonProperty("gateway")
     private String gateway;
+
 
     @JsonProperty("gateway_merchant_id")
     private String gatewayMerchantId;
@@ -61,9 +65,10 @@ public class GooglePayPaymentOptionContext {
         return gatewayMerchantId;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public GooglePayPaymentOptionContext withMerchantName(String merchantName) {
         Utils.checkNotNull(merchantName, "merchantName");
@@ -89,7 +94,6 @@ public class GooglePayPaymentOptionContext {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -109,9 +113,7 @@ public class GooglePayPaymentOptionContext {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            merchantName,
-            supportedSchemes,
-            gateway,
+            merchantName, supportedSchemes, gateway,
             gatewayMerchantId);
     }
     
@@ -123,20 +125,22 @@ public class GooglePayPaymentOptionContext {
                 "gateway", gateway,
                 "gatewayMerchantId", gatewayMerchantId);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String merchantName;
- 
+
         private List<String> supportedSchemes;
- 
+
         private String gateway;
- 
+
         private String gatewayMerchantId;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder merchantName(String merchantName) {
             Utils.checkNotNull(merchantName, "merchantName");
@@ -144,11 +148,13 @@ public class GooglePayPaymentOptionContext {
             return this;
         }
 
+
         public Builder supportedSchemes(List<String> supportedSchemes) {
             Utils.checkNotNull(supportedSchemes, "supportedSchemes");
             this.supportedSchemes = supportedSchemes;
             return this;
         }
+
 
         public Builder gateway(String gateway) {
             Utils.checkNotNull(gateway, "gateway");
@@ -156,18 +162,19 @@ public class GooglePayPaymentOptionContext {
             return this;
         }
 
+
         public Builder gatewayMerchantId(String gatewayMerchantId) {
             Utils.checkNotNull(gatewayMerchantId, "gatewayMerchantId");
             this.gatewayMerchantId = gatewayMerchantId;
             return this;
         }
-        
+
         public GooglePayPaymentOptionContext build() {
+
             return new GooglePayPaymentOptionContext(
-                merchantName,
-                supportedSchemes,
-                gateway,
+                merchantName, supportedSchemes, gateway,
                 gatewayMerchantId);
         }
+
     }
 }

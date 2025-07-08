@@ -20,8 +20,8 @@ import java.util.Map;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class CheckoutSessionCreate {
 
+public class CheckoutSessionCreate {
     /**
      * An array of cart items that represents the line items of a transaction.
      */
@@ -50,6 +50,7 @@ public class CheckoutSessionCreate {
     @JsonProperty("airline")
     private JsonNullable<? extends Airline> airline;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("expires_in")
     private Optional<Double> expiresIn;
@@ -74,7 +75,8 @@ public class CheckoutSessionCreate {
     }
     
     public CheckoutSessionCreate() {
-        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty());
+        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), Optional.empty());
     }
 
     /**
@@ -118,9 +120,10 @@ public class CheckoutSessionCreate {
         return expiresIn;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * An array of cart items that represents the line items of a transaction.
@@ -200,13 +203,13 @@ public class CheckoutSessionCreate {
         return this;
     }
 
+
     public CheckoutSessionCreate withExpiresIn(Optional<Double> expiresIn) {
         Utils.checkNotNull(expiresIn, "expiresIn");
         this.expiresIn = expiresIn;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -227,11 +230,8 @@ public class CheckoutSessionCreate {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            cartItems,
-            metadata,
-            buyer,
-            airline,
-            expiresIn);
+            cartItems, metadata, buyer,
+            airline, expiresIn);
     }
     
     @Override
@@ -243,22 +243,24 @@ public class CheckoutSessionCreate {
                 "airline", airline,
                 "expiresIn", expiresIn);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private JsonNullable<? extends List<CartItem>> cartItems = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends Map<String, String>> metadata = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends GuestBuyerInput> buyer = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends Airline> airline = JsonNullable.undefined();
- 
+
         private Optional<Double> expiresIn;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * An array of cart items that represents the line items of a transaction.
@@ -278,6 +280,7 @@ public class CheckoutSessionCreate {
             return this;
         }
 
+
         /**
          * Any additional information about the transaction that you would like to store as key-value pairs. This data is passed to payment service providers that support it.
          */
@@ -295,6 +298,7 @@ public class CheckoutSessionCreate {
             this.metadata = metadata;
             return this;
         }
+
 
         /**
          * Provide buyer details for the transaction. No buyer resource will be created on Gr4vy when used.
@@ -314,6 +318,7 @@ public class CheckoutSessionCreate {
             return this;
         }
 
+
         /**
          * The airline addendum data which describes the airline booking associated with this transaction.
          */
@@ -332,6 +337,7 @@ public class CheckoutSessionCreate {
             return this;
         }
 
+
         public Builder expiresIn(double expiresIn) {
             Utils.checkNotNull(expiresIn, "expiresIn");
             this.expiresIn = Optional.ofNullable(expiresIn);
@@ -343,18 +349,17 @@ public class CheckoutSessionCreate {
             this.expiresIn = expiresIn;
             return this;
         }
-        
+
         public CheckoutSessionCreate build() {
             if (expiresIn == null) {
                 expiresIn = _SINGLETON_VALUE_ExpiresIn.value();
             }
+
             return new CheckoutSessionCreate(
-                cartItems,
-                metadata,
-                buyer,
-                airline,
-                expiresIn);
+                cartItems, metadata, buyer,
+                airline, expiresIn);
         }
+
 
         private static final LazySingletonValue<Optional<Double>> _SINGLETON_VALUE_ExpiresIn =
                 new LazySingletonValue<>(

@@ -14,8 +14,8 @@ import java.lang.Override;
 import java.lang.String;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class NetworkTokenCreate {
 
+public class NetworkTokenCreate {
     /**
      * The 3 or 4 digit security code often found on the card. This often referred to as the CVV or CVD.
      */
@@ -78,9 +78,10 @@ public class NetworkTokenCreate {
         return isSubsequentPayment;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The 3 or 4 digit security code often found on the card. This often referred to as the CVV or CVD.
@@ -118,7 +119,6 @@ public class NetworkTokenCreate {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -137,9 +137,7 @@ public class NetworkTokenCreate {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            securityCode,
-            merchantInitiated,
-            isSubsequentPayment);
+            securityCode, merchantInitiated, isSubsequentPayment);
     }
     
     @Override
@@ -149,18 +147,20 @@ public class NetworkTokenCreate {
                 "merchantInitiated", merchantInitiated,
                 "isSubsequentPayment", isSubsequentPayment);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private JsonNullable<String> securityCode = JsonNullable.undefined();
- 
+
         private Boolean merchantInitiated;
- 
+
         private Boolean isSubsequentPayment;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The 3 or 4 digit security code often found on the card. This often referred to as the CVV or CVD.
@@ -180,6 +180,7 @@ public class NetworkTokenCreate {
             return this;
         }
 
+
         /**
          * Defines if the request is merchant initiated or not.
          */
@@ -189,6 +190,7 @@ public class NetworkTokenCreate {
             return this;
         }
 
+
         /**
          * Defines if the request is a subsequent of another request or not.
          */
@@ -197,12 +199,12 @@ public class NetworkTokenCreate {
             this.isSubsequentPayment = isSubsequentPayment;
             return this;
         }
-        
+
         public NetworkTokenCreate build() {
+
             return new NetworkTokenCreate(
-                securityCode,
-                merchantInitiated,
-                isSubsequentPayment);
+                securityCode, merchantInitiated, isSubsequentPayment);
         }
+
     }
 }

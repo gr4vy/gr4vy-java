@@ -14,8 +14,8 @@ import java.lang.String;
 import java.util.List;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class VerifyCredentials {
 
+public class VerifyCredentials {
     /**
      * The ID of the payment service definition to verify the fields against
      */
@@ -78,9 +78,10 @@ public class VerifyCredentials {
         return fields;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The ID of the payment service definition to verify the fields against
@@ -118,7 +119,6 @@ public class VerifyCredentials {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -137,9 +137,7 @@ public class VerifyCredentials {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            paymentServiceDefinitionId,
-            paymentServiceId,
-            fields);
+            paymentServiceDefinitionId, paymentServiceId, fields);
     }
     
     @Override
@@ -149,18 +147,20 @@ public class VerifyCredentials {
                 "paymentServiceId", paymentServiceId,
                 "fields", fields);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String paymentServiceDefinitionId;
- 
+
         private JsonNullable<String> paymentServiceId = JsonNullable.undefined();
- 
+
         private List<Field> fields;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The ID of the payment service definition to verify the fields against
@@ -170,6 +170,7 @@ public class VerifyCredentials {
             this.paymentServiceDefinitionId = paymentServiceDefinitionId;
             return this;
         }
+
 
         /**
          * The optional ID of the configured payment service. New fields will be merged with any existing fields already stored before they are verified.
@@ -189,6 +190,7 @@ public class VerifyCredentials {
             return this;
         }
 
+
         /**
          * The fields and their values, or a set of updated fields to merge with existing values.
          */
@@ -197,12 +199,12 @@ public class VerifyCredentials {
             this.fields = fields;
             return this;
         }
-        
+
         public VerifyCredentials build() {
+
             return new VerifyCredentials(
-                paymentServiceDefinitionId,
-                paymentServiceId,
-                fields);
+                paymentServiceDefinitionId, paymentServiceId, fields);
         }
+
     }
 }

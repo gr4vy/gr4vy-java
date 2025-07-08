@@ -53,7 +53,7 @@ public class ListGiftCardBalancesRequestBuilder {
     public ListGiftCardBalancesResponse call() throws Exception {
         
         RequestOperation<ListGiftCardBalancesRequest, ListGiftCardBalancesResponse> operation
-              = new ListGiftCardBalancesOperation( sdkConfiguration);
+              = new ListGiftCardBalancesOperation(sdkConfiguration);
         ListGiftCardBalancesRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

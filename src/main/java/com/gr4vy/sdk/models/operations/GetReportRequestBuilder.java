@@ -72,8 +72,8 @@ public class GetReportRequestBuilder {
 
         RequestOperation<GetReportRequest, GetReportResponse> operation
               = new GetReportOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         GetReportRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

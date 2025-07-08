@@ -61,7 +61,7 @@ public class UpdateDigitalWalletRequestBuilder {
     public UpdateDigitalWalletResponse call() throws Exception {
         
         RequestOperation<UpdateDigitalWalletRequest, UpdateDigitalWalletResponse> operation
-              = new UpdateDigitalWalletOperation( sdkConfiguration);
+              = new UpdateDigitalWalletOperation(sdkConfiguration);
         UpdateDigitalWalletRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

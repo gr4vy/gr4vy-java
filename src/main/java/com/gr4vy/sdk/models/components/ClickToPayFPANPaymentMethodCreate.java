@@ -23,7 +23,6 @@ import org.openapitools.jackson.nullable.JsonNullable;
  * <p>Create a Click to Pay payment with an FPAN or virtual PAN
  */
 public class ClickToPayFPANPaymentMethodCreate {
-
     /**
      * The expiration date of the card, formatted `MM/YY`.
      */
@@ -116,7 +115,9 @@ public class ClickToPayFPANPaymentMethodCreate {
     public ClickToPayFPANPaymentMethodCreate(
             String expirationDate,
             String number) {
-        this(expirationDate, number, JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
+        this(expirationDate, number, JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined());
     }
 
     /**
@@ -192,9 +193,10 @@ public class ClickToPayFPANPaymentMethodCreate {
         return (JsonNullable<Object>) securityCode;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The expiration date of the card, formatted `MM/YY`.
@@ -322,7 +324,6 @@ public class ClickToPayFPANPaymentMethodCreate {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -347,15 +348,9 @@ public class ClickToPayFPANPaymentMethodCreate {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            expirationDate,
-            number,
-            buyerExternalIdentifier,
-            buyerId,
-            externalIdentifier,
-            cardType,
-            method,
-            redirectUrl,
-            securityCode);
+            expirationDate, number, buyerExternalIdentifier,
+            buyerId, externalIdentifier, cardType,
+            method, redirectUrl, securityCode);
     }
     
     @Override
@@ -371,28 +366,30 @@ public class ClickToPayFPANPaymentMethodCreate {
                 "redirectUrl", redirectUrl,
                 "securityCode", securityCode);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String expirationDate;
- 
+
         private String number;
- 
+
         private JsonNullable<String> buyerExternalIdentifier = JsonNullable.undefined();
- 
+
         private JsonNullable<String> buyerId = JsonNullable.undefined();
- 
+
         private JsonNullable<String> externalIdentifier = JsonNullable.undefined();
- 
+
         private JsonNullable<String> cardType = JsonNullable.undefined();
- 
+
         private JsonNullable<String> redirectUrl = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends Object> securityCode = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The expiration date of the card, formatted `MM/YY`.
@@ -403,6 +400,7 @@ public class ClickToPayFPANPaymentMethodCreate {
             return this;
         }
 
+
         /**
          * The 13-19 digit number for this card.
          */
@@ -411,6 +409,7 @@ public class ClickToPayFPANPaymentMethodCreate {
             this.number = number;
             return this;
         }
+
 
         /**
          * The external identifier of the buyer to attach the method to.
@@ -430,6 +429,7 @@ public class ClickToPayFPANPaymentMethodCreate {
             return this;
         }
 
+
         /**
          * The ID of the buyer to attach the method to.
          */
@@ -447,6 +447,7 @@ public class ClickToPayFPANPaymentMethodCreate {
             this.buyerId = buyerId;
             return this;
         }
+
 
         /**
          * The merchant reference for this payment method.
@@ -466,6 +467,7 @@ public class ClickToPayFPANPaymentMethodCreate {
             return this;
         }
 
+
         /**
          * The type of the card used
          */
@@ -483,6 +485,7 @@ public class ClickToPayFPANPaymentMethodCreate {
             this.cardType = cardType;
             return this;
         }
+
 
         /**
          * The URL to redirect a user back to after the complete 3DS in browser.
@@ -502,6 +505,7 @@ public class ClickToPayFPANPaymentMethodCreate {
             return this;
         }
 
+
         /**
          * The 3 or 4 digit security code often found on the card. This often referred to as the CVV or CVD.
          */
@@ -519,18 +523,15 @@ public class ClickToPayFPANPaymentMethodCreate {
             this.securityCode = securityCode;
             return this;
         }
-        
+
         public ClickToPayFPANPaymentMethodCreate build() {
+
             return new ClickToPayFPANPaymentMethodCreate(
-                expirationDate,
-                number,
-                buyerExternalIdentifier,
-                buyerId,
-                externalIdentifier,
-                cardType,
-                redirectUrl,
-                securityCode);
+                expirationDate, number, buyerExternalIdentifier,
+                buyerId, externalIdentifier, cardType,
+                redirectUrl, securityCode);
         }
+
 
         private static final LazySingletonValue<String> _SINGLETON_VALUE_Method =
                 new LazySingletonValue<>(

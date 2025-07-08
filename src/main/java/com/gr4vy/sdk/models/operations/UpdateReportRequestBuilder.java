@@ -61,7 +61,7 @@ public class UpdateReportRequestBuilder {
     public UpdateReportResponse call() throws Exception {
         
         RequestOperation<UpdateReportRequest, UpdateReportResponse> operation
-              = new UpdateReportOperation( sdkConfiguration);
+              = new UpdateReportOperation(sdkConfiguration);
         UpdateReportRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

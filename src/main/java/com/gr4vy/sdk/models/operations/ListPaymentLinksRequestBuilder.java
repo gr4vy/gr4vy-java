@@ -111,8 +111,8 @@ public class ListPaymentLinksRequestBuilder {
 
         RequestOperation<ListPaymentLinksRequest, ListPaymentLinksResponse> operation
               = new ListPaymentLinksOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         ListPaymentLinksRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));
@@ -138,8 +138,8 @@ public class ListPaymentLinksRequestBuilder {
 
         RequestOperation<ListPaymentLinksRequest, ListPaymentLinksResponse> operation
               = new ListPaymentLinksOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         ListPaymentLinksRequest request = buildRequest();
         Iterator<HttpResponse<InputStream>> iterator = new Paginator<>(
             request,

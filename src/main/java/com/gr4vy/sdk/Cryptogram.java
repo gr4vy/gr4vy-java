@@ -23,7 +23,6 @@ public class Cryptogram {
     Cryptogram(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-
     /**
      * Provision network token cryptogram
      * 
@@ -50,7 +49,8 @@ public class Cryptogram {
             String paymentMethodId,
             String networkTokenId,
             CryptogramCreate cryptogramCreate) throws Exception {
-        return create(paymentMethodId, networkTokenId, JsonNullable.undefined(), cryptogramCreate);
+        return create(paymentMethodId, networkTokenId, JsonNullable.undefined(),
+            cryptogramCreate);
     }
 
     /**
@@ -79,7 +79,7 @@ public class Cryptogram {
                 .cryptogramCreate(cryptogramCreate)
                 .build();
         RequestOperation<CreatePaymentMethodNetworkTokenCryptogramRequest, CreatePaymentMethodNetworkTokenCryptogramResponse> operation
-              = new CreatePaymentMethodNetworkTokenCryptogramOperation( sdkConfiguration);
+              = new CreatePaymentMethodNetworkTokenCryptogramOperation(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
 

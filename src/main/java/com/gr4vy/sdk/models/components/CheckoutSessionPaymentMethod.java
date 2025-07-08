@@ -17,8 +17,8 @@ import java.lang.SuppressWarnings;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class CheckoutSessionPaymentMethod {
 
+public class CheckoutSessionPaymentMethod {
     /**
      * Always `payment-method`
      */
@@ -90,7 +90,8 @@ public class CheckoutSessionPaymentMethod {
     }
     
     public CheckoutSessionPaymentMethod() {
-        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
+        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined());
     }
 
     /**
@@ -151,9 +152,10 @@ public class CheckoutSessionPaymentMethod {
         return fingerprint;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The ID of the payment method.
@@ -245,7 +247,6 @@ public class CheckoutSessionPaymentMethod {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -268,12 +269,8 @@ public class CheckoutSessionPaymentMethod {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            type,
-            id,
-            details,
-            label,
-            method,
-            scheme,
+            type, id, details,
+            label, method, scheme,
             fingerprint);
     }
     
@@ -288,22 +285,24 @@ public class CheckoutSessionPaymentMethod {
                 "scheme", scheme,
                 "fingerprint", fingerprint);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private JsonNullable<String> id = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends CheckoutSessionPaymentMethodDetails> details = JsonNullable.undefined();
- 
+
         private JsonNullable<String> label = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends CardScheme> scheme = JsonNullable.undefined();
- 
+
         private JsonNullable<String> fingerprint = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The ID of the payment method.
@@ -323,6 +322,7 @@ public class CheckoutSessionPaymentMethod {
             return this;
         }
 
+
         /**
          * Details for credit or debit card payment method.
          */
@@ -340,6 +340,7 @@ public class CheckoutSessionPaymentMethod {
             this.details = details;
             return this;
         }
+
 
         /**
          * The last 4 digits of the the card.
@@ -359,6 +360,7 @@ public class CheckoutSessionPaymentMethod {
             return this;
         }
 
+
         /**
          * The scheme of the card.
          */
@@ -377,6 +379,7 @@ public class CheckoutSessionPaymentMethod {
             return this;
         }
 
+
         /**
          * The unique hash derived from the card number.
          */
@@ -394,15 +397,14 @@ public class CheckoutSessionPaymentMethod {
             this.fingerprint = fingerprint;
             return this;
         }
-        
+
         public CheckoutSessionPaymentMethod build() {
+
             return new CheckoutSessionPaymentMethod(
-                id,
-                details,
-                label,
-                scheme,
-                fingerprint);
+                id, details, label,
+                scheme, fingerprint);
         }
+
 
         private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_Type =
                 new LazySingletonValue<>(

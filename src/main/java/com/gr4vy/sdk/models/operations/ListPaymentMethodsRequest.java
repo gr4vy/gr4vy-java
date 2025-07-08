@@ -18,8 +18,8 @@ import java.util.List;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class ListPaymentMethodsRequest {
 
+public class ListPaymentMethodsRequest {
     /**
      * A pointer to the page of results to return.
      */
@@ -43,6 +43,7 @@ public class ListPaymentMethodsRequest {
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=buyer_external_identifier")
     private JsonNullable<String> buyerExternalIdentifier;
+
 
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=status")
     private JsonNullable<? extends List<PaymentMethodStatus>> status;
@@ -85,7 +86,9 @@ public class ListPaymentMethodsRequest {
     }
     
     public ListPaymentMethodsRequest() {
-        this(JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
+        this(JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined());
     }
 
     /**
@@ -142,9 +145,10 @@ public class ListPaymentMethodsRequest {
         return merchantAccountId;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * A pointer to the page of results to return.
@@ -172,6 +176,7 @@ public class ListPaymentMethodsRequest {
         this.limit = Optional.ofNullable(limit);
         return this;
     }
+
 
     /**
      * The maximum number of items that are at returned.
@@ -266,7 +271,6 @@ public class ListPaymentMethodsRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -289,12 +293,8 @@ public class ListPaymentMethodsRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            cursor,
-            limit,
-            buyerId,
-            buyerExternalIdentifier,
-            status,
-            externalIdentifier,
+            cursor, limit, buyerId,
+            buyerExternalIdentifier, status, externalIdentifier,
             merchantAccountId);
     }
     
@@ -309,26 +309,28 @@ public class ListPaymentMethodsRequest {
                 "externalIdentifier", externalIdentifier,
                 "merchantAccountId", merchantAccountId);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private JsonNullable<String> cursor = JsonNullable.undefined();
- 
+
         private Optional<Long> limit;
- 
+
         private JsonNullable<String> buyerId = JsonNullable.undefined();
- 
+
         private JsonNullable<String> buyerExternalIdentifier = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends List<PaymentMethodStatus>> status = JsonNullable.undefined();
- 
+
         private JsonNullable<String> externalIdentifier = JsonNullable.undefined();
- 
+
         private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * A pointer to the page of results to return.
@@ -348,6 +350,7 @@ public class ListPaymentMethodsRequest {
             return this;
         }
 
+
         /**
          * The maximum number of items that are at returned.
          */
@@ -365,6 +368,7 @@ public class ListPaymentMethodsRequest {
             this.limit = limit;
             return this;
         }
+
 
         /**
          * The ID of the buyer to filter payment methods by.
@@ -384,6 +388,7 @@ public class ListPaymentMethodsRequest {
             return this;
         }
 
+
         /**
          * The external identifier of the buyer to filter payment methods by.
          */
@@ -402,6 +407,7 @@ public class ListPaymentMethodsRequest {
             return this;
         }
 
+
         public Builder status(List<PaymentMethodStatus> status) {
             Utils.checkNotNull(status, "status");
             this.status = JsonNullable.of(status);
@@ -413,6 +419,7 @@ public class ListPaymentMethodsRequest {
             this.status = status;
             return this;
         }
+
 
         /**
          * The external identifier of the payment method to filter by.
@@ -432,6 +439,7 @@ public class ListPaymentMethodsRequest {
             return this;
         }
 
+
         /**
          * The ID of the merchant account to use for this request.
          */
@@ -449,20 +457,18 @@ public class ListPaymentMethodsRequest {
             this.merchantAccountId = merchantAccountId;
             return this;
         }
-        
+
         public ListPaymentMethodsRequest build() {
             if (limit == null) {
                 limit = _SINGLETON_VALUE_Limit.value();
             }
+
             return new ListPaymentMethodsRequest(
-                cursor,
-                limit,
-                buyerId,
-                buyerExternalIdentifier,
-                status,
-                externalIdentifier,
+                cursor, limit, buyerId,
+                buyerExternalIdentifier, status, externalIdentifier,
                 merchantAccountId);
         }
+
 
         private static final LazySingletonValue<Optional<Long>> _SINGLETON_VALUE_Limit =
                 new LazySingletonValue<>(

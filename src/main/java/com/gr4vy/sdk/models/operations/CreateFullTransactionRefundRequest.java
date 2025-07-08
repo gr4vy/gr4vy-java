@@ -13,8 +13,8 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class CreateFullTransactionRefundRequest {
 
+public class CreateFullTransactionRefundRequest {
     /**
      * The ID of the transaction
      */
@@ -26,6 +26,7 @@ public class CreateFullTransactionRefundRequest {
      */
     @SpeakeasyMetadata("header:style=simple,explode=false,name=x-gr4vy-merchant-account-id")
     private JsonNullable<String> merchantAccountId;
+
 
     @SpeakeasyMetadata("request:mediaType=application/json")
     private JsonNullable<? extends TransactionRefundAllCreate> transactionRefundAllCreate;
@@ -70,9 +71,10 @@ public class CreateFullTransactionRefundRequest {
         return (JsonNullable<TransactionRefundAllCreate>) transactionRefundAllCreate;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The ID of the transaction
@@ -113,7 +115,6 @@ public class CreateFullTransactionRefundRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -132,9 +133,7 @@ public class CreateFullTransactionRefundRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            transactionId,
-            merchantAccountId,
-            transactionRefundAllCreate);
+            transactionId, merchantAccountId, transactionRefundAllCreate);
     }
     
     @Override
@@ -144,18 +143,20 @@ public class CreateFullTransactionRefundRequest {
                 "merchantAccountId", merchantAccountId,
                 "transactionRefundAllCreate", transactionRefundAllCreate);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String transactionId;
- 
+
         private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends TransactionRefundAllCreate> transactionRefundAllCreate = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The ID of the transaction
@@ -165,6 +166,7 @@ public class CreateFullTransactionRefundRequest {
             this.transactionId = transactionId;
             return this;
         }
+
 
         /**
          * The ID of the merchant account to use for this request.
@@ -184,6 +186,7 @@ public class CreateFullTransactionRefundRequest {
             return this;
         }
 
+
         public Builder transactionRefundAllCreate(TransactionRefundAllCreate transactionRefundAllCreate) {
             Utils.checkNotNull(transactionRefundAllCreate, "transactionRefundAllCreate");
             this.transactionRefundAllCreate = JsonNullable.of(transactionRefundAllCreate);
@@ -195,12 +198,12 @@ public class CreateFullTransactionRefundRequest {
             this.transactionRefundAllCreate = transactionRefundAllCreate;
             return this;
         }
-        
+
         public CreateFullTransactionRefundRequest build() {
+
             return new CreateFullTransactionRefundRequest(
-                transactionId,
-                merchantAccountId,
-                transactionRefundAllCreate);
+                transactionId, merchantAccountId, transactionRefundAllCreate);
         }
+
     }
 }

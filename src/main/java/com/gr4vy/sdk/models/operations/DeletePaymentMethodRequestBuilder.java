@@ -52,7 +52,7 @@ public class DeletePaymentMethodRequestBuilder {
     public DeletePaymentMethodResponse call() throws Exception {
         
         RequestOperation<DeletePaymentMethodRequest, DeletePaymentMethodResponse> operation
-              = new DeletePaymentMethodOperation( sdkConfiguration);
+              = new DeletePaymentMethodOperation(sdkConfiguration);
         DeletePaymentMethodRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

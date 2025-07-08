@@ -11,8 +11,8 @@ import java.lang.Override;
 import java.lang.String;
 import java.util.List;
 
-public class AccountUpdaterJobCreate {
 
+public class AccountUpdaterJobCreate {
     /**
      * A list of payment method IDs to request an update for.
      */
@@ -34,9 +34,10 @@ public class AccountUpdaterJobCreate {
         return paymentMethodIds;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * A list of payment method IDs to request an update for.
@@ -47,7 +48,6 @@ public class AccountUpdaterJobCreate {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -72,14 +72,16 @@ public class AccountUpdaterJobCreate {
         return Utils.toString(AccountUpdaterJobCreate.class,
                 "paymentMethodIds", paymentMethodIds);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private List<String> paymentMethodIds;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * A list of payment method IDs to request an update for.
@@ -89,10 +91,12 @@ public class AccountUpdaterJobCreate {
             this.paymentMethodIds = paymentMethodIds;
             return this;
         }
-        
+
         public AccountUpdaterJobCreate build() {
+
             return new AccountUpdaterJobCreate(
                 paymentMethodIds);
         }
+
     }
 }

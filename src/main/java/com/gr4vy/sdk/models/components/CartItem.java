@@ -16,8 +16,8 @@ import java.lang.SuppressWarnings;
 import java.util.List;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class CartItem {
 
+public class CartItem {
     /**
      * The name of the cart item. The value you set for this property may be truncated if the maximum length accepted by a payment service provider is less than 255 characters.
      */
@@ -143,7 +143,10 @@ public class CartItem {
             String name,
             long quantity,
             long unitAmount) {
-        this(name, quantity, unitAmount, JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
+        this(name, quantity, unitAmount,
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
     }
 
     /**
@@ -244,9 +247,10 @@ public class CartItem {
         return sellerCountry;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The name of the cart item. The value you set for this property may be truncated if the maximum length accepted by a payment service provider is less than 255 characters.
@@ -437,7 +441,6 @@ public class CartItem {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -465,18 +468,10 @@ public class CartItem {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            name,
-            quantity,
-            unitAmount,
-            discountAmount,
-            taxAmount,
-            externalIdentifier,
-            sku,
-            productUrl,
-            imageUrl,
-            categories,
-            productType,
-            sellerCountry);
+            name, quantity, unitAmount,
+            discountAmount, taxAmount, externalIdentifier,
+            sku, productUrl, imageUrl,
+            categories, productType, sellerCountry);
     }
     
     @Override
@@ -495,36 +490,38 @@ public class CartItem {
                 "productType", productType,
                 "sellerCountry", sellerCountry);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String name;
- 
+
         private Long quantity;
- 
+
         private Long unitAmount;
- 
+
         private JsonNullable<Long> discountAmount = JsonNullable.undefined();
- 
+
         private JsonNullable<Long> taxAmount = JsonNullable.undefined();
- 
+
         private JsonNullable<String> externalIdentifier = JsonNullable.undefined();
- 
+
         private JsonNullable<String> sku = JsonNullable.undefined();
- 
+
         private JsonNullable<String> productUrl = JsonNullable.undefined();
- 
+
         private JsonNullable<String> imageUrl = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends List<String>> categories = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends ProductType> productType = JsonNullable.undefined();
- 
+
         private JsonNullable<String> sellerCountry = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The name of the cart item. The value you set for this property may be truncated if the maximum length accepted by a payment service provider is less than 255 characters.
@@ -535,6 +532,7 @@ public class CartItem {
             return this;
         }
 
+
         /**
          * The quantity of this item in the cart. This value cannot be negative or zero.
          */
@@ -544,6 +542,7 @@ public class CartItem {
             return this;
         }
 
+
         /**
          * The amount for an individual item represented as a monetary amount in the smallest currency unit for the given currency, for example `1299` USD cents represents `$12.99`. The amount sent through to the payment processor as unitary amount will be calculated to include the discount and tax values sent as part of this cart item.
          */
@@ -552,6 +551,7 @@ public class CartItem {
             this.unitAmount = unitAmount;
             return this;
         }
+
 
         /**
          * The amount discounted for this item represented as a monetary amount in the smallest currency unit for the given currency, for example `1299` USD cents represents `$12.99`.
@@ -571,6 +571,7 @@ public class CartItem {
             return this;
         }
 
+
         /**
          * The tax amount for this item represented as a monetary amount in the smallest currency unit for the given currency, for example `1299` USD cents represents `$12.99`.
          */
@@ -588,6 +589,7 @@ public class CartItem {
             this.taxAmount = taxAmount;
             return this;
         }
+
 
         /**
          * An external identifier for the cart item. This can be set to any value and is not sent to the payment service.
@@ -607,6 +609,7 @@ public class CartItem {
             return this;
         }
 
+
         /**
          * The SKU for the item.
          */
@@ -624,6 +627,7 @@ public class CartItem {
             this.sku = sku;
             return this;
         }
+
 
         /**
          * The product URL for the item.
@@ -643,6 +647,7 @@ public class CartItem {
             return this;
         }
 
+
         /**
          * The URL for the image of the item.
          */
@@ -660,6 +665,7 @@ public class CartItem {
             this.imageUrl = imageUrl;
             return this;
         }
+
 
         /**
          * A list of strings containing product categories for the item.
@@ -679,6 +685,7 @@ public class CartItem {
             return this;
         }
 
+
         /**
          * The product type of the cart item.
          */
@@ -697,6 +704,7 @@ public class CartItem {
             return this;
         }
 
+
         /**
          * The seller country of the cart item.
          */
@@ -714,21 +722,15 @@ public class CartItem {
             this.sellerCountry = sellerCountry;
             return this;
         }
-        
+
         public CartItem build() {
+
             return new CartItem(
-                name,
-                quantity,
-                unitAmount,
-                discountAmount,
-                taxAmount,
-                externalIdentifier,
-                sku,
-                productUrl,
-                imageUrl,
-                categories,
-                productType,
-                sellerCountry);
+                name, quantity, unitAmount,
+                discountAmount, taxAmount, externalIdentifier,
+                sku, productUrl, imageUrl,
+                categories, productType, sellerCountry);
         }
+
     }
 }

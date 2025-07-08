@@ -19,7 +19,6 @@ import org.openapitools.jackson.nullable.JsonNullable;
  * <p>Create a transaction for an APM/LPM that requires a redirect.
  */
 public class RedirectPaymentMethodCreate {
-
     /**
      * The method to use, this can be any of the methods that support redirect requests.
      */
@@ -95,7 +94,9 @@ public class RedirectPaymentMethodCreate {
             String country,
             String currency,
             String redirectUrl) {
-        this(method, JsonNullable.undefined(), JsonNullable.undefined(), country, currency, redirectUrl, JsonNullable.undefined());
+        this(method, JsonNullable.undefined(), JsonNullable.undefined(),
+            country, currency, redirectUrl,
+            JsonNullable.undefined());
     }
 
     /**
@@ -154,9 +155,10 @@ public class RedirectPaymentMethodCreate {
         return externalIdentifier;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The method to use, this can be any of the methods that support redirect requests.
@@ -248,7 +250,6 @@ public class RedirectPaymentMethodCreate {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -271,12 +272,8 @@ public class RedirectPaymentMethodCreate {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            method,
-            buyerId,
-            buyerExternalIdentifier,
-            country,
-            currency,
-            redirectUrl,
+            method, buyerId, buyerExternalIdentifier,
+            country, currency, redirectUrl,
             externalIdentifier);
     }
     
@@ -291,26 +288,28 @@ public class RedirectPaymentMethodCreate {
                 "redirectUrl", redirectUrl,
                 "externalIdentifier", externalIdentifier);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private RedirectPaymentMethodCreateMethod method;
- 
+
         private JsonNullable<String> buyerId = JsonNullable.undefined();
- 
+
         private JsonNullable<String> buyerExternalIdentifier = JsonNullable.undefined();
- 
+
         private String country;
- 
+
         private String currency;
- 
+
         private String redirectUrl;
- 
+
         private JsonNullable<String> externalIdentifier = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The method to use, this can be any of the methods that support redirect requests.
@@ -320,6 +319,7 @@ public class RedirectPaymentMethodCreate {
             this.method = method;
             return this;
         }
+
 
         /**
          * The `id` of a stored buyer to use Use this instead of the `buyer_external_identifier`.
@@ -339,6 +339,7 @@ public class RedirectPaymentMethodCreate {
             return this;
         }
 
+
         /**
          * The `external_identifier` of a stored buyer to use. Use this instead of the `buyer_id`.
          */
@@ -357,6 +358,7 @@ public class RedirectPaymentMethodCreate {
             return this;
         }
 
+
         /**
          * The 2-letter ISO code of the country to use this payment method for. This is used to select the payment service to use.
          */
@@ -365,6 +367,7 @@ public class RedirectPaymentMethodCreate {
             this.country = country;
             return this;
         }
+
 
         /**
          * The ISO-4217 currency code to use this payment method for. This is used to select the payment service to use.
@@ -375,6 +378,7 @@ public class RedirectPaymentMethodCreate {
             return this;
         }
 
+
         /**
          * The redirect URL to redirect a buyer to after they have authorized the payment method.
          */
@@ -383,6 +387,7 @@ public class RedirectPaymentMethodCreate {
             this.redirectUrl = redirectUrl;
             return this;
         }
+
 
         /**
          * The merchant identifier for this payment method.
@@ -401,16 +406,14 @@ public class RedirectPaymentMethodCreate {
             this.externalIdentifier = externalIdentifier;
             return this;
         }
-        
+
         public RedirectPaymentMethodCreate build() {
+
             return new RedirectPaymentMethodCreate(
-                method,
-                buyerId,
-                buyerExternalIdentifier,
-                country,
-                currency,
-                redirectUrl,
+                method, buyerId, buyerExternalIdentifier,
+                country, currency, redirectUrl,
                 externalIdentifier);
         }
+
     }
 }

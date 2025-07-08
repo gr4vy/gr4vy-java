@@ -12,13 +12,14 @@ import java.lang.Override;
 import java.lang.String;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class CreateGiftCardRequest {
 
+public class CreateGiftCardRequest {
     /**
      * The ID of the merchant account to use for this request.
      */
     @SpeakeasyMetadata("header:style=simple,explode=false,name=x-gr4vy-merchant-account-id")
     private JsonNullable<String> merchantAccountId;
+
 
     @SpeakeasyMetadata("request:mediaType=application/json")
     private GiftCardCreate giftCardCreate;
@@ -51,9 +52,10 @@ public class CreateGiftCardRequest {
         return giftCardCreate;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The ID of the merchant account to use for this request.
@@ -79,7 +81,6 @@ public class CreateGiftCardRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -97,8 +98,7 @@ public class CreateGiftCardRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            merchantAccountId,
-            giftCardCreate);
+            merchantAccountId, giftCardCreate);
     }
     
     @Override
@@ -107,16 +107,18 @@ public class CreateGiftCardRequest {
                 "merchantAccountId", merchantAccountId,
                 "giftCardCreate", giftCardCreate);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
- 
+
         private GiftCardCreate giftCardCreate;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The ID of the merchant account to use for this request.
@@ -136,16 +138,18 @@ public class CreateGiftCardRequest {
             return this;
         }
 
+
         public Builder giftCardCreate(GiftCardCreate giftCardCreate) {
             Utils.checkNotNull(giftCardCreate, "giftCardCreate");
             this.giftCardCreate = giftCardCreate;
             return this;
         }
-        
+
         public CreateGiftCardRequest build() {
+
             return new CreateGiftCardRequest(
-                merchantAccountId,
-                giftCardCreate);
+                merchantAccountId, giftCardCreate);
         }
+
     }
 }

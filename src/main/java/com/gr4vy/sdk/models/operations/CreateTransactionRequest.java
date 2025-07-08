@@ -13,8 +13,8 @@ import java.lang.String;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class CreateTransactionRequest {
 
+public class CreateTransactionRequest {
     /**
      * The ID of the merchant account to use for this request.
      */
@@ -34,6 +34,7 @@ public class CreateTransactionRequest {
      */
     @SpeakeasyMetadata("header:style=simple,explode=false,name=X-Forwarded-For")
     private Optional<String> xForwardedFor;
+
 
     @SpeakeasyMetadata("request:mediaType=application/json")
     private TransactionCreate transactionCreate;
@@ -56,7 +57,8 @@ public class CreateTransactionRequest {
     
     public CreateTransactionRequest(
             TransactionCreate transactionCreate) {
-        this(JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), transactionCreate);
+        this(JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
+            transactionCreate);
     }
 
     /**
@@ -90,9 +92,10 @@ public class CreateTransactionRequest {
         return transactionCreate;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The ID of the merchant account to use for this request.
@@ -141,6 +144,7 @@ public class CreateTransactionRequest {
         return this;
     }
 
+
     /**
      * The IP address to forward from the customer. Use this when calling
      * our API from the server side to ensure the customer's address is
@@ -158,7 +162,6 @@ public class CreateTransactionRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -178,9 +181,7 @@ public class CreateTransactionRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            merchantAccountId,
-            idempotencyKey,
-            xForwardedFor,
+            merchantAccountId, idempotencyKey, xForwardedFor,
             transactionCreate);
     }
     
@@ -192,20 +193,22 @@ public class CreateTransactionRequest {
                 "xForwardedFor", xForwardedFor,
                 "transactionCreate", transactionCreate);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
- 
+
         private JsonNullable<String> idempotencyKey = JsonNullable.undefined();
- 
+
         private Optional<String> xForwardedFor = Optional.empty();
- 
+
         private TransactionCreate transactionCreate;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The ID of the merchant account to use for this request.
@@ -225,6 +228,7 @@ public class CreateTransactionRequest {
             return this;
         }
 
+
         /**
          * A unique key that identifies this request. Providing this header will make this an idempotent request. We recommend using V4 UUIDs, or another random string with enough entropy to avoid collisions.
          */
@@ -242,6 +246,7 @@ public class CreateTransactionRequest {
             this.idempotencyKey = idempotencyKey;
             return this;
         }
+
 
         /**
          * The IP address to forward from the customer. Use this when calling
@@ -265,18 +270,19 @@ public class CreateTransactionRequest {
             return this;
         }
 
+
         public Builder transactionCreate(TransactionCreate transactionCreate) {
             Utils.checkNotNull(transactionCreate, "transactionCreate");
             this.transactionCreate = transactionCreate;
             return this;
         }
-        
+
         public CreateTransactionRequest build() {
+
             return new CreateTransactionRequest(
-                merchantAccountId,
-                idempotencyKey,
-                xForwardedFor,
+                merchantAccountId, idempotencyKey, xForwardedFor,
                 transactionCreate);
         }
+
     }
 }

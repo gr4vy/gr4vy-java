@@ -61,7 +61,7 @@ public class UpdateBuyerRequestBuilder {
     public UpdateBuyerResponse call() throws Exception {
         
         RequestOperation<UpdateBuyerRequest, UpdateBuyerResponse> operation
-              = new UpdateBuyerOperation( sdkConfiguration);
+              = new UpdateBuyerOperation(sdkConfiguration);
         UpdateBuyerRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

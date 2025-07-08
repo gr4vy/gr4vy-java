@@ -22,9 +22,9 @@ import java.net.http.HttpResponse;
 import java.util.List;
 import java.util.Optional;
 
+
 @SuppressWarnings("serial")
 public class Error502 extends RuntimeException {
-
     /**
      * Always `error`.
      */
@@ -89,7 +89,8 @@ public class Error502 extends RuntimeException {
     }
     
     public Error502() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty());
     }
 
     /**
@@ -148,9 +149,10 @@ public class Error502 extends RuntimeException {
         return (Optional<HttpResponse<InputStream>>) rawResponse;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Always `bad_gateway`
@@ -160,6 +162,7 @@ public class Error502 extends RuntimeException {
         this.code = Optional.ofNullable(code);
         return this;
     }
+
 
     /**
      * Always `bad_gateway`
@@ -179,6 +182,7 @@ public class Error502 extends RuntimeException {
         return this;
     }
 
+
     /**
      * Always `502`.
      */
@@ -196,6 +200,7 @@ public class Error502 extends RuntimeException {
         this.message = Optional.ofNullable(message);
         return this;
     }
+
 
     /**
      * A human readable message that provides more context to the error.
@@ -215,6 +220,7 @@ public class Error502 extends RuntimeException {
         return this;
     }
 
+
     /**
      * A list of details that further ellaborate on the error.
      */
@@ -233,6 +239,7 @@ public class Error502 extends RuntimeException {
         return this;
     }
 
+
     /**
      * Raw HTTP response; suitable for custom response parsing
      */
@@ -242,7 +249,6 @@ public class Error502 extends RuntimeException {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -264,12 +270,8 @@ public class Error502 extends RuntimeException {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            type,
-            code,
-            status,
-            message,
-            details,
-            rawResponse);
+            type, code, status,
+            message, details, rawResponse);
     }
     
     @Override
@@ -282,22 +284,24 @@ public class Error502 extends RuntimeException {
                 "details", details,
                 "rawResponse", rawResponse);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> code;
- 
+
         private Optional<Long> status;
- 
+
         private Optional<String> message;
- 
+
         private Optional<? extends List<ErrorDetail>> details = Optional.empty();
- 
+
         private Optional<? extends HttpResponse<InputStream>> rawResponse;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Always `bad_gateway`
@@ -317,6 +321,7 @@ public class Error502 extends RuntimeException {
             return this;
         }
 
+
         /**
          * Always `502`.
          */
@@ -334,6 +339,7 @@ public class Error502 extends RuntimeException {
             this.status = status;
             return this;
         }
+
 
         /**
          * A human readable message that provides more context to the error.
@@ -353,6 +359,7 @@ public class Error502 extends RuntimeException {
             return this;
         }
 
+
         /**
          * A list of details that further ellaborate on the error.
          */
@@ -371,6 +378,7 @@ public class Error502 extends RuntimeException {
             return this;
         }
 
+
         /**
          * Raw HTTP response; suitable for custom response parsing
          */
@@ -388,7 +396,7 @@ public class Error502 extends RuntimeException {
             this.rawResponse = rawResponse;
             return this;
         }
-        
+
         public Error502 build() {
             if (code == null) {
                 code = _SINGLETON_VALUE_Code.value();
@@ -399,13 +407,12 @@ public class Error502 extends RuntimeException {
             if (message == null) {
                 message = _SINGLETON_VALUE_Message.value();
             }
+
             return new Error502(
-                code,
-                status,
-                message,
-                details,
-                rawResponse);
+                code, status, message,
+                details, rawResponse);
         }
+
 
         private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_Type =
                 new LazySingletonValue<>(

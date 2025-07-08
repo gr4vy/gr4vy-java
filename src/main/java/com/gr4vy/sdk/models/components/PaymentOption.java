@@ -18,31 +18,39 @@ import java.lang.SuppressWarnings;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
+
 public class PaymentOption {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("type")
     private Optional<String> type;
 
+
     @JsonProperty("method")
     private String method;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("icon_url")
     private JsonNullable<String> iconUrl;
 
+
     @JsonProperty("mode")
     private Mode mode;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("label")
     private JsonNullable<String> label;
 
+
     @JsonProperty("can_store_payment_method")
     private boolean canStorePaymentMethod;
 
+
     @JsonProperty("can_delay_capture")
     private boolean canDelayCapture;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("context")
@@ -79,7 +87,9 @@ public class PaymentOption {
             Mode mode,
             boolean canStorePaymentMethod,
             boolean canDelayCapture) {
-        this(method, JsonNullable.undefined(), mode, JsonNullable.undefined(), canStorePaymentMethod, canDelayCapture, JsonNullable.undefined());
+        this(method, JsonNullable.undefined(), mode,
+            JsonNullable.undefined(), canStorePaymentMethod, canDelayCapture,
+            JsonNullable.undefined());
     }
 
     @JsonIgnore
@@ -123,9 +133,10 @@ public class PaymentOption {
         return (JsonNullable<Context>) context;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public PaymentOption withMethod(String method) {
         Utils.checkNotNull(method, "method");
@@ -187,7 +198,6 @@ public class PaymentOption {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -211,14 +221,9 @@ public class PaymentOption {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            type,
-            method,
-            iconUrl,
-            mode,
-            label,
-            canStorePaymentMethod,
-            canDelayCapture,
-            context);
+            type, method, iconUrl,
+            mode, label, canStorePaymentMethod,
+            canDelayCapture, context);
     }
     
     @Override
@@ -233,32 +238,35 @@ public class PaymentOption {
                 "canDelayCapture", canDelayCapture,
                 "context", context);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String method;
- 
+
         private JsonNullable<String> iconUrl = JsonNullable.undefined();
- 
+
         private Mode mode;
- 
+
         private JsonNullable<String> label = JsonNullable.undefined();
- 
+
         private Boolean canStorePaymentMethod;
- 
+
         private Boolean canDelayCapture;
- 
+
         private JsonNullable<? extends Context> context = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder method(String method) {
             Utils.checkNotNull(method, "method");
             this.method = method;
             return this;
         }
+
 
         public Builder iconUrl(String iconUrl) {
             Utils.checkNotNull(iconUrl, "iconUrl");
@@ -272,11 +280,13 @@ public class PaymentOption {
             return this;
         }
 
+
         public Builder mode(Mode mode) {
             Utils.checkNotNull(mode, "mode");
             this.mode = mode;
             return this;
         }
+
 
         public Builder label(String label) {
             Utils.checkNotNull(label, "label");
@@ -290,17 +300,20 @@ public class PaymentOption {
             return this;
         }
 
+
         public Builder canStorePaymentMethod(boolean canStorePaymentMethod) {
             Utils.checkNotNull(canStorePaymentMethod, "canStorePaymentMethod");
             this.canStorePaymentMethod = canStorePaymentMethod;
             return this;
         }
 
+
         public Builder canDelayCapture(boolean canDelayCapture) {
             Utils.checkNotNull(canDelayCapture, "canDelayCapture");
             this.canDelayCapture = canDelayCapture;
             return this;
         }
+
 
         public Builder context(Context context) {
             Utils.checkNotNull(context, "context");
@@ -313,17 +326,15 @@ public class PaymentOption {
             this.context = context;
             return this;
         }
-        
+
         public PaymentOption build() {
+
             return new PaymentOption(
-                method,
-                iconUrl,
-                mode,
-                label,
-                canStorePaymentMethod,
-                canDelayCapture,
+                method, iconUrl, mode,
+                label, canStorePaymentMethod, canDelayCapture,
                 context);
         }
+
 
         private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_Type =
                 new LazySingletonValue<>(

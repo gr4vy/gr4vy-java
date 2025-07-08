@@ -11,8 +11,8 @@ import java.lang.Override;
 import java.lang.String;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class ExpirePaymentLinkRequest {
 
+public class ExpirePaymentLinkRequest {
     /**
      * The unique identifier for the payment link.
      */
@@ -56,9 +56,10 @@ public class ExpirePaymentLinkRequest {
         return merchantAccountId;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The unique identifier for the payment link.
@@ -87,7 +88,6 @@ public class ExpirePaymentLinkRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -105,8 +105,7 @@ public class ExpirePaymentLinkRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            paymentLinkId,
-            merchantAccountId);
+            paymentLinkId, merchantAccountId);
     }
     
     @Override
@@ -115,16 +114,18 @@ public class ExpirePaymentLinkRequest {
                 "paymentLinkId", paymentLinkId,
                 "merchantAccountId", merchantAccountId);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String paymentLinkId;
- 
+
         private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The unique identifier for the payment link.
@@ -134,6 +135,7 @@ public class ExpirePaymentLinkRequest {
             this.paymentLinkId = paymentLinkId;
             return this;
         }
+
 
         /**
          * The ID of the merchant account to use for this request.
@@ -152,11 +154,12 @@ public class ExpirePaymentLinkRequest {
             this.merchantAccountId = merchantAccountId;
             return this;
         }
-        
+
         public ExpirePaymentLinkRequest build() {
+
             return new ExpirePaymentLinkRequest(
-                paymentLinkId,
-                merchantAccountId);
+                paymentLinkId, merchantAccountId);
         }
+
     }
 }

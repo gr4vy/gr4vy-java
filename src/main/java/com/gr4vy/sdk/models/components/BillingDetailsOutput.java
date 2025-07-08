@@ -14,8 +14,8 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class BillingDetailsOutput {
 
+public class BillingDetailsOutput {
     /**
      * The first name(s) or given name for the buyer.
      */
@@ -81,7 +81,8 @@ public class BillingDetailsOutput {
     }
     
     public BillingDetailsOutput() {
-        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
+        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
     }
 
     /**
@@ -134,9 +135,10 @@ public class BillingDetailsOutput {
         return (JsonNullable<TaxId>) taxId;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The first name(s) or given name for the buyer.
@@ -246,7 +248,6 @@ public class BillingDetailsOutput {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -268,12 +269,8 @@ public class BillingDetailsOutput {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            firstName,
-            lastName,
-            emailAddress,
-            phoneNumber,
-            address,
-            taxId);
+            firstName, lastName, emailAddress,
+            phoneNumber, address, taxId);
     }
     
     @Override
@@ -286,24 +283,26 @@ public class BillingDetailsOutput {
                 "address", address,
                 "taxId", taxId);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private JsonNullable<String> firstName = JsonNullable.undefined();
- 
+
         private JsonNullable<String> lastName = JsonNullable.undefined();
- 
+
         private JsonNullable<String> emailAddress = JsonNullable.undefined();
- 
+
         private JsonNullable<String> phoneNumber = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends Address> address = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends TaxId> taxId = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The first name(s) or given name for the buyer.
@@ -323,6 +322,7 @@ public class BillingDetailsOutput {
             return this;
         }
 
+
         /**
          * The last name, or family name, of the buyer.
          */
@@ -340,6 +340,7 @@ public class BillingDetailsOutput {
             this.lastName = lastName;
             return this;
         }
+
 
         /**
          * The email address for the buyer.
@@ -359,6 +360,7 @@ public class BillingDetailsOutput {
             return this;
         }
 
+
         /**
          * The phone number for the buyer which should be formatted according to the E164 number standard.
          */
@@ -376,6 +378,7 @@ public class BillingDetailsOutput {
             this.phoneNumber = phoneNumber;
             return this;
         }
+
 
         /**
          * The billing address for the buyer.
@@ -395,6 +398,7 @@ public class BillingDetailsOutput {
             return this;
         }
 
+
         /**
          * The tax ID information associated with the billing details.
          */
@@ -412,15 +416,13 @@ public class BillingDetailsOutput {
             this.taxId = taxId;
             return this;
         }
-        
+
         public BillingDetailsOutput build() {
+
             return new BillingDetailsOutput(
-                firstName,
-                lastName,
-                emailAddress,
-                phoneNumber,
-                address,
-                taxId);
+                firstName, lastName, emailAddress,
+                phoneNumber, address, taxId);
         }
+
     }
 }

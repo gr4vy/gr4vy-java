@@ -18,8 +18,8 @@ import java.time.OffsetDateTime;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class TransactionPaymentMethod {
 
+public class TransactionPaymentMethod {
     /**
      * Always `payment-method`.
      */
@@ -82,6 +82,7 @@ public class TransactionPaymentMethod {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("last_replaced_at")
     private JsonNullable<OffsetDateTime> lastReplacedAt;
+
 
     @JsonProperty("method")
     private Method method;
@@ -180,7 +181,11 @@ public class TransactionPaymentMethod {
     
     public TransactionPaymentMethod(
             Method method) {
-        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), method, JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
+        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), method,
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
     }
 
     /**
@@ -312,9 +317,10 @@ public class TransactionPaymentMethod {
         return paymentAccountReference;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The optional URL that the buyer needs to be redirected to to further authorize their payment.
@@ -574,7 +580,6 @@ public class TransactionPaymentMethod {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -606,21 +611,11 @@ public class TransactionPaymentMethod {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            type,
-            approvalUrl,
-            country,
-            currency,
-            details,
-            expirationDate,
-            fingerprint,
-            label,
-            lastReplacedAt,
-            method,
-            mode,
-            scheme,
-            id,
-            approvalTarget,
-            externalIdentifier,
+            type, approvalUrl, country,
+            currency, details, expirationDate,
+            fingerprint, label, lastReplacedAt,
+            method, mode, scheme,
+            id, approvalTarget, externalIdentifier,
             paymentAccountReference);
     }
     
@@ -644,42 +639,44 @@ public class TransactionPaymentMethod {
                 "externalIdentifier", externalIdentifier,
                 "paymentAccountReference", paymentAccountReference);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private JsonNullable<String> approvalUrl = JsonNullable.undefined();
- 
+
         private JsonNullable<String> country = JsonNullable.undefined();
- 
+
         private JsonNullable<String> currency = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends PaymentMethodDetailsCard> details = JsonNullable.undefined();
- 
+
         private JsonNullable<String> expirationDate = JsonNullable.undefined();
- 
+
         private JsonNullable<String> fingerprint = JsonNullable.undefined();
- 
+
         private JsonNullable<String> label = JsonNullable.undefined();
- 
+
         private JsonNullable<OffsetDateTime> lastReplacedAt = JsonNullable.undefined();
- 
+
         private Method method;
- 
+
         private JsonNullable<? extends Mode> mode = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends CardScheme> scheme = JsonNullable.undefined();
- 
+
         private JsonNullable<String> id = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends ApprovalTarget> approvalTarget = JsonNullable.undefined();
- 
+
         private JsonNullable<String> externalIdentifier = JsonNullable.undefined();
- 
+
         private JsonNullable<String> paymentAccountReference = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The optional URL that the buyer needs to be redirected to to further authorize their payment.
@@ -699,6 +696,7 @@ public class TransactionPaymentMethod {
             return this;
         }
 
+
         /**
          * The 2-letter ISO code of the country this payment method can be used for. If this value is null the payment method may be used in multiple countries.
          */
@@ -716,6 +714,7 @@ public class TransactionPaymentMethod {
             this.country = country;
             return this;
         }
+
 
         /**
          * The ISO-4217 currency code that this payment method can be used for. If this value is null the payment method may be used for multiple currencies.
@@ -735,6 +734,7 @@ public class TransactionPaymentMethod {
             return this;
         }
 
+
         /**
          * Details for credit or debit card payment method.
          */
@@ -752,6 +752,7 @@ public class TransactionPaymentMethod {
             this.details = details;
             return this;
         }
+
 
         /**
          * The expiration date for the payment method.
@@ -771,6 +772,7 @@ public class TransactionPaymentMethod {
             return this;
         }
 
+
         /**
          * The unique hash derived from the payment method identifier (e.g. card number).
          */
@@ -788,6 +790,7 @@ public class TransactionPaymentMethod {
             this.fingerprint = fingerprint;
             return this;
         }
+
 
         /**
          * A label for the card or the account. For a paypal payment method this is the user's email address. For a card it is the last 4 digits of the card.
@@ -807,6 +810,7 @@ public class TransactionPaymentMethod {
             return this;
         }
 
+
         /**
          * The date and time when this card was last replaced by the account updater.
          */
@@ -825,11 +829,13 @@ public class TransactionPaymentMethod {
             return this;
         }
 
+
         public Builder method(Method method) {
             Utils.checkNotNull(method, "method");
             this.method = method;
             return this;
         }
+
 
         /**
          * The mode to use with this payment method.
@@ -849,6 +855,7 @@ public class TransactionPaymentMethod {
             return this;
         }
 
+
         /**
          * The scheme of the card. Only applies to card payments.
          */
@@ -866,6 +873,7 @@ public class TransactionPaymentMethod {
             this.scheme = scheme;
             return this;
         }
+
 
         /**
          * The ID of the payment method.
@@ -885,6 +893,7 @@ public class TransactionPaymentMethod {
             return this;
         }
 
+
         /**
          * The browser target that an approval URL must be opened in. If any or null, then there is no specific requirement.
          */
@@ -902,6 +911,7 @@ public class TransactionPaymentMethod {
             this.approvalTarget = approvalTarget;
             return this;
         }
+
 
         /**
          * An external identifier that can be used to match the payment method against your own records.
@@ -921,6 +931,7 @@ public class TransactionPaymentMethod {
             return this;
         }
 
+
         /**
          * The payment account reference (PAR) returned by the card scheme. This is a unique reference to the underlying account that has been used to fund this payment method.
          */
@@ -938,25 +949,17 @@ public class TransactionPaymentMethod {
             this.paymentAccountReference = paymentAccountReference;
             return this;
         }
-        
+
         public TransactionPaymentMethod build() {
+
             return new TransactionPaymentMethod(
-                approvalUrl,
-                country,
-                currency,
-                details,
-                expirationDate,
-                fingerprint,
-                label,
-                lastReplacedAt,
-                method,
-                mode,
-                scheme,
-                id,
-                approvalTarget,
-                externalIdentifier,
-                paymentAccountReference);
+                approvalUrl, country, currency,
+                details, expirationDate, fingerprint,
+                label, lastReplacedAt, method,
+                mode, scheme, id,
+                approvalTarget, externalIdentifier, paymentAccountReference);
         }
+
 
         private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_Type =
                 new LazySingletonValue<>(

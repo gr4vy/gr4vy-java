@@ -72,8 +72,8 @@ public class GetRefundRequestBuilder {
 
         RequestOperation<GetRefundRequest, GetRefundResponse> operation
               = new GetRefundOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         GetRefundRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

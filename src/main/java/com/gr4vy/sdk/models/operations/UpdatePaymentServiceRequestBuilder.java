@@ -53,7 +53,7 @@ public class UpdatePaymentServiceRequestBuilder {
     public UpdatePaymentServiceResponse call() throws Exception {
         
         RequestOperation<UpdatePaymentServiceRequest, UpdatePaymentServiceResponse> operation
-              = new UpdatePaymentServiceOperation( sdkConfiguration);
+              = new UpdatePaymentServiceOperation(sdkConfiguration);
         UpdatePaymentServiceRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

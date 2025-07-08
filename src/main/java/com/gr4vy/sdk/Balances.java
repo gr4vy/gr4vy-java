@@ -23,7 +23,6 @@ public class Balances {
     Balances(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-
     /**
      * List gift card balances
      * 
@@ -68,7 +67,7 @@ public class Balances {
                 .giftCardBalanceRequest(giftCardBalanceRequest)
                 .build();
         RequestOperation<ListGiftCardBalancesRequest, ListGiftCardBalancesResponse> operation
-              = new ListGiftCardBalancesOperation( sdkConfiguration);
+              = new ListGiftCardBalancesOperation(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
 

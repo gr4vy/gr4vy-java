@@ -18,8 +18,8 @@ import java.time.OffsetDateTime;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class Buyer {
 
+public class Buyer {
     /**
      * Always `buyer`.
      */
@@ -113,7 +113,9 @@ public class Buyer {
             String merchantAccountId,
             OffsetDateTime createdAt,
             OffsetDateTime updatedAt) {
-        this(JsonNullable.undefined(), merchantAccountId, JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), createdAt, updatedAt);
+        this(JsonNullable.undefined(), merchantAccountId, JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            createdAt, updatedAt);
     }
 
     /**
@@ -189,9 +191,10 @@ public class Buyer {
         return updatedAt;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The ID for the buyer.
@@ -310,7 +313,6 @@ public class Buyer {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -335,15 +337,9 @@ public class Buyer {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            type,
-            id,
-            merchantAccountId,
-            displayName,
-            externalIdentifier,
-            billingDetails,
-            accountNumber,
-            createdAt,
-            updatedAt);
+            type, id, merchantAccountId,
+            displayName, externalIdentifier, billingDetails,
+            accountNumber, createdAt, updatedAt);
     }
     
     @Override
@@ -359,28 +355,30 @@ public class Buyer {
                 "createdAt", createdAt,
                 "updatedAt", updatedAt);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private JsonNullable<String> id = JsonNullable.undefined();
- 
+
         private String merchantAccountId;
- 
+
         private JsonNullable<String> displayName = JsonNullable.undefined();
- 
+
         private JsonNullable<String> externalIdentifier = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends BillingDetailsOutput> billingDetails = JsonNullable.undefined();
- 
+
         private JsonNullable<String> accountNumber = JsonNullable.undefined();
- 
+
         private OffsetDateTime createdAt;
- 
+
         private OffsetDateTime updatedAt;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The ID for the buyer.
@@ -400,6 +398,7 @@ public class Buyer {
             return this;
         }
 
+
         /**
          * The ID of the merchant account this buyer belongs to.
          */
@@ -408,6 +407,7 @@ public class Buyer {
             this.merchantAccountId = merchantAccountId;
             return this;
         }
+
 
         /**
          * The display name for the buyer.
@@ -427,6 +427,7 @@ public class Buyer {
             return this;
         }
 
+
         /**
          * The merchant identifier for this buyer.
          */
@@ -444,6 +445,7 @@ public class Buyer {
             this.externalIdentifier = externalIdentifier;
             return this;
         }
+
 
         /**
          * The billing name, address, email, and other fields for this buyer.
@@ -463,6 +465,7 @@ public class Buyer {
             return this;
         }
 
+
         /**
          * The buyer account number
          */
@@ -481,6 +484,7 @@ public class Buyer {
             return this;
         }
 
+
         /**
          * The date this buyer was created at.
          */
@@ -490,6 +494,7 @@ public class Buyer {
             return this;
         }
 
+
         /**
          * The date this buyer was last updated at.
          */
@@ -498,18 +503,15 @@ public class Buyer {
             this.updatedAt = updatedAt;
             return this;
         }
-        
+
         public Buyer build() {
+
             return new Buyer(
-                id,
-                merchantAccountId,
-                displayName,
-                externalIdentifier,
-                billingDetails,
-                accountNumber,
-                createdAt,
-                updatedAt);
+                id, merchantAccountId, displayName,
+                externalIdentifier, billingDetails, accountNumber,
+                createdAt, updatedAt);
         }
+
 
         private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_Type =
                 new LazySingletonValue<>(

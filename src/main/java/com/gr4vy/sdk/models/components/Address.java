@@ -13,8 +13,8 @@ import java.lang.Override;
 import java.lang.String;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class Address {
 
+public class Address {
     /**
      * The city for the address.
      */
@@ -110,7 +110,9 @@ public class Address {
     }
     
     public Address() {
-        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
+        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
     }
 
     /**
@@ -185,9 +187,10 @@ public class Address {
         return organization;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The city for the address.
@@ -351,7 +354,6 @@ public class Address {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -376,15 +378,9 @@ public class Address {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            city,
-            country,
-            postalCode,
-            state,
-            stateCode,
-            houseNumberOrName,
-            line1,
-            line2,
-            organization);
+            city, country, postalCode,
+            state, stateCode, houseNumberOrName,
+            line1, line2, organization);
     }
     
     @Override
@@ -400,30 +396,32 @@ public class Address {
                 "line2", line2,
                 "organization", organization);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private JsonNullable<String> city = JsonNullable.undefined();
- 
+
         private JsonNullable<String> country = JsonNullable.undefined();
- 
+
         private JsonNullable<String> postalCode = JsonNullable.undefined();
- 
+
         private JsonNullable<String> state = JsonNullable.undefined();
- 
+
         private JsonNullable<String> stateCode = JsonNullable.undefined();
- 
+
         private JsonNullable<String> houseNumberOrName = JsonNullable.undefined();
- 
+
         private JsonNullable<String> line1 = JsonNullable.undefined();
- 
+
         private JsonNullable<String> line2 = JsonNullable.undefined();
- 
+
         private JsonNullable<String> organization = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The city for the address.
@@ -443,6 +441,7 @@ public class Address {
             return this;
         }
 
+
         /**
          * The country for the address in ISO 3166 format.
          */
@@ -460,6 +459,7 @@ public class Address {
             this.country = country;
             return this;
         }
+
 
         /**
          * The postal code or zip code for the address.
@@ -479,6 +479,7 @@ public class Address {
             return this;
         }
 
+
         /**
          * The state, county, or province for the address.
          */
@@ -496,6 +497,7 @@ public class Address {
             this.state = state;
             return this;
         }
+
 
         /**
          * The code of state, county, or province for the address in ISO 3166-2 format.
@@ -515,6 +517,7 @@ public class Address {
             return this;
         }
 
+
         /**
          * The house number or name for the address. Not all payment services use this field but some do.
          */
@@ -532,6 +535,7 @@ public class Address {
             this.houseNumberOrName = houseNumberOrName;
             return this;
         }
+
 
         /**
          * The first line of the address.
@@ -551,6 +555,7 @@ public class Address {
             return this;
         }
 
+
         /**
          * The second line of the address.
          */
@@ -569,6 +574,7 @@ public class Address {
             return this;
         }
 
+
         /**
          * The optional name of the company or organisation to add to the address.
          */
@@ -586,18 +592,14 @@ public class Address {
             this.organization = organization;
             return this;
         }
-        
+
         public Address build() {
+
             return new Address(
-                city,
-                country,
-                postalCode,
-                state,
-                stateCode,
-                houseNumberOrName,
-                line1,
-                line2,
-                organization);
+                city, country, postalCode,
+                state, stateCode, houseNumberOrName,
+                line1, line2, organization);
         }
+
     }
 }

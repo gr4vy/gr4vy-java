@@ -14,15 +14,18 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import org.openapitools.jackson.nullable.JsonNullable;
 
+
 public class PaymentMethodDetailsCard {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("bin")
     private JsonNullable<String> bin;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("card_type")
     private JsonNullable<? extends CardType> cardType;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("card_issuer_name")
@@ -61,9 +64,10 @@ public class PaymentMethodDetailsCard {
         return cardIssuerName;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public PaymentMethodDetailsCard withBin(String bin) {
         Utils.checkNotNull(bin, "bin");
@@ -101,7 +105,6 @@ public class PaymentMethodDetailsCard {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -120,9 +123,7 @@ public class PaymentMethodDetailsCard {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            bin,
-            cardType,
-            cardIssuerName);
+            bin, cardType, cardIssuerName);
     }
     
     @Override
@@ -132,18 +133,20 @@ public class PaymentMethodDetailsCard {
                 "cardType", cardType,
                 "cardIssuerName", cardIssuerName);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private JsonNullable<String> bin = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends CardType> cardType = JsonNullable.undefined();
- 
+
         private JsonNullable<String> cardIssuerName = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder bin(String bin) {
             Utils.checkNotNull(bin, "bin");
@@ -157,6 +160,7 @@ public class PaymentMethodDetailsCard {
             return this;
         }
 
+
         public Builder cardType(CardType cardType) {
             Utils.checkNotNull(cardType, "cardType");
             this.cardType = JsonNullable.of(cardType);
@@ -169,6 +173,7 @@ public class PaymentMethodDetailsCard {
             return this;
         }
 
+
         public Builder cardIssuerName(String cardIssuerName) {
             Utils.checkNotNull(cardIssuerName, "cardIssuerName");
             this.cardIssuerName = JsonNullable.of(cardIssuerName);
@@ -180,12 +185,12 @@ public class PaymentMethodDetailsCard {
             this.cardIssuerName = cardIssuerName;
             return this;
         }
-        
+
         public PaymentMethodDetailsCard build() {
+
             return new PaymentMethodDetailsCard(
-                bin,
-                cardType,
-                cardIssuerName);
+                bin, cardType, cardIssuerName);
         }
+
     }
 }

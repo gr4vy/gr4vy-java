@@ -23,7 +23,6 @@ public class All {
     All(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-
     /**
      * Create batch transaction refund
      * 
@@ -71,7 +70,7 @@ public class All {
                 .transactionRefundAllCreate(transactionRefundAllCreate)
                 .build();
         RequestOperation<CreateFullTransactionRefundRequest, CreateFullTransactionRefundResponse> operation
-              = new CreateFullTransactionRefundOperation( sdkConfiguration);
+              = new CreateFullTransactionRefundOperation(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
 

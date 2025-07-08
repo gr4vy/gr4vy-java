@@ -12,13 +12,14 @@ import java.lang.Override;
 import java.lang.String;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class AddReportRequest {
 
+public class AddReportRequest {
     /**
      * The ID of the merchant account to use for this request.
      */
     @SpeakeasyMetadata("header:style=simple,explode=false,name=x-gr4vy-merchant-account-id")
     private JsonNullable<String> merchantAccountId;
+
 
     @SpeakeasyMetadata("request:mediaType=application/json")
     private ReportCreate reportCreate;
@@ -51,9 +52,10 @@ public class AddReportRequest {
         return reportCreate;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The ID of the merchant account to use for this request.
@@ -79,7 +81,6 @@ public class AddReportRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -97,8 +98,7 @@ public class AddReportRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            merchantAccountId,
-            reportCreate);
+            merchantAccountId, reportCreate);
     }
     
     @Override
@@ -107,16 +107,18 @@ public class AddReportRequest {
                 "merchantAccountId", merchantAccountId,
                 "reportCreate", reportCreate);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
- 
+
         private ReportCreate reportCreate;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The ID of the merchant account to use for this request.
@@ -136,16 +138,18 @@ public class AddReportRequest {
             return this;
         }
 
+
         public Builder reportCreate(ReportCreate reportCreate) {
             Utils.checkNotNull(reportCreate, "reportCreate");
             this.reportCreate = reportCreate;
             return this;
         }
-        
+
         public AddReportRequest build() {
+
             return new AddReportRequest(
-                merchantAccountId,
-                reportCreate);
+                merchantAccountId, reportCreate);
         }
+
     }
 }

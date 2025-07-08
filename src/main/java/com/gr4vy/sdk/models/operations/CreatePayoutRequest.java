@@ -12,13 +12,14 @@ import java.lang.Override;
 import java.lang.String;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class CreatePayoutRequest {
 
+public class CreatePayoutRequest {
     /**
      * The ID of the merchant account to use for this request.
      */
     @SpeakeasyMetadata("header:style=simple,explode=false,name=x-gr4vy-merchant-account-id")
     private JsonNullable<String> merchantAccountId;
+
 
     @SpeakeasyMetadata("request:mediaType=application/json")
     private PayoutCreate payoutCreate;
@@ -51,9 +52,10 @@ public class CreatePayoutRequest {
         return payoutCreate;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The ID of the merchant account to use for this request.
@@ -79,7 +81,6 @@ public class CreatePayoutRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -97,8 +98,7 @@ public class CreatePayoutRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            merchantAccountId,
-            payoutCreate);
+            merchantAccountId, payoutCreate);
     }
     
     @Override
@@ -107,16 +107,18 @@ public class CreatePayoutRequest {
                 "merchantAccountId", merchantAccountId,
                 "payoutCreate", payoutCreate);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
- 
+
         private PayoutCreate payoutCreate;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The ID of the merchant account to use for this request.
@@ -136,16 +138,18 @@ public class CreatePayoutRequest {
             return this;
         }
 
+
         public Builder payoutCreate(PayoutCreate payoutCreate) {
             Utils.checkNotNull(payoutCreate, "payoutCreate");
             this.payoutCreate = payoutCreate;
             return this;
         }
-        
+
         public CreatePayoutRequest build() {
+
             return new CreatePayoutRequest(
-                merchantAccountId,
-                payoutCreate);
+                merchantAccountId, payoutCreate);
         }
+
     }
 }

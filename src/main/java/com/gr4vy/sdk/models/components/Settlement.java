@@ -26,7 +26,6 @@ import org.openapitools.jackson.nullable.JsonNullable;
  * <p>A settlement record for a transaction.
  */
 public class Settlement {
-
     /**
      * Always 'settlement'.
      */
@@ -200,7 +199,12 @@ public class Settlement {
             String paymentServiceReportId,
             List<String> paymentServiceReportFileIds,
             String transactionId) {
-        this(id, merchantAccountId, createdAt, updatedAt, postedAt, ingestedAt, currency, amount, JsonNullable.undefined(), commission, JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), paymentServiceReportId, paymentServiceReportFileIds, transactionId);
+        this(id, merchantAccountId, createdAt,
+            updatedAt, postedAt, ingestedAt,
+            currency, amount, JsonNullable.undefined(),
+            commission, JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), paymentServiceReportId, paymentServiceReportFileIds,
+            transactionId);
     }
 
     /**
@@ -339,9 +343,10 @@ public class Settlement {
         return transactionId;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The unique identifier for the settlement.
@@ -523,7 +528,6 @@ public class Settlement {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -556,23 +560,12 @@ public class Settlement {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            type,
-            id,
-            merchantAccountId,
-            createdAt,
-            updatedAt,
-            postedAt,
-            ingestedAt,
-            currency,
-            amount,
-            exchangeRate,
-            commission,
-            interchange,
-            markup,
-            schemeFee,
-            paymentServiceReportId,
-            paymentServiceReportFileIds,
-            transactionId);
+            type, id, merchantAccountId,
+            createdAt, updatedAt, postedAt,
+            ingestedAt, currency, amount,
+            exchangeRate, commission, interchange,
+            markup, schemeFee, paymentServiceReportId,
+            paymentServiceReportFileIds, transactionId);
     }
     
     @Override
@@ -596,44 +589,46 @@ public class Settlement {
                 "paymentServiceReportFileIds", paymentServiceReportFileIds,
                 "transactionId", transactionId);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String id;
- 
+
         private String merchantAccountId;
- 
+
         private OffsetDateTime createdAt;
- 
+
         private OffsetDateTime updatedAt;
- 
+
         private OffsetDateTime postedAt;
- 
+
         private OffsetDateTime ingestedAt;
- 
+
         private String currency;
- 
+
         private Long amount;
- 
+
         private JsonNullable<Double> exchangeRate = JsonNullable.undefined();
- 
+
         private Long commission;
- 
+
         private JsonNullable<Long> interchange = JsonNullable.undefined();
- 
+
         private JsonNullable<Long> markup = JsonNullable.undefined();
- 
+
         private JsonNullable<Long> schemeFee = JsonNullable.undefined();
- 
+
         private String paymentServiceReportId;
- 
+
         private List<String> paymentServiceReportFileIds;
- 
+
         private String transactionId;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The unique identifier for the settlement.
@@ -644,6 +639,7 @@ public class Settlement {
             return this;
         }
 
+
         /**
          * The merchant account this settlement belongs to.
          */
@@ -652,6 +648,7 @@ public class Settlement {
             this.merchantAccountId = merchantAccountId;
             return this;
         }
+
 
         /**
          * The date and time the settlement was created, in ISO 8601 format.
@@ -662,6 +659,7 @@ public class Settlement {
             return this;
         }
 
+
         /**
          * The date and time the settlement was last updated, in ISO 8601 format.
          */
@@ -670,6 +668,7 @@ public class Settlement {
             this.updatedAt = updatedAt;
             return this;
         }
+
 
         /**
          * The date and time the settlement was posted, in ISO 8601 format.
@@ -680,6 +679,7 @@ public class Settlement {
             return this;
         }
 
+
         /**
          * The date and time the settlement was ingested, in ISO 8601 format.
          */
@@ -688,6 +688,7 @@ public class Settlement {
             this.ingestedAt = ingestedAt;
             return this;
         }
+
 
         /**
          * ISO 4217 currency code for the settlement.
@@ -698,6 +699,7 @@ public class Settlement {
             return this;
         }
 
+
         /**
          * The total settled amount in the smallest currency unit (e.g. cents).
          */
@@ -706,6 +708,7 @@ public class Settlement {
             this.amount = amount;
             return this;
         }
+
 
         /**
          * The exchange rate used for settlement, if applicable.
@@ -725,6 +728,7 @@ public class Settlement {
             return this;
         }
 
+
         /**
          * The commission amount deducted in the smallest currency unit.
          */
@@ -733,6 +737,7 @@ public class Settlement {
             this.commission = commission;
             return this;
         }
+
 
         /**
          * The interchange fee, if applicable, in the smallest currency unit.
@@ -752,6 +757,7 @@ public class Settlement {
             return this;
         }
 
+
         /**
          * The markup fee, if applicable, in the smallest currency unit.
          */
@@ -769,6 +775,7 @@ public class Settlement {
             this.markup = markup;
             return this;
         }
+
 
         /**
          * The scheme fee, if applicable, in the smallest currency unit.
@@ -788,6 +795,7 @@ public class Settlement {
             return this;
         }
 
+
         /**
          * The report ID from the payment service.
          */
@@ -796,6 +804,7 @@ public class Settlement {
             this.paymentServiceReportId = paymentServiceReportId;
             return this;
         }
+
 
         /**
          * List of file IDs for the payment service report.
@@ -806,6 +815,7 @@ public class Settlement {
             return this;
         }
 
+
         /**
          * The transaction this settlement is associated with.
          */
@@ -814,26 +824,18 @@ public class Settlement {
             this.transactionId = transactionId;
             return this;
         }
-        
+
         public Settlement build() {
+
             return new Settlement(
-                id,
-                merchantAccountId,
-                createdAt,
-                updatedAt,
-                postedAt,
-                ingestedAt,
-                currency,
-                amount,
-                exchangeRate,
-                commission,
-                interchange,
-                markup,
-                schemeFee,
-                paymentServiceReportId,
-                paymentServiceReportFileIds,
+                id, merchantAccountId, createdAt,
+                updatedAt, postedAt, ingestedAt,
+                currency, amount, exchangeRate,
+                commission, interchange, markup,
+                schemeFee, paymentServiceReportId, paymentServiceReportFileIds,
                 transactionId);
         }
+
 
         private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_Type =
                 new LazySingletonValue<>(

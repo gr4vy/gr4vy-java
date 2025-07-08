@@ -23,7 +23,6 @@ public class CardSchemeDefinitions {
     CardSchemeDefinitions(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-
     /**
      * List card scheme definitions
      * 
@@ -67,8 +66,8 @@ public class CardSchemeDefinitions {
                 .build();
         RequestOperation<ListCardSchemeDefinitionsRequest, ListCardSchemeDefinitionsResponse> operation
               = new ListCardSchemeDefinitionsOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

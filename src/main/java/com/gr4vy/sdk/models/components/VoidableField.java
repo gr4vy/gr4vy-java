@@ -10,10 +10,12 @@ import com.gr4vy.sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 
+
 public class VoidableField {
 
     @JsonProperty("key")
     private String key;
+
 
     @JsonProperty("value")
     private String value;
@@ -38,9 +40,10 @@ public class VoidableField {
         return value;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public VoidableField withKey(String key) {
         Utils.checkNotNull(key, "key");
@@ -54,7 +57,6 @@ public class VoidableField {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -72,8 +74,7 @@ public class VoidableField {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            key,
-            value);
+            key, value);
     }
     
     @Override
@@ -82,16 +83,18 @@ public class VoidableField {
                 "key", key,
                 "value", value);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String key;
- 
+
         private String value;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder key(String key) {
             Utils.checkNotNull(key, "key");
@@ -99,16 +102,18 @@ public class VoidableField {
             return this;
         }
 
+
         public Builder value(String value) {
             Utils.checkNotNull(value, "value");
             this.value = value;
             return this;
         }
-        
+
         public VoidableField build() {
+
             return new VoidableField(
-                key,
-                value);
+                key, value);
         }
+
     }
 }

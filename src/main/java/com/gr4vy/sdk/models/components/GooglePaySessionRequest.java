@@ -10,8 +10,8 @@ import com.gr4vy.sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 
-public class GooglePaySessionRequest {
 
+public class GooglePaySessionRequest {
     /**
      * The domain on which Google Pay is being loaded.
      */
@@ -33,9 +33,10 @@ public class GooglePaySessionRequest {
         return originDomain;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The domain on which Google Pay is being loaded.
@@ -46,7 +47,6 @@ public class GooglePaySessionRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -71,14 +71,16 @@ public class GooglePaySessionRequest {
         return Utils.toString(GooglePaySessionRequest.class,
                 "originDomain", originDomain);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String originDomain;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The domain on which Google Pay is being loaded.
@@ -88,10 +90,12 @@ public class GooglePaySessionRequest {
             this.originDomain = originDomain;
             return this;
         }
-        
+
         public GooglePaySessionRequest build() {
+
             return new GooglePaySessionRequest(
                 originDomain);
         }
+
     }
 }

@@ -23,7 +23,6 @@ import org.openapitools.jackson.nullable.JsonNullable;
  * <p>Represents the data required to create a new payout.
  */
 public class PayoutCreate {
-
     /**
      * The monetary amount for this payout, in the smallest currency unit for the given currency, for example `1299` cents to create an authorization for $12.99.
      */
@@ -139,7 +138,10 @@ public class PayoutCreate {
             String currency,
             String paymentServiceId,
             PayoutCreatePaymentMethod paymentMethod) {
-        this(amount, currency, paymentServiceId, paymentMethod, JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
+        this(amount, currency, paymentServiceId,
+            paymentMethod, JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined());
     }
 
     /**
@@ -234,9 +236,10 @@ public class PayoutCreate {
         return (JsonNullable<ConnectionOptions>) connectionOptions;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The monetary amount for this payout, in the smallest currency unit for the given currency, for example `1299` cents to create an authorization for $12.99.
@@ -400,7 +403,6 @@ public class PayoutCreate {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -427,17 +429,10 @@ public class PayoutCreate {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            amount,
-            currency,
-            paymentServiceId,
-            paymentMethod,
-            category,
-            externalIdentifier,
-            buyerId,
-            buyer,
-            buyerExternalIdentifier,
-            merchant,
-            connectionOptions);
+            amount, currency, paymentServiceId,
+            paymentMethod, category, externalIdentifier,
+            buyerId, buyer, buyerExternalIdentifier,
+            merchant, connectionOptions);
     }
     
     @Override
@@ -455,34 +450,36 @@ public class PayoutCreate {
                 "merchant", merchant,
                 "connectionOptions", connectionOptions);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Long amount;
- 
+
         private String currency;
- 
+
         private String paymentServiceId;
- 
+
         private PayoutCreatePaymentMethod paymentMethod;
- 
+
         private JsonNullable<? extends PayoutCategory> category = JsonNullable.undefined();
- 
+
         private JsonNullable<String> externalIdentifier = JsonNullable.undefined();
- 
+
         private JsonNullable<String> buyerId = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends GuestBuyerInput> buyer = JsonNullable.undefined();
- 
+
         private JsonNullable<String> buyerExternalIdentifier = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends PayoutMerchant> merchant = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends ConnectionOptions> connectionOptions = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The monetary amount for this payout, in the smallest currency unit for the given currency, for example `1299` cents to create an authorization for $12.99.
@@ -493,6 +490,7 @@ public class PayoutCreate {
             return this;
         }
 
+
         /**
          * The ISO-4217 currency code for this payout.
          */
@@ -501,6 +499,7 @@ public class PayoutCreate {
             this.currency = currency;
             return this;
         }
+
 
         /**
          * The ID of the payment service to use for the payout.
@@ -511,6 +510,7 @@ public class PayoutCreate {
             return this;
         }
 
+
         /**
          * The type of payment method to send funds too.
          */
@@ -519,6 +519,7 @@ public class PayoutCreate {
             this.paymentMethod = paymentMethod;
             return this;
         }
+
 
         /**
          * The type of payout to process.
@@ -538,6 +539,7 @@ public class PayoutCreate {
             return this;
         }
 
+
         /**
          * A value that can be used to match the payout against your own records.
          */
@@ -555,6 +557,7 @@ public class PayoutCreate {
             this.externalIdentifier = externalIdentifier;
             return this;
         }
+
 
         /**
          * The `id` of a stored buyer to use for this payout Use this instead of the `buyer` or `buyer_external_identifier`.
@@ -574,6 +577,7 @@ public class PayoutCreate {
             return this;
         }
 
+
         /**
          * Inline buyer details for the payout. Use this instead of the `buyer_id` or `buyer_external_identifier`.
          */
@@ -591,6 +595,7 @@ public class PayoutCreate {
             this.buyer = buyer;
             return this;
         }
+
 
         /**
          * The `external_identifier` of a stored buyer to use for this payout. Use this instead of the `buyer_id` or `buyer`.
@@ -610,6 +615,7 @@ public class PayoutCreate {
             return this;
         }
 
+
         /**
          * Merchant information for the source of the payout.
          */
@@ -628,6 +634,7 @@ public class PayoutCreate {
             return this;
         }
 
+
         /**
          * Optional fields for processing payouts on specific payment services.
          */
@@ -645,20 +652,15 @@ public class PayoutCreate {
             this.connectionOptions = connectionOptions;
             return this;
         }
-        
+
         public PayoutCreate build() {
+
             return new PayoutCreate(
-                amount,
-                currency,
-                paymentServiceId,
-                paymentMethod,
-                category,
-                externalIdentifier,
-                buyerId,
-                buyer,
-                buyerExternalIdentifier,
-                merchant,
-                connectionOptions);
+                amount, currency, paymentServiceId,
+                paymentMethod, category, externalIdentifier,
+                buyerId, buyer, buyerExternalIdentifier,
+                merchant, connectionOptions);
         }
+
     }
 }

@@ -64,8 +64,8 @@ public class ListDigitalWalletsRequestBuilder {
 
         RequestOperation<ListDigitalWalletsRequest, ListDigitalWalletsResponse> operation
               = new ListDigitalWalletsOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         ListDigitalWalletsRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

@@ -57,8 +57,8 @@ public class GetMerchantAccountRequestBuilder {
 
         RequestOperation<GetMerchantAccountRequest, GetMerchantAccountResponse> operation
               = new GetMerchantAccountOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         GetMerchantAccountRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

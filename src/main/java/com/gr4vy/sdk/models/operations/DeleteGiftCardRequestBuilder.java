@@ -52,7 +52,7 @@ public class DeleteGiftCardRequestBuilder {
     public DeleteGiftCardResponse call() throws Exception {
         
         RequestOperation<DeleteGiftCardRequest, DeleteGiftCardResponse> operation
-              = new DeleteGiftCardOperation( sdkConfiguration);
+              = new DeleteGiftCardOperation(sdkConfiguration);
         DeleteGiftCardRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

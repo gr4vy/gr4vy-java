@@ -13,8 +13,8 @@ import java.lang.String;
 import java.util.Map;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class CreatePaymentServiceSessionRequest {
 
+public class CreatePaymentServiceSessionRequest {
     /**
      * the ID of the payment service
      */
@@ -27,6 +27,7 @@ public class CreatePaymentServiceSessionRequest {
     @SpeakeasyMetadata("header:style=simple,explode=false,name=x-gr4vy-merchant-account-id")
     private JsonNullable<String> merchantAccountId;
 
+
     @SpeakeasyMetadata("request:mediaType=application/json")
     private Map<String, Object> requestBody;
 
@@ -38,6 +39,7 @@ public class CreatePaymentServiceSessionRequest {
         Utils.checkNotNull(paymentServiceId, "paymentServiceId");
         Utils.checkNotNull(merchantAccountId, "merchantAccountId");
         requestBody = Utils.emptyMapIfNull(requestBody);
+        Utils.checkNotNull(requestBody, "requestBody");
         this.paymentServiceId = paymentServiceId;
         this.merchantAccountId = merchantAccountId;
         this.requestBody = requestBody;
@@ -70,9 +72,10 @@ public class CreatePaymentServiceSessionRequest {
         return requestBody;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * the ID of the payment service
@@ -107,7 +110,6 @@ public class CreatePaymentServiceSessionRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -126,9 +128,7 @@ public class CreatePaymentServiceSessionRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            paymentServiceId,
-            merchantAccountId,
-            requestBody);
+            paymentServiceId, merchantAccountId, requestBody);
     }
     
     @Override
@@ -138,18 +138,20 @@ public class CreatePaymentServiceSessionRequest {
                 "merchantAccountId", merchantAccountId,
                 "requestBody", requestBody);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String paymentServiceId;
- 
+
         private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
- 
+
         private Map<String, Object> requestBody;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * the ID of the payment service
@@ -159,6 +161,7 @@ public class CreatePaymentServiceSessionRequest {
             this.paymentServiceId = paymentServiceId;
             return this;
         }
+
 
         /**
          * The ID of the merchant account to use for this request.
@@ -178,17 +181,18 @@ public class CreatePaymentServiceSessionRequest {
             return this;
         }
 
+
         public Builder requestBody(Map<String, Object> requestBody) {
             Utils.checkNotNull(requestBody, "requestBody");
             this.requestBody = requestBody;
             return this;
         }
-        
+
         public CreatePaymentServiceSessionRequest build() {
+
             return new CreatePaymentServiceSessionRequest(
-                paymentServiceId,
-                merchantAccountId,
-                requestBody);
+                paymentServiceId, merchantAccountId, requestBody);
         }
+
     }
 }

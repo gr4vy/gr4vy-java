@@ -12,8 +12,8 @@ import java.lang.Override;
 import java.lang.String;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class UpdateBuyerShippingDetailsRequest {
 
+public class UpdateBuyerShippingDetailsRequest {
     /**
      * The ID of the buyer to update shipping details for.
      */
@@ -31,6 +31,7 @@ public class UpdateBuyerShippingDetailsRequest {
      */
     @SpeakeasyMetadata("header:style=simple,explode=false,name=x-gr4vy-merchant-account-id")
     private JsonNullable<String> merchantAccountId;
+
 
     @SpeakeasyMetadata("request:mediaType=application/json")
     private ShippingDetailsUpdate shippingDetailsUpdate;
@@ -55,7 +56,8 @@ public class UpdateBuyerShippingDetailsRequest {
             String buyerId,
             String shippingDetailsId,
             ShippingDetailsUpdate shippingDetailsUpdate) {
-        this(buyerId, shippingDetailsId, JsonNullable.undefined(), shippingDetailsUpdate);
+        this(buyerId, shippingDetailsId, JsonNullable.undefined(),
+            shippingDetailsUpdate);
     }
 
     /**
@@ -87,9 +89,10 @@ public class UpdateBuyerShippingDetailsRequest {
         return shippingDetailsUpdate;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The ID of the buyer to update shipping details for.
@@ -133,7 +136,6 @@ public class UpdateBuyerShippingDetailsRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -153,9 +155,7 @@ public class UpdateBuyerShippingDetailsRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            buyerId,
-            shippingDetailsId,
-            merchantAccountId,
+            buyerId, shippingDetailsId, merchantAccountId,
             shippingDetailsUpdate);
     }
     
@@ -167,20 +167,22 @@ public class UpdateBuyerShippingDetailsRequest {
                 "merchantAccountId", merchantAccountId,
                 "shippingDetailsUpdate", shippingDetailsUpdate);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String buyerId;
- 
+
         private String shippingDetailsId;
- 
+
         private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
- 
+
         private ShippingDetailsUpdate shippingDetailsUpdate;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The ID of the buyer to update shipping details for.
@@ -191,6 +193,7 @@ public class UpdateBuyerShippingDetailsRequest {
             return this;
         }
 
+
         /**
          * The ID of the shipping details to update.
          */
@@ -199,6 +202,7 @@ public class UpdateBuyerShippingDetailsRequest {
             this.shippingDetailsId = shippingDetailsId;
             return this;
         }
+
 
         /**
          * The ID of the merchant account to use for this request.
@@ -218,18 +222,19 @@ public class UpdateBuyerShippingDetailsRequest {
             return this;
         }
 
+
         public Builder shippingDetailsUpdate(ShippingDetailsUpdate shippingDetailsUpdate) {
             Utils.checkNotNull(shippingDetailsUpdate, "shippingDetailsUpdate");
             this.shippingDetailsUpdate = shippingDetailsUpdate;
             return this;
         }
-        
+
         public UpdateBuyerShippingDetailsRequest build() {
+
             return new UpdateBuyerShippingDetailsRequest(
-                buyerId,
-                shippingDetailsId,
-                merchantAccountId,
+                buyerId, shippingDetailsId, merchantAccountId,
                 shippingDetailsUpdate);
         }
+
     }
 }

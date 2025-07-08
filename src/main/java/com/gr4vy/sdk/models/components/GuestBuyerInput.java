@@ -14,8 +14,8 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class GuestBuyerInput {
 
+public class GuestBuyerInput {
     /**
      * The display name for the buyer.
      */
@@ -71,7 +71,8 @@ public class GuestBuyerInput {
     }
     
     public GuestBuyerInput() {
-        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
+        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined());
     }
 
     /**
@@ -116,9 +117,10 @@ public class GuestBuyerInput {
         return (JsonNullable<ShippingDetailsCreate>) shippingDetails;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The display name for the buyer.
@@ -210,7 +212,6 @@ public class GuestBuyerInput {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -231,11 +232,8 @@ public class GuestBuyerInput {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            displayName,
-            externalIdentifier,
-            billingDetails,
-            accountNumber,
-            shippingDetails);
+            displayName, externalIdentifier, billingDetails,
+            accountNumber, shippingDetails);
     }
     
     @Override
@@ -247,22 +245,24 @@ public class GuestBuyerInput {
                 "accountNumber", accountNumber,
                 "shippingDetails", shippingDetails);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private JsonNullable<String> displayName = JsonNullable.undefined();
- 
+
         private JsonNullable<String> externalIdentifier = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends BillingDetailsInput> billingDetails = JsonNullable.undefined();
- 
+
         private JsonNullable<String> accountNumber = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends ShippingDetailsCreate> shippingDetails = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The display name for the buyer.
@@ -282,6 +282,7 @@ public class GuestBuyerInput {
             return this;
         }
 
+
         /**
          * The merchant identifier for this buyer.
          */
@@ -299,6 +300,7 @@ public class GuestBuyerInput {
             this.externalIdentifier = externalIdentifier;
             return this;
         }
+
 
         /**
          * The billing name, address, email, and other fields for this buyer.
@@ -318,6 +320,7 @@ public class GuestBuyerInput {
             return this;
         }
 
+
         /**
          * The buyer account number
          */
@@ -336,6 +339,7 @@ public class GuestBuyerInput {
             return this;
         }
 
+
         /**
          * The optional shipping details for this buyer.
          */
@@ -353,14 +357,13 @@ public class GuestBuyerInput {
             this.shippingDetails = shippingDetails;
             return this;
         }
-        
+
         public GuestBuyerInput build() {
+
             return new GuestBuyerInput(
-                displayName,
-                externalIdentifier,
-                billingDetails,
-                accountNumber,
-                shippingDetails);
+                displayName, externalIdentifier, billingDetails,
+                accountNumber, shippingDetails);
         }
+
     }
 }

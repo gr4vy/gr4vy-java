@@ -15,8 +15,8 @@ import java.lang.String;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class ListPaymentServiceDefinitionsRequest {
 
+public class ListPaymentServiceDefinitionsRequest {
     /**
      * A pointer to the page of results to return.
      */
@@ -59,9 +59,10 @@ public class ListPaymentServiceDefinitionsRequest {
         return limit;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * A pointer to the page of results to return.
@@ -90,6 +91,7 @@ public class ListPaymentServiceDefinitionsRequest {
         return this;
     }
 
+
     /**
      * The maximum number of items that are at returned.
      */
@@ -99,7 +101,6 @@ public class ListPaymentServiceDefinitionsRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -117,8 +118,7 @@ public class ListPaymentServiceDefinitionsRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            cursor,
-            limit);
+            cursor, limit);
     }
     
     @Override
@@ -127,16 +127,18 @@ public class ListPaymentServiceDefinitionsRequest {
                 "cursor", cursor,
                 "limit", limit);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private JsonNullable<String> cursor = JsonNullable.undefined();
- 
+
         private Optional<Long> limit;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * A pointer to the page of results to return.
@@ -156,6 +158,7 @@ public class ListPaymentServiceDefinitionsRequest {
             return this;
         }
 
+
         /**
          * The maximum number of items that are at returned.
          */
@@ -173,15 +176,16 @@ public class ListPaymentServiceDefinitionsRequest {
             this.limit = limit;
             return this;
         }
-        
+
         public ListPaymentServiceDefinitionsRequest build() {
             if (limit == null) {
                 limit = _SINGLETON_VALUE_Limit.value();
             }
+
             return new ListPaymentServiceDefinitionsRequest(
-                cursor,
-                limit);
+                cursor, limit);
         }
+
 
         private static final LazySingletonValue<Optional<Long>> _SINGLETON_VALUE_Limit =
                 new LazySingletonValue<>(

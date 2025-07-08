@@ -11,6 +11,7 @@ import java.lang.Override;
 import java.lang.String;
 import org.openapitools.jackson.nullable.JsonNullable;
 
+
 public class SyncTransactionRequest {
 
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=transaction_id")
@@ -50,9 +51,10 @@ public class SyncTransactionRequest {
         return merchantAccountId;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public SyncTransactionRequest withTransactionId(String transactionId) {
         Utils.checkNotNull(transactionId, "transactionId");
@@ -78,7 +80,6 @@ public class SyncTransactionRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -96,8 +97,7 @@ public class SyncTransactionRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            transactionId,
-            merchantAccountId);
+            transactionId, merchantAccountId);
     }
     
     @Override
@@ -106,22 +106,25 @@ public class SyncTransactionRequest {
                 "transactionId", transactionId,
                 "merchantAccountId", merchantAccountId);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String transactionId;
- 
+
         private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder transactionId(String transactionId) {
             Utils.checkNotNull(transactionId, "transactionId");
             this.transactionId = transactionId;
             return this;
         }
+
 
         /**
          * The ID of the merchant account to use for this request.
@@ -140,11 +143,12 @@ public class SyncTransactionRequest {
             this.merchantAccountId = merchantAccountId;
             return this;
         }
-        
+
         public SyncTransactionRequest build() {
+
             return new SyncTransactionRequest(
-                transactionId,
-                merchantAccountId);
+                transactionId, merchantAccountId);
         }
+
     }
 }

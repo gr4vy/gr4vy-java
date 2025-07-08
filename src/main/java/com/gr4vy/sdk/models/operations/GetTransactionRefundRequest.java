@@ -11,8 +11,8 @@ import java.lang.Override;
 import java.lang.String;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class GetTransactionRefundRequest {
 
+public class GetTransactionRefundRequest {
     /**
      * The ID of the transaction
      */
@@ -74,9 +74,10 @@ public class GetTransactionRefundRequest {
         return merchantAccountId;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The ID of the transaction
@@ -114,7 +115,6 @@ public class GetTransactionRefundRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -133,9 +133,7 @@ public class GetTransactionRefundRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            transactionId,
-            refundId,
-            merchantAccountId);
+            transactionId, refundId, merchantAccountId);
     }
     
     @Override
@@ -145,18 +143,20 @@ public class GetTransactionRefundRequest {
                 "refundId", refundId,
                 "merchantAccountId", merchantAccountId);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String transactionId;
- 
+
         private String refundId;
- 
+
         private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The ID of the transaction
@@ -167,6 +167,7 @@ public class GetTransactionRefundRequest {
             return this;
         }
 
+
         /**
          * The ID of the refund
          */
@@ -175,6 +176,7 @@ public class GetTransactionRefundRequest {
             this.refundId = refundId;
             return this;
         }
+
 
         /**
          * The ID of the merchant account to use for this request.
@@ -193,12 +195,12 @@ public class GetTransactionRefundRequest {
             this.merchantAccountId = merchantAccountId;
             return this;
         }
-        
+
         public GetTransactionRefundRequest build() {
+
             return new GetTransactionRefundRequest(
-                transactionId,
-                refundId,
-                merchantAccountId);
+                transactionId, refundId, merchantAccountId);
         }
+
     }
 }

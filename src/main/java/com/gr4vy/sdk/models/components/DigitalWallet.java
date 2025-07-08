@@ -22,8 +22,8 @@ import java.util.Map;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class DigitalWallet {
 
+public class DigitalWallet {
     /**
      * Always `digital-wallet`.
      */
@@ -42,6 +42,7 @@ public class DigitalWallet {
      */
     @JsonProperty("merchant_account_id")
     private String merchantAccountId;
+
 
     @JsonProperty("provider")
     private DigitalWalletProvider provider;
@@ -174,7 +175,11 @@ public class DigitalWallet {
             List<String> domainNames,
             OffsetDateTime createdAt,
             OffsetDateTime updatedAt) {
-        this(id, merchantAccountId, provider, merchantName, JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), domainNames, Optional.empty(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), createdAt, updatedAt);
+        this(id, merchantAccountId, provider,
+            merchantName, JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), domainNames, Optional.empty(),
+            Optional.empty(), Optional.empty(), JsonNullable.undefined(),
+            createdAt, updatedAt);
     }
 
     /**
@@ -295,9 +300,10 @@ public class DigitalWallet {
         return updatedAt;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The ID for the digital wallet.
@@ -404,6 +410,7 @@ public class DigitalWallet {
         return this;
     }
 
+
     /**
      * The number of active custom certificates registered for this digital wallet (Apple Pay only).
      */
@@ -422,6 +429,7 @@ public class DigitalWallet {
         return this;
     }
 
+
     /**
      * The number of pending custom certificates registered for this digital wallet (Apple Pay only).
      */
@@ -439,6 +447,7 @@ public class DigitalWallet {
         this.expiredCertificateCount = Optional.ofNullable(expiredCertificateCount);
         return this;
     }
+
 
     /**
      * The number of expired custom certificates registered for this digital wallet (Apple Pay only).
@@ -485,7 +494,6 @@ public class DigitalWallet {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -516,21 +524,11 @@ public class DigitalWallet {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            type,
-            id,
-            merchantAccountId,
-            provider,
-            merchantName,
-            merchantDisplayName,
-            merchantUrl,
-            merchantCountryCode,
-            domainNames,
-            activeCertificateCount,
-            pendingCertificateCount,
-            expiredCertificateCount,
-            fields,
-            createdAt,
-            updatedAt);
+            type, id, merchantAccountId,
+            provider, merchantName, merchantDisplayName,
+            merchantUrl, merchantCountryCode, domainNames,
+            activeCertificateCount, pendingCertificateCount, expiredCertificateCount,
+            fields, createdAt, updatedAt);
     }
     
     @Override
@@ -552,40 +550,42 @@ public class DigitalWallet {
                 "createdAt", createdAt,
                 "updatedAt", updatedAt);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String id;
- 
+
         private String merchantAccountId;
- 
+
         private DigitalWalletProvider provider;
- 
+
         private String merchantName;
- 
+
         private JsonNullable<String> merchantDisplayName = JsonNullable.undefined();
- 
+
         private JsonNullable<String> merchantUrl = JsonNullable.undefined();
- 
+
         private JsonNullable<String> merchantCountryCode = JsonNullable.undefined();
- 
+
         private List<String> domainNames;
- 
+
         private Optional<Long> activeCertificateCount;
- 
+
         private Optional<Long> pendingCertificateCount;
- 
+
         private Optional<Long> expiredCertificateCount;
- 
+
         private JsonNullable<? extends Map<String, Object>> fields = JsonNullable.undefined();
- 
+
         private OffsetDateTime createdAt;
- 
+
         private OffsetDateTime updatedAt;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The ID for the digital wallet.
@@ -596,6 +596,7 @@ public class DigitalWallet {
             return this;
         }
 
+
         /**
          * The ID of the merchant account this digital wallet belongs to.
          */
@@ -605,11 +606,13 @@ public class DigitalWallet {
             return this;
         }
 
+
         public Builder provider(DigitalWalletProvider provider) {
             Utils.checkNotNull(provider, "provider");
             this.provider = provider;
             return this;
         }
+
 
         /**
          * The name of the merchant the digital wallet is registered to.
@@ -619,6 +622,7 @@ public class DigitalWallet {
             this.merchantName = merchantName;
             return this;
         }
+
 
         /**
          * The consumer facing name of the merchant.
@@ -638,6 +642,7 @@ public class DigitalWallet {
             return this;
         }
 
+
         /**
          * The main URL of the merchant.
          */
@@ -655,6 +660,7 @@ public class DigitalWallet {
             this.merchantUrl = merchantUrl;
             return this;
         }
+
 
         /**
          * The country code where the merchant is registered.
@@ -674,6 +680,7 @@ public class DigitalWallet {
             return this;
         }
 
+
         /**
          * The list of domain names that a digital wallet can be used on (deprecated).
          */
@@ -682,6 +689,7 @@ public class DigitalWallet {
             this.domainNames = domainNames;
             return this;
         }
+
 
         /**
          * The number of active custom certificates registered for this digital wallet (Apple Pay only).
@@ -701,6 +709,7 @@ public class DigitalWallet {
             return this;
         }
 
+
         /**
          * The number of pending custom certificates registered for this digital wallet (Apple Pay only).
          */
@@ -718,6 +727,7 @@ public class DigitalWallet {
             this.pendingCertificateCount = pendingCertificateCount;
             return this;
         }
+
 
         /**
          * The number of expired custom certificates registered for this digital wallet (Apple Pay only).
@@ -737,6 +747,7 @@ public class DigitalWallet {
             return this;
         }
 
+
         /**
          * Custom attributes for some digital wallets. Currently only used by Click to Pay.
          */
@@ -755,6 +766,7 @@ public class DigitalWallet {
             return this;
         }
 
+
         /**
          * The date this buyer was created at.
          */
@@ -764,6 +776,7 @@ public class DigitalWallet {
             return this;
         }
 
+
         /**
          * The date this buyer was last updated at.
          */
@@ -772,7 +785,7 @@ public class DigitalWallet {
             this.updatedAt = updatedAt;
             return this;
         }
-        
+
         public DigitalWallet build() {
             if (activeCertificateCount == null) {
                 activeCertificateCount = _SINGLETON_VALUE_ActiveCertificateCount.value();
@@ -783,22 +796,15 @@ public class DigitalWallet {
             if (expiredCertificateCount == null) {
                 expiredCertificateCount = _SINGLETON_VALUE_ExpiredCertificateCount.value();
             }
+
             return new DigitalWallet(
-                id,
-                merchantAccountId,
-                provider,
-                merchantName,
-                merchantDisplayName,
-                merchantUrl,
-                merchantCountryCode,
-                domainNames,
-                activeCertificateCount,
-                pendingCertificateCount,
-                expiredCertificateCount,
-                fields,
-                createdAt,
-                updatedAt);
+                id, merchantAccountId, provider,
+                merchantName, merchantDisplayName, merchantUrl,
+                merchantCountryCode, domainNames, activeCertificateCount,
+                pendingCertificateCount, expiredCertificateCount, fields,
+                createdAt, updatedAt);
         }
+
 
         private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_Type =
                 new LazySingletonValue<>(

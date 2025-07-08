@@ -11,8 +11,8 @@ import java.lang.Override;
 import java.lang.String;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class GetGiftCardRequest {
 
+public class GetGiftCardRequest {
     /**
      * The ID of the gift card.
      */
@@ -56,9 +56,10 @@ public class GetGiftCardRequest {
         return merchantAccountId;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The ID of the gift card.
@@ -87,7 +88,6 @@ public class GetGiftCardRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -105,8 +105,7 @@ public class GetGiftCardRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            giftCardId,
-            merchantAccountId);
+            giftCardId, merchantAccountId);
     }
     
     @Override
@@ -115,16 +114,18 @@ public class GetGiftCardRequest {
                 "giftCardId", giftCardId,
                 "merchantAccountId", merchantAccountId);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String giftCardId;
- 
+
         private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The ID of the gift card.
@@ -134,6 +135,7 @@ public class GetGiftCardRequest {
             this.giftCardId = giftCardId;
             return this;
         }
+
 
         /**
          * The ID of the merchant account to use for this request.
@@ -152,11 +154,12 @@ public class GetGiftCardRequest {
             this.merchantAccountId = merchantAccountId;
             return this;
         }
-        
+
         public GetGiftCardRequest build() {
+
             return new GetGiftCardRequest(
-                giftCardId,
-                merchantAccountId);
+                giftCardId, merchantAccountId);
         }
+
     }
 }

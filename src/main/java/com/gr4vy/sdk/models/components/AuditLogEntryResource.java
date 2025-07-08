@@ -10,8 +10,8 @@ import com.gr4vy.sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 
-public class AuditLogEntryResource {
 
+public class AuditLogEntryResource {
     /**
      * The type of the resource.
      */
@@ -67,9 +67,10 @@ public class AuditLogEntryResource {
         return name;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The type of the resource.
@@ -98,7 +99,6 @@ public class AuditLogEntryResource {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -117,9 +117,7 @@ public class AuditLogEntryResource {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            type,
-            id,
-            name);
+            type, id, name);
     }
     
     @Override
@@ -129,18 +127,20 @@ public class AuditLogEntryResource {
                 "id", id,
                 "name", name);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String type;
- 
+
         private String id;
- 
+
         private String name;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The type of the resource.
@@ -151,6 +151,7 @@ public class AuditLogEntryResource {
             return this;
         }
 
+
         /**
          * The ID of the resource.
          */
@@ -160,6 +161,7 @@ public class AuditLogEntryResource {
             return this;
         }
 
+
         /**
          * The descriptive name of the resource.
          */
@@ -168,12 +170,12 @@ public class AuditLogEntryResource {
             this.name = name;
             return this;
         }
-        
+
         public AuditLogEntryResource build() {
+
             return new AuditLogEntryResource(
-                type,
-                id,
-                name);
+                type, id, name);
         }
+
     }
 }

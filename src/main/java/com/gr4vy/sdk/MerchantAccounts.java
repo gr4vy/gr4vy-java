@@ -37,7 +37,6 @@ public class MerchantAccounts {
     MerchantAccounts(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-
     /**
      * List all merchant accounts
      * 
@@ -58,7 +57,8 @@ public class MerchantAccounts {
      * @throws Exception if the API call fails
      */
     public ListMerchantAccountsResponse listDirect() throws Exception {
-        return list(JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), Optional.empty());
+        return list(JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
+            Optional.empty());
     }
 
     /**
@@ -87,11 +87,10 @@ public class MerchantAccounts {
                 .build();
         RequestOperation<ListMerchantAccountsRequest, ListMerchantAccountsResponse> operation
               = new ListMerchantAccountsOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Create a merchant account
@@ -113,13 +112,11 @@ public class MerchantAccounts {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public CreateMerchantAccountResponse create(
-            MerchantAccountCreate request) throws Exception {
+    public CreateMerchantAccountResponse create(MerchantAccountCreate request) throws Exception {
         RequestOperation<MerchantAccountCreate, CreateMerchantAccountResponse> operation
-              = new CreateMerchantAccountOperation( sdkConfiguration);
+              = new CreateMerchantAccountOperation(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Get a merchant account
@@ -165,11 +162,10 @@ public class MerchantAccounts {
                 .build();
         RequestOperation<GetMerchantAccountRequest, GetMerchantAccountResponse> operation
               = new GetMerchantAccountOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Update a merchant account
@@ -202,7 +198,7 @@ public class MerchantAccounts {
                 .merchantAccountUpdate(merchantAccountUpdate)
                 .build();
         RequestOperation<UpdateMerchantAccountRequest, UpdateMerchantAccountResponse> operation
-              = new UpdateMerchantAccountOperation( sdkConfiguration);
+              = new UpdateMerchantAccountOperation(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
 

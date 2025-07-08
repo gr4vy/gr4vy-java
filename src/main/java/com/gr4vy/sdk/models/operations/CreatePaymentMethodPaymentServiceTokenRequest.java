@@ -12,8 +12,8 @@ import java.lang.Override;
 import java.lang.String;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class CreatePaymentMethodPaymentServiceTokenRequest {
 
+public class CreatePaymentMethodPaymentServiceTokenRequest {
     /**
      * The ID of the payment method
      */
@@ -25,6 +25,7 @@ public class CreatePaymentMethodPaymentServiceTokenRequest {
      */
     @SpeakeasyMetadata("header:style=simple,explode=false,name=x-gr4vy-merchant-account-id")
     private JsonNullable<String> merchantAccountId;
+
 
     @SpeakeasyMetadata("request:mediaType=application/json")
     private PaymentServiceTokenCreate paymentServiceTokenCreate;
@@ -69,9 +70,10 @@ public class CreatePaymentMethodPaymentServiceTokenRequest {
         return paymentServiceTokenCreate;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The ID of the payment method
@@ -106,7 +108,6 @@ public class CreatePaymentMethodPaymentServiceTokenRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -125,9 +126,7 @@ public class CreatePaymentMethodPaymentServiceTokenRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            paymentMethodId,
-            merchantAccountId,
-            paymentServiceTokenCreate);
+            paymentMethodId, merchantAccountId, paymentServiceTokenCreate);
     }
     
     @Override
@@ -137,18 +136,20 @@ public class CreatePaymentMethodPaymentServiceTokenRequest {
                 "merchantAccountId", merchantAccountId,
                 "paymentServiceTokenCreate", paymentServiceTokenCreate);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String paymentMethodId;
- 
+
         private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
- 
+
         private PaymentServiceTokenCreate paymentServiceTokenCreate;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The ID of the payment method
@@ -158,6 +159,7 @@ public class CreatePaymentMethodPaymentServiceTokenRequest {
             this.paymentMethodId = paymentMethodId;
             return this;
         }
+
 
         /**
          * The ID of the merchant account to use for this request.
@@ -177,17 +179,18 @@ public class CreatePaymentMethodPaymentServiceTokenRequest {
             return this;
         }
 
+
         public Builder paymentServiceTokenCreate(PaymentServiceTokenCreate paymentServiceTokenCreate) {
             Utils.checkNotNull(paymentServiceTokenCreate, "paymentServiceTokenCreate");
             this.paymentServiceTokenCreate = paymentServiceTokenCreate;
             return this;
         }
-        
+
         public CreatePaymentMethodPaymentServiceTokenRequest build() {
+
             return new CreatePaymentMethodPaymentServiceTokenRequest(
-                paymentMethodId,
-                merchantAccountId,
-                paymentServiceTokenCreate);
+                paymentMethodId, merchantAccountId, paymentServiceTokenCreate);
         }
+
     }
 }

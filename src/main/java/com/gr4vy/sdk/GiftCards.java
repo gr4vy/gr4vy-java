@@ -41,7 +41,6 @@ private final Balances balances;
 public final Balances balances() {
         return balances;
     }
-
     /**
      * Get gift card
      * 
@@ -89,11 +88,10 @@ public final Balances balances() {
                 .build();
         RequestOperation<GetGiftCardRequest, GetGiftCardResponse> operation
               = new GetGiftCardOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Delete a gift card
@@ -139,10 +137,9 @@ public final Balances balances() {
                 .merchantAccountId(merchantAccountId)
                 .build();
         RequestOperation<DeleteGiftCardRequest, DeleteGiftCardResponse> operation
-              = new DeleteGiftCardOperation( sdkConfiguration);
+              = new DeleteGiftCardOperation(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Create gift card
@@ -188,10 +185,9 @@ public final Balances balances() {
                 .giftCardCreate(giftCardCreate)
                 .build();
         RequestOperation<CreateGiftCardRequest, CreateGiftCardResponse> operation
-              = new CreateGiftCardOperation( sdkConfiguration);
+              = new CreateGiftCardOperation(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * List gift cards
@@ -232,8 +228,8 @@ public final Balances balances() {
             Optional<Options> options) throws Exception {
         RequestOperation<ListGiftCardsRequest, ListGiftCardsResponse> operation
               = new ListGiftCardsOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

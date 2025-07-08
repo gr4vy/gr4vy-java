@@ -15,16 +15,20 @@ import java.lang.String;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
+
 public class ListGiftCardsRequest {
 
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=buyer_external_identifier")
     private JsonNullable<String> buyerExternalIdentifier;
 
+
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=buyer_id")
     private JsonNullable<String> buyerId;
 
+
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=cursor")
     private JsonNullable<String> cursor;
+
 
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=limit")
     private Optional<Long> limit;
@@ -55,7 +59,8 @@ public class ListGiftCardsRequest {
     }
     
     public ListGiftCardsRequest() {
-        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined());
+        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            Optional.empty(), JsonNullable.undefined());
     }
 
     @JsonIgnore
@@ -86,9 +91,10 @@ public class ListGiftCardsRequest {
         return merchantAccountId;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public ListGiftCardsRequest withBuyerExternalIdentifier(String buyerExternalIdentifier) {
         Utils.checkNotNull(buyerExternalIdentifier, "buyerExternalIdentifier");
@@ -132,6 +138,7 @@ public class ListGiftCardsRequest {
         return this;
     }
 
+
     public ListGiftCardsRequest withLimit(Optional<Long> limit) {
         Utils.checkNotNull(limit, "limit");
         this.limit = limit;
@@ -156,7 +163,6 @@ public class ListGiftCardsRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -177,11 +183,8 @@ public class ListGiftCardsRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            buyerExternalIdentifier,
-            buyerId,
-            cursor,
-            limit,
-            merchantAccountId);
+            buyerExternalIdentifier, buyerId, cursor,
+            limit, merchantAccountId);
     }
     
     @Override
@@ -193,22 +196,24 @@ public class ListGiftCardsRequest {
                 "limit", limit,
                 "merchantAccountId", merchantAccountId);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private JsonNullable<String> buyerExternalIdentifier = JsonNullable.undefined();
- 
+
         private JsonNullable<String> buyerId = JsonNullable.undefined();
- 
+
         private JsonNullable<String> cursor = JsonNullable.undefined();
- 
+
         private Optional<Long> limit;
- 
+
         private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder buyerExternalIdentifier(String buyerExternalIdentifier) {
             Utils.checkNotNull(buyerExternalIdentifier, "buyerExternalIdentifier");
@@ -222,6 +227,7 @@ public class ListGiftCardsRequest {
             return this;
         }
 
+
         public Builder buyerId(String buyerId) {
             Utils.checkNotNull(buyerId, "buyerId");
             this.buyerId = JsonNullable.of(buyerId);
@@ -233,6 +239,7 @@ public class ListGiftCardsRequest {
             this.buyerId = buyerId;
             return this;
         }
+
 
         public Builder cursor(String cursor) {
             Utils.checkNotNull(cursor, "cursor");
@@ -246,6 +253,7 @@ public class ListGiftCardsRequest {
             return this;
         }
 
+
         public Builder limit(long limit) {
             Utils.checkNotNull(limit, "limit");
             this.limit = Optional.ofNullable(limit);
@@ -257,6 +265,7 @@ public class ListGiftCardsRequest {
             this.limit = limit;
             return this;
         }
+
 
         /**
          * The ID of the merchant account to use for this request.
@@ -275,18 +284,17 @@ public class ListGiftCardsRequest {
             this.merchantAccountId = merchantAccountId;
             return this;
         }
-        
+
         public ListGiftCardsRequest build() {
             if (limit == null) {
                 limit = _SINGLETON_VALUE_Limit.value();
             }
+
             return new ListGiftCardsRequest(
-                buyerExternalIdentifier,
-                buyerId,
-                cursor,
-                limit,
-                merchantAccountId);
+                buyerExternalIdentifier, buyerId, cursor,
+                limit, merchantAccountId);
         }
+
 
         private static final LazySingletonValue<Optional<Long>> _SINGLETON_VALUE_Limit =
                 new LazySingletonValue<>(

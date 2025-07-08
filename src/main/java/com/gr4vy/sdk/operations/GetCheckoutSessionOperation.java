@@ -59,7 +59,8 @@ public class GetCheckoutSessionOperation implements RequestOperation<GetCheckout
     
     @Override
     public HttpResponse<InputStream> doRequest(GetCheckoutSessionRequest request) throws Exception {
-        options.ifPresent(o -> o.validate(List.of(Options.Option.RETRY_CONFIG)));
+        options
+                .ifPresent(o -> o.validate(List.of(Options.Option.RETRY_CONFIG)));
         String baseUrl = Utils.templateUrl(
                 this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
         String url = Utils.generateURL(

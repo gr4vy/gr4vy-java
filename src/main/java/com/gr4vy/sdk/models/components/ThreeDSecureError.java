@@ -13,8 +13,8 @@ import java.lang.Override;
 import java.lang.String;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class ThreeDSecureError {
 
+public class ThreeDSecureError {
     /**
      * The error code.
      */
@@ -60,7 +60,8 @@ public class ThreeDSecureError {
     }
     
     public ThreeDSecureError() {
-        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
+        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined());
     }
 
     /**
@@ -95,9 +96,10 @@ public class ThreeDSecureError {
         return component;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The error code.
@@ -171,7 +173,6 @@ public class ThreeDSecureError {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -191,9 +192,7 @@ public class ThreeDSecureError {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            code,
-            description,
-            detail,
+            code, description, detail,
             component);
     }
     
@@ -205,20 +204,22 @@ public class ThreeDSecureError {
                 "detail", detail,
                 "component", component);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private JsonNullable<String> code = JsonNullable.undefined();
- 
+
         private JsonNullable<String> description = JsonNullable.undefined();
- 
+
         private JsonNullable<String> detail = JsonNullable.undefined();
- 
+
         private JsonNullable<String> component = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The error code.
@@ -238,6 +239,7 @@ public class ThreeDSecureError {
             return this;
         }
 
+
         /**
          * The error description.
          */
@@ -255,6 +257,7 @@ public class ThreeDSecureError {
             this.description = description;
             return this;
         }
+
 
         /**
          * Detail about the 3DS error.
@@ -274,6 +277,7 @@ public class ThreeDSecureError {
             return this;
         }
 
+
         /**
          * Code indicating the 3-D Secure component that identified the error.
          */
@@ -291,13 +295,13 @@ public class ThreeDSecureError {
             this.component = component;
             return this;
         }
-        
+
         public ThreeDSecureError build() {
+
             return new ThreeDSecureError(
-                code,
-                description,
-                detail,
+                code, description, detail,
                 component);
         }
+
     }
 }

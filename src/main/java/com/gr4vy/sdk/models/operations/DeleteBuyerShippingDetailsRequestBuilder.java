@@ -60,7 +60,7 @@ public class DeleteBuyerShippingDetailsRequestBuilder {
     public DeleteBuyerShippingDetailsResponse call() throws Exception {
         
         RequestOperation<DeleteBuyerShippingDetailsRequest, DeleteBuyerShippingDetailsResponse> operation
-              = new DeleteBuyerShippingDetailsOperation( sdkConfiguration);
+              = new DeleteBuyerShippingDetailsOperation(sdkConfiguration);
         DeleteBuyerShippingDetailsRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

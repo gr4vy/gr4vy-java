@@ -11,8 +11,8 @@ import java.lang.Override;
 import java.lang.String;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class GetRefundRequest {
 
+public class GetRefundRequest {
     /**
      * The ID of the refund
      */
@@ -56,9 +56,10 @@ public class GetRefundRequest {
         return merchantAccountId;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The ID of the refund
@@ -87,7 +88,6 @@ public class GetRefundRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -105,8 +105,7 @@ public class GetRefundRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            refundId,
-            merchantAccountId);
+            refundId, merchantAccountId);
     }
     
     @Override
@@ -115,16 +114,18 @@ public class GetRefundRequest {
                 "refundId", refundId,
                 "merchantAccountId", merchantAccountId);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String refundId;
- 
+
         private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The ID of the refund
@@ -134,6 +135,7 @@ public class GetRefundRequest {
             this.refundId = refundId;
             return this;
         }
+
 
         /**
          * The ID of the merchant account to use for this request.
@@ -152,11 +154,12 @@ public class GetRefundRequest {
             this.merchantAccountId = merchantAccountId;
             return this;
         }
-        
+
         public GetRefundRequest build() {
+
             return new GetRefundRequest(
-                refundId,
-                merchantAccountId);
+                refundId, merchantAccountId);
         }
+
     }
 }

@@ -60,7 +60,8 @@ public class GetTransactionRefundOperation implements RequestOperation<GetTransa
     
     @Override
     public HttpResponse<InputStream> doRequest(GetTransactionRefundRequest request) throws Exception {
-        options.ifPresent(o -> o.validate(List.of(Options.Option.RETRY_CONFIG)));
+        options
+                .ifPresent(o -> o.validate(List.of(Options.Option.RETRY_CONFIG)));
         String baseUrl = Utils.templateUrl(
                 this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
         String url = Utils.generateURL(

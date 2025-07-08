@@ -13,8 +13,8 @@ import java.lang.Override;
 import java.lang.String;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class TransactionRefundAllCreate {
 
+public class TransactionRefundAllCreate {
     /**
      * An optional reason to attach extra context to the refund requests.
      */
@@ -59,9 +59,10 @@ public class TransactionRefundAllCreate {
         return externalIdentifier;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * An optional reason to attach extra context to the refund requests.
@@ -99,7 +100,6 @@ public class TransactionRefundAllCreate {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -117,8 +117,7 @@ public class TransactionRefundAllCreate {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            reason,
-            externalIdentifier);
+            reason, externalIdentifier);
     }
     
     @Override
@@ -127,16 +126,18 @@ public class TransactionRefundAllCreate {
                 "reason", reason,
                 "externalIdentifier", externalIdentifier);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private JsonNullable<String> reason = JsonNullable.undefined();
- 
+
         private JsonNullable<String> externalIdentifier = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * An optional reason to attach extra context to the refund requests.
@@ -156,6 +157,7 @@ public class TransactionRefundAllCreate {
             return this;
         }
 
+
         /**
          * An external identifier that can be used to match the refunds against your own records.
          */
@@ -173,11 +175,12 @@ public class TransactionRefundAllCreate {
             this.externalIdentifier = externalIdentifier;
             return this;
         }
-        
+
         public TransactionRefundAllCreate build() {
+
             return new TransactionRefundAllCreate(
-                reason,
-                externalIdentifier);
+                reason, externalIdentifier);
         }
+
     }
 }

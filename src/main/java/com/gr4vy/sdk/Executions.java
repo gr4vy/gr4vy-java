@@ -32,7 +32,6 @@ public class Executions {
     Executions(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-
     /**
      * List executions for report
      * 
@@ -54,7 +53,8 @@ public class Executions {
      * @throws Exception if the API call fails
      */
     public ListReportExecutionsResponse list(String reportId) throws Exception {
-        return list(reportId, JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), Optional.empty());
+        return list(reportId, JsonNullable.undefined(), Optional.empty(),
+            JsonNullable.undefined(), Optional.empty());
     }
 
     /**
@@ -86,11 +86,10 @@ public class Executions {
                 .build();
         RequestOperation<ListReportExecutionsRequest, ListReportExecutionsResponse> operation
               = new ListReportExecutionsOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Create URL for executed report
@@ -142,10 +141,9 @@ public class Executions {
                 .merchantAccountId(merchantAccountId)
                 .build();
         RequestOperation<CreateReportExecutionUrlRequest, CreateReportExecutionUrlResponse> operation
-              = new CreateReportExecutionUrlOperation( sdkConfiguration);
+              = new CreateReportExecutionUrlOperation(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Get executed report
@@ -194,8 +192,8 @@ public class Executions {
                 .build();
         RequestOperation<GetReportExecutionRequest, GetReportExecutionResponse> operation
               = new GetReportExecutionOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

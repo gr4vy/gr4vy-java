@@ -23,7 +23,6 @@ public class Refunds {
     Refunds(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-
     /**
      * Get refund
      * 
@@ -71,8 +70,8 @@ public class Refunds {
                 .build();
         RequestOperation<GetRefundRequest, GetRefundResponse> operation
               = new GetRefundOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

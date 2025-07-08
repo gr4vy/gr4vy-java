@@ -14,8 +14,8 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class ShippingDetailsCreate {
 
+public class ShippingDetailsCreate {
     /**
      * The first name(s) or given name for the buyer.
      */
@@ -71,7 +71,8 @@ public class ShippingDetailsCreate {
     }
     
     public ShippingDetailsCreate() {
-        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
+        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined());
     }
 
     /**
@@ -115,9 +116,10 @@ public class ShippingDetailsCreate {
         return (JsonNullable<Address>) address;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The first name(s) or given name for the buyer.
@@ -209,7 +211,6 @@ public class ShippingDetailsCreate {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -230,11 +231,8 @@ public class ShippingDetailsCreate {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            firstName,
-            lastName,
-            emailAddress,
-            phoneNumber,
-            address);
+            firstName, lastName, emailAddress,
+            phoneNumber, address);
     }
     
     @Override
@@ -246,22 +244,24 @@ public class ShippingDetailsCreate {
                 "phoneNumber", phoneNumber,
                 "address", address);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private JsonNullable<String> firstName = JsonNullable.undefined();
- 
+
         private JsonNullable<String> lastName = JsonNullable.undefined();
- 
+
         private JsonNullable<String> emailAddress = JsonNullable.undefined();
- 
+
         private JsonNullable<String> phoneNumber = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends Address> address = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The first name(s) or given name for the buyer.
@@ -281,6 +281,7 @@ public class ShippingDetailsCreate {
             return this;
         }
 
+
         /**
          * The last name, or family name, of the buyer.
          */
@@ -298,6 +299,7 @@ public class ShippingDetailsCreate {
             this.lastName = lastName;
             return this;
         }
+
 
         /**
          * The email address for the buyer.
@@ -317,6 +319,7 @@ public class ShippingDetailsCreate {
             return this;
         }
 
+
         /**
          * The phone number for the buyer which should be formatted according to the E164 number standard.
          */
@@ -335,6 +338,7 @@ public class ShippingDetailsCreate {
             return this;
         }
 
+
         /**
          * The billing address for the buyer.
          */
@@ -352,14 +356,13 @@ public class ShippingDetailsCreate {
             this.address = address;
             return this;
         }
-        
+
         public ShippingDetailsCreate build() {
+
             return new ShippingDetailsCreate(
-                firstName,
-                lastName,
-                emailAddress,
-                phoneNumber,
-                address);
+                firstName, lastName, emailAddress,
+                phoneNumber, address);
         }
+
     }
 }

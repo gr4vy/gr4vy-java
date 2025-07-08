@@ -11,8 +11,8 @@ import java.lang.Override;
 import java.lang.String;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class GetPaymentLinkRequest {
 
+public class GetPaymentLinkRequest {
     /**
      * The unique identifier for the payment link.
      */
@@ -56,9 +56,10 @@ public class GetPaymentLinkRequest {
         return merchantAccountId;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The unique identifier for the payment link.
@@ -87,7 +88,6 @@ public class GetPaymentLinkRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -105,8 +105,7 @@ public class GetPaymentLinkRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            paymentLinkId,
-            merchantAccountId);
+            paymentLinkId, merchantAccountId);
     }
     
     @Override
@@ -115,16 +114,18 @@ public class GetPaymentLinkRequest {
                 "paymentLinkId", paymentLinkId,
                 "merchantAccountId", merchantAccountId);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String paymentLinkId;
- 
+
         private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The unique identifier for the payment link.
@@ -134,6 +135,7 @@ public class GetPaymentLinkRequest {
             this.paymentLinkId = paymentLinkId;
             return this;
         }
+
 
         /**
          * The ID of the merchant account to use for this request.
@@ -152,11 +154,12 @@ public class GetPaymentLinkRequest {
             this.merchantAccountId = merchantAccountId;
             return this;
         }
-        
+
         public GetPaymentLinkRequest build() {
+
             return new GetPaymentLinkRequest(
-                paymentLinkId,
-                merchantAccountId);
+                paymentLinkId, merchantAccountId);
         }
+
     }
 }

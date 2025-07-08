@@ -46,7 +46,6 @@ public final PaymentServiceTokens paymentServiceTokens() {
 public final NetworkTokens networkTokens() {
         return networkTokens;
     }
-
     /**
      * List all payment methods
      * 
@@ -86,11 +85,10 @@ public final NetworkTokens networkTokens() {
             Optional<Options> options) throws Exception {
         RequestOperation<ListPaymentMethodsRequest, ListPaymentMethodsResponse> operation
               = new ListPaymentMethodsOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Create payment method
@@ -136,10 +134,9 @@ public final NetworkTokens networkTokens() {
                 .requestBody(requestBody)
                 .build();
         RequestOperation<CreatePaymentMethodRequest, CreatePaymentMethodResponse> operation
-              = new CreatePaymentMethodOperation( sdkConfiguration);
+              = new CreatePaymentMethodOperation(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Get payment method
@@ -188,11 +185,10 @@ public final NetworkTokens networkTokens() {
                 .build();
         RequestOperation<GetPaymentMethodRequest, GetPaymentMethodResponse> operation
               = new GetPaymentMethodOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Delete payment method
@@ -238,7 +234,7 @@ public final NetworkTokens networkTokens() {
                 .merchantAccountId(merchantAccountId)
                 .build();
         RequestOperation<DeletePaymentMethodRequest, DeletePaymentMethodResponse> operation
-              = new DeletePaymentMethodOperation( sdkConfiguration);
+              = new DeletePaymentMethodOperation(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
 

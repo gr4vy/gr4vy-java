@@ -17,7 +17,6 @@ import java.lang.String;
  * <p>Create a charge against a gift card
  */
 public class GiftCardTransactionCreate {
-
     /**
      * The 16-19 digit number for the gift card.
      */
@@ -73,9 +72,10 @@ public class GiftCardTransactionCreate {
         return amount;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The 16-19 digit number for the gift card.
@@ -104,7 +104,6 @@ public class GiftCardTransactionCreate {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -123,9 +122,7 @@ public class GiftCardTransactionCreate {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            number,
-            pin,
-            amount);
+            number, pin, amount);
     }
     
     @Override
@@ -135,18 +132,20 @@ public class GiftCardTransactionCreate {
                 "pin", pin,
                 "amount", amount);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String number;
- 
+
         private String pin;
- 
+
         private Long amount;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The 16-19 digit number for the gift card.
@@ -157,6 +156,7 @@ public class GiftCardTransactionCreate {
             return this;
         }
 
+
         /**
          * The PIN for this gift card.
          */
@@ -166,6 +166,7 @@ public class GiftCardTransactionCreate {
             return this;
         }
 
+
         /**
          * The monetary amount for this transaction to charge against the gift card, in the smallest currency unit (for example, cents or pence).
          */
@@ -174,12 +175,12 @@ public class GiftCardTransactionCreate {
             this.amount = amount;
             return this;
         }
-        
+
         public GiftCardTransactionCreate build() {
+
             return new GiftCardTransactionCreate(
-                number,
-                pin,
-                amount);
+                number, pin, amount);
         }
+
     }
 }

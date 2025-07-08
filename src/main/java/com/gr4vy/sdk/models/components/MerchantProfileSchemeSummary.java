@@ -11,8 +11,8 @@ import java.lang.Override;
 import java.lang.String;
 import java.time.OffsetDateTime;
 
-public class MerchantProfileSchemeSummary {
 
+public class MerchantProfileSchemeSummary {
     /**
      * Acquirer BIN to use when calling 3DS through this scheme.
      */
@@ -30,6 +30,7 @@ public class MerchantProfileSchemeSummary {
      */
     @JsonProperty("merchant_acquirer_id")
     private String merchantAcquirerId;
+
 
     @JsonProperty("merchant_name")
     private String merchantName;
@@ -130,9 +131,10 @@ public class MerchantProfileSchemeSummary {
         return createdAt;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Acquirer BIN to use when calling 3DS through this scheme.
@@ -194,7 +196,6 @@ public class MerchantProfileSchemeSummary {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -217,12 +218,8 @@ public class MerchantProfileSchemeSummary {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            merchantAcquirerBin,
-            merchantUrl,
-            merchantAcquirerId,
-            merchantName,
-            merchantCountryCode,
-            merchantCategoryCode,
+            merchantAcquirerBin, merchantUrl, merchantAcquirerId,
+            merchantName, merchantCountryCode, merchantCategoryCode,
             createdAt);
     }
     
@@ -237,26 +234,28 @@ public class MerchantProfileSchemeSummary {
                 "merchantCategoryCode", merchantCategoryCode,
                 "createdAt", createdAt);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String merchantAcquirerBin;
- 
+
         private String merchantUrl;
- 
+
         private String merchantAcquirerId;
- 
+
         private String merchantName;
- 
+
         private String merchantCountryCode;
- 
+
         private String merchantCategoryCode;
- 
+
         private OffsetDateTime createdAt;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Acquirer BIN to use when calling 3DS through this scheme.
@@ -267,6 +266,7 @@ public class MerchantProfileSchemeSummary {
             return this;
         }
 
+
         /**
          * URL to send when calling 3DS through this scheme.
          */
@@ -275,6 +275,7 @@ public class MerchantProfileSchemeSummary {
             this.merchantUrl = merchantUrl;
             return this;
         }
+
 
         /**
          * Merchant ID to use when calling 3DS through this scheme.
@@ -285,11 +286,13 @@ public class MerchantProfileSchemeSummary {
             return this;
         }
 
+
         public Builder merchantName(String merchantName) {
             Utils.checkNotNull(merchantName, "merchantName");
             this.merchantName = merchantName;
             return this;
         }
+
 
         /**
          * Merchant country code to use when calling 3DS through this scheme.
@@ -300,6 +303,7 @@ public class MerchantProfileSchemeSummary {
             return this;
         }
 
+
         /**
          * Merchant category code to use when calling 3DS through this scheme.
          */
@@ -309,6 +313,7 @@ public class MerchantProfileSchemeSummary {
             return this;
         }
 
+
         /**
          * The date and time when this profile was first created in our system.
          */
@@ -317,16 +322,14 @@ public class MerchantProfileSchemeSummary {
             this.createdAt = createdAt;
             return this;
         }
-        
+
         public MerchantProfileSchemeSummary build() {
+
             return new MerchantProfileSchemeSummary(
-                merchantAcquirerBin,
-                merchantUrl,
-                merchantAcquirerId,
-                merchantName,
-                merchantCountryCode,
-                merchantCategoryCode,
+                merchantAcquirerBin, merchantUrl, merchantAcquirerId,
+                merchantName, merchantCountryCode, merchantCategoryCode,
                 createdAt);
         }
+
     }
 }

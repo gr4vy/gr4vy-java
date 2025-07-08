@@ -61,7 +61,7 @@ public class CreateTransactionRefundRequestBuilder {
     public CreateTransactionRefundResponse call() throws Exception {
         
         RequestOperation<CreateTransactionRefundRequest, CreateTransactionRefundResponse> operation
-              = new CreateTransactionRefundOperation( sdkConfiguration);
+              = new CreateTransactionRefundOperation(sdkConfiguration);
         CreateTransactionRefundRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

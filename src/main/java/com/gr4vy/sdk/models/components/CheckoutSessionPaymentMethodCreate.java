@@ -16,8 +16,8 @@ import java.lang.String;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class CheckoutSessionPaymentMethodCreate {
 
+public class CheckoutSessionPaymentMethodCreate {
     /**
      * Always `checkout-session`
      */
@@ -71,7 +71,8 @@ public class CheckoutSessionPaymentMethodCreate {
     
     public CheckoutSessionPaymentMethodCreate(
             String id) {
-        this(id, JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
+        this(id, JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined());
     }
 
     /**
@@ -114,9 +115,10 @@ public class CheckoutSessionPaymentMethodCreate {
         return buyerExternalIdentifier;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The ID for the checkout session.
@@ -181,7 +183,6 @@ public class CheckoutSessionPaymentMethodCreate {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -202,11 +203,8 @@ public class CheckoutSessionPaymentMethodCreate {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            method,
-            id,
-            externalIdentifier,
-            buyerId,
-            buyerExternalIdentifier);
+            method, id, externalIdentifier,
+            buyerId, buyerExternalIdentifier);
     }
     
     @Override
@@ -218,20 +216,22 @@ public class CheckoutSessionPaymentMethodCreate {
                 "buyerId", buyerId,
                 "buyerExternalIdentifier", buyerExternalIdentifier);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String id;
- 
+
         private JsonNullable<String> externalIdentifier = JsonNullable.undefined();
- 
+
         private JsonNullable<String> buyerId = JsonNullable.undefined();
- 
+
         private JsonNullable<String> buyerExternalIdentifier = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The ID for the checkout session.
@@ -241,6 +241,7 @@ public class CheckoutSessionPaymentMethodCreate {
             this.id = id;
             return this;
         }
+
 
         /**
          * The merchant reference that can be used to match the payment method against your own records.
@@ -260,6 +261,7 @@ public class CheckoutSessionPaymentMethodCreate {
             return this;
         }
 
+
         /**
          * The `id` of a stored buyer to use Use this instead of the `buyer_external_identifier`.
          */
@@ -278,6 +280,7 @@ public class CheckoutSessionPaymentMethodCreate {
             return this;
         }
 
+
         /**
          * The `external_identifier` of a stored buyer to use. Use this instead of the `buyer_id`.
          */
@@ -295,14 +298,14 @@ public class CheckoutSessionPaymentMethodCreate {
             this.buyerExternalIdentifier = buyerExternalIdentifier;
             return this;
         }
-        
+
         public CheckoutSessionPaymentMethodCreate build() {
+
             return new CheckoutSessionPaymentMethodCreate(
-                id,
-                externalIdentifier,
-                buyerId,
+                id, externalIdentifier, buyerId,
                 buyerExternalIdentifier);
         }
+
 
         private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_Method =
                 new LazySingletonValue<>(

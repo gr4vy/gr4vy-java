@@ -16,8 +16,8 @@ import java.lang.String;
 import java.time.OffsetDateTime;
 import java.util.Optional;
 
-public class ReportExecution {
 
+public class ReportExecution {
     /**
      * Always `report-execution`.
      */
@@ -43,11 +43,14 @@ public class ReportExecution {
     @JsonProperty("updated_at")
     private OffsetDateTime updatedAt;
 
+
     @JsonProperty("status")
     private ReportExecutionStatus status;
 
+
     @JsonProperty("context")
     private ReportExecutionContext context;
+
 
     @JsonProperty("report")
     private ReportSummary report;
@@ -122,9 +125,10 @@ public class ReportExecution {
         return report;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The unique ID for the report execution.
@@ -171,7 +175,6 @@ public class ReportExecution {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -194,12 +197,8 @@ public class ReportExecution {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            type,
-            id,
-            createdAt,
-            updatedAt,
-            status,
-            context,
+            type, id, createdAt,
+            updatedAt, status, context,
             report);
     }
     
@@ -214,24 +213,26 @@ public class ReportExecution {
                 "context", context,
                 "report", report);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String id;
- 
+
         private OffsetDateTime createdAt;
- 
+
         private OffsetDateTime updatedAt;
- 
+
         private ReportExecutionStatus status;
- 
+
         private ReportExecutionContext context;
- 
+
         private ReportSummary report;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The unique ID for the report execution.
@@ -242,6 +243,7 @@ public class ReportExecution {
             return this;
         }
 
+
         /**
          * The date this report execution was created at.
          */
@@ -250,6 +252,7 @@ public class ReportExecution {
             this.createdAt = createdAt;
             return this;
         }
+
 
         /**
          * The date this report execution was last updated.
@@ -260,11 +263,13 @@ public class ReportExecution {
             return this;
         }
 
+
         public Builder status(ReportExecutionStatus status) {
             Utils.checkNotNull(status, "status");
             this.status = status;
             return this;
         }
+
 
         public Builder context(ReportExecutionContext context) {
             Utils.checkNotNull(context, "context");
@@ -272,21 +277,20 @@ public class ReportExecution {
             return this;
         }
 
+
         public Builder report(ReportSummary report) {
             Utils.checkNotNull(report, "report");
             this.report = report;
             return this;
         }
-        
+
         public ReportExecution build() {
+
             return new ReportExecution(
-                id,
-                createdAt,
-                updatedAt,
-                status,
-                context,
-                report);
+                id, createdAt, updatedAt,
+                status, context, report);
         }
+
 
         private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_Type =
                 new LazySingletonValue<>(

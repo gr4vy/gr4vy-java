@@ -12,6 +12,7 @@ import java.lang.Override;
 import java.lang.String;
 import org.openapitools.jackson.nullable.JsonNullable;
 
+
 public class UnregisterDigitalWalletDomainRequest {
 
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=digital_wallet_id")
@@ -22,6 +23,7 @@ public class UnregisterDigitalWalletDomainRequest {
      */
     @SpeakeasyMetadata("header:style=simple,explode=false,name=x-gr4vy-merchant-account-id")
     private JsonNullable<String> merchantAccountId;
+
 
     @SpeakeasyMetadata("request:mediaType=application/json")
     private DigitalWalletDomain digitalWalletDomain;
@@ -63,9 +65,10 @@ public class UnregisterDigitalWalletDomainRequest {
         return digitalWalletDomain;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public UnregisterDigitalWalletDomainRequest withDigitalWalletId(String digitalWalletId) {
         Utils.checkNotNull(digitalWalletId, "digitalWalletId");
@@ -97,7 +100,6 @@ public class UnregisterDigitalWalletDomainRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -116,9 +118,7 @@ public class UnregisterDigitalWalletDomainRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            digitalWalletId,
-            merchantAccountId,
-            digitalWalletDomain);
+            digitalWalletId, merchantAccountId, digitalWalletDomain);
     }
     
     @Override
@@ -128,24 +128,27 @@ public class UnregisterDigitalWalletDomainRequest {
                 "merchantAccountId", merchantAccountId,
                 "digitalWalletDomain", digitalWalletDomain);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String digitalWalletId;
- 
+
         private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
- 
+
         private DigitalWalletDomain digitalWalletDomain;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder digitalWalletId(String digitalWalletId) {
             Utils.checkNotNull(digitalWalletId, "digitalWalletId");
             this.digitalWalletId = digitalWalletId;
             return this;
         }
+
 
         /**
          * The ID of the merchant account to use for this request.
@@ -165,17 +168,18 @@ public class UnregisterDigitalWalletDomainRequest {
             return this;
         }
 
+
         public Builder digitalWalletDomain(DigitalWalletDomain digitalWalletDomain) {
             Utils.checkNotNull(digitalWalletDomain, "digitalWalletDomain");
             this.digitalWalletDomain = digitalWalletDomain;
             return this;
         }
-        
+
         public UnregisterDigitalWalletDomainRequest build() {
+
             return new UnregisterDigitalWalletDomainRequest(
-                digitalWalletId,
-                merchantAccountId,
-                digitalWalletDomain);
+                digitalWalletId, merchantAccountId, digitalWalletDomain);
         }
+
     }
 }

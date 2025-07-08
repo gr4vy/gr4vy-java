@@ -61,7 +61,7 @@ public class RegisterDigitalWalletDomainRequestBuilder {
     public RegisterDigitalWalletDomainResponse call() throws Exception {
         
         RequestOperation<RegisterDigitalWalletDomainRequest, RegisterDigitalWalletDomainResponse> operation
-              = new RegisterDigitalWalletDomainOperation( sdkConfiguration);
+              = new RegisterDigitalWalletDomainOperation(sdkConfiguration);
         RegisterDigitalWalletDomainRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

@@ -19,7 +19,6 @@ import org.openapitools.jackson.nullable.JsonNullable;
  * <p>Information to show the user on their payments statement
  */
 public class StatementDescriptor {
-
     /**
      * Reflects your doing business as (DBA) name.
      */
@@ -85,7 +84,8 @@ public class StatementDescriptor {
     }
     
     public StatementDescriptor() {
-        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
+        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
     }
 
     /**
@@ -136,9 +136,10 @@ public class StatementDescriptor {
         return url;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Reflects your doing business as (DBA) name.
@@ -248,7 +249,6 @@ public class StatementDescriptor {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -270,12 +270,8 @@ public class StatementDescriptor {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            name,
-            description,
-            city,
-            country,
-            phoneNumber,
-            url);
+            name, description, city,
+            country, phoneNumber, url);
     }
     
     @Override
@@ -288,24 +284,26 @@ public class StatementDescriptor {
                 "phoneNumber", phoneNumber,
                 "url", url);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private JsonNullable<String> name = JsonNullable.undefined();
- 
+
         private JsonNullable<String> description = JsonNullable.undefined();
- 
+
         private JsonNullable<String> city = JsonNullable.undefined();
- 
+
         private JsonNullable<String> country = JsonNullable.undefined();
- 
+
         private JsonNullable<String> phoneNumber = JsonNullable.undefined();
- 
+
         private JsonNullable<String> url = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Reflects your doing business as (DBA) name.
@@ -325,6 +323,7 @@ public class StatementDescriptor {
             return this;
         }
 
+
         /**
          * A short description about the purchase.
          */
@@ -342,6 +341,7 @@ public class StatementDescriptor {
             this.description = description;
             return this;
         }
+
 
         /**
          * The merchant's city to be displayed in a statement descriptor.
@@ -361,6 +361,7 @@ public class StatementDescriptor {
             return this;
         }
 
+
         /**
          * The 2-letter ISO country code of the merchant to be displayed in a statement descriptor.
          */
@@ -378,6 +379,7 @@ public class StatementDescriptor {
             this.country = country;
             return this;
         }
+
 
         /**
          * The value in the phone number field of a customer's statement which should be formatted according to the E164 number standard.
@@ -397,6 +399,7 @@ public class StatementDescriptor {
             return this;
         }
 
+
         /**
          * The merchant's URL to be displayed in a statement descriptor.
          */
@@ -414,15 +417,13 @@ public class StatementDescriptor {
             this.url = url;
             return this;
         }
-        
+
         public StatementDescriptor build() {
+
             return new StatementDescriptor(
-                name,
-                description,
-                city,
-                country,
-                phoneNumber,
-                url);
+                name, description, city,
+                country, phoneNumber, url);
         }
+
     }
 }

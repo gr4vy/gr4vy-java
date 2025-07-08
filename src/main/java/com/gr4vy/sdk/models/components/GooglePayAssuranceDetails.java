@@ -20,7 +20,6 @@ import org.openapitools.jackson.nullable.JsonNullable;
  * <p>The assurance details provided by Google Pay
  */
 public class GooglePayAssuranceDetails {
-
     /**
      * Defines if an account was verified.
      */
@@ -65,9 +64,10 @@ public class GooglePayAssuranceDetails {
         return cardHolderAuthenticated;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Defines if an account was verified.
@@ -105,7 +105,6 @@ public class GooglePayAssuranceDetails {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -123,8 +122,7 @@ public class GooglePayAssuranceDetails {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            accountVerified,
-            cardHolderAuthenticated);
+            accountVerified, cardHolderAuthenticated);
     }
     
     @Override
@@ -133,16 +131,18 @@ public class GooglePayAssuranceDetails {
                 "accountVerified", accountVerified,
                 "cardHolderAuthenticated", cardHolderAuthenticated);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private JsonNullable<Boolean> accountVerified = JsonNullable.undefined();
- 
+
         private JsonNullable<Boolean> cardHolderAuthenticated = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Defines if an account was verified.
@@ -162,6 +162,7 @@ public class GooglePayAssuranceDetails {
             return this;
         }
 
+
         /**
          * Defines if the card holder was authenticated.
          */
@@ -179,11 +180,12 @@ public class GooglePayAssuranceDetails {
             this.cardHolderAuthenticated = cardHolderAuthenticated;
             return this;
         }
-        
+
         public GooglePayAssuranceDetails build() {
+
             return new GooglePayAssuranceDetails(
-                accountVerified,
-                cardHolderAuthenticated);
+                accountVerified, cardHolderAuthenticated);
         }
+
     }
 }

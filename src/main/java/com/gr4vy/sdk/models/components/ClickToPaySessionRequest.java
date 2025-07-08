@@ -10,8 +10,8 @@ import com.gr4vy.sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 
-public class ClickToPaySessionRequest {
 
+public class ClickToPaySessionRequest {
     /**
      * The checkout session ID to create a Click to Pay session for.
      */
@@ -33,9 +33,10 @@ public class ClickToPaySessionRequest {
         return checkoutSessionId;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The checkout session ID to create a Click to Pay session for.
@@ -46,7 +47,6 @@ public class ClickToPaySessionRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -71,14 +71,16 @@ public class ClickToPaySessionRequest {
         return Utils.toString(ClickToPaySessionRequest.class,
                 "checkoutSessionId", checkoutSessionId);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String checkoutSessionId;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The checkout session ID to create a Click to Pay session for.
@@ -88,10 +90,12 @@ public class ClickToPaySessionRequest {
             this.checkoutSessionId = checkoutSessionId;
             return this;
         }
-        
+
         public ClickToPaySessionRequest build() {
+
             return new ClickToPaySessionRequest(
                 checkoutSessionId);
         }
+
     }
 }
