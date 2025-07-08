@@ -141,27 +141,6 @@ public class MerchantAccountUpdate {
     @JsonProperty("display_name")
     private JsonNullable<String> displayName;
 
-    /**
-     * An optional endpoint URL to deliver webhook notifications to.
-     */
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("outbound_webhook_url")
-    private JsonNullable<String> outboundWebhookUrl;
-
-    /**
-     * The optional username to use when `outbound_webhook_url` is configured and requires basic authentication.
-     */
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("outbound_webhook_username")
-    private JsonNullable<String> outboundWebhookUsername;
-
-    /**
-     * The optional password to use when `outbound_webhook_url` is configured and requires basic authentication
-     */
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("outbound_webhook_password")
-    private JsonNullable<String> outboundWebhookPassword;
-
     @JsonCreator
     public MerchantAccountUpdate(
             @JsonProperty("account_updater_enabled") Optional<Boolean> accountUpdaterEnabled,
@@ -180,10 +159,7 @@ public class MerchantAccountUpdate {
             @JsonProperty("amex_network_tokens_app_id") JsonNullable<String> amexNetworkTokensAppId,
             @JsonProperty("mastercard_network_tokens_requestor_id") JsonNullable<String> mastercardNetworkTokensRequestorId,
             @JsonProperty("mastercard_network_tokens_app_id") JsonNullable<String> mastercardNetworkTokensAppId,
-            @JsonProperty("display_name") JsonNullable<String> displayName,
-            @JsonProperty("outbound_webhook_url") JsonNullable<String> outboundWebhookUrl,
-            @JsonProperty("outbound_webhook_username") JsonNullable<String> outboundWebhookUsername,
-            @JsonProperty("outbound_webhook_password") JsonNullable<String> outboundWebhookPassword) {
+            @JsonProperty("display_name") JsonNullable<String> displayName) {
         Utils.checkNotNull(accountUpdaterEnabled, "accountUpdaterEnabled");
         Utils.checkNotNull(accountUpdaterRequestEncryptionKey, "accountUpdaterRequestEncryptionKey");
         Utils.checkNotNull(accountUpdaterRequestEncryptionKeyId, "accountUpdaterRequestEncryptionKeyId");
@@ -201,9 +177,6 @@ public class MerchantAccountUpdate {
         Utils.checkNotNull(mastercardNetworkTokensRequestorId, "mastercardNetworkTokensRequestorId");
         Utils.checkNotNull(mastercardNetworkTokensAppId, "mastercardNetworkTokensAppId");
         Utils.checkNotNull(displayName, "displayName");
-        Utils.checkNotNull(outboundWebhookUrl, "outboundWebhookUrl");
-        Utils.checkNotNull(outboundWebhookUsername, "outboundWebhookUsername");
-        Utils.checkNotNull(outboundWebhookPassword, "outboundWebhookPassword");
         this.accountUpdaterEnabled = accountUpdaterEnabled;
         this.accountUpdaterRequestEncryptionKey = accountUpdaterRequestEncryptionKey;
         this.accountUpdaterRequestEncryptionKeyId = accountUpdaterRequestEncryptionKeyId;
@@ -221,13 +194,10 @@ public class MerchantAccountUpdate {
         this.mastercardNetworkTokensRequestorId = mastercardNetworkTokensRequestorId;
         this.mastercardNetworkTokensAppId = mastercardNetworkTokensAppId;
         this.displayName = displayName;
-        this.outboundWebhookUrl = outboundWebhookUrl;
-        this.outboundWebhookUsername = outboundWebhookUsername;
-        this.outboundWebhookPassword = outboundWebhookPassword;
     }
     
     public MerchantAccountUpdate() {
-        this(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
+        this(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
     }
 
     /**
@@ -365,30 +335,6 @@ public class MerchantAccountUpdate {
     @JsonIgnore
     public JsonNullable<String> displayName() {
         return displayName;
-    }
-
-    /**
-     * An optional endpoint URL to deliver webhook notifications to.
-     */
-    @JsonIgnore
-    public JsonNullable<String> outboundWebhookUrl() {
-        return outboundWebhookUrl;
-    }
-
-    /**
-     * The optional username to use when `outbound_webhook_url` is configured and requires basic authentication.
-     */
-    @JsonIgnore
-    public JsonNullable<String> outboundWebhookUsername() {
-        return outboundWebhookUsername;
-    }
-
-    /**
-     * The optional password to use when `outbound_webhook_url` is configured and requires basic authentication
-     */
-    @JsonIgnore
-    public JsonNullable<String> outboundWebhookPassword() {
-        return outboundWebhookPassword;
     }
 
     public final static Builder builder() {
@@ -701,60 +647,6 @@ public class MerchantAccountUpdate {
         return this;
     }
 
-    /**
-     * An optional endpoint URL to deliver webhook notifications to.
-     */
-    public MerchantAccountUpdate withOutboundWebhookUrl(String outboundWebhookUrl) {
-        Utils.checkNotNull(outboundWebhookUrl, "outboundWebhookUrl");
-        this.outboundWebhookUrl = JsonNullable.of(outboundWebhookUrl);
-        return this;
-    }
-
-    /**
-     * An optional endpoint URL to deliver webhook notifications to.
-     */
-    public MerchantAccountUpdate withOutboundWebhookUrl(JsonNullable<String> outboundWebhookUrl) {
-        Utils.checkNotNull(outboundWebhookUrl, "outboundWebhookUrl");
-        this.outboundWebhookUrl = outboundWebhookUrl;
-        return this;
-    }
-
-    /**
-     * The optional username to use when `outbound_webhook_url` is configured and requires basic authentication.
-     */
-    public MerchantAccountUpdate withOutboundWebhookUsername(String outboundWebhookUsername) {
-        Utils.checkNotNull(outboundWebhookUsername, "outboundWebhookUsername");
-        this.outboundWebhookUsername = JsonNullable.of(outboundWebhookUsername);
-        return this;
-    }
-
-    /**
-     * The optional username to use when `outbound_webhook_url` is configured and requires basic authentication.
-     */
-    public MerchantAccountUpdate withOutboundWebhookUsername(JsonNullable<String> outboundWebhookUsername) {
-        Utils.checkNotNull(outboundWebhookUsername, "outboundWebhookUsername");
-        this.outboundWebhookUsername = outboundWebhookUsername;
-        return this;
-    }
-
-    /**
-     * The optional password to use when `outbound_webhook_url` is configured and requires basic authentication
-     */
-    public MerchantAccountUpdate withOutboundWebhookPassword(String outboundWebhookPassword) {
-        Utils.checkNotNull(outboundWebhookPassword, "outboundWebhookPassword");
-        this.outboundWebhookPassword = JsonNullable.of(outboundWebhookPassword);
-        return this;
-    }
-
-    /**
-     * The optional password to use when `outbound_webhook_url` is configured and requires basic authentication
-     */
-    public MerchantAccountUpdate withOutboundWebhookPassword(JsonNullable<String> outboundWebhookPassword) {
-        Utils.checkNotNull(outboundWebhookPassword, "outboundWebhookPassword");
-        this.outboundWebhookPassword = outboundWebhookPassword;
-        return this;
-    }
-
     
     @Override
     public boolean equals(java.lang.Object o) {
@@ -782,10 +674,7 @@ public class MerchantAccountUpdate {
             Utils.enhancedDeepEquals(this.amexNetworkTokensAppId, other.amexNetworkTokensAppId) &&
             Utils.enhancedDeepEquals(this.mastercardNetworkTokensRequestorId, other.mastercardNetworkTokensRequestorId) &&
             Utils.enhancedDeepEquals(this.mastercardNetworkTokensAppId, other.mastercardNetworkTokensAppId) &&
-            Utils.enhancedDeepEquals(this.displayName, other.displayName) &&
-            Utils.enhancedDeepEquals(this.outboundWebhookUrl, other.outboundWebhookUrl) &&
-            Utils.enhancedDeepEquals(this.outboundWebhookUsername, other.outboundWebhookUsername) &&
-            Utils.enhancedDeepEquals(this.outboundWebhookPassword, other.outboundWebhookPassword);
+            Utils.enhancedDeepEquals(this.displayName, other.displayName);
     }
     
     @Override
@@ -807,10 +696,7 @@ public class MerchantAccountUpdate {
             amexNetworkTokensAppId,
             mastercardNetworkTokensRequestorId,
             mastercardNetworkTokensAppId,
-            displayName,
-            outboundWebhookUrl,
-            outboundWebhookUsername,
-            outboundWebhookPassword);
+            displayName);
     }
     
     @Override
@@ -832,10 +718,7 @@ public class MerchantAccountUpdate {
                 "amexNetworkTokensAppId", amexNetworkTokensAppId,
                 "mastercardNetworkTokensRequestorId", mastercardNetworkTokensRequestorId,
                 "mastercardNetworkTokensAppId", mastercardNetworkTokensAppId,
-                "displayName", displayName,
-                "outboundWebhookUrl", outboundWebhookUrl,
-                "outboundWebhookUsername", outboundWebhookUsername,
-                "outboundWebhookPassword", outboundWebhookPassword);
+                "displayName", displayName);
     }
     
     public final static class Builder {
@@ -873,12 +756,6 @@ public class MerchantAccountUpdate {
         private JsonNullable<String> mastercardNetworkTokensAppId = JsonNullable.undefined();
  
         private JsonNullable<String> displayName = JsonNullable.undefined();
- 
-        private JsonNullable<String> outboundWebhookUrl = JsonNullable.undefined();
- 
-        private JsonNullable<String> outboundWebhookUsername = JsonNullable.undefined();
- 
-        private JsonNullable<String> outboundWebhookPassword = JsonNullable.undefined();
         
         private Builder() {
           // force use of static builder() method
@@ -1189,60 +1066,6 @@ public class MerchantAccountUpdate {
             this.displayName = displayName;
             return this;
         }
-
-        /**
-         * An optional endpoint URL to deliver webhook notifications to.
-         */
-        public Builder outboundWebhookUrl(String outboundWebhookUrl) {
-            Utils.checkNotNull(outboundWebhookUrl, "outboundWebhookUrl");
-            this.outboundWebhookUrl = JsonNullable.of(outboundWebhookUrl);
-            return this;
-        }
-
-        /**
-         * An optional endpoint URL to deliver webhook notifications to.
-         */
-        public Builder outboundWebhookUrl(JsonNullable<String> outboundWebhookUrl) {
-            Utils.checkNotNull(outboundWebhookUrl, "outboundWebhookUrl");
-            this.outboundWebhookUrl = outboundWebhookUrl;
-            return this;
-        }
-
-        /**
-         * The optional username to use when `outbound_webhook_url` is configured and requires basic authentication.
-         */
-        public Builder outboundWebhookUsername(String outboundWebhookUsername) {
-            Utils.checkNotNull(outboundWebhookUsername, "outboundWebhookUsername");
-            this.outboundWebhookUsername = JsonNullable.of(outboundWebhookUsername);
-            return this;
-        }
-
-        /**
-         * The optional username to use when `outbound_webhook_url` is configured and requires basic authentication.
-         */
-        public Builder outboundWebhookUsername(JsonNullable<String> outboundWebhookUsername) {
-            Utils.checkNotNull(outboundWebhookUsername, "outboundWebhookUsername");
-            this.outboundWebhookUsername = outboundWebhookUsername;
-            return this;
-        }
-
-        /**
-         * The optional password to use when `outbound_webhook_url` is configured and requires basic authentication
-         */
-        public Builder outboundWebhookPassword(String outboundWebhookPassword) {
-            Utils.checkNotNull(outboundWebhookPassword, "outboundWebhookPassword");
-            this.outboundWebhookPassword = JsonNullable.of(outboundWebhookPassword);
-            return this;
-        }
-
-        /**
-         * The optional password to use when `outbound_webhook_url` is configured and requires basic authentication
-         */
-        public Builder outboundWebhookPassword(JsonNullable<String> outboundWebhookPassword) {
-            Utils.checkNotNull(outboundWebhookPassword, "outboundWebhookPassword");
-            this.outboundWebhookPassword = outboundWebhookPassword;
-            return this;
-        }
         
         public MerchantAccountUpdate build() {
             if (accountUpdaterEnabled == null) {
@@ -1265,10 +1088,7 @@ public class MerchantAccountUpdate {
                 amexNetworkTokensAppId,
                 mastercardNetworkTokensRequestorId,
                 mastercardNetworkTokensAppId,
-                displayName,
-                outboundWebhookUrl,
-                outboundWebhookUsername,
-                outboundWebhookPassword);
+                displayName);
         }
 
         private static final LazySingletonValue<Optional<Boolean>> _SINGLETON_VALUE_AccountUpdaterEnabled =

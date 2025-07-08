@@ -31,7 +31,7 @@ public class Application {
 
         Gr4vy sdk = Gr4vy.builder()
                 .merchantAccountId("<id>")
-                .bearerAuth("<YOUR_BEARER_TOKEN_HERE>")
+                .bearerAuth(System.getenv().getOrDefault("BEARER_AUTH", ""))
             .build();
 
         ListReportsRequest req = ListReportsRequest.builder()
@@ -98,7 +98,7 @@ public class Application {
 
         Gr4vy sdk = Gr4vy.builder()
                 .merchantAccountId("<id>")
-                .bearerAuth("<YOUR_BEARER_TOKEN_HERE>")
+                .bearerAuth(System.getenv().getOrDefault("BEARER_AUTH", ""))
             .build();
 
         AddReportResponse res = sdk.reports().create()
@@ -173,7 +173,7 @@ public class Application {
 
         Gr4vy sdk = Gr4vy.builder()
                 .merchantAccountId("<id>")
-                .bearerAuth("<YOUR_BEARER_TOKEN_HERE>")
+                .bearerAuth(System.getenv().getOrDefault("BEARER_AUTH", ""))
             .build();
 
         GetReportResponse res = sdk.reports().get()
@@ -237,7 +237,7 @@ public class Application {
 
         Gr4vy sdk = Gr4vy.builder()
                 .merchantAccountId("<id>")
-                .bearerAuth("<YOUR_BEARER_TOKEN_HERE>")
+                .bearerAuth(System.getenv().getOrDefault("BEARER_AUTH", ""))
             .build();
 
         UpdateReportResponse res = sdk.reports().put()

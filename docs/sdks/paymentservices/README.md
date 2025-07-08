@@ -34,7 +34,7 @@ public class Application {
 
         Gr4vy sdk = Gr4vy.builder()
                 .merchantAccountId("default")
-                .bearerAuth("<YOUR_BEARER_TOKEN_HERE>")
+                .bearerAuth(System.getenv().getOrDefault("BEARER_AUTH", ""))
             .build();
 
         ListPaymentServicesRequest req = ListPaymentServicesRequest.builder()
@@ -104,7 +104,7 @@ public class Application {
 
         Gr4vy sdk = Gr4vy.builder()
                 .merchantAccountId("default")
-                .bearerAuth("<YOUR_BEARER_TOKEN_HERE>")
+                .bearerAuth(System.getenv().getOrDefault("BEARER_AUTH", ""))
             .build();
 
         UpdatePaymentServiceResponse res = sdk.paymentServices().create()
@@ -189,7 +189,7 @@ public class Application {
 
         Gr4vy sdk = Gr4vy.builder()
                 .merchantAccountId("default")
-                .bearerAuth("<YOUR_BEARER_TOKEN_HERE>")
+                .bearerAuth(System.getenv().getOrDefault("BEARER_AUTH", ""))
             .build();
 
         GetPaymentServiceResponse res = sdk.paymentServices().get()
@@ -253,7 +253,7 @@ public class Application {
 
         Gr4vy sdk = Gr4vy.builder()
                 .merchantAccountId("default")
-                .bearerAuth("<YOUR_BEARER_TOKEN_HERE>")
+                .bearerAuth(System.getenv().getOrDefault("BEARER_AUTH", ""))
             .build();
 
         CreatePaymentServiceResponse res = sdk.paymentServices().update()
@@ -320,7 +320,7 @@ public class Application {
 
         Gr4vy sdk = Gr4vy.builder()
                 .merchantAccountId("default")
-                .bearerAuth("<YOUR_BEARER_TOKEN_HERE>")
+                .bearerAuth(System.getenv().getOrDefault("BEARER_AUTH", ""))
             .build();
 
         DeletePaymentServiceResponse res = sdk.paymentServices().delete()
@@ -385,7 +385,7 @@ public class Application {
 
         Gr4vy sdk = Gr4vy.builder()
                 .merchantAccountId("default")
-                .bearerAuth("<YOUR_BEARER_TOKEN_HERE>")
+                .bearerAuth(System.getenv().getOrDefault("BEARER_AUTH", ""))
             .build();
 
         VerifyPaymentServiceCredentialsResponse res = sdk.paymentServices().verify()
@@ -452,7 +452,7 @@ public class Application {
 
         Gr4vy sdk = Gr4vy.builder()
                 .merchantAccountId("default")
-                .bearerAuth("<YOUR_BEARER_TOKEN_HERE>")
+                .bearerAuth(System.getenv().getOrDefault("BEARER_AUTH", ""))
             .build();
 
         CreatePaymentServiceSessionResponse res = sdk.paymentServices().session()

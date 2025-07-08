@@ -31,7 +31,7 @@ public class Application {
 
         Gr4vy sdk = Gr4vy.builder()
                 .merchantAccountId("default")
-                .bearerAuth("<YOUR_BEARER_TOKEN_HERE>")
+                .bearerAuth(System.getenv().getOrDefault("BEARER_AUTH", ""))
             .build();
 
         ListPaymentMethodNetworkTokensResponse res = sdk.paymentMethods().networkTokens().list()
@@ -95,7 +95,7 @@ public class Application {
 
         Gr4vy sdk = Gr4vy.builder()
                 .merchantAccountId("default")
-                .bearerAuth("<YOUR_BEARER_TOKEN_HERE>")
+                .bearerAuth(System.getenv().getOrDefault("BEARER_AUTH", ""))
             .build();
 
         CreatePaymentMethodNetworkTokenResponse res = sdk.paymentMethods().networkTokens().create()
@@ -163,7 +163,7 @@ public class Application {
 
         Gr4vy sdk = Gr4vy.builder()
                 .merchantAccountId("default")
-                .bearerAuth("<YOUR_BEARER_TOKEN_HERE>")
+                .bearerAuth(System.getenv().getOrDefault("BEARER_AUTH", ""))
             .build();
 
         SuspendPaymentMethodNetworkTokenResponse res = sdk.paymentMethods().networkTokens().suspend()
@@ -228,7 +228,7 @@ public class Application {
 
         Gr4vy sdk = Gr4vy.builder()
                 .merchantAccountId("default")
-                .bearerAuth("<YOUR_BEARER_TOKEN_HERE>")
+                .bearerAuth(System.getenv().getOrDefault("BEARER_AUTH", ""))
             .build();
 
         ResumePaymentMethodNetworkTokenResponse res = sdk.paymentMethods().networkTokens().resume()
@@ -293,7 +293,7 @@ public class Application {
 
         Gr4vy sdk = Gr4vy.builder()
                 .merchantAccountId("default")
-                .bearerAuth("<YOUR_BEARER_TOKEN_HERE>")
+                .bearerAuth(System.getenv().getOrDefault("BEARER_AUTH", ""))
             .build();
 
         DeletePaymentMethodNetworkTokenResponse res = sdk.paymentMethods().networkTokens().delete()

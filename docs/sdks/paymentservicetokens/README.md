@@ -29,7 +29,7 @@ public class Application {
 
         Gr4vy sdk = Gr4vy.builder()
                 .merchantAccountId("default")
-                .bearerAuth("<YOUR_BEARER_TOKEN_HERE>")
+                .bearerAuth(System.getenv().getOrDefault("BEARER_AUTH", ""))
             .build();
 
         ListPaymentMethodPaymentServiceTokensResponse res = sdk.paymentMethods().paymentServiceTokens().list()
@@ -95,7 +95,7 @@ public class Application {
 
         Gr4vy sdk = Gr4vy.builder()
                 .merchantAccountId("default")
-                .bearerAuth("<YOUR_BEARER_TOKEN_HERE>")
+                .bearerAuth(System.getenv().getOrDefault("BEARER_AUTH", ""))
             .build();
 
         CreatePaymentMethodPaymentServiceTokenResponse res = sdk.paymentMethods().paymentServiceTokens().create()
@@ -163,7 +163,7 @@ public class Application {
 
         Gr4vy sdk = Gr4vy.builder()
                 .merchantAccountId("default")
-                .bearerAuth("<YOUR_BEARER_TOKEN_HERE>")
+                .bearerAuth(System.getenv().getOrDefault("BEARER_AUTH", ""))
             .build();
 
         DeletePaymentMethodPaymentServiceTokenResponse res = sdk.paymentMethods().paymentServiceTokens().delete()

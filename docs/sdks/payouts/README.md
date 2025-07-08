@@ -29,7 +29,7 @@ public class Application {
 
         Gr4vy sdk = Gr4vy.builder()
                 .merchantAccountId("default")
-                .bearerAuth("<YOUR_BEARER_TOKEN_HERE>")
+                .bearerAuth(System.getenv().getOrDefault("BEARER_AUTH", ""))
             .build();
 
         sdk.payouts().list()
@@ -95,7 +95,7 @@ public class Application {
 
         Gr4vy sdk = Gr4vy.builder()
                 .merchantAccountId("default")
-                .bearerAuth("<YOUR_BEARER_TOKEN_HERE>")
+                .bearerAuth(System.getenv().getOrDefault("BEARER_AUTH", ""))
             .build();
 
         CreatePayoutResponse res = sdk.payouts().create()
@@ -165,7 +165,7 @@ public class Application {
 
         Gr4vy sdk = Gr4vy.builder()
                 .merchantAccountId("default")
-                .bearerAuth("<YOUR_BEARER_TOKEN_HERE>")
+                .bearerAuth(System.getenv().getOrDefault("BEARER_AUTH", ""))
             .build();
 
         GetPayoutResponse res = sdk.payouts().get()

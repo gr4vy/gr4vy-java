@@ -55,7 +55,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'com.gr4vy:sdk:2.4.0'
+implementation 'com.gr4vy:sdk:2.5.0'
 ```
 
 Maven:
@@ -63,7 +63,7 @@ Maven:
 <dependency>
     <groupId>com.gr4vy</groupId>
     <artifactId>sdk</artifactId>
-    <version>2.4.0</version>
+    <version>2.5.0</version>
 </dependency>
 ```
 
@@ -465,7 +465,7 @@ public class Application {
 
         Gr4vy sdk = Gr4vy.builder()
                 .merchantAccountId("default")
-                .bearerAuth("<YOUR_BEARER_TOKEN_HERE>")
+                .bearerAuth(System.getenv().getOrDefault("BEARER_AUTH", ""))
             .build();
 
         ListBuyersRequest req = ListBuyersRequest.builder()
@@ -522,7 +522,7 @@ public class Application {
 
         Gr4vy sdk = Gr4vy.builder()
                 .merchantAccountId("default")
-                .bearerAuth("<YOUR_BEARER_TOKEN_HERE>")
+                .bearerAuth(System.getenv().getOrDefault("BEARER_AUTH", ""))
             .build();
 
         ListBuyersRequest req = ListBuyersRequest.builder()
@@ -581,7 +581,7 @@ public class Application {
                         .build())
                     .build())
                 .merchantAccountId("default")
-                .bearerAuth("<YOUR_BEARER_TOKEN_HERE>")
+                .bearerAuth(System.getenv().getOrDefault("BEARER_AUTH", ""))
             .build();
 
         ListBuyersRequest req = ListBuyersRequest.builder()
@@ -643,7 +643,7 @@ public class Application {
 
         Gr4vy sdk = Gr4vy.builder()
                 .merchantAccountId("default")
-                .bearerAuth("<YOUR_BEARER_TOKEN_HERE>")
+                .bearerAuth(System.getenv().getOrDefault("BEARER_AUTH", ""))
             .build();
 
         CreateAccountUpdaterJobResponse res = sdk.accountUpdater().jobs().create()
@@ -700,7 +700,7 @@ public class Application {
                 .server(Gr4vy.AvailableServers.PRODUCTION)
                 .id("<id>")
                 .merchantAccountId("default")
-                .bearerAuth("<YOUR_BEARER_TOKEN_HERE>")
+                .bearerAuth(System.getenv().getOrDefault("BEARER_AUTH", ""))
             .build();
 
         CreateAccountUpdaterJobResponse res = sdk.accountUpdater().jobs().create()
@@ -738,7 +738,7 @@ public class Application {
         Gr4vy sdk = Gr4vy.builder()
                 .serverURL("https://api.sandbox.example.gr4vy.app")
                 .merchantAccountId("default")
-                .bearerAuth("<YOUR_BEARER_TOKEN_HERE>")
+                .bearerAuth(System.getenv().getOrDefault("BEARER_AUTH", ""))
             .build();
 
         CreateAccountUpdaterJobResponse res = sdk.accountUpdater().jobs().create()
