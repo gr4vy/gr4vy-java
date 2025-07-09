@@ -139,11 +139,11 @@ public class TransactionCreate {
     private Optional<Boolean> merchantInitiated;
 
     /**
-     * The use-case for the the transaction.
+     * The way payment method information made it to this transaction.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("payment_source")
-    private Optional<? extends TransactionCreatePaymentSource> paymentSource;
+    private Optional<? extends TransactionPaymentSource> paymentSource;
 
     /**
      * The airline addendum data which describes the airline booking associated with this transaction.
@@ -265,7 +265,7 @@ public class TransactionCreate {
             @JsonProperty("metadata") JsonNullable<? extends Map<String, String>> metadata,
             @JsonProperty("is_subsequent_payment") Optional<Boolean> isSubsequentPayment,
             @JsonProperty("merchant_initiated") Optional<Boolean> merchantInitiated,
-            @JsonProperty("payment_source") Optional<? extends TransactionCreatePaymentSource> paymentSource,
+            @JsonProperty("payment_source") Optional<? extends TransactionPaymentSource> paymentSource,
             @JsonProperty("airline") JsonNullable<? extends Airline> airline,
             @JsonProperty("cart_items") JsonNullable<? extends List<CartItem>> cartItems,
             @JsonProperty("statement_descriptor") JsonNullable<? extends StatementDescriptor> statementDescriptor,
@@ -494,12 +494,12 @@ public class TransactionCreate {
     }
 
     /**
-     * The use-case for the the transaction.
+     * The way payment method information made it to this transaction.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<TransactionCreatePaymentSource> paymentSource() {
-        return (Optional<TransactionCreatePaymentSource>) paymentSource;
+    public Optional<TransactionPaymentSource> paymentSource() {
+        return (Optional<TransactionPaymentSource>) paymentSource;
     }
 
     /**
@@ -907,9 +907,9 @@ public class TransactionCreate {
     }
 
     /**
-     * The use-case for the the transaction.
+     * The way payment method information made it to this transaction.
      */
-    public TransactionCreate withPaymentSource(TransactionCreatePaymentSource paymentSource) {
+    public TransactionCreate withPaymentSource(TransactionPaymentSource paymentSource) {
         Utils.checkNotNull(paymentSource, "paymentSource");
         this.paymentSource = Optional.ofNullable(paymentSource);
         return this;
@@ -917,9 +917,9 @@ public class TransactionCreate {
 
 
     /**
-     * The use-case for the the transaction.
+     * The way payment method information made it to this transaction.
      */
-    public TransactionCreate withPaymentSource(Optional<? extends TransactionCreatePaymentSource> paymentSource) {
+    public TransactionCreate withPaymentSource(Optional<? extends TransactionPaymentSource> paymentSource) {
         Utils.checkNotNull(paymentSource, "paymentSource");
         this.paymentSource = paymentSource;
         return this;
@@ -1315,7 +1315,7 @@ public class TransactionCreate {
 
         private Optional<Boolean> merchantInitiated;
 
-        private Optional<? extends TransactionCreatePaymentSource> paymentSource;
+        private Optional<? extends TransactionPaymentSource> paymentSource = Optional.empty();
 
         private JsonNullable<? extends Airline> airline = JsonNullable.undefined();
 
@@ -1638,18 +1638,18 @@ public class TransactionCreate {
 
 
         /**
-         * The use-case for the the transaction.
+         * The way payment method information made it to this transaction.
          */
-        public Builder paymentSource(TransactionCreatePaymentSource paymentSource) {
+        public Builder paymentSource(TransactionPaymentSource paymentSource) {
             Utils.checkNotNull(paymentSource, "paymentSource");
             this.paymentSource = Optional.ofNullable(paymentSource);
             return this;
         }
 
         /**
-         * The use-case for the the transaction.
+         * The way payment method information made it to this transaction.
          */
-        public Builder paymentSource(Optional<? extends TransactionCreatePaymentSource> paymentSource) {
+        public Builder paymentSource(Optional<? extends TransactionPaymentSource> paymentSource) {
             Utils.checkNotNull(paymentSource, "paymentSource");
             this.paymentSource = paymentSource;
             return this;
@@ -1941,9 +1941,6 @@ public class TransactionCreate {
             if (merchantInitiated == null) {
                 merchantInitiated = _SINGLETON_VALUE_MerchantInitiated.value();
             }
-            if (paymentSource == null) {
-                paymentSource = _SINGLETON_VALUE_PaymentSource.value();
-            }
             if (asyncCapture == null) {
                 asyncCapture = _SINGLETON_VALUE_AsyncCapture.value();
             }
@@ -1985,12 +1982,6 @@ public class TransactionCreate {
                         "merchant_initiated",
                         "false",
                         new TypeReference<Optional<Boolean>>() {});
-
-        private static final LazySingletonValue<Optional<? extends TransactionCreatePaymentSource>> _SINGLETON_VALUE_PaymentSource =
-                new LazySingletonValue<>(
-                        "payment_source",
-                        "\"ecommerce\"",
-                        new TypeReference<Optional<? extends TransactionCreatePaymentSource>>() {});
 
         private static final LazySingletonValue<Optional<Boolean>> _SINGLETON_VALUE_AsyncCapture =
                 new LazySingletonValue<>(

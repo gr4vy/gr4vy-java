@@ -8,8 +8,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.gr4vy.sdk.utils.LazySingletonValue;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Long;
 import java.lang.Object;
@@ -160,11 +158,11 @@ public class PaymentLinkCreate {
     private JsonNullable<? extends Map<String, Object>> metadata;
 
     /**
-     * The payment source for the payment link.
+     * The way payment method information made it to this transaction.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("payment_source")
-    private Optional<? extends PaymentLinkCreatePaymentSource> paymentSource;
+    private Optional<? extends TransactionPaymentSource> paymentSource;
 
     @JsonCreator
     public PaymentLinkCreate(
@@ -188,7 +186,7 @@ public class PaymentLinkCreate {
             @JsonProperty("return_url") JsonNullable<String> returnUrl,
             @JsonProperty("cart_items") JsonNullable<? extends List<CartItem>> cartItems,
             @JsonProperty("metadata") JsonNullable<? extends Map<String, Object>> metadata,
-            @JsonProperty("payment_source") Optional<? extends PaymentLinkCreatePaymentSource> paymentSource) {
+            @JsonProperty("payment_source") Optional<? extends TransactionPaymentSource> paymentSource) {
         Utils.checkNotNull(buyer, "buyer");
         Utils.checkNotNull(expiresAt, "expiresAt");
         Utils.checkNotNull(connectionOptions, "connectionOptions");
@@ -411,12 +409,12 @@ public class PaymentLinkCreate {
     }
 
     /**
-     * The payment source for the payment link.
+     * The way payment method information made it to this transaction.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<PaymentLinkCreatePaymentSource> paymentSource() {
-        return (Optional<PaymentLinkCreatePaymentSource>) paymentSource;
+    public Optional<TransactionPaymentSource> paymentSource() {
+        return (Optional<TransactionPaymentSource>) paymentSource;
     }
 
     public static Builder builder() {
@@ -753,9 +751,9 @@ public class PaymentLinkCreate {
     }
 
     /**
-     * The payment source for the payment link.
+     * The way payment method information made it to this transaction.
      */
-    public PaymentLinkCreate withPaymentSource(PaymentLinkCreatePaymentSource paymentSource) {
+    public PaymentLinkCreate withPaymentSource(TransactionPaymentSource paymentSource) {
         Utils.checkNotNull(paymentSource, "paymentSource");
         this.paymentSource = Optional.ofNullable(paymentSource);
         return this;
@@ -763,9 +761,9 @@ public class PaymentLinkCreate {
 
 
     /**
-     * The payment source for the payment link.
+     * The way payment method information made it to this transaction.
      */
-    public PaymentLinkCreate withPaymentSource(Optional<? extends PaymentLinkCreatePaymentSource> paymentSource) {
+    public PaymentLinkCreate withPaymentSource(Optional<? extends TransactionPaymentSource> paymentSource) {
         Utils.checkNotNull(paymentSource, "paymentSource");
         this.paymentSource = paymentSource;
         return this;
@@ -885,7 +883,7 @@ public class PaymentLinkCreate {
 
         private JsonNullable<? extends Map<String, Object>> metadata = JsonNullable.undefined();
 
-        private Optional<? extends PaymentLinkCreatePaymentSource> paymentSource;
+        private Optional<? extends TransactionPaymentSource> paymentSource = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -1240,27 +1238,24 @@ public class PaymentLinkCreate {
 
 
         /**
-         * The payment source for the payment link.
+         * The way payment method information made it to this transaction.
          */
-        public Builder paymentSource(PaymentLinkCreatePaymentSource paymentSource) {
+        public Builder paymentSource(TransactionPaymentSource paymentSource) {
             Utils.checkNotNull(paymentSource, "paymentSource");
             this.paymentSource = Optional.ofNullable(paymentSource);
             return this;
         }
 
         /**
-         * The payment source for the payment link.
+         * The way payment method information made it to this transaction.
          */
-        public Builder paymentSource(Optional<? extends PaymentLinkCreatePaymentSource> paymentSource) {
+        public Builder paymentSource(Optional<? extends TransactionPaymentSource> paymentSource) {
             Utils.checkNotNull(paymentSource, "paymentSource");
             this.paymentSource = paymentSource;
             return this;
         }
 
         public PaymentLinkCreate build() {
-            if (paymentSource == null) {
-                paymentSource = _SINGLETON_VALUE_PaymentSource.value();
-            }
 
             return new PaymentLinkCreate(
                 buyer, expiresAt, connectionOptions,
@@ -1272,11 +1267,5 @@ public class PaymentLinkCreate {
                 cartItems, metadata, paymentSource);
         }
 
-
-        private static final LazySingletonValue<Optional<? extends PaymentLinkCreatePaymentSource>> _SINGLETON_VALUE_PaymentSource =
-                new LazySingletonValue<>(
-                        "payment_source",
-                        "\"ecommerce\"",
-                        new TypeReference<Optional<? extends PaymentLinkCreatePaymentSource>>() {});
     }
 }

@@ -164,10 +164,10 @@ public class PaymentLink {
     private JsonNullable<? extends Map<String, Object>> metadata;
 
     /**
-     * The payment source for the payment link.
+     * The way payment method information made it to this transaction.
      */
     @JsonProperty("payment_source")
-    private PaymentLinkPaymentSource paymentSource;
+    private TransactionPaymentSource paymentSource;
 
     /**
      * The date and time the payment link was created.
@@ -221,7 +221,7 @@ public class PaymentLink {
             @JsonProperty("return_url") JsonNullable<String> returnUrl,
             @JsonProperty("cart_items") Optional<? extends List<CartItem>> cartItems,
             @JsonProperty("metadata") JsonNullable<? extends Map<String, Object>> metadata,
-            @JsonProperty("payment_source") PaymentLinkPaymentSource paymentSource,
+            @JsonProperty("payment_source") TransactionPaymentSource paymentSource,
             @JsonProperty("created_at") OffsetDateTime createdAt,
             @JsonProperty("updated_at") OffsetDateTime updatedAt,
             @JsonProperty("status") PaymentLinkStatus status,
@@ -289,7 +289,7 @@ public class PaymentLink {
             String country,
             String currency,
             TransactionIntent intent,
-            PaymentLinkPaymentSource paymentSource,
+            TransactionPaymentSource paymentSource,
             OffsetDateTime createdAt,
             OffsetDateTime updatedAt,
             PaymentLinkStatus status) {
@@ -473,10 +473,10 @@ public class PaymentLink {
     }
 
     /**
-     * The payment source for the payment link.
+     * The way payment method information made it to this transaction.
      */
     @JsonIgnore
-    public PaymentLinkPaymentSource paymentSource() {
+    public TransactionPaymentSource paymentSource() {
         return paymentSource;
     }
 
@@ -829,9 +829,9 @@ public class PaymentLink {
     }
 
     /**
-     * The payment source for the payment link.
+     * The way payment method information made it to this transaction.
      */
-    public PaymentLink withPaymentSource(PaymentLinkPaymentSource paymentSource) {
+    public PaymentLink withPaymentSource(TransactionPaymentSource paymentSource) {
         Utils.checkNotNull(paymentSource, "paymentSource");
         this.paymentSource = paymentSource;
         return this;
@@ -1025,7 +1025,7 @@ public class PaymentLink {
 
         private JsonNullable<? extends Map<String, Object>> metadata = JsonNullable.undefined();
 
-        private PaymentLinkPaymentSource paymentSource;
+        private TransactionPaymentSource paymentSource;
 
         private OffsetDateTime createdAt;
 
@@ -1366,9 +1366,9 @@ public class PaymentLink {
 
 
         /**
-         * The payment source for the payment link.
+         * The way payment method information made it to this transaction.
          */
-        public Builder paymentSource(PaymentLinkPaymentSource paymentSource) {
+        public Builder paymentSource(TransactionPaymentSource paymentSource) {
             Utils.checkNotNull(paymentSource, "paymentSource");
             this.paymentSource = paymentSource;
             return this;
