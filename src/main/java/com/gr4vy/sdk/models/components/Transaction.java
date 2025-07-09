@@ -262,10 +262,10 @@ public class Transaction {
     private JsonNullable<? extends AntiFraudDecision> antiFraudDecision;
 
     /**
-     * The source of the transaction.
+     * The way payment method information made it to this transaction.
      */
     @JsonProperty("payment_source")
-    private TransactionPaymentSource1 paymentSource;
+    private TransactionPaymentSource paymentSource;
 
     /**
      * Indicates whether the transaction was initiated by the merchant or the customer.
@@ -437,7 +437,7 @@ public class Transaction {
             @JsonProperty("avs_response_code") JsonNullable<? extends AVSResponseCode> avsResponseCode,
             @JsonProperty("cvv_response_code") JsonNullable<? extends CVVResponseCode> cvvResponseCode,
             @JsonProperty("anti_fraud_decision") JsonNullable<? extends AntiFraudDecision> antiFraudDecision,
-            @JsonProperty("payment_source") TransactionPaymentSource1 paymentSource,
+            @JsonProperty("payment_source") TransactionPaymentSource paymentSource,
             @JsonProperty("merchant_initiated") boolean merchantInitiated,
             @JsonProperty("is_subsequent_payment") boolean isSubsequentPayment,
             @JsonProperty("cart_items") JsonNullable<? extends List<CartItem>> cartItems,
@@ -589,7 +589,7 @@ public class Transaction {
             List<GiftCardRedemption> giftCardRedemptions,
             OffsetDateTime createdAt,
             OffsetDateTime updatedAt,
-            TransactionPaymentSource1 paymentSource,
+            TransactionPaymentSource paymentSource,
             boolean merchantInitiated,
             boolean isSubsequentPayment,
             TransactionIntentOutcome intentOutcome,
@@ -910,10 +910,10 @@ public class Transaction {
     }
 
     /**
-     * The source of the transaction.
+     * The way payment method information made it to this transaction.
      */
     @JsonIgnore
-    public TransactionPaymentSource1 paymentSource() {
+    public TransactionPaymentSource paymentSource() {
         return paymentSource;
     }
 
@@ -1576,9 +1576,9 @@ public class Transaction {
     }
 
     /**
-     * The source of the transaction.
+     * The way payment method information made it to this transaction.
      */
-    public Transaction withPaymentSource(TransactionPaymentSource1 paymentSource) {
+    public Transaction withPaymentSource(TransactionPaymentSource paymentSource) {
         Utils.checkNotNull(paymentSource, "paymentSource");
         this.paymentSource = paymentSource;
         return this;
@@ -2125,7 +2125,7 @@ public class Transaction {
 
         private JsonNullable<? extends AntiFraudDecision> antiFraudDecision = JsonNullable.undefined();
 
-        private TransactionPaymentSource1 paymentSource;
+        private TransactionPaymentSource paymentSource;
 
         private Boolean merchantInitiated;
 
@@ -2697,9 +2697,9 @@ public class Transaction {
 
 
         /**
-         * The source of the transaction.
+         * The way payment method information made it to this transaction.
          */
-        public Builder paymentSource(TransactionPaymentSource1 paymentSource) {
+        public Builder paymentSource(TransactionPaymentSource paymentSource) {
             Utils.checkNotNull(paymentSource, "paymentSource");
             this.paymentSource = paymentSource;
             return this;
