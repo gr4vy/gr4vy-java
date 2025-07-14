@@ -147,10 +147,10 @@ Alternatively, you can create a token for use with Embed as follows.
 import com.gr4vy.sdk.Auth;
 
 Map<String, Object> embedParams = new HashMap<>(); // a map of extra params to use with Embed
-data.put("environment", "sandbox");
-data.put("amount", 1000);
-data.put("currency", "USD");
-data.put("buyer_external_identifier", "user-1234")
+embedParams.put("environment", "sandbox");
+embedParams.put("amount", 1000);
+embedParams.put("currency", "USD");
+embedParams.put("buyer_external_identifier", "user-1234");
 
 String privateKey = "-----BEGIN PRIVATE KEY-----\n...."; // a valid private key
 String checkoutSessionId = ""; // a valid ID for a checkout session
