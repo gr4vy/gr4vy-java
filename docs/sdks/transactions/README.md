@@ -73,7 +73,15 @@ public class Application {
                     "fffd152a-9532-4087-9a4f-de58754210f0"))
                 .paymentMethodId("ef9496d8-53a5-4aad-8ca2-00eb68334389")
                 .paymentMethodLabel("1234")
-                .paymentMethodScheme("[\"visa\"]")
+                .paymentMethodScheme(List.of(
+                    "[",
+                    "\"",
+                    "v",
+                    "i",
+                    "s",
+                    "a",
+                    "\"",
+                    "]"))
                 .paymentMethodCountry("[\"US\"]")
                 .paymentMethodFingerprint("a50b85c200ee0795d6fd33a5c66f37a4564f554355c5b46a756aac485dd168a4")
                 .method(List.of(

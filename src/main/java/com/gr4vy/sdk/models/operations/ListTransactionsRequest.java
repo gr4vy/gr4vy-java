@@ -155,10 +155,10 @@ public class ListTransactionsRequest {
     private JsonNullable<String> paymentMethodLabel;
 
     /**
-     * Filters for transactions that have a payment method with a scheme that matches with the provided value.
+     * Filters for transactions where the `payment_method_scheme` matches one of the provided values.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=payment_method_scheme")
-    private JsonNullable<String> paymentMethodScheme;
+    private JsonNullable<? extends List<String>> paymentMethodScheme;
 
     /**
      * Filters for transactions that have a payment method with a country that matches with the provided value.
@@ -293,7 +293,7 @@ public class ListTransactionsRequest {
             JsonNullable<? extends List<String>> paymentServiceId,
             JsonNullable<String> paymentMethodId,
             JsonNullable<String> paymentMethodLabel,
-            JsonNullable<String> paymentMethodScheme,
+            JsonNullable<? extends List<String>> paymentMethodScheme,
             JsonNullable<String> paymentMethodCountry,
             JsonNullable<String> paymentMethodFingerprint,
             JsonNullable<? extends List<Method>> method,
@@ -597,11 +597,12 @@ public class ListTransactionsRequest {
     }
 
     /**
-     * Filters for transactions that have a payment method with a scheme that matches with the provided value.
+     * Filters for transactions where the `payment_method_scheme` matches one of the provided values.
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<String> paymentMethodScheme() {
-        return paymentMethodScheme;
+    public JsonNullable<List<String>> paymentMethodScheme() {
+        return (JsonNullable<List<String>>) paymentMethodScheme;
     }
 
     /**
@@ -1145,18 +1146,18 @@ public class ListTransactionsRequest {
     }
 
     /**
-     * Filters for transactions that have a payment method with a scheme that matches with the provided value.
+     * Filters for transactions where the `payment_method_scheme` matches one of the provided values.
      */
-    public ListTransactionsRequest withPaymentMethodScheme(String paymentMethodScheme) {
+    public ListTransactionsRequest withPaymentMethodScheme(List<String> paymentMethodScheme) {
         Utils.checkNotNull(paymentMethodScheme, "paymentMethodScheme");
         this.paymentMethodScheme = JsonNullable.of(paymentMethodScheme);
         return this;
     }
 
     /**
-     * Filters for transactions that have a payment method with a scheme that matches with the provided value.
+     * Filters for transactions where the `payment_method_scheme` matches one of the provided values.
      */
-    public ListTransactionsRequest withPaymentMethodScheme(JsonNullable<String> paymentMethodScheme) {
+    public ListTransactionsRequest withPaymentMethodScheme(JsonNullable<? extends List<String>> paymentMethodScheme) {
         Utils.checkNotNull(paymentMethodScheme, "paymentMethodScheme");
         this.paymentMethodScheme = paymentMethodScheme;
         return this;
@@ -1658,7 +1659,7 @@ public class ListTransactionsRequest {
 
         private JsonNullable<String> paymentMethodLabel = JsonNullable.undefined();
 
-        private JsonNullable<String> paymentMethodScheme = JsonNullable.undefined();
+        private JsonNullable<? extends List<String>> paymentMethodScheme = JsonNullable.undefined();
 
         private JsonNullable<String> paymentMethodCountry = JsonNullable.undefined();
 
@@ -2117,18 +2118,18 @@ public class ListTransactionsRequest {
 
 
         /**
-         * Filters for transactions that have a payment method with a scheme that matches with the provided value.
+         * Filters for transactions where the `payment_method_scheme` matches one of the provided values.
          */
-        public Builder paymentMethodScheme(String paymentMethodScheme) {
+        public Builder paymentMethodScheme(List<String> paymentMethodScheme) {
             Utils.checkNotNull(paymentMethodScheme, "paymentMethodScheme");
             this.paymentMethodScheme = JsonNullable.of(paymentMethodScheme);
             return this;
         }
 
         /**
-         * Filters for transactions that have a payment method with a scheme that matches with the provided value.
+         * Filters for transactions where the `payment_method_scheme` matches one of the provided values.
          */
-        public Builder paymentMethodScheme(JsonNullable<String> paymentMethodScheme) {
+        public Builder paymentMethodScheme(JsonNullable<? extends List<String>> paymentMethodScheme) {
             Utils.checkNotNull(paymentMethodScheme, "paymentMethodScheme");
             this.paymentMethodScheme = paymentMethodScheme;
             return this;
