@@ -48,9 +48,7 @@ public class Domains {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public RegisterDigitalWalletDomainResponse create(
-            String digitalWalletId,
-            DigitalWalletDomain digitalWalletDomain) throws Exception {
+    public RegisterDigitalWalletDomainResponse create(String digitalWalletId, DigitalWalletDomain digitalWalletDomain) throws Exception {
         return create(digitalWalletId, JsonNullable.undefined(), digitalWalletDomain);
     }
 
@@ -66,8 +64,7 @@ public class Domains {
      * @throws Exception if the API call fails
      */
     public RegisterDigitalWalletDomainResponse create(
-            String digitalWalletId,
-            JsonNullable<String> merchantAccountId,
+            String digitalWalletId, JsonNullable<String> merchantAccountId,
             DigitalWalletDomain digitalWalletDomain) throws Exception {
         RegisterDigitalWalletDomainRequest request =
             RegisterDigitalWalletDomainRequest
@@ -102,9 +99,7 @@ public class Domains {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public UnregisterDigitalWalletDomainResponse delete(
-            String digitalWalletId,
-            DigitalWalletDomain digitalWalletDomain) throws Exception {
+    public UnregisterDigitalWalletDomainResponse delete(String digitalWalletId, DigitalWalletDomain digitalWalletDomain) throws Exception {
         return delete(digitalWalletId, JsonNullable.undefined(), digitalWalletDomain);
     }
 
@@ -120,8 +115,7 @@ public class Domains {
      * @throws Exception if the API call fails
      */
     public UnregisterDigitalWalletDomainResponse delete(
-            String digitalWalletId,
-            JsonNullable<String> merchantAccountId,
+            String digitalWalletId, JsonNullable<String> merchantAccountId,
             DigitalWalletDomain digitalWalletDomain) throws Exception {
         UnregisterDigitalWalletDomainRequest request =
             UnregisterDigitalWalletDomainRequest

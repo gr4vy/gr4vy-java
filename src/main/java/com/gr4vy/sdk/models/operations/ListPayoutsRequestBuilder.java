@@ -110,9 +110,7 @@ public class ListPayoutsRequestBuilder {
             .build());
 
         RequestOperation<ListPayoutsRequest, ListPayoutsResponse> operation
-              = new ListPayoutsOperation(
-                sdkConfiguration,
-                options);
+              = new ListPayoutsOperation(sdkConfiguration, options);
         ListPayoutsRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));
@@ -137,9 +135,7 @@ public class ListPayoutsRequestBuilder {
             .build());
 
         RequestOperation<ListPayoutsRequest, ListPayoutsResponse> operation
-              = new ListPayoutsOperation(
-                sdkConfiguration,
-                options);
+              = new ListPayoutsOperation(sdkConfiguration, options);
         ListPayoutsRequest request = buildRequest();
         Iterator<HttpResponse<InputStream>> iterator = new Paginator<>(
             request,

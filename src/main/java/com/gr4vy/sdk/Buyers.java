@@ -90,13 +90,9 @@ public final ShippingDetails shippingDetails() {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public ListBuyersResponse list(
-            ListBuyersRequest request,
-            Optional<Options> options) throws Exception {
+    public ListBuyersResponse list(ListBuyersRequest request, Optional<Options> options) throws Exception {
         RequestOperation<ListBuyersRequest, ListBuyersResponse> operation
-              = new ListBuyersOperation(
-                sdkConfiguration,
-                options);
+              = new ListBuyersOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -134,9 +130,7 @@ public final ShippingDetails shippingDetails() {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public AddBuyerResponse create(
-            JsonNullable<String> merchantAccountId,
-            BuyerCreate buyerCreate) throws Exception {
+    public AddBuyerResponse create(JsonNullable<String> merchantAccountId, BuyerCreate buyerCreate) throws Exception {
         AddBuyerRequest request =
             AddBuyerRequest
                 .builder()
@@ -184,8 +178,7 @@ public final ShippingDetails shippingDetails() {
      * @throws Exception if the API call fails
      */
     public GetBuyerResponse get(
-            String buyerId,
-            JsonNullable<String> merchantAccountId,
+            String buyerId, JsonNullable<String> merchantAccountId,
             Optional<Options> options) throws Exception {
         GetBuyerRequest request =
             GetBuyerRequest
@@ -194,9 +187,7 @@ public final ShippingDetails shippingDetails() {
                 .merchantAccountId(merchantAccountId)
                 .build();
         RequestOperation<GetBuyerRequest, GetBuyerResponse> operation
-              = new GetBuyerOperation(
-                sdkConfiguration,
-                options);
+              = new GetBuyerOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -221,9 +212,7 @@ public final ShippingDetails shippingDetails() {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public UpdateBuyerResponse update(
-            String buyerId,
-            BuyerUpdate buyerUpdate) throws Exception {
+    public UpdateBuyerResponse update(String buyerId, BuyerUpdate buyerUpdate) throws Exception {
         return update(buyerId, JsonNullable.undefined(), buyerUpdate);
     }
 
@@ -239,8 +228,7 @@ public final ShippingDetails shippingDetails() {
      * @throws Exception if the API call fails
      */
     public UpdateBuyerResponse update(
-            String buyerId,
-            JsonNullable<String> merchantAccountId,
+            String buyerId, JsonNullable<String> merchantAccountId,
             BuyerUpdate buyerUpdate) throws Exception {
         UpdateBuyerRequest request =
             UpdateBuyerRequest
@@ -288,9 +276,7 @@ public final ShippingDetails shippingDetails() {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public DeleteBuyerResponse delete(
-            String buyerId,
-            JsonNullable<String> merchantAccountId) throws Exception {
+    public DeleteBuyerResponse delete(String buyerId, JsonNullable<String> merchantAccountId) throws Exception {
         DeleteBuyerRequest request =
             DeleteBuyerRequest
                 .builder()

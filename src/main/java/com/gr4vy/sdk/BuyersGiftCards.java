@@ -60,10 +60,8 @@ public class BuyersGiftCards {
      * @throws Exception if the API call fails
      */
     public ListBuyerGiftCardsResponse list(
-            JsonNullable<String> buyerExternalIdentifier,
-            JsonNullable<String> buyerId,
-            JsonNullable<String> merchantAccountId,
-            Optional<Options> options) throws Exception {
+            JsonNullable<String> buyerExternalIdentifier, JsonNullable<String> buyerId,
+            JsonNullable<String> merchantAccountId, Optional<Options> options) throws Exception {
         ListBuyerGiftCardsRequest request =
             ListBuyerGiftCardsRequest
                 .builder()
@@ -72,9 +70,7 @@ public class BuyersGiftCards {
                 .merchantAccountId(merchantAccountId)
                 .build();
         RequestOperation<ListBuyerGiftCardsRequest, ListBuyerGiftCardsResponse> operation
-              = new ListBuyerGiftCardsOperation(
-                sdkConfiguration,
-                options);
+              = new ListBuyerGiftCardsOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

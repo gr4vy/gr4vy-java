@@ -69,8 +69,7 @@ public class PaymentServiceDefinitions {
      * @throws Exception if the API call fails
      */
     public ListPaymentServiceDefinitionsResponse list(
-            JsonNullable<String> cursor,
-            Optional<Long> limit,
+            JsonNullable<String> cursor, Optional<Long> limit,
             Optional<Options> options) throws Exception {
         ListPaymentServiceDefinitionsRequest request =
             ListPaymentServiceDefinitionsRequest
@@ -79,9 +78,7 @@ public class PaymentServiceDefinitions {
                 .limit(limit)
                 .build();
         RequestOperation<ListPaymentServiceDefinitionsRequest, ListPaymentServiceDefinitionsResponse> operation
-              = new ListPaymentServiceDefinitionsOperation(
-                sdkConfiguration,
-                options);
+              = new ListPaymentServiceDefinitionsOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -119,18 +116,14 @@ public class PaymentServiceDefinitions {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public GetPaymentServiceDefinitionResponse get(
-            String paymentServiceDefinitionId,
-            Optional<Options> options) throws Exception {
+    public GetPaymentServiceDefinitionResponse get(String paymentServiceDefinitionId, Optional<Options> options) throws Exception {
         GetPaymentServiceDefinitionRequest request =
             GetPaymentServiceDefinitionRequest
                 .builder()
                 .paymentServiceDefinitionId(paymentServiceDefinitionId)
                 .build();
         RequestOperation<GetPaymentServiceDefinitionRequest, GetPaymentServiceDefinitionResponse> operation
-              = new GetPaymentServiceDefinitionOperation(
-                sdkConfiguration,
-                options);
+              = new GetPaymentServiceDefinitionOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -155,9 +148,7 @@ public class PaymentServiceDefinitions {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public CreatePaymentServiceDefinitionSessionResponse session(
-            String paymentServiceDefinitionId,
-            Map<String, Object> requestBody) throws Exception {
+    public CreatePaymentServiceDefinitionSessionResponse session(String paymentServiceDefinitionId, Map<String, Object> requestBody) throws Exception {
         CreatePaymentServiceDefinitionSessionRequest request =
             CreatePaymentServiceDefinitionSessionRequest
                 .builder()

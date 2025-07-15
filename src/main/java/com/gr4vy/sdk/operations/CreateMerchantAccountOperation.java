@@ -42,21 +42,28 @@ import java.util.Optional;
 
 
 public class CreateMerchantAccountOperation implements RequestOperation<MerchantAccountCreate, CreateMerchantAccountResponse> {
-    
+
     private final SDKConfiguration sdkConfiguration;
+    private final String baseUrl;
+    private final SecuritySource securitySource;
+    private final HTTPClient client;
 
     public CreateMerchantAccountOperation(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
-    }
-    
-    @Override
-    public HttpResponse<InputStream> doRequest(MerchantAccountCreate request) throws Exception {
-        String baseUrl = Utils.templateUrl(
+        this.baseUrl = Utils.templateUrl(
                 this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
+        this.securitySource = this.sdkConfiguration.securitySource();
+        this.client = this.sdkConfiguration.client();
+    }
+
+    private Optional<SecuritySource> securitySource() {
+        return Optional.ofNullable(this.securitySource);
+    }
+
+    public HttpRequest buildRequest(MerchantAccountCreate request) throws Exception {
         String url = Utils.generateURL(
-                baseUrl,
+                this.baseUrl,
                 "/merchant-accounts");
-        
         HTTPRequest req = new HTTPRequest(url, "POST");
         Object convertedRequest = Utils.convertToShape(
                 request, 
@@ -72,63 +79,63 @@ public class CreateMerchantAccountOperation implements RequestOperation<Merchant
         }
         req.setBody(Optional.ofNullable(serializedRequestBody));
         req.addHeader("Accept", "application/json")
-            .addHeader("user-agent", 
-                SDKConfiguration.USER_AGENT);
-        
-        Optional<SecuritySource> hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
-        Utils.configureSecurity(req,  
-                this.sdkConfiguration.securitySource().getSecurity());
-        HTTPClient client = this.sdkConfiguration.client();
-        HttpRequest r = 
-            sdkConfiguration.hooks()
-               .beforeRequest(
-                  new BeforeRequestContextImpl(
-                      this.sdkConfiguration,
-                      baseUrl,
-                      "create_merchant_account", 
-                      java.util.Optional.of(java.util.List.of()), 
-                      hookSecuritySource),
-                  req.build());
+                .addHeader("user-agent", SDKConfiguration.USER_AGENT);
+        Utils.configureSecurity(req, this.sdkConfiguration.securitySource().getSecurity());
+
+        return sdkConfiguration.hooks().beforeRequest(
+              new BeforeRequestContextImpl(
+                  this.sdkConfiguration,
+                  this.baseUrl,
+                  "create_merchant_account",
+                  java.util.Optional.of(java.util.List.of()),
+                  securitySource()),
+              req.build());
+    }
+
+    private HttpResponse<InputStream> onError(HttpResponse<InputStream> response,
+                                              Exception error) throws Exception {
+        return sdkConfiguration.hooks()
+            .afterError(
+                new AfterErrorContextImpl(
+                    this.sdkConfiguration,
+                    this.baseUrl,
+                    "create_merchant_account",
+                    java.util.Optional.of(java.util.List.of()),
+                    securitySource()),
+                Optional.ofNullable(response),
+                Optional.ofNullable(error));
+    }
+
+    private HttpResponse<InputStream> onSuccess(HttpResponse<InputStream> response) throws Exception {
+        return sdkConfiguration.hooks()
+            .afterSuccess(
+                new AfterSuccessContextImpl(
+                    this.sdkConfiguration,
+                    this.baseUrl,
+                    "create_merchant_account",
+                    java.util.Optional.of(java.util.List.of()),
+                    securitySource()),
+                response);
+    }
+
+    @Override
+    public HttpResponse<InputStream> doRequest(MerchantAccountCreate request) throws Exception {
+        HttpRequest r = buildRequest(request);
         HttpResponse<InputStream> httpRes;
         try {
             httpRes = client.send(r);
             if (Utils.statusCodeMatches(httpRes.statusCode(), "400", "401", "403", "404", "405", "409", "422", "425", "429", "4XX", "500", "502", "504", "5XX")) {
-                httpRes = sdkConfiguration.hooks()
-                    .afterError(
-                        new AfterErrorContextImpl(
-                            this.sdkConfiguration,
-                            baseUrl,
-                            "create_merchant_account",
-                            java.util.Optional.of(java.util.List.of()),
-                            hookSecuritySource),
-                        Optional.of(httpRes),
-                        Optional.empty());
+                httpRes = onError(httpRes, null);
             } else {
-                httpRes = sdkConfiguration.hooks()
-                    .afterSuccess(
-                        new AfterSuccessContextImpl(
-                            this.sdkConfiguration,
-                            baseUrl,
-                            "create_merchant_account",
-                            java.util.Optional.of(java.util.List.of()), 
-                            hookSecuritySource),
-                         httpRes);
+                httpRes = onSuccess(httpRes);
             }
         } catch (Exception e) {
-            httpRes = sdkConfiguration.hooks()
-                    .afterError(
-                        new AfterErrorContextImpl(
-                            this.sdkConfiguration,
-                            baseUrl,
-                            "create_merchant_account",
-                            java.util.Optional.of(java.util.List.of()),
-                            hookSecuritySource), 
-                        Optional.empty(),
-                        Optional.of(e));
+            httpRes = onError(null, e);
         }
-    
+
         return httpRes;
     }
+
 
     @Override
     public CreateMerchantAccountResponse handleResponse(HttpResponse<InputStream> response) throws Exception {

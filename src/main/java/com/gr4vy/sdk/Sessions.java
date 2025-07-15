@@ -66,9 +66,7 @@ public class Sessions {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public CreateGooglePayDigitalWalletSessionResponse googlePay(
-            JsonNullable<String> merchantAccountId,
-            GooglePaySessionRequest googlePaySessionRequest) throws Exception {
+    public CreateGooglePayDigitalWalletSessionResponse googlePay(JsonNullable<String> merchantAccountId, GooglePaySessionRequest googlePaySessionRequest) throws Exception {
         CreateGooglePayDigitalWalletSessionRequest request =
             CreateGooglePayDigitalWalletSessionRequest
                 .builder()
@@ -114,9 +112,7 @@ public class Sessions {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public CreateApplePayDigitalWalletSessionResponse applePay(
-            JsonNullable<String> merchantAccountId,
-            ApplePaySessionRequest applePaySessionRequest) throws Exception {
+    public CreateApplePayDigitalWalletSessionResponse applePay(JsonNullable<String> merchantAccountId, ApplePaySessionRequest applePaySessionRequest) throws Exception {
         CreateApplePayDigitalWalletSessionRequest request =
             CreateApplePayDigitalWalletSessionRequest
                 .builder()

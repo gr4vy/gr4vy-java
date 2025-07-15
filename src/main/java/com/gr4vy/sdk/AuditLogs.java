@@ -55,13 +55,9 @@ public class AuditLogs {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public ListAuditLogsResponse list(
-            ListAuditLogsRequest request,
-            Optional<Options> options) throws Exception {
+    public ListAuditLogsResponse list(ListAuditLogsRequest request, Optional<Options> options) throws Exception {
         RequestOperation<ListAuditLogsRequest, ListAuditLogsResponse> operation
-              = new ListAuditLogsOperation(
-                sdkConfiguration,
-                options);
+              = new ListAuditLogsOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

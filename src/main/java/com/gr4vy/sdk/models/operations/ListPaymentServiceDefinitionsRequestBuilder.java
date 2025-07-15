@@ -96,9 +96,7 @@ public class ListPaymentServiceDefinitionsRequestBuilder {
             .build());
 
         RequestOperation<ListPaymentServiceDefinitionsRequest, ListPaymentServiceDefinitionsResponse> operation
-              = new ListPaymentServiceDefinitionsOperation(
-                sdkConfiguration,
-                options);
+              = new ListPaymentServiceDefinitionsOperation(sdkConfiguration, options);
         ListPaymentServiceDefinitionsRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));
@@ -123,9 +121,7 @@ public class ListPaymentServiceDefinitionsRequestBuilder {
             .build());
 
         RequestOperation<ListPaymentServiceDefinitionsRequest, ListPaymentServiceDefinitionsResponse> operation
-              = new ListPaymentServiceDefinitionsOperation(
-                sdkConfiguration,
-                options);
+              = new ListPaymentServiceDefinitionsOperation(sdkConfiguration, options);
         ListPaymentServiceDefinitionsRequest request = buildRequest();
         Iterator<HttpResponse<InputStream>> iterator = new Paginator<>(
             request,

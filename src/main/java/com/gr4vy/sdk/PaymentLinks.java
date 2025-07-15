@@ -71,9 +71,7 @@ public class PaymentLinks {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public AddPaymentLinkResponse create(
-            JsonNullable<String> merchantAccountId,
-            PaymentLinkCreate paymentLinkCreate) throws Exception {
+    public AddPaymentLinkResponse create(JsonNullable<String> merchantAccountId, PaymentLinkCreate paymentLinkCreate) throws Exception {
         AddPaymentLinkRequest request =
             AddPaymentLinkRequest
                 .builder()
@@ -122,10 +120,8 @@ public class PaymentLinks {
      * @throws Exception if the API call fails
      */
     public ListPaymentLinksResponse list(
-            JsonNullable<String> cursor,
-            Optional<Long> limit,
-            JsonNullable<String> merchantAccountId,
-            Optional<Options> options) throws Exception {
+            JsonNullable<String> cursor, Optional<Long> limit,
+            JsonNullable<String> merchantAccountId, Optional<Options> options) throws Exception {
         ListPaymentLinksRequest request =
             ListPaymentLinksRequest
                 .builder()
@@ -134,9 +130,7 @@ public class PaymentLinks {
                 .merchantAccountId(merchantAccountId)
                 .build();
         RequestOperation<ListPaymentLinksRequest, ListPaymentLinksResponse> operation
-              = new ListPaymentLinksOperation(
-                sdkConfiguration,
-                options);
+              = new ListPaymentLinksOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -174,9 +168,7 @@ public class PaymentLinks {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public ExpirePaymentLinkResponse expire(
-            String paymentLinkId,
-            JsonNullable<String> merchantAccountId) throws Exception {
+    public ExpirePaymentLinkResponse expire(String paymentLinkId, JsonNullable<String> merchantAccountId) throws Exception {
         ExpirePaymentLinkRequest request =
             ExpirePaymentLinkRequest
                 .builder()
@@ -224,8 +216,7 @@ public class PaymentLinks {
      * @throws Exception if the API call fails
      */
     public GetPaymentLinkResponse get(
-            String paymentLinkId,
-            JsonNullable<String> merchantAccountId,
+            String paymentLinkId, JsonNullable<String> merchantAccountId,
             Optional<Options> options) throws Exception {
         GetPaymentLinkRequest request =
             GetPaymentLinkRequest
@@ -234,9 +225,7 @@ public class PaymentLinks {
                 .merchantAccountId(merchantAccountId)
                 .build();
         RequestOperation<GetPaymentLinkRequest, GetPaymentLinkResponse> operation
-              = new GetPaymentLinkOperation(
-                sdkConfiguration,
-                options);
+              = new GetPaymentLinkOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

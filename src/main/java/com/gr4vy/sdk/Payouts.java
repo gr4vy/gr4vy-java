@@ -70,10 +70,8 @@ public class Payouts {
      * @throws Exception if the API call fails
      */
     public ListPayoutsResponse list(
-            JsonNullable<String> cursor,
-            Optional<Long> limit,
-            JsonNullable<String> merchantAccountId,
-            Optional<Options> options) throws Exception {
+            JsonNullable<String> cursor, Optional<Long> limit,
+            JsonNullable<String> merchantAccountId, Optional<Options> options) throws Exception {
         ListPayoutsRequest request =
             ListPayoutsRequest
                 .builder()
@@ -82,9 +80,7 @@ public class Payouts {
                 .merchantAccountId(merchantAccountId)
                 .build();
         RequestOperation<ListPayoutsRequest, ListPayoutsResponse> operation
-              = new ListPayoutsOperation(
-                sdkConfiguration,
-                options);
+              = new ListPayoutsOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -126,9 +122,7 @@ public class Payouts {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public CreatePayoutResponse create(
-            JsonNullable<String> merchantAccountId,
-            PayoutCreate payoutCreate) throws Exception {
+    public CreatePayoutResponse create(JsonNullable<String> merchantAccountId, PayoutCreate payoutCreate) throws Exception {
         CreatePayoutRequest request =
             CreatePayoutRequest
                 .builder()
@@ -176,8 +170,7 @@ public class Payouts {
      * @throws Exception if the API call fails
      */
     public GetPayoutResponse get(
-            String payoutId,
-            JsonNullable<String> merchantAccountId,
+            String payoutId, JsonNullable<String> merchantAccountId,
             Optional<Options> options) throws Exception {
         GetPayoutRequest request =
             GetPayoutRequest
@@ -186,9 +179,7 @@ public class Payouts {
                 .merchantAccountId(merchantAccountId)
                 .build();
         RequestOperation<GetPayoutRequest, GetPayoutResponse> operation
-              = new GetPayoutOperation(
-                sdkConfiguration,
-                options);
+              = new GetPayoutOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

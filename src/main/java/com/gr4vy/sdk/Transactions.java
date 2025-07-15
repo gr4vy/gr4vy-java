@@ -7,6 +7,7 @@ import static com.gr4vy.sdk.operations.Operations.RequestOperation;
 
 import com.gr4vy.sdk.models.components.TransactionCapture;
 import com.gr4vy.sdk.models.components.TransactionCreate;
+import com.gr4vy.sdk.models.components.TransactionUpdate;
 import com.gr4vy.sdk.models.operations.CaptureTransactionRequest;
 import com.gr4vy.sdk.models.operations.CaptureTransactionRequestBuilder;
 import com.gr4vy.sdk.models.operations.CaptureTransactionResponse;
@@ -22,6 +23,9 @@ import com.gr4vy.sdk.models.operations.ListTransactionsResponse;
 import com.gr4vy.sdk.models.operations.SyncTransactionRequest;
 import com.gr4vy.sdk.models.operations.SyncTransactionRequestBuilder;
 import com.gr4vy.sdk.models.operations.SyncTransactionResponse;
+import com.gr4vy.sdk.models.operations.UpdateTransactionRequest;
+import com.gr4vy.sdk.models.operations.UpdateTransactionRequestBuilder;
+import com.gr4vy.sdk.models.operations.UpdateTransactionResponse;
 import com.gr4vy.sdk.models.operations.VoidTransactionRequest;
 import com.gr4vy.sdk.models.operations.VoidTransactionRequestBuilder;
 import com.gr4vy.sdk.models.operations.VoidTransactionResponse;
@@ -30,6 +34,7 @@ import com.gr4vy.sdk.operations.CreateTransactionOperation;
 import com.gr4vy.sdk.operations.GetTransactionOperation;
 import com.gr4vy.sdk.operations.ListTransactionsOperation;
 import com.gr4vy.sdk.operations.SyncTransactionOperation;
+import com.gr4vy.sdk.operations.UpdateTransactionOperation;
 import com.gr4vy.sdk.operations.VoidTransactionOperation;
 import com.gr4vy.sdk.utils.Options;
 import java.lang.Exception;
@@ -94,13 +99,9 @@ public final Settlements settlements() {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public ListTransactionsResponse list(
-            ListTransactionsRequest request,
-            Optional<Options> options) throws Exception {
+    public ListTransactionsResponse list(ListTransactionsRequest request, Optional<Options> options) throws Exception {
         RequestOperation<ListTransactionsRequest, ListTransactionsResponse> operation
-              = new ListTransactionsOperation(
-                sdkConfiguration,
-                options);
+              = new ListTransactionsOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -144,10 +145,8 @@ public final Settlements settlements() {
      * @throws Exception if the API call fails
      */
     public CreateTransactionResponse create(
-            JsonNullable<String> merchantAccountId,
-            JsonNullable<String> idempotencyKey,
-            Optional<String> xForwardedFor,
-            TransactionCreate transactionCreate) throws Exception {
+            JsonNullable<String> merchantAccountId, JsonNullable<String> idempotencyKey,
+            Optional<String> xForwardedFor, TransactionCreate transactionCreate) throws Exception {
         CreateTransactionRequest request =
             CreateTransactionRequest
                 .builder()
@@ -197,8 +196,7 @@ public final Settlements settlements() {
      * @throws Exception if the API call fails
      */
     public GetTransactionResponse get(
-            String transactionId,
-            JsonNullable<String> merchantAccountId,
+            String transactionId, JsonNullable<String> merchantAccountId,
             Optional<Options> options) throws Exception {
         GetTransactionRequest request =
             GetTransactionRequest
@@ -207,9 +205,58 @@ public final Settlements settlements() {
                 .merchantAccountId(merchantAccountId)
                 .build();
         RequestOperation<GetTransactionRequest, GetTransactionResponse> operation
-              = new GetTransactionOperation(
-                sdkConfiguration,
-                options);
+              = new GetTransactionOperation(sdkConfiguration, options);
+        return operation.handleResponse(operation.doRequest(request));
+    }
+
+    /**
+     * Manually update a transaction
+     * 
+     * <p>Manually updates a transaction.
+     * 
+     * @return The call builder
+     */
+    public UpdateTransactionRequestBuilder update() {
+        return new UpdateTransactionRequestBuilder(sdkConfiguration);
+    }
+
+    /**
+     * Manually update a transaction
+     * 
+     * <p>Manually updates a transaction.
+     * 
+     * @param transactionId The ID of the transaction
+     * @param transactionUpdate 
+     * @return The response from the API call
+     * @throws Exception if the API call fails
+     */
+    public UpdateTransactionResponse update(String transactionId, TransactionUpdate transactionUpdate) throws Exception {
+        return update(transactionId, JsonNullable.undefined(), transactionUpdate);
+    }
+
+    /**
+     * Manually update a transaction
+     * 
+     * <p>Manually updates a transaction.
+     * 
+     * @param transactionId The ID of the transaction
+     * @param merchantAccountId 
+     * @param transactionUpdate 
+     * @return The response from the API call
+     * @throws Exception if the API call fails
+     */
+    public UpdateTransactionResponse update(
+            String transactionId, JsonNullable<String> merchantAccountId,
+            TransactionUpdate transactionUpdate) throws Exception {
+        UpdateTransactionRequest request =
+            UpdateTransactionRequest
+                .builder()
+                .transactionId(transactionId)
+                .merchantAccountId(merchantAccountId)
+                .transactionUpdate(transactionUpdate)
+                .build();
+        RequestOperation<UpdateTransactionRequest, UpdateTransactionResponse> operation
+              = new UpdateTransactionOperation(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -234,9 +281,7 @@ public final Settlements settlements() {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public CaptureTransactionResponse capture(
-            String transactionId,
-            TransactionCapture transactionCapture) throws Exception {
+    public CaptureTransactionResponse capture(String transactionId, TransactionCapture transactionCapture) throws Exception {
         return capture(transactionId, JsonNullable.undefined(), transactionCapture);
     }
 
@@ -252,8 +297,7 @@ public final Settlements settlements() {
      * @throws Exception if the API call fails
      */
     public CaptureTransactionResponse capture(
-            String transactionId,
-            JsonNullable<String> merchantAccountId,
+            String transactionId, JsonNullable<String> merchantAccountId,
             TransactionCapture transactionCapture) throws Exception {
         CaptureTransactionRequest request =
             CaptureTransactionRequest
@@ -301,9 +345,7 @@ public final Settlements settlements() {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public VoidTransactionResponse void_(
-            String transactionId,
-            JsonNullable<String> merchantAccountId) throws Exception {
+    public VoidTransactionResponse void_(String transactionId, JsonNullable<String> merchantAccountId) throws Exception {
         VoidTransactionRequest request =
             VoidTransactionRequest
                 .builder()
@@ -349,9 +391,7 @@ public final Settlements settlements() {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public SyncTransactionResponse sync(
-            String transactionId,
-            JsonNullable<String> merchantAccountId) throws Exception {
+    public SyncTransactionResponse sync(String transactionId, JsonNullable<String> merchantAccountId) throws Exception {
         SyncTransactionRequest request =
             SyncTransactionRequest
                 .builder()

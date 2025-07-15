@@ -79,9 +79,7 @@ public class GetTransactionRefundRequestBuilder {
             .build());
 
         RequestOperation<GetTransactionRefundRequest, GetTransactionRefundResponse> operation
-              = new GetTransactionRefundOperation(
-                sdkConfiguration,
-                options);
+              = new GetTransactionRefundOperation(sdkConfiguration, options);
         GetTransactionRefundRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

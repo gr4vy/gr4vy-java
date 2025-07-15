@@ -74,10 +74,8 @@ public class MerchantAccounts {
      * @throws Exception if the API call fails
      */
     public ListMerchantAccountsResponse list(
-            JsonNullable<String> cursor,
-            Optional<Long> limit,
-            JsonNullable<String> search,
-            Optional<Options> options) throws Exception {
+            JsonNullable<String> cursor, Optional<Long> limit,
+            JsonNullable<String> search, Optional<Options> options) throws Exception {
         ListMerchantAccountsRequest request =
             ListMerchantAccountsRequest
                 .builder()
@@ -86,9 +84,7 @@ public class MerchantAccounts {
                 .search(search)
                 .build();
         RequestOperation<ListMerchantAccountsRequest, ListMerchantAccountsResponse> operation
-              = new ListMerchantAccountsOperation(
-                sdkConfiguration,
-                options);
+              = new ListMerchantAccountsOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -152,18 +148,14 @@ public class MerchantAccounts {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public GetMerchantAccountResponse get(
-            String merchantAccountId,
-            Optional<Options> options) throws Exception {
+    public GetMerchantAccountResponse get(String merchantAccountId, Optional<Options> options) throws Exception {
         GetMerchantAccountRequest request =
             GetMerchantAccountRequest
                 .builder()
                 .merchantAccountId(merchantAccountId)
                 .build();
         RequestOperation<GetMerchantAccountRequest, GetMerchantAccountResponse> operation
-              = new GetMerchantAccountOperation(
-                sdkConfiguration,
-                options);
+              = new GetMerchantAccountOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -188,9 +180,7 @@ public class MerchantAccounts {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public UpdateMerchantAccountResponse update(
-            String merchantAccountId,
-            MerchantAccountUpdate merchantAccountUpdate) throws Exception {
+    public UpdateMerchantAccountResponse update(String merchantAccountId, MerchantAccountUpdate merchantAccountUpdate) throws Exception {
         UpdateMerchantAccountRequest request =
             UpdateMerchantAccountRequest
                 .builder()

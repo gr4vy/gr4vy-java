@@ -48,9 +48,7 @@ public class Settlements {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public GetTransactionSettlementResponse get(
-            String transactionId,
-            String settlementId) throws Exception {
+    public GetTransactionSettlementResponse get(String transactionId, String settlementId) throws Exception {
         return get(transactionId, settlementId, JsonNullable.undefined(),
             Optional.empty());
     }
@@ -68,10 +66,8 @@ public class Settlements {
      * @throws Exception if the API call fails
      */
     public GetTransactionSettlementResponse get(
-            String transactionId,
-            String settlementId,
-            JsonNullable<String> merchantAccountId,
-            Optional<Options> options) throws Exception {
+            String transactionId, String settlementId,
+            JsonNullable<String> merchantAccountId, Optional<Options> options) throws Exception {
         GetTransactionSettlementRequest request =
             GetTransactionSettlementRequest
                 .builder()
@@ -80,9 +76,7 @@ public class Settlements {
                 .merchantAccountId(merchantAccountId)
                 .build();
         RequestOperation<GetTransactionSettlementRequest, GetTransactionSettlementResponse> operation
-              = new GetTransactionSettlementOperation(
-                sdkConfiguration,
-                options);
+              = new GetTransactionSettlementOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -122,8 +116,7 @@ public class Settlements {
      * @throws Exception if the API call fails
      */
     public ListTransactionSettlementsResponse list(
-            String transactionId,
-            JsonNullable<String> merchantAccountId,
+            String transactionId, JsonNullable<String> merchantAccountId,
             Optional<Options> options) throws Exception {
         ListTransactionSettlementsRequest request =
             ListTransactionSettlementsRequest
@@ -132,9 +125,7 @@ public class Settlements {
                 .merchantAccountId(merchantAccountId)
                 .build();
         RequestOperation<ListTransactionSettlementsRequest, ListTransactionSettlementsResponse> operation
-              = new ListTransactionSettlementsOperation(
-                sdkConfiguration,
-                options);
+              = new ListTransactionSettlementsOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

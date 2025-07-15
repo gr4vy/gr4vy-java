@@ -57,9 +57,7 @@ public class Balances {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public ListGiftCardBalancesResponse list(
-            JsonNullable<String> merchantAccountId,
-            GiftCardBalanceRequest giftCardBalanceRequest) throws Exception {
+    public ListGiftCardBalancesResponse list(JsonNullable<String> merchantAccountId, GiftCardBalanceRequest giftCardBalanceRequest) throws Exception {
         ListGiftCardBalancesRequest request =
             ListGiftCardBalancesRequest
                 .builder()

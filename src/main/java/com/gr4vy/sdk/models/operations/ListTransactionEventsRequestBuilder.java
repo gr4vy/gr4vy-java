@@ -108,9 +108,7 @@ public class ListTransactionEventsRequestBuilder {
             .build());
 
         RequestOperation<ListTransactionEventsRequest, ListTransactionEventsResponse> operation
-              = new ListTransactionEventsOperation(
-                sdkConfiguration,
-                options);
+              = new ListTransactionEventsOperation(sdkConfiguration, options);
         ListTransactionEventsRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

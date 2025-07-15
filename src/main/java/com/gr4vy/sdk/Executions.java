@@ -71,10 +71,8 @@ public class Executions {
      * @throws Exception if the API call fails
      */
     public ListReportExecutionsResponse list(
-            String reportId,
-            JsonNullable<String> cursor,
-            Optional<Long> limit,
-            JsonNullable<String> merchantAccountId,
+            String reportId, JsonNullable<String> cursor,
+            Optional<Long> limit, JsonNullable<String> merchantAccountId,
             Optional<Options> options) throws Exception {
         ListReportExecutionsRequest request =
             ListReportExecutionsRequest
@@ -85,9 +83,7 @@ public class Executions {
                 .merchantAccountId(merchantAccountId)
                 .build();
         RequestOperation<ListReportExecutionsRequest, ListReportExecutionsResponse> operation
-              = new ListReportExecutionsOperation(
-                sdkConfiguration,
-                options);
+              = new ListReportExecutionsOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -112,9 +108,7 @@ public class Executions {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public CreateReportExecutionUrlResponse url(
-            String reportId,
-            String reportExecutionId) throws Exception {
+    public CreateReportExecutionUrlResponse url(String reportId, String reportExecutionId) throws Exception {
         return url(reportId, reportExecutionId, JsonNullable.undefined());
     }
 
@@ -130,8 +124,7 @@ public class Executions {
      * @throws Exception if the API call fails
      */
     public CreateReportExecutionUrlResponse url(
-            String reportId,
-            String reportExecutionId,
+            String reportId, String reportExecutionId,
             JsonNullable<String> merchantAccountId) throws Exception {
         CreateReportExecutionUrlRequest request =
             CreateReportExecutionUrlRequest
@@ -181,8 +174,7 @@ public class Executions {
      * @throws Exception if the API call fails
      */
     public GetReportExecutionResponse get(
-            String reportExecutionId,
-            JsonNullable<String> merchantAccountId,
+            String reportExecutionId, JsonNullable<String> merchantAccountId,
             Optional<Options> options) throws Exception {
         GetReportExecutionRequest request =
             GetReportExecutionRequest
@@ -191,9 +183,7 @@ public class Executions {
                 .merchantAccountId(merchantAccountId)
                 .build();
         RequestOperation<GetReportExecutionRequest, GetReportExecutionResponse> operation
-              = new GetReportExecutionOperation(
-                sdkConfiguration,
-                options);
+              = new GetReportExecutionOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

@@ -73,8 +73,7 @@ public final All all() {
      * @throws Exception if the API call fails
      */
     public ListTransactionRefundsResponse list(
-            String transactionId,
-            JsonNullable<String> merchantAccountId,
+            String transactionId, JsonNullable<String> merchantAccountId,
             Optional<Options> options) throws Exception {
         ListTransactionRefundsRequest request =
             ListTransactionRefundsRequest
@@ -83,9 +82,7 @@ public final All all() {
                 .merchantAccountId(merchantAccountId)
                 .build();
         RequestOperation<ListTransactionRefundsRequest, ListTransactionRefundsResponse> operation
-              = new ListTransactionRefundsOperation(
-                sdkConfiguration,
-                options);
+              = new ListTransactionRefundsOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -110,9 +107,7 @@ public final All all() {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public CreateTransactionRefundResponse create(
-            String transactionId,
-            TransactionRefundCreate transactionRefundCreate) throws Exception {
+    public CreateTransactionRefundResponse create(String transactionId, TransactionRefundCreate transactionRefundCreate) throws Exception {
         return create(transactionId, JsonNullable.undefined(), transactionRefundCreate);
     }
 
@@ -128,8 +123,7 @@ public final All all() {
      * @throws Exception if the API call fails
      */
     public CreateTransactionRefundResponse create(
-            String transactionId,
-            JsonNullable<String> merchantAccountId,
+            String transactionId, JsonNullable<String> merchantAccountId,
             TransactionRefundCreate transactionRefundCreate) throws Exception {
         CreateTransactionRefundRequest request =
             CreateTransactionRefundRequest
@@ -164,9 +158,7 @@ public final All all() {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public GetTransactionRefundResponse get(
-            String transactionId,
-            String refundId) throws Exception {
+    public GetTransactionRefundResponse get(String transactionId, String refundId) throws Exception {
         return get(transactionId, refundId, JsonNullable.undefined(),
             Optional.empty());
     }
@@ -184,10 +176,8 @@ public final All all() {
      * @throws Exception if the API call fails
      */
     public GetTransactionRefundResponse get(
-            String transactionId,
-            String refundId,
-            JsonNullable<String> merchantAccountId,
-            Optional<Options> options) throws Exception {
+            String transactionId, String refundId,
+            JsonNullable<String> merchantAccountId, Optional<Options> options) throws Exception {
         GetTransactionRefundRequest request =
             GetTransactionRefundRequest
                 .builder()
@@ -196,9 +186,7 @@ public final All all() {
                 .merchantAccountId(merchantAccountId)
                 .build();
         RequestOperation<GetTransactionRefundRequest, GetTransactionRefundResponse> operation
-              = new GetTransactionRefundOperation(
-                sdkConfiguration,
-                options);
+              = new GetTransactionRefundOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

@@ -85,9 +85,7 @@ public final Domains domains() {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public ConfigureDigitalWalletResponse create(
-            JsonNullable<String> merchantAccountId,
-            DigitalWalletCreate digitalWalletCreate) throws Exception {
+    public ConfigureDigitalWalletResponse create(JsonNullable<String> merchantAccountId, DigitalWalletCreate digitalWalletCreate) throws Exception {
         ConfigureDigitalWalletRequest request =
             ConfigureDigitalWalletRequest
                 .builder()
@@ -132,18 +130,14 @@ public final Domains domains() {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public ListDigitalWalletsResponse list(
-            JsonNullable<String> merchantAccountId,
-            Optional<Options> options) throws Exception {
+    public ListDigitalWalletsResponse list(JsonNullable<String> merchantAccountId, Optional<Options> options) throws Exception {
         ListDigitalWalletsRequest request =
             ListDigitalWalletsRequest
                 .builder()
                 .merchantAccountId(merchantAccountId)
                 .build();
         RequestOperation<ListDigitalWalletsRequest, ListDigitalWalletsResponse> operation
-              = new ListDigitalWalletsOperation(
-                sdkConfiguration,
-                options);
+              = new ListDigitalWalletsOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -183,8 +177,7 @@ public final Domains domains() {
      * @throws Exception if the API call fails
      */
     public GetDigitalWalletResponse get(
-            String digitalWalletId,
-            JsonNullable<String> merchantAccountId,
+            String digitalWalletId, JsonNullable<String> merchantAccountId,
             Optional<Options> options) throws Exception {
         GetDigitalWalletRequest request =
             GetDigitalWalletRequest
@@ -193,9 +186,7 @@ public final Domains domains() {
                 .merchantAccountId(merchantAccountId)
                 .build();
         RequestOperation<GetDigitalWalletRequest, GetDigitalWalletResponse> operation
-              = new GetDigitalWalletOperation(
-                sdkConfiguration,
-                options);
+              = new GetDigitalWalletOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -233,9 +224,7 @@ public final Domains domains() {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public DeleteDigitalWalletResponse delete(
-            String digitalWalletId,
-            JsonNullable<String> merchantAccountId) throws Exception {
+    public DeleteDigitalWalletResponse delete(String digitalWalletId, JsonNullable<String> merchantAccountId) throws Exception {
         DeleteDigitalWalletRequest request =
             DeleteDigitalWalletRequest
                 .builder()
@@ -268,9 +257,7 @@ public final Domains domains() {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public UpdateDigitalWalletResponse update(
-            String digitalWalletId,
-            DigitalWalletUpdate digitalWalletUpdate) throws Exception {
+    public UpdateDigitalWalletResponse update(String digitalWalletId, DigitalWalletUpdate digitalWalletUpdate) throws Exception {
         return update(digitalWalletId, JsonNullable.undefined(), digitalWalletUpdate);
     }
 
@@ -286,8 +273,7 @@ public final Domains domains() {
      * @throws Exception if the API call fails
      */
     public UpdateDigitalWalletResponse update(
-            String digitalWalletId,
-            JsonNullable<String> merchantAccountId,
+            String digitalWalletId, JsonNullable<String> merchantAccountId,
             DigitalWalletUpdate digitalWalletUpdate) throws Exception {
         UpdateDigitalWalletRequest request =
             UpdateDigitalWalletRequest

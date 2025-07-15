@@ -55,13 +55,9 @@ public class ReportExecutions {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public ListAllReportExecutionsResponse list(
-            ListAllReportExecutionsRequest request,
-            Optional<Options> options) throws Exception {
+    public ListAllReportExecutionsResponse list(ListAllReportExecutionsRequest request, Optional<Options> options) throws Exception {
         RequestOperation<ListAllReportExecutionsRequest, ListAllReportExecutionsResponse> operation
-              = new ListAllReportExecutionsOperation(
-                sdkConfiguration,
-                options);
+              = new ListAllReportExecutionsOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

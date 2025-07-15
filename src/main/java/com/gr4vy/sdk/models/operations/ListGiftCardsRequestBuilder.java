@@ -58,9 +58,7 @@ public class ListGiftCardsRequestBuilder {
             .build());
 
         RequestOperation<ListGiftCardsRequest, ListGiftCardsResponse> operation
-              = new ListGiftCardsOperation(
-                sdkConfiguration,
-                options);
+              = new ListGiftCardsOperation(sdkConfiguration, options);
 
         return operation.handleResponse(operation.doRequest(request));
     }
@@ -84,9 +82,7 @@ public class ListGiftCardsRequestBuilder {
             .build());
 
         RequestOperation<ListGiftCardsRequest, ListGiftCardsResponse> operation
-              = new ListGiftCardsOperation(
-                sdkConfiguration,
-                options);
+              = new ListGiftCardsOperation(sdkConfiguration, options);
         Iterator<HttpResponse<InputStream>> iterator = new Paginator<>(
             request,
             new CursorTracker<>("$.next_cursor", String.class),

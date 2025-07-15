@@ -58,9 +58,7 @@ public class ListAuditLogsRequestBuilder {
             .build());
 
         RequestOperation<ListAuditLogsRequest, ListAuditLogsResponse> operation
-              = new ListAuditLogsOperation(
-                sdkConfiguration,
-                options);
+              = new ListAuditLogsOperation(sdkConfiguration, options);
 
         return operation.handleResponse(operation.doRequest(request));
     }
@@ -84,9 +82,7 @@ public class ListAuditLogsRequestBuilder {
             .build());
 
         RequestOperation<ListAuditLogsRequest, ListAuditLogsResponse> operation
-              = new ListAuditLogsOperation(
-                sdkConfiguration,
-                options);
+              = new ListAuditLogsOperation(sdkConfiguration, options);
         Iterator<HttpResponse<InputStream>> iterator = new Paginator<>(
             request,
             new CursorTracker<>("$.next_cursor", String.class),

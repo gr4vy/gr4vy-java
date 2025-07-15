@@ -71,9 +71,7 @@ public class GetTransactionRequestBuilder {
             .build());
 
         RequestOperation<GetTransactionRequest, GetTransactionResponse> operation
-              = new GetTransactionOperation(
-                sdkConfiguration,
-                options);
+              = new GetTransactionOperation(sdkConfiguration, options);
         GetTransactionRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

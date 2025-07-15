@@ -71,9 +71,7 @@ public class GetCheckoutSessionRequestBuilder {
             .build());
 
         RequestOperation<GetCheckoutSessionRequest, GetCheckoutSessionResponse> operation
-              = new GetCheckoutSessionOperation(
-                sdkConfiguration,
-                options);
+              = new GetCheckoutSessionOperation(sdkConfiguration, options);
         GetCheckoutSessionRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

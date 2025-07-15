@@ -91,9 +91,7 @@ public class ListBuyerGiftCardsRequestBuilder {
             .build());
 
         RequestOperation<ListBuyerGiftCardsRequest, ListBuyerGiftCardsResponse> operation
-              = new ListBuyerGiftCardsOperation(
-                sdkConfiguration,
-                options);
+              = new ListBuyerGiftCardsOperation(sdkConfiguration, options);
         ListBuyerGiftCardsRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

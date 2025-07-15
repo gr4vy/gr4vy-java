@@ -63,9 +63,7 @@ public class ListCardSchemeDefinitionsRequestBuilder {
             .build());
 
         RequestOperation<ListCardSchemeDefinitionsRequest, ListCardSchemeDefinitionsResponse> operation
-              = new ListCardSchemeDefinitionsOperation(
-                sdkConfiguration,
-                options);
+              = new ListCardSchemeDefinitionsOperation(sdkConfiguration, options);
         ListCardSchemeDefinitionsRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));
