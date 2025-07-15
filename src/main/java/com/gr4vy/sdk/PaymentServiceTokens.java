@@ -21,7 +21,6 @@ import com.gr4vy.sdk.operations.ListPaymentMethodPaymentServiceTokensOperation;
 import com.gr4vy.sdk.utils.Options;
 import java.lang.Exception;
 import java.lang.String;
-import java.util.List;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -32,6 +31,7 @@ public class PaymentServiceTokens {
     PaymentServiceTokens(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
+
     /**
      * List payment service tokens
      * 

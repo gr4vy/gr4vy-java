@@ -22,7 +22,6 @@ import java.lang.Exception;
 import java.lang.Long;
 import java.lang.Object;
 import java.lang.String;
-import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
@@ -34,6 +33,7 @@ public class PaymentServiceDefinitions {
     PaymentServiceDefinitions(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
+
     /**
      * List payment service definitions
      * 

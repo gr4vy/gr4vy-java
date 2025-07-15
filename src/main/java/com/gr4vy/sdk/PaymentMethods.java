@@ -25,27 +25,29 @@ import com.gr4vy.sdk.operations.ListPaymentMethodsOperation;
 import com.gr4vy.sdk.utils.Options;
 import java.lang.Exception;
 import java.lang.String;
-import java.util.List;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 
 public class PaymentMethods {
     private final SDKConfiguration sdkConfiguration;
-private final PaymentServiceTokens paymentServiceTokens;
-private final NetworkTokens networkTokens;
+    private final PaymentServiceTokens paymentServiceTokens;
+    private final NetworkTokens networkTokens;
 
     PaymentMethods(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
         this.paymentServiceTokens = new PaymentServiceTokens(this.sdkConfiguration);
         this.networkTokens = new NetworkTokens(this.sdkConfiguration);
     }
-public final PaymentServiceTokens paymentServiceTokens() {
+
+    public final PaymentServiceTokens paymentServiceTokens() {
         return paymentServiceTokens;
     }
-public final NetworkTokens networkTokens() {
+
+    public final NetworkTokens networkTokens() {
         return networkTokens;
     }
+
     /**
      * List all payment methods
      * 

@@ -53,6 +53,7 @@ public class Name {
     public static final Name TRANSACTION_UPDATED_STATUS = new Name("transaction-updated-status");
     public static final Name TRANSACTION_SYNC_EVENT = new Name("transaction-sync-event");
     public static final Name TRANSACTION_SYNC_FAILED_EVENT = new Name("transaction-sync-failed-event");
+    public static final Name TRANSACTION_MODIFIED_EVENT = new Name("transaction-modified-event");
     public static final Name TRANSACTION_API_REQUEST = new Name("transaction-api-request");
     public static final Name TRANSACTION_API_RESPONSE = new Name("transaction-api-response");
     public static final Name BIN_LOOKUP_REQUEST = new Name("bin-lookup-request");
@@ -168,6 +169,7 @@ public class Name {
         map.put("transaction-updated-status", TRANSACTION_UPDATED_STATUS);
         map.put("transaction-sync-event", TRANSACTION_SYNC_EVENT);
         map.put("transaction-sync-failed-event", TRANSACTION_SYNC_FAILED_EVENT);
+        map.put("transaction-modified-event", TRANSACTION_MODIFIED_EVENT);
         map.put("transaction-api-request", TRANSACTION_API_REQUEST);
         map.put("transaction-api-response", TRANSACTION_API_RESPONSE);
         map.put("bin-lookup-request", BIN_LOOKUP_REQUEST);
@@ -217,6 +219,7 @@ public class Name {
         map.put("transaction-updated-status", NameEnum.TRANSACTION_UPDATED_STATUS);
         map.put("transaction-sync-event", NameEnum.TRANSACTION_SYNC_EVENT);
         map.put("transaction-sync-failed-event", NameEnum.TRANSACTION_SYNC_FAILED_EVENT);
+        map.put("transaction-modified-event", NameEnum.TRANSACTION_MODIFIED_EVENT);
         map.put("transaction-api-request", NameEnum.TRANSACTION_API_REQUEST);
         map.put("transaction-api-response", NameEnum.TRANSACTION_API_RESPONSE);
         map.put("bin-lookup-request", NameEnum.BIN_LOOKUP_REQUEST);
@@ -296,6 +299,7 @@ public class Name {
         TRANSACTION_UPDATED_STATUS("transaction-updated-status"),
         TRANSACTION_SYNC_EVENT("transaction-sync-event"),
         TRANSACTION_SYNC_FAILED_EVENT("transaction-sync-failed-event"),
+        TRANSACTION_MODIFIED_EVENT("transaction-modified-event"),
         TRANSACTION_API_REQUEST("transaction-api-request"),
         TRANSACTION_API_RESPONSE("transaction-api-response"),
         BIN_LOOKUP_REQUEST("bin-lookup-request"),

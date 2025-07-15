@@ -39,16 +39,15 @@ import com.gr4vy.sdk.operations.VoidTransactionOperation;
 import com.gr4vy.sdk.utils.Options;
 import java.lang.Exception;
 import java.lang.String;
-import java.util.List;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 
 public class Transactions {
     private final SDKConfiguration sdkConfiguration;
-private final TransactionsRefunds refunds;
-private final Events events;
-private final Settlements settlements;
+    private final TransactionsRefunds refunds;
+    private final Events events;
+    private final Settlements settlements;
 
     Transactions(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -56,15 +55,19 @@ private final Settlements settlements;
         this.events = new Events(this.sdkConfiguration);
         this.settlements = new Settlements(this.sdkConfiguration);
     }
-public final TransactionsRefunds refunds() {
+
+    public final TransactionsRefunds refunds() {
         return refunds;
     }
-public final Events events() {
+
+    public final Events events() {
         return events;
     }
-public final Settlements settlements() {
+
+    public final Settlements settlements() {
         return settlements;
     }
+
     /**
      * List transactions
      * 

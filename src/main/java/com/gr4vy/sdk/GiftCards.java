@@ -25,22 +25,23 @@ import com.gr4vy.sdk.operations.ListGiftCardsOperation;
 import com.gr4vy.sdk.utils.Options;
 import java.lang.Exception;
 import java.lang.String;
-import java.util.List;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 
 public class GiftCards {
     private final SDKConfiguration sdkConfiguration;
-private final Balances balances;
+    private final Balances balances;
 
     GiftCards(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
         this.balances = new Balances(this.sdkConfiguration);
     }
-public final Balances balances() {
+
+    public final Balances balances() {
         return balances;
     }
+
     /**
      * Get gift card
      * 

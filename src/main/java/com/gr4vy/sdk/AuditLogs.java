@@ -11,7 +11,6 @@ import com.gr4vy.sdk.models.operations.ListAuditLogsResponse;
 import com.gr4vy.sdk.operations.ListAuditLogsOperation;
 import com.gr4vy.sdk.utils.Options;
 import java.lang.Exception;
-import java.util.List;
 import java.util.Optional;
 
 
@@ -21,6 +20,7 @@ public class AuditLogs {
     AuditLogs(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
+
     /**
      * List audit log entries
      * 

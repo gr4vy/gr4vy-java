@@ -29,22 +29,23 @@ import com.gr4vy.sdk.operations.SuspendPaymentMethodNetworkTokenOperation;
 import com.gr4vy.sdk.utils.Options;
 import java.lang.Exception;
 import java.lang.String;
-import java.util.List;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 
 public class NetworkTokens {
     private final SDKConfiguration sdkConfiguration;
-private final Cryptogram cryptogram;
+    private final Cryptogram cryptogram;
 
     NetworkTokens(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
         this.cryptogram = new Cryptogram(this.sdkConfiguration);
     }
-public final Cryptogram cryptogram() {
+
+    public final Cryptogram cryptogram() {
         return cryptogram;
     }
+
     /**
      * List network tokens
      * 

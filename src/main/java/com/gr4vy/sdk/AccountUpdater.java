@@ -5,13 +5,15 @@ package com.gr4vy.sdk;
 
 public class AccountUpdater {
     private final SDKConfiguration sdkConfiguration;
-private final Jobs jobs;
+    private final Jobs jobs;
 
     AccountUpdater(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
         this.jobs = new Jobs(this.sdkConfiguration);
     }
-public final Jobs jobs() {
+
+    public final Jobs jobs() {
         return jobs;
     }
+
 }

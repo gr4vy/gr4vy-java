@@ -12,8 +12,6 @@ import com.gr4vy.sdk.models.operations.ListPaymentOptionsResponse;
 import com.gr4vy.sdk.operations.ListPaymentOptionsOperation;
 import java.lang.Exception;
 import java.lang.String;
-import java.util.List;
-import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 
@@ -23,6 +21,7 @@ public class PaymentOptions {
     PaymentOptions(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
+
     /**
      * List payment options
      * 

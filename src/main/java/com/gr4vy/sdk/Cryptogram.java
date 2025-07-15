@@ -12,8 +12,6 @@ import com.gr4vy.sdk.models.operations.CreatePaymentMethodNetworkTokenCryptogram
 import com.gr4vy.sdk.operations.CreatePaymentMethodNetworkTokenCryptogramOperation;
 import java.lang.Exception;
 import java.lang.String;
-import java.util.List;
-import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 
@@ -23,6 +21,7 @@ public class Cryptogram {
     Cryptogram(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
+
     /**
      * Provision network token cryptogram
      * 

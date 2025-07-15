@@ -16,7 +16,6 @@ import com.gr4vy.sdk.operations.ListTransactionSettlementsOperation;
 import com.gr4vy.sdk.utils.Options;
 import java.lang.Exception;
 import java.lang.String;
-import java.util.List;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -27,6 +26,7 @@ public class Settlements {
     Settlements(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
+
     /**
      * Get transaction settlement
      * 

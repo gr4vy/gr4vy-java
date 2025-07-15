@@ -30,27 +30,29 @@ import com.gr4vy.sdk.operations.UpdateDigitalWalletOperation;
 import com.gr4vy.sdk.utils.Options;
 import java.lang.Exception;
 import java.lang.String;
-import java.util.List;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 
 public class DigitalWallets {
     private final SDKConfiguration sdkConfiguration;
-private final Sessions sessions;
-private final Domains domains;
+    private final Sessions sessions;
+    private final Domains domains;
 
     DigitalWallets(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
         this.sessions = new Sessions(this.sdkConfiguration);
         this.domains = new Domains(this.sdkConfiguration);
     }
-public final Sessions sessions() {
+
+    public final Sessions sessions() {
         return sessions;
     }
-public final Domains domains() {
+
+    public final Domains domains() {
         return domains;
     }
+
     /**
      * Register digital wallet
      * 

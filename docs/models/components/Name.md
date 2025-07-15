@@ -10,6 +10,7 @@ The specific event name.
 | `TRANSACTION_UPDATED_STATUS`                                     | transaction-updated-status                                       |
 | `TRANSACTION_SYNC_EVENT`                                         | transaction-sync-event                                           |
 | `TRANSACTION_SYNC_FAILED_EVENT`                                  | transaction-sync-failed-event                                    |
+| `TRANSACTION_MODIFIED_EVENT`                                     | transaction-modified-event                                       |
 | `TRANSACTION_API_REQUEST`                                        | transaction-api-request                                          |
 | `TRANSACTION_API_RESPONSE`                                       | transaction-api-response                                         |
 | `BIN_LOOKUP_REQUEST`                                             | bin-lookup-request                                               |
