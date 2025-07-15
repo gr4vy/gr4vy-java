@@ -68,6 +68,7 @@ public class GiftCardErrorCode {
     public static final GiftCardErrorCode SERVICE_ERROR = new GiftCardErrorCode("service_error");
     public static final GiftCardErrorCode SERVICE_NETWORK_ERROR = new GiftCardErrorCode("service_network_error");
     public static final GiftCardErrorCode UNKNOWN_ERROR = new GiftCardErrorCode("unknown_error");
+    public static final GiftCardErrorCode MAX_GIFT_CARDS_REACHED = new GiftCardErrorCode("max_gift_cards_reached");
 
     // This map will grow whenever a Color gets created with a new
     // unrecognized value (a potential memory leak if the user is not
@@ -151,6 +152,7 @@ public class GiftCardErrorCode {
         map.put("service_error", SERVICE_ERROR);
         map.put("service_network_error", SERVICE_NETWORK_ERROR);
         map.put("unknown_error", UNKNOWN_ERROR);
+        map.put("max_gift_cards_reached", MAX_GIFT_CARDS_REACHED);
         return map;
     }
 
@@ -168,6 +170,7 @@ public class GiftCardErrorCode {
         map.put("service_error", GiftCardErrorCodeEnum.SERVICE_ERROR);
         map.put("service_network_error", GiftCardErrorCodeEnum.SERVICE_NETWORK_ERROR);
         map.put("unknown_error", GiftCardErrorCodeEnum.UNKNOWN_ERROR);
+        map.put("max_gift_cards_reached", GiftCardErrorCodeEnum.MAX_GIFT_CARDS_REACHED);
         return map;
     }
     
@@ -214,7 +217,8 @@ public class GiftCardErrorCode {
         OPERATION_CANCELED("operation_canceled"),
         SERVICE_ERROR("service_error"),
         SERVICE_NETWORK_ERROR("service_network_error"),
-        UNKNOWN_ERROR("unknown_error"),;
+        UNKNOWN_ERROR("unknown_error"),
+        MAX_GIFT_CARDS_REACHED("max_gift_cards_reached"),;
 
         private final String value;
 

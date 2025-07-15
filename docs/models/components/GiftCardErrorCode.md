@@ -25,3 +25,4 @@ documentation: https://docs.gr4vy.com/guides/features/gift-cards/simulator
 | `SERVICE_ERROR`                 | service_error                   |
 | `SERVICE_NETWORK_ERROR`         | service_network_error           |
 | `UNKNOWN_ERROR`                 | unknown_error                   |
+| `MAX_GIFT_CARDS_REACHED`        | max_gift_cards_reached          |
