@@ -71,9 +71,7 @@ public class ListTransactionRefundsRequestBuilder {
             .build());
 
         RequestOperation<ListTransactionRefundsRequest, ListTransactionRefundsResponse> operation
-              = new ListTransactionRefundsOperation(
-                sdkConfiguration,
-                options);
+              = new ListTransactionRefundsOperation(sdkConfiguration, options);
         ListTransactionRefundsRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

@@ -69,9 +69,7 @@ public class CheckoutSessions {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public CreateCheckoutSessionResponse create(
-            JsonNullable<String> merchantAccountId,
-            Optional<? extends CheckoutSessionCreate> checkoutSessionCreate) throws Exception {
+    public CreateCheckoutSessionResponse create(JsonNullable<String> merchantAccountId, Optional<? extends CheckoutSessionCreate> checkoutSessionCreate) throws Exception {
         CreateCheckoutSessionRequest request =
             CreateCheckoutSessionRequest
                 .builder()
@@ -104,9 +102,7 @@ public class CheckoutSessions {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public UpdateCheckoutSessionResponse update(
-            String sessionId,
-            CheckoutSessionCreate checkoutSessionCreate) throws Exception {
+    public UpdateCheckoutSessionResponse update(String sessionId, CheckoutSessionCreate checkoutSessionCreate) throws Exception {
         return update(sessionId, JsonNullable.undefined(), checkoutSessionCreate);
     }
 
@@ -122,8 +118,7 @@ public class CheckoutSessions {
      * @throws Exception if the API call fails
      */
     public UpdateCheckoutSessionResponse update(
-            String sessionId,
-            JsonNullable<String> merchantAccountId,
+            String sessionId, JsonNullable<String> merchantAccountId,
             CheckoutSessionCreate checkoutSessionCreate) throws Exception {
         UpdateCheckoutSessionRequest request =
             UpdateCheckoutSessionRequest
@@ -173,8 +168,7 @@ public class CheckoutSessions {
      * @throws Exception if the API call fails
      */
     public GetCheckoutSessionResponse get(
-            String sessionId,
-            JsonNullable<String> merchantAccountId,
+            String sessionId, JsonNullable<String> merchantAccountId,
             Optional<Options> options) throws Exception {
         GetCheckoutSessionRequest request =
             GetCheckoutSessionRequest
@@ -183,9 +177,7 @@ public class CheckoutSessions {
                 .merchantAccountId(merchantAccountId)
                 .build();
         RequestOperation<GetCheckoutSessionRequest, GetCheckoutSessionResponse> operation
-              = new GetCheckoutSessionOperation(
-                sdkConfiguration,
-                options);
+              = new GetCheckoutSessionOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -223,9 +215,7 @@ public class CheckoutSessions {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public DeleteCheckoutSessionResponse delete(
-            String sessionId,
-            JsonNullable<String> merchantAccountId) throws Exception {
+    public DeleteCheckoutSessionResponse delete(String sessionId, JsonNullable<String> merchantAccountId) throws Exception {
         DeleteCheckoutSessionRequest request =
             DeleteCheckoutSessionRequest
                 .builder()

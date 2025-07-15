@@ -55,13 +55,9 @@ public class BuyersPaymentMethods {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public ListBuyerPaymentMethodsResponse list(
-            ListBuyerPaymentMethodsRequest request,
-            Optional<Options> options) throws Exception {
+    public ListBuyerPaymentMethodsResponse list(ListBuyerPaymentMethodsRequest request, Optional<Options> options) throws Exception {
         RequestOperation<ListBuyerPaymentMethodsRequest, ListBuyerPaymentMethodsResponse> operation
-              = new ListBuyerPaymentMethodsOperation(
-                sdkConfiguration,
-                options);
+              = new ListBuyerPaymentMethodsOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

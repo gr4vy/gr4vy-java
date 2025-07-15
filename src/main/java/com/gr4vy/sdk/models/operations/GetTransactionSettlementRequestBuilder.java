@@ -79,9 +79,7 @@ public class GetTransactionSettlementRequestBuilder {
             .build());
 
         RequestOperation<GetTransactionSettlementRequest, GetTransactionSettlementResponse> operation
-              = new GetTransactionSettlementOperation(
-                sdkConfiguration,
-                options);
+              = new GetTransactionSettlementOperation(sdkConfiguration, options);
         GetTransactionSettlementRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

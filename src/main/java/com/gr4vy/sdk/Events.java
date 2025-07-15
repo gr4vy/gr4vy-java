@@ -63,10 +63,8 @@ public class Events {
      * @throws Exception if the API call fails
      */
     public ListTransactionEventsResponse list(
-            String transactionId,
-            JsonNullable<String> cursor,
-            Optional<Long> limit,
-            JsonNullable<String> merchantAccountId,
+            String transactionId, JsonNullable<String> cursor,
+            Optional<Long> limit, JsonNullable<String> merchantAccountId,
             Optional<Options> options) throws Exception {
         ListTransactionEventsRequest request =
             ListTransactionEventsRequest
@@ -77,9 +75,7 @@ public class Events {
                 .merchantAccountId(merchantAccountId)
                 .build();
         RequestOperation<ListTransactionEventsRequest, ListTransactionEventsResponse> operation
-              = new ListTransactionEventsOperation(
-                sdkConfiguration,
-                options);
+              = new ListTransactionEventsOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

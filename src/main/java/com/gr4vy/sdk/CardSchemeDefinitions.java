@@ -56,18 +56,14 @@ public class CardSchemeDefinitions {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public ListCardSchemeDefinitionsResponse list(
-            JsonNullable<String> merchantAccountId,
-            Optional<Options> options) throws Exception {
+    public ListCardSchemeDefinitionsResponse list(JsonNullable<String> merchantAccountId, Optional<Options> options) throws Exception {
         ListCardSchemeDefinitionsRequest request =
             ListCardSchemeDefinitionsRequest
                 .builder()
                 .merchantAccountId(merchantAccountId)
                 .build();
         RequestOperation<ListCardSchemeDefinitionsRequest, ListCardSchemeDefinitionsResponse> operation
-              = new ListCardSchemeDefinitionsOperation(
-                sdkConfiguration,
-                options);
+              = new ListCardSchemeDefinitionsOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

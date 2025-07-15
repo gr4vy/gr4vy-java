@@ -86,13 +86,9 @@ public class PaymentServices {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public ListPaymentServicesResponse list(
-            ListPaymentServicesRequest request,
-            Optional<Options> options) throws Exception {
+    public ListPaymentServicesResponse list(ListPaymentServicesRequest request, Optional<Options> options) throws Exception {
         RequestOperation<ListPaymentServicesRequest, ListPaymentServicesResponse> operation
-              = new ListPaymentServicesOperation(
-                sdkConfiguration,
-                options);
+              = new ListPaymentServicesOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -130,9 +126,7 @@ public class PaymentServices {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public UpdatePaymentServiceResponse create(
-            JsonNullable<String> merchantAccountId,
-            PaymentServiceCreate paymentServiceCreate) throws Exception {
+    public UpdatePaymentServiceResponse create(JsonNullable<String> merchantAccountId, PaymentServiceCreate paymentServiceCreate) throws Exception {
         UpdatePaymentServiceRequest request =
             UpdatePaymentServiceRequest
                 .builder()
@@ -180,8 +174,7 @@ public class PaymentServices {
      * @throws Exception if the API call fails
      */
     public GetPaymentServiceResponse get(
-            String paymentServiceId,
-            JsonNullable<String> merchantAccountId,
+            String paymentServiceId, JsonNullable<String> merchantAccountId,
             Optional<Options> options) throws Exception {
         GetPaymentServiceRequest request =
             GetPaymentServiceRequest
@@ -190,9 +183,7 @@ public class PaymentServices {
                 .merchantAccountId(merchantAccountId)
                 .build();
         RequestOperation<GetPaymentServiceRequest, GetPaymentServiceResponse> operation
-              = new GetPaymentServiceOperation(
-                sdkConfiguration,
-                options);
+              = new GetPaymentServiceOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -217,9 +208,7 @@ public class PaymentServices {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public CreatePaymentServiceResponse update(
-            String paymentServiceId,
-            PaymentServiceUpdate paymentServiceUpdate) throws Exception {
+    public CreatePaymentServiceResponse update(String paymentServiceId, PaymentServiceUpdate paymentServiceUpdate) throws Exception {
         return update(paymentServiceId, JsonNullable.undefined(), paymentServiceUpdate);
     }
 
@@ -235,8 +224,7 @@ public class PaymentServices {
      * @throws Exception if the API call fails
      */
     public CreatePaymentServiceResponse update(
-            String paymentServiceId,
-            JsonNullable<String> merchantAccountId,
+            String paymentServiceId, JsonNullable<String> merchantAccountId,
             PaymentServiceUpdate paymentServiceUpdate) throws Exception {
         CreatePaymentServiceRequest request =
             CreatePaymentServiceRequest
@@ -284,9 +272,7 @@ public class PaymentServices {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public DeletePaymentServiceResponse delete(
-            String paymentServiceId,
-            JsonNullable<String> merchantAccountId) throws Exception {
+    public DeletePaymentServiceResponse delete(String paymentServiceId, JsonNullable<String> merchantAccountId) throws Exception {
         DeletePaymentServiceRequest request =
             DeletePaymentServiceRequest
                 .builder()
@@ -332,9 +318,7 @@ public class PaymentServices {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public VerifyPaymentServiceCredentialsResponse verify(
-            JsonNullable<String> merchantAccountId,
-            VerifyCredentials verifyCredentials) throws Exception {
+    public VerifyPaymentServiceCredentialsResponse verify(JsonNullable<String> merchantAccountId, VerifyCredentials verifyCredentials) throws Exception {
         VerifyPaymentServiceCredentialsRequest request =
             VerifyPaymentServiceCredentialsRequest
                 .builder()
@@ -367,9 +351,7 @@ public class PaymentServices {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public CreatePaymentServiceSessionResponse session(
-            String paymentServiceId,
-            Map<String, Object> requestBody) throws Exception {
+    public CreatePaymentServiceSessionResponse session(String paymentServiceId, Map<String, Object> requestBody) throws Exception {
         return session(paymentServiceId, JsonNullable.undefined(), requestBody);
     }
 
@@ -385,8 +367,7 @@ public class PaymentServices {
      * @throws Exception if the API call fails
      */
     public CreatePaymentServiceSessionResponse session(
-            String paymentServiceId,
-            JsonNullable<String> merchantAccountId,
+            String paymentServiceId, JsonNullable<String> merchantAccountId,
             Map<String, Object> requestBody) throws Exception {
         CreatePaymentServiceSessionRequest request =
             CreatePaymentServiceSessionRequest

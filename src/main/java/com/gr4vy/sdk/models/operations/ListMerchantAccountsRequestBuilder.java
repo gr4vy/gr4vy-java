@@ -110,9 +110,7 @@ public class ListMerchantAccountsRequestBuilder {
             .build());
 
         RequestOperation<ListMerchantAccountsRequest, ListMerchantAccountsResponse> operation
-              = new ListMerchantAccountsOperation(
-                sdkConfiguration,
-                options);
+              = new ListMerchantAccountsOperation(sdkConfiguration, options);
         ListMerchantAccountsRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));
@@ -137,9 +135,7 @@ public class ListMerchantAccountsRequestBuilder {
             .build());
 
         RequestOperation<ListMerchantAccountsRequest, ListMerchantAccountsResponse> operation
-              = new ListMerchantAccountsOperation(
-                sdkConfiguration,
-                options);
+              = new ListMerchantAccountsOperation(sdkConfiguration, options);
         ListMerchantAccountsRequest request = buildRequest();
         Iterator<HttpResponse<InputStream>> iterator = new Paginator<>(
             request,

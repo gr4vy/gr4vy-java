@@ -85,9 +85,7 @@ public class ListPaymentMethodPaymentServiceTokensRequestBuilder {
             .build());
 
         RequestOperation<ListPaymentMethodPaymentServiceTokensRequest, ListPaymentMethodPaymentServiceTokensResponse> operation
-              = new ListPaymentMethodPaymentServiceTokensOperation(
-                sdkConfiguration,
-                options);
+              = new ListPaymentMethodPaymentServiceTokensOperation(sdkConfiguration, options);
         ListPaymentMethodPaymentServiceTokensRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

@@ -70,10 +70,8 @@ public class PaymentServiceTokens {
      * @throws Exception if the API call fails
      */
     public ListPaymentMethodPaymentServiceTokensResponse list(
-            String paymentMethodId,
-            JsonNullable<String> paymentServiceId,
-            JsonNullable<String> merchantAccountId,
-            Optional<Options> options) throws Exception {
+            String paymentMethodId, JsonNullable<String> paymentServiceId,
+            JsonNullable<String> merchantAccountId, Optional<Options> options) throws Exception {
         ListPaymentMethodPaymentServiceTokensRequest request =
             ListPaymentMethodPaymentServiceTokensRequest
                 .builder()
@@ -82,9 +80,7 @@ public class PaymentServiceTokens {
                 .merchantAccountId(merchantAccountId)
                 .build();
         RequestOperation<ListPaymentMethodPaymentServiceTokensRequest, ListPaymentMethodPaymentServiceTokensResponse> operation
-              = new ListPaymentMethodPaymentServiceTokensOperation(
-                sdkConfiguration,
-                options);
+              = new ListPaymentMethodPaymentServiceTokensOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -109,9 +105,7 @@ public class PaymentServiceTokens {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public CreatePaymentMethodPaymentServiceTokenResponse create(
-            String paymentMethodId,
-            PaymentServiceTokenCreate paymentServiceTokenCreate) throws Exception {
+    public CreatePaymentMethodPaymentServiceTokenResponse create(String paymentMethodId, PaymentServiceTokenCreate paymentServiceTokenCreate) throws Exception {
         return create(paymentMethodId, JsonNullable.undefined(), paymentServiceTokenCreate);
     }
 
@@ -127,8 +121,7 @@ public class PaymentServiceTokens {
      * @throws Exception if the API call fails
      */
     public CreatePaymentMethodPaymentServiceTokenResponse create(
-            String paymentMethodId,
-            JsonNullable<String> merchantAccountId,
+            String paymentMethodId, JsonNullable<String> merchantAccountId,
             PaymentServiceTokenCreate paymentServiceTokenCreate) throws Exception {
         CreatePaymentMethodPaymentServiceTokenRequest request =
             CreatePaymentMethodPaymentServiceTokenRequest
@@ -163,9 +156,7 @@ public class PaymentServiceTokens {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public DeletePaymentMethodPaymentServiceTokenResponse delete(
-            String paymentMethodId,
-            String paymentServiceTokenId) throws Exception {
+    public DeletePaymentMethodPaymentServiceTokenResponse delete(String paymentMethodId, String paymentServiceTokenId) throws Exception {
         return delete(paymentMethodId, paymentServiceTokenId, JsonNullable.undefined());
     }
 
@@ -181,8 +172,7 @@ public class PaymentServiceTokens {
      * @throws Exception if the API call fails
      */
     public DeletePaymentMethodPaymentServiceTokenResponse delete(
-            String paymentMethodId,
-            String paymentServiceTokenId,
+            String paymentMethodId, String paymentServiceTokenId,
             JsonNullable<String> merchantAccountId) throws Exception {
         DeletePaymentMethodPaymentServiceTokenRequest request =
             DeletePaymentMethodPaymentServiceTokenRequest

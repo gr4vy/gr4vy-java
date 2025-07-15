@@ -79,9 +79,7 @@ public class GetBuyerShippingDetailsRequestBuilder {
             .build());
 
         RequestOperation<GetBuyerShippingDetailsRequest, GetBuyerShippingDetailsResponse> operation
-              = new GetBuyerShippingDetailsOperation(
-                sdkConfiguration,
-                options);
+              = new GetBuyerShippingDetailsOperation(sdkConfiguration, options);
         GetBuyerShippingDetailsRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

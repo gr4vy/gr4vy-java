@@ -80,13 +80,9 @@ public final NetworkTokens networkTokens() {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public ListPaymentMethodsResponse list(
-            ListPaymentMethodsRequest request,
-            Optional<Options> options) throws Exception {
+    public ListPaymentMethodsResponse list(ListPaymentMethodsRequest request, Optional<Options> options) throws Exception {
         RequestOperation<ListPaymentMethodsRequest, ListPaymentMethodsResponse> operation
-              = new ListPaymentMethodsOperation(
-                sdkConfiguration,
-                options);
+              = new ListPaymentMethodsOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -124,9 +120,7 @@ public final NetworkTokens networkTokens() {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public CreatePaymentMethodResponse create(
-            JsonNullable<String> merchantAccountId,
-            Body requestBody) throws Exception {
+    public CreatePaymentMethodResponse create(JsonNullable<String> merchantAccountId, Body requestBody) throws Exception {
         CreatePaymentMethodRequest request =
             CreatePaymentMethodRequest
                 .builder()
@@ -174,8 +168,7 @@ public final NetworkTokens networkTokens() {
      * @throws Exception if the API call fails
      */
     public GetPaymentMethodResponse get(
-            String paymentMethodId,
-            JsonNullable<String> merchantAccountId,
+            String paymentMethodId, JsonNullable<String> merchantAccountId,
             Optional<Options> options) throws Exception {
         GetPaymentMethodRequest request =
             GetPaymentMethodRequest
@@ -184,9 +177,7 @@ public final NetworkTokens networkTokens() {
                 .merchantAccountId(merchantAccountId)
                 .build();
         RequestOperation<GetPaymentMethodRequest, GetPaymentMethodResponse> operation
-              = new GetPaymentMethodOperation(
-                sdkConfiguration,
-                options);
+              = new GetPaymentMethodOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -224,9 +215,7 @@ public final NetworkTokens networkTokens() {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public DeletePaymentMethodResponse delete(
-            String paymentMethodId,
-            JsonNullable<String> merchantAccountId) throws Exception {
+    public DeletePaymentMethodResponse delete(String paymentMethodId, JsonNullable<String> merchantAccountId) throws Exception {
         DeletePaymentMethodRequest request =
             DeletePaymentMethodRequest
                 .builder()

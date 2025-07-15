@@ -71,9 +71,7 @@ public class ListTransactionSettlementsRequestBuilder {
             .build());
 
         RequestOperation<ListTransactionSettlementsRequest, ListTransactionSettlementsResponse> operation
-              = new ListTransactionSettlementsOperation(
-                sdkConfiguration,
-                options);
+              = new ListTransactionSettlementsOperation(sdkConfiguration, options);
         ListTransactionSettlementsRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

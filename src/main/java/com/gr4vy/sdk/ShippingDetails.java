@@ -62,9 +62,7 @@ public class ShippingDetails {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public AddBuyerShippingDetailsResponse create(
-            String buyerId,
-            ShippingDetailsCreate shippingDetailsCreate) throws Exception {
+    public AddBuyerShippingDetailsResponse create(String buyerId, ShippingDetailsCreate shippingDetailsCreate) throws Exception {
         return create(buyerId, JsonNullable.undefined(), shippingDetailsCreate);
     }
 
@@ -80,8 +78,7 @@ public class ShippingDetails {
      * @throws Exception if the API call fails
      */
     public AddBuyerShippingDetailsResponse create(
-            String buyerId,
-            JsonNullable<String> merchantAccountId,
+            String buyerId, JsonNullable<String> merchantAccountId,
             ShippingDetailsCreate shippingDetailsCreate) throws Exception {
         AddBuyerShippingDetailsRequest request =
             AddBuyerShippingDetailsRequest
@@ -131,8 +128,7 @@ public class ShippingDetails {
      * @throws Exception if the API call fails
      */
     public ListBuyerShippingDetailsResponse list(
-            String buyerId,
-            JsonNullable<String> merchantAccountId,
+            String buyerId, JsonNullable<String> merchantAccountId,
             Optional<Options> options) throws Exception {
         ListBuyerShippingDetailsRequest request =
             ListBuyerShippingDetailsRequest
@@ -141,9 +137,7 @@ public class ShippingDetails {
                 .merchantAccountId(merchantAccountId)
                 .build();
         RequestOperation<ListBuyerShippingDetailsRequest, ListBuyerShippingDetailsResponse> operation
-              = new ListBuyerShippingDetailsOperation(
-                sdkConfiguration,
-                options);
+              = new ListBuyerShippingDetailsOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -168,9 +162,7 @@ public class ShippingDetails {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public GetBuyerShippingDetailsResponse get(
-            String buyerId,
-            String shippingDetailsId) throws Exception {
+    public GetBuyerShippingDetailsResponse get(String buyerId, String shippingDetailsId) throws Exception {
         return get(buyerId, shippingDetailsId, JsonNullable.undefined(),
             Optional.empty());
     }
@@ -188,10 +180,8 @@ public class ShippingDetails {
      * @throws Exception if the API call fails
      */
     public GetBuyerShippingDetailsResponse get(
-            String buyerId,
-            String shippingDetailsId,
-            JsonNullable<String> merchantAccountId,
-            Optional<Options> options) throws Exception {
+            String buyerId, String shippingDetailsId,
+            JsonNullable<String> merchantAccountId, Optional<Options> options) throws Exception {
         GetBuyerShippingDetailsRequest request =
             GetBuyerShippingDetailsRequest
                 .builder()
@@ -200,9 +190,7 @@ public class ShippingDetails {
                 .merchantAccountId(merchantAccountId)
                 .build();
         RequestOperation<GetBuyerShippingDetailsRequest, GetBuyerShippingDetailsResponse> operation
-              = new GetBuyerShippingDetailsOperation(
-                sdkConfiguration,
-                options);
+              = new GetBuyerShippingDetailsOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -229,8 +217,7 @@ public class ShippingDetails {
      * @throws Exception if the API call fails
      */
     public UpdateBuyerShippingDetailsResponse update(
-            String buyerId,
-            String shippingDetailsId,
+            String buyerId, String shippingDetailsId,
             ShippingDetailsUpdate shippingDetailsUpdate) throws Exception {
         return update(buyerId, shippingDetailsId, JsonNullable.undefined(),
             shippingDetailsUpdate);
@@ -249,10 +236,8 @@ public class ShippingDetails {
      * @throws Exception if the API call fails
      */
     public UpdateBuyerShippingDetailsResponse update(
-            String buyerId,
-            String shippingDetailsId,
-            JsonNullable<String> merchantAccountId,
-            ShippingDetailsUpdate shippingDetailsUpdate) throws Exception {
+            String buyerId, String shippingDetailsId,
+            JsonNullable<String> merchantAccountId, ShippingDetailsUpdate shippingDetailsUpdate) throws Exception {
         UpdateBuyerShippingDetailsRequest request =
             UpdateBuyerShippingDetailsRequest
                 .builder()
@@ -287,9 +272,7 @@ public class ShippingDetails {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public DeleteBuyerShippingDetailsResponse delete(
-            String buyerId,
-            String shippingDetailsId) throws Exception {
+    public DeleteBuyerShippingDetailsResponse delete(String buyerId, String shippingDetailsId) throws Exception {
         return delete(buyerId, shippingDetailsId, JsonNullable.undefined());
     }
 
@@ -305,8 +288,7 @@ public class ShippingDetails {
      * @throws Exception if the API call fails
      */
     public DeleteBuyerShippingDetailsResponse delete(
-            String buyerId,
-            String shippingDetailsId,
+            String buyerId, String shippingDetailsId,
             JsonNullable<String> merchantAccountId) throws Exception {
         DeleteBuyerShippingDetailsRequest request =
             DeleteBuyerShippingDetailsRequest

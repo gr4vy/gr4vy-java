@@ -81,8 +81,7 @@ public final Cryptogram cryptogram() {
      * @throws Exception if the API call fails
      */
     public ListPaymentMethodNetworkTokensResponse list(
-            String paymentMethodId,
-            JsonNullable<String> merchantAccountId,
+            String paymentMethodId, JsonNullable<String> merchantAccountId,
             Optional<Options> options) throws Exception {
         ListPaymentMethodNetworkTokensRequest request =
             ListPaymentMethodNetworkTokensRequest
@@ -91,9 +90,7 @@ public final Cryptogram cryptogram() {
                 .merchantAccountId(merchantAccountId)
                 .build();
         RequestOperation<ListPaymentMethodNetworkTokensRequest, ListPaymentMethodNetworkTokensResponse> operation
-              = new ListPaymentMethodNetworkTokensOperation(
-                sdkConfiguration,
-                options);
+              = new ListPaymentMethodNetworkTokensOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -118,9 +115,7 @@ public final Cryptogram cryptogram() {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public CreatePaymentMethodNetworkTokenResponse create(
-            String paymentMethodId,
-            NetworkTokenCreate networkTokenCreate) throws Exception {
+    public CreatePaymentMethodNetworkTokenResponse create(String paymentMethodId, NetworkTokenCreate networkTokenCreate) throws Exception {
         return create(paymentMethodId, JsonNullable.undefined(), networkTokenCreate);
     }
 
@@ -136,8 +131,7 @@ public final Cryptogram cryptogram() {
      * @throws Exception if the API call fails
      */
     public CreatePaymentMethodNetworkTokenResponse create(
-            String paymentMethodId,
-            JsonNullable<String> merchantAccountId,
+            String paymentMethodId, JsonNullable<String> merchantAccountId,
             NetworkTokenCreate networkTokenCreate) throws Exception {
         CreatePaymentMethodNetworkTokenRequest request =
             CreatePaymentMethodNetworkTokenRequest
@@ -172,9 +166,7 @@ public final Cryptogram cryptogram() {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public SuspendPaymentMethodNetworkTokenResponse suspend(
-            String paymentMethodId,
-            String networkTokenId) throws Exception {
+    public SuspendPaymentMethodNetworkTokenResponse suspend(String paymentMethodId, String networkTokenId) throws Exception {
         return suspend(paymentMethodId, networkTokenId, JsonNullable.undefined());
     }
 
@@ -190,8 +182,7 @@ public final Cryptogram cryptogram() {
      * @throws Exception if the API call fails
      */
     public SuspendPaymentMethodNetworkTokenResponse suspend(
-            String paymentMethodId,
-            String networkTokenId,
+            String paymentMethodId, String networkTokenId,
             JsonNullable<String> merchantAccountId) throws Exception {
         SuspendPaymentMethodNetworkTokenRequest request =
             SuspendPaymentMethodNetworkTokenRequest
@@ -226,9 +217,7 @@ public final Cryptogram cryptogram() {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public ResumePaymentMethodNetworkTokenResponse resume(
-            String paymentMethodId,
-            String networkTokenId) throws Exception {
+    public ResumePaymentMethodNetworkTokenResponse resume(String paymentMethodId, String networkTokenId) throws Exception {
         return resume(paymentMethodId, networkTokenId, JsonNullable.undefined());
     }
 
@@ -244,8 +233,7 @@ public final Cryptogram cryptogram() {
      * @throws Exception if the API call fails
      */
     public ResumePaymentMethodNetworkTokenResponse resume(
-            String paymentMethodId,
-            String networkTokenId,
+            String paymentMethodId, String networkTokenId,
             JsonNullable<String> merchantAccountId) throws Exception {
         ResumePaymentMethodNetworkTokenRequest request =
             ResumePaymentMethodNetworkTokenRequest
@@ -280,9 +268,7 @@ public final Cryptogram cryptogram() {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public DeletePaymentMethodNetworkTokenResponse delete(
-            String paymentMethodId,
-            String networkTokenId) throws Exception {
+    public DeletePaymentMethodNetworkTokenResponse delete(String paymentMethodId, String networkTokenId) throws Exception {
         return delete(paymentMethodId, networkTokenId, JsonNullable.undefined());
     }
 
@@ -298,8 +284,7 @@ public final Cryptogram cryptogram() {
      * @throws Exception if the API call fails
      */
     public DeletePaymentMethodNetworkTokenResponse delete(
-            String paymentMethodId,
-            String networkTokenId,
+            String paymentMethodId, String networkTokenId,
             JsonNullable<String> merchantAccountId) throws Exception {
         DeletePaymentMethodNetworkTokenRequest request =
             DeletePaymentMethodNetworkTokenRequest

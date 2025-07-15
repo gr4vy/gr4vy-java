@@ -71,9 +71,7 @@ public class GetPayoutRequestBuilder {
             .build());
 
         RequestOperation<GetPayoutRequest, GetPayoutResponse> operation
-              = new GetPayoutOperation(
-                sdkConfiguration,
-                options);
+              = new GetPayoutOperation(sdkConfiguration, options);
         GetPayoutRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

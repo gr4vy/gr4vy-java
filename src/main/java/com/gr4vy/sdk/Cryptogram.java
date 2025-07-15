@@ -46,8 +46,7 @@ public class Cryptogram {
      * @throws Exception if the API call fails
      */
     public CreatePaymentMethodNetworkTokenCryptogramResponse create(
-            String paymentMethodId,
-            String networkTokenId,
+            String paymentMethodId, String networkTokenId,
             CryptogramCreate cryptogramCreate) throws Exception {
         return create(paymentMethodId, networkTokenId, JsonNullable.undefined(),
             cryptogramCreate);
@@ -66,10 +65,8 @@ public class Cryptogram {
      * @throws Exception if the API call fails
      */
     public CreatePaymentMethodNetworkTokenCryptogramResponse create(
-            String paymentMethodId,
-            String networkTokenId,
-            JsonNullable<String> merchantAccountId,
-            CryptogramCreate cryptogramCreate) throws Exception {
+            String paymentMethodId, String networkTokenId,
+            JsonNullable<String> merchantAccountId, CryptogramCreate cryptogramCreate) throws Exception {
         CreatePaymentMethodNetworkTokenCryptogramRequest request =
             CreatePaymentMethodNetworkTokenCryptogramRequest
                 .builder()

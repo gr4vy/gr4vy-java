@@ -71,9 +71,7 @@ public class ListBuyerShippingDetailsRequestBuilder {
             .build());
 
         RequestOperation<ListBuyerShippingDetailsRequest, ListBuyerShippingDetailsResponse> operation
-              = new ListBuyerShippingDetailsOperation(
-                sdkConfiguration,
-                options);
+              = new ListBuyerShippingDetailsOperation(sdkConfiguration, options);
         ListBuyerShippingDetailsRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

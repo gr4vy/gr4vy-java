@@ -57,9 +57,7 @@ public class PaymentOptions {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public ListPaymentOptionsResponse list(
-            JsonNullable<String> merchantAccountId,
-            PaymentOptionRequest paymentOptionRequest) throws Exception {
+    public ListPaymentOptionsResponse list(JsonNullable<String> merchantAccountId, PaymentOptionRequest paymentOptionRequest) throws Exception {
         ListPaymentOptionsRequest request =
             ListPaymentOptionsRequest
                 .builder()

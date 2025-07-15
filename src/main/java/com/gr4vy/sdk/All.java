@@ -59,8 +59,7 @@ public class All {
      * @throws Exception if the API call fails
      */
     public CreateFullTransactionRefundResponse create(
-            String transactionId,
-            JsonNullable<String> merchantAccountId,
+            String transactionId, JsonNullable<String> merchantAccountId,
             JsonNullable<? extends TransactionRefundAllCreate> transactionRefundAllCreate) throws Exception {
         CreateFullTransactionRefundRequest request =
             CreateFullTransactionRefundRequest

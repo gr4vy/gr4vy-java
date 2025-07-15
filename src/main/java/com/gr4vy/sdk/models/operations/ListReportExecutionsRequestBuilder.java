@@ -118,9 +118,7 @@ public class ListReportExecutionsRequestBuilder {
             .build());
 
         RequestOperation<ListReportExecutionsRequest, ListReportExecutionsResponse> operation
-              = new ListReportExecutionsOperation(
-                sdkConfiguration,
-                options);
+              = new ListReportExecutionsOperation(sdkConfiguration, options);
         ListReportExecutionsRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));
@@ -145,9 +143,7 @@ public class ListReportExecutionsRequestBuilder {
             .build());
 
         RequestOperation<ListReportExecutionsRequest, ListReportExecutionsResponse> operation
-              = new ListReportExecutionsOperation(
-                sdkConfiguration,
-                options);
+              = new ListReportExecutionsOperation(sdkConfiguration, options);
         ListReportExecutionsRequest request = buildRequest();
         Iterator<HttpResponse<InputStream>> iterator = new Paginator<>(
             request,

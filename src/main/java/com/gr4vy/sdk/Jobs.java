@@ -57,9 +57,7 @@ public class Jobs {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public CreateAccountUpdaterJobResponse create(
-            JsonNullable<String> merchantAccountId,
-            AccountUpdaterJobCreate accountUpdaterJobCreate) throws Exception {
+    public CreateAccountUpdaterJobResponse create(JsonNullable<String> merchantAccountId, AccountUpdaterJobCreate accountUpdaterJobCreate) throws Exception {
         CreateAccountUpdaterJobRequest request =
             CreateAccountUpdaterJobRequest
                 .builder()

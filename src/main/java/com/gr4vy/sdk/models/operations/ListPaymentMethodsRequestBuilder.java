@@ -58,9 +58,7 @@ public class ListPaymentMethodsRequestBuilder {
             .build());
 
         RequestOperation<ListPaymentMethodsRequest, ListPaymentMethodsResponse> operation
-              = new ListPaymentMethodsOperation(
-                sdkConfiguration,
-                options);
+              = new ListPaymentMethodsOperation(sdkConfiguration, options);
 
         return operation.handleResponse(operation.doRequest(request));
     }
@@ -84,9 +82,7 @@ public class ListPaymentMethodsRequestBuilder {
             .build());
 
         RequestOperation<ListPaymentMethodsRequest, ListPaymentMethodsResponse> operation
-              = new ListPaymentMethodsOperation(
-                sdkConfiguration,
-                options);
+              = new ListPaymentMethodsOperation(sdkConfiguration, options);
         Iterator<HttpResponse<InputStream>> iterator = new Paginator<>(
             request,
             new CursorTracker<>("$.next_cursor", String.class),

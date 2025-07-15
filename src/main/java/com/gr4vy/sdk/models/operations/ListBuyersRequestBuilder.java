@@ -58,9 +58,7 @@ public class ListBuyersRequestBuilder {
             .build());
 
         RequestOperation<ListBuyersRequest, ListBuyersResponse> operation
-              = new ListBuyersOperation(
-                sdkConfiguration,
-                options);
+              = new ListBuyersOperation(sdkConfiguration, options);
 
         return operation.handleResponse(operation.doRequest(request));
     }
@@ -84,9 +82,7 @@ public class ListBuyersRequestBuilder {
             .build());
 
         RequestOperation<ListBuyersRequest, ListBuyersResponse> operation
-              = new ListBuyersOperation(
-                sdkConfiguration,
-                options);
+              = new ListBuyersOperation(sdkConfiguration, options);
         Iterator<HttpResponse<InputStream>> iterator = new Paginator<>(
             request,
             new CursorTracker<>("$.next_cursor", String.class),

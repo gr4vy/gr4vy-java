@@ -59,8 +59,7 @@ public class Refunds {
      * @throws Exception if the API call fails
      */
     public GetRefundResponse get(
-            String refundId,
-            JsonNullable<String> merchantAccountId,
+            String refundId, JsonNullable<String> merchantAccountId,
             Optional<Options> options) throws Exception {
         GetRefundRequest request =
             GetRefundRequest
@@ -69,9 +68,7 @@ public class Refunds {
                 .merchantAccountId(merchantAccountId)
                 .build();
         RequestOperation<GetRefundRequest, GetRefundResponse> operation
-              = new GetRefundOperation(
-                sdkConfiguration,
-                options);
+              = new GetRefundOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

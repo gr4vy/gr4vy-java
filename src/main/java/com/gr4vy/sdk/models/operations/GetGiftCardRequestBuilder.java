@@ -71,9 +71,7 @@ public class GetGiftCardRequestBuilder {
             .build());
 
         RequestOperation<GetGiftCardRequest, GetGiftCardResponse> operation
-              = new GetGiftCardOperation(
-                sdkConfiguration,
-                options);
+              = new GetGiftCardOperation(sdkConfiguration, options);
         GetGiftCardRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

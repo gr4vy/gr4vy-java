@@ -71,9 +71,7 @@ public class GetBuyerRequestBuilder {
             .build());
 
         RequestOperation<GetBuyerRequest, GetBuyerResponse> operation
-              = new GetBuyerOperation(
-                sdkConfiguration,
-                options);
+              = new GetBuyerOperation(sdkConfiguration, options);
         GetBuyerRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

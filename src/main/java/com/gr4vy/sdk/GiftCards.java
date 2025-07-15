@@ -77,8 +77,7 @@ public final Balances balances() {
      * @throws Exception if the API call fails
      */
     public GetGiftCardResponse get(
-            String giftCardId,
-            JsonNullable<String> merchantAccountId,
+            String giftCardId, JsonNullable<String> merchantAccountId,
             Optional<Options> options) throws Exception {
         GetGiftCardRequest request =
             GetGiftCardRequest
@@ -87,9 +86,7 @@ public final Balances balances() {
                 .merchantAccountId(merchantAccountId)
                 .build();
         RequestOperation<GetGiftCardRequest, GetGiftCardResponse> operation
-              = new GetGiftCardOperation(
-                sdkConfiguration,
-                options);
+              = new GetGiftCardOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -127,9 +124,7 @@ public final Balances balances() {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public DeleteGiftCardResponse delete(
-            String giftCardId,
-            JsonNullable<String> merchantAccountId) throws Exception {
+    public DeleteGiftCardResponse delete(String giftCardId, JsonNullable<String> merchantAccountId) throws Exception {
         DeleteGiftCardRequest request =
             DeleteGiftCardRequest
                 .builder()
@@ -175,9 +170,7 @@ public final Balances balances() {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public CreateGiftCardResponse create(
-            JsonNullable<String> merchantAccountId,
-            GiftCardCreate giftCardCreate) throws Exception {
+    public CreateGiftCardResponse create(JsonNullable<String> merchantAccountId, GiftCardCreate giftCardCreate) throws Exception {
         CreateGiftCardRequest request =
             CreateGiftCardRequest
                 .builder()
@@ -223,13 +216,9 @@ public final Balances balances() {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public ListGiftCardsResponse list(
-            ListGiftCardsRequest request,
-            Optional<Options> options) throws Exception {
+    public ListGiftCardsResponse list(ListGiftCardsRequest request, Optional<Options> options) throws Exception {
         RequestOperation<ListGiftCardsRequest, ListGiftCardsResponse> operation
-              = new ListGiftCardsOperation(
-                sdkConfiguration,
-                options);
+              = new ListGiftCardsOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

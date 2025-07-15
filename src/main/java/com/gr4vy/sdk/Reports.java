@@ -76,13 +76,9 @@ public final Executions executions() {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public ListReportsResponse list(
-            ListReportsRequest request,
-            Optional<Options> options) throws Exception {
+    public ListReportsResponse list(ListReportsRequest request, Optional<Options> options) throws Exception {
         RequestOperation<ListReportsRequest, ListReportsResponse> operation
-              = new ListReportsOperation(
-                sdkConfiguration,
-                options);
+              = new ListReportsOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -120,9 +116,7 @@ public final Executions executions() {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public AddReportResponse create(
-            JsonNullable<String> merchantAccountId,
-            ReportCreate reportCreate) throws Exception {
+    public AddReportResponse create(JsonNullable<String> merchantAccountId, ReportCreate reportCreate) throws Exception {
         AddReportRequest request =
             AddReportRequest
                 .builder()
@@ -170,8 +164,7 @@ public final Executions executions() {
      * @throws Exception if the API call fails
      */
     public GetReportResponse get(
-            String reportId,
-            JsonNullable<String> merchantAccountId,
+            String reportId, JsonNullable<String> merchantAccountId,
             Optional<Options> options) throws Exception {
         GetReportRequest request =
             GetReportRequest
@@ -180,9 +173,7 @@ public final Executions executions() {
                 .merchantAccountId(merchantAccountId)
                 .build();
         RequestOperation<GetReportRequest, GetReportResponse> operation
-              = new GetReportOperation(
-                sdkConfiguration,
-                options);
+              = new GetReportOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -207,9 +198,7 @@ public final Executions executions() {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public UpdateReportResponse put(
-            String reportId,
-            ReportUpdate reportUpdate) throws Exception {
+    public UpdateReportResponse put(String reportId, ReportUpdate reportUpdate) throws Exception {
         return put(reportId, JsonNullable.undefined(), reportUpdate);
     }
 
@@ -225,8 +214,7 @@ public final Executions executions() {
      * @throws Exception if the API call fails
      */
     public UpdateReportResponse put(
-            String reportId,
-            JsonNullable<String> merchantAccountId,
+            String reportId, JsonNullable<String> merchantAccountId,
             ReportUpdate reportUpdate) throws Exception {
         UpdateReportRequest request =
             UpdateReportRequest
