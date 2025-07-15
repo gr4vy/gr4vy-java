@@ -26,22 +26,23 @@ import com.gr4vy.sdk.operations.UpdateReportOperation;
 import com.gr4vy.sdk.utils.Options;
 import java.lang.Exception;
 import java.lang.String;
-import java.util.List;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 
 public class Reports {
     private final SDKConfiguration sdkConfiguration;
-private final Executions executions;
+    private final Executions executions;
 
     Reports(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
         this.executions = new Executions(this.sdkConfiguration);
     }
-public final Executions executions() {
+
+    public final Executions executions() {
         return executions;
     }
+
     /**
      * List configured reports
      * 

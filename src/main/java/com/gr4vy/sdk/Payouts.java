@@ -22,7 +22,6 @@ import com.gr4vy.sdk.utils.Options;
 import java.lang.Exception;
 import java.lang.Long;
 import java.lang.String;
-import java.util.List;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -33,6 +32,7 @@ public class Payouts {
     Payouts(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
+
     /**
      * List payouts created.
      * 

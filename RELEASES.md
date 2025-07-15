@@ -249,3 +249,13 @@ Based on:
 - [java v2.7.1] .
 ### Releases
 - [Maven Central v2.7.1] https://central.sonatype.com/artifact/com.gr4vy/sdk/2.7.1 - .
+
+## 2025-07-15 17:57:30
+### Changes
+Based on:
+- OpenAPI Doc  
+- Speakeasy CLI 1.582.0 (2.657.1) https://github.com/speakeasy-api/speakeasy
+### Generated
+- [java v2.7.2] .
+### Releases
+- [Maven Central v2.7.2] https://central.sonatype.com/artifact/com.gr4vy/sdk/2.7.2 - .

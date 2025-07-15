@@ -21,22 +21,23 @@ import com.gr4vy.sdk.operations.ListTransactionRefundsOperation;
 import com.gr4vy.sdk.utils.Options;
 import java.lang.Exception;
 import java.lang.String;
-import java.util.List;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 
 public class TransactionsRefunds {
     private final SDKConfiguration sdkConfiguration;
-private final All all;
+    private final All all;
 
     TransactionsRefunds(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
         this.all = new All(this.sdkConfiguration);
     }
-public final All all() {
+
+    public final All all() {
         return all;
     }
+
     /**
      * List transaction refunds
      * 

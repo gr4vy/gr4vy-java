@@ -40,7 +40,6 @@ import com.gr4vy.sdk.utils.Options;
 import java.lang.Exception;
 import java.lang.Object;
 import java.lang.String;
-import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
@@ -52,6 +51,7 @@ public class PaymentServices {
     PaymentServices(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
+
     /**
      * List payment services
      * 

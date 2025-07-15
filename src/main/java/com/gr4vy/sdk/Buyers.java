@@ -30,16 +30,15 @@ import com.gr4vy.sdk.operations.UpdateBuyerOperation;
 import com.gr4vy.sdk.utils.Options;
 import java.lang.Exception;
 import java.lang.String;
-import java.util.List;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 
 public class Buyers {
     private final SDKConfiguration sdkConfiguration;
-private final BuyersPaymentMethods paymentMethods;
-private final BuyersGiftCards giftCards;
-private final ShippingDetails shippingDetails;
+    private final BuyersPaymentMethods paymentMethods;
+    private final BuyersGiftCards giftCards;
+    private final ShippingDetails shippingDetails;
 
     Buyers(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -47,15 +46,19 @@ private final ShippingDetails shippingDetails;
         this.giftCards = new BuyersGiftCards(this.sdkConfiguration);
         this.shippingDetails = new ShippingDetails(this.sdkConfiguration);
     }
-public final BuyersPaymentMethods paymentMethods() {
+
+    public final BuyersPaymentMethods paymentMethods() {
         return paymentMethods;
     }
-public final BuyersGiftCards giftCards() {
+
+    public final BuyersGiftCards giftCards() {
         return giftCards;
     }
-public final ShippingDetails shippingDetails() {
+
+    public final ShippingDetails shippingDetails() {
         return shippingDetails;
     }
+
     /**
      * List all buyers
      * 

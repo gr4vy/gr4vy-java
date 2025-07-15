@@ -12,8 +12,6 @@ import com.gr4vy.sdk.models.operations.CreateFullTransactionRefundResponse;
 import com.gr4vy.sdk.operations.CreateFullTransactionRefundOperation;
 import java.lang.Exception;
 import java.lang.String;
-import java.util.List;
-import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 
@@ -23,6 +21,7 @@ public class All {
     All(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
+
     /**
      * Create batch transaction refund
      * 

@@ -12,7 +12,6 @@ import com.gr4vy.sdk.operations.GetRefundOperation;
 import com.gr4vy.sdk.utils.Options;
 import java.lang.Exception;
 import java.lang.String;
-import java.util.List;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -23,6 +22,7 @@ public class Refunds {
     Refunds(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
+
     /**
      * Get refund
      * 

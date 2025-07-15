@@ -16,8 +16,6 @@ import com.gr4vy.sdk.operations.RegisterDigitalWalletDomainOperation;
 import com.gr4vy.sdk.operations.UnregisterDigitalWalletDomainOperation;
 import java.lang.Exception;
 import java.lang.String;
-import java.util.List;
-import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 
@@ -27,6 +25,7 @@ public class Domains {
     Domains(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
+
     /**
      * Register a digital wallet domain
      * 

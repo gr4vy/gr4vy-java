@@ -11,7 +11,6 @@ import com.gr4vy.sdk.models.operations.ListBuyerPaymentMethodsResponse;
 import com.gr4vy.sdk.operations.ListBuyerPaymentMethodsOperation;
 import com.gr4vy.sdk.utils.Options;
 import java.lang.Exception;
-import java.util.List;
 import java.util.Optional;
 
 
@@ -21,6 +20,7 @@ public class BuyersPaymentMethods {
     BuyersPaymentMethods(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
+
     /**
      * List payment methods for a buyer
      * 

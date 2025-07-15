@@ -12,8 +12,6 @@ import com.gr4vy.sdk.models.operations.CreateAccountUpdaterJobResponse;
 import com.gr4vy.sdk.operations.CreateAccountUpdaterJobOperation;
 import java.lang.Exception;
 import java.lang.String;
-import java.util.List;
-import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 
@@ -23,6 +21,7 @@ public class Jobs {
     Jobs(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
+
     /**
      * Create account updater job
      * 

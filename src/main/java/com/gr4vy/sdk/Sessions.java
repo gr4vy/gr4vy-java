@@ -21,8 +21,6 @@ import com.gr4vy.sdk.operations.CreateClickToPayDigitalWalletSessionOperation;
 import com.gr4vy.sdk.operations.CreateGooglePayDigitalWalletSessionOperation;
 import java.lang.Exception;
 import java.lang.String;
-import java.util.List;
-import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 
@@ -32,6 +30,7 @@ public class Sessions {
     Sessions(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
+
     /**
      * Create a Google Pay session
      * 
