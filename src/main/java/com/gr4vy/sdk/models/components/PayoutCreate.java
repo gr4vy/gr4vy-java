@@ -94,7 +94,7 @@ public class PayoutCreate {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("connection_options")
-    private JsonNullable<? extends ConnectionOptions> connectionOptions;
+    private JsonNullable<? extends PayoutConnectionOptions> connectionOptions;
 
     @JsonCreator
     public PayoutCreate(
@@ -108,7 +108,7 @@ public class PayoutCreate {
             @JsonProperty("buyer") JsonNullable<? extends GuestBuyerInput> buyer,
             @JsonProperty("buyer_external_identifier") JsonNullable<String> buyerExternalIdentifier,
             @JsonProperty("merchant") JsonNullable<? extends PayoutMerchant> merchant,
-            @JsonProperty("connection_options") JsonNullable<? extends ConnectionOptions> connectionOptions) {
+            @JsonProperty("connection_options") JsonNullable<? extends PayoutConnectionOptions> connectionOptions) {
         Utils.checkNotNull(amount, "amount");
         Utils.checkNotNull(currency, "currency");
         Utils.checkNotNull(paymentServiceId, "paymentServiceId");
@@ -232,8 +232,8 @@ public class PayoutCreate {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<ConnectionOptions> connectionOptions() {
-        return (JsonNullable<ConnectionOptions>) connectionOptions;
+    public JsonNullable<PayoutConnectionOptions> connectionOptions() {
+        return (JsonNullable<PayoutConnectionOptions>) connectionOptions;
     }
 
     public static Builder builder() {
@@ -388,7 +388,7 @@ public class PayoutCreate {
     /**
      * Optional fields for processing payouts on specific payment services.
      */
-    public PayoutCreate withConnectionOptions(ConnectionOptions connectionOptions) {
+    public PayoutCreate withConnectionOptions(PayoutConnectionOptions connectionOptions) {
         Utils.checkNotNull(connectionOptions, "connectionOptions");
         this.connectionOptions = JsonNullable.of(connectionOptions);
         return this;
@@ -397,7 +397,7 @@ public class PayoutCreate {
     /**
      * Optional fields for processing payouts on specific payment services.
      */
-    public PayoutCreate withConnectionOptions(JsonNullable<? extends ConnectionOptions> connectionOptions) {
+    public PayoutCreate withConnectionOptions(JsonNullable<? extends PayoutConnectionOptions> connectionOptions) {
         Utils.checkNotNull(connectionOptions, "connectionOptions");
         this.connectionOptions = connectionOptions;
         return this;
@@ -474,7 +474,7 @@ public class PayoutCreate {
 
         private JsonNullable<? extends PayoutMerchant> merchant = JsonNullable.undefined();
 
-        private JsonNullable<? extends ConnectionOptions> connectionOptions = JsonNullable.undefined();
+        private JsonNullable<? extends PayoutConnectionOptions> connectionOptions = JsonNullable.undefined();
 
         private Builder() {
           // force use of static builder() method
@@ -638,7 +638,7 @@ public class PayoutCreate {
         /**
          * Optional fields for processing payouts on specific payment services.
          */
-        public Builder connectionOptions(ConnectionOptions connectionOptions) {
+        public Builder connectionOptions(PayoutConnectionOptions connectionOptions) {
             Utils.checkNotNull(connectionOptions, "connectionOptions");
             this.connectionOptions = JsonNullable.of(connectionOptions);
             return this;
@@ -647,7 +647,7 @@ public class PayoutCreate {
         /**
          * Optional fields for processing payouts on specific payment services.
          */
-        public Builder connectionOptions(JsonNullable<? extends ConnectionOptions> connectionOptions) {
+        public Builder connectionOptions(JsonNullable<? extends PayoutConnectionOptions> connectionOptions) {
             Utils.checkNotNull(connectionOptions, "connectionOptions");
             this.connectionOptions = connectionOptions;
             return this;

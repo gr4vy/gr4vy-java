@@ -5,9 +5,9 @@
 
 ### Available Operations
 
-* [list](#list) - List payouts created.
-* [create](#create) - Create a payout.
-* [get](#get) - Get a payout.
+* [list](#list) - List payouts created
+* [create](#create) - Create a payout
+* [get](#get) - Get a payout
 
 ## list
 
@@ -147,7 +147,7 @@ public class Application {
 
 ## get
 
-Retreives a payout.
+Retrieves a payout.
 
 ### Example Usage
 

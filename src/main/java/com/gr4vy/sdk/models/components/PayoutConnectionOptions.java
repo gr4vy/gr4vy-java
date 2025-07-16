@@ -15,22 +15,22 @@ import java.lang.SuppressWarnings;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 
-public class ConnectionOptions {
+public class PayoutConnectionOptions {
     /**
      * Custom options for `checkout-card` payment service.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("checkout-card")
-    private JsonNullable<? extends CheckoutCardConnectionOptions> checkoutCard;
+    private JsonNullable<? extends CheckoutPayoutOptions> checkoutCard;
 
     @JsonCreator
-    public ConnectionOptions(
-            @JsonProperty("checkout-card") JsonNullable<? extends CheckoutCardConnectionOptions> checkoutCard) {
+    public PayoutConnectionOptions(
+            @JsonProperty("checkout-card") JsonNullable<? extends CheckoutPayoutOptions> checkoutCard) {
         Utils.checkNotNull(checkoutCard, "checkoutCard");
         this.checkoutCard = checkoutCard;
     }
     
-    public ConnectionOptions() {
+    public PayoutConnectionOptions() {
         this(JsonNullable.undefined());
     }
 
@@ -39,8 +39,8 @@ public class ConnectionOptions {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<CheckoutCardConnectionOptions> checkoutCard() {
-        return (JsonNullable<CheckoutCardConnectionOptions>) checkoutCard;
+    public JsonNullable<CheckoutPayoutOptions> checkoutCard() {
+        return (JsonNullable<CheckoutPayoutOptions>) checkoutCard;
     }
 
     public static Builder builder() {
@@ -51,7 +51,7 @@ public class ConnectionOptions {
     /**
      * Custom options for `checkout-card` payment service.
      */
-    public ConnectionOptions withCheckoutCard(CheckoutCardConnectionOptions checkoutCard) {
+    public PayoutConnectionOptions withCheckoutCard(CheckoutPayoutOptions checkoutCard) {
         Utils.checkNotNull(checkoutCard, "checkoutCard");
         this.checkoutCard = JsonNullable.of(checkoutCard);
         return this;
@@ -60,7 +60,7 @@ public class ConnectionOptions {
     /**
      * Custom options for `checkout-card` payment service.
      */
-    public ConnectionOptions withCheckoutCard(JsonNullable<? extends CheckoutCardConnectionOptions> checkoutCard) {
+    public PayoutConnectionOptions withCheckoutCard(JsonNullable<? extends CheckoutPayoutOptions> checkoutCard) {
         Utils.checkNotNull(checkoutCard, "checkoutCard");
         this.checkoutCard = checkoutCard;
         return this;
@@ -74,7 +74,7 @@ public class ConnectionOptions {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        ConnectionOptions other = (ConnectionOptions) o;
+        PayoutConnectionOptions other = (PayoutConnectionOptions) o;
         return 
             Utils.enhancedDeepEquals(this.checkoutCard, other.checkoutCard);
     }
@@ -87,14 +87,14 @@ public class ConnectionOptions {
     
     @Override
     public String toString() {
-        return Utils.toString(ConnectionOptions.class,
+        return Utils.toString(PayoutConnectionOptions.class,
                 "checkoutCard", checkoutCard);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private JsonNullable<? extends CheckoutCardConnectionOptions> checkoutCard = JsonNullable.undefined();
+        private JsonNullable<? extends CheckoutPayoutOptions> checkoutCard = JsonNullable.undefined();
 
         private Builder() {
           // force use of static builder() method
@@ -104,7 +104,7 @@ public class ConnectionOptions {
         /**
          * Custom options for `checkout-card` payment service.
          */
-        public Builder checkoutCard(CheckoutCardConnectionOptions checkoutCard) {
+        public Builder checkoutCard(CheckoutPayoutOptions checkoutCard) {
             Utils.checkNotNull(checkoutCard, "checkoutCard");
             this.checkoutCard = JsonNullable.of(checkoutCard);
             return this;
@@ -113,15 +113,15 @@ public class ConnectionOptions {
         /**
          * Custom options for `checkout-card` payment service.
          */
-        public Builder checkoutCard(JsonNullable<? extends CheckoutCardConnectionOptions> checkoutCard) {
+        public Builder checkoutCard(JsonNullable<? extends CheckoutPayoutOptions> checkoutCard) {
             Utils.checkNotNull(checkoutCard, "checkoutCard");
             this.checkoutCard = checkoutCard;
             return this;
         }
 
-        public ConnectionOptions build() {
+        public PayoutConnectionOptions build() {
 
-            return new ConnectionOptions(
+            return new PayoutConnectionOptions(
                 checkoutCard);
         }
 

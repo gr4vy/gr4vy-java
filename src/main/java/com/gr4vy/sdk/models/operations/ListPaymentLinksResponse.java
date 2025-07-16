@@ -5,7 +5,7 @@ package com.gr4vy.sdk.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.gr4vy.sdk.models.components.CollectionPaymentLink;
+import com.gr4vy.sdk.models.components.PaymentLinks;
 import com.gr4vy.sdk.utils.Response;
 import com.gr4vy.sdk.utils.Utils;
 import java.io.InputStream;
@@ -36,22 +36,22 @@ public class ListPaymentLinksResponse implements Response {
     /**
      * Successful Response
      */
-    private Optional<? extends CollectionPaymentLink> collectionPaymentLink;
+    private Optional<? extends PaymentLinks> paymentLinks;
 
     @JsonCreator
     public ListPaymentLinksResponse(
             String contentType,
             int statusCode,
             HttpResponse<InputStream> rawResponse,
-            Optional<? extends CollectionPaymentLink> collectionPaymentLink) {
+            Optional<? extends PaymentLinks> paymentLinks) {
         Utils.checkNotNull(contentType, "contentType");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
-        Utils.checkNotNull(collectionPaymentLink, "collectionPaymentLink");
+        Utils.checkNotNull(paymentLinks, "paymentLinks");
         this.contentType = contentType;
         this.statusCode = statusCode;
         this.rawResponse = rawResponse;
-        this.collectionPaymentLink = collectionPaymentLink;
+        this.paymentLinks = paymentLinks;
     }
     
     public ListPaymentLinksResponse(
@@ -91,8 +91,8 @@ public class ListPaymentLinksResponse implements Response {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<CollectionPaymentLink> collectionPaymentLink() {
-        return (Optional<CollectionPaymentLink>) collectionPaymentLink;
+    public Optional<PaymentLinks> paymentLinks() {
+        return (Optional<PaymentLinks>) paymentLinks;
     }
 
     public static Builder builder() {
@@ -130,9 +130,9 @@ public class ListPaymentLinksResponse implements Response {
     /**
      * Successful Response
      */
-    public ListPaymentLinksResponse withCollectionPaymentLink(CollectionPaymentLink collectionPaymentLink) {
-        Utils.checkNotNull(collectionPaymentLink, "collectionPaymentLink");
-        this.collectionPaymentLink = Optional.ofNullable(collectionPaymentLink);
+    public ListPaymentLinksResponse withPaymentLinks(PaymentLinks paymentLinks) {
+        Utils.checkNotNull(paymentLinks, "paymentLinks");
+        this.paymentLinks = Optional.ofNullable(paymentLinks);
         return this;
     }
 
@@ -140,9 +140,9 @@ public class ListPaymentLinksResponse implements Response {
     /**
      * Successful Response
      */
-    public ListPaymentLinksResponse withCollectionPaymentLink(Optional<? extends CollectionPaymentLink> collectionPaymentLink) {
-        Utils.checkNotNull(collectionPaymentLink, "collectionPaymentLink");
-        this.collectionPaymentLink = collectionPaymentLink;
+    public ListPaymentLinksResponse withPaymentLinks(Optional<? extends PaymentLinks> paymentLinks) {
+        Utils.checkNotNull(paymentLinks, "paymentLinks");
+        this.paymentLinks = paymentLinks;
         return this;
     }
 
@@ -159,14 +159,14 @@ public class ListPaymentLinksResponse implements Response {
             Utils.enhancedDeepEquals(this.contentType, other.contentType) &&
             Utils.enhancedDeepEquals(this.statusCode, other.statusCode) &&
             Utils.enhancedDeepEquals(this.rawResponse, other.rawResponse) &&
-            Utils.enhancedDeepEquals(this.collectionPaymentLink, other.collectionPaymentLink);
+            Utils.enhancedDeepEquals(this.paymentLinks, other.paymentLinks);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
             contentType, statusCode, rawResponse,
-            collectionPaymentLink);
+            paymentLinks);
     }
     
     @Override
@@ -175,7 +175,7 @@ public class ListPaymentLinksResponse implements Response {
                 "contentType", contentType,
                 "statusCode", statusCode,
                 "rawResponse", rawResponse,
-                "collectionPaymentLink", collectionPaymentLink);
+                "paymentLinks", paymentLinks);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -187,7 +187,7 @@ public class ListPaymentLinksResponse implements Response {
 
         private HttpResponse<InputStream> rawResponse;
 
-        private Optional<? extends CollectionPaymentLink> collectionPaymentLink = Optional.empty();
+        private Optional<? extends PaymentLinks> paymentLinks = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -227,18 +227,18 @@ public class ListPaymentLinksResponse implements Response {
         /**
          * Successful Response
          */
-        public Builder collectionPaymentLink(CollectionPaymentLink collectionPaymentLink) {
-            Utils.checkNotNull(collectionPaymentLink, "collectionPaymentLink");
-            this.collectionPaymentLink = Optional.ofNullable(collectionPaymentLink);
+        public Builder paymentLinks(PaymentLinks paymentLinks) {
+            Utils.checkNotNull(paymentLinks, "paymentLinks");
+            this.paymentLinks = Optional.ofNullable(paymentLinks);
             return this;
         }
 
         /**
          * Successful Response
          */
-        public Builder collectionPaymentLink(Optional<? extends CollectionPaymentLink> collectionPaymentLink) {
-            Utils.checkNotNull(collectionPaymentLink, "collectionPaymentLink");
-            this.collectionPaymentLink = collectionPaymentLink;
+        public Builder paymentLinks(Optional<? extends PaymentLinks> paymentLinks) {
+            Utils.checkNotNull(paymentLinks, "paymentLinks");
+            this.paymentLinks = paymentLinks;
             return this;
         }
 
@@ -246,7 +246,7 @@ public class ListPaymentLinksResponse implements Response {
 
             return new ListPaymentLinksResponse(
                 contentType, statusCode, rawResponse,
-                collectionPaymentLink);
+                paymentLinks);
         }
 
     }

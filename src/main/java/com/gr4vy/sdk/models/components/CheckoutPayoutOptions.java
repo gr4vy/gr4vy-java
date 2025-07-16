@@ -11,7 +11,7 @@ import java.lang.Override;
 import java.lang.String;
 
 
-public class CheckoutCardConnectionOptions {
+public class CheckoutPayoutOptions {
     /**
      * The processing channel to be used for the payment.
      */
@@ -25,7 +25,7 @@ public class CheckoutCardConnectionOptions {
     private String sourceId;
 
     @JsonCreator
-    public CheckoutCardConnectionOptions(
+    public CheckoutPayoutOptions(
             @JsonProperty("processing_channel_id") String processingChannelId,
             @JsonProperty("source_id") String sourceId) {
         Utils.checkNotNull(processingChannelId, "processingChannelId");
@@ -58,7 +58,7 @@ public class CheckoutCardConnectionOptions {
     /**
      * The processing channel to be used for the payment.
      */
-    public CheckoutCardConnectionOptions withProcessingChannelId(String processingChannelId) {
+    public CheckoutPayoutOptions withProcessingChannelId(String processingChannelId) {
         Utils.checkNotNull(processingChannelId, "processingChannelId");
         this.processingChannelId = processingChannelId;
         return this;
@@ -67,7 +67,7 @@ public class CheckoutCardConnectionOptions {
     /**
      * The ID of the currency account that will fund the payout.
      */
-    public CheckoutCardConnectionOptions withSourceId(String sourceId) {
+    public CheckoutPayoutOptions withSourceId(String sourceId) {
         Utils.checkNotNull(sourceId, "sourceId");
         this.sourceId = sourceId;
         return this;
@@ -81,7 +81,7 @@ public class CheckoutCardConnectionOptions {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        CheckoutCardConnectionOptions other = (CheckoutCardConnectionOptions) o;
+        CheckoutPayoutOptions other = (CheckoutPayoutOptions) o;
         return 
             Utils.enhancedDeepEquals(this.processingChannelId, other.processingChannelId) &&
             Utils.enhancedDeepEquals(this.sourceId, other.sourceId);
@@ -95,7 +95,7 @@ public class CheckoutCardConnectionOptions {
     
     @Override
     public String toString() {
-        return Utils.toString(CheckoutCardConnectionOptions.class,
+        return Utils.toString(CheckoutPayoutOptions.class,
                 "processingChannelId", processingChannelId,
                 "sourceId", sourceId);
     }
@@ -131,9 +131,9 @@ public class CheckoutCardConnectionOptions {
             return this;
         }
 
-        public CheckoutCardConnectionOptions build() {
+        public CheckoutPayoutOptions build() {
 
-            return new CheckoutCardConnectionOptions(
+            return new CheckoutPayoutOptions(
                 processingChannelId, sourceId);
         }
 

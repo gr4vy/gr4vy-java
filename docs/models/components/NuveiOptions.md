@@ -1,0 +1,9 @@
+# NuveiOptions
+
+
+## Fields
+
+| Field                                                                                        | Type                                                                                         | Required                                                                                     | Description                                                                                  | Example                                                                                      |
+| -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
+| `customData`                                                                                 | *JsonNullable\<String>*                                                                      | :heavy_minus_sign:                                                                           | General data about the customer provided by the merchant.                                    | user=123,trusted=false                                                                       |
+| `airlineData`                                                                                | [JsonNullable\<NuveiAirlineDataOptions>](../../models/components/NuveiAirlineDataOptions.md) | :heavy_minus_sign:                                                                           | Provides additional airline data for Nuvei payments.                                         |                                                                                              |

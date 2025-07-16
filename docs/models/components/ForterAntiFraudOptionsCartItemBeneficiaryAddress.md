@@ -1,0 +1,14 @@
+# ForterAntiFraudOptionsCartItemBeneficiaryAddress
+
+
+## Fields
+
+| Field                                                   | Type                                                    | Required                                                | Description                                             | Example                                                 |
+| ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- |
+| `country`                                               | *String*                                                | :heavy_check_mark:                                      | The country code of the beneficiary's address.          | DE                                                      |
+| `address1`                                              | *JsonNullable\<String>*                                 | :heavy_minus_sign:                                      | First line of the beneficiary's address.                |                                                         |
+| `address2`                                              | *JsonNullable\<String>*                                 | :heavy_minus_sign:                                      | Second line of the beneficiary's address.               |                                                         |
+| `zip`                                                   | *JsonNullable\<String>*                                 | :heavy_minus_sign:                                      | Zip or postal code of the beneficiary's address.        |                                                         |
+| `region`                                                | *JsonNullable\<String>*                                 | :heavy_minus_sign:                                      | State or region of the beneficiary's address.           |                                                         |
+| `company`                                               | *JsonNullable\<String>*                                 | :heavy_minus_sign:                                      | Company name associated with the beneficiary's address. |                                                         |
+| `city`                                                  | *JsonNullable\<String>*                                 | :heavy_minus_sign:                                      | City of the beneficiary's address.                      |                                                         |

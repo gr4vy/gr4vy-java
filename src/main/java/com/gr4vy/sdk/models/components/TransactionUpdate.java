@@ -9,7 +9,6 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.gr4vy.sdk.utils.Utils;
-import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
@@ -37,13 +36,13 @@ public class TransactionUpdate {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("connection_options")
-    private JsonNullable<? extends Map<String, Map<String, Object>>> connectionOptions;
+    private JsonNullable<? extends TransactionConnectionOptions> connectionOptions;
 
     @JsonCreator
     public TransactionUpdate(
             @JsonProperty("external_identifier") JsonNullable<String> externalIdentifier,
             @JsonProperty("metadata") JsonNullable<? extends Map<String, String>> metadata,
-            @JsonProperty("connection_options") JsonNullable<? extends Map<String, Map<String, Object>>> connectionOptions) {
+            @JsonProperty("connection_options") JsonNullable<? extends TransactionConnectionOptions> connectionOptions) {
         Utils.checkNotNull(externalIdentifier, "externalIdentifier");
         Utils.checkNotNull(metadata, "metadata");
         Utils.checkNotNull(connectionOptions, "connectionOptions");
@@ -78,8 +77,8 @@ public class TransactionUpdate {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<Map<String, Map<String, Object>>> connectionOptions() {
-        return (JsonNullable<Map<String, Map<String, Object>>>) connectionOptions;
+    public JsonNullable<TransactionConnectionOptions> connectionOptions() {
+        return (JsonNullable<TransactionConnectionOptions>) connectionOptions;
     }
 
     public static Builder builder() {
@@ -126,7 +125,7 @@ public class TransactionUpdate {
     /**
      * Allows for passing optional configuration per connection to take advantage of connection specific features. When provided, the data is only passed to the target connection type to prevent sharing configuration across connections. Please note that each of the keys this object are in kebab-case, for example `cybersource-anti-fraud` as they represent the ID of the connector. All the other keys will be snake case, for example `merchant_defined_data` or camel case to match an external API that the connector uses. If provided, the whole value will be overridden.
      */
-    public TransactionUpdate withConnectionOptions(Map<String, Map<String, Object>> connectionOptions) {
+    public TransactionUpdate withConnectionOptions(TransactionConnectionOptions connectionOptions) {
         Utils.checkNotNull(connectionOptions, "connectionOptions");
         this.connectionOptions = JsonNullable.of(connectionOptions);
         return this;
@@ -135,7 +134,7 @@ public class TransactionUpdate {
     /**
      * Allows for passing optional configuration per connection to take advantage of connection specific features. When provided, the data is only passed to the target connection type to prevent sharing configuration across connections. Please note that each of the keys this object are in kebab-case, for example `cybersource-anti-fraud` as they represent the ID of the connector. All the other keys will be snake case, for example `merchant_defined_data` or camel case to match an external API that the connector uses. If provided, the whole value will be overridden.
      */
-    public TransactionUpdate withConnectionOptions(JsonNullable<? extends Map<String, Map<String, Object>>> connectionOptions) {
+    public TransactionUpdate withConnectionOptions(JsonNullable<? extends TransactionConnectionOptions> connectionOptions) {
         Utils.checkNotNull(connectionOptions, "connectionOptions");
         this.connectionOptions = connectionOptions;
         return this;
@@ -177,7 +176,7 @@ public class TransactionUpdate {
 
         private JsonNullable<? extends Map<String, String>> metadata = JsonNullable.undefined();
 
-        private JsonNullable<? extends Map<String, Map<String, Object>>> connectionOptions = JsonNullable.undefined();
+        private JsonNullable<? extends TransactionConnectionOptions> connectionOptions = JsonNullable.undefined();
 
         private Builder() {
           // force use of static builder() method
@@ -225,7 +224,7 @@ public class TransactionUpdate {
         /**
          * Allows for passing optional configuration per connection to take advantage of connection specific features. When provided, the data is only passed to the target connection type to prevent sharing configuration across connections. Please note that each of the keys this object are in kebab-case, for example `cybersource-anti-fraud` as they represent the ID of the connector. All the other keys will be snake case, for example `merchant_defined_data` or camel case to match an external API that the connector uses. If provided, the whole value will be overridden.
          */
-        public Builder connectionOptions(Map<String, Map<String, Object>> connectionOptions) {
+        public Builder connectionOptions(TransactionConnectionOptions connectionOptions) {
             Utils.checkNotNull(connectionOptions, "connectionOptions");
             this.connectionOptions = JsonNullable.of(connectionOptions);
             return this;
@@ -234,7 +233,7 @@ public class TransactionUpdate {
         /**
          * Allows for passing optional configuration per connection to take advantage of connection specific features. When provided, the data is only passed to the target connection type to prevent sharing configuration across connections. Please note that each of the keys this object are in kebab-case, for example `cybersource-anti-fraud` as they represent the ID of the connector. All the other keys will be snake case, for example `merchant_defined_data` or camel case to match an external API that the connector uses. If provided, the whole value will be overridden.
          */
-        public Builder connectionOptions(JsonNullable<? extends Map<String, Map<String, Object>>> connectionOptions) {
+        public Builder connectionOptions(JsonNullable<? extends TransactionConnectionOptions> connectionOptions) {
             Utils.checkNotNull(connectionOptions, "connectionOptions");
             this.connectionOptions = connectionOptions;
             return this;
