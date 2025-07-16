@@ -1,0 +1,9 @@
+# OxxoOptions
+
+
+## Fields
+
+| Field                                                                                        | Type                                                                                         | Required                                                                                     | Description                                                                                  | Example                                                                                      |
+| -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
+| `paymentMethodExpiresAt`                                                                     | *JsonNullable\<Long>*                                                                        | :heavy_minus_sign:                                                                           | Defines a custom expiration time (unix time) after which Oxxo payment requests are cancelled | 1750074293                                                                                   |
+| `approvalUrl`                                                                                | *JsonNullable\<String>*                                                                      | :heavy_minus_sign:                                                                           | Approval URL that will receive a charge payment method reference.                            | https://example.com                                                                          |

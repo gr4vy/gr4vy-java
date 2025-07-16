@@ -1,4 +1,4 @@
-# CollectionPaymentLink
+# PaymentLinks
 
 
 ## Fields

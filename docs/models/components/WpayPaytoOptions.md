@@ -1,0 +1,10 @@
+# WpayPaytoOptions
+
+
+## Fields
+
+| Field                                                                                          | Type                                                                                           | Required                                                                                       | Description                                                                                    |
+| ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
+| `instrument`                                                                                   | [JsonNullable\<WpayPaytoResourceOptions>](../../models/components/WpayPaytoResourceOptions.md) | :heavy_minus_sign:                                                                             | Options to pass to the `instrument` resource in the Wpay PayTo API.                            |
+| `payment`                                                                                      | [JsonNullable\<WpayPaytoResourceOptions>](../../models/components/WpayPaytoResourceOptions.md) | :heavy_minus_sign:                                                                             | Options to pass to the `payment` resource in the Wpay PayTo API.                               |
+| `refund`                                                                                       | [JsonNullable\<WpayPaytoResourceOptions>](../../models/components/WpayPaytoResourceOptions.md) | :heavy_minus_sign:                                                                             | Options to pass to the `refund` resource in the Wpay PayTo API.                                |

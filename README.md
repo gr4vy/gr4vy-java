@@ -56,7 +56,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'com.gr4vy:sdk:2.7.3'
+implementation 'com.gr4vy:sdk:2.7.4'
 ```
 
 Maven:
@@ -64,7 +64,7 @@ Maven:
 <dependency>
     <groupId>com.gr4vy</groupId>
     <artifactId>sdk</artifactId>
-    <version>2.7.3</version>
+    <version>2.7.4</version>
 </dependency>
 ```
 
@@ -363,9 +363,9 @@ try {
 
 ### [payouts()](docs/sdks/payouts/README.md)
 
-* [list](docs/sdks/payouts/README.md#list) - List payouts created.
-* [create](docs/sdks/payouts/README.md#create) - Create a payout.
-* [get](docs/sdks/payouts/README.md#get) - Get a payout.
+* [list](docs/sdks/payouts/README.md#list) - List payouts created
+* [create](docs/sdks/payouts/README.md#create) - Create a payout
+* [get](docs/sdks/payouts/README.md#get) - Get a payout
 
 ### [refunds()](docs/sdks/refunds/README.md)
 

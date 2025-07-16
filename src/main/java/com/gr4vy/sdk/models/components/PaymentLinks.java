@@ -19,7 +19,7 @@ import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 
-public class CollectionPaymentLink {
+public class PaymentLinks {
     /**
      * A list of items returned for this request.
      */
@@ -48,7 +48,7 @@ public class CollectionPaymentLink {
     private JsonNullable<String> previousCursor;
 
     @JsonCreator
-    public CollectionPaymentLink(
+    public PaymentLinks(
             @JsonProperty("items") List<PaymentLink> items,
             @JsonProperty("limit") Optional<Long> limit,
             @JsonProperty("next_cursor") JsonNullable<String> nextCursor,
@@ -63,7 +63,7 @@ public class CollectionPaymentLink {
         this.previousCursor = previousCursor;
     }
     
-    public CollectionPaymentLink(
+    public PaymentLinks(
             List<PaymentLink> items) {
         this(items, Optional.empty(), JsonNullable.undefined(),
             JsonNullable.undefined());
@@ -109,7 +109,7 @@ public class CollectionPaymentLink {
     /**
      * A list of items returned for this request.
      */
-    public CollectionPaymentLink withItems(List<PaymentLink> items) {
+    public PaymentLinks withItems(List<PaymentLink> items) {
         Utils.checkNotNull(items, "items");
         this.items = items;
         return this;
@@ -118,7 +118,7 @@ public class CollectionPaymentLink {
     /**
      * The number of items for this page.
      */
-    public CollectionPaymentLink withLimit(long limit) {
+    public PaymentLinks withLimit(long limit) {
         Utils.checkNotNull(limit, "limit");
         this.limit = Optional.ofNullable(limit);
         return this;
@@ -128,7 +128,7 @@ public class CollectionPaymentLink {
     /**
      * The number of items for this page.
      */
-    public CollectionPaymentLink withLimit(Optional<Long> limit) {
+    public PaymentLinks withLimit(Optional<Long> limit) {
         Utils.checkNotNull(limit, "limit");
         this.limit = limit;
         return this;
@@ -137,7 +137,7 @@ public class CollectionPaymentLink {
     /**
      * The cursor pointing at the next page of items.
      */
-    public CollectionPaymentLink withNextCursor(String nextCursor) {
+    public PaymentLinks withNextCursor(String nextCursor) {
         Utils.checkNotNull(nextCursor, "nextCursor");
         this.nextCursor = JsonNullable.of(nextCursor);
         return this;
@@ -146,7 +146,7 @@ public class CollectionPaymentLink {
     /**
      * The cursor pointing at the next page of items.
      */
-    public CollectionPaymentLink withNextCursor(JsonNullable<String> nextCursor) {
+    public PaymentLinks withNextCursor(JsonNullable<String> nextCursor) {
         Utils.checkNotNull(nextCursor, "nextCursor");
         this.nextCursor = nextCursor;
         return this;
@@ -155,7 +155,7 @@ public class CollectionPaymentLink {
     /**
      * The cursor pointing at the previous page of items.
      */
-    public CollectionPaymentLink withPreviousCursor(String previousCursor) {
+    public PaymentLinks withPreviousCursor(String previousCursor) {
         Utils.checkNotNull(previousCursor, "previousCursor");
         this.previousCursor = JsonNullable.of(previousCursor);
         return this;
@@ -164,7 +164,7 @@ public class CollectionPaymentLink {
     /**
      * The cursor pointing at the previous page of items.
      */
-    public CollectionPaymentLink withPreviousCursor(JsonNullable<String> previousCursor) {
+    public PaymentLinks withPreviousCursor(JsonNullable<String> previousCursor) {
         Utils.checkNotNull(previousCursor, "previousCursor");
         this.previousCursor = previousCursor;
         return this;
@@ -178,7 +178,7 @@ public class CollectionPaymentLink {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        CollectionPaymentLink other = (CollectionPaymentLink) o;
+        PaymentLinks other = (PaymentLinks) o;
         return 
             Utils.enhancedDeepEquals(this.items, other.items) &&
             Utils.enhancedDeepEquals(this.limit, other.limit) &&
@@ -195,7 +195,7 @@ public class CollectionPaymentLink {
     
     @Override
     public String toString() {
-        return Utils.toString(CollectionPaymentLink.class,
+        return Utils.toString(PaymentLinks.class,
                 "items", items,
                 "limit", limit,
                 "nextCursor", nextCursor,
@@ -284,12 +284,12 @@ public class CollectionPaymentLink {
             return this;
         }
 
-        public CollectionPaymentLink build() {
+        public PaymentLinks build() {
             if (limit == null) {
                 limit = _SINGLETON_VALUE_Limit.value();
             }
 
-            return new CollectionPaymentLink(
+            return new PaymentLinks(
                 items, limit, nextCursor,
                 previousCursor);
         }

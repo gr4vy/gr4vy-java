@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 5bbaa3a9-baa0-471b-ba6a-13fd88e8c119
 management:
-  docChecksum: 6f48b6800e966ae82af0f5358f6238ed
+  docChecksum: ab1dfb0ac55546ff61805b1ac6a71871
   docVersion: 1.0.0
   speakeasyVersion: 1.582.0
   generationVersion: 2.657.1
-  releaseVersion: 2.7.3
-  configChecksum: e6633d19bff4a2d3ff49fd90ee384904
+  releaseVersion: 2.7.4
+  configChecksum: 95dd823b6e4dce109a1c49074d9ef648
   repoURL: https://github.com/gr4vy/gr4vy-java.git
   published: true
 features:
@@ -38,7 +38,15 @@ generatedFiles:
   - docs/models/components/AccountUpdaterInquirySummary.md
   - docs/models/components/AccountUpdaterJob.md
   - docs/models/components/AccountUpdaterJobCreate.md
+  - docs/models/components/AccountUpdaterOptions.md
   - docs/models/components/Address.md
+  - docs/models/components/AdyenAutoRescueSepaScenariosEnum.md
+  - docs/models/components/AdyenCardAutoRescueScenariosEnum.md
+  - docs/models/components/AdyenCardOptions.md
+  - docs/models/components/AdyenOptions.md
+  - docs/models/components/AdyenSepaOptions.md
+  - docs/models/components/AffirmItineraryOptions.md
+  - docs/models/components/AffirmOptions.md
   - docs/models/components/AgeGroup.md
   - docs/models/components/Airline.md
   - docs/models/components/AirlineLeg.md
@@ -54,6 +62,8 @@ generatedFiles:
   - docs/models/components/AuditLogEntryUser.md
   - docs/models/components/BillingDetailsInput.md
   - docs/models/components/BillingDetailsOutput.md
+  - docs/models/components/BraintreeDynamicDataFieldsOptions.md
+  - docs/models/components/BraintreeOptions.md
   - docs/models/components/BrowserInfo.md
   - docs/models/components/Buyer.md
   - docs/models/components/BuyerCreate.md
@@ -68,7 +78,7 @@ generatedFiles:
   - docs/models/components/CardType.md
   - docs/models/components/CardWithUrlPaymentMethodCreate.md
   - docs/models/components/CartItem.md
-  - docs/models/components/CheckoutCardConnectionOptions.md
+  - docs/models/components/CheckoutPayoutOptions.md
   - docs/models/components/CheckoutSession.md
   - docs/models/components/CheckoutSessionCreate.md
   - docs/models/components/CheckoutSessionPaymentMethod.md
@@ -79,14 +89,14 @@ generatedFiles:
   - docs/models/components/ClickToPayPaymentMethodCreate.md
   - docs/models/components/ClickToPaySession.md
   - docs/models/components/ClickToPaySessionRequest.md
-  - docs/models/components/CollectionPaymentLink.md
-  - docs/models/components/ConnectionOptions.md
   - docs/models/components/Context.md
   - docs/models/components/CreateSession.md
   - docs/models/components/CreateSessionStatus.md
   - docs/models/components/Creator.md
   - docs/models/components/Cryptogram.md
   - docs/models/components/CryptogramCreate.md
+  - docs/models/components/CybersourceAntiFraudOptions.md
+  - docs/models/components/CybersourceOptions.md
   - docs/models/components/DefinitionField.md
   - docs/models/components/DefinitionFieldFormat.md
   - docs/models/components/DetailedSettlementReportSpec.md
@@ -96,9 +106,26 @@ generatedFiles:
   - docs/models/components/DigitalWalletProvider.md
   - docs/models/components/DigitalWalletUpdate.md
   - docs/models/components/DigitalWallets.md
+  - docs/models/components/DlocalOptions.md
+  - docs/models/components/DlocalWalletOptions.md
   - docs/models/components/ErrorDetail.md
   - docs/models/components/ErrorLocation.md
   - docs/models/components/Field.md
+  - docs/models/components/FiservInstallmentOptions.md
+  - docs/models/components/FiservOptions.md
+  - docs/models/components/ForterAntiFraudOptions.md
+  - docs/models/components/ForterAntiFraudOptionsCartItem.md
+  - docs/models/components/ForterAntiFraudOptionsCartItemBasicItemData.md
+  - docs/models/components/ForterAntiFraudOptionsCartItemBeneficiary.md
+  - docs/models/components/ForterAntiFraudOptionsCartItemBeneficiaryAddress.md
+  - docs/models/components/ForterAntiFraudOptionsCartItemBeneficiaryComments.md
+  - docs/models/components/ForterAntiFraudOptionsCartItemBeneficiaryPersonalDetails.md
+  - docs/models/components/ForterAntiFraudOptionsCartItemBeneficiaryPhone.md
+  - docs/models/components/ForterAntiFraudOptionsCartItemDeliveryDetails.md
+  - docs/models/components/ForterAntiFraudOptionsCartItemDeliveryDetailsDeliveryType.md
+  - docs/models/components/ForterAntiFraudOptionsDeliveryType.md
+  - docs/models/components/ForterAntiFraudOptionsDiscount.md
+  - docs/models/components/ForterAntiFraudOptionsDiscountCouponDiscountAmount.md
   - docs/models/components/GiftCard.md
   - docs/models/components/GiftCardBalanceRequest.md
   - docs/models/components/GiftCardCreate.md
@@ -115,6 +142,7 @@ generatedFiles:
   - docs/models/components/GiftCardTransactionCreate.md
   - docs/models/components/GiftCardUnion.md
   - docs/models/components/GiftCards.md
+  - docs/models/components/GivingBlockOptions.md
   - docs/models/components/GooglePayAssuranceDetails.md
   - docs/models/components/GooglePayFPANPaymentMethodCreate.md
   - docs/models/components/GooglePayPaymentMethodCreate.md
@@ -125,8 +153,10 @@ generatedFiles:
   - docs/models/components/GuestBuyerOutput.md
   - docs/models/components/InstrumentType.md
   - docs/models/components/Item.md
+  - docs/models/components/LatitudeOptions.md
   - docs/models/components/Loc.md
   - docs/models/components/Locale.md
+  - docs/models/components/MattildaTapiOptions.md
   - docs/models/components/MerchantAccount.md
   - docs/models/components/MerchantAccountCreate.md
   - docs/models/components/MerchantAccountUpdate.md
@@ -134,6 +164,8 @@ generatedFiles:
   - docs/models/components/MerchantProfileScheme.md
   - docs/models/components/MerchantProfileSchemeSummary.md
   - docs/models/components/Method.md
+  - docs/models/components/MockCardMerchantAdviceCodeOptions.md
+  - docs/models/components/MockCardOptions.md
   - docs/models/components/Mode.md
   - docs/models/components/Name.md
   - docs/models/components/NetworkToken.md
@@ -141,9 +173,13 @@ generatedFiles:
   - docs/models/components/NetworkTokenPaymentMethodCreate.md
   - docs/models/components/NetworkTokenStatus.md
   - docs/models/components/NetworkTokens.md
+  - docs/models/components/NuveiAirlineDataOptions.md
+  - docs/models/components/NuveiOptions.md
+  - docs/models/components/OxxoOptions.md
   - docs/models/components/PaymentLink.md
   - docs/models/components/PaymentLinkCreate.md
   - docs/models/components/PaymentLinkStatus.md
+  - docs/models/components/PaymentLinks.md
   - docs/models/components/PaymentMethod.md
   - docs/models/components/PaymentMethodCard.md
   - docs/models/components/PaymentMethodDetailsCard.md
@@ -169,6 +205,7 @@ generatedFiles:
   - docs/models/components/PaymentServiceUpdate.md
   - docs/models/components/PaymentServices.md
   - docs/models/components/PayoutCategory.md
+  - docs/models/components/PayoutConnectionOptions.md
   - docs/models/components/PayoutCreate.md
   - docs/models/components/PayoutCreatePaymentMethod.md
   - docs/models/components/PayoutMerchant.md
@@ -177,6 +214,8 @@ generatedFiles:
   - docs/models/components/PayoutStatus.md
   - docs/models/components/PayoutSummaries.md
   - docs/models/components/PayoutSummary.md
+  - docs/models/components/PaypalOptions.md
+  - docs/models/components/PowertranzOptions.md
   - docs/models/components/ProductType.md
   - docs/models/components/Recipient.md
   - docs/models/components/RedirectPaymentMethodCreate.md
@@ -214,6 +253,8 @@ generatedFiles:
   - docs/models/components/ShippingDetailsUpdate.md
   - docs/models/components/Spec.md
   - docs/models/components/StatementDescriptor.md
+  - docs/models/components/StripeConnectOptions.md
+  - docs/models/components/StripeOptions.md
   - docs/models/components/TaxId.md
   - docs/models/components/TaxIdKind.md
   - docs/models/components/ThreeDSecureData.md
@@ -229,6 +270,7 @@ generatedFiles:
   - docs/models/components/Transaction.md
   - docs/models/components/TransactionBuyer.md
   - docs/models/components/TransactionCapture.md
+  - docs/models/components/TransactionConnectionOptions.md
   - docs/models/components/TransactionCreate.md
   - docs/models/components/TransactionCreatePaymentMethod.md
   - docs/models/components/TransactionEvent.md
@@ -248,12 +290,20 @@ generatedFiles:
   - docs/models/components/TransactionThreeDSecureSummary.md
   - docs/models/components/TransactionUpdate.md
   - docs/models/components/TransactionsReportSpec.md
+  - docs/models/components/TravelHubCustomData.md
+  - docs/models/components/TravelhubOptions.md
+  - docs/models/components/TrustlyOptions.md
+  - docs/models/components/Type.md
   - docs/models/components/UserDevice.md
   - docs/models/components/UserStatus.md
   - docs/models/components/ValidationError.md
   - docs/models/components/VerifyCredentials.md
   - docs/models/components/VoidableField.md
   - docs/models/components/WalletPaymentOptionContext.md
+  - docs/models/components/WpayEverdaypayOptions.md
+  - docs/models/components/WpayPaytoOptions.md
+  - docs/models/components/WpayPaytoResourceOptions.md
+  - docs/models/components/WpayPaytoSimulationOptions.md
   - docs/models/errors/Error400.md
   - docs/models/errors/Error401.md
   - docs/models/errors/Error403.md
@@ -530,7 +580,15 @@ generatedFiles:
   - src/main/java/com/gr4vy/sdk/models/components/AccountUpdaterInquirySummary.java
   - src/main/java/com/gr4vy/sdk/models/components/AccountUpdaterJob.java
   - src/main/java/com/gr4vy/sdk/models/components/AccountUpdaterJobCreate.java
+  - src/main/java/com/gr4vy/sdk/models/components/AccountUpdaterOptions.java
   - src/main/java/com/gr4vy/sdk/models/components/Address.java
+  - src/main/java/com/gr4vy/sdk/models/components/AdyenAutoRescueSepaScenariosEnum.java
+  - src/main/java/com/gr4vy/sdk/models/components/AdyenCardAutoRescueScenariosEnum.java
+  - src/main/java/com/gr4vy/sdk/models/components/AdyenCardOptions.java
+  - src/main/java/com/gr4vy/sdk/models/components/AdyenOptions.java
+  - src/main/java/com/gr4vy/sdk/models/components/AdyenSepaOptions.java
+  - src/main/java/com/gr4vy/sdk/models/components/AffirmItineraryOptions.java
+  - src/main/java/com/gr4vy/sdk/models/components/AffirmOptions.java
   - src/main/java/com/gr4vy/sdk/models/components/AgeGroup.java
   - src/main/java/com/gr4vy/sdk/models/components/Airline.java
   - src/main/java/com/gr4vy/sdk/models/components/AirlineLeg.java
@@ -546,6 +604,8 @@ generatedFiles:
   - src/main/java/com/gr4vy/sdk/models/components/AuditLogEntryUser.java
   - src/main/java/com/gr4vy/sdk/models/components/BillingDetailsInput.java
   - src/main/java/com/gr4vy/sdk/models/components/BillingDetailsOutput.java
+  - src/main/java/com/gr4vy/sdk/models/components/BraintreeDynamicDataFieldsOptions.java
+  - src/main/java/com/gr4vy/sdk/models/components/BraintreeOptions.java
   - src/main/java/com/gr4vy/sdk/models/components/BrowserInfo.java
   - src/main/java/com/gr4vy/sdk/models/components/Buyer.java
   - src/main/java/com/gr4vy/sdk/models/components/BuyerCreate.java
@@ -560,7 +620,7 @@ generatedFiles:
   - src/main/java/com/gr4vy/sdk/models/components/CardType.java
   - src/main/java/com/gr4vy/sdk/models/components/CardWithUrlPaymentMethodCreate.java
   - src/main/java/com/gr4vy/sdk/models/components/CartItem.java
-  - src/main/java/com/gr4vy/sdk/models/components/CheckoutCardConnectionOptions.java
+  - src/main/java/com/gr4vy/sdk/models/components/CheckoutPayoutOptions.java
   - src/main/java/com/gr4vy/sdk/models/components/CheckoutSession.java
   - src/main/java/com/gr4vy/sdk/models/components/CheckoutSessionCreate.java
   - src/main/java/com/gr4vy/sdk/models/components/CheckoutSessionPaymentMethod.java
@@ -571,14 +631,14 @@ generatedFiles:
   - src/main/java/com/gr4vy/sdk/models/components/ClickToPayPaymentMethodCreate.java
   - src/main/java/com/gr4vy/sdk/models/components/ClickToPaySession.java
   - src/main/java/com/gr4vy/sdk/models/components/ClickToPaySessionRequest.java
-  - src/main/java/com/gr4vy/sdk/models/components/CollectionPaymentLink.java
-  - src/main/java/com/gr4vy/sdk/models/components/ConnectionOptions.java
   - src/main/java/com/gr4vy/sdk/models/components/Context.java
   - src/main/java/com/gr4vy/sdk/models/components/CreateSession.java
   - src/main/java/com/gr4vy/sdk/models/components/CreateSessionStatus.java
   - src/main/java/com/gr4vy/sdk/models/components/Creator.java
   - src/main/java/com/gr4vy/sdk/models/components/Cryptogram.java
   - src/main/java/com/gr4vy/sdk/models/components/CryptogramCreate.java
+  - src/main/java/com/gr4vy/sdk/models/components/CybersourceAntiFraudOptions.java
+  - src/main/java/com/gr4vy/sdk/models/components/CybersourceOptions.java
   - src/main/java/com/gr4vy/sdk/models/components/DefinitionField.java
   - src/main/java/com/gr4vy/sdk/models/components/DefinitionFieldFormat.java
   - src/main/java/com/gr4vy/sdk/models/components/DetailedSettlementReportSpec.java
@@ -588,9 +648,26 @@ generatedFiles:
   - src/main/java/com/gr4vy/sdk/models/components/DigitalWalletProvider.java
   - src/main/java/com/gr4vy/sdk/models/components/DigitalWalletUpdate.java
   - src/main/java/com/gr4vy/sdk/models/components/DigitalWallets.java
+  - src/main/java/com/gr4vy/sdk/models/components/DlocalOptions.java
+  - src/main/java/com/gr4vy/sdk/models/components/DlocalWalletOptions.java
   - src/main/java/com/gr4vy/sdk/models/components/ErrorDetail.java
   - src/main/java/com/gr4vy/sdk/models/components/ErrorLocation.java
   - src/main/java/com/gr4vy/sdk/models/components/Field.java
+  - src/main/java/com/gr4vy/sdk/models/components/FiservInstallmentOptions.java
+  - src/main/java/com/gr4vy/sdk/models/components/FiservOptions.java
+  - src/main/java/com/gr4vy/sdk/models/components/ForterAntiFraudOptions.java
+  - src/main/java/com/gr4vy/sdk/models/components/ForterAntiFraudOptionsCartItem.java
+  - src/main/java/com/gr4vy/sdk/models/components/ForterAntiFraudOptionsCartItemBasicItemData.java
+  - src/main/java/com/gr4vy/sdk/models/components/ForterAntiFraudOptionsCartItemBeneficiary.java
+  - src/main/java/com/gr4vy/sdk/models/components/ForterAntiFraudOptionsCartItemBeneficiaryAddress.java
+  - src/main/java/com/gr4vy/sdk/models/components/ForterAntiFraudOptionsCartItemBeneficiaryComments.java
+  - src/main/java/com/gr4vy/sdk/models/components/ForterAntiFraudOptionsCartItemBeneficiaryPersonalDetails.java
+  - src/main/java/com/gr4vy/sdk/models/components/ForterAntiFraudOptionsCartItemBeneficiaryPhone.java
+  - src/main/java/com/gr4vy/sdk/models/components/ForterAntiFraudOptionsCartItemDeliveryDetails.java
+  - src/main/java/com/gr4vy/sdk/models/components/ForterAntiFraudOptionsCartItemDeliveryDetailsDeliveryType.java
+  - src/main/java/com/gr4vy/sdk/models/components/ForterAntiFraudOptionsDeliveryType.java
+  - src/main/java/com/gr4vy/sdk/models/components/ForterAntiFraudOptionsDiscount.java
+  - src/main/java/com/gr4vy/sdk/models/components/ForterAntiFraudOptionsDiscountCouponDiscountAmount.java
   - src/main/java/com/gr4vy/sdk/models/components/GiftCard.java
   - src/main/java/com/gr4vy/sdk/models/components/GiftCardBalanceRequest.java
   - src/main/java/com/gr4vy/sdk/models/components/GiftCardCreate.java
@@ -607,6 +684,7 @@ generatedFiles:
   - src/main/java/com/gr4vy/sdk/models/components/GiftCardTransactionCreate.java
   - src/main/java/com/gr4vy/sdk/models/components/GiftCardUnion.java
   - src/main/java/com/gr4vy/sdk/models/components/GiftCards.java
+  - src/main/java/com/gr4vy/sdk/models/components/GivingBlockOptions.java
   - src/main/java/com/gr4vy/sdk/models/components/GooglePayAssuranceDetails.java
   - src/main/java/com/gr4vy/sdk/models/components/GooglePayFPANPaymentMethodCreate.java
   - src/main/java/com/gr4vy/sdk/models/components/GooglePayPaymentMethodCreate.java
@@ -617,8 +695,10 @@ generatedFiles:
   - src/main/java/com/gr4vy/sdk/models/components/GuestBuyerOutput.java
   - src/main/java/com/gr4vy/sdk/models/components/InstrumentType.java
   - src/main/java/com/gr4vy/sdk/models/components/Item.java
+  - src/main/java/com/gr4vy/sdk/models/components/LatitudeOptions.java
   - src/main/java/com/gr4vy/sdk/models/components/Loc.java
   - src/main/java/com/gr4vy/sdk/models/components/Locale.java
+  - src/main/java/com/gr4vy/sdk/models/components/MattildaTapiOptions.java
   - src/main/java/com/gr4vy/sdk/models/components/MerchantAccount.java
   - src/main/java/com/gr4vy/sdk/models/components/MerchantAccountCreate.java
   - src/main/java/com/gr4vy/sdk/models/components/MerchantAccountUpdate.java
@@ -626,6 +706,8 @@ generatedFiles:
   - src/main/java/com/gr4vy/sdk/models/components/MerchantProfileScheme.java
   - src/main/java/com/gr4vy/sdk/models/components/MerchantProfileSchemeSummary.java
   - src/main/java/com/gr4vy/sdk/models/components/Method.java
+  - src/main/java/com/gr4vy/sdk/models/components/MockCardMerchantAdviceCodeOptions.java
+  - src/main/java/com/gr4vy/sdk/models/components/MockCardOptions.java
   - src/main/java/com/gr4vy/sdk/models/components/Mode.java
   - src/main/java/com/gr4vy/sdk/models/components/Name.java
   - src/main/java/com/gr4vy/sdk/models/components/NetworkToken.java
@@ -633,9 +715,13 @@ generatedFiles:
   - src/main/java/com/gr4vy/sdk/models/components/NetworkTokenPaymentMethodCreate.java
   - src/main/java/com/gr4vy/sdk/models/components/NetworkTokenStatus.java
   - src/main/java/com/gr4vy/sdk/models/components/NetworkTokens.java
+  - src/main/java/com/gr4vy/sdk/models/components/NuveiAirlineDataOptions.java
+  - src/main/java/com/gr4vy/sdk/models/components/NuveiOptions.java
+  - src/main/java/com/gr4vy/sdk/models/components/OxxoOptions.java
   - src/main/java/com/gr4vy/sdk/models/components/PaymentLink.java
   - src/main/java/com/gr4vy/sdk/models/components/PaymentLinkCreate.java
   - src/main/java/com/gr4vy/sdk/models/components/PaymentLinkStatus.java
+  - src/main/java/com/gr4vy/sdk/models/components/PaymentLinks.java
   - src/main/java/com/gr4vy/sdk/models/components/PaymentMethod.java
   - src/main/java/com/gr4vy/sdk/models/components/PaymentMethodCard.java
   - src/main/java/com/gr4vy/sdk/models/components/PaymentMethodDetailsCard.java
@@ -661,6 +747,7 @@ generatedFiles:
   - src/main/java/com/gr4vy/sdk/models/components/PaymentServiceUpdate.java
   - src/main/java/com/gr4vy/sdk/models/components/PaymentServices.java
   - src/main/java/com/gr4vy/sdk/models/components/PayoutCategory.java
+  - src/main/java/com/gr4vy/sdk/models/components/PayoutConnectionOptions.java
   - src/main/java/com/gr4vy/sdk/models/components/PayoutCreate.java
   - src/main/java/com/gr4vy/sdk/models/components/PayoutCreatePaymentMethod.java
   - src/main/java/com/gr4vy/sdk/models/components/PayoutMerchant.java
@@ -669,6 +756,8 @@ generatedFiles:
   - src/main/java/com/gr4vy/sdk/models/components/PayoutStatus.java
   - src/main/java/com/gr4vy/sdk/models/components/PayoutSummaries.java
   - src/main/java/com/gr4vy/sdk/models/components/PayoutSummary.java
+  - src/main/java/com/gr4vy/sdk/models/components/PaypalOptions.java
+  - src/main/java/com/gr4vy/sdk/models/components/PowertranzOptions.java
   - src/main/java/com/gr4vy/sdk/models/components/ProductType.java
   - src/main/java/com/gr4vy/sdk/models/components/Recipient.java
   - src/main/java/com/gr4vy/sdk/models/components/RedirectPaymentMethodCreate.java
@@ -706,6 +795,8 @@ generatedFiles:
   - src/main/java/com/gr4vy/sdk/models/components/ShippingDetailsUpdate.java
   - src/main/java/com/gr4vy/sdk/models/components/Spec.java
   - src/main/java/com/gr4vy/sdk/models/components/StatementDescriptor.java
+  - src/main/java/com/gr4vy/sdk/models/components/StripeConnectOptions.java
+  - src/main/java/com/gr4vy/sdk/models/components/StripeOptions.java
   - src/main/java/com/gr4vy/sdk/models/components/TaxId.java
   - src/main/java/com/gr4vy/sdk/models/components/TaxIdKind.java
   - src/main/java/com/gr4vy/sdk/models/components/ThreeDSecureData.java
@@ -721,6 +812,7 @@ generatedFiles:
   - src/main/java/com/gr4vy/sdk/models/components/Transaction.java
   - src/main/java/com/gr4vy/sdk/models/components/TransactionBuyer.java
   - src/main/java/com/gr4vy/sdk/models/components/TransactionCapture.java
+  - src/main/java/com/gr4vy/sdk/models/components/TransactionConnectionOptions.java
   - src/main/java/com/gr4vy/sdk/models/components/TransactionCreate.java
   - src/main/java/com/gr4vy/sdk/models/components/TransactionCreatePaymentMethod.java
   - src/main/java/com/gr4vy/sdk/models/components/TransactionEvent.java
@@ -740,12 +832,20 @@ generatedFiles:
   - src/main/java/com/gr4vy/sdk/models/components/TransactionThreeDSecureSummary.java
   - src/main/java/com/gr4vy/sdk/models/components/TransactionUpdate.java
   - src/main/java/com/gr4vy/sdk/models/components/TransactionsReportSpec.java
+  - src/main/java/com/gr4vy/sdk/models/components/TravelHubCustomData.java
+  - src/main/java/com/gr4vy/sdk/models/components/TravelhubOptions.java
+  - src/main/java/com/gr4vy/sdk/models/components/TrustlyOptions.java
+  - src/main/java/com/gr4vy/sdk/models/components/Type.java
   - src/main/java/com/gr4vy/sdk/models/components/UserDevice.java
   - src/main/java/com/gr4vy/sdk/models/components/UserStatus.java
   - src/main/java/com/gr4vy/sdk/models/components/ValidationError.java
   - src/main/java/com/gr4vy/sdk/models/components/VerifyCredentials.java
   - src/main/java/com/gr4vy/sdk/models/components/VoidableField.java
   - src/main/java/com/gr4vy/sdk/models/components/WalletPaymentOptionContext.java
+  - src/main/java/com/gr4vy/sdk/models/components/WpayEverdaypayOptions.java
+  - src/main/java/com/gr4vy/sdk/models/components/WpayPaytoOptions.java
+  - src/main/java/com/gr4vy/sdk/models/components/WpayPaytoResourceOptions.java
+  - src/main/java/com/gr4vy/sdk/models/components/WpayPaytoSimulationOptions.java
   - src/main/java/com/gr4vy/sdk/models/errors/APIException.java
   - src/main/java/com/gr4vy/sdk/models/errors/AuthException.java
   - src/main/java/com/gr4vy/sdk/models/errors/Error400.java

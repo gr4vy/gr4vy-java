@@ -8,7 +8,7 @@ import static com.gr4vy.sdk.operations.Operations.RequestOperation;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.gr4vy.sdk.SDKConfiguration;
 import com.gr4vy.sdk.SecuritySource;
-import com.gr4vy.sdk.models.components.CollectionPaymentLink;
+import com.gr4vy.sdk.models.components.PaymentLinks;
 import com.gr4vy.sdk.models.errors.APIException;
 import com.gr4vy.sdk.models.errors.Error400;
 import com.gr4vy.sdk.models.errors.Error401;
@@ -174,11 +174,11 @@ public class ListPaymentLinksOperation implements RequestOperation<ListPaymentLi
         
         if (Utils.statusCodeMatches(response.statusCode(), "200")) {
             if (Utils.contentTypeMatches(contentType, "application/json")) {
-                CollectionPaymentLink out = Utils.mapper().readValue(
+                PaymentLinks out = Utils.mapper().readValue(
                     response.body(),
                     new TypeReference<>() {
                     });
-                res.withCollectionPaymentLink(out);
+                res.withPaymentLinks(out);
                 return res;
             } else {
                 throw new APIException(

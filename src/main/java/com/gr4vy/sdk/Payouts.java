@@ -34,7 +34,7 @@ public class Payouts {
     }
 
     /**
-     * List payouts created.
+     * List payouts created
      * 
      * <p>Returns a list of payouts made.
      * 
@@ -45,7 +45,7 @@ public class Payouts {
     }
 
     /**
-     * List payouts created.
+     * List payouts created
      * 
      * <p>Returns a list of payouts made.
      * 
@@ -58,7 +58,7 @@ public class Payouts {
     }
 
     /**
-     * List payouts created.
+     * List payouts created
      * 
      * <p>Returns a list of payouts made.
      * 
@@ -85,7 +85,7 @@ public class Payouts {
     }
 
     /**
-     * Create a payout.
+     * Create a payout
      * 
      * <p>Creates a new payout.
      * 
@@ -96,7 +96,7 @@ public class Payouts {
     }
 
     /**
-     * Create a payout.
+     * Create a payout
      * 
      * <p>Creates a new payout.
      * 
@@ -111,7 +111,7 @@ public class Payouts {
     }
 
     /**
-     * Create a payout.
+     * Create a payout
      * 
      * <p>Creates a new payout.
      * 
@@ -135,9 +135,9 @@ public class Payouts {
     }
 
     /**
-     * Get a payout.
+     * Get a payout
      * 
-     * <p>Retreives a payout.
+     * <p>Retrieves a payout.
      * 
      * @return The call builder
      */
@@ -146,9 +146,9 @@ public class Payouts {
     }
 
     /**
-     * Get a payout.
+     * Get a payout
      * 
-     * <p>Retreives a payout.
+     * <p>Retrieves a payout.
      * 
      * @param payoutId 
      * @return The response from the API call
@@ -159,9 +159,9 @@ public class Payouts {
     }
 
     /**
-     * Get a payout.
+     * Get a payout
      * 
-     * <p>Retreives a payout.
+     * <p>Retrieves a payout.
      * 
      * @param payoutId 
      * @param merchantAccountId 

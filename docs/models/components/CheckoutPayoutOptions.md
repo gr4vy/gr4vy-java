@@ -1,4 +1,4 @@
-# CheckoutCardConnectionOptions
+# CheckoutPayoutOptions
 
 
 ## Fields

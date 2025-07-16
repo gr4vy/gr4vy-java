@@ -41,7 +41,7 @@ public class PaymentLinkCreate {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("connection_options")
-    private JsonNullable<? extends Map<String, Map<String, Object>>> connectionOptions;
+    private JsonNullable<? extends TransactionConnectionOptions> connectionOptions;
 
     /**
      * The merchant reference for the payment link.
@@ -168,7 +168,7 @@ public class PaymentLinkCreate {
     public PaymentLinkCreate(
             @JsonProperty("buyer") JsonNullable<? extends GuestBuyerInput> buyer,
             @JsonProperty("expires_at") JsonNullable<OffsetDateTime> expiresAt,
-            @JsonProperty("connection_options") JsonNullable<? extends Map<String, Map<String, Object>>> connectionOptions,
+            @JsonProperty("connection_options") JsonNullable<? extends TransactionConnectionOptions> connectionOptions,
             @JsonProperty("external_identifier") JsonNullable<String> externalIdentifier,
             @JsonProperty("statement_descriptor") JsonNullable<? extends StatementDescriptor> statementDescriptor,
             @JsonProperty("locale") JsonNullable<? extends Locale> locale,
@@ -266,8 +266,8 @@ public class PaymentLinkCreate {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<Map<String, Map<String, Object>>> connectionOptions() {
-        return (JsonNullable<Map<String, Map<String, Object>>>) connectionOptions;
+    public JsonNullable<TransactionConnectionOptions> connectionOptions() {
+        return (JsonNullable<TransactionConnectionOptions>) connectionOptions;
     }
 
     /**
@@ -461,7 +461,7 @@ public class PaymentLinkCreate {
     /**
      * Connection options for the payment link.
      */
-    public PaymentLinkCreate withConnectionOptions(Map<String, Map<String, Object>> connectionOptions) {
+    public PaymentLinkCreate withConnectionOptions(TransactionConnectionOptions connectionOptions) {
         Utils.checkNotNull(connectionOptions, "connectionOptions");
         this.connectionOptions = JsonNullable.of(connectionOptions);
         return this;
@@ -470,7 +470,7 @@ public class PaymentLinkCreate {
     /**
      * Connection options for the payment link.
      */
-    public PaymentLinkCreate withConnectionOptions(JsonNullable<? extends Map<String, Map<String, Object>>> connectionOptions) {
+    public PaymentLinkCreate withConnectionOptions(JsonNullable<? extends TransactionConnectionOptions> connectionOptions) {
         Utils.checkNotNull(connectionOptions, "connectionOptions");
         this.connectionOptions = connectionOptions;
         return this;
@@ -847,7 +847,7 @@ public class PaymentLinkCreate {
 
         private JsonNullable<OffsetDateTime> expiresAt = JsonNullable.undefined();
 
-        private JsonNullable<? extends Map<String, Map<String, Object>>> connectionOptions = JsonNullable.undefined();
+        private JsonNullable<? extends TransactionConnectionOptions> connectionOptions = JsonNullable.undefined();
 
         private JsonNullable<String> externalIdentifier = JsonNullable.undefined();
 
@@ -931,7 +931,7 @@ public class PaymentLinkCreate {
         /**
          * Connection options for the payment link.
          */
-        public Builder connectionOptions(Map<String, Map<String, Object>> connectionOptions) {
+        public Builder connectionOptions(TransactionConnectionOptions connectionOptions) {
             Utils.checkNotNull(connectionOptions, "connectionOptions");
             this.connectionOptions = JsonNullable.of(connectionOptions);
             return this;
@@ -940,7 +940,7 @@ public class PaymentLinkCreate {
         /**
          * Connection options for the payment link.
          */
-        public Builder connectionOptions(JsonNullable<? extends Map<String, Map<String, Object>>> connectionOptions) {
+        public Builder connectionOptions(JsonNullable<? extends TransactionConnectionOptions> connectionOptions) {
             Utils.checkNotNull(connectionOptions, "connectionOptions");
             this.connectionOptions = connectionOptions;
             return this;
