@@ -94,6 +94,7 @@
 | `STITCH`             | stitch               |
 | `STRIPEDD`           | stripedd             |
 | `TAPI`               | tapi                 |
+| `TAPIFINTECHS`       | tapifintechs         |
 | `THAIQR`             | thaiqr               |
 | `TOUCHNGO`           | touchngo             |
 | `TRUEMONEY`          | truemoney            |

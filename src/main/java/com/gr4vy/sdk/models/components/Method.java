@@ -134,6 +134,7 @@ public class Method {
     public static final Method STITCH = new Method("stitch");
     public static final Method STRIPEDD = new Method("stripedd");
     public static final Method TAPI = new Method("tapi");
+    public static final Method TAPIFINTECHS = new Method("tapifintechs");
     public static final Method THAIQR = new Method("thaiqr");
     public static final Method TOUCHNGO = new Method("touchngo");
     public static final Method TRUEMONEY = new Method("truemoney");
@@ -307,6 +308,7 @@ public class Method {
         map.put("stitch", STITCH);
         map.put("stripedd", STRIPEDD);
         map.put("tapi", TAPI);
+        map.put("tapifintechs", TAPIFINTECHS);
         map.put("thaiqr", THAIQR);
         map.put("touchngo", TOUCHNGO);
         map.put("truemoney", TRUEMONEY);
@@ -414,6 +416,7 @@ public class Method {
         map.put("stitch", MethodEnum.STITCH);
         map.put("stripedd", MethodEnum.STRIPEDD);
         map.put("tapi", MethodEnum.TAPI);
+        map.put("tapifintechs", MethodEnum.TAPIFINTECHS);
         map.put("thaiqr", MethodEnum.THAIQR);
         map.put("touchngo", MethodEnum.TOUCHNGO);
         map.put("truemoney", MethodEnum.TRUEMONEY);
@@ -551,6 +554,7 @@ public class Method {
         STITCH("stitch"),
         STRIPEDD("stripedd"),
         TAPI("tapi"),
+        TAPIFINTECHS("tapifintechs"),
         THAIQR("thaiqr"),
         TOUCHNGO("touchngo"),
         TRUEMONEY("truemoney"),
