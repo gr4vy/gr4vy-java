@@ -192,6 +192,13 @@ public class TransactionConnectionOptions {
     private JsonNullable<? extends MattildaTapiOptions> mattildaTapi;
 
     /**
+     * Custom options to be passed to the `mattilda-tapifintechs` connector.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("mattilda-tapifintechs")
+    private JsonNullable<? extends MattildaTapiOptions> mattildaTapifintechs;
+
+    /**
      * Custom options to be passed to the `mock-card` connector.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -295,6 +302,7 @@ public class TransactionConnectionOptions {
             @JsonProperty("latitude-latitude") JsonNullable<? extends LatitudeOptions> latitudeLatitude,
             @JsonProperty("latitude-latitudeds") JsonNullable<? extends LatitudeOptions> latitudeLatitudeds,
             @JsonProperty("mattilda-tapi") JsonNullable<? extends MattildaTapiOptions> mattildaTapi,
+            @JsonProperty("mattilda-tapifintechs") JsonNullable<? extends MattildaTapiOptions> mattildaTapifintechs,
             @JsonProperty("mock-card") JsonNullable<? extends MockCardOptions> mockCard,
             @JsonProperty("nuvei-card") JsonNullable<? extends NuveiOptions> nuveiCard,
             @JsonProperty("oxxo-oxxo") JsonNullable<? extends OxxoOptions> oxxoOxxo,
@@ -331,6 +339,7 @@ public class TransactionConnectionOptions {
         Utils.checkNotNull(latitudeLatitude, "latitudeLatitude");
         Utils.checkNotNull(latitudeLatitudeds, "latitudeLatitudeds");
         Utils.checkNotNull(mattildaTapi, "mattildaTapi");
+        Utils.checkNotNull(mattildaTapifintechs, "mattildaTapifintechs");
         Utils.checkNotNull(mockCard, "mockCard");
         Utils.checkNotNull(nuveiCard, "nuveiCard");
         Utils.checkNotNull(oxxoOxxo, "oxxoOxxo");
@@ -367,6 +376,7 @@ public class TransactionConnectionOptions {
         this.latitudeLatitude = latitudeLatitude;
         this.latitudeLatitudeds = latitudeLatitudeds;
         this.mattildaTapi = mattildaTapi;
+        this.mattildaTapifintechs = mattildaTapifintechs;
         this.mockCard = mockCard;
         this.nuveiCard = nuveiCard;
         this.oxxoOxxo = oxxoOxxo;
@@ -392,7 +402,8 @@ public class TransactionConnectionOptions {
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined());
     }
 
     /**
@@ -618,6 +629,15 @@ public class TransactionConnectionOptions {
     @JsonIgnore
     public JsonNullable<MattildaTapiOptions> mattildaTapi() {
         return (JsonNullable<MattildaTapiOptions>) mattildaTapi;
+    }
+
+    /**
+     * Custom options to be passed to the `mattilda-tapifintechs` connector.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public JsonNullable<MattildaTapiOptions> mattildaTapifintechs() {
+        return (JsonNullable<MattildaTapiOptions>) mattildaTapifintechs;
     }
 
     /**
@@ -1175,6 +1195,24 @@ public class TransactionConnectionOptions {
     }
 
     /**
+     * Custom options to be passed to the `mattilda-tapifintechs` connector.
+     */
+    public TransactionConnectionOptions withMattildaTapifintechs(MattildaTapiOptions mattildaTapifintechs) {
+        Utils.checkNotNull(mattildaTapifintechs, "mattildaTapifintechs");
+        this.mattildaTapifintechs = JsonNullable.of(mattildaTapifintechs);
+        return this;
+    }
+
+    /**
+     * Custom options to be passed to the `mattilda-tapifintechs` connector.
+     */
+    public TransactionConnectionOptions withMattildaTapifintechs(JsonNullable<? extends MattildaTapiOptions> mattildaTapifintechs) {
+        Utils.checkNotNull(mattildaTapifintechs, "mattildaTapifintechs");
+        this.mattildaTapifintechs = mattildaTapifintechs;
+        return this;
+    }
+
+    /**
      * Custom options to be passed to the `mock-card` connector.
      */
     public TransactionConnectionOptions withMockCard(MockCardOptions mockCard) {
@@ -1407,6 +1445,7 @@ public class TransactionConnectionOptions {
             Utils.enhancedDeepEquals(this.latitudeLatitude, other.latitudeLatitude) &&
             Utils.enhancedDeepEquals(this.latitudeLatitudeds, other.latitudeLatitudeds) &&
             Utils.enhancedDeepEquals(this.mattildaTapi, other.mattildaTapi) &&
+            Utils.enhancedDeepEquals(this.mattildaTapifintechs, other.mattildaTapifintechs) &&
             Utils.enhancedDeepEquals(this.mockCard, other.mockCard) &&
             Utils.enhancedDeepEquals(this.nuveiCard, other.nuveiCard) &&
             Utils.enhancedDeepEquals(this.oxxoOxxo, other.oxxoOxxo) &&
@@ -1431,10 +1470,11 @@ public class TransactionConnectionOptions {
             cybersourceKcp, dlocalNequi, fiservCard,
             forterAntiFraud, gemGem, gemGemds,
             givingblockGivingblock, latitudeLatitude, latitudeLatitudeds,
-            mattildaTapi, mockCard, nuveiCard,
-            oxxoOxxo, paypalPaypal, paypalPaypalpaylater,
-            powertranzCard, stripeCard, travelhubCard,
-            trustlyTrustly, wpayEverydaypay, wpayPayto);
+            mattildaTapi, mattildaTapifintechs, mockCard,
+            nuveiCard, oxxoOxxo, paypalPaypal,
+            paypalPaypalpaylater, powertranzCard, stripeCard,
+            travelhubCard, trustlyTrustly, wpayEverydaypay,
+            wpayPayto);
     }
     
     @Override
@@ -1465,6 +1505,7 @@ public class TransactionConnectionOptions {
                 "latitudeLatitude", latitudeLatitude,
                 "latitudeLatitudeds", latitudeLatitudeds,
                 "mattildaTapi", mattildaTapi,
+                "mattildaTapifintechs", mattildaTapifintechs,
                 "mockCard", mockCard,
                 "nuveiCard", nuveiCard,
                 "oxxoOxxo", oxxoOxxo,
@@ -1530,6 +1571,8 @@ public class TransactionConnectionOptions {
         private JsonNullable<? extends LatitudeOptions> latitudeLatitudeds = JsonNullable.undefined();
 
         private JsonNullable<? extends MattildaTapiOptions> mattildaTapi = JsonNullable.undefined();
+
+        private JsonNullable<? extends MattildaTapiOptions> mattildaTapifintechs = JsonNullable.undefined();
 
         private JsonNullable<? extends MockCardOptions> mockCard = JsonNullable.undefined();
 
@@ -2034,6 +2077,25 @@ public class TransactionConnectionOptions {
 
 
         /**
+         * Custom options to be passed to the `mattilda-tapifintechs` connector.
+         */
+        public Builder mattildaTapifintechs(MattildaTapiOptions mattildaTapifintechs) {
+            Utils.checkNotNull(mattildaTapifintechs, "mattildaTapifintechs");
+            this.mattildaTapifintechs = JsonNullable.of(mattildaTapifintechs);
+            return this;
+        }
+
+        /**
+         * Custom options to be passed to the `mattilda-tapifintechs` connector.
+         */
+        public Builder mattildaTapifintechs(JsonNullable<? extends MattildaTapiOptions> mattildaTapifintechs) {
+            Utils.checkNotNull(mattildaTapifintechs, "mattildaTapifintechs");
+            this.mattildaTapifintechs = mattildaTapifintechs;
+            return this;
+        }
+
+
+        /**
          * Custom options to be passed to the `mock-card` connector.
          */
         public Builder mockCard(MockCardOptions mockCard) {
@@ -2252,10 +2314,11 @@ public class TransactionConnectionOptions {
                 cybersourceKcp, dlocalNequi, fiservCard,
                 forterAntiFraud, gemGem, gemGemds,
                 givingblockGivingblock, latitudeLatitude, latitudeLatitudeds,
-                mattildaTapi, mockCard, nuveiCard,
-                oxxoOxxo, paypalPaypal, paypalPaypalpaylater,
-                powertranzCard, stripeCard, travelhubCard,
-                trustlyTrustly, wpayEverydaypay, wpayPayto);
+                mattildaTapi, mattildaTapifintechs, mockCard,
+                nuveiCard, oxxoOxxo, paypalPaypal,
+                paypalPaypalpaylater, powertranzCard, stripeCard,
+                travelhubCard, trustlyTrustly, wpayEverydaypay,
+                wpayPayto);
         }
 
     }
