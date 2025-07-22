@@ -56,7 +56,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'com.gr4vy:sdk:2.7.5'
+implementation 'com.gr4vy:sdk:2.7.6'
 ```
 
 Maven:
@@ -64,7 +64,7 @@ Maven:
 <dependency>
     <groupId>com.gr4vy</groupId>
     <artifactId>sdk</artifactId>
-    <version>2.7.5</version>
+    <version>2.7.6</version>
 </dependency>
 ```
 
@@ -349,7 +349,7 @@ try {
 
 * [list](docs/sdks/paymentservicedefinitions/README.md#list) - List payment service definitions
 * [get](docs/sdks/paymentservicedefinitions/README.md#get) - Get a payment service definition
-* [session](docs/sdks/paymentservicedefinitions/README.md#session) - Create a session for apayment service definition
+* [session](docs/sdks/paymentservicedefinitions/README.md#session) - Create a session for a payment service definition
 
 ### [paymentServices()](docs/sdks/paymentservices/README.md)
 
@@ -359,7 +359,7 @@ try {
 * [update](docs/sdks/paymentservices/README.md#update) - Configure a payment service
 * [delete](docs/sdks/paymentservices/README.md#delete) - Delete a configured payment service
 * [verify](docs/sdks/paymentservices/README.md#verify) - Verify payment service credentials
-* [session](docs/sdks/paymentservices/README.md#session) - Create a session for apayment service definition
+* [session](docs/sdks/paymentservices/README.md#session) - Create a session for a payment service definition
 
 ### [payouts()](docs/sdks/payouts/README.md)
 
