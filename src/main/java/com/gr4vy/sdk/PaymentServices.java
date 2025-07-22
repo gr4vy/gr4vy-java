@@ -331,7 +331,7 @@ public class PaymentServices {
     }
 
     /**
-     * Create a session for apayment service definition
+     * Create a session for a payment service definition
      * 
      * <p>Creates a session for a payment service that supports sessions.
      * 
@@ -342,7 +342,7 @@ public class PaymentServices {
     }
 
     /**
-     * Create a session for apayment service definition
+     * Create a session for a payment service definition
      * 
      * <p>Creates a session for a payment service that supports sessions.
      * 
@@ -356,7 +356,7 @@ public class PaymentServices {
     }
 
     /**
-     * Create a session for apayment service definition
+     * Create a session for a payment service definition
      * 
      * <p>Creates a session for a payment service that supports sessions.
      * 
