@@ -5,7 +5,7 @@ package com.gr4vy.sdk;
 
 import static com.gr4vy.sdk.operations.Operations.RequestOperation;
 
-import com.gr4vy.sdk.models.components.TransactionCapture;
+import com.gr4vy.sdk.models.components.TransactionCaptureCreate;
 import com.gr4vy.sdk.models.components.TransactionCreate;
 import com.gr4vy.sdk.models.components.TransactionUpdate;
 import com.gr4vy.sdk.models.operations.CaptureTransactionRequest;
@@ -280,12 +280,13 @@ public class Transactions {
      * <p>Captures a previously authorized transaction. You can capture the full or a partial amount, as long as it does not exceed the authorized amount (unless over-capture is enabled).
      * 
      * @param transactionId The ID of the transaction
-     * @param transactionCapture Request body for capturing an authorized transaction.
+     * @param transactionCaptureCreate Request body for capturing an authorized transaction.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public CaptureTransactionResponse capture(String transactionId, TransactionCapture transactionCapture) throws Exception {
-        return capture(transactionId, JsonNullable.undefined(), transactionCapture);
+    public CaptureTransactionResponse capture(String transactionId, TransactionCaptureCreate transactionCaptureCreate) throws Exception {
+        return capture(transactionId, JsonNullable.undefined(), JsonNullable.undefined(),
+            transactionCaptureCreate);
     }
 
     /**
@@ -294,20 +295,22 @@ public class Transactions {
      * <p>Captures a previously authorized transaction. You can capture the full or a partial amount, as long as it does not exceed the authorized amount (unless over-capture is enabled).
      * 
      * @param transactionId The ID of the transaction
+     * @param prefer The preferred resource type in the response.
      * @param merchantAccountId 
-     * @param transactionCapture Request body for capturing an authorized transaction.
+     * @param transactionCaptureCreate Request body for capturing an authorized transaction.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public CaptureTransactionResponse capture(
-            String transactionId, JsonNullable<String> merchantAccountId,
-            TransactionCapture transactionCapture) throws Exception {
+            String transactionId, JsonNullable<String> prefer,
+            JsonNullable<String> merchantAccountId, TransactionCaptureCreate transactionCaptureCreate) throws Exception {
         CaptureTransactionRequest request =
             CaptureTransactionRequest
                 .builder()
                 .transactionId(transactionId)
+                .prefer(prefer)
                 .merchantAccountId(merchantAccountId)
-                .transactionCapture(transactionCapture)
+                .transactionCaptureCreate(transactionCaptureCreate)
                 .build();
         RequestOperation<CaptureTransactionRequest, CaptureTransactionResponse> operation
               = new CaptureTransactionOperation(sdkConfiguration);
