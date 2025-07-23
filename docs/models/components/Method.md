@@ -93,6 +93,7 @@
 | `SPEI`               | spei                 |
 | `STITCH`             | stitch               |
 | `STRIPEDD`           | stripedd             |
+| `STRIPETOKEN`        | stripetoken          |
 | `TAPI`               | tapi                 |
 | `TAPIFINTECHS`       | tapifintechs         |
 | `THAIQR`             | thaiqr               |

@@ -130,6 +130,7 @@ public class RedirectPaymentMethodCreateMethod {
     public static final RedirectPaymentMethodCreateMethod SPEI = new RedirectPaymentMethodCreateMethod("spei");
     public static final RedirectPaymentMethodCreateMethod STITCH = new RedirectPaymentMethodCreateMethod("stitch");
     public static final RedirectPaymentMethodCreateMethod STRIPEDD = new RedirectPaymentMethodCreateMethod("stripedd");
+    public static final RedirectPaymentMethodCreateMethod STRIPETOKEN = new RedirectPaymentMethodCreateMethod("stripetoken");
     public static final RedirectPaymentMethodCreateMethod TAPI = new RedirectPaymentMethodCreateMethod("tapi");
     public static final RedirectPaymentMethodCreateMethod TAPIFINTECHS = new RedirectPaymentMethodCreateMethod("tapifintechs");
     public static final RedirectPaymentMethodCreateMethod THAIQR = new RedirectPaymentMethodCreateMethod("thaiqr");
@@ -296,6 +297,7 @@ public class RedirectPaymentMethodCreateMethod {
         map.put("spei", SPEI);
         map.put("stitch", STITCH);
         map.put("stripedd", STRIPEDD);
+        map.put("stripetoken", STRIPETOKEN);
         map.put("tapi", TAPI);
         map.put("tapifintechs", TAPIFINTECHS);
         map.put("thaiqr", THAIQR);
@@ -396,6 +398,7 @@ public class RedirectPaymentMethodCreateMethod {
         map.put("spei", RedirectPaymentMethodCreateMethodEnum.SPEI);
         map.put("stitch", RedirectPaymentMethodCreateMethodEnum.STITCH);
         map.put("stripedd", RedirectPaymentMethodCreateMethodEnum.STRIPEDD);
+        map.put("stripetoken", RedirectPaymentMethodCreateMethodEnum.STRIPETOKEN);
         map.put("tapi", RedirectPaymentMethodCreateMethodEnum.TAPI);
         map.put("tapifintechs", RedirectPaymentMethodCreateMethodEnum.TAPIFINTECHS);
         map.put("thaiqr", RedirectPaymentMethodCreateMethodEnum.THAIQR);
@@ -526,6 +529,7 @@ public class RedirectPaymentMethodCreateMethod {
         SPEI("spei"),
         STITCH("stitch"),
         STRIPEDD("stripedd"),
+        STRIPETOKEN("stripetoken"),
         TAPI("tapi"),
         TAPIFINTECHS("tapifintechs"),
         THAIQR("thaiqr"),
