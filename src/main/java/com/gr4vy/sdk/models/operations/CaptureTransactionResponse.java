@@ -5,7 +5,6 @@ package com.gr4vy.sdk.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.gr4vy.sdk.models.components.Transaction;
 import com.gr4vy.sdk.utils.Response;
 import com.gr4vy.sdk.utils.Utils;
 import java.io.InputStream;
@@ -36,22 +35,22 @@ public class CaptureTransactionResponse implements Response {
     /**
      * Successful Response
      */
-    private Optional<? extends Transaction> transaction;
+    private Optional<? extends ResponseCaptureTransaction> responseCaptureTransaction;
 
     @JsonCreator
     public CaptureTransactionResponse(
             String contentType,
             int statusCode,
             HttpResponse<InputStream> rawResponse,
-            Optional<? extends Transaction> transaction) {
+            Optional<? extends ResponseCaptureTransaction> responseCaptureTransaction) {
         Utils.checkNotNull(contentType, "contentType");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
-        Utils.checkNotNull(transaction, "transaction");
+        Utils.checkNotNull(responseCaptureTransaction, "responseCaptureTransaction");
         this.contentType = contentType;
         this.statusCode = statusCode;
         this.rawResponse = rawResponse;
-        this.transaction = transaction;
+        this.responseCaptureTransaction = responseCaptureTransaction;
     }
     
     public CaptureTransactionResponse(
@@ -91,8 +90,8 @@ public class CaptureTransactionResponse implements Response {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<Transaction> transaction() {
-        return (Optional<Transaction>) transaction;
+    public Optional<ResponseCaptureTransaction> responseCaptureTransaction() {
+        return (Optional<ResponseCaptureTransaction>) responseCaptureTransaction;
     }
 
     public static Builder builder() {
@@ -130,9 +129,9 @@ public class CaptureTransactionResponse implements Response {
     /**
      * Successful Response
      */
-    public CaptureTransactionResponse withTransaction(Transaction transaction) {
-        Utils.checkNotNull(transaction, "transaction");
-        this.transaction = Optional.ofNullable(transaction);
+    public CaptureTransactionResponse withResponseCaptureTransaction(ResponseCaptureTransaction responseCaptureTransaction) {
+        Utils.checkNotNull(responseCaptureTransaction, "responseCaptureTransaction");
+        this.responseCaptureTransaction = Optional.ofNullable(responseCaptureTransaction);
         return this;
     }
 
@@ -140,9 +139,9 @@ public class CaptureTransactionResponse implements Response {
     /**
      * Successful Response
      */
-    public CaptureTransactionResponse withTransaction(Optional<? extends Transaction> transaction) {
-        Utils.checkNotNull(transaction, "transaction");
-        this.transaction = transaction;
+    public CaptureTransactionResponse withResponseCaptureTransaction(Optional<? extends ResponseCaptureTransaction> responseCaptureTransaction) {
+        Utils.checkNotNull(responseCaptureTransaction, "responseCaptureTransaction");
+        this.responseCaptureTransaction = responseCaptureTransaction;
         return this;
     }
 
@@ -159,14 +158,14 @@ public class CaptureTransactionResponse implements Response {
             Utils.enhancedDeepEquals(this.contentType, other.contentType) &&
             Utils.enhancedDeepEquals(this.statusCode, other.statusCode) &&
             Utils.enhancedDeepEquals(this.rawResponse, other.rawResponse) &&
-            Utils.enhancedDeepEquals(this.transaction, other.transaction);
+            Utils.enhancedDeepEquals(this.responseCaptureTransaction, other.responseCaptureTransaction);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
             contentType, statusCode, rawResponse,
-            transaction);
+            responseCaptureTransaction);
     }
     
     @Override
@@ -175,7 +174,7 @@ public class CaptureTransactionResponse implements Response {
                 "contentType", contentType,
                 "statusCode", statusCode,
                 "rawResponse", rawResponse,
-                "transaction", transaction);
+                "responseCaptureTransaction", responseCaptureTransaction);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -187,7 +186,7 @@ public class CaptureTransactionResponse implements Response {
 
         private HttpResponse<InputStream> rawResponse;
 
-        private Optional<? extends Transaction> transaction = Optional.empty();
+        private Optional<? extends ResponseCaptureTransaction> responseCaptureTransaction = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -227,18 +226,18 @@ public class CaptureTransactionResponse implements Response {
         /**
          * Successful Response
          */
-        public Builder transaction(Transaction transaction) {
-            Utils.checkNotNull(transaction, "transaction");
-            this.transaction = Optional.ofNullable(transaction);
+        public Builder responseCaptureTransaction(ResponseCaptureTransaction responseCaptureTransaction) {
+            Utils.checkNotNull(responseCaptureTransaction, "responseCaptureTransaction");
+            this.responseCaptureTransaction = Optional.ofNullable(responseCaptureTransaction);
             return this;
         }
 
         /**
          * Successful Response
          */
-        public Builder transaction(Optional<? extends Transaction> transaction) {
-            Utils.checkNotNull(transaction, "transaction");
-            this.transaction = transaction;
+        public Builder responseCaptureTransaction(Optional<? extends ResponseCaptureTransaction> responseCaptureTransaction) {
+            Utils.checkNotNull(responseCaptureTransaction, "responseCaptureTransaction");
+            this.responseCaptureTransaction = responseCaptureTransaction;
             return this;
         }
 
@@ -246,7 +245,7 @@ public class CaptureTransactionResponse implements Response {
 
             return new CaptureTransactionResponse(
                 contentType, statusCode, rawResponse,
-                transaction);
+                responseCaptureTransaction);
         }
 
     }

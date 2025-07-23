@@ -5,7 +5,7 @@ package com.gr4vy.sdk.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.gr4vy.sdk.models.components.TransactionCapture;
+import com.gr4vy.sdk.models.components.TransactionCaptureCreate;
 import com.gr4vy.sdk.utils.SpeakeasyMetadata;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Override;
@@ -21,6 +21,12 @@ public class CaptureTransactionRequest {
     private String transactionId;
 
     /**
+     * The preferred resource type in the response.
+     */
+    @SpeakeasyMetadata("header:style=simple,explode=false,name=prefer")
+    private JsonNullable<String> prefer;
+
+    /**
      * The ID of the merchant account to use for this request.
      */
     @SpeakeasyMetadata("header:style=simple,explode=false,name=x-gr4vy-merchant-account-id")
@@ -28,25 +34,29 @@ public class CaptureTransactionRequest {
 
 
     @SpeakeasyMetadata("request:mediaType=application/json")
-    private TransactionCapture transactionCapture;
+    private TransactionCaptureCreate transactionCaptureCreate;
 
     @JsonCreator
     public CaptureTransactionRequest(
             String transactionId,
+            JsonNullable<String> prefer,
             JsonNullable<String> merchantAccountId,
-            TransactionCapture transactionCapture) {
+            TransactionCaptureCreate transactionCaptureCreate) {
         Utils.checkNotNull(transactionId, "transactionId");
+        Utils.checkNotNull(prefer, "prefer");
         Utils.checkNotNull(merchantAccountId, "merchantAccountId");
-        Utils.checkNotNull(transactionCapture, "transactionCapture");
+        Utils.checkNotNull(transactionCaptureCreate, "transactionCaptureCreate");
         this.transactionId = transactionId;
+        this.prefer = prefer;
         this.merchantAccountId = merchantAccountId;
-        this.transactionCapture = transactionCapture;
+        this.transactionCaptureCreate = transactionCaptureCreate;
     }
     
     public CaptureTransactionRequest(
             String transactionId,
-            TransactionCapture transactionCapture) {
-        this(transactionId, JsonNullable.undefined(), transactionCapture);
+            TransactionCaptureCreate transactionCaptureCreate) {
+        this(transactionId, JsonNullable.undefined(), JsonNullable.undefined(),
+            transactionCaptureCreate);
     }
 
     /**
@@ -58,6 +68,14 @@ public class CaptureTransactionRequest {
     }
 
     /**
+     * The preferred resource type in the response.
+     */
+    @JsonIgnore
+    public JsonNullable<String> prefer() {
+        return prefer;
+    }
+
+    /**
      * The ID of the merchant account to use for this request.
      */
     @JsonIgnore
@@ -66,8 +84,8 @@ public class CaptureTransactionRequest {
     }
 
     @JsonIgnore
-    public TransactionCapture transactionCapture() {
-        return transactionCapture;
+    public TransactionCaptureCreate transactionCaptureCreate() {
+        return transactionCaptureCreate;
     }
 
     public static Builder builder() {
@@ -81,6 +99,24 @@ public class CaptureTransactionRequest {
     public CaptureTransactionRequest withTransactionId(String transactionId) {
         Utils.checkNotNull(transactionId, "transactionId");
         this.transactionId = transactionId;
+        return this;
+    }
+
+    /**
+     * The preferred resource type in the response.
+     */
+    public CaptureTransactionRequest withPrefer(String prefer) {
+        Utils.checkNotNull(prefer, "prefer");
+        this.prefer = JsonNullable.of(prefer);
+        return this;
+    }
+
+    /**
+     * The preferred resource type in the response.
+     */
+    public CaptureTransactionRequest withPrefer(JsonNullable<String> prefer) {
+        Utils.checkNotNull(prefer, "prefer");
+        this.prefer = prefer;
         return this;
     }
 
@@ -102,9 +138,9 @@ public class CaptureTransactionRequest {
         return this;
     }
 
-    public CaptureTransactionRequest withTransactionCapture(TransactionCapture transactionCapture) {
-        Utils.checkNotNull(transactionCapture, "transactionCapture");
-        this.transactionCapture = transactionCapture;
+    public CaptureTransactionRequest withTransactionCaptureCreate(TransactionCaptureCreate transactionCaptureCreate) {
+        Utils.checkNotNull(transactionCaptureCreate, "transactionCaptureCreate");
+        this.transactionCaptureCreate = transactionCaptureCreate;
         return this;
     }
 
@@ -119,22 +155,25 @@ public class CaptureTransactionRequest {
         CaptureTransactionRequest other = (CaptureTransactionRequest) o;
         return 
             Utils.enhancedDeepEquals(this.transactionId, other.transactionId) &&
+            Utils.enhancedDeepEquals(this.prefer, other.prefer) &&
             Utils.enhancedDeepEquals(this.merchantAccountId, other.merchantAccountId) &&
-            Utils.enhancedDeepEquals(this.transactionCapture, other.transactionCapture);
+            Utils.enhancedDeepEquals(this.transactionCaptureCreate, other.transactionCaptureCreate);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            transactionId, merchantAccountId, transactionCapture);
+            transactionId, prefer, merchantAccountId,
+            transactionCaptureCreate);
     }
     
     @Override
     public String toString() {
         return Utils.toString(CaptureTransactionRequest.class,
                 "transactionId", transactionId,
+                "prefer", prefer,
                 "merchantAccountId", merchantAccountId,
-                "transactionCapture", transactionCapture);
+                "transactionCaptureCreate", transactionCaptureCreate);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -142,9 +181,11 @@ public class CaptureTransactionRequest {
 
         private String transactionId;
 
+        private JsonNullable<String> prefer = JsonNullable.undefined();
+
         private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
 
-        private TransactionCapture transactionCapture;
+        private TransactionCaptureCreate transactionCaptureCreate;
 
         private Builder() {
           // force use of static builder() method
@@ -157,6 +198,25 @@ public class CaptureTransactionRequest {
         public Builder transactionId(String transactionId) {
             Utils.checkNotNull(transactionId, "transactionId");
             this.transactionId = transactionId;
+            return this;
+        }
+
+
+        /**
+         * The preferred resource type in the response.
+         */
+        public Builder prefer(String prefer) {
+            Utils.checkNotNull(prefer, "prefer");
+            this.prefer = JsonNullable.of(prefer);
+            return this;
+        }
+
+        /**
+         * The preferred resource type in the response.
+         */
+        public Builder prefer(JsonNullable<String> prefer) {
+            Utils.checkNotNull(prefer, "prefer");
+            this.prefer = prefer;
             return this;
         }
 
@@ -180,16 +240,17 @@ public class CaptureTransactionRequest {
         }
 
 
-        public Builder transactionCapture(TransactionCapture transactionCapture) {
-            Utils.checkNotNull(transactionCapture, "transactionCapture");
-            this.transactionCapture = transactionCapture;
+        public Builder transactionCaptureCreate(TransactionCaptureCreate transactionCaptureCreate) {
+            Utils.checkNotNull(transactionCaptureCreate, "transactionCaptureCreate");
+            this.transactionCaptureCreate = transactionCaptureCreate;
             return this;
         }
 
         public CaptureTransactionRequest build() {
 
             return new CaptureTransactionRequest(
-                transactionId, merchantAccountId, transactionCapture);
+                transactionId, prefer, merchantAccountId,
+                transactionCaptureCreate);
         }
 
     }

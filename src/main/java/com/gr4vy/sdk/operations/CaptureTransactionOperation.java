@@ -8,7 +8,6 @@ import static com.gr4vy.sdk.operations.Operations.RequestOperation;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.gr4vy.sdk.SDKConfiguration;
 import com.gr4vy.sdk.SecuritySource;
-import com.gr4vy.sdk.models.components.Transaction;
 import com.gr4vy.sdk.models.errors.APIException;
 import com.gr4vy.sdk.models.errors.Error400;
 import com.gr4vy.sdk.models.errors.Error401;
@@ -24,6 +23,7 @@ import com.gr4vy.sdk.models.errors.Error504;
 import com.gr4vy.sdk.models.errors.HTTPValidationError;
 import com.gr4vy.sdk.models.operations.CaptureTransactionRequest;
 import com.gr4vy.sdk.models.operations.CaptureTransactionResponse;
+import com.gr4vy.sdk.models.operations.ResponseCaptureTransaction;
 import com.gr4vy.sdk.utils.HTTPClient;
 import com.gr4vy.sdk.utils.HTTPRequest;
 import com.gr4vy.sdk.utils.Hook.AfterErrorContextImpl;
@@ -73,7 +73,7 @@ public class CaptureTransactionOperation implements RequestOperation<CaptureTran
                 new TypeReference<Object>() {});
         SerializedBody serializedRequestBody = Utils.serializeRequestBody(
                 convertedRequest, 
-                "transactionCapture",
+                "transactionCaptureCreate",
                 "json",
                 false);
         if (serializedRequestBody == null) {
@@ -157,11 +157,11 @@ public class CaptureTransactionOperation implements RequestOperation<CaptureTran
         
         if (Utils.statusCodeMatches(response.statusCode(), "200")) {
             if (Utils.contentTypeMatches(contentType, "application/json")) {
-                Transaction out = Utils.mapper().readValue(
+                ResponseCaptureTransaction out = Utils.mapper().readValue(
                     response.body(),
                     new TypeReference<>() {
                     });
-                res.withTransaction(out);
+                res.withResponseCaptureTransaction(out);
                 return res;
             } else {
                 throw new APIException(

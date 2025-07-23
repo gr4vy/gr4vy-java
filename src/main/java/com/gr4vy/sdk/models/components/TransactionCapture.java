@@ -8,62 +8,123 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.gr4vy.sdk.utils.LazySingletonValue;
 import com.gr4vy.sdk.utils.Utils;
-import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
-import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.Optional;
 
-/**
- * TransactionCapture
- * 
- * <p>Request body for capturing an authorized transaction.
- */
+
 public class TransactionCapture {
     /**
-     * The amount to capture, in the smallest currency unit (e.g., cents). This must be less than or equal to the authorized amount, unless over-capture is available.
+     * Always `transaction-capture`.
      */
     @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("amount")
-    private JsonNullable<Long> amount;
+    @JsonProperty("type")
+    private Optional<String> type;
+
+
+    @JsonProperty("status")
+    private CaptureStatus status;
 
     /**
-     * The airline data to submit to the payment service during the capture call.
+     * The standardized error code set by Gr4vy.
      */
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("airline")
-    private JsonNullable<? extends Airline> airline;
+    @JsonInclude(Include.ALWAYS)
+    @JsonProperty("code")
+    private Optional<String> code;
+
+    /**
+     * This is the response code received from the payment service. This can be set to any value and is not standardized across different payment services.
+     */
+    @JsonInclude(Include.ALWAYS)
+    @JsonProperty("raw_response_code")
+    private Optional<String> rawResponseCode;
+
+    /**
+     * This is the response description received from the payment service. This can be set to any value and is not standardized across different payment services.
+     */
+    @JsonInclude(Include.ALWAYS)
+    @JsonProperty("raw_response_description")
+    private Optional<String> rawResponseDescription;
+
+    /**
+     * A full transaction resource.
+     */
+    @JsonProperty("transaction")
+    private Transaction transaction;
 
     @JsonCreator
     public TransactionCapture(
-            @JsonProperty("amount") JsonNullable<Long> amount,
-            @JsonProperty("airline") JsonNullable<? extends Airline> airline) {
-        Utils.checkNotNull(amount, "amount");
-        Utils.checkNotNull(airline, "airline");
-        this.amount = amount;
-        this.airline = airline;
+            @JsonProperty("status") CaptureStatus status,
+            @JsonProperty("code") Optional<String> code,
+            @JsonProperty("raw_response_code") Optional<String> rawResponseCode,
+            @JsonProperty("raw_response_description") Optional<String> rawResponseDescription,
+            @JsonProperty("transaction") Transaction transaction) {
+        Utils.checkNotNull(status, "status");
+        Utils.checkNotNull(code, "code");
+        Utils.checkNotNull(rawResponseCode, "rawResponseCode");
+        Utils.checkNotNull(rawResponseDescription, "rawResponseDescription");
+        Utils.checkNotNull(transaction, "transaction");
+        this.type = Builder._SINGLETON_VALUE_Type.value();
+        this.status = status;
+        this.code = code;
+        this.rawResponseCode = rawResponseCode;
+        this.rawResponseDescription = rawResponseDescription;
+        this.transaction = transaction;
     }
     
-    public TransactionCapture() {
-        this(JsonNullable.undefined(), JsonNullable.undefined());
+    public TransactionCapture(
+            CaptureStatus status,
+            Transaction transaction) {
+        this(status, Optional.empty(), Optional.empty(),
+            Optional.empty(), transaction);
     }
 
     /**
-     * The amount to capture, in the smallest currency unit (e.g., cents). This must be less than or equal to the authorized amount, unless over-capture is available.
+     * Always `transaction-capture`.
      */
     @JsonIgnore
-    public JsonNullable<Long> amount() {
-        return amount;
+    public Optional<String> type() {
+        return type;
+    }
+
+    @JsonIgnore
+    public CaptureStatus status() {
+        return status;
     }
 
     /**
-     * The airline data to submit to the payment service during the capture call.
+     * The standardized error code set by Gr4vy.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<Airline> airline() {
-        return (JsonNullable<Airline>) airline;
+    public Optional<String> code() {
+        return code;
+    }
+
+    /**
+     * This is the response code received from the payment service. This can be set to any value and is not standardized across different payment services.
+     */
+    @JsonIgnore
+    public Optional<String> rawResponseCode() {
+        return rawResponseCode;
+    }
+
+    /**
+     * This is the response description received from the payment service. This can be set to any value and is not standardized across different payment services.
+     */
+    @JsonIgnore
+    public Optional<String> rawResponseDescription() {
+        return rawResponseDescription;
+    }
+
+    /**
+     * A full transaction resource.
+     */
+    @JsonIgnore
+    public Transaction transaction() {
+        return transaction;
     }
 
     public static Builder builder() {
@@ -71,39 +132,75 @@ public class TransactionCapture {
     }
 
 
-    /**
-     * The amount to capture, in the smallest currency unit (e.g., cents). This must be less than or equal to the authorized amount, unless over-capture is available.
-     */
-    public TransactionCapture withAmount(long amount) {
-        Utils.checkNotNull(amount, "amount");
-        this.amount = JsonNullable.of(amount);
+    public TransactionCapture withStatus(CaptureStatus status) {
+        Utils.checkNotNull(status, "status");
+        this.status = status;
         return this;
     }
 
     /**
-     * The amount to capture, in the smallest currency unit (e.g., cents). This must be less than or equal to the authorized amount, unless over-capture is available.
+     * The standardized error code set by Gr4vy.
      */
-    public TransactionCapture withAmount(JsonNullable<Long> amount) {
-        Utils.checkNotNull(amount, "amount");
-        this.amount = amount;
+    public TransactionCapture withCode(String code) {
+        Utils.checkNotNull(code, "code");
+        this.code = Optional.ofNullable(code);
+        return this;
+    }
+
+
+    /**
+     * The standardized error code set by Gr4vy.
+     */
+    public TransactionCapture withCode(Optional<String> code) {
+        Utils.checkNotNull(code, "code");
+        this.code = code;
         return this;
     }
 
     /**
-     * The airline data to submit to the payment service during the capture call.
+     * This is the response code received from the payment service. This can be set to any value and is not standardized across different payment services.
      */
-    public TransactionCapture withAirline(Airline airline) {
-        Utils.checkNotNull(airline, "airline");
-        this.airline = JsonNullable.of(airline);
+    public TransactionCapture withRawResponseCode(String rawResponseCode) {
+        Utils.checkNotNull(rawResponseCode, "rawResponseCode");
+        this.rawResponseCode = Optional.ofNullable(rawResponseCode);
+        return this;
+    }
+
+
+    /**
+     * This is the response code received from the payment service. This can be set to any value and is not standardized across different payment services.
+     */
+    public TransactionCapture withRawResponseCode(Optional<String> rawResponseCode) {
+        Utils.checkNotNull(rawResponseCode, "rawResponseCode");
+        this.rawResponseCode = rawResponseCode;
         return this;
     }
 
     /**
-     * The airline data to submit to the payment service during the capture call.
+     * This is the response description received from the payment service. This can be set to any value and is not standardized across different payment services.
      */
-    public TransactionCapture withAirline(JsonNullable<? extends Airline> airline) {
-        Utils.checkNotNull(airline, "airline");
-        this.airline = airline;
+    public TransactionCapture withRawResponseDescription(String rawResponseDescription) {
+        Utils.checkNotNull(rawResponseDescription, "rawResponseDescription");
+        this.rawResponseDescription = Optional.ofNullable(rawResponseDescription);
+        return this;
+    }
+
+
+    /**
+     * This is the response description received from the payment service. This can be set to any value and is not standardized across different payment services.
+     */
+    public TransactionCapture withRawResponseDescription(Optional<String> rawResponseDescription) {
+        Utils.checkNotNull(rawResponseDescription, "rawResponseDescription");
+        this.rawResponseDescription = rawResponseDescription;
+        return this;
+    }
+
+    /**
+     * A full transaction resource.
+     */
+    public TransactionCapture withTransaction(Transaction transaction) {
+        Utils.checkNotNull(transaction, "transaction");
+        this.transaction = transaction;
         return this;
     }
 
@@ -117,77 +214,135 @@ public class TransactionCapture {
         }
         TransactionCapture other = (TransactionCapture) o;
         return 
-            Utils.enhancedDeepEquals(this.amount, other.amount) &&
-            Utils.enhancedDeepEquals(this.airline, other.airline);
+            Utils.enhancedDeepEquals(this.type, other.type) &&
+            Utils.enhancedDeepEquals(this.status, other.status) &&
+            Utils.enhancedDeepEquals(this.code, other.code) &&
+            Utils.enhancedDeepEquals(this.rawResponseCode, other.rawResponseCode) &&
+            Utils.enhancedDeepEquals(this.rawResponseDescription, other.rawResponseDescription) &&
+            Utils.enhancedDeepEquals(this.transaction, other.transaction);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            amount, airline);
+            type, status, code,
+            rawResponseCode, rawResponseDescription, transaction);
     }
     
     @Override
     public String toString() {
         return Utils.toString(TransactionCapture.class,
-                "amount", amount,
-                "airline", airline);
+                "type", type,
+                "status", status,
+                "code", code,
+                "rawResponseCode", rawResponseCode,
+                "rawResponseDescription", rawResponseDescription,
+                "transaction", transaction);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private JsonNullable<Long> amount = JsonNullable.undefined();
+        private CaptureStatus status;
 
-        private JsonNullable<? extends Airline> airline = JsonNullable.undefined();
+        private Optional<String> code = Optional.empty();
+
+        private Optional<String> rawResponseCode = Optional.empty();
+
+        private Optional<String> rawResponseDescription = Optional.empty();
+
+        private Transaction transaction;
 
         private Builder() {
           // force use of static builder() method
         }
 
 
-        /**
-         * The amount to capture, in the smallest currency unit (e.g., cents). This must be less than or equal to the authorized amount, unless over-capture is available.
-         */
-        public Builder amount(long amount) {
-            Utils.checkNotNull(amount, "amount");
-            this.amount = JsonNullable.of(amount);
-            return this;
-        }
-
-        /**
-         * The amount to capture, in the smallest currency unit (e.g., cents). This must be less than or equal to the authorized amount, unless over-capture is available.
-         */
-        public Builder amount(JsonNullable<Long> amount) {
-            Utils.checkNotNull(amount, "amount");
-            this.amount = amount;
+        public Builder status(CaptureStatus status) {
+            Utils.checkNotNull(status, "status");
+            this.status = status;
             return this;
         }
 
 
         /**
-         * The airline data to submit to the payment service during the capture call.
+         * The standardized error code set by Gr4vy.
          */
-        public Builder airline(Airline airline) {
-            Utils.checkNotNull(airline, "airline");
-            this.airline = JsonNullable.of(airline);
+        public Builder code(String code) {
+            Utils.checkNotNull(code, "code");
+            this.code = Optional.ofNullable(code);
             return this;
         }
 
         /**
-         * The airline data to submit to the payment service during the capture call.
+         * The standardized error code set by Gr4vy.
          */
-        public Builder airline(JsonNullable<? extends Airline> airline) {
-            Utils.checkNotNull(airline, "airline");
-            this.airline = airline;
+        public Builder code(Optional<String> code) {
+            Utils.checkNotNull(code, "code");
+            this.code = code;
+            return this;
+        }
+
+
+        /**
+         * This is the response code received from the payment service. This can be set to any value and is not standardized across different payment services.
+         */
+        public Builder rawResponseCode(String rawResponseCode) {
+            Utils.checkNotNull(rawResponseCode, "rawResponseCode");
+            this.rawResponseCode = Optional.ofNullable(rawResponseCode);
+            return this;
+        }
+
+        /**
+         * This is the response code received from the payment service. This can be set to any value and is not standardized across different payment services.
+         */
+        public Builder rawResponseCode(Optional<String> rawResponseCode) {
+            Utils.checkNotNull(rawResponseCode, "rawResponseCode");
+            this.rawResponseCode = rawResponseCode;
+            return this;
+        }
+
+
+        /**
+         * This is the response description received from the payment service. This can be set to any value and is not standardized across different payment services.
+         */
+        public Builder rawResponseDescription(String rawResponseDescription) {
+            Utils.checkNotNull(rawResponseDescription, "rawResponseDescription");
+            this.rawResponseDescription = Optional.ofNullable(rawResponseDescription);
+            return this;
+        }
+
+        /**
+         * This is the response description received from the payment service. This can be set to any value and is not standardized across different payment services.
+         */
+        public Builder rawResponseDescription(Optional<String> rawResponseDescription) {
+            Utils.checkNotNull(rawResponseDescription, "rawResponseDescription");
+            this.rawResponseDescription = rawResponseDescription;
+            return this;
+        }
+
+
+        /**
+         * A full transaction resource.
+         */
+        public Builder transaction(Transaction transaction) {
+            Utils.checkNotNull(transaction, "transaction");
+            this.transaction = transaction;
             return this;
         }
 
         public TransactionCapture build() {
 
             return new TransactionCapture(
-                amount, airline);
+                status, code, rawResponseCode,
+                rawResponseDescription, transaction);
         }
 
+
+        private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_Type =
+                new LazySingletonValue<>(
+                        "type",
+                        "\"transaction-capture\"",
+                        new TypeReference<Optional<String>>() {});
     }
 }

@@ -6,7 +6,7 @@ package com.gr4vy.sdk.models.operations;
 import static com.gr4vy.sdk.operations.Operations.RequestOperation;
 
 import com.gr4vy.sdk.SDKConfiguration;
-import com.gr4vy.sdk.models.components.TransactionCapture;
+import com.gr4vy.sdk.models.components.TransactionCaptureCreate;
 import com.gr4vy.sdk.operations.CaptureTransactionOperation;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Exception;
@@ -16,8 +16,9 @@ import org.openapitools.jackson.nullable.JsonNullable;
 public class CaptureTransactionRequestBuilder {
 
     private String transactionId;
+    private JsonNullable<String> prefer = JsonNullable.undefined();
     private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
-    private TransactionCapture transactionCapture;
+    private TransactionCaptureCreate transactionCaptureCreate;
     private final SDKConfiguration sdkConfiguration;
 
     public CaptureTransactionRequestBuilder(SDKConfiguration sdkConfiguration) {
@@ -27,6 +28,18 @@ public class CaptureTransactionRequestBuilder {
     public CaptureTransactionRequestBuilder transactionId(String transactionId) {
         Utils.checkNotNull(transactionId, "transactionId");
         this.transactionId = transactionId;
+        return this;
+    }
+
+    public CaptureTransactionRequestBuilder prefer(String prefer) {
+        Utils.checkNotNull(prefer, "prefer");
+        this.prefer = JsonNullable.of(prefer);
+        return this;
+    }
+
+    public CaptureTransactionRequestBuilder prefer(JsonNullable<String> prefer) {
+        Utils.checkNotNull(prefer, "prefer");
+        this.prefer = prefer;
         return this;
     }
 
@@ -42,9 +55,9 @@ public class CaptureTransactionRequestBuilder {
         return this;
     }
 
-    public CaptureTransactionRequestBuilder transactionCapture(TransactionCapture transactionCapture) {
-        Utils.checkNotNull(transactionCapture, "transactionCapture");
-        this.transactionCapture = transactionCapture;
+    public CaptureTransactionRequestBuilder transactionCaptureCreate(TransactionCaptureCreate transactionCaptureCreate) {
+        Utils.checkNotNull(transactionCaptureCreate, "transactionCaptureCreate");
+        this.transactionCaptureCreate = transactionCaptureCreate;
         return this;
     }
 
@@ -52,8 +65,9 @@ public class CaptureTransactionRequestBuilder {
     private CaptureTransactionRequest buildRequest() {
 
         CaptureTransactionRequest request = new CaptureTransactionRequest(transactionId,
+            prefer,
             merchantAccountId,
-            transactionCapture);
+            transactionCaptureCreate);
 
         return request;
     }

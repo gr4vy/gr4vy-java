@@ -27,7 +27,7 @@ import com.gr4vy.sdk.SDKConfiguration;
  * For example, this code will add a transaction id header to every request:
  * 
  * <pre>
- * hooks.registerBeforeRequest((context, request) -> {
+ * hooks.registerBeforeRequest((context, request) -&gt; {
  *     request.headers().map().put("acme-transaction-id", nextTransactionId());
  *     return request;
  * });
