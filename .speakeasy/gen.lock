@@ -1,19 +1,19 @@
 lockVersion: 2.0.0
 id: 5bbaa3a9-baa0-471b-ba6a-13fd88e8c119
 management:
-  docChecksum: fbd0edaf388faf1db169aa5aecaf11d7
+  docChecksum: ccb9592b90314ce7cfca0304758a883f
   docVersion: 1.0.0
-  speakeasyVersion: 1.587.2
-  generationVersion: 2.662.0
-  releaseVersion: 2.8.2
-  configChecksum: 83fc1576c281b79088f916d90ebf4524
+  speakeasyVersion: 1.588.0
+  generationVersion: 2.663.0
+  releaseVersion: 2.8.3
+  configChecksum: c92ffb795b28977119bf59215d864e2d
   repoURL: https://github.com/gr4vy/gr4vy-java.git
   published: true
 features:
   java:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.1
-    core: 3.45.0
+    core: 3.45.1
     flattening: 2.81.1
     globalSecurity: 2.83.0
     globalSecurityCallbacks: 0.1.0
@@ -291,6 +291,7 @@ generatedFiles:
   - docs/models/components/TransactionSummary.md
   - docs/models/components/TransactionThreeDSecureSummary.md
   - docs/models/components/TransactionUpdate.md
+  - docs/models/components/TransactionVoid.md
   - docs/models/components/TransactionsReportSpec.md
   - docs/models/components/TravelHubCustomData.md
   - docs/models/components/TravelhubOptions.md
@@ -300,6 +301,7 @@ generatedFiles:
   - docs/models/components/UserStatus.md
   - docs/models/components/ValidationError.md
   - docs/models/components/VerifyCredentials.md
+  - docs/models/components/VoidStatus.md
   - docs/models/components/VoidableField.md
   - docs/models/components/WalletPaymentOptionContext.md
   - docs/models/components/WpayEverdaypayOptions.md
@@ -475,6 +477,7 @@ generatedFiles:
   - docs/models/operations/RegisterDigitalWalletDomainRequest.md
   - docs/models/operations/RegisterDigitalWalletDomainResponse.md
   - docs/models/operations/ResponseCaptureTransaction.md
+  - docs/models/operations/ResponseVoidTransaction.md
   - docs/models/operations/ResumePaymentMethodNetworkTokenRequest.md
   - docs/models/operations/ResumePaymentMethodNetworkTokenResponse.md
   - docs/models/operations/SuspendPaymentMethodNetworkTokenRequest.md
@@ -836,6 +839,7 @@ generatedFiles:
   - src/main/java/com/gr4vy/sdk/models/components/TransactionSummary.java
   - src/main/java/com/gr4vy/sdk/models/components/TransactionThreeDSecureSummary.java
   - src/main/java/com/gr4vy/sdk/models/components/TransactionUpdate.java
+  - src/main/java/com/gr4vy/sdk/models/components/TransactionVoid.java
   - src/main/java/com/gr4vy/sdk/models/components/TransactionsReportSpec.java
   - src/main/java/com/gr4vy/sdk/models/components/TravelHubCustomData.java
   - src/main/java/com/gr4vy/sdk/models/components/TravelhubOptions.java
@@ -845,6 +849,7 @@ generatedFiles:
   - src/main/java/com/gr4vy/sdk/models/components/UserStatus.java
   - src/main/java/com/gr4vy/sdk/models/components/ValidationError.java
   - src/main/java/com/gr4vy/sdk/models/components/VerifyCredentials.java
+  - src/main/java/com/gr4vy/sdk/models/components/VoidStatus.java
   - src/main/java/com/gr4vy/sdk/models/components/VoidableField.java
   - src/main/java/com/gr4vy/sdk/models/components/WalletPaymentOptionContext.java
   - src/main/java/com/gr4vy/sdk/models/components/WpayEverdaypayOptions.java
@@ -1100,6 +1105,7 @@ generatedFiles:
   - src/main/java/com/gr4vy/sdk/models/operations/RegisterDigitalWalletDomainRequestBuilder.java
   - src/main/java/com/gr4vy/sdk/models/operations/RegisterDigitalWalletDomainResponse.java
   - src/main/java/com/gr4vy/sdk/models/operations/ResponseCaptureTransaction.java
+  - src/main/java/com/gr4vy/sdk/models/operations/ResponseVoidTransaction.java
   - src/main/java/com/gr4vy/sdk/models/operations/ResumePaymentMethodNetworkTokenRequest.java
   - src/main/java/com/gr4vy/sdk/models/operations/ResumePaymentMethodNetworkTokenRequestBuilder.java
   - src/main/java/com/gr4vy/sdk/models/operations/ResumePaymentMethodNetworkTokenResponse.java

@@ -10,6 +10,8 @@ import com.gr4vy.sdk.utils.SpeakeasyMetadata;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
+import java.lang.SuppressWarnings;
+import java.util.List;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 
@@ -24,7 +26,7 @@ public class CaptureTransactionRequest {
      * The preferred resource type in the response.
      */
     @SpeakeasyMetadata("header:style=simple,explode=false,name=prefer")
-    private JsonNullable<String> prefer;
+    private JsonNullable<? extends List<String>> prefer;
 
     /**
      * The ID of the merchant account to use for this request.
@@ -39,7 +41,7 @@ public class CaptureTransactionRequest {
     @JsonCreator
     public CaptureTransactionRequest(
             String transactionId,
-            JsonNullable<String> prefer,
+            JsonNullable<? extends List<String>> prefer,
             JsonNullable<String> merchantAccountId,
             TransactionCaptureCreate transactionCaptureCreate) {
         Utils.checkNotNull(transactionId, "transactionId");
@@ -70,9 +72,10 @@ public class CaptureTransactionRequest {
     /**
      * The preferred resource type in the response.
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<String> prefer() {
-        return prefer;
+    public JsonNullable<List<String>> prefer() {
+        return (JsonNullable<List<String>>) prefer;
     }
 
     /**
@@ -105,7 +108,7 @@ public class CaptureTransactionRequest {
     /**
      * The preferred resource type in the response.
      */
-    public CaptureTransactionRequest withPrefer(String prefer) {
+    public CaptureTransactionRequest withPrefer(List<String> prefer) {
         Utils.checkNotNull(prefer, "prefer");
         this.prefer = JsonNullable.of(prefer);
         return this;
@@ -114,7 +117,7 @@ public class CaptureTransactionRequest {
     /**
      * The preferred resource type in the response.
      */
-    public CaptureTransactionRequest withPrefer(JsonNullable<String> prefer) {
+    public CaptureTransactionRequest withPrefer(JsonNullable<? extends List<String>> prefer) {
         Utils.checkNotNull(prefer, "prefer");
         this.prefer = prefer;
         return this;
@@ -181,7 +184,7 @@ public class CaptureTransactionRequest {
 
         private String transactionId;
 
-        private JsonNullable<String> prefer = JsonNullable.undefined();
+        private JsonNullable<? extends List<String>> prefer = JsonNullable.undefined();
 
         private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
 
@@ -205,7 +208,7 @@ public class CaptureTransactionRequest {
         /**
          * The preferred resource type in the response.
          */
-        public Builder prefer(String prefer) {
+        public Builder prefer(List<String> prefer) {
             Utils.checkNotNull(prefer, "prefer");
             this.prefer = JsonNullable.of(prefer);
             return this;
@@ -214,7 +217,7 @@ public class CaptureTransactionRequest {
         /**
          * The preferred resource type in the response.
          */
-        public Builder prefer(JsonNullable<String> prefer) {
+        public Builder prefer(JsonNullable<? extends List<String>> prefer) {
             Utils.checkNotNull(prefer, "prefer");
             this.prefer = prefer;
             return this;

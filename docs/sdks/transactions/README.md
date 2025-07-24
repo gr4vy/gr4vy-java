@@ -391,7 +391,7 @@ public class Application {
 | Parameter                                                                       | Type                                                                            | Required                                                                        | Description                                                                     | Example                                                                         |
 | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
 | `transactionId`                                                                 | *String*                                                                        | :heavy_check_mark:                                                              | The ID of the transaction                                                       | 7099948d-7286-47e4-aad8-b68f7eb44591                                            |
-| `prefer`                                                                        | *JsonNullable\<String>*                                                         | :heavy_minus_sign:                                                              | The preferred resource type in the response.                                    | resource=transaction                                                            |
+| `prefer`                                                                        | List\<*String*>                                                                 | :heavy_minus_sign:                                                              | The preferred resource type in the response.                                    | resource=transaction                                                            |
 | `merchantAccountId`                                                             | *JsonNullable\<String>*                                                         | :heavy_minus_sign:                                                              | The ID of the merchant account to use for this request.                         |                                                                                 |
 | `transactionCaptureCreate`                                                      | [TransactionCaptureCreate](../../models/components/TransactionCaptureCreate.md) | :heavy_check_mark:                                                              | N/A                                                                             |                                                                                 |
 
@@ -444,7 +444,7 @@ public class Application {
                 .transactionId("7099948d-7286-47e4-aad8-b68f7eb44591")
                 .call();
 
-        if (res.transaction().isPresent()) {
+        if (res.responseVoidTransaction().isPresent()) {
             // handle response
         }
     }
@@ -456,6 +456,7 @@ public class Application {
 | Parameter                                               | Type                                                    | Required                                                | Description                                             | Example                                                 |
 | ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- |
 | `transactionId`                                         | *String*                                                | :heavy_check_mark:                                      | The ID of the transaction                               | 7099948d-7286-47e4-aad8-b68f7eb44591                    |
+| `prefer`                                                | List\<*String*>                                         | :heavy_minus_sign:                                      | The preferred resource type in the response.            | resource=transaction                                    |
 | `merchantAccountId`                                     | *JsonNullable\<String>*                                 | :heavy_minus_sign:                                      | The ID of the merchant account to use for this request. |                                                         |
 
 ### Response
