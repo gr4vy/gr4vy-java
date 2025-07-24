@@ -9,6 +9,8 @@ import com.gr4vy.sdk.utils.SpeakeasyMetadata;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
+import java.lang.SuppressWarnings;
+import java.util.List;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 
@@ -20,6 +22,12 @@ public class VoidTransactionRequest {
     private String transactionId;
 
     /**
+     * The preferred resource type in the response.
+     */
+    @SpeakeasyMetadata("header:style=simple,explode=false,name=prefer")
+    private JsonNullable<? extends List<String>> prefer;
+
+    /**
      * The ID of the merchant account to use for this request.
      */
     @SpeakeasyMetadata("header:style=simple,explode=false,name=x-gr4vy-merchant-account-id")
@@ -28,16 +36,19 @@ public class VoidTransactionRequest {
     @JsonCreator
     public VoidTransactionRequest(
             String transactionId,
+            JsonNullable<? extends List<String>> prefer,
             JsonNullable<String> merchantAccountId) {
         Utils.checkNotNull(transactionId, "transactionId");
+        Utils.checkNotNull(prefer, "prefer");
         Utils.checkNotNull(merchantAccountId, "merchantAccountId");
         this.transactionId = transactionId;
+        this.prefer = prefer;
         this.merchantAccountId = merchantAccountId;
     }
     
     public VoidTransactionRequest(
             String transactionId) {
-        this(transactionId, JsonNullable.undefined());
+        this(transactionId, JsonNullable.undefined(), JsonNullable.undefined());
     }
 
     /**
@@ -46,6 +57,15 @@ public class VoidTransactionRequest {
     @JsonIgnore
     public String transactionId() {
         return transactionId;
+    }
+
+    /**
+     * The preferred resource type in the response.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public JsonNullable<List<String>> prefer() {
+        return (JsonNullable<List<String>>) prefer;
     }
 
     /**
@@ -67,6 +87,24 @@ public class VoidTransactionRequest {
     public VoidTransactionRequest withTransactionId(String transactionId) {
         Utils.checkNotNull(transactionId, "transactionId");
         this.transactionId = transactionId;
+        return this;
+    }
+
+    /**
+     * The preferred resource type in the response.
+     */
+    public VoidTransactionRequest withPrefer(List<String> prefer) {
+        Utils.checkNotNull(prefer, "prefer");
+        this.prefer = JsonNullable.of(prefer);
+        return this;
+    }
+
+    /**
+     * The preferred resource type in the response.
+     */
+    public VoidTransactionRequest withPrefer(JsonNullable<? extends List<String>> prefer) {
+        Utils.checkNotNull(prefer, "prefer");
+        this.prefer = prefer;
         return this;
     }
 
@@ -99,19 +137,21 @@ public class VoidTransactionRequest {
         VoidTransactionRequest other = (VoidTransactionRequest) o;
         return 
             Utils.enhancedDeepEquals(this.transactionId, other.transactionId) &&
+            Utils.enhancedDeepEquals(this.prefer, other.prefer) &&
             Utils.enhancedDeepEquals(this.merchantAccountId, other.merchantAccountId);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            transactionId, merchantAccountId);
+            transactionId, prefer, merchantAccountId);
     }
     
     @Override
     public String toString() {
         return Utils.toString(VoidTransactionRequest.class,
                 "transactionId", transactionId,
+                "prefer", prefer,
                 "merchantAccountId", merchantAccountId);
     }
 
@@ -119,6 +159,8 @@ public class VoidTransactionRequest {
     public final static class Builder {
 
         private String transactionId;
+
+        private JsonNullable<? extends List<String>> prefer = JsonNullable.undefined();
 
         private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
 
@@ -133,6 +175,25 @@ public class VoidTransactionRequest {
         public Builder transactionId(String transactionId) {
             Utils.checkNotNull(transactionId, "transactionId");
             this.transactionId = transactionId;
+            return this;
+        }
+
+
+        /**
+         * The preferred resource type in the response.
+         */
+        public Builder prefer(List<String> prefer) {
+            Utils.checkNotNull(prefer, "prefer");
+            this.prefer = JsonNullable.of(prefer);
+            return this;
+        }
+
+        /**
+         * The preferred resource type in the response.
+         */
+        public Builder prefer(JsonNullable<? extends List<String>> prefer) {
+            Utils.checkNotNull(prefer, "prefer");
+            this.prefer = prefer;
             return this;
         }
 
@@ -158,7 +219,7 @@ public class VoidTransactionRequest {
         public VoidTransactionRequest build() {
 
             return new VoidTransactionRequest(
-                transactionId, merchantAccountId);
+                transactionId, prefer, merchantAccountId);
         }
 
     }

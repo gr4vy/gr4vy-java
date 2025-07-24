@@ -11,12 +11,13 @@ import com.gr4vy.sdk.operations.CaptureTransactionOperation;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
+import java.util.List;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 public class CaptureTransactionRequestBuilder {
 
     private String transactionId;
-    private JsonNullable<String> prefer = JsonNullable.undefined();
+    private JsonNullable<? extends List<String>> prefer = JsonNullable.undefined();
     private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
     private TransactionCaptureCreate transactionCaptureCreate;
     private final SDKConfiguration sdkConfiguration;
@@ -31,13 +32,13 @@ public class CaptureTransactionRequestBuilder {
         return this;
     }
 
-    public CaptureTransactionRequestBuilder prefer(String prefer) {
+    public CaptureTransactionRequestBuilder prefer(List<String> prefer) {
         Utils.checkNotNull(prefer, "prefer");
         this.prefer = JsonNullable.of(prefer);
         return this;
     }
 
-    public CaptureTransactionRequestBuilder prefer(JsonNullable<String> prefer) {
+    public CaptureTransactionRequestBuilder prefer(JsonNullable<? extends List<String>> prefer) {
         Utils.checkNotNull(prefer, "prefer");
         this.prefer = prefer;
         return this;

@@ -10,11 +10,13 @@ import com.gr4vy.sdk.operations.VoidTransactionOperation;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
+import java.util.List;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 public class VoidTransactionRequestBuilder {
 
     private String transactionId;
+    private JsonNullable<? extends List<String>> prefer = JsonNullable.undefined();
     private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
     private final SDKConfiguration sdkConfiguration;
 
@@ -25,6 +27,18 @@ public class VoidTransactionRequestBuilder {
     public VoidTransactionRequestBuilder transactionId(String transactionId) {
         Utils.checkNotNull(transactionId, "transactionId");
         this.transactionId = transactionId;
+        return this;
+    }
+
+    public VoidTransactionRequestBuilder prefer(List<String> prefer) {
+        Utils.checkNotNull(prefer, "prefer");
+        this.prefer = JsonNullable.of(prefer);
+        return this;
+    }
+
+    public VoidTransactionRequestBuilder prefer(JsonNullable<? extends List<String>> prefer) {
+        Utils.checkNotNull(prefer, "prefer");
+        this.prefer = prefer;
         return this;
     }
 
@@ -44,6 +58,7 @@ public class VoidTransactionRequestBuilder {
     private VoidTransactionRequest buildRequest() {
 
         VoidTransactionRequest request = new VoidTransactionRequest(transactionId,
+            prefer,
             merchantAccountId);
 
         return request;

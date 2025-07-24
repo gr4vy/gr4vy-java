@@ -5,7 +5,6 @@ package com.gr4vy.sdk.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.gr4vy.sdk.models.components.Transaction;
 import com.gr4vy.sdk.utils.Response;
 import com.gr4vy.sdk.utils.Utils;
 import java.io.InputStream;
@@ -36,22 +35,22 @@ public class VoidTransactionResponse implements Response {
     /**
      * Successful Response
      */
-    private Optional<? extends Transaction> transaction;
+    private Optional<? extends ResponseVoidTransaction> responseVoidTransaction;
 
     @JsonCreator
     public VoidTransactionResponse(
             String contentType,
             int statusCode,
             HttpResponse<InputStream> rawResponse,
-            Optional<? extends Transaction> transaction) {
+            Optional<? extends ResponseVoidTransaction> responseVoidTransaction) {
         Utils.checkNotNull(contentType, "contentType");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
-        Utils.checkNotNull(transaction, "transaction");
+        Utils.checkNotNull(responseVoidTransaction, "responseVoidTransaction");
         this.contentType = contentType;
         this.statusCode = statusCode;
         this.rawResponse = rawResponse;
-        this.transaction = transaction;
+        this.responseVoidTransaction = responseVoidTransaction;
     }
     
     public VoidTransactionResponse(
@@ -91,8 +90,8 @@ public class VoidTransactionResponse implements Response {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<Transaction> transaction() {
-        return (Optional<Transaction>) transaction;
+    public Optional<ResponseVoidTransaction> responseVoidTransaction() {
+        return (Optional<ResponseVoidTransaction>) responseVoidTransaction;
     }
 
     public static Builder builder() {
@@ -130,9 +129,9 @@ public class VoidTransactionResponse implements Response {
     /**
      * Successful Response
      */
-    public VoidTransactionResponse withTransaction(Transaction transaction) {
-        Utils.checkNotNull(transaction, "transaction");
-        this.transaction = Optional.ofNullable(transaction);
+    public VoidTransactionResponse withResponseVoidTransaction(ResponseVoidTransaction responseVoidTransaction) {
+        Utils.checkNotNull(responseVoidTransaction, "responseVoidTransaction");
+        this.responseVoidTransaction = Optional.ofNullable(responseVoidTransaction);
         return this;
     }
 
@@ -140,9 +139,9 @@ public class VoidTransactionResponse implements Response {
     /**
      * Successful Response
      */
-    public VoidTransactionResponse withTransaction(Optional<? extends Transaction> transaction) {
-        Utils.checkNotNull(transaction, "transaction");
-        this.transaction = transaction;
+    public VoidTransactionResponse withResponseVoidTransaction(Optional<? extends ResponseVoidTransaction> responseVoidTransaction) {
+        Utils.checkNotNull(responseVoidTransaction, "responseVoidTransaction");
+        this.responseVoidTransaction = responseVoidTransaction;
         return this;
     }
 
@@ -159,14 +158,14 @@ public class VoidTransactionResponse implements Response {
             Utils.enhancedDeepEquals(this.contentType, other.contentType) &&
             Utils.enhancedDeepEquals(this.statusCode, other.statusCode) &&
             Utils.enhancedDeepEquals(this.rawResponse, other.rawResponse) &&
-            Utils.enhancedDeepEquals(this.transaction, other.transaction);
+            Utils.enhancedDeepEquals(this.responseVoidTransaction, other.responseVoidTransaction);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
             contentType, statusCode, rawResponse,
-            transaction);
+            responseVoidTransaction);
     }
     
     @Override
@@ -175,7 +174,7 @@ public class VoidTransactionResponse implements Response {
                 "contentType", contentType,
                 "statusCode", statusCode,
                 "rawResponse", rawResponse,
-                "transaction", transaction);
+                "responseVoidTransaction", responseVoidTransaction);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -187,7 +186,7 @@ public class VoidTransactionResponse implements Response {
 
         private HttpResponse<InputStream> rawResponse;
 
-        private Optional<? extends Transaction> transaction = Optional.empty();
+        private Optional<? extends ResponseVoidTransaction> responseVoidTransaction = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -227,18 +226,18 @@ public class VoidTransactionResponse implements Response {
         /**
          * Successful Response
          */
-        public Builder transaction(Transaction transaction) {
-            Utils.checkNotNull(transaction, "transaction");
-            this.transaction = Optional.ofNullable(transaction);
+        public Builder responseVoidTransaction(ResponseVoidTransaction responseVoidTransaction) {
+            Utils.checkNotNull(responseVoidTransaction, "responseVoidTransaction");
+            this.responseVoidTransaction = Optional.ofNullable(responseVoidTransaction);
             return this;
         }
 
         /**
          * Successful Response
          */
-        public Builder transaction(Optional<? extends Transaction> transaction) {
-            Utils.checkNotNull(transaction, "transaction");
-            this.transaction = transaction;
+        public Builder responseVoidTransaction(Optional<? extends ResponseVoidTransaction> responseVoidTransaction) {
+            Utils.checkNotNull(responseVoidTransaction, "responseVoidTransaction");
+            this.responseVoidTransaction = responseVoidTransaction;
             return this;
         }
 
@@ -246,7 +245,7 @@ public class VoidTransactionResponse implements Response {
 
             return new VoidTransactionResponse(
                 contentType, statusCode, rawResponse,
-                transaction);
+                responseVoidTransaction);
         }
 
     }

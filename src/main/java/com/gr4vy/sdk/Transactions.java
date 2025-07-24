@@ -39,6 +39,7 @@ import com.gr4vy.sdk.operations.VoidTransactionOperation;
 import com.gr4vy.sdk.utils.Options;
 import java.lang.Exception;
 import java.lang.String;
+import java.util.List;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -302,7 +303,7 @@ public class Transactions {
      * @throws Exception if the API call fails
      */
     public CaptureTransactionResponse capture(
-            String transactionId, JsonNullable<String> prefer,
+            String transactionId, JsonNullable<? extends List<String>> prefer,
             JsonNullable<String> merchantAccountId, TransactionCaptureCreate transactionCaptureCreate) throws Exception {
         CaptureTransactionRequest request =
             CaptureTransactionRequest
@@ -338,7 +339,7 @@ public class Transactions {
      * @throws Exception if the API call fails
      */
     public VoidTransactionResponse void_(String transactionId) throws Exception {
-        return void_(transactionId, JsonNullable.undefined());
+        return void_(transactionId, JsonNullable.undefined(), JsonNullable.undefined());
     }
 
     /**
@@ -347,15 +348,19 @@ public class Transactions {
      * <p>Voids a previously authorized transaction. If the transaction was not yet successfully authorized, or was already captured, the void will not be processed. This operation releases the hold on the buyer's funds. Captured transactions can be refunded instead.
      * 
      * @param transactionId The ID of the transaction
+     * @param prefer The preferred resource type in the response.
      * @param merchantAccountId 
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public VoidTransactionResponse void_(String transactionId, JsonNullable<String> merchantAccountId) throws Exception {
+    public VoidTransactionResponse void_(
+            String transactionId, JsonNullable<? extends List<String>> prefer,
+            JsonNullable<String> merchantAccountId) throws Exception {
         VoidTransactionRequest request =
             VoidTransactionRequest
                 .builder()
                 .transactionId(transactionId)
+                .prefer(prefer)
                 .merchantAccountId(merchantAccountId)
                 .build();
         RequestOperation<VoidTransactionRequest, VoidTransactionResponse> operation
