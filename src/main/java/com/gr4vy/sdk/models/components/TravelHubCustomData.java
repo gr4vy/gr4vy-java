@@ -5,10 +5,13 @@ package com.gr4vy.sdk.models.components;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
+import org.openapitools.jackson.nullable.JsonNullable;
 
 
 public class TravelHubCustomData {
@@ -27,20 +30,27 @@ public class TravelHubCustomData {
     /**
      * The type of the custom data field.
      */
+    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("type")
-    private String type;
+    private JsonNullable<String> type;
 
     @JsonCreator
     public TravelHubCustomData(
             @JsonProperty("name") String name,
             @JsonProperty("value") String value,
-            @JsonProperty("type") String type) {
+            @JsonProperty("type") JsonNullable<String> type) {
         Utils.checkNotNull(name, "name");
         Utils.checkNotNull(value, "value");
         Utils.checkNotNull(type, "type");
         this.name = name;
         this.value = value;
         this.type = type;
+    }
+    
+    public TravelHubCustomData(
+            String name,
+            String value) {
+        this(name, value, JsonNullable.undefined());
     }
 
     /**
@@ -63,7 +73,7 @@ public class TravelHubCustomData {
      * The type of the custom data field.
      */
     @JsonIgnore
-    public String type() {
+    public JsonNullable<String> type() {
         return type;
     }
 
@@ -94,6 +104,15 @@ public class TravelHubCustomData {
      * The type of the custom data field.
      */
     public TravelHubCustomData withType(String type) {
+        Utils.checkNotNull(type, "type");
+        this.type = JsonNullable.of(type);
+        return this;
+    }
+
+    /**
+     * The type of the custom data field.
+     */
+    public TravelHubCustomData withType(JsonNullable<String> type) {
         Utils.checkNotNull(type, "type");
         this.type = type;
         return this;
@@ -135,7 +154,7 @@ public class TravelHubCustomData {
 
         private String value;
 
-        private String type;
+        private JsonNullable<String> type = JsonNullable.undefined();
 
         private Builder() {
           // force use of static builder() method
@@ -166,6 +185,15 @@ public class TravelHubCustomData {
          * The type of the custom data field.
          */
         public Builder type(String type) {
+            Utils.checkNotNull(type, "type");
+            this.type = JsonNullable.of(type);
+            return this;
+        }
+
+        /**
+         * The type of the custom data field.
+         */
+        public Builder type(JsonNullable<String> type) {
             Utils.checkNotNull(type, "type");
             this.type = type;
             return this;
