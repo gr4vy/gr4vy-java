@@ -16,6 +16,7 @@ List all merchant accounts in an instance.
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="list_merchant_accounts" method="get" path="/merchant-accounts" -->
 ```java
 package hello.world;
 
@@ -81,6 +82,7 @@ Create a new merchant account in an instance.
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="create_merchant_account" method="post" path="/merchant-accounts" -->
 ```java
 package hello.world;
 
@@ -149,6 +151,7 @@ Get info about a merchant account in an instance.
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="get_merchant_account" method="get" path="/merchant-accounts/{merchant_account_id}" -->
 ```java
 package hello.world;
 
@@ -210,6 +213,7 @@ Update info for a merchant account in an instance.
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="update_merchant_account" method="put" path="/merchant-accounts/{merchant_account_id}" -->
 ```java
 package hello.world;
 

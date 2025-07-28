@@ -16,6 +16,7 @@ Fetch details about a gift card.
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="get_gift_card" method="get" path="/gift-cards/{gift_card_id}" -->
 ```java
 package hello.world;
 
@@ -79,6 +80,7 @@ Removes a gift card from our system.
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="delete_gift_card" method="delete" path="/gift-cards/{gift_card_id}" -->
 ```java
 package hello.world;
 
@@ -142,6 +144,7 @@ Store a new gift card in the vault.
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="create_gift_card" method="post" path="/gift-cards" -->
 ```java
 package hello.world;
 
@@ -209,6 +212,7 @@ Browser all gift cards.
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="list_gift_cards" method="get" path="/gift-cards" -->
 ```java
 package hello.world;
 

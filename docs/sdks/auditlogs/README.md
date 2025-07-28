@@ -13,6 +13,7 @@ Returns a list of activity by dashboard users.
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="list_audit_logs" method="get" path="/audit-logs" -->
 ```java
 package hello.world;
 

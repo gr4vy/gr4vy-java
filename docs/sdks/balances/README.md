@@ -13,6 +13,7 @@ Fetch the balances for one or more gift cards.
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="list_gift_card_balances" method="post" path="/gift-cards/balances" -->
 ```java
 package hello.world;
 

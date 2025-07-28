@@ -16,6 +16,7 @@ List all stored payment method.
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="list_payment_methods" method="get" path="/payment-methods" -->
 ```java
 package hello.world;
 
@@ -86,6 +87,7 @@ Store a new payment method.
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="create_payment_method" method="post" path="/payment-methods" -->
 ```java
 package hello.world;
 
@@ -153,6 +155,7 @@ Retrieve a payment method.
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="get_payment_method" method="get" path="/payment-methods/{payment_method_id}" -->
 ```java
 package hello.world;
 
@@ -216,6 +219,7 @@ Delete a payment method.
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="delete_payment_method" method="delete" path="/payment-methods/{payment_method_id}" -->
 ```java
 package hello.world;
 

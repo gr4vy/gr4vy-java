@@ -13,6 +13,7 @@ List all executed reports that have been generated.
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="list_all_report_executions" method="get" path="/report-executions" -->
 ```java
 package hello.world;
 

@@ -15,6 +15,7 @@ Returns a list of payouts made.
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="list_payouts" method="get" path="/payouts" -->
 ```java
 package hello.world;
 
@@ -80,6 +81,7 @@ Creates a new payout.
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="create_payout" method="post" path="/payouts" -->
 ```java
 package hello.world;
 
@@ -151,6 +153,7 @@ Retrieves a payout.
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="get_payout" method="get" path="/payouts/{payout_id}" -->
 ```java
 package hello.world;
 

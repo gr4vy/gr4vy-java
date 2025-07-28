@@ -14,6 +14,7 @@ Register a digital wallet domain (Apple Pay only).
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="register_digital_wallet_domain" method="post" path="/digital-wallets/{digital_wallet_id}/domains" -->
 ```java
 package hello.world;
 
@@ -82,6 +83,7 @@ Remove a digital wallet domain (Apple Pay only).
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="unregister_digital_wallet_domain" method="delete" path="/digital-wallets/{digital_wallet_id}/domains" -->
 ```java
 package hello.world;
 

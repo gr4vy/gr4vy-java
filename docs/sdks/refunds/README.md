@@ -13,6 +13,7 @@ Fetch a refund.
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="get_refund" method="get" path="/refunds/{refund_id}" -->
 ```java
 package hello.world;
 

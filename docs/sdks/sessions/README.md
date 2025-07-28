@@ -15,6 +15,7 @@ Create a session for use with Google Pay.
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="create_google_pay_digital_wallet_session" method="post" path="/digital-wallets/google/session" -->
 ```java
 package hello.world;
 
@@ -81,6 +82,7 @@ Create a session for use with Apple Pay.
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="create_apple_pay_digital_wallet_session" method="post" path="/digital-wallets/apple/session" -->
 ```java
 package hello.world;
 
@@ -148,6 +150,7 @@ Create a session for use with Click to Pay.
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="create_click_to_pay_digital_wallet_session" method="post" path="/digital-wallets/click-to-pay/session" -->
 ```java
 package hello.world;
 

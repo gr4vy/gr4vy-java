@@ -16,6 +16,7 @@ List all configured reports that can be generated.
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="list_reports" method="get" path="/reports" -->
 ```java
 package hello.world;
 
@@ -82,6 +83,7 @@ Create a new report.
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="add_report" method="post" path="/reports" -->
 ```java
 package hello.world;
 
@@ -159,6 +161,7 @@ Fetches a report by its ID.
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="get_report" method="get" path="/reports/{report_id}" -->
 ```java
 package hello.world;
 
@@ -222,6 +225,7 @@ Updates the configuration of a report.
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="update_report" method="put" path="/reports/{report_id}" -->
 ```java
 package hello.world;
 

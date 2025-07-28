@@ -15,6 +15,7 @@ List all executions of a specific report.
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="list_report_executions" method="get" path="/reports/{report_id}/executions" -->
 ```java
 package hello.world;
 
@@ -81,6 +82,7 @@ Creates a download URL for a specific execution of a report.
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="create_report_execution_url" method="post" path="/reports/{report_id}/executions/{report_execution_id}/url" -->
 ```java
 package hello.world;
 
@@ -146,6 +148,7 @@ Fetch a specific executed report.
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="get_report_execution" method="get" path="/report-executions/{report_execution_id}" -->
 ```java
 package hello.world;
 

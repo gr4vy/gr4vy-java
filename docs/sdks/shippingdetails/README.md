@@ -17,6 +17,7 @@ Associate shipping details to a buyer.
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="add_buyer_shipping_details" method="post" path="/buyers/{buyer_id}/shipping-details" -->
 ```java
 package hello.world;
 
@@ -84,6 +85,7 @@ List all the shipping details associated to a specific buyer.
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="list_buyer_shipping_details" method="get" path="/buyers/{buyer_id}/shipping-details" -->
 ```java
 package hello.world;
 
@@ -147,6 +149,7 @@ Get a buyer's shipping details.
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="get_buyer_shipping_details" method="get" path="/buyers/{buyer_id}/shipping-details/{shipping_details_id}" -->
 ```java
 package hello.world;
 
@@ -212,6 +215,7 @@ Update the shipping details associated to a specific buyer.
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="update_buyer_shipping_details" method="put" path="/buyers/{buyer_id}/shipping-details/{shipping_details_id}" -->
 ```java
 package hello.world;
 
@@ -281,6 +285,7 @@ Delete the shipping details associated to a specific buyer.
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="delete_buyer_shipping_details" method="delete" path="/buyers/{buyer_id}/shipping-details/{shipping_details_id}" -->
 ```java
 package hello.world;
 

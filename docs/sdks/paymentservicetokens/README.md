@@ -15,6 +15,7 @@ List all gateway tokens stored for a payment method.
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="list_payment_method_payment_service_tokens" method="get" path="/payment-methods/{payment_method_id}/payment-service-tokens" -->
 ```java
 package hello.world;
 
@@ -80,6 +81,7 @@ Create a gateway tokens for a payment method.
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="create_payment_method_payment_service_token" method="post" path="/payment-methods/{payment_method_id}/payment-service-tokens" -->
 ```java
 package hello.world;
 
@@ -149,6 +151,7 @@ Delete a gateway tokens for a payment method.
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="delete_payment_method_payment_service_token" method="delete" path="/payment-methods/{payment_method_id}/payment-service-tokens/{payment_service_token_id}" -->
 ```java
 package hello.world;
 

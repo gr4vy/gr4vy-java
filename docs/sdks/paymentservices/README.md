@@ -19,6 +19,7 @@ List the configured payment services.
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="list_payment_services" method="get" path="/payment-services" -->
 ```java
 package hello.world;
 
@@ -87,6 +88,7 @@ Updates the configuration of a payment service.
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="update_payment_service" method="post" path="/payment-services" -->
 ```java
 package hello.world;
 
@@ -175,6 +177,7 @@ Get the details of a configured payment service.
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="get_payment_service" method="get" path="/payment-services/{payment_service_id}" -->
 ```java
 package hello.world;
 
@@ -238,6 +241,7 @@ Configures a new payment service for use by merchants.
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="create_payment_service" method="put" path="/payment-services/{payment_service_id}" -->
 ```java
 package hello.world;
 
@@ -306,6 +310,7 @@ Deletes all the configuration of a payment service.
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="delete_payment_service" method="delete" path="/payment-services/{payment_service_id}" -->
 ```java
 package hello.world;
 
@@ -369,6 +374,7 @@ Verify the credentials of a configured payment service
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="verify_payment_service_credentials" method="post" path="/payment-services/verify" -->
 ```java
 package hello.world;
 
@@ -437,6 +443,7 @@ Creates a session for a payment service that supports sessions.
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="create_payment_service_session" method="post" path="/payment-services/{payment_service_id}/sessions" -->
 ```java
 package hello.world;
 
