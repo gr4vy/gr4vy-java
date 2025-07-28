@@ -13,6 +13,7 @@ Schedule one or more stored cards for an account update.
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="create_account_updater_job" method="post" path="/account-updater/jobs" -->
 ```java
 package hello.world;
 

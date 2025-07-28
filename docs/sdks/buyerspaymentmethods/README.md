@@ -13,6 +13,7 @@ List all the stored payment methods for a specific buyer.
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="list_buyer_payment_methods" method="get" path="/buyers/payment-methods" -->
 ```java
 package hello.world;
 

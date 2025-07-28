@@ -13,6 +13,7 @@ Fetch a list of the definitions of each card scheme.
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="list_card_scheme_definitions" method="get" path="/card-scheme-definitions" -->
 ```java
 package hello.world;
 

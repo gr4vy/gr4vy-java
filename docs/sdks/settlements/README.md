@@ -14,6 +14,7 @@ Retrieve a specific settlement for a transaction by its unique identifier.
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="get_transaction_settlement" method="get" path="/transactions/{transaction_id}/settlements/{settlement_id}" -->
 ```java
 package hello.world;
 
@@ -79,6 +80,7 @@ List all settlements for a specific transaction.
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="list_transaction_settlements" method="get" path="/transactions/{transaction_id}/settlements" -->
 ```java
 package hello.world;
 

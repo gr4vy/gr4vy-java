@@ -17,6 +17,7 @@ List all buyers or search for a specific buyer.
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="list_buyers" method="get" path="/buyers" -->
 ```java
 package hello.world;
 
@@ -86,6 +87,7 @@ Create a new buyer record.
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="add_buyer" method="post" path="/buyers" -->
 ```java
 package hello.world;
 
@@ -151,6 +153,7 @@ Fetches a buyer by its ID.
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="get_buyer" method="get" path="/buyers/{buyer_id}" -->
 ```java
 package hello.world;
 
@@ -214,6 +217,7 @@ Updates a buyer record.
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="update_buyer" method="put" path="/buyers/{buyer_id}" -->
 ```java
 package hello.world;
 
@@ -281,6 +285,7 @@ Permanently removes a buyer record.
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="delete_buyer" method="delete" path="/buyers/{buyer_id}" -->
 ```java
 package hello.world;
 

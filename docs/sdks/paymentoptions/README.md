@@ -13,6 +13,7 @@ List the payment options available at checkout. filtering by country, currency, 
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="list_payment_options" method="post" path="/payment-options" -->
 ```java
 package hello.world;
 

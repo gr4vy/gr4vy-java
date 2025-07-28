@@ -16,6 +16,7 @@ Create a new payment link.
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="add_payment_link" method="post" path="/payment-links" -->
 ```java
 package hello.world;
 
@@ -84,6 +85,7 @@ List all created payment links.
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="list_payment_links" method="get" path="/payment-links" -->
 ```java
 package hello.world;
 
@@ -148,6 +150,7 @@ Expire an existing payment link.
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="expire_payment_link" method="post" path="/payment-links/{payment_link_id}/expire" -->
 ```java
 package hello.world;
 
@@ -209,6 +212,7 @@ Fetch the details for a payment link.
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="get_payment_link" method="get" path="/payment-links/{payment_link_id}" -->
 ```java
 package hello.world;
 

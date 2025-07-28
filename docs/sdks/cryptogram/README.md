@@ -13,6 +13,7 @@ Provision a cryptogram for a network token.
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="create_payment_method_network_token_cryptogram" method="post" path="/payment-methods/{payment_method_id}/network-tokens/{network_token_id}/cryptogram" -->
 ```java
 package hello.world;
 
