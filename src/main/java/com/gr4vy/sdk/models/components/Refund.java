@@ -126,6 +126,27 @@ public class Refund {
     @JsonProperty("creator")
     private JsonNullable<? extends Creator> creator;
 
+    /**
+     * The standardized error code set by Gr4vy.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("error_code")
+    private JsonNullable<String> errorCode;
+
+    /**
+     * This is the response code received from the payment service. This can be set to any value and is not standardized across different payment services.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("raw_response_code")
+    private JsonNullable<String> rawResponseCode;
+
+    /**
+     * This is the response description received from the payment service. This can be set to any value and is not standardized across different payment services.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("raw_response_description")
+    private JsonNullable<String> rawResponseDescription;
+
     @JsonCreator
     public Refund(
             @JsonProperty("id") String id,
@@ -143,7 +164,10 @@ public class Refund {
             @JsonProperty("transaction_external_identifier") JsonNullable<String> transactionExternalIdentifier,
             @JsonProperty("created_at") OffsetDateTime createdAt,
             @JsonProperty("updated_at") OffsetDateTime updatedAt,
-            @JsonProperty("creator") JsonNullable<? extends Creator> creator) {
+            @JsonProperty("creator") JsonNullable<? extends Creator> creator,
+            @JsonProperty("error_code") JsonNullable<String> errorCode,
+            @JsonProperty("raw_response_code") JsonNullable<String> rawResponseCode,
+            @JsonProperty("raw_response_description") JsonNullable<String> rawResponseDescription) {
         Utils.checkNotNull(id, "id");
         Utils.checkNotNull(transactionId, "transactionId");
         Utils.checkNotNull(paymentServiceRefundId, "paymentServiceRefundId");
@@ -160,6 +184,9 @@ public class Refund {
         Utils.checkNotNull(createdAt, "createdAt");
         Utils.checkNotNull(updatedAt, "updatedAt");
         Utils.checkNotNull(creator, "creator");
+        Utils.checkNotNull(errorCode, "errorCode");
+        Utils.checkNotNull(rawResponseCode, "rawResponseCode");
+        Utils.checkNotNull(rawResponseDescription, "rawResponseDescription");
         this.type = Builder._SINGLETON_VALUE_Type.value();
         this.id = id;
         this.transactionId = transactionId;
@@ -177,6 +204,9 @@ public class Refund {
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
         this.creator = creator;
+        this.errorCode = errorCode;
+        this.rawResponseCode = rawResponseCode;
+        this.rawResponseDescription = rawResponseDescription;
     }
     
     public Refund(
@@ -195,6 +225,7 @@ public class Refund {
             JsonNullable.undefined(), targetType, JsonNullable.undefined(),
             reconciliationId, JsonNullable.undefined(), transactionReconciliationId,
             JsonNullable.undefined(), createdAt, updatedAt,
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined());
     }
 
@@ -327,6 +358,30 @@ public class Refund {
     @JsonIgnore
     public JsonNullable<Creator> creator() {
         return (JsonNullable<Creator>) creator;
+    }
+
+    /**
+     * The standardized error code set by Gr4vy.
+     */
+    @JsonIgnore
+    public JsonNullable<String> errorCode() {
+        return errorCode;
+    }
+
+    /**
+     * This is the response code received from the payment service. This can be set to any value and is not standardized across different payment services.
+     */
+    @JsonIgnore
+    public JsonNullable<String> rawResponseCode() {
+        return rawResponseCode;
+    }
+
+    /**
+     * This is the response description received from the payment service. This can be set to any value and is not standardized across different payment services.
+     */
+    @JsonIgnore
+    public JsonNullable<String> rawResponseDescription() {
+        return rawResponseDescription;
     }
 
     public static Builder builder() {
@@ -526,6 +581,60 @@ public class Refund {
         return this;
     }
 
+    /**
+     * The standardized error code set by Gr4vy.
+     */
+    public Refund withErrorCode(String errorCode) {
+        Utils.checkNotNull(errorCode, "errorCode");
+        this.errorCode = JsonNullable.of(errorCode);
+        return this;
+    }
+
+    /**
+     * The standardized error code set by Gr4vy.
+     */
+    public Refund withErrorCode(JsonNullable<String> errorCode) {
+        Utils.checkNotNull(errorCode, "errorCode");
+        this.errorCode = errorCode;
+        return this;
+    }
+
+    /**
+     * This is the response code received from the payment service. This can be set to any value and is not standardized across different payment services.
+     */
+    public Refund withRawResponseCode(String rawResponseCode) {
+        Utils.checkNotNull(rawResponseCode, "rawResponseCode");
+        this.rawResponseCode = JsonNullable.of(rawResponseCode);
+        return this;
+    }
+
+    /**
+     * This is the response code received from the payment service. This can be set to any value and is not standardized across different payment services.
+     */
+    public Refund withRawResponseCode(JsonNullable<String> rawResponseCode) {
+        Utils.checkNotNull(rawResponseCode, "rawResponseCode");
+        this.rawResponseCode = rawResponseCode;
+        return this;
+    }
+
+    /**
+     * This is the response description received from the payment service. This can be set to any value and is not standardized across different payment services.
+     */
+    public Refund withRawResponseDescription(String rawResponseDescription) {
+        Utils.checkNotNull(rawResponseDescription, "rawResponseDescription");
+        this.rawResponseDescription = JsonNullable.of(rawResponseDescription);
+        return this;
+    }
+
+    /**
+     * This is the response description received from the payment service. This can be set to any value and is not standardized across different payment services.
+     */
+    public Refund withRawResponseDescription(JsonNullable<String> rawResponseDescription) {
+        Utils.checkNotNull(rawResponseDescription, "rawResponseDescription");
+        this.rawResponseDescription = rawResponseDescription;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -552,7 +661,10 @@ public class Refund {
             Utils.enhancedDeepEquals(this.transactionExternalIdentifier, other.transactionExternalIdentifier) &&
             Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
             Utils.enhancedDeepEquals(this.updatedAt, other.updatedAt) &&
-            Utils.enhancedDeepEquals(this.creator, other.creator);
+            Utils.enhancedDeepEquals(this.creator, other.creator) &&
+            Utils.enhancedDeepEquals(this.errorCode, other.errorCode) &&
+            Utils.enhancedDeepEquals(this.rawResponseCode, other.rawResponseCode) &&
+            Utils.enhancedDeepEquals(this.rawResponseDescription, other.rawResponseDescription);
     }
     
     @Override
@@ -563,7 +675,8 @@ public class Refund {
             amount, reason, targetType,
             targetId, reconciliationId, externalIdentifier,
             transactionReconciliationId, transactionExternalIdentifier, createdAt,
-            updatedAt, creator);
+            updatedAt, creator, errorCode,
+            rawResponseCode, rawResponseDescription);
     }
     
     @Override
@@ -585,7 +698,10 @@ public class Refund {
                 "transactionExternalIdentifier", transactionExternalIdentifier,
                 "createdAt", createdAt,
                 "updatedAt", updatedAt,
-                "creator", creator);
+                "creator", creator,
+                "errorCode", errorCode,
+                "rawResponseCode", rawResponseCode,
+                "rawResponseDescription", rawResponseDescription);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -622,6 +738,12 @@ public class Refund {
         private OffsetDateTime updatedAt;
 
         private JsonNullable<? extends Creator> creator = JsonNullable.undefined();
+
+        private JsonNullable<String> errorCode = JsonNullable.undefined();
+
+        private JsonNullable<String> rawResponseCode = JsonNullable.undefined();
+
+        private JsonNullable<String> rawResponseDescription = JsonNullable.undefined();
 
         private Builder() {
           // force use of static builder() method
@@ -835,6 +957,63 @@ public class Refund {
             return this;
         }
 
+
+        /**
+         * The standardized error code set by Gr4vy.
+         */
+        public Builder errorCode(String errorCode) {
+            Utils.checkNotNull(errorCode, "errorCode");
+            this.errorCode = JsonNullable.of(errorCode);
+            return this;
+        }
+
+        /**
+         * The standardized error code set by Gr4vy.
+         */
+        public Builder errorCode(JsonNullable<String> errorCode) {
+            Utils.checkNotNull(errorCode, "errorCode");
+            this.errorCode = errorCode;
+            return this;
+        }
+
+
+        /**
+         * This is the response code received from the payment service. This can be set to any value and is not standardized across different payment services.
+         */
+        public Builder rawResponseCode(String rawResponseCode) {
+            Utils.checkNotNull(rawResponseCode, "rawResponseCode");
+            this.rawResponseCode = JsonNullable.of(rawResponseCode);
+            return this;
+        }
+
+        /**
+         * This is the response code received from the payment service. This can be set to any value and is not standardized across different payment services.
+         */
+        public Builder rawResponseCode(JsonNullable<String> rawResponseCode) {
+            Utils.checkNotNull(rawResponseCode, "rawResponseCode");
+            this.rawResponseCode = rawResponseCode;
+            return this;
+        }
+
+
+        /**
+         * This is the response description received from the payment service. This can be set to any value and is not standardized across different payment services.
+         */
+        public Builder rawResponseDescription(String rawResponseDescription) {
+            Utils.checkNotNull(rawResponseDescription, "rawResponseDescription");
+            this.rawResponseDescription = JsonNullable.of(rawResponseDescription);
+            return this;
+        }
+
+        /**
+         * This is the response description received from the payment service. This can be set to any value and is not standardized across different payment services.
+         */
+        public Builder rawResponseDescription(JsonNullable<String> rawResponseDescription) {
+            Utils.checkNotNull(rawResponseDescription, "rawResponseDescription");
+            this.rawResponseDescription = rawResponseDescription;
+            return this;
+        }
+
         public Refund build() {
 
             return new Refund(
@@ -843,7 +1022,8 @@ public class Refund {
                 reason, targetType, targetId,
                 reconciliationId, externalIdentifier, transactionReconciliationId,
                 transactionExternalIdentifier, createdAt, updatedAt,
-                creator);
+                creator, errorCode, rawResponseCode,
+                rawResponseDescription);
         }
 
 
