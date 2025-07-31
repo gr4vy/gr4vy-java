@@ -26,6 +26,7 @@ import com.gr4vy.sdk.utils.Options;
 import java.lang.Exception;
 import java.lang.Long;
 import java.lang.String;
+import java.util.List;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -104,7 +105,7 @@ public class PaymentLinks {
      */
     public ListPaymentLinksResponse listDirect() throws Exception {
         return list(JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
-            Optional.empty());
+            JsonNullable.undefined(), Optional.empty());
     }
 
     /**
@@ -114,6 +115,7 @@ public class PaymentLinks {
      * 
      * @param cursor A pointer to the page of results to return.
      * @param limit The maximum number of items that are returned.
+     * @param buyerSearch Filters the results to only get the items for which some of the buyer data contains exactly the provided `buyer_search` values.
      * @param merchantAccountId 
      * @param options additional options
      * @return The response from the API call
@@ -121,12 +123,14 @@ public class PaymentLinks {
      */
     public ListPaymentLinksResponse list(
             JsonNullable<String> cursor, Optional<Long> limit,
-            JsonNullable<String> merchantAccountId, Optional<Options> options) throws Exception {
+            JsonNullable<? extends List<String>> buyerSearch, JsonNullable<String> merchantAccountId,
+            Optional<Options> options) throws Exception {
         ListPaymentLinksRequest request =
             ListPaymentLinksRequest
                 .builder()
                 .cursor(cursor)
                 .limit(limit)
+                .buyerSearch(buyerSearch)
                 .merchantAccountId(merchantAccountId)
                 .build();
         RequestOperation<ListPaymentLinksRequest, ListPaymentLinksResponse> operation

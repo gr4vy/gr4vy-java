@@ -76,12 +76,6 @@ public class ListTransactionsRequest {
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=buyer_email_address")
     private JsonNullable<String> buyerEmailAddress;
 
-    /**
-     * Filters the results to only get the items for which some of the buyer data contains exactly the provided `buyer_search` values.
-     */
-    @SpeakeasyMetadata("queryParam:style=form,explode=true,name=buyer_search")
-    private JsonNullable<? extends List<String>> buyerSearch;
-
 
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=ip_address")
     private JsonNullable<String> ipAddress;
@@ -261,6 +255,12 @@ public class ListTransactionsRequest {
     private JsonNullable<Boolean> used3ds;
 
     /**
+     * Filters the results to only get the items for which some of the buyer data contains exactly the provided `buyer_search` values.
+     */
+    @SpeakeasyMetadata("queryParam:style=form,explode=true,name=buyer_search")
+    private JsonNullable<? extends List<String>> buyerSearch;
+
+    /**
      * The ID of the merchant account to use for this request.
      */
     @SpeakeasyMetadata("header:style=simple,explode=false,name=x-gr4vy-merchant-account-id")
@@ -278,7 +278,6 @@ public class ListTransactionsRequest {
             JsonNullable<String> buyerExternalIdentifier,
             JsonNullable<String> buyerId,
             JsonNullable<String> buyerEmailAddress,
-            JsonNullable<? extends List<String>> buyerSearch,
             JsonNullable<String> ipAddress,
             JsonNullable<? extends List<TransactionStatus>> status,
             JsonNullable<String> id,
@@ -311,6 +310,7 @@ public class ListTransactionsRequest {
             JsonNullable<Boolean> isSubsequentPayment,
             JsonNullable<Boolean> merchantInitiated,
             JsonNullable<Boolean> used3ds,
+            JsonNullable<? extends List<String>> buyerSearch,
             JsonNullable<String> merchantAccountId) {
         Utils.checkNotNull(cursor, "cursor");
         Utils.checkNotNull(limit, "limit");
@@ -322,7 +322,6 @@ public class ListTransactionsRequest {
         Utils.checkNotNull(buyerExternalIdentifier, "buyerExternalIdentifier");
         Utils.checkNotNull(buyerId, "buyerId");
         Utils.checkNotNull(buyerEmailAddress, "buyerEmailAddress");
-        Utils.checkNotNull(buyerSearch, "buyerSearch");
         Utils.checkNotNull(ipAddress, "ipAddress");
         Utils.checkNotNull(status, "status");
         Utils.checkNotNull(id, "id");
@@ -355,6 +354,7 @@ public class ListTransactionsRequest {
         Utils.checkNotNull(isSubsequentPayment, "isSubsequentPayment");
         Utils.checkNotNull(merchantInitiated, "merchantInitiated");
         Utils.checkNotNull(used3ds, "used3ds");
+        Utils.checkNotNull(buyerSearch, "buyerSearch");
         Utils.checkNotNull(merchantAccountId, "merchantAccountId");
         this.cursor = cursor;
         this.limit = limit;
@@ -366,7 +366,6 @@ public class ListTransactionsRequest {
         this.buyerExternalIdentifier = buyerExternalIdentifier;
         this.buyerId = buyerId;
         this.buyerEmailAddress = buyerEmailAddress;
-        this.buyerSearch = buyerSearch;
         this.ipAddress = ipAddress;
         this.status = status;
         this.id = id;
@@ -399,6 +398,7 @@ public class ListTransactionsRequest {
         this.isSubsequentPayment = isSubsequentPayment;
         this.merchantInitiated = merchantInitiated;
         this.used3ds = used3ds;
+        this.buyerSearch = buyerSearch;
         this.merchantAccountId = merchantAccountId;
     }
     
@@ -486,15 +486,6 @@ public class ListTransactionsRequest {
     @JsonIgnore
     public JsonNullable<String> buyerEmailAddress() {
         return buyerEmailAddress;
-    }
-
-    /**
-     * Filters the results to only get the items for which some of the buyer data contains exactly the provided `buyer_search` values.
-     */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
-    public JsonNullable<List<String>> buyerSearch() {
-        return (JsonNullable<List<String>>) buyerSearch;
     }
 
     @JsonIgnore
@@ -742,6 +733,15 @@ public class ListTransactionsRequest {
     }
 
     /**
+     * Filters the results to only get the items for which some of the buyer data contains exactly the provided `buyer_search` values.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public JsonNullable<List<String>> buyerSearch() {
+        return (JsonNullable<List<String>>) buyerSearch;
+    }
+
+    /**
      * The ID of the merchant account to use for this request.
      */
     @JsonIgnore
@@ -908,24 +908,6 @@ public class ListTransactionsRequest {
     public ListTransactionsRequest withBuyerEmailAddress(JsonNullable<String> buyerEmailAddress) {
         Utils.checkNotNull(buyerEmailAddress, "buyerEmailAddress");
         this.buyerEmailAddress = buyerEmailAddress;
-        return this;
-    }
-
-    /**
-     * Filters the results to only get the items for which some of the buyer data contains exactly the provided `buyer_search` values.
-     */
-    public ListTransactionsRequest withBuyerSearch(List<String> buyerSearch) {
-        Utils.checkNotNull(buyerSearch, "buyerSearch");
-        this.buyerSearch = JsonNullable.of(buyerSearch);
-        return this;
-    }
-
-    /**
-     * Filters the results to only get the items for which some of the buyer data contains exactly the provided `buyer_search` values.
-     */
-    public ListTransactionsRequest withBuyerSearch(JsonNullable<? extends List<String>> buyerSearch) {
-        Utils.checkNotNull(buyerSearch, "buyerSearch");
-        this.buyerSearch = buyerSearch;
         return this;
     }
 
@@ -1464,6 +1446,24 @@ public class ListTransactionsRequest {
     }
 
     /**
+     * Filters the results to only get the items for which some of the buyer data contains exactly the provided `buyer_search` values.
+     */
+    public ListTransactionsRequest withBuyerSearch(List<String> buyerSearch) {
+        Utils.checkNotNull(buyerSearch, "buyerSearch");
+        this.buyerSearch = JsonNullable.of(buyerSearch);
+        return this;
+    }
+
+    /**
+     * Filters the results to only get the items for which some of the buyer data contains exactly the provided `buyer_search` values.
+     */
+    public ListTransactionsRequest withBuyerSearch(JsonNullable<? extends List<String>> buyerSearch) {
+        Utils.checkNotNull(buyerSearch, "buyerSearch");
+        this.buyerSearch = buyerSearch;
+        return this;
+    }
+
+    /**
      * The ID of the merchant account to use for this request.
      */
     public ListTransactionsRequest withMerchantAccountId(String merchantAccountId) {
@@ -1501,7 +1501,6 @@ public class ListTransactionsRequest {
             Utils.enhancedDeepEquals(this.buyerExternalIdentifier, other.buyerExternalIdentifier) &&
             Utils.enhancedDeepEquals(this.buyerId, other.buyerId) &&
             Utils.enhancedDeepEquals(this.buyerEmailAddress, other.buyerEmailAddress) &&
-            Utils.enhancedDeepEquals(this.buyerSearch, other.buyerSearch) &&
             Utils.enhancedDeepEquals(this.ipAddress, other.ipAddress) &&
             Utils.enhancedDeepEquals(this.status, other.status) &&
             Utils.enhancedDeepEquals(this.id, other.id) &&
@@ -1534,6 +1533,7 @@ public class ListTransactionsRequest {
             Utils.enhancedDeepEquals(this.isSubsequentPayment, other.isSubsequentPayment) &&
             Utils.enhancedDeepEquals(this.merchantInitiated, other.merchantInitiated) &&
             Utils.enhancedDeepEquals(this.used3ds, other.used3ds) &&
+            Utils.enhancedDeepEquals(this.buyerSearch, other.buyerSearch) &&
             Utils.enhancedDeepEquals(this.merchantAccountId, other.merchantAccountId);
     }
     
@@ -1543,18 +1543,18 @@ public class ListTransactionsRequest {
             cursor, limit, createdAtLte,
             createdAtGte, updatedAtLte, updatedAtGte,
             search, buyerExternalIdentifier, buyerId,
-            buyerEmailAddress, buyerSearch, ipAddress,
-            status, id, paymentServiceTransactionId,
-            externalIdentifier, metadata, amountEq,
-            amountLte, amountGte, currency,
-            country, paymentServiceId, paymentMethodId,
-            paymentMethodLabel, paymentMethodScheme, paymentMethodCountry,
-            paymentMethodFingerprint, method, errorCode,
-            hasRefunds, pendingReview, checkoutSessionId,
-            reconciliationId, hasGiftCardRedemptions, giftCardId,
-            giftCardLast4, hasSettlements, paymentMethodBin,
-            paymentSource, isSubsequentPayment, merchantInitiated,
-            used3ds, merchantAccountId);
+            buyerEmailAddress, ipAddress, status,
+            id, paymentServiceTransactionId, externalIdentifier,
+            metadata, amountEq, amountLte,
+            amountGte, currency, country,
+            paymentServiceId, paymentMethodId, paymentMethodLabel,
+            paymentMethodScheme, paymentMethodCountry, paymentMethodFingerprint,
+            method, errorCode, hasRefunds,
+            pendingReview, checkoutSessionId, reconciliationId,
+            hasGiftCardRedemptions, giftCardId, giftCardLast4,
+            hasSettlements, paymentMethodBin, paymentSource,
+            isSubsequentPayment, merchantInitiated, used3ds,
+            buyerSearch, merchantAccountId);
     }
     
     @Override
@@ -1570,7 +1570,6 @@ public class ListTransactionsRequest {
                 "buyerExternalIdentifier", buyerExternalIdentifier,
                 "buyerId", buyerId,
                 "buyerEmailAddress", buyerEmailAddress,
-                "buyerSearch", buyerSearch,
                 "ipAddress", ipAddress,
                 "status", status,
                 "id", id,
@@ -1603,6 +1602,7 @@ public class ListTransactionsRequest {
                 "isSubsequentPayment", isSubsequentPayment,
                 "merchantInitiated", merchantInitiated,
                 "used3ds", used3ds,
+                "buyerSearch", buyerSearch,
                 "merchantAccountId", merchantAccountId);
     }
 
@@ -1628,8 +1628,6 @@ public class ListTransactionsRequest {
         private JsonNullable<String> buyerId = JsonNullable.undefined();
 
         private JsonNullable<String> buyerEmailAddress = JsonNullable.undefined();
-
-        private JsonNullable<? extends List<String>> buyerSearch = JsonNullable.undefined();
 
         private JsonNullable<String> ipAddress = JsonNullable.undefined();
 
@@ -1694,6 +1692,8 @@ public class ListTransactionsRequest {
         private JsonNullable<Boolean> merchantInitiated = JsonNullable.undefined();
 
         private JsonNullable<Boolean> used3ds = JsonNullable.undefined();
+
+        private JsonNullable<? extends List<String>> buyerSearch = JsonNullable.undefined();
 
         private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
 
@@ -1864,25 +1864,6 @@ public class ListTransactionsRequest {
         public Builder buyerEmailAddress(JsonNullable<String> buyerEmailAddress) {
             Utils.checkNotNull(buyerEmailAddress, "buyerEmailAddress");
             this.buyerEmailAddress = buyerEmailAddress;
-            return this;
-        }
-
-
-        /**
-         * Filters the results to only get the items for which some of the buyer data contains exactly the provided `buyer_search` values.
-         */
-        public Builder buyerSearch(List<String> buyerSearch) {
-            Utils.checkNotNull(buyerSearch, "buyerSearch");
-            this.buyerSearch = JsonNullable.of(buyerSearch);
-            return this;
-        }
-
-        /**
-         * Filters the results to only get the items for which some of the buyer data contains exactly the provided `buyer_search` values.
-         */
-        public Builder buyerSearch(JsonNullable<? extends List<String>> buyerSearch) {
-            Utils.checkNotNull(buyerSearch, "buyerSearch");
-            this.buyerSearch = buyerSearch;
             return this;
         }
 
@@ -2454,6 +2435,25 @@ public class ListTransactionsRequest {
 
 
         /**
+         * Filters the results to only get the items for which some of the buyer data contains exactly the provided `buyer_search` values.
+         */
+        public Builder buyerSearch(List<String> buyerSearch) {
+            Utils.checkNotNull(buyerSearch, "buyerSearch");
+            this.buyerSearch = JsonNullable.of(buyerSearch);
+            return this;
+        }
+
+        /**
+         * Filters the results to only get the items for which some of the buyer data contains exactly the provided `buyer_search` values.
+         */
+        public Builder buyerSearch(JsonNullable<? extends List<String>> buyerSearch) {
+            Utils.checkNotNull(buyerSearch, "buyerSearch");
+            this.buyerSearch = buyerSearch;
+            return this;
+        }
+
+
+        /**
          * The ID of the merchant account to use for this request.
          */
         public Builder merchantAccountId(String merchantAccountId) {
@@ -2480,18 +2480,18 @@ public class ListTransactionsRequest {
                 cursor, limit, createdAtLte,
                 createdAtGte, updatedAtLte, updatedAtGte,
                 search, buyerExternalIdentifier, buyerId,
-                buyerEmailAddress, buyerSearch, ipAddress,
-                status, id, paymentServiceTransactionId,
-                externalIdentifier, metadata, amountEq,
-                amountLte, amountGte, currency,
-                country, paymentServiceId, paymentMethodId,
-                paymentMethodLabel, paymentMethodScheme, paymentMethodCountry,
-                paymentMethodFingerprint, method, errorCode,
-                hasRefunds, pendingReview, checkoutSessionId,
-                reconciliationId, hasGiftCardRedemptions, giftCardId,
-                giftCardLast4, hasSettlements, paymentMethodBin,
-                paymentSource, isSubsequentPayment, merchantInitiated,
-                used3ds, merchantAccountId);
+                buyerEmailAddress, ipAddress, status,
+                id, paymentServiceTransactionId, externalIdentifier,
+                metadata, amountEq, amountLte,
+                amountGte, currency, country,
+                paymentServiceId, paymentMethodId, paymentMethodLabel,
+                paymentMethodScheme, paymentMethodCountry, paymentMethodFingerprint,
+                method, errorCode, hasRefunds,
+                pendingReview, checkoutSessionId, reconciliationId,
+                hasGiftCardRedemptions, giftCardId, giftCardLast4,
+                hasSettlements, paymentMethodBin, paymentSource,
+                isSubsequentPayment, merchantInitiated, used3ds,
+                buyerSearch, merchantAccountId);
         }
 
 
