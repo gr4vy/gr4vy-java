@@ -24,6 +24,7 @@ import java.lang.Long;
 import java.lang.String;
 import java.net.http.HttpResponse;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Optional;
 import java.util.stream.Stream;
 import org.openapitools.jackson.nullable.JsonNullable;
@@ -35,6 +36,7 @@ public class ListPaymentLinksRequestBuilder {
                             "limit",
                             "20",
                             new TypeReference<Optional<Long>>() {});
+    private JsonNullable<? extends List<String>> buyerSearch = JsonNullable.undefined();
     private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
@@ -64,6 +66,18 @@ public class ListPaymentLinksRequestBuilder {
     public ListPaymentLinksRequestBuilder limit(Optional<Long> limit) {
         Utils.checkNotNull(limit, "limit");
         this.limit = limit;
+        return this;
+    }
+
+    public ListPaymentLinksRequestBuilder buyerSearch(List<String> buyerSearch) {
+        Utils.checkNotNull(buyerSearch, "buyerSearch");
+        this.buyerSearch = JsonNullable.of(buyerSearch);
+        return this;
+    }
+
+    public ListPaymentLinksRequestBuilder buyerSearch(JsonNullable<? extends List<String>> buyerSearch) {
+        Utils.checkNotNull(buyerSearch, "buyerSearch");
+        this.buyerSearch = buyerSearch;
         return this;
     }
 
@@ -99,6 +113,7 @@ public class ListPaymentLinksRequestBuilder {
 
         ListPaymentLinksRequest request = new ListPaymentLinksRequest(cursor,
             limit,
+            buyerSearch,
             merchantAccountId);
 
         return request;

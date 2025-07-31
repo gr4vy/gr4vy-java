@@ -51,11 +51,6 @@ public class Application {
                 .buyerExternalIdentifier("buyer-12345")
                 .buyerId("fe26475d-ec3e-4884-9553-f7356683f7f9")
                 .buyerEmailAddress("john@example.com")
-                .buyerSearch(List.of(
-                    "J",
-                    "o",
-                    "h",
-                    "n"))
                 .ipAddress("8.214.133.47")
                 .status(List.of(
                     TransactionStatus.AUTHORIZATION_SUCCEEDED))
@@ -104,6 +99,11 @@ public class Application {
                 .isSubsequentPayment(true)
                 .merchantInitiated(true)
                 .used3ds(true)
+                .buyerSearch(List.of(
+                    "J",
+                    "o",
+                    "h",
+                    "n"))
                 .build();
 
         sdk.transactions().list()

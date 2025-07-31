@@ -12,6 +12,8 @@ import com.gr4vy.sdk.utils.Utils;
 import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
+import java.lang.SuppressWarnings;
+import java.util.List;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -30,6 +32,12 @@ public class ListPaymentLinksRequest {
     private Optional<Long> limit;
 
     /**
+     * Filters the results to only get the items for which some of the buyer data contains exactly the provided `buyer_search` values.
+     */
+    @SpeakeasyMetadata("queryParam:style=form,explode=true,name=buyer_search")
+    private JsonNullable<? extends List<String>> buyerSearch;
+
+    /**
      * The ID of the merchant account to use for this request.
      */
     @SpeakeasyMetadata("header:style=simple,explode=false,name=x-gr4vy-merchant-account-id")
@@ -39,17 +47,21 @@ public class ListPaymentLinksRequest {
     public ListPaymentLinksRequest(
             JsonNullable<String> cursor,
             Optional<Long> limit,
+            JsonNullable<? extends List<String>> buyerSearch,
             JsonNullable<String> merchantAccountId) {
         Utils.checkNotNull(cursor, "cursor");
         Utils.checkNotNull(limit, "limit");
+        Utils.checkNotNull(buyerSearch, "buyerSearch");
         Utils.checkNotNull(merchantAccountId, "merchantAccountId");
         this.cursor = cursor;
         this.limit = limit;
+        this.buyerSearch = buyerSearch;
         this.merchantAccountId = merchantAccountId;
     }
     
     public ListPaymentLinksRequest() {
-        this(JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined());
+        this(JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
+            JsonNullable.undefined());
     }
 
     /**
@@ -66,6 +78,15 @@ public class ListPaymentLinksRequest {
     @JsonIgnore
     public Optional<Long> limit() {
         return limit;
+    }
+
+    /**
+     * Filters the results to only get the items for which some of the buyer data contains exactly the provided `buyer_search` values.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public JsonNullable<List<String>> buyerSearch() {
+        return (JsonNullable<List<String>>) buyerSearch;
     }
 
     /**
@@ -119,6 +140,24 @@ public class ListPaymentLinksRequest {
     }
 
     /**
+     * Filters the results to only get the items for which some of the buyer data contains exactly the provided `buyer_search` values.
+     */
+    public ListPaymentLinksRequest withBuyerSearch(List<String> buyerSearch) {
+        Utils.checkNotNull(buyerSearch, "buyerSearch");
+        this.buyerSearch = JsonNullable.of(buyerSearch);
+        return this;
+    }
+
+    /**
+     * Filters the results to only get the items for which some of the buyer data contains exactly the provided `buyer_search` values.
+     */
+    public ListPaymentLinksRequest withBuyerSearch(JsonNullable<? extends List<String>> buyerSearch) {
+        Utils.checkNotNull(buyerSearch, "buyerSearch");
+        this.buyerSearch = buyerSearch;
+        return this;
+    }
+
+    /**
      * The ID of the merchant account to use for this request.
      */
     public ListPaymentLinksRequest withMerchantAccountId(String merchantAccountId) {
@@ -148,13 +187,15 @@ public class ListPaymentLinksRequest {
         return 
             Utils.enhancedDeepEquals(this.cursor, other.cursor) &&
             Utils.enhancedDeepEquals(this.limit, other.limit) &&
+            Utils.enhancedDeepEquals(this.buyerSearch, other.buyerSearch) &&
             Utils.enhancedDeepEquals(this.merchantAccountId, other.merchantAccountId);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            cursor, limit, merchantAccountId);
+            cursor, limit, buyerSearch,
+            merchantAccountId);
     }
     
     @Override
@@ -162,6 +203,7 @@ public class ListPaymentLinksRequest {
         return Utils.toString(ListPaymentLinksRequest.class,
                 "cursor", cursor,
                 "limit", limit,
+                "buyerSearch", buyerSearch,
                 "merchantAccountId", merchantAccountId);
     }
 
@@ -171,6 +213,8 @@ public class ListPaymentLinksRequest {
         private JsonNullable<String> cursor = JsonNullable.undefined();
 
         private Optional<Long> limit;
+
+        private JsonNullable<? extends List<String>> buyerSearch = JsonNullable.undefined();
 
         private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
 
@@ -218,6 +262,25 @@ public class ListPaymentLinksRequest {
 
 
         /**
+         * Filters the results to only get the items for which some of the buyer data contains exactly the provided `buyer_search` values.
+         */
+        public Builder buyerSearch(List<String> buyerSearch) {
+            Utils.checkNotNull(buyerSearch, "buyerSearch");
+            this.buyerSearch = JsonNullable.of(buyerSearch);
+            return this;
+        }
+
+        /**
+         * Filters the results to only get the items for which some of the buyer data contains exactly the provided `buyer_search` values.
+         */
+        public Builder buyerSearch(JsonNullable<? extends List<String>> buyerSearch) {
+            Utils.checkNotNull(buyerSearch, "buyerSearch");
+            this.buyerSearch = buyerSearch;
+            return this;
+        }
+
+
+        /**
          * The ID of the merchant account to use for this request.
          */
         public Builder merchantAccountId(String merchantAccountId) {
@@ -241,7 +304,8 @@ public class ListPaymentLinksRequest {
             }
 
             return new ListPaymentLinksRequest(
-                cursor, limit, merchantAccountId);
+                cursor, limit, buyerSearch,
+                merchantAccountId);
         }
 
 
