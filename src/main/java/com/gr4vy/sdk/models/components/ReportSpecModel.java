@@ -48,6 +48,7 @@ public class ReportSpecModel {
     public static final ReportSpecModel TRANSACTIONS = new ReportSpecModel("transactions");
     public static final ReportSpecModel TRANSACTION_RETRIES = new ReportSpecModel("transaction_retries");
     public static final ReportSpecModel DETAILED_SETTLEMENT = new ReportSpecModel("detailed_settlement");
+    public static final ReportSpecModel ACCOUNTS_RECEIVABLES = new ReportSpecModel("accounts_receivables");
 
     // This map will grow whenever a Color gets created with a new
     // unrecognized value (a potential memory leak if the user is not
@@ -122,6 +123,7 @@ public class ReportSpecModel {
         map.put("transactions", TRANSACTIONS);
         map.put("transaction_retries", TRANSACTION_RETRIES);
         map.put("detailed_settlement", DETAILED_SETTLEMENT);
+        map.put("accounts_receivables", ACCOUNTS_RECEIVABLES);
         return map;
     }
 
@@ -130,6 +132,7 @@ public class ReportSpecModel {
         map.put("transactions", ReportSpecModelEnum.TRANSACTIONS);
         map.put("transaction_retries", ReportSpecModelEnum.TRANSACTION_RETRIES);
         map.put("detailed_settlement", ReportSpecModelEnum.DETAILED_SETTLEMENT);
+        map.put("accounts_receivables", ReportSpecModelEnum.ACCOUNTS_RECEIVABLES);
         return map;
     }
     
@@ -167,7 +170,8 @@ public class ReportSpecModel {
 
         TRANSACTIONS("transactions"),
         TRANSACTION_RETRIES("transaction_retries"),
-        DETAILED_SETTLEMENT("detailed_settlement"),;
+        DETAILED_SETTLEMENT("detailed_settlement"),
+        ACCOUNTS_RECEIVABLES("accounts_receivables"),;
 
         private final String value;
 
