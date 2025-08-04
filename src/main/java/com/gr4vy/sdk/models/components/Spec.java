@@ -19,7 +19,8 @@ import java.lang.String;
 @JsonSubTypes({
     @Type(value = TransactionsReportSpec.class, name="transactions"),
     @Type(value = TransactionRetriesReportSpec.class, name="transaction_retries"),
-    @Type(value = DetailedSettlementReportSpec.class, name="detailed_settlement")})
+    @Type(value = DetailedSettlementReportSpec.class, name="detailed_settlement"),
+    @Type(value = AccountsReceivablesReportSpec.class, name="accounts_receivables")})
 public interface Spec {
 
     String model();
