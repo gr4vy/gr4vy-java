@@ -19,7 +19,7 @@ public class SDKConfiguration {
 
     private static final String LANGUAGE = "java";
     public static final String OPENAPI_DOC_VERSION = "1.0.0";
-    public static final String SDK_VERSION = "2.8.10";
+    public static final String SDK_VERSION = "2.8.11";
     public static final String GEN_VERSION = "2.672.0";
     private static final String BASE_PACKAGE = "com.gr4vy.sdk";
     public static final String USER_AGENT = 
