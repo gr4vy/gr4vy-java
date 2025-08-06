@@ -7,7 +7,7 @@ import static com.gr4vy.sdk.operations.Operations.RequestOperation;
 
 import com.gr4vy.sdk.SDKConfiguration;
 import com.gr4vy.sdk.models.components.TransactionRefundAllCreate;
-import com.gr4vy.sdk.operations.CreateFullTransactionRefundOperation;
+import com.gr4vy.sdk.operations.CreateFullTransactionRefund;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -67,7 +67,7 @@ public class CreateFullTransactionRefundRequestBuilder {
     public CreateFullTransactionRefundResponse call() throws Exception {
         
         RequestOperation<CreateFullTransactionRefundRequest, CreateFullTransactionRefundResponse> operation
-              = new CreateFullTransactionRefundOperation(sdkConfiguration);
+              = new CreateFullTransactionRefund.Sync(sdkConfiguration);
         CreateFullTransactionRefundRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

@@ -6,7 +6,7 @@ package com.gr4vy.sdk.models.operations;
 import static com.gr4vy.sdk.operations.Operations.RequestOperation;
 
 import com.gr4vy.sdk.SDKConfiguration;
-import com.gr4vy.sdk.operations.GetMerchantAccountOperation;
+import com.gr4vy.sdk.operations.GetMerchantAccount;
 import com.gr4vy.sdk.utils.Options;
 import com.gr4vy.sdk.utils.RetryConfig;
 import com.gr4vy.sdk.utils.Utils;
@@ -56,7 +56,7 @@ public class GetMerchantAccountRequestBuilder {
             .build());
 
         RequestOperation<GetMerchantAccountRequest, GetMerchantAccountResponse> operation
-              = new GetMerchantAccountOperation(sdkConfiguration, options);
+              = new GetMerchantAccount.Sync(sdkConfiguration, options);
         GetMerchantAccountRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

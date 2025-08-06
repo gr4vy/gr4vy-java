@@ -7,7 +7,7 @@ import static com.gr4vy.sdk.operations.Operations.RequestOperation;
 
 import com.gr4vy.sdk.SDKConfiguration;
 import com.gr4vy.sdk.models.components.PaymentLinkCreate;
-import com.gr4vy.sdk.operations.AddPaymentLinkOperation;
+import com.gr4vy.sdk.operations.AddPaymentLink;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -53,7 +53,7 @@ public class AddPaymentLinkRequestBuilder {
     public AddPaymentLinkResponse call() throws Exception {
         
         RequestOperation<AddPaymentLinkRequest, AddPaymentLinkResponse> operation
-              = new AddPaymentLinkOperation(sdkConfiguration);
+              = new AddPaymentLink.Sync(sdkConfiguration);
         AddPaymentLinkRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

@@ -22,11 +22,11 @@ import com.gr4vy.sdk.models.operations.ListBuyerShippingDetailsResponse;
 import com.gr4vy.sdk.models.operations.UpdateBuyerShippingDetailsRequest;
 import com.gr4vy.sdk.models.operations.UpdateBuyerShippingDetailsRequestBuilder;
 import com.gr4vy.sdk.models.operations.UpdateBuyerShippingDetailsResponse;
-import com.gr4vy.sdk.operations.AddBuyerShippingDetailsOperation;
-import com.gr4vy.sdk.operations.DeleteBuyerShippingDetailsOperation;
-import com.gr4vy.sdk.operations.GetBuyerShippingDetailsOperation;
-import com.gr4vy.sdk.operations.ListBuyerShippingDetailsOperation;
-import com.gr4vy.sdk.operations.UpdateBuyerShippingDetailsOperation;
+import com.gr4vy.sdk.operations.AddBuyerShippingDetails;
+import com.gr4vy.sdk.operations.DeleteBuyerShippingDetails;
+import com.gr4vy.sdk.operations.GetBuyerShippingDetails;
+import com.gr4vy.sdk.operations.ListBuyerShippingDetails;
+import com.gr4vy.sdk.operations.UpdateBuyerShippingDetails;
 import com.gr4vy.sdk.utils.Options;
 import java.lang.Exception;
 import java.lang.String;
@@ -88,7 +88,7 @@ public class ShippingDetails {
                 .shippingDetailsCreate(shippingDetailsCreate)
                 .build();
         RequestOperation<AddBuyerShippingDetailsRequest, AddBuyerShippingDetailsResponse> operation
-              = new AddBuyerShippingDetailsOperation(sdkConfiguration);
+              = new AddBuyerShippingDetails.Sync(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -137,7 +137,7 @@ public class ShippingDetails {
                 .merchantAccountId(merchantAccountId)
                 .build();
         RequestOperation<ListBuyerShippingDetailsRequest, ListBuyerShippingDetailsResponse> operation
-              = new ListBuyerShippingDetailsOperation(sdkConfiguration, options);
+              = new ListBuyerShippingDetails.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -190,7 +190,7 @@ public class ShippingDetails {
                 .merchantAccountId(merchantAccountId)
                 .build();
         RequestOperation<GetBuyerShippingDetailsRequest, GetBuyerShippingDetailsResponse> operation
-              = new GetBuyerShippingDetailsOperation(sdkConfiguration, options);
+              = new GetBuyerShippingDetails.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -247,7 +247,7 @@ public class ShippingDetails {
                 .shippingDetailsUpdate(shippingDetailsUpdate)
                 .build();
         RequestOperation<UpdateBuyerShippingDetailsRequest, UpdateBuyerShippingDetailsResponse> operation
-              = new UpdateBuyerShippingDetailsOperation(sdkConfiguration);
+              = new UpdateBuyerShippingDetails.Sync(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -298,7 +298,7 @@ public class ShippingDetails {
                 .merchantAccountId(merchantAccountId)
                 .build();
         RequestOperation<DeleteBuyerShippingDetailsRequest, DeleteBuyerShippingDetailsResponse> operation
-              = new DeleteBuyerShippingDetailsOperation(sdkConfiguration);
+              = new DeleteBuyerShippingDetails.Sync(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
 

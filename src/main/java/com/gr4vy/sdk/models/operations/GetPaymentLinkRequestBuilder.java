@@ -6,7 +6,7 @@ package com.gr4vy.sdk.models.operations;
 import static com.gr4vy.sdk.operations.Operations.RequestOperation;
 
 import com.gr4vy.sdk.SDKConfiguration;
-import com.gr4vy.sdk.operations.GetPaymentLinkOperation;
+import com.gr4vy.sdk.operations.GetPaymentLink;
 import com.gr4vy.sdk.utils.Options;
 import com.gr4vy.sdk.utils.RetryConfig;
 import com.gr4vy.sdk.utils.Utils;
@@ -71,7 +71,7 @@ public class GetPaymentLinkRequestBuilder {
             .build());
 
         RequestOperation<GetPaymentLinkRequest, GetPaymentLinkResponse> operation
-              = new GetPaymentLinkOperation(sdkConfiguration, options);
+              = new GetPaymentLink.Sync(sdkConfiguration, options);
         GetPaymentLinkRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

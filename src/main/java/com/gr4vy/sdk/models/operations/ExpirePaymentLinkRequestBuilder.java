@@ -6,7 +6,7 @@ package com.gr4vy.sdk.models.operations;
 import static com.gr4vy.sdk.operations.Operations.RequestOperation;
 
 import com.gr4vy.sdk.SDKConfiguration;
-import com.gr4vy.sdk.operations.ExpirePaymentLinkOperation;
+import com.gr4vy.sdk.operations.ExpirePaymentLink;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -52,7 +52,7 @@ public class ExpirePaymentLinkRequestBuilder {
     public ExpirePaymentLinkResponse call() throws Exception {
         
         RequestOperation<ExpirePaymentLinkRequest, ExpirePaymentLinkResponse> operation
-              = new ExpirePaymentLinkOperation(sdkConfiguration);
+              = new ExpirePaymentLink.Sync(sdkConfiguration);
         ExpirePaymentLinkRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

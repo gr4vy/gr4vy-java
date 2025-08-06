@@ -6,7 +6,7 @@ package com.gr4vy.sdk.models.operations;
 import static com.gr4vy.sdk.operations.Operations.RequestOperation;
 
 import com.gr4vy.sdk.SDKConfiguration;
-import com.gr4vy.sdk.operations.ListDigitalWalletsOperation;
+import com.gr4vy.sdk.operations.ListDigitalWallets;
 import com.gr4vy.sdk.utils.Options;
 import com.gr4vy.sdk.utils.RetryConfig;
 import com.gr4vy.sdk.utils.Utils;
@@ -63,7 +63,7 @@ public class ListDigitalWalletsRequestBuilder {
             .build());
 
         RequestOperation<ListDigitalWalletsRequest, ListDigitalWalletsResponse> operation
-              = new ListDigitalWalletsOperation(sdkConfiguration, options);
+              = new ListDigitalWallets.Sync(sdkConfiguration, options);
         ListDigitalWalletsRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

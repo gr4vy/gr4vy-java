@@ -18,10 +18,10 @@ import com.gr4vy.sdk.models.operations.GetGiftCardResponse;
 import com.gr4vy.sdk.models.operations.ListGiftCardsRequest;
 import com.gr4vy.sdk.models.operations.ListGiftCardsRequestBuilder;
 import com.gr4vy.sdk.models.operations.ListGiftCardsResponse;
-import com.gr4vy.sdk.operations.CreateGiftCardOperation;
-import com.gr4vy.sdk.operations.DeleteGiftCardOperation;
-import com.gr4vy.sdk.operations.GetGiftCardOperation;
-import com.gr4vy.sdk.operations.ListGiftCardsOperation;
+import com.gr4vy.sdk.operations.CreateGiftCard;
+import com.gr4vy.sdk.operations.DeleteGiftCard;
+import com.gr4vy.sdk.operations.GetGiftCard;
+import com.gr4vy.sdk.operations.ListGiftCards;
 import com.gr4vy.sdk.utils.Options;
 import java.lang.Exception;
 import java.lang.String;
@@ -87,7 +87,7 @@ public class GiftCards {
                 .merchantAccountId(merchantAccountId)
                 .build();
         RequestOperation<GetGiftCardRequest, GetGiftCardResponse> operation
-              = new GetGiftCardOperation(sdkConfiguration, options);
+              = new GetGiftCard.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -133,7 +133,7 @@ public class GiftCards {
                 .merchantAccountId(merchantAccountId)
                 .build();
         RequestOperation<DeleteGiftCardRequest, DeleteGiftCardResponse> operation
-              = new DeleteGiftCardOperation(sdkConfiguration);
+              = new DeleteGiftCard.Sync(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -179,7 +179,7 @@ public class GiftCards {
                 .giftCardCreate(giftCardCreate)
                 .build();
         RequestOperation<CreateGiftCardRequest, CreateGiftCardResponse> operation
-              = new CreateGiftCardOperation(sdkConfiguration);
+              = new CreateGiftCard.Sync(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -219,7 +219,7 @@ public class GiftCards {
      */
     public ListGiftCardsResponse list(ListGiftCardsRequest request, Optional<Options> options) throws Exception {
         RequestOperation<ListGiftCardsRequest, ListGiftCardsResponse> operation
-              = new ListGiftCardsOperation(sdkConfiguration, options);
+              = new ListGiftCards.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

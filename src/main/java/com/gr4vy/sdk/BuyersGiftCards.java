@@ -8,7 +8,7 @@ import static com.gr4vy.sdk.operations.Operations.RequestOperation;
 import com.gr4vy.sdk.models.operations.ListBuyerGiftCardsRequest;
 import com.gr4vy.sdk.models.operations.ListBuyerGiftCardsRequestBuilder;
 import com.gr4vy.sdk.models.operations.ListBuyerGiftCardsResponse;
-import com.gr4vy.sdk.operations.ListBuyerGiftCardsOperation;
+import com.gr4vy.sdk.operations.ListBuyerGiftCards;
 import com.gr4vy.sdk.utils.Options;
 import java.lang.Exception;
 import java.lang.String;
@@ -70,7 +70,7 @@ public class BuyersGiftCards {
                 .merchantAccountId(merchantAccountId)
                 .build();
         RequestOperation<ListBuyerGiftCardsRequest, ListBuyerGiftCardsResponse> operation
-              = new ListBuyerGiftCardsOperation(sdkConfiguration, options);
+              = new ListBuyerGiftCards.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

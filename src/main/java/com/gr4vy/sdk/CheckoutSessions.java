@@ -18,10 +18,10 @@ import com.gr4vy.sdk.models.operations.GetCheckoutSessionResponse;
 import com.gr4vy.sdk.models.operations.UpdateCheckoutSessionRequest;
 import com.gr4vy.sdk.models.operations.UpdateCheckoutSessionRequestBuilder;
 import com.gr4vy.sdk.models.operations.UpdateCheckoutSessionResponse;
-import com.gr4vy.sdk.operations.CreateCheckoutSessionOperation;
-import com.gr4vy.sdk.operations.DeleteCheckoutSessionOperation;
-import com.gr4vy.sdk.operations.GetCheckoutSessionOperation;
-import com.gr4vy.sdk.operations.UpdateCheckoutSessionOperation;
+import com.gr4vy.sdk.operations.CreateCheckoutSession;
+import com.gr4vy.sdk.operations.DeleteCheckoutSession;
+import com.gr4vy.sdk.operations.GetCheckoutSession;
+import com.gr4vy.sdk.operations.UpdateCheckoutSession;
 import com.gr4vy.sdk.utils.Options;
 import java.lang.Exception;
 import java.lang.String;
@@ -77,7 +77,7 @@ public class CheckoutSessions {
                 .checkoutSessionCreate(checkoutSessionCreate)
                 .build();
         RequestOperation<CreateCheckoutSessionRequest, CreateCheckoutSessionResponse> operation
-              = new CreateCheckoutSessionOperation(sdkConfiguration);
+              = new CreateCheckoutSession.Sync(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -128,7 +128,7 @@ public class CheckoutSessions {
                 .checkoutSessionCreate(checkoutSessionCreate)
                 .build();
         RequestOperation<UpdateCheckoutSessionRequest, UpdateCheckoutSessionResponse> operation
-              = new UpdateCheckoutSessionOperation(sdkConfiguration);
+              = new UpdateCheckoutSession.Sync(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -177,7 +177,7 @@ public class CheckoutSessions {
                 .merchantAccountId(merchantAccountId)
                 .build();
         RequestOperation<GetCheckoutSessionRequest, GetCheckoutSessionResponse> operation
-              = new GetCheckoutSessionOperation(sdkConfiguration, options);
+              = new GetCheckoutSession.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -223,7 +223,7 @@ public class CheckoutSessions {
                 .merchantAccountId(merchantAccountId)
                 .build();
         RequestOperation<DeleteCheckoutSessionRequest, DeleteCheckoutSessionResponse> operation
-              = new DeleteCheckoutSessionOperation(sdkConfiguration);
+              = new DeleteCheckoutSession.Sync(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
 

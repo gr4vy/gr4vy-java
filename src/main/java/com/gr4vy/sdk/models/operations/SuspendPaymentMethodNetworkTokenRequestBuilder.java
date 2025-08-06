@@ -6,7 +6,7 @@ package com.gr4vy.sdk.models.operations;
 import static com.gr4vy.sdk.operations.Operations.RequestOperation;
 
 import com.gr4vy.sdk.SDKConfiguration;
-import com.gr4vy.sdk.operations.SuspendPaymentMethodNetworkTokenOperation;
+import com.gr4vy.sdk.operations.SuspendPaymentMethodNetworkToken;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -60,7 +60,7 @@ public class SuspendPaymentMethodNetworkTokenRequestBuilder {
     public SuspendPaymentMethodNetworkTokenResponse call() throws Exception {
         
         RequestOperation<SuspendPaymentMethodNetworkTokenRequest, SuspendPaymentMethodNetworkTokenResponse> operation
-              = new SuspendPaymentMethodNetworkTokenOperation(sdkConfiguration);
+              = new SuspendPaymentMethodNetworkToken.Sync(sdkConfiguration);
         SuspendPaymentMethodNetworkTokenRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

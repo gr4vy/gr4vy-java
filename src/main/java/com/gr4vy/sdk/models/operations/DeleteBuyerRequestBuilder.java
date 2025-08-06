@@ -6,7 +6,7 @@ package com.gr4vy.sdk.models.operations;
 import static com.gr4vy.sdk.operations.Operations.RequestOperation;
 
 import com.gr4vy.sdk.SDKConfiguration;
-import com.gr4vy.sdk.operations.DeleteBuyerOperation;
+import com.gr4vy.sdk.operations.DeleteBuyer;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -52,7 +52,7 @@ public class DeleteBuyerRequestBuilder {
     public DeleteBuyerResponse call() throws Exception {
         
         RequestOperation<DeleteBuyerRequest, DeleteBuyerResponse> operation
-              = new DeleteBuyerOperation(sdkConfiguration);
+              = new DeleteBuyer.Sync(sdkConfiguration);
         DeleteBuyerRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

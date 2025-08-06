@@ -8,7 +8,7 @@ import static com.gr4vy.sdk.operations.Operations.RequestOperation;
 import com.gr4vy.sdk.models.operations.ListTransactionEventsRequest;
 import com.gr4vy.sdk.models.operations.ListTransactionEventsRequestBuilder;
 import com.gr4vy.sdk.models.operations.ListTransactionEventsResponse;
-import com.gr4vy.sdk.operations.ListTransactionEventsOperation;
+import com.gr4vy.sdk.operations.ListTransactionEvents;
 import com.gr4vy.sdk.utils.Options;
 import java.lang.Exception;
 import java.lang.Long;
@@ -75,7 +75,7 @@ public class Events {
                 .merchantAccountId(merchantAccountId)
                 .build();
         RequestOperation<ListTransactionEventsRequest, ListTransactionEventsResponse> operation
-              = new ListTransactionEventsOperation(sdkConfiguration, options);
+              = new ListTransactionEvents.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

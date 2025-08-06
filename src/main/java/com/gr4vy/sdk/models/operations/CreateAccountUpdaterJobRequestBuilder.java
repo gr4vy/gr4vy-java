@@ -7,7 +7,7 @@ import static com.gr4vy.sdk.operations.Operations.RequestOperation;
 
 import com.gr4vy.sdk.SDKConfiguration;
 import com.gr4vy.sdk.models.components.AccountUpdaterJobCreate;
-import com.gr4vy.sdk.operations.CreateAccountUpdaterJobOperation;
+import com.gr4vy.sdk.operations.CreateAccountUpdaterJob;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -53,7 +53,7 @@ public class CreateAccountUpdaterJobRequestBuilder {
     public CreateAccountUpdaterJobResponse call() throws Exception {
         
         RequestOperation<CreateAccountUpdaterJobRequest, CreateAccountUpdaterJobResponse> operation
-              = new CreateAccountUpdaterJobOperation(sdkConfiguration);
+              = new CreateAccountUpdaterJob.Sync(sdkConfiguration);
         CreateAccountUpdaterJobRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

@@ -7,7 +7,7 @@ import static com.gr4vy.sdk.operations.Operations.RequestOperation;
 
 import com.gr4vy.sdk.SDKConfiguration;
 import com.gr4vy.sdk.models.components.TransactionCaptureCreate;
-import com.gr4vy.sdk.operations.CaptureTransactionOperation;
+import com.gr4vy.sdk.operations.CaptureTransaction;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -76,7 +76,7 @@ public class CaptureTransactionRequestBuilder {
     public CaptureTransactionResponse call() throws Exception {
         
         RequestOperation<CaptureTransactionRequest, CaptureTransactionResponse> operation
-              = new CaptureTransactionOperation(sdkConfiguration);
+              = new CaptureTransaction.Sync(sdkConfiguration);
         CaptureTransactionRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

@@ -6,7 +6,7 @@ package com.gr4vy.sdk.models.operations;
 import static com.gr4vy.sdk.operations.Operations.RequestOperation;
 
 import com.gr4vy.sdk.SDKConfiguration;
-import com.gr4vy.sdk.operations.GetTransactionRefundOperation;
+import com.gr4vy.sdk.operations.GetTransactionRefund;
 import com.gr4vy.sdk.utils.Options;
 import com.gr4vy.sdk.utils.RetryConfig;
 import com.gr4vy.sdk.utils.Utils;
@@ -79,7 +79,7 @@ public class GetTransactionRefundRequestBuilder {
             .build());
 
         RequestOperation<GetTransactionRefundRequest, GetTransactionRefundResponse> operation
-              = new GetTransactionRefundOperation(sdkConfiguration, options);
+              = new GetTransactionRefund.Sync(sdkConfiguration, options);
         GetTransactionRefundRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

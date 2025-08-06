@@ -15,9 +15,9 @@ import com.gr4vy.sdk.models.operations.GetTransactionRefundResponse;
 import com.gr4vy.sdk.models.operations.ListTransactionRefundsRequest;
 import com.gr4vy.sdk.models.operations.ListTransactionRefundsRequestBuilder;
 import com.gr4vy.sdk.models.operations.ListTransactionRefundsResponse;
-import com.gr4vy.sdk.operations.CreateTransactionRefundOperation;
-import com.gr4vy.sdk.operations.GetTransactionRefundOperation;
-import com.gr4vy.sdk.operations.ListTransactionRefundsOperation;
+import com.gr4vy.sdk.operations.CreateTransactionRefund;
+import com.gr4vy.sdk.operations.GetTransactionRefund;
+import com.gr4vy.sdk.operations.ListTransactionRefunds;
 import com.gr4vy.sdk.utils.Options;
 import java.lang.Exception;
 import java.lang.String;
@@ -83,7 +83,7 @@ public class TransactionsRefunds {
                 .merchantAccountId(merchantAccountId)
                 .build();
         RequestOperation<ListTransactionRefundsRequest, ListTransactionRefundsResponse> operation
-              = new ListTransactionRefundsOperation(sdkConfiguration, options);
+              = new ListTransactionRefunds.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -134,7 +134,7 @@ public class TransactionsRefunds {
                 .transactionRefundCreate(transactionRefundCreate)
                 .build();
         RequestOperation<CreateTransactionRefundRequest, CreateTransactionRefundResponse> operation
-              = new CreateTransactionRefundOperation(sdkConfiguration);
+              = new CreateTransactionRefund.Sync(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -187,7 +187,7 @@ public class TransactionsRefunds {
                 .merchantAccountId(merchantAccountId)
                 .build();
         RequestOperation<GetTransactionRefundRequest, GetTransactionRefundResponse> operation
-              = new GetTransactionRefundOperation(sdkConfiguration, options);
+              = new GetTransactionRefund.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

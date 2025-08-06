@@ -6,7 +6,7 @@ package com.gr4vy.sdk.models.operations;
 import static com.gr4vy.sdk.operations.Operations.RequestOperation;
 
 import com.gr4vy.sdk.SDKConfiguration;
-import com.gr4vy.sdk.operations.VoidTransactionOperation;
+import com.gr4vy.sdk.operations.VoidTransaction;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -67,7 +67,7 @@ public class VoidTransactionRequestBuilder {
     public VoidTransactionResponse call() throws Exception {
         
         RequestOperation<VoidTransactionRequest, VoidTransactionResponse> operation
-              = new VoidTransactionOperation(sdkConfiguration);
+              = new VoidTransaction.Sync(sdkConfiguration);
         VoidTransactionRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

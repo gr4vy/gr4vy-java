@@ -11,8 +11,8 @@ import com.gr4vy.sdk.models.operations.GetTransactionSettlementResponse;
 import com.gr4vy.sdk.models.operations.ListTransactionSettlementsRequest;
 import com.gr4vy.sdk.models.operations.ListTransactionSettlementsRequestBuilder;
 import com.gr4vy.sdk.models.operations.ListTransactionSettlementsResponse;
-import com.gr4vy.sdk.operations.GetTransactionSettlementOperation;
-import com.gr4vy.sdk.operations.ListTransactionSettlementsOperation;
+import com.gr4vy.sdk.operations.GetTransactionSettlement;
+import com.gr4vy.sdk.operations.ListTransactionSettlements;
 import com.gr4vy.sdk.utils.Options;
 import java.lang.Exception;
 import java.lang.String;
@@ -76,7 +76,7 @@ public class Settlements {
                 .merchantAccountId(merchantAccountId)
                 .build();
         RequestOperation<GetTransactionSettlementRequest, GetTransactionSettlementResponse> operation
-              = new GetTransactionSettlementOperation(sdkConfiguration, options);
+              = new GetTransactionSettlement.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -125,7 +125,7 @@ public class Settlements {
                 .merchantAccountId(merchantAccountId)
                 .build();
         RequestOperation<ListTransactionSettlementsRequest, ListTransactionSettlementsResponse> operation
-              = new ListTransactionSettlementsOperation(sdkConfiguration, options);
+              = new ListTransactionSettlements.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

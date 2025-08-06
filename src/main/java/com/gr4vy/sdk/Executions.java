@@ -14,9 +14,9 @@ import com.gr4vy.sdk.models.operations.GetReportExecutionResponse;
 import com.gr4vy.sdk.models.operations.ListReportExecutionsRequest;
 import com.gr4vy.sdk.models.operations.ListReportExecutionsRequestBuilder;
 import com.gr4vy.sdk.models.operations.ListReportExecutionsResponse;
-import com.gr4vy.sdk.operations.CreateReportExecutionUrlOperation;
-import com.gr4vy.sdk.operations.GetReportExecutionOperation;
-import com.gr4vy.sdk.operations.ListReportExecutionsOperation;
+import com.gr4vy.sdk.operations.CreateReportExecutionUrl;
+import com.gr4vy.sdk.operations.GetReportExecution;
+import com.gr4vy.sdk.operations.ListReportExecutions;
 import com.gr4vy.sdk.utils.Options;
 import java.lang.Exception;
 import java.lang.Long;
@@ -83,7 +83,7 @@ public class Executions {
                 .merchantAccountId(merchantAccountId)
                 .build();
         RequestOperation<ListReportExecutionsRequest, ListReportExecutionsResponse> operation
-              = new ListReportExecutionsOperation(sdkConfiguration, options);
+              = new ListReportExecutions.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -134,7 +134,7 @@ public class Executions {
                 .merchantAccountId(merchantAccountId)
                 .build();
         RequestOperation<CreateReportExecutionUrlRequest, CreateReportExecutionUrlResponse> operation
-              = new CreateReportExecutionUrlOperation(sdkConfiguration);
+              = new CreateReportExecutionUrl.Sync(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -183,7 +183,7 @@ public class Executions {
                 .merchantAccountId(merchantAccountId)
                 .build();
         RequestOperation<GetReportExecutionRequest, GetReportExecutionResponse> operation
-              = new GetReportExecutionOperation(sdkConfiguration, options);
+              = new GetReportExecution.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

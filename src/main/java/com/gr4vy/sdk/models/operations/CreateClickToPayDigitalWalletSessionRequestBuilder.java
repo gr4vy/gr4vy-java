@@ -7,7 +7,7 @@ import static com.gr4vy.sdk.operations.Operations.RequestOperation;
 
 import com.gr4vy.sdk.SDKConfiguration;
 import com.gr4vy.sdk.models.components.ClickToPaySessionRequest;
-import com.gr4vy.sdk.operations.CreateClickToPayDigitalWalletSessionOperation;
+import com.gr4vy.sdk.operations.CreateClickToPayDigitalWalletSession;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Exception;
 
@@ -29,7 +29,7 @@ public class CreateClickToPayDigitalWalletSessionRequestBuilder {
     public CreateClickToPayDigitalWalletSessionResponse call() throws Exception {
         
         RequestOperation<ClickToPaySessionRequest, CreateClickToPayDigitalWalletSessionResponse> operation
-              = new CreateClickToPayDigitalWalletSessionOperation(sdkConfiguration);
+              = new CreateClickToPayDigitalWalletSession.Sync(sdkConfiguration);
 
         return operation.handleResponse(operation.doRequest(request));
     }

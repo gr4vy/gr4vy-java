@@ -8,7 +8,7 @@ import static com.gr4vy.sdk.operations.Operations.RequestOperation;
 import com.gr4vy.sdk.models.operations.ListAuditLogsRequest;
 import com.gr4vy.sdk.models.operations.ListAuditLogsRequestBuilder;
 import com.gr4vy.sdk.models.operations.ListAuditLogsResponse;
-import com.gr4vy.sdk.operations.ListAuditLogsOperation;
+import com.gr4vy.sdk.operations.ListAuditLogs;
 import com.gr4vy.sdk.utils.Options;
 import java.lang.Exception;
 import java.util.Optional;
@@ -57,7 +57,7 @@ public class AuditLogs {
      */
     public ListAuditLogsResponse list(ListAuditLogsRequest request, Optional<Options> options) throws Exception {
         RequestOperation<ListAuditLogsRequest, ListAuditLogsResponse> operation
-              = new ListAuditLogsOperation(sdkConfiguration, options);
+              = new ListAuditLogs.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

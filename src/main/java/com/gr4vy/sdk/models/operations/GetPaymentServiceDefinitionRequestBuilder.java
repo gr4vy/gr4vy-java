@@ -6,7 +6,7 @@ package com.gr4vy.sdk.models.operations;
 import static com.gr4vy.sdk.operations.Operations.RequestOperation;
 
 import com.gr4vy.sdk.SDKConfiguration;
-import com.gr4vy.sdk.operations.GetPaymentServiceDefinitionOperation;
+import com.gr4vy.sdk.operations.GetPaymentServiceDefinition;
 import com.gr4vy.sdk.utils.Options;
 import com.gr4vy.sdk.utils.RetryConfig;
 import com.gr4vy.sdk.utils.Utils;
@@ -56,7 +56,7 @@ public class GetPaymentServiceDefinitionRequestBuilder {
             .build());
 
         RequestOperation<GetPaymentServiceDefinitionRequest, GetPaymentServiceDefinitionResponse> operation
-              = new GetPaymentServiceDefinitionOperation(sdkConfiguration, options);
+              = new GetPaymentServiceDefinition.Sync(sdkConfiguration, options);
         GetPaymentServiceDefinitionRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

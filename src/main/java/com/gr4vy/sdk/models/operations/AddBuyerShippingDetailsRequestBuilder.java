@@ -7,7 +7,7 @@ import static com.gr4vy.sdk.operations.Operations.RequestOperation;
 
 import com.gr4vy.sdk.SDKConfiguration;
 import com.gr4vy.sdk.models.components.ShippingDetailsCreate;
-import com.gr4vy.sdk.operations.AddBuyerShippingDetailsOperation;
+import com.gr4vy.sdk.operations.AddBuyerShippingDetails;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -61,7 +61,7 @@ public class AddBuyerShippingDetailsRequestBuilder {
     public AddBuyerShippingDetailsResponse call() throws Exception {
         
         RequestOperation<AddBuyerShippingDetailsRequest, AddBuyerShippingDetailsResponse> operation
-              = new AddBuyerShippingDetailsOperation(sdkConfiguration);
+              = new AddBuyerShippingDetails.Sync(sdkConfiguration);
         AddBuyerShippingDetailsRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

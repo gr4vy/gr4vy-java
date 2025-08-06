@@ -7,7 +7,7 @@ import static com.gr4vy.sdk.operations.Operations.RequestOperation;
 
 import com.gr4vy.sdk.SDKConfiguration;
 import com.gr4vy.sdk.models.components.BuyerUpdate;
-import com.gr4vy.sdk.operations.UpdateBuyerOperation;
+import com.gr4vy.sdk.operations.UpdateBuyer;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -61,7 +61,7 @@ public class UpdateBuyerRequestBuilder {
     public UpdateBuyerResponse call() throws Exception {
         
         RequestOperation<UpdateBuyerRequest, UpdateBuyerResponse> operation
-              = new UpdateBuyerOperation(sdkConfiguration);
+              = new UpdateBuyer.Sync(sdkConfiguration);
         UpdateBuyerRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

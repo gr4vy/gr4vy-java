@@ -6,7 +6,7 @@ package com.gr4vy.sdk.models.operations;
 import static com.gr4vy.sdk.operations.Operations.RequestOperation;
 
 import com.gr4vy.sdk.SDKConfiguration;
-import com.gr4vy.sdk.operations.DeleteCheckoutSessionOperation;
+import com.gr4vy.sdk.operations.DeleteCheckoutSession;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -52,7 +52,7 @@ public class DeleteCheckoutSessionRequestBuilder {
     public DeleteCheckoutSessionResponse call() throws Exception {
         
         RequestOperation<DeleteCheckoutSessionRequest, DeleteCheckoutSessionResponse> operation
-              = new DeleteCheckoutSessionOperation(sdkConfiguration);
+              = new DeleteCheckoutSession.Sync(sdkConfiguration);
         DeleteCheckoutSessionRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

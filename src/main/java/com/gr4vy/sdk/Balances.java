@@ -9,7 +9,7 @@ import com.gr4vy.sdk.models.components.GiftCardBalanceRequest;
 import com.gr4vy.sdk.models.operations.ListGiftCardBalancesRequest;
 import com.gr4vy.sdk.models.operations.ListGiftCardBalancesRequestBuilder;
 import com.gr4vy.sdk.models.operations.ListGiftCardBalancesResponse;
-import com.gr4vy.sdk.operations.ListGiftCardBalancesOperation;
+import com.gr4vy.sdk.operations.ListGiftCardBalances;
 import java.lang.Exception;
 import java.lang.String;
 import org.openapitools.jackson.nullable.JsonNullable;
@@ -64,7 +64,7 @@ public class Balances {
                 .giftCardBalanceRequest(giftCardBalanceRequest)
                 .build();
         RequestOperation<ListGiftCardBalancesRequest, ListGiftCardBalancesResponse> operation
-              = new ListGiftCardBalancesOperation(sdkConfiguration);
+              = new ListGiftCardBalances.Sync(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
 

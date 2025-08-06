@@ -6,7 +6,7 @@ package com.gr4vy.sdk.models.operations;
 import static com.gr4vy.sdk.operations.Operations.RequestOperation;
 
 import com.gr4vy.sdk.SDKConfiguration;
-import com.gr4vy.sdk.operations.GetBuyerShippingDetailsOperation;
+import com.gr4vy.sdk.operations.GetBuyerShippingDetails;
 import com.gr4vy.sdk.utils.Options;
 import com.gr4vy.sdk.utils.RetryConfig;
 import com.gr4vy.sdk.utils.Utils;
@@ -79,7 +79,7 @@ public class GetBuyerShippingDetailsRequestBuilder {
             .build());
 
         RequestOperation<GetBuyerShippingDetailsRequest, GetBuyerShippingDetailsResponse> operation
-              = new GetBuyerShippingDetailsOperation(sdkConfiguration, options);
+              = new GetBuyerShippingDetails.Sync(sdkConfiguration, options);
         GetBuyerShippingDetailsRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

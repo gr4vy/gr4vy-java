@@ -7,7 +7,7 @@ import static com.gr4vy.sdk.operations.Operations.RequestOperation;
 
 import com.gr4vy.sdk.SDKConfiguration;
 import com.gr4vy.sdk.models.components.VerifyCredentials;
-import com.gr4vy.sdk.operations.VerifyPaymentServiceCredentialsOperation;
+import com.gr4vy.sdk.operations.VerifyPaymentServiceCredentials;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -53,7 +53,7 @@ public class VerifyPaymentServiceCredentialsRequestBuilder {
     public VerifyPaymentServiceCredentialsResponse call() throws Exception {
         
         RequestOperation<VerifyPaymentServiceCredentialsRequest, VerifyPaymentServiceCredentialsResponse> operation
-              = new VerifyPaymentServiceCredentialsOperation(sdkConfiguration);
+              = new VerifyPaymentServiceCredentials.Sync(sdkConfiguration);
         VerifyPaymentServiceCredentialsRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

@@ -7,7 +7,7 @@ import static com.gr4vy.sdk.operations.Operations.RequestOperation;
 
 import com.gr4vy.sdk.SDKConfiguration;
 import com.gr4vy.sdk.models.components.MerchantAccountCreate;
-import com.gr4vy.sdk.operations.CreateMerchantAccountOperation;
+import com.gr4vy.sdk.operations.CreateMerchantAccount;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Exception;
 
@@ -29,7 +29,7 @@ public class CreateMerchantAccountRequestBuilder {
     public CreateMerchantAccountResponse call() throws Exception {
         
         RequestOperation<MerchantAccountCreate, CreateMerchantAccountResponse> operation
-              = new CreateMerchantAccountOperation(sdkConfiguration);
+              = new CreateMerchantAccount.Sync(sdkConfiguration);
 
         return operation.handleResponse(operation.doRequest(request));
     }

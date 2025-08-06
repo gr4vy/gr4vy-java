@@ -7,7 +7,7 @@ import static com.gr4vy.sdk.operations.Operations.RequestOperation;
 
 import com.gr4vy.sdk.SDKConfiguration;
 import com.gr4vy.sdk.models.components.CheckoutSessionCreate;
-import com.gr4vy.sdk.operations.CreateCheckoutSessionOperation;
+import com.gr4vy.sdk.operations.CreateCheckoutSession;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -60,7 +60,7 @@ public class CreateCheckoutSessionRequestBuilder {
     public CreateCheckoutSessionResponse call() throws Exception {
         
         RequestOperation<CreateCheckoutSessionRequest, CreateCheckoutSessionResponse> operation
-              = new CreateCheckoutSessionOperation(sdkConfiguration);
+              = new CreateCheckoutSession.Sync(sdkConfiguration);
         CreateCheckoutSessionRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

@@ -7,7 +7,7 @@ import static com.gr4vy.sdk.operations.Operations.RequestOperation;
 
 import com.gr4vy.sdk.SDKConfiguration;
 import com.gr4vy.sdk.models.components.DigitalWalletDomain;
-import com.gr4vy.sdk.operations.RegisterDigitalWalletDomainOperation;
+import com.gr4vy.sdk.operations.RegisterDigitalWalletDomain;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -61,7 +61,7 @@ public class RegisterDigitalWalletDomainRequestBuilder {
     public RegisterDigitalWalletDomainResponse call() throws Exception {
         
         RequestOperation<RegisterDigitalWalletDomainRequest, RegisterDigitalWalletDomainResponse> operation
-              = new RegisterDigitalWalletDomainOperation(sdkConfiguration);
+              = new RegisterDigitalWalletDomain.Sync(sdkConfiguration);
         RegisterDigitalWalletDomainRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

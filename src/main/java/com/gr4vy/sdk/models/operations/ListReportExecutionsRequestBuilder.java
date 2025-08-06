@@ -10,7 +10,7 @@ import static com.gr4vy.sdk.utils.Utils.toStream;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.gr4vy.sdk.SDKConfiguration;
-import com.gr4vy.sdk.operations.ListReportExecutionsOperation;
+import com.gr4vy.sdk.operations.ListReportExecutions;
 import com.gr4vy.sdk.utils.LazySingletonValue;
 import com.gr4vy.sdk.utils.Options;
 import com.gr4vy.sdk.utils.RetryConfig;
@@ -118,7 +118,7 @@ public class ListReportExecutionsRequestBuilder {
             .build());
 
         RequestOperation<ListReportExecutionsRequest, ListReportExecutionsResponse> operation
-              = new ListReportExecutionsOperation(sdkConfiguration, options);
+              = new ListReportExecutions.Sync(sdkConfiguration, options);
         ListReportExecutionsRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));
@@ -143,7 +143,7 @@ public class ListReportExecutionsRequestBuilder {
             .build());
 
         RequestOperation<ListReportExecutionsRequest, ListReportExecutionsResponse> operation
-              = new ListReportExecutionsOperation(sdkConfiguration, options);
+              = new ListReportExecutions.Sync(sdkConfiguration, options);
         ListReportExecutionsRequest request = buildRequest();
         Iterator<HttpResponse<InputStream>> iterator = new Paginator<>(
             request,

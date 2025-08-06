@@ -18,10 +18,10 @@ import com.gr4vy.sdk.models.operations.GetPaymentLinkResponse;
 import com.gr4vy.sdk.models.operations.ListPaymentLinksRequest;
 import com.gr4vy.sdk.models.operations.ListPaymentLinksRequestBuilder;
 import com.gr4vy.sdk.models.operations.ListPaymentLinksResponse;
-import com.gr4vy.sdk.operations.AddPaymentLinkOperation;
-import com.gr4vy.sdk.operations.ExpirePaymentLinkOperation;
-import com.gr4vy.sdk.operations.GetPaymentLinkOperation;
-import com.gr4vy.sdk.operations.ListPaymentLinksOperation;
+import com.gr4vy.sdk.operations.AddPaymentLink;
+import com.gr4vy.sdk.operations.ExpirePaymentLink;
+import com.gr4vy.sdk.operations.GetPaymentLink;
+import com.gr4vy.sdk.operations.ListPaymentLinks;
 import com.gr4vy.sdk.utils.Options;
 import java.lang.Exception;
 import java.lang.Long;
@@ -80,7 +80,7 @@ public class PaymentLinks {
                 .paymentLinkCreate(paymentLinkCreate)
                 .build();
         RequestOperation<AddPaymentLinkRequest, AddPaymentLinkResponse> operation
-              = new AddPaymentLinkOperation(sdkConfiguration);
+              = new AddPaymentLink.Sync(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -134,7 +134,7 @@ public class PaymentLinks {
                 .merchantAccountId(merchantAccountId)
                 .build();
         RequestOperation<ListPaymentLinksRequest, ListPaymentLinksResponse> operation
-              = new ListPaymentLinksOperation(sdkConfiguration, options);
+              = new ListPaymentLinks.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -180,7 +180,7 @@ public class PaymentLinks {
                 .merchantAccountId(merchantAccountId)
                 .build();
         RequestOperation<ExpirePaymentLinkRequest, ExpirePaymentLinkResponse> operation
-              = new ExpirePaymentLinkOperation(sdkConfiguration);
+              = new ExpirePaymentLink.Sync(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -229,7 +229,7 @@ public class PaymentLinks {
                 .merchantAccountId(merchantAccountId)
                 .build();
         RequestOperation<GetPaymentLinkRequest, GetPaymentLinkResponse> operation
-              = new GetPaymentLinkOperation(sdkConfiguration, options);
+              = new GetPaymentLink.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
