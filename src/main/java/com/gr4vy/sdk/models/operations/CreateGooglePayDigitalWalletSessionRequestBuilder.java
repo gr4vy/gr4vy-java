@@ -7,7 +7,7 @@ import static com.gr4vy.sdk.operations.Operations.RequestOperation;
 
 import com.gr4vy.sdk.SDKConfiguration;
 import com.gr4vy.sdk.models.components.GooglePaySessionRequest;
-import com.gr4vy.sdk.operations.CreateGooglePayDigitalWalletSessionOperation;
+import com.gr4vy.sdk.operations.CreateGooglePayDigitalWalletSession;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -53,7 +53,7 @@ public class CreateGooglePayDigitalWalletSessionRequestBuilder {
     public CreateGooglePayDigitalWalletSessionResponse call() throws Exception {
         
         RequestOperation<CreateGooglePayDigitalWalletSessionRequest, CreateGooglePayDigitalWalletSessionResponse> operation
-              = new CreateGooglePayDigitalWalletSessionOperation(sdkConfiguration);
+              = new CreateGooglePayDigitalWalletSession.Sync(sdkConfiguration);
         CreateGooglePayDigitalWalletSessionRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

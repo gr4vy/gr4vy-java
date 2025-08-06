@@ -19,10 +19,10 @@ import com.gr4vy.sdk.models.operations.ListReportsResponse;
 import com.gr4vy.sdk.models.operations.UpdateReportRequest;
 import com.gr4vy.sdk.models.operations.UpdateReportRequestBuilder;
 import com.gr4vy.sdk.models.operations.UpdateReportResponse;
-import com.gr4vy.sdk.operations.AddReportOperation;
-import com.gr4vy.sdk.operations.GetReportOperation;
-import com.gr4vy.sdk.operations.ListReportsOperation;
-import com.gr4vy.sdk.operations.UpdateReportOperation;
+import com.gr4vy.sdk.operations.AddReport;
+import com.gr4vy.sdk.operations.GetReport;
+import com.gr4vy.sdk.operations.ListReports;
+import com.gr4vy.sdk.operations.UpdateReport;
 import com.gr4vy.sdk.utils.Options;
 import java.lang.Exception;
 import java.lang.String;
@@ -79,7 +79,7 @@ public class Reports {
      */
     public ListReportsResponse list(ListReportsRequest request, Optional<Options> options) throws Exception {
         RequestOperation<ListReportsRequest, ListReportsResponse> operation
-              = new ListReportsOperation(sdkConfiguration, options);
+              = new ListReports.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -125,7 +125,7 @@ public class Reports {
                 .reportCreate(reportCreate)
                 .build();
         RequestOperation<AddReportRequest, AddReportResponse> operation
-              = new AddReportOperation(sdkConfiguration);
+              = new AddReport.Sync(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -174,7 +174,7 @@ public class Reports {
                 .merchantAccountId(merchantAccountId)
                 .build();
         RequestOperation<GetReportRequest, GetReportResponse> operation
-              = new GetReportOperation(sdkConfiguration, options);
+              = new GetReport.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -225,7 +225,7 @@ public class Reports {
                 .reportUpdate(reportUpdate)
                 .build();
         RequestOperation<UpdateReportRequest, UpdateReportResponse> operation
-              = new UpdateReportOperation(sdkConfiguration);
+              = new UpdateReport.Sync(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
 

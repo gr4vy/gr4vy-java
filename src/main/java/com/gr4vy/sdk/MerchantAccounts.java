@@ -18,10 +18,10 @@ import com.gr4vy.sdk.models.operations.ListMerchantAccountsResponse;
 import com.gr4vy.sdk.models.operations.UpdateMerchantAccountRequest;
 import com.gr4vy.sdk.models.operations.UpdateMerchantAccountRequestBuilder;
 import com.gr4vy.sdk.models.operations.UpdateMerchantAccountResponse;
-import com.gr4vy.sdk.operations.CreateMerchantAccountOperation;
-import com.gr4vy.sdk.operations.GetMerchantAccountOperation;
-import com.gr4vy.sdk.operations.ListMerchantAccountsOperation;
-import com.gr4vy.sdk.operations.UpdateMerchantAccountOperation;
+import com.gr4vy.sdk.operations.CreateMerchantAccount;
+import com.gr4vy.sdk.operations.GetMerchantAccount;
+import com.gr4vy.sdk.operations.ListMerchantAccounts;
+import com.gr4vy.sdk.operations.UpdateMerchantAccount;
 import com.gr4vy.sdk.utils.Options;
 import java.lang.Exception;
 import java.lang.Long;
@@ -84,7 +84,7 @@ public class MerchantAccounts {
                 .search(search)
                 .build();
         RequestOperation<ListMerchantAccountsRequest, ListMerchantAccountsResponse> operation
-              = new ListMerchantAccountsOperation(sdkConfiguration, options);
+              = new ListMerchantAccounts.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -110,7 +110,7 @@ public class MerchantAccounts {
      */
     public CreateMerchantAccountResponse create(MerchantAccountCreate request) throws Exception {
         RequestOperation<MerchantAccountCreate, CreateMerchantAccountResponse> operation
-              = new CreateMerchantAccountOperation(sdkConfiguration);
+              = new CreateMerchantAccount.Sync(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -155,7 +155,7 @@ public class MerchantAccounts {
                 .merchantAccountId(merchantAccountId)
                 .build();
         RequestOperation<GetMerchantAccountRequest, GetMerchantAccountResponse> operation
-              = new GetMerchantAccountOperation(sdkConfiguration, options);
+              = new GetMerchantAccount.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -188,7 +188,7 @@ public class MerchantAccounts {
                 .merchantAccountUpdate(merchantAccountUpdate)
                 .build();
         RequestOperation<UpdateMerchantAccountRequest, UpdateMerchantAccountResponse> operation
-              = new UpdateMerchantAccountOperation(sdkConfiguration);
+              = new UpdateMerchantAccount.Sync(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
 

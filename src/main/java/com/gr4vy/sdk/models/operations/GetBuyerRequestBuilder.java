@@ -6,7 +6,7 @@ package com.gr4vy.sdk.models.operations;
 import static com.gr4vy.sdk.operations.Operations.RequestOperation;
 
 import com.gr4vy.sdk.SDKConfiguration;
-import com.gr4vy.sdk.operations.GetBuyerOperation;
+import com.gr4vy.sdk.operations.GetBuyer;
 import com.gr4vy.sdk.utils.Options;
 import com.gr4vy.sdk.utils.RetryConfig;
 import com.gr4vy.sdk.utils.Utils;
@@ -71,7 +71,7 @@ public class GetBuyerRequestBuilder {
             .build());
 
         RequestOperation<GetBuyerRequest, GetBuyerResponse> operation
-              = new GetBuyerOperation(sdkConfiguration, options);
+              = new GetBuyer.Sync(sdkConfiguration, options);
         GetBuyerRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

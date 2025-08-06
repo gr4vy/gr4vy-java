@@ -10,7 +10,7 @@ import static com.gr4vy.sdk.utils.Utils.toStream;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.gr4vy.sdk.SDKConfiguration;
-import com.gr4vy.sdk.operations.ListMerchantAccountsOperation;
+import com.gr4vy.sdk.operations.ListMerchantAccounts;
 import com.gr4vy.sdk.utils.LazySingletonValue;
 import com.gr4vy.sdk.utils.Options;
 import com.gr4vy.sdk.utils.RetryConfig;
@@ -110,7 +110,7 @@ public class ListMerchantAccountsRequestBuilder {
             .build());
 
         RequestOperation<ListMerchantAccountsRequest, ListMerchantAccountsResponse> operation
-              = new ListMerchantAccountsOperation(sdkConfiguration, options);
+              = new ListMerchantAccounts.Sync(sdkConfiguration, options);
         ListMerchantAccountsRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));
@@ -135,7 +135,7 @@ public class ListMerchantAccountsRequestBuilder {
             .build());
 
         RequestOperation<ListMerchantAccountsRequest, ListMerchantAccountsResponse> operation
-              = new ListMerchantAccountsOperation(sdkConfiguration, options);
+              = new ListMerchantAccounts.Sync(sdkConfiguration, options);
         ListMerchantAccountsRequest request = buildRequest();
         Iterator<HttpResponse<InputStream>> iterator = new Paginator<>(
             request,

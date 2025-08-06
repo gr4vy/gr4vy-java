@@ -7,7 +7,7 @@ import static com.gr4vy.sdk.operations.Operations.RequestOperation;
 
 import com.gr4vy.sdk.SDKConfiguration;
 import com.gr4vy.sdk.models.components.NetworkTokenCreate;
-import com.gr4vy.sdk.operations.CreatePaymentMethodNetworkTokenOperation;
+import com.gr4vy.sdk.operations.CreatePaymentMethodNetworkToken;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -61,7 +61,7 @@ public class CreatePaymentMethodNetworkTokenRequestBuilder {
     public CreatePaymentMethodNetworkTokenResponse call() throws Exception {
         
         RequestOperation<CreatePaymentMethodNetworkTokenRequest, CreatePaymentMethodNetworkTokenResponse> operation
-              = new CreatePaymentMethodNetworkTokenOperation(sdkConfiguration);
+              = new CreatePaymentMethodNetworkToken.Sync(sdkConfiguration);
         CreatePaymentMethodNetworkTokenRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

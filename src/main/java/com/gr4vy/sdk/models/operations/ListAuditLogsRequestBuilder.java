@@ -9,7 +9,7 @@ import static com.gr4vy.sdk.utils.Utils.transform;
 import static com.gr4vy.sdk.utils.Utils.toStream;
 
 import com.gr4vy.sdk.SDKConfiguration;
-import com.gr4vy.sdk.operations.ListAuditLogsOperation;
+import com.gr4vy.sdk.operations.ListAuditLogs;
 import com.gr4vy.sdk.utils.Options;
 import com.gr4vy.sdk.utils.RetryConfig;
 import com.gr4vy.sdk.utils.Utils;
@@ -58,7 +58,7 @@ public class ListAuditLogsRequestBuilder {
             .build());
 
         RequestOperation<ListAuditLogsRequest, ListAuditLogsResponse> operation
-              = new ListAuditLogsOperation(sdkConfiguration, options);
+              = new ListAuditLogs.Sync(sdkConfiguration, options);
 
         return operation.handleResponse(operation.doRequest(request));
     }
@@ -82,7 +82,7 @@ public class ListAuditLogsRequestBuilder {
             .build());
 
         RequestOperation<ListAuditLogsRequest, ListAuditLogsResponse> operation
-              = new ListAuditLogsOperation(sdkConfiguration, options);
+              = new ListAuditLogs.Sync(sdkConfiguration, options);
         Iterator<HttpResponse<InputStream>> iterator = new Paginator<>(
             request,
             new CursorTracker<>("$.next_cursor", String.class),

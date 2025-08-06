@@ -8,7 +8,7 @@ import static com.gr4vy.sdk.operations.Operations.RequestOperation;
 import com.gr4vy.sdk.models.operations.GetRefundRequest;
 import com.gr4vy.sdk.models.operations.GetRefundRequestBuilder;
 import com.gr4vy.sdk.models.operations.GetRefundResponse;
-import com.gr4vy.sdk.operations.GetRefundOperation;
+import com.gr4vy.sdk.operations.GetRefund;
 import com.gr4vy.sdk.utils.Options;
 import java.lang.Exception;
 import java.lang.String;
@@ -68,7 +68,7 @@ public class Refunds {
                 .merchantAccountId(merchantAccountId)
                 .build();
         RequestOperation<GetRefundRequest, GetRefundResponse> operation
-              = new GetRefundOperation(sdkConfiguration, options);
+              = new GetRefund.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

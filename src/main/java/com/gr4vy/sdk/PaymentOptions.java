@@ -9,7 +9,7 @@ import com.gr4vy.sdk.models.components.PaymentOptionRequest;
 import com.gr4vy.sdk.models.operations.ListPaymentOptionsRequest;
 import com.gr4vy.sdk.models.operations.ListPaymentOptionsRequestBuilder;
 import com.gr4vy.sdk.models.operations.ListPaymentOptionsResponse;
-import com.gr4vy.sdk.operations.ListPaymentOptionsOperation;
+import com.gr4vy.sdk.operations.ListPaymentOptions;
 import java.lang.Exception;
 import java.lang.String;
 import org.openapitools.jackson.nullable.JsonNullable;
@@ -64,7 +64,7 @@ public class PaymentOptions {
                 .paymentOptionRequest(paymentOptionRequest)
                 .build();
         RequestOperation<ListPaymentOptionsRequest, ListPaymentOptionsResponse> operation
-              = new ListPaymentOptionsOperation(sdkConfiguration);
+              = new ListPaymentOptions.Sync(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
 

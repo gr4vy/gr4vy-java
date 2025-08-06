@@ -15,9 +15,9 @@ import com.gr4vy.sdk.models.operations.DeletePaymentMethodPaymentServiceTokenRes
 import com.gr4vy.sdk.models.operations.ListPaymentMethodPaymentServiceTokensRequest;
 import com.gr4vy.sdk.models.operations.ListPaymentMethodPaymentServiceTokensRequestBuilder;
 import com.gr4vy.sdk.models.operations.ListPaymentMethodPaymentServiceTokensResponse;
-import com.gr4vy.sdk.operations.CreatePaymentMethodPaymentServiceTokenOperation;
-import com.gr4vy.sdk.operations.DeletePaymentMethodPaymentServiceTokenOperation;
-import com.gr4vy.sdk.operations.ListPaymentMethodPaymentServiceTokensOperation;
+import com.gr4vy.sdk.operations.CreatePaymentMethodPaymentServiceToken;
+import com.gr4vy.sdk.operations.DeletePaymentMethodPaymentServiceToken;
+import com.gr4vy.sdk.operations.ListPaymentMethodPaymentServiceTokens;
 import com.gr4vy.sdk.utils.Options;
 import java.lang.Exception;
 import java.lang.String;
@@ -80,7 +80,7 @@ public class PaymentServiceTokens {
                 .merchantAccountId(merchantAccountId)
                 .build();
         RequestOperation<ListPaymentMethodPaymentServiceTokensRequest, ListPaymentMethodPaymentServiceTokensResponse> operation
-              = new ListPaymentMethodPaymentServiceTokensOperation(sdkConfiguration, options);
+              = new ListPaymentMethodPaymentServiceTokens.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -131,7 +131,7 @@ public class PaymentServiceTokens {
                 .paymentServiceTokenCreate(paymentServiceTokenCreate)
                 .build();
         RequestOperation<CreatePaymentMethodPaymentServiceTokenRequest, CreatePaymentMethodPaymentServiceTokenResponse> operation
-              = new CreatePaymentMethodPaymentServiceTokenOperation(sdkConfiguration);
+              = new CreatePaymentMethodPaymentServiceToken.Sync(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -182,7 +182,7 @@ public class PaymentServiceTokens {
                 .merchantAccountId(merchantAccountId)
                 .build();
         RequestOperation<DeletePaymentMethodPaymentServiceTokenRequest, DeletePaymentMethodPaymentServiceTokenResponse> operation
-              = new DeletePaymentMethodPaymentServiceTokenOperation(sdkConfiguration);
+              = new DeletePaymentMethodPaymentServiceToken.Sync(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
 

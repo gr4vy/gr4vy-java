@@ -6,7 +6,7 @@ package com.gr4vy.sdk.models.operations;
 import static com.gr4vy.sdk.operations.Operations.RequestOperation;
 
 import com.gr4vy.sdk.SDKConfiguration;
-import com.gr4vy.sdk.operations.DeletePaymentMethodNetworkTokenOperation;
+import com.gr4vy.sdk.operations.DeletePaymentMethodNetworkToken;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -60,7 +60,7 @@ public class DeletePaymentMethodNetworkTokenRequestBuilder {
     public DeletePaymentMethodNetworkTokenResponse call() throws Exception {
         
         RequestOperation<DeletePaymentMethodNetworkTokenRequest, DeletePaymentMethodNetworkTokenResponse> operation
-              = new DeletePaymentMethodNetworkTokenOperation(sdkConfiguration);
+              = new DeletePaymentMethodNetworkToken.Sync(sdkConfiguration);
         DeletePaymentMethodNetworkTokenRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

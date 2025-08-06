@@ -12,8 +12,8 @@ import com.gr4vy.sdk.models.operations.RegisterDigitalWalletDomainResponse;
 import com.gr4vy.sdk.models.operations.UnregisterDigitalWalletDomainRequest;
 import com.gr4vy.sdk.models.operations.UnregisterDigitalWalletDomainRequestBuilder;
 import com.gr4vy.sdk.models.operations.UnregisterDigitalWalletDomainResponse;
-import com.gr4vy.sdk.operations.RegisterDigitalWalletDomainOperation;
-import com.gr4vy.sdk.operations.UnregisterDigitalWalletDomainOperation;
+import com.gr4vy.sdk.operations.RegisterDigitalWalletDomain;
+import com.gr4vy.sdk.operations.UnregisterDigitalWalletDomain;
 import java.lang.Exception;
 import java.lang.String;
 import org.openapitools.jackson.nullable.JsonNullable;
@@ -73,7 +73,7 @@ public class Domains {
                 .digitalWalletDomain(digitalWalletDomain)
                 .build();
         RequestOperation<RegisterDigitalWalletDomainRequest, RegisterDigitalWalletDomainResponse> operation
-              = new RegisterDigitalWalletDomainOperation(sdkConfiguration);
+              = new RegisterDigitalWalletDomain.Sync(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -124,7 +124,7 @@ public class Domains {
                 .digitalWalletDomain(digitalWalletDomain)
                 .build();
         RequestOperation<UnregisterDigitalWalletDomainRequest, UnregisterDigitalWalletDomainResponse> operation
-              = new UnregisterDigitalWalletDomainOperation(sdkConfiguration);
+              = new UnregisterDigitalWalletDomain.Sync(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
 

@@ -6,7 +6,7 @@ package com.gr4vy.sdk.models.operations;
 import static com.gr4vy.sdk.operations.Operations.RequestOperation;
 
 import com.gr4vy.sdk.SDKConfiguration;
-import com.gr4vy.sdk.operations.GetCheckoutSessionOperation;
+import com.gr4vy.sdk.operations.GetCheckoutSession;
 import com.gr4vy.sdk.utils.Options;
 import com.gr4vy.sdk.utils.RetryConfig;
 import com.gr4vy.sdk.utils.Utils;
@@ -71,7 +71,7 @@ public class GetCheckoutSessionRequestBuilder {
             .build());
 
         RequestOperation<GetCheckoutSessionRequest, GetCheckoutSessionResponse> operation
-              = new GetCheckoutSessionOperation(sdkConfiguration, options);
+              = new GetCheckoutSession.Sync(sdkConfiguration, options);
         GetCheckoutSessionRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

@@ -9,7 +9,7 @@ import com.gr4vy.sdk.models.components.AccountUpdaterJobCreate;
 import com.gr4vy.sdk.models.operations.CreateAccountUpdaterJobRequest;
 import com.gr4vy.sdk.models.operations.CreateAccountUpdaterJobRequestBuilder;
 import com.gr4vy.sdk.models.operations.CreateAccountUpdaterJobResponse;
-import com.gr4vy.sdk.operations.CreateAccountUpdaterJobOperation;
+import com.gr4vy.sdk.operations.CreateAccountUpdaterJob;
 import java.lang.Exception;
 import java.lang.String;
 import org.openapitools.jackson.nullable.JsonNullable;
@@ -64,7 +64,7 @@ public class Jobs {
                 .accountUpdaterJobCreate(accountUpdaterJobCreate)
                 .build();
         RequestOperation<CreateAccountUpdaterJobRequest, CreateAccountUpdaterJobResponse> operation
-              = new CreateAccountUpdaterJobOperation(sdkConfiguration);
+              = new CreateAccountUpdaterJob.Sync(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
 

@@ -6,7 +6,7 @@ package com.gr4vy.sdk.models.operations;
 import static com.gr4vy.sdk.operations.Operations.RequestOperation;
 
 import com.gr4vy.sdk.SDKConfiguration;
-import com.gr4vy.sdk.operations.ListPaymentMethodNetworkTokensOperation;
+import com.gr4vy.sdk.operations.ListPaymentMethodNetworkTokens;
 import com.gr4vy.sdk.utils.Options;
 import com.gr4vy.sdk.utils.RetryConfig;
 import com.gr4vy.sdk.utils.Utils;
@@ -71,7 +71,7 @@ public class ListPaymentMethodNetworkTokensRequestBuilder {
             .build());
 
         RequestOperation<ListPaymentMethodNetworkTokensRequest, ListPaymentMethodNetworkTokensResponse> operation
-              = new ListPaymentMethodNetworkTokensOperation(sdkConfiguration, options);
+              = new ListPaymentMethodNetworkTokens.Sync(sdkConfiguration, options);
         ListPaymentMethodNetworkTokensRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

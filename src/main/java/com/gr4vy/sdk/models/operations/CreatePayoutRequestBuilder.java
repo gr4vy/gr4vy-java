@@ -7,7 +7,7 @@ import static com.gr4vy.sdk.operations.Operations.RequestOperation;
 
 import com.gr4vy.sdk.SDKConfiguration;
 import com.gr4vy.sdk.models.components.PayoutCreate;
-import com.gr4vy.sdk.operations.CreatePayoutOperation;
+import com.gr4vy.sdk.operations.CreatePayout;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -53,7 +53,7 @@ public class CreatePayoutRequestBuilder {
     public CreatePayoutResponse call() throws Exception {
         
         RequestOperation<CreatePayoutRequest, CreatePayoutResponse> operation
-              = new CreatePayoutOperation(sdkConfiguration);
+              = new CreatePayout.Sync(sdkConfiguration);
         CreatePayoutRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

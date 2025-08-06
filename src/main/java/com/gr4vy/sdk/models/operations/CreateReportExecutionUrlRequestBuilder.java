@@ -6,7 +6,7 @@ package com.gr4vy.sdk.models.operations;
 import static com.gr4vy.sdk.operations.Operations.RequestOperation;
 
 import com.gr4vy.sdk.SDKConfiguration;
-import com.gr4vy.sdk.operations.CreateReportExecutionUrlOperation;
+import com.gr4vy.sdk.operations.CreateReportExecutionUrl;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -60,7 +60,7 @@ public class CreateReportExecutionUrlRequestBuilder {
     public CreateReportExecutionUrlResponse call() throws Exception {
         
         RequestOperation<CreateReportExecutionUrlRequest, CreateReportExecutionUrlResponse> operation
-              = new CreateReportExecutionUrlOperation(sdkConfiguration);
+              = new CreateReportExecutionUrl.Sync(sdkConfiguration);
         CreateReportExecutionUrlRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

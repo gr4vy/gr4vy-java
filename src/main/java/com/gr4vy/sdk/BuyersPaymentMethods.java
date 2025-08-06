@@ -8,7 +8,7 @@ import static com.gr4vy.sdk.operations.Operations.RequestOperation;
 import com.gr4vy.sdk.models.operations.ListBuyerPaymentMethodsRequest;
 import com.gr4vy.sdk.models.operations.ListBuyerPaymentMethodsRequestBuilder;
 import com.gr4vy.sdk.models.operations.ListBuyerPaymentMethodsResponse;
-import com.gr4vy.sdk.operations.ListBuyerPaymentMethodsOperation;
+import com.gr4vy.sdk.operations.ListBuyerPaymentMethods;
 import com.gr4vy.sdk.utils.Options;
 import java.lang.Exception;
 import java.util.Optional;
@@ -57,7 +57,7 @@ public class BuyersPaymentMethods {
      */
     public ListBuyerPaymentMethodsResponse list(ListBuyerPaymentMethodsRequest request, Optional<Options> options) throws Exception {
         RequestOperation<ListBuyerPaymentMethodsRequest, ListBuyerPaymentMethodsResponse> operation
-              = new ListBuyerPaymentMethodsOperation(sdkConfiguration, options);
+              = new ListBuyerPaymentMethods.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

@@ -10,7 +10,7 @@ import static com.gr4vy.sdk.utils.Utils.toStream;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.gr4vy.sdk.SDKConfiguration;
-import com.gr4vy.sdk.operations.ListPaymentServiceDefinitionsOperation;
+import com.gr4vy.sdk.operations.ListPaymentServiceDefinitions;
 import com.gr4vy.sdk.utils.LazySingletonValue;
 import com.gr4vy.sdk.utils.Options;
 import com.gr4vy.sdk.utils.RetryConfig;
@@ -96,7 +96,7 @@ public class ListPaymentServiceDefinitionsRequestBuilder {
             .build());
 
         RequestOperation<ListPaymentServiceDefinitionsRequest, ListPaymentServiceDefinitionsResponse> operation
-              = new ListPaymentServiceDefinitionsOperation(sdkConfiguration, options);
+              = new ListPaymentServiceDefinitions.Sync(sdkConfiguration, options);
         ListPaymentServiceDefinitionsRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));
@@ -121,7 +121,7 @@ public class ListPaymentServiceDefinitionsRequestBuilder {
             .build());
 
         RequestOperation<ListPaymentServiceDefinitionsRequest, ListPaymentServiceDefinitionsResponse> operation
-              = new ListPaymentServiceDefinitionsOperation(sdkConfiguration, options);
+              = new ListPaymentServiceDefinitions.Sync(sdkConfiguration, options);
         ListPaymentServiceDefinitionsRequest request = buildRequest();
         Iterator<HttpResponse<InputStream>> iterator = new Paginator<>(
             request,

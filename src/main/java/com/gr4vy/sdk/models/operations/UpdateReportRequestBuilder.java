@@ -7,7 +7,7 @@ import static com.gr4vy.sdk.operations.Operations.RequestOperation;
 
 import com.gr4vy.sdk.SDKConfiguration;
 import com.gr4vy.sdk.models.components.ReportUpdate;
-import com.gr4vy.sdk.operations.UpdateReportOperation;
+import com.gr4vy.sdk.operations.UpdateReport;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -61,7 +61,7 @@ public class UpdateReportRequestBuilder {
     public UpdateReportResponse call() throws Exception {
         
         RequestOperation<UpdateReportRequest, UpdateReportResponse> operation
-              = new UpdateReportOperation(sdkConfiguration);
+              = new UpdateReport.Sync(sdkConfiguration);
         UpdateReportRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

@@ -6,7 +6,7 @@ package com.gr4vy.sdk.models.operations;
 import static com.gr4vy.sdk.operations.Operations.RequestOperation;
 
 import com.gr4vy.sdk.SDKConfiguration;
-import com.gr4vy.sdk.operations.DeleteGiftCardOperation;
+import com.gr4vy.sdk.operations.DeleteGiftCard;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -52,7 +52,7 @@ public class DeleteGiftCardRequestBuilder {
     public DeleteGiftCardResponse call() throws Exception {
         
         RequestOperation<DeleteGiftCardRequest, DeleteGiftCardResponse> operation
-              = new DeleteGiftCardOperation(sdkConfiguration);
+              = new DeleteGiftCard.Sync(sdkConfiguration);
         DeleteGiftCardRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

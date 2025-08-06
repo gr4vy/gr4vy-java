@@ -7,7 +7,7 @@ import static com.gr4vy.sdk.operations.Operations.RequestOperation;
 
 import com.gr4vy.sdk.SDKConfiguration;
 import com.gr4vy.sdk.models.components.DigitalWalletUpdate;
-import com.gr4vy.sdk.operations.UpdateDigitalWalletOperation;
+import com.gr4vy.sdk.operations.UpdateDigitalWallet;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -61,7 +61,7 @@ public class UpdateDigitalWalletRequestBuilder {
     public UpdateDigitalWalletResponse call() throws Exception {
         
         RequestOperation<UpdateDigitalWalletRequest, UpdateDigitalWalletResponse> operation
-              = new UpdateDigitalWalletOperation(sdkConfiguration);
+              = new UpdateDigitalWallet.Sync(sdkConfiguration);
         UpdateDigitalWalletRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

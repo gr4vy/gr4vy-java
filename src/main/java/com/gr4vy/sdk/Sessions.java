@@ -16,9 +16,9 @@ import com.gr4vy.sdk.models.operations.CreateClickToPayDigitalWalletSessionRespo
 import com.gr4vy.sdk.models.operations.CreateGooglePayDigitalWalletSessionRequest;
 import com.gr4vy.sdk.models.operations.CreateGooglePayDigitalWalletSessionRequestBuilder;
 import com.gr4vy.sdk.models.operations.CreateGooglePayDigitalWalletSessionResponse;
-import com.gr4vy.sdk.operations.CreateApplePayDigitalWalletSessionOperation;
-import com.gr4vy.sdk.operations.CreateClickToPayDigitalWalletSessionOperation;
-import com.gr4vy.sdk.operations.CreateGooglePayDigitalWalletSessionOperation;
+import com.gr4vy.sdk.operations.CreateApplePayDigitalWalletSession;
+import com.gr4vy.sdk.operations.CreateClickToPayDigitalWalletSession;
+import com.gr4vy.sdk.operations.CreateGooglePayDigitalWalletSession;
 import java.lang.Exception;
 import java.lang.String;
 import org.openapitools.jackson.nullable.JsonNullable;
@@ -73,7 +73,7 @@ public class Sessions {
                 .googlePaySessionRequest(googlePaySessionRequest)
                 .build();
         RequestOperation<CreateGooglePayDigitalWalletSessionRequest, CreateGooglePayDigitalWalletSessionResponse> operation
-              = new CreateGooglePayDigitalWalletSessionOperation(sdkConfiguration);
+              = new CreateGooglePayDigitalWalletSession.Sync(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -119,7 +119,7 @@ public class Sessions {
                 .applePaySessionRequest(applePaySessionRequest)
                 .build();
         RequestOperation<CreateApplePayDigitalWalletSessionRequest, CreateApplePayDigitalWalletSessionResponse> operation
-              = new CreateApplePayDigitalWalletSessionOperation(sdkConfiguration);
+              = new CreateApplePayDigitalWalletSession.Sync(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -145,7 +145,7 @@ public class Sessions {
      */
     public CreateClickToPayDigitalWalletSessionResponse clickToPay(ClickToPaySessionRequest request) throws Exception {
         RequestOperation<ClickToPaySessionRequest, CreateClickToPayDigitalWalletSessionResponse> operation
-              = new CreateClickToPayDigitalWalletSessionOperation(sdkConfiguration);
+              = new CreateClickToPayDigitalWalletSession.Sync(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
 

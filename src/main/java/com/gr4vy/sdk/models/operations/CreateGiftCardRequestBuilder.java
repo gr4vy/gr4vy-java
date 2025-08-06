@@ -7,7 +7,7 @@ import static com.gr4vy.sdk.operations.Operations.RequestOperation;
 
 import com.gr4vy.sdk.SDKConfiguration;
 import com.gr4vy.sdk.models.components.GiftCardCreate;
-import com.gr4vy.sdk.operations.CreateGiftCardOperation;
+import com.gr4vy.sdk.operations.CreateGiftCard;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -53,7 +53,7 @@ public class CreateGiftCardRequestBuilder {
     public CreateGiftCardResponse call() throws Exception {
         
         RequestOperation<CreateGiftCardRequest, CreateGiftCardResponse> operation
-              = new CreateGiftCardOperation(sdkConfiguration);
+              = new CreateGiftCard.Sync(sdkConfiguration);
         CreateGiftCardRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

@@ -29,13 +29,13 @@ import com.gr4vy.sdk.models.operations.UpdatePaymentServiceResponse;
 import com.gr4vy.sdk.models.operations.VerifyPaymentServiceCredentialsRequest;
 import com.gr4vy.sdk.models.operations.VerifyPaymentServiceCredentialsRequestBuilder;
 import com.gr4vy.sdk.models.operations.VerifyPaymentServiceCredentialsResponse;
-import com.gr4vy.sdk.operations.CreatePaymentServiceOperation;
-import com.gr4vy.sdk.operations.CreatePaymentServiceSessionOperation;
-import com.gr4vy.sdk.operations.DeletePaymentServiceOperation;
-import com.gr4vy.sdk.operations.GetPaymentServiceOperation;
-import com.gr4vy.sdk.operations.ListPaymentServicesOperation;
-import com.gr4vy.sdk.operations.UpdatePaymentServiceOperation;
-import com.gr4vy.sdk.operations.VerifyPaymentServiceCredentialsOperation;
+import com.gr4vy.sdk.operations.CreatePaymentService;
+import com.gr4vy.sdk.operations.CreatePaymentServiceSession;
+import com.gr4vy.sdk.operations.DeletePaymentService;
+import com.gr4vy.sdk.operations.GetPaymentService;
+import com.gr4vy.sdk.operations.ListPaymentServices;
+import com.gr4vy.sdk.operations.UpdatePaymentService;
+import com.gr4vy.sdk.operations.VerifyPaymentServiceCredentials;
 import com.gr4vy.sdk.utils.Options;
 import java.lang.Exception;
 import java.lang.Object;
@@ -88,7 +88,7 @@ public class PaymentServices {
      */
     public ListPaymentServicesResponse list(ListPaymentServicesRequest request, Optional<Options> options) throws Exception {
         RequestOperation<ListPaymentServicesRequest, ListPaymentServicesResponse> operation
-              = new ListPaymentServicesOperation(sdkConfiguration, options);
+              = new ListPaymentServices.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -134,7 +134,7 @@ public class PaymentServices {
                 .paymentServiceCreate(paymentServiceCreate)
                 .build();
         RequestOperation<UpdatePaymentServiceRequest, UpdatePaymentServiceResponse> operation
-              = new UpdatePaymentServiceOperation(sdkConfiguration);
+              = new UpdatePaymentService.Sync(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -183,7 +183,7 @@ public class PaymentServices {
                 .merchantAccountId(merchantAccountId)
                 .build();
         RequestOperation<GetPaymentServiceRequest, GetPaymentServiceResponse> operation
-              = new GetPaymentServiceOperation(sdkConfiguration, options);
+              = new GetPaymentService.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -234,7 +234,7 @@ public class PaymentServices {
                 .paymentServiceUpdate(paymentServiceUpdate)
                 .build();
         RequestOperation<CreatePaymentServiceRequest, CreatePaymentServiceResponse> operation
-              = new CreatePaymentServiceOperation(sdkConfiguration);
+              = new CreatePaymentService.Sync(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -280,7 +280,7 @@ public class PaymentServices {
                 .merchantAccountId(merchantAccountId)
                 .build();
         RequestOperation<DeletePaymentServiceRequest, DeletePaymentServiceResponse> operation
-              = new DeletePaymentServiceOperation(sdkConfiguration);
+              = new DeletePaymentService.Sync(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -326,7 +326,7 @@ public class PaymentServices {
                 .verifyCredentials(verifyCredentials)
                 .build();
         RequestOperation<VerifyPaymentServiceCredentialsRequest, VerifyPaymentServiceCredentialsResponse> operation
-              = new VerifyPaymentServiceCredentialsOperation(sdkConfiguration);
+              = new VerifyPaymentServiceCredentials.Sync(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -377,7 +377,7 @@ public class PaymentServices {
                 .requestBody(requestBody)
                 .build();
         RequestOperation<CreatePaymentServiceSessionRequest, CreatePaymentServiceSessionResponse> operation
-              = new CreatePaymentServiceSessionOperation(sdkConfiguration);
+              = new CreatePaymentServiceSession.Sync(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
 

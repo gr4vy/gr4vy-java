@@ -6,7 +6,7 @@ package com.gr4vy.sdk.models.operations;
 import static com.gr4vy.sdk.operations.Operations.RequestOperation;
 
 import com.gr4vy.sdk.SDKConfiguration;
-import com.gr4vy.sdk.operations.ListTransactionSettlementsOperation;
+import com.gr4vy.sdk.operations.ListTransactionSettlements;
 import com.gr4vy.sdk.utils.Options;
 import com.gr4vy.sdk.utils.RetryConfig;
 import com.gr4vy.sdk.utils.Utils;
@@ -71,7 +71,7 @@ public class ListTransactionSettlementsRequestBuilder {
             .build());
 
         RequestOperation<ListTransactionSettlementsRequest, ListTransactionSettlementsResponse> operation
-              = new ListTransactionSettlementsOperation(sdkConfiguration, options);
+              = new ListTransactionSettlements.Sync(sdkConfiguration, options);
         ListTransactionSettlementsRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

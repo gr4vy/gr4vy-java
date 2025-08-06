@@ -15,9 +15,9 @@ import com.gr4vy.sdk.models.operations.GetPayoutResponse;
 import com.gr4vy.sdk.models.operations.ListPayoutsRequest;
 import com.gr4vy.sdk.models.operations.ListPayoutsRequestBuilder;
 import com.gr4vy.sdk.models.operations.ListPayoutsResponse;
-import com.gr4vy.sdk.operations.CreatePayoutOperation;
-import com.gr4vy.sdk.operations.GetPayoutOperation;
-import com.gr4vy.sdk.operations.ListPayoutsOperation;
+import com.gr4vy.sdk.operations.CreatePayout;
+import com.gr4vy.sdk.operations.GetPayout;
+import com.gr4vy.sdk.operations.ListPayouts;
 import com.gr4vy.sdk.utils.Options;
 import java.lang.Exception;
 import java.lang.Long;
@@ -80,7 +80,7 @@ public class Payouts {
                 .merchantAccountId(merchantAccountId)
                 .build();
         RequestOperation<ListPayoutsRequest, ListPayoutsResponse> operation
-              = new ListPayoutsOperation(sdkConfiguration, options);
+              = new ListPayouts.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -130,7 +130,7 @@ public class Payouts {
                 .payoutCreate(payoutCreate)
                 .build();
         RequestOperation<CreatePayoutRequest, CreatePayoutResponse> operation
-              = new CreatePayoutOperation(sdkConfiguration);
+              = new CreatePayout.Sync(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -179,7 +179,7 @@ public class Payouts {
                 .merchantAccountId(merchantAccountId)
                 .build();
         RequestOperation<GetPayoutRequest, GetPayoutResponse> operation
-              = new GetPayoutOperation(sdkConfiguration, options);
+              = new GetPayout.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

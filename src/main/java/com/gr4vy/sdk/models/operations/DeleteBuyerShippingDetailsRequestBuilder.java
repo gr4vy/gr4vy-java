@@ -6,7 +6,7 @@ package com.gr4vy.sdk.models.operations;
 import static com.gr4vy.sdk.operations.Operations.RequestOperation;
 
 import com.gr4vy.sdk.SDKConfiguration;
-import com.gr4vy.sdk.operations.DeleteBuyerShippingDetailsOperation;
+import com.gr4vy.sdk.operations.DeleteBuyerShippingDetails;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -60,7 +60,7 @@ public class DeleteBuyerShippingDetailsRequestBuilder {
     public DeleteBuyerShippingDetailsResponse call() throws Exception {
         
         RequestOperation<DeleteBuyerShippingDetailsRequest, DeleteBuyerShippingDetailsResponse> operation
-              = new DeleteBuyerShippingDetailsOperation(sdkConfiguration);
+              = new DeleteBuyerShippingDetails.Sync(sdkConfiguration);
         DeleteBuyerShippingDetailsRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

@@ -7,7 +7,7 @@ import static com.gr4vy.sdk.operations.Operations.RequestOperation;
 
 import com.gr4vy.sdk.SDKConfiguration;
 import com.gr4vy.sdk.models.components.PaymentServiceCreate;
-import com.gr4vy.sdk.operations.UpdatePaymentServiceOperation;
+import com.gr4vy.sdk.operations.UpdatePaymentService;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -53,7 +53,7 @@ public class UpdatePaymentServiceRequestBuilder {
     public UpdatePaymentServiceResponse call() throws Exception {
         
         RequestOperation<UpdatePaymentServiceRequest, UpdatePaymentServiceResponse> operation
-              = new UpdatePaymentServiceOperation(sdkConfiguration);
+              = new UpdatePaymentService.Sync(sdkConfiguration);
         UpdatePaymentServiceRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

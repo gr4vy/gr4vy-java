@@ -8,7 +8,7 @@ import static com.gr4vy.sdk.operations.Operations.RequestOperation;
 import com.gr4vy.sdk.models.operations.ListCardSchemeDefinitionsRequest;
 import com.gr4vy.sdk.models.operations.ListCardSchemeDefinitionsRequestBuilder;
 import com.gr4vy.sdk.models.operations.ListCardSchemeDefinitionsResponse;
-import com.gr4vy.sdk.operations.ListCardSchemeDefinitionsOperation;
+import com.gr4vy.sdk.operations.ListCardSchemeDefinitions;
 import com.gr4vy.sdk.utils.Options;
 import java.lang.Exception;
 import java.lang.String;
@@ -63,7 +63,7 @@ public class CardSchemeDefinitions {
                 .merchantAccountId(merchantAccountId)
                 .build();
         RequestOperation<ListCardSchemeDefinitionsRequest, ListCardSchemeDefinitionsResponse> operation
-              = new ListCardSchemeDefinitionsOperation(sdkConfiguration, options);
+              = new ListCardSchemeDefinitions.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

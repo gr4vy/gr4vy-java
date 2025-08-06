@@ -7,7 +7,7 @@ import static com.gr4vy.sdk.operations.Operations.RequestOperation;
 
 import com.gr4vy.sdk.SDKConfiguration;
 import com.gr4vy.sdk.models.components.ApplePaySessionRequest;
-import com.gr4vy.sdk.operations.CreateApplePayDigitalWalletSessionOperation;
+import com.gr4vy.sdk.operations.CreateApplePayDigitalWalletSession;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -53,7 +53,7 @@ public class CreateApplePayDigitalWalletSessionRequestBuilder {
     public CreateApplePayDigitalWalletSessionResponse call() throws Exception {
         
         RequestOperation<CreateApplePayDigitalWalletSessionRequest, CreateApplePayDigitalWalletSessionResponse> operation
-              = new CreateApplePayDigitalWalletSessionOperation(sdkConfiguration);
+              = new CreateApplePayDigitalWalletSession.Sync(sdkConfiguration);
         CreateApplePayDigitalWalletSessionRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

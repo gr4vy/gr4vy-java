@@ -6,7 +6,7 @@ package com.gr4vy.sdk.models.operations;
 import static com.gr4vy.sdk.operations.Operations.RequestOperation;
 
 import com.gr4vy.sdk.SDKConfiguration;
-import com.gr4vy.sdk.operations.SyncTransactionOperation;
+import com.gr4vy.sdk.operations.SyncTransaction;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -52,7 +52,7 @@ public class SyncTransactionRequestBuilder {
     public SyncTransactionResponse call() throws Exception {
         
         RequestOperation<SyncTransactionRequest, SyncTransactionResponse> operation
-              = new SyncTransactionOperation(sdkConfiguration);
+              = new SyncTransaction.Sync(sdkConfiguration);
         SyncTransactionRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

@@ -10,7 +10,7 @@ import static com.gr4vy.sdk.utils.Utils.toStream;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.gr4vy.sdk.SDKConfiguration;
-import com.gr4vy.sdk.operations.ListPayoutsOperation;
+import com.gr4vy.sdk.operations.ListPayouts;
 import com.gr4vy.sdk.utils.LazySingletonValue;
 import com.gr4vy.sdk.utils.Options;
 import com.gr4vy.sdk.utils.RetryConfig;
@@ -110,7 +110,7 @@ public class ListPayoutsRequestBuilder {
             .build());
 
         RequestOperation<ListPayoutsRequest, ListPayoutsResponse> operation
-              = new ListPayoutsOperation(sdkConfiguration, options);
+              = new ListPayouts.Sync(sdkConfiguration, options);
         ListPayoutsRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));
@@ -135,7 +135,7 @@ public class ListPayoutsRequestBuilder {
             .build());
 
         RequestOperation<ListPayoutsRequest, ListPayoutsResponse> operation
-              = new ListPayoutsOperation(sdkConfiguration, options);
+              = new ListPayouts.Sync(sdkConfiguration, options);
         ListPayoutsRequest request = buildRequest();
         Iterator<HttpResponse<InputStream>> iterator = new Paginator<>(
             request,
