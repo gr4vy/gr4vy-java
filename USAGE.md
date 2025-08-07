@@ -3,30 +3,23 @@
 package hello.world;
 
 import com.gr4vy.sdk.Gr4vy;
-import com.gr4vy.sdk.models.components.AccountUpdaterJobCreate;
-import com.gr4vy.sdk.models.errors.*;
-import com.gr4vy.sdk.models.operations.CreateAccountUpdaterJobResponse;
+import com.gr4vy.sdk.models.errors.HTTPValidationError;
+import com.gr4vy.sdk.models.operations.BrowsePaymentMethodDefinitionsGetResponse;
 import java.lang.Exception;
-import java.util.List;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) throws HTTPValidationError, Exception {
 
         Gr4vy sdk = Gr4vy.builder()
-                .merchantAccountId("default")
+                .merchantAccountId("<id>")
                 .bearerAuth(System.getenv().getOrDefault("BEARER_AUTH", ""))
             .build();
 
-        CreateAccountUpdaterJobResponse res = sdk.accountUpdater().jobs().create()
-                .accountUpdaterJobCreate(AccountUpdaterJobCreate.builder()
-                    .paymentMethodIds(List.of(
-                        "ef9496d8-53a5-4aad-8ca2-00eb68334389",
-                        "f29e886e-93cc-4714-b4a3-12b7a718e595"))
-                    .build())
+        BrowsePaymentMethodDefinitionsGetResponse res = sdk.browsePaymentMethodDefinitionsGet()
                 .call();
 
-        if (res.accountUpdaterJob().isPresent()) {
+        if (res.any().isPresent()) {
             // handle response
         }
     }
