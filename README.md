@@ -56,7 +56,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'com.gr4vy:sdk:2.8.15'
+implementation 'com.gr4vy:sdk:2.8.16'
 ```
 
 Maven:
@@ -64,7 +64,7 @@ Maven:
 <dependency>
     <groupId>com.gr4vy</groupId>
     <artifactId>sdk</artifactId>
-    <version>2.8.15</version>
+    <version>2.8.16</version>
 </dependency>
 ```
 
@@ -301,9 +301,6 @@ try {
 
 * [list](docs/sdks/balances/README.md#list) - List gift card balances
 
-### [Gr4vy SDK](docs/sdks/gr4vy/README.md)
-
-* [browsePaymentMethodDefinitionsGet](docs/sdks/gr4vy/README.md#browsepaymentmethoddefinitionsget) - Browse
 
 ### [merchantAccounts()](docs/sdks/merchantaccounts/README.md)
 
@@ -491,8 +488,9 @@ To change the default retry strategy for a single API call, you can provide a `R
 package hello.world;
 
 import com.gr4vy.sdk.Gr4vy;
-import com.gr4vy.sdk.models.errors.HTTPValidationError;
-import com.gr4vy.sdk.models.operations.BrowsePaymentMethodDefinitionsGetResponse;
+import com.gr4vy.sdk.models.errors.*;
+import com.gr4vy.sdk.models.operations.ListBuyersRequest;
+import com.gr4vy.sdk.models.operations.ListBuyersResponse;
 import com.gr4vy.sdk.utils.BackoffStrategy;
 import com.gr4vy.sdk.utils.RetryConfig;
 import java.lang.Exception;
@@ -500,14 +498,21 @@ import java.util.concurrent.TimeUnit;
 
 public class Application {
 
-    public static void main(String[] args) throws HTTPValidationError, Exception {
+    public static void main(String[] args) throws Exception {
 
         Gr4vy sdk = Gr4vy.builder()
-                .merchantAccountId("<id>")
+                .merchantAccountId("default")
                 .bearerAuth(System.getenv().getOrDefault("BEARER_AUTH", ""))
             .build();
 
-        BrowsePaymentMethodDefinitionsGetResponse res = sdk.browsePaymentMethodDefinitionsGet()
+        ListBuyersRequest req = ListBuyersRequest.builder()
+                .cursor("ZXhhbXBsZTE")
+                .search("John")
+                .externalIdentifier("buyer-12345")
+                .build();
+
+        sdk.buyers().list()
+                .request(req)
                 .retryConfig(RetryConfig.builder()
                     .backoff(BackoffStrategy.builder()
                         .initialInterval(1L, TimeUnit.MILLISECONDS)
@@ -518,11 +523,11 @@ public class Application {
                         .retryConnectError(false)
                         .build())
                     .build())
-                .call();
+                .callAsStream()
+                .forEach((ListBuyersResponse item) -> {
+                   // handle page
+                });
 
-        if (res.any().isPresent()) {
-            // handle response
-        }
     }
 }
 ```
@@ -532,8 +537,9 @@ If you'd like to override the default retry strategy for all operations that sup
 package hello.world;
 
 import com.gr4vy.sdk.Gr4vy;
-import com.gr4vy.sdk.models.errors.HTTPValidationError;
-import com.gr4vy.sdk.models.operations.BrowsePaymentMethodDefinitionsGetResponse;
+import com.gr4vy.sdk.models.errors.*;
+import com.gr4vy.sdk.models.operations.ListBuyersRequest;
+import com.gr4vy.sdk.models.operations.ListBuyersResponse;
 import com.gr4vy.sdk.utils.BackoffStrategy;
 import com.gr4vy.sdk.utils.RetryConfig;
 import java.lang.Exception;
@@ -541,7 +547,7 @@ import java.util.concurrent.TimeUnit;
 
 public class Application {
 
-    public static void main(String[] args) throws HTTPValidationError, Exception {
+    public static void main(String[] args) throws Exception {
 
         Gr4vy sdk = Gr4vy.builder()
                 .retryConfig(RetryConfig.builder()
@@ -554,16 +560,23 @@ public class Application {
                         .retryConnectError(false)
                         .build())
                     .build())
-                .merchantAccountId("<id>")
+                .merchantAccountId("default")
                 .bearerAuth(System.getenv().getOrDefault("BEARER_AUTH", ""))
             .build();
 
-        BrowsePaymentMethodDefinitionsGetResponse res = sdk.browsePaymentMethodDefinitionsGet()
-                .call();
+        ListBuyersRequest req = ListBuyersRequest.builder()
+                .cursor("ZXhhbXBsZTE")
+                .search("John")
+                .externalIdentifier("buyer-12345")
+                .build();
 
-        if (res.any().isPresent()) {
-            // handle response
-        }
+        sdk.buyers().list()
+                .request(req)
+                .callAsStream()
+                .forEach((ListBuyersResponse item) -> {
+                   // handle page
+                });
+
     }
 }
 ```
@@ -574,11 +587,22 @@ public class Application {
 
 Handling errors in this SDK should largely match your expectations. All operations return a response object or raise an exception.
 
-By default, an API error will throw a `models/errors/APIException` exception. When custom error responses are specified for an operation, the SDK may also throw their associated exception. You can refer to respective *Errors* tables in SDK docs for more details on possible exception types for each operation. For example, the `browsePaymentMethodDefinitionsGet` method throws the following exceptions:
+By default, an API error will throw a `models/errors/APIException` exception. When custom error responses are specified for an operation, the SDK may also throw their associated exception. You can refer to respective *Errors* tables in SDK docs for more details on possible exception types for each operation. For example, the `create` method throws the following exceptions:
 
 | Error Type                        | Status Code | Content Type     |
 | --------------------------------- | ----------- | ---------------- |
+| models/errors/Error400            | 400         | application/json |
+| models/errors/Error401            | 401         | application/json |
+| models/errors/Error403            | 403         | application/json |
+| models/errors/Error404            | 404         | application/json |
+| models/errors/Error405            | 405         | application/json |
+| models/errors/Error409            | 409         | application/json |
 | models/errors/HTTPValidationError | 422         | application/json |
+| models/errors/Error425            | 425         | application/json |
+| models/errors/Error429            | 429         | application/json |
+| models/errors/Error500            | 500         | application/json |
+| models/errors/Error502            | 502         | application/json |
+| models/errors/Error504            | 504         | application/json |
 | models/errors/APIException        | 4XX, 5XX    | \*/\*            |
 
 ### Example
@@ -587,23 +611,30 @@ By default, an API error will throw a `models/errors/APIException` exception. Wh
 package hello.world;
 
 import com.gr4vy.sdk.Gr4vy;
-import com.gr4vy.sdk.models.errors.HTTPValidationError;
-import com.gr4vy.sdk.models.operations.BrowsePaymentMethodDefinitionsGetResponse;
+import com.gr4vy.sdk.models.components.AccountUpdaterJobCreate;
+import com.gr4vy.sdk.models.errors.*;
+import com.gr4vy.sdk.models.operations.CreateAccountUpdaterJobResponse;
 import java.lang.Exception;
+import java.util.List;
 
 public class Application {
 
-    public static void main(String[] args) throws HTTPValidationError, Exception {
+    public static void main(String[] args) throws Exception {
 
         Gr4vy sdk = Gr4vy.builder()
-                .merchantAccountId("<id>")
+                .merchantAccountId("default")
                 .bearerAuth(System.getenv().getOrDefault("BEARER_AUTH", ""))
             .build();
 
-        BrowsePaymentMethodDefinitionsGetResponse res = sdk.browsePaymentMethodDefinitionsGet()
+        CreateAccountUpdaterJobResponse res = sdk.accountUpdater().jobs().create()
+                .accountUpdaterJobCreate(AccountUpdaterJobCreate.builder()
+                    .paymentMethodIds(List.of(
+                        "ef9496d8-53a5-4aad-8ca2-00eb68334389",
+                        "f29e886e-93cc-4714-b4a3-12b7a718e595"))
+                    .build())
                 .call();
 
-        if (res.any().isPresent()) {
+        if (res.accountUpdaterJob().isPresent()) {
             // handle response
         }
     }
@@ -635,25 +666,32 @@ If the selected server has variables, you may override its default values using 
 package hello.world;
 
 import com.gr4vy.sdk.Gr4vy;
-import com.gr4vy.sdk.models.errors.HTTPValidationError;
-import com.gr4vy.sdk.models.operations.BrowsePaymentMethodDefinitionsGetResponse;
+import com.gr4vy.sdk.models.components.AccountUpdaterJobCreate;
+import com.gr4vy.sdk.models.errors.*;
+import com.gr4vy.sdk.models.operations.CreateAccountUpdaterJobResponse;
 import java.lang.Exception;
+import java.util.List;
 
 public class Application {
 
-    public static void main(String[] args) throws HTTPValidationError, Exception {
+    public static void main(String[] args) throws Exception {
 
         Gr4vy sdk = Gr4vy.builder()
                 .server(Gr4vy.AvailableServers.PRODUCTION)
                 .id("<id>")
-                .merchantAccountId("<id>")
+                .merchantAccountId("default")
                 .bearerAuth(System.getenv().getOrDefault("BEARER_AUTH", ""))
             .build();
 
-        BrowsePaymentMethodDefinitionsGetResponse res = sdk.browsePaymentMethodDefinitionsGet()
+        CreateAccountUpdaterJobResponse res = sdk.accountUpdater().jobs().create()
+                .accountUpdaterJobCreate(AccountUpdaterJobCreate.builder()
+                    .paymentMethodIds(List.of(
+                        "ef9496d8-53a5-4aad-8ca2-00eb68334389",
+                        "f29e886e-93cc-4714-b4a3-12b7a718e595"))
+                    .build())
                 .call();
 
-        if (res.any().isPresent()) {
+        if (res.accountUpdaterJob().isPresent()) {
             // handle response
         }
     }
@@ -667,24 +705,31 @@ The default server can also be overridden globally using the `.serverURL(String 
 package hello.world;
 
 import com.gr4vy.sdk.Gr4vy;
-import com.gr4vy.sdk.models.errors.HTTPValidationError;
-import com.gr4vy.sdk.models.operations.BrowsePaymentMethodDefinitionsGetResponse;
+import com.gr4vy.sdk.models.components.AccountUpdaterJobCreate;
+import com.gr4vy.sdk.models.errors.*;
+import com.gr4vy.sdk.models.operations.CreateAccountUpdaterJobResponse;
 import java.lang.Exception;
+import java.util.List;
 
 public class Application {
 
-    public static void main(String[] args) throws HTTPValidationError, Exception {
+    public static void main(String[] args) throws Exception {
 
         Gr4vy sdk = Gr4vy.builder()
                 .serverURL("https://api.sandbox.example.gr4vy.app")
-                .merchantAccountId("<id>")
+                .merchantAccountId("default")
                 .bearerAuth(System.getenv().getOrDefault("BEARER_AUTH", ""))
             .build();
 
-        BrowsePaymentMethodDefinitionsGetResponse res = sdk.browsePaymentMethodDefinitionsGet()
+        CreateAccountUpdaterJobResponse res = sdk.accountUpdater().jobs().create()
+                .accountUpdaterJobCreate(AccountUpdaterJobCreate.builder()
+                    .paymentMethodIds(List.of(
+                        "ef9496d8-53a5-4aad-8ca2-00eb68334389",
+                        "f29e886e-93cc-4714-b4a3-12b7a718e595"))
+                    .build())
                 .call();
 
-        if (res.any().isPresent()) {
+        if (res.accountUpdaterJob().isPresent()) {
             // handle response
         }
     }
