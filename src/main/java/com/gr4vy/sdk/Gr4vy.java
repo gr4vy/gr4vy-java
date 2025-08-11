@@ -3,25 +3,16 @@
  */
 package com.gr4vy.sdk;
 
-import static com.gr4vy.sdk.operations.Operations.RequestOperation;
-
-import com.gr4vy.sdk.models.operations.BrowsePaymentMethodDefinitionsGetRequest;
-import com.gr4vy.sdk.models.operations.BrowsePaymentMethodDefinitionsGetRequestBuilder;
-import com.gr4vy.sdk.models.operations.BrowsePaymentMethodDefinitionsGetResponse;
-import com.gr4vy.sdk.operations.BrowsePaymentMethodDefinitionsGet;
 import com.gr4vy.sdk.utils.HTTPClient;
-import com.gr4vy.sdk.utils.Options;
 import com.gr4vy.sdk.utils.RetryConfig;
 import com.gr4vy.sdk.utils.SpeakeasyHTTPClient;
 import com.gr4vy.sdk.utils.Utils;
-import java.lang.Exception;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.HashMap;
 import java.util.Map.Entry;
 import java.util.Map;
 import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
 
 /**
  * Gr4vy: The Gr4vy API.
@@ -392,42 +383,4 @@ public class Gr4vy {
         this.payouts = new Payouts(sdkConfiguration);
         this.paymentLinks = new PaymentLinks(sdkConfiguration);
     }
-    /**
-     * Browse
-     * 
-     * @return The call builder
-     */
-    public BrowsePaymentMethodDefinitionsGetRequestBuilder browsePaymentMethodDefinitionsGet() {
-        return new BrowsePaymentMethodDefinitionsGetRequestBuilder(sdkConfiguration);
-    }
-
-    /**
-     * Browse
-     * 
-     * @return The response from the API call
-     * @throws Exception if the API call fails
-     */
-    public BrowsePaymentMethodDefinitionsGetResponse browsePaymentMethodDefinitionsGetDirect() throws Exception {
-        return browsePaymentMethodDefinitionsGet(JsonNullable.undefined(), Optional.empty());
-    }
-
-    /**
-     * Browse
-     * 
-     * @param merchantAccountId 
-     * @param options additional options
-     * @return The response from the API call
-     * @throws Exception if the API call fails
-     */
-    public BrowsePaymentMethodDefinitionsGetResponse browsePaymentMethodDefinitionsGet(JsonNullable<String> merchantAccountId, Optional<Options> options) throws Exception {
-        BrowsePaymentMethodDefinitionsGetRequest request =
-            BrowsePaymentMethodDefinitionsGetRequest
-                .builder()
-                .merchantAccountId(merchantAccountId)
-                .build();
-        RequestOperation<BrowsePaymentMethodDefinitionsGetRequest, BrowsePaymentMethodDefinitionsGetResponse> operation
-              = new BrowsePaymentMethodDefinitionsGet.Sync(sdkConfiguration, options);
-        return operation.handleResponse(operation.doRequest(request));
-    }
-
 }
