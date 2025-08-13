@@ -77,7 +77,7 @@ public class ConnectionOptionsTravelhubCard {
    * @return companyName
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "The company namerence.")
+  @ApiModelProperty(value = "The company name.")
 
   public String geCompanyName() {
     return companyName;
