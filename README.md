@@ -17,7 +17,7 @@ Add the `gr4vy-java` dependency to your pom.xml:
   	<dependency>
 	    <groupId>com.github.gr4vy</groupId>
 	    <artifactId>gr4vy-java</artifactId>
-	    <version>0.33.0</version>
+	    <version>0.38.0</version>
 	</dependency>
 ```
 

@@ -37,6 +37,10 @@ public class ConnectionOptionsTravelhubCard {
   @SerializedName(SERIALIZED_NAME_CUSTOM_DATA)
   private List<ConnectionOptionsTravelhubCardCustomData> customData = null;
 
+  public static final String SERIALIZED_NAME_COMPANY_NAME = "companyName";
+  @SerializedName(SERIALIZED_NAME_COMPANY_NAME)
+  private String companyName;
+
 
   public ConnectionOptionsTravelhubCard customData(List<ConnectionOptionsTravelhubCardCustomData> customData) {
     
@@ -68,6 +72,28 @@ public class ConnectionOptionsTravelhubCard {
     this.customData = customData;
   }
 
+  public ConnectionOptionsTravelhubCard companyName(String companyName) {
+    
+    this.companyName = companyName;
+    return this;
+  }
+
+  /**
+   * The company name.
+   * @return companyName
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "The company name.")
+
+  public String getCompanyName() {
+    return companyName;
+  }
+
+
+  public void setCompanyName(String companyName) {
+    this.companyName = companyName;
+  }
+
 
   @Override
   public boolean equals(Object o) {
@@ -78,12 +104,13 @@ public class ConnectionOptionsTravelhubCard {
       return false;
     }
     ConnectionOptionsTravelhubCard connectionOptionsTravelhubCard = (ConnectionOptionsTravelhubCard) o;
-    return Objects.equals(this.customData, connectionOptionsTravelhubCard.customData);
+    return Objects.equals(this.customData, connectionOptionsTravelhubCard.customData) &&
+      Objects.equals(this.companyName, connectionOptionsTravelhubCard.companyName);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(customData);
+    return Objects.hash(customData, companyName);
   }
 
   @Override
@@ -91,6 +118,7 @@ public class ConnectionOptionsTravelhubCard {
     StringBuilder sb = new StringBuilder();
     sb.append("class ConnectionOptionsTravelhubCard {\n");
     sb.append("    customData: ").append(toIndentedString(customData)).append("\n");
+    sb.append("    companyName: ").append(toIndentedString(companyName)).append("\n");
     sb.append("}");
     return sb.toString();
   }
