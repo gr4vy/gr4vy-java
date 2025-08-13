@@ -37,6 +37,10 @@ public class ConnectionOptionsTravelhubCard {
   @SerializedName(SERIALIZED_NAME_CUSTOM_DATA)
   private List<ConnectionOptionsTravelhubCardCustomData> customData = null;
 
+  public static final String SERIALIZED_COMPANY_NAME = "companyName";
+  @SerializedName(SERIALIZED_COMPANY_NAME)
+  private String companyName;
+
 
   public ConnectionOptionsTravelhubCard customData(List<ConnectionOptionsTravelhubCardCustomData> customData) {
     
@@ -68,6 +72,22 @@ public class ConnectionOptionsTravelhubCard {
     this.customData = customData;
   }
 
+  /**
+   * The company name.
+   * @return companyName
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "The company namerence.")
+
+  public String geCompanyName() {
+    return companyName;
+  }
+
+
+  public void seCompanyName(String companyName) {
+    this.companyName = companyName;
+  }
+
 
   @Override
   public boolean equals(Object o) {
@@ -78,7 +98,8 @@ public class ConnectionOptionsTravelhubCard {
       return false;
     }
     ConnectionOptionsTravelhubCard connectionOptionsTravelhubCard = (ConnectionOptionsTravelhubCard) o;
-    return Objects.equals(this.customData, connectionOptionsTravelhubCard.customData);
+    return Objects.equals(this.customData, connectionOptionsTravelhubCard.customData) &&
+      Objects.equals(this.companyName, connectionOptionsTravelhubCard.companyName);
   }
 
   @Override
@@ -91,6 +112,7 @@ public class ConnectionOptionsTravelhubCard {
     StringBuilder sb = new StringBuilder();
     sb.append("class ConnectionOptionsTravelhubCard {\n");
     sb.append("    customData: ").append(toIndentedString(customData)).append("\n");
+    sb.append("    companyName: ").append(toIndentedString(companyName)).append("\n");
     sb.append("}");
     return sb.toString();
   }
