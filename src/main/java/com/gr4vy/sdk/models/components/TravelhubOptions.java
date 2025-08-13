@@ -24,15 +24,25 @@ public class TravelhubOptions {
     @JsonProperty("customData")
     private JsonNullable<? extends List<TravelHubCustomData>> customData;
 
+    /**
+     * Customer company name to pass to the TravelHub API.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("companyName")
+    private JsonNullable<String> companyName;
+
     @JsonCreator
     public TravelhubOptions(
-            @JsonProperty("customData") JsonNullable<? extends List<TravelHubCustomData>> customData) {
+            @JsonProperty("customData") JsonNullable<? extends List<TravelHubCustomData>> customData,
+            @JsonProperty("companyName") JsonNullable<String> companyName) {
         Utils.checkNotNull(customData, "customData");
+        Utils.checkNotNull(companyName, "companyName");
         this.customData = customData;
+        this.companyName = companyName;
     }
     
     public TravelhubOptions() {
-        this(JsonNullable.undefined());
+        this(JsonNullable.undefined(), JsonNullable.undefined());
     }
 
     /**
@@ -42,6 +52,14 @@ public class TravelhubOptions {
     @JsonIgnore
     public JsonNullable<List<TravelHubCustomData>> customData() {
         return (JsonNullable<List<TravelHubCustomData>>) customData;
+    }
+
+    /**
+     * Customer company name to pass to the TravelHub API.
+     */
+    @JsonIgnore
+    public JsonNullable<String> companyName() {
+        return companyName;
     }
 
     public static Builder builder() {
@@ -67,6 +85,24 @@ public class TravelhubOptions {
         return this;
     }
 
+    /**
+     * Customer company name to pass to the TravelHub API.
+     */
+    public TravelhubOptions withCompanyName(String companyName) {
+        Utils.checkNotNull(companyName, "companyName");
+        this.companyName = JsonNullable.of(companyName);
+        return this;
+    }
+
+    /**
+     * Customer company name to pass to the TravelHub API.
+     */
+    public TravelhubOptions withCompanyName(JsonNullable<String> companyName) {
+        Utils.checkNotNull(companyName, "companyName");
+        this.companyName = companyName;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -77,25 +113,29 @@ public class TravelhubOptions {
         }
         TravelhubOptions other = (TravelhubOptions) o;
         return 
-            Utils.enhancedDeepEquals(this.customData, other.customData);
+            Utils.enhancedDeepEquals(this.customData, other.customData) &&
+            Utils.enhancedDeepEquals(this.companyName, other.companyName);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            customData);
+            customData, companyName);
     }
     
     @Override
     public String toString() {
         return Utils.toString(TravelhubOptions.class,
-                "customData", customData);
+                "customData", customData,
+                "companyName", companyName);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
         private JsonNullable<? extends List<TravelHubCustomData>> customData = JsonNullable.undefined();
+
+        private JsonNullable<String> companyName = JsonNullable.undefined();
 
         private Builder() {
           // force use of static builder() method
@@ -120,10 +160,29 @@ public class TravelhubOptions {
             return this;
         }
 
+
+        /**
+         * Customer company name to pass to the TravelHub API.
+         */
+        public Builder companyName(String companyName) {
+            Utils.checkNotNull(companyName, "companyName");
+            this.companyName = JsonNullable.of(companyName);
+            return this;
+        }
+
+        /**
+         * Customer company name to pass to the TravelHub API.
+         */
+        public Builder companyName(JsonNullable<String> companyName) {
+            Utils.checkNotNull(companyName, "companyName");
+            this.companyName = companyName;
+            return this;
+        }
+
         public TravelhubOptions build() {
 
             return new TravelhubOptions(
-                customData);
+                customData, companyName);
         }
 
     }

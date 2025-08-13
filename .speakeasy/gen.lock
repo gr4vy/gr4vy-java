@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 5bbaa3a9-baa0-471b-ba6a-13fd88e8c119
 management:
-  docChecksum: d304399a4ffea13840d998c0150d1e70
+  docChecksum: 7b42f4fbd67441ac38a5c44347933fd5
   docVersion: 1.0.0
-  speakeasyVersion: 1.600.2
-  generationVersion: 2.677.3
-  releaseVersion: 2.8.16
-  configChecksum: 3151f9140e350f5f0ebe71cdbcbb1ea0
+  speakeasyVersion: 1.603.1
+  generationVersion: 2.681.1
+  releaseVersion: 2.8.17
+  configChecksum: 6188e39bc2de32182d103b119a45d570
   repoURL: https://github.com/gr4vy/gr4vy-java.git
   published: true
 features:
