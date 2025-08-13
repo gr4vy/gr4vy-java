@@ -79,12 +79,12 @@ public class ConnectionOptionsTravelhubCard {
   @javax.annotation.Nullable
   @ApiModelProperty(value = "The company name.")
 
-  public String geCompanyName() {
+  public String getCompanyName() {
     return companyName;
   }
 
 
-  public void seCompanyName(String companyName) {
+  public void setCompanyName(String companyName) {
     this.companyName = companyName;
   }
 
