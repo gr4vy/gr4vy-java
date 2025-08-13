@@ -37,8 +37,8 @@ public class ConnectionOptionsTravelhubCard {
   @SerializedName(SERIALIZED_NAME_CUSTOM_DATA)
   private List<ConnectionOptionsTravelhubCardCustomData> customData = null;
 
-  public static final String SERIALIZED_COMPANY_NAME = "companyName";
-  @SerializedName(SERIALIZED_COMPANY_NAME)
+  public static final String SERIALIZED_NAME_COMPANY_NAME = "companyName";
+  @SerializedName(SERIALIZED_NAME_COMPANY_NAME)
   private String companyName;
 
 
@@ -70,6 +70,12 @@ public class ConnectionOptionsTravelhubCard {
 
   public void setCustomData(List<ConnectionOptionsTravelhubCardCustomData> customData) {
     this.customData = customData;
+  }
+
+  public ConnectionOptionsTravelhubCard companyName(String companyName) {
+    
+    this.companyName = companyName;
+    return this;
   }
 
   /**
@@ -104,7 +110,7 @@ public class ConnectionOptionsTravelhubCard {
 
   @Override
   public int hashCode() {
-    return Objects.hash(customData);
+    return Objects.hash(customData, companyName);
   }
 
   @Override
