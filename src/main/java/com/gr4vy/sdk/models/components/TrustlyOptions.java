@@ -23,15 +23,25 @@ public class TrustlyOptions {
     @JsonProperty("refreshSplitToken")
     private JsonNullable<Boolean> refreshSplitToken;
 
+    /**
+     * URL scheme for an app.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("urlScheme")
+    private JsonNullable<String> urlScheme;
+
     @JsonCreator
     public TrustlyOptions(
-            @JsonProperty("refreshSplitToken") JsonNullable<Boolean> refreshSplitToken) {
+            @JsonProperty("refreshSplitToken") JsonNullable<Boolean> refreshSplitToken,
+            @JsonProperty("urlScheme") JsonNullable<String> urlScheme) {
         Utils.checkNotNull(refreshSplitToken, "refreshSplitToken");
+        Utils.checkNotNull(urlScheme, "urlScheme");
         this.refreshSplitToken = refreshSplitToken;
+        this.urlScheme = urlScheme;
     }
     
     public TrustlyOptions() {
-        this(JsonNullable.undefined());
+        this(JsonNullable.undefined(), JsonNullable.undefined());
     }
 
     /**
@@ -40,6 +50,14 @@ public class TrustlyOptions {
     @JsonIgnore
     public JsonNullable<Boolean> refreshSplitToken() {
         return refreshSplitToken;
+    }
+
+    /**
+     * URL scheme for an app.
+     */
+    @JsonIgnore
+    public JsonNullable<String> urlScheme() {
+        return urlScheme;
     }
 
     public static Builder builder() {
@@ -65,6 +83,24 @@ public class TrustlyOptions {
         return this;
     }
 
+    /**
+     * URL scheme for an app.
+     */
+    public TrustlyOptions withUrlScheme(String urlScheme) {
+        Utils.checkNotNull(urlScheme, "urlScheme");
+        this.urlScheme = JsonNullable.of(urlScheme);
+        return this;
+    }
+
+    /**
+     * URL scheme for an app.
+     */
+    public TrustlyOptions withUrlScheme(JsonNullable<String> urlScheme) {
+        Utils.checkNotNull(urlScheme, "urlScheme");
+        this.urlScheme = urlScheme;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -75,25 +111,29 @@ public class TrustlyOptions {
         }
         TrustlyOptions other = (TrustlyOptions) o;
         return 
-            Utils.enhancedDeepEquals(this.refreshSplitToken, other.refreshSplitToken);
+            Utils.enhancedDeepEquals(this.refreshSplitToken, other.refreshSplitToken) &&
+            Utils.enhancedDeepEquals(this.urlScheme, other.urlScheme);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            refreshSplitToken);
+            refreshSplitToken, urlScheme);
     }
     
     @Override
     public String toString() {
         return Utils.toString(TrustlyOptions.class,
-                "refreshSplitToken", refreshSplitToken);
+                "refreshSplitToken", refreshSplitToken,
+                "urlScheme", urlScheme);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
         private JsonNullable<Boolean> refreshSplitToken = JsonNullable.undefined();
+
+        private JsonNullable<String> urlScheme = JsonNullable.undefined();
 
         private Builder() {
           // force use of static builder() method
@@ -118,10 +158,29 @@ public class TrustlyOptions {
             return this;
         }
 
+
+        /**
+         * URL scheme for an app.
+         */
+        public Builder urlScheme(String urlScheme) {
+            Utils.checkNotNull(urlScheme, "urlScheme");
+            this.urlScheme = JsonNullable.of(urlScheme);
+            return this;
+        }
+
+        /**
+         * URL scheme for an app.
+         */
+        public Builder urlScheme(JsonNullable<String> urlScheme) {
+            Utils.checkNotNull(urlScheme, "urlScheme");
+            this.urlScheme = urlScheme;
+            return this;
+        }
+
         public TrustlyOptions build() {
 
             return new TrustlyOptions(
-                refreshSplitToken);
+                refreshSplitToken, urlScheme);
         }
 
     }
