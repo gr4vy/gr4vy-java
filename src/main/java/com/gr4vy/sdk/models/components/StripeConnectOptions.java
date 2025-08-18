@@ -44,25 +44,35 @@ public class StripeConnectOptions {
     @JsonProperty("transfer_data_destination")
     private JsonNullable<String> transferDataDestination;
 
+    /**
+     * A string that identifies the payment as part of a group.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("transfer_group")
+    private JsonNullable<String> transferGroup;
+
     @JsonCreator
     public StripeConnectOptions(
             @JsonProperty("stripe_account") JsonNullable<String> stripeAccount,
             @JsonProperty("application_fee_amount") JsonNullable<Long> applicationFeeAmount,
             @JsonProperty("on_behalf_of") JsonNullable<String> onBehalfOf,
-            @JsonProperty("transfer_data_destination") JsonNullable<String> transferDataDestination) {
+            @JsonProperty("transfer_data_destination") JsonNullable<String> transferDataDestination,
+            @JsonProperty("transfer_group") JsonNullable<String> transferGroup) {
         Utils.checkNotNull(stripeAccount, "stripeAccount");
         Utils.checkNotNull(applicationFeeAmount, "applicationFeeAmount");
         Utils.checkNotNull(onBehalfOf, "onBehalfOf");
         Utils.checkNotNull(transferDataDestination, "transferDataDestination");
+        Utils.checkNotNull(transferGroup, "transferGroup");
         this.stripeAccount = stripeAccount;
         this.applicationFeeAmount = applicationFeeAmount;
         this.onBehalfOf = onBehalfOf;
         this.transferDataDestination = transferDataDestination;
+        this.transferGroup = transferGroup;
     }
     
     public StripeConnectOptions() {
         this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined());
+            JsonNullable.undefined(), JsonNullable.undefined());
     }
 
     /**
@@ -95,6 +105,14 @@ public class StripeConnectOptions {
     @JsonIgnore
     public JsonNullable<String> transferDataDestination() {
         return transferDataDestination;
+    }
+
+    /**
+     * A string that identifies the payment as part of a group.
+     */
+    @JsonIgnore
+    public JsonNullable<String> transferGroup() {
+        return transferGroup;
     }
 
     public static Builder builder() {
@@ -174,6 +192,24 @@ public class StripeConnectOptions {
         return this;
     }
 
+    /**
+     * A string that identifies the payment as part of a group.
+     */
+    public StripeConnectOptions withTransferGroup(String transferGroup) {
+        Utils.checkNotNull(transferGroup, "transferGroup");
+        this.transferGroup = JsonNullable.of(transferGroup);
+        return this;
+    }
+
+    /**
+     * A string that identifies the payment as part of a group.
+     */
+    public StripeConnectOptions withTransferGroup(JsonNullable<String> transferGroup) {
+        Utils.checkNotNull(transferGroup, "transferGroup");
+        this.transferGroup = transferGroup;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -187,14 +223,15 @@ public class StripeConnectOptions {
             Utils.enhancedDeepEquals(this.stripeAccount, other.stripeAccount) &&
             Utils.enhancedDeepEquals(this.applicationFeeAmount, other.applicationFeeAmount) &&
             Utils.enhancedDeepEquals(this.onBehalfOf, other.onBehalfOf) &&
-            Utils.enhancedDeepEquals(this.transferDataDestination, other.transferDataDestination);
+            Utils.enhancedDeepEquals(this.transferDataDestination, other.transferDataDestination) &&
+            Utils.enhancedDeepEquals(this.transferGroup, other.transferGroup);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
             stripeAccount, applicationFeeAmount, onBehalfOf,
-            transferDataDestination);
+            transferDataDestination, transferGroup);
     }
     
     @Override
@@ -203,7 +240,8 @@ public class StripeConnectOptions {
                 "stripeAccount", stripeAccount,
                 "applicationFeeAmount", applicationFeeAmount,
                 "onBehalfOf", onBehalfOf,
-                "transferDataDestination", transferDataDestination);
+                "transferDataDestination", transferDataDestination,
+                "transferGroup", transferGroup);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -216,6 +254,8 @@ public class StripeConnectOptions {
         private JsonNullable<String> onBehalfOf = JsonNullable.undefined();
 
         private JsonNullable<String> transferDataDestination = JsonNullable.undefined();
+
+        private JsonNullable<String> transferGroup = JsonNullable.undefined();
 
         private Builder() {
           // force use of static builder() method
@@ -297,11 +337,30 @@ public class StripeConnectOptions {
             return this;
         }
 
+
+        /**
+         * A string that identifies the payment as part of a group.
+         */
+        public Builder transferGroup(String transferGroup) {
+            Utils.checkNotNull(transferGroup, "transferGroup");
+            this.transferGroup = JsonNullable.of(transferGroup);
+            return this;
+        }
+
+        /**
+         * A string that identifies the payment as part of a group.
+         */
+        public Builder transferGroup(JsonNullable<String> transferGroup) {
+            Utils.checkNotNull(transferGroup, "transferGroup");
+            this.transferGroup = transferGroup;
+            return this;
+        }
+
         public StripeConnectOptions build() {
 
             return new StripeConnectOptions(
                 stripeAccount, applicationFeeAmount, onBehalfOf,
-                transferDataDestination);
+                transferDataDestination, transferGroup);
         }
 
     }

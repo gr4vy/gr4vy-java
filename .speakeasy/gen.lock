@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 5bbaa3a9-baa0-471b-ba6a-13fd88e8c119
 management:
-  docChecksum: 2eac6b0f4541c04fb4bea694ad033582
+  docChecksum: d8ca83572abf797d1c1dfe51b24c63b1
   docVersion: 1.0.0
-  speakeasyVersion: 1.604.0
-  generationVersion: 2.683.1
-  releaseVersion: 2.8.18
-  configChecksum: fb844173097ec0187afa384b7ff6d5ae
+  speakeasyVersion: 1.605.1
+  generationVersion: 2.684.0
+  releaseVersion: 2.8.19
+  configChecksum: 37d3e63f002ad5e9679c601bce930299
   repoURL: https://github.com/gr4vy/gr4vy-java.git
   published: true
 features:
@@ -4703,3 +4703,4 @@ examples:
           application/json: {}
 examplesVersion: 1.0.2
 generatedTests: {}
+releaseNotes: "## SDK Changes Detected:\n* `gr4vy.transactions.create()`: \n  *  `request.transactioncreate.connectionOptions.stripe-card.stripeConnect.transferGroup` **Added**\n* `gr4vy.transactions.update()`: \n  *  `request.transactionupdate.connectionOptions.stripe-card.stripeConnect.transferGroup` **Added**\n* `gr4vy.paymentLinks.create()`: \n  *  `request.paymentlinkcreate.connectionOptions.stripe-card.stripeConnect.transferGroup` **Added**\n"
