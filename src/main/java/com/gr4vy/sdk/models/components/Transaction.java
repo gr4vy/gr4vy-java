@@ -350,6 +350,13 @@ public class Transaction {
     private JsonNullable<OffsetDateTime> voidedAt;
 
     /**
+     * The date this transaction was canceled at.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("canceled_at")
+    private JsonNullable<OffsetDateTime> canceledAt;
+
+    /**
      * The date this transaction's approval URL will expire at.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -450,6 +457,7 @@ public class Transaction {
             @JsonProperty("authorized_at") JsonNullable<OffsetDateTime> authorizedAt,
             @JsonProperty("captured_at") JsonNullable<OffsetDateTime> capturedAt,
             @JsonProperty("voided_at") JsonNullable<OffsetDateTime> voidedAt,
+            @JsonProperty("canceled_at") JsonNullable<OffsetDateTime> canceledAt,
             @JsonProperty("approval_expires_at") JsonNullable<OffsetDateTime> approvalExpiresAt,
             @JsonProperty("buyer_approval_timedout_at") JsonNullable<OffsetDateTime> buyerApprovalTimedoutAt,
             @JsonProperty("intent_outcome") TransactionIntentOutcome intentOutcome,
@@ -506,6 +514,7 @@ public class Transaction {
         Utils.checkNotNull(authorizedAt, "authorizedAt");
         Utils.checkNotNull(capturedAt, "capturedAt");
         Utils.checkNotNull(voidedAt, "voidedAt");
+        Utils.checkNotNull(canceledAt, "canceledAt");
         Utils.checkNotNull(approvalExpiresAt, "approvalExpiresAt");
         Utils.checkNotNull(buyerApprovalTimedoutAt, "buyerApprovalTimedoutAt");
         Utils.checkNotNull(intentOutcome, "intentOutcome");
@@ -563,6 +572,7 @@ public class Transaction {
         this.authorizedAt = authorizedAt;
         this.capturedAt = capturedAt;
         this.voidedAt = voidedAt;
+        this.canceledAt = canceledAt;
         this.approvalExpiresAt = approvalExpiresAt;
         this.buyerApprovalTimedoutAt = buyerApprovalTimedoutAt;
         this.intentOutcome = intentOutcome;
@@ -611,9 +621,9 @@ public class Transaction {
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), intentOutcome,
-            multiTender, accountFundingTransaction, JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined());
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            intentOutcome, multiTender, accountFundingTransaction,
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
     }
 
     /**
@@ -1016,6 +1026,14 @@ public class Transaction {
     @JsonIgnore
     public JsonNullable<OffsetDateTime> voidedAt() {
         return voidedAt;
+    }
+
+    /**
+     * The date this transaction was canceled at.
+     */
+    @JsonIgnore
+    public JsonNullable<OffsetDateTime> canceledAt() {
+        return canceledAt;
     }
 
     /**
@@ -1784,6 +1802,24 @@ public class Transaction {
     }
 
     /**
+     * The date this transaction was canceled at.
+     */
+    public Transaction withCanceledAt(OffsetDateTime canceledAt) {
+        Utils.checkNotNull(canceledAt, "canceledAt");
+        this.canceledAt = JsonNullable.of(canceledAt);
+        return this;
+    }
+
+    /**
+     * The date this transaction was canceled at.
+     */
+    public Transaction withCanceledAt(JsonNullable<OffsetDateTime> canceledAt) {
+        Utils.checkNotNull(canceledAt, "canceledAt");
+        this.canceledAt = canceledAt;
+        return this;
+    }
+
+    /**
      * The date this transaction's approval URL will expire at.
      */
     public Transaction withApprovalExpiresAt(OffsetDateTime approvalExpiresAt) {
@@ -1956,6 +1992,7 @@ public class Transaction {
             Utils.enhancedDeepEquals(this.authorizedAt, other.authorizedAt) &&
             Utils.enhancedDeepEquals(this.capturedAt, other.capturedAt) &&
             Utils.enhancedDeepEquals(this.voidedAt, other.voidedAt) &&
+            Utils.enhancedDeepEquals(this.canceledAt, other.canceledAt) &&
             Utils.enhancedDeepEquals(this.approvalExpiresAt, other.approvalExpiresAt) &&
             Utils.enhancedDeepEquals(this.buyerApprovalTimedoutAt, other.buyerApprovalTimedoutAt) &&
             Utils.enhancedDeepEquals(this.intentOutcome, other.intentOutcome) &&
@@ -1985,9 +2022,10 @@ public class Transaction {
             cartItems, statementDescriptor, schemeTransactionId,
             threeDSecure, paymentServiceTransactionId, additionalIdentifiers,
             metadata, authorizedAt, capturedAt,
-            voidedAt, approvalExpiresAt, buyerApprovalTimedoutAt,
-            intentOutcome, multiTender, accountFundingTransaction,
-            recipient, merchantAdviceCode, installmentCount);
+            voidedAt, canceledAt, approvalExpiresAt,
+            buyerApprovalTimedoutAt, intentOutcome, multiTender,
+            accountFundingTransaction, recipient, merchantAdviceCode,
+            installmentCount);
     }
     
     @Override
@@ -2042,6 +2080,7 @@ public class Transaction {
                 "authorizedAt", authorizedAt,
                 "capturedAt", capturedAt,
                 "voidedAt", voidedAt,
+                "canceledAt", canceledAt,
                 "approvalExpiresAt", approvalExpiresAt,
                 "buyerApprovalTimedoutAt", buyerApprovalTimedoutAt,
                 "intentOutcome", intentOutcome,
@@ -2150,6 +2189,8 @@ public class Transaction {
         private JsonNullable<OffsetDateTime> capturedAt = JsonNullable.undefined();
 
         private JsonNullable<OffsetDateTime> voidedAt = JsonNullable.undefined();
+
+        private JsonNullable<OffsetDateTime> canceledAt = JsonNullable.undefined();
 
         private JsonNullable<OffsetDateTime> approvalExpiresAt = JsonNullable.undefined();
 
@@ -2917,6 +2958,25 @@ public class Transaction {
 
 
         /**
+         * The date this transaction was canceled at.
+         */
+        public Builder canceledAt(OffsetDateTime canceledAt) {
+            Utils.checkNotNull(canceledAt, "canceledAt");
+            this.canceledAt = JsonNullable.of(canceledAt);
+            return this;
+        }
+
+        /**
+         * The date this transaction was canceled at.
+         */
+        public Builder canceledAt(JsonNullable<OffsetDateTime> canceledAt) {
+            Utils.checkNotNull(canceledAt, "canceledAt");
+            this.canceledAt = canceledAt;
+            return this;
+        }
+
+
+        /**
          * The date this transaction's approval URL will expire at.
          */
         public Builder approvalExpiresAt(OffsetDateTime approvalExpiresAt) {
@@ -3059,9 +3119,9 @@ public class Transaction {
                 statementDescriptor, schemeTransactionId, threeDSecure,
                 paymentServiceTransactionId, additionalIdentifiers, metadata,
                 authorizedAt, capturedAt, voidedAt,
-                approvalExpiresAt, buyerApprovalTimedoutAt, intentOutcome,
-                multiTender, accountFundingTransaction, recipient,
-                merchantAdviceCode, installmentCount);
+                canceledAt, approvalExpiresAt, buyerApprovalTimedoutAt,
+                intentOutcome, multiTender, accountFundingTransaction,
+                recipient, merchantAdviceCode, installmentCount);
         }
 
 
