@@ -69,6 +69,7 @@
 | `ONEY6X`             | oney_6x              |
 | `OVO`                | ovo                  |
 | `OXXO`               | oxxo                 |
+| `P24`                | p24                  |
 | `PAGOEFECTIVO`       | pagoefectivo         |
 | `PAYID`              | payid                |
 | `PAYMAYA`            | paymaya              |

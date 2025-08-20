@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 5bbaa3a9-baa0-471b-ba6a-13fd88e8c119
 management:
-  docChecksum: 15c6de9d749dc14487082fc105a50338
+  docChecksum: d5dbf06f61f2caad9d36330fd62f538a
   docVersion: 1.0.0
   speakeasyVersion: 1.606.0
   generationVersion: 2.686.7
-  releaseVersion: 2.8.21
-  configChecksum: 6ad871b89bfa6cadf18c7d32f1e69e33
+  releaseVersion: 2.8.22
+  configChecksum: eb51cce51cff067a44a0c797b5cb0b4f
   repoURL: https://github.com/gr4vy/gr4vy-java.git
   published: true
 features:
@@ -46,6 +46,7 @@ generatedFiles:
   - docs/models/components/AdyenCardOptions.md
   - docs/models/components/AdyenOptions.md
   - docs/models/components/AdyenSepaOptions.md
+  - docs/models/components/AdyenSplitsOptions.md
   - docs/models/components/AffirmItineraryOptions.md
   - docs/models/components/AffirmOptions.md
   - docs/models/components/AgeGroup.md
@@ -595,6 +596,7 @@ generatedFiles:
   - src/main/java/com/gr4vy/sdk/models/components/AdyenCardOptions.java
   - src/main/java/com/gr4vy/sdk/models/components/AdyenOptions.java
   - src/main/java/com/gr4vy/sdk/models/components/AdyenSepaOptions.java
+  - src/main/java/com/gr4vy/sdk/models/components/AdyenSplitsOptions.java
   - src/main/java/com/gr4vy/sdk/models/components/AffirmItineraryOptions.java
   - src/main/java/com/gr4vy/sdk/models/components/AffirmOptions.java
   - src/main/java/com/gr4vy/sdk/models/components/AgeGroup.java
@@ -4703,11 +4705,4 @@ examples:
           application/json: {}
 examplesVersion: 1.0.2
 generatedTests: {}
-releaseNotes: |
-  ## SDK Changes Detected:
-  * `gr4vy.transactions.create()`:  `response.canceled_at` **Added**
-  * `gr4vy.transactions.get()`:  `response.canceled_at` **Added**
-  * `gr4vy.transactions.update()`:  `response.canceled_at` **Added**
-  * `gr4vy.transactions.capture()`:  `response.[transaction].canceledAt` **Added**
-  * `gr4vy.transactions.void()`:  `response.[transaction].canceledAt` **Added**
-  * `gr4vy.transactions.sync()`:  `response.canceled_at` **Added**
+releaseNotes: "## SDK Changes Detected:\n* `gr4vy.transactions.list()`: \n  *  `request.method` **Changed**\n* `gr4vy.transactions.create()`: \n  *  `request.transactioncreate.connectionOptions.adyen-card.splits` **Added**\n* `gr4vy.transactions.update()`: \n  *  `request.transactionupdate.connectionOptions.adyen-card.splits` **Added**\n* `gr4vy.paymentServices.list()`: \n  *  `request.method` **Changed**\n* `gr4vy.paymentLinks.create()`: \n  *  `request.paymentlinkcreate.connectionOptions.adyen-card.splits` **Added**\n"
