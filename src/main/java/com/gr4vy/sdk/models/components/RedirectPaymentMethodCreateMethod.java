@@ -106,6 +106,7 @@ public class RedirectPaymentMethodCreateMethod {
     public static final RedirectPaymentMethodCreateMethod ONEY6X = new RedirectPaymentMethodCreateMethod("oney_6x");
     public static final RedirectPaymentMethodCreateMethod OVO = new RedirectPaymentMethodCreateMethod("ovo");
     public static final RedirectPaymentMethodCreateMethod OXXO = new RedirectPaymentMethodCreateMethod("oxxo");
+    public static final RedirectPaymentMethodCreateMethod P24 = new RedirectPaymentMethodCreateMethod("p24");
     public static final RedirectPaymentMethodCreateMethod PAGOEFECTIVO = new RedirectPaymentMethodCreateMethod("pagoefectivo");
     public static final RedirectPaymentMethodCreateMethod PAYID = new RedirectPaymentMethodCreateMethod("payid");
     public static final RedirectPaymentMethodCreateMethod PAYMAYA = new RedirectPaymentMethodCreateMethod("paymaya");
@@ -273,6 +274,7 @@ public class RedirectPaymentMethodCreateMethod {
         map.put("oney_6x", ONEY6X);
         map.put("ovo", OVO);
         map.put("oxxo", OXXO);
+        map.put("p24", P24);
         map.put("pagoefectivo", PAGOEFECTIVO);
         map.put("payid", PAYID);
         map.put("paymaya", PAYMAYA);
@@ -374,6 +376,7 @@ public class RedirectPaymentMethodCreateMethod {
         map.put("oney_6x", RedirectPaymentMethodCreateMethodEnum.ONEY6X);
         map.put("ovo", RedirectPaymentMethodCreateMethodEnum.OVO);
         map.put("oxxo", RedirectPaymentMethodCreateMethodEnum.OXXO);
+        map.put("p24", RedirectPaymentMethodCreateMethodEnum.P24);
         map.put("pagoefectivo", RedirectPaymentMethodCreateMethodEnum.PAGOEFECTIVO);
         map.put("payid", RedirectPaymentMethodCreateMethodEnum.PAYID);
         map.put("paymaya", RedirectPaymentMethodCreateMethodEnum.PAYMAYA);
@@ -505,6 +508,7 @@ public class RedirectPaymentMethodCreateMethod {
         ONEY6X("oney_6x"),
         OVO("ovo"),
         OXXO("oxxo"),
+        P24("p24"),
         PAGOEFECTIVO("pagoefectivo"),
         PAYID("payid"),
         PAYMAYA("paymaya"),

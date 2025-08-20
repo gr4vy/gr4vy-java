@@ -54,28 +54,38 @@ public class AdyenCardOptions {
     @JsonProperty("window_origin")
     private JsonNullable<String> windowOrigin;
 
+    /**
+     * Passes information of splitting payment amounts to the Adyen API.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("splits")
+    private JsonNullable<? extends AdyenSplitsOptions> splits;
+
     @JsonCreator
     public AdyenCardOptions(
             @JsonProperty("autoRescue") JsonNullable<Boolean> autoRescue,
             @JsonProperty("maxDaysToRescue") JsonNullable<Long> maxDaysToRescue,
             @JsonProperty("additionalData") JsonNullable<? extends Map<String, String>> additionalData,
             @JsonProperty("autoRescueScenario") JsonNullable<? extends AdyenCardAutoRescueScenariosEnum> autoRescueScenario,
-            @JsonProperty("window_origin") JsonNullable<String> windowOrigin) {
+            @JsonProperty("window_origin") JsonNullable<String> windowOrigin,
+            @JsonProperty("splits") JsonNullable<? extends AdyenSplitsOptions> splits) {
         Utils.checkNotNull(autoRescue, "autoRescue");
         Utils.checkNotNull(maxDaysToRescue, "maxDaysToRescue");
         Utils.checkNotNull(additionalData, "additionalData");
         Utils.checkNotNull(autoRescueScenario, "autoRescueScenario");
         Utils.checkNotNull(windowOrigin, "windowOrigin");
+        Utils.checkNotNull(splits, "splits");
         this.autoRescue = autoRescue;
         this.maxDaysToRescue = maxDaysToRescue;
         this.additionalData = additionalData;
         this.autoRescueScenario = autoRescueScenario;
         this.windowOrigin = windowOrigin;
+        this.splits = splits;
     }
     
     public AdyenCardOptions() {
         this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined());
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
     }
 
     /**
@@ -118,6 +128,15 @@ public class AdyenCardOptions {
     @JsonIgnore
     public JsonNullable<String> windowOrigin() {
         return windowOrigin;
+    }
+
+    /**
+     * Passes information of splitting payment amounts to the Adyen API.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public JsonNullable<AdyenSplitsOptions> splits() {
+        return (JsonNullable<AdyenSplitsOptions>) splits;
     }
 
     public static Builder builder() {
@@ -215,6 +234,24 @@ public class AdyenCardOptions {
         return this;
     }
 
+    /**
+     * Passes information of splitting payment amounts to the Adyen API.
+     */
+    public AdyenCardOptions withSplits(AdyenSplitsOptions splits) {
+        Utils.checkNotNull(splits, "splits");
+        this.splits = JsonNullable.of(splits);
+        return this;
+    }
+
+    /**
+     * Passes information of splitting payment amounts to the Adyen API.
+     */
+    public AdyenCardOptions withSplits(JsonNullable<? extends AdyenSplitsOptions> splits) {
+        Utils.checkNotNull(splits, "splits");
+        this.splits = splits;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -229,14 +266,15 @@ public class AdyenCardOptions {
             Utils.enhancedDeepEquals(this.maxDaysToRescue, other.maxDaysToRescue) &&
             Utils.enhancedDeepEquals(this.additionalData, other.additionalData) &&
             Utils.enhancedDeepEquals(this.autoRescueScenario, other.autoRescueScenario) &&
-            Utils.enhancedDeepEquals(this.windowOrigin, other.windowOrigin);
+            Utils.enhancedDeepEquals(this.windowOrigin, other.windowOrigin) &&
+            Utils.enhancedDeepEquals(this.splits, other.splits);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
             autoRescue, maxDaysToRescue, additionalData,
-            autoRescueScenario, windowOrigin);
+            autoRescueScenario, windowOrigin, splits);
     }
     
     @Override
@@ -246,7 +284,8 @@ public class AdyenCardOptions {
                 "maxDaysToRescue", maxDaysToRescue,
                 "additionalData", additionalData,
                 "autoRescueScenario", autoRescueScenario,
-                "windowOrigin", windowOrigin);
+                "windowOrigin", windowOrigin,
+                "splits", splits);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -261,6 +300,8 @@ public class AdyenCardOptions {
         private JsonNullable<? extends AdyenCardAutoRescueScenariosEnum> autoRescueScenario = JsonNullable.undefined();
 
         private JsonNullable<String> windowOrigin = JsonNullable.undefined();
+
+        private JsonNullable<? extends AdyenSplitsOptions> splits = JsonNullable.undefined();
 
         private Builder() {
           // force use of static builder() method
@@ -361,11 +402,30 @@ public class AdyenCardOptions {
             return this;
         }
 
+
+        /**
+         * Passes information of splitting payment amounts to the Adyen API.
+         */
+        public Builder splits(AdyenSplitsOptions splits) {
+            Utils.checkNotNull(splits, "splits");
+            this.splits = JsonNullable.of(splits);
+            return this;
+        }
+
+        /**
+         * Passes information of splitting payment amounts to the Adyen API.
+         */
+        public Builder splits(JsonNullable<? extends AdyenSplitsOptions> splits) {
+            Utils.checkNotNull(splits, "splits");
+            this.splits = splits;
+            return this;
+        }
+
         public AdyenCardOptions build() {
 
             return new AdyenCardOptions(
                 autoRescue, maxDaysToRescue, additionalData,
-                autoRescueScenario, windowOrigin);
+                autoRescueScenario, windowOrigin, splits);
         }
 
     }

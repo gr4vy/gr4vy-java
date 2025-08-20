@@ -63,6 +63,7 @@ The method to use, this can be any of the methods that support redirect requests
 | `ONEY6X`          | oney_6x           |
 | `OVO`             | ovo               |
 | `OXXO`            | oxxo              |
+| `P24`             | p24               |
 | `PAGOEFECTIVO`    | pagoefectivo      |
 | `PAYID`           | payid             |
 | `PAYMAYA`         | paymaya           |

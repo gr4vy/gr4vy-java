@@ -109,6 +109,7 @@ public class Method {
     public static final Method ONEY6X = new Method("oney_6x");
     public static final Method OVO = new Method("ovo");
     public static final Method OXXO = new Method("oxxo");
+    public static final Method P24 = new Method("p24");
     public static final Method PAGOEFECTIVO = new Method("pagoefectivo");
     public static final Method PAYID = new Method("payid");
     public static final Method PAYMAYA = new Method("paymaya");
@@ -284,6 +285,7 @@ public class Method {
         map.put("oney_6x", ONEY6X);
         map.put("ovo", OVO);
         map.put("oxxo", OXXO);
+        map.put("p24", P24);
         map.put("pagoefectivo", PAGOEFECTIVO);
         map.put("payid", PAYID);
         map.put("paymaya", PAYMAYA);
@@ -393,6 +395,7 @@ public class Method {
         map.put("oney_6x", MethodEnum.ONEY6X);
         map.put("ovo", MethodEnum.OVO);
         map.put("oxxo", MethodEnum.OXXO);
+        map.put("p24", MethodEnum.P24);
         map.put("pagoefectivo", MethodEnum.PAGOEFECTIVO);
         map.put("payid", MethodEnum.PAYID);
         map.put("paymaya", MethodEnum.PAYMAYA);
@@ -532,6 +535,7 @@ public class Method {
         ONEY6X("oney_6x"),
         OVO("ovo"),
         OXXO("oxxo"),
+        P24("p24"),
         PAGOEFECTIVO("pagoefectivo"),
         PAYID("payid"),
         PAYMAYA("paymaya"),
