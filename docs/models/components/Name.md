@@ -43,6 +43,8 @@ The specific event name.
 | `PAYMENT_CONNECTOR_RESPONSE_TRANSACTION_VOID_FAILED`             | payment-connector-response-transaction-void-failed               |
 | `PAYMENT_CONNECTOR_EXTERNAL_TRANSACTION_REQUEST`                 | payment-connector-external-transaction-request                   |
 | `PAYMENT_CONNECTOR_REPORT_TRANSACTION_SETTLED`                   | payment-connector-report-transaction-settled                     |
+| `PAYMENT_CONNECTOR_REPORT_CHARGEBACK_POSTED`                     | payment-connector-report-chargeback-posted                       |
+| `PAYMENT_CONNECTOR_REPORT_CHARGEBACK_REVERSAL_POSTED`            | payment-connector-report-chargeback-reversal-posted              |
 | `DIGITAL_WALLET_APPLE_PAY_TOKEN_DECRYPTED`                       | digital-wallet-apple-pay-token-decrypted                         |
 | `DIGITAL_WALLET_GOOGLE_PAY_TOKEN_DECRYPTED`                      | digital-wallet-google-pay-token-decrypted                        |
 | `DIGITAL_WALLET_CLICK_TO_PAY_TOKEN_DECRYPTED`                    | digital-wallet-click-to-pay-token-decrypted                      |
