@@ -38,6 +38,8 @@ The specific event name.
 | `PAYMENT_CONNECTOR_RESPONSE_TRANSACTION_DECLINED`                | payment-connector-response-transaction-declined                  |
 | `PAYMENT_CONNECTOR_RESPONSE_TRANSACTION_CAPTURE_FAILED`          | payment-connector-response-transaction-capture-failed            |
 | `PAYMENT_CONNECTOR_RESPONSE_TRANSACTION_CAPTURE_DECLINED`        | payment-connector-response-transaction-capture-declined          |
+| `PAYMENT_CONNECTOR_RESPONSE_TRANSACTION_CANCEL_SUCCEEDED`        | payment-connector-response-transaction-cancel-succeeded          |
+| `PAYMENT_CONNECTOR_RESPONSE_TRANSACTION_CANCEL_FAILED`           | payment-connector-response-transaction-cancel-failed             |
 | `PAYMENT_CONNECTOR_RESPONSE_TRANSACTION_VOID_SUCCEEDED`          | payment-connector-response-transaction-void-succeeded            |
 | `PAYMENT_CONNECTOR_RESPONSE_TRANSACTION_VOID_DECLINED`           | payment-connector-response-transaction-void-declined             |
 | `PAYMENT_CONNECTOR_RESPONSE_TRANSACTION_VOID_FAILED`             | payment-connector-response-transaction-void-failed               |

@@ -105,7 +105,7 @@ publishing {
             // https://github.com/gradle/gradle/issues/18619
             groupId = "com.gr4vy"
             artifactId = "sdk"
-            version = "2.8.20"
+            version = "2.8.21"
 
             from components.java
 
