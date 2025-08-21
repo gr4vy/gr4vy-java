@@ -11,6 +11,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
+import java.lang.SuppressWarnings;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 
@@ -29,18 +30,28 @@ public class BraintreeDynamicDataFieldsOptions {
     @JsonProperty("purchase_order_number")
     private JsonNullable<String> purchaseOrderNumber;
 
+    /**
+     * Passes the `vaultPaymentMethodCriteria` field when creating a new transaction.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("vault_payment_method_criteria")
+    private JsonNullable<? extends VaultPaymentMethodCriteria> vaultPaymentMethodCriteria;
+
     @JsonCreator
     public BraintreeDynamicDataFieldsOptions(
             @JsonProperty("three_ds_auth_status") JsonNullable<String> threeDsAuthStatus,
-            @JsonProperty("purchase_order_number") JsonNullable<String> purchaseOrderNumber) {
+            @JsonProperty("purchase_order_number") JsonNullable<String> purchaseOrderNumber,
+            @JsonProperty("vault_payment_method_criteria") JsonNullable<? extends VaultPaymentMethodCriteria> vaultPaymentMethodCriteria) {
         Utils.checkNotNull(threeDsAuthStatus, "threeDsAuthStatus");
         Utils.checkNotNull(purchaseOrderNumber, "purchaseOrderNumber");
+        Utils.checkNotNull(vaultPaymentMethodCriteria, "vaultPaymentMethodCriteria");
         this.threeDsAuthStatus = threeDsAuthStatus;
         this.purchaseOrderNumber = purchaseOrderNumber;
+        this.vaultPaymentMethodCriteria = vaultPaymentMethodCriteria;
     }
     
     public BraintreeDynamicDataFieldsOptions() {
-        this(JsonNullable.undefined(), JsonNullable.undefined());
+        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
     }
 
     /**
@@ -57,6 +68,15 @@ public class BraintreeDynamicDataFieldsOptions {
     @JsonIgnore
     public JsonNullable<String> purchaseOrderNumber() {
         return purchaseOrderNumber;
+    }
+
+    /**
+     * Passes the `vaultPaymentMethodCriteria` field when creating a new transaction.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public JsonNullable<VaultPaymentMethodCriteria> vaultPaymentMethodCriteria() {
+        return (JsonNullable<VaultPaymentMethodCriteria>) vaultPaymentMethodCriteria;
     }
 
     public static Builder builder() {
@@ -100,6 +120,24 @@ public class BraintreeDynamicDataFieldsOptions {
         return this;
     }
 
+    /**
+     * Passes the `vaultPaymentMethodCriteria` field when creating a new transaction.
+     */
+    public BraintreeDynamicDataFieldsOptions withVaultPaymentMethodCriteria(VaultPaymentMethodCriteria vaultPaymentMethodCriteria) {
+        Utils.checkNotNull(vaultPaymentMethodCriteria, "vaultPaymentMethodCriteria");
+        this.vaultPaymentMethodCriteria = JsonNullable.of(vaultPaymentMethodCriteria);
+        return this;
+    }
+
+    /**
+     * Passes the `vaultPaymentMethodCriteria` field when creating a new transaction.
+     */
+    public BraintreeDynamicDataFieldsOptions withVaultPaymentMethodCriteria(JsonNullable<? extends VaultPaymentMethodCriteria> vaultPaymentMethodCriteria) {
+        Utils.checkNotNull(vaultPaymentMethodCriteria, "vaultPaymentMethodCriteria");
+        this.vaultPaymentMethodCriteria = vaultPaymentMethodCriteria;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -111,20 +149,22 @@ public class BraintreeDynamicDataFieldsOptions {
         BraintreeDynamicDataFieldsOptions other = (BraintreeDynamicDataFieldsOptions) o;
         return 
             Utils.enhancedDeepEquals(this.threeDsAuthStatus, other.threeDsAuthStatus) &&
-            Utils.enhancedDeepEquals(this.purchaseOrderNumber, other.purchaseOrderNumber);
+            Utils.enhancedDeepEquals(this.purchaseOrderNumber, other.purchaseOrderNumber) &&
+            Utils.enhancedDeepEquals(this.vaultPaymentMethodCriteria, other.vaultPaymentMethodCriteria);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            threeDsAuthStatus, purchaseOrderNumber);
+            threeDsAuthStatus, purchaseOrderNumber, vaultPaymentMethodCriteria);
     }
     
     @Override
     public String toString() {
         return Utils.toString(BraintreeDynamicDataFieldsOptions.class,
                 "threeDsAuthStatus", threeDsAuthStatus,
-                "purchaseOrderNumber", purchaseOrderNumber);
+                "purchaseOrderNumber", purchaseOrderNumber,
+                "vaultPaymentMethodCriteria", vaultPaymentMethodCriteria);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -133,6 +173,8 @@ public class BraintreeDynamicDataFieldsOptions {
         private JsonNullable<String> threeDsAuthStatus = JsonNullable.undefined();
 
         private JsonNullable<String> purchaseOrderNumber = JsonNullable.undefined();
+
+        private JsonNullable<? extends VaultPaymentMethodCriteria> vaultPaymentMethodCriteria = JsonNullable.undefined();
 
         private Builder() {
           // force use of static builder() method
@@ -176,10 +218,29 @@ public class BraintreeDynamicDataFieldsOptions {
             return this;
         }
 
+
+        /**
+         * Passes the `vaultPaymentMethodCriteria` field when creating a new transaction.
+         */
+        public Builder vaultPaymentMethodCriteria(VaultPaymentMethodCriteria vaultPaymentMethodCriteria) {
+            Utils.checkNotNull(vaultPaymentMethodCriteria, "vaultPaymentMethodCriteria");
+            this.vaultPaymentMethodCriteria = JsonNullable.of(vaultPaymentMethodCriteria);
+            return this;
+        }
+
+        /**
+         * Passes the `vaultPaymentMethodCriteria` field when creating a new transaction.
+         */
+        public Builder vaultPaymentMethodCriteria(JsonNullable<? extends VaultPaymentMethodCriteria> vaultPaymentMethodCriteria) {
+            Utils.checkNotNull(vaultPaymentMethodCriteria, "vaultPaymentMethodCriteria");
+            this.vaultPaymentMethodCriteria = vaultPaymentMethodCriteria;
+            return this;
+        }
+
         public BraintreeDynamicDataFieldsOptions build() {
 
             return new BraintreeDynamicDataFieldsOptions(
-                threeDsAuthStatus, purchaseOrderNumber);
+                threeDsAuthStatus, purchaseOrderNumber, vaultPaymentMethodCriteria);
         }
 
     }
