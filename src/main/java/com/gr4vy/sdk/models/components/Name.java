@@ -82,6 +82,7 @@ public class Name {
     public static final Name PAYMENT_CONNECTOR_RESPONSE_TRANSACTION_CAPTURE_FAILED = new Name("payment-connector-response-transaction-capture-failed");
     public static final Name PAYMENT_CONNECTOR_RESPONSE_TRANSACTION_CAPTURE_DECLINED = new Name("payment-connector-response-transaction-capture-declined");
     public static final Name PAYMENT_CONNECTOR_RESPONSE_TRANSACTION_CANCEL_SUCCEEDED = new Name("payment-connector-response-transaction-cancel-succeeded");
+    public static final Name PAYMENT_CONNECTOR_RESPONSE_TRANSACTION_CANCEL_PENDING = new Name("payment-connector-response-transaction-cancel-pending");
     public static final Name PAYMENT_CONNECTOR_RESPONSE_TRANSACTION_CANCEL_FAILED = new Name("payment-connector-response-transaction-cancel-failed");
     public static final Name PAYMENT_CONNECTOR_RESPONSE_TRANSACTION_VOID_SUCCEEDED = new Name("payment-connector-response-transaction-void-succeeded");
     public static final Name PAYMENT_CONNECTOR_RESPONSE_TRANSACTION_VOID_DECLINED = new Name("payment-connector-response-transaction-void-declined");
@@ -202,6 +203,7 @@ public class Name {
         map.put("payment-connector-response-transaction-capture-failed", PAYMENT_CONNECTOR_RESPONSE_TRANSACTION_CAPTURE_FAILED);
         map.put("payment-connector-response-transaction-capture-declined", PAYMENT_CONNECTOR_RESPONSE_TRANSACTION_CAPTURE_DECLINED);
         map.put("payment-connector-response-transaction-cancel-succeeded", PAYMENT_CONNECTOR_RESPONSE_TRANSACTION_CANCEL_SUCCEEDED);
+        map.put("payment-connector-response-transaction-cancel-pending", PAYMENT_CONNECTOR_RESPONSE_TRANSACTION_CANCEL_PENDING);
         map.put("payment-connector-response-transaction-cancel-failed", PAYMENT_CONNECTOR_RESPONSE_TRANSACTION_CANCEL_FAILED);
         map.put("payment-connector-response-transaction-void-succeeded", PAYMENT_CONNECTOR_RESPONSE_TRANSACTION_VOID_SUCCEEDED);
         map.put("payment-connector-response-transaction-void-declined", PAYMENT_CONNECTOR_RESPONSE_TRANSACTION_VOID_DECLINED);
@@ -256,6 +258,7 @@ public class Name {
         map.put("payment-connector-response-transaction-capture-failed", NameEnum.PAYMENT_CONNECTOR_RESPONSE_TRANSACTION_CAPTURE_FAILED);
         map.put("payment-connector-response-transaction-capture-declined", NameEnum.PAYMENT_CONNECTOR_RESPONSE_TRANSACTION_CAPTURE_DECLINED);
         map.put("payment-connector-response-transaction-cancel-succeeded", NameEnum.PAYMENT_CONNECTOR_RESPONSE_TRANSACTION_CANCEL_SUCCEEDED);
+        map.put("payment-connector-response-transaction-cancel-pending", NameEnum.PAYMENT_CONNECTOR_RESPONSE_TRANSACTION_CANCEL_PENDING);
         map.put("payment-connector-response-transaction-cancel-failed", NameEnum.PAYMENT_CONNECTOR_RESPONSE_TRANSACTION_CANCEL_FAILED);
         map.put("payment-connector-response-transaction-void-succeeded", NameEnum.PAYMENT_CONNECTOR_RESPONSE_TRANSACTION_VOID_SUCCEEDED);
         map.put("payment-connector-response-transaction-void-declined", NameEnum.PAYMENT_CONNECTOR_RESPONSE_TRANSACTION_VOID_DECLINED);
@@ -340,6 +343,7 @@ public class Name {
         PAYMENT_CONNECTOR_RESPONSE_TRANSACTION_CAPTURE_FAILED("payment-connector-response-transaction-capture-failed"),
         PAYMENT_CONNECTOR_RESPONSE_TRANSACTION_CAPTURE_DECLINED("payment-connector-response-transaction-capture-declined"),
         PAYMENT_CONNECTOR_RESPONSE_TRANSACTION_CANCEL_SUCCEEDED("payment-connector-response-transaction-cancel-succeeded"),
+        PAYMENT_CONNECTOR_RESPONSE_TRANSACTION_CANCEL_PENDING("payment-connector-response-transaction-cancel-pending"),
         PAYMENT_CONNECTOR_RESPONSE_TRANSACTION_CANCEL_FAILED("payment-connector-response-transaction-cancel-failed"),
         PAYMENT_CONNECTOR_RESPONSE_TRANSACTION_VOID_SUCCEEDED("payment-connector-response-transaction-void-succeeded"),
         PAYMENT_CONNECTOR_RESPONSE_TRANSACTION_VOID_DECLINED("payment-connector-response-transaction-void-declined"),
