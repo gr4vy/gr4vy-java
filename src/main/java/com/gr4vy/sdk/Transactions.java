@@ -8,6 +8,9 @@ import static com.gr4vy.sdk.operations.Operations.RequestOperation;
 import com.gr4vy.sdk.models.components.TransactionCaptureCreate;
 import com.gr4vy.sdk.models.components.TransactionCreate;
 import com.gr4vy.sdk.models.components.TransactionUpdate;
+import com.gr4vy.sdk.models.operations.CancelTransactionRequest;
+import com.gr4vy.sdk.models.operations.CancelTransactionRequestBuilder;
+import com.gr4vy.sdk.models.operations.CancelTransactionResponse;
 import com.gr4vy.sdk.models.operations.CaptureTransactionRequest;
 import com.gr4vy.sdk.models.operations.CaptureTransactionRequestBuilder;
 import com.gr4vy.sdk.models.operations.CaptureTransactionResponse;
@@ -29,6 +32,7 @@ import com.gr4vy.sdk.models.operations.UpdateTransactionResponse;
 import com.gr4vy.sdk.models.operations.VoidTransactionRequest;
 import com.gr4vy.sdk.models.operations.VoidTransactionRequestBuilder;
 import com.gr4vy.sdk.models.operations.VoidTransactionResponse;
+import com.gr4vy.sdk.operations.CancelTransaction;
 import com.gr4vy.sdk.operations.CaptureTransaction;
 import com.gr4vy.sdk.operations.CreateTransaction;
 import com.gr4vy.sdk.operations.GetTransaction;
@@ -365,6 +369,52 @@ public class Transactions {
                 .build();
         RequestOperation<VoidTransactionRequest, VoidTransactionResponse> operation
               = new VoidTransaction.Sync(sdkConfiguration);
+        return operation.handleResponse(operation.doRequest(request));
+    }
+
+    /**
+     * Cancel transaction
+     * 
+     * <p>Cancels a pending transaction. If the transaction was successfully authorized, or was already captured, the cancel will not be processed.
+     * 
+     * @return The call builder
+     */
+    public CancelTransactionRequestBuilder cancel() {
+        return new CancelTransactionRequestBuilder(sdkConfiguration);
+    }
+
+    /**
+     * Cancel transaction
+     * 
+     * <p>Cancels a pending transaction. If the transaction was successfully authorized, or was already captured, the cancel will not be processed.
+     * 
+     * @param transactionId The ID of the transaction
+     * @return The response from the API call
+     * @throws Exception if the API call fails
+     */
+    public CancelTransactionResponse cancel(String transactionId) throws Exception {
+        return cancel(transactionId, JsonNullable.undefined());
+    }
+
+    /**
+     * Cancel transaction
+     * 
+     * <p>Cancels a pending transaction. If the transaction was successfully authorized, or was already captured, the cancel will not be processed.
+     * 
+     * @param transactionId The ID of the transaction
+     * @param merchantAccountId 
+     * @return The response from the API call
+     * @throws Exception if the API call fails
+     */
+    public CancelTransactionResponse cancel(String transactionId, JsonNullable<String> merchantAccountId) throws Exception {
+        CancelTransactionRequest request =
+            CancelTransactionRequest
+                .builder()
+                .transactionId(transactionId)
+                .merchantAccountId(merchantAccountId)
+                .build();
+        RequestOperation<CancelTransactionRequest, CancelTransactionResponse> operation
+              = new CancelTransaction.Sync(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
 

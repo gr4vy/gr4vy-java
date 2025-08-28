@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 5bbaa3a9-baa0-471b-ba6a-13fd88e8c119
 management:
-  docChecksum: 2a6e5924d1294c9ad80c1b8865fab78a
+  docChecksum: 7f11ffafce6c05af8aafdda0064129e0
   docVersion: 1.0.0
   speakeasyVersion: 1.606.8
   generationVersion: 2.687.13
-  releaseVersion: 2.9.0
-  configChecksum: d8223efc155e90e7be5b2ca58ef7beb6
+  releaseVersion: 2.9.1
+  configChecksum: d8173490f2456b696f028257b35b2181
   repoURL: https://github.com/gr4vy/gr4vy-java.git
   published: true
 features:
@@ -72,6 +72,7 @@ generatedFiles:
   - docs/models/components/BuyerUpdate.md
   - docs/models/components/Buyers.md
   - docs/models/components/CVVResponseCode.md
+  - docs/models/components/CancelStatus.md
   - docs/models/components/CaptureStatus.md
   - docs/models/components/CardPaymentMethodCreate.md
   - docs/models/components/CardScheme.md
@@ -272,6 +273,7 @@ generatedFiles:
   - docs/models/components/TokenPaymentMethodCreate.md
   - docs/models/components/Transaction.md
   - docs/models/components/TransactionBuyer.md
+  - docs/models/components/TransactionCancel.md
   - docs/models/components/TransactionCapture.md
   - docs/models/components/TransactionCaptureCreate.md
   - docs/models/components/TransactionConnectionOptions.md
@@ -332,6 +334,8 @@ generatedFiles:
   - docs/models/operations/AddReportRequest.md
   - docs/models/operations/AddReportResponse.md
   - docs/models/operations/Body.md
+  - docs/models/operations/CancelTransactionRequest.md
+  - docs/models/operations/CancelTransactionResponse.md
   - docs/models/operations/CaptureTransactionRequest.md
   - docs/models/operations/CaptureTransactionResponse.md
   - docs/models/operations/ConfigureDigitalWalletRequest.md
@@ -623,6 +627,7 @@ generatedFiles:
   - src/main/java/com/gr4vy/sdk/models/components/BuyerUpdate.java
   - src/main/java/com/gr4vy/sdk/models/components/Buyers.java
   - src/main/java/com/gr4vy/sdk/models/components/CVVResponseCode.java
+  - src/main/java/com/gr4vy/sdk/models/components/CancelStatus.java
   - src/main/java/com/gr4vy/sdk/models/components/CaptureStatus.java
   - src/main/java/com/gr4vy/sdk/models/components/CardPaymentMethodCreate.java
   - src/main/java/com/gr4vy/sdk/models/components/CardScheme.java
@@ -823,6 +828,7 @@ generatedFiles:
   - src/main/java/com/gr4vy/sdk/models/components/TokenPaymentMethodCreate.java
   - src/main/java/com/gr4vy/sdk/models/components/Transaction.java
   - src/main/java/com/gr4vy/sdk/models/components/TransactionBuyer.java
+  - src/main/java/com/gr4vy/sdk/models/components/TransactionCancel.java
   - src/main/java/com/gr4vy/sdk/models/components/TransactionCapture.java
   - src/main/java/com/gr4vy/sdk/models/components/TransactionCaptureCreate.java
   - src/main/java/com/gr4vy/sdk/models/components/TransactionConnectionOptions.java
@@ -889,6 +895,9 @@ generatedFiles:
   - src/main/java/com/gr4vy/sdk/models/operations/AddReportRequestBuilder.java
   - src/main/java/com/gr4vy/sdk/models/operations/AddReportResponse.java
   - src/main/java/com/gr4vy/sdk/models/operations/Body.java
+  - src/main/java/com/gr4vy/sdk/models/operations/CancelTransactionRequest.java
+  - src/main/java/com/gr4vy/sdk/models/operations/CancelTransactionRequestBuilder.java
+  - src/main/java/com/gr4vy/sdk/models/operations/CancelTransactionResponse.java
   - src/main/java/com/gr4vy/sdk/models/operations/CaptureTransactionRequest.java
   - src/main/java/com/gr4vy/sdk/models/operations/CaptureTransactionRequestBuilder.java
   - src/main/java/com/gr4vy/sdk/models/operations/CaptureTransactionResponse.java
@@ -1158,6 +1167,7 @@ generatedFiles:
   - src/main/java/com/gr4vy/sdk/operations/AddBuyerShippingDetails.java
   - src/main/java/com/gr4vy/sdk/operations/AddPaymentLink.java
   - src/main/java/com/gr4vy/sdk/operations/AddReport.java
+  - src/main/java/com/gr4vy/sdk/operations/CancelTransaction.java
   - src/main/java/com/gr4vy/sdk/operations/CaptureTransaction.java
   - src/main/java/com/gr4vy/sdk/operations/ConfigureDigitalWallet.java
   - src/main/java/com/gr4vy/sdk/operations/CreateAccountUpdaterJob.java
@@ -4706,5 +4716,40 @@ examples:
           application/json: "<value>"
         "422":
           application/json: {}
+  cancel_transaction:
+    speakeasy-default-cancel-transaction:
+      parameters:
+        path:
+          transaction_id: "7099948d-7286-47e4-aad8-b68f7eb44591"
+      responses:
+        "200":
+          application/json: {"type": "transaction-cancel", "status": "succeeded", "code": "service_error", "raw_response_code": "E104", "raw_response_description": "Internal error", "transaction": {"type": "transaction", "id": "7099948d-7286-47e4-aad8-b68f7eb44591", "reconciliation_id": "default", "merchant_account_id": "default", "currency": "EUR", "amount": 1299, "status": "authorization_void_pending", "authorized_amount": 1299, "captured_amount": 1299, "refunded_amount": 1299, "settled_amount": 1100, "settled": true, "intent": "authorize", "pending_review": false, "gift_card_redemptions": [{"type": "gift-card-redemption", "id": "31e65fb1-9c67-432e-9c06-83300b9d4059", "status": "succeeded", "amount": 100, "refunded_amount": 50, "gift_card": {"type": "gift-card", "bin": "412345", "sub_bin": "554", "last4": "1234"}}], "created_at": "2013-07-16T19:23:00.000+00:00", "updated_at": "2013-07-16T19:23:00.000+00:00", "payment_source": "ecommerce", "merchant_initiated": true, "is_subsequent_payment": false, "intent_outcome": "pending", "multi_tender": true, "account_funding_transaction": true}}
+        "400":
+          application/json: {"type": "error", "code": "bad_request", "status": 400, "message": "Request failed validation"}
+        "401":
+          application/json: {"type": "error", "code": "unauthorized", "status": 401, "message": "No valid API authentication found"}
+        "403":
+          application/json: {"type": "error", "code": "forbidden", "status": 403, "message": "Request failed validation"}
+        "404":
+          application/json: {"type": "error", "code": "not_found", "status": 404, "message": "The resource could not be found"}
+        "405":
+          application/json: {"type": "error", "code": "method_not_allowed", "status": 405, "message": "Method Not Allowed"}
+        "409":
+          application/json: {"type": "error", "code": "duplicate_record", "status": 409, "message": "Request failed validation"}
+        "422":
+          application/json: {}
+        "425":
+          application/json: {"type": "error", "code": "too_early", "status": 425, "message": "Request failed validation"}
+        "429":
+          application/json: {"type": "error", "code": "too_many_requests", "status": 429, "message": "Request failed validation"}
+        "500":
+          application/json: {"type": "error", "code": "server_error", "status": 500, "message": "Request could not be processed"}
+        "502":
+          application/json: {"type": "error", "code": "bad_gateway", "status": 502, "message": "Request could not be processed"}
+        "504":
+          application/json: {"type": "error", "code": "gateway_timeout", "status": 504, "message": "Request could not be processed"}
 examplesVersion: 1.0.2
 generatedTests: {}
+releaseNotes: |
+  ## SDK Changes Detected:
+  * `gr4vy.transactions.cancel()`: **Added**
