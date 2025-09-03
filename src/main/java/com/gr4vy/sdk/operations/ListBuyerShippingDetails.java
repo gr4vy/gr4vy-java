@@ -45,7 +45,6 @@ import java.util.Optional;
 import java.util.concurrent.TimeUnit;
 
 
-
 public class ListBuyerShippingDetails {
 
     static abstract class Base {
@@ -108,10 +107,9 @@ public class ListBuyerShippingDetails {
                     java.util.Optional.of(java.util.List.of()),
                     securitySource());
         }
-
-        HttpRequest buildRequest(ListBuyerShippingDetailsRequest request) throws Exception {
+        <T>HttpRequest buildRequest(T request, Class<T> klass) throws Exception {
             String url = Utils.generateURL(
-                    ListBuyerShippingDetailsRequest.class,
+                    klass,
                     this.baseUrl,
                     "/buyers/{buyer_id}/shipping-details",
                     request, this.sdkConfiguration.globals);
@@ -132,7 +130,7 @@ public class ListBuyerShippingDetails {
         }
 
         private HttpRequest onBuildRequest(ListBuyerShippingDetailsRequest request) throws Exception {
-            HttpRequest req = buildRequest(request);
+            HttpRequest req = buildRequest(request, ListBuyerShippingDetailsRequest.class);
             return sdkConfiguration.hooks().beforeRequest(createBeforeRequestContext(), req);
         }
 

@@ -45,7 +45,6 @@ import java.util.Optional;
 import java.util.concurrent.TimeUnit;
 
 
-
 public class ListReportExecutions {
 
     static abstract class Base {
@@ -108,10 +107,9 @@ public class ListReportExecutions {
                     java.util.Optional.of(java.util.List.of()),
                     securitySource());
         }
-
-        HttpRequest buildRequest(ListReportExecutionsRequest request) throws Exception {
+        <T>HttpRequest buildRequest(T request, Class<T> klass) throws Exception {
             String url = Utils.generateURL(
-                    ListReportExecutionsRequest.class,
+                    klass,
                     this.baseUrl,
                     "/reports/{report_id}/executions",
                     request, this.sdkConfiguration.globals);
@@ -120,7 +118,7 @@ public class ListReportExecutions {
                     .addHeader("user-agent", SDKConfiguration.USER_AGENT);
 
             req.addQueryParams(Utils.getQueryParams(
-                    ListReportExecutionsRequest.class,
+                    klass,
                     request,
                     this.sdkConfiguration.globals));
             req.addHeaders(Utils.getHeadersFromMetadata(request, this.sdkConfiguration.globals));
@@ -137,7 +135,7 @@ public class ListReportExecutions {
         }
 
         private HttpRequest onBuildRequest(ListReportExecutionsRequest request) throws Exception {
-            HttpRequest req = buildRequest(request);
+            HttpRequest req = buildRequest(request, ListReportExecutionsRequest.class);
             return sdkConfiguration.hooks().beforeRequest(createBeforeRequestContext(), req);
         }
 

@@ -41,7 +41,6 @@ import java.util.Map;
 import java.util.Optional;
 
 
-
 public class CreateApplePayDigitalWalletSession {
 
     static abstract class Base {
@@ -88,8 +87,7 @@ public class CreateApplePayDigitalWalletSession {
                     java.util.Optional.of(java.util.List.of()),
                     securitySource());
         }
-
-        HttpRequest buildRequest(CreateApplePayDigitalWalletSessionRequest request) throws Exception {
+        <T, U>HttpRequest buildRequest(T request, TypeReference<U> typeReference) throws Exception {
             String url = Utils.generateURL(
                     this.baseUrl,
                     "/digital-wallets/apple/session");
@@ -97,8 +95,7 @@ public class CreateApplePayDigitalWalletSession {
             Object convertedRequest = Utils.convertToShape(
                     request,
                     JsonShape.DEFAULT,
-                    new TypeReference<Object>() {
-                    });
+                    typeReference);
             SerializedBody serializedRequestBody = Utils.serializeRequestBody(
                     convertedRequest,
                     "applePaySessionRequest",
@@ -124,7 +121,7 @@ public class CreateApplePayDigitalWalletSession {
         }
 
         private HttpRequest onBuildRequest(CreateApplePayDigitalWalletSessionRequest request) throws Exception {
-            HttpRequest req = buildRequest(request);
+            HttpRequest req = buildRequest(request, new TypeReference<CreateApplePayDigitalWalletSessionRequest>() {});
             return sdkConfiguration.hooks().beforeRequest(createBeforeRequestContext(), req);
         }
 

@@ -41,7 +41,6 @@ import java.net.http.HttpResponse;
 import java.util.Optional;
 
 
-
 public class CreateClickToPayDigitalWalletSession {
 
     static abstract class Base {
@@ -88,8 +87,7 @@ public class CreateClickToPayDigitalWalletSession {
                     java.util.Optional.of(java.util.List.of()),
                     securitySource());
         }
-
-        HttpRequest buildRequest(ClickToPaySessionRequest request) throws Exception {
+        <T, U>HttpRequest buildRequest(T request, TypeReference<U> typeReference) throws Exception {
             String url = Utils.generateURL(
                     this.baseUrl,
                     "/digital-wallets/click-to-pay/session");
@@ -97,8 +95,7 @@ public class CreateClickToPayDigitalWalletSession {
             Object convertedRequest = Utils.convertToShape(
                     request,
                     JsonShape.DEFAULT,
-                    new TypeReference<ClickToPaySessionRequest>() {
-                    });
+                    typeReference);
             SerializedBody serializedRequestBody = Utils.serializeRequestBody(
                     convertedRequest,
                     "request",
@@ -123,7 +120,7 @@ public class CreateClickToPayDigitalWalletSession {
         }
 
         private HttpRequest onBuildRequest(ClickToPaySessionRequest request) throws Exception {
-            HttpRequest req = buildRequest(request);
+            HttpRequest req = buildRequest(request, new TypeReference<ClickToPaySessionRequest>() {});
             return sdkConfiguration.hooks().beforeRequest(createBeforeRequestContext(), req);
         }
 

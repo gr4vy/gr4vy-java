@@ -41,7 +41,6 @@ import java.net.http.HttpResponse;
 import java.util.Optional;
 
 
-
 public class UpdateDigitalWallet {
 
     static abstract class Base {
@@ -88,10 +87,9 @@ public class UpdateDigitalWallet {
                     java.util.Optional.of(java.util.List.of()),
                     securitySource());
         }
-
-        HttpRequest buildRequest(UpdateDigitalWalletRequest request) throws Exception {
+        <T, U>HttpRequest buildRequest(T request, Class<T> klass, TypeReference<U> typeReference) throws Exception {
             String url = Utils.generateURL(
-                    UpdateDigitalWalletRequest.class,
+                    klass,
                     this.baseUrl,
                     "/digital-wallets/{digital_wallet_id}",
                     request, this.sdkConfiguration.globals);
@@ -99,8 +97,7 @@ public class UpdateDigitalWallet {
             Object convertedRequest = Utils.convertToShape(
                     request,
                     JsonShape.DEFAULT,
-                    new TypeReference<Object>() {
-                    });
+                    typeReference);
             SerializedBody serializedRequestBody = Utils.serializeRequestBody(
                     convertedRequest,
                     "digitalWalletUpdate",
@@ -126,7 +123,7 @@ public class UpdateDigitalWallet {
         }
 
         private HttpRequest onBuildRequest(UpdateDigitalWalletRequest request) throws Exception {
-            HttpRequest req = buildRequest(request);
+            HttpRequest req = buildRequest(request, UpdateDigitalWalletRequest.class, new TypeReference<UpdateDigitalWalletRequest>() {});
             return sdkConfiguration.hooks().beforeRequest(createBeforeRequestContext(), req);
         }
 

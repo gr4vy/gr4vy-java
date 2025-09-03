@@ -41,7 +41,6 @@ import java.net.http.HttpResponse;
 import java.util.Optional;
 
 
-
 public class CreatePaymentMethodNetworkTokenCryptogram {
 
     static abstract class Base {
@@ -88,10 +87,9 @@ public class CreatePaymentMethodNetworkTokenCryptogram {
                     java.util.Optional.of(java.util.List.of()),
                     securitySource());
         }
-
-        HttpRequest buildRequest(CreatePaymentMethodNetworkTokenCryptogramRequest request) throws Exception {
+        <T, U>HttpRequest buildRequest(T request, Class<T> klass, TypeReference<U> typeReference) throws Exception {
             String url = Utils.generateURL(
-                    CreatePaymentMethodNetworkTokenCryptogramRequest.class,
+                    klass,
                     this.baseUrl,
                     "/payment-methods/{payment_method_id}/network-tokens/{network_token_id}/cryptogram",
                     request, this.sdkConfiguration.globals);
@@ -99,8 +97,7 @@ public class CreatePaymentMethodNetworkTokenCryptogram {
             Object convertedRequest = Utils.convertToShape(
                     request,
                     JsonShape.DEFAULT,
-                    new TypeReference<Object>() {
-                    });
+                    typeReference);
             SerializedBody serializedRequestBody = Utils.serializeRequestBody(
                     convertedRequest,
                     "cryptogramCreate",
@@ -126,7 +123,7 @@ public class CreatePaymentMethodNetworkTokenCryptogram {
         }
 
         private HttpRequest onBuildRequest(CreatePaymentMethodNetworkTokenCryptogramRequest request) throws Exception {
-            HttpRequest req = buildRequest(request);
+            HttpRequest req = buildRequest(request, CreatePaymentMethodNetworkTokenCryptogramRequest.class, new TypeReference<CreatePaymentMethodNetworkTokenCryptogramRequest>() {});
             return sdkConfiguration.hooks().beforeRequest(createBeforeRequestContext(), req);
         }
 

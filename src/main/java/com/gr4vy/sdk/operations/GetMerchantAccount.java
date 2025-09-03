@@ -45,7 +45,6 @@ import java.util.Optional;
 import java.util.concurrent.TimeUnit;
 
 
-
 public class GetMerchantAccount {
 
     static abstract class Base {
@@ -108,10 +107,9 @@ public class GetMerchantAccount {
                     java.util.Optional.of(java.util.List.of()),
                     securitySource());
         }
-
-        HttpRequest buildRequest(GetMerchantAccountRequest request) throws Exception {
+        <T>HttpRequest buildRequest(T request, Class<T> klass) throws Exception {
             String url = Utils.generateURL(
-                    GetMerchantAccountRequest.class,
+                    klass,
                     this.baseUrl,
                     "/merchant-accounts/{merchant_account_id}",
                     request, this.sdkConfiguration.globals);
@@ -131,7 +129,7 @@ public class GetMerchantAccount {
         }
 
         private HttpRequest onBuildRequest(GetMerchantAccountRequest request) throws Exception {
-            HttpRequest req = buildRequest(request);
+            HttpRequest req = buildRequest(request, GetMerchantAccountRequest.class);
             return sdkConfiguration.hooks().beforeRequest(createBeforeRequestContext(), req);
         }
 

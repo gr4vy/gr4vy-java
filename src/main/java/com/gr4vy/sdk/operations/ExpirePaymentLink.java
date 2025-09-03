@@ -37,7 +37,6 @@ import java.net.http.HttpResponse;
 import java.util.Optional;
 
 
-
 public class ExpirePaymentLink {
 
     static abstract class Base {
@@ -84,10 +83,9 @@ public class ExpirePaymentLink {
                     java.util.Optional.of(java.util.List.of()),
                     securitySource());
         }
-
-        HttpRequest buildRequest(ExpirePaymentLinkRequest request) throws Exception {
+        <T>HttpRequest buildRequest(T request, Class<T> klass) throws Exception {
             String url = Utils.generateURL(
-                    ExpirePaymentLinkRequest.class,
+                    klass,
                     this.baseUrl,
                     "/payment-links/{payment_link_id}/expire",
                     request, this.sdkConfiguration.globals);
@@ -108,7 +106,7 @@ public class ExpirePaymentLink {
         }
 
         private HttpRequest onBuildRequest(ExpirePaymentLinkRequest request) throws Exception {
-            HttpRequest req = buildRequest(request);
+            HttpRequest req = buildRequest(request, ExpirePaymentLinkRequest.class);
             return sdkConfiguration.hooks().beforeRequest(createBeforeRequestContext(), req);
         }
 

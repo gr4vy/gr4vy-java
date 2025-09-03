@@ -38,7 +38,6 @@ import java.net.http.HttpResponse;
 import java.util.Optional;
 
 
-
 public class DeleteBuyerShippingDetails {
 
     static abstract class Base {
@@ -85,10 +84,9 @@ public class DeleteBuyerShippingDetails {
                     java.util.Optional.of(java.util.List.of()),
                     securitySource());
         }
-
-        HttpRequest buildRequest(DeleteBuyerShippingDetailsRequest request) throws Exception {
+        <T>HttpRequest buildRequest(T request, Class<T> klass) throws Exception {
             String url = Utils.generateURL(
-                    DeleteBuyerShippingDetailsRequest.class,
+                    klass,
                     this.baseUrl,
                     "/buyers/{buyer_id}/shipping-details/{shipping_details_id}",
                     request, this.sdkConfiguration.globals);
@@ -109,7 +107,7 @@ public class DeleteBuyerShippingDetails {
         }
 
         private HttpRequest onBuildRequest(DeleteBuyerShippingDetailsRequest request) throws Exception {
-            HttpRequest req = buildRequest(request);
+            HttpRequest req = buildRequest(request, DeleteBuyerShippingDetailsRequest.class);
             return sdkConfiguration.hooks().beforeRequest(createBeforeRequestContext(), req);
         }
 

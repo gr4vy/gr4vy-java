@@ -1,19 +1,19 @@
 lockVersion: 2.0.0
 id: 5bbaa3a9-baa0-471b-ba6a-13fd88e8c119
 management:
-  docChecksum: 7f11ffafce6c05af8aafdda0064129e0
+  docChecksum: 48778eb0609f34492f7b444e49fb99e5
   docVersion: 1.0.0
-  speakeasyVersion: 1.606.8
-  generationVersion: 2.687.13
-  releaseVersion: 2.9.1
-  configChecksum: d8173490f2456b696f028257b35b2181
+  speakeasyVersion: 1.607.0
+  generationVersion: 2.690.1
+  releaseVersion: 2.9.2
+  configChecksum: 16cb70bf6ec18d101997fe70f3e90b60
   repoURL: https://github.com/gr4vy/gr4vy-java.git
   published: true
 features:
   java:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.1
-    core: 3.46.0
+    core: 3.46.1
     flattening: 2.81.1
     globalSecurity: 2.83.0
     globalSecurityCallbacks: 0.1.0
@@ -1260,6 +1260,7 @@ generatedFiles:
   - src/main/java/com/gr4vy/sdk/utils/BackoffStrategy.java
   - src/main/java/com/gr4vy/sdk/utils/BigDecimalString.java
   - src/main/java/com/gr4vy/sdk/utils/BigIntegerString.java
+  - src/main/java/com/gr4vy/sdk/utils/Blob.java
   - src/main/java/com/gr4vy/sdk/utils/BlockingParser.java
   - src/main/java/com/gr4vy/sdk/utils/Constants.java
   - src/main/java/com/gr4vy/sdk/utils/CopiableInputStream.java
@@ -1314,6 +1315,7 @@ generatedFiles:
   - src/main/java/com/gr4vy/sdk/utils/pagination/Paginator.java
   - src/main/java/com/gr4vy/sdk/utils/pagination/ProgressTrackerStrategy.java
   - src/main/java/com/gr4vy/sdk/utils/pagination/ResultsPageTracker.java
+  - src/main/java/com/gr4vy/sdk/utils/reactive/ReactiveUtils.java
 examples:
   create_account_updater_job:
     speakeasy-default-create-account-updater-job:
@@ -4618,7 +4620,7 @@ examples:
           settlement_id: "b1e2c3d4-5678-1234-9abc-1234567890ab"
       responses:
         "200":
-          application/json: {"type": "settlement", "id": "b1e2c3d4-5678-1234-9abc-1234567890ab", "merchant_account_id": "default", "created_at": "2024-06-01T12:00:00.000Z", "updated_at": "2024-06-01T12:00:00.000Z", "posted_at": "2024-06-01T12:00:00.000Z", "ingested_at": "2024-06-01T12:00:00.000Z", "currency": "EUR", "amount": 1100, "commission": 100, "payment_service_report_id": "a1b2c3d4-5678-1234-9abc-1234567890ab", "payment_service_report_file_ids": ["f1e2d3c4-5678-1234-9abc-1234567890ab"], "transaction_id": "7099948d-7286-47e4-aad8-b68f7eb44591"}
+          application/json: {"id": "b1e2c3d4-5678-1234-9abc-1234567890ab", "merchant_account_id": "default", "created_at": "2024-06-01T12:00:00.000Z", "updated_at": "2024-06-01T12:00:00.000Z", "posted_at": "2024-06-01T12:00:00.000Z", "ingested_at": "2024-06-01T12:00:00.000Z", "currency": "EUR", "amount": 1100, "commission": 100, "payment_service_report_id": "a1b2c3d4-5678-1234-9abc-1234567890ab", "payment_service_report_file_ids": ["f1e2d3c4-5678-1234-9abc-1234567890ab"], "transaction_id": "7099948d-7286-47e4-aad8-b68f7eb44591", "type": "settlement"}
         "400":
           application/json: {"type": "error", "code": "bad_request", "status": 400, "message": "Request failed validation"}
         "401":
@@ -4750,6 +4752,3 @@ examples:
           application/json: {"type": "error", "code": "gateway_timeout", "status": 504, "message": "Request could not be processed"}
 examplesVersion: 1.0.2
 generatedTests: {}
-releaseNotes: |
-  ## SDK Changes Detected:
-  * `gr4vy.transactions.cancel()`: **Added**

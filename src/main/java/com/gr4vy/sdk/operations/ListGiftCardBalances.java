@@ -41,7 +41,6 @@ import java.net.http.HttpResponse;
 import java.util.Optional;
 
 
-
 public class ListGiftCardBalances {
 
     static abstract class Base {
@@ -88,8 +87,7 @@ public class ListGiftCardBalances {
                     java.util.Optional.of(java.util.List.of()),
                     securitySource());
         }
-
-        HttpRequest buildRequest(ListGiftCardBalancesRequest request) throws Exception {
+        <T, U>HttpRequest buildRequest(T request, TypeReference<U> typeReference) throws Exception {
             String url = Utils.generateURL(
                     this.baseUrl,
                     "/gift-cards/balances");
@@ -97,8 +95,7 @@ public class ListGiftCardBalances {
             Object convertedRequest = Utils.convertToShape(
                     request,
                     JsonShape.DEFAULT,
-                    new TypeReference<Object>() {
-                    });
+                    typeReference);
             SerializedBody serializedRequestBody = Utils.serializeRequestBody(
                     convertedRequest,
                     "giftCardBalanceRequest",
@@ -124,7 +121,7 @@ public class ListGiftCardBalances {
         }
 
         private HttpRequest onBuildRequest(ListGiftCardBalancesRequest request) throws Exception {
-            HttpRequest req = buildRequest(request);
+            HttpRequest req = buildRequest(request, new TypeReference<ListGiftCardBalancesRequest>() {});
             return sdkConfiguration.hooks().beforeRequest(createBeforeRequestContext(), req);
         }
 

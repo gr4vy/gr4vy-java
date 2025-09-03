@@ -38,7 +38,6 @@ import java.net.http.HttpResponse;
 import java.util.Optional;
 
 
-
 public class SyncTransaction {
 
     static abstract class Base {
@@ -85,10 +84,9 @@ public class SyncTransaction {
                     java.util.Optional.of(java.util.List.of()),
                     securitySource());
         }
-
-        HttpRequest buildRequest(SyncTransactionRequest request) throws Exception {
+        <T>HttpRequest buildRequest(T request, Class<T> klass) throws Exception {
             String url = Utils.generateURL(
-                    SyncTransactionRequest.class,
+                    klass,
                     this.baseUrl,
                     "/transactions/{transaction_id}/sync",
                     request, this.sdkConfiguration.globals);
@@ -109,7 +107,7 @@ public class SyncTransaction {
         }
 
         private HttpRequest onBuildRequest(SyncTransactionRequest request) throws Exception {
-            HttpRequest req = buildRequest(request);
+            HttpRequest req = buildRequest(request, SyncTransactionRequest.class);
             return sdkConfiguration.hooks().beforeRequest(createBeforeRequestContext(), req);
         }
 

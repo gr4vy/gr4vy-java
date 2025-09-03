@@ -38,7 +38,6 @@ import java.net.http.HttpResponse;
 import java.util.Optional;
 
 
-
 public class DeleteGiftCard {
 
     static abstract class Base {
@@ -85,10 +84,9 @@ public class DeleteGiftCard {
                     java.util.Optional.of(java.util.List.of()),
                     securitySource());
         }
-
-        HttpRequest buildRequest(DeleteGiftCardRequest request) throws Exception {
+        <T>HttpRequest buildRequest(T request, Class<T> klass) throws Exception {
             String url = Utils.generateURL(
-                    DeleteGiftCardRequest.class,
+                    klass,
                     this.baseUrl,
                     "/gift-cards/{gift_card_id}",
                     request, this.sdkConfiguration.globals);
@@ -109,7 +107,7 @@ public class DeleteGiftCard {
         }
 
         private HttpRequest onBuildRequest(DeleteGiftCardRequest request) throws Exception {
-            HttpRequest req = buildRequest(request);
+            HttpRequest req = buildRequest(request, DeleteGiftCardRequest.class);
             return sdkConfiguration.hooks().beforeRequest(createBeforeRequestContext(), req);
         }
 

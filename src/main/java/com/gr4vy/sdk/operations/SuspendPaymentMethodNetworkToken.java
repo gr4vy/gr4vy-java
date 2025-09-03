@@ -38,7 +38,6 @@ import java.net.http.HttpResponse;
 import java.util.Optional;
 
 
-
 public class SuspendPaymentMethodNetworkToken {
 
     static abstract class Base {
@@ -85,10 +84,9 @@ public class SuspendPaymentMethodNetworkToken {
                     java.util.Optional.of(java.util.List.of()),
                     securitySource());
         }
-
-        HttpRequest buildRequest(SuspendPaymentMethodNetworkTokenRequest request) throws Exception {
+        <T>HttpRequest buildRequest(T request, Class<T> klass) throws Exception {
             String url = Utils.generateURL(
-                    SuspendPaymentMethodNetworkTokenRequest.class,
+                    klass,
                     this.baseUrl,
                     "/payment-methods/{payment_method_id}/network-tokens/{network_token_id}/suspend",
                     request, this.sdkConfiguration.globals);
@@ -109,7 +107,7 @@ public class SuspendPaymentMethodNetworkToken {
         }
 
         private HttpRequest onBuildRequest(SuspendPaymentMethodNetworkTokenRequest request) throws Exception {
-            HttpRequest req = buildRequest(request);
+            HttpRequest req = buildRequest(request, SuspendPaymentMethodNetworkTokenRequest.class);
             return sdkConfiguration.hooks().beforeRequest(createBeforeRequestContext(), req);
         }
 

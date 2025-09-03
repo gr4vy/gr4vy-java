@@ -27,62 +27,55 @@ import org.openapitools.jackson.nullable.JsonNullable;
  */
 public class Settlement {
     /**
-     * Always 'settlement'.
-     */
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("type")
-    private Optional<String> type;
-
-    /**
-     * The unique identifier for the settlement.
+     * The unique identifier for the record.
      */
     @JsonProperty("id")
     private String id;
 
     /**
-     * The merchant account this settlement belongs to.
+     * The merchant account this record belongs to.
      */
     @JsonProperty("merchant_account_id")
     private String merchantAccountId;
 
     /**
-     * The date and time the settlement was created, in ISO 8601 format.
+     * The date and time the record was created, in ISO 8601 format.
      */
     @JsonProperty("created_at")
     private OffsetDateTime createdAt;
 
     /**
-     * The date and time the settlement was last updated, in ISO 8601 format.
+     * The date and time the record was last updated, in ISO 8601 format.
      */
     @JsonProperty("updated_at")
     private OffsetDateTime updatedAt;
 
     /**
-     * The date and time the settlement was posted, in ISO 8601 format.
+     * The date and time the record was posted, in ISO 8601 format.
      */
     @JsonProperty("posted_at")
     private OffsetDateTime postedAt;
 
     /**
-     * The date and time the settlement was ingested, in ISO 8601 format.
+     * The date and time the record was ingested, in ISO 8601 format.
      */
     @JsonProperty("ingested_at")
     private OffsetDateTime ingestedAt;
 
     /**
-     * ISO 4217 currency code for the settlement.
+     * ISO 4217 currency code.
      */
     @JsonProperty("currency")
     private String currency;
 
     /**
-     * The total settled amount in the smallest currency unit (e.g. cents).
+     * The total amount in the smallest currency unit (e.g. cents).
      */
     @JsonProperty("amount")
     private long amount;
 
     /**
-     * The exchange rate used for settlement, if applicable.
+     * The exchange rate, if applicable.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("exchange_rate")
@@ -128,10 +121,17 @@ public class Settlement {
     private List<String> paymentServiceReportFileIds;
 
     /**
-     * The transaction this settlement is associated with.
+     * The transaction this record is associated with.
      */
     @JsonProperty("transaction_id")
     private String transactionId;
+
+    /**
+     * Always `settlement`.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("type")
+    private Optional<String> type;
 
     @JsonCreator
     public Settlement(
@@ -167,7 +167,6 @@ public class Settlement {
         Utils.checkNotNull(paymentServiceReportId, "paymentServiceReportId");
         Utils.checkNotNull(paymentServiceReportFileIds, "paymentServiceReportFileIds");
         Utils.checkNotNull(transactionId, "transactionId");
-        this.type = Builder._SINGLETON_VALUE_Type.value();
         this.id = id;
         this.merchantAccountId = merchantAccountId;
         this.createdAt = createdAt;
@@ -184,6 +183,7 @@ public class Settlement {
         this.paymentServiceReportId = paymentServiceReportId;
         this.paymentServiceReportFileIds = paymentServiceReportFileIds;
         this.transactionId = transactionId;
+        this.type = Builder._SINGLETON_VALUE_Type.value();
     }
     
     public Settlement(
@@ -208,15 +208,7 @@ public class Settlement {
     }
 
     /**
-     * Always 'settlement'.
-     */
-    @JsonIgnore
-    public Optional<String> type() {
-        return type;
-    }
-
-    /**
-     * The unique identifier for the settlement.
+     * The unique identifier for the record.
      */
     @JsonIgnore
     public String id() {
@@ -224,7 +216,7 @@ public class Settlement {
     }
 
     /**
-     * The merchant account this settlement belongs to.
+     * The merchant account this record belongs to.
      */
     @JsonIgnore
     public String merchantAccountId() {
@@ -232,7 +224,7 @@ public class Settlement {
     }
 
     /**
-     * The date and time the settlement was created, in ISO 8601 format.
+     * The date and time the record was created, in ISO 8601 format.
      */
     @JsonIgnore
     public OffsetDateTime createdAt() {
@@ -240,7 +232,7 @@ public class Settlement {
     }
 
     /**
-     * The date and time the settlement was last updated, in ISO 8601 format.
+     * The date and time the record was last updated, in ISO 8601 format.
      */
     @JsonIgnore
     public OffsetDateTime updatedAt() {
@@ -248,7 +240,7 @@ public class Settlement {
     }
 
     /**
-     * The date and time the settlement was posted, in ISO 8601 format.
+     * The date and time the record was posted, in ISO 8601 format.
      */
     @JsonIgnore
     public OffsetDateTime postedAt() {
@@ -256,7 +248,7 @@ public class Settlement {
     }
 
     /**
-     * The date and time the settlement was ingested, in ISO 8601 format.
+     * The date and time the record was ingested, in ISO 8601 format.
      */
     @JsonIgnore
     public OffsetDateTime ingestedAt() {
@@ -264,7 +256,7 @@ public class Settlement {
     }
 
     /**
-     * ISO 4217 currency code for the settlement.
+     * ISO 4217 currency code.
      */
     @JsonIgnore
     public String currency() {
@@ -272,7 +264,7 @@ public class Settlement {
     }
 
     /**
-     * The total settled amount in the smallest currency unit (e.g. cents).
+     * The total amount in the smallest currency unit (e.g. cents).
      */
     @JsonIgnore
     public long amount() {
@@ -280,7 +272,7 @@ public class Settlement {
     }
 
     /**
-     * The exchange rate used for settlement, if applicable.
+     * The exchange rate, if applicable.
      */
     @JsonIgnore
     public JsonNullable<Double> exchangeRate() {
@@ -336,11 +328,19 @@ public class Settlement {
     }
 
     /**
-     * The transaction this settlement is associated with.
+     * The transaction this record is associated with.
      */
     @JsonIgnore
     public String transactionId() {
         return transactionId;
+    }
+
+    /**
+     * Always `settlement`.
+     */
+    @JsonIgnore
+    public Optional<String> type() {
+        return type;
     }
 
     public static Builder builder() {
@@ -349,7 +349,7 @@ public class Settlement {
 
 
     /**
-     * The unique identifier for the settlement.
+     * The unique identifier for the record.
      */
     public Settlement withId(String id) {
         Utils.checkNotNull(id, "id");
@@ -358,7 +358,7 @@ public class Settlement {
     }
 
     /**
-     * The merchant account this settlement belongs to.
+     * The merchant account this record belongs to.
      */
     public Settlement withMerchantAccountId(String merchantAccountId) {
         Utils.checkNotNull(merchantAccountId, "merchantAccountId");
@@ -367,7 +367,7 @@ public class Settlement {
     }
 
     /**
-     * The date and time the settlement was created, in ISO 8601 format.
+     * The date and time the record was created, in ISO 8601 format.
      */
     public Settlement withCreatedAt(OffsetDateTime createdAt) {
         Utils.checkNotNull(createdAt, "createdAt");
@@ -376,7 +376,7 @@ public class Settlement {
     }
 
     /**
-     * The date and time the settlement was last updated, in ISO 8601 format.
+     * The date and time the record was last updated, in ISO 8601 format.
      */
     public Settlement withUpdatedAt(OffsetDateTime updatedAt) {
         Utils.checkNotNull(updatedAt, "updatedAt");
@@ -385,7 +385,7 @@ public class Settlement {
     }
 
     /**
-     * The date and time the settlement was posted, in ISO 8601 format.
+     * The date and time the record was posted, in ISO 8601 format.
      */
     public Settlement withPostedAt(OffsetDateTime postedAt) {
         Utils.checkNotNull(postedAt, "postedAt");
@@ -394,7 +394,7 @@ public class Settlement {
     }
 
     /**
-     * The date and time the settlement was ingested, in ISO 8601 format.
+     * The date and time the record was ingested, in ISO 8601 format.
      */
     public Settlement withIngestedAt(OffsetDateTime ingestedAt) {
         Utils.checkNotNull(ingestedAt, "ingestedAt");
@@ -403,7 +403,7 @@ public class Settlement {
     }
 
     /**
-     * ISO 4217 currency code for the settlement.
+     * ISO 4217 currency code.
      */
     public Settlement withCurrency(String currency) {
         Utils.checkNotNull(currency, "currency");
@@ -412,7 +412,7 @@ public class Settlement {
     }
 
     /**
-     * The total settled amount in the smallest currency unit (e.g. cents).
+     * The total amount in the smallest currency unit (e.g. cents).
      */
     public Settlement withAmount(long amount) {
         Utils.checkNotNull(amount, "amount");
@@ -421,7 +421,7 @@ public class Settlement {
     }
 
     /**
-     * The exchange rate used for settlement, if applicable.
+     * The exchange rate, if applicable.
      */
     public Settlement withExchangeRate(double exchangeRate) {
         Utils.checkNotNull(exchangeRate, "exchangeRate");
@@ -430,7 +430,7 @@ public class Settlement {
     }
 
     /**
-     * The exchange rate used for settlement, if applicable.
+     * The exchange rate, if applicable.
      */
     public Settlement withExchangeRate(JsonNullable<Double> exchangeRate) {
         Utils.checkNotNull(exchangeRate, "exchangeRate");
@@ -520,7 +520,7 @@ public class Settlement {
     }
 
     /**
-     * The transaction this settlement is associated with.
+     * The transaction this record is associated with.
      */
     public Settlement withTransactionId(String transactionId) {
         Utils.checkNotNull(transactionId, "transactionId");
@@ -538,7 +538,6 @@ public class Settlement {
         }
         Settlement other = (Settlement) o;
         return 
-            Utils.enhancedDeepEquals(this.type, other.type) &&
             Utils.enhancedDeepEquals(this.id, other.id) &&
             Utils.enhancedDeepEquals(this.merchantAccountId, other.merchantAccountId) &&
             Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
@@ -554,24 +553,24 @@ public class Settlement {
             Utils.enhancedDeepEquals(this.schemeFee, other.schemeFee) &&
             Utils.enhancedDeepEquals(this.paymentServiceReportId, other.paymentServiceReportId) &&
             Utils.enhancedDeepEquals(this.paymentServiceReportFileIds, other.paymentServiceReportFileIds) &&
-            Utils.enhancedDeepEquals(this.transactionId, other.transactionId);
+            Utils.enhancedDeepEquals(this.transactionId, other.transactionId) &&
+            Utils.enhancedDeepEquals(this.type, other.type);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            type, id, merchantAccountId,
-            createdAt, updatedAt, postedAt,
-            ingestedAt, currency, amount,
-            exchangeRate, commission, interchange,
-            markup, schemeFee, paymentServiceReportId,
-            paymentServiceReportFileIds, transactionId);
+            id, merchantAccountId, createdAt,
+            updatedAt, postedAt, ingestedAt,
+            currency, amount, exchangeRate,
+            commission, interchange, markup,
+            schemeFee, paymentServiceReportId, paymentServiceReportFileIds,
+            transactionId, type);
     }
     
     @Override
     public String toString() {
         return Utils.toString(Settlement.class,
-                "type", type,
                 "id", id,
                 "merchantAccountId", merchantAccountId,
                 "createdAt", createdAt,
@@ -587,7 +586,8 @@ public class Settlement {
                 "schemeFee", schemeFee,
                 "paymentServiceReportId", paymentServiceReportId,
                 "paymentServiceReportFileIds", paymentServiceReportFileIds,
-                "transactionId", transactionId);
+                "transactionId", transactionId,
+                "type", type);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -631,7 +631,7 @@ public class Settlement {
 
 
         /**
-         * The unique identifier for the settlement.
+         * The unique identifier for the record.
          */
         public Builder id(String id) {
             Utils.checkNotNull(id, "id");
@@ -641,7 +641,7 @@ public class Settlement {
 
 
         /**
-         * The merchant account this settlement belongs to.
+         * The merchant account this record belongs to.
          */
         public Builder merchantAccountId(String merchantAccountId) {
             Utils.checkNotNull(merchantAccountId, "merchantAccountId");
@@ -651,7 +651,7 @@ public class Settlement {
 
 
         /**
-         * The date and time the settlement was created, in ISO 8601 format.
+         * The date and time the record was created, in ISO 8601 format.
          */
         public Builder createdAt(OffsetDateTime createdAt) {
             Utils.checkNotNull(createdAt, "createdAt");
@@ -661,7 +661,7 @@ public class Settlement {
 
 
         /**
-         * The date and time the settlement was last updated, in ISO 8601 format.
+         * The date and time the record was last updated, in ISO 8601 format.
          */
         public Builder updatedAt(OffsetDateTime updatedAt) {
             Utils.checkNotNull(updatedAt, "updatedAt");
@@ -671,7 +671,7 @@ public class Settlement {
 
 
         /**
-         * The date and time the settlement was posted, in ISO 8601 format.
+         * The date and time the record was posted, in ISO 8601 format.
          */
         public Builder postedAt(OffsetDateTime postedAt) {
             Utils.checkNotNull(postedAt, "postedAt");
@@ -681,7 +681,7 @@ public class Settlement {
 
 
         /**
-         * The date and time the settlement was ingested, in ISO 8601 format.
+         * The date and time the record was ingested, in ISO 8601 format.
          */
         public Builder ingestedAt(OffsetDateTime ingestedAt) {
             Utils.checkNotNull(ingestedAt, "ingestedAt");
@@ -691,7 +691,7 @@ public class Settlement {
 
 
         /**
-         * ISO 4217 currency code for the settlement.
+         * ISO 4217 currency code.
          */
         public Builder currency(String currency) {
             Utils.checkNotNull(currency, "currency");
@@ -701,7 +701,7 @@ public class Settlement {
 
 
         /**
-         * The total settled amount in the smallest currency unit (e.g. cents).
+         * The total amount in the smallest currency unit (e.g. cents).
          */
         public Builder amount(long amount) {
             Utils.checkNotNull(amount, "amount");
@@ -711,7 +711,7 @@ public class Settlement {
 
 
         /**
-         * The exchange rate used for settlement, if applicable.
+         * The exchange rate, if applicable.
          */
         public Builder exchangeRate(double exchangeRate) {
             Utils.checkNotNull(exchangeRate, "exchangeRate");
@@ -720,7 +720,7 @@ public class Settlement {
         }
 
         /**
-         * The exchange rate used for settlement, if applicable.
+         * The exchange rate, if applicable.
          */
         public Builder exchangeRate(JsonNullable<Double> exchangeRate) {
             Utils.checkNotNull(exchangeRate, "exchangeRate");
@@ -817,7 +817,7 @@ public class Settlement {
 
 
         /**
-         * The transaction this settlement is associated with.
+         * The transaction this record is associated with.
          */
         public Builder transactionId(String transactionId) {
             Utils.checkNotNull(transactionId, "transactionId");

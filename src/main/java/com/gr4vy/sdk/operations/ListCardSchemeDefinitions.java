@@ -45,7 +45,6 @@ import java.util.Optional;
 import java.util.concurrent.TimeUnit;
 
 
-
 public class ListCardSchemeDefinitions {
 
     static abstract class Base {
@@ -108,8 +107,7 @@ public class ListCardSchemeDefinitions {
                     java.util.Optional.of(java.util.List.of()),
                     securitySource());
         }
-
-        HttpRequest buildRequest(ListCardSchemeDefinitionsRequest request) throws Exception {
+        <T>HttpRequest buildRequest(T request) throws Exception {
             String url = Utils.generateURL(
                     this.baseUrl,
                     "/card-scheme-definitions");

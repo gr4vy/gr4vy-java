@@ -45,7 +45,6 @@ import java.util.Optional;
 import java.util.concurrent.TimeUnit;
 
 
-
 public class GetDigitalWallet {
 
     static abstract class Base {
@@ -108,10 +107,9 @@ public class GetDigitalWallet {
                     java.util.Optional.of(java.util.List.of()),
                     securitySource());
         }
-
-        HttpRequest buildRequest(GetDigitalWalletRequest request) throws Exception {
+        <T>HttpRequest buildRequest(T request, Class<T> klass) throws Exception {
             String url = Utils.generateURL(
-                    GetDigitalWalletRequest.class,
+                    klass,
                     this.baseUrl,
                     "/digital-wallets/{digital_wallet_id}",
                     request, this.sdkConfiguration.globals);
@@ -132,7 +130,7 @@ public class GetDigitalWallet {
         }
 
         private HttpRequest onBuildRequest(GetDigitalWalletRequest request) throws Exception {
-            HttpRequest req = buildRequest(request);
+            HttpRequest req = buildRequest(request, GetDigitalWalletRequest.class);
             return sdkConfiguration.hooks().beforeRequest(createBeforeRequestContext(), req);
         }
 

@@ -41,7 +41,6 @@ import java.net.http.HttpResponse;
 import java.util.Optional;
 
 
-
 public class CreateFullTransactionRefund {
 
     static abstract class Base {
@@ -88,10 +87,9 @@ public class CreateFullTransactionRefund {
                     java.util.Optional.of(java.util.List.of()),
                     securitySource());
         }
-
-        HttpRequest buildRequest(CreateFullTransactionRefundRequest request) throws Exception {
+        <T, U>HttpRequest buildRequest(T request, Class<T> klass, TypeReference<U> typeReference) throws Exception {
             String url = Utils.generateURL(
-                    CreateFullTransactionRefundRequest.class,
+                    klass,
                     this.baseUrl,
                     "/transactions/{transaction_id}/refunds/all",
                     request, this.sdkConfiguration.globals);
@@ -99,8 +97,7 @@ public class CreateFullTransactionRefund {
             Object convertedRequest = Utils.convertToShape(
                     request,
                     JsonShape.DEFAULT,
-                    new TypeReference<Object>() {
-                    });
+                    typeReference);
             SerializedBody serializedRequestBody = Utils.serializeRequestBody(
                     convertedRequest,
                     "transactionRefundAllCreate",
@@ -123,7 +120,7 @@ public class CreateFullTransactionRefund {
         }
 
         private HttpRequest onBuildRequest(CreateFullTransactionRefundRequest request) throws Exception {
-            HttpRequest req = buildRequest(request);
+            HttpRequest req = buildRequest(request, CreateFullTransactionRefundRequest.class, new TypeReference<CreateFullTransactionRefundRequest>() {});
             return sdkConfiguration.hooks().beforeRequest(createBeforeRequestContext(), req);
         }
 

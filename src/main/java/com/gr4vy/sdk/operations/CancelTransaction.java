@@ -38,7 +38,6 @@ import java.net.http.HttpResponse;
 import java.util.Optional;
 
 
-
 public class CancelTransaction {
 
     static abstract class Base {
@@ -85,10 +84,9 @@ public class CancelTransaction {
                     java.util.Optional.of(java.util.List.of()),
                     securitySource());
         }
-
-        HttpRequest buildRequest(CancelTransactionRequest request) throws Exception {
+        <T>HttpRequest buildRequest(T request, Class<T> klass) throws Exception {
             String url = Utils.generateURL(
-                    CancelTransactionRequest.class,
+                    klass,
                     this.baseUrl,
                     "/transactions/{transaction_id}/cancel",
                     request, this.sdkConfiguration.globals);
@@ -109,7 +107,7 @@ public class CancelTransaction {
         }
 
         private HttpRequest onBuildRequest(CancelTransactionRequest request) throws Exception {
-            HttpRequest req = buildRequest(request);
+            HttpRequest req = buildRequest(request, CancelTransactionRequest.class);
             return sdkConfiguration.hooks().beforeRequest(createBeforeRequestContext(), req);
         }
 

@@ -41,7 +41,6 @@ import java.net.http.HttpResponse;
 import java.util.Optional;
 
 
-
 public class UpdateCheckoutSession {
 
     static abstract class Base {
@@ -88,10 +87,9 @@ public class UpdateCheckoutSession {
                     java.util.Optional.of(java.util.List.of()),
                     securitySource());
         }
-
-        HttpRequest buildRequest(UpdateCheckoutSessionRequest request) throws Exception {
+        <T, U>HttpRequest buildRequest(T request, Class<T> klass, TypeReference<U> typeReference) throws Exception {
             String url = Utils.generateURL(
-                    UpdateCheckoutSessionRequest.class,
+                    klass,
                     this.baseUrl,
                     "/checkout/sessions/{session_id}",
                     request, this.sdkConfiguration.globals);
@@ -99,8 +97,7 @@ public class UpdateCheckoutSession {
             Object convertedRequest = Utils.convertToShape(
                     request,
                     JsonShape.DEFAULT,
-                    new TypeReference<Object>() {
-                    });
+                    typeReference);
             SerializedBody serializedRequestBody = Utils.serializeRequestBody(
                     convertedRequest,
                     "checkoutSessionCreate",
@@ -126,7 +123,7 @@ public class UpdateCheckoutSession {
         }
 
         private HttpRequest onBuildRequest(UpdateCheckoutSessionRequest request) throws Exception {
-            HttpRequest req = buildRequest(request);
+            HttpRequest req = buildRequest(request, UpdateCheckoutSessionRequest.class, new TypeReference<UpdateCheckoutSessionRequest>() {});
             return sdkConfiguration.hooks().beforeRequest(createBeforeRequestContext(), req);
         }
 

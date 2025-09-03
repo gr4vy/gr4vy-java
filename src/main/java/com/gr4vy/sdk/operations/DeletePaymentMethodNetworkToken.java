@@ -37,7 +37,6 @@ import java.net.http.HttpResponse;
 import java.util.Optional;
 
 
-
 public class DeletePaymentMethodNetworkToken {
 
     static abstract class Base {
@@ -84,10 +83,9 @@ public class DeletePaymentMethodNetworkToken {
                     java.util.Optional.of(java.util.List.of()),
                     securitySource());
         }
-
-        HttpRequest buildRequest(DeletePaymentMethodNetworkTokenRequest request) throws Exception {
+        <T>HttpRequest buildRequest(T request, Class<T> klass) throws Exception {
             String url = Utils.generateURL(
-                    DeletePaymentMethodNetworkTokenRequest.class,
+                    klass,
                     this.baseUrl,
                     "/payment-methods/{payment_method_id}/network-tokens/{network_token_id}",
                     request, this.sdkConfiguration.globals);
@@ -108,7 +106,7 @@ public class DeletePaymentMethodNetworkToken {
         }
 
         private HttpRequest onBuildRequest(DeletePaymentMethodNetworkTokenRequest request) throws Exception {
-            HttpRequest req = buildRequest(request);
+            HttpRequest req = buildRequest(request, DeletePaymentMethodNetworkTokenRequest.class);
             return sdkConfiguration.hooks().beforeRequest(createBeforeRequestContext(), req);
         }
 

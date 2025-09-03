@@ -37,7 +37,6 @@ import java.net.http.HttpResponse;
 import java.util.Optional;
 
 
-
 public class DeleteBuyer {
 
     static abstract class Base {
@@ -84,10 +83,9 @@ public class DeleteBuyer {
                     java.util.Optional.of(java.util.List.of()),
                     securitySource());
         }
-
-        HttpRequest buildRequest(DeleteBuyerRequest request) throws Exception {
+        <T>HttpRequest buildRequest(T request, Class<T> klass) throws Exception {
             String url = Utils.generateURL(
-                    DeleteBuyerRequest.class,
+                    klass,
                     this.baseUrl,
                     "/buyers/{buyer_id}",
                     request, this.sdkConfiguration.globals);
@@ -108,7 +106,7 @@ public class DeleteBuyer {
         }
 
         private HttpRequest onBuildRequest(DeleteBuyerRequest request) throws Exception {
-            HttpRequest req = buildRequest(request);
+            HttpRequest req = buildRequest(request, DeleteBuyerRequest.class);
             return sdkConfiguration.hooks().beforeRequest(createBeforeRequestContext(), req);
         }
 

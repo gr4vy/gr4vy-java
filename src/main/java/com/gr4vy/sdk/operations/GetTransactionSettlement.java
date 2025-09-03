@@ -45,7 +45,6 @@ import java.util.Optional;
 import java.util.concurrent.TimeUnit;
 
 
-
 public class GetTransactionSettlement {
 
     static abstract class Base {
@@ -108,10 +107,9 @@ public class GetTransactionSettlement {
                     java.util.Optional.of(java.util.List.of()),
                     securitySource());
         }
-
-        HttpRequest buildRequest(GetTransactionSettlementRequest request) throws Exception {
+        <T>HttpRequest buildRequest(T request, Class<T> klass) throws Exception {
             String url = Utils.generateURL(
-                    GetTransactionSettlementRequest.class,
+                    klass,
                     this.baseUrl,
                     "/transactions/{transaction_id}/settlements/{settlement_id}",
                     request, this.sdkConfiguration.globals);
@@ -132,7 +130,7 @@ public class GetTransactionSettlement {
         }
 
         private HttpRequest onBuildRequest(GetTransactionSettlementRequest request) throws Exception {
-            HttpRequest req = buildRequest(request);
+            HttpRequest req = buildRequest(request, GetTransactionSettlementRequest.class);
             return sdkConfiguration.hooks().beforeRequest(createBeforeRequestContext(), req);
         }
 
