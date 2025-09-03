@@ -38,7 +38,6 @@ import java.net.http.HttpResponse;
 import java.util.Optional;
 
 
-
 public class DeletePaymentService {
 
     static abstract class Base {
@@ -85,10 +84,9 @@ public class DeletePaymentService {
                     java.util.Optional.of(java.util.List.of()),
                     securitySource());
         }
-
-        HttpRequest buildRequest(DeletePaymentServiceRequest request) throws Exception {
+        <T>HttpRequest buildRequest(T request, Class<T> klass) throws Exception {
             String url = Utils.generateURL(
-                    DeletePaymentServiceRequest.class,
+                    klass,
                     this.baseUrl,
                     "/payment-services/{payment_service_id}",
                     request, this.sdkConfiguration.globals);
@@ -109,7 +107,7 @@ public class DeletePaymentService {
         }
 
         private HttpRequest onBuildRequest(DeletePaymentServiceRequest request) throws Exception {
-            HttpRequest req = buildRequest(request);
+            HttpRequest req = buildRequest(request, DeletePaymentServiceRequest.class);
             return sdkConfiguration.hooks().beforeRequest(createBeforeRequestContext(), req);
         }
 

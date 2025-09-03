@@ -41,7 +41,6 @@ import java.net.http.HttpResponse;
 import java.util.Optional;
 
 
-
 public class UpdatePaymentService {
 
     static abstract class Base {
@@ -88,8 +87,7 @@ public class UpdatePaymentService {
                     java.util.Optional.of(java.util.List.of()),
                     securitySource());
         }
-
-        HttpRequest buildRequest(UpdatePaymentServiceRequest request) throws Exception {
+        <T, U>HttpRequest buildRequest(T request, TypeReference<U> typeReference) throws Exception {
             String url = Utils.generateURL(
                     this.baseUrl,
                     "/payment-services");
@@ -97,8 +95,7 @@ public class UpdatePaymentService {
             Object convertedRequest = Utils.convertToShape(
                     request,
                     JsonShape.DEFAULT,
-                    new TypeReference<Object>() {
-                    });
+                    typeReference);
             SerializedBody serializedRequestBody = Utils.serializeRequestBody(
                     convertedRequest,
                     "paymentServiceCreate",
@@ -124,7 +121,7 @@ public class UpdatePaymentService {
         }
 
         private HttpRequest onBuildRequest(UpdatePaymentServiceRequest request) throws Exception {
-            HttpRequest req = buildRequest(request);
+            HttpRequest req = buildRequest(request, new TypeReference<UpdatePaymentServiceRequest>() {});
             return sdkConfiguration.hooks().beforeRequest(createBeforeRequestContext(), req);
         }
 

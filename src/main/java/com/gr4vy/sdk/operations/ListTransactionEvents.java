@@ -45,7 +45,6 @@ import java.util.Optional;
 import java.util.concurrent.TimeUnit;
 
 
-
 public class ListTransactionEvents {
 
     static abstract class Base {
@@ -108,10 +107,9 @@ public class ListTransactionEvents {
                     java.util.Optional.of(java.util.List.of()),
                     securitySource());
         }
-
-        HttpRequest buildRequest(ListTransactionEventsRequest request) throws Exception {
+        <T>HttpRequest buildRequest(T request, Class<T> klass) throws Exception {
             String url = Utils.generateURL(
-                    ListTransactionEventsRequest.class,
+                    klass,
                     this.baseUrl,
                     "/transactions/{transaction_id}/events",
                     request, this.sdkConfiguration.globals);
@@ -120,7 +118,7 @@ public class ListTransactionEvents {
                     .addHeader("user-agent", SDKConfiguration.USER_AGENT);
 
             req.addQueryParams(Utils.getQueryParams(
-                    ListTransactionEventsRequest.class,
+                    klass,
                     request,
                     this.sdkConfiguration.globals));
             req.addHeaders(Utils.getHeadersFromMetadata(request, this.sdkConfiguration.globals));
@@ -137,7 +135,7 @@ public class ListTransactionEvents {
         }
 
         private HttpRequest onBuildRequest(ListTransactionEventsRequest request) throws Exception {
-            HttpRequest req = buildRequest(request);
+            HttpRequest req = buildRequest(request, ListTransactionEventsRequest.class);
             return sdkConfiguration.hooks().beforeRequest(createBeforeRequestContext(), req);
         }
 

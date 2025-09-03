@@ -41,7 +41,6 @@ import java.net.http.HttpResponse;
 import java.util.Optional;
 
 
-
 public class CreateAccountUpdaterJob {
 
     static abstract class Base {
@@ -88,8 +87,7 @@ public class CreateAccountUpdaterJob {
                     java.util.Optional.of(java.util.List.of()),
                     securitySource());
         }
-
-        HttpRequest buildRequest(CreateAccountUpdaterJobRequest request) throws Exception {
+        <T, U>HttpRequest buildRequest(T request, TypeReference<U> typeReference) throws Exception {
             String url = Utils.generateURL(
                     this.baseUrl,
                     "/account-updater/jobs");
@@ -97,8 +95,7 @@ public class CreateAccountUpdaterJob {
             Object convertedRequest = Utils.convertToShape(
                     request,
                     JsonShape.DEFAULT,
-                    new TypeReference<Object>() {
-                    });
+                    typeReference);
             SerializedBody serializedRequestBody = Utils.serializeRequestBody(
                     convertedRequest,
                     "accountUpdaterJobCreate",
@@ -124,7 +121,7 @@ public class CreateAccountUpdaterJob {
         }
 
         private HttpRequest onBuildRequest(CreateAccountUpdaterJobRequest request) throws Exception {
-            HttpRequest req = buildRequest(request);
+            HttpRequest req = buildRequest(request, new TypeReference<CreateAccountUpdaterJobRequest>() {});
             return sdkConfiguration.hooks().beforeRequest(createBeforeRequestContext(), req);
         }
 

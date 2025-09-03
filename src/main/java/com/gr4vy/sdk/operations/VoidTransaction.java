@@ -38,7 +38,6 @@ import java.net.http.HttpResponse;
 import java.util.Optional;
 
 
-
 public class VoidTransaction {
 
     static abstract class Base {
@@ -85,10 +84,9 @@ public class VoidTransaction {
                     java.util.Optional.of(java.util.List.of()),
                     securitySource());
         }
-
-        HttpRequest buildRequest(VoidTransactionRequest request) throws Exception {
+        <T>HttpRequest buildRequest(T request, Class<T> klass) throws Exception {
             String url = Utils.generateURL(
-                    VoidTransactionRequest.class,
+                    klass,
                     this.baseUrl,
                     "/transactions/{transaction_id}/void",
                     request, this.sdkConfiguration.globals);
@@ -109,7 +107,7 @@ public class VoidTransaction {
         }
 
         private HttpRequest onBuildRequest(VoidTransactionRequest request) throws Exception {
-            HttpRequest req = buildRequest(request);
+            HttpRequest req = buildRequest(request, VoidTransactionRequest.class);
             return sdkConfiguration.hooks().beforeRequest(createBeforeRequestContext(), req);
         }
 

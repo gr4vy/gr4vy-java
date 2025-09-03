@@ -44,7 +44,6 @@ import java.util.Optional;
 import java.util.concurrent.TimeUnit;
 
 
-
 public class GetCheckoutSession {
 
     static abstract class Base {
@@ -107,10 +106,9 @@ public class GetCheckoutSession {
                     java.util.Optional.of(java.util.List.of()),
                     securitySource());
         }
-
-        HttpRequest buildRequest(GetCheckoutSessionRequest request) throws Exception {
+        <T>HttpRequest buildRequest(T request, Class<T> klass) throws Exception {
             String url = Utils.generateURL(
-                    GetCheckoutSessionRequest.class,
+                    klass,
                     this.baseUrl,
                     "/checkout/sessions/{session_id}",
                     request, this.sdkConfiguration.globals);
@@ -131,7 +129,7 @@ public class GetCheckoutSession {
         }
 
         private HttpRequest onBuildRequest(GetCheckoutSessionRequest request) throws Exception {
-            HttpRequest req = buildRequest(request);
+            HttpRequest req = buildRequest(request, GetCheckoutSessionRequest.class);
             return sdkConfiguration.hooks().beforeRequest(createBeforeRequestContext(), req);
         }
 

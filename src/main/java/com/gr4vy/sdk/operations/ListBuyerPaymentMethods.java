@@ -45,7 +45,6 @@ import java.util.Optional;
 import java.util.concurrent.TimeUnit;
 
 
-
 public class ListBuyerPaymentMethods {
 
     static abstract class Base {
@@ -108,8 +107,7 @@ public class ListBuyerPaymentMethods {
                     java.util.Optional.of(java.util.List.of()),
                     securitySource());
         }
-
-        HttpRequest buildRequest(ListBuyerPaymentMethodsRequest request) throws Exception {
+        <T>HttpRequest buildRequest(T request, Class<T> klass) throws Exception {
             String url = Utils.generateURL(
                     this.baseUrl,
                     "/buyers/payment-methods");
@@ -118,7 +116,7 @@ public class ListBuyerPaymentMethods {
                     .addHeader("user-agent", SDKConfiguration.USER_AGENT);
 
             req.addQueryParams(Utils.getQueryParams(
-                    ListBuyerPaymentMethodsRequest.class,
+                    klass,
                     request,
                     this.sdkConfiguration.globals));
             req.addHeaders(Utils.getHeadersFromMetadata(request, this.sdkConfiguration.globals));
@@ -135,7 +133,7 @@ public class ListBuyerPaymentMethods {
         }
 
         private HttpRequest onBuildRequest(ListBuyerPaymentMethodsRequest request) throws Exception {
-            HttpRequest req = buildRequest(request);
+            HttpRequest req = buildRequest(request, ListBuyerPaymentMethodsRequest.class);
             return sdkConfiguration.hooks().beforeRequest(createBeforeRequestContext(), req);
         }
 

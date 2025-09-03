@@ -41,7 +41,6 @@ import java.net.http.HttpResponse;
 import java.util.Optional;
 
 
-
 public class CreateGooglePayDigitalWalletSession {
 
     static abstract class Base {
@@ -88,8 +87,7 @@ public class CreateGooglePayDigitalWalletSession {
                     java.util.Optional.of(java.util.List.of()),
                     securitySource());
         }
-
-        HttpRequest buildRequest(CreateGooglePayDigitalWalletSessionRequest request) throws Exception {
+        <T, U>HttpRequest buildRequest(T request, TypeReference<U> typeReference) throws Exception {
             String url = Utils.generateURL(
                     this.baseUrl,
                     "/digital-wallets/google/session");
@@ -97,8 +95,7 @@ public class CreateGooglePayDigitalWalletSession {
             Object convertedRequest = Utils.convertToShape(
                     request,
                     JsonShape.DEFAULT,
-                    new TypeReference<Object>() {
-                    });
+                    typeReference);
             SerializedBody serializedRequestBody = Utils.serializeRequestBody(
                     convertedRequest,
                     "googlePaySessionRequest",
@@ -124,7 +121,7 @@ public class CreateGooglePayDigitalWalletSession {
         }
 
         private HttpRequest onBuildRequest(CreateGooglePayDigitalWalletSessionRequest request) throws Exception {
-            HttpRequest req = buildRequest(request);
+            HttpRequest req = buildRequest(request, new TypeReference<CreateGooglePayDigitalWalletSessionRequest>() {});
             return sdkConfiguration.hooks().beforeRequest(createBeforeRequestContext(), req);
         }
 

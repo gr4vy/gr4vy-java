@@ -38,7 +38,6 @@ import java.net.http.HttpResponse;
 import java.util.Optional;
 
 
-
 public class DeleteDigitalWallet {
 
     static abstract class Base {
@@ -85,10 +84,9 @@ public class DeleteDigitalWallet {
                     java.util.Optional.of(java.util.List.of()),
                     securitySource());
         }
-
-        HttpRequest buildRequest(DeleteDigitalWalletRequest request) throws Exception {
+        <T>HttpRequest buildRequest(T request, Class<T> klass) throws Exception {
             String url = Utils.generateURL(
-                    DeleteDigitalWalletRequest.class,
+                    klass,
                     this.baseUrl,
                     "/digital-wallets/{digital_wallet_id}",
                     request, this.sdkConfiguration.globals);
@@ -109,7 +107,7 @@ public class DeleteDigitalWallet {
         }
 
         private HttpRequest onBuildRequest(DeleteDigitalWalletRequest request) throws Exception {
-            HttpRequest req = buildRequest(request);
+            HttpRequest req = buildRequest(request, DeleteDigitalWalletRequest.class);
             return sdkConfiguration.hooks().beforeRequest(createBeforeRequestContext(), req);
         }
 

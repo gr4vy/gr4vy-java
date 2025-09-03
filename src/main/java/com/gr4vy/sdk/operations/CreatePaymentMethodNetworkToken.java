@@ -41,7 +41,6 @@ import java.net.http.HttpResponse;
 import java.util.Optional;
 
 
-
 public class CreatePaymentMethodNetworkToken {
 
     static abstract class Base {
@@ -88,10 +87,9 @@ public class CreatePaymentMethodNetworkToken {
                     java.util.Optional.of(java.util.List.of()),
                     securitySource());
         }
-
-        HttpRequest buildRequest(CreatePaymentMethodNetworkTokenRequest request) throws Exception {
+        <T, U>HttpRequest buildRequest(T request, Class<T> klass, TypeReference<U> typeReference) throws Exception {
             String url = Utils.generateURL(
-                    CreatePaymentMethodNetworkTokenRequest.class,
+                    klass,
                     this.baseUrl,
                     "/payment-methods/{payment_method_id}/network-tokens",
                     request, this.sdkConfiguration.globals);
@@ -99,8 +97,7 @@ public class CreatePaymentMethodNetworkToken {
             Object convertedRequest = Utils.convertToShape(
                     request,
                     JsonShape.DEFAULT,
-                    new TypeReference<Object>() {
-                    });
+                    typeReference);
             SerializedBody serializedRequestBody = Utils.serializeRequestBody(
                     convertedRequest,
                     "networkTokenCreate",
@@ -126,7 +123,7 @@ public class CreatePaymentMethodNetworkToken {
         }
 
         private HttpRequest onBuildRequest(CreatePaymentMethodNetworkTokenRequest request) throws Exception {
-            HttpRequest req = buildRequest(request);
+            HttpRequest req = buildRequest(request, CreatePaymentMethodNetworkTokenRequest.class, new TypeReference<CreatePaymentMethodNetworkTokenRequest>() {});
             return sdkConfiguration.hooks().beforeRequest(createBeforeRequestContext(), req);
         }
 

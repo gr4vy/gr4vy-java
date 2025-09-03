@@ -40,7 +40,6 @@ import java.net.http.HttpResponse;
 import java.util.Optional;
 
 
-
 public class VerifyPaymentServiceCredentials {
 
     static abstract class Base {
@@ -87,8 +86,7 @@ public class VerifyPaymentServiceCredentials {
                     java.util.Optional.of(java.util.List.of()),
                     securitySource());
         }
-
-        HttpRequest buildRequest(VerifyPaymentServiceCredentialsRequest request) throws Exception {
+        <T, U>HttpRequest buildRequest(T request, TypeReference<U> typeReference) throws Exception {
             String url = Utils.generateURL(
                     this.baseUrl,
                     "/payment-services/verify");
@@ -96,8 +94,7 @@ public class VerifyPaymentServiceCredentials {
             Object convertedRequest = Utils.convertToShape(
                     request,
                     JsonShape.DEFAULT,
-                    new TypeReference<Object>() {
-                    });
+                    typeReference);
             SerializedBody serializedRequestBody = Utils.serializeRequestBody(
                     convertedRequest,
                     "verifyCredentials",
@@ -123,7 +120,7 @@ public class VerifyPaymentServiceCredentials {
         }
 
         private HttpRequest onBuildRequest(VerifyPaymentServiceCredentialsRequest request) throws Exception {
-            HttpRequest req = buildRequest(request);
+            HttpRequest req = buildRequest(request, new TypeReference<VerifyPaymentServiceCredentialsRequest>() {});
             return sdkConfiguration.hooks().beforeRequest(createBeforeRequestContext(), req);
         }
 

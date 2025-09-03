@@ -45,7 +45,6 @@ import java.util.Optional;
 import java.util.concurrent.TimeUnit;
 
 
-
 public class GetPayout {
 
     static abstract class Base {
@@ -108,10 +107,9 @@ public class GetPayout {
                     java.util.Optional.of(java.util.List.of()),
                     securitySource());
         }
-
-        HttpRequest buildRequest(GetPayoutRequest request) throws Exception {
+        <T>HttpRequest buildRequest(T request, Class<T> klass) throws Exception {
             String url = Utils.generateURL(
-                    GetPayoutRequest.class,
+                    klass,
                     this.baseUrl,
                     "/payouts/{payout_id}",
                     request, this.sdkConfiguration.globals);
@@ -132,7 +130,7 @@ public class GetPayout {
         }
 
         private HttpRequest onBuildRequest(GetPayoutRequest request) throws Exception {
-            HttpRequest req = buildRequest(request);
+            HttpRequest req = buildRequest(request, GetPayoutRequest.class);
             return sdkConfiguration.hooks().beforeRequest(createBeforeRequestContext(), req);
         }
 

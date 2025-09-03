@@ -45,7 +45,6 @@ import java.util.Optional;
 import java.util.concurrent.TimeUnit;
 
 
-
 public class GetGiftCard {
 
     static abstract class Base {
@@ -108,10 +107,9 @@ public class GetGiftCard {
                     java.util.Optional.of(java.util.List.of()),
                     securitySource());
         }
-
-        HttpRequest buildRequest(GetGiftCardRequest request) throws Exception {
+        <T>HttpRequest buildRequest(T request, Class<T> klass) throws Exception {
             String url = Utils.generateURL(
-                    GetGiftCardRequest.class,
+                    klass,
                     this.baseUrl,
                     "/gift-cards/{gift_card_id}",
                     request, this.sdkConfiguration.globals);
@@ -132,7 +130,7 @@ public class GetGiftCard {
         }
 
         private HttpRequest onBuildRequest(GetGiftCardRequest request) throws Exception {
-            HttpRequest req = buildRequest(request);
+            HttpRequest req = buildRequest(request, GetGiftCardRequest.class);
             return sdkConfiguration.hooks().beforeRequest(createBeforeRequestContext(), req);
         }
 

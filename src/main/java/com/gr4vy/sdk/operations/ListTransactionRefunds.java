@@ -45,7 +45,6 @@ import java.util.Optional;
 import java.util.concurrent.TimeUnit;
 
 
-
 public class ListTransactionRefunds {
 
     static abstract class Base {
@@ -108,10 +107,9 @@ public class ListTransactionRefunds {
                     java.util.Optional.of(java.util.List.of()),
                     securitySource());
         }
-
-        HttpRequest buildRequest(ListTransactionRefundsRequest request) throws Exception {
+        <T>HttpRequest buildRequest(T request, Class<T> klass) throws Exception {
             String url = Utils.generateURL(
-                    ListTransactionRefundsRequest.class,
+                    klass,
                     this.baseUrl,
                     "/transactions/{transaction_id}/refunds",
                     request, this.sdkConfiguration.globals);
@@ -132,7 +130,7 @@ public class ListTransactionRefunds {
         }
 
         private HttpRequest onBuildRequest(ListTransactionRefundsRequest request) throws Exception {
-            HttpRequest req = buildRequest(request);
+            HttpRequest req = buildRequest(request, ListTransactionRefundsRequest.class);
             return sdkConfiguration.hooks().beforeRequest(createBeforeRequestContext(), req);
         }
 

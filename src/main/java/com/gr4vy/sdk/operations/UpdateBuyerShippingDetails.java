@@ -41,7 +41,6 @@ import java.net.http.HttpResponse;
 import java.util.Optional;
 
 
-
 public class UpdateBuyerShippingDetails {
 
     static abstract class Base {
@@ -88,10 +87,9 @@ public class UpdateBuyerShippingDetails {
                     java.util.Optional.of(java.util.List.of()),
                     securitySource());
         }
-
-        HttpRequest buildRequest(UpdateBuyerShippingDetailsRequest request) throws Exception {
+        <T, U>HttpRequest buildRequest(T request, Class<T> klass, TypeReference<U> typeReference) throws Exception {
             String url = Utils.generateURL(
-                    UpdateBuyerShippingDetailsRequest.class,
+                    klass,
                     this.baseUrl,
                     "/buyers/{buyer_id}/shipping-details/{shipping_details_id}",
                     request, this.sdkConfiguration.globals);
@@ -99,8 +97,7 @@ public class UpdateBuyerShippingDetails {
             Object convertedRequest = Utils.convertToShape(
                     request,
                     JsonShape.DEFAULT,
-                    new TypeReference<Object>() {
-                    });
+                    typeReference);
             SerializedBody serializedRequestBody = Utils.serializeRequestBody(
                     convertedRequest,
                     "shippingDetailsUpdate",
@@ -126,7 +123,7 @@ public class UpdateBuyerShippingDetails {
         }
 
         private HttpRequest onBuildRequest(UpdateBuyerShippingDetailsRequest request) throws Exception {
-            HttpRequest req = buildRequest(request);
+            HttpRequest req = buildRequest(request, UpdateBuyerShippingDetailsRequest.class, new TypeReference<UpdateBuyerShippingDetailsRequest>() {});
             return sdkConfiguration.hooks().beforeRequest(createBeforeRequestContext(), req);
         }
 

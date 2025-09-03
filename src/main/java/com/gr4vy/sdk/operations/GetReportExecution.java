@@ -45,7 +45,6 @@ import java.util.Optional;
 import java.util.concurrent.TimeUnit;
 
 
-
 public class GetReportExecution {
 
     static abstract class Base {
@@ -108,10 +107,9 @@ public class GetReportExecution {
                     java.util.Optional.of(java.util.List.of()),
                     securitySource());
         }
-
-        HttpRequest buildRequest(GetReportExecutionRequest request) throws Exception {
+        <T>HttpRequest buildRequest(T request, Class<T> klass) throws Exception {
             String url = Utils.generateURL(
-                    GetReportExecutionRequest.class,
+                    klass,
                     this.baseUrl,
                     "/report-executions/{report_execution_id}",
                     request, this.sdkConfiguration.globals);
@@ -132,7 +130,7 @@ public class GetReportExecution {
         }
 
         private HttpRequest onBuildRequest(GetReportExecutionRequest request) throws Exception {
-            HttpRequest req = buildRequest(request);
+            HttpRequest req = buildRequest(request, GetReportExecutionRequest.class);
             return sdkConfiguration.hooks().beforeRequest(createBeforeRequestContext(), req);
         }
 

@@ -45,7 +45,6 @@ import java.util.Optional;
 import java.util.concurrent.TimeUnit;
 
 
-
 public class GetPaymentServiceDefinition {
 
     static abstract class Base {
@@ -108,10 +107,9 @@ public class GetPaymentServiceDefinition {
                     java.util.Optional.of(java.util.List.of()),
                     securitySource());
         }
-
-        HttpRequest buildRequest(GetPaymentServiceDefinitionRequest request) throws Exception {
+        <T>HttpRequest buildRequest(T request, Class<T> klass) throws Exception {
             String url = Utils.generateURL(
-                    GetPaymentServiceDefinitionRequest.class,
+                    klass,
                     this.baseUrl,
                     "/payment-service-definitions/{payment_service_definition_id}",
                     request, this.sdkConfiguration.globals);
@@ -131,7 +129,7 @@ public class GetPaymentServiceDefinition {
         }
 
         private HttpRequest onBuildRequest(GetPaymentServiceDefinitionRequest request) throws Exception {
-            HttpRequest req = buildRequest(request);
+            HttpRequest req = buildRequest(request, GetPaymentServiceDefinitionRequest.class);
             return sdkConfiguration.hooks().beforeRequest(createBeforeRequestContext(), req);
         }
 

@@ -41,7 +41,6 @@ import java.net.http.HttpResponse;
 import java.util.Optional;
 
 
-
 public class CaptureTransaction {
 
     static abstract class Base {
@@ -88,10 +87,9 @@ public class CaptureTransaction {
                     java.util.Optional.of(java.util.List.of()),
                     securitySource());
         }
-
-        HttpRequest buildRequest(CaptureTransactionRequest request) throws Exception {
+        <T, U>HttpRequest buildRequest(T request, Class<T> klass, TypeReference<U> typeReference) throws Exception {
             String url = Utils.generateURL(
-                    CaptureTransactionRequest.class,
+                    klass,
                     this.baseUrl,
                     "/transactions/{transaction_id}/capture",
                     request, this.sdkConfiguration.globals);
@@ -99,8 +97,7 @@ public class CaptureTransaction {
             Object convertedRequest = Utils.convertToShape(
                     request,
                     JsonShape.DEFAULT,
-                    new TypeReference<Object>() {
-                    });
+                    typeReference);
             SerializedBody serializedRequestBody = Utils.serializeRequestBody(
                     convertedRequest,
                     "transactionCaptureCreate",
@@ -126,7 +123,7 @@ public class CaptureTransaction {
         }
 
         private HttpRequest onBuildRequest(CaptureTransactionRequest request) throws Exception {
-            HttpRequest req = buildRequest(request);
+            HttpRequest req = buildRequest(request, CaptureTransactionRequest.class, new TypeReference<CaptureTransactionRequest>() {});
             return sdkConfiguration.hooks().beforeRequest(createBeforeRequestContext(), req);
         }
 
