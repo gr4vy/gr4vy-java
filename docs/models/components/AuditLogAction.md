@@ -9,4 +9,5 @@
 | `UPDATED`  | updated    |
 | `DELETED`  | deleted    |
 | `VOIDED`   | voided     |
+| `CANCELED` | canceled   |
 | `CAPTURED` | captured   |
