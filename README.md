@@ -33,6 +33,7 @@ This SDK is designed to simplify development, reduce boilerplate code, and help 
   * [Embed token generation](#embed-token-generation)
   * [Merchant account ID selection](#merchant-account-id-selection)
   * [Webhooks verification](#webhooks-verification)
+  * [Asynchronous Support](#asynchronous-support)
   * [Available Resources and Operations](#available-resources-and-operations)
   * [Pagination](#pagination)
   * [Retries](#retries)
@@ -56,7 +57,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'com.gr4vy:sdk:2.9.2'
+implementation 'com.gr4vy:sdk:2.10.1'
 ```
 
 Maven:
@@ -64,7 +65,7 @@ Maven:
 <dependency>
     <groupId>com.gr4vy</groupId>
     <artifactId>sdk</artifactId>
-    <version>2.9.2</version>
+    <version>2.10.1</version>
 </dependency>
 ```
 
@@ -218,6 +219,72 @@ try {
 
 <!-- No SDK Example Usage [usage] -->
 <!-- No Authentication [security] -->
+
+<!-- Start Asynchronous Support [async-support] -->
+## Asynchronous Support
+
+The SDK provides comprehensive asynchronous support using Java's [`CompletableFuture<T>`][comp-fut] and [Reactive Streams `Publisher<T>`][reactive-streams] APIs. This design makes no assumptions about your choice of reactive toolkit, allowing seamless integration with any reactive library.
+
+<details>
+<summary>Why Use Async?</summary>
+
+Asynchronous operations provide several key benefits:
+
+- **Non-blocking I/O**: Your threads stay free for other work while operations are in flight
+- **Better resource utilization**: Handle more concurrent operations with fewer threads
+- **Improved scalability**: Build highly responsive applications that can handle thousands of concurrent requests
+- **Reactive integration**: Works seamlessly with reactive streams and backpressure handling
+
+</details>
+
+<details>
+<summary>Reactive Library Integration</summary>
+
+The SDK returns [Reactive Streams `Publisher<T>`][reactive-streams] instances for operations dealing with streams involving multiple I/O interactions. We use Reactive Streams instead of JDK Flow API to provide broader compatibility with the reactive ecosystem, as most reactive libraries natively support Reactive Streams.
+
+**Why Reactive Streams over JDK Flow?**
+- **Broader ecosystem compatibility**: Most reactive libraries (Project Reactor, RxJava, Akka Streams, etc.) natively support Reactive Streams
+- **Industry standard**: Reactive Streams is the de facto standard for reactive programming in Java
+- **Better interoperability**: Seamless integration without additional adapters for most use cases
+
+**Integration with Popular Libraries:**
+- **Project Reactor**: Use `Flux.from(publisher)` to convert to Reactor types
+- **RxJava**: Use `Flowable.fromPublisher(publisher)` for RxJava integration
+- **Akka Streams**: Use `Source.fromPublisher(publisher)` for Akka Streams integration
+- **Vert.x**: Use `ReadStream.fromPublisher(vertx, publisher)` for Vert.x reactive streams
+- **Mutiny**: Use `Multi.createFrom().publisher(publisher)` for Quarkus Mutiny integration
+
+**For JDK Flow API Integration:**
+If you need JDK Flow API compatibility (e.g., for Quarkus/Mutiny 2), you can use adapters:
+```java
+// Convert Reactive Streams Publisher to Flow Publisher
+Flow.Publisher<T> flowPublisher = FlowAdapters.toFlowPublisher(reactiveStreamsPublisher);
+
+// Convert Flow Publisher to Reactive Streams Publisher
+Publisher<T> reactiveStreamsPublisher = FlowAdapters.toPublisher(flowPublisher);
+```
+
+For standard single-response operations, the SDK returns `CompletableFuture<T>` for straightforward async execution.
+
+</details>
+
+<details>
+<summary>Supported Operations</summary>
+
+Async support is available for:
+
+- **[Server-sent Events](#server-sent-event-streaming)**: Stream real-time events with Reactive Streams `Publisher<T>`
+- **[JSONL Streaming](#jsonl-streaming)**: Process streaming JSON lines asynchronously
+- **[Pagination](#pagination)**: Iterate through paginated results using `callAsPublisher()` and `callAsPublisherUnwrapped()`
+- **[File Uploads](#file-uploads)**: Upload files asynchronously with progress tracking
+- **[File Downloads](#file-downloads)**: Download files asynchronously with streaming support
+- **[Standard Operations](#example)**: All regular API calls return `CompletableFuture<T>` for async execution
+
+</details>
+
+[comp-fut]: https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html
+[reactive-streams]: https://www.reactive-streams.org/
+<!-- End Asynchronous Support [async-support] -->
 
 <!-- Start Available Resources and Operations [operations] -->
 ## Available Resources and Operations

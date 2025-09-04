@@ -22,7 +22,7 @@ generation:
     generateNewTests: false
     skipResponseBodyAssertions: false
 java:
-  version: 2.9.2
+  version: 2.10.1
   additionalDependencies:
     - testImplementation:org.junit.jupiter:junit-jupiter:5.10.0
     - implementation:com.auth0:java-jwt:4.5.0
@@ -31,6 +31,7 @@ java:
     - implementation:org.slf4j:slf4j-simple:2.0.7
   additionalPlugins: []
   artifactID: sdk
+  asyncMode: enabled
   baseErrorName: Gr4vyError
   clientServerStatusCodesAsErrors: true
   companyEmail: code@gr4vy.com

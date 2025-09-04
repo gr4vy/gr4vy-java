@@ -49,6 +49,7 @@ public class AuditLogAction {
     public static final AuditLogAction UPDATED = new AuditLogAction("updated");
     public static final AuditLogAction DELETED = new AuditLogAction("deleted");
     public static final AuditLogAction VOIDED = new AuditLogAction("voided");
+    public static final AuditLogAction CANCELED = new AuditLogAction("canceled");
     public static final AuditLogAction CAPTURED = new AuditLogAction("captured");
 
     // This map will grow whenever a Color gets created with a new
@@ -125,6 +126,7 @@ public class AuditLogAction {
         map.put("updated", UPDATED);
         map.put("deleted", DELETED);
         map.put("voided", VOIDED);
+        map.put("canceled", CANCELED);
         map.put("captured", CAPTURED);
         return map;
     }
@@ -135,6 +137,7 @@ public class AuditLogAction {
         map.put("updated", AuditLogActionEnum.UPDATED);
         map.put("deleted", AuditLogActionEnum.DELETED);
         map.put("voided", AuditLogActionEnum.VOIDED);
+        map.put("canceled", AuditLogActionEnum.CANCELED);
         map.put("captured", AuditLogActionEnum.CAPTURED);
         return map;
     }
@@ -175,6 +178,7 @@ public class AuditLogAction {
         UPDATED("updated"),
         DELETED("deleted"),
         VOIDED("voided"),
+        CANCELED("canceled"),
         CAPTURED("captured"),;
 
         private final String value;
