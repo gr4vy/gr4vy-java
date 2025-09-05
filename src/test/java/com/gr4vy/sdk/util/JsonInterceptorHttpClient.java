@@ -94,9 +94,22 @@ class JsonInterceptorHttpClient implements HTTPClient {
         @Override
         public HttpHeaders headers() {
             // Create a modified header map to update the content-length
-            // This part is complex; for this example, we'll return original headers.
-            // A full implementation would rebuild the headers map.
-            return originalResponse.headers();
+            var originalHeadersMap = originalResponse.headers().map();
+            var newHeadersMap = new java.util.HashMap<String, java.util.List<String>>();
+            for (var entry : originalHeadersMap.entrySet()) {
+                if (!entry.getKey().equalsIgnoreCase("content-length")) {
+                    newHeadersMap.put(entry.getKey(), entry.getValue());
+                }
+            }
+            // Compute the new content length from the body
+            int contentLength = 0;
+            try {
+                contentLength = body.available();
+            } catch (IOException e) {
+                // Fallback: do not set content-length if error
+            }
+            newHeadersMap.put("Content-Length", java.util.List.of(String.valueOf(contentLength)));
+            return HttpHeaders.of(newHeadersMap, (k, v) -> true);
         }
 
         // --- Delegate methods to the original response ---
