@@ -1,8 +1,8 @@
+package com.gr4vy.sdk.util;
+
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import com.gr4vy.sdk.BearerSecuritySource;
-import com.gr4vy.sdk.Gr4vy;
 import com.gr4vy.sdk.utils.HTTPClient;
 
 import java.io.ByteArrayInputStream;
@@ -13,7 +13,6 @@ import java.net.http.HttpClient;
 import java.net.http.HttpHeaders;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
-import java.time.Duration;
 import java.util.Optional;
 import java.util.Random;
 import java.util.concurrent.CompletableFuture;
@@ -67,7 +66,6 @@ class JsonInterceptorHttpClient implements HTTPClient {
         return new ModifiedHttpResponse(originalResponse, new ByteArrayInputStream(originalResponse.body()));
     }
 
-    @Override
     public CompletableFuture<HttpResponse<InputStream>> sendAsync(HttpRequest request) {
         // This async method is required by the interface.
         // For simplicity, we are not implementing the interception logic here,
