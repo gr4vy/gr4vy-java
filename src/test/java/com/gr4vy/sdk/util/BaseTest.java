@@ -1,10 +1,12 @@
 package com.gr4vy.sdk.util;
 
 import java.io.IOException;
+import java.net.http.HttpClient;
 import java.nio.file.*;
 import java.security.SecureRandom;
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
+import java.time.Duration;
 
 import com.gr4vy.sdk.BearerSecuritySource;
 import com.gr4vy.sdk.Gr4vy;
@@ -15,6 +17,7 @@ import com.gr4vy.sdk.models.components.MerchantAccountCreate;
 import com.gr4vy.sdk.models.components.PaymentServiceCreate;
 import com.gr4vy.sdk.models.operations.CreateMerchantAccountResponse;
 import com.gr4vy.sdk.models.operations.UpdatePaymentServiceResponse;
+import com.gr4vy.sdk.utils.HTTPClient;
 
 public abstract class BaseTest {
 
@@ -58,7 +61,15 @@ public abstract class BaseTest {
         /*
          * Creates a Gr4vy client instance.
          */
+        HttpClient defaultHttpClient = HttpClient.newBuilder()
+            .version(HttpClient.Version.HTTP_2)
+            .connectTimeout(Duration.ofSeconds(20))
+            .build();
+
+        HTTPClient interceptingClient = new JsonInterceptorHttpClient(defaultHttpClient);
+
         return Gr4vy.builder()
+            .client(interceptingClient)
             .server(AvailableServers.SANDBOX)
             .id("e2e")
             .merchantAccountId(merchantAccountId)
