@@ -43,8 +43,8 @@ public class Application {
                 .deleted(true)
                 .build();
 
+
         sdk.paymentServices().list()
-                .request(req)
                 .callAsStream()
                 .forEach((ListPaymentServicesResponse item) -> {
                    // handle page

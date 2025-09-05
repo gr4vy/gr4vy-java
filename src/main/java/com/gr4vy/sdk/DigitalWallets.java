@@ -36,6 +36,7 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 public class DigitalWallets {
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncDigitalWallets asyncSDK;
     private final Sessions sessions;
     private final Domains domains;
 
@@ -43,6 +44,7 @@ public class DigitalWallets {
         this.sdkConfiguration = sdkConfiguration;
         this.sessions = new Sessions(this.sdkConfiguration);
         this.domains = new Domains(this.sdkConfiguration);
+        this.asyncSDK = new AsyncDigitalWallets(this, sdkConfiguration);
     }
 
     public final Sessions sessions() {
@@ -51,6 +53,15 @@ public class DigitalWallets {
 
     public final Domains domains() {
         return domains;
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncDigitalWallets async() {
+        return asyncSDK;
     }
 
     /**

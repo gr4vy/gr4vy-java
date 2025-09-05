@@ -18,9 +18,20 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 public class BuyersGiftCards {
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncBuyersGiftCards asyncSDK;
 
     BuyersGiftCards(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.asyncSDK = new AsyncBuyersGiftCards(this, sdkConfiguration);
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncBuyersGiftCards async() {
+        return asyncSDK;
     }
 
     /**

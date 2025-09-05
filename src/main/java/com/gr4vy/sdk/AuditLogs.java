@@ -16,9 +16,20 @@ import java.util.Optional;
 
 public class AuditLogs {
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncAuditLogs asyncSDK;
 
     AuditLogs(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.asyncSDK = new AsyncAuditLogs(this, sdkConfiguration);
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncAuditLogs async() {
+        return asyncSDK;
     }
 
     /**

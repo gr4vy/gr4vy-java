@@ -3,6 +3,7 @@
  */
 package com.gr4vy.sdk;
 
+import com.gr4vy.sdk.utils.AsyncHooks;
 import com.gr4vy.sdk.utils.Globals;
 import com.gr4vy.sdk.utils.HTTPClient;
 import com.gr4vy.sdk.utils.Hooks;
@@ -14,13 +15,15 @@ import java.lang.SuppressWarnings;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
 
 public class SDKConfiguration {
 
     private static final String LANGUAGE = "java";
     public static final String OPENAPI_DOC_VERSION = "1.0.0";
-    public static final String SDK_VERSION = "2.10.1";
-    public static final String GEN_VERSION = "2.690.1";
+    public static final String SDK_VERSION = "2.11.0";
+    public static final String GEN_VERSION = "2.694.1";
     private static final String BASE_PACKAGE = "com.gr4vy.sdk";
     public static final String USER_AGENT = 
             String.format("speakeasy-sdk/%s %s %s %s %s",
@@ -135,5 +138,26 @@ public class SDKConfiguration {
     public void setRetryConfig(Optional<RetryConfig> retryConfig) {
         Utils.checkNotNull(retryConfig, "retryConfig");
         this.retryConfig = retryConfig;
+    }
+    private ScheduledExecutorService retryScheduler = Executors.newSingleThreadScheduledExecutor();
+    
+    public ScheduledExecutorService retryScheduler() {
+        return retryScheduler;
+    }
+
+    public void setAsyncRetryScheduler(ScheduledExecutorService retryScheduler) {
+        Utils.checkNotNull(retryScheduler, "retryScheduler");
+        this.retryScheduler = retryScheduler;
+    }
+
+    private AsyncHooks _asyncHooks = new AsyncHooks();
+
+    public AsyncHooks asyncHooks() {
+        return _asyncHooks;
+    }
+
+    public void setAsyncHooks(AsyncHooks asyncHooks) {
+        Utils.checkNotNull(asyncHooks, "asyncHooks");
+        this._asyncHooks = asyncHooks;
     }
 }

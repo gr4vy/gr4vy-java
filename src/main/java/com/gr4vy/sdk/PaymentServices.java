@@ -47,9 +47,20 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 public class PaymentServices {
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncPaymentServices asyncSDK;
 
     PaymentServices(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.asyncSDK = new AsyncPaymentServices(this, sdkConfiguration);
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncPaymentServices async() {
+        return asyncSDK;
     }
 
     /**

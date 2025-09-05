@@ -36,6 +36,7 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 public class Buyers {
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncBuyers asyncSDK;
     private final BuyersPaymentMethods paymentMethods;
     private final BuyersGiftCards giftCards;
     private final ShippingDetails shippingDetails;
@@ -45,6 +46,7 @@ public class Buyers {
         this.paymentMethods = new BuyersPaymentMethods(this.sdkConfiguration);
         this.giftCards = new BuyersGiftCards(this.sdkConfiguration);
         this.shippingDetails = new ShippingDetails(this.sdkConfiguration);
+        this.asyncSDK = new AsyncBuyers(this, sdkConfiguration);
     }
 
     public final BuyersPaymentMethods paymentMethods() {
@@ -57,6 +59,15 @@ public class Buyers {
 
     public final ShippingDetails shippingDetails() {
         return shippingDetails;
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncBuyers async() {
+        return asyncSDK;
     }
 
     /**

@@ -5,15 +5,26 @@ package com.gr4vy.sdk;
 
 public class AccountUpdater {
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncAccountUpdater asyncSDK;
     private final Jobs jobs;
 
     AccountUpdater(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
         this.jobs = new Jobs(this.sdkConfiguration);
+        this.asyncSDK = new AsyncAccountUpdater(this, sdkConfiguration);
     }
 
     public final Jobs jobs() {
         return jobs;
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncAccountUpdater async() {
+        return asyncSDK;
     }
 
 }

@@ -3,17 +3,17 @@ id: 5bbaa3a9-baa0-471b-ba6a-13fd88e8c119
 management:
   docChecksum: a27931de97c8c441c312515d873ca761
   docVersion: 1.0.0
-  speakeasyVersion: 1.607.0
-  generationVersion: 2.690.1
-  releaseVersion: 2.10.1
-  configChecksum: 3e175ea7e35241fb6870d750248fb89f
+  speakeasyVersion: 1.611.0
+  generationVersion: 2.694.1
+  releaseVersion: 2.11.0
+  configChecksum: d8b6386589c0170ba316c7ee902f8856
   repoURL: https://github.com/gr4vy/gr4vy-java.git
   published: true
 features:
   java:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.1
-    core: 3.46.1
+    core: 3.47.1
     flattening: 2.81.1
     globalSecurity: 2.83.0
     globalSecurityCallbacks: 0.1.0
@@ -547,6 +547,7 @@ generatedFiles:
   - docs/sdks/shippingdetails/README.md
   - docs/sdks/transactions/README.md
   - docs/sdks/transactionsrefunds/README.md
+  - docs/utils/Blob.md
   - gradle.properties
   - gradle/wrapper/gradle-wrapper.jar
   - gradle/wrapper/gradle-wrapper.properties
@@ -555,6 +556,40 @@ generatedFiles:
   - settings.gradle
   - src/main/java/com/gr4vy/sdk/AccountUpdater.java
   - src/main/java/com/gr4vy/sdk/All.java
+  - src/main/java/com/gr4vy/sdk/AsyncAccountUpdater.java
+  - src/main/java/com/gr4vy/sdk/AsyncAll.java
+  - src/main/java/com/gr4vy/sdk/AsyncAuditLogs.java
+  - src/main/java/com/gr4vy/sdk/AsyncBalances.java
+  - src/main/java/com/gr4vy/sdk/AsyncBuyers.java
+  - src/main/java/com/gr4vy/sdk/AsyncBuyersGiftCards.java
+  - src/main/java/com/gr4vy/sdk/AsyncBuyersPaymentMethods.java
+  - src/main/java/com/gr4vy/sdk/AsyncCardSchemeDefinitions.java
+  - src/main/java/com/gr4vy/sdk/AsyncCheckoutSessions.java
+  - src/main/java/com/gr4vy/sdk/AsyncCryptogram.java
+  - src/main/java/com/gr4vy/sdk/AsyncDigitalWallets.java
+  - src/main/java/com/gr4vy/sdk/AsyncDomains.java
+  - src/main/java/com/gr4vy/sdk/AsyncEvents.java
+  - src/main/java/com/gr4vy/sdk/AsyncExecutions.java
+  - src/main/java/com/gr4vy/sdk/AsyncGiftCards.java
+  - src/main/java/com/gr4vy/sdk/AsyncGr4vy.java
+  - src/main/java/com/gr4vy/sdk/AsyncJobs.java
+  - src/main/java/com/gr4vy/sdk/AsyncMerchantAccounts.java
+  - src/main/java/com/gr4vy/sdk/AsyncNetworkTokens.java
+  - src/main/java/com/gr4vy/sdk/AsyncPaymentLinks.java
+  - src/main/java/com/gr4vy/sdk/AsyncPaymentMethods.java
+  - src/main/java/com/gr4vy/sdk/AsyncPaymentOptions.java
+  - src/main/java/com/gr4vy/sdk/AsyncPaymentServiceDefinitions.java
+  - src/main/java/com/gr4vy/sdk/AsyncPaymentServiceTokens.java
+  - src/main/java/com/gr4vy/sdk/AsyncPaymentServices.java
+  - src/main/java/com/gr4vy/sdk/AsyncPayouts.java
+  - src/main/java/com/gr4vy/sdk/AsyncRefunds.java
+  - src/main/java/com/gr4vy/sdk/AsyncReportExecutions.java
+  - src/main/java/com/gr4vy/sdk/AsyncReports.java
+  - src/main/java/com/gr4vy/sdk/AsyncSessions.java
+  - src/main/java/com/gr4vy/sdk/AsyncSettlements.java
+  - src/main/java/com/gr4vy/sdk/AsyncShippingDetails.java
+  - src/main/java/com/gr4vy/sdk/AsyncTransactions.java
+  - src/main/java/com/gr4vy/sdk/AsyncTransactionsRefunds.java
   - src/main/java/com/gr4vy/sdk/AuditLogs.java
   - src/main/java/com/gr4vy/sdk/Balances.java
   - src/main/java/com/gr4vy/sdk/Buyers.java
@@ -882,6 +917,112 @@ generatedFiles:
   - src/main/java/com/gr4vy/sdk/models/errors/Error502.java
   - src/main/java/com/gr4vy/sdk/models/errors/Error504.java
   - src/main/java/com/gr4vy/sdk/models/errors/HTTPValidationError.java
+  - src/main/java/com/gr4vy/sdk/models/errors/UncheckedAPIException.java
+  - src/main/java/com/gr4vy/sdk/models/errors/async/Error400.java
+  - src/main/java/com/gr4vy/sdk/models/errors/async/Error401.java
+  - src/main/java/com/gr4vy/sdk/models/errors/async/Error403.java
+  - src/main/java/com/gr4vy/sdk/models/errors/async/Error404.java
+  - src/main/java/com/gr4vy/sdk/models/errors/async/Error405.java
+  - src/main/java/com/gr4vy/sdk/models/errors/async/Error409.java
+  - src/main/java/com/gr4vy/sdk/models/errors/async/Error425.java
+  - src/main/java/com/gr4vy/sdk/models/errors/async/Error429.java
+  - src/main/java/com/gr4vy/sdk/models/errors/async/Error500.java
+  - src/main/java/com/gr4vy/sdk/models/errors/async/Error502.java
+  - src/main/java/com/gr4vy/sdk/models/errors/async/Error504.java
+  - src/main/java/com/gr4vy/sdk/models/errors/async/HTTPValidationError.java
+  - src/main/java/com/gr4vy/sdk/models/operations//async/AddBuyerRequestBuilder.java
+  - src/main/java/com/gr4vy/sdk/models/operations//async/AddBuyerShippingDetailsRequestBuilder.java
+  - src/main/java/com/gr4vy/sdk/models/operations//async/AddPaymentLinkRequestBuilder.java
+  - src/main/java/com/gr4vy/sdk/models/operations//async/AddReportRequestBuilder.java
+  - src/main/java/com/gr4vy/sdk/models/operations//async/CancelTransactionRequestBuilder.java
+  - src/main/java/com/gr4vy/sdk/models/operations//async/CaptureTransactionRequestBuilder.java
+  - src/main/java/com/gr4vy/sdk/models/operations//async/ConfigureDigitalWalletRequestBuilder.java
+  - src/main/java/com/gr4vy/sdk/models/operations//async/CreateAccountUpdaterJobRequestBuilder.java
+  - src/main/java/com/gr4vy/sdk/models/operations//async/CreateApplePayDigitalWalletSessionRequestBuilder.java
+  - src/main/java/com/gr4vy/sdk/models/operations//async/CreateCheckoutSessionRequestBuilder.java
+  - src/main/java/com/gr4vy/sdk/models/operations//async/CreateClickToPayDigitalWalletSessionRequestBuilder.java
+  - src/main/java/com/gr4vy/sdk/models/operations//async/CreateFullTransactionRefundRequestBuilder.java
+  - src/main/java/com/gr4vy/sdk/models/operations//async/CreateGiftCardRequestBuilder.java
+  - src/main/java/com/gr4vy/sdk/models/operations//async/CreateGooglePayDigitalWalletSessionRequestBuilder.java
+  - src/main/java/com/gr4vy/sdk/models/operations//async/CreateMerchantAccountRequestBuilder.java
+  - src/main/java/com/gr4vy/sdk/models/operations//async/CreatePaymentMethodNetworkTokenCryptogramRequestBuilder.java
+  - src/main/java/com/gr4vy/sdk/models/operations//async/CreatePaymentMethodNetworkTokenRequestBuilder.java
+  - src/main/java/com/gr4vy/sdk/models/operations//async/CreatePaymentMethodPaymentServiceTokenRequestBuilder.java
+  - src/main/java/com/gr4vy/sdk/models/operations//async/CreatePaymentMethodRequestBuilder.java
+  - src/main/java/com/gr4vy/sdk/models/operations//async/CreatePaymentServiceDefinitionSessionRequestBuilder.java
+  - src/main/java/com/gr4vy/sdk/models/operations//async/CreatePaymentServiceRequestBuilder.java
+  - src/main/java/com/gr4vy/sdk/models/operations//async/CreatePaymentServiceSessionRequestBuilder.java
+  - src/main/java/com/gr4vy/sdk/models/operations//async/CreatePayoutRequestBuilder.java
+  - src/main/java/com/gr4vy/sdk/models/operations//async/CreateReportExecutionUrlRequestBuilder.java
+  - src/main/java/com/gr4vy/sdk/models/operations//async/CreateTransactionRefundRequestBuilder.java
+  - src/main/java/com/gr4vy/sdk/models/operations//async/CreateTransactionRequestBuilder.java
+  - src/main/java/com/gr4vy/sdk/models/operations//async/DeleteBuyerRequestBuilder.java
+  - src/main/java/com/gr4vy/sdk/models/operations//async/DeleteBuyerShippingDetailsRequestBuilder.java
+  - src/main/java/com/gr4vy/sdk/models/operations//async/DeleteCheckoutSessionRequestBuilder.java
+  - src/main/java/com/gr4vy/sdk/models/operations//async/DeleteDigitalWalletRequestBuilder.java
+  - src/main/java/com/gr4vy/sdk/models/operations//async/DeleteGiftCardRequestBuilder.java
+  - src/main/java/com/gr4vy/sdk/models/operations//async/DeletePaymentMethodNetworkTokenRequestBuilder.java
+  - src/main/java/com/gr4vy/sdk/models/operations//async/DeletePaymentMethodPaymentServiceTokenRequestBuilder.java
+  - src/main/java/com/gr4vy/sdk/models/operations//async/DeletePaymentMethodRequestBuilder.java
+  - src/main/java/com/gr4vy/sdk/models/operations//async/DeletePaymentServiceRequestBuilder.java
+  - src/main/java/com/gr4vy/sdk/models/operations//async/ExpirePaymentLinkRequestBuilder.java
+  - src/main/java/com/gr4vy/sdk/models/operations//async/GetBuyerRequestBuilder.java
+  - src/main/java/com/gr4vy/sdk/models/operations//async/GetBuyerShippingDetailsRequestBuilder.java
+  - src/main/java/com/gr4vy/sdk/models/operations//async/GetCheckoutSessionRequestBuilder.java
+  - src/main/java/com/gr4vy/sdk/models/operations//async/GetDigitalWalletRequestBuilder.java
+  - src/main/java/com/gr4vy/sdk/models/operations//async/GetGiftCardRequestBuilder.java
+  - src/main/java/com/gr4vy/sdk/models/operations//async/GetMerchantAccountRequestBuilder.java
+  - src/main/java/com/gr4vy/sdk/models/operations//async/GetPaymentLinkRequestBuilder.java
+  - src/main/java/com/gr4vy/sdk/models/operations//async/GetPaymentMethodRequestBuilder.java
+  - src/main/java/com/gr4vy/sdk/models/operations//async/GetPaymentServiceDefinitionRequestBuilder.java
+  - src/main/java/com/gr4vy/sdk/models/operations//async/GetPaymentServiceRequestBuilder.java
+  - src/main/java/com/gr4vy/sdk/models/operations//async/GetPayoutRequestBuilder.java
+  - src/main/java/com/gr4vy/sdk/models/operations//async/GetRefundRequestBuilder.java
+  - src/main/java/com/gr4vy/sdk/models/operations//async/GetReportExecutionRequestBuilder.java
+  - src/main/java/com/gr4vy/sdk/models/operations//async/GetReportRequestBuilder.java
+  - src/main/java/com/gr4vy/sdk/models/operations//async/GetTransactionRefundRequestBuilder.java
+  - src/main/java/com/gr4vy/sdk/models/operations//async/GetTransactionRequestBuilder.java
+  - src/main/java/com/gr4vy/sdk/models/operations//async/GetTransactionSettlementRequestBuilder.java
+  - src/main/java/com/gr4vy/sdk/models/operations//async/ListAllReportExecutionsRequestBuilder.java
+  - src/main/java/com/gr4vy/sdk/models/operations//async/ListAuditLogsRequestBuilder.java
+  - src/main/java/com/gr4vy/sdk/models/operations//async/ListBuyerGiftCardsRequestBuilder.java
+  - src/main/java/com/gr4vy/sdk/models/operations//async/ListBuyerPaymentMethodsRequestBuilder.java
+  - src/main/java/com/gr4vy/sdk/models/operations//async/ListBuyerShippingDetailsRequestBuilder.java
+  - src/main/java/com/gr4vy/sdk/models/operations//async/ListBuyersRequestBuilder.java
+  - src/main/java/com/gr4vy/sdk/models/operations//async/ListCardSchemeDefinitionsRequestBuilder.java
+  - src/main/java/com/gr4vy/sdk/models/operations//async/ListDigitalWalletsRequestBuilder.java
+  - src/main/java/com/gr4vy/sdk/models/operations//async/ListGiftCardBalancesRequestBuilder.java
+  - src/main/java/com/gr4vy/sdk/models/operations//async/ListGiftCardsRequestBuilder.java
+  - src/main/java/com/gr4vy/sdk/models/operations//async/ListMerchantAccountsRequestBuilder.java
+  - src/main/java/com/gr4vy/sdk/models/operations//async/ListPaymentLinksRequestBuilder.java
+  - src/main/java/com/gr4vy/sdk/models/operations//async/ListPaymentMethodNetworkTokensRequestBuilder.java
+  - src/main/java/com/gr4vy/sdk/models/operations//async/ListPaymentMethodPaymentServiceTokensRequestBuilder.java
+  - src/main/java/com/gr4vy/sdk/models/operations//async/ListPaymentMethodsRequestBuilder.java
+  - src/main/java/com/gr4vy/sdk/models/operations//async/ListPaymentOptionsRequestBuilder.java
+  - src/main/java/com/gr4vy/sdk/models/operations//async/ListPaymentServiceDefinitionsRequestBuilder.java
+  - src/main/java/com/gr4vy/sdk/models/operations//async/ListPaymentServicesRequestBuilder.java
+  - src/main/java/com/gr4vy/sdk/models/operations//async/ListPayoutsRequestBuilder.java
+  - src/main/java/com/gr4vy/sdk/models/operations//async/ListReportExecutionsRequestBuilder.java
+  - src/main/java/com/gr4vy/sdk/models/operations//async/ListReportsRequestBuilder.java
+  - src/main/java/com/gr4vy/sdk/models/operations//async/ListTransactionEventsRequestBuilder.java
+  - src/main/java/com/gr4vy/sdk/models/operations//async/ListTransactionRefundsRequestBuilder.java
+  - src/main/java/com/gr4vy/sdk/models/operations//async/ListTransactionSettlementsRequestBuilder.java
+  - src/main/java/com/gr4vy/sdk/models/operations//async/ListTransactionsRequestBuilder.java
+  - src/main/java/com/gr4vy/sdk/models/operations//async/RegisterDigitalWalletDomainRequestBuilder.java
+  - src/main/java/com/gr4vy/sdk/models/operations//async/ResumePaymentMethodNetworkTokenRequestBuilder.java
+  - src/main/java/com/gr4vy/sdk/models/operations//async/SuspendPaymentMethodNetworkTokenRequestBuilder.java
+  - src/main/java/com/gr4vy/sdk/models/operations//async/SyncTransactionRequestBuilder.java
+  - src/main/java/com/gr4vy/sdk/models/operations//async/UnregisterDigitalWalletDomainRequestBuilder.java
+  - src/main/java/com/gr4vy/sdk/models/operations//async/UpdateBuyerRequestBuilder.java
+  - src/main/java/com/gr4vy/sdk/models/operations//async/UpdateBuyerShippingDetailsRequestBuilder.java
+  - src/main/java/com/gr4vy/sdk/models/operations//async/UpdateCheckoutSessionRequestBuilder.java
+  - src/main/java/com/gr4vy/sdk/models/operations//async/UpdateDigitalWalletRequestBuilder.java
+  - src/main/java/com/gr4vy/sdk/models/operations//async/UpdateMerchantAccountRequestBuilder.java
+  - src/main/java/com/gr4vy/sdk/models/operations//async/UpdatePaymentServiceRequestBuilder.java
+  - src/main/java/com/gr4vy/sdk/models/operations//async/UpdateReportRequestBuilder.java
+  - src/main/java/com/gr4vy/sdk/models/operations//async/UpdateTransactionRequestBuilder.java
+  - src/main/java/com/gr4vy/sdk/models/operations//async/VerifyPaymentServiceCredentialsRequestBuilder.java
+  - src/main/java/com/gr4vy/sdk/models/operations//async/VoidTransactionRequestBuilder.java
   - src/main/java/com/gr4vy/sdk/models/operations/AddBuyerRequest.java
   - src/main/java/com/gr4vy/sdk/models/operations/AddBuyerRequestBuilder.java
   - src/main/java/com/gr4vy/sdk/models/operations/AddBuyerResponse.java
@@ -1163,6 +1304,99 @@ generatedFiles:
   - src/main/java/com/gr4vy/sdk/models/operations/VoidTransactionRequest.java
   - src/main/java/com/gr4vy/sdk/models/operations/VoidTransactionRequestBuilder.java
   - src/main/java/com/gr4vy/sdk/models/operations/VoidTransactionResponse.java
+  - src/main/java/com/gr4vy/sdk/models/operations/async/AddBuyerResponse.java
+  - src/main/java/com/gr4vy/sdk/models/operations/async/AddBuyerShippingDetailsResponse.java
+  - src/main/java/com/gr4vy/sdk/models/operations/async/AddPaymentLinkResponse.java
+  - src/main/java/com/gr4vy/sdk/models/operations/async/AddReportResponse.java
+  - src/main/java/com/gr4vy/sdk/models/operations/async/CancelTransactionResponse.java
+  - src/main/java/com/gr4vy/sdk/models/operations/async/CaptureTransactionResponse.java
+  - src/main/java/com/gr4vy/sdk/models/operations/async/ConfigureDigitalWalletResponse.java
+  - src/main/java/com/gr4vy/sdk/models/operations/async/CreateAccountUpdaterJobResponse.java
+  - src/main/java/com/gr4vy/sdk/models/operations/async/CreateApplePayDigitalWalletSessionResponse.java
+  - src/main/java/com/gr4vy/sdk/models/operations/async/CreateCheckoutSessionResponse.java
+  - src/main/java/com/gr4vy/sdk/models/operations/async/CreateClickToPayDigitalWalletSessionResponse.java
+  - src/main/java/com/gr4vy/sdk/models/operations/async/CreateFullTransactionRefundResponse.java
+  - src/main/java/com/gr4vy/sdk/models/operations/async/CreateGiftCardResponse.java
+  - src/main/java/com/gr4vy/sdk/models/operations/async/CreateGooglePayDigitalWalletSessionResponse.java
+  - src/main/java/com/gr4vy/sdk/models/operations/async/CreateMerchantAccountResponse.java
+  - src/main/java/com/gr4vy/sdk/models/operations/async/CreatePaymentMethodNetworkTokenCryptogramResponse.java
+  - src/main/java/com/gr4vy/sdk/models/operations/async/CreatePaymentMethodNetworkTokenResponse.java
+  - src/main/java/com/gr4vy/sdk/models/operations/async/CreatePaymentMethodPaymentServiceTokenResponse.java
+  - src/main/java/com/gr4vy/sdk/models/operations/async/CreatePaymentMethodResponse.java
+  - src/main/java/com/gr4vy/sdk/models/operations/async/CreatePaymentServiceDefinitionSessionResponse.java
+  - src/main/java/com/gr4vy/sdk/models/operations/async/CreatePaymentServiceResponse.java
+  - src/main/java/com/gr4vy/sdk/models/operations/async/CreatePaymentServiceSessionResponse.java
+  - src/main/java/com/gr4vy/sdk/models/operations/async/CreatePayoutResponse.java
+  - src/main/java/com/gr4vy/sdk/models/operations/async/CreateReportExecutionUrlResponse.java
+  - src/main/java/com/gr4vy/sdk/models/operations/async/CreateTransactionRefundResponse.java
+  - src/main/java/com/gr4vy/sdk/models/operations/async/CreateTransactionResponse.java
+  - src/main/java/com/gr4vy/sdk/models/operations/async/DeleteBuyerResponse.java
+  - src/main/java/com/gr4vy/sdk/models/operations/async/DeleteBuyerShippingDetailsResponse.java
+  - src/main/java/com/gr4vy/sdk/models/operations/async/DeleteCheckoutSessionResponse.java
+  - src/main/java/com/gr4vy/sdk/models/operations/async/DeleteDigitalWalletResponse.java
+  - src/main/java/com/gr4vy/sdk/models/operations/async/DeleteGiftCardResponse.java
+  - src/main/java/com/gr4vy/sdk/models/operations/async/DeletePaymentMethodNetworkTokenResponse.java
+  - src/main/java/com/gr4vy/sdk/models/operations/async/DeletePaymentMethodPaymentServiceTokenResponse.java
+  - src/main/java/com/gr4vy/sdk/models/operations/async/DeletePaymentMethodResponse.java
+  - src/main/java/com/gr4vy/sdk/models/operations/async/DeletePaymentServiceResponse.java
+  - src/main/java/com/gr4vy/sdk/models/operations/async/ExpirePaymentLinkResponse.java
+  - src/main/java/com/gr4vy/sdk/models/operations/async/GetBuyerResponse.java
+  - src/main/java/com/gr4vy/sdk/models/operations/async/GetBuyerShippingDetailsResponse.java
+  - src/main/java/com/gr4vy/sdk/models/operations/async/GetCheckoutSessionResponse.java
+  - src/main/java/com/gr4vy/sdk/models/operations/async/GetDigitalWalletResponse.java
+  - src/main/java/com/gr4vy/sdk/models/operations/async/GetGiftCardResponse.java
+  - src/main/java/com/gr4vy/sdk/models/operations/async/GetMerchantAccountResponse.java
+  - src/main/java/com/gr4vy/sdk/models/operations/async/GetPaymentLinkResponse.java
+  - src/main/java/com/gr4vy/sdk/models/operations/async/GetPaymentMethodResponse.java
+  - src/main/java/com/gr4vy/sdk/models/operations/async/GetPaymentServiceDefinitionResponse.java
+  - src/main/java/com/gr4vy/sdk/models/operations/async/GetPaymentServiceResponse.java
+  - src/main/java/com/gr4vy/sdk/models/operations/async/GetPayoutResponse.java
+  - src/main/java/com/gr4vy/sdk/models/operations/async/GetRefundResponse.java
+  - src/main/java/com/gr4vy/sdk/models/operations/async/GetReportExecutionResponse.java
+  - src/main/java/com/gr4vy/sdk/models/operations/async/GetReportResponse.java
+  - src/main/java/com/gr4vy/sdk/models/operations/async/GetTransactionRefundResponse.java
+  - src/main/java/com/gr4vy/sdk/models/operations/async/GetTransactionResponse.java
+  - src/main/java/com/gr4vy/sdk/models/operations/async/GetTransactionSettlementResponse.java
+  - src/main/java/com/gr4vy/sdk/models/operations/async/ListAllReportExecutionsResponse.java
+  - src/main/java/com/gr4vy/sdk/models/operations/async/ListAuditLogsResponse.java
+  - src/main/java/com/gr4vy/sdk/models/operations/async/ListBuyerGiftCardsResponse.java
+  - src/main/java/com/gr4vy/sdk/models/operations/async/ListBuyerPaymentMethodsResponse.java
+  - src/main/java/com/gr4vy/sdk/models/operations/async/ListBuyerShippingDetailsResponse.java
+  - src/main/java/com/gr4vy/sdk/models/operations/async/ListBuyersResponse.java
+  - src/main/java/com/gr4vy/sdk/models/operations/async/ListCardSchemeDefinitionsResponse.java
+  - src/main/java/com/gr4vy/sdk/models/operations/async/ListDigitalWalletsResponse.java
+  - src/main/java/com/gr4vy/sdk/models/operations/async/ListGiftCardBalancesResponse.java
+  - src/main/java/com/gr4vy/sdk/models/operations/async/ListGiftCardsResponse.java
+  - src/main/java/com/gr4vy/sdk/models/operations/async/ListMerchantAccountsResponse.java
+  - src/main/java/com/gr4vy/sdk/models/operations/async/ListPaymentLinksResponse.java
+  - src/main/java/com/gr4vy/sdk/models/operations/async/ListPaymentMethodNetworkTokensResponse.java
+  - src/main/java/com/gr4vy/sdk/models/operations/async/ListPaymentMethodPaymentServiceTokensResponse.java
+  - src/main/java/com/gr4vy/sdk/models/operations/async/ListPaymentMethodsResponse.java
+  - src/main/java/com/gr4vy/sdk/models/operations/async/ListPaymentOptionsResponse.java
+  - src/main/java/com/gr4vy/sdk/models/operations/async/ListPaymentServiceDefinitionsResponse.java
+  - src/main/java/com/gr4vy/sdk/models/operations/async/ListPaymentServicesResponse.java
+  - src/main/java/com/gr4vy/sdk/models/operations/async/ListPayoutsResponse.java
+  - src/main/java/com/gr4vy/sdk/models/operations/async/ListReportExecutionsResponse.java
+  - src/main/java/com/gr4vy/sdk/models/operations/async/ListReportsResponse.java
+  - src/main/java/com/gr4vy/sdk/models/operations/async/ListTransactionEventsResponse.java
+  - src/main/java/com/gr4vy/sdk/models/operations/async/ListTransactionRefundsResponse.java
+  - src/main/java/com/gr4vy/sdk/models/operations/async/ListTransactionSettlementsResponse.java
+  - src/main/java/com/gr4vy/sdk/models/operations/async/ListTransactionsResponse.java
+  - src/main/java/com/gr4vy/sdk/models/operations/async/RegisterDigitalWalletDomainResponse.java
+  - src/main/java/com/gr4vy/sdk/models/operations/async/ResumePaymentMethodNetworkTokenResponse.java
+  - src/main/java/com/gr4vy/sdk/models/operations/async/SuspendPaymentMethodNetworkTokenResponse.java
+  - src/main/java/com/gr4vy/sdk/models/operations/async/SyncTransactionResponse.java
+  - src/main/java/com/gr4vy/sdk/models/operations/async/UnregisterDigitalWalletDomainResponse.java
+  - src/main/java/com/gr4vy/sdk/models/operations/async/UpdateBuyerResponse.java
+  - src/main/java/com/gr4vy/sdk/models/operations/async/UpdateBuyerShippingDetailsResponse.java
+  - src/main/java/com/gr4vy/sdk/models/operations/async/UpdateCheckoutSessionResponse.java
+  - src/main/java/com/gr4vy/sdk/models/operations/async/UpdateDigitalWalletResponse.java
+  - src/main/java/com/gr4vy/sdk/models/operations/async/UpdateMerchantAccountResponse.java
+  - src/main/java/com/gr4vy/sdk/models/operations/async/UpdatePaymentServiceResponse.java
+  - src/main/java/com/gr4vy/sdk/models/operations/async/UpdateReportResponse.java
+  - src/main/java/com/gr4vy/sdk/models/operations/async/UpdateTransactionResponse.java
+  - src/main/java/com/gr4vy/sdk/models/operations/async/VerifyPaymentServiceCredentialsResponse.java
+  - src/main/java/com/gr4vy/sdk/models/operations/async/VoidTransactionResponse.java
   - src/main/java/com/gr4vy/sdk/operations/AddBuyer.java
   - src/main/java/com/gr4vy/sdk/operations/AddBuyerShippingDetails.java
   - src/main/java/com/gr4vy/sdk/operations/AddPaymentLink.java
@@ -1257,6 +1491,11 @@ generatedFiles:
   - src/main/java/com/gr4vy/sdk/operations/UpdateTransaction.java
   - src/main/java/com/gr4vy/sdk/operations/VerifyPaymentServiceCredentials.java
   - src/main/java/com/gr4vy/sdk/operations/VoidTransaction.java
+  - src/main/java/com/gr4vy/sdk/utils/AsyncHook.java
+  - src/main/java/com/gr4vy/sdk/utils/AsyncHooks.java
+  - src/main/java/com/gr4vy/sdk/utils/AsyncResponse.java
+  - src/main/java/com/gr4vy/sdk/utils/AsyncRetries.java
+  - src/main/java/com/gr4vy/sdk/utils/AsyncRetryableException.java
   - src/main/java/com/gr4vy/sdk/utils/BackoffStrategy.java
   - src/main/java/com/gr4vy/sdk/utils/BigDecimalString.java
   - src/main/java/com/gr4vy/sdk/utils/BigIntegerString.java
@@ -1276,6 +1515,7 @@ generatedFiles:
   - src/main/java/com/gr4vy/sdk/utils/HeaderMetadata.java
   - src/main/java/com/gr4vy/sdk/utils/Helpers.java
   - src/main/java/com/gr4vy/sdk/utils/Hook.java
+  - src/main/java/com/gr4vy/sdk/utils/HookAdapters.java
   - src/main/java/com/gr4vy/sdk/utils/Hooks.java
   - src/main/java/com/gr4vy/sdk/utils/JSON.java
   - src/main/java/com/gr4vy/sdk/utils/LazySingletonValue.java
@@ -1283,6 +1523,7 @@ generatedFiles:
   - src/main/java/com/gr4vy/sdk/utils/Multipart.java
   - src/main/java/com/gr4vy/sdk/utils/MultipartFormMetadata.java
   - src/main/java/com/gr4vy/sdk/utils/NameValue.java
+  - src/main/java/com/gr4vy/sdk/utils/NonRetryableException.java
   - src/main/java/com/gr4vy/sdk/utils/OneOfDeserializer.java
   - src/main/java/com/gr4vy/sdk/utils/Options.java
   - src/main/java/com/gr4vy/sdk/utils/PathParamsMetadata.java
@@ -1298,6 +1539,7 @@ generatedFiles:
   - src/main/java/com/gr4vy/sdk/utils/ResponseWithBody.java
   - src/main/java/com/gr4vy/sdk/utils/Retries.java
   - src/main/java/com/gr4vy/sdk/utils/RetryConfig.java
+  - src/main/java/com/gr4vy/sdk/utils/RetryableException.java
   - src/main/java/com/gr4vy/sdk/utils/Security.java
   - src/main/java/com/gr4vy/sdk/utils/SecurityMetadata.java
   - src/main/java/com/gr4vy/sdk/utils/SerializedBody.java
@@ -1309,12 +1551,14 @@ generatedFiles:
   - src/main/java/com/gr4vy/sdk/utils/Types.java
   - src/main/java/com/gr4vy/sdk/utils/Utf8UrlEncoder.java
   - src/main/java/com/gr4vy/sdk/utils/Utils.java
+  - src/main/java/com/gr4vy/sdk/utils/pagination/AsyncPaginator.java
   - src/main/java/com/gr4vy/sdk/utils/pagination/CursorTracker.java
   - src/main/java/com/gr4vy/sdk/utils/pagination/OffsetTracker.java
   - src/main/java/com/gr4vy/sdk/utils/pagination/PageTracker.java
   - src/main/java/com/gr4vy/sdk/utils/pagination/Paginator.java
   - src/main/java/com/gr4vy/sdk/utils/pagination/ProgressTrackerStrategy.java
   - src/main/java/com/gr4vy/sdk/utils/pagination/ResultsPageTracker.java
+  - src/main/java/com/gr4vy/sdk/utils/reactive/EventStream.java
   - src/main/java/com/gr4vy/sdk/utils/reactive/ReactiveUtils.java
 examples:
   create_account_updater_job:
@@ -4752,4 +4996,3 @@ examples:
           application/json: {"type": "error", "code": "gateway_timeout", "status": 504, "message": "Request could not be processed"}
 examplesVersion: 1.0.2
 generatedTests: {}
-releaseNotes: "## Java SDK Changes Detected:\n* `gr4vy.auditLogs.list()`: \n  *  `request.action` **Changed**\n"

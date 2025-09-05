@@ -19,9 +19,20 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 public class Events {
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncEvents asyncSDK;
 
     Events(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.asyncSDK = new AsyncEvents(this, sdkConfiguration);
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncEvents async() {
+        return asyncSDK;
     }
 
     /**

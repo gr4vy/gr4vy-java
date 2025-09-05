@@ -31,6 +31,7 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 public class PaymentMethods {
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncPaymentMethods asyncSDK;
     private final PaymentServiceTokens paymentServiceTokens;
     private final NetworkTokens networkTokens;
 
@@ -38,6 +39,7 @@ public class PaymentMethods {
         this.sdkConfiguration = sdkConfiguration;
         this.paymentServiceTokens = new PaymentServiceTokens(this.sdkConfiguration);
         this.networkTokens = new NetworkTokens(this.sdkConfiguration);
+        this.asyncSDK = new AsyncPaymentMethods(this, sdkConfiguration);
     }
 
     public final PaymentServiceTokens paymentServiceTokens() {
@@ -46,6 +48,15 @@ public class PaymentMethods {
 
     public final NetworkTokens networkTokens() {
         return networkTokens;
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncPaymentMethods async() {
+        return asyncSDK;
     }
 
     /**

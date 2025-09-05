@@ -17,9 +17,20 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 public class Cryptogram {
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncCryptogram asyncSDK;
 
     Cryptogram(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.asyncSDK = new AsyncCryptogram(this, sdkConfiguration);
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncCryptogram async() {
+        return asyncSDK;
     }
 
     /**

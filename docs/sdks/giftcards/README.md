@@ -234,8 +234,8 @@ public class Application {
         ListGiftCardsRequest req = ListGiftCardsRequest.builder()
                 .build();
 
+
         sdk.giftCards().list()
-                .request(req)
                 .callAsStream()
                 .forEach((ListGiftCardsResponse item) -> {
                    // handle page

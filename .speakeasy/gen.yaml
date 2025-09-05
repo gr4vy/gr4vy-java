@@ -22,7 +22,7 @@ generation:
     generateNewTests: false
     skipResponseBodyAssertions: false
 java:
-  version: 2.10.1
+  version: 2.11.0
   additionalDependencies:
     - testImplementation:org.junit.jupiter:junit-jupiter:5.10.0
     - implementation:com.auth0:java-jwt:4.5.0
@@ -38,7 +38,6 @@ java:
   companyName: Gr4vy
   companyURL: www.gr4vy.com
   defaultErrorName: APIException
-  enableAsync: false
   enableCustomCodeRegions: false
   enableStreamingUploads: false
   flattenGlobalSecurity: true

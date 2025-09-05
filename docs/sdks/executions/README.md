@@ -33,6 +33,7 @@ public class Application {
                 .bearerAuth(System.getenv().getOrDefault("BEARER_AUTH", ""))
             .build();
 
+
         sdk.reports().executions().list()
                 .reportId("4d4c7123-b794-4fad-b1b9-5ab2606e6bbe")
                 .limit(20L)

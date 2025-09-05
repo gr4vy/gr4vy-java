@@ -16,9 +16,20 @@ import java.util.Optional;
 
 public class ReportExecutions {
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncReportExecutions asyncSDK;
 
     ReportExecutions(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.asyncSDK = new AsyncReportExecutions(this, sdkConfiguration);
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncReportExecutions async() {
+        return asyncSDK;
     }
 
     /**

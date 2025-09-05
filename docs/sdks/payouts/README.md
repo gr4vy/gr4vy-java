@@ -33,6 +33,7 @@ public class Application {
                 .bearerAuth(System.getenv().getOrDefault("BEARER_AUTH", ""))
             .build();
 
+
         sdk.payouts().list()
                 .cursor("ZXhhbXBsZTE")
                 .limit(20L)
