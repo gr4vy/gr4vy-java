@@ -42,8 +42,8 @@ public class Application {
                 .externalIdentifier("buyer-12345")
                 .build();
 
+
         sdk.buyers().list()
-                .request(req)
                 .callAsStream()
                 .forEach((ListBuyersResponse item) -> {
                    // handle page

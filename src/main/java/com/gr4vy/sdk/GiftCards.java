@@ -31,15 +31,26 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 public class GiftCards {
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncGiftCards asyncSDK;
     private final Balances balances;
 
     GiftCards(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
         this.balances = new Balances(this.sdkConfiguration);
+        this.asyncSDK = new AsyncGiftCards(this, sdkConfiguration);
     }
 
     public final Balances balances() {
         return balances;
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncGiftCards async() {
+        return asyncSDK;
     }
 
     /**

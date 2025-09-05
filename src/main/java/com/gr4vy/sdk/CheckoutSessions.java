@@ -31,9 +31,20 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 public class CheckoutSessions {
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncCheckoutSessions asyncSDK;
 
     CheckoutSessions(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.asyncSDK = new AsyncCheckoutSessions(this, sdkConfiguration);
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncCheckoutSessions async() {
+        return asyncSDK;
     }
 
     /**

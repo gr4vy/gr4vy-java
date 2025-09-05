@@ -193,6 +193,7 @@ public class Gr4vy {
     }
 
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncGr4vy asyncSDK;
 
     /**
      * The Builder class allows the configuration of a new instance of the SDK.
@@ -382,5 +383,16 @@ public class Gr4vy {
         this.merchantAccounts = new MerchantAccounts(sdkConfiguration);
         this.payouts = new Payouts(sdkConfiguration);
         this.paymentLinks = new PaymentLinks(sdkConfiguration);
+        this.asyncSDK = new AsyncGr4vy(this, sdkConfiguration);
     }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncGr4vy async() {
+        return asyncSDK;
+    }
+
 }

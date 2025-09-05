@@ -38,8 +38,8 @@ public class Application {
         ListReportsRequest req = ListReportsRequest.builder()
                 .build();
 
+
         sdk.reports().list()
-                .request(req)
                 .callAsStream()
                 .forEach((ListReportsResponse item) -> {
                    // handle page

@@ -32,15 +32,26 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 public class Reports {
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncReports asyncSDK;
     private final Executions executions;
 
     Reports(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
         this.executions = new Executions(this.sdkConfiguration);
+        this.asyncSDK = new AsyncReports(this, sdkConfiguration);
     }
 
     public final Executions executions() {
         return executions;
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncReports async() {
+        return asyncSDK;
     }
 
     /**

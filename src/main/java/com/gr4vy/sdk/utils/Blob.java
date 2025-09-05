@@ -249,6 +249,30 @@ public class Blob implements HttpRequest.BodyPublisher {
     }
 
     /**
+     * Converts the entire stream into an {@code InputStream} for traditional I/O operations.
+     * <p>
+     * <b>Consumes this instance:</b> After calling this method, this {@code Blob} cannot be used again.
+     * <p>
+     * The returned {@code CompletableFuture} completes with an {@code InputStream} containing all the data
+     * from the stream when ready, or completes exceptionally if an error occurs. The resulting InputStream
+     * can be used with traditional Java I/O APIs.
+     *
+     * @return a {@code CompletableFuture} containing an {@code InputStream} with the stream data.
+     * @throws IllegalStateException if this instance has already been consumed.
+     */
+    public CompletableFuture<InputStream> toInputStream() {
+        Flow.Publisher<ByteBuffer> currentPublisher = ensureNotConsumedAndMark();
+
+        // Convert Flow.Publisher<ByteBuffer> to Flow.Publisher<List<ByteBuffer>> for BodySubscriber
+        Flow.Publisher<List<ByteBuffer>> listPublisher = ReactiveUtils.wrapped(currentPublisher);
+
+        HttpResponse.BodySubscriber<InputStream> bodySubscriber = HttpResponse.BodySubscribers.ofInputStream();
+        listPublisher.subscribe(bodySubscriber);
+
+        return bodySubscriber.getBody().toCompletableFuture();
+    }
+
+    /**
      * Ensures this instance has not already been consumed, marks it as consumed, and returns the publisher.
      *
      * @return the {@code Flow.Publisher<ByteBuffer>} to be consumed.

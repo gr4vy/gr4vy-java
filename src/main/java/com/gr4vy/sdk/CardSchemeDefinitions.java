@@ -18,9 +18,20 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 public class CardSchemeDefinitions {
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncCardSchemeDefinitions asyncSDK;
 
     CardSchemeDefinitions(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.asyncSDK = new AsyncCardSchemeDefinitions(this, sdkConfiguration);
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncCardSchemeDefinitions async() {
+        return asyncSDK;
     }
 
     /**

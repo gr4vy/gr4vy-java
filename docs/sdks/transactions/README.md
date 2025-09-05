@@ -107,8 +107,8 @@ public class Application {
                     "n"))
                 .build();
 
+
         sdk.transactions().list()
-                .request(req)
                 .callAsStream()
                 .forEach((ListTransactionsResponse item) -> {
                    // handle page

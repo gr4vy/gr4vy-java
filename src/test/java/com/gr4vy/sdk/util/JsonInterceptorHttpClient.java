@@ -3,6 +3,7 @@ package com.gr4vy.sdk.util;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import com.gr4vy.sdk.utils.Blob;
 import com.gr4vy.sdk.utils.HTTPClient;
 
 import java.io.ByteArrayInputStream;
@@ -64,14 +65,6 @@ class JsonInterceptorHttpClient implements HTTPClient {
 
         // Return the original response if modification failed.
         return new ModifiedHttpResponse(originalResponse, new ByteArrayInputStream(originalResponse.body()));
-    }
-
-    public CompletableFuture<HttpResponse<InputStream>> sendAsync(HttpRequest request) {
-        // This async method is required by the interface.
-        // For simplicity, we are not implementing the interception logic here,
-        // but it would follow a similar pattern using CompletableFuture's `thenApply`.
-        return delegate.sendAsync(request, HttpResponse.BodyHandlers.ofInputStream())
-            .thenApply(response -> response);
     }
 
     /**

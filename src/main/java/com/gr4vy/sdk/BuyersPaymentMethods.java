@@ -16,9 +16,20 @@ import java.util.Optional;
 
 public class BuyersPaymentMethods {
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncBuyersPaymentMethods asyncSDK;
 
     BuyersPaymentMethods(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.asyncSDK = new AsyncBuyersPaymentMethods(this, sdkConfiguration);
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncBuyersPaymentMethods async() {
+        return asyncSDK;
     }
 
     /**

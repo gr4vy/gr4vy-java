@@ -40,8 +40,8 @@ public class Application {
                 .resourceType("user")
                 .build();
 
+
         sdk.auditLogs().list()
-                .request(req)
                 .callAsStream()
                 .forEach((ListAuditLogsResponse item) -> {
                    // handle page

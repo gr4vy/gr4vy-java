@@ -32,9 +32,20 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 public class MerchantAccounts {
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncMerchantAccounts asyncSDK;
 
     MerchantAccounts(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.asyncSDK = new AsyncMerchantAccounts(this, sdkConfiguration);
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncMerchantAccounts async() {
+        return asyncSDK;
     }
 
     /**

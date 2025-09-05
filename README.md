@@ -57,7 +57,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'com.gr4vy:sdk:2.10.1'
+implementation 'com.gr4vy:sdk:2.11.0'
 ```
 
 Maven:
@@ -65,7 +65,7 @@ Maven:
 <dependency>
     <groupId>com.gr4vy</groupId>
     <artifactId>sdk</artifactId>
-    <version>2.10.1</version>
+    <version>2.11.0</version>
 </dependency>
 ```
 
@@ -496,7 +496,6 @@ For certain operations, you can also use the `callAsStreamUnwrapped` method that
 
 Here's an example depicting the different ways to use pagination:
 
-
 ```java
 package hello.world;
 
@@ -522,8 +521,8 @@ public class Application {
                 .externalIdentifier("buyer-12345")
                 .build();
 
-        var b = sdk.buyers().list()
-                .request(req);
+
+        var b = sdk.buyers().list();
 
         // Iterate through all pages using a traditional for-each loop
         // Each iteration returns a complete page response
@@ -544,6 +543,49 @@ public class Application {
     }
 }
 ```
+#### Asynchronous Pagination
+An asynchronous SDK client is also available for pagination that returns a [`Flow.Publisher<T>`][flow-pub]. For async pagination, you can use `callAsPublisher()` to get pages as a publisher, or `callAsPublisherUnwrapped()` to get individual items directly. See [Asynchronous Support](#asynchronous-support) for more details on async benefits and reactive library integration.
+```java
+package hello.world;
+
+import com.gr4vy.sdk.AsyncGr4vy;
+import com.gr4vy.sdk.Gr4vy;
+import com.gr4vy.sdk.models.operations.ListBuyersRequest;
+import com.gr4vy.sdk.models.operations.async.ListBuyersResponse;
+import reactor.core.publisher.Flux;
+
+public class Application {
+
+    public static void main(String[] args) {
+
+        AsyncGr4vy sdk = Gr4vy.builder()
+                .merchantAccountId("default")
+                .bearerAuth(System.getenv().getOrDefault("BEARER_AUTH", ""))
+            .build()
+            .async();
+
+        ListBuyersRequest req = ListBuyersRequest.builder()
+                .cursor("ZXhhbXBsZTE")
+                .search("John")
+                .externalIdentifier("buyer-12345")
+                .build();
+
+
+        var b = sdk.buyers().list();
+
+        // Example using Project Reactor (illustrative) - pages
+        Flux<ListBuyersResponse> pageFlux = Flux.from(b.callAsPublisher());
+        pageFlux.subscribe(
+            page -> System.out.println(page),
+            error -> error.printStackTrace(),
+            () -> System.out.println("Pagination completed")
+        );
+
+    }
+}
+```
+
+[flow-pub]: https://docs.oracle.com/javase/9/docs/api/java/util/concurrent/Flow.Publisher.html
 <!-- End Pagination [pagination] -->
 
 <!-- Start Retries [retries] -->
@@ -579,8 +621,8 @@ public class Application {
                 .externalIdentifier("buyer-12345")
                 .build();
 
+
         sdk.buyers().list()
-                .request(req)
                 .retryConfig(RetryConfig.builder()
                     .backoff(BackoffStrategy.builder()
                         .initialInterval(1L, TimeUnit.MILLISECONDS)
@@ -638,8 +680,8 @@ public class Application {
                 .externalIdentifier("buyer-12345")
                 .build();
 
+
         sdk.buyers().list()
-                .request(req)
                 .callAsStream()
                 .forEach((ListBuyersResponse item) -> {
                    // handle page

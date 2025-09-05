@@ -42,8 +42,8 @@ public class Application {
                 .externalIdentifier("payment-method-12345")
                 .build();
 
+
         sdk.paymentMethods().list()
-                .request(req)
                 .callAsStream()
                 .forEach((ListPaymentMethodsResponse item) -> {
                    // handle page

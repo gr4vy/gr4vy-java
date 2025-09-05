@@ -50,6 +50,7 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 public class Transactions {
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncTransactions asyncSDK;
     private final TransactionsRefunds refunds;
     private final Events events;
     private final Settlements settlements;
@@ -59,6 +60,7 @@ public class Transactions {
         this.refunds = new TransactionsRefunds(this.sdkConfiguration);
         this.events = new Events(this.sdkConfiguration);
         this.settlements = new Settlements(this.sdkConfiguration);
+        this.asyncSDK = new AsyncTransactions(this, sdkConfiguration);
     }
 
     public final TransactionsRefunds refunds() {
@@ -71,6 +73,15 @@ public class Transactions {
 
     public final Settlements settlements() {
         return settlements;
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncTransactions async() {
+        return asyncSDK;
     }
 
     /**

@@ -36,9 +36,20 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 public class ShippingDetails {
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncShippingDetails asyncSDK;
 
     ShippingDetails(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.asyncSDK = new AsyncShippingDetails(this, sdkConfiguration);
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncShippingDetails async() {
+        return asyncSDK;
     }
 
     /**

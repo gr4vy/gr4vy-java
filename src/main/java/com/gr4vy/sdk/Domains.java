@@ -21,9 +21,20 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 public class Domains {
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncDomains asyncSDK;
 
     Domains(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.asyncSDK = new AsyncDomains(this, sdkConfiguration);
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncDomains async() {
+        return asyncSDK;
     }
 
     /**

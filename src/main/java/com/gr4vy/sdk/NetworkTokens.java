@@ -35,15 +35,26 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 public class NetworkTokens {
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncNetworkTokens asyncSDK;
     private final Cryptogram cryptogram;
 
     NetworkTokens(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
         this.cryptogram = new Cryptogram(this.sdkConfiguration);
+        this.asyncSDK = new AsyncNetworkTokens(this, sdkConfiguration);
     }
 
     public final Cryptogram cryptogram() {
         return cryptogram;
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncNetworkTokens async() {
+        return asyncSDK;
     }
 
     /**

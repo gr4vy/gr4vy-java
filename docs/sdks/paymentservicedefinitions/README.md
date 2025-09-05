@@ -32,6 +32,7 @@ public class Application {
                 .bearerAuth(System.getenv().getOrDefault("BEARER_AUTH", ""))
             .build();
 
+
         sdk.paymentServiceDefinitions().list()
                 .cursor("ZXhhbXBsZTE")
                 .limit(20L)

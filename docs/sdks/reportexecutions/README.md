@@ -35,8 +35,8 @@ public class Application {
         ListAllReportExecutionsRequest req = ListAllReportExecutionsRequest.builder()
                 .build();
 
+
         sdk.reportExecutions().list()
-                .request(req)
                 .callAsStream()
                 .forEach((ListAllReportExecutionsResponse item) -> {
                    // handle page
