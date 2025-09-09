@@ -225,6 +225,12 @@ public class TransactionSummary {
     @JsonProperty("updated_at")
     private OffsetDateTime updatedAt;
 
+    /**
+     * Indicates whether this transaction has been disputed.
+     */
+    @JsonProperty("disputed")
+    private boolean disputed;
+
     @JsonCreator
     public TransactionSummary(
             @JsonProperty("id") String id,
@@ -256,7 +262,8 @@ public class TransactionSummary {
             @JsonProperty("gift_card_redemptions") List<GiftCardRedemption> giftCardRedemptions,
             @JsonProperty("gift_card_service") JsonNullable<? extends GiftCardService> giftCardService,
             @JsonProperty("created_at") OffsetDateTime createdAt,
-            @JsonProperty("updated_at") OffsetDateTime updatedAt) {
+            @JsonProperty("updated_at") OffsetDateTime updatedAt,
+            @JsonProperty("disputed") boolean disputed) {
         Utils.checkNotNull(id, "id");
         Utils.checkNotNull(reconciliationId, "reconciliationId");
         Utils.checkNotNull(merchantAccountId, "merchantAccountId");
@@ -287,6 +294,7 @@ public class TransactionSummary {
         Utils.checkNotNull(giftCardService, "giftCardService");
         Utils.checkNotNull(createdAt, "createdAt");
         Utils.checkNotNull(updatedAt, "updatedAt");
+        Utils.checkNotNull(disputed, "disputed");
         this.type = Builder._SINGLETON_VALUE_Type.value();
         this.id = id;
         this.reconciliationId = reconciliationId;
@@ -318,6 +326,7 @@ public class TransactionSummary {
         this.giftCardService = giftCardService;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
+        this.disputed = disputed;
     }
     
     public TransactionSummary(
@@ -335,7 +344,8 @@ public class TransactionSummary {
             TransactionIntent intent,
             List<GiftCardRedemption> giftCardRedemptions,
             OffsetDateTime createdAt,
-            OffsetDateTime updatedAt) {
+            OffsetDateTime updatedAt,
+            boolean disputed) {
         this(id, reconciliationId, merchantAccountId,
             currency, amount, status,
             authorizedAmount, capturedAmount, refundedAmount,
@@ -345,7 +355,8 @@ public class TransactionSummary {
             JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), giftCardRedemptions,
-            JsonNullable.undefined(), createdAt, updatedAt);
+            JsonNullable.undefined(), createdAt, updatedAt,
+            disputed);
     }
 
     /**
@@ -595,6 +606,14 @@ public class TransactionSummary {
     @JsonIgnore
     public OffsetDateTime updatedAt() {
         return updatedAt;
+    }
+
+    /**
+     * Indicates whether this transaction has been disputed.
+     */
+    @JsonIgnore
+    public boolean disputed() {
+        return disputed;
     }
 
     public static Builder builder() {
@@ -1002,6 +1021,15 @@ public class TransactionSummary {
         return this;
     }
 
+    /**
+     * Indicates whether this transaction has been disputed.
+     */
+    public TransactionSummary withDisputed(boolean disputed) {
+        Utils.checkNotNull(disputed, "disputed");
+        this.disputed = disputed;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -1042,7 +1070,8 @@ public class TransactionSummary {
             Utils.enhancedDeepEquals(this.giftCardRedemptions, other.giftCardRedemptions) &&
             Utils.enhancedDeepEquals(this.giftCardService, other.giftCardService) &&
             Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
-            Utils.enhancedDeepEquals(this.updatedAt, other.updatedAt);
+            Utils.enhancedDeepEquals(this.updatedAt, other.updatedAt) &&
+            Utils.enhancedDeepEquals(this.disputed, other.disputed);
     }
     
     @Override
@@ -1058,7 +1087,7 @@ public class TransactionSummary {
             pendingReview, buyer, rawResponseCode,
             rawResponseDescription, shippingDetails, checkoutSessionId,
             giftCardRedemptions, giftCardService, createdAt,
-            updatedAt);
+            updatedAt, disputed);
     }
     
     @Override
@@ -1094,7 +1123,8 @@ public class TransactionSummary {
                 "giftCardRedemptions", giftCardRedemptions,
                 "giftCardService", giftCardService,
                 "createdAt", createdAt,
-                "updatedAt", updatedAt);
+                "updatedAt", updatedAt,
+                "disputed", disputed);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -1159,6 +1189,8 @@ public class TransactionSummary {
         private OffsetDateTime createdAt;
 
         private OffsetDateTime updatedAt;
+
+        private Boolean disputed;
 
         private Builder() {
           // force use of static builder() method
@@ -1593,6 +1625,16 @@ public class TransactionSummary {
             return this;
         }
 
+
+        /**
+         * Indicates whether this transaction has been disputed.
+         */
+        public Builder disputed(boolean disputed) {
+            Utils.checkNotNull(disputed, "disputed");
+            this.disputed = disputed;
+            return this;
+        }
+
         public TransactionSummary build() {
             if (pendingReview == null) {
                 pendingReview = _SINGLETON_VALUE_PendingReview.value();
@@ -1608,7 +1650,8 @@ public class TransactionSummary {
                 errorCode, paymentService, pendingReview,
                 buyer, rawResponseCode, rawResponseDescription,
                 shippingDetails, checkoutSessionId, giftCardRedemptions,
-                giftCardService, createdAt, updatedAt);
+                giftCardService, createdAt, updatedAt,
+                disputed);
         }
 
 
