@@ -255,6 +255,12 @@ public class ListTransactionsRequest {
     private JsonNullable<Boolean> used3ds;
 
     /**
+     * Filters for transactions that have been disputed.
+     */
+    @SpeakeasyMetadata("queryParam:style=form,explode=true,name=disputed")
+    private JsonNullable<Boolean> disputed;
+
+    /**
      * Filters the results to only get the items for which some of the buyer data contains exactly the provided `buyer_search` values.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=buyer_search")
@@ -310,6 +316,7 @@ public class ListTransactionsRequest {
             JsonNullable<Boolean> isSubsequentPayment,
             JsonNullable<Boolean> merchantInitiated,
             JsonNullable<Boolean> used3ds,
+            JsonNullable<Boolean> disputed,
             JsonNullable<? extends List<String>> buyerSearch,
             JsonNullable<String> merchantAccountId) {
         Utils.checkNotNull(cursor, "cursor");
@@ -354,6 +361,7 @@ public class ListTransactionsRequest {
         Utils.checkNotNull(isSubsequentPayment, "isSubsequentPayment");
         Utils.checkNotNull(merchantInitiated, "merchantInitiated");
         Utils.checkNotNull(used3ds, "used3ds");
+        Utils.checkNotNull(disputed, "disputed");
         Utils.checkNotNull(buyerSearch, "buyerSearch");
         Utils.checkNotNull(merchantAccountId, "merchantAccountId");
         this.cursor = cursor;
@@ -398,6 +406,7 @@ public class ListTransactionsRequest {
         this.isSubsequentPayment = isSubsequentPayment;
         this.merchantInitiated = merchantInitiated;
         this.used3ds = used3ds;
+        this.disputed = disputed;
         this.buyerSearch = buyerSearch;
         this.merchantAccountId = merchantAccountId;
     }
@@ -417,7 +426,7 @@ public class ListTransactionsRequest {
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined());
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
     }
 
     /**
@@ -730,6 +739,14 @@ public class ListTransactionsRequest {
     @JsonIgnore
     public JsonNullable<Boolean> used3ds() {
         return used3ds;
+    }
+
+    /**
+     * Filters for transactions that have been disputed.
+     */
+    @JsonIgnore
+    public JsonNullable<Boolean> disputed() {
+        return disputed;
     }
 
     /**
@@ -1446,6 +1463,24 @@ public class ListTransactionsRequest {
     }
 
     /**
+     * Filters for transactions that have been disputed.
+     */
+    public ListTransactionsRequest withDisputed(boolean disputed) {
+        Utils.checkNotNull(disputed, "disputed");
+        this.disputed = JsonNullable.of(disputed);
+        return this;
+    }
+
+    /**
+     * Filters for transactions that have been disputed.
+     */
+    public ListTransactionsRequest withDisputed(JsonNullable<Boolean> disputed) {
+        Utils.checkNotNull(disputed, "disputed");
+        this.disputed = disputed;
+        return this;
+    }
+
+    /**
      * Filters the results to only get the items for which some of the buyer data contains exactly the provided `buyer_search` values.
      */
     public ListTransactionsRequest withBuyerSearch(List<String> buyerSearch) {
@@ -1533,6 +1568,7 @@ public class ListTransactionsRequest {
             Utils.enhancedDeepEquals(this.isSubsequentPayment, other.isSubsequentPayment) &&
             Utils.enhancedDeepEquals(this.merchantInitiated, other.merchantInitiated) &&
             Utils.enhancedDeepEquals(this.used3ds, other.used3ds) &&
+            Utils.enhancedDeepEquals(this.disputed, other.disputed) &&
             Utils.enhancedDeepEquals(this.buyerSearch, other.buyerSearch) &&
             Utils.enhancedDeepEquals(this.merchantAccountId, other.merchantAccountId);
     }
@@ -1554,7 +1590,7 @@ public class ListTransactionsRequest {
             hasGiftCardRedemptions, giftCardId, giftCardLast4,
             hasSettlements, paymentMethodBin, paymentSource,
             isSubsequentPayment, merchantInitiated, used3ds,
-            buyerSearch, merchantAccountId);
+            disputed, buyerSearch, merchantAccountId);
     }
     
     @Override
@@ -1602,6 +1638,7 @@ public class ListTransactionsRequest {
                 "isSubsequentPayment", isSubsequentPayment,
                 "merchantInitiated", merchantInitiated,
                 "used3ds", used3ds,
+                "disputed", disputed,
                 "buyerSearch", buyerSearch,
                 "merchantAccountId", merchantAccountId);
     }
@@ -1692,6 +1729,8 @@ public class ListTransactionsRequest {
         private JsonNullable<Boolean> merchantInitiated = JsonNullable.undefined();
 
         private JsonNullable<Boolean> used3ds = JsonNullable.undefined();
+
+        private JsonNullable<Boolean> disputed = JsonNullable.undefined();
 
         private JsonNullable<? extends List<String>> buyerSearch = JsonNullable.undefined();
 
@@ -2435,6 +2474,25 @@ public class ListTransactionsRequest {
 
 
         /**
+         * Filters for transactions that have been disputed.
+         */
+        public Builder disputed(boolean disputed) {
+            Utils.checkNotNull(disputed, "disputed");
+            this.disputed = JsonNullable.of(disputed);
+            return this;
+        }
+
+        /**
+         * Filters for transactions that have been disputed.
+         */
+        public Builder disputed(JsonNullable<Boolean> disputed) {
+            Utils.checkNotNull(disputed, "disputed");
+            this.disputed = disputed;
+            return this;
+        }
+
+
+        /**
          * Filters the results to only get the items for which some of the buyer data contains exactly the provided `buyer_search` values.
          */
         public Builder buyerSearch(List<String> buyerSearch) {
@@ -2491,7 +2549,7 @@ public class ListTransactionsRequest {
                 hasGiftCardRedemptions, giftCardId, giftCardLast4,
                 hasSettlements, paymentMethodBin, paymentSource,
                 isSubsequentPayment, merchantInitiated, used3ds,
-                buyerSearch, merchantAccountId);
+                disputed, buyerSearch, merchantAccountId);
         }
 
 

@@ -227,6 +227,12 @@ public class Transaction {
     private OffsetDateTime updatedAt;
 
     /**
+     * Indicates whether this transaction has been disputed.
+     */
+    @JsonProperty("disputed")
+    private boolean disputed;
+
+    /**
      * Contains information about an airline travel, if applicable.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -439,6 +445,7 @@ public class Transaction {
             @JsonProperty("gift_card_service") JsonNullable<? extends GiftCardService> giftCardService,
             @JsonProperty("created_at") OffsetDateTime createdAt,
             @JsonProperty("updated_at") OffsetDateTime updatedAt,
+            @JsonProperty("disputed") boolean disputed,
             @JsonProperty("airline") JsonNullable<? extends Airline> airline,
             @JsonProperty("auth_response_code") JsonNullable<String> authResponseCode,
             @JsonProperty("avs_response_code") JsonNullable<? extends AVSResponseCode> avsResponseCode,
@@ -496,6 +503,7 @@ public class Transaction {
         Utils.checkNotNull(giftCardService, "giftCardService");
         Utils.checkNotNull(createdAt, "createdAt");
         Utils.checkNotNull(updatedAt, "updatedAt");
+        Utils.checkNotNull(disputed, "disputed");
         Utils.checkNotNull(airline, "airline");
         Utils.checkNotNull(authResponseCode, "authResponseCode");
         Utils.checkNotNull(avsResponseCode, "avsResponseCode");
@@ -554,6 +562,7 @@ public class Transaction {
         this.giftCardService = giftCardService;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
+        this.disputed = disputed;
         this.airline = airline;
         this.authResponseCode = authResponseCode;
         this.avsResponseCode = avsResponseCode;
@@ -599,6 +608,7 @@ public class Transaction {
             List<GiftCardRedemption> giftCardRedemptions,
             OffsetDateTime createdAt,
             OffsetDateTime updatedAt,
+            boolean disputed,
             TransactionPaymentSource paymentSource,
             boolean merchantInitiated,
             boolean isSubsequentPayment,
@@ -615,15 +625,16 @@ public class Transaction {
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), giftCardRedemptions,
             JsonNullable.undefined(), createdAt, updatedAt,
+            disputed, JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), paymentSource,
-            merchantInitiated, isSubsequentPayment, JsonNullable.undefined(),
+            paymentSource, merchantInitiated, isSubsequentPayment,
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            intentOutcome, multiTender, accountFundingTransaction,
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
+            JsonNullable.undefined(), intentOutcome, multiTender,
+            accountFundingTransaction, JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined());
     }
 
     /**
@@ -873,6 +884,14 @@ public class Transaction {
     @JsonIgnore
     public OffsetDateTime updatedAt() {
         return updatedAt;
+    }
+
+    /**
+     * Indicates whether this transaction has been disputed.
+     */
+    @JsonIgnore
+    public boolean disputed() {
+        return disputed;
     }
 
     /**
@@ -1504,6 +1523,15 @@ public class Transaction {
     }
 
     /**
+     * Indicates whether this transaction has been disputed.
+     */
+    public Transaction withDisputed(boolean disputed) {
+        Utils.checkNotNull(disputed, "disputed");
+        this.disputed = disputed;
+        return this;
+    }
+
+    /**
      * Contains information about an airline travel, if applicable.
      */
     public Transaction withAirline(Airline airline) {
@@ -1974,6 +2002,7 @@ public class Transaction {
             Utils.enhancedDeepEquals(this.giftCardService, other.giftCardService) &&
             Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
             Utils.enhancedDeepEquals(this.updatedAt, other.updatedAt) &&
+            Utils.enhancedDeepEquals(this.disputed, other.disputed) &&
             Utils.enhancedDeepEquals(this.airline, other.airline) &&
             Utils.enhancedDeepEquals(this.authResponseCode, other.authResponseCode) &&
             Utils.enhancedDeepEquals(this.avsResponseCode, other.avsResponseCode) &&
@@ -2016,16 +2045,16 @@ public class Transaction {
             pendingReview, buyer, rawResponseCode,
             rawResponseDescription, shippingDetails, checkoutSessionId,
             giftCardRedemptions, giftCardService, createdAt,
-            updatedAt, airline, authResponseCode,
-            avsResponseCode, cvvResponseCode, antiFraudDecision,
-            paymentSource, merchantInitiated, isSubsequentPayment,
-            cartItems, statementDescriptor, schemeTransactionId,
-            threeDSecure, paymentServiceTransactionId, additionalIdentifiers,
-            metadata, authorizedAt, capturedAt,
-            voidedAt, canceledAt, approvalExpiresAt,
-            buyerApprovalTimedoutAt, intentOutcome, multiTender,
-            accountFundingTransaction, recipient, merchantAdviceCode,
-            installmentCount);
+            updatedAt, disputed, airline,
+            authResponseCode, avsResponseCode, cvvResponseCode,
+            antiFraudDecision, paymentSource, merchantInitiated,
+            isSubsequentPayment, cartItems, statementDescriptor,
+            schemeTransactionId, threeDSecure, paymentServiceTransactionId,
+            additionalIdentifiers, metadata, authorizedAt,
+            capturedAt, voidedAt, canceledAt,
+            approvalExpiresAt, buyerApprovalTimedoutAt, intentOutcome,
+            multiTender, accountFundingTransaction, recipient,
+            merchantAdviceCode, installmentCount);
     }
     
     @Override
@@ -2062,6 +2091,7 @@ public class Transaction {
                 "giftCardService", giftCardService,
                 "createdAt", createdAt,
                 "updatedAt", updatedAt,
+                "disputed", disputed,
                 "airline", airline,
                 "authResponseCode", authResponseCode,
                 "avsResponseCode", avsResponseCode,
@@ -2153,6 +2183,8 @@ public class Transaction {
         private OffsetDateTime createdAt;
 
         private OffsetDateTime updatedAt;
+
+        private Boolean disputed;
 
         private JsonNullable<? extends Airline> airline = JsonNullable.undefined();
 
@@ -2643,6 +2675,16 @@ public class Transaction {
 
 
         /**
+         * Indicates whether this transaction has been disputed.
+         */
+        public Builder disputed(boolean disputed) {
+            Utils.checkNotNull(disputed, "disputed");
+            this.disputed = disputed;
+            return this;
+        }
+
+
+        /**
          * Contains information about an airline travel, if applicable.
          */
         public Builder airline(Airline airline) {
@@ -3113,15 +3155,16 @@ public class Transaction {
                 buyer, rawResponseCode, rawResponseDescription,
                 shippingDetails, checkoutSessionId, giftCardRedemptions,
                 giftCardService, createdAt, updatedAt,
-                airline, authResponseCode, avsResponseCode,
-                cvvResponseCode, antiFraudDecision, paymentSource,
-                merchantInitiated, isSubsequentPayment, cartItems,
-                statementDescriptor, schemeTransactionId, threeDSecure,
-                paymentServiceTransactionId, additionalIdentifiers, metadata,
-                authorizedAt, capturedAt, voidedAt,
-                canceledAt, approvalExpiresAt, buyerApprovalTimedoutAt,
-                intentOutcome, multiTender, accountFundingTransaction,
-                recipient, merchantAdviceCode, installmentCount);
+                disputed, airline, authResponseCode,
+                avsResponseCode, cvvResponseCode, antiFraudDecision,
+                paymentSource, merchantInitiated, isSubsequentPayment,
+                cartItems, statementDescriptor, schemeTransactionId,
+                threeDSecure, paymentServiceTransactionId, additionalIdentifiers,
+                metadata, authorizedAt, capturedAt,
+                voidedAt, canceledAt, approvalExpiresAt,
+                buyerApprovalTimedoutAt, intentOutcome, multiTender,
+                accountFundingTransaction, recipient, merchantAdviceCode,
+                installmentCount);
         }
 
 
