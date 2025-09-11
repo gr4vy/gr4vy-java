@@ -247,6 +247,55 @@ public class TransactionCreate {
     @JsonProperty("installment_count")
     private JsonNullable<Long> installmentCount;
 
+    /**
+     * The sales tax amount for this transaction, represented as a monetary amount in the smallest currency unit for the given currency, for example `1299` cents to create an authorization for `$12.99`
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("tax_amount")
+    private JsonNullable<Long> taxAmount;
+
+    /**
+     * Merchant tax ID (for example, EIN or VAT number).
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("merchant_tax_id")
+    private JsonNullable<String> merchantTaxId;
+
+    /**
+     * Customer code or reference.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("customer_reference_number")
+    private JsonNullable<String> customerReferenceNumber;
+
+    /**
+     * Whether the tax is included in the amount.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("amount_includes_tax")
+    private JsonNullable<Boolean> amountIncludesTax;
+
+    /**
+     * The merchant's unique identifier for the sales order or invoice.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("supplier_order_number")
+    private JsonNullable<String> supplierOrderNumber;
+
+    /**
+     * Total charges for import/export duties.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("duty_amount")
+    private JsonNullable<Long> dutyAmount;
+
+    /**
+     * Total shipping amount.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("shipping_amount")
+    private JsonNullable<Long> shippingAmount;
+
     @JsonCreator
     public TransactionCreate(
             @JsonProperty("amount") long amount,
@@ -278,7 +327,14 @@ public class TransactionCreate {
             @JsonProperty("account_funding_transaction") Optional<Boolean> accountFundingTransaction,
             @JsonProperty("allow_partial_authorization") Optional<Boolean> allowPartialAuthorization,
             @JsonProperty("recipient") JsonNullable<? extends Recipient> recipient,
-            @JsonProperty("installment_count") JsonNullable<Long> installmentCount) {
+            @JsonProperty("installment_count") JsonNullable<Long> installmentCount,
+            @JsonProperty("tax_amount") JsonNullable<Long> taxAmount,
+            @JsonProperty("merchant_tax_id") JsonNullable<String> merchantTaxId,
+            @JsonProperty("customer_reference_number") JsonNullable<String> customerReferenceNumber,
+            @JsonProperty("amount_includes_tax") JsonNullable<Boolean> amountIncludesTax,
+            @JsonProperty("supplier_order_number") JsonNullable<String> supplierOrderNumber,
+            @JsonProperty("duty_amount") JsonNullable<Long> dutyAmount,
+            @JsonProperty("shipping_amount") JsonNullable<Long> shippingAmount) {
         Utils.checkNotNull(amount, "amount");
         Utils.checkNotNull(currency, "currency");
         Utils.checkNotNull(country, "country");
@@ -309,6 +365,13 @@ public class TransactionCreate {
         Utils.checkNotNull(allowPartialAuthorization, "allowPartialAuthorization");
         Utils.checkNotNull(recipient, "recipient");
         Utils.checkNotNull(installmentCount, "installmentCount");
+        Utils.checkNotNull(taxAmount, "taxAmount");
+        Utils.checkNotNull(merchantTaxId, "merchantTaxId");
+        Utils.checkNotNull(customerReferenceNumber, "customerReferenceNumber");
+        Utils.checkNotNull(amountIncludesTax, "amountIncludesTax");
+        Utils.checkNotNull(supplierOrderNumber, "supplierOrderNumber");
+        Utils.checkNotNull(dutyAmount, "dutyAmount");
+        Utils.checkNotNull(shippingAmount, "shippingAmount");
         this.amount = amount;
         this.currency = currency;
         this.country = country;
@@ -339,6 +402,13 @@ public class TransactionCreate {
         this.allowPartialAuthorization = allowPartialAuthorization;
         this.recipient = recipient;
         this.installmentCount = installmentCount;
+        this.taxAmount = taxAmount;
+        this.merchantTaxId = merchantTaxId;
+        this.customerReferenceNumber = customerReferenceNumber;
+        this.amountIncludesTax = amountIncludesTax;
+        this.supplierOrderNumber = supplierOrderNumber;
+        this.dutyAmount = dutyAmount;
+        this.shippingAmount = shippingAmount;
     }
     
     public TransactionCreate(
@@ -353,7 +423,10 @@ public class TransactionCreate {
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
             JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
-            Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined());
+            Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined());
     }
 
     /**
@@ -622,6 +695,62 @@ public class TransactionCreate {
     @JsonIgnore
     public JsonNullable<Long> installmentCount() {
         return installmentCount;
+    }
+
+    /**
+     * The sales tax amount for this transaction, represented as a monetary amount in the smallest currency unit for the given currency, for example `1299` cents to create an authorization for `$12.99`
+     */
+    @JsonIgnore
+    public JsonNullable<Long> taxAmount() {
+        return taxAmount;
+    }
+
+    /**
+     * Merchant tax ID (for example, EIN or VAT number).
+     */
+    @JsonIgnore
+    public JsonNullable<String> merchantTaxId() {
+        return merchantTaxId;
+    }
+
+    /**
+     * Customer code or reference.
+     */
+    @JsonIgnore
+    public JsonNullable<String> customerReferenceNumber() {
+        return customerReferenceNumber;
+    }
+
+    /**
+     * Whether the tax is included in the amount.
+     */
+    @JsonIgnore
+    public JsonNullable<Boolean> amountIncludesTax() {
+        return amountIncludesTax;
+    }
+
+    /**
+     * The merchant's unique identifier for the sales order or invoice.
+     */
+    @JsonIgnore
+    public JsonNullable<String> supplierOrderNumber() {
+        return supplierOrderNumber;
+    }
+
+    /**
+     * Total charges for import/export duties.
+     */
+    @JsonIgnore
+    public JsonNullable<Long> dutyAmount() {
+        return dutyAmount;
+    }
+
+    /**
+     * Total shipping amount.
+     */
+    @JsonIgnore
+    public JsonNullable<Long> shippingAmount() {
+        return shippingAmount;
     }
 
     public static Builder builder() {
@@ -1189,6 +1318,132 @@ public class TransactionCreate {
         return this;
     }
 
+    /**
+     * The sales tax amount for this transaction, represented as a monetary amount in the smallest currency unit for the given currency, for example `1299` cents to create an authorization for `$12.99`
+     */
+    public TransactionCreate withTaxAmount(long taxAmount) {
+        Utils.checkNotNull(taxAmount, "taxAmount");
+        this.taxAmount = JsonNullable.of(taxAmount);
+        return this;
+    }
+
+    /**
+     * The sales tax amount for this transaction, represented as a monetary amount in the smallest currency unit for the given currency, for example `1299` cents to create an authorization for `$12.99`
+     */
+    public TransactionCreate withTaxAmount(JsonNullable<Long> taxAmount) {
+        Utils.checkNotNull(taxAmount, "taxAmount");
+        this.taxAmount = taxAmount;
+        return this;
+    }
+
+    /**
+     * Merchant tax ID (for example, EIN or VAT number).
+     */
+    public TransactionCreate withMerchantTaxId(String merchantTaxId) {
+        Utils.checkNotNull(merchantTaxId, "merchantTaxId");
+        this.merchantTaxId = JsonNullable.of(merchantTaxId);
+        return this;
+    }
+
+    /**
+     * Merchant tax ID (for example, EIN or VAT number).
+     */
+    public TransactionCreate withMerchantTaxId(JsonNullable<String> merchantTaxId) {
+        Utils.checkNotNull(merchantTaxId, "merchantTaxId");
+        this.merchantTaxId = merchantTaxId;
+        return this;
+    }
+
+    /**
+     * Customer code or reference.
+     */
+    public TransactionCreate withCustomerReferenceNumber(String customerReferenceNumber) {
+        Utils.checkNotNull(customerReferenceNumber, "customerReferenceNumber");
+        this.customerReferenceNumber = JsonNullable.of(customerReferenceNumber);
+        return this;
+    }
+
+    /**
+     * Customer code or reference.
+     */
+    public TransactionCreate withCustomerReferenceNumber(JsonNullable<String> customerReferenceNumber) {
+        Utils.checkNotNull(customerReferenceNumber, "customerReferenceNumber");
+        this.customerReferenceNumber = customerReferenceNumber;
+        return this;
+    }
+
+    /**
+     * Whether the tax is included in the amount.
+     */
+    public TransactionCreate withAmountIncludesTax(boolean amountIncludesTax) {
+        Utils.checkNotNull(amountIncludesTax, "amountIncludesTax");
+        this.amountIncludesTax = JsonNullable.of(amountIncludesTax);
+        return this;
+    }
+
+    /**
+     * Whether the tax is included in the amount.
+     */
+    public TransactionCreate withAmountIncludesTax(JsonNullable<Boolean> amountIncludesTax) {
+        Utils.checkNotNull(amountIncludesTax, "amountIncludesTax");
+        this.amountIncludesTax = amountIncludesTax;
+        return this;
+    }
+
+    /**
+     * The merchant's unique identifier for the sales order or invoice.
+     */
+    public TransactionCreate withSupplierOrderNumber(String supplierOrderNumber) {
+        Utils.checkNotNull(supplierOrderNumber, "supplierOrderNumber");
+        this.supplierOrderNumber = JsonNullable.of(supplierOrderNumber);
+        return this;
+    }
+
+    /**
+     * The merchant's unique identifier for the sales order or invoice.
+     */
+    public TransactionCreate withSupplierOrderNumber(JsonNullable<String> supplierOrderNumber) {
+        Utils.checkNotNull(supplierOrderNumber, "supplierOrderNumber");
+        this.supplierOrderNumber = supplierOrderNumber;
+        return this;
+    }
+
+    /**
+     * Total charges for import/export duties.
+     */
+    public TransactionCreate withDutyAmount(long dutyAmount) {
+        Utils.checkNotNull(dutyAmount, "dutyAmount");
+        this.dutyAmount = JsonNullable.of(dutyAmount);
+        return this;
+    }
+
+    /**
+     * Total charges for import/export duties.
+     */
+    public TransactionCreate withDutyAmount(JsonNullable<Long> dutyAmount) {
+        Utils.checkNotNull(dutyAmount, "dutyAmount");
+        this.dutyAmount = dutyAmount;
+        return this;
+    }
+
+    /**
+     * Total shipping amount.
+     */
+    public TransactionCreate withShippingAmount(long shippingAmount) {
+        Utils.checkNotNull(shippingAmount, "shippingAmount");
+        this.shippingAmount = JsonNullable.of(shippingAmount);
+        return this;
+    }
+
+    /**
+     * Total shipping amount.
+     */
+    public TransactionCreate withShippingAmount(JsonNullable<Long> shippingAmount) {
+        Utils.checkNotNull(shippingAmount, "shippingAmount");
+        this.shippingAmount = shippingAmount;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -1228,7 +1483,14 @@ public class TransactionCreate {
             Utils.enhancedDeepEquals(this.accountFundingTransaction, other.accountFundingTransaction) &&
             Utils.enhancedDeepEquals(this.allowPartialAuthorization, other.allowPartialAuthorization) &&
             Utils.enhancedDeepEquals(this.recipient, other.recipient) &&
-            Utils.enhancedDeepEquals(this.installmentCount, other.installmentCount);
+            Utils.enhancedDeepEquals(this.installmentCount, other.installmentCount) &&
+            Utils.enhancedDeepEquals(this.taxAmount, other.taxAmount) &&
+            Utils.enhancedDeepEquals(this.merchantTaxId, other.merchantTaxId) &&
+            Utils.enhancedDeepEquals(this.customerReferenceNumber, other.customerReferenceNumber) &&
+            Utils.enhancedDeepEquals(this.amountIncludesTax, other.amountIncludesTax) &&
+            Utils.enhancedDeepEquals(this.supplierOrderNumber, other.supplierOrderNumber) &&
+            Utils.enhancedDeepEquals(this.dutyAmount, other.dutyAmount) &&
+            Utils.enhancedDeepEquals(this.shippingAmount, other.shippingAmount);
     }
     
     @Override
@@ -1243,7 +1505,10 @@ public class TransactionCreate {
             statementDescriptor, previousSchemeTransactionId, browserInfo,
             shippingDetailsId, connectionOptions, asyncCapture,
             antiFraudFingerprint, paymentServiceId, accountFundingTransaction,
-            allowPartialAuthorization, recipient, installmentCount);
+            allowPartialAuthorization, recipient, installmentCount,
+            taxAmount, merchantTaxId, customerReferenceNumber,
+            amountIncludesTax, supplierOrderNumber, dutyAmount,
+            shippingAmount);
     }
     
     @Override
@@ -1278,7 +1543,14 @@ public class TransactionCreate {
                 "accountFundingTransaction", accountFundingTransaction,
                 "allowPartialAuthorization", allowPartialAuthorization,
                 "recipient", recipient,
-                "installmentCount", installmentCount);
+                "installmentCount", installmentCount,
+                "taxAmount", taxAmount,
+                "merchantTaxId", merchantTaxId,
+                "customerReferenceNumber", customerReferenceNumber,
+                "amountIncludesTax", amountIncludesTax,
+                "supplierOrderNumber", supplierOrderNumber,
+                "dutyAmount", dutyAmount,
+                "shippingAmount", shippingAmount);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -1343,6 +1615,20 @@ public class TransactionCreate {
         private JsonNullable<? extends Recipient> recipient = JsonNullable.undefined();
 
         private JsonNullable<Long> installmentCount = JsonNullable.undefined();
+
+        private JsonNullable<Long> taxAmount = JsonNullable.undefined();
+
+        private JsonNullable<String> merchantTaxId = JsonNullable.undefined();
+
+        private JsonNullable<String> customerReferenceNumber = JsonNullable.undefined();
+
+        private JsonNullable<Boolean> amountIncludesTax = JsonNullable.undefined();
+
+        private JsonNullable<String> supplierOrderNumber = JsonNullable.undefined();
+
+        private JsonNullable<Long> dutyAmount = JsonNullable.undefined();
+
+        private JsonNullable<Long> shippingAmount = JsonNullable.undefined();
 
         private Builder() {
           // force use of static builder() method
@@ -1930,6 +2216,139 @@ public class TransactionCreate {
             return this;
         }
 
+
+        /**
+         * The sales tax amount for this transaction, represented as a monetary amount in the smallest currency unit for the given currency, for example `1299` cents to create an authorization for `$12.99`
+         */
+        public Builder taxAmount(long taxAmount) {
+            Utils.checkNotNull(taxAmount, "taxAmount");
+            this.taxAmount = JsonNullable.of(taxAmount);
+            return this;
+        }
+
+        /**
+         * The sales tax amount for this transaction, represented as a monetary amount in the smallest currency unit for the given currency, for example `1299` cents to create an authorization for `$12.99`
+         */
+        public Builder taxAmount(JsonNullable<Long> taxAmount) {
+            Utils.checkNotNull(taxAmount, "taxAmount");
+            this.taxAmount = taxAmount;
+            return this;
+        }
+
+
+        /**
+         * Merchant tax ID (for example, EIN or VAT number).
+         */
+        public Builder merchantTaxId(String merchantTaxId) {
+            Utils.checkNotNull(merchantTaxId, "merchantTaxId");
+            this.merchantTaxId = JsonNullable.of(merchantTaxId);
+            return this;
+        }
+
+        /**
+         * Merchant tax ID (for example, EIN or VAT number).
+         */
+        public Builder merchantTaxId(JsonNullable<String> merchantTaxId) {
+            Utils.checkNotNull(merchantTaxId, "merchantTaxId");
+            this.merchantTaxId = merchantTaxId;
+            return this;
+        }
+
+
+        /**
+         * Customer code or reference.
+         */
+        public Builder customerReferenceNumber(String customerReferenceNumber) {
+            Utils.checkNotNull(customerReferenceNumber, "customerReferenceNumber");
+            this.customerReferenceNumber = JsonNullable.of(customerReferenceNumber);
+            return this;
+        }
+
+        /**
+         * Customer code or reference.
+         */
+        public Builder customerReferenceNumber(JsonNullable<String> customerReferenceNumber) {
+            Utils.checkNotNull(customerReferenceNumber, "customerReferenceNumber");
+            this.customerReferenceNumber = customerReferenceNumber;
+            return this;
+        }
+
+
+        /**
+         * Whether the tax is included in the amount.
+         */
+        public Builder amountIncludesTax(boolean amountIncludesTax) {
+            Utils.checkNotNull(amountIncludesTax, "amountIncludesTax");
+            this.amountIncludesTax = JsonNullable.of(amountIncludesTax);
+            return this;
+        }
+
+        /**
+         * Whether the tax is included in the amount.
+         */
+        public Builder amountIncludesTax(JsonNullable<Boolean> amountIncludesTax) {
+            Utils.checkNotNull(amountIncludesTax, "amountIncludesTax");
+            this.amountIncludesTax = amountIncludesTax;
+            return this;
+        }
+
+
+        /**
+         * The merchant's unique identifier for the sales order or invoice.
+         */
+        public Builder supplierOrderNumber(String supplierOrderNumber) {
+            Utils.checkNotNull(supplierOrderNumber, "supplierOrderNumber");
+            this.supplierOrderNumber = JsonNullable.of(supplierOrderNumber);
+            return this;
+        }
+
+        /**
+         * The merchant's unique identifier for the sales order or invoice.
+         */
+        public Builder supplierOrderNumber(JsonNullable<String> supplierOrderNumber) {
+            Utils.checkNotNull(supplierOrderNumber, "supplierOrderNumber");
+            this.supplierOrderNumber = supplierOrderNumber;
+            return this;
+        }
+
+
+        /**
+         * Total charges for import/export duties.
+         */
+        public Builder dutyAmount(long dutyAmount) {
+            Utils.checkNotNull(dutyAmount, "dutyAmount");
+            this.dutyAmount = JsonNullable.of(dutyAmount);
+            return this;
+        }
+
+        /**
+         * Total charges for import/export duties.
+         */
+        public Builder dutyAmount(JsonNullable<Long> dutyAmount) {
+            Utils.checkNotNull(dutyAmount, "dutyAmount");
+            this.dutyAmount = dutyAmount;
+            return this;
+        }
+
+
+        /**
+         * Total shipping amount.
+         */
+        public Builder shippingAmount(long shippingAmount) {
+            Utils.checkNotNull(shippingAmount, "shippingAmount");
+            this.shippingAmount = JsonNullable.of(shippingAmount);
+            return this;
+        }
+
+        /**
+         * Total shipping amount.
+         */
+        public Builder shippingAmount(JsonNullable<Long> shippingAmount) {
+            Utils.checkNotNull(shippingAmount, "shippingAmount");
+            this.shippingAmount = shippingAmount;
+            return this;
+        }
+
         public TransactionCreate build() {
             if (store == null) {
                 store = _SINGLETON_VALUE_Store.value();
@@ -1960,7 +2379,10 @@ public class TransactionCreate {
                 statementDescriptor, previousSchemeTransactionId, browserInfo,
                 shippingDetailsId, connectionOptions, asyncCapture,
                 antiFraudFingerprint, paymentServiceId, accountFundingTransaction,
-                allowPartialAuthorization, recipient, installmentCount);
+                allowPartialAuthorization, recipient, installmentCount,
+                taxAmount, merchantTaxId, customerReferenceNumber,
+                amountIncludesTax, supplierOrderNumber, dutyAmount,
+                shippingAmount);
         }
 
 
