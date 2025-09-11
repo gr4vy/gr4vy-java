@@ -61,6 +61,13 @@ public class StatementDescriptor {
     @JsonProperty("url")
     private JsonNullable<String> url;
 
+    /**
+     * The merchant's postal code or zip code.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("postal_code")
+    private JsonNullable<String> postalCode;
+
     @JsonCreator
     public StatementDescriptor(
             @JsonProperty("name") JsonNullable<String> name,
@@ -68,24 +75,28 @@ public class StatementDescriptor {
             @JsonProperty("city") JsonNullable<String> city,
             @JsonProperty("country") JsonNullable<String> country,
             @JsonProperty("phone_number") JsonNullable<String> phoneNumber,
-            @JsonProperty("url") JsonNullable<String> url) {
+            @JsonProperty("url") JsonNullable<String> url,
+            @JsonProperty("postal_code") JsonNullable<String> postalCode) {
         Utils.checkNotNull(name, "name");
         Utils.checkNotNull(description, "description");
         Utils.checkNotNull(city, "city");
         Utils.checkNotNull(country, "country");
         Utils.checkNotNull(phoneNumber, "phoneNumber");
         Utils.checkNotNull(url, "url");
+        Utils.checkNotNull(postalCode, "postalCode");
         this.name = name;
         this.description = description;
         this.city = city;
         this.country = country;
         this.phoneNumber = phoneNumber;
         this.url = url;
+        this.postalCode = postalCode;
     }
     
     public StatementDescriptor() {
         this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined());
     }
 
     /**
@@ -134,6 +145,14 @@ public class StatementDescriptor {
     @JsonIgnore
     public JsonNullable<String> url() {
         return url;
+    }
+
+    /**
+     * The merchant's postal code or zip code.
+     */
+    @JsonIgnore
+    public JsonNullable<String> postalCode() {
+        return postalCode;
     }
 
     public static Builder builder() {
@@ -249,6 +268,24 @@ public class StatementDescriptor {
         return this;
     }
 
+    /**
+     * The merchant's postal code or zip code.
+     */
+    public StatementDescriptor withPostalCode(String postalCode) {
+        Utils.checkNotNull(postalCode, "postalCode");
+        this.postalCode = JsonNullable.of(postalCode);
+        return this;
+    }
+
+    /**
+     * The merchant's postal code or zip code.
+     */
+    public StatementDescriptor withPostalCode(JsonNullable<String> postalCode) {
+        Utils.checkNotNull(postalCode, "postalCode");
+        this.postalCode = postalCode;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -264,14 +301,16 @@ public class StatementDescriptor {
             Utils.enhancedDeepEquals(this.city, other.city) &&
             Utils.enhancedDeepEquals(this.country, other.country) &&
             Utils.enhancedDeepEquals(this.phoneNumber, other.phoneNumber) &&
-            Utils.enhancedDeepEquals(this.url, other.url);
+            Utils.enhancedDeepEquals(this.url, other.url) &&
+            Utils.enhancedDeepEquals(this.postalCode, other.postalCode);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
             name, description, city,
-            country, phoneNumber, url);
+            country, phoneNumber, url,
+            postalCode);
     }
     
     @Override
@@ -282,7 +321,8 @@ public class StatementDescriptor {
                 "city", city,
                 "country", country,
                 "phoneNumber", phoneNumber,
-                "url", url);
+                "url", url,
+                "postalCode", postalCode);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -299,6 +339,8 @@ public class StatementDescriptor {
         private JsonNullable<String> phoneNumber = JsonNullable.undefined();
 
         private JsonNullable<String> url = JsonNullable.undefined();
+
+        private JsonNullable<String> postalCode = JsonNullable.undefined();
 
         private Builder() {
           // force use of static builder() method
@@ -418,11 +460,31 @@ public class StatementDescriptor {
             return this;
         }
 
+
+        /**
+         * The merchant's postal code or zip code.
+         */
+        public Builder postalCode(String postalCode) {
+            Utils.checkNotNull(postalCode, "postalCode");
+            this.postalCode = JsonNullable.of(postalCode);
+            return this;
+        }
+
+        /**
+         * The merchant's postal code or zip code.
+         */
+        public Builder postalCode(JsonNullable<String> postalCode) {
+            Utils.checkNotNull(postalCode, "postalCode");
+            this.postalCode = postalCode;
+            return this;
+        }
+
         public StatementDescriptor build() {
 
             return new StatementDescriptor(
                 name, description, city,
-                country, phoneNumber, url);
+                country, phoneNumber, url,
+                postalCode);
         }
 
     }

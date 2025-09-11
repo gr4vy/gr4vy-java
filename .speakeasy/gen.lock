@@ -1,21 +1,21 @@
 lockVersion: 2.0.0
 id: 5bbaa3a9-baa0-471b-ba6a-13fd88e8c119
 management:
-  docChecksum: ae160cf87bc10d976e520f9c24ee9b07
+  docChecksum: 8c4cc78719adc68e52451646396f503b
   docVersion: 1.0.0
-  speakeasyVersion: 1.613.0
-  generationVersion: 2.696.0
-  releaseVersion: 2.11.1
-  configChecksum: 67530e414511a2fb3b3cf059b50fe11c
+  speakeasyVersion: 1.615.2
+  generationVersion: 2.698.4
+  releaseVersion: 2.11.2
+  configChecksum: f512d7a11f83acc74d854fd494a2c27e
   repoURL: https://github.com/gr4vy/gr4vy-java.git
   published: true
 features:
   java:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.1
-    core: 3.47.1
+    core: 3.47.2
     flattening: 2.81.1
-    globalSecurity: 2.83.0
+    globalSecurity: 2.83.1
     globalSecurityCallbacks: 0.1.0
     globalSecurityFlattening: 0.1.0
     globalServerURLs: 2.82.2
@@ -4996,4 +4996,4 @@ examples:
           application/json: {"type": "error", "code": "gateway_timeout", "status": 504, "message": "Request could not be processed"}
 examplesVersion: 1.0.2
 generatedTests: {}
-releaseNotes: "## Java SDK Changes Detected:\n* `gr4vy.transactions.list()`: \n  *  `request.disputed` **Added**\n  *  `response.items.[].disputed` **Added**\n* `gr4vy.transactions.create()`:  `response.disputed` **Added**\n* `gr4vy.transactions.get()`:  `response.disputed` **Added**\n* `gr4vy.transactions.update()`:  `response.disputed` **Added**\n* `gr4vy.transactions.capture()`:  `response.[transaction].disputed` **Added**\n* `gr4vy.transactions.void()`:  `response.[transaction].disputed` **Added**\n* `gr4vy.transactions.cancel()`:  `response.transaction.disputed` **Added**\n* `gr4vy.transactions.sync()`:  `response.disputed` **Added**\n"
+releaseNotes: "## Java SDK Changes Detected:\n* `gr4vy.transactions.create()`: \n  *  `request.transactioncreate` **Changed**\n  *  `response.statement_descriptor.postalCode` **Added**\n* `gr4vy.transactions.get()`:  `response.statement_descriptor.postalCode` **Added**\n* `gr4vy.transactions.update()`:  `response.statement_descriptor.postalCode` **Added**\n* `gr4vy.transactions.capture()`:  `response.[transaction].statementDescriptor.postalCode` **Added**\n* `gr4vy.transactions.void()`:  `response.[transaction].statementDescriptor.postalCode` **Added**\n* `gr4vy.transactions.cancel()`:  `response.transaction.statementDescriptor.postalCode` **Added**\n* `gr4vy.transactions.sync()`:  `response.statement_descriptor.postalCode` **Added**\n* `gr4vy.paymentLinks.list()`:  `response.items.[].statementDescriptor.postalCode` **Added**\n* `gr4vy.paymentLinks.create()`: \n  *  `request.paymentlinkcreate.statementDescriptor.postalCode` **Added**\n  *  `response.statement_descriptor.postalCode` **Added**\n* `gr4vy.paymentLinks.get()`:  `response.statement_descriptor.postalCode` **Added**\n"
