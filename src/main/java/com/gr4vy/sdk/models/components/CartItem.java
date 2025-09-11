@@ -9,6 +9,7 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.gr4vy.sdk.utils.Utils;
+import java.lang.Boolean;
 import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
@@ -58,7 +59,7 @@ public class CartItem {
     private JsonNullable<String> externalIdentifier;
 
     /**
-     * The SKU for the item.
+     * The SKU or product code for the item.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("sku")
@@ -99,6 +100,48 @@ public class CartItem {
     @JsonProperty("seller_country")
     private JsonNullable<String> sellerCountry;
 
+    /**
+     * Whether the item is exempt of tax.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("tax_exempt")
+    private JsonNullable<Boolean> taxExempt;
+
+    /**
+     * The unit of measure or the unit of measure code.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("unit_of_measure")
+    private JsonNullable<String> unitOfMeasure;
+
+    /**
+     * Item commodity code. Generally a UNSPSC code.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("commodity_code")
+    private JsonNullable<String> commodityCode;
+
+    /**
+     * Brief item description.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("description")
+    private JsonNullable<String> description;
+
+    /**
+     * Item import or export duties represented as a monetary amount in the smallest currency unit for the given currency, for example `1299` cents to create an authorization for `$12.99`
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("duty_amount")
+    private JsonNullable<Long> dutyAmount;
+
+    /**
+     * Freight/shipping amount represented as a monetary amount in the smallest currency unit for the given currency, for example `1299` cents to create an authorization for `$12.99`
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("shipping_amount")
+    private JsonNullable<Long> shippingAmount;
+
     @JsonCreator
     public CartItem(
             @JsonProperty("name") String name,
@@ -112,7 +155,13 @@ public class CartItem {
             @JsonProperty("image_url") JsonNullable<String> imageUrl,
             @JsonProperty("categories") JsonNullable<? extends List<String>> categories,
             @JsonProperty("product_type") JsonNullable<? extends ProductType> productType,
-            @JsonProperty("seller_country") JsonNullable<String> sellerCountry) {
+            @JsonProperty("seller_country") JsonNullable<String> sellerCountry,
+            @JsonProperty("tax_exempt") JsonNullable<Boolean> taxExempt,
+            @JsonProperty("unit_of_measure") JsonNullable<String> unitOfMeasure,
+            @JsonProperty("commodity_code") JsonNullable<String> commodityCode,
+            @JsonProperty("description") JsonNullable<String> description,
+            @JsonProperty("duty_amount") JsonNullable<Long> dutyAmount,
+            @JsonProperty("shipping_amount") JsonNullable<Long> shippingAmount) {
         Utils.checkNotNull(name, "name");
         Utils.checkNotNull(quantity, "quantity");
         Utils.checkNotNull(unitAmount, "unitAmount");
@@ -125,6 +174,12 @@ public class CartItem {
         Utils.checkNotNull(categories, "categories");
         Utils.checkNotNull(productType, "productType");
         Utils.checkNotNull(sellerCountry, "sellerCountry");
+        Utils.checkNotNull(taxExempt, "taxExempt");
+        Utils.checkNotNull(unitOfMeasure, "unitOfMeasure");
+        Utils.checkNotNull(commodityCode, "commodityCode");
+        Utils.checkNotNull(description, "description");
+        Utils.checkNotNull(dutyAmount, "dutyAmount");
+        Utils.checkNotNull(shippingAmount, "shippingAmount");
         this.name = name;
         this.quantity = quantity;
         this.unitAmount = unitAmount;
@@ -137,6 +192,12 @@ public class CartItem {
         this.categories = categories;
         this.productType = productType;
         this.sellerCountry = sellerCountry;
+        this.taxExempt = taxExempt;
+        this.unitOfMeasure = unitOfMeasure;
+        this.commodityCode = commodityCode;
+        this.description = description;
+        this.dutyAmount = dutyAmount;
+        this.shippingAmount = shippingAmount;
     }
     
     public CartItem(
@@ -144,6 +205,8 @@ public class CartItem {
             long quantity,
             long unitAmount) {
         this(name, quantity, unitAmount,
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
@@ -198,7 +261,7 @@ public class CartItem {
     }
 
     /**
-     * The SKU for the item.
+     * The SKU or product code for the item.
      */
     @JsonIgnore
     public JsonNullable<String> sku() {
@@ -245,6 +308,54 @@ public class CartItem {
     @JsonIgnore
     public JsonNullable<String> sellerCountry() {
         return sellerCountry;
+    }
+
+    /**
+     * Whether the item is exempt of tax.
+     */
+    @JsonIgnore
+    public JsonNullable<Boolean> taxExempt() {
+        return taxExempt;
+    }
+
+    /**
+     * The unit of measure or the unit of measure code.
+     */
+    @JsonIgnore
+    public JsonNullable<String> unitOfMeasure() {
+        return unitOfMeasure;
+    }
+
+    /**
+     * Item commodity code. Generally a UNSPSC code.
+     */
+    @JsonIgnore
+    public JsonNullable<String> commodityCode() {
+        return commodityCode;
+    }
+
+    /**
+     * Brief item description.
+     */
+    @JsonIgnore
+    public JsonNullable<String> description() {
+        return description;
+    }
+
+    /**
+     * Item import or export duties represented as a monetary amount in the smallest currency unit for the given currency, for example `1299` cents to create an authorization for `$12.99`
+     */
+    @JsonIgnore
+    public JsonNullable<Long> dutyAmount() {
+        return dutyAmount;
+    }
+
+    /**
+     * Freight/shipping amount represented as a monetary amount in the smallest currency unit for the given currency, for example `1299` cents to create an authorization for `$12.99`
+     */
+    @JsonIgnore
+    public JsonNullable<Long> shippingAmount() {
+        return shippingAmount;
     }
 
     public static Builder builder() {
@@ -334,7 +445,7 @@ public class CartItem {
     }
 
     /**
-     * The SKU for the item.
+     * The SKU or product code for the item.
      */
     public CartItem withSku(String sku) {
         Utils.checkNotNull(sku, "sku");
@@ -343,7 +454,7 @@ public class CartItem {
     }
 
     /**
-     * The SKU for the item.
+     * The SKU or product code for the item.
      */
     public CartItem withSku(JsonNullable<String> sku) {
         Utils.checkNotNull(sku, "sku");
@@ -441,6 +552,114 @@ public class CartItem {
         return this;
     }
 
+    /**
+     * Whether the item is exempt of tax.
+     */
+    public CartItem withTaxExempt(boolean taxExempt) {
+        Utils.checkNotNull(taxExempt, "taxExempt");
+        this.taxExempt = JsonNullable.of(taxExempt);
+        return this;
+    }
+
+    /**
+     * Whether the item is exempt of tax.
+     */
+    public CartItem withTaxExempt(JsonNullable<Boolean> taxExempt) {
+        Utils.checkNotNull(taxExempt, "taxExempt");
+        this.taxExempt = taxExempt;
+        return this;
+    }
+
+    /**
+     * The unit of measure or the unit of measure code.
+     */
+    public CartItem withUnitOfMeasure(String unitOfMeasure) {
+        Utils.checkNotNull(unitOfMeasure, "unitOfMeasure");
+        this.unitOfMeasure = JsonNullable.of(unitOfMeasure);
+        return this;
+    }
+
+    /**
+     * The unit of measure or the unit of measure code.
+     */
+    public CartItem withUnitOfMeasure(JsonNullable<String> unitOfMeasure) {
+        Utils.checkNotNull(unitOfMeasure, "unitOfMeasure");
+        this.unitOfMeasure = unitOfMeasure;
+        return this;
+    }
+
+    /**
+     * Item commodity code. Generally a UNSPSC code.
+     */
+    public CartItem withCommodityCode(String commodityCode) {
+        Utils.checkNotNull(commodityCode, "commodityCode");
+        this.commodityCode = JsonNullable.of(commodityCode);
+        return this;
+    }
+
+    /**
+     * Item commodity code. Generally a UNSPSC code.
+     */
+    public CartItem withCommodityCode(JsonNullable<String> commodityCode) {
+        Utils.checkNotNull(commodityCode, "commodityCode");
+        this.commodityCode = commodityCode;
+        return this;
+    }
+
+    /**
+     * Brief item description.
+     */
+    public CartItem withDescription(String description) {
+        Utils.checkNotNull(description, "description");
+        this.description = JsonNullable.of(description);
+        return this;
+    }
+
+    /**
+     * Brief item description.
+     */
+    public CartItem withDescription(JsonNullable<String> description) {
+        Utils.checkNotNull(description, "description");
+        this.description = description;
+        return this;
+    }
+
+    /**
+     * Item import or export duties represented as a monetary amount in the smallest currency unit for the given currency, for example `1299` cents to create an authorization for `$12.99`
+     */
+    public CartItem withDutyAmount(long dutyAmount) {
+        Utils.checkNotNull(dutyAmount, "dutyAmount");
+        this.dutyAmount = JsonNullable.of(dutyAmount);
+        return this;
+    }
+
+    /**
+     * Item import or export duties represented as a monetary amount in the smallest currency unit for the given currency, for example `1299` cents to create an authorization for `$12.99`
+     */
+    public CartItem withDutyAmount(JsonNullable<Long> dutyAmount) {
+        Utils.checkNotNull(dutyAmount, "dutyAmount");
+        this.dutyAmount = dutyAmount;
+        return this;
+    }
+
+    /**
+     * Freight/shipping amount represented as a monetary amount in the smallest currency unit for the given currency, for example `1299` cents to create an authorization for `$12.99`
+     */
+    public CartItem withShippingAmount(long shippingAmount) {
+        Utils.checkNotNull(shippingAmount, "shippingAmount");
+        this.shippingAmount = JsonNullable.of(shippingAmount);
+        return this;
+    }
+
+    /**
+     * Freight/shipping amount represented as a monetary amount in the smallest currency unit for the given currency, for example `1299` cents to create an authorization for `$12.99`
+     */
+    public CartItem withShippingAmount(JsonNullable<Long> shippingAmount) {
+        Utils.checkNotNull(shippingAmount, "shippingAmount");
+        this.shippingAmount = shippingAmount;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -462,7 +681,13 @@ public class CartItem {
             Utils.enhancedDeepEquals(this.imageUrl, other.imageUrl) &&
             Utils.enhancedDeepEquals(this.categories, other.categories) &&
             Utils.enhancedDeepEquals(this.productType, other.productType) &&
-            Utils.enhancedDeepEquals(this.sellerCountry, other.sellerCountry);
+            Utils.enhancedDeepEquals(this.sellerCountry, other.sellerCountry) &&
+            Utils.enhancedDeepEquals(this.taxExempt, other.taxExempt) &&
+            Utils.enhancedDeepEquals(this.unitOfMeasure, other.unitOfMeasure) &&
+            Utils.enhancedDeepEquals(this.commodityCode, other.commodityCode) &&
+            Utils.enhancedDeepEquals(this.description, other.description) &&
+            Utils.enhancedDeepEquals(this.dutyAmount, other.dutyAmount) &&
+            Utils.enhancedDeepEquals(this.shippingAmount, other.shippingAmount);
     }
     
     @Override
@@ -471,7 +696,9 @@ public class CartItem {
             name, quantity, unitAmount,
             discountAmount, taxAmount, externalIdentifier,
             sku, productUrl, imageUrl,
-            categories, productType, sellerCountry);
+            categories, productType, sellerCountry,
+            taxExempt, unitOfMeasure, commodityCode,
+            description, dutyAmount, shippingAmount);
     }
     
     @Override
@@ -488,7 +715,13 @@ public class CartItem {
                 "imageUrl", imageUrl,
                 "categories", categories,
                 "productType", productType,
-                "sellerCountry", sellerCountry);
+                "sellerCountry", sellerCountry,
+                "taxExempt", taxExempt,
+                "unitOfMeasure", unitOfMeasure,
+                "commodityCode", commodityCode,
+                "description", description,
+                "dutyAmount", dutyAmount,
+                "shippingAmount", shippingAmount);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -517,6 +750,18 @@ public class CartItem {
         private JsonNullable<? extends ProductType> productType = JsonNullable.undefined();
 
         private JsonNullable<String> sellerCountry = JsonNullable.undefined();
+
+        private JsonNullable<Boolean> taxExempt = JsonNullable.undefined();
+
+        private JsonNullable<String> unitOfMeasure = JsonNullable.undefined();
+
+        private JsonNullable<String> commodityCode = JsonNullable.undefined();
+
+        private JsonNullable<String> description = JsonNullable.undefined();
+
+        private JsonNullable<Long> dutyAmount = JsonNullable.undefined();
+
+        private JsonNullable<Long> shippingAmount = JsonNullable.undefined();
 
         private Builder() {
           // force use of static builder() method
@@ -611,7 +856,7 @@ public class CartItem {
 
 
         /**
-         * The SKU for the item.
+         * The SKU or product code for the item.
          */
         public Builder sku(String sku) {
             Utils.checkNotNull(sku, "sku");
@@ -620,7 +865,7 @@ public class CartItem {
         }
 
         /**
-         * The SKU for the item.
+         * The SKU or product code for the item.
          */
         public Builder sku(JsonNullable<String> sku) {
             Utils.checkNotNull(sku, "sku");
@@ -723,13 +968,129 @@ public class CartItem {
             return this;
         }
 
+
+        /**
+         * Whether the item is exempt of tax.
+         */
+        public Builder taxExempt(boolean taxExempt) {
+            Utils.checkNotNull(taxExempt, "taxExempt");
+            this.taxExempt = JsonNullable.of(taxExempt);
+            return this;
+        }
+
+        /**
+         * Whether the item is exempt of tax.
+         */
+        public Builder taxExempt(JsonNullable<Boolean> taxExempt) {
+            Utils.checkNotNull(taxExempt, "taxExempt");
+            this.taxExempt = taxExempt;
+            return this;
+        }
+
+
+        /**
+         * The unit of measure or the unit of measure code.
+         */
+        public Builder unitOfMeasure(String unitOfMeasure) {
+            Utils.checkNotNull(unitOfMeasure, "unitOfMeasure");
+            this.unitOfMeasure = JsonNullable.of(unitOfMeasure);
+            return this;
+        }
+
+        /**
+         * The unit of measure or the unit of measure code.
+         */
+        public Builder unitOfMeasure(JsonNullable<String> unitOfMeasure) {
+            Utils.checkNotNull(unitOfMeasure, "unitOfMeasure");
+            this.unitOfMeasure = unitOfMeasure;
+            return this;
+        }
+
+
+        /**
+         * Item commodity code. Generally a UNSPSC code.
+         */
+        public Builder commodityCode(String commodityCode) {
+            Utils.checkNotNull(commodityCode, "commodityCode");
+            this.commodityCode = JsonNullable.of(commodityCode);
+            return this;
+        }
+
+        /**
+         * Item commodity code. Generally a UNSPSC code.
+         */
+        public Builder commodityCode(JsonNullable<String> commodityCode) {
+            Utils.checkNotNull(commodityCode, "commodityCode");
+            this.commodityCode = commodityCode;
+            return this;
+        }
+
+
+        /**
+         * Brief item description.
+         */
+        public Builder description(String description) {
+            Utils.checkNotNull(description, "description");
+            this.description = JsonNullable.of(description);
+            return this;
+        }
+
+        /**
+         * Brief item description.
+         */
+        public Builder description(JsonNullable<String> description) {
+            Utils.checkNotNull(description, "description");
+            this.description = description;
+            return this;
+        }
+
+
+        /**
+         * Item import or export duties represented as a monetary amount in the smallest currency unit for the given currency, for example `1299` cents to create an authorization for `$12.99`
+         */
+        public Builder dutyAmount(long dutyAmount) {
+            Utils.checkNotNull(dutyAmount, "dutyAmount");
+            this.dutyAmount = JsonNullable.of(dutyAmount);
+            return this;
+        }
+
+        /**
+         * Item import or export duties represented as a monetary amount in the smallest currency unit for the given currency, for example `1299` cents to create an authorization for `$12.99`
+         */
+        public Builder dutyAmount(JsonNullable<Long> dutyAmount) {
+            Utils.checkNotNull(dutyAmount, "dutyAmount");
+            this.dutyAmount = dutyAmount;
+            return this;
+        }
+
+
+        /**
+         * Freight/shipping amount represented as a monetary amount in the smallest currency unit for the given currency, for example `1299` cents to create an authorization for `$12.99`
+         */
+        public Builder shippingAmount(long shippingAmount) {
+            Utils.checkNotNull(shippingAmount, "shippingAmount");
+            this.shippingAmount = JsonNullable.of(shippingAmount);
+            return this;
+        }
+
+        /**
+         * Freight/shipping amount represented as a monetary amount in the smallest currency unit for the given currency, for example `1299` cents to create an authorization for `$12.99`
+         */
+        public Builder shippingAmount(JsonNullable<Long> shippingAmount) {
+            Utils.checkNotNull(shippingAmount, "shippingAmount");
+            this.shippingAmount = shippingAmount;
+            return this;
+        }
+
         public CartItem build() {
 
             return new CartItem(
                 name, quantity, unitAmount,
                 discountAmount, taxAmount, externalIdentifier,
                 sku, productUrl, imageUrl,
-                categories, productType, sellerCountry);
+                categories, productType, sellerCountry,
+                taxExempt, unitOfMeasure, commodityCode,
+                description, dutyAmount, shippingAmount);
         }
 
     }
