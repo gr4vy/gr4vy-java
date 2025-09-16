@@ -154,6 +154,13 @@ public class MerchantAccount {
     private JsonNullable<String> mastercardNetworkTokensAppId;
 
     /**
+     * When enabled network tokens will be generated asynchronously and only used on subsequent transactions to speed up transaction processing.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("async_network_tokens_enabled")
+    private Optional<Boolean> asyncNetworkTokensEnabled;
+
+    /**
      * The date this merchant account was created at.
      */
     @JsonProperty("created_at")
@@ -185,6 +192,7 @@ public class MerchantAccount {
             @JsonProperty("amex_network_tokens_app_id") JsonNullable<String> amexNetworkTokensAppId,
             @JsonProperty("mastercard_network_tokens_requestor_id") JsonNullable<String> mastercardNetworkTokensRequestorId,
             @JsonProperty("mastercard_network_tokens_app_id") JsonNullable<String> mastercardNetworkTokensAppId,
+            @JsonProperty("async_network_tokens_enabled") Optional<Boolean> asyncNetworkTokensEnabled,
             @JsonProperty("created_at") OffsetDateTime createdAt,
             @JsonProperty("updated_at") OffsetDateTime updatedAt) {
         Utils.checkNotNull(id, "id");
@@ -205,6 +213,7 @@ public class MerchantAccount {
         Utils.checkNotNull(amexNetworkTokensAppId, "amexNetworkTokensAppId");
         Utils.checkNotNull(mastercardNetworkTokensRequestorId, "mastercardNetworkTokensRequestorId");
         Utils.checkNotNull(mastercardNetworkTokensAppId, "mastercardNetworkTokensAppId");
+        Utils.checkNotNull(asyncNetworkTokensEnabled, "asyncNetworkTokensEnabled");
         Utils.checkNotNull(createdAt, "createdAt");
         Utils.checkNotNull(updatedAt, "updatedAt");
         this.type = Builder._SINGLETON_VALUE_Type.value();
@@ -226,6 +235,7 @@ public class MerchantAccount {
         this.amexNetworkTokensAppId = amexNetworkTokensAppId;
         this.mastercardNetworkTokensRequestorId = mastercardNetworkTokensRequestorId;
         this.mastercardNetworkTokensAppId = mastercardNetworkTokensAppId;
+        this.asyncNetworkTokensEnabled = asyncNetworkTokensEnabled;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
     }
@@ -242,7 +252,7 @@ public class MerchantAccount {
             accountUpdaterEnabled, JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            createdAt, updatedAt);
+            Optional.empty(), createdAt, updatedAt);
     }
 
     /**
@@ -396,6 +406,14 @@ public class MerchantAccount {
     @JsonIgnore
     public JsonNullable<String> mastercardNetworkTokensAppId() {
         return mastercardNetworkTokensAppId;
+    }
+
+    /**
+     * When enabled network tokens will be generated asynchronously and only used on subsequent transactions to speed up transaction processing.
+     */
+    @JsonIgnore
+    public Optional<Boolean> asyncNetworkTokensEnabled() {
+        return asyncNetworkTokensEnabled;
     }
 
     /**
@@ -717,6 +735,25 @@ public class MerchantAccount {
     }
 
     /**
+     * When enabled network tokens will be generated asynchronously and only used on subsequent transactions to speed up transaction processing.
+     */
+    public MerchantAccount withAsyncNetworkTokensEnabled(boolean asyncNetworkTokensEnabled) {
+        Utils.checkNotNull(asyncNetworkTokensEnabled, "asyncNetworkTokensEnabled");
+        this.asyncNetworkTokensEnabled = Optional.ofNullable(asyncNetworkTokensEnabled);
+        return this;
+    }
+
+
+    /**
+     * When enabled network tokens will be generated asynchronously and only used on subsequent transactions to speed up transaction processing.
+     */
+    public MerchantAccount withAsyncNetworkTokensEnabled(Optional<Boolean> asyncNetworkTokensEnabled) {
+        Utils.checkNotNull(asyncNetworkTokensEnabled, "asyncNetworkTokensEnabled");
+        this.asyncNetworkTokensEnabled = asyncNetworkTokensEnabled;
+        return this;
+    }
+
+    /**
      * The date this merchant account was created at.
      */
     public MerchantAccount withCreatedAt(OffsetDateTime createdAt) {
@@ -763,6 +800,7 @@ public class MerchantAccount {
             Utils.enhancedDeepEquals(this.amexNetworkTokensAppId, other.amexNetworkTokensAppId) &&
             Utils.enhancedDeepEquals(this.mastercardNetworkTokensRequestorId, other.mastercardNetworkTokensRequestorId) &&
             Utils.enhancedDeepEquals(this.mastercardNetworkTokensAppId, other.mastercardNetworkTokensAppId) &&
+            Utils.enhancedDeepEquals(this.asyncNetworkTokensEnabled, other.asyncNetworkTokensEnabled) &&
             Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
             Utils.enhancedDeepEquals(this.updatedAt, other.updatedAt);
     }
@@ -776,7 +814,8 @@ public class MerchantAccount {
             accountUpdaterResponseDecryptionKeyId, accountUpdaterEnabled, overCaptureAmount,
             overCapturePercentage, visaNetworkTokensRequestorId, visaNetworkTokensAppId,
             amexNetworkTokensRequestorId, amexNetworkTokensAppId, mastercardNetworkTokensRequestorId,
-            mastercardNetworkTokensAppId, createdAt, updatedAt);
+            mastercardNetworkTokensAppId, asyncNetworkTokensEnabled, createdAt,
+            updatedAt);
     }
     
     @Override
@@ -801,6 +840,7 @@ public class MerchantAccount {
                 "amexNetworkTokensAppId", amexNetworkTokensAppId,
                 "mastercardNetworkTokensRequestorId", mastercardNetworkTokensRequestorId,
                 "mastercardNetworkTokensAppId", mastercardNetworkTokensAppId,
+                "asyncNetworkTokensEnabled", asyncNetworkTokensEnabled,
                 "createdAt", createdAt,
                 "updatedAt", updatedAt);
     }
@@ -843,6 +883,8 @@ public class MerchantAccount {
         private JsonNullable<String> mastercardNetworkTokensRequestorId = JsonNullable.undefined();
 
         private JsonNullable<String> mastercardNetworkTokensAppId = JsonNullable.undefined();
+
+        private Optional<Boolean> asyncNetworkTokensEnabled;
 
         private OffsetDateTime createdAt;
 
@@ -1169,6 +1211,25 @@ public class MerchantAccount {
 
 
         /**
+         * When enabled network tokens will be generated asynchronously and only used on subsequent transactions to speed up transaction processing.
+         */
+        public Builder asyncNetworkTokensEnabled(boolean asyncNetworkTokensEnabled) {
+            Utils.checkNotNull(asyncNetworkTokensEnabled, "asyncNetworkTokensEnabled");
+            this.asyncNetworkTokensEnabled = Optional.ofNullable(asyncNetworkTokensEnabled);
+            return this;
+        }
+
+        /**
+         * When enabled network tokens will be generated asynchronously and only used on subsequent transactions to speed up transaction processing.
+         */
+        public Builder asyncNetworkTokensEnabled(Optional<Boolean> asyncNetworkTokensEnabled) {
+            Utils.checkNotNull(asyncNetworkTokensEnabled, "asyncNetworkTokensEnabled");
+            this.asyncNetworkTokensEnabled = asyncNetworkTokensEnabled;
+            return this;
+        }
+
+
+        /**
          * The date this merchant account was created at.
          */
         public Builder createdAt(OffsetDateTime createdAt) {
@@ -1188,6 +1249,9 @@ public class MerchantAccount {
         }
 
         public MerchantAccount build() {
+            if (asyncNetworkTokensEnabled == null) {
+                asyncNetworkTokensEnabled = _SINGLETON_VALUE_AsyncNetworkTokensEnabled.value();
+            }
 
             return new MerchantAccount(
                 id, displayName, loonClientKey,
@@ -1196,7 +1260,7 @@ public class MerchantAccount {
                 accountUpdaterEnabled, overCaptureAmount, overCapturePercentage,
                 visaNetworkTokensRequestorId, visaNetworkTokensAppId, amexNetworkTokensRequestorId,
                 amexNetworkTokensAppId, mastercardNetworkTokensRequestorId, mastercardNetworkTokensAppId,
-                createdAt, updatedAt);
+                asyncNetworkTokensEnabled, createdAt, updatedAt);
         }
 
 
@@ -1205,5 +1269,11 @@ public class MerchantAccount {
                         "type",
                         "\"merchant-account\"",
                         new TypeReference<Optional<String>>() {});
+
+        private static final LazySingletonValue<Optional<Boolean>> _SINGLETON_VALUE_AsyncNetworkTokensEnabled =
+                new LazySingletonValue<>(
+                        "async_network_tokens_enabled",
+                        "false",
+                        new TypeReference<Optional<Boolean>>() {});
     }
 }
