@@ -105,6 +105,7 @@ public class Application {
                 .id("merchant-12345")
                 .displayName("Example")
                 .accountUpdaterEnabled(true)
+                .asyncNetworkTokensEnabled(true)
                 .build();
 
         CreateMerchantAccountResponse res = sdk.merchantAccounts().create()
@@ -236,6 +237,7 @@ public class Application {
                 .merchantAccountId("merchant-12345")
                 .merchantAccountUpdate(MerchantAccountUpdate.builder()
                     .accountUpdaterEnabled(true)
+                    .asyncNetworkTokensEnabled(true)
                     .build())
                 .call();
 
