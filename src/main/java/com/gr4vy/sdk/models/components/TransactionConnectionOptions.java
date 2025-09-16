@@ -213,6 +213,13 @@ public class TransactionConnectionOptions {
     private JsonNullable<? extends NuveiOptions> nuveiCard;
 
     /**
+     * Custom options to be passed to the `nuvei-pse` connector.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("nuvei-pse")
+    private JsonNullable<? extends NuveiPSEOptions> nuveiPse;
+
+    /**
      * Custom options to be passed to the `oxxo-oxxo` connector.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -305,6 +312,7 @@ public class TransactionConnectionOptions {
             @JsonProperty("mattilda-tapifintechs") JsonNullable<? extends MattildaTapiOptions> mattildaTapifintechs,
             @JsonProperty("mock-card") JsonNullable<? extends MockCardOptions> mockCard,
             @JsonProperty("nuvei-card") JsonNullable<? extends NuveiOptions> nuveiCard,
+            @JsonProperty("nuvei-pse") JsonNullable<? extends NuveiPSEOptions> nuveiPse,
             @JsonProperty("oxxo-oxxo") JsonNullable<? extends OxxoOptions> oxxoOxxo,
             @JsonProperty("paypal-paypal") JsonNullable<? extends PaypalOptions> paypalPaypal,
             @JsonProperty("paypal-paypalpaylater") JsonNullable<? extends PaypalOptions> paypalPaypalpaylater,
@@ -342,6 +350,7 @@ public class TransactionConnectionOptions {
         Utils.checkNotNull(mattildaTapifintechs, "mattildaTapifintechs");
         Utils.checkNotNull(mockCard, "mockCard");
         Utils.checkNotNull(nuveiCard, "nuveiCard");
+        Utils.checkNotNull(nuveiPse, "nuveiPse");
         Utils.checkNotNull(oxxoOxxo, "oxxoOxxo");
         Utils.checkNotNull(paypalPaypal, "paypalPaypal");
         Utils.checkNotNull(paypalPaypalpaylater, "paypalPaypalpaylater");
@@ -379,6 +388,7 @@ public class TransactionConnectionOptions {
         this.mattildaTapifintechs = mattildaTapifintechs;
         this.mockCard = mockCard;
         this.nuveiCard = nuveiCard;
+        this.nuveiPse = nuveiPse;
         this.oxxoOxxo = oxxoOxxo;
         this.paypalPaypal = paypalPaypal;
         this.paypalPaypalpaylater = paypalPaypalpaylater;
@@ -403,7 +413,7 @@ public class TransactionConnectionOptions {
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined());
+            JsonNullable.undefined(), JsonNullable.undefined());
     }
 
     /**
@@ -656,6 +666,15 @@ public class TransactionConnectionOptions {
     @JsonIgnore
     public JsonNullable<NuveiOptions> nuveiCard() {
         return (JsonNullable<NuveiOptions>) nuveiCard;
+    }
+
+    /**
+     * Custom options to be passed to the `nuvei-pse` connector.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public JsonNullable<NuveiPSEOptions> nuveiPse() {
+        return (JsonNullable<NuveiPSEOptions>) nuveiPse;
     }
 
     /**
@@ -1249,6 +1268,24 @@ public class TransactionConnectionOptions {
     }
 
     /**
+     * Custom options to be passed to the `nuvei-pse` connector.
+     */
+    public TransactionConnectionOptions withNuveiPse(NuveiPSEOptions nuveiPse) {
+        Utils.checkNotNull(nuveiPse, "nuveiPse");
+        this.nuveiPse = JsonNullable.of(nuveiPse);
+        return this;
+    }
+
+    /**
+     * Custom options to be passed to the `nuvei-pse` connector.
+     */
+    public TransactionConnectionOptions withNuveiPse(JsonNullable<? extends NuveiPSEOptions> nuveiPse) {
+        Utils.checkNotNull(nuveiPse, "nuveiPse");
+        this.nuveiPse = nuveiPse;
+        return this;
+    }
+
+    /**
      * Custom options to be passed to the `oxxo-oxxo` connector.
      */
     public TransactionConnectionOptions withOxxoOxxo(OxxoOptions oxxoOxxo) {
@@ -1448,6 +1485,7 @@ public class TransactionConnectionOptions {
             Utils.enhancedDeepEquals(this.mattildaTapifintechs, other.mattildaTapifintechs) &&
             Utils.enhancedDeepEquals(this.mockCard, other.mockCard) &&
             Utils.enhancedDeepEquals(this.nuveiCard, other.nuveiCard) &&
+            Utils.enhancedDeepEquals(this.nuveiPse, other.nuveiPse) &&
             Utils.enhancedDeepEquals(this.oxxoOxxo, other.oxxoOxxo) &&
             Utils.enhancedDeepEquals(this.paypalPaypal, other.paypalPaypal) &&
             Utils.enhancedDeepEquals(this.paypalPaypalpaylater, other.paypalPaypalpaylater) &&
@@ -1471,10 +1509,10 @@ public class TransactionConnectionOptions {
             forterAntiFraud, gemGem, gemGemds,
             givingblockGivingblock, latitudeLatitude, latitudeLatitudeds,
             mattildaTapi, mattildaTapifintechs, mockCard,
-            nuveiCard, oxxoOxxo, paypalPaypal,
-            paypalPaypalpaylater, powertranzCard, stripeCard,
-            travelhubCard, trustlyTrustly, wpayEverydaypay,
-            wpayPayto);
+            nuveiCard, nuveiPse, oxxoOxxo,
+            paypalPaypal, paypalPaypalpaylater, powertranzCard,
+            stripeCard, travelhubCard, trustlyTrustly,
+            wpayEverydaypay, wpayPayto);
     }
     
     @Override
@@ -1508,6 +1546,7 @@ public class TransactionConnectionOptions {
                 "mattildaTapifintechs", mattildaTapifintechs,
                 "mockCard", mockCard,
                 "nuveiCard", nuveiCard,
+                "nuveiPse", nuveiPse,
                 "oxxoOxxo", oxxoOxxo,
                 "paypalPaypal", paypalPaypal,
                 "paypalPaypalpaylater", paypalPaypalpaylater,
@@ -1577,6 +1616,8 @@ public class TransactionConnectionOptions {
         private JsonNullable<? extends MockCardOptions> mockCard = JsonNullable.undefined();
 
         private JsonNullable<? extends NuveiOptions> nuveiCard = JsonNullable.undefined();
+
+        private JsonNullable<? extends NuveiPSEOptions> nuveiPse = JsonNullable.undefined();
 
         private JsonNullable<? extends OxxoOptions> oxxoOxxo = JsonNullable.undefined();
 
@@ -2134,6 +2175,25 @@ public class TransactionConnectionOptions {
 
 
         /**
+         * Custom options to be passed to the `nuvei-pse` connector.
+         */
+        public Builder nuveiPse(NuveiPSEOptions nuveiPse) {
+            Utils.checkNotNull(nuveiPse, "nuveiPse");
+            this.nuveiPse = JsonNullable.of(nuveiPse);
+            return this;
+        }
+
+        /**
+         * Custom options to be passed to the `nuvei-pse` connector.
+         */
+        public Builder nuveiPse(JsonNullable<? extends NuveiPSEOptions> nuveiPse) {
+            Utils.checkNotNull(nuveiPse, "nuveiPse");
+            this.nuveiPse = nuveiPse;
+            return this;
+        }
+
+
+        /**
          * Custom options to be passed to the `oxxo-oxxo` connector.
          */
         public Builder oxxoOxxo(OxxoOptions oxxoOxxo) {
@@ -2315,10 +2375,10 @@ public class TransactionConnectionOptions {
                 forterAntiFraud, gemGem, gemGemds,
                 givingblockGivingblock, latitudeLatitude, latitudeLatitudeds,
                 mattildaTapi, mattildaTapifintechs, mockCard,
-                nuveiCard, oxxoOxxo, paypalPaypal,
-                paypalPaypalpaylater, powertranzCard, stripeCard,
-                travelhubCard, trustlyTrustly, wpayEverydaypay,
-                wpayPayto);
+                nuveiCard, nuveiPse, oxxoOxxo,
+                paypalPaypal, paypalPaypalpaylater, powertranzCard,
+                stripeCard, travelhubCard, trustlyTrustly,
+                wpayEverydaypay, wpayPayto);
         }
 
     }
