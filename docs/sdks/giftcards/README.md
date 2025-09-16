@@ -102,9 +102,7 @@ public class Application {
                 .giftCardId("356d56e5-fe16-42ae-97ee-8d55d846ae2e")
                 .call();
 
-        if (res.any().isPresent()) {
-            // handle response
-        }
+        // handle response
     }
 }
 ```
