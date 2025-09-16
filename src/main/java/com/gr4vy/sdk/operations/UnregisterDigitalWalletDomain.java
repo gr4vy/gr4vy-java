@@ -178,21 +178,9 @@ public class UnregisterDigitalWalletDomain {
 
             UnregisterDigitalWalletDomainResponse res = resBuilder.build();
             
-            if (Utils.statusCodeMatches(response.statusCode(), "200")) {
-                if (Utils.contentTypeMatches(contentType, "application/json")) {
-                    Object out = Utils.mapper().readValue(
-                            response.body(),
-                            new TypeReference<>() {
-                            });
-                    res.withAny(out);
-                    return res;
-                } else {
-                    throw new APIException(
-                            response,
-                            response.statusCode(),
-                            "Unexpected content-type received: " + contentType,
-                            Utils.extractByteArrayFromBody(response));
-                }
+            if (Utils.statusCodeMatches(response.statusCode(), "204")) {
+                // no content
+                return res;
             }
             
             if (Utils.statusCodeMatches(response.statusCode(), "400")) {
@@ -488,23 +476,9 @@ public class UnregisterDigitalWalletDomain {
 
             com.gr4vy.sdk.models.operations.async.UnregisterDigitalWalletDomainResponse res = resBuilder.build();
             
-            if (Utils.statusCodeMatches(response.statusCode(), "200")) {
-                if (Utils.contentTypeMatches(contentType, "application/json")) {
-                    return response.body().toByteArray().thenApply(bodyBytes -> {
-                        try {
-                            Object out = Utils.mapper().readValue(
-                                    bodyBytes,
-                                    new TypeReference<>() {
-                                    });
-                            res.withAny(out);
-                            return res;
-                        } catch (Exception e) {
-                            throw new RuntimeException(e);
-                        }
-                    });
-                } else {
-                    return Utils.createAsyncApiError(response, "Unexpected content-type received: " + contentType);
-                }
+            if (Utils.statusCodeMatches(response.statusCode(), "204")) {
+                // no content
+                return CompletableFuture.completedFuture(res);
             }
             
             if (Utils.statusCodeMatches(response.statusCode(), "400")) {

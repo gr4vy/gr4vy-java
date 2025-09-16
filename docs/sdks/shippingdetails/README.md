@@ -308,9 +308,7 @@ public class Application {
                 .shippingDetailsId("bf8c36ad-02d9-4904-b0f9-a230b149e341")
                 .call();
 
-        if (res.any().isPresent()) {
-            // handle response
-        }
+        // handle response
     }
 }
 ```

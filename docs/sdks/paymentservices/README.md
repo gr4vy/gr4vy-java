@@ -332,9 +332,7 @@ public class Application {
                 .paymentServiceId("fffd152a-9532-4087-9a4f-de58754210f0")
                 .call();
 
-        if (res.any().isPresent()) {
-            // handle response
-        }
+        // handle response
     }
 }
 ```

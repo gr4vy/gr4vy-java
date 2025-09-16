@@ -235,9 +235,7 @@ public class Application {
                 .digitalWalletId("1808f5e6-b49c-4db9-94fa-22371ea352f5")
                 .call();
 
-        if (res.any().isPresent()) {
-            // handle response
-        }
+        // handle response
     }
 }
 ```
