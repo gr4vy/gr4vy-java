@@ -7,6 +7,7 @@ import static com.gr4vy.sdk.operations.Operations.RequestOperation;
 
 import com.gr4vy.sdk.SDKConfiguration;
 import com.gr4vy.sdk.operations.ListBuyerPaymentMethods;
+import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.Options;
 import com.gr4vy.sdk.utils.RetryConfig;
 import com.gr4vy.sdk.utils.Utils;
@@ -18,6 +19,7 @@ public class ListBuyerPaymentMethodsRequestBuilder {
     private ListBuyerPaymentMethodsRequest request;
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public ListBuyerPaymentMethodsRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -47,7 +49,7 @@ public class ListBuyerPaymentMethodsRequestBuilder {
             .build());
 
         RequestOperation<ListBuyerPaymentMethodsRequest, ListBuyerPaymentMethodsResponse> operation
-              = new ListBuyerPaymentMethods.Sync(sdkConfiguration, options);
+              = new ListBuyerPaymentMethods.Sync(sdkConfiguration, options, _headers);
 
         return operation.handleResponse(operation.doRequest(request));
     }

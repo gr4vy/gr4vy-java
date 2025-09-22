@@ -11,6 +11,7 @@ import com.gr4vy.sdk.SDKConfiguration;
 import com.gr4vy.sdk.models.operations.ListPayoutsRequest;
 import com.gr4vy.sdk.operations.ListPayouts;
 import com.gr4vy.sdk.utils.Blob;
+import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.LazySingletonValue;
 import com.gr4vy.sdk.utils.Options;
 import com.gr4vy.sdk.utils.RetryConfig;
@@ -38,6 +39,7 @@ public class ListPayoutsRequestBuilder {
     private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public ListPayoutsRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -110,7 +112,9 @@ public class ListPayoutsRequestBuilder {
             .build());
 
         AsyncRequestOperation<ListPayoutsRequest, ListPayoutsResponse> operation
-              = new ListPayouts.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new ListPayouts.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         ListPayoutsRequest request = buildRequest();
 
         return operation.doRequest(request)
@@ -138,7 +142,9 @@ public class ListPayoutsRequestBuilder {
             .build());
 
         AsyncRequestOperation<ListPayoutsRequest, ListPayoutsResponse> operation
-              = new ListPayouts.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new ListPayouts.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
 
         Flow.Publisher<HttpResponse<Blob>> asyncPaginator = new AsyncPaginator<>(
             request,

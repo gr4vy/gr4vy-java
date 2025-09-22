@@ -7,6 +7,7 @@ import static com.gr4vy.sdk.operations.Operations.RequestOperation;
 
 import com.gr4vy.sdk.SDKConfiguration;
 import com.gr4vy.sdk.operations.CreatePaymentServiceSession;
+import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.Object;
@@ -21,6 +22,7 @@ public class CreatePaymentServiceSessionRequestBuilder {
     private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
     private Map<String, Object> requestBody = new HashMap<>();
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public CreatePaymentServiceSessionRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -63,7 +65,7 @@ public class CreatePaymentServiceSessionRequestBuilder {
     public CreatePaymentServiceSessionResponse call() throws Exception {
         
         RequestOperation<CreatePaymentServiceSessionRequest, CreatePaymentServiceSessionResponse> operation
-              = new CreatePaymentServiceSession.Sync(sdkConfiguration);
+              = new CreatePaymentServiceSession.Sync(sdkConfiguration, _headers);
         CreatePaymentServiceSessionRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

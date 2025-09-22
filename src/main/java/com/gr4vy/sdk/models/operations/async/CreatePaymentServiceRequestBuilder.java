@@ -9,6 +9,7 @@ import com.gr4vy.sdk.SDKConfiguration;
 import com.gr4vy.sdk.models.components.PaymentServiceUpdate;
 import com.gr4vy.sdk.models.operations.CreatePaymentServiceRequest;
 import com.gr4vy.sdk.operations.CreatePaymentService;
+import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -21,6 +22,7 @@ public class CreatePaymentServiceRequestBuilder {
     private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
     private PaymentServiceUpdate paymentServiceUpdate;
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public CreatePaymentServiceRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -63,7 +65,7 @@ public class CreatePaymentServiceRequestBuilder {
     public CompletableFuture<CreatePaymentServiceResponse> call() throws Exception {
         
         AsyncRequestOperation<CreatePaymentServiceRequest, CreatePaymentServiceResponse> operation
-              = new CreatePaymentService.Async(sdkConfiguration);
+              = new CreatePaymentService.Async(sdkConfiguration, _headers);
         CreatePaymentServiceRequest request = buildRequest();
 
         return operation.doRequest(request)

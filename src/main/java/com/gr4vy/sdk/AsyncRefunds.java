@@ -9,6 +9,7 @@ import com.gr4vy.sdk.models.operations.GetRefundRequest;
 import com.gr4vy.sdk.models.operations.async.GetRefundRequestBuilder;
 import com.gr4vy.sdk.models.operations.async.GetRefundResponse;
 import com.gr4vy.sdk.operations.GetRefund;
+import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.Options;
 import java.lang.String;
 import java.util.Optional;
@@ -17,6 +18,7 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 
 public class AsyncRefunds {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final Refunds syncSDK;
 
@@ -78,7 +80,9 @@ public class AsyncRefunds {
                 .merchantAccountId(merchantAccountId)
                 .build();
         AsyncRequestOperation<GetRefundRequest, GetRefundResponse> operation
-              = new GetRefund.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new GetRefund.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }

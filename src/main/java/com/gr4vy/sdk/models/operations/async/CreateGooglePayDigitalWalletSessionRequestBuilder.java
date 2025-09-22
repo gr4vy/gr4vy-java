@@ -9,6 +9,7 @@ import com.gr4vy.sdk.SDKConfiguration;
 import com.gr4vy.sdk.models.components.GooglePaySessionRequest;
 import com.gr4vy.sdk.models.operations.CreateGooglePayDigitalWalletSessionRequest;
 import com.gr4vy.sdk.operations.CreateGooglePayDigitalWalletSession;
+import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -20,6 +21,7 @@ public class CreateGooglePayDigitalWalletSessionRequestBuilder {
     private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
     private GooglePaySessionRequest googlePaySessionRequest;
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public CreateGooglePayDigitalWalletSessionRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -55,7 +57,7 @@ public class CreateGooglePayDigitalWalletSessionRequestBuilder {
     public CompletableFuture<CreateGooglePayDigitalWalletSessionResponse> call() throws Exception {
         
         AsyncRequestOperation<CreateGooglePayDigitalWalletSessionRequest, CreateGooglePayDigitalWalletSessionResponse> operation
-              = new CreateGooglePayDigitalWalletSession.Async(sdkConfiguration);
+              = new CreateGooglePayDigitalWalletSession.Async(sdkConfiguration, _headers);
         CreateGooglePayDigitalWalletSessionRequest request = buildRequest();
 
         return operation.doRequest(request)

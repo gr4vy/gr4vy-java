@@ -8,6 +8,7 @@ import static com.gr4vy.sdk.operations.Operations.AsyncRequestOperation;
 import com.gr4vy.sdk.SDKConfiguration;
 import com.gr4vy.sdk.models.operations.DeletePaymentMethodNetworkTokenRequest;
 import com.gr4vy.sdk.operations.DeletePaymentMethodNetworkToken;
+import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -20,6 +21,7 @@ public class DeletePaymentMethodNetworkTokenRequestBuilder {
     private String networkTokenId;
     private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public DeletePaymentMethodNetworkTokenRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -62,7 +64,7 @@ public class DeletePaymentMethodNetworkTokenRequestBuilder {
     public CompletableFuture<DeletePaymentMethodNetworkTokenResponse> call() throws Exception {
         
         AsyncRequestOperation<DeletePaymentMethodNetworkTokenRequest, DeletePaymentMethodNetworkTokenResponse> operation
-              = new DeletePaymentMethodNetworkToken.Async(sdkConfiguration);
+              = new DeletePaymentMethodNetworkToken.Async(sdkConfiguration, _headers);
         DeletePaymentMethodNetworkTokenRequest request = buildRequest();
 
         return operation.doRequest(request)

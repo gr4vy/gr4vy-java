@@ -9,6 +9,7 @@ import com.gr4vy.sdk.SDKConfiguration;
 import com.gr4vy.sdk.models.components.DigitalWalletUpdate;
 import com.gr4vy.sdk.models.operations.UpdateDigitalWalletRequest;
 import com.gr4vy.sdk.operations.UpdateDigitalWallet;
+import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -21,6 +22,7 @@ public class UpdateDigitalWalletRequestBuilder {
     private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
     private DigitalWalletUpdate digitalWalletUpdate;
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public UpdateDigitalWalletRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -63,7 +65,7 @@ public class UpdateDigitalWalletRequestBuilder {
     public CompletableFuture<UpdateDigitalWalletResponse> call() throws Exception {
         
         AsyncRequestOperation<UpdateDigitalWalletRequest, UpdateDigitalWalletResponse> operation
-              = new UpdateDigitalWallet.Async(sdkConfiguration);
+              = new UpdateDigitalWallet.Async(sdkConfiguration, _headers);
         UpdateDigitalWalletRequest request = buildRequest();
 
         return operation.doRequest(request)

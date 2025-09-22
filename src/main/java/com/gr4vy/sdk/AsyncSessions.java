@@ -19,12 +19,14 @@ import com.gr4vy.sdk.models.operations.async.CreateGooglePayDigitalWalletSession
 import com.gr4vy.sdk.operations.CreateApplePayDigitalWalletSession;
 import com.gr4vy.sdk.operations.CreateClickToPayDigitalWalletSession;
 import com.gr4vy.sdk.operations.CreateGooglePayDigitalWalletSession;
+import com.gr4vy.sdk.utils.Headers;
 import java.lang.String;
 import java.util.concurrent.CompletableFuture;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 
 public class AsyncSessions {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final Sessions syncSDK;
 
@@ -83,7 +85,7 @@ public class AsyncSessions {
                 .googlePaySessionRequest(googlePaySessionRequest)
                 .build();
         AsyncRequestOperation<CreateGooglePayDigitalWalletSessionRequest, CreateGooglePayDigitalWalletSessionResponse> operation
-              = new CreateGooglePayDigitalWalletSession.Async(sdkConfiguration);
+              = new CreateGooglePayDigitalWalletSession.Async(sdkConfiguration, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -129,7 +131,7 @@ public class AsyncSessions {
                 .applePaySessionRequest(applePaySessionRequest)
                 .build();
         AsyncRequestOperation<CreateApplePayDigitalWalletSessionRequest, CreateApplePayDigitalWalletSessionResponse> operation
-              = new CreateApplePayDigitalWalletSession.Async(sdkConfiguration);
+              = new CreateApplePayDigitalWalletSession.Async(sdkConfiguration, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -156,7 +158,7 @@ public class AsyncSessions {
      */
     public CompletableFuture<CreateClickToPayDigitalWalletSessionResponse> clickToPay(ClickToPaySessionRequest request) {
         AsyncRequestOperation<ClickToPaySessionRequest, CreateClickToPayDigitalWalletSessionResponse> operation
-              = new CreateClickToPayDigitalWalletSession.Async(sdkConfiguration);
+              = new CreateClickToPayDigitalWalletSession.Async(sdkConfiguration, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }

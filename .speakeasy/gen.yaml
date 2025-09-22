@@ -23,7 +23,7 @@ generation:
     generateNewTests: false
     skipResponseBodyAssertions: false
 java:
-  version: 2.11.6
+  version: 2.12.0
   additionalDependencies:
     - testImplementation:org.junit.jupiter:junit-jupiter:5.10.0
     - implementation:com.auth0:java-jwt:4.5.0
@@ -42,6 +42,7 @@ java:
   enableCustomCodeRegions: false
   enableStreamingUploads: false
   flattenGlobalSecurity: true
+  generateSpringBootStarter: true
   githubURL: github.com/gr4vy/gr4vy-java
   groupID: com.gr4vy
   imports:

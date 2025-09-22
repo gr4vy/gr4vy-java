@@ -22,6 +22,7 @@ import com.gr4vy.sdk.operations.AddPaymentLink;
 import com.gr4vy.sdk.operations.ExpirePaymentLink;
 import com.gr4vy.sdk.operations.GetPaymentLink;
 import com.gr4vy.sdk.operations.ListPaymentLinks;
+import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.Options;
 import java.lang.Exception;
 import java.lang.Long;
@@ -32,6 +33,7 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 
 public class PaymentLinks {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final AsyncPaymentLinks asyncSDK;
 
@@ -91,7 +93,7 @@ public class PaymentLinks {
                 .paymentLinkCreate(paymentLinkCreate)
                 .build();
         RequestOperation<AddPaymentLinkRequest, AddPaymentLinkResponse> operation
-              = new AddPaymentLink.Sync(sdkConfiguration);
+              = new AddPaymentLink.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -145,7 +147,7 @@ public class PaymentLinks {
                 .merchantAccountId(merchantAccountId)
                 .build();
         RequestOperation<ListPaymentLinksRequest, ListPaymentLinksResponse> operation
-              = new ListPaymentLinks.Sync(sdkConfiguration, options);
+              = new ListPaymentLinks.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -191,7 +193,7 @@ public class PaymentLinks {
                 .merchantAccountId(merchantAccountId)
                 .build();
         RequestOperation<ExpirePaymentLinkRequest, ExpirePaymentLinkResponse> operation
-              = new ExpirePaymentLink.Sync(sdkConfiguration);
+              = new ExpirePaymentLink.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -240,7 +242,7 @@ public class PaymentLinks {
                 .merchantAccountId(merchantAccountId)
                 .build();
         RequestOperation<GetPaymentLinkRequest, GetPaymentLinkResponse> operation
-              = new GetPaymentLink.Sync(sdkConfiguration, options);
+              = new GetPaymentLink.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

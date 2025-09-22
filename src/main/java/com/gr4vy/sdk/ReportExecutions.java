@@ -9,12 +9,14 @@ import com.gr4vy.sdk.models.operations.ListAllReportExecutionsRequest;
 import com.gr4vy.sdk.models.operations.ListAllReportExecutionsRequestBuilder;
 import com.gr4vy.sdk.models.operations.ListAllReportExecutionsResponse;
 import com.gr4vy.sdk.operations.ListAllReportExecutions;
+import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.Options;
 import java.lang.Exception;
 import java.util.Optional;
 
 
 public class ReportExecutions {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final AsyncReportExecutions asyncSDK;
 
@@ -68,7 +70,7 @@ public class ReportExecutions {
      */
     public ListAllReportExecutionsResponse list(ListAllReportExecutionsRequest request, Optional<Options> options) throws Exception {
         RequestOperation<ListAllReportExecutionsRequest, ListAllReportExecutionsResponse> operation
-              = new ListAllReportExecutions.Sync(sdkConfiguration, options);
+              = new ListAllReportExecutions.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

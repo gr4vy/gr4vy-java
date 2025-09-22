@@ -10,12 +10,14 @@ import com.gr4vy.sdk.models.operations.CreateAccountUpdaterJobRequest;
 import com.gr4vy.sdk.models.operations.CreateAccountUpdaterJobRequestBuilder;
 import com.gr4vy.sdk.models.operations.CreateAccountUpdaterJobResponse;
 import com.gr4vy.sdk.operations.CreateAccountUpdaterJob;
+import com.gr4vy.sdk.utils.Headers;
 import java.lang.Exception;
 import java.lang.String;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 
 public class Jobs {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final AsyncJobs asyncSDK;
 
@@ -75,7 +77,7 @@ public class Jobs {
                 .accountUpdaterJobCreate(accountUpdaterJobCreate)
                 .build();
         RequestOperation<CreateAccountUpdaterJobRequest, CreateAccountUpdaterJobResponse> operation
-              = new CreateAccountUpdaterJob.Sync(sdkConfiguration);
+              = new CreateAccountUpdaterJob.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

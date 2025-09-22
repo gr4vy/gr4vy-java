@@ -10,6 +10,7 @@ import static com.gr4vy.sdk.utils.Utils.toStream;
 
 import com.gr4vy.sdk.SDKConfiguration;
 import com.gr4vy.sdk.operations.ListPaymentMethods;
+import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.Options;
 import com.gr4vy.sdk.utils.RetryConfig;
 import com.gr4vy.sdk.utils.Utils;
@@ -29,6 +30,7 @@ public class ListPaymentMethodsRequestBuilder {
     private ListPaymentMethodsRequest request;
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public ListPaymentMethodsRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -58,7 +60,7 @@ public class ListPaymentMethodsRequestBuilder {
             .build());
 
         RequestOperation<ListPaymentMethodsRequest, ListPaymentMethodsResponse> operation
-              = new ListPaymentMethods.Sync(sdkConfiguration, options);
+              = new ListPaymentMethods.Sync(sdkConfiguration, options, _headers);
 
         return operation.handleResponse(operation.doRequest(request));
     }
@@ -82,7 +84,7 @@ public class ListPaymentMethodsRequestBuilder {
             .build());
 
         RequestOperation<ListPaymentMethodsRequest, ListPaymentMethodsResponse> operation
-              = new ListPaymentMethods.Sync(sdkConfiguration, options);
+              = new ListPaymentMethods.Sync(sdkConfiguration, options, _headers);
         Iterator<HttpResponse<InputStream>> iterator = new Paginator<>(
             request,
             new CursorTracker<>("$.next_cursor", String.class),

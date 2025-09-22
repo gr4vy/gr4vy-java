@@ -9,6 +9,7 @@ import com.gr4vy.sdk.SDKConfiguration;
 import com.gr4vy.sdk.models.components.PaymentLinkCreate;
 import com.gr4vy.sdk.models.operations.AddPaymentLinkRequest;
 import com.gr4vy.sdk.operations.AddPaymentLink;
+import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -20,6 +21,7 @@ public class AddPaymentLinkRequestBuilder {
     private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
     private PaymentLinkCreate paymentLinkCreate;
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public AddPaymentLinkRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -55,7 +57,7 @@ public class AddPaymentLinkRequestBuilder {
     public CompletableFuture<AddPaymentLinkResponse> call() throws Exception {
         
         AsyncRequestOperation<AddPaymentLinkRequest, AddPaymentLinkResponse> operation
-              = new AddPaymentLink.Async(sdkConfiguration);
+              = new AddPaymentLink.Async(sdkConfiguration, _headers);
         AddPaymentLinkRequest request = buildRequest();
 
         return operation.doRequest(request)

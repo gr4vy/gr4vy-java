@@ -9,6 +9,7 @@ import com.gr4vy.sdk.SDKConfiguration;
 import com.gr4vy.sdk.models.components.CheckoutSessionCreate;
 import com.gr4vy.sdk.models.operations.UpdateCheckoutSessionRequest;
 import com.gr4vy.sdk.operations.UpdateCheckoutSession;
+import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -21,6 +22,7 @@ public class UpdateCheckoutSessionRequestBuilder {
     private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
     private CheckoutSessionCreate checkoutSessionCreate;
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public UpdateCheckoutSessionRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -63,7 +65,7 @@ public class UpdateCheckoutSessionRequestBuilder {
     public CompletableFuture<UpdateCheckoutSessionResponse> call() throws Exception {
         
         AsyncRequestOperation<UpdateCheckoutSessionRequest, UpdateCheckoutSessionResponse> operation
-              = new UpdateCheckoutSession.Async(sdkConfiguration);
+              = new UpdateCheckoutSession.Async(sdkConfiguration, _headers);
         UpdateCheckoutSessionRequest request = buildRequest();
 
         return operation.doRequest(request)

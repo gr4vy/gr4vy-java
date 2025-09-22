@@ -8,6 +8,7 @@ import static com.gr4vy.sdk.operations.Operations.AsyncRequestOperation;
 import com.gr4vy.sdk.SDKConfiguration;
 import com.gr4vy.sdk.models.operations.GetPaymentMethodRequest;
 import com.gr4vy.sdk.operations.GetPaymentMethod;
+import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.Options;
 import com.gr4vy.sdk.utils.RetryConfig;
 import com.gr4vy.sdk.utils.Utils;
@@ -23,6 +24,7 @@ public class GetPaymentMethodRequestBuilder {
     private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public GetPaymentMethodRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -73,7 +75,9 @@ public class GetPaymentMethodRequestBuilder {
             .build());
 
         AsyncRequestOperation<GetPaymentMethodRequest, GetPaymentMethodResponse> operation
-              = new GetPaymentMethod.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new GetPaymentMethod.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         GetPaymentMethodRequest request = buildRequest();
 
         return operation.doRequest(request)

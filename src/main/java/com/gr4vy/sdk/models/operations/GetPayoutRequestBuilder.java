@@ -7,6 +7,7 @@ import static com.gr4vy.sdk.operations.Operations.RequestOperation;
 
 import com.gr4vy.sdk.SDKConfiguration;
 import com.gr4vy.sdk.operations.GetPayout;
+import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.Options;
 import com.gr4vy.sdk.utils.RetryConfig;
 import com.gr4vy.sdk.utils.Utils;
@@ -21,6 +22,7 @@ public class GetPayoutRequestBuilder {
     private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public GetPayoutRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -71,7 +73,7 @@ public class GetPayoutRequestBuilder {
             .build());
 
         RequestOperation<GetPayoutRequest, GetPayoutResponse> operation
-              = new GetPayout.Sync(sdkConfiguration, options);
+              = new GetPayout.Sync(sdkConfiguration, options, _headers);
         GetPayoutRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

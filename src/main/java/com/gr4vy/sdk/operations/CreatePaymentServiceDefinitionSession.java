@@ -29,6 +29,7 @@ import com.gr4vy.sdk.utils.Blob;
 import com.gr4vy.sdk.utils.Exceptions;
 import com.gr4vy.sdk.utils.HTTPClient;
 import com.gr4vy.sdk.utils.HTTPRequest;
+import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.Hook.AfterErrorContextImpl;
 import com.gr4vy.sdk.utils.Hook.AfterSuccessContextImpl;
 import com.gr4vy.sdk.utils.Hook.BeforeRequestContextImpl;
@@ -55,9 +56,11 @@ public class CreatePaymentServiceDefinitionSession {
         final String baseUrl;
         final SecuritySource securitySource;
         final HTTPClient client;
+        final Headers _headers;
 
-        public Base(SDKConfiguration sdkConfiguration) {
+        public Base(SDKConfiguration sdkConfiguration, Headers _headers) {
             this.sdkConfiguration = sdkConfiguration;
+            this._headers =_headers;
             this.baseUrl = Utils.templateUrl(
                     this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
             this.securitySource = this.sdkConfiguration.securitySource();
@@ -116,6 +119,7 @@ public class CreatePaymentServiceDefinitionSession {
             req.setBody(Optional.ofNullable(serializedRequestBody));
             req.addHeader("Accept", "application/json")
                     .addHeader("user-agent", SDKConfiguration.USER_AGENT);
+            _headers.forEach((k, list) -> list.forEach(v -> req.addHeader(k, v)));
             Utils.configureSecurity(req, this.sdkConfiguration.securitySource().getSecurity());
 
             return req.build();
@@ -124,8 +128,8 @@ public class CreatePaymentServiceDefinitionSession {
 
     public static class Sync extends Base
             implements RequestOperation<CreatePaymentServiceDefinitionSessionRequest, CreatePaymentServiceDefinitionSessionResponse> {
-        public Sync(SDKConfiguration sdkConfiguration) {
-            super(sdkConfiguration);
+        public Sync(SDKConfiguration sdkConfiguration, Headers _headers) {
+            super(sdkConfiguration, _headers);
         }
 
         private HttpRequest onBuildRequest(CreatePaymentServiceDefinitionSessionRequest request) throws Exception {
@@ -439,8 +443,8 @@ public class CreatePaymentServiceDefinitionSession {
     public static class Async extends Base
             implements AsyncRequestOperation<CreatePaymentServiceDefinitionSessionRequest, com.gr4vy.sdk.models.operations.async.CreatePaymentServiceDefinitionSessionResponse> {
 
-        public Async(SDKConfiguration sdkConfiguration) {
-            super(sdkConfiguration);
+        public Async(SDKConfiguration sdkConfiguration, Headers _headers) {
+            super(sdkConfiguration, _headers);
         }
 
         private CompletableFuture<HttpRequest> onBuildRequest(CreatePaymentServiceDefinitionSessionRequest request) throws Exception {

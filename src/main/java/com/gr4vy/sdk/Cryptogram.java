@@ -10,12 +10,14 @@ import com.gr4vy.sdk.models.operations.CreatePaymentMethodNetworkTokenCryptogram
 import com.gr4vy.sdk.models.operations.CreatePaymentMethodNetworkTokenCryptogramRequestBuilder;
 import com.gr4vy.sdk.models.operations.CreatePaymentMethodNetworkTokenCryptogramResponse;
 import com.gr4vy.sdk.operations.CreatePaymentMethodNetworkTokenCryptogram;
+import com.gr4vy.sdk.utils.Headers;
 import java.lang.Exception;
 import java.lang.String;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 
 public class Cryptogram {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final AsyncCryptogram asyncSDK;
 
@@ -86,7 +88,7 @@ public class Cryptogram {
                 .cryptogramCreate(cryptogramCreate)
                 .build();
         RequestOperation<CreatePaymentMethodNetworkTokenCryptogramRequest, CreatePaymentMethodNetworkTokenCryptogramResponse> operation
-              = new CreatePaymentMethodNetworkTokenCryptogram.Sync(sdkConfiguration);
+              = new CreatePaymentMethodNetworkTokenCryptogram.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

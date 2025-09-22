@@ -7,6 +7,7 @@ import static com.gr4vy.sdk.operations.Operations.RequestOperation;
 
 import com.gr4vy.sdk.SDKConfiguration;
 import com.gr4vy.sdk.operations.DeleteBuyer;
+import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -17,6 +18,7 @@ public class DeleteBuyerRequestBuilder {
     private String buyerId;
     private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public DeleteBuyerRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -52,7 +54,7 @@ public class DeleteBuyerRequestBuilder {
     public DeleteBuyerResponse call() throws Exception {
         
         RequestOperation<DeleteBuyerRequest, DeleteBuyerResponse> operation
-              = new DeleteBuyer.Sync(sdkConfiguration);
+              = new DeleteBuyer.Sync(sdkConfiguration, _headers);
         DeleteBuyerRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

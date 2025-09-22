@@ -23,6 +23,7 @@ import com.gr4vy.sdk.operations.AddReport;
 import com.gr4vy.sdk.operations.GetReport;
 import com.gr4vy.sdk.operations.ListReports;
 import com.gr4vy.sdk.operations.UpdateReport;
+import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.Options;
 import java.lang.String;
 import java.util.Optional;
@@ -31,6 +32,7 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 
 public class AsyncReports {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final AsyncExecutions executions;
     private final Reports syncSDK;
@@ -89,7 +91,9 @@ public class AsyncReports {
      */
     public CompletableFuture<ListReportsResponse> list(ListReportsRequest request, Optional<Options> options) {
         AsyncRequestOperation<ListReportsRequest, ListReportsResponse> operation
-              = new ListReports.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new ListReports.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -135,7 +139,7 @@ public class AsyncReports {
                 .reportCreate(reportCreate)
                 .build();
         AsyncRequestOperation<AddReportRequest, AddReportResponse> operation
-              = new AddReport.Async(sdkConfiguration);
+              = new AddReport.Async(sdkConfiguration, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -184,7 +188,9 @@ public class AsyncReports {
                 .merchantAccountId(merchantAccountId)
                 .build();
         AsyncRequestOperation<GetReportRequest, GetReportResponse> operation
-              = new GetReport.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new GetReport.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -235,7 +241,7 @@ public class AsyncReports {
                 .reportUpdate(reportUpdate)
                 .build();
         AsyncRequestOperation<UpdateReportRequest, UpdateReportResponse> operation
-              = new UpdateReport.Async(sdkConfiguration);
+              = new UpdateReport.Async(sdkConfiguration, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }

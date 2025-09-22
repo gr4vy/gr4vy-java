@@ -8,6 +8,7 @@ import static com.gr4vy.sdk.operations.Operations.RequestOperation;
 import com.gr4vy.sdk.SDKConfiguration;
 import com.gr4vy.sdk.models.components.TransactionRefundCreate;
 import com.gr4vy.sdk.operations.CreateTransactionRefund;
+import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -19,6 +20,7 @@ public class CreateTransactionRefundRequestBuilder {
     private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
     private TransactionRefundCreate transactionRefundCreate;
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public CreateTransactionRefundRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -61,7 +63,7 @@ public class CreateTransactionRefundRequestBuilder {
     public CreateTransactionRefundResponse call() throws Exception {
         
         RequestOperation<CreateTransactionRefundRequest, CreateTransactionRefundResponse> operation
-              = new CreateTransactionRefund.Sync(sdkConfiguration);
+              = new CreateTransactionRefund.Sync(sdkConfiguration, _headers);
         CreateTransactionRefundRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

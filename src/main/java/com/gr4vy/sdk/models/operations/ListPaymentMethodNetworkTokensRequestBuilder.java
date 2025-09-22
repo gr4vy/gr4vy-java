@@ -7,6 +7,7 @@ import static com.gr4vy.sdk.operations.Operations.RequestOperation;
 
 import com.gr4vy.sdk.SDKConfiguration;
 import com.gr4vy.sdk.operations.ListPaymentMethodNetworkTokens;
+import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.Options;
 import com.gr4vy.sdk.utils.RetryConfig;
 import com.gr4vy.sdk.utils.Utils;
@@ -21,6 +22,7 @@ public class ListPaymentMethodNetworkTokensRequestBuilder {
     private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public ListPaymentMethodNetworkTokensRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -71,7 +73,7 @@ public class ListPaymentMethodNetworkTokensRequestBuilder {
             .build());
 
         RequestOperation<ListPaymentMethodNetworkTokensRequest, ListPaymentMethodNetworkTokensResponse> operation
-              = new ListPaymentMethodNetworkTokens.Sync(sdkConfiguration, options);
+              = new ListPaymentMethodNetworkTokens.Sync(sdkConfiguration, options, _headers);
         ListPaymentMethodNetworkTokensRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

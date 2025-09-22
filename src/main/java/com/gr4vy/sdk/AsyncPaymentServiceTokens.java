@@ -18,6 +18,7 @@ import com.gr4vy.sdk.models.operations.async.ListPaymentMethodPaymentServiceToke
 import com.gr4vy.sdk.operations.CreatePaymentMethodPaymentServiceToken;
 import com.gr4vy.sdk.operations.DeletePaymentMethodPaymentServiceToken;
 import com.gr4vy.sdk.operations.ListPaymentMethodPaymentServiceTokens;
+import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.Options;
 import java.lang.String;
 import java.util.Optional;
@@ -26,6 +27,7 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 
 public class AsyncPaymentServiceTokens {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final PaymentServiceTokens syncSDK;
 
@@ -91,7 +93,9 @@ public class AsyncPaymentServiceTokens {
                 .merchantAccountId(merchantAccountId)
                 .build();
         AsyncRequestOperation<ListPaymentMethodPaymentServiceTokensRequest, ListPaymentMethodPaymentServiceTokensResponse> operation
-              = new ListPaymentMethodPaymentServiceTokens.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new ListPaymentMethodPaymentServiceTokens.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -142,7 +146,7 @@ public class AsyncPaymentServiceTokens {
                 .paymentServiceTokenCreate(paymentServiceTokenCreate)
                 .build();
         AsyncRequestOperation<CreatePaymentMethodPaymentServiceTokenRequest, CreatePaymentMethodPaymentServiceTokenResponse> operation
-              = new CreatePaymentMethodPaymentServiceToken.Async(sdkConfiguration);
+              = new CreatePaymentMethodPaymentServiceToken.Async(sdkConfiguration, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -193,7 +197,7 @@ public class AsyncPaymentServiceTokens {
                 .merchantAccountId(merchantAccountId)
                 .build();
         AsyncRequestOperation<DeletePaymentMethodPaymentServiceTokenRequest, DeletePaymentMethodPaymentServiceTokenResponse> operation
-              = new DeletePaymentMethodPaymentServiceToken.Async(sdkConfiguration);
+              = new DeletePaymentMethodPaymentServiceToken.Async(sdkConfiguration, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }

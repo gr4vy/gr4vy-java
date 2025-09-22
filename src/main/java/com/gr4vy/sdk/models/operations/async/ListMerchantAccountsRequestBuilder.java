@@ -11,6 +11,7 @@ import com.gr4vy.sdk.SDKConfiguration;
 import com.gr4vy.sdk.models.operations.ListMerchantAccountsRequest;
 import com.gr4vy.sdk.operations.ListMerchantAccounts;
 import com.gr4vy.sdk.utils.Blob;
+import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.LazySingletonValue;
 import com.gr4vy.sdk.utils.Options;
 import com.gr4vy.sdk.utils.RetryConfig;
@@ -38,6 +39,7 @@ public class ListMerchantAccountsRequestBuilder {
     private JsonNullable<String> search = JsonNullable.undefined();
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public ListMerchantAccountsRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -110,7 +112,9 @@ public class ListMerchantAccountsRequestBuilder {
             .build());
 
         AsyncRequestOperation<ListMerchantAccountsRequest, ListMerchantAccountsResponse> operation
-              = new ListMerchantAccounts.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new ListMerchantAccounts.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         ListMerchantAccountsRequest request = buildRequest();
 
         return operation.doRequest(request)
@@ -138,7 +142,9 @@ public class ListMerchantAccountsRequestBuilder {
             .build());
 
         AsyncRequestOperation<ListMerchantAccountsRequest, ListMerchantAccountsResponse> operation
-              = new ListMerchantAccounts.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new ListMerchantAccounts.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
 
         Flow.Publisher<HttpResponse<Blob>> asyncPaginator = new AsyncPaginator<>(
             request,

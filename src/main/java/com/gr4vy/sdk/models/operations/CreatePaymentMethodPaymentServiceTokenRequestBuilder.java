@@ -8,6 +8,7 @@ import static com.gr4vy.sdk.operations.Operations.RequestOperation;
 import com.gr4vy.sdk.SDKConfiguration;
 import com.gr4vy.sdk.models.components.PaymentServiceTokenCreate;
 import com.gr4vy.sdk.operations.CreatePaymentMethodPaymentServiceToken;
+import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -19,6 +20,7 @@ public class CreatePaymentMethodPaymentServiceTokenRequestBuilder {
     private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
     private PaymentServiceTokenCreate paymentServiceTokenCreate;
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public CreatePaymentMethodPaymentServiceTokenRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -61,7 +63,7 @@ public class CreatePaymentMethodPaymentServiceTokenRequestBuilder {
     public CreatePaymentMethodPaymentServiceTokenResponse call() throws Exception {
         
         RequestOperation<CreatePaymentMethodPaymentServiceTokenRequest, CreatePaymentMethodPaymentServiceTokenResponse> operation
-              = new CreatePaymentMethodPaymentServiceToken.Sync(sdkConfiguration);
+              = new CreatePaymentMethodPaymentServiceToken.Sync(sdkConfiguration, _headers);
         CreatePaymentMethodPaymentServiceTokenRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

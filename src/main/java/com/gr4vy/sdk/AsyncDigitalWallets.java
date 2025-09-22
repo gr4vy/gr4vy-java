@@ -27,6 +27,7 @@ import com.gr4vy.sdk.operations.DeleteDigitalWallet;
 import com.gr4vy.sdk.operations.GetDigitalWallet;
 import com.gr4vy.sdk.operations.ListDigitalWallets;
 import com.gr4vy.sdk.operations.UpdateDigitalWallet;
+import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.Options;
 import java.lang.String;
 import java.util.Optional;
@@ -35,6 +36,7 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 
 public class AsyncDigitalWallets {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final AsyncSessions sessions;
     private final AsyncDomains domains;
@@ -105,7 +107,7 @@ public class AsyncDigitalWallets {
                 .digitalWalletCreate(digitalWalletCreate)
                 .build();
         AsyncRequestOperation<ConfigureDigitalWalletRequest, ConfigureDigitalWalletResponse> operation
-              = new ConfigureDigitalWallet.Async(sdkConfiguration);
+              = new ConfigureDigitalWallet.Async(sdkConfiguration, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -149,7 +151,9 @@ public class AsyncDigitalWallets {
                 .merchantAccountId(merchantAccountId)
                 .build();
         AsyncRequestOperation<ListDigitalWalletsRequest, ListDigitalWalletsResponse> operation
-              = new ListDigitalWallets.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new ListDigitalWallets.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -198,7 +202,9 @@ public class AsyncDigitalWallets {
                 .merchantAccountId(merchantAccountId)
                 .build();
         AsyncRequestOperation<GetDigitalWalletRequest, GetDigitalWalletResponse> operation
-              = new GetDigitalWallet.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new GetDigitalWallet.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -244,7 +250,7 @@ public class AsyncDigitalWallets {
                 .merchantAccountId(merchantAccountId)
                 .build();
         AsyncRequestOperation<DeleteDigitalWalletRequest, DeleteDigitalWalletResponse> operation
-              = new DeleteDigitalWallet.Async(sdkConfiguration);
+              = new DeleteDigitalWallet.Async(sdkConfiguration, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -295,7 +301,7 @@ public class AsyncDigitalWallets {
                 .digitalWalletUpdate(digitalWalletUpdate)
                 .build();
         AsyncRequestOperation<UpdateDigitalWalletRequest, UpdateDigitalWalletResponse> operation
-              = new UpdateDigitalWallet.Async(sdkConfiguration);
+              = new UpdateDigitalWallet.Async(sdkConfiguration, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }

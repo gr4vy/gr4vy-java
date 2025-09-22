@@ -4,6 +4,7 @@
 package com.gr4vy.sdk;
 
 import com.gr4vy.sdk.utils.HTTPClient;
+import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.RetryConfig;
 import com.gr4vy.sdk.utils.SpeakeasyHTTPClient;
 import com.gr4vy.sdk.utils.Utils;
@@ -18,6 +19,7 @@ import java.util.Optional;
  * Gr4vy: The Gr4vy API.
  */
 public class Gr4vy {
+    private static final Headers _headers = Headers.EMPTY;
 
     /**
      * AvailableServers contains identifiers for the servers available to the SDK.
@@ -323,7 +325,7 @@ public class Gr4vy {
 
             return this;
         }
-        
+
         /**
          * Allows setting the merchantAccountId parameter for all supported operations.
          *
@@ -334,7 +336,7 @@ public class Gr4vy {
             this.sdkConfiguration.globals.putParam("header", "merchantAccountId", merchantAccountId);
             return this;
         }
-        
+
         /**
          * Builds a new instance of the SDK.
          *
@@ -352,7 +354,7 @@ public class Gr4vy {
             return new Gr4vy(sdkConfiguration);
         }
     }
-    
+
     /**
      * Get a new instance of the SDK builder to configure a new instance of the SDK.
      *
@@ -362,7 +364,7 @@ public class Gr4vy {
         return new Builder();
     }
 
-    private Gr4vy(SDKConfiguration sdkConfiguration) {
+    public Gr4vy(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
         this.sdkConfiguration.initialize();
         this.accountUpdater = new AccountUpdater(sdkConfiguration);

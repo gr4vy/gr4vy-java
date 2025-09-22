@@ -22,6 +22,7 @@ import com.gr4vy.sdk.operations.CreateMerchantAccount;
 import com.gr4vy.sdk.operations.GetMerchantAccount;
 import com.gr4vy.sdk.operations.ListMerchantAccounts;
 import com.gr4vy.sdk.operations.UpdateMerchantAccount;
+import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.Options;
 import java.lang.Exception;
 import java.lang.Long;
@@ -31,6 +32,7 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 
 public class MerchantAccounts {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final AsyncMerchantAccounts asyncSDK;
 
@@ -95,7 +97,7 @@ public class MerchantAccounts {
                 .search(search)
                 .build();
         RequestOperation<ListMerchantAccountsRequest, ListMerchantAccountsResponse> operation
-              = new ListMerchantAccounts.Sync(sdkConfiguration, options);
+              = new ListMerchantAccounts.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -121,7 +123,7 @@ public class MerchantAccounts {
      */
     public CreateMerchantAccountResponse create(MerchantAccountCreate request) throws Exception {
         RequestOperation<MerchantAccountCreate, CreateMerchantAccountResponse> operation
-              = new CreateMerchantAccount.Sync(sdkConfiguration);
+              = new CreateMerchantAccount.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -166,7 +168,7 @@ public class MerchantAccounts {
                 .merchantAccountId(merchantAccountId)
                 .build();
         RequestOperation<GetMerchantAccountRequest, GetMerchantAccountResponse> operation
-              = new GetMerchantAccount.Sync(sdkConfiguration, options);
+              = new GetMerchantAccount.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -199,7 +201,7 @@ public class MerchantAccounts {
                 .merchantAccountUpdate(merchantAccountUpdate)
                 .build();
         RequestOperation<UpdateMerchantAccountRequest, UpdateMerchantAccountResponse> operation
-              = new UpdateMerchantAccount.Sync(sdkConfiguration);
+              = new UpdateMerchantAccount.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

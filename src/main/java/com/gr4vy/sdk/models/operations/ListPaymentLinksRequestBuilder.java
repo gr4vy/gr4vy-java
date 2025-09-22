@@ -11,6 +11,7 @@ import static com.gr4vy.sdk.utils.Utils.toStream;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.gr4vy.sdk.SDKConfiguration;
 import com.gr4vy.sdk.operations.ListPaymentLinks;
+import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.LazySingletonValue;
 import com.gr4vy.sdk.utils.Options;
 import com.gr4vy.sdk.utils.RetryConfig;
@@ -40,6 +41,7 @@ public class ListPaymentLinksRequestBuilder {
     private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public ListPaymentLinksRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -125,7 +127,7 @@ public class ListPaymentLinksRequestBuilder {
             .build());
 
         RequestOperation<ListPaymentLinksRequest, ListPaymentLinksResponse> operation
-              = new ListPaymentLinks.Sync(sdkConfiguration, options);
+              = new ListPaymentLinks.Sync(sdkConfiguration, options, _headers);
         ListPaymentLinksRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));
@@ -150,7 +152,7 @@ public class ListPaymentLinksRequestBuilder {
             .build());
 
         RequestOperation<ListPaymentLinksRequest, ListPaymentLinksResponse> operation
-              = new ListPaymentLinks.Sync(sdkConfiguration, options);
+              = new ListPaymentLinks.Sync(sdkConfiguration, options, _headers);
         ListPaymentLinksRequest request = buildRequest();
         Iterator<HttpResponse<InputStream>> iterator = new Paginator<>(
             request,

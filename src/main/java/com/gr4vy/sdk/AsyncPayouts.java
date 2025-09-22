@@ -18,6 +18,7 @@ import com.gr4vy.sdk.models.operations.async.ListPayoutsResponse;
 import com.gr4vy.sdk.operations.CreatePayout;
 import com.gr4vy.sdk.operations.GetPayout;
 import com.gr4vy.sdk.operations.ListPayouts;
+import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.Options;
 import java.lang.Long;
 import java.lang.String;
@@ -27,6 +28,7 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 
 public class AsyncPayouts {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final Payouts syncSDK;
 
@@ -91,7 +93,9 @@ public class AsyncPayouts {
                 .merchantAccountId(merchantAccountId)
                 .build();
         AsyncRequestOperation<ListPayoutsRequest, ListPayoutsResponse> operation
-              = new ListPayouts.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new ListPayouts.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -141,7 +145,7 @@ public class AsyncPayouts {
                 .payoutCreate(payoutCreate)
                 .build();
         AsyncRequestOperation<CreatePayoutRequest, CreatePayoutResponse> operation
-              = new CreatePayout.Async(sdkConfiguration);
+              = new CreatePayout.Async(sdkConfiguration, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -190,7 +194,9 @@ public class AsyncPayouts {
                 .merchantAccountId(merchantAccountId)
                 .build();
         AsyncRequestOperation<GetPayoutRequest, GetPayoutResponse> operation
-              = new GetPayout.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new GetPayout.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }

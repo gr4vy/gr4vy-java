@@ -26,6 +26,7 @@ import com.gr4vy.sdk.operations.DeletePaymentMethodNetworkToken;
 import com.gr4vy.sdk.operations.ListPaymentMethodNetworkTokens;
 import com.gr4vy.sdk.operations.ResumePaymentMethodNetworkToken;
 import com.gr4vy.sdk.operations.SuspendPaymentMethodNetworkToken;
+import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.Options;
 import java.lang.String;
 import java.util.Optional;
@@ -34,6 +35,7 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 
 public class AsyncNetworkTokens {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final AsyncCryptogram cryptogram;
     private final NetworkTokens syncSDK;
@@ -101,7 +103,9 @@ public class AsyncNetworkTokens {
                 .merchantAccountId(merchantAccountId)
                 .build();
         AsyncRequestOperation<ListPaymentMethodNetworkTokensRequest, ListPaymentMethodNetworkTokensResponse> operation
-              = new ListPaymentMethodNetworkTokens.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new ListPaymentMethodNetworkTokens.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -152,7 +156,7 @@ public class AsyncNetworkTokens {
                 .networkTokenCreate(networkTokenCreate)
                 .build();
         AsyncRequestOperation<CreatePaymentMethodNetworkTokenRequest, CreatePaymentMethodNetworkTokenResponse> operation
-              = new CreatePaymentMethodNetworkToken.Async(sdkConfiguration);
+              = new CreatePaymentMethodNetworkToken.Async(sdkConfiguration, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -203,7 +207,7 @@ public class AsyncNetworkTokens {
                 .merchantAccountId(merchantAccountId)
                 .build();
         AsyncRequestOperation<SuspendPaymentMethodNetworkTokenRequest, SuspendPaymentMethodNetworkTokenResponse> operation
-              = new SuspendPaymentMethodNetworkToken.Async(sdkConfiguration);
+              = new SuspendPaymentMethodNetworkToken.Async(sdkConfiguration, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -254,7 +258,7 @@ public class AsyncNetworkTokens {
                 .merchantAccountId(merchantAccountId)
                 .build();
         AsyncRequestOperation<ResumePaymentMethodNetworkTokenRequest, ResumePaymentMethodNetworkTokenResponse> operation
-              = new ResumePaymentMethodNetworkToken.Async(sdkConfiguration);
+              = new ResumePaymentMethodNetworkToken.Async(sdkConfiguration, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -305,7 +309,7 @@ public class AsyncNetworkTokens {
                 .merchantAccountId(merchantAccountId)
                 .build();
         AsyncRequestOperation<DeletePaymentMethodNetworkTokenRequest, DeletePaymentMethodNetworkTokenResponse> operation
-              = new DeletePaymentMethodNetworkToken.Async(sdkConfiguration);
+              = new DeletePaymentMethodNetworkToken.Async(sdkConfiguration, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }

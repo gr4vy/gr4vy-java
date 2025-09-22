@@ -11,6 +11,7 @@ import static com.gr4vy.sdk.utils.Utils.toStream;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.gr4vy.sdk.SDKConfiguration;
 import com.gr4vy.sdk.operations.ListPayouts;
+import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.LazySingletonValue;
 import com.gr4vy.sdk.utils.Options;
 import com.gr4vy.sdk.utils.RetryConfig;
@@ -38,6 +39,7 @@ public class ListPayoutsRequestBuilder {
     private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public ListPayoutsRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -110,7 +112,7 @@ public class ListPayoutsRequestBuilder {
             .build());
 
         RequestOperation<ListPayoutsRequest, ListPayoutsResponse> operation
-              = new ListPayouts.Sync(sdkConfiguration, options);
+              = new ListPayouts.Sync(sdkConfiguration, options, _headers);
         ListPayoutsRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));
@@ -135,7 +137,7 @@ public class ListPayoutsRequestBuilder {
             .build());
 
         RequestOperation<ListPayoutsRequest, ListPayoutsResponse> operation
-              = new ListPayouts.Sync(sdkConfiguration, options);
+              = new ListPayouts.Sync(sdkConfiguration, options, _headers);
         ListPayoutsRequest request = buildRequest();
         Iterator<HttpResponse<InputStream>> iterator = new Paginator<>(
             request,

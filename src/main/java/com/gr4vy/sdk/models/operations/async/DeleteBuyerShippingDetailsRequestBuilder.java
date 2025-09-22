@@ -8,6 +8,7 @@ import static com.gr4vy.sdk.operations.Operations.AsyncRequestOperation;
 import com.gr4vy.sdk.SDKConfiguration;
 import com.gr4vy.sdk.models.operations.DeleteBuyerShippingDetailsRequest;
 import com.gr4vy.sdk.operations.DeleteBuyerShippingDetails;
+import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -20,6 +21,7 @@ public class DeleteBuyerShippingDetailsRequestBuilder {
     private String shippingDetailsId;
     private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public DeleteBuyerShippingDetailsRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -62,7 +64,7 @@ public class DeleteBuyerShippingDetailsRequestBuilder {
     public CompletableFuture<DeleteBuyerShippingDetailsResponse> call() throws Exception {
         
         AsyncRequestOperation<DeleteBuyerShippingDetailsRequest, DeleteBuyerShippingDetailsResponse> operation
-              = new DeleteBuyerShippingDetails.Async(sdkConfiguration);
+              = new DeleteBuyerShippingDetails.Async(sdkConfiguration, _headers);
         DeleteBuyerShippingDetailsRequest request = buildRequest();
 
         return operation.doRequest(request)

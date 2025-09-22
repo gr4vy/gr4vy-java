@@ -18,6 +18,7 @@ import com.gr4vy.sdk.models.operations.ListTransactionRefundsResponse;
 import com.gr4vy.sdk.operations.CreateTransactionRefund;
 import com.gr4vy.sdk.operations.GetTransactionRefund;
 import com.gr4vy.sdk.operations.ListTransactionRefunds;
+import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.Options;
 import java.lang.Exception;
 import java.lang.String;
@@ -26,6 +27,7 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 
 public class TransactionsRefunds {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final AsyncTransactionsRefunds asyncSDK;
     private final All all;
@@ -94,7 +96,7 @@ public class TransactionsRefunds {
                 .merchantAccountId(merchantAccountId)
                 .build();
         RequestOperation<ListTransactionRefundsRequest, ListTransactionRefundsResponse> operation
-              = new ListTransactionRefunds.Sync(sdkConfiguration, options);
+              = new ListTransactionRefunds.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -145,7 +147,7 @@ public class TransactionsRefunds {
                 .transactionRefundCreate(transactionRefundCreate)
                 .build();
         RequestOperation<CreateTransactionRefundRequest, CreateTransactionRefundResponse> operation
-              = new CreateTransactionRefund.Sync(sdkConfiguration);
+              = new CreateTransactionRefund.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -198,7 +200,7 @@ public class TransactionsRefunds {
                 .merchantAccountId(merchantAccountId)
                 .build();
         RequestOperation<GetTransactionRefundRequest, GetTransactionRefundResponse> operation
-              = new GetTransactionRefund.Sync(sdkConfiguration, options);
+              = new GetTransactionRefund.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

@@ -17,6 +17,7 @@ import com.gr4vy.sdk.models.operations.async.ListPaymentServiceDefinitionsRespon
 import com.gr4vy.sdk.operations.CreatePaymentServiceDefinitionSession;
 import com.gr4vy.sdk.operations.GetPaymentServiceDefinition;
 import com.gr4vy.sdk.operations.ListPaymentServiceDefinitions;
+import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.Options;
 import java.lang.Long;
 import java.lang.Object;
@@ -28,6 +29,7 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 
 public class AsyncPaymentServiceDefinitions {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final PaymentServiceDefinitions syncSDK;
 
@@ -88,7 +90,9 @@ public class AsyncPaymentServiceDefinitions {
                 .limit(limit)
                 .build();
         AsyncRequestOperation<ListPaymentServiceDefinitionsRequest, ListPaymentServiceDefinitionsResponse> operation
-              = new ListPaymentServiceDefinitions.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new ListPaymentServiceDefinitions.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -133,7 +137,9 @@ public class AsyncPaymentServiceDefinitions {
                 .paymentServiceDefinitionId(paymentServiceDefinitionId)
                 .build();
         AsyncRequestOperation<GetPaymentServiceDefinitionRequest, GetPaymentServiceDefinitionResponse> operation
-              = new GetPaymentServiceDefinition.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new GetPaymentServiceDefinition.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -167,7 +173,7 @@ public class AsyncPaymentServiceDefinitions {
                 .requestBody(requestBody)
                 .build();
         AsyncRequestOperation<CreatePaymentServiceDefinitionSessionRequest, CreatePaymentServiceDefinitionSessionResponse> operation
-              = new CreatePaymentServiceDefinitionSession.Async(sdkConfiguration);
+              = new CreatePaymentServiceDefinitionSession.Async(sdkConfiguration, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }

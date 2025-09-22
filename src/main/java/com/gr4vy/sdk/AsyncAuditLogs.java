@@ -9,12 +9,14 @@ import com.gr4vy.sdk.models.operations.ListAuditLogsRequest;
 import com.gr4vy.sdk.models.operations.async.ListAuditLogsRequestBuilder;
 import com.gr4vy.sdk.models.operations.async.ListAuditLogsResponse;
 import com.gr4vy.sdk.operations.ListAuditLogs;
+import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.Options;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
 
 public class AsyncAuditLogs {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final AuditLogs syncSDK;
 
@@ -67,7 +69,9 @@ public class AsyncAuditLogs {
      */
     public CompletableFuture<ListAuditLogsResponse> list(ListAuditLogsRequest request, Optional<Options> options) {
         AsyncRequestOperation<ListAuditLogsRequest, ListAuditLogsResponse> operation
-              = new ListAuditLogs.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new ListAuditLogs.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }

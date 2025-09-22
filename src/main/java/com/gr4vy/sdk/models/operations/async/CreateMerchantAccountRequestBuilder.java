@@ -8,6 +8,7 @@ import static com.gr4vy.sdk.operations.Operations.AsyncRequestOperation;
 import com.gr4vy.sdk.SDKConfiguration;
 import com.gr4vy.sdk.models.components.MerchantAccountCreate;
 import com.gr4vy.sdk.operations.CreateMerchantAccount;
+import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Exception;
 import java.util.concurrent.CompletableFuture;
@@ -16,6 +17,7 @@ public class CreateMerchantAccountRequestBuilder {
 
     private MerchantAccountCreate request;
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public CreateMerchantAccountRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -30,7 +32,7 @@ public class CreateMerchantAccountRequestBuilder {
     public CompletableFuture<CreateMerchantAccountResponse> call() throws Exception {
         
         AsyncRequestOperation<MerchantAccountCreate, CreateMerchantAccountResponse> operation
-              = new CreateMerchantAccount.Async(sdkConfiguration);
+              = new CreateMerchantAccount.Async(sdkConfiguration, _headers);
 
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);

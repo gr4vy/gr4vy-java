@@ -8,6 +8,7 @@ import static com.gr4vy.sdk.operations.Operations.AsyncRequestOperation;
 import com.gr4vy.sdk.SDKConfiguration;
 import com.gr4vy.sdk.models.operations.DeletePaymentMethodRequest;
 import com.gr4vy.sdk.operations.DeletePaymentMethod;
+import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -19,6 +20,7 @@ public class DeletePaymentMethodRequestBuilder {
     private String paymentMethodId;
     private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public DeletePaymentMethodRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -54,7 +56,7 @@ public class DeletePaymentMethodRequestBuilder {
     public CompletableFuture<DeletePaymentMethodResponse> call() throws Exception {
         
         AsyncRequestOperation<DeletePaymentMethodRequest, DeletePaymentMethodResponse> operation
-              = new DeletePaymentMethod.Async(sdkConfiguration);
+              = new DeletePaymentMethod.Async(sdkConfiguration, _headers);
         DeletePaymentMethodRequest request = buildRequest();
 
         return operation.doRequest(request)

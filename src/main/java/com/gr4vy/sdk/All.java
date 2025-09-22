@@ -10,12 +10,14 @@ import com.gr4vy.sdk.models.operations.CreateFullTransactionRefundRequest;
 import com.gr4vy.sdk.models.operations.CreateFullTransactionRefundRequestBuilder;
 import com.gr4vy.sdk.models.operations.CreateFullTransactionRefundResponse;
 import com.gr4vy.sdk.operations.CreateFullTransactionRefund;
+import com.gr4vy.sdk.utils.Headers;
 import java.lang.Exception;
 import java.lang.String;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 
 public class All {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final AsyncAll asyncSDK;
 
@@ -79,7 +81,7 @@ public class All {
                 .transactionRefundAllCreate(transactionRefundAllCreate)
                 .build();
         RequestOperation<CreateFullTransactionRefundRequest, CreateFullTransactionRefundResponse> operation
-              = new CreateFullTransactionRefund.Sync(sdkConfiguration);
+              = new CreateFullTransactionRefund.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

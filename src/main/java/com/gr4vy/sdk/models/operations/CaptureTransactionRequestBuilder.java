@@ -8,6 +8,7 @@ import static com.gr4vy.sdk.operations.Operations.RequestOperation;
 import com.gr4vy.sdk.SDKConfiguration;
 import com.gr4vy.sdk.models.components.TransactionCaptureCreate;
 import com.gr4vy.sdk.operations.CaptureTransaction;
+import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -21,6 +22,7 @@ public class CaptureTransactionRequestBuilder {
     private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
     private TransactionCaptureCreate transactionCaptureCreate;
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public CaptureTransactionRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -76,7 +78,7 @@ public class CaptureTransactionRequestBuilder {
     public CaptureTransactionResponse call() throws Exception {
         
         RequestOperation<CaptureTransactionRequest, CaptureTransactionResponse> operation
-              = new CaptureTransaction.Sync(sdkConfiguration);
+              = new CaptureTransaction.Sync(sdkConfiguration, _headers);
         CaptureTransactionRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

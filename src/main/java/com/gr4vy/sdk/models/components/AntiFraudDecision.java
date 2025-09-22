@@ -51,6 +51,7 @@ public class AntiFraudDecision {
     public static final AntiFraudDecision REJECT = new AntiFraudDecision("reject");
     public static final AntiFraudDecision REVIEW = new AntiFraudDecision("review");
     public static final AntiFraudDecision SKIPPED = new AntiFraudDecision("skipped");
+    public static final AntiFraudDecision PENDING = new AntiFraudDecision("pending");
 
     // This map will grow whenever a Color gets created with a new
     // unrecognized value (a potential memory leak if the user is not
@@ -128,6 +129,7 @@ public class AntiFraudDecision {
         map.put("reject", REJECT);
         map.put("review", REVIEW);
         map.put("skipped", SKIPPED);
+        map.put("pending", PENDING);
         return map;
     }
 
@@ -139,6 +141,7 @@ public class AntiFraudDecision {
         map.put("reject", AntiFraudDecisionEnum.REJECT);
         map.put("review", AntiFraudDecisionEnum.REVIEW);
         map.put("skipped", AntiFraudDecisionEnum.SKIPPED);
+        map.put("pending", AntiFraudDecisionEnum.PENDING);
         return map;
     }
     
@@ -179,7 +182,8 @@ public class AntiFraudDecision {
         EXCEPTION("exception"),
         REJECT("reject"),
         REVIEW("review"),
-        SKIPPED("skipped"),;
+        SKIPPED("skipped"),
+        PENDING("pending"),;
 
         private final String value;
 

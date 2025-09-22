@@ -8,6 +8,7 @@ import static com.gr4vy.sdk.operations.Operations.RequestOperation;
 import com.gr4vy.sdk.SDKConfiguration;
 import com.gr4vy.sdk.models.components.TransactionCreate;
 import com.gr4vy.sdk.operations.CreateTransaction;
+import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -21,6 +22,7 @@ public class CreateTransactionRequestBuilder {
     private Optional<String> xForwardedFor = Optional.empty();
     private TransactionCreate transactionCreate;
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public CreateTransactionRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -82,7 +84,7 @@ public class CreateTransactionRequestBuilder {
     public CreateTransactionResponse call() throws Exception {
         
         RequestOperation<CreateTransactionRequest, CreateTransactionResponse> operation
-              = new CreateTransaction.Sync(sdkConfiguration);
+              = new CreateTransaction.Sync(sdkConfiguration, _headers);
         CreateTransactionRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

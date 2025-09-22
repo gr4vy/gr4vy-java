@@ -9,6 +9,7 @@ import com.gr4vy.sdk.SDKConfiguration;
 import com.gr4vy.sdk.models.components.NetworkTokenCreate;
 import com.gr4vy.sdk.models.operations.CreatePaymentMethodNetworkTokenRequest;
 import com.gr4vy.sdk.operations.CreatePaymentMethodNetworkToken;
+import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -21,6 +22,7 @@ public class CreatePaymentMethodNetworkTokenRequestBuilder {
     private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
     private NetworkTokenCreate networkTokenCreate;
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public CreatePaymentMethodNetworkTokenRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -63,7 +65,7 @@ public class CreatePaymentMethodNetworkTokenRequestBuilder {
     public CompletableFuture<CreatePaymentMethodNetworkTokenResponse> call() throws Exception {
         
         AsyncRequestOperation<CreatePaymentMethodNetworkTokenRequest, CreatePaymentMethodNetworkTokenResponse> operation
-              = new CreatePaymentMethodNetworkToken.Async(sdkConfiguration);
+              = new CreatePaymentMethodNetworkToken.Async(sdkConfiguration, _headers);
         CreatePaymentMethodNetworkTokenRequest request = buildRequest();
 
         return operation.doRequest(request)

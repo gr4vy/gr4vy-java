@@ -9,6 +9,7 @@ import com.gr4vy.sdk.models.operations.ListBuyerGiftCardsRequest;
 import com.gr4vy.sdk.models.operations.async.ListBuyerGiftCardsRequestBuilder;
 import com.gr4vy.sdk.models.operations.async.ListBuyerGiftCardsResponse;
 import com.gr4vy.sdk.operations.ListBuyerGiftCards;
+import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.Options;
 import java.lang.String;
 import java.util.Optional;
@@ -17,6 +18,7 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 
 public class AsyncBuyersGiftCards {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final BuyersGiftCards syncSDK;
 
@@ -81,7 +83,9 @@ public class AsyncBuyersGiftCards {
                 .merchantAccountId(merchantAccountId)
                 .build();
         AsyncRequestOperation<ListBuyerGiftCardsRequest, ListBuyerGiftCardsResponse> operation
-              = new ListBuyerGiftCards.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new ListBuyerGiftCards.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }

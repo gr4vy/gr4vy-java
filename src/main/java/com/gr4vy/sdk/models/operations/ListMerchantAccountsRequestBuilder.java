@@ -11,6 +11,7 @@ import static com.gr4vy.sdk.utils.Utils.toStream;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.gr4vy.sdk.SDKConfiguration;
 import com.gr4vy.sdk.operations.ListMerchantAccounts;
+import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.LazySingletonValue;
 import com.gr4vy.sdk.utils.Options;
 import com.gr4vy.sdk.utils.RetryConfig;
@@ -38,6 +39,7 @@ public class ListMerchantAccountsRequestBuilder {
     private JsonNullable<String> search = JsonNullable.undefined();
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public ListMerchantAccountsRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -110,7 +112,7 @@ public class ListMerchantAccountsRequestBuilder {
             .build());
 
         RequestOperation<ListMerchantAccountsRequest, ListMerchantAccountsResponse> operation
-              = new ListMerchantAccounts.Sync(sdkConfiguration, options);
+              = new ListMerchantAccounts.Sync(sdkConfiguration, options, _headers);
         ListMerchantAccountsRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));
@@ -135,7 +137,7 @@ public class ListMerchantAccountsRequestBuilder {
             .build());
 
         RequestOperation<ListMerchantAccountsRequest, ListMerchantAccountsResponse> operation
-              = new ListMerchantAccounts.Sync(sdkConfiguration, options);
+              = new ListMerchantAccounts.Sync(sdkConfiguration, options, _headers);
         ListMerchantAccountsRequest request = buildRequest();
         Iterator<HttpResponse<InputStream>> iterator = new Paginator<>(
             request,

@@ -8,6 +8,7 @@ import static com.gr4vy.sdk.operations.Operations.RequestOperation;
 import com.gr4vy.sdk.SDKConfiguration;
 import com.gr4vy.sdk.models.components.CryptogramCreate;
 import com.gr4vy.sdk.operations.CreatePaymentMethodNetworkTokenCryptogram;
+import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -20,6 +21,7 @@ public class CreatePaymentMethodNetworkTokenCryptogramRequestBuilder {
     private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
     private CryptogramCreate cryptogramCreate;
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public CreatePaymentMethodNetworkTokenCryptogramRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -69,7 +71,7 @@ public class CreatePaymentMethodNetworkTokenCryptogramRequestBuilder {
     public CreatePaymentMethodNetworkTokenCryptogramResponse call() throws Exception {
         
         RequestOperation<CreatePaymentMethodNetworkTokenCryptogramRequest, CreatePaymentMethodNetworkTokenCryptogramResponse> operation
-              = new CreatePaymentMethodNetworkTokenCryptogram.Sync(sdkConfiguration);
+              = new CreatePaymentMethodNetworkTokenCryptogram.Sync(sdkConfiguration, _headers);
         CreatePaymentMethodNetworkTokenCryptogramRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

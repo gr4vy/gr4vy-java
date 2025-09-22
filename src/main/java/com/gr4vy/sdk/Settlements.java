@@ -13,6 +13,7 @@ import com.gr4vy.sdk.models.operations.ListTransactionSettlementsRequestBuilder;
 import com.gr4vy.sdk.models.operations.ListTransactionSettlementsResponse;
 import com.gr4vy.sdk.operations.GetTransactionSettlement;
 import com.gr4vy.sdk.operations.ListTransactionSettlements;
+import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.Options;
 import java.lang.Exception;
 import java.lang.String;
@@ -21,6 +22,7 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 
 public class Settlements {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final AsyncSettlements asyncSDK;
 
@@ -87,7 +89,7 @@ public class Settlements {
                 .merchantAccountId(merchantAccountId)
                 .build();
         RequestOperation<GetTransactionSettlementRequest, GetTransactionSettlementResponse> operation
-              = new GetTransactionSettlement.Sync(sdkConfiguration, options);
+              = new GetTransactionSettlement.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -136,7 +138,7 @@ public class Settlements {
                 .merchantAccountId(merchantAccountId)
                 .build();
         RequestOperation<ListTransactionSettlementsRequest, ListTransactionSettlementsResponse> operation
-              = new ListTransactionSettlements.Sync(sdkConfiguration, options);
+              = new ListTransactionSettlements.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

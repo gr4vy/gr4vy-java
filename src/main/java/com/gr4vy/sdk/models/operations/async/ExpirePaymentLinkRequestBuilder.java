@@ -8,6 +8,7 @@ import static com.gr4vy.sdk.operations.Operations.AsyncRequestOperation;
 import com.gr4vy.sdk.SDKConfiguration;
 import com.gr4vy.sdk.models.operations.ExpirePaymentLinkRequest;
 import com.gr4vy.sdk.operations.ExpirePaymentLink;
+import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -19,6 +20,7 @@ public class ExpirePaymentLinkRequestBuilder {
     private String paymentLinkId;
     private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public ExpirePaymentLinkRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -54,7 +56,7 @@ public class ExpirePaymentLinkRequestBuilder {
     public CompletableFuture<ExpirePaymentLinkResponse> call() throws Exception {
         
         AsyncRequestOperation<ExpirePaymentLinkRequest, ExpirePaymentLinkResponse> operation
-              = new ExpirePaymentLink.Async(sdkConfiguration);
+              = new ExpirePaymentLink.Async(sdkConfiguration, _headers);
         ExpirePaymentLinkRequest request = buildRequest();
 
         return operation.doRequest(request)
