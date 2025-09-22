@@ -9,12 +9,14 @@ import com.gr4vy.sdk.models.operations.ListBuyerPaymentMethodsRequest;
 import com.gr4vy.sdk.models.operations.async.ListBuyerPaymentMethodsRequestBuilder;
 import com.gr4vy.sdk.models.operations.async.ListBuyerPaymentMethodsResponse;
 import com.gr4vy.sdk.operations.ListBuyerPaymentMethods;
+import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.Options;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
 
 public class AsyncBuyersPaymentMethods {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final BuyersPaymentMethods syncSDK;
 
@@ -67,7 +69,9 @@ public class AsyncBuyersPaymentMethods {
      */
     public CompletableFuture<ListBuyerPaymentMethodsResponse> list(ListBuyerPaymentMethodsRequest request, Optional<Options> options) {
         AsyncRequestOperation<ListBuyerPaymentMethodsRequest, ListBuyerPaymentMethodsResponse> operation
-              = new ListBuyerPaymentMethods.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new ListBuyerPaymentMethods.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }

@@ -27,6 +27,7 @@ import com.gr4vy.sdk.operations.DeleteBuyer;
 import com.gr4vy.sdk.operations.GetBuyer;
 import com.gr4vy.sdk.operations.ListBuyers;
 import com.gr4vy.sdk.operations.UpdateBuyer;
+import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.Options;
 import java.lang.Exception;
 import java.lang.String;
@@ -35,6 +36,7 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 
 public class Buyers {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final AsyncBuyers asyncSDK;
     private final BuyersPaymentMethods paymentMethods;
@@ -106,7 +108,7 @@ public class Buyers {
      */
     public ListBuyersResponse list(ListBuyersRequest request, Optional<Options> options) throws Exception {
         RequestOperation<ListBuyersRequest, ListBuyersResponse> operation
-              = new ListBuyers.Sync(sdkConfiguration, options);
+              = new ListBuyers.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -152,7 +154,7 @@ public class Buyers {
                 .buyerCreate(buyerCreate)
                 .build();
         RequestOperation<AddBuyerRequest, AddBuyerResponse> operation
-              = new AddBuyer.Sync(sdkConfiguration);
+              = new AddBuyer.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -201,7 +203,7 @@ public class Buyers {
                 .merchantAccountId(merchantAccountId)
                 .build();
         RequestOperation<GetBuyerRequest, GetBuyerResponse> operation
-              = new GetBuyer.Sync(sdkConfiguration, options);
+              = new GetBuyer.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -252,7 +254,7 @@ public class Buyers {
                 .buyerUpdate(buyerUpdate)
                 .build();
         RequestOperation<UpdateBuyerRequest, UpdateBuyerResponse> operation
-              = new UpdateBuyer.Sync(sdkConfiguration);
+              = new UpdateBuyer.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -298,7 +300,7 @@ public class Buyers {
                 .merchantAccountId(merchantAccountId)
                 .build();
         RequestOperation<DeleteBuyerRequest, DeleteBuyerResponse> operation
-              = new DeleteBuyer.Sync(sdkConfiguration);
+              = new DeleteBuyer.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

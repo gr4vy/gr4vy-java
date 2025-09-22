@@ -9,6 +9,7 @@ import com.gr4vy.sdk.SDKConfiguration;
 import com.gr4vy.sdk.models.components.AccountUpdaterJobCreate;
 import com.gr4vy.sdk.models.operations.CreateAccountUpdaterJobRequest;
 import com.gr4vy.sdk.operations.CreateAccountUpdaterJob;
+import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -20,6 +21,7 @@ public class CreateAccountUpdaterJobRequestBuilder {
     private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
     private AccountUpdaterJobCreate accountUpdaterJobCreate;
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public CreateAccountUpdaterJobRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -55,7 +57,7 @@ public class CreateAccountUpdaterJobRequestBuilder {
     public CompletableFuture<CreateAccountUpdaterJobResponse> call() throws Exception {
         
         AsyncRequestOperation<CreateAccountUpdaterJobRequest, CreateAccountUpdaterJobResponse> operation
-              = new CreateAccountUpdaterJob.Async(sdkConfiguration);
+              = new CreateAccountUpdaterJob.Async(sdkConfiguration, _headers);
         CreateAccountUpdaterJobRequest request = buildRequest();
 
         return operation.doRequest(request)

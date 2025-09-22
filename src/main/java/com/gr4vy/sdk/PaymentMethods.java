@@ -22,6 +22,7 @@ import com.gr4vy.sdk.operations.CreatePaymentMethod;
 import com.gr4vy.sdk.operations.DeletePaymentMethod;
 import com.gr4vy.sdk.operations.GetPaymentMethod;
 import com.gr4vy.sdk.operations.ListPaymentMethods;
+import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.Options;
 import java.lang.Exception;
 import java.lang.String;
@@ -30,6 +31,7 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 
 public class PaymentMethods {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final AsyncPaymentMethods asyncSDK;
     private final PaymentServiceTokens paymentServiceTokens;
@@ -95,7 +97,7 @@ public class PaymentMethods {
      */
     public ListPaymentMethodsResponse list(ListPaymentMethodsRequest request, Optional<Options> options) throws Exception {
         RequestOperation<ListPaymentMethodsRequest, ListPaymentMethodsResponse> operation
-              = new ListPaymentMethods.Sync(sdkConfiguration, options);
+              = new ListPaymentMethods.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -141,7 +143,7 @@ public class PaymentMethods {
                 .requestBody(requestBody)
                 .build();
         RequestOperation<CreatePaymentMethodRequest, CreatePaymentMethodResponse> operation
-              = new CreatePaymentMethod.Sync(sdkConfiguration);
+              = new CreatePaymentMethod.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -190,7 +192,7 @@ public class PaymentMethods {
                 .merchantAccountId(merchantAccountId)
                 .build();
         RequestOperation<GetPaymentMethodRequest, GetPaymentMethodResponse> operation
-              = new GetPaymentMethod.Sync(sdkConfiguration, options);
+              = new GetPaymentMethod.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -236,7 +238,7 @@ public class PaymentMethods {
                 .merchantAccountId(merchantAccountId)
                 .build();
         RequestOperation<DeletePaymentMethodRequest, DeletePaymentMethodResponse> operation
-              = new DeletePaymentMethod.Sync(sdkConfiguration);
+              = new DeletePaymentMethod.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

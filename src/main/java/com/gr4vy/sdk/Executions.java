@@ -17,6 +17,7 @@ import com.gr4vy.sdk.models.operations.ListReportExecutionsResponse;
 import com.gr4vy.sdk.operations.CreateReportExecutionUrl;
 import com.gr4vy.sdk.operations.GetReportExecution;
 import com.gr4vy.sdk.operations.ListReportExecutions;
+import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.Options;
 import java.lang.Exception;
 import java.lang.Long;
@@ -26,6 +27,7 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 
 public class Executions {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final AsyncExecutions asyncSDK;
 
@@ -94,7 +96,7 @@ public class Executions {
                 .merchantAccountId(merchantAccountId)
                 .build();
         RequestOperation<ListReportExecutionsRequest, ListReportExecutionsResponse> operation
-              = new ListReportExecutions.Sync(sdkConfiguration, options);
+              = new ListReportExecutions.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -145,7 +147,7 @@ public class Executions {
                 .merchantAccountId(merchantAccountId)
                 .build();
         RequestOperation<CreateReportExecutionUrlRequest, CreateReportExecutionUrlResponse> operation
-              = new CreateReportExecutionUrl.Sync(sdkConfiguration);
+              = new CreateReportExecutionUrl.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -194,7 +196,7 @@ public class Executions {
                 .merchantAccountId(merchantAccountId)
                 .build();
         RequestOperation<GetReportExecutionRequest, GetReportExecutionResponse> operation
-              = new GetReportExecution.Sync(sdkConfiguration, options);
+              = new GetReportExecution.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

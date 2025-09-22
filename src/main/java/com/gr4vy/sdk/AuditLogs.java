@@ -9,12 +9,14 @@ import com.gr4vy.sdk.models.operations.ListAuditLogsRequest;
 import com.gr4vy.sdk.models.operations.ListAuditLogsRequestBuilder;
 import com.gr4vy.sdk.models.operations.ListAuditLogsResponse;
 import com.gr4vy.sdk.operations.ListAuditLogs;
+import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.Options;
 import java.lang.Exception;
 import java.util.Optional;
 
 
 public class AuditLogs {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final AsyncAuditLogs asyncSDK;
 
@@ -68,7 +70,7 @@ public class AuditLogs {
      */
     public ListAuditLogsResponse list(ListAuditLogsRequest request, Optional<Options> options) throws Exception {
         RequestOperation<ListAuditLogsRequest, ListAuditLogsResponse> operation
-              = new ListAuditLogs.Sync(sdkConfiguration, options);
+              = new ListAuditLogs.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

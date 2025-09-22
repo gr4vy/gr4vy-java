@@ -7,6 +7,7 @@ import static com.gr4vy.sdk.operations.Operations.RequestOperation;
 
 import com.gr4vy.sdk.SDKConfiguration;
 import com.gr4vy.sdk.operations.SyncTransaction;
+import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -17,6 +18,7 @@ public class SyncTransactionRequestBuilder {
     private String transactionId;
     private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public SyncTransactionRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -52,7 +54,7 @@ public class SyncTransactionRequestBuilder {
     public SyncTransactionResponse call() throws Exception {
         
         RequestOperation<SyncTransactionRequest, SyncTransactionResponse> operation
-              = new SyncTransaction.Sync(sdkConfiguration);
+              = new SyncTransaction.Sync(sdkConfiguration, _headers);
         SyncTransactionRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

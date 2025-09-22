@@ -22,6 +22,7 @@ import com.gr4vy.sdk.operations.CreateMerchantAccount;
 import com.gr4vy.sdk.operations.GetMerchantAccount;
 import com.gr4vy.sdk.operations.ListMerchantAccounts;
 import com.gr4vy.sdk.operations.UpdateMerchantAccount;
+import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.Options;
 import java.lang.Long;
 import java.lang.String;
@@ -31,6 +32,7 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 
 public class AsyncMerchantAccounts {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final MerchantAccounts syncSDK;
 
@@ -95,7 +97,9 @@ public class AsyncMerchantAccounts {
                 .search(search)
                 .build();
         AsyncRequestOperation<ListMerchantAccountsRequest, ListMerchantAccountsResponse> operation
-              = new ListMerchantAccounts.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new ListMerchantAccounts.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -122,7 +126,7 @@ public class AsyncMerchantAccounts {
      */
     public CompletableFuture<CreateMerchantAccountResponse> create(MerchantAccountCreate request) {
         AsyncRequestOperation<MerchantAccountCreate, CreateMerchantAccountResponse> operation
-              = new CreateMerchantAccount.Async(sdkConfiguration);
+              = new CreateMerchantAccount.Async(sdkConfiguration, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -167,7 +171,9 @@ public class AsyncMerchantAccounts {
                 .merchantAccountId(merchantAccountId)
                 .build();
         AsyncRequestOperation<GetMerchantAccountRequest, GetMerchantAccountResponse> operation
-              = new GetMerchantAccount.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new GetMerchantAccount.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -201,7 +207,7 @@ public class AsyncMerchantAccounts {
                 .merchantAccountUpdate(merchantAccountUpdate)
                 .build();
         AsyncRequestOperation<UpdateMerchantAccountRequest, UpdateMerchantAccountResponse> operation
-              = new UpdateMerchantAccount.Async(sdkConfiguration);
+              = new UpdateMerchantAccount.Async(sdkConfiguration, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }

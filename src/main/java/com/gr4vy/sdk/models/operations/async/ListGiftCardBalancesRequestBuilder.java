@@ -9,6 +9,7 @@ import com.gr4vy.sdk.SDKConfiguration;
 import com.gr4vy.sdk.models.components.GiftCardBalanceRequest;
 import com.gr4vy.sdk.models.operations.ListGiftCardBalancesRequest;
 import com.gr4vy.sdk.operations.ListGiftCardBalances;
+import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -20,6 +21,7 @@ public class ListGiftCardBalancesRequestBuilder {
     private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
     private GiftCardBalanceRequest giftCardBalanceRequest;
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public ListGiftCardBalancesRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -55,7 +57,7 @@ public class ListGiftCardBalancesRequestBuilder {
     public CompletableFuture<ListGiftCardBalancesResponse> call() throws Exception {
         
         AsyncRequestOperation<ListGiftCardBalancesRequest, ListGiftCardBalancesResponse> operation
-              = new ListGiftCardBalances.Async(sdkConfiguration);
+              = new ListGiftCardBalances.Async(sdkConfiguration, _headers);
         ListGiftCardBalancesRequest request = buildRequest();
 
         return operation.doRequest(request)

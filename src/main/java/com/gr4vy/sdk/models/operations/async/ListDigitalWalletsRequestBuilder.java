@@ -8,6 +8,7 @@ import static com.gr4vy.sdk.operations.Operations.AsyncRequestOperation;
 import com.gr4vy.sdk.SDKConfiguration;
 import com.gr4vy.sdk.models.operations.ListDigitalWalletsRequest;
 import com.gr4vy.sdk.operations.ListDigitalWallets;
+import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.Options;
 import com.gr4vy.sdk.utils.RetryConfig;
 import com.gr4vy.sdk.utils.Utils;
@@ -22,6 +23,7 @@ public class ListDigitalWalletsRequestBuilder {
     private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public ListDigitalWalletsRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -65,7 +67,9 @@ public class ListDigitalWalletsRequestBuilder {
             .build());
 
         AsyncRequestOperation<ListDigitalWalletsRequest, ListDigitalWalletsResponse> operation
-              = new ListDigitalWallets.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new ListDigitalWallets.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         ListDigitalWalletsRequest request = buildRequest();
 
         return operation.doRequest(request)

@@ -23,6 +23,7 @@ import com.gr4vy.sdk.operations.AddReport;
 import com.gr4vy.sdk.operations.GetReport;
 import com.gr4vy.sdk.operations.ListReports;
 import com.gr4vy.sdk.operations.UpdateReport;
+import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.Options;
 import java.lang.Exception;
 import java.lang.String;
@@ -31,6 +32,7 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 
 public class Reports {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final AsyncReports asyncSDK;
     private final Executions executions;
@@ -90,7 +92,7 @@ public class Reports {
      */
     public ListReportsResponse list(ListReportsRequest request, Optional<Options> options) throws Exception {
         RequestOperation<ListReportsRequest, ListReportsResponse> operation
-              = new ListReports.Sync(sdkConfiguration, options);
+              = new ListReports.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -136,7 +138,7 @@ public class Reports {
                 .reportCreate(reportCreate)
                 .build();
         RequestOperation<AddReportRequest, AddReportResponse> operation
-              = new AddReport.Sync(sdkConfiguration);
+              = new AddReport.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -185,7 +187,7 @@ public class Reports {
                 .merchantAccountId(merchantAccountId)
                 .build();
         RequestOperation<GetReportRequest, GetReportResponse> operation
-              = new GetReport.Sync(sdkConfiguration, options);
+              = new GetReport.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -236,7 +238,7 @@ public class Reports {
                 .reportUpdate(reportUpdate)
                 .build();
         RequestOperation<UpdateReportRequest, UpdateReportResponse> operation
-              = new UpdateReport.Sync(sdkConfiguration);
+              = new UpdateReport.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

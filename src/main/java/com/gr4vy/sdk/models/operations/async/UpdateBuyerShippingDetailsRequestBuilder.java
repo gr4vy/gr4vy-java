@@ -9,6 +9,7 @@ import com.gr4vy.sdk.SDKConfiguration;
 import com.gr4vy.sdk.models.components.ShippingDetailsUpdate;
 import com.gr4vy.sdk.models.operations.UpdateBuyerShippingDetailsRequest;
 import com.gr4vy.sdk.operations.UpdateBuyerShippingDetails;
+import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -22,6 +23,7 @@ public class UpdateBuyerShippingDetailsRequestBuilder {
     private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
     private ShippingDetailsUpdate shippingDetailsUpdate;
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public UpdateBuyerShippingDetailsRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -71,7 +73,7 @@ public class UpdateBuyerShippingDetailsRequestBuilder {
     public CompletableFuture<UpdateBuyerShippingDetailsResponse> call() throws Exception {
         
         AsyncRequestOperation<UpdateBuyerShippingDetailsRequest, UpdateBuyerShippingDetailsResponse> operation
-              = new UpdateBuyerShippingDetails.Async(sdkConfiguration);
+              = new UpdateBuyerShippingDetails.Async(sdkConfiguration, _headers);
         UpdateBuyerShippingDetailsRequest request = buildRequest();
 
         return operation.doRequest(request)

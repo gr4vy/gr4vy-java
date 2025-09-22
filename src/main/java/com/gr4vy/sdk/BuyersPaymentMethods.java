@@ -9,12 +9,14 @@ import com.gr4vy.sdk.models.operations.ListBuyerPaymentMethodsRequest;
 import com.gr4vy.sdk.models.operations.ListBuyerPaymentMethodsRequestBuilder;
 import com.gr4vy.sdk.models.operations.ListBuyerPaymentMethodsResponse;
 import com.gr4vy.sdk.operations.ListBuyerPaymentMethods;
+import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.Options;
 import java.lang.Exception;
 import java.util.Optional;
 
 
 public class BuyersPaymentMethods {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final AsyncBuyersPaymentMethods asyncSDK;
 
@@ -68,7 +70,7 @@ public class BuyersPaymentMethods {
      */
     public ListBuyerPaymentMethodsResponse list(ListBuyerPaymentMethodsRequest request, Optional<Options> options) throws Exception {
         RequestOperation<ListBuyerPaymentMethodsRequest, ListBuyerPaymentMethodsResponse> operation
-              = new ListBuyerPaymentMethods.Sync(sdkConfiguration, options);
+              = new ListBuyerPaymentMethods.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

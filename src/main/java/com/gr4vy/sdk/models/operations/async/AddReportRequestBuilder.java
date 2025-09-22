@@ -9,6 +9,7 @@ import com.gr4vy.sdk.SDKConfiguration;
 import com.gr4vy.sdk.models.components.ReportCreate;
 import com.gr4vy.sdk.models.operations.AddReportRequest;
 import com.gr4vy.sdk.operations.AddReport;
+import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -20,6 +21,7 @@ public class AddReportRequestBuilder {
     private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
     private ReportCreate reportCreate;
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public AddReportRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -55,7 +57,7 @@ public class AddReportRequestBuilder {
     public CompletableFuture<AddReportResponse> call() throws Exception {
         
         AsyncRequestOperation<AddReportRequest, AddReportResponse> operation
-              = new AddReport.Async(sdkConfiguration);
+              = new AddReport.Async(sdkConfiguration, _headers);
         AddReportRequest request = buildRequest();
 
         return operation.doRequest(request)

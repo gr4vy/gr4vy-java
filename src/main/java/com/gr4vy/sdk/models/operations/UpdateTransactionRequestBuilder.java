@@ -8,6 +8,7 @@ import static com.gr4vy.sdk.operations.Operations.RequestOperation;
 import com.gr4vy.sdk.SDKConfiguration;
 import com.gr4vy.sdk.models.components.TransactionUpdate;
 import com.gr4vy.sdk.operations.UpdateTransaction;
+import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -19,6 +20,7 @@ public class UpdateTransactionRequestBuilder {
     private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
     private TransactionUpdate transactionUpdate;
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public UpdateTransactionRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -61,7 +63,7 @@ public class UpdateTransactionRequestBuilder {
     public UpdateTransactionResponse call() throws Exception {
         
         RequestOperation<UpdateTransactionRequest, UpdateTransactionResponse> operation
-              = new UpdateTransaction.Sync(sdkConfiguration);
+              = new UpdateTransaction.Sync(sdkConfiguration, _headers);
         UpdateTransactionRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

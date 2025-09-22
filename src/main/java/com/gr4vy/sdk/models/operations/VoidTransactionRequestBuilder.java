@@ -7,6 +7,7 @@ import static com.gr4vy.sdk.operations.Operations.RequestOperation;
 
 import com.gr4vy.sdk.SDKConfiguration;
 import com.gr4vy.sdk.operations.VoidTransaction;
+import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -19,6 +20,7 @@ public class VoidTransactionRequestBuilder {
     private JsonNullable<? extends List<String>> prefer = JsonNullable.undefined();
     private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public VoidTransactionRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -67,7 +69,7 @@ public class VoidTransactionRequestBuilder {
     public VoidTransactionResponse call() throws Exception {
         
         RequestOperation<VoidTransactionRequest, VoidTransactionResponse> operation
-              = new VoidTransaction.Sync(sdkConfiguration);
+              = new VoidTransaction.Sync(sdkConfiguration, _headers);
         VoidTransactionRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

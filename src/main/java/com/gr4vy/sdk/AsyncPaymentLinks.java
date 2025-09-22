@@ -22,6 +22,7 @@ import com.gr4vy.sdk.operations.AddPaymentLink;
 import com.gr4vy.sdk.operations.ExpirePaymentLink;
 import com.gr4vy.sdk.operations.GetPaymentLink;
 import com.gr4vy.sdk.operations.ListPaymentLinks;
+import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.Options;
 import java.lang.Long;
 import java.lang.String;
@@ -32,6 +33,7 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 
 public class AsyncPaymentLinks {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final PaymentLinks syncSDK;
 
@@ -90,7 +92,7 @@ public class AsyncPaymentLinks {
                 .paymentLinkCreate(paymentLinkCreate)
                 .build();
         AsyncRequestOperation<AddPaymentLinkRequest, AddPaymentLinkResponse> operation
-              = new AddPaymentLink.Async(sdkConfiguration);
+              = new AddPaymentLink.Async(sdkConfiguration, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -145,7 +147,9 @@ public class AsyncPaymentLinks {
                 .merchantAccountId(merchantAccountId)
                 .build();
         AsyncRequestOperation<ListPaymentLinksRequest, ListPaymentLinksResponse> operation
-              = new ListPaymentLinks.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new ListPaymentLinks.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -191,7 +195,7 @@ public class AsyncPaymentLinks {
                 .merchantAccountId(merchantAccountId)
                 .build();
         AsyncRequestOperation<ExpirePaymentLinkRequest, ExpirePaymentLinkResponse> operation
-              = new ExpirePaymentLink.Async(sdkConfiguration);
+              = new ExpirePaymentLink.Async(sdkConfiguration, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -240,7 +244,9 @@ public class AsyncPaymentLinks {
                 .merchantAccountId(merchantAccountId)
                 .build();
         AsyncRequestOperation<GetPaymentLinkRequest, GetPaymentLinkResponse> operation
-              = new GetPaymentLink.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new GetPaymentLink.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }

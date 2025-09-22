@@ -1,19 +1,19 @@
 lockVersion: 2.0.0
 id: 5bbaa3a9-baa0-471b-ba6a-13fd88e8c119
 management:
-  docChecksum: 5bf51f5c7dbf7991f4efa6f27a39d650
+  docChecksum: e82c4edc1e92f72d3514dfc011eb6e81
   docVersion: 1.0.0
-  speakeasyVersion: 1.617.1
-  generationVersion: 2.701.8
-  releaseVersion: 2.11.6
-  configChecksum: 975a12e06c6d53bd5b6a5e27959cf306
+  speakeasyVersion: 1.622.1
+  generationVersion: 2.709.0
+  releaseVersion: 2.12.0
+  configChecksum: e937b97e92dab7e6f6df58bbada78281
   repoURL: https://github.com/gr4vy/gr4vy-java.git
   published: true
 features:
   java:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.1
-    core: 3.47.2
+    core: 3.50.0
     flattening: 2.81.1
     globalSecurity: 2.83.1
     globalSecurityCallbacks: 0.1.0
@@ -554,7 +554,15 @@ generatedFiles:
   - gradle/wrapper/gradle-wrapper.properties
   - gradlew
   - gradlew.bat
+  - publishing.gradle
   - settings.gradle
+  - spring/sdk-spring-boot-autoconfigure/build.gradle
+  - spring/sdk-spring-boot-autoconfigure/src/main/java/com/gr4vy/sdk/ConditionalOnPropertyPrefix.java
+  - spring/sdk-spring-boot-autoconfigure/src/main/java/com/gr4vy/sdk/OnPropertyPrefixCondition.java
+  - spring/sdk-spring-boot-autoconfigure/src/main/java/com/gr4vy/sdk/SDKAutoConfig.java
+  - spring/sdk-spring-boot-autoconfigure/src/main/java/com/gr4vy/sdk/SDKAutoConfigProperties.java
+  - spring/sdk-spring-boot-autoconfigure/src/main/resources/META-INF/spring/org.springframework.boot.autoconfigure.AutoConfiguration.imports
+  - spring/sdk-spring-boot-starter/build.gradle
   - src/main/java/com/gr4vy/sdk/AccountUpdater.java
   - src/main/java/com/gr4vy/sdk/All.java
   - src/main/java/com/gr4vy/sdk/AsyncAccountUpdater.java
@@ -1515,6 +1523,7 @@ generatedFiles:
   - src/main/java/com/gr4vy/sdk/utils/HTTPRequest.java
   - src/main/java/com/gr4vy/sdk/utils/HasSecurity.java
   - src/main/java/com/gr4vy/sdk/utils/HeaderMetadata.java
+  - src/main/java/com/gr4vy/sdk/utils/Headers.java
   - src/main/java/com/gr4vy/sdk/utils/Helpers.java
   - src/main/java/com/gr4vy/sdk/utils/Hook.java
   - src/main/java/com/gr4vy/sdk/utils/HookAdapters.java
@@ -4998,4 +5007,3 @@ examples:
           application/json: {"type": "error", "code": "gateway_timeout", "status": 504, "message": "Request could not be processed"}
 examplesVersion: 1.0.2
 generatedTests: {}
-releaseNotes: "## Java SDK Changes Detected:\n* `gr4vy.transactions.create()`: \n  *  `request.transactioncreate.connectionOptions.nuvei-pse` **Added**\n* `gr4vy.transactions.update()`: \n  *  `request.transactionupdate.connectionOptions.nuvei-pse` **Added**\n* `gr4vy.paymentLinks.create()`: \n  *  `request.paymentlinkcreate.connectionOptions.nuvei-pse` **Added**\n"

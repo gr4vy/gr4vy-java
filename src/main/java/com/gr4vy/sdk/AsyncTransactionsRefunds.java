@@ -18,6 +18,7 @@ import com.gr4vy.sdk.models.operations.async.ListTransactionRefundsResponse;
 import com.gr4vy.sdk.operations.CreateTransactionRefund;
 import com.gr4vy.sdk.operations.GetTransactionRefund;
 import com.gr4vy.sdk.operations.ListTransactionRefunds;
+import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.Options;
 import java.lang.String;
 import java.util.Optional;
@@ -26,6 +27,7 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 
 public class AsyncTransactionsRefunds {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final AsyncAll all;
     private final TransactionsRefunds syncSDK;
@@ -93,7 +95,9 @@ public class AsyncTransactionsRefunds {
                 .merchantAccountId(merchantAccountId)
                 .build();
         AsyncRequestOperation<ListTransactionRefundsRequest, ListTransactionRefundsResponse> operation
-              = new ListTransactionRefunds.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new ListTransactionRefunds.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -144,7 +148,7 @@ public class AsyncTransactionsRefunds {
                 .transactionRefundCreate(transactionRefundCreate)
                 .build();
         AsyncRequestOperation<CreateTransactionRefundRequest, CreateTransactionRefundResponse> operation
-              = new CreateTransactionRefund.Async(sdkConfiguration);
+              = new CreateTransactionRefund.Async(sdkConfiguration, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -198,7 +202,9 @@ public class AsyncTransactionsRefunds {
                 .merchantAccountId(merchantAccountId)
                 .build();
         AsyncRequestOperation<GetTransactionRefundRequest, GetTransactionRefundResponse> operation
-              = new GetTransactionRefund.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new GetTransactionRefund.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }

@@ -8,6 +8,7 @@ import static com.gr4vy.sdk.operations.Operations.RequestOperation;
 import com.gr4vy.sdk.SDKConfiguration;
 import com.gr4vy.sdk.models.components.GiftCardCreate;
 import com.gr4vy.sdk.operations.CreateGiftCard;
+import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -18,6 +19,7 @@ public class CreateGiftCardRequestBuilder {
     private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
     private GiftCardCreate giftCardCreate;
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public CreateGiftCardRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -53,7 +55,7 @@ public class CreateGiftCardRequestBuilder {
     public CreateGiftCardResponse call() throws Exception {
         
         RequestOperation<CreateGiftCardRequest, CreateGiftCardResponse> operation
-              = new CreateGiftCard.Sync(sdkConfiguration);
+              = new CreateGiftCard.Sync(sdkConfiguration, _headers);
         CreateGiftCardRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

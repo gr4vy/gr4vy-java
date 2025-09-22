@@ -22,6 +22,7 @@ import com.gr4vy.sdk.operations.CreateCheckoutSession;
 import com.gr4vy.sdk.operations.DeleteCheckoutSession;
 import com.gr4vy.sdk.operations.GetCheckoutSession;
 import com.gr4vy.sdk.operations.UpdateCheckoutSession;
+import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.Options;
 import java.lang.String;
 import java.util.Optional;
@@ -30,6 +31,7 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 
 public class AsyncCheckoutSessions {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final CheckoutSessions syncSDK;
 
@@ -87,7 +89,7 @@ public class AsyncCheckoutSessions {
                 .checkoutSessionCreate(checkoutSessionCreate)
                 .build();
         AsyncRequestOperation<CreateCheckoutSessionRequest, CreateCheckoutSessionResponse> operation
-              = new CreateCheckoutSession.Async(sdkConfiguration);
+              = new CreateCheckoutSession.Async(sdkConfiguration, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -138,7 +140,7 @@ public class AsyncCheckoutSessions {
                 .checkoutSessionCreate(checkoutSessionCreate)
                 .build();
         AsyncRequestOperation<UpdateCheckoutSessionRequest, UpdateCheckoutSessionResponse> operation
-              = new UpdateCheckoutSession.Async(sdkConfiguration);
+              = new UpdateCheckoutSession.Async(sdkConfiguration, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -187,7 +189,9 @@ public class AsyncCheckoutSessions {
                 .merchantAccountId(merchantAccountId)
                 .build();
         AsyncRequestOperation<GetCheckoutSessionRequest, GetCheckoutSessionResponse> operation
-              = new GetCheckoutSession.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new GetCheckoutSession.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -233,7 +237,7 @@ public class AsyncCheckoutSessions {
                 .merchantAccountId(merchantAccountId)
                 .build();
         AsyncRequestOperation<DeleteCheckoutSessionRequest, DeleteCheckoutSessionResponse> operation
-              = new DeleteCheckoutSession.Async(sdkConfiguration);
+              = new DeleteCheckoutSession.Async(sdkConfiguration, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }

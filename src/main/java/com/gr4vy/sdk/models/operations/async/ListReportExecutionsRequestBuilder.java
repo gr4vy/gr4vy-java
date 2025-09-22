@@ -11,6 +11,7 @@ import com.gr4vy.sdk.SDKConfiguration;
 import com.gr4vy.sdk.models.operations.ListReportExecutionsRequest;
 import com.gr4vy.sdk.operations.ListReportExecutions;
 import com.gr4vy.sdk.utils.Blob;
+import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.LazySingletonValue;
 import com.gr4vy.sdk.utils.Options;
 import com.gr4vy.sdk.utils.RetryConfig;
@@ -39,6 +40,7 @@ public class ListReportExecutionsRequestBuilder {
     private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public ListReportExecutionsRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -118,7 +120,9 @@ public class ListReportExecutionsRequestBuilder {
             .build());
 
         AsyncRequestOperation<ListReportExecutionsRequest, ListReportExecutionsResponse> operation
-              = new ListReportExecutions.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new ListReportExecutions.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         ListReportExecutionsRequest request = buildRequest();
 
         return operation.doRequest(request)
@@ -146,7 +150,9 @@ public class ListReportExecutionsRequestBuilder {
             .build());
 
         AsyncRequestOperation<ListReportExecutionsRequest, ListReportExecutionsResponse> operation
-              = new ListReportExecutions.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new ListReportExecutions.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
 
         Flow.Publisher<HttpResponse<Blob>> asyncPaginator = new AsyncPaginator<>(
             request,

@@ -8,6 +8,7 @@ import static com.gr4vy.sdk.operations.Operations.AsyncRequestOperation;
 import com.gr4vy.sdk.SDKConfiguration;
 import com.gr4vy.sdk.models.operations.SyncTransactionRequest;
 import com.gr4vy.sdk.operations.SyncTransaction;
+import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -19,6 +20,7 @@ public class SyncTransactionRequestBuilder {
     private String transactionId;
     private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public SyncTransactionRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -54,7 +56,7 @@ public class SyncTransactionRequestBuilder {
     public CompletableFuture<SyncTransactionResponse> call() throws Exception {
         
         AsyncRequestOperation<SyncTransactionRequest, SyncTransactionResponse> operation
-              = new SyncTransaction.Async(sdkConfiguration);
+              = new SyncTransaction.Async(sdkConfiguration, _headers);
         SyncTransactionRequest request = buildRequest();
 
         return operation.doRequest(request)

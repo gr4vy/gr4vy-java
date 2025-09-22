@@ -10,12 +10,14 @@ import com.gr4vy.sdk.models.operations.ListGiftCardBalancesRequest;
 import com.gr4vy.sdk.models.operations.ListGiftCardBalancesRequestBuilder;
 import com.gr4vy.sdk.models.operations.ListGiftCardBalancesResponse;
 import com.gr4vy.sdk.operations.ListGiftCardBalances;
+import com.gr4vy.sdk.utils.Headers;
 import java.lang.Exception;
 import java.lang.String;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 
 public class Balances {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final AsyncBalances asyncSDK;
 
@@ -75,7 +77,7 @@ public class Balances {
                 .giftCardBalanceRequest(giftCardBalanceRequest)
                 .build();
         RequestOperation<ListGiftCardBalancesRequest, ListGiftCardBalancesResponse> operation
-              = new ListGiftCardBalances.Sync(sdkConfiguration);
+              = new ListGiftCardBalances.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

@@ -9,6 +9,7 @@ import com.gr4vy.sdk.SDKConfiguration;
 import com.gr4vy.sdk.models.components.VerifyCredentials;
 import com.gr4vy.sdk.models.operations.VerifyPaymentServiceCredentialsRequest;
 import com.gr4vy.sdk.operations.VerifyPaymentServiceCredentials;
+import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -20,6 +21,7 @@ public class VerifyPaymentServiceCredentialsRequestBuilder {
     private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
     private VerifyCredentials verifyCredentials;
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public VerifyPaymentServiceCredentialsRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -55,7 +57,7 @@ public class VerifyPaymentServiceCredentialsRequestBuilder {
     public CompletableFuture<VerifyPaymentServiceCredentialsResponse> call() throws Exception {
         
         AsyncRequestOperation<VerifyPaymentServiceCredentialsRequest, VerifyPaymentServiceCredentialsResponse> operation
-              = new VerifyPaymentServiceCredentials.Async(sdkConfiguration);
+              = new VerifyPaymentServiceCredentials.Async(sdkConfiguration, _headers);
         VerifyPaymentServiceCredentialsRequest request = buildRequest();
 
         return operation.doRequest(request)

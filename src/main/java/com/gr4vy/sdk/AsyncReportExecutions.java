@@ -9,12 +9,14 @@ import com.gr4vy.sdk.models.operations.ListAllReportExecutionsRequest;
 import com.gr4vy.sdk.models.operations.async.ListAllReportExecutionsRequestBuilder;
 import com.gr4vy.sdk.models.operations.async.ListAllReportExecutionsResponse;
 import com.gr4vy.sdk.operations.ListAllReportExecutions;
+import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.Options;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
 
 public class AsyncReportExecutions {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final ReportExecutions syncSDK;
 
@@ -67,7 +69,9 @@ public class AsyncReportExecutions {
      */
     public CompletableFuture<ListAllReportExecutionsResponse> list(ListAllReportExecutionsRequest request, Optional<Options> options) {
         AsyncRequestOperation<ListAllReportExecutionsRequest, ListAllReportExecutionsResponse> operation
-              = new ListAllReportExecutions.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new ListAllReportExecutions.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }

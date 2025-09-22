@@ -9,6 +9,7 @@ import com.gr4vy.sdk.models.operations.ListCardSchemeDefinitionsRequest;
 import com.gr4vy.sdk.models.operations.ListCardSchemeDefinitionsRequestBuilder;
 import com.gr4vy.sdk.models.operations.ListCardSchemeDefinitionsResponse;
 import com.gr4vy.sdk.operations.ListCardSchemeDefinitions;
+import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.Options;
 import java.lang.Exception;
 import java.lang.String;
@@ -17,6 +18,7 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 
 public class CardSchemeDefinitions {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final AsyncCardSchemeDefinitions asyncSDK;
 
@@ -74,7 +76,7 @@ public class CardSchemeDefinitions {
                 .merchantAccountId(merchantAccountId)
                 .build();
         RequestOperation<ListCardSchemeDefinitionsRequest, ListCardSchemeDefinitionsResponse> operation
-              = new ListCardSchemeDefinitions.Sync(sdkConfiguration, options);
+              = new ListCardSchemeDefinitions.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

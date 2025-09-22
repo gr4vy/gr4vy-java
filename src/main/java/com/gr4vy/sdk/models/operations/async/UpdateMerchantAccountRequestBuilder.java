@@ -9,6 +9,7 @@ import com.gr4vy.sdk.SDKConfiguration;
 import com.gr4vy.sdk.models.components.MerchantAccountUpdate;
 import com.gr4vy.sdk.models.operations.UpdateMerchantAccountRequest;
 import com.gr4vy.sdk.operations.UpdateMerchantAccount;
+import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -19,6 +20,7 @@ public class UpdateMerchantAccountRequestBuilder {
     private String merchantAccountId;
     private MerchantAccountUpdate merchantAccountUpdate;
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public UpdateMerchantAccountRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -48,7 +50,7 @@ public class UpdateMerchantAccountRequestBuilder {
     public CompletableFuture<UpdateMerchantAccountResponse> call() throws Exception {
         
         AsyncRequestOperation<UpdateMerchantAccountRequest, UpdateMerchantAccountResponse> operation
-              = new UpdateMerchantAccount.Async(sdkConfiguration);
+              = new UpdateMerchantAccount.Async(sdkConfiguration, _headers);
         UpdateMerchantAccountRequest request = buildRequest();
 
         return operation.doRequest(request)

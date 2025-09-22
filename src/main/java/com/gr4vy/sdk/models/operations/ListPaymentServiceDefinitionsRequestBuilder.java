@@ -11,6 +11,7 @@ import static com.gr4vy.sdk.utils.Utils.toStream;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.gr4vy.sdk.SDKConfiguration;
 import com.gr4vy.sdk.operations.ListPaymentServiceDefinitions;
+import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.LazySingletonValue;
 import com.gr4vy.sdk.utils.Options;
 import com.gr4vy.sdk.utils.RetryConfig;
@@ -37,6 +38,7 @@ public class ListPaymentServiceDefinitionsRequestBuilder {
                             new TypeReference<Optional<Long>>() {});
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public ListPaymentServiceDefinitionsRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -96,7 +98,7 @@ public class ListPaymentServiceDefinitionsRequestBuilder {
             .build());
 
         RequestOperation<ListPaymentServiceDefinitionsRequest, ListPaymentServiceDefinitionsResponse> operation
-              = new ListPaymentServiceDefinitions.Sync(sdkConfiguration, options);
+              = new ListPaymentServiceDefinitions.Sync(sdkConfiguration, options, _headers);
         ListPaymentServiceDefinitionsRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));
@@ -121,7 +123,7 @@ public class ListPaymentServiceDefinitionsRequestBuilder {
             .build());
 
         RequestOperation<ListPaymentServiceDefinitionsRequest, ListPaymentServiceDefinitionsResponse> operation
-              = new ListPaymentServiceDefinitions.Sync(sdkConfiguration, options);
+              = new ListPaymentServiceDefinitions.Sync(sdkConfiguration, options, _headers);
         ListPaymentServiceDefinitionsRequest request = buildRequest();
         Iterator<HttpResponse<InputStream>> iterator = new Paginator<>(
             request,

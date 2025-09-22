@@ -9,6 +9,7 @@ import com.gr4vy.sdk.SDKConfiguration;
 import com.gr4vy.sdk.models.components.PaymentOptionRequest;
 import com.gr4vy.sdk.models.operations.ListPaymentOptionsRequest;
 import com.gr4vy.sdk.operations.ListPaymentOptions;
+import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -20,6 +21,7 @@ public class ListPaymentOptionsRequestBuilder {
     private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
     private PaymentOptionRequest paymentOptionRequest;
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public ListPaymentOptionsRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -55,7 +57,7 @@ public class ListPaymentOptionsRequestBuilder {
     public CompletableFuture<ListPaymentOptionsResponse> call() throws Exception {
         
         AsyncRequestOperation<ListPaymentOptionsRequest, ListPaymentOptionsResponse> operation
-              = new ListPaymentOptions.Async(sdkConfiguration);
+              = new ListPaymentOptions.Async(sdkConfiguration, _headers);
         ListPaymentOptionsRequest request = buildRequest();
 
         return operation.doRequest(request)

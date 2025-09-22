@@ -8,6 +8,7 @@ import static com.gr4vy.sdk.operations.Operations.RequestOperation;
 import com.gr4vy.sdk.SDKConfiguration;
 import com.gr4vy.sdk.models.components.PayoutCreate;
 import com.gr4vy.sdk.operations.CreatePayout;
+import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -18,6 +19,7 @@ public class CreatePayoutRequestBuilder {
     private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
     private PayoutCreate payoutCreate;
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public CreatePayoutRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -53,7 +55,7 @@ public class CreatePayoutRequestBuilder {
     public CreatePayoutResponse call() throws Exception {
         
         RequestOperation<CreatePayoutRequest, CreatePayoutResponse> operation
-              = new CreatePayout.Sync(sdkConfiguration);
+              = new CreatePayout.Sync(sdkConfiguration, _headers);
         CreatePayoutRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

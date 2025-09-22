@@ -7,6 +7,7 @@ import static com.gr4vy.sdk.operations.Operations.RequestOperation;
 
 import com.gr4vy.sdk.SDKConfiguration;
 import com.gr4vy.sdk.operations.ResumePaymentMethodNetworkToken;
+import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -18,6 +19,7 @@ public class ResumePaymentMethodNetworkTokenRequestBuilder {
     private String networkTokenId;
     private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public ResumePaymentMethodNetworkTokenRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -60,7 +62,7 @@ public class ResumePaymentMethodNetworkTokenRequestBuilder {
     public ResumePaymentMethodNetworkTokenResponse call() throws Exception {
         
         RequestOperation<ResumePaymentMethodNetworkTokenRequest, ResumePaymentMethodNetworkTokenResponse> operation
-              = new ResumePaymentMethodNetworkToken.Sync(sdkConfiguration);
+              = new ResumePaymentMethodNetworkToken.Sync(sdkConfiguration, _headers);
         ResumePaymentMethodNetworkTokenRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

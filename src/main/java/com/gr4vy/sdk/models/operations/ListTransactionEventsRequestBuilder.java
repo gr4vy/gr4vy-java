@@ -8,6 +8,7 @@ import static com.gr4vy.sdk.operations.Operations.RequestOperation;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.gr4vy.sdk.SDKConfiguration;
 import com.gr4vy.sdk.operations.ListTransactionEvents;
+import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.LazySingletonValue;
 import com.gr4vy.sdk.utils.Options;
 import com.gr4vy.sdk.utils.RetryConfig;
@@ -29,6 +30,7 @@ public class ListTransactionEventsRequestBuilder {
     private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public ListTransactionEventsRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -108,7 +110,7 @@ public class ListTransactionEventsRequestBuilder {
             .build());
 
         RequestOperation<ListTransactionEventsRequest, ListTransactionEventsResponse> operation
-              = new ListTransactionEvents.Sync(sdkConfiguration, options);
+              = new ListTransactionEvents.Sync(sdkConfiguration, options, _headers);
         ListTransactionEventsRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

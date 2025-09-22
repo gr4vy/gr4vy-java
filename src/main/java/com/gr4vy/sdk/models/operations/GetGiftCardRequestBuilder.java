@@ -7,6 +7,7 @@ import static com.gr4vy.sdk.operations.Operations.RequestOperation;
 
 import com.gr4vy.sdk.SDKConfiguration;
 import com.gr4vy.sdk.operations.GetGiftCard;
+import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.Options;
 import com.gr4vy.sdk.utils.RetryConfig;
 import com.gr4vy.sdk.utils.Utils;
@@ -21,6 +22,7 @@ public class GetGiftCardRequestBuilder {
     private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public GetGiftCardRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -71,7 +73,7 @@ public class GetGiftCardRequestBuilder {
             .build());
 
         RequestOperation<GetGiftCardRequest, GetGiftCardResponse> operation
-              = new GetGiftCard.Sync(sdkConfiguration, options);
+              = new GetGiftCard.Sync(sdkConfiguration, options, _headers);
         GetGiftCardRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

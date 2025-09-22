@@ -27,6 +27,7 @@ import com.gr4vy.sdk.operations.DeleteBuyerShippingDetails;
 import com.gr4vy.sdk.operations.GetBuyerShippingDetails;
 import com.gr4vy.sdk.operations.ListBuyerShippingDetails;
 import com.gr4vy.sdk.operations.UpdateBuyerShippingDetails;
+import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.Options;
 import java.lang.String;
 import java.util.Optional;
@@ -35,6 +36,7 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 
 public class AsyncShippingDetails {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final ShippingDetails syncSDK;
 
@@ -98,7 +100,7 @@ public class AsyncShippingDetails {
                 .shippingDetailsCreate(shippingDetailsCreate)
                 .build();
         AsyncRequestOperation<AddBuyerShippingDetailsRequest, AddBuyerShippingDetailsResponse> operation
-              = new AddBuyerShippingDetails.Async(sdkConfiguration);
+              = new AddBuyerShippingDetails.Async(sdkConfiguration, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -147,7 +149,9 @@ public class AsyncShippingDetails {
                 .merchantAccountId(merchantAccountId)
                 .build();
         AsyncRequestOperation<ListBuyerShippingDetailsRequest, ListBuyerShippingDetailsResponse> operation
-              = new ListBuyerShippingDetails.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new ListBuyerShippingDetails.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -201,7 +205,9 @@ public class AsyncShippingDetails {
                 .merchantAccountId(merchantAccountId)
                 .build();
         AsyncRequestOperation<GetBuyerShippingDetailsRequest, GetBuyerShippingDetailsResponse> operation
-              = new GetBuyerShippingDetails.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new GetBuyerShippingDetails.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -259,7 +265,7 @@ public class AsyncShippingDetails {
                 .shippingDetailsUpdate(shippingDetailsUpdate)
                 .build();
         AsyncRequestOperation<UpdateBuyerShippingDetailsRequest, UpdateBuyerShippingDetailsResponse> operation
-              = new UpdateBuyerShippingDetails.Async(sdkConfiguration);
+              = new UpdateBuyerShippingDetails.Async(sdkConfiguration, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -310,7 +316,7 @@ public class AsyncShippingDetails {
                 .merchantAccountId(merchantAccountId)
                 .build();
         AsyncRequestOperation<DeleteBuyerShippingDetailsRequest, DeleteBuyerShippingDetailsResponse> operation
-              = new DeleteBuyerShippingDetails.Async(sdkConfiguration);
+              = new DeleteBuyerShippingDetails.Async(sdkConfiguration, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }

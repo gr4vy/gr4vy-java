@@ -19,12 +19,14 @@ import com.gr4vy.sdk.models.operations.CreateGooglePayDigitalWalletSessionRespon
 import com.gr4vy.sdk.operations.CreateApplePayDigitalWalletSession;
 import com.gr4vy.sdk.operations.CreateClickToPayDigitalWalletSession;
 import com.gr4vy.sdk.operations.CreateGooglePayDigitalWalletSession;
+import com.gr4vy.sdk.utils.Headers;
 import java.lang.Exception;
 import java.lang.String;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 
 public class Sessions {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final AsyncSessions asyncSDK;
 
@@ -84,7 +86,7 @@ public class Sessions {
                 .googlePaySessionRequest(googlePaySessionRequest)
                 .build();
         RequestOperation<CreateGooglePayDigitalWalletSessionRequest, CreateGooglePayDigitalWalletSessionResponse> operation
-              = new CreateGooglePayDigitalWalletSession.Sync(sdkConfiguration);
+              = new CreateGooglePayDigitalWalletSession.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -130,7 +132,7 @@ public class Sessions {
                 .applePaySessionRequest(applePaySessionRequest)
                 .build();
         RequestOperation<CreateApplePayDigitalWalletSessionRequest, CreateApplePayDigitalWalletSessionResponse> operation
-              = new CreateApplePayDigitalWalletSession.Sync(sdkConfiguration);
+              = new CreateApplePayDigitalWalletSession.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -156,7 +158,7 @@ public class Sessions {
      */
     public CreateClickToPayDigitalWalletSessionResponse clickToPay(ClickToPaySessionRequest request) throws Exception {
         RequestOperation<ClickToPaySessionRequest, CreateClickToPayDigitalWalletSessionResponse> operation
-              = new CreateClickToPayDigitalWalletSession.Sync(sdkConfiguration);
+              = new CreateClickToPayDigitalWalletSession.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

@@ -10,6 +10,7 @@ import com.gr4vy.sdk.SDKConfiguration;
 import com.gr4vy.sdk.models.operations.ListAuditLogsRequest;
 import com.gr4vy.sdk.operations.ListAuditLogs;
 import com.gr4vy.sdk.utils.Blob;
+import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.Options;
 import com.gr4vy.sdk.utils.RetryConfig;
 import com.gr4vy.sdk.utils.Utils;
@@ -29,6 +30,7 @@ public class ListAuditLogsRequestBuilder {
     private ListAuditLogsRequest request;
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public ListAuditLogsRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -58,7 +60,9 @@ public class ListAuditLogsRequestBuilder {
             .build());
 
         AsyncRequestOperation<ListAuditLogsRequest, ListAuditLogsResponse> operation
-              = new ListAuditLogs.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new ListAuditLogs.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
 
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
@@ -85,7 +89,9 @@ public class ListAuditLogsRequestBuilder {
             .build());
 
         AsyncRequestOperation<ListAuditLogsRequest, ListAuditLogsResponse> operation
-              = new ListAuditLogs.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new ListAuditLogs.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
 
         Flow.Publisher<HttpResponse<Blob>> asyncPaginator = new AsyncPaginator<>(
             request,

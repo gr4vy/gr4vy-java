@@ -17,6 +17,7 @@ import com.gr4vy.sdk.models.operations.async.ListReportExecutionsResponse;
 import com.gr4vy.sdk.operations.CreateReportExecutionUrl;
 import com.gr4vy.sdk.operations.GetReportExecution;
 import com.gr4vy.sdk.operations.ListReportExecutions;
+import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.Options;
 import java.lang.Long;
 import java.lang.String;
@@ -26,6 +27,7 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 
 public class AsyncExecutions {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final Executions syncSDK;
 
@@ -94,7 +96,9 @@ public class AsyncExecutions {
                 .merchantAccountId(merchantAccountId)
                 .build();
         AsyncRequestOperation<ListReportExecutionsRequest, ListReportExecutionsResponse> operation
-              = new ListReportExecutions.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new ListReportExecutions.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -145,7 +149,7 @@ public class AsyncExecutions {
                 .merchantAccountId(merchantAccountId)
                 .build();
         AsyncRequestOperation<CreateReportExecutionUrlRequest, CreateReportExecutionUrlResponse> operation
-              = new CreateReportExecutionUrl.Async(sdkConfiguration);
+              = new CreateReportExecutionUrl.Async(sdkConfiguration, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -194,7 +198,9 @@ public class AsyncExecutions {
                 .merchantAccountId(merchantAccountId)
                 .build();
         AsyncRequestOperation<GetReportExecutionRequest, GetReportExecutionResponse> operation
-              = new GetReportExecution.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new GetReportExecution.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }

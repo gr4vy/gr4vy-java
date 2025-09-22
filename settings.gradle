@@ -8,3 +8,9 @@
  */
 
 rootProject.name = 'sdk'
+
+include 'sdk-spring-boot-autoconfigure'
+include 'sdk-spring-boot-starter'
+
+project(':sdk-spring-boot-autoconfigure').projectDir = file('spring/sdk-spring-boot-autoconfigure')
+project(':sdk-spring-boot-starter').projectDir = file('spring/sdk-spring-boot-starter')

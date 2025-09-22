@@ -8,6 +8,7 @@ import static com.gr4vy.sdk.operations.Operations.AsyncRequestOperation;
 import com.gr4vy.sdk.SDKConfiguration;
 import com.gr4vy.sdk.models.operations.DeleteDigitalWalletRequest;
 import com.gr4vy.sdk.operations.DeleteDigitalWallet;
+import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -19,6 +20,7 @@ public class DeleteDigitalWalletRequestBuilder {
     private String digitalWalletId;
     private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public DeleteDigitalWalletRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -54,7 +56,7 @@ public class DeleteDigitalWalletRequestBuilder {
     public CompletableFuture<DeleteDigitalWalletResponse> call() throws Exception {
         
         AsyncRequestOperation<DeleteDigitalWalletRequest, DeleteDigitalWalletResponse> operation
-              = new DeleteDigitalWallet.Async(sdkConfiguration);
+              = new DeleteDigitalWallet.Async(sdkConfiguration, _headers);
         DeleteDigitalWalletRequest request = buildRequest();
 
         return operation.doRequest(request)

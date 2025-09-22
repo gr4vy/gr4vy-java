@@ -10,6 +10,7 @@ import static com.gr4vy.sdk.utils.Utils.toStream;
 
 import com.gr4vy.sdk.SDKConfiguration;
 import com.gr4vy.sdk.operations.ListBuyers;
+import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.Options;
 import com.gr4vy.sdk.utils.RetryConfig;
 import com.gr4vy.sdk.utils.Utils;
@@ -29,6 +30,7 @@ public class ListBuyersRequestBuilder {
     private ListBuyersRequest request;
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public ListBuyersRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -58,7 +60,7 @@ public class ListBuyersRequestBuilder {
             .build());
 
         RequestOperation<ListBuyersRequest, ListBuyersResponse> operation
-              = new ListBuyers.Sync(sdkConfiguration, options);
+              = new ListBuyers.Sync(sdkConfiguration, options, _headers);
 
         return operation.handleResponse(operation.doRequest(request));
     }
@@ -82,7 +84,7 @@ public class ListBuyersRequestBuilder {
             .build());
 
         RequestOperation<ListBuyersRequest, ListBuyersResponse> operation
-              = new ListBuyers.Sync(sdkConfiguration, options);
+              = new ListBuyers.Sync(sdkConfiguration, options, _headers);
         Iterator<HttpResponse<InputStream>> iterator = new Paginator<>(
             request,
             new CursorTracker<>("$.next_cursor", String.class),

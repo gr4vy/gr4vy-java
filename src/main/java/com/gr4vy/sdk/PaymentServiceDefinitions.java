@@ -17,6 +17,7 @@ import com.gr4vy.sdk.models.operations.ListPaymentServiceDefinitionsResponse;
 import com.gr4vy.sdk.operations.CreatePaymentServiceDefinitionSession;
 import com.gr4vy.sdk.operations.GetPaymentServiceDefinition;
 import com.gr4vy.sdk.operations.ListPaymentServiceDefinitions;
+import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.Options;
 import java.lang.Exception;
 import java.lang.Long;
@@ -28,6 +29,7 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 
 public class PaymentServiceDefinitions {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final AsyncPaymentServiceDefinitions asyncSDK;
 
@@ -89,7 +91,7 @@ public class PaymentServiceDefinitions {
                 .limit(limit)
                 .build();
         RequestOperation<ListPaymentServiceDefinitionsRequest, ListPaymentServiceDefinitionsResponse> operation
-              = new ListPaymentServiceDefinitions.Sync(sdkConfiguration, options);
+              = new ListPaymentServiceDefinitions.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -134,7 +136,7 @@ public class PaymentServiceDefinitions {
                 .paymentServiceDefinitionId(paymentServiceDefinitionId)
                 .build();
         RequestOperation<GetPaymentServiceDefinitionRequest, GetPaymentServiceDefinitionResponse> operation
-              = new GetPaymentServiceDefinition.Sync(sdkConfiguration, options);
+              = new GetPaymentServiceDefinition.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -167,7 +169,7 @@ public class PaymentServiceDefinitions {
                 .requestBody(requestBody)
                 .build();
         RequestOperation<CreatePaymentServiceDefinitionSessionRequest, CreatePaymentServiceDefinitionSessionResponse> operation
-              = new CreatePaymentServiceDefinitionSession.Sync(sdkConfiguration);
+              = new CreatePaymentServiceDefinitionSession.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

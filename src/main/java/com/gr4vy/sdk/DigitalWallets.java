@@ -27,6 +27,7 @@ import com.gr4vy.sdk.operations.DeleteDigitalWallet;
 import com.gr4vy.sdk.operations.GetDigitalWallet;
 import com.gr4vy.sdk.operations.ListDigitalWallets;
 import com.gr4vy.sdk.operations.UpdateDigitalWallet;
+import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.Options;
 import java.lang.Exception;
 import java.lang.String;
@@ -35,6 +36,7 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 
 public class DigitalWallets {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final AsyncDigitalWallets asyncSDK;
     private final Sessions sessions;
@@ -106,7 +108,7 @@ public class DigitalWallets {
                 .digitalWalletCreate(digitalWalletCreate)
                 .build();
         RequestOperation<ConfigureDigitalWalletRequest, ConfigureDigitalWalletResponse> operation
-              = new ConfigureDigitalWallet.Sync(sdkConfiguration);
+              = new ConfigureDigitalWallet.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -150,7 +152,7 @@ public class DigitalWallets {
                 .merchantAccountId(merchantAccountId)
                 .build();
         RequestOperation<ListDigitalWalletsRequest, ListDigitalWalletsResponse> operation
-              = new ListDigitalWallets.Sync(sdkConfiguration, options);
+              = new ListDigitalWallets.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -199,7 +201,7 @@ public class DigitalWallets {
                 .merchantAccountId(merchantAccountId)
                 .build();
         RequestOperation<GetDigitalWalletRequest, GetDigitalWalletResponse> operation
-              = new GetDigitalWallet.Sync(sdkConfiguration, options);
+              = new GetDigitalWallet.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -245,7 +247,7 @@ public class DigitalWallets {
                 .merchantAccountId(merchantAccountId)
                 .build();
         RequestOperation<DeleteDigitalWalletRequest, DeleteDigitalWalletResponse> operation
-              = new DeleteDigitalWallet.Sync(sdkConfiguration);
+              = new DeleteDigitalWallet.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -296,7 +298,7 @@ public class DigitalWallets {
                 .digitalWalletUpdate(digitalWalletUpdate)
                 .build();
         RequestOperation<UpdateDigitalWalletRequest, UpdateDigitalWalletResponse> operation
-              = new UpdateDigitalWallet.Sync(sdkConfiguration);
+              = new UpdateDigitalWallet.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

@@ -22,6 +22,7 @@ import com.gr4vy.sdk.operations.CreateGiftCard;
 import com.gr4vy.sdk.operations.DeleteGiftCard;
 import com.gr4vy.sdk.operations.GetGiftCard;
 import com.gr4vy.sdk.operations.ListGiftCards;
+import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.Options;
 import java.lang.String;
 import java.util.Optional;
@@ -30,6 +31,7 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 
 public class AsyncGiftCards {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final AsyncBalances balances;
     private final GiftCards syncSDK;
@@ -97,7 +99,9 @@ public class AsyncGiftCards {
                 .merchantAccountId(merchantAccountId)
                 .build();
         AsyncRequestOperation<GetGiftCardRequest, GetGiftCardResponse> operation
-              = new GetGiftCard.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new GetGiftCard.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -143,7 +147,7 @@ public class AsyncGiftCards {
                 .merchantAccountId(merchantAccountId)
                 .build();
         AsyncRequestOperation<DeleteGiftCardRequest, DeleteGiftCardResponse> operation
-              = new DeleteGiftCard.Async(sdkConfiguration);
+              = new DeleteGiftCard.Async(sdkConfiguration, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -189,7 +193,7 @@ public class AsyncGiftCards {
                 .giftCardCreate(giftCardCreate)
                 .build();
         AsyncRequestOperation<CreateGiftCardRequest, CreateGiftCardResponse> operation
-              = new CreateGiftCard.Async(sdkConfiguration);
+              = new CreateGiftCard.Async(sdkConfiguration, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -229,7 +233,9 @@ public class AsyncGiftCards {
      */
     public CompletableFuture<ListGiftCardsResponse> list(ListGiftCardsRequest request, Optional<Options> options) {
         AsyncRequestOperation<ListGiftCardsRequest, ListGiftCardsResponse> operation
-              = new ListGiftCards.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new ListGiftCards.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }

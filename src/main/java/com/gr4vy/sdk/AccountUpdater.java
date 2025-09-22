@@ -3,7 +3,11 @@
  */
 package com.gr4vy.sdk;
 
+import com.gr4vy.sdk.utils.Headers;
+
+
 public class AccountUpdater {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final AsyncAccountUpdater asyncSDK;
     private final Jobs jobs;

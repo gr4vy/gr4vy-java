@@ -9,6 +9,7 @@ import com.gr4vy.sdk.models.operations.ListTransactionEventsRequest;
 import com.gr4vy.sdk.models.operations.async.ListTransactionEventsRequestBuilder;
 import com.gr4vy.sdk.models.operations.async.ListTransactionEventsResponse;
 import com.gr4vy.sdk.operations.ListTransactionEvents;
+import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.Options;
 import java.lang.Long;
 import java.lang.String;
@@ -18,6 +19,7 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 
 public class AsyncEvents {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final Events syncSDK;
 
@@ -86,7 +88,9 @@ public class AsyncEvents {
                 .merchantAccountId(merchantAccountId)
                 .build();
         AsyncRequestOperation<ListTransactionEventsRequest, ListTransactionEventsResponse> operation
-              = new ListTransactionEvents.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new ListTransactionEvents.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }

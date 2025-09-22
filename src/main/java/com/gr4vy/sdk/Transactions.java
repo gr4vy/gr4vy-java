@@ -40,6 +40,7 @@ import com.gr4vy.sdk.operations.ListTransactions;
 import com.gr4vy.sdk.operations.SyncTransaction;
 import com.gr4vy.sdk.operations.UpdateTransaction;
 import com.gr4vy.sdk.operations.VoidTransaction;
+import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.Options;
 import java.lang.Exception;
 import java.lang.String;
@@ -49,6 +50,7 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 
 public class Transactions {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final AsyncTransactions asyncSDK;
     private final TransactionsRefunds refunds;
@@ -120,7 +122,7 @@ public class Transactions {
      */
     public ListTransactionsResponse list(ListTransactionsRequest request, Optional<Options> options) throws Exception {
         RequestOperation<ListTransactionsRequest, ListTransactionsResponse> operation
-              = new ListTransactions.Sync(sdkConfiguration, options);
+              = new ListTransactions.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -175,7 +177,7 @@ public class Transactions {
                 .transactionCreate(transactionCreate)
                 .build();
         RequestOperation<CreateTransactionRequest, CreateTransactionResponse> operation
-              = new CreateTransaction.Sync(sdkConfiguration);
+              = new CreateTransaction.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -224,7 +226,7 @@ public class Transactions {
                 .merchantAccountId(merchantAccountId)
                 .build();
         RequestOperation<GetTransactionRequest, GetTransactionResponse> operation
-              = new GetTransaction.Sync(sdkConfiguration, options);
+              = new GetTransaction.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -275,7 +277,7 @@ public class Transactions {
                 .transactionUpdate(transactionUpdate)
                 .build();
         RequestOperation<UpdateTransactionRequest, UpdateTransactionResponse> operation
-              = new UpdateTransaction.Sync(sdkConfiguration);
+              = new UpdateTransaction.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -329,7 +331,7 @@ public class Transactions {
                 .transactionCaptureCreate(transactionCaptureCreate)
                 .build();
         RequestOperation<CaptureTransactionRequest, CaptureTransactionResponse> operation
-              = new CaptureTransaction.Sync(sdkConfiguration);
+              = new CaptureTransaction.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -379,7 +381,7 @@ public class Transactions {
                 .merchantAccountId(merchantAccountId)
                 .build();
         RequestOperation<VoidTransactionRequest, VoidTransactionResponse> operation
-              = new VoidTransaction.Sync(sdkConfiguration);
+              = new VoidTransaction.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -425,7 +427,7 @@ public class Transactions {
                 .merchantAccountId(merchantAccountId)
                 .build();
         RequestOperation<CancelTransactionRequest, CancelTransactionResponse> operation
-              = new CancelTransaction.Sync(sdkConfiguration);
+              = new CancelTransaction.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -471,7 +473,7 @@ public class Transactions {
                 .merchantAccountId(merchantAccountId)
                 .build();
         RequestOperation<SyncTransactionRequest, SyncTransactionResponse> operation
-              = new SyncTransaction.Sync(sdkConfiguration);
+              = new SyncTransaction.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

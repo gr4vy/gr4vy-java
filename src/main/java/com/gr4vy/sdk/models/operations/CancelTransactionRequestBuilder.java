@@ -7,6 +7,7 @@ import static com.gr4vy.sdk.operations.Operations.RequestOperation;
 
 import com.gr4vy.sdk.SDKConfiguration;
 import com.gr4vy.sdk.operations.CancelTransaction;
+import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -17,6 +18,7 @@ public class CancelTransactionRequestBuilder {
     private String transactionId;
     private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public CancelTransactionRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -52,7 +54,7 @@ public class CancelTransactionRequestBuilder {
     public CancelTransactionResponse call() throws Exception {
         
         RequestOperation<CancelTransactionRequest, CancelTransactionResponse> operation
-              = new CancelTransaction.Sync(sdkConfiguration);
+              = new CancelTransaction.Sync(sdkConfiguration, _headers);
         CancelTransactionRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

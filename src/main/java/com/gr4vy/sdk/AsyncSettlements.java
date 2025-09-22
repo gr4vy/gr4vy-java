@@ -13,6 +13,7 @@ import com.gr4vy.sdk.models.operations.async.ListTransactionSettlementsRequestBu
 import com.gr4vy.sdk.models.operations.async.ListTransactionSettlementsResponse;
 import com.gr4vy.sdk.operations.GetTransactionSettlement;
 import com.gr4vy.sdk.operations.ListTransactionSettlements;
+import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.Options;
 import java.lang.String;
 import java.util.Optional;
@@ -21,6 +22,7 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 
 public class AsyncSettlements {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final Settlements syncSDK;
 
@@ -87,7 +89,9 @@ public class AsyncSettlements {
                 .merchantAccountId(merchantAccountId)
                 .build();
         AsyncRequestOperation<GetTransactionSettlementRequest, GetTransactionSettlementResponse> operation
-              = new GetTransactionSettlement.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new GetTransactionSettlement.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -136,7 +140,9 @@ public class AsyncSettlements {
                 .merchantAccountId(merchantAccountId)
                 .build();
         AsyncRequestOperation<ListTransactionSettlementsRequest, ListTransactionSettlementsResponse> operation
-              = new ListTransactionSettlements.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new ListTransactionSettlements.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }

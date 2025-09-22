@@ -8,6 +8,7 @@ import static com.gr4vy.sdk.operations.Operations.AsyncRequestOperation;
 import com.gr4vy.sdk.SDKConfiguration;
 import com.gr4vy.sdk.models.operations.SuspendPaymentMethodNetworkTokenRequest;
 import com.gr4vy.sdk.operations.SuspendPaymentMethodNetworkToken;
+import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -20,6 +21,7 @@ public class SuspendPaymentMethodNetworkTokenRequestBuilder {
     private String networkTokenId;
     private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public SuspendPaymentMethodNetworkTokenRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -62,7 +64,7 @@ public class SuspendPaymentMethodNetworkTokenRequestBuilder {
     public CompletableFuture<SuspendPaymentMethodNetworkTokenResponse> call() throws Exception {
         
         AsyncRequestOperation<SuspendPaymentMethodNetworkTokenRequest, SuspendPaymentMethodNetworkTokenResponse> operation
-              = new SuspendPaymentMethodNetworkToken.Async(sdkConfiguration);
+              = new SuspendPaymentMethodNetworkToken.Async(sdkConfiguration, _headers);
         SuspendPaymentMethodNetworkTokenRequest request = buildRequest();
 
         return operation.doRequest(request)

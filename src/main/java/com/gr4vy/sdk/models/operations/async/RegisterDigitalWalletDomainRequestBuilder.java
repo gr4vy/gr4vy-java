@@ -9,6 +9,7 @@ import com.gr4vy.sdk.SDKConfiguration;
 import com.gr4vy.sdk.models.components.DigitalWalletDomain;
 import com.gr4vy.sdk.models.operations.RegisterDigitalWalletDomainRequest;
 import com.gr4vy.sdk.operations.RegisterDigitalWalletDomain;
+import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -21,6 +22,7 @@ public class RegisterDigitalWalletDomainRequestBuilder {
     private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
     private DigitalWalletDomain digitalWalletDomain;
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public RegisterDigitalWalletDomainRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -63,7 +65,7 @@ public class RegisterDigitalWalletDomainRequestBuilder {
     public CompletableFuture<RegisterDigitalWalletDomainResponse> call() throws Exception {
         
         AsyncRequestOperation<RegisterDigitalWalletDomainRequest, RegisterDigitalWalletDomainResponse> operation
-              = new RegisterDigitalWalletDomain.Async(sdkConfiguration);
+              = new RegisterDigitalWalletDomain.Async(sdkConfiguration, _headers);
         RegisterDigitalWalletDomainRequest request = buildRequest();
 
         return operation.doRequest(request)

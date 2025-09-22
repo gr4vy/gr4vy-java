@@ -27,6 +27,7 @@ import com.gr4vy.sdk.operations.DeleteBuyer;
 import com.gr4vy.sdk.operations.GetBuyer;
 import com.gr4vy.sdk.operations.ListBuyers;
 import com.gr4vy.sdk.operations.UpdateBuyer;
+import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.Options;
 import java.lang.String;
 import java.util.Optional;
@@ -35,6 +36,7 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 
 public class AsyncBuyers {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final AsyncBuyersPaymentMethods paymentMethods;
     private final AsyncBuyersGiftCards giftCards;
@@ -105,7 +107,9 @@ public class AsyncBuyers {
      */
     public CompletableFuture<ListBuyersResponse> list(ListBuyersRequest request, Optional<Options> options) {
         AsyncRequestOperation<ListBuyersRequest, ListBuyersResponse> operation
-              = new ListBuyers.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new ListBuyers.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -151,7 +155,7 @@ public class AsyncBuyers {
                 .buyerCreate(buyerCreate)
                 .build();
         AsyncRequestOperation<AddBuyerRequest, AddBuyerResponse> operation
-              = new AddBuyer.Async(sdkConfiguration);
+              = new AddBuyer.Async(sdkConfiguration, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -200,7 +204,9 @@ public class AsyncBuyers {
                 .merchantAccountId(merchantAccountId)
                 .build();
         AsyncRequestOperation<GetBuyerRequest, GetBuyerResponse> operation
-              = new GetBuyer.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new GetBuyer.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -251,7 +257,7 @@ public class AsyncBuyers {
                 .buyerUpdate(buyerUpdate)
                 .build();
         AsyncRequestOperation<UpdateBuyerRequest, UpdateBuyerResponse> operation
-              = new UpdateBuyer.Async(sdkConfiguration);
+              = new UpdateBuyer.Async(sdkConfiguration, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -297,7 +303,7 @@ public class AsyncBuyers {
                 .merchantAccountId(merchantAccountId)
                 .build();
         AsyncRequestOperation<DeleteBuyerRequest, DeleteBuyerResponse> operation
-              = new DeleteBuyer.Async(sdkConfiguration);
+              = new DeleteBuyer.Async(sdkConfiguration, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }

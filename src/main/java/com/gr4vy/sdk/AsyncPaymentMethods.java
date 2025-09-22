@@ -22,6 +22,7 @@ import com.gr4vy.sdk.operations.CreatePaymentMethod;
 import com.gr4vy.sdk.operations.DeletePaymentMethod;
 import com.gr4vy.sdk.operations.GetPaymentMethod;
 import com.gr4vy.sdk.operations.ListPaymentMethods;
+import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.Options;
 import java.lang.String;
 import java.util.Optional;
@@ -30,6 +31,7 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 
 public class AsyncPaymentMethods {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final AsyncPaymentServiceTokens paymentServiceTokens;
     private final AsyncNetworkTokens networkTokens;
@@ -94,7 +96,9 @@ public class AsyncPaymentMethods {
      */
     public CompletableFuture<ListPaymentMethodsResponse> list(ListPaymentMethodsRequest request, Optional<Options> options) {
         AsyncRequestOperation<ListPaymentMethodsRequest, ListPaymentMethodsResponse> operation
-              = new ListPaymentMethods.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new ListPaymentMethods.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -140,7 +144,7 @@ public class AsyncPaymentMethods {
                 .requestBody(requestBody)
                 .build();
         AsyncRequestOperation<CreatePaymentMethodRequest, CreatePaymentMethodResponse> operation
-              = new CreatePaymentMethod.Async(sdkConfiguration);
+              = new CreatePaymentMethod.Async(sdkConfiguration, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -189,7 +193,9 @@ public class AsyncPaymentMethods {
                 .merchantAccountId(merchantAccountId)
                 .build();
         AsyncRequestOperation<GetPaymentMethodRequest, GetPaymentMethodResponse> operation
-              = new GetPaymentMethod.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new GetPaymentMethod.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -235,7 +241,7 @@ public class AsyncPaymentMethods {
                 .merchantAccountId(merchantAccountId)
                 .build();
         AsyncRequestOperation<DeletePaymentMethodRequest, DeletePaymentMethodResponse> operation
-              = new DeletePaymentMethod.Async(sdkConfiguration);
+              = new DeletePaymentMethod.Async(sdkConfiguration, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }

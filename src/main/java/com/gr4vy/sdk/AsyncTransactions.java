@@ -40,6 +40,7 @@ import com.gr4vy.sdk.operations.ListTransactions;
 import com.gr4vy.sdk.operations.SyncTransaction;
 import com.gr4vy.sdk.operations.UpdateTransaction;
 import com.gr4vy.sdk.operations.VoidTransaction;
+import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.Options;
 import java.lang.String;
 import java.util.List;
@@ -49,6 +50,7 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 
 public class AsyncTransactions {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final AsyncTransactionsRefunds refunds;
     private final AsyncEvents events;
@@ -119,7 +121,9 @@ public class AsyncTransactions {
      */
     public CompletableFuture<ListTransactionsResponse> list(ListTransactionsRequest request, Optional<Options> options) {
         AsyncRequestOperation<ListTransactionsRequest, ListTransactionsResponse> operation
-              = new ListTransactions.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new ListTransactions.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -175,7 +179,7 @@ public class AsyncTransactions {
                 .transactionCreate(transactionCreate)
                 .build();
         AsyncRequestOperation<CreateTransactionRequest, CreateTransactionResponse> operation
-              = new CreateTransaction.Async(sdkConfiguration);
+              = new CreateTransaction.Async(sdkConfiguration, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -224,7 +228,9 @@ public class AsyncTransactions {
                 .merchantAccountId(merchantAccountId)
                 .build();
         AsyncRequestOperation<GetTransactionRequest, GetTransactionResponse> operation
-              = new GetTransaction.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new GetTransaction.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -275,7 +281,7 @@ public class AsyncTransactions {
                 .transactionUpdate(transactionUpdate)
                 .build();
         AsyncRequestOperation<UpdateTransactionRequest, UpdateTransactionResponse> operation
-              = new UpdateTransaction.Async(sdkConfiguration);
+              = new UpdateTransaction.Async(sdkConfiguration, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -330,7 +336,7 @@ public class AsyncTransactions {
                 .transactionCaptureCreate(transactionCaptureCreate)
                 .build();
         AsyncRequestOperation<CaptureTransactionRequest, CaptureTransactionResponse> operation
-              = new CaptureTransaction.Async(sdkConfiguration);
+              = new CaptureTransaction.Async(sdkConfiguration, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -380,7 +386,7 @@ public class AsyncTransactions {
                 .merchantAccountId(merchantAccountId)
                 .build();
         AsyncRequestOperation<VoidTransactionRequest, VoidTransactionResponse> operation
-              = new VoidTransaction.Async(sdkConfiguration);
+              = new VoidTransaction.Async(sdkConfiguration, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -426,7 +432,7 @@ public class AsyncTransactions {
                 .merchantAccountId(merchantAccountId)
                 .build();
         AsyncRequestOperation<CancelTransactionRequest, CancelTransactionResponse> operation
-              = new CancelTransaction.Async(sdkConfiguration);
+              = new CancelTransaction.Async(sdkConfiguration, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -472,7 +478,7 @@ public class AsyncTransactions {
                 .merchantAccountId(merchantAccountId)
                 .build();
         AsyncRequestOperation<SyncTransactionRequest, SyncTransactionResponse> operation
-              = new SyncTransaction.Async(sdkConfiguration);
+              = new SyncTransaction.Async(sdkConfiguration, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }

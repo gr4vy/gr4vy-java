@@ -11,3 +11,4 @@
 | `REJECT`    | reject      |
 | `REVIEW`    | review      |
 | `SKIPPED`   | skipped     |
+| `PENDING`   | pending     |

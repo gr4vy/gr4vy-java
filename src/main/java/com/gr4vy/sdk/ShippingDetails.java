@@ -27,6 +27,7 @@ import com.gr4vy.sdk.operations.DeleteBuyerShippingDetails;
 import com.gr4vy.sdk.operations.GetBuyerShippingDetails;
 import com.gr4vy.sdk.operations.ListBuyerShippingDetails;
 import com.gr4vy.sdk.operations.UpdateBuyerShippingDetails;
+import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.Options;
 import java.lang.Exception;
 import java.lang.String;
@@ -35,6 +36,7 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 
 public class ShippingDetails {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final AsyncShippingDetails asyncSDK;
 
@@ -99,7 +101,7 @@ public class ShippingDetails {
                 .shippingDetailsCreate(shippingDetailsCreate)
                 .build();
         RequestOperation<AddBuyerShippingDetailsRequest, AddBuyerShippingDetailsResponse> operation
-              = new AddBuyerShippingDetails.Sync(sdkConfiguration);
+              = new AddBuyerShippingDetails.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -148,7 +150,7 @@ public class ShippingDetails {
                 .merchantAccountId(merchantAccountId)
                 .build();
         RequestOperation<ListBuyerShippingDetailsRequest, ListBuyerShippingDetailsResponse> operation
-              = new ListBuyerShippingDetails.Sync(sdkConfiguration, options);
+              = new ListBuyerShippingDetails.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -201,7 +203,7 @@ public class ShippingDetails {
                 .merchantAccountId(merchantAccountId)
                 .build();
         RequestOperation<GetBuyerShippingDetailsRequest, GetBuyerShippingDetailsResponse> operation
-              = new GetBuyerShippingDetails.Sync(sdkConfiguration, options);
+              = new GetBuyerShippingDetails.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -258,7 +260,7 @@ public class ShippingDetails {
                 .shippingDetailsUpdate(shippingDetailsUpdate)
                 .build();
         RequestOperation<UpdateBuyerShippingDetailsRequest, UpdateBuyerShippingDetailsResponse> operation
-              = new UpdateBuyerShippingDetails.Sync(sdkConfiguration);
+              = new UpdateBuyerShippingDetails.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -309,7 +311,7 @@ public class ShippingDetails {
                 .merchantAccountId(merchantAccountId)
                 .build();
         RequestOperation<DeleteBuyerShippingDetailsRequest, DeleteBuyerShippingDetailsResponse> operation
-              = new DeleteBuyerShippingDetails.Sync(sdkConfiguration);
+              = new DeleteBuyerShippingDetails.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

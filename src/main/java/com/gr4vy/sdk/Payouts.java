@@ -18,6 +18,7 @@ import com.gr4vy.sdk.models.operations.ListPayoutsResponse;
 import com.gr4vy.sdk.operations.CreatePayout;
 import com.gr4vy.sdk.operations.GetPayout;
 import com.gr4vy.sdk.operations.ListPayouts;
+import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.Options;
 import java.lang.Exception;
 import java.lang.Long;
@@ -27,6 +28,7 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 
 public class Payouts {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final AsyncPayouts asyncSDK;
 
@@ -91,7 +93,7 @@ public class Payouts {
                 .merchantAccountId(merchantAccountId)
                 .build();
         RequestOperation<ListPayoutsRequest, ListPayoutsResponse> operation
-              = new ListPayouts.Sync(sdkConfiguration, options);
+              = new ListPayouts.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -141,7 +143,7 @@ public class Payouts {
                 .payoutCreate(payoutCreate)
                 .build();
         RequestOperation<CreatePayoutRequest, CreatePayoutResponse> operation
-              = new CreatePayout.Sync(sdkConfiguration);
+              = new CreatePayout.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -190,7 +192,7 @@ public class Payouts {
                 .merchantAccountId(merchantAccountId)
                 .build();
         RequestOperation<GetPayoutRequest, GetPayoutResponse> operation
-              = new GetPayout.Sync(sdkConfiguration, options);
+              = new GetPayout.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
