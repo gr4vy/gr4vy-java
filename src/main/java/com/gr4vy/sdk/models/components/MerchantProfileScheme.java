@@ -19,12 +19,6 @@ public class MerchantProfileScheme {
     private String merchantAcquirerBin;
 
     /**
-     * URL to send when calling 3DS through this scheme.
-     */
-    @JsonProperty("merchant_url")
-    private String merchantUrl;
-
-    /**
      * Merchant ID to use when calling 3DS through this scheme.
      */
     @JsonProperty("merchant_acquirer_id")
@@ -35,7 +29,7 @@ public class MerchantProfileScheme {
     private String merchantName;
 
     /**
-     * Merchant country code to use when calling 3DS through this scheme.
+     * The merchant's ISO 3166-1 numeric country code.
      */
     @JsonProperty("merchant_country_code")
     private String merchantCountryCode;
@@ -46,26 +40,32 @@ public class MerchantProfileScheme {
     @JsonProperty("merchant_category_code")
     private String merchantCategoryCode;
 
+    /**
+     * URL to send when calling 3DS through this scheme.
+     */
+    @JsonProperty("merchant_url")
+    private String merchantUrl;
+
     @JsonCreator
     public MerchantProfileScheme(
             @JsonProperty("merchant_acquirer_bin") String merchantAcquirerBin,
-            @JsonProperty("merchant_url") String merchantUrl,
             @JsonProperty("merchant_acquirer_id") String merchantAcquirerId,
             @JsonProperty("merchant_name") String merchantName,
             @JsonProperty("merchant_country_code") String merchantCountryCode,
-            @JsonProperty("merchant_category_code") String merchantCategoryCode) {
+            @JsonProperty("merchant_category_code") String merchantCategoryCode,
+            @JsonProperty("merchant_url") String merchantUrl) {
         Utils.checkNotNull(merchantAcquirerBin, "merchantAcquirerBin");
-        Utils.checkNotNull(merchantUrl, "merchantUrl");
         Utils.checkNotNull(merchantAcquirerId, "merchantAcquirerId");
         Utils.checkNotNull(merchantName, "merchantName");
         Utils.checkNotNull(merchantCountryCode, "merchantCountryCode");
         Utils.checkNotNull(merchantCategoryCode, "merchantCategoryCode");
+        Utils.checkNotNull(merchantUrl, "merchantUrl");
         this.merchantAcquirerBin = merchantAcquirerBin;
-        this.merchantUrl = merchantUrl;
         this.merchantAcquirerId = merchantAcquirerId;
         this.merchantName = merchantName;
         this.merchantCountryCode = merchantCountryCode;
         this.merchantCategoryCode = merchantCategoryCode;
+        this.merchantUrl = merchantUrl;
     }
 
     /**
@@ -74,14 +74,6 @@ public class MerchantProfileScheme {
     @JsonIgnore
     public String merchantAcquirerBin() {
         return merchantAcquirerBin;
-    }
-
-    /**
-     * URL to send when calling 3DS through this scheme.
-     */
-    @JsonIgnore
-    public String merchantUrl() {
-        return merchantUrl;
     }
 
     /**
@@ -98,7 +90,7 @@ public class MerchantProfileScheme {
     }
 
     /**
-     * Merchant country code to use when calling 3DS through this scheme.
+     * The merchant's ISO 3166-1 numeric country code.
      */
     @JsonIgnore
     public String merchantCountryCode() {
@@ -113,6 +105,14 @@ public class MerchantProfileScheme {
         return merchantCategoryCode;
     }
 
+    /**
+     * URL to send when calling 3DS through this scheme.
+     */
+    @JsonIgnore
+    public String merchantUrl() {
+        return merchantUrl;
+    }
+
     public static Builder builder() {
         return new Builder();
     }
@@ -124,15 +124,6 @@ public class MerchantProfileScheme {
     public MerchantProfileScheme withMerchantAcquirerBin(String merchantAcquirerBin) {
         Utils.checkNotNull(merchantAcquirerBin, "merchantAcquirerBin");
         this.merchantAcquirerBin = merchantAcquirerBin;
-        return this;
-    }
-
-    /**
-     * URL to send when calling 3DS through this scheme.
-     */
-    public MerchantProfileScheme withMerchantUrl(String merchantUrl) {
-        Utils.checkNotNull(merchantUrl, "merchantUrl");
-        this.merchantUrl = merchantUrl;
         return this;
     }
 
@@ -152,7 +143,7 @@ public class MerchantProfileScheme {
     }
 
     /**
-     * Merchant country code to use when calling 3DS through this scheme.
+     * The merchant's ISO 3166-1 numeric country code.
      */
     public MerchantProfileScheme withMerchantCountryCode(String merchantCountryCode) {
         Utils.checkNotNull(merchantCountryCode, "merchantCountryCode");
@@ -169,6 +160,15 @@ public class MerchantProfileScheme {
         return this;
     }
 
+    /**
+     * URL to send when calling 3DS through this scheme.
+     */
+    public MerchantProfileScheme withMerchantUrl(String merchantUrl) {
+        Utils.checkNotNull(merchantUrl, "merchantUrl");
+        this.merchantUrl = merchantUrl;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -180,37 +180,35 @@ public class MerchantProfileScheme {
         MerchantProfileScheme other = (MerchantProfileScheme) o;
         return 
             Utils.enhancedDeepEquals(this.merchantAcquirerBin, other.merchantAcquirerBin) &&
-            Utils.enhancedDeepEquals(this.merchantUrl, other.merchantUrl) &&
             Utils.enhancedDeepEquals(this.merchantAcquirerId, other.merchantAcquirerId) &&
             Utils.enhancedDeepEquals(this.merchantName, other.merchantName) &&
             Utils.enhancedDeepEquals(this.merchantCountryCode, other.merchantCountryCode) &&
-            Utils.enhancedDeepEquals(this.merchantCategoryCode, other.merchantCategoryCode);
+            Utils.enhancedDeepEquals(this.merchantCategoryCode, other.merchantCategoryCode) &&
+            Utils.enhancedDeepEquals(this.merchantUrl, other.merchantUrl);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            merchantAcquirerBin, merchantUrl, merchantAcquirerId,
-            merchantName, merchantCountryCode, merchantCategoryCode);
+            merchantAcquirerBin, merchantAcquirerId, merchantName,
+            merchantCountryCode, merchantCategoryCode, merchantUrl);
     }
     
     @Override
     public String toString() {
         return Utils.toString(MerchantProfileScheme.class,
                 "merchantAcquirerBin", merchantAcquirerBin,
-                "merchantUrl", merchantUrl,
                 "merchantAcquirerId", merchantAcquirerId,
                 "merchantName", merchantName,
                 "merchantCountryCode", merchantCountryCode,
-                "merchantCategoryCode", merchantCategoryCode);
+                "merchantCategoryCode", merchantCategoryCode,
+                "merchantUrl", merchantUrl);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
         private String merchantAcquirerBin;
-
-        private String merchantUrl;
 
         private String merchantAcquirerId;
 
@@ -219,6 +217,8 @@ public class MerchantProfileScheme {
         private String merchantCountryCode;
 
         private String merchantCategoryCode;
+
+        private String merchantUrl;
 
         private Builder() {
           // force use of static builder() method
@@ -231,16 +231,6 @@ public class MerchantProfileScheme {
         public Builder merchantAcquirerBin(String merchantAcquirerBin) {
             Utils.checkNotNull(merchantAcquirerBin, "merchantAcquirerBin");
             this.merchantAcquirerBin = merchantAcquirerBin;
-            return this;
-        }
-
-
-        /**
-         * URL to send when calling 3DS through this scheme.
-         */
-        public Builder merchantUrl(String merchantUrl) {
-            Utils.checkNotNull(merchantUrl, "merchantUrl");
-            this.merchantUrl = merchantUrl;
             return this;
         }
 
@@ -263,7 +253,7 @@ public class MerchantProfileScheme {
 
 
         /**
-         * Merchant country code to use when calling 3DS through this scheme.
+         * The merchant's ISO 3166-1 numeric country code.
          */
         public Builder merchantCountryCode(String merchantCountryCode) {
             Utils.checkNotNull(merchantCountryCode, "merchantCountryCode");
@@ -281,11 +271,21 @@ public class MerchantProfileScheme {
             return this;
         }
 
+
+        /**
+         * URL to send when calling 3DS through this scheme.
+         */
+        public Builder merchantUrl(String merchantUrl) {
+            Utils.checkNotNull(merchantUrl, "merchantUrl");
+            this.merchantUrl = merchantUrl;
+            return this;
+        }
+
         public MerchantProfileScheme build() {
 
             return new MerchantProfileScheme(
-                merchantAcquirerBin, merchantUrl, merchantAcquirerId,
-                merchantName, merchantCountryCode, merchantCategoryCode);
+                merchantAcquirerBin, merchantAcquirerId, merchantName,
+                merchantCountryCode, merchantCategoryCode, merchantUrl);
         }
 
     }
