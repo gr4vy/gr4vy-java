@@ -24,5 +24,12 @@ test {
 }
 
 jar {
+    dependsOn 'generatePomFileForMavenPublication'
     archiveBaseName = 'sdk-spring-boot-autoconfigure'
+    into("META-INF/maven/com.gr4vy/sdk-spring-boot-autoconfigure") {
+        from(layout.buildDirectory.file("pom.xml")) {
+            // Only include if it exists to avoid build ordering issues
+            duplicatesStrategy = DuplicatesStrategy.INCLUDE
+        }
+    }
 }
