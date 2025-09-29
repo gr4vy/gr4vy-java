@@ -57,21 +57,24 @@ public class GiftCardRedemption {
     private JsonNullable<String> giftCardServiceRedemptionId;
 
     /**
-     * If this gift card redemption resulted in an error, this will contain the internal code for the error.
+     * If this gift card redemption resulted in an error, this will contain the internal code for the
+     * error.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("error_code")
     private JsonNullable<? extends GiftCardErrorCode> errorCode;
 
     /**
-     * If this gift card redemption resulted in an error, this will contain the raw error code received from the gift card provider.
+     * If this gift card redemption resulted in an error, this will contain the raw error code received
+     * from the gift card provider.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("raw_error_code")
     private JsonNullable<String> rawErrorCode;
 
     /**
-     * If this gift card redemption resulted in an error, this will contain the raw error message received from the gift card provider.
+     * If this gift card redemption resulted in an error, this will contain the raw error message received
+     * from the gift card provider.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("raw_error_message")
@@ -170,7 +173,8 @@ public class GiftCardRedemption {
     }
 
     /**
-     * If this gift card redemption resulted in an error, this will contain the internal code for the error.
+     * If this gift card redemption resulted in an error, this will contain the internal code for the
+     * error.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -179,7 +183,8 @@ public class GiftCardRedemption {
     }
 
     /**
-     * If this gift card redemption resulted in an error, this will contain the raw error code received from the gift card provider.
+     * If this gift card redemption resulted in an error, this will contain the raw error code received
+     * from the gift card provider.
      */
     @JsonIgnore
     public JsonNullable<String> rawErrorCode() {
@@ -187,7 +192,8 @@ public class GiftCardRedemption {
     }
 
     /**
-     * If this gift card redemption resulted in an error, this will contain the raw error message received from the gift card provider.
+     * If this gift card redemption resulted in an error, this will contain the raw error message received
+     * from the gift card provider.
      */
     @JsonIgnore
     public JsonNullable<String> rawErrorMessage() {
@@ -256,7 +262,8 @@ public class GiftCardRedemption {
     }
 
     /**
-     * If this gift card redemption resulted in an error, this will contain the internal code for the error.
+     * If this gift card redemption resulted in an error, this will contain the internal code for the
+     * error.
      */
     public GiftCardRedemption withErrorCode(GiftCardErrorCode errorCode) {
         Utils.checkNotNull(errorCode, "errorCode");
@@ -265,7 +272,8 @@ public class GiftCardRedemption {
     }
 
     /**
-     * If this gift card redemption resulted in an error, this will contain the internal code for the error.
+     * If this gift card redemption resulted in an error, this will contain the internal code for the
+     * error.
      */
     public GiftCardRedemption withErrorCode(JsonNullable<? extends GiftCardErrorCode> errorCode) {
         Utils.checkNotNull(errorCode, "errorCode");
@@ -274,7 +282,8 @@ public class GiftCardRedemption {
     }
 
     /**
-     * If this gift card redemption resulted in an error, this will contain the raw error code received from the gift card provider.
+     * If this gift card redemption resulted in an error, this will contain the raw error code received
+     * from the gift card provider.
      */
     public GiftCardRedemption withRawErrorCode(String rawErrorCode) {
         Utils.checkNotNull(rawErrorCode, "rawErrorCode");
@@ -283,7 +292,8 @@ public class GiftCardRedemption {
     }
 
     /**
-     * If this gift card redemption resulted in an error, this will contain the raw error code received from the gift card provider.
+     * If this gift card redemption resulted in an error, this will contain the raw error code received
+     * from the gift card provider.
      */
     public GiftCardRedemption withRawErrorCode(JsonNullable<String> rawErrorCode) {
         Utils.checkNotNull(rawErrorCode, "rawErrorCode");
@@ -292,7 +302,8 @@ public class GiftCardRedemption {
     }
 
     /**
-     * If this gift card redemption resulted in an error, this will contain the raw error message received from the gift card provider.
+     * If this gift card redemption resulted in an error, this will contain the raw error message received
+     * from the gift card provider.
      */
     public GiftCardRedemption withRawErrorMessage(String rawErrorMessage) {
         Utils.checkNotNull(rawErrorMessage, "rawErrorMessage");
@@ -301,7 +312,8 @@ public class GiftCardRedemption {
     }
 
     /**
-     * If this gift card redemption resulted in an error, this will contain the raw error message received from the gift card provider.
+     * If this gift card redemption resulted in an error, this will contain the raw error message received
+     * from the gift card provider.
      */
     public GiftCardRedemption withRawErrorMessage(JsonNullable<String> rawErrorMessage) {
         Utils.checkNotNull(rawErrorMessage, "rawErrorMessage");
@@ -444,7 +456,8 @@ public class GiftCardRedemption {
 
 
         /**
-         * If this gift card redemption resulted in an error, this will contain the internal code for the error.
+         * If this gift card redemption resulted in an error, this will contain the internal code for the
+         * error.
          */
         public Builder errorCode(GiftCardErrorCode errorCode) {
             Utils.checkNotNull(errorCode, "errorCode");
@@ -453,7 +466,8 @@ public class GiftCardRedemption {
         }
 
         /**
-         * If this gift card redemption resulted in an error, this will contain the internal code for the error.
+         * If this gift card redemption resulted in an error, this will contain the internal code for the
+         * error.
          */
         public Builder errorCode(JsonNullable<? extends GiftCardErrorCode> errorCode) {
             Utils.checkNotNull(errorCode, "errorCode");
@@ -463,7 +477,8 @@ public class GiftCardRedemption {
 
 
         /**
-         * If this gift card redemption resulted in an error, this will contain the raw error code received from the gift card provider.
+         * If this gift card redemption resulted in an error, this will contain the raw error code received
+         * from the gift card provider.
          */
         public Builder rawErrorCode(String rawErrorCode) {
             Utils.checkNotNull(rawErrorCode, "rawErrorCode");
@@ -472,7 +487,8 @@ public class GiftCardRedemption {
         }
 
         /**
-         * If this gift card redemption resulted in an error, this will contain the raw error code received from the gift card provider.
+         * If this gift card redemption resulted in an error, this will contain the raw error code received
+         * from the gift card provider.
          */
         public Builder rawErrorCode(JsonNullable<String> rawErrorCode) {
             Utils.checkNotNull(rawErrorCode, "rawErrorCode");
@@ -482,7 +498,8 @@ public class GiftCardRedemption {
 
 
         /**
-         * If this gift card redemption resulted in an error, this will contain the raw error message received from the gift card provider.
+         * If this gift card redemption resulted in an error, this will contain the raw error message received
+         * from the gift card provider.
          */
         public Builder rawErrorMessage(String rawErrorMessage) {
             Utils.checkNotNull(rawErrorMessage, "rawErrorMessage");
@@ -491,7 +508,8 @@ public class GiftCardRedemption {
         }
 
         /**
-         * If this gift card redemption resulted in an error, this will contain the raw error message received from the gift card provider.
+         * If this gift card redemption resulted in an error, this will contain the raw error message received
+         * from the gift card provider.
          */
         public Builder rawErrorMessage(JsonNullable<String> rawErrorMessage) {
             Utils.checkNotNull(rawErrorMessage, "rawErrorMessage");

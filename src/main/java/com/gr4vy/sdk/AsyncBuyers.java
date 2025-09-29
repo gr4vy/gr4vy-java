@@ -90,7 +90,7 @@ public class AsyncBuyers {
      * <p>List all buyers or search for a specific buyer.
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;ListBuyersResponse&gt; - The async response
+     * @return {@code CompletableFuture<ListBuyersResponse>} - The async response
      */
     public CompletableFuture<ListBuyersResponse> list(ListBuyersRequest request) {
         return list(request, Optional.empty());
@@ -103,7 +103,7 @@ public class AsyncBuyers {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;ListBuyersResponse&gt; - The async response
+     * @return {@code CompletableFuture<ListBuyersResponse>} - The async response
      */
     public CompletableFuture<ListBuyersResponse> list(ListBuyersRequest request, Optional<Options> options) {
         AsyncRequestOperation<ListBuyersRequest, ListBuyersResponse> operation
@@ -132,7 +132,7 @@ public class AsyncBuyers {
      * <p>Create a new buyer record.
      * 
      * @param buyerCreate Request body for creating a new buyer
-     * @return CompletableFuture&lt;AddBuyerResponse&gt; - The async response
+     * @return {@code CompletableFuture<AddBuyerResponse>} - The async response
      */
     public CompletableFuture<AddBuyerResponse> create(BuyerCreate buyerCreate) {
         return create(JsonNullable.undefined(), buyerCreate);
@@ -145,7 +145,7 @@ public class AsyncBuyers {
      * 
      * @param merchantAccountId 
      * @param buyerCreate Request body for creating a new buyer
-     * @return CompletableFuture&lt;AddBuyerResponse&gt; - The async response
+     * @return {@code CompletableFuture<AddBuyerResponse>} - The async response
      */
     public CompletableFuture<AddBuyerResponse> create(JsonNullable<String> merchantAccountId, BuyerCreate buyerCreate) {
         AddBuyerRequest request =
@@ -178,7 +178,7 @@ public class AsyncBuyers {
      * <p>Fetches a buyer by its ID.
      * 
      * @param buyerId The ID of the buyer to retrieve.
-     * @return CompletableFuture&lt;GetBuyerResponse&gt; - The async response
+     * @return {@code CompletableFuture<GetBuyerResponse>} - The async response
      */
     public CompletableFuture<GetBuyerResponse> get(String buyerId) {
         return get(buyerId, JsonNullable.undefined(), Optional.empty());
@@ -192,7 +192,7 @@ public class AsyncBuyers {
      * @param buyerId The ID of the buyer to retrieve.
      * @param merchantAccountId 
      * @param options additional options
-     * @return CompletableFuture&lt;GetBuyerResponse&gt; - The async response
+     * @return {@code CompletableFuture<GetBuyerResponse>} - The async response
      */
     public CompletableFuture<GetBuyerResponse> get(
             String buyerId, JsonNullable<String> merchantAccountId,
@@ -230,7 +230,7 @@ public class AsyncBuyers {
      * 
      * @param buyerId The ID of the buyer to edit.
      * @param buyerUpdate Request body for updating an existing buyer
-     * @return CompletableFuture&lt;UpdateBuyerResponse&gt; - The async response
+     * @return {@code CompletableFuture<UpdateBuyerResponse>} - The async response
      */
     public CompletableFuture<UpdateBuyerResponse> update(String buyerId, BuyerUpdate buyerUpdate) {
         return update(buyerId, JsonNullable.undefined(), buyerUpdate);
@@ -244,7 +244,7 @@ public class AsyncBuyers {
      * @param buyerId The ID of the buyer to edit.
      * @param merchantAccountId 
      * @param buyerUpdate Request body for updating an existing buyer
-     * @return CompletableFuture&lt;UpdateBuyerResponse&gt; - The async response
+     * @return {@code CompletableFuture<UpdateBuyerResponse>} - The async response
      */
     public CompletableFuture<UpdateBuyerResponse> update(
             String buyerId, JsonNullable<String> merchantAccountId,
@@ -280,7 +280,7 @@ public class AsyncBuyers {
      * <p>Permanently removes a buyer record.
      * 
      * @param buyerId The ID of the buyer to delete.
-     * @return CompletableFuture&lt;DeleteBuyerResponse&gt; - The async response
+     * @return {@code CompletableFuture<DeleteBuyerResponse>} - The async response
      */
     public CompletableFuture<DeleteBuyerResponse> delete(String buyerId) {
         return delete(buyerId, JsonNullable.undefined());
@@ -293,7 +293,7 @@ public class AsyncBuyers {
      * 
      * @param buyerId The ID of the buyer to delete.
      * @param merchantAccountId 
-     * @return CompletableFuture&lt;DeleteBuyerResponse&gt; - The async response
+     * @return {@code CompletableFuture<DeleteBuyerResponse>} - The async response
      */
     public CompletableFuture<DeleteBuyerResponse> delete(String buyerId, JsonNullable<String> merchantAccountId) {
         DeleteBuyerRequest request =

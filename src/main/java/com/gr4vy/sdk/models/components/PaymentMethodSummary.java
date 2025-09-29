@@ -44,14 +44,16 @@ public class PaymentMethodSummary {
     private JsonNullable<String> approvalUrl;
 
     /**
-     * The 2-letter ISO code of the country this payment method can be used for. If this value is null the payment method may be used in multiple countries.
+     * The 2-letter ISO code of the country this payment method can be used for. If this value is null the
+     * payment method may be used in multiple countries.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("country")
     private JsonNullable<String> country;
 
     /**
-     * The ISO-4217 currency code that this payment method can be used for. If this value is null the payment method may be used for multiple currencies.
+     * The ISO-4217 currency code that this payment method can be used for. If this value is null the
+     * payment method may be used for multiple currencies.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("currency")
@@ -79,7 +81,8 @@ public class PaymentMethodSummary {
     private JsonNullable<String> fingerprint;
 
     /**
-     * A label for the card or the account. For a paypal payment method this is the user's email address. For a card it is the last 4 digits of the card.
+     * A label for the card or the account. For a paypal payment method this is the user's email address.
+     * For a card it is the last 4 digits of the card.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("label")
@@ -130,14 +133,16 @@ public class PaymentMethodSummary {
     private JsonNullable<? extends List<CardScheme>> additionalSchemes;
 
     /**
-     * The timestamp when this payment method was last used in a transaction for client initiated transactions.
+     * The timestamp when this payment method was last used in a transaction for client initiated
+     * transactions.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("cit_last_used_at")
     private JsonNullable<OffsetDateTime> citLastUsedAt;
 
     /**
-     * The number of times this payment method has been used in transactions for client initiated transactions.
+     * The number of times this payment method has been used in transactions for client initiated
+     * transactions.
      */
     @JsonProperty("cit_usage_count")
     private long citUsageCount;
@@ -256,7 +261,8 @@ public class PaymentMethodSummary {
     }
 
     /**
-     * The 2-letter ISO code of the country this payment method can be used for. If this value is null the payment method may be used in multiple countries.
+     * The 2-letter ISO code of the country this payment method can be used for. If this value is null the
+     * payment method may be used in multiple countries.
      */
     @JsonIgnore
     public JsonNullable<String> country() {
@@ -264,7 +270,8 @@ public class PaymentMethodSummary {
     }
 
     /**
-     * The ISO-4217 currency code that this payment method can be used for. If this value is null the payment method may be used for multiple currencies.
+     * The ISO-4217 currency code that this payment method can be used for. If this value is null the
+     * payment method may be used for multiple currencies.
      */
     @JsonIgnore
     public JsonNullable<String> currency() {
@@ -297,7 +304,8 @@ public class PaymentMethodSummary {
     }
 
     /**
-     * A label for the card or the account. For a paypal payment method this is the user's email address. For a card it is the last 4 digits of the card.
+     * A label for the card or the account. For a paypal payment method this is the user's email address.
+     * For a card it is the last 4 digits of the card.
      */
     @JsonIgnore
     public JsonNullable<String> label() {
@@ -361,7 +369,8 @@ public class PaymentMethodSummary {
     }
 
     /**
-     * The timestamp when this payment method was last used in a transaction for client initiated transactions.
+     * The timestamp when this payment method was last used in a transaction for client initiated
+     * transactions.
      */
     @JsonIgnore
     public JsonNullable<OffsetDateTime> citLastUsedAt() {
@@ -369,7 +378,8 @@ public class PaymentMethodSummary {
     }
 
     /**
-     * The number of times this payment method has been used in transactions for client initiated transactions.
+     * The number of times this payment method has been used in transactions for client initiated
+     * transactions.
      */
     @JsonIgnore
     public long citUsageCount() {
@@ -424,7 +434,8 @@ public class PaymentMethodSummary {
     }
 
     /**
-     * The 2-letter ISO code of the country this payment method can be used for. If this value is null the payment method may be used in multiple countries.
+     * The 2-letter ISO code of the country this payment method can be used for. If this value is null the
+     * payment method may be used in multiple countries.
      */
     public PaymentMethodSummary withCountry(String country) {
         Utils.checkNotNull(country, "country");
@@ -433,7 +444,8 @@ public class PaymentMethodSummary {
     }
 
     /**
-     * The 2-letter ISO code of the country this payment method can be used for. If this value is null the payment method may be used in multiple countries.
+     * The 2-letter ISO code of the country this payment method can be used for. If this value is null the
+     * payment method may be used in multiple countries.
      */
     public PaymentMethodSummary withCountry(JsonNullable<String> country) {
         Utils.checkNotNull(country, "country");
@@ -442,7 +454,8 @@ public class PaymentMethodSummary {
     }
 
     /**
-     * The ISO-4217 currency code that this payment method can be used for. If this value is null the payment method may be used for multiple currencies.
+     * The ISO-4217 currency code that this payment method can be used for. If this value is null the
+     * payment method may be used for multiple currencies.
      */
     public PaymentMethodSummary withCurrency(String currency) {
         Utils.checkNotNull(currency, "currency");
@@ -451,7 +464,8 @@ public class PaymentMethodSummary {
     }
 
     /**
-     * The ISO-4217 currency code that this payment method can be used for. If this value is null the payment method may be used for multiple currencies.
+     * The ISO-4217 currency code that this payment method can be used for. If this value is null the
+     * payment method may be used for multiple currencies.
      */
     public PaymentMethodSummary withCurrency(JsonNullable<String> currency) {
         Utils.checkNotNull(currency, "currency");
@@ -514,7 +528,8 @@ public class PaymentMethodSummary {
     }
 
     /**
-     * A label for the card or the account. For a paypal payment method this is the user's email address. For a card it is the last 4 digits of the card.
+     * A label for the card or the account. For a paypal payment method this is the user's email address.
+     * For a card it is the last 4 digits of the card.
      */
     public PaymentMethodSummary withLabel(String label) {
         Utils.checkNotNull(label, "label");
@@ -523,7 +538,8 @@ public class PaymentMethodSummary {
     }
 
     /**
-     * A label for the card or the account. For a paypal payment method this is the user's email address. For a card it is the last 4 digits of the card.
+     * A label for the card or the account. For a paypal payment method this is the user's email address.
+     * For a card it is the last 4 digits of the card.
      */
     public PaymentMethodSummary withLabel(JsonNullable<String> label) {
         Utils.checkNotNull(label, "label");
@@ -628,7 +644,8 @@ public class PaymentMethodSummary {
     }
 
     /**
-     * The timestamp when this payment method was last used in a transaction for client initiated transactions.
+     * The timestamp when this payment method was last used in a transaction for client initiated
+     * transactions.
      */
     public PaymentMethodSummary withCitLastUsedAt(OffsetDateTime citLastUsedAt) {
         Utils.checkNotNull(citLastUsedAt, "citLastUsedAt");
@@ -637,7 +654,8 @@ public class PaymentMethodSummary {
     }
 
     /**
-     * The timestamp when this payment method was last used in a transaction for client initiated transactions.
+     * The timestamp when this payment method was last used in a transaction for client initiated
+     * transactions.
      */
     public PaymentMethodSummary withCitLastUsedAt(JsonNullable<OffsetDateTime> citLastUsedAt) {
         Utils.checkNotNull(citLastUsedAt, "citLastUsedAt");
@@ -646,7 +664,8 @@ public class PaymentMethodSummary {
     }
 
     /**
-     * The number of times this payment method has been used in transactions for client initiated transactions.
+     * The number of times this payment method has been used in transactions for client initiated
+     * transactions.
      */
     public PaymentMethodSummary withCitUsageCount(long citUsageCount) {
         Utils.checkNotNull(citUsageCount, "citUsageCount");
@@ -825,7 +844,8 @@ public class PaymentMethodSummary {
 
 
         /**
-         * The 2-letter ISO code of the country this payment method can be used for. If this value is null the payment method may be used in multiple countries.
+         * The 2-letter ISO code of the country this payment method can be used for. If this value is null the
+         * payment method may be used in multiple countries.
          */
         public Builder country(String country) {
             Utils.checkNotNull(country, "country");
@@ -834,7 +854,8 @@ public class PaymentMethodSummary {
         }
 
         /**
-         * The 2-letter ISO code of the country this payment method can be used for. If this value is null the payment method may be used in multiple countries.
+         * The 2-letter ISO code of the country this payment method can be used for. If this value is null the
+         * payment method may be used in multiple countries.
          */
         public Builder country(JsonNullable<String> country) {
             Utils.checkNotNull(country, "country");
@@ -844,7 +865,8 @@ public class PaymentMethodSummary {
 
 
         /**
-         * The ISO-4217 currency code that this payment method can be used for. If this value is null the payment method may be used for multiple currencies.
+         * The ISO-4217 currency code that this payment method can be used for. If this value is null the
+         * payment method may be used for multiple currencies.
          */
         public Builder currency(String currency) {
             Utils.checkNotNull(currency, "currency");
@@ -853,7 +875,8 @@ public class PaymentMethodSummary {
         }
 
         /**
-         * The ISO-4217 currency code that this payment method can be used for. If this value is null the payment method may be used for multiple currencies.
+         * The ISO-4217 currency code that this payment method can be used for. If this value is null the
+         * payment method may be used for multiple currencies.
          */
         public Builder currency(JsonNullable<String> currency) {
             Utils.checkNotNull(currency, "currency");
@@ -920,7 +943,8 @@ public class PaymentMethodSummary {
 
 
         /**
-         * A label for the card or the account. For a paypal payment method this is the user's email address. For a card it is the last 4 digits of the card.
+         * A label for the card or the account. For a paypal payment method this is the user's email address.
+         * For a card it is the last 4 digits of the card.
          */
         public Builder label(String label) {
             Utils.checkNotNull(label, "label");
@@ -929,7 +953,8 @@ public class PaymentMethodSummary {
         }
 
         /**
-         * A label for the card or the account. For a paypal payment method this is the user's email address. For a card it is the last 4 digits of the card.
+         * A label for the card or the account. For a paypal payment method this is the user's email address.
+         * For a card it is the last 4 digits of the card.
          */
         public Builder label(JsonNullable<String> label) {
             Utils.checkNotNull(label, "label");
@@ -1042,7 +1067,8 @@ public class PaymentMethodSummary {
 
 
         /**
-         * The timestamp when this payment method was last used in a transaction for client initiated transactions.
+         * The timestamp when this payment method was last used in a transaction for client initiated
+         * transactions.
          */
         public Builder citLastUsedAt(OffsetDateTime citLastUsedAt) {
             Utils.checkNotNull(citLastUsedAt, "citLastUsedAt");
@@ -1051,7 +1077,8 @@ public class PaymentMethodSummary {
         }
 
         /**
-         * The timestamp when this payment method was last used in a transaction for client initiated transactions.
+         * The timestamp when this payment method was last used in a transaction for client initiated
+         * transactions.
          */
         public Builder citLastUsedAt(JsonNullable<OffsetDateTime> citLastUsedAt) {
             Utils.checkNotNull(citLastUsedAt, "citLastUsedAt");
@@ -1061,7 +1088,8 @@ public class PaymentMethodSummary {
 
 
         /**
-         * The number of times this payment method has been used in transactions for client initiated transactions.
+         * The number of times this payment method has been used in transactions for client initiated
+         * transactions.
          */
         public Builder citUsageCount(long citUsageCount) {
             Utils.checkNotNull(citUsageCount, "citUsageCount");

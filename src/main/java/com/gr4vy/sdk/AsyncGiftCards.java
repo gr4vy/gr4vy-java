@@ -73,7 +73,7 @@ public class AsyncGiftCards {
      * <p>Fetch details about a gift card.
      * 
      * @param giftCardId The ID of the gift card.
-     * @return CompletableFuture&lt;GetGiftCardResponse&gt; - The async response
+     * @return {@code CompletableFuture<GetGiftCardResponse>} - The async response
      */
     public CompletableFuture<GetGiftCardResponse> get(String giftCardId) {
         return get(giftCardId, JsonNullable.undefined(), Optional.empty());
@@ -87,7 +87,7 @@ public class AsyncGiftCards {
      * @param giftCardId The ID of the gift card.
      * @param merchantAccountId 
      * @param options additional options
-     * @return CompletableFuture&lt;GetGiftCardResponse&gt; - The async response
+     * @return {@code CompletableFuture<GetGiftCardResponse>} - The async response
      */
     public CompletableFuture<GetGiftCardResponse> get(
             String giftCardId, JsonNullable<String> merchantAccountId,
@@ -124,7 +124,7 @@ public class AsyncGiftCards {
      * <p>Removes a gift card from our system.
      * 
      * @param giftCardId The ID of the gift card.
-     * @return CompletableFuture&lt;DeleteGiftCardResponse&gt; - The async response
+     * @return {@code CompletableFuture<DeleteGiftCardResponse>} - The async response
      */
     public CompletableFuture<DeleteGiftCardResponse> delete(String giftCardId) {
         return delete(giftCardId, JsonNullable.undefined());
@@ -137,7 +137,7 @@ public class AsyncGiftCards {
      * 
      * @param giftCardId The ID of the gift card.
      * @param merchantAccountId 
-     * @return CompletableFuture&lt;DeleteGiftCardResponse&gt; - The async response
+     * @return {@code CompletableFuture<DeleteGiftCardResponse>} - The async response
      */
     public CompletableFuture<DeleteGiftCardResponse> delete(String giftCardId, JsonNullable<String> merchantAccountId) {
         DeleteGiftCardRequest request =
@@ -170,7 +170,7 @@ public class AsyncGiftCards {
      * <p>Store a new gift card in the vault.
      * 
      * @param giftCardCreate 
-     * @return CompletableFuture&lt;CreateGiftCardResponse&gt; - The async response
+     * @return {@code CompletableFuture<CreateGiftCardResponse>} - The async response
      */
     public CompletableFuture<CreateGiftCardResponse> create(GiftCardCreate giftCardCreate) {
         return create(JsonNullable.undefined(), giftCardCreate);
@@ -183,7 +183,7 @@ public class AsyncGiftCards {
      * 
      * @param merchantAccountId 
      * @param giftCardCreate 
-     * @return CompletableFuture&lt;CreateGiftCardResponse&gt; - The async response
+     * @return {@code CompletableFuture<CreateGiftCardResponse>} - The async response
      */
     public CompletableFuture<CreateGiftCardResponse> create(JsonNullable<String> merchantAccountId, GiftCardCreate giftCardCreate) {
         CreateGiftCardRequest request =
@@ -216,7 +216,7 @@ public class AsyncGiftCards {
      * <p>Browser all gift cards.
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;ListGiftCardsResponse&gt; - The async response
+     * @return {@code CompletableFuture<ListGiftCardsResponse>} - The async response
      */
     public CompletableFuture<ListGiftCardsResponse> list(ListGiftCardsRequest request) {
         return list(request, Optional.empty());
@@ -229,7 +229,7 @@ public class AsyncGiftCards {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;ListGiftCardsResponse&gt; - The async response
+     * @return {@code CompletableFuture<ListGiftCardsResponse>} - The async response
      */
     public CompletableFuture<ListGiftCardsResponse> list(ListGiftCardsRequest request, Optional<Options> options) {
         AsyncRequestOperation<ListGiftCardsRequest, ListGiftCardsResponse> operation

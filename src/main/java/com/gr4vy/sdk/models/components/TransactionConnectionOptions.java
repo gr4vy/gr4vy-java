@@ -17,7 +17,8 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 public class TransactionConnectionOptions {
     /**
-     * Custom options to be passed to the `account-updater` connector, allowing for simulating different account updater responses.
+     * Custom options to be passed to the `account-updater` connector, allowing for simulating different
+     * account updater responses.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("account-updater")
@@ -417,7 +418,8 @@ public class TransactionConnectionOptions {
     }
 
     /**
-     * Custom options to be passed to the `account-updater` connector, allowing for simulating different account updater responses.
+     * Custom options to be passed to the `account-updater` connector, allowing for simulating different
+     * account updater responses.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -764,7 +766,8 @@ public class TransactionConnectionOptions {
 
 
     /**
-     * Custom options to be passed to the `account-updater` connector, allowing for simulating different account updater responses.
+     * Custom options to be passed to the `account-updater` connector, allowing for simulating different
+     * account updater responses.
      */
     public TransactionConnectionOptions withAccountUpdater(AccountUpdaterOptions accountUpdater) {
         Utils.checkNotNull(accountUpdater, "accountUpdater");
@@ -773,7 +776,8 @@ public class TransactionConnectionOptions {
     }
 
     /**
-     * Custom options to be passed to the `account-updater` connector, allowing for simulating different account updater responses.
+     * Custom options to be passed to the `account-updater` connector, allowing for simulating different
+     * account updater responses.
      */
     public TransactionConnectionOptions withAccountUpdater(JsonNullable<? extends AccountUpdaterOptions> accountUpdater) {
         Utils.checkNotNull(accountUpdater, "accountUpdater");
@@ -1643,7 +1647,8 @@ public class TransactionConnectionOptions {
 
 
         /**
-         * Custom options to be passed to the `account-updater` connector, allowing for simulating different account updater responses.
+         * Custom options to be passed to the `account-updater` connector, allowing for simulating different
+         * account updater responses.
          */
         public Builder accountUpdater(AccountUpdaterOptions accountUpdater) {
             Utils.checkNotNull(accountUpdater, "accountUpdater");
@@ -1652,7 +1657,8 @@ public class TransactionConnectionOptions {
         }
 
         /**
-         * Custom options to be passed to the `account-updater` connector, allowing for simulating different account updater responses.
+         * Custom options to be passed to the `account-updater` connector, allowing for simulating different
+         * account updater responses.
          */
         public Builder accountUpdater(JsonNullable<? extends AccountUpdaterOptions> accountUpdater) {
             Utils.checkNotNull(accountUpdater, "accountUpdater");

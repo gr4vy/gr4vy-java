@@ -40,13 +40,15 @@ public class RedirectPaymentMethodCreate {
     private JsonNullable<String> buyerExternalIdentifier;
 
     /**
-     * The 2-letter ISO code of the country to use this payment method for. This is used to select the payment service to use.
+     * The 2-letter ISO code of the country to use this payment method for. This is used to select the
+     * payment service to use.
      */
     @JsonProperty("country")
     private String country;
 
     /**
-     * The ISO-4217 currency code to use this payment method for. This is used to select the payment service to use.
+     * The ISO-4217 currency code to use this payment method for. This is used to select the payment
+     * service to use.
      */
     @JsonProperty("currency")
     private String currency;
@@ -124,7 +126,8 @@ public class RedirectPaymentMethodCreate {
     }
 
     /**
-     * The 2-letter ISO code of the country to use this payment method for. This is used to select the payment service to use.
+     * The 2-letter ISO code of the country to use this payment method for. This is used to select the
+     * payment service to use.
      */
     @JsonIgnore
     public String country() {
@@ -132,7 +135,8 @@ public class RedirectPaymentMethodCreate {
     }
 
     /**
-     * The ISO-4217 currency code to use this payment method for. This is used to select the payment service to use.
+     * The ISO-4217 currency code to use this payment method for. This is used to select the payment
+     * service to use.
      */
     @JsonIgnore
     public String currency() {
@@ -206,7 +210,8 @@ public class RedirectPaymentMethodCreate {
     }
 
     /**
-     * The 2-letter ISO code of the country to use this payment method for. This is used to select the payment service to use.
+     * The 2-letter ISO code of the country to use this payment method for. This is used to select the
+     * payment service to use.
      */
     public RedirectPaymentMethodCreate withCountry(String country) {
         Utils.checkNotNull(country, "country");
@@ -215,7 +220,8 @@ public class RedirectPaymentMethodCreate {
     }
 
     /**
-     * The ISO-4217 currency code to use this payment method for. This is used to select the payment service to use.
+     * The ISO-4217 currency code to use this payment method for. This is used to select the payment
+     * service to use.
      */
     public RedirectPaymentMethodCreate withCurrency(String currency) {
         Utils.checkNotNull(currency, "currency");
@@ -360,7 +366,8 @@ public class RedirectPaymentMethodCreate {
 
 
         /**
-         * The 2-letter ISO code of the country to use this payment method for. This is used to select the payment service to use.
+         * The 2-letter ISO code of the country to use this payment method for. This is used to select the
+         * payment service to use.
          */
         public Builder country(String country) {
             Utils.checkNotNull(country, "country");
@@ -370,7 +377,8 @@ public class RedirectPaymentMethodCreate {
 
 
         /**
-         * The ISO-4217 currency code to use this payment method for. This is used to select the payment service to use.
+         * The ISO-4217 currency code to use this payment method for. This is used to select the payment
+         * service to use.
          */
         public Builder currency(String currency) {
             Utils.checkNotNull(currency, "currency");

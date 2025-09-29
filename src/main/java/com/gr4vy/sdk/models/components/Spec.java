@@ -17,10 +17,10 @@ import java.lang.String;
  */
 @JsonTypeInfo(use = Id.NAME, property = "model", include = As.EXISTING_PROPERTY, visible = true)
 @JsonSubTypes({
-    @Type(value = TransactionsReportSpec.class, name="transactions"),
-    @Type(value = TransactionRetriesReportSpec.class, name="transaction_retries"),
+    @Type(value = AccountsReceivablesReportSpec.class, name="accounts_receivables"),
     @Type(value = DetailedSettlementReportSpec.class, name="detailed_settlement"),
-    @Type(value = AccountsReceivablesReportSpec.class, name="accounts_receivables")})
+    @Type(value = TransactionRetriesReportSpec.class, name="transaction_retries"),
+    @Type(value = TransactionsReportSpec.class, name="transactions")})
 public interface Spec {
 
     String model();

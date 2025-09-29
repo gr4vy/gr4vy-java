@@ -59,7 +59,7 @@ public class AsyncSettlements {
      * 
      * @param transactionId The unique identifier of the transaction.
      * @param settlementId The unique identifier of the settlement.
-     * @return CompletableFuture&lt;GetTransactionSettlementResponse&gt; - The async response
+     * @return {@code CompletableFuture<GetTransactionSettlementResponse>} - The async response
      */
     public CompletableFuture<GetTransactionSettlementResponse> get(String transactionId, String settlementId) {
         return get(
@@ -76,7 +76,7 @@ public class AsyncSettlements {
      * @param settlementId The unique identifier of the settlement.
      * @param merchantAccountId 
      * @param options additional options
-     * @return CompletableFuture&lt;GetTransactionSettlementResponse&gt; - The async response
+     * @return {@code CompletableFuture<GetTransactionSettlementResponse>} - The async response
      */
     public CompletableFuture<GetTransactionSettlementResponse> get(
             String transactionId, String settlementId,
@@ -114,7 +114,7 @@ public class AsyncSettlements {
      * <p>List all settlements for a specific transaction.
      * 
      * @param transactionId The unique identifier of the transaction.
-     * @return CompletableFuture&lt;ListTransactionSettlementsResponse&gt; - The async response
+     * @return {@code CompletableFuture<ListTransactionSettlementsResponse>} - The async response
      */
     public CompletableFuture<ListTransactionSettlementsResponse> list(String transactionId) {
         return list(transactionId, JsonNullable.undefined(), Optional.empty());
@@ -128,7 +128,7 @@ public class AsyncSettlements {
      * @param transactionId The unique identifier of the transaction.
      * @param merchantAccountId 
      * @param options additional options
-     * @return CompletableFuture&lt;ListTransactionSettlementsResponse&gt; - The async response
+     * @return {@code CompletableFuture<ListTransactionSettlementsResponse>} - The async response
      */
     public CompletableFuture<ListTransactionSettlementsResponse> list(
             String transactionId, JsonNullable<String> merchantAccountId,

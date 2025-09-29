@@ -63,7 +63,7 @@ public class AsyncExecutions {
      * <p>List all executions of a specific report.
      * 
      * @param reportId The ID of the report to retrieve details for.
-     * @return CompletableFuture&lt;ListReportExecutionsResponse&gt; - The async response
+     * @return {@code CompletableFuture<ListReportExecutionsResponse>} - The async response
      */
     public CompletableFuture<ListReportExecutionsResponse> list(String reportId) {
         return list(
@@ -81,7 +81,7 @@ public class AsyncExecutions {
      * @param limit The maximum number of items that are at returned.
      * @param merchantAccountId 
      * @param options additional options
-     * @return CompletableFuture&lt;ListReportExecutionsResponse&gt; - The async response
+     * @return {@code CompletableFuture<ListReportExecutionsResponse>} - The async response
      */
     public CompletableFuture<ListReportExecutionsResponse> list(
             String reportId, JsonNullable<String> cursor,
@@ -122,7 +122,7 @@ public class AsyncExecutions {
      * 
      * @param reportId The ID of the report to retrieve a URL for.
      * @param reportExecutionId The ID of the execution of a report to retrieve a URL for.
-     * @return CompletableFuture&lt;CreateReportExecutionUrlResponse&gt; - The async response
+     * @return {@code CompletableFuture<CreateReportExecutionUrlResponse>} - The async response
      */
     public CompletableFuture<CreateReportExecutionUrlResponse> url(String reportId, String reportExecutionId) {
         return url(reportId, reportExecutionId, JsonNullable.undefined());
@@ -136,7 +136,7 @@ public class AsyncExecutions {
      * @param reportId The ID of the report to retrieve a URL for.
      * @param reportExecutionId The ID of the execution of a report to retrieve a URL for.
      * @param merchantAccountId 
-     * @return CompletableFuture&lt;CreateReportExecutionUrlResponse&gt; - The async response
+     * @return {@code CompletableFuture<CreateReportExecutionUrlResponse>} - The async response
      */
     public CompletableFuture<CreateReportExecutionUrlResponse> url(
             String reportId, String reportExecutionId,
@@ -172,7 +172,7 @@ public class AsyncExecutions {
      * <p>Fetch a specific executed report.
      * 
      * @param reportExecutionId The ID of the execution of a report to retrieve details for.
-     * @return CompletableFuture&lt;GetReportExecutionResponse&gt; - The async response
+     * @return {@code CompletableFuture<GetReportExecutionResponse>} - The async response
      */
     public CompletableFuture<GetReportExecutionResponse> get(String reportExecutionId) {
         return get(reportExecutionId, JsonNullable.undefined(), Optional.empty());
@@ -186,7 +186,7 @@ public class AsyncExecutions {
      * @param reportExecutionId The ID of the execution of a report to retrieve details for.
      * @param merchantAccountId 
      * @param options additional options
-     * @return CompletableFuture&lt;GetReportExecutionResponse&gt; - The async response
+     * @return {@code CompletableFuture<GetReportExecutionResponse>} - The async response
      */
     public CompletableFuture<GetReportExecutionResponse> get(
             String reportExecutionId, JsonNullable<String> merchantAccountId,

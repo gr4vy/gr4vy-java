@@ -23,28 +23,32 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 public class PaymentOptionRequest {
     /**
-     * The metadata to used to evaluate checkout rules, which will help determine the right payment options to display.
+     * The metadata to used to evaluate checkout rules, which will help determine the right payment options
+     * to display.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("metadata")
     private JsonNullable<? extends Map<String, String>> metadata;
 
     /**
-     * The country code used to evaluate checkout rules, and which are used to help determine the right payment options to display.
+     * The country code used to evaluate checkout rules, and which are used to help determine the right
+     * payment options to display.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("country")
     private JsonNullable<String> country;
 
     /**
-     * The currency code used to evaluate checkout rules, and which are used to help determine the right payment options to display.
+     * The currency code used to evaluate checkout rules, and which are used to help determine the right
+     * payment options to display.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("currency")
     private JsonNullable<String> currency;
 
     /**
-     * The amount used to evaluate checkout rules, and which are used to help determine the right payment options to display.
+     * The amount used to evaluate checkout rules, and which are used to help determine the right payment
+     * options to display.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("amount")
@@ -58,7 +62,8 @@ public class PaymentOptionRequest {
     private Optional<String> locale;
 
     /**
-     * The cart items used to evaluate checkout rules, and which are used to help determine the right payment options to display.
+     * The cart items used to evaluate checkout rules, and which are used to help determine the right
+     * payment options to display.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("cart_items")
@@ -92,7 +97,8 @@ public class PaymentOptionRequest {
     }
 
     /**
-     * The metadata to used to evaluate checkout rules, which will help determine the right payment options to display.
+     * The metadata to used to evaluate checkout rules, which will help determine the right payment options
+     * to display.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -101,7 +107,8 @@ public class PaymentOptionRequest {
     }
 
     /**
-     * The country code used to evaluate checkout rules, and which are used to help determine the right payment options to display.
+     * The country code used to evaluate checkout rules, and which are used to help determine the right
+     * payment options to display.
      */
     @JsonIgnore
     public JsonNullable<String> country() {
@@ -109,7 +116,8 @@ public class PaymentOptionRequest {
     }
 
     /**
-     * The currency code used to evaluate checkout rules, and which are used to help determine the right payment options to display.
+     * The currency code used to evaluate checkout rules, and which are used to help determine the right
+     * payment options to display.
      */
     @JsonIgnore
     public JsonNullable<String> currency() {
@@ -117,7 +125,8 @@ public class PaymentOptionRequest {
     }
 
     /**
-     * The amount used to evaluate checkout rules, and which are used to help determine the right payment options to display.
+     * The amount used to evaluate checkout rules, and which are used to help determine the right payment
+     * options to display.
      */
     @JsonIgnore
     public JsonNullable<Long> amount() {
@@ -133,7 +142,8 @@ public class PaymentOptionRequest {
     }
 
     /**
-     * The cart items used to evaluate checkout rules, and which are used to help determine the right payment options to display.
+     * The cart items used to evaluate checkout rules, and which are used to help determine the right
+     * payment options to display.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -147,7 +157,8 @@ public class PaymentOptionRequest {
 
 
     /**
-     * The metadata to used to evaluate checkout rules, which will help determine the right payment options to display.
+     * The metadata to used to evaluate checkout rules, which will help determine the right payment options
+     * to display.
      */
     public PaymentOptionRequest withMetadata(Map<String, String> metadata) {
         Utils.checkNotNull(metadata, "metadata");
@@ -156,7 +167,8 @@ public class PaymentOptionRequest {
     }
 
     /**
-     * The metadata to used to evaluate checkout rules, which will help determine the right payment options to display.
+     * The metadata to used to evaluate checkout rules, which will help determine the right payment options
+     * to display.
      */
     public PaymentOptionRequest withMetadata(JsonNullable<? extends Map<String, String>> metadata) {
         Utils.checkNotNull(metadata, "metadata");
@@ -165,7 +177,8 @@ public class PaymentOptionRequest {
     }
 
     /**
-     * The country code used to evaluate checkout rules, and which are used to help determine the right payment options to display.
+     * The country code used to evaluate checkout rules, and which are used to help determine the right
+     * payment options to display.
      */
     public PaymentOptionRequest withCountry(String country) {
         Utils.checkNotNull(country, "country");
@@ -174,7 +187,8 @@ public class PaymentOptionRequest {
     }
 
     /**
-     * The country code used to evaluate checkout rules, and which are used to help determine the right payment options to display.
+     * The country code used to evaluate checkout rules, and which are used to help determine the right
+     * payment options to display.
      */
     public PaymentOptionRequest withCountry(JsonNullable<String> country) {
         Utils.checkNotNull(country, "country");
@@ -183,7 +197,8 @@ public class PaymentOptionRequest {
     }
 
     /**
-     * The currency code used to evaluate checkout rules, and which are used to help determine the right payment options to display.
+     * The currency code used to evaluate checkout rules, and which are used to help determine the right
+     * payment options to display.
      */
     public PaymentOptionRequest withCurrency(String currency) {
         Utils.checkNotNull(currency, "currency");
@@ -192,7 +207,8 @@ public class PaymentOptionRequest {
     }
 
     /**
-     * The currency code used to evaluate checkout rules, and which are used to help determine the right payment options to display.
+     * The currency code used to evaluate checkout rules, and which are used to help determine the right
+     * payment options to display.
      */
     public PaymentOptionRequest withCurrency(JsonNullable<String> currency) {
         Utils.checkNotNull(currency, "currency");
@@ -201,7 +217,8 @@ public class PaymentOptionRequest {
     }
 
     /**
-     * The amount used to evaluate checkout rules, and which are used to help determine the right payment options to display.
+     * The amount used to evaluate checkout rules, and which are used to help determine the right payment
+     * options to display.
      */
     public PaymentOptionRequest withAmount(long amount) {
         Utils.checkNotNull(amount, "amount");
@@ -210,7 +227,8 @@ public class PaymentOptionRequest {
     }
 
     /**
-     * The amount used to evaluate checkout rules, and which are used to help determine the right payment options to display.
+     * The amount used to evaluate checkout rules, and which are used to help determine the right payment
+     * options to display.
      */
     public PaymentOptionRequest withAmount(JsonNullable<Long> amount) {
         Utils.checkNotNull(amount, "amount");
@@ -238,7 +256,8 @@ public class PaymentOptionRequest {
     }
 
     /**
-     * The cart items used to evaluate checkout rules, and which are used to help determine the right payment options to display.
+     * The cart items used to evaluate checkout rules, and which are used to help determine the right
+     * payment options to display.
      */
     public PaymentOptionRequest withCartItems(List<CartItem> cartItems) {
         Utils.checkNotNull(cartItems, "cartItems");
@@ -247,7 +266,8 @@ public class PaymentOptionRequest {
     }
 
     /**
-     * The cart items used to evaluate checkout rules, and which are used to help determine the right payment options to display.
+     * The cart items used to evaluate checkout rules, and which are used to help determine the right
+     * payment options to display.
      */
     public PaymentOptionRequest withCartItems(JsonNullable<? extends List<CartItem>> cartItems) {
         Utils.checkNotNull(cartItems, "cartItems");
@@ -312,7 +332,8 @@ public class PaymentOptionRequest {
 
 
         /**
-         * The metadata to used to evaluate checkout rules, which will help determine the right payment options to display.
+         * The metadata to used to evaluate checkout rules, which will help determine the right payment options
+         * to display.
          */
         public Builder metadata(Map<String, String> metadata) {
             Utils.checkNotNull(metadata, "metadata");
@@ -321,7 +342,8 @@ public class PaymentOptionRequest {
         }
 
         /**
-         * The metadata to used to evaluate checkout rules, which will help determine the right payment options to display.
+         * The metadata to used to evaluate checkout rules, which will help determine the right payment options
+         * to display.
          */
         public Builder metadata(JsonNullable<? extends Map<String, String>> metadata) {
             Utils.checkNotNull(metadata, "metadata");
@@ -331,7 +353,8 @@ public class PaymentOptionRequest {
 
 
         /**
-         * The country code used to evaluate checkout rules, and which are used to help determine the right payment options to display.
+         * The country code used to evaluate checkout rules, and which are used to help determine the right
+         * payment options to display.
          */
         public Builder country(String country) {
             Utils.checkNotNull(country, "country");
@@ -340,7 +363,8 @@ public class PaymentOptionRequest {
         }
 
         /**
-         * The country code used to evaluate checkout rules, and which are used to help determine the right payment options to display.
+         * The country code used to evaluate checkout rules, and which are used to help determine the right
+         * payment options to display.
          */
         public Builder country(JsonNullable<String> country) {
             Utils.checkNotNull(country, "country");
@@ -350,7 +374,8 @@ public class PaymentOptionRequest {
 
 
         /**
-         * The currency code used to evaluate checkout rules, and which are used to help determine the right payment options to display.
+         * The currency code used to evaluate checkout rules, and which are used to help determine the right
+         * payment options to display.
          */
         public Builder currency(String currency) {
             Utils.checkNotNull(currency, "currency");
@@ -359,7 +384,8 @@ public class PaymentOptionRequest {
         }
 
         /**
-         * The currency code used to evaluate checkout rules, and which are used to help determine the right payment options to display.
+         * The currency code used to evaluate checkout rules, and which are used to help determine the right
+         * payment options to display.
          */
         public Builder currency(JsonNullable<String> currency) {
             Utils.checkNotNull(currency, "currency");
@@ -369,7 +395,8 @@ public class PaymentOptionRequest {
 
 
         /**
-         * The amount used to evaluate checkout rules, and which are used to help determine the right payment options to display.
+         * The amount used to evaluate checkout rules, and which are used to help determine the right payment
+         * options to display.
          */
         public Builder amount(long amount) {
             Utils.checkNotNull(amount, "amount");
@@ -378,7 +405,8 @@ public class PaymentOptionRequest {
         }
 
         /**
-         * The amount used to evaluate checkout rules, and which are used to help determine the right payment options to display.
+         * The amount used to evaluate checkout rules, and which are used to help determine the right payment
+         * options to display.
          */
         public Builder amount(JsonNullable<Long> amount) {
             Utils.checkNotNull(amount, "amount");
@@ -407,7 +435,8 @@ public class PaymentOptionRequest {
 
 
         /**
-         * The cart items used to evaluate checkout rules, and which are used to help determine the right payment options to display.
+         * The cart items used to evaluate checkout rules, and which are used to help determine the right
+         * payment options to display.
          */
         public Builder cartItems(List<CartItem> cartItems) {
             Utils.checkNotNull(cartItems, "cartItems");
@@ -416,7 +445,8 @@ public class PaymentOptionRequest {
         }
 
         /**
-         * The cart items used to evaluate checkout rules, and which are used to help determine the right payment options to display.
+         * The cart items used to evaluate checkout rules, and which are used to help determine the right
+         * payment options to display.
          */
         public Builder cartItems(JsonNullable<? extends List<CartItem>> cartItems) {
             Utils.checkNotNull(cartItems, "cartItems");

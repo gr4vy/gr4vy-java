@@ -18,7 +18,8 @@ import java.lang.SuppressWarnings;
 /**
  * TransactionCreatePaymentMethod
  * 
- * <p>The optional payment method to use for this transaction. This field is required if no `gift_cards` have been added.
+ * <p>The optional payment method to use for this transaction. This field is required if no `gift_cards`
+ * have been added.
  */
 @JsonDeserialize(using = TransactionCreatePaymentMethod._Deserializer.class)
 public class TransactionCreatePaymentMethod {

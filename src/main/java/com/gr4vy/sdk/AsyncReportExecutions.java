@@ -52,7 +52,7 @@ public class AsyncReportExecutions {
      * <p>List all executed reports that have been generated.
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;ListAllReportExecutionsResponse&gt; - The async response
+     * @return {@code CompletableFuture<ListAllReportExecutionsResponse>} - The async response
      */
     public CompletableFuture<ListAllReportExecutionsResponse> list(ListAllReportExecutionsRequest request) {
         return list(request, Optional.empty());
@@ -65,7 +65,7 @@ public class AsyncReportExecutions {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;ListAllReportExecutionsResponse&gt; - The async response
+     * @return {@code CompletableFuture<ListAllReportExecutionsResponse>} - The async response
      */
     public CompletableFuture<ListAllReportExecutionsResponse> list(ListAllReportExecutionsRequest request, Optional<Options> options) {
         AsyncRequestOperation<ListAllReportExecutionsRequest, ListAllReportExecutionsResponse> operation

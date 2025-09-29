@@ -17,7 +17,8 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 public class BraintreeDynamicDataFieldsOptions {
     /**
-     * Passes the 3DS status to the Braintree API using `customFields` with the key set to the value of `three_ds_auth_status`
+     * Passes the 3DS status to the Braintree API using `customFields` with the key set to the value of
+     * `three_ds_auth_status`
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("three_ds_auth_status")
@@ -55,7 +56,8 @@ public class BraintreeDynamicDataFieldsOptions {
     }
 
     /**
-     * Passes the 3DS status to the Braintree API using `customFields` with the key set to the value of `three_ds_auth_status`
+     * Passes the 3DS status to the Braintree API using `customFields` with the key set to the value of
+     * `three_ds_auth_status`
      */
     @JsonIgnore
     public JsonNullable<String> threeDsAuthStatus() {
@@ -85,7 +87,8 @@ public class BraintreeDynamicDataFieldsOptions {
 
 
     /**
-     * Passes the 3DS status to the Braintree API using `customFields` with the key set to the value of `three_ds_auth_status`
+     * Passes the 3DS status to the Braintree API using `customFields` with the key set to the value of
+     * `three_ds_auth_status`
      */
     public BraintreeDynamicDataFieldsOptions withThreeDsAuthStatus(String threeDsAuthStatus) {
         Utils.checkNotNull(threeDsAuthStatus, "threeDsAuthStatus");
@@ -94,7 +97,8 @@ public class BraintreeDynamicDataFieldsOptions {
     }
 
     /**
-     * Passes the 3DS status to the Braintree API using `customFields` with the key set to the value of `three_ds_auth_status`
+     * Passes the 3DS status to the Braintree API using `customFields` with the key set to the value of
+     * `three_ds_auth_status`
      */
     public BraintreeDynamicDataFieldsOptions withThreeDsAuthStatus(JsonNullable<String> threeDsAuthStatus) {
         Utils.checkNotNull(threeDsAuthStatus, "threeDsAuthStatus");
@@ -182,7 +186,8 @@ public class BraintreeDynamicDataFieldsOptions {
 
 
         /**
-         * Passes the 3DS status to the Braintree API using `customFields` with the key set to the value of `three_ds_auth_status`
+         * Passes the 3DS status to the Braintree API using `customFields` with the key set to the value of
+         * `three_ds_auth_status`
          */
         public Builder threeDsAuthStatus(String threeDsAuthStatus) {
             Utils.checkNotNull(threeDsAuthStatus, "threeDsAuthStatus");
@@ -191,7 +196,8 @@ public class BraintreeDynamicDataFieldsOptions {
         }
 
         /**
-         * Passes the 3DS status to the Braintree API using `customFields` with the key set to the value of `three_ds_auth_status`
+         * Passes the 3DS status to the Braintree API using `customFields` with the key set to the value of
+         * `three_ds_auth_status`
          */
         public Builder threeDsAuthStatus(JsonNullable<String> threeDsAuthStatus) {
             Utils.checkNotNull(threeDsAuthStatus, "threeDsAuthStatus");

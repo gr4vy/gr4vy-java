@@ -42,13 +42,15 @@ public class ListBuyerPaymentMethodsRequest {
     private Optional<? extends OrderBy> orderBy;
 
     /**
-     * The country code to filter payment methods by. This only applies to payment methods with a `country` value.
+     * The country code to filter payment methods by. This only applies to payment methods with a `country`
+     * value.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=country")
     private JsonNullable<String> country;
 
     /**
-     * The currency code to filter payment methods by. This only applies to payment methods with a `currency` value.
+     * The currency code to filter payment methods by. This only applies to payment methods with a
+     * `currency` value.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=currency")
     private JsonNullable<String> currency;
@@ -121,7 +123,8 @@ public class ListBuyerPaymentMethodsRequest {
     }
 
     /**
-     * The country code to filter payment methods by. This only applies to payment methods with a `country` value.
+     * The country code to filter payment methods by. This only applies to payment methods with a `country`
+     * value.
      */
     @JsonIgnore
     public JsonNullable<String> country() {
@@ -129,7 +132,8 @@ public class ListBuyerPaymentMethodsRequest {
     }
 
     /**
-     * The currency code to filter payment methods by. This only applies to payment methods with a `currency` value.
+     * The currency code to filter payment methods by. This only applies to payment methods with a
+     * `currency` value.
      */
     @JsonIgnore
     public JsonNullable<String> currency() {
@@ -205,7 +209,8 @@ public class ListBuyerPaymentMethodsRequest {
     }
 
     /**
-     * The country code to filter payment methods by. This only applies to payment methods with a `country` value.
+     * The country code to filter payment methods by. This only applies to payment methods with a `country`
+     * value.
      */
     public ListBuyerPaymentMethodsRequest withCountry(String country) {
         Utils.checkNotNull(country, "country");
@@ -214,7 +219,8 @@ public class ListBuyerPaymentMethodsRequest {
     }
 
     /**
-     * The country code to filter payment methods by. This only applies to payment methods with a `country` value.
+     * The country code to filter payment methods by. This only applies to payment methods with a `country`
+     * value.
      */
     public ListBuyerPaymentMethodsRequest withCountry(JsonNullable<String> country) {
         Utils.checkNotNull(country, "country");
@@ -223,7 +229,8 @@ public class ListBuyerPaymentMethodsRequest {
     }
 
     /**
-     * The currency code to filter payment methods by. This only applies to payment methods with a `currency` value.
+     * The currency code to filter payment methods by. This only applies to payment methods with a
+     * `currency` value.
      */
     public ListBuyerPaymentMethodsRequest withCurrency(String currency) {
         Utils.checkNotNull(currency, "currency");
@@ -232,7 +239,8 @@ public class ListBuyerPaymentMethodsRequest {
     }
 
     /**
-     * The currency code to filter payment methods by. This only applies to payment methods with a `currency` value.
+     * The currency code to filter payment methods by. This only applies to payment methods with a
+     * `currency` value.
      */
     public ListBuyerPaymentMethodsRequest withCurrency(JsonNullable<String> currency) {
         Utils.checkNotNull(currency, "currency");
@@ -375,7 +383,8 @@ public class ListBuyerPaymentMethodsRequest {
 
 
         /**
-         * The country code to filter payment methods by. This only applies to payment methods with a `country` value.
+         * The country code to filter payment methods by. This only applies to payment methods with a `country`
+         * value.
          */
         public Builder country(String country) {
             Utils.checkNotNull(country, "country");
@@ -384,7 +393,8 @@ public class ListBuyerPaymentMethodsRequest {
         }
 
         /**
-         * The country code to filter payment methods by. This only applies to payment methods with a `country` value.
+         * The country code to filter payment methods by. This only applies to payment methods with a `country`
+         * value.
          */
         public Builder country(JsonNullable<String> country) {
             Utils.checkNotNull(country, "country");
@@ -394,7 +404,8 @@ public class ListBuyerPaymentMethodsRequest {
 
 
         /**
-         * The currency code to filter payment methods by. This only applies to payment methods with a `currency` value.
+         * The currency code to filter payment methods by. This only applies to payment methods with a
+         * `currency` value.
          */
         public Builder currency(String currency) {
             Utils.checkNotNull(currency, "currency");
@@ -403,7 +414,8 @@ public class ListBuyerPaymentMethodsRequest {
         }
 
         /**
-         * The currency code to filter payment methods by. This only applies to payment methods with a `currency` value.
+         * The currency code to filter payment methods by. This only applies to payment methods with a
+         * `currency` value.
          */
         public Builder currency(JsonNullable<String> currency) {
             Utils.checkNotNull(currency, "currency");

@@ -62,7 +62,7 @@ public class AsyncSessions {
      * <p>Create a session for use with Google Pay.
      * 
      * @param googlePaySessionRequest 
-     * @return CompletableFuture&lt;CreateGooglePayDigitalWalletSessionResponse&gt; - The async response
+     * @return {@code CompletableFuture<CreateGooglePayDigitalWalletSessionResponse>} - The async response
      */
     public CompletableFuture<CreateGooglePayDigitalWalletSessionResponse> googlePay(GooglePaySessionRequest googlePaySessionRequest) {
         return googlePay(JsonNullable.undefined(), googlePaySessionRequest);
@@ -75,7 +75,7 @@ public class AsyncSessions {
      * 
      * @param merchantAccountId 
      * @param googlePaySessionRequest 
-     * @return CompletableFuture&lt;CreateGooglePayDigitalWalletSessionResponse&gt; - The async response
+     * @return {@code CompletableFuture<CreateGooglePayDigitalWalletSessionResponse>} - The async response
      */
     public CompletableFuture<CreateGooglePayDigitalWalletSessionResponse> googlePay(JsonNullable<String> merchantAccountId, GooglePaySessionRequest googlePaySessionRequest) {
         CreateGooglePayDigitalWalletSessionRequest request =
@@ -108,7 +108,7 @@ public class AsyncSessions {
      * <p>Create a session for use with Apple Pay.
      * 
      * @param applePaySessionRequest 
-     * @return CompletableFuture&lt;CreateApplePayDigitalWalletSessionResponse&gt; - The async response
+     * @return {@code CompletableFuture<CreateApplePayDigitalWalletSessionResponse>} - The async response
      */
     public CompletableFuture<CreateApplePayDigitalWalletSessionResponse> applePay(ApplePaySessionRequest applePaySessionRequest) {
         return applePay(JsonNullable.undefined(), applePaySessionRequest);
@@ -121,7 +121,7 @@ public class AsyncSessions {
      * 
      * @param merchantAccountId 
      * @param applePaySessionRequest 
-     * @return CompletableFuture&lt;CreateApplePayDigitalWalletSessionResponse&gt; - The async response
+     * @return {@code CompletableFuture<CreateApplePayDigitalWalletSessionResponse>} - The async response
      */
     public CompletableFuture<CreateApplePayDigitalWalletSessionResponse> applePay(JsonNullable<String> merchantAccountId, ApplePaySessionRequest applePaySessionRequest) {
         CreateApplePayDigitalWalletSessionRequest request =
@@ -154,7 +154,7 @@ public class AsyncSessions {
      * <p>Create a session for use with Click to Pay.
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;CreateClickToPayDigitalWalletSessionResponse&gt; - The async response
+     * @return {@code CompletableFuture<CreateClickToPayDigitalWalletSessionResponse>} - The async response
      */
     public CompletableFuture<CreateClickToPayDigitalWalletSessionResponse> clickToPay(ClickToPaySessionRequest request) {
         AsyncRequestOperation<ClickToPaySessionRequest, CreateClickToPayDigitalWalletSessionResponse> operation

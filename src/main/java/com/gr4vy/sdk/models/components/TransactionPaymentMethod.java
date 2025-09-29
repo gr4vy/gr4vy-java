@@ -35,14 +35,16 @@ public class TransactionPaymentMethod {
     private JsonNullable<String> approvalUrl;
 
     /**
-     * The 2-letter ISO code of the country this payment method can be used for. If this value is null the payment method may be used in multiple countries.
+     * The 2-letter ISO code of the country this payment method can be used for. If this value is null the
+     * payment method may be used in multiple countries.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("country")
     private JsonNullable<String> country;
 
     /**
-     * The ISO-4217 currency code that this payment method can be used for. If this value is null the payment method may be used for multiple currencies.
+     * The ISO-4217 currency code that this payment method can be used for. If this value is null the
+     * payment method may be used for multiple currencies.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("currency")
@@ -70,7 +72,8 @@ public class TransactionPaymentMethod {
     private JsonNullable<String> fingerprint;
 
     /**
-     * A label for the card or the account. For a paypal payment method this is the user's email address. For a card it is the last 4 digits of the card.
+     * A label for the card or the account. For a paypal payment method this is the user's email address.
+     * For a card it is the last 4 digits of the card.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("label")
@@ -109,7 +112,8 @@ public class TransactionPaymentMethod {
     private JsonNullable<String> id;
 
     /**
-     * The browser target that an approval URL must be opened in. If any or null, then there is no specific requirement.
+     * The browser target that an approval URL must be opened in. If any or null, then there is no specific
+     * requirement.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("approval_target")
@@ -123,7 +127,8 @@ public class TransactionPaymentMethod {
     private JsonNullable<String> externalIdentifier;
 
     /**
-     * The payment account reference (PAR) returned by the card scheme. This is a unique reference to the underlying account that has been used to fund this payment method.
+     * The payment account reference (PAR) returned by the card scheme. This is a unique reference to the
+     * underlying account that has been used to fund this payment method.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("payment_account_reference")
@@ -205,7 +210,8 @@ public class TransactionPaymentMethod {
     }
 
     /**
-     * The 2-letter ISO code of the country this payment method can be used for. If this value is null the payment method may be used in multiple countries.
+     * The 2-letter ISO code of the country this payment method can be used for. If this value is null the
+     * payment method may be used in multiple countries.
      */
     @JsonIgnore
     public JsonNullable<String> country() {
@@ -213,7 +219,8 @@ public class TransactionPaymentMethod {
     }
 
     /**
-     * The ISO-4217 currency code that this payment method can be used for. If this value is null the payment method may be used for multiple currencies.
+     * The ISO-4217 currency code that this payment method can be used for. If this value is null the
+     * payment method may be used for multiple currencies.
      */
     @JsonIgnore
     public JsonNullable<String> currency() {
@@ -246,7 +253,8 @@ public class TransactionPaymentMethod {
     }
 
     /**
-     * A label for the card or the account. For a paypal payment method this is the user's email address. For a card it is the last 4 digits of the card.
+     * A label for the card or the account. For a paypal payment method this is the user's email address.
+     * For a card it is the last 4 digits of the card.
      */
     @JsonIgnore
     public JsonNullable<String> label() {
@@ -293,7 +301,8 @@ public class TransactionPaymentMethod {
     }
 
     /**
-     * The browser target that an approval URL must be opened in. If any or null, then there is no specific requirement.
+     * The browser target that an approval URL must be opened in. If any or null, then there is no specific
+     * requirement.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -310,7 +319,8 @@ public class TransactionPaymentMethod {
     }
 
     /**
-     * The payment account reference (PAR) returned by the card scheme. This is a unique reference to the underlying account that has been used to fund this payment method.
+     * The payment account reference (PAR) returned by the card scheme. This is a unique reference to the
+     * underlying account that has been used to fund this payment method.
      */
     @JsonIgnore
     public JsonNullable<String> paymentAccountReference() {
@@ -341,7 +351,8 @@ public class TransactionPaymentMethod {
     }
 
     /**
-     * The 2-letter ISO code of the country this payment method can be used for. If this value is null the payment method may be used in multiple countries.
+     * The 2-letter ISO code of the country this payment method can be used for. If this value is null the
+     * payment method may be used in multiple countries.
      */
     public TransactionPaymentMethod withCountry(String country) {
         Utils.checkNotNull(country, "country");
@@ -350,7 +361,8 @@ public class TransactionPaymentMethod {
     }
 
     /**
-     * The 2-letter ISO code of the country this payment method can be used for. If this value is null the payment method may be used in multiple countries.
+     * The 2-letter ISO code of the country this payment method can be used for. If this value is null the
+     * payment method may be used in multiple countries.
      */
     public TransactionPaymentMethod withCountry(JsonNullable<String> country) {
         Utils.checkNotNull(country, "country");
@@ -359,7 +371,8 @@ public class TransactionPaymentMethod {
     }
 
     /**
-     * The ISO-4217 currency code that this payment method can be used for. If this value is null the payment method may be used for multiple currencies.
+     * The ISO-4217 currency code that this payment method can be used for. If this value is null the
+     * payment method may be used for multiple currencies.
      */
     public TransactionPaymentMethod withCurrency(String currency) {
         Utils.checkNotNull(currency, "currency");
@@ -368,7 +381,8 @@ public class TransactionPaymentMethod {
     }
 
     /**
-     * The ISO-4217 currency code that this payment method can be used for. If this value is null the payment method may be used for multiple currencies.
+     * The ISO-4217 currency code that this payment method can be used for. If this value is null the
+     * payment method may be used for multiple currencies.
      */
     public TransactionPaymentMethod withCurrency(JsonNullable<String> currency) {
         Utils.checkNotNull(currency, "currency");
@@ -431,7 +445,8 @@ public class TransactionPaymentMethod {
     }
 
     /**
-     * A label for the card or the account. For a paypal payment method this is the user's email address. For a card it is the last 4 digits of the card.
+     * A label for the card or the account. For a paypal payment method this is the user's email address.
+     * For a card it is the last 4 digits of the card.
      */
     public TransactionPaymentMethod withLabel(String label) {
         Utils.checkNotNull(label, "label");
@@ -440,7 +455,8 @@ public class TransactionPaymentMethod {
     }
 
     /**
-     * A label for the card or the account. For a paypal payment method this is the user's email address. For a card it is the last 4 digits of the card.
+     * A label for the card or the account. For a paypal payment method this is the user's email address.
+     * For a card it is the last 4 digits of the card.
      */
     public TransactionPaymentMethod withLabel(JsonNullable<String> label) {
         Utils.checkNotNull(label, "label");
@@ -527,7 +543,8 @@ public class TransactionPaymentMethod {
     }
 
     /**
-     * The browser target that an approval URL must be opened in. If any or null, then there is no specific requirement.
+     * The browser target that an approval URL must be opened in. If any or null, then there is no specific
+     * requirement.
      */
     public TransactionPaymentMethod withApprovalTarget(ApprovalTarget approvalTarget) {
         Utils.checkNotNull(approvalTarget, "approvalTarget");
@@ -536,7 +553,8 @@ public class TransactionPaymentMethod {
     }
 
     /**
-     * The browser target that an approval URL must be opened in. If any or null, then there is no specific requirement.
+     * The browser target that an approval URL must be opened in. If any or null, then there is no specific
+     * requirement.
      */
     public TransactionPaymentMethod withApprovalTarget(JsonNullable<? extends ApprovalTarget> approvalTarget) {
         Utils.checkNotNull(approvalTarget, "approvalTarget");
@@ -563,7 +581,8 @@ public class TransactionPaymentMethod {
     }
 
     /**
-     * The payment account reference (PAR) returned by the card scheme. This is a unique reference to the underlying account that has been used to fund this payment method.
+     * The payment account reference (PAR) returned by the card scheme. This is a unique reference to the
+     * underlying account that has been used to fund this payment method.
      */
     public TransactionPaymentMethod withPaymentAccountReference(String paymentAccountReference) {
         Utils.checkNotNull(paymentAccountReference, "paymentAccountReference");
@@ -572,7 +591,8 @@ public class TransactionPaymentMethod {
     }
 
     /**
-     * The payment account reference (PAR) returned by the card scheme. This is a unique reference to the underlying account that has been used to fund this payment method.
+     * The payment account reference (PAR) returned by the card scheme. This is a unique reference to the
+     * underlying account that has been used to fund this payment method.
      */
     public TransactionPaymentMethod withPaymentAccountReference(JsonNullable<String> paymentAccountReference) {
         Utils.checkNotNull(paymentAccountReference, "paymentAccountReference");
@@ -698,7 +718,8 @@ public class TransactionPaymentMethod {
 
 
         /**
-         * The 2-letter ISO code of the country this payment method can be used for. If this value is null the payment method may be used in multiple countries.
+         * The 2-letter ISO code of the country this payment method can be used for. If this value is null the
+         * payment method may be used in multiple countries.
          */
         public Builder country(String country) {
             Utils.checkNotNull(country, "country");
@@ -707,7 +728,8 @@ public class TransactionPaymentMethod {
         }
 
         /**
-         * The 2-letter ISO code of the country this payment method can be used for. If this value is null the payment method may be used in multiple countries.
+         * The 2-letter ISO code of the country this payment method can be used for. If this value is null the
+         * payment method may be used in multiple countries.
          */
         public Builder country(JsonNullable<String> country) {
             Utils.checkNotNull(country, "country");
@@ -717,7 +739,8 @@ public class TransactionPaymentMethod {
 
 
         /**
-         * The ISO-4217 currency code that this payment method can be used for. If this value is null the payment method may be used for multiple currencies.
+         * The ISO-4217 currency code that this payment method can be used for. If this value is null the
+         * payment method may be used for multiple currencies.
          */
         public Builder currency(String currency) {
             Utils.checkNotNull(currency, "currency");
@@ -726,7 +749,8 @@ public class TransactionPaymentMethod {
         }
 
         /**
-         * The ISO-4217 currency code that this payment method can be used for. If this value is null the payment method may be used for multiple currencies.
+         * The ISO-4217 currency code that this payment method can be used for. If this value is null the
+         * payment method may be used for multiple currencies.
          */
         public Builder currency(JsonNullable<String> currency) {
             Utils.checkNotNull(currency, "currency");
@@ -793,7 +817,8 @@ public class TransactionPaymentMethod {
 
 
         /**
-         * A label for the card or the account. For a paypal payment method this is the user's email address. For a card it is the last 4 digits of the card.
+         * A label for the card or the account. For a paypal payment method this is the user's email address.
+         * For a card it is the last 4 digits of the card.
          */
         public Builder label(String label) {
             Utils.checkNotNull(label, "label");
@@ -802,7 +827,8 @@ public class TransactionPaymentMethod {
         }
 
         /**
-         * A label for the card or the account. For a paypal payment method this is the user's email address. For a card it is the last 4 digits of the card.
+         * A label for the card or the account. For a paypal payment method this is the user's email address.
+         * For a card it is the last 4 digits of the card.
          */
         public Builder label(JsonNullable<String> label) {
             Utils.checkNotNull(label, "label");
@@ -895,7 +921,8 @@ public class TransactionPaymentMethod {
 
 
         /**
-         * The browser target that an approval URL must be opened in. If any or null, then there is no specific requirement.
+         * The browser target that an approval URL must be opened in. If any or null, then there is no specific
+         * requirement.
          */
         public Builder approvalTarget(ApprovalTarget approvalTarget) {
             Utils.checkNotNull(approvalTarget, "approvalTarget");
@@ -904,7 +931,8 @@ public class TransactionPaymentMethod {
         }
 
         /**
-         * The browser target that an approval URL must be opened in. If any or null, then there is no specific requirement.
+         * The browser target that an approval URL must be opened in. If any or null, then there is no specific
+         * requirement.
          */
         public Builder approvalTarget(JsonNullable<? extends ApprovalTarget> approvalTarget) {
             Utils.checkNotNull(approvalTarget, "approvalTarget");
@@ -933,7 +961,8 @@ public class TransactionPaymentMethod {
 
 
         /**
-         * The payment account reference (PAR) returned by the card scheme. This is a unique reference to the underlying account that has been used to fund this payment method.
+         * The payment account reference (PAR) returned by the card scheme. This is a unique reference to the
+         * underlying account that has been used to fund this payment method.
          */
         public Builder paymentAccountReference(String paymentAccountReference) {
             Utils.checkNotNull(paymentAccountReference, "paymentAccountReference");
@@ -942,7 +971,8 @@ public class TransactionPaymentMethod {
         }
 
         /**
-         * The payment account reference (PAR) returned by the card scheme. This is a unique reference to the underlying account that has been used to fund this payment method.
+         * The payment account reference (PAR) returned by the card scheme. This is a unique reference to the
+         * underlying account that has been used to fund this payment method.
          */
         public Builder paymentAccountReference(JsonNullable<String> paymentAccountReference) {
             Utils.checkNotNull(paymentAccountReference, "paymentAccountReference");

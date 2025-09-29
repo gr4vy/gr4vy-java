@@ -75,14 +75,17 @@ public class Refund {
     private RefundTargetType targetType;
 
     /**
-     * The optional ID of the instrument that was refunded. This may be `null` if the instrument was not stored.
+     * The optional ID of the instrument that was refunded. This may be `null` if the instrument was not
+     * stored.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("target_id")
     private JsonNullable<String> targetId;
 
     /**
-     * The base62 encoded refund ID. This represents a shorter version of this refund's `id` which is sent to payment services, anti-fraud services, and other connectors. You can use this ID to reconcile a payment service's refund against our system.
+     * The base62 encoded refund ID. This represents a shorter version of this refund's `id` which is sent
+     * to payment services, anti-fraud services, and other connectors. You can use this ID to reconcile a
+     * payment service's refund against our system.
      */
     @JsonProperty("reconciliation_id")
     private String reconciliationId;
@@ -95,7 +98,9 @@ public class Refund {
     private JsonNullable<String> externalIdentifier;
 
     /**
-     * The base62 encoded transaction ID. This represents a shorter version of the related transaction's `id` which is sent to payment services, anti-fraud services, and other connectors. You can use this ID to reconcile a payment service's transaction against our system.
+     * The base62 encoded transaction ID. This represents a shorter version of the related transaction's
+     * `id` which is sent to payment services, anti-fraud services, and other connectors. You can use this
+     * ID to reconcile a payment service's transaction against our system.
      */
     @JsonProperty("transaction_reconciliation_id")
     private String transactionReconciliationId;
@@ -134,14 +139,16 @@ public class Refund {
     private JsonNullable<String> errorCode;
 
     /**
-     * This is the response code received from the payment service. This can be set to any value and is not standardized across different payment services.
+     * This is the response code received from the payment service. This can be set to any value and is not
+     * standardized across different payment services.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("raw_response_code")
     private JsonNullable<String> rawResponseCode;
 
     /**
-     * This is the response description received from the payment service. This can be set to any value and is not standardized across different payment services.
+     * This is the response description received from the payment service. This can be set to any value and
+     * is not standardized across different payment services.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("raw_response_description")
@@ -296,7 +303,8 @@ public class Refund {
     }
 
     /**
-     * The optional ID of the instrument that was refunded. This may be `null` if the instrument was not stored.
+     * The optional ID of the instrument that was refunded. This may be `null` if the instrument was not
+     * stored.
      */
     @JsonIgnore
     public JsonNullable<String> targetId() {
@@ -304,7 +312,9 @@ public class Refund {
     }
 
     /**
-     * The base62 encoded refund ID. This represents a shorter version of this refund's `id` which is sent to payment services, anti-fraud services, and other connectors. You can use this ID to reconcile a payment service's refund against our system.
+     * The base62 encoded refund ID. This represents a shorter version of this refund's `id` which is sent
+     * to payment services, anti-fraud services, and other connectors. You can use this ID to reconcile a
+     * payment service's refund against our system.
      */
     @JsonIgnore
     public String reconciliationId() {
@@ -320,7 +330,9 @@ public class Refund {
     }
 
     /**
-     * The base62 encoded transaction ID. This represents a shorter version of the related transaction's `id` which is sent to payment services, anti-fraud services, and other connectors. You can use this ID to reconcile a payment service's transaction against our system.
+     * The base62 encoded transaction ID. This represents a shorter version of the related transaction's
+     * `id` which is sent to payment services, anti-fraud services, and other connectors. You can use this
+     * ID to reconcile a payment service's transaction against our system.
      */
     @JsonIgnore
     public String transactionReconciliationId() {
@@ -369,7 +381,8 @@ public class Refund {
     }
 
     /**
-     * This is the response code received from the payment service. This can be set to any value and is not standardized across different payment services.
+     * This is the response code received from the payment service. This can be set to any value and is not
+     * standardized across different payment services.
      */
     @JsonIgnore
     public JsonNullable<String> rawResponseCode() {
@@ -377,7 +390,8 @@ public class Refund {
     }
 
     /**
-     * This is the response description received from the payment service. This can be set to any value and is not standardized across different payment services.
+     * This is the response description received from the payment service. This can be set to any value and
+     * is not standardized across different payment services.
      */
     @JsonIgnore
     public JsonNullable<String> rawResponseDescription() {
@@ -474,7 +488,8 @@ public class Refund {
     }
 
     /**
-     * The optional ID of the instrument that was refunded. This may be `null` if the instrument was not stored.
+     * The optional ID of the instrument that was refunded. This may be `null` if the instrument was not
+     * stored.
      */
     public Refund withTargetId(String targetId) {
         Utils.checkNotNull(targetId, "targetId");
@@ -483,7 +498,8 @@ public class Refund {
     }
 
     /**
-     * The optional ID of the instrument that was refunded. This may be `null` if the instrument was not stored.
+     * The optional ID of the instrument that was refunded. This may be `null` if the instrument was not
+     * stored.
      */
     public Refund withTargetId(JsonNullable<String> targetId) {
         Utils.checkNotNull(targetId, "targetId");
@@ -492,7 +508,9 @@ public class Refund {
     }
 
     /**
-     * The base62 encoded refund ID. This represents a shorter version of this refund's `id` which is sent to payment services, anti-fraud services, and other connectors. You can use this ID to reconcile a payment service's refund against our system.
+     * The base62 encoded refund ID. This represents a shorter version of this refund's `id` which is sent
+     * to payment services, anti-fraud services, and other connectors. You can use this ID to reconcile a
+     * payment service's refund against our system.
      */
     public Refund withReconciliationId(String reconciliationId) {
         Utils.checkNotNull(reconciliationId, "reconciliationId");
@@ -519,7 +537,9 @@ public class Refund {
     }
 
     /**
-     * The base62 encoded transaction ID. This represents a shorter version of the related transaction's `id` which is sent to payment services, anti-fraud services, and other connectors. You can use this ID to reconcile a payment service's transaction against our system.
+     * The base62 encoded transaction ID. This represents a shorter version of the related transaction's
+     * `id` which is sent to payment services, anti-fraud services, and other connectors. You can use this
+     * ID to reconcile a payment service's transaction against our system.
      */
     public Refund withTransactionReconciliationId(String transactionReconciliationId) {
         Utils.checkNotNull(transactionReconciliationId, "transactionReconciliationId");
@@ -600,7 +620,8 @@ public class Refund {
     }
 
     /**
-     * This is the response code received from the payment service. This can be set to any value and is not standardized across different payment services.
+     * This is the response code received from the payment service. This can be set to any value and is not
+     * standardized across different payment services.
      */
     public Refund withRawResponseCode(String rawResponseCode) {
         Utils.checkNotNull(rawResponseCode, "rawResponseCode");
@@ -609,7 +630,8 @@ public class Refund {
     }
 
     /**
-     * This is the response code received from the payment service. This can be set to any value and is not standardized across different payment services.
+     * This is the response code received from the payment service. This can be set to any value and is not
+     * standardized across different payment services.
      */
     public Refund withRawResponseCode(JsonNullable<String> rawResponseCode) {
         Utils.checkNotNull(rawResponseCode, "rawResponseCode");
@@ -618,7 +640,8 @@ public class Refund {
     }
 
     /**
-     * This is the response description received from the payment service. This can be set to any value and is not standardized across different payment services.
+     * This is the response description received from the payment service. This can be set to any value and
+     * is not standardized across different payment services.
      */
     public Refund withRawResponseDescription(String rawResponseDescription) {
         Utils.checkNotNull(rawResponseDescription, "rawResponseDescription");
@@ -627,7 +650,8 @@ public class Refund {
     }
 
     /**
-     * This is the response description received from the payment service. This can be set to any value and is not standardized across different payment services.
+     * This is the response description received from the payment service. This can be set to any value and
+     * is not standardized across different payment services.
      */
     public Refund withRawResponseDescription(JsonNullable<String> rawResponseDescription) {
         Utils.checkNotNull(rawResponseDescription, "rawResponseDescription");
@@ -843,7 +867,8 @@ public class Refund {
 
 
         /**
-         * The optional ID of the instrument that was refunded. This may be `null` if the instrument was not stored.
+         * The optional ID of the instrument that was refunded. This may be `null` if the instrument was not
+         * stored.
          */
         public Builder targetId(String targetId) {
             Utils.checkNotNull(targetId, "targetId");
@@ -852,7 +877,8 @@ public class Refund {
         }
 
         /**
-         * The optional ID of the instrument that was refunded. This may be `null` if the instrument was not stored.
+         * The optional ID of the instrument that was refunded. This may be `null` if the instrument was not
+         * stored.
          */
         public Builder targetId(JsonNullable<String> targetId) {
             Utils.checkNotNull(targetId, "targetId");
@@ -862,7 +888,9 @@ public class Refund {
 
 
         /**
-         * The base62 encoded refund ID. This represents a shorter version of this refund's `id` which is sent to payment services, anti-fraud services, and other connectors. You can use this ID to reconcile a payment service's refund against our system.
+         * The base62 encoded refund ID. This represents a shorter version of this refund's `id` which is sent
+         * to payment services, anti-fraud services, and other connectors. You can use this ID to reconcile a
+         * payment service's refund against our system.
          */
         public Builder reconciliationId(String reconciliationId) {
             Utils.checkNotNull(reconciliationId, "reconciliationId");
@@ -891,7 +919,9 @@ public class Refund {
 
 
         /**
-         * The base62 encoded transaction ID. This represents a shorter version of the related transaction's `id` which is sent to payment services, anti-fraud services, and other connectors. You can use this ID to reconcile a payment service's transaction against our system.
+         * The base62 encoded transaction ID. This represents a shorter version of the related transaction's
+         * `id` which is sent to payment services, anti-fraud services, and other connectors. You can use this
+         * ID to reconcile a payment service's transaction against our system.
          */
         public Builder transactionReconciliationId(String transactionReconciliationId) {
             Utils.checkNotNull(transactionReconciliationId, "transactionReconciliationId");
@@ -978,7 +1008,8 @@ public class Refund {
 
 
         /**
-         * This is the response code received from the payment service. This can be set to any value and is not standardized across different payment services.
+         * This is the response code received from the payment service. This can be set to any value and is not
+         * standardized across different payment services.
          */
         public Builder rawResponseCode(String rawResponseCode) {
             Utils.checkNotNull(rawResponseCode, "rawResponseCode");
@@ -987,7 +1018,8 @@ public class Refund {
         }
 
         /**
-         * This is the response code received from the payment service. This can be set to any value and is not standardized across different payment services.
+         * This is the response code received from the payment service. This can be set to any value and is not
+         * standardized across different payment services.
          */
         public Builder rawResponseCode(JsonNullable<String> rawResponseCode) {
             Utils.checkNotNull(rawResponseCode, "rawResponseCode");
@@ -997,7 +1029,8 @@ public class Refund {
 
 
         /**
-         * This is the response description received from the payment service. This can be set to any value and is not standardized across different payment services.
+         * This is the response description received from the payment service. This can be set to any value and
+         * is not standardized across different payment services.
          */
         public Builder rawResponseDescription(String rawResponseDescription) {
             Utils.checkNotNull(rawResponseDescription, "rawResponseDescription");
@@ -1006,7 +1039,8 @@ public class Refund {
         }
 
         /**
-         * This is the response description received from the payment service. This can be set to any value and is not standardized across different payment services.
+         * This is the response description received from the payment service. This can be set to any value and
+         * is not standardized across different payment services.
          */
         public Builder rawResponseDescription(JsonNullable<String> rawResponseDescription) {
             Utils.checkNotNull(rawResponseDescription, "rawResponseDescription");

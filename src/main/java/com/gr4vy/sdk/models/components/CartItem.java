@@ -20,7 +20,8 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 public class CartItem {
     /**
-     * The name of the cart item. The value you set for this property may be truncated if the maximum length accepted by a payment service provider is less than 255 characters.
+     * The name of the cart item. The value you set for this property may be truncated if the maximum
+     * length accepted by a payment service provider is less than 255 characters.
      */
     @JsonProperty("name")
     private String name;
@@ -32,27 +33,33 @@ public class CartItem {
     private long quantity;
 
     /**
-     * The amount for an individual item represented as a monetary amount in the smallest currency unit for the given currency, for example `1299` USD cents represents `$12.99`. The amount sent through to the payment processor as unitary amount will be calculated to include the discount and tax values sent as part of this cart item.
+     * The amount for an individual item represented as a monetary amount in the smallest currency unit for
+     * the given currency, for example `1299` USD cents represents `$12.99`. The amount sent through to the
+     * payment processor as unitary amount will be calculated to include the discount and tax values sent
+     * as part of this cart item.
      */
     @JsonProperty("unit_amount")
     private long unitAmount;
 
     /**
-     * The amount discounted for this item represented as a monetary amount in the smallest currency unit for the given currency, for example `1299` USD cents represents `$12.99`.
+     * The amount discounted for this item represented as a monetary amount in the smallest currency unit
+     * for the given currency, for example `1299` USD cents represents `$12.99`.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("discount_amount")
     private JsonNullable<Long> discountAmount;
 
     /**
-     * The tax amount for this item represented as a monetary amount in the smallest currency unit for the given currency, for example `1299` USD cents represents `$12.99`.
+     * The tax amount for this item represented as a monetary amount in the smallest currency unit for the
+     * given currency, for example `1299` USD cents represents `$12.99`.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("tax_amount")
     private JsonNullable<Long> taxAmount;
 
     /**
-     * An external identifier for the cart item. This can be set to any value and is not sent to the payment service.
+     * An external identifier for the cart item. This can be set to any value and is not sent to the
+     * payment service.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("external_identifier")
@@ -129,14 +136,16 @@ public class CartItem {
     private JsonNullable<String> description;
 
     /**
-     * Item import or export duties represented as a monetary amount in the smallest currency unit for the given currency, for example `1299` cents to create an authorization for `$12.99`
+     * Item import or export duties represented as a monetary amount in the smallest currency unit for the
+     * given currency, for example `1299` cents to create an authorization for `$12.99`
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("duty_amount")
     private JsonNullable<Long> dutyAmount;
 
     /**
-     * Freight/shipping amount represented as a monetary amount in the smallest currency unit for the given currency, for example `1299` cents to create an authorization for `$12.99`
+     * Freight/shipping amount represented as a monetary amount in the smallest currency unit for the given
+     * currency, for example `1299` cents to create an authorization for `$12.99`
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("shipping_amount")
@@ -213,7 +222,8 @@ public class CartItem {
     }
 
     /**
-     * The name of the cart item. The value you set for this property may be truncated if the maximum length accepted by a payment service provider is less than 255 characters.
+     * The name of the cart item. The value you set for this property may be truncated if the maximum
+     * length accepted by a payment service provider is less than 255 characters.
      */
     @JsonIgnore
     public String name() {
@@ -229,7 +239,10 @@ public class CartItem {
     }
 
     /**
-     * The amount for an individual item represented as a monetary amount in the smallest currency unit for the given currency, for example `1299` USD cents represents `$12.99`. The amount sent through to the payment processor as unitary amount will be calculated to include the discount and tax values sent as part of this cart item.
+     * The amount for an individual item represented as a monetary amount in the smallest currency unit for
+     * the given currency, for example `1299` USD cents represents `$12.99`. The amount sent through to the
+     * payment processor as unitary amount will be calculated to include the discount and tax values sent
+     * as part of this cart item.
      */
     @JsonIgnore
     public long unitAmount() {
@@ -237,7 +250,8 @@ public class CartItem {
     }
 
     /**
-     * The amount discounted for this item represented as a monetary amount in the smallest currency unit for the given currency, for example `1299` USD cents represents `$12.99`.
+     * The amount discounted for this item represented as a monetary amount in the smallest currency unit
+     * for the given currency, for example `1299` USD cents represents `$12.99`.
      */
     @JsonIgnore
     public JsonNullable<Long> discountAmount() {
@@ -245,7 +259,8 @@ public class CartItem {
     }
 
     /**
-     * The tax amount for this item represented as a monetary amount in the smallest currency unit for the given currency, for example `1299` USD cents represents `$12.99`.
+     * The tax amount for this item represented as a monetary amount in the smallest currency unit for the
+     * given currency, for example `1299` USD cents represents `$12.99`.
      */
     @JsonIgnore
     public JsonNullable<Long> taxAmount() {
@@ -253,7 +268,8 @@ public class CartItem {
     }
 
     /**
-     * An external identifier for the cart item. This can be set to any value and is not sent to the payment service.
+     * An external identifier for the cart item. This can be set to any value and is not sent to the
+     * payment service.
      */
     @JsonIgnore
     public JsonNullable<String> externalIdentifier() {
@@ -343,7 +359,8 @@ public class CartItem {
     }
 
     /**
-     * Item import or export duties represented as a monetary amount in the smallest currency unit for the given currency, for example `1299` cents to create an authorization for `$12.99`
+     * Item import or export duties represented as a monetary amount in the smallest currency unit for the
+     * given currency, for example `1299` cents to create an authorization for `$12.99`
      */
     @JsonIgnore
     public JsonNullable<Long> dutyAmount() {
@@ -351,7 +368,8 @@ public class CartItem {
     }
 
     /**
-     * Freight/shipping amount represented as a monetary amount in the smallest currency unit for the given currency, for example `1299` cents to create an authorization for `$12.99`
+     * Freight/shipping amount represented as a monetary amount in the smallest currency unit for the given
+     * currency, for example `1299` cents to create an authorization for `$12.99`
      */
     @JsonIgnore
     public JsonNullable<Long> shippingAmount() {
@@ -364,7 +382,8 @@ public class CartItem {
 
 
     /**
-     * The name of the cart item. The value you set for this property may be truncated if the maximum length accepted by a payment service provider is less than 255 characters.
+     * The name of the cart item. The value you set for this property may be truncated if the maximum
+     * length accepted by a payment service provider is less than 255 characters.
      */
     public CartItem withName(String name) {
         Utils.checkNotNull(name, "name");
@@ -382,7 +401,10 @@ public class CartItem {
     }
 
     /**
-     * The amount for an individual item represented as a monetary amount in the smallest currency unit for the given currency, for example `1299` USD cents represents `$12.99`. The amount sent through to the payment processor as unitary amount will be calculated to include the discount and tax values sent as part of this cart item.
+     * The amount for an individual item represented as a monetary amount in the smallest currency unit for
+     * the given currency, for example `1299` USD cents represents `$12.99`. The amount sent through to the
+     * payment processor as unitary amount will be calculated to include the discount and tax values sent
+     * as part of this cart item.
      */
     public CartItem withUnitAmount(long unitAmount) {
         Utils.checkNotNull(unitAmount, "unitAmount");
@@ -391,7 +413,8 @@ public class CartItem {
     }
 
     /**
-     * The amount discounted for this item represented as a monetary amount in the smallest currency unit for the given currency, for example `1299` USD cents represents `$12.99`.
+     * The amount discounted for this item represented as a monetary amount in the smallest currency unit
+     * for the given currency, for example `1299` USD cents represents `$12.99`.
      */
     public CartItem withDiscountAmount(long discountAmount) {
         Utils.checkNotNull(discountAmount, "discountAmount");
@@ -400,7 +423,8 @@ public class CartItem {
     }
 
     /**
-     * The amount discounted for this item represented as a monetary amount in the smallest currency unit for the given currency, for example `1299` USD cents represents `$12.99`.
+     * The amount discounted for this item represented as a monetary amount in the smallest currency unit
+     * for the given currency, for example `1299` USD cents represents `$12.99`.
      */
     public CartItem withDiscountAmount(JsonNullable<Long> discountAmount) {
         Utils.checkNotNull(discountAmount, "discountAmount");
@@ -409,7 +433,8 @@ public class CartItem {
     }
 
     /**
-     * The tax amount for this item represented as a monetary amount in the smallest currency unit for the given currency, for example `1299` USD cents represents `$12.99`.
+     * The tax amount for this item represented as a monetary amount in the smallest currency unit for the
+     * given currency, for example `1299` USD cents represents `$12.99`.
      */
     public CartItem withTaxAmount(long taxAmount) {
         Utils.checkNotNull(taxAmount, "taxAmount");
@@ -418,7 +443,8 @@ public class CartItem {
     }
 
     /**
-     * The tax amount for this item represented as a monetary amount in the smallest currency unit for the given currency, for example `1299` USD cents represents `$12.99`.
+     * The tax amount for this item represented as a monetary amount in the smallest currency unit for the
+     * given currency, for example `1299` USD cents represents `$12.99`.
      */
     public CartItem withTaxAmount(JsonNullable<Long> taxAmount) {
         Utils.checkNotNull(taxAmount, "taxAmount");
@@ -427,7 +453,8 @@ public class CartItem {
     }
 
     /**
-     * An external identifier for the cart item. This can be set to any value and is not sent to the payment service.
+     * An external identifier for the cart item. This can be set to any value and is not sent to the
+     * payment service.
      */
     public CartItem withExternalIdentifier(String externalIdentifier) {
         Utils.checkNotNull(externalIdentifier, "externalIdentifier");
@@ -436,7 +463,8 @@ public class CartItem {
     }
 
     /**
-     * An external identifier for the cart item. This can be set to any value and is not sent to the payment service.
+     * An external identifier for the cart item. This can be set to any value and is not sent to the
+     * payment service.
      */
     public CartItem withExternalIdentifier(JsonNullable<String> externalIdentifier) {
         Utils.checkNotNull(externalIdentifier, "externalIdentifier");
@@ -625,7 +653,8 @@ public class CartItem {
     }
 
     /**
-     * Item import or export duties represented as a monetary amount in the smallest currency unit for the given currency, for example `1299` cents to create an authorization for `$12.99`
+     * Item import or export duties represented as a monetary amount in the smallest currency unit for the
+     * given currency, for example `1299` cents to create an authorization for `$12.99`
      */
     public CartItem withDutyAmount(long dutyAmount) {
         Utils.checkNotNull(dutyAmount, "dutyAmount");
@@ -634,7 +663,8 @@ public class CartItem {
     }
 
     /**
-     * Item import or export duties represented as a monetary amount in the smallest currency unit for the given currency, for example `1299` cents to create an authorization for `$12.99`
+     * Item import or export duties represented as a monetary amount in the smallest currency unit for the
+     * given currency, for example `1299` cents to create an authorization for `$12.99`
      */
     public CartItem withDutyAmount(JsonNullable<Long> dutyAmount) {
         Utils.checkNotNull(dutyAmount, "dutyAmount");
@@ -643,7 +673,8 @@ public class CartItem {
     }
 
     /**
-     * Freight/shipping amount represented as a monetary amount in the smallest currency unit for the given currency, for example `1299` cents to create an authorization for `$12.99`
+     * Freight/shipping amount represented as a monetary amount in the smallest currency unit for the given
+     * currency, for example `1299` cents to create an authorization for `$12.99`
      */
     public CartItem withShippingAmount(long shippingAmount) {
         Utils.checkNotNull(shippingAmount, "shippingAmount");
@@ -652,7 +683,8 @@ public class CartItem {
     }
 
     /**
-     * Freight/shipping amount represented as a monetary amount in the smallest currency unit for the given currency, for example `1299` cents to create an authorization for `$12.99`
+     * Freight/shipping amount represented as a monetary amount in the smallest currency unit for the given
+     * currency, for example `1299` cents to create an authorization for `$12.99`
      */
     public CartItem withShippingAmount(JsonNullable<Long> shippingAmount) {
         Utils.checkNotNull(shippingAmount, "shippingAmount");
@@ -769,7 +801,8 @@ public class CartItem {
 
 
         /**
-         * The name of the cart item. The value you set for this property may be truncated if the maximum length accepted by a payment service provider is less than 255 characters.
+         * The name of the cart item. The value you set for this property may be truncated if the maximum
+         * length accepted by a payment service provider is less than 255 characters.
          */
         public Builder name(String name) {
             Utils.checkNotNull(name, "name");
@@ -789,7 +822,10 @@ public class CartItem {
 
 
         /**
-         * The amount for an individual item represented as a monetary amount in the smallest currency unit for the given currency, for example `1299` USD cents represents `$12.99`. The amount sent through to the payment processor as unitary amount will be calculated to include the discount and tax values sent as part of this cart item.
+         * The amount for an individual item represented as a monetary amount in the smallest currency unit for
+         * the given currency, for example `1299` USD cents represents `$12.99`. The amount sent through to the
+         * payment processor as unitary amount will be calculated to include the discount and tax values sent
+         * as part of this cart item.
          */
         public Builder unitAmount(long unitAmount) {
             Utils.checkNotNull(unitAmount, "unitAmount");
@@ -799,7 +835,8 @@ public class CartItem {
 
 
         /**
-         * The amount discounted for this item represented as a monetary amount in the smallest currency unit for the given currency, for example `1299` USD cents represents `$12.99`.
+         * The amount discounted for this item represented as a monetary amount in the smallest currency unit
+         * for the given currency, for example `1299` USD cents represents `$12.99`.
          */
         public Builder discountAmount(long discountAmount) {
             Utils.checkNotNull(discountAmount, "discountAmount");
@@ -808,7 +845,8 @@ public class CartItem {
         }
 
         /**
-         * The amount discounted for this item represented as a monetary amount in the smallest currency unit for the given currency, for example `1299` USD cents represents `$12.99`.
+         * The amount discounted for this item represented as a monetary amount in the smallest currency unit
+         * for the given currency, for example `1299` USD cents represents `$12.99`.
          */
         public Builder discountAmount(JsonNullable<Long> discountAmount) {
             Utils.checkNotNull(discountAmount, "discountAmount");
@@ -818,7 +856,8 @@ public class CartItem {
 
 
         /**
-         * The tax amount for this item represented as a monetary amount in the smallest currency unit for the given currency, for example `1299` USD cents represents `$12.99`.
+         * The tax amount for this item represented as a monetary amount in the smallest currency unit for the
+         * given currency, for example `1299` USD cents represents `$12.99`.
          */
         public Builder taxAmount(long taxAmount) {
             Utils.checkNotNull(taxAmount, "taxAmount");
@@ -827,7 +866,8 @@ public class CartItem {
         }
 
         /**
-         * The tax amount for this item represented as a monetary amount in the smallest currency unit for the given currency, for example `1299` USD cents represents `$12.99`.
+         * The tax amount for this item represented as a monetary amount in the smallest currency unit for the
+         * given currency, for example `1299` USD cents represents `$12.99`.
          */
         public Builder taxAmount(JsonNullable<Long> taxAmount) {
             Utils.checkNotNull(taxAmount, "taxAmount");
@@ -837,7 +877,8 @@ public class CartItem {
 
 
         /**
-         * An external identifier for the cart item. This can be set to any value and is not sent to the payment service.
+         * An external identifier for the cart item. This can be set to any value and is not sent to the
+         * payment service.
          */
         public Builder externalIdentifier(String externalIdentifier) {
             Utils.checkNotNull(externalIdentifier, "externalIdentifier");
@@ -846,7 +887,8 @@ public class CartItem {
         }
 
         /**
-         * An external identifier for the cart item. This can be set to any value and is not sent to the payment service.
+         * An external identifier for the cart item. This can be set to any value and is not sent to the
+         * payment service.
          */
         public Builder externalIdentifier(JsonNullable<String> externalIdentifier) {
             Utils.checkNotNull(externalIdentifier, "externalIdentifier");
@@ -1046,7 +1088,8 @@ public class CartItem {
 
 
         /**
-         * Item import or export duties represented as a monetary amount in the smallest currency unit for the given currency, for example `1299` cents to create an authorization for `$12.99`
+         * Item import or export duties represented as a monetary amount in the smallest currency unit for the
+         * given currency, for example `1299` cents to create an authorization for `$12.99`
          */
         public Builder dutyAmount(long dutyAmount) {
             Utils.checkNotNull(dutyAmount, "dutyAmount");
@@ -1055,7 +1098,8 @@ public class CartItem {
         }
 
         /**
-         * Item import or export duties represented as a monetary amount in the smallest currency unit for the given currency, for example `1299` cents to create an authorization for `$12.99`
+         * Item import or export duties represented as a monetary amount in the smallest currency unit for the
+         * given currency, for example `1299` cents to create an authorization for `$12.99`
          */
         public Builder dutyAmount(JsonNullable<Long> dutyAmount) {
             Utils.checkNotNull(dutyAmount, "dutyAmount");
@@ -1065,7 +1109,8 @@ public class CartItem {
 
 
         /**
-         * Freight/shipping amount represented as a monetary amount in the smallest currency unit for the given currency, for example `1299` cents to create an authorization for `$12.99`
+         * Freight/shipping amount represented as a monetary amount in the smallest currency unit for the given
+         * currency, for example `1299` cents to create an authorization for `$12.99`
          */
         public Builder shippingAmount(long shippingAmount) {
             Utils.checkNotNull(shippingAmount, "shippingAmount");
@@ -1074,7 +1119,8 @@ public class CartItem {
         }
 
         /**
-         * Freight/shipping amount represented as a monetary amount in the smallest currency unit for the given currency, for example `1299` cents to create an authorization for `$12.99`
+         * Freight/shipping amount represented as a monetary amount in the smallest currency unit for the given
+         * currency, for example `1299` cents to create an authorization for `$12.99`
          */
         public Builder shippingAmount(JsonNullable<Long> shippingAmount) {
             Utils.checkNotNull(shippingAmount, "shippingAmount");

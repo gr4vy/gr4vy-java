@@ -54,7 +54,7 @@ public class AsyncRefunds {
      * <p>Fetch a refund.
      * 
      * @param refundId The ID of the refund
-     * @return CompletableFuture&lt;GetRefundResponse&gt; - The async response
+     * @return {@code CompletableFuture<GetRefundResponse>} - The async response
      */
     public CompletableFuture<GetRefundResponse> get(String refundId) {
         return get(refundId, JsonNullable.undefined(), Optional.empty());
@@ -68,7 +68,7 @@ public class AsyncRefunds {
      * @param refundId The ID of the refund
      * @param merchantAccountId 
      * @param options additional options
-     * @return CompletableFuture&lt;GetRefundResponse&gt; - The async response
+     * @return {@code CompletableFuture<GetRefundResponse>} - The async response
      */
     public CompletableFuture<GetRefundResponse> get(
             String refundId, JsonNullable<String> merchantAccountId,

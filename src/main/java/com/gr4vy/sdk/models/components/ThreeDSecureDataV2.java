@@ -35,7 +35,8 @@ public class ThreeDSecureDataV2 {
     private String version;
 
     /**
-     * For 3-D Secure version 1, the enrolment response. For 3-D Secure version 2 and above, the transaction status from the `ARes`.
+     * For 3-D Secure version 1, the enrolment response. For 3-D Secure version 2 and above, the
+     * transaction status from the `ARes`.
      */
     @JsonProperty("directory_response")
     private String directoryResponse;
@@ -48,7 +49,8 @@ public class ThreeDSecureDataV2 {
     private JsonNullable<? extends CardScheme> scheme;
 
     /**
-     * The transaction status after a the 3DS challenge. This will be null in case of a frictionless 3DS flow.
+     * The transaction status after a the 3DS challenge. This will be null in case of a frictionless 3DS
+     * flow.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("authentication_response")
@@ -121,7 +123,8 @@ public class ThreeDSecureDataV2 {
     }
 
     /**
-     * For 3-D Secure version 1, the enrolment response. For 3-D Secure version 2 and above, the transaction status from the `ARes`.
+     * For 3-D Secure version 1, the enrolment response. For 3-D Secure version 2 and above, the
+     * transaction status from the `ARes`.
      */
     @JsonIgnore
     public String directoryResponse() {
@@ -138,7 +141,8 @@ public class ThreeDSecureDataV2 {
     }
 
     /**
-     * The transaction status after a the 3DS challenge. This will be null in case of a frictionless 3DS flow.
+     * The transaction status after a the 3DS challenge. This will be null in case of a frictionless 3DS
+     * flow.
      */
     @JsonIgnore
     public JsonNullable<String> authenticationResponse() {
@@ -186,7 +190,8 @@ public class ThreeDSecureDataV2 {
     }
 
     /**
-     * For 3-D Secure version 1, the enrolment response. For 3-D Secure version 2 and above, the transaction status from the `ARes`.
+     * For 3-D Secure version 1, the enrolment response. For 3-D Secure version 2 and above, the
+     * transaction status from the `ARes`.
      */
     public ThreeDSecureDataV2 withDirectoryResponse(String directoryResponse) {
         Utils.checkNotNull(directoryResponse, "directoryResponse");
@@ -213,7 +218,8 @@ public class ThreeDSecureDataV2 {
     }
 
     /**
-     * The transaction status after a the 3DS challenge. This will be null in case of a frictionless 3DS flow.
+     * The transaction status after a the 3DS challenge. This will be null in case of a frictionless 3DS
+     * flow.
      */
     public ThreeDSecureDataV2 withAuthenticationResponse(String authenticationResponse) {
         Utils.checkNotNull(authenticationResponse, "authenticationResponse");
@@ -222,7 +228,8 @@ public class ThreeDSecureDataV2 {
     }
 
     /**
-     * The transaction status after a the 3DS challenge. This will be null in case of a frictionless 3DS flow.
+     * The transaction status after a the 3DS challenge. This will be null in case of a frictionless 3DS
+     * flow.
      */
     public ThreeDSecureDataV2 withAuthenticationResponse(JsonNullable<String> authenticationResponse) {
         Utils.checkNotNull(authenticationResponse, "authenticationResponse");
@@ -331,7 +338,8 @@ public class ThreeDSecureDataV2 {
 
 
         /**
-         * For 3-D Secure version 1, the enrolment response. For 3-D Secure version 2 and above, the transaction status from the `ARes`.
+         * For 3-D Secure version 1, the enrolment response. For 3-D Secure version 2 and above, the
+         * transaction status from the `ARes`.
          */
         public Builder directoryResponse(String directoryResponse) {
             Utils.checkNotNull(directoryResponse, "directoryResponse");
@@ -360,7 +368,8 @@ public class ThreeDSecureDataV2 {
 
 
         /**
-         * The transaction status after a the 3DS challenge. This will be null in case of a frictionless 3DS flow.
+         * The transaction status after a the 3DS challenge. This will be null in case of a frictionless 3DS
+         * flow.
          */
         public Builder authenticationResponse(String authenticationResponse) {
             Utils.checkNotNull(authenticationResponse, "authenticationResponse");
@@ -369,7 +378,8 @@ public class ThreeDSecureDataV2 {
         }
 
         /**
-         * The transaction status after a the 3DS challenge. This will be null in case of a frictionless 3DS flow.
+         * The transaction status after a the 3DS challenge. This will be null in case of a frictionless 3DS
+         * flow.
          */
         public Builder authenticationResponse(JsonNullable<String> authenticationResponse) {
             Utils.checkNotNull(authenticationResponse, "authenticationResponse");

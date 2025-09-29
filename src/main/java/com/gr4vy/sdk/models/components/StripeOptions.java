@@ -18,7 +18,9 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 public class StripeOptions {
     /**
-     * Passes the `error_on_requires_action` option to the Stripe API. Set to true to fail the payment attempt if it transitions into requires_action. Use this parameter for simpler integrations that don't handle customer actions, such as saving cards without authentication.
+     * Passes the `error_on_requires_action` option to the Stripe API. Set to true to fail the payment
+     * attempt if it transitions into requires_action. Use this parameter for simpler integrations that
+     * don't handle customer actions, such as saving cards without authentication.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("error_on_requires_action")
@@ -46,7 +48,9 @@ public class StripeOptions {
     }
 
     /**
-     * Passes the `error_on_requires_action` option to the Stripe API. Set to true to fail the payment attempt if it transitions into requires_action. Use this parameter for simpler integrations that don't handle customer actions, such as saving cards without authentication.
+     * Passes the `error_on_requires_action` option to the Stripe API. Set to true to fail the payment
+     * attempt if it transitions into requires_action. Use this parameter for simpler integrations that
+     * don't handle customer actions, such as saving cards without authentication.
      */
     @JsonIgnore
     public JsonNullable<Boolean> errorOnRequiresAction() {
@@ -68,7 +72,9 @@ public class StripeOptions {
 
 
     /**
-     * Passes the `error_on_requires_action` option to the Stripe API. Set to true to fail the payment attempt if it transitions into requires_action. Use this parameter for simpler integrations that don't handle customer actions, such as saving cards without authentication.
+     * Passes the `error_on_requires_action` option to the Stripe API. Set to true to fail the payment
+     * attempt if it transitions into requires_action. Use this parameter for simpler integrations that
+     * don't handle customer actions, such as saving cards without authentication.
      */
     public StripeOptions withErrorOnRequiresAction(boolean errorOnRequiresAction) {
         Utils.checkNotNull(errorOnRequiresAction, "errorOnRequiresAction");
@@ -77,7 +83,9 @@ public class StripeOptions {
     }
 
     /**
-     * Passes the `error_on_requires_action` option to the Stripe API. Set to true to fail the payment attempt if it transitions into requires_action. Use this parameter for simpler integrations that don't handle customer actions, such as saving cards without authentication.
+     * Passes the `error_on_requires_action` option to the Stripe API. Set to true to fail the payment
+     * attempt if it transitions into requires_action. Use this parameter for simpler integrations that
+     * don't handle customer actions, such as saving cards without authentication.
      */
     public StripeOptions withErrorOnRequiresAction(JsonNullable<Boolean> errorOnRequiresAction) {
         Utils.checkNotNull(errorOnRequiresAction, "errorOnRequiresAction");
@@ -143,7 +151,9 @@ public class StripeOptions {
 
 
         /**
-         * Passes the `error_on_requires_action` option to the Stripe API. Set to true to fail the payment attempt if it transitions into requires_action. Use this parameter for simpler integrations that don't handle customer actions, such as saving cards without authentication.
+         * Passes the `error_on_requires_action` option to the Stripe API. Set to true to fail the payment
+         * attempt if it transitions into requires_action. Use this parameter for simpler integrations that
+         * don't handle customer actions, such as saving cards without authentication.
          */
         public Builder errorOnRequiresAction(boolean errorOnRequiresAction) {
             Utils.checkNotNull(errorOnRequiresAction, "errorOnRequiresAction");
@@ -152,7 +162,9 @@ public class StripeOptions {
         }
 
         /**
-         * Passes the `error_on_requires_action` option to the Stripe API. Set to true to fail the payment attempt if it transitions into requires_action. Use this parameter for simpler integrations that don't handle customer actions, such as saving cards without authentication.
+         * Passes the `error_on_requires_action` option to the Stripe API. Set to true to fail the payment
+         * attempt if it transitions into requires_action. Use this parameter for simpler integrations that
+         * don't handle customer actions, such as saving cards without authentication.
          */
         public Builder errorOnRequiresAction(JsonNullable<Boolean> errorOnRequiresAction) {
             Utils.checkNotNull(errorOnRequiresAction, "errorOnRequiresAction");

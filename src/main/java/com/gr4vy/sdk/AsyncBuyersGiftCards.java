@@ -53,7 +53,7 @@ public class AsyncBuyersGiftCards {
      * 
      * <p>List all the stored gift cards for a specific buyer.
      * 
-     * @return CompletableFuture&lt;ListBuyerGiftCardsResponse&gt; - The async response
+     * @return {@code CompletableFuture<ListBuyerGiftCardsResponse>} - The async response
      */
     public CompletableFuture<ListBuyerGiftCardsResponse> listDirect() {
         return list(
@@ -70,7 +70,7 @@ public class AsyncBuyersGiftCards {
      * @param buyerId 
      * @param merchantAccountId 
      * @param options additional options
-     * @return CompletableFuture&lt;ListBuyerGiftCardsResponse&gt; - The async response
+     * @return {@code CompletableFuture<ListBuyerGiftCardsResponse>} - The async response
      */
     public CompletableFuture<ListBuyerGiftCardsResponse> list(
             JsonNullable<String> buyerExternalIdentifier, JsonNullable<String> buyerId,

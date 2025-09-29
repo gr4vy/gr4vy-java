@@ -41,7 +41,8 @@ public class Recipient {
     private JsonNullable<? extends Address> address;
 
     /**
-     * The account number of the recipient. Depending on the type of funds transfer, this could be a wallet ID, bank accoutn number, or email address.
+     * The account number of the recipient. Depending on the type of funds transfer, this could be a wallet
+     * ID, bank accoutn number, or email address.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("account_number")
@@ -106,7 +107,8 @@ public class Recipient {
     }
 
     /**
-     * The account number of the recipient. Depending on the type of funds transfer, this could be a wallet ID, bank accoutn number, or email address.
+     * The account number of the recipient. Depending on the type of funds transfer, this could be a wallet
+     * ID, bank accoutn number, or email address.
      */
     @JsonIgnore
     public JsonNullable<String> accountNumber() {
@@ -163,7 +165,8 @@ public class Recipient {
     }
 
     /**
-     * The account number of the recipient. Depending on the type of funds transfer, this could be a wallet ID, bank accoutn number, or email address.
+     * The account number of the recipient. Depending on the type of funds transfer, this could be a wallet
+     * ID, bank accoutn number, or email address.
      */
     public Recipient withAccountNumber(String accountNumber) {
         Utils.checkNotNull(accountNumber, "accountNumber");
@@ -172,7 +175,8 @@ public class Recipient {
     }
 
     /**
-     * The account number of the recipient. Depending on the type of funds transfer, this could be a wallet ID, bank accoutn number, or email address.
+     * The account number of the recipient. Depending on the type of funds transfer, this could be a wallet
+     * ID, bank accoutn number, or email address.
      */
     public Recipient withAccountNumber(JsonNullable<String> accountNumber) {
         Utils.checkNotNull(accountNumber, "accountNumber");
@@ -290,7 +294,8 @@ public class Recipient {
 
 
         /**
-         * The account number of the recipient. Depending on the type of funds transfer, this could be a wallet ID, bank accoutn number, or email address.
+         * The account number of the recipient. Depending on the type of funds transfer, this could be a wallet
+         * ID, bank accoutn number, or email address.
          */
         public Builder accountNumber(String accountNumber) {
             Utils.checkNotNull(accountNumber, "accountNumber");
@@ -299,7 +304,8 @@ public class Recipient {
         }
 
         /**
-         * The account number of the recipient. Depending on the type of funds transfer, this could be a wallet ID, bank accoutn number, or email address.
+         * The account number of the recipient. Depending on the type of funds transfer, this could be a wallet
+         * ID, bank accoutn number, or email address.
          */
         public Builder accountNumber(JsonNullable<String> accountNumber) {
             Utils.checkNotNull(accountNumber, "accountNumber");

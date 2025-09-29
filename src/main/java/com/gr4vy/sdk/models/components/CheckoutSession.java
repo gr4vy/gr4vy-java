@@ -30,7 +30,8 @@ public class CheckoutSession {
     private JsonNullable<? extends List<CartItem>> cartItems;
 
     /**
-     * Any additional information about the transaction that you would like to store as key-value pairs. This data is passed to payment service providers that support it.
+     * Any additional information about the transaction that you would like to store as key-value pairs.
+     * This data is passed to payment service providers that support it.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("metadata")
@@ -120,7 +121,8 @@ public class CheckoutSession {
     }
 
     /**
-     * Any additional information about the transaction that you would like to store as key-value pairs. This data is passed to payment service providers that support it.
+     * Any additional information about the transaction that you would like to store as key-value pairs.
+     * This data is passed to payment service providers that support it.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -203,7 +205,8 @@ public class CheckoutSession {
     }
 
     /**
-     * Any additional information about the transaction that you would like to store as key-value pairs. This data is passed to payment service providers that support it.
+     * Any additional information about the transaction that you would like to store as key-value pairs.
+     * This data is passed to payment service providers that support it.
      */
     public CheckoutSession withMetadata(Map<String, String> metadata) {
         Utils.checkNotNull(metadata, "metadata");
@@ -212,7 +215,8 @@ public class CheckoutSession {
     }
 
     /**
-     * Any additional information about the transaction that you would like to store as key-value pairs. This data is passed to payment service providers that support it.
+     * Any additional information about the transaction that you would like to store as key-value pairs.
+     * This data is passed to payment service providers that support it.
      */
     public CheckoutSession withMetadata(JsonNullable<? extends Map<String, String>> metadata) {
         Utils.checkNotNull(metadata, "metadata");
@@ -375,7 +379,8 @@ public class CheckoutSession {
 
 
         /**
-         * Any additional information about the transaction that you would like to store as key-value pairs. This data is passed to payment service providers that support it.
+         * Any additional information about the transaction that you would like to store as key-value pairs.
+         * This data is passed to payment service providers that support it.
          */
         public Builder metadata(Map<String, String> metadata) {
             Utils.checkNotNull(metadata, "metadata");
@@ -384,7 +389,8 @@ public class CheckoutSession {
         }
 
         /**
-         * Any additional information about the transaction that you would like to store as key-value pairs. This data is passed to payment service providers that support it.
+         * Any additional information about the transaction that you would like to store as key-value pairs.
+         * This data is passed to payment service providers that support it.
          */
         public Builder metadata(JsonNullable<? extends Map<String, String>> metadata) {
             Utils.checkNotNull(metadata, "metadata");

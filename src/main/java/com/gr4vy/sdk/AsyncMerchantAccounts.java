@@ -67,7 +67,7 @@ public class AsyncMerchantAccounts {
      * 
      * <p>List all merchant accounts in an instance.
      * 
-     * @return CompletableFuture&lt;ListMerchantAccountsResponse&gt; - The async response
+     * @return {@code CompletableFuture<ListMerchantAccountsResponse>} - The async response
      */
     public CompletableFuture<ListMerchantAccountsResponse> listDirect() {
         return list(
@@ -84,7 +84,7 @@ public class AsyncMerchantAccounts {
      * @param limit The maximum number of items that are at returned.
      * @param search The search term to filter merchant accounts by.
      * @param options additional options
-     * @return CompletableFuture&lt;ListMerchantAccountsResponse&gt; - The async response
+     * @return {@code CompletableFuture<ListMerchantAccountsResponse>} - The async response
      */
     public CompletableFuture<ListMerchantAccountsResponse> list(
             JsonNullable<String> cursor, Optional<Long> limit,
@@ -122,7 +122,7 @@ public class AsyncMerchantAccounts {
      * <p>Create a new merchant account in an instance.
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;CreateMerchantAccountResponse&gt; - The async response
+     * @return {@code CompletableFuture<CreateMerchantAccountResponse>} - The async response
      */
     public CompletableFuture<CreateMerchantAccountResponse> create(MerchantAccountCreate request) {
         AsyncRequestOperation<MerchantAccountCreate, CreateMerchantAccountResponse> operation
@@ -149,7 +149,7 @@ public class AsyncMerchantAccounts {
      * <p>Get info about a merchant account in an instance.
      * 
      * @param merchantAccountId The ID of the merchant account
-     * @return CompletableFuture&lt;GetMerchantAccountResponse&gt; - The async response
+     * @return {@code CompletableFuture<GetMerchantAccountResponse>} - The async response
      */
     public CompletableFuture<GetMerchantAccountResponse> get(String merchantAccountId) {
         return get(merchantAccountId, Optional.empty());
@@ -162,7 +162,7 @@ public class AsyncMerchantAccounts {
      * 
      * @param merchantAccountId The ID of the merchant account
      * @param options additional options
-     * @return CompletableFuture&lt;GetMerchantAccountResponse&gt; - The async response
+     * @return {@code CompletableFuture<GetMerchantAccountResponse>} - The async response
      */
     public CompletableFuture<GetMerchantAccountResponse> get(String merchantAccountId, Optional<Options> options) {
         GetMerchantAccountRequest request =
@@ -197,7 +197,7 @@ public class AsyncMerchantAccounts {
      * 
      * @param merchantAccountId The ID of the merchant account
      * @param merchantAccountUpdate 
-     * @return CompletableFuture&lt;UpdateMerchantAccountResponse&gt; - The async response
+     * @return {@code CompletableFuture<UpdateMerchantAccountResponse>} - The async response
      */
     public CompletableFuture<UpdateMerchantAccountResponse> update(String merchantAccountId, MerchantAccountUpdate merchantAccountUpdate) {
         UpdateMerchantAccountRequest request =

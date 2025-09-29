@@ -17,7 +17,8 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 public class WpayPaytoSimulationOptions {
     /**
-     * The simulation being requested. Please refer to the developer guide for a list of all available simulations.
+     * The simulation being requested. Please refer to the developer guide for a list of all available
+     * simulations.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("simulate")
@@ -45,7 +46,8 @@ public class WpayPaytoSimulationOptions {
     }
 
     /**
-     * The simulation being requested. Please refer to the developer guide for a list of all available simulations.
+     * The simulation being requested. Please refer to the developer guide for a list of all available
+     * simulations.
      */
     @JsonIgnore
     public JsonNullable<String> simulate() {
@@ -66,7 +68,8 @@ public class WpayPaytoSimulationOptions {
 
 
     /**
-     * The simulation being requested. Please refer to the developer guide for a list of all available simulations.
+     * The simulation being requested. Please refer to the developer guide for a list of all available
+     * simulations.
      */
     public WpayPaytoSimulationOptions withSimulate(String simulate) {
         Utils.checkNotNull(simulate, "simulate");
@@ -75,7 +78,8 @@ public class WpayPaytoSimulationOptions {
     }
 
     /**
-     * The simulation being requested. Please refer to the developer guide for a list of all available simulations.
+     * The simulation being requested. Please refer to the developer guide for a list of all available
+     * simulations.
      */
     public WpayPaytoSimulationOptions withSimulate(JsonNullable<String> simulate) {
         Utils.checkNotNull(simulate, "simulate");
@@ -141,7 +145,8 @@ public class WpayPaytoSimulationOptions {
 
 
         /**
-         * The simulation being requested. Please refer to the developer guide for a list of all available simulations.
+         * The simulation being requested. Please refer to the developer guide for a list of all available
+         * simulations.
          */
         public Builder simulate(String simulate) {
             Utils.checkNotNull(simulate, "simulate");
@@ -150,7 +155,8 @@ public class WpayPaytoSimulationOptions {
         }
 
         /**
-         * The simulation being requested. Please refer to the developer guide for a list of all available simulations.
+         * The simulation being requested. Please refer to the developer guide for a list of all available
+         * simulations.
          */
         public Builder simulate(JsonNullable<String> simulate) {
             Utils.checkNotNull(simulate, "simulate");

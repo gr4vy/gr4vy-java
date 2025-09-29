@@ -19,7 +19,8 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 public class TransactionRefundCreate {
     /**
-     * The amount to refund, in the smallest currency unit (e.g., cents). If omitted, a full refund will be requested.
+     * The amount to refund, in the smallest currency unit (e.g., cents). If omitted, a full refund will be
+     * requested.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("amount")
@@ -31,7 +32,8 @@ public class TransactionRefundCreate {
     private Optional<? extends RefundTargetType> targetType;
 
     /**
-     * The optional ID of the instrument to refund for. This is only required when the `target_type` is set to `gift-card-redemption`.
+     * The optional ID of the instrument to refund for. This is only required when the `target_type` is set
+     * to `gift-card-redemption`.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("target_id")
@@ -76,7 +78,8 @@ public class TransactionRefundCreate {
     }
 
     /**
-     * The amount to refund, in the smallest currency unit (e.g., cents). If omitted, a full refund will be requested.
+     * The amount to refund, in the smallest currency unit (e.g., cents). If omitted, a full refund will be
+     * requested.
      */
     @JsonIgnore
     public JsonNullable<Long> amount() {
@@ -90,7 +93,8 @@ public class TransactionRefundCreate {
     }
 
     /**
-     * The optional ID of the instrument to refund for. This is only required when the `target_type` is set to `gift-card-redemption`.
+     * The optional ID of the instrument to refund for. This is only required when the `target_type` is set
+     * to `gift-card-redemption`.
      */
     @JsonIgnore
     public JsonNullable<String> targetId() {
@@ -119,7 +123,8 @@ public class TransactionRefundCreate {
 
 
     /**
-     * The amount to refund, in the smallest currency unit (e.g., cents). If omitted, a full refund will be requested.
+     * The amount to refund, in the smallest currency unit (e.g., cents). If omitted, a full refund will be
+     * requested.
      */
     public TransactionRefundCreate withAmount(long amount) {
         Utils.checkNotNull(amount, "amount");
@@ -128,7 +133,8 @@ public class TransactionRefundCreate {
     }
 
     /**
-     * The amount to refund, in the smallest currency unit (e.g., cents). If omitted, a full refund will be requested.
+     * The amount to refund, in the smallest currency unit (e.g., cents). If omitted, a full refund will be
+     * requested.
      */
     public TransactionRefundCreate withAmount(JsonNullable<Long> amount) {
         Utils.checkNotNull(amount, "amount");
@@ -150,7 +156,8 @@ public class TransactionRefundCreate {
     }
 
     /**
-     * The optional ID of the instrument to refund for. This is only required when the `target_type` is set to `gift-card-redemption`.
+     * The optional ID of the instrument to refund for. This is only required when the `target_type` is set
+     * to `gift-card-redemption`.
      */
     public TransactionRefundCreate withTargetId(String targetId) {
         Utils.checkNotNull(targetId, "targetId");
@@ -159,7 +166,8 @@ public class TransactionRefundCreate {
     }
 
     /**
-     * The optional ID of the instrument to refund for. This is only required when the `target_type` is set to `gift-card-redemption`.
+     * The optional ID of the instrument to refund for. This is only required when the `target_type` is set
+     * to `gift-card-redemption`.
      */
     public TransactionRefundCreate withTargetId(JsonNullable<String> targetId) {
         Utils.checkNotNull(targetId, "targetId");
@@ -256,7 +264,8 @@ public class TransactionRefundCreate {
 
 
         /**
-         * The amount to refund, in the smallest currency unit (e.g., cents). If omitted, a full refund will be requested.
+         * The amount to refund, in the smallest currency unit (e.g., cents). If omitted, a full refund will be
+         * requested.
          */
         public Builder amount(long amount) {
             Utils.checkNotNull(amount, "amount");
@@ -265,7 +274,8 @@ public class TransactionRefundCreate {
         }
 
         /**
-         * The amount to refund, in the smallest currency unit (e.g., cents). If omitted, a full refund will be requested.
+         * The amount to refund, in the smallest currency unit (e.g., cents). If omitted, a full refund will be
+         * requested.
          */
         public Builder amount(JsonNullable<Long> amount) {
             Utils.checkNotNull(amount, "amount");
@@ -288,7 +298,8 @@ public class TransactionRefundCreate {
 
 
         /**
-         * The optional ID of the instrument to refund for. This is only required when the `target_type` is set to `gift-card-redemption`.
+         * The optional ID of the instrument to refund for. This is only required when the `target_type` is set
+         * to `gift-card-redemption`.
          */
         public Builder targetId(String targetId) {
             Utils.checkNotNull(targetId, "targetId");
@@ -297,7 +308,8 @@ public class TransactionRefundCreate {
         }
 
         /**
-         * The optional ID of the instrument to refund for. This is only required when the `target_type` is set to `gift-card-redemption`.
+         * The optional ID of the instrument to refund for. This is only required when the `target_type` is set
+         * to `gift-card-redemption`.
          */
         public Builder targetId(JsonNullable<String> targetId) {
             Utils.checkNotNull(targetId, "targetId");

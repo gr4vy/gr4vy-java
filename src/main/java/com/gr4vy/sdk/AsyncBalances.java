@@ -53,7 +53,7 @@ public class AsyncBalances {
      * <p>Fetch the balances for one or more gift cards.
      * 
      * @param giftCardBalanceRequest 
-     * @return CompletableFuture&lt;ListGiftCardBalancesResponse&gt; - The async response
+     * @return {@code CompletableFuture<ListGiftCardBalancesResponse>} - The async response
      */
     public CompletableFuture<ListGiftCardBalancesResponse> list(GiftCardBalanceRequest giftCardBalanceRequest) {
         return list(JsonNullable.undefined(), giftCardBalanceRequest);
@@ -66,7 +66,7 @@ public class AsyncBalances {
      * 
      * @param merchantAccountId 
      * @param giftCardBalanceRequest 
-     * @return CompletableFuture&lt;ListGiftCardBalancesResponse&gt; - The async response
+     * @return {@code CompletableFuture<ListGiftCardBalancesResponse>} - The async response
      */
     public CompletableFuture<ListGiftCardBalancesResponse> list(JsonNullable<String> merchantAccountId, GiftCardBalanceRequest giftCardBalanceRequest) {
         ListGiftCardBalancesRequest request =

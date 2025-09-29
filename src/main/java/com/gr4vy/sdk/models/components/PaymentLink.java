@@ -199,6 +199,13 @@ public class PaymentLink {
     @JsonProperty("shipping_details")
     private JsonNullable<? extends ShippingDetails> shippingDetails;
 
+    /**
+     * The connection options for the payment link.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("connection_options")
+    private JsonNullable<? extends Map<String, Map<String, Object>>> connectionOptions;
+
     @JsonCreator
     public PaymentLink(
             @JsonProperty("id") String id,
@@ -226,7 +233,8 @@ public class PaymentLink {
             @JsonProperty("updated_at") OffsetDateTime updatedAt,
             @JsonProperty("status") PaymentLinkStatus status,
             @JsonProperty("buyer") JsonNullable<? extends TransactionBuyer> buyer,
-            @JsonProperty("shipping_details") JsonNullable<? extends ShippingDetails> shippingDetails) {
+            @JsonProperty("shipping_details") JsonNullable<? extends ShippingDetails> shippingDetails,
+            @JsonProperty("connection_options") JsonNullable<? extends Map<String, Map<String, Object>>> connectionOptions) {
         Utils.checkNotNull(id, "id");
         Utils.checkNotNull(url, "url");
         Utils.checkNotNull(expiresAt, "expiresAt");
@@ -253,6 +261,7 @@ public class PaymentLink {
         Utils.checkNotNull(status, "status");
         Utils.checkNotNull(buyer, "buyer");
         Utils.checkNotNull(shippingDetails, "shippingDetails");
+        Utils.checkNotNull(connectionOptions, "connectionOptions");
         this.id = id;
         this.type = Builder._SINGLETON_VALUE_Type.value();
         this.url = url;
@@ -280,6 +289,7 @@ public class PaymentLink {
         this.status = status;
         this.buyer = buyer;
         this.shippingDetails = shippingDetails;
+        this.connectionOptions = connectionOptions;
     }
     
     public PaymentLink(
@@ -301,7 +311,7 @@ public class PaymentLink {
             currency, intent, JsonNullable.undefined(),
             Optional.empty(), JsonNullable.undefined(), paymentSource,
             createdAt, updatedAt, status,
-            JsonNullable.undefined(), JsonNullable.undefined());
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
     }
 
     /**
@@ -517,6 +527,15 @@ public class PaymentLink {
     @JsonIgnore
     public JsonNullable<ShippingDetails> shippingDetails() {
         return (JsonNullable<ShippingDetails>) shippingDetails;
+    }
+
+    /**
+     * The connection options for the payment link.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public JsonNullable<Map<String, Map<String, Object>>> connectionOptions() {
+        return (JsonNullable<Map<String, Map<String, Object>>>) connectionOptions;
     }
 
     public static Builder builder() {
@@ -897,6 +916,24 @@ public class PaymentLink {
         return this;
     }
 
+    /**
+     * The connection options for the payment link.
+     */
+    public PaymentLink withConnectionOptions(Map<String, Map<String, Object>> connectionOptions) {
+        Utils.checkNotNull(connectionOptions, "connectionOptions");
+        this.connectionOptions = JsonNullable.of(connectionOptions);
+        return this;
+    }
+
+    /**
+     * The connection options for the payment link.
+     */
+    public PaymentLink withConnectionOptions(JsonNullable<? extends Map<String, Map<String, Object>>> connectionOptions) {
+        Utils.checkNotNull(connectionOptions, "connectionOptions");
+        this.connectionOptions = connectionOptions;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -933,7 +970,8 @@ public class PaymentLink {
             Utils.enhancedDeepEquals(this.updatedAt, other.updatedAt) &&
             Utils.enhancedDeepEquals(this.status, other.status) &&
             Utils.enhancedDeepEquals(this.buyer, other.buyer) &&
-            Utils.enhancedDeepEquals(this.shippingDetails, other.shippingDetails);
+            Utils.enhancedDeepEquals(this.shippingDetails, other.shippingDetails) &&
+            Utils.enhancedDeepEquals(this.connectionOptions, other.connectionOptions);
     }
     
     @Override
@@ -947,7 +985,8 @@ public class PaymentLink {
             country, currency, intent,
             returnUrl, cartItems, metadata,
             paymentSource, createdAt, updatedAt,
-            status, buyer, shippingDetails);
+            status, buyer, shippingDetails,
+            connectionOptions);
     }
     
     @Override
@@ -979,7 +1018,8 @@ public class PaymentLink {
                 "updatedAt", updatedAt,
                 "status", status,
                 "buyer", buyer,
-                "shippingDetails", shippingDetails);
+                "shippingDetails", shippingDetails,
+                "connectionOptions", connectionOptions);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -1036,6 +1076,8 @@ public class PaymentLink {
         private JsonNullable<? extends TransactionBuyer> buyer = JsonNullable.undefined();
 
         private JsonNullable<? extends ShippingDetails> shippingDetails = JsonNullable.undefined();
+
+        private JsonNullable<? extends Map<String, Map<String, Object>>> connectionOptions = JsonNullable.undefined();
 
         private Builder() {
           // force use of static builder() method
@@ -1439,6 +1481,25 @@ public class PaymentLink {
             return this;
         }
 
+
+        /**
+         * The connection options for the payment link.
+         */
+        public Builder connectionOptions(Map<String, Map<String, Object>> connectionOptions) {
+            Utils.checkNotNull(connectionOptions, "connectionOptions");
+            this.connectionOptions = JsonNullable.of(connectionOptions);
+            return this;
+        }
+
+        /**
+         * The connection options for the payment link.
+         */
+        public Builder connectionOptions(JsonNullable<? extends Map<String, Map<String, Object>>> connectionOptions) {
+            Utils.checkNotNull(connectionOptions, "connectionOptions");
+            this.connectionOptions = connectionOptions;
+            return this;
+        }
+
         public PaymentLink build() {
 
             return new PaymentLink(
@@ -1450,7 +1511,7 @@ public class PaymentLink {
                 currency, intent, returnUrl,
                 cartItems, metadata, paymentSource,
                 createdAt, updatedAt, status,
-                buyer, shippingDetails);
+                buyer, shippingDetails, connectionOptions);
         }
 
 

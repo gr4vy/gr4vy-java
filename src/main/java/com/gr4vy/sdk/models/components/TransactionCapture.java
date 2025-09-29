@@ -36,14 +36,16 @@ public class TransactionCapture {
     private Optional<String> code;
 
     /**
-     * This is the response code received from the payment service. This can be set to any value and is not standardized across different payment services.
+     * This is the response code received from the payment service. This can be set to any value and is not
+     * standardized across different payment services.
      */
     @JsonInclude(Include.ALWAYS)
     @JsonProperty("raw_response_code")
     private Optional<String> rawResponseCode;
 
     /**
-     * This is the response description received from the payment service. This can be set to any value and is not standardized across different payment services.
+     * This is the response description received from the payment service. This can be set to any value and
+     * is not standardized across different payment services.
      */
     @JsonInclude(Include.ALWAYS)
     @JsonProperty("raw_response_description")
@@ -104,7 +106,8 @@ public class TransactionCapture {
     }
 
     /**
-     * This is the response code received from the payment service. This can be set to any value and is not standardized across different payment services.
+     * This is the response code received from the payment service. This can be set to any value and is not
+     * standardized across different payment services.
      */
     @JsonIgnore
     public Optional<String> rawResponseCode() {
@@ -112,7 +115,8 @@ public class TransactionCapture {
     }
 
     /**
-     * This is the response description received from the payment service. This can be set to any value and is not standardized across different payment services.
+     * This is the response description received from the payment service. This can be set to any value and
+     * is not standardized across different payment services.
      */
     @JsonIgnore
     public Optional<String> rawResponseDescription() {
@@ -158,7 +162,8 @@ public class TransactionCapture {
     }
 
     /**
-     * This is the response code received from the payment service. This can be set to any value and is not standardized across different payment services.
+     * This is the response code received from the payment service. This can be set to any value and is not
+     * standardized across different payment services.
      */
     public TransactionCapture withRawResponseCode(String rawResponseCode) {
         Utils.checkNotNull(rawResponseCode, "rawResponseCode");
@@ -168,7 +173,8 @@ public class TransactionCapture {
 
 
     /**
-     * This is the response code received from the payment service. This can be set to any value and is not standardized across different payment services.
+     * This is the response code received from the payment service. This can be set to any value and is not
+     * standardized across different payment services.
      */
     public TransactionCapture withRawResponseCode(Optional<String> rawResponseCode) {
         Utils.checkNotNull(rawResponseCode, "rawResponseCode");
@@ -177,7 +183,8 @@ public class TransactionCapture {
     }
 
     /**
-     * This is the response description received from the payment service. This can be set to any value and is not standardized across different payment services.
+     * This is the response description received from the payment service. This can be set to any value and
+     * is not standardized across different payment services.
      */
     public TransactionCapture withRawResponseDescription(String rawResponseDescription) {
         Utils.checkNotNull(rawResponseDescription, "rawResponseDescription");
@@ -187,7 +194,8 @@ public class TransactionCapture {
 
 
     /**
-     * This is the response description received from the payment service. This can be set to any value and is not standardized across different payment services.
+     * This is the response description received from the payment service. This can be set to any value and
+     * is not standardized across different payment services.
      */
     public TransactionCapture withRawResponseDescription(Optional<String> rawResponseDescription) {
         Utils.checkNotNull(rawResponseDescription, "rawResponseDescription");
@@ -285,7 +293,8 @@ public class TransactionCapture {
 
 
         /**
-         * This is the response code received from the payment service. This can be set to any value and is not standardized across different payment services.
+         * This is the response code received from the payment service. This can be set to any value and is not
+         * standardized across different payment services.
          */
         public Builder rawResponseCode(String rawResponseCode) {
             Utils.checkNotNull(rawResponseCode, "rawResponseCode");
@@ -294,7 +303,8 @@ public class TransactionCapture {
         }
 
         /**
-         * This is the response code received from the payment service. This can be set to any value and is not standardized across different payment services.
+         * This is the response code received from the payment service. This can be set to any value and is not
+         * standardized across different payment services.
          */
         public Builder rawResponseCode(Optional<String> rawResponseCode) {
             Utils.checkNotNull(rawResponseCode, "rawResponseCode");
@@ -304,7 +314,8 @@ public class TransactionCapture {
 
 
         /**
-         * This is the response description received from the payment service. This can be set to any value and is not standardized across different payment services.
+         * This is the response description received from the payment service. This can be set to any value and
+         * is not standardized across different payment services.
          */
         public Builder rawResponseDescription(String rawResponseDescription) {
             Utils.checkNotNull(rawResponseDescription, "rawResponseDescription");
@@ -313,7 +324,8 @@ public class TransactionCapture {
         }
 
         /**
-         * This is the response description received from the payment service. This can be set to any value and is not standardized across different payment services.
+         * This is the response description received from the payment service. This can be set to any value and
+         * is not standardized across different payment services.
          */
         public Builder rawResponseDescription(Optional<String> rawResponseDescription) {
             Utils.checkNotNull(rawResponseDescription, "rawResponseDescription");

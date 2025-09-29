@@ -73,7 +73,7 @@ public class AsyncShippingDetails {
      * 
      * @param buyerId The ID of the buyer to add shipping details to.
      * @param shippingDetailsCreate 
-     * @return CompletableFuture&lt;AddBuyerShippingDetailsResponse&gt; - The async response
+     * @return {@code CompletableFuture<AddBuyerShippingDetailsResponse>} - The async response
      */
     public CompletableFuture<AddBuyerShippingDetailsResponse> create(String buyerId, ShippingDetailsCreate shippingDetailsCreate) {
         return create(buyerId, JsonNullable.undefined(), shippingDetailsCreate);
@@ -87,7 +87,7 @@ public class AsyncShippingDetails {
      * @param buyerId The ID of the buyer to add shipping details to.
      * @param merchantAccountId 
      * @param shippingDetailsCreate 
-     * @return CompletableFuture&lt;AddBuyerShippingDetailsResponse&gt; - The async response
+     * @return {@code CompletableFuture<AddBuyerShippingDetailsResponse>} - The async response
      */
     public CompletableFuture<AddBuyerShippingDetailsResponse> create(
             String buyerId, JsonNullable<String> merchantAccountId,
@@ -123,7 +123,7 @@ public class AsyncShippingDetails {
      * <p>List all the shipping details associated to a specific buyer.
      * 
      * @param buyerId The ID of the buyer to retrieve shipping details for.
-     * @return CompletableFuture&lt;ListBuyerShippingDetailsResponse&gt; - The async response
+     * @return {@code CompletableFuture<ListBuyerShippingDetailsResponse>} - The async response
      */
     public CompletableFuture<ListBuyerShippingDetailsResponse> list(String buyerId) {
         return list(buyerId, JsonNullable.undefined(), Optional.empty());
@@ -137,7 +137,7 @@ public class AsyncShippingDetails {
      * @param buyerId The ID of the buyer to retrieve shipping details for.
      * @param merchantAccountId 
      * @param options additional options
-     * @return CompletableFuture&lt;ListBuyerShippingDetailsResponse&gt; - The async response
+     * @return {@code CompletableFuture<ListBuyerShippingDetailsResponse>} - The async response
      */
     public CompletableFuture<ListBuyerShippingDetailsResponse> list(
             String buyerId, JsonNullable<String> merchantAccountId,
@@ -175,7 +175,7 @@ public class AsyncShippingDetails {
      * 
      * @param buyerId The ID of the buyer to retrieve shipping details for.
      * @param shippingDetailsId The ID of the shipping details to retrieve.
-     * @return CompletableFuture&lt;GetBuyerShippingDetailsResponse&gt; - The async response
+     * @return {@code CompletableFuture<GetBuyerShippingDetailsResponse>} - The async response
      */
     public CompletableFuture<GetBuyerShippingDetailsResponse> get(String buyerId, String shippingDetailsId) {
         return get(
@@ -192,7 +192,7 @@ public class AsyncShippingDetails {
      * @param shippingDetailsId The ID of the shipping details to retrieve.
      * @param merchantAccountId 
      * @param options additional options
-     * @return CompletableFuture&lt;GetBuyerShippingDetailsResponse&gt; - The async response
+     * @return {@code CompletableFuture<GetBuyerShippingDetailsResponse>} - The async response
      */
     public CompletableFuture<GetBuyerShippingDetailsResponse> get(
             String buyerId, String shippingDetailsId,
@@ -232,7 +232,7 @@ public class AsyncShippingDetails {
      * @param buyerId The ID of the buyer to update shipping details for.
      * @param shippingDetailsId The ID of the shipping details to update.
      * @param shippingDetailsUpdate 
-     * @return CompletableFuture&lt;UpdateBuyerShippingDetailsResponse&gt; - The async response
+     * @return {@code CompletableFuture<UpdateBuyerShippingDetailsResponse>} - The async response
      */
     public CompletableFuture<UpdateBuyerShippingDetailsResponse> update(
             String buyerId, String shippingDetailsId,
@@ -251,7 +251,7 @@ public class AsyncShippingDetails {
      * @param shippingDetailsId The ID of the shipping details to update.
      * @param merchantAccountId 
      * @param shippingDetailsUpdate 
-     * @return CompletableFuture&lt;UpdateBuyerShippingDetailsResponse&gt; - The async response
+     * @return {@code CompletableFuture<UpdateBuyerShippingDetailsResponse>} - The async response
      */
     public CompletableFuture<UpdateBuyerShippingDetailsResponse> update(
             String buyerId, String shippingDetailsId,
@@ -289,7 +289,7 @@ public class AsyncShippingDetails {
      * 
      * @param buyerId The ID of the buyer to delete shipping details for.
      * @param shippingDetailsId The ID of the shipping details to delete.
-     * @return CompletableFuture&lt;DeleteBuyerShippingDetailsResponse&gt; - The async response
+     * @return {@code CompletableFuture<DeleteBuyerShippingDetailsResponse>} - The async response
      */
     public CompletableFuture<DeleteBuyerShippingDetailsResponse> delete(String buyerId, String shippingDetailsId) {
         return delete(buyerId, shippingDetailsId, JsonNullable.undefined());
@@ -303,7 +303,7 @@ public class AsyncShippingDetails {
      * @param buyerId The ID of the buyer to delete shipping details for.
      * @param shippingDetailsId The ID of the shipping details to delete.
      * @param merchantAccountId 
-     * @return CompletableFuture&lt;DeleteBuyerShippingDetailsResponse&gt; - The async response
+     * @return {@code CompletableFuture<DeleteBuyerShippingDetailsResponse>} - The async response
      */
     public CompletableFuture<DeleteBuyerShippingDetailsResponse> delete(
             String buyerId, String shippingDetailsId,

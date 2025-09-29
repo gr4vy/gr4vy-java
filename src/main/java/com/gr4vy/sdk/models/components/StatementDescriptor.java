@@ -48,7 +48,8 @@ public class StatementDescriptor {
     private JsonNullable<String> country;
 
     /**
-     * The value in the phone number field of a customer's statement which should be formatted according to the E164 number standard.
+     * The value in the phone number field of a customer's statement which should be formatted according to
+     * the E164 number standard.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("phone_number")
@@ -132,7 +133,8 @@ public class StatementDescriptor {
     }
 
     /**
-     * The value in the phone number field of a customer's statement which should be formatted according to the E164 number standard.
+     * The value in the phone number field of a customer's statement which should be formatted according to
+     * the E164 number standard.
      */
     @JsonIgnore
     public JsonNullable<String> phoneNumber() {
@@ -233,7 +235,8 @@ public class StatementDescriptor {
     }
 
     /**
-     * The value in the phone number field of a customer's statement which should be formatted according to the E164 number standard.
+     * The value in the phone number field of a customer's statement which should be formatted according to
+     * the E164 number standard.
      */
     public StatementDescriptor withPhoneNumber(String phoneNumber) {
         Utils.checkNotNull(phoneNumber, "phoneNumber");
@@ -242,7 +245,8 @@ public class StatementDescriptor {
     }
 
     /**
-     * The value in the phone number field of a customer's statement which should be formatted according to the E164 number standard.
+     * The value in the phone number field of a customer's statement which should be formatted according to
+     * the E164 number standard.
      */
     public StatementDescriptor withPhoneNumber(JsonNullable<String> phoneNumber) {
         Utils.checkNotNull(phoneNumber, "phoneNumber");
@@ -424,7 +428,8 @@ public class StatementDescriptor {
 
 
         /**
-         * The value in the phone number field of a customer's statement which should be formatted according to the E164 number standard.
+         * The value in the phone number field of a customer's statement which should be formatted according to
+         * the E164 number standard.
          */
         public Builder phoneNumber(String phoneNumber) {
             Utils.checkNotNull(phoneNumber, "phoneNumber");
@@ -433,7 +438,8 @@ public class StatementDescriptor {
         }
 
         /**
-         * The value in the phone number field of a customer's statement which should be formatted according to the E164 number standard.
+         * The value in the phone number field of a customer's statement which should be formatted according to
+         * the E164 number standard.
          */
         public Builder phoneNumber(JsonNullable<String> phoneNumber) {
             Utils.checkNotNull(phoneNumber, "phoneNumber");

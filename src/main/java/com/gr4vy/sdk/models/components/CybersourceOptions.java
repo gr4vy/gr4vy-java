@@ -18,14 +18,16 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 public class CybersourceOptions {
     /**
-     * The merchant ID to use for this transaction. This requires a meta key to be set up for use with Cybersource, and this overrides the connector configuration.
+     * The merchant ID to use for this transaction. This requires a meta key to be set up for use with
+     * Cybersource, and this overrides the connector configuration.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("meta_key_merchant_id")
     private JsonNullable<String> metaKeyMerchantId;
 
     /**
-     * A list of merchant defined data to be passed to the Cybersource. Each key needs to be a numeric string.
+     * A list of merchant defined data to be passed to the Cybersource. Each key needs to be a numeric
+     * string.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("merchant_defined_information")
@@ -56,7 +58,8 @@ public class CybersourceOptions {
     }
 
     /**
-     * The merchant ID to use for this transaction. This requires a meta key to be set up for use with Cybersource, and this overrides the connector configuration.
+     * The merchant ID to use for this transaction. This requires a meta key to be set up for use with
+     * Cybersource, and this overrides the connector configuration.
      */
     @JsonIgnore
     public JsonNullable<String> metaKeyMerchantId() {
@@ -64,7 +67,8 @@ public class CybersourceOptions {
     }
 
     /**
-     * A list of merchant defined data to be passed to the Cybersource. Each key needs to be a numeric string.
+     * A list of merchant defined data to be passed to the Cybersource. Each key needs to be a numeric
+     * string.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -86,7 +90,8 @@ public class CybersourceOptions {
 
 
     /**
-     * The merchant ID to use for this transaction. This requires a meta key to be set up for use with Cybersource, and this overrides the connector configuration.
+     * The merchant ID to use for this transaction. This requires a meta key to be set up for use with
+     * Cybersource, and this overrides the connector configuration.
      */
     public CybersourceOptions withMetaKeyMerchantId(String metaKeyMerchantId) {
         Utils.checkNotNull(metaKeyMerchantId, "metaKeyMerchantId");
@@ -95,7 +100,8 @@ public class CybersourceOptions {
     }
 
     /**
-     * The merchant ID to use for this transaction. This requires a meta key to be set up for use with Cybersource, and this overrides the connector configuration.
+     * The merchant ID to use for this transaction. This requires a meta key to be set up for use with
+     * Cybersource, and this overrides the connector configuration.
      */
     public CybersourceOptions withMetaKeyMerchantId(JsonNullable<String> metaKeyMerchantId) {
         Utils.checkNotNull(metaKeyMerchantId, "metaKeyMerchantId");
@@ -104,7 +110,8 @@ public class CybersourceOptions {
     }
 
     /**
-     * A list of merchant defined data to be passed to the Cybersource. Each key needs to be a numeric string.
+     * A list of merchant defined data to be passed to the Cybersource. Each key needs to be a numeric
+     * string.
      */
     public CybersourceOptions withMerchantDefinedInformation(Map<String, String> merchantDefinedInformation) {
         Utils.checkNotNull(merchantDefinedInformation, "merchantDefinedInformation");
@@ -113,7 +120,8 @@ public class CybersourceOptions {
     }
 
     /**
-     * A list of merchant defined data to be passed to the Cybersource. Each key needs to be a numeric string.
+     * A list of merchant defined data to be passed to the Cybersource. Each key needs to be a numeric
+     * string.
      */
     public CybersourceOptions withMerchantDefinedInformation(JsonNullable<? extends Map<String, String>> merchantDefinedInformation) {
         Utils.checkNotNull(merchantDefinedInformation, "merchantDefinedInformation");
@@ -183,7 +191,8 @@ public class CybersourceOptions {
 
 
         /**
-         * The merchant ID to use for this transaction. This requires a meta key to be set up for use with Cybersource, and this overrides the connector configuration.
+         * The merchant ID to use for this transaction. This requires a meta key to be set up for use with
+         * Cybersource, and this overrides the connector configuration.
          */
         public Builder metaKeyMerchantId(String metaKeyMerchantId) {
             Utils.checkNotNull(metaKeyMerchantId, "metaKeyMerchantId");
@@ -192,7 +201,8 @@ public class CybersourceOptions {
         }
 
         /**
-         * The merchant ID to use for this transaction. This requires a meta key to be set up for use with Cybersource, and this overrides the connector configuration.
+         * The merchant ID to use for this transaction. This requires a meta key to be set up for use with
+         * Cybersource, and this overrides the connector configuration.
          */
         public Builder metaKeyMerchantId(JsonNullable<String> metaKeyMerchantId) {
             Utils.checkNotNull(metaKeyMerchantId, "metaKeyMerchantId");
@@ -202,7 +212,8 @@ public class CybersourceOptions {
 
 
         /**
-         * A list of merchant defined data to be passed to the Cybersource. Each key needs to be a numeric string.
+         * A list of merchant defined data to be passed to the Cybersource. Each key needs to be a numeric
+         * string.
          */
         public Builder merchantDefinedInformation(Map<String, String> merchantDefinedInformation) {
             Utils.checkNotNull(merchantDefinedInformation, "merchantDefinedInformation");
@@ -211,7 +222,8 @@ public class CybersourceOptions {
         }
 
         /**
-         * A list of merchant defined data to be passed to the Cybersource. Each key needs to be a numeric string.
+         * A list of merchant defined data to be passed to the Cybersource. Each key needs to be a numeric
+         * string.
          */
         public Builder merchantDefinedInformation(JsonNullable<? extends Map<String, String>> merchantDefinedInformation) {
             Utils.checkNotNull(merchantDefinedInformation, "merchantDefinedInformation");

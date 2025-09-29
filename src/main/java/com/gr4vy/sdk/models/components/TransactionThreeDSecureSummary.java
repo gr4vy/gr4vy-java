@@ -38,14 +38,21 @@ public class TransactionThreeDSecureSummary {
     private JsonNullable<? extends ThreeDSecureMethod> method;
 
     /**
-     * The 3DS data sent to the payment service for this transaction. This will only be populated if external 3DS data was passed in directly as part of the transaction API call, or if our 3DS server returned a status code of `Y` or `A`. In case of a failure to authenticate (status `N`, `R`, or `U`) this field will not be populated. To see full details about the 3DS calls please use our transaction events API.
+     * The 3DS data sent to the payment service for this transaction. This will only be populated if
+     * external 3DS data was passed in directly as part of the transaction API call, or if our 3DS server
+     * returned a status code of `Y` or `A`. In case of a failure to authenticate (status `N`, `R`, or `U`)
+     * this field will not be populated.
+     * 
+     * <p>To see full details about the 3DS calls please use our transaction events API.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("response_data")
     private JsonNullable<? extends ResponseData> responseData;
 
     /**
-     * The error data received from our 3DS server. This will not be populated if the customer failed the authentication with a status code of `N`, `R`, or `U`.  To see full details about the 3DS calls in those situations please use our transaction events API.
+     * The error data received from our 3DS server. This will not be populated if the customer failed the
+     * authentication with a status code of `N`, `R`, or `U`. To see full details about the 3DS calls in
+     * those situations please use our transaction events API.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("error_data")
@@ -102,7 +109,12 @@ public class TransactionThreeDSecureSummary {
     }
 
     /**
-     * The 3DS data sent to the payment service for this transaction. This will only be populated if external 3DS data was passed in directly as part of the transaction API call, or if our 3DS server returned a status code of `Y` or `A`. In case of a failure to authenticate (status `N`, `R`, or `U`) this field will not be populated. To see full details about the 3DS calls please use our transaction events API.
+     * The 3DS data sent to the payment service for this transaction. This will only be populated if
+     * external 3DS data was passed in directly as part of the transaction API call, or if our 3DS server
+     * returned a status code of `Y` or `A`. In case of a failure to authenticate (status `N`, `R`, or `U`)
+     * this field will not be populated.
+     * 
+     * <p>To see full details about the 3DS calls please use our transaction events API.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -111,7 +123,9 @@ public class TransactionThreeDSecureSummary {
     }
 
     /**
-     * The error data received from our 3DS server. This will not be populated if the customer failed the authentication with a status code of `N`, `R`, or `U`.  To see full details about the 3DS calls in those situations please use our transaction events API.
+     * The error data received from our 3DS server. This will not be populated if the customer failed the
+     * authentication with a status code of `N`, `R`, or `U`. To see full details about the 3DS calls in
+     * those situations please use our transaction events API.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -179,7 +193,12 @@ public class TransactionThreeDSecureSummary {
     }
 
     /**
-     * The 3DS data sent to the payment service for this transaction. This will only be populated if external 3DS data was passed in directly as part of the transaction API call, or if our 3DS server returned a status code of `Y` or `A`. In case of a failure to authenticate (status `N`, `R`, or `U`) this field will not be populated. To see full details about the 3DS calls please use our transaction events API.
+     * The 3DS data sent to the payment service for this transaction. This will only be populated if
+     * external 3DS data was passed in directly as part of the transaction API call, or if our 3DS server
+     * returned a status code of `Y` or `A`. In case of a failure to authenticate (status `N`, `R`, or `U`)
+     * this field will not be populated.
+     * 
+     * <p>To see full details about the 3DS calls please use our transaction events API.
      */
     public TransactionThreeDSecureSummary withResponseData(ResponseData responseData) {
         Utils.checkNotNull(responseData, "responseData");
@@ -188,7 +207,12 @@ public class TransactionThreeDSecureSummary {
     }
 
     /**
-     * The 3DS data sent to the payment service for this transaction. This will only be populated if external 3DS data was passed in directly as part of the transaction API call, or if our 3DS server returned a status code of `Y` or `A`. In case of a failure to authenticate (status `N`, `R`, or `U`) this field will not be populated. To see full details about the 3DS calls please use our transaction events API.
+     * The 3DS data sent to the payment service for this transaction. This will only be populated if
+     * external 3DS data was passed in directly as part of the transaction API call, or if our 3DS server
+     * returned a status code of `Y` or `A`. In case of a failure to authenticate (status `N`, `R`, or `U`)
+     * this field will not be populated.
+     * 
+     * <p>To see full details about the 3DS calls please use our transaction events API.
      */
     public TransactionThreeDSecureSummary withResponseData(JsonNullable<? extends ResponseData> responseData) {
         Utils.checkNotNull(responseData, "responseData");
@@ -197,7 +221,9 @@ public class TransactionThreeDSecureSummary {
     }
 
     /**
-     * The error data received from our 3DS server. This will not be populated if the customer failed the authentication with a status code of `N`, `R`, or `U`.  To see full details about the 3DS calls in those situations please use our transaction events API.
+     * The error data received from our 3DS server. This will not be populated if the customer failed the
+     * authentication with a status code of `N`, `R`, or `U`. To see full details about the 3DS calls in
+     * those situations please use our transaction events API.
      */
     public TransactionThreeDSecureSummary withErrorData(ThreeDSecureError errorData) {
         Utils.checkNotNull(errorData, "errorData");
@@ -206,7 +232,9 @@ public class TransactionThreeDSecureSummary {
     }
 
     /**
-     * The error data received from our 3DS server. This will not be populated if the customer failed the authentication with a status code of `N`, `R`, or `U`.  To see full details about the 3DS calls in those situations please use our transaction events API.
+     * The error data received from our 3DS server. This will not be populated if the customer failed the
+     * authentication with a status code of `N`, `R`, or `U`. To see full details about the 3DS calls in
+     * those situations please use our transaction events API.
      */
     public TransactionThreeDSecureSummary withErrorData(JsonNullable<? extends ThreeDSecureError> errorData) {
         Utils.checkNotNull(errorData, "errorData");
@@ -324,7 +352,12 @@ public class TransactionThreeDSecureSummary {
 
 
         /**
-         * The 3DS data sent to the payment service for this transaction. This will only be populated if external 3DS data was passed in directly as part of the transaction API call, or if our 3DS server returned a status code of `Y` or `A`. In case of a failure to authenticate (status `N`, `R`, or `U`) this field will not be populated. To see full details about the 3DS calls please use our transaction events API.
+         * The 3DS data sent to the payment service for this transaction. This will only be populated if
+         * external 3DS data was passed in directly as part of the transaction API call, or if our 3DS server
+         * returned a status code of `Y` or `A`. In case of a failure to authenticate (status `N`, `R`, or `U`)
+         * this field will not be populated.
+         * 
+         * <p>To see full details about the 3DS calls please use our transaction events API.
          */
         public Builder responseData(ResponseData responseData) {
             Utils.checkNotNull(responseData, "responseData");
@@ -333,7 +366,12 @@ public class TransactionThreeDSecureSummary {
         }
 
         /**
-         * The 3DS data sent to the payment service for this transaction. This will only be populated if external 3DS data was passed in directly as part of the transaction API call, or if our 3DS server returned a status code of `Y` or `A`. In case of a failure to authenticate (status `N`, `R`, or `U`) this field will not be populated. To see full details about the 3DS calls please use our transaction events API.
+         * The 3DS data sent to the payment service for this transaction. This will only be populated if
+         * external 3DS data was passed in directly as part of the transaction API call, or if our 3DS server
+         * returned a status code of `Y` or `A`. In case of a failure to authenticate (status `N`, `R`, or `U`)
+         * this field will not be populated.
+         * 
+         * <p>To see full details about the 3DS calls please use our transaction events API.
          */
         public Builder responseData(JsonNullable<? extends ResponseData> responseData) {
             Utils.checkNotNull(responseData, "responseData");
@@ -343,7 +381,9 @@ public class TransactionThreeDSecureSummary {
 
 
         /**
-         * The error data received from our 3DS server. This will not be populated if the customer failed the authentication with a status code of `N`, `R`, or `U`.  To see full details about the 3DS calls in those situations please use our transaction events API.
+         * The error data received from our 3DS server. This will not be populated if the customer failed the
+         * authentication with a status code of `N`, `R`, or `U`. To see full details about the 3DS calls in
+         * those situations please use our transaction events API.
          */
         public Builder errorData(ThreeDSecureError errorData) {
             Utils.checkNotNull(errorData, "errorData");
@@ -352,7 +392,9 @@ public class TransactionThreeDSecureSummary {
         }
 
         /**
-         * The error data received from our 3DS server. This will not be populated if the customer failed the authentication with a status code of `N`, `R`, or `U`.  To see full details about the 3DS calls in those situations please use our transaction events API.
+         * The error data received from our 3DS server. This will not be populated if the customer failed the
+         * authentication with a status code of `N`, `R`, or `U`. To see full details about the 3DS calls in
+         * those situations please use our transaction events API.
          */
         public Builder errorData(JsonNullable<? extends ThreeDSecureError> errorData) {
             Utils.checkNotNull(errorData, "errorData");

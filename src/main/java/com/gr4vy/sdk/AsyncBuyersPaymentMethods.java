@@ -52,7 +52,7 @@ public class AsyncBuyersPaymentMethods {
      * <p>List all the stored payment methods for a specific buyer.
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;ListBuyerPaymentMethodsResponse&gt; - The async response
+     * @return {@code CompletableFuture<ListBuyerPaymentMethodsResponse>} - The async response
      */
     public CompletableFuture<ListBuyerPaymentMethodsResponse> list(ListBuyerPaymentMethodsRequest request) {
         return list(request, Optional.empty());
@@ -65,7 +65,7 @@ public class AsyncBuyersPaymentMethods {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;ListBuyerPaymentMethodsResponse&gt; - The async response
+     * @return {@code CompletableFuture<ListBuyerPaymentMethodsResponse>} - The async response
      */
     public CompletableFuture<ListBuyerPaymentMethodsResponse> list(ListBuyerPaymentMethodsRequest request, Optional<Options> options) {
         AsyncRequestOperation<ListBuyerPaymentMethodsRequest, ListBuyerPaymentMethodsResponse> operation
