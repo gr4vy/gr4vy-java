@@ -35,14 +35,16 @@ public class PaymentServiceUpdate {
     private JsonNullable<String> displayName;
 
     /**
-     * The non-secret credential fields that have been configured for this payment service. Any secret fields are omitted.
+     * The non-secret credential fields that have been configured for this payment service. Any secret
+     * fields are omitted.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("fields")
     private JsonNullable<? extends List<VoidableField>> fields;
 
     /**
-     * The non-secret reporting fields that have been configured for this payment service. Any secret fields are omitted.
+     * The non-secret reporting fields that have been configured for this payment service. Any secret
+     * fields are omitted.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("reporting_fields")
@@ -84,7 +86,8 @@ public class PaymentServiceUpdate {
     private JsonNullable<Boolean> threeDSecureEnabled;
 
     /**
-     * An object containing a key for each supported card schemes, and for each key an object with the 3DS profile for this service for that scheme.
+     * An object containing a key for each supported card schemes, and for each key an object with the 3DS
+     * profile for this service for that scheme.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("merchant_profile")
@@ -178,7 +181,8 @@ public class PaymentServiceUpdate {
     }
 
     /**
-     * The non-secret credential fields that have been configured for this payment service. Any secret fields are omitted.
+     * The non-secret credential fields that have been configured for this payment service. Any secret
+     * fields are omitted.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -187,7 +191,8 @@ public class PaymentServiceUpdate {
     }
 
     /**
-     * The non-secret reporting fields that have been configured for this payment service. Any secret fields are omitted.
+     * The non-secret reporting fields that have been configured for this payment service. Any secret
+     * fields are omitted.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -238,7 +243,8 @@ public class PaymentServiceUpdate {
     }
 
     /**
-     * An object containing a key for each supported card schemes, and for each key an object with the 3DS profile for this service for that scheme.
+     * An object containing a key for each supported card schemes, and for each key an object with the 3DS
+     * profile for this service for that scheme.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -302,7 +308,8 @@ public class PaymentServiceUpdate {
     }
 
     /**
-     * The non-secret credential fields that have been configured for this payment service. Any secret fields are omitted.
+     * The non-secret credential fields that have been configured for this payment service. Any secret
+     * fields are omitted.
      */
     public PaymentServiceUpdate withFields(List<VoidableField> fields) {
         Utils.checkNotNull(fields, "fields");
@@ -311,7 +318,8 @@ public class PaymentServiceUpdate {
     }
 
     /**
-     * The non-secret credential fields that have been configured for this payment service. Any secret fields are omitted.
+     * The non-secret credential fields that have been configured for this payment service. Any secret
+     * fields are omitted.
      */
     public PaymentServiceUpdate withFields(JsonNullable<? extends List<VoidableField>> fields) {
         Utils.checkNotNull(fields, "fields");
@@ -320,7 +328,8 @@ public class PaymentServiceUpdate {
     }
 
     /**
-     * The non-secret reporting fields that have been configured for this payment service. Any secret fields are omitted.
+     * The non-secret reporting fields that have been configured for this payment service. Any secret
+     * fields are omitted.
      */
     public PaymentServiceUpdate withReportingFields(List<VoidableField> reportingFields) {
         Utils.checkNotNull(reportingFields, "reportingFields");
@@ -329,7 +338,8 @@ public class PaymentServiceUpdate {
     }
 
     /**
-     * The non-secret reporting fields that have been configured for this payment service. Any secret fields are omitted.
+     * The non-secret reporting fields that have been configured for this payment service. Any secret
+     * fields are omitted.
      */
     public PaymentServiceUpdate withReportingFields(JsonNullable<? extends List<VoidableField>> reportingFields) {
         Utils.checkNotNull(reportingFields, "reportingFields");
@@ -428,7 +438,8 @@ public class PaymentServiceUpdate {
     }
 
     /**
-     * An object containing a key for each supported card schemes, and for each key an object with the 3DS profile for this service for that scheme.
+     * An object containing a key for each supported card schemes, and for each key an object with the 3DS
+     * profile for this service for that scheme.
      */
     public PaymentServiceUpdate withMerchantProfile(Map<String, MerchantProfileScheme> merchantProfile) {
         Utils.checkNotNull(merchantProfile, "merchantProfile");
@@ -437,7 +448,8 @@ public class PaymentServiceUpdate {
     }
 
     /**
-     * An object containing a key for each supported card schemes, and for each key an object with the 3DS profile for this service for that scheme.
+     * An object containing a key for each supported card schemes, and for each key an object with the 3DS
+     * profile for this service for that scheme.
      */
     public PaymentServiceUpdate withMerchantProfile(JsonNullable<? extends Map<String, MerchantProfileScheme>> merchantProfile) {
         Utils.checkNotNull(merchantProfile, "merchantProfile");
@@ -625,7 +637,8 @@ public class PaymentServiceUpdate {
 
 
         /**
-         * The non-secret credential fields that have been configured for this payment service. Any secret fields are omitted.
+         * The non-secret credential fields that have been configured for this payment service. Any secret
+         * fields are omitted.
          */
         public Builder fields(List<VoidableField> fields) {
             Utils.checkNotNull(fields, "fields");
@@ -634,7 +647,8 @@ public class PaymentServiceUpdate {
         }
 
         /**
-         * The non-secret credential fields that have been configured for this payment service. Any secret fields are omitted.
+         * The non-secret credential fields that have been configured for this payment service. Any secret
+         * fields are omitted.
          */
         public Builder fields(JsonNullable<? extends List<VoidableField>> fields) {
             Utils.checkNotNull(fields, "fields");
@@ -644,7 +658,8 @@ public class PaymentServiceUpdate {
 
 
         /**
-         * The non-secret reporting fields that have been configured for this payment service. Any secret fields are omitted.
+         * The non-secret reporting fields that have been configured for this payment service. Any secret
+         * fields are omitted.
          */
         public Builder reportingFields(List<VoidableField> reportingFields) {
             Utils.checkNotNull(reportingFields, "reportingFields");
@@ -653,7 +668,8 @@ public class PaymentServiceUpdate {
         }
 
         /**
-         * The non-secret reporting fields that have been configured for this payment service. Any secret fields are omitted.
+         * The non-secret reporting fields that have been configured for this payment service. Any secret
+         * fields are omitted.
          */
         public Builder reportingFields(JsonNullable<? extends List<VoidableField>> reportingFields) {
             Utils.checkNotNull(reportingFields, "reportingFields");
@@ -758,7 +774,8 @@ public class PaymentServiceUpdate {
 
 
         /**
-         * An object containing a key for each supported card schemes, and for each key an object with the 3DS profile for this service for that scheme.
+         * An object containing a key for each supported card schemes, and for each key an object with the 3DS
+         * profile for this service for that scheme.
          */
         public Builder merchantProfile(Map<String, MerchantProfileScheme> merchantProfile) {
             Utils.checkNotNull(merchantProfile, "merchantProfile");
@@ -767,7 +784,8 @@ public class PaymentServiceUpdate {
         }
 
         /**
-         * An object containing a key for each supported card schemes, and for each key an object with the 3DS profile for this service for that scheme.
+         * An object containing a key for each supported card schemes, and for each key an object with the 3DS
+         * profile for this service for that scheme.
          */
         public Builder merchantProfile(JsonNullable<? extends Map<String, MerchantProfileScheme>> merchantProfile) {
             Utils.checkNotNull(merchantProfile, "merchantProfile");

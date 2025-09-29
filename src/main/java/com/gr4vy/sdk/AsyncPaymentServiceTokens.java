@@ -63,7 +63,7 @@ public class AsyncPaymentServiceTokens {
      * <p>List all gateway tokens stored for a payment method.
      * 
      * @param paymentMethodId The ID of the payment method
-     * @return CompletableFuture&lt;ListPaymentMethodPaymentServiceTokensResponse&gt; - The async response
+     * @return {@code CompletableFuture<ListPaymentMethodPaymentServiceTokensResponse>} - The async response
      */
     public CompletableFuture<ListPaymentMethodPaymentServiceTokensResponse> list(String paymentMethodId) {
         return list(
@@ -80,7 +80,7 @@ public class AsyncPaymentServiceTokens {
      * @param paymentServiceId The ID of the payment service
      * @param merchantAccountId 
      * @param options additional options
-     * @return CompletableFuture&lt;ListPaymentMethodPaymentServiceTokensResponse&gt; - The async response
+     * @return {@code CompletableFuture<ListPaymentMethodPaymentServiceTokensResponse>} - The async response
      */
     public CompletableFuture<ListPaymentMethodPaymentServiceTokensResponse> list(
             String paymentMethodId, JsonNullable<String> paymentServiceId,
@@ -119,7 +119,7 @@ public class AsyncPaymentServiceTokens {
      * 
      * @param paymentMethodId The ID of the payment method
      * @param paymentServiceTokenCreate 
-     * @return CompletableFuture&lt;CreatePaymentMethodPaymentServiceTokenResponse&gt; - The async response
+     * @return {@code CompletableFuture<CreatePaymentMethodPaymentServiceTokenResponse>} - The async response
      */
     public CompletableFuture<CreatePaymentMethodPaymentServiceTokenResponse> create(String paymentMethodId, PaymentServiceTokenCreate paymentServiceTokenCreate) {
         return create(paymentMethodId, JsonNullable.undefined(), paymentServiceTokenCreate);
@@ -133,7 +133,7 @@ public class AsyncPaymentServiceTokens {
      * @param paymentMethodId The ID of the payment method
      * @param merchantAccountId 
      * @param paymentServiceTokenCreate 
-     * @return CompletableFuture&lt;CreatePaymentMethodPaymentServiceTokenResponse&gt; - The async response
+     * @return {@code CompletableFuture<CreatePaymentMethodPaymentServiceTokenResponse>} - The async response
      */
     public CompletableFuture<CreatePaymentMethodPaymentServiceTokenResponse> create(
             String paymentMethodId, JsonNullable<String> merchantAccountId,
@@ -170,7 +170,7 @@ public class AsyncPaymentServiceTokens {
      * 
      * @param paymentMethodId The ID of the payment method
      * @param paymentServiceTokenId The ID of the payment service token
-     * @return CompletableFuture&lt;DeletePaymentMethodPaymentServiceTokenResponse&gt; - The async response
+     * @return {@code CompletableFuture<DeletePaymentMethodPaymentServiceTokenResponse>} - The async response
      */
     public CompletableFuture<DeletePaymentMethodPaymentServiceTokenResponse> delete(String paymentMethodId, String paymentServiceTokenId) {
         return delete(paymentMethodId, paymentServiceTokenId, JsonNullable.undefined());
@@ -184,7 +184,7 @@ public class AsyncPaymentServiceTokens {
      * @param paymentMethodId The ID of the payment method
      * @param paymentServiceTokenId The ID of the payment service token
      * @param merchantAccountId 
-     * @return CompletableFuture&lt;DeletePaymentMethodPaymentServiceTokenResponse&gt; - The async response
+     * @return {@code CompletableFuture<DeletePaymentMethodPaymentServiceTokenResponse>} - The async response
      */
     public CompletableFuture<DeletePaymentMethodPaymentServiceTokenResponse> delete(
             String paymentMethodId, String paymentServiceTokenId,

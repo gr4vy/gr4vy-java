@@ -26,7 +26,9 @@ public class BraintreeOptions {
     private JsonNullable<Long> discountAmount;
 
     /**
-     * Passes `customFields` to the Braintree API when creating a new payment. Custom fields allow you to customize your checkout experience by collecting specific information about your customers and their purchases.
+     * Passes `customFields` to the Braintree API when creating a new payment. Custom fields allow you to
+     * customize your checkout experience by collecting specific information about your customers and their
+     * purchases.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("custom_fields")
@@ -65,7 +67,9 @@ public class BraintreeOptions {
     }
 
     /**
-     * Passes `customFields` to the Braintree API when creating a new payment. Custom fields allow you to customize your checkout experience by collecting specific information about your customers and their purchases.
+     * Passes `customFields` to the Braintree API when creating a new payment. Custom fields allow you to
+     * customize your checkout experience by collecting specific information about your customers and their
+     * purchases.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -106,7 +110,9 @@ public class BraintreeOptions {
     }
 
     /**
-     * Passes `customFields` to the Braintree API when creating a new payment. Custom fields allow you to customize your checkout experience by collecting specific information about your customers and their purchases.
+     * Passes `customFields` to the Braintree API when creating a new payment. Custom fields allow you to
+     * customize your checkout experience by collecting specific information about your customers and their
+     * purchases.
      */
     public BraintreeOptions withCustomFields(Map<String, String> customFields) {
         Utils.checkNotNull(customFields, "customFields");
@@ -115,7 +121,9 @@ public class BraintreeOptions {
     }
 
     /**
-     * Passes `customFields` to the Braintree API when creating a new payment. Custom fields allow you to customize your checkout experience by collecting specific information about your customers and their purchases.
+     * Passes `customFields` to the Braintree API when creating a new payment. Custom fields allow you to
+     * customize your checkout experience by collecting specific information about your customers and their
+     * purchases.
      */
     public BraintreeOptions withCustomFields(JsonNullable<? extends Map<String, String>> customFields) {
         Utils.checkNotNull(customFields, "customFields");
@@ -204,7 +212,9 @@ public class BraintreeOptions {
 
 
         /**
-         * Passes `customFields` to the Braintree API when creating a new payment. Custom fields allow you to customize your checkout experience by collecting specific information about your customers and their purchases.
+         * Passes `customFields` to the Braintree API when creating a new payment. Custom fields allow you to
+         * customize your checkout experience by collecting specific information about your customers and their
+         * purchases.
          */
         public Builder customFields(Map<String, String> customFields) {
             Utils.checkNotNull(customFields, "customFields");
@@ -213,7 +223,9 @@ public class BraintreeOptions {
         }
 
         /**
-         * Passes `customFields` to the Braintree API when creating a new payment. Custom fields allow you to customize your checkout experience by collecting specific information about your customers and their purchases.
+         * Passes `customFields` to the Braintree API when creating a new payment. Custom fields allow you to
+         * customize your checkout experience by collecting specific information about your customers and their
+         * purchases.
          */
         public Builder customFields(JsonNullable<? extends Map<String, String>> customFields) {
             Utils.checkNotNull(customFields, "customFields");

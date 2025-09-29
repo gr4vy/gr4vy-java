@@ -25,14 +25,21 @@ public class TransactionUpdate {
     private JsonNullable<String> externalIdentifier;
 
     /**
-     * Additional information about the transaction stored as key-value pairs. If provided, the whole value will be overridden.
+     * Additional information about the transaction stored as key-value pairs. If provided, the whole value
+     * will be overridden.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("metadata")
     private JsonNullable<? extends Map<String, String>> metadata;
 
     /**
-     * Allows for passing optional configuration per connection to take advantage of connection specific features. When provided, the data is only passed to the target connection type to prevent sharing configuration across connections. Please note that each of the keys this object are in kebab-case, for example `cybersource-anti-fraud` as they represent the ID of the connector. All the other keys will be snake case, for example `merchant_defined_data` or camel case to match an external API that the connector uses. If provided, the whole value will be overridden.
+     * Allows for passing optional configuration per connection to take advantage of connection specific
+     * features. When provided, the data is only passed to the target connection type to prevent sharing
+     * configuration across connections. Please note that each of the keys this object are in kebab-case,
+     * for example `cybersource-anti-fraud` as they represent the ID of the connector.
+     * 
+     * <p>All the other keys will be snake case, for example `merchant_defined_data` or camel case to match an
+     * external API that the connector uses. If provided, the whole value will be overridden.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("connection_options")
@@ -64,7 +71,8 @@ public class TransactionUpdate {
     }
 
     /**
-     * Additional information about the transaction stored as key-value pairs. If provided, the whole value will be overridden.
+     * Additional information about the transaction stored as key-value pairs. If provided, the whole value
+     * will be overridden.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -73,7 +81,13 @@ public class TransactionUpdate {
     }
 
     /**
-     * Allows for passing optional configuration per connection to take advantage of connection specific features. When provided, the data is only passed to the target connection type to prevent sharing configuration across connections. Please note that each of the keys this object are in kebab-case, for example `cybersource-anti-fraud` as they represent the ID of the connector. All the other keys will be snake case, for example `merchant_defined_data` or camel case to match an external API that the connector uses. If provided, the whole value will be overridden.
+     * Allows for passing optional configuration per connection to take advantage of connection specific
+     * features. When provided, the data is only passed to the target connection type to prevent sharing
+     * configuration across connections. Please note that each of the keys this object are in kebab-case,
+     * for example `cybersource-anti-fraud` as they represent the ID of the connector.
+     * 
+     * <p>All the other keys will be snake case, for example `merchant_defined_data` or camel case to match an
+     * external API that the connector uses. If provided, the whole value will be overridden.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -105,7 +119,8 @@ public class TransactionUpdate {
     }
 
     /**
-     * Additional information about the transaction stored as key-value pairs. If provided, the whole value will be overridden.
+     * Additional information about the transaction stored as key-value pairs. If provided, the whole value
+     * will be overridden.
      */
     public TransactionUpdate withMetadata(Map<String, String> metadata) {
         Utils.checkNotNull(metadata, "metadata");
@@ -114,7 +129,8 @@ public class TransactionUpdate {
     }
 
     /**
-     * Additional information about the transaction stored as key-value pairs. If provided, the whole value will be overridden.
+     * Additional information about the transaction stored as key-value pairs. If provided, the whole value
+     * will be overridden.
      */
     public TransactionUpdate withMetadata(JsonNullable<? extends Map<String, String>> metadata) {
         Utils.checkNotNull(metadata, "metadata");
@@ -123,7 +139,13 @@ public class TransactionUpdate {
     }
 
     /**
-     * Allows for passing optional configuration per connection to take advantage of connection specific features. When provided, the data is only passed to the target connection type to prevent sharing configuration across connections. Please note that each of the keys this object are in kebab-case, for example `cybersource-anti-fraud` as they represent the ID of the connector. All the other keys will be snake case, for example `merchant_defined_data` or camel case to match an external API that the connector uses. If provided, the whole value will be overridden.
+     * Allows for passing optional configuration per connection to take advantage of connection specific
+     * features. When provided, the data is only passed to the target connection type to prevent sharing
+     * configuration across connections. Please note that each of the keys this object are in kebab-case,
+     * for example `cybersource-anti-fraud` as they represent the ID of the connector.
+     * 
+     * <p>All the other keys will be snake case, for example `merchant_defined_data` or camel case to match an
+     * external API that the connector uses. If provided, the whole value will be overridden.
      */
     public TransactionUpdate withConnectionOptions(TransactionConnectionOptions connectionOptions) {
         Utils.checkNotNull(connectionOptions, "connectionOptions");
@@ -132,7 +154,13 @@ public class TransactionUpdate {
     }
 
     /**
-     * Allows for passing optional configuration per connection to take advantage of connection specific features. When provided, the data is only passed to the target connection type to prevent sharing configuration across connections. Please note that each of the keys this object are in kebab-case, for example `cybersource-anti-fraud` as they represent the ID of the connector. All the other keys will be snake case, for example `merchant_defined_data` or camel case to match an external API that the connector uses. If provided, the whole value will be overridden.
+     * Allows for passing optional configuration per connection to take advantage of connection specific
+     * features. When provided, the data is only passed to the target connection type to prevent sharing
+     * configuration across connections. Please note that each of the keys this object are in kebab-case,
+     * for example `cybersource-anti-fraud` as they represent the ID of the connector.
+     * 
+     * <p>All the other keys will be snake case, for example `merchant_defined_data` or camel case to match an
+     * external API that the connector uses. If provided, the whole value will be overridden.
      */
     public TransactionUpdate withConnectionOptions(JsonNullable<? extends TransactionConnectionOptions> connectionOptions) {
         Utils.checkNotNull(connectionOptions, "connectionOptions");
@@ -203,7 +231,8 @@ public class TransactionUpdate {
 
 
         /**
-         * Additional information about the transaction stored as key-value pairs. If provided, the whole value will be overridden.
+         * Additional information about the transaction stored as key-value pairs. If provided, the whole value
+         * will be overridden.
          */
         public Builder metadata(Map<String, String> metadata) {
             Utils.checkNotNull(metadata, "metadata");
@@ -212,7 +241,8 @@ public class TransactionUpdate {
         }
 
         /**
-         * Additional information about the transaction stored as key-value pairs. If provided, the whole value will be overridden.
+         * Additional information about the transaction stored as key-value pairs. If provided, the whole value
+         * will be overridden.
          */
         public Builder metadata(JsonNullable<? extends Map<String, String>> metadata) {
             Utils.checkNotNull(metadata, "metadata");
@@ -222,7 +252,13 @@ public class TransactionUpdate {
 
 
         /**
-         * Allows for passing optional configuration per connection to take advantage of connection specific features. When provided, the data is only passed to the target connection type to prevent sharing configuration across connections. Please note that each of the keys this object are in kebab-case, for example `cybersource-anti-fraud` as they represent the ID of the connector. All the other keys will be snake case, for example `merchant_defined_data` or camel case to match an external API that the connector uses. If provided, the whole value will be overridden.
+         * Allows for passing optional configuration per connection to take advantage of connection specific
+         * features. When provided, the data is only passed to the target connection type to prevent sharing
+         * configuration across connections. Please note that each of the keys this object are in kebab-case,
+         * for example `cybersource-anti-fraud` as they represent the ID of the connector.
+         * 
+         * <p>All the other keys will be snake case, for example `merchant_defined_data` or camel case to match an
+         * external API that the connector uses. If provided, the whole value will be overridden.
          */
         public Builder connectionOptions(TransactionConnectionOptions connectionOptions) {
             Utils.checkNotNull(connectionOptions, "connectionOptions");
@@ -231,7 +267,13 @@ public class TransactionUpdate {
         }
 
         /**
-         * Allows for passing optional configuration per connection to take advantage of connection specific features. When provided, the data is only passed to the target connection type to prevent sharing configuration across connections. Please note that each of the keys this object are in kebab-case, for example `cybersource-anti-fraud` as they represent the ID of the connector. All the other keys will be snake case, for example `merchant_defined_data` or camel case to match an external API that the connector uses. If provided, the whole value will be overridden.
+         * Allows for passing optional configuration per connection to take advantage of connection specific
+         * features. When provided, the data is only passed to the target connection type to prevent sharing
+         * configuration across connections. Please note that each of the keys this object are in kebab-case,
+         * for example `cybersource-anti-fraud` as they represent the ID of the connector.
+         * 
+         * <p>All the other keys will be snake case, for example `merchant_defined_data` or camel case to match an
+         * external API that the connector uses. If provided, the whole value will be overridden.
          */
         public Builder connectionOptions(JsonNullable<? extends TransactionConnectionOptions> connectionOptions) {
             Utils.checkNotNull(connectionOptions, "connectionOptions");

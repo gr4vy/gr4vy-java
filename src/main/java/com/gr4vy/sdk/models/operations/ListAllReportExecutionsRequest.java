@@ -40,19 +40,26 @@ public class ListAllReportExecutionsRequest {
     private JsonNullable<String> reportName;
 
     /**
-     * Filters the results to only reports created before this ISO date-time string. The time zone must be included. Ensure that the date-time string is URL encoded, e.g. `2022-01-01T12:00:00+08:00` must be encoded as `2022-01-01T12%3A00%3A00%2B08%3A00`.
+     * Filters the results to only reports created before this ISO date-time string. The time zone must be
+     * included. Ensure that the date-time string is URL encoded, e.g.
+     * 
+     * <p>`2022-01-01T12:00:00+08:00` must be encoded as `2022-01-01T12%3A00%3A00%2B08%3A00`.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=created_at_lte")
     private JsonNullable<OffsetDateTime> createdAtLte;
 
     /**
-     * Filters the results to only reports created after this ISO date-time string. The time zone must be included. Ensure that the date-time string is URL encoded, e.g. `2022-01-01T12:00:00+08:00` must be encoded as `2022-01-01T12%3A00%3A00%2B08%3A00`.
+     * Filters the results to only reports created after this ISO date-time string. The time zone must be
+     * included. Ensure that the date-time string is URL encoded, e.g.
+     * 
+     * <p>`2022-01-01T12:00:00+08:00` must be encoded as `2022-01-01T12%3A00%3A00%2B08%3A00`.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=created_at_gte")
     private JsonNullable<OffsetDateTime> createdAtGte;
 
     /**
-     * Filters the results to only the reports that have a `status` that matches with any of the provided status values.
+     * Filters the results to only the reports that have a `status` that matches with any of the provided
+     * status values.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=status")
     private JsonNullable<? extends List<ReportExecutionStatus>> status;
@@ -128,7 +135,10 @@ public class ListAllReportExecutionsRequest {
     }
 
     /**
-     * Filters the results to only reports created before this ISO date-time string. The time zone must be included. Ensure that the date-time string is URL encoded, e.g. `2022-01-01T12:00:00+08:00` must be encoded as `2022-01-01T12%3A00%3A00%2B08%3A00`.
+     * Filters the results to only reports created before this ISO date-time string. The time zone must be
+     * included. Ensure that the date-time string is URL encoded, e.g.
+     * 
+     * <p>`2022-01-01T12:00:00+08:00` must be encoded as `2022-01-01T12%3A00%3A00%2B08%3A00`.
      */
     @JsonIgnore
     public JsonNullable<OffsetDateTime> createdAtLte() {
@@ -136,7 +146,10 @@ public class ListAllReportExecutionsRequest {
     }
 
     /**
-     * Filters the results to only reports created after this ISO date-time string. The time zone must be included. Ensure that the date-time string is URL encoded, e.g. `2022-01-01T12:00:00+08:00` must be encoded as `2022-01-01T12%3A00%3A00%2B08%3A00`.
+     * Filters the results to only reports created after this ISO date-time string. The time zone must be
+     * included. Ensure that the date-time string is URL encoded, e.g.
+     * 
+     * <p>`2022-01-01T12:00:00+08:00` must be encoded as `2022-01-01T12%3A00%3A00%2B08%3A00`.
      */
     @JsonIgnore
     public JsonNullable<OffsetDateTime> createdAtGte() {
@@ -144,7 +157,8 @@ public class ListAllReportExecutionsRequest {
     }
 
     /**
-     * Filters the results to only the reports that have a `status` that matches with any of the provided status values.
+     * Filters the results to only the reports that have a `status` that matches with any of the provided
+     * status values.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -230,7 +244,10 @@ public class ListAllReportExecutionsRequest {
     }
 
     /**
-     * Filters the results to only reports created before this ISO date-time string. The time zone must be included. Ensure that the date-time string is URL encoded, e.g. `2022-01-01T12:00:00+08:00` must be encoded as `2022-01-01T12%3A00%3A00%2B08%3A00`.
+     * Filters the results to only reports created before this ISO date-time string. The time zone must be
+     * included. Ensure that the date-time string is URL encoded, e.g.
+     * 
+     * <p>`2022-01-01T12:00:00+08:00` must be encoded as `2022-01-01T12%3A00%3A00%2B08%3A00`.
      */
     public ListAllReportExecutionsRequest withCreatedAtLte(OffsetDateTime createdAtLte) {
         Utils.checkNotNull(createdAtLte, "createdAtLte");
@@ -239,7 +256,10 @@ public class ListAllReportExecutionsRequest {
     }
 
     /**
-     * Filters the results to only reports created before this ISO date-time string. The time zone must be included. Ensure that the date-time string is URL encoded, e.g. `2022-01-01T12:00:00+08:00` must be encoded as `2022-01-01T12%3A00%3A00%2B08%3A00`.
+     * Filters the results to only reports created before this ISO date-time string. The time zone must be
+     * included. Ensure that the date-time string is URL encoded, e.g.
+     * 
+     * <p>`2022-01-01T12:00:00+08:00` must be encoded as `2022-01-01T12%3A00%3A00%2B08%3A00`.
      */
     public ListAllReportExecutionsRequest withCreatedAtLte(JsonNullable<OffsetDateTime> createdAtLte) {
         Utils.checkNotNull(createdAtLte, "createdAtLte");
@@ -248,7 +268,10 @@ public class ListAllReportExecutionsRequest {
     }
 
     /**
-     * Filters the results to only reports created after this ISO date-time string. The time zone must be included. Ensure that the date-time string is URL encoded, e.g. `2022-01-01T12:00:00+08:00` must be encoded as `2022-01-01T12%3A00%3A00%2B08%3A00`.
+     * Filters the results to only reports created after this ISO date-time string. The time zone must be
+     * included. Ensure that the date-time string is URL encoded, e.g.
+     * 
+     * <p>`2022-01-01T12:00:00+08:00` must be encoded as `2022-01-01T12%3A00%3A00%2B08%3A00`.
      */
     public ListAllReportExecutionsRequest withCreatedAtGte(OffsetDateTime createdAtGte) {
         Utils.checkNotNull(createdAtGte, "createdAtGte");
@@ -257,7 +280,10 @@ public class ListAllReportExecutionsRequest {
     }
 
     /**
-     * Filters the results to only reports created after this ISO date-time string. The time zone must be included. Ensure that the date-time string is URL encoded, e.g. `2022-01-01T12:00:00+08:00` must be encoded as `2022-01-01T12%3A00%3A00%2B08%3A00`.
+     * Filters the results to only reports created after this ISO date-time string. The time zone must be
+     * included. Ensure that the date-time string is URL encoded, e.g.
+     * 
+     * <p>`2022-01-01T12:00:00+08:00` must be encoded as `2022-01-01T12%3A00%3A00%2B08%3A00`.
      */
     public ListAllReportExecutionsRequest withCreatedAtGte(JsonNullable<OffsetDateTime> createdAtGte) {
         Utils.checkNotNull(createdAtGte, "createdAtGte");
@@ -266,7 +292,8 @@ public class ListAllReportExecutionsRequest {
     }
 
     /**
-     * Filters the results to only the reports that have a `status` that matches with any of the provided status values.
+     * Filters the results to only the reports that have a `status` that matches with any of the provided
+     * status values.
      */
     public ListAllReportExecutionsRequest withStatus(List<ReportExecutionStatus> status) {
         Utils.checkNotNull(status, "status");
@@ -275,7 +302,8 @@ public class ListAllReportExecutionsRequest {
     }
 
     /**
-     * Filters the results to only the reports that have a `status` that matches with any of the provided status values.
+     * Filters the results to only the reports that have a `status` that matches with any of the provided
+     * status values.
      */
     public ListAllReportExecutionsRequest withStatus(JsonNullable<? extends List<ReportExecutionStatus>> status) {
         Utils.checkNotNull(status, "status");
@@ -442,7 +470,10 @@ public class ListAllReportExecutionsRequest {
 
 
         /**
-         * Filters the results to only reports created before this ISO date-time string. The time zone must be included. Ensure that the date-time string is URL encoded, e.g. `2022-01-01T12:00:00+08:00` must be encoded as `2022-01-01T12%3A00%3A00%2B08%3A00`.
+         * Filters the results to only reports created before this ISO date-time string. The time zone must be
+         * included. Ensure that the date-time string is URL encoded, e.g.
+         * 
+         * <p>`2022-01-01T12:00:00+08:00` must be encoded as `2022-01-01T12%3A00%3A00%2B08%3A00`.
          */
         public Builder createdAtLte(OffsetDateTime createdAtLte) {
             Utils.checkNotNull(createdAtLte, "createdAtLte");
@@ -451,7 +482,10 @@ public class ListAllReportExecutionsRequest {
         }
 
         /**
-         * Filters the results to only reports created before this ISO date-time string. The time zone must be included. Ensure that the date-time string is URL encoded, e.g. `2022-01-01T12:00:00+08:00` must be encoded as `2022-01-01T12%3A00%3A00%2B08%3A00`.
+         * Filters the results to only reports created before this ISO date-time string. The time zone must be
+         * included. Ensure that the date-time string is URL encoded, e.g.
+         * 
+         * <p>`2022-01-01T12:00:00+08:00` must be encoded as `2022-01-01T12%3A00%3A00%2B08%3A00`.
          */
         public Builder createdAtLte(JsonNullable<OffsetDateTime> createdAtLte) {
             Utils.checkNotNull(createdAtLte, "createdAtLte");
@@ -461,7 +495,10 @@ public class ListAllReportExecutionsRequest {
 
 
         /**
-         * Filters the results to only reports created after this ISO date-time string. The time zone must be included. Ensure that the date-time string is URL encoded, e.g. `2022-01-01T12:00:00+08:00` must be encoded as `2022-01-01T12%3A00%3A00%2B08%3A00`.
+         * Filters the results to only reports created after this ISO date-time string. The time zone must be
+         * included. Ensure that the date-time string is URL encoded, e.g.
+         * 
+         * <p>`2022-01-01T12:00:00+08:00` must be encoded as `2022-01-01T12%3A00%3A00%2B08%3A00`.
          */
         public Builder createdAtGte(OffsetDateTime createdAtGte) {
             Utils.checkNotNull(createdAtGte, "createdAtGte");
@@ -470,7 +507,10 @@ public class ListAllReportExecutionsRequest {
         }
 
         /**
-         * Filters the results to only reports created after this ISO date-time string. The time zone must be included. Ensure that the date-time string is URL encoded, e.g. `2022-01-01T12:00:00+08:00` must be encoded as `2022-01-01T12%3A00%3A00%2B08%3A00`.
+         * Filters the results to only reports created after this ISO date-time string. The time zone must be
+         * included. Ensure that the date-time string is URL encoded, e.g.
+         * 
+         * <p>`2022-01-01T12:00:00+08:00` must be encoded as `2022-01-01T12%3A00%3A00%2B08%3A00`.
          */
         public Builder createdAtGte(JsonNullable<OffsetDateTime> createdAtGte) {
             Utils.checkNotNull(createdAtGte, "createdAtGte");
@@ -480,7 +520,8 @@ public class ListAllReportExecutionsRequest {
 
 
         /**
-         * Filters the results to only the reports that have a `status` that matches with any of the provided status values.
+         * Filters the results to only the reports that have a `status` that matches with any of the provided
+         * status values.
          */
         public Builder status(List<ReportExecutionStatus> status) {
             Utils.checkNotNull(status, "status");
@@ -489,7 +530,8 @@ public class ListAllReportExecutionsRequest {
         }
 
         /**
-         * Filters the results to only the reports that have a `status` that matches with any of the provided status values.
+         * Filters the results to only the reports that have a `status` that matches with any of the provided
+         * status values.
          */
         public Builder status(JsonNullable<? extends List<ReportExecutionStatus>> status) {
             Utils.checkNotNull(status, "status");

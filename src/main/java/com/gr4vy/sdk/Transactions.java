@@ -89,7 +89,8 @@ public class Transactions {
     /**
      * List transactions
      * 
-     * <p>Returns a paginated list of transactions for the merchant account, sorted by most recently updated. You can filter, sort, and search transactions using query parameters.
+     * <p>Returns a paginated list of transactions for the merchant account, sorted by most recently updated.
+     * You can filter, sort, and search transactions using query parameters.
      * 
      * @return The call builder
      */
@@ -100,7 +101,8 @@ public class Transactions {
     /**
      * List transactions
      * 
-     * <p>Returns a paginated list of transactions for the merchant account, sorted by most recently updated. You can filter, sort, and search transactions using query parameters.
+     * <p>Returns a paginated list of transactions for the merchant account, sorted by most recently updated.
+     * You can filter, sort, and search transactions using query parameters.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
@@ -113,7 +115,8 @@ public class Transactions {
     /**
      * List transactions
      * 
-     * <p>Returns a paginated list of transactions for the merchant account, sorted by most recently updated. You can filter, sort, and search transactions using query parameters.
+     * <p>Returns a paginated list of transactions for the merchant account, sorted by most recently updated.
+     * You can filter, sort, and search transactions using query parameters.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
@@ -129,7 +132,8 @@ public class Transactions {
     /**
      * Create transaction
      * 
-     * <p>Create a new transaction using a supported payment method. If additional buyer authorization is required, an approval URL will be returned. Duplicated gift card numbers are not supported.
+     * <p>Create a new transaction using a supported payment method. If additional buyer authorization is
+     * required, an approval URL will be returned. Duplicated gift card numbers are not supported.
      * 
      * @return The call builder
      */
@@ -140,7 +144,8 @@ public class Transactions {
     /**
      * Create transaction
      * 
-     * <p>Create a new transaction using a supported payment method. If additional buyer authorization is required, an approval URL will be returned. Duplicated gift card numbers are not supported.
+     * <p>Create a new transaction using a supported payment method. If additional buyer authorization is
+     * required, an approval URL will be returned. Duplicated gift card numbers are not supported.
      * 
      * @param transactionCreate 
      * @return The response from the API call
@@ -154,7 +159,8 @@ public class Transactions {
     /**
      * Create transaction
      * 
-     * <p>Create a new transaction using a supported payment method. If additional buyer authorization is required, an approval URL will be returned. Duplicated gift card numbers are not supported.
+     * <p>Create a new transaction using a supported payment method. If additional buyer authorization is
+     * required, an approval URL will be returned. Duplicated gift card numbers are not supported.
      * 
      * @param merchantAccountId 
      * @param idempotencyKey A unique key that identifies this request. Providing this header will make this an idempotent request. We recommend using V4 UUIDs, or another random string with enough entropy to avoid collisions.
@@ -284,7 +290,8 @@ public class Transactions {
     /**
      * Capture transaction
      * 
-     * <p>Captures a previously authorized transaction. You can capture the full or a partial amount, as long as it does not exceed the authorized amount (unless over-capture is enabled).
+     * <p>Captures a previously authorized transaction. You can capture the full or a partial amount, as long
+     * as it does not exceed the authorized amount (unless over-capture is enabled).
      * 
      * @return The call builder
      */
@@ -295,7 +302,8 @@ public class Transactions {
     /**
      * Capture transaction
      * 
-     * <p>Captures a previously authorized transaction. You can capture the full or a partial amount, as long as it does not exceed the authorized amount (unless over-capture is enabled).
+     * <p>Captures a previously authorized transaction. You can capture the full or a partial amount, as long
+     * as it does not exceed the authorized amount (unless over-capture is enabled).
      * 
      * @param transactionId The ID of the transaction
      * @param transactionCaptureCreate Request body for capturing an authorized transaction.
@@ -310,7 +318,8 @@ public class Transactions {
     /**
      * Capture transaction
      * 
-     * <p>Captures a previously authorized transaction. You can capture the full or a partial amount, as long as it does not exceed the authorized amount (unless over-capture is enabled).
+     * <p>Captures a previously authorized transaction. You can capture the full or a partial amount, as long
+     * as it does not exceed the authorized amount (unless over-capture is enabled).
      * 
      * @param transactionId The ID of the transaction
      * @param prefer The preferred resource type in the response.
@@ -338,7 +347,11 @@ public class Transactions {
     /**
      * Void transaction
      * 
-     * <p>Voids a previously authorized transaction. If the transaction was not yet successfully authorized, or was already captured, the void will not be processed. This operation releases the hold on the buyer's funds. Captured transactions can be refunded instead.
+     * <p>Voids a previously authorized transaction. If the transaction was not yet successfully authorized,
+     * or was already captured, the void will not be processed. This operation releases the hold on the
+     * buyer's funds.
+     * 
+     * <p>Captured transactions can be refunded instead.
      * 
      * @return The call builder
      */
@@ -349,7 +362,11 @@ public class Transactions {
     /**
      * Void transaction
      * 
-     * <p>Voids a previously authorized transaction. If the transaction was not yet successfully authorized, or was already captured, the void will not be processed. This operation releases the hold on the buyer's funds. Captured transactions can be refunded instead.
+     * <p>Voids a previously authorized transaction. If the transaction was not yet successfully authorized,
+     * or was already captured, the void will not be processed. This operation releases the hold on the
+     * buyer's funds.
+     * 
+     * <p>Captured transactions can be refunded instead.
      * 
      * @param transactionId The ID of the transaction
      * @return The response from the API call
@@ -362,7 +379,11 @@ public class Transactions {
     /**
      * Void transaction
      * 
-     * <p>Voids a previously authorized transaction. If the transaction was not yet successfully authorized, or was already captured, the void will not be processed. This operation releases the hold on the buyer's funds. Captured transactions can be refunded instead.
+     * <p>Voids a previously authorized transaction. If the transaction was not yet successfully authorized,
+     * or was already captured, the void will not be processed. This operation releases the hold on the
+     * buyer's funds.
+     * 
+     * <p>Captured transactions can be refunded instead.
      * 
      * @param transactionId The ID of the transaction
      * @param prefer The preferred resource type in the response.
@@ -388,7 +409,8 @@ public class Transactions {
     /**
      * Cancel transaction
      * 
-     * <p>Cancels a pending transaction. If the transaction was successfully authorized, or was already captured, the cancel will not be processed.
+     * <p>Cancels a pending transaction. If the transaction was successfully authorized, or was already
+     * captured, the cancel will not be processed.
      * 
      * @return The call builder
      */
@@ -399,7 +421,8 @@ public class Transactions {
     /**
      * Cancel transaction
      * 
-     * <p>Cancels a pending transaction. If the transaction was successfully authorized, or was already captured, the cancel will not be processed.
+     * <p>Cancels a pending transaction. If the transaction was successfully authorized, or was already
+     * captured, the cancel will not be processed.
      * 
      * @param transactionId The ID of the transaction
      * @return The response from the API call
@@ -412,7 +435,8 @@ public class Transactions {
     /**
      * Cancel transaction
      * 
-     * <p>Cancels a pending transaction. If the transaction was successfully authorized, or was already captured, the cancel will not be processed.
+     * <p>Cancels a pending transaction. If the transaction was successfully authorized, or was already
+     * captured, the cancel will not be processed.
      * 
      * @param transactionId The ID of the transaction
      * @param merchantAccountId 
@@ -434,7 +458,9 @@ public class Transactions {
     /**
      * Sync transaction
      * 
-     * <p>Synchronizes the status of a transaction with the underlying payment service provider. This is useful for transactions in a pending state to check if they've been completed or failed. Only available for some payment service providers.
+     * <p>Synchronizes the status of a transaction with the underlying payment service provider. This is
+     * useful for transactions in a pending state to check if they've been completed or failed. Only
+     * available for some payment service providers.
      * 
      * @return The call builder
      */
@@ -445,7 +471,9 @@ public class Transactions {
     /**
      * Sync transaction
      * 
-     * <p>Synchronizes the status of a transaction with the underlying payment service provider. This is useful for transactions in a pending state to check if they've been completed or failed. Only available for some payment service providers.
+     * <p>Synchronizes the status of a transaction with the underlying payment service provider. This is
+     * useful for transactions in a pending state to check if they've been completed or failed. Only
+     * available for some payment service providers.
      * 
      * @param transactionId 
      * @return The response from the API call
@@ -458,7 +486,9 @@ public class Transactions {
     /**
      * Sync transaction
      * 
-     * <p>Synchronizes the status of a transaction with the underlying payment service provider. This is useful for transactions in a pending state to check if they've been completed or failed. Only available for some payment service providers.
+     * <p>Synchronizes the status of a transaction with the underlying payment service provider. This is
+     * useful for transactions in a pending state to check if they've been completed or failed. Only
+     * available for some payment service providers.
      * 
      * @param transactionId 
      * @param merchantAccountId 

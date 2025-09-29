@@ -18,7 +18,9 @@ import java.lang.SuppressWarnings;
 /**
  * ThreeDSecureData
  * 
- * <p>Pass through 3-D Secure data to support external 3-D Secure authorisation. If using an external 3-D Secure provider, you should not pass a `redirect_url` in the `payment_method` object for a transaction.
+ * <p>Pass through 3-D Secure data to support external 3-D Secure authorisation. If using an external 3-D
+ * Secure provider, you should not pass a `redirect_url` in the `payment_method` object for a
+ * transaction.
  */
 @JsonDeserialize(using = ThreeDSecureData._Deserializer.class)
 public class ThreeDSecureData {

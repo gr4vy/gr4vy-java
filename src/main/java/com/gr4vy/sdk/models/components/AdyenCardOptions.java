@@ -20,14 +20,18 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 public class AdyenCardOptions {
     /**
-     * Set to `true` to enable Auto Rescue for a transaction. Use the `maxDaysToRescue` to specify a rescue window.
+     * Set to `true` to enable Auto Rescue for a transaction. Use the `maxDaysToRescue` to specify a rescue
+     * window.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("autoRescue")
     private JsonNullable<Boolean> autoRescue;
 
     /**
-     * The rescue window for a transaction, in days, when `autoRescue` is set to `true`. You can specify a value between 1 and 48. For cards, the default is one calendar month. For SEPA, the default is 42 days.
+     * The rescue window for a transaction, in days, when `autoRescue` is set to `true`. You can specify a
+     * value between 1 and 48. For cards, the default is one calendar month.
+     * 
+     * <p>For SEPA, the default is 42 days.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("maxDaysToRescue")
@@ -89,7 +93,8 @@ public class AdyenCardOptions {
     }
 
     /**
-     * Set to `true` to enable Auto Rescue for a transaction. Use the `maxDaysToRescue` to specify a rescue window.
+     * Set to `true` to enable Auto Rescue for a transaction. Use the `maxDaysToRescue` to specify a rescue
+     * window.
      */
     @JsonIgnore
     public JsonNullable<Boolean> autoRescue() {
@@ -97,7 +102,10 @@ public class AdyenCardOptions {
     }
 
     /**
-     * The rescue window for a transaction, in days, when `autoRescue` is set to `true`. You can specify a value between 1 and 48. For cards, the default is one calendar month. For SEPA, the default is 42 days.
+     * The rescue window for a transaction, in days, when `autoRescue` is set to `true`. You can specify a
+     * value between 1 and 48. For cards, the default is one calendar month.
+     * 
+     * <p>For SEPA, the default is 42 days.
      */
     @JsonIgnore
     public JsonNullable<Long> maxDaysToRescue() {
@@ -145,7 +153,8 @@ public class AdyenCardOptions {
 
 
     /**
-     * Set to `true` to enable Auto Rescue for a transaction. Use the `maxDaysToRescue` to specify a rescue window.
+     * Set to `true` to enable Auto Rescue for a transaction. Use the `maxDaysToRescue` to specify a rescue
+     * window.
      */
     public AdyenCardOptions withAutoRescue(boolean autoRescue) {
         Utils.checkNotNull(autoRescue, "autoRescue");
@@ -154,7 +163,8 @@ public class AdyenCardOptions {
     }
 
     /**
-     * Set to `true` to enable Auto Rescue for a transaction. Use the `maxDaysToRescue` to specify a rescue window.
+     * Set to `true` to enable Auto Rescue for a transaction. Use the `maxDaysToRescue` to specify a rescue
+     * window.
      */
     public AdyenCardOptions withAutoRescue(JsonNullable<Boolean> autoRescue) {
         Utils.checkNotNull(autoRescue, "autoRescue");
@@ -163,7 +173,10 @@ public class AdyenCardOptions {
     }
 
     /**
-     * The rescue window for a transaction, in days, when `autoRescue` is set to `true`. You can specify a value between 1 and 48. For cards, the default is one calendar month. For SEPA, the default is 42 days.
+     * The rescue window for a transaction, in days, when `autoRescue` is set to `true`. You can specify a
+     * value between 1 and 48. For cards, the default is one calendar month.
+     * 
+     * <p>For SEPA, the default is 42 days.
      */
     public AdyenCardOptions withMaxDaysToRescue(long maxDaysToRescue) {
         Utils.checkNotNull(maxDaysToRescue, "maxDaysToRescue");
@@ -172,7 +185,10 @@ public class AdyenCardOptions {
     }
 
     /**
-     * The rescue window for a transaction, in days, when `autoRescue` is set to `true`. You can specify a value between 1 and 48. For cards, the default is one calendar month. For SEPA, the default is 42 days.
+     * The rescue window for a transaction, in days, when `autoRescue` is set to `true`. You can specify a
+     * value between 1 and 48. For cards, the default is one calendar month.
+     * 
+     * <p>For SEPA, the default is 42 days.
      */
     public AdyenCardOptions withMaxDaysToRescue(JsonNullable<Long> maxDaysToRescue) {
         Utils.checkNotNull(maxDaysToRescue, "maxDaysToRescue");
@@ -309,7 +325,8 @@ public class AdyenCardOptions {
 
 
         /**
-         * Set to `true` to enable Auto Rescue for a transaction. Use the `maxDaysToRescue` to specify a rescue window.
+         * Set to `true` to enable Auto Rescue for a transaction. Use the `maxDaysToRescue` to specify a rescue
+         * window.
          */
         public Builder autoRescue(boolean autoRescue) {
             Utils.checkNotNull(autoRescue, "autoRescue");
@@ -318,7 +335,8 @@ public class AdyenCardOptions {
         }
 
         /**
-         * Set to `true` to enable Auto Rescue for a transaction. Use the `maxDaysToRescue` to specify a rescue window.
+         * Set to `true` to enable Auto Rescue for a transaction. Use the `maxDaysToRescue` to specify a rescue
+         * window.
          */
         public Builder autoRescue(JsonNullable<Boolean> autoRescue) {
             Utils.checkNotNull(autoRescue, "autoRescue");
@@ -328,7 +346,10 @@ public class AdyenCardOptions {
 
 
         /**
-         * The rescue window for a transaction, in days, when `autoRescue` is set to `true`. You can specify a value between 1 and 48. For cards, the default is one calendar month. For SEPA, the default is 42 days.
+         * The rescue window for a transaction, in days, when `autoRescue` is set to `true`. You can specify a
+         * value between 1 and 48. For cards, the default is one calendar month.
+         * 
+         * <p>For SEPA, the default is 42 days.
          */
         public Builder maxDaysToRescue(long maxDaysToRescue) {
             Utils.checkNotNull(maxDaysToRescue, "maxDaysToRescue");
@@ -337,7 +358,10 @@ public class AdyenCardOptions {
         }
 
         /**
-         * The rescue window for a transaction, in days, when `autoRescue` is set to `true`. You can specify a value between 1 and 48. For cards, the default is one calendar month. For SEPA, the default is 42 days.
+         * The rescue window for a transaction, in days, when `autoRescue` is set to `true`. You can specify a
+         * value between 1 and 48. For cards, the default is one calendar month.
+         * 
+         * <p>For SEPA, the default is 42 days.
          */
         public Builder maxDaysToRescue(JsonNullable<Long> maxDaysToRescue) {
             Utils.checkNotNull(maxDaysToRescue, "maxDaysToRescue");

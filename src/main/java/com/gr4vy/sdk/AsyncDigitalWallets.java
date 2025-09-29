@@ -84,7 +84,7 @@ public class AsyncDigitalWallets {
      * <p>Register a digital wallet like Apple Pay, Google Pay, or Click to Pay.
      * 
      * @param digitalWalletCreate Request body for registering a new digital wallet
-     * @return CompletableFuture&lt;ConfigureDigitalWalletResponse&gt; - The async response
+     * @return {@code CompletableFuture<ConfigureDigitalWalletResponse>} - The async response
      */
     public CompletableFuture<ConfigureDigitalWalletResponse> create(DigitalWalletCreate digitalWalletCreate) {
         return create(JsonNullable.undefined(), digitalWalletCreate);
@@ -97,7 +97,7 @@ public class AsyncDigitalWallets {
      * 
      * @param merchantAccountId 
      * @param digitalWalletCreate Request body for registering a new digital wallet
-     * @return CompletableFuture&lt;ConfigureDigitalWalletResponse&gt; - The async response
+     * @return {@code CompletableFuture<ConfigureDigitalWalletResponse>} - The async response
      */
     public CompletableFuture<ConfigureDigitalWalletResponse> create(JsonNullable<String> merchantAccountId, DigitalWalletCreate digitalWalletCreate) {
         ConfigureDigitalWalletRequest request =
@@ -129,7 +129,7 @@ public class AsyncDigitalWallets {
      * 
      * <p>List configured digital wallets.
      * 
-     * @return CompletableFuture&lt;ListDigitalWalletsResponse&gt; - The async response
+     * @return {@code CompletableFuture<ListDigitalWalletsResponse>} - The async response
      */
     public CompletableFuture<ListDigitalWalletsResponse> listDirect() {
         return list(JsonNullable.undefined(), Optional.empty());
@@ -142,7 +142,7 @@ public class AsyncDigitalWallets {
      * 
      * @param merchantAccountId 
      * @param options additional options
-     * @return CompletableFuture&lt;ListDigitalWalletsResponse&gt; - The async response
+     * @return {@code CompletableFuture<ListDigitalWalletsResponse>} - The async response
      */
     public CompletableFuture<ListDigitalWalletsResponse> list(JsonNullable<String> merchantAccountId, Optional<Options> options) {
         ListDigitalWalletsRequest request =
@@ -176,7 +176,7 @@ public class AsyncDigitalWallets {
      * <p>Fetch the details a digital wallet.
      * 
      * @param digitalWalletId The ID of the digital wallet to read.
-     * @return CompletableFuture&lt;GetDigitalWalletResponse&gt; - The async response
+     * @return {@code CompletableFuture<GetDigitalWalletResponse>} - The async response
      */
     public CompletableFuture<GetDigitalWalletResponse> get(String digitalWalletId) {
         return get(digitalWalletId, JsonNullable.undefined(), Optional.empty());
@@ -190,7 +190,7 @@ public class AsyncDigitalWallets {
      * @param digitalWalletId The ID of the digital wallet to read.
      * @param merchantAccountId 
      * @param options additional options
-     * @return CompletableFuture&lt;GetDigitalWalletResponse&gt; - The async response
+     * @return {@code CompletableFuture<GetDigitalWalletResponse>} - The async response
      */
     public CompletableFuture<GetDigitalWalletResponse> get(
             String digitalWalletId, JsonNullable<String> merchantAccountId,
@@ -227,7 +227,7 @@ public class AsyncDigitalWallets {
      * <p>Delete a configured digital wallet.
      * 
      * @param digitalWalletId The ID of the digital wallet to delete.
-     * @return CompletableFuture&lt;DeleteDigitalWalletResponse&gt; - The async response
+     * @return {@code CompletableFuture<DeleteDigitalWalletResponse>} - The async response
      */
     public CompletableFuture<DeleteDigitalWalletResponse> delete(String digitalWalletId) {
         return delete(digitalWalletId, JsonNullable.undefined());
@@ -240,7 +240,7 @@ public class AsyncDigitalWallets {
      * 
      * @param digitalWalletId The ID of the digital wallet to delete.
      * @param merchantAccountId 
-     * @return CompletableFuture&lt;DeleteDigitalWalletResponse&gt; - The async response
+     * @return {@code CompletableFuture<DeleteDigitalWalletResponse>} - The async response
      */
     public CompletableFuture<DeleteDigitalWalletResponse> delete(String digitalWalletId, JsonNullable<String> merchantAccountId) {
         DeleteDigitalWalletRequest request =
@@ -274,7 +274,7 @@ public class AsyncDigitalWallets {
      * 
      * @param digitalWalletId The ID of the digital wallet to edit.
      * @param digitalWalletUpdate Request body for editing a registered digital wallet
-     * @return CompletableFuture&lt;UpdateDigitalWalletResponse&gt; - The async response
+     * @return {@code CompletableFuture<UpdateDigitalWalletResponse>} - The async response
      */
     public CompletableFuture<UpdateDigitalWalletResponse> update(String digitalWalletId, DigitalWalletUpdate digitalWalletUpdate) {
         return update(digitalWalletId, JsonNullable.undefined(), digitalWalletUpdate);
@@ -288,7 +288,7 @@ public class AsyncDigitalWallets {
      * @param digitalWalletId The ID of the digital wallet to edit.
      * @param merchantAccountId 
      * @param digitalWalletUpdate Request body for editing a registered digital wallet
-     * @return CompletableFuture&lt;UpdateDigitalWalletResponse&gt; - The async response
+     * @return {@code CompletableFuture<UpdateDigitalWalletResponse>} - The async response
      */
     public CompletableFuture<UpdateDigitalWalletResponse> update(
             String digitalWalletId, JsonNullable<String> merchantAccountId,

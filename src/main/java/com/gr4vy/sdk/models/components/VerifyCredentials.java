@@ -23,7 +23,8 @@ public class VerifyCredentials {
     private String paymentServiceDefinitionId;
 
     /**
-     * The optional ID of the configured payment service. New fields will be merged with any existing fields already stored before they are verified.
+     * The optional ID of the configured payment service. New fields will be merged with any existing
+     * fields already stored before they are verified.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("payment_service_id")
@@ -63,7 +64,8 @@ public class VerifyCredentials {
     }
 
     /**
-     * The optional ID of the configured payment service. New fields will be merged with any existing fields already stored before they are verified.
+     * The optional ID of the configured payment service. New fields will be merged with any existing
+     * fields already stored before they are verified.
      */
     @JsonIgnore
     public JsonNullable<String> paymentServiceId() {
@@ -93,7 +95,8 @@ public class VerifyCredentials {
     }
 
     /**
-     * The optional ID of the configured payment service. New fields will be merged with any existing fields already stored before they are verified.
+     * The optional ID of the configured payment service. New fields will be merged with any existing
+     * fields already stored before they are verified.
      */
     public VerifyCredentials withPaymentServiceId(String paymentServiceId) {
         Utils.checkNotNull(paymentServiceId, "paymentServiceId");
@@ -102,7 +105,8 @@ public class VerifyCredentials {
     }
 
     /**
-     * The optional ID of the configured payment service. New fields will be merged with any existing fields already stored before they are verified.
+     * The optional ID of the configured payment service. New fields will be merged with any existing
+     * fields already stored before they are verified.
      */
     public VerifyCredentials withPaymentServiceId(JsonNullable<String> paymentServiceId) {
         Utils.checkNotNull(paymentServiceId, "paymentServiceId");
@@ -173,7 +177,8 @@ public class VerifyCredentials {
 
 
         /**
-         * The optional ID of the configured payment service. New fields will be merged with any existing fields already stored before they are verified.
+         * The optional ID of the configured payment service. New fields will be merged with any existing
+         * fields already stored before they are verified.
          */
         public Builder paymentServiceId(String paymentServiceId) {
             Utils.checkNotNull(paymentServiceId, "paymentServiceId");
@@ -182,7 +187,8 @@ public class VerifyCredentials {
         }
 
         /**
-         * The optional ID of the configured payment service. New fields will be merged with any existing fields already stored before they are verified.
+         * The optional ID of the configured payment service. New fields will be merged with any existing
+         * fields already stored before they are verified.
          */
         public Builder paymentServiceId(JsonNullable<String> paymentServiceId) {
             Utils.checkNotNull(paymentServiceId, "paymentServiceId");

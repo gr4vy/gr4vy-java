@@ -16,7 +16,8 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 public class MattildaTapiOptions {
     /**
-     * Defines the date at which the payment will expire if not completed. Must be provided in ISO 8601 format `(YYYY-MM-DD`). If not specified, it defaults to 7 days in the future from the current date.
+     * Defines the date at which the payment will expire if not completed. Must be provided in ISO 8601
+     * format `(YYYY-MM-DD`). If not specified, it defaults to 7 days in the future from the current date.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("payment_method_expires_at")
@@ -34,7 +35,8 @@ public class MattildaTapiOptions {
     }
 
     /**
-     * Defines the date at which the payment will expire if not completed. Must be provided in ISO 8601 format `(YYYY-MM-DD`). If not specified, it defaults to 7 days in the future from the current date.
+     * Defines the date at which the payment will expire if not completed. Must be provided in ISO 8601
+     * format `(YYYY-MM-DD`). If not specified, it defaults to 7 days in the future from the current date.
      */
     @JsonIgnore
     public JsonNullable<String> paymentMethodExpiresAt() {
@@ -47,7 +49,8 @@ public class MattildaTapiOptions {
 
 
     /**
-     * Defines the date at which the payment will expire if not completed. Must be provided in ISO 8601 format `(YYYY-MM-DD`). If not specified, it defaults to 7 days in the future from the current date.
+     * Defines the date at which the payment will expire if not completed. Must be provided in ISO 8601
+     * format `(YYYY-MM-DD`). If not specified, it defaults to 7 days in the future from the current date.
      */
     public MattildaTapiOptions withPaymentMethodExpiresAt(String paymentMethodExpiresAt) {
         Utils.checkNotNull(paymentMethodExpiresAt, "paymentMethodExpiresAt");
@@ -56,7 +59,8 @@ public class MattildaTapiOptions {
     }
 
     /**
-     * Defines the date at which the payment will expire if not completed. Must be provided in ISO 8601 format `(YYYY-MM-DD`). If not specified, it defaults to 7 days in the future from the current date.
+     * Defines the date at which the payment will expire if not completed. Must be provided in ISO 8601
+     * format `(YYYY-MM-DD`). If not specified, it defaults to 7 days in the future from the current date.
      */
     public MattildaTapiOptions withPaymentMethodExpiresAt(JsonNullable<String> paymentMethodExpiresAt) {
         Utils.checkNotNull(paymentMethodExpiresAt, "paymentMethodExpiresAt");
@@ -100,7 +104,8 @@ public class MattildaTapiOptions {
 
 
         /**
-         * Defines the date at which the payment will expire if not completed. Must be provided in ISO 8601 format `(YYYY-MM-DD`). If not specified, it defaults to 7 days in the future from the current date.
+         * Defines the date at which the payment will expire if not completed. Must be provided in ISO 8601
+         * format `(YYYY-MM-DD`). If not specified, it defaults to 7 days in the future from the current date.
          */
         public Builder paymentMethodExpiresAt(String paymentMethodExpiresAt) {
             Utils.checkNotNull(paymentMethodExpiresAt, "paymentMethodExpiresAt");
@@ -109,7 +114,8 @@ public class MattildaTapiOptions {
         }
 
         /**
-         * Defines the date at which the payment will expire if not completed. Must be provided in ISO 8601 format `(YYYY-MM-DD`). If not specified, it defaults to 7 days in the future from the current date.
+         * Defines the date at which the payment will expire if not completed. Must be provided in ISO 8601
+         * format `(YYYY-MM-DD`). If not specified, it defaults to 7 days in the future from the current date.
          */
         public Builder paymentMethodExpiresAt(JsonNullable<String> paymentMethodExpiresAt) {
             Utils.checkNotNull(paymentMethodExpiresAt, "paymentMethodExpiresAt");

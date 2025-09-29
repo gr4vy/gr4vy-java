@@ -53,7 +53,7 @@ public class AsyncAll {
      * <p>Create a refund for all instruments on a transaction.
      * 
      * @param transactionId The ID of the transaction
-     * @return CompletableFuture&lt;CreateFullTransactionRefundResponse&gt; - The async response
+     * @return {@code CompletableFuture<CreateFullTransactionRefundResponse>} - The async response
      */
     public CompletableFuture<CreateFullTransactionRefundResponse> create(String transactionId) {
         return create(transactionId, JsonNullable.undefined(), JsonNullable.undefined());
@@ -67,7 +67,7 @@ public class AsyncAll {
      * @param transactionId The ID of the transaction
      * @param merchantAccountId 
      * @param transactionRefundAllCreate 
-     * @return CompletableFuture&lt;CreateFullTransactionRefundResponse&gt; - The async response
+     * @return {@code CompletableFuture<CreateFullTransactionRefundResponse>} - The async response
      */
     public CompletableFuture<CreateFullTransactionRefundResponse> create(
             String transactionId, JsonNullable<String> merchantAccountId,

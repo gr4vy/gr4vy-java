@@ -35,7 +35,8 @@ public class ThreeDSecureDataV1 {
     private String version;
 
     /**
-     * For 3-D Secure version 1, the enrolment response. For 3-D Secure version 2 and above, the transaction status from the `ARes`.
+     * For 3-D Secure version 1, the enrolment response. For 3-D Secure version 2 and above, the
+     * transaction status from the `ARes`.
      */
     @JsonProperty("directory_response")
     private String directoryResponse;
@@ -131,7 +132,8 @@ public class ThreeDSecureDataV1 {
     }
 
     /**
-     * For 3-D Secure version 1, the enrolment response. For 3-D Secure version 2 and above, the transaction status from the `ARes`.
+     * For 3-D Secure version 1, the enrolment response. For 3-D Secure version 2 and above, the
+     * transaction status from the `ARes`.
      */
     @JsonIgnore
     public String directoryResponse() {
@@ -204,7 +206,8 @@ public class ThreeDSecureDataV1 {
     }
 
     /**
-     * For 3-D Secure version 1, the enrolment response. For 3-D Secure version 2 and above, the transaction status from the `ARes`.
+     * For 3-D Secure version 1, the enrolment response. For 3-D Secure version 2 and above, the
+     * transaction status from the `ARes`.
      */
     public ThreeDSecureDataV1 withDirectoryResponse(String directoryResponse) {
         Utils.checkNotNull(directoryResponse, "directoryResponse");
@@ -353,7 +356,8 @@ public class ThreeDSecureDataV1 {
 
 
         /**
-         * For 3-D Secure version 1, the enrolment response. For 3-D Secure version 2 and above, the transaction status from the `ARes`.
+         * For 3-D Secure version 1, the enrolment response. For 3-D Secure version 2 and above, the
+         * transaction status from the `ARes`.
          */
         public Builder directoryResponse(String directoryResponse) {
             Utils.checkNotNull(directoryResponse, "directoryResponse");

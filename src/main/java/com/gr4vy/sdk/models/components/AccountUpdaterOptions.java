@@ -25,21 +25,24 @@ public class AccountUpdaterOptions {
     private JsonNullable<String> responseCode;
 
     /**
-     * When the `response_code` is set to `updated`, the payment method's account number will be updated to this value.
+     * When the `response_code` is set to `updated`, the payment method's account number will be updated to
+     * this value.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("account_number")
     private JsonNullable<String> accountNumber;
 
     /**
-     * When the `response_code` is set to `updated`, the payment method's expiration month will be updated to this value.
+     * When the `response_code` is set to `updated`, the payment method's expiration month will be updated
+     * to this value.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("expiration_month")
     private JsonNullable<String> expirationMonth;
 
     /**
-     * When the `response_code` is set to `updated`, the payment method's expiration year will be updated to this value.
+     * When the `response_code` is set to `updated`, the payment method's expiration year will be updated
+     * to this value.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("expiration_year")
@@ -83,7 +86,8 @@ public class AccountUpdaterOptions {
     }
 
     /**
-     * When the `response_code` is set to `updated`, the payment method's account number will be updated to this value.
+     * When the `response_code` is set to `updated`, the payment method's account number will be updated to
+     * this value.
      */
     @JsonIgnore
     public JsonNullable<String> accountNumber() {
@@ -91,7 +95,8 @@ public class AccountUpdaterOptions {
     }
 
     /**
-     * When the `response_code` is set to `updated`, the payment method's expiration month will be updated to this value.
+     * When the `response_code` is set to `updated`, the payment method's expiration month will be updated
+     * to this value.
      */
     @JsonIgnore
     public JsonNullable<String> expirationMonth() {
@@ -99,7 +104,8 @@ public class AccountUpdaterOptions {
     }
 
     /**
-     * When the `response_code` is set to `updated`, the payment method's expiration year will be updated to this value.
+     * When the `response_code` is set to `updated`, the payment method's expiration year will be updated
+     * to this value.
      */
     @JsonIgnore
     public JsonNullable<String> expirationYear() {
@@ -120,7 +126,8 @@ public class AccountUpdaterOptions {
 
 
     /**
-     * When the `response_code` is set to `updated`, the payment method's account number will be updated to this value.
+     * When the `response_code` is set to `updated`, the payment method's account number will be updated to
+     * this value.
      */
     public AccountUpdaterOptions withAccountNumber(String accountNumber) {
         Utils.checkNotNull(accountNumber, "accountNumber");
@@ -129,7 +136,8 @@ public class AccountUpdaterOptions {
     }
 
     /**
-     * When the `response_code` is set to `updated`, the payment method's account number will be updated to this value.
+     * When the `response_code` is set to `updated`, the payment method's account number will be updated to
+     * this value.
      */
     public AccountUpdaterOptions withAccountNumber(JsonNullable<String> accountNumber) {
         Utils.checkNotNull(accountNumber, "accountNumber");
@@ -138,7 +146,8 @@ public class AccountUpdaterOptions {
     }
 
     /**
-     * When the `response_code` is set to `updated`, the payment method's expiration month will be updated to this value.
+     * When the `response_code` is set to `updated`, the payment method's expiration month will be updated
+     * to this value.
      */
     public AccountUpdaterOptions withExpirationMonth(String expirationMonth) {
         Utils.checkNotNull(expirationMonth, "expirationMonth");
@@ -147,7 +156,8 @@ public class AccountUpdaterOptions {
     }
 
     /**
-     * When the `response_code` is set to `updated`, the payment method's expiration month will be updated to this value.
+     * When the `response_code` is set to `updated`, the payment method's expiration month will be updated
+     * to this value.
      */
     public AccountUpdaterOptions withExpirationMonth(JsonNullable<String> expirationMonth) {
         Utils.checkNotNull(expirationMonth, "expirationMonth");
@@ -156,7 +166,8 @@ public class AccountUpdaterOptions {
     }
 
     /**
-     * When the `response_code` is set to `updated`, the payment method's expiration year will be updated to this value.
+     * When the `response_code` is set to `updated`, the payment method's expiration year will be updated
+     * to this value.
      */
     public AccountUpdaterOptions withExpirationYear(String expirationYear) {
         Utils.checkNotNull(expirationYear, "expirationYear");
@@ -165,7 +176,8 @@ public class AccountUpdaterOptions {
     }
 
     /**
-     * When the `response_code` is set to `updated`, the payment method's expiration year will be updated to this value.
+     * When the `response_code` is set to `updated`, the payment method's expiration year will be updated
+     * to this value.
      */
     public AccountUpdaterOptions withExpirationYear(JsonNullable<String> expirationYear) {
         Utils.checkNotNull(expirationYear, "expirationYear");
@@ -242,7 +254,8 @@ public class AccountUpdaterOptions {
 
 
         /**
-         * When the `response_code` is set to `updated`, the payment method's account number will be updated to this value.
+         * When the `response_code` is set to `updated`, the payment method's account number will be updated to
+         * this value.
          */
         public Builder accountNumber(String accountNumber) {
             Utils.checkNotNull(accountNumber, "accountNumber");
@@ -251,7 +264,8 @@ public class AccountUpdaterOptions {
         }
 
         /**
-         * When the `response_code` is set to `updated`, the payment method's account number will be updated to this value.
+         * When the `response_code` is set to `updated`, the payment method's account number will be updated to
+         * this value.
          */
         public Builder accountNumber(JsonNullable<String> accountNumber) {
             Utils.checkNotNull(accountNumber, "accountNumber");
@@ -261,7 +275,8 @@ public class AccountUpdaterOptions {
 
 
         /**
-         * When the `response_code` is set to `updated`, the payment method's expiration month will be updated to this value.
+         * When the `response_code` is set to `updated`, the payment method's expiration month will be updated
+         * to this value.
          */
         public Builder expirationMonth(String expirationMonth) {
             Utils.checkNotNull(expirationMonth, "expirationMonth");
@@ -270,7 +285,8 @@ public class AccountUpdaterOptions {
         }
 
         /**
-         * When the `response_code` is set to `updated`, the payment method's expiration month will be updated to this value.
+         * When the `response_code` is set to `updated`, the payment method's expiration month will be updated
+         * to this value.
          */
         public Builder expirationMonth(JsonNullable<String> expirationMonth) {
             Utils.checkNotNull(expirationMonth, "expirationMonth");
@@ -280,7 +296,8 @@ public class AccountUpdaterOptions {
 
 
         /**
-         * When the `response_code` is set to `updated`, the payment method's expiration year will be updated to this value.
+         * When the `response_code` is set to `updated`, the payment method's expiration year will be updated
+         * to this value.
          */
         public Builder expirationYear(String expirationYear) {
             Utils.checkNotNull(expirationYear, "expirationYear");
@@ -289,7 +306,8 @@ public class AccountUpdaterOptions {
         }
 
         /**
-         * When the `response_code` is set to `updated`, the payment method's expiration year will be updated to this value.
+         * When the `response_code` is set to `updated`, the payment method's expiration year will be updated
+         * to this value.
          */
         public Builder expirationYear(JsonNullable<String> expirationYear) {
             Utils.checkNotNull(expirationYear, "expirationYear");

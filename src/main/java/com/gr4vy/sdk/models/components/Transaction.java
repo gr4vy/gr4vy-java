@@ -42,7 +42,11 @@ public class Transaction {
     private String id;
 
     /**
-     * The base62 encoded transaction ID. This represents a shorter version of this transaction's `id` which is sent to payment services, anti-fraud services, and other connectors. You can use this ID to reconcile a payment service's transaction against our system. This ID is sent instead of the transaction ID because not all services support 36 digit identifiers.
+     * The base62 encoded transaction ID. This represents a shorter version of this transaction's `id`
+     * which is sent to payment services, anti-fraud services, and other connectors. You can use this ID to
+     * reconcile a payment service's transaction against our system.
+     * 
+     * <p>This ID is sent instead of the transaction ID because not all services support 36 digit identifiers.
      */
     @JsonProperty("reconciliation_id")
     private String reconciliationId;
@@ -70,19 +74,22 @@ public class Transaction {
     private TransactionStatus status;
 
     /**
-     * The amount for this transaction that has been authorized for the `payment_method`. This can be less than the `amount` if gift cards were used.
+     * The amount for this transaction that has been authorized for the `payment_method`. This can be less
+     * than the `amount` if gift cards were used.
      */
     @JsonProperty("authorized_amount")
     private long authorizedAmount;
 
     /**
-     * The total amount captured for this transaction, in the smallest currency unit (for example, cents or pence). This can be the full value of the `authorized_amount` or less.
+     * The total amount captured for this transaction, in the smallest currency unit (for example, cents or
+     * pence). This can be the full value of the `authorized_amount` or less.
      */
     @JsonProperty("captured_amount")
     private long capturedAmount;
 
     /**
-     * The total amount refunded for this transaction, in the smallest currency unit (for example, cents or pence). This can be the full value of the `captured_amount` or less.
+     * The total amount refunded for this transaction, in the smallest currency unit (for example, cents or
+     * pence). This can be the full value of the `captured_amount` or less.
      */
     @JsonProperty("refunded_amount")
     private long refundedAmount;
@@ -95,7 +102,8 @@ public class Transaction {
     private JsonNullable<String> settledCurrency;
 
     /**
-     * The net amount settled for this transaction, in the smallest currency unit (for example, cents or pence).
+     * The net amount settled for this transaction, in the smallest currency unit (for example, cents or
+     * pence).
      */
     @JsonProperty("settled_amount")
     private long settledAmount;
@@ -107,7 +115,8 @@ public class Transaction {
     private boolean settled;
 
     /**
-     * The 2-letter ISO 3166-1 alpha-2 country code for the transaction. Used to filter payment services for processing.
+     * The 2-letter ISO 3166-1 alpha-2 country code for the transaction. Used to filter payment services
+     * for processing.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("country")
@@ -174,14 +183,16 @@ public class Transaction {
     private JsonNullable<? extends TransactionBuyer> buyer;
 
     /**
-     * This is the response code received from the payment service. This can be set to any value and is not standardized across different payment services.
+     * This is the response code received from the payment service. This can be set to any value and is not
+     * standardized across different payment services.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("raw_response_code")
     private JsonNullable<String> rawResponseCode;
 
     /**
-     * This is the response description received from the payment service. This can be set to any value and is not standardized across different payment services.
+     * This is the response description received from the payment service. This can be set to any value and
+     * is not standardized across different payment services.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("raw_response_description")
@@ -247,21 +258,24 @@ public class Transaction {
     private JsonNullable<String> authResponseCode;
 
     /**
-     * The response code received from the payment service for the Address Verification Check (AVS). This code is mapped to a standardized Gr4vy AVS response code.
+     * The response code received from the payment service for the Address Verification Check (AVS). This
+     * code is mapped to a standardized Gr4vy AVS response code.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("avs_response_code")
     private JsonNullable<? extends AVSResponseCode> avsResponseCode;
 
     /**
-     * The response code received from the payment service for the Card Verification Value (CVV). This code is mapped to a standardized Gr4vy CVV response code.
+     * The response code received from the payment service for the Card Verification Value (CVV). This code
+     * is mapped to a standardized Gr4vy CVV response code.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("cvv_response_code")
     private JsonNullable<? extends CVVResponseCode> cvvResponseCode;
 
     /**
-     * The mapped decision received from the anti-fraud service. In case of a review decision this field is not updated once the review is resolved.
+     * The mapped decision received from the anti-fraud service. In case of a review decision this field is
+     * not updated once the review is resolved.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("anti_fraud_decision")
@@ -321,7 +335,9 @@ public class Transaction {
     private JsonNullable<String> paymentServiceTransactionId;
 
     /**
-     * A list of additional identifiers that we may keep track of to manage this transaction. This may include the authorization ID, capture ID, and processor ID, as well as an undefined list of additional identifiers.
+     * A list of additional identifiers that we may keep track of to manage this transaction. This may
+     * include the authorization ID, capture ID, and processor ID, as well as an undefined list of
+     * additional identifiers.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("additional_identifiers")
@@ -381,13 +397,16 @@ public class Transaction {
     private TransactionIntentOutcome intentOutcome;
 
     /**
-     * The outcome of the original intent of a transaction. This allows you to understand if the intent of the transaction (e.g. `capture` or `authorize`) has been achieved when dealing with multiple payment instruments.
+     * The outcome of the original intent of a transaction. This allows you to understand if the intent of
+     * the transaction (e.g. `capture` or `authorize`) has been achieved when dealing with multiple payment
+     * instruments.
      */
     @JsonProperty("multi_tender")
     private boolean multiTender;
 
     /**
-     * Marks the transaction as an AFT. Requires the payment service to support this feature, and might `recipient` and `buyer` data
+     * Marks the transaction as an AFT. Requires the payment service to support this feature, and might
+     * `recipient` and `buyer` data
      */
     @JsonProperty("account_funding_transaction")
     private boolean accountFundingTransaction;
@@ -400,7 +419,8 @@ public class Transaction {
     private JsonNullable<? extends Recipient> recipient;
 
     /**
-     * An optional merchant advice code which provides insight into the type of transaction or reason why the payment failed.
+     * An optional merchant advice code which provides insight into the type of transaction or reason why
+     * the payment failed.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("merchant_advice_code")
@@ -654,7 +674,11 @@ public class Transaction {
     }
 
     /**
-     * The base62 encoded transaction ID. This represents a shorter version of this transaction's `id` which is sent to payment services, anti-fraud services, and other connectors. You can use this ID to reconcile a payment service's transaction against our system. This ID is sent instead of the transaction ID because not all services support 36 digit identifiers.
+     * The base62 encoded transaction ID. This represents a shorter version of this transaction's `id`
+     * which is sent to payment services, anti-fraud services, and other connectors. You can use this ID to
+     * reconcile a payment service's transaction against our system.
+     * 
+     * <p>This ID is sent instead of the transaction ID because not all services support 36 digit identifiers.
      */
     @JsonIgnore
     public String reconciliationId() {
@@ -691,7 +715,8 @@ public class Transaction {
     }
 
     /**
-     * The amount for this transaction that has been authorized for the `payment_method`. This can be less than the `amount` if gift cards were used.
+     * The amount for this transaction that has been authorized for the `payment_method`. This can be less
+     * than the `amount` if gift cards were used.
      */
     @JsonIgnore
     public long authorizedAmount() {
@@ -699,7 +724,8 @@ public class Transaction {
     }
 
     /**
-     * The total amount captured for this transaction, in the smallest currency unit (for example, cents or pence). This can be the full value of the `authorized_amount` or less.
+     * The total amount captured for this transaction, in the smallest currency unit (for example, cents or
+     * pence). This can be the full value of the `authorized_amount` or less.
      */
     @JsonIgnore
     public long capturedAmount() {
@@ -707,7 +733,8 @@ public class Transaction {
     }
 
     /**
-     * The total amount refunded for this transaction, in the smallest currency unit (for example, cents or pence). This can be the full value of the `captured_amount` or less.
+     * The total amount refunded for this transaction, in the smallest currency unit (for example, cents or
+     * pence). This can be the full value of the `captured_amount` or less.
      */
     @JsonIgnore
     public long refundedAmount() {
@@ -723,7 +750,8 @@ public class Transaction {
     }
 
     /**
-     * The net amount settled for this transaction, in the smallest currency unit (for example, cents or pence).
+     * The net amount settled for this transaction, in the smallest currency unit (for example, cents or
+     * pence).
      */
     @JsonIgnore
     public long settledAmount() {
@@ -739,7 +767,8 @@ public class Transaction {
     }
 
     /**
-     * The 2-letter ISO 3166-1 alpha-2 country code for the transaction. Used to filter payment services for processing.
+     * The 2-letter ISO 3166-1 alpha-2 country code for the transaction. Used to filter payment services
+     * for processing.
      */
     @JsonIgnore
     public JsonNullable<String> country() {
@@ -821,7 +850,8 @@ public class Transaction {
     }
 
     /**
-     * This is the response code received from the payment service. This can be set to any value and is not standardized across different payment services.
+     * This is the response code received from the payment service. This can be set to any value and is not
+     * standardized across different payment services.
      */
     @JsonIgnore
     public JsonNullable<String> rawResponseCode() {
@@ -829,7 +859,8 @@ public class Transaction {
     }
 
     /**
-     * This is the response description received from the payment service. This can be set to any value and is not standardized across different payment services.
+     * This is the response description received from the payment service. This can be set to any value and
+     * is not standardized across different payment services.
      */
     @JsonIgnore
     public JsonNullable<String> rawResponseDescription() {
@@ -912,7 +943,8 @@ public class Transaction {
     }
 
     /**
-     * The response code received from the payment service for the Address Verification Check (AVS). This code is mapped to a standardized Gr4vy AVS response code.
+     * The response code received from the payment service for the Address Verification Check (AVS). This
+     * code is mapped to a standardized Gr4vy AVS response code.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -921,7 +953,8 @@ public class Transaction {
     }
 
     /**
-     * The response code received from the payment service for the Card Verification Value (CVV). This code is mapped to a standardized Gr4vy CVV response code.
+     * The response code received from the payment service for the Card Verification Value (CVV). This code
+     * is mapped to a standardized Gr4vy CVV response code.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -930,7 +963,8 @@ public class Transaction {
     }
 
     /**
-     * The mapped decision received from the anti-fraud service. In case of a review decision this field is not updated once the review is resolved.
+     * The mapped decision received from the anti-fraud service. In case of a review decision this field is
+     * not updated once the review is resolved.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -1006,7 +1040,9 @@ public class Transaction {
     }
 
     /**
-     * A list of additional identifiers that we may keep track of to manage this transaction. This may include the authorization ID, capture ID, and processor ID, as well as an undefined list of additional identifiers.
+     * A list of additional identifiers that we may keep track of to manage this transaction. This may
+     * include the authorization ID, capture ID, and processor ID, as well as an undefined list of
+     * additional identifiers.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -1077,7 +1113,9 @@ public class Transaction {
     }
 
     /**
-     * The outcome of the original intent of a transaction. This allows you to understand if the intent of the transaction (e.g. `capture` or `authorize`) has been achieved when dealing with multiple payment instruments.
+     * The outcome of the original intent of a transaction. This allows you to understand if the intent of
+     * the transaction (e.g. `capture` or `authorize`) has been achieved when dealing with multiple payment
+     * instruments.
      */
     @JsonIgnore
     public boolean multiTender() {
@@ -1085,7 +1123,8 @@ public class Transaction {
     }
 
     /**
-     * Marks the transaction as an AFT. Requires the payment service to support this feature, and might `recipient` and `buyer` data
+     * Marks the transaction as an AFT. Requires the payment service to support this feature, and might
+     * `recipient` and `buyer` data
      */
     @JsonIgnore
     public boolean accountFundingTransaction() {
@@ -1102,7 +1141,8 @@ public class Transaction {
     }
 
     /**
-     * An optional merchant advice code which provides insight into the type of transaction or reason why the payment failed.
+     * An optional merchant advice code which provides insight into the type of transaction or reason why
+     * the payment failed.
      */
     @JsonIgnore
     public JsonNullable<String> merchantAdviceCode() {
@@ -1132,7 +1172,11 @@ public class Transaction {
     }
 
     /**
-     * The base62 encoded transaction ID. This represents a shorter version of this transaction's `id` which is sent to payment services, anti-fraud services, and other connectors. You can use this ID to reconcile a payment service's transaction against our system. This ID is sent instead of the transaction ID because not all services support 36 digit identifiers.
+     * The base62 encoded transaction ID. This represents a shorter version of this transaction's `id`
+     * which is sent to payment services, anti-fraud services, and other connectors. You can use this ID to
+     * reconcile a payment service's transaction against our system.
+     * 
+     * <p>This ID is sent instead of the transaction ID because not all services support 36 digit identifiers.
      */
     public Transaction withReconciliationId(String reconciliationId) {
         Utils.checkNotNull(reconciliationId, "reconciliationId");
@@ -1174,7 +1218,8 @@ public class Transaction {
     }
 
     /**
-     * The amount for this transaction that has been authorized for the `payment_method`. This can be less than the `amount` if gift cards were used.
+     * The amount for this transaction that has been authorized for the `payment_method`. This can be less
+     * than the `amount` if gift cards were used.
      */
     public Transaction withAuthorizedAmount(long authorizedAmount) {
         Utils.checkNotNull(authorizedAmount, "authorizedAmount");
@@ -1183,7 +1228,8 @@ public class Transaction {
     }
 
     /**
-     * The total amount captured for this transaction, in the smallest currency unit (for example, cents or pence). This can be the full value of the `authorized_amount` or less.
+     * The total amount captured for this transaction, in the smallest currency unit (for example, cents or
+     * pence). This can be the full value of the `authorized_amount` or less.
      */
     public Transaction withCapturedAmount(long capturedAmount) {
         Utils.checkNotNull(capturedAmount, "capturedAmount");
@@ -1192,7 +1238,8 @@ public class Transaction {
     }
 
     /**
-     * The total amount refunded for this transaction, in the smallest currency unit (for example, cents or pence). This can be the full value of the `captured_amount` or less.
+     * The total amount refunded for this transaction, in the smallest currency unit (for example, cents or
+     * pence). This can be the full value of the `captured_amount` or less.
      */
     public Transaction withRefundedAmount(long refundedAmount) {
         Utils.checkNotNull(refundedAmount, "refundedAmount");
@@ -1219,7 +1266,8 @@ public class Transaction {
     }
 
     /**
-     * The net amount settled for this transaction, in the smallest currency unit (for example, cents or pence).
+     * The net amount settled for this transaction, in the smallest currency unit (for example, cents or
+     * pence).
      */
     public Transaction withSettledAmount(long settledAmount) {
         Utils.checkNotNull(settledAmount, "settledAmount");
@@ -1237,7 +1285,8 @@ public class Transaction {
     }
 
     /**
-     * The 2-letter ISO 3166-1 alpha-2 country code for the transaction. Used to filter payment services for processing.
+     * The 2-letter ISO 3166-1 alpha-2 country code for the transaction. Used to filter payment services
+     * for processing.
      */
     public Transaction withCountry(String country) {
         Utils.checkNotNull(country, "country");
@@ -1246,7 +1295,8 @@ public class Transaction {
     }
 
     /**
-     * The 2-letter ISO 3166-1 alpha-2 country code for the transaction. Used to filter payment services for processing.
+     * The 2-letter ISO 3166-1 alpha-2 country code for the transaction. Used to filter payment services
+     * for processing.
      */
     public Transaction withCountry(JsonNullable<String> country) {
         Utils.checkNotNull(country, "country");
@@ -1406,7 +1456,8 @@ public class Transaction {
     }
 
     /**
-     * This is the response code received from the payment service. This can be set to any value and is not standardized across different payment services.
+     * This is the response code received from the payment service. This can be set to any value and is not
+     * standardized across different payment services.
      */
     public Transaction withRawResponseCode(String rawResponseCode) {
         Utils.checkNotNull(rawResponseCode, "rawResponseCode");
@@ -1415,7 +1466,8 @@ public class Transaction {
     }
 
     /**
-     * This is the response code received from the payment service. This can be set to any value and is not standardized across different payment services.
+     * This is the response code received from the payment service. This can be set to any value and is not
+     * standardized across different payment services.
      */
     public Transaction withRawResponseCode(JsonNullable<String> rawResponseCode) {
         Utils.checkNotNull(rawResponseCode, "rawResponseCode");
@@ -1424,7 +1476,8 @@ public class Transaction {
     }
 
     /**
-     * This is the response description received from the payment service. This can be set to any value and is not standardized across different payment services.
+     * This is the response description received from the payment service. This can be set to any value and
+     * is not standardized across different payment services.
      */
     public Transaction withRawResponseDescription(String rawResponseDescription) {
         Utils.checkNotNull(rawResponseDescription, "rawResponseDescription");
@@ -1433,7 +1486,8 @@ public class Transaction {
     }
 
     /**
-     * This is the response description received from the payment service. This can be set to any value and is not standardized across different payment services.
+     * This is the response description received from the payment service. This can be set to any value and
+     * is not standardized across different payment services.
      */
     public Transaction withRawResponseDescription(JsonNullable<String> rawResponseDescription) {
         Utils.checkNotNull(rawResponseDescription, "rawResponseDescription");
@@ -1568,7 +1622,8 @@ public class Transaction {
     }
 
     /**
-     * The response code received from the payment service for the Address Verification Check (AVS). This code is mapped to a standardized Gr4vy AVS response code.
+     * The response code received from the payment service for the Address Verification Check (AVS). This
+     * code is mapped to a standardized Gr4vy AVS response code.
      */
     public Transaction withAvsResponseCode(AVSResponseCode avsResponseCode) {
         Utils.checkNotNull(avsResponseCode, "avsResponseCode");
@@ -1577,7 +1632,8 @@ public class Transaction {
     }
 
     /**
-     * The response code received from the payment service for the Address Verification Check (AVS). This code is mapped to a standardized Gr4vy AVS response code.
+     * The response code received from the payment service for the Address Verification Check (AVS). This
+     * code is mapped to a standardized Gr4vy AVS response code.
      */
     public Transaction withAvsResponseCode(JsonNullable<? extends AVSResponseCode> avsResponseCode) {
         Utils.checkNotNull(avsResponseCode, "avsResponseCode");
@@ -1586,7 +1642,8 @@ public class Transaction {
     }
 
     /**
-     * The response code received from the payment service for the Card Verification Value (CVV). This code is mapped to a standardized Gr4vy CVV response code.
+     * The response code received from the payment service for the Card Verification Value (CVV). This code
+     * is mapped to a standardized Gr4vy CVV response code.
      */
     public Transaction withCvvResponseCode(CVVResponseCode cvvResponseCode) {
         Utils.checkNotNull(cvvResponseCode, "cvvResponseCode");
@@ -1595,7 +1652,8 @@ public class Transaction {
     }
 
     /**
-     * The response code received from the payment service for the Card Verification Value (CVV). This code is mapped to a standardized Gr4vy CVV response code.
+     * The response code received from the payment service for the Card Verification Value (CVV). This code
+     * is mapped to a standardized Gr4vy CVV response code.
      */
     public Transaction withCvvResponseCode(JsonNullable<? extends CVVResponseCode> cvvResponseCode) {
         Utils.checkNotNull(cvvResponseCode, "cvvResponseCode");
@@ -1604,7 +1662,8 @@ public class Transaction {
     }
 
     /**
-     * The mapped decision received from the anti-fraud service. In case of a review decision this field is not updated once the review is resolved.
+     * The mapped decision received from the anti-fraud service. In case of a review decision this field is
+     * not updated once the review is resolved.
      */
     public Transaction withAntiFraudDecision(AntiFraudDecision antiFraudDecision) {
         Utils.checkNotNull(antiFraudDecision, "antiFraudDecision");
@@ -1613,7 +1672,8 @@ public class Transaction {
     }
 
     /**
-     * The mapped decision received from the anti-fraud service. In case of a review decision this field is not updated once the review is resolved.
+     * The mapped decision received from the anti-fraud service. In case of a review decision this field is
+     * not updated once the review is resolved.
      */
     public Transaction withAntiFraudDecision(JsonNullable<? extends AntiFraudDecision> antiFraudDecision) {
         Utils.checkNotNull(antiFraudDecision, "antiFraudDecision");
@@ -1739,7 +1799,9 @@ public class Transaction {
     }
 
     /**
-     * A list of additional identifiers that we may keep track of to manage this transaction. This may include the authorization ID, capture ID, and processor ID, as well as an undefined list of additional identifiers.
+     * A list of additional identifiers that we may keep track of to manage this transaction. This may
+     * include the authorization ID, capture ID, and processor ID, as well as an undefined list of
+     * additional identifiers.
      */
     public Transaction withAdditionalIdentifiers(Map<String, String> additionalIdentifiers) {
         Utils.checkNotNull(additionalIdentifiers, "additionalIdentifiers");
@@ -1749,7 +1811,9 @@ public class Transaction {
 
 
     /**
-     * A list of additional identifiers that we may keep track of to manage this transaction. This may include the authorization ID, capture ID, and processor ID, as well as an undefined list of additional identifiers.
+     * A list of additional identifiers that we may keep track of to manage this transaction. This may
+     * include the authorization ID, capture ID, and processor ID, as well as an undefined list of
+     * additional identifiers.
      */
     public Transaction withAdditionalIdentifiers(Optional<? extends Map<String, String>> additionalIdentifiers) {
         Utils.checkNotNull(additionalIdentifiers, "additionalIdentifiers");
@@ -1890,7 +1954,9 @@ public class Transaction {
     }
 
     /**
-     * The outcome of the original intent of a transaction. This allows you to understand if the intent of the transaction (e.g. `capture` or `authorize`) has been achieved when dealing with multiple payment instruments.
+     * The outcome of the original intent of a transaction. This allows you to understand if the intent of
+     * the transaction (e.g. `capture` or `authorize`) has been achieved when dealing with multiple payment
+     * instruments.
      */
     public Transaction withMultiTender(boolean multiTender) {
         Utils.checkNotNull(multiTender, "multiTender");
@@ -1899,7 +1965,8 @@ public class Transaction {
     }
 
     /**
-     * Marks the transaction as an AFT. Requires the payment service to support this feature, and might `recipient` and `buyer` data
+     * Marks the transaction as an AFT. Requires the payment service to support this feature, and might
+     * `recipient` and `buyer` data
      */
     public Transaction withAccountFundingTransaction(boolean accountFundingTransaction) {
         Utils.checkNotNull(accountFundingTransaction, "accountFundingTransaction");
@@ -1926,7 +1993,8 @@ public class Transaction {
     }
 
     /**
-     * An optional merchant advice code which provides insight into the type of transaction or reason why the payment failed.
+     * An optional merchant advice code which provides insight into the type of transaction or reason why
+     * the payment failed.
      */
     public Transaction withMerchantAdviceCode(String merchantAdviceCode) {
         Utils.checkNotNull(merchantAdviceCode, "merchantAdviceCode");
@@ -1935,7 +2003,8 @@ public class Transaction {
     }
 
     /**
-     * An optional merchant advice code which provides insight into the type of transaction or reason why the payment failed.
+     * An optional merchant advice code which provides insight into the type of transaction or reason why
+     * the payment failed.
      */
     public Transaction withMerchantAdviceCode(JsonNullable<String> merchantAdviceCode) {
         Utils.checkNotNull(merchantAdviceCode, "merchantAdviceCode");
@@ -2256,7 +2325,11 @@ public class Transaction {
 
 
         /**
-         * The base62 encoded transaction ID. This represents a shorter version of this transaction's `id` which is sent to payment services, anti-fraud services, and other connectors. You can use this ID to reconcile a payment service's transaction against our system. This ID is sent instead of the transaction ID because not all services support 36 digit identifiers.
+         * The base62 encoded transaction ID. This represents a shorter version of this transaction's `id`
+         * which is sent to payment services, anti-fraud services, and other connectors. You can use this ID to
+         * reconcile a payment service's transaction against our system.
+         * 
+         * <p>This ID is sent instead of the transaction ID because not all services support 36 digit identifiers.
          */
         public Builder reconciliationId(String reconciliationId) {
             Utils.checkNotNull(reconciliationId, "reconciliationId");
@@ -2303,7 +2376,8 @@ public class Transaction {
 
 
         /**
-         * The amount for this transaction that has been authorized for the `payment_method`. This can be less than the `amount` if gift cards were used.
+         * The amount for this transaction that has been authorized for the `payment_method`. This can be less
+         * than the `amount` if gift cards were used.
          */
         public Builder authorizedAmount(long authorizedAmount) {
             Utils.checkNotNull(authorizedAmount, "authorizedAmount");
@@ -2313,7 +2387,8 @@ public class Transaction {
 
 
         /**
-         * The total amount captured for this transaction, in the smallest currency unit (for example, cents or pence). This can be the full value of the `authorized_amount` or less.
+         * The total amount captured for this transaction, in the smallest currency unit (for example, cents or
+         * pence). This can be the full value of the `authorized_amount` or less.
          */
         public Builder capturedAmount(long capturedAmount) {
             Utils.checkNotNull(capturedAmount, "capturedAmount");
@@ -2323,7 +2398,8 @@ public class Transaction {
 
 
         /**
-         * The total amount refunded for this transaction, in the smallest currency unit (for example, cents or pence). This can be the full value of the `captured_amount` or less.
+         * The total amount refunded for this transaction, in the smallest currency unit (for example, cents or
+         * pence). This can be the full value of the `captured_amount` or less.
          */
         public Builder refundedAmount(long refundedAmount) {
             Utils.checkNotNull(refundedAmount, "refundedAmount");
@@ -2352,7 +2428,8 @@ public class Transaction {
 
 
         /**
-         * The net amount settled for this transaction, in the smallest currency unit (for example, cents or pence).
+         * The net amount settled for this transaction, in the smallest currency unit (for example, cents or
+         * pence).
          */
         public Builder settledAmount(long settledAmount) {
             Utils.checkNotNull(settledAmount, "settledAmount");
@@ -2372,7 +2449,8 @@ public class Transaction {
 
 
         /**
-         * The 2-letter ISO 3166-1 alpha-2 country code for the transaction. Used to filter payment services for processing.
+         * The 2-letter ISO 3166-1 alpha-2 country code for the transaction. Used to filter payment services
+         * for processing.
          */
         public Builder country(String country) {
             Utils.checkNotNull(country, "country");
@@ -2381,7 +2459,8 @@ public class Transaction {
         }
 
         /**
-         * The 2-letter ISO 3166-1 alpha-2 country code for the transaction. Used to filter payment services for processing.
+         * The 2-letter ISO 3166-1 alpha-2 country code for the transaction. Used to filter payment services
+         * for processing.
          */
         public Builder country(JsonNullable<String> country) {
             Utils.checkNotNull(country, "country");
@@ -2550,7 +2629,8 @@ public class Transaction {
 
 
         /**
-         * This is the response code received from the payment service. This can be set to any value and is not standardized across different payment services.
+         * This is the response code received from the payment service. This can be set to any value and is not
+         * standardized across different payment services.
          */
         public Builder rawResponseCode(String rawResponseCode) {
             Utils.checkNotNull(rawResponseCode, "rawResponseCode");
@@ -2559,7 +2639,8 @@ public class Transaction {
         }
 
         /**
-         * This is the response code received from the payment service. This can be set to any value and is not standardized across different payment services.
+         * This is the response code received from the payment service. This can be set to any value and is not
+         * standardized across different payment services.
          */
         public Builder rawResponseCode(JsonNullable<String> rawResponseCode) {
             Utils.checkNotNull(rawResponseCode, "rawResponseCode");
@@ -2569,7 +2650,8 @@ public class Transaction {
 
 
         /**
-         * This is the response description received from the payment service. This can be set to any value and is not standardized across different payment services.
+         * This is the response description received from the payment service. This can be set to any value and
+         * is not standardized across different payment services.
          */
         public Builder rawResponseDescription(String rawResponseDescription) {
             Utils.checkNotNull(rawResponseDescription, "rawResponseDescription");
@@ -2578,7 +2660,8 @@ public class Transaction {
         }
 
         /**
-         * This is the response description received from the payment service. This can be set to any value and is not standardized across different payment services.
+         * This is the response description received from the payment service. This can be set to any value and
+         * is not standardized across different payment services.
          */
         public Builder rawResponseDescription(JsonNullable<String> rawResponseDescription) {
             Utils.checkNotNull(rawResponseDescription, "rawResponseDescription");
@@ -2723,7 +2806,8 @@ public class Transaction {
 
 
         /**
-         * The response code received from the payment service for the Address Verification Check (AVS). This code is mapped to a standardized Gr4vy AVS response code.
+         * The response code received from the payment service for the Address Verification Check (AVS). This
+         * code is mapped to a standardized Gr4vy AVS response code.
          */
         public Builder avsResponseCode(AVSResponseCode avsResponseCode) {
             Utils.checkNotNull(avsResponseCode, "avsResponseCode");
@@ -2732,7 +2816,8 @@ public class Transaction {
         }
 
         /**
-         * The response code received from the payment service for the Address Verification Check (AVS). This code is mapped to a standardized Gr4vy AVS response code.
+         * The response code received from the payment service for the Address Verification Check (AVS). This
+         * code is mapped to a standardized Gr4vy AVS response code.
          */
         public Builder avsResponseCode(JsonNullable<? extends AVSResponseCode> avsResponseCode) {
             Utils.checkNotNull(avsResponseCode, "avsResponseCode");
@@ -2742,7 +2827,8 @@ public class Transaction {
 
 
         /**
-         * The response code received from the payment service for the Card Verification Value (CVV). This code is mapped to a standardized Gr4vy CVV response code.
+         * The response code received from the payment service for the Card Verification Value (CVV). This code
+         * is mapped to a standardized Gr4vy CVV response code.
          */
         public Builder cvvResponseCode(CVVResponseCode cvvResponseCode) {
             Utils.checkNotNull(cvvResponseCode, "cvvResponseCode");
@@ -2751,7 +2837,8 @@ public class Transaction {
         }
 
         /**
-         * The response code received from the payment service for the Card Verification Value (CVV). This code is mapped to a standardized Gr4vy CVV response code.
+         * The response code received from the payment service for the Card Verification Value (CVV). This code
+         * is mapped to a standardized Gr4vy CVV response code.
          */
         public Builder cvvResponseCode(JsonNullable<? extends CVVResponseCode> cvvResponseCode) {
             Utils.checkNotNull(cvvResponseCode, "cvvResponseCode");
@@ -2761,7 +2848,8 @@ public class Transaction {
 
 
         /**
-         * The mapped decision received from the anti-fraud service. In case of a review decision this field is not updated once the review is resolved.
+         * The mapped decision received from the anti-fraud service. In case of a review decision this field is
+         * not updated once the review is resolved.
          */
         public Builder antiFraudDecision(AntiFraudDecision antiFraudDecision) {
             Utils.checkNotNull(antiFraudDecision, "antiFraudDecision");
@@ -2770,7 +2858,8 @@ public class Transaction {
         }
 
         /**
-         * The mapped decision received from the anti-fraud service. In case of a review decision this field is not updated once the review is resolved.
+         * The mapped decision received from the anti-fraud service. In case of a review decision this field is
+         * not updated once the review is resolved.
          */
         public Builder antiFraudDecision(JsonNullable<? extends AntiFraudDecision> antiFraudDecision) {
             Utils.checkNotNull(antiFraudDecision, "antiFraudDecision");
@@ -2905,7 +2994,9 @@ public class Transaction {
 
 
         /**
-         * A list of additional identifiers that we may keep track of to manage this transaction. This may include the authorization ID, capture ID, and processor ID, as well as an undefined list of additional identifiers.
+         * A list of additional identifiers that we may keep track of to manage this transaction. This may
+         * include the authorization ID, capture ID, and processor ID, as well as an undefined list of
+         * additional identifiers.
          */
         public Builder additionalIdentifiers(Map<String, String> additionalIdentifiers) {
             Utils.checkNotNull(additionalIdentifiers, "additionalIdentifiers");
@@ -2914,7 +3005,9 @@ public class Transaction {
         }
 
         /**
-         * A list of additional identifiers that we may keep track of to manage this transaction. This may include the authorization ID, capture ID, and processor ID, as well as an undefined list of additional identifiers.
+         * A list of additional identifiers that we may keep track of to manage this transaction. This may
+         * include the authorization ID, capture ID, and processor ID, as well as an undefined list of
+         * additional identifiers.
          */
         public Builder additionalIdentifiers(Optional<? extends Map<String, String>> additionalIdentifiers) {
             Utils.checkNotNull(additionalIdentifiers, "additionalIdentifiers");
@@ -3064,7 +3157,9 @@ public class Transaction {
 
 
         /**
-         * The outcome of the original intent of a transaction. This allows you to understand if the intent of the transaction (e.g. `capture` or `authorize`) has been achieved when dealing with multiple payment instruments.
+         * The outcome of the original intent of a transaction. This allows you to understand if the intent of
+         * the transaction (e.g. `capture` or `authorize`) has been achieved when dealing with multiple payment
+         * instruments.
          */
         public Builder multiTender(boolean multiTender) {
             Utils.checkNotNull(multiTender, "multiTender");
@@ -3074,7 +3169,8 @@ public class Transaction {
 
 
         /**
-         * Marks the transaction as an AFT. Requires the payment service to support this feature, and might `recipient` and `buyer` data
+         * Marks the transaction as an AFT. Requires the payment service to support this feature, and might
+         * `recipient` and `buyer` data
          */
         public Builder accountFundingTransaction(boolean accountFundingTransaction) {
             Utils.checkNotNull(accountFundingTransaction, "accountFundingTransaction");
@@ -3103,7 +3199,8 @@ public class Transaction {
 
 
         /**
-         * An optional merchant advice code which provides insight into the type of transaction or reason why the payment failed.
+         * An optional merchant advice code which provides insight into the type of transaction or reason why
+         * the payment failed.
          */
         public Builder merchantAdviceCode(String merchantAdviceCode) {
             Utils.checkNotNull(merchantAdviceCode, "merchantAdviceCode");
@@ -3112,7 +3209,8 @@ public class Transaction {
         }
 
         /**
-         * An optional merchant advice code which provides insight into the type of transaction or reason why the payment failed.
+         * An optional merchant advice code which provides insight into the type of transaction or reason why
+         * the payment failed.
          */
         public Builder merchantAdviceCode(JsonNullable<String> merchantAdviceCode) {
             Utils.checkNotNull(merchantAdviceCode, "merchantAdviceCode");

@@ -64,7 +64,7 @@ public class AsyncPaymentServiceDefinitions {
      * 
      * <p>List the definitions of each payment service that can be configured.
      * 
-     * @return CompletableFuture&lt;ListPaymentServiceDefinitionsResponse&gt; - The async response
+     * @return {@code CompletableFuture<ListPaymentServiceDefinitionsResponse>} - The async response
      */
     public CompletableFuture<ListPaymentServiceDefinitionsResponse> listDirect() {
         return list(JsonNullable.undefined(), Optional.empty(), Optional.empty());
@@ -78,7 +78,7 @@ public class AsyncPaymentServiceDefinitions {
      * @param cursor A pointer to the page of results to return.
      * @param limit The maximum number of items that are at returned.
      * @param options additional options
-     * @return CompletableFuture&lt;ListPaymentServiceDefinitionsResponse&gt; - The async response
+     * @return {@code CompletableFuture<ListPaymentServiceDefinitionsResponse>} - The async response
      */
     public CompletableFuture<ListPaymentServiceDefinitionsResponse> list(
             JsonNullable<String> cursor, Optional<Long> limit,
@@ -115,7 +115,7 @@ public class AsyncPaymentServiceDefinitions {
      * <p>Get the definition of a payment service that can be configured.
      * 
      * @param paymentServiceDefinitionId 
-     * @return CompletableFuture&lt;GetPaymentServiceDefinitionResponse&gt; - The async response
+     * @return {@code CompletableFuture<GetPaymentServiceDefinitionResponse>} - The async response
      */
     public CompletableFuture<GetPaymentServiceDefinitionResponse> get(String paymentServiceDefinitionId) {
         return get(paymentServiceDefinitionId, Optional.empty());
@@ -128,7 +128,7 @@ public class AsyncPaymentServiceDefinitions {
      * 
      * @param paymentServiceDefinitionId 
      * @param options additional options
-     * @return CompletableFuture&lt;GetPaymentServiceDefinitionResponse&gt; - The async response
+     * @return {@code CompletableFuture<GetPaymentServiceDefinitionResponse>} - The async response
      */
     public CompletableFuture<GetPaymentServiceDefinitionResponse> get(String paymentServiceDefinitionId, Optional<Options> options) {
         GetPaymentServiceDefinitionRequest request =
@@ -163,7 +163,7 @@ public class AsyncPaymentServiceDefinitions {
      * 
      * @param paymentServiceDefinitionId 
      * @param requestBody 
-     * @return CompletableFuture&lt;CreatePaymentServiceDefinitionSessionResponse&gt; - The async response
+     * @return {@code CompletableFuture<CreatePaymentServiceDefinitionSessionResponse>} - The async response
      */
     public CompletableFuture<CreatePaymentServiceDefinitionSessionResponse> session(String paymentServiceDefinitionId, Map<String, Object> requestBody) {
         CreatePaymentServiceDefinitionSessionRequest request =

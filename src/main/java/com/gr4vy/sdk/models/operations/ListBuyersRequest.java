@@ -30,7 +30,8 @@ public class ListBuyersRequest {
     private Optional<Long> limit;
 
     /**
-     * Filters the results to only the buyers for which the `display_name` or `external_identifier` matches this value.
+     * Filters the results to only the buyers for which the `display_name` or `external_identifier` matches
+     * this value.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=search")
     private JsonNullable<String> search;
@@ -88,7 +89,8 @@ public class ListBuyersRequest {
     }
 
     /**
-     * Filters the results to only the buyers for which the `display_name` or `external_identifier` matches this value.
+     * Filters the results to only the buyers for which the `display_name` or `external_identifier` matches
+     * this value.
      */
     @JsonIgnore
     public JsonNullable<String> search() {
@@ -154,7 +156,8 @@ public class ListBuyersRequest {
     }
 
     /**
-     * Filters the results to only the buyers for which the `display_name` or `external_identifier` matches this value.
+     * Filters the results to only the buyers for which the `display_name` or `external_identifier` matches
+     * this value.
      */
     public ListBuyersRequest withSearch(String search) {
         Utils.checkNotNull(search, "search");
@@ -163,7 +166,8 @@ public class ListBuyersRequest {
     }
 
     /**
-     * Filters the results to only the buyers for which the `display_name` or `external_identifier` matches this value.
+     * Filters the results to only the buyers for which the `display_name` or `external_identifier` matches
+     * this value.
      */
     public ListBuyersRequest withSearch(JsonNullable<String> search) {
         Utils.checkNotNull(search, "search");
@@ -298,7 +302,8 @@ public class ListBuyersRequest {
 
 
         /**
-         * Filters the results to only the buyers for which the `display_name` or `external_identifier` matches this value.
+         * Filters the results to only the buyers for which the `display_name` or `external_identifier` matches
+         * this value.
          */
         public Builder search(String search) {
             Utils.checkNotNull(search, "search");
@@ -307,7 +312,8 @@ public class ListBuyersRequest {
         }
 
         /**
-         * Filters the results to only the buyers for which the `display_name` or `external_identifier` matches this value.
+         * Filters the results to only the buyers for which the `display_name` or `external_identifier` matches
+         * this value.
          */
         public Builder search(JsonNullable<String> search) {
             Utils.checkNotNull(search, "search");

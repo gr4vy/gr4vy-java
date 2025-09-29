@@ -38,7 +38,8 @@ public class PaymentOptions {
     /**
      * List payment options
      * 
-     * <p>List the payment options available at checkout. filtering by country, currency, and additional fields passed to Flow rules.
+     * <p>List the payment options available at checkout. filtering by country, currency, and additional
+     * fields passed to Flow rules.
      * 
      * @return The call builder
      */
@@ -49,7 +50,8 @@ public class PaymentOptions {
     /**
      * List payment options
      * 
-     * <p>List the payment options available at checkout. filtering by country, currency, and additional fields passed to Flow rules.
+     * <p>List the payment options available at checkout. filtering by country, currency, and additional
+     * fields passed to Flow rules.
      * 
      * @param paymentOptionRequest 
      * @return The response from the API call
@@ -62,7 +64,8 @@ public class PaymentOptions {
     /**
      * List payment options
      * 
-     * <p>List the payment options available at checkout. filtering by country, currency, and additional fields passed to Flow rules.
+     * <p>List the payment options available at checkout. filtering by country, currency, and additional
+     * fields passed to Flow rules.
      * 
      * @param merchantAccountId 
      * @param paymentOptionRequest 

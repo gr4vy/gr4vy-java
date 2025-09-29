@@ -55,7 +55,7 @@ public class AsyncCryptogram {
      * @param paymentMethodId The ID of the payment method
      * @param networkTokenId The ID of the network token
      * @param cryptogramCreate 
-     * @return CompletableFuture&lt;CreatePaymentMethodNetworkTokenCryptogramResponse&gt; - The async response
+     * @return {@code CompletableFuture<CreatePaymentMethodNetworkTokenCryptogramResponse>} - The async response
      */
     public CompletableFuture<CreatePaymentMethodNetworkTokenCryptogramResponse> create(
             String paymentMethodId, String networkTokenId,
@@ -74,7 +74,7 @@ public class AsyncCryptogram {
      * @param networkTokenId The ID of the network token
      * @param merchantAccountId 
      * @param cryptogramCreate 
-     * @return CompletableFuture&lt;CreatePaymentMethodNetworkTokenCryptogramResponse&gt; - The async response
+     * @return {@code CompletableFuture<CreatePaymentMethodNetworkTokenCryptogramResponse>} - The async response
      */
     public CompletableFuture<CreatePaymentMethodNetworkTokenCryptogramResponse> create(
             String paymentMethodId, String networkTokenId,

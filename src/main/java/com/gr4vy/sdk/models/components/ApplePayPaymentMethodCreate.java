@@ -79,7 +79,8 @@ public class ApplePayPaymentMethodCreate {
     private String method;
 
     /**
-     * The opaque token as received from the Apple Pay JS library. This format may change between JS library versions.
+     * The opaque token as received from the Apple Pay JS library. This format may change between JS
+     * library versions.
      */
     @JsonProperty("token")
     private Map<String, Object> token;
@@ -186,7 +187,8 @@ public class ApplePayPaymentMethodCreate {
     }
 
     /**
-     * The opaque token as received from the Apple Pay JS library. This format may change between JS library versions.
+     * The opaque token as received from the Apple Pay JS library. This format may change between JS
+     * library versions.
      */
     @JsonIgnore
     public Map<String, Object> token() {
@@ -325,7 +327,8 @@ public class ApplePayPaymentMethodCreate {
     }
 
     /**
-     * The opaque token as received from the Apple Pay JS library. This format may change between JS library versions.
+     * The opaque token as received from the Apple Pay JS library. This format may change between JS
+     * library versions.
      */
     public ApplePayPaymentMethodCreate withToken(Map<String, Object> token) {
         Utils.checkNotNull(token, "token");
@@ -534,7 +537,8 @@ public class ApplePayPaymentMethodCreate {
 
 
         /**
-         * The opaque token as received from the Apple Pay JS library. This format may change between JS library versions.
+         * The opaque token as received from the Apple Pay JS library. This format may change between JS
+         * library versions.
          */
         public Builder token(Map<String, Object> token) {
             Utils.checkNotNull(token, "token");

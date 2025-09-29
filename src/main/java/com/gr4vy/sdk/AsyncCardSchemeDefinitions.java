@@ -53,7 +53,7 @@ public class AsyncCardSchemeDefinitions {
      * 
      * <p>Fetch a list of the definitions of each card scheme.
      * 
-     * @return CompletableFuture&lt;ListCardSchemeDefinitionsResponse&gt; - The async response
+     * @return {@code CompletableFuture<ListCardSchemeDefinitionsResponse>} - The async response
      */
     public CompletableFuture<ListCardSchemeDefinitionsResponse> listDirect() {
         return list(JsonNullable.undefined(), Optional.empty());
@@ -66,7 +66,7 @@ public class AsyncCardSchemeDefinitions {
      * 
      * @param merchantAccountId 
      * @param options additional options
-     * @return CompletableFuture&lt;ListCardSchemeDefinitionsResponse&gt; - The async response
+     * @return {@code CompletableFuture<ListCardSchemeDefinitionsResponse>} - The async response
      */
     public CompletableFuture<ListCardSchemeDefinitionsResponse> list(JsonNullable<String> merchantAccountId, Optional<Options> options) {
         ListCardSchemeDefinitionsRequest request =

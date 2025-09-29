@@ -67,14 +67,16 @@ public class GiftCardSummary {
     private JsonNullable<String> currency;
 
     /**
-     * The date and time when this gift card expires. This is a full date/time and may be more accurate than the actual expiry date received by the gift card service.
+     * The date and time when this gift card expires. This is a full date/time and may be more accurate
+     * than the actual expiry date received by the gift card service.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("expiration_date")
     private JsonNullable<OffsetDateTime> expirationDate;
 
     /**
-     * The amount remaining on the balance for this gift card according to the gift card service. This may be `null` if the balance could not be fetched.
+     * The amount remaining on the balance for this gift card according to the gift card service. This may
+     * be `null` if the balance could not be fetched.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("balance")
@@ -88,14 +90,16 @@ public class GiftCardSummary {
     private JsonNullable<? extends GiftCardErrorCode> balanceErrorCode;
 
     /**
-     * If the last balance update failed, this will contain the the raw error code received from the gift card provider.
+     * If the last balance update failed, this will contain the the raw error code received from the gift
+     * card provider.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("balance_raw_error_code")
     private JsonNullable<String> balanceRawErrorCode;
 
     /**
-     * If the last balance update failed, this will contain the the raw error message received from the gift card provider.
+     * If the last balance update failed, this will contain the the raw error message received from the
+     * gift card provider.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("balance_raw_error_message")
@@ -207,7 +211,8 @@ public class GiftCardSummary {
     }
 
     /**
-     * The date and time when this gift card expires. This is a full date/time and may be more accurate than the actual expiry date received by the gift card service.
+     * The date and time when this gift card expires. This is a full date/time and may be more accurate
+     * than the actual expiry date received by the gift card service.
      */
     @JsonIgnore
     public JsonNullable<OffsetDateTime> expirationDate() {
@@ -215,7 +220,8 @@ public class GiftCardSummary {
     }
 
     /**
-     * The amount remaining on the balance for this gift card according to the gift card service. This may be `null` if the balance could not be fetched.
+     * The amount remaining on the balance for this gift card according to the gift card service. This may
+     * be `null` if the balance could not be fetched.
      */
     @JsonIgnore
     public JsonNullable<Long> balance() {
@@ -232,7 +238,8 @@ public class GiftCardSummary {
     }
 
     /**
-     * If the last balance update failed, this will contain the the raw error code received from the gift card provider.
+     * If the last balance update failed, this will contain the the raw error code received from the gift
+     * card provider.
      */
     @JsonIgnore
     public JsonNullable<String> balanceRawErrorCode() {
@@ -240,7 +247,8 @@ public class GiftCardSummary {
     }
 
     /**
-     * If the last balance update failed, this will contain the the raw error message received from the gift card provider.
+     * If the last balance update failed, this will contain the the raw error message received from the
+     * gift card provider.
      */
     @JsonIgnore
     public JsonNullable<String> balanceRawErrorMessage() {
@@ -325,7 +333,8 @@ public class GiftCardSummary {
     }
 
     /**
-     * The date and time when this gift card expires. This is a full date/time and may be more accurate than the actual expiry date received by the gift card service.
+     * The date and time when this gift card expires. This is a full date/time and may be more accurate
+     * than the actual expiry date received by the gift card service.
      */
     public GiftCardSummary withExpirationDate(OffsetDateTime expirationDate) {
         Utils.checkNotNull(expirationDate, "expirationDate");
@@ -334,7 +343,8 @@ public class GiftCardSummary {
     }
 
     /**
-     * The date and time when this gift card expires. This is a full date/time and may be more accurate than the actual expiry date received by the gift card service.
+     * The date and time when this gift card expires. This is a full date/time and may be more accurate
+     * than the actual expiry date received by the gift card service.
      */
     public GiftCardSummary withExpirationDate(JsonNullable<OffsetDateTime> expirationDate) {
         Utils.checkNotNull(expirationDate, "expirationDate");
@@ -343,7 +353,8 @@ public class GiftCardSummary {
     }
 
     /**
-     * The amount remaining on the balance for this gift card according to the gift card service. This may be `null` if the balance could not be fetched.
+     * The amount remaining on the balance for this gift card according to the gift card service. This may
+     * be `null` if the balance could not be fetched.
      */
     public GiftCardSummary withBalance(long balance) {
         Utils.checkNotNull(balance, "balance");
@@ -352,7 +363,8 @@ public class GiftCardSummary {
     }
 
     /**
-     * The amount remaining on the balance for this gift card according to the gift card service. This may be `null` if the balance could not be fetched.
+     * The amount remaining on the balance for this gift card according to the gift card service. This may
+     * be `null` if the balance could not be fetched.
      */
     public GiftCardSummary withBalance(JsonNullable<Long> balance) {
         Utils.checkNotNull(balance, "balance");
@@ -379,7 +391,8 @@ public class GiftCardSummary {
     }
 
     /**
-     * If the last balance update failed, this will contain the the raw error code received from the gift card provider.
+     * If the last balance update failed, this will contain the the raw error code received from the gift
+     * card provider.
      */
     public GiftCardSummary withBalanceRawErrorCode(String balanceRawErrorCode) {
         Utils.checkNotNull(balanceRawErrorCode, "balanceRawErrorCode");
@@ -388,7 +401,8 @@ public class GiftCardSummary {
     }
 
     /**
-     * If the last balance update failed, this will contain the the raw error code received from the gift card provider.
+     * If the last balance update failed, this will contain the the raw error code received from the gift
+     * card provider.
      */
     public GiftCardSummary withBalanceRawErrorCode(JsonNullable<String> balanceRawErrorCode) {
         Utils.checkNotNull(balanceRawErrorCode, "balanceRawErrorCode");
@@ -397,7 +411,8 @@ public class GiftCardSummary {
     }
 
     /**
-     * If the last balance update failed, this will contain the the raw error message received from the gift card provider.
+     * If the last balance update failed, this will contain the the raw error message received from the
+     * gift card provider.
      */
     public GiftCardSummary withBalanceRawErrorMessage(String balanceRawErrorMessage) {
         Utils.checkNotNull(balanceRawErrorMessage, "balanceRawErrorMessage");
@@ -406,7 +421,8 @@ public class GiftCardSummary {
     }
 
     /**
-     * If the last balance update failed, this will contain the the raw error message received from the gift card provider.
+     * If the last balance update failed, this will contain the the raw error message received from the
+     * gift card provider.
      */
     public GiftCardSummary withBalanceRawErrorMessage(JsonNullable<String> balanceRawErrorMessage) {
         Utils.checkNotNull(balanceRawErrorMessage, "balanceRawErrorMessage");
@@ -573,7 +589,8 @@ public class GiftCardSummary {
 
 
         /**
-         * The date and time when this gift card expires. This is a full date/time and may be more accurate than the actual expiry date received by the gift card service.
+         * The date and time when this gift card expires. This is a full date/time and may be more accurate
+         * than the actual expiry date received by the gift card service.
          */
         public Builder expirationDate(OffsetDateTime expirationDate) {
             Utils.checkNotNull(expirationDate, "expirationDate");
@@ -582,7 +599,8 @@ public class GiftCardSummary {
         }
 
         /**
-         * The date and time when this gift card expires. This is a full date/time and may be more accurate than the actual expiry date received by the gift card service.
+         * The date and time when this gift card expires. This is a full date/time and may be more accurate
+         * than the actual expiry date received by the gift card service.
          */
         public Builder expirationDate(JsonNullable<OffsetDateTime> expirationDate) {
             Utils.checkNotNull(expirationDate, "expirationDate");
@@ -592,7 +610,8 @@ public class GiftCardSummary {
 
 
         /**
-         * The amount remaining on the balance for this gift card according to the gift card service. This may be `null` if the balance could not be fetched.
+         * The amount remaining on the balance for this gift card according to the gift card service. This may
+         * be `null` if the balance could not be fetched.
          */
         public Builder balance(long balance) {
             Utils.checkNotNull(balance, "balance");
@@ -601,7 +620,8 @@ public class GiftCardSummary {
         }
 
         /**
-         * The amount remaining on the balance for this gift card according to the gift card service. This may be `null` if the balance could not be fetched.
+         * The amount remaining on the balance for this gift card according to the gift card service. This may
+         * be `null` if the balance could not be fetched.
          */
         public Builder balance(JsonNullable<Long> balance) {
             Utils.checkNotNull(balance, "balance");
@@ -630,7 +650,8 @@ public class GiftCardSummary {
 
 
         /**
-         * If the last balance update failed, this will contain the the raw error code received from the gift card provider.
+         * If the last balance update failed, this will contain the the raw error code received from the gift
+         * card provider.
          */
         public Builder balanceRawErrorCode(String balanceRawErrorCode) {
             Utils.checkNotNull(balanceRawErrorCode, "balanceRawErrorCode");
@@ -639,7 +660,8 @@ public class GiftCardSummary {
         }
 
         /**
-         * If the last balance update failed, this will contain the the raw error code received from the gift card provider.
+         * If the last balance update failed, this will contain the the raw error code received from the gift
+         * card provider.
          */
         public Builder balanceRawErrorCode(JsonNullable<String> balanceRawErrorCode) {
             Utils.checkNotNull(balanceRawErrorCode, "balanceRawErrorCode");
@@ -649,7 +671,8 @@ public class GiftCardSummary {
 
 
         /**
-         * If the last balance update failed, this will contain the the raw error message received from the gift card provider.
+         * If the last balance update failed, this will contain the the raw error message received from the
+         * gift card provider.
          */
         public Builder balanceRawErrorMessage(String balanceRawErrorMessage) {
             Utils.checkNotNull(balanceRawErrorMessage, "balanceRawErrorMessage");
@@ -658,7 +681,8 @@ public class GiftCardSummary {
         }
 
         /**
-         * If the last balance update failed, this will contain the the raw error message received from the gift card provider.
+         * If the last balance update failed, this will contain the the raw error message received from the
+         * gift card provider.
          */
         public Builder balanceRawErrorMessage(JsonNullable<String> balanceRawErrorMessage) {
             Utils.checkNotNull(balanceRawErrorMessage, "balanceRawErrorMessage");

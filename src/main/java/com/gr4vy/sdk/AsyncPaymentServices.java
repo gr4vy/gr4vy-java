@@ -83,7 +83,7 @@ public class AsyncPaymentServices {
      * <p>List the configured payment services.
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;ListPaymentServicesResponse&gt; - The async response
+     * @return {@code CompletableFuture<ListPaymentServicesResponse>} - The async response
      */
     public CompletableFuture<ListPaymentServicesResponse> list(ListPaymentServicesRequest request) {
         return list(request, Optional.empty());
@@ -96,7 +96,7 @@ public class AsyncPaymentServices {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;ListPaymentServicesResponse&gt; - The async response
+     * @return {@code CompletableFuture<ListPaymentServicesResponse>} - The async response
      */
     public CompletableFuture<ListPaymentServicesResponse> list(ListPaymentServicesRequest request, Optional<Options> options) {
         AsyncRequestOperation<ListPaymentServicesRequest, ListPaymentServicesResponse> operation
@@ -125,7 +125,7 @@ public class AsyncPaymentServices {
      * <p>Updates the configuration of a payment service.
      * 
      * @param paymentServiceCreate Request body for activating a payment service
-     * @return CompletableFuture&lt;UpdatePaymentServiceResponse&gt; - The async response
+     * @return {@code CompletableFuture<UpdatePaymentServiceResponse>} - The async response
      */
     public CompletableFuture<UpdatePaymentServiceResponse> create(PaymentServiceCreate paymentServiceCreate) {
         return create(JsonNullable.undefined(), paymentServiceCreate);
@@ -138,7 +138,7 @@ public class AsyncPaymentServices {
      * 
      * @param merchantAccountId 
      * @param paymentServiceCreate Request body for activating a payment service
-     * @return CompletableFuture&lt;UpdatePaymentServiceResponse&gt; - The async response
+     * @return {@code CompletableFuture<UpdatePaymentServiceResponse>} - The async response
      */
     public CompletableFuture<UpdatePaymentServiceResponse> create(JsonNullable<String> merchantAccountId, PaymentServiceCreate paymentServiceCreate) {
         UpdatePaymentServiceRequest request =
@@ -171,7 +171,7 @@ public class AsyncPaymentServices {
      * <p>Get the details of a configured payment service.
      * 
      * @param paymentServiceId the ID of the payment service
-     * @return CompletableFuture&lt;GetPaymentServiceResponse&gt; - The async response
+     * @return {@code CompletableFuture<GetPaymentServiceResponse>} - The async response
      */
     public CompletableFuture<GetPaymentServiceResponse> get(String paymentServiceId) {
         return get(paymentServiceId, JsonNullable.undefined(), Optional.empty());
@@ -185,7 +185,7 @@ public class AsyncPaymentServices {
      * @param paymentServiceId the ID of the payment service
      * @param merchantAccountId 
      * @param options additional options
-     * @return CompletableFuture&lt;GetPaymentServiceResponse&gt; - The async response
+     * @return {@code CompletableFuture<GetPaymentServiceResponse>} - The async response
      */
     public CompletableFuture<GetPaymentServiceResponse> get(
             String paymentServiceId, JsonNullable<String> merchantAccountId,
@@ -223,7 +223,7 @@ public class AsyncPaymentServices {
      * 
      * @param paymentServiceId the ID of the payment service
      * @param paymentServiceUpdate Request body for updating a Payment Service
-     * @return CompletableFuture&lt;CreatePaymentServiceResponse&gt; - The async response
+     * @return {@code CompletableFuture<CreatePaymentServiceResponse>} - The async response
      */
     public CompletableFuture<CreatePaymentServiceResponse> update(String paymentServiceId, PaymentServiceUpdate paymentServiceUpdate) {
         return update(paymentServiceId, JsonNullable.undefined(), paymentServiceUpdate);
@@ -237,7 +237,7 @@ public class AsyncPaymentServices {
      * @param paymentServiceId the ID of the payment service
      * @param merchantAccountId 
      * @param paymentServiceUpdate Request body for updating a Payment Service
-     * @return CompletableFuture&lt;CreatePaymentServiceResponse&gt; - The async response
+     * @return {@code CompletableFuture<CreatePaymentServiceResponse>} - The async response
      */
     public CompletableFuture<CreatePaymentServiceResponse> update(
             String paymentServiceId, JsonNullable<String> merchantAccountId,
@@ -273,7 +273,7 @@ public class AsyncPaymentServices {
      * <p>Deletes all the configuration of a payment service.
      * 
      * @param paymentServiceId the ID of the payment service
-     * @return CompletableFuture&lt;DeletePaymentServiceResponse&gt; - The async response
+     * @return {@code CompletableFuture<DeletePaymentServiceResponse>} - The async response
      */
     public CompletableFuture<DeletePaymentServiceResponse> delete(String paymentServiceId) {
         return delete(paymentServiceId, JsonNullable.undefined());
@@ -286,7 +286,7 @@ public class AsyncPaymentServices {
      * 
      * @param paymentServiceId the ID of the payment service
      * @param merchantAccountId 
-     * @return CompletableFuture&lt;DeletePaymentServiceResponse&gt; - The async response
+     * @return {@code CompletableFuture<DeletePaymentServiceResponse>} - The async response
      */
     public CompletableFuture<DeletePaymentServiceResponse> delete(String paymentServiceId, JsonNullable<String> merchantAccountId) {
         DeletePaymentServiceRequest request =
@@ -319,7 +319,7 @@ public class AsyncPaymentServices {
      * <p>Verify the credentials of a configured payment service
      * 
      * @param verifyCredentials 
-     * @return CompletableFuture&lt;VerifyPaymentServiceCredentialsResponse&gt; - The async response
+     * @return {@code CompletableFuture<VerifyPaymentServiceCredentialsResponse>} - The async response
      */
     public CompletableFuture<VerifyPaymentServiceCredentialsResponse> verify(VerifyCredentials verifyCredentials) {
         return verify(JsonNullable.undefined(), verifyCredentials);
@@ -332,7 +332,7 @@ public class AsyncPaymentServices {
      * 
      * @param merchantAccountId 
      * @param verifyCredentials 
-     * @return CompletableFuture&lt;VerifyPaymentServiceCredentialsResponse&gt; - The async response
+     * @return {@code CompletableFuture<VerifyPaymentServiceCredentialsResponse>} - The async response
      */
     public CompletableFuture<VerifyPaymentServiceCredentialsResponse> verify(JsonNullable<String> merchantAccountId, VerifyCredentials verifyCredentials) {
         VerifyPaymentServiceCredentialsRequest request =
@@ -366,7 +366,7 @@ public class AsyncPaymentServices {
      * 
      * @param paymentServiceId the ID of the payment service
      * @param requestBody 
-     * @return CompletableFuture&lt;CreatePaymentServiceSessionResponse&gt; - The async response
+     * @return {@code CompletableFuture<CreatePaymentServiceSessionResponse>} - The async response
      */
     public CompletableFuture<CreatePaymentServiceSessionResponse> session(String paymentServiceId, Map<String, Object> requestBody) {
         return session(paymentServiceId, JsonNullable.undefined(), requestBody);
@@ -380,7 +380,7 @@ public class AsyncPaymentServices {
      * @param paymentServiceId the ID of the payment service
      * @param merchantAccountId 
      * @param requestBody 
-     * @return CompletableFuture&lt;CreatePaymentServiceSessionResponse&gt; - The async response
+     * @return {@code CompletableFuture<CreatePaymentServiceSessionResponse>} - The async response
      */
     public CompletableFuture<CreatePaymentServiceSessionResponse> session(
             String paymentServiceId, JsonNullable<String> merchantAccountId,

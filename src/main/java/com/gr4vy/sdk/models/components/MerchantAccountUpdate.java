@@ -23,70 +23,101 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 public class MerchantAccountUpdate {
     /**
-     * Whether the Real-Time Account Updater service is enabled for this merchant account. The Account Updater service is used to update card details when cards are lost, stolen or expired. If the field is not set or if it's set to `false`, the Account Updater service doesn't get called if a payment fails with expired or invalid card details. If the field is set to `true`, the service is called. Please note that for this to work the other `account_updater_* fields` must be set as well.
+     * Whether the Real-Time Account Updater service is enabled for this merchant account. The Account
+     * Updater service is used to update card details when cards are lost, stolen or expired. If the field
+     * is not set or if it's set to `false`, the Account Updater service doesn't get called if a payment
+     * fails with expired or invalid card details.
+     * 
+     * <p>If the field is set to `true`, the service is called. Please note that for this to work the other
+     * `account_updater_* fields` must be set as well.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("account_updater_enabled")
     private Optional<Boolean> accountUpdaterEnabled;
 
     /**
-     * The public key used to encrypt the request to the Real-Time Account Updater service. The Account Updater service is used to update card details when cards are lost, stolen or expired. If the field is not set or if it's set to `null`, the Account Updater service doesn't get called. If the field is set, the other `account_updater_*` fields must be set as well.
+     * The public key used to encrypt the request to the Real-Time Account Updater service. The Account
+     * Updater service is used to update card details when cards are lost, stolen or expired. If the field
+     * is not set or if it's set to `null`, the Account Updater service doesn't get called.
+     * 
+     * <p>If the field is set, the other `account_updater_*` fields must be set as well.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("account_updater_request_encryption_key")
     private JsonNullable<String> accountUpdaterRequestEncryptionKey;
 
     /**
-     * The ID of the key used to encrypt the request to the Real-Time Account Updater service. The Account Updater service is used to update card details when cards are lost, stolen or expired. If the field is not set or if it's set to `null`, the Account Updater service doesn't get called. If the field is set, the other `account_updater_*` fields must be set as well.
+     * The ID of the key used to encrypt the request to the Real-Time Account Updater service. The Account
+     * Updater service is used to update card details when cards are lost, stolen or expired. If the field
+     * is not set or if it's set to `null`, the Account Updater service doesn't get called.
+     * 
+     * <p>If the field is set, the other `account_updater_*` fields must be set as well.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("account_updater_request_encryption_key_id")
     private JsonNullable<String> accountUpdaterRequestEncryptionKeyId;
 
     /**
-     * The key used to decrypt the response from the Real-Time Account Updater service. The Account Updater service is used to update card details when cards are lost, stolen or expired. If the field is not set or if it's set to `null`, the Account Updater service doesn't get called. If the field is set, the other `account_updater_*` fields must be set as well.
+     * The key used to decrypt the response from the Real-Time Account Updater service. The Account Updater
+     * service is used to update card details when cards are lost, stolen or expired. If the field is not
+     * set or if it's set to `null`, the Account Updater service doesn't get called.
+     * 
+     * <p>If the field is set, the other `account_updater_*` fields must be set as well.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("account_updater_response_decryption_key")
     private JsonNullable<String> accountUpdaterResponseDecryptionKey;
 
     /**
-     * The ID of the key used to decrypt the request from the Real-Time Account Updater service. The Account Updater service is used to update card details when cards are lost, stolen or expired. If the field is not set or if it's set to `null`, the Account Updater service doesn't get called. If the field is set, the other `account_updater_*` fields must be set as well.
+     * The ID of the key used to decrypt the request from the Real-Time Account Updater service. The
+     * Account Updater service is used to update card details when cards are lost, stolen or expired. If
+     * the field is not set or if it's set to `null`, the Account Updater service doesn't get called.
+     * 
+     * <p>If the field is set, the other `account_updater_*` fields must be set as well.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("account_updater_response_decryption_key_id")
     private JsonNullable<String> accountUpdaterResponseDecryptionKeyId;
 
     /**
-     * The maximum monetary amount allowed for over-capture, in the smallest currency unit, for example `1299` cents to allow for an over-capture of `$12.99`.
+     * The maximum monetary amount allowed for over-capture, in the smallest currency unit, for example
+     * `1299` cents to allow for an over-capture of `$12.99`.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("over_capture_amount")
     private JsonNullable<Long> overCaptureAmount;
 
     /**
-     * The maximum percentage allowed for over-capture, for example `25` to allow for an over-capture of `25%` of the original transaction amount.
+     * The maximum percentage allowed for over-capture, for example `25` to allow for an over-capture of
+     * `25%` of the original transaction amount.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("over_capture_percentage")
     private JsonNullable<Long> overCapturePercentage;
 
     /**
-     * Client key provided by Pagos to authenticate to the Loon API. Loon is the Account Updater service we use and if the field is not set or if it's set to null, the Account Updater service doesn't get configured. If the field is set to `null`, the other `loon_*` fields must be set to null as well.
+     * Client key provided by Pagos to authenticate to the Loon API. Loon is the Account Updater service we
+     * use and if the field is not set or if it's set to null, the Account Updater service doesn't get
+     * configured. If the field is set to `null`, the other `loon_*` fields must be set to null as well.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("loon_client_key")
     private JsonNullable<String> loonClientKey;
 
     /**
-     * Secret key provided by Pagos to authenticate to the Loon API. Loon is the Account Updater service we use and if the field is not set or if it's set to null, the Account Updater service doesn't get configured. If the field is set to `null`, the other `loon_*` fields must be set to null as well.
+     * Secret key provided by Pagos to authenticate to the Loon API. Loon is the Account Updater service we
+     * use and if the field is not set or if it's set to null, the Account Updater service doesn't get
+     * configured. If the field is set to `null`, the other `loon_*` fields must be set to null as well.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("loon_secret_key")
     private JsonNullable<String> loonSecretKey;
 
     /**
-     * Card schemes accepted when creating jobs using this set of Loon API keys. Loon is the Account Updater service we use and if the field is not set or if it's set to null, the Account Updater service doesn't get configured. If the field is set to `null`, the other `loon_*` fields must be set to null as well.
+     * Card schemes accepted when creating jobs using this set of Loon API keys. Loon is the Account
+     * Updater service we use and if the field is not set or if it's set to null, the Account Updater
+     * service doesn't get configured. If the field is set to `null`, the other `loon_*` fields must be set
+     * to null as well.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("loon_accepted_schemes")
@@ -135,7 +166,8 @@ public class MerchantAccountUpdate {
     private JsonNullable<String> mastercardNetworkTokensAppId;
 
     /**
-     * When enabled network tokens will be generated asynchronously and only used on subsequent transactions to speed up transaction processing.
+     * When enabled network tokens will be generated asynchronously and only used on subsequent
+     * transactions to speed up transaction processing.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("async_network_tokens_enabled")
@@ -216,7 +248,13 @@ public class MerchantAccountUpdate {
     }
 
     /**
-     * Whether the Real-Time Account Updater service is enabled for this merchant account. The Account Updater service is used to update card details when cards are lost, stolen or expired. If the field is not set or if it's set to `false`, the Account Updater service doesn't get called if a payment fails with expired or invalid card details. If the field is set to `true`, the service is called. Please note that for this to work the other `account_updater_* fields` must be set as well.
+     * Whether the Real-Time Account Updater service is enabled for this merchant account. The Account
+     * Updater service is used to update card details when cards are lost, stolen or expired. If the field
+     * is not set or if it's set to `false`, the Account Updater service doesn't get called if a payment
+     * fails with expired or invalid card details.
+     * 
+     * <p>If the field is set to `true`, the service is called. Please note that for this to work the other
+     * `account_updater_* fields` must be set as well.
      */
     @JsonIgnore
     public Optional<Boolean> accountUpdaterEnabled() {
@@ -224,7 +262,11 @@ public class MerchantAccountUpdate {
     }
 
     /**
-     * The public key used to encrypt the request to the Real-Time Account Updater service. The Account Updater service is used to update card details when cards are lost, stolen or expired. If the field is not set or if it's set to `null`, the Account Updater service doesn't get called. If the field is set, the other `account_updater_*` fields must be set as well.
+     * The public key used to encrypt the request to the Real-Time Account Updater service. The Account
+     * Updater service is used to update card details when cards are lost, stolen or expired. If the field
+     * is not set or if it's set to `null`, the Account Updater service doesn't get called.
+     * 
+     * <p>If the field is set, the other `account_updater_*` fields must be set as well.
      */
     @JsonIgnore
     public JsonNullable<String> accountUpdaterRequestEncryptionKey() {
@@ -232,7 +274,11 @@ public class MerchantAccountUpdate {
     }
 
     /**
-     * The ID of the key used to encrypt the request to the Real-Time Account Updater service. The Account Updater service is used to update card details when cards are lost, stolen or expired. If the field is not set or if it's set to `null`, the Account Updater service doesn't get called. If the field is set, the other `account_updater_*` fields must be set as well.
+     * The ID of the key used to encrypt the request to the Real-Time Account Updater service. The Account
+     * Updater service is used to update card details when cards are lost, stolen or expired. If the field
+     * is not set or if it's set to `null`, the Account Updater service doesn't get called.
+     * 
+     * <p>If the field is set, the other `account_updater_*` fields must be set as well.
      */
     @JsonIgnore
     public JsonNullable<String> accountUpdaterRequestEncryptionKeyId() {
@@ -240,7 +286,11 @@ public class MerchantAccountUpdate {
     }
 
     /**
-     * The key used to decrypt the response from the Real-Time Account Updater service. The Account Updater service is used to update card details when cards are lost, stolen or expired. If the field is not set or if it's set to `null`, the Account Updater service doesn't get called. If the field is set, the other `account_updater_*` fields must be set as well.
+     * The key used to decrypt the response from the Real-Time Account Updater service. The Account Updater
+     * service is used to update card details when cards are lost, stolen or expired. If the field is not
+     * set or if it's set to `null`, the Account Updater service doesn't get called.
+     * 
+     * <p>If the field is set, the other `account_updater_*` fields must be set as well.
      */
     @JsonIgnore
     public JsonNullable<String> accountUpdaterResponseDecryptionKey() {
@@ -248,7 +298,11 @@ public class MerchantAccountUpdate {
     }
 
     /**
-     * The ID of the key used to decrypt the request from the Real-Time Account Updater service. The Account Updater service is used to update card details when cards are lost, stolen or expired. If the field is not set or if it's set to `null`, the Account Updater service doesn't get called. If the field is set, the other `account_updater_*` fields must be set as well.
+     * The ID of the key used to decrypt the request from the Real-Time Account Updater service. The
+     * Account Updater service is used to update card details when cards are lost, stolen or expired. If
+     * the field is not set or if it's set to `null`, the Account Updater service doesn't get called.
+     * 
+     * <p>If the field is set, the other `account_updater_*` fields must be set as well.
      */
     @JsonIgnore
     public JsonNullable<String> accountUpdaterResponseDecryptionKeyId() {
@@ -256,7 +310,8 @@ public class MerchantAccountUpdate {
     }
 
     /**
-     * The maximum monetary amount allowed for over-capture, in the smallest currency unit, for example `1299` cents to allow for an over-capture of `$12.99`.
+     * The maximum monetary amount allowed for over-capture, in the smallest currency unit, for example
+     * `1299` cents to allow for an over-capture of `$12.99`.
      */
     @JsonIgnore
     public JsonNullable<Long> overCaptureAmount() {
@@ -264,7 +319,8 @@ public class MerchantAccountUpdate {
     }
 
     /**
-     * The maximum percentage allowed for over-capture, for example `25` to allow for an over-capture of `25%` of the original transaction amount.
+     * The maximum percentage allowed for over-capture, for example `25` to allow for an over-capture of
+     * `25%` of the original transaction amount.
      */
     @JsonIgnore
     public JsonNullable<Long> overCapturePercentage() {
@@ -272,7 +328,9 @@ public class MerchantAccountUpdate {
     }
 
     /**
-     * Client key provided by Pagos to authenticate to the Loon API. Loon is the Account Updater service we use and if the field is not set or if it's set to null, the Account Updater service doesn't get configured. If the field is set to `null`, the other `loon_*` fields must be set to null as well.
+     * Client key provided by Pagos to authenticate to the Loon API. Loon is the Account Updater service we
+     * use and if the field is not set or if it's set to null, the Account Updater service doesn't get
+     * configured. If the field is set to `null`, the other `loon_*` fields must be set to null as well.
      */
     @JsonIgnore
     public JsonNullable<String> loonClientKey() {
@@ -280,7 +338,9 @@ public class MerchantAccountUpdate {
     }
 
     /**
-     * Secret key provided by Pagos to authenticate to the Loon API. Loon is the Account Updater service we use and if the field is not set or if it's set to null, the Account Updater service doesn't get configured. If the field is set to `null`, the other `loon_*` fields must be set to null as well.
+     * Secret key provided by Pagos to authenticate to the Loon API. Loon is the Account Updater service we
+     * use and if the field is not set or if it's set to null, the Account Updater service doesn't get
+     * configured. If the field is set to `null`, the other `loon_*` fields must be set to null as well.
      */
     @JsonIgnore
     public JsonNullable<String> loonSecretKey() {
@@ -288,7 +348,10 @@ public class MerchantAccountUpdate {
     }
 
     /**
-     * Card schemes accepted when creating jobs using this set of Loon API keys. Loon is the Account Updater service we use and if the field is not set or if it's set to null, the Account Updater service doesn't get configured. If the field is set to `null`, the other `loon_*` fields must be set to null as well.
+     * Card schemes accepted when creating jobs using this set of Loon API keys. Loon is the Account
+     * Updater service we use and if the field is not set or if it's set to null, the Account Updater
+     * service doesn't get configured. If the field is set to `null`, the other `loon_*` fields must be set
+     * to null as well.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -345,7 +408,8 @@ public class MerchantAccountUpdate {
     }
 
     /**
-     * When enabled network tokens will be generated asynchronously and only used on subsequent transactions to speed up transaction processing.
+     * When enabled network tokens will be generated asynchronously and only used on subsequent
+     * transactions to speed up transaction processing.
      */
     @JsonIgnore
     public Optional<Boolean> asyncNetworkTokensEnabled() {
@@ -366,7 +430,13 @@ public class MerchantAccountUpdate {
 
 
     /**
-     * Whether the Real-Time Account Updater service is enabled for this merchant account. The Account Updater service is used to update card details when cards are lost, stolen or expired. If the field is not set or if it's set to `false`, the Account Updater service doesn't get called if a payment fails with expired or invalid card details. If the field is set to `true`, the service is called. Please note that for this to work the other `account_updater_* fields` must be set as well.
+     * Whether the Real-Time Account Updater service is enabled for this merchant account. The Account
+     * Updater service is used to update card details when cards are lost, stolen or expired. If the field
+     * is not set or if it's set to `false`, the Account Updater service doesn't get called if a payment
+     * fails with expired or invalid card details.
+     * 
+     * <p>If the field is set to `true`, the service is called. Please note that for this to work the other
+     * `account_updater_* fields` must be set as well.
      */
     public MerchantAccountUpdate withAccountUpdaterEnabled(boolean accountUpdaterEnabled) {
         Utils.checkNotNull(accountUpdaterEnabled, "accountUpdaterEnabled");
@@ -376,7 +446,13 @@ public class MerchantAccountUpdate {
 
 
     /**
-     * Whether the Real-Time Account Updater service is enabled for this merchant account. The Account Updater service is used to update card details when cards are lost, stolen or expired. If the field is not set or if it's set to `false`, the Account Updater service doesn't get called if a payment fails with expired or invalid card details. If the field is set to `true`, the service is called. Please note that for this to work the other `account_updater_* fields` must be set as well.
+     * Whether the Real-Time Account Updater service is enabled for this merchant account. The Account
+     * Updater service is used to update card details when cards are lost, stolen or expired. If the field
+     * is not set or if it's set to `false`, the Account Updater service doesn't get called if a payment
+     * fails with expired or invalid card details.
+     * 
+     * <p>If the field is set to `true`, the service is called. Please note that for this to work the other
+     * `account_updater_* fields` must be set as well.
      */
     public MerchantAccountUpdate withAccountUpdaterEnabled(Optional<Boolean> accountUpdaterEnabled) {
         Utils.checkNotNull(accountUpdaterEnabled, "accountUpdaterEnabled");
@@ -385,7 +461,11 @@ public class MerchantAccountUpdate {
     }
 
     /**
-     * The public key used to encrypt the request to the Real-Time Account Updater service. The Account Updater service is used to update card details when cards are lost, stolen or expired. If the field is not set or if it's set to `null`, the Account Updater service doesn't get called. If the field is set, the other `account_updater_*` fields must be set as well.
+     * The public key used to encrypt the request to the Real-Time Account Updater service. The Account
+     * Updater service is used to update card details when cards are lost, stolen or expired. If the field
+     * is not set or if it's set to `null`, the Account Updater service doesn't get called.
+     * 
+     * <p>If the field is set, the other `account_updater_*` fields must be set as well.
      */
     public MerchantAccountUpdate withAccountUpdaterRequestEncryptionKey(String accountUpdaterRequestEncryptionKey) {
         Utils.checkNotNull(accountUpdaterRequestEncryptionKey, "accountUpdaterRequestEncryptionKey");
@@ -394,7 +474,11 @@ public class MerchantAccountUpdate {
     }
 
     /**
-     * The public key used to encrypt the request to the Real-Time Account Updater service. The Account Updater service is used to update card details when cards are lost, stolen or expired. If the field is not set or if it's set to `null`, the Account Updater service doesn't get called. If the field is set, the other `account_updater_*` fields must be set as well.
+     * The public key used to encrypt the request to the Real-Time Account Updater service. The Account
+     * Updater service is used to update card details when cards are lost, stolen or expired. If the field
+     * is not set or if it's set to `null`, the Account Updater service doesn't get called.
+     * 
+     * <p>If the field is set, the other `account_updater_*` fields must be set as well.
      */
     public MerchantAccountUpdate withAccountUpdaterRequestEncryptionKey(JsonNullable<String> accountUpdaterRequestEncryptionKey) {
         Utils.checkNotNull(accountUpdaterRequestEncryptionKey, "accountUpdaterRequestEncryptionKey");
@@ -403,7 +487,11 @@ public class MerchantAccountUpdate {
     }
 
     /**
-     * The ID of the key used to encrypt the request to the Real-Time Account Updater service. The Account Updater service is used to update card details when cards are lost, stolen or expired. If the field is not set or if it's set to `null`, the Account Updater service doesn't get called. If the field is set, the other `account_updater_*` fields must be set as well.
+     * The ID of the key used to encrypt the request to the Real-Time Account Updater service. The Account
+     * Updater service is used to update card details when cards are lost, stolen or expired. If the field
+     * is not set or if it's set to `null`, the Account Updater service doesn't get called.
+     * 
+     * <p>If the field is set, the other `account_updater_*` fields must be set as well.
      */
     public MerchantAccountUpdate withAccountUpdaterRequestEncryptionKeyId(String accountUpdaterRequestEncryptionKeyId) {
         Utils.checkNotNull(accountUpdaterRequestEncryptionKeyId, "accountUpdaterRequestEncryptionKeyId");
@@ -412,7 +500,11 @@ public class MerchantAccountUpdate {
     }
 
     /**
-     * The ID of the key used to encrypt the request to the Real-Time Account Updater service. The Account Updater service is used to update card details when cards are lost, stolen or expired. If the field is not set or if it's set to `null`, the Account Updater service doesn't get called. If the field is set, the other `account_updater_*` fields must be set as well.
+     * The ID of the key used to encrypt the request to the Real-Time Account Updater service. The Account
+     * Updater service is used to update card details when cards are lost, stolen or expired. If the field
+     * is not set or if it's set to `null`, the Account Updater service doesn't get called.
+     * 
+     * <p>If the field is set, the other `account_updater_*` fields must be set as well.
      */
     public MerchantAccountUpdate withAccountUpdaterRequestEncryptionKeyId(JsonNullable<String> accountUpdaterRequestEncryptionKeyId) {
         Utils.checkNotNull(accountUpdaterRequestEncryptionKeyId, "accountUpdaterRequestEncryptionKeyId");
@@ -421,7 +513,11 @@ public class MerchantAccountUpdate {
     }
 
     /**
-     * The key used to decrypt the response from the Real-Time Account Updater service. The Account Updater service is used to update card details when cards are lost, stolen or expired. If the field is not set or if it's set to `null`, the Account Updater service doesn't get called. If the field is set, the other `account_updater_*` fields must be set as well.
+     * The key used to decrypt the response from the Real-Time Account Updater service. The Account Updater
+     * service is used to update card details when cards are lost, stolen or expired. If the field is not
+     * set or if it's set to `null`, the Account Updater service doesn't get called.
+     * 
+     * <p>If the field is set, the other `account_updater_*` fields must be set as well.
      */
     public MerchantAccountUpdate withAccountUpdaterResponseDecryptionKey(String accountUpdaterResponseDecryptionKey) {
         Utils.checkNotNull(accountUpdaterResponseDecryptionKey, "accountUpdaterResponseDecryptionKey");
@@ -430,7 +526,11 @@ public class MerchantAccountUpdate {
     }
 
     /**
-     * The key used to decrypt the response from the Real-Time Account Updater service. The Account Updater service is used to update card details when cards are lost, stolen or expired. If the field is not set or if it's set to `null`, the Account Updater service doesn't get called. If the field is set, the other `account_updater_*` fields must be set as well.
+     * The key used to decrypt the response from the Real-Time Account Updater service. The Account Updater
+     * service is used to update card details when cards are lost, stolen or expired. If the field is not
+     * set or if it's set to `null`, the Account Updater service doesn't get called.
+     * 
+     * <p>If the field is set, the other `account_updater_*` fields must be set as well.
      */
     public MerchantAccountUpdate withAccountUpdaterResponseDecryptionKey(JsonNullable<String> accountUpdaterResponseDecryptionKey) {
         Utils.checkNotNull(accountUpdaterResponseDecryptionKey, "accountUpdaterResponseDecryptionKey");
@@ -439,7 +539,11 @@ public class MerchantAccountUpdate {
     }
 
     /**
-     * The ID of the key used to decrypt the request from the Real-Time Account Updater service. The Account Updater service is used to update card details when cards are lost, stolen or expired. If the field is not set or if it's set to `null`, the Account Updater service doesn't get called. If the field is set, the other `account_updater_*` fields must be set as well.
+     * The ID of the key used to decrypt the request from the Real-Time Account Updater service. The
+     * Account Updater service is used to update card details when cards are lost, stolen or expired. If
+     * the field is not set or if it's set to `null`, the Account Updater service doesn't get called.
+     * 
+     * <p>If the field is set, the other `account_updater_*` fields must be set as well.
      */
     public MerchantAccountUpdate withAccountUpdaterResponseDecryptionKeyId(String accountUpdaterResponseDecryptionKeyId) {
         Utils.checkNotNull(accountUpdaterResponseDecryptionKeyId, "accountUpdaterResponseDecryptionKeyId");
@@ -448,7 +552,11 @@ public class MerchantAccountUpdate {
     }
 
     /**
-     * The ID of the key used to decrypt the request from the Real-Time Account Updater service. The Account Updater service is used to update card details when cards are lost, stolen or expired. If the field is not set or if it's set to `null`, the Account Updater service doesn't get called. If the field is set, the other `account_updater_*` fields must be set as well.
+     * The ID of the key used to decrypt the request from the Real-Time Account Updater service. The
+     * Account Updater service is used to update card details when cards are lost, stolen or expired. If
+     * the field is not set or if it's set to `null`, the Account Updater service doesn't get called.
+     * 
+     * <p>If the field is set, the other `account_updater_*` fields must be set as well.
      */
     public MerchantAccountUpdate withAccountUpdaterResponseDecryptionKeyId(JsonNullable<String> accountUpdaterResponseDecryptionKeyId) {
         Utils.checkNotNull(accountUpdaterResponseDecryptionKeyId, "accountUpdaterResponseDecryptionKeyId");
@@ -457,7 +565,8 @@ public class MerchantAccountUpdate {
     }
 
     /**
-     * The maximum monetary amount allowed for over-capture, in the smallest currency unit, for example `1299` cents to allow for an over-capture of `$12.99`.
+     * The maximum monetary amount allowed for over-capture, in the smallest currency unit, for example
+     * `1299` cents to allow for an over-capture of `$12.99`.
      */
     public MerchantAccountUpdate withOverCaptureAmount(long overCaptureAmount) {
         Utils.checkNotNull(overCaptureAmount, "overCaptureAmount");
@@ -466,7 +575,8 @@ public class MerchantAccountUpdate {
     }
 
     /**
-     * The maximum monetary amount allowed for over-capture, in the smallest currency unit, for example `1299` cents to allow for an over-capture of `$12.99`.
+     * The maximum monetary amount allowed for over-capture, in the smallest currency unit, for example
+     * `1299` cents to allow for an over-capture of `$12.99`.
      */
     public MerchantAccountUpdate withOverCaptureAmount(JsonNullable<Long> overCaptureAmount) {
         Utils.checkNotNull(overCaptureAmount, "overCaptureAmount");
@@ -475,7 +585,8 @@ public class MerchantAccountUpdate {
     }
 
     /**
-     * The maximum percentage allowed for over-capture, for example `25` to allow for an over-capture of `25%` of the original transaction amount.
+     * The maximum percentage allowed for over-capture, for example `25` to allow for an over-capture of
+     * `25%` of the original transaction amount.
      */
     public MerchantAccountUpdate withOverCapturePercentage(long overCapturePercentage) {
         Utils.checkNotNull(overCapturePercentage, "overCapturePercentage");
@@ -484,7 +595,8 @@ public class MerchantAccountUpdate {
     }
 
     /**
-     * The maximum percentage allowed for over-capture, for example `25` to allow for an over-capture of `25%` of the original transaction amount.
+     * The maximum percentage allowed for over-capture, for example `25` to allow for an over-capture of
+     * `25%` of the original transaction amount.
      */
     public MerchantAccountUpdate withOverCapturePercentage(JsonNullable<Long> overCapturePercentage) {
         Utils.checkNotNull(overCapturePercentage, "overCapturePercentage");
@@ -493,7 +605,9 @@ public class MerchantAccountUpdate {
     }
 
     /**
-     * Client key provided by Pagos to authenticate to the Loon API. Loon is the Account Updater service we use and if the field is not set or if it's set to null, the Account Updater service doesn't get configured. If the field is set to `null`, the other `loon_*` fields must be set to null as well.
+     * Client key provided by Pagos to authenticate to the Loon API. Loon is the Account Updater service we
+     * use and if the field is not set or if it's set to null, the Account Updater service doesn't get
+     * configured. If the field is set to `null`, the other `loon_*` fields must be set to null as well.
      */
     public MerchantAccountUpdate withLoonClientKey(String loonClientKey) {
         Utils.checkNotNull(loonClientKey, "loonClientKey");
@@ -502,7 +616,9 @@ public class MerchantAccountUpdate {
     }
 
     /**
-     * Client key provided by Pagos to authenticate to the Loon API. Loon is the Account Updater service we use and if the field is not set or if it's set to null, the Account Updater service doesn't get configured. If the field is set to `null`, the other `loon_*` fields must be set to null as well.
+     * Client key provided by Pagos to authenticate to the Loon API. Loon is the Account Updater service we
+     * use and if the field is not set or if it's set to null, the Account Updater service doesn't get
+     * configured. If the field is set to `null`, the other `loon_*` fields must be set to null as well.
      */
     public MerchantAccountUpdate withLoonClientKey(JsonNullable<String> loonClientKey) {
         Utils.checkNotNull(loonClientKey, "loonClientKey");
@@ -511,7 +627,9 @@ public class MerchantAccountUpdate {
     }
 
     /**
-     * Secret key provided by Pagos to authenticate to the Loon API. Loon is the Account Updater service we use and if the field is not set or if it's set to null, the Account Updater service doesn't get configured. If the field is set to `null`, the other `loon_*` fields must be set to null as well.
+     * Secret key provided by Pagos to authenticate to the Loon API. Loon is the Account Updater service we
+     * use and if the field is not set or if it's set to null, the Account Updater service doesn't get
+     * configured. If the field is set to `null`, the other `loon_*` fields must be set to null as well.
      */
     public MerchantAccountUpdate withLoonSecretKey(String loonSecretKey) {
         Utils.checkNotNull(loonSecretKey, "loonSecretKey");
@@ -520,7 +638,9 @@ public class MerchantAccountUpdate {
     }
 
     /**
-     * Secret key provided by Pagos to authenticate to the Loon API. Loon is the Account Updater service we use and if the field is not set or if it's set to null, the Account Updater service doesn't get configured. If the field is set to `null`, the other `loon_*` fields must be set to null as well.
+     * Secret key provided by Pagos to authenticate to the Loon API. Loon is the Account Updater service we
+     * use and if the field is not set or if it's set to null, the Account Updater service doesn't get
+     * configured. If the field is set to `null`, the other `loon_*` fields must be set to null as well.
      */
     public MerchantAccountUpdate withLoonSecretKey(JsonNullable<String> loonSecretKey) {
         Utils.checkNotNull(loonSecretKey, "loonSecretKey");
@@ -529,7 +649,10 @@ public class MerchantAccountUpdate {
     }
 
     /**
-     * Card schemes accepted when creating jobs using this set of Loon API keys. Loon is the Account Updater service we use and if the field is not set or if it's set to null, the Account Updater service doesn't get configured. If the field is set to `null`, the other `loon_*` fields must be set to null as well.
+     * Card schemes accepted when creating jobs using this set of Loon API keys. Loon is the Account
+     * Updater service we use and if the field is not set or if it's set to null, the Account Updater
+     * service doesn't get configured. If the field is set to `null`, the other `loon_*` fields must be set
+     * to null as well.
      */
     public MerchantAccountUpdate withLoonAcceptedSchemes(List<CardScheme> loonAcceptedSchemes) {
         Utils.checkNotNull(loonAcceptedSchemes, "loonAcceptedSchemes");
@@ -538,7 +661,10 @@ public class MerchantAccountUpdate {
     }
 
     /**
-     * Card schemes accepted when creating jobs using this set of Loon API keys. Loon is the Account Updater service we use and if the field is not set or if it's set to null, the Account Updater service doesn't get configured. If the field is set to `null`, the other `loon_*` fields must be set to null as well.
+     * Card schemes accepted when creating jobs using this set of Loon API keys. Loon is the Account
+     * Updater service we use and if the field is not set or if it's set to null, the Account Updater
+     * service doesn't get configured. If the field is set to `null`, the other `loon_*` fields must be set
+     * to null as well.
      */
     public MerchantAccountUpdate withLoonAcceptedSchemes(JsonNullable<? extends List<CardScheme>> loonAcceptedSchemes) {
         Utils.checkNotNull(loonAcceptedSchemes, "loonAcceptedSchemes");
@@ -655,7 +781,8 @@ public class MerchantAccountUpdate {
     }
 
     /**
-     * When enabled network tokens will be generated asynchronously and only used on subsequent transactions to speed up transaction processing.
+     * When enabled network tokens will be generated asynchronously and only used on subsequent
+     * transactions to speed up transaction processing.
      */
     public MerchantAccountUpdate withAsyncNetworkTokensEnabled(boolean asyncNetworkTokensEnabled) {
         Utils.checkNotNull(asyncNetworkTokensEnabled, "asyncNetworkTokensEnabled");
@@ -665,7 +792,8 @@ public class MerchantAccountUpdate {
 
 
     /**
-     * When enabled network tokens will be generated asynchronously and only used on subsequent transactions to speed up transaction processing.
+     * When enabled network tokens will be generated asynchronously and only used on subsequent
+     * transactions to speed up transaction processing.
      */
     public MerchantAccountUpdate withAsyncNetworkTokensEnabled(Optional<Boolean> asyncNetworkTokensEnabled) {
         Utils.checkNotNull(asyncNetworkTokensEnabled, "asyncNetworkTokensEnabled");
@@ -800,7 +928,13 @@ public class MerchantAccountUpdate {
 
 
         /**
-         * Whether the Real-Time Account Updater service is enabled for this merchant account. The Account Updater service is used to update card details when cards are lost, stolen or expired. If the field is not set or if it's set to `false`, the Account Updater service doesn't get called if a payment fails with expired or invalid card details. If the field is set to `true`, the service is called. Please note that for this to work the other `account_updater_* fields` must be set as well.
+         * Whether the Real-Time Account Updater service is enabled for this merchant account. The Account
+         * Updater service is used to update card details when cards are lost, stolen or expired. If the field
+         * is not set or if it's set to `false`, the Account Updater service doesn't get called if a payment
+         * fails with expired or invalid card details.
+         * 
+         * <p>If the field is set to `true`, the service is called. Please note that for this to work the other
+         * `account_updater_* fields` must be set as well.
          */
         public Builder accountUpdaterEnabled(boolean accountUpdaterEnabled) {
             Utils.checkNotNull(accountUpdaterEnabled, "accountUpdaterEnabled");
@@ -809,7 +943,13 @@ public class MerchantAccountUpdate {
         }
 
         /**
-         * Whether the Real-Time Account Updater service is enabled for this merchant account. The Account Updater service is used to update card details when cards are lost, stolen or expired. If the field is not set or if it's set to `false`, the Account Updater service doesn't get called if a payment fails with expired or invalid card details. If the field is set to `true`, the service is called. Please note that for this to work the other `account_updater_* fields` must be set as well.
+         * Whether the Real-Time Account Updater service is enabled for this merchant account. The Account
+         * Updater service is used to update card details when cards are lost, stolen or expired. If the field
+         * is not set or if it's set to `false`, the Account Updater service doesn't get called if a payment
+         * fails with expired or invalid card details.
+         * 
+         * <p>If the field is set to `true`, the service is called. Please note that for this to work the other
+         * `account_updater_* fields` must be set as well.
          */
         public Builder accountUpdaterEnabled(Optional<Boolean> accountUpdaterEnabled) {
             Utils.checkNotNull(accountUpdaterEnabled, "accountUpdaterEnabled");
@@ -819,7 +959,11 @@ public class MerchantAccountUpdate {
 
 
         /**
-         * The public key used to encrypt the request to the Real-Time Account Updater service. The Account Updater service is used to update card details when cards are lost, stolen or expired. If the field is not set or if it's set to `null`, the Account Updater service doesn't get called. If the field is set, the other `account_updater_*` fields must be set as well.
+         * The public key used to encrypt the request to the Real-Time Account Updater service. The Account
+         * Updater service is used to update card details when cards are lost, stolen or expired. If the field
+         * is not set or if it's set to `null`, the Account Updater service doesn't get called.
+         * 
+         * <p>If the field is set, the other `account_updater_*` fields must be set as well.
          */
         public Builder accountUpdaterRequestEncryptionKey(String accountUpdaterRequestEncryptionKey) {
             Utils.checkNotNull(accountUpdaterRequestEncryptionKey, "accountUpdaterRequestEncryptionKey");
@@ -828,7 +972,11 @@ public class MerchantAccountUpdate {
         }
 
         /**
-         * The public key used to encrypt the request to the Real-Time Account Updater service. The Account Updater service is used to update card details when cards are lost, stolen or expired. If the field is not set or if it's set to `null`, the Account Updater service doesn't get called. If the field is set, the other `account_updater_*` fields must be set as well.
+         * The public key used to encrypt the request to the Real-Time Account Updater service. The Account
+         * Updater service is used to update card details when cards are lost, stolen or expired. If the field
+         * is not set or if it's set to `null`, the Account Updater service doesn't get called.
+         * 
+         * <p>If the field is set, the other `account_updater_*` fields must be set as well.
          */
         public Builder accountUpdaterRequestEncryptionKey(JsonNullable<String> accountUpdaterRequestEncryptionKey) {
             Utils.checkNotNull(accountUpdaterRequestEncryptionKey, "accountUpdaterRequestEncryptionKey");
@@ -838,7 +986,11 @@ public class MerchantAccountUpdate {
 
 
         /**
-         * The ID of the key used to encrypt the request to the Real-Time Account Updater service. The Account Updater service is used to update card details when cards are lost, stolen or expired. If the field is not set or if it's set to `null`, the Account Updater service doesn't get called. If the field is set, the other `account_updater_*` fields must be set as well.
+         * The ID of the key used to encrypt the request to the Real-Time Account Updater service. The Account
+         * Updater service is used to update card details when cards are lost, stolen or expired. If the field
+         * is not set or if it's set to `null`, the Account Updater service doesn't get called.
+         * 
+         * <p>If the field is set, the other `account_updater_*` fields must be set as well.
          */
         public Builder accountUpdaterRequestEncryptionKeyId(String accountUpdaterRequestEncryptionKeyId) {
             Utils.checkNotNull(accountUpdaterRequestEncryptionKeyId, "accountUpdaterRequestEncryptionKeyId");
@@ -847,7 +999,11 @@ public class MerchantAccountUpdate {
         }
 
         /**
-         * The ID of the key used to encrypt the request to the Real-Time Account Updater service. The Account Updater service is used to update card details when cards are lost, stolen or expired. If the field is not set or if it's set to `null`, the Account Updater service doesn't get called. If the field is set, the other `account_updater_*` fields must be set as well.
+         * The ID of the key used to encrypt the request to the Real-Time Account Updater service. The Account
+         * Updater service is used to update card details when cards are lost, stolen or expired. If the field
+         * is not set or if it's set to `null`, the Account Updater service doesn't get called.
+         * 
+         * <p>If the field is set, the other `account_updater_*` fields must be set as well.
          */
         public Builder accountUpdaterRequestEncryptionKeyId(JsonNullable<String> accountUpdaterRequestEncryptionKeyId) {
             Utils.checkNotNull(accountUpdaterRequestEncryptionKeyId, "accountUpdaterRequestEncryptionKeyId");
@@ -857,7 +1013,11 @@ public class MerchantAccountUpdate {
 
 
         /**
-         * The key used to decrypt the response from the Real-Time Account Updater service. The Account Updater service is used to update card details when cards are lost, stolen or expired. If the field is not set or if it's set to `null`, the Account Updater service doesn't get called. If the field is set, the other `account_updater_*` fields must be set as well.
+         * The key used to decrypt the response from the Real-Time Account Updater service. The Account Updater
+         * service is used to update card details when cards are lost, stolen or expired. If the field is not
+         * set or if it's set to `null`, the Account Updater service doesn't get called.
+         * 
+         * <p>If the field is set, the other `account_updater_*` fields must be set as well.
          */
         public Builder accountUpdaterResponseDecryptionKey(String accountUpdaterResponseDecryptionKey) {
             Utils.checkNotNull(accountUpdaterResponseDecryptionKey, "accountUpdaterResponseDecryptionKey");
@@ -866,7 +1026,11 @@ public class MerchantAccountUpdate {
         }
 
         /**
-         * The key used to decrypt the response from the Real-Time Account Updater service. The Account Updater service is used to update card details when cards are lost, stolen or expired. If the field is not set or if it's set to `null`, the Account Updater service doesn't get called. If the field is set, the other `account_updater_*` fields must be set as well.
+         * The key used to decrypt the response from the Real-Time Account Updater service. The Account Updater
+         * service is used to update card details when cards are lost, stolen or expired. If the field is not
+         * set or if it's set to `null`, the Account Updater service doesn't get called.
+         * 
+         * <p>If the field is set, the other `account_updater_*` fields must be set as well.
          */
         public Builder accountUpdaterResponseDecryptionKey(JsonNullable<String> accountUpdaterResponseDecryptionKey) {
             Utils.checkNotNull(accountUpdaterResponseDecryptionKey, "accountUpdaterResponseDecryptionKey");
@@ -876,7 +1040,11 @@ public class MerchantAccountUpdate {
 
 
         /**
-         * The ID of the key used to decrypt the request from the Real-Time Account Updater service. The Account Updater service is used to update card details when cards are lost, stolen or expired. If the field is not set or if it's set to `null`, the Account Updater service doesn't get called. If the field is set, the other `account_updater_*` fields must be set as well.
+         * The ID of the key used to decrypt the request from the Real-Time Account Updater service. The
+         * Account Updater service is used to update card details when cards are lost, stolen or expired. If
+         * the field is not set or if it's set to `null`, the Account Updater service doesn't get called.
+         * 
+         * <p>If the field is set, the other `account_updater_*` fields must be set as well.
          */
         public Builder accountUpdaterResponseDecryptionKeyId(String accountUpdaterResponseDecryptionKeyId) {
             Utils.checkNotNull(accountUpdaterResponseDecryptionKeyId, "accountUpdaterResponseDecryptionKeyId");
@@ -885,7 +1053,11 @@ public class MerchantAccountUpdate {
         }
 
         /**
-         * The ID of the key used to decrypt the request from the Real-Time Account Updater service. The Account Updater service is used to update card details when cards are lost, stolen or expired. If the field is not set or if it's set to `null`, the Account Updater service doesn't get called. If the field is set, the other `account_updater_*` fields must be set as well.
+         * The ID of the key used to decrypt the request from the Real-Time Account Updater service. The
+         * Account Updater service is used to update card details when cards are lost, stolen or expired. If
+         * the field is not set or if it's set to `null`, the Account Updater service doesn't get called.
+         * 
+         * <p>If the field is set, the other `account_updater_*` fields must be set as well.
          */
         public Builder accountUpdaterResponseDecryptionKeyId(JsonNullable<String> accountUpdaterResponseDecryptionKeyId) {
             Utils.checkNotNull(accountUpdaterResponseDecryptionKeyId, "accountUpdaterResponseDecryptionKeyId");
@@ -895,7 +1067,8 @@ public class MerchantAccountUpdate {
 
 
         /**
-         * The maximum monetary amount allowed for over-capture, in the smallest currency unit, for example `1299` cents to allow for an over-capture of `$12.99`.
+         * The maximum monetary amount allowed for over-capture, in the smallest currency unit, for example
+         * `1299` cents to allow for an over-capture of `$12.99`.
          */
         public Builder overCaptureAmount(long overCaptureAmount) {
             Utils.checkNotNull(overCaptureAmount, "overCaptureAmount");
@@ -904,7 +1077,8 @@ public class MerchantAccountUpdate {
         }
 
         /**
-         * The maximum monetary amount allowed for over-capture, in the smallest currency unit, for example `1299` cents to allow for an over-capture of `$12.99`.
+         * The maximum monetary amount allowed for over-capture, in the smallest currency unit, for example
+         * `1299` cents to allow for an over-capture of `$12.99`.
          */
         public Builder overCaptureAmount(JsonNullable<Long> overCaptureAmount) {
             Utils.checkNotNull(overCaptureAmount, "overCaptureAmount");
@@ -914,7 +1088,8 @@ public class MerchantAccountUpdate {
 
 
         /**
-         * The maximum percentage allowed for over-capture, for example `25` to allow for an over-capture of `25%` of the original transaction amount.
+         * The maximum percentage allowed for over-capture, for example `25` to allow for an over-capture of
+         * `25%` of the original transaction amount.
          */
         public Builder overCapturePercentage(long overCapturePercentage) {
             Utils.checkNotNull(overCapturePercentage, "overCapturePercentage");
@@ -923,7 +1098,8 @@ public class MerchantAccountUpdate {
         }
 
         /**
-         * The maximum percentage allowed for over-capture, for example `25` to allow for an over-capture of `25%` of the original transaction amount.
+         * The maximum percentage allowed for over-capture, for example `25` to allow for an over-capture of
+         * `25%` of the original transaction amount.
          */
         public Builder overCapturePercentage(JsonNullable<Long> overCapturePercentage) {
             Utils.checkNotNull(overCapturePercentage, "overCapturePercentage");
@@ -933,7 +1109,9 @@ public class MerchantAccountUpdate {
 
 
         /**
-         * Client key provided by Pagos to authenticate to the Loon API. Loon is the Account Updater service we use and if the field is not set or if it's set to null, the Account Updater service doesn't get configured. If the field is set to `null`, the other `loon_*` fields must be set to null as well.
+         * Client key provided by Pagos to authenticate to the Loon API. Loon is the Account Updater service we
+         * use and if the field is not set or if it's set to null, the Account Updater service doesn't get
+         * configured. If the field is set to `null`, the other `loon_*` fields must be set to null as well.
          */
         public Builder loonClientKey(String loonClientKey) {
             Utils.checkNotNull(loonClientKey, "loonClientKey");
@@ -942,7 +1120,9 @@ public class MerchantAccountUpdate {
         }
 
         /**
-         * Client key provided by Pagos to authenticate to the Loon API. Loon is the Account Updater service we use and if the field is not set or if it's set to null, the Account Updater service doesn't get configured. If the field is set to `null`, the other `loon_*` fields must be set to null as well.
+         * Client key provided by Pagos to authenticate to the Loon API. Loon is the Account Updater service we
+         * use and if the field is not set or if it's set to null, the Account Updater service doesn't get
+         * configured. If the field is set to `null`, the other `loon_*` fields must be set to null as well.
          */
         public Builder loonClientKey(JsonNullable<String> loonClientKey) {
             Utils.checkNotNull(loonClientKey, "loonClientKey");
@@ -952,7 +1132,9 @@ public class MerchantAccountUpdate {
 
 
         /**
-         * Secret key provided by Pagos to authenticate to the Loon API. Loon is the Account Updater service we use and if the field is not set or if it's set to null, the Account Updater service doesn't get configured. If the field is set to `null`, the other `loon_*` fields must be set to null as well.
+         * Secret key provided by Pagos to authenticate to the Loon API. Loon is the Account Updater service we
+         * use and if the field is not set or if it's set to null, the Account Updater service doesn't get
+         * configured. If the field is set to `null`, the other `loon_*` fields must be set to null as well.
          */
         public Builder loonSecretKey(String loonSecretKey) {
             Utils.checkNotNull(loonSecretKey, "loonSecretKey");
@@ -961,7 +1143,9 @@ public class MerchantAccountUpdate {
         }
 
         /**
-         * Secret key provided by Pagos to authenticate to the Loon API. Loon is the Account Updater service we use and if the field is not set or if it's set to null, the Account Updater service doesn't get configured. If the field is set to `null`, the other `loon_*` fields must be set to null as well.
+         * Secret key provided by Pagos to authenticate to the Loon API. Loon is the Account Updater service we
+         * use and if the field is not set or if it's set to null, the Account Updater service doesn't get
+         * configured. If the field is set to `null`, the other `loon_*` fields must be set to null as well.
          */
         public Builder loonSecretKey(JsonNullable<String> loonSecretKey) {
             Utils.checkNotNull(loonSecretKey, "loonSecretKey");
@@ -971,7 +1155,10 @@ public class MerchantAccountUpdate {
 
 
         /**
-         * Card schemes accepted when creating jobs using this set of Loon API keys. Loon is the Account Updater service we use and if the field is not set or if it's set to null, the Account Updater service doesn't get configured. If the field is set to `null`, the other `loon_*` fields must be set to null as well.
+         * Card schemes accepted when creating jobs using this set of Loon API keys. Loon is the Account
+         * Updater service we use and if the field is not set or if it's set to null, the Account Updater
+         * service doesn't get configured. If the field is set to `null`, the other `loon_*` fields must be set
+         * to null as well.
          */
         public Builder loonAcceptedSchemes(List<CardScheme> loonAcceptedSchemes) {
             Utils.checkNotNull(loonAcceptedSchemes, "loonAcceptedSchemes");
@@ -980,7 +1167,10 @@ public class MerchantAccountUpdate {
         }
 
         /**
-         * Card schemes accepted when creating jobs using this set of Loon API keys. Loon is the Account Updater service we use and if the field is not set or if it's set to null, the Account Updater service doesn't get configured. If the field is set to `null`, the other `loon_*` fields must be set to null as well.
+         * Card schemes accepted when creating jobs using this set of Loon API keys. Loon is the Account
+         * Updater service we use and if the field is not set or if it's set to null, the Account Updater
+         * service doesn't get configured. If the field is set to `null`, the other `loon_*` fields must be set
+         * to null as well.
          */
         public Builder loonAcceptedSchemes(JsonNullable<? extends List<CardScheme>> loonAcceptedSchemes) {
             Utils.checkNotNull(loonAcceptedSchemes, "loonAcceptedSchemes");
@@ -1104,7 +1294,8 @@ public class MerchantAccountUpdate {
 
 
         /**
-         * When enabled network tokens will be generated asynchronously and only used on subsequent transactions to speed up transaction processing.
+         * When enabled network tokens will be generated asynchronously and only used on subsequent
+         * transactions to speed up transaction processing.
          */
         public Builder asyncNetworkTokensEnabled(boolean asyncNetworkTokensEnabled) {
             Utils.checkNotNull(asyncNetworkTokensEnabled, "asyncNetworkTokensEnabled");
@@ -1113,7 +1304,8 @@ public class MerchantAccountUpdate {
         }
 
         /**
-         * When enabled network tokens will be generated asynchronously and only used on subsequent transactions to speed up transaction processing.
+         * When enabled network tokens will be generated asynchronously and only used on subsequent
+         * transactions to speed up transaction processing.
          */
         public Builder asyncNetworkTokensEnabled(Optional<Boolean> asyncNetworkTokensEnabled) {
             Utils.checkNotNull(asyncNetworkTokensEnabled, "asyncNetworkTokensEnabled");

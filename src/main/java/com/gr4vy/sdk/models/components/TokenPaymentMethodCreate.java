@@ -19,7 +19,8 @@ import org.openapitools.jackson.nullable.JsonNullable;
 /**
  * TokenPaymentMethodCreate
  * 
- * <p>Create a transaction with the ID (token) of a stored payment method (and an optional URL for approval)
+ * <p>Create a transaction with the ID (token) of a stored payment method (and an optional URL for
+ * approval)
  */
 public class TokenPaymentMethodCreate {
     /**

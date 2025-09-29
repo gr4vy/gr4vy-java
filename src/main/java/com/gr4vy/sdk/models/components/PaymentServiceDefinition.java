@@ -22,7 +22,8 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 public class PaymentServiceDefinition {
     /**
-     * The definition ID of the payment service that can be configured. This is the underlying provider followed by a dash followed by the method.
+     * The definition ID of the payment service that can be configured. This is the underlying provider
+     * followed by a dash followed by the method.
      */
     @JsonProperty("id")
     private String id;
@@ -156,7 +157,8 @@ public class PaymentServiceDefinition {
     }
 
     /**
-     * The definition ID of the payment service that can be configured. This is the underlying provider followed by a dash followed by the method.
+     * The definition ID of the payment service that can be configured. This is the underlying provider
+     * followed by a dash followed by the method.
      */
     @JsonIgnore
     public String id() {
@@ -256,7 +258,8 @@ public class PaymentServiceDefinition {
 
 
     /**
-     * The definition ID of the payment service that can be configured. This is the underlying provider followed by a dash followed by the method.
+     * The definition ID of the payment service that can be configured. This is the underlying provider
+     * followed by a dash followed by the method.
      */
     public PaymentServiceDefinition withId(String id) {
         Utils.checkNotNull(id, "id");
@@ -449,7 +452,8 @@ public class PaymentServiceDefinition {
 
 
         /**
-         * The definition ID of the payment service that can be configured. This is the underlying provider followed by a dash followed by the method.
+         * The definition ID of the payment service that can be configured. This is the underlying provider
+         * followed by a dash followed by the method.
          */
         public Builder id(String id) {
             Utils.checkNotNull(id, "id");

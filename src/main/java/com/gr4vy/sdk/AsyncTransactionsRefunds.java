@@ -69,7 +69,7 @@ public class AsyncTransactionsRefunds {
      * <p>List refunds for a transaction.
      * 
      * @param transactionId The ID of the transaction
-     * @return CompletableFuture&lt;ListTransactionRefundsResponse&gt; - The async response
+     * @return {@code CompletableFuture<ListTransactionRefundsResponse>} - The async response
      */
     public CompletableFuture<ListTransactionRefundsResponse> list(String transactionId) {
         return list(transactionId, JsonNullable.undefined(), Optional.empty());
@@ -83,7 +83,7 @@ public class AsyncTransactionsRefunds {
      * @param transactionId The ID of the transaction
      * @param merchantAccountId 
      * @param options additional options
-     * @return CompletableFuture&lt;ListTransactionRefundsResponse&gt; - The async response
+     * @return {@code CompletableFuture<ListTransactionRefundsResponse>} - The async response
      */
     public CompletableFuture<ListTransactionRefundsResponse> list(
             String transactionId, JsonNullable<String> merchantAccountId,
@@ -121,7 +121,7 @@ public class AsyncTransactionsRefunds {
      * 
      * @param transactionId The ID of the transaction
      * @param transactionRefundCreate 
-     * @return CompletableFuture&lt;CreateTransactionRefundResponse&gt; - The async response
+     * @return {@code CompletableFuture<CreateTransactionRefundResponse>} - The async response
      */
     public CompletableFuture<CreateTransactionRefundResponse> create(String transactionId, TransactionRefundCreate transactionRefundCreate) {
         return create(transactionId, JsonNullable.undefined(), transactionRefundCreate);
@@ -135,7 +135,7 @@ public class AsyncTransactionsRefunds {
      * @param transactionId The ID of the transaction
      * @param merchantAccountId 
      * @param transactionRefundCreate 
-     * @return CompletableFuture&lt;CreateTransactionRefundResponse&gt; - The async response
+     * @return {@code CompletableFuture<CreateTransactionRefundResponse>} - The async response
      */
     public CompletableFuture<CreateTransactionRefundResponse> create(
             String transactionId, JsonNullable<String> merchantAccountId,
@@ -172,7 +172,7 @@ public class AsyncTransactionsRefunds {
      * 
      * @param transactionId The ID of the transaction
      * @param refundId The ID of the refund
-     * @return CompletableFuture&lt;GetTransactionRefundResponse&gt; - The async response
+     * @return {@code CompletableFuture<GetTransactionRefundResponse>} - The async response
      */
     public CompletableFuture<GetTransactionRefundResponse> get(String transactionId, String refundId) {
         return get(
@@ -189,7 +189,7 @@ public class AsyncTransactionsRefunds {
      * @param refundId The ID of the refund
      * @param merchantAccountId 
      * @param options additional options
-     * @return CompletableFuture&lt;GetTransactionRefundResponse&gt; - The async response
+     * @return {@code CompletableFuture<GetTransactionRefundResponse>} - The async response
      */
     public CompletableFuture<GetTransactionRefundResponse> get(
             String transactionId, String refundId,

@@ -69,7 +69,7 @@ public class AsyncPaymentLinks {
      * <p>Create a new payment link.
      * 
      * @param paymentLinkCreate 
-     * @return CompletableFuture&lt;AddPaymentLinkResponse&gt; - The async response
+     * @return {@code CompletableFuture<AddPaymentLinkResponse>} - The async response
      */
     public CompletableFuture<AddPaymentLinkResponse> create(PaymentLinkCreate paymentLinkCreate) {
         return create(JsonNullable.undefined(), paymentLinkCreate);
@@ -82,7 +82,7 @@ public class AsyncPaymentLinks {
      * 
      * @param merchantAccountId 
      * @param paymentLinkCreate 
-     * @return CompletableFuture&lt;AddPaymentLinkResponse&gt; - The async response
+     * @return {@code CompletableFuture<AddPaymentLinkResponse>} - The async response
      */
     public CompletableFuture<AddPaymentLinkResponse> create(JsonNullable<String> merchantAccountId, PaymentLinkCreate paymentLinkCreate) {
         AddPaymentLinkRequest request =
@@ -114,7 +114,7 @@ public class AsyncPaymentLinks {
      * 
      * <p>List all created payment links.
      * 
-     * @return CompletableFuture&lt;ListPaymentLinksResponse&gt; - The async response
+     * @return {@code CompletableFuture<ListPaymentLinksResponse>} - The async response
      */
     public CompletableFuture<ListPaymentLinksResponse> listDirect() {
         return list(
@@ -132,7 +132,7 @@ public class AsyncPaymentLinks {
      * @param buyerSearch Filters the results to only get the items for which some of the buyer data contains exactly the provided `buyer_search` values.
      * @param merchantAccountId 
      * @param options additional options
-     * @return CompletableFuture&lt;ListPaymentLinksResponse&gt; - The async response
+     * @return {@code CompletableFuture<ListPaymentLinksResponse>} - The async response
      */
     public CompletableFuture<ListPaymentLinksResponse> list(
             JsonNullable<String> cursor, Optional<Long> limit,
@@ -172,7 +172,7 @@ public class AsyncPaymentLinks {
      * <p>Expire an existing payment link.
      * 
      * @param paymentLinkId The unique identifier for the payment link.
-     * @return CompletableFuture&lt;ExpirePaymentLinkResponse&gt; - The async response
+     * @return {@code CompletableFuture<ExpirePaymentLinkResponse>} - The async response
      */
     public CompletableFuture<ExpirePaymentLinkResponse> expire(String paymentLinkId) {
         return expire(paymentLinkId, JsonNullable.undefined());
@@ -185,7 +185,7 @@ public class AsyncPaymentLinks {
      * 
      * @param paymentLinkId The unique identifier for the payment link.
      * @param merchantAccountId 
-     * @return CompletableFuture&lt;ExpirePaymentLinkResponse&gt; - The async response
+     * @return {@code CompletableFuture<ExpirePaymentLinkResponse>} - The async response
      */
     public CompletableFuture<ExpirePaymentLinkResponse> expire(String paymentLinkId, JsonNullable<String> merchantAccountId) {
         ExpirePaymentLinkRequest request =
@@ -218,7 +218,7 @@ public class AsyncPaymentLinks {
      * <p>Fetch the details for a payment link.
      * 
      * @param paymentLinkId The unique identifier for the payment link.
-     * @return CompletableFuture&lt;GetPaymentLinkResponse&gt; - The async response
+     * @return {@code CompletableFuture<GetPaymentLinkResponse>} - The async response
      */
     public CompletableFuture<GetPaymentLinkResponse> get(String paymentLinkId) {
         return get(paymentLinkId, JsonNullable.undefined(), Optional.empty());
@@ -232,7 +232,7 @@ public class AsyncPaymentLinks {
      * @param paymentLinkId The unique identifier for the payment link.
      * @param merchantAccountId 
      * @param options additional options
-     * @return CompletableFuture&lt;GetPaymentLinkResponse&gt; - The async response
+     * @return {@code CompletableFuture<GetPaymentLinkResponse>} - The async response
      */
     public CompletableFuture<GetPaymentLinkResponse> get(
             String paymentLinkId, JsonNullable<String> merchantAccountId,

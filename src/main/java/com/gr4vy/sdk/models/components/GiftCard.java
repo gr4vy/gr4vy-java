@@ -62,7 +62,8 @@ public class GiftCard {
     private String last4;
 
     /**
-     * The date and time when this gift card expires. This is a full date/time and may be more accurate than the actual expiry date received by the gift card service.
+     * The date and time when this gift card expires. This is a full date/time and may be more accurate
+     * than the actual expiry date received by the gift card service.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("expiration_date")
@@ -191,7 +192,8 @@ public class GiftCard {
     }
 
     /**
-     * The date and time when this gift card expires. This is a full date/time and may be more accurate than the actual expiry date received by the gift card service.
+     * The date and time when this gift card expires. This is a full date/time and may be more accurate
+     * than the actual expiry date received by the gift card service.
      */
     @JsonIgnore
     public JsonNullable<OffsetDateTime> expirationDate() {
@@ -280,7 +282,8 @@ public class GiftCard {
     }
 
     /**
-     * The date and time when this gift card expires. This is a full date/time and may be more accurate than the actual expiry date received by the gift card service.
+     * The date and time when this gift card expires. This is a full date/time and may be more accurate
+     * than the actual expiry date received by the gift card service.
      */
     public GiftCard withExpirationDate(OffsetDateTime expirationDate) {
         Utils.checkNotNull(expirationDate, "expirationDate");
@@ -289,7 +292,8 @@ public class GiftCard {
     }
 
     /**
-     * The date and time when this gift card expires. This is a full date/time and may be more accurate than the actual expiry date received by the gift card service.
+     * The date and time when this gift card expires. This is a full date/time and may be more accurate
+     * than the actual expiry date received by the gift card service.
      */
     public GiftCard withExpirationDate(JsonNullable<OffsetDateTime> expirationDate) {
         Utils.checkNotNull(expirationDate, "expirationDate");
@@ -467,7 +471,8 @@ public class GiftCard {
 
 
         /**
-         * The date and time when this gift card expires. This is a full date/time and may be more accurate than the actual expiry date received by the gift card service.
+         * The date and time when this gift card expires. This is a full date/time and may be more accurate
+         * than the actual expiry date received by the gift card service.
          */
         public Builder expirationDate(OffsetDateTime expirationDate) {
             Utils.checkNotNull(expirationDate, "expirationDate");
@@ -476,7 +481,8 @@ public class GiftCard {
         }
 
         /**
-         * The date and time when this gift card expires. This is a full date/time and may be more accurate than the actual expiry date received by the gift card service.
+         * The date and time when this gift card expires. This is a full date/time and may be more accurate
+         * than the actual expiry date received by the gift card service.
          */
         public Builder expirationDate(JsonNullable<OffsetDateTime> expirationDate) {
             Utils.checkNotNull(expirationDate, "expirationDate");

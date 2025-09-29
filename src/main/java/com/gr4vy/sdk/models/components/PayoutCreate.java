@@ -24,7 +24,8 @@ import org.openapitools.jackson.nullable.JsonNullable;
  */
 public class PayoutCreate {
     /**
-     * The monetary amount for this payout, in the smallest currency unit for the given currency, for example `1299` cents to create an authorization for $12.99.
+     * The monetary amount for this payout, in the smallest currency unit for the given currency, for
+     * example `1299` cents to create an authorization for $12.99.
      */
     @JsonProperty("amount")
     private long amount;
@@ -62,21 +63,24 @@ public class PayoutCreate {
     private JsonNullable<String> externalIdentifier;
 
     /**
-     * The `id` of a stored buyer to use for this payout Use this instead of the `buyer` or `buyer_external_identifier`.
+     * The `id` of a stored buyer to use for this payout Use this instead of the `buyer` or
+     * `buyer_external_identifier`.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("buyer_id")
     private JsonNullable<String> buyerId;
 
     /**
-     * Inline buyer details for the payout. Use this instead of the `buyer_id` or `buyer_external_identifier`.
+     * Inline buyer details for the payout. Use this instead of the `buyer_id` or
+     * `buyer_external_identifier`.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("buyer")
     private JsonNullable<? extends GuestBuyerInput> buyer;
 
     /**
-     * The `external_identifier` of a stored buyer to use for this payout. Use this instead of the `buyer_id` or `buyer`.
+     * The `external_identifier` of a stored buyer to use for this payout. Use this instead of the
+     * `buyer_id` or `buyer`.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("buyer_external_identifier")
@@ -145,7 +149,8 @@ public class PayoutCreate {
     }
 
     /**
-     * The monetary amount for this payout, in the smallest currency unit for the given currency, for example `1299` cents to create an authorization for $12.99.
+     * The monetary amount for this payout, in the smallest currency unit for the given currency, for
+     * example `1299` cents to create an authorization for $12.99.
      */
     @JsonIgnore
     public long amount() {
@@ -194,7 +199,8 @@ public class PayoutCreate {
     }
 
     /**
-     * The `id` of a stored buyer to use for this payout Use this instead of the `buyer` or `buyer_external_identifier`.
+     * The `id` of a stored buyer to use for this payout Use this instead of the `buyer` or
+     * `buyer_external_identifier`.
      */
     @JsonIgnore
     public JsonNullable<String> buyerId() {
@@ -202,7 +208,8 @@ public class PayoutCreate {
     }
 
     /**
-     * Inline buyer details for the payout. Use this instead of the `buyer_id` or `buyer_external_identifier`.
+     * Inline buyer details for the payout. Use this instead of the `buyer_id` or
+     * `buyer_external_identifier`.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -211,7 +218,8 @@ public class PayoutCreate {
     }
 
     /**
-     * The `external_identifier` of a stored buyer to use for this payout. Use this instead of the `buyer_id` or `buyer`.
+     * The `external_identifier` of a stored buyer to use for this payout. Use this instead of the
+     * `buyer_id` or `buyer`.
      */
     @JsonIgnore
     public JsonNullable<String> buyerExternalIdentifier() {
@@ -242,7 +250,8 @@ public class PayoutCreate {
 
 
     /**
-     * The monetary amount for this payout, in the smallest currency unit for the given currency, for example `1299` cents to create an authorization for $12.99.
+     * The monetary amount for this payout, in the smallest currency unit for the given currency, for
+     * example `1299` cents to create an authorization for $12.99.
      */
     public PayoutCreate withAmount(long amount) {
         Utils.checkNotNull(amount, "amount");
@@ -314,7 +323,8 @@ public class PayoutCreate {
     }
 
     /**
-     * The `id` of a stored buyer to use for this payout Use this instead of the `buyer` or `buyer_external_identifier`.
+     * The `id` of a stored buyer to use for this payout Use this instead of the `buyer` or
+     * `buyer_external_identifier`.
      */
     public PayoutCreate withBuyerId(String buyerId) {
         Utils.checkNotNull(buyerId, "buyerId");
@@ -323,7 +333,8 @@ public class PayoutCreate {
     }
 
     /**
-     * The `id` of a stored buyer to use for this payout Use this instead of the `buyer` or `buyer_external_identifier`.
+     * The `id` of a stored buyer to use for this payout Use this instead of the `buyer` or
+     * `buyer_external_identifier`.
      */
     public PayoutCreate withBuyerId(JsonNullable<String> buyerId) {
         Utils.checkNotNull(buyerId, "buyerId");
@@ -332,7 +343,8 @@ public class PayoutCreate {
     }
 
     /**
-     * Inline buyer details for the payout. Use this instead of the `buyer_id` or `buyer_external_identifier`.
+     * Inline buyer details for the payout. Use this instead of the `buyer_id` or
+     * `buyer_external_identifier`.
      */
     public PayoutCreate withBuyer(GuestBuyerInput buyer) {
         Utils.checkNotNull(buyer, "buyer");
@@ -341,7 +353,8 @@ public class PayoutCreate {
     }
 
     /**
-     * Inline buyer details for the payout. Use this instead of the `buyer_id` or `buyer_external_identifier`.
+     * Inline buyer details for the payout. Use this instead of the `buyer_id` or
+     * `buyer_external_identifier`.
      */
     public PayoutCreate withBuyer(JsonNullable<? extends GuestBuyerInput> buyer) {
         Utils.checkNotNull(buyer, "buyer");
@@ -350,7 +363,8 @@ public class PayoutCreate {
     }
 
     /**
-     * The `external_identifier` of a stored buyer to use for this payout. Use this instead of the `buyer_id` or `buyer`.
+     * The `external_identifier` of a stored buyer to use for this payout. Use this instead of the
+     * `buyer_id` or `buyer`.
      */
     public PayoutCreate withBuyerExternalIdentifier(String buyerExternalIdentifier) {
         Utils.checkNotNull(buyerExternalIdentifier, "buyerExternalIdentifier");
@@ -359,7 +373,8 @@ public class PayoutCreate {
     }
 
     /**
-     * The `external_identifier` of a stored buyer to use for this payout. Use this instead of the `buyer_id` or `buyer`.
+     * The `external_identifier` of a stored buyer to use for this payout. Use this instead of the
+     * `buyer_id` or `buyer`.
      */
     public PayoutCreate withBuyerExternalIdentifier(JsonNullable<String> buyerExternalIdentifier) {
         Utils.checkNotNull(buyerExternalIdentifier, "buyerExternalIdentifier");
@@ -482,7 +497,8 @@ public class PayoutCreate {
 
 
         /**
-         * The monetary amount for this payout, in the smallest currency unit for the given currency, for example `1299` cents to create an authorization for $12.99.
+         * The monetary amount for this payout, in the smallest currency unit for the given currency, for
+         * example `1299` cents to create an authorization for $12.99.
          */
         public Builder amount(long amount) {
             Utils.checkNotNull(amount, "amount");
@@ -560,7 +576,8 @@ public class PayoutCreate {
 
 
         /**
-         * The `id` of a stored buyer to use for this payout Use this instead of the `buyer` or `buyer_external_identifier`.
+         * The `id` of a stored buyer to use for this payout Use this instead of the `buyer` or
+         * `buyer_external_identifier`.
          */
         public Builder buyerId(String buyerId) {
             Utils.checkNotNull(buyerId, "buyerId");
@@ -569,7 +586,8 @@ public class PayoutCreate {
         }
 
         /**
-         * The `id` of a stored buyer to use for this payout Use this instead of the `buyer` or `buyer_external_identifier`.
+         * The `id` of a stored buyer to use for this payout Use this instead of the `buyer` or
+         * `buyer_external_identifier`.
          */
         public Builder buyerId(JsonNullable<String> buyerId) {
             Utils.checkNotNull(buyerId, "buyerId");
@@ -579,7 +597,8 @@ public class PayoutCreate {
 
 
         /**
-         * Inline buyer details for the payout. Use this instead of the `buyer_id` or `buyer_external_identifier`.
+         * Inline buyer details for the payout. Use this instead of the `buyer_id` or
+         * `buyer_external_identifier`.
          */
         public Builder buyer(GuestBuyerInput buyer) {
             Utils.checkNotNull(buyer, "buyer");
@@ -588,7 +607,8 @@ public class PayoutCreate {
         }
 
         /**
-         * Inline buyer details for the payout. Use this instead of the `buyer_id` or `buyer_external_identifier`.
+         * Inline buyer details for the payout. Use this instead of the `buyer_id` or
+         * `buyer_external_identifier`.
          */
         public Builder buyer(JsonNullable<? extends GuestBuyerInput> buyer) {
             Utils.checkNotNull(buyer, "buyer");
@@ -598,7 +618,8 @@ public class PayoutCreate {
 
 
         /**
-         * The `external_identifier` of a stored buyer to use for this payout. Use this instead of the `buyer_id` or `buyer`.
+         * The `external_identifier` of a stored buyer to use for this payout. Use this instead of the
+         * `buyer_id` or `buyer`.
          */
         public Builder buyerExternalIdentifier(String buyerExternalIdentifier) {
             Utils.checkNotNull(buyerExternalIdentifier, "buyerExternalIdentifier");
@@ -607,7 +628,8 @@ public class PayoutCreate {
         }
 
         /**
-         * The `external_identifier` of a stored buyer to use for this payout. Use this instead of the `buyer_id` or `buyer`.
+         * The `external_identifier` of a stored buyer to use for this payout. Use this instead of the
+         * `buyer_id` or `buyer`.
          */
         public Builder buyerExternalIdentifier(JsonNullable<String> buyerExternalIdentifier) {
             Utils.checkNotNull(buyerExternalIdentifier, "buyerExternalIdentifier");

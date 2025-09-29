@@ -41,7 +41,11 @@ public class TransactionSummary {
     private String id;
 
     /**
-     * The base62 encoded transaction ID. This represents a shorter version of this transaction's `id` which is sent to payment services, anti-fraud services, and other connectors. You can use this ID to reconcile a payment service's transaction against our system. This ID is sent instead of the transaction ID because not all services support 36 digit identifiers.
+     * The base62 encoded transaction ID. This represents a shorter version of this transaction's `id`
+     * which is sent to payment services, anti-fraud services, and other connectors. You can use this ID to
+     * reconcile a payment service's transaction against our system.
+     * 
+     * <p>This ID is sent instead of the transaction ID because not all services support 36 digit identifiers.
      */
     @JsonProperty("reconciliation_id")
     private String reconciliationId;
@@ -69,19 +73,22 @@ public class TransactionSummary {
     private TransactionStatus status;
 
     /**
-     * The amount for this transaction that has been authorized for the `payment_method`. This can be less than the `amount` if gift cards were used.
+     * The amount for this transaction that has been authorized for the `payment_method`. This can be less
+     * than the `amount` if gift cards were used.
      */
     @JsonProperty("authorized_amount")
     private long authorizedAmount;
 
     /**
-     * The total amount captured for this transaction, in the smallest currency unit (for example, cents or pence). This can be the full value of the `authorized_amount` or less.
+     * The total amount captured for this transaction, in the smallest currency unit (for example, cents or
+     * pence). This can be the full value of the `authorized_amount` or less.
      */
     @JsonProperty("captured_amount")
     private long capturedAmount;
 
     /**
-     * The total amount refunded for this transaction, in the smallest currency unit (for example, cents or pence). This can be the full value of the `captured_amount` or less.
+     * The total amount refunded for this transaction, in the smallest currency unit (for example, cents or
+     * pence). This can be the full value of the `captured_amount` or less.
      */
     @JsonProperty("refunded_amount")
     private long refundedAmount;
@@ -94,7 +101,8 @@ public class TransactionSummary {
     private JsonNullable<String> settledCurrency;
 
     /**
-     * The net amount settled for this transaction, in the smallest currency unit (for example, cents or pence).
+     * The net amount settled for this transaction, in the smallest currency unit (for example, cents or
+     * pence).
      */
     @JsonProperty("settled_amount")
     private long settledAmount;
@@ -106,7 +114,8 @@ public class TransactionSummary {
     private boolean settled;
 
     /**
-     * The 2-letter ISO 3166-1 alpha-2 country code for the transaction. Used to filter payment services for processing.
+     * The 2-letter ISO 3166-1 alpha-2 country code for the transaction. Used to filter payment services
+     * for processing.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("country")
@@ -173,14 +182,16 @@ public class TransactionSummary {
     private JsonNullable<? extends TransactionBuyer> buyer;
 
     /**
-     * This is the response code received from the payment service. This can be set to any value and is not standardized across different payment services.
+     * This is the response code received from the payment service. This can be set to any value and is not
+     * standardized across different payment services.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("raw_response_code")
     private JsonNullable<String> rawResponseCode;
 
     /**
-     * This is the response description received from the payment service. This can be set to any value and is not standardized across different payment services.
+     * This is the response description received from the payment service. This can be set to any value and
+     * is not standardized across different payment services.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("raw_response_description")
@@ -376,7 +387,11 @@ public class TransactionSummary {
     }
 
     /**
-     * The base62 encoded transaction ID. This represents a shorter version of this transaction's `id` which is sent to payment services, anti-fraud services, and other connectors. You can use this ID to reconcile a payment service's transaction against our system. This ID is sent instead of the transaction ID because not all services support 36 digit identifiers.
+     * The base62 encoded transaction ID. This represents a shorter version of this transaction's `id`
+     * which is sent to payment services, anti-fraud services, and other connectors. You can use this ID to
+     * reconcile a payment service's transaction against our system.
+     * 
+     * <p>This ID is sent instead of the transaction ID because not all services support 36 digit identifiers.
      */
     @JsonIgnore
     public String reconciliationId() {
@@ -413,7 +428,8 @@ public class TransactionSummary {
     }
 
     /**
-     * The amount for this transaction that has been authorized for the `payment_method`. This can be less than the `amount` if gift cards were used.
+     * The amount for this transaction that has been authorized for the `payment_method`. This can be less
+     * than the `amount` if gift cards were used.
      */
     @JsonIgnore
     public long authorizedAmount() {
@@ -421,7 +437,8 @@ public class TransactionSummary {
     }
 
     /**
-     * The total amount captured for this transaction, in the smallest currency unit (for example, cents or pence). This can be the full value of the `authorized_amount` or less.
+     * The total amount captured for this transaction, in the smallest currency unit (for example, cents or
+     * pence). This can be the full value of the `authorized_amount` or less.
      */
     @JsonIgnore
     public long capturedAmount() {
@@ -429,7 +446,8 @@ public class TransactionSummary {
     }
 
     /**
-     * The total amount refunded for this transaction, in the smallest currency unit (for example, cents or pence). This can be the full value of the `captured_amount` or less.
+     * The total amount refunded for this transaction, in the smallest currency unit (for example, cents or
+     * pence). This can be the full value of the `captured_amount` or less.
      */
     @JsonIgnore
     public long refundedAmount() {
@@ -445,7 +463,8 @@ public class TransactionSummary {
     }
 
     /**
-     * The net amount settled for this transaction, in the smallest currency unit (for example, cents or pence).
+     * The net amount settled for this transaction, in the smallest currency unit (for example, cents or
+     * pence).
      */
     @JsonIgnore
     public long settledAmount() {
@@ -461,7 +480,8 @@ public class TransactionSummary {
     }
 
     /**
-     * The 2-letter ISO 3166-1 alpha-2 country code for the transaction. Used to filter payment services for processing.
+     * The 2-letter ISO 3166-1 alpha-2 country code for the transaction. Used to filter payment services
+     * for processing.
      */
     @JsonIgnore
     public JsonNullable<String> country() {
@@ -543,7 +563,8 @@ public class TransactionSummary {
     }
 
     /**
-     * This is the response code received from the payment service. This can be set to any value and is not standardized across different payment services.
+     * This is the response code received from the payment service. This can be set to any value and is not
+     * standardized across different payment services.
      */
     @JsonIgnore
     public JsonNullable<String> rawResponseCode() {
@@ -551,7 +572,8 @@ public class TransactionSummary {
     }
 
     /**
-     * This is the response description received from the payment service. This can be set to any value and is not standardized across different payment services.
+     * This is the response description received from the payment service. This can be set to any value and
+     * is not standardized across different payment services.
      */
     @JsonIgnore
     public JsonNullable<String> rawResponseDescription() {
@@ -631,7 +653,11 @@ public class TransactionSummary {
     }
 
     /**
-     * The base62 encoded transaction ID. This represents a shorter version of this transaction's `id` which is sent to payment services, anti-fraud services, and other connectors. You can use this ID to reconcile a payment service's transaction against our system. This ID is sent instead of the transaction ID because not all services support 36 digit identifiers.
+     * The base62 encoded transaction ID. This represents a shorter version of this transaction's `id`
+     * which is sent to payment services, anti-fraud services, and other connectors. You can use this ID to
+     * reconcile a payment service's transaction against our system.
+     * 
+     * <p>This ID is sent instead of the transaction ID because not all services support 36 digit identifiers.
      */
     public TransactionSummary withReconciliationId(String reconciliationId) {
         Utils.checkNotNull(reconciliationId, "reconciliationId");
@@ -673,7 +699,8 @@ public class TransactionSummary {
     }
 
     /**
-     * The amount for this transaction that has been authorized for the `payment_method`. This can be less than the `amount` if gift cards were used.
+     * The amount for this transaction that has been authorized for the `payment_method`. This can be less
+     * than the `amount` if gift cards were used.
      */
     public TransactionSummary withAuthorizedAmount(long authorizedAmount) {
         Utils.checkNotNull(authorizedAmount, "authorizedAmount");
@@ -682,7 +709,8 @@ public class TransactionSummary {
     }
 
     /**
-     * The total amount captured for this transaction, in the smallest currency unit (for example, cents or pence). This can be the full value of the `authorized_amount` or less.
+     * The total amount captured for this transaction, in the smallest currency unit (for example, cents or
+     * pence). This can be the full value of the `authorized_amount` or less.
      */
     public TransactionSummary withCapturedAmount(long capturedAmount) {
         Utils.checkNotNull(capturedAmount, "capturedAmount");
@@ -691,7 +719,8 @@ public class TransactionSummary {
     }
 
     /**
-     * The total amount refunded for this transaction, in the smallest currency unit (for example, cents or pence). This can be the full value of the `captured_amount` or less.
+     * The total amount refunded for this transaction, in the smallest currency unit (for example, cents or
+     * pence). This can be the full value of the `captured_amount` or less.
      */
     public TransactionSummary withRefundedAmount(long refundedAmount) {
         Utils.checkNotNull(refundedAmount, "refundedAmount");
@@ -718,7 +747,8 @@ public class TransactionSummary {
     }
 
     /**
-     * The net amount settled for this transaction, in the smallest currency unit (for example, cents or pence).
+     * The net amount settled for this transaction, in the smallest currency unit (for example, cents or
+     * pence).
      */
     public TransactionSummary withSettledAmount(long settledAmount) {
         Utils.checkNotNull(settledAmount, "settledAmount");
@@ -736,7 +766,8 @@ public class TransactionSummary {
     }
 
     /**
-     * The 2-letter ISO 3166-1 alpha-2 country code for the transaction. Used to filter payment services for processing.
+     * The 2-letter ISO 3166-1 alpha-2 country code for the transaction. Used to filter payment services
+     * for processing.
      */
     public TransactionSummary withCountry(String country) {
         Utils.checkNotNull(country, "country");
@@ -745,7 +776,8 @@ public class TransactionSummary {
     }
 
     /**
-     * The 2-letter ISO 3166-1 alpha-2 country code for the transaction. Used to filter payment services for processing.
+     * The 2-letter ISO 3166-1 alpha-2 country code for the transaction. Used to filter payment services
+     * for processing.
      */
     public TransactionSummary withCountry(JsonNullable<String> country) {
         Utils.checkNotNull(country, "country");
@@ -905,7 +937,8 @@ public class TransactionSummary {
     }
 
     /**
-     * This is the response code received from the payment service. This can be set to any value and is not standardized across different payment services.
+     * This is the response code received from the payment service. This can be set to any value and is not
+     * standardized across different payment services.
      */
     public TransactionSummary withRawResponseCode(String rawResponseCode) {
         Utils.checkNotNull(rawResponseCode, "rawResponseCode");
@@ -914,7 +947,8 @@ public class TransactionSummary {
     }
 
     /**
-     * This is the response code received from the payment service. This can be set to any value and is not standardized across different payment services.
+     * This is the response code received from the payment service. This can be set to any value and is not
+     * standardized across different payment services.
      */
     public TransactionSummary withRawResponseCode(JsonNullable<String> rawResponseCode) {
         Utils.checkNotNull(rawResponseCode, "rawResponseCode");
@@ -923,7 +957,8 @@ public class TransactionSummary {
     }
 
     /**
-     * This is the response description received from the payment service. This can be set to any value and is not standardized across different payment services.
+     * This is the response description received from the payment service. This can be set to any value and
+     * is not standardized across different payment services.
      */
     public TransactionSummary withRawResponseDescription(String rawResponseDescription) {
         Utils.checkNotNull(rawResponseDescription, "rawResponseDescription");
@@ -932,7 +967,8 @@ public class TransactionSummary {
     }
 
     /**
-     * This is the response description received from the payment service. This can be set to any value and is not standardized across different payment services.
+     * This is the response description received from the payment service. This can be set to any value and
+     * is not standardized across different payment services.
      */
     public TransactionSummary withRawResponseDescription(JsonNullable<String> rawResponseDescription) {
         Utils.checkNotNull(rawResponseDescription, "rawResponseDescription");
@@ -1208,7 +1244,11 @@ public class TransactionSummary {
 
 
         /**
-         * The base62 encoded transaction ID. This represents a shorter version of this transaction's `id` which is sent to payment services, anti-fraud services, and other connectors. You can use this ID to reconcile a payment service's transaction against our system. This ID is sent instead of the transaction ID because not all services support 36 digit identifiers.
+         * The base62 encoded transaction ID. This represents a shorter version of this transaction's `id`
+         * which is sent to payment services, anti-fraud services, and other connectors. You can use this ID to
+         * reconcile a payment service's transaction against our system.
+         * 
+         * <p>This ID is sent instead of the transaction ID because not all services support 36 digit identifiers.
          */
         public Builder reconciliationId(String reconciliationId) {
             Utils.checkNotNull(reconciliationId, "reconciliationId");
@@ -1255,7 +1295,8 @@ public class TransactionSummary {
 
 
         /**
-         * The amount for this transaction that has been authorized for the `payment_method`. This can be less than the `amount` if gift cards were used.
+         * The amount for this transaction that has been authorized for the `payment_method`. This can be less
+         * than the `amount` if gift cards were used.
          */
         public Builder authorizedAmount(long authorizedAmount) {
             Utils.checkNotNull(authorizedAmount, "authorizedAmount");
@@ -1265,7 +1306,8 @@ public class TransactionSummary {
 
 
         /**
-         * The total amount captured for this transaction, in the smallest currency unit (for example, cents or pence). This can be the full value of the `authorized_amount` or less.
+         * The total amount captured for this transaction, in the smallest currency unit (for example, cents or
+         * pence). This can be the full value of the `authorized_amount` or less.
          */
         public Builder capturedAmount(long capturedAmount) {
             Utils.checkNotNull(capturedAmount, "capturedAmount");
@@ -1275,7 +1317,8 @@ public class TransactionSummary {
 
 
         /**
-         * The total amount refunded for this transaction, in the smallest currency unit (for example, cents or pence). This can be the full value of the `captured_amount` or less.
+         * The total amount refunded for this transaction, in the smallest currency unit (for example, cents or
+         * pence). This can be the full value of the `captured_amount` or less.
          */
         public Builder refundedAmount(long refundedAmount) {
             Utils.checkNotNull(refundedAmount, "refundedAmount");
@@ -1304,7 +1347,8 @@ public class TransactionSummary {
 
 
         /**
-         * The net amount settled for this transaction, in the smallest currency unit (for example, cents or pence).
+         * The net amount settled for this transaction, in the smallest currency unit (for example, cents or
+         * pence).
          */
         public Builder settledAmount(long settledAmount) {
             Utils.checkNotNull(settledAmount, "settledAmount");
@@ -1324,7 +1368,8 @@ public class TransactionSummary {
 
 
         /**
-         * The 2-letter ISO 3166-1 alpha-2 country code for the transaction. Used to filter payment services for processing.
+         * The 2-letter ISO 3166-1 alpha-2 country code for the transaction. Used to filter payment services
+         * for processing.
          */
         public Builder country(String country) {
             Utils.checkNotNull(country, "country");
@@ -1333,7 +1378,8 @@ public class TransactionSummary {
         }
 
         /**
-         * The 2-letter ISO 3166-1 alpha-2 country code for the transaction. Used to filter payment services for processing.
+         * The 2-letter ISO 3166-1 alpha-2 country code for the transaction. Used to filter payment services
+         * for processing.
          */
         public Builder country(JsonNullable<String> country) {
             Utils.checkNotNull(country, "country");
@@ -1502,7 +1548,8 @@ public class TransactionSummary {
 
 
         /**
-         * This is the response code received from the payment service. This can be set to any value and is not standardized across different payment services.
+         * This is the response code received from the payment service. This can be set to any value and is not
+         * standardized across different payment services.
          */
         public Builder rawResponseCode(String rawResponseCode) {
             Utils.checkNotNull(rawResponseCode, "rawResponseCode");
@@ -1511,7 +1558,8 @@ public class TransactionSummary {
         }
 
         /**
-         * This is the response code received from the payment service. This can be set to any value and is not standardized across different payment services.
+         * This is the response code received from the payment service. This can be set to any value and is not
+         * standardized across different payment services.
          */
         public Builder rawResponseCode(JsonNullable<String> rawResponseCode) {
             Utils.checkNotNull(rawResponseCode, "rawResponseCode");
@@ -1521,7 +1569,8 @@ public class TransactionSummary {
 
 
         /**
-         * This is the response description received from the payment service. This can be set to any value and is not standardized across different payment services.
+         * This is the response description received from the payment service. This can be set to any value and
+         * is not standardized across different payment services.
          */
         public Builder rawResponseDescription(String rawResponseDescription) {
             Utils.checkNotNull(rawResponseDescription, "rawResponseDescription");
@@ -1530,7 +1579,8 @@ public class TransactionSummary {
         }
 
         /**
-         * This is the response description received from the payment service. This can be set to any value and is not standardized across different payment services.
+         * This is the response description received from the payment service. This can be set to any value and
+         * is not standardized across different payment services.
          */
         public Builder rawResponseDescription(JsonNullable<String> rawResponseDescription) {
             Utils.checkNotNull(rawResponseDescription, "rawResponseDescription");

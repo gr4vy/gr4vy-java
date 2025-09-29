@@ -16,7 +16,8 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 public class GivingBlockOptions {
     /**
-     * The default cryptocurrency to present at checkout. This can be used to ensure the user is presented with the same currency in both your checkout and the Giving Block checkout.
+     * The default cryptocurrency to present at checkout. This can be used to ensure the user is presented
+     * with the same currency in both your checkout and the Giving Block checkout.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("defaultCryptocurrency")
@@ -34,7 +35,8 @@ public class GivingBlockOptions {
     }
 
     /**
-     * The default cryptocurrency to present at checkout. This can be used to ensure the user is presented with the same currency in both your checkout and the Giving Block checkout.
+     * The default cryptocurrency to present at checkout. This can be used to ensure the user is presented
+     * with the same currency in both your checkout and the Giving Block checkout.
      */
     @JsonIgnore
     public JsonNullable<String> defaultCryptocurrency() {
@@ -47,7 +49,8 @@ public class GivingBlockOptions {
 
 
     /**
-     * The default cryptocurrency to present at checkout. This can be used to ensure the user is presented with the same currency in both your checkout and the Giving Block checkout.
+     * The default cryptocurrency to present at checkout. This can be used to ensure the user is presented
+     * with the same currency in both your checkout and the Giving Block checkout.
      */
     public GivingBlockOptions withDefaultCryptocurrency(String defaultCryptocurrency) {
         Utils.checkNotNull(defaultCryptocurrency, "defaultCryptocurrency");
@@ -56,7 +59,8 @@ public class GivingBlockOptions {
     }
 
     /**
-     * The default cryptocurrency to present at checkout. This can be used to ensure the user is presented with the same currency in both your checkout and the Giving Block checkout.
+     * The default cryptocurrency to present at checkout. This can be used to ensure the user is presented
+     * with the same currency in both your checkout and the Giving Block checkout.
      */
     public GivingBlockOptions withDefaultCryptocurrency(JsonNullable<String> defaultCryptocurrency) {
         Utils.checkNotNull(defaultCryptocurrency, "defaultCryptocurrency");
@@ -100,7 +104,8 @@ public class GivingBlockOptions {
 
 
         /**
-         * The default cryptocurrency to present at checkout. This can be used to ensure the user is presented with the same currency in both your checkout and the Giving Block checkout.
+         * The default cryptocurrency to present at checkout. This can be used to ensure the user is presented
+         * with the same currency in both your checkout and the Giving Block checkout.
          */
         public Builder defaultCryptocurrency(String defaultCryptocurrency) {
             Utils.checkNotNull(defaultCryptocurrency, "defaultCryptocurrency");
@@ -109,7 +114,8 @@ public class GivingBlockOptions {
         }
 
         /**
-         * The default cryptocurrency to present at checkout. This can be used to ensure the user is presented with the same currency in both your checkout and the Giving Block checkout.
+         * The default cryptocurrency to present at checkout. This can be used to ensure the user is presented
+         * with the same currency in both your checkout and the Giving Block checkout.
          */
         public Builder defaultCryptocurrency(JsonNullable<String> defaultCryptocurrency) {
             Utils.checkNotNull(defaultCryptocurrency, "defaultCryptocurrency");

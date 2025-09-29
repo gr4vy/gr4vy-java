@@ -37,25 +37,37 @@ public class ListTransactionsRequest {
     private Optional<Long> limit;
 
     /**
-     * Filters the results to only transactions created before this ISO date-time string. The time zone must be included. Ensure that the date-time string is URL encoded, e.g. `2022-01-01T12:00:00+08:00` must be encoded as `2022-01-01T12%3A00%3A00%2B08%3A00`.
+     * Filters the results to only transactions created before this ISO date-time string. The time zone
+     * must be included. Ensure that the date-time string is URL encoded, e.g.
+     * 
+     * <p>`2022-01-01T12:00:00+08:00` must be encoded as `2022-01-01T12%3A00%3A00%2B08%3A00`.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=created_at_lte")
     private JsonNullable<OffsetDateTime> createdAtLte;
 
     /**
-     * Filters the results to only transactions created after this ISO date-time string. The time zone must be included. Ensure that the date-time string is URL encoded, e.g. `2022-01-01T12:00:00+08:00` must be encoded as `2022-01-01T12%3A00%3A00%2B08%3A00`.
+     * Filters the results to only transactions created after this ISO date-time string. The time zone must
+     * be included. Ensure that the date-time string is URL encoded, e.g.
+     * 
+     * <p>`2022-01-01T12:00:00+08:00` must be encoded as `2022-01-01T12%3A00%3A00%2B08%3A00`.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=created_at_gte")
     private JsonNullable<OffsetDateTime> createdAtGte;
 
     /**
-     * Filters the results to only transactions updated before this ISO date-time string. The time zone must be included. Ensure that the date-time string is URL encoded, e.g. `2022-01-01T12:00:00+08:00` must be encoded as `2022-01-01T12%3A00%3A00%2B08%3A00`.
+     * Filters the results to only transactions updated before this ISO date-time string. The time zone
+     * must be included. Ensure that the date-time string is URL encoded, e.g.
+     * 
+     * <p>`2022-01-01T12:00:00+08:00` must be encoded as `2022-01-01T12%3A00%3A00%2B08%3A00`.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=updated_at_lte")
     private JsonNullable<OffsetDateTime> updatedAtLte;
 
     /**
-     * Filters the results to only transactions updated after this ISO date-time string. The time zone must be included. Ensure that the date-time string is URL encoded, e.g. `2022-01-01T12:00:00+08:00` must be encoded as `2022-01-01T12%3A00%3A00%2B08%3A00`.
+     * Filters the results to only transactions updated after this ISO date-time string. The time zone must
+     * be included. Ensure that the date-time string is URL encoded, e.g.
+     * 
+     * <p>`2022-01-01T12:00:00+08:00` must be encoded as `2022-01-01T12%3A00%3A00%2B08%3A00`.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=updated_at_gte")
     private JsonNullable<OffsetDateTime> updatedAtGte;
@@ -81,7 +93,8 @@ public class ListTransactionsRequest {
     private JsonNullable<String> ipAddress;
 
     /**
-     * Filters the results to only the transactions that have a `status` that matches with any of the provided status values.
+     * Filters the results to only the transactions that have a `status` that matches with any of the
+     * provided status values.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=status")
     private JsonNullable<? extends List<TransactionStatus>> status;
@@ -99,7 +112,9 @@ public class ListTransactionsRequest {
     private JsonNullable<String> externalIdentifier;
 
     /**
-     * Filters for transactions where their `metadata` values contain all of the provided `metadata` keys. The value sent for `metadata` must be formatted as a JSON string, and all keys and values must be strings. This value should also be URL encoded.
+     * Filters for transactions where their `metadata` values contain all of the provided `metadata` keys.
+     * The value sent for `metadata` must be formatted as a JSON string, and all keys and values must be
+     * strings. This value should also be URL encoded.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=metadata")
     private JsonNullable<? extends List<String>> metadata;
@@ -117,13 +132,15 @@ public class ListTransactionsRequest {
     private JsonNullable<Long> amountLte;
 
     /**
-     * Filters for transactions that have an `amount` that is greater than or equal to the `amount_gte` value.
+     * Filters for transactions that have an `amount` that is greater than or equal to the `amount_gte`
+     * value.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=amount_gte")
     private JsonNullable<Long> amountGte;
 
     /**
-     * Filters for transactions that have matching `currency` values. The `currency` values provided must be formatted as 3-letter ISO currency code.
+     * Filters for transactions that have matching `currency` values. The `currency` values provided must
+     * be formatted as 3-letter ISO currency code.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=currency")
     private JsonNullable<? extends List<String>> currency;
@@ -155,7 +172,8 @@ public class ListTransactionsRequest {
     private JsonNullable<? extends List<String>> paymentMethodScheme;
 
     /**
-     * Filters for transactions that have a payment method with a country that matches with the provided value.
+     * Filters for transactions that have a payment method with a country that matches with the provided
+     * value.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=payment_method_country")
     private JsonNullable<String> paymentMethodCountry;
@@ -213,7 +231,8 @@ public class ListTransactionsRequest {
     private JsonNullable<String> giftCardId;
 
     /**
-     * Filters for transactions that have at least one gift card redemption where the last 4 digits of its gift card number matches exactly with the provided value.
+     * Filters for transactions that have at least one gift card redemption where the last 4 digits of its
+     * gift card number matches exactly with the provided value.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=gift_card_last4")
     private JsonNullable<String> giftCardLast4;
@@ -231,7 +250,8 @@ public class ListTransactionsRequest {
     private JsonNullable<String> paymentMethodBin;
 
     /**
-     * Filters the results to only the transactions that have a payment source that matches with any of the provided values.
+     * Filters the results to only the transactions that have a payment source that matches with any of the
+     * provided values.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=payment_source")
     private JsonNullable<? extends List<TransactionPaymentSource>> paymentSource;
@@ -261,7 +281,8 @@ public class ListTransactionsRequest {
     private JsonNullable<Boolean> disputed;
 
     /**
-     * Filters the results to only get the items for which some of the buyer data contains exactly the provided `buyer_search` values.
+     * Filters the results to only get the items for which some of the buyer data contains exactly the
+     * provided `buyer_search` values.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=buyer_search")
     private JsonNullable<? extends List<String>> buyerSearch;
@@ -446,7 +467,10 @@ public class ListTransactionsRequest {
     }
 
     /**
-     * Filters the results to only transactions created before this ISO date-time string. The time zone must be included. Ensure that the date-time string is URL encoded, e.g. `2022-01-01T12:00:00+08:00` must be encoded as `2022-01-01T12%3A00%3A00%2B08%3A00`.
+     * Filters the results to only transactions created before this ISO date-time string. The time zone
+     * must be included. Ensure that the date-time string is URL encoded, e.g.
+     * 
+     * <p>`2022-01-01T12:00:00+08:00` must be encoded as `2022-01-01T12%3A00%3A00%2B08%3A00`.
      */
     @JsonIgnore
     public JsonNullable<OffsetDateTime> createdAtLte() {
@@ -454,7 +478,10 @@ public class ListTransactionsRequest {
     }
 
     /**
-     * Filters the results to only transactions created after this ISO date-time string. The time zone must be included. Ensure that the date-time string is URL encoded, e.g. `2022-01-01T12:00:00+08:00` must be encoded as `2022-01-01T12%3A00%3A00%2B08%3A00`.
+     * Filters the results to only transactions created after this ISO date-time string. The time zone must
+     * be included. Ensure that the date-time string is URL encoded, e.g.
+     * 
+     * <p>`2022-01-01T12:00:00+08:00` must be encoded as `2022-01-01T12%3A00%3A00%2B08%3A00`.
      */
     @JsonIgnore
     public JsonNullable<OffsetDateTime> createdAtGte() {
@@ -462,7 +489,10 @@ public class ListTransactionsRequest {
     }
 
     /**
-     * Filters the results to only transactions updated before this ISO date-time string. The time zone must be included. Ensure that the date-time string is URL encoded, e.g. `2022-01-01T12:00:00+08:00` must be encoded as `2022-01-01T12%3A00%3A00%2B08%3A00`.
+     * Filters the results to only transactions updated before this ISO date-time string. The time zone
+     * must be included. Ensure that the date-time string is URL encoded, e.g.
+     * 
+     * <p>`2022-01-01T12:00:00+08:00` must be encoded as `2022-01-01T12%3A00%3A00%2B08%3A00`.
      */
     @JsonIgnore
     public JsonNullable<OffsetDateTime> updatedAtLte() {
@@ -470,7 +500,10 @@ public class ListTransactionsRequest {
     }
 
     /**
-     * Filters the results to only transactions updated after this ISO date-time string. The time zone must be included. Ensure that the date-time string is URL encoded, e.g. `2022-01-01T12:00:00+08:00` must be encoded as `2022-01-01T12%3A00%3A00%2B08%3A00`.
+     * Filters the results to only transactions updated after this ISO date-time string. The time zone must
+     * be included. Ensure that the date-time string is URL encoded, e.g.
+     * 
+     * <p>`2022-01-01T12:00:00+08:00` must be encoded as `2022-01-01T12%3A00%3A00%2B08%3A00`.
      */
     @JsonIgnore
     public JsonNullable<OffsetDateTime> updatedAtGte() {
@@ -503,7 +536,8 @@ public class ListTransactionsRequest {
     }
 
     /**
-     * Filters the results to only the transactions that have a `status` that matches with any of the provided status values.
+     * Filters the results to only the transactions that have a `status` that matches with any of the
+     * provided status values.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -527,7 +561,9 @@ public class ListTransactionsRequest {
     }
 
     /**
-     * Filters for transactions where their `metadata` values contain all of the provided `metadata` keys. The value sent for `metadata` must be formatted as a JSON string, and all keys and values must be strings. This value should also be URL encoded.
+     * Filters for transactions where their `metadata` values contain all of the provided `metadata` keys.
+     * The value sent for `metadata` must be formatted as a JSON string, and all keys and values must be
+     * strings. This value should also be URL encoded.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -552,7 +588,8 @@ public class ListTransactionsRequest {
     }
 
     /**
-     * Filters for transactions that have an `amount` that is greater than or equal to the `amount_gte` value.
+     * Filters for transactions that have an `amount` that is greater than or equal to the `amount_gte`
+     * value.
      */
     @JsonIgnore
     public JsonNullable<Long> amountGte() {
@@ -560,7 +597,8 @@ public class ListTransactionsRequest {
     }
 
     /**
-     * Filters for transactions that have matching `currency` values. The `currency` values provided must be formatted as 3-letter ISO currency code.
+     * Filters for transactions that have matching `currency` values. The `currency` values provided must
+     * be formatted as 3-letter ISO currency code.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -606,7 +644,8 @@ public class ListTransactionsRequest {
     }
 
     /**
-     * Filters for transactions that have a payment method with a country that matches with the provided value.
+     * Filters for transactions that have a payment method with a country that matches with the provided
+     * value.
      */
     @JsonIgnore
     public JsonNullable<String> paymentMethodCountry() {
@@ -685,7 +724,8 @@ public class ListTransactionsRequest {
     }
 
     /**
-     * Filters for transactions that have at least one gift card redemption where the last 4 digits of its gift card number matches exactly with the provided value.
+     * Filters for transactions that have at least one gift card redemption where the last 4 digits of its
+     * gift card number matches exactly with the provided value.
      */
     @JsonIgnore
     public JsonNullable<String> giftCardLast4() {
@@ -709,7 +749,8 @@ public class ListTransactionsRequest {
     }
 
     /**
-     * Filters the results to only the transactions that have a payment source that matches with any of the provided values.
+     * Filters the results to only the transactions that have a payment source that matches with any of the
+     * provided values.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -750,7 +791,8 @@ public class ListTransactionsRequest {
     }
 
     /**
-     * Filters the results to only get the items for which some of the buyer data contains exactly the provided `buyer_search` values.
+     * Filters the results to only get the items for which some of the buyer data contains exactly the
+     * provided `buyer_search` values.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -809,7 +851,10 @@ public class ListTransactionsRequest {
     }
 
     /**
-     * Filters the results to only transactions created before this ISO date-time string. The time zone must be included. Ensure that the date-time string is URL encoded, e.g. `2022-01-01T12:00:00+08:00` must be encoded as `2022-01-01T12%3A00%3A00%2B08%3A00`.
+     * Filters the results to only transactions created before this ISO date-time string. The time zone
+     * must be included. Ensure that the date-time string is URL encoded, e.g.
+     * 
+     * <p>`2022-01-01T12:00:00+08:00` must be encoded as `2022-01-01T12%3A00%3A00%2B08%3A00`.
      */
     public ListTransactionsRequest withCreatedAtLte(OffsetDateTime createdAtLte) {
         Utils.checkNotNull(createdAtLte, "createdAtLte");
@@ -818,7 +863,10 @@ public class ListTransactionsRequest {
     }
 
     /**
-     * Filters the results to only transactions created before this ISO date-time string. The time zone must be included. Ensure that the date-time string is URL encoded, e.g. `2022-01-01T12:00:00+08:00` must be encoded as `2022-01-01T12%3A00%3A00%2B08%3A00`.
+     * Filters the results to only transactions created before this ISO date-time string. The time zone
+     * must be included. Ensure that the date-time string is URL encoded, e.g.
+     * 
+     * <p>`2022-01-01T12:00:00+08:00` must be encoded as `2022-01-01T12%3A00%3A00%2B08%3A00`.
      */
     public ListTransactionsRequest withCreatedAtLte(JsonNullable<OffsetDateTime> createdAtLte) {
         Utils.checkNotNull(createdAtLte, "createdAtLte");
@@ -827,7 +875,10 @@ public class ListTransactionsRequest {
     }
 
     /**
-     * Filters the results to only transactions created after this ISO date-time string. The time zone must be included. Ensure that the date-time string is URL encoded, e.g. `2022-01-01T12:00:00+08:00` must be encoded as `2022-01-01T12%3A00%3A00%2B08%3A00`.
+     * Filters the results to only transactions created after this ISO date-time string. The time zone must
+     * be included. Ensure that the date-time string is URL encoded, e.g.
+     * 
+     * <p>`2022-01-01T12:00:00+08:00` must be encoded as `2022-01-01T12%3A00%3A00%2B08%3A00`.
      */
     public ListTransactionsRequest withCreatedAtGte(OffsetDateTime createdAtGte) {
         Utils.checkNotNull(createdAtGte, "createdAtGte");
@@ -836,7 +887,10 @@ public class ListTransactionsRequest {
     }
 
     /**
-     * Filters the results to only transactions created after this ISO date-time string. The time zone must be included. Ensure that the date-time string is URL encoded, e.g. `2022-01-01T12:00:00+08:00` must be encoded as `2022-01-01T12%3A00%3A00%2B08%3A00`.
+     * Filters the results to only transactions created after this ISO date-time string. The time zone must
+     * be included. Ensure that the date-time string is URL encoded, e.g.
+     * 
+     * <p>`2022-01-01T12:00:00+08:00` must be encoded as `2022-01-01T12%3A00%3A00%2B08%3A00`.
      */
     public ListTransactionsRequest withCreatedAtGte(JsonNullable<OffsetDateTime> createdAtGte) {
         Utils.checkNotNull(createdAtGte, "createdAtGte");
@@ -845,7 +899,10 @@ public class ListTransactionsRequest {
     }
 
     /**
-     * Filters the results to only transactions updated before this ISO date-time string. The time zone must be included. Ensure that the date-time string is URL encoded, e.g. `2022-01-01T12:00:00+08:00` must be encoded as `2022-01-01T12%3A00%3A00%2B08%3A00`.
+     * Filters the results to only transactions updated before this ISO date-time string. The time zone
+     * must be included. Ensure that the date-time string is URL encoded, e.g.
+     * 
+     * <p>`2022-01-01T12:00:00+08:00` must be encoded as `2022-01-01T12%3A00%3A00%2B08%3A00`.
      */
     public ListTransactionsRequest withUpdatedAtLte(OffsetDateTime updatedAtLte) {
         Utils.checkNotNull(updatedAtLte, "updatedAtLte");
@@ -854,7 +911,10 @@ public class ListTransactionsRequest {
     }
 
     /**
-     * Filters the results to only transactions updated before this ISO date-time string. The time zone must be included. Ensure that the date-time string is URL encoded, e.g. `2022-01-01T12:00:00+08:00` must be encoded as `2022-01-01T12%3A00%3A00%2B08%3A00`.
+     * Filters the results to only transactions updated before this ISO date-time string. The time zone
+     * must be included. Ensure that the date-time string is URL encoded, e.g.
+     * 
+     * <p>`2022-01-01T12:00:00+08:00` must be encoded as `2022-01-01T12%3A00%3A00%2B08%3A00`.
      */
     public ListTransactionsRequest withUpdatedAtLte(JsonNullable<OffsetDateTime> updatedAtLte) {
         Utils.checkNotNull(updatedAtLte, "updatedAtLte");
@@ -863,7 +923,10 @@ public class ListTransactionsRequest {
     }
 
     /**
-     * Filters the results to only transactions updated after this ISO date-time string. The time zone must be included. Ensure that the date-time string is URL encoded, e.g. `2022-01-01T12:00:00+08:00` must be encoded as `2022-01-01T12%3A00%3A00%2B08%3A00`.
+     * Filters the results to only transactions updated after this ISO date-time string. The time zone must
+     * be included. Ensure that the date-time string is URL encoded, e.g.
+     * 
+     * <p>`2022-01-01T12:00:00+08:00` must be encoded as `2022-01-01T12%3A00%3A00%2B08%3A00`.
      */
     public ListTransactionsRequest withUpdatedAtGte(OffsetDateTime updatedAtGte) {
         Utils.checkNotNull(updatedAtGte, "updatedAtGte");
@@ -872,7 +935,10 @@ public class ListTransactionsRequest {
     }
 
     /**
-     * Filters the results to only transactions updated after this ISO date-time string. The time zone must be included. Ensure that the date-time string is URL encoded, e.g. `2022-01-01T12:00:00+08:00` must be encoded as `2022-01-01T12%3A00%3A00%2B08%3A00`.
+     * Filters the results to only transactions updated after this ISO date-time string. The time zone must
+     * be included. Ensure that the date-time string is URL encoded, e.g.
+     * 
+     * <p>`2022-01-01T12:00:00+08:00` must be encoded as `2022-01-01T12%3A00%3A00%2B08%3A00`.
      */
     public ListTransactionsRequest withUpdatedAtGte(JsonNullable<OffsetDateTime> updatedAtGte) {
         Utils.checkNotNull(updatedAtGte, "updatedAtGte");
@@ -941,7 +1007,8 @@ public class ListTransactionsRequest {
     }
 
     /**
-     * Filters the results to only the transactions that have a `status` that matches with any of the provided status values.
+     * Filters the results to only the transactions that have a `status` that matches with any of the
+     * provided status values.
      */
     public ListTransactionsRequest withStatus(List<TransactionStatus> status) {
         Utils.checkNotNull(status, "status");
@@ -950,7 +1017,8 @@ public class ListTransactionsRequest {
     }
 
     /**
-     * Filters the results to only the transactions that have a `status` that matches with any of the provided status values.
+     * Filters the results to only the transactions that have a `status` that matches with any of the
+     * provided status values.
      */
     public ListTransactionsRequest withStatus(JsonNullable<? extends List<TransactionStatus>> status) {
         Utils.checkNotNull(status, "status");
@@ -995,7 +1063,9 @@ public class ListTransactionsRequest {
     }
 
     /**
-     * Filters for transactions where their `metadata` values contain all of the provided `metadata` keys. The value sent for `metadata` must be formatted as a JSON string, and all keys and values must be strings. This value should also be URL encoded.
+     * Filters for transactions where their `metadata` values contain all of the provided `metadata` keys.
+     * The value sent for `metadata` must be formatted as a JSON string, and all keys and values must be
+     * strings. This value should also be URL encoded.
      */
     public ListTransactionsRequest withMetadata(List<String> metadata) {
         Utils.checkNotNull(metadata, "metadata");
@@ -1004,7 +1074,9 @@ public class ListTransactionsRequest {
     }
 
     /**
-     * Filters for transactions where their `metadata` values contain all of the provided `metadata` keys. The value sent for `metadata` must be formatted as a JSON string, and all keys and values must be strings. This value should also be URL encoded.
+     * Filters for transactions where their `metadata` values contain all of the provided `metadata` keys.
+     * The value sent for `metadata` must be formatted as a JSON string, and all keys and values must be
+     * strings. This value should also be URL encoded.
      */
     public ListTransactionsRequest withMetadata(JsonNullable<? extends List<String>> metadata) {
         Utils.checkNotNull(metadata, "metadata");
@@ -1049,7 +1121,8 @@ public class ListTransactionsRequest {
     }
 
     /**
-     * Filters for transactions that have an `amount` that is greater than or equal to the `amount_gte` value.
+     * Filters for transactions that have an `amount` that is greater than or equal to the `amount_gte`
+     * value.
      */
     public ListTransactionsRequest withAmountGte(long amountGte) {
         Utils.checkNotNull(amountGte, "amountGte");
@@ -1058,7 +1131,8 @@ public class ListTransactionsRequest {
     }
 
     /**
-     * Filters for transactions that have an `amount` that is greater than or equal to the `amount_gte` value.
+     * Filters for transactions that have an `amount` that is greater than or equal to the `amount_gte`
+     * value.
      */
     public ListTransactionsRequest withAmountGte(JsonNullable<Long> amountGte) {
         Utils.checkNotNull(amountGte, "amountGte");
@@ -1067,7 +1141,8 @@ public class ListTransactionsRequest {
     }
 
     /**
-     * Filters for transactions that have matching `currency` values. The `currency` values provided must be formatted as 3-letter ISO currency code.
+     * Filters for transactions that have matching `currency` values. The `currency` values provided must
+     * be formatted as 3-letter ISO currency code.
      */
     public ListTransactionsRequest withCurrency(List<String> currency) {
         Utils.checkNotNull(currency, "currency");
@@ -1076,7 +1151,8 @@ public class ListTransactionsRequest {
     }
 
     /**
-     * Filters for transactions that have matching `currency` values. The `currency` values provided must be formatted as 3-letter ISO currency code.
+     * Filters for transactions that have matching `currency` values. The `currency` values provided must
+     * be formatted as 3-letter ISO currency code.
      */
     public ListTransactionsRequest withCurrency(JsonNullable<? extends List<String>> currency) {
         Utils.checkNotNull(currency, "currency");
@@ -1163,7 +1239,8 @@ public class ListTransactionsRequest {
     }
 
     /**
-     * Filters for transactions that have a payment method with a country that matches with the provided value.
+     * Filters for transactions that have a payment method with a country that matches with the provided
+     * value.
      */
     public ListTransactionsRequest withPaymentMethodCountry(String paymentMethodCountry) {
         Utils.checkNotNull(paymentMethodCountry, "paymentMethodCountry");
@@ -1172,7 +1249,8 @@ public class ListTransactionsRequest {
     }
 
     /**
-     * Filters for transactions that have a payment method with a country that matches with the provided value.
+     * Filters for transactions that have a payment method with a country that matches with the provided
+     * value.
      */
     public ListTransactionsRequest withPaymentMethodCountry(JsonNullable<String> paymentMethodCountry) {
         Utils.checkNotNull(paymentMethodCountry, "paymentMethodCountry");
@@ -1337,7 +1415,8 @@ public class ListTransactionsRequest {
     }
 
     /**
-     * Filters for transactions that have at least one gift card redemption where the last 4 digits of its gift card number matches exactly with the provided value.
+     * Filters for transactions that have at least one gift card redemption where the last 4 digits of its
+     * gift card number matches exactly with the provided value.
      */
     public ListTransactionsRequest withGiftCardLast4(String giftCardLast4) {
         Utils.checkNotNull(giftCardLast4, "giftCardLast4");
@@ -1346,7 +1425,8 @@ public class ListTransactionsRequest {
     }
 
     /**
-     * Filters for transactions that have at least one gift card redemption where the last 4 digits of its gift card number matches exactly with the provided value.
+     * Filters for transactions that have at least one gift card redemption where the last 4 digits of its
+     * gift card number matches exactly with the provided value.
      */
     public ListTransactionsRequest withGiftCardLast4(JsonNullable<String> giftCardLast4) {
         Utils.checkNotNull(giftCardLast4, "giftCardLast4");
@@ -1391,7 +1471,8 @@ public class ListTransactionsRequest {
     }
 
     /**
-     * Filters the results to only the transactions that have a payment source that matches with any of the provided values.
+     * Filters the results to only the transactions that have a payment source that matches with any of the
+     * provided values.
      */
     public ListTransactionsRequest withPaymentSource(List<TransactionPaymentSource> paymentSource) {
         Utils.checkNotNull(paymentSource, "paymentSource");
@@ -1400,7 +1481,8 @@ public class ListTransactionsRequest {
     }
 
     /**
-     * Filters the results to only the transactions that have a payment source that matches with any of the provided values.
+     * Filters the results to only the transactions that have a payment source that matches with any of the
+     * provided values.
      */
     public ListTransactionsRequest withPaymentSource(JsonNullable<? extends List<TransactionPaymentSource>> paymentSource) {
         Utils.checkNotNull(paymentSource, "paymentSource");
@@ -1481,7 +1563,8 @@ public class ListTransactionsRequest {
     }
 
     /**
-     * Filters the results to only get the items for which some of the buyer data contains exactly the provided `buyer_search` values.
+     * Filters the results to only get the items for which some of the buyer data contains exactly the
+     * provided `buyer_search` values.
      */
     public ListTransactionsRequest withBuyerSearch(List<String> buyerSearch) {
         Utils.checkNotNull(buyerSearch, "buyerSearch");
@@ -1490,7 +1573,8 @@ public class ListTransactionsRequest {
     }
 
     /**
-     * Filters the results to only get the items for which some of the buyer data contains exactly the provided `buyer_search` values.
+     * Filters the results to only get the items for which some of the buyer data contains exactly the
+     * provided `buyer_search` values.
      */
     public ListTransactionsRequest withBuyerSearch(JsonNullable<? extends List<String>> buyerSearch) {
         Utils.checkNotNull(buyerSearch, "buyerSearch");
@@ -1780,7 +1864,10 @@ public class ListTransactionsRequest {
 
 
         /**
-         * Filters the results to only transactions created before this ISO date-time string. The time zone must be included. Ensure that the date-time string is URL encoded, e.g. `2022-01-01T12:00:00+08:00` must be encoded as `2022-01-01T12%3A00%3A00%2B08%3A00`.
+         * Filters the results to only transactions created before this ISO date-time string. The time zone
+         * must be included. Ensure that the date-time string is URL encoded, e.g.
+         * 
+         * <p>`2022-01-01T12:00:00+08:00` must be encoded as `2022-01-01T12%3A00%3A00%2B08%3A00`.
          */
         public Builder createdAtLte(OffsetDateTime createdAtLte) {
             Utils.checkNotNull(createdAtLte, "createdAtLte");
@@ -1789,7 +1876,10 @@ public class ListTransactionsRequest {
         }
 
         /**
-         * Filters the results to only transactions created before this ISO date-time string. The time zone must be included. Ensure that the date-time string is URL encoded, e.g. `2022-01-01T12:00:00+08:00` must be encoded as `2022-01-01T12%3A00%3A00%2B08%3A00`.
+         * Filters the results to only transactions created before this ISO date-time string. The time zone
+         * must be included. Ensure that the date-time string is URL encoded, e.g.
+         * 
+         * <p>`2022-01-01T12:00:00+08:00` must be encoded as `2022-01-01T12%3A00%3A00%2B08%3A00`.
          */
         public Builder createdAtLte(JsonNullable<OffsetDateTime> createdAtLte) {
             Utils.checkNotNull(createdAtLte, "createdAtLte");
@@ -1799,7 +1889,10 @@ public class ListTransactionsRequest {
 
 
         /**
-         * Filters the results to only transactions created after this ISO date-time string. The time zone must be included. Ensure that the date-time string is URL encoded, e.g. `2022-01-01T12:00:00+08:00` must be encoded as `2022-01-01T12%3A00%3A00%2B08%3A00`.
+         * Filters the results to only transactions created after this ISO date-time string. The time zone must
+         * be included. Ensure that the date-time string is URL encoded, e.g.
+         * 
+         * <p>`2022-01-01T12:00:00+08:00` must be encoded as `2022-01-01T12%3A00%3A00%2B08%3A00`.
          */
         public Builder createdAtGte(OffsetDateTime createdAtGte) {
             Utils.checkNotNull(createdAtGte, "createdAtGte");
@@ -1808,7 +1901,10 @@ public class ListTransactionsRequest {
         }
 
         /**
-         * Filters the results to only transactions created after this ISO date-time string. The time zone must be included. Ensure that the date-time string is URL encoded, e.g. `2022-01-01T12:00:00+08:00` must be encoded as `2022-01-01T12%3A00%3A00%2B08%3A00`.
+         * Filters the results to only transactions created after this ISO date-time string. The time zone must
+         * be included. Ensure that the date-time string is URL encoded, e.g.
+         * 
+         * <p>`2022-01-01T12:00:00+08:00` must be encoded as `2022-01-01T12%3A00%3A00%2B08%3A00`.
          */
         public Builder createdAtGte(JsonNullable<OffsetDateTime> createdAtGte) {
             Utils.checkNotNull(createdAtGte, "createdAtGte");
@@ -1818,7 +1914,10 @@ public class ListTransactionsRequest {
 
 
         /**
-         * Filters the results to only transactions updated before this ISO date-time string. The time zone must be included. Ensure that the date-time string is URL encoded, e.g. `2022-01-01T12:00:00+08:00` must be encoded as `2022-01-01T12%3A00%3A00%2B08%3A00`.
+         * Filters the results to only transactions updated before this ISO date-time string. The time zone
+         * must be included. Ensure that the date-time string is URL encoded, e.g.
+         * 
+         * <p>`2022-01-01T12:00:00+08:00` must be encoded as `2022-01-01T12%3A00%3A00%2B08%3A00`.
          */
         public Builder updatedAtLte(OffsetDateTime updatedAtLte) {
             Utils.checkNotNull(updatedAtLte, "updatedAtLte");
@@ -1827,7 +1926,10 @@ public class ListTransactionsRequest {
         }
 
         /**
-         * Filters the results to only transactions updated before this ISO date-time string. The time zone must be included. Ensure that the date-time string is URL encoded, e.g. `2022-01-01T12:00:00+08:00` must be encoded as `2022-01-01T12%3A00%3A00%2B08%3A00`.
+         * Filters the results to only transactions updated before this ISO date-time string. The time zone
+         * must be included. Ensure that the date-time string is URL encoded, e.g.
+         * 
+         * <p>`2022-01-01T12:00:00+08:00` must be encoded as `2022-01-01T12%3A00%3A00%2B08%3A00`.
          */
         public Builder updatedAtLte(JsonNullable<OffsetDateTime> updatedAtLte) {
             Utils.checkNotNull(updatedAtLte, "updatedAtLte");
@@ -1837,7 +1939,10 @@ public class ListTransactionsRequest {
 
 
         /**
-         * Filters the results to only transactions updated after this ISO date-time string. The time zone must be included. Ensure that the date-time string is URL encoded, e.g. `2022-01-01T12:00:00+08:00` must be encoded as `2022-01-01T12%3A00%3A00%2B08%3A00`.
+         * Filters the results to only transactions updated after this ISO date-time string. The time zone must
+         * be included. Ensure that the date-time string is URL encoded, e.g.
+         * 
+         * <p>`2022-01-01T12:00:00+08:00` must be encoded as `2022-01-01T12%3A00%3A00%2B08%3A00`.
          */
         public Builder updatedAtGte(OffsetDateTime updatedAtGte) {
             Utils.checkNotNull(updatedAtGte, "updatedAtGte");
@@ -1846,7 +1951,10 @@ public class ListTransactionsRequest {
         }
 
         /**
-         * Filters the results to only transactions updated after this ISO date-time string. The time zone must be included. Ensure that the date-time string is URL encoded, e.g. `2022-01-01T12:00:00+08:00` must be encoded as `2022-01-01T12%3A00%3A00%2B08%3A00`.
+         * Filters the results to only transactions updated after this ISO date-time string. The time zone must
+         * be included. Ensure that the date-time string is URL encoded, e.g.
+         * 
+         * <p>`2022-01-01T12:00:00+08:00` must be encoded as `2022-01-01T12%3A00%3A00%2B08%3A00`.
          */
         public Builder updatedAtGte(JsonNullable<OffsetDateTime> updatedAtGte) {
             Utils.checkNotNull(updatedAtGte, "updatedAtGte");
@@ -1921,7 +2029,8 @@ public class ListTransactionsRequest {
 
 
         /**
-         * Filters the results to only the transactions that have a `status` that matches with any of the provided status values.
+         * Filters the results to only the transactions that have a `status` that matches with any of the
+         * provided status values.
          */
         public Builder status(List<TransactionStatus> status) {
             Utils.checkNotNull(status, "status");
@@ -1930,7 +2039,8 @@ public class ListTransactionsRequest {
         }
 
         /**
-         * Filters the results to only the transactions that have a `status` that matches with any of the provided status values.
+         * Filters the results to only the transactions that have a `status` that matches with any of the
+         * provided status values.
          */
         public Builder status(JsonNullable<? extends List<TransactionStatus>> status) {
             Utils.checkNotNull(status, "status");
@@ -1979,7 +2089,9 @@ public class ListTransactionsRequest {
 
 
         /**
-         * Filters for transactions where their `metadata` values contain all of the provided `metadata` keys. The value sent for `metadata` must be formatted as a JSON string, and all keys and values must be strings. This value should also be URL encoded.
+         * Filters for transactions where their `metadata` values contain all of the provided `metadata` keys.
+         * The value sent for `metadata` must be formatted as a JSON string, and all keys and values must be
+         * strings. This value should also be URL encoded.
          */
         public Builder metadata(List<String> metadata) {
             Utils.checkNotNull(metadata, "metadata");
@@ -1988,7 +2100,9 @@ public class ListTransactionsRequest {
         }
 
         /**
-         * Filters for transactions where their `metadata` values contain all of the provided `metadata` keys. The value sent for `metadata` must be formatted as a JSON string, and all keys and values must be strings. This value should also be URL encoded.
+         * Filters for transactions where their `metadata` values contain all of the provided `metadata` keys.
+         * The value sent for `metadata` must be formatted as a JSON string, and all keys and values must be
+         * strings. This value should also be URL encoded.
          */
         public Builder metadata(JsonNullable<? extends List<String>> metadata) {
             Utils.checkNotNull(metadata, "metadata");
@@ -2036,7 +2150,8 @@ public class ListTransactionsRequest {
 
 
         /**
-         * Filters for transactions that have an `amount` that is greater than or equal to the `amount_gte` value.
+         * Filters for transactions that have an `amount` that is greater than or equal to the `amount_gte`
+         * value.
          */
         public Builder amountGte(long amountGte) {
             Utils.checkNotNull(amountGte, "amountGte");
@@ -2045,7 +2160,8 @@ public class ListTransactionsRequest {
         }
 
         /**
-         * Filters for transactions that have an `amount` that is greater than or equal to the `amount_gte` value.
+         * Filters for transactions that have an `amount` that is greater than or equal to the `amount_gte`
+         * value.
          */
         public Builder amountGte(JsonNullable<Long> amountGte) {
             Utils.checkNotNull(amountGte, "amountGte");
@@ -2055,7 +2171,8 @@ public class ListTransactionsRequest {
 
 
         /**
-         * Filters for transactions that have matching `currency` values. The `currency` values provided must be formatted as 3-letter ISO currency code.
+         * Filters for transactions that have matching `currency` values. The `currency` values provided must
+         * be formatted as 3-letter ISO currency code.
          */
         public Builder currency(List<String> currency) {
             Utils.checkNotNull(currency, "currency");
@@ -2064,7 +2181,8 @@ public class ListTransactionsRequest {
         }
 
         /**
-         * Filters for transactions that have matching `currency` values. The `currency` values provided must be formatted as 3-letter ISO currency code.
+         * Filters for transactions that have matching `currency` values. The `currency` values provided must
+         * be formatted as 3-letter ISO currency code.
          */
         public Builder currency(JsonNullable<? extends List<String>> currency) {
             Utils.checkNotNull(currency, "currency");
@@ -2157,7 +2275,8 @@ public class ListTransactionsRequest {
 
 
         /**
-         * Filters for transactions that have a payment method with a country that matches with the provided value.
+         * Filters for transactions that have a payment method with a country that matches with the provided
+         * value.
          */
         public Builder paymentMethodCountry(String paymentMethodCountry) {
             Utils.checkNotNull(paymentMethodCountry, "paymentMethodCountry");
@@ -2166,7 +2285,8 @@ public class ListTransactionsRequest {
         }
 
         /**
-         * Filters for transactions that have a payment method with a country that matches with the provided value.
+         * Filters for transactions that have a payment method with a country that matches with the provided
+         * value.
          */
         public Builder paymentMethodCountry(JsonNullable<String> paymentMethodCountry) {
             Utils.checkNotNull(paymentMethodCountry, "paymentMethodCountry");
@@ -2341,7 +2461,8 @@ public class ListTransactionsRequest {
 
 
         /**
-         * Filters for transactions that have at least one gift card redemption where the last 4 digits of its gift card number matches exactly with the provided value.
+         * Filters for transactions that have at least one gift card redemption where the last 4 digits of its
+         * gift card number matches exactly with the provided value.
          */
         public Builder giftCardLast4(String giftCardLast4) {
             Utils.checkNotNull(giftCardLast4, "giftCardLast4");
@@ -2350,7 +2471,8 @@ public class ListTransactionsRequest {
         }
 
         /**
-         * Filters for transactions that have at least one gift card redemption where the last 4 digits of its gift card number matches exactly with the provided value.
+         * Filters for transactions that have at least one gift card redemption where the last 4 digits of its
+         * gift card number matches exactly with the provided value.
          */
         public Builder giftCardLast4(JsonNullable<String> giftCardLast4) {
             Utils.checkNotNull(giftCardLast4, "giftCardLast4");
@@ -2398,7 +2520,8 @@ public class ListTransactionsRequest {
 
 
         /**
-         * Filters the results to only the transactions that have a payment source that matches with any of the provided values.
+         * Filters the results to only the transactions that have a payment source that matches with any of the
+         * provided values.
          */
         public Builder paymentSource(List<TransactionPaymentSource> paymentSource) {
             Utils.checkNotNull(paymentSource, "paymentSource");
@@ -2407,7 +2530,8 @@ public class ListTransactionsRequest {
         }
 
         /**
-         * Filters the results to only the transactions that have a payment source that matches with any of the provided values.
+         * Filters the results to only the transactions that have a payment source that matches with any of the
+         * provided values.
          */
         public Builder paymentSource(JsonNullable<? extends List<TransactionPaymentSource>> paymentSource) {
             Utils.checkNotNull(paymentSource, "paymentSource");
@@ -2493,7 +2617,8 @@ public class ListTransactionsRequest {
 
 
         /**
-         * Filters the results to only get the items for which some of the buyer data contains exactly the provided `buyer_search` values.
+         * Filters the results to only get the items for which some of the buyer data contains exactly the
+         * provided `buyer_search` values.
          */
         public Builder buyerSearch(List<String> buyerSearch) {
             Utils.checkNotNull(buyerSearch, "buyerSearch");
@@ -2502,7 +2627,8 @@ public class ListTransactionsRequest {
         }
 
         /**
-         * Filters the results to only get the items for which some of the buyer data contains exactly the provided `buyer_search` values.
+         * Filters the results to only get the items for which some of the buyer data contains exactly the
+         * provided `buyer_search` values.
          */
         public Builder buyerSearch(JsonNullable<? extends List<String>> buyerSearch) {
             Utils.checkNotNull(buyerSearch, "buyerSearch");

@@ -22,7 +22,9 @@ public class CreateTransactionRequest {
     private JsonNullable<String> merchantAccountId;
 
     /**
-     * A unique key that identifies this request. Providing this header will make this an idempotent request. We recommend using V4 UUIDs, or another random string with enough entropy to avoid collisions.
+     * A unique key that identifies this request. Providing this header will make this an idempotent
+     * request. We recommend using V4 UUIDs, or another random string with enough entropy to avoid
+     * collisions.
      */
     @SpeakeasyMetadata("header:style=simple,explode=false,name=idempotency-key")
     private JsonNullable<String> idempotencyKey;
@@ -70,7 +72,9 @@ public class CreateTransactionRequest {
     }
 
     /**
-     * A unique key that identifies this request. Providing this header will make this an idempotent request. We recommend using V4 UUIDs, or another random string with enough entropy to avoid collisions.
+     * A unique key that identifies this request. Providing this header will make this an idempotent
+     * request. We recommend using V4 UUIDs, or another random string with enough entropy to avoid
+     * collisions.
      */
     @JsonIgnore
     public JsonNullable<String> idempotencyKey() {
@@ -116,7 +120,9 @@ public class CreateTransactionRequest {
     }
 
     /**
-     * A unique key that identifies this request. Providing this header will make this an idempotent request. We recommend using V4 UUIDs, or another random string with enough entropy to avoid collisions.
+     * A unique key that identifies this request. Providing this header will make this an idempotent
+     * request. We recommend using V4 UUIDs, or another random string with enough entropy to avoid
+     * collisions.
      */
     public CreateTransactionRequest withIdempotencyKey(String idempotencyKey) {
         Utils.checkNotNull(idempotencyKey, "idempotencyKey");
@@ -125,7 +131,9 @@ public class CreateTransactionRequest {
     }
 
     /**
-     * A unique key that identifies this request. Providing this header will make this an idempotent request. We recommend using V4 UUIDs, or another random string with enough entropy to avoid collisions.
+     * A unique key that identifies this request. Providing this header will make this an idempotent
+     * request. We recommend using V4 UUIDs, or another random string with enough entropy to avoid
+     * collisions.
      */
     public CreateTransactionRequest withIdempotencyKey(JsonNullable<String> idempotencyKey) {
         Utils.checkNotNull(idempotencyKey, "idempotencyKey");
@@ -230,7 +238,9 @@ public class CreateTransactionRequest {
 
 
         /**
-         * A unique key that identifies this request. Providing this header will make this an idempotent request. We recommend using V4 UUIDs, or another random string with enough entropy to avoid collisions.
+         * A unique key that identifies this request. Providing this header will make this an idempotent
+         * request. We recommend using V4 UUIDs, or another random string with enough entropy to avoid
+         * collisions.
          */
         public Builder idempotencyKey(String idempotencyKey) {
             Utils.checkNotNull(idempotencyKey, "idempotencyKey");
@@ -239,7 +249,9 @@ public class CreateTransactionRequest {
         }
 
         /**
-         * A unique key that identifies this request. Providing this header will make this an idempotent request. We recommend using V4 UUIDs, or another random string with enough entropy to avoid collisions.
+         * A unique key that identifies this request. Providing this header will make this an idempotent
+         * request. We recommend using V4 UUIDs, or another random string with enough entropy to avoid
+         * collisions.
          */
         public Builder idempotencyKey(JsonNullable<String> idempotencyKey) {
             Utils.checkNotNull(idempotencyKey, "idempotencyKey");

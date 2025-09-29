@@ -90,7 +90,8 @@ public class AsyncTransactions {
     /**
      * List transactions
      * 
-     * <p>Returns a paginated list of transactions for the merchant account, sorted by most recently updated. You can filter, sort, and search transactions using query parameters.
+     * <p>Returns a paginated list of transactions for the merchant account, sorted by most recently updated.
+     * You can filter, sort, and search transactions using query parameters.
      * 
      * @return The async call builder
      */
@@ -101,10 +102,11 @@ public class AsyncTransactions {
     /**
      * List transactions
      * 
-     * <p>Returns a paginated list of transactions for the merchant account, sorted by most recently updated. You can filter, sort, and search transactions using query parameters.
+     * <p>Returns a paginated list of transactions for the merchant account, sorted by most recently updated.
+     * You can filter, sort, and search transactions using query parameters.
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;ListTransactionsResponse&gt; - The async response
+     * @return {@code CompletableFuture<ListTransactionsResponse>} - The async response
      */
     public CompletableFuture<ListTransactionsResponse> list(ListTransactionsRequest request) {
         return list(request, Optional.empty());
@@ -113,11 +115,12 @@ public class AsyncTransactions {
     /**
      * List transactions
      * 
-     * <p>Returns a paginated list of transactions for the merchant account, sorted by most recently updated. You can filter, sort, and search transactions using query parameters.
+     * <p>Returns a paginated list of transactions for the merchant account, sorted by most recently updated.
+     * You can filter, sort, and search transactions using query parameters.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;ListTransactionsResponse&gt; - The async response
+     * @return {@code CompletableFuture<ListTransactionsResponse>} - The async response
      */
     public CompletableFuture<ListTransactionsResponse> list(ListTransactionsRequest request, Optional<Options> options) {
         AsyncRequestOperation<ListTransactionsRequest, ListTransactionsResponse> operation
@@ -132,7 +135,8 @@ public class AsyncTransactions {
     /**
      * Create transaction
      * 
-     * <p>Create a new transaction using a supported payment method. If additional buyer authorization is required, an approval URL will be returned. Duplicated gift card numbers are not supported.
+     * <p>Create a new transaction using a supported payment method. If additional buyer authorization is
+     * required, an approval URL will be returned. Duplicated gift card numbers are not supported.
      * 
      * @return The async call builder
      */
@@ -143,10 +147,11 @@ public class AsyncTransactions {
     /**
      * Create transaction
      * 
-     * <p>Create a new transaction using a supported payment method. If additional buyer authorization is required, an approval URL will be returned. Duplicated gift card numbers are not supported.
+     * <p>Create a new transaction using a supported payment method. If additional buyer authorization is
+     * required, an approval URL will be returned. Duplicated gift card numbers are not supported.
      * 
      * @param transactionCreate 
-     * @return CompletableFuture&lt;CreateTransactionResponse&gt; - The async response
+     * @return {@code CompletableFuture<CreateTransactionResponse>} - The async response
      */
     public CompletableFuture<CreateTransactionResponse> create(TransactionCreate transactionCreate) {
         return create(
@@ -157,7 +162,8 @@ public class AsyncTransactions {
     /**
      * Create transaction
      * 
-     * <p>Create a new transaction using a supported payment method. If additional buyer authorization is required, an approval URL will be returned. Duplicated gift card numbers are not supported.
+     * <p>Create a new transaction using a supported payment method. If additional buyer authorization is
+     * required, an approval URL will be returned. Duplicated gift card numbers are not supported.
      * 
      * @param merchantAccountId 
      * @param idempotencyKey A unique key that identifies this request. Providing this header will make this an idempotent request. We recommend using V4 UUIDs, or another random string with enough entropy to avoid collisions.
@@ -165,7 +171,7 @@ public class AsyncTransactions {
      *         our API from the server side to ensure the customer's address is
      *         passed to downstream services, rather than your server IP.
      * @param transactionCreate 
-     * @return CompletableFuture&lt;CreateTransactionResponse&gt; - The async response
+     * @return {@code CompletableFuture<CreateTransactionResponse>} - The async response
      */
     public CompletableFuture<CreateTransactionResponse> create(
             JsonNullable<String> merchantAccountId, JsonNullable<String> idempotencyKey,
@@ -202,7 +208,7 @@ public class AsyncTransactions {
      * <p>Retrieve the details of a transaction by its unique identifier.
      * 
      * @param transactionId The ID of the transaction
-     * @return CompletableFuture&lt;GetTransactionResponse&gt; - The async response
+     * @return {@code CompletableFuture<GetTransactionResponse>} - The async response
      */
     public CompletableFuture<GetTransactionResponse> get(String transactionId) {
         return get(transactionId, JsonNullable.undefined(), Optional.empty());
@@ -216,7 +222,7 @@ public class AsyncTransactions {
      * @param transactionId The ID of the transaction
      * @param merchantAccountId 
      * @param options additional options
-     * @return CompletableFuture&lt;GetTransactionResponse&gt; - The async response
+     * @return {@code CompletableFuture<GetTransactionResponse>} - The async response
      */
     public CompletableFuture<GetTransactionResponse> get(
             String transactionId, JsonNullable<String> merchantAccountId,
@@ -254,7 +260,7 @@ public class AsyncTransactions {
      * 
      * @param transactionId The ID of the transaction
      * @param transactionUpdate 
-     * @return CompletableFuture&lt;UpdateTransactionResponse&gt; - The async response
+     * @return {@code CompletableFuture<UpdateTransactionResponse>} - The async response
      */
     public CompletableFuture<UpdateTransactionResponse> update(String transactionId, TransactionUpdate transactionUpdate) {
         return update(transactionId, JsonNullable.undefined(), transactionUpdate);
@@ -268,7 +274,7 @@ public class AsyncTransactions {
      * @param transactionId The ID of the transaction
      * @param merchantAccountId 
      * @param transactionUpdate 
-     * @return CompletableFuture&lt;UpdateTransactionResponse&gt; - The async response
+     * @return {@code CompletableFuture<UpdateTransactionResponse>} - The async response
      */
     public CompletableFuture<UpdateTransactionResponse> update(
             String transactionId, JsonNullable<String> merchantAccountId,
@@ -290,7 +296,8 @@ public class AsyncTransactions {
     /**
      * Capture transaction
      * 
-     * <p>Captures a previously authorized transaction. You can capture the full or a partial amount, as long as it does not exceed the authorized amount (unless over-capture is enabled).
+     * <p>Captures a previously authorized transaction. You can capture the full or a partial amount, as long
+     * as it does not exceed the authorized amount (unless over-capture is enabled).
      * 
      * @return The async call builder
      */
@@ -301,11 +308,12 @@ public class AsyncTransactions {
     /**
      * Capture transaction
      * 
-     * <p>Captures a previously authorized transaction. You can capture the full or a partial amount, as long as it does not exceed the authorized amount (unless over-capture is enabled).
+     * <p>Captures a previously authorized transaction. You can capture the full or a partial amount, as long
+     * as it does not exceed the authorized amount (unless over-capture is enabled).
      * 
      * @param transactionId The ID of the transaction
      * @param transactionCaptureCreate Request body for capturing an authorized transaction.
-     * @return CompletableFuture&lt;CaptureTransactionResponse&gt; - The async response
+     * @return {@code CompletableFuture<CaptureTransactionResponse>} - The async response
      */
     public CompletableFuture<CaptureTransactionResponse> capture(String transactionId, TransactionCaptureCreate transactionCaptureCreate) {
         return capture(
@@ -316,13 +324,14 @@ public class AsyncTransactions {
     /**
      * Capture transaction
      * 
-     * <p>Captures a previously authorized transaction. You can capture the full or a partial amount, as long as it does not exceed the authorized amount (unless over-capture is enabled).
+     * <p>Captures a previously authorized transaction. You can capture the full or a partial amount, as long
+     * as it does not exceed the authorized amount (unless over-capture is enabled).
      * 
      * @param transactionId The ID of the transaction
      * @param prefer The preferred resource type in the response.
      * @param merchantAccountId 
      * @param transactionCaptureCreate Request body for capturing an authorized transaction.
-     * @return CompletableFuture&lt;CaptureTransactionResponse&gt; - The async response
+     * @return {@code CompletableFuture<CaptureTransactionResponse>} - The async response
      */
     public CompletableFuture<CaptureTransactionResponse> capture(
             String transactionId, JsonNullable<? extends List<String>> prefer,
@@ -345,7 +354,11 @@ public class AsyncTransactions {
     /**
      * Void transaction
      * 
-     * <p>Voids a previously authorized transaction. If the transaction was not yet successfully authorized, or was already captured, the void will not be processed. This operation releases the hold on the buyer's funds. Captured transactions can be refunded instead.
+     * <p>Voids a previously authorized transaction. If the transaction was not yet successfully authorized,
+     * or was already captured, the void will not be processed. This operation releases the hold on the
+     * buyer's funds.
+     * 
+     * <p>Captured transactions can be refunded instead.
      * 
      * @return The async call builder
      */
@@ -356,10 +369,14 @@ public class AsyncTransactions {
     /**
      * Void transaction
      * 
-     * <p>Voids a previously authorized transaction. If the transaction was not yet successfully authorized, or was already captured, the void will not be processed. This operation releases the hold on the buyer's funds. Captured transactions can be refunded instead.
+     * <p>Voids a previously authorized transaction. If the transaction was not yet successfully authorized,
+     * or was already captured, the void will not be processed. This operation releases the hold on the
+     * buyer's funds.
+     * 
+     * <p>Captured transactions can be refunded instead.
      * 
      * @param transactionId The ID of the transaction
-     * @return CompletableFuture&lt;VoidTransactionResponse&gt; - The async response
+     * @return {@code CompletableFuture<VoidTransactionResponse>} - The async response
      */
     public CompletableFuture<VoidTransactionResponse> void_(String transactionId) {
         return void_(transactionId, JsonNullable.undefined(), JsonNullable.undefined());
@@ -368,12 +385,16 @@ public class AsyncTransactions {
     /**
      * Void transaction
      * 
-     * <p>Voids a previously authorized transaction. If the transaction was not yet successfully authorized, or was already captured, the void will not be processed. This operation releases the hold on the buyer's funds. Captured transactions can be refunded instead.
+     * <p>Voids a previously authorized transaction. If the transaction was not yet successfully authorized,
+     * or was already captured, the void will not be processed. This operation releases the hold on the
+     * buyer's funds.
+     * 
+     * <p>Captured transactions can be refunded instead.
      * 
      * @param transactionId The ID of the transaction
      * @param prefer The preferred resource type in the response.
      * @param merchantAccountId 
-     * @return CompletableFuture&lt;VoidTransactionResponse&gt; - The async response
+     * @return {@code CompletableFuture<VoidTransactionResponse>} - The async response
      */
     public CompletableFuture<VoidTransactionResponse> void_(
             String transactionId, JsonNullable<? extends List<String>> prefer,
@@ -395,7 +416,8 @@ public class AsyncTransactions {
     /**
      * Cancel transaction
      * 
-     * <p>Cancels a pending transaction. If the transaction was successfully authorized, or was already captured, the cancel will not be processed.
+     * <p>Cancels a pending transaction. If the transaction was successfully authorized, or was already
+     * captured, the cancel will not be processed.
      * 
      * @return The async call builder
      */
@@ -406,10 +428,11 @@ public class AsyncTransactions {
     /**
      * Cancel transaction
      * 
-     * <p>Cancels a pending transaction. If the transaction was successfully authorized, or was already captured, the cancel will not be processed.
+     * <p>Cancels a pending transaction. If the transaction was successfully authorized, or was already
+     * captured, the cancel will not be processed.
      * 
      * @param transactionId The ID of the transaction
-     * @return CompletableFuture&lt;CancelTransactionResponse&gt; - The async response
+     * @return {@code CompletableFuture<CancelTransactionResponse>} - The async response
      */
     public CompletableFuture<CancelTransactionResponse> cancel(String transactionId) {
         return cancel(transactionId, JsonNullable.undefined());
@@ -418,11 +441,12 @@ public class AsyncTransactions {
     /**
      * Cancel transaction
      * 
-     * <p>Cancels a pending transaction. If the transaction was successfully authorized, or was already captured, the cancel will not be processed.
+     * <p>Cancels a pending transaction. If the transaction was successfully authorized, or was already
+     * captured, the cancel will not be processed.
      * 
      * @param transactionId The ID of the transaction
      * @param merchantAccountId 
-     * @return CompletableFuture&lt;CancelTransactionResponse&gt; - The async response
+     * @return {@code CompletableFuture<CancelTransactionResponse>} - The async response
      */
     public CompletableFuture<CancelTransactionResponse> cancel(String transactionId, JsonNullable<String> merchantAccountId) {
         CancelTransactionRequest request =
@@ -441,7 +465,9 @@ public class AsyncTransactions {
     /**
      * Sync transaction
      * 
-     * <p>Synchronizes the status of a transaction with the underlying payment service provider. This is useful for transactions in a pending state to check if they've been completed or failed. Only available for some payment service providers.
+     * <p>Synchronizes the status of a transaction with the underlying payment service provider. This is
+     * useful for transactions in a pending state to check if they've been completed or failed. Only
+     * available for some payment service providers.
      * 
      * @return The async call builder
      */
@@ -452,10 +478,12 @@ public class AsyncTransactions {
     /**
      * Sync transaction
      * 
-     * <p>Synchronizes the status of a transaction with the underlying payment service provider. This is useful for transactions in a pending state to check if they've been completed or failed. Only available for some payment service providers.
+     * <p>Synchronizes the status of a transaction with the underlying payment service provider. This is
+     * useful for transactions in a pending state to check if they've been completed or failed. Only
+     * available for some payment service providers.
      * 
      * @param transactionId 
-     * @return CompletableFuture&lt;SyncTransactionResponse&gt; - The async response
+     * @return {@code CompletableFuture<SyncTransactionResponse>} - The async response
      */
     public CompletableFuture<SyncTransactionResponse> sync(String transactionId) {
         return sync(transactionId, JsonNullable.undefined());
@@ -464,11 +492,13 @@ public class AsyncTransactions {
     /**
      * Sync transaction
      * 
-     * <p>Synchronizes the status of a transaction with the underlying payment service provider. This is useful for transactions in a pending state to check if they've been completed or failed. Only available for some payment service providers.
+     * <p>Synchronizes the status of a transaction with the underlying payment service provider. This is
+     * useful for transactions in a pending state to check if they've been completed or failed. Only
+     * available for some payment service providers.
      * 
      * @param transactionId 
      * @param merchantAccountId 
-     * @return CompletableFuture&lt;SyncTransactionResponse&gt; - The async response
+     * @return {@code CompletableFuture<SyncTransactionResponse>} - The async response
      */
     public CompletableFuture<SyncTransactionResponse> sync(String transactionId, JsonNullable<String> merchantAccountId) {
         SyncTransactionRequest request =

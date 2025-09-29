@@ -74,7 +74,7 @@ public class AsyncReports {
      * <p>List all configured reports that can be generated.
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;ListReportsResponse&gt; - The async response
+     * @return {@code CompletableFuture<ListReportsResponse>} - The async response
      */
     public CompletableFuture<ListReportsResponse> list(ListReportsRequest request) {
         return list(request, Optional.empty());
@@ -87,7 +87,7 @@ public class AsyncReports {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;ListReportsResponse&gt; - The async response
+     * @return {@code CompletableFuture<ListReportsResponse>} - The async response
      */
     public CompletableFuture<ListReportsResponse> list(ListReportsRequest request, Optional<Options> options) {
         AsyncRequestOperation<ListReportsRequest, ListReportsResponse> operation
@@ -116,7 +116,7 @@ public class AsyncReports {
      * <p>Create a new report.
      * 
      * @param reportCreate 
-     * @return CompletableFuture&lt;AddReportResponse&gt; - The async response
+     * @return {@code CompletableFuture<AddReportResponse>} - The async response
      */
     public CompletableFuture<AddReportResponse> create(ReportCreate reportCreate) {
         return create(JsonNullable.undefined(), reportCreate);
@@ -129,7 +129,7 @@ public class AsyncReports {
      * 
      * @param merchantAccountId 
      * @param reportCreate 
-     * @return CompletableFuture&lt;AddReportResponse&gt; - The async response
+     * @return {@code CompletableFuture<AddReportResponse>} - The async response
      */
     public CompletableFuture<AddReportResponse> create(JsonNullable<String> merchantAccountId, ReportCreate reportCreate) {
         AddReportRequest request =
@@ -162,7 +162,7 @@ public class AsyncReports {
      * <p>Fetches a report by its ID.
      * 
      * @param reportId The ID of the report to retrieve details for.
-     * @return CompletableFuture&lt;GetReportResponse&gt; - The async response
+     * @return {@code CompletableFuture<GetReportResponse>} - The async response
      */
     public CompletableFuture<GetReportResponse> get(String reportId) {
         return get(reportId, JsonNullable.undefined(), Optional.empty());
@@ -176,7 +176,7 @@ public class AsyncReports {
      * @param reportId The ID of the report to retrieve details for.
      * @param merchantAccountId 
      * @param options additional options
-     * @return CompletableFuture&lt;GetReportResponse&gt; - The async response
+     * @return {@code CompletableFuture<GetReportResponse>} - The async response
      */
     public CompletableFuture<GetReportResponse> get(
             String reportId, JsonNullable<String> merchantAccountId,
@@ -214,7 +214,7 @@ public class AsyncReports {
      * 
      * @param reportId The ID of the report to edit.
      * @param reportUpdate 
-     * @return CompletableFuture&lt;UpdateReportResponse&gt; - The async response
+     * @return {@code CompletableFuture<UpdateReportResponse>} - The async response
      */
     public CompletableFuture<UpdateReportResponse> put(String reportId, ReportUpdate reportUpdate) {
         return put(reportId, JsonNullable.undefined(), reportUpdate);
@@ -228,7 +228,7 @@ public class AsyncReports {
      * @param reportId The ID of the report to edit.
      * @param merchantAccountId 
      * @param reportUpdate 
-     * @return CompletableFuture&lt;UpdateReportResponse&gt; - The async response
+     * @return {@code CompletableFuture<UpdateReportResponse>} - The async response
      */
     public CompletableFuture<UpdateReportResponse> put(
             String reportId, JsonNullable<String> merchantAccountId,

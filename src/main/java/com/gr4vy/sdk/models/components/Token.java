@@ -20,7 +20,8 @@ import java.util.Map;
 /**
  * Token
  * 
- * <p>The opaque token as received from the Google Pay JS library. This format may change between JS library versions.
+ * <p>The opaque token as received from the Google Pay JS library. This format may change between JS
+ * library versions.
  */
 @JsonDeserialize(using = Token._Deserializer.class)
 public class Token {

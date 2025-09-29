@@ -40,7 +40,8 @@ public class DefinitionField {
     private DefinitionFieldFormat format;
 
     /**
-     * Defines if this field is secret. When `true` the field's value is not returned when querying the payment service information.
+     * Defines if this field is secret. When `true` the field's value is not returned when querying the
+     * payment service information.
      */
     @JsonProperty("secret")
     private boolean secret;
@@ -94,7 +95,8 @@ public class DefinitionField {
     }
 
     /**
-     * Defines if this field is secret. When `true` the field's value is not returned when querying the payment service information.
+     * Defines if this field is secret. When `true` the field's value is not returned when querying the
+     * payment service information.
      */
     @JsonIgnore
     public boolean secret() {
@@ -140,7 +142,8 @@ public class DefinitionField {
     }
 
     /**
-     * Defines if this field is secret. When `true` the field's value is not returned when querying the payment service information.
+     * Defines if this field is secret. When `true` the field's value is not returned when querying the
+     * payment service information.
      */
     public DefinitionField withSecret(boolean secret) {
         Utils.checkNotNull(secret, "secret");
@@ -238,7 +241,8 @@ public class DefinitionField {
 
 
         /**
-         * Defines if this field is secret. When `true` the field's value is not returned when querying the payment service information.
+         * Defines if this field is secret. When `true` the field's value is not returned when querying the
+         * payment service information.
          */
         public Builder secret(boolean secret) {
             Utils.checkNotNull(secret, "secret");

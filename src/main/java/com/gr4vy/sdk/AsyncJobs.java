@@ -53,7 +53,7 @@ public class AsyncJobs {
      * <p>Schedule one or more stored cards for an account update.
      * 
      * @param accountUpdaterJobCreate 
-     * @return CompletableFuture&lt;CreateAccountUpdaterJobResponse&gt; - The async response
+     * @return {@code CompletableFuture<CreateAccountUpdaterJobResponse>} - The async response
      */
     public CompletableFuture<CreateAccountUpdaterJobResponse> create(AccountUpdaterJobCreate accountUpdaterJobCreate) {
         return create(JsonNullable.undefined(), accountUpdaterJobCreate);
@@ -66,7 +66,7 @@ public class AsyncJobs {
      * 
      * @param merchantAccountId 
      * @param accountUpdaterJobCreate 
-     * @return CompletableFuture&lt;CreateAccountUpdaterJobResponse&gt; - The async response
+     * @return {@code CompletableFuture<CreateAccountUpdaterJobResponse>} - The async response
      */
     public CompletableFuture<CreateAccountUpdaterJobResponse> create(JsonNullable<String> merchantAccountId, AccountUpdaterJobCreate accountUpdaterJobCreate) {
         CreateAccountUpdaterJobRequest request =

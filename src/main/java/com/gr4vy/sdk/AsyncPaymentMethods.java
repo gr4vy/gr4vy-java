@@ -79,7 +79,7 @@ public class AsyncPaymentMethods {
      * <p>List all stored payment method.
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;ListPaymentMethodsResponse&gt; - The async response
+     * @return {@code CompletableFuture<ListPaymentMethodsResponse>} - The async response
      */
     public CompletableFuture<ListPaymentMethodsResponse> list(ListPaymentMethodsRequest request) {
         return list(request, Optional.empty());
@@ -92,7 +92,7 @@ public class AsyncPaymentMethods {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;ListPaymentMethodsResponse&gt; - The async response
+     * @return {@code CompletableFuture<ListPaymentMethodsResponse>} - The async response
      */
     public CompletableFuture<ListPaymentMethodsResponse> list(ListPaymentMethodsRequest request, Optional<Options> options) {
         AsyncRequestOperation<ListPaymentMethodsRequest, ListPaymentMethodsResponse> operation
@@ -121,7 +121,7 @@ public class AsyncPaymentMethods {
      * <p>Store a new payment method.
      * 
      * @param requestBody 
-     * @return CompletableFuture&lt;CreatePaymentMethodResponse&gt; - The async response
+     * @return {@code CompletableFuture<CreatePaymentMethodResponse>} - The async response
      */
     public CompletableFuture<CreatePaymentMethodResponse> create(Body requestBody) {
         return create(JsonNullable.undefined(), requestBody);
@@ -134,7 +134,7 @@ public class AsyncPaymentMethods {
      * 
      * @param merchantAccountId 
      * @param requestBody 
-     * @return CompletableFuture&lt;CreatePaymentMethodResponse&gt; - The async response
+     * @return {@code CompletableFuture<CreatePaymentMethodResponse>} - The async response
      */
     public CompletableFuture<CreatePaymentMethodResponse> create(JsonNullable<String> merchantAccountId, Body requestBody) {
         CreatePaymentMethodRequest request =
@@ -167,7 +167,7 @@ public class AsyncPaymentMethods {
      * <p>Retrieve a payment method.
      * 
      * @param paymentMethodId The ID of the payment method
-     * @return CompletableFuture&lt;GetPaymentMethodResponse&gt; - The async response
+     * @return {@code CompletableFuture<GetPaymentMethodResponse>} - The async response
      */
     public CompletableFuture<GetPaymentMethodResponse> get(String paymentMethodId) {
         return get(paymentMethodId, JsonNullable.undefined(), Optional.empty());
@@ -181,7 +181,7 @@ public class AsyncPaymentMethods {
      * @param paymentMethodId The ID of the payment method
      * @param merchantAccountId 
      * @param options additional options
-     * @return CompletableFuture&lt;GetPaymentMethodResponse&gt; - The async response
+     * @return {@code CompletableFuture<GetPaymentMethodResponse>} - The async response
      */
     public CompletableFuture<GetPaymentMethodResponse> get(
             String paymentMethodId, JsonNullable<String> merchantAccountId,
@@ -218,7 +218,7 @@ public class AsyncPaymentMethods {
      * <p>Delete a payment method.
      * 
      * @param paymentMethodId The ID of the payment method
-     * @return CompletableFuture&lt;DeletePaymentMethodResponse&gt; - The async response
+     * @return {@code CompletableFuture<DeletePaymentMethodResponse>} - The async response
      */
     public CompletableFuture<DeletePaymentMethodResponse> delete(String paymentMethodId) {
         return delete(paymentMethodId, JsonNullable.undefined());
@@ -231,7 +231,7 @@ public class AsyncPaymentMethods {
      * 
      * @param paymentMethodId The ID of the payment method
      * @param merchantAccountId 
-     * @return CompletableFuture&lt;DeletePaymentMethodResponse&gt; - The async response
+     * @return {@code CompletableFuture<DeletePaymentMethodResponse>} - The async response
      */
     public CompletableFuture<DeletePaymentMethodResponse> delete(String paymentMethodId, JsonNullable<String> merchantAccountId) {
         DeletePaymentMethodRequest request =

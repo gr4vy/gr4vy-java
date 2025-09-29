@@ -28,14 +28,16 @@ public class GiftCardCreate {
     private String pin;
 
     /**
-     * The ID of the buyer to associate this gift card to. If this field is provided then the `buyer_external_identifier` field needs to be unset.
+     * The ID of the buyer to associate this gift card to. If this field is provided then the
+     * `buyer_external_identifier` field needs to be unset.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("buyer_id")
     private JsonNullable<String> buyerId;
 
     /**
-     * The `external_identifier` of the buyer to associate this gift card to. If this field is provided then the `buyer_id` field needs to be unset.
+     * The `external_identifier` of the buyer to associate this gift card to. If this field is provided
+     * then the `buyer_id` field needs to be unset.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("buyer_external_identifier")
@@ -81,7 +83,8 @@ public class GiftCardCreate {
     }
 
     /**
-     * The ID of the buyer to associate this gift card to. If this field is provided then the `buyer_external_identifier` field needs to be unset.
+     * The ID of the buyer to associate this gift card to. If this field is provided then the
+     * `buyer_external_identifier` field needs to be unset.
      */
     @JsonIgnore
     public JsonNullable<String> buyerId() {
@@ -89,7 +92,8 @@ public class GiftCardCreate {
     }
 
     /**
-     * The `external_identifier` of the buyer to associate this gift card to. If this field is provided then the `buyer_id` field needs to be unset.
+     * The `external_identifier` of the buyer to associate this gift card to. If this field is provided
+     * then the `buyer_id` field needs to be unset.
      */
     @JsonIgnore
     public JsonNullable<String> buyerExternalIdentifier() {
@@ -120,7 +124,8 @@ public class GiftCardCreate {
     }
 
     /**
-     * The ID of the buyer to associate this gift card to. If this field is provided then the `buyer_external_identifier` field needs to be unset.
+     * The ID of the buyer to associate this gift card to. If this field is provided then the
+     * `buyer_external_identifier` field needs to be unset.
      */
     public GiftCardCreate withBuyerId(String buyerId) {
         Utils.checkNotNull(buyerId, "buyerId");
@@ -129,7 +134,8 @@ public class GiftCardCreate {
     }
 
     /**
-     * The ID of the buyer to associate this gift card to. If this field is provided then the `buyer_external_identifier` field needs to be unset.
+     * The ID of the buyer to associate this gift card to. If this field is provided then the
+     * `buyer_external_identifier` field needs to be unset.
      */
     public GiftCardCreate withBuyerId(JsonNullable<String> buyerId) {
         Utils.checkNotNull(buyerId, "buyerId");
@@ -138,7 +144,8 @@ public class GiftCardCreate {
     }
 
     /**
-     * The `external_identifier` of the buyer to associate this gift card to. If this field is provided then the `buyer_id` field needs to be unset.
+     * The `external_identifier` of the buyer to associate this gift card to. If this field is provided
+     * then the `buyer_id` field needs to be unset.
      */
     public GiftCardCreate withBuyerExternalIdentifier(String buyerExternalIdentifier) {
         Utils.checkNotNull(buyerExternalIdentifier, "buyerExternalIdentifier");
@@ -147,7 +154,8 @@ public class GiftCardCreate {
     }
 
     /**
-     * The `external_identifier` of the buyer to associate this gift card to. If this field is provided then the `buyer_id` field needs to be unset.
+     * The `external_identifier` of the buyer to associate this gift card to. If this field is provided
+     * then the `buyer_id` field needs to be unset.
      */
     public GiftCardCreate withBuyerExternalIdentifier(JsonNullable<String> buyerExternalIdentifier) {
         Utils.checkNotNull(buyerExternalIdentifier, "buyerExternalIdentifier");
@@ -224,7 +232,8 @@ public class GiftCardCreate {
 
 
         /**
-         * The ID of the buyer to associate this gift card to. If this field is provided then the `buyer_external_identifier` field needs to be unset.
+         * The ID of the buyer to associate this gift card to. If this field is provided then the
+         * `buyer_external_identifier` field needs to be unset.
          */
         public Builder buyerId(String buyerId) {
             Utils.checkNotNull(buyerId, "buyerId");
@@ -233,7 +242,8 @@ public class GiftCardCreate {
         }
 
         /**
-         * The ID of the buyer to associate this gift card to. If this field is provided then the `buyer_external_identifier` field needs to be unset.
+         * The ID of the buyer to associate this gift card to. If this field is provided then the
+         * `buyer_external_identifier` field needs to be unset.
          */
         public Builder buyerId(JsonNullable<String> buyerId) {
             Utils.checkNotNull(buyerId, "buyerId");
@@ -243,7 +253,8 @@ public class GiftCardCreate {
 
 
         /**
-         * The `external_identifier` of the buyer to associate this gift card to. If this field is provided then the `buyer_id` field needs to be unset.
+         * The `external_identifier` of the buyer to associate this gift card to. If this field is provided
+         * then the `buyer_id` field needs to be unset.
          */
         public Builder buyerExternalIdentifier(String buyerExternalIdentifier) {
             Utils.checkNotNull(buyerExternalIdentifier, "buyerExternalIdentifier");
@@ -252,7 +263,8 @@ public class GiftCardCreate {
         }
 
         /**
-         * The `external_identifier` of the buyer to associate this gift card to. If this field is provided then the `buyer_id` field needs to be unset.
+         * The `external_identifier` of the buyer to associate this gift card to. If this field is provided
+         * then the `buyer_id` field needs to be unset.
          */
         public Builder buyerExternalIdentifier(JsonNullable<String> buyerExternalIdentifier) {
             Utils.checkNotNull(buyerExternalIdentifier, "buyerExternalIdentifier");

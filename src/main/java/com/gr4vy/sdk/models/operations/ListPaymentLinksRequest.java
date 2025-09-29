@@ -32,7 +32,8 @@ public class ListPaymentLinksRequest {
     private Optional<Long> limit;
 
     /**
-     * Filters the results to only get the items for which some of the buyer data contains exactly the provided `buyer_search` values.
+     * Filters the results to only get the items for which some of the buyer data contains exactly the
+     * provided `buyer_search` values.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=buyer_search")
     private JsonNullable<? extends List<String>> buyerSearch;
@@ -81,7 +82,8 @@ public class ListPaymentLinksRequest {
     }
 
     /**
-     * Filters the results to only get the items for which some of the buyer data contains exactly the provided `buyer_search` values.
+     * Filters the results to only get the items for which some of the buyer data contains exactly the
+     * provided `buyer_search` values.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -140,7 +142,8 @@ public class ListPaymentLinksRequest {
     }
 
     /**
-     * Filters the results to only get the items for which some of the buyer data contains exactly the provided `buyer_search` values.
+     * Filters the results to only get the items for which some of the buyer data contains exactly the
+     * provided `buyer_search` values.
      */
     public ListPaymentLinksRequest withBuyerSearch(List<String> buyerSearch) {
         Utils.checkNotNull(buyerSearch, "buyerSearch");
@@ -149,7 +152,8 @@ public class ListPaymentLinksRequest {
     }
 
     /**
-     * Filters the results to only get the items for which some of the buyer data contains exactly the provided `buyer_search` values.
+     * Filters the results to only get the items for which some of the buyer data contains exactly the
+     * provided `buyer_search` values.
      */
     public ListPaymentLinksRequest withBuyerSearch(JsonNullable<? extends List<String>> buyerSearch) {
         Utils.checkNotNull(buyerSearch, "buyerSearch");
@@ -262,7 +266,8 @@ public class ListPaymentLinksRequest {
 
 
         /**
-         * Filters the results to only get the items for which some of the buyer data contains exactly the provided `buyer_search` values.
+         * Filters the results to only get the items for which some of the buyer data contains exactly the
+         * provided `buyer_search` values.
          */
         public Builder buyerSearch(List<String> buyerSearch) {
             Utils.checkNotNull(buyerSearch, "buyerSearch");
@@ -271,7 +276,8 @@ public class ListPaymentLinksRequest {
         }
 
         /**
-         * Filters the results to only get the items for which some of the buyer data contains exactly the provided `buyer_search` values.
+         * Filters the results to only get the items for which some of the buyer data contains exactly the
+         * provided `buyer_search` values.
          */
         public Builder buyerSearch(JsonNullable<? extends List<String>> buyerSearch) {
             Utils.checkNotNull(buyerSearch, "buyerSearch");

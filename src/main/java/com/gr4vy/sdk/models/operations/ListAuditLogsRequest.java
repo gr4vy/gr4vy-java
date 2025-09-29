@@ -32,7 +32,8 @@ public class ListAuditLogsRequest {
     private Optional<Long> limit;
 
     /**
-     * Filters the results to only the items for which the `audit-log` has an `action` that matches this value.
+     * Filters the results to only the items for which the `audit-log` has an `action` that matches this
+     * value.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=action")
     private JsonNullable<? extends AuditLogAction> action;
@@ -44,7 +45,8 @@ public class ListAuditLogsRequest {
     private JsonNullable<String> userId;
 
     /**
-     * Filters the results to only the items for which the `audit-log` has a `resource` that matches this type value.
+     * Filters the results to only the items for which the `audit-log` has a `resource` that matches this
+     * type value.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=resource_type")
     private JsonNullable<String> resourceType;
@@ -99,7 +101,8 @@ public class ListAuditLogsRequest {
     }
 
     /**
-     * Filters the results to only the items for which the `audit-log` has an `action` that matches this value.
+     * Filters the results to only the items for which the `audit-log` has an `action` that matches this
+     * value.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -116,7 +119,8 @@ public class ListAuditLogsRequest {
     }
 
     /**
-     * Filters the results to only the items for which the `audit-log` has a `resource` that matches this type value.
+     * Filters the results to only the items for which the `audit-log` has a `resource` that matches this
+     * type value.
      */
     @JsonIgnore
     public JsonNullable<String> resourceType() {
@@ -174,7 +178,8 @@ public class ListAuditLogsRequest {
     }
 
     /**
-     * Filters the results to only the items for which the `audit-log` has an `action` that matches this value.
+     * Filters the results to only the items for which the `audit-log` has an `action` that matches this
+     * value.
      */
     public ListAuditLogsRequest withAction(AuditLogAction action) {
         Utils.checkNotNull(action, "action");
@@ -183,7 +188,8 @@ public class ListAuditLogsRequest {
     }
 
     /**
-     * Filters the results to only the items for which the `audit-log` has an `action` that matches this value.
+     * Filters the results to only the items for which the `audit-log` has an `action` that matches this
+     * value.
      */
     public ListAuditLogsRequest withAction(JsonNullable<? extends AuditLogAction> action) {
         Utils.checkNotNull(action, "action");
@@ -210,7 +216,8 @@ public class ListAuditLogsRequest {
     }
 
     /**
-     * Filters the results to only the items for which the `audit-log` has a `resource` that matches this type value.
+     * Filters the results to only the items for which the `audit-log` has a `resource` that matches this
+     * type value.
      */
     public ListAuditLogsRequest withResourceType(String resourceType) {
         Utils.checkNotNull(resourceType, "resourceType");
@@ -219,7 +226,8 @@ public class ListAuditLogsRequest {
     }
 
     /**
-     * Filters the results to only the items for which the `audit-log` has a `resource` that matches this type value.
+     * Filters the results to only the items for which the `audit-log` has a `resource` that matches this
+     * type value.
      */
     public ListAuditLogsRequest withResourceType(JsonNullable<String> resourceType) {
         Utils.checkNotNull(resourceType, "resourceType");
@@ -340,7 +348,8 @@ public class ListAuditLogsRequest {
 
 
         /**
-         * Filters the results to only the items for which the `audit-log` has an `action` that matches this value.
+         * Filters the results to only the items for which the `audit-log` has an `action` that matches this
+         * value.
          */
         public Builder action(AuditLogAction action) {
             Utils.checkNotNull(action, "action");
@@ -349,7 +358,8 @@ public class ListAuditLogsRequest {
         }
 
         /**
-         * Filters the results to only the items for which the `audit-log` has an `action` that matches this value.
+         * Filters the results to only the items for which the `audit-log` has an `action` that matches this
+         * value.
          */
         public Builder action(JsonNullable<? extends AuditLogAction> action) {
             Utils.checkNotNull(action, "action");
@@ -378,7 +388,8 @@ public class ListAuditLogsRequest {
 
 
         /**
-         * Filters the results to only the items for which the `audit-log` has a `resource` that matches this type value.
+         * Filters the results to only the items for which the `audit-log` has a `resource` that matches this
+         * type value.
          */
         public Builder resourceType(String resourceType) {
             Utils.checkNotNull(resourceType, "resourceType");
@@ -387,7 +398,8 @@ public class ListAuditLogsRequest {
         }
 
         /**
-         * Filters the results to only the items for which the `audit-log` has a `resource` that matches this type value.
+         * Filters the results to only the items for which the `audit-log` has a `resource` that matches this
+         * type value.
          */
         public Builder resourceType(JsonNullable<String> resourceType) {
             Utils.checkNotNull(resourceType, "resourceType");

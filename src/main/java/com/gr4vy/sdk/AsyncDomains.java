@@ -58,7 +58,7 @@ public class AsyncDomains {
      * 
      * @param digitalWalletId The ID of the digital wallet to remove a domain for.
      * @param digitalWalletDomain 
-     * @return CompletableFuture&lt;RegisterDigitalWalletDomainResponse&gt; - The async response
+     * @return {@code CompletableFuture<RegisterDigitalWalletDomainResponse>} - The async response
      */
     public CompletableFuture<RegisterDigitalWalletDomainResponse> create(String digitalWalletId, DigitalWalletDomain digitalWalletDomain) {
         return create(digitalWalletId, JsonNullable.undefined(), digitalWalletDomain);
@@ -72,7 +72,7 @@ public class AsyncDomains {
      * @param digitalWalletId The ID of the digital wallet to remove a domain for.
      * @param merchantAccountId 
      * @param digitalWalletDomain 
-     * @return CompletableFuture&lt;RegisterDigitalWalletDomainResponse&gt; - The async response
+     * @return {@code CompletableFuture<RegisterDigitalWalletDomainResponse>} - The async response
      */
     public CompletableFuture<RegisterDigitalWalletDomainResponse> create(
             String digitalWalletId, JsonNullable<String> merchantAccountId,
@@ -109,7 +109,7 @@ public class AsyncDomains {
      * 
      * @param digitalWalletId 
      * @param digitalWalletDomain 
-     * @return CompletableFuture&lt;UnregisterDigitalWalletDomainResponse&gt; - The async response
+     * @return {@code CompletableFuture<UnregisterDigitalWalletDomainResponse>} - The async response
      */
     public CompletableFuture<UnregisterDigitalWalletDomainResponse> delete(String digitalWalletId, DigitalWalletDomain digitalWalletDomain) {
         return delete(digitalWalletId, JsonNullable.undefined(), digitalWalletDomain);
@@ -123,7 +123,7 @@ public class AsyncDomains {
      * @param digitalWalletId 
      * @param merchantAccountId 
      * @param digitalWalletDomain 
-     * @return CompletableFuture&lt;UnregisterDigitalWalletDomainResponse&gt; - The async response
+     * @return {@code CompletableFuture<UnregisterDigitalWalletDomainResponse>} - The async response
      */
     public CompletableFuture<UnregisterDigitalWalletDomainResponse> delete(
             String digitalWalletId, JsonNullable<String> merchantAccountId,

@@ -20,21 +20,27 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 public class AdyenSplitsOptions {
     /**
-     * Split payment values to pass to the Adyen API on payment authorization. See [the Adyen docs](https://docs.adyen.com/platforms/online-payments/split-transactions/split-payments-at-authorization/) for details on the format and contents of the list.
+     * Split payment values to pass to the Adyen API on payment authorization. See [the Adyen
+     * docs](https://docs.adyen.com/platforms/online-payments/split-transactions/split-payments-at-authorization/)
+     * for details on the format and contents of the list.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("authorization")
     private JsonNullable<? extends List<Map<String, Object>>> authorization;
 
     /**
-     * Split payment values to pass to the Adyen API on payment capture. See [the Adyen docs](https://docs.adyen.com/platforms/online-payments/split-transactions/split-payments-at-capture/) for details on the format and contents of the list.
+     * Split payment values to pass to the Adyen API on payment capture. See [the Adyen
+     * docs](https://docs.adyen.com/platforms/online-payments/split-transactions/split-payments-at-capture/)
+     * for details on the format and contents of the list.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("capture")
     private JsonNullable<? extends List<Map<String, Object>>> capture;
 
     /**
-     * Split payment values to pass to the Adyen API on payment refund. See [the Adyen docs](https://docs.adyen.com/platforms/online-payments/split-transactions/split-refunds/) for details on the format and contents of the list.
+     * Split payment values to pass to the Adyen API on payment refund. See [the Adyen
+     * docs](https://docs.adyen.com/platforms/online-payments/split-transactions/split-refunds/) for
+     * details on the format and contents of the list.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("refund")
@@ -58,7 +64,9 @@ public class AdyenSplitsOptions {
     }
 
     /**
-     * Split payment values to pass to the Adyen API on payment authorization. See [the Adyen docs](https://docs.adyen.com/platforms/online-payments/split-transactions/split-payments-at-authorization/) for details on the format and contents of the list.
+     * Split payment values to pass to the Adyen API on payment authorization. See [the Adyen
+     * docs](https://docs.adyen.com/platforms/online-payments/split-transactions/split-payments-at-authorization/)
+     * for details on the format and contents of the list.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -67,7 +75,9 @@ public class AdyenSplitsOptions {
     }
 
     /**
-     * Split payment values to pass to the Adyen API on payment capture. See [the Adyen docs](https://docs.adyen.com/platforms/online-payments/split-transactions/split-payments-at-capture/) for details on the format and contents of the list.
+     * Split payment values to pass to the Adyen API on payment capture. See [the Adyen
+     * docs](https://docs.adyen.com/platforms/online-payments/split-transactions/split-payments-at-capture/)
+     * for details on the format and contents of the list.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -76,7 +86,9 @@ public class AdyenSplitsOptions {
     }
 
     /**
-     * Split payment values to pass to the Adyen API on payment refund. See [the Adyen docs](https://docs.adyen.com/platforms/online-payments/split-transactions/split-refunds/) for details on the format and contents of the list.
+     * Split payment values to pass to the Adyen API on payment refund. See [the Adyen
+     * docs](https://docs.adyen.com/platforms/online-payments/split-transactions/split-refunds/) for
+     * details on the format and contents of the list.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -90,7 +102,9 @@ public class AdyenSplitsOptions {
 
 
     /**
-     * Split payment values to pass to the Adyen API on payment authorization. See [the Adyen docs](https://docs.adyen.com/platforms/online-payments/split-transactions/split-payments-at-authorization/) for details on the format and contents of the list.
+     * Split payment values to pass to the Adyen API on payment authorization. See [the Adyen
+     * docs](https://docs.adyen.com/platforms/online-payments/split-transactions/split-payments-at-authorization/)
+     * for details on the format and contents of the list.
      */
     public AdyenSplitsOptions withAuthorization(List<Map<String, Object>> authorization) {
         Utils.checkNotNull(authorization, "authorization");
@@ -99,7 +113,9 @@ public class AdyenSplitsOptions {
     }
 
     /**
-     * Split payment values to pass to the Adyen API on payment authorization. See [the Adyen docs](https://docs.adyen.com/platforms/online-payments/split-transactions/split-payments-at-authorization/) for details on the format and contents of the list.
+     * Split payment values to pass to the Adyen API on payment authorization. See [the Adyen
+     * docs](https://docs.adyen.com/platforms/online-payments/split-transactions/split-payments-at-authorization/)
+     * for details on the format and contents of the list.
      */
     public AdyenSplitsOptions withAuthorization(JsonNullable<? extends List<Map<String, Object>>> authorization) {
         Utils.checkNotNull(authorization, "authorization");
@@ -108,7 +124,9 @@ public class AdyenSplitsOptions {
     }
 
     /**
-     * Split payment values to pass to the Adyen API on payment capture. See [the Adyen docs](https://docs.adyen.com/platforms/online-payments/split-transactions/split-payments-at-capture/) for details on the format and contents of the list.
+     * Split payment values to pass to the Adyen API on payment capture. See [the Adyen
+     * docs](https://docs.adyen.com/platforms/online-payments/split-transactions/split-payments-at-capture/)
+     * for details on the format and contents of the list.
      */
     public AdyenSplitsOptions withCapture(List<Map<String, Object>> capture) {
         Utils.checkNotNull(capture, "capture");
@@ -117,7 +135,9 @@ public class AdyenSplitsOptions {
     }
 
     /**
-     * Split payment values to pass to the Adyen API on payment capture. See [the Adyen docs](https://docs.adyen.com/platforms/online-payments/split-transactions/split-payments-at-capture/) for details on the format and contents of the list.
+     * Split payment values to pass to the Adyen API on payment capture. See [the Adyen
+     * docs](https://docs.adyen.com/platforms/online-payments/split-transactions/split-payments-at-capture/)
+     * for details on the format and contents of the list.
      */
     public AdyenSplitsOptions withCapture(JsonNullable<? extends List<Map<String, Object>>> capture) {
         Utils.checkNotNull(capture, "capture");
@@ -126,7 +146,9 @@ public class AdyenSplitsOptions {
     }
 
     /**
-     * Split payment values to pass to the Adyen API on payment refund. See [the Adyen docs](https://docs.adyen.com/platforms/online-payments/split-transactions/split-refunds/) for details on the format and contents of the list.
+     * Split payment values to pass to the Adyen API on payment refund. See [the Adyen
+     * docs](https://docs.adyen.com/platforms/online-payments/split-transactions/split-refunds/) for
+     * details on the format and contents of the list.
      */
     public AdyenSplitsOptions withRefund(List<Map<String, Object>> refund) {
         Utils.checkNotNull(refund, "refund");
@@ -135,7 +157,9 @@ public class AdyenSplitsOptions {
     }
 
     /**
-     * Split payment values to pass to the Adyen API on payment refund. See [the Adyen docs](https://docs.adyen.com/platforms/online-payments/split-transactions/split-refunds/) for details on the format and contents of the list.
+     * Split payment values to pass to the Adyen API on payment refund. See [the Adyen
+     * docs](https://docs.adyen.com/platforms/online-payments/split-transactions/split-refunds/) for
+     * details on the format and contents of the list.
      */
     public AdyenSplitsOptions withRefund(JsonNullable<? extends List<Map<String, Object>>> refund) {
         Utils.checkNotNull(refund, "refund");
@@ -187,7 +211,9 @@ public class AdyenSplitsOptions {
 
 
         /**
-         * Split payment values to pass to the Adyen API on payment authorization. See [the Adyen docs](https://docs.adyen.com/platforms/online-payments/split-transactions/split-payments-at-authorization/) for details on the format and contents of the list.
+         * Split payment values to pass to the Adyen API on payment authorization. See [the Adyen
+         * docs](https://docs.adyen.com/platforms/online-payments/split-transactions/split-payments-at-authorization/)
+         * for details on the format and contents of the list.
          */
         public Builder authorization(List<Map<String, Object>> authorization) {
             Utils.checkNotNull(authorization, "authorization");
@@ -196,7 +222,9 @@ public class AdyenSplitsOptions {
         }
 
         /**
-         * Split payment values to pass to the Adyen API on payment authorization. See [the Adyen docs](https://docs.adyen.com/platforms/online-payments/split-transactions/split-payments-at-authorization/) for details on the format and contents of the list.
+         * Split payment values to pass to the Adyen API on payment authorization. See [the Adyen
+         * docs](https://docs.adyen.com/platforms/online-payments/split-transactions/split-payments-at-authorization/)
+         * for details on the format and contents of the list.
          */
         public Builder authorization(JsonNullable<? extends List<Map<String, Object>>> authorization) {
             Utils.checkNotNull(authorization, "authorization");
@@ -206,7 +234,9 @@ public class AdyenSplitsOptions {
 
 
         /**
-         * Split payment values to pass to the Adyen API on payment capture. See [the Adyen docs](https://docs.adyen.com/platforms/online-payments/split-transactions/split-payments-at-capture/) for details on the format and contents of the list.
+         * Split payment values to pass to the Adyen API on payment capture. See [the Adyen
+         * docs](https://docs.adyen.com/platforms/online-payments/split-transactions/split-payments-at-capture/)
+         * for details on the format and contents of the list.
          */
         public Builder capture(List<Map<String, Object>> capture) {
             Utils.checkNotNull(capture, "capture");
@@ -215,7 +245,9 @@ public class AdyenSplitsOptions {
         }
 
         /**
-         * Split payment values to pass to the Adyen API on payment capture. See [the Adyen docs](https://docs.adyen.com/platforms/online-payments/split-transactions/split-payments-at-capture/) for details on the format and contents of the list.
+         * Split payment values to pass to the Adyen API on payment capture. See [the Adyen
+         * docs](https://docs.adyen.com/platforms/online-payments/split-transactions/split-payments-at-capture/)
+         * for details on the format and contents of the list.
          */
         public Builder capture(JsonNullable<? extends List<Map<String, Object>>> capture) {
             Utils.checkNotNull(capture, "capture");
@@ -225,7 +257,9 @@ public class AdyenSplitsOptions {
 
 
         /**
-         * Split payment values to pass to the Adyen API on payment refund. See [the Adyen docs](https://docs.adyen.com/platforms/online-payments/split-transactions/split-refunds/) for details on the format and contents of the list.
+         * Split payment values to pass to the Adyen API on payment refund. See [the Adyen
+         * docs](https://docs.adyen.com/platforms/online-payments/split-transactions/split-refunds/) for
+         * details on the format and contents of the list.
          */
         public Builder refund(List<Map<String, Object>> refund) {
             Utils.checkNotNull(refund, "refund");
@@ -234,7 +268,9 @@ public class AdyenSplitsOptions {
         }
 
         /**
-         * Split payment values to pass to the Adyen API on payment refund. See [the Adyen docs](https://docs.adyen.com/platforms/online-payments/split-transactions/split-refunds/) for details on the format and contents of the list.
+         * Split payment values to pass to the Adyen API on payment refund. See [the Adyen
+         * docs](https://docs.adyen.com/platforms/online-payments/split-transactions/split-refunds/) for
+         * details on the format and contents of the list.
          */
         public Builder refund(JsonNullable<? extends List<Map<String, Object>>> refund) {
             Utils.checkNotNull(refund, "refund");

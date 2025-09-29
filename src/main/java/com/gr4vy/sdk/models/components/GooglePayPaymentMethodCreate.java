@@ -78,7 +78,8 @@ public class GooglePayPaymentMethodCreate {
     private String method;
 
     /**
-     * The opaque token as received from the Google Pay JS library. This format may change between JS library versions.
+     * The opaque token as received from the Google Pay JS library. This format may change between JS
+     * library versions.
      */
     @JsonProperty("token")
     private Token token;
@@ -194,7 +195,8 @@ public class GooglePayPaymentMethodCreate {
     }
 
     /**
-     * The opaque token as received from the Google Pay JS library. This format may change between JS library versions.
+     * The opaque token as received from the Google Pay JS library. This format may change between JS
+     * library versions.
      */
     @JsonIgnore
     public Token token() {
@@ -342,7 +344,8 @@ public class GooglePayPaymentMethodCreate {
     }
 
     /**
-     * The opaque token as received from the Google Pay JS library. This format may change between JS library versions.
+     * The opaque token as received from the Google Pay JS library. This format may change between JS
+     * library versions.
      */
     public GooglePayPaymentMethodCreate withToken(Token token) {
         Utils.checkNotNull(token, "token");
@@ -574,7 +577,8 @@ public class GooglePayPaymentMethodCreate {
 
 
         /**
-         * The opaque token as received from the Google Pay JS library. This format may change between JS library versions.
+         * The opaque token as received from the Google Pay JS library. This format may change between JS
+         * library versions.
          */
         public Builder token(Token token) {
             Utils.checkNotNull(token, "token");

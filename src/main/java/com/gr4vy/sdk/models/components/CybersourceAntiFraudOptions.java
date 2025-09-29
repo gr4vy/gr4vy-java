@@ -18,14 +18,16 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 public class CybersourceAntiFraudOptions {
     /**
-     * A list of merchant defined data to be passed to the Cybersource Decision Manager API. Each key needs to be a numeric string.
+     * A list of merchant defined data to be passed to the Cybersource Decision Manager API. Each key needs
+     * to be a numeric string.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("merchant_defined_data")
     private JsonNullable<? extends Map<String, String>> merchantDefinedData;
 
     /**
-     * The merchant ID to use for this transaction. This requires a meta key to be set up for use with Cybersource Decision Manager, and this overrides the connector configuration.
+     * The merchant ID to use for this transaction. This requires a meta key to be set up for use with
+     * Cybersource Decision Manager, and this overrides the connector configuration.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("meta_key_merchant_id")
@@ -56,7 +58,8 @@ public class CybersourceAntiFraudOptions {
     }
 
     /**
-     * A list of merchant defined data to be passed to the Cybersource Decision Manager API. Each key needs to be a numeric string.
+     * A list of merchant defined data to be passed to the Cybersource Decision Manager API. Each key needs
+     * to be a numeric string.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -65,7 +68,8 @@ public class CybersourceAntiFraudOptions {
     }
 
     /**
-     * The merchant ID to use for this transaction. This requires a meta key to be set up for use with Cybersource Decision Manager, and this overrides the connector configuration.
+     * The merchant ID to use for this transaction. This requires a meta key to be set up for use with
+     * Cybersource Decision Manager, and this overrides the connector configuration.
      */
     @JsonIgnore
     public JsonNullable<String> metaKeyMerchantId() {
@@ -86,7 +90,8 @@ public class CybersourceAntiFraudOptions {
 
 
     /**
-     * A list of merchant defined data to be passed to the Cybersource Decision Manager API. Each key needs to be a numeric string.
+     * A list of merchant defined data to be passed to the Cybersource Decision Manager API. Each key needs
+     * to be a numeric string.
      */
     public CybersourceAntiFraudOptions withMerchantDefinedData(Map<String, String> merchantDefinedData) {
         Utils.checkNotNull(merchantDefinedData, "merchantDefinedData");
@@ -95,7 +100,8 @@ public class CybersourceAntiFraudOptions {
     }
 
     /**
-     * A list of merchant defined data to be passed to the Cybersource Decision Manager API. Each key needs to be a numeric string.
+     * A list of merchant defined data to be passed to the Cybersource Decision Manager API. Each key needs
+     * to be a numeric string.
      */
     public CybersourceAntiFraudOptions withMerchantDefinedData(JsonNullable<? extends Map<String, String>> merchantDefinedData) {
         Utils.checkNotNull(merchantDefinedData, "merchantDefinedData");
@@ -104,7 +110,8 @@ public class CybersourceAntiFraudOptions {
     }
 
     /**
-     * The merchant ID to use for this transaction. This requires a meta key to be set up for use with Cybersource Decision Manager, and this overrides the connector configuration.
+     * The merchant ID to use for this transaction. This requires a meta key to be set up for use with
+     * Cybersource Decision Manager, and this overrides the connector configuration.
      */
     public CybersourceAntiFraudOptions withMetaKeyMerchantId(String metaKeyMerchantId) {
         Utils.checkNotNull(metaKeyMerchantId, "metaKeyMerchantId");
@@ -113,7 +120,8 @@ public class CybersourceAntiFraudOptions {
     }
 
     /**
-     * The merchant ID to use for this transaction. This requires a meta key to be set up for use with Cybersource Decision Manager, and this overrides the connector configuration.
+     * The merchant ID to use for this transaction. This requires a meta key to be set up for use with
+     * Cybersource Decision Manager, and this overrides the connector configuration.
      */
     public CybersourceAntiFraudOptions withMetaKeyMerchantId(JsonNullable<String> metaKeyMerchantId) {
         Utils.checkNotNull(metaKeyMerchantId, "metaKeyMerchantId");
@@ -183,7 +191,8 @@ public class CybersourceAntiFraudOptions {
 
 
         /**
-         * A list of merchant defined data to be passed to the Cybersource Decision Manager API. Each key needs to be a numeric string.
+         * A list of merchant defined data to be passed to the Cybersource Decision Manager API. Each key needs
+         * to be a numeric string.
          */
         public Builder merchantDefinedData(Map<String, String> merchantDefinedData) {
             Utils.checkNotNull(merchantDefinedData, "merchantDefinedData");
@@ -192,7 +201,8 @@ public class CybersourceAntiFraudOptions {
         }
 
         /**
-         * A list of merchant defined data to be passed to the Cybersource Decision Manager API. Each key needs to be a numeric string.
+         * A list of merchant defined data to be passed to the Cybersource Decision Manager API. Each key needs
+         * to be a numeric string.
          */
         public Builder merchantDefinedData(JsonNullable<? extends Map<String, String>> merchantDefinedData) {
             Utils.checkNotNull(merchantDefinedData, "merchantDefinedData");
@@ -202,7 +212,8 @@ public class CybersourceAntiFraudOptions {
 
 
         /**
-         * The merchant ID to use for this transaction. This requires a meta key to be set up for use with Cybersource Decision Manager, and this overrides the connector configuration.
+         * The merchant ID to use for this transaction. This requires a meta key to be set up for use with
+         * Cybersource Decision Manager, and this overrides the connector configuration.
          */
         public Builder metaKeyMerchantId(String metaKeyMerchantId) {
             Utils.checkNotNull(metaKeyMerchantId, "metaKeyMerchantId");
@@ -211,7 +222,8 @@ public class CybersourceAntiFraudOptions {
         }
 
         /**
-         * The merchant ID to use for this transaction. This requires a meta key to be set up for use with Cybersource Decision Manager, and this overrides the connector configuration.
+         * The merchant ID to use for this transaction. This requires a meta key to be set up for use with
+         * Cybersource Decision Manager, and this overrides the connector configuration.
          */
         public Builder metaKeyMerchantId(JsonNullable<String> metaKeyMerchantId) {
             Utils.checkNotNull(metaKeyMerchantId, "metaKeyMerchantId");

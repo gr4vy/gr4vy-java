@@ -42,7 +42,8 @@ public class PayoutSummary {
     private JsonNullable<String> id;
 
     /**
-     * The monetary amount for this payout, in the smallest currency unit for the given currency, for example `1299` cents to create an authorization for $12.99.
+     * The monetary amount for this payout, in the smallest currency unit for the given currency, for
+     * example `1299` cents to create an authorization for $12.99.
      */
     @JsonProperty("amount")
     private long amount;
@@ -198,7 +199,8 @@ public class PayoutSummary {
     }
 
     /**
-     * The monetary amount for this payout, in the smallest currency unit for the given currency, for example `1299` cents to create an authorization for $12.99.
+     * The monetary amount for this payout, in the smallest currency unit for the given currency, for
+     * example `1299` cents to create an authorization for $12.99.
      */
     @JsonIgnore
     public long amount() {
@@ -319,7 +321,8 @@ public class PayoutSummary {
     }
 
     /**
-     * The monetary amount for this payout, in the smallest currency unit for the given currency, for example `1299` cents to create an authorization for $12.99.
+     * The monetary amount for this payout, in the smallest currency unit for the given currency, for
+     * example `1299` cents to create an authorization for $12.99.
      */
     public PayoutSummary withAmount(long amount) {
         Utils.checkNotNull(amount, "amount");
@@ -593,7 +596,8 @@ public class PayoutSummary {
 
 
         /**
-         * The monetary amount for this payout, in the smallest currency unit for the given currency, for example `1299` cents to create an authorization for $12.99.
+         * The monetary amount for this payout, in the smallest currency unit for the given currency, for
+         * example `1299` cents to create an authorization for $12.99.
          */
         public Builder amount(long amount) {
             Utils.checkNotNull(amount, "amount");

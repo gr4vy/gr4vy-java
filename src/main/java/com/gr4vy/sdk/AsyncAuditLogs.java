@@ -52,7 +52,7 @@ public class AsyncAuditLogs {
      * <p>Returns a list of activity by dashboard users.
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;ListAuditLogsResponse&gt; - The async response
+     * @return {@code CompletableFuture<ListAuditLogsResponse>} - The async response
      */
     public CompletableFuture<ListAuditLogsResponse> list(ListAuditLogsRequest request) {
         return list(request, Optional.empty());
@@ -65,7 +65,7 @@ public class AsyncAuditLogs {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;ListAuditLogsResponse&gt; - The async response
+     * @return {@code CompletableFuture<ListAuditLogsResponse>} - The async response
      */
     public CompletableFuture<ListAuditLogsResponse> list(ListAuditLogsRequest request, Optional<Options> options) {
         AsyncRequestOperation<ListAuditLogsRequest, ListAuditLogsResponse> operation

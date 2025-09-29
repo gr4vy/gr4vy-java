@@ -120,28 +120,33 @@ public class PaymentService {
     private JsonNullable<Boolean> threeDSecureEnabled;
 
     /**
-     * An object containing a key for each supported card schemes, and for each key an object with the 3DS profile for this service for that scheme.
+     * An object containing a key for each supported card schemes, and for each key an object with the 3DS
+     * profile for this service for that scheme.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("merchant_profile")
     private JsonNullable<? extends Map<String, MerchantProfileSchemeSummary>> merchantProfile;
 
     /**
-     * The URL that needs to be configured with this payment service as the receiving endpoint for webhooks from the service to our system. Currently, we dp not yet automatically register webhooks on setup, and therefore webhooks need to be registered manually by the merchant.
+     * The URL that needs to be configured with this payment service as the receiving endpoint for webhooks
+     * from the service to our system. Currently, we dp not yet automatically register webhooks on setup,
+     * and therefore webhooks need to be registered manually by the merchant.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("webhook_url")
     private JsonNullable<String> webhookUrl;
 
     /**
-     * The non-secret credential fields that have been configured for this payment service. Any secret fields are omitted.
+     * The non-secret credential fields that have been configured for this payment service. Any secret
+     * fields are omitted.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("fields")
     private JsonNullable<? extends List<Field>> fields;
 
     /**
-     * The non-secret reporting fields that have been configured for this payment service. Any secret fields are omitted.
+     * The non-secret reporting fields that have been configured for this payment service. Any secret
+     * fields are omitted.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("reporting_fields")
@@ -382,7 +387,8 @@ public class PaymentService {
     }
 
     /**
-     * An object containing a key for each supported card schemes, and for each key an object with the 3DS profile for this service for that scheme.
+     * An object containing a key for each supported card schemes, and for each key an object with the 3DS
+     * profile for this service for that scheme.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -391,7 +397,9 @@ public class PaymentService {
     }
 
     /**
-     * The URL that needs to be configured with this payment service as the receiving endpoint for webhooks from the service to our system. Currently, we dp not yet automatically register webhooks on setup, and therefore webhooks need to be registered manually by the merchant.
+     * The URL that needs to be configured with this payment service as the receiving endpoint for webhooks
+     * from the service to our system. Currently, we dp not yet automatically register webhooks on setup,
+     * and therefore webhooks need to be registered manually by the merchant.
      */
     @JsonIgnore
     public JsonNullable<String> webhookUrl() {
@@ -399,7 +407,8 @@ public class PaymentService {
     }
 
     /**
-     * The non-secret credential fields that have been configured for this payment service. Any secret fields are omitted.
+     * The non-secret credential fields that have been configured for this payment service. Any secret
+     * fields are omitted.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -408,7 +417,8 @@ public class PaymentService {
     }
 
     /**
-     * The non-secret reporting fields that have been configured for this payment service. Any secret fields are omitted.
+     * The non-secret reporting fields that have been configured for this payment service. Any secret
+     * fields are omitted.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -605,7 +615,8 @@ public class PaymentService {
     }
 
     /**
-     * An object containing a key for each supported card schemes, and for each key an object with the 3DS profile for this service for that scheme.
+     * An object containing a key for each supported card schemes, and for each key an object with the 3DS
+     * profile for this service for that scheme.
      */
     public PaymentService withMerchantProfile(Map<String, MerchantProfileSchemeSummary> merchantProfile) {
         Utils.checkNotNull(merchantProfile, "merchantProfile");
@@ -614,7 +625,8 @@ public class PaymentService {
     }
 
     /**
-     * An object containing a key for each supported card schemes, and for each key an object with the 3DS profile for this service for that scheme.
+     * An object containing a key for each supported card schemes, and for each key an object with the 3DS
+     * profile for this service for that scheme.
      */
     public PaymentService withMerchantProfile(JsonNullable<? extends Map<String, MerchantProfileSchemeSummary>> merchantProfile) {
         Utils.checkNotNull(merchantProfile, "merchantProfile");
@@ -623,7 +635,9 @@ public class PaymentService {
     }
 
     /**
-     * The URL that needs to be configured with this payment service as the receiving endpoint for webhooks from the service to our system. Currently, we dp not yet automatically register webhooks on setup, and therefore webhooks need to be registered manually by the merchant.
+     * The URL that needs to be configured with this payment service as the receiving endpoint for webhooks
+     * from the service to our system. Currently, we dp not yet automatically register webhooks on setup,
+     * and therefore webhooks need to be registered manually by the merchant.
      */
     public PaymentService withWebhookUrl(String webhookUrl) {
         Utils.checkNotNull(webhookUrl, "webhookUrl");
@@ -632,7 +646,9 @@ public class PaymentService {
     }
 
     /**
-     * The URL that needs to be configured with this payment service as the receiving endpoint for webhooks from the service to our system. Currently, we dp not yet automatically register webhooks on setup, and therefore webhooks need to be registered manually by the merchant.
+     * The URL that needs to be configured with this payment service as the receiving endpoint for webhooks
+     * from the service to our system. Currently, we dp not yet automatically register webhooks on setup,
+     * and therefore webhooks need to be registered manually by the merchant.
      */
     public PaymentService withWebhookUrl(JsonNullable<String> webhookUrl) {
         Utils.checkNotNull(webhookUrl, "webhookUrl");
@@ -641,7 +657,8 @@ public class PaymentService {
     }
 
     /**
-     * The non-secret credential fields that have been configured for this payment service. Any secret fields are omitted.
+     * The non-secret credential fields that have been configured for this payment service. Any secret
+     * fields are omitted.
      */
     public PaymentService withFields(List<Field> fields) {
         Utils.checkNotNull(fields, "fields");
@@ -650,7 +667,8 @@ public class PaymentService {
     }
 
     /**
-     * The non-secret credential fields that have been configured for this payment service. Any secret fields are omitted.
+     * The non-secret credential fields that have been configured for this payment service. Any secret
+     * fields are omitted.
      */
     public PaymentService withFields(JsonNullable<? extends List<Field>> fields) {
         Utils.checkNotNull(fields, "fields");
@@ -659,7 +677,8 @@ public class PaymentService {
     }
 
     /**
-     * The non-secret reporting fields that have been configured for this payment service. Any secret fields are omitted.
+     * The non-secret reporting fields that have been configured for this payment service. Any secret
+     * fields are omitted.
      */
     public PaymentService withReportingFields(List<Field> reportingFields) {
         Utils.checkNotNull(reportingFields, "reportingFields");
@@ -668,7 +687,8 @@ public class PaymentService {
     }
 
     /**
-     * The non-secret reporting fields that have been configured for this payment service. Any secret fields are omitted.
+     * The non-secret reporting fields that have been configured for this payment service. Any secret
+     * fields are omitted.
      */
     public PaymentService withReportingFields(JsonNullable<? extends List<Field>> reportingFields) {
         Utils.checkNotNull(reportingFields, "reportingFields");
@@ -1013,7 +1033,8 @@ public class PaymentService {
 
 
         /**
-         * An object containing a key for each supported card schemes, and for each key an object with the 3DS profile for this service for that scheme.
+         * An object containing a key for each supported card schemes, and for each key an object with the 3DS
+         * profile for this service for that scheme.
          */
         public Builder merchantProfile(Map<String, MerchantProfileSchemeSummary> merchantProfile) {
             Utils.checkNotNull(merchantProfile, "merchantProfile");
@@ -1022,7 +1043,8 @@ public class PaymentService {
         }
 
         /**
-         * An object containing a key for each supported card schemes, and for each key an object with the 3DS profile for this service for that scheme.
+         * An object containing a key for each supported card schemes, and for each key an object with the 3DS
+         * profile for this service for that scheme.
          */
         public Builder merchantProfile(JsonNullable<? extends Map<String, MerchantProfileSchemeSummary>> merchantProfile) {
             Utils.checkNotNull(merchantProfile, "merchantProfile");
@@ -1032,7 +1054,9 @@ public class PaymentService {
 
 
         /**
-         * The URL that needs to be configured with this payment service as the receiving endpoint for webhooks from the service to our system. Currently, we dp not yet automatically register webhooks on setup, and therefore webhooks need to be registered manually by the merchant.
+         * The URL that needs to be configured with this payment service as the receiving endpoint for webhooks
+         * from the service to our system. Currently, we dp not yet automatically register webhooks on setup,
+         * and therefore webhooks need to be registered manually by the merchant.
          */
         public Builder webhookUrl(String webhookUrl) {
             Utils.checkNotNull(webhookUrl, "webhookUrl");
@@ -1041,7 +1065,9 @@ public class PaymentService {
         }
 
         /**
-         * The URL that needs to be configured with this payment service as the receiving endpoint for webhooks from the service to our system. Currently, we dp not yet automatically register webhooks on setup, and therefore webhooks need to be registered manually by the merchant.
+         * The URL that needs to be configured with this payment service as the receiving endpoint for webhooks
+         * from the service to our system. Currently, we dp not yet automatically register webhooks on setup,
+         * and therefore webhooks need to be registered manually by the merchant.
          */
         public Builder webhookUrl(JsonNullable<String> webhookUrl) {
             Utils.checkNotNull(webhookUrl, "webhookUrl");
@@ -1051,7 +1077,8 @@ public class PaymentService {
 
 
         /**
-         * The non-secret credential fields that have been configured for this payment service. Any secret fields are omitted.
+         * The non-secret credential fields that have been configured for this payment service. Any secret
+         * fields are omitted.
          */
         public Builder fields(List<Field> fields) {
             Utils.checkNotNull(fields, "fields");
@@ -1060,7 +1087,8 @@ public class PaymentService {
         }
 
         /**
-         * The non-secret credential fields that have been configured for this payment service. Any secret fields are omitted.
+         * The non-secret credential fields that have been configured for this payment service. Any secret
+         * fields are omitted.
          */
         public Builder fields(JsonNullable<? extends List<Field>> fields) {
             Utils.checkNotNull(fields, "fields");
@@ -1070,7 +1098,8 @@ public class PaymentService {
 
 
         /**
-         * The non-secret reporting fields that have been configured for this payment service. Any secret fields are omitted.
+         * The non-secret reporting fields that have been configured for this payment service. Any secret
+         * fields are omitted.
          */
         public Builder reportingFields(List<Field> reportingFields) {
             Utils.checkNotNull(reportingFields, "reportingFields");
@@ -1079,7 +1108,8 @@ public class PaymentService {
         }
 
         /**
-         * The non-secret reporting fields that have been configured for this payment service. Any secret fields are omitted.
+         * The non-secret reporting fields that have been configured for this payment service. Any secret
+         * fields are omitted.
          */
         public Builder reportingFields(JsonNullable<? extends List<Field>> reportingFields) {
             Utils.checkNotNull(reportingFields, "reportingFields");

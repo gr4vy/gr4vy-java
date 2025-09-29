@@ -39,7 +39,8 @@ public class AsyncPaymentOptions {
     /**
      * List payment options
      * 
-     * <p>List the payment options available at checkout. filtering by country, currency, and additional fields passed to Flow rules.
+     * <p>List the payment options available at checkout. filtering by country, currency, and additional
+     * fields passed to Flow rules.
      * 
      * @return The async call builder
      */
@@ -50,10 +51,11 @@ public class AsyncPaymentOptions {
     /**
      * List payment options
      * 
-     * <p>List the payment options available at checkout. filtering by country, currency, and additional fields passed to Flow rules.
+     * <p>List the payment options available at checkout. filtering by country, currency, and additional
+     * fields passed to Flow rules.
      * 
      * @param paymentOptionRequest 
-     * @return CompletableFuture&lt;ListPaymentOptionsResponse&gt; - The async response
+     * @return {@code CompletableFuture<ListPaymentOptionsResponse>} - The async response
      */
     public CompletableFuture<ListPaymentOptionsResponse> list(PaymentOptionRequest paymentOptionRequest) {
         return list(JsonNullable.undefined(), paymentOptionRequest);
@@ -62,11 +64,12 @@ public class AsyncPaymentOptions {
     /**
      * List payment options
      * 
-     * <p>List the payment options available at checkout. filtering by country, currency, and additional fields passed to Flow rules.
+     * <p>List the payment options available at checkout. filtering by country, currency, and additional
+     * fields passed to Flow rules.
      * 
      * @param merchantAccountId 
      * @param paymentOptionRequest 
-     * @return CompletableFuture&lt;ListPaymentOptionsResponse&gt; - The async response
+     * @return {@code CompletableFuture<ListPaymentOptionsResponse>} - The async response
      */
     public CompletableFuture<ListPaymentOptionsResponse> list(JsonNullable<String> merchantAccountId, PaymentOptionRequest paymentOptionRequest) {
         ListPaymentOptionsRequest request =

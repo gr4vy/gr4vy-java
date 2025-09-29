@@ -63,7 +63,7 @@ public class AsyncPayouts {
      * 
      * <p>Returns a list of payouts made.
      * 
-     * @return CompletableFuture&lt;ListPayoutsResponse&gt; - The async response
+     * @return {@code CompletableFuture<ListPayoutsResponse>} - The async response
      */
     public CompletableFuture<ListPayoutsResponse> listDirect() {
         return list(
@@ -80,7 +80,7 @@ public class AsyncPayouts {
      * @param limit The maximum number of items that are at returned.
      * @param merchantAccountId 
      * @param options additional options
-     * @return CompletableFuture&lt;ListPayoutsResponse&gt; - The async response
+     * @return {@code CompletableFuture<ListPayoutsResponse>} - The async response
      */
     public CompletableFuture<ListPayoutsResponse> list(
             JsonNullable<String> cursor, Optional<Long> limit,
@@ -120,7 +120,7 @@ public class AsyncPayouts {
      * @param payoutCreate PayoutCreate
      *         
      *         Represents the data required to create a new payout.
-     * @return CompletableFuture&lt;CreatePayoutResponse&gt; - The async response
+     * @return {@code CompletableFuture<CreatePayoutResponse>} - The async response
      */
     public CompletableFuture<CreatePayoutResponse> create(PayoutCreate payoutCreate) {
         return create(JsonNullable.undefined(), payoutCreate);
@@ -135,7 +135,7 @@ public class AsyncPayouts {
      * @param payoutCreate PayoutCreate
      *         
      *         Represents the data required to create a new payout.
-     * @return CompletableFuture&lt;CreatePayoutResponse&gt; - The async response
+     * @return {@code CompletableFuture<CreatePayoutResponse>} - The async response
      */
     public CompletableFuture<CreatePayoutResponse> create(JsonNullable<String> merchantAccountId, PayoutCreate payoutCreate) {
         CreatePayoutRequest request =
@@ -168,7 +168,7 @@ public class AsyncPayouts {
      * <p>Retrieves a payout.
      * 
      * @param payoutId 
-     * @return CompletableFuture&lt;GetPayoutResponse&gt; - The async response
+     * @return {@code CompletableFuture<GetPayoutResponse>} - The async response
      */
     public CompletableFuture<GetPayoutResponse> get(String payoutId) {
         return get(payoutId, JsonNullable.undefined(), Optional.empty());
@@ -182,7 +182,7 @@ public class AsyncPayouts {
      * @param payoutId 
      * @param merchantAccountId 
      * @param options additional options
-     * @return CompletableFuture&lt;GetPayoutResponse&gt; - The async response
+     * @return {@code CompletableFuture<GetPayoutResponse>} - The async response
      */
     public CompletableFuture<GetPayoutResponse> get(
             String payoutId, JsonNullable<String> merchantAccountId,

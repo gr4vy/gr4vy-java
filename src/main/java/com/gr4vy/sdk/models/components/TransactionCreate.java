@@ -24,54 +24,73 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 public class TransactionCreate {
     /**
-     * The monetary amount for this transaction, in the smallest currency unit for the given currency, for example `1299` cents to create an authorization for `$12.99`. If the `intent` is set to `capture`, an amount greater than zero must be supplied. All gift card amounts are subtracted from this amount before the remainder is charged to the provided `payment_method`.
+     * The monetary amount for this transaction, in the smallest currency unit for the given currency, for
+     * example `1299` cents to create an authorization for `$12.99`. If the `intent` is set to `capture`,
+     * an amount greater than zero must be supplied. All gift card amounts are subtracted from this amount
+     * before the remainder is charged to the provided `payment_method`.
      */
     @JsonProperty("amount")
     private long amount;
 
     /**
-     * A supported ISO 4217 currency code. For redirect requests, this value must match the one specified for `currency` in `payment_method`.
+     * A supported ISO 4217 currency code. For redirect requests, this value must match the one specified
+     * for `currency` in `payment_method`.
      */
     @JsonProperty("currency")
     private String currency;
 
     /**
-     * The 2-letter ISO code of the country where the transaction is processed. This is also used to filter the payment services that can process the transaction. If this value is provided for redirect requests and it's not `null`, it must match the one specified for `country` in `payment_method`. Otherwise, the value specified for `country` in `payment_method` will be assumed implicitly.
+     * The 2-letter ISO code of the country where the transaction is processed. This is also used to filter
+     * the payment services that can process the transaction. If this value is provided for redirect
+     * requests and it's not `null`, it must match the one specified for `country` in `payment_method`.
+     * 
+     * <p>Otherwise, the value specified for `country` in `payment_method` will be assumed implicitly.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("country")
     private JsonNullable<String> country;
 
     /**
-     * The optional payment method to use for this transaction. This field is required if no `gift_cards` have been added.
+     * The optional payment method to use for this transaction. This field is required if no `gift_cards`
+     * have been added.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("payment_method")
     private JsonNullable<? extends TransactionCreatePaymentMethod> paymentMethod;
 
     /**
-     * Guest buyer details provided inline rather than creating a buyer resource beforehand and using the `buyer_id` or `buyer_external_identifier` keys. No buyer resource will be created on Gr4vy when used.
+     * Guest buyer details provided inline rather than creating a buyer resource beforehand and using the
+     * `buyer_id` or `buyer_external_identifier` keys. No buyer resource will be created on Gr4vy when
+     * used.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("buyer")
     private JsonNullable<? extends GuestBuyerInput> buyer;
 
     /**
-     * The ID of the buyer to associate this payment method to. If this field is provided then the `buyer_external_identifier` field needs to be unset. If a stored payment method or gift card is provided, then the buyer for that payment method needs to match the buyer for this field.
+     * The ID of the buyer to associate this payment method to. If this field is provided then the
+     * `buyer_external_identifier` field needs to be unset. If a stored payment method or gift card is
+     * provided, then the buyer for that payment method needs to match the buyer for this field.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("buyer_id")
     private JsonNullable<String> buyerId;
 
     /**
-     * The `external_identifier` of the buyer to associate this payment method to. If this field is provided then the `buyer_id` field needs to be unset. If a stored payment method or gift card is provided, then the buyer for that payment method needs to match the buyer for this field.
+     * The `external_identifier` of the buyer to associate this payment method to. If this field is
+     * provided then the `buyer_id` field needs to be unset. If a stored payment method or gift card is
+     * provided, then the buyer for that payment method needs to match the buyer for this field.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("buyer_external_identifier")
     private JsonNullable<String> buyerExternalIdentifier;
 
     /**
-     * The optional gift card(s) to use for this transaction. At least one gift card is required if no other `payment_method` has been added. By default, only a maximum limit of 10 gift cards may be used in a single transaction. Please contact our team to change this limit.
+     * The optional gift card(s) to use for this transaction. At least one gift card is required if no
+     * other `payment_method` has been added. By default, only a maximum limit of 10 gift cards may be used
+     * in a single transaction.
+     * 
+     * <p>Please contact our team to change this limit.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("gift_cards")
@@ -90,9 +109,12 @@ public class TransactionCreate {
     private Optional<? extends TransactionIntent> intent;
 
     /**
-     * Whether or not to also try and store the payment method with us so that it can be used again for future use. This is only supported for payment methods that support this feature. There are also a few restrictions on how the flag may be set:
+     * Whether or not to also try and store the payment method with us so that it can be used again for
+     * future use. This is only supported for payment methods that support this feature. There are also a
+     * few restrictions on how the flag may be set:
      * 
-     * <p>* The flag has to be set to `true` when the `payment_source` is set to `recurring` or `installment`, and `merchant_initiated` is set to `false`.
+     * <p>* The flag has to be set to `true` when the `payment_source` is set to `recurring` or `installment`,
+     * and `merchant_initiated` is set to `false`.
      * * The flag has to be set to `false` (or not set) when using a previously vaulted payment method.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -100,21 +122,25 @@ public class TransactionCreate {
     private Optional<Boolean> store;
 
     /**
-     * Pass through 3-D Secure data to support external 3-D Secure authorisation. If using an external 3-D Secure provider, you should not pass a `redirect_url` in the `payment_method` object for a transaction.
+     * Pass through 3-D Secure data to support external 3-D Secure authorisation. If using an external 3-D
+     * Secure provider, you should not pass a `redirect_url` in the `payment_method` object for a
+     * transaction.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("three_d_secure_data")
     private JsonNullable<? extends ThreeDSecureData> threeDSecureData;
 
     /**
-     * Any additional information about the transaction that you would like to store as key-value pairs. This data is passed to payment service providers that support it.
+     * Any additional information about the transaction that you would like to store as key-value pairs.
+     * This data is passed to payment service providers that support it.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("metadata")
     private JsonNullable<? extends Map<String, String>> metadata;
 
     /**
-     * Indicates whether the transaction represents a subsequent payment coming from a setup recurring payment. Please note there are some restrictions on how this flag may be used.
+     * Indicates whether the transaction represents a subsequent payment coming from a setup recurring
+     * payment. Please note there are some restrictions on how this flag may be used.
      * 
      * <p>The flag can only be `false` (or not set) when the transaction meets one of the following criteria:
      * 
@@ -166,7 +192,11 @@ public class TransactionCreate {
     private JsonNullable<? extends StatementDescriptor> statementDescriptor;
 
     /**
-     * A scheme's transaction identifier to use in connecting a merchant initiated transaction to a previous customer initiated transaction. If not provided, and a qualifying customer initiated transaction has been previously made with the stored payment method, then Gr4vy will populate this value with the identifier returned for that transaction. This field is also know as the Visa Transaction Identifier, or Mastercard Trace ID.
+     * A scheme's transaction identifier to use in connecting a merchant initiated transaction to a
+     * previous customer initiated transaction. If not provided, and a qualifying customer initiated
+     * transaction has been previously made with the stored payment method, then Gr4vy will populate this
+     * value with the identifier returned for that transaction. This field is also know as the Visa
+     * Transaction Identifier, or Mastercard Trace ID.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("previous_scheme_transaction_id")
@@ -180,14 +210,22 @@ public class TransactionCreate {
     private JsonNullable<? extends BrowserInfo> browserInfo;
 
     /**
-     * The unique identifier of a set of shipping details stored for the buyer. If provided, the created transaction will include a copy of the details at the point of transaction creation; i.e. it will not be affected by later changes to the detail in the database.
+     * The unique identifier of a set of shipping details stored for the buyer. If provided, the created
+     * transaction will include a copy of the details at the point of transaction creation; i.e. it will
+     * not be affected by later changes to the detail in the database.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("shipping_details_id")
     private JsonNullable<String> shippingDetailsId;
 
     /**
-     * Allows for passing optional configuration per connection to take advantage of connection specific features. When provided, the data is only passed to the target connection type to prevent sharing configuration across connections. Please note that each of the keys this object are in kebab-case, for example `cybersource-anti-fraud` as they represent the ID of the connector. All the other keys will be snake case, for example `merchant_defined_data` or camel case to match an external API that the connector uses.
+     * Allows for passing optional configuration per connection to take advantage of connection specific
+     * features. When provided, the data is only passed to the target connection type to prevent sharing
+     * configuration across connections. Please note that each of the keys this object are in kebab-case,
+     * for example `cybersource-anti-fraud` as they represent the ID of the connector.
+     * 
+     * <p>All the other keys will be snake case, for example `merchant_defined_data` or camel case to match an
+     * external API that the connector uses.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("connection_options")
@@ -199,7 +237,8 @@ public class TransactionCreate {
      * <p>- When `async_capture` is `false` (default), the transaction is captured in the same request.
      * - When `async_capture` is `true`, the transaction is automatically captured at a later time.
      * 
-     * <p>Redirect transactions are not affected by this flag. This flag can only be set to `true` when `intent` is set to `capture`.
+     * <p>Redirect transactions are not affected by this flag. This flag can only be set to `true` when
+     * `intent` is set to `capture`.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("async_capture")
@@ -213,14 +252,16 @@ public class TransactionCreate {
     private JsonNullable<String> antiFraudFingerprint;
 
     /**
-     * The unique identifier of an existing payment service. When provided, the created transaction will be processed by the given payment service and any routing rules will be skipped.
+     * The unique identifier of an existing payment service. When provided, the created transaction will be
+     * processed by the given payment service and any routing rules will be skipped.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("payment_service_id")
     private JsonNullable<String> paymentServiceId;
 
     /**
-     * Marks the transaction as an AFT. Requires the payment service to support this feature, and might `recipient` and `buyer` data
+     * Marks the transaction as an AFT. Requires the payment service to support this feature, and might
+     * `recipient` and `buyer` data
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("account_funding_transaction")
@@ -248,7 +289,8 @@ public class TransactionCreate {
     private JsonNullable<Long> installmentCount;
 
     /**
-     * The sales tax amount for this transaction, represented as a monetary amount in the smallest currency unit for the given currency, for example `1299` cents to create an authorization for `$12.99`
+     * The sales tax amount for this transaction, represented as a monetary amount in the smallest currency
+     * unit for the given currency, for example `1299` cents to create an authorization for `$12.99`
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("tax_amount")
@@ -430,7 +472,10 @@ public class TransactionCreate {
     }
 
     /**
-     * The monetary amount for this transaction, in the smallest currency unit for the given currency, for example `1299` cents to create an authorization for `$12.99`. If the `intent` is set to `capture`, an amount greater than zero must be supplied. All gift card amounts are subtracted from this amount before the remainder is charged to the provided `payment_method`.
+     * The monetary amount for this transaction, in the smallest currency unit for the given currency, for
+     * example `1299` cents to create an authorization for `$12.99`. If the `intent` is set to `capture`,
+     * an amount greater than zero must be supplied. All gift card amounts are subtracted from this amount
+     * before the remainder is charged to the provided `payment_method`.
      */
     @JsonIgnore
     public long amount() {
@@ -438,7 +483,8 @@ public class TransactionCreate {
     }
 
     /**
-     * A supported ISO 4217 currency code. For redirect requests, this value must match the one specified for `currency` in `payment_method`.
+     * A supported ISO 4217 currency code. For redirect requests, this value must match the one specified
+     * for `currency` in `payment_method`.
      */
     @JsonIgnore
     public String currency() {
@@ -446,7 +492,11 @@ public class TransactionCreate {
     }
 
     /**
-     * The 2-letter ISO code of the country where the transaction is processed. This is also used to filter the payment services that can process the transaction. If this value is provided for redirect requests and it's not `null`, it must match the one specified for `country` in `payment_method`. Otherwise, the value specified for `country` in `payment_method` will be assumed implicitly.
+     * The 2-letter ISO code of the country where the transaction is processed. This is also used to filter
+     * the payment services that can process the transaction. If this value is provided for redirect
+     * requests and it's not `null`, it must match the one specified for `country` in `payment_method`.
+     * 
+     * <p>Otherwise, the value specified for `country` in `payment_method` will be assumed implicitly.
      */
     @JsonIgnore
     public JsonNullable<String> country() {
@@ -454,7 +504,8 @@ public class TransactionCreate {
     }
 
     /**
-     * The optional payment method to use for this transaction. This field is required if no `gift_cards` have been added.
+     * The optional payment method to use for this transaction. This field is required if no `gift_cards`
+     * have been added.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -463,7 +514,9 @@ public class TransactionCreate {
     }
 
     /**
-     * Guest buyer details provided inline rather than creating a buyer resource beforehand and using the `buyer_id` or `buyer_external_identifier` keys. No buyer resource will be created on Gr4vy when used.
+     * Guest buyer details provided inline rather than creating a buyer resource beforehand and using the
+     * `buyer_id` or `buyer_external_identifier` keys. No buyer resource will be created on Gr4vy when
+     * used.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -472,7 +525,9 @@ public class TransactionCreate {
     }
 
     /**
-     * The ID of the buyer to associate this payment method to. If this field is provided then the `buyer_external_identifier` field needs to be unset. If a stored payment method or gift card is provided, then the buyer for that payment method needs to match the buyer for this field.
+     * The ID of the buyer to associate this payment method to. If this field is provided then the
+     * `buyer_external_identifier` field needs to be unset. If a stored payment method or gift card is
+     * provided, then the buyer for that payment method needs to match the buyer for this field.
      */
     @JsonIgnore
     public JsonNullable<String> buyerId() {
@@ -480,7 +535,9 @@ public class TransactionCreate {
     }
 
     /**
-     * The `external_identifier` of the buyer to associate this payment method to. If this field is provided then the `buyer_id` field needs to be unset. If a stored payment method or gift card is provided, then the buyer for that payment method needs to match the buyer for this field.
+     * The `external_identifier` of the buyer to associate this payment method to. If this field is
+     * provided then the `buyer_id` field needs to be unset. If a stored payment method or gift card is
+     * provided, then the buyer for that payment method needs to match the buyer for this field.
      */
     @JsonIgnore
     public JsonNullable<String> buyerExternalIdentifier() {
@@ -488,7 +545,11 @@ public class TransactionCreate {
     }
 
     /**
-     * The optional gift card(s) to use for this transaction. At least one gift card is required if no other `payment_method` has been added. By default, only a maximum limit of 10 gift cards may be used in a single transaction. Please contact our team to change this limit.
+     * The optional gift card(s) to use for this transaction. At least one gift card is required if no
+     * other `payment_method` has been added. By default, only a maximum limit of 10 gift cards may be used
+     * in a single transaction.
+     * 
+     * <p>Please contact our team to change this limit.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -511,9 +572,12 @@ public class TransactionCreate {
     }
 
     /**
-     * Whether or not to also try and store the payment method with us so that it can be used again for future use. This is only supported for payment methods that support this feature. There are also a few restrictions on how the flag may be set:
+     * Whether or not to also try and store the payment method with us so that it can be used again for
+     * future use. This is only supported for payment methods that support this feature. There are also a
+     * few restrictions on how the flag may be set:
      * 
-     * <p>* The flag has to be set to `true` when the `payment_source` is set to `recurring` or `installment`, and `merchant_initiated` is set to `false`.
+     * <p>* The flag has to be set to `true` when the `payment_source` is set to `recurring` or `installment`,
+     * and `merchant_initiated` is set to `false`.
      * * The flag has to be set to `false` (or not set) when using a previously vaulted payment method.
      */
     @JsonIgnore
@@ -522,7 +586,9 @@ public class TransactionCreate {
     }
 
     /**
-     * Pass through 3-D Secure data to support external 3-D Secure authorisation. If using an external 3-D Secure provider, you should not pass a `redirect_url` in the `payment_method` object for a transaction.
+     * Pass through 3-D Secure data to support external 3-D Secure authorisation. If using an external 3-D
+     * Secure provider, you should not pass a `redirect_url` in the `payment_method` object for a
+     * transaction.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -531,7 +597,8 @@ public class TransactionCreate {
     }
 
     /**
-     * Any additional information about the transaction that you would like to store as key-value pairs. This data is passed to payment service providers that support it.
+     * Any additional information about the transaction that you would like to store as key-value pairs.
+     * This data is passed to payment service providers that support it.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -540,7 +607,8 @@ public class TransactionCreate {
     }
 
     /**
-     * Indicates whether the transaction represents a subsequent payment coming from a setup recurring payment. Please note there are some restrictions on how this flag may be used.
+     * Indicates whether the transaction represents a subsequent payment coming from a setup recurring
+     * payment. Please note there are some restrictions on how this flag may be used.
      * 
      * <p>The flag can only be `false` (or not set) when the transaction meets one of the following criteria:
      * 
@@ -602,7 +670,11 @@ public class TransactionCreate {
     }
 
     /**
-     * A scheme's transaction identifier to use in connecting a merchant initiated transaction to a previous customer initiated transaction. If not provided, and a qualifying customer initiated transaction has been previously made with the stored payment method, then Gr4vy will populate this value with the identifier returned for that transaction. This field is also know as the Visa Transaction Identifier, or Mastercard Trace ID.
+     * A scheme's transaction identifier to use in connecting a merchant initiated transaction to a
+     * previous customer initiated transaction. If not provided, and a qualifying customer initiated
+     * transaction has been previously made with the stored payment method, then Gr4vy will populate this
+     * value with the identifier returned for that transaction. This field is also know as the Visa
+     * Transaction Identifier, or Mastercard Trace ID.
      */
     @JsonIgnore
     public JsonNullable<String> previousSchemeTransactionId() {
@@ -619,7 +691,9 @@ public class TransactionCreate {
     }
 
     /**
-     * The unique identifier of a set of shipping details stored for the buyer. If provided, the created transaction will include a copy of the details at the point of transaction creation; i.e. it will not be affected by later changes to the detail in the database.
+     * The unique identifier of a set of shipping details stored for the buyer. If provided, the created
+     * transaction will include a copy of the details at the point of transaction creation; i.e. it will
+     * not be affected by later changes to the detail in the database.
      */
     @JsonIgnore
     public JsonNullable<String> shippingDetailsId() {
@@ -627,7 +701,13 @@ public class TransactionCreate {
     }
 
     /**
-     * Allows for passing optional configuration per connection to take advantage of connection specific features. When provided, the data is only passed to the target connection type to prevent sharing configuration across connections. Please note that each of the keys this object are in kebab-case, for example `cybersource-anti-fraud` as they represent the ID of the connector. All the other keys will be snake case, for example `merchant_defined_data` or camel case to match an external API that the connector uses.
+     * Allows for passing optional configuration per connection to take advantage of connection specific
+     * features. When provided, the data is only passed to the target connection type to prevent sharing
+     * configuration across connections. Please note that each of the keys this object are in kebab-case,
+     * for example `cybersource-anti-fraud` as they represent the ID of the connector.
+     * 
+     * <p>All the other keys will be snake case, for example `merchant_defined_data` or camel case to match an
+     * external API that the connector uses.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -641,7 +721,8 @@ public class TransactionCreate {
      * <p>- When `async_capture` is `false` (default), the transaction is captured in the same request.
      * - When `async_capture` is `true`, the transaction is automatically captured at a later time.
      * 
-     * <p>Redirect transactions are not affected by this flag. This flag can only be set to `true` when `intent` is set to `capture`.
+     * <p>Redirect transactions are not affected by this flag. This flag can only be set to `true` when
+     * `intent` is set to `capture`.
      */
     @JsonIgnore
     public Optional<Boolean> asyncCapture() {
@@ -657,7 +738,8 @@ public class TransactionCreate {
     }
 
     /**
-     * The unique identifier of an existing payment service. When provided, the created transaction will be processed by the given payment service and any routing rules will be skipped.
+     * The unique identifier of an existing payment service. When provided, the created transaction will be
+     * processed by the given payment service and any routing rules will be skipped.
      */
     @JsonIgnore
     public JsonNullable<String> paymentServiceId() {
@@ -665,7 +747,8 @@ public class TransactionCreate {
     }
 
     /**
-     * Marks the transaction as an AFT. Requires the payment service to support this feature, and might `recipient` and `buyer` data
+     * Marks the transaction as an AFT. Requires the payment service to support this feature, and might
+     * `recipient` and `buyer` data
      */
     @JsonIgnore
     public Optional<Boolean> accountFundingTransaction() {
@@ -698,7 +781,8 @@ public class TransactionCreate {
     }
 
     /**
-     * The sales tax amount for this transaction, represented as a monetary amount in the smallest currency unit for the given currency, for example `1299` cents to create an authorization for `$12.99`
+     * The sales tax amount for this transaction, represented as a monetary amount in the smallest currency
+     * unit for the given currency, for example `1299` cents to create an authorization for `$12.99`
      */
     @JsonIgnore
     public JsonNullable<Long> taxAmount() {
@@ -759,7 +843,10 @@ public class TransactionCreate {
 
 
     /**
-     * The monetary amount for this transaction, in the smallest currency unit for the given currency, for example `1299` cents to create an authorization for `$12.99`. If the `intent` is set to `capture`, an amount greater than zero must be supplied. All gift card amounts are subtracted from this amount before the remainder is charged to the provided `payment_method`.
+     * The monetary amount for this transaction, in the smallest currency unit for the given currency, for
+     * example `1299` cents to create an authorization for `$12.99`. If the `intent` is set to `capture`,
+     * an amount greater than zero must be supplied. All gift card amounts are subtracted from this amount
+     * before the remainder is charged to the provided `payment_method`.
      */
     public TransactionCreate withAmount(long amount) {
         Utils.checkNotNull(amount, "amount");
@@ -768,7 +855,8 @@ public class TransactionCreate {
     }
 
     /**
-     * A supported ISO 4217 currency code. For redirect requests, this value must match the one specified for `currency` in `payment_method`.
+     * A supported ISO 4217 currency code. For redirect requests, this value must match the one specified
+     * for `currency` in `payment_method`.
      */
     public TransactionCreate withCurrency(String currency) {
         Utils.checkNotNull(currency, "currency");
@@ -777,7 +865,11 @@ public class TransactionCreate {
     }
 
     /**
-     * The 2-letter ISO code of the country where the transaction is processed. This is also used to filter the payment services that can process the transaction. If this value is provided for redirect requests and it's not `null`, it must match the one specified for `country` in `payment_method`. Otherwise, the value specified for `country` in `payment_method` will be assumed implicitly.
+     * The 2-letter ISO code of the country where the transaction is processed. This is also used to filter
+     * the payment services that can process the transaction. If this value is provided for redirect
+     * requests and it's not `null`, it must match the one specified for `country` in `payment_method`.
+     * 
+     * <p>Otherwise, the value specified for `country` in `payment_method` will be assumed implicitly.
      */
     public TransactionCreate withCountry(String country) {
         Utils.checkNotNull(country, "country");
@@ -786,7 +878,11 @@ public class TransactionCreate {
     }
 
     /**
-     * The 2-letter ISO code of the country where the transaction is processed. This is also used to filter the payment services that can process the transaction. If this value is provided for redirect requests and it's not `null`, it must match the one specified for `country` in `payment_method`. Otherwise, the value specified for `country` in `payment_method` will be assumed implicitly.
+     * The 2-letter ISO code of the country where the transaction is processed. This is also used to filter
+     * the payment services that can process the transaction. If this value is provided for redirect
+     * requests and it's not `null`, it must match the one specified for `country` in `payment_method`.
+     * 
+     * <p>Otherwise, the value specified for `country` in `payment_method` will be assumed implicitly.
      */
     public TransactionCreate withCountry(JsonNullable<String> country) {
         Utils.checkNotNull(country, "country");
@@ -795,7 +891,8 @@ public class TransactionCreate {
     }
 
     /**
-     * The optional payment method to use for this transaction. This field is required if no `gift_cards` have been added.
+     * The optional payment method to use for this transaction. This field is required if no `gift_cards`
+     * have been added.
      */
     public TransactionCreate withPaymentMethod(TransactionCreatePaymentMethod paymentMethod) {
         Utils.checkNotNull(paymentMethod, "paymentMethod");
@@ -804,7 +901,8 @@ public class TransactionCreate {
     }
 
     /**
-     * The optional payment method to use for this transaction. This field is required if no `gift_cards` have been added.
+     * The optional payment method to use for this transaction. This field is required if no `gift_cards`
+     * have been added.
      */
     public TransactionCreate withPaymentMethod(JsonNullable<? extends TransactionCreatePaymentMethod> paymentMethod) {
         Utils.checkNotNull(paymentMethod, "paymentMethod");
@@ -813,7 +911,9 @@ public class TransactionCreate {
     }
 
     /**
-     * Guest buyer details provided inline rather than creating a buyer resource beforehand and using the `buyer_id` or `buyer_external_identifier` keys. No buyer resource will be created on Gr4vy when used.
+     * Guest buyer details provided inline rather than creating a buyer resource beforehand and using the
+     * `buyer_id` or `buyer_external_identifier` keys. No buyer resource will be created on Gr4vy when
+     * used.
      */
     public TransactionCreate withBuyer(GuestBuyerInput buyer) {
         Utils.checkNotNull(buyer, "buyer");
@@ -822,7 +922,9 @@ public class TransactionCreate {
     }
 
     /**
-     * Guest buyer details provided inline rather than creating a buyer resource beforehand and using the `buyer_id` or `buyer_external_identifier` keys. No buyer resource will be created on Gr4vy when used.
+     * Guest buyer details provided inline rather than creating a buyer resource beforehand and using the
+     * `buyer_id` or `buyer_external_identifier` keys. No buyer resource will be created on Gr4vy when
+     * used.
      */
     public TransactionCreate withBuyer(JsonNullable<? extends GuestBuyerInput> buyer) {
         Utils.checkNotNull(buyer, "buyer");
@@ -831,7 +933,9 @@ public class TransactionCreate {
     }
 
     /**
-     * The ID of the buyer to associate this payment method to. If this field is provided then the `buyer_external_identifier` field needs to be unset. If a stored payment method or gift card is provided, then the buyer for that payment method needs to match the buyer for this field.
+     * The ID of the buyer to associate this payment method to. If this field is provided then the
+     * `buyer_external_identifier` field needs to be unset. If a stored payment method or gift card is
+     * provided, then the buyer for that payment method needs to match the buyer for this field.
      */
     public TransactionCreate withBuyerId(String buyerId) {
         Utils.checkNotNull(buyerId, "buyerId");
@@ -840,7 +944,9 @@ public class TransactionCreate {
     }
 
     /**
-     * The ID of the buyer to associate this payment method to. If this field is provided then the `buyer_external_identifier` field needs to be unset. If a stored payment method or gift card is provided, then the buyer for that payment method needs to match the buyer for this field.
+     * The ID of the buyer to associate this payment method to. If this field is provided then the
+     * `buyer_external_identifier` field needs to be unset. If a stored payment method or gift card is
+     * provided, then the buyer for that payment method needs to match the buyer for this field.
      */
     public TransactionCreate withBuyerId(JsonNullable<String> buyerId) {
         Utils.checkNotNull(buyerId, "buyerId");
@@ -849,7 +955,9 @@ public class TransactionCreate {
     }
 
     /**
-     * The `external_identifier` of the buyer to associate this payment method to. If this field is provided then the `buyer_id` field needs to be unset. If a stored payment method or gift card is provided, then the buyer for that payment method needs to match the buyer for this field.
+     * The `external_identifier` of the buyer to associate this payment method to. If this field is
+     * provided then the `buyer_id` field needs to be unset. If a stored payment method or gift card is
+     * provided, then the buyer for that payment method needs to match the buyer for this field.
      */
     public TransactionCreate withBuyerExternalIdentifier(String buyerExternalIdentifier) {
         Utils.checkNotNull(buyerExternalIdentifier, "buyerExternalIdentifier");
@@ -858,7 +966,9 @@ public class TransactionCreate {
     }
 
     /**
-     * The `external_identifier` of the buyer to associate this payment method to. If this field is provided then the `buyer_id` field needs to be unset. If a stored payment method or gift card is provided, then the buyer for that payment method needs to match the buyer for this field.
+     * The `external_identifier` of the buyer to associate this payment method to. If this field is
+     * provided then the `buyer_id` field needs to be unset. If a stored payment method or gift card is
+     * provided, then the buyer for that payment method needs to match the buyer for this field.
      */
     public TransactionCreate withBuyerExternalIdentifier(JsonNullable<String> buyerExternalIdentifier) {
         Utils.checkNotNull(buyerExternalIdentifier, "buyerExternalIdentifier");
@@ -867,7 +977,11 @@ public class TransactionCreate {
     }
 
     /**
-     * The optional gift card(s) to use for this transaction. At least one gift card is required if no other `payment_method` has been added. By default, only a maximum limit of 10 gift cards may be used in a single transaction. Please contact our team to change this limit.
+     * The optional gift card(s) to use for this transaction. At least one gift card is required if no
+     * other `payment_method` has been added. By default, only a maximum limit of 10 gift cards may be used
+     * in a single transaction.
+     * 
+     * <p>Please contact our team to change this limit.
      */
     public TransactionCreate withGiftCards(List<GiftCardUnion> giftCards) {
         Utils.checkNotNull(giftCards, "giftCards");
@@ -876,7 +990,11 @@ public class TransactionCreate {
     }
 
     /**
-     * The optional gift card(s) to use for this transaction. At least one gift card is required if no other `payment_method` has been added. By default, only a maximum limit of 10 gift cards may be used in a single transaction. Please contact our team to change this limit.
+     * The optional gift card(s) to use for this transaction. At least one gift card is required if no
+     * other `payment_method` has been added. By default, only a maximum limit of 10 gift cards may be used
+     * in a single transaction.
+     * 
+     * <p>Please contact our team to change this limit.
      */
     public TransactionCreate withGiftCards(JsonNullable<? extends List<GiftCardUnion>> giftCards) {
         Utils.checkNotNull(giftCards, "giftCards");
@@ -916,9 +1034,12 @@ public class TransactionCreate {
     }
 
     /**
-     * Whether or not to also try and store the payment method with us so that it can be used again for future use. This is only supported for payment methods that support this feature. There are also a few restrictions on how the flag may be set:
+     * Whether or not to also try and store the payment method with us so that it can be used again for
+     * future use. This is only supported for payment methods that support this feature. There are also a
+     * few restrictions on how the flag may be set:
      * 
-     * <p>* The flag has to be set to `true` when the `payment_source` is set to `recurring` or `installment`, and `merchant_initiated` is set to `false`.
+     * <p>* The flag has to be set to `true` when the `payment_source` is set to `recurring` or `installment`,
+     * and `merchant_initiated` is set to `false`.
      * * The flag has to be set to `false` (or not set) when using a previously vaulted payment method.
      */
     public TransactionCreate withStore(boolean store) {
@@ -929,9 +1050,12 @@ public class TransactionCreate {
 
 
     /**
-     * Whether or not to also try and store the payment method with us so that it can be used again for future use. This is only supported for payment methods that support this feature. There are also a few restrictions on how the flag may be set:
+     * Whether or not to also try and store the payment method with us so that it can be used again for
+     * future use. This is only supported for payment methods that support this feature. There are also a
+     * few restrictions on how the flag may be set:
      * 
-     * <p>* The flag has to be set to `true` when the `payment_source` is set to `recurring` or `installment`, and `merchant_initiated` is set to `false`.
+     * <p>* The flag has to be set to `true` when the `payment_source` is set to `recurring` or `installment`,
+     * and `merchant_initiated` is set to `false`.
      * * The flag has to be set to `false` (or not set) when using a previously vaulted payment method.
      */
     public TransactionCreate withStore(Optional<Boolean> store) {
@@ -941,7 +1065,9 @@ public class TransactionCreate {
     }
 
     /**
-     * Pass through 3-D Secure data to support external 3-D Secure authorisation. If using an external 3-D Secure provider, you should not pass a `redirect_url` in the `payment_method` object for a transaction.
+     * Pass through 3-D Secure data to support external 3-D Secure authorisation. If using an external 3-D
+     * Secure provider, you should not pass a `redirect_url` in the `payment_method` object for a
+     * transaction.
      */
     public TransactionCreate withThreeDSecureData(ThreeDSecureData threeDSecureData) {
         Utils.checkNotNull(threeDSecureData, "threeDSecureData");
@@ -950,7 +1076,9 @@ public class TransactionCreate {
     }
 
     /**
-     * Pass through 3-D Secure data to support external 3-D Secure authorisation. If using an external 3-D Secure provider, you should not pass a `redirect_url` in the `payment_method` object for a transaction.
+     * Pass through 3-D Secure data to support external 3-D Secure authorisation. If using an external 3-D
+     * Secure provider, you should not pass a `redirect_url` in the `payment_method` object for a
+     * transaction.
      */
     public TransactionCreate withThreeDSecureData(JsonNullable<? extends ThreeDSecureData> threeDSecureData) {
         Utils.checkNotNull(threeDSecureData, "threeDSecureData");
@@ -959,7 +1087,8 @@ public class TransactionCreate {
     }
 
     /**
-     * Any additional information about the transaction that you would like to store as key-value pairs. This data is passed to payment service providers that support it.
+     * Any additional information about the transaction that you would like to store as key-value pairs.
+     * This data is passed to payment service providers that support it.
      */
     public TransactionCreate withMetadata(Map<String, String> metadata) {
         Utils.checkNotNull(metadata, "metadata");
@@ -968,7 +1097,8 @@ public class TransactionCreate {
     }
 
     /**
-     * Any additional information about the transaction that you would like to store as key-value pairs. This data is passed to payment service providers that support it.
+     * Any additional information about the transaction that you would like to store as key-value pairs.
+     * This data is passed to payment service providers that support it.
      */
     public TransactionCreate withMetadata(JsonNullable<? extends Map<String, String>> metadata) {
         Utils.checkNotNull(metadata, "metadata");
@@ -977,7 +1107,8 @@ public class TransactionCreate {
     }
 
     /**
-     * Indicates whether the transaction represents a subsequent payment coming from a setup recurring payment. Please note there are some restrictions on how this flag may be used.
+     * Indicates whether the transaction represents a subsequent payment coming from a setup recurring
+     * payment. Please note there are some restrictions on how this flag may be used.
      * 
      * <p>The flag can only be `false` (or not set) when the transaction meets one of the following criteria:
      * 
@@ -997,7 +1128,8 @@ public class TransactionCreate {
 
 
     /**
-     * Indicates whether the transaction represents a subsequent payment coming from a setup recurring payment. Please note there are some restrictions on how this flag may be used.
+     * Indicates whether the transaction represents a subsequent payment coming from a setup recurring
+     * payment. Please note there are some restrictions on how this flag may be used.
      * 
      * <p>The flag can only be `false` (or not set) when the transaction meets one of the following criteria:
      * 
@@ -1108,7 +1240,11 @@ public class TransactionCreate {
     }
 
     /**
-     * A scheme's transaction identifier to use in connecting a merchant initiated transaction to a previous customer initiated transaction. If not provided, and a qualifying customer initiated transaction has been previously made with the stored payment method, then Gr4vy will populate this value with the identifier returned for that transaction. This field is also know as the Visa Transaction Identifier, or Mastercard Trace ID.
+     * A scheme's transaction identifier to use in connecting a merchant initiated transaction to a
+     * previous customer initiated transaction. If not provided, and a qualifying customer initiated
+     * transaction has been previously made with the stored payment method, then Gr4vy will populate this
+     * value with the identifier returned for that transaction. This field is also know as the Visa
+     * Transaction Identifier, or Mastercard Trace ID.
      */
     public TransactionCreate withPreviousSchemeTransactionId(String previousSchemeTransactionId) {
         Utils.checkNotNull(previousSchemeTransactionId, "previousSchemeTransactionId");
@@ -1117,7 +1253,11 @@ public class TransactionCreate {
     }
 
     /**
-     * A scheme's transaction identifier to use in connecting a merchant initiated transaction to a previous customer initiated transaction. If not provided, and a qualifying customer initiated transaction has been previously made with the stored payment method, then Gr4vy will populate this value with the identifier returned for that transaction. This field is also know as the Visa Transaction Identifier, or Mastercard Trace ID.
+     * A scheme's transaction identifier to use in connecting a merchant initiated transaction to a
+     * previous customer initiated transaction. If not provided, and a qualifying customer initiated
+     * transaction has been previously made with the stored payment method, then Gr4vy will populate this
+     * value with the identifier returned for that transaction. This field is also know as the Visa
+     * Transaction Identifier, or Mastercard Trace ID.
      */
     public TransactionCreate withPreviousSchemeTransactionId(JsonNullable<String> previousSchemeTransactionId) {
         Utils.checkNotNull(previousSchemeTransactionId, "previousSchemeTransactionId");
@@ -1144,7 +1284,9 @@ public class TransactionCreate {
     }
 
     /**
-     * The unique identifier of a set of shipping details stored for the buyer. If provided, the created transaction will include a copy of the details at the point of transaction creation; i.e. it will not be affected by later changes to the detail in the database.
+     * The unique identifier of a set of shipping details stored for the buyer. If provided, the created
+     * transaction will include a copy of the details at the point of transaction creation; i.e. it will
+     * not be affected by later changes to the detail in the database.
      */
     public TransactionCreate withShippingDetailsId(String shippingDetailsId) {
         Utils.checkNotNull(shippingDetailsId, "shippingDetailsId");
@@ -1153,7 +1295,9 @@ public class TransactionCreate {
     }
 
     /**
-     * The unique identifier of a set of shipping details stored for the buyer. If provided, the created transaction will include a copy of the details at the point of transaction creation; i.e. it will not be affected by later changes to the detail in the database.
+     * The unique identifier of a set of shipping details stored for the buyer. If provided, the created
+     * transaction will include a copy of the details at the point of transaction creation; i.e. it will
+     * not be affected by later changes to the detail in the database.
      */
     public TransactionCreate withShippingDetailsId(JsonNullable<String> shippingDetailsId) {
         Utils.checkNotNull(shippingDetailsId, "shippingDetailsId");
@@ -1162,7 +1306,13 @@ public class TransactionCreate {
     }
 
     /**
-     * Allows for passing optional configuration per connection to take advantage of connection specific features. When provided, the data is only passed to the target connection type to prevent sharing configuration across connections. Please note that each of the keys this object are in kebab-case, for example `cybersource-anti-fraud` as they represent the ID of the connector. All the other keys will be snake case, for example `merchant_defined_data` or camel case to match an external API that the connector uses.
+     * Allows for passing optional configuration per connection to take advantage of connection specific
+     * features. When provided, the data is only passed to the target connection type to prevent sharing
+     * configuration across connections. Please note that each of the keys this object are in kebab-case,
+     * for example `cybersource-anti-fraud` as they represent the ID of the connector.
+     * 
+     * <p>All the other keys will be snake case, for example `merchant_defined_data` or camel case to match an
+     * external API that the connector uses.
      */
     public TransactionCreate withConnectionOptions(TransactionConnectionOptions connectionOptions) {
         Utils.checkNotNull(connectionOptions, "connectionOptions");
@@ -1171,7 +1321,13 @@ public class TransactionCreate {
     }
 
     /**
-     * Allows for passing optional configuration per connection to take advantage of connection specific features. When provided, the data is only passed to the target connection type to prevent sharing configuration across connections. Please note that each of the keys this object are in kebab-case, for example `cybersource-anti-fraud` as they represent the ID of the connector. All the other keys will be snake case, for example `merchant_defined_data` or camel case to match an external API that the connector uses.
+     * Allows for passing optional configuration per connection to take advantage of connection specific
+     * features. When provided, the data is only passed to the target connection type to prevent sharing
+     * configuration across connections. Please note that each of the keys this object are in kebab-case,
+     * for example `cybersource-anti-fraud` as they represent the ID of the connector.
+     * 
+     * <p>All the other keys will be snake case, for example `merchant_defined_data` or camel case to match an
+     * external API that the connector uses.
      */
     public TransactionCreate withConnectionOptions(JsonNullable<? extends TransactionConnectionOptions> connectionOptions) {
         Utils.checkNotNull(connectionOptions, "connectionOptions");
@@ -1185,7 +1341,8 @@ public class TransactionCreate {
      * <p>- When `async_capture` is `false` (default), the transaction is captured in the same request.
      * - When `async_capture` is `true`, the transaction is automatically captured at a later time.
      * 
-     * <p>Redirect transactions are not affected by this flag. This flag can only be set to `true` when `intent` is set to `capture`.
+     * <p>Redirect transactions are not affected by this flag. This flag can only be set to `true` when
+     * `intent` is set to `capture`.
      */
     public TransactionCreate withAsyncCapture(boolean asyncCapture) {
         Utils.checkNotNull(asyncCapture, "asyncCapture");
@@ -1200,7 +1357,8 @@ public class TransactionCreate {
      * <p>- When `async_capture` is `false` (default), the transaction is captured in the same request.
      * - When `async_capture` is `true`, the transaction is automatically captured at a later time.
      * 
-     * <p>Redirect transactions are not affected by this flag. This flag can only be set to `true` when `intent` is set to `capture`.
+     * <p>Redirect transactions are not affected by this flag. This flag can only be set to `true` when
+     * `intent` is set to `capture`.
      */
     public TransactionCreate withAsyncCapture(Optional<Boolean> asyncCapture) {
         Utils.checkNotNull(asyncCapture, "asyncCapture");
@@ -1227,7 +1385,8 @@ public class TransactionCreate {
     }
 
     /**
-     * The unique identifier of an existing payment service. When provided, the created transaction will be processed by the given payment service and any routing rules will be skipped.
+     * The unique identifier of an existing payment service. When provided, the created transaction will be
+     * processed by the given payment service and any routing rules will be skipped.
      */
     public TransactionCreate withPaymentServiceId(String paymentServiceId) {
         Utils.checkNotNull(paymentServiceId, "paymentServiceId");
@@ -1236,7 +1395,8 @@ public class TransactionCreate {
     }
 
     /**
-     * The unique identifier of an existing payment service. When provided, the created transaction will be processed by the given payment service and any routing rules will be skipped.
+     * The unique identifier of an existing payment service. When provided, the created transaction will be
+     * processed by the given payment service and any routing rules will be skipped.
      */
     public TransactionCreate withPaymentServiceId(JsonNullable<String> paymentServiceId) {
         Utils.checkNotNull(paymentServiceId, "paymentServiceId");
@@ -1245,7 +1405,8 @@ public class TransactionCreate {
     }
 
     /**
-     * Marks the transaction as an AFT. Requires the payment service to support this feature, and might `recipient` and `buyer` data
+     * Marks the transaction as an AFT. Requires the payment service to support this feature, and might
+     * `recipient` and `buyer` data
      */
     public TransactionCreate withAccountFundingTransaction(boolean accountFundingTransaction) {
         Utils.checkNotNull(accountFundingTransaction, "accountFundingTransaction");
@@ -1255,7 +1416,8 @@ public class TransactionCreate {
 
 
     /**
-     * Marks the transaction as an AFT. Requires the payment service to support this feature, and might `recipient` and `buyer` data
+     * Marks the transaction as an AFT. Requires the payment service to support this feature, and might
+     * `recipient` and `buyer` data
      */
     public TransactionCreate withAccountFundingTransaction(Optional<Boolean> accountFundingTransaction) {
         Utils.checkNotNull(accountFundingTransaction, "accountFundingTransaction");
@@ -1319,7 +1481,8 @@ public class TransactionCreate {
     }
 
     /**
-     * The sales tax amount for this transaction, represented as a monetary amount in the smallest currency unit for the given currency, for example `1299` cents to create an authorization for `$12.99`
+     * The sales tax amount for this transaction, represented as a monetary amount in the smallest currency
+     * unit for the given currency, for example `1299` cents to create an authorization for `$12.99`
      */
     public TransactionCreate withTaxAmount(long taxAmount) {
         Utils.checkNotNull(taxAmount, "taxAmount");
@@ -1328,7 +1491,8 @@ public class TransactionCreate {
     }
 
     /**
-     * The sales tax amount for this transaction, represented as a monetary amount in the smallest currency unit for the given currency, for example `1299` cents to create an authorization for `$12.99`
+     * The sales tax amount for this transaction, represented as a monetary amount in the smallest currency
+     * unit for the given currency, for example `1299` cents to create an authorization for `$12.99`
      */
     public TransactionCreate withTaxAmount(JsonNullable<Long> taxAmount) {
         Utils.checkNotNull(taxAmount, "taxAmount");
@@ -1636,7 +1800,10 @@ public class TransactionCreate {
 
 
         /**
-         * The monetary amount for this transaction, in the smallest currency unit for the given currency, for example `1299` cents to create an authorization for `$12.99`. If the `intent` is set to `capture`, an amount greater than zero must be supplied. All gift card amounts are subtracted from this amount before the remainder is charged to the provided `payment_method`.
+         * The monetary amount for this transaction, in the smallest currency unit for the given currency, for
+         * example `1299` cents to create an authorization for `$12.99`. If the `intent` is set to `capture`,
+         * an amount greater than zero must be supplied. All gift card amounts are subtracted from this amount
+         * before the remainder is charged to the provided `payment_method`.
          */
         public Builder amount(long amount) {
             Utils.checkNotNull(amount, "amount");
@@ -1646,7 +1813,8 @@ public class TransactionCreate {
 
 
         /**
-         * A supported ISO 4217 currency code. For redirect requests, this value must match the one specified for `currency` in `payment_method`.
+         * A supported ISO 4217 currency code. For redirect requests, this value must match the one specified
+         * for `currency` in `payment_method`.
          */
         public Builder currency(String currency) {
             Utils.checkNotNull(currency, "currency");
@@ -1656,7 +1824,11 @@ public class TransactionCreate {
 
 
         /**
-         * The 2-letter ISO code of the country where the transaction is processed. This is also used to filter the payment services that can process the transaction. If this value is provided for redirect requests and it's not `null`, it must match the one specified for `country` in `payment_method`. Otherwise, the value specified for `country` in `payment_method` will be assumed implicitly.
+         * The 2-letter ISO code of the country where the transaction is processed. This is also used to filter
+         * the payment services that can process the transaction. If this value is provided for redirect
+         * requests and it's not `null`, it must match the one specified for `country` in `payment_method`.
+         * 
+         * <p>Otherwise, the value specified for `country` in `payment_method` will be assumed implicitly.
          */
         public Builder country(String country) {
             Utils.checkNotNull(country, "country");
@@ -1665,7 +1837,11 @@ public class TransactionCreate {
         }
 
         /**
-         * The 2-letter ISO code of the country where the transaction is processed. This is also used to filter the payment services that can process the transaction. If this value is provided for redirect requests and it's not `null`, it must match the one specified for `country` in `payment_method`. Otherwise, the value specified for `country` in `payment_method` will be assumed implicitly.
+         * The 2-letter ISO code of the country where the transaction is processed. This is also used to filter
+         * the payment services that can process the transaction. If this value is provided for redirect
+         * requests and it's not `null`, it must match the one specified for `country` in `payment_method`.
+         * 
+         * <p>Otherwise, the value specified for `country` in `payment_method` will be assumed implicitly.
          */
         public Builder country(JsonNullable<String> country) {
             Utils.checkNotNull(country, "country");
@@ -1675,7 +1851,8 @@ public class TransactionCreate {
 
 
         /**
-         * The optional payment method to use for this transaction. This field is required if no `gift_cards` have been added.
+         * The optional payment method to use for this transaction. This field is required if no `gift_cards`
+         * have been added.
          */
         public Builder paymentMethod(TransactionCreatePaymentMethod paymentMethod) {
             Utils.checkNotNull(paymentMethod, "paymentMethod");
@@ -1684,7 +1861,8 @@ public class TransactionCreate {
         }
 
         /**
-         * The optional payment method to use for this transaction. This field is required if no `gift_cards` have been added.
+         * The optional payment method to use for this transaction. This field is required if no `gift_cards`
+         * have been added.
          */
         public Builder paymentMethod(JsonNullable<? extends TransactionCreatePaymentMethod> paymentMethod) {
             Utils.checkNotNull(paymentMethod, "paymentMethod");
@@ -1694,7 +1872,9 @@ public class TransactionCreate {
 
 
         /**
-         * Guest buyer details provided inline rather than creating a buyer resource beforehand and using the `buyer_id` or `buyer_external_identifier` keys. No buyer resource will be created on Gr4vy when used.
+         * Guest buyer details provided inline rather than creating a buyer resource beforehand and using the
+         * `buyer_id` or `buyer_external_identifier` keys. No buyer resource will be created on Gr4vy when
+         * used.
          */
         public Builder buyer(GuestBuyerInput buyer) {
             Utils.checkNotNull(buyer, "buyer");
@@ -1703,7 +1883,9 @@ public class TransactionCreate {
         }
 
         /**
-         * Guest buyer details provided inline rather than creating a buyer resource beforehand and using the `buyer_id` or `buyer_external_identifier` keys. No buyer resource will be created on Gr4vy when used.
+         * Guest buyer details provided inline rather than creating a buyer resource beforehand and using the
+         * `buyer_id` or `buyer_external_identifier` keys. No buyer resource will be created on Gr4vy when
+         * used.
          */
         public Builder buyer(JsonNullable<? extends GuestBuyerInput> buyer) {
             Utils.checkNotNull(buyer, "buyer");
@@ -1713,7 +1895,9 @@ public class TransactionCreate {
 
 
         /**
-         * The ID of the buyer to associate this payment method to. If this field is provided then the `buyer_external_identifier` field needs to be unset. If a stored payment method or gift card is provided, then the buyer for that payment method needs to match the buyer for this field.
+         * The ID of the buyer to associate this payment method to. If this field is provided then the
+         * `buyer_external_identifier` field needs to be unset. If a stored payment method or gift card is
+         * provided, then the buyer for that payment method needs to match the buyer for this field.
          */
         public Builder buyerId(String buyerId) {
             Utils.checkNotNull(buyerId, "buyerId");
@@ -1722,7 +1906,9 @@ public class TransactionCreate {
         }
 
         /**
-         * The ID of the buyer to associate this payment method to. If this field is provided then the `buyer_external_identifier` field needs to be unset. If a stored payment method or gift card is provided, then the buyer for that payment method needs to match the buyer for this field.
+         * The ID of the buyer to associate this payment method to. If this field is provided then the
+         * `buyer_external_identifier` field needs to be unset. If a stored payment method or gift card is
+         * provided, then the buyer for that payment method needs to match the buyer for this field.
          */
         public Builder buyerId(JsonNullable<String> buyerId) {
             Utils.checkNotNull(buyerId, "buyerId");
@@ -1732,7 +1918,9 @@ public class TransactionCreate {
 
 
         /**
-         * The `external_identifier` of the buyer to associate this payment method to. If this field is provided then the `buyer_id` field needs to be unset. If a stored payment method or gift card is provided, then the buyer for that payment method needs to match the buyer for this field.
+         * The `external_identifier` of the buyer to associate this payment method to. If this field is
+         * provided then the `buyer_id` field needs to be unset. If a stored payment method or gift card is
+         * provided, then the buyer for that payment method needs to match the buyer for this field.
          */
         public Builder buyerExternalIdentifier(String buyerExternalIdentifier) {
             Utils.checkNotNull(buyerExternalIdentifier, "buyerExternalIdentifier");
@@ -1741,7 +1929,9 @@ public class TransactionCreate {
         }
 
         /**
-         * The `external_identifier` of the buyer to associate this payment method to. If this field is provided then the `buyer_id` field needs to be unset. If a stored payment method or gift card is provided, then the buyer for that payment method needs to match the buyer for this field.
+         * The `external_identifier` of the buyer to associate this payment method to. If this field is
+         * provided then the `buyer_id` field needs to be unset. If a stored payment method or gift card is
+         * provided, then the buyer for that payment method needs to match the buyer for this field.
          */
         public Builder buyerExternalIdentifier(JsonNullable<String> buyerExternalIdentifier) {
             Utils.checkNotNull(buyerExternalIdentifier, "buyerExternalIdentifier");
@@ -1751,7 +1941,11 @@ public class TransactionCreate {
 
 
         /**
-         * The optional gift card(s) to use for this transaction. At least one gift card is required if no other `payment_method` has been added. By default, only a maximum limit of 10 gift cards may be used in a single transaction. Please contact our team to change this limit.
+         * The optional gift card(s) to use for this transaction. At least one gift card is required if no
+         * other `payment_method` has been added. By default, only a maximum limit of 10 gift cards may be used
+         * in a single transaction.
+         * 
+         * <p>Please contact our team to change this limit.
          */
         public Builder giftCards(List<GiftCardUnion> giftCards) {
             Utils.checkNotNull(giftCards, "giftCards");
@@ -1760,7 +1954,11 @@ public class TransactionCreate {
         }
 
         /**
-         * The optional gift card(s) to use for this transaction. At least one gift card is required if no other `payment_method` has been added. By default, only a maximum limit of 10 gift cards may be used in a single transaction. Please contact our team to change this limit.
+         * The optional gift card(s) to use for this transaction. At least one gift card is required if no
+         * other `payment_method` has been added. By default, only a maximum limit of 10 gift cards may be used
+         * in a single transaction.
+         * 
+         * <p>Please contact our team to change this limit.
          */
         public Builder giftCards(JsonNullable<? extends List<GiftCardUnion>> giftCards) {
             Utils.checkNotNull(giftCards, "giftCards");
@@ -1802,9 +2000,12 @@ public class TransactionCreate {
 
 
         /**
-         * Whether or not to also try and store the payment method with us so that it can be used again for future use. This is only supported for payment methods that support this feature. There are also a few restrictions on how the flag may be set:
+         * Whether or not to also try and store the payment method with us so that it can be used again for
+         * future use. This is only supported for payment methods that support this feature. There are also a
+         * few restrictions on how the flag may be set:
          * 
-         * <p>* The flag has to be set to `true` when the `payment_source` is set to `recurring` or `installment`, and `merchant_initiated` is set to `false`.
+         * <p>* The flag has to be set to `true` when the `payment_source` is set to `recurring` or `installment`,
+         * and `merchant_initiated` is set to `false`.
          * * The flag has to be set to `false` (or not set) when using a previously vaulted payment method.
          */
         public Builder store(boolean store) {
@@ -1814,9 +2015,12 @@ public class TransactionCreate {
         }
 
         /**
-         * Whether or not to also try and store the payment method with us so that it can be used again for future use. This is only supported for payment methods that support this feature. There are also a few restrictions on how the flag may be set:
+         * Whether or not to also try and store the payment method with us so that it can be used again for
+         * future use. This is only supported for payment methods that support this feature. There are also a
+         * few restrictions on how the flag may be set:
          * 
-         * <p>* The flag has to be set to `true` when the `payment_source` is set to `recurring` or `installment`, and `merchant_initiated` is set to `false`.
+         * <p>* The flag has to be set to `true` when the `payment_source` is set to `recurring` or `installment`,
+         * and `merchant_initiated` is set to `false`.
          * * The flag has to be set to `false` (or not set) when using a previously vaulted payment method.
          */
         public Builder store(Optional<Boolean> store) {
@@ -1827,7 +2031,9 @@ public class TransactionCreate {
 
 
         /**
-         * Pass through 3-D Secure data to support external 3-D Secure authorisation. If using an external 3-D Secure provider, you should not pass a `redirect_url` in the `payment_method` object for a transaction.
+         * Pass through 3-D Secure data to support external 3-D Secure authorisation. If using an external 3-D
+         * Secure provider, you should not pass a `redirect_url` in the `payment_method` object for a
+         * transaction.
          */
         public Builder threeDSecureData(ThreeDSecureData threeDSecureData) {
             Utils.checkNotNull(threeDSecureData, "threeDSecureData");
@@ -1836,7 +2042,9 @@ public class TransactionCreate {
         }
 
         /**
-         * Pass through 3-D Secure data to support external 3-D Secure authorisation. If using an external 3-D Secure provider, you should not pass a `redirect_url` in the `payment_method` object for a transaction.
+         * Pass through 3-D Secure data to support external 3-D Secure authorisation. If using an external 3-D
+         * Secure provider, you should not pass a `redirect_url` in the `payment_method` object for a
+         * transaction.
          */
         public Builder threeDSecureData(JsonNullable<? extends ThreeDSecureData> threeDSecureData) {
             Utils.checkNotNull(threeDSecureData, "threeDSecureData");
@@ -1846,7 +2054,8 @@ public class TransactionCreate {
 
 
         /**
-         * Any additional information about the transaction that you would like to store as key-value pairs. This data is passed to payment service providers that support it.
+         * Any additional information about the transaction that you would like to store as key-value pairs.
+         * This data is passed to payment service providers that support it.
          */
         public Builder metadata(Map<String, String> metadata) {
             Utils.checkNotNull(metadata, "metadata");
@@ -1855,7 +2064,8 @@ public class TransactionCreate {
         }
 
         /**
-         * Any additional information about the transaction that you would like to store as key-value pairs. This data is passed to payment service providers that support it.
+         * Any additional information about the transaction that you would like to store as key-value pairs.
+         * This data is passed to payment service providers that support it.
          */
         public Builder metadata(JsonNullable<? extends Map<String, String>> metadata) {
             Utils.checkNotNull(metadata, "metadata");
@@ -1865,7 +2075,8 @@ public class TransactionCreate {
 
 
         /**
-         * Indicates whether the transaction represents a subsequent payment coming from a setup recurring payment. Please note there are some restrictions on how this flag may be used.
+         * Indicates whether the transaction represents a subsequent payment coming from a setup recurring
+         * payment. Please note there are some restrictions on how this flag may be used.
          * 
          * <p>The flag can only be `false` (or not set) when the transaction meets one of the following criteria:
          * 
@@ -1884,7 +2095,8 @@ public class TransactionCreate {
         }
 
         /**
-         * Indicates whether the transaction represents a subsequent payment coming from a setup recurring payment. Please note there are some restrictions on how this flag may be used.
+         * Indicates whether the transaction represents a subsequent payment coming from a setup recurring
+         * payment. Please note there are some restrictions on how this flag may be used.
          * 
          * <p>The flag can only be `false` (or not set) when the transaction meets one of the following criteria:
          * 
@@ -1999,7 +2211,11 @@ public class TransactionCreate {
 
 
         /**
-         * A scheme's transaction identifier to use in connecting a merchant initiated transaction to a previous customer initiated transaction. If not provided, and a qualifying customer initiated transaction has been previously made with the stored payment method, then Gr4vy will populate this value with the identifier returned for that transaction. This field is also know as the Visa Transaction Identifier, or Mastercard Trace ID.
+         * A scheme's transaction identifier to use in connecting a merchant initiated transaction to a
+         * previous customer initiated transaction. If not provided, and a qualifying customer initiated
+         * transaction has been previously made with the stored payment method, then Gr4vy will populate this
+         * value with the identifier returned for that transaction. This field is also know as the Visa
+         * Transaction Identifier, or Mastercard Trace ID.
          */
         public Builder previousSchemeTransactionId(String previousSchemeTransactionId) {
             Utils.checkNotNull(previousSchemeTransactionId, "previousSchemeTransactionId");
@@ -2008,7 +2224,11 @@ public class TransactionCreate {
         }
 
         /**
-         * A scheme's transaction identifier to use in connecting a merchant initiated transaction to a previous customer initiated transaction. If not provided, and a qualifying customer initiated transaction has been previously made with the stored payment method, then Gr4vy will populate this value with the identifier returned for that transaction. This field is also know as the Visa Transaction Identifier, or Mastercard Trace ID.
+         * A scheme's transaction identifier to use in connecting a merchant initiated transaction to a
+         * previous customer initiated transaction. If not provided, and a qualifying customer initiated
+         * transaction has been previously made with the stored payment method, then Gr4vy will populate this
+         * value with the identifier returned for that transaction. This field is also know as the Visa
+         * Transaction Identifier, or Mastercard Trace ID.
          */
         public Builder previousSchemeTransactionId(JsonNullable<String> previousSchemeTransactionId) {
             Utils.checkNotNull(previousSchemeTransactionId, "previousSchemeTransactionId");
@@ -2037,7 +2257,9 @@ public class TransactionCreate {
 
 
         /**
-         * The unique identifier of a set of shipping details stored for the buyer. If provided, the created transaction will include a copy of the details at the point of transaction creation; i.e. it will not be affected by later changes to the detail in the database.
+         * The unique identifier of a set of shipping details stored for the buyer. If provided, the created
+         * transaction will include a copy of the details at the point of transaction creation; i.e. it will
+         * not be affected by later changes to the detail in the database.
          */
         public Builder shippingDetailsId(String shippingDetailsId) {
             Utils.checkNotNull(shippingDetailsId, "shippingDetailsId");
@@ -2046,7 +2268,9 @@ public class TransactionCreate {
         }
 
         /**
-         * The unique identifier of a set of shipping details stored for the buyer. If provided, the created transaction will include a copy of the details at the point of transaction creation; i.e. it will not be affected by later changes to the detail in the database.
+         * The unique identifier of a set of shipping details stored for the buyer. If provided, the created
+         * transaction will include a copy of the details at the point of transaction creation; i.e. it will
+         * not be affected by later changes to the detail in the database.
          */
         public Builder shippingDetailsId(JsonNullable<String> shippingDetailsId) {
             Utils.checkNotNull(shippingDetailsId, "shippingDetailsId");
@@ -2056,7 +2280,13 @@ public class TransactionCreate {
 
 
         /**
-         * Allows for passing optional configuration per connection to take advantage of connection specific features. When provided, the data is only passed to the target connection type to prevent sharing configuration across connections. Please note that each of the keys this object are in kebab-case, for example `cybersource-anti-fraud` as they represent the ID of the connector. All the other keys will be snake case, for example `merchant_defined_data` or camel case to match an external API that the connector uses.
+         * Allows for passing optional configuration per connection to take advantage of connection specific
+         * features. When provided, the data is only passed to the target connection type to prevent sharing
+         * configuration across connections. Please note that each of the keys this object are in kebab-case,
+         * for example `cybersource-anti-fraud` as they represent the ID of the connector.
+         * 
+         * <p>All the other keys will be snake case, for example `merchant_defined_data` or camel case to match an
+         * external API that the connector uses.
          */
         public Builder connectionOptions(TransactionConnectionOptions connectionOptions) {
             Utils.checkNotNull(connectionOptions, "connectionOptions");
@@ -2065,7 +2295,13 @@ public class TransactionCreate {
         }
 
         /**
-         * Allows for passing optional configuration per connection to take advantage of connection specific features. When provided, the data is only passed to the target connection type to prevent sharing configuration across connections. Please note that each of the keys this object are in kebab-case, for example `cybersource-anti-fraud` as they represent the ID of the connector. All the other keys will be snake case, for example `merchant_defined_data` or camel case to match an external API that the connector uses.
+         * Allows for passing optional configuration per connection to take advantage of connection specific
+         * features. When provided, the data is only passed to the target connection type to prevent sharing
+         * configuration across connections. Please note that each of the keys this object are in kebab-case,
+         * for example `cybersource-anti-fraud` as they represent the ID of the connector.
+         * 
+         * <p>All the other keys will be snake case, for example `merchant_defined_data` or camel case to match an
+         * external API that the connector uses.
          */
         public Builder connectionOptions(JsonNullable<? extends TransactionConnectionOptions> connectionOptions) {
             Utils.checkNotNull(connectionOptions, "connectionOptions");
@@ -2080,7 +2316,8 @@ public class TransactionCreate {
          * <p>- When `async_capture` is `false` (default), the transaction is captured in the same request.
          * - When `async_capture` is `true`, the transaction is automatically captured at a later time.
          * 
-         * <p>Redirect transactions are not affected by this flag. This flag can only be set to `true` when `intent` is set to `capture`.
+         * <p>Redirect transactions are not affected by this flag. This flag can only be set to `true` when
+         * `intent` is set to `capture`.
          */
         public Builder asyncCapture(boolean asyncCapture) {
             Utils.checkNotNull(asyncCapture, "asyncCapture");
@@ -2094,7 +2331,8 @@ public class TransactionCreate {
          * <p>- When `async_capture` is `false` (default), the transaction is captured in the same request.
          * - When `async_capture` is `true`, the transaction is automatically captured at a later time.
          * 
-         * <p>Redirect transactions are not affected by this flag. This flag can only be set to `true` when `intent` is set to `capture`.
+         * <p>Redirect transactions are not affected by this flag. This flag can only be set to `true` when
+         * `intent` is set to `capture`.
          */
         public Builder asyncCapture(Optional<Boolean> asyncCapture) {
             Utils.checkNotNull(asyncCapture, "asyncCapture");
@@ -2123,7 +2361,8 @@ public class TransactionCreate {
 
 
         /**
-         * The unique identifier of an existing payment service. When provided, the created transaction will be processed by the given payment service and any routing rules will be skipped.
+         * The unique identifier of an existing payment service. When provided, the created transaction will be
+         * processed by the given payment service and any routing rules will be skipped.
          */
         public Builder paymentServiceId(String paymentServiceId) {
             Utils.checkNotNull(paymentServiceId, "paymentServiceId");
@@ -2132,7 +2371,8 @@ public class TransactionCreate {
         }
 
         /**
-         * The unique identifier of an existing payment service. When provided, the created transaction will be processed by the given payment service and any routing rules will be skipped.
+         * The unique identifier of an existing payment service. When provided, the created transaction will be
+         * processed by the given payment service and any routing rules will be skipped.
          */
         public Builder paymentServiceId(JsonNullable<String> paymentServiceId) {
             Utils.checkNotNull(paymentServiceId, "paymentServiceId");
@@ -2142,7 +2382,8 @@ public class TransactionCreate {
 
 
         /**
-         * Marks the transaction as an AFT. Requires the payment service to support this feature, and might `recipient` and `buyer` data
+         * Marks the transaction as an AFT. Requires the payment service to support this feature, and might
+         * `recipient` and `buyer` data
          */
         public Builder accountFundingTransaction(boolean accountFundingTransaction) {
             Utils.checkNotNull(accountFundingTransaction, "accountFundingTransaction");
@@ -2151,7 +2392,8 @@ public class TransactionCreate {
         }
 
         /**
-         * Marks the transaction as an AFT. Requires the payment service to support this feature, and might `recipient` and `buyer` data
+         * Marks the transaction as an AFT. Requires the payment service to support this feature, and might
+         * `recipient` and `buyer` data
          */
         public Builder accountFundingTransaction(Optional<Boolean> accountFundingTransaction) {
             Utils.checkNotNull(accountFundingTransaction, "accountFundingTransaction");
@@ -2218,7 +2460,8 @@ public class TransactionCreate {
 
 
         /**
-         * The sales tax amount for this transaction, represented as a monetary amount in the smallest currency unit for the given currency, for example `1299` cents to create an authorization for `$12.99`
+         * The sales tax amount for this transaction, represented as a monetary amount in the smallest currency
+         * unit for the given currency, for example `1299` cents to create an authorization for `$12.99`
          */
         public Builder taxAmount(long taxAmount) {
             Utils.checkNotNull(taxAmount, "taxAmount");
@@ -2227,7 +2470,8 @@ public class TransactionCreate {
         }
 
         /**
-         * The sales tax amount for this transaction, represented as a monetary amount in the smallest currency unit for the given currency, for example `1299` cents to create an authorization for `$12.99`
+         * The sales tax amount for this transaction, represented as a monetary amount in the smallest currency
+         * unit for the given currency, for example `1299` cents to create an authorization for `$12.99`
          */
         public Builder taxAmount(JsonNullable<Long> taxAmount) {
             Utils.checkNotNull(taxAmount, "taxAmount");
