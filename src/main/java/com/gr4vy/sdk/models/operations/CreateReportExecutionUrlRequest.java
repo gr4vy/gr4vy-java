@@ -5,10 +5,13 @@ package com.gr4vy.sdk.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.gr4vy.sdk.models.components.ReportExecutionUrlGenerate;
 import com.gr4vy.sdk.utils.SpeakeasyMetadata;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
+import java.lang.SuppressWarnings;
+import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 
@@ -31,23 +34,31 @@ public class CreateReportExecutionUrlRequest {
     @SpeakeasyMetadata("header:style=simple,explode=false,name=x-gr4vy-merchant-account-id")
     private JsonNullable<String> merchantAccountId;
 
+
+    @SpeakeasyMetadata("request:mediaType=application/json")
+    private Optional<? extends ReportExecutionUrlGenerate> reportExecutionUrlGenerate;
+
     @JsonCreator
     public CreateReportExecutionUrlRequest(
             String reportId,
             String reportExecutionId,
-            JsonNullable<String> merchantAccountId) {
+            JsonNullable<String> merchantAccountId,
+            Optional<? extends ReportExecutionUrlGenerate> reportExecutionUrlGenerate) {
         Utils.checkNotNull(reportId, "reportId");
         Utils.checkNotNull(reportExecutionId, "reportExecutionId");
         Utils.checkNotNull(merchantAccountId, "merchantAccountId");
+        Utils.checkNotNull(reportExecutionUrlGenerate, "reportExecutionUrlGenerate");
         this.reportId = reportId;
         this.reportExecutionId = reportExecutionId;
         this.merchantAccountId = merchantAccountId;
+        this.reportExecutionUrlGenerate = reportExecutionUrlGenerate;
     }
     
     public CreateReportExecutionUrlRequest(
             String reportId,
             String reportExecutionId) {
-        this(reportId, reportExecutionId, JsonNullable.undefined());
+        this(reportId, reportExecutionId, JsonNullable.undefined(),
+            Optional.empty());
     }
 
     /**
@@ -72,6 +83,12 @@ public class CreateReportExecutionUrlRequest {
     @JsonIgnore
     public JsonNullable<String> merchantAccountId() {
         return merchantAccountId;
+    }
+
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<ReportExecutionUrlGenerate> reportExecutionUrlGenerate() {
+        return (Optional<ReportExecutionUrlGenerate>) reportExecutionUrlGenerate;
     }
 
     public static Builder builder() {
@@ -115,6 +132,19 @@ public class CreateReportExecutionUrlRequest {
         return this;
     }
 
+    public CreateReportExecutionUrlRequest withReportExecutionUrlGenerate(ReportExecutionUrlGenerate reportExecutionUrlGenerate) {
+        Utils.checkNotNull(reportExecutionUrlGenerate, "reportExecutionUrlGenerate");
+        this.reportExecutionUrlGenerate = Optional.ofNullable(reportExecutionUrlGenerate);
+        return this;
+    }
+
+
+    public CreateReportExecutionUrlRequest withReportExecutionUrlGenerate(Optional<? extends ReportExecutionUrlGenerate> reportExecutionUrlGenerate) {
+        Utils.checkNotNull(reportExecutionUrlGenerate, "reportExecutionUrlGenerate");
+        this.reportExecutionUrlGenerate = reportExecutionUrlGenerate;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -127,13 +157,15 @@ public class CreateReportExecutionUrlRequest {
         return 
             Utils.enhancedDeepEquals(this.reportId, other.reportId) &&
             Utils.enhancedDeepEquals(this.reportExecutionId, other.reportExecutionId) &&
-            Utils.enhancedDeepEquals(this.merchantAccountId, other.merchantAccountId);
+            Utils.enhancedDeepEquals(this.merchantAccountId, other.merchantAccountId) &&
+            Utils.enhancedDeepEquals(this.reportExecutionUrlGenerate, other.reportExecutionUrlGenerate);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            reportId, reportExecutionId, merchantAccountId);
+            reportId, reportExecutionId, merchantAccountId,
+            reportExecutionUrlGenerate);
     }
     
     @Override
@@ -141,7 +173,8 @@ public class CreateReportExecutionUrlRequest {
         return Utils.toString(CreateReportExecutionUrlRequest.class,
                 "reportId", reportId,
                 "reportExecutionId", reportExecutionId,
-                "merchantAccountId", merchantAccountId);
+                "merchantAccountId", merchantAccountId,
+                "reportExecutionUrlGenerate", reportExecutionUrlGenerate);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -152,6 +185,8 @@ public class CreateReportExecutionUrlRequest {
         private String reportExecutionId;
 
         private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
+
+        private Optional<? extends ReportExecutionUrlGenerate> reportExecutionUrlGenerate = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -196,10 +231,24 @@ public class CreateReportExecutionUrlRequest {
             return this;
         }
 
+
+        public Builder reportExecutionUrlGenerate(ReportExecutionUrlGenerate reportExecutionUrlGenerate) {
+            Utils.checkNotNull(reportExecutionUrlGenerate, "reportExecutionUrlGenerate");
+            this.reportExecutionUrlGenerate = Optional.ofNullable(reportExecutionUrlGenerate);
+            return this;
+        }
+
+        public Builder reportExecutionUrlGenerate(Optional<? extends ReportExecutionUrlGenerate> reportExecutionUrlGenerate) {
+            Utils.checkNotNull(reportExecutionUrlGenerate, "reportExecutionUrlGenerate");
+            this.reportExecutionUrlGenerate = reportExecutionUrlGenerate;
+            return this;
+        }
+
         public CreateReportExecutionUrlRequest build() {
 
             return new CreateReportExecutionUrlRequest(
-                reportId, reportExecutionId, merchantAccountId);
+                reportId, reportExecutionId, merchantAccountId,
+                reportExecutionUrlGenerate);
         }
 
     }

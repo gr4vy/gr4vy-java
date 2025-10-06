@@ -5,6 +5,7 @@ package com.gr4vy.sdk;
 
 import static com.gr4vy.sdk.operations.Operations.RequestOperation;
 
+import com.gr4vy.sdk.models.components.ReportExecutionUrlGenerate;
 import com.gr4vy.sdk.models.operations.CreateReportExecutionUrlRequest;
 import com.gr4vy.sdk.models.operations.CreateReportExecutionUrlRequestBuilder;
 import com.gr4vy.sdk.models.operations.CreateReportExecutionUrlResponse;
@@ -122,7 +123,8 @@ public class Executions {
      * @throws Exception if the API call fails
      */
     public CreateReportExecutionUrlResponse url(String reportId, String reportExecutionId) throws Exception {
-        return url(reportId, reportExecutionId, JsonNullable.undefined());
+        return url(reportId, reportExecutionId, JsonNullable.undefined(),
+            Optional.empty());
     }
 
     /**
@@ -133,18 +135,20 @@ public class Executions {
      * @param reportId The ID of the report to retrieve a URL for.
      * @param reportExecutionId The ID of the execution of a report to retrieve a URL for.
      * @param merchantAccountId 
+     * @param reportExecutionUrlGenerate 
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public CreateReportExecutionUrlResponse url(
             String reportId, String reportExecutionId,
-            JsonNullable<String> merchantAccountId) throws Exception {
+            JsonNullable<String> merchantAccountId, Optional<? extends ReportExecutionUrlGenerate> reportExecutionUrlGenerate) throws Exception {
         CreateReportExecutionUrlRequest request =
             CreateReportExecutionUrlRequest
                 .builder()
                 .reportId(reportId)
                 .reportExecutionId(reportExecutionId)
                 .merchantAccountId(merchantAccountId)
+                .reportExecutionUrlGenerate(reportExecutionUrlGenerate)
                 .build();
         RequestOperation<CreateReportExecutionUrlRequest, CreateReportExecutionUrlResponse> operation
               = new CreateReportExecutionUrl.Sync(sdkConfiguration, _headers);
