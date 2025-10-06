@@ -6,11 +6,13 @@ package com.gr4vy.sdk.models.operations;
 import static com.gr4vy.sdk.operations.Operations.RequestOperation;
 
 import com.gr4vy.sdk.SDKConfiguration;
+import com.gr4vy.sdk.models.components.ReportExecutionUrlGenerate;
 import com.gr4vy.sdk.operations.CreateReportExecutionUrl;
 import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
+import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 public class CreateReportExecutionUrlRequestBuilder {
@@ -18,6 +20,7 @@ public class CreateReportExecutionUrlRequestBuilder {
     private String reportId;
     private String reportExecutionId;
     private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
+    private Optional<? extends ReportExecutionUrlGenerate> reportExecutionUrlGenerate = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -48,13 +51,26 @@ public class CreateReportExecutionUrlRequestBuilder {
         this.merchantAccountId = merchantAccountId;
         return this;
     }
+                
+    public CreateReportExecutionUrlRequestBuilder reportExecutionUrlGenerate(ReportExecutionUrlGenerate reportExecutionUrlGenerate) {
+        Utils.checkNotNull(reportExecutionUrlGenerate, "reportExecutionUrlGenerate");
+        this.reportExecutionUrlGenerate = Optional.of(reportExecutionUrlGenerate);
+        return this;
+    }
+
+    public CreateReportExecutionUrlRequestBuilder reportExecutionUrlGenerate(Optional<? extends ReportExecutionUrlGenerate> reportExecutionUrlGenerate) {
+        Utils.checkNotNull(reportExecutionUrlGenerate, "reportExecutionUrlGenerate");
+        this.reportExecutionUrlGenerate = reportExecutionUrlGenerate;
+        return this;
+    }
 
 
     private CreateReportExecutionUrlRequest buildRequest() {
 
         CreateReportExecutionUrlRequest request = new CreateReportExecutionUrlRequest(reportId,
             reportExecutionId,
-            merchantAccountId);
+            merchantAccountId,
+            reportExecutionUrlGenerate);
 
         return request;
     }

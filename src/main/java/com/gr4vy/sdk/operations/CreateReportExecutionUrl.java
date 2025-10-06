@@ -33,9 +33,12 @@ import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.Hook.AfterErrorContextImpl;
 import com.gr4vy.sdk.utils.Hook.AfterSuccessContextImpl;
 import com.gr4vy.sdk.utils.Hook.BeforeRequestContextImpl;
+import com.gr4vy.sdk.utils.SerializedBody;
+import com.gr4vy.sdk.utils.Utils.JsonShape;
 import com.gr4vy.sdk.utils.Utils;
 import java.io.InputStream;
 import java.lang.Exception;
+import java.lang.Object;
 import java.lang.RuntimeException;
 import java.lang.String;
 import java.lang.Throwable;
@@ -94,13 +97,23 @@ public class CreateReportExecutionUrl {
                     java.util.Optional.of(java.util.List.of()),
                     securitySource());
         }
-        <T>HttpRequest buildRequest(T request, Class<T> klass) throws Exception {
+        <T, U>HttpRequest buildRequest(T request, Class<T> klass, TypeReference<U> typeReference) throws Exception {
             String url = Utils.generateURL(
                     klass,
                     this.baseUrl,
                     "/reports/{report_id}/executions/{report_execution_id}/url",
                     request, this.sdkConfiguration.globals);
             HTTPRequest req = new HTTPRequest(url, "POST");
+            Object convertedRequest = Utils.convertToShape(
+                    request,
+                    JsonShape.DEFAULT,
+                    typeReference);
+            SerializedBody serializedRequestBody = Utils.serializeRequestBody(
+                    convertedRequest,
+                    "reportExecutionUrlGenerate",
+                    "json",
+                    false);
+            req.setBody(Optional.ofNullable(serializedRequestBody));
             req.addHeader("Accept", "application/json")
                     .addHeader("user-agent", SDKConfiguration.USER_AGENT);
             _headers.forEach((k, list) -> list.forEach(v -> req.addHeader(k, v)));
@@ -118,7 +131,7 @@ public class CreateReportExecutionUrl {
         }
 
         private HttpRequest onBuildRequest(CreateReportExecutionUrlRequest request) throws Exception {
-            HttpRequest req = buildRequest(request, CreateReportExecutionUrlRequest.class);
+            HttpRequest req = buildRequest(request, CreateReportExecutionUrlRequest.class, new TypeReference<CreateReportExecutionUrlRequest>() {});
             return sdkConfiguration.hooks().beforeRequest(createBeforeRequestContext(), req);
         }
 
@@ -433,7 +446,7 @@ public class CreateReportExecutionUrl {
         }
 
         private CompletableFuture<HttpRequest> onBuildRequest(CreateReportExecutionUrlRequest request) throws Exception {
-            HttpRequest req = buildRequest(request, CreateReportExecutionUrlRequest.class);
+            HttpRequest req = buildRequest(request, CreateReportExecutionUrlRequest.class, new TypeReference<CreateReportExecutionUrlRequest>() {});
             return this.sdkConfiguration.asyncHooks().beforeRequest(createBeforeRequestContext(), req);
         }
 

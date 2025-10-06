@@ -5,6 +5,7 @@ package com.gr4vy.sdk;
 
 import static com.gr4vy.sdk.operations.Operations.AsyncRequestOperation;
 
+import com.gr4vy.sdk.models.components.ReportExecutionUrlGenerate;
 import com.gr4vy.sdk.models.operations.CreateReportExecutionUrlRequest;
 import com.gr4vy.sdk.models.operations.GetReportExecutionRequest;
 import com.gr4vy.sdk.models.operations.ListReportExecutionsRequest;
@@ -125,7 +126,9 @@ public class AsyncExecutions {
      * @return {@code CompletableFuture<CreateReportExecutionUrlResponse>} - The async response
      */
     public CompletableFuture<CreateReportExecutionUrlResponse> url(String reportId, String reportExecutionId) {
-        return url(reportId, reportExecutionId, JsonNullable.undefined());
+        return url(
+                reportId, reportExecutionId, JsonNullable.undefined(),
+                Optional.empty());
     }
 
     /**
@@ -136,17 +139,19 @@ public class AsyncExecutions {
      * @param reportId The ID of the report to retrieve a URL for.
      * @param reportExecutionId The ID of the execution of a report to retrieve a URL for.
      * @param merchantAccountId 
+     * @param reportExecutionUrlGenerate 
      * @return {@code CompletableFuture<CreateReportExecutionUrlResponse>} - The async response
      */
     public CompletableFuture<CreateReportExecutionUrlResponse> url(
             String reportId, String reportExecutionId,
-            JsonNullable<String> merchantAccountId) {
+            JsonNullable<String> merchantAccountId, Optional<? extends ReportExecutionUrlGenerate> reportExecutionUrlGenerate) {
         CreateReportExecutionUrlRequest request =
             CreateReportExecutionUrlRequest
                 .builder()
                 .reportId(reportId)
                 .reportExecutionId(reportExecutionId)
                 .merchantAccountId(merchantAccountId)
+                .reportExecutionUrlGenerate(reportExecutionUrlGenerate)
                 .build();
         AsyncRequestOperation<CreateReportExecutionUrlRequest, CreateReportExecutionUrlResponse> operation
               = new CreateReportExecutionUrl.Async(sdkConfiguration, _headers);
