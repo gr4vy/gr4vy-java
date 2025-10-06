@@ -69,6 +69,7 @@ public class TaxIdKind {
     public static final TaxIdKind ID_NIK = new TaxIdKind("id.nik");
     public static final TaxIdKind ID_NPWP = new TaxIdKind("id.npwp");
     public static final TaxIdKind IN_GST = new TaxIdKind("in.gst");
+    public static final TaxIdKind IN_PAN = new TaxIdKind("in.pan");
     public static final TaxIdKind JP_CN = new TaxIdKind("jp.cn");
     public static final TaxIdKind JP_RN = new TaxIdKind("jp.rn");
     public static final TaxIdKind KR_BRN = new TaxIdKind("kr.brn");
@@ -191,6 +192,7 @@ public class TaxIdKind {
         map.put("id.nik", ID_NIK);
         map.put("id.npwp", ID_NPWP);
         map.put("in.gst", IN_GST);
+        map.put("in.pan", IN_PAN);
         map.put("jp.cn", JP_CN);
         map.put("jp.rn", JP_RN);
         map.put("kr.brn", KR_BRN);
@@ -247,6 +249,7 @@ public class TaxIdKind {
         map.put("id.nik", TaxIdKindEnum.ID_NIK);
         map.put("id.npwp", TaxIdKindEnum.ID_NPWP);
         map.put("in.gst", TaxIdKindEnum.IN_GST);
+        map.put("in.pan", TaxIdKindEnum.IN_PAN);
         map.put("jp.cn", TaxIdKindEnum.JP_CN);
         map.put("jp.rn", TaxIdKindEnum.JP_RN);
         map.put("kr.brn", TaxIdKindEnum.KR_BRN);
@@ -333,6 +336,7 @@ public class TaxIdKind {
         ID_NIK("id.nik"),
         ID_NPWP("id.npwp"),
         IN_GST("in.gst"),
+        IN_PAN("in.pan"),
         JP_CN("jp.cn"),
         JP_RN("jp.rn"),
         KR_BRN("kr.brn"),

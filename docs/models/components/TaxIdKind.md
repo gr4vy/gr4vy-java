@@ -29,6 +29,7 @@
 | `ID_NIK`     | id.nik       |
 | `ID_NPWP`    | id.npwp      |
 | `IN_GST`     | in.gst       |
+| `IN_PAN`     | in.pan       |
 | `JP_CN`      | jp.cn        |
 | `JP_RN`      | jp.rn        |
 | `KR_BRN`     | kr.brn       |
