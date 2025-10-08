@@ -100,7 +100,7 @@ public class ListPaymentMethodPaymentServiceTokens {
                     this.sdkConfiguration,
                     this.baseUrl,
                     "list_payment_method_payment_service_tokens",
-                    java.util.Optional.of(java.util.List.of()),
+                    java.util.Optional.empty(),
                     securitySource());
         }
 
@@ -109,7 +109,7 @@ public class ListPaymentMethodPaymentServiceTokens {
                     this.sdkConfiguration,
                     this.baseUrl,
                     "list_payment_method_payment_service_tokens",
-                    java.util.Optional.of(java.util.List.of()),
+                    java.util.Optional.empty(),
                     securitySource());
         }
 
@@ -118,7 +118,7 @@ public class ListPaymentMethodPaymentServiceTokens {
                     this.sdkConfiguration,
                     this.baseUrl,
                     "list_payment_method_payment_service_tokens",
-                    java.util.Optional.of(java.util.List.of()),
+                    java.util.Optional.empty(),
                     securitySource());
         }
         <T>HttpRequest buildRequest(T request, Class<T> klass) throws Exception {

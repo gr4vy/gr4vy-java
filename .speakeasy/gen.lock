@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 5bbaa3a9-baa0-471b-ba6a-13fd88e8c119
 management:
-  docChecksum: 272dc76f3d37e8319f3c84a72f362708
+  docChecksum: be1e94ce75d3f5c6194ecb1e87794e4e
   docVersion: 1.0.0
-  speakeasyVersion: 1.634.2
-  generationVersion: 2.721.3
-  releaseVersion: 2.13.7
-  configChecksum: f52de9a21a7e091560c7c7fa0551566f
+  speakeasyVersion: 1.636.1
+  generationVersion: 2.723.4
+  releaseVersion: 2.13.8
+  configChecksum: e9704a81e706b8100f29ea2dbadc5734
   repoURL: https://github.com/gr4vy/gr4vy-java.git
   published: true
 features:
@@ -20,7 +20,7 @@ features:
     globalSecurityFlattening: 0.1.0
     globalServerURLs: 2.82.2
     globals: 2.82.2
-    groups: 2.81.2
+    groups: 2.81.3
     ignores: 2.81.1
     nameOverrides: 2.81.3
     nullables: 0.1.0
@@ -519,7 +519,6 @@ generatedFiles:
   - docs/models/operations/VerifyPaymentServiceCredentialsResponse.md
   - docs/models/operations/VoidTransactionRequest.md
   - docs/models/operations/VoidTransactionResponse.md
-  - docs/sdks/accountupdater/README.md
   - docs/sdks/all/README.md
   - docs/sdks/auditlogs/README.md
   - docs/sdks/balances/README.md
@@ -534,7 +533,6 @@ generatedFiles:
   - docs/sdks/events/README.md
   - docs/sdks/executions/README.md
   - docs/sdks/giftcards/README.md
-  - docs/sdks/gr4vy/README.md
   - docs/sdks/jobs/README.md
   - docs/sdks/merchantaccounts/README.md
   - docs/sdks/networktokens/README.md
@@ -5017,3 +5015,12 @@ examples:
           application/json: {"type": "error", "code": "gateway_timeout", "status": 504, "message": "Request could not be processed"}
 examplesVersion: 1.0.2
 generatedTests: {}
+releaseNotes: |
+  ## Java SDK Changes Detected:
+  * `gr4vy.transactions.create()`:  `response` **Changed**
+  * `gr4vy.transactions.get()`:  `response` **Changed**
+  * `gr4vy.transactions.update()`:  `response` **Changed**
+  * `gr4vy.transactions.capture()`:  `response.[transaction]` **Changed**
+  * `gr4vy.transactions.void()`:  `response.[transaction]` **Changed**
+  * `gr4vy.transactions.cancel()`:  `response.transaction` **Changed**
+  * `gr4vy.transactions.sync()`:  `response` **Changed**

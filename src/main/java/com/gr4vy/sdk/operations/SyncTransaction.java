@@ -73,7 +73,7 @@ public class SyncTransaction {
                     this.sdkConfiguration,
                     this.baseUrl,
                     "sync_transaction",
-                    java.util.Optional.of(java.util.List.of()),
+                    java.util.Optional.empty(),
                     securitySource());
         }
 
@@ -82,7 +82,7 @@ public class SyncTransaction {
                     this.sdkConfiguration,
                     this.baseUrl,
                     "sync_transaction",
-                    java.util.Optional.of(java.util.List.of()),
+                    java.util.Optional.empty(),
                     securitySource());
         }
 
@@ -91,7 +91,7 @@ public class SyncTransaction {
                     this.sdkConfiguration,
                     this.baseUrl,
                     "sync_transaction",
-                    java.util.Optional.of(java.util.List.of()),
+                    java.util.Optional.empty(),
                     securitySource());
         }
         <T>HttpRequest buildRequest(T request, Class<T> klass) throws Exception {

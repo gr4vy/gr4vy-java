@@ -76,7 +76,7 @@ public class ListGiftCardBalances {
                     this.sdkConfiguration,
                     this.baseUrl,
                     "list_gift_card_balances",
-                    java.util.Optional.of(java.util.List.of()),
+                    java.util.Optional.empty(),
                     securitySource());
         }
 
@@ -85,7 +85,7 @@ public class ListGiftCardBalances {
                     this.sdkConfiguration,
                     this.baseUrl,
                     "list_gift_card_balances",
-                    java.util.Optional.of(java.util.List.of()),
+                    java.util.Optional.empty(),
                     securitySource());
         }
 
@@ -94,7 +94,7 @@ public class ListGiftCardBalances {
                     this.sdkConfiguration,
                     this.baseUrl,
                     "list_gift_card_balances",
-                    java.util.Optional.of(java.util.List.of()),
+                    java.util.Optional.empty(),
                     securitySource());
         }
         <T, U>HttpRequest buildRequest(T request, TypeReference<U> typeReference) throws Exception {

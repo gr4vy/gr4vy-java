@@ -57,7 +57,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'com.gr4vy:sdk:2.13.7'
+implementation 'com.gr4vy:sdk:2.13.8'
 ```
 
 Maven:
@@ -65,7 +65,7 @@ Maven:
 <dependency>
     <groupId>com.gr4vy</groupId>
     <artifactId>sdk</artifactId>
-    <version>2.13.7</version>
+    <version>2.13.8</version>
 </dependency>
 ```
 
@@ -292,9 +292,6 @@ Async support is available for:
 <details open>
 <summary>Available methods</summary>
 
-### [accountUpdater()](docs/sdks/accountupdater/README.md)
-
-
 #### [accountUpdater().jobs()](docs/sdks/jobs/README.md)
 
 * [create](docs/sdks/jobs/README.md#create) - Create account updater job
@@ -367,7 +364,6 @@ Async support is available for:
 #### [giftCards().balances()](docs/sdks/balances/README.md)
 
 * [list](docs/sdks/balances/README.md#list) - List gift card balances
-
 
 ### [merchantAccounts()](docs/sdks/merchantaccounts/README.md)
 
