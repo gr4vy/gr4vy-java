@@ -100,7 +100,7 @@ public class ListAllReportExecutions {
                     this.sdkConfiguration,
                     this.baseUrl,
                     "list_all_report_executions",
-                    java.util.Optional.of(java.util.List.of()),
+                    java.util.Optional.empty(),
                     securitySource());
         }
 
@@ -109,7 +109,7 @@ public class ListAllReportExecutions {
                     this.sdkConfiguration,
                     this.baseUrl,
                     "list_all_report_executions",
-                    java.util.Optional.of(java.util.List.of()),
+                    java.util.Optional.empty(),
                     securitySource());
         }
 
@@ -118,7 +118,7 @@ public class ListAllReportExecutions {
                     this.sdkConfiguration,
                     this.baseUrl,
                     "list_all_report_executions",
-                    java.util.Optional.of(java.util.List.of()),
+                    java.util.Optional.empty(),
                     securitySource());
         }
         <T>HttpRequest buildRequest(T request, Class<T> klass) throws Exception {

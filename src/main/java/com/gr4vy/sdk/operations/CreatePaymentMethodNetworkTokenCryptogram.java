@@ -76,7 +76,7 @@ public class CreatePaymentMethodNetworkTokenCryptogram {
                     this.sdkConfiguration,
                     this.baseUrl,
                     "create_payment_method_network_token_cryptogram",
-                    java.util.Optional.of(java.util.List.of()),
+                    java.util.Optional.empty(),
                     securitySource());
         }
 
@@ -85,7 +85,7 @@ public class CreatePaymentMethodNetworkTokenCryptogram {
                     this.sdkConfiguration,
                     this.baseUrl,
                     "create_payment_method_network_token_cryptogram",
-                    java.util.Optional.of(java.util.List.of()),
+                    java.util.Optional.empty(),
                     securitySource());
         }
 
@@ -94,7 +94,7 @@ public class CreatePaymentMethodNetworkTokenCryptogram {
                     this.sdkConfiguration,
                     this.baseUrl,
                     "create_payment_method_network_token_cryptogram",
-                    java.util.Optional.of(java.util.List.of()),
+                    java.util.Optional.empty(),
                     securitySource());
         }
         <T, U>HttpRequest buildRequest(T request, Class<T> klass, TypeReference<U> typeReference) throws Exception {

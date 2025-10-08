@@ -99,7 +99,7 @@ public class GetCheckoutSession {
                     this.sdkConfiguration,
                     this.baseUrl,
                     "get_checkout_session",
-                    java.util.Optional.of(java.util.List.of()),
+                    java.util.Optional.empty(),
                     securitySource());
         }
 
@@ -108,7 +108,7 @@ public class GetCheckoutSession {
                     this.sdkConfiguration,
                     this.baseUrl,
                     "get_checkout_session",
-                    java.util.Optional.of(java.util.List.of()),
+                    java.util.Optional.empty(),
                     securitySource());
         }
 
@@ -117,7 +117,7 @@ public class GetCheckoutSession {
                     this.sdkConfiguration,
                     this.baseUrl,
                     "get_checkout_session",
-                    java.util.Optional.of(java.util.List.of()),
+                    java.util.Optional.empty(),
                     securitySource());
         }
         <T>HttpRequest buildRequest(T request, Class<T> klass) throws Exception {

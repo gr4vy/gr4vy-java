@@ -76,7 +76,7 @@ public class CreateApplePayDigitalWalletSession {
                     this.sdkConfiguration,
                     this.baseUrl,
                     "create_apple_pay_digital_wallet_session",
-                    java.util.Optional.of(java.util.List.of()),
+                    java.util.Optional.empty(),
                     securitySource());
         }
 
@@ -85,7 +85,7 @@ public class CreateApplePayDigitalWalletSession {
                     this.sdkConfiguration,
                     this.baseUrl,
                     "create_apple_pay_digital_wallet_session",
-                    java.util.Optional.of(java.util.List.of()),
+                    java.util.Optional.empty(),
                     securitySource());
         }
 
@@ -94,7 +94,7 @@ public class CreateApplePayDigitalWalletSession {
                     this.sdkConfiguration,
                     this.baseUrl,
                     "create_apple_pay_digital_wallet_session",
-                    java.util.Optional.of(java.util.List.of()),
+                    java.util.Optional.empty(),
                     securitySource());
         }
         <T, U>HttpRequest buildRequest(T request, TypeReference<U> typeReference) throws Exception {

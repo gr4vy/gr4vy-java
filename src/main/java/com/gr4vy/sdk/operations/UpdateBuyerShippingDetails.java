@@ -76,7 +76,7 @@ public class UpdateBuyerShippingDetails {
                     this.sdkConfiguration,
                     this.baseUrl,
                     "update_buyer_shipping_details",
-                    java.util.Optional.of(java.util.List.of()),
+                    java.util.Optional.empty(),
                     securitySource());
         }
 
@@ -85,7 +85,7 @@ public class UpdateBuyerShippingDetails {
                     this.sdkConfiguration,
                     this.baseUrl,
                     "update_buyer_shipping_details",
-                    java.util.Optional.of(java.util.List.of()),
+                    java.util.Optional.empty(),
                     securitySource());
         }
 
@@ -94,7 +94,7 @@ public class UpdateBuyerShippingDetails {
                     this.sdkConfiguration,
                     this.baseUrl,
                     "update_buyer_shipping_details",
-                    java.util.Optional.of(java.util.List.of()),
+                    java.util.Optional.empty(),
                     securitySource());
         }
         <T, U>HttpRequest buildRequest(T request, Class<T> klass, TypeReference<U> typeReference) throws Exception {
