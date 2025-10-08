@@ -14,8 +14,8 @@ import java.lang.String;
 
 public class DlocalUPIRecurringInfoOptions {
     /**
-     * Indicates the frequency unit for the subscription. Allowed values are: `DAILY`, `WEEKLY`, `MONTHLY`,
-     * `QUARTERLY`, `SEMI_ANNUAL`, and `ANNUAL`.
+     * Indicates the frequency unit for the subscription. Allowed values are: `DAY`, `WEEK`, `MONTH`,
+     * `BI_MONTHLY`, `QUARTER`, `SEMI_ANNUALLY`, `YEAR`, `ONDEMAND`.
      */
     @JsonProperty("subscription_frequency_unit")
     private SubscriptionFrequencyUnit subscriptionFrequencyUnit;
@@ -55,8 +55,8 @@ public class DlocalUPIRecurringInfoOptions {
     }
 
     /**
-     * Indicates the frequency unit for the subscription. Allowed values are: `DAILY`, `WEEKLY`, `MONTHLY`,
-     * `QUARTERLY`, `SEMI_ANNUAL`, and `ANNUAL`.
+     * Indicates the frequency unit for the subscription. Allowed values are: `DAY`, `WEEK`, `MONTH`,
+     * `BI_MONTHLY`, `QUARTER`, `SEMI_ANNUALLY`, `YEAR`, `ONDEMAND`.
      */
     @JsonIgnore
     public SubscriptionFrequencyUnit subscriptionFrequencyUnit() {
@@ -93,8 +93,8 @@ public class DlocalUPIRecurringInfoOptions {
 
 
     /**
-     * Indicates the frequency unit for the subscription. Allowed values are: `DAILY`, `WEEKLY`, `MONTHLY`,
-     * `QUARTERLY`, `SEMI_ANNUAL`, and `ANNUAL`.
+     * Indicates the frequency unit for the subscription. Allowed values are: `DAY`, `WEEK`, `MONTH`,
+     * `BI_MONTHLY`, `QUARTER`, `SEMI_ANNUALLY`, `YEAR`, `ONDEMAND`.
      */
     public DlocalUPIRecurringInfoOptions withSubscriptionFrequencyUnit(SubscriptionFrequencyUnit subscriptionFrequencyUnit) {
         Utils.checkNotNull(subscriptionFrequencyUnit, "subscriptionFrequencyUnit");
@@ -178,8 +178,8 @@ public class DlocalUPIRecurringInfoOptions {
 
 
         /**
-         * Indicates the frequency unit for the subscription. Allowed values are: `DAILY`, `WEEKLY`, `MONTHLY`,
-         * `QUARTERLY`, `SEMI_ANNUAL`, and `ANNUAL`.
+         * Indicates the frequency unit for the subscription. Allowed values are: `DAY`, `WEEK`, `MONTH`,
+         * `BI_MONTHLY`, `QUARTER`, `SEMI_ANNUALLY`, `YEAR`, `ONDEMAND`.
          */
         public Builder subscriptionFrequencyUnit(SubscriptionFrequencyUnit subscriptionFrequencyUnit) {
             Utils.checkNotNull(subscriptionFrequencyUnit, "subscriptionFrequencyUnit");

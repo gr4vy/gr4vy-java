@@ -44,19 +44,21 @@ import java.util.Optional;
 /**
  * SubscriptionFrequencyUnit
  * 
- * <p>Indicates the frequency unit for the subscription. Allowed values are: `DAILY`, `WEEKLY`, `MONTHLY`,
- * `QUARTERLY`, `SEMI_ANNUAL`, and `ANNUAL`.
+ * <p>Indicates the frequency unit for the subscription. Allowed values are: `DAY`, `WEEK`, `MONTH`,
+ * `BI_MONTHLY`, `QUARTER`, `SEMI_ANNUALLY`, `YEAR`, `ONDEMAND`.
  */
 @JsonDeserialize(using = SubscriptionFrequencyUnit._Deserializer.class)
 @JsonSerialize(using = SubscriptionFrequencyUnit._Serializer.class)
 public class SubscriptionFrequencyUnit {
 
-    public static final SubscriptionFrequencyUnit DAILY = new SubscriptionFrequencyUnit("DAILY");
-    public static final SubscriptionFrequencyUnit WEEKLY = new SubscriptionFrequencyUnit("WEEKLY");
-    public static final SubscriptionFrequencyUnit MONTHLY = new SubscriptionFrequencyUnit("MONTHLY");
-    public static final SubscriptionFrequencyUnit QUARTERLY = new SubscriptionFrequencyUnit("QUARTERLY");
-    public static final SubscriptionFrequencyUnit SEMI_ANNUAL = new SubscriptionFrequencyUnit("SEMI_ANNUAL");
-    public static final SubscriptionFrequencyUnit ANNUAL = new SubscriptionFrequencyUnit("ANNUAL");
+    public static final SubscriptionFrequencyUnit MONTH = new SubscriptionFrequencyUnit("MONTH");
+    public static final SubscriptionFrequencyUnit WEEK = new SubscriptionFrequencyUnit("WEEK");
+    public static final SubscriptionFrequencyUnit BI_MONTHLY = new SubscriptionFrequencyUnit("BI_MONTHLY");
+    public static final SubscriptionFrequencyUnit ONDEMAND = new SubscriptionFrequencyUnit("ONDEMAND");
+    public static final SubscriptionFrequencyUnit QUARTER = new SubscriptionFrequencyUnit("QUARTER");
+    public static final SubscriptionFrequencyUnit YEAR = new SubscriptionFrequencyUnit("YEAR");
+    public static final SubscriptionFrequencyUnit SEMI_ANNUALLY = new SubscriptionFrequencyUnit("SEMI_ANNUALLY");
+    public static final SubscriptionFrequencyUnit DAY = new SubscriptionFrequencyUnit("DAY");
 
     // This map will grow whenever a Color gets created with a new
     // unrecognized value (a potential memory leak if the user is not
@@ -128,23 +130,27 @@ public class SubscriptionFrequencyUnit {
 
     private static final Map<String, SubscriptionFrequencyUnit> createValuesMap() {
         Map<String, SubscriptionFrequencyUnit> map = new LinkedHashMap<>();
-        map.put("DAILY", DAILY);
-        map.put("WEEKLY", WEEKLY);
-        map.put("MONTHLY", MONTHLY);
-        map.put("QUARTERLY", QUARTERLY);
-        map.put("SEMI_ANNUAL", SEMI_ANNUAL);
-        map.put("ANNUAL", ANNUAL);
+        map.put("MONTH", MONTH);
+        map.put("WEEK", WEEK);
+        map.put("BI_MONTHLY", BI_MONTHLY);
+        map.put("ONDEMAND", ONDEMAND);
+        map.put("QUARTER", QUARTER);
+        map.put("YEAR", YEAR);
+        map.put("SEMI_ANNUALLY", SEMI_ANNUALLY);
+        map.put("DAY", DAY);
         return map;
     }
 
     private static final Map<String, SubscriptionFrequencyUnitEnum> createEnumsMap() {
         Map<String, SubscriptionFrequencyUnitEnum> map = new HashMap<>();
-        map.put("DAILY", SubscriptionFrequencyUnitEnum.DAILY);
-        map.put("WEEKLY", SubscriptionFrequencyUnitEnum.WEEKLY);
-        map.put("MONTHLY", SubscriptionFrequencyUnitEnum.MONTHLY);
-        map.put("QUARTERLY", SubscriptionFrequencyUnitEnum.QUARTERLY);
-        map.put("SEMI_ANNUAL", SubscriptionFrequencyUnitEnum.SEMI_ANNUAL);
-        map.put("ANNUAL", SubscriptionFrequencyUnitEnum.ANNUAL);
+        map.put("MONTH", SubscriptionFrequencyUnitEnum.MONTH);
+        map.put("WEEK", SubscriptionFrequencyUnitEnum.WEEK);
+        map.put("BI_MONTHLY", SubscriptionFrequencyUnitEnum.BI_MONTHLY);
+        map.put("ONDEMAND", SubscriptionFrequencyUnitEnum.ONDEMAND);
+        map.put("QUARTER", SubscriptionFrequencyUnitEnum.QUARTER);
+        map.put("YEAR", SubscriptionFrequencyUnitEnum.YEAR);
+        map.put("SEMI_ANNUALLY", SubscriptionFrequencyUnitEnum.SEMI_ANNUALLY);
+        map.put("DAY", SubscriptionFrequencyUnitEnum.DAY);
         return map;
     }
     
@@ -180,12 +186,14 @@ public class SubscriptionFrequencyUnit {
     
     public enum SubscriptionFrequencyUnitEnum {
 
-        DAILY("DAILY"),
-        WEEKLY("WEEKLY"),
-        MONTHLY("MONTHLY"),
-        QUARTERLY("QUARTERLY"),
-        SEMI_ANNUAL("SEMI_ANNUAL"),
-        ANNUAL("ANNUAL"),;
+        MONTH("MONTH"),
+        WEEK("WEEK"),
+        BI_MONTHLY("BI_MONTHLY"),
+        ONDEMAND("ONDEMAND"),
+        QUARTER("QUARTER"),
+        YEAR("YEAR"),
+        SEMI_ANNUALLY("SEMI_ANNUALLY"),
+        DAY("DAY"),;
 
         private final String value;
 
