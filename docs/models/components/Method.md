@@ -14,6 +14,7 @@
 | `ARCUSPAYNETWORK`    | arcuspaynetwork      |
 | `BACS`               | bacs                 |
 | `BANCONTACT`         | bancontact           |
+| `BANK`               | bank                 |
 | `BANKED`             | banked               |
 | `BCP`                | bcp                  |
 | `BECS`               | becs                 |
@@ -79,6 +80,7 @@
 | `PAYVALIDA`          | payvalida            |
 | `PICPAY`             | picpay               |
 | `PIX`                | pix                  |
+| `PLAID`              | plaid                |
 | `PSE`                | pse                  |
 | `RABBITLINEPAY`      | rabbitlinepay        |
 | `RAZORPAY`           | razorpay             |

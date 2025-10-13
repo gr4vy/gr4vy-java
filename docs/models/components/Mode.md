@@ -12,3 +12,4 @@
 | `CHECKOUT_SESSION` | checkout-session   |
 | `CLICK_TO_PAY`     | click-to-pay       |
 | `GIFT_CARD`        | gift-card          |
+| `BANK`             | bank               |

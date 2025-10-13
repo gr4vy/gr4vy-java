@@ -54,6 +54,7 @@ public class Method {
     public static final Method ARCUSPAYNETWORK = new Method("arcuspaynetwork");
     public static final Method BACS = new Method("bacs");
     public static final Method BANCONTACT = new Method("bancontact");
+    public static final Method BANK = new Method("bank");
     public static final Method BANKED = new Method("banked");
     public static final Method BCP = new Method("bcp");
     public static final Method BECS = new Method("becs");
@@ -119,6 +120,7 @@ public class Method {
     public static final Method PAYVALIDA = new Method("payvalida");
     public static final Method PICPAY = new Method("picpay");
     public static final Method PIX = new Method("pix");
+    public static final Method PLAID = new Method("plaid");
     public static final Method PSE = new Method("pse");
     public static final Method RABBITLINEPAY = new Method("rabbitlinepay");
     public static final Method RAZORPAY = new Method("razorpay");
@@ -230,6 +232,7 @@ public class Method {
         map.put("arcuspaynetwork", ARCUSPAYNETWORK);
         map.put("bacs", BACS);
         map.put("bancontact", BANCONTACT);
+        map.put("bank", BANK);
         map.put("banked", BANKED);
         map.put("bcp", BCP);
         map.put("becs", BECS);
@@ -295,6 +298,7 @@ public class Method {
         map.put("payvalida", PAYVALIDA);
         map.put("picpay", PICPAY);
         map.put("pix", PIX);
+        map.put("plaid", PLAID);
         map.put("pse", PSE);
         map.put("rabbitlinepay", RABBITLINEPAY);
         map.put("razorpay", RAZORPAY);
@@ -340,6 +344,7 @@ public class Method {
         map.put("arcuspaynetwork", MethodEnum.ARCUSPAYNETWORK);
         map.put("bacs", MethodEnum.BACS);
         map.put("bancontact", MethodEnum.BANCONTACT);
+        map.put("bank", MethodEnum.BANK);
         map.put("banked", MethodEnum.BANKED);
         map.put("bcp", MethodEnum.BCP);
         map.put("becs", MethodEnum.BECS);
@@ -405,6 +410,7 @@ public class Method {
         map.put("payvalida", MethodEnum.PAYVALIDA);
         map.put("picpay", MethodEnum.PICPAY);
         map.put("pix", MethodEnum.PIX);
+        map.put("plaid", MethodEnum.PLAID);
         map.put("pse", MethodEnum.PSE);
         map.put("rabbitlinepay", MethodEnum.RABBITLINEPAY);
         map.put("razorpay", MethodEnum.RAZORPAY);
@@ -480,6 +486,7 @@ public class Method {
         ARCUSPAYNETWORK("arcuspaynetwork"),
         BACS("bacs"),
         BANCONTACT("bancontact"),
+        BANK("bank"),
         BANKED("banked"),
         BCP("bcp"),
         BECS("becs"),
@@ -545,6 +552,7 @@ public class Method {
         PAYVALIDA("payvalida"),
         PICPAY("picpay"),
         PIX("pix"),
+        PLAID("plaid"),
         PSE("pse"),
         RABBITLINEPAY("rabbitlinepay"),
         RAZORPAY("razorpay"),
