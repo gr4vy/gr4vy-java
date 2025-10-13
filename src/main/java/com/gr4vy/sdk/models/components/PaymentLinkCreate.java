@@ -62,7 +62,7 @@ public class PaymentLinkCreate {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("locale")
-    private JsonNullable<? extends Locale> locale;
+    private JsonNullable<String> locale;
 
     /**
      * The merchant's display name.
@@ -171,7 +171,7 @@ public class PaymentLinkCreate {
             @JsonProperty("connection_options") JsonNullable<? extends TransactionConnectionOptions> connectionOptions,
             @JsonProperty("external_identifier") JsonNullable<String> externalIdentifier,
             @JsonProperty("statement_descriptor") JsonNullable<? extends StatementDescriptor> statementDescriptor,
-            @JsonProperty("locale") JsonNullable<? extends Locale> locale,
+            @JsonProperty("locale") JsonNullable<String> locale,
             @JsonProperty("merchant_name") JsonNullable<String> merchantName,
             @JsonProperty("merchant_url") JsonNullable<String> merchantUrl,
             @JsonProperty("merchant_banner_url") JsonNullable<String> merchantBannerUrl,
@@ -290,10 +290,9 @@ public class PaymentLinkCreate {
     /**
      * The locale for the payment link.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<Locale> locale() {
-        return (JsonNullable<Locale>) locale;
+    public JsonNullable<String> locale() {
+        return locale;
     }
 
     /**
@@ -515,7 +514,7 @@ public class PaymentLinkCreate {
     /**
      * The locale for the payment link.
      */
-    public PaymentLinkCreate withLocale(Locale locale) {
+    public PaymentLinkCreate withLocale(String locale) {
         Utils.checkNotNull(locale, "locale");
         this.locale = JsonNullable.of(locale);
         return this;
@@ -524,7 +523,7 @@ public class PaymentLinkCreate {
     /**
      * The locale for the payment link.
      */
-    public PaymentLinkCreate withLocale(JsonNullable<? extends Locale> locale) {
+    public PaymentLinkCreate withLocale(JsonNullable<String> locale) {
         Utils.checkNotNull(locale, "locale");
         this.locale = locale;
         return this;
@@ -853,7 +852,7 @@ public class PaymentLinkCreate {
 
         private JsonNullable<? extends StatementDescriptor> statementDescriptor = JsonNullable.undefined();
 
-        private JsonNullable<? extends Locale> locale = JsonNullable.undefined();
+        private JsonNullable<String> locale = JsonNullable.undefined();
 
         private JsonNullable<String> merchantName = JsonNullable.undefined();
 
@@ -988,7 +987,7 @@ public class PaymentLinkCreate {
         /**
          * The locale for the payment link.
          */
-        public Builder locale(Locale locale) {
+        public Builder locale(String locale) {
             Utils.checkNotNull(locale, "locale");
             this.locale = JsonNullable.of(locale);
             return this;
@@ -997,7 +996,7 @@ public class PaymentLinkCreate {
         /**
          * The locale for the payment link.
          */
-        public Builder locale(JsonNullable<? extends Locale> locale) {
+        public Builder locale(JsonNullable<String> locale) {
             Utils.checkNotNull(locale, "locale");
             this.locale = locale;
             return this;
