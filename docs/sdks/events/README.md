@@ -31,15 +31,16 @@ public class Application {
                 .bearerAuth(System.getenv().getOrDefault("BEARER_AUTH", ""))
             .build();
 
-        ListTransactionEventsResponse res = sdk.transactions().events().list()
+
+        sdk.transactions().events().list()
                 .transactionId("7099948d-7286-47e4-aad8-b68f7eb44591")
                 .cursor("ZXhhbXBsZTE")
                 .limit(100L)
-                .call();
+                .callAsStream()
+                .forEach((ListTransactionEventsResponse item) -> {
+                   // handle page
+                });
 
-        if (res.transactionEvents().isPresent()) {
-            // handle response
-        }
     }
 }
 ```
