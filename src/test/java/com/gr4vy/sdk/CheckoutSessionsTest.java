@@ -88,6 +88,7 @@ public class CheckoutSessionsTest extends BaseTest {
         assertEquals(transaction.status(), TransactionStatus.AUTHORIZATION_SUCCEEDED);
         assertEquals(transaction.amount(), 1299);
 
+        // Test listing the TX events
         ListTransactionEventsResponse eventsResponse = gr4vyClient.transactions().events().list()
                 .transactionId(transaction.id())
                 .call();
