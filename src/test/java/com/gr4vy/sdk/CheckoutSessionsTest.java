@@ -12,7 +12,6 @@ import com.gr4vy.sdk.models.components.Transaction;
 import com.gr4vy.sdk.models.components.TransactionCreate;
 import com.gr4vy.sdk.models.components.TransactionCreatePaymentMethod;
 import com.gr4vy.sdk.models.components.TransactionEvent;
-import com.gr4vy.sdk.models.components.TransactionEvents;
 import com.gr4vy.sdk.models.components.TransactionStatus;
 import com.gr4vy.sdk.models.operations.Body;
 import com.gr4vy.sdk.models.operations.CreateCheckoutSessionResponse;
