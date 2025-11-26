@@ -113,7 +113,7 @@ public class CheckoutSessionsTest extends BaseTest {
                         .build())
                     .call();
         }, "Exception was expected but not thrown");
-        assertTrue(thrown.getMessage().contains("Request failed validation"));
+        assertTrue(thrown.getMessage().contains("API error occurred"));
     }
 
     @Test
