@@ -24,7 +24,7 @@ public class TransactionSummaries {
      * A list of items returned for this request.
      */
     @JsonProperty("items")
-    private List<TransactionSummary> items;
+    private List<TransactionSummaryOutput> items;
 
     /**
      * The number of items for this page.
@@ -49,7 +49,7 @@ public class TransactionSummaries {
 
     @JsonCreator
     public TransactionSummaries(
-            @JsonProperty("items") List<TransactionSummary> items,
+            @JsonProperty("items") List<TransactionSummaryOutput> items,
             @JsonProperty("limit") Optional<Long> limit,
             @JsonProperty("next_cursor") JsonNullable<String> nextCursor,
             @JsonProperty("previous_cursor") JsonNullable<String> previousCursor) {
@@ -64,7 +64,7 @@ public class TransactionSummaries {
     }
     
     public TransactionSummaries(
-            List<TransactionSummary> items) {
+            List<TransactionSummaryOutput> items) {
         this(items, Optional.empty(), JsonNullable.undefined(),
             JsonNullable.undefined());
     }
@@ -73,7 +73,7 @@ public class TransactionSummaries {
      * A list of items returned for this request.
      */
     @JsonIgnore
-    public List<TransactionSummary> items() {
+    public List<TransactionSummaryOutput> items() {
         return items;
     }
 
@@ -109,7 +109,7 @@ public class TransactionSummaries {
     /**
      * A list of items returned for this request.
      */
-    public TransactionSummaries withItems(List<TransactionSummary> items) {
+    public TransactionSummaries withItems(List<TransactionSummaryOutput> items) {
         Utils.checkNotNull(items, "items");
         this.items = items;
         return this;
@@ -205,7 +205,7 @@ public class TransactionSummaries {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private List<TransactionSummary> items;
+        private List<TransactionSummaryOutput> items;
 
         private Optional<Long> limit;
 
@@ -221,7 +221,7 @@ public class TransactionSummaries {
         /**
          * A list of items returned for this request.
          */
-        public Builder items(List<TransactionSummary> items) {
+        public Builder items(List<TransactionSummaryOutput> items) {
             Utils.checkNotNull(items, "items");
             this.items = items;
             return this;

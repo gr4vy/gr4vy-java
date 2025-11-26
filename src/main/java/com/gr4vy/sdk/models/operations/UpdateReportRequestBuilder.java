@@ -10,7 +10,6 @@ import com.gr4vy.sdk.models.components.ReportUpdate;
 import com.gr4vy.sdk.operations.UpdateReport;
 import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.Utils;
-import java.lang.Exception;
 import java.lang.String;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -60,7 +59,7 @@ public class UpdateReportRequestBuilder {
         return request;
     }
 
-    public UpdateReportResponse call() throws Exception {
+    public UpdateReportResponse call() {
         
         RequestOperation<UpdateReportRequest, UpdateReportResponse> operation
               = new UpdateReport.Sync(sdkConfiguration, _headers);

@@ -11,7 +11,6 @@ import com.gr4vy.sdk.models.operations.ListPaymentOptionsRequest;
 import com.gr4vy.sdk.operations.ListPaymentOptions;
 import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.Utils;
-import java.lang.Exception;
 import java.lang.String;
 import java.util.concurrent.CompletableFuture;
 import org.openapitools.jackson.nullable.JsonNullable;
@@ -54,7 +53,7 @@ public class ListPaymentOptionsRequestBuilder {
         return request;
     }
 
-    public CompletableFuture<ListPaymentOptionsResponse> call() throws Exception {
+    public CompletableFuture<ListPaymentOptionsResponse> call() {
         
         AsyncRequestOperation<ListPaymentOptionsRequest, ListPaymentOptionsResponse> operation
               = new ListPaymentOptions.Async(sdkConfiguration, _headers);

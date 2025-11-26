@@ -11,7 +11,6 @@ import com.gr4vy.sdk.models.operations.UpdateMerchantAccountRequest;
 import com.gr4vy.sdk.operations.UpdateMerchantAccount;
 import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.Utils;
-import java.lang.Exception;
 import java.lang.String;
 import java.util.concurrent.CompletableFuture;
 
@@ -47,7 +46,7 @@ public class UpdateMerchantAccountRequestBuilder {
         return request;
     }
 
-    public CompletableFuture<UpdateMerchantAccountResponse> call() throws Exception {
+    public CompletableFuture<UpdateMerchantAccountResponse> call() {
         
         AsyncRequestOperation<UpdateMerchantAccountRequest, UpdateMerchantAccountResponse> operation
               = new UpdateMerchantAccount.Async(sdkConfiguration, _headers);

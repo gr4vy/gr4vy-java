@@ -10,7 +10,6 @@ import com.gr4vy.sdk.models.components.DigitalWalletDomain;
 import com.gr4vy.sdk.operations.RegisterDigitalWalletDomain;
 import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.Utils;
-import java.lang.Exception;
 import java.lang.String;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -60,7 +59,7 @@ public class RegisterDigitalWalletDomainRequestBuilder {
         return request;
     }
 
-    public RegisterDigitalWalletDomainResponse call() throws Exception {
+    public RegisterDigitalWalletDomainResponse call() {
         
         RequestOperation<RegisterDigitalWalletDomainRequest, RegisterDigitalWalletDomainResponse> operation
               = new RegisterDigitalWalletDomain.Sync(sdkConfiguration, _headers);

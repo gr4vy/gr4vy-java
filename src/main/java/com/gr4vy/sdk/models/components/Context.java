@@ -19,7 +19,7 @@ import java.lang.SuppressWarnings;
 public class Context {
 
     @JsonValue
-    private TypedObject value;
+    private final TypedObject value;
     
     private Context(TypedObject value) {
         this.value = value;
@@ -27,17 +27,17 @@ public class Context {
 
     public static Context of(WalletPaymentOptionContext value) {
         Utils.checkNotNull(value, "value");
-        return new Context(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<WalletPaymentOptionContext>(){}));
+        return new Context(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
     }
 
     public static Context of(GooglePayPaymentOptionContext value) {
         Utils.checkNotNull(value, "value");
-        return new Context(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<GooglePayPaymentOptionContext>(){}));
+        return new Context(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
     }
 
     public static Context of(PaymentOptionContext value) {
         Utils.checkNotNull(value, "value");
-        return new Context(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<PaymentOptionContext>(){}));
+        return new Context(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
     }
     
     /**
@@ -61,7 +61,7 @@ public class Context {
      **/ 
     public java.lang.Object value() {
         return value.value();
-    }    
+    }
     
     @Override
     public boolean equals(java.lang.Object o) {
@@ -72,7 +72,7 @@ public class Context {
             return false;
         }
         Context other = (Context) o;
-        return Utils.enhancedDeepEquals(this.value.value(), other.value.value()); 
+        return Utils.enhancedDeepEquals(this.value.value(), other.value.value());
     }
     
     @Override
@@ -96,6 +96,6 @@ public class Context {
         return Utils.toString(Context.class,
                 "value", value);
     }
- 
+
 }
 

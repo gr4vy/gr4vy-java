@@ -20,7 +20,6 @@ import com.gr4vy.sdk.operations.GetTransactionRefund;
 import com.gr4vy.sdk.operations.ListTransactionRefunds;
 import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.Options;
-import java.lang.Exception;
 import java.lang.String;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
@@ -69,9 +68,9 @@ public class TransactionsRefunds {
      * 
      * @param transactionId The ID of the transaction
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public ListTransactionRefundsResponse list(String transactionId) throws Exception {
+    public ListTransactionRefundsResponse list(String transactionId) {
         return list(transactionId, JsonNullable.undefined(), Optional.empty());
     }
 
@@ -84,11 +83,11 @@ public class TransactionsRefunds {
      * @param merchantAccountId 
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
     public ListTransactionRefundsResponse list(
             String transactionId, JsonNullable<String> merchantAccountId,
-            Optional<Options> options) throws Exception {
+            Optional<Options> options) {
         ListTransactionRefundsRequest request =
             ListTransactionRefundsRequest
                 .builder()
@@ -119,9 +118,9 @@ public class TransactionsRefunds {
      * @param transactionId The ID of the transaction
      * @param transactionRefundCreate 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public CreateTransactionRefundResponse create(String transactionId, TransactionRefundCreate transactionRefundCreate) throws Exception {
+    public CreateTransactionRefundResponse create(String transactionId, TransactionRefundCreate transactionRefundCreate) {
         return create(transactionId, JsonNullable.undefined(), transactionRefundCreate);
     }
 
@@ -134,11 +133,11 @@ public class TransactionsRefunds {
      * @param merchantAccountId 
      * @param transactionRefundCreate 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
     public CreateTransactionRefundResponse create(
             String transactionId, JsonNullable<String> merchantAccountId,
-            TransactionRefundCreate transactionRefundCreate) throws Exception {
+            TransactionRefundCreate transactionRefundCreate) {
         CreateTransactionRefundRequest request =
             CreateTransactionRefundRequest
                 .builder()
@@ -170,9 +169,9 @@ public class TransactionsRefunds {
      * @param transactionId The ID of the transaction
      * @param refundId The ID of the refund
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public GetTransactionRefundResponse get(String transactionId, String refundId) throws Exception {
+    public GetTransactionRefundResponse get(String transactionId, String refundId) {
         return get(transactionId, refundId, JsonNullable.undefined(),
             Optional.empty());
     }
@@ -187,11 +186,11 @@ public class TransactionsRefunds {
      * @param merchantAccountId 
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
     public GetTransactionRefundResponse get(
             String transactionId, String refundId,
-            JsonNullable<String> merchantAccountId, Optional<Options> options) throws Exception {
+            JsonNullable<String> merchantAccountId, Optional<Options> options) {
         GetTransactionRefundRequest request =
             GetTransactionRefundRequest
                 .builder()

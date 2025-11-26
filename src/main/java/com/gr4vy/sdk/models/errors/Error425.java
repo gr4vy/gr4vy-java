@@ -10,433 +10,470 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.gr4vy.sdk.models.components.ErrorDetail;
+import com.gr4vy.sdk.utils.Blob;
 import com.gr4vy.sdk.utils.LazySingletonValue;
 import com.gr4vy.sdk.utils.Utils;
+import jakarta.annotation.Nullable;
 import java.io.InputStream;
+import java.lang.Deprecated;
+import java.lang.Exception;
 import java.lang.Long;
 import java.lang.Override;
-import java.lang.RuntimeException;
 import java.lang.String;
 import java.lang.SuppressWarnings;
+import java.lang.Throwable;
 import java.net.http.HttpResponse;
 import java.util.List;
 import java.util.Optional;
-
+import java.util.concurrent.CompletableFuture;
 
 @SuppressWarnings("serial")
-public class Error425 extends RuntimeException {
-    /**
-     * Always `error`.
-     */
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("type")
-    private Optional<String> type;
+public class Error425 extends Gr4vyError {
 
-    /**
-     * Always `too_early`
-     */
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("code")
-    private Optional<String> code;
+    @Nullable
+    private final Data data;
 
-    /**
-     * Always `425`.
-     */
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("status")
-    private Optional<Long> status;
+    @Nullable
+    private final Throwable deserializationException;
 
-    /**
-     * A human readable message that provides more context to the error.
-     */
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("message")
-    private Optional<String> message;
-
-    /**
-     * A list of details that further ellaborate on the error.
-     */
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("details")
-    private Optional<? extends List<ErrorDetail>> details;
-
-    /**
-     * Raw HTTP response; suitable for custom response parsing
-     */
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("RawResponse")
-    private Optional<? extends HttpResponse<InputStream>> rawResponse;
-
-    @JsonCreator
     public Error425(
-            @JsonProperty("code") Optional<String> code,
-            @JsonProperty("status") Optional<Long> status,
-            @JsonProperty("message") Optional<String> message,
-            @JsonProperty("details") Optional<? extends List<ErrorDetail>> details,
-            @JsonProperty("RawResponse") Optional<? extends HttpResponse<InputStream>> rawResponse) {
-        super("API error occurred");
-        Utils.checkNotNull(code, "code");
-        Utils.checkNotNull(status, "status");
-        Utils.checkNotNull(message, "message");
-        Utils.checkNotNull(details, "details");
-        Utils.checkNotNull(rawResponse, "rawResponse");
-        this.type = Builder._SINGLETON_VALUE_Type.value();
-        this.code = code;
-        this.status = status;
-        this.message = message;
-        this.details = details;
-        this.rawResponse = rawResponse;
-    }
-    
-    public Error425() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty());
+                int code,
+                byte[] body,
+                HttpResponse<?> rawResponse,
+                @Nullable Data data,
+                @Nullable Throwable deserializationException) {
+        super("API error occurred", code, body, rawResponse, null);
+        this.data = data;
+        this.deserializationException = deserializationException;
     }
 
     /**
-     * Always `error`.
-     */
-    @JsonIgnore
-    public Optional<String> type() {
-        return type;
+    * Parse a response into an instance of Error425. If deserialization of the response body fails,
+    * the resulting Error425 instance will have a null data() value and a non-null deserializationException().
+    */
+    public static Error425 from(HttpResponse<InputStream> response) {
+        try {
+            byte[] bytes = Utils.extractByteArrayFromBody(response);
+            Data data = Utils.mapper().readValue(bytes, Data.class);
+            return new Error425(response.statusCode(), bytes, response, data, null);
+        } catch (Exception e) {
+            return new Error425(response.statusCode(), null, response, null, e);
+        }
     }
 
     /**
-     * Always `too_early`
-     */
-    @JsonIgnore
-    public Optional<String> code() {
-        return code;
+    * Parse a response into an instance of Error425 asynchronously. If deserialization of the response body fails,
+    * the resulting Error425 instance will have a null data() value and a non-null deserializationException().
+    */
+    public static CompletableFuture<Error425> fromAsync(HttpResponse<Blob> response) {
+        return response.body()
+                .toByteArray()
+                .handle((bytes, err) -> {
+                    // if a body read error occurs, we want to transform the exception
+                    if (err != null) {
+                        throw new AsyncAPIException(
+                                "Error reading response body: " + err.getMessage(),
+                                response.statusCode(),
+                                null,
+                                response,
+                                err);
+                    }
+
+                    try {
+                        return new Error425(
+                                response.statusCode(),
+                                bytes,
+                                response,
+                                Utils.mapper().readValue(
+                                        bytes,
+                                        new TypeReference<Data>() {
+                                        }),
+                                null);
+                    } catch (Exception e) {
+                        return new Error425(
+                                response.statusCode(),
+                                bytes,
+                                response,
+                                null,
+                                e);
+                    }
+                });
     }
 
     /**
      * Always `425`.
      */
-    @JsonIgnore
+    @Deprecated
     public Optional<Long> status() {
-        return status;
-    }
-
-    /**
-     * A human readable message that provides more context to the error.
-     */
-    @JsonIgnore
-    public Optional<String> message() {
-        return message;
-    }
-
-    @JsonIgnore
-    @Override
-    public String getMessage() {
-        return Utils.valueOrNull(message);
+        return data().flatMap(Data::status);
     }
 
     /**
      * A list of details that further ellaborate on the error.
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
+    @Deprecated
     public Optional<List<ErrorDetail>> details() {
-        return (Optional<List<ErrorDetail>>) details;
+        return data().flatMap(Data::details);
+    }
+
+    public Optional<Data> data() {
+        return Optional.ofNullable(data);
     }
 
     /**
-     * Raw HTTP response; suitable for custom response parsing
+     * Returns the exception if an error occurs while deserializing the response body.
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
-    public Optional<HttpResponse<InputStream>> rawResponse() {
-        return (Optional<HttpResponse<InputStream>>) rawResponse;
+    public Optional<Throwable> deserializationException() {
+        return Optional.ofNullable(deserializationException);
     }
 
-    public static Builder builder() {
-        return new Builder();
-    }
+    public static class Data {
+        /**
+         * Always `error`.
+         */
+        @JsonInclude(Include.NON_ABSENT)
+        @JsonProperty("type")
+        private Optional<String> type;
 
-
-    /**
-     * Always `too_early`
-     */
-    public Error425 withCode(String code) {
-        Utils.checkNotNull(code, "code");
-        this.code = Optional.ofNullable(code);
-        return this;
-    }
-
-
-    /**
-     * Always `too_early`
-     */
-    public Error425 withCode(Optional<String> code) {
-        Utils.checkNotNull(code, "code");
-        this.code = code;
-        return this;
-    }
-
-    /**
-     * Always `425`.
-     */
-    public Error425 withStatus(long status) {
-        Utils.checkNotNull(status, "status");
-        this.status = Optional.ofNullable(status);
-        return this;
-    }
-
-
-    /**
-     * Always `425`.
-     */
-    public Error425 withStatus(Optional<Long> status) {
-        Utils.checkNotNull(status, "status");
-        this.status = status;
-        return this;
-    }
-
-    /**
-     * A human readable message that provides more context to the error.
-     */
-    public Error425 withMessage(String message) {
-        Utils.checkNotNull(message, "message");
-        this.message = Optional.ofNullable(message);
-        return this;
-    }
-
-
-    /**
-     * A human readable message that provides more context to the error.
-     */
-    public Error425 withMessage(Optional<String> message) {
-        Utils.checkNotNull(message, "message");
-        this.message = message;
-        return this;
-    }
-
-    /**
-     * A list of details that further ellaborate on the error.
-     */
-    public Error425 withDetails(List<ErrorDetail> details) {
-        Utils.checkNotNull(details, "details");
-        this.details = Optional.ofNullable(details);
-        return this;
-    }
-
-
-    /**
-     * A list of details that further ellaborate on the error.
-     */
-    public Error425 withDetails(Optional<? extends List<ErrorDetail>> details) {
-        Utils.checkNotNull(details, "details");
-        this.details = details;
-        return this;
-    }
-
-    /**
-     * Raw HTTP response; suitable for custom response parsing
-     */
-    public Error425 withRawResponse(HttpResponse<InputStream> rawResponse) {
-        Utils.checkNotNull(rawResponse, "rawResponse");
-        this.rawResponse = Optional.ofNullable(rawResponse);
-        return this;
-    }
-
-
-    /**
-     * Raw HTTP response; suitable for custom response parsing
-     */
-    public Error425 withRawResponse(Optional<? extends HttpResponse<InputStream>> rawResponse) {
-        Utils.checkNotNull(rawResponse, "rawResponse");
-        this.rawResponse = rawResponse;
-        return this;
-    }
-
-    @Override
-    public boolean equals(java.lang.Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        Error425 other = (Error425) o;
-        return 
-            Utils.enhancedDeepEquals(this.type, other.type) &&
-            Utils.enhancedDeepEquals(this.code, other.code) &&
-            Utils.enhancedDeepEquals(this.status, other.status) &&
-            Utils.enhancedDeepEquals(this.message, other.message) &&
-            Utils.enhancedDeepEquals(this.details, other.details) &&
-            Utils.enhancedDeepEquals(this.rawResponse, other.rawResponse);
-    }
-    
-    @Override
-    public int hashCode() {
-        return Utils.enhancedHash(
-            type, code, status,
-            message, details, rawResponse);
-    }
-    
-    @Override
-    public String toString() {
-        return Utils.toString(Error425.class,
-                "type", type,
-                "code", code,
-                "status", status,
-                "message", message,
-                "details", details,
-                "rawResponse", rawResponse);
-    }
-
-    @SuppressWarnings("UnusedReturnValue")
-    public final static class Builder {
-
+        /**
+         * Always `too_early`
+         */
+        @JsonInclude(Include.NON_ABSENT)
+        @JsonProperty("code")
         private Optional<String> code;
 
+        /**
+         * Always `425`.
+         */
+        @JsonInclude(Include.NON_ABSENT)
+        @JsonProperty("status")
         private Optional<Long> status;
 
+        /**
+         * A human readable message that provides more context to the error.
+         */
+        @JsonInclude(Include.NON_ABSENT)
+        @JsonProperty("message")
         private Optional<String> message;
 
-        private Optional<? extends List<ErrorDetail>> details = Optional.empty();
+        /**
+         * A list of details that further ellaborate on the error.
+         */
+        @JsonInclude(Include.NON_ABSENT)
+        @JsonProperty("details")
+        private Optional<? extends List<ErrorDetail>> details;
 
-        private Optional<? extends HttpResponse<InputStream>> rawResponse;
+        @JsonCreator
+        public Data(
+                @JsonProperty("code") Optional<String> code,
+                @JsonProperty("status") Optional<Long> status,
+                @JsonProperty("message") Optional<String> message,
+                @JsonProperty("details") Optional<? extends List<ErrorDetail>> details) {
+            Utils.checkNotNull(code, "code");
+            Utils.checkNotNull(status, "status");
+            Utils.checkNotNull(message, "message");
+            Utils.checkNotNull(details, "details");
+            this.type = Builder._SINGLETON_VALUE_Type.value();
+            this.code = code;
+            this.status = status;
+            this.message = message;
+            this.details = details;
+        }
+        
+        public Data() {
+            this(Optional.empty(), Optional.empty(), Optional.empty(),
+                Optional.empty());
+        }
 
-        private Builder() {
-          // force use of static builder() method
+        /**
+         * Always `error`.
+         */
+        @JsonIgnore
+        public Optional<String> type() {
+            return type;
+        }
+
+        /**
+         * Always `too_early`
+         */
+        @JsonIgnore
+        public Optional<String> code() {
+            return code;
+        }
+
+        /**
+         * Always `425`.
+         */
+        @JsonIgnore
+        public Optional<Long> status() {
+            return status;
+        }
+
+        /**
+         * A human readable message that provides more context to the error.
+         */
+        @JsonIgnore
+        public Optional<String> message() {
+            return message;
+        }
+
+        /**
+         * A list of details that further ellaborate on the error.
+         */
+        @SuppressWarnings("unchecked")
+        @JsonIgnore
+        public Optional<List<ErrorDetail>> details() {
+            return (Optional<List<ErrorDetail>>) details;
+        }
+
+        public static Builder builder() {
+            return new Builder();
         }
 
 
         /**
          * Always `too_early`
          */
-        public Builder code(String code) {
+        public Data withCode(String code) {
             Utils.checkNotNull(code, "code");
             this.code = Optional.ofNullable(code);
             return this;
         }
 
+
         /**
          * Always `too_early`
          */
-        public Builder code(Optional<String> code) {
+        public Data withCode(Optional<String> code) {
             Utils.checkNotNull(code, "code");
             this.code = code;
             return this;
         }
 
-
         /**
          * Always `425`.
          */
-        public Builder status(long status) {
+        public Data withStatus(long status) {
             Utils.checkNotNull(status, "status");
             this.status = Optional.ofNullable(status);
             return this;
         }
 
+
         /**
          * Always `425`.
          */
-        public Builder status(Optional<Long> status) {
+        public Data withStatus(Optional<Long> status) {
             Utils.checkNotNull(status, "status");
             this.status = status;
             return this;
         }
 
-
         /**
          * A human readable message that provides more context to the error.
          */
-        public Builder message(String message) {
+        public Data withMessage(String message) {
             Utils.checkNotNull(message, "message");
             this.message = Optional.ofNullable(message);
             return this;
         }
 
+
         /**
          * A human readable message that provides more context to the error.
          */
-        public Builder message(Optional<String> message) {
+        public Data withMessage(Optional<String> message) {
             Utils.checkNotNull(message, "message");
             this.message = message;
             return this;
         }
 
-
         /**
          * A list of details that further ellaborate on the error.
          */
-        public Builder details(List<ErrorDetail> details) {
+        public Data withDetails(List<ErrorDetail> details) {
             Utils.checkNotNull(details, "details");
             this.details = Optional.ofNullable(details);
             return this;
         }
 
+
         /**
          * A list of details that further ellaborate on the error.
          */
-        public Builder details(Optional<? extends List<ErrorDetail>> details) {
+        public Data withDetails(Optional<? extends List<ErrorDetail>> details) {
             Utils.checkNotNull(details, "details");
             this.details = details;
             return this;
         }
 
-
-        /**
-         * Raw HTTP response; suitable for custom response parsing
-         */
-        public Builder rawResponse(HttpResponse<InputStream> rawResponse) {
-            Utils.checkNotNull(rawResponse, "rawResponse");
-            this.rawResponse = Optional.ofNullable(rawResponse);
-            return this;
+        @Override
+        public boolean equals(java.lang.Object o) {
+            if (this == o) {
+                return true;
+            }
+            if (o == null || getClass() != o.getClass()) {
+                return false;
+            }
+            Data other = (Data) o;
+            return 
+                Utils.enhancedDeepEquals(this.type, other.type) &&
+                Utils.enhancedDeepEquals(this.code, other.code) &&
+                Utils.enhancedDeepEquals(this.status, other.status) &&
+                Utils.enhancedDeepEquals(this.message, other.message) &&
+                Utils.enhancedDeepEquals(this.details, other.details);
+        }
+        
+        @Override
+        public int hashCode() {
+            return Utils.enhancedHash(
+                type, code, status,
+                message, details);
+        }
+        
+        @Override
+        public String toString() {
+            return Utils.toString(Data.class,
+                    "type", type,
+                    "code", code,
+                    "status", status,
+                    "message", message,
+                    "details", details);
         }
 
-        /**
-         * Raw HTTP response; suitable for custom response parsing
-         */
-        public Builder rawResponse(Optional<? extends HttpResponse<InputStream>> rawResponse) {
-            Utils.checkNotNull(rawResponse, "rawResponse");
-            this.rawResponse = rawResponse;
-            return this;
+        @SuppressWarnings("UnusedReturnValue")
+        public final static class Builder {
+
+            private Optional<String> code;
+
+            private Optional<Long> status;
+
+            private Optional<String> message;
+
+            private Optional<? extends List<ErrorDetail>> details = Optional.empty();
+
+            private Builder() {
+              // force use of static builder() method
+            }
+
+
+            /**
+             * Always `too_early`
+             */
+            public Builder code(String code) {
+                Utils.checkNotNull(code, "code");
+                this.code = Optional.ofNullable(code);
+                return this;
+            }
+
+            /**
+             * Always `too_early`
+             */
+            public Builder code(Optional<String> code) {
+                Utils.checkNotNull(code, "code");
+                this.code = code;
+                return this;
+            }
+
+
+            /**
+             * Always `425`.
+             */
+            public Builder status(long status) {
+                Utils.checkNotNull(status, "status");
+                this.status = Optional.ofNullable(status);
+                return this;
+            }
+
+            /**
+             * Always `425`.
+             */
+            public Builder status(Optional<Long> status) {
+                Utils.checkNotNull(status, "status");
+                this.status = status;
+                return this;
+            }
+
+
+            /**
+             * A human readable message that provides more context to the error.
+             */
+            public Builder message(String message) {
+                Utils.checkNotNull(message, "message");
+                this.message = Optional.ofNullable(message);
+                return this;
+            }
+
+            /**
+             * A human readable message that provides more context to the error.
+             */
+            public Builder message(Optional<String> message) {
+                Utils.checkNotNull(message, "message");
+                this.message = message;
+                return this;
+            }
+
+
+            /**
+             * A list of details that further ellaborate on the error.
+             */
+            public Builder details(List<ErrorDetail> details) {
+                Utils.checkNotNull(details, "details");
+                this.details = Optional.ofNullable(details);
+                return this;
+            }
+
+            /**
+             * A list of details that further ellaborate on the error.
+             */
+            public Builder details(Optional<? extends List<ErrorDetail>> details) {
+                Utils.checkNotNull(details, "details");
+                this.details = details;
+                return this;
+            }
+
+            public Data build() {
+                if (code == null) {
+                    code = _SINGLETON_VALUE_Code.value();
+                }
+                if (status == null) {
+                    status = _SINGLETON_VALUE_Status.value();
+                }
+                if (message == null) {
+                    message = _SINGLETON_VALUE_Message.value();
+                }
+
+                return new Data(
+                    code, status, message,
+                    details);
+            }
+
+
+            private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_Type =
+                    new LazySingletonValue<>(
+                            "type",
+                            "\"error\"",
+                            new TypeReference<Optional<String>>() {});
+
+            private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_Code =
+                    new LazySingletonValue<>(
+                            "code",
+                            "\"too_early\"",
+                            new TypeReference<Optional<String>>() {});
+
+            private static final LazySingletonValue<Optional<Long>> _SINGLETON_VALUE_Status =
+                    new LazySingletonValue<>(
+                            "status",
+                            "425",
+                            new TypeReference<Optional<Long>>() {});
+
+            private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_Message =
+                    new LazySingletonValue<>(
+                            "message",
+                            "\"Generic error\"",
+                            new TypeReference<Optional<String>>() {});
         }
-
-        public Error425 build() {
-            if (code == null) {
-                code = _SINGLETON_VALUE_Code.value();
-            }
-            if (status == null) {
-                status = _SINGLETON_VALUE_Status.value();
-            }
-            if (message == null) {
-                message = _SINGLETON_VALUE_Message.value();
-            }
-
-            return new Error425(
-                code, status, message,
-                details, rawResponse);
-        }
-
-
-        private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_Type =
-                new LazySingletonValue<>(
-                        "type",
-                        "\"error\"",
-                        new TypeReference<Optional<String>>() {});
-
-        private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_Code =
-                new LazySingletonValue<>(
-                        "code",
-                        "\"too_early\"",
-                        new TypeReference<Optional<String>>() {});
-
-        private static final LazySingletonValue<Optional<Long>> _SINGLETON_VALUE_Status =
-                new LazySingletonValue<>(
-                        "status",
-                        "425",
-                        new TypeReference<Optional<Long>>() {});
-
-        private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_Message =
-                new LazySingletonValue<>(
-                        "message",
-                        "\"Generic error\"",
-                        new TypeReference<Optional<String>>() {});
     }
+
 }
 

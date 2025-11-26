@@ -11,7 +11,6 @@ import com.gr4vy.sdk.models.operations.ListAuditLogsResponse;
 import com.gr4vy.sdk.operations.ListAuditLogs;
 import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.Options;
-import java.lang.Exception;
 import java.util.Optional;
 
 
@@ -52,9 +51,9 @@ public class AuditLogs {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public ListAuditLogsResponse list(ListAuditLogsRequest request) throws Exception {
+    public ListAuditLogsResponse list(ListAuditLogsRequest request) {
         return list(request, Optional.empty());
     }
 
@@ -66,9 +65,9 @@ public class AuditLogs {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public ListAuditLogsResponse list(ListAuditLogsRequest request, Optional<Options> options) throws Exception {
+    public ListAuditLogsResponse list(ListAuditLogsRequest request, Optional<Options> options) {
         RequestOperation<ListAuditLogsRequest, ListAuditLogsResponse> operation
               = new ListAuditLogs.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));

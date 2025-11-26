@@ -10,7 +10,6 @@ import com.gr4vy.sdk.models.operations.VoidTransactionRequest;
 import com.gr4vy.sdk.operations.VoidTransaction;
 import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.Utils;
-import java.lang.Exception;
 import java.lang.String;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
@@ -68,7 +67,7 @@ public class VoidTransactionRequestBuilder {
         return request;
     }
 
-    public CompletableFuture<VoidTransactionResponse> call() throws Exception {
+    public CompletableFuture<VoidTransactionResponse> call() {
         
         AsyncRequestOperation<VoidTransactionRequest, VoidTransactionResponse> operation
               = new VoidTransaction.Async(sdkConfiguration, _headers);

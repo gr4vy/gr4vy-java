@@ -10,7 +10,6 @@ import com.gr4vy.sdk.models.operations.DeleteDigitalWalletRequest;
 import com.gr4vy.sdk.operations.DeleteDigitalWallet;
 import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.Utils;
-import java.lang.Exception;
 import java.lang.String;
 import java.util.concurrent.CompletableFuture;
 import org.openapitools.jackson.nullable.JsonNullable;
@@ -53,7 +52,7 @@ public class DeleteDigitalWalletRequestBuilder {
         return request;
     }
 
-    public CompletableFuture<DeleteDigitalWalletResponse> call() throws Exception {
+    public CompletableFuture<DeleteDigitalWalletResponse> call() {
         
         AsyncRequestOperation<DeleteDigitalWalletRequest, DeleteDigitalWalletResponse> operation
               = new DeleteDigitalWallet.Async(sdkConfiguration, _headers);

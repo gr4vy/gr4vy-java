@@ -16,7 +16,6 @@ import com.gr4vy.sdk.utils.RetryConfig;
 import com.gr4vy.sdk.utils.Utils;
 import com.gr4vy.sdk.utils.pagination.AsyncPaginator;
 import com.gr4vy.sdk.utils.pagination.CursorTracker;
-import java.lang.Exception;
 import java.lang.String;
 import java.net.http.HttpResponse;
 import java.util.Optional;
@@ -54,7 +53,7 @@ public class ListAllReportExecutionsRequestBuilder {
         return this;
     }
 
-    public CompletableFuture<ListAllReportExecutionsResponse> call() throws Exception {
+    public CompletableFuture<ListAllReportExecutionsResponse> call() {
         Optional<Options> options = Optional.of(Options.builder()
             .retryConfig(retryConfig)
             .build());

@@ -10,7 +10,6 @@ import com.gr4vy.sdk.models.components.ClickToPaySessionRequest;
 import com.gr4vy.sdk.operations.CreateClickToPayDigitalWalletSession;
 import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.Utils;
-import java.lang.Exception;
 
 public class CreateClickToPayDigitalWalletSessionRequestBuilder {
 
@@ -28,7 +27,7 @@ public class CreateClickToPayDigitalWalletSessionRequestBuilder {
         return this;
     }
 
-    public CreateClickToPayDigitalWalletSessionResponse call() throws Exception {
+    public CreateClickToPayDigitalWalletSessionResponse call() {
         
         RequestOperation<ClickToPaySessionRequest, CreateClickToPayDigitalWalletSessionResponse> operation
               = new CreateClickToPayDigitalWalletSession.Sync(sdkConfiguration, _headers);

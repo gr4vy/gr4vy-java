@@ -10,7 +10,6 @@ import com.gr4vy.sdk.models.operations.ResumePaymentMethodNetworkTokenRequest;
 import com.gr4vy.sdk.operations.ResumePaymentMethodNetworkToken;
 import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.Utils;
-import java.lang.Exception;
 import java.lang.String;
 import java.util.concurrent.CompletableFuture;
 import org.openapitools.jackson.nullable.JsonNullable;
@@ -61,7 +60,7 @@ public class ResumePaymentMethodNetworkTokenRequestBuilder {
         return request;
     }
 
-    public CompletableFuture<ResumePaymentMethodNetworkTokenResponse> call() throws Exception {
+    public CompletableFuture<ResumePaymentMethodNetworkTokenResponse> call() {
         
         AsyncRequestOperation<ResumePaymentMethodNetworkTokenRequest, ResumePaymentMethodNetworkTokenResponse> operation
               = new ResumePaymentMethodNetworkToken.Async(sdkConfiguration, _headers);

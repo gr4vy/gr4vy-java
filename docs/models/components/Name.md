@@ -57,3 +57,4 @@ The specific event name.
 | `NETWORK_TOKEN_CRYPTOGRAM_PROVISION_FAILED`                      | network-token-cryptogram-provision-failed                        |
 | `THE_GIVING_BLOCK_TRANSACTION_CONVERSION_SUCCEEDED`              | the-giving-block-transaction-conversion-succeeded                |
 | `REAL_TIME_ACCOUNT_UPDATE`                                       | real-time-account-update                                         |
+| `PLAID_REQUEST_EVENT`                                            | plaid-request-event                                              |

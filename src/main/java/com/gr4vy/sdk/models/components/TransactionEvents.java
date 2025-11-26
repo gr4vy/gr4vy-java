@@ -24,7 +24,7 @@ public class TransactionEvents {
      * A list of items returned for this request.
      */
     @JsonProperty("items")
-    private List<TransactionEvent> items;
+    private List<TransactionEventOutput> items;
 
     /**
      * The number of items for this page.
@@ -49,7 +49,7 @@ public class TransactionEvents {
 
     @JsonCreator
     public TransactionEvents(
-            @JsonProperty("items") List<TransactionEvent> items,
+            @JsonProperty("items") List<TransactionEventOutput> items,
             @JsonProperty("limit") Optional<Long> limit,
             @JsonProperty("next_cursor") JsonNullable<String> nextCursor,
             @JsonProperty("previous_cursor") JsonNullable<String> previousCursor) {
@@ -64,7 +64,7 @@ public class TransactionEvents {
     }
     
     public TransactionEvents(
-            List<TransactionEvent> items) {
+            List<TransactionEventOutput> items) {
         this(items, Optional.empty(), JsonNullable.undefined(),
             JsonNullable.undefined());
     }
@@ -73,7 +73,7 @@ public class TransactionEvents {
      * A list of items returned for this request.
      */
     @JsonIgnore
-    public List<TransactionEvent> items() {
+    public List<TransactionEventOutput> items() {
         return items;
     }
 
@@ -109,7 +109,7 @@ public class TransactionEvents {
     /**
      * A list of items returned for this request.
      */
-    public TransactionEvents withItems(List<TransactionEvent> items) {
+    public TransactionEvents withItems(List<TransactionEventOutput> items) {
         Utils.checkNotNull(items, "items");
         this.items = items;
         return this;
@@ -205,7 +205,7 @@ public class TransactionEvents {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private List<TransactionEvent> items;
+        private List<TransactionEventOutput> items;
 
         private Optional<Long> limit;
 
@@ -221,7 +221,7 @@ public class TransactionEvents {
         /**
          * A list of items returned for this request.
          */
-        public Builder items(List<TransactionEvent> items) {
+        public Builder items(List<TransactionEventOutput> items) {
             Utils.checkNotNull(items, "items");
             this.items = items;
             return this;

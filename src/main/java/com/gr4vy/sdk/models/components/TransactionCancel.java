@@ -55,7 +55,7 @@ public class TransactionCancel {
      * A full transaction resource.
      */
     @JsonProperty("transaction")
-    private Transaction transaction;
+    private TransactionOutput transaction;
 
     @JsonCreator
     public TransactionCancel(
@@ -63,7 +63,7 @@ public class TransactionCancel {
             @JsonProperty("code") Optional<String> code,
             @JsonProperty("raw_response_code") Optional<String> rawResponseCode,
             @JsonProperty("raw_response_description") Optional<String> rawResponseDescription,
-            @JsonProperty("transaction") Transaction transaction) {
+            @JsonProperty("transaction") TransactionOutput transaction) {
         Utils.checkNotNull(status, "status");
         Utils.checkNotNull(code, "code");
         Utils.checkNotNull(rawResponseCode, "rawResponseCode");
@@ -79,7 +79,7 @@ public class TransactionCancel {
     
     public TransactionCancel(
             CancelStatus status,
-            Transaction transaction) {
+            TransactionOutput transaction) {
         this(status, Optional.empty(), Optional.empty(),
             Optional.empty(), transaction);
     }
@@ -127,7 +127,7 @@ public class TransactionCancel {
      * A full transaction resource.
      */
     @JsonIgnore
-    public Transaction transaction() {
+    public TransactionOutput transaction() {
         return transaction;
     }
 
@@ -206,7 +206,7 @@ public class TransactionCancel {
     /**
      * A full transaction resource.
      */
-    public TransactionCancel withTransaction(Transaction transaction) {
+    public TransactionCancel withTransaction(TransactionOutput transaction) {
         Utils.checkNotNull(transaction, "transaction");
         this.transaction = transaction;
         return this;
@@ -259,7 +259,7 @@ public class TransactionCancel {
 
         private Optional<String> rawResponseDescription = Optional.empty();
 
-        private Transaction transaction;
+        private TransactionOutput transaction;
 
         private Builder() {
           // force use of static builder() method
@@ -337,7 +337,7 @@ public class TransactionCancel {
         /**
          * A full transaction resource.
          */
-        public Builder transaction(Transaction transaction) {
+        public Builder transaction(TransactionOutput transaction) {
             Utils.checkNotNull(transaction, "transaction");
             this.transaction = transaction;
             return this;

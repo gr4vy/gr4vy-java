@@ -100,6 +100,7 @@ public class Name {
     public static final Name NETWORK_TOKEN_CRYPTOGRAM_PROVISION_FAILED = new Name("network-token-cryptogram-provision-failed");
     public static final Name THE_GIVING_BLOCK_TRANSACTION_CONVERSION_SUCCEEDED = new Name("the-giving-block-transaction-conversion-succeeded");
     public static final Name REAL_TIME_ACCOUNT_UPDATE = new Name("real-time-account-update");
+    public static final Name PLAID_REQUEST_EVENT = new Name("plaid-request-event");
 
     // This map will grow whenever a Color gets created with a new
     // unrecognized value (a potential memory leak if the user is not
@@ -221,6 +222,7 @@ public class Name {
         map.put("network-token-cryptogram-provision-failed", NETWORK_TOKEN_CRYPTOGRAM_PROVISION_FAILED);
         map.put("the-giving-block-transaction-conversion-succeeded", THE_GIVING_BLOCK_TRANSACTION_CONVERSION_SUCCEEDED);
         map.put("real-time-account-update", REAL_TIME_ACCOUNT_UPDATE);
+        map.put("plaid-request-event", PLAID_REQUEST_EVENT);
         return map;
     }
 
@@ -276,6 +278,7 @@ public class Name {
         map.put("network-token-cryptogram-provision-failed", NameEnum.NETWORK_TOKEN_CRYPTOGRAM_PROVISION_FAILED);
         map.put("the-giving-block-transaction-conversion-succeeded", NameEnum.THE_GIVING_BLOCK_TRANSACTION_CONVERSION_SUCCEEDED);
         map.put("real-time-account-update", NameEnum.REAL_TIME_ACCOUNT_UPDATE);
+        map.put("plaid-request-event", NameEnum.PLAID_REQUEST_EVENT);
         return map;
     }
     
@@ -360,7 +363,8 @@ public class Name {
         NETWORK_TOKEN_CRYPTOGRAM_PROVISION_SUCCEEDED("network-token-cryptogram-provision-succeeded"),
         NETWORK_TOKEN_CRYPTOGRAM_PROVISION_FAILED("network-token-cryptogram-provision-failed"),
         THE_GIVING_BLOCK_TRANSACTION_CONVERSION_SUCCEEDED("the-giving-block-transaction-conversion-succeeded"),
-        REAL_TIME_ACCOUNT_UPDATE("real-time-account-update"),;
+        REAL_TIME_ACCOUNT_UPDATE("real-time-account-update"),
+        PLAID_REQUEST_EVENT("plaid-request-event"),;
 
         private final String value;
 

@@ -20,7 +20,6 @@ import com.gr4vy.sdk.operations.GetReportExecution;
 import com.gr4vy.sdk.operations.ListReportExecutions;
 import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.Options;
-import java.lang.Exception;
 import java.lang.Long;
 import java.lang.String;
 import java.util.Optional;
@@ -64,9 +63,9 @@ public class Executions {
      * 
      * @param reportId The ID of the report to retrieve details for.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public ListReportExecutionsResponse list(String reportId) throws Exception {
+    public ListReportExecutionsResponse list(String reportId) {
         return list(reportId, JsonNullable.undefined(), Optional.empty(),
             JsonNullable.undefined(), Optional.empty());
     }
@@ -82,12 +81,12 @@ public class Executions {
      * @param merchantAccountId 
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
     public ListReportExecutionsResponse list(
             String reportId, JsonNullable<String> cursor,
             Optional<Long> limit, JsonNullable<String> merchantAccountId,
-            Optional<Options> options) throws Exception {
+            Optional<Options> options) {
         ListReportExecutionsRequest request =
             ListReportExecutionsRequest
                 .builder()
@@ -120,9 +119,9 @@ public class Executions {
      * @param reportId The ID of the report to retrieve a URL for.
      * @param reportExecutionId The ID of the execution of a report to retrieve a URL for.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public CreateReportExecutionUrlResponse url(String reportId, String reportExecutionId) throws Exception {
+    public CreateReportExecutionUrlResponse url(String reportId, String reportExecutionId) {
         return url(reportId, reportExecutionId, JsonNullable.undefined(),
             Optional.empty());
     }
@@ -137,11 +136,11 @@ public class Executions {
      * @param merchantAccountId 
      * @param reportExecutionUrlGenerate 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
     public CreateReportExecutionUrlResponse url(
             String reportId, String reportExecutionId,
-            JsonNullable<String> merchantAccountId, Optional<? extends ReportExecutionUrlGenerate> reportExecutionUrlGenerate) throws Exception {
+            JsonNullable<String> merchantAccountId, Optional<? extends ReportExecutionUrlGenerate> reportExecutionUrlGenerate) {
         CreateReportExecutionUrlRequest request =
             CreateReportExecutionUrlRequest
                 .builder()
@@ -173,9 +172,9 @@ public class Executions {
      * 
      * @param reportExecutionId The ID of the execution of a report to retrieve details for.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public GetReportExecutionResponse get(String reportExecutionId) throws Exception {
+    public GetReportExecutionResponse get(String reportExecutionId) {
         return get(reportExecutionId, JsonNullable.undefined(), Optional.empty());
     }
 
@@ -188,11 +187,11 @@ public class Executions {
      * @param merchantAccountId 
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
     public GetReportExecutionResponse get(
             String reportExecutionId, JsonNullable<String> merchantAccountId,
-            Optional<Options> options) throws Exception {
+            Optional<Options> options) {
         GetReportExecutionRequest request =
             GetReportExecutionRequest
                 .builder()

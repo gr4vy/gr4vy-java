@@ -207,6 +207,13 @@ public class TransactionConnectionOptions {
     private JsonNullable<? extends MattildaTapiOptions> mattildaTapifintechs;
 
     /**
+     * Custom options to be passed to the `monato-spei` connector.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("monato-spei")
+    private JsonNullable<? extends MonatoSpeiOptions> monatoSpei;
+
+    /**
      * Custom options to be passed to the `mock-card` connector.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -219,6 +226,13 @@ public class TransactionConnectionOptions {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("nuvei-card")
     private JsonNullable<? extends NuveiOptions> nuveiCard;
+
+    /**
+     * Custom options to be passed to the `nuvei-ideal` connector.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("nuvei-ideal")
+    private JsonNullable<? extends NuveiIDealOptions> nuveiIdeal;
 
     /**
      * Custom options to be passed to the `nuvei-pse` connector.
@@ -319,8 +333,10 @@ public class TransactionConnectionOptions {
             @JsonProperty("latitude-latitudeds") JsonNullable<? extends LatitudeOptions> latitudeLatitudeds,
             @JsonProperty("mattilda-tapi") JsonNullable<? extends MattildaTapiOptions> mattildaTapi,
             @JsonProperty("mattilda-tapifintechs") JsonNullable<? extends MattildaTapiOptions> mattildaTapifintechs,
+            @JsonProperty("monato-spei") JsonNullable<? extends MonatoSpeiOptions> monatoSpei,
             @JsonProperty("mock-card") JsonNullable<? extends MockCardOptions> mockCard,
             @JsonProperty("nuvei-card") JsonNullable<? extends NuveiOptions> nuveiCard,
+            @JsonProperty("nuvei-ideal") JsonNullable<? extends NuveiIDealOptions> nuveiIdeal,
             @JsonProperty("nuvei-pse") JsonNullable<? extends NuveiPSEOptions> nuveiPse,
             @JsonProperty("oxxo-oxxo") JsonNullable<? extends OxxoOptions> oxxoOxxo,
             @JsonProperty("paypal-paypal") JsonNullable<? extends PaypalOptions> paypalPaypal,
@@ -358,8 +374,10 @@ public class TransactionConnectionOptions {
         Utils.checkNotNull(latitudeLatitudeds, "latitudeLatitudeds");
         Utils.checkNotNull(mattildaTapi, "mattildaTapi");
         Utils.checkNotNull(mattildaTapifintechs, "mattildaTapifintechs");
+        Utils.checkNotNull(monatoSpei, "monatoSpei");
         Utils.checkNotNull(mockCard, "mockCard");
         Utils.checkNotNull(nuveiCard, "nuveiCard");
+        Utils.checkNotNull(nuveiIdeal, "nuveiIdeal");
         Utils.checkNotNull(nuveiPse, "nuveiPse");
         Utils.checkNotNull(oxxoOxxo, "oxxoOxxo");
         Utils.checkNotNull(paypalPaypal, "paypalPaypal");
@@ -397,8 +415,10 @@ public class TransactionConnectionOptions {
         this.latitudeLatitudeds = latitudeLatitudeds;
         this.mattildaTapi = mattildaTapi;
         this.mattildaTapifintechs = mattildaTapifintechs;
+        this.monatoSpei = monatoSpei;
         this.mockCard = mockCard;
         this.nuveiCard = nuveiCard;
+        this.nuveiIdeal = nuveiIdeal;
         this.nuveiPse = nuveiPse;
         this.oxxoOxxo = oxxoOxxo;
         this.paypalPaypal = paypalPaypal;
@@ -424,7 +444,8 @@ public class TransactionConnectionOptions {
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined());
     }
 
     /**
@@ -672,6 +693,15 @@ public class TransactionConnectionOptions {
     }
 
     /**
+     * Custom options to be passed to the `monato-spei` connector.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public JsonNullable<MonatoSpeiOptions> monatoSpei() {
+        return (JsonNullable<MonatoSpeiOptions>) monatoSpei;
+    }
+
+    /**
      * Custom options to be passed to the `mock-card` connector.
      */
     @SuppressWarnings("unchecked")
@@ -687,6 +717,15 @@ public class TransactionConnectionOptions {
     @JsonIgnore
     public JsonNullable<NuveiOptions> nuveiCard() {
         return (JsonNullable<NuveiOptions>) nuveiCard;
+    }
+
+    /**
+     * Custom options to be passed to the `nuvei-ideal` connector.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public JsonNullable<NuveiIDealOptions> nuveiIdeal() {
+        return (JsonNullable<NuveiIDealOptions>) nuveiIdeal;
     }
 
     /**
@@ -1273,6 +1312,24 @@ public class TransactionConnectionOptions {
     }
 
     /**
+     * Custom options to be passed to the `monato-spei` connector.
+     */
+    public TransactionConnectionOptions withMonatoSpei(MonatoSpeiOptions monatoSpei) {
+        Utils.checkNotNull(monatoSpei, "monatoSpei");
+        this.monatoSpei = JsonNullable.of(monatoSpei);
+        return this;
+    }
+
+    /**
+     * Custom options to be passed to the `monato-spei` connector.
+     */
+    public TransactionConnectionOptions withMonatoSpei(JsonNullable<? extends MonatoSpeiOptions> monatoSpei) {
+        Utils.checkNotNull(monatoSpei, "monatoSpei");
+        this.monatoSpei = monatoSpei;
+        return this;
+    }
+
+    /**
      * Custom options to be passed to the `mock-card` connector.
      */
     public TransactionConnectionOptions withMockCard(MockCardOptions mockCard) {
@@ -1305,6 +1362,24 @@ public class TransactionConnectionOptions {
     public TransactionConnectionOptions withNuveiCard(JsonNullable<? extends NuveiOptions> nuveiCard) {
         Utils.checkNotNull(nuveiCard, "nuveiCard");
         this.nuveiCard = nuveiCard;
+        return this;
+    }
+
+    /**
+     * Custom options to be passed to the `nuvei-ideal` connector.
+     */
+    public TransactionConnectionOptions withNuveiIdeal(NuveiIDealOptions nuveiIdeal) {
+        Utils.checkNotNull(nuveiIdeal, "nuveiIdeal");
+        this.nuveiIdeal = JsonNullable.of(nuveiIdeal);
+        return this;
+    }
+
+    /**
+     * Custom options to be passed to the `nuvei-ideal` connector.
+     */
+    public TransactionConnectionOptions withNuveiIdeal(JsonNullable<? extends NuveiIDealOptions> nuveiIdeal) {
+        Utils.checkNotNull(nuveiIdeal, "nuveiIdeal");
+        this.nuveiIdeal = nuveiIdeal;
         return this;
     }
 
@@ -1525,8 +1600,10 @@ public class TransactionConnectionOptions {
             Utils.enhancedDeepEquals(this.latitudeLatitudeds, other.latitudeLatitudeds) &&
             Utils.enhancedDeepEquals(this.mattildaTapi, other.mattildaTapi) &&
             Utils.enhancedDeepEquals(this.mattildaTapifintechs, other.mattildaTapifintechs) &&
+            Utils.enhancedDeepEquals(this.monatoSpei, other.monatoSpei) &&
             Utils.enhancedDeepEquals(this.mockCard, other.mockCard) &&
             Utils.enhancedDeepEquals(this.nuveiCard, other.nuveiCard) &&
+            Utils.enhancedDeepEquals(this.nuveiIdeal, other.nuveiIdeal) &&
             Utils.enhancedDeepEquals(this.nuveiPse, other.nuveiPse) &&
             Utils.enhancedDeepEquals(this.oxxoOxxo, other.oxxoOxxo) &&
             Utils.enhancedDeepEquals(this.paypalPaypal, other.paypalPaypal) &&
@@ -1551,10 +1628,11 @@ public class TransactionConnectionOptions {
             fiservCard, forterAntiFraud, gemGem,
             gemGemds, givingblockGivingblock, latitudeLatitude,
             latitudeLatitudeds, mattildaTapi, mattildaTapifintechs,
-            mockCard, nuveiCard, nuveiPse,
-            oxxoOxxo, paypalPaypal, paypalPaypalpaylater,
-            powertranzCard, stripeCard, travelhubCard,
-            trustlyTrustly, wpayEverydaypay, wpayPayto);
+            monatoSpei, mockCard, nuveiCard,
+            nuveiIdeal, nuveiPse, oxxoOxxo,
+            paypalPaypal, paypalPaypalpaylater, powertranzCard,
+            stripeCard, travelhubCard, trustlyTrustly,
+            wpayEverydaypay, wpayPayto);
     }
     
     @Override
@@ -1587,8 +1665,10 @@ public class TransactionConnectionOptions {
                 "latitudeLatitudeds", latitudeLatitudeds,
                 "mattildaTapi", mattildaTapi,
                 "mattildaTapifintechs", mattildaTapifintechs,
+                "monatoSpei", monatoSpei,
                 "mockCard", mockCard,
                 "nuveiCard", nuveiCard,
+                "nuveiIdeal", nuveiIdeal,
                 "nuveiPse", nuveiPse,
                 "oxxoOxxo", oxxoOxxo,
                 "paypalPaypal", paypalPaypal,
@@ -1658,9 +1738,13 @@ public class TransactionConnectionOptions {
 
         private JsonNullable<? extends MattildaTapiOptions> mattildaTapifintechs = JsonNullable.undefined();
 
+        private JsonNullable<? extends MonatoSpeiOptions> monatoSpei = JsonNullable.undefined();
+
         private JsonNullable<? extends MockCardOptions> mockCard = JsonNullable.undefined();
 
         private JsonNullable<? extends NuveiOptions> nuveiCard = JsonNullable.undefined();
+
+        private JsonNullable<? extends NuveiIDealOptions> nuveiIdeal = JsonNullable.undefined();
 
         private JsonNullable<? extends NuveiPSEOptions> nuveiPse = JsonNullable.undefined();
 
@@ -2203,6 +2287,25 @@ public class TransactionConnectionOptions {
 
 
         /**
+         * Custom options to be passed to the `monato-spei` connector.
+         */
+        public Builder monatoSpei(MonatoSpeiOptions monatoSpei) {
+            Utils.checkNotNull(monatoSpei, "monatoSpei");
+            this.monatoSpei = JsonNullable.of(monatoSpei);
+            return this;
+        }
+
+        /**
+         * Custom options to be passed to the `monato-spei` connector.
+         */
+        public Builder monatoSpei(JsonNullable<? extends MonatoSpeiOptions> monatoSpei) {
+            Utils.checkNotNull(monatoSpei, "monatoSpei");
+            this.monatoSpei = monatoSpei;
+            return this;
+        }
+
+
+        /**
          * Custom options to be passed to the `mock-card` connector.
          */
         public Builder mockCard(MockCardOptions mockCard) {
@@ -2236,6 +2339,25 @@ public class TransactionConnectionOptions {
         public Builder nuveiCard(JsonNullable<? extends NuveiOptions> nuveiCard) {
             Utils.checkNotNull(nuveiCard, "nuveiCard");
             this.nuveiCard = nuveiCard;
+            return this;
+        }
+
+
+        /**
+         * Custom options to be passed to the `nuvei-ideal` connector.
+         */
+        public Builder nuveiIdeal(NuveiIDealOptions nuveiIdeal) {
+            Utils.checkNotNull(nuveiIdeal, "nuveiIdeal");
+            this.nuveiIdeal = JsonNullable.of(nuveiIdeal);
+            return this;
+        }
+
+        /**
+         * Custom options to be passed to the `nuvei-ideal` connector.
+         */
+        public Builder nuveiIdeal(JsonNullable<? extends NuveiIDealOptions> nuveiIdeal) {
+            Utils.checkNotNull(nuveiIdeal, "nuveiIdeal");
+            this.nuveiIdeal = nuveiIdeal;
             return this;
         }
 
@@ -2441,10 +2563,11 @@ public class TransactionConnectionOptions {
                 fiservCard, forterAntiFraud, gemGem,
                 gemGemds, givingblockGivingblock, latitudeLatitude,
                 latitudeLatitudeds, mattildaTapi, mattildaTapifintechs,
-                mockCard, nuveiCard, nuveiPse,
-                oxxoOxxo, paypalPaypal, paypalPaypalpaylater,
-                powertranzCard, stripeCard, travelhubCard,
-                trustlyTrustly, wpayEverydaypay, wpayPayto);
+                monatoSpei, mockCard, nuveiCard,
+                nuveiIdeal, nuveiPse, oxxoOxxo,
+                paypalPaypal, paypalPaypalpaylater, powertranzCard,
+                stripeCard, travelhubCard, trustlyTrustly,
+                wpayEverydaypay, wpayPayto);
         }
 
     }

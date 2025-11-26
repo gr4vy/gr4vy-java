@@ -6,8 +6,8 @@ package com.gr4vy.sdk.models.operations;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.gr4vy.sdk.models.components.Transaction;
-import com.gr4vy.sdk.models.components.TransactionVoid;
+import com.gr4vy.sdk.models.components.TransactionOutput;
+import com.gr4vy.sdk.models.components.TransactionVoidOutput;
 import com.gr4vy.sdk.utils.OneOfDeserializer;
 import com.gr4vy.sdk.utils.TypedObject;
 import com.gr4vy.sdk.utils.Utils.JsonShape;
@@ -26,27 +26,27 @@ import java.lang.SuppressWarnings;
 public class ResponseVoidTransaction {
 
     @JsonValue
-    private TypedObject value;
+    private final TypedObject value;
     
     private ResponseVoidTransaction(TypedObject value) {
         this.value = value;
     }
 
-    public static ResponseVoidTransaction of(Transaction value) {
+    public static ResponseVoidTransaction of(TransactionOutput value) {
         Utils.checkNotNull(value, "value");
-        return new ResponseVoidTransaction(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<Transaction>(){}));
+        return new ResponseVoidTransaction(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
     }
 
-    public static ResponseVoidTransaction of(TransactionVoid value) {
+    public static ResponseVoidTransaction of(TransactionVoidOutput value) {
         Utils.checkNotNull(value, "value");
-        return new ResponseVoidTransaction(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<TransactionVoid>(){}));
+        return new ResponseVoidTransaction(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
     }
     
     /**
      * Returns an instance of one of these types:
      * <ul>
-     * <li>{@code com.gr4vy.sdk.models.components.Transaction}</li>
-     * <li>{@code com.gr4vy.sdk.models.components.TransactionVoid}</li>
+     * <li>{@code com.gr4vy.sdk.models.components.TransactionOutput}</li>
+     * <li>{@code com.gr4vy.sdk.models.components.TransactionVoidOutput}</li>
      * </ul>
      * 
      * <p>Use {@code instanceof} to determine what type is returned. For example:
@@ -62,7 +62,7 @@ public class ResponseVoidTransaction {
      **/ 
     public java.lang.Object value() {
         return value.value();
-    }    
+    }
     
     @Override
     public boolean equals(java.lang.Object o) {
@@ -73,7 +73,7 @@ public class ResponseVoidTransaction {
             return false;
         }
         ResponseVoidTransaction other = (ResponseVoidTransaction) o;
-        return Utils.enhancedDeepEquals(this.value.value(), other.value.value()); 
+        return Utils.enhancedDeepEquals(this.value.value(), other.value.value());
     }
     
     @Override
@@ -86,8 +86,8 @@ public class ResponseVoidTransaction {
 
         public _Deserializer() {
             super(ResponseVoidTransaction.class, false,
-                  TypeReferenceWithShape.of(new TypeReference<Transaction>() {}, JsonShape.DEFAULT),
-                  TypeReferenceWithShape.of(new TypeReference<TransactionVoid>() {}, JsonShape.DEFAULT));
+                  TypeReferenceWithShape.of(new TypeReference<TransactionOutput>() {}, JsonShape.DEFAULT),
+                  TypeReferenceWithShape.of(new TypeReference<TransactionVoidOutput>() {}, JsonShape.DEFAULT));
         }
     }
     
@@ -96,6 +96,6 @@ public class ResponseVoidTransaction {
         return Utils.toString(ResponseVoidTransaction.class,
                 "value", value);
     }
- 
+
 }
 

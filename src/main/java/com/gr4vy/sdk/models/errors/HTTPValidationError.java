@@ -8,175 +8,208 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.gr4vy.sdk.models.components.ValidationError;
+import com.gr4vy.sdk.utils.Blob;
 import com.gr4vy.sdk.utils.Utils;
+import jakarta.annotation.Nullable;
 import java.io.InputStream;
+import java.lang.Deprecated;
+import java.lang.Exception;
 import java.lang.Override;
-import java.lang.RuntimeException;
 import java.lang.String;
 import java.lang.SuppressWarnings;
+import java.lang.Throwable;
 import java.net.http.HttpResponse;
 import java.util.List;
 import java.util.Optional;
-
+import java.util.concurrent.CompletableFuture;
 
 @SuppressWarnings("serial")
-public class HTTPValidationError extends RuntimeException {
+public class HTTPValidationError extends Gr4vyError {
 
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("detail")
-    private Optional<? extends List<ValidationError>> detail;
+    @Nullable
+    private final Data data;
 
-    /**
-     * Raw HTTP response; suitable for custom response parsing
-     */
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("RawResponse")
-    private Optional<? extends HttpResponse<InputStream>> rawResponse;
+    @Nullable
+    private final Throwable deserializationException;
 
-    @JsonCreator
     public HTTPValidationError(
-            @JsonProperty("detail") Optional<? extends List<ValidationError>> detail,
-            @JsonProperty("RawResponse") Optional<? extends HttpResponse<InputStream>> rawResponse) {
-        super("API error occurred");
-        Utils.checkNotNull(detail, "detail");
-        Utils.checkNotNull(rawResponse, "rawResponse");
-        this.detail = detail;
-        this.rawResponse = rawResponse;
-    }
-    
-    public HTTPValidationError() {
-        this(Optional.empty(), Optional.empty());
+                int code,
+                byte[] body,
+                HttpResponse<?> rawResponse,
+                @Nullable Data data,
+                @Nullable Throwable deserializationException) {
+        super("API error occurred", code, body, rawResponse, null);
+        this.data = data;
+        this.deserializationException = deserializationException;
     }
 
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
+    /**
+    * Parse a response into an instance of HTTPValidationError. If deserialization of the response body fails,
+    * the resulting HTTPValidationError instance will have a null data() value and a non-null deserializationException().
+    */
+    public static HTTPValidationError from(HttpResponse<InputStream> response) {
+        try {
+            byte[] bytes = Utils.extractByteArrayFromBody(response);
+            Data data = Utils.mapper().readValue(bytes, Data.class);
+            return new HTTPValidationError(response.statusCode(), bytes, response, data, null);
+        } catch (Exception e) {
+            return new HTTPValidationError(response.statusCode(), null, response, null, e);
+        }
+    }
+
+    /**
+    * Parse a response into an instance of HTTPValidationError asynchronously. If deserialization of the response body fails,
+    * the resulting HTTPValidationError instance will have a null data() value and a non-null deserializationException().
+    */
+    public static CompletableFuture<HTTPValidationError> fromAsync(HttpResponse<Blob> response) {
+        return response.body()
+                .toByteArray()
+                .handle((bytes, err) -> {
+                    // if a body read error occurs, we want to transform the exception
+                    if (err != null) {
+                        throw new AsyncAPIException(
+                                "Error reading response body: " + err.getMessage(),
+                                response.statusCode(),
+                                null,
+                                response,
+                                err);
+                    }
+
+                    try {
+                        return new HTTPValidationError(
+                                response.statusCode(),
+                                bytes,
+                                response,
+                                Utils.mapper().readValue(
+                                        bytes,
+                                        new TypeReference<Data>() {
+                                        }),
+                                null);
+                    } catch (Exception e) {
+                        return new HTTPValidationError(
+                                response.statusCode(),
+                                bytes,
+                                response,
+                                null,
+                                e);
+                    }
+                });
+    }
+
+    @Deprecated
     public Optional<List<ValidationError>> detail() {
-        return (Optional<List<ValidationError>>) detail;
+        return data().flatMap(Data::detail);
+    }
+
+    public Optional<Data> data() {
+        return Optional.ofNullable(data);
     }
 
     /**
-     * Raw HTTP response; suitable for custom response parsing
+     * Returns the exception if an error occurs while deserializing the response body.
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
-    public Optional<HttpResponse<InputStream>> rawResponse() {
-        return (Optional<HttpResponse<InputStream>>) rawResponse;
+    public Optional<Throwable> deserializationException() {
+        return Optional.ofNullable(deserializationException);
     }
 
-    public static Builder builder() {
-        return new Builder();
-    }
+    public static class Data {
 
+        @JsonInclude(Include.NON_ABSENT)
+        @JsonProperty("detail")
+        private Optional<? extends List<ValidationError>> detail;
 
-    public HTTPValidationError withDetail(List<ValidationError> detail) {
-        Utils.checkNotNull(detail, "detail");
-        this.detail = Optional.ofNullable(detail);
-        return this;
-    }
-
-
-    public HTTPValidationError withDetail(Optional<? extends List<ValidationError>> detail) {
-        Utils.checkNotNull(detail, "detail");
-        this.detail = detail;
-        return this;
-    }
-
-    /**
-     * Raw HTTP response; suitable for custom response parsing
-     */
-    public HTTPValidationError withRawResponse(HttpResponse<InputStream> rawResponse) {
-        Utils.checkNotNull(rawResponse, "rawResponse");
-        this.rawResponse = Optional.ofNullable(rawResponse);
-        return this;
-    }
-
-
-    /**
-     * Raw HTTP response; suitable for custom response parsing
-     */
-    public HTTPValidationError withRawResponse(Optional<? extends HttpResponse<InputStream>> rawResponse) {
-        Utils.checkNotNull(rawResponse, "rawResponse");
-        this.rawResponse = rawResponse;
-        return this;
-    }
-
-    @Override
-    public boolean equals(java.lang.Object o) {
-        if (this == o) {
-            return true;
+        @JsonCreator
+        public Data(
+                @JsonProperty("detail") Optional<? extends List<ValidationError>> detail) {
+            Utils.checkNotNull(detail, "detail");
+            this.detail = detail;
         }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
+        
+        public Data() {
+            this(Optional.empty());
         }
-        HTTPValidationError other = (HTTPValidationError) o;
-        return 
-            Utils.enhancedDeepEquals(this.detail, other.detail) &&
-            Utils.enhancedDeepEquals(this.rawResponse, other.rawResponse);
-    }
-    
-    @Override
-    public int hashCode() {
-        return Utils.enhancedHash(
-            detail, rawResponse);
-    }
-    
-    @Override
-    public String toString() {
-        return Utils.toString(HTTPValidationError.class,
-                "detail", detail,
-                "rawResponse", rawResponse);
-    }
 
-    @SuppressWarnings("UnusedReturnValue")
-    public final static class Builder {
+        @SuppressWarnings("unchecked")
+        @JsonIgnore
+        public Optional<List<ValidationError>> detail() {
+            return (Optional<List<ValidationError>>) detail;
+        }
 
-        private Optional<? extends List<ValidationError>> detail = Optional.empty();
-
-        private Optional<? extends HttpResponse<InputStream>> rawResponse;
-
-        private Builder() {
-          // force use of static builder() method
+        public static Builder builder() {
+            return new Builder();
         }
 
 
-        public Builder detail(List<ValidationError> detail) {
+        public Data withDetail(List<ValidationError> detail) {
             Utils.checkNotNull(detail, "detail");
             this.detail = Optional.ofNullable(detail);
             return this;
         }
 
-        public Builder detail(Optional<? extends List<ValidationError>> detail) {
+
+        public Data withDetail(Optional<? extends List<ValidationError>> detail) {
             Utils.checkNotNull(detail, "detail");
             this.detail = detail;
             return this;
         }
 
-
-        /**
-         * Raw HTTP response; suitable for custom response parsing
-         */
-        public Builder rawResponse(HttpResponse<InputStream> rawResponse) {
-            Utils.checkNotNull(rawResponse, "rawResponse");
-            this.rawResponse = Optional.ofNullable(rawResponse);
-            return this;
+        @Override
+        public boolean equals(java.lang.Object o) {
+            if (this == o) {
+                return true;
+            }
+            if (o == null || getClass() != o.getClass()) {
+                return false;
+            }
+            Data other = (Data) o;
+            return 
+                Utils.enhancedDeepEquals(this.detail, other.detail);
+        }
+        
+        @Override
+        public int hashCode() {
+            return Utils.enhancedHash(
+                detail);
+        }
+        
+        @Override
+        public String toString() {
+            return Utils.toString(Data.class,
+                    "detail", detail);
         }
 
-        /**
-         * Raw HTTP response; suitable for custom response parsing
-         */
-        public Builder rawResponse(Optional<? extends HttpResponse<InputStream>> rawResponse) {
-            Utils.checkNotNull(rawResponse, "rawResponse");
-            this.rawResponse = rawResponse;
-            return this;
+        @SuppressWarnings("UnusedReturnValue")
+        public final static class Builder {
+
+            private Optional<? extends List<ValidationError>> detail = Optional.empty();
+
+            private Builder() {
+              // force use of static builder() method
+            }
+
+
+            public Builder detail(List<ValidationError> detail) {
+                Utils.checkNotNull(detail, "detail");
+                this.detail = Optional.ofNullable(detail);
+                return this;
+            }
+
+            public Builder detail(Optional<? extends List<ValidationError>> detail) {
+                Utils.checkNotNull(detail, "detail");
+                this.detail = detail;
+                return this;
+            }
+
+            public Data build() {
+
+                return new Data(
+                    detail);
+            }
+
         }
-
-        public HTTPValidationError build() {
-
-            return new HTTPValidationError(
-                detail, rawResponse);
-        }
-
     }
+
 }
 

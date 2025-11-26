@@ -11,7 +11,6 @@ import com.gr4vy.sdk.models.operations.CreateAccountUpdaterJobRequestBuilder;
 import com.gr4vy.sdk.models.operations.CreateAccountUpdaterJobResponse;
 import com.gr4vy.sdk.operations.CreateAccountUpdaterJob;
 import com.gr4vy.sdk.utils.Headers;
-import java.lang.Exception;
 import java.lang.String;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -53,9 +52,9 @@ public class Jobs {
      * 
      * @param accountUpdaterJobCreate 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public CreateAccountUpdaterJobResponse create(AccountUpdaterJobCreate accountUpdaterJobCreate) throws Exception {
+    public CreateAccountUpdaterJobResponse create(AccountUpdaterJobCreate accountUpdaterJobCreate) {
         return create(JsonNullable.undefined(), accountUpdaterJobCreate);
     }
 
@@ -67,9 +66,9 @@ public class Jobs {
      * @param merchantAccountId 
      * @param accountUpdaterJobCreate 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public CreateAccountUpdaterJobResponse create(JsonNullable<String> merchantAccountId, AccountUpdaterJobCreate accountUpdaterJobCreate) throws Exception {
+    public CreateAccountUpdaterJobResponse create(JsonNullable<String> merchantAccountId, AccountUpdaterJobCreate accountUpdaterJobCreate) {
         CreateAccountUpdaterJobRequest request =
             CreateAccountUpdaterJobRequest
                 .builder()

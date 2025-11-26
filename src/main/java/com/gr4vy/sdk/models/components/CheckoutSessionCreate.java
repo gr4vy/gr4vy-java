@@ -12,6 +12,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.gr4vy.sdk.utils.LazySingletonValue;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Double;
+import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
@@ -51,7 +52,31 @@ public class CheckoutSessionCreate {
     @JsonProperty("airline")
     private JsonNullable<? extends Airline> airline;
 
+    /**
+     * The total amount for this transaction.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("amount")
+    private JsonNullable<Long> amount;
 
+    /**
+     * The currency code for this transaction.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("currency")
+    private JsonNullable<String> currency;
+
+    /**
+     * The unique identifier of an existing payment service. When provided, the created transaction will be
+     * processed by the given payment service and any routing rules will be skipped.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("payment_service_id")
+    private JsonNullable<String> paymentServiceId;
+
+    /**
+     * The time in seconds when this checkout session expires.
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("expires_in")
     private Optional<Double> expiresIn;
@@ -62,21 +87,31 @@ public class CheckoutSessionCreate {
             @JsonProperty("metadata") JsonNullable<? extends Map<String, String>> metadata,
             @JsonProperty("buyer") JsonNullable<? extends GuestBuyerInput> buyer,
             @JsonProperty("airline") JsonNullable<? extends Airline> airline,
+            @JsonProperty("amount") JsonNullable<Long> amount,
+            @JsonProperty("currency") JsonNullable<String> currency,
+            @JsonProperty("payment_service_id") JsonNullable<String> paymentServiceId,
             @JsonProperty("expires_in") Optional<Double> expiresIn) {
         Utils.checkNotNull(cartItems, "cartItems");
         Utils.checkNotNull(metadata, "metadata");
         Utils.checkNotNull(buyer, "buyer");
         Utils.checkNotNull(airline, "airline");
+        Utils.checkNotNull(amount, "amount");
+        Utils.checkNotNull(currency, "currency");
+        Utils.checkNotNull(paymentServiceId, "paymentServiceId");
         Utils.checkNotNull(expiresIn, "expiresIn");
         this.cartItems = cartItems;
         this.metadata = metadata;
         this.buyer = buyer;
         this.airline = airline;
+        this.amount = amount;
+        this.currency = currency;
+        this.paymentServiceId = paymentServiceId;
         this.expiresIn = expiresIn;
     }
     
     public CheckoutSessionCreate() {
         this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), Optional.empty());
     }
 
@@ -117,6 +152,34 @@ public class CheckoutSessionCreate {
         return (JsonNullable<Airline>) airline;
     }
 
+    /**
+     * The total amount for this transaction.
+     */
+    @JsonIgnore
+    public JsonNullable<Long> amount() {
+        return amount;
+    }
+
+    /**
+     * The currency code for this transaction.
+     */
+    @JsonIgnore
+    public JsonNullable<String> currency() {
+        return currency;
+    }
+
+    /**
+     * The unique identifier of an existing payment service. When provided, the created transaction will be
+     * processed by the given payment service and any routing rules will be skipped.
+     */
+    @JsonIgnore
+    public JsonNullable<String> paymentServiceId() {
+        return paymentServiceId;
+    }
+
+    /**
+     * The time in seconds when this checkout session expires.
+     */
     @JsonIgnore
     public Optional<Double> expiresIn() {
         return expiresIn;
@@ -201,6 +264,65 @@ public class CheckoutSessionCreate {
         return this;
     }
 
+    /**
+     * The total amount for this transaction.
+     */
+    public CheckoutSessionCreate withAmount(long amount) {
+        Utils.checkNotNull(amount, "amount");
+        this.amount = JsonNullable.of(amount);
+        return this;
+    }
+
+    /**
+     * The total amount for this transaction.
+     */
+    public CheckoutSessionCreate withAmount(JsonNullable<Long> amount) {
+        Utils.checkNotNull(amount, "amount");
+        this.amount = amount;
+        return this;
+    }
+
+    /**
+     * The currency code for this transaction.
+     */
+    public CheckoutSessionCreate withCurrency(String currency) {
+        Utils.checkNotNull(currency, "currency");
+        this.currency = JsonNullable.of(currency);
+        return this;
+    }
+
+    /**
+     * The currency code for this transaction.
+     */
+    public CheckoutSessionCreate withCurrency(JsonNullable<String> currency) {
+        Utils.checkNotNull(currency, "currency");
+        this.currency = currency;
+        return this;
+    }
+
+    /**
+     * The unique identifier of an existing payment service. When provided, the created transaction will be
+     * processed by the given payment service and any routing rules will be skipped.
+     */
+    public CheckoutSessionCreate withPaymentServiceId(String paymentServiceId) {
+        Utils.checkNotNull(paymentServiceId, "paymentServiceId");
+        this.paymentServiceId = JsonNullable.of(paymentServiceId);
+        return this;
+    }
+
+    /**
+     * The unique identifier of an existing payment service. When provided, the created transaction will be
+     * processed by the given payment service and any routing rules will be skipped.
+     */
+    public CheckoutSessionCreate withPaymentServiceId(JsonNullable<String> paymentServiceId) {
+        Utils.checkNotNull(paymentServiceId, "paymentServiceId");
+        this.paymentServiceId = paymentServiceId;
+        return this;
+    }
+
+    /**
+     * The time in seconds when this checkout session expires.
+     */
     public CheckoutSessionCreate withExpiresIn(double expiresIn) {
         Utils.checkNotNull(expiresIn, "expiresIn");
         this.expiresIn = Optional.ofNullable(expiresIn);
@@ -208,6 +330,9 @@ public class CheckoutSessionCreate {
     }
 
 
+    /**
+     * The time in seconds when this checkout session expires.
+     */
     public CheckoutSessionCreate withExpiresIn(Optional<Double> expiresIn) {
         Utils.checkNotNull(expiresIn, "expiresIn");
         this.expiresIn = expiresIn;
@@ -228,6 +353,9 @@ public class CheckoutSessionCreate {
             Utils.enhancedDeepEquals(this.metadata, other.metadata) &&
             Utils.enhancedDeepEquals(this.buyer, other.buyer) &&
             Utils.enhancedDeepEquals(this.airline, other.airline) &&
+            Utils.enhancedDeepEquals(this.amount, other.amount) &&
+            Utils.enhancedDeepEquals(this.currency, other.currency) &&
+            Utils.enhancedDeepEquals(this.paymentServiceId, other.paymentServiceId) &&
             Utils.enhancedDeepEquals(this.expiresIn, other.expiresIn);
     }
     
@@ -235,7 +363,8 @@ public class CheckoutSessionCreate {
     public int hashCode() {
         return Utils.enhancedHash(
             cartItems, metadata, buyer,
-            airline, expiresIn);
+            airline, amount, currency,
+            paymentServiceId, expiresIn);
     }
     
     @Override
@@ -245,6 +374,9 @@ public class CheckoutSessionCreate {
                 "metadata", metadata,
                 "buyer", buyer,
                 "airline", airline,
+                "amount", amount,
+                "currency", currency,
+                "paymentServiceId", paymentServiceId,
                 "expiresIn", expiresIn);
     }
 
@@ -258,6 +390,12 @@ public class CheckoutSessionCreate {
         private JsonNullable<? extends GuestBuyerInput> buyer = JsonNullable.undefined();
 
         private JsonNullable<? extends Airline> airline = JsonNullable.undefined();
+
+        private JsonNullable<Long> amount = JsonNullable.undefined();
+
+        private JsonNullable<String> currency = JsonNullable.undefined();
+
+        private JsonNullable<String> paymentServiceId = JsonNullable.undefined();
 
         private Optional<Double> expiresIn;
 
@@ -344,12 +482,77 @@ public class CheckoutSessionCreate {
         }
 
 
+        /**
+         * The total amount for this transaction.
+         */
+        public Builder amount(long amount) {
+            Utils.checkNotNull(amount, "amount");
+            this.amount = JsonNullable.of(amount);
+            return this;
+        }
+
+        /**
+         * The total amount for this transaction.
+         */
+        public Builder amount(JsonNullable<Long> amount) {
+            Utils.checkNotNull(amount, "amount");
+            this.amount = amount;
+            return this;
+        }
+
+
+        /**
+         * The currency code for this transaction.
+         */
+        public Builder currency(String currency) {
+            Utils.checkNotNull(currency, "currency");
+            this.currency = JsonNullable.of(currency);
+            return this;
+        }
+
+        /**
+         * The currency code for this transaction.
+         */
+        public Builder currency(JsonNullable<String> currency) {
+            Utils.checkNotNull(currency, "currency");
+            this.currency = currency;
+            return this;
+        }
+
+
+        /**
+         * The unique identifier of an existing payment service. When provided, the created transaction will be
+         * processed by the given payment service and any routing rules will be skipped.
+         */
+        public Builder paymentServiceId(String paymentServiceId) {
+            Utils.checkNotNull(paymentServiceId, "paymentServiceId");
+            this.paymentServiceId = JsonNullable.of(paymentServiceId);
+            return this;
+        }
+
+        /**
+         * The unique identifier of an existing payment service. When provided, the created transaction will be
+         * processed by the given payment service and any routing rules will be skipped.
+         */
+        public Builder paymentServiceId(JsonNullable<String> paymentServiceId) {
+            Utils.checkNotNull(paymentServiceId, "paymentServiceId");
+            this.paymentServiceId = paymentServiceId;
+            return this;
+        }
+
+
+        /**
+         * The time in seconds when this checkout session expires.
+         */
         public Builder expiresIn(double expiresIn) {
             Utils.checkNotNull(expiresIn, "expiresIn");
             this.expiresIn = Optional.ofNullable(expiresIn);
             return this;
         }
 
+        /**
+         * The time in seconds when this checkout session expires.
+         */
         public Builder expiresIn(Optional<Double> expiresIn) {
             Utils.checkNotNull(expiresIn, "expiresIn");
             this.expiresIn = expiresIn;
@@ -363,7 +566,8 @@ public class CheckoutSessionCreate {
 
             return new CheckoutSessionCreate(
                 cartItems, metadata, buyer,
-                airline, expiresIn);
+                airline, amount, currency,
+                paymentServiceId, expiresIn);
         }
 
 

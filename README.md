@@ -39,6 +39,7 @@ This SDK is designed to simplify development, reduce boilerplate code, and help 
   * [Retries](#retries)
   * [Error Handling](#error-handling)
   * [Server Selection](#server-selection)
+  * [Custom HTTP Client](#custom-http-client)
   * [Debugging](#debugging)
 * [Development](#development)
   * [Testing](#testing)
@@ -57,7 +58,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'com.gr4vy:sdk:2.13.11'
+implementation 'com.gr4vy:sdk:2.14.0'
 ```
 
 Maven:
@@ -65,7 +66,7 @@ Maven:
 <dependency>
     <groupId>com.gr4vy</groupId>
     <artifactId>sdk</artifactId>
-    <version>2.13.11</version>
+    <version>2.14.0</version>
 </dependency>
 ```
 
@@ -693,26 +694,19 @@ public class Application {
 
 Handling errors in this SDK should largely match your expectations. All operations return a response object or raise an exception.
 
-By default, an API error will throw a `models/errors/APIException` exception. When custom error responses are specified for an operation, the SDK may also throw their associated exception. You can refer to respective *Errors* tables in SDK docs for more details on possible exception types for each operation. For example, the `create` method throws the following exceptions:
 
-| Error Type                        | Status Code | Content Type     |
-| --------------------------------- | ----------- | ---------------- |
-| models/errors/Error400            | 400         | application/json |
-| models/errors/Error401            | 401         | application/json |
-| models/errors/Error403            | 403         | application/json |
-| models/errors/Error404            | 404         | application/json |
-| models/errors/Error405            | 405         | application/json |
-| models/errors/Error409            | 409         | application/json |
-| models/errors/HTTPValidationError | 422         | application/json |
-| models/errors/Error425            | 425         | application/json |
-| models/errors/Error429            | 429         | application/json |
-| models/errors/Error500            | 500         | application/json |
-| models/errors/Error502            | 502         | application/json |
-| models/errors/Error504            | 504         | application/json |
-| models/errors/APIException        | 4XX, 5XX    | \*/\*            |
+[`Gr4vyError`](./src/main/java/models/errors/Gr4vyError.java) is the base class for all HTTP error responses. It has the following properties:
+
+| Method           | Type                        | Description                                                              |
+| ---------------- | --------------------------- | ------------------------------------------------------------------------ |
+| `message()`      | `String`                    | Error message                                                            |
+| `code()`         | `int`                       | HTTP response status code eg `404`                                       |
+| `headers`        | `Map<String, List<String>>` | HTTP response headers                                                    |
+| `body()`         | `byte[]`                    | HTTP body as a byte array. Can be empty array if no body is returned.    |
+| `bodyAsString()` | `String`                    | HTTP body as a UTF-8 string. Can be empty string if no body is returned. |
+| `rawResponse()`  | `HttpResponse<?>`           | Raw HTTP response (body already read and not available for re-read)      |
 
 ### Example
-
 ```java
 package hello.world;
 
@@ -720,8 +714,11 @@ import com.gr4vy.sdk.Gr4vy;
 import com.gr4vy.sdk.models.components.AccountUpdaterJobCreate;
 import com.gr4vy.sdk.models.errors.*;
 import com.gr4vy.sdk.models.operations.CreateAccountUpdaterJobResponse;
+import java.io.UncheckedIOException;
 import java.lang.Exception;
+import java.lang.String;
 import java.util.List;
+import java.util.Optional;
 
 public class Application {
 
@@ -731,21 +728,87 @@ public class Application {
                 .merchantAccountId("default")
                 .bearerAuth(System.getenv().getOrDefault("BEARER_AUTH", ""))
             .build();
+        try {
 
-        CreateAccountUpdaterJobResponse res = sdk.accountUpdater().jobs().create()
-                .accountUpdaterJobCreate(AccountUpdaterJobCreate.builder()
-                    .paymentMethodIds(List.of(
-                        "ef9496d8-53a5-4aad-8ca2-00eb68334389",
-                        "f29e886e-93cc-4714-b4a3-12b7a718e595"))
-                    .build())
-                .call();
+            CreateAccountUpdaterJobResponse res = sdk.accountUpdater().jobs().create()
+                    .accountUpdaterJobCreate(AccountUpdaterJobCreate.builder()
+                        .paymentMethodIds(List.of(
+                            "ef9496d8-53a5-4aad-8ca2-00eb68334389",
+                            "f29e886e-93cc-4714-b4a3-12b7a718e595"))
+                        .build())
+                    .call();
 
-        if (res.accountUpdaterJob().isPresent()) {
-            // handle response
-        }
-    }
+            if (res.accountUpdaterJob().isPresent()) {
+                // handle response
+            }
+        } catch (Gr4vyError ex) { // all SDK exceptions inherit from Gr4vyError
+
+            // ex.ToString() provides a detailed error message including
+            // HTTP status code, headers, and error payload (if any)
+            System.out.println(ex);
+
+            // Base exception fields
+            var rawResponse = ex.rawResponse();
+            var headers = ex.headers();
+            var contentType = headers.first("Content-Type");
+            int statusCode = ex.code();
+            Optional<byte[]> responseBody = ex.body();
+
+            // different error subclasses may be thrown 
+            // depending on the service call
+            if (ex instanceof Error400) {
+                var e = (Error400) ex;
+                // Check error data fields
+                e.data().ifPresent(payload -> {
+                      Optional<String> type = payload.type();
+                      Optional<String> code = payload.code();
+                      // ...
+                });
+            }
+
+            // An underlying cause may be provided. If the error payload 
+            // cannot be deserialized then the deserialization exception 
+            // will be set as the cause.
+            if (ex.getCause() != null) {
+                var cause = ex.getCause();
+            }
+        } catch (UncheckedIOException ex) {
+            // handle IO error (connection, timeout, etc)
+        }    }
 }
 ```
+
+### Error Classes
+**Primary errors:**
+* [`Gr4vyError`](./src/main/java/models/errors/Gr4vyError.java): The base class for HTTP error responses.
+  * [`com.gr4vy.sdk.models.errors.Error400`](./src/main/java/models/errors/com.gr4vy.sdk.models.errors.Error400.java): The request was invalid. Status code `400`.
+  * [`com.gr4vy.sdk.models.errors.Error401`](./src/main/java/models/errors/com.gr4vy.sdk.models.errors.Error401.java): The request was unauthorized. Status code `401`.
+  * [`com.gr4vy.sdk.models.errors.Error403`](./src/main/java/models/errors/com.gr4vy.sdk.models.errors.Error403.java): The credentials were invalid or the caller did not have permission to act on the resource. Status code `403`.
+  * [`com.gr4vy.sdk.models.errors.Error404`](./src/main/java/models/errors/com.gr4vy.sdk.models.errors.Error404.java): The resource was not found. Status code `404`.
+  * [`com.gr4vy.sdk.models.errors.Error405`](./src/main/java/models/errors/com.gr4vy.sdk.models.errors.Error405.java): The request method was not allowed. Status code `405`.
+  * [`com.gr4vy.sdk.models.errors.Error409`](./src/main/java/models/errors/com.gr4vy.sdk.models.errors.Error409.java): A duplicate record was found. Status code `409`.
+  * [`com.gr4vy.sdk.models.errors.Error425`](./src/main/java/models/errors/com.gr4vy.sdk.models.errors.Error425.java): The request was too early. Status code `425`.
+  * [`com.gr4vy.sdk.models.errors.Error429`](./src/main/java/models/errors/com.gr4vy.sdk.models.errors.Error429.java): Too many requests were made. Status code `429`.
+  * [`com.gr4vy.sdk.models.errors.Error500`](./src/main/java/models/errors/com.gr4vy.sdk.models.errors.Error500.java): The server encountered an error. Status code `500`.
+  * [`com.gr4vy.sdk.models.errors.Error502`](./src/main/java/models/errors/com.gr4vy.sdk.models.errors.Error502.java): The server encountered an error. Status code `502`.
+  * [`com.gr4vy.sdk.models.errors.Error504`](./src/main/java/models/errors/com.gr4vy.sdk.models.errors.Error504.java): The server encountered an error. Status code `504`.
+  * [`com.gr4vy.sdk.models.errors.HTTPValidationError`](./src/main/java/models/errors/com.gr4vy.sdk.models.errors.HTTPValidationError.java): Validation Error. Status code `422`. *
+
+<details><summary>Less common errors (6)</summary>
+
+<br />
+
+**Network errors:**
+* `java.io.IOException` (always wrapped by `java.io.UncheckedIOException`). Commonly encountered subclasses of
+`IOException` include `java.net.ConnectException`, `java.net.SocketTimeoutException`, `EOFException` (there are
+many more subclasses in the JDK platform).
+
+**Inherit from [`Gr4vyError`](./src/main/java/models/errors/Gr4vyError.java)**:
+
+
+</details>
+
+\* Check [the method documentation](#available-resources-and-operations) to see if the error is applicable.
 <!-- End Error Handling [errors] -->
 
 <!-- Start Server Selection [server] -->
@@ -783,7 +846,7 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Gr4vy sdk = Gr4vy.builder()
-                .server(Gr4vy.AvailableServers.PRODUCTION)
+                .server(Gr4vy.AvailableServers.SANDBOX)
                 .id("<id>")
                 .merchantAccountId("default")
                 .bearerAuth(System.getenv().getOrDefault("BEARER_AUTH", ""))
@@ -843,13 +906,151 @@ public class Application {
 ```
 <!-- End Server Selection [server] -->
 
+<!-- Start Custom HTTP Client [http-client] -->
+## Custom HTTP Client
+
+The Java SDK makes API calls using an `HTTPClient` that wraps the native
+[HttpClient](https://docs.oracle.com/en/java/javase/11/docs/api/java.net.http/java/net/http/HttpClient.html). This
+client provides the ability to attach hooks around the request lifecycle that can be used to modify the request or handle
+errors and response.
+
+The `HTTPClient` interface allows you to either use the default `SpeakeasyHTTPClient` that comes with the SDK,
+or provide your own custom implementation with customized configuration such as custom executors, SSL context,
+connection pools, and other HTTP client settings.
+
+The interface provides synchronous (`send`) methods and asynchronous (`sendAsync`) methods. The `sendAsync` method
+is used to power the async SDK methods and returns a `CompletableFuture<HttpResponse<Blob>>` for non-blocking operations.
+
+The following example shows how to add a custom header and handle errors:
+
+```java
+import com.gr4vy.sdk.Gr4vy;
+import com.gr4vy.sdk.utils.HTTPClient;
+import com.gr4vy.sdk.utils.SpeakeasyHTTPClient;
+import com.gr4vy.sdk.utils.Utils;
+
+import java.io.IOException;
+import java.net.URISyntaxException;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+import java.io.InputStream;
+import java.time.Duration;
+
+public class Application {
+    public static void main(String[] args) {
+        // Create a custom HTTP client with hooks
+        HTTPClient httpClient = new HTTPClient() {
+            private final HTTPClient defaultClient = new SpeakeasyHTTPClient();
+            
+            @Override
+            public HttpResponse<InputStream> send(HttpRequest request) throws IOException, URISyntaxException, InterruptedException {
+                // Add custom header and timeout using Utils.copy()
+                HttpRequest modifiedRequest = Utils.copy(request)
+                    .header("x-custom-header", "custom value")
+                    .timeout(Duration.ofSeconds(30))
+                    .build();
+                    
+                try {
+                    HttpResponse<InputStream> response = defaultClient.send(modifiedRequest);
+                    // Log successful response
+                    System.out.println("Request successful: " + response.statusCode());
+                    return response;
+                } catch (Exception error) {
+                    // Log error
+                    System.err.println("Request failed: " + error.getMessage());
+                    throw error;
+                }
+            }
+        };
+
+        Gr4vy sdk = Gr4vy.builder()
+            .client(httpClient)
+            .build();
+    }
+}
+```
+
+<details>
+<summary>Custom HTTP Client Configuration</summary>
+
+You can also provide a completely custom HTTP client with your own configuration:
+
+```java
+import com.gr4vy.sdk.Gr4vy;
+import com.gr4vy.sdk.utils.HTTPClient;
+import com.gr4vy.sdk.utils.Blob;
+import com.gr4vy.sdk.utils.ResponseWithBody;
+
+import java.io.IOException;
+import java.net.URISyntaxException;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+import java.io.InputStream;
+import java.time.Duration;
+import java.util.concurrent.Executors;
+import java.util.concurrent.CompletableFuture;
+
+public class Application {
+    public static void main(String[] args) {
+        // Custom HTTP client with custom configuration
+        HTTPClient customHttpClient = new HTTPClient() {
+            private final HttpClient client = HttpClient.newBuilder()
+                .executor(Executors.newFixedThreadPool(10))
+                .connectTimeout(Duration.ofSeconds(30))
+                // .sslContext(customSslContext) // Add custom SSL context if needed
+                .build();
+
+            @Override
+            public HttpResponse<InputStream> send(HttpRequest request) throws IOException, URISyntaxException, InterruptedException {
+                return client.send(request, HttpResponse.BodyHandlers.ofInputStream());
+            }
+
+            @Override
+            public CompletableFuture<HttpResponse<Blob>> sendAsync(HttpRequest request) {
+                // Convert response to HttpResponse<Blob> for async operations
+                return client.sendAsync(request, HttpResponse.BodyHandlers.ofPublisher())
+                    .thenApply(resp -> new ResponseWithBody<>(resp, Blob::from));
+            }
+        };
+
+        Gr4vy sdk = Gr4vy.builder()
+            .client(customHttpClient)
+            .build();
+    }
+}
+```
+
+</details>
+
+You can also enable debug logging on the default `SpeakeasyHTTPClient`:
+
+```java
+import com.gr4vy.sdk.Gr4vy;
+import com.gr4vy.sdk.utils.SpeakeasyHTTPClient;
+
+public class Application {
+    public static void main(String[] args) {
+        SpeakeasyHTTPClient httpClient = new SpeakeasyHTTPClient();
+        httpClient.enableDebugLogging(true);
+
+        Gr4vy sdk = Gr4vy.builder()
+            .client(httpClient)
+            .build();
+    }
+}
+```
+<!-- End Custom HTTP Client [http-client] -->
+
 <!-- Start Debugging [debug] -->
 ## Debugging
 
 ### Debug
+
 You can setup your SDK to emit debug logs for SDK requests and responses.
 
 For request and response logging (especially json bodies), call `enableHTTPDebugLogging(boolean)` on the SDK builder like so:
+
 ```java
 SDK.builder()
     .enableHTTPDebugLogging(true)
@@ -867,9 +1068,10 @@ Response body:
   "token": "global"
 }
 ```
-__WARNING__: This should only used for temporary debugging purposes. Leaving this option on in a production system could expose credentials/secrets in logs. <i>Authorization</i> headers are redacted by default and there is the ability to specify redacted header names via `SpeakeasyHTTPClient.setRedactedHeaders`.
+__WARNING__: This logging should only be used for temporary debugging purposes. Leaving this option on in a production system could expose credentials/secrets in logs. <i>Authorization</i> headers are redacted by default and there is the ability to specify redacted header names via `SpeakeasyHTTPClient.setRedactedHeaders`.
 
 __NOTE__: This is a convenience method that calls `HTTPClient.enableDebugLogging()`. The `SpeakeasyHTTPClient` honors this setting. If you are using a custom HTTP client, it is up to the custom client to honor this setting.
+
 
 Another option is to set the System property `-Djdk.httpclient.HttpClient.log=all`. However, this second option does not log bodies.
 <!-- End Debugging [debug] -->

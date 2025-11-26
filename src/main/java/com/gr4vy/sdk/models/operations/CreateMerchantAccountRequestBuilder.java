@@ -10,7 +10,6 @@ import com.gr4vy.sdk.models.components.MerchantAccountCreate;
 import com.gr4vy.sdk.operations.CreateMerchantAccount;
 import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.Utils;
-import java.lang.Exception;
 
 public class CreateMerchantAccountRequestBuilder {
 
@@ -28,7 +27,7 @@ public class CreateMerchantAccountRequestBuilder {
         return this;
     }
 
-    public CreateMerchantAccountResponse call() throws Exception {
+    public CreateMerchantAccountResponse call() {
         
         RequestOperation<MerchantAccountCreate, CreateMerchantAccountResponse> operation
               = new CreateMerchantAccount.Sync(sdkConfiguration, _headers);

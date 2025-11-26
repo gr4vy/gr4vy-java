@@ -10,7 +10,6 @@ import com.gr4vy.sdk.models.components.TransactionRefundCreate;
 import com.gr4vy.sdk.operations.CreateTransactionRefund;
 import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.Utils;
-import java.lang.Exception;
 import java.lang.String;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -60,7 +59,7 @@ public class CreateTransactionRefundRequestBuilder {
         return request;
     }
 
-    public CreateTransactionRefundResponse call() throws Exception {
+    public CreateTransactionRefundResponse call() {
         
         RequestOperation<CreateTransactionRefundRequest, CreateTransactionRefundResponse> operation
               = new CreateTransactionRefund.Sync(sdkConfiguration, _headers);

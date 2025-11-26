@@ -11,7 +11,6 @@ import com.gr4vy.sdk.models.operations.CreateTransactionRequest;
 import com.gr4vy.sdk.operations.CreateTransaction;
 import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.Utils;
-import java.lang.Exception;
 import java.lang.String;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
@@ -83,7 +82,7 @@ public class CreateTransactionRequestBuilder {
         return request;
     }
 
-    public CompletableFuture<CreateTransactionResponse> call() throws Exception {
+    public CompletableFuture<CreateTransactionResponse> call() {
         
         AsyncRequestOperation<CreateTransactionRequest, CreateTransactionResponse> operation
               = new CreateTransaction.Async(sdkConfiguration, _headers);

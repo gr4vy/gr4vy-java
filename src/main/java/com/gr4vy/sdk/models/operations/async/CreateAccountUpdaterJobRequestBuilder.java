@@ -11,7 +11,6 @@ import com.gr4vy.sdk.models.operations.CreateAccountUpdaterJobRequest;
 import com.gr4vy.sdk.operations.CreateAccountUpdaterJob;
 import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.Utils;
-import java.lang.Exception;
 import java.lang.String;
 import java.util.concurrent.CompletableFuture;
 import org.openapitools.jackson.nullable.JsonNullable;
@@ -54,7 +53,7 @@ public class CreateAccountUpdaterJobRequestBuilder {
         return request;
     }
 
-    public CompletableFuture<CreateAccountUpdaterJobResponse> call() throws Exception {
+    public CompletableFuture<CreateAccountUpdaterJobResponse> call() {
         
         AsyncRequestOperation<CreateAccountUpdaterJobRequest, CreateAccountUpdaterJobResponse> operation
               = new CreateAccountUpdaterJob.Async(sdkConfiguration, _headers);

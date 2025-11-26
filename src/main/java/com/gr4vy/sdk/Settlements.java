@@ -15,7 +15,6 @@ import com.gr4vy.sdk.operations.GetTransactionSettlement;
 import com.gr4vy.sdk.operations.ListTransactionSettlements;
 import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.Options;
-import java.lang.Exception;
 import java.lang.String;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
@@ -59,9 +58,9 @@ public class Settlements {
      * @param transactionId The unique identifier of the transaction.
      * @param settlementId The unique identifier of the settlement.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public GetTransactionSettlementResponse get(String transactionId, String settlementId) throws Exception {
+    public GetTransactionSettlementResponse get(String transactionId, String settlementId) {
         return get(transactionId, settlementId, JsonNullable.undefined(),
             Optional.empty());
     }
@@ -76,11 +75,11 @@ public class Settlements {
      * @param merchantAccountId 
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
     public GetTransactionSettlementResponse get(
             String transactionId, String settlementId,
-            JsonNullable<String> merchantAccountId, Optional<Options> options) throws Exception {
+            JsonNullable<String> merchantAccountId, Optional<Options> options) {
         GetTransactionSettlementRequest request =
             GetTransactionSettlementRequest
                 .builder()
@@ -111,9 +110,9 @@ public class Settlements {
      * 
      * @param transactionId The unique identifier of the transaction.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public ListTransactionSettlementsResponse list(String transactionId) throws Exception {
+    public ListTransactionSettlementsResponse list(String transactionId) {
         return list(transactionId, JsonNullable.undefined(), Optional.empty());
     }
 
@@ -126,11 +125,11 @@ public class Settlements {
      * @param merchantAccountId 
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
     public ListTransactionSettlementsResponse list(
             String transactionId, JsonNullable<String> merchantAccountId,
-            Optional<Options> options) throws Exception {
+            Optional<Options> options) {
         ListTransactionSettlementsRequest request =
             ListTransactionSettlementsRequest
                 .builder()

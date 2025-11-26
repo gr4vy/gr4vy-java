@@ -10,7 +10,6 @@ import com.gr4vy.sdk.models.components.AccountUpdaterJobCreate;
 import com.gr4vy.sdk.operations.CreateAccountUpdaterJob;
 import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.Utils;
-import java.lang.Exception;
 import java.lang.String;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -52,7 +51,7 @@ public class CreateAccountUpdaterJobRequestBuilder {
         return request;
     }
 
-    public CreateAccountUpdaterJobResponse call() throws Exception {
+    public CreateAccountUpdaterJobResponse call() {
         
         RequestOperation<CreateAccountUpdaterJobRequest, CreateAccountUpdaterJobResponse> operation
               = new CreateAccountUpdaterJob.Sync(sdkConfiguration, _headers);

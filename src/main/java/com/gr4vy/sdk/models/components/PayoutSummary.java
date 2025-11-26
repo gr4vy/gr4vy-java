@@ -53,7 +53,7 @@ public class PayoutSummary {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("buyer")
-    private JsonNullable<? extends TransactionBuyer> buyer;
+    private JsonNullable<? extends TransactionBuyerOutput> buyer;
 
     /**
      * The type of payout to process.
@@ -97,7 +97,7 @@ public class PayoutSummary {
 
 
     @JsonProperty("payment_method")
-    private TransactionPaymentMethod paymentMethod;
+    private TransactionPaymentMethodOutput paymentMethod;
 
 
     @JsonProperty("payment_service")
@@ -124,14 +124,14 @@ public class PayoutSummary {
     public PayoutSummary(
             @JsonProperty("id") JsonNullable<String> id,
             @JsonProperty("amount") long amount,
-            @JsonProperty("buyer") JsonNullable<? extends TransactionBuyer> buyer,
+            @JsonProperty("buyer") JsonNullable<? extends TransactionBuyerOutput> buyer,
             @JsonProperty("category") JsonNullable<? extends PayoutCategory> category,
             @JsonProperty("created_at") OffsetDateTime createdAt,
             @JsonProperty("currency") String currency,
             @JsonProperty("external_identifier") JsonNullable<String> externalIdentifier,
             @JsonProperty("merchant") JsonNullable<? extends PayoutMerchantSummary> merchant,
             @JsonProperty("merchant_account_id") JsonNullable<String> merchantAccountId,
-            @JsonProperty("payment_method") TransactionPaymentMethod paymentMethod,
+            @JsonProperty("payment_method") TransactionPaymentMethodOutput paymentMethod,
             @JsonProperty("payment_service") PayoutPaymentService paymentService,
             @JsonProperty("payment_service_payout_id") JsonNullable<String> paymentServicePayoutId,
             @JsonProperty("status") PayoutStatus status,
@@ -171,7 +171,7 @@ public class PayoutSummary {
             long amount,
             OffsetDateTime createdAt,
             String currency,
-            TransactionPaymentMethod paymentMethod,
+            TransactionPaymentMethodOutput paymentMethod,
             PayoutPaymentService paymentService,
             PayoutStatus status,
             OffsetDateTime updatedAt) {
@@ -212,8 +212,8 @@ public class PayoutSummary {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<TransactionBuyer> buyer() {
-        return (JsonNullable<TransactionBuyer>) buyer;
+    public JsonNullable<TransactionBuyerOutput> buyer() {
+        return (JsonNullable<TransactionBuyerOutput>) buyer;
     }
 
     /**
@@ -267,7 +267,7 @@ public class PayoutSummary {
     }
 
     @JsonIgnore
-    public TransactionPaymentMethod paymentMethod() {
+    public TransactionPaymentMethodOutput paymentMethod() {
         return paymentMethod;
     }
 
@@ -333,7 +333,7 @@ public class PayoutSummary {
     /**
      * The buyer used for this payout.
      */
-    public PayoutSummary withBuyer(TransactionBuyer buyer) {
+    public PayoutSummary withBuyer(TransactionBuyerOutput buyer) {
         Utils.checkNotNull(buyer, "buyer");
         this.buyer = JsonNullable.of(buyer);
         return this;
@@ -342,7 +342,7 @@ public class PayoutSummary {
     /**
      * The buyer used for this payout.
      */
-    public PayoutSummary withBuyer(JsonNullable<? extends TransactionBuyer> buyer) {
+    public PayoutSummary withBuyer(JsonNullable<? extends TransactionBuyerOutput> buyer) {
         Utils.checkNotNull(buyer, "buyer");
         this.buyer = buyer;
         return this;
@@ -438,7 +438,7 @@ public class PayoutSummary {
         return this;
     }
 
-    public PayoutSummary withPaymentMethod(TransactionPaymentMethod paymentMethod) {
+    public PayoutSummary withPaymentMethod(TransactionPaymentMethodOutput paymentMethod) {
         Utils.checkNotNull(paymentMethod, "paymentMethod");
         this.paymentMethod = paymentMethod;
         return this;
@@ -547,7 +547,7 @@ public class PayoutSummary {
 
         private Long amount;
 
-        private JsonNullable<? extends TransactionBuyer> buyer = JsonNullable.undefined();
+        private JsonNullable<? extends TransactionBuyerOutput> buyer = JsonNullable.undefined();
 
         private JsonNullable<? extends PayoutCategory> category = JsonNullable.undefined();
 
@@ -561,7 +561,7 @@ public class PayoutSummary {
 
         private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
 
-        private TransactionPaymentMethod paymentMethod;
+        private TransactionPaymentMethodOutput paymentMethod;
 
         private PayoutPaymentService paymentService;
 
@@ -609,7 +609,7 @@ public class PayoutSummary {
         /**
          * The buyer used for this payout.
          */
-        public Builder buyer(TransactionBuyer buyer) {
+        public Builder buyer(TransactionBuyerOutput buyer) {
             Utils.checkNotNull(buyer, "buyer");
             this.buyer = JsonNullable.of(buyer);
             return this;
@@ -618,7 +618,7 @@ public class PayoutSummary {
         /**
          * The buyer used for this payout.
          */
-        public Builder buyer(JsonNullable<? extends TransactionBuyer> buyer) {
+        public Builder buyer(JsonNullable<? extends TransactionBuyerOutput> buyer) {
             Utils.checkNotNull(buyer, "buyer");
             this.buyer = buyer;
             return this;
@@ -721,7 +721,7 @@ public class PayoutSummary {
         }
 
 
-        public Builder paymentMethod(TransactionPaymentMethod paymentMethod) {
+        public Builder paymentMethod(TransactionPaymentMethodOutput paymentMethod) {
             Utils.checkNotNull(paymentMethod, "paymentMethod");
             this.paymentMethod = paymentMethod;
             return this;

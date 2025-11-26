@@ -10,7 +10,6 @@ import com.gr4vy.sdk.models.components.ShippingDetailsCreate;
 import com.gr4vy.sdk.operations.AddBuyerShippingDetails;
 import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.Utils;
-import java.lang.Exception;
 import java.lang.String;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -60,7 +59,7 @@ public class AddBuyerShippingDetailsRequestBuilder {
         return request;
     }
 
-    public AddBuyerShippingDetailsResponse call() throws Exception {
+    public AddBuyerShippingDetailsResponse call() {
         
         RequestOperation<AddBuyerShippingDetailsRequest, AddBuyerShippingDetailsResponse> operation
               = new AddBuyerShippingDetails.Sync(sdkConfiguration, _headers);

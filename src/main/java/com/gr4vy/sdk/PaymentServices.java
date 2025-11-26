@@ -38,7 +38,6 @@ import com.gr4vy.sdk.operations.UpdatePaymentService;
 import com.gr4vy.sdk.operations.VerifyPaymentServiceCredentials;
 import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.Options;
-import java.lang.Exception;
 import java.lang.Object;
 import java.lang.String;
 import java.util.Map;
@@ -83,9 +82,9 @@ public class PaymentServices {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public ListPaymentServicesResponse list(ListPaymentServicesRequest request) throws Exception {
+    public ListPaymentServicesResponse list(ListPaymentServicesRequest request) {
         return list(request, Optional.empty());
     }
 
@@ -97,9 +96,9 @@ public class PaymentServices {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public ListPaymentServicesResponse list(ListPaymentServicesRequest request, Optional<Options> options) throws Exception {
+    public ListPaymentServicesResponse list(ListPaymentServicesRequest request, Optional<Options> options) {
         RequestOperation<ListPaymentServicesRequest, ListPaymentServicesResponse> operation
               = new ListPaymentServices.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -123,9 +122,9 @@ public class PaymentServices {
      * 
      * @param paymentServiceCreate Request body for activating a payment service
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public UpdatePaymentServiceResponse create(PaymentServiceCreate paymentServiceCreate) throws Exception {
+    public UpdatePaymentServiceResponse create(PaymentServiceCreate paymentServiceCreate) {
         return create(JsonNullable.undefined(), paymentServiceCreate);
     }
 
@@ -137,9 +136,9 @@ public class PaymentServices {
      * @param merchantAccountId 
      * @param paymentServiceCreate Request body for activating a payment service
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public UpdatePaymentServiceResponse create(JsonNullable<String> merchantAccountId, PaymentServiceCreate paymentServiceCreate) throws Exception {
+    public UpdatePaymentServiceResponse create(JsonNullable<String> merchantAccountId, PaymentServiceCreate paymentServiceCreate) {
         UpdatePaymentServiceRequest request =
             UpdatePaymentServiceRequest
                 .builder()
@@ -169,9 +168,9 @@ public class PaymentServices {
      * 
      * @param paymentServiceId the ID of the payment service
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public GetPaymentServiceResponse get(String paymentServiceId) throws Exception {
+    public GetPaymentServiceResponse get(String paymentServiceId) {
         return get(paymentServiceId, JsonNullable.undefined(), Optional.empty());
     }
 
@@ -184,11 +183,11 @@ public class PaymentServices {
      * @param merchantAccountId 
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
     public GetPaymentServiceResponse get(
             String paymentServiceId, JsonNullable<String> merchantAccountId,
-            Optional<Options> options) throws Exception {
+            Optional<Options> options) {
         GetPaymentServiceRequest request =
             GetPaymentServiceRequest
                 .builder()
@@ -219,9 +218,9 @@ public class PaymentServices {
      * @param paymentServiceId the ID of the payment service
      * @param paymentServiceUpdate Request body for updating a Payment Service
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public CreatePaymentServiceResponse update(String paymentServiceId, PaymentServiceUpdate paymentServiceUpdate) throws Exception {
+    public CreatePaymentServiceResponse update(String paymentServiceId, PaymentServiceUpdate paymentServiceUpdate) {
         return update(paymentServiceId, JsonNullable.undefined(), paymentServiceUpdate);
     }
 
@@ -234,11 +233,11 @@ public class PaymentServices {
      * @param merchantAccountId 
      * @param paymentServiceUpdate Request body for updating a Payment Service
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
     public CreatePaymentServiceResponse update(
             String paymentServiceId, JsonNullable<String> merchantAccountId,
-            PaymentServiceUpdate paymentServiceUpdate) throws Exception {
+            PaymentServiceUpdate paymentServiceUpdate) {
         CreatePaymentServiceRequest request =
             CreatePaymentServiceRequest
                 .builder()
@@ -269,9 +268,9 @@ public class PaymentServices {
      * 
      * @param paymentServiceId the ID of the payment service
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public DeletePaymentServiceResponse delete(String paymentServiceId) throws Exception {
+    public DeletePaymentServiceResponse delete(String paymentServiceId) {
         return delete(paymentServiceId, JsonNullable.undefined());
     }
 
@@ -283,9 +282,9 @@ public class PaymentServices {
      * @param paymentServiceId the ID of the payment service
      * @param merchantAccountId 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public DeletePaymentServiceResponse delete(String paymentServiceId, JsonNullable<String> merchantAccountId) throws Exception {
+    public DeletePaymentServiceResponse delete(String paymentServiceId, JsonNullable<String> merchantAccountId) {
         DeletePaymentServiceRequest request =
             DeletePaymentServiceRequest
                 .builder()
@@ -315,9 +314,9 @@ public class PaymentServices {
      * 
      * @param verifyCredentials 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public VerifyPaymentServiceCredentialsResponse verify(VerifyCredentials verifyCredentials) throws Exception {
+    public VerifyPaymentServiceCredentialsResponse verify(VerifyCredentials verifyCredentials) {
         return verify(JsonNullable.undefined(), verifyCredentials);
     }
 
@@ -329,9 +328,9 @@ public class PaymentServices {
      * @param merchantAccountId 
      * @param verifyCredentials 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public VerifyPaymentServiceCredentialsResponse verify(JsonNullable<String> merchantAccountId, VerifyCredentials verifyCredentials) throws Exception {
+    public VerifyPaymentServiceCredentialsResponse verify(JsonNullable<String> merchantAccountId, VerifyCredentials verifyCredentials) {
         VerifyPaymentServiceCredentialsRequest request =
             VerifyPaymentServiceCredentialsRequest
                 .builder()
@@ -362,9 +361,9 @@ public class PaymentServices {
      * @param paymentServiceId the ID of the payment service
      * @param requestBody 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public CreatePaymentServiceSessionResponse session(String paymentServiceId, Map<String, Object> requestBody) throws Exception {
+    public CreatePaymentServiceSessionResponse session(String paymentServiceId, Map<String, Object> requestBody) {
         return session(paymentServiceId, JsonNullable.undefined(), requestBody);
     }
 
@@ -377,11 +376,11 @@ public class PaymentServices {
      * @param merchantAccountId 
      * @param requestBody 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
     public CreatePaymentServiceSessionResponse session(
             String paymentServiceId, JsonNullable<String> merchantAccountId,
-            Map<String, Object> requestBody) throws Exception {
+            Map<String, Object> requestBody) {
         CreatePaymentServiceSessionRequest request =
             CreatePaymentServiceSessionRequest
                 .builder()

@@ -3,11 +3,10 @@
  */
 package com.gr4vy.sdk.models.components;
 
-import com.fasterxml.jackson.annotation.JsonSubTypes.Type;
-import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo.As;
 import com.fasterxml.jackson.annotation.JsonTypeInfo.Id;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import com.fasterxml.jackson.databind.annotation.JsonTypeIdResolver;
 import java.lang.String;
 
 /**
@@ -15,12 +14,14 @@ import java.lang.String;
  * 
  * <p>The report specification.
  */
-@JsonTypeInfo(use = Id.NAME, property = "model", include = As.EXISTING_PROPERTY, visible = true)
-@JsonSubTypes({
-    @Type(value = AccountsReceivablesReportSpec.class, name="accounts_receivables"),
-    @Type(value = DetailedSettlementReportSpec.class, name="detailed_settlement"),
-    @Type(value = TransactionRetriesReportSpec.class, name="transaction_retries"),
-    @Type(value = TransactionsReportSpec.class, name="transactions")})
+@JsonTypeInfo(
+        use = Id.CUSTOM,
+        property = "model",
+        include = As.EXISTING_PROPERTY,
+        visible = true,
+        defaultImpl = UnknownSpec.class
+)
+@JsonTypeIdResolver(SpecTypeIdResolver.class)
 public interface Spec {
 
     String model();

@@ -9,7 +9,6 @@ import com.gr4vy.sdk.SDKConfiguration;
 import com.gr4vy.sdk.operations.ExpirePaymentLink;
 import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.Utils;
-import java.lang.Exception;
 import java.lang.String;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -51,7 +50,7 @@ public class ExpirePaymentLinkRequestBuilder {
         return request;
     }
 
-    public ExpirePaymentLinkResponse call() throws Exception {
+    public ExpirePaymentLinkResponse call() {
         
         RequestOperation<ExpirePaymentLinkRequest, ExpirePaymentLinkResponse> operation
               = new ExpirePaymentLink.Sync(sdkConfiguration, _headers);

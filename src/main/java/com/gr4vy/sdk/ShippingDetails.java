@@ -29,7 +29,6 @@ import com.gr4vy.sdk.operations.ListBuyerShippingDetails;
 import com.gr4vy.sdk.operations.UpdateBuyerShippingDetails;
 import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.Options;
-import java.lang.Exception;
 import java.lang.String;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
@@ -73,9 +72,9 @@ public class ShippingDetails {
      * @param buyerId The ID of the buyer to add shipping details to.
      * @param shippingDetailsCreate 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public AddBuyerShippingDetailsResponse create(String buyerId, ShippingDetailsCreate shippingDetailsCreate) throws Exception {
+    public AddBuyerShippingDetailsResponse create(String buyerId, ShippingDetailsCreate shippingDetailsCreate) {
         return create(buyerId, JsonNullable.undefined(), shippingDetailsCreate);
     }
 
@@ -88,11 +87,11 @@ public class ShippingDetails {
      * @param merchantAccountId 
      * @param shippingDetailsCreate 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
     public AddBuyerShippingDetailsResponse create(
             String buyerId, JsonNullable<String> merchantAccountId,
-            ShippingDetailsCreate shippingDetailsCreate) throws Exception {
+            ShippingDetailsCreate shippingDetailsCreate) {
         AddBuyerShippingDetailsRequest request =
             AddBuyerShippingDetailsRequest
                 .builder()
@@ -123,9 +122,9 @@ public class ShippingDetails {
      * 
      * @param buyerId The ID of the buyer to retrieve shipping details for.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public ListBuyerShippingDetailsResponse list(String buyerId) throws Exception {
+    public ListBuyerShippingDetailsResponse list(String buyerId) {
         return list(buyerId, JsonNullable.undefined(), Optional.empty());
     }
 
@@ -138,11 +137,11 @@ public class ShippingDetails {
      * @param merchantAccountId 
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
     public ListBuyerShippingDetailsResponse list(
             String buyerId, JsonNullable<String> merchantAccountId,
-            Optional<Options> options) throws Exception {
+            Optional<Options> options) {
         ListBuyerShippingDetailsRequest request =
             ListBuyerShippingDetailsRequest
                 .builder()
@@ -173,9 +172,9 @@ public class ShippingDetails {
      * @param buyerId The ID of the buyer to retrieve shipping details for.
      * @param shippingDetailsId The ID of the shipping details to retrieve.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public GetBuyerShippingDetailsResponse get(String buyerId, String shippingDetailsId) throws Exception {
+    public GetBuyerShippingDetailsResponse get(String buyerId, String shippingDetailsId) {
         return get(buyerId, shippingDetailsId, JsonNullable.undefined(),
             Optional.empty());
     }
@@ -190,11 +189,11 @@ public class ShippingDetails {
      * @param merchantAccountId 
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
     public GetBuyerShippingDetailsResponse get(
             String buyerId, String shippingDetailsId,
-            JsonNullable<String> merchantAccountId, Optional<Options> options) throws Exception {
+            JsonNullable<String> merchantAccountId, Optional<Options> options) {
         GetBuyerShippingDetailsRequest request =
             GetBuyerShippingDetailsRequest
                 .builder()
@@ -227,11 +226,11 @@ public class ShippingDetails {
      * @param shippingDetailsId The ID of the shipping details to update.
      * @param shippingDetailsUpdate 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
     public UpdateBuyerShippingDetailsResponse update(
             String buyerId, String shippingDetailsId,
-            ShippingDetailsUpdate shippingDetailsUpdate) throws Exception {
+            ShippingDetailsUpdate shippingDetailsUpdate) {
         return update(buyerId, shippingDetailsId, JsonNullable.undefined(),
             shippingDetailsUpdate);
     }
@@ -246,11 +245,11 @@ public class ShippingDetails {
      * @param merchantAccountId 
      * @param shippingDetailsUpdate 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
     public UpdateBuyerShippingDetailsResponse update(
             String buyerId, String shippingDetailsId,
-            JsonNullable<String> merchantAccountId, ShippingDetailsUpdate shippingDetailsUpdate) throws Exception {
+            JsonNullable<String> merchantAccountId, ShippingDetailsUpdate shippingDetailsUpdate) {
         UpdateBuyerShippingDetailsRequest request =
             UpdateBuyerShippingDetailsRequest
                 .builder()
@@ -283,9 +282,9 @@ public class ShippingDetails {
      * @param buyerId The ID of the buyer to delete shipping details for.
      * @param shippingDetailsId The ID of the shipping details to delete.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public DeleteBuyerShippingDetailsResponse delete(String buyerId, String shippingDetailsId) throws Exception {
+    public DeleteBuyerShippingDetailsResponse delete(String buyerId, String shippingDetailsId) {
         return delete(buyerId, shippingDetailsId, JsonNullable.undefined());
     }
 
@@ -298,11 +297,11 @@ public class ShippingDetails {
      * @param shippingDetailsId The ID of the shipping details to delete.
      * @param merchantAccountId 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
     public DeleteBuyerShippingDetailsResponse delete(
             String buyerId, String shippingDetailsId,
-            JsonNullable<String> merchantAccountId) throws Exception {
+            JsonNullable<String> merchantAccountId) {
         DeleteBuyerShippingDetailsRequest request =
             DeleteBuyerShippingDetailsRequest
                 .builder()

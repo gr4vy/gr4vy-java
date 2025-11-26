@@ -73,6 +73,13 @@ public class CartItem {
     private JsonNullable<String> sku;
 
     /**
+     * The UPC for the item.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("upc")
+    private JsonNullable<String> upc;
+
+    /**
      * The product URL for the item.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -160,6 +167,7 @@ public class CartItem {
             @JsonProperty("tax_amount") JsonNullable<Long> taxAmount,
             @JsonProperty("external_identifier") JsonNullable<String> externalIdentifier,
             @JsonProperty("sku") JsonNullable<String> sku,
+            @JsonProperty("upc") JsonNullable<String> upc,
             @JsonProperty("product_url") JsonNullable<String> productUrl,
             @JsonProperty("image_url") JsonNullable<String> imageUrl,
             @JsonProperty("categories") JsonNullable<? extends List<String>> categories,
@@ -178,6 +186,7 @@ public class CartItem {
         Utils.checkNotNull(taxAmount, "taxAmount");
         Utils.checkNotNull(externalIdentifier, "externalIdentifier");
         Utils.checkNotNull(sku, "sku");
+        Utils.checkNotNull(upc, "upc");
         Utils.checkNotNull(productUrl, "productUrl");
         Utils.checkNotNull(imageUrl, "imageUrl");
         Utils.checkNotNull(categories, "categories");
@@ -196,6 +205,7 @@ public class CartItem {
         this.taxAmount = taxAmount;
         this.externalIdentifier = externalIdentifier;
         this.sku = sku;
+        this.upc = upc;
         this.productUrl = productUrl;
         this.imageUrl = imageUrl;
         this.categories = categories;
@@ -218,7 +228,8 @@ public class CartItem {
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined());
     }
 
     /**
@@ -282,6 +293,14 @@ public class CartItem {
     @JsonIgnore
     public JsonNullable<String> sku() {
         return sku;
+    }
+
+    /**
+     * The UPC for the item.
+     */
+    @JsonIgnore
+    public JsonNullable<String> upc() {
+        return upc;
     }
 
     /**
@@ -487,6 +506,24 @@ public class CartItem {
     public CartItem withSku(JsonNullable<String> sku) {
         Utils.checkNotNull(sku, "sku");
         this.sku = sku;
+        return this;
+    }
+
+    /**
+     * The UPC for the item.
+     */
+    public CartItem withUpc(String upc) {
+        Utils.checkNotNull(upc, "upc");
+        this.upc = JsonNullable.of(upc);
+        return this;
+    }
+
+    /**
+     * The UPC for the item.
+     */
+    public CartItem withUpc(JsonNullable<String> upc) {
+        Utils.checkNotNull(upc, "upc");
+        this.upc = upc;
         return this;
     }
 
@@ -709,6 +746,7 @@ public class CartItem {
             Utils.enhancedDeepEquals(this.taxAmount, other.taxAmount) &&
             Utils.enhancedDeepEquals(this.externalIdentifier, other.externalIdentifier) &&
             Utils.enhancedDeepEquals(this.sku, other.sku) &&
+            Utils.enhancedDeepEquals(this.upc, other.upc) &&
             Utils.enhancedDeepEquals(this.productUrl, other.productUrl) &&
             Utils.enhancedDeepEquals(this.imageUrl, other.imageUrl) &&
             Utils.enhancedDeepEquals(this.categories, other.categories) &&
@@ -727,10 +765,11 @@ public class CartItem {
         return Utils.enhancedHash(
             name, quantity, unitAmount,
             discountAmount, taxAmount, externalIdentifier,
-            sku, productUrl, imageUrl,
-            categories, productType, sellerCountry,
-            taxExempt, unitOfMeasure, commodityCode,
-            description, dutyAmount, shippingAmount);
+            sku, upc, productUrl,
+            imageUrl, categories, productType,
+            sellerCountry, taxExempt, unitOfMeasure,
+            commodityCode, description, dutyAmount,
+            shippingAmount);
     }
     
     @Override
@@ -743,6 +782,7 @@ public class CartItem {
                 "taxAmount", taxAmount,
                 "externalIdentifier", externalIdentifier,
                 "sku", sku,
+                "upc", upc,
                 "productUrl", productUrl,
                 "imageUrl", imageUrl,
                 "categories", categories,
@@ -772,6 +812,8 @@ public class CartItem {
         private JsonNullable<String> externalIdentifier = JsonNullable.undefined();
 
         private JsonNullable<String> sku = JsonNullable.undefined();
+
+        private JsonNullable<String> upc = JsonNullable.undefined();
 
         private JsonNullable<String> productUrl = JsonNullable.undefined();
 
@@ -912,6 +954,25 @@ public class CartItem {
         public Builder sku(JsonNullable<String> sku) {
             Utils.checkNotNull(sku, "sku");
             this.sku = sku;
+            return this;
+        }
+
+
+        /**
+         * The UPC for the item.
+         */
+        public Builder upc(String upc) {
+            Utils.checkNotNull(upc, "upc");
+            this.upc = JsonNullable.of(upc);
+            return this;
+        }
+
+        /**
+         * The UPC for the item.
+         */
+        public Builder upc(JsonNullable<String> upc) {
+            Utils.checkNotNull(upc, "upc");
+            this.upc = upc;
             return this;
         }
 
@@ -1133,10 +1194,11 @@ public class CartItem {
             return new CartItem(
                 name, quantity, unitAmount,
                 discountAmount, taxAmount, externalIdentifier,
-                sku, productUrl, imageUrl,
-                categories, productType, sellerCountry,
-                taxExempt, unitOfMeasure, commodityCode,
-                description, dutyAmount, shippingAmount);
+                sku, upc, productUrl,
+                imageUrl, categories, productType,
+                sellerCountry, taxExempt, unitOfMeasure,
+                commodityCode, description, dutyAmount,
+                shippingAmount);
         }
 
     }

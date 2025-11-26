@@ -11,7 +11,6 @@ import com.gr4vy.sdk.models.operations.ListGiftCardBalancesRequestBuilder;
 import com.gr4vy.sdk.models.operations.ListGiftCardBalancesResponse;
 import com.gr4vy.sdk.operations.ListGiftCardBalances;
 import com.gr4vy.sdk.utils.Headers;
-import java.lang.Exception;
 import java.lang.String;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -53,9 +52,9 @@ public class Balances {
      * 
      * @param giftCardBalanceRequest 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public ListGiftCardBalancesResponse list(GiftCardBalanceRequest giftCardBalanceRequest) throws Exception {
+    public ListGiftCardBalancesResponse list(GiftCardBalanceRequest giftCardBalanceRequest) {
         return list(JsonNullable.undefined(), giftCardBalanceRequest);
     }
 
@@ -67,9 +66,9 @@ public class Balances {
      * @param merchantAccountId 
      * @param giftCardBalanceRequest 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public ListGiftCardBalancesResponse list(JsonNullable<String> merchantAccountId, GiftCardBalanceRequest giftCardBalanceRequest) throws Exception {
+    public ListGiftCardBalancesResponse list(JsonNullable<String> merchantAccountId, GiftCardBalanceRequest giftCardBalanceRequest) {
         ListGiftCardBalancesRequest request =
             ListGiftCardBalancesRequest
                 .builder()

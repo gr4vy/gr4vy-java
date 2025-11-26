@@ -5,7 +5,7 @@ package com.gr4vy.sdk.models.operations.async;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.gr4vy.sdk.models.components.Transaction;
+import com.gr4vy.sdk.models.components.TransactionOutput;
 import com.gr4vy.sdk.utils.AsyncResponse;
 import com.gr4vy.sdk.utils.Blob;
 import com.gr4vy.sdk.utils.Utils;
@@ -36,22 +36,22 @@ public class CreateTransactionResponse implements AsyncResponse {
     /**
      * Returns the created transaction.
      */
-    private Optional<? extends Transaction> transaction;
+    private Optional<? extends TransactionOutput> transactionOutput;
 
     @JsonCreator
     public CreateTransactionResponse(
             String contentType,
             int statusCode,
             HttpResponse<Blob> rawResponse,
-            Optional<? extends Transaction> transaction) {
+            Optional<? extends TransactionOutput> transactionOutput) {
         Utils.checkNotNull(contentType, "contentType");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
-        Utils.checkNotNull(transaction, "transaction");
+        Utils.checkNotNull(transactionOutput, "transactionOutput");
         this.contentType = contentType;
         this.statusCode = statusCode;
         this.rawResponse = rawResponse;
-        this.transaction = transaction;
+        this.transactionOutput = transactionOutput;
     }
     
     public CreateTransactionResponse(
@@ -91,8 +91,8 @@ public class CreateTransactionResponse implements AsyncResponse {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<Transaction> transaction() {
-        return (Optional<Transaction>) transaction;
+    public Optional<TransactionOutput> transactionOutput() {
+        return (Optional<TransactionOutput>) transactionOutput;
     }
 
     public static Builder builder() {
@@ -130,9 +130,9 @@ public class CreateTransactionResponse implements AsyncResponse {
     /**
      * Returns the created transaction.
      */
-    public CreateTransactionResponse withTransaction(Transaction transaction) {
-        Utils.checkNotNull(transaction, "transaction");
-        this.transaction = Optional.ofNullable(transaction);
+    public CreateTransactionResponse withTransactionOutput(TransactionOutput transactionOutput) {
+        Utils.checkNotNull(transactionOutput, "transactionOutput");
+        this.transactionOutput = Optional.ofNullable(transactionOutput);
         return this;
     }
 
@@ -140,9 +140,9 @@ public class CreateTransactionResponse implements AsyncResponse {
     /**
      * Returns the created transaction.
      */
-    public CreateTransactionResponse withTransaction(Optional<? extends Transaction> transaction) {
-        Utils.checkNotNull(transaction, "transaction");
-        this.transaction = transaction;
+    public CreateTransactionResponse withTransactionOutput(Optional<? extends TransactionOutput> transactionOutput) {
+        Utils.checkNotNull(transactionOutput, "transactionOutput");
+        this.transactionOutput = transactionOutput;
         return this;
     }
 
@@ -159,14 +159,14 @@ public class CreateTransactionResponse implements AsyncResponse {
             Utils.enhancedDeepEquals(this.contentType, other.contentType) &&
             Utils.enhancedDeepEquals(this.statusCode, other.statusCode) &&
             Utils.enhancedDeepEquals(this.rawResponse, other.rawResponse) &&
-            Utils.enhancedDeepEquals(this.transaction, other.transaction);
+            Utils.enhancedDeepEquals(this.transactionOutput, other.transactionOutput);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
             contentType, statusCode, rawResponse,
-            transaction);
+            transactionOutput);
     }
     
     @Override
@@ -175,7 +175,7 @@ public class CreateTransactionResponse implements AsyncResponse {
                 "contentType", contentType,
                 "statusCode", statusCode,
                 "rawResponse", rawResponse,
-                "transaction", transaction);
+                "transactionOutput", transactionOutput);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -187,7 +187,7 @@ public class CreateTransactionResponse implements AsyncResponse {
 
         private HttpResponse<Blob> rawResponse;
 
-        private Optional<? extends Transaction> transaction = Optional.empty();
+        private Optional<? extends TransactionOutput> transactionOutput = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -227,18 +227,18 @@ public class CreateTransactionResponse implements AsyncResponse {
         /**
          * Returns the created transaction.
          */
-        public Builder transaction(Transaction transaction) {
-            Utils.checkNotNull(transaction, "transaction");
-            this.transaction = Optional.ofNullable(transaction);
+        public Builder transactionOutput(TransactionOutput transactionOutput) {
+            Utils.checkNotNull(transactionOutput, "transactionOutput");
+            this.transactionOutput = Optional.ofNullable(transactionOutput);
             return this;
         }
 
         /**
          * Returns the created transaction.
          */
-        public Builder transaction(Optional<? extends Transaction> transaction) {
-            Utils.checkNotNull(transaction, "transaction");
-            this.transaction = transaction;
+        public Builder transactionOutput(Optional<? extends TransactionOutput> transactionOutput) {
+            Utils.checkNotNull(transactionOutput, "transactionOutput");
+            this.transactionOutput = transactionOutput;
             return this;
         }
 
@@ -246,7 +246,7 @@ public class CreateTransactionResponse implements AsyncResponse {
 
             return new CreateTransactionResponse(
                 contentType, statusCode, rawResponse,
-                transaction);
+                transactionOutput);
         }
 
     }

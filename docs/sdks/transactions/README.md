@@ -184,7 +184,7 @@ public class Application {
                     .build())
                 .call();
 
-        if (res.transaction().isPresent()) {
+        if (res.transactionOutput().isPresent()) {
             // handle response
         }
     }
@@ -250,7 +250,7 @@ public class Application {
                 .transactionId("7099948d-7286-47e4-aad8-b68f7eb44591")
                 .call();
 
-        if (res.transaction().isPresent()) {
+        if (res.transactionOutput().isPresent()) {
             // handle response
         }
     }
@@ -317,7 +317,7 @@ public class Application {
                     .build())
                 .call();
 
-        if (res.transaction().isPresent()) {
+        if (res.transactionOutput().isPresent()) {
             // handle response
         }
     }
@@ -580,7 +580,7 @@ public class Application {
                 .transactionId("2ee546e0-3b11-478e-afec-fdb362611e22")
                 .call();
 
-        if (res.transaction().isPresent()) {
+        if (res.transactionOutput().isPresent()) {
             // handle response
         }
     }

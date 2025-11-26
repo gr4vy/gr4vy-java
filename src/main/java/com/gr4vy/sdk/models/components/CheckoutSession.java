@@ -11,6 +11,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.gr4vy.sdk.utils.LazySingletonValue;
 import com.gr4vy.sdk.utils.Utils;
+import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
@@ -52,6 +53,28 @@ public class CheckoutSession {
     private JsonNullable<? extends Airline> airline;
 
     /**
+     * The total amount for this transaction.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("amount")
+    private JsonNullable<Long> amount;
+
+    /**
+     * The currency code for this transaction.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("currency")
+    private JsonNullable<String> currency;
+
+    /**
+     * The unique identifier of an existing payment service. When provided, the created transaction will be
+     * processed by the given payment service and any routing rules will be skipped.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("payment_service_id")
+    private JsonNullable<String> paymentServiceId;
+
+    /**
      * Always `checkout-session`
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -75,7 +98,7 @@ public class CheckoutSession {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("payment_method")
-    private JsonNullable<? extends CheckoutSessionPaymentMethod> paymentMethod;
+    private JsonNullable<? extends CheckoutSessionPaymentMethodOutput> paymentMethod;
 
     @JsonCreator
     public CheckoutSession(
@@ -83,13 +106,19 @@ public class CheckoutSession {
             @JsonProperty("metadata") JsonNullable<? extends Map<String, String>> metadata,
             @JsonProperty("buyer") JsonNullable<? extends GuestBuyerOutput> buyer,
             @JsonProperty("airline") JsonNullable<? extends Airline> airline,
+            @JsonProperty("amount") JsonNullable<Long> amount,
+            @JsonProperty("currency") JsonNullable<String> currency,
+            @JsonProperty("payment_service_id") JsonNullable<String> paymentServiceId,
             @JsonProperty("id") String id,
             @JsonProperty("expires_at") OffsetDateTime expiresAt,
-            @JsonProperty("payment_method") JsonNullable<? extends CheckoutSessionPaymentMethod> paymentMethod) {
+            @JsonProperty("payment_method") JsonNullable<? extends CheckoutSessionPaymentMethodOutput> paymentMethod) {
         Utils.checkNotNull(cartItems, "cartItems");
         Utils.checkNotNull(metadata, "metadata");
         Utils.checkNotNull(buyer, "buyer");
         Utils.checkNotNull(airline, "airline");
+        Utils.checkNotNull(amount, "amount");
+        Utils.checkNotNull(currency, "currency");
+        Utils.checkNotNull(paymentServiceId, "paymentServiceId");
         Utils.checkNotNull(id, "id");
         Utils.checkNotNull(expiresAt, "expiresAt");
         Utils.checkNotNull(paymentMethod, "paymentMethod");
@@ -97,6 +126,9 @@ public class CheckoutSession {
         this.metadata = metadata;
         this.buyer = buyer;
         this.airline = airline;
+        this.amount = amount;
+        this.currency = currency;
+        this.paymentServiceId = paymentServiceId;
         this.type = Builder._SINGLETON_VALUE_Type.value();
         this.id = id;
         this.expiresAt = expiresAt;
@@ -107,6 +139,7 @@ public class CheckoutSession {
             String id,
             OffsetDateTime expiresAt) {
         this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), id, expiresAt,
             JsonNullable.undefined());
     }
@@ -149,6 +182,31 @@ public class CheckoutSession {
     }
 
     /**
+     * The total amount for this transaction.
+     */
+    @JsonIgnore
+    public JsonNullable<Long> amount() {
+        return amount;
+    }
+
+    /**
+     * The currency code for this transaction.
+     */
+    @JsonIgnore
+    public JsonNullable<String> currency() {
+        return currency;
+    }
+
+    /**
+     * The unique identifier of an existing payment service. When provided, the created transaction will be
+     * processed by the given payment service and any routing rules will be skipped.
+     */
+    @JsonIgnore
+    public JsonNullable<String> paymentServiceId() {
+        return paymentServiceId;
+    }
+
+    /**
      * Always `checkout-session`
      */
     @JsonIgnore
@@ -177,8 +235,8 @@ public class CheckoutSession {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<CheckoutSessionPaymentMethod> paymentMethod() {
-        return (JsonNullable<CheckoutSessionPaymentMethod>) paymentMethod;
+    public JsonNullable<CheckoutSessionPaymentMethodOutput> paymentMethod() {
+        return (JsonNullable<CheckoutSessionPaymentMethodOutput>) paymentMethod;
     }
 
     public static Builder builder() {
@@ -261,6 +319,62 @@ public class CheckoutSession {
     }
 
     /**
+     * The total amount for this transaction.
+     */
+    public CheckoutSession withAmount(long amount) {
+        Utils.checkNotNull(amount, "amount");
+        this.amount = JsonNullable.of(amount);
+        return this;
+    }
+
+    /**
+     * The total amount for this transaction.
+     */
+    public CheckoutSession withAmount(JsonNullable<Long> amount) {
+        Utils.checkNotNull(amount, "amount");
+        this.amount = amount;
+        return this;
+    }
+
+    /**
+     * The currency code for this transaction.
+     */
+    public CheckoutSession withCurrency(String currency) {
+        Utils.checkNotNull(currency, "currency");
+        this.currency = JsonNullable.of(currency);
+        return this;
+    }
+
+    /**
+     * The currency code for this transaction.
+     */
+    public CheckoutSession withCurrency(JsonNullable<String> currency) {
+        Utils.checkNotNull(currency, "currency");
+        this.currency = currency;
+        return this;
+    }
+
+    /**
+     * The unique identifier of an existing payment service. When provided, the created transaction will be
+     * processed by the given payment service and any routing rules will be skipped.
+     */
+    public CheckoutSession withPaymentServiceId(String paymentServiceId) {
+        Utils.checkNotNull(paymentServiceId, "paymentServiceId");
+        this.paymentServiceId = JsonNullable.of(paymentServiceId);
+        return this;
+    }
+
+    /**
+     * The unique identifier of an existing payment service. When provided, the created transaction will be
+     * processed by the given payment service and any routing rules will be skipped.
+     */
+    public CheckoutSession withPaymentServiceId(JsonNullable<String> paymentServiceId) {
+        Utils.checkNotNull(paymentServiceId, "paymentServiceId");
+        this.paymentServiceId = paymentServiceId;
+        return this;
+    }
+
+    /**
      * The ID for the checkout session.
      */
     public CheckoutSession withId(String id) {
@@ -281,7 +395,7 @@ public class CheckoutSession {
     /**
      * Information about the payment method stored on the checkout session.
      */
-    public CheckoutSession withPaymentMethod(CheckoutSessionPaymentMethod paymentMethod) {
+    public CheckoutSession withPaymentMethod(CheckoutSessionPaymentMethodOutput paymentMethod) {
         Utils.checkNotNull(paymentMethod, "paymentMethod");
         this.paymentMethod = JsonNullable.of(paymentMethod);
         return this;
@@ -290,7 +404,7 @@ public class CheckoutSession {
     /**
      * Information about the payment method stored on the checkout session.
      */
-    public CheckoutSession withPaymentMethod(JsonNullable<? extends CheckoutSessionPaymentMethod> paymentMethod) {
+    public CheckoutSession withPaymentMethod(JsonNullable<? extends CheckoutSessionPaymentMethodOutput> paymentMethod) {
         Utils.checkNotNull(paymentMethod, "paymentMethod");
         this.paymentMethod = paymentMethod;
         return this;
@@ -310,6 +424,9 @@ public class CheckoutSession {
             Utils.enhancedDeepEquals(this.metadata, other.metadata) &&
             Utils.enhancedDeepEquals(this.buyer, other.buyer) &&
             Utils.enhancedDeepEquals(this.airline, other.airline) &&
+            Utils.enhancedDeepEquals(this.amount, other.amount) &&
+            Utils.enhancedDeepEquals(this.currency, other.currency) &&
+            Utils.enhancedDeepEquals(this.paymentServiceId, other.paymentServiceId) &&
             Utils.enhancedDeepEquals(this.type, other.type) &&
             Utils.enhancedDeepEquals(this.id, other.id) &&
             Utils.enhancedDeepEquals(this.expiresAt, other.expiresAt) &&
@@ -320,7 +437,8 @@ public class CheckoutSession {
     public int hashCode() {
         return Utils.enhancedHash(
             cartItems, metadata, buyer,
-            airline, type, id,
+            airline, amount, currency,
+            paymentServiceId, type, id,
             expiresAt, paymentMethod);
     }
     
@@ -331,6 +449,9 @@ public class CheckoutSession {
                 "metadata", metadata,
                 "buyer", buyer,
                 "airline", airline,
+                "amount", amount,
+                "currency", currency,
+                "paymentServiceId", paymentServiceId,
                 "type", type,
                 "id", id,
                 "expiresAt", expiresAt,
@@ -348,11 +469,17 @@ public class CheckoutSession {
 
         private JsonNullable<? extends Airline> airline = JsonNullable.undefined();
 
+        private JsonNullable<Long> amount = JsonNullable.undefined();
+
+        private JsonNullable<String> currency = JsonNullable.undefined();
+
+        private JsonNullable<String> paymentServiceId = JsonNullable.undefined();
+
         private String id;
 
         private OffsetDateTime expiresAt;
 
-        private JsonNullable<? extends CheckoutSessionPaymentMethod> paymentMethod = JsonNullable.undefined();
+        private JsonNullable<? extends CheckoutSessionPaymentMethodOutput> paymentMethod = JsonNullable.undefined();
 
         private Builder() {
           // force use of static builder() method
@@ -438,6 +565,65 @@ public class CheckoutSession {
 
 
         /**
+         * The total amount for this transaction.
+         */
+        public Builder amount(long amount) {
+            Utils.checkNotNull(amount, "amount");
+            this.amount = JsonNullable.of(amount);
+            return this;
+        }
+
+        /**
+         * The total amount for this transaction.
+         */
+        public Builder amount(JsonNullable<Long> amount) {
+            Utils.checkNotNull(amount, "amount");
+            this.amount = amount;
+            return this;
+        }
+
+
+        /**
+         * The currency code for this transaction.
+         */
+        public Builder currency(String currency) {
+            Utils.checkNotNull(currency, "currency");
+            this.currency = JsonNullable.of(currency);
+            return this;
+        }
+
+        /**
+         * The currency code for this transaction.
+         */
+        public Builder currency(JsonNullable<String> currency) {
+            Utils.checkNotNull(currency, "currency");
+            this.currency = currency;
+            return this;
+        }
+
+
+        /**
+         * The unique identifier of an existing payment service. When provided, the created transaction will be
+         * processed by the given payment service and any routing rules will be skipped.
+         */
+        public Builder paymentServiceId(String paymentServiceId) {
+            Utils.checkNotNull(paymentServiceId, "paymentServiceId");
+            this.paymentServiceId = JsonNullable.of(paymentServiceId);
+            return this;
+        }
+
+        /**
+         * The unique identifier of an existing payment service. When provided, the created transaction will be
+         * processed by the given payment service and any routing rules will be skipped.
+         */
+        public Builder paymentServiceId(JsonNullable<String> paymentServiceId) {
+            Utils.checkNotNull(paymentServiceId, "paymentServiceId");
+            this.paymentServiceId = paymentServiceId;
+            return this;
+        }
+
+
+        /**
          * The ID for the checkout session.
          */
         public Builder id(String id) {
@@ -460,7 +646,7 @@ public class CheckoutSession {
         /**
          * Information about the payment method stored on the checkout session.
          */
-        public Builder paymentMethod(CheckoutSessionPaymentMethod paymentMethod) {
+        public Builder paymentMethod(CheckoutSessionPaymentMethodOutput paymentMethod) {
             Utils.checkNotNull(paymentMethod, "paymentMethod");
             this.paymentMethod = JsonNullable.of(paymentMethod);
             return this;
@@ -469,7 +655,7 @@ public class CheckoutSession {
         /**
          * Information about the payment method stored on the checkout session.
          */
-        public Builder paymentMethod(JsonNullable<? extends CheckoutSessionPaymentMethod> paymentMethod) {
+        public Builder paymentMethod(JsonNullable<? extends CheckoutSessionPaymentMethodOutput> paymentMethod) {
             Utils.checkNotNull(paymentMethod, "paymentMethod");
             this.paymentMethod = paymentMethod;
             return this;
@@ -479,7 +665,8 @@ public class CheckoutSession {
 
             return new CheckoutSession(
                 cartItems, metadata, buyer,
-                airline, id, expiresAt,
+                airline, amount, currency,
+                paymentServiceId, id, expiresAt,
                 paymentMethod);
         }
 

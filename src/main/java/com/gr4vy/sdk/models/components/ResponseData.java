@@ -29,7 +29,7 @@ import java.lang.SuppressWarnings;
 public class ResponseData {
 
     @JsonValue
-    private TypedObject value;
+    private final TypedObject value;
     
     private ResponseData(TypedObject value) {
         this.value = value;
@@ -37,12 +37,12 @@ public class ResponseData {
 
     public static ResponseData of(ThreeDSecureDataV1 value) {
         Utils.checkNotNull(value, "value");
-        return new ResponseData(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<ThreeDSecureDataV1>(){}));
+        return new ResponseData(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
     }
 
     public static ResponseData of(ThreeDSecureV2 value) {
         Utils.checkNotNull(value, "value");
-        return new ResponseData(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<ThreeDSecureV2>(){}));
+        return new ResponseData(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
     }
     
     /**
@@ -65,7 +65,7 @@ public class ResponseData {
      **/ 
     public java.lang.Object value() {
         return value.value();
-    }    
+    }
     
     @Override
     public boolean equals(java.lang.Object o) {
@@ -76,7 +76,7 @@ public class ResponseData {
             return false;
         }
         ResponseData other = (ResponseData) o;
-        return Utils.enhancedDeepEquals(this.value.value(), other.value.value()); 
+        return Utils.enhancedDeepEquals(this.value.value(), other.value.value());
     }
     
     @Override
@@ -99,6 +99,6 @@ public class ResponseData {
         return Utils.toString(ResponseData.class,
                 "value", value);
     }
- 
+
 }
 

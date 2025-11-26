@@ -11,7 +11,6 @@ import com.gr4vy.sdk.models.operations.CreateFullTransactionRefundRequestBuilder
 import com.gr4vy.sdk.models.operations.CreateFullTransactionRefundResponse;
 import com.gr4vy.sdk.operations.CreateFullTransactionRefund;
 import com.gr4vy.sdk.utils.Headers;
-import java.lang.Exception;
 import java.lang.String;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -53,9 +52,9 @@ public class All {
      * 
      * @param transactionId The ID of the transaction
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public CreateFullTransactionRefundResponse create(String transactionId) throws Exception {
+    public CreateFullTransactionRefundResponse create(String transactionId) {
         return create(transactionId, JsonNullable.undefined(), JsonNullable.undefined());
     }
 
@@ -68,11 +67,11 @@ public class All {
      * @param merchantAccountId 
      * @param transactionRefundAllCreate 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
     public CreateFullTransactionRefundResponse create(
             String transactionId, JsonNullable<String> merchantAccountId,
-            JsonNullable<? extends TransactionRefundAllCreate> transactionRefundAllCreate) throws Exception {
+            JsonNullable<? extends TransactionRefundAllCreate> transactionRefundAllCreate) {
         CreateFullTransactionRefundRequest request =
             CreateFullTransactionRefundRequest
                 .builder()

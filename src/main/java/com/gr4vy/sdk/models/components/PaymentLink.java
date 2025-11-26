@@ -190,7 +190,7 @@ public class PaymentLink {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("buyer")
-    private JsonNullable<? extends TransactionBuyer> buyer;
+    private JsonNullable<? extends TransactionBuyerOutput> buyer;
 
     /**
      * The shipping details for the payment link.
@@ -232,7 +232,7 @@ public class PaymentLink {
             @JsonProperty("created_at") OffsetDateTime createdAt,
             @JsonProperty("updated_at") OffsetDateTime updatedAt,
             @JsonProperty("status") PaymentLinkStatus status,
-            @JsonProperty("buyer") JsonNullable<? extends TransactionBuyer> buyer,
+            @JsonProperty("buyer") JsonNullable<? extends TransactionBuyerOutput> buyer,
             @JsonProperty("shipping_details") JsonNullable<? extends ShippingDetails> shippingDetails,
             @JsonProperty("connection_options") JsonNullable<? extends Map<String, Map<String, Object>>> connectionOptions) {
         Utils.checkNotNull(id, "id");
@@ -516,8 +516,8 @@ public class PaymentLink {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<TransactionBuyer> buyer() {
-        return (JsonNullable<TransactionBuyer>) buyer;
+    public JsonNullable<TransactionBuyerOutput> buyer() {
+        return (JsonNullable<TransactionBuyerOutput>) buyer;
     }
 
     /**
@@ -883,7 +883,7 @@ public class PaymentLink {
     /**
      * The buyer associated with the payment link.
      */
-    public PaymentLink withBuyer(TransactionBuyer buyer) {
+    public PaymentLink withBuyer(TransactionBuyerOutput buyer) {
         Utils.checkNotNull(buyer, "buyer");
         this.buyer = JsonNullable.of(buyer);
         return this;
@@ -892,7 +892,7 @@ public class PaymentLink {
     /**
      * The buyer associated with the payment link.
      */
-    public PaymentLink withBuyer(JsonNullable<? extends TransactionBuyer> buyer) {
+    public PaymentLink withBuyer(JsonNullable<? extends TransactionBuyerOutput> buyer) {
         Utils.checkNotNull(buyer, "buyer");
         this.buyer = buyer;
         return this;
@@ -1073,7 +1073,7 @@ public class PaymentLink {
 
         private PaymentLinkStatus status;
 
-        private JsonNullable<? extends TransactionBuyer> buyer = JsonNullable.undefined();
+        private JsonNullable<? extends TransactionBuyerOutput> buyer = JsonNullable.undefined();
 
         private JsonNullable<? extends ShippingDetails> shippingDetails = JsonNullable.undefined();
 
@@ -1447,7 +1447,7 @@ public class PaymentLink {
         /**
          * The buyer associated with the payment link.
          */
-        public Builder buyer(TransactionBuyer buyer) {
+        public Builder buyer(TransactionBuyerOutput buyer) {
             Utils.checkNotNull(buyer, "buyer");
             this.buyer = JsonNullable.of(buyer);
             return this;
@@ -1456,7 +1456,7 @@ public class PaymentLink {
         /**
          * The buyer associated with the payment link.
          */
-        public Builder buyer(JsonNullable<? extends TransactionBuyer> buyer) {
+        public Builder buyer(JsonNullable<? extends TransactionBuyerOutput> buyer) {
             Utils.checkNotNull(buyer, "buyer");
             this.buyer = buyer;
             return this;

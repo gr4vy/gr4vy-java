@@ -11,7 +11,6 @@ import com.gr4vy.sdk.models.operations.ListCardSchemeDefinitionsResponse;
 import com.gr4vy.sdk.operations.ListCardSchemeDefinitions;
 import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.Options;
-import java.lang.Exception;
 import java.lang.String;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
@@ -53,9 +52,9 @@ public class CardSchemeDefinitions {
      * <p>Fetch a list of the definitions of each card scheme.
      * 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public ListCardSchemeDefinitionsResponse listDirect() throws Exception {
+    public ListCardSchemeDefinitionsResponse listDirect() {
         return list(JsonNullable.undefined(), Optional.empty());
     }
 
@@ -67,9 +66,9 @@ public class CardSchemeDefinitions {
      * @param merchantAccountId 
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public ListCardSchemeDefinitionsResponse list(JsonNullable<String> merchantAccountId, Optional<Options> options) throws Exception {
+    public ListCardSchemeDefinitionsResponse list(JsonNullable<String> merchantAccountId, Optional<Options> options) {
         ListCardSchemeDefinitionsRequest request =
             ListCardSchemeDefinitionsRequest
                 .builder()

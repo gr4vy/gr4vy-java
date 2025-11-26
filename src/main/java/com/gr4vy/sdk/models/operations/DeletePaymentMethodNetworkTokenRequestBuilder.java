@@ -9,7 +9,6 @@ import com.gr4vy.sdk.SDKConfiguration;
 import com.gr4vy.sdk.operations.DeletePaymentMethodNetworkToken;
 import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.Utils;
-import java.lang.Exception;
 import java.lang.String;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -59,7 +58,7 @@ public class DeletePaymentMethodNetworkTokenRequestBuilder {
         return request;
     }
 
-    public DeletePaymentMethodNetworkTokenResponse call() throws Exception {
+    public DeletePaymentMethodNetworkTokenResponse call() {
         
         RequestOperation<DeletePaymentMethodNetworkTokenRequest, DeletePaymentMethodNetworkTokenResponse> operation
               = new DeletePaymentMethodNetworkToken.Sync(sdkConfiguration, _headers);

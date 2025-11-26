@@ -10,7 +10,6 @@ import com.gr4vy.sdk.models.components.CryptogramCreate;
 import com.gr4vy.sdk.operations.CreatePaymentMethodNetworkTokenCryptogram;
 import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.Utils;
-import java.lang.Exception;
 import java.lang.String;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -68,7 +67,7 @@ public class CreatePaymentMethodNetworkTokenCryptogramRequestBuilder {
         return request;
     }
 
-    public CreatePaymentMethodNetworkTokenCryptogramResponse call() throws Exception {
+    public CreatePaymentMethodNetworkTokenCryptogramResponse call() {
         
         RequestOperation<CreatePaymentMethodNetworkTokenCryptogramRequest, CreatePaymentMethodNetworkTokenCryptogramResponse> operation
               = new CreatePaymentMethodNetworkTokenCryptogram.Sync(sdkConfiguration, _headers);

@@ -10,7 +10,6 @@ import com.gr4vy.sdk.models.components.TransactionCaptureCreate;
 import com.gr4vy.sdk.operations.CaptureTransaction;
 import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.Utils;
-import java.lang.Exception;
 import java.lang.String;
 import java.util.List;
 import org.openapitools.jackson.nullable.JsonNullable;
@@ -75,7 +74,7 @@ public class CaptureTransactionRequestBuilder {
         return request;
     }
 
-    public CaptureTransactionResponse call() throws Exception {
+    public CaptureTransactionResponse call() {
         
         RequestOperation<CaptureTransactionRequest, CaptureTransactionResponse> operation
               = new CaptureTransaction.Sync(sdkConfiguration, _headers);

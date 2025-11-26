@@ -9,7 +9,6 @@ import com.gr4vy.sdk.SDKConfiguration;
 import com.gr4vy.sdk.operations.CancelTransaction;
 import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.Utils;
-import java.lang.Exception;
 import java.lang.String;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -51,7 +50,7 @@ public class CancelTransactionRequestBuilder {
         return request;
     }
 
-    public CancelTransactionResponse call() throws Exception {
+    public CancelTransactionResponse call() {
         
         RequestOperation<CancelTransactionRequest, CancelTransactionResponse> operation
               = new CancelTransaction.Sync(sdkConfiguration, _headers);

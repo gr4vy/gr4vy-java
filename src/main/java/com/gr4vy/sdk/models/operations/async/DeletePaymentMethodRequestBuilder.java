@@ -10,7 +10,6 @@ import com.gr4vy.sdk.models.operations.DeletePaymentMethodRequest;
 import com.gr4vy.sdk.operations.DeletePaymentMethod;
 import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.Utils;
-import java.lang.Exception;
 import java.lang.String;
 import java.util.concurrent.CompletableFuture;
 import org.openapitools.jackson.nullable.JsonNullable;
@@ -53,7 +52,7 @@ public class DeletePaymentMethodRequestBuilder {
         return request;
     }
 
-    public CompletableFuture<DeletePaymentMethodResponse> call() throws Exception {
+    public CompletableFuture<DeletePaymentMethodResponse> call() {
         
         AsyncRequestOperation<DeletePaymentMethodRequest, DeletePaymentMethodResponse> operation
               = new DeletePaymentMethod.Async(sdkConfiguration, _headers);

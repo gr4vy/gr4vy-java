@@ -11,7 +11,6 @@ import com.gr4vy.sdk.models.operations.GetRefundResponse;
 import com.gr4vy.sdk.operations.GetRefund;
 import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.Options;
-import java.lang.Exception;
 import java.lang.String;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
@@ -54,9 +53,9 @@ public class Refunds {
      * 
      * @param refundId The ID of the refund
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public GetRefundResponse get(String refundId) throws Exception {
+    public GetRefundResponse get(String refundId) {
         return get(refundId, JsonNullable.undefined(), Optional.empty());
     }
 
@@ -69,11 +68,11 @@ public class Refunds {
      * @param merchantAccountId 
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
     public GetRefundResponse get(
             String refundId, JsonNullable<String> merchantAccountId,
-            Optional<Options> options) throws Exception {
+            Optional<Options> options) {
         GetRefundRequest request =
             GetRefundRequest
                 .builder()

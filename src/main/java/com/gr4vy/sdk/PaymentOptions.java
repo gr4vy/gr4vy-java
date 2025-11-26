@@ -11,7 +11,6 @@ import com.gr4vy.sdk.models.operations.ListPaymentOptionsRequestBuilder;
 import com.gr4vy.sdk.models.operations.ListPaymentOptionsResponse;
 import com.gr4vy.sdk.operations.ListPaymentOptions;
 import com.gr4vy.sdk.utils.Headers;
-import java.lang.Exception;
 import java.lang.String;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -55,9 +54,9 @@ public class PaymentOptions {
      * 
      * @param paymentOptionRequest 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public ListPaymentOptionsResponse list(PaymentOptionRequest paymentOptionRequest) throws Exception {
+    public ListPaymentOptionsResponse list(PaymentOptionRequest paymentOptionRequest) {
         return list(JsonNullable.undefined(), paymentOptionRequest);
     }
 
@@ -70,9 +69,9 @@ public class PaymentOptions {
      * @param merchantAccountId 
      * @param paymentOptionRequest 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public ListPaymentOptionsResponse list(JsonNullable<String> merchantAccountId, PaymentOptionRequest paymentOptionRequest) throws Exception {
+    public ListPaymentOptionsResponse list(JsonNullable<String> merchantAccountId, PaymentOptionRequest paymentOptionRequest) {
         ListPaymentOptionsRequest request =
             ListPaymentOptionsRequest
                 .builder()

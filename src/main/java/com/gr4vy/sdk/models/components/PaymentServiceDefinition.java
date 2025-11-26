@@ -14,6 +14,7 @@ import com.gr4vy.sdk.utils.Utils;
 import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -96,6 +97,13 @@ public class PaymentServiceDefinition {
     @JsonProperty("configuration")
     private PaymentServiceConfiguration configuration;
 
+    /**
+     * List of supported integration clients. Defaults to redirect for most redirect connectors.
+     */
+    @JsonInclude(Include.ALWAYS)
+    @JsonProperty("supported_integration_clients")
+    private Optional<? extends List<IntegrationClient>> supportedIntegrationClients;
+
     @JsonCreator
     public PaymentServiceDefinition(
             @JsonProperty("id") String id,
@@ -109,7 +117,8 @@ public class PaymentServiceDefinition {
             @JsonProperty("icon_url") JsonNullable<String> iconUrl,
             @JsonProperty("supported_features") Map<String, Boolean> supportedFeatures,
             @JsonProperty("required_checkout_fields") List<RequiredCheckoutFields> requiredCheckoutFields,
-            @JsonProperty("configuration") PaymentServiceConfiguration configuration) {
+            @JsonProperty("configuration") PaymentServiceConfiguration configuration,
+            @JsonProperty("supported_integration_clients") Optional<? extends List<IntegrationClient>> supportedIntegrationClients) {
         Utils.checkNotNull(id, "id");
         Utils.checkNotNull(displayName, "displayName");
         Utils.checkNotNull(method, "method");
@@ -123,6 +132,7 @@ public class PaymentServiceDefinition {
         Utils.checkNotNull(supportedFeatures, "supportedFeatures");
         Utils.checkNotNull(requiredCheckoutFields, "requiredCheckoutFields");
         Utils.checkNotNull(configuration, "configuration");
+        Utils.checkNotNull(supportedIntegrationClients, "supportedIntegrationClients");
         this.id = id;
         this.type = Builder._SINGLETON_VALUE_Type.value();
         this.displayName = displayName;
@@ -136,6 +146,7 @@ public class PaymentServiceDefinition {
         this.supportedFeatures = supportedFeatures;
         this.requiredCheckoutFields = requiredCheckoutFields;
         this.configuration = configuration;
+        this.supportedIntegrationClients = supportedIntegrationClients;
     }
     
     public PaymentServiceDefinition(
@@ -153,7 +164,8 @@ public class PaymentServiceDefinition {
         this(id, displayName, method,
             fields, reportingFields, supportedCurrencies,
             supportedCountries, mode, JsonNullable.undefined(),
-            supportedFeatures, requiredCheckoutFields, configuration);
+            supportedFeatures, requiredCheckoutFields, configuration,
+            Optional.empty());
     }
 
     /**
@@ -250,6 +262,15 @@ public class PaymentServiceDefinition {
     @JsonIgnore
     public PaymentServiceConfiguration configuration() {
         return configuration;
+    }
+
+    /**
+     * List of supported integration clients. Defaults to redirect for most redirect connectors.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<List<IntegrationClient>> supportedIntegrationClients() {
+        return (Optional<List<IntegrationClient>>) supportedIntegrationClients;
     }
 
     public static Builder builder() {
@@ -366,6 +387,25 @@ public class PaymentServiceDefinition {
         return this;
     }
 
+    /**
+     * List of supported integration clients. Defaults to redirect for most redirect connectors.
+     */
+    public PaymentServiceDefinition withSupportedIntegrationClients(List<IntegrationClient> supportedIntegrationClients) {
+        Utils.checkNotNull(supportedIntegrationClients, "supportedIntegrationClients");
+        this.supportedIntegrationClients = Optional.ofNullable(supportedIntegrationClients);
+        return this;
+    }
+
+
+    /**
+     * List of supported integration clients. Defaults to redirect for most redirect connectors.
+     */
+    public PaymentServiceDefinition withSupportedIntegrationClients(Optional<? extends List<IntegrationClient>> supportedIntegrationClients) {
+        Utils.checkNotNull(supportedIntegrationClients, "supportedIntegrationClients");
+        this.supportedIntegrationClients = supportedIntegrationClients;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -388,7 +428,8 @@ public class PaymentServiceDefinition {
             Utils.enhancedDeepEquals(this.iconUrl, other.iconUrl) &&
             Utils.enhancedDeepEquals(this.supportedFeatures, other.supportedFeatures) &&
             Utils.enhancedDeepEquals(this.requiredCheckoutFields, other.requiredCheckoutFields) &&
-            Utils.enhancedDeepEquals(this.configuration, other.configuration);
+            Utils.enhancedDeepEquals(this.configuration, other.configuration) &&
+            Utils.enhancedDeepEquals(this.supportedIntegrationClients, other.supportedIntegrationClients);
     }
     
     @Override
@@ -398,7 +439,7 @@ public class PaymentServiceDefinition {
             method, fields, reportingFields,
             supportedCurrencies, supportedCountries, mode,
             iconUrl, supportedFeatures, requiredCheckoutFields,
-            configuration);
+            configuration, supportedIntegrationClients);
     }
     
     @Override
@@ -416,7 +457,8 @@ public class PaymentServiceDefinition {
                 "iconUrl", iconUrl,
                 "supportedFeatures", supportedFeatures,
                 "requiredCheckoutFields", requiredCheckoutFields,
-                "configuration", configuration);
+                "configuration", configuration,
+                "supportedIntegrationClients", supportedIntegrationClients);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -445,6 +487,8 @@ public class PaymentServiceDefinition {
         private List<RequiredCheckoutFields> requiredCheckoutFields;
 
         private PaymentServiceConfiguration configuration;
+
+        private Optional<? extends List<IntegrationClient>> supportedIntegrationClients = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -571,13 +615,33 @@ public class PaymentServiceDefinition {
             return this;
         }
 
+
+        /**
+         * List of supported integration clients. Defaults to redirect for most redirect connectors.
+         */
+        public Builder supportedIntegrationClients(List<IntegrationClient> supportedIntegrationClients) {
+            Utils.checkNotNull(supportedIntegrationClients, "supportedIntegrationClients");
+            this.supportedIntegrationClients = Optional.ofNullable(supportedIntegrationClients);
+            return this;
+        }
+
+        /**
+         * List of supported integration clients. Defaults to redirect for most redirect connectors.
+         */
+        public Builder supportedIntegrationClients(Optional<? extends List<IntegrationClient>> supportedIntegrationClients) {
+            Utils.checkNotNull(supportedIntegrationClients, "supportedIntegrationClients");
+            this.supportedIntegrationClients = supportedIntegrationClients;
+            return this;
+        }
+
         public PaymentServiceDefinition build() {
 
             return new PaymentServiceDefinition(
                 id, displayName, method,
                 fields, reportingFields, supportedCurrencies,
                 supportedCountries, mode, iconUrl,
-                supportedFeatures, requiredCheckoutFields, configuration);
+                supportedFeatures, requiredCheckoutFields, configuration,
+                supportedIntegrationClients);
         }
 
 

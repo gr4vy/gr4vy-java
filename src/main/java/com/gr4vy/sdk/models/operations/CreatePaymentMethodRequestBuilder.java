@@ -9,7 +9,6 @@ import com.gr4vy.sdk.SDKConfiguration;
 import com.gr4vy.sdk.operations.CreatePaymentMethod;
 import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.Utils;
-import java.lang.Exception;
 import java.lang.String;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -51,7 +50,7 @@ public class CreatePaymentMethodRequestBuilder {
         return request;
     }
 
-    public CreatePaymentMethodResponse call() throws Exception {
+    public CreatePaymentMethodResponse call() {
         
         RequestOperation<CreatePaymentMethodRequest, CreatePaymentMethodResponse> operation
               = new CreatePaymentMethod.Sync(sdkConfiguration, _headers);

@@ -17,11 +17,11 @@ public class PaymentMethodSummaries {
      * A list of items returned for this request.
      */
     @JsonProperty("items")
-    private List<PaymentMethodSummary> items;
+    private List<PaymentMethodSummaryOutput> items;
 
     @JsonCreator
     public PaymentMethodSummaries(
-            @JsonProperty("items") List<PaymentMethodSummary> items) {
+            @JsonProperty("items") List<PaymentMethodSummaryOutput> items) {
         Utils.checkNotNull(items, "items");
         this.items = items;
     }
@@ -30,7 +30,7 @@ public class PaymentMethodSummaries {
      * A list of items returned for this request.
      */
     @JsonIgnore
-    public List<PaymentMethodSummary> items() {
+    public List<PaymentMethodSummaryOutput> items() {
         return items;
     }
 
@@ -42,7 +42,7 @@ public class PaymentMethodSummaries {
     /**
      * A list of items returned for this request.
      */
-    public PaymentMethodSummaries withItems(List<PaymentMethodSummary> items) {
+    public PaymentMethodSummaries withItems(List<PaymentMethodSummaryOutput> items) {
         Utils.checkNotNull(items, "items");
         this.items = items;
         return this;
@@ -76,7 +76,7 @@ public class PaymentMethodSummaries {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private List<PaymentMethodSummary> items;
+        private List<PaymentMethodSummaryOutput> items;
 
         private Builder() {
           // force use of static builder() method
@@ -86,7 +86,7 @@ public class PaymentMethodSummaries {
         /**
          * A list of items returned for this request.
          */
-        public Builder items(List<PaymentMethodSummary> items) {
+        public Builder items(List<PaymentMethodSummaryOutput> items) {
             Utils.checkNotNull(items, "items");
             this.items = items;
             return this;

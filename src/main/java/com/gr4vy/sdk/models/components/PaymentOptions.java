@@ -17,11 +17,11 @@ public class PaymentOptions {
      * A list of items returned for this request.
      */
     @JsonProperty("items")
-    private List<PaymentOption> items;
+    private List<PaymentOptionOutput> items;
 
     @JsonCreator
     public PaymentOptions(
-            @JsonProperty("items") List<PaymentOption> items) {
+            @JsonProperty("items") List<PaymentOptionOutput> items) {
         Utils.checkNotNull(items, "items");
         this.items = items;
     }
@@ -30,7 +30,7 @@ public class PaymentOptions {
      * A list of items returned for this request.
      */
     @JsonIgnore
-    public List<PaymentOption> items() {
+    public List<PaymentOptionOutput> items() {
         return items;
     }
 
@@ -42,7 +42,7 @@ public class PaymentOptions {
     /**
      * A list of items returned for this request.
      */
-    public PaymentOptions withItems(List<PaymentOption> items) {
+    public PaymentOptions withItems(List<PaymentOptionOutput> items) {
         Utils.checkNotNull(items, "items");
         this.items = items;
         return this;
@@ -76,7 +76,7 @@ public class PaymentOptions {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private List<PaymentOption> items;
+        private List<PaymentOptionOutput> items;
 
         private Builder() {
           // force use of static builder() method
@@ -86,7 +86,7 @@ public class PaymentOptions {
         /**
          * A list of items returned for this request.
          */
-        public Builder items(List<PaymentOption> items) {
+        public Builder items(List<PaymentOptionOutput> items) {
             Utils.checkNotNull(items, "items");
             this.items = items;
             return this;

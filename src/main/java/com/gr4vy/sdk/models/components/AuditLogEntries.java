@@ -24,7 +24,7 @@ public class AuditLogEntries {
      * A list of items returned for this request.
      */
     @JsonProperty("items")
-    private List<AuditLogEntry> items;
+    private List<AuditLogEntryOutput> items;
 
     /**
      * The number of items for this page.
@@ -49,7 +49,7 @@ public class AuditLogEntries {
 
     @JsonCreator
     public AuditLogEntries(
-            @JsonProperty("items") List<AuditLogEntry> items,
+            @JsonProperty("items") List<AuditLogEntryOutput> items,
             @JsonProperty("limit") Optional<Long> limit,
             @JsonProperty("next_cursor") JsonNullable<String> nextCursor,
             @JsonProperty("previous_cursor") JsonNullable<String> previousCursor) {
@@ -64,7 +64,7 @@ public class AuditLogEntries {
     }
     
     public AuditLogEntries(
-            List<AuditLogEntry> items) {
+            List<AuditLogEntryOutput> items) {
         this(items, Optional.empty(), JsonNullable.undefined(),
             JsonNullable.undefined());
     }
@@ -73,7 +73,7 @@ public class AuditLogEntries {
      * A list of items returned for this request.
      */
     @JsonIgnore
-    public List<AuditLogEntry> items() {
+    public List<AuditLogEntryOutput> items() {
         return items;
     }
 
@@ -109,7 +109,7 @@ public class AuditLogEntries {
     /**
      * A list of items returned for this request.
      */
-    public AuditLogEntries withItems(List<AuditLogEntry> items) {
+    public AuditLogEntries withItems(List<AuditLogEntryOutput> items) {
         Utils.checkNotNull(items, "items");
         this.items = items;
         return this;
@@ -205,7 +205,7 @@ public class AuditLogEntries {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private List<AuditLogEntry> items;
+        private List<AuditLogEntryOutput> items;
 
         private Optional<Long> limit;
 
@@ -221,7 +221,7 @@ public class AuditLogEntries {
         /**
          * A list of items returned for this request.
          */
-        public Builder items(List<AuditLogEntry> items) {
+        public Builder items(List<AuditLogEntryOutput> items) {
             Utils.checkNotNull(items, "items");
             this.items = items;
             return this;

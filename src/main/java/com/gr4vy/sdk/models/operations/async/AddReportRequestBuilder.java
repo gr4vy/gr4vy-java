@@ -11,7 +11,6 @@ import com.gr4vy.sdk.models.operations.AddReportRequest;
 import com.gr4vy.sdk.operations.AddReport;
 import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.Utils;
-import java.lang.Exception;
 import java.lang.String;
 import java.util.concurrent.CompletableFuture;
 import org.openapitools.jackson.nullable.JsonNullable;
@@ -54,7 +53,7 @@ public class AddReportRequestBuilder {
         return request;
     }
 
-    public CompletableFuture<AddReportResponse> call() throws Exception {
+    public CompletableFuture<AddReportResponse> call() {
         
         AsyncRequestOperation<AddReportRequest, AddReportResponse> operation
               = new AddReport.Async(sdkConfiguration, _headers);

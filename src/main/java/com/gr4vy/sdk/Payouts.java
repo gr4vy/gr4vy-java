@@ -20,7 +20,6 @@ import com.gr4vy.sdk.operations.GetPayout;
 import com.gr4vy.sdk.operations.ListPayouts;
 import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.Options;
-import java.lang.Exception;
 import java.lang.Long;
 import java.lang.String;
 import java.util.Optional;
@@ -63,9 +62,9 @@ public class Payouts {
      * <p>Returns a list of payouts made.
      * 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public ListPayoutsResponse listDirect() throws Exception {
+    public ListPayoutsResponse listDirect() {
         return list(JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
             Optional.empty());
     }
@@ -80,11 +79,11 @@ public class Payouts {
      * @param merchantAccountId 
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
     public ListPayoutsResponse list(
             JsonNullable<String> cursor, Optional<Long> limit,
-            JsonNullable<String> merchantAccountId, Optional<Options> options) throws Exception {
+            JsonNullable<String> merchantAccountId, Optional<Options> options) {
         ListPayoutsRequest request =
             ListPayoutsRequest
                 .builder()
@@ -117,9 +116,9 @@ public class Payouts {
      *         
      *         Represents the data required to create a new payout.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public CreatePayoutResponse create(PayoutCreate payoutCreate) throws Exception {
+    public CreatePayoutResponse create(PayoutCreate payoutCreate) {
         return create(JsonNullable.undefined(), payoutCreate);
     }
 
@@ -133,9 +132,9 @@ public class Payouts {
      *         
      *         Represents the data required to create a new payout.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public CreatePayoutResponse create(JsonNullable<String> merchantAccountId, PayoutCreate payoutCreate) throws Exception {
+    public CreatePayoutResponse create(JsonNullable<String> merchantAccountId, PayoutCreate payoutCreate) {
         CreatePayoutRequest request =
             CreatePayoutRequest
                 .builder()
@@ -165,9 +164,9 @@ public class Payouts {
      * 
      * @param payoutId 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public GetPayoutResponse get(String payoutId) throws Exception {
+    public GetPayoutResponse get(String payoutId) {
         return get(payoutId, JsonNullable.undefined(), Optional.empty());
     }
 
@@ -180,11 +179,11 @@ public class Payouts {
      * @param merchantAccountId 
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
     public GetPayoutResponse get(
             String payoutId, JsonNullable<String> merchantAccountId,
-            Optional<Options> options) throws Exception {
+            Optional<Options> options) {
         GetPayoutRequest request =
             GetPayoutRequest
                 .builder()
