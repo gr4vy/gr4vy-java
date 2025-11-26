@@ -42,7 +42,6 @@ import com.gr4vy.sdk.operations.UpdateTransaction;
 import com.gr4vy.sdk.operations.VoidTransaction;
 import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.Options;
-import java.lang.Exception;
 import java.lang.String;
 import java.util.List;
 import java.util.Optional;
@@ -106,9 +105,9 @@ public class Transactions {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public ListTransactionsResponse list(ListTransactionsRequest request) throws Exception {
+    public ListTransactionsResponse list(ListTransactionsRequest request) {
         return list(request, Optional.empty());
     }
 
@@ -121,9 +120,9 @@ public class Transactions {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public ListTransactionsResponse list(ListTransactionsRequest request, Optional<Options> options) throws Exception {
+    public ListTransactionsResponse list(ListTransactionsRequest request, Optional<Options> options) {
         RequestOperation<ListTransactionsRequest, ListTransactionsResponse> operation
               = new ListTransactions.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -149,9 +148,9 @@ public class Transactions {
      * 
      * @param transactionCreate 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public CreateTransactionResponse create(TransactionCreate transactionCreate) throws Exception {
+    public CreateTransactionResponse create(TransactionCreate transactionCreate) {
         return create(JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
             transactionCreate);
     }
@@ -169,11 +168,11 @@ public class Transactions {
      *         passed to downstream services, rather than your server IP.
      * @param transactionCreate 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
     public CreateTransactionResponse create(
             JsonNullable<String> merchantAccountId, JsonNullable<String> idempotencyKey,
-            Optional<String> xForwardedFor, TransactionCreate transactionCreate) throws Exception {
+            Optional<String> xForwardedFor, TransactionCreate transactionCreate) {
         CreateTransactionRequest request =
             CreateTransactionRequest
                 .builder()
@@ -205,9 +204,9 @@ public class Transactions {
      * 
      * @param transactionId The ID of the transaction
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public GetTransactionResponse get(String transactionId) throws Exception {
+    public GetTransactionResponse get(String transactionId) {
         return get(transactionId, JsonNullable.undefined(), Optional.empty());
     }
 
@@ -220,11 +219,11 @@ public class Transactions {
      * @param merchantAccountId 
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
     public GetTransactionResponse get(
             String transactionId, JsonNullable<String> merchantAccountId,
-            Optional<Options> options) throws Exception {
+            Optional<Options> options) {
         GetTransactionRequest request =
             GetTransactionRequest
                 .builder()
@@ -255,9 +254,9 @@ public class Transactions {
      * @param transactionId The ID of the transaction
      * @param transactionUpdate 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public UpdateTransactionResponse update(String transactionId, TransactionUpdate transactionUpdate) throws Exception {
+    public UpdateTransactionResponse update(String transactionId, TransactionUpdate transactionUpdate) {
         return update(transactionId, JsonNullable.undefined(), transactionUpdate);
     }
 
@@ -270,11 +269,11 @@ public class Transactions {
      * @param merchantAccountId 
      * @param transactionUpdate 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
     public UpdateTransactionResponse update(
             String transactionId, JsonNullable<String> merchantAccountId,
-            TransactionUpdate transactionUpdate) throws Exception {
+            TransactionUpdate transactionUpdate) {
         UpdateTransactionRequest request =
             UpdateTransactionRequest
                 .builder()
@@ -308,9 +307,9 @@ public class Transactions {
      * @param transactionId The ID of the transaction
      * @param transactionCaptureCreate Request body for capturing an authorized transaction.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public CaptureTransactionResponse capture(String transactionId, TransactionCaptureCreate transactionCaptureCreate) throws Exception {
+    public CaptureTransactionResponse capture(String transactionId, TransactionCaptureCreate transactionCaptureCreate) {
         return capture(transactionId, JsonNullable.undefined(), JsonNullable.undefined(),
             transactionCaptureCreate);
     }
@@ -326,11 +325,11 @@ public class Transactions {
      * @param merchantAccountId 
      * @param transactionCaptureCreate Request body for capturing an authorized transaction.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
     public CaptureTransactionResponse capture(
             String transactionId, JsonNullable<? extends List<String>> prefer,
-            JsonNullable<String> merchantAccountId, TransactionCaptureCreate transactionCaptureCreate) throws Exception {
+            JsonNullable<String> merchantAccountId, TransactionCaptureCreate transactionCaptureCreate) {
         CaptureTransactionRequest request =
             CaptureTransactionRequest
                 .builder()
@@ -370,9 +369,9 @@ public class Transactions {
      * 
      * @param transactionId The ID of the transaction
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public VoidTransactionResponse void_(String transactionId) throws Exception {
+    public VoidTransactionResponse void_(String transactionId) {
         return void_(transactionId, JsonNullable.undefined(), JsonNullable.undefined());
     }
 
@@ -389,11 +388,11 @@ public class Transactions {
      * @param prefer The preferred resource type in the response.
      * @param merchantAccountId 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
     public VoidTransactionResponse void_(
             String transactionId, JsonNullable<? extends List<String>> prefer,
-            JsonNullable<String> merchantAccountId) throws Exception {
+            JsonNullable<String> merchantAccountId) {
         VoidTransactionRequest request =
             VoidTransactionRequest
                 .builder()
@@ -426,9 +425,9 @@ public class Transactions {
      * 
      * @param transactionId The ID of the transaction
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public CancelTransactionResponse cancel(String transactionId) throws Exception {
+    public CancelTransactionResponse cancel(String transactionId) {
         return cancel(transactionId, JsonNullable.undefined());
     }
 
@@ -441,9 +440,9 @@ public class Transactions {
      * @param transactionId The ID of the transaction
      * @param merchantAccountId 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public CancelTransactionResponse cancel(String transactionId, JsonNullable<String> merchantAccountId) throws Exception {
+    public CancelTransactionResponse cancel(String transactionId, JsonNullable<String> merchantAccountId) {
         CancelTransactionRequest request =
             CancelTransactionRequest
                 .builder()
@@ -477,9 +476,9 @@ public class Transactions {
      * 
      * @param transactionId 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public SyncTransactionResponse sync(String transactionId) throws Exception {
+    public SyncTransactionResponse sync(String transactionId) {
         return sync(transactionId, JsonNullable.undefined());
     }
 
@@ -493,9 +492,9 @@ public class Transactions {
      * @param transactionId 
      * @param merchantAccountId 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public SyncTransactionResponse sync(String transactionId, JsonNullable<String> merchantAccountId) throws Exception {
+    public SyncTransactionResponse sync(String transactionId, JsonNullable<String> merchantAccountId) {
         SyncTransactionRequest request =
             SyncTransactionRequest
                 .builder()

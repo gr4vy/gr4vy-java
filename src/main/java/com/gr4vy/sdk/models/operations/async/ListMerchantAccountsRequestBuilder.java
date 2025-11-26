@@ -18,7 +18,6 @@ import com.gr4vy.sdk.utils.RetryConfig;
 import com.gr4vy.sdk.utils.Utils;
 import com.gr4vy.sdk.utils.pagination.AsyncPaginator;
 import com.gr4vy.sdk.utils.pagination.CursorTracker;
-import java.lang.Exception;
 import java.lang.Long;
 import java.lang.String;
 import java.net.http.HttpResponse;
@@ -106,7 +105,7 @@ public class ListMerchantAccountsRequestBuilder {
         return request;
     }
 
-    public CompletableFuture<ListMerchantAccountsResponse> call() throws Exception {
+    public CompletableFuture<ListMerchantAccountsResponse> call() {
         Optional<Options> options = Optional.of(Options.builder()
             .retryConfig(retryConfig)
             .build());

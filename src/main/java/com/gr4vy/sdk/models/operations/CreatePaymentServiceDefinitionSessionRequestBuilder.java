@@ -9,7 +9,6 @@ import com.gr4vy.sdk.SDKConfiguration;
 import com.gr4vy.sdk.operations.CreatePaymentServiceDefinitionSession;
 import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.Utils;
-import java.lang.Exception;
 import java.lang.Object;
 import java.lang.String;
 import java.util.HashMap;
@@ -47,7 +46,7 @@ public class CreatePaymentServiceDefinitionSessionRequestBuilder {
         return request;
     }
 
-    public CreatePaymentServiceDefinitionSessionResponse call() throws Exception {
+    public CreatePaymentServiceDefinitionSessionResponse call() {
         
         RequestOperation<CreatePaymentServiceDefinitionSessionRequest, CreatePaymentServiceDefinitionSessionResponse> operation
               = new CreatePaymentServiceDefinitionSession.Sync(sdkConfiguration, _headers);

@@ -10,7 +10,6 @@ import com.gr4vy.sdk.models.components.ReportCreate;
 import com.gr4vy.sdk.operations.AddReport;
 import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.Utils;
-import java.lang.Exception;
 import java.lang.String;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -52,7 +51,7 @@ public class AddReportRequestBuilder {
         return request;
     }
 
-    public AddReportResponse call() throws Exception {
+    public AddReportResponse call() {
         
         RequestOperation<AddReportRequest, AddReportResponse> operation
               = new AddReport.Sync(sdkConfiguration, _headers);

@@ -11,7 +11,6 @@ import com.gr4vy.sdk.models.operations.CreateReportExecutionUrlRequest;
 import com.gr4vy.sdk.operations.CreateReportExecutionUrl;
 import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.Utils;
-import java.lang.Exception;
 import java.lang.String;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
@@ -77,7 +76,7 @@ public class CreateReportExecutionUrlRequestBuilder {
         return request;
     }
 
-    public CompletableFuture<CreateReportExecutionUrlResponse> call() throws Exception {
+    public CompletableFuture<CreateReportExecutionUrlResponse> call() {
         
         AsyncRequestOperation<CreateReportExecutionUrlRequest, CreateReportExecutionUrlResponse> operation
               = new CreateReportExecutionUrl.Async(sdkConfiguration, _headers);

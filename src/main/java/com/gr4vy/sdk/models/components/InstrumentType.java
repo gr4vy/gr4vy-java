@@ -52,6 +52,7 @@ public class InstrumentType {
     public static final InstrumentType GOOGLEPAY = new InstrumentType("googlepay");
     public static final InstrumentType APPLEPAY = new InstrumentType("applepay");
     public static final InstrumentType NETWORK_TOKEN = new InstrumentType("network_token");
+    public static final InstrumentType PLAID = new InstrumentType("plaid");
 
     // This map will grow whenever a Color gets created with a new
     // unrecognized value (a potential memory leak if the user is not
@@ -130,6 +131,7 @@ public class InstrumentType {
         map.put("googlepay", GOOGLEPAY);
         map.put("applepay", APPLEPAY);
         map.put("network_token", NETWORK_TOKEN);
+        map.put("plaid", PLAID);
         return map;
     }
 
@@ -142,6 +144,7 @@ public class InstrumentType {
         map.put("googlepay", InstrumentTypeEnum.GOOGLEPAY);
         map.put("applepay", InstrumentTypeEnum.APPLEPAY);
         map.put("network_token", InstrumentTypeEnum.NETWORK_TOKEN);
+        map.put("plaid", InstrumentTypeEnum.PLAID);
         return map;
     }
     
@@ -183,7 +186,8 @@ public class InstrumentType {
         REDIRECT_TOKEN("redirect_token"),
         GOOGLEPAY("googlepay"),
         APPLEPAY("applepay"),
-        NETWORK_TOKEN("network_token"),;
+        NETWORK_TOKEN("network_token"),
+        PLAID("plaid"),;
 
         private final String value;
 

@@ -10,7 +10,6 @@ import com.gr4vy.sdk.models.components.PaymentLinkCreate;
 import com.gr4vy.sdk.operations.AddPaymentLink;
 import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.Utils;
-import java.lang.Exception;
 import java.lang.String;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -52,7 +51,7 @@ public class AddPaymentLinkRequestBuilder {
         return request;
     }
 
-    public AddPaymentLinkResponse call() throws Exception {
+    public AddPaymentLinkResponse call() {
         
         RequestOperation<AddPaymentLinkRequest, AddPaymentLinkResponse> operation
               = new AddPaymentLink.Sync(sdkConfiguration, _headers);

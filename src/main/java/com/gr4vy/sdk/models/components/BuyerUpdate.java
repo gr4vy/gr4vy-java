@@ -46,14 +46,14 @@ public class BuyerUpdate {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("billing_details")
-    private JsonNullable<? extends BillingDetailsInput> billingDetails;
+    private JsonNullable<? extends BillingDetails> billingDetails;
 
     @JsonCreator
     public BuyerUpdate(
             @JsonProperty("display_name") JsonNullable<String> displayName,
             @JsonProperty("external_identifier") JsonNullable<String> externalIdentifier,
             @JsonProperty("account_number") JsonNullable<String> accountNumber,
-            @JsonProperty("billing_details") JsonNullable<? extends BillingDetailsInput> billingDetails) {
+            @JsonProperty("billing_details") JsonNullable<? extends BillingDetails> billingDetails) {
         Utils.checkNotNull(displayName, "displayName");
         Utils.checkNotNull(externalIdentifier, "externalIdentifier");
         Utils.checkNotNull(accountNumber, "accountNumber");
@@ -98,8 +98,8 @@ public class BuyerUpdate {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<BillingDetailsInput> billingDetails() {
-        return (JsonNullable<BillingDetailsInput>) billingDetails;
+    public JsonNullable<BillingDetails> billingDetails() {
+        return (JsonNullable<BillingDetails>) billingDetails;
     }
 
     public static Builder builder() {
@@ -164,7 +164,7 @@ public class BuyerUpdate {
     /**
      * The billing name, address, email, and other fields for this buyer.
      */
-    public BuyerUpdate withBillingDetails(BillingDetailsInput billingDetails) {
+    public BuyerUpdate withBillingDetails(BillingDetails billingDetails) {
         Utils.checkNotNull(billingDetails, "billingDetails");
         this.billingDetails = JsonNullable.of(billingDetails);
         return this;
@@ -173,7 +173,7 @@ public class BuyerUpdate {
     /**
      * The billing name, address, email, and other fields for this buyer.
      */
-    public BuyerUpdate withBillingDetails(JsonNullable<? extends BillingDetailsInput> billingDetails) {
+    public BuyerUpdate withBillingDetails(JsonNullable<? extends BillingDetails> billingDetails) {
         Utils.checkNotNull(billingDetails, "billingDetails");
         this.billingDetails = billingDetails;
         return this;
@@ -220,7 +220,7 @@ public class BuyerUpdate {
 
         private JsonNullable<String> accountNumber = JsonNullable.undefined();
 
-        private JsonNullable<? extends BillingDetailsInput> billingDetails = JsonNullable.undefined();
+        private JsonNullable<? extends BillingDetails> billingDetails = JsonNullable.undefined();
 
         private Builder() {
           // force use of static builder() method
@@ -287,7 +287,7 @@ public class BuyerUpdate {
         /**
          * The billing name, address, email, and other fields for this buyer.
          */
-        public Builder billingDetails(BillingDetailsInput billingDetails) {
+        public Builder billingDetails(BillingDetails billingDetails) {
             Utils.checkNotNull(billingDetails, "billingDetails");
             this.billingDetails = JsonNullable.of(billingDetails);
             return this;
@@ -296,7 +296,7 @@ public class BuyerUpdate {
         /**
          * The billing name, address, email, and other fields for this buyer.
          */
-        public Builder billingDetails(JsonNullable<? extends BillingDetailsInput> billingDetails) {
+        public Builder billingDetails(JsonNullable<? extends BillingDetails> billingDetails) {
             Utils.checkNotNull(billingDetails, "billingDetails");
             this.billingDetails = billingDetails;
             return this;

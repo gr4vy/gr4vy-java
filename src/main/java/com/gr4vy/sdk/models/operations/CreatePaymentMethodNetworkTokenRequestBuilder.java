@@ -10,7 +10,6 @@ import com.gr4vy.sdk.models.components.NetworkTokenCreate;
 import com.gr4vy.sdk.operations.CreatePaymentMethodNetworkToken;
 import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.Utils;
-import java.lang.Exception;
 import java.lang.String;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -60,7 +59,7 @@ public class CreatePaymentMethodNetworkTokenRequestBuilder {
         return request;
     }
 
-    public CreatePaymentMethodNetworkTokenResponse call() throws Exception {
+    public CreatePaymentMethodNetworkTokenResponse call() {
         
         RequestOperation<CreatePaymentMethodNetworkTokenRequest, CreatePaymentMethodNetworkTokenResponse> operation
               = new CreatePaymentMethodNetworkToken.Sync(sdkConfiguration, _headers);

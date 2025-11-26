@@ -10,7 +10,6 @@ import com.gr4vy.sdk.models.components.PaymentOptionRequest;
 import com.gr4vy.sdk.operations.ListPaymentOptions;
 import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.Utils;
-import java.lang.Exception;
 import java.lang.String;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -52,7 +51,7 @@ public class ListPaymentOptionsRequestBuilder {
         return request;
     }
 
-    public ListPaymentOptionsResponse call() throws Exception {
+    public ListPaymentOptionsResponse call() {
         
         RequestOperation<ListPaymentOptionsRequest, ListPaymentOptionsResponse> operation
               = new ListPaymentOptions.Sync(sdkConfiguration, _headers);

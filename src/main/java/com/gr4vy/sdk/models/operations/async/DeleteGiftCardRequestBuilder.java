@@ -10,7 +10,6 @@ import com.gr4vy.sdk.models.operations.DeleteGiftCardRequest;
 import com.gr4vy.sdk.operations.DeleteGiftCard;
 import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.Utils;
-import java.lang.Exception;
 import java.lang.String;
 import java.util.concurrent.CompletableFuture;
 import org.openapitools.jackson.nullable.JsonNullable;
@@ -53,7 +52,7 @@ public class DeleteGiftCardRequestBuilder {
         return request;
     }
 
-    public CompletableFuture<DeleteGiftCardResponse> call() throws Exception {
+    public CompletableFuture<DeleteGiftCardResponse> call() {
         
         AsyncRequestOperation<DeleteGiftCardRequest, DeleteGiftCardResponse> operation
               = new DeleteGiftCard.Async(sdkConfiguration, _headers);

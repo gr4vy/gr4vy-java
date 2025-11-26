@@ -8,6 +8,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.gr4vy.sdk.models.components.CardPaymentMethodCreate;
 import com.gr4vy.sdk.models.components.CheckoutSessionPaymentMethodCreate;
+import com.gr4vy.sdk.models.components.PlaidPaymentMethodCreate;
 import com.gr4vy.sdk.models.components.RedirectPaymentMethodCreate;
 import com.gr4vy.sdk.utils.OneOfDeserializer;
 import com.gr4vy.sdk.utils.TypedObject;
@@ -22,7 +23,7 @@ import java.lang.SuppressWarnings;
 public class Body {
 
     @JsonValue
-    private TypedObject value;
+    private final TypedObject value;
     
     private Body(TypedObject value) {
         this.value = value;
@@ -30,17 +31,22 @@ public class Body {
 
     public static Body of(CardPaymentMethodCreate value) {
         Utils.checkNotNull(value, "value");
-        return new Body(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<CardPaymentMethodCreate>(){}));
+        return new Body(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
     }
 
     public static Body of(RedirectPaymentMethodCreate value) {
         Utils.checkNotNull(value, "value");
-        return new Body(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<RedirectPaymentMethodCreate>(){}));
+        return new Body(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
     }
 
     public static Body of(CheckoutSessionPaymentMethodCreate value) {
         Utils.checkNotNull(value, "value");
-        return new Body(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<CheckoutSessionPaymentMethodCreate>(){}));
+        return new Body(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
+    }
+
+    public static Body of(PlaidPaymentMethodCreate value) {
+        Utils.checkNotNull(value, "value");
+        return new Body(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
     }
     
     /**
@@ -49,6 +55,7 @@ public class Body {
      * <li>{@code com.gr4vy.sdk.models.components.CardPaymentMethodCreate}</li>
      * <li>{@code com.gr4vy.sdk.models.components.RedirectPaymentMethodCreate}</li>
      * <li>{@code com.gr4vy.sdk.models.components.CheckoutSessionPaymentMethodCreate}</li>
+     * <li>{@code com.gr4vy.sdk.models.components.PlaidPaymentMethodCreate}</li>
      * </ul>
      * 
      * <p>Use {@code instanceof} to determine what type is returned. For example:
@@ -64,7 +71,7 @@ public class Body {
      **/ 
     public java.lang.Object value() {
         return value.value();
-    }    
+    }
     
     @Override
     public boolean equals(java.lang.Object o) {
@@ -75,7 +82,7 @@ public class Body {
             return false;
         }
         Body other = (Body) o;
-        return Utils.enhancedDeepEquals(this.value.value(), other.value.value()); 
+        return Utils.enhancedDeepEquals(this.value.value(), other.value.value());
     }
     
     @Override
@@ -89,6 +96,7 @@ public class Body {
         public _Deserializer() {
             super(Body.class, false,
                   TypeReferenceWithShape.of(new TypeReference<CardPaymentMethodCreate>() {}, JsonShape.DEFAULT),
+                  TypeReferenceWithShape.of(new TypeReference<PlaidPaymentMethodCreate>() {}, JsonShape.DEFAULT),
                   TypeReferenceWithShape.of(new TypeReference<RedirectPaymentMethodCreate>() {}, JsonShape.DEFAULT),
                   TypeReferenceWithShape.of(new TypeReference<CheckoutSessionPaymentMethodCreate>() {}, JsonShape.DEFAULT));
         }
@@ -99,6 +107,6 @@ public class Body {
         return Utils.toString(Body.class,
                 "value", value);
     }
- 
+
 }
 

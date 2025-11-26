@@ -10,7 +10,6 @@ import com.gr4vy.sdk.models.components.MerchantAccountUpdate;
 import com.gr4vy.sdk.operations.UpdateMerchantAccount;
 import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.Utils;
-import java.lang.Exception;
 import java.lang.String;
 
 public class UpdateMerchantAccountRequestBuilder {
@@ -45,7 +44,7 @@ public class UpdateMerchantAccountRequestBuilder {
         return request;
     }
 
-    public UpdateMerchantAccountResponse call() throws Exception {
+    public UpdateMerchantAccountResponse call() {
         
         RequestOperation<UpdateMerchantAccountRequest, UpdateMerchantAccountResponse> operation
               = new UpdateMerchantAccount.Sync(sdkConfiguration, _headers);

@@ -332,7 +332,7 @@ public class Gr4vy {
          * @return The builder instance.
          */
         public Builder merchantAccountId(String merchantAccountId) {
-            this.sdkConfiguration.globals.putParam("header", "merchantAccountId", merchantAccountId);
+            this.sdkConfiguration.globals.putParam("header", "x-gr4vy-merchant-account-id", merchantAccountId);
             return this;
         }
 

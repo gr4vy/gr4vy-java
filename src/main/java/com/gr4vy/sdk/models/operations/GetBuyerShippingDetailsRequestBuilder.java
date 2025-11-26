@@ -11,7 +11,6 @@ import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.Options;
 import com.gr4vy.sdk.utils.RetryConfig;
 import com.gr4vy.sdk.utils.Utils;
-import java.lang.Exception;
 import java.lang.String;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
@@ -75,7 +74,7 @@ public class GetBuyerShippingDetailsRequestBuilder {
         return request;
     }
 
-    public GetBuyerShippingDetailsResponse call() throws Exception {
+    public GetBuyerShippingDetailsResponse call() {
         Optional<Options> options = Optional.of(Options.builder()
             .retryConfig(retryConfig)
             .build());

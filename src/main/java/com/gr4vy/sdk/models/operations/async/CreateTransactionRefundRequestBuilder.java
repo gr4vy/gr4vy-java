@@ -11,7 +11,6 @@ import com.gr4vy.sdk.models.operations.CreateTransactionRefundRequest;
 import com.gr4vy.sdk.operations.CreateTransactionRefund;
 import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.Utils;
-import java.lang.Exception;
 import java.lang.String;
 import java.util.concurrent.CompletableFuture;
 import org.openapitools.jackson.nullable.JsonNullable;
@@ -62,7 +61,7 @@ public class CreateTransactionRefundRequestBuilder {
         return request;
     }
 
-    public CompletableFuture<CreateTransactionRefundResponse> call() throws Exception {
+    public CompletableFuture<CreateTransactionRefundResponse> call() {
         
         AsyncRequestOperation<CreateTransactionRefundRequest, CreateTransactionRefundResponse> operation
               = new CreateTransactionRefund.Async(sdkConfiguration, _headers);

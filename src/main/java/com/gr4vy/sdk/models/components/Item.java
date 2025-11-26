@@ -19,7 +19,7 @@ import java.lang.SuppressWarnings;
 public class Item {
 
     @JsonValue
-    private TypedObject value;
+    private final TypedObject value;
     
     private Item(TypedObject value) {
         this.value = value;
@@ -27,12 +27,12 @@ public class Item {
 
     public static Item of(GiftCardRequest value) {
         Utils.checkNotNull(value, "value");
-        return new Item(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<GiftCardRequest>(){}));
+        return new Item(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
     }
 
     public static Item of(GiftCardStoredRequest value) {
         Utils.checkNotNull(value, "value");
-        return new Item(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<GiftCardStoredRequest>(){}));
+        return new Item(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
     }
     
     /**
@@ -55,7 +55,7 @@ public class Item {
      **/ 
     public java.lang.Object value() {
         return value.value();
-    }    
+    }
     
     @Override
     public boolean equals(java.lang.Object o) {
@@ -66,7 +66,7 @@ public class Item {
             return false;
         }
         Item other = (Item) o;
-        return Utils.enhancedDeepEquals(this.value.value(), other.value.value()); 
+        return Utils.enhancedDeepEquals(this.value.value(), other.value.value());
     }
     
     @Override
@@ -89,6 +89,6 @@ public class Item {
         return Utils.toString(Item.class,
                 "value", value);
     }
- 
+
 }
 

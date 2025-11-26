@@ -11,7 +11,6 @@ import com.gr4vy.sdk.models.operations.CreatePaymentServiceRequest;
 import com.gr4vy.sdk.operations.CreatePaymentService;
 import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.Utils;
-import java.lang.Exception;
 import java.lang.String;
 import java.util.concurrent.CompletableFuture;
 import org.openapitools.jackson.nullable.JsonNullable;
@@ -62,7 +61,7 @@ public class CreatePaymentServiceRequestBuilder {
         return request;
     }
 
-    public CompletableFuture<CreatePaymentServiceResponse> call() throws Exception {
+    public CompletableFuture<CreatePaymentServiceResponse> call() {
         
         AsyncRequestOperation<CreatePaymentServiceRequest, CreatePaymentServiceResponse> operation
               = new CreatePaymentService.Async(sdkConfiguration, _headers);

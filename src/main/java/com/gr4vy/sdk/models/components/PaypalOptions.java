@@ -25,15 +25,25 @@ public class PaypalOptions {
     @JsonProperty("additional_data")
     private JsonNullable<? extends List<Map<String, String>>> additionalData;
 
+    /**
+     * Shipping information to be passed to the PayPal API.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("shipping")
+    private JsonNullable<? extends PaypalShippingOptions> shipping;
+
     @JsonCreator
     public PaypalOptions(
-            @JsonProperty("additional_data") JsonNullable<? extends List<Map<String, String>>> additionalData) {
+            @JsonProperty("additional_data") JsonNullable<? extends List<Map<String, String>>> additionalData,
+            @JsonProperty("shipping") JsonNullable<? extends PaypalShippingOptions> shipping) {
         Utils.checkNotNull(additionalData, "additionalData");
+        Utils.checkNotNull(shipping, "shipping");
         this.additionalData = additionalData;
+        this.shipping = shipping;
     }
     
     public PaypalOptions() {
-        this(JsonNullable.undefined());
+        this(JsonNullable.undefined(), JsonNullable.undefined());
     }
 
     /**
@@ -43,6 +53,15 @@ public class PaypalOptions {
     @JsonIgnore
     public JsonNullable<List<Map<String, String>>> additionalData() {
         return (JsonNullable<List<Map<String, String>>>) additionalData;
+    }
+
+    /**
+     * Shipping information to be passed to the PayPal API.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public JsonNullable<PaypalShippingOptions> shipping() {
+        return (JsonNullable<PaypalShippingOptions>) shipping;
     }
 
     public static Builder builder() {
@@ -68,6 +87,24 @@ public class PaypalOptions {
         return this;
     }
 
+    /**
+     * Shipping information to be passed to the PayPal API.
+     */
+    public PaypalOptions withShipping(PaypalShippingOptions shipping) {
+        Utils.checkNotNull(shipping, "shipping");
+        this.shipping = JsonNullable.of(shipping);
+        return this;
+    }
+
+    /**
+     * Shipping information to be passed to the PayPal API.
+     */
+    public PaypalOptions withShipping(JsonNullable<? extends PaypalShippingOptions> shipping) {
+        Utils.checkNotNull(shipping, "shipping");
+        this.shipping = shipping;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -78,25 +115,29 @@ public class PaypalOptions {
         }
         PaypalOptions other = (PaypalOptions) o;
         return 
-            Utils.enhancedDeepEquals(this.additionalData, other.additionalData);
+            Utils.enhancedDeepEquals(this.additionalData, other.additionalData) &&
+            Utils.enhancedDeepEquals(this.shipping, other.shipping);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            additionalData);
+            additionalData, shipping);
     }
     
     @Override
     public String toString() {
         return Utils.toString(PaypalOptions.class,
-                "additionalData", additionalData);
+                "additionalData", additionalData,
+                "shipping", shipping);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
         private JsonNullable<? extends List<Map<String, String>>> additionalData = JsonNullable.undefined();
+
+        private JsonNullable<? extends PaypalShippingOptions> shipping = JsonNullable.undefined();
 
         private Builder() {
           // force use of static builder() method
@@ -121,10 +162,29 @@ public class PaypalOptions {
             return this;
         }
 
+
+        /**
+         * Shipping information to be passed to the PayPal API.
+         */
+        public Builder shipping(PaypalShippingOptions shipping) {
+            Utils.checkNotNull(shipping, "shipping");
+            this.shipping = JsonNullable.of(shipping);
+            return this;
+        }
+
+        /**
+         * Shipping information to be passed to the PayPal API.
+         */
+        public Builder shipping(JsonNullable<? extends PaypalShippingOptions> shipping) {
+            Utils.checkNotNull(shipping, "shipping");
+            this.shipping = shipping;
+            return this;
+        }
+
         public PaypalOptions build() {
 
             return new PaypalOptions(
-                additionalData);
+                additionalData, shipping);
         }
 
     }

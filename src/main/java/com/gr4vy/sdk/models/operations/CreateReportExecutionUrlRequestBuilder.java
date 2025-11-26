@@ -10,7 +10,6 @@ import com.gr4vy.sdk.models.components.ReportExecutionUrlGenerate;
 import com.gr4vy.sdk.operations.CreateReportExecutionUrl;
 import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.Utils;
-import java.lang.Exception;
 import java.lang.String;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
@@ -75,7 +74,7 @@ public class CreateReportExecutionUrlRequestBuilder {
         return request;
     }
 
-    public CreateReportExecutionUrlResponse call() throws Exception {
+    public CreateReportExecutionUrlResponse call() {
         
         RequestOperation<CreateReportExecutionUrlRequest, CreateReportExecutionUrlResponse> operation
               = new CreateReportExecutionUrl.Sync(sdkConfiguration, _headers);

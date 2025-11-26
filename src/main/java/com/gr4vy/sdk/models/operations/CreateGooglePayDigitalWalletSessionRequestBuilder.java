@@ -10,7 +10,6 @@ import com.gr4vy.sdk.models.components.GooglePaySessionRequest;
 import com.gr4vy.sdk.operations.CreateGooglePayDigitalWalletSession;
 import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.Utils;
-import java.lang.Exception;
 import java.lang.String;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -52,7 +51,7 @@ public class CreateGooglePayDigitalWalletSessionRequestBuilder {
         return request;
     }
 
-    public CreateGooglePayDigitalWalletSessionResponse call() throws Exception {
+    public CreateGooglePayDigitalWalletSessionResponse call() {
         
         RequestOperation<CreateGooglePayDigitalWalletSessionRequest, CreateGooglePayDigitalWalletSessionResponse> operation
               = new CreateGooglePayDigitalWalletSession.Sync(sdkConfiguration, _headers);

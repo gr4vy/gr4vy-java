@@ -26,7 +26,7 @@ import java.lang.SuppressWarnings;
 public class ThreeDSecureData {
 
     @JsonValue
-    private TypedObject value;
+    private final TypedObject value;
     
     private ThreeDSecureData(TypedObject value) {
         this.value = value;
@@ -34,12 +34,12 @@ public class ThreeDSecureData {
 
     public static ThreeDSecureData of(ThreeDSecureDataV1 value) {
         Utils.checkNotNull(value, "value");
-        return new ThreeDSecureData(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<ThreeDSecureDataV1>(){}));
+        return new ThreeDSecureData(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
     }
 
     public static ThreeDSecureData of(ThreeDSecureDataV2 value) {
         Utils.checkNotNull(value, "value");
-        return new ThreeDSecureData(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<ThreeDSecureDataV2>(){}));
+        return new ThreeDSecureData(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
     }
     
     /**
@@ -62,7 +62,7 @@ public class ThreeDSecureData {
      **/ 
     public java.lang.Object value() {
         return value.value();
-    }    
+    }
     
     @Override
     public boolean equals(java.lang.Object o) {
@@ -73,7 +73,7 @@ public class ThreeDSecureData {
             return false;
         }
         ThreeDSecureData other = (ThreeDSecureData) o;
-        return Utils.enhancedDeepEquals(this.value.value(), other.value.value()); 
+        return Utils.enhancedDeepEquals(this.value.value(), other.value.value());
     }
     
     @Override
@@ -96,6 +96,6 @@ public class ThreeDSecureData {
         return Utils.toString(ThreeDSecureData.class,
                 "value", value);
     }
- 
+
 }
 

@@ -24,7 +24,6 @@ import com.gr4vy.sdk.operations.ListMerchantAccounts;
 import com.gr4vy.sdk.operations.UpdateMerchantAccount;
 import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.Options;
-import java.lang.Exception;
 import java.lang.Long;
 import java.lang.String;
 import java.util.Optional;
@@ -67,9 +66,9 @@ public class MerchantAccounts {
      * <p>List all merchant accounts in an instance.
      * 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public ListMerchantAccountsResponse listDirect() throws Exception {
+    public ListMerchantAccountsResponse listDirect() {
         return list(JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
             Optional.empty());
     }
@@ -84,11 +83,11 @@ public class MerchantAccounts {
      * @param search The search term to filter merchant accounts by.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
     public ListMerchantAccountsResponse list(
             JsonNullable<String> cursor, Optional<Long> limit,
-            JsonNullable<String> search, Optional<Options> options) throws Exception {
+            JsonNullable<String> search, Optional<Options> options) {
         ListMerchantAccountsRequest request =
             ListMerchantAccountsRequest
                 .builder()
@@ -119,9 +118,9 @@ public class MerchantAccounts {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public CreateMerchantAccountResponse create(MerchantAccountCreate request) throws Exception {
+    public CreateMerchantAccountResponse create(MerchantAccountCreate request) {
         RequestOperation<MerchantAccountCreate, CreateMerchantAccountResponse> operation
               = new CreateMerchantAccount.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -145,9 +144,9 @@ public class MerchantAccounts {
      * 
      * @param merchantAccountId The ID of the merchant account
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public GetMerchantAccountResponse get(String merchantAccountId) throws Exception {
+    public GetMerchantAccountResponse get(String merchantAccountId) {
         return get(merchantAccountId, Optional.empty());
     }
 
@@ -159,9 +158,9 @@ public class MerchantAccounts {
      * @param merchantAccountId The ID of the merchant account
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public GetMerchantAccountResponse get(String merchantAccountId, Optional<Options> options) throws Exception {
+    public GetMerchantAccountResponse get(String merchantAccountId, Optional<Options> options) {
         GetMerchantAccountRequest request =
             GetMerchantAccountRequest
                 .builder()
@@ -191,9 +190,9 @@ public class MerchantAccounts {
      * @param merchantAccountId The ID of the merchant account
      * @param merchantAccountUpdate 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public UpdateMerchantAccountResponse update(String merchantAccountId, MerchantAccountUpdate merchantAccountUpdate) throws Exception {
+    public UpdateMerchantAccountResponse update(String merchantAccountId, MerchantAccountUpdate merchantAccountUpdate) {
         UpdateMerchantAccountRequest request =
             UpdateMerchantAccountRequest
                 .builder()

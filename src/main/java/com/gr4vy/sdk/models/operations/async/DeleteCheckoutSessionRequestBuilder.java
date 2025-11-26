@@ -10,7 +10,6 @@ import com.gr4vy.sdk.models.operations.DeleteCheckoutSessionRequest;
 import com.gr4vy.sdk.operations.DeleteCheckoutSession;
 import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.Utils;
-import java.lang.Exception;
 import java.lang.String;
 import java.util.concurrent.CompletableFuture;
 import org.openapitools.jackson.nullable.JsonNullable;
@@ -53,7 +52,7 @@ public class DeleteCheckoutSessionRequestBuilder {
         return request;
     }
 
-    public CompletableFuture<DeleteCheckoutSessionResponse> call() throws Exception {
+    public CompletableFuture<DeleteCheckoutSessionResponse> call() {
         
         AsyncRequestOperation<DeleteCheckoutSessionRequest, DeleteCheckoutSessionResponse> operation
               = new DeleteCheckoutSession.Async(sdkConfiguration, _headers);

@@ -20,7 +20,6 @@ import com.gr4vy.sdk.operations.DeletePaymentMethodPaymentServiceToken;
 import com.gr4vy.sdk.operations.ListPaymentMethodPaymentServiceTokens;
 import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.Options;
-import java.lang.Exception;
 import java.lang.String;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
@@ -63,9 +62,9 @@ public class PaymentServiceTokens {
      * 
      * @param paymentMethodId The ID of the payment method
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public ListPaymentMethodPaymentServiceTokensResponse list(String paymentMethodId) throws Exception {
+    public ListPaymentMethodPaymentServiceTokensResponse list(String paymentMethodId) {
         return list(paymentMethodId, JsonNullable.undefined(), JsonNullable.undefined(),
             Optional.empty());
     }
@@ -80,11 +79,11 @@ public class PaymentServiceTokens {
      * @param merchantAccountId 
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
     public ListPaymentMethodPaymentServiceTokensResponse list(
             String paymentMethodId, JsonNullable<String> paymentServiceId,
-            JsonNullable<String> merchantAccountId, Optional<Options> options) throws Exception {
+            JsonNullable<String> merchantAccountId, Optional<Options> options) {
         ListPaymentMethodPaymentServiceTokensRequest request =
             ListPaymentMethodPaymentServiceTokensRequest
                 .builder()
@@ -116,9 +115,9 @@ public class PaymentServiceTokens {
      * @param paymentMethodId The ID of the payment method
      * @param paymentServiceTokenCreate 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public CreatePaymentMethodPaymentServiceTokenResponse create(String paymentMethodId, PaymentServiceTokenCreate paymentServiceTokenCreate) throws Exception {
+    public CreatePaymentMethodPaymentServiceTokenResponse create(String paymentMethodId, PaymentServiceTokenCreate paymentServiceTokenCreate) {
         return create(paymentMethodId, JsonNullable.undefined(), paymentServiceTokenCreate);
     }
 
@@ -131,11 +130,11 @@ public class PaymentServiceTokens {
      * @param merchantAccountId 
      * @param paymentServiceTokenCreate 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
     public CreatePaymentMethodPaymentServiceTokenResponse create(
             String paymentMethodId, JsonNullable<String> merchantAccountId,
-            PaymentServiceTokenCreate paymentServiceTokenCreate) throws Exception {
+            PaymentServiceTokenCreate paymentServiceTokenCreate) {
         CreatePaymentMethodPaymentServiceTokenRequest request =
             CreatePaymentMethodPaymentServiceTokenRequest
                 .builder()
@@ -167,9 +166,9 @@ public class PaymentServiceTokens {
      * @param paymentMethodId The ID of the payment method
      * @param paymentServiceTokenId The ID of the payment service token
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public DeletePaymentMethodPaymentServiceTokenResponse delete(String paymentMethodId, String paymentServiceTokenId) throws Exception {
+    public DeletePaymentMethodPaymentServiceTokenResponse delete(String paymentMethodId, String paymentServiceTokenId) {
         return delete(paymentMethodId, paymentServiceTokenId, JsonNullable.undefined());
     }
 
@@ -182,11 +181,11 @@ public class PaymentServiceTokens {
      * @param paymentServiceTokenId The ID of the payment service token
      * @param merchantAccountId 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
     public DeletePaymentMethodPaymentServiceTokenResponse delete(
             String paymentMethodId, String paymentServiceTokenId,
-            JsonNullable<String> merchantAccountId) throws Exception {
+            JsonNullable<String> merchantAccountId) {
         DeletePaymentMethodPaymentServiceTokenRequest request =
             DeletePaymentMethodPaymentServiceTokenRequest
                 .builder()

@@ -10,7 +10,6 @@ import com.gr4vy.sdk.models.operations.DeleteBuyerRequest;
 import com.gr4vy.sdk.operations.DeleteBuyer;
 import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.Utils;
-import java.lang.Exception;
 import java.lang.String;
 import java.util.concurrent.CompletableFuture;
 import org.openapitools.jackson.nullable.JsonNullable;
@@ -53,7 +52,7 @@ public class DeleteBuyerRequestBuilder {
         return request;
     }
 
-    public CompletableFuture<DeleteBuyerResponse> call() throws Exception {
+    public CompletableFuture<DeleteBuyerResponse> call() {
         
         AsyncRequestOperation<DeleteBuyerRequest, DeleteBuyerResponse> operation
               = new DeleteBuyer.Async(sdkConfiguration, _headers);

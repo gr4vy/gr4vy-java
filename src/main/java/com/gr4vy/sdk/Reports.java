@@ -25,7 +25,6 @@ import com.gr4vy.sdk.operations.ListReports;
 import com.gr4vy.sdk.operations.UpdateReport;
 import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.Options;
-import java.lang.Exception;
 import java.lang.String;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
@@ -74,9 +73,9 @@ public class Reports {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public ListReportsResponse list(ListReportsRequest request) throws Exception {
+    public ListReportsResponse list(ListReportsRequest request) {
         return list(request, Optional.empty());
     }
 
@@ -88,9 +87,9 @@ public class Reports {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public ListReportsResponse list(ListReportsRequest request, Optional<Options> options) throws Exception {
+    public ListReportsResponse list(ListReportsRequest request, Optional<Options> options) {
         RequestOperation<ListReportsRequest, ListReportsResponse> operation
               = new ListReports.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -114,9 +113,9 @@ public class Reports {
      * 
      * @param reportCreate 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public AddReportResponse create(ReportCreate reportCreate) throws Exception {
+    public AddReportResponse create(ReportCreate reportCreate) {
         return create(JsonNullable.undefined(), reportCreate);
     }
 
@@ -128,9 +127,9 @@ public class Reports {
      * @param merchantAccountId 
      * @param reportCreate 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public AddReportResponse create(JsonNullable<String> merchantAccountId, ReportCreate reportCreate) throws Exception {
+    public AddReportResponse create(JsonNullable<String> merchantAccountId, ReportCreate reportCreate) {
         AddReportRequest request =
             AddReportRequest
                 .builder()
@@ -160,9 +159,9 @@ public class Reports {
      * 
      * @param reportId The ID of the report to retrieve details for.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public GetReportResponse get(String reportId) throws Exception {
+    public GetReportResponse get(String reportId) {
         return get(reportId, JsonNullable.undefined(), Optional.empty());
     }
 
@@ -175,11 +174,11 @@ public class Reports {
      * @param merchantAccountId 
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
     public GetReportResponse get(
             String reportId, JsonNullable<String> merchantAccountId,
-            Optional<Options> options) throws Exception {
+            Optional<Options> options) {
         GetReportRequest request =
             GetReportRequest
                 .builder()
@@ -210,9 +209,9 @@ public class Reports {
      * @param reportId The ID of the report to edit.
      * @param reportUpdate 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public UpdateReportResponse put(String reportId, ReportUpdate reportUpdate) throws Exception {
+    public UpdateReportResponse put(String reportId, ReportUpdate reportUpdate) {
         return put(reportId, JsonNullable.undefined(), reportUpdate);
     }
 
@@ -225,11 +224,11 @@ public class Reports {
      * @param merchantAccountId 
      * @param reportUpdate 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
     public UpdateReportResponse put(
             String reportId, JsonNullable<String> merchantAccountId,
-            ReportUpdate reportUpdate) throws Exception {
+            ReportUpdate reportUpdate) {
         UpdateReportRequest request =
             UpdateReportRequest
                 .builder()

@@ -10,7 +10,6 @@ import com.gr4vy.sdk.models.components.ClickToPaySessionRequest;
 import com.gr4vy.sdk.operations.CreateClickToPayDigitalWalletSession;
 import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.Utils;
-import java.lang.Exception;
 import java.util.concurrent.CompletableFuture;
 
 public class CreateClickToPayDigitalWalletSessionRequestBuilder {
@@ -29,7 +28,7 @@ public class CreateClickToPayDigitalWalletSessionRequestBuilder {
         return this;
     }
 
-    public CompletableFuture<CreateClickToPayDigitalWalletSessionResponse> call() throws Exception {
+    public CompletableFuture<CreateClickToPayDigitalWalletSessionResponse> call() {
         
         AsyncRequestOperation<ClickToPaySessionRequest, CreateClickToPayDigitalWalletSessionResponse> operation
               = new CreateClickToPayDigitalWalletSession.Async(sdkConfiguration, _headers);

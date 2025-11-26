@@ -12,3 +12,4 @@
 | `GOOGLEPAY`      | googlepay        |
 | `APPLEPAY`       | applepay         |
 | `NETWORK_TOKEN`  | network_token    |
+| `PLAID`          | plaid            |

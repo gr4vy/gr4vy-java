@@ -28,7 +28,6 @@ import com.gr4vy.sdk.operations.ResumePaymentMethodNetworkToken;
 import com.gr4vy.sdk.operations.SuspendPaymentMethodNetworkToken;
 import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.Options;
-import java.lang.Exception;
 import java.lang.String;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
@@ -77,9 +76,9 @@ public class NetworkTokens {
      * 
      * @param paymentMethodId The ID of the payment method
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public ListPaymentMethodNetworkTokensResponse list(String paymentMethodId) throws Exception {
+    public ListPaymentMethodNetworkTokensResponse list(String paymentMethodId) {
         return list(paymentMethodId, JsonNullable.undefined(), Optional.empty());
     }
 
@@ -92,11 +91,11 @@ public class NetworkTokens {
      * @param merchantAccountId 
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
     public ListPaymentMethodNetworkTokensResponse list(
             String paymentMethodId, JsonNullable<String> merchantAccountId,
-            Optional<Options> options) throws Exception {
+            Optional<Options> options) {
         ListPaymentMethodNetworkTokensRequest request =
             ListPaymentMethodNetworkTokensRequest
                 .builder()
@@ -127,9 +126,9 @@ public class NetworkTokens {
      * @param paymentMethodId The ID of the payment method
      * @param networkTokenCreate 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public CreatePaymentMethodNetworkTokenResponse create(String paymentMethodId, NetworkTokenCreate networkTokenCreate) throws Exception {
+    public CreatePaymentMethodNetworkTokenResponse create(String paymentMethodId, NetworkTokenCreate networkTokenCreate) {
         return create(paymentMethodId, JsonNullable.undefined(), networkTokenCreate);
     }
 
@@ -142,11 +141,11 @@ public class NetworkTokens {
      * @param merchantAccountId 
      * @param networkTokenCreate 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
     public CreatePaymentMethodNetworkTokenResponse create(
             String paymentMethodId, JsonNullable<String> merchantAccountId,
-            NetworkTokenCreate networkTokenCreate) throws Exception {
+            NetworkTokenCreate networkTokenCreate) {
         CreatePaymentMethodNetworkTokenRequest request =
             CreatePaymentMethodNetworkTokenRequest
                 .builder()
@@ -178,9 +177,9 @@ public class NetworkTokens {
      * @param paymentMethodId The ID of the payment method
      * @param networkTokenId The ID of the network token
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public SuspendPaymentMethodNetworkTokenResponse suspend(String paymentMethodId, String networkTokenId) throws Exception {
+    public SuspendPaymentMethodNetworkTokenResponse suspend(String paymentMethodId, String networkTokenId) {
         return suspend(paymentMethodId, networkTokenId, JsonNullable.undefined());
     }
 
@@ -193,11 +192,11 @@ public class NetworkTokens {
      * @param networkTokenId The ID of the network token
      * @param merchantAccountId 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
     public SuspendPaymentMethodNetworkTokenResponse suspend(
             String paymentMethodId, String networkTokenId,
-            JsonNullable<String> merchantAccountId) throws Exception {
+            JsonNullable<String> merchantAccountId) {
         SuspendPaymentMethodNetworkTokenRequest request =
             SuspendPaymentMethodNetworkTokenRequest
                 .builder()
@@ -229,9 +228,9 @@ public class NetworkTokens {
      * @param paymentMethodId The ID of the payment method
      * @param networkTokenId The ID of the network token
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public ResumePaymentMethodNetworkTokenResponse resume(String paymentMethodId, String networkTokenId) throws Exception {
+    public ResumePaymentMethodNetworkTokenResponse resume(String paymentMethodId, String networkTokenId) {
         return resume(paymentMethodId, networkTokenId, JsonNullable.undefined());
     }
 
@@ -244,11 +243,11 @@ public class NetworkTokens {
      * @param networkTokenId The ID of the network token
      * @param merchantAccountId 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
     public ResumePaymentMethodNetworkTokenResponse resume(
             String paymentMethodId, String networkTokenId,
-            JsonNullable<String> merchantAccountId) throws Exception {
+            JsonNullable<String> merchantAccountId) {
         ResumePaymentMethodNetworkTokenRequest request =
             ResumePaymentMethodNetworkTokenRequest
                 .builder()
@@ -280,9 +279,9 @@ public class NetworkTokens {
      * @param paymentMethodId The ID of the payment method
      * @param networkTokenId The ID of the network token
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public DeletePaymentMethodNetworkTokenResponse delete(String paymentMethodId, String networkTokenId) throws Exception {
+    public DeletePaymentMethodNetworkTokenResponse delete(String paymentMethodId, String networkTokenId) {
         return delete(paymentMethodId, networkTokenId, JsonNullable.undefined());
     }
 
@@ -295,11 +294,11 @@ public class NetworkTokens {
      * @param networkTokenId The ID of the network token
      * @param merchantAccountId 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
     public DeletePaymentMethodNetworkTokenResponse delete(
             String paymentMethodId, String networkTokenId,
-            JsonNullable<String> merchantAccountId) throws Exception {
+            JsonNullable<String> merchantAccountId) {
         DeletePaymentMethodNetworkTokenRequest request =
             DeletePaymentMethodNetworkTokenRequest
                 .builder()

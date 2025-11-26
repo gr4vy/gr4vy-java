@@ -11,7 +11,6 @@ import com.gr4vy.sdk.models.operations.CreateCheckoutSessionRequest;
 import com.gr4vy.sdk.operations.CreateCheckoutSession;
 import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.Utils;
-import java.lang.Exception;
 import java.lang.String;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
@@ -61,7 +60,7 @@ public class CreateCheckoutSessionRequestBuilder {
         return request;
     }
 
-    public CompletableFuture<CreateCheckoutSessionResponse> call() throws Exception {
+    public CompletableFuture<CreateCheckoutSessionResponse> call() {
         
         AsyncRequestOperation<CreateCheckoutSessionRequest, CreateCheckoutSessionResponse> operation
               = new CreateCheckoutSession.Async(sdkConfiguration, _headers);

@@ -25,7 +25,7 @@ import java.lang.SuppressWarnings;
 public class TransactionCreatePaymentMethod {
 
     @JsonValue
-    private TypedObject value;
+    private final TypedObject value;
     
     private TransactionCreatePaymentMethod(TypedObject value) {
         this.value = value;
@@ -33,52 +33,57 @@ public class TransactionCreatePaymentMethod {
 
     public static TransactionCreatePaymentMethod of(CardWithUrlPaymentMethodCreate value) {
         Utils.checkNotNull(value, "value");
-        return new TransactionCreatePaymentMethod(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<CardWithUrlPaymentMethodCreate>(){}));
+        return new TransactionCreatePaymentMethod(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
     }
 
     public static TransactionCreatePaymentMethod of(RedirectPaymentMethodCreate value) {
         Utils.checkNotNull(value, "value");
-        return new TransactionCreatePaymentMethod(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<RedirectPaymentMethodCreate>(){}));
+        return new TransactionCreatePaymentMethod(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
     }
 
     public static TransactionCreatePaymentMethod of(TokenPaymentMethodCreate value) {
         Utils.checkNotNull(value, "value");
-        return new TransactionCreatePaymentMethod(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<TokenPaymentMethodCreate>(){}));
+        return new TransactionCreatePaymentMethod(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
     }
 
     public static TransactionCreatePaymentMethod of(ApplePayPaymentMethodCreate value) {
         Utils.checkNotNull(value, "value");
-        return new TransactionCreatePaymentMethod(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<ApplePayPaymentMethodCreate>(){}));
+        return new TransactionCreatePaymentMethod(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
     }
 
     public static TransactionCreatePaymentMethod of(ClickToPayPaymentMethodCreate value) {
         Utils.checkNotNull(value, "value");
-        return new TransactionCreatePaymentMethod(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<ClickToPayPaymentMethodCreate>(){}));
+        return new TransactionCreatePaymentMethod(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
     }
 
     public static TransactionCreatePaymentMethod of(ClickToPayFPANPaymentMethodCreate value) {
         Utils.checkNotNull(value, "value");
-        return new TransactionCreatePaymentMethod(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<ClickToPayFPANPaymentMethodCreate>(){}));
+        return new TransactionCreatePaymentMethod(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
     }
 
     public static TransactionCreatePaymentMethod of(GooglePayPaymentMethodCreate value) {
         Utils.checkNotNull(value, "value");
-        return new TransactionCreatePaymentMethod(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<GooglePayPaymentMethodCreate>(){}));
+        return new TransactionCreatePaymentMethod(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
     }
 
     public static TransactionCreatePaymentMethod of(GooglePayFPANPaymentMethodCreate value) {
         Utils.checkNotNull(value, "value");
-        return new TransactionCreatePaymentMethod(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<GooglePayFPANPaymentMethodCreate>(){}));
+        return new TransactionCreatePaymentMethod(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
     }
 
     public static TransactionCreatePaymentMethod of(NetworkTokenPaymentMethodCreate value) {
         Utils.checkNotNull(value, "value");
-        return new TransactionCreatePaymentMethod(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<NetworkTokenPaymentMethodCreate>(){}));
+        return new TransactionCreatePaymentMethod(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
+    }
+
+    public static TransactionCreatePaymentMethod of(PlaidPaymentMethodCreate value) {
+        Utils.checkNotNull(value, "value");
+        return new TransactionCreatePaymentMethod(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
     }
 
     public static TransactionCreatePaymentMethod of(CheckoutSessionWithUrlPaymentMethodCreate value) {
         Utils.checkNotNull(value, "value");
-        return new TransactionCreatePaymentMethod(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<CheckoutSessionWithUrlPaymentMethodCreate>(){}));
+        return new TransactionCreatePaymentMethod(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
     }
     
     /**
@@ -93,6 +98,7 @@ public class TransactionCreatePaymentMethod {
      * <li>{@code com.gr4vy.sdk.models.components.GooglePayPaymentMethodCreate}</li>
      * <li>{@code com.gr4vy.sdk.models.components.GooglePayFPANPaymentMethodCreate}</li>
      * <li>{@code com.gr4vy.sdk.models.components.NetworkTokenPaymentMethodCreate}</li>
+     * <li>{@code com.gr4vy.sdk.models.components.PlaidPaymentMethodCreate}</li>
      * <li>{@code com.gr4vy.sdk.models.components.CheckoutSessionWithUrlPaymentMethodCreate}</li>
      * </ul>
      * 
@@ -109,7 +115,7 @@ public class TransactionCreatePaymentMethod {
      **/ 
     public java.lang.Object value() {
         return value.value();
-    }    
+    }
     
     @Override
     public boolean equals(java.lang.Object o) {
@@ -120,7 +126,7 @@ public class TransactionCreatePaymentMethod {
             return false;
         }
         TransactionCreatePaymentMethod other = (TransactionCreatePaymentMethod) o;
-        return Utils.enhancedDeepEquals(this.value.value(), other.value.value()); 
+        return Utils.enhancedDeepEquals(this.value.value(), other.value.value());
     }
     
     @Override
@@ -140,6 +146,7 @@ public class TransactionCreatePaymentMethod {
                   TypeReferenceWithShape.of(new TypeReference<ApplePayPaymentMethodCreate>() {}, JsonShape.DEFAULT),
                   TypeReferenceWithShape.of(new TypeReference<CardWithUrlPaymentMethodCreate>() {}, JsonShape.DEFAULT),
                   TypeReferenceWithShape.of(new TypeReference<ClickToPayPaymentMethodCreate>() {}, JsonShape.DEFAULT),
+                  TypeReferenceWithShape.of(new TypeReference<PlaidPaymentMethodCreate>() {}, JsonShape.DEFAULT),
                   TypeReferenceWithShape.of(new TypeReference<RedirectPaymentMethodCreate>() {}, JsonShape.DEFAULT),
                   TypeReferenceWithShape.of(new TypeReference<CheckoutSessionWithUrlPaymentMethodCreate>() {}, JsonShape.DEFAULT),
                   TypeReferenceWithShape.of(new TypeReference<TokenPaymentMethodCreate>() {}, JsonShape.DEFAULT));
@@ -151,6 +158,6 @@ public class TransactionCreatePaymentMethod {
         return Utils.toString(TransactionCreatePaymentMethod.class,
                 "value", value);
     }
- 
+
 }
 

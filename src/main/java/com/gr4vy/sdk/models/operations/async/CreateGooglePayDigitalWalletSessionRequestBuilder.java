@@ -11,7 +11,6 @@ import com.gr4vy.sdk.models.operations.CreateGooglePayDigitalWalletSessionReques
 import com.gr4vy.sdk.operations.CreateGooglePayDigitalWalletSession;
 import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.Utils;
-import java.lang.Exception;
 import java.lang.String;
 import java.util.concurrent.CompletableFuture;
 import org.openapitools.jackson.nullable.JsonNullable;
@@ -54,7 +53,7 @@ public class CreateGooglePayDigitalWalletSessionRequestBuilder {
         return request;
     }
 
-    public CompletableFuture<CreateGooglePayDigitalWalletSessionResponse> call() throws Exception {
+    public CompletableFuture<CreateGooglePayDigitalWalletSessionResponse> call() {
         
         AsyncRequestOperation<CreateGooglePayDigitalWalletSessionRequest, CreateGooglePayDigitalWalletSessionResponse> operation
               = new CreateGooglePayDigitalWalletSession.Async(sdkConfiguration, _headers);

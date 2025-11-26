@@ -15,7 +15,7 @@ import java.lang.SuppressWarnings;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 
-public class BillingDetailsOutput {
+public class BillingDetails {
     /**
      * The first name(s) or given name for the buyer.
      */
@@ -59,7 +59,7 @@ public class BillingDetailsOutput {
     private JsonNullable<? extends TaxId> taxId;
 
     @JsonCreator
-    public BillingDetailsOutput(
+    public BillingDetails(
             @JsonProperty("first_name") JsonNullable<String> firstName,
             @JsonProperty("last_name") JsonNullable<String> lastName,
             @JsonProperty("email_address") JsonNullable<String> emailAddress,
@@ -80,7 +80,7 @@ public class BillingDetailsOutput {
         this.taxId = taxId;
     }
     
-    public BillingDetailsOutput() {
+    public BillingDetails() {
         this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
     }
@@ -143,7 +143,7 @@ public class BillingDetailsOutput {
     /**
      * The first name(s) or given name for the buyer.
      */
-    public BillingDetailsOutput withFirstName(String firstName) {
+    public BillingDetails withFirstName(String firstName) {
         Utils.checkNotNull(firstName, "firstName");
         this.firstName = JsonNullable.of(firstName);
         return this;
@@ -152,7 +152,7 @@ public class BillingDetailsOutput {
     /**
      * The first name(s) or given name for the buyer.
      */
-    public BillingDetailsOutput withFirstName(JsonNullable<String> firstName) {
+    public BillingDetails withFirstName(JsonNullable<String> firstName) {
         Utils.checkNotNull(firstName, "firstName");
         this.firstName = firstName;
         return this;
@@ -161,7 +161,7 @@ public class BillingDetailsOutput {
     /**
      * The last name, or family name, of the buyer.
      */
-    public BillingDetailsOutput withLastName(String lastName) {
+    public BillingDetails withLastName(String lastName) {
         Utils.checkNotNull(lastName, "lastName");
         this.lastName = JsonNullable.of(lastName);
         return this;
@@ -170,7 +170,7 @@ public class BillingDetailsOutput {
     /**
      * The last name, or family name, of the buyer.
      */
-    public BillingDetailsOutput withLastName(JsonNullable<String> lastName) {
+    public BillingDetails withLastName(JsonNullable<String> lastName) {
         Utils.checkNotNull(lastName, "lastName");
         this.lastName = lastName;
         return this;
@@ -179,7 +179,7 @@ public class BillingDetailsOutput {
     /**
      * The email address for the buyer.
      */
-    public BillingDetailsOutput withEmailAddress(String emailAddress) {
+    public BillingDetails withEmailAddress(String emailAddress) {
         Utils.checkNotNull(emailAddress, "emailAddress");
         this.emailAddress = JsonNullable.of(emailAddress);
         return this;
@@ -188,7 +188,7 @@ public class BillingDetailsOutput {
     /**
      * The email address for the buyer.
      */
-    public BillingDetailsOutput withEmailAddress(JsonNullable<String> emailAddress) {
+    public BillingDetails withEmailAddress(JsonNullable<String> emailAddress) {
         Utils.checkNotNull(emailAddress, "emailAddress");
         this.emailAddress = emailAddress;
         return this;
@@ -197,7 +197,7 @@ public class BillingDetailsOutput {
     /**
      * The phone number for the buyer which should be formatted according to the E164 number standard.
      */
-    public BillingDetailsOutput withPhoneNumber(String phoneNumber) {
+    public BillingDetails withPhoneNumber(String phoneNumber) {
         Utils.checkNotNull(phoneNumber, "phoneNumber");
         this.phoneNumber = JsonNullable.of(phoneNumber);
         return this;
@@ -206,7 +206,7 @@ public class BillingDetailsOutput {
     /**
      * The phone number for the buyer which should be formatted according to the E164 number standard.
      */
-    public BillingDetailsOutput withPhoneNumber(JsonNullable<String> phoneNumber) {
+    public BillingDetails withPhoneNumber(JsonNullable<String> phoneNumber) {
         Utils.checkNotNull(phoneNumber, "phoneNumber");
         this.phoneNumber = phoneNumber;
         return this;
@@ -215,7 +215,7 @@ public class BillingDetailsOutput {
     /**
      * The billing address for the buyer.
      */
-    public BillingDetailsOutput withAddress(Address address) {
+    public BillingDetails withAddress(Address address) {
         Utils.checkNotNull(address, "address");
         this.address = JsonNullable.of(address);
         return this;
@@ -224,7 +224,7 @@ public class BillingDetailsOutput {
     /**
      * The billing address for the buyer.
      */
-    public BillingDetailsOutput withAddress(JsonNullable<? extends Address> address) {
+    public BillingDetails withAddress(JsonNullable<? extends Address> address) {
         Utils.checkNotNull(address, "address");
         this.address = address;
         return this;
@@ -233,7 +233,7 @@ public class BillingDetailsOutput {
     /**
      * The tax ID information associated with the billing details.
      */
-    public BillingDetailsOutput withTaxId(TaxId taxId) {
+    public BillingDetails withTaxId(TaxId taxId) {
         Utils.checkNotNull(taxId, "taxId");
         this.taxId = JsonNullable.of(taxId);
         return this;
@@ -242,7 +242,7 @@ public class BillingDetailsOutput {
     /**
      * The tax ID information associated with the billing details.
      */
-    public BillingDetailsOutput withTaxId(JsonNullable<? extends TaxId> taxId) {
+    public BillingDetails withTaxId(JsonNullable<? extends TaxId> taxId) {
         Utils.checkNotNull(taxId, "taxId");
         this.taxId = taxId;
         return this;
@@ -256,7 +256,7 @@ public class BillingDetailsOutput {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        BillingDetailsOutput other = (BillingDetailsOutput) o;
+        BillingDetails other = (BillingDetails) o;
         return 
             Utils.enhancedDeepEquals(this.firstName, other.firstName) &&
             Utils.enhancedDeepEquals(this.lastName, other.lastName) &&
@@ -275,7 +275,7 @@ public class BillingDetailsOutput {
     
     @Override
     public String toString() {
-        return Utils.toString(BillingDetailsOutput.class,
+        return Utils.toString(BillingDetails.class,
                 "firstName", firstName,
                 "lastName", lastName,
                 "emailAddress", emailAddress,
@@ -417,9 +417,9 @@ public class BillingDetailsOutput {
             return this;
         }
 
-        public BillingDetailsOutput build() {
+        public BillingDetails build() {
 
-            return new BillingDetailsOutput(
+            return new BillingDetails(
                 firstName, lastName, emailAddress,
                 phoneNumber, address, taxId);
         }

@@ -11,7 +11,6 @@ import com.gr4vy.sdk.models.operations.ListBuyerPaymentMethodsResponse;
 import com.gr4vy.sdk.operations.ListBuyerPaymentMethods;
 import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.Options;
-import java.lang.Exception;
 import java.util.Optional;
 
 
@@ -52,9 +51,9 @@ public class BuyersPaymentMethods {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public ListBuyerPaymentMethodsResponse list(ListBuyerPaymentMethodsRequest request) throws Exception {
+    public ListBuyerPaymentMethodsResponse list(ListBuyerPaymentMethodsRequest request) {
         return list(request, Optional.empty());
     }
 
@@ -66,9 +65,9 @@ public class BuyersPaymentMethods {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public ListBuyerPaymentMethodsResponse list(ListBuyerPaymentMethodsRequest request, Optional<Options> options) throws Exception {
+    public ListBuyerPaymentMethodsResponse list(ListBuyerPaymentMethodsRequest request, Optional<Options> options) {
         RequestOperation<ListBuyerPaymentMethodsRequest, ListBuyerPaymentMethodsResponse> operation
               = new ListBuyerPaymentMethods.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));

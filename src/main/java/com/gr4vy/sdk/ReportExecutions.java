@@ -11,7 +11,6 @@ import com.gr4vy.sdk.models.operations.ListAllReportExecutionsResponse;
 import com.gr4vy.sdk.operations.ListAllReportExecutions;
 import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.Options;
-import java.lang.Exception;
 import java.util.Optional;
 
 
@@ -52,9 +51,9 @@ public class ReportExecutions {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public ListAllReportExecutionsResponse list(ListAllReportExecutionsRequest request) throws Exception {
+    public ListAllReportExecutionsResponse list(ListAllReportExecutionsRequest request) {
         return list(request, Optional.empty());
     }
 
@@ -66,9 +65,9 @@ public class ReportExecutions {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public ListAllReportExecutionsResponse list(ListAllReportExecutionsRequest request, Optional<Options> options) throws Exception {
+    public ListAllReportExecutionsResponse list(ListAllReportExecutionsRequest request, Optional<Options> options) {
         RequestOperation<ListAllReportExecutionsRequest, ListAllReportExecutionsResponse> operation
               = new ListAllReportExecutions.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));

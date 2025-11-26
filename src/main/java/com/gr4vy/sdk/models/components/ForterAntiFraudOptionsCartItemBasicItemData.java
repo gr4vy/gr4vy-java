@@ -21,11 +21,11 @@ public class ForterAntiFraudOptionsCartItemBasicItemData {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("type")
-    private JsonNullable<? extends Type> type;
+    private JsonNullable<? extends ForterAntiFraudOptionsCartItemBasicItemDataType> type;
 
     @JsonCreator
     public ForterAntiFraudOptionsCartItemBasicItemData(
-            @JsonProperty("type") JsonNullable<? extends Type> type) {
+            @JsonProperty("type") JsonNullable<? extends ForterAntiFraudOptionsCartItemBasicItemDataType> type) {
         Utils.checkNotNull(type, "type");
         this.type = type;
     }
@@ -39,8 +39,8 @@ public class ForterAntiFraudOptionsCartItemBasicItemData {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<Type> type() {
-        return (JsonNullable<Type>) type;
+    public JsonNullable<ForterAntiFraudOptionsCartItemBasicItemDataType> type() {
+        return (JsonNullable<ForterAntiFraudOptionsCartItemBasicItemDataType>) type;
     }
 
     public static Builder builder() {
@@ -51,7 +51,7 @@ public class ForterAntiFraudOptionsCartItemBasicItemData {
     /**
      * Indicates whether the item is a physical good or a service/digital item.
      */
-    public ForterAntiFraudOptionsCartItemBasicItemData withType(Type type) {
+    public ForterAntiFraudOptionsCartItemBasicItemData withType(ForterAntiFraudOptionsCartItemBasicItemDataType type) {
         Utils.checkNotNull(type, "type");
         this.type = JsonNullable.of(type);
         return this;
@@ -60,7 +60,7 @@ public class ForterAntiFraudOptionsCartItemBasicItemData {
     /**
      * Indicates whether the item is a physical good or a service/digital item.
      */
-    public ForterAntiFraudOptionsCartItemBasicItemData withType(JsonNullable<? extends Type> type) {
+    public ForterAntiFraudOptionsCartItemBasicItemData withType(JsonNullable<? extends ForterAntiFraudOptionsCartItemBasicItemDataType> type) {
         Utils.checkNotNull(type, "type");
         this.type = type;
         return this;
@@ -94,7 +94,7 @@ public class ForterAntiFraudOptionsCartItemBasicItemData {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private JsonNullable<? extends Type> type = JsonNullable.undefined();
+        private JsonNullable<? extends ForterAntiFraudOptionsCartItemBasicItemDataType> type = JsonNullable.undefined();
 
         private Builder() {
           // force use of static builder() method
@@ -104,7 +104,7 @@ public class ForterAntiFraudOptionsCartItemBasicItemData {
         /**
          * Indicates whether the item is a physical good or a service/digital item.
          */
-        public Builder type(Type type) {
+        public Builder type(ForterAntiFraudOptionsCartItemBasicItemDataType type) {
             Utils.checkNotNull(type, "type");
             this.type = JsonNullable.of(type);
             return this;
@@ -113,7 +113,7 @@ public class ForterAntiFraudOptionsCartItemBasicItemData {
         /**
          * Indicates whether the item is a physical good or a service/digital item.
          */
-        public Builder type(JsonNullable<? extends Type> type) {
+        public Builder type(JsonNullable<? extends ForterAntiFraudOptionsCartItemBasicItemDataType> type) {
             Utils.checkNotNull(type, "type");
             this.type = type;
             return this;

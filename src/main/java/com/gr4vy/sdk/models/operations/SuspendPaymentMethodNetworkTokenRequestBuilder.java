@@ -9,7 +9,6 @@ import com.gr4vy.sdk.SDKConfiguration;
 import com.gr4vy.sdk.operations.SuspendPaymentMethodNetworkToken;
 import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.Utils;
-import java.lang.Exception;
 import java.lang.String;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -59,7 +58,7 @@ public class SuspendPaymentMethodNetworkTokenRequestBuilder {
         return request;
     }
 
-    public SuspendPaymentMethodNetworkTokenResponse call() throws Exception {
+    public SuspendPaymentMethodNetworkTokenResponse call() {
         
         RequestOperation<SuspendPaymentMethodNetworkTokenRequest, SuspendPaymentMethodNetworkTokenResponse> operation
               = new SuspendPaymentMethodNetworkToken.Sync(sdkConfiguration, _headers);

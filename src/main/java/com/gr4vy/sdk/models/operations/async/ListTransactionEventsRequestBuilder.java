@@ -14,7 +14,6 @@ import com.gr4vy.sdk.utils.LazySingletonValue;
 import com.gr4vy.sdk.utils.Options;
 import com.gr4vy.sdk.utils.RetryConfig;
 import com.gr4vy.sdk.utils.Utils;
-import java.lang.Exception;
 import java.lang.Long;
 import java.lang.String;
 import java.util.Optional;
@@ -106,7 +105,7 @@ public class ListTransactionEventsRequestBuilder {
         return request;
     }
 
-    public CompletableFuture<ListTransactionEventsResponse> call() throws Exception {
+    public CompletableFuture<ListTransactionEventsResponse> call() {
         Optional<Options> options = Optional.of(Options.builder()
             .retryConfig(retryConfig)
             .build());

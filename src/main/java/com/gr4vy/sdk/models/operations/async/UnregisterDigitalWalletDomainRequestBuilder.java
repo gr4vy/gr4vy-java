@@ -11,7 +11,6 @@ import com.gr4vy.sdk.models.operations.UnregisterDigitalWalletDomainRequest;
 import com.gr4vy.sdk.operations.UnregisterDigitalWalletDomain;
 import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.Utils;
-import java.lang.Exception;
 import java.lang.String;
 import java.util.concurrent.CompletableFuture;
 import org.openapitools.jackson.nullable.JsonNullable;
@@ -62,7 +61,7 @@ public class UnregisterDigitalWalletDomainRequestBuilder {
         return request;
     }
 
-    public CompletableFuture<UnregisterDigitalWalletDomainResponse> call() throws Exception {
+    public CompletableFuture<UnregisterDigitalWalletDomainResponse> call() {
         
         AsyncRequestOperation<UnregisterDigitalWalletDomainRequest, UnregisterDigitalWalletDomainResponse> operation
               = new UnregisterDigitalWalletDomain.Async(sdkConfiguration, _headers);

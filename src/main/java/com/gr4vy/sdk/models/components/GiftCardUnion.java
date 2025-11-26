@@ -19,7 +19,7 @@ import java.lang.SuppressWarnings;
 public class GiftCardUnion {
 
     @JsonValue
-    private TypedObject value;
+    private final TypedObject value;
     
     private GiftCardUnion(TypedObject value) {
         this.value = value;
@@ -27,12 +27,12 @@ public class GiftCardUnion {
 
     public static GiftCardUnion of(GiftCardTransactionCreate value) {
         Utils.checkNotNull(value, "value");
-        return new GiftCardUnion(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<GiftCardTransactionCreate>(){}));
+        return new GiftCardUnion(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
     }
 
     public static GiftCardUnion of(GiftCardTokenTransactionCreate value) {
         Utils.checkNotNull(value, "value");
-        return new GiftCardUnion(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<GiftCardTokenTransactionCreate>(){}));
+        return new GiftCardUnion(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
     }
     
     /**
@@ -55,7 +55,7 @@ public class GiftCardUnion {
      **/ 
     public java.lang.Object value() {
         return value.value();
-    }    
+    }
     
     @Override
     public boolean equals(java.lang.Object o) {
@@ -66,7 +66,7 @@ public class GiftCardUnion {
             return false;
         }
         GiftCardUnion other = (GiftCardUnion) o;
-        return Utils.enhancedDeepEquals(this.value.value(), other.value.value()); 
+        return Utils.enhancedDeepEquals(this.value.value(), other.value.value());
     }
     
     @Override
@@ -89,6 +89,6 @@ public class GiftCardUnion {
         return Utils.toString(GiftCardUnion.class,
                 "value", value);
     }
- 
+
 }
 

@@ -26,7 +26,7 @@ import java.lang.SuppressWarnings;
 public class ResponseCaptureTransaction {
 
     @JsonValue
-    private TypedObject value;
+    private final TypedObject value;
     
     private ResponseCaptureTransaction(TypedObject value) {
         this.value = value;
@@ -34,12 +34,12 @@ public class ResponseCaptureTransaction {
 
     public static ResponseCaptureTransaction of(Transaction value) {
         Utils.checkNotNull(value, "value");
-        return new ResponseCaptureTransaction(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<Transaction>(){}));
+        return new ResponseCaptureTransaction(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
     }
 
     public static ResponseCaptureTransaction of(TransactionCapture value) {
         Utils.checkNotNull(value, "value");
-        return new ResponseCaptureTransaction(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<TransactionCapture>(){}));
+        return new ResponseCaptureTransaction(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
     }
     
     /**
@@ -62,7 +62,7 @@ public class ResponseCaptureTransaction {
      **/ 
     public java.lang.Object value() {
         return value.value();
-    }    
+    }
     
     @Override
     public boolean equals(java.lang.Object o) {
@@ -73,7 +73,7 @@ public class ResponseCaptureTransaction {
             return false;
         }
         ResponseCaptureTransaction other = (ResponseCaptureTransaction) o;
-        return Utils.enhancedDeepEquals(this.value.value(), other.value.value()); 
+        return Utils.enhancedDeepEquals(this.value.value(), other.value.value());
     }
     
     @Override
@@ -96,6 +96,6 @@ public class ResponseCaptureTransaction {
         return Utils.toString(ResponseCaptureTransaction.class,
                 "value", value);
     }
- 
+
 }
 

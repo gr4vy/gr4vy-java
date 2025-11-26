@@ -11,7 +11,6 @@ import com.gr4vy.sdk.models.operations.UpdateBuyerRequest;
 import com.gr4vy.sdk.operations.UpdateBuyer;
 import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.Utils;
-import java.lang.Exception;
 import java.lang.String;
 import java.util.concurrent.CompletableFuture;
 import org.openapitools.jackson.nullable.JsonNullable;
@@ -62,7 +61,7 @@ public class UpdateBuyerRequestBuilder {
         return request;
     }
 
-    public CompletableFuture<UpdateBuyerResponse> call() throws Exception {
+    public CompletableFuture<UpdateBuyerResponse> call() {
         
         AsyncRequestOperation<UpdateBuyerRequest, UpdateBuyerResponse> operation
               = new UpdateBuyer.Async(sdkConfiguration, _headers);

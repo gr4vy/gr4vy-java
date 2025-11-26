@@ -11,7 +11,6 @@ import com.gr4vy.sdk.models.operations.CreatePaymentMethodNetworkTokenCryptogram
 import com.gr4vy.sdk.models.operations.CreatePaymentMethodNetworkTokenCryptogramResponse;
 import com.gr4vy.sdk.operations.CreatePaymentMethodNetworkTokenCryptogram;
 import com.gr4vy.sdk.utils.Headers;
-import java.lang.Exception;
 import java.lang.String;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -55,11 +54,11 @@ public class Cryptogram {
      * @param networkTokenId The ID of the network token
      * @param cryptogramCreate 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
     public CreatePaymentMethodNetworkTokenCryptogramResponse create(
             String paymentMethodId, String networkTokenId,
-            CryptogramCreate cryptogramCreate) throws Exception {
+            CryptogramCreate cryptogramCreate) {
         return create(paymentMethodId, networkTokenId, JsonNullable.undefined(),
             cryptogramCreate);
     }
@@ -74,11 +73,11 @@ public class Cryptogram {
      * @param merchantAccountId 
      * @param cryptogramCreate 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
     public CreatePaymentMethodNetworkTokenCryptogramResponse create(
             String paymentMethodId, String networkTokenId,
-            JsonNullable<String> merchantAccountId, CryptogramCreate cryptogramCreate) throws Exception {
+            JsonNullable<String> merchantAccountId, CryptogramCreate cryptogramCreate) {
         CreatePaymentMethodNetworkTokenCryptogramRequest request =
             CreatePaymentMethodNetworkTokenCryptogramRequest
                 .builder()

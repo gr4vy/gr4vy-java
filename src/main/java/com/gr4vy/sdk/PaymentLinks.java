@@ -24,7 +24,6 @@ import com.gr4vy.sdk.operations.GetPaymentLink;
 import com.gr4vy.sdk.operations.ListPaymentLinks;
 import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.Options;
-import java.lang.Exception;
 import java.lang.Long;
 import java.lang.String;
 import java.util.List;
@@ -69,9 +68,9 @@ public class PaymentLinks {
      * 
      * @param paymentLinkCreate 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public AddPaymentLinkResponse create(PaymentLinkCreate paymentLinkCreate) throws Exception {
+    public AddPaymentLinkResponse create(PaymentLinkCreate paymentLinkCreate) {
         return create(JsonNullable.undefined(), paymentLinkCreate);
     }
 
@@ -83,9 +82,9 @@ public class PaymentLinks {
      * @param merchantAccountId 
      * @param paymentLinkCreate 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public AddPaymentLinkResponse create(JsonNullable<String> merchantAccountId, PaymentLinkCreate paymentLinkCreate) throws Exception {
+    public AddPaymentLinkResponse create(JsonNullable<String> merchantAccountId, PaymentLinkCreate paymentLinkCreate) {
         AddPaymentLinkRequest request =
             AddPaymentLinkRequest
                 .builder()
@@ -114,9 +113,9 @@ public class PaymentLinks {
      * <p>List all created payment links.
      * 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public ListPaymentLinksResponse listDirect() throws Exception {
+    public ListPaymentLinksResponse listDirect() {
         return list(JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
             JsonNullable.undefined(), Optional.empty());
     }
@@ -132,12 +131,12 @@ public class PaymentLinks {
      * @param merchantAccountId 
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
     public ListPaymentLinksResponse list(
             JsonNullable<String> cursor, Optional<Long> limit,
             JsonNullable<? extends List<String>> buyerSearch, JsonNullable<String> merchantAccountId,
-            Optional<Options> options) throws Exception {
+            Optional<Options> options) {
         ListPaymentLinksRequest request =
             ListPaymentLinksRequest
                 .builder()
@@ -169,9 +168,9 @@ public class PaymentLinks {
      * 
      * @param paymentLinkId The unique identifier for the payment link.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public ExpirePaymentLinkResponse expire(String paymentLinkId) throws Exception {
+    public ExpirePaymentLinkResponse expire(String paymentLinkId) {
         return expire(paymentLinkId, JsonNullable.undefined());
     }
 
@@ -183,9 +182,9 @@ public class PaymentLinks {
      * @param paymentLinkId The unique identifier for the payment link.
      * @param merchantAccountId 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public ExpirePaymentLinkResponse expire(String paymentLinkId, JsonNullable<String> merchantAccountId) throws Exception {
+    public ExpirePaymentLinkResponse expire(String paymentLinkId, JsonNullable<String> merchantAccountId) {
         ExpirePaymentLinkRequest request =
             ExpirePaymentLinkRequest
                 .builder()
@@ -215,9 +214,9 @@ public class PaymentLinks {
      * 
      * @param paymentLinkId The unique identifier for the payment link.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public GetPaymentLinkResponse get(String paymentLinkId) throws Exception {
+    public GetPaymentLinkResponse get(String paymentLinkId) {
         return get(paymentLinkId, JsonNullable.undefined(), Optional.empty());
     }
 
@@ -230,11 +229,11 @@ public class PaymentLinks {
      * @param merchantAccountId 
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
     public GetPaymentLinkResponse get(
             String paymentLinkId, JsonNullable<String> merchantAccountId,
-            Optional<Options> options) throws Exception {
+            Optional<Options> options) {
         GetPaymentLinkRequest request =
             GetPaymentLinkRequest
                 .builder()

@@ -10,7 +10,6 @@ import com.gr4vy.sdk.models.components.BuyerCreate;
 import com.gr4vy.sdk.operations.AddBuyer;
 import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.Utils;
-import java.lang.Exception;
 import java.lang.String;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -52,7 +51,7 @@ public class AddBuyerRequestBuilder {
         return request;
     }
 
-    public AddBuyerResponse call() throws Exception {
+    public AddBuyerResponse call() {
         
         RequestOperation<AddBuyerRequest, AddBuyerResponse> operation
               = new AddBuyer.Sync(sdkConfiguration, _headers);

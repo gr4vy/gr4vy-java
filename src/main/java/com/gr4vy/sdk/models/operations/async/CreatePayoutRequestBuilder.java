@@ -11,7 +11,6 @@ import com.gr4vy.sdk.models.operations.CreatePayoutRequest;
 import com.gr4vy.sdk.operations.CreatePayout;
 import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.Utils;
-import java.lang.Exception;
 import java.lang.String;
 import java.util.concurrent.CompletableFuture;
 import org.openapitools.jackson.nullable.JsonNullable;
@@ -54,7 +53,7 @@ public class CreatePayoutRequestBuilder {
         return request;
     }
 
-    public CompletableFuture<CreatePayoutResponse> call() throws Exception {
+    public CompletableFuture<CreatePayoutResponse> call() {
         
         AsyncRequestOperation<CreatePayoutRequest, CreatePayoutResponse> operation
               = new CreatePayout.Async(sdkConfiguration, _headers);

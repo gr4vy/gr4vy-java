@@ -10,7 +10,6 @@ import com.gr4vy.sdk.models.components.ApplePaySessionRequest;
 import com.gr4vy.sdk.operations.CreateApplePayDigitalWalletSession;
 import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.Utils;
-import java.lang.Exception;
 import java.lang.String;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -52,7 +51,7 @@ public class CreateApplePayDigitalWalletSessionRequestBuilder {
         return request;
     }
 
-    public CreateApplePayDigitalWalletSessionResponse call() throws Exception {
+    public CreateApplePayDigitalWalletSessionResponse call() {
         
         RequestOperation<CreateApplePayDigitalWalletSessionRequest, CreateApplePayDigitalWalletSessionResponse> operation
               = new CreateApplePayDigitalWalletSession.Sync(sdkConfiguration, _headers);

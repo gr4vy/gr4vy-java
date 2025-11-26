@@ -15,7 +15,7 @@ import java.lang.SuppressWarnings;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 
-public class GuestBuyerInput {
+public class GuestBuyer {
     /**
      * The display name for the buyer.
      */
@@ -35,7 +35,7 @@ public class GuestBuyerInput {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("billing_details")
-    private JsonNullable<? extends BillingDetailsInput> billingDetails;
+    private JsonNullable<? extends BillingDetails> billingDetails;
 
     /**
      * The buyer account number
@@ -52,10 +52,10 @@ public class GuestBuyerInput {
     private JsonNullable<? extends ShippingDetailsCreate> shippingDetails;
 
     @JsonCreator
-    public GuestBuyerInput(
+    public GuestBuyer(
             @JsonProperty("display_name") JsonNullable<String> displayName,
             @JsonProperty("external_identifier") JsonNullable<String> externalIdentifier,
-            @JsonProperty("billing_details") JsonNullable<? extends BillingDetailsInput> billingDetails,
+            @JsonProperty("billing_details") JsonNullable<? extends BillingDetails> billingDetails,
             @JsonProperty("account_number") JsonNullable<String> accountNumber,
             @JsonProperty("shipping_details") JsonNullable<? extends ShippingDetailsCreate> shippingDetails) {
         Utils.checkNotNull(displayName, "displayName");
@@ -70,7 +70,7 @@ public class GuestBuyerInput {
         this.shippingDetails = shippingDetails;
     }
     
-    public GuestBuyerInput() {
+    public GuestBuyer() {
         this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined());
     }
@@ -96,8 +96,8 @@ public class GuestBuyerInput {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<BillingDetailsInput> billingDetails() {
-        return (JsonNullable<BillingDetailsInput>) billingDetails;
+    public JsonNullable<BillingDetails> billingDetails() {
+        return (JsonNullable<BillingDetails>) billingDetails;
     }
 
     /**
@@ -125,7 +125,7 @@ public class GuestBuyerInput {
     /**
      * The display name for the buyer.
      */
-    public GuestBuyerInput withDisplayName(String displayName) {
+    public GuestBuyer withDisplayName(String displayName) {
         Utils.checkNotNull(displayName, "displayName");
         this.displayName = JsonNullable.of(displayName);
         return this;
@@ -134,7 +134,7 @@ public class GuestBuyerInput {
     /**
      * The display name for the buyer.
      */
-    public GuestBuyerInput withDisplayName(JsonNullable<String> displayName) {
+    public GuestBuyer withDisplayName(JsonNullable<String> displayName) {
         Utils.checkNotNull(displayName, "displayName");
         this.displayName = displayName;
         return this;
@@ -143,7 +143,7 @@ public class GuestBuyerInput {
     /**
      * The merchant identifier for this buyer.
      */
-    public GuestBuyerInput withExternalIdentifier(String externalIdentifier) {
+    public GuestBuyer withExternalIdentifier(String externalIdentifier) {
         Utils.checkNotNull(externalIdentifier, "externalIdentifier");
         this.externalIdentifier = JsonNullable.of(externalIdentifier);
         return this;
@@ -152,7 +152,7 @@ public class GuestBuyerInput {
     /**
      * The merchant identifier for this buyer.
      */
-    public GuestBuyerInput withExternalIdentifier(JsonNullable<String> externalIdentifier) {
+    public GuestBuyer withExternalIdentifier(JsonNullable<String> externalIdentifier) {
         Utils.checkNotNull(externalIdentifier, "externalIdentifier");
         this.externalIdentifier = externalIdentifier;
         return this;
@@ -161,7 +161,7 @@ public class GuestBuyerInput {
     /**
      * The billing name, address, email, and other fields for this buyer.
      */
-    public GuestBuyerInput withBillingDetails(BillingDetailsInput billingDetails) {
+    public GuestBuyer withBillingDetails(BillingDetails billingDetails) {
         Utils.checkNotNull(billingDetails, "billingDetails");
         this.billingDetails = JsonNullable.of(billingDetails);
         return this;
@@ -170,7 +170,7 @@ public class GuestBuyerInput {
     /**
      * The billing name, address, email, and other fields for this buyer.
      */
-    public GuestBuyerInput withBillingDetails(JsonNullable<? extends BillingDetailsInput> billingDetails) {
+    public GuestBuyer withBillingDetails(JsonNullable<? extends BillingDetails> billingDetails) {
         Utils.checkNotNull(billingDetails, "billingDetails");
         this.billingDetails = billingDetails;
         return this;
@@ -179,7 +179,7 @@ public class GuestBuyerInput {
     /**
      * The buyer account number
      */
-    public GuestBuyerInput withAccountNumber(String accountNumber) {
+    public GuestBuyer withAccountNumber(String accountNumber) {
         Utils.checkNotNull(accountNumber, "accountNumber");
         this.accountNumber = JsonNullable.of(accountNumber);
         return this;
@@ -188,7 +188,7 @@ public class GuestBuyerInput {
     /**
      * The buyer account number
      */
-    public GuestBuyerInput withAccountNumber(JsonNullable<String> accountNumber) {
+    public GuestBuyer withAccountNumber(JsonNullable<String> accountNumber) {
         Utils.checkNotNull(accountNumber, "accountNumber");
         this.accountNumber = accountNumber;
         return this;
@@ -197,7 +197,7 @@ public class GuestBuyerInput {
     /**
      * The optional shipping details for this buyer.
      */
-    public GuestBuyerInput withShippingDetails(ShippingDetailsCreate shippingDetails) {
+    public GuestBuyer withShippingDetails(ShippingDetailsCreate shippingDetails) {
         Utils.checkNotNull(shippingDetails, "shippingDetails");
         this.shippingDetails = JsonNullable.of(shippingDetails);
         return this;
@@ -206,7 +206,7 @@ public class GuestBuyerInput {
     /**
      * The optional shipping details for this buyer.
      */
-    public GuestBuyerInput withShippingDetails(JsonNullable<? extends ShippingDetailsCreate> shippingDetails) {
+    public GuestBuyer withShippingDetails(JsonNullable<? extends ShippingDetailsCreate> shippingDetails) {
         Utils.checkNotNull(shippingDetails, "shippingDetails");
         this.shippingDetails = shippingDetails;
         return this;
@@ -220,7 +220,7 @@ public class GuestBuyerInput {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        GuestBuyerInput other = (GuestBuyerInput) o;
+        GuestBuyer other = (GuestBuyer) o;
         return 
             Utils.enhancedDeepEquals(this.displayName, other.displayName) &&
             Utils.enhancedDeepEquals(this.externalIdentifier, other.externalIdentifier) &&
@@ -238,7 +238,7 @@ public class GuestBuyerInput {
     
     @Override
     public String toString() {
-        return Utils.toString(GuestBuyerInput.class,
+        return Utils.toString(GuestBuyer.class,
                 "displayName", displayName,
                 "externalIdentifier", externalIdentifier,
                 "billingDetails", billingDetails,
@@ -253,7 +253,7 @@ public class GuestBuyerInput {
 
         private JsonNullable<String> externalIdentifier = JsonNullable.undefined();
 
-        private JsonNullable<? extends BillingDetailsInput> billingDetails = JsonNullable.undefined();
+        private JsonNullable<? extends BillingDetails> billingDetails = JsonNullable.undefined();
 
         private JsonNullable<String> accountNumber = JsonNullable.undefined();
 
@@ -305,7 +305,7 @@ public class GuestBuyerInput {
         /**
          * The billing name, address, email, and other fields for this buyer.
          */
-        public Builder billingDetails(BillingDetailsInput billingDetails) {
+        public Builder billingDetails(BillingDetails billingDetails) {
             Utils.checkNotNull(billingDetails, "billingDetails");
             this.billingDetails = JsonNullable.of(billingDetails);
             return this;
@@ -314,7 +314,7 @@ public class GuestBuyerInput {
         /**
          * The billing name, address, email, and other fields for this buyer.
          */
-        public Builder billingDetails(JsonNullable<? extends BillingDetailsInput> billingDetails) {
+        public Builder billingDetails(JsonNullable<? extends BillingDetails> billingDetails) {
             Utils.checkNotNull(billingDetails, "billingDetails");
             this.billingDetails = billingDetails;
             return this;
@@ -358,9 +358,9 @@ public class GuestBuyerInput {
             return this;
         }
 
-        public GuestBuyerInput build() {
+        public GuestBuyer build() {
 
-            return new GuestBuyerInput(
+            return new GuestBuyer(
                 displayName, externalIdentifier, billingDetails,
                 accountNumber, shippingDetails);
         }

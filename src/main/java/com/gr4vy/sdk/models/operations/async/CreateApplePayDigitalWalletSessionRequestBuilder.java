@@ -11,7 +11,6 @@ import com.gr4vy.sdk.models.operations.CreateApplePayDigitalWalletSessionRequest
 import com.gr4vy.sdk.operations.CreateApplePayDigitalWalletSession;
 import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.Utils;
-import java.lang.Exception;
 import java.lang.String;
 import java.util.concurrent.CompletableFuture;
 import org.openapitools.jackson.nullable.JsonNullable;
@@ -54,7 +53,7 @@ public class CreateApplePayDigitalWalletSessionRequestBuilder {
         return request;
     }
 
-    public CompletableFuture<CreateApplePayDigitalWalletSessionResponse> call() throws Exception {
+    public CompletableFuture<CreateApplePayDigitalWalletSessionResponse> call() {
         
         AsyncRequestOperation<CreateApplePayDigitalWalletSessionRequest, CreateApplePayDigitalWalletSessionResponse> operation
               = new CreateApplePayDigitalWalletSession.Async(sdkConfiguration, _headers);

@@ -10,7 +10,6 @@ import com.gr4vy.sdk.models.components.GiftCardBalanceRequest;
 import com.gr4vy.sdk.operations.ListGiftCardBalances;
 import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.Utils;
-import java.lang.Exception;
 import java.lang.String;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -52,7 +51,7 @@ public class ListGiftCardBalancesRequestBuilder {
         return request;
     }
 
-    public ListGiftCardBalancesResponse call() throws Exception {
+    public ListGiftCardBalancesResponse call() {
         
         RequestOperation<ListGiftCardBalancesRequest, ListGiftCardBalancesResponse> operation
               = new ListGiftCardBalances.Sync(sdkConfiguration, _headers);

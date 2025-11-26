@@ -40,21 +40,32 @@ public class CybersourceOptions {
     @JsonProperty("ship_to_method")
     private JsonNullable<String> shipToMethod;
 
+    /**
+     * Brief description of the order or any comment you wish to add to the order.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("comments")
+    private JsonNullable<String> comments;
+
     @JsonCreator
     public CybersourceOptions(
             @JsonProperty("meta_key_merchant_id") JsonNullable<String> metaKeyMerchantId,
             @JsonProperty("merchant_defined_information") JsonNullable<? extends Map<String, String>> merchantDefinedInformation,
-            @JsonProperty("ship_to_method") JsonNullable<String> shipToMethod) {
+            @JsonProperty("ship_to_method") JsonNullable<String> shipToMethod,
+            @JsonProperty("comments") JsonNullable<String> comments) {
         Utils.checkNotNull(metaKeyMerchantId, "metaKeyMerchantId");
         Utils.checkNotNull(merchantDefinedInformation, "merchantDefinedInformation");
         Utils.checkNotNull(shipToMethod, "shipToMethod");
+        Utils.checkNotNull(comments, "comments");
         this.metaKeyMerchantId = metaKeyMerchantId;
         this.merchantDefinedInformation = merchantDefinedInformation;
         this.shipToMethod = shipToMethod;
+        this.comments = comments;
     }
     
     public CybersourceOptions() {
-        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
+        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined());
     }
 
     /**
@@ -82,6 +93,14 @@ public class CybersourceOptions {
     @JsonIgnore
     public JsonNullable<String> shipToMethod() {
         return shipToMethod;
+    }
+
+    /**
+     * Brief description of the order or any comment you wish to add to the order.
+     */
+    @JsonIgnore
+    public JsonNullable<String> comments() {
+        return comments;
     }
 
     public static Builder builder() {
@@ -147,6 +166,24 @@ public class CybersourceOptions {
         return this;
     }
 
+    /**
+     * Brief description of the order or any comment you wish to add to the order.
+     */
+    public CybersourceOptions withComments(String comments) {
+        Utils.checkNotNull(comments, "comments");
+        this.comments = JsonNullable.of(comments);
+        return this;
+    }
+
+    /**
+     * Brief description of the order or any comment you wish to add to the order.
+     */
+    public CybersourceOptions withComments(JsonNullable<String> comments) {
+        Utils.checkNotNull(comments, "comments");
+        this.comments = comments;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -159,13 +196,15 @@ public class CybersourceOptions {
         return 
             Utils.enhancedDeepEquals(this.metaKeyMerchantId, other.metaKeyMerchantId) &&
             Utils.enhancedDeepEquals(this.merchantDefinedInformation, other.merchantDefinedInformation) &&
-            Utils.enhancedDeepEquals(this.shipToMethod, other.shipToMethod);
+            Utils.enhancedDeepEquals(this.shipToMethod, other.shipToMethod) &&
+            Utils.enhancedDeepEquals(this.comments, other.comments);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            metaKeyMerchantId, merchantDefinedInformation, shipToMethod);
+            metaKeyMerchantId, merchantDefinedInformation, shipToMethod,
+            comments);
     }
     
     @Override
@@ -173,7 +212,8 @@ public class CybersourceOptions {
         return Utils.toString(CybersourceOptions.class,
                 "metaKeyMerchantId", metaKeyMerchantId,
                 "merchantDefinedInformation", merchantDefinedInformation,
-                "shipToMethod", shipToMethod);
+                "shipToMethod", shipToMethod,
+                "comments", comments);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -184,6 +224,8 @@ public class CybersourceOptions {
         private JsonNullable<? extends Map<String, String>> merchantDefinedInformation = JsonNullable.undefined();
 
         private JsonNullable<String> shipToMethod = JsonNullable.undefined();
+
+        private JsonNullable<String> comments = JsonNullable.undefined();
 
         private Builder() {
           // force use of static builder() method
@@ -250,10 +292,30 @@ public class CybersourceOptions {
             return this;
         }
 
+
+        /**
+         * Brief description of the order or any comment you wish to add to the order.
+         */
+        public Builder comments(String comments) {
+            Utils.checkNotNull(comments, "comments");
+            this.comments = JsonNullable.of(comments);
+            return this;
+        }
+
+        /**
+         * Brief description of the order or any comment you wish to add to the order.
+         */
+        public Builder comments(JsonNullable<String> comments) {
+            Utils.checkNotNull(comments, "comments");
+            this.comments = comments;
+            return this;
+        }
+
         public CybersourceOptions build() {
 
             return new CybersourceOptions(
-                metaKeyMerchantId, merchantDefinedInformation, shipToMethod);
+                metaKeyMerchantId, merchantDefinedInformation, shipToMethod,
+                comments);
         }
 
     }

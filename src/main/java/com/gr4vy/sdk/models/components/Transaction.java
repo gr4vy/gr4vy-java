@@ -434,6 +434,13 @@ public class Transaction {
     private JsonNullable<Long> installmentCount;
 
     /**
+     * A session token that can be used to fetch session data for direct client integrations.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("session_token")
+    private JsonNullable<String> sessionToken;
+
+    /**
      * The sales tax amount for this transaction, represented as a monetary amount in the smallest currency
      * unit for the given currency, for example `1299` cents to create an authorization for `$12.99`
      */
@@ -447,6 +454,13 @@ public class Transaction {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("merchant_tax_id")
     private JsonNullable<String> merchantTaxId;
+
+    /**
+     * Invoice number or Purchase Order number.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("purchase_order_number")
+    private JsonNullable<String> purchaseOrderNumber;
 
     /**
      * Customer code or reference.
@@ -543,8 +557,10 @@ public class Transaction {
             @JsonProperty("recipient") JsonNullable<? extends Recipient> recipient,
             @JsonProperty("merchant_advice_code") JsonNullable<String> merchantAdviceCode,
             @JsonProperty("installment_count") JsonNullable<Long> installmentCount,
+            @JsonProperty("session_token") JsonNullable<String> sessionToken,
             @JsonProperty("tax_amount") JsonNullable<Long> taxAmount,
             @JsonProperty("merchant_tax_id") JsonNullable<String> merchantTaxId,
+            @JsonProperty("purchase_order_number") JsonNullable<String> purchaseOrderNumber,
             @JsonProperty("customer_reference_number") JsonNullable<String> customerReferenceNumber,
             @JsonProperty("amount_includes_tax") JsonNullable<Boolean> amountIncludesTax,
             @JsonProperty("supplier_order_number") JsonNullable<String> supplierOrderNumber,
@@ -608,8 +624,10 @@ public class Transaction {
         Utils.checkNotNull(recipient, "recipient");
         Utils.checkNotNull(merchantAdviceCode, "merchantAdviceCode");
         Utils.checkNotNull(installmentCount, "installmentCount");
+        Utils.checkNotNull(sessionToken, "sessionToken");
         Utils.checkNotNull(taxAmount, "taxAmount");
         Utils.checkNotNull(merchantTaxId, "merchantTaxId");
+        Utils.checkNotNull(purchaseOrderNumber, "purchaseOrderNumber");
         Utils.checkNotNull(customerReferenceNumber, "customerReferenceNumber");
         Utils.checkNotNull(amountIncludesTax, "amountIncludesTax");
         Utils.checkNotNull(supplierOrderNumber, "supplierOrderNumber");
@@ -674,8 +692,10 @@ public class Transaction {
         this.recipient = recipient;
         this.merchantAdviceCode = merchantAdviceCode;
         this.installmentCount = installmentCount;
+        this.sessionToken = sessionToken;
         this.taxAmount = taxAmount;
         this.merchantTaxId = merchantTaxId;
+        this.purchaseOrderNumber = purchaseOrderNumber;
         this.customerReferenceNumber = customerReferenceNumber;
         this.amountIncludesTax = amountIncludesTax;
         this.supplierOrderNumber = supplierOrderNumber;
@@ -727,7 +747,8 @@ public class Transaction {
             accountFundingTransaction, JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined());
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined());
     }
 
     /**
@@ -1231,6 +1252,14 @@ public class Transaction {
     }
 
     /**
+     * A session token that can be used to fetch session data for direct client integrations.
+     */
+    @JsonIgnore
+    public JsonNullable<String> sessionToken() {
+        return sessionToken;
+    }
+
+    /**
      * The sales tax amount for this transaction, represented as a monetary amount in the smallest currency
      * unit for the given currency, for example `1299` cents to create an authorization for `$12.99`
      */
@@ -1245,6 +1274,14 @@ public class Transaction {
     @JsonIgnore
     public JsonNullable<String> merchantTaxId() {
         return merchantTaxId;
+    }
+
+    /**
+     * Invoice number or Purchase Order number.
+     */
+    @JsonIgnore
+    public JsonNullable<String> purchaseOrderNumber() {
+        return purchaseOrderNumber;
     }
 
     /**
@@ -2161,6 +2198,24 @@ public class Transaction {
     }
 
     /**
+     * A session token that can be used to fetch session data for direct client integrations.
+     */
+    public Transaction withSessionToken(String sessionToken) {
+        Utils.checkNotNull(sessionToken, "sessionToken");
+        this.sessionToken = JsonNullable.of(sessionToken);
+        return this;
+    }
+
+    /**
+     * A session token that can be used to fetch session data for direct client integrations.
+     */
+    public Transaction withSessionToken(JsonNullable<String> sessionToken) {
+        Utils.checkNotNull(sessionToken, "sessionToken");
+        this.sessionToken = sessionToken;
+        return this;
+    }
+
+    /**
      * The sales tax amount for this transaction, represented as a monetary amount in the smallest currency
      * unit for the given currency, for example `1299` cents to create an authorization for `$12.99`
      */
@@ -2195,6 +2250,24 @@ public class Transaction {
     public Transaction withMerchantTaxId(JsonNullable<String> merchantTaxId) {
         Utils.checkNotNull(merchantTaxId, "merchantTaxId");
         this.merchantTaxId = merchantTaxId;
+        return this;
+    }
+
+    /**
+     * Invoice number or Purchase Order number.
+     */
+    public Transaction withPurchaseOrderNumber(String purchaseOrderNumber) {
+        Utils.checkNotNull(purchaseOrderNumber, "purchaseOrderNumber");
+        this.purchaseOrderNumber = JsonNullable.of(purchaseOrderNumber);
+        return this;
+    }
+
+    /**
+     * Invoice number or Purchase Order number.
+     */
+    public Transaction withPurchaseOrderNumber(JsonNullable<String> purchaseOrderNumber) {
+        Utils.checkNotNull(purchaseOrderNumber, "purchaseOrderNumber");
+        this.purchaseOrderNumber = purchaseOrderNumber;
         return this;
     }
 
@@ -2357,8 +2430,10 @@ public class Transaction {
             Utils.enhancedDeepEquals(this.recipient, other.recipient) &&
             Utils.enhancedDeepEquals(this.merchantAdviceCode, other.merchantAdviceCode) &&
             Utils.enhancedDeepEquals(this.installmentCount, other.installmentCount) &&
+            Utils.enhancedDeepEquals(this.sessionToken, other.sessionToken) &&
             Utils.enhancedDeepEquals(this.taxAmount, other.taxAmount) &&
             Utils.enhancedDeepEquals(this.merchantTaxId, other.merchantTaxId) &&
+            Utils.enhancedDeepEquals(this.purchaseOrderNumber, other.purchaseOrderNumber) &&
             Utils.enhancedDeepEquals(this.customerReferenceNumber, other.customerReferenceNumber) &&
             Utils.enhancedDeepEquals(this.amountIncludesTax, other.amountIncludesTax) &&
             Utils.enhancedDeepEquals(this.supplierOrderNumber, other.supplierOrderNumber) &&
@@ -2388,9 +2463,10 @@ public class Transaction {
             capturedAt, voidedAt, canceledAt,
             approvalExpiresAt, buyerApprovalTimedoutAt, intentOutcome,
             multiTender, accountFundingTransaction, recipient,
-            merchantAdviceCode, installmentCount, taxAmount,
-            merchantTaxId, customerReferenceNumber, amountIncludesTax,
-            supplierOrderNumber, dutyAmount, shippingAmount);
+            merchantAdviceCode, installmentCount, sessionToken,
+            taxAmount, merchantTaxId, purchaseOrderNumber,
+            customerReferenceNumber, amountIncludesTax, supplierOrderNumber,
+            dutyAmount, shippingAmount);
     }
     
     @Override
@@ -2455,8 +2531,10 @@ public class Transaction {
                 "recipient", recipient,
                 "merchantAdviceCode", merchantAdviceCode,
                 "installmentCount", installmentCount,
+                "sessionToken", sessionToken,
                 "taxAmount", taxAmount,
                 "merchantTaxId", merchantTaxId,
+                "purchaseOrderNumber", purchaseOrderNumber,
                 "customerReferenceNumber", customerReferenceNumber,
                 "amountIncludesTax", amountIncludesTax,
                 "supplierOrderNumber", supplierOrderNumber,
@@ -2583,9 +2661,13 @@ public class Transaction {
 
         private JsonNullable<Long> installmentCount = JsonNullable.undefined();
 
+        private JsonNullable<String> sessionToken = JsonNullable.undefined();
+
         private JsonNullable<Long> taxAmount = JsonNullable.undefined();
 
         private JsonNullable<String> merchantTaxId = JsonNullable.undefined();
+
+        private JsonNullable<String> purchaseOrderNumber = JsonNullable.undefined();
 
         private JsonNullable<String> customerReferenceNumber = JsonNullable.undefined();
 
@@ -3527,6 +3609,25 @@ public class Transaction {
 
 
         /**
+         * A session token that can be used to fetch session data for direct client integrations.
+         */
+        public Builder sessionToken(String sessionToken) {
+            Utils.checkNotNull(sessionToken, "sessionToken");
+            this.sessionToken = JsonNullable.of(sessionToken);
+            return this;
+        }
+
+        /**
+         * A session token that can be used to fetch session data for direct client integrations.
+         */
+        public Builder sessionToken(JsonNullable<String> sessionToken) {
+            Utils.checkNotNull(sessionToken, "sessionToken");
+            this.sessionToken = sessionToken;
+            return this;
+        }
+
+
+        /**
          * The sales tax amount for this transaction, represented as a monetary amount in the smallest currency
          * unit for the given currency, for example `1299` cents to create an authorization for `$12.99`
          */
@@ -3562,6 +3663,25 @@ public class Transaction {
         public Builder merchantTaxId(JsonNullable<String> merchantTaxId) {
             Utils.checkNotNull(merchantTaxId, "merchantTaxId");
             this.merchantTaxId = merchantTaxId;
+            return this;
+        }
+
+
+        /**
+         * Invoice number or Purchase Order number.
+         */
+        public Builder purchaseOrderNumber(String purchaseOrderNumber) {
+            Utils.checkNotNull(purchaseOrderNumber, "purchaseOrderNumber");
+            this.purchaseOrderNumber = JsonNullable.of(purchaseOrderNumber);
+            return this;
+        }
+
+        /**
+         * Invoice number or Purchase Order number.
+         */
+        public Builder purchaseOrderNumber(JsonNullable<String> purchaseOrderNumber) {
+            Utils.checkNotNull(purchaseOrderNumber, "purchaseOrderNumber");
+            this.purchaseOrderNumber = purchaseOrderNumber;
             return this;
         }
 
@@ -3685,9 +3805,10 @@ public class Transaction {
                 voidedAt, canceledAt, approvalExpiresAt,
                 buyerApprovalTimedoutAt, intentOutcome, multiTender,
                 accountFundingTransaction, recipient, merchantAdviceCode,
-                installmentCount, taxAmount, merchantTaxId,
-                customerReferenceNumber, amountIncludesTax, supplierOrderNumber,
-                dutyAmount, shippingAmount);
+                installmentCount, sessionToken, taxAmount,
+                merchantTaxId, purchaseOrderNumber, customerReferenceNumber,
+                amountIncludesTax, supplierOrderNumber, dutyAmount,
+                shippingAmount);
         }
 
 

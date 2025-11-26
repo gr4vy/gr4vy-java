@@ -11,7 +11,6 @@ import com.gr4vy.sdk.models.operations.CreatePaymentMethodPaymentServiceTokenReq
 import com.gr4vy.sdk.operations.CreatePaymentMethodPaymentServiceToken;
 import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.Utils;
-import java.lang.Exception;
 import java.lang.String;
 import java.util.concurrent.CompletableFuture;
 import org.openapitools.jackson.nullable.JsonNullable;
@@ -62,7 +61,7 @@ public class CreatePaymentMethodPaymentServiceTokenRequestBuilder {
         return request;
     }
 
-    public CompletableFuture<CreatePaymentMethodPaymentServiceTokenResponse> call() throws Exception {
+    public CompletableFuture<CreatePaymentMethodPaymentServiceTokenResponse> call() {
         
         AsyncRequestOperation<CreatePaymentMethodPaymentServiceTokenRequest, CreatePaymentMethodPaymentServiceTokenResponse> operation
               = new CreatePaymentMethodPaymentServiceToken.Async(sdkConfiguration, _headers);

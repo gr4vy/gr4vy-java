@@ -11,7 +11,6 @@ import com.gr4vy.sdk.models.operations.UpdateCheckoutSessionRequest;
 import com.gr4vy.sdk.operations.UpdateCheckoutSession;
 import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.Utils;
-import java.lang.Exception;
 import java.lang.String;
 import java.util.concurrent.CompletableFuture;
 import org.openapitools.jackson.nullable.JsonNullable;
@@ -62,7 +61,7 @@ public class UpdateCheckoutSessionRequestBuilder {
         return request;
     }
 
-    public CompletableFuture<UpdateCheckoutSessionResponse> call() throws Exception {
+    public CompletableFuture<UpdateCheckoutSessionResponse> call() {
         
         AsyncRequestOperation<UpdateCheckoutSessionRequest, UpdateCheckoutSessionResponse> operation
               = new UpdateCheckoutSession.Async(sdkConfiguration, _headers);

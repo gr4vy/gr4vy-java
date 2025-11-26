@@ -10,7 +10,6 @@ import com.gr4vy.sdk.models.components.TransactionUpdate;
 import com.gr4vy.sdk.operations.UpdateTransaction;
 import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.Utils;
-import java.lang.Exception;
 import java.lang.String;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -60,7 +59,7 @@ public class UpdateTransactionRequestBuilder {
         return request;
     }
 
-    public UpdateTransactionResponse call() throws Exception {
+    public UpdateTransactionResponse call() {
         
         RequestOperation<UpdateTransactionRequest, UpdateTransactionResponse> operation
               = new UpdateTransaction.Sync(sdkConfiguration, _headers);

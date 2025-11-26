@@ -24,7 +24,6 @@ import com.gr4vy.sdk.operations.GetGiftCard;
 import com.gr4vy.sdk.operations.ListGiftCards;
 import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.Options;
-import java.lang.Exception;
 import java.lang.String;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
@@ -73,9 +72,9 @@ public class GiftCards {
      * 
      * @param giftCardId The ID of the gift card.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public GetGiftCardResponse get(String giftCardId) throws Exception {
+    public GetGiftCardResponse get(String giftCardId) {
         return get(giftCardId, JsonNullable.undefined(), Optional.empty());
     }
 
@@ -88,11 +87,11 @@ public class GiftCards {
      * @param merchantAccountId 
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
     public GetGiftCardResponse get(
             String giftCardId, JsonNullable<String> merchantAccountId,
-            Optional<Options> options) throws Exception {
+            Optional<Options> options) {
         GetGiftCardRequest request =
             GetGiftCardRequest
                 .builder()
@@ -122,9 +121,9 @@ public class GiftCards {
      * 
      * @param giftCardId The ID of the gift card.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public DeleteGiftCardResponse delete(String giftCardId) throws Exception {
+    public DeleteGiftCardResponse delete(String giftCardId) {
         return delete(giftCardId, JsonNullable.undefined());
     }
 
@@ -136,9 +135,9 @@ public class GiftCards {
      * @param giftCardId The ID of the gift card.
      * @param merchantAccountId 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public DeleteGiftCardResponse delete(String giftCardId, JsonNullable<String> merchantAccountId) throws Exception {
+    public DeleteGiftCardResponse delete(String giftCardId, JsonNullable<String> merchantAccountId) {
         DeleteGiftCardRequest request =
             DeleteGiftCardRequest
                 .builder()
@@ -168,9 +167,9 @@ public class GiftCards {
      * 
      * @param giftCardCreate 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public CreateGiftCardResponse create(GiftCardCreate giftCardCreate) throws Exception {
+    public CreateGiftCardResponse create(GiftCardCreate giftCardCreate) {
         return create(JsonNullable.undefined(), giftCardCreate);
     }
 
@@ -182,9 +181,9 @@ public class GiftCards {
      * @param merchantAccountId 
      * @param giftCardCreate 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public CreateGiftCardResponse create(JsonNullable<String> merchantAccountId, GiftCardCreate giftCardCreate) throws Exception {
+    public CreateGiftCardResponse create(JsonNullable<String> merchantAccountId, GiftCardCreate giftCardCreate) {
         CreateGiftCardRequest request =
             CreateGiftCardRequest
                 .builder()
@@ -214,9 +213,9 @@ public class GiftCards {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public ListGiftCardsResponse list(ListGiftCardsRequest request) throws Exception {
+    public ListGiftCardsResponse list(ListGiftCardsRequest request) {
         return list(request, Optional.empty());
     }
 
@@ -228,9 +227,9 @@ public class GiftCards {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public ListGiftCardsResponse list(ListGiftCardsRequest request, Optional<Options> options) throws Exception {
+    public ListGiftCardsResponse list(ListGiftCardsRequest request, Optional<Options> options) {
         RequestOperation<ListGiftCardsRequest, ListGiftCardsResponse> operation
               = new ListGiftCards.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));

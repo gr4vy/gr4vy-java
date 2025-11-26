@@ -11,7 +11,6 @@ import com.gr4vy.sdk.models.operations.ListTransactionEventsResponse;
 import com.gr4vy.sdk.operations.ListTransactionEvents;
 import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.Options;
-import java.lang.Exception;
 import java.lang.Long;
 import java.lang.String;
 import java.util.Optional;
@@ -59,9 +58,9 @@ public class Events {
      * 
      * @param transactionId The ID of the transaction
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public ListTransactionEventsResponse list(String transactionId) throws Exception {
+    public ListTransactionEventsResponse list(String transactionId) {
         return list(transactionId, JsonNullable.undefined(), Optional.empty(),
             JsonNullable.undefined(), Optional.empty());
     }
@@ -79,12 +78,12 @@ public class Events {
      * @param merchantAccountId 
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
     public ListTransactionEventsResponse list(
             String transactionId, JsonNullable<String> cursor,
             Optional<Long> limit, JsonNullable<String> merchantAccountId,
-            Optional<Options> options) throws Exception {
+            Optional<Options> options) {
         ListTransactionEventsRequest request =
             ListTransactionEventsRequest
                 .builder()

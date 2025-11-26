@@ -11,7 +11,6 @@ import com.gr4vy.sdk.models.operations.CreatePaymentMethodNetworkTokenCryptogram
 import com.gr4vy.sdk.operations.CreatePaymentMethodNetworkTokenCryptogram;
 import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.Utils;
-import java.lang.Exception;
 import java.lang.String;
 import java.util.concurrent.CompletableFuture;
 import org.openapitools.jackson.nullable.JsonNullable;
@@ -70,7 +69,7 @@ public class CreatePaymentMethodNetworkTokenCryptogramRequestBuilder {
         return request;
     }
 
-    public CompletableFuture<CreatePaymentMethodNetworkTokenCryptogramResponse> call() throws Exception {
+    public CompletableFuture<CreatePaymentMethodNetworkTokenCryptogramResponse> call() {
         
         AsyncRequestOperation<CreatePaymentMethodNetworkTokenCryptogramRequest, CreatePaymentMethodNetworkTokenCryptogramResponse> operation
               = new CreatePaymentMethodNetworkTokenCryptogram.Async(sdkConfiguration, _headers);

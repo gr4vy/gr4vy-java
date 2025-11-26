@@ -24,7 +24,7 @@ import java.lang.SuppressWarnings;
 public class PayoutCreatePaymentMethod {
 
     @JsonValue
-    private TypedObject value;
+    private final TypedObject value;
     
     private PayoutCreatePaymentMethod(TypedObject value) {
         this.value = value;
@@ -32,12 +32,12 @@ public class PayoutCreatePaymentMethod {
 
     public static PayoutCreatePaymentMethod of(PaymentMethodCard value) {
         Utils.checkNotNull(value, "value");
-        return new PayoutCreatePaymentMethod(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<PaymentMethodCard>(){}));
+        return new PayoutCreatePaymentMethod(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
     }
 
     public static PayoutCreatePaymentMethod of(PaymentMethodStoredCard value) {
         Utils.checkNotNull(value, "value");
-        return new PayoutCreatePaymentMethod(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<PaymentMethodStoredCard>(){}));
+        return new PayoutCreatePaymentMethod(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
     }
     
     /**
@@ -60,7 +60,7 @@ public class PayoutCreatePaymentMethod {
      **/ 
     public java.lang.Object value() {
         return value.value();
-    }    
+    }
     
     @Override
     public boolean equals(java.lang.Object o) {
@@ -71,7 +71,7 @@ public class PayoutCreatePaymentMethod {
             return false;
         }
         PayoutCreatePaymentMethod other = (PayoutCreatePaymentMethod) o;
-        return Utils.enhancedDeepEquals(this.value.value(), other.value.value()); 
+        return Utils.enhancedDeepEquals(this.value.value(), other.value.value());
     }
     
     @Override
@@ -94,6 +94,6 @@ public class PayoutCreatePaymentMethod {
         return Utils.toString(PayoutCreatePaymentMethod.class,
                 "value", value);
     }
- 
+
 }
 

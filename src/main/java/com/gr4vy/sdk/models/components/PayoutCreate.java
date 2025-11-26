@@ -76,7 +76,7 @@ public class PayoutCreate {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("buyer")
-    private JsonNullable<? extends GuestBuyerInput> buyer;
+    private JsonNullable<? extends GuestBuyer> buyer;
 
     /**
      * The `external_identifier` of a stored buyer to use for this payout. Use this instead of the
@@ -109,7 +109,7 @@ public class PayoutCreate {
             @JsonProperty("category") JsonNullable<? extends PayoutCategory> category,
             @JsonProperty("external_identifier") JsonNullable<String> externalIdentifier,
             @JsonProperty("buyer_id") JsonNullable<String> buyerId,
-            @JsonProperty("buyer") JsonNullable<? extends GuestBuyerInput> buyer,
+            @JsonProperty("buyer") JsonNullable<? extends GuestBuyer> buyer,
             @JsonProperty("buyer_external_identifier") JsonNullable<String> buyerExternalIdentifier,
             @JsonProperty("merchant") JsonNullable<? extends PayoutMerchant> merchant,
             @JsonProperty("connection_options") JsonNullable<? extends PayoutConnectionOptions> connectionOptions) {
@@ -213,8 +213,8 @@ public class PayoutCreate {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<GuestBuyerInput> buyer() {
-        return (JsonNullable<GuestBuyerInput>) buyer;
+    public JsonNullable<GuestBuyer> buyer() {
+        return (JsonNullable<GuestBuyer>) buyer;
     }
 
     /**
@@ -346,7 +346,7 @@ public class PayoutCreate {
      * Inline buyer details for the payout. Use this instead of the `buyer_id` or
      * `buyer_external_identifier`.
      */
-    public PayoutCreate withBuyer(GuestBuyerInput buyer) {
+    public PayoutCreate withBuyer(GuestBuyer buyer) {
         Utils.checkNotNull(buyer, "buyer");
         this.buyer = JsonNullable.of(buyer);
         return this;
@@ -356,7 +356,7 @@ public class PayoutCreate {
      * Inline buyer details for the payout. Use this instead of the `buyer_id` or
      * `buyer_external_identifier`.
      */
-    public PayoutCreate withBuyer(JsonNullable<? extends GuestBuyerInput> buyer) {
+    public PayoutCreate withBuyer(JsonNullable<? extends GuestBuyer> buyer) {
         Utils.checkNotNull(buyer, "buyer");
         this.buyer = buyer;
         return this;
@@ -483,7 +483,7 @@ public class PayoutCreate {
 
         private JsonNullable<String> buyerId = JsonNullable.undefined();
 
-        private JsonNullable<? extends GuestBuyerInput> buyer = JsonNullable.undefined();
+        private JsonNullable<? extends GuestBuyer> buyer = JsonNullable.undefined();
 
         private JsonNullable<String> buyerExternalIdentifier = JsonNullable.undefined();
 
@@ -600,7 +600,7 @@ public class PayoutCreate {
          * Inline buyer details for the payout. Use this instead of the `buyer_id` or
          * `buyer_external_identifier`.
          */
-        public Builder buyer(GuestBuyerInput buyer) {
+        public Builder buyer(GuestBuyer buyer) {
             Utils.checkNotNull(buyer, "buyer");
             this.buyer = JsonNullable.of(buyer);
             return this;
@@ -610,7 +610,7 @@ public class PayoutCreate {
          * Inline buyer details for the payout. Use this instead of the `buyer_id` or
          * `buyer_external_identifier`.
          */
-        public Builder buyer(JsonNullable<? extends GuestBuyerInput> buyer) {
+        public Builder buyer(JsonNullable<? extends GuestBuyer> buyer) {
             Utils.checkNotNull(buyer, "buyer");
             this.buyer = buyer;
             return this;

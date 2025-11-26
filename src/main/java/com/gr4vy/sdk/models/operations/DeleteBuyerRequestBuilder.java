@@ -9,7 +9,6 @@ import com.gr4vy.sdk.SDKConfiguration;
 import com.gr4vy.sdk.operations.DeleteBuyer;
 import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.Utils;
-import java.lang.Exception;
 import java.lang.String;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -51,7 +50,7 @@ public class DeleteBuyerRequestBuilder {
         return request;
     }
 
-    public DeleteBuyerResponse call() throws Exception {
+    public DeleteBuyerResponse call() {
         
         RequestOperation<DeleteBuyerRequest, DeleteBuyerResponse> operation
               = new DeleteBuyer.Sync(sdkConfiguration, _headers);
