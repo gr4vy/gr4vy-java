@@ -4,21 +4,29 @@
 package com.gr4vy.sdk.models.operations.async;
 
 import static com.gr4vy.sdk.operations.Operations.AsyncRequestOperation;
+import static com.gr4vy.sdk.utils.reactive.ReactiveUtils.mapAsync;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.gr4vy.sdk.SDKConfiguration;
 import com.gr4vy.sdk.models.operations.ListTransactionEventsRequest;
 import com.gr4vy.sdk.operations.ListTransactionEvents;
+import com.gr4vy.sdk.utils.Blob;
 import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.LazySingletonValue;
 import com.gr4vy.sdk.utils.Options;
 import com.gr4vy.sdk.utils.RetryConfig;
 import com.gr4vy.sdk.utils.Utils;
+import com.gr4vy.sdk.utils.pagination.AsyncPaginator;
+import com.gr4vy.sdk.utils.pagination.CursorTracker;
 import java.lang.Long;
 import java.lang.String;
+import java.net.http.HttpResponse;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.Flow;
 import org.openapitools.jackson.nullable.JsonNullable;
+import org.reactivestreams.FlowAdapters;
+import org.reactivestreams.Publisher;
 
 public class ListTransactionEventsRequestBuilder {
 
@@ -119,6 +127,44 @@ public class ListTransactionEventsRequestBuilder {
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
+
+    /**
+     * Returns a Publisher that performs next page calls till no more pages
+     * are returned.
+     *
+     * <p>The returned publisher can be used with reactive frameworks:
+     * <pre><code>
+     * Publisher&lt;ListTransactionEventsResponse&gt; publisher = builder.callAsPublisher();
+     * publisher.subscribe(new Subscriber&lt;ListTransactionEventsResponse&gt;() {
+     *     // Handle onNext, onError, onComplete
+     * });
+     * </code></pre>
+     *
+     * @return A Publisher that emits pages asynchronously
+     */
+    public Publisher<ListTransactionEventsResponse> callAsPublisher() {
+        ListTransactionEventsRequest request = this.buildRequest();
+        Optional<Options> options = Optional.of(Options.builder()
+            .retryConfig(retryConfig)
+            .build());
+
+        AsyncRequestOperation<ListTransactionEventsRequest, ListTransactionEventsResponse> operation
+              = new ListTransactionEvents.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
+
+        Flow.Publisher<HttpResponse<Blob>> asyncPaginator = new AsyncPaginator<>(
+            request,
+            new CursorTracker<>("$.next_cursor", String.class),
+                    ListTransactionEventsRequest::withCursor,
+            operation::doRequest);
+
+        Flow.Publisher<ListTransactionEventsResponse> flowPublisher = mapAsync(asyncPaginator, operation::handleResponse);
+
+        // Convert Flow.Publisher to Reactive Streams Publisher at the last stage
+        return FlowAdapters.toPublisher(flowPublisher);
+    }
+
 
     private static final LazySingletonValue<Optional<Long>> _SINGLETON_VALUE_Limit =
             new LazySingletonValue<>(

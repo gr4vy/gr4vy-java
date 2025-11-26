@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 5bbaa3a9-baa0-471b-ba6a-13fd88e8c119
 management:
-  docChecksum: 3e99af568e4a3385134f4b628cf1b3a7
+  docChecksum: f7a46f940cff848463de3ee3d794eb19
   docVersion: 1.0.0
   speakeasyVersion: 1.662.0
   generationVersion: 2.763.3
-  releaseVersion: 2.15.0
-  configChecksum: 13df67e02789233ba482d85b0260cc9c
+  releaseVersion: 2.15.1
+  configChecksum: 7750959f4a88a36759f7187597990a85
   repoURL: https://github.com/gr4vy/gr4vy-java.git
   published: true
 features:
@@ -5019,6 +5019,3 @@ examples:
           application/json: {"type": "error", "code": "gateway_timeout", "status": 504, "message": "Request could not be processed"}
 examplesVersion: 1.0.2
 generatedTests: {}
-releaseNotes: |
-  ## Java SDK Changes Detected:
-  * `gr4vy.transactions.events.list()`:  `response.items.[].context` **Changed** **Breaking** :warning:
