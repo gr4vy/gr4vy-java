@@ -11,7 +11,6 @@ import com.gr4vy.sdk.models.operations.ListBuyerGiftCardsResponse;
 import com.gr4vy.sdk.operations.ListBuyerGiftCards;
 import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.Options;
-import java.lang.Exception;
 import java.lang.String;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
@@ -53,9 +52,9 @@ public class BuyersGiftCards {
      * <p>List all the stored gift cards for a specific buyer.
      * 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public ListBuyerGiftCardsResponse listDirect() throws Exception {
+    public ListBuyerGiftCardsResponse listDirect() {
         return list(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             Optional.empty());
     }
@@ -70,11 +69,11 @@ public class BuyersGiftCards {
      * @param merchantAccountId 
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
     public ListBuyerGiftCardsResponse list(
             JsonNullable<String> buyerExternalIdentifier, JsonNullable<String> buyerId,
-            JsonNullable<String> merchantAccountId, Optional<Options> options) throws Exception {
+            JsonNullable<String> merchantAccountId, Optional<Options> options) {
         ListBuyerGiftCardsRequest request =
             ListBuyerGiftCardsRequest
                 .builder()

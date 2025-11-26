@@ -27,7 +27,7 @@ public class PaymentLinkCreate {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("buyer")
-    private JsonNullable<? extends GuestBuyerInput> buyer;
+    private JsonNullable<? extends GuestBuyer> buyer;
 
     /**
      * The expiration date and time for the payment link.
@@ -166,7 +166,7 @@ public class PaymentLinkCreate {
 
     @JsonCreator
     public PaymentLinkCreate(
-            @JsonProperty("buyer") JsonNullable<? extends GuestBuyerInput> buyer,
+            @JsonProperty("buyer") JsonNullable<? extends GuestBuyer> buyer,
             @JsonProperty("expires_at") JsonNullable<OffsetDateTime> expiresAt,
             @JsonProperty("connection_options") JsonNullable<? extends TransactionConnectionOptions> connectionOptions,
             @JsonProperty("external_identifier") JsonNullable<String> externalIdentifier,
@@ -249,8 +249,8 @@ public class PaymentLinkCreate {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<GuestBuyerInput> buyer() {
-        return (JsonNullable<GuestBuyerInput>) buyer;
+    public JsonNullable<GuestBuyer> buyer() {
+        return (JsonNullable<GuestBuyer>) buyer;
     }
 
     /**
@@ -424,7 +424,7 @@ public class PaymentLinkCreate {
     /**
      * The guest buyer for the payment link.
      */
-    public PaymentLinkCreate withBuyer(GuestBuyerInput buyer) {
+    public PaymentLinkCreate withBuyer(GuestBuyer buyer) {
         Utils.checkNotNull(buyer, "buyer");
         this.buyer = JsonNullable.of(buyer);
         return this;
@@ -433,7 +433,7 @@ public class PaymentLinkCreate {
     /**
      * The guest buyer for the payment link.
      */
-    public PaymentLinkCreate withBuyer(JsonNullable<? extends GuestBuyerInput> buyer) {
+    public PaymentLinkCreate withBuyer(JsonNullable<? extends GuestBuyer> buyer) {
         Utils.checkNotNull(buyer, "buyer");
         this.buyer = buyer;
         return this;
@@ -842,7 +842,7 @@ public class PaymentLinkCreate {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private JsonNullable<? extends GuestBuyerInput> buyer = JsonNullable.undefined();
+        private JsonNullable<? extends GuestBuyer> buyer = JsonNullable.undefined();
 
         private JsonNullable<OffsetDateTime> expiresAt = JsonNullable.undefined();
 
@@ -892,7 +892,7 @@ public class PaymentLinkCreate {
         /**
          * The guest buyer for the payment link.
          */
-        public Builder buyer(GuestBuyerInput buyer) {
+        public Builder buyer(GuestBuyer buyer) {
             Utils.checkNotNull(buyer, "buyer");
             this.buyer = JsonNullable.of(buyer);
             return this;
@@ -901,7 +901,7 @@ public class PaymentLinkCreate {
         /**
          * The guest buyer for the payment link.
          */
-        public Builder buyer(JsonNullable<? extends GuestBuyerInput> buyer) {
+        public Builder buyer(JsonNullable<? extends GuestBuyer> buyer) {
             Utils.checkNotNull(buyer, "buyer");
             this.buyer = buyer;
             return this;

@@ -41,37 +41,39 @@ import java.util.Optional;
  * use the {@code asEnum()} method (after dealing with the `Optional` appropriately).
  *
  */
-@JsonDeserialize(using = Type._Deserializer.class)
-@JsonSerialize(using = Type._Serializer.class)
-public class Type {
+@JsonDeserialize(using = PaypalShippingOptionsItemType._Deserializer.class)
+@JsonSerialize(using = PaypalShippingOptionsItemType._Serializer.class)
+public class PaypalShippingOptionsItemType {
 
-    public static final Type TANGIBLE = new Type("TANGIBLE");
-    public static final Type NON_TANGIBLE = new Type("NON_TANGIBLE");
+    public static final PaypalShippingOptionsItemType SHIPPING = new PaypalShippingOptionsItemType("SHIPPING");
+    public static final PaypalShippingOptionsItemType PICKUP = new PaypalShippingOptionsItemType("PICKUP");
+    public static final PaypalShippingOptionsItemType PICKUP_IN_STORE = new PaypalShippingOptionsItemType("PICKUP_IN_STORE");
+    public static final PaypalShippingOptionsItemType PICKUP_FROM_PERSON = new PaypalShippingOptionsItemType("PICKUP_FROM_PERSON");
 
     // This map will grow whenever a Color gets created with a new
     // unrecognized value (a potential memory leak if the user is not
     // careful). Keep this field lower case to avoid clashing with
     // generated member names which will always be upper cased (Java
     // convention)
-    private static final Map<String, Type> values = createValuesMap();
-    private static final Map<String, TypeEnum> enums = createEnumsMap();
+    private static final Map<String, PaypalShippingOptionsItemType> values = createValuesMap();
+    private static final Map<String, PaypalShippingOptionsItemTypeEnum> enums = createEnumsMap();
 
     private final String value;
 
-    private Type(String value) {
+    private PaypalShippingOptionsItemType(String value) {
         this.value = value;
     }
 
     /**
-     * Returns a Type with the given value. For a specific value the 
+     * Returns a PaypalShippingOptionsItemType with the given value. For a specific value the 
      * returned object will always be a singleton so reference equality 
      * is satisfied when the values are the same.
      * 
-     * @param value value to be wrapped as Type
+     * @param value value to be wrapped as PaypalShippingOptionsItemType
      */ 
-    public static Type of(String value) {
-        synchronized (Type.class) {
-            return values.computeIfAbsent(value, v -> new Type(v));
+    public static PaypalShippingOptionsItemType of(String value) {
+        synchronized (PaypalShippingOptionsItemType.class) {
+            return values.computeIfAbsent(value, v -> new PaypalShippingOptionsItemType(v));
         }
     }
 
@@ -79,7 +81,7 @@ public class Type {
         return value;
     }
 
-    public Optional<TypeEnum> asEnum() {
+    public Optional<PaypalShippingOptionsItemTypeEnum> asEnum() {
         return Optional.ofNullable(enums.getOrDefault(value, null));
     }
 
@@ -100,74 +102,80 @@ public class Type {
             return false;
         if (getClass() != obj.getClass())
             return false;
-        Type other = (Type) obj;
+        PaypalShippingOptionsItemType other = (PaypalShippingOptionsItemType) obj;
         return Objects.equals(value, other.value);
     }
 
     @Override
     public String toString() {
-        return "Type [value=" + value + "]";
+        return "PaypalShippingOptionsItemType [value=" + value + "]";
     }
 
     // return an array just like an enum
-    public static Type[] values() {
-        synchronized (Type.class) {
-            return values.values().toArray(new Type[] {});
+    public static PaypalShippingOptionsItemType[] values() {
+        synchronized (PaypalShippingOptionsItemType.class) {
+            return values.values().toArray(new PaypalShippingOptionsItemType[] {});
         }
     }
 
-    private static final Map<String, Type> createValuesMap() {
-        Map<String, Type> map = new LinkedHashMap<>();
-        map.put("TANGIBLE", TANGIBLE);
-        map.put("NON_TANGIBLE", NON_TANGIBLE);
+    private static final Map<String, PaypalShippingOptionsItemType> createValuesMap() {
+        Map<String, PaypalShippingOptionsItemType> map = new LinkedHashMap<>();
+        map.put("SHIPPING", SHIPPING);
+        map.put("PICKUP", PICKUP);
+        map.put("PICKUP_IN_STORE", PICKUP_IN_STORE);
+        map.put("PICKUP_FROM_PERSON", PICKUP_FROM_PERSON);
         return map;
     }
 
-    private static final Map<String, TypeEnum> createEnumsMap() {
-        Map<String, TypeEnum> map = new HashMap<>();
-        map.put("TANGIBLE", TypeEnum.TANGIBLE);
-        map.put("NON_TANGIBLE", TypeEnum.NON_TANGIBLE);
+    private static final Map<String, PaypalShippingOptionsItemTypeEnum> createEnumsMap() {
+        Map<String, PaypalShippingOptionsItemTypeEnum> map = new HashMap<>();
+        map.put("SHIPPING", PaypalShippingOptionsItemTypeEnum.SHIPPING);
+        map.put("PICKUP", PaypalShippingOptionsItemTypeEnum.PICKUP);
+        map.put("PICKUP_IN_STORE", PaypalShippingOptionsItemTypeEnum.PICKUP_IN_STORE);
+        map.put("PICKUP_FROM_PERSON", PaypalShippingOptionsItemTypeEnum.PICKUP_FROM_PERSON);
         return map;
     }
     
     @SuppressWarnings("serial")
-    public static final class _Serializer extends StdSerializer<Type> {
+    public static final class _Serializer extends StdSerializer<PaypalShippingOptionsItemType> {
 
         protected _Serializer() {
-            super(Type.class);
+            super(PaypalShippingOptionsItemType.class);
         }
 
         @Override
-        public void serialize(Type value, JsonGenerator g, SerializerProvider provider)
+        public void serialize(PaypalShippingOptionsItemType value, JsonGenerator g, SerializerProvider provider)
                 throws IOException, JsonProcessingException {
             g.writeObject(value.value);
         }
     }
 
     @SuppressWarnings("serial")
-    public static final class _Deserializer extends StdDeserializer<Type> {
+    public static final class _Deserializer extends StdDeserializer<PaypalShippingOptionsItemType> {
 
         protected _Deserializer() {
-            super(Type.class);
+            super(PaypalShippingOptionsItemType.class);
         }
 
         @Override
-        public Type deserialize(JsonParser p, DeserializationContext ctxt)
+        public PaypalShippingOptionsItemType deserialize(JsonParser p, DeserializationContext ctxt)
                 throws IOException, JacksonException {
             String v = p.readValueAs(new TypeReference<String>() {});
             // use the factory method to ensure we get singletons
-            return Type.of(v);
+            return PaypalShippingOptionsItemType.of(v);
         }
     }
     
-    public enum TypeEnum {
+    public enum PaypalShippingOptionsItemTypeEnum {
 
-        TANGIBLE("TANGIBLE"),
-        NON_TANGIBLE("NON_TANGIBLE"),;
+        SHIPPING("SHIPPING"),
+        PICKUP("PICKUP"),
+        PICKUP_IN_STORE("PICKUP_IN_STORE"),
+        PICKUP_FROM_PERSON("PICKUP_FROM_PERSON"),;
 
         private final String value;
 
-        private TypeEnum(String value) {
+        private PaypalShippingOptionsItemTypeEnum(String value) {
             this.value = value;
         }
 

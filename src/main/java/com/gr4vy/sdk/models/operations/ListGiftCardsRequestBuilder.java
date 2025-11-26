@@ -17,7 +17,6 @@ import com.gr4vy.sdk.utils.Utils;
 import com.gr4vy.sdk.utils.pagination.CursorTracker;
 import com.gr4vy.sdk.utils.pagination.Paginator;
 import java.io.InputStream;
-import java.lang.Exception;
 import java.lang.Iterable;
 import java.lang.String;
 import java.net.http.HttpResponse;
@@ -54,7 +53,7 @@ public class ListGiftCardsRequestBuilder {
         return this;
     }
 
-    public ListGiftCardsResponse call() throws Exception {
+    public ListGiftCardsResponse call() {
         Optional<Options> options = Optional.of(Options.builder()
             .retryConfig(retryConfig)
             .build());

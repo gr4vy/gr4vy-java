@@ -10,7 +10,6 @@ import com.gr4vy.sdk.models.components.PaymentServiceCreate;
 import com.gr4vy.sdk.operations.UpdatePaymentService;
 import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.Utils;
-import java.lang.Exception;
 import java.lang.String;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -52,7 +51,7 @@ public class UpdatePaymentServiceRequestBuilder {
         return request;
     }
 
-    public UpdatePaymentServiceResponse call() throws Exception {
+    public UpdatePaymentServiceResponse call() {
         
         RequestOperation<UpdatePaymentServiceRequest, UpdatePaymentServiceResponse> operation
               = new UpdatePaymentService.Sync(sdkConfiguration, _headers);

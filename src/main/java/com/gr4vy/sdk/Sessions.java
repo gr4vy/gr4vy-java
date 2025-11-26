@@ -20,7 +20,6 @@ import com.gr4vy.sdk.operations.CreateApplePayDigitalWalletSession;
 import com.gr4vy.sdk.operations.CreateClickToPayDigitalWalletSession;
 import com.gr4vy.sdk.operations.CreateGooglePayDigitalWalletSession;
 import com.gr4vy.sdk.utils.Headers;
-import java.lang.Exception;
 import java.lang.String;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -62,9 +61,9 @@ public class Sessions {
      * 
      * @param googlePaySessionRequest 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public CreateGooglePayDigitalWalletSessionResponse googlePay(GooglePaySessionRequest googlePaySessionRequest) throws Exception {
+    public CreateGooglePayDigitalWalletSessionResponse googlePay(GooglePaySessionRequest googlePaySessionRequest) {
         return googlePay(JsonNullable.undefined(), googlePaySessionRequest);
     }
 
@@ -76,9 +75,9 @@ public class Sessions {
      * @param merchantAccountId 
      * @param googlePaySessionRequest 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public CreateGooglePayDigitalWalletSessionResponse googlePay(JsonNullable<String> merchantAccountId, GooglePaySessionRequest googlePaySessionRequest) throws Exception {
+    public CreateGooglePayDigitalWalletSessionResponse googlePay(JsonNullable<String> merchantAccountId, GooglePaySessionRequest googlePaySessionRequest) {
         CreateGooglePayDigitalWalletSessionRequest request =
             CreateGooglePayDigitalWalletSessionRequest
                 .builder()
@@ -108,9 +107,9 @@ public class Sessions {
      * 
      * @param applePaySessionRequest 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public CreateApplePayDigitalWalletSessionResponse applePay(ApplePaySessionRequest applePaySessionRequest) throws Exception {
+    public CreateApplePayDigitalWalletSessionResponse applePay(ApplePaySessionRequest applePaySessionRequest) {
         return applePay(JsonNullable.undefined(), applePaySessionRequest);
     }
 
@@ -122,9 +121,9 @@ public class Sessions {
      * @param merchantAccountId 
      * @param applePaySessionRequest 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public CreateApplePayDigitalWalletSessionResponse applePay(JsonNullable<String> merchantAccountId, ApplePaySessionRequest applePaySessionRequest) throws Exception {
+    public CreateApplePayDigitalWalletSessionResponse applePay(JsonNullable<String> merchantAccountId, ApplePaySessionRequest applePaySessionRequest) {
         CreateApplePayDigitalWalletSessionRequest request =
             CreateApplePayDigitalWalletSessionRequest
                 .builder()
@@ -154,9 +153,9 @@ public class Sessions {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public CreateClickToPayDigitalWalletSessionResponse clickToPay(ClickToPaySessionRequest request) throws Exception {
+    public CreateClickToPayDigitalWalletSessionResponse clickToPay(ClickToPaySessionRequest request) {
         RequestOperation<ClickToPaySessionRequest, CreateClickToPayDigitalWalletSessionResponse> operation
               = new CreateClickToPayDigitalWalletSession.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));

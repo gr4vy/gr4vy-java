@@ -65,7 +65,7 @@ public class TransactionCreate {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("buyer")
-    private JsonNullable<? extends GuestBuyerInput> buyer;
+    private JsonNullable<? extends GuestBuyer> buyer;
 
     /**
      * The ID of the buyer to associate this payment method to. If this field is provided then the
@@ -304,6 +304,13 @@ public class TransactionCreate {
     private JsonNullable<String> merchantTaxId;
 
     /**
+     * Invoice number or Purchase Order number.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("purchase_order_number")
+    private JsonNullable<String> purchaseOrderNumber;
+
+    /**
      * Customer code or reference.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -338,13 +345,21 @@ public class TransactionCreate {
     @JsonProperty("shipping_amount")
     private JsonNullable<Long> shippingAmount;
 
+    /**
+     * Defines the client where the session for this transaction is going to be used. Please refer to the
+     * connections documentation for more guidance.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("integration_client")
+    private JsonNullable<? extends IntegrationClient> integrationClient;
+
     @JsonCreator
     public TransactionCreate(
             @JsonProperty("amount") long amount,
             @JsonProperty("currency") String currency,
             @JsonProperty("country") JsonNullable<String> country,
             @JsonProperty("payment_method") JsonNullable<? extends TransactionCreatePaymentMethod> paymentMethod,
-            @JsonProperty("buyer") JsonNullable<? extends GuestBuyerInput> buyer,
+            @JsonProperty("buyer") JsonNullable<? extends GuestBuyer> buyer,
             @JsonProperty("buyer_id") JsonNullable<String> buyerId,
             @JsonProperty("buyer_external_identifier") JsonNullable<String> buyerExternalIdentifier,
             @JsonProperty("gift_cards") JsonNullable<? extends List<GiftCardUnion>> giftCards,
@@ -372,11 +387,13 @@ public class TransactionCreate {
             @JsonProperty("installment_count") JsonNullable<Long> installmentCount,
             @JsonProperty("tax_amount") JsonNullable<Long> taxAmount,
             @JsonProperty("merchant_tax_id") JsonNullable<String> merchantTaxId,
+            @JsonProperty("purchase_order_number") JsonNullable<String> purchaseOrderNumber,
             @JsonProperty("customer_reference_number") JsonNullable<String> customerReferenceNumber,
             @JsonProperty("amount_includes_tax") JsonNullable<Boolean> amountIncludesTax,
             @JsonProperty("supplier_order_number") JsonNullable<String> supplierOrderNumber,
             @JsonProperty("duty_amount") JsonNullable<Long> dutyAmount,
-            @JsonProperty("shipping_amount") JsonNullable<Long> shippingAmount) {
+            @JsonProperty("shipping_amount") JsonNullable<Long> shippingAmount,
+            @JsonProperty("integration_client") JsonNullable<? extends IntegrationClient> integrationClient) {
         Utils.checkNotNull(amount, "amount");
         Utils.checkNotNull(currency, "currency");
         Utils.checkNotNull(country, "country");
@@ -409,11 +426,13 @@ public class TransactionCreate {
         Utils.checkNotNull(installmentCount, "installmentCount");
         Utils.checkNotNull(taxAmount, "taxAmount");
         Utils.checkNotNull(merchantTaxId, "merchantTaxId");
+        Utils.checkNotNull(purchaseOrderNumber, "purchaseOrderNumber");
         Utils.checkNotNull(customerReferenceNumber, "customerReferenceNumber");
         Utils.checkNotNull(amountIncludesTax, "amountIncludesTax");
         Utils.checkNotNull(supplierOrderNumber, "supplierOrderNumber");
         Utils.checkNotNull(dutyAmount, "dutyAmount");
         Utils.checkNotNull(shippingAmount, "shippingAmount");
+        Utils.checkNotNull(integrationClient, "integrationClient");
         this.amount = amount;
         this.currency = currency;
         this.country = country;
@@ -446,11 +465,13 @@ public class TransactionCreate {
         this.installmentCount = installmentCount;
         this.taxAmount = taxAmount;
         this.merchantTaxId = merchantTaxId;
+        this.purchaseOrderNumber = purchaseOrderNumber;
         this.customerReferenceNumber = customerReferenceNumber;
         this.amountIncludesTax = amountIncludesTax;
         this.supplierOrderNumber = supplierOrderNumber;
         this.dutyAmount = dutyAmount;
         this.shippingAmount = shippingAmount;
+        this.integrationClient = integrationClient;
     }
     
     public TransactionCreate(
@@ -468,7 +489,7 @@ public class TransactionCreate {
             Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined());
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
     }
 
     /**
@@ -520,8 +541,8 @@ public class TransactionCreate {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<GuestBuyerInput> buyer() {
-        return (JsonNullable<GuestBuyerInput>) buyer;
+    public JsonNullable<GuestBuyer> buyer() {
+        return (JsonNullable<GuestBuyer>) buyer;
     }
 
     /**
@@ -798,6 +819,14 @@ public class TransactionCreate {
     }
 
     /**
+     * Invoice number or Purchase Order number.
+     */
+    @JsonIgnore
+    public JsonNullable<String> purchaseOrderNumber() {
+        return purchaseOrderNumber;
+    }
+
+    /**
      * Customer code or reference.
      */
     @JsonIgnore
@@ -835,6 +864,16 @@ public class TransactionCreate {
     @JsonIgnore
     public JsonNullable<Long> shippingAmount() {
         return shippingAmount;
+    }
+
+    /**
+     * Defines the client where the session for this transaction is going to be used. Please refer to the
+     * connections documentation for more guidance.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public JsonNullable<IntegrationClient> integrationClient() {
+        return (JsonNullable<IntegrationClient>) integrationClient;
     }
 
     public static Builder builder() {
@@ -915,7 +954,7 @@ public class TransactionCreate {
      * `buyer_id` or `buyer_external_identifier` keys. No buyer resource will be created on Gr4vy when
      * used.
      */
-    public TransactionCreate withBuyer(GuestBuyerInput buyer) {
+    public TransactionCreate withBuyer(GuestBuyer buyer) {
         Utils.checkNotNull(buyer, "buyer");
         this.buyer = JsonNullable.of(buyer);
         return this;
@@ -926,7 +965,7 @@ public class TransactionCreate {
      * `buyer_id` or `buyer_external_identifier` keys. No buyer resource will be created on Gr4vy when
      * used.
      */
-    public TransactionCreate withBuyer(JsonNullable<? extends GuestBuyerInput> buyer) {
+    public TransactionCreate withBuyer(JsonNullable<? extends GuestBuyer> buyer) {
         Utils.checkNotNull(buyer, "buyer");
         this.buyer = buyer;
         return this;
@@ -1519,6 +1558,24 @@ public class TransactionCreate {
     }
 
     /**
+     * Invoice number or Purchase Order number.
+     */
+    public TransactionCreate withPurchaseOrderNumber(String purchaseOrderNumber) {
+        Utils.checkNotNull(purchaseOrderNumber, "purchaseOrderNumber");
+        this.purchaseOrderNumber = JsonNullable.of(purchaseOrderNumber);
+        return this;
+    }
+
+    /**
+     * Invoice number or Purchase Order number.
+     */
+    public TransactionCreate withPurchaseOrderNumber(JsonNullable<String> purchaseOrderNumber) {
+        Utils.checkNotNull(purchaseOrderNumber, "purchaseOrderNumber");
+        this.purchaseOrderNumber = purchaseOrderNumber;
+        return this;
+    }
+
+    /**
      * Customer code or reference.
      */
     public TransactionCreate withCustomerReferenceNumber(String customerReferenceNumber) {
@@ -1608,6 +1665,26 @@ public class TransactionCreate {
         return this;
     }
 
+    /**
+     * Defines the client where the session for this transaction is going to be used. Please refer to the
+     * connections documentation for more guidance.
+     */
+    public TransactionCreate withIntegrationClient(IntegrationClient integrationClient) {
+        Utils.checkNotNull(integrationClient, "integrationClient");
+        this.integrationClient = JsonNullable.of(integrationClient);
+        return this;
+    }
+
+    /**
+     * Defines the client where the session for this transaction is going to be used. Please refer to the
+     * connections documentation for more guidance.
+     */
+    public TransactionCreate withIntegrationClient(JsonNullable<? extends IntegrationClient> integrationClient) {
+        Utils.checkNotNull(integrationClient, "integrationClient");
+        this.integrationClient = integrationClient;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -1650,11 +1727,13 @@ public class TransactionCreate {
             Utils.enhancedDeepEquals(this.installmentCount, other.installmentCount) &&
             Utils.enhancedDeepEquals(this.taxAmount, other.taxAmount) &&
             Utils.enhancedDeepEquals(this.merchantTaxId, other.merchantTaxId) &&
+            Utils.enhancedDeepEquals(this.purchaseOrderNumber, other.purchaseOrderNumber) &&
             Utils.enhancedDeepEquals(this.customerReferenceNumber, other.customerReferenceNumber) &&
             Utils.enhancedDeepEquals(this.amountIncludesTax, other.amountIncludesTax) &&
             Utils.enhancedDeepEquals(this.supplierOrderNumber, other.supplierOrderNumber) &&
             Utils.enhancedDeepEquals(this.dutyAmount, other.dutyAmount) &&
-            Utils.enhancedDeepEquals(this.shippingAmount, other.shippingAmount);
+            Utils.enhancedDeepEquals(this.shippingAmount, other.shippingAmount) &&
+            Utils.enhancedDeepEquals(this.integrationClient, other.integrationClient);
     }
     
     @Override
@@ -1670,9 +1749,9 @@ public class TransactionCreate {
             shippingDetailsId, connectionOptions, asyncCapture,
             antiFraudFingerprint, paymentServiceId, accountFundingTransaction,
             allowPartialAuthorization, recipient, installmentCount,
-            taxAmount, merchantTaxId, customerReferenceNumber,
-            amountIncludesTax, supplierOrderNumber, dutyAmount,
-            shippingAmount);
+            taxAmount, merchantTaxId, purchaseOrderNumber,
+            customerReferenceNumber, amountIncludesTax, supplierOrderNumber,
+            dutyAmount, shippingAmount, integrationClient);
     }
     
     @Override
@@ -1710,11 +1789,13 @@ public class TransactionCreate {
                 "installmentCount", installmentCount,
                 "taxAmount", taxAmount,
                 "merchantTaxId", merchantTaxId,
+                "purchaseOrderNumber", purchaseOrderNumber,
                 "customerReferenceNumber", customerReferenceNumber,
                 "amountIncludesTax", amountIncludesTax,
                 "supplierOrderNumber", supplierOrderNumber,
                 "dutyAmount", dutyAmount,
-                "shippingAmount", shippingAmount);
+                "shippingAmount", shippingAmount,
+                "integrationClient", integrationClient);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -1728,7 +1809,7 @@ public class TransactionCreate {
 
         private JsonNullable<? extends TransactionCreatePaymentMethod> paymentMethod = JsonNullable.undefined();
 
-        private JsonNullable<? extends GuestBuyerInput> buyer = JsonNullable.undefined();
+        private JsonNullable<? extends GuestBuyer> buyer = JsonNullable.undefined();
 
         private JsonNullable<String> buyerId = JsonNullable.undefined();
 
@@ -1784,6 +1865,8 @@ public class TransactionCreate {
 
         private JsonNullable<String> merchantTaxId = JsonNullable.undefined();
 
+        private JsonNullable<String> purchaseOrderNumber = JsonNullable.undefined();
+
         private JsonNullable<String> customerReferenceNumber = JsonNullable.undefined();
 
         private JsonNullable<Boolean> amountIncludesTax = JsonNullable.undefined();
@@ -1793,6 +1876,8 @@ public class TransactionCreate {
         private JsonNullable<Long> dutyAmount = JsonNullable.undefined();
 
         private JsonNullable<Long> shippingAmount = JsonNullable.undefined();
+
+        private JsonNullable<? extends IntegrationClient> integrationClient = JsonNullable.undefined();
 
         private Builder() {
           // force use of static builder() method
@@ -1876,7 +1961,7 @@ public class TransactionCreate {
          * `buyer_id` or `buyer_external_identifier` keys. No buyer resource will be created on Gr4vy when
          * used.
          */
-        public Builder buyer(GuestBuyerInput buyer) {
+        public Builder buyer(GuestBuyer buyer) {
             Utils.checkNotNull(buyer, "buyer");
             this.buyer = JsonNullable.of(buyer);
             return this;
@@ -1887,7 +1972,7 @@ public class TransactionCreate {
          * `buyer_id` or `buyer_external_identifier` keys. No buyer resource will be created on Gr4vy when
          * used.
          */
-        public Builder buyer(JsonNullable<? extends GuestBuyerInput> buyer) {
+        public Builder buyer(JsonNullable<? extends GuestBuyer> buyer) {
             Utils.checkNotNull(buyer, "buyer");
             this.buyer = buyer;
             return this;
@@ -2500,6 +2585,25 @@ public class TransactionCreate {
 
 
         /**
+         * Invoice number or Purchase Order number.
+         */
+        public Builder purchaseOrderNumber(String purchaseOrderNumber) {
+            Utils.checkNotNull(purchaseOrderNumber, "purchaseOrderNumber");
+            this.purchaseOrderNumber = JsonNullable.of(purchaseOrderNumber);
+            return this;
+        }
+
+        /**
+         * Invoice number or Purchase Order number.
+         */
+        public Builder purchaseOrderNumber(JsonNullable<String> purchaseOrderNumber) {
+            Utils.checkNotNull(purchaseOrderNumber, "purchaseOrderNumber");
+            this.purchaseOrderNumber = purchaseOrderNumber;
+            return this;
+        }
+
+
+        /**
          * Customer code or reference.
          */
         public Builder customerReferenceNumber(String customerReferenceNumber) {
@@ -2593,6 +2697,27 @@ public class TransactionCreate {
             return this;
         }
 
+
+        /**
+         * Defines the client where the session for this transaction is going to be used. Please refer to the
+         * connections documentation for more guidance.
+         */
+        public Builder integrationClient(IntegrationClient integrationClient) {
+            Utils.checkNotNull(integrationClient, "integrationClient");
+            this.integrationClient = JsonNullable.of(integrationClient);
+            return this;
+        }
+
+        /**
+         * Defines the client where the session for this transaction is going to be used. Please refer to the
+         * connections documentation for more guidance.
+         */
+        public Builder integrationClient(JsonNullable<? extends IntegrationClient> integrationClient) {
+            Utils.checkNotNull(integrationClient, "integrationClient");
+            this.integrationClient = integrationClient;
+            return this;
+        }
+
         public TransactionCreate build() {
             if (store == null) {
                 store = _SINGLETON_VALUE_Store.value();
@@ -2624,9 +2749,9 @@ public class TransactionCreate {
                 shippingDetailsId, connectionOptions, asyncCapture,
                 antiFraudFingerprint, paymentServiceId, accountFundingTransaction,
                 allowPartialAuthorization, recipient, installmentCount,
-                taxAmount, merchantTaxId, customerReferenceNumber,
-                amountIncludesTax, supplierOrderNumber, dutyAmount,
-                shippingAmount);
+                taxAmount, merchantTaxId, purchaseOrderNumber,
+                customerReferenceNumber, amountIncludesTax, supplierOrderNumber,
+                dutyAmount, shippingAmount, integrationClient);
         }
 
 

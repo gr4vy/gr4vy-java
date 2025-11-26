@@ -9,6 +9,7 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.gr4vy.sdk.utils.Utils;
+import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
@@ -23,15 +24,25 @@ public class MockCardOptions {
     @JsonProperty("merchant_advice_code")
     private JsonNullable<? extends MockCardMerchantAdviceCodeOptions> merchantAdviceCode;
 
+    /**
+     * When set to true, prevents retries on failed transactions.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("skip_retry")
+    private JsonNullable<Boolean> skipRetry;
+
     @JsonCreator
     public MockCardOptions(
-            @JsonProperty("merchant_advice_code") JsonNullable<? extends MockCardMerchantAdviceCodeOptions> merchantAdviceCode) {
+            @JsonProperty("merchant_advice_code") JsonNullable<? extends MockCardMerchantAdviceCodeOptions> merchantAdviceCode,
+            @JsonProperty("skip_retry") JsonNullable<Boolean> skipRetry) {
         Utils.checkNotNull(merchantAdviceCode, "merchantAdviceCode");
+        Utils.checkNotNull(skipRetry, "skipRetry");
         this.merchantAdviceCode = merchantAdviceCode;
+        this.skipRetry = skipRetry;
     }
     
     public MockCardOptions() {
-        this(JsonNullable.undefined());
+        this(JsonNullable.undefined(), JsonNullable.undefined());
     }
 
     /**
@@ -41,6 +52,14 @@ public class MockCardOptions {
     @JsonIgnore
     public JsonNullable<MockCardMerchantAdviceCodeOptions> merchantAdviceCode() {
         return (JsonNullable<MockCardMerchantAdviceCodeOptions>) merchantAdviceCode;
+    }
+
+    /**
+     * When set to true, prevents retries on failed transactions.
+     */
+    @JsonIgnore
+    public JsonNullable<Boolean> skipRetry() {
+        return skipRetry;
     }
 
     public static Builder builder() {
@@ -66,6 +85,24 @@ public class MockCardOptions {
         return this;
     }
 
+    /**
+     * When set to true, prevents retries on failed transactions.
+     */
+    public MockCardOptions withSkipRetry(boolean skipRetry) {
+        Utils.checkNotNull(skipRetry, "skipRetry");
+        this.skipRetry = JsonNullable.of(skipRetry);
+        return this;
+    }
+
+    /**
+     * When set to true, prevents retries on failed transactions.
+     */
+    public MockCardOptions withSkipRetry(JsonNullable<Boolean> skipRetry) {
+        Utils.checkNotNull(skipRetry, "skipRetry");
+        this.skipRetry = skipRetry;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -76,25 +113,29 @@ public class MockCardOptions {
         }
         MockCardOptions other = (MockCardOptions) o;
         return 
-            Utils.enhancedDeepEquals(this.merchantAdviceCode, other.merchantAdviceCode);
+            Utils.enhancedDeepEquals(this.merchantAdviceCode, other.merchantAdviceCode) &&
+            Utils.enhancedDeepEquals(this.skipRetry, other.skipRetry);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            merchantAdviceCode);
+            merchantAdviceCode, skipRetry);
     }
     
     @Override
     public String toString() {
         return Utils.toString(MockCardOptions.class,
-                "merchantAdviceCode", merchantAdviceCode);
+                "merchantAdviceCode", merchantAdviceCode,
+                "skipRetry", skipRetry);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
         private JsonNullable<? extends MockCardMerchantAdviceCodeOptions> merchantAdviceCode = JsonNullable.undefined();
+
+        private JsonNullable<Boolean> skipRetry = JsonNullable.undefined();
 
         private Builder() {
           // force use of static builder() method
@@ -119,10 +160,29 @@ public class MockCardOptions {
             return this;
         }
 
+
+        /**
+         * When set to true, prevents retries on failed transactions.
+         */
+        public Builder skipRetry(boolean skipRetry) {
+            Utils.checkNotNull(skipRetry, "skipRetry");
+            this.skipRetry = JsonNullable.of(skipRetry);
+            return this;
+        }
+
+        /**
+         * When set to true, prevents retries on failed transactions.
+         */
+        public Builder skipRetry(JsonNullable<Boolean> skipRetry) {
+            Utils.checkNotNull(skipRetry, "skipRetry");
+            this.skipRetry = skipRetry;
+            return this;
+        }
+
         public MockCardOptions build() {
 
             return new MockCardOptions(
-                merchantAdviceCode);
+                merchantAdviceCode, skipRetry);
         }
 
     }

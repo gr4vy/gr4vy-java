@@ -21,20 +21,19 @@ import java.util.Map;
 public class RequiredFields2 {
 
     @JsonValue
-    private TypedObject value;
+    private final TypedObject value;
     
     private RequiredFields2(TypedObject value) {
         this.value = value;
     }
 
     public static RequiredFields2 of(boolean value) {
-        Utils.checkNotNull(value, "value");
-        return new RequiredFields2(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<java.lang.Boolean>(){}));
+        return new RequiredFields2(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
     }
 
     public static RequiredFields2 of(Map<String, RequiredFields1> value) {
         Utils.checkNotNull(value, "value");
-        return new RequiredFields2(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<Map<String, RequiredFields1>>(){}));
+        return new RequiredFields2(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
     }
     
     /**
@@ -57,7 +56,7 @@ public class RequiredFields2 {
      **/ 
     public java.lang.Object value() {
         return value.value();
-    }    
+    }
     
     @Override
     public boolean equals(java.lang.Object o) {
@@ -68,7 +67,7 @@ public class RequiredFields2 {
             return false;
         }
         RequiredFields2 other = (RequiredFields2) o;
-        return Utils.enhancedDeepEquals(this.value.value(), other.value.value()); 
+        return Utils.enhancedDeepEquals(this.value.value(), other.value.value());
     }
     
     @Override
@@ -91,6 +90,6 @@ public class RequiredFields2 {
         return Utils.toString(RequiredFields2.class,
                 "value", value);
     }
- 
+
 }
 

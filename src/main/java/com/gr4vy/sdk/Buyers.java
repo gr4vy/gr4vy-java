@@ -29,7 +29,6 @@ import com.gr4vy.sdk.operations.ListBuyers;
 import com.gr4vy.sdk.operations.UpdateBuyer;
 import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.Options;
-import java.lang.Exception;
 import java.lang.String;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
@@ -90,9 +89,9 @@ public class Buyers {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public ListBuyersResponse list(ListBuyersRequest request) throws Exception {
+    public ListBuyersResponse list(ListBuyersRequest request) {
         return list(request, Optional.empty());
     }
 
@@ -104,9 +103,9 @@ public class Buyers {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public ListBuyersResponse list(ListBuyersRequest request, Optional<Options> options) throws Exception {
+    public ListBuyersResponse list(ListBuyersRequest request, Optional<Options> options) {
         RequestOperation<ListBuyersRequest, ListBuyersResponse> operation
               = new ListBuyers.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -130,9 +129,9 @@ public class Buyers {
      * 
      * @param buyerCreate Request body for creating a new buyer
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public AddBuyerResponse create(BuyerCreate buyerCreate) throws Exception {
+    public AddBuyerResponse create(BuyerCreate buyerCreate) {
         return create(JsonNullable.undefined(), buyerCreate);
     }
 
@@ -144,9 +143,9 @@ public class Buyers {
      * @param merchantAccountId 
      * @param buyerCreate Request body for creating a new buyer
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public AddBuyerResponse create(JsonNullable<String> merchantAccountId, BuyerCreate buyerCreate) throws Exception {
+    public AddBuyerResponse create(JsonNullable<String> merchantAccountId, BuyerCreate buyerCreate) {
         AddBuyerRequest request =
             AddBuyerRequest
                 .builder()
@@ -176,9 +175,9 @@ public class Buyers {
      * 
      * @param buyerId The ID of the buyer to retrieve.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public GetBuyerResponse get(String buyerId) throws Exception {
+    public GetBuyerResponse get(String buyerId) {
         return get(buyerId, JsonNullable.undefined(), Optional.empty());
     }
 
@@ -191,11 +190,11 @@ public class Buyers {
      * @param merchantAccountId 
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
     public GetBuyerResponse get(
             String buyerId, JsonNullable<String> merchantAccountId,
-            Optional<Options> options) throws Exception {
+            Optional<Options> options) {
         GetBuyerRequest request =
             GetBuyerRequest
                 .builder()
@@ -226,9 +225,9 @@ public class Buyers {
      * @param buyerId The ID of the buyer to edit.
      * @param buyerUpdate Request body for updating an existing buyer
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public UpdateBuyerResponse update(String buyerId, BuyerUpdate buyerUpdate) throws Exception {
+    public UpdateBuyerResponse update(String buyerId, BuyerUpdate buyerUpdate) {
         return update(buyerId, JsonNullable.undefined(), buyerUpdate);
     }
 
@@ -241,11 +240,11 @@ public class Buyers {
      * @param merchantAccountId 
      * @param buyerUpdate Request body for updating an existing buyer
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
     public UpdateBuyerResponse update(
             String buyerId, JsonNullable<String> merchantAccountId,
-            BuyerUpdate buyerUpdate) throws Exception {
+            BuyerUpdate buyerUpdate) {
         UpdateBuyerRequest request =
             UpdateBuyerRequest
                 .builder()
@@ -276,9 +275,9 @@ public class Buyers {
      * 
      * @param buyerId The ID of the buyer to delete.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public DeleteBuyerResponse delete(String buyerId) throws Exception {
+    public DeleteBuyerResponse delete(String buyerId) {
         return delete(buyerId, JsonNullable.undefined());
     }
 
@@ -290,9 +289,9 @@ public class Buyers {
      * @param buyerId The ID of the buyer to delete.
      * @param merchantAccountId 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public DeleteBuyerResponse delete(String buyerId, JsonNullable<String> merchantAccountId) throws Exception {
+    public DeleteBuyerResponse delete(String buyerId, JsonNullable<String> merchantAccountId) {
         DeleteBuyerRequest request =
             DeleteBuyerRequest
                 .builder()

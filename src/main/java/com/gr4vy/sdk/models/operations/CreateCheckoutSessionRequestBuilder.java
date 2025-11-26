@@ -10,7 +10,6 @@ import com.gr4vy.sdk.models.components.CheckoutSessionCreate;
 import com.gr4vy.sdk.operations.CreateCheckoutSession;
 import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.Utils;
-import java.lang.Exception;
 import java.lang.String;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
@@ -59,7 +58,7 @@ public class CreateCheckoutSessionRequestBuilder {
         return request;
     }
 
-    public CreateCheckoutSessionResponse call() throws Exception {
+    public CreateCheckoutSessionResponse call() {
         
         RequestOperation<CreateCheckoutSessionRequest, CreateCheckoutSessionResponse> operation
               = new CreateCheckoutSession.Sync(sdkConfiguration, _headers);

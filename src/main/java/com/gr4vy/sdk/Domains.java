@@ -15,7 +15,6 @@ import com.gr4vy.sdk.models.operations.UnregisterDigitalWalletDomainResponse;
 import com.gr4vy.sdk.operations.RegisterDigitalWalletDomain;
 import com.gr4vy.sdk.operations.UnregisterDigitalWalletDomain;
 import com.gr4vy.sdk.utils.Headers;
-import java.lang.Exception;
 import java.lang.String;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -58,9 +57,9 @@ public class Domains {
      * @param digitalWalletId The ID of the digital wallet to remove a domain for.
      * @param digitalWalletDomain 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public RegisterDigitalWalletDomainResponse create(String digitalWalletId, DigitalWalletDomain digitalWalletDomain) throws Exception {
+    public RegisterDigitalWalletDomainResponse create(String digitalWalletId, DigitalWalletDomain digitalWalletDomain) {
         return create(digitalWalletId, JsonNullable.undefined(), digitalWalletDomain);
     }
 
@@ -73,11 +72,11 @@ public class Domains {
      * @param merchantAccountId 
      * @param digitalWalletDomain 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
     public RegisterDigitalWalletDomainResponse create(
             String digitalWalletId, JsonNullable<String> merchantAccountId,
-            DigitalWalletDomain digitalWalletDomain) throws Exception {
+            DigitalWalletDomain digitalWalletDomain) {
         RegisterDigitalWalletDomainRequest request =
             RegisterDigitalWalletDomainRequest
                 .builder()
@@ -109,9 +108,9 @@ public class Domains {
      * @param digitalWalletId 
      * @param digitalWalletDomain 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public UnregisterDigitalWalletDomainResponse delete(String digitalWalletId, DigitalWalletDomain digitalWalletDomain) throws Exception {
+    public UnregisterDigitalWalletDomainResponse delete(String digitalWalletId, DigitalWalletDomain digitalWalletDomain) {
         return delete(digitalWalletId, JsonNullable.undefined(), digitalWalletDomain);
     }
 
@@ -124,11 +123,11 @@ public class Domains {
      * @param merchantAccountId 
      * @param digitalWalletDomain 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
     public UnregisterDigitalWalletDomainResponse delete(
             String digitalWalletId, JsonNullable<String> merchantAccountId,
-            DigitalWalletDomain digitalWalletDomain) throws Exception {
+            DigitalWalletDomain digitalWalletDomain) {
         UnregisterDigitalWalletDomainRequest request =
             UnregisterDigitalWalletDomainRequest
                 .builder()

@@ -27,7 +27,7 @@ import java.util.Map;
 public class Token {
 
     @JsonValue
-    private TypedObject value;
+    private final TypedObject value;
     
     private Token(TypedObject value) {
         this.value = value;
@@ -35,12 +35,12 @@ public class Token {
 
     public static Token of(String value) {
         Utils.checkNotNull(value, "value");
-        return new Token(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<String>(){}));
+        return new Token(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
     }
 
     public static Token of(Map<String, Object> value) {
         Utils.checkNotNull(value, "value");
-        return new Token(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<Map<String, Object>>(){}));
+        return new Token(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
     }
     
     /**
@@ -63,7 +63,7 @@ public class Token {
      **/ 
     public java.lang.Object value() {
         return value.value();
-    }    
+    }
     
     @Override
     public boolean equals(java.lang.Object o) {
@@ -74,7 +74,7 @@ public class Token {
             return false;
         }
         Token other = (Token) o;
-        return Utils.enhancedDeepEquals(this.value.value(), other.value.value()); 
+        return Utils.enhancedDeepEquals(this.value.value(), other.value.value());
     }
     
     @Override
@@ -97,6 +97,6 @@ public class Token {
         return Utils.toString(Token.class,
                 "value", value);
     }
- 
+
 }
 

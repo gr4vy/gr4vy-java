@@ -20,7 +20,7 @@ import java.lang.SuppressWarnings;
 public class Loc {
 
     @JsonValue
-    private TypedObject value;
+    private final TypedObject value;
     
     private Loc(TypedObject value) {
         this.value = value;
@@ -28,12 +28,11 @@ public class Loc {
 
     public static Loc of(String value) {
         Utils.checkNotNull(value, "value");
-        return new Loc(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<String>(){}));
+        return new Loc(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
     }
 
     public static Loc of(long value) {
-        Utils.checkNotNull(value, "value");
-        return new Loc(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<java.lang.Long>(){}));
+        return new Loc(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
     }
     
     /**
@@ -56,7 +55,7 @@ public class Loc {
      **/ 
     public java.lang.Object value() {
         return value.value();
-    }    
+    }
     
     @Override
     public boolean equals(java.lang.Object o) {
@@ -67,7 +66,7 @@ public class Loc {
             return false;
         }
         Loc other = (Loc) o;
-        return Utils.enhancedDeepEquals(this.value.value(), other.value.value()); 
+        return Utils.enhancedDeepEquals(this.value.value(), other.value.value());
     }
     
     @Override
@@ -90,6 +89,6 @@ public class Loc {
         return Utils.toString(Loc.class,
                 "value", value);
     }
- 
+
 }
 

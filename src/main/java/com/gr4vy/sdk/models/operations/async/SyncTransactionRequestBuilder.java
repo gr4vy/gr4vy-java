@@ -10,7 +10,6 @@ import com.gr4vy.sdk.models.operations.SyncTransactionRequest;
 import com.gr4vy.sdk.operations.SyncTransaction;
 import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.Utils;
-import java.lang.Exception;
 import java.lang.String;
 import java.util.concurrent.CompletableFuture;
 import org.openapitools.jackson.nullable.JsonNullable;
@@ -53,7 +52,7 @@ public class SyncTransactionRequestBuilder {
         return request;
     }
 
-    public CompletableFuture<SyncTransactionResponse> call() throws Exception {
+    public CompletableFuture<SyncTransactionResponse> call() {
         
         AsyncRequestOperation<SyncTransactionRequest, SyncTransactionResponse> operation
               = new SyncTransaction.Async(sdkConfiguration, _headers);

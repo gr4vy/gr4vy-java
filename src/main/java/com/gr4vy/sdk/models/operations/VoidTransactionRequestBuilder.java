@@ -9,7 +9,6 @@ import com.gr4vy.sdk.SDKConfiguration;
 import com.gr4vy.sdk.operations.VoidTransaction;
 import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.Utils;
-import java.lang.Exception;
 import java.lang.String;
 import java.util.List;
 import org.openapitools.jackson.nullable.JsonNullable;
@@ -66,7 +65,7 @@ public class VoidTransactionRequestBuilder {
         return request;
     }
 
-    public VoidTransactionResponse call() throws Exception {
+    public VoidTransactionResponse call() {
         
         RequestOperation<VoidTransactionRequest, VoidTransactionResponse> operation
               = new VoidTransaction.Sync(sdkConfiguration, _headers);

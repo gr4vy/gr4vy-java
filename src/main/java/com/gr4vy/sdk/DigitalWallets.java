@@ -29,7 +29,6 @@ import com.gr4vy.sdk.operations.ListDigitalWallets;
 import com.gr4vy.sdk.operations.UpdateDigitalWallet;
 import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.Options;
-import java.lang.Exception;
 import java.lang.String;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
@@ -84,9 +83,9 @@ public class DigitalWallets {
      * 
      * @param digitalWalletCreate Request body for registering a new digital wallet
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public ConfigureDigitalWalletResponse create(DigitalWalletCreate digitalWalletCreate) throws Exception {
+    public ConfigureDigitalWalletResponse create(DigitalWalletCreate digitalWalletCreate) {
         return create(JsonNullable.undefined(), digitalWalletCreate);
     }
 
@@ -98,9 +97,9 @@ public class DigitalWallets {
      * @param merchantAccountId 
      * @param digitalWalletCreate Request body for registering a new digital wallet
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public ConfigureDigitalWalletResponse create(JsonNullable<String> merchantAccountId, DigitalWalletCreate digitalWalletCreate) throws Exception {
+    public ConfigureDigitalWalletResponse create(JsonNullable<String> merchantAccountId, DigitalWalletCreate digitalWalletCreate) {
         ConfigureDigitalWalletRequest request =
             ConfigureDigitalWalletRequest
                 .builder()
@@ -129,9 +128,9 @@ public class DigitalWallets {
      * <p>List configured digital wallets.
      * 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public ListDigitalWalletsResponse listDirect() throws Exception {
+    public ListDigitalWalletsResponse listDirect() {
         return list(JsonNullable.undefined(), Optional.empty());
     }
 
@@ -143,9 +142,9 @@ public class DigitalWallets {
      * @param merchantAccountId 
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public ListDigitalWalletsResponse list(JsonNullable<String> merchantAccountId, Optional<Options> options) throws Exception {
+    public ListDigitalWalletsResponse list(JsonNullable<String> merchantAccountId, Optional<Options> options) {
         ListDigitalWalletsRequest request =
             ListDigitalWalletsRequest
                 .builder()
@@ -174,9 +173,9 @@ public class DigitalWallets {
      * 
      * @param digitalWalletId The ID of the digital wallet to read.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public GetDigitalWalletResponse get(String digitalWalletId) throws Exception {
+    public GetDigitalWalletResponse get(String digitalWalletId) {
         return get(digitalWalletId, JsonNullable.undefined(), Optional.empty());
     }
 
@@ -189,11 +188,11 @@ public class DigitalWallets {
      * @param merchantAccountId 
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
     public GetDigitalWalletResponse get(
             String digitalWalletId, JsonNullable<String> merchantAccountId,
-            Optional<Options> options) throws Exception {
+            Optional<Options> options) {
         GetDigitalWalletRequest request =
             GetDigitalWalletRequest
                 .builder()
@@ -223,9 +222,9 @@ public class DigitalWallets {
      * 
      * @param digitalWalletId The ID of the digital wallet to delete.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public DeleteDigitalWalletResponse delete(String digitalWalletId) throws Exception {
+    public DeleteDigitalWalletResponse delete(String digitalWalletId) {
         return delete(digitalWalletId, JsonNullable.undefined());
     }
 
@@ -237,9 +236,9 @@ public class DigitalWallets {
      * @param digitalWalletId The ID of the digital wallet to delete.
      * @param merchantAccountId 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public DeleteDigitalWalletResponse delete(String digitalWalletId, JsonNullable<String> merchantAccountId) throws Exception {
+    public DeleteDigitalWalletResponse delete(String digitalWalletId, JsonNullable<String> merchantAccountId) {
         DeleteDigitalWalletRequest request =
             DeleteDigitalWalletRequest
                 .builder()
@@ -270,9 +269,9 @@ public class DigitalWallets {
      * @param digitalWalletId The ID of the digital wallet to edit.
      * @param digitalWalletUpdate Request body for editing a registered digital wallet
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public UpdateDigitalWalletResponse update(String digitalWalletId, DigitalWalletUpdate digitalWalletUpdate) throws Exception {
+    public UpdateDigitalWalletResponse update(String digitalWalletId, DigitalWalletUpdate digitalWalletUpdate) {
         return update(digitalWalletId, JsonNullable.undefined(), digitalWalletUpdate);
     }
 
@@ -285,11 +284,11 @@ public class DigitalWallets {
      * @param merchantAccountId 
      * @param digitalWalletUpdate Request body for editing a registered digital wallet
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
     public UpdateDigitalWalletResponse update(
             String digitalWalletId, JsonNullable<String> merchantAccountId,
-            DigitalWalletUpdate digitalWalletUpdate) throws Exception {
+            DigitalWalletUpdate digitalWalletUpdate) {
         UpdateDigitalWalletRequest request =
             UpdateDigitalWalletRequest
                 .builder()

@@ -11,7 +11,6 @@ import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.Options;
 import com.gr4vy.sdk.utils.RetryConfig;
 import com.gr4vy.sdk.utils.Utils;
-import java.lang.Exception;
 import java.lang.String;
 import java.util.Optional;
 
@@ -52,7 +51,7 @@ public class GetPaymentServiceDefinitionRequestBuilder {
         return request;
     }
 
-    public GetPaymentServiceDefinitionResponse call() throws Exception {
+    public GetPaymentServiceDefinitionResponse call() {
         Optional<Options> options = Optional.of(Options.builder()
             .retryConfig(retryConfig)
             .build());

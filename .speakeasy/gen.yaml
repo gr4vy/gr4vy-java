@@ -18,12 +18,15 @@ generation:
     oAuth2PasswordEnabled: false
     hoistGlobalSecurity: true
   sdkHooksConfigAccess: true
+  schemas:
+    allOfMergeStrategy: shallowMerge
+  requestBodyFieldName: ""
   tests:
     generateTests: true
     generateNewTests: false
     skipResponseBodyAssertions: false
 java:
-  version: 2.13.11
+  version: 2.14.0
   additionalDependencies:
     - testImplementation:org.junit.jupiter:junit-jupiter:5.10.0
     - implementation:com.auth0:java-jwt:4.5.0
@@ -40,8 +43,10 @@ java:
   companyURL: www.gr4vy.com
   defaultErrorName: APIException
   enableCustomCodeRegions: false
+  enableSlf4jLogging: false
   enableStreamingUploads: false
   flattenGlobalSecurity: true
+  generateOptionalUnionAccessors: false
   generateSpringBootStarter: true
   githubURL: github.com/gr4vy/gr4vy-java
   groupID: com.gr4vy
@@ -53,6 +58,7 @@ java:
       operations: models/operations
       shared: models/components
       webhooks: models/webhooks
+  inferUnionDiscriminators: false
   inputModelSuffix: input
   languageVersion: 11
   license:
@@ -61,6 +67,9 @@ java:
     url: https://mit-license.org/
   maxMethodParams: 4
   nullFriendlyParameters: false
+  openUnions: true
+  operationScopedParams: true
   outputModelSuffix: output
   projectName: openapi
   templateVersion: v2
+  unionStrategy: populated-fields

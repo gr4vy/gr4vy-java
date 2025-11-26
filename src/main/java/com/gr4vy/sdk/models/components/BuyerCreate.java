@@ -39,7 +39,7 @@ public class BuyerCreate {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("billing_details")
-    private JsonNullable<? extends BillingDetailsInput> billingDetails;
+    private JsonNullable<? extends BillingDetails> billingDetails;
 
     /**
      * The buyer account number
@@ -52,7 +52,7 @@ public class BuyerCreate {
     public BuyerCreate(
             @JsonProperty("display_name") JsonNullable<String> displayName,
             @JsonProperty("external_identifier") JsonNullable<String> externalIdentifier,
-            @JsonProperty("billing_details") JsonNullable<? extends BillingDetailsInput> billingDetails,
+            @JsonProperty("billing_details") JsonNullable<? extends BillingDetails> billingDetails,
             @JsonProperty("account_number") JsonNullable<String> accountNumber) {
         Utils.checkNotNull(displayName, "displayName");
         Utils.checkNotNull(externalIdentifier, "externalIdentifier");
@@ -90,8 +90,8 @@ public class BuyerCreate {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<BillingDetailsInput> billingDetails() {
-        return (JsonNullable<BillingDetailsInput>) billingDetails;
+    public JsonNullable<BillingDetails> billingDetails() {
+        return (JsonNullable<BillingDetails>) billingDetails;
     }
 
     /**
@@ -146,7 +146,7 @@ public class BuyerCreate {
     /**
      * The billing name, address, email, and other fields for this buyer.
      */
-    public BuyerCreate withBillingDetails(BillingDetailsInput billingDetails) {
+    public BuyerCreate withBillingDetails(BillingDetails billingDetails) {
         Utils.checkNotNull(billingDetails, "billingDetails");
         this.billingDetails = JsonNullable.of(billingDetails);
         return this;
@@ -155,7 +155,7 @@ public class BuyerCreate {
     /**
      * The billing name, address, email, and other fields for this buyer.
      */
-    public BuyerCreate withBillingDetails(JsonNullable<? extends BillingDetailsInput> billingDetails) {
+    public BuyerCreate withBillingDetails(JsonNullable<? extends BillingDetails> billingDetails) {
         Utils.checkNotNull(billingDetails, "billingDetails");
         this.billingDetails = billingDetails;
         return this;
@@ -218,7 +218,7 @@ public class BuyerCreate {
 
         private JsonNullable<String> externalIdentifier = JsonNullable.undefined();
 
-        private JsonNullable<? extends BillingDetailsInput> billingDetails = JsonNullable.undefined();
+        private JsonNullable<? extends BillingDetails> billingDetails = JsonNullable.undefined();
 
         private JsonNullable<String> accountNumber = JsonNullable.undefined();
 
@@ -268,7 +268,7 @@ public class BuyerCreate {
         /**
          * The billing name, address, email, and other fields for this buyer.
          */
-        public Builder billingDetails(BillingDetailsInput billingDetails) {
+        public Builder billingDetails(BillingDetails billingDetails) {
             Utils.checkNotNull(billingDetails, "billingDetails");
             this.billingDetails = JsonNullable.of(billingDetails);
             return this;
@@ -277,7 +277,7 @@ public class BuyerCreate {
         /**
          * The billing name, address, email, and other fields for this buyer.
          */
-        public Builder billingDetails(JsonNullable<? extends BillingDetailsInput> billingDetails) {
+        public Builder billingDetails(JsonNullable<? extends BillingDetails> billingDetails) {
             Utils.checkNotNull(billingDetails, "billingDetails");
             this.billingDetails = billingDetails;
             return this;

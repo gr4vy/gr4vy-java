@@ -9,7 +9,6 @@ import com.gr4vy.sdk.SDKConfiguration;
 import com.gr4vy.sdk.operations.DeletePaymentMethod;
 import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.Utils;
-import java.lang.Exception;
 import java.lang.String;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -51,7 +50,7 @@ public class DeletePaymentMethodRequestBuilder {
         return request;
     }
 
-    public DeletePaymentMethodResponse call() throws Exception {
+    public DeletePaymentMethodResponse call() {
         
         RequestOperation<DeletePaymentMethodRequest, DeletePaymentMethodResponse> operation
               = new DeletePaymentMethod.Sync(sdkConfiguration, _headers);

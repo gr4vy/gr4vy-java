@@ -11,7 +11,6 @@ import com.gr4vy.sdk.models.operations.ListGiftCardBalancesRequest;
 import com.gr4vy.sdk.operations.ListGiftCardBalances;
 import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.Utils;
-import java.lang.Exception;
 import java.lang.String;
 import java.util.concurrent.CompletableFuture;
 import org.openapitools.jackson.nullable.JsonNullable;
@@ -54,7 +53,7 @@ public class ListGiftCardBalancesRequestBuilder {
         return request;
     }
 
-    public CompletableFuture<ListGiftCardBalancesResponse> call() throws Exception {
+    public CompletableFuture<ListGiftCardBalancesResponse> call() {
         
         AsyncRequestOperation<ListGiftCardBalancesRequest, ListGiftCardBalancesResponse> operation
               = new ListGiftCardBalances.Async(sdkConfiguration, _headers);

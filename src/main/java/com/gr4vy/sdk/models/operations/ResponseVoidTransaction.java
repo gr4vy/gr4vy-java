@@ -26,7 +26,7 @@ import java.lang.SuppressWarnings;
 public class ResponseVoidTransaction {
 
     @JsonValue
-    private TypedObject value;
+    private final TypedObject value;
     
     private ResponseVoidTransaction(TypedObject value) {
         this.value = value;
@@ -34,12 +34,12 @@ public class ResponseVoidTransaction {
 
     public static ResponseVoidTransaction of(Transaction value) {
         Utils.checkNotNull(value, "value");
-        return new ResponseVoidTransaction(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<Transaction>(){}));
+        return new ResponseVoidTransaction(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
     }
 
     public static ResponseVoidTransaction of(TransactionVoid value) {
         Utils.checkNotNull(value, "value");
-        return new ResponseVoidTransaction(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<TransactionVoid>(){}));
+        return new ResponseVoidTransaction(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
     }
     
     /**
@@ -62,7 +62,7 @@ public class ResponseVoidTransaction {
      **/ 
     public java.lang.Object value() {
         return value.value();
-    }    
+    }
     
     @Override
     public boolean equals(java.lang.Object o) {
@@ -73,7 +73,7 @@ public class ResponseVoidTransaction {
             return false;
         }
         ResponseVoidTransaction other = (ResponseVoidTransaction) o;
-        return Utils.enhancedDeepEquals(this.value.value(), other.value.value()); 
+        return Utils.enhancedDeepEquals(this.value.value(), other.value.value());
     }
     
     @Override
@@ -96,6 +96,6 @@ public class ResponseVoidTransaction {
         return Utils.toString(ResponseVoidTransaction.class,
                 "value", value);
     }
- 
+
 }
 

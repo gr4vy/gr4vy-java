@@ -11,11 +11,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.gr4vy.sdk.utils.LazySingletonValue;
 import com.gr4vy.sdk.utils.Utils;
-import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.time.OffsetDateTime;
-import java.util.Map;
 import java.util.Optional;
 
 
@@ -47,18 +45,17 @@ public class TransactionEvent {
 
 
     @JsonProperty("context")
-    private Map<String, Object> context;
+    private TransactionEventContext context;
 
     @JsonCreator
     public TransactionEvent(
             @JsonProperty("id") String id,
             @JsonProperty("name") Name name,
             @JsonProperty("created_at") OffsetDateTime createdAt,
-            @JsonProperty("context") Map<String, Object> context) {
+            @JsonProperty("context") TransactionEventContext context) {
         Utils.checkNotNull(id, "id");
         Utils.checkNotNull(name, "name");
         Utils.checkNotNull(createdAt, "createdAt");
-        context = Utils.emptyMapIfNull(context);
         Utils.checkNotNull(context, "context");
         this.type = Builder._SINGLETON_VALUE_Type.value();
         this.id = id;
@@ -100,7 +97,7 @@ public class TransactionEvent {
     }
 
     @JsonIgnore
-    public Map<String, Object> context() {
+    public TransactionEventContext context() {
         return context;
     }
 
@@ -136,7 +133,7 @@ public class TransactionEvent {
         return this;
     }
 
-    public TransactionEvent withContext(Map<String, Object> context) {
+    public TransactionEvent withContext(TransactionEventContext context) {
         Utils.checkNotNull(context, "context");
         this.context = context;
         return this;
@@ -185,7 +182,7 @@ public class TransactionEvent {
 
         private OffsetDateTime createdAt;
 
-        private Map<String, Object> context;
+        private TransactionEventContext context;
 
         private Builder() {
           // force use of static builder() method
@@ -222,7 +219,7 @@ public class TransactionEvent {
         }
 
 
-        public Builder context(Map<String, Object> context) {
+        public Builder context(TransactionEventContext context) {
             Utils.checkNotNull(context, "context");
             this.context = context;
             return this;

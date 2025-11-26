@@ -1,4 +1,4 @@
-# BillingDetailsOutput
+# BillingDetails
 
 
 ## Fields

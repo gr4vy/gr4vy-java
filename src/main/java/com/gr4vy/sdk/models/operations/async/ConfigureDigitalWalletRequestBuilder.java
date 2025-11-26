@@ -11,7 +11,6 @@ import com.gr4vy.sdk.models.operations.ConfigureDigitalWalletRequest;
 import com.gr4vy.sdk.operations.ConfigureDigitalWallet;
 import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.Utils;
-import java.lang.Exception;
 import java.lang.String;
 import java.util.concurrent.CompletableFuture;
 import org.openapitools.jackson.nullable.JsonNullable;
@@ -54,7 +53,7 @@ public class ConfigureDigitalWalletRequestBuilder {
         return request;
     }
 
-    public CompletableFuture<ConfigureDigitalWalletResponse> call() throws Exception {
+    public CompletableFuture<ConfigureDigitalWalletResponse> call() {
         
         AsyncRequestOperation<ConfigureDigitalWalletRequest, ConfigureDigitalWalletResponse> operation
               = new ConfigureDigitalWallet.Async(sdkConfiguration, _headers);

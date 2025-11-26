@@ -12,7 +12,6 @@ import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.Options;
 import com.gr4vy.sdk.utils.RetryConfig;
 import com.gr4vy.sdk.utils.Utils;
-import java.lang.Exception;
 import java.lang.String;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
@@ -69,7 +68,7 @@ public class GetPayoutRequestBuilder {
         return request;
     }
 
-    public CompletableFuture<GetPayoutResponse> call() throws Exception {
+    public CompletableFuture<GetPayoutResponse> call() {
         Optional<Options> options = Optional.of(Options.builder()
             .retryConfig(retryConfig)
             .build());

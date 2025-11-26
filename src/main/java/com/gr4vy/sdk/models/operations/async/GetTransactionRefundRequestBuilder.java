@@ -12,7 +12,6 @@ import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.Options;
 import com.gr4vy.sdk.utils.RetryConfig;
 import com.gr4vy.sdk.utils.Utils;
-import java.lang.Exception;
 import java.lang.String;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
@@ -77,7 +76,7 @@ public class GetTransactionRefundRequestBuilder {
         return request;
     }
 
-    public CompletableFuture<GetTransactionRefundResponse> call() throws Exception {
+    public CompletableFuture<GetTransactionRefundResponse> call() {
         Optional<Options> options = Optional.of(Options.builder()
             .retryConfig(retryConfig)
             .build());

@@ -11,7 +11,6 @@ import com.gr4vy.sdk.models.operations.RegisterDigitalWalletDomainRequest;
 import com.gr4vy.sdk.operations.RegisterDigitalWalletDomain;
 import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.Utils;
-import java.lang.Exception;
 import java.lang.String;
 import java.util.concurrent.CompletableFuture;
 import org.openapitools.jackson.nullable.JsonNullable;
@@ -62,7 +61,7 @@ public class RegisterDigitalWalletDomainRequestBuilder {
         return request;
     }
 
-    public CompletableFuture<RegisterDigitalWalletDomainResponse> call() throws Exception {
+    public CompletableFuture<RegisterDigitalWalletDomainResponse> call() {
         
         AsyncRequestOperation<RegisterDigitalWalletDomainRequest, RegisterDigitalWalletDomainResponse> operation
               = new RegisterDigitalWalletDomain.Async(sdkConfiguration, _headers);

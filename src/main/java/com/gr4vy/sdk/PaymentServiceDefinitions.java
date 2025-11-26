@@ -19,7 +19,6 @@ import com.gr4vy.sdk.operations.GetPaymentServiceDefinition;
 import com.gr4vy.sdk.operations.ListPaymentServiceDefinitions;
 import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.Options;
-import java.lang.Exception;
 import java.lang.Long;
 import java.lang.Object;
 import java.lang.String;
@@ -64,9 +63,9 @@ public class PaymentServiceDefinitions {
      * <p>List the definitions of each payment service that can be configured.
      * 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public ListPaymentServiceDefinitionsResponse listDirect() throws Exception {
+    public ListPaymentServiceDefinitionsResponse listDirect() {
         return list(JsonNullable.undefined(), Optional.empty(), Optional.empty());
     }
 
@@ -79,11 +78,11 @@ public class PaymentServiceDefinitions {
      * @param limit The maximum number of items that are at returned.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
     public ListPaymentServiceDefinitionsResponse list(
             JsonNullable<String> cursor, Optional<Long> limit,
-            Optional<Options> options) throws Exception {
+            Optional<Options> options) {
         ListPaymentServiceDefinitionsRequest request =
             ListPaymentServiceDefinitionsRequest
                 .builder()
@@ -113,9 +112,9 @@ public class PaymentServiceDefinitions {
      * 
      * @param paymentServiceDefinitionId 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public GetPaymentServiceDefinitionResponse get(String paymentServiceDefinitionId) throws Exception {
+    public GetPaymentServiceDefinitionResponse get(String paymentServiceDefinitionId) {
         return get(paymentServiceDefinitionId, Optional.empty());
     }
 
@@ -127,9 +126,9 @@ public class PaymentServiceDefinitions {
      * @param paymentServiceDefinitionId 
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public GetPaymentServiceDefinitionResponse get(String paymentServiceDefinitionId, Optional<Options> options) throws Exception {
+    public GetPaymentServiceDefinitionResponse get(String paymentServiceDefinitionId, Optional<Options> options) {
         GetPaymentServiceDefinitionRequest request =
             GetPaymentServiceDefinitionRequest
                 .builder()
@@ -159,9 +158,9 @@ public class PaymentServiceDefinitions {
      * @param paymentServiceDefinitionId 
      * @param requestBody 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public CreatePaymentServiceDefinitionSessionResponse session(String paymentServiceDefinitionId, Map<String, Object> requestBody) throws Exception {
+    public CreatePaymentServiceDefinitionSessionResponse session(String paymentServiceDefinitionId, Map<String, Object> requestBody) {
         CreatePaymentServiceDefinitionSessionRequest request =
             CreatePaymentServiceDefinitionSessionRequest
                 .builder()
