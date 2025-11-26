@@ -8,7 +8,7 @@ import com.gr4vy.sdk.models.components.CheckoutSession;
 import com.gr4vy.sdk.models.components.CheckoutSessionCreate;
 import com.gr4vy.sdk.models.components.CheckoutSessionWithUrlPaymentMethodCreate;
 import com.gr4vy.sdk.models.components.PaymentMethod;
-import com.gr4vy.sdk.models.components.Transaction;
+import com.gr4vy.sdk.models.components.TransactionOutput;
 import com.gr4vy.sdk.models.components.TransactionCreate;
 import com.gr4vy.sdk.models.components.TransactionCreatePaymentMethod;
 import com.gr4vy.sdk.models.components.TransactionStatus;
@@ -79,7 +79,7 @@ public class CheckoutSessionsTest extends BaseTest {
                     .build())
                 .call();
 
-        Transaction transaction = transactionResponse.transaction().orElse(null);
+        TransactionOutput transaction = transactionResponse.transactionOutput().orElse(null);
         assertNotNull(transaction, "Transaction cannot be null");
         assertNotNull(transaction.id(), "Transaction Id cannot be null");
         assertNotEquals(transaction.id(), "");
@@ -174,7 +174,7 @@ public class CheckoutSessionsTest extends BaseTest {
                     .build())
                 .call();
 
-        Transaction transaction = transactionResponse.transaction().orElse(null);
+        TransactionOutput transaction = transactionResponse.transactionOutput().orElse(null);
         assertNotNull(transaction, "Transaction cannot be null");
         assertNotNull(transaction.id(), "Transaction Id cannot be null");
         assertNotEquals(transaction.id(), "");
