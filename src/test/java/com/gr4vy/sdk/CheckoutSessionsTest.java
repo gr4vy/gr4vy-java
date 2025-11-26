@@ -11,11 +11,13 @@ import com.gr4vy.sdk.models.components.PaymentMethod;
 import com.gr4vy.sdk.models.components.Transaction;
 import com.gr4vy.sdk.models.components.TransactionCreate;
 import com.gr4vy.sdk.models.components.TransactionCreatePaymentMethod;
+import com.gr4vy.sdk.models.components.TransactionEvent;
 import com.gr4vy.sdk.models.components.TransactionStatus;
 import com.gr4vy.sdk.models.operations.Body;
 import com.gr4vy.sdk.models.operations.CreateCheckoutSessionResponse;
 import com.gr4vy.sdk.models.operations.CreatePaymentMethodResponse;
 import com.gr4vy.sdk.models.operations.CreateTransactionResponse;
+import com.gr4vy.sdk.models.operations.ListTransactionEventsResponse;
 import com.gr4vy.sdk.util.BaseTest;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -85,6 +87,16 @@ public class CheckoutSessionsTest extends BaseTest {
         assertNotEquals(transaction.id(), "");
         assertEquals(transaction.status(), TransactionStatus.AUTHORIZATION_SUCCEEDED);
         assertEquals(transaction.amount(), 1299);
+
+        // Test listing the TX events
+        ListTransactionEventsResponse eventsResponse = gr4vyClient.transactions().events().list()
+                .transactionId(transaction.id())
+                .call();
+        assertTrue(eventsResponse.transactionEvents().isPresent());
+
+        TransactionEvent event = eventsResponse.transactionEvents().get().items().get(0);
+        assertNotNull(event);
+        assertEquals(event.context().get("url"), "http://api.sandbox.e2e.gr4vy.app/transactions");
     }
 
     @Test
