@@ -33,6 +33,7 @@ import com.gr4vy.api.model.ConnectionOptionsForterAntiFraud;
 import com.gr4vy.api.model.ConnectionOptionsGivingblockGivingblock;
 import com.gr4vy.api.model.ConnectionOptionsLatitudeLatitude;
 import com.gr4vy.api.model.ConnectionOptionsNuveiCard;
+import com.gr4vy.api.model.ConnectionOptionsNuveiIdeal;
 import com.gr4vy.api.model.ConnectionOptionsPaypalPaypal;
 import com.gr4vy.api.model.ConnectionOptionsPowertranzCard;
 import com.gr4vy.api.model.ConnectionOptionsStripeCard;
@@ -117,6 +118,10 @@ public class ConnectionOptions {
   public static final String SERIALIZED_NAME_NUVEI_CARD = "nuvei-card";
   @SerializedName(SERIALIZED_NAME_NUVEI_CARD)
   private ConnectionOptionsNuveiCard nuveiCard;
+
+  public static final String SERIALIZED_NAME_NUVEI_IDEAL = "nuvei-ideal";
+  @SerializedName(SERIALIZED_NAME_NUVEI_IDEAL)
+  private ConnectionOptionsNuveiIdeal nuveiIdeal;
 
   public static final String SERIALIZED_NAME_TRAVELHUB_CARD = "travelhub-card";
   @SerializedName(SERIALIZED_NAME_TRAVELHUB_CARD)
@@ -542,6 +547,29 @@ public class ConnectionOptions {
 
   public void setNuveiCard(ConnectionOptionsNuveiCard nuveiCard) {
     this.nuveiCard = nuveiCard;
+  }
+
+
+  public ConnectionOptions nuveiIdeal(ConnectionOptionsNuveiIdeal nuveiIdeal) {
+    
+    this.nuveiIdeal = nuveiIdeal;
+    return this;
+  }
+
+   /**
+   * Get nuveiIdeal
+   * @return nuveiIdeal
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public ConnectionOptionsNuveiIdeal getNuveiIdeal() {
+    return nuveiIdeal;
+  }
+
+
+  public void setNuveiIdeal(ConnectionOptionsNuveiIdeal nuveiIdeal) {
+    this.nuveiIdeal = nuveiIdeal;
   }
 
 
