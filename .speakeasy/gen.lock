@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 5bbaa3a9-baa0-471b-ba6a-13fd88e8c119
 management:
-  docChecksum: f7a46f940cff848463de3ee3d794eb19
+  docChecksum: 713a3698250c3e95d6d78af6224f3e31
   docVersion: 1.0.0
-  speakeasyVersion: 1.662.0
-  generationVersion: 2.763.3
-  releaseVersion: 2.15.1
-  configChecksum: 7750959f4a88a36759f7187597990a85
+  speakeasyVersion: 1.668.0
+  generationVersion: 2.770.0
+  releaseVersion: 2.16.0
+  configChecksum: 629e4d3386a3a2c807c357829329ac2f
   repoURL: https://github.com/gr4vy/gr4vy-java.git
   published: true
 features:
@@ -27,7 +27,7 @@ features:
     openEnums: 0.2.0
     pagination: 1.0.0
     retries: 0.1.1
-    sdkHooks: 1.1.0
+    sdkHooks: 1.2.0
     serverIDs: 2.81.1
     unions: 0.3.0
 generatedFiles:
@@ -4757,10 +4757,10 @@ examples:
   add_payment_link:
     speakeasy-default-add-payment-link:
       requestBody:
-        application/json: {"amount": 1299, "country": "DE", "currency": "EUR"}
+        application/json: {"amount": 1299, "country": "DE", "currency": "EUR", "store": true}
       responses:
         "201":
-          application/json: {"id": "a1b2c3d4-5678-90ab-cdef-1234567890ab", "type": "payment-link", "url": "https://example.com/link/a1b2c3d4-5678-90ab-cdef-1234567890ab", "amount": 1299, "country": "DE", "currency": "EUR", "intent": "capture", "cart_items": [{"name": "Widget", "quantity": 2, "unit_amount": 1299}], "payment_source": "ecommerce", "created_at": "2024-05-30T12:34:56.000Z", "updated_at": "2024-05-30T13:00:00.000Z", "status": "completed"}
+          application/json: {"id": "a1b2c3d4-5678-90ab-cdef-1234567890ab", "type": "payment-link", "url": "https://example.com/link/a1b2c3d4-5678-90ab-cdef-1234567890ab", "amount": 1299, "country": "DE", "currency": "EUR", "intent": "capture", "cart_items": [{"name": "Widget", "quantity": 2, "unit_amount": 1299}], "payment_source": "ecommerce", "created_at": "2024-05-30T12:34:56.000Z", "updated_at": "2024-05-30T13:00:00.000Z", "status": "completed", "store": false}
         "400":
           application/json: {"type": "error", "code": "bad_request", "status": 400, "message": "Request failed validation"}
         "401":
@@ -4854,7 +4854,7 @@ examples:
           payment_link_id: "a1b2c3d4-5678-90ab-cdef-1234567890ab"
       responses:
         "200":
-          application/json: {"id": "a1b2c3d4-5678-90ab-cdef-1234567890ab", "type": "payment-link", "url": "https://example.com/link/a1b2c3d4-5678-90ab-cdef-1234567890ab", "amount": 1299, "country": "DE", "currency": "EUR", "intent": "authorize", "cart_items": [{"name": "Widget", "quantity": 2, "unit_amount": 1299}], "payment_source": "ecommerce", "created_at": "2024-05-30T12:34:56.000Z", "updated_at": "2024-05-30T13:00:00.000Z", "status": "active"}
+          application/json: {"id": "a1b2c3d4-5678-90ab-cdef-1234567890ab", "type": "payment-link", "url": "https://example.com/link/a1b2c3d4-5678-90ab-cdef-1234567890ab", "amount": 1299, "country": "DE", "currency": "EUR", "intent": "authorize", "cart_items": [{"name": "Widget", "quantity": 2, "unit_amount": 1299}], "payment_source": "ecommerce", "created_at": "2024-05-30T12:34:56.000Z", "updated_at": "2024-05-30T13:00:00.000Z", "status": "active", "store": false}
         "400":
           application/json: {"type": "error", "code": "bad_request", "status": 400, "message": "Request failed validation"}
         "401":
@@ -5019,3 +5019,4 @@ examples:
           application/json: {"type": "error", "code": "gateway_timeout", "status": 504, "message": "Request could not be processed"}
 examplesVersion: 1.0.2
 generatedTests: {}
+releaseNotes: "## Java SDK Changes:\n* `gr4vy.paymentLinks.list()`:  `response.items.[]` **Changed**\n* `gr4vy.paymentLinks.create()`: \n  *  `request.paymentlinkcreate` **Changed**\n  *  `response` **Changed**\n* `gr4vy.paymentLinks.get()`:  `response` **Changed**\n"
