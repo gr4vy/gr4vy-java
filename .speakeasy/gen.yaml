@@ -26,7 +26,7 @@ generation:
     generateNewTests: false
     skipResponseBodyAssertions: false
 java:
-  version: 2.15.1
+  version: 2.16.0
   additionalDependencies:
     - testImplementation:org.junit.jupiter:junit-jupiter:5.10.0
     - implementation:com.auth0:java-jwt:4.5.0
@@ -66,6 +66,7 @@ java:
     shortName: MIT
     url: https://mit-license.org/
   maxMethodParams: 4
+  multipartArrayFormat: legacy
   nullFriendlyParameters: false
   openUnions: true
   operationScopedParams: true

@@ -40,6 +40,7 @@ public class Application {
                     .amount(1299L)
                     .country("DE")
                     .currency("EUR")
+                    .store(true)
                     .build())
                 .call();
 

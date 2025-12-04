@@ -11,6 +11,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.gr4vy.sdk.utils.LazySingletonValue;
 import com.gr4vy.sdk.utils.Utils;
+import java.lang.Boolean;
 import java.lang.Long;
 import java.lang.Object;
 import java.lang.Override;
@@ -206,6 +207,20 @@ public class PaymentLink {
     @JsonProperty("connection_options")
     private JsonNullable<? extends Map<String, Map<String, Object>>> connectionOptions;
 
+    /**
+     * Whether the payment method was stored.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("store")
+    private Optional<Boolean> store;
+
+    /**
+     * The ID of the buyer to associate with the stored payment method.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("buyer_id")
+    private JsonNullable<String> buyerId;
+
     @JsonCreator
     public PaymentLink(
             @JsonProperty("id") String id,
@@ -234,7 +249,9 @@ public class PaymentLink {
             @JsonProperty("status") PaymentLinkStatus status,
             @JsonProperty("buyer") JsonNullable<? extends TransactionBuyer> buyer,
             @JsonProperty("shipping_details") JsonNullable<? extends ShippingDetails> shippingDetails,
-            @JsonProperty("connection_options") JsonNullable<? extends Map<String, Map<String, Object>>> connectionOptions) {
+            @JsonProperty("connection_options") JsonNullable<? extends Map<String, Map<String, Object>>> connectionOptions,
+            @JsonProperty("store") Optional<Boolean> store,
+            @JsonProperty("buyer_id") JsonNullable<String> buyerId) {
         Utils.checkNotNull(id, "id");
         Utils.checkNotNull(url, "url");
         Utils.checkNotNull(expiresAt, "expiresAt");
@@ -262,6 +279,8 @@ public class PaymentLink {
         Utils.checkNotNull(buyer, "buyer");
         Utils.checkNotNull(shippingDetails, "shippingDetails");
         Utils.checkNotNull(connectionOptions, "connectionOptions");
+        Utils.checkNotNull(store, "store");
+        Utils.checkNotNull(buyerId, "buyerId");
         this.id = id;
         this.type = Builder._SINGLETON_VALUE_Type.value();
         this.url = url;
@@ -290,6 +309,8 @@ public class PaymentLink {
         this.buyer = buyer;
         this.shippingDetails = shippingDetails;
         this.connectionOptions = connectionOptions;
+        this.store = store;
+        this.buyerId = buyerId;
     }
     
     public PaymentLink(
@@ -311,7 +332,8 @@ public class PaymentLink {
             currency, intent, JsonNullable.undefined(),
             Optional.empty(), JsonNullable.undefined(), paymentSource,
             createdAt, updatedAt, status,
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            Optional.empty(), JsonNullable.undefined());
     }
 
     /**
@@ -536,6 +558,22 @@ public class PaymentLink {
     @JsonIgnore
     public JsonNullable<Map<String, Map<String, Object>>> connectionOptions() {
         return (JsonNullable<Map<String, Map<String, Object>>>) connectionOptions;
+    }
+
+    /**
+     * Whether the payment method was stored.
+     */
+    @JsonIgnore
+    public Optional<Boolean> store() {
+        return store;
+    }
+
+    /**
+     * The ID of the buyer to associate with the stored payment method.
+     */
+    @JsonIgnore
+    public JsonNullable<String> buyerId() {
+        return buyerId;
     }
 
     public static Builder builder() {
@@ -934,6 +972,43 @@ public class PaymentLink {
         return this;
     }
 
+    /**
+     * Whether the payment method was stored.
+     */
+    public PaymentLink withStore(boolean store) {
+        Utils.checkNotNull(store, "store");
+        this.store = Optional.ofNullable(store);
+        return this;
+    }
+
+
+    /**
+     * Whether the payment method was stored.
+     */
+    public PaymentLink withStore(Optional<Boolean> store) {
+        Utils.checkNotNull(store, "store");
+        this.store = store;
+        return this;
+    }
+
+    /**
+     * The ID of the buyer to associate with the stored payment method.
+     */
+    public PaymentLink withBuyerId(String buyerId) {
+        Utils.checkNotNull(buyerId, "buyerId");
+        this.buyerId = JsonNullable.of(buyerId);
+        return this;
+    }
+
+    /**
+     * The ID of the buyer to associate with the stored payment method.
+     */
+    public PaymentLink withBuyerId(JsonNullable<String> buyerId) {
+        Utils.checkNotNull(buyerId, "buyerId");
+        this.buyerId = buyerId;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -971,7 +1046,9 @@ public class PaymentLink {
             Utils.enhancedDeepEquals(this.status, other.status) &&
             Utils.enhancedDeepEquals(this.buyer, other.buyer) &&
             Utils.enhancedDeepEquals(this.shippingDetails, other.shippingDetails) &&
-            Utils.enhancedDeepEquals(this.connectionOptions, other.connectionOptions);
+            Utils.enhancedDeepEquals(this.connectionOptions, other.connectionOptions) &&
+            Utils.enhancedDeepEquals(this.store, other.store) &&
+            Utils.enhancedDeepEquals(this.buyerId, other.buyerId);
     }
     
     @Override
@@ -986,7 +1063,7 @@ public class PaymentLink {
             returnUrl, cartItems, metadata,
             paymentSource, createdAt, updatedAt,
             status, buyer, shippingDetails,
-            connectionOptions);
+            connectionOptions, store, buyerId);
     }
     
     @Override
@@ -1019,7 +1096,9 @@ public class PaymentLink {
                 "status", status,
                 "buyer", buyer,
                 "shippingDetails", shippingDetails,
-                "connectionOptions", connectionOptions);
+                "connectionOptions", connectionOptions,
+                "store", store,
+                "buyerId", buyerId);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -1078,6 +1157,10 @@ public class PaymentLink {
         private JsonNullable<? extends ShippingDetails> shippingDetails = JsonNullable.undefined();
 
         private JsonNullable<? extends Map<String, Map<String, Object>>> connectionOptions = JsonNullable.undefined();
+
+        private Optional<Boolean> store;
+
+        private JsonNullable<String> buyerId = JsonNullable.undefined();
 
         private Builder() {
           // force use of static builder() method
@@ -1500,7 +1583,48 @@ public class PaymentLink {
             return this;
         }
 
+
+        /**
+         * Whether the payment method was stored.
+         */
+        public Builder store(boolean store) {
+            Utils.checkNotNull(store, "store");
+            this.store = Optional.ofNullable(store);
+            return this;
+        }
+
+        /**
+         * Whether the payment method was stored.
+         */
+        public Builder store(Optional<Boolean> store) {
+            Utils.checkNotNull(store, "store");
+            this.store = store;
+            return this;
+        }
+
+
+        /**
+         * The ID of the buyer to associate with the stored payment method.
+         */
+        public Builder buyerId(String buyerId) {
+            Utils.checkNotNull(buyerId, "buyerId");
+            this.buyerId = JsonNullable.of(buyerId);
+            return this;
+        }
+
+        /**
+         * The ID of the buyer to associate with the stored payment method.
+         */
+        public Builder buyerId(JsonNullable<String> buyerId) {
+            Utils.checkNotNull(buyerId, "buyerId");
+            this.buyerId = buyerId;
+            return this;
+        }
+
         public PaymentLink build() {
+            if (store == null) {
+                store = _SINGLETON_VALUE_Store.value();
+            }
 
             return new PaymentLink(
                 id, url, expiresAt,
@@ -1511,7 +1635,8 @@ public class PaymentLink {
                 currency, intent, returnUrl,
                 cartItems, metadata, paymentSource,
                 createdAt, updatedAt, status,
-                buyer, shippingDetails, connectionOptions);
+                buyer, shippingDetails, connectionOptions,
+                store, buyerId);
         }
 
 
@@ -1520,5 +1645,11 @@ public class PaymentLink {
                         "type",
                         "\"payment-link\"",
                         new TypeReference<Optional<String>>() {});
+
+        private static final LazySingletonValue<Optional<Boolean>> _SINGLETON_VALUE_Store =
+                new LazySingletonValue<>(
+                        "store",
+                        "false",
+                        new TypeReference<Optional<Boolean>>() {});
     }
 }
