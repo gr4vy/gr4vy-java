@@ -1,5 +1,4 @@
-# Events
-(*transactions().events()*)
+# Transactions.Events
 
 ## Overview
 

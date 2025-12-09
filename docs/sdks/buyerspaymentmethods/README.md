@@ -1,5 +1,4 @@
-# BuyersPaymentMethods
-(*buyers().paymentMethods()*)
+# Buyers.PaymentMethods
 
 ## Overview
 

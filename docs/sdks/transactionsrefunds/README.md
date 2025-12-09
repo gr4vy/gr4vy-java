@@ -1,5 +1,4 @@
-# TransactionsRefunds
-(*transactions().refunds()*)
+# Transactions.Refunds
 
 ## Overview
 

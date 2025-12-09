@@ -1,5 +1,4 @@
 # PaymentOptions
-(*paymentOptions()*)
 
 ## Overview
 

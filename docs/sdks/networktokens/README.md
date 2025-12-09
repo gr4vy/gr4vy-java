@@ -1,5 +1,4 @@
-# NetworkTokens
-(*paymentMethods().networkTokens()*)
+# PaymentMethods.NetworkTokens
 
 ## Overview
 

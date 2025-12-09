@@ -1,5 +1,4 @@
-# Domains
-(*digitalWallets().domains()*)
+# DigitalWallets.Domains
 
 ## Overview
 

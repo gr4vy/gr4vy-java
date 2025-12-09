@@ -1,5 +1,4 @@
 # DigitalWallets
-(*digitalWallets()*)
 
 ## Overview
 

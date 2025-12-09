@@ -1,5 +1,4 @@
-# Settlements
-(*transactions().settlements()*)
+# Transactions.Settlements
 
 ## Overview
 

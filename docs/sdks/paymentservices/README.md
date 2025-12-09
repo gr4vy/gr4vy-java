@@ -1,5 +1,4 @@
 # PaymentServices
-(*paymentServices()*)
 
 ## Overview
 

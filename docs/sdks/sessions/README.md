@@ -1,5 +1,4 @@
-# Sessions
-(*digitalWallets().sessions()*)
+# DigitalWallets.Sessions
 
 ## Overview
 
