@@ -1,5 +1,4 @@
-# Jobs
-(*accountUpdater().jobs()*)
+# AccountUpdater.Jobs
 
 ## Overview
 

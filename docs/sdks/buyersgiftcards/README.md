@@ -1,5 +1,4 @@
-# BuyersGiftCards
-(*buyers().giftCards()*)
+# Buyers.GiftCards
 
 ## Overview
 

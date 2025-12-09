@@ -1,5 +1,4 @@
 # Payouts
-(*payouts()*)
 
 ## Overview
 

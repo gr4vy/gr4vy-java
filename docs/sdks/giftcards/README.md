@@ -1,5 +1,4 @@
 # GiftCards
-(*giftCards()*)
 
 ## Overview
 

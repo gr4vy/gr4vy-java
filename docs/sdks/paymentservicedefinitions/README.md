@@ -1,5 +1,4 @@
 # PaymentServiceDefinitions
-(*paymentServiceDefinitions()*)
 
 ## Overview
 
