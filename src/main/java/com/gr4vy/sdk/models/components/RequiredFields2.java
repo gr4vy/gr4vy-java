@@ -80,8 +80,8 @@ public class RequiredFields2 {
 
         public _Deserializer() {
             super(RequiredFields2.class, false,
-                  TypeReferenceWithShape.of(new TypeReference<Map<String, RequiredFields1>>() {}, JsonShape.DEFAULT),
-                  TypeReferenceWithShape.of(new TypeReference<Boolean>() {}, JsonShape.DEFAULT));
+                  TypeReferenceWithShape.of(new TypeReference<Boolean>() {}, JsonShape.DEFAULT),
+                  TypeReferenceWithShape.of(new TypeReference<Map<String, RequiredFields1>>() {}, JsonShape.DEFAULT));
         }
     }
     

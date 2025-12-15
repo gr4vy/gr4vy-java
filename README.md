@@ -58,7 +58,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'com.gr4vy:sdk:2.16.1'
+implementation 'com.gr4vy:sdk:2.16.2'
 ```
 
 Maven:
@@ -66,7 +66,7 @@ Maven:
 <dependency>
     <groupId>com.gr4vy</groupId>
     <artifactId>sdk</artifactId>
-    <version>2.16.1</version>
+    <version>2.16.2</version>
 </dependency>
 ```
 
