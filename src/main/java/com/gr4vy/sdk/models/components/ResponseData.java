@@ -89,8 +89,8 @@ public class ResponseData {
 
         public _Deserializer() {
             super(ResponseData.class, false,
-                  TypeReferenceWithShape.of(new TypeReference<ThreeDSecureV2>() {}, JsonShape.DEFAULT),
-                  TypeReferenceWithShape.of(new TypeReference<ThreeDSecureDataV1>() {}, JsonShape.DEFAULT));
+                  TypeReferenceWithShape.of(new TypeReference<ThreeDSecureDataV1>() {}, JsonShape.DEFAULT),
+                  TypeReferenceWithShape.of(new TypeReference<ThreeDSecureV2>() {}, JsonShape.DEFAULT));
         }
     }
     

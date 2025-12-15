@@ -96,9 +96,9 @@ public class Body {
         public _Deserializer() {
             super(Body.class, false,
                   TypeReferenceWithShape.of(new TypeReference<CardPaymentMethodCreate>() {}, JsonShape.DEFAULT),
-                  TypeReferenceWithShape.of(new TypeReference<PlaidPaymentMethodCreate>() {}, JsonShape.DEFAULT),
                   TypeReferenceWithShape.of(new TypeReference<RedirectPaymentMethodCreate>() {}, JsonShape.DEFAULT),
-                  TypeReferenceWithShape.of(new TypeReference<CheckoutSessionPaymentMethodCreate>() {}, JsonShape.DEFAULT));
+                  TypeReferenceWithShape.of(new TypeReference<CheckoutSessionPaymentMethodCreate>() {}, JsonShape.DEFAULT),
+                  TypeReferenceWithShape.of(new TypeReference<PlaidPaymentMethodCreate>() {}, JsonShape.DEFAULT));
         }
     }
     

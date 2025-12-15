@@ -79,8 +79,8 @@ public class Loc {
 
         public _Deserializer() {
             super(Loc.class, false,
-                  TypeReferenceWithShape.of(new TypeReference<Long>() {}, JsonShape.DEFAULT),
-                  TypeReferenceWithShape.of(new TypeReference<String>() {}, JsonShape.DEFAULT));
+                  TypeReferenceWithShape.of(new TypeReference<String>() {}, JsonShape.DEFAULT),
+                  TypeReferenceWithShape.of(new TypeReference<Long>() {}, JsonShape.DEFAULT));
         }
     }
     

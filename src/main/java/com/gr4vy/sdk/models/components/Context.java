@@ -85,9 +85,9 @@ public class Context {
 
         public _Deserializer() {
             super(Context.class, false,
-                  TypeReferenceWithShape.of(new TypeReference<PaymentOptionContext>() {}, JsonShape.DEFAULT),
+                  TypeReferenceWithShape.of(new TypeReference<WalletPaymentOptionContext>() {}, JsonShape.DEFAULT),
                   TypeReferenceWithShape.of(new TypeReference<GooglePayPaymentOptionContext>() {}, JsonShape.DEFAULT),
-                  TypeReferenceWithShape.of(new TypeReference<WalletPaymentOptionContext>() {}, JsonShape.DEFAULT));
+                  TypeReferenceWithShape.of(new TypeReference<PaymentOptionContext>() {}, JsonShape.DEFAULT));
         }
     }
     

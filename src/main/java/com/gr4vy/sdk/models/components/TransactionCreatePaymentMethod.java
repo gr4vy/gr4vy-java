@@ -139,17 +139,17 @@ public class TransactionCreatePaymentMethod {
 
         public _Deserializer() {
             super(TransactionCreatePaymentMethod.class, false,
-                  TypeReferenceWithShape.of(new TypeReference<NetworkTokenPaymentMethodCreate>() {}, JsonShape.DEFAULT),
+                  TypeReferenceWithShape.of(new TypeReference<CardWithUrlPaymentMethodCreate>() {}, JsonShape.DEFAULT),
+                  TypeReferenceWithShape.of(new TypeReference<RedirectPaymentMethodCreate>() {}, JsonShape.DEFAULT),
+                  TypeReferenceWithShape.of(new TypeReference<TokenPaymentMethodCreate>() {}, JsonShape.DEFAULT),
+                  TypeReferenceWithShape.of(new TypeReference<ApplePayPaymentMethodCreate>() {}, JsonShape.DEFAULT),
+                  TypeReferenceWithShape.of(new TypeReference<ClickToPayPaymentMethodCreate>() {}, JsonShape.DEFAULT),
+                  TypeReferenceWithShape.of(new TypeReference<ClickToPayFPANPaymentMethodCreate>() {}, JsonShape.DEFAULT),
                   TypeReferenceWithShape.of(new TypeReference<GooglePayPaymentMethodCreate>() {}, JsonShape.DEFAULT),
                   TypeReferenceWithShape.of(new TypeReference<GooglePayFPANPaymentMethodCreate>() {}, JsonShape.DEFAULT),
-                  TypeReferenceWithShape.of(new TypeReference<ClickToPayFPANPaymentMethodCreate>() {}, JsonShape.DEFAULT),
-                  TypeReferenceWithShape.of(new TypeReference<ApplePayPaymentMethodCreate>() {}, JsonShape.DEFAULT),
-                  TypeReferenceWithShape.of(new TypeReference<CardWithUrlPaymentMethodCreate>() {}, JsonShape.DEFAULT),
-                  TypeReferenceWithShape.of(new TypeReference<ClickToPayPaymentMethodCreate>() {}, JsonShape.DEFAULT),
+                  TypeReferenceWithShape.of(new TypeReference<NetworkTokenPaymentMethodCreate>() {}, JsonShape.DEFAULT),
                   TypeReferenceWithShape.of(new TypeReference<PlaidPaymentMethodCreate>() {}, JsonShape.DEFAULT),
-                  TypeReferenceWithShape.of(new TypeReference<RedirectPaymentMethodCreate>() {}, JsonShape.DEFAULT),
-                  TypeReferenceWithShape.of(new TypeReference<CheckoutSessionWithUrlPaymentMethodCreate>() {}, JsonShape.DEFAULT),
-                  TypeReferenceWithShape.of(new TypeReference<TokenPaymentMethodCreate>() {}, JsonShape.DEFAULT));
+                  TypeReferenceWithShape.of(new TypeReference<CheckoutSessionWithUrlPaymentMethodCreate>() {}, JsonShape.DEFAULT));
         }
     }
     
