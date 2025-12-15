@@ -125,6 +125,7 @@ public class Method {
     public static final Method WAAVE = new Method("waave");
     public static final Method WEBPAY = new Method("webpay");
     public static final Method WECHAT = new Method("wechat");
+    public static final Method WERO = new Method("wero");
     public static final Method YAPE = new Method("yape");
     public static final Method ZIPPAY = new Method("zippay");
 
@@ -305,6 +306,7 @@ public class Method {
         map.put("waave", WAAVE);
         map.put("webpay", WEBPAY);
         map.put("wechat", WECHAT);
+        map.put("wero", WERO);
         map.put("yape", YAPE);
         map.put("zippay", ZIPPAY);
         return map;
@@ -417,6 +419,7 @@ public class Method {
         map.put("waave", MethodEnum.WAAVE);
         map.put("webpay", MethodEnum.WEBPAY);
         map.put("wechat", MethodEnum.WECHAT);
+        map.put("wero", MethodEnum.WERO);
         map.put("yape", MethodEnum.YAPE);
         map.put("zippay", MethodEnum.ZIPPAY);
         return map;
@@ -530,6 +533,7 @@ public class Method {
         WAAVE("waave"),
         WEBPAY("webpay"),
         WECHAT("wechat"),
+        WERO("wero"),
         YAPE("yape"),
         ZIPPAY("zippay"),;
 

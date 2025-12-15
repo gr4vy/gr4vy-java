@@ -110,5 +110,6 @@
 | `WAAVE`              | waave                |
 | `WEBPAY`             | webpay               |
 | `WECHAT`             | wechat               |
+| `WERO`               | wero                 |
 | `YAPE`               | yape                 |
 | `ZIPPAY`             | zippay               |

@@ -1,18 +1,18 @@
 lockVersion: 2.0.0
 id: 5bbaa3a9-baa0-471b-ba6a-13fd88e8c119
 management:
-  docChecksum: 6aba622d1bcc1cadc5ed14f9743f6f3c
+  docChecksum: d936dbf48384348d01322aef60e1c953
   docVersion: 1.0.0
   speakeasyVersion: 1.676.1
   generationVersion: 2.781.2
-  releaseVersion: 2.16.2
-  configChecksum: 2316875c0258766ec0024898dc36131f
+  releaseVersion: 2.16.3
+  configChecksum: 3e985411fcda89531a69cdd373e08ea7
   repoURL: https://github.com/gr4vy/gr4vy-java.git
   published: true
 persistentEdits:
-  generation_id: 58e45803-4524-4fcf-98fe-d4787dc77c15
-  pristine_commit_hash: 5534d06868fbdbd506b346553520d03cb3e933b6
-  pristine_tree_hash: 6d33935b6823d7026028c89cd531114704faef7d
+  generation_id: feb44a65-886a-4e17-86b6-1052db1d5eb8
+  pristine_commit_hash: 47a500f4026d17a6be38a12b3a825a55d4182148
+  pristine_tree_hash: cee0f869364936ce94e6c809239d0d38616c4742
 features:
   java:
     additionalDependencies: 0.1.0
@@ -589,8 +589,8 @@ trackedFiles:
     pristine_git_object: ada3d378d3d81957b96b19e19e510b290090ec1f
   docs/models/components/Method.md:
     id: adedaeaabf7c
-    last_write_checksum: sha1:19371d46f75288dff36ea200b022e64df0dfbaeb
-    pristine_git_object: af0046b6eb3dfab56080109d640d389de5fd746a
+    last_write_checksum: sha1:d73422f4c1f3fdaeba1fc144ab01faa5d967f645
+    pristine_git_object: 5b47cf79e43f6c01cdc148c885169701a9c1afa7
   docs/models/components/MockCardMerchantAdviceCodeOptions.md:
     id: e927a10a34ae
     last_write_checksum: sha1:0d601be78333ce1c701a642b9a69e88507c6c5d0
@@ -845,8 +845,8 @@ trackedFiles:
     pristine_git_object: 6e2f800a1330db20e27df5891a0b627fd128fd5f
   docs/models/components/RedirectPaymentMethodCreateMethod.md:
     id: d7f0c77bb644
-    last_write_checksum: sha1:2133fca10bc2c2998a219ed871e5f17afd346187
-    pristine_git_object: 7d2767360fee1e5febfbdac4532d6f896b3b07e3
+    last_write_checksum: sha1:28f53c76761ecbd4a6c2d35714376f59b74ad28b
+    pristine_git_object: 99d0962578d5ba92ff1f1a7417c020d00b94fe0a
   docs/models/components/Refund.md:
     id: a2190313768a
     last_write_checksum: sha1:324d7beb6d8483798fd590e2d440325a2d933e17
@@ -2141,8 +2141,8 @@ trackedFiles:
     pristine_git_object: 15c4e4642f204ccb312d8814155b69e153b4e19b
   gradle.properties:
     id: 2afbb999f001
-    last_write_checksum: sha1:1d2c276b3910a4600e720c114abff404b86b275c
-    pristine_git_object: f42f9fc5a91f614c844dcbf90d82c49ae186ffd4
+    last_write_checksum: sha1:cd711eb347b1cf77a905a6b0da3491c970ed8830
+    pristine_git_object: 331c46377a88e98aa56583bdc5da4a339d383fce
   gradle/wrapper/gradle-wrapper.jar:
     id: ec27dae6e852
     last_write_checksum: sha1:f725fb1467084142d74fd7cd8eab691ab3442611
@@ -2449,8 +2449,8 @@ trackedFiles:
     pristine_git_object: 502a7312d3dc82c102dbaf7ed5e952d0c793e26f
   src/main/java/com/gr4vy/sdk/SDKConfiguration.java:
     id: 73a7edeaca45
-    last_write_checksum: sha1:eae78b2f973f7aeab9c1df7c19c0577427cb2801
-    pristine_git_object: 576011cec7d87028d5ffeb9aba2617f9bb22e720
+    last_write_checksum: sha1:05ff5f57ea0e0b6f11dd452661fddd60ab51f2d7
+    pristine_git_object: 7dbd670d62dac73427b2faa368e4cdba04bad3c0
   src/main/java/com/gr4vy/sdk/SecuritySource.java:
     id: 1b6add6b9b50
     last_write_checksum: sha1:2f365cc823c6243188e83f4df618c9737fcee8bd
@@ -3017,8 +3017,8 @@ trackedFiles:
     pristine_git_object: 9cbb1b174e9a001f1a288f7fc6e020c10e85141c
   src/main/java/com/gr4vy/sdk/models/components/Method.java:
     id: bac0c78cdc74
-    last_write_checksum: sha1:4c32e1e6dd5fb19f35a5444a4402f911ab11e2ab
-    pristine_git_object: b839be506f7312852a427353f7440ce9ec29186e
+    last_write_checksum: sha1:5c195a6bba67dd9d2a60d25689961d456e5441dc
+    pristine_git_object: 3e4092a83c5a50c97ebee27cd6281c3410439bdd
   src/main/java/com/gr4vy/sdk/models/components/MockCardMerchantAdviceCodeOptions.java:
     id: 98c8ae3757dc
     last_write_checksum: sha1:6a077d4085feed412a73ec009f00361376631bde
@@ -3273,8 +3273,8 @@ trackedFiles:
     pristine_git_object: 2408d5886f65783ef40c40eba3b988689d681dcb
   src/main/java/com/gr4vy/sdk/models/components/RedirectPaymentMethodCreateMethod.java:
     id: 3789188383b7
-    last_write_checksum: sha1:240417a41da6b66f1eb96fe05e1785a3d2a91c1d
-    pristine_git_object: f693743a14c33564a4056d5d73b86698de86b6d5
+    last_write_checksum: sha1:f622e5a02e5f33a6896e29be158b7f13dc0eaed4
+    pristine_git_object: 45ba605ef9643f28c4c76cd4291c472f44e247de
   src/main/java/com/gr4vy/sdk/models/components/Refund.java:
     id: 4b22e399807b
     last_write_checksum: sha1:5eaa1a0ee2ce08ecc2418ad530694865868c0917
@@ -9679,6 +9679,7 @@ examples:
           application/json: {"type": "error", "code": "gateway_timeout", "status": 504, "message": "Request could not be processed"}
 examplesVersion: 1.0.2
 generatedTests: {}
+releaseNotes: "## Java SDK Changes:\n* `gr4vy.transactions.list()`: \n  *  `request.method` **Changed**\n* `gr4vy.paymentServices.list()`: \n  *  `request.method` **Changed**\n"
 generatedFiles:
   - .gitattributes
   - USAGE.md

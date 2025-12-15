@@ -120,6 +120,7 @@ public class RedirectPaymentMethodCreateMethod {
     public static final RedirectPaymentMethodCreateMethod WAAVE = new RedirectPaymentMethodCreateMethod("waave");
     public static final RedirectPaymentMethodCreateMethod WEBPAY = new RedirectPaymentMethodCreateMethod("webpay");
     public static final RedirectPaymentMethodCreateMethod WECHAT = new RedirectPaymentMethodCreateMethod("wechat");
+    public static final RedirectPaymentMethodCreateMethod WERO = new RedirectPaymentMethodCreateMethod("wero");
     public static final RedirectPaymentMethodCreateMethod YAPE = new RedirectPaymentMethodCreateMethod("yape");
     public static final RedirectPaymentMethodCreateMethod ZIPPAY = new RedirectPaymentMethodCreateMethod("zippay");
 
@@ -290,6 +291,7 @@ public class RedirectPaymentMethodCreateMethod {
         map.put("waave", WAAVE);
         map.put("webpay", WEBPAY);
         map.put("wechat", WECHAT);
+        map.put("wero", WERO);
         map.put("yape", YAPE);
         map.put("zippay", ZIPPAY);
         return map;
@@ -392,6 +394,7 @@ public class RedirectPaymentMethodCreateMethod {
         map.put("waave", RedirectPaymentMethodCreateMethodEnum.WAAVE);
         map.put("webpay", RedirectPaymentMethodCreateMethodEnum.WEBPAY);
         map.put("wechat", RedirectPaymentMethodCreateMethodEnum.WECHAT);
+        map.put("wero", RedirectPaymentMethodCreateMethodEnum.WERO);
         map.put("yape", RedirectPaymentMethodCreateMethodEnum.YAPE);
         map.put("zippay", RedirectPaymentMethodCreateMethodEnum.ZIPPAY);
         return map;
@@ -495,6 +498,7 @@ public class RedirectPaymentMethodCreateMethod {
         WAAVE("waave"),
         WEBPAY("webpay"),
         WECHAT("wechat"),
+        WERO("wero"),
         YAPE("yape"),
         ZIPPAY("zippay"),;
 
