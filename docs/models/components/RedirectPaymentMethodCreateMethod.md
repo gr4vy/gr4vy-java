@@ -102,5 +102,6 @@ The method to use, this can be any of the methods that support redirect requests
 | `WAAVE`           | waave             |
 | `WEBPAY`          | webpay            |
 | `WECHAT`          | wechat            |
+| `WERO`            | wero              |
 | `YAPE`            | yape              |
 | `ZIPPAY`          | zippay            |
