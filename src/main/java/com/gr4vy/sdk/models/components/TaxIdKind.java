@@ -37,6 +37,12 @@ public class TaxIdKind {
     public static final TaxIdKind CL_TIN = new TaxIdKind("cl.tin");
     public static final TaxIdKind CO_ITIN = new TaxIdKind("co.itin");
     public static final TaxIdKind CO_NIT = new TaxIdKind("co.nit");
+    public static final TaxIdKind CO_CC = new TaxIdKind("co.cc");
+    public static final TaxIdKind CO_CE = new TaxIdKind("co.ce");
+    public static final TaxIdKind CO_DE = new TaxIdKind("co.de");
+    public static final TaxIdKind CO_RC = new TaxIdKind("co.rc");
+    public static final TaxIdKind CO_TI = new TaxIdKind("co.ti");
+    public static final TaxIdKind CO_PASSPORT = new TaxIdKind("co.passport");
     public static final TaxIdKind ES_CIF = new TaxIdKind("es.cif");
     public static final TaxIdKind EU_VAT = new TaxIdKind("eu.vat");
     public static final TaxIdKind GB_VAT = new TaxIdKind("gb.vat");
@@ -162,6 +168,12 @@ public class TaxIdKind {
         map.put("cl.tin", CL_TIN);
         map.put("co.itin", CO_ITIN);
         map.put("co.nit", CO_NIT);
+        map.put("co.cc", CO_CC);
+        map.put("co.ce", CO_CE);
+        map.put("co.de", CO_DE);
+        map.put("co.rc", CO_RC);
+        map.put("co.ti", CO_TI);
+        map.put("co.passport", CO_PASSPORT);
         map.put("es.cif", ES_CIF);
         map.put("eu.vat", EU_VAT);
         map.put("gb.vat", GB_VAT);
@@ -219,6 +231,12 @@ public class TaxIdKind {
         map.put("cl.tin", TaxIdKindEnum.CL_TIN);
         map.put("co.itin", TaxIdKindEnum.CO_ITIN);
         map.put("co.nit", TaxIdKindEnum.CO_NIT);
+        map.put("co.cc", TaxIdKindEnum.CO_CC);
+        map.put("co.ce", TaxIdKindEnum.CO_CE);
+        map.put("co.de", TaxIdKindEnum.CO_DE);
+        map.put("co.rc", TaxIdKindEnum.CO_RC);
+        map.put("co.ti", TaxIdKindEnum.CO_TI);
+        map.put("co.passport", TaxIdKindEnum.CO_PASSPORT);
         map.put("es.cif", TaxIdKindEnum.ES_CIF);
         map.put("eu.vat", TaxIdKindEnum.EU_VAT);
         map.put("gb.vat", TaxIdKindEnum.GB_VAT);
@@ -277,6 +295,12 @@ public class TaxIdKind {
         CL_TIN("cl.tin"),
         CO_ITIN("co.itin"),
         CO_NIT("co.nit"),
+        CO_CC("co.cc"),
+        CO_CE("co.ce"),
+        CO_DE("co.de"),
+        CO_RC("co.rc"),
+        CO_TI("co.ti"),
+        CO_PASSPORT("co.passport"),
         ES_CIF("es.cif"),
         EU_VAT("eu.vat"),
         GB_VAT("gb.vat"),
