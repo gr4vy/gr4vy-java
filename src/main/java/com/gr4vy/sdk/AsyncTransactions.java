@@ -53,6 +53,7 @@ public class AsyncTransactions {
     private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final AsyncTransactionsRefunds refunds;
+    private final AsyncActions actions;
     private final AsyncEvents events;
     private final AsyncSettlements settlements;
     private final Transactions syncSDK;
@@ -60,6 +61,7 @@ public class AsyncTransactions {
     AsyncTransactions(Transactions syncSDK, SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
         this.refunds = new AsyncTransactionsRefunds(syncSDK.refunds(), this.sdkConfiguration);
+        this.actions = new AsyncActions(syncSDK.actions(), this.sdkConfiguration);
         this.events = new AsyncEvents(syncSDK.events(), this.sdkConfiguration);
         this.settlements = new AsyncSettlements(syncSDK.settlements(), this.sdkConfiguration);
         this.syncSDK = syncSDK;
@@ -67,6 +69,10 @@ public class AsyncTransactions {
 
     public final AsyncTransactionsRefunds refunds() {
         return refunds;
+    }
+
+    public final AsyncActions actions() {
+        return actions;
     }
 
     public final AsyncEvents events() {
