@@ -53,12 +53,14 @@ public class Transactions {
     private final SDKConfiguration sdkConfiguration;
     private final AsyncTransactions asyncSDK;
     private final TransactionsRefunds refunds;
+    private final Actions actions;
     private final Events events;
     private final Settlements settlements;
 
     Transactions(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
         this.refunds = new TransactionsRefunds(this.sdkConfiguration);
+        this.actions = new Actions(this.sdkConfiguration);
         this.events = new Events(this.sdkConfiguration);
         this.settlements = new Settlements(this.sdkConfiguration);
         this.asyncSDK = new AsyncTransactions(this, sdkConfiguration);
@@ -66,6 +68,10 @@ public class Transactions {
 
     public final TransactionsRefunds refunds() {
         return refunds;
+    }
+
+    public final Actions actions() {
+        return actions;
     }
 
     public final Events events() {
