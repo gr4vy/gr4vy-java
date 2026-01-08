@@ -36,9 +36,9 @@ public class Actions {
     }
 
     /**
-     * Get Flow actions for transaction
+     * List transaction Flow rules
      * 
-     * <p>Retrieve the list of Flow actions that have been triggered for a transaction.
+     * <p>Retrieve the list of Flow rule actions that have been triggered for a transaction.
      * 
      * @return The call builder
      */
@@ -47,9 +47,9 @@ public class Actions {
     }
 
     /**
-     * Get Flow actions for transaction
+     * List transaction Flow rules
      * 
-     * <p>Retrieve the list of Flow actions that have been triggered for a transaction.
+     * <p>Retrieve the list of Flow rule actions that have been triggered for a transaction.
      * 
      * @param transactionId The ID of the transaction
      * @return The response from the API call
@@ -60,9 +60,9 @@ public class Actions {
     }
 
     /**
-     * Get Flow actions for transaction
+     * List transaction Flow rules
      * 
-     * <p>Retrieve the list of Flow actions that have been triggered for a transaction.
+     * <p>Retrieve the list of Flow rule actions that have been triggered for a transaction.
      * 
      * @param transactionId The ID of the transaction
      * @param merchantAccountId 

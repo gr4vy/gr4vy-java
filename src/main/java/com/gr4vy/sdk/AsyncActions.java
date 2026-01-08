@@ -38,9 +38,9 @@ public class AsyncActions {
 
 
     /**
-     * Get Flow actions for transaction
+     * List transaction Flow rules
      * 
-     * <p>Retrieve the list of Flow actions that have been triggered for a transaction.
+     * <p>Retrieve the list of Flow rule actions that have been triggered for a transaction.
      * 
      * @return The async call builder
      */
@@ -49,9 +49,9 @@ public class AsyncActions {
     }
 
     /**
-     * Get Flow actions for transaction
+     * List transaction Flow rules
      * 
-     * <p>Retrieve the list of Flow actions that have been triggered for a transaction.
+     * <p>Retrieve the list of Flow rule actions that have been triggered for a transaction.
      * 
      * @param transactionId The ID of the transaction
      * @return {@code CompletableFuture<ListTransactionActionsResponse>} - The async response
@@ -61,9 +61,9 @@ public class AsyncActions {
     }
 
     /**
-     * Get Flow actions for transaction
+     * List transaction Flow rules
      * 
-     * <p>Retrieve the list of Flow actions that have been triggered for a transaction.
+     * <p>Retrieve the list of Flow rule actions that have been triggered for a transaction.
      * 
      * @param transactionId The ID of the transaction
      * @param merchantAccountId 
