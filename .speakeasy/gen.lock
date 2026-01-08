@@ -1,18 +1,18 @@
 lockVersion: 2.0.0
 id: 5bbaa3a9-baa0-471b-ba6a-13fd88e8c119
 management:
-  docChecksum: 6f50b6ff9e9172aa31796a10934af7ff
+  docChecksum: 2437032fa252b275d501236d42a91cab
   docVersion: 1.0.0
   speakeasyVersion: 1.682.0
   generationVersion: 2.791.1
-  releaseVersion: 2.16.7
-  configChecksum: 6141e68f659037fbd3a7bc6dc52027a0
+  releaseVersion: 2.16.8
+  configChecksum: 57346f90bf5baaf21ce51f7f0fcab569
   repoURL: https://github.com/gr4vy/gr4vy-java.git
   published: true
 persistentEdits:
-  generation_id: e1201411-d4bf-4b27-be64-6928dff8dc5b
-  pristine_commit_hash: a740271a77557d08eebe912d965c0b1c35d0d5c1
-  pristine_tree_hash: 632f9a9b13148d41e6cb77b25a2fa6b894842cd7
+  generation_id: db935678-50ff-4da9-8c2a-c0cf235b250e
+  pristine_commit_hash: ef0f1cdd037347efa668131de5dc1a0f979aec90
+  pristine_tree_hash: ae0bb06530c86ab88fa168685a7aa0a33ae76194
 features:
   java:
     additionalDependencies: 0.1.0
@@ -2037,8 +2037,8 @@ trackedFiles:
     pristine_git_object: 83fe0d57b20cfb96692c64518a1d649355ec7a07
   docs/sdks/actions/README.md:
     id: e229cf99e666
-    last_write_checksum: sha1:6f9aba742b30e5c3137b411063deb64964328d19
-    pristine_git_object: acabfcfe9a9794983b00dbd3446142987eeb668d
+    last_write_checksum: sha1:bd8c4bc91180fddb845e6cf32e01570d910014d3
+    pristine_git_object: 607db89efa1f3098b6d660a489ec4152aa8d3529
   docs/sdks/all/README.md:
     id: 936653be5c4b
     last_write_checksum: sha1:65e40bebdbeea2b16557bdffbee9051f8de6f09f
@@ -2173,8 +2173,8 @@ trackedFiles:
     pristine_git_object: 15c4e4642f204ccb312d8814155b69e153b4e19b
   gradle.properties:
     id: 2afbb999f001
-    last_write_checksum: sha1:6edeab871e3dcc2e21e79da5d6fd26802fc9b7aa
-    pristine_git_object: e021cdca9f51faceee32e06feb25efa1091f1c01
+    last_write_checksum: sha1:c5a70a4a0af0f2c15209a219c512f1334a6eff25
+    pristine_git_object: 826b3768e46b0a0dc0afa7a58fdb5c1693d8bae8
   gradle/wrapper/gradle-wrapper.jar:
     id: ec27dae6e852
     last_write_checksum: sha1:f725fb1467084142d74fd7cd8eab691ab3442611
@@ -2233,8 +2233,8 @@ trackedFiles:
     pristine_git_object: 30132948a1d2797294f9ccee3b2e5edb763113d6
   src/main/java/com/gr4vy/sdk/Actions.java:
     id: 7c86edba82fe
-    last_write_checksum: sha1:06941122d01bc0d55acec9e541f880b66cd7f75e
-    pristine_git_object: 2fcf52268f2a72d27abaf140bbb428db4a696b48
+    last_write_checksum: sha1:b0773e26a4e2976a99ec46652571f52b1af78159
+    pristine_git_object: b86ebe2ce835d4b6e1021be71f78aa98cd5d477c
   src/main/java/com/gr4vy/sdk/All.java:
     id: 234c521b6941
     last_write_checksum: sha1:c192ddbfd8ac3760b9c812ad3ed31841212b7abf
@@ -2245,8 +2245,8 @@ trackedFiles:
     pristine_git_object: 44d25af25b5889a53dccba8fec59d873d4353bf0
   src/main/java/com/gr4vy/sdk/AsyncActions.java:
     id: 6e9840fe25fe
-    last_write_checksum: sha1:41fdcdaa325ed3a1e8e5cf8ac80ea4860598347d
-    pristine_git_object: fbb34e6af45c541910cdc621b57918e218b34bfd
+    last_write_checksum: sha1:afbf98587fe590a1c4ab597503642a0ef891a3c9
+    pristine_git_object: 028d3696be7da66d76b84b1353133139769e2079
   src/main/java/com/gr4vy/sdk/AsyncAll.java:
     id: 42ccc0a41ddf
     last_write_checksum: sha1:8e72fc268baf2be20bbaab2498be58828098acf9
@@ -2489,8 +2489,8 @@ trackedFiles:
     pristine_git_object: 502a7312d3dc82c102dbaf7ed5e952d0c793e26f
   src/main/java/com/gr4vy/sdk/SDKConfiguration.java:
     id: 73a7edeaca45
-    last_write_checksum: sha1:7bcbe3aff7772595eab18a682b9412a19965df48
-    pristine_git_object: cf77c2956f8421915f105dbad12d0203a80909ec
+    last_write_checksum: sha1:5f476e6da5dc657ae8db8406f53f09b12566cd3c
+    pristine_git_object: 7aa12c55f37e8b4f9cbe4f9a285839b6f713bf35
   src/main/java/com/gr4vy/sdk/SecuritySource.java:
     id: 1b6add6b9b50
     last_write_checksum: sha1:2f365cc823c6243188e83f4df618c9737fcee8bd
@@ -9795,9 +9795,6 @@ examples:
           application/json: {"type": "error", "code": "gateway_timeout", "status": 504, "message": "Request could not be processed"}
 examplesVersion: 1.0.2
 generatedTests: {}
-releaseNotes: |
-  ## Java SDK Changes:
-  * `gr4vy.transactions.actions.list()`: **Added**
 generatedFiles:
   - .gitattributes
   - USAGE.md
