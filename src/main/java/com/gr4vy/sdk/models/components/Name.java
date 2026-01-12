@@ -66,6 +66,7 @@ public class Name {
     public static final Name PAYMENT_CONNECTOR_REPORT_TRANSACTION_SETTLED = new Name("payment-connector-report-transaction-settled");
     public static final Name PAYMENT_CONNECTOR_REPORT_CHARGEBACK_POSTED = new Name("payment-connector-report-chargeback-posted");
     public static final Name PAYMENT_CONNECTOR_REPORT_CHARGEBACK_REVERSAL_POSTED = new Name("payment-connector-report-chargeback-reversal-posted");
+    public static final Name PAYMENT_CONNECTOR_TRANSACTION_WEBHOOK_PROCESSED = new Name("payment-connector-transaction-webhook-processed");
     public static final Name DIGITAL_WALLET_APPLE_PAY_TOKEN_DECRYPTED = new Name("digital-wallet-apple-pay-token-decrypted");
     public static final Name DIGITAL_WALLET_GOOGLE_PAY_TOKEN_DECRYPTED = new Name("digital-wallet-google-pay-token-decrypted");
     public static final Name DIGITAL_WALLET_CLICK_TO_PAY_TOKEN_DECRYPTED = new Name("digital-wallet-click-to-pay-token-decrypted");
@@ -190,6 +191,7 @@ public class Name {
         map.put("payment-connector-report-transaction-settled", PAYMENT_CONNECTOR_REPORT_TRANSACTION_SETTLED);
         map.put("payment-connector-report-chargeback-posted", PAYMENT_CONNECTOR_REPORT_CHARGEBACK_POSTED);
         map.put("payment-connector-report-chargeback-reversal-posted", PAYMENT_CONNECTOR_REPORT_CHARGEBACK_REVERSAL_POSTED);
+        map.put("payment-connector-transaction-webhook-processed", PAYMENT_CONNECTOR_TRANSACTION_WEBHOOK_PROCESSED);
         map.put("digital-wallet-apple-pay-token-decrypted", DIGITAL_WALLET_APPLE_PAY_TOKEN_DECRYPTED);
         map.put("digital-wallet-google-pay-token-decrypted", DIGITAL_WALLET_GOOGLE_PAY_TOKEN_DECRYPTED);
         map.put("digital-wallet-click-to-pay-token-decrypted", DIGITAL_WALLET_CLICK_TO_PAY_TOKEN_DECRYPTED);
@@ -246,6 +248,7 @@ public class Name {
         map.put("payment-connector-report-transaction-settled", NameEnum.PAYMENT_CONNECTOR_REPORT_TRANSACTION_SETTLED);
         map.put("payment-connector-report-chargeback-posted", NameEnum.PAYMENT_CONNECTOR_REPORT_CHARGEBACK_POSTED);
         map.put("payment-connector-report-chargeback-reversal-posted", NameEnum.PAYMENT_CONNECTOR_REPORT_CHARGEBACK_REVERSAL_POSTED);
+        map.put("payment-connector-transaction-webhook-processed", NameEnum.PAYMENT_CONNECTOR_TRANSACTION_WEBHOOK_PROCESSED);
         map.put("digital-wallet-apple-pay-token-decrypted", NameEnum.DIGITAL_WALLET_APPLE_PAY_TOKEN_DECRYPTED);
         map.put("digital-wallet-google-pay-token-decrypted", NameEnum.DIGITAL_WALLET_GOOGLE_PAY_TOKEN_DECRYPTED);
         map.put("digital-wallet-click-to-pay-token-decrypted", NameEnum.DIGITAL_WALLET_CLICK_TO_PAY_TOKEN_DECRYPTED);
@@ -303,6 +306,7 @@ public class Name {
         PAYMENT_CONNECTOR_REPORT_TRANSACTION_SETTLED("payment-connector-report-transaction-settled"),
         PAYMENT_CONNECTOR_REPORT_CHARGEBACK_POSTED("payment-connector-report-chargeback-posted"),
         PAYMENT_CONNECTOR_REPORT_CHARGEBACK_REVERSAL_POSTED("payment-connector-report-chargeback-reversal-posted"),
+        PAYMENT_CONNECTOR_TRANSACTION_WEBHOOK_PROCESSED("payment-connector-transaction-webhook-processed"),
         DIGITAL_WALLET_APPLE_PAY_TOKEN_DECRYPTED("digital-wallet-apple-pay-token-decrypted"),
         DIGITAL_WALLET_GOOGLE_PAY_TOKEN_DECRYPTED("digital-wallet-google-pay-token-decrypted"),
         DIGITAL_WALLET_CLICK_TO_PAY_TOKEN_DECRYPTED("digital-wallet-click-to-pay-token-decrypted"),

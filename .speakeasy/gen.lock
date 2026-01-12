@@ -1,18 +1,18 @@
 lockVersion: 2.0.0
 id: 5bbaa3a9-baa0-471b-ba6a-13fd88e8c119
 management:
-  docChecksum: 2437032fa252b275d501236d42a91cab
+  docChecksum: 015577bc8385a7076a14323a8626b8a6
   docVersion: 1.0.0
-  speakeasyVersion: 1.682.0
-  generationVersion: 2.791.1
-  releaseVersion: 2.16.8
-  configChecksum: 57346f90bf5baaf21ce51f7f0fcab569
+  speakeasyVersion: 1.684.0
+  generationVersion: 2.793.0
+  releaseVersion: 2.16.9
+  configChecksum: c0b1f13b3e92a18eb6fa33aec3a6e58a
   repoURL: https://github.com/gr4vy/gr4vy-java.git
   published: true
 persistentEdits:
-  generation_id: db935678-50ff-4da9-8c2a-c0cf235b250e
-  pristine_commit_hash: ef0f1cdd037347efa668131de5dc1a0f979aec90
-  pristine_tree_hash: ae0bb06530c86ab88fa168685a7aa0a33ae76194
+  generation_id: 8e92904d-cb9c-4758-831a-0566b4789fe3
+  pristine_commit_hash: 9aac918b67687bed83fe71dd061761bc1a88c517
+  pristine_tree_hash: 2fd66b859db199ed4681ffb4c2c306da81b25fbc
 features:
   java:
     additionalDependencies: 0.1.0
@@ -621,8 +621,8 @@ trackedFiles:
     pristine_git_object: 7869e74d70c5656ce707682863afc4345852f60f
   docs/models/components/Name.md:
     id: 5b1d98ebed09
-    last_write_checksum: sha1:4878146b834b04395e2e9a1b9ee9357f5aa45759
-    pristine_git_object: f2997a6401c601a563ca66e4afa35a374c5699d0
+    last_write_checksum: sha1:cfa8cadda867ad5ca0e52703d9a1c4d2e394353a
+    pristine_git_object: ababc03aefda690ed69fc4b6b66a293f7cbd6180
   docs/models/components/NetworkToken.md:
     id: 75d28bb2efd1
     last_write_checksum: sha1:af343ae7089d791eda67a922bce4a7fd752fca2a
@@ -2173,8 +2173,8 @@ trackedFiles:
     pristine_git_object: 15c4e4642f204ccb312d8814155b69e153b4e19b
   gradle.properties:
     id: 2afbb999f001
-    last_write_checksum: sha1:c5a70a4a0af0f2c15209a219c512f1334a6eff25
-    pristine_git_object: 826b3768e46b0a0dc0afa7a58fdb5c1693d8bae8
+    last_write_checksum: sha1:9ac6cc6759a20dd9706b1414e4bcc55612b8f844
+    pristine_git_object: dd0e4e2c434938f2617f83841621d372a5be1477
   gradle/wrapper/gradle-wrapper.jar:
     id: ec27dae6e852
     last_write_checksum: sha1:f725fb1467084142d74fd7cd8eab691ab3442611
@@ -2489,8 +2489,8 @@ trackedFiles:
     pristine_git_object: 502a7312d3dc82c102dbaf7ed5e952d0c793e26f
   src/main/java/com/gr4vy/sdk/SDKConfiguration.java:
     id: 73a7edeaca45
-    last_write_checksum: sha1:5f476e6da5dc657ae8db8406f53f09b12566cd3c
-    pristine_git_object: 7aa12c55f37e8b4f9cbe4f9a285839b6f713bf35
+    last_write_checksum: sha1:7129a529f26754b31e9f797addcd2705c6162146
+    pristine_git_object: 558a85d24b980c164fb0e670cc2e7a614dc7641f
   src/main/java/com/gr4vy/sdk/SecuritySource.java:
     id: 1b6add6b9b50
     last_write_checksum: sha1:2f365cc823c6243188e83f4df618c9737fcee8bd
@@ -3089,8 +3089,8 @@ trackedFiles:
     pristine_git_object: 6b76ef182f90a2ad93613aebafea6b93c2e38d7d
   src/main/java/com/gr4vy/sdk/models/components/Name.java:
     id: aa0da4fd8c61
-    last_write_checksum: sha1:d9a8ceda7f288b51208d0393fd5ad998e35fa1fc
-    pristine_git_object: 71188a09ca9289ab0a79ab431a11d3a396e7a8e9
+    last_write_checksum: sha1:a18c15eb3a4ab94d198a7335795f9fa035158fcc
+    pristine_git_object: 96d906e750afb46a539f6bedfa896a6c0a6db385
   src/main/java/com/gr4vy/sdk/models/components/NetworkToken.java:
     id: 8bd005097a16
     last_write_checksum: sha1:8d58b2bdd151db95f9959a0c148632011776ea4d
