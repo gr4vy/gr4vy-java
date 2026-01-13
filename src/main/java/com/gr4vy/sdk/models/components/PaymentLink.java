@@ -221,6 +221,13 @@ public class PaymentLink {
     @JsonProperty("buyer_id")
     private JsonNullable<String> buyerId;
 
+    /**
+     * The number of installments a buyer is required to make.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("installment_count")
+    private JsonNullable<Long> installmentCount;
+
     @JsonCreator
     public PaymentLink(
             @JsonProperty("id") String id,
@@ -251,7 +258,8 @@ public class PaymentLink {
             @JsonProperty("shipping_details") JsonNullable<? extends ShippingDetails> shippingDetails,
             @JsonProperty("connection_options") JsonNullable<? extends Map<String, Map<String, Object>>> connectionOptions,
             @JsonProperty("store") Optional<Boolean> store,
-            @JsonProperty("buyer_id") JsonNullable<String> buyerId) {
+            @JsonProperty("buyer_id") JsonNullable<String> buyerId,
+            @JsonProperty("installment_count") JsonNullable<Long> installmentCount) {
         Utils.checkNotNull(id, "id");
         Utils.checkNotNull(url, "url");
         Utils.checkNotNull(expiresAt, "expiresAt");
@@ -281,6 +289,7 @@ public class PaymentLink {
         Utils.checkNotNull(connectionOptions, "connectionOptions");
         Utils.checkNotNull(store, "store");
         Utils.checkNotNull(buyerId, "buyerId");
+        Utils.checkNotNull(installmentCount, "installmentCount");
         this.id = id;
         this.type = Builder._SINGLETON_VALUE_Type.value();
         this.url = url;
@@ -311,6 +320,7 @@ public class PaymentLink {
         this.connectionOptions = connectionOptions;
         this.store = store;
         this.buyerId = buyerId;
+        this.installmentCount = installmentCount;
     }
     
     public PaymentLink(
@@ -333,7 +343,7 @@ public class PaymentLink {
             Optional.empty(), JsonNullable.undefined(), paymentSource,
             createdAt, updatedAt, status,
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            Optional.empty(), JsonNullable.undefined());
+            Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined());
     }
 
     /**
@@ -574,6 +584,14 @@ public class PaymentLink {
     @JsonIgnore
     public JsonNullable<String> buyerId() {
         return buyerId;
+    }
+
+    /**
+     * The number of installments a buyer is required to make.
+     */
+    @JsonIgnore
+    public JsonNullable<Long> installmentCount() {
+        return installmentCount;
     }
 
     public static Builder builder() {
@@ -1009,6 +1027,24 @@ public class PaymentLink {
         return this;
     }
 
+    /**
+     * The number of installments a buyer is required to make.
+     */
+    public PaymentLink withInstallmentCount(long installmentCount) {
+        Utils.checkNotNull(installmentCount, "installmentCount");
+        this.installmentCount = JsonNullable.of(installmentCount);
+        return this;
+    }
+
+    /**
+     * The number of installments a buyer is required to make.
+     */
+    public PaymentLink withInstallmentCount(JsonNullable<Long> installmentCount) {
+        Utils.checkNotNull(installmentCount, "installmentCount");
+        this.installmentCount = installmentCount;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -1048,7 +1084,8 @@ public class PaymentLink {
             Utils.enhancedDeepEquals(this.shippingDetails, other.shippingDetails) &&
             Utils.enhancedDeepEquals(this.connectionOptions, other.connectionOptions) &&
             Utils.enhancedDeepEquals(this.store, other.store) &&
-            Utils.enhancedDeepEquals(this.buyerId, other.buyerId);
+            Utils.enhancedDeepEquals(this.buyerId, other.buyerId) &&
+            Utils.enhancedDeepEquals(this.installmentCount, other.installmentCount);
     }
     
     @Override
@@ -1063,7 +1100,8 @@ public class PaymentLink {
             returnUrl, cartItems, metadata,
             paymentSource, createdAt, updatedAt,
             status, buyer, shippingDetails,
-            connectionOptions, store, buyerId);
+            connectionOptions, store, buyerId,
+            installmentCount);
     }
     
     @Override
@@ -1098,7 +1136,8 @@ public class PaymentLink {
                 "shippingDetails", shippingDetails,
                 "connectionOptions", connectionOptions,
                 "store", store,
-                "buyerId", buyerId);
+                "buyerId", buyerId,
+                "installmentCount", installmentCount);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -1161,6 +1200,8 @@ public class PaymentLink {
         private Optional<Boolean> store;
 
         private JsonNullable<String> buyerId = JsonNullable.undefined();
+
+        private JsonNullable<Long> installmentCount = JsonNullable.undefined();
 
         private Builder() {
           // force use of static builder() method
@@ -1621,6 +1662,25 @@ public class PaymentLink {
             return this;
         }
 
+
+        /**
+         * The number of installments a buyer is required to make.
+         */
+        public Builder installmentCount(long installmentCount) {
+            Utils.checkNotNull(installmentCount, "installmentCount");
+            this.installmentCount = JsonNullable.of(installmentCount);
+            return this;
+        }
+
+        /**
+         * The number of installments a buyer is required to make.
+         */
+        public Builder installmentCount(JsonNullable<Long> installmentCount) {
+            Utils.checkNotNull(installmentCount, "installmentCount");
+            this.installmentCount = installmentCount;
+            return this;
+        }
+
         public PaymentLink build() {
             if (store == null) {
                 store = _SINGLETON_VALUE_Store.value();
@@ -1636,7 +1696,7 @@ public class PaymentLink {
                 cartItems, metadata, paymentSource,
                 createdAt, updatedAt, status,
                 buyer, shippingDetails, connectionOptions,
-                store, buyerId);
+                store, buyerId, installmentCount);
         }
 
 

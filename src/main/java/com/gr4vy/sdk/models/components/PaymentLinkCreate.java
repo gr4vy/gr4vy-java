@@ -183,6 +183,13 @@ public class PaymentLinkCreate {
     @JsonProperty("buyer_id")
     private JsonNullable<String> buyerId;
 
+    /**
+     * The number of installments a buyer is required to make.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("installment_count")
+    private JsonNullable<Long> installmentCount;
+
     @JsonCreator
     public PaymentLinkCreate(
             @JsonProperty("buyer") JsonNullable<? extends GuestBuyer> buyer,
@@ -207,7 +214,8 @@ public class PaymentLinkCreate {
             @JsonProperty("metadata") JsonNullable<? extends Map<String, Object>> metadata,
             @JsonProperty("payment_source") Optional<? extends TransactionPaymentSource> paymentSource,
             @JsonProperty("store") Optional<Boolean> store,
-            @JsonProperty("buyer_id") JsonNullable<String> buyerId) {
+            @JsonProperty("buyer_id") JsonNullable<String> buyerId,
+            @JsonProperty("installment_count") JsonNullable<Long> installmentCount) {
         Utils.checkNotNull(buyer, "buyer");
         Utils.checkNotNull(expiresAt, "expiresAt");
         Utils.checkNotNull(connectionOptions, "connectionOptions");
@@ -231,6 +239,7 @@ public class PaymentLinkCreate {
         Utils.checkNotNull(paymentSource, "paymentSource");
         Utils.checkNotNull(store, "store");
         Utils.checkNotNull(buyerId, "buyerId");
+        Utils.checkNotNull(installmentCount, "installmentCount");
         this.buyer = buyer;
         this.expiresAt = expiresAt;
         this.connectionOptions = connectionOptions;
@@ -254,6 +263,7 @@ public class PaymentLinkCreate {
         this.paymentSource = paymentSource;
         this.store = store;
         this.buyerId = buyerId;
+        this.installmentCount = installmentCount;
     }
     
     public PaymentLinkCreate(
@@ -267,7 +277,7 @@ public class PaymentLinkCreate {
             JsonNullable.undefined(), amount, country,
             currency, Optional.empty(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
-            Optional.empty(), JsonNullable.undefined());
+            Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined());
     }
 
     /**
@@ -458,6 +468,14 @@ public class PaymentLinkCreate {
     @JsonIgnore
     public JsonNullable<String> buyerId() {
         return buyerId;
+    }
+
+    /**
+     * The number of installments a buyer is required to make.
+     */
+    @JsonIgnore
+    public JsonNullable<Long> installmentCount() {
+        return installmentCount;
     }
 
     public static Builder builder() {
@@ -853,6 +871,24 @@ public class PaymentLinkCreate {
         return this;
     }
 
+    /**
+     * The number of installments a buyer is required to make.
+     */
+    public PaymentLinkCreate withInstallmentCount(long installmentCount) {
+        Utils.checkNotNull(installmentCount, "installmentCount");
+        this.installmentCount = JsonNullable.of(installmentCount);
+        return this;
+    }
+
+    /**
+     * The number of installments a buyer is required to make.
+     */
+    public PaymentLinkCreate withInstallmentCount(JsonNullable<Long> installmentCount) {
+        Utils.checkNotNull(installmentCount, "installmentCount");
+        this.installmentCount = installmentCount;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -885,7 +921,8 @@ public class PaymentLinkCreate {
             Utils.enhancedDeepEquals(this.metadata, other.metadata) &&
             Utils.enhancedDeepEquals(this.paymentSource, other.paymentSource) &&
             Utils.enhancedDeepEquals(this.store, other.store) &&
-            Utils.enhancedDeepEquals(this.buyerId, other.buyerId);
+            Utils.enhancedDeepEquals(this.buyerId, other.buyerId) &&
+            Utils.enhancedDeepEquals(this.installmentCount, other.installmentCount);
     }
     
     @Override
@@ -898,7 +935,7 @@ public class PaymentLinkCreate {
             merchantFaviconUrl, amount, country,
             currency, intent, returnUrl,
             cartItems, metadata, paymentSource,
-            store, buyerId);
+            store, buyerId, installmentCount);
     }
     
     @Override
@@ -926,7 +963,8 @@ public class PaymentLinkCreate {
                 "metadata", metadata,
                 "paymentSource", paymentSource,
                 "store", store,
-                "buyerId", buyerId);
+                "buyerId", buyerId,
+                "installmentCount", installmentCount);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -977,6 +1015,8 @@ public class PaymentLinkCreate {
         private Optional<Boolean> store;
 
         private JsonNullable<String> buyerId = JsonNullable.undefined();
+
+        private JsonNullable<Long> installmentCount = JsonNullable.undefined();
 
         private Builder() {
           // force use of static builder() method
@@ -1390,6 +1430,25 @@ public class PaymentLinkCreate {
             return this;
         }
 
+
+        /**
+         * The number of installments a buyer is required to make.
+         */
+        public Builder installmentCount(long installmentCount) {
+            Utils.checkNotNull(installmentCount, "installmentCount");
+            this.installmentCount = JsonNullable.of(installmentCount);
+            return this;
+        }
+
+        /**
+         * The number of installments a buyer is required to make.
+         */
+        public Builder installmentCount(JsonNullable<Long> installmentCount) {
+            Utils.checkNotNull(installmentCount, "installmentCount");
+            this.installmentCount = installmentCount;
+            return this;
+        }
+
         public PaymentLinkCreate build() {
             if (store == null) {
                 store = _SINGLETON_VALUE_Store.value();
@@ -1403,7 +1462,7 @@ public class PaymentLinkCreate {
                 merchantFaviconUrl, amount, country,
                 currency, intent, returnUrl,
                 cartItems, metadata, paymentSource,
-                store, buyerId);
+                store, buyerId, installmentCount);
         }
 
 
