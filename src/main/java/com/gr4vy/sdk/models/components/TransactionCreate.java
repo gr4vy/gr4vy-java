@@ -131,6 +131,13 @@ public class TransactionCreate {
     private JsonNullable<? extends ThreeDSecureData> threeDSecureData;
 
     /**
+     * Optional 3-D Secure values to use during the authentication flow.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("three_d_secure")
+    private JsonNullable<? extends ThreeDSecure> threeDSecure;
+
+    /**
      * Any additional information about the transaction that you would like to store as key-value pairs.
      * This data is passed to payment service providers that support it.
      */
@@ -367,6 +374,7 @@ public class TransactionCreate {
             @JsonProperty("intent") Optional<? extends TransactionIntent> intent,
             @JsonProperty("store") Optional<Boolean> store,
             @JsonProperty("three_d_secure_data") JsonNullable<? extends ThreeDSecureData> threeDSecureData,
+            @JsonProperty("three_d_secure") JsonNullable<? extends ThreeDSecure> threeDSecure,
             @JsonProperty("metadata") JsonNullable<? extends Map<String, String>> metadata,
             @JsonProperty("is_subsequent_payment") Optional<Boolean> isSubsequentPayment,
             @JsonProperty("merchant_initiated") Optional<Boolean> merchantInitiated,
@@ -406,6 +414,7 @@ public class TransactionCreate {
         Utils.checkNotNull(intent, "intent");
         Utils.checkNotNull(store, "store");
         Utils.checkNotNull(threeDSecureData, "threeDSecureData");
+        Utils.checkNotNull(threeDSecure, "threeDSecure");
         Utils.checkNotNull(metadata, "metadata");
         Utils.checkNotNull(isSubsequentPayment, "isSubsequentPayment");
         Utils.checkNotNull(merchantInitiated, "merchantInitiated");
@@ -445,6 +454,7 @@ public class TransactionCreate {
         this.intent = intent;
         this.store = store;
         this.threeDSecureData = threeDSecureData;
+        this.threeDSecure = threeDSecure;
         this.metadata = metadata;
         this.isSubsequentPayment = isSubsequentPayment;
         this.merchantInitiated = merchantInitiated;
@@ -481,15 +491,16 @@ public class TransactionCreate {
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             Optional.empty(), Optional.empty(), JsonNullable.undefined(),
-            JsonNullable.undefined(), Optional.empty(), Optional.empty(),
-            Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
-            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
+            Optional.empty(), Optional.empty(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
+            Optional.empty(), Optional.empty(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined());
     }
 
     /**
@@ -615,6 +626,15 @@ public class TransactionCreate {
     @JsonIgnore
     public JsonNullable<ThreeDSecureData> threeDSecureData() {
         return (JsonNullable<ThreeDSecureData>) threeDSecureData;
+    }
+
+    /**
+     * Optional 3-D Secure values to use during the authentication flow.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public JsonNullable<ThreeDSecure> threeDSecure() {
+        return (JsonNullable<ThreeDSecure>) threeDSecure;
     }
 
     /**
@@ -1122,6 +1142,24 @@ public class TransactionCreate {
     public TransactionCreate withThreeDSecureData(JsonNullable<? extends ThreeDSecureData> threeDSecureData) {
         Utils.checkNotNull(threeDSecureData, "threeDSecureData");
         this.threeDSecureData = threeDSecureData;
+        return this;
+    }
+
+    /**
+     * Optional 3-D Secure values to use during the authentication flow.
+     */
+    public TransactionCreate withThreeDSecure(ThreeDSecure threeDSecure) {
+        Utils.checkNotNull(threeDSecure, "threeDSecure");
+        this.threeDSecure = JsonNullable.of(threeDSecure);
+        return this;
+    }
+
+    /**
+     * Optional 3-D Secure values to use during the authentication flow.
+     */
+    public TransactionCreate withThreeDSecure(JsonNullable<? extends ThreeDSecure> threeDSecure) {
+        Utils.checkNotNull(threeDSecure, "threeDSecure");
+        this.threeDSecure = threeDSecure;
         return this;
     }
 
@@ -1707,6 +1745,7 @@ public class TransactionCreate {
             Utils.enhancedDeepEquals(this.intent, other.intent) &&
             Utils.enhancedDeepEquals(this.store, other.store) &&
             Utils.enhancedDeepEquals(this.threeDSecureData, other.threeDSecureData) &&
+            Utils.enhancedDeepEquals(this.threeDSecure, other.threeDSecure) &&
             Utils.enhancedDeepEquals(this.metadata, other.metadata) &&
             Utils.enhancedDeepEquals(this.isSubsequentPayment, other.isSubsequentPayment) &&
             Utils.enhancedDeepEquals(this.merchantInitiated, other.merchantInitiated) &&
@@ -1743,15 +1782,16 @@ public class TransactionCreate {
             paymentMethod, buyer, buyerId,
             buyerExternalIdentifier, giftCards, externalIdentifier,
             intent, store, threeDSecureData,
-            metadata, isSubsequentPayment, merchantInitiated,
-            paymentSource, airline, cartItems,
-            statementDescriptor, previousSchemeTransactionId, browserInfo,
-            shippingDetailsId, connectionOptions, asyncCapture,
-            antiFraudFingerprint, paymentServiceId, accountFundingTransaction,
-            allowPartialAuthorization, recipient, installmentCount,
-            taxAmount, merchantTaxId, purchaseOrderNumber,
-            customerReferenceNumber, amountIncludesTax, supplierOrderNumber,
-            dutyAmount, shippingAmount, integrationClient);
+            threeDSecure, metadata, isSubsequentPayment,
+            merchantInitiated, paymentSource, airline,
+            cartItems, statementDescriptor, previousSchemeTransactionId,
+            browserInfo, shippingDetailsId, connectionOptions,
+            asyncCapture, antiFraudFingerprint, paymentServiceId,
+            accountFundingTransaction, allowPartialAuthorization, recipient,
+            installmentCount, taxAmount, merchantTaxId,
+            purchaseOrderNumber, customerReferenceNumber, amountIncludesTax,
+            supplierOrderNumber, dutyAmount, shippingAmount,
+            integrationClient);
     }
     
     @Override
@@ -1769,6 +1809,7 @@ public class TransactionCreate {
                 "intent", intent,
                 "store", store,
                 "threeDSecureData", threeDSecureData,
+                "threeDSecure", threeDSecure,
                 "metadata", metadata,
                 "isSubsequentPayment", isSubsequentPayment,
                 "merchantInitiated", merchantInitiated,
@@ -1824,6 +1865,8 @@ public class TransactionCreate {
         private Optional<Boolean> store;
 
         private JsonNullable<? extends ThreeDSecureData> threeDSecureData = JsonNullable.undefined();
+
+        private JsonNullable<? extends ThreeDSecure> threeDSecure = JsonNullable.undefined();
 
         private JsonNullable<? extends Map<String, String>> metadata = JsonNullable.undefined();
 
@@ -2134,6 +2177,25 @@ public class TransactionCreate {
         public Builder threeDSecureData(JsonNullable<? extends ThreeDSecureData> threeDSecureData) {
             Utils.checkNotNull(threeDSecureData, "threeDSecureData");
             this.threeDSecureData = threeDSecureData;
+            return this;
+        }
+
+
+        /**
+         * Optional 3-D Secure values to use during the authentication flow.
+         */
+        public Builder threeDSecure(ThreeDSecure threeDSecure) {
+            Utils.checkNotNull(threeDSecure, "threeDSecure");
+            this.threeDSecure = JsonNullable.of(threeDSecure);
+            return this;
+        }
+
+        /**
+         * Optional 3-D Secure values to use during the authentication flow.
+         */
+        public Builder threeDSecure(JsonNullable<? extends ThreeDSecure> threeDSecure) {
+            Utils.checkNotNull(threeDSecure, "threeDSecure");
+            this.threeDSecure = threeDSecure;
             return this;
         }
 
@@ -2743,15 +2805,16 @@ public class TransactionCreate {
                 paymentMethod, buyer, buyerId,
                 buyerExternalIdentifier, giftCards, externalIdentifier,
                 intent, store, threeDSecureData,
-                metadata, isSubsequentPayment, merchantInitiated,
-                paymentSource, airline, cartItems,
-                statementDescriptor, previousSchemeTransactionId, browserInfo,
-                shippingDetailsId, connectionOptions, asyncCapture,
-                antiFraudFingerprint, paymentServiceId, accountFundingTransaction,
-                allowPartialAuthorization, recipient, installmentCount,
-                taxAmount, merchantTaxId, purchaseOrderNumber,
-                customerReferenceNumber, amountIncludesTax, supplierOrderNumber,
-                dutyAmount, shippingAmount, integrationClient);
+                threeDSecure, metadata, isSubsequentPayment,
+                merchantInitiated, paymentSource, airline,
+                cartItems, statementDescriptor, previousSchemeTransactionId,
+                browserInfo, shippingDetailsId, connectionOptions,
+                asyncCapture, antiFraudFingerprint, paymentServiceId,
+                accountFundingTransaction, allowPartialAuthorization, recipient,
+                installmentCount, taxAmount, merchantTaxId,
+                purchaseOrderNumber, customerReferenceNumber, amountIncludesTax,
+                supplierOrderNumber, dutyAmount, shippingAmount,
+                integrationClient);
         }
 
 
