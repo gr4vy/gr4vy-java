@@ -9,6 +9,7 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.gr4vy.sdk.utils.Utils;
+import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
@@ -58,28 +59,38 @@ public class TransactionThreeDSecureSummary {
     @JsonProperty("error_data")
     private JsonNullable<? extends ThreeDSecureError> errorData;
 
+    /**
+     * The amount used for 3DS authentication.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("amount")
+    private JsonNullable<Long> amount;
+
     @JsonCreator
     public TransactionThreeDSecureSummary(
             @JsonProperty("version") JsonNullable<String> version,
             @JsonProperty("status") JsonNullable<? extends ThreeDSecureStatus> status,
             @JsonProperty("method") JsonNullable<? extends ThreeDSecureMethod> method,
             @JsonProperty("response_data") JsonNullable<? extends ResponseData> responseData,
-            @JsonProperty("error_data") JsonNullable<? extends ThreeDSecureError> errorData) {
+            @JsonProperty("error_data") JsonNullable<? extends ThreeDSecureError> errorData,
+            @JsonProperty("amount") JsonNullable<Long> amount) {
         Utils.checkNotNull(version, "version");
         Utils.checkNotNull(status, "status");
         Utils.checkNotNull(method, "method");
         Utils.checkNotNull(responseData, "responseData");
         Utils.checkNotNull(errorData, "errorData");
+        Utils.checkNotNull(amount, "amount");
         this.version = version;
         this.status = status;
         this.method = method;
         this.responseData = responseData;
         this.errorData = errorData;
+        this.amount = amount;
     }
     
     public TransactionThreeDSecureSummary() {
         this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined());
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
     }
 
     /**
@@ -131,6 +142,14 @@ public class TransactionThreeDSecureSummary {
     @JsonIgnore
     public JsonNullable<ThreeDSecureError> errorData() {
         return (JsonNullable<ThreeDSecureError>) errorData;
+    }
+
+    /**
+     * The amount used for 3DS authentication.
+     */
+    @JsonIgnore
+    public JsonNullable<Long> amount() {
+        return amount;
     }
 
     public static Builder builder() {
@@ -242,6 +261,24 @@ public class TransactionThreeDSecureSummary {
         return this;
     }
 
+    /**
+     * The amount used for 3DS authentication.
+     */
+    public TransactionThreeDSecureSummary withAmount(long amount) {
+        Utils.checkNotNull(amount, "amount");
+        this.amount = JsonNullable.of(amount);
+        return this;
+    }
+
+    /**
+     * The amount used for 3DS authentication.
+     */
+    public TransactionThreeDSecureSummary withAmount(JsonNullable<Long> amount) {
+        Utils.checkNotNull(amount, "amount");
+        this.amount = amount;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -256,14 +293,15 @@ public class TransactionThreeDSecureSummary {
             Utils.enhancedDeepEquals(this.status, other.status) &&
             Utils.enhancedDeepEquals(this.method, other.method) &&
             Utils.enhancedDeepEquals(this.responseData, other.responseData) &&
-            Utils.enhancedDeepEquals(this.errorData, other.errorData);
+            Utils.enhancedDeepEquals(this.errorData, other.errorData) &&
+            Utils.enhancedDeepEquals(this.amount, other.amount);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
             version, status, method,
-            responseData, errorData);
+            responseData, errorData, amount);
     }
     
     @Override
@@ -273,7 +311,8 @@ public class TransactionThreeDSecureSummary {
                 "status", status,
                 "method", method,
                 "responseData", responseData,
-                "errorData", errorData);
+                "errorData", errorData,
+                "amount", amount);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -288,6 +327,8 @@ public class TransactionThreeDSecureSummary {
         private JsonNullable<? extends ResponseData> responseData = JsonNullable.undefined();
 
         private JsonNullable<? extends ThreeDSecureError> errorData = JsonNullable.undefined();
+
+        private JsonNullable<Long> amount = JsonNullable.undefined();
 
         private Builder() {
           // force use of static builder() method
@@ -402,11 +443,30 @@ public class TransactionThreeDSecureSummary {
             return this;
         }
 
+
+        /**
+         * The amount used for 3DS authentication.
+         */
+        public Builder amount(long amount) {
+            Utils.checkNotNull(amount, "amount");
+            this.amount = JsonNullable.of(amount);
+            return this;
+        }
+
+        /**
+         * The amount used for 3DS authentication.
+         */
+        public Builder amount(JsonNullable<Long> amount) {
+            Utils.checkNotNull(amount, "amount");
+            this.amount = amount;
+            return this;
+        }
+
         public TransactionThreeDSecureSummary build() {
 
             return new TransactionThreeDSecureSummary(
                 version, status, method,
-                responseData, errorData);
+                responseData, errorData, amount);
         }
 
     }
