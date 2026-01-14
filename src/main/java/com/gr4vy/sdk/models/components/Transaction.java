@@ -497,6 +497,13 @@ public class Transaction {
     @JsonProperty("shipping_amount")
     private JsonNullable<Long> shippingAmount;
 
+    /**
+     * This is the ISO8583 response code code received from the payment service.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("iso_response_code")
+    private JsonNullable<String> isoResponseCode;
+
     @JsonCreator
     public Transaction(
             @JsonProperty("id") String id,
@@ -565,7 +572,8 @@ public class Transaction {
             @JsonProperty("amount_includes_tax") JsonNullable<Boolean> amountIncludesTax,
             @JsonProperty("supplier_order_number") JsonNullable<String> supplierOrderNumber,
             @JsonProperty("duty_amount") JsonNullable<Long> dutyAmount,
-            @JsonProperty("shipping_amount") JsonNullable<Long> shippingAmount) {
+            @JsonProperty("shipping_amount") JsonNullable<Long> shippingAmount,
+            @JsonProperty("iso_response_code") JsonNullable<String> isoResponseCode) {
         Utils.checkNotNull(id, "id");
         Utils.checkNotNull(reconciliationId, "reconciliationId");
         Utils.checkNotNull(merchantAccountId, "merchantAccountId");
@@ -633,6 +641,7 @@ public class Transaction {
         Utils.checkNotNull(supplierOrderNumber, "supplierOrderNumber");
         Utils.checkNotNull(dutyAmount, "dutyAmount");
         Utils.checkNotNull(shippingAmount, "shippingAmount");
+        Utils.checkNotNull(isoResponseCode, "isoResponseCode");
         this.type = Builder._SINGLETON_VALUE_Type.value();
         this.id = id;
         this.reconciliationId = reconciliationId;
@@ -701,6 +710,7 @@ public class Transaction {
         this.supplierOrderNumber = supplierOrderNumber;
         this.dutyAmount = dutyAmount;
         this.shippingAmount = shippingAmount;
+        this.isoResponseCode = isoResponseCode;
     }
     
     public Transaction(
@@ -748,7 +758,7 @@ public class Transaction {
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined());
+            JsonNullable.undefined(), JsonNullable.undefined());
     }
 
     /**
@@ -1322,6 +1332,14 @@ public class Transaction {
     @JsonIgnore
     public JsonNullable<Long> shippingAmount() {
         return shippingAmount;
+    }
+
+    /**
+     * This is the ISO8583 response code code received from the payment service.
+     */
+    @JsonIgnore
+    public JsonNullable<String> isoResponseCode() {
+        return isoResponseCode;
     }
 
     public static Builder builder() {
@@ -2361,6 +2379,24 @@ public class Transaction {
         return this;
     }
 
+    /**
+     * This is the ISO8583 response code code received from the payment service.
+     */
+    public Transaction withIsoResponseCode(String isoResponseCode) {
+        Utils.checkNotNull(isoResponseCode, "isoResponseCode");
+        this.isoResponseCode = JsonNullable.of(isoResponseCode);
+        return this;
+    }
+
+    /**
+     * This is the ISO8583 response code code received from the payment service.
+     */
+    public Transaction withIsoResponseCode(JsonNullable<String> isoResponseCode) {
+        Utils.checkNotNull(isoResponseCode, "isoResponseCode");
+        this.isoResponseCode = isoResponseCode;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -2438,7 +2474,8 @@ public class Transaction {
             Utils.enhancedDeepEquals(this.amountIncludesTax, other.amountIncludesTax) &&
             Utils.enhancedDeepEquals(this.supplierOrderNumber, other.supplierOrderNumber) &&
             Utils.enhancedDeepEquals(this.dutyAmount, other.dutyAmount) &&
-            Utils.enhancedDeepEquals(this.shippingAmount, other.shippingAmount);
+            Utils.enhancedDeepEquals(this.shippingAmount, other.shippingAmount) &&
+            Utils.enhancedDeepEquals(this.isoResponseCode, other.isoResponseCode);
     }
     
     @Override
@@ -2466,7 +2503,7 @@ public class Transaction {
             merchantAdviceCode, installmentCount, sessionToken,
             taxAmount, merchantTaxId, purchaseOrderNumber,
             customerReferenceNumber, amountIncludesTax, supplierOrderNumber,
-            dutyAmount, shippingAmount);
+            dutyAmount, shippingAmount, isoResponseCode);
     }
     
     @Override
@@ -2539,7 +2576,8 @@ public class Transaction {
                 "amountIncludesTax", amountIncludesTax,
                 "supplierOrderNumber", supplierOrderNumber,
                 "dutyAmount", dutyAmount,
-                "shippingAmount", shippingAmount);
+                "shippingAmount", shippingAmount,
+                "isoResponseCode", isoResponseCode);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -2678,6 +2716,8 @@ public class Transaction {
         private JsonNullable<Long> dutyAmount = JsonNullable.undefined();
 
         private JsonNullable<Long> shippingAmount = JsonNullable.undefined();
+
+        private JsonNullable<String> isoResponseCode = JsonNullable.undefined();
 
         private Builder() {
           // force use of static builder() method
@@ -3780,6 +3820,25 @@ public class Transaction {
             return this;
         }
 
+
+        /**
+         * This is the ISO8583 response code code received from the payment service.
+         */
+        public Builder isoResponseCode(String isoResponseCode) {
+            Utils.checkNotNull(isoResponseCode, "isoResponseCode");
+            this.isoResponseCode = JsonNullable.of(isoResponseCode);
+            return this;
+        }
+
+        /**
+         * This is the ISO8583 response code code received from the payment service.
+         */
+        public Builder isoResponseCode(JsonNullable<String> isoResponseCode) {
+            Utils.checkNotNull(isoResponseCode, "isoResponseCode");
+            this.isoResponseCode = isoResponseCode;
+            return this;
+        }
+
         public Transaction build() {
             if (pendingReview == null) {
                 pendingReview = _SINGLETON_VALUE_PendingReview.value();
@@ -3808,7 +3867,7 @@ public class Transaction {
                 installmentCount, sessionToken, taxAmount,
                 merchantTaxId, purchaseOrderNumber, customerReferenceNumber,
                 amountIncludesTax, supplierOrderNumber, dutyAmount,
-                shippingAmount);
+                shippingAmount, isoResponseCode);
         }
 
 
