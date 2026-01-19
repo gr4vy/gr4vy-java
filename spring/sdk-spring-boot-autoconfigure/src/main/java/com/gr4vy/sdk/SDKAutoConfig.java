@@ -422,6 +422,17 @@ public class SDKAutoConfig {
         return gr4vy.merchantAccounts();
     }
     /**
+     * Creates a ThreeDsScenarios sub-SDK bean if none exists.
+     *
+     * @param gr4vy the main SDK instance
+     * @return A configured ThreeDsScenarios instance
+     */
+    @Bean
+    @ConditionalOnMissingBean
+    public ThreeDsScenarios threeDsScenarios(Gr4vy gr4vy) {
+        return gr4vy.threeDsScenarios();
+    }
+    /**
      * Creates a Payouts sub-SDK bean if none exists.
      *
      * @param gr4vy the main SDK instance
@@ -631,6 +642,17 @@ public class SDKAutoConfig {
     @ConditionalOnMissingBean
     public AsyncMerchantAccounts asyncMerchantAccounts(AsyncGr4vy asyncGr4vy) {
         return asyncGr4vy.merchantAccounts();
+    }
+    /**
+     * Creates an AsyncThreeDsScenarios sub-SDK bean if none exists.
+     *
+     * @param asyncGr4vy the async SDK instance
+     * @return A configured AsyncThreeDsScenarios instance
+     */
+    @Bean
+    @ConditionalOnMissingBean
+    public AsyncThreeDsScenarios asyncThreeDsScenarios(AsyncGr4vy asyncGr4vy) {
+        return asyncGr4vy.threeDsScenarios();
     }
     /**
      * Creates an AsyncPayouts sub-SDK bean if none exists.
