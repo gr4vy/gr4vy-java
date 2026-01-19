@@ -100,6 +100,9 @@ public class Gr4vy {
     private final MerchantAccounts merchantAccounts;
 
 
+    private final ThreeDsScenarios threeDsScenarios;
+
+
     private final Payouts payouts;
 
 
@@ -183,6 +186,11 @@ public class Gr4vy {
 
     public MerchantAccounts merchantAccounts() {
         return merchantAccounts;
+    }
+
+
+    public ThreeDsScenarios threeDsScenarios() {
+        return threeDsScenarios;
     }
 
 
@@ -381,6 +389,7 @@ public class Gr4vy {
         this.reportExecutions = new ReportExecutions(sdkConfiguration);
         this.checkoutSessions = new CheckoutSessions(sdkConfiguration);
         this.merchantAccounts = new MerchantAccounts(sdkConfiguration);
+        this.threeDsScenarios = new ThreeDsScenarios(sdkConfiguration);
         this.payouts = new Payouts(sdkConfiguration);
         this.paymentLinks = new PaymentLinks(sdkConfiguration);
         this.asyncSDK = new AsyncGr4vy(this, sdkConfiguration);
