@@ -1,18 +1,18 @@
 lockVersion: 2.0.0
 id: 5bbaa3a9-baa0-471b-ba6a-13fd88e8c119
 management:
-  docChecksum: 097e556846a525c1858b81dbfd4bf0e0
+  docChecksum: a0402f9289839f519b1dfbde05a05469
   docVersion: 1.0.0
-  speakeasyVersion: 1.688.0
-  generationVersion: 2.796.4
-  releaseVersion: 2.16.13
-  configChecksum: 639631bc60380058ab59000ecf7e33cc
+  speakeasyVersion: 1.690.0
+  generationVersion: 2.797.1
+  releaseVersion: 2.16.14
+  configChecksum: 486529be17822765b5e6099a0575e322
   repoURL: https://github.com/gr4vy/gr4vy-java.git
   published: true
 persistentEdits:
-  generation_id: 814beba6-0401-4df1-bd01-577a2695ce26
-  pristine_commit_hash: 61b794460ed3cf087df7fb534ba2d619d6514b2c
-  pristine_tree_hash: f8422b4dd8a8f5cc74f08867af667a712fa70441
+  generation_id: 1977b963-df6d-4a81-afc8-32c931d629a9
+  pristine_commit_hash: a47ccda0df767fab5f405d17f453ba169cbb688a
+  pristine_tree_hash: fc1a13c3a87b8e485bf235d7ec39c4a389e5951f
 features:
   java:
     additionalDependencies: 0.1.0
@@ -2253,8 +2253,8 @@ trackedFiles:
     pristine_git_object: 15c4e4642f204ccb312d8814155b69e153b4e19b
   gradle.properties:
     id: 2afbb999f001
-    last_write_checksum: sha1:bda9a98fe69b29953f1eecd84ac7155c0e208a55
-    pristine_git_object: 52b75822791435f1bbb878bdb279f0112865b6c3
+    last_write_checksum: sha1:108ef3341545680c4f77443950ea6134bdcb5e31
+    pristine_git_object: 076b916ec35bafc8c7dc44243a954271554a10ce
   gradle/wrapper/gradle-wrapper.jar:
     id: ec27dae6e852
     last_write_checksum: sha1:f725fb1467084142d74fd7cd8eab691ab3442611
@@ -2573,8 +2573,8 @@ trackedFiles:
     pristine_git_object: 502a7312d3dc82c102dbaf7ed5e952d0c793e26f
   src/main/java/com/gr4vy/sdk/SDKConfiguration.java:
     id: 73a7edeaca45
-    last_write_checksum: sha1:eb7d5aeb48383d29907000b0975fb04ff97cb407
-    pristine_git_object: 153f47cb1c7548399c1376a5fa9a217a37fe05a8
+    last_write_checksum: sha1:116a070b84e5e509965878d5312735da85a4efa7
+    pristine_git_object: 8076eec9843b367a6d886e1879ba6f55076defd6
   src/main/java/com/gr4vy/sdk/SecuritySource.java:
     id: 1b6add6b9b50
     last_write_checksum: sha1:2f365cc823c6243188e83f4df618c9737fcee8bd
@@ -10150,12 +10150,6 @@ examples:
           application/json: {"type": "error", "code": "gateway_timeout", "status": 504, "message": "Request could not be processed"}
 examplesVersion: 1.0.2
 generatedTests: {}
-releaseNotes: |
-  ## Java SDK Changes:
-  * `gr4vy.threeDsScenarios.create()`: **Added**
-  * `gr4vy.threeDsScenarios.list()`: **Added**
-  * `gr4vy.threeDsScenarios.update()`: **Added**
-  * `gr4vy.threeDsScenarios.delete()`: **Added**
 generatedFiles:
   - .gitattributes
   - USAGE.md
