@@ -79,6 +79,7 @@ public class RedirectPaymentMethodCreateMethod {
     public static final RedirectPaymentMethodCreateMethod ONEY3X = new RedirectPaymentMethodCreateMethod("oney_3x");
     public static final RedirectPaymentMethodCreateMethod ONEY4X = new RedirectPaymentMethodCreateMethod("oney_4x");
     public static final RedirectPaymentMethodCreateMethod ONEY6X = new RedirectPaymentMethodCreateMethod("oney_6x");
+    public static final RedirectPaymentMethodCreateMethod ONLINEBANKINGCZ = new RedirectPaymentMethodCreateMethod("onlinebankingcz");
     public static final RedirectPaymentMethodCreateMethod OVO = new RedirectPaymentMethodCreateMethod("ovo");
     public static final RedirectPaymentMethodCreateMethod OXXO = new RedirectPaymentMethodCreateMethod("oxxo");
     public static final RedirectPaymentMethodCreateMethod P24 = new RedirectPaymentMethodCreateMethod("p24");
@@ -250,6 +251,7 @@ public class RedirectPaymentMethodCreateMethod {
         map.put("oney_3x", ONEY3X);
         map.put("oney_4x", ONEY4X);
         map.put("oney_6x", ONEY6X);
+        map.put("onlinebankingcz", ONLINEBANKINGCZ);
         map.put("ovo", OVO);
         map.put("oxxo", OXXO);
         map.put("p24", P24);
@@ -353,6 +355,7 @@ public class RedirectPaymentMethodCreateMethod {
         map.put("oney_3x", RedirectPaymentMethodCreateMethodEnum.ONEY3X);
         map.put("oney_4x", RedirectPaymentMethodCreateMethodEnum.ONEY4X);
         map.put("oney_6x", RedirectPaymentMethodCreateMethodEnum.ONEY6X);
+        map.put("onlinebankingcz", RedirectPaymentMethodCreateMethodEnum.ONLINEBANKINGCZ);
         map.put("ovo", RedirectPaymentMethodCreateMethodEnum.OVO);
         map.put("oxxo", RedirectPaymentMethodCreateMethodEnum.OXXO);
         map.put("p24", RedirectPaymentMethodCreateMethodEnum.P24);
@@ -457,6 +460,7 @@ public class RedirectPaymentMethodCreateMethod {
         ONEY3X("oney_3x"),
         ONEY4X("oney_4x"),
         ONEY6X("oney_6x"),
+        ONLINEBANKINGCZ("onlinebankingcz"),
         OVO("ovo"),
         OXXO("oxxo"),
         P24("p24"),

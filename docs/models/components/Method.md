@@ -68,6 +68,7 @@
 | `ONEY3X`             | oney_3x              |
 | `ONEY4X`             | oney_4x              |
 | `ONEY6X`             | oney_6x              |
+| `ONLINEBANKINGCZ`    | onlinebankingcz      |
 | `OVO`                | ovo                  |
 | `OXXO`               | oxxo                 |
 | `P24`                | p24                  |
