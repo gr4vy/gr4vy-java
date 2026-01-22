@@ -186,6 +186,13 @@ public class TransactionConnectionOptions {
     private JsonNullable<? extends GivingBlockOptions> givingblockGivingblock;
 
     /**
+     * Custom options to be passed to the `gocardless-gocardless` connector.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("gocardless-gocardless")
+    private JsonNullable<? extends GoCardlessOptions> gocardlessGocardless;
+
+    /**
      * Custom options to be passed to the `latitude-latitude` connector.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -337,6 +344,7 @@ public class TransactionConnectionOptions {
             @JsonProperty("gem-gem") JsonNullable<? extends LatitudeOptions> gemGem,
             @JsonProperty("gem-gemds") JsonNullable<? extends LatitudeOptions> gemGemds,
             @JsonProperty("givingblock-givingblock") JsonNullable<? extends GivingBlockOptions> givingblockGivingblock,
+            @JsonProperty("gocardless-gocardless") JsonNullable<? extends GoCardlessOptions> gocardlessGocardless,
             @JsonProperty("latitude-latitude") JsonNullable<? extends LatitudeOptions> latitudeLatitude,
             @JsonProperty("latitude-latitudeds") JsonNullable<? extends LatitudeOptions> latitudeLatitudeds,
             @JsonProperty("mattilda-tapi") JsonNullable<? extends MattildaTapiOptions> mattildaTapi,
@@ -379,6 +387,7 @@ public class TransactionConnectionOptions {
         Utils.checkNotNull(gemGem, "gemGem");
         Utils.checkNotNull(gemGemds, "gemGemds");
         Utils.checkNotNull(givingblockGivingblock, "givingblockGivingblock");
+        Utils.checkNotNull(gocardlessGocardless, "gocardlessGocardless");
         Utils.checkNotNull(latitudeLatitude, "latitudeLatitude");
         Utils.checkNotNull(latitudeLatitudeds, "latitudeLatitudeds");
         Utils.checkNotNull(mattildaTapi, "mattildaTapi");
@@ -421,6 +430,7 @@ public class TransactionConnectionOptions {
         this.gemGem = gemGem;
         this.gemGemds = gemGemds;
         this.givingblockGivingblock = givingblockGivingblock;
+        this.gocardlessGocardless = gocardlessGocardless;
         this.latitudeLatitude = latitudeLatitude;
         this.latitudeLatitudeds = latitudeLatitudeds;
         this.mattildaTapi = mattildaTapi;
@@ -455,7 +465,8 @@ public class TransactionConnectionOptions {
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined());
     }
 
     /**
@@ -673,6 +684,15 @@ public class TransactionConnectionOptions {
     @JsonIgnore
     public JsonNullable<GivingBlockOptions> givingblockGivingblock() {
         return (JsonNullable<GivingBlockOptions>) givingblockGivingblock;
+    }
+
+    /**
+     * Custom options to be passed to the `gocardless-gocardless` connector.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public JsonNullable<GoCardlessOptions> gocardlessGocardless() {
+        return (JsonNullable<GoCardlessOptions>) gocardlessGocardless;
     }
 
     /**
@@ -1277,6 +1297,24 @@ public class TransactionConnectionOptions {
     }
 
     /**
+     * Custom options to be passed to the `gocardless-gocardless` connector.
+     */
+    public TransactionConnectionOptions withGocardlessGocardless(GoCardlessOptions gocardlessGocardless) {
+        Utils.checkNotNull(gocardlessGocardless, "gocardlessGocardless");
+        this.gocardlessGocardless = JsonNullable.of(gocardlessGocardless);
+        return this;
+    }
+
+    /**
+     * Custom options to be passed to the `gocardless-gocardless` connector.
+     */
+    public TransactionConnectionOptions withGocardlessGocardless(JsonNullable<? extends GoCardlessOptions> gocardlessGocardless) {
+        Utils.checkNotNull(gocardlessGocardless, "gocardlessGocardless");
+        this.gocardlessGocardless = gocardlessGocardless;
+        return this;
+    }
+
+    /**
      * Custom options to be passed to the `latitude-latitude` connector.
      */
     public TransactionConnectionOptions withLatitudeLatitude(LatitudeOptions latitudeLatitude) {
@@ -1634,6 +1672,7 @@ public class TransactionConnectionOptions {
             Utils.enhancedDeepEquals(this.gemGem, other.gemGem) &&
             Utils.enhancedDeepEquals(this.gemGemds, other.gemGemds) &&
             Utils.enhancedDeepEquals(this.givingblockGivingblock, other.givingblockGivingblock) &&
+            Utils.enhancedDeepEquals(this.gocardlessGocardless, other.gocardlessGocardless) &&
             Utils.enhancedDeepEquals(this.latitudeLatitude, other.latitudeLatitude) &&
             Utils.enhancedDeepEquals(this.latitudeLatitudeds, other.latitudeLatitudeds) &&
             Utils.enhancedDeepEquals(this.mattildaTapi, other.mattildaTapi) &&
@@ -1665,12 +1704,13 @@ public class TransactionConnectionOptions {
             cybersourceIdeal, cybersourceKcp, dlocalNequi,
             dlocalUpi, fiservCard, forterAntiFraud,
             gemGem, gemGemds, givingblockGivingblock,
-            latitudeLatitude, latitudeLatitudeds, mattildaTapi,
-            mattildaTapifintechs, monatoSpei, mockCard,
-            nuveiCard, nuveiIdeal, nuveiPse,
-            oxxoOxxo, paypalPaypal, paypalPaypalpaylater,
-            powertranzCard, stripeCard, travelhubCard,
-            trustlyTrustly, wpayEverydaypay, wpayPayto);
+            gocardlessGocardless, latitudeLatitude, latitudeLatitudeds,
+            mattildaTapi, mattildaTapifintechs, monatoSpei,
+            mockCard, nuveiCard, nuveiIdeal,
+            nuveiPse, oxxoOxxo, paypalPaypal,
+            paypalPaypalpaylater, powertranzCard, stripeCard,
+            travelhubCard, trustlyTrustly, wpayEverydaypay,
+            wpayPayto);
     }
     
     @Override
@@ -1700,6 +1740,7 @@ public class TransactionConnectionOptions {
                 "gemGem", gemGem,
                 "gemGemds", gemGemds,
                 "givingblockGivingblock", givingblockGivingblock,
+                "gocardlessGocardless", gocardlessGocardless,
                 "latitudeLatitude", latitudeLatitude,
                 "latitudeLatitudeds", latitudeLatitudeds,
                 "mattildaTapi", mattildaTapi,
@@ -1770,6 +1811,8 @@ public class TransactionConnectionOptions {
         private JsonNullable<? extends LatitudeOptions> gemGemds = JsonNullable.undefined();
 
         private JsonNullable<? extends GivingBlockOptions> givingblockGivingblock = JsonNullable.undefined();
+
+        private JsonNullable<? extends GoCardlessOptions> gocardlessGocardless = JsonNullable.undefined();
 
         private JsonNullable<? extends LatitudeOptions> latitudeLatitude = JsonNullable.undefined();
 
@@ -2271,6 +2314,25 @@ public class TransactionConnectionOptions {
 
 
         /**
+         * Custom options to be passed to the `gocardless-gocardless` connector.
+         */
+        public Builder gocardlessGocardless(GoCardlessOptions gocardlessGocardless) {
+            Utils.checkNotNull(gocardlessGocardless, "gocardlessGocardless");
+            this.gocardlessGocardless = JsonNullable.of(gocardlessGocardless);
+            return this;
+        }
+
+        /**
+         * Custom options to be passed to the `gocardless-gocardless` connector.
+         */
+        public Builder gocardlessGocardless(JsonNullable<? extends GoCardlessOptions> gocardlessGocardless) {
+            Utils.checkNotNull(gocardlessGocardless, "gocardlessGocardless");
+            this.gocardlessGocardless = gocardlessGocardless;
+            return this;
+        }
+
+
+        /**
          * Custom options to be passed to the `latitude-latitude` connector.
          */
         public Builder latitudeLatitude(LatitudeOptions latitudeLatitude) {
@@ -2622,12 +2684,13 @@ public class TransactionConnectionOptions {
                 cybersourceIdeal, cybersourceKcp, dlocalNequi,
                 dlocalUpi, fiservCard, forterAntiFraud,
                 gemGem, gemGemds, givingblockGivingblock,
-                latitudeLatitude, latitudeLatitudeds, mattildaTapi,
-                mattildaTapifintechs, monatoSpei, mockCard,
-                nuveiCard, nuveiIdeal, nuveiPse,
-                oxxoOxxo, paypalPaypal, paypalPaypalpaylater,
-                powertranzCard, stripeCard, travelhubCard,
-                trustlyTrustly, wpayEverydaypay, wpayPayto);
+                gocardlessGocardless, latitudeLatitude, latitudeLatitudeds,
+                mattildaTapi, mattildaTapifintechs, monatoSpei,
+                mockCard, nuveiCard, nuveiIdeal,
+                nuveiPse, oxxoOxxo, paypalPaypal,
+                paypalPaypalpaylater, powertranzCard, stripeCard,
+                travelhubCard, trustlyTrustly, wpayEverydaypay,
+                wpayPayto);
         }
 
     }
