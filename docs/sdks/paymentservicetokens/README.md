@@ -103,7 +103,7 @@ public class Application {
                 .paymentMethodId("ef9496d8-53a5-4aad-8ca2-00eb68334389")
                 .paymentServiceTokenCreate(PaymentServiceTokenCreate.builder()
                     .paymentServiceId("fffd152a-9532-4087-9a4f-de58754210f0")
-                    .redirectUrl("https://dual-futon.biz")
+                    .redirectUrl("https://example.com/callback")
                     .build())
                 .call();
 
