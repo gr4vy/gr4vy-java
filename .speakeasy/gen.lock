@@ -1,18 +1,18 @@
 lockVersion: 2.0.0
 id: 5bbaa3a9-baa0-471b-ba6a-13fd88e8c119
 management:
-  docChecksum: 7c171b5db8f05ab504451eb66c821189
+  docChecksum: 1313bb3141f7a78de557d2463706fc03
   docVersion: 1.0.0
-  speakeasyVersion: 1.697.2
-  generationVersion: 2.799.0
-  releaseVersion: 2.16.18
-  configChecksum: 261799945bc30d86b667c1f95f7d5bae
+  speakeasyVersion: 1.700.2
+  generationVersion: 2.801.2
+  releaseVersion: 2.16.19
+  configChecksum: 6346172eab39d8927715eb66ef466fa0
   repoURL: https://github.com/gr4vy/gr4vy-java.git
   published: true
 persistentEdits:
-  generation_id: 00b60b36-db7b-4e9a-9fff-a6eb00166e01
-  pristine_commit_hash: e79e9cc184273b7a1c205b0297f30110540ca228
-  pristine_tree_hash: 5770e8acfe8c6ec778f730fb28da6abcc7278a06
+  generation_id: 954e9513-6bc5-4910-9292-5e79e16b0334
+  pristine_commit_hash: 0a53b93a1d14f702a1279a3f8827f3d82e3eae28
+  pristine_tree_hash: 2d62551275ecfc05ef685f1b1892fecb017c69de
 features:
   java:
     additionalDependencies: 0.1.0
@@ -1417,8 +1417,8 @@ trackedFiles:
     pristine_git_object: 7ab1c52be7e675373d3345c4d242dccbeb73e142
   docs/models/operations/CreateFullTransactionRefundRequest.md:
     id: d348dbe45ce3
-    last_write_checksum: sha1:88979a34b80d7023a792bfcdccd812cf99001be6
-    pristine_git_object: 8eb7f92b76added6f487ace69cb9f66c25c22970
+    last_write_checksum: sha1:93e1f30fec5314a9b4fdb1c71518204e847290b6
+    pristine_git_object: bc621ccbdfeac31bd0d1a3acabc257fea92ed49e
   docs/models/operations/CreateFullTransactionRefundResponse.md:
     id: 717d0fa63f2b
     last_write_checksum: sha1:e0e5ae53da2f56cc0319f9941c413d3c80141c1e
@@ -1525,8 +1525,8 @@ trackedFiles:
     pristine_git_object: 0e0439dddcfed640d14d8dd3baf13348e2ef7962
   docs/models/operations/CreateTransactionRefundRequest.md:
     id: 75a8a709d744
-    last_write_checksum: sha1:29b333d5f56a4665969faa327dbfa0b6dc2c948c
-    pristine_git_object: 20d2208e58e52eae006925722a6cfe15aad9c214
+    last_write_checksum: sha1:9bbc20c89b835753b782ed8eb7e6f40ff07a45df
+    pristine_git_object: 31cc7f1ed4dde399cd5af75d1b6c6e1ffcbb1ca1
   docs/models/operations/CreateTransactionRefundResponse.md:
     id: e977fda9c8a2
     last_write_checksum: sha1:d75b539a115cb58fe73052a9558d51588740e769
@@ -2125,8 +2125,8 @@ trackedFiles:
     pristine_git_object: 607db89efa1f3098b6d660a489ec4152aa8d3529
   docs/sdks/all/README.md:
     id: 936653be5c4b
-    last_write_checksum: sha1:65e40bebdbeea2b16557bdffbee9051f8de6f09f
-    pristine_git_object: f26e997b943a847570d2486390f799d05a441e13
+    last_write_checksum: sha1:a75a8bce30715e6fc5fda831ed32d00080650e6a
+    pristine_git_object: 2674fd14c6f57d366294799c350fa3cb363ce7a0
   docs/sdks/auditlogs/README.md:
     id: 4ed8509e422e
     last_write_checksum: sha1:b2e2cc719f416d07b769b757c4b75d744ddfd735
@@ -2253,16 +2253,16 @@ trackedFiles:
     pristine_git_object: faf4443d61949d28752b35daaa6d236ce7a7bddb
   docs/sdks/transactionsrefunds/README.md:
     id: c6a0400f5020
-    last_write_checksum: sha1:51f6f5bbc33e6967bb89eef4c5e7debc285a8c4b
-    pristine_git_object: 693fc2b668787e943eb5636846f4b5faafba4992
+    last_write_checksum: sha1:02f3b80de594917017ad64de59c81166afda85a1
+    pristine_git_object: 395dbddbde7e08e88578172893adccc062ed0625
   docs/utils/Blob.md:
     id: 3d9a7c4ad67a
     last_write_checksum: sha1:4e8000dbcb48be94de968853742a7e8e557faec8
     pristine_git_object: 15c4e4642f204ccb312d8814155b69e153b4e19b
   gradle.properties:
     id: 2afbb999f001
-    last_write_checksum: sha1:1a6e260d21578f99903fdf85e3ff6bb1434c3709
-    pristine_git_object: 99835abafefe0c13c8a9b6b733af27f373cd2b3e
+    last_write_checksum: sha1:cef7997c75540bf4f58677402f4d7e97f82d462e
+    pristine_git_object: ca916a8aaafa32415e916bbe8ae04b8872287b79
   gradle/wrapper/gradle-wrapper.jar:
     id: ec27dae6e852
     last_write_checksum: sha1:f725fb1467084142d74fd7cd8eab691ab3442611
@@ -2325,8 +2325,8 @@ trackedFiles:
     pristine_git_object: b86ebe2ce835d4b6e1021be71f78aa98cd5d477c
   src/main/java/com/gr4vy/sdk/All.java:
     id: 234c521b6941
-    last_write_checksum: sha1:c192ddbfd8ac3760b9c812ad3ed31841212b7abf
-    pristine_git_object: ffc3b8753a010097df507debc8e4431344d42dd2
+    last_write_checksum: sha1:6ef88cfdfc33ec118f9cc83b188b69433ee939a3
+    pristine_git_object: 09ab826561c4c409dafd0d49ce1e6a255b0e2780
   src/main/java/com/gr4vy/sdk/AsyncAccountUpdater.java:
     id: 34079b56a4a6
     last_write_checksum: sha1:04f37daea3a2ce9298b776199abf54faa1ee1094
@@ -2337,8 +2337,8 @@ trackedFiles:
     pristine_git_object: 028d3696be7da66d76b84b1353133139769e2079
   src/main/java/com/gr4vy/sdk/AsyncAll.java:
     id: 42ccc0a41ddf
-    last_write_checksum: sha1:8e72fc268baf2be20bbaab2498be58828098acf9
-    pristine_git_object: 53eb600c3b67812642e6894d96a5e469efa44b81
+    last_write_checksum: sha1:7252df5451de1c20d538f2de57ef003c53c06b65
+    pristine_git_object: 6c81725a066aa13dee34e469b6e7b9c40aa8c0bd
   src/main/java/com/gr4vy/sdk/AsyncAuditLogs.java:
     id: 1ea8380915d9
     last_write_checksum: sha1:43cb32a95eeebe2ea946075c63a90a5757897ba0
@@ -2469,8 +2469,8 @@ trackedFiles:
     pristine_git_object: 358bbf8b3dc0a4a4e2d52a22a86fc46ea63afc9b
   src/main/java/com/gr4vy/sdk/AsyncTransactionsRefunds.java:
     id: 25e32812684e
-    last_write_checksum: sha1:bf160a106f5b900e7821cb2dbf1768e3622eac23
-    pristine_git_object: 378dccf4f34a0f2d33f536de5f83163e9dcba643
+    last_write_checksum: sha1:dc1b6a43809efd702627e0fb1b8bb768bce94a87
+    pristine_git_object: 42d3effdf7286e526246a2d69d7e935767a6117f
   src/main/java/com/gr4vy/sdk/AuditLogs.java:
     id: e014e1725db3
     last_write_checksum: sha1:5fd142f0fe1d4a13686ce0c81d596e6b843da7e5
@@ -2581,8 +2581,8 @@ trackedFiles:
     pristine_git_object: 502a7312d3dc82c102dbaf7ed5e952d0c793e26f
   src/main/java/com/gr4vy/sdk/SDKConfiguration.java:
     id: 73a7edeaca45
-    last_write_checksum: sha1:508199555dbb0bd91cc7736dbbab65ecf93488e7
-    pristine_git_object: 6241f920d25e81c52f33e2d84f4234241339530f
+    last_write_checksum: sha1:915f70db073cc9fd673984a8b67af0a97a82aef1
+    pristine_git_object: 1478e9bc1c99fd9a384df0a0e8575aac38985f72
   src/main/java/com/gr4vy/sdk/SecuritySource.java:
     id: 1b6add6b9b50
     last_write_checksum: sha1:2f365cc823c6243188e83f4df618c9737fcee8bd
@@ -2609,8 +2609,8 @@ trackedFiles:
     pristine_git_object: a7117f3ce4432d9a59b8aabedd6e687c151030ad
   src/main/java/com/gr4vy/sdk/TransactionsRefunds.java:
     id: cf62b811d59f
-    last_write_checksum: sha1:8f75137e3958a96a43c2c6d5da3a7e1d9cfc6ba7
-    pristine_git_object: a69c531b044637c2ae0bd5c6e546414822f78669
+    last_write_checksum: sha1:50c365428eec86db114bd293148371e32d558554
+    pristine_git_object: 364e18f8344a6cb844bdcdee3c14a4646b206ebe
   src/main/java/com/gr4vy/sdk/models/components/AVSResponseCode.java:
     id: 762c7e137576
     last_write_checksum: sha1:356e3c98e617a28f6a3da434bf98faed1358279b
@@ -3961,8 +3961,8 @@ trackedFiles:
     pristine_git_object: afe38eddd69b0645ff7b9ac474559442cdc08a98
   src/main/java/com/gr4vy/sdk/models/operations//async/CreateFullTransactionRefundRequestBuilder.java:
     id: cd978e562a79
-    last_write_checksum: sha1:a0b8cd21842d717cb3943ded7bb5727bc912d0fd
-    pristine_git_object: 022f4d9ff5a06cbf683d957783c14a17bc5ccd9d
+    last_write_checksum: sha1:fabf635fcbdabc1a0c07dcdbca15eec0acc34fd0
+    pristine_git_object: 0849550ca146b3e2925a357bec64904bf49a5c52
   src/main/java/com/gr4vy/sdk/models/operations//async/CreateGiftCardRequestBuilder.java:
     id: 584482b78ebd
     last_write_checksum: sha1:5c0215d7bcf024125e5875d8a5520d5cee0c5af2
@@ -4017,8 +4017,8 @@ trackedFiles:
     pristine_git_object: 1dc509460aa27240f225275b1e1ff83868370de5
   src/main/java/com/gr4vy/sdk/models/operations//async/CreateTransactionRefundRequestBuilder.java:
     id: 84aa4dc0773e
-    last_write_checksum: sha1:589c2b1c6e2b61bb8a3c747ff7dfa1bd1a8cce50
-    pristine_git_object: 7d223027becda62cd064f710d33d00d00a71c48c
+    last_write_checksum: sha1:bef6b0d80ca5dea15d3d90b561032b5a6f490eed
+    pristine_git_object: 9c33c015c397340760f9595546c1a4e036cf6aff
   src/main/java/com/gr4vy/sdk/models/operations//async/CreateTransactionRequestBuilder.java:
     id: 2c615127011d
     last_write_checksum: sha1:d8a48e745bd6db78c0bad97c5557e1fd95a8b91e
@@ -4441,12 +4441,12 @@ trackedFiles:
     pristine_git_object: 8fbaf781280dbb6ba5e849a34dcaffa3185c1e28
   src/main/java/com/gr4vy/sdk/models/operations/CreateFullTransactionRefundRequest.java:
     id: 90ca05662198
-    last_write_checksum: sha1:da37d41d8801a4a0df0b4261d078abf956b59940
-    pristine_git_object: 369e99274881787351f05d3da50c60e4b60f316f
+    last_write_checksum: sha1:961b5599089846cd17f4fc3b101dcb1c99525894
+    pristine_git_object: c49e401d560b8bfb92502f192f4758705976520a
   src/main/java/com/gr4vy/sdk/models/operations/CreateFullTransactionRefundRequestBuilder.java:
     id: f865e2cf7944
-    last_write_checksum: sha1:47eaca9dd3cfd260674a15781c89ca59e9f028f3
-    pristine_git_object: 3bbd4922ab6d5bd21a8229795d50697068c9d352
+    last_write_checksum: sha1:dde812d297b7fd67c70a98e35f19dddba9b8a44e
+    pristine_git_object: e24d6f6c4cac61c4e9e9e523e2050df24efebcd1
   src/main/java/com/gr4vy/sdk/models/operations/CreateFullTransactionRefundResponse.java:
     id: f28a1b822b33
     last_write_checksum: sha1:9a6dba804b87db3acf1686f6f76c15d7483cb17c
@@ -4605,12 +4605,12 @@ trackedFiles:
     pristine_git_object: 5663bc6e1c6805151890c6afe91e2af11e462671
   src/main/java/com/gr4vy/sdk/models/operations/CreateTransactionRefundRequest.java:
     id: 1e31a2c145bd
-    last_write_checksum: sha1:feb681e8bf55c7274355c1f5c8424f2948847926
-    pristine_git_object: c0b72e67308827eb83212469690203651c18a267
+    last_write_checksum: sha1:c35a68de66242a76415cba4d66c928b3baca94a9
+    pristine_git_object: e6de4314d35340aed89b635473e93a4fdc7c282b
   src/main/java/com/gr4vy/sdk/models/operations/CreateTransactionRefundRequestBuilder.java:
     id: b74f08eab441
-    last_write_checksum: sha1:b26dfd43b7b8b9dfe87326e75ce655b601a2d948
-    pristine_git_object: 6a6b3a3d81503d807a6c7d9f96b04da00311279c
+    last_write_checksum: sha1:a03196b66a02e471b6e7040efae1e8fca96f6702
+    pristine_git_object: 30fd9e9f57f96a3d94a3da3c7dba8f930b6ab8f1
   src/main/java/com/gr4vy/sdk/models/operations/CreateTransactionRefundResponse.java:
     id: 19c72a4375f9
     last_write_checksum: sha1:d00a535733cbdc96883c9df7a9a9ceb839708214
@@ -10166,6 +10166,10 @@ examples:
           application/json: {"type": "error", "code": "gateway_timeout", "status": 504, "message": "Request could not be processed"}
 examplesVersion: 1.0.2
 generatedTests: {}
+releaseNotes: |
+  ## Java SDK Changes:
+  * `gr4vy.transactions.refunds.create()`:  `request.idempotencyKey` **Added**
+  * `gr4vy.transactions.refunds.all.create()`:  `request.idempotencyKey` **Added**
 generatedFiles:
   - .gitattributes
   - USAGE.md

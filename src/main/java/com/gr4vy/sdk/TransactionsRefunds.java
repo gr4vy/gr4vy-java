@@ -121,7 +121,8 @@ public class TransactionsRefunds {
      * @throws RuntimeException subclass if the API call fails
      */
     public CreateTransactionRefundResponse create(String transactionId, TransactionRefundCreate transactionRefundCreate) {
-        return create(transactionId, JsonNullable.undefined(), transactionRefundCreate);
+        return create(transactionId, JsonNullable.undefined(), JsonNullable.undefined(),
+            transactionRefundCreate);
     }
 
     /**
@@ -131,18 +132,20 @@ public class TransactionsRefunds {
      * 
      * @param transactionId The ID of the transaction
      * @param merchantAccountId 
+     * @param idempotencyKey A unique key that identifies this request. Providing this header will make this an idempotent request. We recommend using V4 UUIDs, or another random string with enough entropy to avoid collisions.
      * @param transactionRefundCreate 
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
     public CreateTransactionRefundResponse create(
             String transactionId, JsonNullable<String> merchantAccountId,
-            TransactionRefundCreate transactionRefundCreate) {
+            JsonNullable<String> idempotencyKey, TransactionRefundCreate transactionRefundCreate) {
         CreateTransactionRefundRequest request =
             CreateTransactionRefundRequest
                 .builder()
                 .transactionId(transactionId)
                 .merchantAccountId(merchantAccountId)
+                .idempotencyKey(idempotencyKey)
                 .transactionRefundCreate(transactionRefundCreate)
                 .build();
         RequestOperation<CreateTransactionRefundRequest, CreateTransactionRefundResponse> operation

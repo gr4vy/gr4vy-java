@@ -17,6 +17,7 @@ public class CreateTransactionRefundRequestBuilder {
 
     private String transactionId;
     private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
+    private JsonNullable<String> idempotencyKey = JsonNullable.undefined();
     private TransactionRefundCreate transactionRefundCreate;
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
@@ -43,6 +44,18 @@ public class CreateTransactionRefundRequestBuilder {
         return this;
     }
 
+    public CreateTransactionRefundRequestBuilder idempotencyKey(String idempotencyKey) {
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+        this.idempotencyKey = JsonNullable.of(idempotencyKey);
+        return this;
+    }
+
+    public CreateTransactionRefundRequestBuilder idempotencyKey(JsonNullable<String> idempotencyKey) {
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+        this.idempotencyKey = idempotencyKey;
+        return this;
+    }
+
     public CreateTransactionRefundRequestBuilder transactionRefundCreate(TransactionRefundCreate transactionRefundCreate) {
         Utils.checkNotNull(transactionRefundCreate, "transactionRefundCreate");
         this.transactionRefundCreate = transactionRefundCreate;
@@ -54,6 +67,7 @@ public class CreateTransactionRefundRequestBuilder {
 
         CreateTransactionRefundRequest request = new CreateTransactionRefundRequest(transactionId,
             merchantAccountId,
+            idempotencyKey,
             transactionRefundCreate);
 
         return request;

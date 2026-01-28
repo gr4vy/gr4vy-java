@@ -27,6 +27,14 @@ public class CreateFullTransactionRefundRequest {
     @SpeakeasyMetadata("header:style=simple,explode=false,name=x-gr4vy-merchant-account-id")
     private JsonNullable<String> merchantAccountId;
 
+    /**
+     * A unique key that identifies this request. Providing this header will make this an idempotent
+     * request. We recommend using V4 UUIDs, or another random string with enough entropy to avoid
+     * collisions.
+     */
+    @SpeakeasyMetadata("header:style=simple,explode=false,name=idempotency-key")
+    private JsonNullable<String> idempotencyKey;
+
 
     @SpeakeasyMetadata("request:mediaType=application/json")
     private JsonNullable<? extends TransactionRefundAllCreate> transactionRefundAllCreate;
@@ -35,18 +43,22 @@ public class CreateFullTransactionRefundRequest {
     public CreateFullTransactionRefundRequest(
             String transactionId,
             JsonNullable<String> merchantAccountId,
+            JsonNullable<String> idempotencyKey,
             JsonNullable<? extends TransactionRefundAllCreate> transactionRefundAllCreate) {
         Utils.checkNotNull(transactionId, "transactionId");
         Utils.checkNotNull(merchantAccountId, "merchantAccountId");
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
         Utils.checkNotNull(transactionRefundAllCreate, "transactionRefundAllCreate");
         this.transactionId = transactionId;
         this.merchantAccountId = merchantAccountId;
+        this.idempotencyKey = idempotencyKey;
         this.transactionRefundAllCreate = transactionRefundAllCreate;
     }
     
     public CreateFullTransactionRefundRequest(
             String transactionId) {
-        this(transactionId, JsonNullable.undefined(), JsonNullable.undefined());
+        this(transactionId, JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined());
     }
 
     /**
@@ -63,6 +75,16 @@ public class CreateFullTransactionRefundRequest {
     @JsonIgnore
     public JsonNullable<String> merchantAccountId() {
         return merchantAccountId;
+    }
+
+    /**
+     * A unique key that identifies this request. Providing this header will make this an idempotent
+     * request. We recommend using V4 UUIDs, or another random string with enough entropy to avoid
+     * collisions.
+     */
+    @JsonIgnore
+    public JsonNullable<String> idempotencyKey() {
+        return idempotencyKey;
     }
 
     @SuppressWarnings("unchecked")
@@ -103,6 +125,28 @@ public class CreateFullTransactionRefundRequest {
         return this;
     }
 
+    /**
+     * A unique key that identifies this request. Providing this header will make this an idempotent
+     * request. We recommend using V4 UUIDs, or another random string with enough entropy to avoid
+     * collisions.
+     */
+    public CreateFullTransactionRefundRequest withIdempotencyKey(String idempotencyKey) {
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+        this.idempotencyKey = JsonNullable.of(idempotencyKey);
+        return this;
+    }
+
+    /**
+     * A unique key that identifies this request. Providing this header will make this an idempotent
+     * request. We recommend using V4 UUIDs, or another random string with enough entropy to avoid
+     * collisions.
+     */
+    public CreateFullTransactionRefundRequest withIdempotencyKey(JsonNullable<String> idempotencyKey) {
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+        this.idempotencyKey = idempotencyKey;
+        return this;
+    }
+
     public CreateFullTransactionRefundRequest withTransactionRefundAllCreate(TransactionRefundAllCreate transactionRefundAllCreate) {
         Utils.checkNotNull(transactionRefundAllCreate, "transactionRefundAllCreate");
         this.transactionRefundAllCreate = JsonNullable.of(transactionRefundAllCreate);
@@ -127,13 +171,15 @@ public class CreateFullTransactionRefundRequest {
         return 
             Utils.enhancedDeepEquals(this.transactionId, other.transactionId) &&
             Utils.enhancedDeepEquals(this.merchantAccountId, other.merchantAccountId) &&
+            Utils.enhancedDeepEquals(this.idempotencyKey, other.idempotencyKey) &&
             Utils.enhancedDeepEquals(this.transactionRefundAllCreate, other.transactionRefundAllCreate);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            transactionId, merchantAccountId, transactionRefundAllCreate);
+            transactionId, merchantAccountId, idempotencyKey,
+            transactionRefundAllCreate);
     }
     
     @Override
@@ -141,6 +187,7 @@ public class CreateFullTransactionRefundRequest {
         return Utils.toString(CreateFullTransactionRefundRequest.class,
                 "transactionId", transactionId,
                 "merchantAccountId", merchantAccountId,
+                "idempotencyKey", idempotencyKey,
                 "transactionRefundAllCreate", transactionRefundAllCreate);
     }
 
@@ -150,6 +197,8 @@ public class CreateFullTransactionRefundRequest {
         private String transactionId;
 
         private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
+
+        private JsonNullable<String> idempotencyKey = JsonNullable.undefined();
 
         private JsonNullable<? extends TransactionRefundAllCreate> transactionRefundAllCreate = JsonNullable.undefined();
 
@@ -187,6 +236,29 @@ public class CreateFullTransactionRefundRequest {
         }
 
 
+        /**
+         * A unique key that identifies this request. Providing this header will make this an idempotent
+         * request. We recommend using V4 UUIDs, or another random string with enough entropy to avoid
+         * collisions.
+         */
+        public Builder idempotencyKey(String idempotencyKey) {
+            Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+            this.idempotencyKey = JsonNullable.of(idempotencyKey);
+            return this;
+        }
+
+        /**
+         * A unique key that identifies this request. Providing this header will make this an idempotent
+         * request. We recommend using V4 UUIDs, or another random string with enough entropy to avoid
+         * collisions.
+         */
+        public Builder idempotencyKey(JsonNullable<String> idempotencyKey) {
+            Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+            this.idempotencyKey = idempotencyKey;
+            return this;
+        }
+
+
         public Builder transactionRefundAllCreate(TransactionRefundAllCreate transactionRefundAllCreate) {
             Utils.checkNotNull(transactionRefundAllCreate, "transactionRefundAllCreate");
             this.transactionRefundAllCreate = JsonNullable.of(transactionRefundAllCreate);
@@ -202,7 +274,8 @@ public class CreateFullTransactionRefundRequest {
         public CreateFullTransactionRefundRequest build() {
 
             return new CreateFullTransactionRefundRequest(
-                transactionId, merchantAccountId, transactionRefundAllCreate);
+                transactionId, merchantAccountId, idempotencyKey,
+                transactionRefundAllCreate);
         }
 
     }
