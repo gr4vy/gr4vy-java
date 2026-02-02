@@ -1,18 +1,18 @@
 lockVersion: 2.0.0
 id: 5bbaa3a9-baa0-471b-ba6a-13fd88e8c119
 management:
-  docChecksum: 1313bb3141f7a78de557d2463706fc03
+  docChecksum: 53ad22cefb41048141764e99e90d5274
   docVersion: 1.0.0
   speakeasyVersion: 1.700.2
   generationVersion: 2.801.2
-  releaseVersion: 2.16.19
-  configChecksum: 6346172eab39d8927715eb66ef466fa0
+  releaseVersion: 2.16.20
+  configChecksum: 084c5e10ddfc2f7e51798d532ed3c438
   repoURL: https://github.com/gr4vy/gr4vy-java.git
   published: true
 persistentEdits:
-  generation_id: 954e9513-6bc5-4910-9292-5e79e16b0334
-  pristine_commit_hash: 0a53b93a1d14f702a1279a3f8827f3d82e3eae28
-  pristine_tree_hash: 2d62551275ecfc05ef685f1b1892fecb017c69de
+  generation_id: 2fd9ae20-17f7-4d6f-8ce6-1f8a26ea7639
+  pristine_commit_hash: 4cfdfbb2e7f36a1842dd8d22d9cc0e217d1fc464
+  pristine_tree_hash: 66adea07c5f6ac1b381d73bcacfeb197f7a363b9
 features:
   java:
     additionalDependencies: 0.1.0
@@ -2261,8 +2261,8 @@ trackedFiles:
     pristine_git_object: 15c4e4642f204ccb312d8814155b69e153b4e19b
   gradle.properties:
     id: 2afbb999f001
-    last_write_checksum: sha1:cef7997c75540bf4f58677402f4d7e97f82d462e
-    pristine_git_object: ca916a8aaafa32415e916bbe8ae04b8872287b79
+    last_write_checksum: sha1:f1ff999a2a98fd2db445831e39198a633a2a217a
+    pristine_git_object: f582ce49b22e2d6b9d3bdcdb32eeabfb97f75a65
   gradle/wrapper/gradle-wrapper.jar:
     id: ec27dae6e852
     last_write_checksum: sha1:f725fb1467084142d74fd7cd8eab691ab3442611
@@ -2581,8 +2581,8 @@ trackedFiles:
     pristine_git_object: 502a7312d3dc82c102dbaf7ed5e952d0c793e26f
   src/main/java/com/gr4vy/sdk/SDKConfiguration.java:
     id: 73a7edeaca45
-    last_write_checksum: sha1:915f70db073cc9fd673984a8b67af0a97a82aef1
-    pristine_git_object: 1478e9bc1c99fd9a384df0a0e8575aac38985f72
+    last_write_checksum: sha1:9b74220f2b88971ec4a92f6e02a7209745487f08
+    pristine_git_object: 1ef73ff0b4bc6e895471b843bfd160fe94d973af
   src/main/java/com/gr4vy/sdk/SecuritySource.java:
     id: 1b6add6b9b50
     last_write_checksum: sha1:2f365cc823c6243188e83f4df618c9737fcee8bd
@@ -10166,10 +10166,6 @@ examples:
           application/json: {"type": "error", "code": "gateway_timeout", "status": 504, "message": "Request could not be processed"}
 examplesVersion: 1.0.2
 generatedTests: {}
-releaseNotes: |
-  ## Java SDK Changes:
-  * `gr4vy.transactions.refunds.create()`:  `request.idempotencyKey` **Added**
-  * `gr4vy.transactions.refunds.all.create()`:  `request.idempotencyKey` **Added**
 generatedFiles:
   - .gitattributes
   - USAGE.md
