@@ -18,6 +18,7 @@ public class VoidTransactionRequestBuilder {
     private String transactionId;
     private JsonNullable<? extends List<String>> prefer = JsonNullable.undefined();
     private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
+    private JsonNullable<String> idempotencyKey = JsonNullable.undefined();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -55,12 +56,25 @@ public class VoidTransactionRequestBuilder {
         return this;
     }
 
+    public VoidTransactionRequestBuilder idempotencyKey(String idempotencyKey) {
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+        this.idempotencyKey = JsonNullable.of(idempotencyKey);
+        return this;
+    }
+
+    public VoidTransactionRequestBuilder idempotencyKey(JsonNullable<String> idempotencyKey) {
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+        this.idempotencyKey = idempotencyKey;
+        return this;
+    }
+
 
     private VoidTransactionRequest buildRequest() {
 
         VoidTransactionRequest request = new VoidTransactionRequest(transactionId,
             prefer,
-            merchantAccountId);
+            merchantAccountId,
+            idempotencyKey);
 
         return request;
     }

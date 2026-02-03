@@ -35,22 +35,22 @@ public class VoidTransactionResponse implements Response {
     /**
      * Successful Response
      */
-    private Optional<? extends ResponseVoidTransaction> responseVoidTransaction;
+    private Optional<? extends Response200VoidTransaction> response200VoidTransaction;
 
     @JsonCreator
     public VoidTransactionResponse(
             String contentType,
             int statusCode,
             HttpResponse<InputStream> rawResponse,
-            Optional<? extends ResponseVoidTransaction> responseVoidTransaction) {
+            Optional<? extends Response200VoidTransaction> response200VoidTransaction) {
         Utils.checkNotNull(contentType, "contentType");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
-        Utils.checkNotNull(responseVoidTransaction, "responseVoidTransaction");
+        Utils.checkNotNull(response200VoidTransaction, "response200VoidTransaction");
         this.contentType = contentType;
         this.statusCode = statusCode;
         this.rawResponse = rawResponse;
-        this.responseVoidTransaction = responseVoidTransaction;
+        this.response200VoidTransaction = response200VoidTransaction;
     }
     
     public VoidTransactionResponse(
@@ -90,8 +90,8 @@ public class VoidTransactionResponse implements Response {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<ResponseVoidTransaction> responseVoidTransaction() {
-        return (Optional<ResponseVoidTransaction>) responseVoidTransaction;
+    public Optional<Response200VoidTransaction> response200VoidTransaction() {
+        return (Optional<Response200VoidTransaction>) response200VoidTransaction;
     }
 
     public static Builder builder() {
@@ -129,9 +129,9 @@ public class VoidTransactionResponse implements Response {
     /**
      * Successful Response
      */
-    public VoidTransactionResponse withResponseVoidTransaction(ResponseVoidTransaction responseVoidTransaction) {
-        Utils.checkNotNull(responseVoidTransaction, "responseVoidTransaction");
-        this.responseVoidTransaction = Optional.ofNullable(responseVoidTransaction);
+    public VoidTransactionResponse withResponse200VoidTransaction(Response200VoidTransaction response200VoidTransaction) {
+        Utils.checkNotNull(response200VoidTransaction, "response200VoidTransaction");
+        this.response200VoidTransaction = Optional.ofNullable(response200VoidTransaction);
         return this;
     }
 
@@ -139,9 +139,9 @@ public class VoidTransactionResponse implements Response {
     /**
      * Successful Response
      */
-    public VoidTransactionResponse withResponseVoidTransaction(Optional<? extends ResponseVoidTransaction> responseVoidTransaction) {
-        Utils.checkNotNull(responseVoidTransaction, "responseVoidTransaction");
-        this.responseVoidTransaction = responseVoidTransaction;
+    public VoidTransactionResponse withResponse200VoidTransaction(Optional<? extends Response200VoidTransaction> response200VoidTransaction) {
+        Utils.checkNotNull(response200VoidTransaction, "response200VoidTransaction");
+        this.response200VoidTransaction = response200VoidTransaction;
         return this;
     }
 
@@ -158,14 +158,14 @@ public class VoidTransactionResponse implements Response {
             Utils.enhancedDeepEquals(this.contentType, other.contentType) &&
             Utils.enhancedDeepEquals(this.statusCode, other.statusCode) &&
             Utils.enhancedDeepEquals(this.rawResponse, other.rawResponse) &&
-            Utils.enhancedDeepEquals(this.responseVoidTransaction, other.responseVoidTransaction);
+            Utils.enhancedDeepEquals(this.response200VoidTransaction, other.response200VoidTransaction);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
             contentType, statusCode, rawResponse,
-            responseVoidTransaction);
+            response200VoidTransaction);
     }
     
     @Override
@@ -174,7 +174,7 @@ public class VoidTransactionResponse implements Response {
                 "contentType", contentType,
                 "statusCode", statusCode,
                 "rawResponse", rawResponse,
-                "responseVoidTransaction", responseVoidTransaction);
+                "response200VoidTransaction", response200VoidTransaction);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -186,7 +186,7 @@ public class VoidTransactionResponse implements Response {
 
         private HttpResponse<InputStream> rawResponse;
 
-        private Optional<? extends ResponseVoidTransaction> responseVoidTransaction = Optional.empty();
+        private Optional<? extends Response200VoidTransaction> response200VoidTransaction = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -226,18 +226,18 @@ public class VoidTransactionResponse implements Response {
         /**
          * Successful Response
          */
-        public Builder responseVoidTransaction(ResponseVoidTransaction responseVoidTransaction) {
-            Utils.checkNotNull(responseVoidTransaction, "responseVoidTransaction");
-            this.responseVoidTransaction = Optional.ofNullable(responseVoidTransaction);
+        public Builder response200VoidTransaction(Response200VoidTransaction response200VoidTransaction) {
+            Utils.checkNotNull(response200VoidTransaction, "response200VoidTransaction");
+            this.response200VoidTransaction = Optional.ofNullable(response200VoidTransaction);
             return this;
         }
 
         /**
          * Successful Response
          */
-        public Builder responseVoidTransaction(Optional<? extends ResponseVoidTransaction> responseVoidTransaction) {
-            Utils.checkNotNull(responseVoidTransaction, "responseVoidTransaction");
-            this.responseVoidTransaction = responseVoidTransaction;
+        public Builder response200VoidTransaction(Optional<? extends Response200VoidTransaction> response200VoidTransaction) {
+            Utils.checkNotNull(response200VoidTransaction, "response200VoidTransaction");
+            this.response200VoidTransaction = response200VoidTransaction;
             return this;
         }
 
@@ -245,7 +245,7 @@ public class VoidTransactionResponse implements Response {
 
             return new VoidTransactionResponse(
                 contentType, statusCode, rawResponse,
-                responseVoidTransaction);
+                response200VoidTransaction);
         }
 
     }
