@@ -18,28 +18,28 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 
 /**
- * ResponseVoidTransaction
+ * Response200VoidTransaction
  * 
  * <p>Successful Response
  */
-@JsonDeserialize(using = ResponseVoidTransaction._Deserializer.class)
-public class ResponseVoidTransaction {
+@JsonDeserialize(using = Response200VoidTransaction._Deserializer.class)
+public class Response200VoidTransaction {
 
     @JsonValue
     private final TypedObject value;
     
-    private ResponseVoidTransaction(TypedObject value) {
+    private Response200VoidTransaction(TypedObject value) {
         this.value = value;
     }
 
-    public static ResponseVoidTransaction of(Transaction value) {
+    public static Response200VoidTransaction of(Transaction value) {
         Utils.checkNotNull(value, "value");
-        return new ResponseVoidTransaction(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
+        return new Response200VoidTransaction(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
     }
 
-    public static ResponseVoidTransaction of(TransactionVoid value) {
+    public static Response200VoidTransaction of(TransactionVoid value) {
         Utils.checkNotNull(value, "value");
-        return new ResponseVoidTransaction(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
+        return new Response200VoidTransaction(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
     }
     
     /**
@@ -72,7 +72,7 @@ public class ResponseVoidTransaction {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        ResponseVoidTransaction other = (ResponseVoidTransaction) o;
+        Response200VoidTransaction other = (Response200VoidTransaction) o;
         return Utils.enhancedDeepEquals(this.value.value(), other.value.value());
     }
     
@@ -82,10 +82,10 @@ public class ResponseVoidTransaction {
     }
     
     @SuppressWarnings("serial")
-    public static final class _Deserializer extends OneOfDeserializer<ResponseVoidTransaction> {
+    public static final class _Deserializer extends OneOfDeserializer<Response200VoidTransaction> {
 
         public _Deserializer() {
-            super(ResponseVoidTransaction.class, false,
+            super(Response200VoidTransaction.class, false,
                   TypeReferenceWithShape.of(new TypeReference<Transaction>() {}, JsonShape.DEFAULT),
                   TypeReferenceWithShape.of(new TypeReference<TransactionVoid>() {}, JsonShape.DEFAULT));
         }
@@ -93,7 +93,7 @@ public class ResponseVoidTransaction {
     
     @Override
     public String toString() {
-        return Utils.toString(ResponseVoidTransaction.class,
+        return Utils.toString(Response200VoidTransaction.class,
                 "value", value);
     }
 

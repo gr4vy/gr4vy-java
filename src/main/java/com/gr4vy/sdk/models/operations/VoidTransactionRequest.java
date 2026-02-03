@@ -33,22 +33,34 @@ public class VoidTransactionRequest {
     @SpeakeasyMetadata("header:style=simple,explode=false,name=x-gr4vy-merchant-account-id")
     private JsonNullable<String> merchantAccountId;
 
+    /**
+     * A unique key that identifies this request. Providing this header will make this an idempotent
+     * request. We recommend using V4 UUIDs, or another random string with enough entropy to avoid
+     * collisions.
+     */
+    @SpeakeasyMetadata("header:style=simple,explode=false,name=idempotency-key")
+    private JsonNullable<String> idempotencyKey;
+
     @JsonCreator
     public VoidTransactionRequest(
             String transactionId,
             JsonNullable<? extends List<String>> prefer,
-            JsonNullable<String> merchantAccountId) {
+            JsonNullable<String> merchantAccountId,
+            JsonNullable<String> idempotencyKey) {
         Utils.checkNotNull(transactionId, "transactionId");
         Utils.checkNotNull(prefer, "prefer");
         Utils.checkNotNull(merchantAccountId, "merchantAccountId");
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
         this.transactionId = transactionId;
         this.prefer = prefer;
         this.merchantAccountId = merchantAccountId;
+        this.idempotencyKey = idempotencyKey;
     }
     
     public VoidTransactionRequest(
             String transactionId) {
-        this(transactionId, JsonNullable.undefined(), JsonNullable.undefined());
+        this(transactionId, JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined());
     }
 
     /**
@@ -74,6 +86,16 @@ public class VoidTransactionRequest {
     @JsonIgnore
     public JsonNullable<String> merchantAccountId() {
         return merchantAccountId;
+    }
+
+    /**
+     * A unique key that identifies this request. Providing this header will make this an idempotent
+     * request. We recommend using V4 UUIDs, or another random string with enough entropy to avoid
+     * collisions.
+     */
+    @JsonIgnore
+    public JsonNullable<String> idempotencyKey() {
+        return idempotencyKey;
     }
 
     public static Builder builder() {
@@ -126,6 +148,28 @@ public class VoidTransactionRequest {
         return this;
     }
 
+    /**
+     * A unique key that identifies this request. Providing this header will make this an idempotent
+     * request. We recommend using V4 UUIDs, or another random string with enough entropy to avoid
+     * collisions.
+     */
+    public VoidTransactionRequest withIdempotencyKey(String idempotencyKey) {
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+        this.idempotencyKey = JsonNullable.of(idempotencyKey);
+        return this;
+    }
+
+    /**
+     * A unique key that identifies this request. Providing this header will make this an idempotent
+     * request. We recommend using V4 UUIDs, or another random string with enough entropy to avoid
+     * collisions.
+     */
+    public VoidTransactionRequest withIdempotencyKey(JsonNullable<String> idempotencyKey) {
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+        this.idempotencyKey = idempotencyKey;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -138,13 +182,15 @@ public class VoidTransactionRequest {
         return 
             Utils.enhancedDeepEquals(this.transactionId, other.transactionId) &&
             Utils.enhancedDeepEquals(this.prefer, other.prefer) &&
-            Utils.enhancedDeepEquals(this.merchantAccountId, other.merchantAccountId);
+            Utils.enhancedDeepEquals(this.merchantAccountId, other.merchantAccountId) &&
+            Utils.enhancedDeepEquals(this.idempotencyKey, other.idempotencyKey);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            transactionId, prefer, merchantAccountId);
+            transactionId, prefer, merchantAccountId,
+            idempotencyKey);
     }
     
     @Override
@@ -152,7 +198,8 @@ public class VoidTransactionRequest {
         return Utils.toString(VoidTransactionRequest.class,
                 "transactionId", transactionId,
                 "prefer", prefer,
-                "merchantAccountId", merchantAccountId);
+                "merchantAccountId", merchantAccountId,
+                "idempotencyKey", idempotencyKey);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -163,6 +210,8 @@ public class VoidTransactionRequest {
         private JsonNullable<? extends List<String>> prefer = JsonNullable.undefined();
 
         private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
+
+        private JsonNullable<String> idempotencyKey = JsonNullable.undefined();
 
         private Builder() {
           // force use of static builder() method
@@ -216,10 +265,34 @@ public class VoidTransactionRequest {
             return this;
         }
 
+
+        /**
+         * A unique key that identifies this request. Providing this header will make this an idempotent
+         * request. We recommend using V4 UUIDs, or another random string with enough entropy to avoid
+         * collisions.
+         */
+        public Builder idempotencyKey(String idempotencyKey) {
+            Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+            this.idempotencyKey = JsonNullable.of(idempotencyKey);
+            return this;
+        }
+
+        /**
+         * A unique key that identifies this request. Providing this header will make this an idempotent
+         * request. We recommend using V4 UUIDs, or another random string with enough entropy to avoid
+         * collisions.
+         */
+        public Builder idempotencyKey(JsonNullable<String> idempotencyKey) {
+            Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+            this.idempotencyKey = idempotencyKey;
+            return this;
+        }
+
         public VoidTransactionRequest build() {
 
             return new VoidTransactionRequest(
-                transactionId, prefer, merchantAccountId);
+                transactionId, prefer, merchantAccountId,
+                idempotencyKey);
         }
 
     }

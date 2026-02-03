@@ -23,7 +23,7 @@ import com.gr4vy.sdk.models.errors.Error500;
 import com.gr4vy.sdk.models.errors.Error502;
 import com.gr4vy.sdk.models.errors.Error504;
 import com.gr4vy.sdk.models.errors.HTTPValidationError;
-import com.gr4vy.sdk.models.operations.ResponseVoidTransaction;
+import com.gr4vy.sdk.models.operations.Response200VoidTransaction;
 import com.gr4vy.sdk.models.operations.VoidTransactionRequest;
 import com.gr4vy.sdk.models.operations.VoidTransactionResponse;
 import com.gr4vy.sdk.utils.Blob;
@@ -173,7 +173,7 @@ public class VoidTransaction {
             
             if (Utils.statusCodeMatches(response.statusCode(), "200")) {
                 if (Utils.contentTypeMatches(contentType, "application/json")) {
-                    return res.withResponseVoidTransaction(Utils.unmarshal(response, new TypeReference<ResponseVoidTransaction>() {}));
+                    return res.withResponse200VoidTransaction(Utils.unmarshal(response, new TypeReference<Response200VoidTransaction>() {}));
                 } else {
                     throw APIException.from("Unexpected content-type received: " + contentType, response);
                 }
@@ -327,8 +327,8 @@ public class VoidTransaction {
             
             if (Utils.statusCodeMatches(response.statusCode(), "200")) {
                 if (Utils.contentTypeMatches(contentType, "application/json")) {
-                    return Utils.unmarshalAsync(response, new TypeReference<ResponseVoidTransaction>() {})
-                            .thenApply(res::withResponseVoidTransaction);
+                    return Utils.unmarshalAsync(response, new TypeReference<Response200VoidTransaction>() {})
+                            .thenApply(res::withResponse200VoidTransaction);
                 } else {
                     return Utils.createAsyncApiError(response, "Unexpected content-type received: " + contentType);
                 }

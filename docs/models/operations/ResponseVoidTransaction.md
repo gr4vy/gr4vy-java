@@ -1,4 +1,0 @@
-# ResponseVoidTransaction
-
-Successful Response
-

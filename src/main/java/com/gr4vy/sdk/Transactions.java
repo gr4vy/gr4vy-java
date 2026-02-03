@@ -378,7 +378,8 @@ public class Transactions {
      * @throws RuntimeException subclass if the API call fails
      */
     public VoidTransactionResponse void_(String transactionId) {
-        return void_(transactionId, JsonNullable.undefined(), JsonNullable.undefined());
+        return void_(transactionId, JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined());
     }
 
     /**
@@ -393,18 +394,20 @@ public class Transactions {
      * @param transactionId The ID of the transaction
      * @param prefer The preferred resource type in the response.
      * @param merchantAccountId 
+     * @param idempotencyKey A unique key that identifies this request. Providing this header will make this an idempotent request. We recommend using V4 UUIDs, or another random string with enough entropy to avoid collisions.
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
     public VoidTransactionResponse void_(
             String transactionId, JsonNullable<? extends List<String>> prefer,
-            JsonNullable<String> merchantAccountId) {
+            JsonNullable<String> merchantAccountId, JsonNullable<String> idempotencyKey) {
         VoidTransactionRequest request =
             VoidTransactionRequest
                 .builder()
                 .transactionId(transactionId)
                 .prefer(prefer)
                 .merchantAccountId(merchantAccountId)
+                .idempotencyKey(idempotencyKey)
                 .build();
         RequestOperation<VoidTransactionRequest, VoidTransactionResponse> operation
               = new VoidTransaction.Sync(sdkConfiguration, _headers);
