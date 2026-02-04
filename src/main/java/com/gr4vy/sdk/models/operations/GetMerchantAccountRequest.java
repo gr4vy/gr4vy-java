@@ -13,7 +13,7 @@ import java.lang.String;
 
 public class GetMerchantAccountRequest {
     /**
-     * The ID of the merchant account
+     * The ID of the merchant account.
      */
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=merchant_account_id")
     private String merchantAccountId;
@@ -26,7 +26,7 @@ public class GetMerchantAccountRequest {
     }
 
     /**
-     * The ID of the merchant account
+     * The ID of the merchant account.
      */
     @JsonIgnore
     public String merchantAccountId() {
@@ -39,7 +39,7 @@ public class GetMerchantAccountRequest {
 
 
     /**
-     * The ID of the merchant account
+     * The ID of the merchant account.
      */
     public GetMerchantAccountRequest withMerchantAccountId(String merchantAccountId) {
         Utils.checkNotNull(merchantAccountId, "merchantAccountId");
@@ -83,7 +83,7 @@ public class GetMerchantAccountRequest {
 
 
         /**
-         * The ID of the merchant account
+         * The ID of the merchant account.
          */
         public Builder merchantAccountId(String merchantAccountId) {
             Utils.checkNotNull(merchantAccountId, "merchantAccountId");

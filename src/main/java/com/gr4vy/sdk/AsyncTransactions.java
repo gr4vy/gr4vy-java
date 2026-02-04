@@ -5,7 +5,6 @@ package com.gr4vy.sdk;
 
 import static com.gr4vy.sdk.operations.Operations.AsyncRequestOperation;
 
-import com.gr4vy.sdk.models.components.TransactionCaptureCreate;
 import com.gr4vy.sdk.models.components.TransactionCreate;
 import com.gr4vy.sdk.models.components.TransactionUpdate;
 import com.gr4vy.sdk.models.operations.CancelTransactionRequest;
@@ -317,39 +316,10 @@ public class AsyncTransactions {
      * <p>Captures a previously authorized transaction. You can capture the full or a partial amount, as long
      * as it does not exceed the authorized amount (unless over-capture is enabled).
      * 
-     * @param transactionId The ID of the transaction
-     * @param transactionCaptureCreate Request body for capturing an authorized transaction.
+     * @param request The request object containing all the parameters for the API call.
      * @return {@code CompletableFuture<CaptureTransactionResponse>} - The async response
      */
-    public CompletableFuture<CaptureTransactionResponse> capture(String transactionId, TransactionCaptureCreate transactionCaptureCreate) {
-        return capture(
-                transactionId, JsonNullable.undefined(), JsonNullable.undefined(),
-                transactionCaptureCreate);
-    }
-
-    /**
-     * Capture transaction
-     * 
-     * <p>Captures a previously authorized transaction. You can capture the full or a partial amount, as long
-     * as it does not exceed the authorized amount (unless over-capture is enabled).
-     * 
-     * @param transactionId The ID of the transaction
-     * @param prefer The preferred resource type in the response.
-     * @param merchantAccountId 
-     * @param transactionCaptureCreate Request body for capturing an authorized transaction.
-     * @return {@code CompletableFuture<CaptureTransactionResponse>} - The async response
-     */
-    public CompletableFuture<CaptureTransactionResponse> capture(
-            String transactionId, JsonNullable<? extends List<String>> prefer,
-            JsonNullable<String> merchantAccountId, TransactionCaptureCreate transactionCaptureCreate) {
-        CaptureTransactionRequest request =
-            CaptureTransactionRequest
-                .builder()
-                .transactionId(transactionId)
-                .prefer(prefer)
-                .merchantAccountId(merchantAccountId)
-                .transactionCaptureCreate(transactionCaptureCreate)
-                .build();
+    public CompletableFuture<CaptureTransactionResponse> capture(CaptureTransactionRequest request) {
         AsyncRequestOperation<CaptureTransactionRequest, CaptureTransactionResponse> operation
               = new CaptureTransaction.Async(sdkConfiguration, _headers);
         return operation.doRequest(request)

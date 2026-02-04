@@ -5,7 +5,6 @@ package com.gr4vy.sdk;
 
 import static com.gr4vy.sdk.operations.Operations.RequestOperation;
 
-import com.gr4vy.sdk.models.components.TransactionCaptureCreate;
 import com.gr4vy.sdk.models.components.TransactionCreate;
 import com.gr4vy.sdk.models.components.TransactionUpdate;
 import com.gr4vy.sdk.models.operations.CancelTransactionRequest;
@@ -310,40 +309,11 @@ public class Transactions {
      * <p>Captures a previously authorized transaction. You can capture the full or a partial amount, as long
      * as it does not exceed the authorized amount (unless over-capture is enabled).
      * 
-     * @param transactionId The ID of the transaction
-     * @param transactionCaptureCreate Request body for capturing an authorized transaction.
+     * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
-    public CaptureTransactionResponse capture(String transactionId, TransactionCaptureCreate transactionCaptureCreate) {
-        return capture(transactionId, JsonNullable.undefined(), JsonNullable.undefined(),
-            transactionCaptureCreate);
-    }
-
-    /**
-     * Capture transaction
-     * 
-     * <p>Captures a previously authorized transaction. You can capture the full or a partial amount, as long
-     * as it does not exceed the authorized amount (unless over-capture is enabled).
-     * 
-     * @param transactionId The ID of the transaction
-     * @param prefer The preferred resource type in the response.
-     * @param merchantAccountId 
-     * @param transactionCaptureCreate Request body for capturing an authorized transaction.
-     * @return The response from the API call
-     * @throws RuntimeException subclass if the API call fails
-     */
-    public CaptureTransactionResponse capture(
-            String transactionId, JsonNullable<? extends List<String>> prefer,
-            JsonNullable<String> merchantAccountId, TransactionCaptureCreate transactionCaptureCreate) {
-        CaptureTransactionRequest request =
-            CaptureTransactionRequest
-                .builder()
-                .transactionId(transactionId)
-                .prefer(prefer)
-                .merchantAccountId(merchantAccountId)
-                .transactionCaptureCreate(transactionCaptureCreate)
-                .build();
+    public CaptureTransactionResponse capture(CaptureTransactionRequest request) {
         RequestOperation<CaptureTransactionRequest, CaptureTransactionResponse> operation
               = new CaptureTransaction.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));

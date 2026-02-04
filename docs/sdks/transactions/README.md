@@ -366,6 +366,7 @@ package hello.world;
 import com.gr4vy.sdk.Gr4vy;
 import com.gr4vy.sdk.models.components.TransactionCaptureCreate;
 import com.gr4vy.sdk.models.errors.*;
+import com.gr4vy.sdk.models.operations.CaptureTransactionRequest;
 import com.gr4vy.sdk.models.operations.CaptureTransactionResponse;
 import java.lang.Exception;
 
@@ -378,13 +379,17 @@ public class Application {
                 .bearerAuth(System.getenv().getOrDefault("BEARER_AUTH", ""))
             .build();
 
-        CaptureTransactionResponse res = sdk.transactions().capture()
+        CaptureTransactionRequest req = CaptureTransactionRequest.builder()
                 .transactionId("7099948d-7286-47e4-aad8-b68f7eb44591")
                 .transactionCaptureCreate(TransactionCaptureCreate.builder()
                     .build())
+                .build();
+
+        CaptureTransactionResponse res = sdk.transactions().capture()
+                .request(req)
                 .call();
 
-        if (res.responseCaptureTransaction().isPresent()) {
+        if (res.response200CaptureTransaction().isPresent()) {
             // handle response
         }
     }
@@ -393,12 +398,9 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                       | Type                                                                            | Required                                                                        | Description                                                                     | Example                                                                         |
-| ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
-| `transactionId`                                                                 | *String*                                                                        | :heavy_check_mark:                                                              | The ID of the transaction                                                       | 7099948d-7286-47e4-aad8-b68f7eb44591                                            |
-| `prefer`                                                                        | List\<*String*>                                                                 | :heavy_minus_sign:                                                              | The preferred resource type in the response.                                    |                                                                                 |
-| `merchantAccountId`                                                             | *JsonNullable\<String>*                                                         | :heavy_minus_sign:                                                              | The ID of the merchant account to use for this request.                         |                                                                                 |
-| `transactionCaptureCreate`                                                      | [TransactionCaptureCreate](../../models/components/TransactionCaptureCreate.md) | :heavy_check_mark:                                                              | N/A                                                                             |                                                                                 |
+| Parameter                                                                         | Type                                                                              | Required                                                                          | Description                                                                       |
+| --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
+| `request`                                                                         | [CaptureTransactionRequest](../../models/operations/CaptureTransactionRequest.md) | :heavy_check_mark:                                                                | The request object to use for the request.                                        |
 
 ### Response
 

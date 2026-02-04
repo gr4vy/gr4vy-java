@@ -34,11 +34,17 @@ import org.openapitools.jackson.nullable.JsonNullable;
 public class AsyncMerchantAccounts {
     private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncThreeDsConfiguration threeDsConfiguration;
     private final MerchantAccounts syncSDK;
 
     AsyncMerchantAccounts(MerchantAccounts syncSDK, SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.threeDsConfiguration = new AsyncThreeDsConfiguration(syncSDK.threeDsConfiguration(), this.sdkConfiguration);
         this.syncSDK = syncSDK;
+    }
+
+    public final AsyncThreeDsConfiguration threeDsConfiguration() {
+        return threeDsConfiguration;
     }
 
     /**
@@ -148,7 +154,7 @@ public class AsyncMerchantAccounts {
      * 
      * <p>Get info about a merchant account in an instance.
      * 
-     * @param merchantAccountId The ID of the merchant account
+     * @param merchantAccountId The ID of the merchant account.
      * @return {@code CompletableFuture<GetMerchantAccountResponse>} - The async response
      */
     public CompletableFuture<GetMerchantAccountResponse> get(String merchantAccountId) {
@@ -160,7 +166,7 @@ public class AsyncMerchantAccounts {
      * 
      * <p>Get info about a merchant account in an instance.
      * 
-     * @param merchantAccountId The ID of the merchant account
+     * @param merchantAccountId The ID of the merchant account.
      * @param options additional options
      * @return {@code CompletableFuture<GetMerchantAccountResponse>} - The async response
      */
@@ -195,7 +201,7 @@ public class AsyncMerchantAccounts {
      * 
      * <p>Update info for a merchant account in an instance.
      * 
-     * @param merchantAccountId The ID of the merchant account
+     * @param merchantAccountId The ID of the merchant account.
      * @param merchantAccountUpdate 
      * @return {@code CompletableFuture<UpdateMerchantAccountResponse>} - The async response
      */

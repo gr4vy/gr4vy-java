@@ -34,10 +34,16 @@ public class MerchantAccounts {
     private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final AsyncMerchantAccounts asyncSDK;
+    private final ThreeDsConfiguration threeDsConfiguration;
 
     MerchantAccounts(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.threeDsConfiguration = new ThreeDsConfiguration(this.sdkConfiguration);
         this.asyncSDK = new AsyncMerchantAccounts(this, sdkConfiguration);
+    }
+
+    public final ThreeDsConfiguration threeDsConfiguration() {
+        return threeDsConfiguration;
     }
 
     /**
@@ -142,7 +148,7 @@ public class MerchantAccounts {
      * 
      * <p>Get info about a merchant account in an instance.
      * 
-     * @param merchantAccountId The ID of the merchant account
+     * @param merchantAccountId The ID of the merchant account.
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
@@ -155,7 +161,7 @@ public class MerchantAccounts {
      * 
      * <p>Get info about a merchant account in an instance.
      * 
-     * @param merchantAccountId The ID of the merchant account
+     * @param merchantAccountId The ID of the merchant account.
      * @param options additional options
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
@@ -187,7 +193,7 @@ public class MerchantAccounts {
      * 
      * <p>Update info for a merchant account in an instance.
      * 
-     * @param merchantAccountId The ID of the merchant account
+     * @param merchantAccountId The ID of the merchant account.
      * @param merchantAccountUpdate 
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails

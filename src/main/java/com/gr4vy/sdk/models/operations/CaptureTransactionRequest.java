@@ -34,6 +34,14 @@ public class CaptureTransactionRequest {
     @SpeakeasyMetadata("header:style=simple,explode=false,name=x-gr4vy-merchant-account-id")
     private JsonNullable<String> merchantAccountId;
 
+    /**
+     * A unique key that identifies this request. Providing this header will make this an idempotent
+     * request. We recommend using V4 UUIDs, or another random string with enough entropy to avoid
+     * collisions.
+     */
+    @SpeakeasyMetadata("header:style=simple,explode=false,name=idempotency-key")
+    private JsonNullable<String> idempotencyKey;
+
 
     @SpeakeasyMetadata("request:mediaType=application/json")
     private TransactionCaptureCreate transactionCaptureCreate;
@@ -43,14 +51,17 @@ public class CaptureTransactionRequest {
             String transactionId,
             JsonNullable<? extends List<String>> prefer,
             JsonNullable<String> merchantAccountId,
+            JsonNullable<String> idempotencyKey,
             TransactionCaptureCreate transactionCaptureCreate) {
         Utils.checkNotNull(transactionId, "transactionId");
         Utils.checkNotNull(prefer, "prefer");
         Utils.checkNotNull(merchantAccountId, "merchantAccountId");
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
         Utils.checkNotNull(transactionCaptureCreate, "transactionCaptureCreate");
         this.transactionId = transactionId;
         this.prefer = prefer;
         this.merchantAccountId = merchantAccountId;
+        this.idempotencyKey = idempotencyKey;
         this.transactionCaptureCreate = transactionCaptureCreate;
     }
     
@@ -58,7 +69,7 @@ public class CaptureTransactionRequest {
             String transactionId,
             TransactionCaptureCreate transactionCaptureCreate) {
         this(transactionId, JsonNullable.undefined(), JsonNullable.undefined(),
-            transactionCaptureCreate);
+            JsonNullable.undefined(), transactionCaptureCreate);
     }
 
     /**
@@ -84,6 +95,16 @@ public class CaptureTransactionRequest {
     @JsonIgnore
     public JsonNullable<String> merchantAccountId() {
         return merchantAccountId;
+    }
+
+    /**
+     * A unique key that identifies this request. Providing this header will make this an idempotent
+     * request. We recommend using V4 UUIDs, or another random string with enough entropy to avoid
+     * collisions.
+     */
+    @JsonIgnore
+    public JsonNullable<String> idempotencyKey() {
+        return idempotencyKey;
     }
 
     @JsonIgnore
@@ -141,6 +162,28 @@ public class CaptureTransactionRequest {
         return this;
     }
 
+    /**
+     * A unique key that identifies this request. Providing this header will make this an idempotent
+     * request. We recommend using V4 UUIDs, or another random string with enough entropy to avoid
+     * collisions.
+     */
+    public CaptureTransactionRequest withIdempotencyKey(String idempotencyKey) {
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+        this.idempotencyKey = JsonNullable.of(idempotencyKey);
+        return this;
+    }
+
+    /**
+     * A unique key that identifies this request. Providing this header will make this an idempotent
+     * request. We recommend using V4 UUIDs, or another random string with enough entropy to avoid
+     * collisions.
+     */
+    public CaptureTransactionRequest withIdempotencyKey(JsonNullable<String> idempotencyKey) {
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+        this.idempotencyKey = idempotencyKey;
+        return this;
+    }
+
     public CaptureTransactionRequest withTransactionCaptureCreate(TransactionCaptureCreate transactionCaptureCreate) {
         Utils.checkNotNull(transactionCaptureCreate, "transactionCaptureCreate");
         this.transactionCaptureCreate = transactionCaptureCreate;
@@ -160,6 +203,7 @@ public class CaptureTransactionRequest {
             Utils.enhancedDeepEquals(this.transactionId, other.transactionId) &&
             Utils.enhancedDeepEquals(this.prefer, other.prefer) &&
             Utils.enhancedDeepEquals(this.merchantAccountId, other.merchantAccountId) &&
+            Utils.enhancedDeepEquals(this.idempotencyKey, other.idempotencyKey) &&
             Utils.enhancedDeepEquals(this.transactionCaptureCreate, other.transactionCaptureCreate);
     }
     
@@ -167,7 +211,7 @@ public class CaptureTransactionRequest {
     public int hashCode() {
         return Utils.enhancedHash(
             transactionId, prefer, merchantAccountId,
-            transactionCaptureCreate);
+            idempotencyKey, transactionCaptureCreate);
     }
     
     @Override
@@ -176,6 +220,7 @@ public class CaptureTransactionRequest {
                 "transactionId", transactionId,
                 "prefer", prefer,
                 "merchantAccountId", merchantAccountId,
+                "idempotencyKey", idempotencyKey,
                 "transactionCaptureCreate", transactionCaptureCreate);
     }
 
@@ -187,6 +232,8 @@ public class CaptureTransactionRequest {
         private JsonNullable<? extends List<String>> prefer = JsonNullable.undefined();
 
         private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
+
+        private JsonNullable<String> idempotencyKey = JsonNullable.undefined();
 
         private TransactionCaptureCreate transactionCaptureCreate;
 
@@ -243,6 +290,29 @@ public class CaptureTransactionRequest {
         }
 
 
+        /**
+         * A unique key that identifies this request. Providing this header will make this an idempotent
+         * request. We recommend using V4 UUIDs, or another random string with enough entropy to avoid
+         * collisions.
+         */
+        public Builder idempotencyKey(String idempotencyKey) {
+            Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+            this.idempotencyKey = JsonNullable.of(idempotencyKey);
+            return this;
+        }
+
+        /**
+         * A unique key that identifies this request. Providing this header will make this an idempotent
+         * request. We recommend using V4 UUIDs, or another random string with enough entropy to avoid
+         * collisions.
+         */
+        public Builder idempotencyKey(JsonNullable<String> idempotencyKey) {
+            Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+            this.idempotencyKey = idempotencyKey;
+            return this;
+        }
+
+
         public Builder transactionCaptureCreate(TransactionCaptureCreate transactionCaptureCreate) {
             Utils.checkNotNull(transactionCaptureCreate, "transactionCaptureCreate");
             this.transactionCaptureCreate = transactionCaptureCreate;
@@ -253,7 +323,7 @@ public class CaptureTransactionRequest {
 
             return new CaptureTransactionRequest(
                 transactionId, prefer, merchantAccountId,
-                transactionCaptureCreate);
+                idempotencyKey, transactionCaptureCreate);
         }
 
     }
