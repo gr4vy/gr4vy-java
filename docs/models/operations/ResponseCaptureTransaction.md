@@ -1,4 +1,0 @@
-# ResponseCaptureTransaction
-
-Successful Response
-

@@ -5,7 +5,7 @@ package com.gr4vy.sdk.models.operations.async;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.gr4vy.sdk.models.operations.ResponseCaptureTransaction;
+import com.gr4vy.sdk.models.operations.Response200CaptureTransaction;
 import com.gr4vy.sdk.utils.AsyncResponse;
 import com.gr4vy.sdk.utils.Blob;
 import com.gr4vy.sdk.utils.Utils;
@@ -36,22 +36,22 @@ public class CaptureTransactionResponse implements AsyncResponse {
     /**
      * Successful Response
      */
-    private Optional<? extends ResponseCaptureTransaction> responseCaptureTransaction;
+    private Optional<? extends Response200CaptureTransaction> response200CaptureTransaction;
 
     @JsonCreator
     public CaptureTransactionResponse(
             String contentType,
             int statusCode,
             HttpResponse<Blob> rawResponse,
-            Optional<? extends ResponseCaptureTransaction> responseCaptureTransaction) {
+            Optional<? extends Response200CaptureTransaction> response200CaptureTransaction) {
         Utils.checkNotNull(contentType, "contentType");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
-        Utils.checkNotNull(responseCaptureTransaction, "responseCaptureTransaction");
+        Utils.checkNotNull(response200CaptureTransaction, "response200CaptureTransaction");
         this.contentType = contentType;
         this.statusCode = statusCode;
         this.rawResponse = rawResponse;
-        this.responseCaptureTransaction = responseCaptureTransaction;
+        this.response200CaptureTransaction = response200CaptureTransaction;
     }
     
     public CaptureTransactionResponse(
@@ -91,8 +91,8 @@ public class CaptureTransactionResponse implements AsyncResponse {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<ResponseCaptureTransaction> responseCaptureTransaction() {
-        return (Optional<ResponseCaptureTransaction>) responseCaptureTransaction;
+    public Optional<Response200CaptureTransaction> response200CaptureTransaction() {
+        return (Optional<Response200CaptureTransaction>) response200CaptureTransaction;
     }
 
     public static Builder builder() {
@@ -130,9 +130,9 @@ public class CaptureTransactionResponse implements AsyncResponse {
     /**
      * Successful Response
      */
-    public CaptureTransactionResponse withResponseCaptureTransaction(ResponseCaptureTransaction responseCaptureTransaction) {
-        Utils.checkNotNull(responseCaptureTransaction, "responseCaptureTransaction");
-        this.responseCaptureTransaction = Optional.ofNullable(responseCaptureTransaction);
+    public CaptureTransactionResponse withResponse200CaptureTransaction(Response200CaptureTransaction response200CaptureTransaction) {
+        Utils.checkNotNull(response200CaptureTransaction, "response200CaptureTransaction");
+        this.response200CaptureTransaction = Optional.ofNullable(response200CaptureTransaction);
         return this;
     }
 
@@ -140,9 +140,9 @@ public class CaptureTransactionResponse implements AsyncResponse {
     /**
      * Successful Response
      */
-    public CaptureTransactionResponse withResponseCaptureTransaction(Optional<? extends ResponseCaptureTransaction> responseCaptureTransaction) {
-        Utils.checkNotNull(responseCaptureTransaction, "responseCaptureTransaction");
-        this.responseCaptureTransaction = responseCaptureTransaction;
+    public CaptureTransactionResponse withResponse200CaptureTransaction(Optional<? extends Response200CaptureTransaction> response200CaptureTransaction) {
+        Utils.checkNotNull(response200CaptureTransaction, "response200CaptureTransaction");
+        this.response200CaptureTransaction = response200CaptureTransaction;
         return this;
     }
 
@@ -159,14 +159,14 @@ public class CaptureTransactionResponse implements AsyncResponse {
             Utils.enhancedDeepEquals(this.contentType, other.contentType) &&
             Utils.enhancedDeepEquals(this.statusCode, other.statusCode) &&
             Utils.enhancedDeepEquals(this.rawResponse, other.rawResponse) &&
-            Utils.enhancedDeepEquals(this.responseCaptureTransaction, other.responseCaptureTransaction);
+            Utils.enhancedDeepEquals(this.response200CaptureTransaction, other.response200CaptureTransaction);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
             contentType, statusCode, rawResponse,
-            responseCaptureTransaction);
+            response200CaptureTransaction);
     }
     
     @Override
@@ -175,7 +175,7 @@ public class CaptureTransactionResponse implements AsyncResponse {
                 "contentType", contentType,
                 "statusCode", statusCode,
                 "rawResponse", rawResponse,
-                "responseCaptureTransaction", responseCaptureTransaction);
+                "response200CaptureTransaction", response200CaptureTransaction);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -187,7 +187,7 @@ public class CaptureTransactionResponse implements AsyncResponse {
 
         private HttpResponse<Blob> rawResponse;
 
-        private Optional<? extends ResponseCaptureTransaction> responseCaptureTransaction = Optional.empty();
+        private Optional<? extends Response200CaptureTransaction> response200CaptureTransaction = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -227,18 +227,18 @@ public class CaptureTransactionResponse implements AsyncResponse {
         /**
          * Successful Response
          */
-        public Builder responseCaptureTransaction(ResponseCaptureTransaction responseCaptureTransaction) {
-            Utils.checkNotNull(responseCaptureTransaction, "responseCaptureTransaction");
-            this.responseCaptureTransaction = Optional.ofNullable(responseCaptureTransaction);
+        public Builder response200CaptureTransaction(Response200CaptureTransaction response200CaptureTransaction) {
+            Utils.checkNotNull(response200CaptureTransaction, "response200CaptureTransaction");
+            this.response200CaptureTransaction = Optional.ofNullable(response200CaptureTransaction);
             return this;
         }
 
         /**
          * Successful Response
          */
-        public Builder responseCaptureTransaction(Optional<? extends ResponseCaptureTransaction> responseCaptureTransaction) {
-            Utils.checkNotNull(responseCaptureTransaction, "responseCaptureTransaction");
-            this.responseCaptureTransaction = responseCaptureTransaction;
+        public Builder response200CaptureTransaction(Optional<? extends Response200CaptureTransaction> response200CaptureTransaction) {
+            Utils.checkNotNull(response200CaptureTransaction, "response200CaptureTransaction");
+            this.response200CaptureTransaction = response200CaptureTransaction;
             return this;
         }
 
@@ -246,7 +246,7 @@ public class CaptureTransactionResponse implements AsyncResponse {
 
             return new CaptureTransactionResponse(
                 contentType, statusCode, rawResponse,
-                responseCaptureTransaction);
+                response200CaptureTransaction);
         }
 
     }

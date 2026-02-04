@@ -25,7 +25,7 @@ import com.gr4vy.sdk.models.errors.Error504;
 import com.gr4vy.sdk.models.errors.HTTPValidationError;
 import com.gr4vy.sdk.models.operations.CaptureTransactionRequest;
 import com.gr4vy.sdk.models.operations.CaptureTransactionResponse;
-import com.gr4vy.sdk.models.operations.ResponseCaptureTransaction;
+import com.gr4vy.sdk.models.operations.Response200CaptureTransaction;
 import com.gr4vy.sdk.utils.Blob;
 import com.gr4vy.sdk.utils.Globals;
 import com.gr4vy.sdk.utils.HTTPClient;
@@ -190,7 +190,7 @@ public class CaptureTransaction {
             
             if (Utils.statusCodeMatches(response.statusCode(), "200")) {
                 if (Utils.contentTypeMatches(contentType, "application/json")) {
-                    return res.withResponseCaptureTransaction(Utils.unmarshal(response, new TypeReference<ResponseCaptureTransaction>() {}));
+                    return res.withResponse200CaptureTransaction(Utils.unmarshal(response, new TypeReference<Response200CaptureTransaction>() {}));
                 } else {
                     throw APIException.from("Unexpected content-type received: " + contentType, response);
                 }
@@ -344,8 +344,8 @@ public class CaptureTransaction {
             
             if (Utils.statusCodeMatches(response.statusCode(), "200")) {
                 if (Utils.contentTypeMatches(contentType, "application/json")) {
-                    return Utils.unmarshalAsync(response, new TypeReference<ResponseCaptureTransaction>() {})
-                            .thenApply(res::withResponseCaptureTransaction);
+                    return Utils.unmarshalAsync(response, new TypeReference<Response200CaptureTransaction>() {})
+                            .thenApply(res::withResponse200CaptureTransaction);
                 } else {
                     return Utils.createAsyncApiError(response, "Unexpected content-type received: " + contentType);
                 }

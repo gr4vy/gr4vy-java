@@ -6,20 +6,13 @@ package com.gr4vy.sdk.models.operations;
 import static com.gr4vy.sdk.operations.Operations.RequestOperation;
 
 import com.gr4vy.sdk.SDKConfiguration;
-import com.gr4vy.sdk.models.components.TransactionCaptureCreate;
 import com.gr4vy.sdk.operations.CaptureTransaction;
 import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.Utils;
-import java.lang.String;
-import java.util.List;
-import org.openapitools.jackson.nullable.JsonNullable;
 
 public class CaptureTransactionRequestBuilder {
 
-    private String transactionId;
-    private JsonNullable<? extends List<String>> prefer = JsonNullable.undefined();
-    private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
-    private TransactionCaptureCreate transactionCaptureCreate;
+    private CaptureTransactionRequest request;
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -27,58 +20,16 @@ public class CaptureTransactionRequestBuilder {
         this.sdkConfiguration = sdkConfiguration;
     }
 
-    public CaptureTransactionRequestBuilder transactionId(String transactionId) {
-        Utils.checkNotNull(transactionId, "transactionId");
-        this.transactionId = transactionId;
+    public CaptureTransactionRequestBuilder request(CaptureTransactionRequest request) {
+        Utils.checkNotNull(request, "request");
+        this.request = request;
         return this;
-    }
-
-    public CaptureTransactionRequestBuilder prefer(List<String> prefer) {
-        Utils.checkNotNull(prefer, "prefer");
-        this.prefer = JsonNullable.of(prefer);
-        return this;
-    }
-
-    public CaptureTransactionRequestBuilder prefer(JsonNullable<? extends List<String>> prefer) {
-        Utils.checkNotNull(prefer, "prefer");
-        this.prefer = prefer;
-        return this;
-    }
-
-    public CaptureTransactionRequestBuilder merchantAccountId(String merchantAccountId) {
-        Utils.checkNotNull(merchantAccountId, "merchantAccountId");
-        this.merchantAccountId = JsonNullable.of(merchantAccountId);
-        return this;
-    }
-
-    public CaptureTransactionRequestBuilder merchantAccountId(JsonNullable<String> merchantAccountId) {
-        Utils.checkNotNull(merchantAccountId, "merchantAccountId");
-        this.merchantAccountId = merchantAccountId;
-        return this;
-    }
-
-    public CaptureTransactionRequestBuilder transactionCaptureCreate(TransactionCaptureCreate transactionCaptureCreate) {
-        Utils.checkNotNull(transactionCaptureCreate, "transactionCaptureCreate");
-        this.transactionCaptureCreate = transactionCaptureCreate;
-        return this;
-    }
-
-
-    private CaptureTransactionRequest buildRequest() {
-
-        CaptureTransactionRequest request = new CaptureTransactionRequest(transactionId,
-            prefer,
-            merchantAccountId,
-            transactionCaptureCreate);
-
-        return request;
     }
 
     public CaptureTransactionResponse call() {
         
         RequestOperation<CaptureTransactionRequest, CaptureTransactionResponse> operation
               = new CaptureTransaction.Sync(sdkConfiguration, _headers);
-        CaptureTransactionRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));
     }

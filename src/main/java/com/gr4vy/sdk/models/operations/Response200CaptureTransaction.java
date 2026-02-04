@@ -18,28 +18,28 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 
 /**
- * ResponseCaptureTransaction
+ * Response200CaptureTransaction
  * 
  * <p>Successful Response
  */
-@JsonDeserialize(using = ResponseCaptureTransaction._Deserializer.class)
-public class ResponseCaptureTransaction {
+@JsonDeserialize(using = Response200CaptureTransaction._Deserializer.class)
+public class Response200CaptureTransaction {
 
     @JsonValue
     private final TypedObject value;
     
-    private ResponseCaptureTransaction(TypedObject value) {
+    private Response200CaptureTransaction(TypedObject value) {
         this.value = value;
     }
 
-    public static ResponseCaptureTransaction of(Transaction value) {
+    public static Response200CaptureTransaction of(Transaction value) {
         Utils.checkNotNull(value, "value");
-        return new ResponseCaptureTransaction(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
+        return new Response200CaptureTransaction(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
     }
 
-    public static ResponseCaptureTransaction of(TransactionCapture value) {
+    public static Response200CaptureTransaction of(TransactionCapture value) {
         Utils.checkNotNull(value, "value");
-        return new ResponseCaptureTransaction(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
+        return new Response200CaptureTransaction(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
     }
     
     /**
@@ -72,7 +72,7 @@ public class ResponseCaptureTransaction {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        ResponseCaptureTransaction other = (ResponseCaptureTransaction) o;
+        Response200CaptureTransaction other = (Response200CaptureTransaction) o;
         return Utils.enhancedDeepEquals(this.value.value(), other.value.value());
     }
     
@@ -82,10 +82,10 @@ public class ResponseCaptureTransaction {
     }
     
     @SuppressWarnings("serial")
-    public static final class _Deserializer extends OneOfDeserializer<ResponseCaptureTransaction> {
+    public static final class _Deserializer extends OneOfDeserializer<Response200CaptureTransaction> {
 
         public _Deserializer() {
-            super(ResponseCaptureTransaction.class, false,
+            super(Response200CaptureTransaction.class, false,
                   TypeReferenceWithShape.of(new TypeReference<Transaction>() {}, JsonShape.DEFAULT),
                   TypeReferenceWithShape.of(new TypeReference<TransactionCapture>() {}, JsonShape.DEFAULT));
         }
@@ -93,7 +93,7 @@ public class ResponseCaptureTransaction {
     
     @Override
     public String toString() {
-        return Utils.toString(ResponseCaptureTransaction.class,
+        return Utils.toString(Response200CaptureTransaction.class,
                 "value", value);
     }
 

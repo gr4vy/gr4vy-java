@@ -58,7 +58,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'com.gr4vy:sdk:2.16.21'
+implementation 'com.gr4vy:sdk:2.16.22'
 ```
 
 Maven:
@@ -66,7 +66,7 @@ Maven:
 <dependency>
     <groupId>com.gr4vy</groupId>
     <artifactId>sdk</artifactId>
-    <version>2.16.21</version>
+    <version>2.16.22</version>
 </dependency>
 ```
 
@@ -372,6 +372,13 @@ Async support is available for:
 * [create](docs/sdks/merchantaccounts/README.md#create) - Create a merchant account
 * [get](docs/sdks/merchantaccounts/README.md#get) - Get a merchant account
 * [update](docs/sdks/merchantaccounts/README.md#update) - Update a merchant account
+
+#### [MerchantAccounts.ThreeDsConfiguration](docs/sdks/threedsconfiguration/README.md)
+
+* [create](docs/sdks/threedsconfiguration/README.md#create) - Create 3DS configuration for merchant
+* [list](docs/sdks/threedsconfiguration/README.md#list) - List 3DS configurations for merchant
+* [update](docs/sdks/threedsconfiguration/README.md#update) - Edit 3DS configuration
+* [delete](docs/sdks/threedsconfiguration/README.md#delete) - Delete 3DS configuration for a merchant
 
 ### [PaymentLinks](docs/sdks/paymentlinks/README.md)
 
