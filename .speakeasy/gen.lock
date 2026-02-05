@@ -1,23 +1,23 @@
 lockVersion: 2.0.0
 id: 5bbaa3a9-baa0-471b-ba6a-13fd88e8c119
 management:
-  docChecksum: 95b2a00eddd40c769875466ea4574c24
+  docChecksum: e367a0573b3a09dc74baed0557be4ec9
   docVersion: 1.0.0
-  speakeasyVersion: 1.703.0
-  generationVersion: 2.803.3
-  releaseVersion: 2.16.22
-  configChecksum: 79ab37c5459b3d0f960b9cd9b028814e
+  speakeasyVersion: 1.704.0
+  generationVersion: 2.806.4
+  releaseVersion: 2.16.23
+  configChecksum: 372a791632e1169771004b8f19c01165
   repoURL: https://github.com/gr4vy/gr4vy-java.git
   published: true
 persistentEdits:
-  generation_id: ad76695a-f6ae-47d2-8400-1f41aecf81bc
-  pristine_commit_hash: e8881a546ece82c329212a3a1d3b6b0b01aaf8a6
-  pristine_tree_hash: 34e9bf06782dbe4999392b007173ef55c6138027
+  generation_id: 5b7d431d-ebfa-4339-aa4b-436cdea29817
+  pristine_commit_hash: 503be800fef6db5bf6344ef36bfbc64039c10f1c
+  pristine_tree_hash: f556877fad3a27e0f6ade0a2de65f20da1671909
 features:
   java:
     additionalDependencies: 0.1.0
-    constsAndDefaults: 0.1.1
-    core: 3.55.8
+    constsAndDefaults: 0.1.2
+    core: 3.55.10
     flattening: 2.81.1
     globalSecurity: 2.83.1
     globalSecurityCallbacks: 0.1.0
@@ -33,7 +33,7 @@ features:
     retries: 0.1.1
     sdkHooks: 1.2.0
     serverIDs: 2.81.1
-    unions: 0.3.1
+    unions: 0.3.2
 trackedFiles:
   .gitattributes:
     id: 24139dae6567
@@ -2313,8 +2313,8 @@ trackedFiles:
     pristine_git_object: 15c4e4642f204ccb312d8814155b69e153b4e19b
   gradle.properties:
     id: 2afbb999f001
-    last_write_checksum: sha1:d1fd62a6d27cf3009992fcea1434838cc0ed1c0d
-    pristine_git_object: a3daf7c220947484db24691090ef3ea49e3162ea
+    last_write_checksum: sha1:9d4ea3ff29b5214fbe39fbbda4b76c73ac2ffddc
+    pristine_git_object: 891ffd5dd9284e677ff85f08f7b40dd6e301a401
   gradle/wrapper/gradle-wrapper.jar:
     id: ec27dae6e852
     last_write_checksum: sha1:f725fb1467084142d74fd7cd8eab691ab3442611
@@ -2637,8 +2637,8 @@ trackedFiles:
     pristine_git_object: 502a7312d3dc82c102dbaf7ed5e952d0c793e26f
   src/main/java/com/gr4vy/sdk/SDKConfiguration.java:
     id: 73a7edeaca45
-    last_write_checksum: sha1:fa7b3437eaf87d5b3a043c727b1caeb88900876c
-    pristine_git_object: 460ad5c990c2cc9aa71f90eaa1b007d86444d374
+    last_write_checksum: sha1:ee2a776d7cb4d4f21243112824d701234f1d0792
+    pristine_git_object: 804b7096ce0f1fb4c10b7354f56b427b96a16b28
   src/main/java/com/gr4vy/sdk/SecuritySource.java:
     id: 1b6add6b9b50
     last_write_checksum: sha1:2f365cc823c6243188e83f4df618c9737fcee8bd
@@ -10470,13 +10470,6 @@ examples:
           application/json: {"type": "error", "code": "gateway_timeout", "status": 504, "message": "Request could not be processed"}
 examplesVersion: 1.0.2
 generatedTests: {}
-releaseNotes: |
-  ## Java SDK Changes:
-  * `gr4vy.transactions.capture()`:  `request` **Changed** **Breaking** ⚠️
-  * `gr4vy.merchantAccounts.threeDsConfiguration.create()`: **Added**
-  * `gr4vy.merchantAccounts.threeDsConfiguration.list()`: **Added**
-  * `gr4vy.merchantAccounts.threeDsConfiguration.update()`: **Added**
-  * `gr4vy.merchantAccounts.threeDsConfiguration.delete()`: **Added**
 generatedFiles:
   - .gitattributes
   - USAGE.md

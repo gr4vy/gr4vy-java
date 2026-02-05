@@ -29,7 +29,7 @@ generation:
     generateNewTests: false
     skipResponseBodyAssertions: false
 java:
-  version: 2.16.22
+  version: 2.16.23
   additionalDependencies:
     - testImplementation:org.junit.jupiter:junit-jupiter:5.10.0
     - implementation:com.auth0:java-jwt:4.5.0
@@ -76,5 +76,6 @@ java:
   operationScopedParams: true
   outputModelSuffix: output
   projectName: openapi
+  respectTitlesForPrimitiveUnionMembers: false
   templateVersion: v2
   unionStrategy: populated-fields
