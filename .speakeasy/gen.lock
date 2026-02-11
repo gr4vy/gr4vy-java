@@ -1,18 +1,18 @@
 lockVersion: 2.0.0
 id: 5bbaa3a9-baa0-471b-ba6a-13fd88e8c119
 management:
-  docChecksum: 06cbb888ff515821dfe1944e144b913a
+  docChecksum: 5e12d053f42685ced593019245274662
   docVersion: 1.0.0
-  speakeasyVersion: 1.709.4
-  generationVersion: 2.816.0
-  releaseVersion: 2.16.25
-  configChecksum: a32fc9d9b8af03a0649f6b0210e3a036
+  speakeasyVersion: 1.710.0
+  generationVersion: 2.818.4
+  releaseVersion: 2.16.26
+  configChecksum: 7e17c06d88f8137f04496602fe71ee45
   repoURL: https://github.com/gr4vy/gr4vy-java.git
   published: true
 persistentEdits:
-  generation_id: 152c0d9e-f1a4-4a12-878c-61cc832813f1
-  pristine_commit_hash: 24f83fc4154a9576c7fa77cc7a894c20f610a7fe
-  pristine_tree_hash: 0e746d4de41b1b2ef9317356031aeeaff93eb2ad
+  generation_id: a1711cbc-bbb7-4640-a51f-bf8003dca2bc
+  pristine_commit_hash: 44abbc33327196e7826f996c4f2610e580b012fa
+  pristine_tree_hash: 3fde4c71c92ab856fedc595fbde4b8dbeacc756f
 features:
   java:
     additionalDependencies: 0.1.0
@@ -2313,8 +2313,8 @@ trackedFiles:
     pristine_git_object: 15c4e4642f204ccb312d8814155b69e153b4e19b
   gradle.properties:
     id: 2afbb999f001
-    last_write_checksum: sha1:f68089c211ee0cfdbb7419533af7a2d66159f22c
-    pristine_git_object: 9b57c7ca89e48ee3c3318a786d56f26159cf7b9a
+    last_write_checksum: sha1:39050c008bf08661579542d7e9c07959aedde3f1
+    pristine_git_object: 9b5d3b2ad15661c4025f2a6a99bd10a5064e4d9d
   gradle/wrapper/gradle-wrapper.jar:
     id: ec27dae6e852
     last_write_checksum: sha1:f725fb1467084142d74fd7cd8eab691ab3442611
@@ -2637,8 +2637,8 @@ trackedFiles:
     pristine_git_object: 502a7312d3dc82c102dbaf7ed5e952d0c793e26f
   src/main/java/com/gr4vy/sdk/SDKConfiguration.java:
     id: 73a7edeaca45
-    last_write_checksum: sha1:0bb4fef7f2784b0ab915f8cc3aa35a65fe9b63a7
-    pristine_git_object: f226c127e3a46902109ef34504606c096a17f577
+    last_write_checksum: sha1:b10f2c62905b946aad2c63b8e04a33c1621fa059
+    pristine_git_object: d1c92e924c65d74929cee8a54e554bcda8c6bcbd
   src/main/java/com/gr4vy/sdk/SecuritySource.java:
     id: 1b6add6b9b50
     last_write_checksum: sha1:2f365cc823c6243188e83f4df618c9737fcee8bd
