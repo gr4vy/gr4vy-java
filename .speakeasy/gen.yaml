@@ -29,7 +29,7 @@ generation:
     generateNewTests: false
     skipResponseBodyAssertions: false
 java:
-  version: 2.16.26
+  version: 2.16.27
   additionalDependencies:
     - testImplementation:org.junit.jupiter:junit-jupiter:5.10.0
     - implementation:com.auth0:java-jwt:4.5.0
@@ -50,6 +50,7 @@ java:
   enableStreamingUploads: false
   flattenGlobalSecurity: true
   forwardCompatibleEnumsByDefault: false
+  forwardCompatibleUnionsByDefault: "false"
   generateOptionalUnionAccessors: false
   generateSpringBootStarter: true
   githubURL: github.com/gr4vy/gr4vy-java
@@ -72,7 +73,6 @@ java:
   maxMethodParams: 4
   multipartArrayFormat: legacy
   nullFriendlyParameters: false
-  openUnions: true
   operationScopedParams: true
   outputModelSuffix: output
   projectName: openapi

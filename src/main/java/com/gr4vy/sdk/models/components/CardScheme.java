@@ -39,6 +39,7 @@ public class CardScheme {
     public static final CardScheme NYCE = new CardScheme("nyce");
     public static final CardScheme OTHER = new CardScheme("other");
     public static final CardScheme PULSE = new CardScheme("pulse");
+    public static final CardScheme QCARD = new CardScheme("qcard");
     public static final CardScheme RUPAY = new CardScheme("rupay");
     public static final CardScheme STAR = new CardScheme("star");
     public static final CardScheme UATP = new CardScheme("uatp");
@@ -136,6 +137,7 @@ public class CardScheme {
         map.put("nyce", NYCE);
         map.put("other", OTHER);
         map.put("pulse", PULSE);
+        map.put("qcard", QCARD);
         map.put("rupay", RUPAY);
         map.put("star", STAR);
         map.put("uatp", UATP);
@@ -165,6 +167,7 @@ public class CardScheme {
         map.put("nyce", CardSchemeEnum.NYCE);
         map.put("other", CardSchemeEnum.OTHER);
         map.put("pulse", CardSchemeEnum.PULSE);
+        map.put("qcard", CardSchemeEnum.QCARD);
         map.put("rupay", CardSchemeEnum.RUPAY);
         map.put("star", CardSchemeEnum.STAR);
         map.put("uatp", CardSchemeEnum.UATP);
@@ -195,6 +198,7 @@ public class CardScheme {
         NYCE("nyce"),
         OTHER("other"),
         PULSE("pulse"),
+        QCARD("qcard"),
         RUPAY("rupay"),
         STAR("star"),
         UATP("uatp"),
