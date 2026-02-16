@@ -24,6 +24,7 @@
 | `NYCE`             | nyce               |
 | `OTHER`            | other              |
 | `PULSE`            | pulse              |
+| `QCARD`            | qcard              |
 | `RUPAY`            | rupay              |
 | `STAR`             | star               |
 | `UATP`             | uatp               |
