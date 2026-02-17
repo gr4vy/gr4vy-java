@@ -1,18 +1,18 @@
 lockVersion: 2.0.0
 id: 5bbaa3a9-baa0-471b-ba6a-13fd88e8c119
 management:
-  docChecksum: e35dadaf26cf3bd1154f1deb281590a5
+  docChecksum: 86eafa1787244ff7f41b25e593a5b1f9
   docVersion: 1.0.0
-  speakeasyVersion: 1.721.0
-  generationVersion: 2.828.0
-  releaseVersion: 2.16.29
-  configChecksum: 9a40be0637b2470c9dbe80f26eaac9b4
+  speakeasyVersion: 1.721.0-rc.0
+  generationVersion: 2.827.0
+  releaseVersion: 2.16.30
+  configChecksum: 6dc468c5b984e69e50ae00481bd93aab
   repoURL: https://github.com/gr4vy/gr4vy-java.git
   published: true
 persistentEdits:
-  generation_id: 5bfd22cf-e77d-4d37-8931-e0fde3256d8a
-  pristine_commit_hash: de3885c0b4d2b4ec1b1495c8d2911d471481b8e3
-  pristine_tree_hash: 76f9920ebece463cb38ab585f63433cbc51d64cc
+  generation_id: 9cc0deb4-db5a-48d7-9af2-4d7d42e1c443
+  pristine_commit_hash: d8acdcd38c2dfdc06231f4a55a489d67b8d062f9
+  pristine_tree_hash: 04a074976b86fcd2fb96e048f103b39209be9958
 features:
   java:
     additionalDependencies: 0.1.0
@@ -2317,8 +2317,8 @@ trackedFiles:
     pristine_git_object: 15c4e4642f204ccb312d8814155b69e153b4e19b
   gradle.properties:
     id: 2afbb999f001
-    last_write_checksum: sha1:fd751bac1c7227175329d8e79e96d08b4dfc5374
-    pristine_git_object: bb4174af1e98dba6e362eaa1f0e646182fe97b25
+    last_write_checksum: sha1:4d111d9a400994ffb8e54da7d8ea4567b866bcdd
+    pristine_git_object: f26eb885e7fdcd7c3508d25f092d3c094979a4fd
   gradle/wrapper/gradle-wrapper.jar:
     id: ec27dae6e852
     last_write_checksum: sha1:f725fb1467084142d74fd7cd8eab691ab3442611
@@ -2641,8 +2641,8 @@ trackedFiles:
     pristine_git_object: 502a7312d3dc82c102dbaf7ed5e952d0c793e26f
   src/main/java/com/gr4vy/sdk/SDKConfiguration.java:
     id: 73a7edeaca45
-    last_write_checksum: sha1:98fb7f4342258221a54c0069bdac2a913c122aed
-    pristine_git_object: 67bac53d5610e2c5f71b44fe0eb71000827d87b0
+    last_write_checksum: sha1:6670b6051e1293e39dbb805bea0804e94d850597
+    pristine_git_object: ae588350aaf8de546ef3bb6dd012f671277f8a1c
   src/main/java/com/gr4vy/sdk/SecuritySource.java:
     id: 1b6add6b9b50
     last_write_checksum: sha1:2f365cc823c6243188e83f4df618c9737fcee8bd
