@@ -26,6 +26,7 @@ import com.gr4vy.api.model.CartItem;
 import com.gr4vy.api.model.ConnectionOptions;
 import com.gr4vy.api.model.Recipient;
 import com.gr4vy.api.model.StatementDescriptor;
+import com.gr4vy.api.model.ThreeDSecure;
 import com.gr4vy.api.model.ThreeDSecureDataV1V2;
 import com.gr4vy.api.model.TransactionBuyerRequest;
 import com.gr4vy.api.model.TransactionGiftCardRequest;
@@ -240,6 +241,10 @@ public class TransactionRequest {
   public static final String SERIALIZED_NAME_THREE_D_SECURE_DATA = "three_d_secure_data";
   @SerializedName(SERIALIZED_NAME_THREE_D_SECURE_DATA)
   private ThreeDSecureDataV1V2 threeDSecureData;
+
+  public static final String SERIALIZED_NAME_THREE_D_SECURE = "three_d_secure";
+  @SerializedName(SERIALIZED_NAME_THREE_D_SECURE)
+  private ThreeDSecure threeDSecure;
 
   public static final String SERIALIZED_NAME_PAYMENT_SERVICE_ID = "payment_service_id";
   @SerializedName(SERIALIZED_NAME_PAYMENT_SERVICE_ID)
@@ -838,6 +843,29 @@ public class TransactionRequest {
   }
 
 
+  public TransactionRequest threeDSecure(ThreeDSecure threeDSecure) {
+    
+    this.threeDSecure = threeDSecure;
+    return this;
+  }
+
+   /**
+   * Optional 3-D Secure values to use during the authentication flow.
+   * @return threeDSecure
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Optional 3-D Secure values to use during the authentication flow.")
+
+  public ThreeDSecure getThreeDSecure() {
+    return threeDSecure;
+  }
+
+
+  public void setThreeDSecure(ThreeDSecure threeDSecure) {
+    this.threeDSecure = threeDSecure;
+  }
+
+
   public TransactionRequest paymentServiceId(UUID paymentServiceId) {
     
     this.paymentServiceId = paymentServiceId;
@@ -986,6 +1014,7 @@ public class TransactionRequest {
         Objects.equals(this.statementDescriptor, transactionRequest.statementDescriptor) &&
         Objects.equals(this.store, transactionRequest.store) &&
         Objects.equals(this.threeDSecureData, transactionRequest.threeDSecureData) &&
+        Objects.equals(this.threeDSecure, transactionRequest.threeDSecure) &&
         Objects.equals(this.paymentServiceId, transactionRequest.paymentServiceId) &&
         Objects.equals(this.airline, transactionRequest.airline) &&
         Objects.equals(this.accountFundingTransaction, transactionRequest.accountFundingTransaction) &&
@@ -995,7 +1024,7 @@ public class TransactionRequest {
 
   @Override
   public int hashCode() {
-    return Objects.hash(amount, currency, paymentMethod, antiFraudFingerprint, asyncCapture, browserInfo, buyerExternalIdentifier, buyerId, buyer, cartItems, connectionOptions, country, externalIdentifier, giftCards, intent, isSubsequentPayment, merchantInitiated, metadata, paymentSource, previousSchemeTransactionId, shippingDetailsId, statementDescriptor, store, threeDSecureData, paymentServiceId, airline, accountFundingTransaction, recipient, allowPartialAuthorization);
+    return Objects.hash(amount, currency, paymentMethod, antiFraudFingerprint, asyncCapture, browserInfo, buyerExternalIdentifier, buyerId, buyer, cartItems, connectionOptions, country, externalIdentifier, giftCards, intent, isSubsequentPayment, merchantInitiated, metadata, paymentSource, previousSchemeTransactionId, shippingDetailsId, statementDescriptor, store, threeDSecureData, threeDSecure, paymentServiceId, airline, accountFundingTransaction, recipient, allowPartialAuthorization);
   }
 
   @Override
@@ -1026,6 +1055,7 @@ public class TransactionRequest {
     sb.append("    statementDescriptor: ").append(toIndentedString(statementDescriptor)).append("\n");
     sb.append("    store: ").append(toIndentedString(store)).append("\n");
     sb.append("    threeDSecureData: ").append(toIndentedString(threeDSecureData)).append("\n");
+    sb.append("    threeDSecure: ").append(toIndentedString(threeDSecure)).append("\n");
     sb.append("    paymentServiceId: ").append(toIndentedString(paymentServiceId)).append("\n");
     sb.append("    airline: ").append(toIndentedString(airline)).append("\n");
     sb.append("    accountFundingTransaction: ").append(toIndentedString(accountFundingTransaction)).append("\n");
