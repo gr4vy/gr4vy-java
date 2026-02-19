@@ -152,6 +152,10 @@ public class ThreeDSecureSummary {
   @SerializedName(SERIALIZED_NAME_RESPONSE_DATA)
   private ThreeDSecureDataV1V2 responseData;
 
+  public static final String SERIALIZED_NAME_AMOUNT = "amount";
+  @SerializedName(SERIALIZED_NAME_AMOUNT)
+  private Integer amount;
+
 
   public ThreeDSecureSummary version(String version) {
     
@@ -268,6 +272,29 @@ public class ThreeDSecureSummary {
   }
 
 
+  public ThreeDSecureSummary amount(Integer amount) {
+    
+    this.amount = amount;
+    return this;
+  }
+
+   /**
+   * The amount used for 3DS authentication.
+   * @return amount
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "1299", value = "The amount used for 3DS authentication.")
+
+  public Integer getAmount() {
+    return amount;
+  }
+
+
+  public void setAmount(Integer amount) {
+    this.amount = amount;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -281,12 +308,13 @@ public class ThreeDSecureSummary {
         Objects.equals(this.status, threeDSecureSummary.status) &&
         Objects.equals(this.method, threeDSecureSummary.method) &&
         Objects.equals(this.errorData, threeDSecureSummary.errorData) &&
-        Objects.equals(this.responseData, threeDSecureSummary.responseData);
+        Objects.equals(this.responseData, threeDSecureSummary.responseData) &&
+        Objects.equals(this.amount, threeDSecureSummary.amount);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(version, status, method, errorData, responseData);
+    return Objects.hash(version, status, method, errorData, responseData, amount);
   }
 
   @Override
@@ -298,6 +326,7 @@ public class ThreeDSecureSummary {
     sb.append("    method: ").append(toIndentedString(method)).append("\n");
     sb.append("    errorData: ").append(toIndentedString(errorData)).append("\n");
     sb.append("    responseData: ").append(toIndentedString(responseData)).append("\n");
+    sb.append("    amount: ").append(toIndentedString(amount)).append("\n");
     sb.append("}");
     return sb.toString();
   }
