@@ -37,6 +37,8 @@ public class Method {
     public static final Method BLIK = new Method("blik");
     public static final Method BOLETO = new Method("boleto");
     public static final Method BOOST = new Method("boost");
+    public static final Method BREB = new Method("breb");
+    public static final Method CAPITEC = new Method("capitec");
     public static final Method CARD = new Method("card");
     public static final Method CASHAPP = new Method("cashapp");
     public static final Method CHASEORBITAL = new Method("chaseorbital");
@@ -219,6 +221,8 @@ public class Method {
         map.put("blik", BLIK);
         map.put("boleto", BOLETO);
         map.put("boost", BOOST);
+        map.put("breb", BREB);
+        map.put("capitec", CAPITEC);
         map.put("card", CARD);
         map.put("cashapp", CASHAPP);
         map.put("chaseorbital", CHASEORBITAL);
@@ -333,6 +337,8 @@ public class Method {
         map.put("blik", MethodEnum.BLIK);
         map.put("boleto", MethodEnum.BOLETO);
         map.put("boost", MethodEnum.BOOST);
+        map.put("breb", MethodEnum.BREB);
+        map.put("capitec", MethodEnum.CAPITEC);
         map.put("card", MethodEnum.CARD);
         map.put("cashapp", MethodEnum.CASHAPP);
         map.put("chaseorbital", MethodEnum.CHASEORBITAL);
@@ -448,6 +454,8 @@ public class Method {
         BLIK("blik"),
         BOLETO("boleto"),
         BOOST("boost"),
+        BREB("breb"),
+        CAPITEC("capitec"),
         CARD("card"),
         CASHAPP("cashapp"),
         CHASEORBITAL("chaseorbital"),

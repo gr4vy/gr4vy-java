@@ -40,6 +40,8 @@ public class RedirectPaymentMethodCreateMethod {
     public static final RedirectPaymentMethodCreateMethod BLIK = new RedirectPaymentMethodCreateMethod("blik");
     public static final RedirectPaymentMethodCreateMethod BOLETO = new RedirectPaymentMethodCreateMethod("boleto");
     public static final RedirectPaymentMethodCreateMethod BOOST = new RedirectPaymentMethodCreateMethod("boost");
+    public static final RedirectPaymentMethodCreateMethod BREB = new RedirectPaymentMethodCreateMethod("breb");
+    public static final RedirectPaymentMethodCreateMethod CAPITEC = new RedirectPaymentMethodCreateMethod("capitec");
     public static final RedirectPaymentMethodCreateMethod CASHAPP = new RedirectPaymentMethodCreateMethod("cashapp");
     public static final RedirectPaymentMethodCreateMethod CLEARPAY = new RedirectPaymentMethodCreateMethod("clearpay");
     public static final RedirectPaymentMethodCreateMethod DANA = new RedirectPaymentMethodCreateMethod("dana");
@@ -212,6 +214,8 @@ public class RedirectPaymentMethodCreateMethod {
         map.put("blik", BLIK);
         map.put("boleto", BOLETO);
         map.put("boost", BOOST);
+        map.put("breb", BREB);
+        map.put("capitec", CAPITEC);
         map.put("cashapp", CASHAPP);
         map.put("clearpay", CLEARPAY);
         map.put("dana", DANA);
@@ -316,6 +320,8 @@ public class RedirectPaymentMethodCreateMethod {
         map.put("blik", RedirectPaymentMethodCreateMethodEnum.BLIK);
         map.put("boleto", RedirectPaymentMethodCreateMethodEnum.BOLETO);
         map.put("boost", RedirectPaymentMethodCreateMethodEnum.BOOST);
+        map.put("breb", RedirectPaymentMethodCreateMethodEnum.BREB);
+        map.put("capitec", RedirectPaymentMethodCreateMethodEnum.CAPITEC);
         map.put("cashapp", RedirectPaymentMethodCreateMethodEnum.CASHAPP);
         map.put("clearpay", RedirectPaymentMethodCreateMethodEnum.CLEARPAY);
         map.put("dana", RedirectPaymentMethodCreateMethodEnum.DANA);
@@ -421,6 +427,8 @@ public class RedirectPaymentMethodCreateMethod {
         BLIK("blik"),
         BOLETO("boleto"),
         BOOST("boost"),
+        BREB("breb"),
+        CAPITEC("capitec"),
         CASHAPP("cashapp"),
         CLEARPAY("clearpay"),
         DANA("dana"),

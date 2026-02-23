@@ -22,6 +22,8 @@ The method to use, this can be any of the methods that support redirect requests
 | `BLIK`            | blik              |
 | `BOLETO`          | boleto            |
 | `BOOST`           | boost             |
+| `BREB`            | breb              |
+| `CAPITEC`         | capitec           |
 | `CASHAPP`         | cashapp           |
 | `CLEARPAY`        | clearpay          |
 | `DANA`            | dana              |
