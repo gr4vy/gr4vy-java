@@ -22,6 +22,8 @@
 | `BLIK`               | blik                 |
 | `BOLETO`             | boleto               |
 | `BOOST`              | boost                |
+| `BREB`               | breb                 |
+| `CAPITEC`            | capitec              |
 | `CARD`               | card                 |
 | `CASHAPP`            | cashapp              |
 | `CHASEORBITAL`       | chaseorbital         |
