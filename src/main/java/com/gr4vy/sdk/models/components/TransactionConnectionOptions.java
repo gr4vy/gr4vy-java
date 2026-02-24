@@ -151,6 +151,13 @@ public class TransactionConnectionOptions {
     private JsonNullable<? extends DlocalUPIOptions> dlocalUpi;
 
     /**
+     * Custom options to be passed to the `dlocal-pix` connector.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("dlocal-pix")
+    private JsonNullable<? extends DlocalPIXOptions> dlocalPix;
+
+    /**
      * Custom options to be passed to the `fiserv-card` connector.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -346,6 +353,7 @@ public class TransactionConnectionOptions {
             @JsonProperty("cybersource-kcp") JsonNullable<? extends CybersourceOptions> cybersourceKcp,
             @JsonProperty("dlocal-nequi") JsonNullable<? extends DlocalOptions> dlocalNequi,
             @JsonProperty("dlocal-upi") JsonNullable<? extends DlocalUPIOptions> dlocalUpi,
+            @JsonProperty("dlocal-pix") JsonNullable<? extends DlocalPIXOptions> dlocalPix,
             @JsonProperty("fiserv-card") JsonNullable<? extends FiservOptions> fiservCard,
             @JsonProperty("forter-anti-fraud") JsonNullable<? extends ForterAntiFraudOptions> forterAntiFraud,
             @JsonProperty("gem-gem") JsonNullable<? extends LatitudeOptions> gemGem,
@@ -390,6 +398,7 @@ public class TransactionConnectionOptions {
         Utils.checkNotNull(cybersourceKcp, "cybersourceKcp");
         Utils.checkNotNull(dlocalNequi, "dlocalNequi");
         Utils.checkNotNull(dlocalUpi, "dlocalUpi");
+        Utils.checkNotNull(dlocalPix, "dlocalPix");
         Utils.checkNotNull(fiservCard, "fiservCard");
         Utils.checkNotNull(forterAntiFraud, "forterAntiFraud");
         Utils.checkNotNull(gemGem, "gemGem");
@@ -434,6 +443,7 @@ public class TransactionConnectionOptions {
         this.cybersourceKcp = cybersourceKcp;
         this.dlocalNequi = dlocalNequi;
         this.dlocalUpi = dlocalUpi;
+        this.dlocalPix = dlocalPix;
         this.fiservCard = fiservCard;
         this.forterAntiFraud = forterAntiFraud;
         this.gemGem = gemGem;
@@ -476,7 +486,7 @@ public class TransactionConnectionOptions {
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined());
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
     }
 
     /**
@@ -649,6 +659,15 @@ public class TransactionConnectionOptions {
     @JsonIgnore
     public JsonNullable<DlocalUPIOptions> dlocalUpi() {
         return (JsonNullable<DlocalUPIOptions>) dlocalUpi;
+    }
+
+    /**
+     * Custom options to be passed to the `dlocal-pix` connector.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public JsonNullable<DlocalPIXOptions> dlocalPix() {
+        return (JsonNullable<DlocalPIXOptions>) dlocalPix;
     }
 
     /**
@@ -1226,6 +1245,24 @@ public class TransactionConnectionOptions {
     }
 
     /**
+     * Custom options to be passed to the `dlocal-pix` connector.
+     */
+    public TransactionConnectionOptions withDlocalPix(DlocalPIXOptions dlocalPix) {
+        Utils.checkNotNull(dlocalPix, "dlocalPix");
+        this.dlocalPix = JsonNullable.of(dlocalPix);
+        return this;
+    }
+
+    /**
+     * Custom options to be passed to the `dlocal-pix` connector.
+     */
+    public TransactionConnectionOptions withDlocalPix(JsonNullable<? extends DlocalPIXOptions> dlocalPix) {
+        Utils.checkNotNull(dlocalPix, "dlocalPix");
+        this.dlocalPix = dlocalPix;
+        return this;
+    }
+
+    /**
      * Custom options to be passed to the `fiserv-card` connector.
      */
     public TransactionConnectionOptions withFiservCard(FiservOptions fiservCard) {
@@ -1704,6 +1741,7 @@ public class TransactionConnectionOptions {
             Utils.enhancedDeepEquals(this.cybersourceKcp, other.cybersourceKcp) &&
             Utils.enhancedDeepEquals(this.dlocalNequi, other.dlocalNequi) &&
             Utils.enhancedDeepEquals(this.dlocalUpi, other.dlocalUpi) &&
+            Utils.enhancedDeepEquals(this.dlocalPix, other.dlocalPix) &&
             Utils.enhancedDeepEquals(this.fiservCard, other.fiservCard) &&
             Utils.enhancedDeepEquals(this.forterAntiFraud, other.forterAntiFraud) &&
             Utils.enhancedDeepEquals(this.gemGem, other.gemGem) &&
@@ -1740,15 +1778,15 @@ public class TransactionConnectionOptions {
             adyenVipps, affirmAffirm, braintreeCard,
             chaseorbitalCard, cybersourceAntiFraud, cybersourceCard,
             cybersourceIdeal, cybersourceKcp, dlocalNequi,
-            dlocalUpi, fiservCard, forterAntiFraud,
-            gemGem, gemGemds, givingblockGivingblock,
-            gocardlessGocardless, latitudeLatitude, latitudeLatitudeds,
-            mattildaTapi, mattildaTapifintechs, monatoSpei,
-            mockCard, nuveiCard, nuveiIdeal,
-            nuveiKlarna, nuveiPse, oxxoOxxo,
-            paypalPaypal, paypalPaypalpaylater, powertranzCard,
-            stripeCard, travelhubCard, trustlyTrustly,
-            wpayEverydaypay, wpayPayto);
+            dlocalUpi, dlocalPix, fiservCard,
+            forterAntiFraud, gemGem, gemGemds,
+            givingblockGivingblock, gocardlessGocardless, latitudeLatitude,
+            latitudeLatitudeds, mattildaTapi, mattildaTapifintechs,
+            monatoSpei, mockCard, nuveiCard,
+            nuveiIdeal, nuveiKlarna, nuveiPse,
+            oxxoOxxo, paypalPaypal, paypalPaypalpaylater,
+            powertranzCard, stripeCard, travelhubCard,
+            trustlyTrustly, wpayEverydaypay, wpayPayto);
     }
     
     @Override
@@ -1773,6 +1811,7 @@ public class TransactionConnectionOptions {
                 "cybersourceKcp", cybersourceKcp,
                 "dlocalNequi", dlocalNequi,
                 "dlocalUpi", dlocalUpi,
+                "dlocalPix", dlocalPix,
                 "fiservCard", fiservCard,
                 "forterAntiFraud", forterAntiFraud,
                 "gemGem", gemGem,
@@ -1840,6 +1879,8 @@ public class TransactionConnectionOptions {
         private JsonNullable<? extends DlocalOptions> dlocalNequi = JsonNullable.undefined();
 
         private JsonNullable<? extends DlocalUPIOptions> dlocalUpi = JsonNullable.undefined();
+
+        private JsonNullable<? extends DlocalPIXOptions> dlocalPix = JsonNullable.undefined();
 
         private JsonNullable<? extends FiservOptions> fiservCard = JsonNullable.undefined();
 
@@ -2255,6 +2296,25 @@ public class TransactionConnectionOptions {
         public Builder dlocalUpi(JsonNullable<? extends DlocalUPIOptions> dlocalUpi) {
             Utils.checkNotNull(dlocalUpi, "dlocalUpi");
             this.dlocalUpi = dlocalUpi;
+            return this;
+        }
+
+
+        /**
+         * Custom options to be passed to the `dlocal-pix` connector.
+         */
+        public Builder dlocalPix(DlocalPIXOptions dlocalPix) {
+            Utils.checkNotNull(dlocalPix, "dlocalPix");
+            this.dlocalPix = JsonNullable.of(dlocalPix);
+            return this;
+        }
+
+        /**
+         * Custom options to be passed to the `dlocal-pix` connector.
+         */
+        public Builder dlocalPix(JsonNullable<? extends DlocalPIXOptions> dlocalPix) {
+            Utils.checkNotNull(dlocalPix, "dlocalPix");
+            this.dlocalPix = dlocalPix;
             return this;
         }
 
@@ -2742,15 +2802,15 @@ public class TransactionConnectionOptions {
                 adyenVipps, affirmAffirm, braintreeCard,
                 chaseorbitalCard, cybersourceAntiFraud, cybersourceCard,
                 cybersourceIdeal, cybersourceKcp, dlocalNequi,
-                dlocalUpi, fiservCard, forterAntiFraud,
-                gemGem, gemGemds, givingblockGivingblock,
-                gocardlessGocardless, latitudeLatitude, latitudeLatitudeds,
-                mattildaTapi, mattildaTapifintechs, monatoSpei,
-                mockCard, nuveiCard, nuveiIdeal,
-                nuveiKlarna, nuveiPse, oxxoOxxo,
-                paypalPaypal, paypalPaypalpaylater, powertranzCard,
-                stripeCard, travelhubCard, trustlyTrustly,
-                wpayEverydaypay, wpayPayto);
+                dlocalUpi, dlocalPix, fiservCard,
+                forterAntiFraud, gemGem, gemGemds,
+                givingblockGivingblock, gocardlessGocardless, latitudeLatitude,
+                latitudeLatitudeds, mattildaTapi, mattildaTapifintechs,
+                monatoSpei, mockCard, nuveiCard,
+                nuveiIdeal, nuveiKlarna, nuveiPse,
+                oxxoOxxo, paypalPaypal, paypalPaypalpaylater,
+                powertranzCard, stripeCard, travelhubCard,
+                trustlyTrustly, wpayEverydaypay, wpayPayto);
         }
 
     }
