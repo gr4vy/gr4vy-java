@@ -11,6 +11,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
+import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 
@@ -32,14 +33,15 @@ public class DlocalPIXSubscriptionAmountOptions {
     /**
      * Minimum payer enrollment limit, not minimum recurring charge amount.
      */
+    @JsonInclude(Include.ALWAYS)
     @JsonProperty("min_value")
-    private String minValue;
+    private Optional<String> minValue;
 
     @JsonCreator
     public DlocalPIXSubscriptionAmountOptions(
             @JsonProperty("type") DlocalPIXSubscriptionAmountOptionsType type,
             @JsonProperty("value") JsonNullable<String> value,
-            @JsonProperty("min_value") String minValue) {
+            @JsonProperty("min_value") Optional<String> minValue) {
         Utils.checkNotNull(type, "type");
         Utils.checkNotNull(value, "value");
         Utils.checkNotNull(minValue, "minValue");
@@ -49,9 +51,8 @@ public class DlocalPIXSubscriptionAmountOptions {
     }
     
     public DlocalPIXSubscriptionAmountOptions(
-            DlocalPIXSubscriptionAmountOptionsType type,
-            String minValue) {
-        this(type, JsonNullable.undefined(), minValue);
+            DlocalPIXSubscriptionAmountOptionsType type) {
+        this(type, JsonNullable.undefined(), Optional.empty());
     }
 
     /**
@@ -75,7 +76,7 @@ public class DlocalPIXSubscriptionAmountOptions {
      * Minimum payer enrollment limit, not minimum recurring charge amount.
      */
     @JsonIgnore
-    public String minValue() {
+    public Optional<String> minValue() {
         return minValue;
     }
 
@@ -118,6 +119,16 @@ public class DlocalPIXSubscriptionAmountOptions {
      */
     public DlocalPIXSubscriptionAmountOptions withMinValue(String minValue) {
         Utils.checkNotNull(minValue, "minValue");
+        this.minValue = Optional.ofNullable(minValue);
+        return this;
+    }
+
+
+    /**
+     * Minimum payer enrollment limit, not minimum recurring charge amount.
+     */
+    public DlocalPIXSubscriptionAmountOptions withMinValue(Optional<String> minValue) {
+        Utils.checkNotNull(minValue, "minValue");
         this.minValue = minValue;
         return this;
     }
@@ -158,7 +169,7 @@ public class DlocalPIXSubscriptionAmountOptions {
 
         private JsonNullable<String> value = JsonNullable.undefined();
 
-        private String minValue;
+        private Optional<String> minValue = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -200,6 +211,15 @@ public class DlocalPIXSubscriptionAmountOptions {
          * Minimum payer enrollment limit, not minimum recurring charge amount.
          */
         public Builder minValue(String minValue) {
+            Utils.checkNotNull(minValue, "minValue");
+            this.minValue = Optional.ofNullable(minValue);
+            return this;
+        }
+
+        /**
+         * Minimum payer enrollment limit, not minimum recurring charge amount.
+         */
+        public Builder minValue(Optional<String> minValue) {
             Utils.checkNotNull(minValue, "minValue");
             this.minValue = minValue;
             return this;
