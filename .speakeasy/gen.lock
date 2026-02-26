@@ -1,18 +1,18 @@
 lockVersion: 2.0.0
 id: 5bbaa3a9-baa0-471b-ba6a-13fd88e8c119
 management:
-  docChecksum: d4ca78cceaee2c576333ff5cc5b124bf
+  docChecksum: b9eaedf40f2d8eccb99bdf3b2a833e6e
   docVersion: 1.0.0
   speakeasyVersion: 1.730.1
   generationVersion: 2.844.3
-  releaseVersion: 2.16.34
-  configChecksum: 88a42f733059fb814d7fe69c82810be5
+  releaseVersion: 2.16.35
+  configChecksum: dc9b9365b6c1ba888e017c592b966ba8
   repoURL: https://github.com/gr4vy/gr4vy-java.git
   published: true
 persistentEdits:
-  generation_id: 4b0fef24-57a7-4ca0-bb5e-b9bf4310a387
-  pristine_commit_hash: cfc495f04e027b275369fa457115566230b00dbe
-  pristine_tree_hash: b52ff3fda75ba6f4a1919347e88c480316141f0a
+  generation_id: 869b0dda-8de4-4ab2-8bf6-52d6f6dbf105
+  pristine_commit_hash: 951520f160fbbd631eff90e1ff2b33d3ca386ec5
+  pristine_tree_hash: 3a5dce8ecf30c6f988522b1b6214762022e8aff7
 features:
   java:
     additionalDependencies: 0.1.0
@@ -2337,8 +2337,8 @@ trackedFiles:
     pristine_git_object: 15c4e4642f204ccb312d8814155b69e153b4e19b
   gradle.properties:
     id: 2afbb999f001
-    last_write_checksum: sha1:406478993abace623c1654d66038316f997cc5b2
-    pristine_git_object: 7f872c3677898d980fcf3f5e2e0e3270eb7d7013
+    last_write_checksum: sha1:6525a92ed0d6bf3be7664cae1083bfce89927c3f
+    pristine_git_object: bf3cdaff617b144e4a6f375ccfa0bd4a7ded254c
   gradle/wrapper/gradle-wrapper.jar:
     id: ec27dae6e852
     last_write_checksum: sha1:f725fb1467084142d74fd7cd8eab691ab3442611
@@ -2661,8 +2661,8 @@ trackedFiles:
     pristine_git_object: 502a7312d3dc82c102dbaf7ed5e952d0c793e26f
   src/main/java/com/gr4vy/sdk/SDKConfiguration.java:
     id: 73a7edeaca45
-    last_write_checksum: sha1:572aa478c9978497e4d7a015fb6c1ac004776d7c
-    pristine_git_object: fac4ed719154e60603805fcec48c02c35c2fa7c2
+    last_write_checksum: sha1:8bfa347b3c15a3c5937a54b5cc7823972afef14b
+    pristine_git_object: 08a1b1988ecf5e4c83d67f3a458a82a3a17de023
   src/main/java/com/gr4vy/sdk/SecuritySource.java:
     id: 1b6add6b9b50
     last_write_checksum: sha1:2f365cc823c6243188e83f4df618c9737fcee8bd
