@@ -61,7 +61,7 @@ public class ClickToPayFPANPaymentMethodCreate {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("card_type")
-    private JsonNullable<String> cardType;
+    private JsonNullable<? extends CardType> cardType;
 
     /**
      * Aways `click-to-pay`.
@@ -90,7 +90,7 @@ public class ClickToPayFPANPaymentMethodCreate {
             @JsonProperty("buyer_external_identifier") JsonNullable<String> buyerExternalIdentifier,
             @JsonProperty("buyer_id") JsonNullable<String> buyerId,
             @JsonProperty("external_identifier") JsonNullable<String> externalIdentifier,
-            @JsonProperty("card_type") JsonNullable<String> cardType,
+            @JsonProperty("card_type") JsonNullable<? extends CardType> cardType,
             @JsonProperty("redirect_url") JsonNullable<String> redirectUrl,
             @JsonProperty("security_code") JsonNullable<? extends Object> securityCode) {
         Utils.checkNotNull(expirationDate, "expirationDate");
@@ -163,9 +163,10 @@ public class ClickToPayFPANPaymentMethodCreate {
     /**
      * The type of the card used
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<String> cardType() {
-        return cardType;
+    public JsonNullable<CardType> cardType() {
+        return (JsonNullable<CardType>) cardType;
     }
 
     /**
@@ -273,7 +274,7 @@ public class ClickToPayFPANPaymentMethodCreate {
     /**
      * The type of the card used
      */
-    public ClickToPayFPANPaymentMethodCreate withCardType(String cardType) {
+    public ClickToPayFPANPaymentMethodCreate withCardType(CardType cardType) {
         Utils.checkNotNull(cardType, "cardType");
         this.cardType = JsonNullable.of(cardType);
         return this;
@@ -282,7 +283,7 @@ public class ClickToPayFPANPaymentMethodCreate {
     /**
      * The type of the card used
      */
-    public ClickToPayFPANPaymentMethodCreate withCardType(JsonNullable<String> cardType) {
+    public ClickToPayFPANPaymentMethodCreate withCardType(JsonNullable<? extends CardType> cardType) {
         Utils.checkNotNull(cardType, "cardType");
         this.cardType = cardType;
         return this;
@@ -380,7 +381,7 @@ public class ClickToPayFPANPaymentMethodCreate {
 
         private JsonNullable<String> externalIdentifier = JsonNullable.undefined();
 
-        private JsonNullable<String> cardType = JsonNullable.undefined();
+        private JsonNullable<? extends CardType> cardType = JsonNullable.undefined();
 
         private JsonNullable<String> redirectUrl = JsonNullable.undefined();
 
@@ -471,7 +472,7 @@ public class ClickToPayFPANPaymentMethodCreate {
         /**
          * The type of the card used
          */
-        public Builder cardType(String cardType) {
+        public Builder cardType(CardType cardType) {
             Utils.checkNotNull(cardType, "cardType");
             this.cardType = JsonNullable.of(cardType);
             return this;
@@ -480,7 +481,7 @@ public class ClickToPayFPANPaymentMethodCreate {
         /**
          * The type of the card used
          */
-        public Builder cardType(JsonNullable<String> cardType) {
+        public Builder cardType(JsonNullable<? extends CardType> cardType) {
             Utils.checkNotNull(cardType, "cardType");
             this.cardType = cardType;
             return this;
