@@ -13,6 +13,7 @@ import com.gr4vy.sdk.utils.LazySingletonValue;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -60,7 +61,7 @@ public class CardWithUrlPaymentMethodCreate {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("card_type")
-    private JsonNullable<String> cardType;
+    private JsonNullable<? extends CardType> cardType;
 
     /**
      * Always `card`
@@ -90,7 +91,7 @@ public class CardWithUrlPaymentMethodCreate {
             @JsonProperty("buyer_external_identifier") JsonNullable<String> buyerExternalIdentifier,
             @JsonProperty("buyer_id") JsonNullable<String> buyerId,
             @JsonProperty("external_identifier") JsonNullable<String> externalIdentifier,
-            @JsonProperty("card_type") JsonNullable<String> cardType,
+            @JsonProperty("card_type") JsonNullable<? extends CardType> cardType,
             @JsonProperty("security_code") JsonNullable<String> securityCode,
             @JsonProperty("redirect_url") JsonNullable<String> redirectUrl) {
         Utils.checkNotNull(expirationDate, "expirationDate");
@@ -163,9 +164,10 @@ public class CardWithUrlPaymentMethodCreate {
     /**
      * The type of the card used
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<String> cardType() {
-        return cardType;
+    public JsonNullable<CardType> cardType() {
+        return (JsonNullable<CardType>) cardType;
     }
 
     /**
@@ -272,7 +274,7 @@ public class CardWithUrlPaymentMethodCreate {
     /**
      * The type of the card used
      */
-    public CardWithUrlPaymentMethodCreate withCardType(String cardType) {
+    public CardWithUrlPaymentMethodCreate withCardType(CardType cardType) {
         Utils.checkNotNull(cardType, "cardType");
         this.cardType = JsonNullable.of(cardType);
         return this;
@@ -281,7 +283,7 @@ public class CardWithUrlPaymentMethodCreate {
     /**
      * The type of the card used
      */
-    public CardWithUrlPaymentMethodCreate withCardType(JsonNullable<String> cardType) {
+    public CardWithUrlPaymentMethodCreate withCardType(JsonNullable<? extends CardType> cardType) {
         Utils.checkNotNull(cardType, "cardType");
         this.cardType = cardType;
         return this;
@@ -379,7 +381,7 @@ public class CardWithUrlPaymentMethodCreate {
 
         private JsonNullable<String> externalIdentifier = JsonNullable.undefined();
 
-        private JsonNullable<String> cardType = JsonNullable.undefined();
+        private JsonNullable<? extends CardType> cardType = JsonNullable.undefined();
 
         private JsonNullable<String> securityCode = JsonNullable.undefined();
 
@@ -470,7 +472,7 @@ public class CardWithUrlPaymentMethodCreate {
         /**
          * The type of the card used
          */
-        public Builder cardType(String cardType) {
+        public Builder cardType(CardType cardType) {
             Utils.checkNotNull(cardType, "cardType");
             this.cardType = JsonNullable.of(cardType);
             return this;
@@ -479,7 +481,7 @@ public class CardWithUrlPaymentMethodCreate {
         /**
          * The type of the card used
          */
-        public Builder cardType(JsonNullable<String> cardType) {
+        public Builder cardType(JsonNullable<? extends CardType> cardType) {
             Utils.checkNotNull(cardType, "cardType");
             this.cardType = cardType;
             return this;
