@@ -298,6 +298,13 @@ public class TransactionConnectionOptions {
     private JsonNullable<? extends PowertranzOptions> powertranzCard;
 
     /**
+     * Custom options to be passed to the `riskified-anti-fraud` connector.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("riskified-anti-fraud")
+    private JsonNullable<? extends RiskifiedAntiFraudOptions> riskifiedAntiFraud;
+
+    /**
      * Custom options to be passed to the `stripe-card` connector.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -374,6 +381,7 @@ public class TransactionConnectionOptions {
             @JsonProperty("paypal-paypal") JsonNullable<? extends PaypalOptions> paypalPaypal,
             @JsonProperty("paypal-paypalpaylater") JsonNullable<? extends PaypalOptions> paypalPaypalpaylater,
             @JsonProperty("powertranz-card") JsonNullable<? extends PowertranzOptions> powertranzCard,
+            @JsonProperty("riskified-anti-fraud") JsonNullable<? extends RiskifiedAntiFraudOptions> riskifiedAntiFraud,
             @JsonProperty("stripe-card") JsonNullable<? extends StripeOptions> stripeCard,
             @JsonProperty("travelhub-card") JsonNullable<? extends TravelhubOptions> travelhubCard,
             @JsonProperty("trustly-trustly") JsonNullable<? extends TrustlyOptions> trustlyTrustly,
@@ -419,6 +427,7 @@ public class TransactionConnectionOptions {
         Utils.checkNotNull(paypalPaypal, "paypalPaypal");
         Utils.checkNotNull(paypalPaypalpaylater, "paypalPaypalpaylater");
         Utils.checkNotNull(powertranzCard, "powertranzCard");
+        Utils.checkNotNull(riskifiedAntiFraud, "riskifiedAntiFraud");
         Utils.checkNotNull(stripeCard, "stripeCard");
         Utils.checkNotNull(travelhubCard, "travelhubCard");
         Utils.checkNotNull(trustlyTrustly, "trustlyTrustly");
@@ -464,6 +473,7 @@ public class TransactionConnectionOptions {
         this.paypalPaypal = paypalPaypal;
         this.paypalPaypalpaylater = paypalPaypalpaylater;
         this.powertranzCard = powertranzCard;
+        this.riskifiedAntiFraud = riskifiedAntiFraud;
         this.stripeCard = stripeCard;
         this.travelhubCard = travelhubCard;
         this.trustlyTrustly = trustlyTrustly;
@@ -486,7 +496,8 @@ public class TransactionConnectionOptions {
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined());
     }
 
     /**
@@ -848,6 +859,15 @@ public class TransactionConnectionOptions {
     @JsonIgnore
     public JsonNullable<PowertranzOptions> powertranzCard() {
         return (JsonNullable<PowertranzOptions>) powertranzCard;
+    }
+
+    /**
+     * Custom options to be passed to the `riskified-anti-fraud` connector.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public JsonNullable<RiskifiedAntiFraudOptions> riskifiedAntiFraud() {
+        return (JsonNullable<RiskifiedAntiFraudOptions>) riskifiedAntiFraud;
     }
 
     /**
@@ -1623,6 +1643,24 @@ public class TransactionConnectionOptions {
     }
 
     /**
+     * Custom options to be passed to the `riskified-anti-fraud` connector.
+     */
+    public TransactionConnectionOptions withRiskifiedAntiFraud(RiskifiedAntiFraudOptions riskifiedAntiFraud) {
+        Utils.checkNotNull(riskifiedAntiFraud, "riskifiedAntiFraud");
+        this.riskifiedAntiFraud = JsonNullable.of(riskifiedAntiFraud);
+        return this;
+    }
+
+    /**
+     * Custom options to be passed to the `riskified-anti-fraud` connector.
+     */
+    public TransactionConnectionOptions withRiskifiedAntiFraud(JsonNullable<? extends RiskifiedAntiFraudOptions> riskifiedAntiFraud) {
+        Utils.checkNotNull(riskifiedAntiFraud, "riskifiedAntiFraud");
+        this.riskifiedAntiFraud = riskifiedAntiFraud;
+        return this;
+    }
+
+    /**
      * Custom options to be passed to the `stripe-card` connector.
      */
     public TransactionConnectionOptions withStripeCard(StripeOptions stripeCard) {
@@ -1762,6 +1800,7 @@ public class TransactionConnectionOptions {
             Utils.enhancedDeepEquals(this.paypalPaypal, other.paypalPaypal) &&
             Utils.enhancedDeepEquals(this.paypalPaypalpaylater, other.paypalPaypalpaylater) &&
             Utils.enhancedDeepEquals(this.powertranzCard, other.powertranzCard) &&
+            Utils.enhancedDeepEquals(this.riskifiedAntiFraud, other.riskifiedAntiFraud) &&
             Utils.enhancedDeepEquals(this.stripeCard, other.stripeCard) &&
             Utils.enhancedDeepEquals(this.travelhubCard, other.travelhubCard) &&
             Utils.enhancedDeepEquals(this.trustlyTrustly, other.trustlyTrustly) &&
@@ -1785,8 +1824,9 @@ public class TransactionConnectionOptions {
             monatoSpei, mockCard, nuveiCard,
             nuveiIdeal, nuveiKlarna, nuveiPse,
             oxxoOxxo, paypalPaypal, paypalPaypalpaylater,
-            powertranzCard, stripeCard, travelhubCard,
-            trustlyTrustly, wpayEverydaypay, wpayPayto);
+            powertranzCard, riskifiedAntiFraud, stripeCard,
+            travelhubCard, trustlyTrustly, wpayEverydaypay,
+            wpayPayto);
     }
     
     @Override
@@ -1832,6 +1872,7 @@ public class TransactionConnectionOptions {
                 "paypalPaypal", paypalPaypal,
                 "paypalPaypalpaylater", paypalPaypalpaylater,
                 "powertranzCard", powertranzCard,
+                "riskifiedAntiFraud", riskifiedAntiFraud,
                 "stripeCard", stripeCard,
                 "travelhubCard", travelhubCard,
                 "trustlyTrustly", trustlyTrustly,
@@ -1921,6 +1962,8 @@ public class TransactionConnectionOptions {
         private JsonNullable<? extends PaypalOptions> paypalPaypalpaylater = JsonNullable.undefined();
 
         private JsonNullable<? extends PowertranzOptions> powertranzCard = JsonNullable.undefined();
+
+        private JsonNullable<? extends RiskifiedAntiFraudOptions> riskifiedAntiFraud = JsonNullable.undefined();
 
         private JsonNullable<? extends StripeOptions> stripeCard = JsonNullable.undefined();
 
@@ -2700,6 +2743,25 @@ public class TransactionConnectionOptions {
 
 
         /**
+         * Custom options to be passed to the `riskified-anti-fraud` connector.
+         */
+        public Builder riskifiedAntiFraud(RiskifiedAntiFraudOptions riskifiedAntiFraud) {
+            Utils.checkNotNull(riskifiedAntiFraud, "riskifiedAntiFraud");
+            this.riskifiedAntiFraud = JsonNullable.of(riskifiedAntiFraud);
+            return this;
+        }
+
+        /**
+         * Custom options to be passed to the `riskified-anti-fraud` connector.
+         */
+        public Builder riskifiedAntiFraud(JsonNullable<? extends RiskifiedAntiFraudOptions> riskifiedAntiFraud) {
+            Utils.checkNotNull(riskifiedAntiFraud, "riskifiedAntiFraud");
+            this.riskifiedAntiFraud = riskifiedAntiFraud;
+            return this;
+        }
+
+
+        /**
          * Custom options to be passed to the `stripe-card` connector.
          */
         public Builder stripeCard(StripeOptions stripeCard) {
@@ -2809,8 +2871,9 @@ public class TransactionConnectionOptions {
                 monatoSpei, mockCard, nuveiCard,
                 nuveiIdeal, nuveiKlarna, nuveiPse,
                 oxxoOxxo, paypalPaypal, paypalPaypalpaylater,
-                powertranzCard, stripeCard, travelhubCard,
-                trustlyTrustly, wpayEverydaypay, wpayPayto);
+                powertranzCard, riskifiedAntiFraud, stripeCard,
+                travelhubCard, trustlyTrustly, wpayEverydaypay,
+                wpayPayto);
         }
 
     }
