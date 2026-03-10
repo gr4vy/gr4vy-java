@@ -35,7 +35,7 @@ public class Application {
                 .call();
 
         if (res.refund().isPresent()) {
-            // handle response
+            System.out.println(res.refund().get());
         }
     }
 }

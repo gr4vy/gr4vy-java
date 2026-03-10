@@ -40,7 +40,7 @@ public class Application {
                 .call();
 
         if (res.googlePaySession().isPresent()) {
-            // handle response
+            System.out.println(res.googlePaySession().get());
         }
     }
 }
@@ -108,7 +108,7 @@ public class Application {
                 .call();
 
         if (res.applePaySession().isPresent()) {
-            // handle response
+            System.out.println(res.applePaySession().get());
         }
     }
 }
@@ -176,7 +176,7 @@ public class Application {
                 .call();
 
         if (res.clickToPaySession().isPresent()) {
-            // handle response
+            System.out.println(res.clickToPaySession().get());
         }
     }
 }

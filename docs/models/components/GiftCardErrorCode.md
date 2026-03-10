@@ -8,6 +8,17 @@ those in the connectors framework.
 If new codes are added, append them at the end or amend public simulator
 documentation: https://docs.gr4vy.com/guides/features/gift-cards/simulator
 
+## Example Usage
+
+```java
+import com.gr4vy.sdk.models.components.GiftCardErrorCode;
+
+GiftCardErrorCode value = GiftCardErrorCode.INVALID_GIFT_CARD;
+
+// Open enum: use .of() to create instances from custom string values
+GiftCardErrorCode custom = GiftCardErrorCode.of("custom_value");
+```
+
 
 ## Values
 

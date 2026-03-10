@@ -39,7 +39,7 @@ public class Application {
                 .call();
 
         if (res.networkTokens().isPresent()) {
-            // handle response
+            System.out.println(res.networkTokens().get());
         }
     }
 }
@@ -108,7 +108,7 @@ public class Application {
                 .call();
 
         if (res.networkToken().isPresent()) {
-            // handle response
+            System.out.println(res.networkToken().get());
         }
     }
 }
@@ -174,7 +174,7 @@ public class Application {
                 .call();
 
         if (res.networkToken().isPresent()) {
-            // handle response
+            System.out.println(res.networkToken().get());
         }
     }
 }
@@ -240,7 +240,7 @@ public class Application {
                 .call();
 
         if (res.networkToken().isPresent()) {
-            // handle response
+            System.out.println(res.networkToken().get());
         }
     }
 }

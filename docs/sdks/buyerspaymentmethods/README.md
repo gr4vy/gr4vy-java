@@ -43,7 +43,7 @@ public class Application {
                 .call();
 
         if (res.paymentMethodSummaries().isPresent()) {
-            // handle response
+            System.out.println(res.paymentMethodSummaries().get());
         }
     }
 }

@@ -113,7 +113,7 @@ public class Application {
                 .call();
 
         if (res.paymentMethod().isPresent()) {
-            // handle response
+            System.out.println(res.paymentMethod().get());
         }
     }
 }
@@ -177,7 +177,7 @@ public class Application {
                 .call();
 
         if (res.paymentMethod().isPresent()) {
-            // handle response
+            System.out.println(res.paymentMethod().get());
         }
     }
 }

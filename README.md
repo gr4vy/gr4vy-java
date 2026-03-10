@@ -41,6 +41,7 @@ This SDK is designed to simplify development, reduce boilerplate code, and help 
   * [Server Selection](#server-selection)
   * [Custom HTTP Client](#custom-http-client)
   * [Debugging](#debugging)
+  * [Jackson Configuration](#jackson-configuration)
 * [Development](#development)
   * [Testing](#testing)
   * [Contributions](#contributions)
@@ -58,7 +59,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'com.gr4vy:sdk:2.16.39'
+implementation 'com.gr4vy:sdk:2.16.40'
 ```
 
 Maven:
@@ -66,7 +67,7 @@ Maven:
 <dependency>
     <groupId>com.gr4vy</groupId>
     <artifactId>sdk</artifactId>
-    <version>2.16.39</version>
+    <version>2.16.40</version>
 </dependency>
 ```
 
@@ -757,7 +758,7 @@ public class Application {
                     .call();
 
             if (res.accountUpdaterJob().isPresent()) {
-                // handle response
+                System.out.println(res.accountUpdaterJob().get());
             }
         } catch (Gr4vyError ex) { // all SDK exceptions inherit from Gr4vyError
 
@@ -879,7 +880,7 @@ public class Application {
                 .call();
 
         if (res.accountUpdaterJob().isPresent()) {
-            // handle response
+            System.out.println(res.accountUpdaterJob().get());
         }
     }
 }
@@ -917,7 +918,7 @@ public class Application {
                 .call();
 
         if (res.accountUpdaterJob().isPresent()) {
-            // handle response
+            System.out.println(res.accountUpdaterJob().get());
         }
     }
 }
@@ -1093,6 +1094,36 @@ __NOTE__: This is a convenience method that calls `HTTPClient.enableDebugLogging
 
 Another option is to set the System property `-Djdk.httpclient.HttpClient.log=all`. However, this second option does not log bodies.
 <!-- End Debugging [debug] -->
+
+<!-- Start Jackson Configuration [jackson] -->
+## Jackson Configuration
+
+The SDK ships with a pre-configured Jackson [`ObjectMapper`][jackson-databind] accessible via
+`JSON.getMapper()`. It is set up with type modules, strict deserializers, and the feature flags
+needed for full SDK compatibility (including ISO-8601 `OffsetDateTime` serialization):
+
+```java
+import com.gr4vy.sdk.utils.JSON;
+
+String json = JSON.getMapper().writeValueAsString(response);
+```
+
+To compose with your own `ObjectMapper`, register the provided `SDKJacksonModule`, which
+bundles all the same modules and feature flags as a single plug-and-play module:
+
+```java
+import com.gr4vy.sdk.utils.SDKJacksonModule;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+ObjectMapper myMapper = new ObjectMapper()
+    .registerModule(new SDKJacksonModule());
+
+String json = myMapper.writeValueAsString(response);
+```
+
+[jackson-databind]: https://github.com/FasterXML/jackson-databind
+[jackson-jsr310]: https://github.com/FasterXML/jackson-modules-java8/tree/master/datetime
+<!-- End Jackson Configuration [jackson] -->
 
 <!-- Placeholder for Future Speakeasy SDK Sections -->
 

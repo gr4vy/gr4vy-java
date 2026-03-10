@@ -1,5 +1,16 @@
 # PurposeCode
 
+## Example Usage
+
+```java
+import com.gr4vy.sdk.models.components.PurposeCode;
+
+PurposeCode value = PurposeCode.MORTGAGE;
+
+// Open enum: use .of() to create instances from custom string values
+PurposeCode custom = PurposeCode.of("custom_value");
+```
+
 
 ## Values
 

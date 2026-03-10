@@ -45,7 +45,7 @@ public class Application {
                 .call();
 
         if (res.digitalWallet().isPresent()) {
-            // handle response
+            System.out.println(res.digitalWallet().get());
         }
     }
 }
@@ -108,7 +108,7 @@ public class Application {
                 .call();
 
         if (res.digitalWallets().isPresent()) {
-            // handle response
+            System.out.println(res.digitalWallets().get());
         }
     }
 }
@@ -171,7 +171,7 @@ public class Application {
                 .call();
 
         if (res.digitalWallet().isPresent()) {
-            // handle response
+            System.out.println(res.digitalWallet().get());
         }
     }
 }
@@ -300,7 +300,7 @@ public class Application {
                 .call();
 
         if (res.digitalWallet().isPresent()) {
-            // handle response
+            System.out.println(res.digitalWallet().get());
         }
     }
 }

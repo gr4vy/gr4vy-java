@@ -1,5 +1,16 @@
 # ProductType
 
+## Example Usage
+
+```java
+import com.gr4vy.sdk.models.components.ProductType;
+
+ProductType value = ProductType.PHYSICAL;
+
+// Open enum: use .of() to create instances from custom string values
+ProductType custom = ProductType.of("custom_value");
+```
+
 
 ## Values
 

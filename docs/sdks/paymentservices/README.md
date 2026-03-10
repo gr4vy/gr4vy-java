@@ -135,7 +135,7 @@ public class Application {
                 .call();
 
         if (res.paymentService().isPresent()) {
-            // handle response
+            System.out.println(res.paymentService().get());
         }
     }
 }
@@ -199,7 +199,7 @@ public class Application {
                 .call();
 
         if (res.paymentService().isPresent()) {
-            // handle response
+            System.out.println(res.paymentService().get());
         }
     }
 }
@@ -267,7 +267,7 @@ public class Application {
                 .call();
 
         if (res.paymentService().isPresent()) {
-            // handle response
+            System.out.println(res.paymentService().get());
         }
     }
 }
@@ -399,7 +399,7 @@ public class Application {
                 .call();
 
         if (res.any().isPresent()) {
-            // handle response
+            System.out.println(res.any().get());
         }
     }
 }
@@ -466,7 +466,7 @@ public class Application {
                 .call();
 
         if (res.createSession().isPresent()) {
-            // handle response
+            System.out.println(res.createSession().get());
         }
     }
 }

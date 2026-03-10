@@ -2,6 +2,17 @@
 
 The way payment method information made it to this transaction.
 
+## Example Usage
+
+```java
+import com.gr4vy.sdk.models.components.TransactionPaymentSource;
+
+TransactionPaymentSource value = TransactionPaymentSource.ECOMMERCE;
+
+// Open enum: use .of() to create instances from custom string values
+TransactionPaymentSource custom = TransactionPaymentSource.of("custom_value");
+```
+
 
 ## Values
 

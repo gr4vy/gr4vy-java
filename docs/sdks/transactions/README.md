@@ -184,7 +184,7 @@ public class Application {
                 .call();
 
         if (res.transaction().isPresent()) {
-            // handle response
+            System.out.println(res.transaction().get());
         }
     }
 }
@@ -250,7 +250,7 @@ public class Application {
                 .call();
 
         if (res.transaction().isPresent()) {
-            // handle response
+            System.out.println(res.transaction().get());
         }
     }
 }
@@ -317,7 +317,7 @@ public class Application {
                 .call();
 
         if (res.transaction().isPresent()) {
-            // handle response
+            System.out.println(res.transaction().get());
         }
     }
 }
@@ -364,11 +364,11 @@ Captures a previously authorized transaction. You can capture the full or a part
 package hello.world;
 
 import com.gr4vy.sdk.Gr4vy;
-import com.gr4vy.sdk.models.components.TransactionCaptureCreate;
+import com.gr4vy.sdk.models.components.*;
 import com.gr4vy.sdk.models.errors.*;
-import com.gr4vy.sdk.models.operations.CaptureTransactionRequest;
-import com.gr4vy.sdk.models.operations.CaptureTransactionResponse;
+import com.gr4vy.sdk.models.operations.*;
 import java.lang.Exception;
+import java.lang.Object;
 
 public class Application {
 
@@ -390,7 +390,17 @@ public class Application {
                 .call();
 
         if (res.response200CaptureTransaction().isPresent()) {
-            // handle response
+            Response200CaptureTransaction unionValue = res.response200CaptureTransaction().get();
+            Object raw = unionValue.value();
+            if (raw instanceof Transaction) {
+                Transaction transactionValue = (Transaction) raw;
+                // Handle transaction variant
+            } else if (raw instanceof TransactionCapture) {
+                TransactionCapture transactionCaptureValue = (TransactionCapture) raw;
+                // Handle transactionCapture variant
+            } else {
+                // Unknown or unsupported variant
+            }
         }
     }
 }
@@ -435,9 +445,13 @@ Voids a previously authorized transaction. If the transaction was not yet succes
 package hello.world;
 
 import com.gr4vy.sdk.Gr4vy;
+import com.gr4vy.sdk.models.components.Transaction;
+import com.gr4vy.sdk.models.components.TransactionVoid;
 import com.gr4vy.sdk.models.errors.*;
+import com.gr4vy.sdk.models.operations.Response200VoidTransaction;
 import com.gr4vy.sdk.models.operations.VoidTransactionResponse;
 import java.lang.Exception;
+import java.lang.Object;
 
 public class Application {
 
@@ -453,7 +467,17 @@ public class Application {
                 .call();
 
         if (res.response200VoidTransaction().isPresent()) {
-            // handle response
+            Response200VoidTransaction unionValue = res.response200VoidTransaction().get();
+            Object raw = unionValue.value();
+            if (raw instanceof Transaction) {
+                Transaction transactionValue = (Transaction) raw;
+                // Handle transaction variant
+            } else if (raw instanceof TransactionVoid) {
+                TransactionVoid transactionVoidValue = (TransactionVoid) raw;
+                // Handle transactionVoid variant
+            } else {
+                // Unknown or unsupported variant
+            }
         }
     }
 }
@@ -519,7 +543,7 @@ public class Application {
                 .call();
 
         if (res.transactionCancel().isPresent()) {
-            // handle response
+            System.out.println(res.transactionCancel().get());
         }
     }
 }
@@ -583,7 +607,7 @@ public class Application {
                 .call();
 
         if (res.transaction().isPresent()) {
-            // handle response
+            System.out.println(res.transaction().get());
         }
     }
 }

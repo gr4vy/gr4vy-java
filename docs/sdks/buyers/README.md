@@ -111,7 +111,7 @@ public class Application {
                 .call();
 
         if (res.buyer().isPresent()) {
-            // handle response
+            System.out.println(res.buyer().get());
         }
     }
 }
@@ -175,7 +175,7 @@ public class Application {
                 .call();
 
         if (res.buyer().isPresent()) {
-            // handle response
+            System.out.println(res.buyer().get());
         }
     }
 }
@@ -242,7 +242,7 @@ public class Application {
                 .call();
 
         if (res.buyer().isPresent()) {
-            // handle response
+            System.out.println(res.buyer().get());
         }
     }
 }

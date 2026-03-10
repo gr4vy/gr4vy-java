@@ -35,7 +35,7 @@ public class Application {
                 .call();
 
         if (res.transactionActions().isPresent()) {
-            // handle response
+            System.out.println(res.transactionActions().get());
         }
     }
 }

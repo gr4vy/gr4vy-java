@@ -38,7 +38,7 @@ public class Application {
                 .call();
 
         if (res.paymentServiceTokens().isPresent()) {
-            // handle response
+            System.out.println(res.paymentServiceTokens().get());
         }
     }
 }
@@ -108,7 +108,7 @@ public class Application {
                 .call();
 
         if (res.paymentServiceToken().isPresent()) {
-            // handle response
+            System.out.println(res.paymentServiceToken().get());
         }
     }
 }

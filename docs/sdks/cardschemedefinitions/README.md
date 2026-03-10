@@ -34,7 +34,7 @@ public class Application {
                 .call();
 
         if (res.cardSchemeDefinitions().isPresent()) {
-            // handle response
+            System.out.println(res.cardSchemeDefinitions().get());
         }
     }
 }

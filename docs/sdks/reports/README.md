@@ -119,7 +119,7 @@ public class Application {
                 .call();
 
         if (res.report().isPresent()) {
-            // handle response
+            System.out.println(res.report().get());
         }
     }
 }
@@ -183,7 +183,7 @@ public class Application {
                 .call();
 
         if (res.report().isPresent()) {
-            // handle response
+            System.out.println(res.report().get());
         }
     }
 }
@@ -250,7 +250,7 @@ public class Application {
                 .call();
 
         if (res.report().isPresent()) {
-            // handle response
+            System.out.println(res.report().get());
         }
     }
 }

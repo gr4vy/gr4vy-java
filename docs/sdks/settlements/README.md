@@ -37,7 +37,7 @@ public class Application {
                 .call();
 
         if (res.settlement().isPresent()) {
-            // handle response
+            System.out.println(res.settlement().get());
         }
     }
 }
@@ -102,7 +102,7 @@ public class Application {
                 .call();
 
         if (res.settlements().isPresent()) {
-            // handle response
+            System.out.println(res.settlements().get());
         }
     }
 }

@@ -2,6 +2,17 @@
 
 The method to use, this can be any of the methods that support redirect requests.
 
+## Example Usage
+
+```java
+import com.gr4vy.sdk.models.components.RedirectPaymentMethodCreateMethod;
+
+RedirectPaymentMethodCreateMethod value = RedirectPaymentMethodCreateMethod.ABITAB;
+
+// Open enum: use .of() to create instances from custom string values
+RedirectPaymentMethodCreateMethod custom = RedirectPaymentMethodCreateMethod.of("custom_value");
+```
+
 
 ## Values
 

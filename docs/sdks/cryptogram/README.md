@@ -40,7 +40,7 @@ public class Application {
                 .call();
 
         if (res.cryptogram().isPresent()) {
-            // handle response
+            System.out.println(res.cryptogram().get());
         }
     }
 }

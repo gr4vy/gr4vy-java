@@ -2,6 +2,17 @@
 
 The specific event name.
 
+## Example Usage
+
+```java
+import com.gr4vy.sdk.models.components.Name;
+
+Name value = Name.TRANSACTION_UPDATED_STATUS;
+
+// Open enum: use .of() to create instances from custom string values
+Name custom = Name.of("custom_value");
+```
+
 
 ## Values
 

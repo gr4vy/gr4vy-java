@@ -2,6 +2,17 @@
 
 The direction to sort the payment methods in.
 
+## Example Usage
+
+```java
+import com.gr4vy.sdk.models.operations.OrderBy;
+
+OrderBy value = OrderBy.ASC;
+
+// Open enum: use .of() to create instances from custom string values
+OrderBy custom = OrderBy.of("custom_value");
+```
+
 
 ## Values
 

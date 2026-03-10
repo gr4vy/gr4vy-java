@@ -106,7 +106,7 @@ public class Application {
                 .call();
 
         if (res.reportExecutionUrl().isPresent()) {
-            // handle response
+            System.out.println(res.reportExecutionUrl().get());
         }
     }
 }
@@ -172,7 +172,7 @@ public class Application {
                 .call();
 
         if (res.reportExecution().isPresent()) {
-            // handle response
+            System.out.println(res.reportExecution().get());
         }
     }
 }

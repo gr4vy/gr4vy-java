@@ -1,5 +1,16 @@
 # TaxIdKind
 
+## Example Usage
+
+```java
+import com.gr4vy.sdk.models.components.TaxIdKind;
+
+TaxIdKind value = TaxIdKind.AE_TRN;
+
+// Open enum: use .of() to create instances from custom string values
+TaxIdKind custom = TaxIdKind.of("custom_value");
+```
+
 
 ## Values
 

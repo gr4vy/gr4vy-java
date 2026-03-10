@@ -1,5 +1,16 @@
 # InstrumentType
 
+## Example Usage
+
+```java
+import com.gr4vy.sdk.models.components.InstrumentType;
+
+InstrumentType value = InstrumentType.PAN;
+
+// Open enum: use .of() to create instances from custom string values
+InstrumentType custom = InstrumentType.of("custom_value");
+```
+
 
 ## Values
 
