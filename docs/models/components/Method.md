@@ -1,5 +1,16 @@
 # Method
 
+## Example Usage
+
+```java
+import com.gr4vy.sdk.models.components.Method;
+
+Method value = Method.ABITAB;
+
+// Open enum: use .of() to create instances from custom string values
+Method custom = Method.of("custom_value");
+```
+
 
 ## Values
 

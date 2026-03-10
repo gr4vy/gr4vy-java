@@ -53,7 +53,7 @@ public class Application {
                 .call();
 
         if (res.merchantAccountThreeDSConfiguration().isPresent()) {
-            // handle response
+            System.out.println(res.merchantAccountThreeDSConfiguration().get());
         }
     }
 }
@@ -116,7 +116,7 @@ public class Application {
                 .call();
 
         if (res.merchantAccountThreeDSConfigurations().isPresent()) {
-            // handle response
+            System.out.println(res.merchantAccountThreeDSConfigurations().get());
         }
     }
 }
@@ -183,7 +183,7 @@ public class Application {
                 .call();
 
         if (res.merchantAccountThreeDSConfiguration().isPresent()) {
-            // handle response
+            System.out.println(res.merchantAccountThreeDSConfiguration().get());
         }
     }
 }

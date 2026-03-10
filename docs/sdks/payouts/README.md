@@ -112,7 +112,7 @@ public class Application {
                 .call();
 
         if (res.payoutSummary().isPresent()) {
-            // handle response
+            System.out.println(res.payoutSummary().get());
         }
     }
 }
@@ -176,7 +176,7 @@ public class Application {
                 .call();
 
         if (res.payoutSummary().isPresent()) {
-            // handle response
+            System.out.println(res.payoutSummary().get());
         }
     }
 }

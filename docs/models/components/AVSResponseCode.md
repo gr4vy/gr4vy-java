@@ -1,5 +1,16 @@
 # AVSResponseCode
 
+## Example Usage
+
+```java
+import com.gr4vy.sdk.models.components.AVSResponseCode;
+
+AVSResponseCode value = AVSResponseCode.MATCH;
+
+// Open enum: use .of() to create instances from custom string values
+AVSResponseCode custom = AVSResponseCode.of("custom_value");
+```
+
 
 ## Values
 

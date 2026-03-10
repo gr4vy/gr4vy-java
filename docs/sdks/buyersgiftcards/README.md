@@ -34,7 +34,7 @@ public class Application {
                 .call();
 
         if (res.giftCardSummaries().isPresent()) {
-            // handle response
+            System.out.println(res.giftCardSummaries().get());
         }
     }
 }

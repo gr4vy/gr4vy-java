@@ -41,7 +41,7 @@ public class Application {
                 .call();
 
         if (res.accountUpdaterJob().isPresent()) {
-            // handle response
+            System.out.println(res.accountUpdaterJob().get());
         }
     }
 }

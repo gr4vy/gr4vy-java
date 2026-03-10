@@ -1,5 +1,16 @@
 # CardScheme
 
+## Example Usage
+
+```java
+import com.gr4vy.sdk.models.components.CardScheme;
+
+CardScheme value = CardScheme.ACCEL;
+
+// Open enum: use .of() to create instances from custom string values
+CardScheme custom = CardScheme.of("custom_value");
+```
+
 
 ## Values
 

@@ -40,7 +40,7 @@ public class Application {
                 .call();
 
         if (res.refunds().isPresent()) {
-            // handle response
+            System.out.println(res.refunds().get());
         }
     }
 }

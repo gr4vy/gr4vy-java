@@ -101,7 +101,7 @@ public class Application {
                 .call();
 
         if (res.paymentServiceDefinition().isPresent()) {
-            // handle response
+            System.out.println(res.paymentServiceDefinition().get());
         }
     }
 }
@@ -166,7 +166,7 @@ public class Application {
                 .call();
 
         if (res.createSession().isPresent()) {
-            // handle response
+            System.out.println(res.createSession().get());
         }
     }
 }

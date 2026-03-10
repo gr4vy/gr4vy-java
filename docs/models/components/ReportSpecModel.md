@@ -1,5 +1,16 @@
 # ReportSpecModel
 
+## Example Usage
+
+```java
+import com.gr4vy.sdk.models.components.ReportSpecModel;
+
+ReportSpecModel value = ReportSpecModel.TRANSACTIONS;
+
+// Open enum: use .of() to create instances from custom string values
+ReportSpecModel custom = ReportSpecModel.of("custom_value");
+```
+
 
 ## Values
 

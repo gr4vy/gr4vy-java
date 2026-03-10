@@ -48,7 +48,7 @@ public class Application {
                 .call();
 
         if (res.threeDSecureScenario().isPresent()) {
-            // handle response
+            System.out.println(res.threeDSecureScenario().get());
         }
     }
 }
@@ -181,7 +181,7 @@ public class Application {
                 .call();
 
         if (res.threeDSecureScenario().isPresent()) {
-            // handle response
+            System.out.println(res.threeDSecureScenario().get());
         }
     }
 }

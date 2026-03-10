@@ -1,5 +1,16 @@
 # Mode
 
+## Example Usage
+
+```java
+import com.gr4vy.sdk.models.components.Mode;
+
+Mode value = Mode.CARD;
+
+// Open enum: use .of() to create instances from custom string values
+Mode custom = Mode.of("custom_value");
+```
+
 
 ## Values
 

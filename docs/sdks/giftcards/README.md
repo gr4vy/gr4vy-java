@@ -38,7 +38,7 @@ public class Application {
                 .call();
 
         if (res.giftCard().isPresent()) {
-            // handle response
+            System.out.println(res.giftCard().get());
         }
     }
 }
@@ -168,7 +168,7 @@ public class Application {
                 .call();
 
         if (res.giftCard().isPresent()) {
-            // handle response
+            System.out.println(res.giftCard().get());
         }
     }
 }

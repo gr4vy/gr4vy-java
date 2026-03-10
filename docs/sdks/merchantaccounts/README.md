@@ -112,7 +112,7 @@ public class Application {
                 .call();
 
         if (res.merchantAccount().isPresent()) {
-            // handle response
+            System.out.println(res.merchantAccount().get());
         }
     }
 }
@@ -174,7 +174,7 @@ public class Application {
                 .call();
 
         if (res.merchantAccount().isPresent()) {
-            // handle response
+            System.out.println(res.merchantAccount().get());
         }
     }
 }
@@ -241,7 +241,7 @@ public class Application {
                 .call();
 
         if (res.merchantAccount().isPresent()) {
-            // handle response
+            System.out.println(res.merchantAccount().get());
         }
     }
 }

@@ -156,7 +156,7 @@ public class Application {
                 .call();
 
         if (res.checkoutSession().isPresent()) {
-            // handle response
+            System.out.println(res.checkoutSession().get());
         }
     }
 }
@@ -223,7 +223,7 @@ public class Application {
                 .call();
 
         if (res.checkoutSession().isPresent()) {
-            // handle response
+            System.out.println(res.checkoutSession().get());
         }
     }
 }
@@ -288,7 +288,7 @@ public class Application {
                 .call();
 
         if (res.checkoutSession().isPresent()) {
-            // handle response
+            System.out.println(res.checkoutSession().get());
         }
     }
 }

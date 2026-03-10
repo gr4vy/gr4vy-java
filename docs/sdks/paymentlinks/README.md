@@ -44,7 +44,7 @@ public class Application {
                 .call();
 
         if (res.paymentLink().isPresent()) {
-            // handle response
+            System.out.println(res.paymentLink().get());
         }
     }
 }
@@ -237,7 +237,7 @@ public class Application {
                 .call();
 
         if (res.paymentLink().isPresent()) {
-            // handle response
+            System.out.println(res.paymentLink().get());
         }
     }
 }

@@ -37,7 +37,7 @@ public class Application {
                 .call();
 
         if (res.refunds().isPresent()) {
-            // handle response
+            System.out.println(res.refunds().get());
         }
     }
 }
@@ -104,7 +104,7 @@ public class Application {
                 .call();
 
         if (res.refund().isPresent()) {
-            // handle response
+            System.out.println(res.refund().get());
         }
     }
 }
@@ -171,7 +171,7 @@ public class Application {
                 .call();
 
         if (res.refund().isPresent()) {
-            // handle response
+            System.out.println(res.refund().get());
         }
     }
 }
