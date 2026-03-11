@@ -163,8 +163,10 @@ public class ListPaymentLinksRequestBuilder {
         Flow.Publisher<HttpResponse<Blob>> asyncPaginator = new AsyncPaginator<>(
             request,
             new CursorTracker<>("$.next_cursor", String.class),
-                    ListPaymentLinksRequest::withCursor,
-            operation::doRequest);
+            (req, pos) -> {
+                var modifiedReq = pos == null ? req : req.withCursor(pos);
+                return operation.doRequest(modifiedReq);
+            });
 
         Flow.Publisher<ListPaymentLinksResponse> flowPublisher = mapAsync(asyncPaginator, operation::handleResponse);
 

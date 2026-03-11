@@ -95,8 +95,10 @@ public class ListGiftCardsRequestBuilder {
         Flow.Publisher<HttpResponse<Blob>> asyncPaginator = new AsyncPaginator<>(
             request,
             new CursorTracker<>("$.next_cursor", String.class),
-                    ListGiftCardsRequest::withCursor,
-            operation::doRequest);
+            (req, pos) -> {
+                var modifiedReq = pos == null ? req : req.withCursor(pos);
+                return operation.doRequest(modifiedReq);
+            });
 
         Flow.Publisher<ListGiftCardsResponse> flowPublisher = mapAsync(asyncPaginator, operation::handleResponse);
 
