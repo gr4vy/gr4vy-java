@@ -148,8 +148,10 @@ public class ListMerchantAccountsRequestBuilder {
         Flow.Publisher<HttpResponse<Blob>> asyncPaginator = new AsyncPaginator<>(
             request,
             new CursorTracker<>("$.next_cursor", String.class),
-                    ListMerchantAccountsRequest::withCursor,
-            operation::doRequest);
+            (req, pos) -> {
+                var modifiedReq = pos == null ? req : req.withCursor(pos);
+                return operation.doRequest(modifiedReq);
+            });
 
         Flow.Publisher<ListMerchantAccountsResponse> flowPublisher = mapAsync(asyncPaginator, operation::handleResponse);
 

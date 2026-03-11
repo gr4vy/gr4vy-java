@@ -156,8 +156,10 @@ public class ListTransactionEventsRequestBuilder {
         Flow.Publisher<HttpResponse<Blob>> asyncPaginator = new AsyncPaginator<>(
             request,
             new CursorTracker<>("$.next_cursor", String.class),
-                    ListTransactionEventsRequest::withCursor,
-            operation::doRequest);
+            (req, pos) -> {
+                var modifiedReq = pos == null ? req : req.withCursor(pos);
+                return operation.doRequest(modifiedReq);
+            });
 
         Flow.Publisher<ListTransactionEventsResponse> flowPublisher = mapAsync(asyncPaginator, operation::handleResponse);
 
