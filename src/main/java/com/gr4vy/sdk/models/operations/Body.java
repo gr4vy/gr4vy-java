@@ -6,10 +6,13 @@ package com.gr4vy.sdk.models.operations;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.gr4vy.sdk.models.components.ACHBankPaymentMethodCreate;
+import com.gr4vy.sdk.models.components.BACSBankPaymentMethodCreate;
 import com.gr4vy.sdk.models.components.CardPaymentMethodCreate;
 import com.gr4vy.sdk.models.components.CheckoutSessionPaymentMethodCreate;
 import com.gr4vy.sdk.models.components.PlaidPaymentMethodCreate;
 import com.gr4vy.sdk.models.components.RedirectPaymentMethodCreate;
+import com.gr4vy.sdk.models.components.SEPABankPaymentMethodCreate;
 import com.gr4vy.sdk.utils.OneOfDeserializer;
 import com.gr4vy.sdk.utils.TypedObject;
 import com.gr4vy.sdk.utils.Utils.JsonShape;
@@ -48,6 +51,21 @@ public class Body {
         Utils.checkNotNull(value, "value");
         return new Body(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
     }
+
+    public static Body of(ACHBankPaymentMethodCreate value) {
+        Utils.checkNotNull(value, "value");
+        return new Body(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
+    }
+
+    public static Body of(BACSBankPaymentMethodCreate value) {
+        Utils.checkNotNull(value, "value");
+        return new Body(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
+    }
+
+    public static Body of(SEPABankPaymentMethodCreate value) {
+        Utils.checkNotNull(value, "value");
+        return new Body(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
+    }
     
     /**
      * Returns an instance of one of these types:
@@ -56,6 +74,9 @@ public class Body {
      * <li>{@code com.gr4vy.sdk.models.components.RedirectPaymentMethodCreate}</li>
      * <li>{@code com.gr4vy.sdk.models.components.CheckoutSessionPaymentMethodCreate}</li>
      * <li>{@code com.gr4vy.sdk.models.components.PlaidPaymentMethodCreate}</li>
+     * <li>{@code com.gr4vy.sdk.models.components.ACHBankPaymentMethodCreate}</li>
+     * <li>{@code com.gr4vy.sdk.models.components.BACSBankPaymentMethodCreate}</li>
+     * <li>{@code com.gr4vy.sdk.models.components.SEPABankPaymentMethodCreate}</li>
      * </ul>
      * 
      * <p>Use {@code instanceof} to determine what type is returned. For example:
@@ -98,7 +119,10 @@ public class Body {
                   TypeReferenceWithShape.of(new TypeReference<CardPaymentMethodCreate>() {}, JsonShape.DEFAULT),
                   TypeReferenceWithShape.of(new TypeReference<RedirectPaymentMethodCreate>() {}, JsonShape.DEFAULT),
                   TypeReferenceWithShape.of(new TypeReference<CheckoutSessionPaymentMethodCreate>() {}, JsonShape.DEFAULT),
-                  TypeReferenceWithShape.of(new TypeReference<PlaidPaymentMethodCreate>() {}, JsonShape.DEFAULT));
+                  TypeReferenceWithShape.of(new TypeReference<PlaidPaymentMethodCreate>() {}, JsonShape.DEFAULT),
+                  TypeReferenceWithShape.of(new TypeReference<ACHBankPaymentMethodCreate>() {}, JsonShape.DEFAULT),
+                  TypeReferenceWithShape.of(new TypeReference<BACSBankPaymentMethodCreate>() {}, JsonShape.DEFAULT),
+                  TypeReferenceWithShape.of(new TypeReference<SEPABankPaymentMethodCreate>() {}, JsonShape.DEFAULT));
         }
     }
     

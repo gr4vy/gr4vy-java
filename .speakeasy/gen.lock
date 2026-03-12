@@ -1,19 +1,19 @@
 lockVersion: 2.0.0
 id: 5bbaa3a9-baa0-471b-ba6a-13fd88e8c119
 management:
-  docChecksum: a33e6e11e39530ed212517a26bdd7fed
+  docChecksum: 0c5e96a7d4bc9c1e13f8926c4c43d101
   docVersion: 1.0.0
-  speakeasyVersion: 1.751.3
+  speakeasyVersion: 1.752.0
   generationVersion: 2.859.2
-  releaseVersion: 2.16.43
-  configChecksum: 537924c37308fde4e3702712e8d7c5e9
+  releaseVersion: 2.16.44
+  configChecksum: 30e4094963b58fddd765b7e1742ff1e6
   repoURL: https://github.com/gr4vy/gr4vy-java.git
   installationURL: https://github.com/gr4vy/gr4vy-java
   published: true
 persistentEdits:
-  generation_id: 1de9ddcd-398b-4040-93ae-b9e1251bbfb9
-  pristine_commit_hash: 5ab62aa03735e748ab9fe8a4de39521552647f09
-  pristine_tree_hash: e160560f7a72429e66abd3c211a4e42f158dd6b0
+  generation_id: ef3812c0-8f51-4cf0-b8ac-7548ea91afdb
+  pristine_commit_hash: 8046f410f136096883e73e3abc48ae2e1149c9eb
+  pristine_tree_hash: 61f5b1d2f2cab83508acfd2e18218416dcf16209
 features:
   java:
     additionalDependencies: 0.1.0
@@ -48,10 +48,18 @@ trackedFiles:
     id: f07866736216
     last_write_checksum: sha1:a99cd8b584ece113a53ee3406116e585b98a22d3
     pristine_git_object: 78d1ef21c4b75b1e52b34129e9418fba64b50256
+  docs/models/components/ACHBankPaymentMethodCreate.md:
+    id: e852a32f84bc
+    last_write_checksum: sha1:474c254440ecb3b629970e28fa28b8ff8ab1ba8b
+    pristine_git_object: aba09756bde25c91abc070e9856e4a3dac87a944
   docs/models/components/AVSResponseCode.md:
     id: fff82744f4ef
     last_write_checksum: sha1:f6654ea6803cdb7445a1eb1fcc6d65f30d87c6b1
     pristine_git_object: cdcbc70e767b9a64c6f71e9483b5fbae0127be6b
+  docs/models/components/AccountType.md:
+    id: 32b5b4e60da5
+    last_write_checksum: sha1:30b86bf112e1ca5305c25965a6fa12b749f18c83
+    pristine_git_object: b5ab3e7cadd2194220e55a809596add7e2fbc473
   docs/models/components/AccountUpdaterInquirySummary.md:
     id: bbb6d651e902
     last_write_checksum: sha1:c212857f23958906d4d4378469cbcae2f502659d
@@ -160,6 +168,14 @@ trackedFiles:
     id: 577a597e3ed0
     last_write_checksum: sha1:24a61e6e5fda3ba1db550afb2fff70c8b8dec390
     pristine_git_object: 5694a1bd3c8ee8599202bd12a42457e7682c53dd
+  docs/models/components/BACSBankPaymentMethodCreate.md:
+    id: 572409d95739
+    last_write_checksum: sha1:b4399921271981be3d2187bfae1444188170bd5c
+    pristine_git_object: 2644c4ca8f055ba27900800ce1c95de0658098a1
+  docs/models/components/BankAccountHolder.md:
+    id: 6150efe95157
+    last_write_checksum: sha1:a1faec54701dfe05ce38e274d239dcb239d9c9f5
+    pristine_git_object: 521b466332aabd8e3b29197a874a04a7c10d92ea
   docs/models/components/BillingDetails.md:
     id: 85ece3f93ccd
     last_write_checksum: sha1:2d8dfebc4fd2d77beac2363c5b9b3361f538a59c
@@ -1020,6 +1036,10 @@ trackedFiles:
     id: 3cd7da0c5250
     last_write_checksum: sha1:f4f901371e150295ec29c69ab7f36684c48f2209
     pristine_git_object: ae3c7add92e68765bf322a2979fb07f43e2962ce
+  docs/models/components/SEPABankPaymentMethodCreate.md:
+    id: 5591e864637a
+    last_write_checksum: sha1:80164f666630fa76206f3c4b623345c32e5d9c29
+    pristine_git_object: 8023c4c5f2d338a4c2d236bebd7772691fb2f200
   docs/models/components/Security.md:
     id: 3878f0f84029
     last_write_checksum: sha1:130ce67c86b8efbd1dfdc247a52629887aeba93f
@@ -2350,8 +2370,8 @@ trackedFiles:
     pristine_git_object: 15c4e4642f204ccb312d8814155b69e153b4e19b
   gradle.properties:
     id: 2afbb999f001
-    last_write_checksum: sha1:a8bd8513c0ba54e92754f22186e237aa15762053
-    pristine_git_object: bb9b704a28b66014af673fd986d377f6c5d2a41f
+    last_write_checksum: sha1:fa3f1530524c671e0f8adb4f17c3b1d81c0c1602
+    pristine_git_object: addcf53b9458aef8cab394611b7fee6acef7595d
   gradle/wrapper/gradle-wrapper.jar:
     id: ec27dae6e852
     last_write_checksum: sha1:f725fb1467084142d74fd7cd8eab691ab3442611
@@ -2674,8 +2694,8 @@ trackedFiles:
     pristine_git_object: 502a7312d3dc82c102dbaf7ed5e952d0c793e26f
   src/main/java/com/gr4vy/sdk/SDKConfiguration.java:
     id: 73a7edeaca45
-    last_write_checksum: sha1:5a42b9c6133d7e482e4bb574e69089b1310d872a
-    pristine_git_object: f8988c1fbd5b34641d94a21a68f4f6e5e2261125
+    last_write_checksum: sha1:03d12351c03baa1de058201755616ba4024626d6
+    pristine_git_object: 084c0869aec4f37feb6dcf6b3aa7441a82e998de
   src/main/java/com/gr4vy/sdk/SecuritySource.java:
     id: 1b6add6b9b50
     last_write_checksum: sha1:2f365cc823c6243188e83f4df618c9737fcee8bd
@@ -2708,10 +2728,18 @@ trackedFiles:
     id: cf62b811d59f
     last_write_checksum: sha1:50c365428eec86db114bd293148371e32d558554
     pristine_git_object: 364e18f8344a6cb844bdcdee3c14a4646b206ebe
+  src/main/java/com/gr4vy/sdk/models/components/ACHBankPaymentMethodCreate.java:
+    id: 58956823f623
+    last_write_checksum: sha1:c51068c7cacc64234400ddb10426bf6cf7309d30
+    pristine_git_object: cc396aa041e5eac5efa090d2a4ec23ba139d5193
   src/main/java/com/gr4vy/sdk/models/components/AVSResponseCode.java:
     id: 762c7e137576
     last_write_checksum: sha1:356e3c98e617a28f6a3da434bf98faed1358279b
     pristine_git_object: a8bfa68bd430ebb68490007471951c62f7427177
+  src/main/java/com/gr4vy/sdk/models/components/AccountType.java:
+    id: 478dd361c279
+    last_write_checksum: sha1:19dce32670ab97dac16ad9bc7d05887aa916fdc5
+    pristine_git_object: e5341ddbefa508c2bbf46e47521e2a1923d1ac31
   src/main/java/com/gr4vy/sdk/models/components/AccountUpdaterInquirySummary.java:
     id: f0333b9a86ea
     last_write_checksum: sha1:507836321199e851be4abb0e3a101e5c42c3a975
@@ -2820,6 +2848,14 @@ trackedFiles:
     id: 77bd10d18639
     last_write_checksum: sha1:1cda69509947879beccf498234855aec41493473
     pristine_git_object: 8c7daa3632859a28642d9cf44c40a2a66e54b212
+  src/main/java/com/gr4vy/sdk/models/components/BACSBankPaymentMethodCreate.java:
+    id: b460ab2abaf9
+    last_write_checksum: sha1:b3fec6d22fdafe9972df064b2a608d7afd71cf4e
+    pristine_git_object: 7509731ef62ad25c20260f39712559ee206645ab
+  src/main/java/com/gr4vy/sdk/models/components/BankAccountHolder.java:
+    id: fdb2b7a547af
+    last_write_checksum: sha1:12ff0de90c658bf4e707bdcefe79a849c20a2a5a
+    pristine_git_object: c8b1d8cf73b701d56d189576819f7863dad8dcef
   src/main/java/com/gr4vy/sdk/models/components/BillingDetails.java:
     id: 761e1e0abd6c
     last_write_checksum: sha1:32309ef16983d0176f1ca23f5318312415d02134
@@ -3680,6 +3716,10 @@ trackedFiles:
     id: 22af332c1ef1
     last_write_checksum: sha1:be0f4ec846f87d014eb50a8e5f53bda50e850ceb
     pristine_git_object: 55f963595375d28af5a66b1142af212c7a880f21
+  src/main/java/com/gr4vy/sdk/models/components/SEPABankPaymentMethodCreate.java:
+    id: d1084d2ea48a
+    last_write_checksum: sha1:60d19ee1d0d289c84246467f9e8583335b248786
+    pristine_git_object: 2fd6ade5a51c5775a5f24993578dfe8e4e236676
   src/main/java/com/gr4vy/sdk/models/components/Security.java:
     id: 42fff468ea64
     last_write_checksum: sha1:7592e19af06a7621e32345ddad9fbfdcf44d0334
@@ -4522,8 +4562,8 @@ trackedFiles:
     pristine_git_object: d9ca6b5d280d524131422887d855677c50dbe16a
   src/main/java/com/gr4vy/sdk/models/operations/Body.java:
     id: 58bb91020e4f
-    last_write_checksum: sha1:622e2b27ca285b24139dfa6269a58748a743dd95
-    pristine_git_object: 22b5e6c69632a94e2a8863f31afbefb1e7ec8514
+    last_write_checksum: sha1:54020acf5d85556ba169afa19e2227d4e5963aa1
+    pristine_git_object: ffff2b0f57c59d080c4ae4a13620ebaf7056a94f
   src/main/java/com/gr4vy/sdk/models/operations/CancelTransactionRequest.java:
     id: c955ad886519
     last_write_checksum: sha1:3bfcc1edb346066dac443cf34287de8f2c497d4b
@@ -10551,7 +10591,9 @@ examples:
           application/json: {"type": "error", "code": "gateway_timeout", "status": 504, "message": "Request could not be processed"}
 examplesVersion: 1.0.2
 generatedTests: {}
-releaseNotes: "## Java SDK Changes:\n* `gr4vy.transactions.list()`:  `response.items[].instrumentType.enum(bankDetails)` **Added**\n* `gr4vy.transactions.create()`: \n  *  `request.transactionCreate.connectionOptions.adyenPix` **Added**\n  *  `response.instrumentType.enum(bankDetails)` **Added**\n* `gr4vy.transactions.get()`:  `response.instrumentType.enum(bankDetails)` **Added**\n* `gr4vy.transactions.update()`: \n  *  `request.transactionUpdate.connectionOptions.adyenPix` **Added**\n  *  `response.instrumentType.enum(bankDetails)` **Added**\n* `gr4vy.transactions.capture()`:  `response.union(Transaction).instrumentType.enum(bankDetails)` **Added**\n* `gr4vy.transactions.void()`:  `response.union(Transaction).instrumentType.enum(bankDetails)` **Added**\n* `gr4vy.transactions.cancel()`:  `response.transaction.instrumentType.enum(bankDetails)` **Added**\n* `gr4vy.transactions.sync()`:  `response.instrumentType.enum(bankDetails)` **Added**\n* `gr4vy.paymentLinks.create()`: \n  *  `request.paymentLinkCreate.connectionOptions.adyenPix` **Added**\n"
+releaseNotes: |
+  ## Java SDK Changes:
+  * `gr4vy.paymentMethods.create()`:  `requestBody` **Changed**
 generatedFiles:
   - .gitattributes
   - USAGE.md
