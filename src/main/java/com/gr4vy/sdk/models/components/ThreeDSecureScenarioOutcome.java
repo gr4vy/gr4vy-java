@@ -19,8 +19,9 @@ public class ThreeDSecureScenarioOutcome {
     /**
      * The version of 3DS which will be simulated.
      */
+    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("version")
-    private String version;
+    private JsonNullable<String> version;
 
 
     @JsonProperty("authentication")
@@ -35,7 +36,7 @@ public class ThreeDSecureScenarioOutcome {
 
     @JsonCreator
     public ThreeDSecureScenarioOutcome(
-            @JsonProperty("version") String version,
+            @JsonProperty("version") JsonNullable<String> version,
             @JsonProperty("authentication") ThreeDSecureScenarioOutcomeAuthentication authentication,
             @JsonProperty("result") JsonNullable<? extends ThreeDSecureScenarioOutcomeResult> result) {
         Utils.checkNotNull(version, "version");
@@ -47,16 +48,15 @@ public class ThreeDSecureScenarioOutcome {
     }
     
     public ThreeDSecureScenarioOutcome(
-            String version,
             ThreeDSecureScenarioOutcomeAuthentication authentication) {
-        this(version, authentication, JsonNullable.undefined());
+        this(JsonNullable.undefined(), authentication, JsonNullable.undefined());
     }
 
     /**
      * The version of 3DS which will be simulated.
      */
     @JsonIgnore
-    public String version() {
+    public JsonNullable<String> version() {
         return version;
     }
 
@@ -83,6 +83,15 @@ public class ThreeDSecureScenarioOutcome {
      * The version of 3DS which will be simulated.
      */
     public ThreeDSecureScenarioOutcome withVersion(String version) {
+        Utils.checkNotNull(version, "version");
+        this.version = JsonNullable.of(version);
+        return this;
+    }
+
+    /**
+     * The version of 3DS which will be simulated.
+     */
+    public ThreeDSecureScenarioOutcome withVersion(JsonNullable<String> version) {
         Utils.checkNotNull(version, "version");
         this.version = version;
         return this;
@@ -144,7 +153,7 @@ public class ThreeDSecureScenarioOutcome {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private String version;
+        private JsonNullable<String> version = JsonNullable.undefined();
 
         private ThreeDSecureScenarioOutcomeAuthentication authentication;
 
@@ -159,6 +168,15 @@ public class ThreeDSecureScenarioOutcome {
          * The version of 3DS which will be simulated.
          */
         public Builder version(String version) {
+            Utils.checkNotNull(version, "version");
+            this.version = JsonNullable.of(version);
+            return this;
+        }
+
+        /**
+         * The version of 3DS which will be simulated.
+         */
+        public Builder version(JsonNullable<String> version) {
             Utils.checkNotNull(version, "version");
             this.version = version;
             return this;

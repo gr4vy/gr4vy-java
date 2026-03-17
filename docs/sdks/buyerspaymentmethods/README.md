@@ -18,8 +18,7 @@ package hello.world;
 
 import com.gr4vy.sdk.Gr4vy;
 import com.gr4vy.sdk.models.errors.*;
-import com.gr4vy.sdk.models.operations.ListBuyerPaymentMethodsRequest;
-import com.gr4vy.sdk.models.operations.ListBuyerPaymentMethodsResponse;
+import com.gr4vy.sdk.models.operations.*;
 import java.lang.Exception;
 
 public class Application {
@@ -34,6 +33,7 @@ public class Application {
         ListBuyerPaymentMethodsRequest req = ListBuyerPaymentMethodsRequest.builder()
                 .buyerId("fe26475d-ec3e-4884-9553-f7356683f7f9")
                 .buyerExternalIdentifier("buyer-12345")
+                .sortBy(SortBy.LAST_USED_AT)
                 .country("US")
                 .currency("USD")
                 .build();
