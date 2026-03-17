@@ -39,7 +39,6 @@ public class Application {
                     .conditions(ThreeDSecureScenarioConditions.builder()
                         .build())
                     .outcome(ThreeDSecureScenarioOutcome.builder()
-                        .version("2.2.0")
                         .authentication(ThreeDSecureScenarioOutcomeAuthentication.builder()
                             .transactionStatus(ThreeDSecureScenarioOutcomeAuthenticationTransactionStatus.Y)
                             .build())
