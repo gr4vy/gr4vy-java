@@ -24,4 +24,4 @@ InstrumentType custom = InstrumentType.of("custom_value");
 | `APPLEPAY`       | applepay         |
 | `NETWORK_TOKEN`  | network_token    |
 | `PLAID`          | plaid            |
-| `BANK_DETAILS`   | bank_details     |
+| `BANK`           | bank             |
