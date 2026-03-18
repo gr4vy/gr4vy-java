@@ -81,6 +81,11 @@ public class TransactionCreatePaymentMethod {
         return new TransactionCreatePaymentMethod(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
     }
 
+    public static TransactionCreatePaymentMethod of(BaseBankPaymentMethodCreate value) {
+        Utils.checkNotNull(value, "value");
+        return new TransactionCreatePaymentMethod(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
+    }
+
     public static TransactionCreatePaymentMethod of(CheckoutSessionWithUrlPaymentMethodCreate value) {
         Utils.checkNotNull(value, "value");
         return new TransactionCreatePaymentMethod(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
@@ -99,6 +104,7 @@ public class TransactionCreatePaymentMethod {
      * <li>{@code com.gr4vy.sdk.models.components.GooglePayFPANPaymentMethodCreate}</li>
      * <li>{@code com.gr4vy.sdk.models.components.NetworkTokenPaymentMethodCreate}</li>
      * <li>{@code com.gr4vy.sdk.models.components.PlaidPaymentMethodCreate}</li>
+     * <li>{@code com.gr4vy.sdk.models.components.BaseBankPaymentMethodCreate}</li>
      * <li>{@code com.gr4vy.sdk.models.components.CheckoutSessionWithUrlPaymentMethodCreate}</li>
      * </ul>
      * 
@@ -149,6 +155,7 @@ public class TransactionCreatePaymentMethod {
                   TypeReferenceWithShape.of(new TypeReference<GooglePayFPANPaymentMethodCreate>() {}, JsonShape.DEFAULT),
                   TypeReferenceWithShape.of(new TypeReference<NetworkTokenPaymentMethodCreate>() {}, JsonShape.DEFAULT),
                   TypeReferenceWithShape.of(new TypeReference<PlaidPaymentMethodCreate>() {}, JsonShape.DEFAULT),
+                  TypeReferenceWithShape.of(new TypeReference<BaseBankPaymentMethodCreate>() {}, JsonShape.DEFAULT),
                   TypeReferenceWithShape.of(new TypeReference<CheckoutSessionWithUrlPaymentMethodCreate>() {}, JsonShape.DEFAULT));
         }
     }
