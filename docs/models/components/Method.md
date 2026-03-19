@@ -44,6 +44,7 @@ Method custom = Method.of("custom_value");
 | `DCB`                | dcb                  |
 | `DLOCAL`             | dlocal               |
 | `EBANX`              | ebanx                |
+| `ECKOH`              | eckoh                |
 | `EFECTY`             | efecty               |
 | `EPS`                | eps                  |
 | `EVERYDAYPAY`        | everydaypay          |
