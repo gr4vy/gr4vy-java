@@ -48,6 +48,7 @@ public class RedirectPaymentMethodCreateMethod {
     public static final RedirectPaymentMethodCreateMethod DCB = new RedirectPaymentMethodCreateMethod("dcb");
     public static final RedirectPaymentMethodCreateMethod DLOCAL = new RedirectPaymentMethodCreateMethod("dlocal");
     public static final RedirectPaymentMethodCreateMethod EBANX = new RedirectPaymentMethodCreateMethod("ebanx");
+    public static final RedirectPaymentMethodCreateMethod ECKOH = new RedirectPaymentMethodCreateMethod("eckoh");
     public static final RedirectPaymentMethodCreateMethod EFECTY = new RedirectPaymentMethodCreateMethod("efecty");
     public static final RedirectPaymentMethodCreateMethod EPS = new RedirectPaymentMethodCreateMethod("eps");
     public static final RedirectPaymentMethodCreateMethod EVERYDAYPAY = new RedirectPaymentMethodCreateMethod("everydaypay");
@@ -222,6 +223,7 @@ public class RedirectPaymentMethodCreateMethod {
         map.put("dcb", DCB);
         map.put("dlocal", DLOCAL);
         map.put("ebanx", EBANX);
+        map.put("eckoh", ECKOH);
         map.put("efecty", EFECTY);
         map.put("eps", EPS);
         map.put("everydaypay", EVERYDAYPAY);
@@ -328,6 +330,7 @@ public class RedirectPaymentMethodCreateMethod {
         map.put("dcb", RedirectPaymentMethodCreateMethodEnum.DCB);
         map.put("dlocal", RedirectPaymentMethodCreateMethodEnum.DLOCAL);
         map.put("ebanx", RedirectPaymentMethodCreateMethodEnum.EBANX);
+        map.put("eckoh", RedirectPaymentMethodCreateMethodEnum.ECKOH);
         map.put("efecty", RedirectPaymentMethodCreateMethodEnum.EFECTY);
         map.put("eps", RedirectPaymentMethodCreateMethodEnum.EPS);
         map.put("everydaypay", RedirectPaymentMethodCreateMethodEnum.EVERYDAYPAY);
@@ -435,6 +438,7 @@ public class RedirectPaymentMethodCreateMethod {
         DCB("dcb"),
         DLOCAL("dlocal"),
         EBANX("ebanx"),
+        ECKOH("eckoh"),
         EFECTY("efecty"),
         EPS("eps"),
         EVERYDAYPAY("everydaypay"),

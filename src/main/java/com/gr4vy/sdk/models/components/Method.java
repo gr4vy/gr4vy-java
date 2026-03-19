@@ -48,6 +48,7 @@ public class Method {
     public static final Method DCB = new Method("dcb");
     public static final Method DLOCAL = new Method("dlocal");
     public static final Method EBANX = new Method("ebanx");
+    public static final Method ECKOH = new Method("eckoh");
     public static final Method EFECTY = new Method("efecty");
     public static final Method EPS = new Method("eps");
     public static final Method EVERYDAYPAY = new Method("everydaypay");
@@ -232,6 +233,7 @@ public class Method {
         map.put("dcb", DCB);
         map.put("dlocal", DLOCAL);
         map.put("ebanx", EBANX);
+        map.put("eckoh", ECKOH);
         map.put("efecty", EFECTY);
         map.put("eps", EPS);
         map.put("everydaypay", EVERYDAYPAY);
@@ -348,6 +350,7 @@ public class Method {
         map.put("dcb", MethodEnum.DCB);
         map.put("dlocal", MethodEnum.DLOCAL);
         map.put("ebanx", MethodEnum.EBANX);
+        map.put("eckoh", MethodEnum.ECKOH);
         map.put("efecty", MethodEnum.EFECTY);
         map.put("eps", MethodEnum.EPS);
         map.put("everydaypay", MethodEnum.EVERYDAYPAY);
@@ -465,6 +468,7 @@ public class Method {
         DCB("dcb"),
         DLOCAL("dlocal"),
         EBANX("ebanx"),
+        ECKOH("eckoh"),
         EFECTY("efecty"),
         EPS("eps"),
         EVERYDAYPAY("everydaypay"),
