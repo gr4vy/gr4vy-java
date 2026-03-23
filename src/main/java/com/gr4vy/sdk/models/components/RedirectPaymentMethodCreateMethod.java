@@ -109,6 +109,7 @@ public class RedirectPaymentMethodCreateMethod {
     public static final RedirectPaymentMethodCreateMethod SOFORT = new RedirectPaymentMethodCreateMethod("sofort");
     public static final RedirectPaymentMethodCreateMethod SPEI = new RedirectPaymentMethodCreateMethod("spei");
     public static final RedirectPaymentMethodCreateMethod STITCH = new RedirectPaymentMethodCreateMethod("stitch");
+    public static final RedirectPaymentMethodCreateMethod SWISH = new RedirectPaymentMethodCreateMethod("swish");
     public static final RedirectPaymentMethodCreateMethod STRIPEDD = new RedirectPaymentMethodCreateMethod("stripedd");
     public static final RedirectPaymentMethodCreateMethod STRIPETOKEN = new RedirectPaymentMethodCreateMethod("stripetoken");
     public static final RedirectPaymentMethodCreateMethod TAPI = new RedirectPaymentMethodCreateMethod("tapi");
@@ -284,6 +285,7 @@ public class RedirectPaymentMethodCreateMethod {
         map.put("sofort", SOFORT);
         map.put("spei", SPEI);
         map.put("stitch", STITCH);
+        map.put("swish", SWISH);
         map.put("stripedd", STRIPEDD);
         map.put("stripetoken", STRIPETOKEN);
         map.put("tapi", TAPI);
@@ -391,6 +393,7 @@ public class RedirectPaymentMethodCreateMethod {
         map.put("sofort", RedirectPaymentMethodCreateMethodEnum.SOFORT);
         map.put("spei", RedirectPaymentMethodCreateMethodEnum.SPEI);
         map.put("stitch", RedirectPaymentMethodCreateMethodEnum.STITCH);
+        map.put("swish", RedirectPaymentMethodCreateMethodEnum.SWISH);
         map.put("stripedd", RedirectPaymentMethodCreateMethodEnum.STRIPEDD);
         map.put("stripetoken", RedirectPaymentMethodCreateMethodEnum.STRIPETOKEN);
         map.put("tapi", RedirectPaymentMethodCreateMethodEnum.TAPI);
@@ -499,6 +502,7 @@ public class RedirectPaymentMethodCreateMethod {
         SOFORT("sofort"),
         SPEI("spei"),
         STITCH("stitch"),
+        SWISH("swish"),
         STRIPEDD("stripedd"),
         STRIPETOKEN("stripetoken"),
         TAPI("tapi"),
