@@ -114,6 +114,7 @@ public class Method {
     public static final Method SOFORT = new Method("sofort");
     public static final Method SPEI = new Method("spei");
     public static final Method STITCH = new Method("stitch");
+    public static final Method SWISH = new Method("swish");
     public static final Method STRIPEDD = new Method("stripedd");
     public static final Method STRIPETOKEN = new Method("stripetoken");
     public static final Method TAPI = new Method("tapi");
@@ -299,6 +300,7 @@ public class Method {
         map.put("sofort", SOFORT);
         map.put("spei", SPEI);
         map.put("stitch", STITCH);
+        map.put("swish", SWISH);
         map.put("stripedd", STRIPEDD);
         map.put("stripetoken", STRIPETOKEN);
         map.put("tapi", TAPI);
@@ -416,6 +418,7 @@ public class Method {
         map.put("sofort", MethodEnum.SOFORT);
         map.put("spei", MethodEnum.SPEI);
         map.put("stitch", MethodEnum.STITCH);
+        map.put("swish", MethodEnum.SWISH);
         map.put("stripedd", MethodEnum.STRIPEDD);
         map.put("stripetoken", MethodEnum.STRIPETOKEN);
         map.put("tapi", MethodEnum.TAPI);
@@ -534,6 +537,7 @@ public class Method {
         SOFORT("sofort"),
         SPEI("spei"),
         STITCH("stitch"),
+        SWISH("swish"),
         STRIPEDD("stripedd"),
         STRIPETOKEN("stripetoken"),
         TAPI("tapi"),

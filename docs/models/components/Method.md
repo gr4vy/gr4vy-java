@@ -110,6 +110,7 @@ Method custom = Method.of("custom_value");
 | `SOFORT`             | sofort               |
 | `SPEI`               | spei                 |
 | `STITCH`             | stitch               |
+| `SWISH`              | swish                |
 | `STRIPEDD`           | stripedd             |
 | `STRIPETOKEN`        | stripetoken          |
 | `TAPI`               | tapi                 |
