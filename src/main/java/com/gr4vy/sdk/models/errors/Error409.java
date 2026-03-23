@@ -26,6 +26,7 @@ import java.net.http.HttpResponse;
 import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
+import org.openapitools.jackson.nullable.JsonNullable;
 
 @SuppressWarnings("serial")
 public class Error409 extends Gr4vyError {
@@ -116,6 +117,14 @@ public class Error409 extends Gr4vyError {
         return data().flatMap(Data::details);
     }
 
+    /**
+     * The ID of the conflicting resource.
+     */
+    @Deprecated
+    public Optional<JsonNullable<String>> resourceId() {
+        return data().map(Data::resourceId);
+    }
+
     public Optional<Data> data() {
         return Optional.ofNullable(data);
     }
@@ -163,26 +172,36 @@ public class Error409 extends Gr4vyError {
         @JsonProperty("details")
         private Optional<? extends List<ErrorDetail>> details;
 
+        /**
+         * The ID of the conflicting resource.
+         */
+        @JsonInclude(Include.NON_ABSENT)
+        @JsonProperty("resource_id")
+        private JsonNullable<String> resourceId;
+
         @JsonCreator
         public Data(
                 @JsonProperty("code") Optional<String> code,
                 @JsonProperty("status") Optional<Long> status,
                 @JsonProperty("message") Optional<String> message,
-                @JsonProperty("details") Optional<? extends List<ErrorDetail>> details) {
+                @JsonProperty("details") Optional<? extends List<ErrorDetail>> details,
+                @JsonProperty("resource_id") JsonNullable<String> resourceId) {
             Utils.checkNotNull(code, "code");
             Utils.checkNotNull(status, "status");
             Utils.checkNotNull(message, "message");
             Utils.checkNotNull(details, "details");
+            Utils.checkNotNull(resourceId, "resourceId");
             this.type = Builder._SINGLETON_VALUE_Type.value();
             this.code = code;
             this.status = status;
             this.message = message;
             this.details = details;
+            this.resourceId = resourceId;
         }
         
         public Data() {
             this(Optional.empty(), Optional.empty(), Optional.empty(),
-                Optional.empty());
+                Optional.empty(), JsonNullable.undefined());
         }
 
         /**
@@ -224,6 +243,14 @@ public class Error409 extends Gr4vyError {
         @JsonIgnore
         public Optional<List<ErrorDetail>> details() {
             return (Optional<List<ErrorDetail>>) details;
+        }
+
+        /**
+         * The ID of the conflicting resource.
+         */
+        @JsonIgnore
+        public JsonNullable<String> resourceId() {
+            return resourceId;
         }
 
         public static Builder builder() {
@@ -307,6 +334,24 @@ public class Error409 extends Gr4vyError {
             return this;
         }
 
+        /**
+         * The ID of the conflicting resource.
+         */
+        public Data withResourceId(String resourceId) {
+            Utils.checkNotNull(resourceId, "resourceId");
+            this.resourceId = JsonNullable.of(resourceId);
+            return this;
+        }
+
+        /**
+         * The ID of the conflicting resource.
+         */
+        public Data withResourceId(JsonNullable<String> resourceId) {
+            Utils.checkNotNull(resourceId, "resourceId");
+            this.resourceId = resourceId;
+            return this;
+        }
+
         @Override
         public boolean equals(java.lang.Object o) {
             if (this == o) {
@@ -321,14 +366,15 @@ public class Error409 extends Gr4vyError {
                 Utils.enhancedDeepEquals(this.code, other.code) &&
                 Utils.enhancedDeepEquals(this.status, other.status) &&
                 Utils.enhancedDeepEquals(this.message, other.message) &&
-                Utils.enhancedDeepEquals(this.details, other.details);
+                Utils.enhancedDeepEquals(this.details, other.details) &&
+                Utils.enhancedDeepEquals(this.resourceId, other.resourceId);
         }
         
         @Override
         public int hashCode() {
             return Utils.enhancedHash(
                 type, code, status,
-                message, details);
+                message, details, resourceId);
         }
         
         @Override
@@ -338,7 +384,8 @@ public class Error409 extends Gr4vyError {
                     "code", code,
                     "status", status,
                     "message", message,
-                    "details", details);
+                    "details", details,
+                    "resourceId", resourceId);
         }
 
         @SuppressWarnings("UnusedReturnValue")
@@ -351,6 +398,8 @@ public class Error409 extends Gr4vyError {
             private Optional<String> message;
 
             private Optional<? extends List<ErrorDetail>> details = Optional.empty();
+
+            private JsonNullable<String> resourceId = JsonNullable.undefined();
 
             private Builder() {
               // force use of static builder() method
@@ -432,6 +481,25 @@ public class Error409 extends Gr4vyError {
                 return this;
             }
 
+
+            /**
+             * The ID of the conflicting resource.
+             */
+            public Builder resourceId(String resourceId) {
+                Utils.checkNotNull(resourceId, "resourceId");
+                this.resourceId = JsonNullable.of(resourceId);
+                return this;
+            }
+
+            /**
+             * The ID of the conflicting resource.
+             */
+            public Builder resourceId(JsonNullable<String> resourceId) {
+                Utils.checkNotNull(resourceId, "resourceId");
+                this.resourceId = resourceId;
+                return this;
+            }
+
             public Data build() {
                 if (code == null) {
                     code = _SINGLETON_VALUE_Code.value();
@@ -445,7 +513,7 @@ public class Error409 extends Gr4vyError {
 
                 return new Data(
                     code, status, message,
-                    details);
+                    details, resourceId);
             }
 
 
