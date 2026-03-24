@@ -27,10 +27,10 @@ jobs:
 
     steps:
       - name: Check out the repo
-        uses: actions/checkout@v2
+        uses: actions/checkout@ee0669bd1cc54295c223e0bb666b733df41de1c5 # v2
 
       - name: Use Java ${{ matrix.java }}
-        uses: actions/setup-java@v4
+        uses: actions/setup-java@c1e323688fd81a25caa38c78aa6df2d33d3e20d9 # v4
         with:
           distribution: 'corretto'
           java-version: ${{ matrix.java }}
@@ -42,7 +42,7 @@ jobs:
         run: |
           ./gradlew test
 
-      - uses: hmarr/auto-approve-action@v4
+      - uses: hmarr/auto-approve-action@8f929096a962e83ccdfa8afcf855f39f12d4dac7 # v4
         if: "github.event.pull_request.user.login == 'github-actions[bot]'"
         with:
           github-token: ${{ secrets.DISPATCH_ACCESS_TOKEN }}
@@ -59,7 +59,7 @@ jobs:
       - id: automerge
         name: automerge
         if: "github.event.pull_request.user.login == 'github-actions[bot]'"
-        uses: "pascalgn/automerge-action@v0.16.4"
+        uses: "pascalgn/automerge-action@7961b8b5eec56cc088c140b56d864285eabd3f67" # v0.16.4
         env:
           GITHUB_TOKEN: ${{ secrets.DISPATCH_ACCESS_TOKEN }}
           MERGE_LABELS: ''
@@ -77,7 +77,7 @@ jobs:
     if: ${{ contains(needs.*.result, 'failure') }}
     steps:
       - name: Slack Notification
-        uses: rtCamp/action-slack-notify@v2
+        uses: rtCamp/action-slack-notify@e31e87e03dd19038e411e38ae27cbad084a90661 # v2
         if: github.ref == 'refs/heads/main' || (github.event_name == 'pull_request' && github.event.pull_request.user.login == 'github-actions[bot]')
         env:
             SLACK_USERNAME: Java SDK 

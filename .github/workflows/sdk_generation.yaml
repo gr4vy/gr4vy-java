@@ -21,7 +21,7 @@ permissions:
     - cron: 0 0 * * *
 jobs:
   generate:
-    uses: speakeasy-api/sdk-generation-action/.github/workflows/workflow-executor.yaml@v15
+    uses: speakeasy-api/sdk-generation-action/.github/workflows/workflow-executor.yaml@fe37b336cd1948f1e2e60383fd94bfb884318cf2 # v15
     with:
       force: ${{ github.event.inputs.force }}
       mode: pr
@@ -40,7 +40,7 @@ jobs:
     if: ${{ contains(needs.*.result, 'failure') }}
     steps:
       - name: Slack Notification
-        uses: rtCamp/action-slack-notify@v2
+        uses: rtCamp/action-slack-notify@e31e87e03dd19038e411e38ae27cbad084a90661 # v2
         if: github.ref == 'refs/heads/main'
         env:
             SLACK_USERNAME: Java SDK 

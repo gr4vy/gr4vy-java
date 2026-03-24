@@ -14,7 +14,7 @@ permissions:
   workflow_dispatch: {}
 jobs:
   publish:
-    uses: speakeasy-api/sdk-generation-action/.github/workflows/sdk-publish.yaml@v15
+    uses: speakeasy-api/sdk-generation-action/.github/workflows/sdk-publish.yaml@fe37b336cd1948f1e2e60383fd94bfb884318cf2 # v15
     with:
       target: java
     secrets:
@@ -32,7 +32,7 @@ jobs:
     if: always()
     steps:
       - name: Slack Notification
-        uses: rtCamp/action-slack-notify@v2
+        uses: rtCamp/action-slack-notify@e31e87e03dd19038e411e38ae27cbad084a90661 # v2
         if: github.ref == 'refs/heads/main'
         env:
             SLACK_USERNAME: Java SDK 
@@ -55,7 +55,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Notify SDKs
-        uses: peter-evans/repository-dispatch@v3
+        uses: peter-evans/repository-dispatch@ff45666b9427631e3450c54a1bcbee4d9ff4d7c0 # v3
         with:
           token: ${{ secrets.DISPATCH_ACCESS_TOKEN }}
           repository: ${{ matrix.repo }}
