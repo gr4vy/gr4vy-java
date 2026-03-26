@@ -9,7 +9,6 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.gr4vy.sdk.utils.Utils;
-import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
@@ -17,15 +16,6 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 
 public class StripeOptions {
-    /**
-     * Passes the `error_on_requires_action` option to the Stripe API. Set to true to fail the payment
-     * attempt if it transitions into requires_action. Use this parameter for simpler integrations that
-     * don't handle customer actions, such as saving cards without authentication.
-     */
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("error_on_requires_action")
-    private JsonNullable<Boolean> errorOnRequiresAction;
-
     /**
      * Stripe options to support Stripe Connect
      */
@@ -35,26 +25,13 @@ public class StripeOptions {
 
     @JsonCreator
     public StripeOptions(
-            @JsonProperty("error_on_requires_action") JsonNullable<Boolean> errorOnRequiresAction,
             @JsonProperty("stripe_connect") JsonNullable<? extends StripeConnectOptions> stripeConnect) {
-        Utils.checkNotNull(errorOnRequiresAction, "errorOnRequiresAction");
         Utils.checkNotNull(stripeConnect, "stripeConnect");
-        this.errorOnRequiresAction = errorOnRequiresAction;
         this.stripeConnect = stripeConnect;
     }
     
     public StripeOptions() {
-        this(JsonNullable.undefined(), JsonNullable.undefined());
-    }
-
-    /**
-     * Passes the `error_on_requires_action` option to the Stripe API. Set to true to fail the payment
-     * attempt if it transitions into requires_action. Use this parameter for simpler integrations that
-     * don't handle customer actions, such as saving cards without authentication.
-     */
-    @JsonIgnore
-    public JsonNullable<Boolean> errorOnRequiresAction() {
-        return errorOnRequiresAction;
+        this(JsonNullable.undefined());
     }
 
     /**
@@ -70,28 +47,6 @@ public class StripeOptions {
         return new Builder();
     }
 
-
-    /**
-     * Passes the `error_on_requires_action` option to the Stripe API. Set to true to fail the payment
-     * attempt if it transitions into requires_action. Use this parameter for simpler integrations that
-     * don't handle customer actions, such as saving cards without authentication.
-     */
-    public StripeOptions withErrorOnRequiresAction(boolean errorOnRequiresAction) {
-        Utils.checkNotNull(errorOnRequiresAction, "errorOnRequiresAction");
-        this.errorOnRequiresAction = JsonNullable.of(errorOnRequiresAction);
-        return this;
-    }
-
-    /**
-     * Passes the `error_on_requires_action` option to the Stripe API. Set to true to fail the payment
-     * attempt if it transitions into requires_action. Use this parameter for simpler integrations that
-     * don't handle customer actions, such as saving cards without authentication.
-     */
-    public StripeOptions withErrorOnRequiresAction(JsonNullable<Boolean> errorOnRequiresAction) {
-        Utils.checkNotNull(errorOnRequiresAction, "errorOnRequiresAction");
-        this.errorOnRequiresAction = errorOnRequiresAction;
-        return this;
-    }
 
     /**
      * Stripe options to support Stripe Connect
@@ -121,55 +76,28 @@ public class StripeOptions {
         }
         StripeOptions other = (StripeOptions) o;
         return 
-            Utils.enhancedDeepEquals(this.errorOnRequiresAction, other.errorOnRequiresAction) &&
             Utils.enhancedDeepEquals(this.stripeConnect, other.stripeConnect);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            errorOnRequiresAction, stripeConnect);
+            stripeConnect);
     }
     
     @Override
     public String toString() {
         return Utils.toString(StripeOptions.class,
-                "errorOnRequiresAction", errorOnRequiresAction,
                 "stripeConnect", stripeConnect);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private JsonNullable<Boolean> errorOnRequiresAction = JsonNullable.undefined();
-
         private JsonNullable<? extends StripeConnectOptions> stripeConnect = JsonNullable.undefined();
 
         private Builder() {
           // force use of static builder() method
-        }
-
-
-        /**
-         * Passes the `error_on_requires_action` option to the Stripe API. Set to true to fail the payment
-         * attempt if it transitions into requires_action. Use this parameter for simpler integrations that
-         * don't handle customer actions, such as saving cards without authentication.
-         */
-        public Builder errorOnRequiresAction(boolean errorOnRequiresAction) {
-            Utils.checkNotNull(errorOnRequiresAction, "errorOnRequiresAction");
-            this.errorOnRequiresAction = JsonNullable.of(errorOnRequiresAction);
-            return this;
-        }
-
-        /**
-         * Passes the `error_on_requires_action` option to the Stripe API. Set to true to fail the payment
-         * attempt if it transitions into requires_action. Use this parameter for simpler integrations that
-         * don't handle customer actions, such as saving cards without authentication.
-         */
-        public Builder errorOnRequiresAction(JsonNullable<Boolean> errorOnRequiresAction) {
-            Utils.checkNotNull(errorOnRequiresAction, "errorOnRequiresAction");
-            this.errorOnRequiresAction = errorOnRequiresAction;
-            return this;
         }
 
 
@@ -194,7 +122,7 @@ public class StripeOptions {
         public StripeOptions build() {
 
             return new StripeOptions(
-                errorOnRequiresAction, stripeConnect);
+                stripeConnect);
         }
 
     }
