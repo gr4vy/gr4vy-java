@@ -6,7 +6,7 @@ package com.gr4vy.sdk.models.operations.async;
 import static com.gr4vy.sdk.operations.Operations.AsyncRequestOperation;
 
 import com.gr4vy.sdk.SDKConfiguration;
-import com.gr4vy.sdk.models.components.PaymentServiceCreate;
+import com.gr4vy.sdk.models.components.PaymentServiceUpdate;
 import com.gr4vy.sdk.models.operations.UpdatePaymentServiceRequest;
 import com.gr4vy.sdk.operations.UpdatePaymentService;
 import com.gr4vy.sdk.utils.Headers;
@@ -17,13 +17,20 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 public class UpdatePaymentServiceRequestBuilder {
 
+    private String paymentServiceId;
     private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
-    private PaymentServiceCreate paymentServiceCreate;
+    private PaymentServiceUpdate paymentServiceUpdate;
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
     public UpdatePaymentServiceRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+    }
+
+    public UpdatePaymentServiceRequestBuilder paymentServiceId(String paymentServiceId) {
+        Utils.checkNotNull(paymentServiceId, "paymentServiceId");
+        this.paymentServiceId = paymentServiceId;
+        return this;
     }
 
     public UpdatePaymentServiceRequestBuilder merchantAccountId(String merchantAccountId) {
@@ -38,17 +45,18 @@ public class UpdatePaymentServiceRequestBuilder {
         return this;
     }
 
-    public UpdatePaymentServiceRequestBuilder paymentServiceCreate(PaymentServiceCreate paymentServiceCreate) {
-        Utils.checkNotNull(paymentServiceCreate, "paymentServiceCreate");
-        this.paymentServiceCreate = paymentServiceCreate;
+    public UpdatePaymentServiceRequestBuilder paymentServiceUpdate(PaymentServiceUpdate paymentServiceUpdate) {
+        Utils.checkNotNull(paymentServiceUpdate, "paymentServiceUpdate");
+        this.paymentServiceUpdate = paymentServiceUpdate;
         return this;
     }
 
 
     private UpdatePaymentServiceRequest buildRequest() {
 
-        UpdatePaymentServiceRequest request = new UpdatePaymentServiceRequest(merchantAccountId,
-            paymentServiceCreate);
+        UpdatePaymentServiceRequest request = new UpdatePaymentServiceRequest(paymentServiceId,
+            merchantAccountId,
+            paymentServiceUpdate);
 
         return request;
     }

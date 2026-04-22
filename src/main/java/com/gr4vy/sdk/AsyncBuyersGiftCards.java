@@ -11,10 +11,8 @@ import com.gr4vy.sdk.models.operations.async.ListBuyerGiftCardsResponse;
 import com.gr4vy.sdk.operations.ListBuyerGiftCards;
 import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.Options;
-import java.lang.String;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
-import org.openapitools.jackson.nullable.JsonNullable;
 
 
 public class AsyncBuyersGiftCards {
@@ -53,12 +51,11 @@ public class AsyncBuyersGiftCards {
      * 
      * <p>List all the stored gift cards for a specific buyer.
      * 
+     * @param request The request object containing all the parameters for the API call.
      * @return {@code CompletableFuture<ListBuyerGiftCardsResponse>} - The async response
      */
-    public CompletableFuture<ListBuyerGiftCardsResponse> listDirect() {
-        return list(
-                JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-                Optional.empty());
+    public CompletableFuture<ListBuyerGiftCardsResponse> list(ListBuyerGiftCardsRequest request) {
+        return list(request, Optional.empty());
     }
 
     /**
@@ -66,22 +63,11 @@ public class AsyncBuyersGiftCards {
      * 
      * <p>List all the stored gift cards for a specific buyer.
      * 
-     * @param buyerExternalIdentifier 
-     * @param buyerId 
-     * @param merchantAccountId 
+     * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return {@code CompletableFuture<ListBuyerGiftCardsResponse>} - The async response
      */
-    public CompletableFuture<ListBuyerGiftCardsResponse> list(
-            JsonNullable<String> buyerExternalIdentifier, JsonNullable<String> buyerId,
-            JsonNullable<String> merchantAccountId, Optional<Options> options) {
-        ListBuyerGiftCardsRequest request =
-            ListBuyerGiftCardsRequest
-                .builder()
-                .buyerExternalIdentifier(buyerExternalIdentifier)
-                .buyerId(buyerId)
-                .merchantAccountId(merchantAccountId)
-                .build();
+    public CompletableFuture<ListBuyerGiftCardsResponse> list(ListBuyerGiftCardsRequest request, Optional<Options> options) {
         AsyncRequestOperation<ListBuyerGiftCardsRequest, ListBuyerGiftCardsResponse> operation
               = new ListBuyerGiftCards.Async(
                                     sdkConfiguration, options, sdkConfiguration.retryScheduler(),

@@ -105,6 +105,32 @@ public class GiftCardSummary {
     @JsonProperty("balance_raw_error_message")
     private JsonNullable<String> balanceRawErrorMessage;
 
+    /**
+     * The timestamp when this gift card was last used in a transaction.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("last_used_at")
+    private JsonNullable<OffsetDateTime> lastUsedAt;
+
+    /**
+     * The number of times this gift card has been used in transactions.
+     */
+    @JsonProperty("usage_count")
+    private long usageCount;
+
+    /**
+     * The timestamp when this gift card was last used in a transaction for client initiated transactions.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("cit_last_used_at")
+    private JsonNullable<OffsetDateTime> citLastUsedAt;
+
+    /**
+     * The number of times this gift card has been used in transactions for client initiated transactions.
+     */
+    @JsonProperty("cit_usage_count")
+    private long citUsageCount;
+
     @JsonCreator
     public GiftCardSummary(
             @JsonProperty("id") JsonNullable<String> id,
@@ -117,7 +143,11 @@ public class GiftCardSummary {
             @JsonProperty("balance") JsonNullable<Long> balance,
             @JsonProperty("balance_error_code") JsonNullable<? extends GiftCardErrorCode> balanceErrorCode,
             @JsonProperty("balance_raw_error_code") JsonNullable<String> balanceRawErrorCode,
-            @JsonProperty("balance_raw_error_message") JsonNullable<String> balanceRawErrorMessage) {
+            @JsonProperty("balance_raw_error_message") JsonNullable<String> balanceRawErrorMessage,
+            @JsonProperty("last_used_at") JsonNullable<OffsetDateTime> lastUsedAt,
+            @JsonProperty("usage_count") long usageCount,
+            @JsonProperty("cit_last_used_at") JsonNullable<OffsetDateTime> citLastUsedAt,
+            @JsonProperty("cit_usage_count") long citUsageCount) {
         Utils.checkNotNull(id, "id");
         Utils.checkNotNull(merchantAccountId, "merchantAccountId");
         Utils.checkNotNull(bin, "bin");
@@ -129,6 +159,10 @@ public class GiftCardSummary {
         Utils.checkNotNull(balanceErrorCode, "balanceErrorCode");
         Utils.checkNotNull(balanceRawErrorCode, "balanceRawErrorCode");
         Utils.checkNotNull(balanceRawErrorMessage, "balanceRawErrorMessage");
+        Utils.checkNotNull(lastUsedAt, "lastUsedAt");
+        Utils.checkNotNull(usageCount, "usageCount");
+        Utils.checkNotNull(citLastUsedAt, "citLastUsedAt");
+        Utils.checkNotNull(citUsageCount, "citUsageCount");
         this.type = Builder._SINGLETON_VALUE_Type.value();
         this.id = id;
         this.merchantAccountId = merchantAccountId;
@@ -141,17 +175,24 @@ public class GiftCardSummary {
         this.balanceErrorCode = balanceErrorCode;
         this.balanceRawErrorCode = balanceRawErrorCode;
         this.balanceRawErrorMessage = balanceRawErrorMessage;
+        this.lastUsedAt = lastUsedAt;
+        this.usageCount = usageCount;
+        this.citLastUsedAt = citLastUsedAt;
+        this.citUsageCount = citUsageCount;
     }
     
     public GiftCardSummary(
             String merchantAccountId,
             String bin,
             String subBin,
-            String last4) {
+            String last4,
+            long usageCount,
+            long citUsageCount) {
         this(JsonNullable.undefined(), merchantAccountId, bin,
             subBin, last4, JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined());
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            usageCount, JsonNullable.undefined(), citUsageCount);
     }
 
     /**
@@ -253,6 +294,38 @@ public class GiftCardSummary {
     @JsonIgnore
     public JsonNullable<String> balanceRawErrorMessage() {
         return balanceRawErrorMessage;
+    }
+
+    /**
+     * The timestamp when this gift card was last used in a transaction.
+     */
+    @JsonIgnore
+    public JsonNullable<OffsetDateTime> lastUsedAt() {
+        return lastUsedAt;
+    }
+
+    /**
+     * The number of times this gift card has been used in transactions.
+     */
+    @JsonIgnore
+    public long usageCount() {
+        return usageCount;
+    }
+
+    /**
+     * The timestamp when this gift card was last used in a transaction for client initiated transactions.
+     */
+    @JsonIgnore
+    public JsonNullable<OffsetDateTime> citLastUsedAt() {
+        return citLastUsedAt;
+    }
+
+    /**
+     * The number of times this gift card has been used in transactions for client initiated transactions.
+     */
+    @JsonIgnore
+    public long citUsageCount() {
+        return citUsageCount;
     }
 
     public static Builder builder() {
@@ -430,6 +503,60 @@ public class GiftCardSummary {
         return this;
     }
 
+    /**
+     * The timestamp when this gift card was last used in a transaction.
+     */
+    public GiftCardSummary withLastUsedAt(OffsetDateTime lastUsedAt) {
+        Utils.checkNotNull(lastUsedAt, "lastUsedAt");
+        this.lastUsedAt = JsonNullable.of(lastUsedAt);
+        return this;
+    }
+
+    /**
+     * The timestamp when this gift card was last used in a transaction.
+     */
+    public GiftCardSummary withLastUsedAt(JsonNullable<OffsetDateTime> lastUsedAt) {
+        Utils.checkNotNull(lastUsedAt, "lastUsedAt");
+        this.lastUsedAt = lastUsedAt;
+        return this;
+    }
+
+    /**
+     * The number of times this gift card has been used in transactions.
+     */
+    public GiftCardSummary withUsageCount(long usageCount) {
+        Utils.checkNotNull(usageCount, "usageCount");
+        this.usageCount = usageCount;
+        return this;
+    }
+
+    /**
+     * The timestamp when this gift card was last used in a transaction for client initiated transactions.
+     */
+    public GiftCardSummary withCitLastUsedAt(OffsetDateTime citLastUsedAt) {
+        Utils.checkNotNull(citLastUsedAt, "citLastUsedAt");
+        this.citLastUsedAt = JsonNullable.of(citLastUsedAt);
+        return this;
+    }
+
+    /**
+     * The timestamp when this gift card was last used in a transaction for client initiated transactions.
+     */
+    public GiftCardSummary withCitLastUsedAt(JsonNullable<OffsetDateTime> citLastUsedAt) {
+        Utils.checkNotNull(citLastUsedAt, "citLastUsedAt");
+        this.citLastUsedAt = citLastUsedAt;
+        return this;
+    }
+
+    /**
+     * The number of times this gift card has been used in transactions for client initiated transactions.
+     */
+    public GiftCardSummary withCitUsageCount(long citUsageCount) {
+        Utils.checkNotNull(citUsageCount, "citUsageCount");
+        this.citUsageCount = citUsageCount;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -451,7 +578,11 @@ public class GiftCardSummary {
             Utils.enhancedDeepEquals(this.balance, other.balance) &&
             Utils.enhancedDeepEquals(this.balanceErrorCode, other.balanceErrorCode) &&
             Utils.enhancedDeepEquals(this.balanceRawErrorCode, other.balanceRawErrorCode) &&
-            Utils.enhancedDeepEquals(this.balanceRawErrorMessage, other.balanceRawErrorMessage);
+            Utils.enhancedDeepEquals(this.balanceRawErrorMessage, other.balanceRawErrorMessage) &&
+            Utils.enhancedDeepEquals(this.lastUsedAt, other.lastUsedAt) &&
+            Utils.enhancedDeepEquals(this.usageCount, other.usageCount) &&
+            Utils.enhancedDeepEquals(this.citLastUsedAt, other.citLastUsedAt) &&
+            Utils.enhancedDeepEquals(this.citUsageCount, other.citUsageCount);
     }
     
     @Override
@@ -460,7 +591,9 @@ public class GiftCardSummary {
             type, id, merchantAccountId,
             bin, subBin, last4,
             currency, expirationDate, balance,
-            balanceErrorCode, balanceRawErrorCode, balanceRawErrorMessage);
+            balanceErrorCode, balanceRawErrorCode, balanceRawErrorMessage,
+            lastUsedAt, usageCount, citLastUsedAt,
+            citUsageCount);
     }
     
     @Override
@@ -477,7 +610,11 @@ public class GiftCardSummary {
                 "balance", balance,
                 "balanceErrorCode", balanceErrorCode,
                 "balanceRawErrorCode", balanceRawErrorCode,
-                "balanceRawErrorMessage", balanceRawErrorMessage);
+                "balanceRawErrorMessage", balanceRawErrorMessage,
+                "lastUsedAt", lastUsedAt,
+                "usageCount", usageCount,
+                "citLastUsedAt", citLastUsedAt,
+                "citUsageCount", citUsageCount);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -504,6 +641,14 @@ public class GiftCardSummary {
         private JsonNullable<String> balanceRawErrorCode = JsonNullable.undefined();
 
         private JsonNullable<String> balanceRawErrorMessage = JsonNullable.undefined();
+
+        private JsonNullable<OffsetDateTime> lastUsedAt = JsonNullable.undefined();
+
+        private Long usageCount;
+
+        private JsonNullable<OffsetDateTime> citLastUsedAt = JsonNullable.undefined();
+
+        private Long citUsageCount;
 
         private Builder() {
           // force use of static builder() method
@@ -690,13 +835,72 @@ public class GiftCardSummary {
             return this;
         }
 
+
+        /**
+         * The timestamp when this gift card was last used in a transaction.
+         */
+        public Builder lastUsedAt(OffsetDateTime lastUsedAt) {
+            Utils.checkNotNull(lastUsedAt, "lastUsedAt");
+            this.lastUsedAt = JsonNullable.of(lastUsedAt);
+            return this;
+        }
+
+        /**
+         * The timestamp when this gift card was last used in a transaction.
+         */
+        public Builder lastUsedAt(JsonNullable<OffsetDateTime> lastUsedAt) {
+            Utils.checkNotNull(lastUsedAt, "lastUsedAt");
+            this.lastUsedAt = lastUsedAt;
+            return this;
+        }
+
+
+        /**
+         * The number of times this gift card has been used in transactions.
+         */
+        public Builder usageCount(long usageCount) {
+            Utils.checkNotNull(usageCount, "usageCount");
+            this.usageCount = usageCount;
+            return this;
+        }
+
+
+        /**
+         * The timestamp when this gift card was last used in a transaction for client initiated transactions.
+         */
+        public Builder citLastUsedAt(OffsetDateTime citLastUsedAt) {
+            Utils.checkNotNull(citLastUsedAt, "citLastUsedAt");
+            this.citLastUsedAt = JsonNullable.of(citLastUsedAt);
+            return this;
+        }
+
+        /**
+         * The timestamp when this gift card was last used in a transaction for client initiated transactions.
+         */
+        public Builder citLastUsedAt(JsonNullable<OffsetDateTime> citLastUsedAt) {
+            Utils.checkNotNull(citLastUsedAt, "citLastUsedAt");
+            this.citLastUsedAt = citLastUsedAt;
+            return this;
+        }
+
+
+        /**
+         * The number of times this gift card has been used in transactions for client initiated transactions.
+         */
+        public Builder citUsageCount(long citUsageCount) {
+            Utils.checkNotNull(citUsageCount, "citUsageCount");
+            this.citUsageCount = citUsageCount;
+            return this;
+        }
+
         public GiftCardSummary build() {
 
             return new GiftCardSummary(
                 id, merchantAccountId, bin,
                 subBin, last4, currency,
                 expirationDate, balance, balanceErrorCode,
-                balanceRawErrorCode, balanceRawErrorMessage);
+                balanceRawErrorCode, balanceRawErrorMessage, lastUsedAt,
+                usageCount, citLastUsedAt, citUsageCount);
         }
 
 

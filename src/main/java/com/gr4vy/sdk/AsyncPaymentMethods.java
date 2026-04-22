@@ -5,11 +5,13 @@ package com.gr4vy.sdk;
 
 import static com.gr4vy.sdk.operations.Operations.AsyncRequestOperation;
 
+import com.gr4vy.sdk.models.components.PaymentMethodUpdate;
 import com.gr4vy.sdk.models.operations.Body;
 import com.gr4vy.sdk.models.operations.CreatePaymentMethodRequest;
 import com.gr4vy.sdk.models.operations.DeletePaymentMethodRequest;
 import com.gr4vy.sdk.models.operations.GetPaymentMethodRequest;
 import com.gr4vy.sdk.models.operations.ListPaymentMethodsRequest;
+import com.gr4vy.sdk.models.operations.UpdatePaymentMethodRequest;
 import com.gr4vy.sdk.models.operations.async.CreatePaymentMethodRequestBuilder;
 import com.gr4vy.sdk.models.operations.async.CreatePaymentMethodResponse;
 import com.gr4vy.sdk.models.operations.async.DeletePaymentMethodRequestBuilder;
@@ -18,10 +20,13 @@ import com.gr4vy.sdk.models.operations.async.GetPaymentMethodRequestBuilder;
 import com.gr4vy.sdk.models.operations.async.GetPaymentMethodResponse;
 import com.gr4vy.sdk.models.operations.async.ListPaymentMethodsRequestBuilder;
 import com.gr4vy.sdk.models.operations.async.ListPaymentMethodsResponse;
+import com.gr4vy.sdk.models.operations.async.UpdatePaymentMethodRequestBuilder;
+import com.gr4vy.sdk.models.operations.async.UpdatePaymentMethodResponse;
 import com.gr4vy.sdk.operations.CreatePaymentMethod;
 import com.gr4vy.sdk.operations.DeletePaymentMethod;
 import com.gr4vy.sdk.operations.GetPaymentMethod;
 import com.gr4vy.sdk.operations.ListPaymentMethods;
+import com.gr4vy.sdk.operations.UpdatePaymentMethod;
 import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.Options;
 import java.lang.String;
@@ -196,6 +201,57 @@ public class AsyncPaymentMethods {
               = new GetPaymentMethod.Async(
                                     sdkConfiguration, options, sdkConfiguration.retryScheduler(),
                                     _headers);
+        return operation.doRequest(request)
+            .thenCompose(operation::handleResponse);
+    }
+
+
+    /**
+     * Update payment method
+     * 
+     * <p>Update the details of a stored payment method.
+     * 
+     * @return The async call builder
+     */
+    public UpdatePaymentMethodRequestBuilder update() {
+        return new UpdatePaymentMethodRequestBuilder(sdkConfiguration);
+    }
+
+    /**
+     * Update payment method
+     * 
+     * <p>Update the details of a stored payment method.
+     * 
+     * @param paymentMethodId The ID of the payment method
+     * @param paymentMethodUpdate Request body for updating a stored payment method.
+     * @return {@code CompletableFuture<UpdatePaymentMethodResponse>} - The async response
+     */
+    public CompletableFuture<UpdatePaymentMethodResponse> update(String paymentMethodId, PaymentMethodUpdate paymentMethodUpdate) {
+        return update(paymentMethodId, JsonNullable.undefined(), paymentMethodUpdate);
+    }
+
+    /**
+     * Update payment method
+     * 
+     * <p>Update the details of a stored payment method.
+     * 
+     * @param paymentMethodId The ID of the payment method
+     * @param merchantAccountId 
+     * @param paymentMethodUpdate Request body for updating a stored payment method.
+     * @return {@code CompletableFuture<UpdatePaymentMethodResponse>} - The async response
+     */
+    public CompletableFuture<UpdatePaymentMethodResponse> update(
+            String paymentMethodId, JsonNullable<String> merchantAccountId,
+            PaymentMethodUpdate paymentMethodUpdate) {
+        UpdatePaymentMethodRequest request =
+            UpdatePaymentMethodRequest
+                .builder()
+                .paymentMethodId(paymentMethodId)
+                .merchantAccountId(merchantAccountId)
+                .paymentMethodUpdate(paymentMethodUpdate)
+                .build();
+        AsyncRequestOperation<UpdatePaymentMethodRequest, UpdatePaymentMethodResponse> operation
+              = new UpdatePaymentMethod.Async(sdkConfiguration, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }

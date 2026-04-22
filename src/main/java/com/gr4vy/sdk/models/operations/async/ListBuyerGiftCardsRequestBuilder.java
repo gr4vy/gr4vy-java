@@ -12,16 +12,12 @@ import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.Options;
 import com.gr4vy.sdk.utils.RetryConfig;
 import com.gr4vy.sdk.utils.Utils;
-import java.lang.String;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
-import org.openapitools.jackson.nullable.JsonNullable;
 
 public class ListBuyerGiftCardsRequestBuilder {
 
-    private JsonNullable<String> buyerExternalIdentifier = JsonNullable.undefined();
-    private JsonNullable<String> buyerId = JsonNullable.undefined();
-    private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
+    private ListBuyerGiftCardsRequest request;
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
@@ -30,39 +26,9 @@ public class ListBuyerGiftCardsRequestBuilder {
         this.sdkConfiguration = sdkConfiguration;
     }
 
-    public ListBuyerGiftCardsRequestBuilder buyerExternalIdentifier(String buyerExternalIdentifier) {
-        Utils.checkNotNull(buyerExternalIdentifier, "buyerExternalIdentifier");
-        this.buyerExternalIdentifier = JsonNullable.of(buyerExternalIdentifier);
-        return this;
-    }
-
-    public ListBuyerGiftCardsRequestBuilder buyerExternalIdentifier(JsonNullable<String> buyerExternalIdentifier) {
-        Utils.checkNotNull(buyerExternalIdentifier, "buyerExternalIdentifier");
-        this.buyerExternalIdentifier = buyerExternalIdentifier;
-        return this;
-    }
-
-    public ListBuyerGiftCardsRequestBuilder buyerId(String buyerId) {
-        Utils.checkNotNull(buyerId, "buyerId");
-        this.buyerId = JsonNullable.of(buyerId);
-        return this;
-    }
-
-    public ListBuyerGiftCardsRequestBuilder buyerId(JsonNullable<String> buyerId) {
-        Utils.checkNotNull(buyerId, "buyerId");
-        this.buyerId = buyerId;
-        return this;
-    }
-
-    public ListBuyerGiftCardsRequestBuilder merchantAccountId(String merchantAccountId) {
-        Utils.checkNotNull(merchantAccountId, "merchantAccountId");
-        this.merchantAccountId = JsonNullable.of(merchantAccountId);
-        return this;
-    }
-
-    public ListBuyerGiftCardsRequestBuilder merchantAccountId(JsonNullable<String> merchantAccountId) {
-        Utils.checkNotNull(merchantAccountId, "merchantAccountId");
-        this.merchantAccountId = merchantAccountId;
+    public ListBuyerGiftCardsRequestBuilder request(ListBuyerGiftCardsRequest request) {
+        Utils.checkNotNull(request, "request");
+        this.request = request;
         return this;
     }
                 
@@ -78,16 +44,6 @@ public class ListBuyerGiftCardsRequestBuilder {
         return this;
     }
 
-
-    private ListBuyerGiftCardsRequest buildRequest() {
-
-        ListBuyerGiftCardsRequest request = new ListBuyerGiftCardsRequest(buyerExternalIdentifier,
-            buyerId,
-            merchantAccountId);
-
-        return request;
-    }
-
     public CompletableFuture<ListBuyerGiftCardsResponse> call() {
         Optional<Options> options = Optional.of(Options.builder()
             .retryConfig(retryConfig)
@@ -97,7 +53,6 @@ public class ListBuyerGiftCardsRequestBuilder {
               = new ListBuyerGiftCards.Async(
                                     sdkConfiguration, options, sdkConfiguration.retryScheduler(),
                                     _headers);
-        ListBuyerGiftCardsRequest request = buildRequest();
 
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);

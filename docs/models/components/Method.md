@@ -91,8 +91,10 @@ Method custom = Method.of("custom_value");
 | `PAYMAYA`            | paymaya              |
 | `PAYPAL`             | paypal               |
 | `PAYPALPAYLATER`     | paypalpaylater       |
+| `PAYPAY`             | paypay               |
 | `PAYTO`              | payto                |
 | `PAYVALIDA`          | payvalida            |
+| `PAZE`               | paze                 |
 | `PICPAY`             | picpay               |
 | `PIX`                | pix                  |
 | `PLAID`              | plaid                |

@@ -9,11 +9,11 @@ import java.util.Objects;
 import java.util.Optional;
 
 /**
- * SortBy
+ * ListBuyerPaymentMethodsSortBy
  * 
  * <p>The field to sort the payment methods by.
  */
-public enum SortBy {
+public enum ListBuyerPaymentMethodsSortBy {
     LAST_USED_AT("last_used_at"),
     USAGE_COUNT("usage_count"),
     CIT_LAST_USED_AT("cit_last_used_at"),
@@ -22,7 +22,7 @@ public enum SortBy {
     @JsonValue
     private final String value;
 
-    SortBy(String value) {
+    ListBuyerPaymentMethodsSortBy(String value) {
         this.value = value;
     }
     
@@ -30,8 +30,8 @@ public enum SortBy {
         return value;
     }
     
-    public static Optional<SortBy> fromValue(String value) {
-        for (SortBy o: SortBy.values()) {
+    public static Optional<ListBuyerPaymentMethodsSortBy> fromValue(String value) {
+        for (ListBuyerPaymentMethodsSortBy o: ListBuyerPaymentMethodsSortBy.values()) {
             if (Objects.deepEquals(o.value, value)) {
                 return Optional.of(o);
             }

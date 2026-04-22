@@ -33,13 +33,13 @@ public class ListBuyerPaymentMethodsRequest {
      * The field to sort the payment methods by.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=sort_by")
-    private JsonNullable<? extends SortBy> sortBy;
+    private JsonNullable<? extends ListBuyerPaymentMethodsSortBy> sortBy;
 
     /**
      * The direction to sort the payment methods in.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=order_by")
-    private Optional<? extends OrderBy> orderBy;
+    private Optional<? extends ListBuyerPaymentMethodsOrderBy> orderBy;
 
     /**
      * The country code to filter payment methods by. This only applies to payment methods with a `country`
@@ -65,8 +65,8 @@ public class ListBuyerPaymentMethodsRequest {
     public ListBuyerPaymentMethodsRequest(
             JsonNullable<String> buyerId,
             JsonNullable<String> buyerExternalIdentifier,
-            JsonNullable<? extends SortBy> sortBy,
-            Optional<? extends OrderBy> orderBy,
+            JsonNullable<? extends ListBuyerPaymentMethodsSortBy> sortBy,
+            Optional<? extends ListBuyerPaymentMethodsOrderBy> orderBy,
             JsonNullable<String> country,
             JsonNullable<String> currency,
             JsonNullable<String> merchantAccountId) {
@@ -113,8 +113,8 @@ public class ListBuyerPaymentMethodsRequest {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<SortBy> sortBy() {
-        return (JsonNullable<SortBy>) sortBy;
+    public JsonNullable<ListBuyerPaymentMethodsSortBy> sortBy() {
+        return (JsonNullable<ListBuyerPaymentMethodsSortBy>) sortBy;
     }
 
     /**
@@ -122,8 +122,8 @@ public class ListBuyerPaymentMethodsRequest {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<OrderBy> orderBy() {
-        return (Optional<OrderBy>) orderBy;
+    public Optional<ListBuyerPaymentMethodsOrderBy> orderBy() {
+        return (Optional<ListBuyerPaymentMethodsOrderBy>) orderBy;
     }
 
     /**
@@ -196,7 +196,7 @@ public class ListBuyerPaymentMethodsRequest {
     /**
      * The field to sort the payment methods by.
      */
-    public ListBuyerPaymentMethodsRequest withSortBy(SortBy sortBy) {
+    public ListBuyerPaymentMethodsRequest withSortBy(ListBuyerPaymentMethodsSortBy sortBy) {
         Utils.checkNotNull(sortBy, "sortBy");
         this.sortBy = JsonNullable.of(sortBy);
         return this;
@@ -205,7 +205,7 @@ public class ListBuyerPaymentMethodsRequest {
     /**
      * The field to sort the payment methods by.
      */
-    public ListBuyerPaymentMethodsRequest withSortBy(JsonNullable<? extends SortBy> sortBy) {
+    public ListBuyerPaymentMethodsRequest withSortBy(JsonNullable<? extends ListBuyerPaymentMethodsSortBy> sortBy) {
         Utils.checkNotNull(sortBy, "sortBy");
         this.sortBy = sortBy;
         return this;
@@ -214,7 +214,7 @@ public class ListBuyerPaymentMethodsRequest {
     /**
      * The direction to sort the payment methods in.
      */
-    public ListBuyerPaymentMethodsRequest withOrderBy(OrderBy orderBy) {
+    public ListBuyerPaymentMethodsRequest withOrderBy(ListBuyerPaymentMethodsOrderBy orderBy) {
         Utils.checkNotNull(orderBy, "orderBy");
         this.orderBy = Optional.ofNullable(orderBy);
         return this;
@@ -224,7 +224,7 @@ public class ListBuyerPaymentMethodsRequest {
     /**
      * The direction to sort the payment methods in.
      */
-    public ListBuyerPaymentMethodsRequest withOrderBy(Optional<? extends OrderBy> orderBy) {
+    public ListBuyerPaymentMethodsRequest withOrderBy(Optional<? extends ListBuyerPaymentMethodsOrderBy> orderBy) {
         Utils.checkNotNull(orderBy, "orderBy");
         this.orderBy = orderBy;
         return this;
@@ -334,9 +334,9 @@ public class ListBuyerPaymentMethodsRequest {
 
         private JsonNullable<String> buyerExternalIdentifier = JsonNullable.undefined();
 
-        private JsonNullable<? extends SortBy> sortBy = JsonNullable.undefined();
+        private JsonNullable<? extends ListBuyerPaymentMethodsSortBy> sortBy = JsonNullable.undefined();
 
-        private Optional<? extends OrderBy> orderBy;
+        private Optional<? extends ListBuyerPaymentMethodsOrderBy> orderBy;
 
         private JsonNullable<String> country = JsonNullable.undefined();
 
@@ -390,7 +390,7 @@ public class ListBuyerPaymentMethodsRequest {
         /**
          * The field to sort the payment methods by.
          */
-        public Builder sortBy(SortBy sortBy) {
+        public Builder sortBy(ListBuyerPaymentMethodsSortBy sortBy) {
             Utils.checkNotNull(sortBy, "sortBy");
             this.sortBy = JsonNullable.of(sortBy);
             return this;
@@ -399,7 +399,7 @@ public class ListBuyerPaymentMethodsRequest {
         /**
          * The field to sort the payment methods by.
          */
-        public Builder sortBy(JsonNullable<? extends SortBy> sortBy) {
+        public Builder sortBy(JsonNullable<? extends ListBuyerPaymentMethodsSortBy> sortBy) {
             Utils.checkNotNull(sortBy, "sortBy");
             this.sortBy = sortBy;
             return this;
@@ -409,7 +409,7 @@ public class ListBuyerPaymentMethodsRequest {
         /**
          * The direction to sort the payment methods in.
          */
-        public Builder orderBy(OrderBy orderBy) {
+        public Builder orderBy(ListBuyerPaymentMethodsOrderBy orderBy) {
             Utils.checkNotNull(orderBy, "orderBy");
             this.orderBy = Optional.ofNullable(orderBy);
             return this;
@@ -418,7 +418,7 @@ public class ListBuyerPaymentMethodsRequest {
         /**
          * The direction to sort the payment methods in.
          */
-        public Builder orderBy(Optional<? extends OrderBy> orderBy) {
+        public Builder orderBy(Optional<? extends ListBuyerPaymentMethodsOrderBy> orderBy) {
             Utils.checkNotNull(orderBy, "orderBy");
             this.orderBy = orderBy;
             return this;
@@ -497,10 +497,10 @@ public class ListBuyerPaymentMethodsRequest {
         }
 
 
-        private static final LazySingletonValue<Optional<? extends OrderBy>> _SINGLETON_VALUE_OrderBy =
+        private static final LazySingletonValue<Optional<? extends ListBuyerPaymentMethodsOrderBy>> _SINGLETON_VALUE_OrderBy =
                 new LazySingletonValue<>(
                         "order_by",
                         "\"desc\"",
-                        new TypeReference<Optional<? extends OrderBy>>() {});
+                        new TypeReference<Optional<? extends ListBuyerPaymentMethodsOrderBy>>() {});
     }
 }

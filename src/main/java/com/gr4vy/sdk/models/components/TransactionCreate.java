@@ -16,6 +16,7 @@ import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
+import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -239,13 +240,20 @@ public class TransactionCreate {
     private JsonNullable<? extends TransactionConnectionOptions> connectionOptions;
 
     /**
-     * Whether to capture the transaction asynchronously.
+     * Whether to capture the transaction asynchronously when an authorization-capture split occurs.
      * 
-     * <p>- When `async_capture` is `false` (default), the transaction is captured in the same request.
-     * - When `async_capture` is `true`, the transaction is automatically captured at a later time.
+     * <p>This flag is only used if the transaction flow is split between authorization and capture.
+     * The split itself is not controlled by this flag and depends on other conditions, including delayed
+     * capture support, direct capture support, card scheme, gift cards, and anti-fraud decision.
+     * 
+     * <p>- When `async_capture` is `false` (default) and applicable, the capture is attempted in the same
+     * request.
+     * - When `async_capture` is `true` and applicable, the capture is performed outside the context of
+     * this request.
      * 
      * <p>Redirect transactions are not affected by this flag. This flag can only be set to `true` when
-     * `intent` is set to `capture`.
+     * `intent` is set to `capture`. Please check the public documentation for full authorization-capture
+     * split behavior details.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("async_capture")
@@ -360,6 +368,15 @@ public class TransactionCreate {
     @JsonProperty("integration_client")
     private JsonNullable<? extends IntegrationClient> integrationClient;
 
+    /**
+     * The date and time when the buyer's approval window for this transaction expires. If not provided,
+     * this is automatically computed from the connector's default expiration time. The value cannot exceed
+     * the connector's maximum approval window.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("approval_expires_at")
+    private JsonNullable<OffsetDateTime> approvalExpiresAt;
+
     @JsonCreator
     public TransactionCreate(
             @JsonProperty("amount") long amount,
@@ -401,7 +418,8 @@ public class TransactionCreate {
             @JsonProperty("supplier_order_number") JsonNullable<String> supplierOrderNumber,
             @JsonProperty("duty_amount") JsonNullable<Long> dutyAmount,
             @JsonProperty("shipping_amount") JsonNullable<Long> shippingAmount,
-            @JsonProperty("integration_client") JsonNullable<? extends IntegrationClient> integrationClient) {
+            @JsonProperty("integration_client") JsonNullable<? extends IntegrationClient> integrationClient,
+            @JsonProperty("approval_expires_at") JsonNullable<OffsetDateTime> approvalExpiresAt) {
         Utils.checkNotNull(amount, "amount");
         Utils.checkNotNull(currency, "currency");
         Utils.checkNotNull(country, "country");
@@ -442,6 +460,7 @@ public class TransactionCreate {
         Utils.checkNotNull(dutyAmount, "dutyAmount");
         Utils.checkNotNull(shippingAmount, "shippingAmount");
         Utils.checkNotNull(integrationClient, "integrationClient");
+        Utils.checkNotNull(approvalExpiresAt, "approvalExpiresAt");
         this.amount = amount;
         this.currency = currency;
         this.country = country;
@@ -482,6 +501,7 @@ public class TransactionCreate {
         this.dutyAmount = dutyAmount;
         this.shippingAmount = shippingAmount;
         this.integrationClient = integrationClient;
+        this.approvalExpiresAt = approvalExpiresAt;
     }
     
     public TransactionCreate(
@@ -500,7 +520,7 @@ public class TransactionCreate {
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined());
+            JsonNullable.undefined(), JsonNullable.undefined());
     }
 
     /**
@@ -757,13 +777,20 @@ public class TransactionCreate {
     }
 
     /**
-     * Whether to capture the transaction asynchronously.
+     * Whether to capture the transaction asynchronously when an authorization-capture split occurs.
      * 
-     * <p>- When `async_capture` is `false` (default), the transaction is captured in the same request.
-     * - When `async_capture` is `true`, the transaction is automatically captured at a later time.
+     * <p>This flag is only used if the transaction flow is split between authorization and capture.
+     * The split itself is not controlled by this flag and depends on other conditions, including delayed
+     * capture support, direct capture support, card scheme, gift cards, and anti-fraud decision.
+     * 
+     * <p>- When `async_capture` is `false` (default) and applicable, the capture is attempted in the same
+     * request.
+     * - When `async_capture` is `true` and applicable, the capture is performed outside the context of
+     * this request.
      * 
      * <p>Redirect transactions are not affected by this flag. This flag can only be set to `true` when
-     * `intent` is set to `capture`.
+     * `intent` is set to `capture`. Please check the public documentation for full authorization-capture
+     * split behavior details.
      */
     @JsonIgnore
     public Optional<Boolean> asyncCapture() {
@@ -894,6 +921,16 @@ public class TransactionCreate {
     @JsonIgnore
     public JsonNullable<IntegrationClient> integrationClient() {
         return (JsonNullable<IntegrationClient>) integrationClient;
+    }
+
+    /**
+     * The date and time when the buyer's approval window for this transaction expires. If not provided,
+     * this is automatically computed from the connector's default expiration time. The value cannot exceed
+     * the connector's maximum approval window.
+     */
+    @JsonIgnore
+    public JsonNullable<OffsetDateTime> approvalExpiresAt() {
+        return approvalExpiresAt;
     }
 
     public static Builder builder() {
@@ -1413,13 +1450,20 @@ public class TransactionCreate {
     }
 
     /**
-     * Whether to capture the transaction asynchronously.
+     * Whether to capture the transaction asynchronously when an authorization-capture split occurs.
      * 
-     * <p>- When `async_capture` is `false` (default), the transaction is captured in the same request.
-     * - When `async_capture` is `true`, the transaction is automatically captured at a later time.
+     * <p>This flag is only used if the transaction flow is split between authorization and capture.
+     * The split itself is not controlled by this flag and depends on other conditions, including delayed
+     * capture support, direct capture support, card scheme, gift cards, and anti-fraud decision.
+     * 
+     * <p>- When `async_capture` is `false` (default) and applicable, the capture is attempted in the same
+     * request.
+     * - When `async_capture` is `true` and applicable, the capture is performed outside the context of
+     * this request.
      * 
      * <p>Redirect transactions are not affected by this flag. This flag can only be set to `true` when
-     * `intent` is set to `capture`.
+     * `intent` is set to `capture`. Please check the public documentation for full authorization-capture
+     * split behavior details.
      */
     public TransactionCreate withAsyncCapture(boolean asyncCapture) {
         Utils.checkNotNull(asyncCapture, "asyncCapture");
@@ -1429,13 +1473,20 @@ public class TransactionCreate {
 
 
     /**
-     * Whether to capture the transaction asynchronously.
+     * Whether to capture the transaction asynchronously when an authorization-capture split occurs.
      * 
-     * <p>- When `async_capture` is `false` (default), the transaction is captured in the same request.
-     * - When `async_capture` is `true`, the transaction is automatically captured at a later time.
+     * <p>This flag is only used if the transaction flow is split between authorization and capture.
+     * The split itself is not controlled by this flag and depends on other conditions, including delayed
+     * capture support, direct capture support, card scheme, gift cards, and anti-fraud decision.
+     * 
+     * <p>- When `async_capture` is `false` (default) and applicable, the capture is attempted in the same
+     * request.
+     * - When `async_capture` is `true` and applicable, the capture is performed outside the context of
+     * this request.
      * 
      * <p>Redirect transactions are not affected by this flag. This flag can only be set to `true` when
-     * `intent` is set to `capture`.
+     * `intent` is set to `capture`. Please check the public documentation for full authorization-capture
+     * split behavior details.
      */
     public TransactionCreate withAsyncCapture(Optional<Boolean> asyncCapture) {
         Utils.checkNotNull(asyncCapture, "asyncCapture");
@@ -1723,6 +1774,28 @@ public class TransactionCreate {
         return this;
     }
 
+    /**
+     * The date and time when the buyer's approval window for this transaction expires. If not provided,
+     * this is automatically computed from the connector's default expiration time. The value cannot exceed
+     * the connector's maximum approval window.
+     */
+    public TransactionCreate withApprovalExpiresAt(OffsetDateTime approvalExpiresAt) {
+        Utils.checkNotNull(approvalExpiresAt, "approvalExpiresAt");
+        this.approvalExpiresAt = JsonNullable.of(approvalExpiresAt);
+        return this;
+    }
+
+    /**
+     * The date and time when the buyer's approval window for this transaction expires. If not provided,
+     * this is automatically computed from the connector's default expiration time. The value cannot exceed
+     * the connector's maximum approval window.
+     */
+    public TransactionCreate withApprovalExpiresAt(JsonNullable<OffsetDateTime> approvalExpiresAt) {
+        Utils.checkNotNull(approvalExpiresAt, "approvalExpiresAt");
+        this.approvalExpiresAt = approvalExpiresAt;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -1772,7 +1845,8 @@ public class TransactionCreate {
             Utils.enhancedDeepEquals(this.supplierOrderNumber, other.supplierOrderNumber) &&
             Utils.enhancedDeepEquals(this.dutyAmount, other.dutyAmount) &&
             Utils.enhancedDeepEquals(this.shippingAmount, other.shippingAmount) &&
-            Utils.enhancedDeepEquals(this.integrationClient, other.integrationClient);
+            Utils.enhancedDeepEquals(this.integrationClient, other.integrationClient) &&
+            Utils.enhancedDeepEquals(this.approvalExpiresAt, other.approvalExpiresAt);
     }
     
     @Override
@@ -1791,7 +1865,7 @@ public class TransactionCreate {
             installmentCount, taxAmount, merchantTaxId,
             purchaseOrderNumber, customerReferenceNumber, amountIncludesTax,
             supplierOrderNumber, dutyAmount, shippingAmount,
-            integrationClient);
+            integrationClient, approvalExpiresAt);
     }
     
     @Override
@@ -1836,7 +1910,8 @@ public class TransactionCreate {
                 "supplierOrderNumber", supplierOrderNumber,
                 "dutyAmount", dutyAmount,
                 "shippingAmount", shippingAmount,
-                "integrationClient", integrationClient);
+                "integrationClient", integrationClient,
+                "approvalExpiresAt", approvalExpiresAt);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -1921,6 +1996,8 @@ public class TransactionCreate {
         private JsonNullable<Long> shippingAmount = JsonNullable.undefined();
 
         private JsonNullable<? extends IntegrationClient> integrationClient = JsonNullable.undefined();
+
+        private JsonNullable<OffsetDateTime> approvalExpiresAt = JsonNullable.undefined();
 
         private Builder() {
           // force use of static builder() method
@@ -2458,13 +2535,20 @@ public class TransactionCreate {
 
 
         /**
-         * Whether to capture the transaction asynchronously.
+         * Whether to capture the transaction asynchronously when an authorization-capture split occurs.
          * 
-         * <p>- When `async_capture` is `false` (default), the transaction is captured in the same request.
-         * - When `async_capture` is `true`, the transaction is automatically captured at a later time.
+         * <p>This flag is only used if the transaction flow is split between authorization and capture.
+         * The split itself is not controlled by this flag and depends on other conditions, including delayed
+         * capture support, direct capture support, card scheme, gift cards, and anti-fraud decision.
+         * 
+         * <p>- When `async_capture` is `false` (default) and applicable, the capture is attempted in the same
+         * request.
+         * - When `async_capture` is `true` and applicable, the capture is performed outside the context of
+         * this request.
          * 
          * <p>Redirect transactions are not affected by this flag. This flag can only be set to `true` when
-         * `intent` is set to `capture`.
+         * `intent` is set to `capture`. Please check the public documentation for full authorization-capture
+         * split behavior details.
          */
         public Builder asyncCapture(boolean asyncCapture) {
             Utils.checkNotNull(asyncCapture, "asyncCapture");
@@ -2473,13 +2557,20 @@ public class TransactionCreate {
         }
 
         /**
-         * Whether to capture the transaction asynchronously.
+         * Whether to capture the transaction asynchronously when an authorization-capture split occurs.
          * 
-         * <p>- When `async_capture` is `false` (default), the transaction is captured in the same request.
-         * - When `async_capture` is `true`, the transaction is automatically captured at a later time.
+         * <p>This flag is only used if the transaction flow is split between authorization and capture.
+         * The split itself is not controlled by this flag and depends on other conditions, including delayed
+         * capture support, direct capture support, card scheme, gift cards, and anti-fraud decision.
+         * 
+         * <p>- When `async_capture` is `false` (default) and applicable, the capture is attempted in the same
+         * request.
+         * - When `async_capture` is `true` and applicable, the capture is performed outside the context of
+         * this request.
          * 
          * <p>Redirect transactions are not affected by this flag. This flag can only be set to `true` when
-         * `intent` is set to `capture`.
+         * `intent` is set to `capture`. Please check the public documentation for full authorization-capture
+         * split behavior details.
          */
         public Builder asyncCapture(Optional<Boolean> asyncCapture) {
             Utils.checkNotNull(asyncCapture, "asyncCapture");
@@ -2780,6 +2871,29 @@ public class TransactionCreate {
             return this;
         }
 
+
+        /**
+         * The date and time when the buyer's approval window for this transaction expires. If not provided,
+         * this is automatically computed from the connector's default expiration time. The value cannot exceed
+         * the connector's maximum approval window.
+         */
+        public Builder approvalExpiresAt(OffsetDateTime approvalExpiresAt) {
+            Utils.checkNotNull(approvalExpiresAt, "approvalExpiresAt");
+            this.approvalExpiresAt = JsonNullable.of(approvalExpiresAt);
+            return this;
+        }
+
+        /**
+         * The date and time when the buyer's approval window for this transaction expires. If not provided,
+         * this is automatically computed from the connector's default expiration time. The value cannot exceed
+         * the connector's maximum approval window.
+         */
+        public Builder approvalExpiresAt(JsonNullable<OffsetDateTime> approvalExpiresAt) {
+            Utils.checkNotNull(approvalExpiresAt, "approvalExpiresAt");
+            this.approvalExpiresAt = approvalExpiresAt;
+            return this;
+        }
+
         public TransactionCreate build() {
             if (store == null) {
                 store = _SINGLETON_VALUE_Store.value();
@@ -2814,7 +2928,7 @@ public class TransactionCreate {
                 installmentCount, taxAmount, merchantTaxId,
                 purchaseOrderNumber, customerReferenceNumber, amountIncludesTax,
                 supplierOrderNumber, dutyAmount, shippingAmount,
-                integrationClient);
+                integrationClient, approvalExpiresAt);
         }
 
 

@@ -33,7 +33,7 @@ public class Application {
         ListBuyerPaymentMethodsRequest req = ListBuyerPaymentMethodsRequest.builder()
                 .buyerId("fe26475d-ec3e-4884-9553-f7356683f7f9")
                 .buyerExternalIdentifier("buyer-12345")
-                .sortBy(SortBy.LAST_USED_AT)
+                .sortBy(ListBuyerPaymentMethodsSortBy.LAST_USED_AT)
                 .country("US")
                 .currency("USD")
                 .build();

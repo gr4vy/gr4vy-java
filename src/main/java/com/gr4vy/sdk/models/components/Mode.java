@@ -28,6 +28,7 @@ public class Mode {
     public static final Mode CLICK_TO_PAY = new Mode("click-to-pay");
     public static final Mode GIFT_CARD = new Mode("gift-card");
     public static final Mode BANK = new Mode("bank");
+    public static final Mode PAZE = new Mode("paze");
 
     // This map will grow whenever a Color gets created with a new
     // unrecognized value (a potential memory leak if the user is not
@@ -109,6 +110,7 @@ public class Mode {
         map.put("click-to-pay", CLICK_TO_PAY);
         map.put("gift-card", GIFT_CARD);
         map.put("bank", BANK);
+        map.put("paze", PAZE);
         return map;
     }
 
@@ -122,6 +124,7 @@ public class Mode {
         map.put("click-to-pay", ModeEnum.CLICK_TO_PAY);
         map.put("gift-card", ModeEnum.GIFT_CARD);
         map.put("bank", ModeEnum.BANK);
+        map.put("paze", ModeEnum.PAZE);
         return map;
     }
     
@@ -135,7 +138,8 @@ public class Mode {
         CHECKOUT_SESSION("checkout-session"),
         CLICK_TO_PAY("click-to-pay"),
         GIFT_CARD("gift-card"),
-        BANK("bank"),;
+        BANK("bank"),
+        PAZE("paze"),;
 
         private final String value;
 

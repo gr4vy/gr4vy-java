@@ -6,7 +6,7 @@ package com.gr4vy.sdk.models.operations;
 import static com.gr4vy.sdk.operations.Operations.RequestOperation;
 
 import com.gr4vy.sdk.SDKConfiguration;
-import com.gr4vy.sdk.models.components.PaymentServiceUpdate;
+import com.gr4vy.sdk.models.components.PaymentServiceCreate;
 import com.gr4vy.sdk.operations.CreatePaymentService;
 import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.Utils;
@@ -15,20 +15,13 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 public class CreatePaymentServiceRequestBuilder {
 
-    private String paymentServiceId;
     private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
-    private PaymentServiceUpdate paymentServiceUpdate;
+    private PaymentServiceCreate paymentServiceCreate;
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
     public CreatePaymentServiceRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
-    }
-
-    public CreatePaymentServiceRequestBuilder paymentServiceId(String paymentServiceId) {
-        Utils.checkNotNull(paymentServiceId, "paymentServiceId");
-        this.paymentServiceId = paymentServiceId;
-        return this;
     }
 
     public CreatePaymentServiceRequestBuilder merchantAccountId(String merchantAccountId) {
@@ -43,18 +36,17 @@ public class CreatePaymentServiceRequestBuilder {
         return this;
     }
 
-    public CreatePaymentServiceRequestBuilder paymentServiceUpdate(PaymentServiceUpdate paymentServiceUpdate) {
-        Utils.checkNotNull(paymentServiceUpdate, "paymentServiceUpdate");
-        this.paymentServiceUpdate = paymentServiceUpdate;
+    public CreatePaymentServiceRequestBuilder paymentServiceCreate(PaymentServiceCreate paymentServiceCreate) {
+        Utils.checkNotNull(paymentServiceCreate, "paymentServiceCreate");
+        this.paymentServiceCreate = paymentServiceCreate;
         return this;
     }
 
 
     private CreatePaymentServiceRequest buildRequest() {
 
-        CreatePaymentServiceRequest request = new CreatePaymentServiceRequest(paymentServiceId,
-            merchantAccountId,
-            paymentServiceUpdate);
+        CreatePaymentServiceRequest request = new CreatePaymentServiceRequest(merchantAccountId,
+            paymentServiceCreate);
 
         return request;
     }

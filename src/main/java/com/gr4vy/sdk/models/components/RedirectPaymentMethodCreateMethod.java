@@ -91,6 +91,7 @@ public class RedirectPaymentMethodCreateMethod {
     public static final RedirectPaymentMethodCreateMethod PAYMAYA = new RedirectPaymentMethodCreateMethod("paymaya");
     public static final RedirectPaymentMethodCreateMethod PAYPAL = new RedirectPaymentMethodCreateMethod("paypal");
     public static final RedirectPaymentMethodCreateMethod PAYPALPAYLATER = new RedirectPaymentMethodCreateMethod("paypalpaylater");
+    public static final RedirectPaymentMethodCreateMethod PAYPAY = new RedirectPaymentMethodCreateMethod("paypay");
     public static final RedirectPaymentMethodCreateMethod PAYTO = new RedirectPaymentMethodCreateMethod("payto");
     public static final RedirectPaymentMethodCreateMethod PAYVALIDA = new RedirectPaymentMethodCreateMethod("payvalida");
     public static final RedirectPaymentMethodCreateMethod PICPAY = new RedirectPaymentMethodCreateMethod("picpay");
@@ -267,6 +268,7 @@ public class RedirectPaymentMethodCreateMethod {
         map.put("paymaya", PAYMAYA);
         map.put("paypal", PAYPAL);
         map.put("paypalpaylater", PAYPALPAYLATER);
+        map.put("paypay", PAYPAY);
         map.put("payto", PAYTO);
         map.put("payvalida", PAYVALIDA);
         map.put("picpay", PICPAY);
@@ -375,6 +377,7 @@ public class RedirectPaymentMethodCreateMethod {
         map.put("paymaya", RedirectPaymentMethodCreateMethodEnum.PAYMAYA);
         map.put("paypal", RedirectPaymentMethodCreateMethodEnum.PAYPAL);
         map.put("paypalpaylater", RedirectPaymentMethodCreateMethodEnum.PAYPALPAYLATER);
+        map.put("paypay", RedirectPaymentMethodCreateMethodEnum.PAYPAY);
         map.put("payto", RedirectPaymentMethodCreateMethodEnum.PAYTO);
         map.put("payvalida", RedirectPaymentMethodCreateMethodEnum.PAYVALIDA);
         map.put("picpay", RedirectPaymentMethodCreateMethodEnum.PICPAY);
@@ -484,6 +487,7 @@ public class RedirectPaymentMethodCreateMethod {
         PAYMAYA("paymaya"),
         PAYPAL("paypal"),
         PAYPALPAYLATER("paypalpaylater"),
+        PAYPAY("paypay"),
         PAYTO("payto"),
         PAYVALIDA("payvalida"),
         PICPAY("picpay"),

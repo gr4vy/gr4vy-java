@@ -1,13 +1,13 @@
-# SortBy
+# ListBuyerGiftCardsSortBy
 
-The field to sort the payment methods by.
+The field to sort the gift cards by.
 
 ## Example Usage
 
 ```java
-import com.gr4vy.sdk.models.operations.SortBy;
+import com.gr4vy.sdk.models.operations.ListBuyerGiftCardsSortBy;
 
-SortBy value = SortBy.LAST_USED_AT;
+ListBuyerGiftCardsSortBy value = ListBuyerGiftCardsSortBy.LAST_USED_AT;
 ```
 
 

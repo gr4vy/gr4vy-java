@@ -23,6 +23,7 @@ public class DigitalWalletProvider {
     public static final DigitalWalletProvider APPLE = new DigitalWalletProvider("apple");
     public static final DigitalWalletProvider GOOGLE = new DigitalWalletProvider("google");
     public static final DigitalWalletProvider CLICK_TO_PAY = new DigitalWalletProvider("click-to-pay");
+    public static final DigitalWalletProvider PAZE = new DigitalWalletProvider("paze");
 
     // This map will grow whenever a Color gets created with a new
     // unrecognized value (a potential memory leak if the user is not
@@ -99,6 +100,7 @@ public class DigitalWalletProvider {
         map.put("apple", APPLE);
         map.put("google", GOOGLE);
         map.put("click-to-pay", CLICK_TO_PAY);
+        map.put("paze", PAZE);
         return map;
     }
 
@@ -107,6 +109,7 @@ public class DigitalWalletProvider {
         map.put("apple", DigitalWalletProviderEnum.APPLE);
         map.put("google", DigitalWalletProviderEnum.GOOGLE);
         map.put("click-to-pay", DigitalWalletProviderEnum.CLICK_TO_PAY);
+        map.put("paze", DigitalWalletProviderEnum.PAZE);
         return map;
     }
     
@@ -115,7 +118,8 @@ public class DigitalWalletProvider {
 
         APPLE("apple"),
         GOOGLE("google"),
-        CLICK_TO_PAY("click-to-pay"),;
+        CLICK_TO_PAY("click-to-pay"),
+        PAZE("paze"),;
 
         private final String value;
 

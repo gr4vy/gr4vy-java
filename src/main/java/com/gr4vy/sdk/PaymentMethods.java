@@ -5,6 +5,7 @@ package com.gr4vy.sdk;
 
 import static com.gr4vy.sdk.operations.Operations.RequestOperation;
 
+import com.gr4vy.sdk.models.components.PaymentMethodUpdate;
 import com.gr4vy.sdk.models.operations.Body;
 import com.gr4vy.sdk.models.operations.CreatePaymentMethodRequest;
 import com.gr4vy.sdk.models.operations.CreatePaymentMethodRequestBuilder;
@@ -18,10 +19,14 @@ import com.gr4vy.sdk.models.operations.GetPaymentMethodResponse;
 import com.gr4vy.sdk.models.operations.ListPaymentMethodsRequest;
 import com.gr4vy.sdk.models.operations.ListPaymentMethodsRequestBuilder;
 import com.gr4vy.sdk.models.operations.ListPaymentMethodsResponse;
+import com.gr4vy.sdk.models.operations.UpdatePaymentMethodRequest;
+import com.gr4vy.sdk.models.operations.UpdatePaymentMethodRequestBuilder;
+import com.gr4vy.sdk.models.operations.UpdatePaymentMethodResponse;
 import com.gr4vy.sdk.operations.CreatePaymentMethod;
 import com.gr4vy.sdk.operations.DeletePaymentMethod;
 import com.gr4vy.sdk.operations.GetPaymentMethod;
 import com.gr4vy.sdk.operations.ListPaymentMethods;
+import com.gr4vy.sdk.operations.UpdatePaymentMethod;
 import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.Options;
 import java.lang.String;
@@ -192,6 +197,57 @@ public class PaymentMethods {
                 .build();
         RequestOperation<GetPaymentMethodRequest, GetPaymentMethodResponse> operation
               = new GetPaymentMethod.Sync(sdkConfiguration, options, _headers);
+        return operation.handleResponse(operation.doRequest(request));
+    }
+
+    /**
+     * Update payment method
+     * 
+     * <p>Update the details of a stored payment method.
+     * 
+     * @return The call builder
+     */
+    public UpdatePaymentMethodRequestBuilder update() {
+        return new UpdatePaymentMethodRequestBuilder(sdkConfiguration);
+    }
+
+    /**
+     * Update payment method
+     * 
+     * <p>Update the details of a stored payment method.
+     * 
+     * @param paymentMethodId The ID of the payment method
+     * @param paymentMethodUpdate Request body for updating a stored payment method.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public UpdatePaymentMethodResponse update(String paymentMethodId, PaymentMethodUpdate paymentMethodUpdate) {
+        return update(paymentMethodId, JsonNullable.undefined(), paymentMethodUpdate);
+    }
+
+    /**
+     * Update payment method
+     * 
+     * <p>Update the details of a stored payment method.
+     * 
+     * @param paymentMethodId The ID of the payment method
+     * @param merchantAccountId 
+     * @param paymentMethodUpdate Request body for updating a stored payment method.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public UpdatePaymentMethodResponse update(
+            String paymentMethodId, JsonNullable<String> merchantAccountId,
+            PaymentMethodUpdate paymentMethodUpdate) {
+        UpdatePaymentMethodRequest request =
+            UpdatePaymentMethodRequest
+                .builder()
+                .paymentMethodId(paymentMethodId)
+                .merchantAccountId(merchantAccountId)
+                .paymentMethodUpdate(paymentMethodUpdate)
+                .build();
+        RequestOperation<UpdatePaymentMethodRequest, UpdatePaymentMethodResponse> operation
+              = new UpdatePaymentMethod.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

@@ -5,10 +5,14 @@ package com.gr4vy.sdk.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.gr4vy.sdk.utils.LazySingletonValue;
 import com.gr4vy.sdk.utils.SpeakeasyMetadata;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
+import java.lang.SuppressWarnings;
+import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 
@@ -22,6 +26,18 @@ public class ListBuyerGiftCardsRequest {
     private JsonNullable<String> buyerId;
 
     /**
+     * The field to sort the gift cards by.
+     */
+    @SpeakeasyMetadata("queryParam:style=form,explode=true,name=sort_by")
+    private JsonNullable<? extends ListBuyerGiftCardsSortBy> sortBy;
+
+    /**
+     * The direction to sort the gift cards in.
+     */
+    @SpeakeasyMetadata("queryParam:style=form,explode=true,name=order_by")
+    private Optional<? extends ListBuyerGiftCardsOrderBy> orderBy;
+
+    /**
      * The ID of the merchant account to use for this request.
      */
     @SpeakeasyMetadata("header:style=simple,explode=false,name=x-gr4vy-merchant-account-id")
@@ -31,17 +47,24 @@ public class ListBuyerGiftCardsRequest {
     public ListBuyerGiftCardsRequest(
             JsonNullable<String> buyerExternalIdentifier,
             JsonNullable<String> buyerId,
+            JsonNullable<? extends ListBuyerGiftCardsSortBy> sortBy,
+            Optional<? extends ListBuyerGiftCardsOrderBy> orderBy,
             JsonNullable<String> merchantAccountId) {
         Utils.checkNotNull(buyerExternalIdentifier, "buyerExternalIdentifier");
         Utils.checkNotNull(buyerId, "buyerId");
+        Utils.checkNotNull(sortBy, "sortBy");
+        Utils.checkNotNull(orderBy, "orderBy");
         Utils.checkNotNull(merchantAccountId, "merchantAccountId");
         this.buyerExternalIdentifier = buyerExternalIdentifier;
         this.buyerId = buyerId;
+        this.sortBy = sortBy;
+        this.orderBy = orderBy;
         this.merchantAccountId = merchantAccountId;
     }
     
     public ListBuyerGiftCardsRequest() {
-        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
+        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            Optional.empty(), JsonNullable.undefined());
     }
 
     @JsonIgnore
@@ -52,6 +75,24 @@ public class ListBuyerGiftCardsRequest {
     @JsonIgnore
     public JsonNullable<String> buyerId() {
         return buyerId;
+    }
+
+    /**
+     * The field to sort the gift cards by.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public JsonNullable<ListBuyerGiftCardsSortBy> sortBy() {
+        return (JsonNullable<ListBuyerGiftCardsSortBy>) sortBy;
+    }
+
+    /**
+     * The direction to sort the gift cards in.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<ListBuyerGiftCardsOrderBy> orderBy() {
+        return (Optional<ListBuyerGiftCardsOrderBy>) orderBy;
     }
 
     /**
@@ -92,6 +133,43 @@ public class ListBuyerGiftCardsRequest {
     }
 
     /**
+     * The field to sort the gift cards by.
+     */
+    public ListBuyerGiftCardsRequest withSortBy(ListBuyerGiftCardsSortBy sortBy) {
+        Utils.checkNotNull(sortBy, "sortBy");
+        this.sortBy = JsonNullable.of(sortBy);
+        return this;
+    }
+
+    /**
+     * The field to sort the gift cards by.
+     */
+    public ListBuyerGiftCardsRequest withSortBy(JsonNullable<? extends ListBuyerGiftCardsSortBy> sortBy) {
+        Utils.checkNotNull(sortBy, "sortBy");
+        this.sortBy = sortBy;
+        return this;
+    }
+
+    /**
+     * The direction to sort the gift cards in.
+     */
+    public ListBuyerGiftCardsRequest withOrderBy(ListBuyerGiftCardsOrderBy orderBy) {
+        Utils.checkNotNull(orderBy, "orderBy");
+        this.orderBy = Optional.ofNullable(orderBy);
+        return this;
+    }
+
+
+    /**
+     * The direction to sort the gift cards in.
+     */
+    public ListBuyerGiftCardsRequest withOrderBy(Optional<? extends ListBuyerGiftCardsOrderBy> orderBy) {
+        Utils.checkNotNull(orderBy, "orderBy");
+        this.orderBy = orderBy;
+        return this;
+    }
+
+    /**
      * The ID of the merchant account to use for this request.
      */
     public ListBuyerGiftCardsRequest withMerchantAccountId(String merchantAccountId) {
@@ -121,13 +199,16 @@ public class ListBuyerGiftCardsRequest {
         return 
             Utils.enhancedDeepEquals(this.buyerExternalIdentifier, other.buyerExternalIdentifier) &&
             Utils.enhancedDeepEquals(this.buyerId, other.buyerId) &&
+            Utils.enhancedDeepEquals(this.sortBy, other.sortBy) &&
+            Utils.enhancedDeepEquals(this.orderBy, other.orderBy) &&
             Utils.enhancedDeepEquals(this.merchantAccountId, other.merchantAccountId);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            buyerExternalIdentifier, buyerId, merchantAccountId);
+            buyerExternalIdentifier, buyerId, sortBy,
+            orderBy, merchantAccountId);
     }
     
     @Override
@@ -135,6 +216,8 @@ public class ListBuyerGiftCardsRequest {
         return Utils.toString(ListBuyerGiftCardsRequest.class,
                 "buyerExternalIdentifier", buyerExternalIdentifier,
                 "buyerId", buyerId,
+                "sortBy", sortBy,
+                "orderBy", orderBy,
                 "merchantAccountId", merchantAccountId);
     }
 
@@ -144,6 +227,10 @@ public class ListBuyerGiftCardsRequest {
         private JsonNullable<String> buyerExternalIdentifier = JsonNullable.undefined();
 
         private JsonNullable<String> buyerId = JsonNullable.undefined();
+
+        private JsonNullable<? extends ListBuyerGiftCardsSortBy> sortBy = JsonNullable.undefined();
+
+        private Optional<? extends ListBuyerGiftCardsOrderBy> orderBy;
 
         private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
 
@@ -179,6 +266,44 @@ public class ListBuyerGiftCardsRequest {
 
 
         /**
+         * The field to sort the gift cards by.
+         */
+        public Builder sortBy(ListBuyerGiftCardsSortBy sortBy) {
+            Utils.checkNotNull(sortBy, "sortBy");
+            this.sortBy = JsonNullable.of(sortBy);
+            return this;
+        }
+
+        /**
+         * The field to sort the gift cards by.
+         */
+        public Builder sortBy(JsonNullable<? extends ListBuyerGiftCardsSortBy> sortBy) {
+            Utils.checkNotNull(sortBy, "sortBy");
+            this.sortBy = sortBy;
+            return this;
+        }
+
+
+        /**
+         * The direction to sort the gift cards in.
+         */
+        public Builder orderBy(ListBuyerGiftCardsOrderBy orderBy) {
+            Utils.checkNotNull(orderBy, "orderBy");
+            this.orderBy = Optional.ofNullable(orderBy);
+            return this;
+        }
+
+        /**
+         * The direction to sort the gift cards in.
+         */
+        public Builder orderBy(Optional<? extends ListBuyerGiftCardsOrderBy> orderBy) {
+            Utils.checkNotNull(orderBy, "orderBy");
+            this.orderBy = orderBy;
+            return this;
+        }
+
+
+        /**
          * The ID of the merchant account to use for this request.
          */
         public Builder merchantAccountId(String merchantAccountId) {
@@ -197,10 +322,20 @@ public class ListBuyerGiftCardsRequest {
         }
 
         public ListBuyerGiftCardsRequest build() {
+            if (orderBy == null) {
+                orderBy = _SINGLETON_VALUE_OrderBy.value();
+            }
 
             return new ListBuyerGiftCardsRequest(
-                buyerExternalIdentifier, buyerId, merchantAccountId);
+                buyerExternalIdentifier, buyerId, sortBy,
+                orderBy, merchantAccountId);
         }
 
+
+        private static final LazySingletonValue<Optional<? extends ListBuyerGiftCardsOrderBy>> _SINGLETON_VALUE_OrderBy =
+                new LazySingletonValue<>(
+                        "order_by",
+                        "\"desc\"",
+                        new TypeReference<Optional<? extends ListBuyerGiftCardsOrderBy>>() {});
     }
 }

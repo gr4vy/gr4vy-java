@@ -11,9 +11,7 @@ import com.gr4vy.sdk.models.operations.ListBuyerGiftCardsResponse;
 import com.gr4vy.sdk.operations.ListBuyerGiftCards;
 import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.Options;
-import java.lang.String;
 import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
 
 
 public class BuyersGiftCards {
@@ -51,12 +49,12 @@ public class BuyersGiftCards {
      * 
      * <p>List all the stored gift cards for a specific buyer.
      * 
+     * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
-    public ListBuyerGiftCardsResponse listDirect() {
-        return list(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            Optional.empty());
+    public ListBuyerGiftCardsResponse list(ListBuyerGiftCardsRequest request) {
+        return list(request, Optional.empty());
     }
 
     /**
@@ -64,23 +62,12 @@ public class BuyersGiftCards {
      * 
      * <p>List all the stored gift cards for a specific buyer.
      * 
-     * @param buyerExternalIdentifier 
-     * @param buyerId 
-     * @param merchantAccountId 
+     * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
-    public ListBuyerGiftCardsResponse list(
-            JsonNullable<String> buyerExternalIdentifier, JsonNullable<String> buyerId,
-            JsonNullable<String> merchantAccountId, Optional<Options> options) {
-        ListBuyerGiftCardsRequest request =
-            ListBuyerGiftCardsRequest
-                .builder()
-                .buyerExternalIdentifier(buyerExternalIdentifier)
-                .buyerId(buyerId)
-                .merchantAccountId(merchantAccountId)
-                .build();
+    public ListBuyerGiftCardsResponse list(ListBuyerGiftCardsRequest request, Optional<Options> options) {
         RequestOperation<ListBuyerGiftCardsRequest, ListBuyerGiftCardsResponse> operation
               = new ListBuyerGiftCards.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
