@@ -5,9 +5,9 @@
 ### Available Operations
 
 * [list](#list) - List payment services
-* [create](#create) - Update a configured payment service
+* [create](#create) - Configure a payment service
 * [get](#get) - Get payment service
-* [update](#update) - Configure a payment service
+* [update](#update) - Update a configured payment service
 * [delete](#delete) - Delete a configured payment service
 * [verify](#verify) - Verify payment service credentials
 * [session](#session) - Create a session for a payment service definition
@@ -83,11 +83,11 @@ public class Application {
 
 ## create
 
-Updates the configuration of a payment service.
+Configures a new payment service for use by merchants.
 
 ### Example Usage
 
-<!-- UsageSnippet language="java" operationID="update_payment_service" method="post" path="/payment-services" -->
+<!-- UsageSnippet language="java" operationID="create_payment_service" method="post" path="/payment-services" -->
 ```java
 package hello.world;
 
@@ -95,7 +95,7 @@ import com.gr4vy.sdk.Gr4vy;
 import com.gr4vy.sdk.models.components.Field;
 import com.gr4vy.sdk.models.components.PaymentServiceCreate;
 import com.gr4vy.sdk.models.errors.*;
-import com.gr4vy.sdk.models.operations.UpdatePaymentServiceResponse;
+import com.gr4vy.sdk.models.operations.CreatePaymentServiceResponse;
 import java.lang.Exception;
 import java.util.List;
 
@@ -108,15 +108,11 @@ public class Application {
                 .bearerAuth(System.getenv().getOrDefault("BEARER_AUTH", ""))
             .build();
 
-        UpdatePaymentServiceResponse res = sdk.paymentServices().create()
+        CreatePaymentServiceResponse res = sdk.paymentServices().create()
                 .paymentServiceCreate(PaymentServiceCreate.builder()
                     .displayName("Stripe")
                     .paymentServiceDefinitionId("stripe-card")
                     .fields(List.of(
-                        Field.builder()
-                            .key("api_key")
-                            .value("key-12345")
-                            .build(),
                         Field.builder()
                             .key("api_key")
                             .value("key-12345")
@@ -150,7 +146,7 @@ public class Application {
 
 ### Response
 
-**[UpdatePaymentServiceResponse](../../models/operations/UpdatePaymentServiceResponse.md)**
+**[CreatePaymentServiceResponse](../../models/operations/CreatePaymentServiceResponse.md)**
 
 ### Errors
 
@@ -236,18 +232,18 @@ public class Application {
 
 ## update
 
-Configures a new payment service for use by merchants.
+Updates the configuration of a payment service.
 
 ### Example Usage
 
-<!-- UsageSnippet language="java" operationID="create_payment_service" method="put" path="/payment-services/{payment_service_id}" -->
+<!-- UsageSnippet language="java" operationID="update_payment_service" method="put" path="/payment-services/{payment_service_id}" -->
 ```java
 package hello.world;
 
 import com.gr4vy.sdk.Gr4vy;
 import com.gr4vy.sdk.models.components.PaymentServiceUpdate;
 import com.gr4vy.sdk.models.errors.*;
-import com.gr4vy.sdk.models.operations.CreatePaymentServiceResponse;
+import com.gr4vy.sdk.models.operations.UpdatePaymentServiceResponse;
 import java.lang.Exception;
 
 public class Application {
@@ -259,7 +255,7 @@ public class Application {
                 .bearerAuth(System.getenv().getOrDefault("BEARER_AUTH", ""))
             .build();
 
-        CreatePaymentServiceResponse res = sdk.paymentServices().update()
+        UpdatePaymentServiceResponse res = sdk.paymentServices().update()
                 .paymentServiceId("fffd152a-9532-4087-9a4f-de58754210f0")
                 .paymentServiceUpdate(PaymentServiceUpdate.builder()
                     .settlementReportingEnabled(true)
@@ -283,7 +279,7 @@ public class Application {
 
 ### Response
 
-**[CreatePaymentServiceResponse](../../models/operations/CreatePaymentServiceResponse.md)**
+**[UpdatePaymentServiceResponse](../../models/operations/UpdatePaymentServiceResponse.md)**
 
 ### Errors
 

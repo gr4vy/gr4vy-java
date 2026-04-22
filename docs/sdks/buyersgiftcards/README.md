@@ -18,6 +18,7 @@ package hello.world;
 
 import com.gr4vy.sdk.Gr4vy;
 import com.gr4vy.sdk.models.errors.*;
+import com.gr4vy.sdk.models.operations.ListBuyerGiftCardsRequest;
 import com.gr4vy.sdk.models.operations.ListBuyerGiftCardsResponse;
 import java.lang.Exception;
 
@@ -30,7 +31,11 @@ public class Application {
                 .bearerAuth(System.getenv().getOrDefault("BEARER_AUTH", ""))
             .build();
 
+        ListBuyerGiftCardsRequest req = ListBuyerGiftCardsRequest.builder()
+                .build();
+
         ListBuyerGiftCardsResponse res = sdk.buyers().giftCards().list()
+                .request(req)
                 .call();
 
         if (res.giftCardSummaries().isPresent()) {
@@ -42,11 +47,9 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                               | Type                                                    | Required                                                | Description                                             |
-| ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- |
-| `buyerExternalIdentifier`                               | *JsonNullable\<String>*                                 | :heavy_minus_sign:                                      | N/A                                                     |
-| `buyerId`                                               | *JsonNullable\<String>*                                 | :heavy_minus_sign:                                      | N/A                                                     |
-| `merchantAccountId`                                     | *JsonNullable\<String>*                                 | :heavy_minus_sign:                                      | The ID of the merchant account to use for this request. |
+| Parameter                                                                         | Type                                                                              | Required                                                                          | Description                                                                       |
+| --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
+| `request`                                                                         | [ListBuyerGiftCardsRequest](../../models/operations/ListBuyerGiftCardsRequest.md) | :heavy_check_mark:                                                                | The request object to use for the request.                                        |
 
 ### Response
 

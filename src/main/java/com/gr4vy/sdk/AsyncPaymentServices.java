@@ -109,46 +109,46 @@ public class AsyncPaymentServices {
 
 
     /**
-     * Update a configured payment service
+     * Configure a payment service
      * 
-     * <p>Updates the configuration of a payment service.
+     * <p>Configures a new payment service for use by merchants.
      * 
      * @return The async call builder
      */
-    public UpdatePaymentServiceRequestBuilder create() {
-        return new UpdatePaymentServiceRequestBuilder(sdkConfiguration);
+    public CreatePaymentServiceRequestBuilder create() {
+        return new CreatePaymentServiceRequestBuilder(sdkConfiguration);
     }
 
     /**
-     * Update a configured payment service
+     * Configure a payment service
      * 
-     * <p>Updates the configuration of a payment service.
+     * <p>Configures a new payment service for use by merchants.
      * 
      * @param paymentServiceCreate Request body for activating a payment service
-     * @return {@code CompletableFuture<UpdatePaymentServiceResponse>} - The async response
+     * @return {@code CompletableFuture<CreatePaymentServiceResponse>} - The async response
      */
-    public CompletableFuture<UpdatePaymentServiceResponse> create(PaymentServiceCreate paymentServiceCreate) {
+    public CompletableFuture<CreatePaymentServiceResponse> create(PaymentServiceCreate paymentServiceCreate) {
         return create(JsonNullable.undefined(), paymentServiceCreate);
     }
 
     /**
-     * Update a configured payment service
+     * Configure a payment service
      * 
-     * <p>Updates the configuration of a payment service.
+     * <p>Configures a new payment service for use by merchants.
      * 
      * @param merchantAccountId 
      * @param paymentServiceCreate Request body for activating a payment service
-     * @return {@code CompletableFuture<UpdatePaymentServiceResponse>} - The async response
+     * @return {@code CompletableFuture<CreatePaymentServiceResponse>} - The async response
      */
-    public CompletableFuture<UpdatePaymentServiceResponse> create(JsonNullable<String> merchantAccountId, PaymentServiceCreate paymentServiceCreate) {
-        UpdatePaymentServiceRequest request =
-            UpdatePaymentServiceRequest
+    public CompletableFuture<CreatePaymentServiceResponse> create(JsonNullable<String> merchantAccountId, PaymentServiceCreate paymentServiceCreate) {
+        CreatePaymentServiceRequest request =
+            CreatePaymentServiceRequest
                 .builder()
                 .merchantAccountId(merchantAccountId)
                 .paymentServiceCreate(paymentServiceCreate)
                 .build();
-        AsyncRequestOperation<UpdatePaymentServiceRequest, UpdatePaymentServiceResponse> operation
-              = new UpdatePaymentService.Async(sdkConfiguration, _headers);
+        AsyncRequestOperation<CreatePaymentServiceRequest, CreatePaymentServiceResponse> operation
+              = new CreatePaymentService.Async(sdkConfiguration, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -206,51 +206,51 @@ public class AsyncPaymentServices {
 
 
     /**
-     * Configure a payment service
+     * Update a configured payment service
      * 
-     * <p>Configures a new payment service for use by merchants.
+     * <p>Updates the configuration of a payment service.
      * 
      * @return The async call builder
      */
-    public CreatePaymentServiceRequestBuilder update() {
-        return new CreatePaymentServiceRequestBuilder(sdkConfiguration);
+    public UpdatePaymentServiceRequestBuilder update() {
+        return new UpdatePaymentServiceRequestBuilder(sdkConfiguration);
     }
 
     /**
-     * Configure a payment service
+     * Update a configured payment service
      * 
-     * <p>Configures a new payment service for use by merchants.
+     * <p>Updates the configuration of a payment service.
      * 
      * @param paymentServiceId the ID of the payment service
      * @param paymentServiceUpdate Request body for updating a Payment Service
-     * @return {@code CompletableFuture<CreatePaymentServiceResponse>} - The async response
+     * @return {@code CompletableFuture<UpdatePaymentServiceResponse>} - The async response
      */
-    public CompletableFuture<CreatePaymentServiceResponse> update(String paymentServiceId, PaymentServiceUpdate paymentServiceUpdate) {
+    public CompletableFuture<UpdatePaymentServiceResponse> update(String paymentServiceId, PaymentServiceUpdate paymentServiceUpdate) {
         return update(paymentServiceId, JsonNullable.undefined(), paymentServiceUpdate);
     }
 
     /**
-     * Configure a payment service
+     * Update a configured payment service
      * 
-     * <p>Configures a new payment service for use by merchants.
+     * <p>Updates the configuration of a payment service.
      * 
      * @param paymentServiceId the ID of the payment service
      * @param merchantAccountId 
      * @param paymentServiceUpdate Request body for updating a Payment Service
-     * @return {@code CompletableFuture<CreatePaymentServiceResponse>} - The async response
+     * @return {@code CompletableFuture<UpdatePaymentServiceResponse>} - The async response
      */
-    public CompletableFuture<CreatePaymentServiceResponse> update(
+    public CompletableFuture<UpdatePaymentServiceResponse> update(
             String paymentServiceId, JsonNullable<String> merchantAccountId,
             PaymentServiceUpdate paymentServiceUpdate) {
-        CreatePaymentServiceRequest request =
-            CreatePaymentServiceRequest
+        UpdatePaymentServiceRequest request =
+            UpdatePaymentServiceRequest
                 .builder()
                 .paymentServiceId(paymentServiceId)
                 .merchantAccountId(merchantAccountId)
                 .paymentServiceUpdate(paymentServiceUpdate)
                 .build();
-        AsyncRequestOperation<CreatePaymentServiceRequest, CreatePaymentServiceResponse> operation
-              = new CreatePaymentService.Async(sdkConfiguration, _headers);
+        AsyncRequestOperation<UpdatePaymentServiceRequest, UpdatePaymentServiceResponse> operation
+              = new UpdatePaymentService.Async(sdkConfiguration, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }

@@ -59,7 +59,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'com.gr4vy:sdk:2.16.52'
+implementation 'com.gr4vy:sdk:2.16.53'
 ```
 
 Maven:
@@ -67,7 +67,7 @@ Maven:
 <dependency>
     <groupId>com.gr4vy</groupId>
     <artifactId>sdk</artifactId>
-    <version>2.16.52</version>
+    <version>2.16.53</version>
 </dependency>
 ```
 
@@ -393,6 +393,7 @@ Async support is available for:
 * [list](docs/sdks/paymentmethods/README.md#list) - List all payment methods
 * [create](docs/sdks/paymentmethods/README.md#create) - Create payment method
 * [get](docs/sdks/paymentmethods/README.md#get) - Get payment method
+* [update](docs/sdks/paymentmethods/README.md#update) - Update payment method
 * [delete](docs/sdks/paymentmethods/README.md#delete) - Delete payment method
 
 #### [PaymentMethods.NetworkTokens](docs/sdks/networktokens/README.md)
@@ -426,9 +427,9 @@ Async support is available for:
 ### [PaymentServices](docs/sdks/paymentservices/README.md)
 
 * [list](docs/sdks/paymentservices/README.md#list) - List payment services
-* [create](docs/sdks/paymentservices/README.md#create) - Update a configured payment service
+* [create](docs/sdks/paymentservices/README.md#create) - Configure a payment service
 * [get](docs/sdks/paymentservices/README.md#get) - Get payment service
-* [update](docs/sdks/paymentservices/README.md#update) - Configure a payment service
+* [update](docs/sdks/paymentservices/README.md#update) - Update a configured payment service
 * [delete](docs/sdks/paymentservices/README.md#delete) - Delete a configured payment service
 * [verify](docs/sdks/paymentservices/README.md#verify) - Verify payment service credentials
 * [session](docs/sdks/paymentservices/README.md#session) - Create a session for a payment service definition

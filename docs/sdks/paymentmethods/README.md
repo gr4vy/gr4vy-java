@@ -7,6 +7,7 @@
 * [list](#list) - List all payment methods
 * [create](#create) - Create payment method
 * [get](#get) - Get payment method
+* [update](#update) - Update payment method
 * [delete](#delete) - Delete payment method
 
 ## list
@@ -193,6 +194,74 @@ public class Application {
 ### Response
 
 **[GetPaymentMethodResponse](../../models/operations/GetPaymentMethodResponse.md)**
+
+### Errors
+
+| Error Type                        | Status Code                       | Content Type                      |
+| --------------------------------- | --------------------------------- | --------------------------------- |
+| models/errors/Error400            | 400                               | application/json                  |
+| models/errors/Error401            | 401                               | application/json                  |
+| models/errors/Error403            | 403                               | application/json                  |
+| models/errors/Error404            | 404                               | application/json                  |
+| models/errors/Error405            | 405                               | application/json                  |
+| models/errors/Error409            | 409                               | application/json                  |
+| models/errors/HTTPValidationError | 422                               | application/json                  |
+| models/errors/Error425            | 425                               | application/json                  |
+| models/errors/Error429            | 429                               | application/json                  |
+| models/errors/Error500            | 500                               | application/json                  |
+| models/errors/Error502            | 502                               | application/json                  |
+| models/errors/Error504            | 504                               | application/json                  |
+| models/errors/APIException        | 4XX, 5XX                          | \*/\*                             |
+
+## update
+
+Update the details of a stored payment method.
+
+### Example Usage
+
+<!-- UsageSnippet language="java" operationID="update_payment_method" method="put" path="/payment-methods/{payment_method_id}" -->
+```java
+package hello.world;
+
+import com.gr4vy.sdk.Gr4vy;
+import com.gr4vy.sdk.models.components.PaymentMethodUpdate;
+import com.gr4vy.sdk.models.errors.*;
+import com.gr4vy.sdk.models.operations.UpdatePaymentMethodResponse;
+import java.lang.Exception;
+
+public class Application {
+
+    public static void main(String[] args) throws Exception {
+
+        Gr4vy sdk = Gr4vy.builder()
+                .merchantAccountId("<id>")
+                .bearerAuth(System.getenv().getOrDefault("BEARER_AUTH", ""))
+            .build();
+
+        UpdatePaymentMethodResponse res = sdk.paymentMethods().update()
+                .paymentMethodId("ef9496d8-53a5-4aad-8ca2-00eb68334389")
+                .paymentMethodUpdate(PaymentMethodUpdate.builder()
+                    .build())
+                .call();
+
+        if (res.paymentMethod().isPresent()) {
+            System.out.println(res.paymentMethod().get());
+        }
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                             | Type                                                                  | Required                                                              | Description                                                           | Example                                                               |
+| --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- |
+| `paymentMethodId`                                                     | *String*                                                              | :heavy_check_mark:                                                    | The ID of the payment method                                          | ef9496d8-53a5-4aad-8ca2-00eb68334389                                  |
+| `merchantAccountId`                                                   | *JsonNullable\<String>*                                               | :heavy_minus_sign:                                                    | The ID of the merchant account to use for this request.               |                                                                       |
+| `paymentMethodUpdate`                                                 | [PaymentMethodUpdate](../../models/components/PaymentMethodUpdate.md) | :heavy_check_mark:                                                    | N/A                                                                   |                                                                       |
+
+### Response
+
+**[UpdatePaymentMethodResponse](../../models/operations/UpdatePaymentMethodResponse.md)**
 
 ### Errors
 

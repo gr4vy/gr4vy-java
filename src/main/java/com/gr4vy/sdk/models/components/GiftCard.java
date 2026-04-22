@@ -11,6 +11,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.gr4vy.sdk.utils.LazySingletonValue;
 import com.gr4vy.sdk.utils.Utils;
+import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
@@ -88,6 +89,32 @@ public class GiftCard {
     @JsonProperty("updated_at")
     private OffsetDateTime updatedAt;
 
+    /**
+     * The timestamp when this gift card was last used in a transaction.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("last_used_at")
+    private JsonNullable<OffsetDateTime> lastUsedAt;
+
+    /**
+     * The number of times this gift card has been used in transactions.
+     */
+    @JsonProperty("usage_count")
+    private long usageCount;
+
+    /**
+     * The timestamp when this gift card was last used in a transaction for client initiated transactions.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("cit_last_used_at")
+    private JsonNullable<OffsetDateTime> citLastUsedAt;
+
+    /**
+     * The number of times this gift card has been used in transactions for client initiated transactions.
+     */
+    @JsonProperty("cit_usage_count")
+    private long citUsageCount;
+
     @JsonCreator
     public GiftCard(
             @JsonProperty("id") String id,
@@ -99,7 +126,11 @@ public class GiftCard {
             @JsonProperty("expiration_date") JsonNullable<OffsetDateTime> expirationDate,
             @JsonProperty("buyer") JsonNullable<? extends Buyer> buyer,
             @JsonProperty("created_at") OffsetDateTime createdAt,
-            @JsonProperty("updated_at") OffsetDateTime updatedAt) {
+            @JsonProperty("updated_at") OffsetDateTime updatedAt,
+            @JsonProperty("last_used_at") JsonNullable<OffsetDateTime> lastUsedAt,
+            @JsonProperty("usage_count") long usageCount,
+            @JsonProperty("cit_last_used_at") JsonNullable<OffsetDateTime> citLastUsedAt,
+            @JsonProperty("cit_usage_count") long citUsageCount) {
         Utils.checkNotNull(id, "id");
         Utils.checkNotNull(merchantAccountId, "merchantAccountId");
         Utils.checkNotNull(giftCardService, "giftCardService");
@@ -110,6 +141,10 @@ public class GiftCard {
         Utils.checkNotNull(buyer, "buyer");
         Utils.checkNotNull(createdAt, "createdAt");
         Utils.checkNotNull(updatedAt, "updatedAt");
+        Utils.checkNotNull(lastUsedAt, "lastUsedAt");
+        Utils.checkNotNull(usageCount, "usageCount");
+        Utils.checkNotNull(citLastUsedAt, "citLastUsedAt");
+        Utils.checkNotNull(citUsageCount, "citUsageCount");
         this.type = Builder._SINGLETON_VALUE_Type.value();
         this.id = id;
         this.merchantAccountId = merchantAccountId;
@@ -121,6 +156,10 @@ public class GiftCard {
         this.buyer = buyer;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
+        this.lastUsedAt = lastUsedAt;
+        this.usageCount = usageCount;
+        this.citLastUsedAt = citLastUsedAt;
+        this.citUsageCount = citUsageCount;
     }
     
     public GiftCard(
@@ -131,11 +170,14 @@ public class GiftCard {
             String subBin,
             String last4,
             OffsetDateTime createdAt,
-            OffsetDateTime updatedAt) {
+            OffsetDateTime updatedAt,
+            long usageCount,
+            long citUsageCount) {
         this(id, merchantAccountId, giftCardService,
             bin, subBin, last4,
             JsonNullable.undefined(), JsonNullable.undefined(), createdAt,
-            updatedAt);
+            updatedAt, JsonNullable.undefined(), usageCount,
+            JsonNullable.undefined(), citUsageCount);
     }
 
     /**
@@ -223,6 +265,38 @@ public class GiftCard {
     @JsonIgnore
     public OffsetDateTime updatedAt() {
         return updatedAt;
+    }
+
+    /**
+     * The timestamp when this gift card was last used in a transaction.
+     */
+    @JsonIgnore
+    public JsonNullable<OffsetDateTime> lastUsedAt() {
+        return lastUsedAt;
+    }
+
+    /**
+     * The number of times this gift card has been used in transactions.
+     */
+    @JsonIgnore
+    public long usageCount() {
+        return usageCount;
+    }
+
+    /**
+     * The timestamp when this gift card was last used in a transaction for client initiated transactions.
+     */
+    @JsonIgnore
+    public JsonNullable<OffsetDateTime> citLastUsedAt() {
+        return citLastUsedAt;
+    }
+
+    /**
+     * The number of times this gift card has been used in transactions for client initiated transactions.
+     */
+    @JsonIgnore
+    public long citUsageCount() {
+        return citUsageCount;
     }
 
     public static Builder builder() {
@@ -337,6 +411,60 @@ public class GiftCard {
         return this;
     }
 
+    /**
+     * The timestamp when this gift card was last used in a transaction.
+     */
+    public GiftCard withLastUsedAt(OffsetDateTime lastUsedAt) {
+        Utils.checkNotNull(lastUsedAt, "lastUsedAt");
+        this.lastUsedAt = JsonNullable.of(lastUsedAt);
+        return this;
+    }
+
+    /**
+     * The timestamp when this gift card was last used in a transaction.
+     */
+    public GiftCard withLastUsedAt(JsonNullable<OffsetDateTime> lastUsedAt) {
+        Utils.checkNotNull(lastUsedAt, "lastUsedAt");
+        this.lastUsedAt = lastUsedAt;
+        return this;
+    }
+
+    /**
+     * The number of times this gift card has been used in transactions.
+     */
+    public GiftCard withUsageCount(long usageCount) {
+        Utils.checkNotNull(usageCount, "usageCount");
+        this.usageCount = usageCount;
+        return this;
+    }
+
+    /**
+     * The timestamp when this gift card was last used in a transaction for client initiated transactions.
+     */
+    public GiftCard withCitLastUsedAt(OffsetDateTime citLastUsedAt) {
+        Utils.checkNotNull(citLastUsedAt, "citLastUsedAt");
+        this.citLastUsedAt = JsonNullable.of(citLastUsedAt);
+        return this;
+    }
+
+    /**
+     * The timestamp when this gift card was last used in a transaction for client initiated transactions.
+     */
+    public GiftCard withCitLastUsedAt(JsonNullable<OffsetDateTime> citLastUsedAt) {
+        Utils.checkNotNull(citLastUsedAt, "citLastUsedAt");
+        this.citLastUsedAt = citLastUsedAt;
+        return this;
+    }
+
+    /**
+     * The number of times this gift card has been used in transactions for client initiated transactions.
+     */
+    public GiftCard withCitUsageCount(long citUsageCount) {
+        Utils.checkNotNull(citUsageCount, "citUsageCount");
+        this.citUsageCount = citUsageCount;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -357,7 +485,11 @@ public class GiftCard {
             Utils.enhancedDeepEquals(this.expirationDate, other.expirationDate) &&
             Utils.enhancedDeepEquals(this.buyer, other.buyer) &&
             Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
-            Utils.enhancedDeepEquals(this.updatedAt, other.updatedAt);
+            Utils.enhancedDeepEquals(this.updatedAt, other.updatedAt) &&
+            Utils.enhancedDeepEquals(this.lastUsedAt, other.lastUsedAt) &&
+            Utils.enhancedDeepEquals(this.usageCount, other.usageCount) &&
+            Utils.enhancedDeepEquals(this.citLastUsedAt, other.citLastUsedAt) &&
+            Utils.enhancedDeepEquals(this.citUsageCount, other.citUsageCount);
     }
     
     @Override
@@ -366,7 +498,8 @@ public class GiftCard {
             type, id, merchantAccountId,
             giftCardService, bin, subBin,
             last4, expirationDate, buyer,
-            createdAt, updatedAt);
+            createdAt, updatedAt, lastUsedAt,
+            usageCount, citLastUsedAt, citUsageCount);
     }
     
     @Override
@@ -382,7 +515,11 @@ public class GiftCard {
                 "expirationDate", expirationDate,
                 "buyer", buyer,
                 "createdAt", createdAt,
-                "updatedAt", updatedAt);
+                "updatedAt", updatedAt,
+                "lastUsedAt", lastUsedAt,
+                "usageCount", usageCount,
+                "citLastUsedAt", citLastUsedAt,
+                "citUsageCount", citUsageCount);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -407,6 +544,14 @@ public class GiftCard {
         private OffsetDateTime createdAt;
 
         private OffsetDateTime updatedAt;
+
+        private JsonNullable<OffsetDateTime> lastUsedAt = JsonNullable.undefined();
+
+        private Long usageCount;
+
+        private JsonNullable<OffsetDateTime> citLastUsedAt = JsonNullable.undefined();
+
+        private Long citUsageCount;
 
         private Builder() {
           // force use of static builder() method
@@ -529,13 +674,72 @@ public class GiftCard {
             return this;
         }
 
+
+        /**
+         * The timestamp when this gift card was last used in a transaction.
+         */
+        public Builder lastUsedAt(OffsetDateTime lastUsedAt) {
+            Utils.checkNotNull(lastUsedAt, "lastUsedAt");
+            this.lastUsedAt = JsonNullable.of(lastUsedAt);
+            return this;
+        }
+
+        /**
+         * The timestamp when this gift card was last used in a transaction.
+         */
+        public Builder lastUsedAt(JsonNullable<OffsetDateTime> lastUsedAt) {
+            Utils.checkNotNull(lastUsedAt, "lastUsedAt");
+            this.lastUsedAt = lastUsedAt;
+            return this;
+        }
+
+
+        /**
+         * The number of times this gift card has been used in transactions.
+         */
+        public Builder usageCount(long usageCount) {
+            Utils.checkNotNull(usageCount, "usageCount");
+            this.usageCount = usageCount;
+            return this;
+        }
+
+
+        /**
+         * The timestamp when this gift card was last used in a transaction for client initiated transactions.
+         */
+        public Builder citLastUsedAt(OffsetDateTime citLastUsedAt) {
+            Utils.checkNotNull(citLastUsedAt, "citLastUsedAt");
+            this.citLastUsedAt = JsonNullable.of(citLastUsedAt);
+            return this;
+        }
+
+        /**
+         * The timestamp when this gift card was last used in a transaction for client initiated transactions.
+         */
+        public Builder citLastUsedAt(JsonNullable<OffsetDateTime> citLastUsedAt) {
+            Utils.checkNotNull(citLastUsedAt, "citLastUsedAt");
+            this.citLastUsedAt = citLastUsedAt;
+            return this;
+        }
+
+
+        /**
+         * The number of times this gift card has been used in transactions for client initiated transactions.
+         */
+        public Builder citUsageCount(long citUsageCount) {
+            Utils.checkNotNull(citUsageCount, "citUsageCount");
+            this.citUsageCount = citUsageCount;
+            return this;
+        }
+
         public GiftCard build() {
 
             return new GiftCard(
                 id, merchantAccountId, giftCardService,
                 bin, subBin, last4,
                 expirationDate, buyer, createdAt,
-                updatedAt);
+                updatedAt, lastUsedAt, usageCount,
+                citLastUsedAt, citUsageCount);
         }
 
 

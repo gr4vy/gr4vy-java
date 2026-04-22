@@ -180,7 +180,7 @@ public class GetPaymentService {
                         }
                         try {
                             HttpResponse<InputStream> httpRes = client.send(r);
-                            if (Utils.statusCodeMatches(httpRes.statusCode(), "400", "401", "403", "404", "405", "409", "422", "425", "429", "4XX", "500", "502", "504", "5XX")) {
+                            if (Utils.statusCodeMatches(httpRes.statusCode(), "4XX", "5XX")) {
                                 return onError(httpRes, null);
                             }
                             return httpRes;
@@ -350,7 +350,7 @@ public class GetPaymentService {
                                 if (err != null) {
                                     return onError(null, err);
                                 }
-                                if (Utils.statusCodeMatches(resp.statusCode(), "400", "401", "403", "404", "405", "409", "422", "425", "429", "4XX", "500", "502", "504", "5XX")) {
+                                if (Utils.statusCodeMatches(resp.statusCode(), "4XX", "5XX")) {
                                     return onError(resp, null);
                                 }
                                 return CompletableFuture.completedFuture(resp);

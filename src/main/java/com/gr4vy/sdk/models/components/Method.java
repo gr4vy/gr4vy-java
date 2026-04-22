@@ -95,8 +95,10 @@ public class Method {
     public static final Method PAYMAYA = new Method("paymaya");
     public static final Method PAYPAL = new Method("paypal");
     public static final Method PAYPALPAYLATER = new Method("paypalpaylater");
+    public static final Method PAYPAY = new Method("paypay");
     public static final Method PAYTO = new Method("payto");
     public static final Method PAYVALIDA = new Method("payvalida");
+    public static final Method PAZE = new Method("paze");
     public static final Method PICPAY = new Method("picpay");
     public static final Method PIX = new Method("pix");
     public static final Method PLAID = new Method("plaid");
@@ -281,8 +283,10 @@ public class Method {
         map.put("paymaya", PAYMAYA);
         map.put("paypal", PAYPAL);
         map.put("paypalpaylater", PAYPALPAYLATER);
+        map.put("paypay", PAYPAY);
         map.put("payto", PAYTO);
         map.put("payvalida", PAYVALIDA);
+        map.put("paze", PAZE);
         map.put("picpay", PICPAY);
         map.put("pix", PIX);
         map.put("plaid", PLAID);
@@ -399,8 +403,10 @@ public class Method {
         map.put("paymaya", MethodEnum.PAYMAYA);
         map.put("paypal", MethodEnum.PAYPAL);
         map.put("paypalpaylater", MethodEnum.PAYPALPAYLATER);
+        map.put("paypay", MethodEnum.PAYPAY);
         map.put("payto", MethodEnum.PAYTO);
         map.put("payvalida", MethodEnum.PAYVALIDA);
+        map.put("paze", MethodEnum.PAZE);
         map.put("picpay", MethodEnum.PICPAY);
         map.put("pix", MethodEnum.PIX);
         map.put("plaid", MethodEnum.PLAID);
@@ -518,8 +524,10 @@ public class Method {
         PAYMAYA("paymaya"),
         PAYPAL("paypal"),
         PAYPALPAYLATER("paypalpaylater"),
+        PAYPAY("paypay"),
         PAYTO("payto"),
         PAYVALIDA("payvalida"),
+        PAZE("paze"),
         PICPAY("picpay"),
         PIX("pix"),
         PLAID("plaid"),

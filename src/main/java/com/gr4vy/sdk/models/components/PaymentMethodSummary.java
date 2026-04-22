@@ -166,6 +166,20 @@ public class PaymentMethodSummary {
     @JsonProperty("usage_count")
     private long usageCount;
 
+    /**
+     * The scheme transaction identifier stored against this payment method.
+     */
+    @JsonInclude(Include.ALWAYS)
+    @JsonProperty("scheme_transaction_id")
+    private Optional<String> schemeTransactionId;
+
+    /**
+     * The scheme associated with scheme_transaction_id. Only applies to card payments.
+     */
+    @JsonInclude(Include.ALWAYS)
+    @JsonProperty("scheme_transaction_id_scheme")
+    private Optional<? extends CardScheme> schemeTransactionIdScheme;
+
     @JsonCreator
     public PaymentMethodSummary(
             @JsonProperty("approval_url") JsonNullable<String> approvalUrl,
@@ -186,7 +200,9 @@ public class PaymentMethodSummary {
             @JsonProperty("cit_usage_count") long citUsageCount,
             @JsonProperty("has_replacement") boolean hasReplacement,
             @JsonProperty("last_used_at") JsonNullable<OffsetDateTime> lastUsedAt,
-            @JsonProperty("usage_count") long usageCount) {
+            @JsonProperty("usage_count") long usageCount,
+            @JsonProperty("scheme_transaction_id") Optional<String> schemeTransactionId,
+            @JsonProperty("scheme_transaction_id_scheme") Optional<? extends CardScheme> schemeTransactionIdScheme) {
         Utils.checkNotNull(approvalUrl, "approvalUrl");
         Utils.checkNotNull(country, "country");
         Utils.checkNotNull(currency, "currency");
@@ -206,6 +222,8 @@ public class PaymentMethodSummary {
         Utils.checkNotNull(hasReplacement, "hasReplacement");
         Utils.checkNotNull(lastUsedAt, "lastUsedAt");
         Utils.checkNotNull(usageCount, "usageCount");
+        Utils.checkNotNull(schemeTransactionId, "schemeTransactionId");
+        Utils.checkNotNull(schemeTransactionIdScheme, "schemeTransactionIdScheme");
         this.type = Builder._SINGLETON_VALUE_Type.value();
         this.approvalUrl = approvalUrl;
         this.country = country;
@@ -226,6 +244,8 @@ public class PaymentMethodSummary {
         this.hasReplacement = hasReplacement;
         this.lastUsedAt = lastUsedAt;
         this.usageCount = usageCount;
+        this.schemeTransactionId = schemeTransactionId;
+        this.schemeTransactionIdScheme = schemeTransactionIdScheme;
     }
     
     public PaymentMethodSummary(
@@ -241,7 +261,7 @@ public class PaymentMethodSummary {
             JsonNullable.undefined(), JsonNullable.undefined(), id,
             merchantAccountId, JsonNullable.undefined(), JsonNullable.undefined(),
             citUsageCount, hasReplacement, JsonNullable.undefined(),
-            usageCount);
+            usageCount, Optional.empty(), Optional.empty());
     }
 
     /**
@@ -408,6 +428,23 @@ public class PaymentMethodSummary {
     @JsonIgnore
     public long usageCount() {
         return usageCount;
+    }
+
+    /**
+     * The scheme transaction identifier stored against this payment method.
+     */
+    @JsonIgnore
+    public Optional<String> schemeTransactionId() {
+        return schemeTransactionId;
+    }
+
+    /**
+     * The scheme associated with scheme_transaction_id. Only applies to card payments.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<CardScheme> schemeTransactionIdScheme() {
+        return (Optional<CardScheme>) schemeTransactionIdScheme;
     }
 
     public static Builder builder() {
@@ -709,6 +746,44 @@ public class PaymentMethodSummary {
         return this;
     }
 
+    /**
+     * The scheme transaction identifier stored against this payment method.
+     */
+    public PaymentMethodSummary withSchemeTransactionId(String schemeTransactionId) {
+        Utils.checkNotNull(schemeTransactionId, "schemeTransactionId");
+        this.schemeTransactionId = Optional.ofNullable(schemeTransactionId);
+        return this;
+    }
+
+
+    /**
+     * The scheme transaction identifier stored against this payment method.
+     */
+    public PaymentMethodSummary withSchemeTransactionId(Optional<String> schemeTransactionId) {
+        Utils.checkNotNull(schemeTransactionId, "schemeTransactionId");
+        this.schemeTransactionId = schemeTransactionId;
+        return this;
+    }
+
+    /**
+     * The scheme associated with scheme_transaction_id. Only applies to card payments.
+     */
+    public PaymentMethodSummary withSchemeTransactionIdScheme(CardScheme schemeTransactionIdScheme) {
+        Utils.checkNotNull(schemeTransactionIdScheme, "schemeTransactionIdScheme");
+        this.schemeTransactionIdScheme = Optional.ofNullable(schemeTransactionIdScheme);
+        return this;
+    }
+
+
+    /**
+     * The scheme associated with scheme_transaction_id. Only applies to card payments.
+     */
+    public PaymentMethodSummary withSchemeTransactionIdScheme(Optional<? extends CardScheme> schemeTransactionIdScheme) {
+        Utils.checkNotNull(schemeTransactionIdScheme, "schemeTransactionIdScheme");
+        this.schemeTransactionIdScheme = schemeTransactionIdScheme;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -738,7 +813,9 @@ public class PaymentMethodSummary {
             Utils.enhancedDeepEquals(this.citUsageCount, other.citUsageCount) &&
             Utils.enhancedDeepEquals(this.hasReplacement, other.hasReplacement) &&
             Utils.enhancedDeepEquals(this.lastUsedAt, other.lastUsedAt) &&
-            Utils.enhancedDeepEquals(this.usageCount, other.usageCount);
+            Utils.enhancedDeepEquals(this.usageCount, other.usageCount) &&
+            Utils.enhancedDeepEquals(this.schemeTransactionId, other.schemeTransactionId) &&
+            Utils.enhancedDeepEquals(this.schemeTransactionIdScheme, other.schemeTransactionIdScheme);
     }
     
     @Override
@@ -750,7 +827,8 @@ public class PaymentMethodSummary {
             method, mode, scheme,
             id, merchantAccountId, additionalSchemes,
             citLastUsedAt, citUsageCount, hasReplacement,
-            lastUsedAt, usageCount);
+            lastUsedAt, usageCount, schemeTransactionId,
+            schemeTransactionIdScheme);
     }
     
     @Override
@@ -775,7 +853,9 @@ public class PaymentMethodSummary {
                 "citUsageCount", citUsageCount,
                 "hasReplacement", hasReplacement,
                 "lastUsedAt", lastUsedAt,
-                "usageCount", usageCount);
+                "usageCount", usageCount,
+                "schemeTransactionId", schemeTransactionId,
+                "schemeTransactionIdScheme", schemeTransactionIdScheme);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -818,6 +898,10 @@ public class PaymentMethodSummary {
         private JsonNullable<OffsetDateTime> lastUsedAt = JsonNullable.undefined();
 
         private Long usageCount;
+
+        private Optional<String> schemeTransactionId = Optional.empty();
+
+        private Optional<? extends CardScheme> schemeTransactionIdScheme = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -1136,6 +1220,44 @@ public class PaymentMethodSummary {
             return this;
         }
 
+
+        /**
+         * The scheme transaction identifier stored against this payment method.
+         */
+        public Builder schemeTransactionId(String schemeTransactionId) {
+            Utils.checkNotNull(schemeTransactionId, "schemeTransactionId");
+            this.schemeTransactionId = Optional.ofNullable(schemeTransactionId);
+            return this;
+        }
+
+        /**
+         * The scheme transaction identifier stored against this payment method.
+         */
+        public Builder schemeTransactionId(Optional<String> schemeTransactionId) {
+            Utils.checkNotNull(schemeTransactionId, "schemeTransactionId");
+            this.schemeTransactionId = schemeTransactionId;
+            return this;
+        }
+
+
+        /**
+         * The scheme associated with scheme_transaction_id. Only applies to card payments.
+         */
+        public Builder schemeTransactionIdScheme(CardScheme schemeTransactionIdScheme) {
+            Utils.checkNotNull(schemeTransactionIdScheme, "schemeTransactionIdScheme");
+            this.schemeTransactionIdScheme = Optional.ofNullable(schemeTransactionIdScheme);
+            return this;
+        }
+
+        /**
+         * The scheme associated with scheme_transaction_id. Only applies to card payments.
+         */
+        public Builder schemeTransactionIdScheme(Optional<? extends CardScheme> schemeTransactionIdScheme) {
+            Utils.checkNotNull(schemeTransactionIdScheme, "schemeTransactionIdScheme");
+            this.schemeTransactionIdScheme = schemeTransactionIdScheme;
+            return this;
+        }
+
         public PaymentMethodSummary build() {
 
             return new PaymentMethodSummary(
@@ -1145,7 +1267,7 @@ public class PaymentMethodSummary {
                 mode, scheme, id,
                 merchantAccountId, additionalSchemes, citLastUsedAt,
                 citUsageCount, hasReplacement, lastUsedAt,
-                usageCount);
+                usageCount, schemeTransactionId, schemeTransactionIdScheme);
         }
 
 

@@ -24,3 +24,4 @@ Mode custom = Mode.of("custom_value");
 | `CLICK_TO_PAY`     | click-to-pay       |
 | `GIFT_CARD`        | gift-card          |
 | `BANK`             | bank               |
+| `PAZE`             | paze               |

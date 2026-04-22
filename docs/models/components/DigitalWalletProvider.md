@@ -19,3 +19,4 @@ DigitalWalletProvider custom = DigitalWalletProvider.of("custom_value");
 | `APPLE`        | apple          |
 | `GOOGLE`       | google         |
 | `CLICK_TO_PAY` | click-to-pay   |
+| `PAZE`         | paze           |

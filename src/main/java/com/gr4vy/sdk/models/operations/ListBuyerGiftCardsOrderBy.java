@@ -19,40 +19,40 @@ import java.util.Optional;
  * Use {@code asEnum()} for switch expressions.
  */
 /**
- * OrderBy
+ * ListBuyerGiftCardsOrderBy
  * 
- * <p>The direction to sort the payment methods in.
+ * <p>The direction to sort the gift cards in.
  */
-public class OrderBy {
+public class ListBuyerGiftCardsOrderBy {
 
-    public static final OrderBy ASC = new OrderBy("asc");
-    public static final OrderBy DESC = new OrderBy("desc");
+    public static final ListBuyerGiftCardsOrderBy ASC = new ListBuyerGiftCardsOrderBy("asc");
+    public static final ListBuyerGiftCardsOrderBy DESC = new ListBuyerGiftCardsOrderBy("desc");
 
     // This map will grow whenever a Color gets created with a new
     // unrecognized value (a potential memory leak if the user is not
     // careful). Keep this field lower case to avoid clashing with
     // generated member names which will always be upper cased (Java
     // convention)
-    private static final Map<String, OrderBy> values = createValuesMap();
-    private static final Map<String, OrderByEnum> enums = createEnumsMap();
+    private static final Map<String, ListBuyerGiftCardsOrderBy> values = createValuesMap();
+    private static final Map<String, ListBuyerGiftCardsOrderByEnum> enums = createEnumsMap();
 
     private final String value;
 
-    private OrderBy(String value) {
+    private ListBuyerGiftCardsOrderBy(String value) {
         this.value = value;
     }
 
     /**
-     * Returns a OrderBy with the given value. For a specific value the 
+     * Returns a ListBuyerGiftCardsOrderBy with the given value. For a specific value the 
      * returned object will always be a singleton so reference equality 
      * is satisfied when the values are the same.
      * 
-     * @param value value to be wrapped as OrderBy
+     * @param value value to be wrapped as ListBuyerGiftCardsOrderBy
      */ 
     @JsonCreator
-    public static OrderBy of(String value) {
-        synchronized (OrderBy.class) {
-            return values.computeIfAbsent(value, v -> new OrderBy(v));
+    public static ListBuyerGiftCardsOrderBy of(String value) {
+        synchronized (ListBuyerGiftCardsOrderBy.class) {
+            return values.computeIfAbsent(value, v -> new ListBuyerGiftCardsOrderBy(v));
         }
     }
 
@@ -61,7 +61,7 @@ public class OrderBy {
         return value;
     }
 
-    public Optional<OrderByEnum> asEnum() {
+    public Optional<ListBuyerGiftCardsOrderByEnum> asEnum() {
         return Optional.ofNullable(enums.getOrDefault(value, null));
     }
 
@@ -82,45 +82,45 @@ public class OrderBy {
             return false;
         if (getClass() != obj.getClass())
             return false;
-        OrderBy other = (OrderBy) obj;
+        ListBuyerGiftCardsOrderBy other = (ListBuyerGiftCardsOrderBy) obj;
         return Objects.equals(value, other.value);
     }
 
     @Override
     public String toString() {
-        return "OrderBy [value=" + value + "]";
+        return "ListBuyerGiftCardsOrderBy [value=" + value + "]";
     }
 
     // return an array just like an enum
-    public static OrderBy[] values() {
-        synchronized (OrderBy.class) {
-            return values.values().toArray(new OrderBy[] {});
+    public static ListBuyerGiftCardsOrderBy[] values() {
+        synchronized (ListBuyerGiftCardsOrderBy.class) {
+            return values.values().toArray(new ListBuyerGiftCardsOrderBy[] {});
         }
     }
 
-    private static final Map<String, OrderBy> createValuesMap() {
-        Map<String, OrderBy> map = new LinkedHashMap<>();
+    private static final Map<String, ListBuyerGiftCardsOrderBy> createValuesMap() {
+        Map<String, ListBuyerGiftCardsOrderBy> map = new LinkedHashMap<>();
         map.put("asc", ASC);
         map.put("desc", DESC);
         return map;
     }
 
-    private static final Map<String, OrderByEnum> createEnumsMap() {
-        Map<String, OrderByEnum> map = new HashMap<>();
-        map.put("asc", OrderByEnum.ASC);
-        map.put("desc", OrderByEnum.DESC);
+    private static final Map<String, ListBuyerGiftCardsOrderByEnum> createEnumsMap() {
+        Map<String, ListBuyerGiftCardsOrderByEnum> map = new HashMap<>();
+        map.put("asc", ListBuyerGiftCardsOrderByEnum.ASC);
+        map.put("desc", ListBuyerGiftCardsOrderByEnum.DESC);
         return map;
     }
     
     
-    public enum OrderByEnum {
+    public enum ListBuyerGiftCardsOrderByEnum {
 
         ASC("asc"),
         DESC("desc"),;
 
         private final String value;
 
-        private OrderByEnum(String value) {
+        private ListBuyerGiftCardsOrderByEnum(String value) {
             this.value = value;
         }
 

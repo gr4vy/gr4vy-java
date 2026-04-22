@@ -102,18 +102,20 @@ public class UpdatePaymentService {
                     java.util.Optional.empty(),
                     securitySource());
         }
-        <T, U>HttpRequest buildRequest(T request, TypeReference<U> typeReference) throws Exception {
+        <T, U>HttpRequest buildRequest(T request, Class<T> klass, TypeReference<U> typeReference) throws Exception {
             String url = Utils.generateURL(
+                    klass,
                     this.baseUrl,
-                    "/payment-services");
-            HTTPRequest req = new HTTPRequest(url, "POST");
+                    "/payment-services/{payment_service_id}",
+                    request, this.operationGlobals);
+            HTTPRequest req = new HTTPRequest(url, "PUT");
             Object convertedRequest = Utils.convertToShape(
                     request,
                     JsonShape.DEFAULT,
                     typeReference);
             SerializedBody serializedRequestBody = Utils.serializeRequestBody(
                     convertedRequest,
-                    "paymentServiceCreate",
+                    "paymentServiceUpdate",
                     "json",
                     false);
             if (serializedRequestBody == null) {
@@ -137,7 +139,7 @@ public class UpdatePaymentService {
         }
 
         private HttpRequest onBuildRequest(UpdatePaymentServiceRequest request) throws Exception {
-            HttpRequest req = buildRequest(request, new TypeReference<UpdatePaymentServiceRequest>() {});
+            HttpRequest req = buildRequest(request, UpdatePaymentServiceRequest.class, new TypeReference<UpdatePaymentServiceRequest>() {});
             return sdkConfiguration.hooks().beforeRequest(createBeforeRequestContext(), req);
         }
 
@@ -158,7 +160,7 @@ public class UpdatePaymentService {
             HttpResponse<InputStream> httpRes;
             try {
                 httpRes = client.send(r);
-                if (Utils.statusCodeMatches(httpRes.statusCode(), "400", "401", "403", "404", "405", "409", "422", "425", "429", "4XX", "500", "502", "504", "5XX")) {
+                if (Utils.statusCodeMatches(httpRes.statusCode(), "4XX", "5XX")) {
                     httpRes = onError(httpRes, null);
                 } else {
                     httpRes = onSuccess(httpRes);
@@ -186,7 +188,7 @@ public class UpdatePaymentService {
 
             UpdatePaymentServiceResponse res = resBuilder.build();
             
-            if (Utils.statusCodeMatches(response.statusCode(), "201")) {
+            if (Utils.statusCodeMatches(response.statusCode(), "200")) {
                 if (Utils.contentTypeMatches(contentType, "application/json")) {
                     return res.withPaymentService(Utils.unmarshal(response, new TypeReference<PaymentService>() {}));
                 } else {
@@ -296,7 +298,7 @@ public class UpdatePaymentService {
         }
 
         private CompletableFuture<HttpRequest> onBuildRequest(UpdatePaymentServiceRequest request) throws Exception {
-            HttpRequest req = buildRequest(request, new TypeReference<UpdatePaymentServiceRequest>() {});
+            HttpRequest req = buildRequest(request, UpdatePaymentServiceRequest.class, new TypeReference<UpdatePaymentServiceRequest>() {});
             return this.sdkConfiguration.asyncHooks().beforeRequest(createBeforeRequestContext(), req);
         }
 
@@ -315,7 +317,7 @@ public class UpdatePaymentService {
                         if (err != null) {
                             return onError(null, err);
                         }
-                        if (Utils.statusCodeMatches(resp.statusCode(), "400", "401", "403", "404", "405", "409", "422", "425", "429", "4XX", "500", "502", "504", "5XX")) {
+                        if (Utils.statusCodeMatches(resp.statusCode(), "4XX", "5XX")) {
                             return onError(resp, null);
                         }
                         return CompletableFuture.completedFuture(resp);
@@ -340,7 +342,7 @@ public class UpdatePaymentService {
 
             com.gr4vy.sdk.models.operations.async.UpdatePaymentServiceResponse res = resBuilder.build();
             
-            if (Utils.statusCodeMatches(response.statusCode(), "201")) {
+            if (Utils.statusCodeMatches(response.statusCode(), "200")) {
                 if (Utils.contentTypeMatches(contentType, "application/json")) {
                     return Utils.unmarshalAsync(response, new TypeReference<PaymentService>() {})
                             .thenApply(res::withPaymentService);

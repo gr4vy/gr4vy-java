@@ -1,0 +1,9 @@
+# EcommpayOptions
+
+
+## Fields
+
+| Field                                                                                     | Type                                                                                      | Required                                                                                  | Description                                                                               | Example                                                                                   |
+| ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
+| `bookingStartDate`                                                                        | *JsonNullable\<String>*                                                                   | :heavy_minus_sign:                                                                        | The start date of the booking in ISO 8601 format (YYYY-MM-DD). Required for certain MCCs. | 2030-12-01                                                                                |
+| `bookingEndDate`                                                                          | *JsonNullable\<String>*                                                                   | :heavy_minus_sign:                                                                        | The end date of the booking in ISO 8601 format (YYYY-MM-DD). Required for certain MCCs.   | 2030-12-10                                                                                |
