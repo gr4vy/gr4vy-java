@@ -16,7 +16,7 @@ import com.gr4vy.sdk.models.components.MerchantAccount;
 import com.gr4vy.sdk.models.components.MerchantAccountCreate;
 import com.gr4vy.sdk.models.components.PaymentServiceCreate;
 import com.gr4vy.sdk.models.operations.CreateMerchantAccountResponse;
-import com.gr4vy.sdk.models.operations.UpdatePaymentServiceResponse;
+import com.gr4vy.sdk.models.operations.CreatePaymentServiceResponse;
 import com.gr4vy.sdk.utils.HTTPClient;
 
 public abstract class BaseTest {
@@ -104,7 +104,7 @@ public abstract class BaseTest {
         MerchantAccount merchantAccount = res.merchantAccount().orElse(null);
 
         this.gr4vyClient = createGr4vyClient(privateKey, merchantAccount.id());
-        UpdatePaymentServiceResponse paymentServiceResponse = this.gr4vyClient.paymentServices().create()
+        CreatePaymentServiceResponse paymentServiceResponse = this.gr4vyClient.paymentServices().create()
                 .paymentServiceCreate(PaymentServiceCreate.builder()
                     .acceptedCurrencies(List.of("USD"))
                     .acceptedCountries(List.of("US"))
