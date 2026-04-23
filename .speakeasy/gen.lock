@@ -1,19 +1,19 @@
 lockVersion: 2.0.0
 id: 5bbaa3a9-baa0-471b-ba6a-13fd88e8c119
 management:
-  docChecksum: 1f364007fc0032c548b8fd7729bfc928
+  docChecksum: aa6c8e27b033fef7039079c4ee8a71cb
   docVersion: 1.0.0
   speakeasyVersion: 1.761.9
   generationVersion: 2.881.4
-  releaseVersion: 2.16.53
-  configChecksum: 1b20e1910caeb0c7b5fba65102f12d0f
+  releaseVersion: 2.16.54
+  configChecksum: 2ed3e6bd6394b7d8a20e2c390e8b73d7
   repoURL: https://github.com/gr4vy/gr4vy-java.git
   installationURL: https://github.com/gr4vy/gr4vy-java
   published: true
 persistentEdits:
-  generation_id: 2744edc9-c4da-4e8e-b69a-0e61cde3cf75
-  pristine_commit_hash: e36b4d44a893f9153c97cba1819af5174ffe2656
-  pristine_tree_hash: 3b9aefa4eb9ca0bdf117de6e9d2a423fa935662e
+  generation_id: d525d589-ee4a-4e3b-bc49-73fa5520d85b
+  pristine_commit_hash: 53ecb463b729cc912fca6ceb9a402fcfe0787bbe
+  pristine_tree_hash: 00134292f851fe38683339ab7273a3bd42cd0f50
 features:
   java:
     additionalDependencies: 0.1.0
@@ -354,12 +354,16 @@ trackedFiles:
     pristine_git_object: 04cd74ce39e4aadb8a7c9383be9fd33ad4dacd07
   docs/models/components/DigitalWallet.md:
     id: 9ecbc8d7f75c
-    last_write_checksum: sha1:43a3f025a74df049096117293bc07f1becbef9a7
-    pristine_git_object: 2f20efa451f406d07b9e1914f8c07f6c6ea1c9d7
+    last_write_checksum: sha1:5dcb99b27a592936a5c25dc247dc2625e6ea2082
+    pristine_git_object: c7b96316320efca537d4cee0e278f038b71fcfe1
+  docs/models/components/DigitalWalletAddress.md:
+    id: d5460337737f
+    last_write_checksum: sha1:d72ed5bb02c6b7dcf36cbdab2951bbdb64d0a438
+    pristine_git_object: ce3ea5c627626b5a074905038a81126acc78e6dc
   docs/models/components/DigitalWalletCreate.md:
     id: 9478c2e6b3ab
-    last_write_checksum: sha1:ec5c06de5f4382d6a7de16259de3eee3daa7337d
-    pristine_git_object: 812f1059d9cd27f191aabf1c36d561eebe59cbc1
+    last_write_checksum: sha1:b72028e6adf15cb9c492b47756c66534693c05ea
+    pristine_git_object: e8cd6ec3af6e9623747038d6a1156d12ed42a01b
   docs/models/components/DigitalWalletDomain.md:
     id: 09c4fefe14a2
     last_write_checksum: sha1:faf8dc74f42709605fdc5b6447d10980c276145b
@@ -370,8 +374,8 @@ trackedFiles:
     pristine_git_object: cf756050e96aa5e60b35faddd897c454ce6406b1
   docs/models/components/DigitalWalletUpdate.md:
     id: 28df643ffff1
-    last_write_checksum: sha1:dd5b542be162230738da1930b6c6aee03ef27e7b
-    pristine_git_object: e886b0397279faaaa12e426437e606bfbf170646
+    last_write_checksum: sha1:bdf586ee98a9eb42581350e55aecb5883013dfa7
+    pristine_git_object: 67ae92f5e0f3552750c07b29633046a2ffbf9f67
   docs/models/components/DigitalWallets.md:
     id: 1d8f579779b7
     last_write_checksum: sha1:da6eb080bd762e01a123938be1bf1cdbd851c16d
@@ -2406,8 +2410,8 @@ trackedFiles:
     pristine_git_object: 15c4e4642f204ccb312d8814155b69e153b4e19b
   gradle.properties:
     id: 2afbb999f001
-    last_write_checksum: sha1:39131eedfafebff5bba10e4505d8feb7a2472fe5
-    pristine_git_object: 066282b758ec402de8abae31246aa23d296443b7
+    last_write_checksum: sha1:8a172b56857dc553e65e8280322d991927762f83
+    pristine_git_object: d8ceec9ea454e5878a76e68ed3760373983e9a6c
   gradle/wrapper/gradle-wrapper.jar:
     id: ec27dae6e852
     last_write_checksum: sha1:f725fb1467084142d74fd7cd8eab691ab3442611
@@ -2730,8 +2734,8 @@ trackedFiles:
     pristine_git_object: 502a7312d3dc82c102dbaf7ed5e952d0c793e26f
   src/main/java/com/gr4vy/sdk/SDKConfiguration.java:
     id: 73a7edeaca45
-    last_write_checksum: sha1:4a0f987b1664c5883d324a3ce082ef035c60a306
-    pristine_git_object: 647e3c6df0031681bf278de3bc3a238acb71380e
+    last_write_checksum: sha1:049442fabd1e5d8df64799821c8ddf311e1233c1
+    pristine_git_object: bbd56258e4b536f65057d0206c9136bb4005b0d5
   src/main/java/com/gr4vy/sdk/SecuritySource.java:
     id: 1b6add6b9b50
     last_write_checksum: sha1:2f365cc823c6243188e83f4df618c9737fcee8bd
@@ -3070,12 +3074,16 @@ trackedFiles:
     pristine_git_object: eb5fb95a2c2eb0b492b35db90ac25a3fe318eef6
   src/main/java/com/gr4vy/sdk/models/components/DigitalWallet.java:
     id: 6d1e8ad72efa
-    last_write_checksum: sha1:492ce7ab135bb392efb260dfc93d509e6fdf5a38
-    pristine_git_object: bc7a7226b316e934d9628206a0f44c879aabc4aa
+    last_write_checksum: sha1:90bfaaa7cde1e90bedc0454416aa3151f3f36f3a
+    pristine_git_object: ac6d7404c5bbff343ed2c7966652f8f10176b64b
+  src/main/java/com/gr4vy/sdk/models/components/DigitalWalletAddress.java:
+    id: 591e081cbf4f
+    last_write_checksum: sha1:dc25132c1762b38df1ae1f7222c0de06ec67a24d
+    pristine_git_object: 6a4efc616945bccd111a462ba29f0581463f80c8
   src/main/java/com/gr4vy/sdk/models/components/DigitalWalletCreate.java:
     id: c0a2cddac8b7
-    last_write_checksum: sha1:038961dff6946f19129a88f5774bd8705ea1a2c7
-    pristine_git_object: c0daf66c52210728a0b273e069932e7c5c5b5c62
+    last_write_checksum: sha1:d6de673df84db5f44d22a9264c54888526222044
+    pristine_git_object: d7a69680eb5fea6c8edc27e4f6695304e34df48a
   src/main/java/com/gr4vy/sdk/models/components/DigitalWalletDomain.java:
     id: efd5827e030e
     last_write_checksum: sha1:4be39ec191204aec3cef68091ad788b914727294
@@ -3086,8 +3094,8 @@ trackedFiles:
     pristine_git_object: 2b1d991f1b5636bcc3ccbbd153a5427df1ed7f5f
   src/main/java/com/gr4vy/sdk/models/components/DigitalWalletUpdate.java:
     id: 6d08031e24f7
-    last_write_checksum: sha1:aaf0b3cce938c65b4eae700111c839eaf2232069
-    pristine_git_object: 2abba7f179240f2e1146150fc83bf6c5f30b4e07
+    last_write_checksum: sha1:1d2cfc3a21bf6f58b9766ce88a30e083f6db08d7
+    pristine_git_object: 17f2561b49f3eb860a2ff2315efc812d9a1a2604
   src/main/java/com/gr4vy/sdk/models/components/DigitalWallets.java:
     id: 9175516db203
     last_write_checksum: sha1:dc69756ae8e5884ed67bfebc4f6575169be1ee6d
@@ -10720,7 +10728,7 @@ examples:
           application/json: {"type": "error", "code": "gateway_timeout", "status": 504, "message": "Request could not be processed"}
 examplesVersion: 1.0.2
 generatedTests: {}
-releaseNotes: "## Java SDK Changes:\n* `gr4vy.buyers.giftCards.list()`: \n  *  `request` **Changed** (Breaking ⚠️)\n  *  `response.items[]` **Changed**\n* `gr4vy.transactions.get()`:  `response.paymentMethod` **Changed**\n* `gr4vy.transactions.capture()`:  `response.union(TransactionCapture).transaction.paymentMethod` **Changed**\n* `gr4vy.paymentMethods.list()`:  `response.items[]` **Changed**\n* `gr4vy.paymentMethods.create()`: \n  *  `requestBody.union(RedirectPaymentMethodCreate).method.enum(paypay)` **Added**\n  *  `response` **Changed**\n* `gr4vy.paymentMethods.get()`:  `response` **Changed**\n* `gr4vy.giftCards.get()`:  `response` **Changed**\n* `gr4vy.giftCards.create()`:  `response` **Changed**\n* `gr4vy.giftCards.list()`:  `response.items[]` **Changed**\n* `gr4vy.transactions.update()`: \n  *  `request.transactionUpdate.connectionOptions` **Changed**\n  *  `response.paymentMethod` **Changed**\n* `gr4vy.digitalWallets.create()`: \n  *  `request.digitalWalletCreate.provider.enum(paze)` **Added**\n  *  `response.provider.enum(paze)` **Added**\n* `gr4vy.digitalWallets.list()`:  `response.items[].provider.enum(paze)` **Added**\n* `gr4vy.digitalWallets.get()`:  `response.provider.enum(paze)` **Added**\n* `gr4vy.digitalWallets.update()`:  `response.provider.enum(paze)` **Added**\n* `gr4vy.transactions.list()`: \n  *  `request.method` **Changed**\n  *  `response.items[].paymentMethod` **Changed**\n* `gr4vy.buyers.paymentMethods.list()`:  `response.items[]` **Changed**\n* `gr4vy.transactions.create()`: \n  *  `request.transactionCreate` **Changed**\n  *  `response.paymentMethod` **Changed**\n* `gr4vy.giftCards.balances.list()`:  `response.items[]` **Changed**\n* `gr4vy.paymentMethods.update()`: **Added**\n* `gr4vy.transactions.void()`:  `response.union(Transaction).paymentMethod` **Changed**\n* `gr4vy.transactions.cancel()`:  `response.transaction.paymentMethod` **Changed**\n* `gr4vy.transactions.sync()`:  `response.paymentMethod` **Changed**\n* `gr4vy.paymentOptions.list()`:  `response.items[].mode.enum(paze)` **Added**\n* `gr4vy.paymentServiceDefinitions.list()`:  `response.items[]` **Changed**\n* `gr4vy.paymentServiceDefinitions.get()`:  `response` **Changed**\n* `gr4vy.paymentServices.list()`: \n  *  `request.method` **Changed**\n  *  `response.items[].method` **Changed**\n* `gr4vy.paymentServices.create()`:  `response.method` **Changed**\n* `gr4vy.paymentServices.get()`:  `response.method` **Changed**\n* `gr4vy.paymentServices.update()`:  `response.method` **Changed**\n* `gr4vy.payouts.list()`:  `response.items[].paymentMethod` **Changed**\n* `gr4vy.payouts.create()`:  `response.paymentMethod` **Changed**\n* `gr4vy.payouts.get()`:  `response.paymentMethod` **Changed**\n* `gr4vy.paymentLinks.create()`: \n  *  `request.paymentLinkCreate.connectionOptions` **Changed**\n"
+releaseNotes: "## Java SDK Changes:\n* `gr4vy.digitalWallets.create()`: \n  *  `request.digitalWalletCreate` **Changed**\n  *  `response` **Changed**\n* `gr4vy.digitalWallets.list()`:  `response.items[]` **Changed**\n* `gr4vy.digitalWallets.get()`:  `response` **Changed**\n* `gr4vy.digitalWallets.update()`: \n  *  `request.digitalWalletUpdate` **Changed**\n  *  `response` **Changed**\n"
 generatedFiles:
   - .gitattributes
   - USAGE.md

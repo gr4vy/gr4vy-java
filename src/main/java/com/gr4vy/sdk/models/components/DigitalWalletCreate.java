@@ -10,10 +10,12 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Boolean;
+import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -48,6 +50,21 @@ public class DigitalWalletCreate {
 
 
     @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("merchant_category_code")
+    private JsonNullable<String> merchantCategoryCode;
+
+
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("address")
+    private JsonNullable<? extends DigitalWalletAddress> address;
+
+
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("extra_configuration")
+    private JsonNullable<? extends Map<String, Object>> extraConfiguration;
+
+
+    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("domain_names")
     private Optional<? extends List<String>> domainNames;
 
@@ -62,6 +79,9 @@ public class DigitalWalletCreate {
             @JsonProperty("merchant_display_name") JsonNullable<String> merchantDisplayName,
             @JsonProperty("merchant_url") JsonNullable<String> merchantUrl,
             @JsonProperty("merchant_country_code") JsonNullable<String> merchantCountryCode,
+            @JsonProperty("merchant_category_code") JsonNullable<String> merchantCategoryCode,
+            @JsonProperty("address") JsonNullable<? extends DigitalWalletAddress> address,
+            @JsonProperty("extra_configuration") JsonNullable<? extends Map<String, Object>> extraConfiguration,
             @JsonProperty("domain_names") Optional<? extends List<String>> domainNames,
             @JsonProperty("accept_terms_and_conditions") boolean acceptTermsAndConditions) {
         Utils.checkNotNull(provider, "provider");
@@ -69,6 +89,9 @@ public class DigitalWalletCreate {
         Utils.checkNotNull(merchantDisplayName, "merchantDisplayName");
         Utils.checkNotNull(merchantUrl, "merchantUrl");
         Utils.checkNotNull(merchantCountryCode, "merchantCountryCode");
+        Utils.checkNotNull(merchantCategoryCode, "merchantCategoryCode");
+        Utils.checkNotNull(address, "address");
+        Utils.checkNotNull(extraConfiguration, "extraConfiguration");
         Utils.checkNotNull(domainNames, "domainNames");
         Utils.checkNotNull(acceptTermsAndConditions, "acceptTermsAndConditions");
         this.provider = provider;
@@ -76,6 +99,9 @@ public class DigitalWalletCreate {
         this.merchantDisplayName = merchantDisplayName;
         this.merchantUrl = merchantUrl;
         this.merchantCountryCode = merchantCountryCode;
+        this.merchantCategoryCode = merchantCategoryCode;
+        this.address = address;
+        this.extraConfiguration = extraConfiguration;
         this.domainNames = domainNames;
         this.acceptTermsAndConditions = acceptTermsAndConditions;
     }
@@ -85,6 +111,7 @@ public class DigitalWalletCreate {
             String merchantName,
             boolean acceptTermsAndConditions) {
         this(provider, merchantName, JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
             acceptTermsAndConditions);
     }
@@ -112,6 +139,23 @@ public class DigitalWalletCreate {
     @JsonIgnore
     public JsonNullable<String> merchantCountryCode() {
         return merchantCountryCode;
+    }
+
+    @JsonIgnore
+    public JsonNullable<String> merchantCategoryCode() {
+        return merchantCategoryCode;
+    }
+
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public JsonNullable<DigitalWalletAddress> address() {
+        return (JsonNullable<DigitalWalletAddress>) address;
+    }
+
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public JsonNullable<Map<String, Object>> extraConfiguration() {
+        return (JsonNullable<Map<String, Object>>) extraConfiguration;
     }
 
     @SuppressWarnings("unchecked")
@@ -178,6 +222,42 @@ public class DigitalWalletCreate {
         return this;
     }
 
+    public DigitalWalletCreate withMerchantCategoryCode(String merchantCategoryCode) {
+        Utils.checkNotNull(merchantCategoryCode, "merchantCategoryCode");
+        this.merchantCategoryCode = JsonNullable.of(merchantCategoryCode);
+        return this;
+    }
+
+    public DigitalWalletCreate withMerchantCategoryCode(JsonNullable<String> merchantCategoryCode) {
+        Utils.checkNotNull(merchantCategoryCode, "merchantCategoryCode");
+        this.merchantCategoryCode = merchantCategoryCode;
+        return this;
+    }
+
+    public DigitalWalletCreate withAddress(DigitalWalletAddress address) {
+        Utils.checkNotNull(address, "address");
+        this.address = JsonNullable.of(address);
+        return this;
+    }
+
+    public DigitalWalletCreate withAddress(JsonNullable<? extends DigitalWalletAddress> address) {
+        Utils.checkNotNull(address, "address");
+        this.address = address;
+        return this;
+    }
+
+    public DigitalWalletCreate withExtraConfiguration(Map<String, Object> extraConfiguration) {
+        Utils.checkNotNull(extraConfiguration, "extraConfiguration");
+        this.extraConfiguration = JsonNullable.of(extraConfiguration);
+        return this;
+    }
+
+    public DigitalWalletCreate withExtraConfiguration(JsonNullable<? extends Map<String, Object>> extraConfiguration) {
+        Utils.checkNotNull(extraConfiguration, "extraConfiguration");
+        this.extraConfiguration = extraConfiguration;
+        return this;
+    }
+
     public DigitalWalletCreate withDomainNames(List<String> domainNames) {
         Utils.checkNotNull(domainNames, "domainNames");
         this.domainNames = Optional.ofNullable(domainNames);
@@ -212,6 +292,9 @@ public class DigitalWalletCreate {
             Utils.enhancedDeepEquals(this.merchantDisplayName, other.merchantDisplayName) &&
             Utils.enhancedDeepEquals(this.merchantUrl, other.merchantUrl) &&
             Utils.enhancedDeepEquals(this.merchantCountryCode, other.merchantCountryCode) &&
+            Utils.enhancedDeepEquals(this.merchantCategoryCode, other.merchantCategoryCode) &&
+            Utils.enhancedDeepEquals(this.address, other.address) &&
+            Utils.enhancedDeepEquals(this.extraConfiguration, other.extraConfiguration) &&
             Utils.enhancedDeepEquals(this.domainNames, other.domainNames) &&
             Utils.enhancedDeepEquals(this.acceptTermsAndConditions, other.acceptTermsAndConditions);
     }
@@ -220,7 +303,8 @@ public class DigitalWalletCreate {
     public int hashCode() {
         return Utils.enhancedHash(
             provider, merchantName, merchantDisplayName,
-            merchantUrl, merchantCountryCode, domainNames,
+            merchantUrl, merchantCountryCode, merchantCategoryCode,
+            address, extraConfiguration, domainNames,
             acceptTermsAndConditions);
     }
     
@@ -232,6 +316,9 @@ public class DigitalWalletCreate {
                 "merchantDisplayName", merchantDisplayName,
                 "merchantUrl", merchantUrl,
                 "merchantCountryCode", merchantCountryCode,
+                "merchantCategoryCode", merchantCategoryCode,
+                "address", address,
+                "extraConfiguration", extraConfiguration,
                 "domainNames", domainNames,
                 "acceptTermsAndConditions", acceptTermsAndConditions);
     }
@@ -248,6 +335,12 @@ public class DigitalWalletCreate {
         private JsonNullable<String> merchantUrl = JsonNullable.undefined();
 
         private JsonNullable<String> merchantCountryCode = JsonNullable.undefined();
+
+        private JsonNullable<String> merchantCategoryCode = JsonNullable.undefined();
+
+        private JsonNullable<? extends DigitalWalletAddress> address = JsonNullable.undefined();
+
+        private JsonNullable<? extends Map<String, Object>> extraConfiguration = JsonNullable.undefined();
 
         private Optional<? extends List<String>> domainNames = Optional.empty();
 
@@ -311,6 +404,45 @@ public class DigitalWalletCreate {
         }
 
 
+        public Builder merchantCategoryCode(String merchantCategoryCode) {
+            Utils.checkNotNull(merchantCategoryCode, "merchantCategoryCode");
+            this.merchantCategoryCode = JsonNullable.of(merchantCategoryCode);
+            return this;
+        }
+
+        public Builder merchantCategoryCode(JsonNullable<String> merchantCategoryCode) {
+            Utils.checkNotNull(merchantCategoryCode, "merchantCategoryCode");
+            this.merchantCategoryCode = merchantCategoryCode;
+            return this;
+        }
+
+
+        public Builder address(DigitalWalletAddress address) {
+            Utils.checkNotNull(address, "address");
+            this.address = JsonNullable.of(address);
+            return this;
+        }
+
+        public Builder address(JsonNullable<? extends DigitalWalletAddress> address) {
+            Utils.checkNotNull(address, "address");
+            this.address = address;
+            return this;
+        }
+
+
+        public Builder extraConfiguration(Map<String, Object> extraConfiguration) {
+            Utils.checkNotNull(extraConfiguration, "extraConfiguration");
+            this.extraConfiguration = JsonNullable.of(extraConfiguration);
+            return this;
+        }
+
+        public Builder extraConfiguration(JsonNullable<? extends Map<String, Object>> extraConfiguration) {
+            Utils.checkNotNull(extraConfiguration, "extraConfiguration");
+            this.extraConfiguration = extraConfiguration;
+            return this;
+        }
+
+
         public Builder domainNames(List<String> domainNames) {
             Utils.checkNotNull(domainNames, "domainNames");
             this.domainNames = Optional.ofNullable(domainNames);
@@ -334,7 +466,8 @@ public class DigitalWalletCreate {
 
             return new DigitalWalletCreate(
                 provider, merchantName, merchantDisplayName,
-                merchantUrl, merchantCountryCode, domainNames,
+                merchantUrl, merchantCountryCode, merchantCategoryCode,
+                address, extraConfiguration, domainNames,
                 acceptTermsAndConditions);
         }
 

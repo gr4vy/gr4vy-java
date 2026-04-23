@@ -75,6 +75,27 @@ public class DigitalWallet {
     private JsonNullable<String> merchantCountryCode;
 
     /**
+     * Merchant classification for the type of goods or services it provides.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("merchant_category_code")
+    private JsonNullable<String> merchantCategoryCode;
+
+    /**
+     * The merchant address associated with the digital wallet.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("address")
+    private JsonNullable<? extends DigitalWalletAddress> address;
+
+    /**
+     * Provider-specific configuration. Currently only used by Paze.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("extra_configuration")
+    private JsonNullable<? extends Map<String, Object>> extraConfiguration;
+
+    /**
      * The list of domain names that a digital wallet can be used on (deprecated).
      */
     @JsonProperty("domain_names")
@@ -129,6 +150,9 @@ public class DigitalWallet {
             @JsonProperty("merchant_display_name") JsonNullable<String> merchantDisplayName,
             @JsonProperty("merchant_url") JsonNullable<String> merchantUrl,
             @JsonProperty("merchant_country_code") JsonNullable<String> merchantCountryCode,
+            @JsonProperty("merchant_category_code") JsonNullable<String> merchantCategoryCode,
+            @JsonProperty("address") JsonNullable<? extends DigitalWalletAddress> address,
+            @JsonProperty("extra_configuration") JsonNullable<? extends Map<String, Object>> extraConfiguration,
             @JsonProperty("domain_names") List<String> domainNames,
             @JsonProperty("active_certificate_count") Optional<Long> activeCertificateCount,
             @JsonProperty("pending_certificate_count") Optional<Long> pendingCertificateCount,
@@ -143,6 +167,9 @@ public class DigitalWallet {
         Utils.checkNotNull(merchantDisplayName, "merchantDisplayName");
         Utils.checkNotNull(merchantUrl, "merchantUrl");
         Utils.checkNotNull(merchantCountryCode, "merchantCountryCode");
+        Utils.checkNotNull(merchantCategoryCode, "merchantCategoryCode");
+        Utils.checkNotNull(address, "address");
+        Utils.checkNotNull(extraConfiguration, "extraConfiguration");
         Utils.checkNotNull(domainNames, "domainNames");
         Utils.checkNotNull(activeCertificateCount, "activeCertificateCount");
         Utils.checkNotNull(pendingCertificateCount, "pendingCertificateCount");
@@ -158,6 +185,9 @@ public class DigitalWallet {
         this.merchantDisplayName = merchantDisplayName;
         this.merchantUrl = merchantUrl;
         this.merchantCountryCode = merchantCountryCode;
+        this.merchantCategoryCode = merchantCategoryCode;
+        this.address = address;
+        this.extraConfiguration = extraConfiguration;
         this.domainNames = domainNames;
         this.activeCertificateCount = activeCertificateCount;
         this.pendingCertificateCount = pendingCertificateCount;
@@ -177,6 +207,7 @@ public class DigitalWallet {
             OffsetDateTime updatedAt) {
         this(id, merchantAccountId, provider,
             merchantName, JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), domainNames, Optional.empty(),
             Optional.empty(), Optional.empty(), JsonNullable.undefined(),
             createdAt, updatedAt);
@@ -241,6 +272,32 @@ public class DigitalWallet {
     @JsonIgnore
     public JsonNullable<String> merchantCountryCode() {
         return merchantCountryCode;
+    }
+
+    /**
+     * Merchant classification for the type of goods or services it provides.
+     */
+    @JsonIgnore
+    public JsonNullable<String> merchantCategoryCode() {
+        return merchantCategoryCode;
+    }
+
+    /**
+     * The merchant address associated with the digital wallet.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public JsonNullable<DigitalWalletAddress> address() {
+        return (JsonNullable<DigitalWalletAddress>) address;
+    }
+
+    /**
+     * Provider-specific configuration. Currently only used by Paze.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public JsonNullable<Map<String, Object>> extraConfiguration() {
+        return (JsonNullable<Map<String, Object>>) extraConfiguration;
     }
 
     /**
@@ -393,6 +450,60 @@ public class DigitalWallet {
     }
 
     /**
+     * Merchant classification for the type of goods or services it provides.
+     */
+    public DigitalWallet withMerchantCategoryCode(String merchantCategoryCode) {
+        Utils.checkNotNull(merchantCategoryCode, "merchantCategoryCode");
+        this.merchantCategoryCode = JsonNullable.of(merchantCategoryCode);
+        return this;
+    }
+
+    /**
+     * Merchant classification for the type of goods or services it provides.
+     */
+    public DigitalWallet withMerchantCategoryCode(JsonNullable<String> merchantCategoryCode) {
+        Utils.checkNotNull(merchantCategoryCode, "merchantCategoryCode");
+        this.merchantCategoryCode = merchantCategoryCode;
+        return this;
+    }
+
+    /**
+     * The merchant address associated with the digital wallet.
+     */
+    public DigitalWallet withAddress(DigitalWalletAddress address) {
+        Utils.checkNotNull(address, "address");
+        this.address = JsonNullable.of(address);
+        return this;
+    }
+
+    /**
+     * The merchant address associated with the digital wallet.
+     */
+    public DigitalWallet withAddress(JsonNullable<? extends DigitalWalletAddress> address) {
+        Utils.checkNotNull(address, "address");
+        this.address = address;
+        return this;
+    }
+
+    /**
+     * Provider-specific configuration. Currently only used by Paze.
+     */
+    public DigitalWallet withExtraConfiguration(Map<String, Object> extraConfiguration) {
+        Utils.checkNotNull(extraConfiguration, "extraConfiguration");
+        this.extraConfiguration = JsonNullable.of(extraConfiguration);
+        return this;
+    }
+
+    /**
+     * Provider-specific configuration. Currently only used by Paze.
+     */
+    public DigitalWallet withExtraConfiguration(JsonNullable<? extends Map<String, Object>> extraConfiguration) {
+        Utils.checkNotNull(extraConfiguration, "extraConfiguration");
+        this.extraConfiguration = extraConfiguration;
+        return this;
+    }
+
+    /**
      * The list of domain names that a digital wallet can be used on (deprecated).
      */
     public DigitalWallet withDomainNames(List<String> domainNames) {
@@ -512,6 +623,9 @@ public class DigitalWallet {
             Utils.enhancedDeepEquals(this.merchantDisplayName, other.merchantDisplayName) &&
             Utils.enhancedDeepEquals(this.merchantUrl, other.merchantUrl) &&
             Utils.enhancedDeepEquals(this.merchantCountryCode, other.merchantCountryCode) &&
+            Utils.enhancedDeepEquals(this.merchantCategoryCode, other.merchantCategoryCode) &&
+            Utils.enhancedDeepEquals(this.address, other.address) &&
+            Utils.enhancedDeepEquals(this.extraConfiguration, other.extraConfiguration) &&
             Utils.enhancedDeepEquals(this.domainNames, other.domainNames) &&
             Utils.enhancedDeepEquals(this.activeCertificateCount, other.activeCertificateCount) &&
             Utils.enhancedDeepEquals(this.pendingCertificateCount, other.pendingCertificateCount) &&
@@ -526,7 +640,8 @@ public class DigitalWallet {
         return Utils.enhancedHash(
             type, id, merchantAccountId,
             provider, merchantName, merchantDisplayName,
-            merchantUrl, merchantCountryCode, domainNames,
+            merchantUrl, merchantCountryCode, merchantCategoryCode,
+            address, extraConfiguration, domainNames,
             activeCertificateCount, pendingCertificateCount, expiredCertificateCount,
             fields, createdAt, updatedAt);
     }
@@ -542,6 +657,9 @@ public class DigitalWallet {
                 "merchantDisplayName", merchantDisplayName,
                 "merchantUrl", merchantUrl,
                 "merchantCountryCode", merchantCountryCode,
+                "merchantCategoryCode", merchantCategoryCode,
+                "address", address,
+                "extraConfiguration", extraConfiguration,
                 "domainNames", domainNames,
                 "activeCertificateCount", activeCertificateCount,
                 "pendingCertificateCount", pendingCertificateCount,
@@ -567,6 +685,12 @@ public class DigitalWallet {
         private JsonNullable<String> merchantUrl = JsonNullable.undefined();
 
         private JsonNullable<String> merchantCountryCode = JsonNullable.undefined();
+
+        private JsonNullable<String> merchantCategoryCode = JsonNullable.undefined();
+
+        private JsonNullable<? extends DigitalWalletAddress> address = JsonNullable.undefined();
+
+        private JsonNullable<? extends Map<String, Object>> extraConfiguration = JsonNullable.undefined();
 
         private List<String> domainNames;
 
@@ -677,6 +801,63 @@ public class DigitalWallet {
         public Builder merchantCountryCode(JsonNullable<String> merchantCountryCode) {
             Utils.checkNotNull(merchantCountryCode, "merchantCountryCode");
             this.merchantCountryCode = merchantCountryCode;
+            return this;
+        }
+
+
+        /**
+         * Merchant classification for the type of goods or services it provides.
+         */
+        public Builder merchantCategoryCode(String merchantCategoryCode) {
+            Utils.checkNotNull(merchantCategoryCode, "merchantCategoryCode");
+            this.merchantCategoryCode = JsonNullable.of(merchantCategoryCode);
+            return this;
+        }
+
+        /**
+         * Merchant classification for the type of goods or services it provides.
+         */
+        public Builder merchantCategoryCode(JsonNullable<String> merchantCategoryCode) {
+            Utils.checkNotNull(merchantCategoryCode, "merchantCategoryCode");
+            this.merchantCategoryCode = merchantCategoryCode;
+            return this;
+        }
+
+
+        /**
+         * The merchant address associated with the digital wallet.
+         */
+        public Builder address(DigitalWalletAddress address) {
+            Utils.checkNotNull(address, "address");
+            this.address = JsonNullable.of(address);
+            return this;
+        }
+
+        /**
+         * The merchant address associated with the digital wallet.
+         */
+        public Builder address(JsonNullable<? extends DigitalWalletAddress> address) {
+            Utils.checkNotNull(address, "address");
+            this.address = address;
+            return this;
+        }
+
+
+        /**
+         * Provider-specific configuration. Currently only used by Paze.
+         */
+        public Builder extraConfiguration(Map<String, Object> extraConfiguration) {
+            Utils.checkNotNull(extraConfiguration, "extraConfiguration");
+            this.extraConfiguration = JsonNullable.of(extraConfiguration);
+            return this;
+        }
+
+        /**
+         * Provider-specific configuration. Currently only used by Paze.
+         */
+        public Builder extraConfiguration(JsonNullable<? extends Map<String, Object>> extraConfiguration) {
+            Utils.checkNotNull(extraConfiguration, "extraConfiguration");
+            this.extraConfiguration = extraConfiguration;
             return this;
         }
 
@@ -800,7 +981,8 @@ public class DigitalWallet {
             return new DigitalWallet(
                 id, merchantAccountId, provider,
                 merchantName, merchantDisplayName, merchantUrl,
-                merchantCountryCode, domainNames, activeCertificateCount,
+                merchantCountryCode, merchantCategoryCode, address,
+                extraConfiguration, domainNames, activeCertificateCount,
                 pendingCertificateCount, expiredCertificateCount, fields,
                 createdAt, updatedAt);
         }
