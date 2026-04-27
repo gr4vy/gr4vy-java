@@ -86,7 +86,7 @@ public class DigitalWallet {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("address")
-    private JsonNullable<? extends DigitalWalletAddress> address;
+    private JsonNullable<? extends ApiTypesDigitalWalletAddress> address;
 
     /**
      * Provider-specific configuration. Currently only used by Paze.
@@ -151,7 +151,7 @@ public class DigitalWallet {
             @JsonProperty("merchant_url") JsonNullable<String> merchantUrl,
             @JsonProperty("merchant_country_code") JsonNullable<String> merchantCountryCode,
             @JsonProperty("merchant_category_code") JsonNullable<String> merchantCategoryCode,
-            @JsonProperty("address") JsonNullable<? extends DigitalWalletAddress> address,
+            @JsonProperty("address") JsonNullable<? extends ApiTypesDigitalWalletAddress> address,
             @JsonProperty("extra_configuration") JsonNullable<? extends Map<String, Object>> extraConfiguration,
             @JsonProperty("domain_names") List<String> domainNames,
             @JsonProperty("active_certificate_count") Optional<Long> activeCertificateCount,
@@ -287,8 +287,8 @@ public class DigitalWallet {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<DigitalWalletAddress> address() {
-        return (JsonNullable<DigitalWalletAddress>) address;
+    public JsonNullable<ApiTypesDigitalWalletAddress> address() {
+        return (JsonNullable<ApiTypesDigitalWalletAddress>) address;
     }
 
     /**
@@ -470,7 +470,7 @@ public class DigitalWallet {
     /**
      * The merchant address associated with the digital wallet.
      */
-    public DigitalWallet withAddress(DigitalWalletAddress address) {
+    public DigitalWallet withAddress(ApiTypesDigitalWalletAddress address) {
         Utils.checkNotNull(address, "address");
         this.address = JsonNullable.of(address);
         return this;
@@ -479,7 +479,7 @@ public class DigitalWallet {
     /**
      * The merchant address associated with the digital wallet.
      */
-    public DigitalWallet withAddress(JsonNullable<? extends DigitalWalletAddress> address) {
+    public DigitalWallet withAddress(JsonNullable<? extends ApiTypesDigitalWalletAddress> address) {
         Utils.checkNotNull(address, "address");
         this.address = address;
         return this;
@@ -688,7 +688,7 @@ public class DigitalWallet {
 
         private JsonNullable<String> merchantCategoryCode = JsonNullable.undefined();
 
-        private JsonNullable<? extends DigitalWalletAddress> address = JsonNullable.undefined();
+        private JsonNullable<? extends ApiTypesDigitalWalletAddress> address = JsonNullable.undefined();
 
         private JsonNullable<? extends Map<String, Object>> extraConfiguration = JsonNullable.undefined();
 
@@ -827,7 +827,7 @@ public class DigitalWallet {
         /**
          * The merchant address associated with the digital wallet.
          */
-        public Builder address(DigitalWalletAddress address) {
+        public Builder address(ApiTypesDigitalWalletAddress address) {
             Utils.checkNotNull(address, "address");
             this.address = JsonNullable.of(address);
             return this;
@@ -836,7 +836,7 @@ public class DigitalWallet {
         /**
          * The merchant address associated with the digital wallet.
          */
-        public Builder address(JsonNullable<? extends DigitalWalletAddress> address) {
+        public Builder address(JsonNullable<? extends ApiTypesDigitalWalletAddress> address) {
             Utils.checkNotNull(address, "address");
             this.address = address;
             return this;
