@@ -78,7 +78,7 @@ public class TransactionConnectionOptions {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("adyen-pix")
-    private JsonNullable<? extends AdyenOptions> adyenPix;
+    private JsonNullable<? extends AdyenPixOptions> adyenPix;
 
     /**
      * Custom options to be passed to the `adyen-sepa` connector.
@@ -405,7 +405,7 @@ public class TransactionConnectionOptions {
             @JsonProperty("adyen-giropay") JsonNullable<? extends AdyenOptions> adyenGiropay,
             @JsonProperty("adyen-ideal") JsonNullable<? extends AdyenOptions> adyenIdeal,
             @JsonProperty("adyen-paypay") JsonNullable<? extends AdyenOptions> adyenPaypay,
-            @JsonProperty("adyen-pix") JsonNullable<? extends AdyenOptions> adyenPix,
+            @JsonProperty("adyen-pix") JsonNullable<? extends AdyenPixOptions> adyenPix,
             @JsonProperty("adyen-sepa") JsonNullable<? extends AdyenSepaOptions> adyenSepa,
             @JsonProperty("adyen-sofort") JsonNullable<? extends AdyenOptions> adyenSofort,
             @JsonProperty("adyen-swish") JsonNullable<? extends AdyenOptions> adyenSwish,
@@ -660,8 +660,8 @@ public class TransactionConnectionOptions {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<AdyenOptions> adyenPix() {
-        return (JsonNullable<AdyenOptions>) adyenPix;
+    public JsonNullable<AdyenPixOptions> adyenPix() {
+        return (JsonNullable<AdyenPixOptions>) adyenPix;
     }
 
     /**
@@ -1223,7 +1223,7 @@ public class TransactionConnectionOptions {
     /**
      * Custom options to be passed to the `adyen-pix` connector.
      */
-    public TransactionConnectionOptions withAdyenPix(AdyenOptions adyenPix) {
+    public TransactionConnectionOptions withAdyenPix(AdyenPixOptions adyenPix) {
         Utils.checkNotNull(adyenPix, "adyenPix");
         this.adyenPix = JsonNullable.of(adyenPix);
         return this;
@@ -1232,7 +1232,7 @@ public class TransactionConnectionOptions {
     /**
      * Custom options to be passed to the `adyen-pix` connector.
      */
-    public TransactionConnectionOptions withAdyenPix(JsonNullable<? extends AdyenOptions> adyenPix) {
+    public TransactionConnectionOptions withAdyenPix(JsonNullable<? extends AdyenPixOptions> adyenPix) {
         Utils.checkNotNull(adyenPix, "adyenPix");
         this.adyenPix = adyenPix;
         return this;
@@ -2215,7 +2215,7 @@ public class TransactionConnectionOptions {
 
         private JsonNullable<? extends AdyenOptions> adyenPaypay = JsonNullable.undefined();
 
-        private JsonNullable<? extends AdyenOptions> adyenPix = JsonNullable.undefined();
+        private JsonNullable<? extends AdyenPixOptions> adyenPix = JsonNullable.undefined();
 
         private JsonNullable<? extends AdyenSepaOptions> adyenSepa = JsonNullable.undefined();
 
@@ -2469,7 +2469,7 @@ public class TransactionConnectionOptions {
         /**
          * Custom options to be passed to the `adyen-pix` connector.
          */
-        public Builder adyenPix(AdyenOptions adyenPix) {
+        public Builder adyenPix(AdyenPixOptions adyenPix) {
             Utils.checkNotNull(adyenPix, "adyenPix");
             this.adyenPix = JsonNullable.of(adyenPix);
             return this;
@@ -2478,7 +2478,7 @@ public class TransactionConnectionOptions {
         /**
          * Custom options to be passed to the `adyen-pix` connector.
          */
-        public Builder adyenPix(JsonNullable<? extends AdyenOptions> adyenPix) {
+        public Builder adyenPix(JsonNullable<? extends AdyenPixOptions> adyenPix) {
             Utils.checkNotNull(adyenPix, "adyenPix");
             this.adyenPix = adyenPix;
             return this;
