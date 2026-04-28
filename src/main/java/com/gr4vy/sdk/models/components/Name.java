@@ -70,6 +70,7 @@ public class Name {
     public static final Name DIGITAL_WALLET_APPLE_PAY_TOKEN_DECRYPTED = new Name("digital-wallet-apple-pay-token-decrypted");
     public static final Name DIGITAL_WALLET_GOOGLE_PAY_TOKEN_DECRYPTED = new Name("digital-wallet-google-pay-token-decrypted");
     public static final Name DIGITAL_WALLET_CLICK_TO_PAY_TOKEN_DECRYPTED = new Name("digital-wallet-click-to-pay-token-decrypted");
+    public static final Name DIGITAL_WALLET_PAZE_TOKEN_DECRYPTED = new Name("digital-wallet-paze-token-decrypted");
     public static final Name NETWORK_TOKEN_PROVISION_SUCCEEDED = new Name("network-token-provision-succeeded");
     public static final Name NETWORK_TOKEN_PROVISION_FAILED = new Name("network-token-provision-failed");
     public static final Name NETWORK_TOKEN_CRYPTOGRAM_PROVISION_SUCCEEDED = new Name("network-token-cryptogram-provision-succeeded");
@@ -195,6 +196,7 @@ public class Name {
         map.put("digital-wallet-apple-pay-token-decrypted", DIGITAL_WALLET_APPLE_PAY_TOKEN_DECRYPTED);
         map.put("digital-wallet-google-pay-token-decrypted", DIGITAL_WALLET_GOOGLE_PAY_TOKEN_DECRYPTED);
         map.put("digital-wallet-click-to-pay-token-decrypted", DIGITAL_WALLET_CLICK_TO_PAY_TOKEN_DECRYPTED);
+        map.put("digital-wallet-paze-token-decrypted", DIGITAL_WALLET_PAZE_TOKEN_DECRYPTED);
         map.put("network-token-provision-succeeded", NETWORK_TOKEN_PROVISION_SUCCEEDED);
         map.put("network-token-provision-failed", NETWORK_TOKEN_PROVISION_FAILED);
         map.put("network-token-cryptogram-provision-succeeded", NETWORK_TOKEN_CRYPTOGRAM_PROVISION_SUCCEEDED);
@@ -252,6 +254,7 @@ public class Name {
         map.put("digital-wallet-apple-pay-token-decrypted", NameEnum.DIGITAL_WALLET_APPLE_PAY_TOKEN_DECRYPTED);
         map.put("digital-wallet-google-pay-token-decrypted", NameEnum.DIGITAL_WALLET_GOOGLE_PAY_TOKEN_DECRYPTED);
         map.put("digital-wallet-click-to-pay-token-decrypted", NameEnum.DIGITAL_WALLET_CLICK_TO_PAY_TOKEN_DECRYPTED);
+        map.put("digital-wallet-paze-token-decrypted", NameEnum.DIGITAL_WALLET_PAZE_TOKEN_DECRYPTED);
         map.put("network-token-provision-succeeded", NameEnum.NETWORK_TOKEN_PROVISION_SUCCEEDED);
         map.put("network-token-provision-failed", NameEnum.NETWORK_TOKEN_PROVISION_FAILED);
         map.put("network-token-cryptogram-provision-succeeded", NameEnum.NETWORK_TOKEN_CRYPTOGRAM_PROVISION_SUCCEEDED);
@@ -310,6 +313,7 @@ public class Name {
         DIGITAL_WALLET_APPLE_PAY_TOKEN_DECRYPTED("digital-wallet-apple-pay-token-decrypted"),
         DIGITAL_WALLET_GOOGLE_PAY_TOKEN_DECRYPTED("digital-wallet-google-pay-token-decrypted"),
         DIGITAL_WALLET_CLICK_TO_PAY_TOKEN_DECRYPTED("digital-wallet-click-to-pay-token-decrypted"),
+        DIGITAL_WALLET_PAZE_TOKEN_DECRYPTED("digital-wallet-paze-token-decrypted"),
         NETWORK_TOKEN_PROVISION_SUCCEEDED("network-token-provision-succeeded"),
         NETWORK_TOKEN_PROVISION_FAILED("network-token-provision-failed"),
         NETWORK_TOKEN_CRYPTOGRAM_PROVISION_SUCCEEDED("network-token-cryptogram-provision-succeeded"),

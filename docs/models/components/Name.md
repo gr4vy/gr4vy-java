@@ -63,6 +63,7 @@ Name custom = Name.of("custom_value");
 | `DIGITAL_WALLET_APPLE_PAY_TOKEN_DECRYPTED`                       | digital-wallet-apple-pay-token-decrypted                         |
 | `DIGITAL_WALLET_GOOGLE_PAY_TOKEN_DECRYPTED`                      | digital-wallet-google-pay-token-decrypted                        |
 | `DIGITAL_WALLET_CLICK_TO_PAY_TOKEN_DECRYPTED`                    | digital-wallet-click-to-pay-token-decrypted                      |
+| `DIGITAL_WALLET_PAZE_TOKEN_DECRYPTED`                            | digital-wallet-paze-token-decrypted                              |
 | `NETWORK_TOKEN_PROVISION_SUCCEEDED`                              | network-token-provision-succeeded                                |
 | `NETWORK_TOKEN_PROVISION_FAILED`                                 | network-token-provision-failed                                   |
 | `NETWORK_TOKEN_CRYPTOGRAM_PROVISION_SUCCEEDED`                   | network-token-cryptogram-provision-succeeded                     |
