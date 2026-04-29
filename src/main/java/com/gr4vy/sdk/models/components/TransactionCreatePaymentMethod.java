@@ -71,6 +71,11 @@ public class TransactionCreatePaymentMethod {
         return new TransactionCreatePaymentMethod(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
     }
 
+    public static TransactionCreatePaymentMethod of(PazePaymentMethodCreate value) {
+        Utils.checkNotNull(value, "value");
+        return new TransactionCreatePaymentMethod(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
+    }
+
     public static TransactionCreatePaymentMethod of(NetworkTokenPaymentMethodCreate value) {
         Utils.checkNotNull(value, "value");
         return new TransactionCreatePaymentMethod(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
@@ -102,6 +107,7 @@ public class TransactionCreatePaymentMethod {
      * <li>{@code com.gr4vy.sdk.models.components.ClickToPayFPANPaymentMethodCreate}</li>
      * <li>{@code com.gr4vy.sdk.models.components.GooglePayPaymentMethodCreate}</li>
      * <li>{@code com.gr4vy.sdk.models.components.GooglePayFPANPaymentMethodCreate}</li>
+     * <li>{@code com.gr4vy.sdk.models.components.PazePaymentMethodCreate}</li>
      * <li>{@code com.gr4vy.sdk.models.components.NetworkTokenPaymentMethodCreate}</li>
      * <li>{@code com.gr4vy.sdk.models.components.PlaidPaymentMethodCreate}</li>
      * <li>{@code com.gr4vy.sdk.models.components.BaseBankPaymentMethodCreate}</li>
@@ -153,6 +159,7 @@ public class TransactionCreatePaymentMethod {
                   TypeReferenceWithShape.of(new TypeReference<ClickToPayFPANPaymentMethodCreate>() {}, JsonShape.DEFAULT),
                   TypeReferenceWithShape.of(new TypeReference<GooglePayPaymentMethodCreate>() {}, JsonShape.DEFAULT),
                   TypeReferenceWithShape.of(new TypeReference<GooglePayFPANPaymentMethodCreate>() {}, JsonShape.DEFAULT),
+                  TypeReferenceWithShape.of(new TypeReference<PazePaymentMethodCreate>() {}, JsonShape.DEFAULT),
                   TypeReferenceWithShape.of(new TypeReference<NetworkTokenPaymentMethodCreate>() {}, JsonShape.DEFAULT),
                   TypeReferenceWithShape.of(new TypeReference<PlaidPaymentMethodCreate>() {}, JsonShape.DEFAULT),
                   TypeReferenceWithShape.of(new TypeReference<BaseBankPaymentMethodCreate>() {}, JsonShape.DEFAULT),

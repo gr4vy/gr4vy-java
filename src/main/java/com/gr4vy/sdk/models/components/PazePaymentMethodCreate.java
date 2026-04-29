@@ -13,15 +13,14 @@ import com.gr4vy.sdk.utils.LazySingletonValue;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 /**
- * GooglePayPaymentMethodCreate
+ * PazePaymentMethodCreate
  * 
- * <p>Create a Google Pay transaction with a device token.
+ * <p>Create a Paze transaction with a device token.
  */
-public class GooglePayPaymentMethodCreate {
+public class PazePaymentMethodCreate {
     /**
      * The external identifier of the buyer to create a payment for.
      */
@@ -72,27 +71,19 @@ public class GooglePayPaymentMethodCreate {
     private JsonNullable<String> cardType;
 
     /**
-     * Always `googlepay`
+     * Always `paze`
      */
     @JsonProperty("method")
     private String method;
 
     /**
-     * The opaque token as received from the Google Pay JS library. This format may change between JS
-     * library versions.
+     * The opaque token as received from the Paze complete response.
      */
     @JsonProperty("token")
-    private GooglePayPaymentMethodCreateToken token;
-
-    /**
-     * The assurance details provided by Google Pay
-     */
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("assurance_details")
-    private JsonNullable<? extends GooglePayAssuranceDetails> assuranceDetails;
+    private PazePaymentMethodCreateToken token;
 
     @JsonCreator
-    public GooglePayPaymentMethodCreate(
+    public PazePaymentMethodCreate(
             @JsonProperty("buyer_external_identifier") JsonNullable<String> buyerExternalIdentifier,
             @JsonProperty("buyer_id") JsonNullable<String> buyerId,
             @JsonProperty("cardholder_name") JsonNullable<String> cardholderName,
@@ -100,8 +91,7 @@ public class GooglePayPaymentMethodCreate {
             @JsonProperty("card_suffix") JsonNullable<String> cardSuffix,
             @JsonProperty("card_scheme") JsonNullable<String> cardScheme,
             @JsonProperty("card_type") JsonNullable<String> cardType,
-            @JsonProperty("token") GooglePayPaymentMethodCreateToken token,
-            @JsonProperty("assurance_details") JsonNullable<? extends GooglePayAssuranceDetails> assuranceDetails) {
+            @JsonProperty("token") PazePaymentMethodCreateToken token) {
         Utils.checkNotNull(buyerExternalIdentifier, "buyerExternalIdentifier");
         Utils.checkNotNull(buyerId, "buyerId");
         Utils.checkNotNull(cardholderName, "cardholderName");
@@ -110,7 +100,6 @@ public class GooglePayPaymentMethodCreate {
         Utils.checkNotNull(cardScheme, "cardScheme");
         Utils.checkNotNull(cardType, "cardType");
         Utils.checkNotNull(token, "token");
-        Utils.checkNotNull(assuranceDetails, "assuranceDetails");
         this.buyerExternalIdentifier = buyerExternalIdentifier;
         this.buyerId = buyerId;
         this.cardholderName = cardholderName;
@@ -120,14 +109,13 @@ public class GooglePayPaymentMethodCreate {
         this.cardType = cardType;
         this.method = Builder._SINGLETON_VALUE_Method.value();
         this.token = token;
-        this.assuranceDetails = assuranceDetails;
     }
     
-    public GooglePayPaymentMethodCreate(
-            GooglePayPaymentMethodCreateToken token) {
+    public PazePaymentMethodCreate(
+            PazePaymentMethodCreateToken token) {
         this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), token, JsonNullable.undefined());
+            JsonNullable.undefined(), token);
     }
 
     /**
@@ -187,7 +175,7 @@ public class GooglePayPaymentMethodCreate {
     }
 
     /**
-     * Always `googlepay`
+     * Always `paze`
      */
     @JsonIgnore
     public String method() {
@@ -195,21 +183,11 @@ public class GooglePayPaymentMethodCreate {
     }
 
     /**
-     * The opaque token as received from the Google Pay JS library. This format may change between JS
-     * library versions.
+     * The opaque token as received from the Paze complete response.
      */
     @JsonIgnore
-    public GooglePayPaymentMethodCreateToken token() {
+    public PazePaymentMethodCreateToken token() {
         return token;
-    }
-
-    /**
-     * The assurance details provided by Google Pay
-     */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
-    public JsonNullable<GooglePayAssuranceDetails> assuranceDetails() {
-        return (JsonNullable<GooglePayAssuranceDetails>) assuranceDetails;
     }
 
     public static Builder builder() {
@@ -220,7 +198,7 @@ public class GooglePayPaymentMethodCreate {
     /**
      * The external identifier of the buyer to create a payment for.
      */
-    public GooglePayPaymentMethodCreate withBuyerExternalIdentifier(String buyerExternalIdentifier) {
+    public PazePaymentMethodCreate withBuyerExternalIdentifier(String buyerExternalIdentifier) {
         Utils.checkNotNull(buyerExternalIdentifier, "buyerExternalIdentifier");
         this.buyerExternalIdentifier = JsonNullable.of(buyerExternalIdentifier);
         return this;
@@ -229,7 +207,7 @@ public class GooglePayPaymentMethodCreate {
     /**
      * The external identifier of the buyer to create a payment for.
      */
-    public GooglePayPaymentMethodCreate withBuyerExternalIdentifier(JsonNullable<String> buyerExternalIdentifier) {
+    public PazePaymentMethodCreate withBuyerExternalIdentifier(JsonNullable<String> buyerExternalIdentifier) {
         Utils.checkNotNull(buyerExternalIdentifier, "buyerExternalIdentifier");
         this.buyerExternalIdentifier = buyerExternalIdentifier;
         return this;
@@ -238,7 +216,7 @@ public class GooglePayPaymentMethodCreate {
     /**
      * The ID of the buyer to retrieve billing details for.
      */
-    public GooglePayPaymentMethodCreate withBuyerId(String buyerId) {
+    public PazePaymentMethodCreate withBuyerId(String buyerId) {
         Utils.checkNotNull(buyerId, "buyerId");
         this.buyerId = JsonNullable.of(buyerId);
         return this;
@@ -247,7 +225,7 @@ public class GooglePayPaymentMethodCreate {
     /**
      * The ID of the buyer to retrieve billing details for.
      */
-    public GooglePayPaymentMethodCreate withBuyerId(JsonNullable<String> buyerId) {
+    public PazePaymentMethodCreate withBuyerId(JsonNullable<String> buyerId) {
         Utils.checkNotNull(buyerId, "buyerId");
         this.buyerId = buyerId;
         return this;
@@ -256,7 +234,7 @@ public class GooglePayPaymentMethodCreate {
     /**
      * The card holder name associated to the original card for the token.
      */
-    public GooglePayPaymentMethodCreate withCardholderName(String cardholderName) {
+    public PazePaymentMethodCreate withCardholderName(String cardholderName) {
         Utils.checkNotNull(cardholderName, "cardholderName");
         this.cardholderName = JsonNullable.of(cardholderName);
         return this;
@@ -265,7 +243,7 @@ public class GooglePayPaymentMethodCreate {
     /**
      * The card holder name associated to the original card for the token.
      */
-    public GooglePayPaymentMethodCreate withCardholderName(JsonNullable<String> cardholderName) {
+    public PazePaymentMethodCreate withCardholderName(JsonNullable<String> cardholderName) {
         Utils.checkNotNull(cardholderName, "cardholderName");
         this.cardholderName = cardholderName;
         return this;
@@ -274,7 +252,7 @@ public class GooglePayPaymentMethodCreate {
     /**
      * The URL to redirect a user back to after the complete 3DS in browser.
      */
-    public GooglePayPaymentMethodCreate withRedirectUrl(String redirectUrl) {
+    public PazePaymentMethodCreate withRedirectUrl(String redirectUrl) {
         Utils.checkNotNull(redirectUrl, "redirectUrl");
         this.redirectUrl = JsonNullable.of(redirectUrl);
         return this;
@@ -283,7 +261,7 @@ public class GooglePayPaymentMethodCreate {
     /**
      * The URL to redirect a user back to after the complete 3DS in browser.
      */
-    public GooglePayPaymentMethodCreate withRedirectUrl(JsonNullable<String> redirectUrl) {
+    public PazePaymentMethodCreate withRedirectUrl(JsonNullable<String> redirectUrl) {
         Utils.checkNotNull(redirectUrl, "redirectUrl");
         this.redirectUrl = redirectUrl;
         return this;
@@ -292,7 +270,7 @@ public class GooglePayPaymentMethodCreate {
     /**
      * The last 4 digits of the original card used to generate the token.
      */
-    public GooglePayPaymentMethodCreate withCardSuffix(String cardSuffix) {
+    public PazePaymentMethodCreate withCardSuffix(String cardSuffix) {
         Utils.checkNotNull(cardSuffix, "cardSuffix");
         this.cardSuffix = JsonNullable.of(cardSuffix);
         return this;
@@ -301,7 +279,7 @@ public class GooglePayPaymentMethodCreate {
     /**
      * The last 4 digits of the original card used to generate the token.
      */
-    public GooglePayPaymentMethodCreate withCardSuffix(JsonNullable<String> cardSuffix) {
+    public PazePaymentMethodCreate withCardSuffix(JsonNullable<String> cardSuffix) {
         Utils.checkNotNull(cardSuffix, "cardSuffix");
         this.cardSuffix = cardSuffix;
         return this;
@@ -310,7 +288,7 @@ public class GooglePayPaymentMethodCreate {
     /**
      * The original card scheme for which the token was generated.
      */
-    public GooglePayPaymentMethodCreate withCardScheme(String cardScheme) {
+    public PazePaymentMethodCreate withCardScheme(String cardScheme) {
         Utils.checkNotNull(cardScheme, "cardScheme");
         this.cardScheme = JsonNullable.of(cardScheme);
         return this;
@@ -319,7 +297,7 @@ public class GooglePayPaymentMethodCreate {
     /**
      * The original card scheme for which the token was generated.
      */
-    public GooglePayPaymentMethodCreate withCardScheme(JsonNullable<String> cardScheme) {
+    public PazePaymentMethodCreate withCardScheme(JsonNullable<String> cardScheme) {
         Utils.checkNotNull(cardScheme, "cardScheme");
         this.cardScheme = cardScheme;
         return this;
@@ -328,7 +306,7 @@ public class GooglePayPaymentMethodCreate {
     /**
      * The payment scheme of the card.
      */
-    public GooglePayPaymentMethodCreate withCardType(String cardType) {
+    public PazePaymentMethodCreate withCardType(String cardType) {
         Utils.checkNotNull(cardType, "cardType");
         this.cardType = JsonNullable.of(cardType);
         return this;
@@ -337,37 +315,18 @@ public class GooglePayPaymentMethodCreate {
     /**
      * The payment scheme of the card.
      */
-    public GooglePayPaymentMethodCreate withCardType(JsonNullable<String> cardType) {
+    public PazePaymentMethodCreate withCardType(JsonNullable<String> cardType) {
         Utils.checkNotNull(cardType, "cardType");
         this.cardType = cardType;
         return this;
     }
 
     /**
-     * The opaque token as received from the Google Pay JS library. This format may change between JS
-     * library versions.
+     * The opaque token as received from the Paze complete response.
      */
-    public GooglePayPaymentMethodCreate withToken(GooglePayPaymentMethodCreateToken token) {
+    public PazePaymentMethodCreate withToken(PazePaymentMethodCreateToken token) {
         Utils.checkNotNull(token, "token");
         this.token = token;
-        return this;
-    }
-
-    /**
-     * The assurance details provided by Google Pay
-     */
-    public GooglePayPaymentMethodCreate withAssuranceDetails(GooglePayAssuranceDetails assuranceDetails) {
-        Utils.checkNotNull(assuranceDetails, "assuranceDetails");
-        this.assuranceDetails = JsonNullable.of(assuranceDetails);
-        return this;
-    }
-
-    /**
-     * The assurance details provided by Google Pay
-     */
-    public GooglePayPaymentMethodCreate withAssuranceDetails(JsonNullable<? extends GooglePayAssuranceDetails> assuranceDetails) {
-        Utils.checkNotNull(assuranceDetails, "assuranceDetails");
-        this.assuranceDetails = assuranceDetails;
         return this;
     }
 
@@ -379,7 +338,7 @@ public class GooglePayPaymentMethodCreate {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        GooglePayPaymentMethodCreate other = (GooglePayPaymentMethodCreate) o;
+        PazePaymentMethodCreate other = (PazePaymentMethodCreate) o;
         return 
             Utils.enhancedDeepEquals(this.buyerExternalIdentifier, other.buyerExternalIdentifier) &&
             Utils.enhancedDeepEquals(this.buyerId, other.buyerId) &&
@@ -389,8 +348,7 @@ public class GooglePayPaymentMethodCreate {
             Utils.enhancedDeepEquals(this.cardScheme, other.cardScheme) &&
             Utils.enhancedDeepEquals(this.cardType, other.cardType) &&
             Utils.enhancedDeepEquals(this.method, other.method) &&
-            Utils.enhancedDeepEquals(this.token, other.token) &&
-            Utils.enhancedDeepEquals(this.assuranceDetails, other.assuranceDetails);
+            Utils.enhancedDeepEquals(this.token, other.token);
     }
     
     @Override
@@ -398,13 +356,12 @@ public class GooglePayPaymentMethodCreate {
         return Utils.enhancedHash(
             buyerExternalIdentifier, buyerId, cardholderName,
             redirectUrl, cardSuffix, cardScheme,
-            cardType, method, token,
-            assuranceDetails);
+            cardType, method, token);
     }
     
     @Override
     public String toString() {
-        return Utils.toString(GooglePayPaymentMethodCreate.class,
+        return Utils.toString(PazePaymentMethodCreate.class,
                 "buyerExternalIdentifier", buyerExternalIdentifier,
                 "buyerId", buyerId,
                 "cardholderName", cardholderName,
@@ -413,8 +370,7 @@ public class GooglePayPaymentMethodCreate {
                 "cardScheme", cardScheme,
                 "cardType", cardType,
                 "method", method,
-                "token", token,
-                "assuranceDetails", assuranceDetails);
+                "token", token);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -434,9 +390,7 @@ public class GooglePayPaymentMethodCreate {
 
         private JsonNullable<String> cardType = JsonNullable.undefined();
 
-        private GooglePayPaymentMethodCreateToken token;
-
-        private JsonNullable<? extends GooglePayAssuranceDetails> assuranceDetails = JsonNullable.undefined();
+        private PazePaymentMethodCreateToken token;
 
         private Builder() {
           // force use of static builder() method
@@ -577,47 +531,27 @@ public class GooglePayPaymentMethodCreate {
 
 
         /**
-         * The opaque token as received from the Google Pay JS library. This format may change between JS
-         * library versions.
+         * The opaque token as received from the Paze complete response.
          */
-        public Builder token(GooglePayPaymentMethodCreateToken token) {
+        public Builder token(PazePaymentMethodCreateToken token) {
             Utils.checkNotNull(token, "token");
             this.token = token;
             return this;
         }
 
+        public PazePaymentMethodCreate build() {
 
-        /**
-         * The assurance details provided by Google Pay
-         */
-        public Builder assuranceDetails(GooglePayAssuranceDetails assuranceDetails) {
-            Utils.checkNotNull(assuranceDetails, "assuranceDetails");
-            this.assuranceDetails = JsonNullable.of(assuranceDetails);
-            return this;
-        }
-
-        /**
-         * The assurance details provided by Google Pay
-         */
-        public Builder assuranceDetails(JsonNullable<? extends GooglePayAssuranceDetails> assuranceDetails) {
-            Utils.checkNotNull(assuranceDetails, "assuranceDetails");
-            this.assuranceDetails = assuranceDetails;
-            return this;
-        }
-
-        public GooglePayPaymentMethodCreate build() {
-
-            return new GooglePayPaymentMethodCreate(
+            return new PazePaymentMethodCreate(
                 buyerExternalIdentifier, buyerId, cardholderName,
                 redirectUrl, cardSuffix, cardScheme,
-                cardType, token, assuranceDetails);
+                cardType, token);
         }
 
 
         private static final LazySingletonValue<String> _SINGLETON_VALUE_Method =
                 new LazySingletonValue<>(
                         "method",
-                        "\"googlepay\"",
+                        "\"paze\"",
                         new TypeReference<String>() {});
     }
 }
