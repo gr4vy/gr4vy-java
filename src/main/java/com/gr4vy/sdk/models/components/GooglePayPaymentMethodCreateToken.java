@@ -18,29 +18,29 @@ import java.lang.SuppressWarnings;
 import java.util.Map;
 
 /**
- * Token
+ * GooglePayPaymentMethodCreateToken
  * 
  * <p>The opaque token as received from the Google Pay JS library. This format may change between JS
  * library versions.
  */
-@JsonDeserialize(using = Token._Deserializer.class)
-public class Token {
+@JsonDeserialize(using = GooglePayPaymentMethodCreateToken._Deserializer.class)
+public class GooglePayPaymentMethodCreateToken {
 
     @JsonValue
     private final TypedObject value;
     
-    private Token(TypedObject value) {
+    private GooglePayPaymentMethodCreateToken(TypedObject value) {
         this.value = value;
     }
 
-    public static Token of(String value) {
+    public static GooglePayPaymentMethodCreateToken of(String value) {
         Utils.checkNotNull(value, "value");
-        return new Token(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
+        return new GooglePayPaymentMethodCreateToken(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
     }
 
-    public static Token of(Map<String, Object> value) {
+    public static GooglePayPaymentMethodCreateToken of(Map<String, Object> value) {
         Utils.checkNotNull(value, "value");
-        return new Token(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
+        return new GooglePayPaymentMethodCreateToken(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
     }
     
     /**
@@ -73,7 +73,7 @@ public class Token {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        Token other = (Token) o;
+        GooglePayPaymentMethodCreateToken other = (GooglePayPaymentMethodCreateToken) o;
         return Utils.enhancedDeepEquals(this.value.value(), other.value.value());
     }
     
@@ -83,10 +83,10 @@ public class Token {
     }
     
     @SuppressWarnings("serial")
-    public static final class _Deserializer extends OneOfDeserializer<Token> {
+    public static final class _Deserializer extends OneOfDeserializer<GooglePayPaymentMethodCreateToken> {
 
         public _Deserializer() {
-            super(Token.class, false,
+            super(GooglePayPaymentMethodCreateToken.class, false,
                   TypeReferenceWithShape.of(new TypeReference<String>() {}, JsonShape.DEFAULT),
                   TypeReferenceWithShape.of(new TypeReference<Map<String, Object>>() {}, JsonShape.DEFAULT));
         }
@@ -94,7 +94,7 @@ public class Token {
     
     @Override
     public String toString() {
-        return Utils.toString(Token.class,
+        return Utils.toString(GooglePayPaymentMethodCreateToken.class,
                 "value", value);
     }
 
