@@ -80,7 +80,7 @@ public class PazePaymentMethodCreate {
      * The opaque token as received from the Paze complete response.
      */
     @JsonProperty("token")
-    private PazePaymentMethodCreateToken token;
+    private String token;
 
     @JsonCreator
     public PazePaymentMethodCreate(
@@ -91,7 +91,7 @@ public class PazePaymentMethodCreate {
             @JsonProperty("card_suffix") JsonNullable<String> cardSuffix,
             @JsonProperty("card_scheme") JsonNullable<String> cardScheme,
             @JsonProperty("card_type") JsonNullable<String> cardType,
-            @JsonProperty("token") PazePaymentMethodCreateToken token) {
+            @JsonProperty("token") String token) {
         Utils.checkNotNull(buyerExternalIdentifier, "buyerExternalIdentifier");
         Utils.checkNotNull(buyerId, "buyerId");
         Utils.checkNotNull(cardholderName, "cardholderName");
@@ -112,7 +112,7 @@ public class PazePaymentMethodCreate {
     }
     
     public PazePaymentMethodCreate(
-            PazePaymentMethodCreateToken token) {
+            String token) {
         this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), token);
@@ -186,7 +186,7 @@ public class PazePaymentMethodCreate {
      * The opaque token as received from the Paze complete response.
      */
     @JsonIgnore
-    public PazePaymentMethodCreateToken token() {
+    public String token() {
         return token;
     }
 
@@ -324,7 +324,7 @@ public class PazePaymentMethodCreate {
     /**
      * The opaque token as received from the Paze complete response.
      */
-    public PazePaymentMethodCreate withToken(PazePaymentMethodCreateToken token) {
+    public PazePaymentMethodCreate withToken(String token) {
         Utils.checkNotNull(token, "token");
         this.token = token;
         return this;
@@ -390,7 +390,7 @@ public class PazePaymentMethodCreate {
 
         private JsonNullable<String> cardType = JsonNullable.undefined();
 
-        private PazePaymentMethodCreateToken token;
+        private String token;
 
         private Builder() {
           // force use of static builder() method
@@ -533,7 +533,7 @@ public class PazePaymentMethodCreate {
         /**
          * The opaque token as received from the Paze complete response.
          */
-        public Builder token(PazePaymentMethodCreateToken token) {
+        public Builder token(String token) {
             Utils.checkNotNull(token, "token");
             this.token = token;
             return this;

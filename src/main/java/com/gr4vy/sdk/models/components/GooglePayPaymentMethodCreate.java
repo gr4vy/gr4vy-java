@@ -82,7 +82,7 @@ public class GooglePayPaymentMethodCreate {
      * library versions.
      */
     @JsonProperty("token")
-    private GooglePayPaymentMethodCreateToken token;
+    private Token token;
 
     /**
      * The assurance details provided by Google Pay
@@ -100,7 +100,7 @@ public class GooglePayPaymentMethodCreate {
             @JsonProperty("card_suffix") JsonNullable<String> cardSuffix,
             @JsonProperty("card_scheme") JsonNullable<String> cardScheme,
             @JsonProperty("card_type") JsonNullable<String> cardType,
-            @JsonProperty("token") GooglePayPaymentMethodCreateToken token,
+            @JsonProperty("token") Token token,
             @JsonProperty("assurance_details") JsonNullable<? extends GooglePayAssuranceDetails> assuranceDetails) {
         Utils.checkNotNull(buyerExternalIdentifier, "buyerExternalIdentifier");
         Utils.checkNotNull(buyerId, "buyerId");
@@ -124,7 +124,7 @@ public class GooglePayPaymentMethodCreate {
     }
     
     public GooglePayPaymentMethodCreate(
-            GooglePayPaymentMethodCreateToken token) {
+            Token token) {
         this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), token, JsonNullable.undefined());
@@ -199,7 +199,7 @@ public class GooglePayPaymentMethodCreate {
      * library versions.
      */
     @JsonIgnore
-    public GooglePayPaymentMethodCreateToken token() {
+    public Token token() {
         return token;
     }
 
@@ -347,7 +347,7 @@ public class GooglePayPaymentMethodCreate {
      * The opaque token as received from the Google Pay JS library. This format may change between JS
      * library versions.
      */
-    public GooglePayPaymentMethodCreate withToken(GooglePayPaymentMethodCreateToken token) {
+    public GooglePayPaymentMethodCreate withToken(Token token) {
         Utils.checkNotNull(token, "token");
         this.token = token;
         return this;
@@ -434,7 +434,7 @@ public class GooglePayPaymentMethodCreate {
 
         private JsonNullable<String> cardType = JsonNullable.undefined();
 
-        private GooglePayPaymentMethodCreateToken token;
+        private Token token;
 
         private JsonNullable<? extends GooglePayAssuranceDetails> assuranceDetails = JsonNullable.undefined();
 
@@ -580,7 +580,7 @@ public class GooglePayPaymentMethodCreate {
          * The opaque token as received from the Google Pay JS library. This format may change between JS
          * library versions.
          */
-        public Builder token(GooglePayPaymentMethodCreateToken token) {
+        public Builder token(Token token) {
             Utils.checkNotNull(token, "token");
             this.token = token;
             return this;
