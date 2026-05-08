@@ -35,6 +35,7 @@ public class Method {
     public static final Method BECS = new Method("becs");
     public static final Method BITPAY = new Method("bitpay");
     public static final Method BLIK = new Method("blik");
+    public static final Method ACH = new Method("ach");
     public static final Method BOLETO = new Method("boleto");
     public static final Method BOOST = new Method("boost");
     public static final Method BREB = new Method("breb");
@@ -223,6 +224,7 @@ public class Method {
         map.put("becs", BECS);
         map.put("bitpay", BITPAY);
         map.put("blik", BLIK);
+        map.put("ach", ACH);
         map.put("boleto", BOLETO);
         map.put("boost", BOOST);
         map.put("breb", BREB);
@@ -343,6 +345,7 @@ public class Method {
         map.put("becs", MethodEnum.BECS);
         map.put("bitpay", MethodEnum.BITPAY);
         map.put("blik", MethodEnum.BLIK);
+        map.put("ach", MethodEnum.ACH);
         map.put("boleto", MethodEnum.BOLETO);
         map.put("boost", MethodEnum.BOOST);
         map.put("breb", MethodEnum.BREB);
@@ -464,6 +467,7 @@ public class Method {
         BECS("becs"),
         BITPAY("bitpay"),
         BLIK("blik"),
+        ACH("ach"),
         BOLETO("boleto"),
         BOOST("boost"),
         BREB("breb"),

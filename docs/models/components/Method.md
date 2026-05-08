@@ -31,6 +31,7 @@ Method custom = Method.of("custom_value");
 | `BECS`               | becs                 |
 | `BITPAY`             | bitpay               |
 | `BLIK`               | blik                 |
+| `ACH`                | ach                  |
 | `BOLETO`             | boleto               |
 | `BOOST`              | boost                |
 | `BREB`               | breb                 |
