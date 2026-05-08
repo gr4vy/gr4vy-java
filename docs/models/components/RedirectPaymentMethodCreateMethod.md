@@ -34,6 +34,7 @@ RedirectPaymentMethodCreateMethod custom = RedirectPaymentMethodCreateMethod.of(
 | `BOLETO`          | boleto            |
 | `BOOST`           | boost             |
 | `BREB`            | breb              |
+| `ACH`             | ach               |
 | `CAPITEC`         | capitec           |
 | `CASHAPP`         | cashapp           |
 | `CLEARPAY`        | clearpay          |
