@@ -90,6 +90,7 @@ Method custom = Method.of("custom_value");
 | `PAGOEFECTIVO`       | pagoefectivo         |
 | `PAYID`              | payid                |
 | `PAYMAYA`            | paymaya              |
+| `PAYSQUAD`           | paysquad             |
 | `PAYPAL`             | paypal               |
 | `PAYPALPAYLATER`     | paypalpaylater       |
 | `PAYPAY`             | paypay               |
