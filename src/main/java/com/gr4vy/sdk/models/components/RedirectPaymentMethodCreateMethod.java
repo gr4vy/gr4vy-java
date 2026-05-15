@@ -90,6 +90,7 @@ public class RedirectPaymentMethodCreateMethod {
     public static final RedirectPaymentMethodCreateMethod PAGOEFECTIVO = new RedirectPaymentMethodCreateMethod("pagoefectivo");
     public static final RedirectPaymentMethodCreateMethod PAYID = new RedirectPaymentMethodCreateMethod("payid");
     public static final RedirectPaymentMethodCreateMethod PAYMAYA = new RedirectPaymentMethodCreateMethod("paymaya");
+    public static final RedirectPaymentMethodCreateMethod PAYSQUAD = new RedirectPaymentMethodCreateMethod("paysquad");
     public static final RedirectPaymentMethodCreateMethod PAYPAL = new RedirectPaymentMethodCreateMethod("paypal");
     public static final RedirectPaymentMethodCreateMethod PAYPALPAYLATER = new RedirectPaymentMethodCreateMethod("paypalpaylater");
     public static final RedirectPaymentMethodCreateMethod PAYPAY = new RedirectPaymentMethodCreateMethod("paypay");
@@ -268,6 +269,7 @@ public class RedirectPaymentMethodCreateMethod {
         map.put("pagoefectivo", PAGOEFECTIVO);
         map.put("payid", PAYID);
         map.put("paymaya", PAYMAYA);
+        map.put("paysquad", PAYSQUAD);
         map.put("paypal", PAYPAL);
         map.put("paypalpaylater", PAYPALPAYLATER);
         map.put("paypay", PAYPAY);
@@ -378,6 +380,7 @@ public class RedirectPaymentMethodCreateMethod {
         map.put("pagoefectivo", RedirectPaymentMethodCreateMethodEnum.PAGOEFECTIVO);
         map.put("payid", RedirectPaymentMethodCreateMethodEnum.PAYID);
         map.put("paymaya", RedirectPaymentMethodCreateMethodEnum.PAYMAYA);
+        map.put("paysquad", RedirectPaymentMethodCreateMethodEnum.PAYSQUAD);
         map.put("paypal", RedirectPaymentMethodCreateMethodEnum.PAYPAL);
         map.put("paypalpaylater", RedirectPaymentMethodCreateMethodEnum.PAYPALPAYLATER);
         map.put("paypay", RedirectPaymentMethodCreateMethodEnum.PAYPAY);
@@ -489,6 +492,7 @@ public class RedirectPaymentMethodCreateMethod {
         PAGOEFECTIVO("pagoefectivo"),
         PAYID("payid"),
         PAYMAYA("paymaya"),
+        PAYSQUAD("paysquad"),
         PAYPAL("paypal"),
         PAYPALPAYLATER("paypalpaylater"),
         PAYPAY("paypay"),

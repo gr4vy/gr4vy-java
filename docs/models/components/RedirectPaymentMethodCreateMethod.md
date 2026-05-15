@@ -83,6 +83,7 @@ RedirectPaymentMethodCreateMethod custom = RedirectPaymentMethodCreateMethod.of(
 | `PAGOEFECTIVO`    | pagoefectivo      |
 | `PAYID`           | payid             |
 | `PAYMAYA`         | paymaya           |
+| `PAYSQUAD`        | paysquad          |
 | `PAYPAL`          | paypal            |
 | `PAYPALPAYLATER`  | paypalpaylater    |
 | `PAYPAY`          | paypay            |
