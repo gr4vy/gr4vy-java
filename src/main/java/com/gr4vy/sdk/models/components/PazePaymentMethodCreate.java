@@ -82,6 +82,13 @@ public class PazePaymentMethodCreate {
     @JsonProperty("token")
     private String token;
 
+    /**
+     * The signed checkout JWS as received from the Paze checkout response.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("checkout_token")
+    private JsonNullable<String> checkoutToken;
+
     @JsonCreator
     public PazePaymentMethodCreate(
             @JsonProperty("buyer_external_identifier") JsonNullable<String> buyerExternalIdentifier,
@@ -91,7 +98,8 @@ public class PazePaymentMethodCreate {
             @JsonProperty("card_suffix") JsonNullable<String> cardSuffix,
             @JsonProperty("card_scheme") JsonNullable<String> cardScheme,
             @JsonProperty("card_type") JsonNullable<String> cardType,
-            @JsonProperty("token") String token) {
+            @JsonProperty("token") String token,
+            @JsonProperty("checkout_token") JsonNullable<String> checkoutToken) {
         Utils.checkNotNull(buyerExternalIdentifier, "buyerExternalIdentifier");
         Utils.checkNotNull(buyerId, "buyerId");
         Utils.checkNotNull(cardholderName, "cardholderName");
@@ -100,6 +108,7 @@ public class PazePaymentMethodCreate {
         Utils.checkNotNull(cardScheme, "cardScheme");
         Utils.checkNotNull(cardType, "cardType");
         Utils.checkNotNull(token, "token");
+        Utils.checkNotNull(checkoutToken, "checkoutToken");
         this.buyerExternalIdentifier = buyerExternalIdentifier;
         this.buyerId = buyerId;
         this.cardholderName = cardholderName;
@@ -109,13 +118,14 @@ public class PazePaymentMethodCreate {
         this.cardType = cardType;
         this.method = Builder._SINGLETON_VALUE_Method.value();
         this.token = token;
+        this.checkoutToken = checkoutToken;
     }
     
     public PazePaymentMethodCreate(
             String token) {
         this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), token);
+            JsonNullable.undefined(), token, JsonNullable.undefined());
     }
 
     /**
@@ -188,6 +198,14 @@ public class PazePaymentMethodCreate {
     @JsonIgnore
     public String token() {
         return token;
+    }
+
+    /**
+     * The signed checkout JWS as received from the Paze checkout response.
+     */
+    @JsonIgnore
+    public JsonNullable<String> checkoutToken() {
+        return checkoutToken;
     }
 
     public static Builder builder() {
@@ -330,6 +348,24 @@ public class PazePaymentMethodCreate {
         return this;
     }
 
+    /**
+     * The signed checkout JWS as received from the Paze checkout response.
+     */
+    public PazePaymentMethodCreate withCheckoutToken(String checkoutToken) {
+        Utils.checkNotNull(checkoutToken, "checkoutToken");
+        this.checkoutToken = JsonNullable.of(checkoutToken);
+        return this;
+    }
+
+    /**
+     * The signed checkout JWS as received from the Paze checkout response.
+     */
+    public PazePaymentMethodCreate withCheckoutToken(JsonNullable<String> checkoutToken) {
+        Utils.checkNotNull(checkoutToken, "checkoutToken");
+        this.checkoutToken = checkoutToken;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -348,7 +384,8 @@ public class PazePaymentMethodCreate {
             Utils.enhancedDeepEquals(this.cardScheme, other.cardScheme) &&
             Utils.enhancedDeepEquals(this.cardType, other.cardType) &&
             Utils.enhancedDeepEquals(this.method, other.method) &&
-            Utils.enhancedDeepEquals(this.token, other.token);
+            Utils.enhancedDeepEquals(this.token, other.token) &&
+            Utils.enhancedDeepEquals(this.checkoutToken, other.checkoutToken);
     }
     
     @Override
@@ -356,7 +393,8 @@ public class PazePaymentMethodCreate {
         return Utils.enhancedHash(
             buyerExternalIdentifier, buyerId, cardholderName,
             redirectUrl, cardSuffix, cardScheme,
-            cardType, method, token);
+            cardType, method, token,
+            checkoutToken);
     }
     
     @Override
@@ -370,7 +408,8 @@ public class PazePaymentMethodCreate {
                 "cardScheme", cardScheme,
                 "cardType", cardType,
                 "method", method,
-                "token", token);
+                "token", token,
+                "checkoutToken", checkoutToken);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -391,6 +430,8 @@ public class PazePaymentMethodCreate {
         private JsonNullable<String> cardType = JsonNullable.undefined();
 
         private String token;
+
+        private JsonNullable<String> checkoutToken = JsonNullable.undefined();
 
         private Builder() {
           // force use of static builder() method
@@ -539,12 +580,31 @@ public class PazePaymentMethodCreate {
             return this;
         }
 
+
+        /**
+         * The signed checkout JWS as received from the Paze checkout response.
+         */
+        public Builder checkoutToken(String checkoutToken) {
+            Utils.checkNotNull(checkoutToken, "checkoutToken");
+            this.checkoutToken = JsonNullable.of(checkoutToken);
+            return this;
+        }
+
+        /**
+         * The signed checkout JWS as received from the Paze checkout response.
+         */
+        public Builder checkoutToken(JsonNullable<String> checkoutToken) {
+            Utils.checkNotNull(checkoutToken, "checkoutToken");
+            this.checkoutToken = checkoutToken;
+            return this;
+        }
+
         public PazePaymentMethodCreate build() {
 
             return new PazePaymentMethodCreate(
                 buyerExternalIdentifier, buyerId, cardholderName,
                 redirectUrl, cardSuffix, cardScheme,
-                cardType, token);
+                cardType, token, checkoutToken);
         }
 
 
