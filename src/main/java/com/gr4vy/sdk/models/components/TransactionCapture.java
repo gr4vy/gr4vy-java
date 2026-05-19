@@ -72,6 +72,13 @@ public class TransactionCapture {
     @JsonProperty("payment_service_capture_id")
     private JsonNullable<String> paymentServiceCaptureId;
 
+    /**
+     * The external identifier for the capture.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("external_identifier")
+    private JsonNullable<String> externalIdentifier;
+
     @JsonCreator
     public TransactionCapture(
             @JsonProperty("status") CaptureStatus status,
@@ -80,7 +87,8 @@ public class TransactionCapture {
             @JsonProperty("raw_response_description") Optional<String> rawResponseDescription,
             @JsonProperty("transaction") Transaction transaction,
             @JsonProperty("capture_id") JsonNullable<String> captureId,
-            @JsonProperty("payment_service_capture_id") JsonNullable<String> paymentServiceCaptureId) {
+            @JsonProperty("payment_service_capture_id") JsonNullable<String> paymentServiceCaptureId,
+            @JsonProperty("external_identifier") JsonNullable<String> externalIdentifier) {
         Utils.checkNotNull(status, "status");
         Utils.checkNotNull(code, "code");
         Utils.checkNotNull(rawResponseCode, "rawResponseCode");
@@ -88,6 +96,7 @@ public class TransactionCapture {
         Utils.checkNotNull(transaction, "transaction");
         Utils.checkNotNull(captureId, "captureId");
         Utils.checkNotNull(paymentServiceCaptureId, "paymentServiceCaptureId");
+        Utils.checkNotNull(externalIdentifier, "externalIdentifier");
         this.type = Builder._SINGLETON_VALUE_Type.value();
         this.status = status;
         this.code = code;
@@ -96,6 +105,7 @@ public class TransactionCapture {
         this.transaction = transaction;
         this.captureId = captureId;
         this.paymentServiceCaptureId = paymentServiceCaptureId;
+        this.externalIdentifier = externalIdentifier;
     }
     
     public TransactionCapture(
@@ -103,7 +113,7 @@ public class TransactionCapture {
             Transaction transaction) {
         this(status, Optional.empty(), Optional.empty(),
             Optional.empty(), transaction, JsonNullable.undefined(),
-            JsonNullable.undefined());
+            JsonNullable.undefined(), JsonNullable.undefined());
     }
 
     /**
@@ -167,6 +177,14 @@ public class TransactionCapture {
     @JsonIgnore
     public JsonNullable<String> paymentServiceCaptureId() {
         return paymentServiceCaptureId;
+    }
+
+    /**
+     * The external identifier for the capture.
+     */
+    @JsonIgnore
+    public JsonNullable<String> externalIdentifier() {
+        return externalIdentifier;
     }
 
     public static Builder builder() {
@@ -286,6 +304,24 @@ public class TransactionCapture {
         return this;
     }
 
+    /**
+     * The external identifier for the capture.
+     */
+    public TransactionCapture withExternalIdentifier(String externalIdentifier) {
+        Utils.checkNotNull(externalIdentifier, "externalIdentifier");
+        this.externalIdentifier = JsonNullable.of(externalIdentifier);
+        return this;
+    }
+
+    /**
+     * The external identifier for the capture.
+     */
+    public TransactionCapture withExternalIdentifier(JsonNullable<String> externalIdentifier) {
+        Utils.checkNotNull(externalIdentifier, "externalIdentifier");
+        this.externalIdentifier = externalIdentifier;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -303,7 +339,8 @@ public class TransactionCapture {
             Utils.enhancedDeepEquals(this.rawResponseDescription, other.rawResponseDescription) &&
             Utils.enhancedDeepEquals(this.transaction, other.transaction) &&
             Utils.enhancedDeepEquals(this.captureId, other.captureId) &&
-            Utils.enhancedDeepEquals(this.paymentServiceCaptureId, other.paymentServiceCaptureId);
+            Utils.enhancedDeepEquals(this.paymentServiceCaptureId, other.paymentServiceCaptureId) &&
+            Utils.enhancedDeepEquals(this.externalIdentifier, other.externalIdentifier);
     }
     
     @Override
@@ -311,7 +348,7 @@ public class TransactionCapture {
         return Utils.enhancedHash(
             type, status, code,
             rawResponseCode, rawResponseDescription, transaction,
-            captureId, paymentServiceCaptureId);
+            captureId, paymentServiceCaptureId, externalIdentifier);
     }
     
     @Override
@@ -324,7 +361,8 @@ public class TransactionCapture {
                 "rawResponseDescription", rawResponseDescription,
                 "transaction", transaction,
                 "captureId", captureId,
-                "paymentServiceCaptureId", paymentServiceCaptureId);
+                "paymentServiceCaptureId", paymentServiceCaptureId,
+                "externalIdentifier", externalIdentifier);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -343,6 +381,8 @@ public class TransactionCapture {
         private JsonNullable<String> captureId = JsonNullable.undefined();
 
         private JsonNullable<String> paymentServiceCaptureId = JsonNullable.undefined();
+
+        private JsonNullable<String> externalIdentifier = JsonNullable.undefined();
 
         private Builder() {
           // force use of static builder() method
@@ -464,12 +504,31 @@ public class TransactionCapture {
             return this;
         }
 
+
+        /**
+         * The external identifier for the capture.
+         */
+        public Builder externalIdentifier(String externalIdentifier) {
+            Utils.checkNotNull(externalIdentifier, "externalIdentifier");
+            this.externalIdentifier = JsonNullable.of(externalIdentifier);
+            return this;
+        }
+
+        /**
+         * The external identifier for the capture.
+         */
+        public Builder externalIdentifier(JsonNullable<String> externalIdentifier) {
+            Utils.checkNotNull(externalIdentifier, "externalIdentifier");
+            this.externalIdentifier = externalIdentifier;
+            return this;
+        }
+
         public TransactionCapture build() {
 
             return new TransactionCapture(
                 status, code, rawResponseCode,
                 rawResponseDescription, transaction, captureId,
-                paymentServiceCaptureId);
+                paymentServiceCaptureId, externalIdentifier);
         }
 
 
