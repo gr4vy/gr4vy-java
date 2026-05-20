@@ -1,0 +1,9 @@
+# PazeSessionRequest
+
+
+## Fields
+
+| Field                                                                       | Type                                                                        | Required                                                                    | Description                                                                 | Example                                                                     |
+| --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- |
+| `source`                                                                    | [Optional\<Source>](../../models/components/Source.md)                      | :heavy_minus_sign:                                                          | The platform that the Paze session is being created for. Defaults to `web`. | web                                                                         |
+| `domainName`                                                                | *JsonNullable\<String>*                                                     | :heavy_minus_sign:                                                          | The domain on which Paze is being loaded. Required when `source` is `web`.  | example.com                                                                 |
