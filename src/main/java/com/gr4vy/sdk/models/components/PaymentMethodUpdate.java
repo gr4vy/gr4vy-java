@@ -47,21 +47,32 @@ public class PaymentMethodUpdate {
     @JsonProperty("scheme_transaction_id_scheme")
     private JsonNullable<? extends CardScheme> schemeTransactionIdScheme;
 
+    /**
+     * A transaction link identifier to associate with this payment method.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("transaction_link_id")
+    private JsonNullable<String> transactionLinkId;
+
     @JsonCreator
     public PaymentMethodUpdate(
             @JsonProperty("expiration_date") JsonNullable<String> expirationDate,
             @JsonProperty("scheme_transaction_id") JsonNullable<String> schemeTransactionId,
-            @JsonProperty("scheme_transaction_id_scheme") JsonNullable<? extends CardScheme> schemeTransactionIdScheme) {
+            @JsonProperty("scheme_transaction_id_scheme") JsonNullable<? extends CardScheme> schemeTransactionIdScheme,
+            @JsonProperty("transaction_link_id") JsonNullable<String> transactionLinkId) {
         Utils.checkNotNull(expirationDate, "expirationDate");
         Utils.checkNotNull(schemeTransactionId, "schemeTransactionId");
         Utils.checkNotNull(schemeTransactionIdScheme, "schemeTransactionIdScheme");
+        Utils.checkNotNull(transactionLinkId, "transactionLinkId");
         this.expirationDate = expirationDate;
         this.schemeTransactionId = schemeTransactionId;
         this.schemeTransactionIdScheme = schemeTransactionIdScheme;
+        this.transactionLinkId = transactionLinkId;
     }
     
     public PaymentMethodUpdate() {
-        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
+        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined());
     }
 
     /**
@@ -93,6 +104,14 @@ public class PaymentMethodUpdate {
     @JsonIgnore
     public JsonNullable<CardScheme> schemeTransactionIdScheme() {
         return (JsonNullable<CardScheme>) schemeTransactionIdScheme;
+    }
+
+    /**
+     * A transaction link identifier to associate with this payment method.
+     */
+    @JsonIgnore
+    public JsonNullable<String> transactionLinkId() {
+        return transactionLinkId;
     }
 
     public static Builder builder() {
@@ -166,6 +185,24 @@ public class PaymentMethodUpdate {
         return this;
     }
 
+    /**
+     * A transaction link identifier to associate with this payment method.
+     */
+    public PaymentMethodUpdate withTransactionLinkId(String transactionLinkId) {
+        Utils.checkNotNull(transactionLinkId, "transactionLinkId");
+        this.transactionLinkId = JsonNullable.of(transactionLinkId);
+        return this;
+    }
+
+    /**
+     * A transaction link identifier to associate with this payment method.
+     */
+    public PaymentMethodUpdate withTransactionLinkId(JsonNullable<String> transactionLinkId) {
+        Utils.checkNotNull(transactionLinkId, "transactionLinkId");
+        this.transactionLinkId = transactionLinkId;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -178,13 +215,15 @@ public class PaymentMethodUpdate {
         return 
             Utils.enhancedDeepEquals(this.expirationDate, other.expirationDate) &&
             Utils.enhancedDeepEquals(this.schemeTransactionId, other.schemeTransactionId) &&
-            Utils.enhancedDeepEquals(this.schemeTransactionIdScheme, other.schemeTransactionIdScheme);
+            Utils.enhancedDeepEquals(this.schemeTransactionIdScheme, other.schemeTransactionIdScheme) &&
+            Utils.enhancedDeepEquals(this.transactionLinkId, other.transactionLinkId);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            expirationDate, schemeTransactionId, schemeTransactionIdScheme);
+            expirationDate, schemeTransactionId, schemeTransactionIdScheme,
+            transactionLinkId);
     }
     
     @Override
@@ -192,7 +231,8 @@ public class PaymentMethodUpdate {
         return Utils.toString(PaymentMethodUpdate.class,
                 "expirationDate", expirationDate,
                 "schemeTransactionId", schemeTransactionId,
-                "schemeTransactionIdScheme", schemeTransactionIdScheme);
+                "schemeTransactionIdScheme", schemeTransactionIdScheme,
+                "transactionLinkId", transactionLinkId);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -203,6 +243,8 @@ public class PaymentMethodUpdate {
         private JsonNullable<String> schemeTransactionId = JsonNullable.undefined();
 
         private JsonNullable<? extends CardScheme> schemeTransactionIdScheme = JsonNullable.undefined();
+
+        private JsonNullable<String> transactionLinkId = JsonNullable.undefined();
 
         private Builder() {
           // force use of static builder() method
@@ -277,10 +319,30 @@ public class PaymentMethodUpdate {
             return this;
         }
 
+
+        /**
+         * A transaction link identifier to associate with this payment method.
+         */
+        public Builder transactionLinkId(String transactionLinkId) {
+            Utils.checkNotNull(transactionLinkId, "transactionLinkId");
+            this.transactionLinkId = JsonNullable.of(transactionLinkId);
+            return this;
+        }
+
+        /**
+         * A transaction link identifier to associate with this payment method.
+         */
+        public Builder transactionLinkId(JsonNullable<String> transactionLinkId) {
+            Utils.checkNotNull(transactionLinkId, "transactionLinkId");
+            this.transactionLinkId = transactionLinkId;
+            return this;
+        }
+
         public PaymentMethodUpdate build() {
 
             return new PaymentMethodUpdate(
-                expirationDate, schemeTransactionId, schemeTransactionIdScheme);
+                expirationDate, schemeTransactionId, schemeTransactionIdScheme,
+                transactionLinkId);
         }
 
     }
