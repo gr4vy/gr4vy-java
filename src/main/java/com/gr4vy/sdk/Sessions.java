@@ -8,6 +8,7 @@ import static com.gr4vy.sdk.operations.Operations.RequestOperation;
 import com.gr4vy.sdk.models.components.ApplePaySessionRequest;
 import com.gr4vy.sdk.models.components.ClickToPaySessionRequest;
 import com.gr4vy.sdk.models.components.GooglePaySessionRequest;
+import com.gr4vy.sdk.models.components.PazeSessionRequest;
 import com.gr4vy.sdk.models.operations.CreateApplePayDigitalWalletSessionRequest;
 import com.gr4vy.sdk.models.operations.CreateApplePayDigitalWalletSessionRequestBuilder;
 import com.gr4vy.sdk.models.operations.CreateApplePayDigitalWalletSessionResponse;
@@ -16,9 +17,13 @@ import com.gr4vy.sdk.models.operations.CreateClickToPayDigitalWalletSessionRespo
 import com.gr4vy.sdk.models.operations.CreateGooglePayDigitalWalletSessionRequest;
 import com.gr4vy.sdk.models.operations.CreateGooglePayDigitalWalletSessionRequestBuilder;
 import com.gr4vy.sdk.models.operations.CreateGooglePayDigitalWalletSessionResponse;
+import com.gr4vy.sdk.models.operations.CreatePazeDigitalWalletSessionRequest;
+import com.gr4vy.sdk.models.operations.CreatePazeDigitalWalletSessionRequestBuilder;
+import com.gr4vy.sdk.models.operations.CreatePazeDigitalWalletSessionResponse;
 import com.gr4vy.sdk.operations.CreateApplePayDigitalWalletSession;
 import com.gr4vy.sdk.operations.CreateClickToPayDigitalWalletSession;
 import com.gr4vy.sdk.operations.CreateGooglePayDigitalWalletSession;
+import com.gr4vy.sdk.operations.CreatePazeDigitalWalletSession;
 import com.gr4vy.sdk.utils.Headers;
 import java.lang.String;
 import org.openapitools.jackson.nullable.JsonNullable;
@@ -132,6 +137,52 @@ public class Sessions {
                 .build();
         RequestOperation<CreateApplePayDigitalWalletSessionRequest, CreateApplePayDigitalWalletSessionResponse> operation
               = new CreateApplePayDigitalWalletSession.Sync(sdkConfiguration, _headers);
+        return operation.handleResponse(operation.doRequest(request));
+    }
+
+    /**
+     * Create a Paze session
+     * 
+     * <p>Create a session for use with Paze.
+     * 
+     * @return The call builder
+     */
+    public CreatePazeDigitalWalletSessionRequestBuilder paze() {
+        return new CreatePazeDigitalWalletSessionRequestBuilder(sdkConfiguration);
+    }
+
+    /**
+     * Create a Paze session
+     * 
+     * <p>Create a session for use with Paze.
+     * 
+     * @param pazeSessionRequest 
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public CreatePazeDigitalWalletSessionResponse paze(PazeSessionRequest pazeSessionRequest) {
+        return paze(JsonNullable.undefined(), pazeSessionRequest);
+    }
+
+    /**
+     * Create a Paze session
+     * 
+     * <p>Create a session for use with Paze.
+     * 
+     * @param merchantAccountId 
+     * @param pazeSessionRequest 
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public CreatePazeDigitalWalletSessionResponse paze(JsonNullable<String> merchantAccountId, PazeSessionRequest pazeSessionRequest) {
+        CreatePazeDigitalWalletSessionRequest request =
+            CreatePazeDigitalWalletSessionRequest
+                .builder()
+                .merchantAccountId(merchantAccountId)
+                .pazeSessionRequest(pazeSessionRequest)
+                .build();
+        RequestOperation<CreatePazeDigitalWalletSessionRequest, CreatePazeDigitalWalletSessionResponse> operation
+              = new CreatePazeDigitalWalletSession.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

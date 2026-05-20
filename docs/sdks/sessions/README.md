@@ -6,6 +6,7 @@
 
 * [googlePay](#googlepay) - Create a Google Pay session
 * [applePay](#applepay) - Create a Apple Pay session
+* [paze](#paze) - Create a Paze session
 * [clickToPay](#clicktopay) - Create a Click to Pay session
 
 ## googlePay
@@ -124,6 +125,84 @@ public class Application {
 ### Response
 
 **[CreateApplePayDigitalWalletSessionResponse](../../models/operations/CreateApplePayDigitalWalletSessionResponse.md)**
+
+### Errors
+
+| Error Type                        | Status Code                       | Content Type                      |
+| --------------------------------- | --------------------------------- | --------------------------------- |
+| models/errors/Error400            | 400                               | application/json                  |
+| models/errors/Error401            | 401                               | application/json                  |
+| models/errors/Error403            | 403                               | application/json                  |
+| models/errors/Error404            | 404                               | application/json                  |
+| models/errors/Error405            | 405                               | application/json                  |
+| models/errors/Error409            | 409                               | application/json                  |
+| models/errors/HTTPValidationError | 422                               | application/json                  |
+| models/errors/Error425            | 425                               | application/json                  |
+| models/errors/Error429            | 429                               | application/json                  |
+| models/errors/Error500            | 500                               | application/json                  |
+| models/errors/Error502            | 502                               | application/json                  |
+| models/errors/Error504            | 504                               | application/json                  |
+| models/errors/APIException        | 4XX, 5XX                          | \*/\*                             |
+
+## paze
+
+Create a session for use with Paze.
+
+### Example Usage
+
+<!-- UsageSnippet language="java" operationID="create_paze_digital_wallet_session" method="post" path="/digital-wallets/paze/session" -->
+```java
+package hello.world;
+
+import com.gr4vy.sdk.Gr4vy;
+import com.gr4vy.sdk.models.components.*;
+import com.gr4vy.sdk.models.errors.*;
+import com.gr4vy.sdk.models.operations.CreatePazeDigitalWalletSessionResponse;
+import com.gr4vy.sdk.models.operations.ResponseCreatePazeDigitalWalletSession;
+import java.lang.Exception;
+import java.lang.Object;
+
+public class Application {
+
+    public static void main(String[] args) throws Exception {
+
+        Gr4vy sdk = Gr4vy.builder()
+                .merchantAccountId("<id>")
+                .bearerAuth(System.getenv().getOrDefault("BEARER_AUTH", ""))
+            .build();
+
+        CreatePazeDigitalWalletSessionResponse res = sdk.digitalWallets().sessions().paze()
+                .pazeSessionRequest(PazeSessionRequest.builder()
+                    .build())
+                .call();
+
+        if (res.responseCreatePazeDigitalWalletSession().isPresent()) {
+            ResponseCreatePazeDigitalWalletSession unionValue = res.responseCreatePazeDigitalWalletSession().get();
+            Object raw = unionValue.value();
+            if (raw instanceof PazeWebSession) {
+                PazeWebSession pazeWebSessionValue = (PazeWebSession) raw;
+                // Handle pazeWebSession variant
+            } else if (raw instanceof PazeMobileSession) {
+                PazeMobileSession pazeMobileSessionValue = (PazeMobileSession) raw;
+                // Handle pazeMobileSession variant
+            } else {
+                // Unknown or unsupported variant
+            }
+        }
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| `merchantAccountId`                                                 | *JsonNullable\<String>*                                             | :heavy_minus_sign:                                                  | The ID of the merchant account to use for this request.             |
+| `pazeSessionRequest`                                                | [PazeSessionRequest](../../models/components/PazeSessionRequest.md) | :heavy_check_mark:                                                  | N/A                                                                 |
+
+### Response
+
+**[CreatePazeDigitalWalletSessionResponse](../../models/operations/CreatePazeDigitalWalletSessionResponse.md)**
 
 ### Errors
 
