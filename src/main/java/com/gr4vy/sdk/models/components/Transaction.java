@@ -321,6 +321,13 @@ public class Transaction {
     private JsonNullable<String> schemeTransactionId;
 
     /**
+     * A transaction link identifier for the transaction used by the scheme itself, when available.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("transaction_link_id")
+    private JsonNullable<String> transactionLinkId;
+
+    /**
      * The 3-D Secure data that was sent to the payment service for the transaction.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -548,6 +555,7 @@ public class Transaction {
             @JsonProperty("cart_items") JsonNullable<? extends List<CartItem>> cartItems,
             @JsonProperty("statement_descriptor") JsonNullable<? extends StatementDescriptor> statementDescriptor,
             @JsonProperty("scheme_transaction_id") JsonNullable<String> schemeTransactionId,
+            @JsonProperty("transaction_link_id") JsonNullable<String> transactionLinkId,
             @JsonProperty("three_d_secure") JsonNullable<? extends TransactionThreeDSecureSummary> threeDSecure,
             @JsonProperty("payment_service_transaction_id") JsonNullable<String> paymentServiceTransactionId,
             @JsonProperty("additional_identifiers") Optional<? extends Map<String, String>> additionalIdentifiers,
@@ -616,6 +624,7 @@ public class Transaction {
         Utils.checkNotNull(cartItems, "cartItems");
         Utils.checkNotNull(statementDescriptor, "statementDescriptor");
         Utils.checkNotNull(schemeTransactionId, "schemeTransactionId");
+        Utils.checkNotNull(transactionLinkId, "transactionLinkId");
         Utils.checkNotNull(threeDSecure, "threeDSecure");
         Utils.checkNotNull(paymentServiceTransactionId, "paymentServiceTransactionId");
         Utils.checkNotNull(additionalIdentifiers, "additionalIdentifiers");
@@ -685,6 +694,7 @@ public class Transaction {
         this.cartItems = cartItems;
         this.statementDescriptor = statementDescriptor;
         this.schemeTransactionId = schemeTransactionId;
+        this.transactionLinkId = transactionLinkId;
         this.threeDSecure = threeDSecure;
         this.paymentServiceTransactionId = paymentServiceTransactionId;
         this.additionalIdentifiers = additionalIdentifiers;
@@ -750,15 +760,15 @@ public class Transaction {
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             paymentSource, merchantInitiated, isSubsequentPayment,
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), intentOutcome,
+            multiTender, accountFundingTransaction, JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), intentOutcome, multiTender,
-            accountFundingTransaction, JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined());
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
     }
 
     /**
@@ -1124,6 +1134,14 @@ public class Transaction {
     @JsonIgnore
     public JsonNullable<String> schemeTransactionId() {
         return schemeTransactionId;
+    }
+
+    /**
+     * A transaction link identifier for the transaction used by the scheme itself, when available.
+     */
+    @JsonIgnore
+    public JsonNullable<String> transactionLinkId() {
+        return transactionLinkId;
     }
 
     /**
@@ -1948,6 +1966,24 @@ public class Transaction {
     }
 
     /**
+     * A transaction link identifier for the transaction used by the scheme itself, when available.
+     */
+    public Transaction withTransactionLinkId(String transactionLinkId) {
+        Utils.checkNotNull(transactionLinkId, "transactionLinkId");
+        this.transactionLinkId = JsonNullable.of(transactionLinkId);
+        return this;
+    }
+
+    /**
+     * A transaction link identifier for the transaction used by the scheme itself, when available.
+     */
+    public Transaction withTransactionLinkId(JsonNullable<String> transactionLinkId) {
+        Utils.checkNotNull(transactionLinkId, "transactionLinkId");
+        this.transactionLinkId = transactionLinkId;
+        return this;
+    }
+
+    /**
      * The 3-D Secure data that was sent to the payment service for the transaction.
      */
     public Transaction withThreeDSecure(TransactionThreeDSecureSummary threeDSecure) {
@@ -2450,6 +2486,7 @@ public class Transaction {
             Utils.enhancedDeepEquals(this.cartItems, other.cartItems) &&
             Utils.enhancedDeepEquals(this.statementDescriptor, other.statementDescriptor) &&
             Utils.enhancedDeepEquals(this.schemeTransactionId, other.schemeTransactionId) &&
+            Utils.enhancedDeepEquals(this.transactionLinkId, other.transactionLinkId) &&
             Utils.enhancedDeepEquals(this.threeDSecure, other.threeDSecure) &&
             Utils.enhancedDeepEquals(this.paymentServiceTransactionId, other.paymentServiceTransactionId) &&
             Utils.enhancedDeepEquals(this.additionalIdentifiers, other.additionalIdentifiers) &&
@@ -2495,15 +2532,16 @@ public class Transaction {
             authResponseCode, avsResponseCode, cvvResponseCode,
             antiFraudDecision, paymentSource, merchantInitiated,
             isSubsequentPayment, cartItems, statementDescriptor,
-            schemeTransactionId, threeDSecure, paymentServiceTransactionId,
-            additionalIdentifiers, metadata, authorizedAt,
-            capturedAt, voidedAt, canceledAt,
-            approvalExpiresAt, buyerApprovalTimedoutAt, intentOutcome,
-            multiTender, accountFundingTransaction, recipient,
-            merchantAdviceCode, installmentCount, sessionToken,
-            taxAmount, merchantTaxId, purchaseOrderNumber,
-            customerReferenceNumber, amountIncludesTax, supplierOrderNumber,
-            dutyAmount, shippingAmount, isoResponseCode);
+            schemeTransactionId, transactionLinkId, threeDSecure,
+            paymentServiceTransactionId, additionalIdentifiers, metadata,
+            authorizedAt, capturedAt, voidedAt,
+            canceledAt, approvalExpiresAt, buyerApprovalTimedoutAt,
+            intentOutcome, multiTender, accountFundingTransaction,
+            recipient, merchantAdviceCode, installmentCount,
+            sessionToken, taxAmount, merchantTaxId,
+            purchaseOrderNumber, customerReferenceNumber, amountIncludesTax,
+            supplierOrderNumber, dutyAmount, shippingAmount,
+            isoResponseCode);
     }
     
     @Override
@@ -2552,6 +2590,7 @@ public class Transaction {
                 "cartItems", cartItems,
                 "statementDescriptor", statementDescriptor,
                 "schemeTransactionId", schemeTransactionId,
+                "transactionLinkId", transactionLinkId,
                 "threeDSecure", threeDSecure,
                 "paymentServiceTransactionId", paymentServiceTransactionId,
                 "additionalIdentifiers", additionalIdentifiers,
@@ -2666,6 +2705,8 @@ public class Transaction {
         private JsonNullable<? extends StatementDescriptor> statementDescriptor = JsonNullable.undefined();
 
         private JsonNullable<String> schemeTransactionId = JsonNullable.undefined();
+
+        private JsonNullable<String> transactionLinkId = JsonNullable.undefined();
 
         private JsonNullable<? extends TransactionThreeDSecureSummary> threeDSecure = JsonNullable.undefined();
 
@@ -3366,6 +3407,25 @@ public class Transaction {
 
 
         /**
+         * A transaction link identifier for the transaction used by the scheme itself, when available.
+         */
+        public Builder transactionLinkId(String transactionLinkId) {
+            Utils.checkNotNull(transactionLinkId, "transactionLinkId");
+            this.transactionLinkId = JsonNullable.of(transactionLinkId);
+            return this;
+        }
+
+        /**
+         * A transaction link identifier for the transaction used by the scheme itself, when available.
+         */
+        public Builder transactionLinkId(JsonNullable<String> transactionLinkId) {
+            Utils.checkNotNull(transactionLinkId, "transactionLinkId");
+            this.transactionLinkId = transactionLinkId;
+            return this;
+        }
+
+
+        /**
          * The 3-D Secure data that was sent to the payment service for the transaction.
          */
         public Builder threeDSecure(TransactionThreeDSecureSummary threeDSecure) {
@@ -3859,15 +3919,15 @@ public class Transaction {
                 avsResponseCode, cvvResponseCode, antiFraudDecision,
                 paymentSource, merchantInitiated, isSubsequentPayment,
                 cartItems, statementDescriptor, schemeTransactionId,
-                threeDSecure, paymentServiceTransactionId, additionalIdentifiers,
-                metadata, authorizedAt, capturedAt,
-                voidedAt, canceledAt, approvalExpiresAt,
-                buyerApprovalTimedoutAt, intentOutcome, multiTender,
-                accountFundingTransaction, recipient, merchantAdviceCode,
-                installmentCount, sessionToken, taxAmount,
-                merchantTaxId, purchaseOrderNumber, customerReferenceNumber,
-                amountIncludesTax, supplierOrderNumber, dutyAmount,
-                shippingAmount, isoResponseCode);
+                transactionLinkId, threeDSecure, paymentServiceTransactionId,
+                additionalIdentifiers, metadata, authorizedAt,
+                capturedAt, voidedAt, canceledAt,
+                approvalExpiresAt, buyerApprovalTimedoutAt, intentOutcome,
+                multiTender, accountFundingTransaction, recipient,
+                merchantAdviceCode, installmentCount, sessionToken,
+                taxAmount, merchantTaxId, purchaseOrderNumber,
+                customerReferenceNumber, amountIncludesTax, supplierOrderNumber,
+                dutyAmount, shippingAmount, isoResponseCode);
         }
 
 
