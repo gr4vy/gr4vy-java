@@ -9,9 +9,11 @@ import com.gr4vy.sdk.models.components.ApplePaySessionRequest;
 import com.gr4vy.sdk.models.components.ClickToPaySessionRequest;
 import com.gr4vy.sdk.models.components.GooglePaySessionRequest;
 import com.gr4vy.sdk.models.components.PazeSessionRequest;
+import com.gr4vy.sdk.models.components.PazeSessionReviewRequest;
 import com.gr4vy.sdk.models.operations.CreateApplePayDigitalWalletSessionRequest;
 import com.gr4vy.sdk.models.operations.CreateGooglePayDigitalWalletSessionRequest;
 import com.gr4vy.sdk.models.operations.CreatePazeDigitalWalletSessionRequest;
+import com.gr4vy.sdk.models.operations.ReviewPazeMobileSessionRequest;
 import com.gr4vy.sdk.models.operations.async.CreateApplePayDigitalWalletSessionRequestBuilder;
 import com.gr4vy.sdk.models.operations.async.CreateApplePayDigitalWalletSessionResponse;
 import com.gr4vy.sdk.models.operations.async.CreateClickToPayDigitalWalletSessionRequestBuilder;
@@ -20,10 +22,13 @@ import com.gr4vy.sdk.models.operations.async.CreateGooglePayDigitalWalletSession
 import com.gr4vy.sdk.models.operations.async.CreateGooglePayDigitalWalletSessionResponse;
 import com.gr4vy.sdk.models.operations.async.CreatePazeDigitalWalletSessionRequestBuilder;
 import com.gr4vy.sdk.models.operations.async.CreatePazeDigitalWalletSessionResponse;
+import com.gr4vy.sdk.models.operations.async.ReviewPazeMobileSessionRequestBuilder;
+import com.gr4vy.sdk.models.operations.async.ReviewPazeMobileSessionResponse;
 import com.gr4vy.sdk.operations.CreateApplePayDigitalWalletSession;
 import com.gr4vy.sdk.operations.CreateClickToPayDigitalWalletSession;
 import com.gr4vy.sdk.operations.CreateGooglePayDigitalWalletSession;
 import com.gr4vy.sdk.operations.CreatePazeDigitalWalletSession;
+import com.gr4vy.sdk.operations.ReviewPazeMobileSession;
 import com.gr4vy.sdk.utils.Headers;
 import java.lang.String;
 import java.util.concurrent.CompletableFuture;
@@ -183,6 +188,55 @@ public class AsyncSessions {
                 .build();
         AsyncRequestOperation<CreatePazeDigitalWalletSessionRequest, CreatePazeDigitalWalletSessionResponse> operation
               = new CreatePazeDigitalWalletSession.Async(sdkConfiguration, _headers);
+        return operation.doRequest(request)
+            .thenCompose(operation::handleResponse);
+    }
+
+
+    /**
+     * Review a Paze session
+     * 
+     * <p>Review a Paze checkout session and retrieve the selected card, consumer, and shipping address
+     * details.
+     * 
+     * @return The async call builder
+     */
+    public ReviewPazeMobileSessionRequestBuilder pazeMobileSessionReview() {
+        return new ReviewPazeMobileSessionRequestBuilder(sdkConfiguration);
+    }
+
+    /**
+     * Review a Paze session
+     * 
+     * <p>Review a Paze checkout session and retrieve the selected card, consumer, and shipping address
+     * details.
+     * 
+     * @param pazeSessionReviewRequest 
+     * @return {@code CompletableFuture<ReviewPazeMobileSessionResponse>} - The async response
+     */
+    public CompletableFuture<ReviewPazeMobileSessionResponse> pazeMobileSessionReview(PazeSessionReviewRequest pazeSessionReviewRequest) {
+        return pazeMobileSessionReview(JsonNullable.undefined(), pazeSessionReviewRequest);
+    }
+
+    /**
+     * Review a Paze session
+     * 
+     * <p>Review a Paze checkout session and retrieve the selected card, consumer, and shipping address
+     * details.
+     * 
+     * @param merchantAccountId 
+     * @param pazeSessionReviewRequest 
+     * @return {@code CompletableFuture<ReviewPazeMobileSessionResponse>} - The async response
+     */
+    public CompletableFuture<ReviewPazeMobileSessionResponse> pazeMobileSessionReview(JsonNullable<String> merchantAccountId, PazeSessionReviewRequest pazeSessionReviewRequest) {
+        ReviewPazeMobileSessionRequest request =
+            ReviewPazeMobileSessionRequest
+                .builder()
+                .merchantAccountId(merchantAccountId)
+                .pazeSessionReviewRequest(pazeSessionReviewRequest)
+                .build();
+        AsyncRequestOperation<ReviewPazeMobileSessionRequest, ReviewPazeMobileSessionResponse> operation
+              = new ReviewPazeMobileSession.Async(sdkConfiguration, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
