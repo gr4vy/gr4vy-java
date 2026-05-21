@@ -7,6 +7,7 @@
 * [googlePay](#googlepay) - Create a Google Pay session
 * [applePay](#applepay) - Create a Apple Pay session
 * [paze](#paze) - Create a Paze session
+* [pazeMobileSessionReview](#pazemobilesessionreview) - Review a Paze session
 * [clickToPay](#clicktopay) - Create a Click to Pay session
 
 ## googlePay
@@ -203,6 +204,75 @@ public class Application {
 ### Response
 
 **[CreatePazeDigitalWalletSessionResponse](../../models/operations/CreatePazeDigitalWalletSessionResponse.md)**
+
+### Errors
+
+| Error Type                        | Status Code                       | Content Type                      |
+| --------------------------------- | --------------------------------- | --------------------------------- |
+| models/errors/Error400            | 400                               | application/json                  |
+| models/errors/Error401            | 401                               | application/json                  |
+| models/errors/Error403            | 403                               | application/json                  |
+| models/errors/Error404            | 404                               | application/json                  |
+| models/errors/Error405            | 405                               | application/json                  |
+| models/errors/Error409            | 409                               | application/json                  |
+| models/errors/HTTPValidationError | 422                               | application/json                  |
+| models/errors/Error425            | 425                               | application/json                  |
+| models/errors/Error429            | 429                               | application/json                  |
+| models/errors/Error500            | 500                               | application/json                  |
+| models/errors/Error502            | 502                               | application/json                  |
+| models/errors/Error504            | 504                               | application/json                  |
+| models/errors/APIException        | 4XX, 5XX                          | \*/\*                             |
+
+## pazeMobileSessionReview
+
+Review a Paze checkout session and retrieve the selected card, consumer, and shipping address details.
+
+### Example Usage
+
+<!-- UsageSnippet language="java" operationID="review_paze_mobile_session" method="post" path="/digital-wallets/paze/session/review" -->
+```java
+package hello.world;
+
+import com.gr4vy.sdk.Gr4vy;
+import com.gr4vy.sdk.models.components.PazeSessionReviewRequest;
+import com.gr4vy.sdk.models.errors.*;
+import com.gr4vy.sdk.models.operations.ReviewPazeMobileSessionResponse;
+import java.lang.Exception;
+
+public class Application {
+
+    public static void main(String[] args) throws Exception {
+
+        Gr4vy sdk = Gr4vy.builder()
+                .merchantAccountId("<id>")
+                .bearerAuth(System.getenv().getOrDefault("BEARER_AUTH", ""))
+            .build();
+
+        ReviewPazeMobileSessionResponse res = sdk.digitalWallets().sessions().pazeMobileSessionReview()
+                .pazeSessionReviewRequest(PazeSessionReviewRequest.builder()
+                    .sessionId("7c1cba03-d20e-4a3f-9d77-e5dc23a39ac2")
+                    .code("eyJhdWQiOm51bGwsImtpZCI6IjE3...")
+                    .accessToken("eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9...")
+                    .build())
+                .call();
+
+        if (res.pazeSessionReview().isPresent()) {
+            System.out.println(res.pazeSessionReview().get());
+        }
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                       | Type                                                                            | Required                                                                        | Description                                                                     |
+| ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
+| `merchantAccountId`                                                             | *JsonNullable\<String>*                                                         | :heavy_minus_sign:                                                              | The ID of the merchant account to use for this request.                         |
+| `pazeSessionReviewRequest`                                                      | [PazeSessionReviewRequest](../../models/components/PazeSessionReviewRequest.md) | :heavy_check_mark:                                                              | N/A                                                                             |
+
+### Response
+
+**[ReviewPazeMobileSessionResponse](../../models/operations/ReviewPazeMobileSessionResponse.md)**
 
 ### Errors
 

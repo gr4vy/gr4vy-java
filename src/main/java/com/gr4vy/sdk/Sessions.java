@@ -9,6 +9,7 @@ import com.gr4vy.sdk.models.components.ApplePaySessionRequest;
 import com.gr4vy.sdk.models.components.ClickToPaySessionRequest;
 import com.gr4vy.sdk.models.components.GooglePaySessionRequest;
 import com.gr4vy.sdk.models.components.PazeSessionRequest;
+import com.gr4vy.sdk.models.components.PazeSessionReviewRequest;
 import com.gr4vy.sdk.models.operations.CreateApplePayDigitalWalletSessionRequest;
 import com.gr4vy.sdk.models.operations.CreateApplePayDigitalWalletSessionRequestBuilder;
 import com.gr4vy.sdk.models.operations.CreateApplePayDigitalWalletSessionResponse;
@@ -20,10 +21,14 @@ import com.gr4vy.sdk.models.operations.CreateGooglePayDigitalWalletSessionRespon
 import com.gr4vy.sdk.models.operations.CreatePazeDigitalWalletSessionRequest;
 import com.gr4vy.sdk.models.operations.CreatePazeDigitalWalletSessionRequestBuilder;
 import com.gr4vy.sdk.models.operations.CreatePazeDigitalWalletSessionResponse;
+import com.gr4vy.sdk.models.operations.ReviewPazeMobileSessionRequest;
+import com.gr4vy.sdk.models.operations.ReviewPazeMobileSessionRequestBuilder;
+import com.gr4vy.sdk.models.operations.ReviewPazeMobileSessionResponse;
 import com.gr4vy.sdk.operations.CreateApplePayDigitalWalletSession;
 import com.gr4vy.sdk.operations.CreateClickToPayDigitalWalletSession;
 import com.gr4vy.sdk.operations.CreateGooglePayDigitalWalletSession;
 import com.gr4vy.sdk.operations.CreatePazeDigitalWalletSession;
+import com.gr4vy.sdk.operations.ReviewPazeMobileSession;
 import com.gr4vy.sdk.utils.Headers;
 import java.lang.String;
 import org.openapitools.jackson.nullable.JsonNullable;
@@ -183,6 +188,55 @@ public class Sessions {
                 .build();
         RequestOperation<CreatePazeDigitalWalletSessionRequest, CreatePazeDigitalWalletSessionResponse> operation
               = new CreatePazeDigitalWalletSession.Sync(sdkConfiguration, _headers);
+        return operation.handleResponse(operation.doRequest(request));
+    }
+
+    /**
+     * Review a Paze session
+     * 
+     * <p>Review a Paze checkout session and retrieve the selected card, consumer, and shipping address
+     * details.
+     * 
+     * @return The call builder
+     */
+    public ReviewPazeMobileSessionRequestBuilder pazeMobileSessionReview() {
+        return new ReviewPazeMobileSessionRequestBuilder(sdkConfiguration);
+    }
+
+    /**
+     * Review a Paze session
+     * 
+     * <p>Review a Paze checkout session and retrieve the selected card, consumer, and shipping address
+     * details.
+     * 
+     * @param pazeSessionReviewRequest 
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public ReviewPazeMobileSessionResponse pazeMobileSessionReview(PazeSessionReviewRequest pazeSessionReviewRequest) {
+        return pazeMobileSessionReview(JsonNullable.undefined(), pazeSessionReviewRequest);
+    }
+
+    /**
+     * Review a Paze session
+     * 
+     * <p>Review a Paze checkout session and retrieve the selected card, consumer, and shipping address
+     * details.
+     * 
+     * @param merchantAccountId 
+     * @param pazeSessionReviewRequest 
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public ReviewPazeMobileSessionResponse pazeMobileSessionReview(JsonNullable<String> merchantAccountId, PazeSessionReviewRequest pazeSessionReviewRequest) {
+        ReviewPazeMobileSessionRequest request =
+            ReviewPazeMobileSessionRequest
+                .builder()
+                .merchantAccountId(merchantAccountId)
+                .pazeSessionReviewRequest(pazeSessionReviewRequest)
+                .build();
+        RequestOperation<ReviewPazeMobileSessionRequest, ReviewPazeMobileSessionResponse> operation
+              = new ReviewPazeMobileSession.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
