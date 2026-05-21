@@ -180,6 +180,13 @@ public class PaymentMethodSummary {
     @JsonProperty("scheme_transaction_id_scheme")
     private Optional<? extends CardScheme> schemeTransactionIdScheme;
 
+    /**
+     * The transaction link identifier stored against this payment method.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("transaction_link_id")
+    private JsonNullable<String> transactionLinkId;
+
     @JsonCreator
     public PaymentMethodSummary(
             @JsonProperty("approval_url") JsonNullable<String> approvalUrl,
@@ -202,7 +209,8 @@ public class PaymentMethodSummary {
             @JsonProperty("last_used_at") JsonNullable<OffsetDateTime> lastUsedAt,
             @JsonProperty("usage_count") long usageCount,
             @JsonProperty("scheme_transaction_id") Optional<String> schemeTransactionId,
-            @JsonProperty("scheme_transaction_id_scheme") Optional<? extends CardScheme> schemeTransactionIdScheme) {
+            @JsonProperty("scheme_transaction_id_scheme") Optional<? extends CardScheme> schemeTransactionIdScheme,
+            @JsonProperty("transaction_link_id") JsonNullable<String> transactionLinkId) {
         Utils.checkNotNull(approvalUrl, "approvalUrl");
         Utils.checkNotNull(country, "country");
         Utils.checkNotNull(currency, "currency");
@@ -224,6 +232,7 @@ public class PaymentMethodSummary {
         Utils.checkNotNull(usageCount, "usageCount");
         Utils.checkNotNull(schemeTransactionId, "schemeTransactionId");
         Utils.checkNotNull(schemeTransactionIdScheme, "schemeTransactionIdScheme");
+        Utils.checkNotNull(transactionLinkId, "transactionLinkId");
         this.type = Builder._SINGLETON_VALUE_Type.value();
         this.approvalUrl = approvalUrl;
         this.country = country;
@@ -246,6 +255,7 @@ public class PaymentMethodSummary {
         this.usageCount = usageCount;
         this.schemeTransactionId = schemeTransactionId;
         this.schemeTransactionIdScheme = schemeTransactionIdScheme;
+        this.transactionLinkId = transactionLinkId;
     }
     
     public PaymentMethodSummary(
@@ -261,7 +271,8 @@ public class PaymentMethodSummary {
             JsonNullable.undefined(), JsonNullable.undefined(), id,
             merchantAccountId, JsonNullable.undefined(), JsonNullable.undefined(),
             citUsageCount, hasReplacement, JsonNullable.undefined(),
-            usageCount, Optional.empty(), Optional.empty());
+            usageCount, Optional.empty(), Optional.empty(),
+            JsonNullable.undefined());
     }
 
     /**
@@ -445,6 +456,14 @@ public class PaymentMethodSummary {
     @JsonIgnore
     public Optional<CardScheme> schemeTransactionIdScheme() {
         return (Optional<CardScheme>) schemeTransactionIdScheme;
+    }
+
+    /**
+     * The transaction link identifier stored against this payment method.
+     */
+    @JsonIgnore
+    public JsonNullable<String> transactionLinkId() {
+        return transactionLinkId;
     }
 
     public static Builder builder() {
@@ -784,6 +803,24 @@ public class PaymentMethodSummary {
         return this;
     }
 
+    /**
+     * The transaction link identifier stored against this payment method.
+     */
+    public PaymentMethodSummary withTransactionLinkId(String transactionLinkId) {
+        Utils.checkNotNull(transactionLinkId, "transactionLinkId");
+        this.transactionLinkId = JsonNullable.of(transactionLinkId);
+        return this;
+    }
+
+    /**
+     * The transaction link identifier stored against this payment method.
+     */
+    public PaymentMethodSummary withTransactionLinkId(JsonNullable<String> transactionLinkId) {
+        Utils.checkNotNull(transactionLinkId, "transactionLinkId");
+        this.transactionLinkId = transactionLinkId;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -815,7 +852,8 @@ public class PaymentMethodSummary {
             Utils.enhancedDeepEquals(this.lastUsedAt, other.lastUsedAt) &&
             Utils.enhancedDeepEquals(this.usageCount, other.usageCount) &&
             Utils.enhancedDeepEquals(this.schemeTransactionId, other.schemeTransactionId) &&
-            Utils.enhancedDeepEquals(this.schemeTransactionIdScheme, other.schemeTransactionIdScheme);
+            Utils.enhancedDeepEquals(this.schemeTransactionIdScheme, other.schemeTransactionIdScheme) &&
+            Utils.enhancedDeepEquals(this.transactionLinkId, other.transactionLinkId);
     }
     
     @Override
@@ -828,7 +866,7 @@ public class PaymentMethodSummary {
             id, merchantAccountId, additionalSchemes,
             citLastUsedAt, citUsageCount, hasReplacement,
             lastUsedAt, usageCount, schemeTransactionId,
-            schemeTransactionIdScheme);
+            schemeTransactionIdScheme, transactionLinkId);
     }
     
     @Override
@@ -855,7 +893,8 @@ public class PaymentMethodSummary {
                 "lastUsedAt", lastUsedAt,
                 "usageCount", usageCount,
                 "schemeTransactionId", schemeTransactionId,
-                "schemeTransactionIdScheme", schemeTransactionIdScheme);
+                "schemeTransactionIdScheme", schemeTransactionIdScheme,
+                "transactionLinkId", transactionLinkId);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -902,6 +941,8 @@ public class PaymentMethodSummary {
         private Optional<String> schemeTransactionId = Optional.empty();
 
         private Optional<? extends CardScheme> schemeTransactionIdScheme = Optional.empty();
+
+        private JsonNullable<String> transactionLinkId = JsonNullable.undefined();
 
         private Builder() {
           // force use of static builder() method
@@ -1258,6 +1299,25 @@ public class PaymentMethodSummary {
             return this;
         }
 
+
+        /**
+         * The transaction link identifier stored against this payment method.
+         */
+        public Builder transactionLinkId(String transactionLinkId) {
+            Utils.checkNotNull(transactionLinkId, "transactionLinkId");
+            this.transactionLinkId = JsonNullable.of(transactionLinkId);
+            return this;
+        }
+
+        /**
+         * The transaction link identifier stored against this payment method.
+         */
+        public Builder transactionLinkId(JsonNullable<String> transactionLinkId) {
+            Utils.checkNotNull(transactionLinkId, "transactionLinkId");
+            this.transactionLinkId = transactionLinkId;
+            return this;
+        }
+
         public PaymentMethodSummary build() {
 
             return new PaymentMethodSummary(
@@ -1267,7 +1327,8 @@ public class PaymentMethodSummary {
                 mode, scheme, id,
                 merchantAccountId, additionalSchemes, citLastUsedAt,
                 citUsageCount, hasReplacement, lastUsedAt,
-                usageCount, schemeTransactionId, schemeTransactionIdScheme);
+                usageCount, schemeTransactionId, schemeTransactionIdScheme,
+                transactionLinkId);
         }
 
 
