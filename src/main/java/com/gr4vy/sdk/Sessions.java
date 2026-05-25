@@ -8,6 +8,7 @@ import static com.gr4vy.sdk.operations.Operations.RequestOperation;
 import com.gr4vy.sdk.models.components.ApplePaySessionRequest;
 import com.gr4vy.sdk.models.components.ClickToPaySessionRequest;
 import com.gr4vy.sdk.models.components.GooglePaySessionRequest;
+import com.gr4vy.sdk.models.components.PazeMobileSessionCreateRequest;
 import com.gr4vy.sdk.models.components.PazeSessionRequest;
 import com.gr4vy.sdk.models.components.PazeSessionReviewRequest;
 import com.gr4vy.sdk.models.operations.CreateApplePayDigitalWalletSessionRequest;
@@ -21,6 +22,9 @@ import com.gr4vy.sdk.models.operations.CreateGooglePayDigitalWalletSessionRespon
 import com.gr4vy.sdk.models.operations.CreatePazeDigitalWalletSessionRequest;
 import com.gr4vy.sdk.models.operations.CreatePazeDigitalWalletSessionRequestBuilder;
 import com.gr4vy.sdk.models.operations.CreatePazeDigitalWalletSessionResponse;
+import com.gr4vy.sdk.models.operations.CreatePazeMobileSessionRequest;
+import com.gr4vy.sdk.models.operations.CreatePazeMobileSessionRequestBuilder;
+import com.gr4vy.sdk.models.operations.CreatePazeMobileSessionResponse;
 import com.gr4vy.sdk.models.operations.ReviewPazeMobileSessionRequest;
 import com.gr4vy.sdk.models.operations.ReviewPazeMobileSessionRequestBuilder;
 import com.gr4vy.sdk.models.operations.ReviewPazeMobileSessionResponse;
@@ -28,6 +32,7 @@ import com.gr4vy.sdk.operations.CreateApplePayDigitalWalletSession;
 import com.gr4vy.sdk.operations.CreateClickToPayDigitalWalletSession;
 import com.gr4vy.sdk.operations.CreateGooglePayDigitalWalletSession;
 import com.gr4vy.sdk.operations.CreatePazeDigitalWalletSession;
+import com.gr4vy.sdk.operations.CreatePazeMobileSession;
 import com.gr4vy.sdk.operations.ReviewPazeMobileSession;
 import com.gr4vy.sdk.utils.Headers;
 import java.lang.String;
@@ -142,6 +147,52 @@ public class Sessions {
                 .build();
         RequestOperation<CreateApplePayDigitalWalletSessionRequest, CreateApplePayDigitalWalletSessionResponse> operation
               = new CreateApplePayDigitalWalletSession.Sync(sdkConfiguration, _headers);
+        return operation.handleResponse(operation.doRequest(request));
+    }
+
+    /**
+     * Create a Paze mobile session
+     * 
+     * <p>Create a mobile session for use with Paze.
+     * 
+     * @return The call builder
+     */
+    public CreatePazeMobileSessionRequestBuilder pazeMobileSessionCreate() {
+        return new CreatePazeMobileSessionRequestBuilder(sdkConfiguration);
+    }
+
+    /**
+     * Create a Paze mobile session
+     * 
+     * <p>Create a mobile session for use with Paze.
+     * 
+     * @param pazeMobileSessionCreateRequest 
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public CreatePazeMobileSessionResponse pazeMobileSessionCreate(PazeMobileSessionCreateRequest pazeMobileSessionCreateRequest) {
+        return pazeMobileSessionCreate(JsonNullable.undefined(), pazeMobileSessionCreateRequest);
+    }
+
+    /**
+     * Create a Paze mobile session
+     * 
+     * <p>Create a mobile session for use with Paze.
+     * 
+     * @param merchantAccountId 
+     * @param pazeMobileSessionCreateRequest 
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public CreatePazeMobileSessionResponse pazeMobileSessionCreate(JsonNullable<String> merchantAccountId, PazeMobileSessionCreateRequest pazeMobileSessionCreateRequest) {
+        CreatePazeMobileSessionRequest request =
+            CreatePazeMobileSessionRequest
+                .builder()
+                .merchantAccountId(merchantAccountId)
+                .pazeMobileSessionCreateRequest(pazeMobileSessionCreateRequest)
+                .build();
+        RequestOperation<CreatePazeMobileSessionRequest, CreatePazeMobileSessionResponse> operation
+              = new CreatePazeMobileSession.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
