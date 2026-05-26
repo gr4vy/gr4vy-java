@@ -1,19 +1,19 @@
 lockVersion: 2.0.0
 id: 5bbaa3a9-baa0-471b-ba6a-13fd88e8c119
 management:
-  docChecksum: 3251743990e75f7c4b4ddbf744830aad
+  docChecksum: b7a0f0553c4c46d64c91ae79803c15ab
   docVersion: 1.0.0
-  speakeasyVersion: 1.764.1
-  generationVersion: 2.885.1
-  releaseVersion: 2.16.73
-  configChecksum: 91ddea89e30e56d640b3b6df53d4edde
+  speakeasyVersion: 1.766.0
+  generationVersion: 2.887.0
+  releaseVersion: 2.16.74
+  configChecksum: f39465f67ff44f8a5320fd841326262c
   repoURL: https://github.com/gr4vy/gr4vy-java.git
   installationURL: https://github.com/gr4vy/gr4vy-java
   published: true
 persistentEdits:
-  generation_id: b4cb6790-db5a-4bf4-b3bf-4de9e403074a
-  pristine_commit_hash: ab5c2e2be889ecd5f2f39dd7cd19213d56d2ccb3
-  pristine_tree_hash: 65947a33b001fe61f1ebfeba2d11da489e57eedc
+  generation_id: b25407f9-aa97-46f9-ac2d-1e62aa901dc5
+  pristine_commit_hash: 6a2cccd38b52dfa92c827460ca0e0ae61783ac07
+  pristine_tree_hash: fccba13c55217a0217bd52b35116890d551d69e4
 features:
   java:
     additionalDependencies: 0.1.0
@@ -362,8 +362,8 @@ trackedFiles:
     pristine_git_object: 7a9b3e6057712c3e1e0e66b38165614f952a954b
   docs/models/components/DefinitionField.md:
     id: 249ac58d70fb
-    last_write_checksum: sha1:9b79c08020692d169535040541fa459274502d73
-    pristine_git_object: 55665c94797168487e7aaf972aa9d3bb7c39d8a0
+    last_write_checksum: sha1:7fa0c2066542e51d5a04444dbe4339b6cb677ac6
+    pristine_git_object: b933b40eb1ae6b0e5dcf52a9ff885fde71d66528
   docs/models/components/DefinitionFieldFormat.md:
     id: cf6d34bc5312
     last_write_checksum: sha1:97fe1ec22bb330c9f13c47da3b6d7fe6a98e341a
@@ -2566,8 +2566,8 @@ trackedFiles:
     pristine_git_object: 15c4e4642f204ccb312d8814155b69e153b4e19b
   gradle.properties:
     id: 2afbb999f001
-    last_write_checksum: sha1:c716ee2b9f61260f9d67e12165732e8d7a6d794b
-    pristine_git_object: 4e0bee32e4da6d166063dadb8da75c40cda32fa8
+    last_write_checksum: sha1:da630be8ae0c14fd9bb7c877a24251b6bfeb1f1d
+    pristine_git_object: b9b123f2f3d86705361302315db053628ff60547
   gradle/wrapper/gradle-wrapper.jar:
     id: ec27dae6e852
     last_write_checksum: sha1:f725fb1467084142d74fd7cd8eab691ab3442611
@@ -2890,8 +2890,8 @@ trackedFiles:
     pristine_git_object: 502a7312d3dc82c102dbaf7ed5e952d0c793e26f
   src/main/java/com/gr4vy/sdk/SDKConfiguration.java:
     id: 73a7edeaca45
-    last_write_checksum: sha1:570322bcc9e936a98348ac51e32492a2f990e1cd
-    pristine_git_object: ce3e7e7f8204b0795c303645556a0034e54b6ad1
+    last_write_checksum: sha1:0db5e090625ea502b9a887c699ddf18c01d5438a
+    pristine_git_object: 9df82a3944dd4adcae9928467c0c39cd2a6c5d26
   src/main/java/com/gr4vy/sdk/SecuritySource.java:
     id: 1b6add6b9b50
     last_write_checksum: sha1:2f365cc823c6243188e83f4df618c9737fcee8bd
@@ -3238,8 +3238,8 @@ trackedFiles:
     pristine_git_object: 67121678c3fed2535c6e342571966a5e11861fa7
   src/main/java/com/gr4vy/sdk/models/components/DefinitionField.java:
     id: c90931022795
-    last_write_checksum: sha1:e3d74870c444b746b54ff5260e079d9d1c3ac0e5
-    pristine_git_object: c97adfda489ee7ffb226568d4c489a6851809b83
+    last_write_checksum: sha1:f0549bc5e0cad55fb1a7532736b0efd77dc3c6da
+    pristine_git_object: ca1a757fc772239bff0fb34acbcc13361468b915
   src/main/java/com/gr4vy/sdk/models/components/DefinitionFieldFormat.java:
     id: 75abed01cf75
     last_write_checksum: sha1:30b3b0178b41a8b8cf8c7d65ec1df21efb51b4e9
@@ -9441,7 +9441,7 @@ examples:
           application_name: "core-api"
       responses:
         "200":
-          application/json: {"id": "adyen-ideal", "type": "payment-service-definition", "display_name": "iDEAL", "method": "multibanco", "fields": [{"key": "private_api_key", "display_name": "Private API key", "required": true, "format": "boolean", "secret": true}], "reporting_fields": [{"key": "private_api_key", "display_name": "Private API key", "required": true, "format": "multiline", "secret": true}, {"key": "private_api_key", "display_name": "Private API key", "required": true, "format": "multiline", "secret": true}], "supported_currencies": ["USD", "GBP", "EUR", "AUD"], "supported_countries": ["US"], "mode": "card", "supported_features": {"key": true, "key1": false}, "required_checkout_fields": [{"required_fields": ["address.line1", "address.country", "address.city", "address.postal_code"]}, {"required_fields": ["address.line1", "address.country", "address.city", "address.postal_code"]}, {"required_fields": ["address.line1", "address.country", "address.city", "address.postal_code"]}], "configuration": {"approval_ui_target": "any", "approval_ui_height": "100px", "approval_ui_width": "100px", "cart_items_limit": 100, "cart_items_required": true, "cart_items_should_match_amount": true}, "supported_integration_clients": ["redirect"]}
+          application/json: {"id": "adyen-ideal", "type": "payment-service-definition", "display_name": "iDEAL", "method": "multibanco", "fields": [{"key": "private_api_key", "display_name": "Private API key", "required": true, "format": "boolean", "secret": true, "verifiable": true}], "reporting_fields": [{"key": "private_api_key", "display_name": "Private API key", "required": true, "format": "multiline", "secret": true, "verifiable": true}, {"key": "private_api_key", "display_name": "Private API key", "required": true, "format": "multiline", "secret": true, "verifiable": true}], "supported_currencies": ["USD", "GBP", "EUR", "AUD"], "supported_countries": ["US"], "mode": "card", "supported_features": {"key": true, "key1": false}, "required_checkout_fields": [{"required_fields": ["address.line1", "address.country", "address.city", "address.postal_code"]}, {"required_fields": ["address.line1", "address.country", "address.city", "address.postal_code"]}, {"required_fields": ["address.line1", "address.country", "address.city", "address.postal_code"]}], "configuration": {"approval_ui_target": "any", "approval_ui_height": "100px", "approval_ui_width": "100px", "cart_items_limit": 100, "cart_items_required": true, "cart_items_should_match_amount": true}, "supported_integration_clients": ["redirect"]}
         "400":
           application/json: {"type": "error", "code": "bad_request", "status": 400, "message": "Request failed validation"}
         "401":
@@ -11183,7 +11183,8 @@ examplesVersion: 1.0.2
 generatedTests: {}
 releaseNotes: |
   ## Java SDK Changes:
-  * `gr4vy.digitalWallets.sessions.pazeMobileSessionCreate()`: **Added**
+  * `gr4vy.paymentServiceDefinitions.list()`:  `response.items[].fields[].verifiable` **Added**
+  * `gr4vy.paymentServiceDefinitions.get()`:  `response.fields[].verifiable` **Added**
 generatedFiles:
   - .gitattributes
   - USAGE.md
