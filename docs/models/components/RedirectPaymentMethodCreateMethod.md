@@ -26,7 +26,6 @@ RedirectPaymentMethodCreateMethod custom = RedirectPaymentMethodCreateMethod.of(
 | `ARCUSPAYNETWORK` | arcuspaynetwork   |
 | `BACS`            | bacs              |
 | `BANCONTACT`      | bancontact        |
-| `BANKED`          | banked            |
 | `BCP`             | bcp               |
 | `BECS`            | becs              |
 | `BITPAY`          | bitpay            |

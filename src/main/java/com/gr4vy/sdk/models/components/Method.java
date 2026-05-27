@@ -30,7 +30,6 @@ public class Method {
     public static final Method BACS = new Method("bacs");
     public static final Method BANCONTACT = new Method("bancontact");
     public static final Method BANK = new Method("bank");
-    public static final Method BANKED = new Method("banked");
     public static final Method BCP = new Method("bcp");
     public static final Method BECS = new Method("becs");
     public static final Method BITPAY = new Method("bitpay");
@@ -220,7 +219,6 @@ public class Method {
         map.put("bacs", BACS);
         map.put("bancontact", BANCONTACT);
         map.put("bank", BANK);
-        map.put("banked", BANKED);
         map.put("bcp", BCP);
         map.put("becs", BECS);
         map.put("bitpay", BITPAY);
@@ -342,7 +340,6 @@ public class Method {
         map.put("bacs", MethodEnum.BACS);
         map.put("bancontact", MethodEnum.BANCONTACT);
         map.put("bank", MethodEnum.BANK);
-        map.put("banked", MethodEnum.BANKED);
         map.put("bcp", MethodEnum.BCP);
         map.put("becs", MethodEnum.BECS);
         map.put("bitpay", MethodEnum.BITPAY);
@@ -465,7 +462,6 @@ public class Method {
         BACS("bacs"),
         BANCONTACT("bancontact"),
         BANK("bank"),
-        BANKED("banked"),
         BCP("bcp"),
         BECS("becs"),
         BITPAY("bitpay"),
