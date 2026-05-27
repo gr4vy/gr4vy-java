@@ -62,7 +62,7 @@ public class PazeMobileSessionCreateRequest {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("transactionType")
-    private JsonNullable<? extends TransactionType> transactionType;
+    private JsonNullable<? extends PazeMobileSessionCreateRequestTransactionType> transactionType;
 
     /**
      * Whether to collect a shipping address from the consumer.
@@ -76,7 +76,7 @@ public class PazeMobileSessionCreateRequest {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("billingPreference")
-    private JsonNullable<? extends BillingPreference> billingPreference;
+    private JsonNullable<? extends PazeMobileSessionCreateRequestBillingPreference> billingPreference;
 
     /**
      * Consumer email address for checkout flow optimization.
@@ -130,9 +130,9 @@ public class PazeMobileSessionCreateRequest {
             @JsonProperty("callbackURLScheme") String callbackURLScheme,
             @JsonProperty("intent") Intent intent,
             @JsonProperty("transactionValue") JsonNullable<? extends PazeTransactionValue> transactionValue,
-            @JsonProperty("transactionType") JsonNullable<? extends TransactionType> transactionType,
+            @JsonProperty("transactionType") JsonNullable<? extends PazeMobileSessionCreateRequestTransactionType> transactionType,
             @JsonProperty("shippingPreference") JsonNullable<? extends ShippingPreference> shippingPreference,
-            @JsonProperty("billingPreference") JsonNullable<? extends BillingPreference> billingPreference,
+            @JsonProperty("billingPreference") JsonNullable<? extends PazeMobileSessionCreateRequestBillingPreference> billingPreference,
             @JsonProperty("emailAddress") JsonNullable<String> emailAddress,
             @JsonProperty("phoneNumber") JsonNullable<String> phoneNumber,
             @JsonProperty("cobrand") JsonNullable<? extends List<PazeCobrandItem>> cobrand,
@@ -236,8 +236,8 @@ public class PazeMobileSessionCreateRequest {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<TransactionType> transactionType() {
-        return (JsonNullable<TransactionType>) transactionType;
+    public JsonNullable<PazeMobileSessionCreateRequestTransactionType> transactionType() {
+        return (JsonNullable<PazeMobileSessionCreateRequestTransactionType>) transactionType;
     }
 
     /**
@@ -254,8 +254,8 @@ public class PazeMobileSessionCreateRequest {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<BillingPreference> billingPreference() {
-        return (JsonNullable<BillingPreference>) billingPreference;
+    public JsonNullable<PazeMobileSessionCreateRequestBillingPreference> billingPreference() {
+        return (JsonNullable<PazeMobileSessionCreateRequestBillingPreference>) billingPreference;
     }
 
     /**
@@ -380,7 +380,7 @@ public class PazeMobileSessionCreateRequest {
     /**
      * Type of transaction.
      */
-    public PazeMobileSessionCreateRequest withTransactionType(TransactionType transactionType) {
+    public PazeMobileSessionCreateRequest withTransactionType(PazeMobileSessionCreateRequestTransactionType transactionType) {
         Utils.checkNotNull(transactionType, "transactionType");
         this.transactionType = JsonNullable.of(transactionType);
         return this;
@@ -389,7 +389,7 @@ public class PazeMobileSessionCreateRequest {
     /**
      * Type of transaction.
      */
-    public PazeMobileSessionCreateRequest withTransactionType(JsonNullable<? extends TransactionType> transactionType) {
+    public PazeMobileSessionCreateRequest withTransactionType(JsonNullable<? extends PazeMobileSessionCreateRequestTransactionType> transactionType) {
         Utils.checkNotNull(transactionType, "transactionType");
         this.transactionType = transactionType;
         return this;
@@ -416,7 +416,7 @@ public class PazeMobileSessionCreateRequest {
     /**
      * Verbosity of billing address required.
      */
-    public PazeMobileSessionCreateRequest withBillingPreference(BillingPreference billingPreference) {
+    public PazeMobileSessionCreateRequest withBillingPreference(PazeMobileSessionCreateRequestBillingPreference billingPreference) {
         Utils.checkNotNull(billingPreference, "billingPreference");
         this.billingPreference = JsonNullable.of(billingPreference);
         return this;
@@ -425,7 +425,7 @@ public class PazeMobileSessionCreateRequest {
     /**
      * Verbosity of billing address required.
      */
-    public PazeMobileSessionCreateRequest withBillingPreference(JsonNullable<? extends BillingPreference> billingPreference) {
+    public PazeMobileSessionCreateRequest withBillingPreference(JsonNullable<? extends PazeMobileSessionCreateRequestBillingPreference> billingPreference) {
         Utils.checkNotNull(billingPreference, "billingPreference");
         this.billingPreference = billingPreference;
         return this;
@@ -616,11 +616,11 @@ public class PazeMobileSessionCreateRequest {
 
         private JsonNullable<? extends PazeTransactionValue> transactionValue = JsonNullable.undefined();
 
-        private JsonNullable<? extends TransactionType> transactionType = JsonNullable.undefined();
+        private JsonNullable<? extends PazeMobileSessionCreateRequestTransactionType> transactionType = JsonNullable.undefined();
 
         private JsonNullable<? extends ShippingPreference> shippingPreference = JsonNullable.undefined();
 
-        private JsonNullable<? extends BillingPreference> billingPreference = JsonNullable.undefined();
+        private JsonNullable<? extends PazeMobileSessionCreateRequestBillingPreference> billingPreference = JsonNullable.undefined();
 
         private JsonNullable<String> emailAddress = JsonNullable.undefined();
 
@@ -709,7 +709,7 @@ public class PazeMobileSessionCreateRequest {
         /**
          * Type of transaction.
          */
-        public Builder transactionType(TransactionType transactionType) {
+        public Builder transactionType(PazeMobileSessionCreateRequestTransactionType transactionType) {
             Utils.checkNotNull(transactionType, "transactionType");
             this.transactionType = JsonNullable.of(transactionType);
             return this;
@@ -718,7 +718,7 @@ public class PazeMobileSessionCreateRequest {
         /**
          * Type of transaction.
          */
-        public Builder transactionType(JsonNullable<? extends TransactionType> transactionType) {
+        public Builder transactionType(JsonNullable<? extends PazeMobileSessionCreateRequestTransactionType> transactionType) {
             Utils.checkNotNull(transactionType, "transactionType");
             this.transactionType = transactionType;
             return this;
@@ -747,7 +747,7 @@ public class PazeMobileSessionCreateRequest {
         /**
          * Verbosity of billing address required.
          */
-        public Builder billingPreference(BillingPreference billingPreference) {
+        public Builder billingPreference(PazeMobileSessionCreateRequestBillingPreference billingPreference) {
             Utils.checkNotNull(billingPreference, "billingPreference");
             this.billingPreference = JsonNullable.of(billingPreference);
             return this;
@@ -756,7 +756,7 @@ public class PazeMobileSessionCreateRequest {
         /**
          * Verbosity of billing address required.
          */
-        public Builder billingPreference(JsonNullable<? extends BillingPreference> billingPreference) {
+        public Builder billingPreference(JsonNullable<? extends PazeMobileSessionCreateRequestBillingPreference> billingPreference) {
             Utils.checkNotNull(billingPreference, "billingPreference");
             this.billingPreference = billingPreference;
             return this;

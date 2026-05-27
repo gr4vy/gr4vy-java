@@ -11,16 +11,16 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 
 
 public class PazeBillingAddress {
     /**
      * Name of the organization or entity at the address.
      */
-    @JsonInclude(Include.ALWAYS)
+    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("name")
-    private Optional<String> name;
+    private JsonNullable<String> name;
 
     /**
      * Line 1 of the address.
@@ -31,16 +31,16 @@ public class PazeBillingAddress {
     /**
      * Line 2 of the address.
      */
-    @JsonInclude(Include.ALWAYS)
+    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("line2")
-    private Optional<String> line2;
+    private JsonNullable<String> line2;
 
     /**
      * Line 3 of the address.
      */
-    @JsonInclude(Include.ALWAYS)
+    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("line3")
-    private Optional<String> line3;
+    private JsonNullable<String> line3;
 
     /**
      * City.
@@ -63,20 +63,20 @@ public class PazeBillingAddress {
     /**
      * ISO 3166-1 alpha-2 country code.
      */
-    @JsonInclude(Include.ALWAYS)
+    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("countryCode")
-    private Optional<String> countryCode;
+    private JsonNullable<String> countryCode;
 
     @JsonCreator
     public PazeBillingAddress(
-            @JsonProperty("name") Optional<String> name,
+            @JsonProperty("name") JsonNullable<String> name,
             @JsonProperty("line1") String line1,
-            @JsonProperty("line2") Optional<String> line2,
-            @JsonProperty("line3") Optional<String> line3,
+            @JsonProperty("line2") JsonNullable<String> line2,
+            @JsonProperty("line3") JsonNullable<String> line3,
             @JsonProperty("city") String city,
             @JsonProperty("state") String state,
             @JsonProperty("zip") String zip,
-            @JsonProperty("countryCode") Optional<String> countryCode) {
+            @JsonProperty("countryCode") JsonNullable<String> countryCode) {
         Utils.checkNotNull(name, "name");
         Utils.checkNotNull(line1, "line1");
         Utils.checkNotNull(line2, "line2");
@@ -100,16 +100,16 @@ public class PazeBillingAddress {
             String city,
             String state,
             String zip) {
-        this(Optional.empty(), line1, Optional.empty(),
-            Optional.empty(), city, state,
-            zip, Optional.empty());
+        this(JsonNullable.undefined(), line1, JsonNullable.undefined(),
+            JsonNullable.undefined(), city, state,
+            zip, JsonNullable.undefined());
     }
 
     /**
      * Name of the organization or entity at the address.
      */
     @JsonIgnore
-    public Optional<String> name() {
+    public JsonNullable<String> name() {
         return name;
     }
 
@@ -125,7 +125,7 @@ public class PazeBillingAddress {
      * Line 2 of the address.
      */
     @JsonIgnore
-    public Optional<String> line2() {
+    public JsonNullable<String> line2() {
         return line2;
     }
 
@@ -133,7 +133,7 @@ public class PazeBillingAddress {
      * Line 3 of the address.
      */
     @JsonIgnore
-    public Optional<String> line3() {
+    public JsonNullable<String> line3() {
         return line3;
     }
 
@@ -165,7 +165,7 @@ public class PazeBillingAddress {
      * ISO 3166-1 alpha-2 country code.
      */
     @JsonIgnore
-    public Optional<String> countryCode() {
+    public JsonNullable<String> countryCode() {
         return countryCode;
     }
 
@@ -179,15 +179,14 @@ public class PazeBillingAddress {
      */
     public PazeBillingAddress withName(String name) {
         Utils.checkNotNull(name, "name");
-        this.name = Optional.ofNullable(name);
+        this.name = JsonNullable.of(name);
         return this;
     }
-
 
     /**
      * Name of the organization or entity at the address.
      */
-    public PazeBillingAddress withName(Optional<String> name) {
+    public PazeBillingAddress withName(JsonNullable<String> name) {
         Utils.checkNotNull(name, "name");
         this.name = name;
         return this;
@@ -207,15 +206,14 @@ public class PazeBillingAddress {
      */
     public PazeBillingAddress withLine2(String line2) {
         Utils.checkNotNull(line2, "line2");
-        this.line2 = Optional.ofNullable(line2);
+        this.line2 = JsonNullable.of(line2);
         return this;
     }
-
 
     /**
      * Line 2 of the address.
      */
-    public PazeBillingAddress withLine2(Optional<String> line2) {
+    public PazeBillingAddress withLine2(JsonNullable<String> line2) {
         Utils.checkNotNull(line2, "line2");
         this.line2 = line2;
         return this;
@@ -226,15 +224,14 @@ public class PazeBillingAddress {
      */
     public PazeBillingAddress withLine3(String line3) {
         Utils.checkNotNull(line3, "line3");
-        this.line3 = Optional.ofNullable(line3);
+        this.line3 = JsonNullable.of(line3);
         return this;
     }
-
 
     /**
      * Line 3 of the address.
      */
-    public PazeBillingAddress withLine3(Optional<String> line3) {
+    public PazeBillingAddress withLine3(JsonNullable<String> line3) {
         Utils.checkNotNull(line3, "line3");
         this.line3 = line3;
         return this;
@@ -272,15 +269,14 @@ public class PazeBillingAddress {
      */
     public PazeBillingAddress withCountryCode(String countryCode) {
         Utils.checkNotNull(countryCode, "countryCode");
-        this.countryCode = Optional.ofNullable(countryCode);
+        this.countryCode = JsonNullable.of(countryCode);
         return this;
     }
-
 
     /**
      * ISO 3166-1 alpha-2 country code.
      */
-    public PazeBillingAddress withCountryCode(Optional<String> countryCode) {
+    public PazeBillingAddress withCountryCode(JsonNullable<String> countryCode) {
         Utils.checkNotNull(countryCode, "countryCode");
         this.countryCode = countryCode;
         return this;
@@ -330,13 +326,13 @@ public class PazeBillingAddress {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<String> name = Optional.empty();
+        private JsonNullable<String> name = JsonNullable.undefined();
 
         private String line1;
 
-        private Optional<String> line2 = Optional.empty();
+        private JsonNullable<String> line2 = JsonNullable.undefined();
 
-        private Optional<String> line3 = Optional.empty();
+        private JsonNullable<String> line3 = JsonNullable.undefined();
 
         private String city;
 
@@ -344,7 +340,7 @@ public class PazeBillingAddress {
 
         private String zip;
 
-        private Optional<String> countryCode = Optional.empty();
+        private JsonNullable<String> countryCode = JsonNullable.undefined();
 
         private Builder() {
           // force use of static builder() method
@@ -356,14 +352,14 @@ public class PazeBillingAddress {
          */
         public Builder name(String name) {
             Utils.checkNotNull(name, "name");
-            this.name = Optional.ofNullable(name);
+            this.name = JsonNullable.of(name);
             return this;
         }
 
         /**
          * Name of the organization or entity at the address.
          */
-        public Builder name(Optional<String> name) {
+        public Builder name(JsonNullable<String> name) {
             Utils.checkNotNull(name, "name");
             this.name = name;
             return this;
@@ -385,14 +381,14 @@ public class PazeBillingAddress {
          */
         public Builder line2(String line2) {
             Utils.checkNotNull(line2, "line2");
-            this.line2 = Optional.ofNullable(line2);
+            this.line2 = JsonNullable.of(line2);
             return this;
         }
 
         /**
          * Line 2 of the address.
          */
-        public Builder line2(Optional<String> line2) {
+        public Builder line2(JsonNullable<String> line2) {
             Utils.checkNotNull(line2, "line2");
             this.line2 = line2;
             return this;
@@ -404,14 +400,14 @@ public class PazeBillingAddress {
          */
         public Builder line3(String line3) {
             Utils.checkNotNull(line3, "line3");
-            this.line3 = Optional.ofNullable(line3);
+            this.line3 = JsonNullable.of(line3);
             return this;
         }
 
         /**
          * Line 3 of the address.
          */
-        public Builder line3(Optional<String> line3) {
+        public Builder line3(JsonNullable<String> line3) {
             Utils.checkNotNull(line3, "line3");
             this.line3 = line3;
             return this;
@@ -453,14 +449,14 @@ public class PazeBillingAddress {
          */
         public Builder countryCode(String countryCode) {
             Utils.checkNotNull(countryCode, "countryCode");
-            this.countryCode = Optional.ofNullable(countryCode);
+            this.countryCode = JsonNullable.of(countryCode);
             return this;
         }
 
         /**
          * ISO 3166-1 alpha-2 country code.
          */
-        public Builder countryCode(Optional<String> countryCode) {
+        public Builder countryCode(JsonNullable<String> countryCode) {
             Utils.checkNotNull(countryCode, "countryCode");
             this.countryCode = countryCode;
             return this;

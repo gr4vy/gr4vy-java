@@ -18,37 +18,36 @@ import java.util.Optional;
  * without runtime errors. Instances are immutable singletons with reference equality.
  * Use {@code asEnum()} for switch expressions.
  */
-public class BillingPreference {
+public class PayloadTypeIndicator {
 
-    public static final BillingPreference ALL = new BillingPreference("ALL");
-    public static final BillingPreference ZIP_COUNTRY = new BillingPreference("ZIP_COUNTRY");
-    public static final BillingPreference NONE = new BillingPreference("NONE");
+    public static final PayloadTypeIndicator ID = new PayloadTypeIndicator("ID");
+    public static final PayloadTypeIndicator PAYMENT = new PayloadTypeIndicator("PAYMENT");
 
     // This map will grow whenever a Color gets created with a new
     // unrecognized value (a potential memory leak if the user is not
     // careful). Keep this field lower case to avoid clashing with
     // generated member names which will always be upper cased (Java
     // convention)
-    private static final Map<String, BillingPreference> values = createValuesMap();
-    private static final Map<String, BillingPreferenceEnum> enums = createEnumsMap();
+    private static final Map<String, PayloadTypeIndicator> values = createValuesMap();
+    private static final Map<String, PayloadTypeIndicatorEnum> enums = createEnumsMap();
 
     private final String value;
 
-    private BillingPreference(String value) {
+    private PayloadTypeIndicator(String value) {
         this.value = value;
     }
 
     /**
-     * Returns a BillingPreference with the given value. For a specific value the 
+     * Returns a PayloadTypeIndicator with the given value. For a specific value the 
      * returned object will always be a singleton so reference equality 
      * is satisfied when the values are the same.
      * 
-     * @param value value to be wrapped as BillingPreference
+     * @param value value to be wrapped as PayloadTypeIndicator
      */ 
     @JsonCreator
-    public static BillingPreference of(String value) {
-        synchronized (BillingPreference.class) {
-            return values.computeIfAbsent(value, v -> new BillingPreference(v));
+    public static PayloadTypeIndicator of(String value) {
+        synchronized (PayloadTypeIndicator.class) {
+            return values.computeIfAbsent(value, v -> new PayloadTypeIndicator(v));
         }
     }
 
@@ -57,7 +56,7 @@ public class BillingPreference {
         return value;
     }
 
-    public Optional<BillingPreferenceEnum> asEnum() {
+    public Optional<PayloadTypeIndicatorEnum> asEnum() {
         return Optional.ofNullable(enums.getOrDefault(value, null));
     }
 
@@ -78,48 +77,45 @@ public class BillingPreference {
             return false;
         if (getClass() != obj.getClass())
             return false;
-        BillingPreference other = (BillingPreference) obj;
+        PayloadTypeIndicator other = (PayloadTypeIndicator) obj;
         return Objects.equals(value, other.value);
     }
 
     @Override
     public String toString() {
-        return "BillingPreference [value=" + value + "]";
+        return "PayloadTypeIndicator [value=" + value + "]";
     }
 
     // return an array just like an enum
-    public static BillingPreference[] values() {
-        synchronized (BillingPreference.class) {
-            return values.values().toArray(new BillingPreference[] {});
+    public static PayloadTypeIndicator[] values() {
+        synchronized (PayloadTypeIndicator.class) {
+            return values.values().toArray(new PayloadTypeIndicator[] {});
         }
     }
 
-    private static final Map<String, BillingPreference> createValuesMap() {
-        Map<String, BillingPreference> map = new LinkedHashMap<>();
-        map.put("ALL", ALL);
-        map.put("ZIP_COUNTRY", ZIP_COUNTRY);
-        map.put("NONE", NONE);
+    private static final Map<String, PayloadTypeIndicator> createValuesMap() {
+        Map<String, PayloadTypeIndicator> map = new LinkedHashMap<>();
+        map.put("ID", ID);
+        map.put("PAYMENT", PAYMENT);
         return map;
     }
 
-    private static final Map<String, BillingPreferenceEnum> createEnumsMap() {
-        Map<String, BillingPreferenceEnum> map = new HashMap<>();
-        map.put("ALL", BillingPreferenceEnum.ALL);
-        map.put("ZIP_COUNTRY", BillingPreferenceEnum.ZIP_COUNTRY);
-        map.put("NONE", BillingPreferenceEnum.NONE);
+    private static final Map<String, PayloadTypeIndicatorEnum> createEnumsMap() {
+        Map<String, PayloadTypeIndicatorEnum> map = new HashMap<>();
+        map.put("ID", PayloadTypeIndicatorEnum.ID);
+        map.put("PAYMENT", PayloadTypeIndicatorEnum.PAYMENT);
         return map;
     }
     
     
-    public enum BillingPreferenceEnum {
+    public enum PayloadTypeIndicatorEnum {
 
-        ALL("ALL"),
-        ZIP_COUNTRY("ZIP_COUNTRY"),
-        NONE("NONE"),;
+        ID("ID"),
+        PAYMENT("PAYMENT"),;
 
         private final String value;
 
-        private BillingPreferenceEnum(String value) {
+        private PayloadTypeIndicatorEnum(String value) {
             this.value = value;
         }
 
