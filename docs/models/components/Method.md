@@ -26,7 +26,6 @@ Method custom = Method.of("custom_value");
 | `BACS`               | bacs                 |
 | `BANCONTACT`         | bancontact           |
 | `BANK`               | bank                 |
-| `BANKED`             | banked               |
 | `BCP`                | bcp                  |
 | `BECS`               | becs                 |
 | `BITPAY`             | bitpay               |

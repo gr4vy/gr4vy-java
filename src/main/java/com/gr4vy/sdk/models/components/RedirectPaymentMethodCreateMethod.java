@@ -33,7 +33,6 @@ public class RedirectPaymentMethodCreateMethod {
     public static final RedirectPaymentMethodCreateMethod ARCUSPAYNETWORK = new RedirectPaymentMethodCreateMethod("arcuspaynetwork");
     public static final RedirectPaymentMethodCreateMethod BACS = new RedirectPaymentMethodCreateMethod("bacs");
     public static final RedirectPaymentMethodCreateMethod BANCONTACT = new RedirectPaymentMethodCreateMethod("bancontact");
-    public static final RedirectPaymentMethodCreateMethod BANKED = new RedirectPaymentMethodCreateMethod("banked");
     public static final RedirectPaymentMethodCreateMethod BCP = new RedirectPaymentMethodCreateMethod("bcp");
     public static final RedirectPaymentMethodCreateMethod BECS = new RedirectPaymentMethodCreateMethod("becs");
     public static final RedirectPaymentMethodCreateMethod BITPAY = new RedirectPaymentMethodCreateMethod("bitpay");
@@ -212,7 +211,6 @@ public class RedirectPaymentMethodCreateMethod {
         map.put("arcuspaynetwork", ARCUSPAYNETWORK);
         map.put("bacs", BACS);
         map.put("bancontact", BANCONTACT);
-        map.put("banked", BANKED);
         map.put("bcp", BCP);
         map.put("becs", BECS);
         map.put("bitpay", BITPAY);
@@ -323,7 +321,6 @@ public class RedirectPaymentMethodCreateMethod {
         map.put("arcuspaynetwork", RedirectPaymentMethodCreateMethodEnum.ARCUSPAYNETWORK);
         map.put("bacs", RedirectPaymentMethodCreateMethodEnum.BACS);
         map.put("bancontact", RedirectPaymentMethodCreateMethodEnum.BANCONTACT);
-        map.put("banked", RedirectPaymentMethodCreateMethodEnum.BANKED);
         map.put("bcp", RedirectPaymentMethodCreateMethodEnum.BCP);
         map.put("becs", RedirectPaymentMethodCreateMethodEnum.BECS);
         map.put("bitpay", RedirectPaymentMethodCreateMethodEnum.BITPAY);
@@ -435,7 +432,6 @@ public class RedirectPaymentMethodCreateMethod {
         ARCUSPAYNETWORK("arcuspaynetwork"),
         BACS("bacs"),
         BANCONTACT("bancontact"),
-        BANKED("banked"),
         BCP("bcp"),
         BECS("becs"),
         BITPAY("bitpay"),
