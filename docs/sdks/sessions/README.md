@@ -9,6 +9,7 @@
 * [pazeMobileSessionCreate](#pazemobilesessioncreate) - Create a Paze mobile session
 * [paze](#paze) - Create a Paze session
 * [pazeMobileSessionReview](#pazemobilesessionreview) - Review a Paze session
+* [pazeMobileSessionComplete](#pazemobilesessioncomplete) - Complete a Paze session
 * [clickToPay](#clicktopay) - Create a Click to Pay session
 
 ## googlePay
@@ -347,6 +348,77 @@ public class Application {
 ### Response
 
 **[ReviewPazeMobileSessionResponse](../../models/operations/ReviewPazeMobileSessionResponse.md)**
+
+### Errors
+
+| Error Type                        | Status Code                       | Content Type                      |
+| --------------------------------- | --------------------------------- | --------------------------------- |
+| models/errors/Error400            | 400                               | application/json                  |
+| models/errors/Error401            | 401                               | application/json                  |
+| models/errors/Error403            | 403                               | application/json                  |
+| models/errors/Error404            | 404                               | application/json                  |
+| models/errors/Error405            | 405                               | application/json                  |
+| models/errors/Error409            | 409                               | application/json                  |
+| models/errors/HTTPValidationError | 422                               | application/json                  |
+| models/errors/Error425            | 425                               | application/json                  |
+| models/errors/Error429            | 429                               | application/json                  |
+| models/errors/Error500            | 500                               | application/json                  |
+| models/errors/Error502            | 502                               | application/json                  |
+| models/errors/Error504            | 504                               | application/json                  |
+| models/errors/APIException        | 4XX, 5XX                          | \*/\*                             |
+
+## pazeMobileSessionComplete
+
+Complete a Paze checkout session and retrieve the secure payload required to settle the payment.
+
+### Example Usage
+
+<!-- UsageSnippet language="java" operationID="complete_paze_mobile_session" method="post" path="/digital-wallets/paze/session/complete" -->
+```java
+package hello.world;
+
+import com.gr4vy.sdk.Gr4vy;
+import com.gr4vy.sdk.models.components.PazeSessionCompleteRequest;
+import com.gr4vy.sdk.models.components.PazeSessionCompleteRequestTransactiontype;
+import com.gr4vy.sdk.models.errors.*;
+import com.gr4vy.sdk.models.operations.CompletePazeMobileSessionResponse;
+import java.lang.Exception;
+
+public class Application {
+
+    public static void main(String[] args) throws Exception {
+
+        Gr4vy sdk = Gr4vy.builder()
+                .merchantAccountId("<id>")
+                .bearerAuth(System.getenv().getOrDefault("BEARER_AUTH", ""))
+            .build();
+
+        CompletePazeMobileSessionResponse res = sdk.digitalWallets().sessions().pazeMobileSessionComplete()
+                .pazeSessionCompleteRequest(PazeSessionCompleteRequest.builder()
+                    .sessionId("7c1cba03-d20e-4a3f-9d77-e5dc23a39ac2")
+                    .code("eyJhdWQiOm51bGwsImtpZCI6IjE3...")
+                    .accessToken("eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9...")
+                    .transactionType(PazeSessionCompleteRequestTransactiontype.PURCHASE)
+                    .build())
+                .call();
+
+        if (res.pazeSessionComplete().isPresent()) {
+            System.out.println(res.pazeSessionComplete().get());
+        }
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                           | Type                                                                                | Required                                                                            | Description                                                                         |
+| ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
+| `merchantAccountId`                                                                 | *JsonNullable\<String>*                                                             | :heavy_minus_sign:                                                                  | The ID of the merchant account to use for this request.                             |
+| `pazeSessionCompleteRequest`                                                        | [PazeSessionCompleteRequest](../../models/components/PazeSessionCompleteRequest.md) | :heavy_check_mark:                                                                  | N/A                                                                                 |
+
+### Response
+
+**[CompletePazeMobileSessionResponse](../../models/operations/CompletePazeMobileSessionResponse.md)**
 
 ### Errors
 

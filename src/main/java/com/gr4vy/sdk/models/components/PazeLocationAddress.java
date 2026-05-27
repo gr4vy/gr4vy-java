@@ -11,12 +11,17 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
-import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 
-public class PazeShippingAddress {
+public class PazeLocationAddress {
+    /**
+     * Name of the organization or entity at the address.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("name")
+    private JsonNullable<String> name;
+
     /**
      * Line 1 of the address.
      */
@@ -61,21 +66,17 @@ public class PazeShippingAddress {
     @JsonProperty("countryCode")
     private String countryCode;
 
-
-    @JsonInclude(Include.ALWAYS)
-    @JsonProperty("deliveryContactDetails")
-    private Optional<? extends PazeDeliveryContactDetails> deliveryContactDetails;
-
     @JsonCreator
-    public PazeShippingAddress(
+    public PazeLocationAddress(
+            @JsonProperty("name") JsonNullable<String> name,
             @JsonProperty("line1") String line1,
             @JsonProperty("line2") JsonNullable<String> line2,
             @JsonProperty("line3") JsonNullable<String> line3,
             @JsonProperty("city") String city,
             @JsonProperty("state") String state,
             @JsonProperty("zip") String zip,
-            @JsonProperty("countryCode") String countryCode,
-            @JsonProperty("deliveryContactDetails") Optional<? extends PazeDeliveryContactDetails> deliveryContactDetails) {
+            @JsonProperty("countryCode") String countryCode) {
+        Utils.checkNotNull(name, "name");
         Utils.checkNotNull(line1, "line1");
         Utils.checkNotNull(line2, "line2");
         Utils.checkNotNull(line3, "line3");
@@ -83,7 +84,7 @@ public class PazeShippingAddress {
         Utils.checkNotNull(state, "state");
         Utils.checkNotNull(zip, "zip");
         Utils.checkNotNull(countryCode, "countryCode");
-        Utils.checkNotNull(deliveryContactDetails, "deliveryContactDetails");
+        this.name = name;
         this.line1 = line1;
         this.line2 = line2;
         this.line3 = line3;
@@ -91,18 +92,25 @@ public class PazeShippingAddress {
         this.state = state;
         this.zip = zip;
         this.countryCode = countryCode;
-        this.deliveryContactDetails = deliveryContactDetails;
     }
     
-    public PazeShippingAddress(
+    public PazeLocationAddress(
             String line1,
             String city,
             String state,
             String zip,
             String countryCode) {
-        this(line1, JsonNullable.undefined(), JsonNullable.undefined(),
-            city, state, zip,
-            countryCode, Optional.empty());
+        this(JsonNullable.undefined(), line1, JsonNullable.undefined(),
+            JsonNullable.undefined(), city, state,
+            zip, countryCode);
+    }
+
+    /**
+     * Name of the organization or entity at the address.
+     */
+    @JsonIgnore
+    public JsonNullable<String> name() {
+        return name;
     }
 
     /**
@@ -161,21 +169,33 @@ public class PazeShippingAddress {
         return countryCode;
     }
 
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
-    public Optional<PazeDeliveryContactDetails> deliveryContactDetails() {
-        return (Optional<PazeDeliveryContactDetails>) deliveryContactDetails;
-    }
-
     public static Builder builder() {
         return new Builder();
     }
 
 
     /**
+     * Name of the organization or entity at the address.
+     */
+    public PazeLocationAddress withName(String name) {
+        Utils.checkNotNull(name, "name");
+        this.name = JsonNullable.of(name);
+        return this;
+    }
+
+    /**
+     * Name of the organization or entity at the address.
+     */
+    public PazeLocationAddress withName(JsonNullable<String> name) {
+        Utils.checkNotNull(name, "name");
+        this.name = name;
+        return this;
+    }
+
+    /**
      * Line 1 of the address.
      */
-    public PazeShippingAddress withLine1(String line1) {
+    public PazeLocationAddress withLine1(String line1) {
         Utils.checkNotNull(line1, "line1");
         this.line1 = line1;
         return this;
@@ -184,7 +204,7 @@ public class PazeShippingAddress {
     /**
      * Line 2 of the address.
      */
-    public PazeShippingAddress withLine2(String line2) {
+    public PazeLocationAddress withLine2(String line2) {
         Utils.checkNotNull(line2, "line2");
         this.line2 = JsonNullable.of(line2);
         return this;
@@ -193,7 +213,7 @@ public class PazeShippingAddress {
     /**
      * Line 2 of the address.
      */
-    public PazeShippingAddress withLine2(JsonNullable<String> line2) {
+    public PazeLocationAddress withLine2(JsonNullable<String> line2) {
         Utils.checkNotNull(line2, "line2");
         this.line2 = line2;
         return this;
@@ -202,7 +222,7 @@ public class PazeShippingAddress {
     /**
      * Line 3 of the address.
      */
-    public PazeShippingAddress withLine3(String line3) {
+    public PazeLocationAddress withLine3(String line3) {
         Utils.checkNotNull(line3, "line3");
         this.line3 = JsonNullable.of(line3);
         return this;
@@ -211,7 +231,7 @@ public class PazeShippingAddress {
     /**
      * Line 3 of the address.
      */
-    public PazeShippingAddress withLine3(JsonNullable<String> line3) {
+    public PazeLocationAddress withLine3(JsonNullable<String> line3) {
         Utils.checkNotNull(line3, "line3");
         this.line3 = line3;
         return this;
@@ -220,7 +240,7 @@ public class PazeShippingAddress {
     /**
      * City.
      */
-    public PazeShippingAddress withCity(String city) {
+    public PazeLocationAddress withCity(String city) {
         Utils.checkNotNull(city, "city");
         this.city = city;
         return this;
@@ -229,7 +249,7 @@ public class PazeShippingAddress {
     /**
      * State or region.
      */
-    public PazeShippingAddress withState(String state) {
+    public PazeLocationAddress withState(String state) {
         Utils.checkNotNull(state, "state");
         this.state = state;
         return this;
@@ -238,7 +258,7 @@ public class PazeShippingAddress {
     /**
      * Postal code.
      */
-    public PazeShippingAddress withZip(String zip) {
+    public PazeLocationAddress withZip(String zip) {
         Utils.checkNotNull(zip, "zip");
         this.zip = zip;
         return this;
@@ -247,22 +267,9 @@ public class PazeShippingAddress {
     /**
      * ISO 3166-1 alpha-2 country code.
      */
-    public PazeShippingAddress withCountryCode(String countryCode) {
+    public PazeLocationAddress withCountryCode(String countryCode) {
         Utils.checkNotNull(countryCode, "countryCode");
         this.countryCode = countryCode;
-        return this;
-    }
-
-    public PazeShippingAddress withDeliveryContactDetails(PazeDeliveryContactDetails deliveryContactDetails) {
-        Utils.checkNotNull(deliveryContactDetails, "deliveryContactDetails");
-        this.deliveryContactDetails = Optional.ofNullable(deliveryContactDetails);
-        return this;
-    }
-
-
-    public PazeShippingAddress withDeliveryContactDetails(Optional<? extends PazeDeliveryContactDetails> deliveryContactDetails) {
-        Utils.checkNotNull(deliveryContactDetails, "deliveryContactDetails");
-        this.deliveryContactDetails = deliveryContactDetails;
         return this;
     }
 
@@ -274,41 +281,43 @@ public class PazeShippingAddress {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        PazeShippingAddress other = (PazeShippingAddress) o;
+        PazeLocationAddress other = (PazeLocationAddress) o;
         return 
+            Utils.enhancedDeepEquals(this.name, other.name) &&
             Utils.enhancedDeepEquals(this.line1, other.line1) &&
             Utils.enhancedDeepEquals(this.line2, other.line2) &&
             Utils.enhancedDeepEquals(this.line3, other.line3) &&
             Utils.enhancedDeepEquals(this.city, other.city) &&
             Utils.enhancedDeepEquals(this.state, other.state) &&
             Utils.enhancedDeepEquals(this.zip, other.zip) &&
-            Utils.enhancedDeepEquals(this.countryCode, other.countryCode) &&
-            Utils.enhancedDeepEquals(this.deliveryContactDetails, other.deliveryContactDetails);
+            Utils.enhancedDeepEquals(this.countryCode, other.countryCode);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            line1, line2, line3,
-            city, state, zip,
-            countryCode, deliveryContactDetails);
+            name, line1, line2,
+            line3, city, state,
+            zip, countryCode);
     }
     
     @Override
     public String toString() {
-        return Utils.toString(PazeShippingAddress.class,
+        return Utils.toString(PazeLocationAddress.class,
+                "name", name,
                 "line1", line1,
                 "line2", line2,
                 "line3", line3,
                 "city", city,
                 "state", state,
                 "zip", zip,
-                "countryCode", countryCode,
-                "deliveryContactDetails", deliveryContactDetails);
+                "countryCode", countryCode);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
+
+        private JsonNullable<String> name = JsonNullable.undefined();
 
         private String line1;
 
@@ -324,10 +333,27 @@ public class PazeShippingAddress {
 
         private String countryCode;
 
-        private Optional<? extends PazeDeliveryContactDetails> deliveryContactDetails = Optional.empty();
-
         private Builder() {
           // force use of static builder() method
+        }
+
+
+        /**
+         * Name of the organization or entity at the address.
+         */
+        public Builder name(String name) {
+            Utils.checkNotNull(name, "name");
+            this.name = JsonNullable.of(name);
+            return this;
+        }
+
+        /**
+         * Name of the organization or entity at the address.
+         */
+        public Builder name(JsonNullable<String> name) {
+            Utils.checkNotNull(name, "name");
+            this.name = name;
+            return this;
         }
 
 
@@ -418,25 +444,12 @@ public class PazeShippingAddress {
             return this;
         }
 
+        public PazeLocationAddress build() {
 
-        public Builder deliveryContactDetails(PazeDeliveryContactDetails deliveryContactDetails) {
-            Utils.checkNotNull(deliveryContactDetails, "deliveryContactDetails");
-            this.deliveryContactDetails = Optional.ofNullable(deliveryContactDetails);
-            return this;
-        }
-
-        public Builder deliveryContactDetails(Optional<? extends PazeDeliveryContactDetails> deliveryContactDetails) {
-            Utils.checkNotNull(deliveryContactDetails, "deliveryContactDetails");
-            this.deliveryContactDetails = deliveryContactDetails;
-            return this;
-        }
-
-        public PazeShippingAddress build() {
-
-            return new PazeShippingAddress(
-                line1, line2, line3,
-                city, state, zip,
-                countryCode, deliveryContactDetails);
+            return new PazeLocationAddress(
+                name, line1, line2,
+                line3, city, state,
+                zip, countryCode);
         }
 
     }

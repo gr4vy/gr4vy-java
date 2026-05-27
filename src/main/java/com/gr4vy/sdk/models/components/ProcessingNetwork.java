@@ -18,37 +18,37 @@ import java.util.Optional;
  * without runtime errors. Instances are immutable singletons with reference equality.
  * Use {@code asEnum()} for switch expressions.
  */
-public class TransactionType {
+public class ProcessingNetwork {
 
-    public static final TransactionType PURCHASE = new TransactionType("PURCHASE");
-    public static final TransactionType CARD_ON_FILE = new TransactionType("CARD_ON_FILE");
-    public static final TransactionType BOTH = new TransactionType("BOTH");
+    public static final ProcessingNetwork VISA = new ProcessingNetwork("VISA");
+    public static final ProcessingNetwork MASTERCARD = new ProcessingNetwork("MASTERCARD");
+    public static final ProcessingNetwork DISCOVER = new ProcessingNetwork("DISCOVER");
 
     // This map will grow whenever a Color gets created with a new
     // unrecognized value (a potential memory leak if the user is not
     // careful). Keep this field lower case to avoid clashing with
     // generated member names which will always be upper cased (Java
     // convention)
-    private static final Map<String, TransactionType> values = createValuesMap();
-    private static final Map<String, TransactionTypeEnum> enums = createEnumsMap();
+    private static final Map<String, ProcessingNetwork> values = createValuesMap();
+    private static final Map<String, ProcessingNetworkEnum> enums = createEnumsMap();
 
     private final String value;
 
-    private TransactionType(String value) {
+    private ProcessingNetwork(String value) {
         this.value = value;
     }
 
     /**
-     * Returns a TransactionType with the given value. For a specific value the 
+     * Returns a ProcessingNetwork with the given value. For a specific value the 
      * returned object will always be a singleton so reference equality 
      * is satisfied when the values are the same.
      * 
-     * @param value value to be wrapped as TransactionType
+     * @param value value to be wrapped as ProcessingNetwork
      */ 
     @JsonCreator
-    public static TransactionType of(String value) {
-        synchronized (TransactionType.class) {
-            return values.computeIfAbsent(value, v -> new TransactionType(v));
+    public static ProcessingNetwork of(String value) {
+        synchronized (ProcessingNetwork.class) {
+            return values.computeIfAbsent(value, v -> new ProcessingNetwork(v));
         }
     }
 
@@ -57,7 +57,7 @@ public class TransactionType {
         return value;
     }
 
-    public Optional<TransactionTypeEnum> asEnum() {
+    public Optional<ProcessingNetworkEnum> asEnum() {
         return Optional.ofNullable(enums.getOrDefault(value, null));
     }
 
@@ -78,48 +78,48 @@ public class TransactionType {
             return false;
         if (getClass() != obj.getClass())
             return false;
-        TransactionType other = (TransactionType) obj;
+        ProcessingNetwork other = (ProcessingNetwork) obj;
         return Objects.equals(value, other.value);
     }
 
     @Override
     public String toString() {
-        return "TransactionType [value=" + value + "]";
+        return "ProcessingNetwork [value=" + value + "]";
     }
 
     // return an array just like an enum
-    public static TransactionType[] values() {
-        synchronized (TransactionType.class) {
-            return values.values().toArray(new TransactionType[] {});
+    public static ProcessingNetwork[] values() {
+        synchronized (ProcessingNetwork.class) {
+            return values.values().toArray(new ProcessingNetwork[] {});
         }
     }
 
-    private static final Map<String, TransactionType> createValuesMap() {
-        Map<String, TransactionType> map = new LinkedHashMap<>();
-        map.put("PURCHASE", PURCHASE);
-        map.put("CARD_ON_FILE", CARD_ON_FILE);
-        map.put("BOTH", BOTH);
+    private static final Map<String, ProcessingNetwork> createValuesMap() {
+        Map<String, ProcessingNetwork> map = new LinkedHashMap<>();
+        map.put("VISA", VISA);
+        map.put("MASTERCARD", MASTERCARD);
+        map.put("DISCOVER", DISCOVER);
         return map;
     }
 
-    private static final Map<String, TransactionTypeEnum> createEnumsMap() {
-        Map<String, TransactionTypeEnum> map = new HashMap<>();
-        map.put("PURCHASE", TransactionTypeEnum.PURCHASE);
-        map.put("CARD_ON_FILE", TransactionTypeEnum.CARD_ON_FILE);
-        map.put("BOTH", TransactionTypeEnum.BOTH);
+    private static final Map<String, ProcessingNetworkEnum> createEnumsMap() {
+        Map<String, ProcessingNetworkEnum> map = new HashMap<>();
+        map.put("VISA", ProcessingNetworkEnum.VISA);
+        map.put("MASTERCARD", ProcessingNetworkEnum.MASTERCARD);
+        map.put("DISCOVER", ProcessingNetworkEnum.DISCOVER);
         return map;
     }
     
     
-    public enum TransactionTypeEnum {
+    public enum ProcessingNetworkEnum {
 
-        PURCHASE("PURCHASE"),
-        CARD_ON_FILE("CARD_ON_FILE"),
-        BOTH("BOTH"),;
+        VISA("VISA"),
+        MASTERCARD("MASTERCARD"),
+        DISCOVER("DISCOVER"),;
 
         private final String value;
 
-        private TransactionTypeEnum(String value) {
+        private ProcessingNetworkEnum(String value) {
             this.value = value;
         }
 
