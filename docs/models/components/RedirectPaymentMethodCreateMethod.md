@@ -58,6 +58,7 @@ RedirectPaymentMethodCreateMethod custom = RedirectPaymentMethodCreateMethod.of(
 | `KCP`             | kcp               |
 | `KHIPU`           | khipu             |
 | `KLARNA`          | klarna            |
+| `KONBINI`         | konbini           |
 | `LATITUDE`        | latitude          |
 | `LATITUDEDS`      | latitudeds        |
 | `LAYBUY`          | laybuy            |
@@ -98,6 +99,7 @@ RedirectPaymentMethodCreateMethod custom = RedirectPaymentMethodCreateMethod.of(
 | `SCALAPAY`        | scalapay          |
 | `SEPA`            | sepa              |
 | `SERVIPAG`        | servipag          |
+| `SEVENELEVEN`     | seveneleven       |
 | `SHOPEEPAY`       | shopeepay         |
 | `SINGTELDASH`     | singteldash       |
 | `SMARTPAY`        | smartpay          |

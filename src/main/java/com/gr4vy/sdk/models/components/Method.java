@@ -68,6 +68,7 @@ public class Method {
     public static final Method KCP = new Method("kcp");
     public static final Method KHIPU = new Method("khipu");
     public static final Method KLARNA = new Method("klarna");
+    public static final Method KONBINI = new Method("konbini");
     public static final Method LATITUDE = new Method("latitude");
     public static final Method LATITUDEDS = new Method("latitudeds");
     public static final Method LAYBUY = new Method("laybuy");
@@ -111,6 +112,7 @@ public class Method {
     public static final Method SCALAPAY = new Method("scalapay");
     public static final Method SEPA = new Method("sepa");
     public static final Method SERVIPAG = new Method("servipag");
+    public static final Method SEVENELEVEN = new Method("seveneleven");
     public static final Method SHOPEEPAY = new Method("shopeepay");
     public static final Method SINGTELDASH = new Method("singteldash");
     public static final Method SMARTPAY = new Method("smartpay");
@@ -257,6 +259,7 @@ public class Method {
         map.put("kcp", KCP);
         map.put("khipu", KHIPU);
         map.put("klarna", KLARNA);
+        map.put("konbini", KONBINI);
         map.put("latitude", LATITUDE);
         map.put("latitudeds", LATITUDEDS);
         map.put("laybuy", LAYBUY);
@@ -300,6 +303,7 @@ public class Method {
         map.put("scalapay", SCALAPAY);
         map.put("sepa", SEPA);
         map.put("servipag", SERVIPAG);
+        map.put("seveneleven", SEVENELEVEN);
         map.put("shopeepay", SHOPEEPAY);
         map.put("singteldash", SINGTELDASH);
         map.put("smartpay", SMARTPAY);
@@ -378,6 +382,7 @@ public class Method {
         map.put("kcp", MethodEnum.KCP);
         map.put("khipu", MethodEnum.KHIPU);
         map.put("klarna", MethodEnum.KLARNA);
+        map.put("konbini", MethodEnum.KONBINI);
         map.put("latitude", MethodEnum.LATITUDE);
         map.put("latitudeds", MethodEnum.LATITUDEDS);
         map.put("laybuy", MethodEnum.LAYBUY);
@@ -421,6 +426,7 @@ public class Method {
         map.put("scalapay", MethodEnum.SCALAPAY);
         map.put("sepa", MethodEnum.SEPA);
         map.put("servipag", MethodEnum.SERVIPAG);
+        map.put("seveneleven", MethodEnum.SEVENELEVEN);
         map.put("shopeepay", MethodEnum.SHOPEEPAY);
         map.put("singteldash", MethodEnum.SINGTELDASH);
         map.put("smartpay", MethodEnum.SMARTPAY);
@@ -500,6 +506,7 @@ public class Method {
         KCP("kcp"),
         KHIPU("khipu"),
         KLARNA("klarna"),
+        KONBINI("konbini"),
         LATITUDE("latitude"),
         LATITUDEDS("latitudeds"),
         LAYBUY("laybuy"),
@@ -543,6 +550,7 @@ public class Method {
         SCALAPAY("scalapay"),
         SEPA("sepa"),
         SERVIPAG("servipag"),
+        SEVENELEVEN("seveneleven"),
         SHOPEEPAY("shopeepay"),
         SINGTELDASH("singteldash"),
         SMARTPAY("smartpay"),
