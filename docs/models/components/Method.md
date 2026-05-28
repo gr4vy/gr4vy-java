@@ -64,6 +64,7 @@ Method custom = Method.of("custom_value");
 | `KCP`                | kcp                  |
 | `KHIPU`              | khipu                |
 | `KLARNA`             | klarna               |
+| `KONBINI`            | konbini              |
 | `LATITUDE`           | latitude             |
 | `LATITUDEDS`         | latitudeds           |
 | `LAYBUY`             | laybuy               |
@@ -107,6 +108,7 @@ Method custom = Method.of("custom_value");
 | `SCALAPAY`           | scalapay             |
 | `SEPA`               | sepa                 |
 | `SERVIPAG`           | servipag             |
+| `SEVENELEVEN`        | seveneleven          |
 | `SHOPEEPAY`          | shopeepay            |
 | `SINGTELDASH`        | singteldash          |
 | `SMARTPAY`           | smartpay             |

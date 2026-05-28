@@ -65,6 +65,7 @@ public class RedirectPaymentMethodCreateMethod {
     public static final RedirectPaymentMethodCreateMethod KCP = new RedirectPaymentMethodCreateMethod("kcp");
     public static final RedirectPaymentMethodCreateMethod KHIPU = new RedirectPaymentMethodCreateMethod("khipu");
     public static final RedirectPaymentMethodCreateMethod KLARNA = new RedirectPaymentMethodCreateMethod("klarna");
+    public static final RedirectPaymentMethodCreateMethod KONBINI = new RedirectPaymentMethodCreateMethod("konbini");
     public static final RedirectPaymentMethodCreateMethod LATITUDE = new RedirectPaymentMethodCreateMethod("latitude");
     public static final RedirectPaymentMethodCreateMethod LATITUDEDS = new RedirectPaymentMethodCreateMethod("latitudeds");
     public static final RedirectPaymentMethodCreateMethod LAYBUY = new RedirectPaymentMethodCreateMethod("laybuy");
@@ -105,6 +106,7 @@ public class RedirectPaymentMethodCreateMethod {
     public static final RedirectPaymentMethodCreateMethod SCALAPAY = new RedirectPaymentMethodCreateMethod("scalapay");
     public static final RedirectPaymentMethodCreateMethod SEPA = new RedirectPaymentMethodCreateMethod("sepa");
     public static final RedirectPaymentMethodCreateMethod SERVIPAG = new RedirectPaymentMethodCreateMethod("servipag");
+    public static final RedirectPaymentMethodCreateMethod SEVENELEVEN = new RedirectPaymentMethodCreateMethod("seveneleven");
     public static final RedirectPaymentMethodCreateMethod SHOPEEPAY = new RedirectPaymentMethodCreateMethod("shopeepay");
     public static final RedirectPaymentMethodCreateMethod SINGTELDASH = new RedirectPaymentMethodCreateMethod("singteldash");
     public static final RedirectPaymentMethodCreateMethod SMARTPAY = new RedirectPaymentMethodCreateMethod("smartpay");
@@ -243,6 +245,7 @@ public class RedirectPaymentMethodCreateMethod {
         map.put("kcp", KCP);
         map.put("khipu", KHIPU);
         map.put("klarna", KLARNA);
+        map.put("konbini", KONBINI);
         map.put("latitude", LATITUDE);
         map.put("latitudeds", LATITUDEDS);
         map.put("laybuy", LAYBUY);
@@ -283,6 +286,7 @@ public class RedirectPaymentMethodCreateMethod {
         map.put("scalapay", SCALAPAY);
         map.put("sepa", SEPA);
         map.put("servipag", SERVIPAG);
+        map.put("seveneleven", SEVENELEVEN);
         map.put("shopeepay", SHOPEEPAY);
         map.put("singteldash", SINGTELDASH);
         map.put("smartpay", SMARTPAY);
@@ -353,6 +357,7 @@ public class RedirectPaymentMethodCreateMethod {
         map.put("kcp", RedirectPaymentMethodCreateMethodEnum.KCP);
         map.put("khipu", RedirectPaymentMethodCreateMethodEnum.KHIPU);
         map.put("klarna", RedirectPaymentMethodCreateMethodEnum.KLARNA);
+        map.put("konbini", RedirectPaymentMethodCreateMethodEnum.KONBINI);
         map.put("latitude", RedirectPaymentMethodCreateMethodEnum.LATITUDE);
         map.put("latitudeds", RedirectPaymentMethodCreateMethodEnum.LATITUDEDS);
         map.put("laybuy", RedirectPaymentMethodCreateMethodEnum.LAYBUY);
@@ -393,6 +398,7 @@ public class RedirectPaymentMethodCreateMethod {
         map.put("scalapay", RedirectPaymentMethodCreateMethodEnum.SCALAPAY);
         map.put("sepa", RedirectPaymentMethodCreateMethodEnum.SEPA);
         map.put("servipag", RedirectPaymentMethodCreateMethodEnum.SERVIPAG);
+        map.put("seveneleven", RedirectPaymentMethodCreateMethodEnum.SEVENELEVEN);
         map.put("shopeepay", RedirectPaymentMethodCreateMethodEnum.SHOPEEPAY);
         map.put("singteldash", RedirectPaymentMethodCreateMethodEnum.SINGTELDASH);
         map.put("smartpay", RedirectPaymentMethodCreateMethodEnum.SMARTPAY);
@@ -464,6 +470,7 @@ public class RedirectPaymentMethodCreateMethod {
         KCP("kcp"),
         KHIPU("khipu"),
         KLARNA("klarna"),
+        KONBINI("konbini"),
         LATITUDE("latitude"),
         LATITUDEDS("latitudeds"),
         LAYBUY("laybuy"),
@@ -504,6 +511,7 @@ public class RedirectPaymentMethodCreateMethod {
         SCALAPAY("scalapay"),
         SEPA("sepa"),
         SERVIPAG("servipag"),
+        SEVENELEVEN("seveneleven"),
         SHOPEEPAY("shopeepay"),
         SINGTELDASH("singteldash"),
         SMARTPAY("smartpay"),
