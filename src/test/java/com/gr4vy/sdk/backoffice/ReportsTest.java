@@ -3,6 +3,7 @@ package com.gr4vy.sdk.backoffice;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
+import java.util.List;
 import java.util.Map;
 
 import org.junit.jupiter.api.Test;
@@ -36,7 +37,12 @@ class ReportsTest {
                         .schedule(ReportSchedule.DAILY)
                         .scheduleEnabled(false)
                         .spec(TransactionsReportSpec.builder()
-                                .params(Map.of())
+                                // The transactions report requires fields, filters
+                                // and sort in its params (see the Go SDK suite).
+                                .params(Map.of(
+                                        "fields", List.of("id", "status"),
+                                        "filters", Map.of("status", List.of("capture_succeeded")),
+                                        "sort", List.of(Map.of("field", "created_at", "order", "desc"))))
                                 .build())
                         .build())
                 .call()

@@ -29,7 +29,11 @@ public final class Reaches {
      *
      * <ul>
      *   <li>no exception (2xx/3xx) → reached</li>
-     *   <li>4xx → reached (endpoint exists, rejected our input)</li>
+     *   <li>any HTTP status &lt; 500 → reached (the endpoint responded — a 2xx/3xx
+     *       success, or a 4xx that rejected our input). A 2xx can still surface as
+     *       a thrown {@code APIException} when the body is not the JSON the SDK
+     *       expected (e.g. an empty {@code text/html} 200); that still counts as
+     *       reached.</li>
      *   <li>5xx → failure (server error)</li>
      *   <li>non-HTTP error → failure (request never reached the endpoint)</li>
      * </ul>
@@ -39,8 +43,8 @@ public final class Reaches {
             fn.run();
         } catch (Exception e) {
             int status = statusOf(e);
-            if (status >= 400 && status < 500) {
-                return; // reached and cleanly rejected
+            if (status >= 200 && status < 500) {
+                return; // reached (success or a clean rejection)
             }
             if (status >= 500) {
                 fail(description + ": server error " + status + " (" + e.getMessage() + ")");
