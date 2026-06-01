@@ -4,4 +4,11 @@
 // * is generated once and not overwritten in SDK generation updates
 test {
     useJUnitPlatform()
+    testLogging {
+        events "failed"
+        exceptionFormat "full"
+        showStackTraces true
+        showExceptions true
+        showCauses true
+    }
 }
