@@ -26,11 +26,11 @@ Method custom = Method.of("custom_value");
 | `BACS`               | bacs                 |
 | `BANCONTACT`         | bancontact           |
 | `BANK`               | bank                 |
-| `BANKED`             | banked               |
 | `BCP`                | bcp                  |
 | `BECS`               | becs                 |
 | `BITPAY`             | bitpay               |
 | `BLIK`               | blik                 |
+| `ACH`                | ach                  |
 | `BOLETO`             | boleto               |
 | `BOOST`              | boost                |
 | `BREB`               | breb                 |
@@ -64,6 +64,7 @@ Method custom = Method.of("custom_value");
 | `KCP`                | kcp                  |
 | `KHIPU`              | khipu                |
 | `KLARNA`             | klarna               |
+| `KONBINI`            | konbini              |
 | `LATITUDE`           | latitude             |
 | `LATITUDEDS`         | latitudeds           |
 | `LAYBUY`             | laybuy               |
@@ -89,6 +90,7 @@ Method custom = Method.of("custom_value");
 | `PAGOEFECTIVO`       | pagoefectivo         |
 | `PAYID`              | payid                |
 | `PAYMAYA`            | paymaya              |
+| `PAYSQUAD`           | paysquad             |
 | `PAYPAL`             | paypal               |
 | `PAYPALPAYLATER`     | paypalpaylater       |
 | `PAYPAY`             | paypay               |
@@ -106,6 +108,7 @@ Method custom = Method.of("custom_value");
 | `SCALAPAY`           | scalapay             |
 | `SEPA`               | sepa                 |
 | `SERVIPAG`           | servipag             |
+| `SEVENELEVEN`        | seveneleven          |
 | `SHOPEEPAY`          | shopeepay            |
 | `SINGTELDASH`        | singteldash          |
 | `SMARTPAY`           | smartpay             |

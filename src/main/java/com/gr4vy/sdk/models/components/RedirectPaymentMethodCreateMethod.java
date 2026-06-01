@@ -33,7 +33,6 @@ public class RedirectPaymentMethodCreateMethod {
     public static final RedirectPaymentMethodCreateMethod ARCUSPAYNETWORK = new RedirectPaymentMethodCreateMethod("arcuspaynetwork");
     public static final RedirectPaymentMethodCreateMethod BACS = new RedirectPaymentMethodCreateMethod("bacs");
     public static final RedirectPaymentMethodCreateMethod BANCONTACT = new RedirectPaymentMethodCreateMethod("bancontact");
-    public static final RedirectPaymentMethodCreateMethod BANKED = new RedirectPaymentMethodCreateMethod("banked");
     public static final RedirectPaymentMethodCreateMethod BCP = new RedirectPaymentMethodCreateMethod("bcp");
     public static final RedirectPaymentMethodCreateMethod BECS = new RedirectPaymentMethodCreateMethod("becs");
     public static final RedirectPaymentMethodCreateMethod BITPAY = new RedirectPaymentMethodCreateMethod("bitpay");
@@ -41,6 +40,7 @@ public class RedirectPaymentMethodCreateMethod {
     public static final RedirectPaymentMethodCreateMethod BOLETO = new RedirectPaymentMethodCreateMethod("boleto");
     public static final RedirectPaymentMethodCreateMethod BOOST = new RedirectPaymentMethodCreateMethod("boost");
     public static final RedirectPaymentMethodCreateMethod BREB = new RedirectPaymentMethodCreateMethod("breb");
+    public static final RedirectPaymentMethodCreateMethod ACH = new RedirectPaymentMethodCreateMethod("ach");
     public static final RedirectPaymentMethodCreateMethod CAPITEC = new RedirectPaymentMethodCreateMethod("capitec");
     public static final RedirectPaymentMethodCreateMethod CASHAPP = new RedirectPaymentMethodCreateMethod("cashapp");
     public static final RedirectPaymentMethodCreateMethod CLEARPAY = new RedirectPaymentMethodCreateMethod("clearpay");
@@ -65,6 +65,7 @@ public class RedirectPaymentMethodCreateMethod {
     public static final RedirectPaymentMethodCreateMethod KCP = new RedirectPaymentMethodCreateMethod("kcp");
     public static final RedirectPaymentMethodCreateMethod KHIPU = new RedirectPaymentMethodCreateMethod("khipu");
     public static final RedirectPaymentMethodCreateMethod KLARNA = new RedirectPaymentMethodCreateMethod("klarna");
+    public static final RedirectPaymentMethodCreateMethod KONBINI = new RedirectPaymentMethodCreateMethod("konbini");
     public static final RedirectPaymentMethodCreateMethod LATITUDE = new RedirectPaymentMethodCreateMethod("latitude");
     public static final RedirectPaymentMethodCreateMethod LATITUDEDS = new RedirectPaymentMethodCreateMethod("latitudeds");
     public static final RedirectPaymentMethodCreateMethod LAYBUY = new RedirectPaymentMethodCreateMethod("laybuy");
@@ -89,6 +90,7 @@ public class RedirectPaymentMethodCreateMethod {
     public static final RedirectPaymentMethodCreateMethod PAGOEFECTIVO = new RedirectPaymentMethodCreateMethod("pagoefectivo");
     public static final RedirectPaymentMethodCreateMethod PAYID = new RedirectPaymentMethodCreateMethod("payid");
     public static final RedirectPaymentMethodCreateMethod PAYMAYA = new RedirectPaymentMethodCreateMethod("paymaya");
+    public static final RedirectPaymentMethodCreateMethod PAYSQUAD = new RedirectPaymentMethodCreateMethod("paysquad");
     public static final RedirectPaymentMethodCreateMethod PAYPAL = new RedirectPaymentMethodCreateMethod("paypal");
     public static final RedirectPaymentMethodCreateMethod PAYPALPAYLATER = new RedirectPaymentMethodCreateMethod("paypalpaylater");
     public static final RedirectPaymentMethodCreateMethod PAYPAY = new RedirectPaymentMethodCreateMethod("paypay");
@@ -104,6 +106,7 @@ public class RedirectPaymentMethodCreateMethod {
     public static final RedirectPaymentMethodCreateMethod SCALAPAY = new RedirectPaymentMethodCreateMethod("scalapay");
     public static final RedirectPaymentMethodCreateMethod SEPA = new RedirectPaymentMethodCreateMethod("sepa");
     public static final RedirectPaymentMethodCreateMethod SERVIPAG = new RedirectPaymentMethodCreateMethod("servipag");
+    public static final RedirectPaymentMethodCreateMethod SEVENELEVEN = new RedirectPaymentMethodCreateMethod("seveneleven");
     public static final RedirectPaymentMethodCreateMethod SHOPEEPAY = new RedirectPaymentMethodCreateMethod("shopeepay");
     public static final RedirectPaymentMethodCreateMethod SINGTELDASH = new RedirectPaymentMethodCreateMethod("singteldash");
     public static final RedirectPaymentMethodCreateMethod SMARTPAY = new RedirectPaymentMethodCreateMethod("smartpay");
@@ -210,7 +213,6 @@ public class RedirectPaymentMethodCreateMethod {
         map.put("arcuspaynetwork", ARCUSPAYNETWORK);
         map.put("bacs", BACS);
         map.put("bancontact", BANCONTACT);
-        map.put("banked", BANKED);
         map.put("bcp", BCP);
         map.put("becs", BECS);
         map.put("bitpay", BITPAY);
@@ -218,6 +220,7 @@ public class RedirectPaymentMethodCreateMethod {
         map.put("boleto", BOLETO);
         map.put("boost", BOOST);
         map.put("breb", BREB);
+        map.put("ach", ACH);
         map.put("capitec", CAPITEC);
         map.put("cashapp", CASHAPP);
         map.put("clearpay", CLEARPAY);
@@ -242,6 +245,7 @@ public class RedirectPaymentMethodCreateMethod {
         map.put("kcp", KCP);
         map.put("khipu", KHIPU);
         map.put("klarna", KLARNA);
+        map.put("konbini", KONBINI);
         map.put("latitude", LATITUDE);
         map.put("latitudeds", LATITUDEDS);
         map.put("laybuy", LAYBUY);
@@ -266,6 +270,7 @@ public class RedirectPaymentMethodCreateMethod {
         map.put("pagoefectivo", PAGOEFECTIVO);
         map.put("payid", PAYID);
         map.put("paymaya", PAYMAYA);
+        map.put("paysquad", PAYSQUAD);
         map.put("paypal", PAYPAL);
         map.put("paypalpaylater", PAYPALPAYLATER);
         map.put("paypay", PAYPAY);
@@ -281,6 +286,7 @@ public class RedirectPaymentMethodCreateMethod {
         map.put("scalapay", SCALAPAY);
         map.put("sepa", SEPA);
         map.put("servipag", SERVIPAG);
+        map.put("seveneleven", SEVENELEVEN);
         map.put("shopeepay", SHOPEEPAY);
         map.put("singteldash", SINGTELDASH);
         map.put("smartpay", SMARTPAY);
@@ -319,7 +325,6 @@ public class RedirectPaymentMethodCreateMethod {
         map.put("arcuspaynetwork", RedirectPaymentMethodCreateMethodEnum.ARCUSPAYNETWORK);
         map.put("bacs", RedirectPaymentMethodCreateMethodEnum.BACS);
         map.put("bancontact", RedirectPaymentMethodCreateMethodEnum.BANCONTACT);
-        map.put("banked", RedirectPaymentMethodCreateMethodEnum.BANKED);
         map.put("bcp", RedirectPaymentMethodCreateMethodEnum.BCP);
         map.put("becs", RedirectPaymentMethodCreateMethodEnum.BECS);
         map.put("bitpay", RedirectPaymentMethodCreateMethodEnum.BITPAY);
@@ -327,6 +332,7 @@ public class RedirectPaymentMethodCreateMethod {
         map.put("boleto", RedirectPaymentMethodCreateMethodEnum.BOLETO);
         map.put("boost", RedirectPaymentMethodCreateMethodEnum.BOOST);
         map.put("breb", RedirectPaymentMethodCreateMethodEnum.BREB);
+        map.put("ach", RedirectPaymentMethodCreateMethodEnum.ACH);
         map.put("capitec", RedirectPaymentMethodCreateMethodEnum.CAPITEC);
         map.put("cashapp", RedirectPaymentMethodCreateMethodEnum.CASHAPP);
         map.put("clearpay", RedirectPaymentMethodCreateMethodEnum.CLEARPAY);
@@ -351,6 +357,7 @@ public class RedirectPaymentMethodCreateMethod {
         map.put("kcp", RedirectPaymentMethodCreateMethodEnum.KCP);
         map.put("khipu", RedirectPaymentMethodCreateMethodEnum.KHIPU);
         map.put("klarna", RedirectPaymentMethodCreateMethodEnum.KLARNA);
+        map.put("konbini", RedirectPaymentMethodCreateMethodEnum.KONBINI);
         map.put("latitude", RedirectPaymentMethodCreateMethodEnum.LATITUDE);
         map.put("latitudeds", RedirectPaymentMethodCreateMethodEnum.LATITUDEDS);
         map.put("laybuy", RedirectPaymentMethodCreateMethodEnum.LAYBUY);
@@ -375,6 +382,7 @@ public class RedirectPaymentMethodCreateMethod {
         map.put("pagoefectivo", RedirectPaymentMethodCreateMethodEnum.PAGOEFECTIVO);
         map.put("payid", RedirectPaymentMethodCreateMethodEnum.PAYID);
         map.put("paymaya", RedirectPaymentMethodCreateMethodEnum.PAYMAYA);
+        map.put("paysquad", RedirectPaymentMethodCreateMethodEnum.PAYSQUAD);
         map.put("paypal", RedirectPaymentMethodCreateMethodEnum.PAYPAL);
         map.put("paypalpaylater", RedirectPaymentMethodCreateMethodEnum.PAYPALPAYLATER);
         map.put("paypay", RedirectPaymentMethodCreateMethodEnum.PAYPAY);
@@ -390,6 +398,7 @@ public class RedirectPaymentMethodCreateMethod {
         map.put("scalapay", RedirectPaymentMethodCreateMethodEnum.SCALAPAY);
         map.put("sepa", RedirectPaymentMethodCreateMethodEnum.SEPA);
         map.put("servipag", RedirectPaymentMethodCreateMethodEnum.SERVIPAG);
+        map.put("seveneleven", RedirectPaymentMethodCreateMethodEnum.SEVENELEVEN);
         map.put("shopeepay", RedirectPaymentMethodCreateMethodEnum.SHOPEEPAY);
         map.put("singteldash", RedirectPaymentMethodCreateMethodEnum.SINGTELDASH);
         map.put("smartpay", RedirectPaymentMethodCreateMethodEnum.SMARTPAY);
@@ -429,7 +438,6 @@ public class RedirectPaymentMethodCreateMethod {
         ARCUSPAYNETWORK("arcuspaynetwork"),
         BACS("bacs"),
         BANCONTACT("bancontact"),
-        BANKED("banked"),
         BCP("bcp"),
         BECS("becs"),
         BITPAY("bitpay"),
@@ -437,6 +445,7 @@ public class RedirectPaymentMethodCreateMethod {
         BOLETO("boleto"),
         BOOST("boost"),
         BREB("breb"),
+        ACH("ach"),
         CAPITEC("capitec"),
         CASHAPP("cashapp"),
         CLEARPAY("clearpay"),
@@ -461,6 +470,7 @@ public class RedirectPaymentMethodCreateMethod {
         KCP("kcp"),
         KHIPU("khipu"),
         KLARNA("klarna"),
+        KONBINI("konbini"),
         LATITUDE("latitude"),
         LATITUDEDS("latitudeds"),
         LAYBUY("laybuy"),
@@ -485,6 +495,7 @@ public class RedirectPaymentMethodCreateMethod {
         PAGOEFECTIVO("pagoefectivo"),
         PAYID("payid"),
         PAYMAYA("paymaya"),
+        PAYSQUAD("paysquad"),
         PAYPAL("paypal"),
         PAYPALPAYLATER("paypalpaylater"),
         PAYPAY("paypay"),
@@ -500,6 +511,7 @@ public class RedirectPaymentMethodCreateMethod {
         SCALAPAY("scalapay"),
         SEPA("sepa"),
         SERVIPAG("servipag"),
+        SEVENELEVEN("seveneleven"),
         SHOPEEPAY("shopeepay"),
         SINGTELDASH("singteldash"),
         SMARTPAY("smartpay"),

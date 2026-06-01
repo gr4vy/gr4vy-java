@@ -13,6 +13,7 @@ import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
+import java.util.List;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 /**
@@ -36,18 +37,28 @@ public class TransactionCaptureCreate {
     @JsonProperty("airline")
     private JsonNullable<? extends Airline> airline;
 
+    /**
+     * An array of cart items that represents the line items of this capture.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("cart_items")
+    private JsonNullable<? extends List<CartItem>> cartItems;
+
     @JsonCreator
     public TransactionCaptureCreate(
             @JsonProperty("amount") JsonNullable<Long> amount,
-            @JsonProperty("airline") JsonNullable<? extends Airline> airline) {
+            @JsonProperty("airline") JsonNullable<? extends Airline> airline,
+            @JsonProperty("cart_items") JsonNullable<? extends List<CartItem>> cartItems) {
         Utils.checkNotNull(amount, "amount");
         Utils.checkNotNull(airline, "airline");
+        Utils.checkNotNull(cartItems, "cartItems");
         this.amount = amount;
         this.airline = airline;
+        this.cartItems = cartItems;
     }
     
     public TransactionCaptureCreate() {
-        this(JsonNullable.undefined(), JsonNullable.undefined());
+        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
     }
 
     /**
@@ -66,6 +77,15 @@ public class TransactionCaptureCreate {
     @JsonIgnore
     public JsonNullable<Airline> airline() {
         return (JsonNullable<Airline>) airline;
+    }
+
+    /**
+     * An array of cart items that represents the line items of this capture.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public JsonNullable<List<CartItem>> cartItems() {
+        return (JsonNullable<List<CartItem>>) cartItems;
     }
 
     public static Builder builder() {
@@ -111,6 +131,24 @@ public class TransactionCaptureCreate {
         return this;
     }
 
+    /**
+     * An array of cart items that represents the line items of this capture.
+     */
+    public TransactionCaptureCreate withCartItems(List<CartItem> cartItems) {
+        Utils.checkNotNull(cartItems, "cartItems");
+        this.cartItems = JsonNullable.of(cartItems);
+        return this;
+    }
+
+    /**
+     * An array of cart items that represents the line items of this capture.
+     */
+    public TransactionCaptureCreate withCartItems(JsonNullable<? extends List<CartItem>> cartItems) {
+        Utils.checkNotNull(cartItems, "cartItems");
+        this.cartItems = cartItems;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -122,20 +160,22 @@ public class TransactionCaptureCreate {
         TransactionCaptureCreate other = (TransactionCaptureCreate) o;
         return 
             Utils.enhancedDeepEquals(this.amount, other.amount) &&
-            Utils.enhancedDeepEquals(this.airline, other.airline);
+            Utils.enhancedDeepEquals(this.airline, other.airline) &&
+            Utils.enhancedDeepEquals(this.cartItems, other.cartItems);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            amount, airline);
+            amount, airline, cartItems);
     }
     
     @Override
     public String toString() {
         return Utils.toString(TransactionCaptureCreate.class,
                 "amount", amount,
-                "airline", airline);
+                "airline", airline,
+                "cartItems", cartItems);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -144,6 +184,8 @@ public class TransactionCaptureCreate {
         private JsonNullable<Long> amount = JsonNullable.undefined();
 
         private JsonNullable<? extends Airline> airline = JsonNullable.undefined();
+
+        private JsonNullable<? extends List<CartItem>> cartItems = JsonNullable.undefined();
 
         private Builder() {
           // force use of static builder() method
@@ -189,10 +231,29 @@ public class TransactionCaptureCreate {
             return this;
         }
 
+
+        /**
+         * An array of cart items that represents the line items of this capture.
+         */
+        public Builder cartItems(List<CartItem> cartItems) {
+            Utils.checkNotNull(cartItems, "cartItems");
+            this.cartItems = JsonNullable.of(cartItems);
+            return this;
+        }
+
+        /**
+         * An array of cart items that represents the line items of this capture.
+         */
+        public Builder cartItems(JsonNullable<? extends List<CartItem>> cartItems) {
+            Utils.checkNotNull(cartItems, "cartItems");
+            this.cartItems = cartItems;
+            return this;
+        }
+
         public TransactionCaptureCreate build() {
 
             return new TransactionCaptureCreate(
-                amount, airline);
+                amount, airline, cartItems);
         }
 
     }

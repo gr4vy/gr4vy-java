@@ -30,11 +30,11 @@ public class Method {
     public static final Method BACS = new Method("bacs");
     public static final Method BANCONTACT = new Method("bancontact");
     public static final Method BANK = new Method("bank");
-    public static final Method BANKED = new Method("banked");
     public static final Method BCP = new Method("bcp");
     public static final Method BECS = new Method("becs");
     public static final Method BITPAY = new Method("bitpay");
     public static final Method BLIK = new Method("blik");
+    public static final Method ACH = new Method("ach");
     public static final Method BOLETO = new Method("boleto");
     public static final Method BOOST = new Method("boost");
     public static final Method BREB = new Method("breb");
@@ -68,6 +68,7 @@ public class Method {
     public static final Method KCP = new Method("kcp");
     public static final Method KHIPU = new Method("khipu");
     public static final Method KLARNA = new Method("klarna");
+    public static final Method KONBINI = new Method("konbini");
     public static final Method LATITUDE = new Method("latitude");
     public static final Method LATITUDEDS = new Method("latitudeds");
     public static final Method LAYBUY = new Method("laybuy");
@@ -93,6 +94,7 @@ public class Method {
     public static final Method PAGOEFECTIVO = new Method("pagoefectivo");
     public static final Method PAYID = new Method("payid");
     public static final Method PAYMAYA = new Method("paymaya");
+    public static final Method PAYSQUAD = new Method("paysquad");
     public static final Method PAYPAL = new Method("paypal");
     public static final Method PAYPALPAYLATER = new Method("paypalpaylater");
     public static final Method PAYPAY = new Method("paypay");
@@ -110,6 +112,7 @@ public class Method {
     public static final Method SCALAPAY = new Method("scalapay");
     public static final Method SEPA = new Method("sepa");
     public static final Method SERVIPAG = new Method("servipag");
+    public static final Method SEVENELEVEN = new Method("seveneleven");
     public static final Method SHOPEEPAY = new Method("shopeepay");
     public static final Method SINGTELDASH = new Method("singteldash");
     public static final Method SMARTPAY = new Method("smartpay");
@@ -218,11 +221,11 @@ public class Method {
         map.put("bacs", BACS);
         map.put("bancontact", BANCONTACT);
         map.put("bank", BANK);
-        map.put("banked", BANKED);
         map.put("bcp", BCP);
         map.put("becs", BECS);
         map.put("bitpay", BITPAY);
         map.put("blik", BLIK);
+        map.put("ach", ACH);
         map.put("boleto", BOLETO);
         map.put("boost", BOOST);
         map.put("breb", BREB);
@@ -256,6 +259,7 @@ public class Method {
         map.put("kcp", KCP);
         map.put("khipu", KHIPU);
         map.put("klarna", KLARNA);
+        map.put("konbini", KONBINI);
         map.put("latitude", LATITUDE);
         map.put("latitudeds", LATITUDEDS);
         map.put("laybuy", LAYBUY);
@@ -281,6 +285,7 @@ public class Method {
         map.put("pagoefectivo", PAGOEFECTIVO);
         map.put("payid", PAYID);
         map.put("paymaya", PAYMAYA);
+        map.put("paysquad", PAYSQUAD);
         map.put("paypal", PAYPAL);
         map.put("paypalpaylater", PAYPALPAYLATER);
         map.put("paypay", PAYPAY);
@@ -298,6 +303,7 @@ public class Method {
         map.put("scalapay", SCALAPAY);
         map.put("sepa", SEPA);
         map.put("servipag", SERVIPAG);
+        map.put("seveneleven", SEVENELEVEN);
         map.put("shopeepay", SHOPEEPAY);
         map.put("singteldash", SINGTELDASH);
         map.put("smartpay", SMARTPAY);
@@ -338,11 +344,11 @@ public class Method {
         map.put("bacs", MethodEnum.BACS);
         map.put("bancontact", MethodEnum.BANCONTACT);
         map.put("bank", MethodEnum.BANK);
-        map.put("banked", MethodEnum.BANKED);
         map.put("bcp", MethodEnum.BCP);
         map.put("becs", MethodEnum.BECS);
         map.put("bitpay", MethodEnum.BITPAY);
         map.put("blik", MethodEnum.BLIK);
+        map.put("ach", MethodEnum.ACH);
         map.put("boleto", MethodEnum.BOLETO);
         map.put("boost", MethodEnum.BOOST);
         map.put("breb", MethodEnum.BREB);
@@ -376,6 +382,7 @@ public class Method {
         map.put("kcp", MethodEnum.KCP);
         map.put("khipu", MethodEnum.KHIPU);
         map.put("klarna", MethodEnum.KLARNA);
+        map.put("konbini", MethodEnum.KONBINI);
         map.put("latitude", MethodEnum.LATITUDE);
         map.put("latitudeds", MethodEnum.LATITUDEDS);
         map.put("laybuy", MethodEnum.LAYBUY);
@@ -401,6 +408,7 @@ public class Method {
         map.put("pagoefectivo", MethodEnum.PAGOEFECTIVO);
         map.put("payid", MethodEnum.PAYID);
         map.put("paymaya", MethodEnum.PAYMAYA);
+        map.put("paysquad", MethodEnum.PAYSQUAD);
         map.put("paypal", MethodEnum.PAYPAL);
         map.put("paypalpaylater", MethodEnum.PAYPALPAYLATER);
         map.put("paypay", MethodEnum.PAYPAY);
@@ -418,6 +426,7 @@ public class Method {
         map.put("scalapay", MethodEnum.SCALAPAY);
         map.put("sepa", MethodEnum.SEPA);
         map.put("servipag", MethodEnum.SERVIPAG);
+        map.put("seveneleven", MethodEnum.SEVENELEVEN);
         map.put("shopeepay", MethodEnum.SHOPEEPAY);
         map.put("singteldash", MethodEnum.SINGTELDASH);
         map.put("smartpay", MethodEnum.SMARTPAY);
@@ -459,11 +468,11 @@ public class Method {
         BACS("bacs"),
         BANCONTACT("bancontact"),
         BANK("bank"),
-        BANKED("banked"),
         BCP("bcp"),
         BECS("becs"),
         BITPAY("bitpay"),
         BLIK("blik"),
+        ACH("ach"),
         BOLETO("boleto"),
         BOOST("boost"),
         BREB("breb"),
@@ -497,6 +506,7 @@ public class Method {
         KCP("kcp"),
         KHIPU("khipu"),
         KLARNA("klarna"),
+        KONBINI("konbini"),
         LATITUDE("latitude"),
         LATITUDEDS("latitudeds"),
         LAYBUY("laybuy"),
@@ -522,6 +532,7 @@ public class Method {
         PAGOEFECTIVO("pagoefectivo"),
         PAYID("payid"),
         PAYMAYA("paymaya"),
+        PAYSQUAD("paysquad"),
         PAYPAL("paypal"),
         PAYPALPAYLATER("paypalpaylater"),
         PAYPAY("paypay"),
@@ -539,6 +550,7 @@ public class Method {
         SCALAPAY("scalapay"),
         SEPA("sepa"),
         SERVIPAG("servipag"),
+        SEVENELEVEN("seveneleven"),
         SHOPEEPAY("shopeepay"),
         SINGTELDASH("singteldash"),
         SMARTPAY("smartpay"),
