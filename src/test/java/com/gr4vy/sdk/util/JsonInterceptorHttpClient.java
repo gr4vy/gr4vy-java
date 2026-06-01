@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.gr4vy.sdk.utils.Blob;
 import com.gr4vy.sdk.utils.HTTPClient;
+import com.gr4vy.sdk.utils.ResponseWithBody;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -14,57 +15,110 @@ import java.net.http.HttpClient;
 import java.net.http.HttpHeaders;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 import java.util.Optional;
-import java.util.Random;
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.atomic.AtomicLong;
 import javax.net.ssl.SSLSession;
 
+/**
+ * Test HTTP client that wraps the real client to do two things the E2E suite
+ * relies on:
+ *
+ * <ol>
+ *   <li><b>Forward-compatibility check</b> — injects an unknown
+ *       {@code unexpected_field_*} key into every JSON object response so the
+ *       SDK's deserializers are exercised against fields they were not generated
+ *       for. Disabled by setting {@code GR4VY_NO_INJECT=1}.</li>
+ *   <li><b>Endpoint-reach recording</b> — when {@code GR4VY_TRACK_HTTP=1}, every
+ *       request's method and path is appended to
+ *       {@code <GR4VY_COVERAGE_DIR>/calls-<pid>.jsonl} (one file per JVM so
+ *       parallel shards never clash). The endpoint-coverage script reads these.</li>
+ * </ol>
+ */
 class JsonInterceptorHttpClient implements HTTPClient {
 
     private final HttpClient delegate;
     private final ObjectMapper objectMapper = new ObjectMapper();
+    private final boolean inject = !"1".equals(System.getenv("GR4VY_NO_INJECT"));
+    private final boolean track = "1".equals(System.getenv("GR4VY_TRACK_HTTP"));
+    private final Path callsFile = resolveCallsFile();
+    private static final AtomicLong COUNTER = new AtomicLong();
 
     public JsonInterceptorHttpClient(HttpClient delegate) {
         this.delegate = delegate;
     }
 
+    private static Path resolveCallsFile() {
+        String dir = System.getenv("GR4VY_COVERAGE_DIR");
+        if (dir == null || dir.isEmpty()) {
+            dir = Paths.get("").toAbsolutePath().resolve("coverage").resolve("http").toString();
+        }
+        long pid = ProcessHandle.current().pid();
+        return Paths.get(dir, "calls-" + pid + ".jsonl");
+    }
+
+    /** Best-effort append of {"method","path"} for the coverage report. Never throws. */
+    private void record(HttpRequest request) {
+        if (!track) {
+            return;
+        }
+        try {
+            String method = request.method();
+            String path = request.uri().getPath();
+            String line = "{\"method\":" + quote(method) + ",\"path\":" + quote(path) + "}\n";
+            synchronized (JsonInterceptorHttpClient.class) {
+                Files.createDirectories(callsFile.getParent());
+                Files.writeString(callsFile, line, StandardCharsets.UTF_8,
+                        StandardOpenOption.CREATE, StandardOpenOption.APPEND);
+            }
+        } catch (Exception ignored) {
+            // Coverage recording must never affect the request under test.
+        }
+    }
+
+    private static String quote(String s) {
+        return "\"" + s.replace("\\", "\\\\").replace("\"", "\\\"") + "\"";
+    }
+
     @Override
     public HttpResponse<InputStream> send(HttpRequest request) throws IOException, InterruptedException {
-        // 1. Let the delegate client handle the actual network request.
-        // We ask for the body as a byte array to make it easy to read and replace.
+        record(request);
+
         HttpResponse<byte[]> originalResponse = delegate.send(request, HttpResponse.BodyHandlers.ofByteArray());
 
-        // 2. Check if the response is JSON. If not, return it as is.
         Optional<String> contentType = originalResponse.headers().firstValue("Content-Type");
-        if (contentType.isEmpty() || !contentType.get().contains("application/json")) {
-            // Re-wrap the byte[] body into an InputStream for the SDK.
+        if (!inject || contentType.isEmpty() || !contentType.get().contains("application/json")) {
             return new ModifiedHttpResponse(originalResponse, new ByteArrayInputStream(originalResponse.body()));
         }
 
         try {
-            // 3. Parse the JSON body.
             JsonNode rootNode = objectMapper.readTree(originalResponse.body());
-
-            if (rootNode.isObject()) {
+            // Only objects can carry an unexpected field; a JSON null parses to a
+            // null node, and arrays/scalars are left untouched.
+            if (rootNode != null && rootNode.isObject()) {
                 ObjectNode objectNode = (ObjectNode) rootNode;
-                String randomKey = "unexpected_field_" + new Random().nextInt(1000);
+                String randomKey = "unexpected_field_" + COUNTER.incrementAndGet();
                 objectNode.put(randomKey, "this is an injected test value");
-                System.out.println("Intercepted response and added key: " + randomKey);
-
-                // 4. Serialize the modified JSON back to a byte array.
                 byte[] modifiedBody = objectMapper.writeValueAsBytes(objectNode);
-
-                // 5. Create a new response with the modified body.
-                // We also update the Content-Length header to match the new body size.
                 return new ModifiedHttpResponse(originalResponse, new ByteArrayInputStream(modifiedBody));
             }
         } catch (IOException e) {
-            // If parsing fails, fall back to returning the original response.
             System.err.println("Failed to parse or modify JSON body: " + e.getMessage());
         }
 
-        // Return the original response if modification failed.
         return new ModifiedHttpResponse(originalResponse, new ByteArrayInputStream(originalResponse.body()));
+    }
+
+    @Override
+    public CompletableFuture<HttpResponse<Blob>> sendAsync(HttpRequest request) {
+        record(request);
+        return delegate.sendAsync(request, HttpResponse.BodyHandlers.ofPublisher())
+                .thenApply(resp -> new ResponseWithBody<>(resp, Blob::from));
     }
 
     /**
@@ -86,7 +140,6 @@ class JsonInterceptorHttpClient implements HTTPClient {
 
         @Override
         public HttpHeaders headers() {
-            // Create a modified header map to update the content-length
             var originalHeadersMap = originalResponse.headers().map();
             var newHeadersMap = new java.util.HashMap<String, java.util.List<String>>();
             for (var entry : originalHeadersMap.entrySet()) {
@@ -94,7 +147,6 @@ class JsonInterceptorHttpClient implements HTTPClient {
                     newHeadersMap.put(entry.getKey(), entry.getValue());
                 }
             }
-            // Compute the new content length from the body
             int contentLength = 0;
             try {
                 contentLength = body.available();
@@ -105,7 +157,6 @@ class JsonInterceptorHttpClient implements HTTPClient {
             return HttpHeaders.of(newHeadersMap, (k, v) -> true);
         }
 
-        // --- Delegate methods to the original response ---
         @Override
         public int statusCode() { return originalResponse.statusCode(); }
         @Override
