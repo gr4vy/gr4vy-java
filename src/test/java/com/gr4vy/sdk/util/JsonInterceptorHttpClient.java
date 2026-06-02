@@ -123,7 +123,7 @@ class JsonInterceptorHttpClient implements HTTPClient {
         record(request);
         HttpResponse<byte[]> originalResponse = delegate.send(request, HttpResponse.BodyHandlers.ofByteArray());
         byte[] body = maybeInject(originalResponse.body(), originalResponse.headers().firstValue("Content-Type"));
-        return new ModifiedHttpResponse(originalResponse, new ByteArrayInputStream(body));
+        return new ModifiedHttpResponse(originalResponse, body);
     }
 
     @Override
@@ -141,16 +141,16 @@ class JsonInterceptorHttpClient implements HTTPClient {
      */
     private static class ModifiedHttpResponse implements HttpResponse<InputStream> {
         private final HttpResponse<byte[]> originalResponse;
-        private final InputStream body;
+        private final byte[] body;
 
-        ModifiedHttpResponse(HttpResponse<byte[]> originalResponse, InputStream body) {
+        ModifiedHttpResponse(HttpResponse<byte[]> originalResponse, byte[] body) {
             this.originalResponse = originalResponse;
             this.body = body;
         }
 
         @Override
         public InputStream body() {
-            return body;
+            return new ByteArrayInputStream(body);
         }
 
         @Override
@@ -162,13 +162,9 @@ class JsonInterceptorHttpClient implements HTTPClient {
                     newHeadersMap.put(entry.getKey(), entry.getValue());
                 }
             }
-            int contentLength = 0;
-            try {
-                contentLength = body.available();
-            } catch (IOException e) {
-                // Fallback: do not set content-length if error
-            }
-            newHeadersMap.put("Content-Length", java.util.List.of(String.valueOf(contentLength)));
+            // Length comes from the (possibly modified) byte[], not the stream's
+            // remaining bytes, so it stays correct regardless of read state.
+            newHeadersMap.put("Content-Length", java.util.List.of(String.valueOf(body.length)));
             return HttpHeaders.of(newHeadersMap, (k, v) -> true);
         }
 
