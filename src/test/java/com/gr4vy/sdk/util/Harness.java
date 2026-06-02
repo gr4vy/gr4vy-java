@@ -40,6 +40,9 @@ public final class Harness {
 
     private Harness() {}
 
+    /** The sandbox environment id the suite targets ({@code api.sandbox.e2e.gr4vy.app}). */
+    public static final String SERVER_ID = "e2e";
+
     /** A provisioned merchant: a merchant-bound client plus its identifiers. */
     public static final class TestMerchant {
         public final Gr4vy client;
@@ -131,7 +134,7 @@ public final class Harness {
         return Gr4vy.builder()
                 .client(interceptingClient)
                 .server(AvailableServers.SANDBOX)
-                .id("e2e")
+                .id(SERVER_ID)
                 .merchantAccountId(merchantAccountId)
                 .securitySource(new BearerSecuritySource.Builder(privateKey).build())
                 .build();

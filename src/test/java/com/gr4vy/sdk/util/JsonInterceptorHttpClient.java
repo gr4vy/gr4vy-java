@@ -132,7 +132,10 @@ class JsonInterceptorHttpClient implements HTTPClient {
         return delegate.sendAsync(request, HttpResponse.BodyHandlers.ofByteArray())
                 .thenApply(resp -> {
                     byte[] body = maybeInject(resp.body(), resp.headers().firstValue("Content-Type"));
-                    return new ResponseWithBody<byte[], Blob>(resp, Blob.from(body));
+                    // Use the mapping constructor (non-null bodyMapper) so
+                    // ResponseWithBody.previousResponse() doesn't NPE on a
+                    // redirect chain; the mapper returns the injected body.
+                    return new ResponseWithBody<byte[], Blob>(resp, ignored -> Blob.from(body));
                 });
     }
 
