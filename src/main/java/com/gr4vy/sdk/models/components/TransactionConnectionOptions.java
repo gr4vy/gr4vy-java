@@ -25,6 +25,13 @@ public class TransactionConnectionOptions {
     private JsonNullable<? extends AccountUpdaterOptions> accountUpdater;
 
     /**
+     * Custom options to be passed to the `adyen-ach` connector.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("adyen-ach")
+    private JsonNullable<? extends AdyenOptions> adyenAch;
+
+    /**
      * Custom options to be passed to the `adyen-afterpay` connector.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -419,6 +426,7 @@ public class TransactionConnectionOptions {
     @JsonCreator
     public TransactionConnectionOptions(
             @JsonProperty("account-updater") JsonNullable<? extends AccountUpdaterOptions> accountUpdater,
+            @JsonProperty("adyen-ach") JsonNullable<? extends AdyenOptions> adyenAch,
             @JsonProperty("adyen-afterpay") JsonNullable<? extends AdyenOptions> adyenAfterpay,
             @JsonProperty("adyen-alipay") JsonNullable<? extends AdyenOptions> adyenAlipay,
             @JsonProperty("adyen-card") JsonNullable<? extends AdyenCardOptions> adyenCard,
@@ -476,6 +484,7 @@ public class TransactionConnectionOptions {
             @JsonProperty("wpay-everydaypay") JsonNullable<? extends WpayEverdaypayOptions> wpayEverydaypay,
             @JsonProperty("wpay-payto") JsonNullable<? extends WpayPaytoOptions> wpayPayto) {
         Utils.checkNotNull(accountUpdater, "accountUpdater");
+        Utils.checkNotNull(adyenAch, "adyenAch");
         Utils.checkNotNull(adyenAfterpay, "adyenAfterpay");
         Utils.checkNotNull(adyenAlipay, "adyenAlipay");
         Utils.checkNotNull(adyenCard, "adyenCard");
@@ -533,6 +542,7 @@ public class TransactionConnectionOptions {
         Utils.checkNotNull(wpayEverydaypay, "wpayEverydaypay");
         Utils.checkNotNull(wpayPayto, "wpayPayto");
         this.accountUpdater = accountUpdater;
+        this.adyenAch = adyenAch;
         this.adyenAfterpay = adyenAfterpay;
         this.adyenAlipay = adyenAlipay;
         this.adyenCard = adyenCard;
@@ -610,7 +620,8 @@ public class TransactionConnectionOptions {
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined());
     }
 
     /**
@@ -621,6 +632,15 @@ public class TransactionConnectionOptions {
     @JsonIgnore
     public JsonNullable<AccountUpdaterOptions> accountUpdater() {
         return (JsonNullable<AccountUpdaterOptions>) accountUpdater;
+    }
+
+    /**
+     * Custom options to be passed to the `adyen-ach` connector.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public JsonNullable<AdyenOptions> adyenAch() {
+        return (JsonNullable<AdyenOptions>) adyenAch;
     }
 
     /**
@@ -1149,6 +1169,24 @@ public class TransactionConnectionOptions {
     public TransactionConnectionOptions withAccountUpdater(JsonNullable<? extends AccountUpdaterOptions> accountUpdater) {
         Utils.checkNotNull(accountUpdater, "accountUpdater");
         this.accountUpdater = accountUpdater;
+        return this;
+    }
+
+    /**
+     * Custom options to be passed to the `adyen-ach` connector.
+     */
+    public TransactionConnectionOptions withAdyenAch(AdyenOptions adyenAch) {
+        Utils.checkNotNull(adyenAch, "adyenAch");
+        this.adyenAch = JsonNullable.of(adyenAch);
+        return this;
+    }
+
+    /**
+     * Custom options to be passed to the `adyen-ach` connector.
+     */
+    public TransactionConnectionOptions withAdyenAch(JsonNullable<? extends AdyenOptions> adyenAch) {
+        Utils.checkNotNull(adyenAch, "adyenAch");
+        this.adyenAch = adyenAch;
         return this;
     }
 
@@ -2171,6 +2209,7 @@ public class TransactionConnectionOptions {
         TransactionConnectionOptions other = (TransactionConnectionOptions) o;
         return 
             Utils.enhancedDeepEquals(this.accountUpdater, other.accountUpdater) &&
+            Utils.enhancedDeepEquals(this.adyenAch, other.adyenAch) &&
             Utils.enhancedDeepEquals(this.adyenAfterpay, other.adyenAfterpay) &&
             Utils.enhancedDeepEquals(this.adyenAlipay, other.adyenAlipay) &&
             Utils.enhancedDeepEquals(this.adyenCard, other.adyenCard) &&
@@ -2232,31 +2271,33 @@ public class TransactionConnectionOptions {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            accountUpdater, adyenAfterpay, adyenAlipay,
-            adyenCard, adyenCashapp, adyenGcash,
-            adyenGiropay, adyenIdeal, adyenKonbini,
-            adyenPaypay, adyenPix, adyenSepa,
-            adyenSeveneleven, adyenSofort, adyenSwish,
-            adyenVipps, affirmAffirm, braintreeCard,
-            chaseorbitalCard, cybersourceAntiFraud, cybersourceCard,
-            cybersourceIdeal, cybersourceKcp, dlocalNequi,
-            dlocalUpi, dlocalPix, dlocalGcash,
-            ecommpayCard, fiservCard, forterAntiFraud,
-            gemGem, gemGemds, givingblockGivingblock,
-            gocardlessGocardless, latitudeLatitude, latitudeLatitudeds,
-            mattildaTapi, mattildaTapifintechs, monatoSpei,
-            mockCard, mockdsCard, nuveiCard,
-            nuveiIdeal, nuveiKlarna, nuveiPse,
-            oxxoOxxo, paypalPaypal, paypalPaypalpaylater,
-            powertranzCard, riskifiedAntiFraud, stripeAffirm,
-            stripeCard, stripeKlarna, travelhubCard,
-            trustlyTrustly, wpayEverydaypay, wpayPayto);
+            accountUpdater, adyenAch, adyenAfterpay,
+            adyenAlipay, adyenCard, adyenCashapp,
+            adyenGcash, adyenGiropay, adyenIdeal,
+            adyenKonbini, adyenPaypay, adyenPix,
+            adyenSepa, adyenSeveneleven, adyenSofort,
+            adyenSwish, adyenVipps, affirmAffirm,
+            braintreeCard, chaseorbitalCard, cybersourceAntiFraud,
+            cybersourceCard, cybersourceIdeal, cybersourceKcp,
+            dlocalNequi, dlocalUpi, dlocalPix,
+            dlocalGcash, ecommpayCard, fiservCard,
+            forterAntiFraud, gemGem, gemGemds,
+            givingblockGivingblock, gocardlessGocardless, latitudeLatitude,
+            latitudeLatitudeds, mattildaTapi, mattildaTapifintechs,
+            monatoSpei, mockCard, mockdsCard,
+            nuveiCard, nuveiIdeal, nuveiKlarna,
+            nuveiPse, oxxoOxxo, paypalPaypal,
+            paypalPaypalpaylater, powertranzCard, riskifiedAntiFraud,
+            stripeAffirm, stripeCard, stripeKlarna,
+            travelhubCard, trustlyTrustly, wpayEverydaypay,
+            wpayPayto);
     }
     
     @Override
     public String toString() {
         return Utils.toString(TransactionConnectionOptions.class,
                 "accountUpdater", accountUpdater,
+                "adyenAch", adyenAch,
                 "adyenAfterpay", adyenAfterpay,
                 "adyenAlipay", adyenAlipay,
                 "adyenCard", adyenCard,
@@ -2319,6 +2360,8 @@ public class TransactionConnectionOptions {
     public final static class Builder {
 
         private JsonNullable<? extends AccountUpdaterOptions> accountUpdater = JsonNullable.undefined();
+
+        private JsonNullable<? extends AdyenOptions> adyenAch = JsonNullable.undefined();
 
         private JsonNullable<? extends AdyenOptions> adyenAfterpay = JsonNullable.undefined();
 
@@ -2454,6 +2497,25 @@ public class TransactionConnectionOptions {
         public Builder accountUpdater(JsonNullable<? extends AccountUpdaterOptions> accountUpdater) {
             Utils.checkNotNull(accountUpdater, "accountUpdater");
             this.accountUpdater = accountUpdater;
+            return this;
+        }
+
+
+        /**
+         * Custom options to be passed to the `adyen-ach` connector.
+         */
+        public Builder adyenAch(AdyenOptions adyenAch) {
+            Utils.checkNotNull(adyenAch, "adyenAch");
+            this.adyenAch = JsonNullable.of(adyenAch);
+            return this;
+        }
+
+        /**
+         * Custom options to be passed to the `adyen-ach` connector.
+         */
+        public Builder adyenAch(JsonNullable<? extends AdyenOptions> adyenAch) {
+            Utils.checkNotNull(adyenAch, "adyenAch");
+            this.adyenAch = adyenAch;
             return this;
         }
 
@@ -3524,25 +3586,26 @@ public class TransactionConnectionOptions {
         public TransactionConnectionOptions build() {
 
             return new TransactionConnectionOptions(
-                accountUpdater, adyenAfterpay, adyenAlipay,
-                adyenCard, adyenCashapp, adyenGcash,
-                adyenGiropay, adyenIdeal, adyenKonbini,
-                adyenPaypay, adyenPix, adyenSepa,
-                adyenSeveneleven, adyenSofort, adyenSwish,
-                adyenVipps, affirmAffirm, braintreeCard,
-                chaseorbitalCard, cybersourceAntiFraud, cybersourceCard,
-                cybersourceIdeal, cybersourceKcp, dlocalNequi,
-                dlocalUpi, dlocalPix, dlocalGcash,
-                ecommpayCard, fiservCard, forterAntiFraud,
-                gemGem, gemGemds, givingblockGivingblock,
-                gocardlessGocardless, latitudeLatitude, latitudeLatitudeds,
-                mattildaTapi, mattildaTapifintechs, monatoSpei,
-                mockCard, mockdsCard, nuveiCard,
-                nuveiIdeal, nuveiKlarna, nuveiPse,
-                oxxoOxxo, paypalPaypal, paypalPaypalpaylater,
-                powertranzCard, riskifiedAntiFraud, stripeAffirm,
-                stripeCard, stripeKlarna, travelhubCard,
-                trustlyTrustly, wpayEverydaypay, wpayPayto);
+                accountUpdater, adyenAch, adyenAfterpay,
+                adyenAlipay, adyenCard, adyenCashapp,
+                adyenGcash, adyenGiropay, adyenIdeal,
+                adyenKonbini, adyenPaypay, adyenPix,
+                adyenSepa, adyenSeveneleven, adyenSofort,
+                adyenSwish, adyenVipps, affirmAffirm,
+                braintreeCard, chaseorbitalCard, cybersourceAntiFraud,
+                cybersourceCard, cybersourceIdeal, cybersourceKcp,
+                dlocalNequi, dlocalUpi, dlocalPix,
+                dlocalGcash, ecommpayCard, fiservCard,
+                forterAntiFraud, gemGem, gemGemds,
+                givingblockGivingblock, gocardlessGocardless, latitudeLatitude,
+                latitudeLatitudeds, mattildaTapi, mattildaTapifintechs,
+                monatoSpei, mockCard, mockdsCard,
+                nuveiCard, nuveiIdeal, nuveiKlarna,
+                nuveiPse, oxxoOxxo, paypalPaypal,
+                paypalPaypalpaylater, powertranzCard, riskifiedAntiFraud,
+                stripeAffirm, stripeCard, stripeKlarna,
+                travelhubCard, trustlyTrustly, wpayEverydaypay,
+                wpayPayto);
         }
 
     }
