@@ -93,8 +93,10 @@ for. Set `GR4VY_NO_INJECT=1` to disable.
 ### Endpoint-reach coverage
 
 When `GR4VY_TRACK_HTTP=1`, the same client appends each request's method+path to
-`$GR4VY_COVERAGE_DIR/calls-<pid>.jsonl` (one file per JVM, so shards never
-clash). `scripts/endpoint_coverage/EndpointCoverage.java` builds the operation
+`$GR4VY_COVERAGE_DIR/calls-<pid>-<rand>.jsonl` (the random suffix keeps records
+from different shards/runners distinct even when container PIDs collide, so
+merging every shard's artifact into one directory never overwrites).
+`scripts/endpoint_coverage/EndpointCoverage.java` builds the operation
 catalogue from the generated SDK source and reports how many operations a real
 request reached. The script uses `record` types, so running it needs **Java 17+**
 (CI runs it on Java 21); the test suite itself still builds and runs on Java 11.
