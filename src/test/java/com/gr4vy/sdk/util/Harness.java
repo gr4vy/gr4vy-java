@@ -24,9 +24,12 @@ import com.gr4vy.sdk.utils.HTTPClient;
 /**
  * One isolated merchant account per JVM, provisioned on first use.
  *
- * <p>{@code gradle test} runs each shard (package) in its own JVM, so a single
- * static holder yields exactly one merchant per shard with no cross-shard
- * sharing — the Java analogue of the per-process merchant the other SDKs use.
+ * <p>In CI each shard is a <em>separate</em> {@code ./gradlew test} invocation
+ * (one per package — see {@code .github/workflows/ci.yaml}), so each runs in its
+ * own JVM and this static holder yields exactly one merchant per shard with no
+ * cross-shard sharing — the Java analogue of the per-process merchant the other
+ * SDKs use. A single local {@code ./gradlew test} runs every package in one JVM
+ * and therefore shares one merchant across all of them, which is fine locally.
  *
  * <p>The signing key is read from {@code PRIVATE_KEY} or a {@code private_key.pem}
  * at the repo root. When no key is available the calling test is <em>skipped</em>

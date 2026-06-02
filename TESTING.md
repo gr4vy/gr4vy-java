@@ -55,10 +55,13 @@ repo root. `*.pem` is gitignored — never commit a key.
 
 `Harness.merchant()` provisions a fresh, randomly-named merchant account and a
 deterministic `mock-card` payment service on first use, then caches it in a
-static holder. Because Gradle runs each shard (package) in its own JVM, this
-yields exactly one isolated merchant per shard with no cross-shard sharing.
-`Harness.client()` returns a client already bound to that merchant, so tests
-never pass a merchant-account id explicitly.
+static holder. In CI each shard is a **separate** `./gradlew test` invocation
+(one per package, see `.github/workflows/ci.yaml`), so each runs in its own JVM
+and gets exactly one isolated merchant with no cross-shard sharing. A single
+local `./gradlew test` runs every package in one JVM and so shares one merchant
+across all of them — fine for local use. `Harness.client()` returns a client
+already bound to that merchant, so tests never pass a merchant-account id
+explicitly.
 
 ### `Reaches` — reach without full support
 
@@ -93,11 +96,12 @@ When `GR4VY_TRACK_HTTP=1`, the same client appends each request's method+path to
 `$GR4VY_COVERAGE_DIR/calls-<pid>.jsonl` (one file per JVM, so shards never
 clash). `scripts/endpoint_coverage/EndpointCoverage.java` builds the operation
 catalogue from the generated SDK source and reports how many operations a real
-request reached:
+request reached. The script uses `record` types, so running it needs **Java 17+**
+(CI runs it on Java 21); the test suite itself still builds and runs on Java 11.
 
 ```bash
 GR4VY_TRACK_HTTP=1 GR4VY_COVERAGE_DIR="$PWD/coverage/http" ./gradlew test
-java scripts/endpoint_coverage/EndpointCoverage.java .
+java scripts/endpoint_coverage/EndpointCoverage.java .   # needs Java 17+
 ```
 
 It writes `coverage/endpoint-coverage.md` and prints the same report. It is a

@@ -1,5 +1,7 @@
 package com.gr4vy.sdk.processing;
 
+import java.util.List;
+
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.condition.EnabledIfEnvironmentVariable;
 
@@ -19,7 +21,7 @@ class GiftCardBalancesTest {
     void balancesList() {
         Gr4vy client = Harness.client();
         Reaches.reaches("gift_cards.balances.list", () -> client.giftCards().balances().list()
-                .giftCardBalanceRequest(GiftCardBalanceRequest.builder().build())
+                .giftCardBalanceRequest(GiftCardBalanceRequest.builder().items(List.of()).build())
                 .call());
     }
 }

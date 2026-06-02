@@ -20,6 +20,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
+import java.security.SecureRandom;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.atomic.AtomicLong;
@@ -36,9 +37,16 @@ import javax.net.ssl.SSLSession;
  *       for. Disabled by setting {@code GR4VY_NO_INJECT=1}.</li>
  *   <li><b>Endpoint-reach recording</b> — when {@code GR4VY_TRACK_HTTP=1}, every
  *       request's method and path is appended to
- *       {@code <GR4VY_COVERAGE_DIR>/calls-<pid>.jsonl} (one file per JVM so
- *       parallel shards never clash). The endpoint-coverage script reads these.</li>
+ *       {@code <GR4VY_COVERAGE_DIR>/calls-<pid>-<rand>.jsonl}. The random suffix
+ *       keeps records from different shards/runners distinct even when PIDs
+ *       collide (container PIDs are often low and identical), so merging every
+ *       shard's artifact into one directory never overwrites. The
+ *       endpoint-coverage script reads all of them.</li>
  * </ol>
+ *
+ * <p>Forward-compat injection is applied on the synchronous {@link #send} path
+ * only — the suite drives the SDK synchronously. {@link #sendAsync} records the
+ * call but passes the response through unmodified.
  */
 class JsonInterceptorHttpClient implements HTTPClient {
 
@@ -59,7 +67,10 @@ class JsonInterceptorHttpClient implements HTTPClient {
             dir = Paths.get("").toAbsolutePath().resolve("coverage").resolve("http").toString();
         }
         long pid = ProcessHandle.current().pid();
-        return Paths.get(dir, "calls-" + pid + ".jsonl");
+        // A random suffix so records from different shards/runners never collide
+        // on a shared PID when their artifacts are merged into one directory.
+        String rand = Long.toHexString(new SecureRandom().nextLong() & 0xffffffffL);
+        return Paths.get(dir, "calls-" + pid + "-" + rand + ".jsonl");
     }
 
     /** Best-effort append of {"method","path"} for the coverage report. Never throws. */
