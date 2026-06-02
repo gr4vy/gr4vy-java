@@ -21,6 +21,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.security.SecureRandom;
+import java.util.Locale;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.atomic.AtomicLong;
@@ -102,7 +103,12 @@ class JsonInterceptorHttpClient implements HTTPClient {
      * non-JSON despite the header) is passed through untouched.
      */
     private byte[] maybeInject(byte[] body, Optional<String> contentType) {
-        if (!inject || contentType.isEmpty() || !contentType.get().contains("application/json")) {
+        // Media types are case-insensitive, so normalize before matching
+        // (e.g. "Application/JSON; charset=utf-8" still counts as JSON).
+        boolean isJson = contentType
+                .map(ct -> ct.toLowerCase(Locale.ROOT).contains("application/json"))
+                .orElse(false);
+        if (!inject || !isJson) {
             return body;
         }
         try {
