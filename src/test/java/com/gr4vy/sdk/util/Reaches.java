@@ -2,7 +2,6 @@ package com.gr4vy.sdk.util;
 
 import static org.junit.jupiter.api.Assertions.fail;
 
-import com.gr4vy.sdk.models.errors.AuthException;
 import com.gr4vy.sdk.models.errors.Gr4vyError;
 
 /**
@@ -47,19 +46,21 @@ public final class Reaches {
                 return; // reached (success or a clean rejection)
             }
             if (status >= 500) {
-                fail(description + ": server error " + status + " (" + e.getMessage() + ")");
+                fail(description + ": server error " + status, e);
             }
-            fail(description + ": did not reach endpoint (" + e + ")");
+            fail(description + ": did not reach endpoint", e);
         }
     }
 
-    /** HTTP status carried by a thrown SDK error, or -1 for a non-HTTP error. */
+    /**
+     * HTTP status carried by a thrown SDK error, or -1 for a non-HTTP error.
+     * Every typed SDK error (including {@code AuthException} and the catch-all
+     * {@code APIException}) extends {@code Gr4vyError}, so {@code code()} covers
+     * them all.
+     */
     static int statusOf(Throwable e) {
         if (e instanceof Gr4vyError) {
             return ((Gr4vyError) e).code();
-        }
-        if (e instanceof AuthException) {
-            return ((AuthException) e).statusCode().orElse(-1);
         }
         return -1;
     }

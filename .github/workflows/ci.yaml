@@ -73,6 +73,17 @@ jobs:
         with:
           distribution: corretto
           java-version: 21
+      - name: Require signing key on trusted refs
+        # On pushes/schedules the harness would silently skip without a key,
+        # masking a misconfigured secret. Fork PRs legitimately have no key.
+        if: github.event_name != 'pull_request'
+        env:
+          PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
+        run: |
+          if [ -z "$PRIVATE_KEY" ]; then
+            echo "PRIVATE_KEY secret is missing on a non-PR run; the live suite would silently skip." >&2
+            exit 1
+          fi
       - name: Run ${{ matrix.shard }} shard
         env:
           PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}

@@ -5,6 +5,7 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpRequest.BodyPublishers;
 import java.net.http.HttpResponse;
+import java.time.Duration;
 
 /**
  * Helpers for the checkout-session field PUT, which the SDK does not model and
@@ -41,9 +42,12 @@ public final class Checkout {
 
     private static void putFields(String sessionId, String jsonBody) throws Exception {
         String url = String.format("%s/checkout/sessions/%s/fields", API_BASE_URL, sessionId);
-        HttpClient client = HttpClient.newHttpClient();
+        HttpClient client = HttpClient.newBuilder()
+                .connectTimeout(Duration.ofSeconds(20))
+                .build();
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create(url))
+                .timeout(Duration.ofSeconds(30))
                 .PUT(BodyPublishers.ofString(jsonBody))
                 .header("Content-Type", "application/json")
                 .build();

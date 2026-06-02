@@ -44,9 +44,8 @@ import javax.net.ssl.SSLSession;
  *       endpoint-coverage script reads all of them.</li>
  * </ol>
  *
- * <p>Forward-compat injection is applied on the synchronous {@link #send} path
- * only — the suite drives the SDK synchronously. {@link #sendAsync} records the
- * call but passes the response through unmodified.
+ * <p>Forward-compat injection is applied on both the synchronous {@link #send}
+ * and asynchronous {@link #sendAsync} paths.
  */
 class JsonInterceptorHttpClient implements HTTPClient {
 
@@ -96,40 +95,45 @@ class JsonInterceptorHttpClient implements HTTPClient {
         return "\"" + s.replace("\\", "\\\\").replace("\"", "\\\"") + "\"";
     }
 
+    /**
+     * Returns {@code body} with an unknown field injected when it is a JSON
+     * object, otherwise the body unchanged. Best-effort and silent: a body that
+     * is not the JSON object we expected (a null, array, scalar, empty, or
+     * non-JSON despite the header) is passed through untouched.
+     */
+    private byte[] maybeInject(byte[] body, Optional<String> contentType) {
+        if (!inject || contentType.isEmpty() || !contentType.get().contains("application/json")) {
+            return body;
+        }
+        try {
+            JsonNode rootNode = objectMapper.readTree(body);
+            if (rootNode != null && rootNode.isObject()) {
+                ObjectNode objectNode = (ObjectNode) rootNode;
+                objectNode.put("unexpected_field_" + COUNTER.incrementAndGet(), "this is an injected test value");
+                return objectMapper.writeValueAsBytes(objectNode);
+            }
+        } catch (IOException ignored) {
+            // Best-effort: leave the body untouched.
+        }
+        return body;
+    }
+
     @Override
     public HttpResponse<InputStream> send(HttpRequest request) throws IOException, InterruptedException {
         record(request);
-
         HttpResponse<byte[]> originalResponse = delegate.send(request, HttpResponse.BodyHandlers.ofByteArray());
-
-        Optional<String> contentType = originalResponse.headers().firstValue("Content-Type");
-        if (!inject || contentType.isEmpty() || !contentType.get().contains("application/json")) {
-            return new ModifiedHttpResponse(originalResponse, new ByteArrayInputStream(originalResponse.body()));
-        }
-
-        try {
-            JsonNode rootNode = objectMapper.readTree(originalResponse.body());
-            // Only objects can carry an unexpected field; a JSON null parses to a
-            // null node, and arrays/scalars are left untouched.
-            if (rootNode != null && rootNode.isObject()) {
-                ObjectNode objectNode = (ObjectNode) rootNode;
-                String randomKey = "unexpected_field_" + COUNTER.incrementAndGet();
-                objectNode.put(randomKey, "this is an injected test value");
-                byte[] modifiedBody = objectMapper.writeValueAsBytes(objectNode);
-                return new ModifiedHttpResponse(originalResponse, new ByteArrayInputStream(modifiedBody));
-            }
-        } catch (IOException e) {
-            System.err.println("Failed to parse or modify JSON body: " + e.getMessage());
-        }
-
-        return new ModifiedHttpResponse(originalResponse, new ByteArrayInputStream(originalResponse.body()));
+        byte[] body = maybeInject(originalResponse.body(), originalResponse.headers().firstValue("Content-Type"));
+        return new ModifiedHttpResponse(originalResponse, new ByteArrayInputStream(body));
     }
 
     @Override
     public CompletableFuture<HttpResponse<Blob>> sendAsync(HttpRequest request) {
         record(request);
-        return delegate.sendAsync(request, HttpResponse.BodyHandlers.ofPublisher())
-                .thenApply(resp -> new ResponseWithBody<>(resp, Blob::from));
+        return delegate.sendAsync(request, HttpResponse.BodyHandlers.ofByteArray())
+                .thenApply(resp -> {
+                    byte[] body = maybeInject(resp.body(), resp.headers().firstValue("Content-Type"));
+                    return new ResponseWithBody<byte[], Blob>(resp, Blob.from(body));
+                });
     }
 
     /**
