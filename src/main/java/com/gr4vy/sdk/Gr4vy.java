@@ -371,7 +371,7 @@ public class Gr4vy {
         return new Builder();
     }
 
-    public Gr4vy(SDKConfiguration sdkConfiguration) {
+    private Gr4vy(SDKConfiguration sdkConfiguration) {
         sdkConfiguration.initialize();
         this.accountUpdater = new AccountUpdater(sdkConfiguration);
         this.buyers = new Buyers(sdkConfiguration);

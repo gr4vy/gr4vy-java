@@ -44,6 +44,9 @@ public class Method {
     public static final Method CHASEORBITAL = new Method("chaseorbital");
     public static final Method CLEARPAY = new Method("clearpay");
     public static final Method CLICK_TO_PAY = new Method("click-to-pay");
+    public static final Method CUSTOM_PUSH = new Method("custom_push");
+    public static final Method CUSTOM_REDIRECT = new Method("custom_redirect");
+    public static final Method CUSTOM_TOKENIZE = new Method("custom_tokenize");
     public static final Method DANA = new Method("dana");
     public static final Method DCB = new Method("dcb");
     public static final Method DLOCAL = new Method("dlocal");
@@ -235,6 +238,9 @@ public class Method {
         map.put("chaseorbital", CHASEORBITAL);
         map.put("clearpay", CLEARPAY);
         map.put("click-to-pay", CLICK_TO_PAY);
+        map.put("custom_push", CUSTOM_PUSH);
+        map.put("custom_redirect", CUSTOM_REDIRECT);
+        map.put("custom_tokenize", CUSTOM_TOKENIZE);
         map.put("dana", DANA);
         map.put("dcb", DCB);
         map.put("dlocal", DLOCAL);
@@ -358,6 +364,9 @@ public class Method {
         map.put("chaseorbital", MethodEnum.CHASEORBITAL);
         map.put("clearpay", MethodEnum.CLEARPAY);
         map.put("click-to-pay", MethodEnum.CLICK_TO_PAY);
+        map.put("custom_push", MethodEnum.CUSTOM_PUSH);
+        map.put("custom_redirect", MethodEnum.CUSTOM_REDIRECT);
+        map.put("custom_tokenize", MethodEnum.CUSTOM_TOKENIZE);
         map.put("dana", MethodEnum.DANA);
         map.put("dcb", MethodEnum.DCB);
         map.put("dlocal", MethodEnum.DLOCAL);
@@ -482,6 +491,9 @@ public class Method {
         CHASEORBITAL("chaseorbital"),
         CLEARPAY("clearpay"),
         CLICK_TO_PAY("click-to-pay"),
+        CUSTOM_PUSH("custom_push"),
+        CUSTOM_REDIRECT("custom_redirect"),
+        CUSTOM_TOKENIZE("custom_tokenize"),
         DANA("dana"),
         DCB("dcb"),
         DLOCAL("dlocal"),
