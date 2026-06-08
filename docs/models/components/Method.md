@@ -40,6 +40,9 @@ Method custom = Method.of("custom_value");
 | `CHASEORBITAL`       | chaseorbital         |
 | `CLEARPAY`           | clearpay             |
 | `CLICK_TO_PAY`       | click-to-pay         |
+| `CUSTOM_PUSH`        | custom_push          |
+| `CUSTOM_REDIRECT`    | custom_redirect      |
+| `CUSTOM_TOKENIZE`    | custom_tokenize      |
 | `DANA`               | dana                 |
 | `DCB`                | dcb                  |
 | `DLOCAL`             | dlocal               |

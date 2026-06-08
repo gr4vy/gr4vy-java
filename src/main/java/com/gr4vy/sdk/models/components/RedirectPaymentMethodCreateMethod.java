@@ -44,6 +44,9 @@ public class RedirectPaymentMethodCreateMethod {
     public static final RedirectPaymentMethodCreateMethod CAPITEC = new RedirectPaymentMethodCreateMethod("capitec");
     public static final RedirectPaymentMethodCreateMethod CASHAPP = new RedirectPaymentMethodCreateMethod("cashapp");
     public static final RedirectPaymentMethodCreateMethod CLEARPAY = new RedirectPaymentMethodCreateMethod("clearpay");
+    public static final RedirectPaymentMethodCreateMethod CUSTOM_PUSH = new RedirectPaymentMethodCreateMethod("custom_push");
+    public static final RedirectPaymentMethodCreateMethod CUSTOM_REDIRECT = new RedirectPaymentMethodCreateMethod("custom_redirect");
+    public static final RedirectPaymentMethodCreateMethod CUSTOM_TOKENIZE = new RedirectPaymentMethodCreateMethod("custom_tokenize");
     public static final RedirectPaymentMethodCreateMethod DANA = new RedirectPaymentMethodCreateMethod("dana");
     public static final RedirectPaymentMethodCreateMethod DCB = new RedirectPaymentMethodCreateMethod("dcb");
     public static final RedirectPaymentMethodCreateMethod DLOCAL = new RedirectPaymentMethodCreateMethod("dlocal");
@@ -224,6 +227,9 @@ public class RedirectPaymentMethodCreateMethod {
         map.put("capitec", CAPITEC);
         map.put("cashapp", CASHAPP);
         map.put("clearpay", CLEARPAY);
+        map.put("custom_push", CUSTOM_PUSH);
+        map.put("custom_redirect", CUSTOM_REDIRECT);
+        map.put("custom_tokenize", CUSTOM_TOKENIZE);
         map.put("dana", DANA);
         map.put("dcb", DCB);
         map.put("dlocal", DLOCAL);
@@ -336,6 +342,9 @@ public class RedirectPaymentMethodCreateMethod {
         map.put("capitec", RedirectPaymentMethodCreateMethodEnum.CAPITEC);
         map.put("cashapp", RedirectPaymentMethodCreateMethodEnum.CASHAPP);
         map.put("clearpay", RedirectPaymentMethodCreateMethodEnum.CLEARPAY);
+        map.put("custom_push", RedirectPaymentMethodCreateMethodEnum.CUSTOM_PUSH);
+        map.put("custom_redirect", RedirectPaymentMethodCreateMethodEnum.CUSTOM_REDIRECT);
+        map.put("custom_tokenize", RedirectPaymentMethodCreateMethodEnum.CUSTOM_TOKENIZE);
         map.put("dana", RedirectPaymentMethodCreateMethodEnum.DANA);
         map.put("dcb", RedirectPaymentMethodCreateMethodEnum.DCB);
         map.put("dlocal", RedirectPaymentMethodCreateMethodEnum.DLOCAL);
@@ -449,6 +458,9 @@ public class RedirectPaymentMethodCreateMethod {
         CAPITEC("capitec"),
         CASHAPP("cashapp"),
         CLEARPAY("clearpay"),
+        CUSTOM_PUSH("custom_push"),
+        CUSTOM_REDIRECT("custom_redirect"),
+        CUSTOM_TOKENIZE("custom_tokenize"),
         DANA("dana"),
         DCB("dcb"),
         DLOCAL("dlocal"),

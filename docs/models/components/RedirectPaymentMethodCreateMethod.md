@@ -37,6 +37,9 @@ RedirectPaymentMethodCreateMethod custom = RedirectPaymentMethodCreateMethod.of(
 | `CAPITEC`         | capitec           |
 | `CASHAPP`         | cashapp           |
 | `CLEARPAY`        | clearpay          |
+| `CUSTOM_PUSH`     | custom_push       |
+| `CUSTOM_REDIRECT` | custom_redirect   |
+| `CUSTOM_TOKENIZE` | custom_tokenize   |
 | `DANA`            | dana              |
 | `DCB`             | dcb               |
 | `DLOCAL`          | dlocal            |
