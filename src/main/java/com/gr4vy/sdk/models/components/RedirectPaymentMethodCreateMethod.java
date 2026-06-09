@@ -91,6 +91,7 @@ public class RedirectPaymentMethodCreateMethod {
     public static final RedirectPaymentMethodCreateMethod OXXO = new RedirectPaymentMethodCreateMethod("oxxo");
     public static final RedirectPaymentMethodCreateMethod P24 = new RedirectPaymentMethodCreateMethod("p24");
     public static final RedirectPaymentMethodCreateMethod PAGOEFECTIVO = new RedirectPaymentMethodCreateMethod("pagoefectivo");
+    public static final RedirectPaymentMethodCreateMethod PAYBYBANK = new RedirectPaymentMethodCreateMethod("paybybank");
     public static final RedirectPaymentMethodCreateMethod PAYID = new RedirectPaymentMethodCreateMethod("payid");
     public static final RedirectPaymentMethodCreateMethod PAYMAYA = new RedirectPaymentMethodCreateMethod("paymaya");
     public static final RedirectPaymentMethodCreateMethod PAYSQUAD = new RedirectPaymentMethodCreateMethod("paysquad");
@@ -274,6 +275,7 @@ public class RedirectPaymentMethodCreateMethod {
         map.put("oxxo", OXXO);
         map.put("p24", P24);
         map.put("pagoefectivo", PAGOEFECTIVO);
+        map.put("paybybank", PAYBYBANK);
         map.put("payid", PAYID);
         map.put("paymaya", PAYMAYA);
         map.put("paysquad", PAYSQUAD);
@@ -389,6 +391,7 @@ public class RedirectPaymentMethodCreateMethod {
         map.put("oxxo", RedirectPaymentMethodCreateMethodEnum.OXXO);
         map.put("p24", RedirectPaymentMethodCreateMethodEnum.P24);
         map.put("pagoefectivo", RedirectPaymentMethodCreateMethodEnum.PAGOEFECTIVO);
+        map.put("paybybank", RedirectPaymentMethodCreateMethodEnum.PAYBYBANK);
         map.put("payid", RedirectPaymentMethodCreateMethodEnum.PAYID);
         map.put("paymaya", RedirectPaymentMethodCreateMethodEnum.PAYMAYA);
         map.put("paysquad", RedirectPaymentMethodCreateMethodEnum.PAYSQUAD);
@@ -505,6 +508,7 @@ public class RedirectPaymentMethodCreateMethod {
         OXXO("oxxo"),
         P24("p24"),
         PAGOEFECTIVO("pagoefectivo"),
+        PAYBYBANK("paybybank"),
         PAYID("payid"),
         PAYMAYA("paymaya"),
         PAYSQUAD("paysquad"),

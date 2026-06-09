@@ -22,8 +22,8 @@ public class SDKConfiguration {
 
     private static final String LANGUAGE = "java";
     public static final String OPENAPI_DOC_VERSION = "1.0.0";
-    public static final String SDK_VERSION = "2.16.81";
-    public static final String GEN_VERSION = "2.896.0";
+    public static final String SDK_VERSION = "2.16.82";
+    public static final String GEN_VERSION = "2.897.1";
     private static final String BASE_PACKAGE = "com.gr4vy.sdk";
     public static final String USER_AGENT = 
             String.format("speakeasy-sdk/%s %s %s %s %s",
