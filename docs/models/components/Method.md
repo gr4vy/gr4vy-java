@@ -91,6 +91,7 @@ Method custom = Method.of("custom_value");
 | `OXXO`               | oxxo                 |
 | `P24`                | p24                  |
 | `PAGOEFECTIVO`       | pagoefectivo         |
+| `PAYBYBANK`          | paybybank            |
 | `PAYID`              | payid                |
 | `PAYMAYA`            | paymaya              |
 | `PAYSQUAD`           | paysquad             |
