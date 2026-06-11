@@ -67,6 +67,7 @@ public class Method {
     public static final Method GOPAY = new Method("gopay");
     public static final Method GRABPAY = new Method("grabpay");
     public static final Method IDEAL = new Method("ideal");
+    public static final Method INTERAC = new Method("interac");
     public static final Method KAKAOPAY = new Method("kakaopay");
     public static final Method KCP = new Method("kcp");
     public static final Method KHIPU = new Method("khipu");
@@ -262,6 +263,7 @@ public class Method {
         map.put("gopay", GOPAY);
         map.put("grabpay", GRABPAY);
         map.put("ideal", IDEAL);
+        map.put("interac", INTERAC);
         map.put("kakaopay", KAKAOPAY);
         map.put("kcp", KCP);
         map.put("khipu", KHIPU);
@@ -389,6 +391,7 @@ public class Method {
         map.put("gopay", MethodEnum.GOPAY);
         map.put("grabpay", MethodEnum.GRABPAY);
         map.put("ideal", MethodEnum.IDEAL);
+        map.put("interac", MethodEnum.INTERAC);
         map.put("kakaopay", MethodEnum.KAKAOPAY);
         map.put("kcp", MethodEnum.KCP);
         map.put("khipu", MethodEnum.KHIPU);
@@ -517,6 +520,7 @@ public class Method {
         GOPAY("gopay"),
         GRABPAY("grabpay"),
         IDEAL("ideal"),
+        INTERAC("interac"),
         KAKAOPAY("kakaopay"),
         KCP("kcp"),
         KHIPU("khipu"),

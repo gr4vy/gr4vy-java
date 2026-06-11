@@ -63,6 +63,7 @@ Method custom = Method.of("custom_value");
 | `GOPAY`              | gopay                |
 | `GRABPAY`            | grabpay              |
 | `IDEAL`              | ideal                |
+| `INTERAC`            | interac              |
 | `KAKAOPAY`           | kakaopay             |
 | `KCP`                | kcp                  |
 | `KHIPU`              | khipu                |

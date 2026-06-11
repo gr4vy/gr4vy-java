@@ -64,6 +64,7 @@ public class RedirectPaymentMethodCreateMethod {
     public static final RedirectPaymentMethodCreateMethod GOPAY = new RedirectPaymentMethodCreateMethod("gopay");
     public static final RedirectPaymentMethodCreateMethod GRABPAY = new RedirectPaymentMethodCreateMethod("grabpay");
     public static final RedirectPaymentMethodCreateMethod IDEAL = new RedirectPaymentMethodCreateMethod("ideal");
+    public static final RedirectPaymentMethodCreateMethod INTERAC = new RedirectPaymentMethodCreateMethod("interac");
     public static final RedirectPaymentMethodCreateMethod KAKAOPAY = new RedirectPaymentMethodCreateMethod("kakaopay");
     public static final RedirectPaymentMethodCreateMethod KCP = new RedirectPaymentMethodCreateMethod("kcp");
     public static final RedirectPaymentMethodCreateMethod KHIPU = new RedirectPaymentMethodCreateMethod("khipu");
@@ -248,6 +249,7 @@ public class RedirectPaymentMethodCreateMethod {
         map.put("gopay", GOPAY);
         map.put("grabpay", GRABPAY);
         map.put("ideal", IDEAL);
+        map.put("interac", INTERAC);
         map.put("kakaopay", KAKAOPAY);
         map.put("kcp", KCP);
         map.put("khipu", KHIPU);
@@ -364,6 +366,7 @@ public class RedirectPaymentMethodCreateMethod {
         map.put("gopay", RedirectPaymentMethodCreateMethodEnum.GOPAY);
         map.put("grabpay", RedirectPaymentMethodCreateMethodEnum.GRABPAY);
         map.put("ideal", RedirectPaymentMethodCreateMethodEnum.IDEAL);
+        map.put("interac", RedirectPaymentMethodCreateMethodEnum.INTERAC);
         map.put("kakaopay", RedirectPaymentMethodCreateMethodEnum.KAKAOPAY);
         map.put("kcp", RedirectPaymentMethodCreateMethodEnum.KCP);
         map.put("khipu", RedirectPaymentMethodCreateMethodEnum.KHIPU);
@@ -481,6 +484,7 @@ public class RedirectPaymentMethodCreateMethod {
         GOPAY("gopay"),
         GRABPAY("grabpay"),
         IDEAL("ideal"),
+        INTERAC("interac"),
         KAKAOPAY("kakaopay"),
         KCP("kcp"),
         KHIPU("khipu"),
