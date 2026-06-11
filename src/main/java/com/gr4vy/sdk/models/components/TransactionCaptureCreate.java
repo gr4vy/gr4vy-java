@@ -8,12 +8,16 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.gr4vy.sdk.utils.LazySingletonValue;
 import com.gr4vy.sdk.utils.Utils;
+import java.lang.Boolean;
 import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
+import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 /**
@@ -44,21 +48,44 @@ public class TransactionCaptureCreate {
     @JsonProperty("cart_items")
     private JsonNullable<? extends List<CartItem>> cartItems;
 
+    /**
+     * Whether this is marked as the final capture for the associated transaction. Must be `true` or
+     * omitted when multi-capture is not enabled; a value of `false` is only valid when multi-capture is
+     * available on the connection.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("final")
+    private Optional<Boolean> final_;
+
+    /**
+     * An external identifier that can be used to match the capture against your own records.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("external_identifier")
+    private JsonNullable<String> externalIdentifier;
+
     @JsonCreator
     public TransactionCaptureCreate(
             @JsonProperty("amount") JsonNullable<Long> amount,
             @JsonProperty("airline") JsonNullable<? extends Airline> airline,
-            @JsonProperty("cart_items") JsonNullable<? extends List<CartItem>> cartItems) {
+            @JsonProperty("cart_items") JsonNullable<? extends List<CartItem>> cartItems,
+            @JsonProperty("final") Optional<Boolean> final_,
+            @JsonProperty("external_identifier") JsonNullable<String> externalIdentifier) {
         Utils.checkNotNull(amount, "amount");
         Utils.checkNotNull(airline, "airline");
         Utils.checkNotNull(cartItems, "cartItems");
+        Utils.checkNotNull(final_, "final_");
+        Utils.checkNotNull(externalIdentifier, "externalIdentifier");
         this.amount = amount;
         this.airline = airline;
         this.cartItems = cartItems;
+        this.final_ = final_;
+        this.externalIdentifier = externalIdentifier;
     }
     
     public TransactionCaptureCreate() {
-        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
+        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            Optional.empty(), JsonNullable.undefined());
     }
 
     /**
@@ -86,6 +113,24 @@ public class TransactionCaptureCreate {
     @JsonIgnore
     public JsonNullable<List<CartItem>> cartItems() {
         return (JsonNullable<List<CartItem>>) cartItems;
+    }
+
+    /**
+     * Whether this is marked as the final capture for the associated transaction. Must be `true` or
+     * omitted when multi-capture is not enabled; a value of `false` is only valid when multi-capture is
+     * available on the connection.
+     */
+    @JsonIgnore
+    public Optional<Boolean> final_() {
+        return final_;
+    }
+
+    /**
+     * An external identifier that can be used to match the capture against your own records.
+     */
+    @JsonIgnore
+    public JsonNullable<String> externalIdentifier() {
+        return externalIdentifier;
     }
 
     public static Builder builder() {
@@ -149,6 +194,47 @@ public class TransactionCaptureCreate {
         return this;
     }
 
+    /**
+     * Whether this is marked as the final capture for the associated transaction. Must be `true` or
+     * omitted when multi-capture is not enabled; a value of `false` is only valid when multi-capture is
+     * available on the connection.
+     */
+    public TransactionCaptureCreate withFinal(boolean final_) {
+        Utils.checkNotNull(final_, "final_");
+        this.final_ = Optional.ofNullable(final_);
+        return this;
+    }
+
+
+    /**
+     * Whether this is marked as the final capture for the associated transaction. Must be `true` or
+     * omitted when multi-capture is not enabled; a value of `false` is only valid when multi-capture is
+     * available on the connection.
+     */
+    public TransactionCaptureCreate withFinal(Optional<Boolean> final_) {
+        Utils.checkNotNull(final_, "final_");
+        this.final_ = final_;
+        return this;
+    }
+
+    /**
+     * An external identifier that can be used to match the capture against your own records.
+     */
+    public TransactionCaptureCreate withExternalIdentifier(String externalIdentifier) {
+        Utils.checkNotNull(externalIdentifier, "externalIdentifier");
+        this.externalIdentifier = JsonNullable.of(externalIdentifier);
+        return this;
+    }
+
+    /**
+     * An external identifier that can be used to match the capture against your own records.
+     */
+    public TransactionCaptureCreate withExternalIdentifier(JsonNullable<String> externalIdentifier) {
+        Utils.checkNotNull(externalIdentifier, "externalIdentifier");
+        this.externalIdentifier = externalIdentifier;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -161,13 +247,16 @@ public class TransactionCaptureCreate {
         return 
             Utils.enhancedDeepEquals(this.amount, other.amount) &&
             Utils.enhancedDeepEquals(this.airline, other.airline) &&
-            Utils.enhancedDeepEquals(this.cartItems, other.cartItems);
+            Utils.enhancedDeepEquals(this.cartItems, other.cartItems) &&
+            Utils.enhancedDeepEquals(this.final_, other.final_) &&
+            Utils.enhancedDeepEquals(this.externalIdentifier, other.externalIdentifier);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            amount, airline, cartItems);
+            amount, airline, cartItems,
+            final_, externalIdentifier);
     }
     
     @Override
@@ -175,7 +264,9 @@ public class TransactionCaptureCreate {
         return Utils.toString(TransactionCaptureCreate.class,
                 "amount", amount,
                 "airline", airline,
-                "cartItems", cartItems);
+                "cartItems", cartItems,
+                "final_", final_,
+                "externalIdentifier", externalIdentifier);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -186,6 +277,10 @@ public class TransactionCaptureCreate {
         private JsonNullable<? extends Airline> airline = JsonNullable.undefined();
 
         private JsonNullable<? extends List<CartItem>> cartItems = JsonNullable.undefined();
+
+        private Optional<Boolean> final_;
+
+        private JsonNullable<String> externalIdentifier = JsonNullable.undefined();
 
         private Builder() {
           // force use of static builder() method
@@ -250,11 +345,63 @@ public class TransactionCaptureCreate {
             return this;
         }
 
-        public TransactionCaptureCreate build() {
 
-            return new TransactionCaptureCreate(
-                amount, airline, cartItems);
+        /**
+         * Whether this is marked as the final capture for the associated transaction. Must be `true` or
+         * omitted when multi-capture is not enabled; a value of `false` is only valid when multi-capture is
+         * available on the connection.
+         */
+        public Builder final_(boolean final_) {
+            Utils.checkNotNull(final_, "final_");
+            this.final_ = Optional.ofNullable(final_);
+            return this;
         }
 
+        /**
+         * Whether this is marked as the final capture for the associated transaction. Must be `true` or
+         * omitted when multi-capture is not enabled; a value of `false` is only valid when multi-capture is
+         * available on the connection.
+         */
+        public Builder final_(Optional<Boolean> final_) {
+            Utils.checkNotNull(final_, "final_");
+            this.final_ = final_;
+            return this;
+        }
+
+
+        /**
+         * An external identifier that can be used to match the capture against your own records.
+         */
+        public Builder externalIdentifier(String externalIdentifier) {
+            Utils.checkNotNull(externalIdentifier, "externalIdentifier");
+            this.externalIdentifier = JsonNullable.of(externalIdentifier);
+            return this;
+        }
+
+        /**
+         * An external identifier that can be used to match the capture against your own records.
+         */
+        public Builder externalIdentifier(JsonNullable<String> externalIdentifier) {
+            Utils.checkNotNull(externalIdentifier, "externalIdentifier");
+            this.externalIdentifier = externalIdentifier;
+            return this;
+        }
+
+        public TransactionCaptureCreate build() {
+            if (final_ == null) {
+                final_ = _SINGLETON_VALUE_Final.value();
+            }
+
+            return new TransactionCaptureCreate(
+                amount, airline, cartItems,
+                final_, externalIdentifier);
+        }
+
+
+        private static final LazySingletonValue<Optional<Boolean>> _SINGLETON_VALUE_Final =
+                new LazySingletonValue<>(
+                        "final",
+                        "true",
+                        new TypeReference<Optional<Boolean>>() {});
     }
 }
