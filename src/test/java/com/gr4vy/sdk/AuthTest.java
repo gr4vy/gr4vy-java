@@ -7,6 +7,7 @@ import com.sun.net.httpserver.HttpServer;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.net.InetSocketAddress;
@@ -202,6 +203,34 @@ public class AuthTest {
             assertEquals(1, createCalls.get());
             assertEquals(claims.get("scopes").toString(), "[\"" + JWTScope.EMBED.toString() + "\"]");
             assertEquals(claims.get("checkout_session_id").toString(), "\"" + CHECKOUT_SESSION_ID + "\"");
+        } finally {
+            server.stop(0);
+        }
+    }
+
+    @Test
+    void testGetEmbedTokenWithCheckoutSessionThrowsOnMissingId() throws Exception {
+        HttpServer server = HttpServer.create(new InetSocketAddress("127.0.0.1", 0), 0);
+        server.createContext("/checkout/sessions", exchange -> {
+            // Response has no id field — simulates an API response without a checkout session id.
+            byte[] body = ("{\"type\":\"checkout-session\",\"expires_at\":\"2026-01-01T00:00:00Z\"}")
+                    .getBytes(StandardCharsets.UTF_8);
+            exchange.getResponseHeaders().set("Content-Type", "application/json");
+            exchange.sendResponseHeaders(201, body.length);
+            exchange.getResponseBody().write(body);
+            exchange.close();
+        });
+        server.start();
+
+        try {
+            String baseUrl = "http://127.0.0.1:" + server.getAddress().getPort();
+            Gr4vy client = Gr4vy.builder()
+                    .serverURL(baseUrl)
+                    .bearerAuth("test-token")
+                    .build();
+
+            assertThrows(IllegalStateException.class,
+                    () -> Auth.getEmbedTokenWithCheckoutSession(client, PRIVATE_KEY, null));
         } finally {
             server.stop(0);
         }

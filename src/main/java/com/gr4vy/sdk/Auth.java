@@ -244,7 +244,8 @@ public class Auth {
 
         String checkoutSessionId = response.checkoutSession()
                 .map(CheckoutSession::id)
-                .orElse(null);
+                .orElseThrow(() -> new IllegalStateException(
+                        "checkout session was created without an ID"));
 
         return getEmbedToken(privateKey, embedParams, checkoutSessionId);
     }
