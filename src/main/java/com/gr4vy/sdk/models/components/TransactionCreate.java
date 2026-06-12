@@ -211,6 +211,17 @@ public class TransactionCreate {
     private JsonNullable<String> previousSchemeTransactionId;
 
     /**
+     * A scheme's transaction link identifier to use in connecting a merchant initiated transaction to a
+     * previous customer initiated transaction. If not provided, and a qualifying customer initiated
+     * transaction has been previously made with the stored payment method, then Gr4vy will populate this
+     * value with the identifier returned for that transaction. This field is also know as the Mastercard
+     * Transaction Link ID (TLID).
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("previous_transaction_link_id")
+    private JsonNullable<String> previousTransactionLinkId;
+
+    /**
      * Information about the browser used by the buyer. This can be used by anti-fraud services.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -400,6 +411,7 @@ public class TransactionCreate {
             @JsonProperty("cart_items") JsonNullable<? extends List<CartItem>> cartItems,
             @JsonProperty("statement_descriptor") JsonNullable<? extends StatementDescriptor> statementDescriptor,
             @JsonProperty("previous_scheme_transaction_id") JsonNullable<String> previousSchemeTransactionId,
+            @JsonProperty("previous_transaction_link_id") JsonNullable<String> previousTransactionLinkId,
             @JsonProperty("browser_info") JsonNullable<? extends BrowserInfo> browserInfo,
             @JsonProperty("shipping_details_id") JsonNullable<String> shippingDetailsId,
             @JsonProperty("connection_options") JsonNullable<? extends TransactionConnectionOptions> connectionOptions,
@@ -441,6 +453,7 @@ public class TransactionCreate {
         Utils.checkNotNull(cartItems, "cartItems");
         Utils.checkNotNull(statementDescriptor, "statementDescriptor");
         Utils.checkNotNull(previousSchemeTransactionId, "previousSchemeTransactionId");
+        Utils.checkNotNull(previousTransactionLinkId, "previousTransactionLinkId");
         Utils.checkNotNull(browserInfo, "browserInfo");
         Utils.checkNotNull(shippingDetailsId, "shippingDetailsId");
         Utils.checkNotNull(connectionOptions, "connectionOptions");
@@ -482,6 +495,7 @@ public class TransactionCreate {
         this.cartItems = cartItems;
         this.statementDescriptor = statementDescriptor;
         this.previousSchemeTransactionId = previousSchemeTransactionId;
+        this.previousTransactionLinkId = previousTransactionLinkId;
         this.browserInfo = browserInfo;
         this.shippingDetailsId = shippingDetailsId;
         this.connectionOptions = connectionOptions;
@@ -515,12 +529,12 @@ public class TransactionCreate {
             Optional.empty(), Optional.empty(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
-            Optional.empty(), Optional.empty(), JsonNullable.undefined(),
+            JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
+            JsonNullable.undefined(), Optional.empty(), Optional.empty(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined());
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
     }
 
     /**
@@ -740,6 +754,18 @@ public class TransactionCreate {
     @JsonIgnore
     public JsonNullable<String> previousSchemeTransactionId() {
         return previousSchemeTransactionId;
+    }
+
+    /**
+     * A scheme's transaction link identifier to use in connecting a merchant initiated transaction to a
+     * previous customer initiated transaction. If not provided, and a qualifying customer initiated
+     * transaction has been previously made with the stored payment method, then Gr4vy will populate this
+     * value with the identifier returned for that transaction. This field is also know as the Mastercard
+     * Transaction Link ID (TLID).
+     */
+    @JsonIgnore
+    public JsonNullable<String> previousTransactionLinkId() {
+        return previousTransactionLinkId;
     }
 
     /**
@@ -1380,6 +1406,32 @@ public class TransactionCreate {
     }
 
     /**
+     * A scheme's transaction link identifier to use in connecting a merchant initiated transaction to a
+     * previous customer initiated transaction. If not provided, and a qualifying customer initiated
+     * transaction has been previously made with the stored payment method, then Gr4vy will populate this
+     * value with the identifier returned for that transaction. This field is also know as the Mastercard
+     * Transaction Link ID (TLID).
+     */
+    public TransactionCreate withPreviousTransactionLinkId(String previousTransactionLinkId) {
+        Utils.checkNotNull(previousTransactionLinkId, "previousTransactionLinkId");
+        this.previousTransactionLinkId = JsonNullable.of(previousTransactionLinkId);
+        return this;
+    }
+
+    /**
+     * A scheme's transaction link identifier to use in connecting a merchant initiated transaction to a
+     * previous customer initiated transaction. If not provided, and a qualifying customer initiated
+     * transaction has been previously made with the stored payment method, then Gr4vy will populate this
+     * value with the identifier returned for that transaction. This field is also know as the Mastercard
+     * Transaction Link ID (TLID).
+     */
+    public TransactionCreate withPreviousTransactionLinkId(JsonNullable<String> previousTransactionLinkId) {
+        Utils.checkNotNull(previousTransactionLinkId, "previousTransactionLinkId");
+        this.previousTransactionLinkId = previousTransactionLinkId;
+        return this;
+    }
+
+    /**
      * Information about the browser used by the buyer. This can be used by anti-fraud services.
      */
     public TransactionCreate withBrowserInfo(BrowserInfo browserInfo) {
@@ -1827,6 +1879,7 @@ public class TransactionCreate {
             Utils.enhancedDeepEquals(this.cartItems, other.cartItems) &&
             Utils.enhancedDeepEquals(this.statementDescriptor, other.statementDescriptor) &&
             Utils.enhancedDeepEquals(this.previousSchemeTransactionId, other.previousSchemeTransactionId) &&
+            Utils.enhancedDeepEquals(this.previousTransactionLinkId, other.previousTransactionLinkId) &&
             Utils.enhancedDeepEquals(this.browserInfo, other.browserInfo) &&
             Utils.enhancedDeepEquals(this.shippingDetailsId, other.shippingDetailsId) &&
             Utils.enhancedDeepEquals(this.connectionOptions, other.connectionOptions) &&
@@ -1859,13 +1912,13 @@ public class TransactionCreate {
             threeDSecure, metadata, isSubsequentPayment,
             merchantInitiated, paymentSource, airline,
             cartItems, statementDescriptor, previousSchemeTransactionId,
-            browserInfo, shippingDetailsId, connectionOptions,
-            asyncCapture, antiFraudFingerprint, paymentServiceId,
-            accountFundingTransaction, allowPartialAuthorization, recipient,
-            installmentCount, taxAmount, merchantTaxId,
-            purchaseOrderNumber, customerReferenceNumber, amountIncludesTax,
-            supplierOrderNumber, dutyAmount, shippingAmount,
-            integrationClient, approvalExpiresAt);
+            previousTransactionLinkId, browserInfo, shippingDetailsId,
+            connectionOptions, asyncCapture, antiFraudFingerprint,
+            paymentServiceId, accountFundingTransaction, allowPartialAuthorization,
+            recipient, installmentCount, taxAmount,
+            merchantTaxId, purchaseOrderNumber, customerReferenceNumber,
+            amountIncludesTax, supplierOrderNumber, dutyAmount,
+            shippingAmount, integrationClient, approvalExpiresAt);
     }
     
     @Override
@@ -1892,6 +1945,7 @@ public class TransactionCreate {
                 "cartItems", cartItems,
                 "statementDescriptor", statementDescriptor,
                 "previousSchemeTransactionId", previousSchemeTransactionId,
+                "previousTransactionLinkId", previousTransactionLinkId,
                 "browserInfo", browserInfo,
                 "shippingDetailsId", shippingDetailsId,
                 "connectionOptions", connectionOptions,
@@ -1958,6 +2012,8 @@ public class TransactionCreate {
         private JsonNullable<? extends StatementDescriptor> statementDescriptor = JsonNullable.undefined();
 
         private JsonNullable<String> previousSchemeTransactionId = JsonNullable.undefined();
+
+        private JsonNullable<String> previousTransactionLinkId = JsonNullable.undefined();
 
         private JsonNullable<? extends BrowserInfo> browserInfo = JsonNullable.undefined();
 
@@ -2462,6 +2518,33 @@ public class TransactionCreate {
 
 
         /**
+         * A scheme's transaction link identifier to use in connecting a merchant initiated transaction to a
+         * previous customer initiated transaction. If not provided, and a qualifying customer initiated
+         * transaction has been previously made with the stored payment method, then Gr4vy will populate this
+         * value with the identifier returned for that transaction. This field is also know as the Mastercard
+         * Transaction Link ID (TLID).
+         */
+        public Builder previousTransactionLinkId(String previousTransactionLinkId) {
+            Utils.checkNotNull(previousTransactionLinkId, "previousTransactionLinkId");
+            this.previousTransactionLinkId = JsonNullable.of(previousTransactionLinkId);
+            return this;
+        }
+
+        /**
+         * A scheme's transaction link identifier to use in connecting a merchant initiated transaction to a
+         * previous customer initiated transaction. If not provided, and a qualifying customer initiated
+         * transaction has been previously made with the stored payment method, then Gr4vy will populate this
+         * value with the identifier returned for that transaction. This field is also know as the Mastercard
+         * Transaction Link ID (TLID).
+         */
+        public Builder previousTransactionLinkId(JsonNullable<String> previousTransactionLinkId) {
+            Utils.checkNotNull(previousTransactionLinkId, "previousTransactionLinkId");
+            this.previousTransactionLinkId = previousTransactionLinkId;
+            return this;
+        }
+
+
+        /**
          * Information about the browser used by the buyer. This can be used by anti-fraud services.
          */
         public Builder browserInfo(BrowserInfo browserInfo) {
@@ -2922,13 +3005,13 @@ public class TransactionCreate {
                 threeDSecure, metadata, isSubsequentPayment,
                 merchantInitiated, paymentSource, airline,
                 cartItems, statementDescriptor, previousSchemeTransactionId,
-                browserInfo, shippingDetailsId, connectionOptions,
-                asyncCapture, antiFraudFingerprint, paymentServiceId,
-                accountFundingTransaction, allowPartialAuthorization, recipient,
-                installmentCount, taxAmount, merchantTaxId,
-                purchaseOrderNumber, customerReferenceNumber, amountIncludesTax,
-                supplierOrderNumber, dutyAmount, shippingAmount,
-                integrationClient, approvalExpiresAt);
+                previousTransactionLinkId, browserInfo, shippingDetailsId,
+                connectionOptions, asyncCapture, antiFraudFingerprint,
+                paymentServiceId, accountFundingTransaction, allowPartialAuthorization,
+                recipient, installmentCount, taxAmount,
+                merchantTaxId, purchaseOrderNumber, customerReferenceNumber,
+                amountIncludesTax, supplierOrderNumber, dutyAmount,
+                shippingAmount, integrationClient, approvalExpiresAt);
         }
 
 

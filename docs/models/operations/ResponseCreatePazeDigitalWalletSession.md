@@ -1,0 +1,4 @@
+# ResponseCreatePazeDigitalWalletSession
+
+Successful Response
+

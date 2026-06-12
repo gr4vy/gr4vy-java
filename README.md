@@ -59,7 +59,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'com.gr4vy:sdk:2.16.61'
+implementation 'com.gr4vy:sdk:2.16.85'
 ```
 
 Maven:
@@ -67,7 +67,7 @@ Maven:
 <dependency>
     <groupId>com.gr4vy</groupId>
     <artifactId>sdk</artifactId>
-    <version>2.16.61</version>
+    <version>2.16.85</version>
 </dependency>
 ```
 
@@ -390,6 +390,10 @@ Async support is available for:
 
 * [googlePay](docs/sdks/sessions/README.md#googlepay) - Create a Google Pay session
 * [applePay](docs/sdks/sessions/README.md#applepay) - Create a Apple Pay session
+* [pazeMobileSessionCreate](docs/sdks/sessions/README.md#pazemobilesessioncreate) - Create a Paze mobile session
+* [paze](docs/sdks/sessions/README.md#paze) - Create a Paze session
+* [pazeMobileSessionReview](docs/sdks/sessions/README.md#pazemobilesessionreview) - Review a Paze session
+* [pazeMobileSessionComplete](docs/sdks/sessions/README.md#pazemobilesessioncomplete) - Complete a Paze session
 * [clickToPay](docs/sdks/sessions/README.md#clicktopay) - Create a Click to Pay session
 
 ### [GiftCards](docs/sdks/giftcards/README.md)
@@ -518,6 +522,11 @@ Async support is available for:
 #### [Transactions.Actions](docs/sdks/actions/README.md)
 
 * [list](docs/sdks/actions/README.md#list) - List transaction Flow rules
+
+#### [Transactions.Captures](docs/sdks/captures/README.md)
+
+* [list](docs/sdks/captures/README.md#list) - List transaction captures
+* [get](docs/sdks/captures/README.md#get) - Get transaction capture
 
 #### [Transactions.Events](docs/sdks/events/README.md)
 

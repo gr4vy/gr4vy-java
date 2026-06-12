@@ -1449,3 +1449,243 @@ Based on:
 - [java v2.16.61] .
 ### Releases
 - [Maven Central v2.16.61] https://central.sonatype.com/artifact/com.gr4vy/sdk/2.16.61 - .
+
+## 2026-05-08 00:28:18
+### Changes
+Based on:
+- OpenAPI Doc  
+- Speakeasy CLI 1.762.0 (2.882.0) https://github.com/speakeasy-api/speakeasy
+### Generated
+- [java v2.16.62] .
+### Releases
+- [Maven Central v2.16.62] https://central.sonatype.com/artifact/com.gr4vy/sdk/2.16.62 - .
+
+## 2026-05-13 08:36:19
+### Changes
+Based on:
+- OpenAPI Doc  
+- Speakeasy CLI 1.762.0 (2.882.0) https://github.com/speakeasy-api/speakeasy
+### Generated
+- [java v2.16.63] .
+### Releases
+- [Maven Central v2.16.63] https://central.sonatype.com/artifact/com.gr4vy/sdk/2.16.63 - .
+
+## 2026-05-15 08:47:22
+### Changes
+Based on:
+- OpenAPI Doc  
+- Speakeasy CLI 1.763.1 (2.884.4) https://github.com/speakeasy-api/speakeasy
+### Generated
+- [java v2.16.64] .
+### Releases
+- [Maven Central v2.16.64] https://central.sonatype.com/artifact/com.gr4vy/sdk/2.16.64 - .
+
+## 2026-05-18 10:37:08
+### Changes
+Based on:
+- OpenAPI Doc  
+- Speakeasy CLI 1.763.1 (2.884.4) https://github.com/speakeasy-api/speakeasy
+### Generated
+- [java v2.16.65] .
+### Releases
+- [Maven Central v2.16.65] https://central.sonatype.com/artifact/com.gr4vy/sdk/2.16.65 - .
+
+## 2026-05-19 14:58:56
+### Changes
+Based on:
+- OpenAPI Doc  
+- Speakeasy CLI 1.763.1 (2.884.4) https://github.com/speakeasy-api/speakeasy
+### Generated
+- [java v2.16.66] .
+### Releases
+- [Maven Central v2.16.66] https://central.sonatype.com/artifact/com.gr4vy/sdk/2.16.66 - .
+
+## 2026-05-19 18:18:26
+### Changes
+Based on:
+- OpenAPI Doc  
+- Speakeasy CLI 1.763.2 (2.884.4) https://github.com/speakeasy-api/speakeasy
+### Generated
+- [java v2.16.67] .
+### Releases
+- [Maven Central v2.16.67] https://central.sonatype.com/artifact/com.gr4vy/sdk/2.16.67 - .
+
+## 2026-05-20 08:29:06
+### Changes
+Based on:
+- OpenAPI Doc  
+- Speakeasy CLI 1.763.3 (2.884.7) https://github.com/speakeasy-api/speakeasy
+### Generated
+- [java v2.16.68] .
+### Releases
+- [Maven Central v2.16.68] https://central.sonatype.com/artifact/com.gr4vy/sdk/2.16.68 - .
+
+## 2026-05-20 09:50:11
+### Changes
+Based on:
+- OpenAPI Doc  
+- Speakeasy CLI 1.763.3 (2.884.7) https://github.com/speakeasy-api/speakeasy
+### Generated
+- [java v2.16.69] .
+### Releases
+- [Maven Central v2.16.69] https://central.sonatype.com/artifact/com.gr4vy/sdk/2.16.69 - .
+
+## 2026-05-21 08:17:39
+### Changes
+Based on:
+- OpenAPI Doc  
+- Speakeasy CLI 1.763.4 (2.884.11) https://github.com/speakeasy-api/speakeasy
+### Generated
+- [java v2.16.70] .
+### Releases
+- [Maven Central v2.16.70] https://central.sonatype.com/artifact/com.gr4vy/sdk/2.16.70 - .
+
+## 2026-05-21 12:23:09
+### Changes
+Based on:
+- OpenAPI Doc  
+- Speakeasy CLI 1.763.5 (2.884.11) https://github.com/speakeasy-api/speakeasy
+### Generated
+- [java v2.16.71] .
+### Releases
+- [Maven Central v2.16.71] https://central.sonatype.com/artifact/com.gr4vy/sdk/2.16.71 - .
+
+## 2026-05-21 13:51:09
+### Changes
+Based on:
+- OpenAPI Doc  
+- Speakeasy CLI 1.763.5 (2.884.11) https://github.com/speakeasy-api/speakeasy
+### Generated
+- [java v2.16.72] .
+### Releases
+- [Maven Central v2.16.72] https://central.sonatype.com/artifact/com.gr4vy/sdk/2.16.72 - .
+
+## 2026-05-25 07:24:56
+### Changes
+Based on:
+- OpenAPI Doc  
+- Speakeasy CLI 1.764.1 (2.885.1) https://github.com/speakeasy-api/speakeasy
+### Generated
+- [java v2.16.73] .
+### Releases
+- [Maven Central v2.16.73] https://central.sonatype.com/artifact/com.gr4vy/sdk/2.16.73 - .
+
+## 2026-05-26 14:16:36
+### Changes
+Based on:
+- OpenAPI Doc  
+- Speakeasy CLI 1.766.0 (2.887.0) https://github.com/speakeasy-api/speakeasy
+### Generated
+- [java v2.16.74] .
+### Releases
+- [Maven Central v2.16.74] https://central.sonatype.com/artifact/com.gr4vy/sdk/2.16.74 - .
+
+## 2026-05-27 09:16:14
+### Changes
+Based on:
+- OpenAPI Doc  
+- Speakeasy CLI 1.767.0 (2.888.0) https://github.com/speakeasy-api/speakeasy
+### Generated
+- [java v2.16.75] .
+### Releases
+- [Maven Central v2.16.75] https://central.sonatype.com/artifact/com.gr4vy/sdk/2.16.75 - .
+
+## 2026-05-27 15:34:05
+### Changes
+Based on:
+- OpenAPI Doc  
+- Speakeasy CLI 1.768.0 (2.889.1) https://github.com/speakeasy-api/speakeasy
+### Generated
+- [java v2.16.76] .
+### Releases
+- [Maven Central v2.16.76] https://central.sonatype.com/artifact/com.gr4vy/sdk/2.16.76 - .
+
+## 2026-05-27 15:46:47
+### Changes
+Based on:
+- OpenAPI Doc  
+- Speakeasy CLI 1.768.0 (2.889.1) https://github.com/speakeasy-api/speakeasy
+### Generated
+- [java v2.16.77] .
+### Releases
+- [Maven Central v2.16.77] https://central.sonatype.com/artifact/com.gr4vy/sdk/2.16.77 - .
+
+## 2026-05-28 12:34:23
+### Changes
+Based on:
+- OpenAPI Doc  
+- Speakeasy CLI 1.768.2 (2.889.1) https://github.com/speakeasy-api/speakeasy
+### Generated
+- [java v2.16.78] .
+### Releases
+- [Maven Central v2.16.78] https://central.sonatype.com/artifact/com.gr4vy/sdk/2.16.78 - .
+
+## 2026-06-02 08:16:36
+### Changes
+Based on:
+- OpenAPI Doc  
+- Speakeasy CLI 1.769.2 (2.892.5) https://github.com/speakeasy-api/speakeasy
+### Generated
+- [java v2.16.79] .
+### Releases
+- [Maven Central v2.16.79] https://central.sonatype.com/artifact/com.gr4vy/sdk/2.16.79 - .
+
+## 2026-06-08 15:15:39
+### Changes
+Based on:
+- OpenAPI Doc  
+- Speakeasy CLI 1.772.0 (2.896.0) https://github.com/speakeasy-api/speakeasy
+### Generated
+- [java v2.16.80] .
+### Releases
+- [Maven Central v2.16.80] https://central.sonatype.com/artifact/com.gr4vy/sdk/2.16.80 - .
+
+## 2026-06-08 15:26:22
+### Changes
+Based on:
+- OpenAPI Doc  
+- Speakeasy CLI 1.772.0 (2.896.0) https://github.com/speakeasy-api/speakeasy
+### Generated
+- [java v2.16.81] .
+### Releases
+- [Maven Central v2.16.81] https://central.sonatype.com/artifact/com.gr4vy/sdk/2.16.81 - .
+
+## 2026-06-09 09:36:03
+### Changes
+Based on:
+- OpenAPI Doc  
+- Speakeasy CLI 1.773.1 (2.897.1) https://github.com/speakeasy-api/speakeasy
+### Generated
+- [java v2.16.82] .
+### Releases
+- [Maven Central v2.16.82] https://central.sonatype.com/artifact/com.gr4vy/sdk/2.16.82 - .
+
+## 2026-06-11 08:36:13
+### Changes
+Based on:
+- OpenAPI Doc  
+- Speakeasy CLI 1.776.0 (2.900.1) https://github.com/speakeasy-api/speakeasy
+### Generated
+- [java v2.16.83] .
+### Releases
+- [Maven Central v2.16.83] https://central.sonatype.com/artifact/com.gr4vy/sdk/2.16.83 - .
+
+## 2026-06-11 13:37:44
+### Changes
+Based on:
+- OpenAPI Doc  
+- Speakeasy CLI 1.776.0 (2.900.1) https://github.com/speakeasy-api/speakeasy
+### Generated
+- [java v2.16.84] .
+### Releases
+- [Maven Central v2.16.84] https://central.sonatype.com/artifact/com.gr4vy/sdk/2.16.84 - .
+
+## 2026-06-12 00:40:46
+### Changes
+Based on:
+- OpenAPI Doc  
+- Speakeasy CLI 1.777.1 (2.903.2) https://github.com/speakeasy-api/speakeasy
+### Generated
+- [java v2.16.85] .
+### Releases
+- [Maven Central v2.16.85] https://central.sonatype.com/artifact/com.gr4vy/sdk/2.16.85 - .

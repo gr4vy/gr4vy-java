@@ -46,23 +46,32 @@ public class DefinitionField {
     @JsonProperty("secret")
     private boolean secret;
 
+    /**
+     * Defines if this field can be verified through the verify credentials button.
+     */
+    @JsonProperty("verifiable")
+    private boolean verifiable;
+
     @JsonCreator
     public DefinitionField(
             @JsonProperty("key") String key,
             @JsonProperty("display_name") String displayName,
             @JsonProperty("required") boolean required,
             @JsonProperty("format") DefinitionFieldFormat format,
-            @JsonProperty("secret") boolean secret) {
+            @JsonProperty("secret") boolean secret,
+            @JsonProperty("verifiable") boolean verifiable) {
         Utils.checkNotNull(key, "key");
         Utils.checkNotNull(displayName, "displayName");
         Utils.checkNotNull(required, "required");
         Utils.checkNotNull(format, "format");
         Utils.checkNotNull(secret, "secret");
+        Utils.checkNotNull(verifiable, "verifiable");
         this.key = key;
         this.displayName = displayName;
         this.required = required;
         this.format = format;
         this.secret = secret;
+        this.verifiable = verifiable;
     }
 
     /**
@@ -101,6 +110,14 @@ public class DefinitionField {
     @JsonIgnore
     public boolean secret() {
         return secret;
+    }
+
+    /**
+     * Defines if this field can be verified through the verify credentials button.
+     */
+    @JsonIgnore
+    public boolean verifiable() {
+        return verifiable;
     }
 
     public static Builder builder() {
@@ -151,6 +168,15 @@ public class DefinitionField {
         return this;
     }
 
+    /**
+     * Defines if this field can be verified through the verify credentials button.
+     */
+    public DefinitionField withVerifiable(boolean verifiable) {
+        Utils.checkNotNull(verifiable, "verifiable");
+        this.verifiable = verifiable;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -165,14 +191,15 @@ public class DefinitionField {
             Utils.enhancedDeepEquals(this.displayName, other.displayName) &&
             Utils.enhancedDeepEquals(this.required, other.required) &&
             Utils.enhancedDeepEquals(this.format, other.format) &&
-            Utils.enhancedDeepEquals(this.secret, other.secret);
+            Utils.enhancedDeepEquals(this.secret, other.secret) &&
+            Utils.enhancedDeepEquals(this.verifiable, other.verifiable);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
             key, displayName, required,
-            format, secret);
+            format, secret, verifiable);
     }
     
     @Override
@@ -182,7 +209,8 @@ public class DefinitionField {
                 "displayName", displayName,
                 "required", required,
                 "format", format,
-                "secret", secret);
+                "secret", secret,
+                "verifiable", verifiable);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -197,6 +225,8 @@ public class DefinitionField {
         private DefinitionFieldFormat format;
 
         private Boolean secret;
+
+        private Boolean verifiable;
 
         private Builder() {
           // force use of static builder() method
@@ -250,11 +280,21 @@ public class DefinitionField {
             return this;
         }
 
+
+        /**
+         * Defines if this field can be verified through the verify credentials button.
+         */
+        public Builder verifiable(boolean verifiable) {
+            Utils.checkNotNull(verifiable, "verifiable");
+            this.verifiable = verifiable;
+            return this;
+        }
+
         public DefinitionField build() {
 
             return new DefinitionField(
                 key, displayName, required,
-                format, secret);
+                format, secret, verifiable);
         }
 
     }

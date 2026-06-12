@@ -26,11 +26,11 @@ Method custom = Method.of("custom_value");
 | `BACS`               | bacs                 |
 | `BANCONTACT`         | bancontact           |
 | `BANK`               | bank                 |
-| `BANKED`             | banked               |
 | `BCP`                | bcp                  |
 | `BECS`               | becs                 |
 | `BITPAY`             | bitpay               |
 | `BLIK`               | blik                 |
+| `ACH`                | ach                  |
 | `BOLETO`             | boleto               |
 | `BOOST`              | boost                |
 | `BREB`               | breb                 |
@@ -40,6 +40,9 @@ Method custom = Method.of("custom_value");
 | `CHASEORBITAL`       | chaseorbital         |
 | `CLEARPAY`           | clearpay             |
 | `CLICK_TO_PAY`       | click-to-pay         |
+| `CUSTOM_PUSH`        | custom_push          |
+| `CUSTOM_REDIRECT`    | custom_redirect      |
+| `CUSTOM_TOKENIZE`    | custom_tokenize      |
 | `DANA`               | dana                 |
 | `DCB`                | dcb                  |
 | `DLOCAL`             | dlocal               |
@@ -60,10 +63,12 @@ Method custom = Method.of("custom_value");
 | `GOPAY`              | gopay                |
 | `GRABPAY`            | grabpay              |
 | `IDEAL`              | ideal                |
+| `INTERAC`            | interac              |
 | `KAKAOPAY`           | kakaopay             |
 | `KCP`                | kcp                  |
 | `KHIPU`              | khipu                |
 | `KLARNA`             | klarna               |
+| `KONBINI`            | konbini              |
 | `LATITUDE`           | latitude             |
 | `LATITUDEDS`         | latitudeds           |
 | `LAYBUY`             | laybuy               |
@@ -87,8 +92,10 @@ Method custom = Method.of("custom_value");
 | `OXXO`               | oxxo                 |
 | `P24`                | p24                  |
 | `PAGOEFECTIVO`       | pagoefectivo         |
+| `PAYBYBANK`          | paybybank            |
 | `PAYID`              | payid                |
 | `PAYMAYA`            | paymaya              |
+| `PAYSQUAD`           | paysquad             |
 | `PAYPAL`             | paypal               |
 | `PAYPALPAYLATER`     | paypalpaylater       |
 | `PAYPAY`             | paypay               |
@@ -106,6 +113,7 @@ Method custom = Method.of("custom_value");
 | `SCALAPAY`           | scalapay             |
 | `SEPA`               | sepa                 |
 | `SERVIPAG`           | servipag             |
+| `SEVENELEVEN`        | seveneleven          |
 | `SHOPEEPAY`          | shopeepay            |
 | `SINGTELDASH`        | singteldash          |
 | `SMARTPAY`           | smartpay             |

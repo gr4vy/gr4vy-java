@@ -26,7 +26,6 @@ RedirectPaymentMethodCreateMethod custom = RedirectPaymentMethodCreateMethod.of(
 | `ARCUSPAYNETWORK` | arcuspaynetwork   |
 | `BACS`            | bacs              |
 | `BANCONTACT`      | bancontact        |
-| `BANKED`          | banked            |
 | `BCP`             | bcp               |
 | `BECS`            | becs              |
 | `BITPAY`          | bitpay            |
@@ -34,9 +33,13 @@ RedirectPaymentMethodCreateMethod custom = RedirectPaymentMethodCreateMethod.of(
 | `BOLETO`          | boleto            |
 | `BOOST`           | boost             |
 | `BREB`            | breb              |
+| `ACH`             | ach               |
 | `CAPITEC`         | capitec           |
 | `CASHAPP`         | cashapp           |
 | `CLEARPAY`        | clearpay          |
+| `CUSTOM_PUSH`     | custom_push       |
+| `CUSTOM_REDIRECT` | custom_redirect   |
+| `CUSTOM_TOKENIZE` | custom_tokenize   |
 | `DANA`            | dana              |
 | `DCB`             | dcb               |
 | `DLOCAL`          | dlocal            |
@@ -54,10 +57,12 @@ RedirectPaymentMethodCreateMethod custom = RedirectPaymentMethodCreateMethod.of(
 | `GOPAY`           | gopay             |
 | `GRABPAY`         | grabpay           |
 | `IDEAL`           | ideal             |
+| `INTERAC`         | interac           |
 | `KAKAOPAY`        | kakaopay          |
 | `KCP`             | kcp               |
 | `KHIPU`           | khipu             |
 | `KLARNA`          | klarna            |
+| `KONBINI`         | konbini           |
 | `LATITUDE`        | latitude          |
 | `LATITUDEDS`      | latitudeds        |
 | `LAYBUY`          | laybuy            |
@@ -80,8 +85,10 @@ RedirectPaymentMethodCreateMethod custom = RedirectPaymentMethodCreateMethod.of(
 | `OXXO`            | oxxo              |
 | `P24`             | p24               |
 | `PAGOEFECTIVO`    | pagoefectivo      |
+| `PAYBYBANK`       | paybybank         |
 | `PAYID`           | payid             |
 | `PAYMAYA`         | paymaya           |
+| `PAYSQUAD`        | paysquad          |
 | `PAYPAL`          | paypal            |
 | `PAYPALPAYLATER`  | paypalpaylater    |
 | `PAYPAY`          | paypay            |
@@ -97,6 +104,7 @@ RedirectPaymentMethodCreateMethod custom = RedirectPaymentMethodCreateMethod.of(
 | `SCALAPAY`        | scalapay          |
 | `SEPA`            | sepa              |
 | `SERVIPAG`        | servipag          |
+| `SEVENELEVEN`     | seveneleven       |
 | `SHOPEEPAY`       | shopeepay         |
 | `SINGTELDASH`     | singteldash       |
 | `SMARTPAY`        | smartpay          |
