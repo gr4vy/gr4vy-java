@@ -212,8 +212,8 @@ public class AuthTest {
     void testGetEmbedTokenWithCheckoutSessionThrowsOnMissingId() throws Exception {
         HttpServer server = HttpServer.create(new InetSocketAddress("127.0.0.1", 0), 0);
         server.createContext("/checkout/sessions", exchange -> {
-            // Response has no id field — simulates an API response without a checkout session id.
-            byte[] body = ("{\"type\":\"checkout-session\",\"expires_at\":\"2026-01-01T00:00:00Z\"}")
+            // Response has an empty id — simulates a checkout session created without a usable id.
+            byte[] body = ("{\"type\":\"checkout-session\",\"id\":\"\",\"expires_at\":\"2026-01-01T00:00:00Z\"}")
                     .getBytes(StandardCharsets.UTF_8);
             exchange.getResponseHeaders().set("Content-Type", "application/json");
             exchange.sendResponseHeaders(201, body.length);

@@ -244,6 +244,7 @@ public class Auth {
 
         String checkoutSessionId = response.checkoutSession()
                 .map(CheckoutSession::id)
+                .filter(id -> !id.isBlank())
                 .orElseThrow(() -> new IllegalStateException(
                         "checkout session was created without an ID"));
 
