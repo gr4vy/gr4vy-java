@@ -3,17 +3,22 @@ package com.gr4vy.sdk;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.interfaces.Claim;
 import com.auth0.jwt.interfaces.DecodedJWT;
+import com.sun.net.httpserver.HttpServer;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.net.InetSocketAddress;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -163,6 +168,72 @@ public class AuthTest {
         JSONObject embedParamsJson = new JSONObject(embedParamsString);
         assertEquals(toMap(embedParamsJson), embedParams);
         assertEquals(claims.get("checkout_session_id").toString(), "\"" + CHECKOUT_SESSION_ID + "\"");
+    }
+
+    @Test
+    void testGetEmbedTokenWithCheckoutSession() throws Exception {
+        AtomicInteger createCalls = new AtomicInteger(0);
+        HttpServer server = HttpServer.create(new InetSocketAddress("127.0.0.1", 0), 0);
+        server.createContext("/checkout/sessions", exchange -> {
+            createCalls.incrementAndGet();
+            byte[] body = ("{\"type\":\"checkout-session\",\"id\":\"" + CHECKOUT_SESSION_ID
+                    + "\",\"expires_at\":\"2026-01-01T00:00:00Z\"}")
+                    .getBytes(StandardCharsets.UTF_8);
+            exchange.getResponseHeaders().set("Content-Type", "application/json");
+            exchange.sendResponseHeaders(201, body.length);
+            exchange.getResponseBody().write(body);
+            exchange.close();
+        });
+        server.start();
+
+        try {
+            String baseUrl = "http://127.0.0.1:" + server.getAddress().getPort();
+            Gr4vy client = Gr4vy.builder()
+                    .serverURL(baseUrl)
+                    .bearerAuth("test-token")
+                    .build();
+
+            JSONObject jsonObject = new JSONObject(EMBED_PARAMS);
+            Map<String, Object> embedParams = toMap(jsonObject);
+
+            String token = Auth.getEmbedTokenWithCheckoutSession(client, PRIVATE_KEY, embedParams);
+            DecodedJWT decodedJWT = JWT.decode(token);
+
+            Map<String, Claim> claims = decodedJWT.getClaims();
+            assertEquals(1, createCalls.get());
+            assertEquals(claims.get("scopes").toString(), "[\"" + JWTScope.EMBED.toString() + "\"]");
+            assertEquals(claims.get("checkout_session_id").toString(), "\"" + CHECKOUT_SESSION_ID + "\"");
+        } finally {
+            server.stop(0);
+        }
+    }
+
+    @Test
+    void testGetEmbedTokenWithCheckoutSessionThrowsOnMissingId() throws Exception {
+        HttpServer server = HttpServer.create(new InetSocketAddress("127.0.0.1", 0), 0);
+        server.createContext("/checkout/sessions", exchange -> {
+            // Response has an empty id — simulates a checkout session created without a usable id.
+            byte[] body = ("{\"type\":\"checkout-session\",\"id\":\"\",\"expires_at\":\"2026-01-01T00:00:00Z\"}")
+                    .getBytes(StandardCharsets.UTF_8);
+            exchange.getResponseHeaders().set("Content-Type", "application/json");
+            exchange.sendResponseHeaders(201, body.length);
+            exchange.getResponseBody().write(body);
+            exchange.close();
+        });
+        server.start();
+
+        try {
+            String baseUrl = "http://127.0.0.1:" + server.getAddress().getPort();
+            Gr4vy client = Gr4vy.builder()
+                    .serverURL(baseUrl)
+                    .bearerAuth("test-token")
+                    .build();
+
+            assertThrows(IllegalStateException.class,
+                    () -> Auth.getEmbedTokenWithCheckoutSession(client, PRIVATE_KEY, null));
+        } finally {
+            server.stop(0);
+        }
     }
 
     @Test

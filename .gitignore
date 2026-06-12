@@ -28,3 +28,4 @@ bin/
 *.jpg   binary
 *.png   binary
 *.vsd   binary
+coverage/

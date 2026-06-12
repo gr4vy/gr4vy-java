@@ -163,6 +163,42 @@ String token = Auth.getEmbedToken(privateKey, embedParams, checkoutSessionId);
 > **Note:** This will only create a token once. Use `securitySource` when initializing the SDK 
 > to dynamically generate a token for every request.
 
+### Attaching a checkout session automatically
+
+For Embed, it is recommended to attach a checkout session to every transaction. The
+`Auth.getEmbedTokenWithCheckoutSession` helper creates a checkout session using your SDK client and
+returns an Embed token with the resulting `checkout_session_id` already pinned, in a single call.
+
+```java
+import com.gr4vy.sdk.Auth;
+import com.gr4vy.sdk.BearerSecuritySource;
+import com.gr4vy.sdk.Gr4vy;
+import com.gr4vy.sdk.Gr4vy.AvailableServers;
+
+import java.util.HashMap;
+import java.util.Map;
+
+String privateKey = "-----BEGIN PRIVATE KEY-----\n...."; // a valid private key
+
+Gr4vy client = Gr4vy.builder()
+    .id("example")
+    .server(AvailableServers.SANDBOX)
+    .securitySource(new BearerSecuritySource.Builder(privateKey).build())
+    .merchantAccountId("default")
+    .build();
+
+Map<String, Object> embedParams = new HashMap<>();
+embedParams.put("amount", 1299);
+embedParams.put("currency", "USD");
+embedParams.put("buyer_external_identifier", "user-1234");
+
+String token = Auth.getEmbedTokenWithCheckoutSession(client, privateKey, embedParams);
+```
+
+You can optionally pass a `CheckoutSessionCreate` body to seed the session (for example with cart
+items or metadata), and a merchant account ID to override the client's configured merchant account,
+using the overload `getEmbedTokenWithCheckoutSession(client, privateKey, embedParams, body, merchantAccountId)`.
+
 ## Merchant account ID selection
 
 Depending on the key used, you might need to explicitly define a merchant account ID to use. In our API, 
