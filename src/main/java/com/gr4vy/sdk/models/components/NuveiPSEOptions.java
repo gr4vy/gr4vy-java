@@ -23,14 +23,14 @@ public class NuveiPSEOptions {
     private JsonNullable<String> userType;
 
     /**
-     * Customer’s document type
+     * Customer's document type
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("userFisNumber")
     private JsonNullable<String> userFisNumber;
 
     /**
-     * Customer’s document number
+     * Customer's document number
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("fiscalNumber")
@@ -73,7 +73,7 @@ public class NuveiPSEOptions {
     }
 
     /**
-     * Customer’s document type
+     * Customer's document type
      */
     @JsonIgnore
     public JsonNullable<String> userFisNumber() {
@@ -81,7 +81,7 @@ public class NuveiPSEOptions {
     }
 
     /**
-     * Customer’s document number
+     * Customer's document number
      */
     @JsonIgnore
     public JsonNullable<String> fiscalNumber() {
@@ -120,7 +120,7 @@ public class NuveiPSEOptions {
     }
 
     /**
-     * Customer’s document type
+     * Customer's document type
      */
     public NuveiPSEOptions withUserFisNumber(String userFisNumber) {
         Utils.checkNotNull(userFisNumber, "userFisNumber");
@@ -129,7 +129,7 @@ public class NuveiPSEOptions {
     }
 
     /**
-     * Customer’s document type
+     * Customer's document type
      */
     public NuveiPSEOptions withUserFisNumber(JsonNullable<String> userFisNumber) {
         Utils.checkNotNull(userFisNumber, "userFisNumber");
@@ -138,7 +138,7 @@ public class NuveiPSEOptions {
     }
 
     /**
-     * Customer’s document number
+     * Customer's document number
      */
     public NuveiPSEOptions withFiscalNumber(String fiscalNumber) {
         Utils.checkNotNull(fiscalNumber, "fiscalNumber");
@@ -147,7 +147,7 @@ public class NuveiPSEOptions {
     }
 
     /**
-     * Customer’s document number
+     * Customer's document number
      */
     public NuveiPSEOptions withFiscalNumber(JsonNullable<String> fiscalNumber) {
         Utils.checkNotNull(fiscalNumber, "fiscalNumber");
@@ -241,7 +241,7 @@ public class NuveiPSEOptions {
 
 
         /**
-         * Customer’s document type
+         * Customer's document type
          */
         public Builder userFisNumber(String userFisNumber) {
             Utils.checkNotNull(userFisNumber, "userFisNumber");
@@ -250,7 +250,7 @@ public class NuveiPSEOptions {
         }
 
         /**
-         * Customer’s document type
+         * Customer's document type
          */
         public Builder userFisNumber(JsonNullable<String> userFisNumber) {
             Utils.checkNotNull(userFisNumber, "userFisNumber");
@@ -260,7 +260,7 @@ public class NuveiPSEOptions {
 
 
         /**
-         * Customer’s document number
+         * Customer's document number
          */
         public Builder fiscalNumber(String fiscalNumber) {
             Utils.checkNotNull(fiscalNumber, "fiscalNumber");
@@ -269,7 +269,7 @@ public class NuveiPSEOptions {
         }
 
         /**
-         * Customer’s document number
+         * Customer's document number
          */
         public Builder fiscalNumber(JsonNullable<String> fiscalNumber) {
             Utils.checkNotNull(fiscalNumber, "fiscalNumber");
