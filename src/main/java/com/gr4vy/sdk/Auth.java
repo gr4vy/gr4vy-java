@@ -4,6 +4,10 @@ import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTDecodeException;
 import com.auth0.jwt.interfaces.DecodedJWT;
+import com.gr4vy.sdk.models.components.CheckoutSession;
+import com.gr4vy.sdk.models.components.CheckoutSessionCreate;
+import com.gr4vy.sdk.models.operations.CreateCheckoutSessionResponse;
+import org.openapitools.jackson.nullable.JsonNullable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -193,5 +197,55 @@ public class Auth {
             String checkoutSessionId
     ) {
         return getToken(privateKey, Arrays.asList(JWTScope.EMBED), 3600, embedParams, checkoutSessionId);
+    }
+
+    /**
+     * Creates a checkout session and returns an Embed token with its ID pinned.
+     *
+     * <p>This is a convenience wrapper around {@link #getEmbedToken} for the common Embed flow
+     * where every transaction should be tied to a checkout session. It uses the provided
+     * (already authenticated) SDK client to create the checkout session, then signs an Embed
+     * token that pins the resulting {@code checkout_session_id}.
+     *
+     * @param client An authenticated Gr4vy SDK client.
+     * @param privateKey The EC private key in string-PEM format.
+     * @param embedParams An optional map of Embed params to pin. Defaults to null.
+     * @return A bearer auth token for use with Embed.
+     */
+    public static String getEmbedTokenWithCheckoutSession(
+            Gr4vy client,
+            String privateKey,
+            Map<String, Object> embedParams
+    ) {
+        return getEmbedTokenWithCheckoutSession(client, privateKey, embedParams, null, null);
+    }
+
+    /**
+     * Creates a checkout session and returns an Embed token with its ID pinned.
+     *
+     * @param client An authenticated Gr4vy SDK client.
+     * @param privateKey The EC private key in string-PEM format.
+     * @param embedParams An optional map of Embed params to pin. Defaults to null.
+     * @param body An optional checkout session body to seed cart items, metadata, and so on. Defaults to null.
+     * @param merchantAccountId An optional merchant account ID override. Defaults to the client's configured one.
+     * @return A bearer auth token for use with Embed.
+     */
+    public static String getEmbedTokenWithCheckoutSession(
+            Gr4vy client,
+            String privateKey,
+            Map<String, Object> embedParams,
+            CheckoutSessionCreate body,
+            String merchantAccountId
+    ) {
+        CreateCheckoutSessionResponse response = client.checkoutSessions().create(
+                merchantAccountId == null ? JsonNullable.undefined() : JsonNullable.of(merchantAccountId),
+                body == null ? Optional.empty() : Optional.of(body)
+        );
+
+        String checkoutSessionId = response.checkoutSession()
+                .map(CheckoutSession::id)
+                .orElse(null);
+
+        return getEmbedToken(privateKey, embedParams, checkoutSessionId);
     }
 }
