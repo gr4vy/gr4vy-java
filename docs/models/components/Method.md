@@ -37,6 +37,7 @@ Method custom = Method.of("custom_value");
 | `CAPITEC`            | capitec              |
 | `CARD`               | card                 |
 | `CASHAPP`            | cashapp              |
+| `CASHAPPAFTERPAY`    | cashappafterpay      |
 | `CHASEORBITAL`       | chaseorbital         |
 | `CLEARPAY`           | clearpay             |
 | `CLICK_TO_PAY`       | click-to-pay         |

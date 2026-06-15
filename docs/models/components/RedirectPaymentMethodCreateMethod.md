@@ -36,6 +36,7 @@ RedirectPaymentMethodCreateMethod custom = RedirectPaymentMethodCreateMethod.of(
 | `ACH`             | ach               |
 | `CAPITEC`         | capitec           |
 | `CASHAPP`         | cashapp           |
+| `CASHAPPAFTERPAY` | cashappafterpay   |
 | `CLEARPAY`        | clearpay          |
 | `CUSTOM_PUSH`     | custom_push       |
 | `CUSTOM_REDIRECT` | custom_redirect   |
