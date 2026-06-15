@@ -41,6 +41,7 @@ public class Method {
     public static final Method CAPITEC = new Method("capitec");
     public static final Method CARD = new Method("card");
     public static final Method CASHAPP = new Method("cashapp");
+    public static final Method CASHAPPAFTERPAY = new Method("cashappafterpay");
     public static final Method CHASEORBITAL = new Method("chaseorbital");
     public static final Method CLEARPAY = new Method("clearpay");
     public static final Method CLICK_TO_PAY = new Method("click-to-pay");
@@ -237,6 +238,7 @@ public class Method {
         map.put("capitec", CAPITEC);
         map.put("card", CARD);
         map.put("cashapp", CASHAPP);
+        map.put("cashappafterpay", CASHAPPAFTERPAY);
         map.put("chaseorbital", CHASEORBITAL);
         map.put("clearpay", CLEARPAY);
         map.put("click-to-pay", CLICK_TO_PAY);
@@ -365,6 +367,7 @@ public class Method {
         map.put("capitec", MethodEnum.CAPITEC);
         map.put("card", MethodEnum.CARD);
         map.put("cashapp", MethodEnum.CASHAPP);
+        map.put("cashappafterpay", MethodEnum.CASHAPPAFTERPAY);
         map.put("chaseorbital", MethodEnum.CHASEORBITAL);
         map.put("clearpay", MethodEnum.CLEARPAY);
         map.put("click-to-pay", MethodEnum.CLICK_TO_PAY);
@@ -494,6 +497,7 @@ public class Method {
         CAPITEC("capitec"),
         CARD("card"),
         CASHAPP("cashapp"),
+        CASHAPPAFTERPAY("cashappafterpay"),
         CHASEORBITAL("chaseorbital"),
         CLEARPAY("clearpay"),
         CLICK_TO_PAY("click-to-pay"),

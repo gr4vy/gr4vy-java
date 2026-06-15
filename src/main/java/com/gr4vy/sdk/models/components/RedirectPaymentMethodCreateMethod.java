@@ -43,6 +43,7 @@ public class RedirectPaymentMethodCreateMethod {
     public static final RedirectPaymentMethodCreateMethod ACH = new RedirectPaymentMethodCreateMethod("ach");
     public static final RedirectPaymentMethodCreateMethod CAPITEC = new RedirectPaymentMethodCreateMethod("capitec");
     public static final RedirectPaymentMethodCreateMethod CASHAPP = new RedirectPaymentMethodCreateMethod("cashapp");
+    public static final RedirectPaymentMethodCreateMethod CASHAPPAFTERPAY = new RedirectPaymentMethodCreateMethod("cashappafterpay");
     public static final RedirectPaymentMethodCreateMethod CLEARPAY = new RedirectPaymentMethodCreateMethod("clearpay");
     public static final RedirectPaymentMethodCreateMethod CUSTOM_PUSH = new RedirectPaymentMethodCreateMethod("custom_push");
     public static final RedirectPaymentMethodCreateMethod CUSTOM_REDIRECT = new RedirectPaymentMethodCreateMethod("custom_redirect");
@@ -228,6 +229,7 @@ public class RedirectPaymentMethodCreateMethod {
         map.put("ach", ACH);
         map.put("capitec", CAPITEC);
         map.put("cashapp", CASHAPP);
+        map.put("cashappafterpay", CASHAPPAFTERPAY);
         map.put("clearpay", CLEARPAY);
         map.put("custom_push", CUSTOM_PUSH);
         map.put("custom_redirect", CUSTOM_REDIRECT);
@@ -345,6 +347,7 @@ public class RedirectPaymentMethodCreateMethod {
         map.put("ach", RedirectPaymentMethodCreateMethodEnum.ACH);
         map.put("capitec", RedirectPaymentMethodCreateMethodEnum.CAPITEC);
         map.put("cashapp", RedirectPaymentMethodCreateMethodEnum.CASHAPP);
+        map.put("cashappafterpay", RedirectPaymentMethodCreateMethodEnum.CASHAPPAFTERPAY);
         map.put("clearpay", RedirectPaymentMethodCreateMethodEnum.CLEARPAY);
         map.put("custom_push", RedirectPaymentMethodCreateMethodEnum.CUSTOM_PUSH);
         map.put("custom_redirect", RedirectPaymentMethodCreateMethodEnum.CUSTOM_REDIRECT);
@@ -463,6 +466,7 @@ public class RedirectPaymentMethodCreateMethod {
         ACH("ach"),
         CAPITEC("capitec"),
         CASHAPP("cashapp"),
+        CASHAPPAFTERPAY("cashappafterpay"),
         CLEARPAY("clearpay"),
         CUSTOM_PUSH("custom_push"),
         CUSTOM_REDIRECT("custom_redirect"),
