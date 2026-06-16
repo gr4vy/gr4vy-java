@@ -11,6 +11,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Boolean;
 import java.lang.Long;
+import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
@@ -65,6 +66,41 @@ public class AdyenCardOptions {
     @JsonProperty("splits")
     private JsonNullable<? extends AdyenSplitsOptions> splits;
 
+    /**
+     * Passes `merchantRiskIndicator` data to Adyen.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("merchantRiskIndicator")
+    private JsonNullable<? extends Map<String, Object>> merchantRiskIndicator;
+
+    /**
+     * Passes `accountInfo` data to Adyen.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("accountInfo")
+    private JsonNullable<? extends Map<String, Object>> accountInfo;
+
+    /**
+     * Passes `riskData.customFields` to Adyen.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("riskData")
+    private JsonNullable<? extends Map<String, Object>> riskData;
+
+    /**
+     * Passes `threeDS2RequestData.threeDSRequestorChallengeInd` to Adyen.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("threeDSRequestorChallengeInd")
+    private JsonNullable<String> threeDSRequestorChallengeInd;
+
+    /**
+     * Passes `authenticationData.attemptAuthentication` to Adyen.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("attemptAuthentication")
+    private JsonNullable<String> attemptAuthentication;
+
     @JsonCreator
     public AdyenCardOptions(
             @JsonProperty("autoRescue") JsonNullable<Boolean> autoRescue,
@@ -72,24 +108,41 @@ public class AdyenCardOptions {
             @JsonProperty("additionalData") JsonNullable<? extends Map<String, String>> additionalData,
             @JsonProperty("autoRescueScenario") JsonNullable<? extends AdyenCardAutoRescueScenariosEnum> autoRescueScenario,
             @JsonProperty("window_origin") JsonNullable<String> windowOrigin,
-            @JsonProperty("splits") JsonNullable<? extends AdyenSplitsOptions> splits) {
+            @JsonProperty("splits") JsonNullable<? extends AdyenSplitsOptions> splits,
+            @JsonProperty("merchantRiskIndicator") JsonNullable<? extends Map<String, Object>> merchantRiskIndicator,
+            @JsonProperty("accountInfo") JsonNullable<? extends Map<String, Object>> accountInfo,
+            @JsonProperty("riskData") JsonNullable<? extends Map<String, Object>> riskData,
+            @JsonProperty("threeDSRequestorChallengeInd") JsonNullable<String> threeDSRequestorChallengeInd,
+            @JsonProperty("attemptAuthentication") JsonNullable<String> attemptAuthentication) {
         Utils.checkNotNull(autoRescue, "autoRescue");
         Utils.checkNotNull(maxDaysToRescue, "maxDaysToRescue");
         Utils.checkNotNull(additionalData, "additionalData");
         Utils.checkNotNull(autoRescueScenario, "autoRescueScenario");
         Utils.checkNotNull(windowOrigin, "windowOrigin");
         Utils.checkNotNull(splits, "splits");
+        Utils.checkNotNull(merchantRiskIndicator, "merchantRiskIndicator");
+        Utils.checkNotNull(accountInfo, "accountInfo");
+        Utils.checkNotNull(riskData, "riskData");
+        Utils.checkNotNull(threeDSRequestorChallengeInd, "threeDSRequestorChallengeInd");
+        Utils.checkNotNull(attemptAuthentication, "attemptAuthentication");
         this.autoRescue = autoRescue;
         this.maxDaysToRescue = maxDaysToRescue;
         this.additionalData = additionalData;
         this.autoRescueScenario = autoRescueScenario;
         this.windowOrigin = windowOrigin;
         this.splits = splits;
+        this.merchantRiskIndicator = merchantRiskIndicator;
+        this.accountInfo = accountInfo;
+        this.riskData = riskData;
+        this.threeDSRequestorChallengeInd = threeDSRequestorChallengeInd;
+        this.attemptAuthentication = attemptAuthentication;
     }
     
     public AdyenCardOptions() {
         this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined());
     }
 
     /**
@@ -145,6 +198,49 @@ public class AdyenCardOptions {
     @JsonIgnore
     public JsonNullable<AdyenSplitsOptions> splits() {
         return (JsonNullable<AdyenSplitsOptions>) splits;
+    }
+
+    /**
+     * Passes `merchantRiskIndicator` data to Adyen.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public JsonNullable<Map<String, Object>> merchantRiskIndicator() {
+        return (JsonNullable<Map<String, Object>>) merchantRiskIndicator;
+    }
+
+    /**
+     * Passes `accountInfo` data to Adyen.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public JsonNullable<Map<String, Object>> accountInfo() {
+        return (JsonNullable<Map<String, Object>>) accountInfo;
+    }
+
+    /**
+     * Passes `riskData.customFields` to Adyen.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public JsonNullable<Map<String, Object>> riskData() {
+        return (JsonNullable<Map<String, Object>>) riskData;
+    }
+
+    /**
+     * Passes `threeDS2RequestData.threeDSRequestorChallengeInd` to Adyen.
+     */
+    @JsonIgnore
+    public JsonNullable<String> threeDSRequestorChallengeInd() {
+        return threeDSRequestorChallengeInd;
+    }
+
+    /**
+     * Passes `authenticationData.attemptAuthentication` to Adyen.
+     */
+    @JsonIgnore
+    public JsonNullable<String> attemptAuthentication() {
+        return attemptAuthentication;
     }
 
     public static Builder builder() {
@@ -268,6 +364,96 @@ public class AdyenCardOptions {
         return this;
     }
 
+    /**
+     * Passes `merchantRiskIndicator` data to Adyen.
+     */
+    public AdyenCardOptions withMerchantRiskIndicator(Map<String, Object> merchantRiskIndicator) {
+        Utils.checkNotNull(merchantRiskIndicator, "merchantRiskIndicator");
+        this.merchantRiskIndicator = JsonNullable.of(merchantRiskIndicator);
+        return this;
+    }
+
+    /**
+     * Passes `merchantRiskIndicator` data to Adyen.
+     */
+    public AdyenCardOptions withMerchantRiskIndicator(JsonNullable<? extends Map<String, Object>> merchantRiskIndicator) {
+        Utils.checkNotNull(merchantRiskIndicator, "merchantRiskIndicator");
+        this.merchantRiskIndicator = merchantRiskIndicator;
+        return this;
+    }
+
+    /**
+     * Passes `accountInfo` data to Adyen.
+     */
+    public AdyenCardOptions withAccountInfo(Map<String, Object> accountInfo) {
+        Utils.checkNotNull(accountInfo, "accountInfo");
+        this.accountInfo = JsonNullable.of(accountInfo);
+        return this;
+    }
+
+    /**
+     * Passes `accountInfo` data to Adyen.
+     */
+    public AdyenCardOptions withAccountInfo(JsonNullable<? extends Map<String, Object>> accountInfo) {
+        Utils.checkNotNull(accountInfo, "accountInfo");
+        this.accountInfo = accountInfo;
+        return this;
+    }
+
+    /**
+     * Passes `riskData.customFields` to Adyen.
+     */
+    public AdyenCardOptions withRiskData(Map<String, Object> riskData) {
+        Utils.checkNotNull(riskData, "riskData");
+        this.riskData = JsonNullable.of(riskData);
+        return this;
+    }
+
+    /**
+     * Passes `riskData.customFields` to Adyen.
+     */
+    public AdyenCardOptions withRiskData(JsonNullable<? extends Map<String, Object>> riskData) {
+        Utils.checkNotNull(riskData, "riskData");
+        this.riskData = riskData;
+        return this;
+    }
+
+    /**
+     * Passes `threeDS2RequestData.threeDSRequestorChallengeInd` to Adyen.
+     */
+    public AdyenCardOptions withThreeDSRequestorChallengeInd(String threeDSRequestorChallengeInd) {
+        Utils.checkNotNull(threeDSRequestorChallengeInd, "threeDSRequestorChallengeInd");
+        this.threeDSRequestorChallengeInd = JsonNullable.of(threeDSRequestorChallengeInd);
+        return this;
+    }
+
+    /**
+     * Passes `threeDS2RequestData.threeDSRequestorChallengeInd` to Adyen.
+     */
+    public AdyenCardOptions withThreeDSRequestorChallengeInd(JsonNullable<String> threeDSRequestorChallengeInd) {
+        Utils.checkNotNull(threeDSRequestorChallengeInd, "threeDSRequestorChallengeInd");
+        this.threeDSRequestorChallengeInd = threeDSRequestorChallengeInd;
+        return this;
+    }
+
+    /**
+     * Passes `authenticationData.attemptAuthentication` to Adyen.
+     */
+    public AdyenCardOptions withAttemptAuthentication(String attemptAuthentication) {
+        Utils.checkNotNull(attemptAuthentication, "attemptAuthentication");
+        this.attemptAuthentication = JsonNullable.of(attemptAuthentication);
+        return this;
+    }
+
+    /**
+     * Passes `authenticationData.attemptAuthentication` to Adyen.
+     */
+    public AdyenCardOptions withAttemptAuthentication(JsonNullable<String> attemptAuthentication) {
+        Utils.checkNotNull(attemptAuthentication, "attemptAuthentication");
+        this.attemptAuthentication = attemptAuthentication;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -283,14 +469,21 @@ public class AdyenCardOptions {
             Utils.enhancedDeepEquals(this.additionalData, other.additionalData) &&
             Utils.enhancedDeepEquals(this.autoRescueScenario, other.autoRescueScenario) &&
             Utils.enhancedDeepEquals(this.windowOrigin, other.windowOrigin) &&
-            Utils.enhancedDeepEquals(this.splits, other.splits);
+            Utils.enhancedDeepEquals(this.splits, other.splits) &&
+            Utils.enhancedDeepEquals(this.merchantRiskIndicator, other.merchantRiskIndicator) &&
+            Utils.enhancedDeepEquals(this.accountInfo, other.accountInfo) &&
+            Utils.enhancedDeepEquals(this.riskData, other.riskData) &&
+            Utils.enhancedDeepEquals(this.threeDSRequestorChallengeInd, other.threeDSRequestorChallengeInd) &&
+            Utils.enhancedDeepEquals(this.attemptAuthentication, other.attemptAuthentication);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
             autoRescue, maxDaysToRescue, additionalData,
-            autoRescueScenario, windowOrigin, splits);
+            autoRescueScenario, windowOrigin, splits,
+            merchantRiskIndicator, accountInfo, riskData,
+            threeDSRequestorChallengeInd, attemptAuthentication);
     }
     
     @Override
@@ -301,7 +494,12 @@ public class AdyenCardOptions {
                 "additionalData", additionalData,
                 "autoRescueScenario", autoRescueScenario,
                 "windowOrigin", windowOrigin,
-                "splits", splits);
+                "splits", splits,
+                "merchantRiskIndicator", merchantRiskIndicator,
+                "accountInfo", accountInfo,
+                "riskData", riskData,
+                "threeDSRequestorChallengeInd", threeDSRequestorChallengeInd,
+                "attemptAuthentication", attemptAuthentication);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -318,6 +516,16 @@ public class AdyenCardOptions {
         private JsonNullable<String> windowOrigin = JsonNullable.undefined();
 
         private JsonNullable<? extends AdyenSplitsOptions> splits = JsonNullable.undefined();
+
+        private JsonNullable<? extends Map<String, Object>> merchantRiskIndicator = JsonNullable.undefined();
+
+        private JsonNullable<? extends Map<String, Object>> accountInfo = JsonNullable.undefined();
+
+        private JsonNullable<? extends Map<String, Object>> riskData = JsonNullable.undefined();
+
+        private JsonNullable<String> threeDSRequestorChallengeInd = JsonNullable.undefined();
+
+        private JsonNullable<String> attemptAuthentication = JsonNullable.undefined();
 
         private Builder() {
           // force use of static builder() method
@@ -445,11 +653,108 @@ public class AdyenCardOptions {
             return this;
         }
 
+
+        /**
+         * Passes `merchantRiskIndicator` data to Adyen.
+         */
+        public Builder merchantRiskIndicator(Map<String, Object> merchantRiskIndicator) {
+            Utils.checkNotNull(merchantRiskIndicator, "merchantRiskIndicator");
+            this.merchantRiskIndicator = JsonNullable.of(merchantRiskIndicator);
+            return this;
+        }
+
+        /**
+         * Passes `merchantRiskIndicator` data to Adyen.
+         */
+        public Builder merchantRiskIndicator(JsonNullable<? extends Map<String, Object>> merchantRiskIndicator) {
+            Utils.checkNotNull(merchantRiskIndicator, "merchantRiskIndicator");
+            this.merchantRiskIndicator = merchantRiskIndicator;
+            return this;
+        }
+
+
+        /**
+         * Passes `accountInfo` data to Adyen.
+         */
+        public Builder accountInfo(Map<String, Object> accountInfo) {
+            Utils.checkNotNull(accountInfo, "accountInfo");
+            this.accountInfo = JsonNullable.of(accountInfo);
+            return this;
+        }
+
+        /**
+         * Passes `accountInfo` data to Adyen.
+         */
+        public Builder accountInfo(JsonNullable<? extends Map<String, Object>> accountInfo) {
+            Utils.checkNotNull(accountInfo, "accountInfo");
+            this.accountInfo = accountInfo;
+            return this;
+        }
+
+
+        /**
+         * Passes `riskData.customFields` to Adyen.
+         */
+        public Builder riskData(Map<String, Object> riskData) {
+            Utils.checkNotNull(riskData, "riskData");
+            this.riskData = JsonNullable.of(riskData);
+            return this;
+        }
+
+        /**
+         * Passes `riskData.customFields` to Adyen.
+         */
+        public Builder riskData(JsonNullable<? extends Map<String, Object>> riskData) {
+            Utils.checkNotNull(riskData, "riskData");
+            this.riskData = riskData;
+            return this;
+        }
+
+
+        /**
+         * Passes `threeDS2RequestData.threeDSRequestorChallengeInd` to Adyen.
+         */
+        public Builder threeDSRequestorChallengeInd(String threeDSRequestorChallengeInd) {
+            Utils.checkNotNull(threeDSRequestorChallengeInd, "threeDSRequestorChallengeInd");
+            this.threeDSRequestorChallengeInd = JsonNullable.of(threeDSRequestorChallengeInd);
+            return this;
+        }
+
+        /**
+         * Passes `threeDS2RequestData.threeDSRequestorChallengeInd` to Adyen.
+         */
+        public Builder threeDSRequestorChallengeInd(JsonNullable<String> threeDSRequestorChallengeInd) {
+            Utils.checkNotNull(threeDSRequestorChallengeInd, "threeDSRequestorChallengeInd");
+            this.threeDSRequestorChallengeInd = threeDSRequestorChallengeInd;
+            return this;
+        }
+
+
+        /**
+         * Passes `authenticationData.attemptAuthentication` to Adyen.
+         */
+        public Builder attemptAuthentication(String attemptAuthentication) {
+            Utils.checkNotNull(attemptAuthentication, "attemptAuthentication");
+            this.attemptAuthentication = JsonNullable.of(attemptAuthentication);
+            return this;
+        }
+
+        /**
+         * Passes `authenticationData.attemptAuthentication` to Adyen.
+         */
+        public Builder attemptAuthentication(JsonNullable<String> attemptAuthentication) {
+            Utils.checkNotNull(attemptAuthentication, "attemptAuthentication");
+            this.attemptAuthentication = attemptAuthentication;
+            return this;
+        }
+
         public AdyenCardOptions build() {
 
             return new AdyenCardOptions(
                 autoRescue, maxDaysToRescue, additionalData,
-                autoRescueScenario, windowOrigin, splits);
+                autoRescueScenario, windowOrigin, splits,
+                merchantRiskIndicator, accountInfo, riskData,
+                threeDSRequestorChallengeInd, attemptAuthentication);
         }
 
     }

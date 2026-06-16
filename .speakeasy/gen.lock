@@ -1,19 +1,19 @@
 lockVersion: 2.0.0
 id: 5bbaa3a9-baa0-471b-ba6a-13fd88e8c119
 management:
-  docChecksum: d0190d70d4f9721af9120b306b150505
+  docChecksum: fb6c1f8912fb9e60b6f774e85d8e9b56
   docVersion: 1.0.0
-  speakeasyVersion: 1.778.0
-  generationVersion: 2.904.2
-  releaseVersion: 2.16.87
-  configChecksum: c79dab54fb0b1a529ef721c54efbe0b3
+  speakeasyVersion: 1.780.0
+  generationVersion: 2.906.0
+  releaseVersion: 2.16.88
+  configChecksum: 625b5392e270f088ce96d04679c69926
   repoURL: https://github.com/gr4vy/gr4vy-java.git
   installationURL: https://github.com/gr4vy/gr4vy-java
   published: true
 persistentEdits:
-  generation_id: 47dfe15a-3276-4c8a-bb20-7f98e46b1037
-  pristine_commit_hash: f852263656fd2df3c588417220f9ea09ba8a532a
-  pristine_tree_hash: 3da12d57749ed9fb8952386e57edc30fbc1350f2
+  generation_id: d5daa14d-06f1-42fc-b762-44a594f1b6e6
+  pristine_commit_hash: 1fa48310cbc3073ce32bdafbbdd59b5d83f536ac
+  pristine_tree_hash: a5fabde58cdc597d1e0531d243914a757680a3ec
 features:
   java:
     additionalDependencies: 0.1.0
@@ -31,7 +31,7 @@ features:
     nullables: 0.1.0
     openEnums: 0.2.0
     pagination: 1.0.4
-    retries: 0.1.2
+    retries: 0.1.3
     sdkHooks: 1.2.0
     serverIDs: 2.81.1
     unions: 0.3.6
@@ -98,8 +98,8 @@ trackedFiles:
     pristine_git_object: ba218f1cd2fc95be8fdfd6435c2c6bec11784e4c
   docs/models/components/AdyenCardOptions.md:
     id: b728b2d2901c
-    last_write_checksum: sha1:f1f500d3e2a39621c5540c71e36598a678d63e5a
-    pristine_git_object: dc452c4da7d411785a5b675be23e6f78ca8ac669
+    last_write_checksum: sha1:38872cae51d2e0a92bfb4eea95ab3750b3d03ad1
+    pristine_git_object: c7900a5e7174a20e814a77dbc0bb9229266c5c94
   docs/models/components/AdyenOptions.md:
     id: 7d42cdf80647
     last_write_checksum: sha1:1e6cedd7461e58286e3d99f404fb9e01da421b09
@@ -2646,8 +2646,8 @@ trackedFiles:
     pristine_git_object: 15c4e4642f204ccb312d8814155b69e153b4e19b
   gradle.properties:
     id: 2afbb999f001
-    last_write_checksum: sha1:30d78e63735172ca929c21d8df0e2201da138e57
-    pristine_git_object: 0c8b9acc5e8eec6012a9232a87af1981609a85f4
+    last_write_checksum: sha1:798a890cb1c2ca6c9a310137d373e0e2e2cb32d2
+    pristine_git_object: 435d6cc1bc1966232aee5535485851748fecaba8
   gradle/wrapper/gradle-wrapper.jar:
     id: ec27dae6e852
     last_write_checksum: sha1:f725fb1467084142d74fd7cd8eab691ab3442611
@@ -2950,8 +2950,8 @@ trackedFiles:
     pristine_git_object: 502a7312d3dc82c102dbaf7ed5e952d0c793e26f
   src/main/java/com/gr4vy/sdk/SDKConfiguration.java:
     id: 73a7edeaca45
-    last_write_checksum: sha1:be7392a1da76389696b7a52b7b4b96c7078a4d95
-    pristine_git_object: ea0fd3b5e20bc4f19e01ad5df714194e04dcd1a4
+    last_write_checksum: sha1:e23df8298e95988fbeb792c53ea24f6bd1e15385
+    pristine_git_object: 417bf00fb0d1033fb02d50edfe5b50a75ad93733
   src/main/java/com/gr4vy/sdk/SecuritySource.java:
     id: 1b6add6b9b50
     last_write_checksum: sha1:2f365cc823c6243188e83f4df618c9737fcee8bd
@@ -3034,8 +3034,8 @@ trackedFiles:
     pristine_git_object: 45b61dc5d3531240d0f1ff739b66b7c6e71599d8
   src/main/java/com/gr4vy/sdk/models/components/AdyenCardOptions.java:
     id: e910138c2efa
-    last_write_checksum: sha1:a7db08fa883fddd9207223408877f9d0c1907373
-    pristine_git_object: 52311250217049236c5748c804ca63684f756c97
+    last_write_checksum: sha1:c099247ad03ae52b32648558e549aa2e2ccac87f
+    pristine_git_object: 699f1c55985c6950b987bc4312e533830726629b
   src/main/java/com/gr4vy/sdk/models/components/AdyenOptions.java:
     id: 992b527fd684
     last_write_checksum: sha1:6114402cc19f540053a1e5040d3ac7197e107608
@@ -7218,8 +7218,8 @@ trackedFiles:
     pristine_git_object: 0ec1af4f31d943586d2d880ef21ba53bd70173ba
   src/main/java/com/gr4vy/sdk/utils/AsyncRetries.java:
     id: 2629663c4c1a
-    last_write_checksum: sha1:f098007e6b2ae44570f3060e9233279994181977
-    pristine_git_object: 9cd7d35f94dc6e430ff8fdef2d17e1e3df7cae6a
+    last_write_checksum: sha1:1e6fe4d4d7ea14f05270aea1155ae0b218f2afae
+    pristine_git_object: e37973ca61ad7ab00b5295cffe666406e5853983
   src/main/java/com/gr4vy/sdk/utils/AsyncRetryableException.java:
     id: e2d7659aa32e
     last_write_checksum: sha1:6c84e284ac0b0780800a7ab8dd94b1c6a0f64576
@@ -7398,8 +7398,8 @@ trackedFiles:
     pristine_git_object: c0bf2bfacb83ad5eabd3caa128da55188b529cdc
   src/main/java/com/gr4vy/sdk/utils/Retries.java:
     id: caaad67529b1
-    last_write_checksum: sha1:41918f99e3124f71b21a2c1feedebbeca03c205a
-    pristine_git_object: b3e6dada223cae111be45422429b846ffb179035
+    last_write_checksum: sha1:b7817ecf73c329be941b875c3dcd9b73c9847a08
+    pristine_git_object: 8134505948171c8277ba33e5d9baef2b667e96a4
   src/main/java/com/gr4vy/sdk/utils/RetryConfig.java:
     id: 55479f1746ec
     last_write_checksum: sha1:ef5844c99c062a3896a29034378de122747ee197
@@ -11461,7 +11461,7 @@ examples:
           application/json: {"type": "error", "code": "gateway_timeout", "status": 504, "message": "Request could not be processed"}
 examplesVersion: 1.0.2
 generatedTests: {}
-releaseNotes: "## Java SDK Changes:\n* `gr4vy.buyers.paymentMethods.list()`:  `response.items[].method.enum(cashappafterpay)` **Added**\n* `gr4vy.paymentMethods.list()`:  `response.items[].method.enum(cashappafterpay)` **Added**\n* `gr4vy.paymentMethods.create()`: \n  *  `requestBody.union(RedirectPaymentMethodCreate).method.enum(cashappafterpay)` **Added**\n  *  `response.method.enum(cashappafterpay)` **Added**\n* `gr4vy.paymentMethods.get()`:  `response.method.enum(cashappafterpay)` **Added**\n* `gr4vy.paymentMethods.update()`:  `response.method.enum(cashappafterpay)` **Added**\n* `gr4vy.transactions.list()`: \n  *  `request.method` **Changed**\n  *  `response.items[].paymentMethod.method.enum(cashappafterpay)` **Added**\n* `gr4vy.transactions.create()`: \n  *  `request.transactionCreate` **Changed**\n  *  `response.paymentMethod.method.enum(cashappafterpay)` **Added**\n* `gr4vy.transactions.get()`:  `response.paymentMethod.method.enum(cashappafterpay)` **Added**\n* `gr4vy.transactions.update()`: \n  *  `request.transactionUpdate.connectionOptions.adyenCashappafterpay` **Added**\n  *  `response.paymentMethod.method.enum(cashappafterpay)` **Added**\n* `gr4vy.transactions.capture()`:  `response.union(Transaction).paymentMethod.method.enum(cashappafterpay)` **Added**\n* `gr4vy.transactions.void()`:  `response.union(Transaction).paymentMethod.method.enum(cashappafterpay)` **Added**\n* `gr4vy.transactions.cancel()`:  `response.transaction.paymentMethod.method.enum(cashappafterpay)` **Added**\n* `gr4vy.transactions.sync()`:  `response.paymentMethod.method.enum(cashappafterpay)` **Added**\n* `gr4vy.paymentServiceDefinitions.list()`:  `response.items[].method.enum(cashappafterpay)` **Added**\n* `gr4vy.paymentServiceDefinitions.get()`:  `response.method.enum(cashappafterpay)` **Added**\n* `gr4vy.paymentServices.list()`: \n  *  `request.method` **Changed**\n  *  `response.items[].method.enum(cashappafterpay)` **Added**\n* `gr4vy.paymentServices.create()`:  `response.method.enum(cashappafterpay)` **Added**\n* `gr4vy.paymentServices.get()`:  `response.method.enum(cashappafterpay)` **Added**\n* `gr4vy.paymentServices.update()`:  `response.method.enum(cashappafterpay)` **Added**\n* `gr4vy.payouts.list()`:  `response.items[].paymentMethod.method.enum(cashappafterpay)` **Added**\n* `gr4vy.payouts.create()`:  `response.paymentMethod.method.enum(cashappafterpay)` **Added**\n* `gr4vy.payouts.get()`:  `response.paymentMethod.method.enum(cashappafterpay)` **Added**\n* `gr4vy.paymentLinks.create()`: \n  *  `request.paymentLinkCreate.connectionOptions.adyenCashappafterpay` **Added**\n"
+releaseNotes: "## Java SDK Changes:\n* `gr4vy.transactions.create()`: \n  *  `request.transactionCreate.connectionOptions.adyenCard` **Changed**\n* `gr4vy.transactions.update()`: \n  *  `request.transactionUpdate.connectionOptions.adyenCard` **Changed**\n* `gr4vy.paymentLinks.create()`: \n  *  `request.paymentLinkCreate.connectionOptions.adyenCard` **Changed**\n"
 generatedFiles:
   - .gitattributes
   - USAGE.md
