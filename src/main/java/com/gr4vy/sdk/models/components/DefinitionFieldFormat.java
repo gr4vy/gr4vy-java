@@ -22,6 +22,7 @@ public class DefinitionFieldFormat {
 
     public static final DefinitionFieldFormat TEXT = new DefinitionFieldFormat("text");
     public static final DefinitionFieldFormat MULTILINE = new DefinitionFieldFormat("multiline");
+    public static final DefinitionFieldFormat FILE = new DefinitionFieldFormat("file");
     public static final DefinitionFieldFormat NUMBER = new DefinitionFieldFormat("number");
     public static final DefinitionFieldFormat TIMEZONE = new DefinitionFieldFormat("timezone");
     public static final DefinitionFieldFormat BOOLEAN = new DefinitionFieldFormat("boolean");
@@ -100,6 +101,7 @@ public class DefinitionFieldFormat {
         Map<String, DefinitionFieldFormat> map = new LinkedHashMap<>();
         map.put("text", TEXT);
         map.put("multiline", MULTILINE);
+        map.put("file", FILE);
         map.put("number", NUMBER);
         map.put("timezone", TIMEZONE);
         map.put("boolean", BOOLEAN);
@@ -110,6 +112,7 @@ public class DefinitionFieldFormat {
         Map<String, DefinitionFieldFormatEnum> map = new HashMap<>();
         map.put("text", DefinitionFieldFormatEnum.TEXT);
         map.put("multiline", DefinitionFieldFormatEnum.MULTILINE);
+        map.put("file", DefinitionFieldFormatEnum.FILE);
         map.put("number", DefinitionFieldFormatEnum.NUMBER);
         map.put("timezone", DefinitionFieldFormatEnum.TIMEZONE);
         map.put("boolean", DefinitionFieldFormatEnum.BOOLEAN);
@@ -121,6 +124,7 @@ public class DefinitionFieldFormat {
 
         TEXT("text"),
         MULTILINE("multiline"),
+        FILE("file"),
         NUMBER("number"),
         TIMEZONE("timezone"),
         BOOLEAN("boolean"),;
