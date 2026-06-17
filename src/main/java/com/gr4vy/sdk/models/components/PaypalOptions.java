@@ -19,6 +19,13 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 public class PaypalOptions {
     /**
+     * Configuration for server-side callbacks during the PayPal checkout flow.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("order_update_callback_config")
+    private JsonNullable<? extends PaypalOrderUpdateCallbackConfig> orderUpdateCallbackConfig;
+
+    /**
      * Additional Set Transaction Context Values (STC) to be sent to PayPal as part of the transaction.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -34,16 +41,28 @@ public class PaypalOptions {
 
     @JsonCreator
     public PaypalOptions(
+            @JsonProperty("order_update_callback_config") JsonNullable<? extends PaypalOrderUpdateCallbackConfig> orderUpdateCallbackConfig,
             @JsonProperty("additional_data") JsonNullable<? extends List<Map<String, String>>> additionalData,
             @JsonProperty("shipping") JsonNullable<? extends PaypalShippingOptions> shipping) {
+        Utils.checkNotNull(orderUpdateCallbackConfig, "orderUpdateCallbackConfig");
         Utils.checkNotNull(additionalData, "additionalData");
         Utils.checkNotNull(shipping, "shipping");
+        this.orderUpdateCallbackConfig = orderUpdateCallbackConfig;
         this.additionalData = additionalData;
         this.shipping = shipping;
     }
     
     public PaypalOptions() {
-        this(JsonNullable.undefined(), JsonNullable.undefined());
+        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
+    }
+
+    /**
+     * Configuration for server-side callbacks during the PayPal checkout flow.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public JsonNullable<PaypalOrderUpdateCallbackConfig> orderUpdateCallbackConfig() {
+        return (JsonNullable<PaypalOrderUpdateCallbackConfig>) orderUpdateCallbackConfig;
     }
 
     /**
@@ -68,6 +87,24 @@ public class PaypalOptions {
         return new Builder();
     }
 
+
+    /**
+     * Configuration for server-side callbacks during the PayPal checkout flow.
+     */
+    public PaypalOptions withOrderUpdateCallbackConfig(PaypalOrderUpdateCallbackConfig orderUpdateCallbackConfig) {
+        Utils.checkNotNull(orderUpdateCallbackConfig, "orderUpdateCallbackConfig");
+        this.orderUpdateCallbackConfig = JsonNullable.of(orderUpdateCallbackConfig);
+        return this;
+    }
+
+    /**
+     * Configuration for server-side callbacks during the PayPal checkout flow.
+     */
+    public PaypalOptions withOrderUpdateCallbackConfig(JsonNullable<? extends PaypalOrderUpdateCallbackConfig> orderUpdateCallbackConfig) {
+        Utils.checkNotNull(orderUpdateCallbackConfig, "orderUpdateCallbackConfig");
+        this.orderUpdateCallbackConfig = orderUpdateCallbackConfig;
+        return this;
+    }
 
     /**
      * Additional Set Transaction Context Values (STC) to be sent to PayPal as part of the transaction.
@@ -115,6 +152,7 @@ public class PaypalOptions {
         }
         PaypalOptions other = (PaypalOptions) o;
         return 
+            Utils.enhancedDeepEquals(this.orderUpdateCallbackConfig, other.orderUpdateCallbackConfig) &&
             Utils.enhancedDeepEquals(this.additionalData, other.additionalData) &&
             Utils.enhancedDeepEquals(this.shipping, other.shipping);
     }
@@ -122,12 +160,13 @@ public class PaypalOptions {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            additionalData, shipping);
+            orderUpdateCallbackConfig, additionalData, shipping);
     }
     
     @Override
     public String toString() {
         return Utils.toString(PaypalOptions.class,
+                "orderUpdateCallbackConfig", orderUpdateCallbackConfig,
                 "additionalData", additionalData,
                 "shipping", shipping);
     }
@@ -135,12 +174,33 @@ public class PaypalOptions {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
+        private JsonNullable<? extends PaypalOrderUpdateCallbackConfig> orderUpdateCallbackConfig = JsonNullable.undefined();
+
         private JsonNullable<? extends List<Map<String, String>>> additionalData = JsonNullable.undefined();
 
         private JsonNullable<? extends PaypalShippingOptions> shipping = JsonNullable.undefined();
 
         private Builder() {
           // force use of static builder() method
+        }
+
+
+        /**
+         * Configuration for server-side callbacks during the PayPal checkout flow.
+         */
+        public Builder orderUpdateCallbackConfig(PaypalOrderUpdateCallbackConfig orderUpdateCallbackConfig) {
+            Utils.checkNotNull(orderUpdateCallbackConfig, "orderUpdateCallbackConfig");
+            this.orderUpdateCallbackConfig = JsonNullable.of(orderUpdateCallbackConfig);
+            return this;
+        }
+
+        /**
+         * Configuration for server-side callbacks during the PayPal checkout flow.
+         */
+        public Builder orderUpdateCallbackConfig(JsonNullable<? extends PaypalOrderUpdateCallbackConfig> orderUpdateCallbackConfig) {
+            Utils.checkNotNull(orderUpdateCallbackConfig, "orderUpdateCallbackConfig");
+            this.orderUpdateCallbackConfig = orderUpdateCallbackConfig;
+            return this;
         }
 
 
@@ -184,7 +244,7 @@ public class PaypalOptions {
         public PaypalOptions build() {
 
             return new PaypalOptions(
-                additionalData, shipping);
+                orderUpdateCallbackConfig, additionalData, shipping);
         }
 
     }
