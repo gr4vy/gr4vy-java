@@ -18,6 +18,7 @@ DefinitionFieldFormat custom = DefinitionFieldFormat.of("custom_value");
 | ----------- | ----------- |
 | `TEXT`      | text        |
 | `MULTILINE` | multiline   |
+| `FILE`      | file        |
 | `NUMBER`    | number      |
 | `TIMEZONE`  | timezone    |
 | `BOOLEAN`   | boolean     |
