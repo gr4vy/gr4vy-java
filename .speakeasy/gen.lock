@@ -1,19 +1,19 @@
 lockVersion: 2.0.0
 id: 5bbaa3a9-baa0-471b-ba6a-13fd88e8c119
 management:
-  docChecksum: 70d52ef56326b243ae8e2078e6272737
+  docChecksum: f44ada45fdaec8c2e2f249b19bafde72
   docVersion: 1.0.0
-  speakeasyVersion: 1.781.0
-  generationVersion: 2.907.0
-  releaseVersion: 2.16.90
-  configChecksum: 4601d4045fadb8aa6281c676e658dce3
+  speakeasyVersion: 1.783.1
+  generationVersion: 2.910.1
+  releaseVersion: 2.16.91
+  configChecksum: 83c07b3ab4e5aa35892eb61b97cf7119
   repoURL: https://github.com/gr4vy/gr4vy-java.git
   installationURL: https://github.com/gr4vy/gr4vy-java
   published: true
 persistentEdits:
-  generation_id: 7df314d7-63ca-44e5-b21f-baacb1ac1f58
-  pristine_commit_hash: 4727e50464ce641dd340bf10703fb3e3301347e8
-  pristine_tree_hash: fcb6f7c32dc9d4c483d920ecc92f160debaecb72
+  generation_id: d27a5f70-f071-4bfd-83f4-6783399ac167
+  pristine_commit_hash: 96408f29d4d3c01bc1b4b4eb1668defe70d32b78
+  pristine_tree_hash: 1156c1e39216db35c26332b55c1b8f97a37f4632
 features:
   java:
     additionalDependencies: 0.1.0
@@ -2654,8 +2654,8 @@ trackedFiles:
     pristine_git_object: 15c4e4642f204ccb312d8814155b69e153b4e19b
   gradle.properties:
     id: 2afbb999f001
-    last_write_checksum: sha1:8b29e874eb7b1eea1c371c07e58db56e57e67ce3
-    pristine_git_object: 556cfea26e8f00d553b68928f4382c14fcb8c0af
+    last_write_checksum: sha1:252aed4769fa38016b33da211528f30c1a28832c
+    pristine_git_object: 0fc41e2cf80afceecbfcf1ff6d56b0244f36edb8
   gradle/wrapper/gradle-wrapper.jar:
     id: ec27dae6e852
     last_write_checksum: sha1:f725fb1467084142d74fd7cd8eab691ab3442611
@@ -2958,8 +2958,8 @@ trackedFiles:
     pristine_git_object: 502a7312d3dc82c102dbaf7ed5e952d0c793e26f
   src/main/java/com/gr4vy/sdk/SDKConfiguration.java:
     id: 73a7edeaca45
-    last_write_checksum: sha1:c4c95b108e1745167f91c6490cc9a6b3a22e5152
-    pristine_git_object: 1781cc945a67bcc7c2805fbe6425790cba6f189f
+    last_write_checksum: sha1:21b28dba50811bc9631cc5339aae9cb9ea58e194
+    pristine_git_object: 94c64e725642d1665a03250b57e5b71ec4064ef2
   src/main/java/com/gr4vy/sdk/SecuritySource.java:
     id: 1b6add6b9b50
     last_write_checksum: sha1:2f365cc823c6243188e83f4df618c9737fcee8bd
@@ -11477,7 +11477,6 @@ examples:
           application/json: {"type": "error", "code": "gateway_timeout", "status": 504, "message": "Request could not be processed"}
 examplesVersion: 1.0.2
 generatedTests: {}
-releaseNotes: "## Java SDK Changes:\n* `gr4vy.transactions.create()`: \n  *  `request.transactionCreate.connectionOptions.paypalPaypal.orderUpdateCallbackConfig` **Added**\n* `gr4vy.transactions.update()`: \n  *  `request.transactionUpdate.connectionOptions.paypalPaypal.orderUpdateCallbackConfig` **Added**\n* `gr4vy.paymentLinks.create()`: \n  *  `request.paymentLinkCreate.connectionOptions.paypalPaypal.orderUpdateCallbackConfig` **Added**\n"
 generatedFiles:
   - .gitattributes
   - USAGE.md
