@@ -281,6 +281,12 @@ public class ListTransactionsRequest {
     private JsonNullable<Boolean> disputed;
 
     /**
+     * Filters for transactions that were reauthorized from the transaction with the provided ID.
+     */
+    @SpeakeasyMetadata("queryParam:style=form,explode=true,name=reauthorized_from_transaction_id")
+    private JsonNullable<String> reauthorizedFromTransactionId;
+
+    /**
      * Filters the results to only get the items for which some of the buyer data contains exactly the
      * provided `buyer_search` values.
      */
@@ -338,6 +344,7 @@ public class ListTransactionsRequest {
             JsonNullable<Boolean> merchantInitiated,
             JsonNullable<Boolean> used3ds,
             JsonNullable<Boolean> disputed,
+            JsonNullable<String> reauthorizedFromTransactionId,
             JsonNullable<? extends List<String>> buyerSearch,
             JsonNullable<String> merchantAccountId) {
         Utils.checkNotNull(cursor, "cursor");
@@ -383,6 +390,7 @@ public class ListTransactionsRequest {
         Utils.checkNotNull(merchantInitiated, "merchantInitiated");
         Utils.checkNotNull(used3ds, "used3ds");
         Utils.checkNotNull(disputed, "disputed");
+        Utils.checkNotNull(reauthorizedFromTransactionId, "reauthorizedFromTransactionId");
         Utils.checkNotNull(buyerSearch, "buyerSearch");
         Utils.checkNotNull(merchantAccountId, "merchantAccountId");
         this.cursor = cursor;
@@ -428,6 +436,7 @@ public class ListTransactionsRequest {
         this.merchantInitiated = merchantInitiated;
         this.used3ds = used3ds;
         this.disputed = disputed;
+        this.reauthorizedFromTransactionId = reauthorizedFromTransactionId;
         this.buyerSearch = buyerSearch;
         this.merchantAccountId = merchantAccountId;
     }
@@ -447,7 +456,8 @@ public class ListTransactionsRequest {
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined());
     }
 
     /**
@@ -788,6 +798,14 @@ public class ListTransactionsRequest {
     @JsonIgnore
     public JsonNullable<Boolean> disputed() {
         return disputed;
+    }
+
+    /**
+     * Filters for transactions that were reauthorized from the transaction with the provided ID.
+     */
+    @JsonIgnore
+    public JsonNullable<String> reauthorizedFromTransactionId() {
+        return reauthorizedFromTransactionId;
     }
 
     /**
@@ -1563,6 +1581,24 @@ public class ListTransactionsRequest {
     }
 
     /**
+     * Filters for transactions that were reauthorized from the transaction with the provided ID.
+     */
+    public ListTransactionsRequest withReauthorizedFromTransactionId(String reauthorizedFromTransactionId) {
+        Utils.checkNotNull(reauthorizedFromTransactionId, "reauthorizedFromTransactionId");
+        this.reauthorizedFromTransactionId = JsonNullable.of(reauthorizedFromTransactionId);
+        return this;
+    }
+
+    /**
+     * Filters for transactions that were reauthorized from the transaction with the provided ID.
+     */
+    public ListTransactionsRequest withReauthorizedFromTransactionId(JsonNullable<String> reauthorizedFromTransactionId) {
+        Utils.checkNotNull(reauthorizedFromTransactionId, "reauthorizedFromTransactionId");
+        this.reauthorizedFromTransactionId = reauthorizedFromTransactionId;
+        return this;
+    }
+
+    /**
      * Filters the results to only get the items for which some of the buyer data contains exactly the
      * provided `buyer_search` values.
      */
@@ -1653,6 +1689,7 @@ public class ListTransactionsRequest {
             Utils.enhancedDeepEquals(this.merchantInitiated, other.merchantInitiated) &&
             Utils.enhancedDeepEquals(this.used3ds, other.used3ds) &&
             Utils.enhancedDeepEquals(this.disputed, other.disputed) &&
+            Utils.enhancedDeepEquals(this.reauthorizedFromTransactionId, other.reauthorizedFromTransactionId) &&
             Utils.enhancedDeepEquals(this.buyerSearch, other.buyerSearch) &&
             Utils.enhancedDeepEquals(this.merchantAccountId, other.merchantAccountId);
     }
@@ -1674,7 +1711,8 @@ public class ListTransactionsRequest {
             hasGiftCardRedemptions, giftCardId, giftCardLast4,
             hasSettlements, paymentMethodBin, paymentSource,
             isSubsequentPayment, merchantInitiated, used3ds,
-            disputed, buyerSearch, merchantAccountId);
+            disputed, reauthorizedFromTransactionId, buyerSearch,
+            merchantAccountId);
     }
     
     @Override
@@ -1723,6 +1761,7 @@ public class ListTransactionsRequest {
                 "merchantInitiated", merchantInitiated,
                 "used3ds", used3ds,
                 "disputed", disputed,
+                "reauthorizedFromTransactionId", reauthorizedFromTransactionId,
                 "buyerSearch", buyerSearch,
                 "merchantAccountId", merchantAccountId);
     }
@@ -1815,6 +1854,8 @@ public class ListTransactionsRequest {
         private JsonNullable<Boolean> used3ds = JsonNullable.undefined();
 
         private JsonNullable<Boolean> disputed = JsonNullable.undefined();
+
+        private JsonNullable<String> reauthorizedFromTransactionId = JsonNullable.undefined();
 
         private JsonNullable<? extends List<String>> buyerSearch = JsonNullable.undefined();
 
@@ -2617,6 +2658,25 @@ public class ListTransactionsRequest {
 
 
         /**
+         * Filters for transactions that were reauthorized from the transaction with the provided ID.
+         */
+        public Builder reauthorizedFromTransactionId(String reauthorizedFromTransactionId) {
+            Utils.checkNotNull(reauthorizedFromTransactionId, "reauthorizedFromTransactionId");
+            this.reauthorizedFromTransactionId = JsonNullable.of(reauthorizedFromTransactionId);
+            return this;
+        }
+
+        /**
+         * Filters for transactions that were reauthorized from the transaction with the provided ID.
+         */
+        public Builder reauthorizedFromTransactionId(JsonNullable<String> reauthorizedFromTransactionId) {
+            Utils.checkNotNull(reauthorizedFromTransactionId, "reauthorizedFromTransactionId");
+            this.reauthorizedFromTransactionId = reauthorizedFromTransactionId;
+            return this;
+        }
+
+
+        /**
          * Filters the results to only get the items for which some of the buyer data contains exactly the
          * provided `buyer_search` values.
          */
@@ -2675,7 +2735,8 @@ public class ListTransactionsRequest {
                 hasGiftCardRedemptions, giftCardId, giftCardLast4,
                 hasSettlements, paymentMethodBin, paymentSource,
                 isSubsequentPayment, merchantInitiated, used3ds,
-                disputed, buyerSearch, merchantAccountId);
+                disputed, reauthorizedFromTransactionId, buyerSearch,
+                merchantAccountId);
         }
 
 
