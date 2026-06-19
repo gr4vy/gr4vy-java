@@ -410,6 +410,20 @@ public class TransactionConnectionOptions {
     private JsonNullable<? extends StripeOptions> stripeKlarna;
 
     /**
+     * Custom options to be passed to the `stripe-onelink` connector.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("stripe-onelink")
+    private JsonNullable<? extends StripeOptions> stripeOnelink;
+
+    /**
+     * Custom options to be passed to the `stripe-stripe` connector.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("stripe-stripe")
+    private JsonNullable<? extends StripeOptions> stripeStripe;
+
+    /**
      * Custom options to be passed to the `travelhub-card` connector.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -495,6 +509,8 @@ public class TransactionConnectionOptions {
             @JsonProperty("stripe-affirm") JsonNullable<? extends StripeOptions> stripeAffirm,
             @JsonProperty("stripe-card") JsonNullable<? extends StripeCardOptions> stripeCard,
             @JsonProperty("stripe-klarna") JsonNullable<? extends StripeOptions> stripeKlarna,
+            @JsonProperty("stripe-onelink") JsonNullable<? extends StripeOptions> stripeOnelink,
+            @JsonProperty("stripe-stripe") JsonNullable<? extends StripeOptions> stripeStripe,
             @JsonProperty("travelhub-card") JsonNullable<? extends TravelhubOptions> travelhubCard,
             @JsonProperty("trustly-trustly") JsonNullable<? extends TrustlyOptions> trustlyTrustly,
             @JsonProperty("wpay-everydaypay") JsonNullable<? extends WpayEverdaypayOptions> wpayEverydaypay,
@@ -555,6 +571,8 @@ public class TransactionConnectionOptions {
         Utils.checkNotNull(stripeAffirm, "stripeAffirm");
         Utils.checkNotNull(stripeCard, "stripeCard");
         Utils.checkNotNull(stripeKlarna, "stripeKlarna");
+        Utils.checkNotNull(stripeOnelink, "stripeOnelink");
+        Utils.checkNotNull(stripeStripe, "stripeStripe");
         Utils.checkNotNull(travelhubCard, "travelhubCard");
         Utils.checkNotNull(trustlyTrustly, "trustlyTrustly");
         Utils.checkNotNull(wpayEverydaypay, "wpayEverydaypay");
@@ -615,6 +633,8 @@ public class TransactionConnectionOptions {
         this.stripeAffirm = stripeAffirm;
         this.stripeCard = stripeCard;
         this.stripeKlarna = stripeKlarna;
+        this.stripeOnelink = stripeOnelink;
+        this.stripeStripe = stripeStripe;
         this.travelhubCard = travelhubCard;
         this.trustlyTrustly = trustlyTrustly;
         this.wpayEverydaypay = wpayEverydaypay;
@@ -641,7 +661,8 @@ public class TransactionConnectionOptions {
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined());
     }
 
     /**
@@ -1147,6 +1168,24 @@ public class TransactionConnectionOptions {
     @JsonIgnore
     public JsonNullable<StripeOptions> stripeKlarna() {
         return (JsonNullable<StripeOptions>) stripeKlarna;
+    }
+
+    /**
+     * Custom options to be passed to the `stripe-onelink` connector.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public JsonNullable<StripeOptions> stripeOnelink() {
+        return (JsonNullable<StripeOptions>) stripeOnelink;
+    }
+
+    /**
+     * Custom options to be passed to the `stripe-stripe` connector.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public JsonNullable<StripeOptions> stripeStripe() {
+        return (JsonNullable<StripeOptions>) stripeStripe;
     }
 
     /**
@@ -2201,6 +2240,42 @@ public class TransactionConnectionOptions {
     }
 
     /**
+     * Custom options to be passed to the `stripe-onelink` connector.
+     */
+    public TransactionConnectionOptions withStripeOnelink(StripeOptions stripeOnelink) {
+        Utils.checkNotNull(stripeOnelink, "stripeOnelink");
+        this.stripeOnelink = JsonNullable.of(stripeOnelink);
+        return this;
+    }
+
+    /**
+     * Custom options to be passed to the `stripe-onelink` connector.
+     */
+    public TransactionConnectionOptions withStripeOnelink(JsonNullable<? extends StripeOptions> stripeOnelink) {
+        Utils.checkNotNull(stripeOnelink, "stripeOnelink");
+        this.stripeOnelink = stripeOnelink;
+        return this;
+    }
+
+    /**
+     * Custom options to be passed to the `stripe-stripe` connector.
+     */
+    public TransactionConnectionOptions withStripeStripe(StripeOptions stripeStripe) {
+        Utils.checkNotNull(stripeStripe, "stripeStripe");
+        this.stripeStripe = JsonNullable.of(stripeStripe);
+        return this;
+    }
+
+    /**
+     * Custom options to be passed to the `stripe-stripe` connector.
+     */
+    public TransactionConnectionOptions withStripeStripe(JsonNullable<? extends StripeOptions> stripeStripe) {
+        Utils.checkNotNull(stripeStripe, "stripeStripe");
+        this.stripeStripe = stripeStripe;
+        return this;
+    }
+
+    /**
      * Custom options to be passed to the `travelhub-card` connector.
      */
     public TransactionConnectionOptions withTravelhubCard(TravelhubOptions travelhubCard) {
@@ -2338,6 +2413,8 @@ public class TransactionConnectionOptions {
             Utils.enhancedDeepEquals(this.stripeAffirm, other.stripeAffirm) &&
             Utils.enhancedDeepEquals(this.stripeCard, other.stripeCard) &&
             Utils.enhancedDeepEquals(this.stripeKlarna, other.stripeKlarna) &&
+            Utils.enhancedDeepEquals(this.stripeOnelink, other.stripeOnelink) &&
+            Utils.enhancedDeepEquals(this.stripeStripe, other.stripeStripe) &&
             Utils.enhancedDeepEquals(this.travelhubCard, other.travelhubCard) &&
             Utils.enhancedDeepEquals(this.trustlyTrustly, other.trustlyTrustly) &&
             Utils.enhancedDeepEquals(this.wpayEverydaypay, other.wpayEverydaypay) &&
@@ -2365,8 +2442,9 @@ public class TransactionConnectionOptions {
             nuveiIdeal, nuveiKlarna, nuveiPse,
             oxxoOxxo, paypalPaypal, paypalPaypalpaylater,
             powertranzCard, riskifiedAntiFraud, stripeAffirm,
-            stripeCard, stripeKlarna, travelhubCard,
-            trustlyTrustly, wpayEverydaypay, wpayPayto);
+            stripeCard, stripeKlarna, stripeOnelink,
+            stripeStripe, travelhubCard, trustlyTrustly,
+            wpayEverydaypay, wpayPayto);
     }
     
     @Override
@@ -2428,6 +2506,8 @@ public class TransactionConnectionOptions {
                 "stripeAffirm", stripeAffirm,
                 "stripeCard", stripeCard,
                 "stripeKlarna", stripeKlarna,
+                "stripeOnelink", stripeOnelink,
+                "stripeStripe", stripeStripe,
                 "travelhubCard", travelhubCard,
                 "trustlyTrustly", trustlyTrustly,
                 "wpayEverydaypay", wpayEverydaypay,
@@ -2548,6 +2628,10 @@ public class TransactionConnectionOptions {
         private JsonNullable<? extends StripeCardOptions> stripeCard = JsonNullable.undefined();
 
         private JsonNullable<? extends StripeOptions> stripeKlarna = JsonNullable.undefined();
+
+        private JsonNullable<? extends StripeOptions> stripeOnelink = JsonNullable.undefined();
+
+        private JsonNullable<? extends StripeOptions> stripeStripe = JsonNullable.undefined();
 
         private JsonNullable<? extends TravelhubOptions> travelhubCard = JsonNullable.undefined();
 
@@ -3629,6 +3713,44 @@ public class TransactionConnectionOptions {
 
 
         /**
+         * Custom options to be passed to the `stripe-onelink` connector.
+         */
+        public Builder stripeOnelink(StripeOptions stripeOnelink) {
+            Utils.checkNotNull(stripeOnelink, "stripeOnelink");
+            this.stripeOnelink = JsonNullable.of(stripeOnelink);
+            return this;
+        }
+
+        /**
+         * Custom options to be passed to the `stripe-onelink` connector.
+         */
+        public Builder stripeOnelink(JsonNullable<? extends StripeOptions> stripeOnelink) {
+            Utils.checkNotNull(stripeOnelink, "stripeOnelink");
+            this.stripeOnelink = stripeOnelink;
+            return this;
+        }
+
+
+        /**
+         * Custom options to be passed to the `stripe-stripe` connector.
+         */
+        public Builder stripeStripe(StripeOptions stripeStripe) {
+            Utils.checkNotNull(stripeStripe, "stripeStripe");
+            this.stripeStripe = JsonNullable.of(stripeStripe);
+            return this;
+        }
+
+        /**
+         * Custom options to be passed to the `stripe-stripe` connector.
+         */
+        public Builder stripeStripe(JsonNullable<? extends StripeOptions> stripeStripe) {
+            Utils.checkNotNull(stripeStripe, "stripeStripe");
+            this.stripeStripe = stripeStripe;
+            return this;
+        }
+
+
+        /**
          * Custom options to be passed to the `travelhub-card` connector.
          */
         public Builder travelhubCard(TravelhubOptions travelhubCard) {
@@ -3724,8 +3846,9 @@ public class TransactionConnectionOptions {
                 nuveiIdeal, nuveiKlarna, nuveiPse,
                 oxxoOxxo, paypalPaypal, paypalPaypalpaylater,
                 powertranzCard, riskifiedAntiFraud, stripeAffirm,
-                stripeCard, stripeKlarna, travelhubCard,
-                trustlyTrustly, wpayEverydaypay, wpayPayto);
+                stripeCard, stripeKlarna, stripeOnelink,
+                stripeStripe, travelhubCard, trustlyTrustly,
+                wpayEverydaypay, wpayPayto);
         }
 
     }

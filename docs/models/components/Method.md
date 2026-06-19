@@ -89,6 +89,7 @@ Method custom = Method.of("custom_value");
 | `ONEY4X`             | oney_4x              |
 | `ONEY6X`             | oney_6x              |
 | `ONLINEBANKINGCZ`    | onlinebankingcz      |
+| `ONELINK`            | onelink              |
 | `OVO`                | ovo                  |
 | `OXXO`               | oxxo                 |
 | `P24`                | p24                  |
@@ -122,6 +123,7 @@ Method custom = Method.of("custom_value");
 | `SPEI`               | spei                 |
 | `STITCH`             | stitch               |
 | `SWISH`              | swish                |
+| `STRIPE`             | stripe               |
 | `STRIPEDD`           | stripedd             |
 | `STRIPETOKEN`        | stripetoken          |
 | `TAPI`               | tapi                 |
