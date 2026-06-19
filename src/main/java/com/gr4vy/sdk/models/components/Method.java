@@ -93,6 +93,7 @@ public class Method {
     public static final Method ONEY4X = new Method("oney_4x");
     public static final Method ONEY6X = new Method("oney_6x");
     public static final Method ONLINEBANKINGCZ = new Method("onlinebankingcz");
+    public static final Method ONELINK = new Method("onelink");
     public static final Method OVO = new Method("ovo");
     public static final Method OXXO = new Method("oxxo");
     public static final Method P24 = new Method("p24");
@@ -126,6 +127,7 @@ public class Method {
     public static final Method SPEI = new Method("spei");
     public static final Method STITCH = new Method("stitch");
     public static final Method SWISH = new Method("swish");
+    public static final Method STRIPE = new Method("stripe");
     public static final Method STRIPEDD = new Method("stripedd");
     public static final Method STRIPETOKEN = new Method("stripetoken");
     public static final Method TAPI = new Method("tapi");
@@ -290,6 +292,7 @@ public class Method {
         map.put("oney_4x", ONEY4X);
         map.put("oney_6x", ONEY6X);
         map.put("onlinebankingcz", ONLINEBANKINGCZ);
+        map.put("onelink", ONELINK);
         map.put("ovo", OVO);
         map.put("oxxo", OXXO);
         map.put("p24", P24);
@@ -323,6 +326,7 @@ public class Method {
         map.put("spei", SPEI);
         map.put("stitch", STITCH);
         map.put("swish", SWISH);
+        map.put("stripe", STRIPE);
         map.put("stripedd", STRIPEDD);
         map.put("stripetoken", STRIPETOKEN);
         map.put("tapi", TAPI);
@@ -419,6 +423,7 @@ public class Method {
         map.put("oney_4x", MethodEnum.ONEY4X);
         map.put("oney_6x", MethodEnum.ONEY6X);
         map.put("onlinebankingcz", MethodEnum.ONLINEBANKINGCZ);
+        map.put("onelink", MethodEnum.ONELINK);
         map.put("ovo", MethodEnum.OVO);
         map.put("oxxo", MethodEnum.OXXO);
         map.put("p24", MethodEnum.P24);
@@ -452,6 +457,7 @@ public class Method {
         map.put("spei", MethodEnum.SPEI);
         map.put("stitch", MethodEnum.STITCH);
         map.put("swish", MethodEnum.SWISH);
+        map.put("stripe", MethodEnum.STRIPE);
         map.put("stripedd", MethodEnum.STRIPEDD);
         map.put("stripetoken", MethodEnum.STRIPETOKEN);
         map.put("tapi", MethodEnum.TAPI);
@@ -549,6 +555,7 @@ public class Method {
         ONEY4X("oney_4x"),
         ONEY6X("oney_6x"),
         ONLINEBANKINGCZ("onlinebankingcz"),
+        ONELINK("onelink"),
         OVO("ovo"),
         OXXO("oxxo"),
         P24("p24"),
@@ -582,6 +589,7 @@ public class Method {
         SPEI("spei"),
         STITCH("stitch"),
         SWISH("swish"),
+        STRIPE("stripe"),
         STRIPEDD("stripedd"),
         STRIPETOKEN("stripetoken"),
         TAPI("tapi"),

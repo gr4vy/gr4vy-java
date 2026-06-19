@@ -89,6 +89,7 @@ public class RedirectPaymentMethodCreateMethod {
     public static final RedirectPaymentMethodCreateMethod ONEY4X = new RedirectPaymentMethodCreateMethod("oney_4x");
     public static final RedirectPaymentMethodCreateMethod ONEY6X = new RedirectPaymentMethodCreateMethod("oney_6x");
     public static final RedirectPaymentMethodCreateMethod ONLINEBANKINGCZ = new RedirectPaymentMethodCreateMethod("onlinebankingcz");
+    public static final RedirectPaymentMethodCreateMethod ONELINK = new RedirectPaymentMethodCreateMethod("onelink");
     public static final RedirectPaymentMethodCreateMethod OVO = new RedirectPaymentMethodCreateMethod("ovo");
     public static final RedirectPaymentMethodCreateMethod OXXO = new RedirectPaymentMethodCreateMethod("oxxo");
     public static final RedirectPaymentMethodCreateMethod P24 = new RedirectPaymentMethodCreateMethod("p24");
@@ -120,6 +121,7 @@ public class RedirectPaymentMethodCreateMethod {
     public static final RedirectPaymentMethodCreateMethod SPEI = new RedirectPaymentMethodCreateMethod("spei");
     public static final RedirectPaymentMethodCreateMethod STITCH = new RedirectPaymentMethodCreateMethod("stitch");
     public static final RedirectPaymentMethodCreateMethod SWISH = new RedirectPaymentMethodCreateMethod("swish");
+    public static final RedirectPaymentMethodCreateMethod STRIPE = new RedirectPaymentMethodCreateMethod("stripe");
     public static final RedirectPaymentMethodCreateMethod STRIPEDD = new RedirectPaymentMethodCreateMethod("stripedd");
     public static final RedirectPaymentMethodCreateMethod STRIPETOKEN = new RedirectPaymentMethodCreateMethod("stripetoken");
     public static final RedirectPaymentMethodCreateMethod TAPI = new RedirectPaymentMethodCreateMethod("tapi");
@@ -275,6 +277,7 @@ public class RedirectPaymentMethodCreateMethod {
         map.put("oney_4x", ONEY4X);
         map.put("oney_6x", ONEY6X);
         map.put("onlinebankingcz", ONLINEBANKINGCZ);
+        map.put("onelink", ONELINK);
         map.put("ovo", OVO);
         map.put("oxxo", OXXO);
         map.put("p24", P24);
@@ -306,6 +309,7 @@ public class RedirectPaymentMethodCreateMethod {
         map.put("spei", SPEI);
         map.put("stitch", STITCH);
         map.put("swish", SWISH);
+        map.put("stripe", STRIPE);
         map.put("stripedd", STRIPEDD);
         map.put("stripetoken", STRIPETOKEN);
         map.put("tapi", TAPI);
@@ -393,6 +397,7 @@ public class RedirectPaymentMethodCreateMethod {
         map.put("oney_4x", RedirectPaymentMethodCreateMethodEnum.ONEY4X);
         map.put("oney_6x", RedirectPaymentMethodCreateMethodEnum.ONEY6X);
         map.put("onlinebankingcz", RedirectPaymentMethodCreateMethodEnum.ONLINEBANKINGCZ);
+        map.put("onelink", RedirectPaymentMethodCreateMethodEnum.ONELINK);
         map.put("ovo", RedirectPaymentMethodCreateMethodEnum.OVO);
         map.put("oxxo", RedirectPaymentMethodCreateMethodEnum.OXXO);
         map.put("p24", RedirectPaymentMethodCreateMethodEnum.P24);
@@ -424,6 +429,7 @@ public class RedirectPaymentMethodCreateMethod {
         map.put("spei", RedirectPaymentMethodCreateMethodEnum.SPEI);
         map.put("stitch", RedirectPaymentMethodCreateMethodEnum.STITCH);
         map.put("swish", RedirectPaymentMethodCreateMethodEnum.SWISH);
+        map.put("stripe", RedirectPaymentMethodCreateMethodEnum.STRIPE);
         map.put("stripedd", RedirectPaymentMethodCreateMethodEnum.STRIPEDD);
         map.put("stripetoken", RedirectPaymentMethodCreateMethodEnum.STRIPETOKEN);
         map.put("tapi", RedirectPaymentMethodCreateMethodEnum.TAPI);
@@ -512,6 +518,7 @@ public class RedirectPaymentMethodCreateMethod {
         ONEY4X("oney_4x"),
         ONEY6X("oney_6x"),
         ONLINEBANKINGCZ("onlinebankingcz"),
+        ONELINK("onelink"),
         OVO("ovo"),
         OXXO("oxxo"),
         P24("p24"),
@@ -543,6 +550,7 @@ public class RedirectPaymentMethodCreateMethod {
         SPEI("spei"),
         STITCH("stitch"),
         SWISH("swish"),
+        STRIPE("stripe"),
         STRIPEDD("stripedd"),
         STRIPETOKEN("stripetoken"),
         TAPI("tapi"),

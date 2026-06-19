@@ -82,6 +82,7 @@ RedirectPaymentMethodCreateMethod custom = RedirectPaymentMethodCreateMethod.of(
 | `ONEY4X`          | oney_4x           |
 | `ONEY6X`          | oney_6x           |
 | `ONLINEBANKINGCZ` | onlinebankingcz   |
+| `ONELINK`         | onelink           |
 | `OVO`             | ovo               |
 | `OXXO`            | oxxo              |
 | `P24`             | p24               |
@@ -113,6 +114,7 @@ RedirectPaymentMethodCreateMethod custom = RedirectPaymentMethodCreateMethod.of(
 | `SPEI`            | spei              |
 | `STITCH`          | stitch            |
 | `SWISH`           | swish             |
+| `STRIPE`          | stripe            |
 | `STRIPEDD`        | stripedd          |
 | `STRIPETOKEN`     | stripetoken       |
 | `TAPI`            | tapi              |
