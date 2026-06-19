@@ -1,19 +1,19 @@
 lockVersion: 2.0.0
 id: 5bbaa3a9-baa0-471b-ba6a-13fd88e8c119
 management:
-  docChecksum: 6208ad68cce54f2e8ef75cd9a98c3d8e
+  docChecksum: e5c9299e8e2e89c60253fce430bbda8f
   docVersion: 1.0.0
-  speakeasyVersion: 1.783.1
-  generationVersion: 2.910.1
-  releaseVersion: 2.16.92
-  configChecksum: b9b358a40e6095a41f214fd7d48892c3
+  speakeasyVersion: 1.784.0
+  generationVersion: 2.911.0
+  releaseVersion: 2.16.93
+  configChecksum: b8d6ac66d1e4f13c2438e8920a327a5e
   repoURL: https://github.com/gr4vy/gr4vy-java.git
   installationURL: https://github.com/gr4vy/gr4vy-java
   published: true
 persistentEdits:
-  generation_id: dad436cc-726c-4b68-8c43-d4ebe95a3a23
-  pristine_commit_hash: 18b1341d08ddc9f7442c04904e0672376490837f
-  pristine_tree_hash: cdacdb6528527d320475f1f99e056edcc3be9edb
+  generation_id: 036d2ee9-2f71-45b2-86f5-bcacdd245abc
+  pristine_commit_hash: d2763613f9bcb0c41ce145e149a789c2cda0856b
+  pristine_tree_hash: d750dc76815f0d7870ecb01ac33ca8879b3a90d1
 features:
   java:
     additionalDependencies: 0.1.0
@@ -950,8 +950,8 @@ trackedFiles:
     pristine_git_object: 5b4187c4f281c1d6a0d8273aa8e3250f85c9e3e8
   docs/models/components/PaypalOptions.md:
     id: 4e7a7bb84822
-    last_write_checksum: sha1:fa15f7a041f6190409b1cd3ef71bd5e40a74ddf4
-    pristine_git_object: 9df7b6c03cb4c236d81e3f70afd414777e7d4db4
+    last_write_checksum: sha1:4261d4a8b663b780abf20e24935d3b52611e4242
+    pristine_git_object: 55ed317c5a2d6c9fb3ab571363d0ae98c3b241bd
   docs/models/components/PaypalOrderUpdateCallbackConfig.md:
     id: 84d6c88878be
     last_write_checksum: sha1:f7de49ec2b61bb1e54f8adf7ec9e67c7cb4cd6a3
@@ -2654,8 +2654,8 @@ trackedFiles:
     pristine_git_object: 15c4e4642f204ccb312d8814155b69e153b4e19b
   gradle.properties:
     id: 2afbb999f001
-    last_write_checksum: sha1:1229a8aabe1964bddbf3ee657b41e9af360478cb
-    pristine_git_object: 7d1e8d44b85fcf435dc9b7ae4b0affc4ba4a2514
+    last_write_checksum: sha1:0f85bc4e4ea87bbea94062733840ce194e5ff82d
+    pristine_git_object: a4c2d770a5a2ca7b8e7ab8080a22e97bdd8879f6
   gradle/wrapper/gradle-wrapper.jar:
     id: ec27dae6e852
     last_write_checksum: sha1:f725fb1467084142d74fd7cd8eab691ab3442611
@@ -2958,8 +2958,8 @@ trackedFiles:
     pristine_git_object: 502a7312d3dc82c102dbaf7ed5e952d0c793e26f
   src/main/java/com/gr4vy/sdk/SDKConfiguration.java:
     id: 73a7edeaca45
-    last_write_checksum: sha1:3cfabb2d8388ecd6416adfae6165efdbc1d265e1
-    pristine_git_object: 8f17f1c1fdcc436da597e8ebf8dff8cf5b4ec3d3
+    last_write_checksum: sha1:b40f1c1a5b859721e01f2ba96a100747e187c1ed
+    pristine_git_object: 7f0f245241128c10fa7e4ee3d2d96890d08b661c
   src/main/java/com/gr4vy/sdk/SecuritySource.java:
     id: 1b6add6b9b50
     last_write_checksum: sha1:2f365cc823c6243188e83f4df618c9737fcee8bd
@@ -3894,8 +3894,8 @@ trackedFiles:
     pristine_git_object: a425d4ed437ceaba492659000bf4b9e20124423c
   src/main/java/com/gr4vy/sdk/models/components/PaypalOptions.java:
     id: 2462566ef6e9
-    last_write_checksum: sha1:13dd5d09990cefa9e5ab3d5f49f2e1ac5a276d00
-    pristine_git_object: 4213241ec4e682840ac200c9625309f0c221c92c
+    last_write_checksum: sha1:92b9f6f9144550a9b26a6cbd14d1d3a004e91792
+    pristine_git_object: 140b1c67c3463e8d6f0ac5c9e33230b2a733ca1c
   src/main/java/com/gr4vy/sdk/models/components/PaypalOrderUpdateCallbackConfig.java:
     id: 40bca75299a9
     last_write_checksum: sha1:05e7bf3be9c0dc75004de6d1e6b0e1c825abcf4a
@@ -11477,7 +11477,7 @@ examples:
           application/json: {"type": "error", "code": "gateway_timeout", "status": 504, "message": "Request could not be processed"}
 examplesVersion: 1.0.2
 generatedTests: {}
-releaseNotes: "## Java SDK Changes:\n* `gr4vy.transactions.list()`: \n  *  `request.reauthorizedFromTransactionId` **Added**\n"
+releaseNotes: "## Java SDK Changes:\n* `gr4vy.transactions.create()`: \n  *  `request.transactionCreate.connectionOptions.paypalPaypal` **Changed**\n* `gr4vy.transactions.update()`: \n  *  `request.transactionUpdate.connectionOptions.paypalPaypal` **Changed**\n* `gr4vy.paymentLinks.create()`: \n  *  `request.paymentLinkCreate.connectionOptions.paypalPaypal` **Changed**\n"
 generatedFiles:
   - .gitattributes
   - USAGE.md

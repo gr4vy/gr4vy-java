@@ -39,21 +39,77 @@ public class PaypalOptions {
     @JsonProperty("shipping")
     private JsonNullable<? extends PaypalShippingOptions> shipping;
 
+    /**
+     * Customizes the PayPal Checkout button text. Use `PAY_NOW` to show a pay now button, or `CONTINUE` to
+     * show a continue button for deferred payments.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("user_action")
+    private JsonNullable<String> userAction;
+
+    /**
+     * Controls the shipping address display in the PayPal Checkout flow. Use `GET_FROM_FILE` to use the
+     * shipping address from the PayPal account, `NO_SHIPPING` to hide shipping address fields, or
+     * `SET_PROVIDED_ADDRESS` to use the shipping address provided in the request.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("shipping_preference")
+    private JsonNullable<String> shippingPreference;
+
+    /**
+     * The merchant brand name that appears in the PayPal Checkout flow. Maximum 127 characters.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("brand_name")
+    private JsonNullable<String> brandName;
+
+    /**
+     * The type of landing page to display on the PayPal Checkout. Use `LOGIN` to show the PayPal login
+     * page, `GUEST_CHECKOUT` to show the guest checkout page, or `NO_PREFERENCE` to let PayPal decide.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("landing_page")
+    private JsonNullable<String> landingPage;
+
+    /**
+     * The BCP 47 locale used to localize the PayPal Checkout page. For example, `en-US` or `fr-FR`.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("locale")
+    private JsonNullable<String> locale;
+
     @JsonCreator
     public PaypalOptions(
             @JsonProperty("order_update_callback_config") JsonNullable<? extends PaypalOrderUpdateCallbackConfig> orderUpdateCallbackConfig,
             @JsonProperty("additional_data") JsonNullable<? extends List<Map<String, String>>> additionalData,
-            @JsonProperty("shipping") JsonNullable<? extends PaypalShippingOptions> shipping) {
+            @JsonProperty("shipping") JsonNullable<? extends PaypalShippingOptions> shipping,
+            @JsonProperty("user_action") JsonNullable<String> userAction,
+            @JsonProperty("shipping_preference") JsonNullable<String> shippingPreference,
+            @JsonProperty("brand_name") JsonNullable<String> brandName,
+            @JsonProperty("landing_page") JsonNullable<String> landingPage,
+            @JsonProperty("locale") JsonNullable<String> locale) {
         Utils.checkNotNull(orderUpdateCallbackConfig, "orderUpdateCallbackConfig");
         Utils.checkNotNull(additionalData, "additionalData");
         Utils.checkNotNull(shipping, "shipping");
+        Utils.checkNotNull(userAction, "userAction");
+        Utils.checkNotNull(shippingPreference, "shippingPreference");
+        Utils.checkNotNull(brandName, "brandName");
+        Utils.checkNotNull(landingPage, "landingPage");
+        Utils.checkNotNull(locale, "locale");
         this.orderUpdateCallbackConfig = orderUpdateCallbackConfig;
         this.additionalData = additionalData;
         this.shipping = shipping;
+        this.userAction = userAction;
+        this.shippingPreference = shippingPreference;
+        this.brandName = brandName;
+        this.landingPage = landingPage;
+        this.locale = locale;
     }
     
     public PaypalOptions() {
-        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
+        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined());
     }
 
     /**
@@ -81,6 +137,50 @@ public class PaypalOptions {
     @JsonIgnore
     public JsonNullable<PaypalShippingOptions> shipping() {
         return (JsonNullable<PaypalShippingOptions>) shipping;
+    }
+
+    /**
+     * Customizes the PayPal Checkout button text. Use `PAY_NOW` to show a pay now button, or `CONTINUE` to
+     * show a continue button for deferred payments.
+     */
+    @JsonIgnore
+    public JsonNullable<String> userAction() {
+        return userAction;
+    }
+
+    /**
+     * Controls the shipping address display in the PayPal Checkout flow. Use `GET_FROM_FILE` to use the
+     * shipping address from the PayPal account, `NO_SHIPPING` to hide shipping address fields, or
+     * `SET_PROVIDED_ADDRESS` to use the shipping address provided in the request.
+     */
+    @JsonIgnore
+    public JsonNullable<String> shippingPreference() {
+        return shippingPreference;
+    }
+
+    /**
+     * The merchant brand name that appears in the PayPal Checkout flow. Maximum 127 characters.
+     */
+    @JsonIgnore
+    public JsonNullable<String> brandName() {
+        return brandName;
+    }
+
+    /**
+     * The type of landing page to display on the PayPal Checkout. Use `LOGIN` to show the PayPal login
+     * page, `GUEST_CHECKOUT` to show the guest checkout page, or `NO_PREFERENCE` to let PayPal decide.
+     */
+    @JsonIgnore
+    public JsonNullable<String> landingPage() {
+        return landingPage;
+    }
+
+    /**
+     * The BCP 47 locale used to localize the PayPal Checkout page. For example, `en-US` or `fr-FR`.
+     */
+    @JsonIgnore
+    public JsonNullable<String> locale() {
+        return locale;
     }
 
     public static Builder builder() {
@@ -142,6 +242,104 @@ public class PaypalOptions {
         return this;
     }
 
+    /**
+     * Customizes the PayPal Checkout button text. Use `PAY_NOW` to show a pay now button, or `CONTINUE` to
+     * show a continue button for deferred payments.
+     */
+    public PaypalOptions withUserAction(String userAction) {
+        Utils.checkNotNull(userAction, "userAction");
+        this.userAction = JsonNullable.of(userAction);
+        return this;
+    }
+
+    /**
+     * Customizes the PayPal Checkout button text. Use `PAY_NOW` to show a pay now button, or `CONTINUE` to
+     * show a continue button for deferred payments.
+     */
+    public PaypalOptions withUserAction(JsonNullable<String> userAction) {
+        Utils.checkNotNull(userAction, "userAction");
+        this.userAction = userAction;
+        return this;
+    }
+
+    /**
+     * Controls the shipping address display in the PayPal Checkout flow. Use `GET_FROM_FILE` to use the
+     * shipping address from the PayPal account, `NO_SHIPPING` to hide shipping address fields, or
+     * `SET_PROVIDED_ADDRESS` to use the shipping address provided in the request.
+     */
+    public PaypalOptions withShippingPreference(String shippingPreference) {
+        Utils.checkNotNull(shippingPreference, "shippingPreference");
+        this.shippingPreference = JsonNullable.of(shippingPreference);
+        return this;
+    }
+
+    /**
+     * Controls the shipping address display in the PayPal Checkout flow. Use `GET_FROM_FILE` to use the
+     * shipping address from the PayPal account, `NO_SHIPPING` to hide shipping address fields, or
+     * `SET_PROVIDED_ADDRESS` to use the shipping address provided in the request.
+     */
+    public PaypalOptions withShippingPreference(JsonNullable<String> shippingPreference) {
+        Utils.checkNotNull(shippingPreference, "shippingPreference");
+        this.shippingPreference = shippingPreference;
+        return this;
+    }
+
+    /**
+     * The merchant brand name that appears in the PayPal Checkout flow. Maximum 127 characters.
+     */
+    public PaypalOptions withBrandName(String brandName) {
+        Utils.checkNotNull(brandName, "brandName");
+        this.brandName = JsonNullable.of(brandName);
+        return this;
+    }
+
+    /**
+     * The merchant brand name that appears in the PayPal Checkout flow. Maximum 127 characters.
+     */
+    public PaypalOptions withBrandName(JsonNullable<String> brandName) {
+        Utils.checkNotNull(brandName, "brandName");
+        this.brandName = brandName;
+        return this;
+    }
+
+    /**
+     * The type of landing page to display on the PayPal Checkout. Use `LOGIN` to show the PayPal login
+     * page, `GUEST_CHECKOUT` to show the guest checkout page, or `NO_PREFERENCE` to let PayPal decide.
+     */
+    public PaypalOptions withLandingPage(String landingPage) {
+        Utils.checkNotNull(landingPage, "landingPage");
+        this.landingPage = JsonNullable.of(landingPage);
+        return this;
+    }
+
+    /**
+     * The type of landing page to display on the PayPal Checkout. Use `LOGIN` to show the PayPal login
+     * page, `GUEST_CHECKOUT` to show the guest checkout page, or `NO_PREFERENCE` to let PayPal decide.
+     */
+    public PaypalOptions withLandingPage(JsonNullable<String> landingPage) {
+        Utils.checkNotNull(landingPage, "landingPage");
+        this.landingPage = landingPage;
+        return this;
+    }
+
+    /**
+     * The BCP 47 locale used to localize the PayPal Checkout page. For example, `en-US` or `fr-FR`.
+     */
+    public PaypalOptions withLocale(String locale) {
+        Utils.checkNotNull(locale, "locale");
+        this.locale = JsonNullable.of(locale);
+        return this;
+    }
+
+    /**
+     * The BCP 47 locale used to localize the PayPal Checkout page. For example, `en-US` or `fr-FR`.
+     */
+    public PaypalOptions withLocale(JsonNullable<String> locale) {
+        Utils.checkNotNull(locale, "locale");
+        this.locale = locale;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -154,13 +352,20 @@ public class PaypalOptions {
         return 
             Utils.enhancedDeepEquals(this.orderUpdateCallbackConfig, other.orderUpdateCallbackConfig) &&
             Utils.enhancedDeepEquals(this.additionalData, other.additionalData) &&
-            Utils.enhancedDeepEquals(this.shipping, other.shipping);
+            Utils.enhancedDeepEquals(this.shipping, other.shipping) &&
+            Utils.enhancedDeepEquals(this.userAction, other.userAction) &&
+            Utils.enhancedDeepEquals(this.shippingPreference, other.shippingPreference) &&
+            Utils.enhancedDeepEquals(this.brandName, other.brandName) &&
+            Utils.enhancedDeepEquals(this.landingPage, other.landingPage) &&
+            Utils.enhancedDeepEquals(this.locale, other.locale);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            orderUpdateCallbackConfig, additionalData, shipping);
+            orderUpdateCallbackConfig, additionalData, shipping,
+            userAction, shippingPreference, brandName,
+            landingPage, locale);
     }
     
     @Override
@@ -168,7 +373,12 @@ public class PaypalOptions {
         return Utils.toString(PaypalOptions.class,
                 "orderUpdateCallbackConfig", orderUpdateCallbackConfig,
                 "additionalData", additionalData,
-                "shipping", shipping);
+                "shipping", shipping,
+                "userAction", userAction,
+                "shippingPreference", shippingPreference,
+                "brandName", brandName,
+                "landingPage", landingPage,
+                "locale", locale);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -179,6 +389,16 @@ public class PaypalOptions {
         private JsonNullable<? extends List<Map<String, String>>> additionalData = JsonNullable.undefined();
 
         private JsonNullable<? extends PaypalShippingOptions> shipping = JsonNullable.undefined();
+
+        private JsonNullable<String> userAction = JsonNullable.undefined();
+
+        private JsonNullable<String> shippingPreference = JsonNullable.undefined();
+
+        private JsonNullable<String> brandName = JsonNullable.undefined();
+
+        private JsonNullable<String> landingPage = JsonNullable.undefined();
+
+        private JsonNullable<String> locale = JsonNullable.undefined();
 
         private Builder() {
           // force use of static builder() method
@@ -241,10 +461,115 @@ public class PaypalOptions {
             return this;
         }
 
+
+        /**
+         * Customizes the PayPal Checkout button text. Use `PAY_NOW` to show a pay now button, or `CONTINUE` to
+         * show a continue button for deferred payments.
+         */
+        public Builder userAction(String userAction) {
+            Utils.checkNotNull(userAction, "userAction");
+            this.userAction = JsonNullable.of(userAction);
+            return this;
+        }
+
+        /**
+         * Customizes the PayPal Checkout button text. Use `PAY_NOW` to show a pay now button, or `CONTINUE` to
+         * show a continue button for deferred payments.
+         */
+        public Builder userAction(JsonNullable<String> userAction) {
+            Utils.checkNotNull(userAction, "userAction");
+            this.userAction = userAction;
+            return this;
+        }
+
+
+        /**
+         * Controls the shipping address display in the PayPal Checkout flow. Use `GET_FROM_FILE` to use the
+         * shipping address from the PayPal account, `NO_SHIPPING` to hide shipping address fields, or
+         * `SET_PROVIDED_ADDRESS` to use the shipping address provided in the request.
+         */
+        public Builder shippingPreference(String shippingPreference) {
+            Utils.checkNotNull(shippingPreference, "shippingPreference");
+            this.shippingPreference = JsonNullable.of(shippingPreference);
+            return this;
+        }
+
+        /**
+         * Controls the shipping address display in the PayPal Checkout flow. Use `GET_FROM_FILE` to use the
+         * shipping address from the PayPal account, `NO_SHIPPING` to hide shipping address fields, or
+         * `SET_PROVIDED_ADDRESS` to use the shipping address provided in the request.
+         */
+        public Builder shippingPreference(JsonNullable<String> shippingPreference) {
+            Utils.checkNotNull(shippingPreference, "shippingPreference");
+            this.shippingPreference = shippingPreference;
+            return this;
+        }
+
+
+        /**
+         * The merchant brand name that appears in the PayPal Checkout flow. Maximum 127 characters.
+         */
+        public Builder brandName(String brandName) {
+            Utils.checkNotNull(brandName, "brandName");
+            this.brandName = JsonNullable.of(brandName);
+            return this;
+        }
+
+        /**
+         * The merchant brand name that appears in the PayPal Checkout flow. Maximum 127 characters.
+         */
+        public Builder brandName(JsonNullable<String> brandName) {
+            Utils.checkNotNull(brandName, "brandName");
+            this.brandName = brandName;
+            return this;
+        }
+
+
+        /**
+         * The type of landing page to display on the PayPal Checkout. Use `LOGIN` to show the PayPal login
+         * page, `GUEST_CHECKOUT` to show the guest checkout page, or `NO_PREFERENCE` to let PayPal decide.
+         */
+        public Builder landingPage(String landingPage) {
+            Utils.checkNotNull(landingPage, "landingPage");
+            this.landingPage = JsonNullable.of(landingPage);
+            return this;
+        }
+
+        /**
+         * The type of landing page to display on the PayPal Checkout. Use `LOGIN` to show the PayPal login
+         * page, `GUEST_CHECKOUT` to show the guest checkout page, or `NO_PREFERENCE` to let PayPal decide.
+         */
+        public Builder landingPage(JsonNullable<String> landingPage) {
+            Utils.checkNotNull(landingPage, "landingPage");
+            this.landingPage = landingPage;
+            return this;
+        }
+
+
+        /**
+         * The BCP 47 locale used to localize the PayPal Checkout page. For example, `en-US` or `fr-FR`.
+         */
+        public Builder locale(String locale) {
+            Utils.checkNotNull(locale, "locale");
+            this.locale = JsonNullable.of(locale);
+            return this;
+        }
+
+        /**
+         * The BCP 47 locale used to localize the PayPal Checkout page. For example, `en-US` or `fr-FR`.
+         */
+        public Builder locale(JsonNullable<String> locale) {
+            Utils.checkNotNull(locale, "locale");
+            this.locale = locale;
+            return this;
+        }
+
         public PaypalOptions build() {
 
             return new PaypalOptions(
-                orderUpdateCallbackConfig, additionalData, shipping);
+                orderUpdateCallbackConfig, additionalData, shipping,
+                userAction, shippingPreference, brandName,
+                landingPage, locale);
         }
 
     }
