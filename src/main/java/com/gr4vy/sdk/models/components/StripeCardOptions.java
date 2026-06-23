@@ -25,6 +25,15 @@ public class StripeCardOptions {
     private JsonNullable<? extends StripeConnectOptions> stripeConnect;
 
     /**
+     * A Stripe customer ID (`cus_xxx`) to associate with the PaymentIntent for network token transactions.
+     * When provided, Stripe Radar can access the customer's payment history, dispute rate, and account age
+     * to improve risk scoring for returning customers.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("customer_id")
+    private JsonNullable<String> customerId;
+
+    /**
      * Passes the `error_on_requires_action` option to the Stripe API. Set to true to fail the payment
      * attempt if it transitions into requires_action. Use this parameter for simpler integrations that
      * don't handle customer actions, such as saving cards without authentication.
@@ -36,15 +45,18 @@ public class StripeCardOptions {
     @JsonCreator
     public StripeCardOptions(
             @JsonProperty("stripe_connect") JsonNullable<? extends StripeConnectOptions> stripeConnect,
+            @JsonProperty("customer_id") JsonNullable<String> customerId,
             @JsonProperty("error_on_requires_action") JsonNullable<Boolean> errorOnRequiresAction) {
         Utils.checkNotNull(stripeConnect, "stripeConnect");
+        Utils.checkNotNull(customerId, "customerId");
         Utils.checkNotNull(errorOnRequiresAction, "errorOnRequiresAction");
         this.stripeConnect = stripeConnect;
+        this.customerId = customerId;
         this.errorOnRequiresAction = errorOnRequiresAction;
     }
     
     public StripeCardOptions() {
-        this(JsonNullable.undefined(), JsonNullable.undefined());
+        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
     }
 
     /**
@@ -54,6 +66,16 @@ public class StripeCardOptions {
     @JsonIgnore
     public JsonNullable<StripeConnectOptions> stripeConnect() {
         return (JsonNullable<StripeConnectOptions>) stripeConnect;
+    }
+
+    /**
+     * A Stripe customer ID (`cus_xxx`) to associate with the PaymentIntent for network token transactions.
+     * When provided, Stripe Radar can access the customer's payment history, dispute rate, and account age
+     * to improve risk scoring for returning customers.
+     */
+    @JsonIgnore
+    public JsonNullable<String> customerId() {
+        return customerId;
     }
 
     /**
@@ -90,6 +112,28 @@ public class StripeCardOptions {
     }
 
     /**
+     * A Stripe customer ID (`cus_xxx`) to associate with the PaymentIntent for network token transactions.
+     * When provided, Stripe Radar can access the customer's payment history, dispute rate, and account age
+     * to improve risk scoring for returning customers.
+     */
+    public StripeCardOptions withCustomerId(String customerId) {
+        Utils.checkNotNull(customerId, "customerId");
+        this.customerId = JsonNullable.of(customerId);
+        return this;
+    }
+
+    /**
+     * A Stripe customer ID (`cus_xxx`) to associate with the PaymentIntent for network token transactions.
+     * When provided, Stripe Radar can access the customer's payment history, dispute rate, and account age
+     * to improve risk scoring for returning customers.
+     */
+    public StripeCardOptions withCustomerId(JsonNullable<String> customerId) {
+        Utils.checkNotNull(customerId, "customerId");
+        this.customerId = customerId;
+        return this;
+    }
+
+    /**
      * Passes the `error_on_requires_action` option to the Stripe API. Set to true to fail the payment
      * attempt if it transitions into requires_action. Use this parameter for simpler integrations that
      * don't handle customer actions, such as saving cards without authentication.
@@ -122,19 +166,21 @@ public class StripeCardOptions {
         StripeCardOptions other = (StripeCardOptions) o;
         return 
             Utils.enhancedDeepEquals(this.stripeConnect, other.stripeConnect) &&
+            Utils.enhancedDeepEquals(this.customerId, other.customerId) &&
             Utils.enhancedDeepEquals(this.errorOnRequiresAction, other.errorOnRequiresAction);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            stripeConnect, errorOnRequiresAction);
+            stripeConnect, customerId, errorOnRequiresAction);
     }
     
     @Override
     public String toString() {
         return Utils.toString(StripeCardOptions.class,
                 "stripeConnect", stripeConnect,
+                "customerId", customerId,
                 "errorOnRequiresAction", errorOnRequiresAction);
     }
 
@@ -142,6 +188,8 @@ public class StripeCardOptions {
     public final static class Builder {
 
         private JsonNullable<? extends StripeConnectOptions> stripeConnect = JsonNullable.undefined();
+
+        private JsonNullable<String> customerId = JsonNullable.undefined();
 
         private JsonNullable<Boolean> errorOnRequiresAction = JsonNullable.undefined();
 
@@ -165,6 +213,29 @@ public class StripeCardOptions {
         public Builder stripeConnect(JsonNullable<? extends StripeConnectOptions> stripeConnect) {
             Utils.checkNotNull(stripeConnect, "stripeConnect");
             this.stripeConnect = stripeConnect;
+            return this;
+        }
+
+
+        /**
+         * A Stripe customer ID (`cus_xxx`) to associate with the PaymentIntent for network token transactions.
+         * When provided, Stripe Radar can access the customer's payment history, dispute rate, and account age
+         * to improve risk scoring for returning customers.
+         */
+        public Builder customerId(String customerId) {
+            Utils.checkNotNull(customerId, "customerId");
+            this.customerId = JsonNullable.of(customerId);
+            return this;
+        }
+
+        /**
+         * A Stripe customer ID (`cus_xxx`) to associate with the PaymentIntent for network token transactions.
+         * When provided, Stripe Radar can access the customer's payment history, dispute rate, and account age
+         * to improve risk scoring for returning customers.
+         */
+        public Builder customerId(JsonNullable<String> customerId) {
+            Utils.checkNotNull(customerId, "customerId");
+            this.customerId = customerId;
             return this;
         }
 
@@ -194,7 +265,7 @@ public class StripeCardOptions {
         public StripeCardOptions build() {
 
             return new StripeCardOptions(
-                stripeConnect, errorOnRequiresAction);
+                stripeConnect, customerId, errorOnRequiresAction);
         }
 
     }
