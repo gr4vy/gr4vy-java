@@ -166,6 +166,20 @@ public class MerchantAccountCreate {
     private JsonNullable<String> mastercardNetworkTokensAppId;
 
     /**
+     * Requestor ID provided for Discover after onboarding to use Network Tokens.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("discover_network_tokens_requestor_id")
+    private JsonNullable<String> discoverNetworkTokensRequestorId;
+
+    /**
+     * Application ID provided for Discover after onboarding to use Network Tokens.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("discover_network_tokens_app_id")
+    private JsonNullable<String> discoverNetworkTokensAppId;
+
+    /**
      * When enabled network tokens will be generated asynchronously and only used on subsequent
      * transactions to speed up transaction processing.
      */
@@ -203,6 +217,8 @@ public class MerchantAccountCreate {
             @JsonProperty("amex_network_tokens_app_id") JsonNullable<String> amexNetworkTokensAppId,
             @JsonProperty("mastercard_network_tokens_requestor_id") JsonNullable<String> mastercardNetworkTokensRequestorId,
             @JsonProperty("mastercard_network_tokens_app_id") JsonNullable<String> mastercardNetworkTokensAppId,
+            @JsonProperty("discover_network_tokens_requestor_id") JsonNullable<String> discoverNetworkTokensRequestorId,
+            @JsonProperty("discover_network_tokens_app_id") JsonNullable<String> discoverNetworkTokensAppId,
             @JsonProperty("async_network_tokens_enabled") Optional<Boolean> asyncNetworkTokensEnabled,
             @JsonProperty("id") String id,
             @JsonProperty("display_name") String displayName) {
@@ -222,6 +238,8 @@ public class MerchantAccountCreate {
         Utils.checkNotNull(amexNetworkTokensAppId, "amexNetworkTokensAppId");
         Utils.checkNotNull(mastercardNetworkTokensRequestorId, "mastercardNetworkTokensRequestorId");
         Utils.checkNotNull(mastercardNetworkTokensAppId, "mastercardNetworkTokensAppId");
+        Utils.checkNotNull(discoverNetworkTokensRequestorId, "discoverNetworkTokensRequestorId");
+        Utils.checkNotNull(discoverNetworkTokensAppId, "discoverNetworkTokensAppId");
         Utils.checkNotNull(asyncNetworkTokensEnabled, "asyncNetworkTokensEnabled");
         Utils.checkNotNull(id, "id");
         Utils.checkNotNull(displayName, "displayName");
@@ -241,6 +259,8 @@ public class MerchantAccountCreate {
         this.amexNetworkTokensAppId = amexNetworkTokensAppId;
         this.mastercardNetworkTokensRequestorId = mastercardNetworkTokensRequestorId;
         this.mastercardNetworkTokensAppId = mastercardNetworkTokensAppId;
+        this.discoverNetworkTokensRequestorId = discoverNetworkTokensRequestorId;
+        this.discoverNetworkTokensAppId = discoverNetworkTokensAppId;
         this.asyncNetworkTokensEnabled = asyncNetworkTokensEnabled;
         this.id = id;
         this.displayName = displayName;
@@ -254,8 +274,8 @@ public class MerchantAccountCreate {
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), Optional.empty(), id,
-            displayName);
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            Optional.empty(), id, displayName);
     }
 
     /**
@@ -416,6 +436,22 @@ public class MerchantAccountCreate {
     @JsonIgnore
     public JsonNullable<String> mastercardNetworkTokensAppId() {
         return mastercardNetworkTokensAppId;
+    }
+
+    /**
+     * Requestor ID provided for Discover after onboarding to use Network Tokens.
+     */
+    @JsonIgnore
+    public JsonNullable<String> discoverNetworkTokensRequestorId() {
+        return discoverNetworkTokensRequestorId;
+    }
+
+    /**
+     * Application ID provided for Discover after onboarding to use Network Tokens.
+     */
+    @JsonIgnore
+    public JsonNullable<String> discoverNetworkTokensAppId() {
+        return discoverNetworkTokensAppId;
     }
 
     /**
@@ -800,6 +836,42 @@ public class MerchantAccountCreate {
     }
 
     /**
+     * Requestor ID provided for Discover after onboarding to use Network Tokens.
+     */
+    public MerchantAccountCreate withDiscoverNetworkTokensRequestorId(String discoverNetworkTokensRequestorId) {
+        Utils.checkNotNull(discoverNetworkTokensRequestorId, "discoverNetworkTokensRequestorId");
+        this.discoverNetworkTokensRequestorId = JsonNullable.of(discoverNetworkTokensRequestorId);
+        return this;
+    }
+
+    /**
+     * Requestor ID provided for Discover after onboarding to use Network Tokens.
+     */
+    public MerchantAccountCreate withDiscoverNetworkTokensRequestorId(JsonNullable<String> discoverNetworkTokensRequestorId) {
+        Utils.checkNotNull(discoverNetworkTokensRequestorId, "discoverNetworkTokensRequestorId");
+        this.discoverNetworkTokensRequestorId = discoverNetworkTokensRequestorId;
+        return this;
+    }
+
+    /**
+     * Application ID provided for Discover after onboarding to use Network Tokens.
+     */
+    public MerchantAccountCreate withDiscoverNetworkTokensAppId(String discoverNetworkTokensAppId) {
+        Utils.checkNotNull(discoverNetworkTokensAppId, "discoverNetworkTokensAppId");
+        this.discoverNetworkTokensAppId = JsonNullable.of(discoverNetworkTokensAppId);
+        return this;
+    }
+
+    /**
+     * Application ID provided for Discover after onboarding to use Network Tokens.
+     */
+    public MerchantAccountCreate withDiscoverNetworkTokensAppId(JsonNullable<String> discoverNetworkTokensAppId) {
+        Utils.checkNotNull(discoverNetworkTokensAppId, "discoverNetworkTokensAppId");
+        this.discoverNetworkTokensAppId = discoverNetworkTokensAppId;
+        return this;
+    }
+
+    /**
      * When enabled network tokens will be generated asynchronously and only used on subsequent
      * transactions to speed up transaction processing.
      */
@@ -864,6 +936,8 @@ public class MerchantAccountCreate {
             Utils.enhancedDeepEquals(this.amexNetworkTokensAppId, other.amexNetworkTokensAppId) &&
             Utils.enhancedDeepEquals(this.mastercardNetworkTokensRequestorId, other.mastercardNetworkTokensRequestorId) &&
             Utils.enhancedDeepEquals(this.mastercardNetworkTokensAppId, other.mastercardNetworkTokensAppId) &&
+            Utils.enhancedDeepEquals(this.discoverNetworkTokensRequestorId, other.discoverNetworkTokensRequestorId) &&
+            Utils.enhancedDeepEquals(this.discoverNetworkTokensAppId, other.discoverNetworkTokensAppId) &&
             Utils.enhancedDeepEquals(this.asyncNetworkTokensEnabled, other.asyncNetworkTokensEnabled) &&
             Utils.enhancedDeepEquals(this.id, other.id) &&
             Utils.enhancedDeepEquals(this.displayName, other.displayName);
@@ -877,8 +951,8 @@ public class MerchantAccountCreate {
             overCapturePercentage, loonClientKey, loonSecretKey,
             loonAcceptedSchemes, visaNetworkTokensRequestorId, visaNetworkTokensAppId,
             amexNetworkTokensRequestorId, amexNetworkTokensAppId, mastercardNetworkTokensRequestorId,
-            mastercardNetworkTokensAppId, asyncNetworkTokensEnabled, id,
-            displayName);
+            mastercardNetworkTokensAppId, discoverNetworkTokensRequestorId, discoverNetworkTokensAppId,
+            asyncNetworkTokensEnabled, id, displayName);
     }
     
     @Override
@@ -900,6 +974,8 @@ public class MerchantAccountCreate {
                 "amexNetworkTokensAppId", amexNetworkTokensAppId,
                 "mastercardNetworkTokensRequestorId", mastercardNetworkTokensRequestorId,
                 "mastercardNetworkTokensAppId", mastercardNetworkTokensAppId,
+                "discoverNetworkTokensRequestorId", discoverNetworkTokensRequestorId,
+                "discoverNetworkTokensAppId", discoverNetworkTokensAppId,
                 "asyncNetworkTokensEnabled", asyncNetworkTokensEnabled,
                 "id", id,
                 "displayName", displayName);
@@ -939,6 +1015,10 @@ public class MerchantAccountCreate {
         private JsonNullable<String> mastercardNetworkTokensRequestorId = JsonNullable.undefined();
 
         private JsonNullable<String> mastercardNetworkTokensAppId = JsonNullable.undefined();
+
+        private JsonNullable<String> discoverNetworkTokensRequestorId = JsonNullable.undefined();
+
+        private JsonNullable<String> discoverNetworkTokensAppId = JsonNullable.undefined();
 
         private Optional<Boolean> asyncNetworkTokensEnabled;
 
@@ -1318,6 +1398,44 @@ public class MerchantAccountCreate {
 
 
         /**
+         * Requestor ID provided for Discover after onboarding to use Network Tokens.
+         */
+        public Builder discoverNetworkTokensRequestorId(String discoverNetworkTokensRequestorId) {
+            Utils.checkNotNull(discoverNetworkTokensRequestorId, "discoverNetworkTokensRequestorId");
+            this.discoverNetworkTokensRequestorId = JsonNullable.of(discoverNetworkTokensRequestorId);
+            return this;
+        }
+
+        /**
+         * Requestor ID provided for Discover after onboarding to use Network Tokens.
+         */
+        public Builder discoverNetworkTokensRequestorId(JsonNullable<String> discoverNetworkTokensRequestorId) {
+            Utils.checkNotNull(discoverNetworkTokensRequestorId, "discoverNetworkTokensRequestorId");
+            this.discoverNetworkTokensRequestorId = discoverNetworkTokensRequestorId;
+            return this;
+        }
+
+
+        /**
+         * Application ID provided for Discover after onboarding to use Network Tokens.
+         */
+        public Builder discoverNetworkTokensAppId(String discoverNetworkTokensAppId) {
+            Utils.checkNotNull(discoverNetworkTokensAppId, "discoverNetworkTokensAppId");
+            this.discoverNetworkTokensAppId = JsonNullable.of(discoverNetworkTokensAppId);
+            return this;
+        }
+
+        /**
+         * Application ID provided for Discover after onboarding to use Network Tokens.
+         */
+        public Builder discoverNetworkTokensAppId(JsonNullable<String> discoverNetworkTokensAppId) {
+            Utils.checkNotNull(discoverNetworkTokensAppId, "discoverNetworkTokensAppId");
+            this.discoverNetworkTokensAppId = discoverNetworkTokensAppId;
+            return this;
+        }
+
+
+        /**
          * When enabled network tokens will be generated asynchronously and only used on subsequent
          * transactions to speed up transaction processing.
          */
@@ -1371,8 +1489,8 @@ public class MerchantAccountCreate {
                 overCapturePercentage, loonClientKey, loonSecretKey,
                 loonAcceptedSchemes, visaNetworkTokensRequestorId, visaNetworkTokensAppId,
                 amexNetworkTokensRequestorId, amexNetworkTokensAppId, mastercardNetworkTokensRequestorId,
-                mastercardNetworkTokensAppId, asyncNetworkTokensEnabled, id,
-                displayName);
+                mastercardNetworkTokensAppId, discoverNetworkTokensRequestorId, discoverNetworkTokensAppId,
+                asyncNetworkTokensEnabled, id, displayName);
         }
 
 

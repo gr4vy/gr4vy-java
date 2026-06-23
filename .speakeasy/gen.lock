@@ -1,19 +1,19 @@
 lockVersion: 2.0.0
 id: 5bbaa3a9-baa0-471b-ba6a-13fd88e8c119
 management:
-  docChecksum: 66f027738c0098e844825dc48e73e058
+  docChecksum: ebba10a14a6c94c535ff65d99d61028b
   docVersion: 1.0.0
-  speakeasyVersion: 1.784.0
-  generationVersion: 2.911.0
-  releaseVersion: 2.16.94
-  configChecksum: e00f3be5373cc05a7a99893dc90ab8bb
+  speakeasyVersion: 1.784.1
+  generationVersion: 2.911.3
+  releaseVersion: 2.16.95
+  configChecksum: fa8e1a9baaceff88fdb9d5fb64ce7053
   repoURL: https://github.com/gr4vy/gr4vy-java.git
   installationURL: https://github.com/gr4vy/gr4vy-java
   published: true
 persistentEdits:
-  generation_id: b6183f44-16e3-415e-b73e-dccfc33a5fab
-  pristine_commit_hash: fe57a21ecb264ae3be7c9e49742ed95015e5c45d
-  pristine_tree_hash: 9c447fa8eab7341a5e7c40ee092a5ae5e18dfc14
+  generation_id: 13dfd970-c74c-44a5-9882-6463a6c9cab8
+  pristine_commit_hash: b381caa405d6019b8da44d9762e050389c2fbd7d
+  pristine_tree_hash: 8a20de82f418303f93c7855d2ce896657920c9e5
 features:
   java:
     additionalDependencies: 0.1.0
@@ -670,12 +670,12 @@ trackedFiles:
     pristine_git_object: 0ebcc1a2d8c19f3d9112245ab8d9c34c27d21ecc
   docs/models/components/MerchantAccount.md:
     id: 648030314b0f
-    last_write_checksum: sha1:910337f676b09242999e574eb4d397cbe8276b2a
-    pristine_git_object: 808010c5a425a73261445c2c8adb7d8db4c2daf7
+    last_write_checksum: sha1:c633b23c9a5972358a24ff514533fa38fca5ac0f
+    pristine_git_object: d3a7d6bc077141d7aa1f67ebf7f5492f07cfc213
   docs/models/components/MerchantAccountCreate.md:
     id: 66caf1e4a763
-    last_write_checksum: sha1:6977ff0d8572aafab022124464bfc425a55a0cd6
-    pristine_git_object: 40bdcf54e52aab75255c9cece905bc3a5b6481a8
+    last_write_checksum: sha1:77dfa050f5be238d2ca8dfcdbe5f6bd7b3a0d0c0
+    pristine_git_object: 2db67e0f5371e8ba0281911e80183f8d4ff76316
   docs/models/components/MerchantAccountThreeDSConfiguration.md:
     id: 28adba2fa69e
     last_write_checksum: sha1:47f622a152673c1b123fb9a2190460bf2c5ef358
@@ -694,8 +694,8 @@ trackedFiles:
     pristine_git_object: 7e614985f9499e0ed1baa99697804c76c05ca3db
   docs/models/components/MerchantAccountUpdate.md:
     id: 9709bd5efde9
-    last_write_checksum: sha1:3f8fc74589cffd2a4fc5b8b85452517bbf863d23
-    pristine_git_object: 2c6a20850d136b6ec79ce280a95bb8a12bedccb7
+    last_write_checksum: sha1:42601b1ebd90ec3041ef9ae7ac7c3fc6196a9ce7
+    pristine_git_object: ae46e16d21961b0839ae88505b575789fa427ab7
   docs/models/components/MerchantAccounts.md:
     id: 066c94dd9676
     last_write_checksum: sha1:a8427c0a732719bdad84944f2d319f12ae72acd7
@@ -2654,8 +2654,8 @@ trackedFiles:
     pristine_git_object: 15c4e4642f204ccb312d8814155b69e153b4e19b
   gradle.properties:
     id: 2afbb999f001
-    last_write_checksum: sha1:f2a07cdfcfed1074ba5c650d87d4932fcce0ac47
-    pristine_git_object: 534aad4dc13e345eadba3ffda429f8ee7cc013c8
+    last_write_checksum: sha1:46bd402e04e2ff45d04dec713f9e5a986ea487e3
+    pristine_git_object: bd57228c76a150d5a12dc74a60d2503fa65571dd
   gradle/wrapper/gradle-wrapper.jar:
     id: ec27dae6e852
     last_write_checksum: sha1:f725fb1467084142d74fd7cd8eab691ab3442611
@@ -2958,8 +2958,8 @@ trackedFiles:
     pristine_git_object: 502a7312d3dc82c102dbaf7ed5e952d0c793e26f
   src/main/java/com/gr4vy/sdk/SDKConfiguration.java:
     id: 73a7edeaca45
-    last_write_checksum: sha1:dc91c084084c3170656a1e995aeab98d1669ffd5
-    pristine_git_object: 1fb54b007d940e5609f621a06ef756e8d9154bfb
+    last_write_checksum: sha1:1ac8fc542cfacdfeaee1d3223c4ab35dd39ccf77
+    pristine_git_object: 0092ef8cc795242280115206995510f65d2053d6
   src/main/java/com/gr4vy/sdk/SecuritySource.java:
     id: 1b6add6b9b50
     last_write_checksum: sha1:2f365cc823c6243188e83f4df618c9737fcee8bd
@@ -3614,12 +3614,12 @@ trackedFiles:
     pristine_git_object: 7d7cabc34746674fa202ba016535ced3dfbd6971
   src/main/java/com/gr4vy/sdk/models/components/MerchantAccount.java:
     id: 4de940611d0d
-    last_write_checksum: sha1:db2d56f821597f7d21ba92bf8d7146c2c457edfe
-    pristine_git_object: ad071fb2aa6fa6d4e909c87cf4c33c45f3e942ac
+    last_write_checksum: sha1:4f62a04650e71ecf497a9dde5d038f1258d3cd01
+    pristine_git_object: 3b8eca756f34caed7e43a5555dfceb39152ea8ea
   src/main/java/com/gr4vy/sdk/models/components/MerchantAccountCreate.java:
     id: f630f5edfb5e
-    last_write_checksum: sha1:3e30169e8fd7f65d2c3c0f514bac5fe36bf44485
-    pristine_git_object: 31c4b025c9d4a2c33900525f6fcf19293121b197
+    last_write_checksum: sha1:d3b134d6da878bb99916091568f51264934036d9
+    pristine_git_object: 6469d19f0069434f4d54c6a2c69c67a482082181
   src/main/java/com/gr4vy/sdk/models/components/MerchantAccountThreeDSConfiguration.java:
     id: 254e3fb821ee
     last_write_checksum: sha1:7b7de866cff23406f773d056482e46dda4ae7f06
@@ -3638,8 +3638,8 @@ trackedFiles:
     pristine_git_object: c634f8df8c6fe08d35ecb363580187d424a1e69f
   src/main/java/com/gr4vy/sdk/models/components/MerchantAccountUpdate.java:
     id: 437f8c2b5c0f
-    last_write_checksum: sha1:871688714add7fe095d4fa47fbf3a06fd64f1663
-    pristine_git_object: 6bc165f6f3b8109b167b6d095d8690e184f8d1f1
+    last_write_checksum: sha1:cd075bc95bc115810e0e50797bab14346e3348a0
+    pristine_git_object: d02b2fb70f20ddfb0ea3df190ceb504290140cbc
   src/main/java/com/gr4vy/sdk/models/components/MerchantAccounts.java:
     id: e101e34f1fc8
     last_write_checksum: sha1:fb92dd91df2cc8c3c5461204ca8021427b90e295
@@ -11477,7 +11477,7 @@ examples:
           application/json: {"type": "error", "code": "gateway_timeout", "status": 504, "message": "Request could not be processed"}
 examplesVersion: 1.0.2
 generatedTests: {}
-releaseNotes: "## Java SDK Changes:\n* `gr4vy.buyers.paymentMethods.list()`:  `response.items[].method` **Changed**\n* `gr4vy.paymentMethods.list()`:  `response.items[].method` **Changed**\n* `gr4vy.paymentMethods.create()`: \n  *  `requestBody.union(RedirectPaymentMethodCreate).method` **Changed**\n  *  `response.method` **Changed**\n* `gr4vy.paymentMethods.get()`:  `response.method` **Changed**\n* `gr4vy.paymentMethods.update()`:  `response.method` **Changed**\n* `gr4vy.transactions.list()`: \n  *  `request.method` **Changed**\n  *  `response.items[].paymentMethod.method` **Changed**\n* `gr4vy.transactions.create()`: \n  *  `request.transactionCreate` **Changed**\n  *  `response.paymentMethod.method` **Changed**\n* `gr4vy.transactions.get()`:  `response.paymentMethod.method` **Changed**\n* `gr4vy.transactions.update()`: \n  *  `request.transactionUpdate.connectionOptions` **Changed**\n  *  `response.paymentMethod.method` **Changed**\n* `gr4vy.transactions.capture()`:  `response.union(Transaction).paymentMethod.method` **Changed**\n* `gr4vy.transactions.void()`:  `response.union(Transaction).paymentMethod.method` **Changed**\n* `gr4vy.transactions.cancel()`:  `response.transaction.paymentMethod.method` **Changed**\n* `gr4vy.transactions.sync()`:  `response.paymentMethod.method` **Changed**\n* `gr4vy.paymentServiceDefinitions.list()`:  `response.items[].method` **Changed**\n* `gr4vy.paymentServiceDefinitions.get()`:  `response.method` **Changed**\n* `gr4vy.paymentServices.list()`: \n  *  `request.method` **Changed**\n  *  `response.items[].method` **Changed**\n* `gr4vy.paymentServices.create()`:  `response.method` **Changed**\n* `gr4vy.paymentServices.get()`:  `response.method` **Changed**\n* `gr4vy.paymentServices.update()`:  `response.method` **Changed**\n* `gr4vy.payouts.list()`:  `response.items[].paymentMethod.method` **Changed**\n* `gr4vy.payouts.create()`:  `response.paymentMethod.method` **Changed**\n* `gr4vy.payouts.get()`:  `response.paymentMethod.method` **Changed**\n* `gr4vy.paymentLinks.create()`: \n  *  `request.paymentLinkCreate.connectionOptions` **Changed**\n"
+releaseNotes: "## Java SDK Changes:\n* `gr4vy.merchantAccounts.list()`:  `response.items[]` **Changed**\n* `gr4vy.merchantAccounts.create()`: \n  *  `request` **Changed**\n  *  `response` **Changed**\n* `gr4vy.merchantAccounts.get()`:  `response` **Changed**\n* `gr4vy.merchantAccounts.update()`: \n  *  `request.merchantAccountUpdate` **Changed**\n  *  `response` **Changed**\n"
 generatedFiles:
   - .gitattributes
   - USAGE.md
