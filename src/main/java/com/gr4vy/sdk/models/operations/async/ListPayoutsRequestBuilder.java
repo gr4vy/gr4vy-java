@@ -6,36 +6,27 @@ package com.gr4vy.sdk.models.operations.async;
 import static com.gr4vy.sdk.operations.Operations.AsyncRequestOperation;
 import static com.gr4vy.sdk.utils.reactive.ReactiveUtils.mapAsync;
 
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.gr4vy.sdk.SDKConfiguration;
 import com.gr4vy.sdk.models.operations.ListPayoutsRequest;
 import com.gr4vy.sdk.operations.ListPayouts;
 import com.gr4vy.sdk.utils.Blob;
 import com.gr4vy.sdk.utils.Headers;
-import com.gr4vy.sdk.utils.LazySingletonValue;
 import com.gr4vy.sdk.utils.Options;
 import com.gr4vy.sdk.utils.RetryConfig;
 import com.gr4vy.sdk.utils.Utils;
 import com.gr4vy.sdk.utils.pagination.AsyncPaginator;
 import com.gr4vy.sdk.utils.pagination.CursorTracker;
-import java.lang.Long;
 import java.lang.String;
 import java.net.http.HttpResponse;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.Flow;
-import org.openapitools.jackson.nullable.JsonNullable;
 import org.reactivestreams.FlowAdapters;
 import org.reactivestreams.Publisher;
 
 public class ListPayoutsRequestBuilder {
 
-    private JsonNullable<String> cursor = JsonNullable.undefined();
-    private Optional<Long> limit = Utils.readDefaultOrConstValue(
-                            "limit",
-                            "20",
-                            new TypeReference<Optional<Long>>() {});
-    private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
+    private ListPayoutsRequest request;
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
@@ -44,39 +35,9 @@ public class ListPayoutsRequestBuilder {
         this.sdkConfiguration = sdkConfiguration;
     }
 
-    public ListPayoutsRequestBuilder cursor(String cursor) {
-        Utils.checkNotNull(cursor, "cursor");
-        this.cursor = JsonNullable.of(cursor);
-        return this;
-    }
-
-    public ListPayoutsRequestBuilder cursor(JsonNullable<String> cursor) {
-        Utils.checkNotNull(cursor, "cursor");
-        this.cursor = cursor;
-        return this;
-    }
-                
-    public ListPayoutsRequestBuilder limit(long limit) {
-        Utils.checkNotNull(limit, "limit");
-        this.limit = Optional.of(limit);
-        return this;
-    }
-
-    public ListPayoutsRequestBuilder limit(Optional<Long> limit) {
-        Utils.checkNotNull(limit, "limit");
-        this.limit = limit;
-        return this;
-    }
-
-    public ListPayoutsRequestBuilder merchantAccountId(String merchantAccountId) {
-        Utils.checkNotNull(merchantAccountId, "merchantAccountId");
-        this.merchantAccountId = JsonNullable.of(merchantAccountId);
-        return this;
-    }
-
-    public ListPayoutsRequestBuilder merchantAccountId(JsonNullable<String> merchantAccountId) {
-        Utils.checkNotNull(merchantAccountId, "merchantAccountId");
-        this.merchantAccountId = merchantAccountId;
+    public ListPayoutsRequestBuilder request(ListPayoutsRequest request) {
+        Utils.checkNotNull(request, "request");
+        this.request = request;
         return this;
     }
                 
@@ -92,19 +53,6 @@ public class ListPayoutsRequestBuilder {
         return this;
     }
 
-
-    private ListPayoutsRequest buildRequest() {
-        if (limit == null) {
-            limit = _SINGLETON_VALUE_Limit.value();
-        }
-
-        ListPayoutsRequest request = new ListPayoutsRequest(cursor,
-            limit,
-            merchantAccountId);
-
-        return request;
-    }
-
     public CompletableFuture<ListPayoutsResponse> call() {
         Optional<Options> options = Optional.of(Options.builder()
             .retryConfig(retryConfig)
@@ -114,7 +62,6 @@ public class ListPayoutsRequestBuilder {
               = new ListPayouts.Async(
                                     sdkConfiguration, options, sdkConfiguration.retryScheduler(),
                                     _headers);
-        ListPayoutsRequest request = buildRequest();
 
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
@@ -135,7 +82,7 @@ public class ListPayoutsRequestBuilder {
      * @return A Publisher that emits pages asynchronously
      */
     public Publisher<ListPayoutsResponse> callAsPublisher() {
-        ListPayoutsRequest request = this.buildRequest();
+        ListPayoutsRequest request = this.request;
         Optional<Options> options = Optional.of(Options.builder()
             .retryConfig(retryConfig)
             .build());
@@ -159,10 +106,4 @@ public class ListPayoutsRequestBuilder {
         return FlowAdapters.toPublisher(flowPublisher);
     }
 
-
-    private static final LazySingletonValue<Optional<Long>> _SINGLETON_VALUE_Limit =
-            new LazySingletonValue<>(
-                    "limit",
-                    "20",
-                    new TypeReference<Optional<Long>>() {});
 }

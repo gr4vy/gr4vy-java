@@ -20,6 +20,7 @@ package hello.world;
 
 import com.gr4vy.sdk.Gr4vy;
 import com.gr4vy.sdk.models.errors.*;
+import com.gr4vy.sdk.models.operations.ListPayoutsRequest;
 import com.gr4vy.sdk.models.operations.ListPayoutsResponse;
 import java.lang.Exception;
 
@@ -32,10 +33,12 @@ public class Application {
                 .bearerAuth(System.getenv().getOrDefault("BEARER_AUTH", ""))
             .build();
 
+        ListPayoutsRequest req = ListPayoutsRequest.builder()
+                .cursor("ZXhhbXBsZTE")
+                .build();
+
 
         sdk.payouts().list()
-                .cursor("ZXhhbXBsZTE")
-                .limit(20L)
                 .callAsStream()
                 .forEach((ListPayoutsResponse item) -> {
                    // handle page
@@ -47,11 +50,9 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                               | Type                                                    | Required                                                | Description                                             | Example                                                 |
-| ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- |
-| `cursor`                                                | *JsonNullable\<String>*                                 | :heavy_minus_sign:                                      | A pointer to the page of results to return.             | ZXhhbXBsZTE                                             |
-| `limit`                                                 | *Optional\<Long>*                                       | :heavy_minus_sign:                                      | The maximum number of items that are at returned.       | 20                                                      |
-| `merchantAccountId`                                     | *JsonNullable\<String>*                                 | :heavy_minus_sign:                                      | The ID of the merchant account to use for this request. |                                                         |
+| Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| `request`                                                           | [ListPayoutsRequest](../../models/operations/ListPayoutsRequest.md) | :heavy_check_mark:                                                  | The request object to use for the request.                          |
 
 ### Response
 
