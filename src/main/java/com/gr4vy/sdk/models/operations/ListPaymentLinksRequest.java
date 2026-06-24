@@ -6,6 +6,7 @@ package com.gr4vy.sdk.models.operations;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.type.TypeReference;
+import com.gr4vy.sdk.models.components.PaymentLinkStatus;
 import com.gr4vy.sdk.utils.LazySingletonValue;
 import com.gr4vy.sdk.utils.SpeakeasyMetadata;
 import com.gr4vy.sdk.utils.Utils;
@@ -13,6 +14,7 @@ import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
+import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
@@ -32,6 +34,74 @@ public class ListPaymentLinksRequest {
     private Optional<Long> limit;
 
     /**
+     * Filters the results to only payment links created before this ISO date-time string. The time zone
+     * must be included. Ensure that the date-time string is URL encoded, e.g.
+     * 
+     * <p>`2022-01-01T12:00:00+08:00` must be encoded as `2022-01-01T12%3A00%3A00%2B08%3A00`.
+     */
+    @SpeakeasyMetadata("queryParam:style=form,explode=true,name=created_at_lte")
+    private JsonNullable<OffsetDateTime> createdAtLte;
+
+    /**
+     * Filters the results to only payment links created after this ISO date-time string. The time zone
+     * must be included. Ensure that the date-time string is URL encoded, e.g.
+     * 
+     * <p>`2022-01-01T12:00:00+08:00` must be encoded as `2022-01-01T12%3A00%3A00%2B08%3A00`.
+     */
+    @SpeakeasyMetadata("queryParam:style=form,explode=true,name=created_at_gte")
+    private JsonNullable<OffsetDateTime> createdAtGte;
+
+    /**
+     * Filters the results to only payment links updated before this ISO date-time string. The time zone
+     * must be included. Ensure that the date-time string is URL encoded, e.g.
+     * 
+     * <p>`2022-01-01T12:00:00+08:00` must be encoded as `2022-01-01T12%3A00%3A00%2B08%3A00`.
+     */
+    @SpeakeasyMetadata("queryParam:style=form,explode=true,name=updated_at_lte")
+    private JsonNullable<OffsetDateTime> updatedAtLte;
+
+    /**
+     * Filters the results to only payment links updated after this ISO date-time string. The time zone
+     * must be included. Ensure that the date-time string is URL encoded, e.g.
+     * 
+     * <p>`2022-01-01T12:00:00+08:00` must be encoded as `2022-01-01T12%3A00%3A00%2B08%3A00`.
+     */
+    @SpeakeasyMetadata("queryParam:style=form,explode=true,name=updated_at_gte")
+    private JsonNullable<OffsetDateTime> updatedAtGte;
+
+    /**
+     * Filters for payment links that have matching `currency` values. The `currency` values provided must
+     * be formatted as 3-letter ISO currency codes.
+     */
+    @SpeakeasyMetadata("queryParam:style=form,explode=true,name=currency")
+    private JsonNullable<? extends List<String>> currency;
+
+    /**
+     * Filters for payment links that have an `amount` equal to this value.
+     */
+    @SpeakeasyMetadata("queryParam:style=form,explode=true,name=amount_eq")
+    private JsonNullable<Long> amountEq;
+
+    /**
+     * Filters for payment links that have an `amount` greater than or equal to this value.
+     */
+    @SpeakeasyMetadata("queryParam:style=form,explode=true,name=amount_gte")
+    private JsonNullable<Long> amountGte;
+
+    /**
+     * Filters for payment links that have an `amount` less than or equal to this value.
+     */
+    @SpeakeasyMetadata("queryParam:style=form,explode=true,name=amount_lte")
+    private JsonNullable<Long> amountLte;
+
+    /**
+     * Filters the results to only the payment links that have a `status` that matches with any of the
+     * provided status values.
+     */
+    @SpeakeasyMetadata("queryParam:style=form,explode=true,name=status")
+    private JsonNullable<? extends List<PaymentLinkStatus>> status;
+
+    /**
      * Filters the results to only get the items for which some of the buyer data contains exactly the
      * provided `buyer_search` values.
      */
@@ -48,20 +118,50 @@ public class ListPaymentLinksRequest {
     public ListPaymentLinksRequest(
             JsonNullable<String> cursor,
             Optional<Long> limit,
+            JsonNullable<OffsetDateTime> createdAtLte,
+            JsonNullable<OffsetDateTime> createdAtGte,
+            JsonNullable<OffsetDateTime> updatedAtLte,
+            JsonNullable<OffsetDateTime> updatedAtGte,
+            JsonNullable<? extends List<String>> currency,
+            JsonNullable<Long> amountEq,
+            JsonNullable<Long> amountGte,
+            JsonNullable<Long> amountLte,
+            JsonNullable<? extends List<PaymentLinkStatus>> status,
             JsonNullable<? extends List<String>> buyerSearch,
             JsonNullable<String> merchantAccountId) {
         Utils.checkNotNull(cursor, "cursor");
         Utils.checkNotNull(limit, "limit");
+        Utils.checkNotNull(createdAtLte, "createdAtLte");
+        Utils.checkNotNull(createdAtGte, "createdAtGte");
+        Utils.checkNotNull(updatedAtLte, "updatedAtLte");
+        Utils.checkNotNull(updatedAtGte, "updatedAtGte");
+        Utils.checkNotNull(currency, "currency");
+        Utils.checkNotNull(amountEq, "amountEq");
+        Utils.checkNotNull(amountGte, "amountGte");
+        Utils.checkNotNull(amountLte, "amountLte");
+        Utils.checkNotNull(status, "status");
         Utils.checkNotNull(buyerSearch, "buyerSearch");
         Utils.checkNotNull(merchantAccountId, "merchantAccountId");
         this.cursor = cursor;
         this.limit = limit;
+        this.createdAtLte = createdAtLte;
+        this.createdAtGte = createdAtGte;
+        this.updatedAtLte = updatedAtLte;
+        this.updatedAtGte = updatedAtGte;
+        this.currency = currency;
+        this.amountEq = amountEq;
+        this.amountGte = amountGte;
+        this.amountLte = amountLte;
+        this.status = status;
         this.buyerSearch = buyerSearch;
         this.merchantAccountId = merchantAccountId;
     }
     
     public ListPaymentLinksRequest() {
         this(JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined());
     }
 
@@ -79,6 +179,94 @@ public class ListPaymentLinksRequest {
     @JsonIgnore
     public Optional<Long> limit() {
         return limit;
+    }
+
+    /**
+     * Filters the results to only payment links created before this ISO date-time string. The time zone
+     * must be included. Ensure that the date-time string is URL encoded, e.g.
+     * 
+     * <p>`2022-01-01T12:00:00+08:00` must be encoded as `2022-01-01T12%3A00%3A00%2B08%3A00`.
+     */
+    @JsonIgnore
+    public JsonNullable<OffsetDateTime> createdAtLte() {
+        return createdAtLte;
+    }
+
+    /**
+     * Filters the results to only payment links created after this ISO date-time string. The time zone
+     * must be included. Ensure that the date-time string is URL encoded, e.g.
+     * 
+     * <p>`2022-01-01T12:00:00+08:00` must be encoded as `2022-01-01T12%3A00%3A00%2B08%3A00`.
+     */
+    @JsonIgnore
+    public JsonNullable<OffsetDateTime> createdAtGte() {
+        return createdAtGte;
+    }
+
+    /**
+     * Filters the results to only payment links updated before this ISO date-time string. The time zone
+     * must be included. Ensure that the date-time string is URL encoded, e.g.
+     * 
+     * <p>`2022-01-01T12:00:00+08:00` must be encoded as `2022-01-01T12%3A00%3A00%2B08%3A00`.
+     */
+    @JsonIgnore
+    public JsonNullable<OffsetDateTime> updatedAtLte() {
+        return updatedAtLte;
+    }
+
+    /**
+     * Filters the results to only payment links updated after this ISO date-time string. The time zone
+     * must be included. Ensure that the date-time string is URL encoded, e.g.
+     * 
+     * <p>`2022-01-01T12:00:00+08:00` must be encoded as `2022-01-01T12%3A00%3A00%2B08%3A00`.
+     */
+    @JsonIgnore
+    public JsonNullable<OffsetDateTime> updatedAtGte() {
+        return updatedAtGte;
+    }
+
+    /**
+     * Filters for payment links that have matching `currency` values. The `currency` values provided must
+     * be formatted as 3-letter ISO currency codes.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public JsonNullable<List<String>> currency() {
+        return (JsonNullable<List<String>>) currency;
+    }
+
+    /**
+     * Filters for payment links that have an `amount` equal to this value.
+     */
+    @JsonIgnore
+    public JsonNullable<Long> amountEq() {
+        return amountEq;
+    }
+
+    /**
+     * Filters for payment links that have an `amount` greater than or equal to this value.
+     */
+    @JsonIgnore
+    public JsonNullable<Long> amountGte() {
+        return amountGte;
+    }
+
+    /**
+     * Filters for payment links that have an `amount` less than or equal to this value.
+     */
+    @JsonIgnore
+    public JsonNullable<Long> amountLte() {
+        return amountLte;
+    }
+
+    /**
+     * Filters the results to only the payment links that have a `status` that matches with any of the
+     * provided status values.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public JsonNullable<List<PaymentLinkStatus>> status() {
+        return (JsonNullable<List<PaymentLinkStatus>>) status;
     }
 
     /**
@@ -142,6 +330,196 @@ public class ListPaymentLinksRequest {
     }
 
     /**
+     * Filters the results to only payment links created before this ISO date-time string. The time zone
+     * must be included. Ensure that the date-time string is URL encoded, e.g.
+     * 
+     * <p>`2022-01-01T12:00:00+08:00` must be encoded as `2022-01-01T12%3A00%3A00%2B08%3A00`.
+     */
+    public ListPaymentLinksRequest withCreatedAtLte(OffsetDateTime createdAtLte) {
+        Utils.checkNotNull(createdAtLte, "createdAtLte");
+        this.createdAtLte = JsonNullable.of(createdAtLte);
+        return this;
+    }
+
+    /**
+     * Filters the results to only payment links created before this ISO date-time string. The time zone
+     * must be included. Ensure that the date-time string is URL encoded, e.g.
+     * 
+     * <p>`2022-01-01T12:00:00+08:00` must be encoded as `2022-01-01T12%3A00%3A00%2B08%3A00`.
+     */
+    public ListPaymentLinksRequest withCreatedAtLte(JsonNullable<OffsetDateTime> createdAtLte) {
+        Utils.checkNotNull(createdAtLte, "createdAtLte");
+        this.createdAtLte = createdAtLte;
+        return this;
+    }
+
+    /**
+     * Filters the results to only payment links created after this ISO date-time string. The time zone
+     * must be included. Ensure that the date-time string is URL encoded, e.g.
+     * 
+     * <p>`2022-01-01T12:00:00+08:00` must be encoded as `2022-01-01T12%3A00%3A00%2B08%3A00`.
+     */
+    public ListPaymentLinksRequest withCreatedAtGte(OffsetDateTime createdAtGte) {
+        Utils.checkNotNull(createdAtGte, "createdAtGte");
+        this.createdAtGte = JsonNullable.of(createdAtGte);
+        return this;
+    }
+
+    /**
+     * Filters the results to only payment links created after this ISO date-time string. The time zone
+     * must be included. Ensure that the date-time string is URL encoded, e.g.
+     * 
+     * <p>`2022-01-01T12:00:00+08:00` must be encoded as `2022-01-01T12%3A00%3A00%2B08%3A00`.
+     */
+    public ListPaymentLinksRequest withCreatedAtGte(JsonNullable<OffsetDateTime> createdAtGte) {
+        Utils.checkNotNull(createdAtGte, "createdAtGte");
+        this.createdAtGte = createdAtGte;
+        return this;
+    }
+
+    /**
+     * Filters the results to only payment links updated before this ISO date-time string. The time zone
+     * must be included. Ensure that the date-time string is URL encoded, e.g.
+     * 
+     * <p>`2022-01-01T12:00:00+08:00` must be encoded as `2022-01-01T12%3A00%3A00%2B08%3A00`.
+     */
+    public ListPaymentLinksRequest withUpdatedAtLte(OffsetDateTime updatedAtLte) {
+        Utils.checkNotNull(updatedAtLte, "updatedAtLte");
+        this.updatedAtLte = JsonNullable.of(updatedAtLte);
+        return this;
+    }
+
+    /**
+     * Filters the results to only payment links updated before this ISO date-time string. The time zone
+     * must be included. Ensure that the date-time string is URL encoded, e.g.
+     * 
+     * <p>`2022-01-01T12:00:00+08:00` must be encoded as `2022-01-01T12%3A00%3A00%2B08%3A00`.
+     */
+    public ListPaymentLinksRequest withUpdatedAtLte(JsonNullable<OffsetDateTime> updatedAtLte) {
+        Utils.checkNotNull(updatedAtLte, "updatedAtLte");
+        this.updatedAtLte = updatedAtLte;
+        return this;
+    }
+
+    /**
+     * Filters the results to only payment links updated after this ISO date-time string. The time zone
+     * must be included. Ensure that the date-time string is URL encoded, e.g.
+     * 
+     * <p>`2022-01-01T12:00:00+08:00` must be encoded as `2022-01-01T12%3A00%3A00%2B08%3A00`.
+     */
+    public ListPaymentLinksRequest withUpdatedAtGte(OffsetDateTime updatedAtGte) {
+        Utils.checkNotNull(updatedAtGte, "updatedAtGte");
+        this.updatedAtGte = JsonNullable.of(updatedAtGte);
+        return this;
+    }
+
+    /**
+     * Filters the results to only payment links updated after this ISO date-time string. The time zone
+     * must be included. Ensure that the date-time string is URL encoded, e.g.
+     * 
+     * <p>`2022-01-01T12:00:00+08:00` must be encoded as `2022-01-01T12%3A00%3A00%2B08%3A00`.
+     */
+    public ListPaymentLinksRequest withUpdatedAtGte(JsonNullable<OffsetDateTime> updatedAtGte) {
+        Utils.checkNotNull(updatedAtGte, "updatedAtGte");
+        this.updatedAtGte = updatedAtGte;
+        return this;
+    }
+
+    /**
+     * Filters for payment links that have matching `currency` values. The `currency` values provided must
+     * be formatted as 3-letter ISO currency codes.
+     */
+    public ListPaymentLinksRequest withCurrency(List<String> currency) {
+        Utils.checkNotNull(currency, "currency");
+        this.currency = JsonNullable.of(currency);
+        return this;
+    }
+
+    /**
+     * Filters for payment links that have matching `currency` values. The `currency` values provided must
+     * be formatted as 3-letter ISO currency codes.
+     */
+    public ListPaymentLinksRequest withCurrency(JsonNullable<? extends List<String>> currency) {
+        Utils.checkNotNull(currency, "currency");
+        this.currency = currency;
+        return this;
+    }
+
+    /**
+     * Filters for payment links that have an `amount` equal to this value.
+     */
+    public ListPaymentLinksRequest withAmountEq(long amountEq) {
+        Utils.checkNotNull(amountEq, "amountEq");
+        this.amountEq = JsonNullable.of(amountEq);
+        return this;
+    }
+
+    /**
+     * Filters for payment links that have an `amount` equal to this value.
+     */
+    public ListPaymentLinksRequest withAmountEq(JsonNullable<Long> amountEq) {
+        Utils.checkNotNull(amountEq, "amountEq");
+        this.amountEq = amountEq;
+        return this;
+    }
+
+    /**
+     * Filters for payment links that have an `amount` greater than or equal to this value.
+     */
+    public ListPaymentLinksRequest withAmountGte(long amountGte) {
+        Utils.checkNotNull(amountGte, "amountGte");
+        this.amountGte = JsonNullable.of(amountGte);
+        return this;
+    }
+
+    /**
+     * Filters for payment links that have an `amount` greater than or equal to this value.
+     */
+    public ListPaymentLinksRequest withAmountGte(JsonNullable<Long> amountGte) {
+        Utils.checkNotNull(amountGte, "amountGte");
+        this.amountGte = amountGte;
+        return this;
+    }
+
+    /**
+     * Filters for payment links that have an `amount` less than or equal to this value.
+     */
+    public ListPaymentLinksRequest withAmountLte(long amountLte) {
+        Utils.checkNotNull(amountLte, "amountLte");
+        this.amountLte = JsonNullable.of(amountLte);
+        return this;
+    }
+
+    /**
+     * Filters for payment links that have an `amount` less than or equal to this value.
+     */
+    public ListPaymentLinksRequest withAmountLte(JsonNullable<Long> amountLte) {
+        Utils.checkNotNull(amountLte, "amountLte");
+        this.amountLte = amountLte;
+        return this;
+    }
+
+    /**
+     * Filters the results to only the payment links that have a `status` that matches with any of the
+     * provided status values.
+     */
+    public ListPaymentLinksRequest withStatus(List<PaymentLinkStatus> status) {
+        Utils.checkNotNull(status, "status");
+        this.status = JsonNullable.of(status);
+        return this;
+    }
+
+    /**
+     * Filters the results to only the payment links that have a `status` that matches with any of the
+     * provided status values.
+     */
+    public ListPaymentLinksRequest withStatus(JsonNullable<? extends List<PaymentLinkStatus>> status) {
+        Utils.checkNotNull(status, "status");
+        this.status = status;
+        return this;
+    }
+
+    /**
      * Filters the results to only get the items for which some of the buyer data contains exactly the
      * provided `buyer_search` values.
      */
@@ -191,6 +569,15 @@ public class ListPaymentLinksRequest {
         return 
             Utils.enhancedDeepEquals(this.cursor, other.cursor) &&
             Utils.enhancedDeepEquals(this.limit, other.limit) &&
+            Utils.enhancedDeepEquals(this.createdAtLte, other.createdAtLte) &&
+            Utils.enhancedDeepEquals(this.createdAtGte, other.createdAtGte) &&
+            Utils.enhancedDeepEquals(this.updatedAtLte, other.updatedAtLte) &&
+            Utils.enhancedDeepEquals(this.updatedAtGte, other.updatedAtGte) &&
+            Utils.enhancedDeepEquals(this.currency, other.currency) &&
+            Utils.enhancedDeepEquals(this.amountEq, other.amountEq) &&
+            Utils.enhancedDeepEquals(this.amountGte, other.amountGte) &&
+            Utils.enhancedDeepEquals(this.amountLte, other.amountLte) &&
+            Utils.enhancedDeepEquals(this.status, other.status) &&
             Utils.enhancedDeepEquals(this.buyerSearch, other.buyerSearch) &&
             Utils.enhancedDeepEquals(this.merchantAccountId, other.merchantAccountId);
     }
@@ -198,7 +585,10 @@ public class ListPaymentLinksRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            cursor, limit, buyerSearch,
+            cursor, limit, createdAtLte,
+            createdAtGte, updatedAtLte, updatedAtGte,
+            currency, amountEq, amountGte,
+            amountLte, status, buyerSearch,
             merchantAccountId);
     }
     
@@ -207,6 +597,15 @@ public class ListPaymentLinksRequest {
         return Utils.toString(ListPaymentLinksRequest.class,
                 "cursor", cursor,
                 "limit", limit,
+                "createdAtLte", createdAtLte,
+                "createdAtGte", createdAtGte,
+                "updatedAtLte", updatedAtLte,
+                "updatedAtGte", updatedAtGte,
+                "currency", currency,
+                "amountEq", amountEq,
+                "amountGte", amountGte,
+                "amountLte", amountLte,
+                "status", status,
                 "buyerSearch", buyerSearch,
                 "merchantAccountId", merchantAccountId);
     }
@@ -217,6 +616,24 @@ public class ListPaymentLinksRequest {
         private JsonNullable<String> cursor = JsonNullable.undefined();
 
         private Optional<Long> limit;
+
+        private JsonNullable<OffsetDateTime> createdAtLte = JsonNullable.undefined();
+
+        private JsonNullable<OffsetDateTime> createdAtGte = JsonNullable.undefined();
+
+        private JsonNullable<OffsetDateTime> updatedAtLte = JsonNullable.undefined();
+
+        private JsonNullable<OffsetDateTime> updatedAtGte = JsonNullable.undefined();
+
+        private JsonNullable<? extends List<String>> currency = JsonNullable.undefined();
+
+        private JsonNullable<Long> amountEq = JsonNullable.undefined();
+
+        private JsonNullable<Long> amountGte = JsonNullable.undefined();
+
+        private JsonNullable<Long> amountLte = JsonNullable.undefined();
+
+        private JsonNullable<? extends List<PaymentLinkStatus>> status = JsonNullable.undefined();
 
         private JsonNullable<? extends List<String>> buyerSearch = JsonNullable.undefined();
 
@@ -266,6 +683,205 @@ public class ListPaymentLinksRequest {
 
 
         /**
+         * Filters the results to only payment links created before this ISO date-time string. The time zone
+         * must be included. Ensure that the date-time string is URL encoded, e.g.
+         * 
+         * <p>`2022-01-01T12:00:00+08:00` must be encoded as `2022-01-01T12%3A00%3A00%2B08%3A00`.
+         */
+        public Builder createdAtLte(OffsetDateTime createdAtLte) {
+            Utils.checkNotNull(createdAtLte, "createdAtLte");
+            this.createdAtLte = JsonNullable.of(createdAtLte);
+            return this;
+        }
+
+        /**
+         * Filters the results to only payment links created before this ISO date-time string. The time zone
+         * must be included. Ensure that the date-time string is URL encoded, e.g.
+         * 
+         * <p>`2022-01-01T12:00:00+08:00` must be encoded as `2022-01-01T12%3A00%3A00%2B08%3A00`.
+         */
+        public Builder createdAtLte(JsonNullable<OffsetDateTime> createdAtLte) {
+            Utils.checkNotNull(createdAtLte, "createdAtLte");
+            this.createdAtLte = createdAtLte;
+            return this;
+        }
+
+
+        /**
+         * Filters the results to only payment links created after this ISO date-time string. The time zone
+         * must be included. Ensure that the date-time string is URL encoded, e.g.
+         * 
+         * <p>`2022-01-01T12:00:00+08:00` must be encoded as `2022-01-01T12%3A00%3A00%2B08%3A00`.
+         */
+        public Builder createdAtGte(OffsetDateTime createdAtGte) {
+            Utils.checkNotNull(createdAtGte, "createdAtGte");
+            this.createdAtGte = JsonNullable.of(createdAtGte);
+            return this;
+        }
+
+        /**
+         * Filters the results to only payment links created after this ISO date-time string. The time zone
+         * must be included. Ensure that the date-time string is URL encoded, e.g.
+         * 
+         * <p>`2022-01-01T12:00:00+08:00` must be encoded as `2022-01-01T12%3A00%3A00%2B08%3A00`.
+         */
+        public Builder createdAtGte(JsonNullable<OffsetDateTime> createdAtGte) {
+            Utils.checkNotNull(createdAtGte, "createdAtGte");
+            this.createdAtGte = createdAtGte;
+            return this;
+        }
+
+
+        /**
+         * Filters the results to only payment links updated before this ISO date-time string. The time zone
+         * must be included. Ensure that the date-time string is URL encoded, e.g.
+         * 
+         * <p>`2022-01-01T12:00:00+08:00` must be encoded as `2022-01-01T12%3A00%3A00%2B08%3A00`.
+         */
+        public Builder updatedAtLte(OffsetDateTime updatedAtLte) {
+            Utils.checkNotNull(updatedAtLte, "updatedAtLte");
+            this.updatedAtLte = JsonNullable.of(updatedAtLte);
+            return this;
+        }
+
+        /**
+         * Filters the results to only payment links updated before this ISO date-time string. The time zone
+         * must be included. Ensure that the date-time string is URL encoded, e.g.
+         * 
+         * <p>`2022-01-01T12:00:00+08:00` must be encoded as `2022-01-01T12%3A00%3A00%2B08%3A00`.
+         */
+        public Builder updatedAtLte(JsonNullable<OffsetDateTime> updatedAtLte) {
+            Utils.checkNotNull(updatedAtLte, "updatedAtLte");
+            this.updatedAtLte = updatedAtLte;
+            return this;
+        }
+
+
+        /**
+         * Filters the results to only payment links updated after this ISO date-time string. The time zone
+         * must be included. Ensure that the date-time string is URL encoded, e.g.
+         * 
+         * <p>`2022-01-01T12:00:00+08:00` must be encoded as `2022-01-01T12%3A00%3A00%2B08%3A00`.
+         */
+        public Builder updatedAtGte(OffsetDateTime updatedAtGte) {
+            Utils.checkNotNull(updatedAtGte, "updatedAtGte");
+            this.updatedAtGte = JsonNullable.of(updatedAtGte);
+            return this;
+        }
+
+        /**
+         * Filters the results to only payment links updated after this ISO date-time string. The time zone
+         * must be included. Ensure that the date-time string is URL encoded, e.g.
+         * 
+         * <p>`2022-01-01T12:00:00+08:00` must be encoded as `2022-01-01T12%3A00%3A00%2B08%3A00`.
+         */
+        public Builder updatedAtGte(JsonNullable<OffsetDateTime> updatedAtGte) {
+            Utils.checkNotNull(updatedAtGte, "updatedAtGte");
+            this.updatedAtGte = updatedAtGte;
+            return this;
+        }
+
+
+        /**
+         * Filters for payment links that have matching `currency` values. The `currency` values provided must
+         * be formatted as 3-letter ISO currency codes.
+         */
+        public Builder currency(List<String> currency) {
+            Utils.checkNotNull(currency, "currency");
+            this.currency = JsonNullable.of(currency);
+            return this;
+        }
+
+        /**
+         * Filters for payment links that have matching `currency` values. The `currency` values provided must
+         * be formatted as 3-letter ISO currency codes.
+         */
+        public Builder currency(JsonNullable<? extends List<String>> currency) {
+            Utils.checkNotNull(currency, "currency");
+            this.currency = currency;
+            return this;
+        }
+
+
+        /**
+         * Filters for payment links that have an `amount` equal to this value.
+         */
+        public Builder amountEq(long amountEq) {
+            Utils.checkNotNull(amountEq, "amountEq");
+            this.amountEq = JsonNullable.of(amountEq);
+            return this;
+        }
+
+        /**
+         * Filters for payment links that have an `amount` equal to this value.
+         */
+        public Builder amountEq(JsonNullable<Long> amountEq) {
+            Utils.checkNotNull(amountEq, "amountEq");
+            this.amountEq = amountEq;
+            return this;
+        }
+
+
+        /**
+         * Filters for payment links that have an `amount` greater than or equal to this value.
+         */
+        public Builder amountGte(long amountGte) {
+            Utils.checkNotNull(amountGte, "amountGte");
+            this.amountGte = JsonNullable.of(amountGte);
+            return this;
+        }
+
+        /**
+         * Filters for payment links that have an `amount` greater than or equal to this value.
+         */
+        public Builder amountGte(JsonNullable<Long> amountGte) {
+            Utils.checkNotNull(amountGte, "amountGte");
+            this.amountGte = amountGte;
+            return this;
+        }
+
+
+        /**
+         * Filters for payment links that have an `amount` less than or equal to this value.
+         */
+        public Builder amountLte(long amountLte) {
+            Utils.checkNotNull(amountLte, "amountLte");
+            this.amountLte = JsonNullable.of(amountLte);
+            return this;
+        }
+
+        /**
+         * Filters for payment links that have an `amount` less than or equal to this value.
+         */
+        public Builder amountLte(JsonNullable<Long> amountLte) {
+            Utils.checkNotNull(amountLte, "amountLte");
+            this.amountLte = amountLte;
+            return this;
+        }
+
+
+        /**
+         * Filters the results to only the payment links that have a `status` that matches with any of the
+         * provided status values.
+         */
+        public Builder status(List<PaymentLinkStatus> status) {
+            Utils.checkNotNull(status, "status");
+            this.status = JsonNullable.of(status);
+            return this;
+        }
+
+        /**
+         * Filters the results to only the payment links that have a `status` that matches with any of the
+         * provided status values.
+         */
+        public Builder status(JsonNullable<? extends List<PaymentLinkStatus>> status) {
+            Utils.checkNotNull(status, "status");
+            this.status = status;
+            return this;
+        }
+
+
+        /**
          * Filters the results to only get the items for which some of the buyer data contains exactly the
          * provided `buyer_search` values.
          */
@@ -310,7 +926,10 @@ public class ListPaymentLinksRequest {
             }
 
             return new ListPaymentLinksRequest(
-                cursor, limit, buyerSearch,
+                cursor, limit, createdAtLte,
+                createdAtGte, updatedAtLte, updatedAtGte,
+                currency, amountEq, amountGte,
+                amountLte, status, buyerSearch,
                 merchantAccountId);
         }
 
