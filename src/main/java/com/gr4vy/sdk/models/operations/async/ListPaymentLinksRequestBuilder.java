@@ -6,38 +6,27 @@ package com.gr4vy.sdk.models.operations.async;
 import static com.gr4vy.sdk.operations.Operations.AsyncRequestOperation;
 import static com.gr4vy.sdk.utils.reactive.ReactiveUtils.mapAsync;
 
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.gr4vy.sdk.SDKConfiguration;
 import com.gr4vy.sdk.models.operations.ListPaymentLinksRequest;
 import com.gr4vy.sdk.operations.ListPaymentLinks;
 import com.gr4vy.sdk.utils.Blob;
 import com.gr4vy.sdk.utils.Headers;
-import com.gr4vy.sdk.utils.LazySingletonValue;
 import com.gr4vy.sdk.utils.Options;
 import com.gr4vy.sdk.utils.RetryConfig;
 import com.gr4vy.sdk.utils.Utils;
 import com.gr4vy.sdk.utils.pagination.AsyncPaginator;
 import com.gr4vy.sdk.utils.pagination.CursorTracker;
-import java.lang.Long;
 import java.lang.String;
 import java.net.http.HttpResponse;
-import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.Flow;
-import org.openapitools.jackson.nullable.JsonNullable;
 import org.reactivestreams.FlowAdapters;
 import org.reactivestreams.Publisher;
 
 public class ListPaymentLinksRequestBuilder {
 
-    private JsonNullable<String> cursor = JsonNullable.undefined();
-    private Optional<Long> limit = Utils.readDefaultOrConstValue(
-                            "limit",
-                            "20",
-                            new TypeReference<Optional<Long>>() {});
-    private JsonNullable<? extends List<String>> buyerSearch = JsonNullable.undefined();
-    private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
+    private ListPaymentLinksRequest request;
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
@@ -46,51 +35,9 @@ public class ListPaymentLinksRequestBuilder {
         this.sdkConfiguration = sdkConfiguration;
     }
 
-    public ListPaymentLinksRequestBuilder cursor(String cursor) {
-        Utils.checkNotNull(cursor, "cursor");
-        this.cursor = JsonNullable.of(cursor);
-        return this;
-    }
-
-    public ListPaymentLinksRequestBuilder cursor(JsonNullable<String> cursor) {
-        Utils.checkNotNull(cursor, "cursor");
-        this.cursor = cursor;
-        return this;
-    }
-                
-    public ListPaymentLinksRequestBuilder limit(long limit) {
-        Utils.checkNotNull(limit, "limit");
-        this.limit = Optional.of(limit);
-        return this;
-    }
-
-    public ListPaymentLinksRequestBuilder limit(Optional<Long> limit) {
-        Utils.checkNotNull(limit, "limit");
-        this.limit = limit;
-        return this;
-    }
-
-    public ListPaymentLinksRequestBuilder buyerSearch(List<String> buyerSearch) {
-        Utils.checkNotNull(buyerSearch, "buyerSearch");
-        this.buyerSearch = JsonNullable.of(buyerSearch);
-        return this;
-    }
-
-    public ListPaymentLinksRequestBuilder buyerSearch(JsonNullable<? extends List<String>> buyerSearch) {
-        Utils.checkNotNull(buyerSearch, "buyerSearch");
-        this.buyerSearch = buyerSearch;
-        return this;
-    }
-
-    public ListPaymentLinksRequestBuilder merchantAccountId(String merchantAccountId) {
-        Utils.checkNotNull(merchantAccountId, "merchantAccountId");
-        this.merchantAccountId = JsonNullable.of(merchantAccountId);
-        return this;
-    }
-
-    public ListPaymentLinksRequestBuilder merchantAccountId(JsonNullable<String> merchantAccountId) {
-        Utils.checkNotNull(merchantAccountId, "merchantAccountId");
-        this.merchantAccountId = merchantAccountId;
+    public ListPaymentLinksRequestBuilder request(ListPaymentLinksRequest request) {
+        Utils.checkNotNull(request, "request");
+        this.request = request;
         return this;
     }
                 
@@ -106,20 +53,6 @@ public class ListPaymentLinksRequestBuilder {
         return this;
     }
 
-
-    private ListPaymentLinksRequest buildRequest() {
-        if (limit == null) {
-            limit = _SINGLETON_VALUE_Limit.value();
-        }
-
-        ListPaymentLinksRequest request = new ListPaymentLinksRequest(cursor,
-            limit,
-            buyerSearch,
-            merchantAccountId);
-
-        return request;
-    }
-
     public CompletableFuture<ListPaymentLinksResponse> call() {
         Optional<Options> options = Optional.of(Options.builder()
             .retryConfig(retryConfig)
@@ -129,7 +62,6 @@ public class ListPaymentLinksRequestBuilder {
               = new ListPaymentLinks.Async(
                                     sdkConfiguration, options, sdkConfiguration.retryScheduler(),
                                     _headers);
-        ListPaymentLinksRequest request = buildRequest();
 
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
@@ -150,7 +82,7 @@ public class ListPaymentLinksRequestBuilder {
      * @return A Publisher that emits pages asynchronously
      */
     public Publisher<ListPaymentLinksResponse> callAsPublisher() {
-        ListPaymentLinksRequest request = this.buildRequest();
+        ListPaymentLinksRequest request = this.request;
         Optional<Options> options = Optional.of(Options.builder()
             .retryConfig(retryConfig)
             .build());
@@ -174,10 +106,4 @@ public class ListPaymentLinksRequestBuilder {
         return FlowAdapters.toPublisher(flowPublisher);
     }
 
-
-    private static final LazySingletonValue<Optional<Long>> _SINGLETON_VALUE_Limit =
-            new LazySingletonValue<>(
-                    "limit",
-                    "20",
-                    new TypeReference<Optional<Long>>() {});
 }

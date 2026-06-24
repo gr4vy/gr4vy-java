@@ -213,6 +213,12 @@ public class ListTransactionsRequest {
     private JsonNullable<String> checkoutSessionId;
 
     /**
+     * Filters for transactions where the `payment_link_id` matches the provided value.
+     */
+    @SpeakeasyMetadata("queryParam:style=form,explode=true,name=payment_link_id")
+    private JsonNullable<String> paymentLinkId;
+
+    /**
      * Filters for transactions where the `reconciliation_id` matches the provided value.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=reconciliation_id")
@@ -333,6 +339,7 @@ public class ListTransactionsRequest {
             JsonNullable<Boolean> hasRefunds,
             JsonNullable<Boolean> pendingReview,
             JsonNullable<String> checkoutSessionId,
+            JsonNullable<String> paymentLinkId,
             JsonNullable<String> reconciliationId,
             JsonNullable<Boolean> hasGiftCardRedemptions,
             JsonNullable<String> giftCardId,
@@ -379,6 +386,7 @@ public class ListTransactionsRequest {
         Utils.checkNotNull(hasRefunds, "hasRefunds");
         Utils.checkNotNull(pendingReview, "pendingReview");
         Utils.checkNotNull(checkoutSessionId, "checkoutSessionId");
+        Utils.checkNotNull(paymentLinkId, "paymentLinkId");
         Utils.checkNotNull(reconciliationId, "reconciliationId");
         Utils.checkNotNull(hasGiftCardRedemptions, "hasGiftCardRedemptions");
         Utils.checkNotNull(giftCardId, "giftCardId");
@@ -425,6 +433,7 @@ public class ListTransactionsRequest {
         this.hasRefunds = hasRefunds;
         this.pendingReview = pendingReview;
         this.checkoutSessionId = checkoutSessionId;
+        this.paymentLinkId = paymentLinkId;
         this.reconciliationId = reconciliationId;
         this.hasGiftCardRedemptions = hasGiftCardRedemptions;
         this.giftCardId = giftCardId;
@@ -457,7 +466,7 @@ public class ListTransactionsRequest {
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined());
+            JsonNullable.undefined(), JsonNullable.undefined());
     }
 
     /**
@@ -707,6 +716,14 @@ public class ListTransactionsRequest {
     @JsonIgnore
     public JsonNullable<String> checkoutSessionId() {
         return checkoutSessionId;
+    }
+
+    /**
+     * Filters for transactions where the `payment_link_id` matches the provided value.
+     */
+    @JsonIgnore
+    public JsonNullable<String> paymentLinkId() {
+        return paymentLinkId;
     }
 
     /**
@@ -1379,6 +1396,24 @@ public class ListTransactionsRequest {
     }
 
     /**
+     * Filters for transactions where the `payment_link_id` matches the provided value.
+     */
+    public ListTransactionsRequest withPaymentLinkId(String paymentLinkId) {
+        Utils.checkNotNull(paymentLinkId, "paymentLinkId");
+        this.paymentLinkId = JsonNullable.of(paymentLinkId);
+        return this;
+    }
+
+    /**
+     * Filters for transactions where the `payment_link_id` matches the provided value.
+     */
+    public ListTransactionsRequest withPaymentLinkId(JsonNullable<String> paymentLinkId) {
+        Utils.checkNotNull(paymentLinkId, "paymentLinkId");
+        this.paymentLinkId = paymentLinkId;
+        return this;
+    }
+
+    /**
      * Filters for transactions where the `reconciliation_id` matches the provided value.
      */
     public ListTransactionsRequest withReconciliationId(String reconciliationId) {
@@ -1678,6 +1713,7 @@ public class ListTransactionsRequest {
             Utils.enhancedDeepEquals(this.hasRefunds, other.hasRefunds) &&
             Utils.enhancedDeepEquals(this.pendingReview, other.pendingReview) &&
             Utils.enhancedDeepEquals(this.checkoutSessionId, other.checkoutSessionId) &&
+            Utils.enhancedDeepEquals(this.paymentLinkId, other.paymentLinkId) &&
             Utils.enhancedDeepEquals(this.reconciliationId, other.reconciliationId) &&
             Utils.enhancedDeepEquals(this.hasGiftCardRedemptions, other.hasGiftCardRedemptions) &&
             Utils.enhancedDeepEquals(this.giftCardId, other.giftCardId) &&
@@ -1707,12 +1743,12 @@ public class ListTransactionsRequest {
             paymentServiceId, paymentMethodId, paymentMethodLabel,
             paymentMethodScheme, paymentMethodCountry, paymentMethodFingerprint,
             method, errorCode, hasRefunds,
-            pendingReview, checkoutSessionId, reconciliationId,
-            hasGiftCardRedemptions, giftCardId, giftCardLast4,
-            hasSettlements, paymentMethodBin, paymentSource,
-            isSubsequentPayment, merchantInitiated, used3ds,
-            disputed, reauthorizedFromTransactionId, buyerSearch,
-            merchantAccountId);
+            pendingReview, checkoutSessionId, paymentLinkId,
+            reconciliationId, hasGiftCardRedemptions, giftCardId,
+            giftCardLast4, hasSettlements, paymentMethodBin,
+            paymentSource, isSubsequentPayment, merchantInitiated,
+            used3ds, disputed, reauthorizedFromTransactionId,
+            buyerSearch, merchantAccountId);
     }
     
     @Override
@@ -1750,6 +1786,7 @@ public class ListTransactionsRequest {
                 "hasRefunds", hasRefunds,
                 "pendingReview", pendingReview,
                 "checkoutSessionId", checkoutSessionId,
+                "paymentLinkId", paymentLinkId,
                 "reconciliationId", reconciliationId,
                 "hasGiftCardRedemptions", hasGiftCardRedemptions,
                 "giftCardId", giftCardId,
@@ -1832,6 +1869,8 @@ public class ListTransactionsRequest {
         private JsonNullable<Boolean> pendingReview = JsonNullable.undefined();
 
         private JsonNullable<String> checkoutSessionId = JsonNullable.undefined();
+
+        private JsonNullable<String> paymentLinkId = JsonNullable.undefined();
 
         private JsonNullable<String> reconciliationId = JsonNullable.undefined();
 
@@ -2445,6 +2484,25 @@ public class ListTransactionsRequest {
 
 
         /**
+         * Filters for transactions where the `payment_link_id` matches the provided value.
+         */
+        public Builder paymentLinkId(String paymentLinkId) {
+            Utils.checkNotNull(paymentLinkId, "paymentLinkId");
+            this.paymentLinkId = JsonNullable.of(paymentLinkId);
+            return this;
+        }
+
+        /**
+         * Filters for transactions where the `payment_link_id` matches the provided value.
+         */
+        public Builder paymentLinkId(JsonNullable<String> paymentLinkId) {
+            Utils.checkNotNull(paymentLinkId, "paymentLinkId");
+            this.paymentLinkId = paymentLinkId;
+            return this;
+        }
+
+
+        /**
          * Filters for transactions where the `reconciliation_id` matches the provided value.
          */
         public Builder reconciliationId(String reconciliationId) {
@@ -2731,12 +2789,12 @@ public class ListTransactionsRequest {
                 paymentServiceId, paymentMethodId, paymentMethodLabel,
                 paymentMethodScheme, paymentMethodCountry, paymentMethodFingerprint,
                 method, errorCode, hasRefunds,
-                pendingReview, checkoutSessionId, reconciliationId,
-                hasGiftCardRedemptions, giftCardId, giftCardLast4,
-                hasSettlements, paymentMethodBin, paymentSource,
-                isSubsequentPayment, merchantInitiated, used3ds,
-                disputed, reauthorizedFromTransactionId, buyerSearch,
-                merchantAccountId);
+                pendingReview, checkoutSessionId, paymentLinkId,
+                reconciliationId, hasGiftCardRedemptions, giftCardId,
+                giftCardLast4, hasSettlements, paymentMethodBin,
+                paymentSource, isSubsequentPayment, merchantInitiated,
+                used3ds, disputed, reauthorizedFromTransactionId,
+                buyerSearch, merchantAccountId);
         }
 
 

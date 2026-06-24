@@ -24,9 +24,7 @@ import com.gr4vy.sdk.operations.GetPaymentLink;
 import com.gr4vy.sdk.operations.ListPaymentLinks;
 import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.Options;
-import java.lang.Long;
 import java.lang.String;
-import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 import org.openapitools.jackson.nullable.JsonNullable;
@@ -114,12 +112,11 @@ public class AsyncPaymentLinks {
      * 
      * <p>List all created payment links.
      * 
+     * @param request The request object containing all the parameters for the API call.
      * @return {@code CompletableFuture<ListPaymentLinksResponse>} - The async response
      */
-    public CompletableFuture<ListPaymentLinksResponse> listDirect() {
-        return list(
-                JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
-                JsonNullable.undefined(), Optional.empty());
+    public CompletableFuture<ListPaymentLinksResponse> list(ListPaymentLinksRequest request) {
+        return list(request, Optional.empty());
     }
 
     /**
@@ -127,25 +124,11 @@ public class AsyncPaymentLinks {
      * 
      * <p>List all created payment links.
      * 
-     * @param cursor A pointer to the page of results to return.
-     * @param limit The maximum number of items that are returned.
-     * @param buyerSearch Filters the results to only get the items for which some of the buyer data contains exactly the provided `buyer_search` values.
-     * @param merchantAccountId 
+     * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return {@code CompletableFuture<ListPaymentLinksResponse>} - The async response
      */
-    public CompletableFuture<ListPaymentLinksResponse> list(
-            JsonNullable<String> cursor, Optional<Long> limit,
-            JsonNullable<? extends List<String>> buyerSearch, JsonNullable<String> merchantAccountId,
-            Optional<Options> options) {
-        ListPaymentLinksRequest request =
-            ListPaymentLinksRequest
-                .builder()
-                .cursor(cursor)
-                .limit(limit)
-                .buyerSearch(buyerSearch)
-                .merchantAccountId(merchantAccountId)
-                .build();
+    public CompletableFuture<ListPaymentLinksResponse> list(ListPaymentLinksRequest request, Optional<Options> options) {
         AsyncRequestOperation<ListPaymentLinksRequest, ListPaymentLinksResponse> operation
               = new ListPaymentLinks.Async(
                                     sdkConfiguration, options, sdkConfiguration.retryScheduler(),
