@@ -6,12 +6,16 @@ package com.gr4vy.sdk.models.operations;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.type.TypeReference;
+import com.gr4vy.sdk.models.components.PayoutStatus;
 import com.gr4vy.sdk.utils.LazySingletonValue;
 import com.gr4vy.sdk.utils.SpeakeasyMetadata;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
+import java.lang.SuppressWarnings;
+import java.time.OffsetDateTime;
+import java.util.List;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -30,6 +34,63 @@ public class ListPayoutsRequest {
     private Optional<Long> limit;
 
     /**
+     * Filters the results to only payouts created before this ISO date-time string. The time zone must be
+     * included. Ensure that the date-time string is URL encoded, e.g.
+     * 
+     * <p>`2022-01-01T12:00:00+08:00` must be encoded as `2022-01-01T12%3A00%3A00%2B08%3A00`.
+     */
+    @SpeakeasyMetadata("queryParam:style=form,explode=true,name=created_at_lte")
+    private JsonNullable<OffsetDateTime> createdAtLte;
+
+    /**
+     * Filters the results to only payouts created after this ISO date-time string. The time zone must be
+     * included. Ensure that the date-time string is URL encoded, e.g.
+     * 
+     * <p>`2022-01-01T12:00:00+08:00` must be encoded as `2022-01-01T12%3A00%3A00%2B08%3A00`.
+     */
+    @SpeakeasyMetadata("queryParam:style=form,explode=true,name=created_at_gte")
+    private JsonNullable<OffsetDateTime> createdAtGte;
+
+    /**
+     * Filters the results to only payouts updated before this ISO date-time string. The time zone must be
+     * included. Ensure that the date-time string is URL encoded, e.g.
+     * 
+     * <p>`2022-01-01T12:00:00+08:00` must be encoded as `2022-01-01T12%3A00%3A00%2B08%3A00`.
+     */
+    @SpeakeasyMetadata("queryParam:style=form,explode=true,name=updated_at_lte")
+    private JsonNullable<OffsetDateTime> updatedAtLte;
+
+    /**
+     * Filters the results to only payouts updated after this ISO date-time string. The time zone must be
+     * included. Ensure that the date-time string is URL encoded, e.g.
+     * 
+     * <p>`2022-01-01T12:00:00+08:00` must be encoded as `2022-01-01T12%3A00%3A00%2B08%3A00`.
+     */
+    @SpeakeasyMetadata("queryParam:style=form,explode=true,name=updated_at_gte")
+    private JsonNullable<OffsetDateTime> updatedAtGte;
+
+    /**
+     * Filters the results to only the payouts that have an `external_identifier` that exactly matches this
+     * value.
+     */
+    @SpeakeasyMetadata("queryParam:style=form,explode=true,name=external_identifier")
+    private JsonNullable<String> externalIdentifier;
+
+    /**
+     * Filters the results to only the payouts that have a `payment_service_payout_id` that exactly matches
+     * this value.
+     */
+    @SpeakeasyMetadata("queryParam:style=form,explode=true,name=payment_service_payout_id")
+    private JsonNullable<String> paymentServicePayoutId;
+
+    /**
+     * Filters the results to only the payouts that have a `status` that matches with any of the provided
+     * status values.
+     */
+    @SpeakeasyMetadata("queryParam:style=form,explode=true,name=status")
+    private JsonNullable<? extends List<PayoutStatus>> status;
+
+    /**
      * The ID of the merchant account to use for this request.
      */
     @SpeakeasyMetadata("header:style=simple,explode=false,name=x-gr4vy-merchant-account-id")
@@ -39,17 +100,41 @@ public class ListPayoutsRequest {
     public ListPayoutsRequest(
             JsonNullable<String> cursor,
             Optional<Long> limit,
+            JsonNullable<OffsetDateTime> createdAtLte,
+            JsonNullable<OffsetDateTime> createdAtGte,
+            JsonNullable<OffsetDateTime> updatedAtLte,
+            JsonNullable<OffsetDateTime> updatedAtGte,
+            JsonNullable<String> externalIdentifier,
+            JsonNullable<String> paymentServicePayoutId,
+            JsonNullable<? extends List<PayoutStatus>> status,
             JsonNullable<String> merchantAccountId) {
         Utils.checkNotNull(cursor, "cursor");
         Utils.checkNotNull(limit, "limit");
+        Utils.checkNotNull(createdAtLte, "createdAtLte");
+        Utils.checkNotNull(createdAtGte, "createdAtGte");
+        Utils.checkNotNull(updatedAtLte, "updatedAtLte");
+        Utils.checkNotNull(updatedAtGte, "updatedAtGte");
+        Utils.checkNotNull(externalIdentifier, "externalIdentifier");
+        Utils.checkNotNull(paymentServicePayoutId, "paymentServicePayoutId");
+        Utils.checkNotNull(status, "status");
         Utils.checkNotNull(merchantAccountId, "merchantAccountId");
         this.cursor = cursor;
         this.limit = limit;
+        this.createdAtLte = createdAtLte;
+        this.createdAtGte = createdAtGte;
+        this.updatedAtLte = updatedAtLte;
+        this.updatedAtGte = updatedAtGte;
+        this.externalIdentifier = externalIdentifier;
+        this.paymentServicePayoutId = paymentServicePayoutId;
+        this.status = status;
         this.merchantAccountId = merchantAccountId;
     }
     
     public ListPayoutsRequest() {
-        this(JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined());
+        this(JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined());
     }
 
     /**
@@ -66,6 +151,78 @@ public class ListPayoutsRequest {
     @JsonIgnore
     public Optional<Long> limit() {
         return limit;
+    }
+
+    /**
+     * Filters the results to only payouts created before this ISO date-time string. The time zone must be
+     * included. Ensure that the date-time string is URL encoded, e.g.
+     * 
+     * <p>`2022-01-01T12:00:00+08:00` must be encoded as `2022-01-01T12%3A00%3A00%2B08%3A00`.
+     */
+    @JsonIgnore
+    public JsonNullable<OffsetDateTime> createdAtLte() {
+        return createdAtLte;
+    }
+
+    /**
+     * Filters the results to only payouts created after this ISO date-time string. The time zone must be
+     * included. Ensure that the date-time string is URL encoded, e.g.
+     * 
+     * <p>`2022-01-01T12:00:00+08:00` must be encoded as `2022-01-01T12%3A00%3A00%2B08%3A00`.
+     */
+    @JsonIgnore
+    public JsonNullable<OffsetDateTime> createdAtGte() {
+        return createdAtGte;
+    }
+
+    /**
+     * Filters the results to only payouts updated before this ISO date-time string. The time zone must be
+     * included. Ensure that the date-time string is URL encoded, e.g.
+     * 
+     * <p>`2022-01-01T12:00:00+08:00` must be encoded as `2022-01-01T12%3A00%3A00%2B08%3A00`.
+     */
+    @JsonIgnore
+    public JsonNullable<OffsetDateTime> updatedAtLte() {
+        return updatedAtLte;
+    }
+
+    /**
+     * Filters the results to only payouts updated after this ISO date-time string. The time zone must be
+     * included. Ensure that the date-time string is URL encoded, e.g.
+     * 
+     * <p>`2022-01-01T12:00:00+08:00` must be encoded as `2022-01-01T12%3A00%3A00%2B08%3A00`.
+     */
+    @JsonIgnore
+    public JsonNullable<OffsetDateTime> updatedAtGte() {
+        return updatedAtGte;
+    }
+
+    /**
+     * Filters the results to only the payouts that have an `external_identifier` that exactly matches this
+     * value.
+     */
+    @JsonIgnore
+    public JsonNullable<String> externalIdentifier() {
+        return externalIdentifier;
+    }
+
+    /**
+     * Filters the results to only the payouts that have a `payment_service_payout_id` that exactly matches
+     * this value.
+     */
+    @JsonIgnore
+    public JsonNullable<String> paymentServicePayoutId() {
+        return paymentServicePayoutId;
+    }
+
+    /**
+     * Filters the results to only the payouts that have a `status` that matches with any of the provided
+     * status values.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public JsonNullable<List<PayoutStatus>> status() {
+        return (JsonNullable<List<PayoutStatus>>) status;
     }
 
     /**
@@ -119,6 +276,162 @@ public class ListPayoutsRequest {
     }
 
     /**
+     * Filters the results to only payouts created before this ISO date-time string. The time zone must be
+     * included. Ensure that the date-time string is URL encoded, e.g.
+     * 
+     * <p>`2022-01-01T12:00:00+08:00` must be encoded as `2022-01-01T12%3A00%3A00%2B08%3A00`.
+     */
+    public ListPayoutsRequest withCreatedAtLte(OffsetDateTime createdAtLte) {
+        Utils.checkNotNull(createdAtLte, "createdAtLte");
+        this.createdAtLte = JsonNullable.of(createdAtLte);
+        return this;
+    }
+
+    /**
+     * Filters the results to only payouts created before this ISO date-time string. The time zone must be
+     * included. Ensure that the date-time string is URL encoded, e.g.
+     * 
+     * <p>`2022-01-01T12:00:00+08:00` must be encoded as `2022-01-01T12%3A00%3A00%2B08%3A00`.
+     */
+    public ListPayoutsRequest withCreatedAtLte(JsonNullable<OffsetDateTime> createdAtLte) {
+        Utils.checkNotNull(createdAtLte, "createdAtLte");
+        this.createdAtLte = createdAtLte;
+        return this;
+    }
+
+    /**
+     * Filters the results to only payouts created after this ISO date-time string. The time zone must be
+     * included. Ensure that the date-time string is URL encoded, e.g.
+     * 
+     * <p>`2022-01-01T12:00:00+08:00` must be encoded as `2022-01-01T12%3A00%3A00%2B08%3A00`.
+     */
+    public ListPayoutsRequest withCreatedAtGte(OffsetDateTime createdAtGte) {
+        Utils.checkNotNull(createdAtGte, "createdAtGte");
+        this.createdAtGte = JsonNullable.of(createdAtGte);
+        return this;
+    }
+
+    /**
+     * Filters the results to only payouts created after this ISO date-time string. The time zone must be
+     * included. Ensure that the date-time string is URL encoded, e.g.
+     * 
+     * <p>`2022-01-01T12:00:00+08:00` must be encoded as `2022-01-01T12%3A00%3A00%2B08%3A00`.
+     */
+    public ListPayoutsRequest withCreatedAtGte(JsonNullable<OffsetDateTime> createdAtGte) {
+        Utils.checkNotNull(createdAtGte, "createdAtGte");
+        this.createdAtGte = createdAtGte;
+        return this;
+    }
+
+    /**
+     * Filters the results to only payouts updated before this ISO date-time string. The time zone must be
+     * included. Ensure that the date-time string is URL encoded, e.g.
+     * 
+     * <p>`2022-01-01T12:00:00+08:00` must be encoded as `2022-01-01T12%3A00%3A00%2B08%3A00`.
+     */
+    public ListPayoutsRequest withUpdatedAtLte(OffsetDateTime updatedAtLte) {
+        Utils.checkNotNull(updatedAtLte, "updatedAtLte");
+        this.updatedAtLte = JsonNullable.of(updatedAtLte);
+        return this;
+    }
+
+    /**
+     * Filters the results to only payouts updated before this ISO date-time string. The time zone must be
+     * included. Ensure that the date-time string is URL encoded, e.g.
+     * 
+     * <p>`2022-01-01T12:00:00+08:00` must be encoded as `2022-01-01T12%3A00%3A00%2B08%3A00`.
+     */
+    public ListPayoutsRequest withUpdatedAtLte(JsonNullable<OffsetDateTime> updatedAtLte) {
+        Utils.checkNotNull(updatedAtLte, "updatedAtLte");
+        this.updatedAtLte = updatedAtLte;
+        return this;
+    }
+
+    /**
+     * Filters the results to only payouts updated after this ISO date-time string. The time zone must be
+     * included. Ensure that the date-time string is URL encoded, e.g.
+     * 
+     * <p>`2022-01-01T12:00:00+08:00` must be encoded as `2022-01-01T12%3A00%3A00%2B08%3A00`.
+     */
+    public ListPayoutsRequest withUpdatedAtGte(OffsetDateTime updatedAtGte) {
+        Utils.checkNotNull(updatedAtGte, "updatedAtGte");
+        this.updatedAtGte = JsonNullable.of(updatedAtGte);
+        return this;
+    }
+
+    /**
+     * Filters the results to only payouts updated after this ISO date-time string. The time zone must be
+     * included. Ensure that the date-time string is URL encoded, e.g.
+     * 
+     * <p>`2022-01-01T12:00:00+08:00` must be encoded as `2022-01-01T12%3A00%3A00%2B08%3A00`.
+     */
+    public ListPayoutsRequest withUpdatedAtGte(JsonNullable<OffsetDateTime> updatedAtGte) {
+        Utils.checkNotNull(updatedAtGte, "updatedAtGte");
+        this.updatedAtGte = updatedAtGte;
+        return this;
+    }
+
+    /**
+     * Filters the results to only the payouts that have an `external_identifier` that exactly matches this
+     * value.
+     */
+    public ListPayoutsRequest withExternalIdentifier(String externalIdentifier) {
+        Utils.checkNotNull(externalIdentifier, "externalIdentifier");
+        this.externalIdentifier = JsonNullable.of(externalIdentifier);
+        return this;
+    }
+
+    /**
+     * Filters the results to only the payouts that have an `external_identifier` that exactly matches this
+     * value.
+     */
+    public ListPayoutsRequest withExternalIdentifier(JsonNullable<String> externalIdentifier) {
+        Utils.checkNotNull(externalIdentifier, "externalIdentifier");
+        this.externalIdentifier = externalIdentifier;
+        return this;
+    }
+
+    /**
+     * Filters the results to only the payouts that have a `payment_service_payout_id` that exactly matches
+     * this value.
+     */
+    public ListPayoutsRequest withPaymentServicePayoutId(String paymentServicePayoutId) {
+        Utils.checkNotNull(paymentServicePayoutId, "paymentServicePayoutId");
+        this.paymentServicePayoutId = JsonNullable.of(paymentServicePayoutId);
+        return this;
+    }
+
+    /**
+     * Filters the results to only the payouts that have a `payment_service_payout_id` that exactly matches
+     * this value.
+     */
+    public ListPayoutsRequest withPaymentServicePayoutId(JsonNullable<String> paymentServicePayoutId) {
+        Utils.checkNotNull(paymentServicePayoutId, "paymentServicePayoutId");
+        this.paymentServicePayoutId = paymentServicePayoutId;
+        return this;
+    }
+
+    /**
+     * Filters the results to only the payouts that have a `status` that matches with any of the provided
+     * status values.
+     */
+    public ListPayoutsRequest withStatus(List<PayoutStatus> status) {
+        Utils.checkNotNull(status, "status");
+        this.status = JsonNullable.of(status);
+        return this;
+    }
+
+    /**
+     * Filters the results to only the payouts that have a `status` that matches with any of the provided
+     * status values.
+     */
+    public ListPayoutsRequest withStatus(JsonNullable<? extends List<PayoutStatus>> status) {
+        Utils.checkNotNull(status, "status");
+        this.status = status;
+        return this;
+    }
+
+    /**
      * The ID of the merchant account to use for this request.
      */
     public ListPayoutsRequest withMerchantAccountId(String merchantAccountId) {
@@ -148,13 +461,23 @@ public class ListPayoutsRequest {
         return 
             Utils.enhancedDeepEquals(this.cursor, other.cursor) &&
             Utils.enhancedDeepEquals(this.limit, other.limit) &&
+            Utils.enhancedDeepEquals(this.createdAtLte, other.createdAtLte) &&
+            Utils.enhancedDeepEquals(this.createdAtGte, other.createdAtGte) &&
+            Utils.enhancedDeepEquals(this.updatedAtLte, other.updatedAtLte) &&
+            Utils.enhancedDeepEquals(this.updatedAtGte, other.updatedAtGte) &&
+            Utils.enhancedDeepEquals(this.externalIdentifier, other.externalIdentifier) &&
+            Utils.enhancedDeepEquals(this.paymentServicePayoutId, other.paymentServicePayoutId) &&
+            Utils.enhancedDeepEquals(this.status, other.status) &&
             Utils.enhancedDeepEquals(this.merchantAccountId, other.merchantAccountId);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            cursor, limit, merchantAccountId);
+            cursor, limit, createdAtLte,
+            createdAtGte, updatedAtLte, updatedAtGte,
+            externalIdentifier, paymentServicePayoutId, status,
+            merchantAccountId);
     }
     
     @Override
@@ -162,6 +485,13 @@ public class ListPayoutsRequest {
         return Utils.toString(ListPayoutsRequest.class,
                 "cursor", cursor,
                 "limit", limit,
+                "createdAtLte", createdAtLte,
+                "createdAtGte", createdAtGte,
+                "updatedAtLte", updatedAtLte,
+                "updatedAtGte", updatedAtGte,
+                "externalIdentifier", externalIdentifier,
+                "paymentServicePayoutId", paymentServicePayoutId,
+                "status", status,
                 "merchantAccountId", merchantAccountId);
     }
 
@@ -171,6 +501,20 @@ public class ListPayoutsRequest {
         private JsonNullable<String> cursor = JsonNullable.undefined();
 
         private Optional<Long> limit;
+
+        private JsonNullable<OffsetDateTime> createdAtLte = JsonNullable.undefined();
+
+        private JsonNullable<OffsetDateTime> createdAtGte = JsonNullable.undefined();
+
+        private JsonNullable<OffsetDateTime> updatedAtLte = JsonNullable.undefined();
+
+        private JsonNullable<OffsetDateTime> updatedAtGte = JsonNullable.undefined();
+
+        private JsonNullable<String> externalIdentifier = JsonNullable.undefined();
+
+        private JsonNullable<String> paymentServicePayoutId = JsonNullable.undefined();
+
+        private JsonNullable<? extends List<PayoutStatus>> status = JsonNullable.undefined();
 
         private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
 
@@ -218,6 +562,169 @@ public class ListPayoutsRequest {
 
 
         /**
+         * Filters the results to only payouts created before this ISO date-time string. The time zone must be
+         * included. Ensure that the date-time string is URL encoded, e.g.
+         * 
+         * <p>`2022-01-01T12:00:00+08:00` must be encoded as `2022-01-01T12%3A00%3A00%2B08%3A00`.
+         */
+        public Builder createdAtLte(OffsetDateTime createdAtLte) {
+            Utils.checkNotNull(createdAtLte, "createdAtLte");
+            this.createdAtLte = JsonNullable.of(createdAtLte);
+            return this;
+        }
+
+        /**
+         * Filters the results to only payouts created before this ISO date-time string. The time zone must be
+         * included. Ensure that the date-time string is URL encoded, e.g.
+         * 
+         * <p>`2022-01-01T12:00:00+08:00` must be encoded as `2022-01-01T12%3A00%3A00%2B08%3A00`.
+         */
+        public Builder createdAtLte(JsonNullable<OffsetDateTime> createdAtLte) {
+            Utils.checkNotNull(createdAtLte, "createdAtLte");
+            this.createdAtLte = createdAtLte;
+            return this;
+        }
+
+
+        /**
+         * Filters the results to only payouts created after this ISO date-time string. The time zone must be
+         * included. Ensure that the date-time string is URL encoded, e.g.
+         * 
+         * <p>`2022-01-01T12:00:00+08:00` must be encoded as `2022-01-01T12%3A00%3A00%2B08%3A00`.
+         */
+        public Builder createdAtGte(OffsetDateTime createdAtGte) {
+            Utils.checkNotNull(createdAtGte, "createdAtGte");
+            this.createdAtGte = JsonNullable.of(createdAtGte);
+            return this;
+        }
+
+        /**
+         * Filters the results to only payouts created after this ISO date-time string. The time zone must be
+         * included. Ensure that the date-time string is URL encoded, e.g.
+         * 
+         * <p>`2022-01-01T12:00:00+08:00` must be encoded as `2022-01-01T12%3A00%3A00%2B08%3A00`.
+         */
+        public Builder createdAtGte(JsonNullable<OffsetDateTime> createdAtGte) {
+            Utils.checkNotNull(createdAtGte, "createdAtGte");
+            this.createdAtGte = createdAtGte;
+            return this;
+        }
+
+
+        /**
+         * Filters the results to only payouts updated before this ISO date-time string. The time zone must be
+         * included. Ensure that the date-time string is URL encoded, e.g.
+         * 
+         * <p>`2022-01-01T12:00:00+08:00` must be encoded as `2022-01-01T12%3A00%3A00%2B08%3A00`.
+         */
+        public Builder updatedAtLte(OffsetDateTime updatedAtLte) {
+            Utils.checkNotNull(updatedAtLte, "updatedAtLte");
+            this.updatedAtLte = JsonNullable.of(updatedAtLte);
+            return this;
+        }
+
+        /**
+         * Filters the results to only payouts updated before this ISO date-time string. The time zone must be
+         * included. Ensure that the date-time string is URL encoded, e.g.
+         * 
+         * <p>`2022-01-01T12:00:00+08:00` must be encoded as `2022-01-01T12%3A00%3A00%2B08%3A00`.
+         */
+        public Builder updatedAtLte(JsonNullable<OffsetDateTime> updatedAtLte) {
+            Utils.checkNotNull(updatedAtLte, "updatedAtLte");
+            this.updatedAtLte = updatedAtLte;
+            return this;
+        }
+
+
+        /**
+         * Filters the results to only payouts updated after this ISO date-time string. The time zone must be
+         * included. Ensure that the date-time string is URL encoded, e.g.
+         * 
+         * <p>`2022-01-01T12:00:00+08:00` must be encoded as `2022-01-01T12%3A00%3A00%2B08%3A00`.
+         */
+        public Builder updatedAtGte(OffsetDateTime updatedAtGte) {
+            Utils.checkNotNull(updatedAtGte, "updatedAtGte");
+            this.updatedAtGte = JsonNullable.of(updatedAtGte);
+            return this;
+        }
+
+        /**
+         * Filters the results to only payouts updated after this ISO date-time string. The time zone must be
+         * included. Ensure that the date-time string is URL encoded, e.g.
+         * 
+         * <p>`2022-01-01T12:00:00+08:00` must be encoded as `2022-01-01T12%3A00%3A00%2B08%3A00`.
+         */
+        public Builder updatedAtGte(JsonNullable<OffsetDateTime> updatedAtGte) {
+            Utils.checkNotNull(updatedAtGte, "updatedAtGte");
+            this.updatedAtGte = updatedAtGte;
+            return this;
+        }
+
+
+        /**
+         * Filters the results to only the payouts that have an `external_identifier` that exactly matches this
+         * value.
+         */
+        public Builder externalIdentifier(String externalIdentifier) {
+            Utils.checkNotNull(externalIdentifier, "externalIdentifier");
+            this.externalIdentifier = JsonNullable.of(externalIdentifier);
+            return this;
+        }
+
+        /**
+         * Filters the results to only the payouts that have an `external_identifier` that exactly matches this
+         * value.
+         */
+        public Builder externalIdentifier(JsonNullable<String> externalIdentifier) {
+            Utils.checkNotNull(externalIdentifier, "externalIdentifier");
+            this.externalIdentifier = externalIdentifier;
+            return this;
+        }
+
+
+        /**
+         * Filters the results to only the payouts that have a `payment_service_payout_id` that exactly matches
+         * this value.
+         */
+        public Builder paymentServicePayoutId(String paymentServicePayoutId) {
+            Utils.checkNotNull(paymentServicePayoutId, "paymentServicePayoutId");
+            this.paymentServicePayoutId = JsonNullable.of(paymentServicePayoutId);
+            return this;
+        }
+
+        /**
+         * Filters the results to only the payouts that have a `payment_service_payout_id` that exactly matches
+         * this value.
+         */
+        public Builder paymentServicePayoutId(JsonNullable<String> paymentServicePayoutId) {
+            Utils.checkNotNull(paymentServicePayoutId, "paymentServicePayoutId");
+            this.paymentServicePayoutId = paymentServicePayoutId;
+            return this;
+        }
+
+
+        /**
+         * Filters the results to only the payouts that have a `status` that matches with any of the provided
+         * status values.
+         */
+        public Builder status(List<PayoutStatus> status) {
+            Utils.checkNotNull(status, "status");
+            this.status = JsonNullable.of(status);
+            return this;
+        }
+
+        /**
+         * Filters the results to only the payouts that have a `status` that matches with any of the provided
+         * status values.
+         */
+        public Builder status(JsonNullable<? extends List<PayoutStatus>> status) {
+            Utils.checkNotNull(status, "status");
+            this.status = status;
+            return this;
+        }
+
+
+        /**
          * The ID of the merchant account to use for this request.
          */
         public Builder merchantAccountId(String merchantAccountId) {
@@ -241,7 +748,10 @@ public class ListPayoutsRequest {
             }
 
             return new ListPayoutsRequest(
-                cursor, limit, merchantAccountId);
+                cursor, limit, createdAtLte,
+                createdAtGte, updatedAtLte, updatedAtGte,
+                externalIdentifier, paymentServicePayoutId, status,
+                merchantAccountId);
         }
 
 

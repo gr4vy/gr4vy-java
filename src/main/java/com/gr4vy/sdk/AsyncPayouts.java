@@ -20,7 +20,6 @@ import com.gr4vy.sdk.operations.GetPayout;
 import com.gr4vy.sdk.operations.ListPayouts;
 import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.Options;
-import java.lang.Long;
 import java.lang.String;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
@@ -63,12 +62,11 @@ public class AsyncPayouts {
      * 
      * <p>Returns a list of payouts made.
      * 
+     * @param request The request object containing all the parameters for the API call.
      * @return {@code CompletableFuture<ListPayoutsResponse>} - The async response
      */
-    public CompletableFuture<ListPayoutsResponse> listDirect() {
-        return list(
-                JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
-                Optional.empty());
+    public CompletableFuture<ListPayoutsResponse> list(ListPayoutsRequest request) {
+        return list(request, Optional.empty());
     }
 
     /**
@@ -76,22 +74,11 @@ public class AsyncPayouts {
      * 
      * <p>Returns a list of payouts made.
      * 
-     * @param cursor A pointer to the page of results to return.
-     * @param limit The maximum number of items that are at returned.
-     * @param merchantAccountId 
+     * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return {@code CompletableFuture<ListPayoutsResponse>} - The async response
      */
-    public CompletableFuture<ListPayoutsResponse> list(
-            JsonNullable<String> cursor, Optional<Long> limit,
-            JsonNullable<String> merchantAccountId, Optional<Options> options) {
-        ListPayoutsRequest request =
-            ListPayoutsRequest
-                .builder()
-                .cursor(cursor)
-                .limit(limit)
-                .merchantAccountId(merchantAccountId)
-                .build();
+    public CompletableFuture<ListPayoutsResponse> list(ListPayoutsRequest request, Optional<Options> options) {
         AsyncRequestOperation<ListPayoutsRequest, ListPayoutsResponse> operation
               = new ListPayouts.Async(
                                     sdkConfiguration, options, sdkConfiguration.retryScheduler(),
