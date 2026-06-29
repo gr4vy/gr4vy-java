@@ -64,6 +64,7 @@ public class Name {
     public static final Name PAYMENT_CONNECTOR_RESPONSE_TRANSACTION_VOID_FAILED = new Name("payment-connector-response-transaction-void-failed");
     public static final Name PAYMENT_CONNECTOR_EXTERNAL_TRANSACTION_REQUEST = new Name("payment-connector-external-transaction-request");
     public static final Name PAYMENT_CONNECTOR_REPORT_TRANSACTION_SETTLED = new Name("payment-connector-report-transaction-settled");
+    public static final Name PAYMENT_CONNECTOR_REPORT_REFUND_SETTLED = new Name("payment-connector-report-refund-settled");
     public static final Name PAYMENT_CONNECTOR_REPORT_CHARGEBACK_POSTED = new Name("payment-connector-report-chargeback-posted");
     public static final Name PAYMENT_CONNECTOR_REPORT_CHARGEBACK_REVERSAL_POSTED = new Name("payment-connector-report-chargeback-reversal-posted");
     public static final Name PAYMENT_CONNECTOR_TRANSACTION_WEBHOOK_PROCESSED = new Name("payment-connector-transaction-webhook-processed");
@@ -190,6 +191,7 @@ public class Name {
         map.put("payment-connector-response-transaction-void-failed", PAYMENT_CONNECTOR_RESPONSE_TRANSACTION_VOID_FAILED);
         map.put("payment-connector-external-transaction-request", PAYMENT_CONNECTOR_EXTERNAL_TRANSACTION_REQUEST);
         map.put("payment-connector-report-transaction-settled", PAYMENT_CONNECTOR_REPORT_TRANSACTION_SETTLED);
+        map.put("payment-connector-report-refund-settled", PAYMENT_CONNECTOR_REPORT_REFUND_SETTLED);
         map.put("payment-connector-report-chargeback-posted", PAYMENT_CONNECTOR_REPORT_CHARGEBACK_POSTED);
         map.put("payment-connector-report-chargeback-reversal-posted", PAYMENT_CONNECTOR_REPORT_CHARGEBACK_REVERSAL_POSTED);
         map.put("payment-connector-transaction-webhook-processed", PAYMENT_CONNECTOR_TRANSACTION_WEBHOOK_PROCESSED);
@@ -248,6 +250,7 @@ public class Name {
         map.put("payment-connector-response-transaction-void-failed", NameEnum.PAYMENT_CONNECTOR_RESPONSE_TRANSACTION_VOID_FAILED);
         map.put("payment-connector-external-transaction-request", NameEnum.PAYMENT_CONNECTOR_EXTERNAL_TRANSACTION_REQUEST);
         map.put("payment-connector-report-transaction-settled", NameEnum.PAYMENT_CONNECTOR_REPORT_TRANSACTION_SETTLED);
+        map.put("payment-connector-report-refund-settled", NameEnum.PAYMENT_CONNECTOR_REPORT_REFUND_SETTLED);
         map.put("payment-connector-report-chargeback-posted", NameEnum.PAYMENT_CONNECTOR_REPORT_CHARGEBACK_POSTED);
         map.put("payment-connector-report-chargeback-reversal-posted", NameEnum.PAYMENT_CONNECTOR_REPORT_CHARGEBACK_REVERSAL_POSTED);
         map.put("payment-connector-transaction-webhook-processed", NameEnum.PAYMENT_CONNECTOR_TRANSACTION_WEBHOOK_PROCESSED);
@@ -307,6 +310,7 @@ public class Name {
         PAYMENT_CONNECTOR_RESPONSE_TRANSACTION_VOID_FAILED("payment-connector-response-transaction-void-failed"),
         PAYMENT_CONNECTOR_EXTERNAL_TRANSACTION_REQUEST("payment-connector-external-transaction-request"),
         PAYMENT_CONNECTOR_REPORT_TRANSACTION_SETTLED("payment-connector-report-transaction-settled"),
+        PAYMENT_CONNECTOR_REPORT_REFUND_SETTLED("payment-connector-report-refund-settled"),
         PAYMENT_CONNECTOR_REPORT_CHARGEBACK_POSTED("payment-connector-report-chargeback-posted"),
         PAYMENT_CONNECTOR_REPORT_CHARGEBACK_REVERSAL_POSTED("payment-connector-report-chargeback-reversal-posted"),
         PAYMENT_CONNECTOR_TRANSACTION_WEBHOOK_PROCESSED("payment-connector-transaction-webhook-processed"),

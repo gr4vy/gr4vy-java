@@ -57,6 +57,7 @@ Name custom = Name.of("custom_value");
 | `PAYMENT_CONNECTOR_RESPONSE_TRANSACTION_VOID_FAILED`             | payment-connector-response-transaction-void-failed               |
 | `PAYMENT_CONNECTOR_EXTERNAL_TRANSACTION_REQUEST`                 | payment-connector-external-transaction-request                   |
 | `PAYMENT_CONNECTOR_REPORT_TRANSACTION_SETTLED`                   | payment-connector-report-transaction-settled                     |
+| `PAYMENT_CONNECTOR_REPORT_REFUND_SETTLED`                        | payment-connector-report-refund-settled                          |
 | `PAYMENT_CONNECTOR_REPORT_CHARGEBACK_POSTED`                     | payment-connector-report-chargeback-posted                       |
 | `PAYMENT_CONNECTOR_REPORT_CHARGEBACK_REVERSAL_POSTED`            | payment-connector-report-chargeback-reversal-posted              |
 | `PAYMENT_CONNECTOR_TRANSACTION_WEBHOOK_PROCESSED`                | payment-connector-transaction-webhook-processed                  |
