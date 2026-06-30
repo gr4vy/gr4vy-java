@@ -25,6 +25,7 @@ public class SpecTypeIdResolver extends GenericTypeIdResolver<Spec> {
 
     private void initializeTypeMap() {
         registerType("accounts_receivables", AccountsReceivablesReportSpec.class);
+        registerType("ai_insights", AIInsightsReportSpec.class);
         registerType("detailed_settlement", DetailedSettlementReportSpec.class);
         registerType("transaction_retries", TransactionRetriesReportSpec.class);
         registerType("transactions", TransactionsReportSpec.class);

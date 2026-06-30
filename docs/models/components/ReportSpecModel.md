@@ -20,3 +20,4 @@ ReportSpecModel custom = ReportSpecModel.of("custom_value");
 | `TRANSACTION_RETRIES`  | transaction_retries    |
 | `DETAILED_SETTLEMENT`  | detailed_settlement    |
 | `ACCOUNTS_RECEIVABLES` | accounts_receivables   |
+| `AI_INSIGHTS`          | ai_insights            |
