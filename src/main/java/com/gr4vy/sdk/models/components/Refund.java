@@ -11,6 +11,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.gr4vy.sdk.utils.LazySingletonValue;
 import com.gr4vy.sdk.utils.Utils;
+import java.lang.Boolean;
 import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
@@ -154,6 +155,26 @@ public class Refund {
     @JsonProperty("raw_response_description")
     private JsonNullable<String> rawResponseDescription;
 
+    /**
+     * The ISO 4217 currency code of this refund's settlement.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("settled_currency")
+    private JsonNullable<String> settledCurrency;
+
+    /**
+     * The net amount settled for this refund, in the smallest currency unit (for example, cents or pence).
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("settled_amount")
+    private Optional<Long> settledAmount;
+
+    /**
+     * Indicates whether this refund has been settled.
+     */
+    @JsonProperty("settled")
+    private boolean settled;
+
     @JsonCreator
     public Refund(
             @JsonProperty("id") String id,
@@ -174,7 +195,10 @@ public class Refund {
             @JsonProperty("creator") JsonNullable<? extends Creator> creator,
             @JsonProperty("error_code") JsonNullable<String> errorCode,
             @JsonProperty("raw_response_code") JsonNullable<String> rawResponseCode,
-            @JsonProperty("raw_response_description") JsonNullable<String> rawResponseDescription) {
+            @JsonProperty("raw_response_description") JsonNullable<String> rawResponseDescription,
+            @JsonProperty("settled_currency") JsonNullable<String> settledCurrency,
+            @JsonProperty("settled_amount") Optional<Long> settledAmount,
+            @JsonProperty("settled") boolean settled) {
         Utils.checkNotNull(id, "id");
         Utils.checkNotNull(transactionId, "transactionId");
         Utils.checkNotNull(paymentServiceRefundId, "paymentServiceRefundId");
@@ -194,6 +218,9 @@ public class Refund {
         Utils.checkNotNull(errorCode, "errorCode");
         Utils.checkNotNull(rawResponseCode, "rawResponseCode");
         Utils.checkNotNull(rawResponseDescription, "rawResponseDescription");
+        Utils.checkNotNull(settledCurrency, "settledCurrency");
+        Utils.checkNotNull(settledAmount, "settledAmount");
+        Utils.checkNotNull(settled, "settled");
         this.type = Builder._SINGLETON_VALUE_Type.value();
         this.id = id;
         this.transactionId = transactionId;
@@ -214,6 +241,9 @@ public class Refund {
         this.errorCode = errorCode;
         this.rawResponseCode = rawResponseCode;
         this.rawResponseDescription = rawResponseDescription;
+        this.settledCurrency = settledCurrency;
+        this.settledAmount = settledAmount;
+        this.settled = settled;
     }
     
     public Refund(
@@ -226,14 +256,16 @@ public class Refund {
             String reconciliationId,
             String transactionReconciliationId,
             OffsetDateTime createdAt,
-            OffsetDateTime updatedAt) {
+            OffsetDateTime updatedAt,
+            boolean settled) {
         this(id, transactionId, JsonNullable.undefined(),
             status, currency, amount,
             JsonNullable.undefined(), targetType, JsonNullable.undefined(),
             reconciliationId, JsonNullable.undefined(), transactionReconciliationId,
             JsonNullable.undefined(), createdAt, updatedAt,
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined());
+            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
+            settled);
     }
 
     /**
@@ -396,6 +428,30 @@ public class Refund {
     @JsonIgnore
     public JsonNullable<String> rawResponseDescription() {
         return rawResponseDescription;
+    }
+
+    /**
+     * The ISO 4217 currency code of this refund's settlement.
+     */
+    @JsonIgnore
+    public JsonNullable<String> settledCurrency() {
+        return settledCurrency;
+    }
+
+    /**
+     * The net amount settled for this refund, in the smallest currency unit (for example, cents or pence).
+     */
+    @JsonIgnore
+    public Optional<Long> settledAmount() {
+        return settledAmount;
+    }
+
+    /**
+     * Indicates whether this refund has been settled.
+     */
+    @JsonIgnore
+    public boolean settled() {
+        return settled;
     }
 
     public static Builder builder() {
@@ -659,6 +715,52 @@ public class Refund {
         return this;
     }
 
+    /**
+     * The ISO 4217 currency code of this refund's settlement.
+     */
+    public Refund withSettledCurrency(String settledCurrency) {
+        Utils.checkNotNull(settledCurrency, "settledCurrency");
+        this.settledCurrency = JsonNullable.of(settledCurrency);
+        return this;
+    }
+
+    /**
+     * The ISO 4217 currency code of this refund's settlement.
+     */
+    public Refund withSettledCurrency(JsonNullable<String> settledCurrency) {
+        Utils.checkNotNull(settledCurrency, "settledCurrency");
+        this.settledCurrency = settledCurrency;
+        return this;
+    }
+
+    /**
+     * The net amount settled for this refund, in the smallest currency unit (for example, cents or pence).
+     */
+    public Refund withSettledAmount(long settledAmount) {
+        Utils.checkNotNull(settledAmount, "settledAmount");
+        this.settledAmount = Optional.ofNullable(settledAmount);
+        return this;
+    }
+
+
+    /**
+     * The net amount settled for this refund, in the smallest currency unit (for example, cents or pence).
+     */
+    public Refund withSettledAmount(Optional<Long> settledAmount) {
+        Utils.checkNotNull(settledAmount, "settledAmount");
+        this.settledAmount = settledAmount;
+        return this;
+    }
+
+    /**
+     * Indicates whether this refund has been settled.
+     */
+    public Refund withSettled(boolean settled) {
+        Utils.checkNotNull(settled, "settled");
+        this.settled = settled;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -688,7 +790,10 @@ public class Refund {
             Utils.enhancedDeepEquals(this.creator, other.creator) &&
             Utils.enhancedDeepEquals(this.errorCode, other.errorCode) &&
             Utils.enhancedDeepEquals(this.rawResponseCode, other.rawResponseCode) &&
-            Utils.enhancedDeepEquals(this.rawResponseDescription, other.rawResponseDescription);
+            Utils.enhancedDeepEquals(this.rawResponseDescription, other.rawResponseDescription) &&
+            Utils.enhancedDeepEquals(this.settledCurrency, other.settledCurrency) &&
+            Utils.enhancedDeepEquals(this.settledAmount, other.settledAmount) &&
+            Utils.enhancedDeepEquals(this.settled, other.settled);
     }
     
     @Override
@@ -700,7 +805,8 @@ public class Refund {
             targetId, reconciliationId, externalIdentifier,
             transactionReconciliationId, transactionExternalIdentifier, createdAt,
             updatedAt, creator, errorCode,
-            rawResponseCode, rawResponseDescription);
+            rawResponseCode, rawResponseDescription, settledCurrency,
+            settledAmount, settled);
     }
     
     @Override
@@ -725,7 +831,10 @@ public class Refund {
                 "creator", creator,
                 "errorCode", errorCode,
                 "rawResponseCode", rawResponseCode,
-                "rawResponseDescription", rawResponseDescription);
+                "rawResponseDescription", rawResponseDescription,
+                "settledCurrency", settledCurrency,
+                "settledAmount", settledAmount,
+                "settled", settled);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -768,6 +877,12 @@ public class Refund {
         private JsonNullable<String> rawResponseCode = JsonNullable.undefined();
 
         private JsonNullable<String> rawResponseDescription = JsonNullable.undefined();
+
+        private JsonNullable<String> settledCurrency = JsonNullable.undefined();
+
+        private Optional<Long> settledAmount;
+
+        private Boolean settled;
 
         private Builder() {
           // force use of static builder() method
@@ -1048,7 +1163,58 @@ public class Refund {
             return this;
         }
 
+
+        /**
+         * The ISO 4217 currency code of this refund's settlement.
+         */
+        public Builder settledCurrency(String settledCurrency) {
+            Utils.checkNotNull(settledCurrency, "settledCurrency");
+            this.settledCurrency = JsonNullable.of(settledCurrency);
+            return this;
+        }
+
+        /**
+         * The ISO 4217 currency code of this refund's settlement.
+         */
+        public Builder settledCurrency(JsonNullable<String> settledCurrency) {
+            Utils.checkNotNull(settledCurrency, "settledCurrency");
+            this.settledCurrency = settledCurrency;
+            return this;
+        }
+
+
+        /**
+         * The net amount settled for this refund, in the smallest currency unit (for example, cents or pence).
+         */
+        public Builder settledAmount(long settledAmount) {
+            Utils.checkNotNull(settledAmount, "settledAmount");
+            this.settledAmount = Optional.ofNullable(settledAmount);
+            return this;
+        }
+
+        /**
+         * The net amount settled for this refund, in the smallest currency unit (for example, cents or pence).
+         */
+        public Builder settledAmount(Optional<Long> settledAmount) {
+            Utils.checkNotNull(settledAmount, "settledAmount");
+            this.settledAmount = settledAmount;
+            return this;
+        }
+
+
+        /**
+         * Indicates whether this refund has been settled.
+         */
+        public Builder settled(boolean settled) {
+            Utils.checkNotNull(settled, "settled");
+            this.settled = settled;
+            return this;
+        }
+
         public Refund build() {
+            if (settledAmount == null) {
+                settledAmount = _SINGLETON_VALUE_SettledAmount.value();
+            }
 
             return new Refund(
                 id, transactionId, paymentServiceRefundId,
@@ -1057,7 +1223,8 @@ public class Refund {
                 reconciliationId, externalIdentifier, transactionReconciliationId,
                 transactionExternalIdentifier, createdAt, updatedAt,
                 creator, errorCode, rawResponseCode,
-                rawResponseDescription);
+                rawResponseDescription, settledCurrency, settledAmount,
+                settled);
         }
 
 
@@ -1066,5 +1233,11 @@ public class Refund {
                         "type",
                         "\"refund\"",
                         new TypeReference<Optional<String>>() {});
+
+        private static final LazySingletonValue<Optional<Long>> _SINGLETON_VALUE_SettledAmount =
+                new LazySingletonValue<>(
+                        "settled_amount",
+                        "0",
+                        new TypeReference<Optional<Long>>() {});
     }
 }
