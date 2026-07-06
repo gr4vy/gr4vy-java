@@ -22,6 +22,7 @@ public class GiftCardServiceProvider {
 
     public static final GiftCardServiceProvider MOCK_GIFT_CARD = new GiftCardServiceProvider("mock-gift-card");
     public static final GiftCardServiceProvider QWIKCILVER_GIFT_CARD = new GiftCardServiceProvider("qwikcilver-gift-card");
+    public static final GiftCardServiceProvider VALUELINK_GIFT_CARD = new GiftCardServiceProvider("valuelink-gift-card");
 
     // This map will grow whenever a Color gets created with a new
     // unrecognized value (a potential memory leak if the user is not
@@ -97,6 +98,7 @@ public class GiftCardServiceProvider {
         Map<String, GiftCardServiceProvider> map = new LinkedHashMap<>();
         map.put("mock-gift-card", MOCK_GIFT_CARD);
         map.put("qwikcilver-gift-card", QWIKCILVER_GIFT_CARD);
+        map.put("valuelink-gift-card", VALUELINK_GIFT_CARD);
         return map;
     }
 
@@ -104,6 +106,7 @@ public class GiftCardServiceProvider {
         Map<String, GiftCardServiceProviderEnum> map = new HashMap<>();
         map.put("mock-gift-card", GiftCardServiceProviderEnum.MOCK_GIFT_CARD);
         map.put("qwikcilver-gift-card", GiftCardServiceProviderEnum.QWIKCILVER_GIFT_CARD);
+        map.put("valuelink-gift-card", GiftCardServiceProviderEnum.VALUELINK_GIFT_CARD);
         return map;
     }
     
@@ -111,7 +114,8 @@ public class GiftCardServiceProvider {
     public enum GiftCardServiceProviderEnum {
 
         MOCK_GIFT_CARD("mock-gift-card"),
-        QWIKCILVER_GIFT_CARD("qwikcilver-gift-card"),;
+        QWIKCILVER_GIFT_CARD("qwikcilver-gift-card"),
+        VALUELINK_GIFT_CARD("valuelink-gift-card"),;
 
         private final String value;
 

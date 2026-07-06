@@ -18,3 +18,4 @@ GiftCardServiceProvider custom = GiftCardServiceProvider.of("custom_value");
 | ---------------------- | ---------------------- |
 | `MOCK_GIFT_CARD`       | mock-gift-card         |
 | `QWIKCILVER_GIFT_CARD` | qwikcilver-gift-card   |
+| `VALUELINK_GIFT_CARD`  | valuelink-gift-card    |

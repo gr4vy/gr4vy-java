@@ -55,6 +55,9 @@ public class Gr4vy {
     private final AccountUpdater accountUpdater;
 
 
+    private final ApiKeyPairs apiKeyPairs;
+
+
     private final Buyers buyers;
 
 
@@ -111,6 +114,11 @@ public class Gr4vy {
 
     public AccountUpdater accountUpdater() {
         return accountUpdater;
+    }
+
+
+    public ApiKeyPairs apiKeyPairs() {
+        return apiKeyPairs;
     }
 
 
@@ -374,6 +382,7 @@ public class Gr4vy {
     private Gr4vy(SDKConfiguration sdkConfiguration) {
         sdkConfiguration.initialize();
         this.accountUpdater = new AccountUpdater(sdkConfiguration);
+        this.apiKeyPairs = new ApiKeyPairs(sdkConfiguration);
         this.buyers = new Buyers(sdkConfiguration);
         this.paymentMethods = new PaymentMethods(sdkConfiguration);
         this.giftCards = new GiftCards(sdkConfiguration);

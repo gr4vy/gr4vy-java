@@ -59,7 +59,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'com.gr4vy:sdk:2.16.101'
+implementation 'com.gr4vy:sdk:2.16.102'
 ```
 
 Maven:
@@ -67,7 +67,7 @@ Maven:
 <dependency>
     <groupId>com.gr4vy</groupId>
     <artifactId>sdk</artifactId>
-    <version>2.16.101</version>
+    <version>2.16.102</version>
 </dependency>
 ```
 
@@ -334,6 +334,14 @@ Async support is available for:
 
 * [create](docs/sdks/jobs/README.md#create) - Create account updater job
 
+### [ApiKeyPairs](docs/sdks/apikeypairs/README.md)
+
+* [list](docs/sdks/apikeypairs/README.md#list) - List all API key pairs
+* [create](docs/sdks/apikeypairs/README.md#create) - Create an API key pair
+* [get](docs/sdks/apikeypairs/README.md#get) - Get an API key pair
+* [update](docs/sdks/apikeypairs/README.md#update) - Update an API key pair
+* [delete](docs/sdks/apikeypairs/README.md#delete) - Delete an API key pair
+
 ### [AuditLogs](docs/sdks/auditlogs/README.md)
 
 * [list](docs/sdks/auditlogs/README.md#list) - List audit log entries
@@ -563,8 +571,7 @@ package hello.world;
 
 import com.gr4vy.sdk.Gr4vy;
 import com.gr4vy.sdk.models.errors.*;
-import com.gr4vy.sdk.models.operations.ListBuyersRequest;
-import com.gr4vy.sdk.models.operations.ListBuyersResponse;
+import com.gr4vy.sdk.models.operations.ListApiKeyPairsResponse;
 import java.lang.Exception;
 import java.lang.Iterable;
 
@@ -573,23 +580,17 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Gr4vy sdk = Gr4vy.builder()
-                .merchantAccountId("default")
                 .bearerAuth(System.getenv().getOrDefault("BEARER_AUTH", ""))
             .build();
 
-        ListBuyersRequest req = ListBuyersRequest.builder()
-                .cursor("ZXhhbXBsZTE")
-                .search("John")
-                .externalIdentifier("buyer-12345")
-                .build();
 
-
-        var b = sdk.buyers().list();
+        var b = sdk.apiKeyPairs().list()
+                .limit(20L);
 
         // Iterate through all pages using a traditional for-each loop
         // Each iteration returns a complete page response
-        Iterable<ListBuyersResponse> iterable = b.callAsIterable();
-        for (ListBuyersResponse page : iterable) {
+        Iterable<ListApiKeyPairsResponse> iterable = b.callAsIterable();
+        for (ListApiKeyPairsResponse page : iterable) {
             // handle page
         }
 
@@ -598,7 +599,7 @@ public class Application {
 
         // Stream through pages without unwrapping (each item is a complete page)
         b.callAsStream()
-            .forEach((ListBuyersResponse page) -> {
+            .forEach((ListApiKeyPairsResponse page) -> {
                 // handle page
             });
 
@@ -612,8 +613,7 @@ package hello.world;
 
 import com.gr4vy.sdk.AsyncGr4vy;
 import com.gr4vy.sdk.Gr4vy;
-import com.gr4vy.sdk.models.operations.ListBuyersRequest;
-import com.gr4vy.sdk.models.operations.async.ListBuyersResponse;
+import com.gr4vy.sdk.models.operations.async.ListApiKeyPairsResponse;
 import reactor.core.publisher.Flux;
 
 public class Application {
@@ -621,22 +621,16 @@ public class Application {
     public static void main(String[] args) {
 
         AsyncGr4vy sdk = Gr4vy.builder()
-                .merchantAccountId("default")
                 .bearerAuth(System.getenv().getOrDefault("BEARER_AUTH", ""))
             .build()
             .async();
 
-        ListBuyersRequest req = ListBuyersRequest.builder()
-                .cursor("ZXhhbXBsZTE")
-                .search("John")
-                .externalIdentifier("buyer-12345")
-                .build();
 
-
-        var b = sdk.buyers().list();
+        var b = sdk.apiKeyPairs().list()
+                .limit(20L);
 
         // Example using Project Reactor (illustrative) - pages
-        Flux<ListBuyersResponse> pageFlux = Flux.from(b.callAsPublisher());
+        Flux<ListApiKeyPairsResponse> pageFlux = Flux.from(b.callAsPublisher());
         pageFlux.subscribe(
             page -> System.out.println(page),
             error -> error.printStackTrace(),
@@ -661,8 +655,7 @@ package hello.world;
 
 import com.gr4vy.sdk.Gr4vy;
 import com.gr4vy.sdk.models.errors.*;
-import com.gr4vy.sdk.models.operations.ListBuyersRequest;
-import com.gr4vy.sdk.models.operations.ListBuyersResponse;
+import com.gr4vy.sdk.models.operations.ListApiKeyPairsResponse;
 import com.gr4vy.sdk.utils.BackoffStrategy;
 import com.gr4vy.sdk.utils.RetryConfig;
 import java.lang.Exception;
@@ -673,18 +666,11 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Gr4vy sdk = Gr4vy.builder()
-                .merchantAccountId("default")
                 .bearerAuth(System.getenv().getOrDefault("BEARER_AUTH", ""))
             .build();
 
-        ListBuyersRequest req = ListBuyersRequest.builder()
-                .cursor("ZXhhbXBsZTE")
-                .search("John")
-                .externalIdentifier("buyer-12345")
-                .build();
 
-
-        sdk.buyers().list()
+        sdk.apiKeyPairs().list()
                 .retryConfig(RetryConfig.builder()
                     .backoff(BackoffStrategy.builder()
                         .initialInterval(1L, TimeUnit.MILLISECONDS)
@@ -695,8 +681,9 @@ public class Application {
                         .retryConnectError(false)
                         .build())
                     .build())
+                .limit(20L)
                 .callAsStream()
-                .forEach((ListBuyersResponse item) -> {
+                .forEach((ListApiKeyPairsResponse item) -> {
                    // handle page
                 });
 
@@ -710,8 +697,7 @@ package hello.world;
 
 import com.gr4vy.sdk.Gr4vy;
 import com.gr4vy.sdk.models.errors.*;
-import com.gr4vy.sdk.models.operations.ListBuyersRequest;
-import com.gr4vy.sdk.models.operations.ListBuyersResponse;
+import com.gr4vy.sdk.models.operations.ListApiKeyPairsResponse;
 import com.gr4vy.sdk.utils.BackoffStrategy;
 import com.gr4vy.sdk.utils.RetryConfig;
 import java.lang.Exception;
@@ -732,20 +718,14 @@ public class Application {
                         .retryConnectError(false)
                         .build())
                     .build())
-                .merchantAccountId("default")
                 .bearerAuth(System.getenv().getOrDefault("BEARER_AUTH", ""))
             .build();
 
-        ListBuyersRequest req = ListBuyersRequest.builder()
-                .cursor("ZXhhbXBsZTE")
-                .search("John")
-                .externalIdentifier("buyer-12345")
-                .build();
 
-
-        sdk.buyers().list()
+        sdk.apiKeyPairs().list()
+                .limit(20L)
                 .callAsStream()
-                .forEach((ListBuyersResponse item) -> {
+                .forEach((ListApiKeyPairsResponse item) -> {
                    // handle page
                 });
 

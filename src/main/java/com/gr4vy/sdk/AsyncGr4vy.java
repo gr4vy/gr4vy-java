@@ -13,6 +13,8 @@ public class AsyncGr4vy {
 
     private final AsyncAccountUpdater accountUpdater;
 
+    private final AsyncApiKeyPairs apiKeyPairs;
+
     private final AsyncBuyers buyers;
 
     private final AsyncPaymentMethods paymentMethods;
@@ -51,6 +53,10 @@ public class AsyncGr4vy {
 
     public AsyncAccountUpdater accountUpdater() {
         return accountUpdater;
+    }
+
+    public AsyncApiKeyPairs apiKeyPairs() {
+        return apiKeyPairs;
     }
 
     public AsyncBuyers buyers() {
@@ -132,6 +138,7 @@ public class AsyncGr4vy {
         this.syncSDK = syncSDK;
         this.sdkConfiguration = sdkConfiguration;
         this.accountUpdater = new AsyncAccountUpdater(syncSDK.accountUpdater(), sdkConfiguration);
+        this.apiKeyPairs = new AsyncApiKeyPairs(syncSDK.apiKeyPairs(), sdkConfiguration);
         this.buyers = new AsyncBuyers(syncSDK.buyers(), sdkConfiguration);
         this.paymentMethods = new AsyncPaymentMethods(syncSDK.paymentMethods(), sdkConfiguration);
         this.giftCards = new AsyncGiftCards(syncSDK.giftCards(), sdkConfiguration);
