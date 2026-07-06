@@ -130,7 +130,7 @@ public class Refund {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("creator")
-    private JsonNullable<? extends Creator> creator;
+    private JsonNullable<? extends ApiCommonSchemasCreator> creator;
 
     /**
      * The standardized error code set by Gr4vy.
@@ -192,7 +192,7 @@ public class Refund {
             @JsonProperty("transaction_external_identifier") JsonNullable<String> transactionExternalIdentifier,
             @JsonProperty("created_at") OffsetDateTime createdAt,
             @JsonProperty("updated_at") OffsetDateTime updatedAt,
-            @JsonProperty("creator") JsonNullable<? extends Creator> creator,
+            @JsonProperty("creator") JsonNullable<? extends ApiCommonSchemasCreator> creator,
             @JsonProperty("error_code") JsonNullable<String> errorCode,
             @JsonProperty("raw_response_code") JsonNullable<String> rawResponseCode,
             @JsonProperty("raw_response_description") JsonNullable<String> rawResponseDescription,
@@ -400,8 +400,8 @@ public class Refund {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<Creator> creator() {
-        return (JsonNullable<Creator>) creator;
+    public JsonNullable<ApiCommonSchemasCreator> creator() {
+        return (JsonNullable<ApiCommonSchemasCreator>) creator;
     }
 
     /**
@@ -642,7 +642,7 @@ public class Refund {
     /**
      * The user that created this resource
      */
-    public Refund withCreator(Creator creator) {
+    public Refund withCreator(ApiCommonSchemasCreator creator) {
         Utils.checkNotNull(creator, "creator");
         this.creator = JsonNullable.of(creator);
         return this;
@@ -651,7 +651,7 @@ public class Refund {
     /**
      * The user that created this resource
      */
-    public Refund withCreator(JsonNullable<? extends Creator> creator) {
+    public Refund withCreator(JsonNullable<? extends ApiCommonSchemasCreator> creator) {
         Utils.checkNotNull(creator, "creator");
         this.creator = creator;
         return this;
@@ -870,7 +870,7 @@ public class Refund {
 
         private OffsetDateTime updatedAt;
 
-        private JsonNullable<? extends Creator> creator = JsonNullable.undefined();
+        private JsonNullable<? extends ApiCommonSchemasCreator> creator = JsonNullable.undefined();
 
         private JsonNullable<String> errorCode = JsonNullable.undefined();
 
@@ -1087,7 +1087,7 @@ public class Refund {
         /**
          * The user that created this resource
          */
-        public Builder creator(Creator creator) {
+        public Builder creator(ApiCommonSchemasCreator creator) {
             Utils.checkNotNull(creator, "creator");
             this.creator = JsonNullable.of(creator);
             return this;
@@ -1096,7 +1096,7 @@ public class Refund {
         /**
          * The user that created this resource
          */
-        public Builder creator(JsonNullable<? extends Creator> creator) {
+        public Builder creator(JsonNullable<? extends ApiCommonSchemasCreator> creator) {
             Utils.checkNotNull(creator, "creator");
             this.creator = creator;
             return this;
