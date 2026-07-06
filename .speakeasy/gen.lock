@@ -1,19 +1,19 @@
 lockVersion: 2.0.0
 id: 5bbaa3a9-baa0-471b-ba6a-13fd88e8c119
 management:
-  docChecksum: 4eed672eb0ed6a08675378b8442fca4d
+  docChecksum: 0e0b183f1efd906b734066b8b01042fe
   docVersion: 1.0.0
   speakeasyVersion: 1.788.1
   generationVersion: 2.915.1
-  releaseVersion: 2.16.102
-  configChecksum: 9cd03907f36f92b02b1078383f5e6aae
+  releaseVersion: 2.16.103
+  configChecksum: cab0d12e72dd1afa83446d33cda94836
   repoURL: https://github.com/gr4vy/gr4vy-java.git
   installationURL: https://github.com/gr4vy/gr4vy-java
   published: true
 persistentEdits:
-  generation_id: ea1f096c-71fc-4bf7-8c4b-18e29733b42e
-  pristine_commit_hash: 64dfc3d12662b3b05f6e75b9642e650ba83af4ec
-  pristine_tree_hash: 8aedccee9699f1b78d4ac1169e03f8e2560dc4d6
+  generation_id: 868c4249-15be-479d-94cc-257617e10b61
+  pristine_commit_hash: 059f9954ef0685303b00be1f3a957cea542d0ed1
+  pristine_tree_hash: b9971ccbb1ad8bcd031733b3c274ec9665100d4b
 features:
   java:
     additionalDependencies: 0.1.0
@@ -1454,8 +1454,8 @@ trackedFiles:
     pristine_git_object: cd404ec57eefedfdf687e86ce73018f4ab6aac65
   docs/models/components/TransactionCaptureCreate.md:
     id: fa6f6819cb5d
-    last_write_checksum: sha1:d8f3faae5dc8fc9b30e55b2c1b1f4de5e1313da8
-    pristine_git_object: 88c18168afe094c99f53b85d5b2b1200c95c8b6c
+    last_write_checksum: sha1:6832a9759c81e711160a359d6fa0507efaf18f75
+    pristine_git_object: c388405d035a7a75986010ab970090ff6aab2600
   docs/models/components/TransactionConnectionOptions.md:
     id: 2a90ee52a662
     last_write_checksum: sha1:d15378cf9c4f0db3545bc16bfbf97d1f928c90d9
@@ -2734,8 +2734,8 @@ trackedFiles:
     pristine_git_object: 15c4e4642f204ccb312d8814155b69e153b4e19b
   gradle.properties:
     id: 2afbb999f001
-    last_write_checksum: sha1:500a3a959ccc352cdd7e882a089aa0d7bbabd73b
-    pristine_git_object: 29be94aae7367fb5f09a83294fd0de8c76bc7fb4
+    last_write_checksum: sha1:4c01924f8e4ecfee28aef0d3869ab18d8f34e65f
+    pristine_git_object: f197e39a083cf64898e3e09ee4cbbc5c135e04eb
   gradle/wrapper/gradle-wrapper.jar:
     id: ec27dae6e852
     last_write_checksum: sha1:f725fb1467084142d74fd7cd8eab691ab3442611
@@ -3046,8 +3046,8 @@ trackedFiles:
     pristine_git_object: 502a7312d3dc82c102dbaf7ed5e952d0c793e26f
   src/main/java/com/gr4vy/sdk/SDKConfiguration.java:
     id: 73a7edeaca45
-    last_write_checksum: sha1:816b192a7774200656a848228aa5434c3ba71547
-    pristine_git_object: 86ad435c622913d693831308d86e32bf2532aa76
+    last_write_checksum: sha1:9018a1388dd8ae212c2b9eeeb550b3cd8d002470
+    pristine_git_object: cd0f1783b99e931275ca57fd54537afda1adbb60
   src/main/java/com/gr4vy/sdk/SecuritySource.java:
     id: 1b6add6b9b50
     last_write_checksum: sha1:2f365cc823c6243188e83f4df618c9737fcee8bd
@@ -4490,8 +4490,8 @@ trackedFiles:
     pristine_git_object: 31272b3ded6534eec2925fdb8e87baabc8cbb57f
   src/main/java/com/gr4vy/sdk/models/components/TransactionCaptureCreate.java:
     id: ed5d05b51a07
-    last_write_checksum: sha1:f4fda3d0c7935856161c7e1de4aad4fe0f93e666
-    pristine_git_object: 796e297c14cde1fe632fbedd9728d9c209f3f506
+    last_write_checksum: sha1:4c2e1904cd86ff9afef4c007dd4d8a5dc91091fa
+    pristine_git_object: 3cbc02fca6c90fc4c0783b11777e4f29b2486b2a
   src/main/java/com/gr4vy/sdk/models/components/TransactionConnectionOptions.java:
     id: 31501e4506f3
     last_write_checksum: sha1:b7b456f206682ea90d402d7ae540e520984b5fae
@@ -11880,24 +11880,7 @@ examples:
           application/json: {"type": "error", "code": "gateway_timeout", "status": 504, "message": "Request could not be processed"}
 examplesVersion: 1.0.2
 generatedTests: {}
-releaseNotes: |
-  ## Java SDK Changes:
-  * `gr4vy.apiKeyPairs.list()`: **Added**
-  * `gr4vy.apiKeyPairs.create()`: **Added**
-  * `gr4vy.apiKeyPairs.get()`: **Added**
-  * `gr4vy.apiKeyPairs.update()`: **Added**
-  * `gr4vy.apiKeyPairs.delete()`: **Added**
-  * `gr4vy.giftCards.get()`:  `response.giftCardService.giftCardServiceDefinitionId.enum(valuelinkGiftCard)` **Added**
-  * `gr4vy.giftCards.create()`:  `response.giftCardService.giftCardServiceDefinitionId.enum(valuelinkGiftCard)` **Added**
-  * `gr4vy.giftCards.list()`:  `response.items[].giftCardService.giftCardServiceDefinitionId.enum(valuelinkGiftCard)` **Added**
-  * `gr4vy.transactions.list()`:  `response.items[].giftCardService.giftCardServiceDefinitionId.enum(valuelinkGiftCard)` **Added**
-  * `gr4vy.transactions.create()`:  `response.giftCardService.giftCardServiceDefinitionId.enum(valuelinkGiftCard)` **Added**
-  * `gr4vy.transactions.get()`:  `response.giftCardService.giftCardServiceDefinitionId.enum(valuelinkGiftCard)` **Added**
-  * `gr4vy.transactions.update()`:  `response.giftCardService.giftCardServiceDefinitionId.enum(valuelinkGiftCard)` **Added**
-  * `gr4vy.transactions.capture()`:  `response.union(Transaction).giftCardService.giftCardServiceDefinitionId.enum(valuelinkGiftCard)` **Added**
-  * `gr4vy.transactions.void()`:  `response.union(Transaction).giftCardService.giftCardServiceDefinitionId.enum(valuelinkGiftCard)` **Added**
-  * `gr4vy.transactions.cancel()`:  `response.transaction.giftCardService.giftCardServiceDefinitionId.enum(valuelinkGiftCard)` **Added**
-  * `gr4vy.transactions.sync()`:  `response.giftCardService.giftCardServiceDefinitionId.enum(valuelinkGiftCard)` **Added**
+releaseNotes: "## Java SDK Changes:\n* `gr4vy.transactions.capture()`: \n  *  `request.transactionCaptureCreate.reauthorizeIfAuthorizationExpired` **Added**\n"
 generatedFiles:
   - .gitattributes
   - USAGE.md
