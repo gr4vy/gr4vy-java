@@ -22,7 +22,7 @@ import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 
-public class MerchantAccount {
+public class ApiRoutersMerchantAccountsSchemasMerchantAccount {
     /**
      * Always `merchant-account`.
      */
@@ -219,7 +219,7 @@ public class MerchantAccount {
     private OffsetDateTime updatedAt;
 
     @JsonCreator
-    public MerchantAccount(
+    public ApiRoutersMerchantAccountsSchemasMerchantAccount(
             @JsonProperty("id") String id,
             @JsonProperty("display_name") String displayName,
             @JsonProperty("loon_client_key") JsonNullable<String> loonClientKey,
@@ -292,7 +292,7 @@ public class MerchantAccount {
         this.updatedAt = updatedAt;
     }
     
-    public MerchantAccount(
+    public ApiRoutersMerchantAccountsSchemasMerchantAccount(
             String id,
             String displayName,
             boolean accountUpdaterEnabled,
@@ -541,7 +541,7 @@ public class MerchantAccount {
     /**
      * The ID for the merchant account.
      */
-    public MerchantAccount withId(String id) {
+    public ApiRoutersMerchantAccountsSchemasMerchantAccount withId(String id) {
         Utils.checkNotNull(id, "id");
         this.id = id;
         return this;
@@ -550,7 +550,7 @@ public class MerchantAccount {
     /**
      * The display name for the buyer.
      */
-    public MerchantAccount withDisplayName(String displayName) {
+    public ApiRoutersMerchantAccountsSchemasMerchantAccount withDisplayName(String displayName) {
         Utils.checkNotNull(displayName, "displayName");
         this.displayName = displayName;
         return this;
@@ -561,7 +561,7 @@ public class MerchantAccount {
      * use and if the field is not set or if it's set to null, the Account Updater service doesn't get
      * configured. If the field is set to `null`, the other `loon_*` fields must be set to null as well.
      */
-    public MerchantAccount withLoonClientKey(String loonClientKey) {
+    public ApiRoutersMerchantAccountsSchemasMerchantAccount withLoonClientKey(String loonClientKey) {
         Utils.checkNotNull(loonClientKey, "loonClientKey");
         this.loonClientKey = JsonNullable.of(loonClientKey);
         return this;
@@ -572,7 +572,7 @@ public class MerchantAccount {
      * use and if the field is not set or if it's set to null, the Account Updater service doesn't get
      * configured. If the field is set to `null`, the other `loon_*` fields must be set to null as well.
      */
-    public MerchantAccount withLoonClientKey(JsonNullable<String> loonClientKey) {
+    public ApiRoutersMerchantAccountsSchemasMerchantAccount withLoonClientKey(JsonNullable<String> loonClientKey) {
         Utils.checkNotNull(loonClientKey, "loonClientKey");
         this.loonClientKey = loonClientKey;
         return this;
@@ -583,7 +583,7 @@ public class MerchantAccount {
      * use and if the field is not set or if it's set to null, the Account Updater service doesn't get
      * configured. If the field is set to `null`, the other `loon_*` fields must be set to null as well.
      */
-    public MerchantAccount withLoonSecretKey(String loonSecretKey) {
+    public ApiRoutersMerchantAccountsSchemasMerchantAccount withLoonSecretKey(String loonSecretKey) {
         Utils.checkNotNull(loonSecretKey, "loonSecretKey");
         this.loonSecretKey = JsonNullable.of(loonSecretKey);
         return this;
@@ -594,7 +594,7 @@ public class MerchantAccount {
      * use and if the field is not set or if it's set to null, the Account Updater service doesn't get
      * configured. If the field is set to `null`, the other `loon_*` fields must be set to null as well.
      */
-    public MerchantAccount withLoonSecretKey(JsonNullable<String> loonSecretKey) {
+    public ApiRoutersMerchantAccountsSchemasMerchantAccount withLoonSecretKey(JsonNullable<String> loonSecretKey) {
         Utils.checkNotNull(loonSecretKey, "loonSecretKey");
         this.loonSecretKey = loonSecretKey;
         return this;
@@ -606,7 +606,7 @@ public class MerchantAccount {
      * service doesn't get configured. If the field is set to `null`, the other `loon_*` fields must be set
      * to null as well.
      */
-    public MerchantAccount withLoonAcceptedSchemes(List<CardScheme> loonAcceptedSchemes) {
+    public ApiRoutersMerchantAccountsSchemasMerchantAccount withLoonAcceptedSchemes(List<CardScheme> loonAcceptedSchemes) {
         Utils.checkNotNull(loonAcceptedSchemes, "loonAcceptedSchemes");
         this.loonAcceptedSchemes = JsonNullable.of(loonAcceptedSchemes);
         return this;
@@ -618,7 +618,7 @@ public class MerchantAccount {
      * service doesn't get configured. If the field is set to `null`, the other `loon_*` fields must be set
      * to null as well.
      */
-    public MerchantAccount withLoonAcceptedSchemes(JsonNullable<? extends List<CardScheme>> loonAcceptedSchemes) {
+    public ApiRoutersMerchantAccountsSchemasMerchantAccount withLoonAcceptedSchemes(JsonNullable<? extends List<CardScheme>> loonAcceptedSchemes) {
         Utils.checkNotNull(loonAcceptedSchemes, "loonAcceptedSchemes");
         this.loonAcceptedSchemes = loonAcceptedSchemes;
         return this;
@@ -631,7 +631,7 @@ public class MerchantAccount {
      * 
      * <p>If the field is set, the other `account_updater_*` fields must be set as well.
      */
-    public MerchantAccount withAccountUpdaterRequestEncryptionKey(String accountUpdaterRequestEncryptionKey) {
+    public ApiRoutersMerchantAccountsSchemasMerchantAccount withAccountUpdaterRequestEncryptionKey(String accountUpdaterRequestEncryptionKey) {
         Utils.checkNotNull(accountUpdaterRequestEncryptionKey, "accountUpdaterRequestEncryptionKey");
         this.accountUpdaterRequestEncryptionKey = JsonNullable.of(accountUpdaterRequestEncryptionKey);
         return this;
@@ -644,7 +644,7 @@ public class MerchantAccount {
      * 
      * <p>If the field is set, the other `account_updater_*` fields must be set as well.
      */
-    public MerchantAccount withAccountUpdaterRequestEncryptionKey(JsonNullable<String> accountUpdaterRequestEncryptionKey) {
+    public ApiRoutersMerchantAccountsSchemasMerchantAccount withAccountUpdaterRequestEncryptionKey(JsonNullable<String> accountUpdaterRequestEncryptionKey) {
         Utils.checkNotNull(accountUpdaterRequestEncryptionKey, "accountUpdaterRequestEncryptionKey");
         this.accountUpdaterRequestEncryptionKey = accountUpdaterRequestEncryptionKey;
         return this;
@@ -657,7 +657,7 @@ public class MerchantAccount {
      * 
      * <p>If the field is set, the other `account_updater_*` fields must be set as well.
      */
-    public MerchantAccount withAccountUpdaterRequestEncryptionKeyId(String accountUpdaterRequestEncryptionKeyId) {
+    public ApiRoutersMerchantAccountsSchemasMerchantAccount withAccountUpdaterRequestEncryptionKeyId(String accountUpdaterRequestEncryptionKeyId) {
         Utils.checkNotNull(accountUpdaterRequestEncryptionKeyId, "accountUpdaterRequestEncryptionKeyId");
         this.accountUpdaterRequestEncryptionKeyId = JsonNullable.of(accountUpdaterRequestEncryptionKeyId);
         return this;
@@ -670,7 +670,7 @@ public class MerchantAccount {
      * 
      * <p>If the field is set, the other `account_updater_*` fields must be set as well.
      */
-    public MerchantAccount withAccountUpdaterRequestEncryptionKeyId(JsonNullable<String> accountUpdaterRequestEncryptionKeyId) {
+    public ApiRoutersMerchantAccountsSchemasMerchantAccount withAccountUpdaterRequestEncryptionKeyId(JsonNullable<String> accountUpdaterRequestEncryptionKeyId) {
         Utils.checkNotNull(accountUpdaterRequestEncryptionKeyId, "accountUpdaterRequestEncryptionKeyId");
         this.accountUpdaterRequestEncryptionKeyId = accountUpdaterRequestEncryptionKeyId;
         return this;
@@ -683,7 +683,7 @@ public class MerchantAccount {
      * 
      * <p>If the field is set, the other `account_updater_*` fields must be set as well.
      */
-    public MerchantAccount withAccountUpdaterResponseDecryptionKey(String accountUpdaterResponseDecryptionKey) {
+    public ApiRoutersMerchantAccountsSchemasMerchantAccount withAccountUpdaterResponseDecryptionKey(String accountUpdaterResponseDecryptionKey) {
         Utils.checkNotNull(accountUpdaterResponseDecryptionKey, "accountUpdaterResponseDecryptionKey");
         this.accountUpdaterResponseDecryptionKey = JsonNullable.of(accountUpdaterResponseDecryptionKey);
         return this;
@@ -696,7 +696,7 @@ public class MerchantAccount {
      * 
      * <p>If the field is set, the other `account_updater_*` fields must be set as well.
      */
-    public MerchantAccount withAccountUpdaterResponseDecryptionKey(JsonNullable<String> accountUpdaterResponseDecryptionKey) {
+    public ApiRoutersMerchantAccountsSchemasMerchantAccount withAccountUpdaterResponseDecryptionKey(JsonNullable<String> accountUpdaterResponseDecryptionKey) {
         Utils.checkNotNull(accountUpdaterResponseDecryptionKey, "accountUpdaterResponseDecryptionKey");
         this.accountUpdaterResponseDecryptionKey = accountUpdaterResponseDecryptionKey;
         return this;
@@ -709,7 +709,7 @@ public class MerchantAccount {
      * 
      * <p>If the field is set, the other `account_updater_*` fields must be set as well.
      */
-    public MerchantAccount withAccountUpdaterResponseDecryptionKeyId(String accountUpdaterResponseDecryptionKeyId) {
+    public ApiRoutersMerchantAccountsSchemasMerchantAccount withAccountUpdaterResponseDecryptionKeyId(String accountUpdaterResponseDecryptionKeyId) {
         Utils.checkNotNull(accountUpdaterResponseDecryptionKeyId, "accountUpdaterResponseDecryptionKeyId");
         this.accountUpdaterResponseDecryptionKeyId = JsonNullable.of(accountUpdaterResponseDecryptionKeyId);
         return this;
@@ -722,7 +722,7 @@ public class MerchantAccount {
      * 
      * <p>If the field is set, the other `account_updater_*` fields must be set as well.
      */
-    public MerchantAccount withAccountUpdaterResponseDecryptionKeyId(JsonNullable<String> accountUpdaterResponseDecryptionKeyId) {
+    public ApiRoutersMerchantAccountsSchemasMerchantAccount withAccountUpdaterResponseDecryptionKeyId(JsonNullable<String> accountUpdaterResponseDecryptionKeyId) {
         Utils.checkNotNull(accountUpdaterResponseDecryptionKeyId, "accountUpdaterResponseDecryptionKeyId");
         this.accountUpdaterResponseDecryptionKeyId = accountUpdaterResponseDecryptionKeyId;
         return this;
@@ -737,7 +737,7 @@ public class MerchantAccount {
      * <p>If the field is set to `true`, the service is called. Please note that for this to work the other
      * `account_updater_* fields` must be set as well.
      */
-    public MerchantAccount withAccountUpdaterEnabled(boolean accountUpdaterEnabled) {
+    public ApiRoutersMerchantAccountsSchemasMerchantAccount withAccountUpdaterEnabled(boolean accountUpdaterEnabled) {
         Utils.checkNotNull(accountUpdaterEnabled, "accountUpdaterEnabled");
         this.accountUpdaterEnabled = accountUpdaterEnabled;
         return this;
@@ -747,7 +747,7 @@ public class MerchantAccount {
      * The maximum monetary amount allowed for over-capture, in the smallest currency unit, for example
      * `1299` cents to allow for an over-capture of `$12.99`.
      */
-    public MerchantAccount withOverCaptureAmount(long overCaptureAmount) {
+    public ApiRoutersMerchantAccountsSchemasMerchantAccount withOverCaptureAmount(long overCaptureAmount) {
         Utils.checkNotNull(overCaptureAmount, "overCaptureAmount");
         this.overCaptureAmount = JsonNullable.of(overCaptureAmount);
         return this;
@@ -757,7 +757,7 @@ public class MerchantAccount {
      * The maximum monetary amount allowed for over-capture, in the smallest currency unit, for example
      * `1299` cents to allow for an over-capture of `$12.99`.
      */
-    public MerchantAccount withOverCaptureAmount(JsonNullable<Long> overCaptureAmount) {
+    public ApiRoutersMerchantAccountsSchemasMerchantAccount withOverCaptureAmount(JsonNullable<Long> overCaptureAmount) {
         Utils.checkNotNull(overCaptureAmount, "overCaptureAmount");
         this.overCaptureAmount = overCaptureAmount;
         return this;
@@ -767,7 +767,7 @@ public class MerchantAccount {
      * The maximum percentage allowed for over-capture, for example `25` to allow for an over-capture of
      * `25%` of the original transaction amount.
      */
-    public MerchantAccount withOverCapturePercentage(long overCapturePercentage) {
+    public ApiRoutersMerchantAccountsSchemasMerchantAccount withOverCapturePercentage(long overCapturePercentage) {
         Utils.checkNotNull(overCapturePercentage, "overCapturePercentage");
         this.overCapturePercentage = JsonNullable.of(overCapturePercentage);
         return this;
@@ -777,7 +777,7 @@ public class MerchantAccount {
      * The maximum percentage allowed for over-capture, for example `25` to allow for an over-capture of
      * `25%` of the original transaction amount.
      */
-    public MerchantAccount withOverCapturePercentage(JsonNullable<Long> overCapturePercentage) {
+    public ApiRoutersMerchantAccountsSchemasMerchantAccount withOverCapturePercentage(JsonNullable<Long> overCapturePercentage) {
         Utils.checkNotNull(overCapturePercentage, "overCapturePercentage");
         this.overCapturePercentage = overCapturePercentage;
         return this;
@@ -786,7 +786,7 @@ public class MerchantAccount {
     /**
      * Requestor ID provided for Visa after onboarding to use Network Tokens.
      */
-    public MerchantAccount withVisaNetworkTokensRequestorId(String visaNetworkTokensRequestorId) {
+    public ApiRoutersMerchantAccountsSchemasMerchantAccount withVisaNetworkTokensRequestorId(String visaNetworkTokensRequestorId) {
         Utils.checkNotNull(visaNetworkTokensRequestorId, "visaNetworkTokensRequestorId");
         this.visaNetworkTokensRequestorId = JsonNullable.of(visaNetworkTokensRequestorId);
         return this;
@@ -795,7 +795,7 @@ public class MerchantAccount {
     /**
      * Requestor ID provided for Visa after onboarding to use Network Tokens.
      */
-    public MerchantAccount withVisaNetworkTokensRequestorId(JsonNullable<String> visaNetworkTokensRequestorId) {
+    public ApiRoutersMerchantAccountsSchemasMerchantAccount withVisaNetworkTokensRequestorId(JsonNullable<String> visaNetworkTokensRequestorId) {
         Utils.checkNotNull(visaNetworkTokensRequestorId, "visaNetworkTokensRequestorId");
         this.visaNetworkTokensRequestorId = visaNetworkTokensRequestorId;
         return this;
@@ -804,7 +804,7 @@ public class MerchantAccount {
     /**
      * Application ID provided for Visa after onboarding to use Network Tokens.
      */
-    public MerchantAccount withVisaNetworkTokensAppId(String visaNetworkTokensAppId) {
+    public ApiRoutersMerchantAccountsSchemasMerchantAccount withVisaNetworkTokensAppId(String visaNetworkTokensAppId) {
         Utils.checkNotNull(visaNetworkTokensAppId, "visaNetworkTokensAppId");
         this.visaNetworkTokensAppId = JsonNullable.of(visaNetworkTokensAppId);
         return this;
@@ -813,7 +813,7 @@ public class MerchantAccount {
     /**
      * Application ID provided for Visa after onboarding to use Network Tokens.
      */
-    public MerchantAccount withVisaNetworkTokensAppId(JsonNullable<String> visaNetworkTokensAppId) {
+    public ApiRoutersMerchantAccountsSchemasMerchantAccount withVisaNetworkTokensAppId(JsonNullable<String> visaNetworkTokensAppId) {
         Utils.checkNotNull(visaNetworkTokensAppId, "visaNetworkTokensAppId");
         this.visaNetworkTokensAppId = visaNetworkTokensAppId;
         return this;
@@ -822,7 +822,7 @@ public class MerchantAccount {
     /**
      * Requestor ID provided for American Express after onboarding to use Network Tokens.
      */
-    public MerchantAccount withAmexNetworkTokensRequestorId(String amexNetworkTokensRequestorId) {
+    public ApiRoutersMerchantAccountsSchemasMerchantAccount withAmexNetworkTokensRequestorId(String amexNetworkTokensRequestorId) {
         Utils.checkNotNull(amexNetworkTokensRequestorId, "amexNetworkTokensRequestorId");
         this.amexNetworkTokensRequestorId = JsonNullable.of(amexNetworkTokensRequestorId);
         return this;
@@ -831,7 +831,7 @@ public class MerchantAccount {
     /**
      * Requestor ID provided for American Express after onboarding to use Network Tokens.
      */
-    public MerchantAccount withAmexNetworkTokensRequestorId(JsonNullable<String> amexNetworkTokensRequestorId) {
+    public ApiRoutersMerchantAccountsSchemasMerchantAccount withAmexNetworkTokensRequestorId(JsonNullable<String> amexNetworkTokensRequestorId) {
         Utils.checkNotNull(amexNetworkTokensRequestorId, "amexNetworkTokensRequestorId");
         this.amexNetworkTokensRequestorId = amexNetworkTokensRequestorId;
         return this;
@@ -840,7 +840,7 @@ public class MerchantAccount {
     /**
      * Application ID provided for American Express after onboarding to use Network Tokens.
      */
-    public MerchantAccount withAmexNetworkTokensAppId(String amexNetworkTokensAppId) {
+    public ApiRoutersMerchantAccountsSchemasMerchantAccount withAmexNetworkTokensAppId(String amexNetworkTokensAppId) {
         Utils.checkNotNull(amexNetworkTokensAppId, "amexNetworkTokensAppId");
         this.amexNetworkTokensAppId = JsonNullable.of(amexNetworkTokensAppId);
         return this;
@@ -849,7 +849,7 @@ public class MerchantAccount {
     /**
      * Application ID provided for American Express after onboarding to use Network Tokens.
      */
-    public MerchantAccount withAmexNetworkTokensAppId(JsonNullable<String> amexNetworkTokensAppId) {
+    public ApiRoutersMerchantAccountsSchemasMerchantAccount withAmexNetworkTokensAppId(JsonNullable<String> amexNetworkTokensAppId) {
         Utils.checkNotNull(amexNetworkTokensAppId, "amexNetworkTokensAppId");
         this.amexNetworkTokensAppId = amexNetworkTokensAppId;
         return this;
@@ -858,7 +858,7 @@ public class MerchantAccount {
     /**
      * Requestor ID provided for Mastercard after onboarding to use Network Tokens.
      */
-    public MerchantAccount withMastercardNetworkTokensRequestorId(String mastercardNetworkTokensRequestorId) {
+    public ApiRoutersMerchantAccountsSchemasMerchantAccount withMastercardNetworkTokensRequestorId(String mastercardNetworkTokensRequestorId) {
         Utils.checkNotNull(mastercardNetworkTokensRequestorId, "mastercardNetworkTokensRequestorId");
         this.mastercardNetworkTokensRequestorId = JsonNullable.of(mastercardNetworkTokensRequestorId);
         return this;
@@ -867,7 +867,7 @@ public class MerchantAccount {
     /**
      * Requestor ID provided for Mastercard after onboarding to use Network Tokens.
      */
-    public MerchantAccount withMastercardNetworkTokensRequestorId(JsonNullable<String> mastercardNetworkTokensRequestorId) {
+    public ApiRoutersMerchantAccountsSchemasMerchantAccount withMastercardNetworkTokensRequestorId(JsonNullable<String> mastercardNetworkTokensRequestorId) {
         Utils.checkNotNull(mastercardNetworkTokensRequestorId, "mastercardNetworkTokensRequestorId");
         this.mastercardNetworkTokensRequestorId = mastercardNetworkTokensRequestorId;
         return this;
@@ -876,7 +876,7 @@ public class MerchantAccount {
     /**
      * Application ID provided for Mastercard after onboarding to use Network Tokens.
      */
-    public MerchantAccount withMastercardNetworkTokensAppId(String mastercardNetworkTokensAppId) {
+    public ApiRoutersMerchantAccountsSchemasMerchantAccount withMastercardNetworkTokensAppId(String mastercardNetworkTokensAppId) {
         Utils.checkNotNull(mastercardNetworkTokensAppId, "mastercardNetworkTokensAppId");
         this.mastercardNetworkTokensAppId = JsonNullable.of(mastercardNetworkTokensAppId);
         return this;
@@ -885,7 +885,7 @@ public class MerchantAccount {
     /**
      * Application ID provided for Mastercard after onboarding to use Network Tokens.
      */
-    public MerchantAccount withMastercardNetworkTokensAppId(JsonNullable<String> mastercardNetworkTokensAppId) {
+    public ApiRoutersMerchantAccountsSchemasMerchantAccount withMastercardNetworkTokensAppId(JsonNullable<String> mastercardNetworkTokensAppId) {
         Utils.checkNotNull(mastercardNetworkTokensAppId, "mastercardNetworkTokensAppId");
         this.mastercardNetworkTokensAppId = mastercardNetworkTokensAppId;
         return this;
@@ -894,7 +894,7 @@ public class MerchantAccount {
     /**
      * Requestor ID provided for Discover after onboarding to use Network Tokens.
      */
-    public MerchantAccount withDiscoverNetworkTokensRequestorId(String discoverNetworkTokensRequestorId) {
+    public ApiRoutersMerchantAccountsSchemasMerchantAccount withDiscoverNetworkTokensRequestorId(String discoverNetworkTokensRequestorId) {
         Utils.checkNotNull(discoverNetworkTokensRequestorId, "discoverNetworkTokensRequestorId");
         this.discoverNetworkTokensRequestorId = JsonNullable.of(discoverNetworkTokensRequestorId);
         return this;
@@ -903,7 +903,7 @@ public class MerchantAccount {
     /**
      * Requestor ID provided for Discover after onboarding to use Network Tokens.
      */
-    public MerchantAccount withDiscoverNetworkTokensRequestorId(JsonNullable<String> discoverNetworkTokensRequestorId) {
+    public ApiRoutersMerchantAccountsSchemasMerchantAccount withDiscoverNetworkTokensRequestorId(JsonNullable<String> discoverNetworkTokensRequestorId) {
         Utils.checkNotNull(discoverNetworkTokensRequestorId, "discoverNetworkTokensRequestorId");
         this.discoverNetworkTokensRequestorId = discoverNetworkTokensRequestorId;
         return this;
@@ -912,7 +912,7 @@ public class MerchantAccount {
     /**
      * Application ID provided for Discover after onboarding to use Network Tokens.
      */
-    public MerchantAccount withDiscoverNetworkTokensAppId(String discoverNetworkTokensAppId) {
+    public ApiRoutersMerchantAccountsSchemasMerchantAccount withDiscoverNetworkTokensAppId(String discoverNetworkTokensAppId) {
         Utils.checkNotNull(discoverNetworkTokensAppId, "discoverNetworkTokensAppId");
         this.discoverNetworkTokensAppId = JsonNullable.of(discoverNetworkTokensAppId);
         return this;
@@ -921,7 +921,7 @@ public class MerchantAccount {
     /**
      * Application ID provided for Discover after onboarding to use Network Tokens.
      */
-    public MerchantAccount withDiscoverNetworkTokensAppId(JsonNullable<String> discoverNetworkTokensAppId) {
+    public ApiRoutersMerchantAccountsSchemasMerchantAccount withDiscoverNetworkTokensAppId(JsonNullable<String> discoverNetworkTokensAppId) {
         Utils.checkNotNull(discoverNetworkTokensAppId, "discoverNetworkTokensAppId");
         this.discoverNetworkTokensAppId = discoverNetworkTokensAppId;
         return this;
@@ -931,7 +931,7 @@ public class MerchantAccount {
      * When enabled network tokens will be generated asynchronously and only used on subsequent
      * transactions to speed up transaction processing.
      */
-    public MerchantAccount withAsyncNetworkTokensEnabled(boolean asyncNetworkTokensEnabled) {
+    public ApiRoutersMerchantAccountsSchemasMerchantAccount withAsyncNetworkTokensEnabled(boolean asyncNetworkTokensEnabled) {
         Utils.checkNotNull(asyncNetworkTokensEnabled, "asyncNetworkTokensEnabled");
         this.asyncNetworkTokensEnabled = Optional.ofNullable(asyncNetworkTokensEnabled);
         return this;
@@ -942,7 +942,7 @@ public class MerchantAccount {
      * When enabled network tokens will be generated asynchronously and only used on subsequent
      * transactions to speed up transaction processing.
      */
-    public MerchantAccount withAsyncNetworkTokensEnabled(Optional<Boolean> asyncNetworkTokensEnabled) {
+    public ApiRoutersMerchantAccountsSchemasMerchantAccount withAsyncNetworkTokensEnabled(Optional<Boolean> asyncNetworkTokensEnabled) {
         Utils.checkNotNull(asyncNetworkTokensEnabled, "asyncNetworkTokensEnabled");
         this.asyncNetworkTokensEnabled = asyncNetworkTokensEnabled;
         return this;
@@ -951,7 +951,7 @@ public class MerchantAccount {
     /**
      * The date this merchant account was created at.
      */
-    public MerchantAccount withCreatedAt(OffsetDateTime createdAt) {
+    public ApiRoutersMerchantAccountsSchemasMerchantAccount withCreatedAt(OffsetDateTime createdAt) {
         Utils.checkNotNull(createdAt, "createdAt");
         this.createdAt = createdAt;
         return this;
@@ -960,7 +960,7 @@ public class MerchantAccount {
     /**
      * The date this merchant account was last updated at.
      */
-    public MerchantAccount withUpdatedAt(OffsetDateTime updatedAt) {
+    public ApiRoutersMerchantAccountsSchemasMerchantAccount withUpdatedAt(OffsetDateTime updatedAt) {
         Utils.checkNotNull(updatedAt, "updatedAt");
         this.updatedAt = updatedAt;
         return this;
@@ -974,7 +974,7 @@ public class MerchantAccount {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        MerchantAccount other = (MerchantAccount) o;
+        ApiRoutersMerchantAccountsSchemasMerchantAccount other = (ApiRoutersMerchantAccountsSchemasMerchantAccount) o;
         return 
             Utils.enhancedDeepEquals(this.type, other.type) &&
             Utils.enhancedDeepEquals(this.id, other.id) &&
@@ -1017,7 +1017,7 @@ public class MerchantAccount {
     
     @Override
     public String toString() {
-        return Utils.toString(MerchantAccount.class,
+        return Utils.toString(ApiRoutersMerchantAccountsSchemasMerchantAccount.class,
                 "type", type,
                 "id", id,
                 "displayName", displayName,
@@ -1547,12 +1547,12 @@ public class MerchantAccount {
             return this;
         }
 
-        public MerchantAccount build() {
+        public ApiRoutersMerchantAccountsSchemasMerchantAccount build() {
             if (asyncNetworkTokensEnabled == null) {
                 asyncNetworkTokensEnabled = _SINGLETON_VALUE_AsyncNetworkTokensEnabled.value();
             }
 
-            return new MerchantAccount(
+            return new ApiRoutersMerchantAccountsSchemasMerchantAccount(
                 id, displayName, loonClientKey,
                 loonSecretKey, loonAcceptedSchemes, accountUpdaterRequestEncryptionKey,
                 accountUpdaterRequestEncryptionKeyId, accountUpdaterResponseDecryptionKey, accountUpdaterResponseDecryptionKeyId,

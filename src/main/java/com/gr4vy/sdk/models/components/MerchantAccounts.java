@@ -24,7 +24,7 @@ public class MerchantAccounts {
      * A list of items returned for this request.
      */
     @JsonProperty("items")
-    private List<MerchantAccount> items;
+    private List<ApiRoutersMerchantAccountsSchemasMerchantAccount> items;
 
     /**
      * The number of items for this page.
@@ -49,7 +49,7 @@ public class MerchantAccounts {
 
     @JsonCreator
     public MerchantAccounts(
-            @JsonProperty("items") List<MerchantAccount> items,
+            @JsonProperty("items") List<ApiRoutersMerchantAccountsSchemasMerchantAccount> items,
             @JsonProperty("limit") Optional<Long> limit,
             @JsonProperty("next_cursor") JsonNullable<String> nextCursor,
             @JsonProperty("previous_cursor") JsonNullable<String> previousCursor) {
@@ -64,7 +64,7 @@ public class MerchantAccounts {
     }
     
     public MerchantAccounts(
-            List<MerchantAccount> items) {
+            List<ApiRoutersMerchantAccountsSchemasMerchantAccount> items) {
         this(items, Optional.empty(), JsonNullable.undefined(),
             JsonNullable.undefined());
     }
@@ -73,7 +73,7 @@ public class MerchantAccounts {
      * A list of items returned for this request.
      */
     @JsonIgnore
-    public List<MerchantAccount> items() {
+    public List<ApiRoutersMerchantAccountsSchemasMerchantAccount> items() {
         return items;
     }
 
@@ -109,7 +109,7 @@ public class MerchantAccounts {
     /**
      * A list of items returned for this request.
      */
-    public MerchantAccounts withItems(List<MerchantAccount> items) {
+    public MerchantAccounts withItems(List<ApiRoutersMerchantAccountsSchemasMerchantAccount> items) {
         Utils.checkNotNull(items, "items");
         this.items = items;
         return this;
@@ -205,7 +205,7 @@ public class MerchantAccounts {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private List<MerchantAccount> items;
+        private List<ApiRoutersMerchantAccountsSchemasMerchantAccount> items;
 
         private Optional<Long> limit;
 
@@ -221,7 +221,7 @@ public class MerchantAccounts {
         /**
          * A list of items returned for this request.
          */
-        public Builder items(List<MerchantAccount> items) {
+        public Builder items(List<ApiRoutersMerchantAccountsSchemasMerchantAccount> items) {
             Utils.checkNotNull(items, "items");
             this.items = items;
             return this;

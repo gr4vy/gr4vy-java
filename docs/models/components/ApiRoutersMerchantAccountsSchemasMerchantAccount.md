@@ -1,4 +1,4 @@
-# MerchantAccount
+# ApiRoutersMerchantAccountsSchemasMerchantAccount
 
 
 ## Fields

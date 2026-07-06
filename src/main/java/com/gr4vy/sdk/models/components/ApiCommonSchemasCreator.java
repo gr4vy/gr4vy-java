@@ -11,7 +11,7 @@ import java.lang.Override;
 import java.lang.String;
 
 
-public class Creator {
+public class ApiCommonSchemasCreator {
 
     @JsonProperty("id")
     private String id;
@@ -25,7 +25,7 @@ public class Creator {
     private String emailAddress;
 
     @JsonCreator
-    public Creator(
+    public ApiCommonSchemasCreator(
             @JsonProperty("id") String id,
             @JsonProperty("name") String name,
             @JsonProperty("email_address") String emailAddress) {
@@ -57,19 +57,19 @@ public class Creator {
     }
 
 
-    public Creator withId(String id) {
+    public ApiCommonSchemasCreator withId(String id) {
         Utils.checkNotNull(id, "id");
         this.id = id;
         return this;
     }
 
-    public Creator withName(String name) {
+    public ApiCommonSchemasCreator withName(String name) {
         Utils.checkNotNull(name, "name");
         this.name = name;
         return this;
     }
 
-    public Creator withEmailAddress(String emailAddress) {
+    public ApiCommonSchemasCreator withEmailAddress(String emailAddress) {
         Utils.checkNotNull(emailAddress, "emailAddress");
         this.emailAddress = emailAddress;
         return this;
@@ -83,7 +83,7 @@ public class Creator {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        Creator other = (Creator) o;
+        ApiCommonSchemasCreator other = (ApiCommonSchemasCreator) o;
         return 
             Utils.enhancedDeepEquals(this.id, other.id) &&
             Utils.enhancedDeepEquals(this.name, other.name) &&
@@ -98,7 +98,7 @@ public class Creator {
     
     @Override
     public String toString() {
-        return Utils.toString(Creator.class,
+        return Utils.toString(ApiCommonSchemasCreator.class,
                 "id", id,
                 "name", name,
                 "emailAddress", emailAddress);
@@ -138,9 +138,9 @@ public class Creator {
             return this;
         }
 
-        public Creator build() {
+        public ApiCommonSchemasCreator build() {
 
-            return new Creator(
+            return new ApiCommonSchemasCreator(
                 id, name, emailAddress);
         }
 

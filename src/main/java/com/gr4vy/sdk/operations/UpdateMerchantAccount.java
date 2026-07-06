@@ -10,7 +10,7 @@ import static com.gr4vy.sdk.operations.Operations.AsyncRequestOperation;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.gr4vy.sdk.SDKConfiguration;
 import com.gr4vy.sdk.SecuritySource;
-import com.gr4vy.sdk.models.components.MerchantAccount;
+import com.gr4vy.sdk.models.components.ApiRoutersMerchantAccountsSchemasMerchantAccount;
 import com.gr4vy.sdk.models.errors.APIException;
 import com.gr4vy.sdk.models.errors.Error400;
 import com.gr4vy.sdk.models.errors.Error401;
@@ -184,7 +184,7 @@ public class UpdateMerchantAccount {
             
             if (Utils.statusCodeMatches(response.statusCode(), "200")) {
                 if (Utils.contentTypeMatches(contentType, "application/json")) {
-                    return res.withMerchantAccount(Utils.unmarshal(response, new TypeReference<MerchantAccount>() {}));
+                    return res.withApiRoutersMerchantAccountsSchemasMerchantAccount(Utils.unmarshal(response, new TypeReference<ApiRoutersMerchantAccountsSchemasMerchantAccount>() {}));
                 } else {
                     throw APIException.from("Unexpected content-type received: " + contentType, response);
                 }
@@ -338,8 +338,8 @@ public class UpdateMerchantAccount {
             
             if (Utils.statusCodeMatches(response.statusCode(), "200")) {
                 if (Utils.contentTypeMatches(contentType, "application/json")) {
-                    return Utils.unmarshalAsync(response, new TypeReference<MerchantAccount>() {})
-                            .thenApply(res::withMerchantAccount);
+                    return Utils.unmarshalAsync(response, new TypeReference<ApiRoutersMerchantAccountsSchemasMerchantAccount>() {})
+                            .thenApply(res::withApiRoutersMerchantAccountsSchemasMerchantAccount);
                 } else {
                     return Utils.createAsyncApiError(response, "Unexpected content-type received: " + contentType);
                 }

@@ -111,8 +111,8 @@ public class Application {
                 .request(req)
                 .call();
 
-        if (res.merchantAccount().isPresent()) {
-            System.out.println(res.merchantAccount().get());
+        if (res.apiRoutersMerchantAccountsSchemasMerchantAccount().isPresent()) {
+            System.out.println(res.apiRoutersMerchantAccountsSchemasMerchantAccount().get());
         }
     }
 }
@@ -173,8 +173,8 @@ public class Application {
                 .merchantAccountId("merchant-12345")
                 .call();
 
-        if (res.merchantAccount().isPresent()) {
-            System.out.println(res.merchantAccount().get());
+        if (res.apiRoutersMerchantAccountsSchemasMerchantAccount().isPresent()) {
+            System.out.println(res.apiRoutersMerchantAccountsSchemasMerchantAccount().get());
         }
     }
 }
@@ -240,8 +240,8 @@ public class Application {
                     .build())
                 .call();
 
-        if (res.merchantAccount().isPresent()) {
-            System.out.println(res.merchantAccount().get());
+        if (res.apiRoutersMerchantAccountsSchemasMerchantAccount().isPresent()) {
+            System.out.println(res.apiRoutersMerchantAccountsSchemasMerchantAccount().get());
         }
     }
 }

@@ -5,7 +5,7 @@ package com.gr4vy.sdk.models.operations.async;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.gr4vy.sdk.models.components.MerchantAccount;
+import com.gr4vy.sdk.models.components.ApiRoutersMerchantAccountsSchemasMerchantAccount;
 import com.gr4vy.sdk.utils.AsyncResponse;
 import com.gr4vy.sdk.utils.Blob;
 import com.gr4vy.sdk.utils.Utils;
@@ -36,22 +36,22 @@ public class GetMerchantAccountResponse implements AsyncResponse {
     /**
      * Successful Response
      */
-    private Optional<? extends MerchantAccount> merchantAccount;
+    private Optional<? extends ApiRoutersMerchantAccountsSchemasMerchantAccount> apiRoutersMerchantAccountsSchemasMerchantAccount;
 
     @JsonCreator
     public GetMerchantAccountResponse(
             String contentType,
             int statusCode,
             HttpResponse<Blob> rawResponse,
-            Optional<? extends MerchantAccount> merchantAccount) {
+            Optional<? extends ApiRoutersMerchantAccountsSchemasMerchantAccount> apiRoutersMerchantAccountsSchemasMerchantAccount) {
         Utils.checkNotNull(contentType, "contentType");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
-        Utils.checkNotNull(merchantAccount, "merchantAccount");
+        Utils.checkNotNull(apiRoutersMerchantAccountsSchemasMerchantAccount, "apiRoutersMerchantAccountsSchemasMerchantAccount");
         this.contentType = contentType;
         this.statusCode = statusCode;
         this.rawResponse = rawResponse;
-        this.merchantAccount = merchantAccount;
+        this.apiRoutersMerchantAccountsSchemasMerchantAccount = apiRoutersMerchantAccountsSchemasMerchantAccount;
     }
     
     public GetMerchantAccountResponse(
@@ -91,8 +91,8 @@ public class GetMerchantAccountResponse implements AsyncResponse {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<MerchantAccount> merchantAccount() {
-        return (Optional<MerchantAccount>) merchantAccount;
+    public Optional<ApiRoutersMerchantAccountsSchemasMerchantAccount> apiRoutersMerchantAccountsSchemasMerchantAccount() {
+        return (Optional<ApiRoutersMerchantAccountsSchemasMerchantAccount>) apiRoutersMerchantAccountsSchemasMerchantAccount;
     }
 
     public static Builder builder() {
@@ -130,9 +130,9 @@ public class GetMerchantAccountResponse implements AsyncResponse {
     /**
      * Successful Response
      */
-    public GetMerchantAccountResponse withMerchantAccount(MerchantAccount merchantAccount) {
-        Utils.checkNotNull(merchantAccount, "merchantAccount");
-        this.merchantAccount = Optional.ofNullable(merchantAccount);
+    public GetMerchantAccountResponse withApiRoutersMerchantAccountsSchemasMerchantAccount(ApiRoutersMerchantAccountsSchemasMerchantAccount apiRoutersMerchantAccountsSchemasMerchantAccount) {
+        Utils.checkNotNull(apiRoutersMerchantAccountsSchemasMerchantAccount, "apiRoutersMerchantAccountsSchemasMerchantAccount");
+        this.apiRoutersMerchantAccountsSchemasMerchantAccount = Optional.ofNullable(apiRoutersMerchantAccountsSchemasMerchantAccount);
         return this;
     }
 
@@ -140,9 +140,9 @@ public class GetMerchantAccountResponse implements AsyncResponse {
     /**
      * Successful Response
      */
-    public GetMerchantAccountResponse withMerchantAccount(Optional<? extends MerchantAccount> merchantAccount) {
-        Utils.checkNotNull(merchantAccount, "merchantAccount");
-        this.merchantAccount = merchantAccount;
+    public GetMerchantAccountResponse withApiRoutersMerchantAccountsSchemasMerchantAccount(Optional<? extends ApiRoutersMerchantAccountsSchemasMerchantAccount> apiRoutersMerchantAccountsSchemasMerchantAccount) {
+        Utils.checkNotNull(apiRoutersMerchantAccountsSchemasMerchantAccount, "apiRoutersMerchantAccountsSchemasMerchantAccount");
+        this.apiRoutersMerchantAccountsSchemasMerchantAccount = apiRoutersMerchantAccountsSchemasMerchantAccount;
         return this;
     }
 
@@ -159,14 +159,14 @@ public class GetMerchantAccountResponse implements AsyncResponse {
             Utils.enhancedDeepEquals(this.contentType, other.contentType) &&
             Utils.enhancedDeepEquals(this.statusCode, other.statusCode) &&
             Utils.enhancedDeepEquals(this.rawResponse, other.rawResponse) &&
-            Utils.enhancedDeepEquals(this.merchantAccount, other.merchantAccount);
+            Utils.enhancedDeepEquals(this.apiRoutersMerchantAccountsSchemasMerchantAccount, other.apiRoutersMerchantAccountsSchemasMerchantAccount);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
             contentType, statusCode, rawResponse,
-            merchantAccount);
+            apiRoutersMerchantAccountsSchemasMerchantAccount);
     }
     
     @Override
@@ -175,7 +175,7 @@ public class GetMerchantAccountResponse implements AsyncResponse {
                 "contentType", contentType,
                 "statusCode", statusCode,
                 "rawResponse", rawResponse,
-                "merchantAccount", merchantAccount);
+                "apiRoutersMerchantAccountsSchemasMerchantAccount", apiRoutersMerchantAccountsSchemasMerchantAccount);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -187,7 +187,7 @@ public class GetMerchantAccountResponse implements AsyncResponse {
 
         private HttpResponse<Blob> rawResponse;
 
-        private Optional<? extends MerchantAccount> merchantAccount = Optional.empty();
+        private Optional<? extends ApiRoutersMerchantAccountsSchemasMerchantAccount> apiRoutersMerchantAccountsSchemasMerchantAccount = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -227,18 +227,18 @@ public class GetMerchantAccountResponse implements AsyncResponse {
         /**
          * Successful Response
          */
-        public Builder merchantAccount(MerchantAccount merchantAccount) {
-            Utils.checkNotNull(merchantAccount, "merchantAccount");
-            this.merchantAccount = Optional.ofNullable(merchantAccount);
+        public Builder apiRoutersMerchantAccountsSchemasMerchantAccount(ApiRoutersMerchantAccountsSchemasMerchantAccount apiRoutersMerchantAccountsSchemasMerchantAccount) {
+            Utils.checkNotNull(apiRoutersMerchantAccountsSchemasMerchantAccount, "apiRoutersMerchantAccountsSchemasMerchantAccount");
+            this.apiRoutersMerchantAccountsSchemasMerchantAccount = Optional.ofNullable(apiRoutersMerchantAccountsSchemasMerchantAccount);
             return this;
         }
 
         /**
          * Successful Response
          */
-        public Builder merchantAccount(Optional<? extends MerchantAccount> merchantAccount) {
-            Utils.checkNotNull(merchantAccount, "merchantAccount");
-            this.merchantAccount = merchantAccount;
+        public Builder apiRoutersMerchantAccountsSchemasMerchantAccount(Optional<? extends ApiRoutersMerchantAccountsSchemasMerchantAccount> apiRoutersMerchantAccountsSchemasMerchantAccount) {
+            Utils.checkNotNull(apiRoutersMerchantAccountsSchemasMerchantAccount, "apiRoutersMerchantAccountsSchemasMerchantAccount");
+            this.apiRoutersMerchantAccountsSchemasMerchantAccount = apiRoutersMerchantAccountsSchemasMerchantAccount;
             return this;
         }
 
@@ -246,7 +246,7 @@ public class GetMerchantAccountResponse implements AsyncResponse {
 
             return new GetMerchantAccountResponse(
                 contentType, statusCode, rawResponse,
-                merchantAccount);
+                apiRoutersMerchantAccountsSchemasMerchantAccount);
         }
 
     }
