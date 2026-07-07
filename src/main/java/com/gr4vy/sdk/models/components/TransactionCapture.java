@@ -13,6 +13,7 @@ import com.gr4vy.sdk.utils.LazySingletonValue;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -79,6 +80,20 @@ public class TransactionCapture {
     @JsonProperty("external_identifier")
     private JsonNullable<String> externalIdentifier;
 
+    /**
+     * The billing details associated with the capture.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("billing_details")
+    private JsonNullable<? extends BillingDetails> billingDetails;
+
+    /**
+     * The shipping details associated with the catpure.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("shipping_details")
+    private JsonNullable<? extends ShippingDetails> shippingDetails;
+
     @JsonCreator
     public TransactionCapture(
             @JsonProperty("status") CaptureStatus status,
@@ -88,7 +103,9 @@ public class TransactionCapture {
             @JsonProperty("transaction") Transaction transaction,
             @JsonProperty("capture_id") JsonNullable<String> captureId,
             @JsonProperty("payment_service_capture_id") JsonNullable<String> paymentServiceCaptureId,
-            @JsonProperty("external_identifier") JsonNullable<String> externalIdentifier) {
+            @JsonProperty("external_identifier") JsonNullable<String> externalIdentifier,
+            @JsonProperty("billing_details") JsonNullable<? extends BillingDetails> billingDetails,
+            @JsonProperty("shipping_details") JsonNullable<? extends ShippingDetails> shippingDetails) {
         Utils.checkNotNull(status, "status");
         Utils.checkNotNull(code, "code");
         Utils.checkNotNull(rawResponseCode, "rawResponseCode");
@@ -97,6 +114,8 @@ public class TransactionCapture {
         Utils.checkNotNull(captureId, "captureId");
         Utils.checkNotNull(paymentServiceCaptureId, "paymentServiceCaptureId");
         Utils.checkNotNull(externalIdentifier, "externalIdentifier");
+        Utils.checkNotNull(billingDetails, "billingDetails");
+        Utils.checkNotNull(shippingDetails, "shippingDetails");
         this.type = Builder._SINGLETON_VALUE_Type.value();
         this.status = status;
         this.code = code;
@@ -106,6 +125,8 @@ public class TransactionCapture {
         this.captureId = captureId;
         this.paymentServiceCaptureId = paymentServiceCaptureId;
         this.externalIdentifier = externalIdentifier;
+        this.billingDetails = billingDetails;
+        this.shippingDetails = shippingDetails;
     }
     
     public TransactionCapture(
@@ -113,7 +134,8 @@ public class TransactionCapture {
             Transaction transaction) {
         this(status, Optional.empty(), Optional.empty(),
             Optional.empty(), transaction, JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined());
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined());
     }
 
     /**
@@ -185,6 +207,24 @@ public class TransactionCapture {
     @JsonIgnore
     public JsonNullable<String> externalIdentifier() {
         return externalIdentifier;
+    }
+
+    /**
+     * The billing details associated with the capture.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public JsonNullable<BillingDetails> billingDetails() {
+        return (JsonNullable<BillingDetails>) billingDetails;
+    }
+
+    /**
+     * The shipping details associated with the catpure.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public JsonNullable<ShippingDetails> shippingDetails() {
+        return (JsonNullable<ShippingDetails>) shippingDetails;
     }
 
     public static Builder builder() {
@@ -322,6 +362,42 @@ public class TransactionCapture {
         return this;
     }
 
+    /**
+     * The billing details associated with the capture.
+     */
+    public TransactionCapture withBillingDetails(BillingDetails billingDetails) {
+        Utils.checkNotNull(billingDetails, "billingDetails");
+        this.billingDetails = JsonNullable.of(billingDetails);
+        return this;
+    }
+
+    /**
+     * The billing details associated with the capture.
+     */
+    public TransactionCapture withBillingDetails(JsonNullable<? extends BillingDetails> billingDetails) {
+        Utils.checkNotNull(billingDetails, "billingDetails");
+        this.billingDetails = billingDetails;
+        return this;
+    }
+
+    /**
+     * The shipping details associated with the catpure.
+     */
+    public TransactionCapture withShippingDetails(ShippingDetails shippingDetails) {
+        Utils.checkNotNull(shippingDetails, "shippingDetails");
+        this.shippingDetails = JsonNullable.of(shippingDetails);
+        return this;
+    }
+
+    /**
+     * The shipping details associated with the catpure.
+     */
+    public TransactionCapture withShippingDetails(JsonNullable<? extends ShippingDetails> shippingDetails) {
+        Utils.checkNotNull(shippingDetails, "shippingDetails");
+        this.shippingDetails = shippingDetails;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -340,7 +416,9 @@ public class TransactionCapture {
             Utils.enhancedDeepEquals(this.transaction, other.transaction) &&
             Utils.enhancedDeepEquals(this.captureId, other.captureId) &&
             Utils.enhancedDeepEquals(this.paymentServiceCaptureId, other.paymentServiceCaptureId) &&
-            Utils.enhancedDeepEquals(this.externalIdentifier, other.externalIdentifier);
+            Utils.enhancedDeepEquals(this.externalIdentifier, other.externalIdentifier) &&
+            Utils.enhancedDeepEquals(this.billingDetails, other.billingDetails) &&
+            Utils.enhancedDeepEquals(this.shippingDetails, other.shippingDetails);
     }
     
     @Override
@@ -348,7 +426,8 @@ public class TransactionCapture {
         return Utils.enhancedHash(
             type, status, code,
             rawResponseCode, rawResponseDescription, transaction,
-            captureId, paymentServiceCaptureId, externalIdentifier);
+            captureId, paymentServiceCaptureId, externalIdentifier,
+            billingDetails, shippingDetails);
     }
     
     @Override
@@ -362,7 +441,9 @@ public class TransactionCapture {
                 "transaction", transaction,
                 "captureId", captureId,
                 "paymentServiceCaptureId", paymentServiceCaptureId,
-                "externalIdentifier", externalIdentifier);
+                "externalIdentifier", externalIdentifier,
+                "billingDetails", billingDetails,
+                "shippingDetails", shippingDetails);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -383,6 +464,10 @@ public class TransactionCapture {
         private JsonNullable<String> paymentServiceCaptureId = JsonNullable.undefined();
 
         private JsonNullable<String> externalIdentifier = JsonNullable.undefined();
+
+        private JsonNullable<? extends BillingDetails> billingDetails = JsonNullable.undefined();
+
+        private JsonNullable<? extends ShippingDetails> shippingDetails = JsonNullable.undefined();
 
         private Builder() {
           // force use of static builder() method
@@ -523,12 +608,51 @@ public class TransactionCapture {
             return this;
         }
 
+
+        /**
+         * The billing details associated with the capture.
+         */
+        public Builder billingDetails(BillingDetails billingDetails) {
+            Utils.checkNotNull(billingDetails, "billingDetails");
+            this.billingDetails = JsonNullable.of(billingDetails);
+            return this;
+        }
+
+        /**
+         * The billing details associated with the capture.
+         */
+        public Builder billingDetails(JsonNullable<? extends BillingDetails> billingDetails) {
+            Utils.checkNotNull(billingDetails, "billingDetails");
+            this.billingDetails = billingDetails;
+            return this;
+        }
+
+
+        /**
+         * The shipping details associated with the catpure.
+         */
+        public Builder shippingDetails(ShippingDetails shippingDetails) {
+            Utils.checkNotNull(shippingDetails, "shippingDetails");
+            this.shippingDetails = JsonNullable.of(shippingDetails);
+            return this;
+        }
+
+        /**
+         * The shipping details associated with the catpure.
+         */
+        public Builder shippingDetails(JsonNullable<? extends ShippingDetails> shippingDetails) {
+            Utils.checkNotNull(shippingDetails, "shippingDetails");
+            this.shippingDetails = shippingDetails;
+            return this;
+        }
+
         public TransactionCapture build() {
 
             return new TransactionCapture(
                 status, code, rawResponseCode,
                 rawResponseDescription, transaction, captureId,
-                paymentServiceCaptureId, externalIdentifier);
+                paymentServiceCaptureId, externalIdentifier, billingDetails,
+                shippingDetails);
         }
 
 
