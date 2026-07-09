@@ -30,7 +30,7 @@ generation:
     generateNewTests: false
     skipResponseBodyAssertions: false
 java:
-  version: 2.16.105
+  version: 2.16.106
   additionalDependencies:
     - testImplementation:org.junit.jupiter:junit-jupiter:5.10.0
     - implementation:com.auth0:java-jwt:4.5.0
