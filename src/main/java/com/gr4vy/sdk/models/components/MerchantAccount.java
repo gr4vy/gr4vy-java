@@ -71,6 +71,16 @@ public class MerchantAccount {
     private JsonNullable<? extends List<CardScheme>> loonAcceptedSchemes;
 
     /**
+     * Merchant account ID provided by Pagos to identify this merchant account on the Loon API. Loon is the
+     * Account Updater service we use and if the field is not set or if it's set to null, the Account
+     * Updater service doesn't get configured. If the field is set to `null`, the other `loon_*` fields
+     * must be set to null as well.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("loon_merchant_account_id")
+    private JsonNullable<String> loonMerchantAccountId;
+
+    /**
      * The public key used to encrypt the request to the Real-Time Account Updater service. The Account
      * Updater service is used to update card details when cards are lost, stolen or expired. If the field
      * is not set or if it's set to `null`, the Account Updater service doesn't get called.
@@ -225,6 +235,7 @@ public class MerchantAccount {
             @JsonProperty("loon_client_key") JsonNullable<String> loonClientKey,
             @JsonProperty("loon_secret_key") JsonNullable<String> loonSecretKey,
             @JsonProperty("loon_accepted_schemes") JsonNullable<? extends List<CardScheme>> loonAcceptedSchemes,
+            @JsonProperty("loon_merchant_account_id") JsonNullable<String> loonMerchantAccountId,
             @JsonProperty("account_updater_request_encryption_key") JsonNullable<String> accountUpdaterRequestEncryptionKey,
             @JsonProperty("account_updater_request_encryption_key_id") JsonNullable<String> accountUpdaterRequestEncryptionKeyId,
             @JsonProperty("account_updater_response_decryption_key") JsonNullable<String> accountUpdaterResponseDecryptionKey,
@@ -248,6 +259,7 @@ public class MerchantAccount {
         Utils.checkNotNull(loonClientKey, "loonClientKey");
         Utils.checkNotNull(loonSecretKey, "loonSecretKey");
         Utils.checkNotNull(loonAcceptedSchemes, "loonAcceptedSchemes");
+        Utils.checkNotNull(loonMerchantAccountId, "loonMerchantAccountId");
         Utils.checkNotNull(accountUpdaterRequestEncryptionKey, "accountUpdaterRequestEncryptionKey");
         Utils.checkNotNull(accountUpdaterRequestEncryptionKeyId, "accountUpdaterRequestEncryptionKeyId");
         Utils.checkNotNull(accountUpdaterResponseDecryptionKey, "accountUpdaterResponseDecryptionKey");
@@ -272,6 +284,7 @@ public class MerchantAccount {
         this.loonClientKey = loonClientKey;
         this.loonSecretKey = loonSecretKey;
         this.loonAcceptedSchemes = loonAcceptedSchemes;
+        this.loonMerchantAccountId = loonMerchantAccountId;
         this.accountUpdaterRequestEncryptionKey = accountUpdaterRequestEncryptionKey;
         this.accountUpdaterRequestEncryptionKeyId = accountUpdaterRequestEncryptionKeyId;
         this.accountUpdaterResponseDecryptionKey = accountUpdaterResponseDecryptionKey;
@@ -301,11 +314,11 @@ public class MerchantAccount {
         this(id, displayName, JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            accountUpdaterEnabled, JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), accountUpdaterEnabled, JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
-            createdAt, updatedAt);
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            Optional.empty(), createdAt, updatedAt);
     }
 
     /**
@@ -362,6 +375,17 @@ public class MerchantAccount {
     @JsonIgnore
     public JsonNullable<List<CardScheme>> loonAcceptedSchemes() {
         return (JsonNullable<List<CardScheme>>) loonAcceptedSchemes;
+    }
+
+    /**
+     * Merchant account ID provided by Pagos to identify this merchant account on the Loon API. Loon is the
+     * Account Updater service we use and if the field is not set or if it's set to null, the Account
+     * Updater service doesn't get configured. If the field is set to `null`, the other `loon_*` fields
+     * must be set to null as well.
+     */
+    @JsonIgnore
+    public JsonNullable<String> loonMerchantAccountId() {
+        return loonMerchantAccountId;
     }
 
     /**
@@ -621,6 +645,30 @@ public class MerchantAccount {
     public MerchantAccount withLoonAcceptedSchemes(JsonNullable<? extends List<CardScheme>> loonAcceptedSchemes) {
         Utils.checkNotNull(loonAcceptedSchemes, "loonAcceptedSchemes");
         this.loonAcceptedSchemes = loonAcceptedSchemes;
+        return this;
+    }
+
+    /**
+     * Merchant account ID provided by Pagos to identify this merchant account on the Loon API. Loon is the
+     * Account Updater service we use and if the field is not set or if it's set to null, the Account
+     * Updater service doesn't get configured. If the field is set to `null`, the other `loon_*` fields
+     * must be set to null as well.
+     */
+    public MerchantAccount withLoonMerchantAccountId(String loonMerchantAccountId) {
+        Utils.checkNotNull(loonMerchantAccountId, "loonMerchantAccountId");
+        this.loonMerchantAccountId = JsonNullable.of(loonMerchantAccountId);
+        return this;
+    }
+
+    /**
+     * Merchant account ID provided by Pagos to identify this merchant account on the Loon API. Loon is the
+     * Account Updater service we use and if the field is not set or if it's set to null, the Account
+     * Updater service doesn't get configured. If the field is set to `null`, the other `loon_*` fields
+     * must be set to null as well.
+     */
+    public MerchantAccount withLoonMerchantAccountId(JsonNullable<String> loonMerchantAccountId) {
+        Utils.checkNotNull(loonMerchantAccountId, "loonMerchantAccountId");
+        this.loonMerchantAccountId = loonMerchantAccountId;
         return this;
     }
 
@@ -982,6 +1030,7 @@ public class MerchantAccount {
             Utils.enhancedDeepEquals(this.loonClientKey, other.loonClientKey) &&
             Utils.enhancedDeepEquals(this.loonSecretKey, other.loonSecretKey) &&
             Utils.enhancedDeepEquals(this.loonAcceptedSchemes, other.loonAcceptedSchemes) &&
+            Utils.enhancedDeepEquals(this.loonMerchantAccountId, other.loonMerchantAccountId) &&
             Utils.enhancedDeepEquals(this.accountUpdaterRequestEncryptionKey, other.accountUpdaterRequestEncryptionKey) &&
             Utils.enhancedDeepEquals(this.accountUpdaterRequestEncryptionKeyId, other.accountUpdaterRequestEncryptionKeyId) &&
             Utils.enhancedDeepEquals(this.accountUpdaterResponseDecryptionKey, other.accountUpdaterResponseDecryptionKey) &&
@@ -1007,12 +1056,13 @@ public class MerchantAccount {
         return Utils.enhancedHash(
             type, id, displayName,
             loonClientKey, loonSecretKey, loonAcceptedSchemes,
-            accountUpdaterRequestEncryptionKey, accountUpdaterRequestEncryptionKeyId, accountUpdaterResponseDecryptionKey,
-            accountUpdaterResponseDecryptionKeyId, accountUpdaterEnabled, overCaptureAmount,
-            overCapturePercentage, visaNetworkTokensRequestorId, visaNetworkTokensAppId,
-            amexNetworkTokensRequestorId, amexNetworkTokensAppId, mastercardNetworkTokensRequestorId,
-            mastercardNetworkTokensAppId, discoverNetworkTokensRequestorId, discoverNetworkTokensAppId,
-            asyncNetworkTokensEnabled, createdAt, updatedAt);
+            loonMerchantAccountId, accountUpdaterRequestEncryptionKey, accountUpdaterRequestEncryptionKeyId,
+            accountUpdaterResponseDecryptionKey, accountUpdaterResponseDecryptionKeyId, accountUpdaterEnabled,
+            overCaptureAmount, overCapturePercentage, visaNetworkTokensRequestorId,
+            visaNetworkTokensAppId, amexNetworkTokensRequestorId, amexNetworkTokensAppId,
+            mastercardNetworkTokensRequestorId, mastercardNetworkTokensAppId, discoverNetworkTokensRequestorId,
+            discoverNetworkTokensAppId, asyncNetworkTokensEnabled, createdAt,
+            updatedAt);
     }
     
     @Override
@@ -1024,6 +1074,7 @@ public class MerchantAccount {
                 "loonClientKey", loonClientKey,
                 "loonSecretKey", loonSecretKey,
                 "loonAcceptedSchemes", loonAcceptedSchemes,
+                "loonMerchantAccountId", loonMerchantAccountId,
                 "accountUpdaterRequestEncryptionKey", accountUpdaterRequestEncryptionKey,
                 "accountUpdaterRequestEncryptionKeyId", accountUpdaterRequestEncryptionKeyId,
                 "accountUpdaterResponseDecryptionKey", accountUpdaterResponseDecryptionKey,
@@ -1056,6 +1107,8 @@ public class MerchantAccount {
         private JsonNullable<String> loonSecretKey = JsonNullable.undefined();
 
         private JsonNullable<? extends List<CardScheme>> loonAcceptedSchemes = JsonNullable.undefined();
+
+        private JsonNullable<String> loonMerchantAccountId = JsonNullable.undefined();
 
         private JsonNullable<String> accountUpdaterRequestEncryptionKey = JsonNullable.undefined();
 
@@ -1185,6 +1238,31 @@ public class MerchantAccount {
         public Builder loonAcceptedSchemes(JsonNullable<? extends List<CardScheme>> loonAcceptedSchemes) {
             Utils.checkNotNull(loonAcceptedSchemes, "loonAcceptedSchemes");
             this.loonAcceptedSchemes = loonAcceptedSchemes;
+            return this;
+        }
+
+
+        /**
+         * Merchant account ID provided by Pagos to identify this merchant account on the Loon API. Loon is the
+         * Account Updater service we use and if the field is not set or if it's set to null, the Account
+         * Updater service doesn't get configured. If the field is set to `null`, the other `loon_*` fields
+         * must be set to null as well.
+         */
+        public Builder loonMerchantAccountId(String loonMerchantAccountId) {
+            Utils.checkNotNull(loonMerchantAccountId, "loonMerchantAccountId");
+            this.loonMerchantAccountId = JsonNullable.of(loonMerchantAccountId);
+            return this;
+        }
+
+        /**
+         * Merchant account ID provided by Pagos to identify this merchant account on the Loon API. Loon is the
+         * Account Updater service we use and if the field is not set or if it's set to null, the Account
+         * Updater service doesn't get configured. If the field is set to `null`, the other `loon_*` fields
+         * must be set to null as well.
+         */
+        public Builder loonMerchantAccountId(JsonNullable<String> loonMerchantAccountId) {
+            Utils.checkNotNull(loonMerchantAccountId, "loonMerchantAccountId");
+            this.loonMerchantAccountId = loonMerchantAccountId;
             return this;
         }
 
@@ -1554,13 +1632,13 @@ public class MerchantAccount {
 
             return new MerchantAccount(
                 id, displayName, loonClientKey,
-                loonSecretKey, loonAcceptedSchemes, accountUpdaterRequestEncryptionKey,
-                accountUpdaterRequestEncryptionKeyId, accountUpdaterResponseDecryptionKey, accountUpdaterResponseDecryptionKeyId,
-                accountUpdaterEnabled, overCaptureAmount, overCapturePercentage,
-                visaNetworkTokensRequestorId, visaNetworkTokensAppId, amexNetworkTokensRequestorId,
-                amexNetworkTokensAppId, mastercardNetworkTokensRequestorId, mastercardNetworkTokensAppId,
-                discoverNetworkTokensRequestorId, discoverNetworkTokensAppId, asyncNetworkTokensEnabled,
-                createdAt, updatedAt);
+                loonSecretKey, loonAcceptedSchemes, loonMerchantAccountId,
+                accountUpdaterRequestEncryptionKey, accountUpdaterRequestEncryptionKeyId, accountUpdaterResponseDecryptionKey,
+                accountUpdaterResponseDecryptionKeyId, accountUpdaterEnabled, overCaptureAmount,
+                overCapturePercentage, visaNetworkTokensRequestorId, visaNetworkTokensAppId,
+                amexNetworkTokensRequestorId, amexNetworkTokensAppId, mastercardNetworkTokensRequestorId,
+                mastercardNetworkTokensAppId, discoverNetworkTokensRequestorId, discoverNetworkTokensAppId,
+                asyncNetworkTokensEnabled, createdAt, updatedAt);
         }
 
 
