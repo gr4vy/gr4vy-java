@@ -55,6 +55,7 @@ public class AsyncTransactions {
     private final AsyncActions actions;
     private final AsyncEvents events;
     private final AsyncSettlements settlements;
+    private final AsyncRefundSettlements refundSettlements;
     private final AsyncCaptures captures;
     private final Transactions syncSDK;
 
@@ -64,6 +65,7 @@ public class AsyncTransactions {
         this.actions = new AsyncActions(syncSDK.actions(), this.sdkConfiguration);
         this.events = new AsyncEvents(syncSDK.events(), this.sdkConfiguration);
         this.settlements = new AsyncSettlements(syncSDK.settlements(), this.sdkConfiguration);
+        this.refundSettlements = new AsyncRefundSettlements(syncSDK.refundSettlements(), this.sdkConfiguration);
         this.captures = new AsyncCaptures(syncSDK.captures(), this.sdkConfiguration);
         this.syncSDK = syncSDK;
     }
@@ -82,6 +84,10 @@ public class AsyncTransactions {
 
     public final AsyncSettlements settlements() {
         return settlements;
+    }
+
+    public final AsyncRefundSettlements refundSettlements() {
+        return refundSettlements;
     }
 
     public final AsyncCaptures captures() {

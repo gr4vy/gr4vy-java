@@ -80,7 +80,7 @@ dependencies {
     implementation 'org.bouncycastle:bcpkix-jdk18on:1.80'
     implementation 'org.slf4j:slf4j-simple:2.0.7'
     api 'com.fasterxml.jackson.core:jackson-annotations:2.22'
-    implementation 'com.fasterxml.jackson.core:jackson-databind:2.22.0'
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.22.1'
     implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.22.0'
     implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jdk8:2.22.0'
     api('org.openapitools:jackson-databind-nullable:0.2.6') {exclude group: 'com.fasterxml.jackson.core', module: 'jackson-databind'}
