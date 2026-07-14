@@ -55,6 +55,7 @@ public class Transactions {
     private final Actions actions;
     private final Events events;
     private final Settlements settlements;
+    private final RefundSettlements refundSettlements;
     private final Captures captures;
 
     Transactions(SDKConfiguration sdkConfiguration) {
@@ -63,6 +64,7 @@ public class Transactions {
         this.actions = new Actions(this.sdkConfiguration);
         this.events = new Events(this.sdkConfiguration);
         this.settlements = new Settlements(this.sdkConfiguration);
+        this.refundSettlements = new RefundSettlements(this.sdkConfiguration);
         this.captures = new Captures(this.sdkConfiguration);
         this.asyncSDK = new AsyncTransactions(this, sdkConfiguration);
     }
@@ -81,6 +83,10 @@ public class Transactions {
 
     public final Settlements settlements() {
         return settlements;
+    }
+
+    public final RefundSettlements refundSettlements() {
+        return refundSettlements;
     }
 
     public final Captures captures() {
