@@ -37,3 +37,7 @@ GiftCardErrorCode custom = GiftCardErrorCode.of("custom_value");
 | `SERVICE_NETWORK_ERROR`         | service_network_error           |
 | `UNKNOWN_ERROR`                 | unknown_error                   |
 | `MAX_GIFT_CARDS_REACHED`        | max_gift_cards_reached          |
+| `SUSPECTED_FRAUD`               | suspected_fraud                 |
+| `CANCELED_PAYMENT_METHOD`       | canceled_payment_method         |
+| `DUPLICATE_TRANSACTION`         | duplicate_transaction           |
+| `UNEXPECTED_STATE`              | unexpected_state                |

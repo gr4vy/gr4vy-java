@@ -69,7 +69,7 @@ public class TransactionCaptureCreate {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("reauthorize_if_authorization_expired")
-    private JsonNullable<Boolean> reauthorizeIfAuthorizationExpired;
+    private Optional<Boolean> reauthorizeIfAuthorizationExpired;
 
     @JsonCreator
     public TransactionCaptureCreate(
@@ -78,7 +78,7 @@ public class TransactionCaptureCreate {
             @JsonProperty("cart_items") JsonNullable<? extends List<CartItem>> cartItems,
             @JsonProperty("final") Optional<Boolean> final_,
             @JsonProperty("external_identifier") JsonNullable<String> externalIdentifier,
-            @JsonProperty("reauthorize_if_authorization_expired") JsonNullable<Boolean> reauthorizeIfAuthorizationExpired) {
+            @JsonProperty("reauthorize_if_authorization_expired") Optional<Boolean> reauthorizeIfAuthorizationExpired) {
         Utils.checkNotNull(amount, "amount");
         Utils.checkNotNull(airline, "airline");
         Utils.checkNotNull(cartItems, "cartItems");
@@ -95,7 +95,7 @@ public class TransactionCaptureCreate {
     
     public TransactionCaptureCreate() {
         this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined());
+            Optional.empty(), JsonNullable.undefined(), Optional.empty());
     }
 
     /**
@@ -147,7 +147,7 @@ public class TransactionCaptureCreate {
      * Whether this capture request should re-authorize the transaction if it has expired.
      */
     @JsonIgnore
-    public JsonNullable<Boolean> reauthorizeIfAuthorizationExpired() {
+    public Optional<Boolean> reauthorizeIfAuthorizationExpired() {
         return reauthorizeIfAuthorizationExpired;
     }
 
@@ -258,14 +258,15 @@ public class TransactionCaptureCreate {
      */
     public TransactionCaptureCreate withReauthorizeIfAuthorizationExpired(boolean reauthorizeIfAuthorizationExpired) {
         Utils.checkNotNull(reauthorizeIfAuthorizationExpired, "reauthorizeIfAuthorizationExpired");
-        this.reauthorizeIfAuthorizationExpired = JsonNullable.of(reauthorizeIfAuthorizationExpired);
+        this.reauthorizeIfAuthorizationExpired = Optional.ofNullable(reauthorizeIfAuthorizationExpired);
         return this;
     }
+
 
     /**
      * Whether this capture request should re-authorize the transaction if it has expired.
      */
-    public TransactionCaptureCreate withReauthorizeIfAuthorizationExpired(JsonNullable<Boolean> reauthorizeIfAuthorizationExpired) {
+    public TransactionCaptureCreate withReauthorizeIfAuthorizationExpired(Optional<Boolean> reauthorizeIfAuthorizationExpired) {
         Utils.checkNotNull(reauthorizeIfAuthorizationExpired, "reauthorizeIfAuthorizationExpired");
         this.reauthorizeIfAuthorizationExpired = reauthorizeIfAuthorizationExpired;
         return this;
@@ -320,7 +321,7 @@ public class TransactionCaptureCreate {
 
         private JsonNullable<String> externalIdentifier = JsonNullable.undefined();
 
-        private JsonNullable<Boolean> reauthorizeIfAuthorizationExpired = JsonNullable.undefined();
+        private Optional<Boolean> reauthorizeIfAuthorizationExpired;
 
         private Builder() {
           // force use of static builder() method
@@ -433,14 +434,14 @@ public class TransactionCaptureCreate {
          */
         public Builder reauthorizeIfAuthorizationExpired(boolean reauthorizeIfAuthorizationExpired) {
             Utils.checkNotNull(reauthorizeIfAuthorizationExpired, "reauthorizeIfAuthorizationExpired");
-            this.reauthorizeIfAuthorizationExpired = JsonNullable.of(reauthorizeIfAuthorizationExpired);
+            this.reauthorizeIfAuthorizationExpired = Optional.ofNullable(reauthorizeIfAuthorizationExpired);
             return this;
         }
 
         /**
          * Whether this capture request should re-authorize the transaction if it has expired.
          */
-        public Builder reauthorizeIfAuthorizationExpired(JsonNullable<Boolean> reauthorizeIfAuthorizationExpired) {
+        public Builder reauthorizeIfAuthorizationExpired(Optional<Boolean> reauthorizeIfAuthorizationExpired) {
             Utils.checkNotNull(reauthorizeIfAuthorizationExpired, "reauthorizeIfAuthorizationExpired");
             this.reauthorizeIfAuthorizationExpired = reauthorizeIfAuthorizationExpired;
             return this;
@@ -449,6 +450,9 @@ public class TransactionCaptureCreate {
         public TransactionCaptureCreate build() {
             if (final_ == null) {
                 final_ = _SINGLETON_VALUE_Final.value();
+            }
+            if (reauthorizeIfAuthorizationExpired == null) {
+                reauthorizeIfAuthorizationExpired = _SINGLETON_VALUE_ReauthorizeIfAuthorizationExpired.value();
             }
 
             return new TransactionCaptureCreate(
@@ -461,6 +465,12 @@ public class TransactionCaptureCreate {
                 new LazySingletonValue<>(
                         "final",
                         "true",
+                        new TypeReference<Optional<Boolean>>() {});
+
+        private static final LazySingletonValue<Optional<Boolean>> _SINGLETON_VALUE_ReauthorizeIfAuthorizationExpired =
+                new LazySingletonValue<>(
+                        "reauthorize_if_authorization_expired",
+                        "false",
                         new TypeReference<Optional<Boolean>>() {});
     }
 }

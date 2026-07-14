@@ -44,6 +44,10 @@ public class GiftCardErrorCode {
     public static final GiftCardErrorCode SERVICE_NETWORK_ERROR = new GiftCardErrorCode("service_network_error");
     public static final GiftCardErrorCode UNKNOWN_ERROR = new GiftCardErrorCode("unknown_error");
     public static final GiftCardErrorCode MAX_GIFT_CARDS_REACHED = new GiftCardErrorCode("max_gift_cards_reached");
+    public static final GiftCardErrorCode SUSPECTED_FRAUD = new GiftCardErrorCode("suspected_fraud");
+    public static final GiftCardErrorCode CANCELED_PAYMENT_METHOD = new GiftCardErrorCode("canceled_payment_method");
+    public static final GiftCardErrorCode DUPLICATE_TRANSACTION = new GiftCardErrorCode("duplicate_transaction");
+    public static final GiftCardErrorCode UNEXPECTED_STATE = new GiftCardErrorCode("unexpected_state");
 
     // This map will grow whenever a Color gets created with a new
     // unrecognized value (a potential memory leak if the user is not
@@ -130,6 +134,10 @@ public class GiftCardErrorCode {
         map.put("service_network_error", SERVICE_NETWORK_ERROR);
         map.put("unknown_error", UNKNOWN_ERROR);
         map.put("max_gift_cards_reached", MAX_GIFT_CARDS_REACHED);
+        map.put("suspected_fraud", SUSPECTED_FRAUD);
+        map.put("canceled_payment_method", CANCELED_PAYMENT_METHOD);
+        map.put("duplicate_transaction", DUPLICATE_TRANSACTION);
+        map.put("unexpected_state", UNEXPECTED_STATE);
         return map;
     }
 
@@ -148,6 +156,10 @@ public class GiftCardErrorCode {
         map.put("service_network_error", GiftCardErrorCodeEnum.SERVICE_NETWORK_ERROR);
         map.put("unknown_error", GiftCardErrorCodeEnum.UNKNOWN_ERROR);
         map.put("max_gift_cards_reached", GiftCardErrorCodeEnum.MAX_GIFT_CARDS_REACHED);
+        map.put("suspected_fraud", GiftCardErrorCodeEnum.SUSPECTED_FRAUD);
+        map.put("canceled_payment_method", GiftCardErrorCodeEnum.CANCELED_PAYMENT_METHOD);
+        map.put("duplicate_transaction", GiftCardErrorCodeEnum.DUPLICATE_TRANSACTION);
+        map.put("unexpected_state", GiftCardErrorCodeEnum.UNEXPECTED_STATE);
         return map;
     }
     
@@ -166,7 +178,11 @@ public class GiftCardErrorCode {
         SERVICE_ERROR("service_error"),
         SERVICE_NETWORK_ERROR("service_network_error"),
         UNKNOWN_ERROR("unknown_error"),
-        MAX_GIFT_CARDS_REACHED("max_gift_cards_reached"),;
+        MAX_GIFT_CARDS_REACHED("max_gift_cards_reached"),
+        SUSPECTED_FRAUD("suspected_fraud"),
+        CANCELED_PAYMENT_METHOD("canceled_payment_method"),
+        DUPLICATE_TRANSACTION("duplicate_transaction"),
+        UNEXPECTED_STATE("unexpected_state"),;
 
         private final String value;
 
