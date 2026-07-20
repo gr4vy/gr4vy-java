@@ -60,6 +60,8 @@ public class Name {
     public static final Name PAYMENT_CONNECTOR_RESPONSE_TRANSACTION_CANCEL_PENDING = new Name("payment-connector-response-transaction-cancel-pending");
     public static final Name PAYMENT_CONNECTOR_RESPONSE_TRANSACTION_CANCEL_FAILED = new Name("payment-connector-response-transaction-cancel-failed");
     public static final Name PAYMENT_CONNECTOR_RESPONSE_TRANSACTION_VOID_SUCCEEDED = new Name("payment-connector-response-transaction-void-succeeded");
+    public static final Name PAYMENT_CONNECTOR_RESPONSE_TRANSACTION_AUTHORIZATION_INCREMENT_SUCCEEDED = new Name("payment-connector-response-transaction-authorization-increment-succeeded");
+    public static final Name PAYMENT_CONNECTOR_RESPONSE_TRANSACTION_AUTHORIZATION_INCREMENT_FAILED = new Name("payment-connector-response-transaction-authorization-increment-failed");
     public static final Name PAYMENT_CONNECTOR_RESPONSE_TRANSACTION_VOID_DECLINED = new Name("payment-connector-response-transaction-void-declined");
     public static final Name PAYMENT_CONNECTOR_RESPONSE_TRANSACTION_VOID_FAILED = new Name("payment-connector-response-transaction-void-failed");
     public static final Name PAYMENT_CONNECTOR_EXTERNAL_TRANSACTION_REQUEST = new Name("payment-connector-external-transaction-request");
@@ -187,6 +189,8 @@ public class Name {
         map.put("payment-connector-response-transaction-cancel-pending", PAYMENT_CONNECTOR_RESPONSE_TRANSACTION_CANCEL_PENDING);
         map.put("payment-connector-response-transaction-cancel-failed", PAYMENT_CONNECTOR_RESPONSE_TRANSACTION_CANCEL_FAILED);
         map.put("payment-connector-response-transaction-void-succeeded", PAYMENT_CONNECTOR_RESPONSE_TRANSACTION_VOID_SUCCEEDED);
+        map.put("payment-connector-response-transaction-authorization-increment-succeeded", PAYMENT_CONNECTOR_RESPONSE_TRANSACTION_AUTHORIZATION_INCREMENT_SUCCEEDED);
+        map.put("payment-connector-response-transaction-authorization-increment-failed", PAYMENT_CONNECTOR_RESPONSE_TRANSACTION_AUTHORIZATION_INCREMENT_FAILED);
         map.put("payment-connector-response-transaction-void-declined", PAYMENT_CONNECTOR_RESPONSE_TRANSACTION_VOID_DECLINED);
         map.put("payment-connector-response-transaction-void-failed", PAYMENT_CONNECTOR_RESPONSE_TRANSACTION_VOID_FAILED);
         map.put("payment-connector-external-transaction-request", PAYMENT_CONNECTOR_EXTERNAL_TRANSACTION_REQUEST);
@@ -246,6 +250,8 @@ public class Name {
         map.put("payment-connector-response-transaction-cancel-pending", NameEnum.PAYMENT_CONNECTOR_RESPONSE_TRANSACTION_CANCEL_PENDING);
         map.put("payment-connector-response-transaction-cancel-failed", NameEnum.PAYMENT_CONNECTOR_RESPONSE_TRANSACTION_CANCEL_FAILED);
         map.put("payment-connector-response-transaction-void-succeeded", NameEnum.PAYMENT_CONNECTOR_RESPONSE_TRANSACTION_VOID_SUCCEEDED);
+        map.put("payment-connector-response-transaction-authorization-increment-succeeded", NameEnum.PAYMENT_CONNECTOR_RESPONSE_TRANSACTION_AUTHORIZATION_INCREMENT_SUCCEEDED);
+        map.put("payment-connector-response-transaction-authorization-increment-failed", NameEnum.PAYMENT_CONNECTOR_RESPONSE_TRANSACTION_AUTHORIZATION_INCREMENT_FAILED);
         map.put("payment-connector-response-transaction-void-declined", NameEnum.PAYMENT_CONNECTOR_RESPONSE_TRANSACTION_VOID_DECLINED);
         map.put("payment-connector-response-transaction-void-failed", NameEnum.PAYMENT_CONNECTOR_RESPONSE_TRANSACTION_VOID_FAILED);
         map.put("payment-connector-external-transaction-request", NameEnum.PAYMENT_CONNECTOR_EXTERNAL_TRANSACTION_REQUEST);
@@ -306,6 +312,8 @@ public class Name {
         PAYMENT_CONNECTOR_RESPONSE_TRANSACTION_CANCEL_PENDING("payment-connector-response-transaction-cancel-pending"),
         PAYMENT_CONNECTOR_RESPONSE_TRANSACTION_CANCEL_FAILED("payment-connector-response-transaction-cancel-failed"),
         PAYMENT_CONNECTOR_RESPONSE_TRANSACTION_VOID_SUCCEEDED("payment-connector-response-transaction-void-succeeded"),
+        PAYMENT_CONNECTOR_RESPONSE_TRANSACTION_AUTHORIZATION_INCREMENT_SUCCEEDED("payment-connector-response-transaction-authorization-increment-succeeded"),
+        PAYMENT_CONNECTOR_RESPONSE_TRANSACTION_AUTHORIZATION_INCREMENT_FAILED("payment-connector-response-transaction-authorization-increment-failed"),
         PAYMENT_CONNECTOR_RESPONSE_TRANSACTION_VOID_DECLINED("payment-connector-response-transaction-void-declined"),
         PAYMENT_CONNECTOR_RESPONSE_TRANSACTION_VOID_FAILED("payment-connector-response-transaction-void-failed"),
         PAYMENT_CONNECTOR_EXTERNAL_TRANSACTION_REQUEST("payment-connector-external-transaction-request"),
