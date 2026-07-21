@@ -445,6 +445,13 @@ public class TransactionConnectionOptions {
     private JsonNullable<? extends TrustlyOptions> trustlyTrustly;
 
     /**
+     * Custom options to be passed to the `worldpayvap-card` connector.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("worldpayvap-card")
+    private JsonNullable<? extends WorldpayVapOptions> worldpayvapCard;
+
+    /**
      * Custom options to be passed to the `wpay-everydaypay` connector.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -521,6 +528,7 @@ public class TransactionConnectionOptions {
             @JsonProperty("stripe-stripe") JsonNullable<? extends StripeOptions> stripeStripe,
             @JsonProperty("travelhub-card") JsonNullable<? extends TravelhubOptions> travelhubCard,
             @JsonProperty("trustly-trustly") JsonNullable<? extends TrustlyOptions> trustlyTrustly,
+            @JsonProperty("worldpayvap-card") JsonNullable<? extends WorldpayVapOptions> worldpayvapCard,
             @JsonProperty("wpay-everydaypay") JsonNullable<? extends WpayEverdaypayOptions> wpayEverydaypay,
             @JsonProperty("wpay-payto") JsonNullable<? extends WpayPaytoOptions> wpayPayto) {
         Utils.checkNotNull(accountUpdater, "accountUpdater");
@@ -584,6 +592,7 @@ public class TransactionConnectionOptions {
         Utils.checkNotNull(stripeStripe, "stripeStripe");
         Utils.checkNotNull(travelhubCard, "travelhubCard");
         Utils.checkNotNull(trustlyTrustly, "trustlyTrustly");
+        Utils.checkNotNull(worldpayvapCard, "worldpayvapCard");
         Utils.checkNotNull(wpayEverydaypay, "wpayEverydaypay");
         Utils.checkNotNull(wpayPayto, "wpayPayto");
         this.accountUpdater = accountUpdater;
@@ -647,6 +656,7 @@ public class TransactionConnectionOptions {
         this.stripeStripe = stripeStripe;
         this.travelhubCard = travelhubCard;
         this.trustlyTrustly = trustlyTrustly;
+        this.worldpayvapCard = worldpayvapCard;
         this.wpayEverydaypay = wpayEverydaypay;
         this.wpayPayto = wpayPayto;
     }
@@ -672,7 +682,8 @@ public class TransactionConnectionOptions {
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined());
     }
 
     /**
@@ -1223,6 +1234,15 @@ public class TransactionConnectionOptions {
     @JsonIgnore
     public JsonNullable<TrustlyOptions> trustlyTrustly() {
         return (JsonNullable<TrustlyOptions>) trustlyTrustly;
+    }
+
+    /**
+     * Custom options to be passed to the `worldpayvap-card` connector.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public JsonNullable<WorldpayVapOptions> worldpayvapCard() {
+        return (JsonNullable<WorldpayVapOptions>) worldpayvapCard;
     }
 
     /**
@@ -2349,6 +2369,24 @@ public class TransactionConnectionOptions {
     }
 
     /**
+     * Custom options to be passed to the `worldpayvap-card` connector.
+     */
+    public TransactionConnectionOptions withWorldpayvapCard(WorldpayVapOptions worldpayvapCard) {
+        Utils.checkNotNull(worldpayvapCard, "worldpayvapCard");
+        this.worldpayvapCard = JsonNullable.of(worldpayvapCard);
+        return this;
+    }
+
+    /**
+     * Custom options to be passed to the `worldpayvap-card` connector.
+     */
+    public TransactionConnectionOptions withWorldpayvapCard(JsonNullable<? extends WorldpayVapOptions> worldpayvapCard) {
+        Utils.checkNotNull(worldpayvapCard, "worldpayvapCard");
+        this.worldpayvapCard = worldpayvapCard;
+        return this;
+    }
+
+    /**
      * Custom options to be passed to the `wpay-everydaypay` connector.
      */
     public TransactionConnectionOptions withWpayEverydaypay(WpayEverdaypayOptions wpayEverydaypay) {
@@ -2455,6 +2493,7 @@ public class TransactionConnectionOptions {
             Utils.enhancedDeepEquals(this.stripeStripe, other.stripeStripe) &&
             Utils.enhancedDeepEquals(this.travelhubCard, other.travelhubCard) &&
             Utils.enhancedDeepEquals(this.trustlyTrustly, other.trustlyTrustly) &&
+            Utils.enhancedDeepEquals(this.worldpayvapCard, other.worldpayvapCard) &&
             Utils.enhancedDeepEquals(this.wpayEverydaypay, other.wpayEverydaypay) &&
             Utils.enhancedDeepEquals(this.wpayPayto, other.wpayPayto);
     }
@@ -2482,7 +2521,8 @@ public class TransactionConnectionOptions {
             paypalPaypalpaylater, powertranzCard, riskifiedAntiFraud,
             stripeAffirm, stripeCard, stripeKlarna,
             stripeOnelink, stripeStripe, travelhubCard,
-            trustlyTrustly, wpayEverydaypay, wpayPayto);
+            trustlyTrustly, worldpayvapCard, wpayEverydaypay,
+            wpayPayto);
     }
     
     @Override
@@ -2549,6 +2589,7 @@ public class TransactionConnectionOptions {
                 "stripeStripe", stripeStripe,
                 "travelhubCard", travelhubCard,
                 "trustlyTrustly", trustlyTrustly,
+                "worldpayvapCard", worldpayvapCard,
                 "wpayEverydaypay", wpayEverydaypay,
                 "wpayPayto", wpayPayto);
     }
@@ -2677,6 +2718,8 @@ public class TransactionConnectionOptions {
         private JsonNullable<? extends TravelhubOptions> travelhubCard = JsonNullable.undefined();
 
         private JsonNullable<? extends TrustlyOptions> trustlyTrustly = JsonNullable.undefined();
+
+        private JsonNullable<? extends WorldpayVapOptions> worldpayvapCard = JsonNullable.undefined();
 
         private JsonNullable<? extends WpayEverdaypayOptions> wpayEverydaypay = JsonNullable.undefined();
 
@@ -3849,6 +3892,25 @@ public class TransactionConnectionOptions {
 
 
         /**
+         * Custom options to be passed to the `worldpayvap-card` connector.
+         */
+        public Builder worldpayvapCard(WorldpayVapOptions worldpayvapCard) {
+            Utils.checkNotNull(worldpayvapCard, "worldpayvapCard");
+            this.worldpayvapCard = JsonNullable.of(worldpayvapCard);
+            return this;
+        }
+
+        /**
+         * Custom options to be passed to the `worldpayvap-card` connector.
+         */
+        public Builder worldpayvapCard(JsonNullable<? extends WorldpayVapOptions> worldpayvapCard) {
+            Utils.checkNotNull(worldpayvapCard, "worldpayvapCard");
+            this.worldpayvapCard = worldpayvapCard;
+            return this;
+        }
+
+
+        /**
          * Custom options to be passed to the `wpay-everydaypay` connector.
          */
         public Builder wpayEverydaypay(WpayEverdaypayOptions wpayEverydaypay) {
@@ -3908,7 +3970,8 @@ public class TransactionConnectionOptions {
                 paypalPaypalpaylater, powertranzCard, riskifiedAntiFraud,
                 stripeAffirm, stripeCard, stripeKlarna,
                 stripeOnelink, stripeStripe, travelhubCard,
-                trustlyTrustly, wpayEverydaypay, wpayPayto);
+                trustlyTrustly, worldpayvapCard, wpayEverydaypay,
+                wpayPayto);
         }
 
     }
