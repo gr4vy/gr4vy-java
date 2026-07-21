@@ -143,6 +143,27 @@ class TransactionsTest {
 
     @Test
     @EnabledIfEnvironmentVariable(named = "E2E", matches = "true")
+    void refundSettlements() throws Exception {
+        Gr4vy client = Harness.client();
+        Transaction t = createApprovedTransaction(client);
+
+        // Listing refund settlements for a real transaction is a happy path.
+        assertNotNull(client.transactions().refundSettlements().list()
+                .transactionId(t.id())
+                .call());
+
+        // A specific refund settlement needs a settled refund the deterministic
+        // mock cannot force, so a missing id reaching a 4xx confirms the get
+        // endpoint was routed to and reached.
+        Reaches.reaches("get transaction refund settlement (missing)", () ->
+                client.transactions().refundSettlements().get()
+                        .transactionId(t.id())
+                        .settlementId(Fixtures.MISSING_ID)
+                        .call());
+    }
+
+    @Test
+    @EnabledIfEnvironmentVariable(named = "E2E", matches = "true")
     void refunds() throws Exception {
         Gr4vy client = Harness.client();
         Transaction t = createApprovedTransaction(client);
