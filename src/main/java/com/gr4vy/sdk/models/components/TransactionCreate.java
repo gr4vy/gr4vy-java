@@ -186,6 +186,15 @@ public class TransactionCreate {
     private JsonNullable<? extends Airline> airline;
 
     /**
+     * An optional description for the transaction. Forwarded to the payment processor where supported.
+     * Unlike `statement_descriptor`, this field has no character limit and does not appear on the buyer's
+     * bank statement.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("description")
+    private JsonNullable<String> description;
+
+    /**
      * An array of cart items that represents the line items of a transaction.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -408,6 +417,7 @@ public class TransactionCreate {
             @JsonProperty("merchant_initiated") Optional<Boolean> merchantInitiated,
             @JsonProperty("payment_source") Optional<? extends TransactionPaymentSource> paymentSource,
             @JsonProperty("airline") JsonNullable<? extends Airline> airline,
+            @JsonProperty("description") JsonNullable<String> description,
             @JsonProperty("cart_items") JsonNullable<? extends List<CartItem>> cartItems,
             @JsonProperty("statement_descriptor") JsonNullable<? extends StatementDescriptor> statementDescriptor,
             @JsonProperty("previous_scheme_transaction_id") JsonNullable<String> previousSchemeTransactionId,
@@ -450,6 +460,7 @@ public class TransactionCreate {
         Utils.checkNotNull(merchantInitiated, "merchantInitiated");
         Utils.checkNotNull(paymentSource, "paymentSource");
         Utils.checkNotNull(airline, "airline");
+        Utils.checkNotNull(description, "description");
         Utils.checkNotNull(cartItems, "cartItems");
         Utils.checkNotNull(statementDescriptor, "statementDescriptor");
         Utils.checkNotNull(previousSchemeTransactionId, "previousSchemeTransactionId");
@@ -492,6 +503,7 @@ public class TransactionCreate {
         this.merchantInitiated = merchantInitiated;
         this.paymentSource = paymentSource;
         this.airline = airline;
+        this.description = description;
         this.cartItems = cartItems;
         this.statementDescriptor = statementDescriptor;
         this.previousSchemeTransactionId = previousSchemeTransactionId;
@@ -529,12 +541,13 @@ public class TransactionCreate {
             Optional.empty(), Optional.empty(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
-            JsonNullable.undefined(), Optional.empty(), Optional.empty(),
+            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
+            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
+            Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
+            JsonNullable.undefined());
     }
 
     /**
@@ -724,6 +737,16 @@ public class TransactionCreate {
     @JsonIgnore
     public JsonNullable<Airline> airline() {
         return (JsonNullable<Airline>) airline;
+    }
+
+    /**
+     * An optional description for the transaction. Forwarded to the payment processor where supported.
+     * Unlike `statement_descriptor`, this field has no character limit and does not appear on the buyer's
+     * bank statement.
+     */
+    @JsonIgnore
+    public JsonNullable<String> description() {
+        return description;
     }
 
     /**
@@ -1344,6 +1367,28 @@ public class TransactionCreate {
     }
 
     /**
+     * An optional description for the transaction. Forwarded to the payment processor where supported.
+     * Unlike `statement_descriptor`, this field has no character limit and does not appear on the buyer's
+     * bank statement.
+     */
+    public TransactionCreate withDescription(String description) {
+        Utils.checkNotNull(description, "description");
+        this.description = JsonNullable.of(description);
+        return this;
+    }
+
+    /**
+     * An optional description for the transaction. Forwarded to the payment processor where supported.
+     * Unlike `statement_descriptor`, this field has no character limit and does not appear on the buyer's
+     * bank statement.
+     */
+    public TransactionCreate withDescription(JsonNullable<String> description) {
+        Utils.checkNotNull(description, "description");
+        this.description = description;
+        return this;
+    }
+
+    /**
      * An array of cart items that represents the line items of a transaction.
      */
     public TransactionCreate withCartItems(List<CartItem> cartItems) {
@@ -1876,6 +1921,7 @@ public class TransactionCreate {
             Utils.enhancedDeepEquals(this.merchantInitiated, other.merchantInitiated) &&
             Utils.enhancedDeepEquals(this.paymentSource, other.paymentSource) &&
             Utils.enhancedDeepEquals(this.airline, other.airline) &&
+            Utils.enhancedDeepEquals(this.description, other.description) &&
             Utils.enhancedDeepEquals(this.cartItems, other.cartItems) &&
             Utils.enhancedDeepEquals(this.statementDescriptor, other.statementDescriptor) &&
             Utils.enhancedDeepEquals(this.previousSchemeTransactionId, other.previousSchemeTransactionId) &&
@@ -1911,14 +1957,15 @@ public class TransactionCreate {
             intent, store, threeDSecureData,
             threeDSecure, metadata, isSubsequentPayment,
             merchantInitiated, paymentSource, airline,
-            cartItems, statementDescriptor, previousSchemeTransactionId,
-            previousTransactionLinkId, browserInfo, shippingDetailsId,
-            connectionOptions, asyncCapture, antiFraudFingerprint,
-            paymentServiceId, accountFundingTransaction, allowPartialAuthorization,
-            recipient, installmentCount, taxAmount,
-            merchantTaxId, purchaseOrderNumber, customerReferenceNumber,
-            amountIncludesTax, supplierOrderNumber, dutyAmount,
-            shippingAmount, integrationClient, approvalExpiresAt);
+            description, cartItems, statementDescriptor,
+            previousSchemeTransactionId, previousTransactionLinkId, browserInfo,
+            shippingDetailsId, connectionOptions, asyncCapture,
+            antiFraudFingerprint, paymentServiceId, accountFundingTransaction,
+            allowPartialAuthorization, recipient, installmentCount,
+            taxAmount, merchantTaxId, purchaseOrderNumber,
+            customerReferenceNumber, amountIncludesTax, supplierOrderNumber,
+            dutyAmount, shippingAmount, integrationClient,
+            approvalExpiresAt);
     }
     
     @Override
@@ -1942,6 +1989,7 @@ public class TransactionCreate {
                 "merchantInitiated", merchantInitiated,
                 "paymentSource", paymentSource,
                 "airline", airline,
+                "description", description,
                 "cartItems", cartItems,
                 "statementDescriptor", statementDescriptor,
                 "previousSchemeTransactionId", previousSchemeTransactionId,
@@ -2006,6 +2054,8 @@ public class TransactionCreate {
         private Optional<? extends TransactionPaymentSource> paymentSource = Optional.empty();
 
         private JsonNullable<? extends Airline> airline = JsonNullable.undefined();
+
+        private JsonNullable<String> description = JsonNullable.undefined();
 
         private JsonNullable<? extends List<CartItem>> cartItems = JsonNullable.undefined();
 
@@ -2448,6 +2498,29 @@ public class TransactionCreate {
         public Builder airline(JsonNullable<? extends Airline> airline) {
             Utils.checkNotNull(airline, "airline");
             this.airline = airline;
+            return this;
+        }
+
+
+        /**
+         * An optional description for the transaction. Forwarded to the payment processor where supported.
+         * Unlike `statement_descriptor`, this field has no character limit and does not appear on the buyer's
+         * bank statement.
+         */
+        public Builder description(String description) {
+            Utils.checkNotNull(description, "description");
+            this.description = JsonNullable.of(description);
+            return this;
+        }
+
+        /**
+         * An optional description for the transaction. Forwarded to the payment processor where supported.
+         * Unlike `statement_descriptor`, this field has no character limit and does not appear on the buyer's
+         * bank statement.
+         */
+        public Builder description(JsonNullable<String> description) {
+            Utils.checkNotNull(description, "description");
+            this.description = description;
             return this;
         }
 
@@ -3004,14 +3077,15 @@ public class TransactionCreate {
                 intent, store, threeDSecureData,
                 threeDSecure, metadata, isSubsequentPayment,
                 merchantInitiated, paymentSource, airline,
-                cartItems, statementDescriptor, previousSchemeTransactionId,
-                previousTransactionLinkId, browserInfo, shippingDetailsId,
-                connectionOptions, asyncCapture, antiFraudFingerprint,
-                paymentServiceId, accountFundingTransaction, allowPartialAuthorization,
-                recipient, installmentCount, taxAmount,
-                merchantTaxId, purchaseOrderNumber, customerReferenceNumber,
-                amountIncludesTax, supplierOrderNumber, dutyAmount,
-                shippingAmount, integrationClient, approvalExpiresAt);
+                description, cartItems, statementDescriptor,
+                previousSchemeTransactionId, previousTransactionLinkId, browserInfo,
+                shippingDetailsId, connectionOptions, asyncCapture,
+                antiFraudFingerprint, paymentServiceId, accountFundingTransaction,
+                allowPartialAuthorization, recipient, installmentCount,
+                taxAmount, merchantTaxId, purchaseOrderNumber,
+                customerReferenceNumber, amountIncludesTax, supplierOrderNumber,
+                dutyAmount, shippingAmount, integrationClient,
+                approvalExpiresAt);
         }
 
 
