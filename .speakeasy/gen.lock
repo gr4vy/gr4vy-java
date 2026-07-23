@@ -1,19 +1,19 @@
 lockVersion: 2.0.0
 id: 5bbaa3a9-baa0-471b-ba6a-13fd88e8c119
 management:
-  docChecksum: d601cdca28bb62f7d6e18e40c0b60a30
+  docChecksum: dc000089a43747ca3b3d40380012db42
   docVersion: 1.0.0
   speakeasyVersion: 1.790.3
   generationVersion: 2.918.4
-  releaseVersion: 2.16.116
-  configChecksum: 27c53acc4ab3dcc92a41a2eb56edad84
+  releaseVersion: 2.16.117
+  configChecksum: 06655f6449575fe253daba8c42ae66cd
   repoURL: https://github.com/gr4vy/gr4vy-java.git
   installationURL: https://github.com/gr4vy/gr4vy-java
   published: true
 persistentEdits:
-  generation_id: 7e99d61a-30e1-46a1-b261-8005f9fc8a8b
-  pristine_commit_hash: e023b1cf176232161d829daa45ef6d012546076f
-  pristine_tree_hash: 1b0145580172b58177e617d738732898cf932d25
+  generation_id: 8b0cb8de-1007-4fa4-9891-bc4e550d3809
+  pristine_commit_hash: 083223dbb0848221954692ef86c38741ff6d3ec4
+  pristine_tree_hash: 29afd5824aaf8fda1c1f4117cc2ff86f852326bf
 features:
   java:
     additionalDependencies: 0.1.0
@@ -568,6 +568,10 @@ trackedFiles:
     id: 040d9b308398
     last_write_checksum: sha1:04c217efdbd47c7fe3e110c7da0d19ccc74ca107
     pristine_git_object: f22b3db40cca48b74c4d9598566460696a05d4e4
+  docs/models/components/GiftCardActivationCreate.md:
+    id: e2ba13478fe3
+    last_write_checksum: sha1:78bbf8f02cb0c8c983ceb80093a96eb7f601aba0
+    pristine_git_object: a751465e2c306d612a5d1535e434b2ef512df48c
   docs/models/components/GiftCardBalanceRequest.md:
     id: c80a3eda305b
     last_write_checksum: sha1:c1f2778ba0fe150682aef69158b5019168d9459c
@@ -1672,6 +1676,14 @@ trackedFiles:
     id: ec17bf2e8999
     last_write_checksum: sha1:6c70e2aaec45c9b55035ed72704f250dc4edb74b
     pristine_git_object: aba85e9d58199b57db3cf62f509c4f33162e0a90
+  docs/models/operations/ActivateGiftCardRequest.md:
+    id: 5de84093c9ee
+    last_write_checksum: sha1:bf0c4b7b2a932b8d29b035170cb90cc2e43b5943
+    pristine_git_object: 832d86085fea9460572a966150f800e1b695cb2f
+  docs/models/operations/ActivateGiftCardResponse.md:
+    id: 6ce3b6123ccb
+    last_write_checksum: sha1:843e3b72932582e21866e6256f4a99327ff3f628
+    pristine_git_object: 857555e494eeb4277829a57a0573cb7654acf52a
   docs/models/operations/AddBuyerRequest.md:
     id: 62d343203c23
     last_write_checksum: sha1:7a23686582f327ee4e360dd9155e7cc85975952c
@@ -2624,6 +2636,10 @@ trackedFiles:
     id: e229cf99e666
     last_write_checksum: sha1:a82dfb47a1fe7d50dc6fbaee535c5c6b341ded6d
     pristine_git_object: 0f7d8fa069ab3f04c91515239d103b286359bd3d
+  docs/sdks/activations/README.md:
+    id: 5e6a3a8cf62a
+    last_write_checksum: sha1:df91083b2d54f4ee6fa90a29ef725a0d524e5e14
+    pristine_git_object: 5ce22e0995ff775c947eb81da5617e8c5bb033dc
   docs/sdks/all/README.md:
     id: 936653be5c4b
     last_write_checksum: sha1:97da642dcdafbb8a8d55336d987af073423d3643
@@ -2778,8 +2794,8 @@ trackedFiles:
     pristine_git_object: 15c4e4642f204ccb312d8814155b69e153b4e19b
   gradle.properties:
     id: 2afbb999f001
-    last_write_checksum: sha1:c98d7a695601572e3e4a74fd331b87a73ddca0a5
-    pristine_git_object: 5791823b373ad66310c27e21d262a2dfe7880df2
+    last_write_checksum: sha1:2203841b199a233ef51e11a05418c8239ef443fa
+    pristine_git_object: c4e8e8013966a2db88d290cda8ecb4296b4c2bb3
   gradle/wrapper/gradle-wrapper.jar:
     id: ec27dae6e852
     last_write_checksum: sha1:f725fb1467084142d74fd7cd8eab691ab3442611
@@ -2812,6 +2828,10 @@ trackedFiles:
     id: 7c86edba82fe
     last_write_checksum: sha1:b0773e26a4e2976a99ec46652571f52b1af78159
     pristine_git_object: b86ebe2ce835d4b6e1021be71f78aa98cd5d477c
+  src/main/java/com/gr4vy/sdk/Activations.java:
+    id: f4748ece3b9b
+    last_write_checksum: sha1:c1c04ebcdca70f4f390b2c8dd41b0af0e05be949
+    pristine_git_object: f8d575aeff5a4ae95238fca7c103c8ba03ecfac7
   src/main/java/com/gr4vy/sdk/All.java:
     id: 234c521b6941
     last_write_checksum: sha1:6ef88cfdfc33ec118f9cc83b188b69433ee939a3
@@ -2828,6 +2848,10 @@ trackedFiles:
     id: 6e9840fe25fe
     last_write_checksum: sha1:afbf98587fe590a1c4ab597503642a0ef891a3c9
     pristine_git_object: 028d3696be7da66d76b84b1353133139769e2079
+  src/main/java/com/gr4vy/sdk/AsyncActivations.java:
+    id: bd7db28e97c1
+    last_write_checksum: sha1:cd8fc9c05774d534000831e440ace6114220658d
+    pristine_git_object: fd9f0372db00a7f0eb65b30dac091a3f799af396
   src/main/java/com/gr4vy/sdk/AsyncAll.java:
     id: 42ccc0a41ddf
     last_write_checksum: sha1:7252df5451de1c20d538f2de57ef003c53c06b65
@@ -2890,8 +2914,8 @@ trackedFiles:
     pristine_git_object: 25aeba074772d8e62b54c2310f1e0fd2742d7df5
   src/main/java/com/gr4vy/sdk/AsyncGiftCards.java:
     id: 371241ed7eda
-    last_write_checksum: sha1:d0285c69d4788d605d4d669e47ef735f7bf46fed
-    pristine_git_object: 16225a13ae2c2ea408f68b32ff53576e805717a8
+    last_write_checksum: sha1:7aabd54717410fda2fe6f2759d65cd783fbf95db
+    pristine_git_object: ddacc9ff0e8b133c93a63555040881c2e7120707
   src/main/java/com/gr4vy/sdk/AsyncGr4vy.java:
     id: ae8f21a7dc22
     last_write_checksum: sha1:c5cf3f07d6e68afd6eb7d8b94085a5aedd0800e3
@@ -3034,8 +3058,8 @@ trackedFiles:
     pristine_git_object: d9350eeb34a6ccbcf7df500e3325782730b8d5a7
   src/main/java/com/gr4vy/sdk/GiftCards.java:
     id: b4a553867645
-    last_write_checksum: sha1:91e4ed6ad25c27d3b6ee7bfca334f359538c78f2
-    pristine_git_object: c0bd05b6b21e7d3f560e27b0c3dead257db4f9ac
+    last_write_checksum: sha1:7e003bbc8f895ee3bf2ac7714e8aa8017f7f0c79
+    pristine_git_object: 19ac3468d38478f4a13d55c7edbfc322604b6e3f
   src/main/java/com/gr4vy/sdk/Gr4vy.java:
     id: 239506d7cead
     last_write_checksum: sha1:2f29ae77ade0777daf380025889f80ead0fd379f
@@ -3098,8 +3122,8 @@ trackedFiles:
     pristine_git_object: 502a7312d3dc82c102dbaf7ed5e952d0c793e26f
   src/main/java/com/gr4vy/sdk/SDKConfiguration.java:
     id: 73a7edeaca45
-    last_write_checksum: sha1:d5d136e9129835dddbd64d8b8c98a901e910efc6
-    pristine_git_object: f8cef02007838cdbf237e5adef295fce5de540c8
+    last_write_checksum: sha1:3d16c1cf992391dde428fd59661703def5d152fc
+    pristine_git_object: b5cb428abc6f746389d187cfbd7d7133965cdc18
   src/main/java/com/gr4vy/sdk/SecuritySource.java:
     id: 1b6add6b9b50
     last_write_checksum: sha1:2f365cc823c6243188e83f4df618c9737fcee8bd
@@ -3652,6 +3676,10 @@ trackedFiles:
     id: 25f48a4f3105
     last_write_checksum: sha1:d3d091a3e84d03f8ab36abd85a1f329fcf2665dd
     pristine_git_object: 86e82602250ebfd5bb1c46be7009785dd34dd693
+  src/main/java/com/gr4vy/sdk/models/components/GiftCardActivationCreate.java:
+    id: 888f251c8e49
+    last_write_checksum: sha1:5a418c7d1d2ec2556a69929b565956227bf8f3b8
+    pristine_git_object: 14f65504b8de0f60f7de854697bb76d498d6aed6
   src/main/java/com/gr4vy/sdk/models/components/GiftCardBalanceRequest.java:
     id: 170501161b7d
     last_write_checksum: sha1:f742fd871283b30d36fd4a9c99d95508f71a4efd
@@ -4780,6 +4808,10 @@ trackedFiles:
     id: abb4e6ec572d
     last_write_checksum: sha1:da61714aa809fd6dc83fbd51f3d897d8b2b82d08
     pristine_git_object: e92369fc80631b9270d11bd68f73c5a9ba09d760
+  src/main/java/com/gr4vy/sdk/models/operations//async/ActivateGiftCardRequestBuilder.java:
+    id: 14e5b5f14015
+    last_write_checksum: sha1:123dd7529f3dd43d815f5f5e516dd7de0ee648c6
+    pristine_git_object: 6b9e2d7538d2f0e0b040981731c5692058eed2d1
   src/main/java/com/gr4vy/sdk/models/operations//async/AddBuyerRequestBuilder.java:
     id: de48d2b0098d
     last_write_checksum: sha1:ff03232b38a3522825d093f71b26523cde58e001
@@ -5244,6 +5276,18 @@ trackedFiles:
     id: d3925d992927
     last_write_checksum: sha1:35027f724df5b5de0be7dd43e374548339236850
     pristine_git_object: 231c23327faf1e69847e5df435a5b818431d00ff
+  src/main/java/com/gr4vy/sdk/models/operations/ActivateGiftCardRequest.java:
+    id: d5a7fa9ba9a8
+    last_write_checksum: sha1:39d3080734974664ebc24cc56724399dd2948384
+    pristine_git_object: 345d53f87d2c5c4cf3b9c815acff0c0625ecafca
+  src/main/java/com/gr4vy/sdk/models/operations/ActivateGiftCardRequestBuilder.java:
+    id: 773dd0c9e941
+    last_write_checksum: sha1:557b478d5733304f6642e24604066b4b2d72f005
+    pristine_git_object: be702ce68f48a7d5293083dc9102bdd042e5238b
+  src/main/java/com/gr4vy/sdk/models/operations/ActivateGiftCardResponse.java:
+    id: 7089d4b32548
+    last_write_checksum: sha1:8bacd1cd773487a755d29ca03b04c7a1389e468d
+    pristine_git_object: 1f2a840217f41a4d741381adf1eea436b0b39b2f
   src/main/java/com/gr4vy/sdk/models/operations/AddBuyerRequest.java:
     id: 2146acc3be1b
     last_write_checksum: sha1:1a8ad024061bca41a1c94e73f669da3095e4c28a
@@ -6656,6 +6700,10 @@ trackedFiles:
     id: 5ea58d3e0baa
     last_write_checksum: sha1:07036ac66bfa8574ce5686f6d210315e363575db
     pristine_git_object: bcb221947062a4b08d6c037eb893b3d5e24a5632
+  src/main/java/com/gr4vy/sdk/models/operations/async/ActivateGiftCardResponse.java:
+    id: 41bd08ddbf0b
+    last_write_checksum: sha1:dd357024ee7fdb4c67535508d88951958fb0f50d
+    pristine_git_object: 34429be8a5fcaeb22fd0a70d8d2174c4322d01a2
   src/main/java/com/gr4vy/sdk/models/operations/async/AddBuyerResponse.java:
     id: 48afa8147434
     last_write_checksum: sha1:80f83e179409c1af464ed7ae3d9f2e35511284f7
@@ -7120,6 +7168,10 @@ trackedFiles:
     id: 2b8a0d3e2aee
     last_write_checksum: sha1:8d5308d647325522c1faf76500daa4e50b9c00e5
     pristine_git_object: 7c9b9291863e63386f53d03ef0940a83dbda8b53
+  src/main/java/com/gr4vy/sdk/operations/ActivateGiftCard.java:
+    id: 27858570f002
+    last_write_checksum: sha1:b64abb8851c9489ee62fc51f6d4a847053f9c64e
+    pristine_git_object: 9a621b2ed02dd6d24a7fe94028daf73b1ace2d63
   src/main/java/com/gr4vy/sdk/operations/AddBuyer.java:
     id: dba293f0bbdd
     last_write_checksum: sha1:9d46d1c350698b9e237fe929a0450fa791da7c82
@@ -12067,35 +12119,42 @@ examples:
           application/json: {"type": "error", "code": "bad_gateway", "status": 502, "message": "Request could not be processed"}
         "504":
           application/json: {"type": "error", "code": "gateway_timeout", "status": 504, "message": "Request could not be processed"}
+  activate_gift_card:
+    speakeasy-default-activate-gift-card:
+      requestBody:
+        application/json: {"number": "4123455541234561234"}
+      responses:
+        "201":
+          application/json: {"type": "gift-card", "id": "356d56e5-fe16-42ae-97ee-8d55d846ae2e", "merchant_account_id": "default", "gift_card_service": {"type": "gift-card-service", "id": "35b60feec-a7c7-4844-b503-f39b09192d81", "gift_card_service_definition_id": "valuelink-gift-card", "display_name": "Qwikcilver USA"}, "bin": "412345", "sub_bin": "554", "last4": "1234", "created_at": "2013-07-16T19:23:00.000+00:00", "updated_at": "2013-07-16T19:23:00.000+00:00", "usage_count": 100, "cit_usage_count": 50}
+        "400":
+          application/json: {"type": "error", "code": "bad_request", "status": 400, "message": "Request failed validation"}
+        "401":
+          application/json: {"type": "error", "code": "unauthorized", "status": 401, "message": "No valid API authentication found"}
+        "403":
+          application/json: {"type": "error", "code": "forbidden", "status": 403, "message": "Request failed validation"}
+        "404":
+          application/json: {"type": "error", "code": "not_found", "status": 404, "message": "The resource could not be found"}
+        "405":
+          application/json: {"type": "error", "code": "method_not_allowed", "status": 405, "message": "Method Not Allowed"}
+        "409":
+          application/json: {"type": "error", "code": "duplicate_record", "status": 409, "message": "Request failed validation"}
+        "422":
+          application/json: {}
+        "425":
+          application/json: {"type": "error", "code": "too_early", "status": 425, "message": "Request failed validation"}
+        "429":
+          application/json: {"type": "error", "code": "too_many_requests", "status": 429, "message": "Request failed validation"}
+        "500":
+          application/json: {"type": "error", "code": "server_error", "status": 500, "message": "Request could not be processed"}
+        "502":
+          application/json: {"type": "error", "code": "bad_gateway", "status": 502, "message": "Request could not be processed"}
+        "504":
+          application/json: {"type": "error", "code": "gateway_timeout", "status": 504, "message": "Request could not be processed"}
 examplesVersion: 1.0.2
 generatedTests: {}
 releaseNotes: |
   ## Java SDK Changes:
-  * `gr4vy.buyers.list()`:  `response.items[].reconciliationId` **Added**
-  * `gr4vy.buyers.create()`:  `response.reconciliationId` **Added**
-  * `gr4vy.buyers.get()`:  `response.reconciliationId` **Added**
-  * `gr4vy.buyers.update()`:  `response.reconciliationId` **Added**
-  * `gr4vy.paymentMethods.list()`:  `response.items[].buyer.reconciliationId` **Added**
-  * `gr4vy.paymentMethods.create()`:  `response.buyer.reconciliationId` **Added**
-  * `gr4vy.paymentMethods.get()`:  `response.buyer.reconciliationId` **Added**
-  * `gr4vy.paymentMethods.update()`:  `response.buyer.reconciliationId` **Added**
-  * `gr4vy.giftCards.get()`:  `response.buyer.reconciliationId` **Added**
-  * `gr4vy.giftCards.create()`:  `response.buyer.reconciliationId` **Added**
-  * `gr4vy.giftCards.list()`:  `response.items[].buyer.reconciliationId` **Added**
-  * `gr4vy.transactions.list()`:  `response.items[].buyer.reconciliationId` **Added**
-  * `gr4vy.transactions.create()`:  `response.buyer.reconciliationId` **Added**
-  * `gr4vy.transactions.get()`:  `response.buyer.reconciliationId` **Added**
-  * `gr4vy.transactions.update()`:  `response.buyer.reconciliationId` **Added**
-  * `gr4vy.transactions.capture()`:  `response.union(Transaction).buyer.reconciliationId` **Added**
-  * `gr4vy.transactions.void()`:  `response.union(Transaction).buyer.reconciliationId` **Added**
-  * `gr4vy.transactions.cancel()`:  `response.transaction.buyer.reconciliationId` **Added**
-  * `gr4vy.transactions.sync()`:  `response.buyer.reconciliationId` **Added**
-  * `gr4vy.payouts.list()`:  `response.items[].buyer.reconciliationId` **Added**
-  * `gr4vy.payouts.create()`:  `response.buyer.reconciliationId` **Added**
-  * `gr4vy.payouts.get()`:  `response.buyer.reconciliationId` **Added**
-  * `gr4vy.paymentLinks.create()`:  `response.buyer.reconciliationId` **Added**
-  * `gr4vy.paymentLinks.list()`:  `response.items[].buyer.reconciliationId` **Added**
-  * `gr4vy.paymentLinks.get()`:  `response.buyer.reconciliationId` **Added**
+  * `gr4vy.giftCards.activations.create()`: **Added**
 generatedFiles:
   - .gitattributes
   - USAGE.md
