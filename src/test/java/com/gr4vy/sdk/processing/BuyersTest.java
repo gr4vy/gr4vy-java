@@ -34,10 +34,11 @@ class BuyersTest {
     }
 
     private static String buyerId(Buyer b) {
-        if (!b.id().isPresent()) {
+        String id = b.id();
+        if (id == null) {
             fail("buyer id was not present on create response");
         }
-        return b.id().get();
+        return id;
     }
 
     @Test

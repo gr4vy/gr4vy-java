@@ -46,9 +46,8 @@ class BuyerLifecycleTest {
                         .build())
                 .call();
         Buyer created = createRes.buyer().orElseThrow();
-        assertTrue(created.id().isPresent(), "buyer create returned no id");
-        String buyerId = created.id().get();
-        assertNotNull(buyerId);
+        String buyerId = created.id();
+        assertNotNull(buyerId, "buyer create returned no id");
         assertEquals("E2E buyer", created.displayName().orElse(null));
 
         // 2. Read the buyer back.
@@ -56,7 +55,7 @@ class BuyerLifecycleTest {
                 .buyerId(buyerId)
                 .call();
         Buyer fetched = getRes.buyer().orElseThrow();
-        assertEquals(buyerId, fetched.id().orElse(null));
+        assertEquals(buyerId, fetched.id());
 
         // 3. Update the display name.
         UpdateBuyerResponse updateRes = client.buyers().update()

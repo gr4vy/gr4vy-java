@@ -30,9 +30,8 @@ public class Buyer {
     /**
      * The ID for the buyer.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("id")
-    private JsonNullable<String> id;
+    private String id;
 
     /**
      * The ID of the merchant account this buyer belongs to.
@@ -82,7 +81,7 @@ public class Buyer {
 
     @JsonCreator
     public Buyer(
-            @JsonProperty("id") JsonNullable<String> id,
+            @JsonProperty("id") String id,
             @JsonProperty("merchant_account_id") String merchantAccountId,
             @JsonProperty("display_name") JsonNullable<String> displayName,
             @JsonProperty("external_identifier") JsonNullable<String> externalIdentifier,
@@ -110,10 +109,11 @@ public class Buyer {
     }
     
     public Buyer(
+            String id,
             String merchantAccountId,
             OffsetDateTime createdAt,
             OffsetDateTime updatedAt) {
-        this(JsonNullable.undefined(), merchantAccountId, JsonNullable.undefined(),
+        this(id, merchantAccountId, JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             createdAt, updatedAt);
     }
@@ -130,7 +130,7 @@ public class Buyer {
      * The ID for the buyer.
      */
     @JsonIgnore
-    public JsonNullable<String> id() {
+    public String id() {
         return id;
     }
 
@@ -200,15 +200,6 @@ public class Buyer {
      * The ID for the buyer.
      */
     public Buyer withId(String id) {
-        Utils.checkNotNull(id, "id");
-        this.id = JsonNullable.of(id);
-        return this;
-    }
-
-    /**
-     * The ID for the buyer.
-     */
-    public Buyer withId(JsonNullable<String> id) {
         Utils.checkNotNull(id, "id");
         this.id = id;
         return this;
@@ -359,7 +350,7 @@ public class Buyer {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private JsonNullable<String> id = JsonNullable.undefined();
+        private String id;
 
         private String merchantAccountId;
 
@@ -384,15 +375,6 @@ public class Buyer {
          * The ID for the buyer.
          */
         public Builder id(String id) {
-            Utils.checkNotNull(id, "id");
-            this.id = JsonNullable.of(id);
-            return this;
-        }
-
-        /**
-         * The ID for the buyer.
-         */
-        public Builder id(JsonNullable<String> id) {
             Utils.checkNotNull(id, "id");
             this.id = id;
             return this;
