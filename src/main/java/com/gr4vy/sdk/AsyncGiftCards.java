@@ -34,16 +34,22 @@ public class AsyncGiftCards {
     private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final AsyncBalances balances;
+    private final AsyncActivations activations;
     private final GiftCards syncSDK;
 
     AsyncGiftCards(GiftCards syncSDK, SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
         this.balances = new AsyncBalances(syncSDK.balances(), this.sdkConfiguration);
+        this.activations = new AsyncActivations(syncSDK.activations(), this.sdkConfiguration);
         this.syncSDK = syncSDK;
     }
 
     public final AsyncBalances balances() {
         return balances;
+    }
+
+    public final AsyncActivations activations() {
+        return activations;
     }
 
     /**
