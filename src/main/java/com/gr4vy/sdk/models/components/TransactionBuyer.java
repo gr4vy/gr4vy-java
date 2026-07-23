@@ -34,6 +34,15 @@ public class TransactionBuyer {
     private JsonNullable<String> id;
 
     /**
+     * The base62 encoded buyer ID. This represents a shorter version of this buyer's `id` which is sent to
+     * payment services, anti-fraud services, and other connectors. You can use this ID to reconcile a
+     * payment service's buyer against our system.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("reconciliation_id")
+    private JsonNullable<String> reconciliationId;
+
+    /**
      * The display name for the buyer.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -64,17 +73,20 @@ public class TransactionBuyer {
     @JsonCreator
     public TransactionBuyer(
             @JsonProperty("id") JsonNullable<String> id,
+            @JsonProperty("reconciliation_id") JsonNullable<String> reconciliationId,
             @JsonProperty("display_name") JsonNullable<String> displayName,
             @JsonProperty("external_identifier") JsonNullable<String> externalIdentifier,
             @JsonProperty("billing_details") JsonNullable<? extends BillingDetails> billingDetails,
             @JsonProperty("account_number") JsonNullable<String> accountNumber) {
         Utils.checkNotNull(id, "id");
+        Utils.checkNotNull(reconciliationId, "reconciliationId");
         Utils.checkNotNull(displayName, "displayName");
         Utils.checkNotNull(externalIdentifier, "externalIdentifier");
         Utils.checkNotNull(billingDetails, "billingDetails");
         Utils.checkNotNull(accountNumber, "accountNumber");
         this.type = Builder._SINGLETON_VALUE_Type.value();
         this.id = id;
+        this.reconciliationId = reconciliationId;
         this.displayName = displayName;
         this.externalIdentifier = externalIdentifier;
         this.billingDetails = billingDetails;
@@ -83,7 +95,7 @@ public class TransactionBuyer {
     
     public TransactionBuyer() {
         this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined());
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
     }
 
     /**
@@ -100,6 +112,16 @@ public class TransactionBuyer {
     @JsonIgnore
     public JsonNullable<String> id() {
         return id;
+    }
+
+    /**
+     * The base62 encoded buyer ID. This represents a shorter version of this buyer's `id` which is sent to
+     * payment services, anti-fraud services, and other connectors. You can use this ID to reconcile a
+     * payment service's buyer against our system.
+     */
+    @JsonIgnore
+    public JsonNullable<String> reconciliationId() {
+        return reconciliationId;
     }
 
     /**
@@ -155,6 +177,28 @@ public class TransactionBuyer {
     public TransactionBuyer withId(JsonNullable<String> id) {
         Utils.checkNotNull(id, "id");
         this.id = id;
+        return this;
+    }
+
+    /**
+     * The base62 encoded buyer ID. This represents a shorter version of this buyer's `id` which is sent to
+     * payment services, anti-fraud services, and other connectors. You can use this ID to reconcile a
+     * payment service's buyer against our system.
+     */
+    public TransactionBuyer withReconciliationId(String reconciliationId) {
+        Utils.checkNotNull(reconciliationId, "reconciliationId");
+        this.reconciliationId = JsonNullable.of(reconciliationId);
+        return this;
+    }
+
+    /**
+     * The base62 encoded buyer ID. This represents a shorter version of this buyer's `id` which is sent to
+     * payment services, anti-fraud services, and other connectors. You can use this ID to reconcile a
+     * payment service's buyer against our system.
+     */
+    public TransactionBuyer withReconciliationId(JsonNullable<String> reconciliationId) {
+        Utils.checkNotNull(reconciliationId, "reconciliationId");
+        this.reconciliationId = reconciliationId;
         return this;
     }
 
@@ -242,6 +286,7 @@ public class TransactionBuyer {
         return 
             Utils.enhancedDeepEquals(this.type, other.type) &&
             Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.reconciliationId, other.reconciliationId) &&
             Utils.enhancedDeepEquals(this.displayName, other.displayName) &&
             Utils.enhancedDeepEquals(this.externalIdentifier, other.externalIdentifier) &&
             Utils.enhancedDeepEquals(this.billingDetails, other.billingDetails) &&
@@ -251,8 +296,9 @@ public class TransactionBuyer {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            type, id, displayName,
-            externalIdentifier, billingDetails, accountNumber);
+            type, id, reconciliationId,
+            displayName, externalIdentifier, billingDetails,
+            accountNumber);
     }
     
     @Override
@@ -260,6 +306,7 @@ public class TransactionBuyer {
         return Utils.toString(TransactionBuyer.class,
                 "type", type,
                 "id", id,
+                "reconciliationId", reconciliationId,
                 "displayName", displayName,
                 "externalIdentifier", externalIdentifier,
                 "billingDetails", billingDetails,
@@ -270,6 +317,8 @@ public class TransactionBuyer {
     public final static class Builder {
 
         private JsonNullable<String> id = JsonNullable.undefined();
+
+        private JsonNullable<String> reconciliationId = JsonNullable.undefined();
 
         private JsonNullable<String> displayName = JsonNullable.undefined();
 
@@ -299,6 +348,29 @@ public class TransactionBuyer {
         public Builder id(JsonNullable<String> id) {
             Utils.checkNotNull(id, "id");
             this.id = id;
+            return this;
+        }
+
+
+        /**
+         * The base62 encoded buyer ID. This represents a shorter version of this buyer's `id` which is sent to
+         * payment services, anti-fraud services, and other connectors. You can use this ID to reconcile a
+         * payment service's buyer against our system.
+         */
+        public Builder reconciliationId(String reconciliationId) {
+            Utils.checkNotNull(reconciliationId, "reconciliationId");
+            this.reconciliationId = JsonNullable.of(reconciliationId);
+            return this;
+        }
+
+        /**
+         * The base62 encoded buyer ID. This represents a shorter version of this buyer's `id` which is sent to
+         * payment services, anti-fraud services, and other connectors. You can use this ID to reconcile a
+         * payment service's buyer against our system.
+         */
+        public Builder reconciliationId(JsonNullable<String> reconciliationId) {
+            Utils.checkNotNull(reconciliationId, "reconciliationId");
+            this.reconciliationId = reconciliationId;
             return this;
         }
 
@@ -381,8 +453,8 @@ public class TransactionBuyer {
         public TransactionBuyer build() {
 
             return new TransactionBuyer(
-                id, displayName, externalIdentifier,
-                billingDetails, accountNumber);
+                id, reconciliationId, displayName,
+                externalIdentifier, billingDetails, accountNumber);
         }
 
 

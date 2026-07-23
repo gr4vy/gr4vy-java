@@ -34,6 +34,14 @@ public class Buyer {
     private String id;
 
     /**
+     * The base62 encoded buyer ID. This represents a shorter version of this buyer's `id` which is sent to
+     * payment services, anti-fraud services, and other connectors. You can use this ID to reconcile a
+     * payment service's buyer against our system.
+     */
+    @JsonProperty("reconciliation_id")
+    private String reconciliationId;
+
+    /**
      * The ID of the merchant account this buyer belongs to.
      */
     @JsonProperty("merchant_account_id")
@@ -82,6 +90,7 @@ public class Buyer {
     @JsonCreator
     public Buyer(
             @JsonProperty("id") String id,
+            @JsonProperty("reconciliation_id") String reconciliationId,
             @JsonProperty("merchant_account_id") String merchantAccountId,
             @JsonProperty("display_name") JsonNullable<String> displayName,
             @JsonProperty("external_identifier") JsonNullable<String> externalIdentifier,
@@ -90,6 +99,7 @@ public class Buyer {
             @JsonProperty("created_at") OffsetDateTime createdAt,
             @JsonProperty("updated_at") OffsetDateTime updatedAt) {
         Utils.checkNotNull(id, "id");
+        Utils.checkNotNull(reconciliationId, "reconciliationId");
         Utils.checkNotNull(merchantAccountId, "merchantAccountId");
         Utils.checkNotNull(displayName, "displayName");
         Utils.checkNotNull(externalIdentifier, "externalIdentifier");
@@ -99,6 +109,7 @@ public class Buyer {
         Utils.checkNotNull(updatedAt, "updatedAt");
         this.type = Builder._SINGLETON_VALUE_Type.value();
         this.id = id;
+        this.reconciliationId = reconciliationId;
         this.merchantAccountId = merchantAccountId;
         this.displayName = displayName;
         this.externalIdentifier = externalIdentifier;
@@ -110,12 +121,13 @@ public class Buyer {
     
     public Buyer(
             String id,
+            String reconciliationId,
             String merchantAccountId,
             OffsetDateTime createdAt,
             OffsetDateTime updatedAt) {
-        this(id, merchantAccountId, JsonNullable.undefined(),
+        this(id, reconciliationId, merchantAccountId,
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            createdAt, updatedAt);
+            JsonNullable.undefined(), createdAt, updatedAt);
     }
 
     /**
@@ -132,6 +144,16 @@ public class Buyer {
     @JsonIgnore
     public String id() {
         return id;
+    }
+
+    /**
+     * The base62 encoded buyer ID. This represents a shorter version of this buyer's `id` which is sent to
+     * payment services, anti-fraud services, and other connectors. You can use this ID to reconcile a
+     * payment service's buyer against our system.
+     */
+    @JsonIgnore
+    public String reconciliationId() {
+        return reconciliationId;
     }
 
     /**
@@ -202,6 +224,17 @@ public class Buyer {
     public Buyer withId(String id) {
         Utils.checkNotNull(id, "id");
         this.id = id;
+        return this;
+    }
+
+    /**
+     * The base62 encoded buyer ID. This represents a shorter version of this buyer's `id` which is sent to
+     * payment services, anti-fraud services, and other connectors. You can use this ID to reconcile a
+     * payment service's buyer against our system.
+     */
+    public Buyer withReconciliationId(String reconciliationId) {
+        Utils.checkNotNull(reconciliationId, "reconciliationId");
+        this.reconciliationId = reconciliationId;
         return this;
     }
 
@@ -316,6 +349,7 @@ public class Buyer {
         return 
             Utils.enhancedDeepEquals(this.type, other.type) &&
             Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.reconciliationId, other.reconciliationId) &&
             Utils.enhancedDeepEquals(this.merchantAccountId, other.merchantAccountId) &&
             Utils.enhancedDeepEquals(this.displayName, other.displayName) &&
             Utils.enhancedDeepEquals(this.externalIdentifier, other.externalIdentifier) &&
@@ -328,9 +362,10 @@ public class Buyer {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            type, id, merchantAccountId,
-            displayName, externalIdentifier, billingDetails,
-            accountNumber, createdAt, updatedAt);
+            type, id, reconciliationId,
+            merchantAccountId, displayName, externalIdentifier,
+            billingDetails, accountNumber, createdAt,
+            updatedAt);
     }
     
     @Override
@@ -338,6 +373,7 @@ public class Buyer {
         return Utils.toString(Buyer.class,
                 "type", type,
                 "id", id,
+                "reconciliationId", reconciliationId,
                 "merchantAccountId", merchantAccountId,
                 "displayName", displayName,
                 "externalIdentifier", externalIdentifier,
@@ -351,6 +387,8 @@ public class Buyer {
     public final static class Builder {
 
         private String id;
+
+        private String reconciliationId;
 
         private String merchantAccountId;
 
@@ -377,6 +415,18 @@ public class Buyer {
         public Builder id(String id) {
             Utils.checkNotNull(id, "id");
             this.id = id;
+            return this;
+        }
+
+
+        /**
+         * The base62 encoded buyer ID. This represents a shorter version of this buyer's `id` which is sent to
+         * payment services, anti-fraud services, and other connectors. You can use this ID to reconcile a
+         * payment service's buyer against our system.
+         */
+        public Builder reconciliationId(String reconciliationId) {
+            Utils.checkNotNull(reconciliationId, "reconciliationId");
+            this.reconciliationId = reconciliationId;
             return this;
         }
 
@@ -489,9 +539,9 @@ public class Buyer {
         public Buyer build() {
 
             return new Buyer(
-                id, merchantAccountId, displayName,
-                externalIdentifier, billingDetails, accountNumber,
-                createdAt, updatedAt);
+                id, reconciliationId, merchantAccountId,
+                displayName, externalIdentifier, billingDetails,
+                accountNumber, createdAt, updatedAt);
         }
 
 

@@ -1,19 +1,19 @@
 lockVersion: 2.0.0
 id: 5bbaa3a9-baa0-471b-ba6a-13fd88e8c119
 management:
-  docChecksum: 77fd647d60bf5f580d3e38677a9343c9
+  docChecksum: d601cdca28bb62f7d6e18e40c0b60a30
   docVersion: 1.0.0
   speakeasyVersion: 1.790.3
   generationVersion: 2.918.4
-  releaseVersion: 2.16.115
-  configChecksum: db1de4976388bbc53d869efb3d04dc27
+  releaseVersion: 2.16.116
+  configChecksum: 27c53acc4ab3dcc92a41a2eb56edad84
   repoURL: https://github.com/gr4vy/gr4vy-java.git
   installationURL: https://github.com/gr4vy/gr4vy-java
   published: true
 persistentEdits:
-  generation_id: 1b5d3c10-fcb3-4432-b6e6-435ed4ebd28a
-  pristine_commit_hash: 8ee93ae11423bdd01ab7735f872bbc41030cf8dd
-  pristine_tree_hash: 90c5c6f419d611cc8e4374c255d9debac2c7f946
+  generation_id: 7e99d61a-30e1-46a1-b261-8005f9fc8a8b
+  pristine_commit_hash: e023b1cf176232161d829daa45ef6d012546076f
+  pristine_tree_hash: 1b0145580172b58177e617d738732898cf932d25
 features:
   java:
     additionalDependencies: 0.1.0
@@ -238,8 +238,8 @@ trackedFiles:
     pristine_git_object: 983c5ca0faebd5342868833ca7f8b8b6c5b59939
   docs/models/components/Buyer.md:
     id: 0ec7798c2f1e
-    last_write_checksum: sha1:3591ebe5b5e389144818b962861e45253cd4ac63
-    pristine_git_object: 644ee855bc568d07e22700010119947ce5e81ca8
+    last_write_checksum: sha1:2b6ed97739774d6b914b6ceef7c4811400578ae7
+    pristine_git_object: 07842d617ade3ecef698a994a65fac62854759ab
   docs/models/components/BuyerCreate.md:
     id: 3c8953927ef9
     last_write_checksum: sha1:8bbb2eae37b7c3051d47f8753d74c633da8df006
@@ -1458,8 +1458,8 @@ trackedFiles:
     pristine_git_object: b57f6dff53780c04e40354cbf0ff2c9b0f4d00c4
   docs/models/components/TransactionBuyer.md:
     id: 31b4c412193a
-    last_write_checksum: sha1:65d59a8e48a7c154609da24b7300f2b37c1a7a9c
-    pristine_git_object: 9ecc8bfeecafc40df3c0b84c116cd88bad1dc690
+    last_write_checksum: sha1:9dd6d124261f8feeba70ef68dbca4907bc672e4b
+    pristine_git_object: 78d39ae9edf8b7dff96f702fa8a8509d5ec709db
   docs/models/components/TransactionCancel.md:
     id: 50c3210e5918
     last_write_checksum: sha1:7d2dea1b626710a95956551a8a4d325d96a4d983
@@ -2778,8 +2778,8 @@ trackedFiles:
     pristine_git_object: 15c4e4642f204ccb312d8814155b69e153b4e19b
   gradle.properties:
     id: 2afbb999f001
-    last_write_checksum: sha1:8671ceaeb22f4eb413d22dba73267e648de02d9c
-    pristine_git_object: c9cea298678c55e5abd49fdc0aabc13869ee913e
+    last_write_checksum: sha1:c98d7a695601572e3e4a74fd331b87a73ddca0a5
+    pristine_git_object: 5791823b373ad66310c27e21d262a2dfe7880df2
   gradle/wrapper/gradle-wrapper.jar:
     id: ec27dae6e852
     last_write_checksum: sha1:f725fb1467084142d74fd7cd8eab691ab3442611
@@ -3098,8 +3098,8 @@ trackedFiles:
     pristine_git_object: 502a7312d3dc82c102dbaf7ed5e952d0c793e26f
   src/main/java/com/gr4vy/sdk/SDKConfiguration.java:
     id: 73a7edeaca45
-    last_write_checksum: sha1:8fe7bb2f55bf5291f8d9e0536027fa54901932fc
-    pristine_git_object: 06d75919c02c06502aacd89bb2f17d47362895ed
+    last_write_checksum: sha1:d5d136e9129835dddbd64d8b8c98a901e910efc6
+    pristine_git_object: f8cef02007838cdbf237e5adef295fce5de540c8
   src/main/java/com/gr4vy/sdk/SecuritySource.java:
     id: 1b6add6b9b50
     last_write_checksum: sha1:2f365cc823c6243188e83f4df618c9737fcee8bd
@@ -3322,8 +3322,8 @@ trackedFiles:
     pristine_git_object: 3f893d0f5a712e5053b1dae1a71ea09e3120e7e0
   src/main/java/com/gr4vy/sdk/models/components/Buyer.java:
     id: dcf09dd4bed8
-    last_write_checksum: sha1:86af18a87f0e90ca0cf25271a1fdb8f78aca77b6
-    pristine_git_object: 9fd72922f0ddd167d2af054360508f0c44183c76
+    last_write_checksum: sha1:1ff02d358e61394b369199036b4df9ec7ed89ce8
+    pristine_git_object: a0c5aeedede30ac0cb31cd138fb6400dbbc08ee8
   src/main/java/com/gr4vy/sdk/models/components/BuyerCreate.java:
     id: 5fae9252e332
     last_write_checksum: sha1:d099590c56a0cbebbd6fccb75a701c73cb2a4440
@@ -4546,8 +4546,8 @@ trackedFiles:
     pristine_git_object: 8e5f4ed945fcb918649ebad09496b8834b963076
   src/main/java/com/gr4vy/sdk/models/components/TransactionBuyer.java:
     id: 6a241140748c
-    last_write_checksum: sha1:8f10538238d7894b987b7f92b59c2b71d6424ada
-    pristine_git_object: 3704b145b58036b1cb8a06b668ec9994682ed6fc
+    last_write_checksum: sha1:1d1368233b0b4b3c88c0467d1ff5a77f1a3fc5aa
+    pristine_git_object: d3d97cb1cee4452ca98fd289c2e2fa26be3eb06e
   src/main/java/com/gr4vy/sdk/models/components/TransactionCancel.java:
     id: "909743075001"
     last_write_checksum: sha1:133953684328d54417c25c96873a57c05c87be06
@@ -7939,7 +7939,7 @@ examples:
           x-gr4vy-merchant-account-id: "default"
       responses:
         "200":
-          application/json: {"items": [{"type": "buyer", "id": "fe26475d-ec3e-4884-9553-f7356683f7f9", "merchant_account_id": "default", "created_at": "2013-07-16T19:23:00.000+00:00", "updated_at": "2013-07-16T19:23:00.000+00:00"}, {"type": "buyer", "id": "fe26475d-ec3e-4884-9553-f7356683f7f9", "merchant_account_id": "default", "created_at": "2013-07-16T19:23:00.000+00:00", "updated_at": "2013-07-16T19:23:00.000+00:00"}], "limit": 20}
+          application/json: {"items": [{"type": "buyer", "id": "fe26475d-ec3e-4884-9553-f7356683f7f9", "reconciliation_id": "7jZXl4gBUNl0CnaLEnfXbt", "merchant_account_id": "default", "created_at": "2013-07-16T19:23:00.000+00:00", "updated_at": "2013-07-16T19:23:00.000+00:00"}, {"type": "buyer", "id": "fe26475d-ec3e-4884-9553-f7356683f7f9", "reconciliation_id": "7jZXl4gBUNl0CnaLEnfXbt", "merchant_account_id": "default", "created_at": "2013-07-16T19:23:00.000+00:00", "updated_at": "2013-07-16T19:23:00.000+00:00"}], "limit": 20}
         "400":
           application/json: {"type": "error", "code": "bad_request", "status": 400, "message": "Request failed validation"}
         "401":
@@ -7976,7 +7976,7 @@ examples:
         application/json: {}
       responses:
         "201":
-          application/json: {"type": "buyer", "id": "fe26475d-ec3e-4884-9553-f7356683f7f9", "merchant_account_id": "default", "created_at": "2013-07-16T19:23:00.000+00:00", "updated_at": "2013-07-16T19:23:00.000+00:00"}
+          application/json: {"type": "buyer", "id": "fe26475d-ec3e-4884-9553-f7356683f7f9", "reconciliation_id": "7jZXl4gBUNl0CnaLEnfXbt", "merchant_account_id": "default", "created_at": "2013-07-16T19:23:00.000+00:00", "updated_at": "2013-07-16T19:23:00.000+00:00"}
         "400":
           application/json: {"type": "error", "code": "bad_request", "status": 400, "message": "Request failed validation"}
         "401":
@@ -8012,7 +8012,7 @@ examples:
           x-gr4vy-merchant-account-id: "default"
       responses:
         "200":
-          application/json: {"type": "buyer", "id": "fe26475d-ec3e-4884-9553-f7356683f7f9", "merchant_account_id": "default", "created_at": "2013-07-16T19:23:00.000+00:00", "updated_at": "2013-07-16T19:23:00.000+00:00"}
+          application/json: {"type": "buyer", "id": "fe26475d-ec3e-4884-9553-f7356683f7f9", "reconciliation_id": "7jZXl4gBUNl0CnaLEnfXbt", "merchant_account_id": "default", "created_at": "2013-07-16T19:23:00.000+00:00", "updated_at": "2013-07-16T19:23:00.000+00:00"}
         "400":
           application/json: {"type": "error", "code": "bad_request", "status": 400, "message": "Request failed validation"}
         "401":
@@ -8051,7 +8051,7 @@ examples:
         application/json: {}
       responses:
         "200":
-          application/json: {"type": "buyer", "id": "fe26475d-ec3e-4884-9553-f7356683f7f9", "merchant_account_id": "default", "created_at": "2013-07-16T19:23:00.000+00:00", "updated_at": "2013-07-16T19:23:00.000+00:00"}
+          application/json: {"type": "buyer", "id": "fe26475d-ec3e-4884-9553-f7356683f7f9", "reconciliation_id": "7jZXl4gBUNl0CnaLEnfXbt", "merchant_account_id": "default", "created_at": "2013-07-16T19:23:00.000+00:00", "updated_at": "2013-07-16T19:23:00.000+00:00"}
         "400":
           application/json: {"type": "error", "code": "bad_request", "status": 400, "message": "Request failed validation"}
         "401":
@@ -12071,17 +12071,31 @@ examplesVersion: 1.0.2
 generatedTests: {}
 releaseNotes: |
   ## Java SDK Changes:
-  * `gr4vy.buyers.list()`:  `response.items[].id` **Changed** (Breaking ⚠️)
-  * `gr4vy.buyers.create()`:  `response.id` **Changed** (Breaking ⚠️)
-  * `gr4vy.buyers.get()`:  `response.id` **Changed** (Breaking ⚠️)
-  * `gr4vy.buyers.update()`:  `response.id` **Changed** (Breaking ⚠️)
-  * `gr4vy.paymentMethods.list()`:  `response.items[].buyer.id` **Changed** (Breaking ⚠️)
-  * `gr4vy.paymentMethods.create()`:  `response.buyer.id` **Changed** (Breaking ⚠️)
-  * `gr4vy.paymentMethods.get()`:  `response.buyer.id` **Changed** (Breaking ⚠️)
-  * `gr4vy.paymentMethods.update()`:  `response.buyer.id` **Changed** (Breaking ⚠️)
-  * `gr4vy.giftCards.get()`:  `response.buyer.id` **Changed** (Breaking ⚠️)
-  * `gr4vy.giftCards.create()`:  `response.buyer.id` **Changed** (Breaking ⚠️)
-  * `gr4vy.giftCards.list()`:  `response.items[].buyer.id` **Changed** (Breaking ⚠️)
+  * `gr4vy.buyers.list()`:  `response.items[].reconciliationId` **Added**
+  * `gr4vy.buyers.create()`:  `response.reconciliationId` **Added**
+  * `gr4vy.buyers.get()`:  `response.reconciliationId` **Added**
+  * `gr4vy.buyers.update()`:  `response.reconciliationId` **Added**
+  * `gr4vy.paymentMethods.list()`:  `response.items[].buyer.reconciliationId` **Added**
+  * `gr4vy.paymentMethods.create()`:  `response.buyer.reconciliationId` **Added**
+  * `gr4vy.paymentMethods.get()`:  `response.buyer.reconciliationId` **Added**
+  * `gr4vy.paymentMethods.update()`:  `response.buyer.reconciliationId` **Added**
+  * `gr4vy.giftCards.get()`:  `response.buyer.reconciliationId` **Added**
+  * `gr4vy.giftCards.create()`:  `response.buyer.reconciliationId` **Added**
+  * `gr4vy.giftCards.list()`:  `response.items[].buyer.reconciliationId` **Added**
+  * `gr4vy.transactions.list()`:  `response.items[].buyer.reconciliationId` **Added**
+  * `gr4vy.transactions.create()`:  `response.buyer.reconciliationId` **Added**
+  * `gr4vy.transactions.get()`:  `response.buyer.reconciliationId` **Added**
+  * `gr4vy.transactions.update()`:  `response.buyer.reconciliationId` **Added**
+  * `gr4vy.transactions.capture()`:  `response.union(Transaction).buyer.reconciliationId` **Added**
+  * `gr4vy.transactions.void()`:  `response.union(Transaction).buyer.reconciliationId` **Added**
+  * `gr4vy.transactions.cancel()`:  `response.transaction.buyer.reconciliationId` **Added**
+  * `gr4vy.transactions.sync()`:  `response.buyer.reconciliationId` **Added**
+  * `gr4vy.payouts.list()`:  `response.items[].buyer.reconciliationId` **Added**
+  * `gr4vy.payouts.create()`:  `response.buyer.reconciliationId` **Added**
+  * `gr4vy.payouts.get()`:  `response.buyer.reconciliationId` **Added**
+  * `gr4vy.paymentLinks.create()`:  `response.buyer.reconciliationId` **Added**
+  * `gr4vy.paymentLinks.list()`:  `response.items[].buyer.reconciliationId` **Added**
+  * `gr4vy.paymentLinks.get()`:  `response.buyer.reconciliationId` **Added**
 generatedFiles:
   - .gitattributes
   - USAGE.md
