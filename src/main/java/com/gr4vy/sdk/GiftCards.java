@@ -35,11 +35,13 @@ public class GiftCards {
     private final AsyncGiftCards asyncSDK;
     private final Balances balances;
     private final Activations activations;
+    private final Issuances issuances;
 
     GiftCards(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
         this.balances = new Balances(this.sdkConfiguration);
         this.activations = new Activations(this.sdkConfiguration);
+        this.issuances = new Issuances(this.sdkConfiguration);
         this.asyncSDK = new AsyncGiftCards(this, sdkConfiguration);
     }
 
@@ -49,6 +51,10 @@ public class GiftCards {
 
     public final Activations activations() {
         return activations;
+    }
+
+    public final Issuances issuances() {
+        return issuances;
     }
 
     /**
