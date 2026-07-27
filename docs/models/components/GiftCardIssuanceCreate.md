@@ -1,0 +1,13 @@
+# GiftCardIssuanceCreate
+
+The details used to issue a new virtual gift card.
+
+
+## Fields
+
+| Field                                                                                 | Type                                                                                  | Required                                                                              | Description                                                                           | Example                                                                               |
+| ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
+| `theme`                                                                               | *String*                                                                              | :heavy_check_mark:                                                                    | The provider theme code to issue the gift card against.                               | 031111372                                                                             |
+| `amount`                                                                              | *long*                                                                                | :heavy_check_mark:                                                                    | The amount to load onto the gift card, in the smallest denomination for the currency. | 5000                                                                                  |
+| `currency`                                                                            | *String*                                                                              | :heavy_check_mark:                                                                    | The ISO-4217 currency code for the `amount`.                                          | **Example 1:** EUR<br/>**Example 2:** GBP<br/>**Example 3:** USD                      |
+| `externalIdentifier`                                                                  | *JsonNullable\<String>*                                                               | :heavy_minus_sign:                                                                    | An optional external identifier for this issuance.                                    | order-12345                                                                           |
