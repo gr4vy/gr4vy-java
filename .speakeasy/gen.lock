@@ -1,24 +1,25 @@
 lockVersion: 2.0.0
 id: 5bbaa3a9-baa0-471b-ba6a-13fd88e8c119
 management:
-  docChecksum: eed0280a7b5c9460fe788e49d7c9deeb
+  docChecksum: 1150a398b609785e5aa64ea3f16cccb8
   docVersion: 1.0.0
   speakeasyVersion: 1.791.0
   generationVersion: 2.924.0
-  releaseVersion: 2.17.0
-  configChecksum: e2df697669c77f164c8df8a5efae6b21
+  releaseVersion: 2.18.0
+  configChecksum: 80724afce2746e110a53a219ee0278ba
   repoURL: https://github.com/gr4vy/gr4vy-java.git
   installationURL: https://github.com/gr4vy/gr4vy-java
   published: true
 persistentEdits:
-  generation_id: c150c1ba-377b-445f-8471-814c0442f2fc
-  pristine_commit_hash: 39562b19c30707d784671a83ffef858fa51f5db2
-  pristine_tree_hash: 9825d95ff47623bda992e4f4916c86fee9a6f277
+  generation_id: 0f44ed22-763b-4f58-a20e-fa812d3f906a
+  pristine_commit_hash: 5f65d15e1d360cc7a8102792ea065d782ea1533a
+  pristine_tree_hash: b11f03460b34a06b094afce8af0a15ff98f5d441
 features:
   java:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.3
     core: 3.56.1
+    deprecations: 2.81.2
     flattening: 2.81.1
     globalSecurity: 2.83.4
     globalSecurityCallbacks: 0.1.0
@@ -718,12 +719,12 @@ trackedFiles:
     pristine_git_object: 0ebcc1a2d8c19f3d9112245ab8d9c34c27d21ecc
   docs/models/components/MerchantAccount.md:
     id: 648030314b0f
-    last_write_checksum: sha1:b323fc7941a954d733fd738317b2c09377471f21
-    pristine_git_object: 3f2ebbcb2ca8167569e7d0a589d2e57cb2b0c2f7
+    last_write_checksum: sha1:80fc316d36a3221c68c18ebf02ce9155e28ac534
+    pristine_git_object: 93240c4e89b58bca4c05adb1d60400d0c66684b9
   docs/models/components/MerchantAccountCreate.md:
     id: 66caf1e4a763
-    last_write_checksum: sha1:753833793959b9fc7faa9248f2685874bb563ad6
-    pristine_git_object: cc10f3d00c5bbb5af1364158f0286848edbf3ae7
+    last_write_checksum: sha1:cbabb1f1f876f19cf7f217206f7a6594586de9df
+    pristine_git_object: aaf3a5bc944a67064f944e4e18297622112e7741
   docs/models/components/MerchantAccountSummary.md:
     id: f2d06bb7c67e
     last_write_checksum: sha1:d377fa1f01f29f73aceec054d9710a1bb7ba2149
@@ -746,8 +747,8 @@ trackedFiles:
     pristine_git_object: 7e614985f9499e0ed1baa99697804c76c05ca3db
   docs/models/components/MerchantAccountUpdate.md:
     id: 9709bd5efde9
-    last_write_checksum: sha1:227dcd386d99448b434e85c60eaf3698a6a0d6a6
-    pristine_git_object: 20f9a8a2053a4df1d15d77f545892c47566cb38c
+    last_write_checksum: sha1:1c7509f2de733f8ac342425cf4975d98ef99bda9
+    pristine_git_object: b4689da575f6109ad7f07ebc47c90100d92e533b
   docs/models/components/MerchantAccounts.md:
     id: 066c94dd9676
     last_write_checksum: sha1:a8427c0a732719bdad84944f2d319f12ae72acd7
@@ -782,8 +783,8 @@ trackedFiles:
     pristine_git_object: 7869e74d70c5656ce707682863afc4345852f60f
   docs/models/components/Name.md:
     id: 5b1d98ebed09
-    last_write_checksum: sha1:cd5be89d921c71d1e6154bcf39c52f444258bf26
-    pristine_git_object: d71d60cef8344c5fd681e4f46150315a2e877f64
+    last_write_checksum: sha1:3b38f9302cea2ab02ddde7af8ee0ebcd713883d5
+    pristine_git_object: 823fdbc11e95d574216fee3d3760d792191843a9
   docs/models/components/NetworkToken.md:
     id: 75d28bb2efd1
     last_write_checksum: sha1:af343ae7089d791eda67a922bce4a7fd752fca2a
@@ -2814,8 +2815,8 @@ trackedFiles:
     pristine_git_object: 15c4e4642f204ccb312d8814155b69e153b4e19b
   gradle.properties:
     id: 2afbb999f001
-    last_write_checksum: sha1:3e195f83b37d2da786253fdb4e9d719ca66d5a82
-    pristine_git_object: 7f4e21615c3b3b338767aa47aedb7599122a987d
+    last_write_checksum: sha1:225e3202f01ce0eb3a2c7584597717b8c81c40da
+    pristine_git_object: bdee5eb133719ed8c27b53fc99816e19e68f85b1
   gradle/wrapper/gradle-wrapper.jar:
     id: ec27dae6e852
     last_write_checksum: sha1:f725fb1467084142d74fd7cd8eab691ab3442611
@@ -3150,8 +3151,8 @@ trackedFiles:
     pristine_git_object: 502a7312d3dc82c102dbaf7ed5e952d0c793e26f
   src/main/java/com/gr4vy/sdk/SDKConfiguration.java:
     id: 73a7edeaca45
-    last_write_checksum: sha1:139543e2c9f85597fb1708e58a61172296b10f7c
-    pristine_git_object: 4f6fc3f44257f11ccb4d8f2a6c6e0ba4e96c171f
+    last_write_checksum: sha1:a69adb8571e06cdf11d229ebf1a05c67852ad757
+    pristine_git_object: bc127b5d047a55029732ed537e1d1c270926ff8c
   src/main/java/com/gr4vy/sdk/SecuritySource.java:
     id: 1b6add6b9b50
     last_write_checksum: sha1:2f365cc823c6243188e83f4df618c9737fcee8bd
@@ -3854,12 +3855,12 @@ trackedFiles:
     pristine_git_object: 7d7cabc34746674fa202ba016535ced3dfbd6971
   src/main/java/com/gr4vy/sdk/models/components/MerchantAccount.java:
     id: 4de940611d0d
-    last_write_checksum: sha1:276ec575da0eb96bcc2d37cbaf7229794c3ff3c9
-    pristine_git_object: 1f981afcb93a1fbd48d380ce4b402d5f23424ae2
+    last_write_checksum: sha1:733ad06ede9461f1f4aea95385b1b658f352fc75
+    pristine_git_object: 0b76630e89912c9009a5fb3741d697d090d9c957
   src/main/java/com/gr4vy/sdk/models/components/MerchantAccountCreate.java:
     id: f630f5edfb5e
-    last_write_checksum: sha1:3bfd05d91a1d0afa5ad479d58d21eba70a327050
-    pristine_git_object: 4e6ee8f102d14b21a3ef7f1878fcb00f13d79740
+    last_write_checksum: sha1:fe5f5c9956983971b305537774322630bb8d0bf4
+    pristine_git_object: f68bb6315105580561c9e921a56665275768e993
   src/main/java/com/gr4vy/sdk/models/components/MerchantAccountSummary.java:
     id: eddd35aff726
     last_write_checksum: sha1:16f18a3311e2c8a14a0b03b10096fab82713ad8b
@@ -3882,8 +3883,8 @@ trackedFiles:
     pristine_git_object: c634f8df8c6fe08d35ecb363580187d424a1e69f
   src/main/java/com/gr4vy/sdk/models/components/MerchantAccountUpdate.java:
     id: 437f8c2b5c0f
-    last_write_checksum: sha1:53f1ab14517bcc0ae8c8cfc46d9235cd1971aa92
-    pristine_git_object: 38fccfe54d762a4f081f7ecfe58481beb3eac8da
+    last_write_checksum: sha1:f85a00f6e163a49430b49fa145f5d154a1a60945
+    pristine_git_object: 686f78821a8fbd9ea003c259a911fc1c152b6a31
   src/main/java/com/gr4vy/sdk/models/components/MerchantAccounts.java:
     id: e101e34f1fc8
     last_write_checksum: sha1:fb92dd91df2cc8c3c5461204ca8021427b90e295
@@ -3918,8 +3919,8 @@ trackedFiles:
     pristine_git_object: 6b76ef182f90a2ad93613aebafea6b93c2e38d7d
   src/main/java/com/gr4vy/sdk/models/components/Name.java:
     id: aa0da4fd8c61
-    last_write_checksum: sha1:8895f74389dc3b6b9592717a31c189678c443d33
-    pristine_git_object: 62f26e7eb07ee95f28d8299cd8ac3bce278052cb
+    last_write_checksum: sha1:ac341a310772d5fe15aec5916d67b3de0757dcdc
+    pristine_git_object: b36bca24132b75c4e7bf02df7e614912f740283f
   src/main/java/com/gr4vy/sdk/models/components/NetworkToken.java:
     id: 8bd005097a16
     last_write_checksum: sha1:8d58b2bdd151db95f9959a0c148632011776ea4d
@@ -12245,7 +12246,7 @@ examplesVersion: 1.0.2
 generatedTests: {}
 releaseNotes: |
   ## Java SDK Changes:
-  * `gr4vy.giftCards.issuances.create()`: **Added**
+  * `gr4vy.transactions.events.list()`:  `response.items[].name` **Changed**
 generatedFiles:
   - .gitattributes
   - USAGE.md

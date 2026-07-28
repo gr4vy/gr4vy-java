@@ -12,6 +12,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.gr4vy.sdk.utils.LazySingletonValue;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Boolean;
+import java.lang.Deprecated;
 import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
@@ -46,18 +47,24 @@ public class MerchantAccount {
      * Client key provided by Pagos to authenticate to the Loon API. Loon is the Account Updater service we
      * use and if the field is not set or if it's set to null, the Account Updater service doesn't get
      * configured. If the field is set to `null`, the other `loon_*` fields must be set to null as well.
+     * 
+     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("loon_client_key")
+    @Deprecated
     private JsonNullable<String> loonClientKey;
 
     /**
      * Secret key provided by Pagos to authenticate to the Loon API. Loon is the Account Updater service we
      * use and if the field is not set or if it's set to null, the Account Updater service doesn't get
      * configured. If the field is set to `null`, the other `loon_*` fields must be set to null as well.
+     * 
+     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("loon_secret_key")
+    @Deprecated
     private JsonNullable<String> loonSecretKey;
 
     /**
@@ -86,9 +93,12 @@ public class MerchantAccount {
      * is not set or if it's set to `null`, the Account Updater service doesn't get called.
      * 
      * <p>If the field is set, the other `account_updater_*` fields must be set as well.
+     * 
+     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("account_updater_request_encryption_key")
+    @Deprecated
     private JsonNullable<String> accountUpdaterRequestEncryptionKey;
 
     /**
@@ -97,9 +107,12 @@ public class MerchantAccount {
      * is not set or if it's set to `null`, the Account Updater service doesn't get called.
      * 
      * <p>If the field is set, the other `account_updater_*` fields must be set as well.
+     * 
+     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("account_updater_request_encryption_key_id")
+    @Deprecated
     private JsonNullable<String> accountUpdaterRequestEncryptionKeyId;
 
     /**
@@ -108,9 +121,12 @@ public class MerchantAccount {
      * set or if it's set to `null`, the Account Updater service doesn't get called.
      * 
      * <p>If the field is set, the other `account_updater_*` fields must be set as well.
+     * 
+     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("account_updater_response_decryption_key")
+    @Deprecated
     private JsonNullable<String> accountUpdaterResponseDecryptionKey;
 
     /**
@@ -119,9 +135,12 @@ public class MerchantAccount {
      * the field is not set or if it's set to `null`, the Account Updater service doesn't get called.
      * 
      * <p>If the field is set, the other `account_updater_*` fields must be set as well.
+     * 
+     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("account_updater_response_decryption_key_id")
+    @Deprecated
     private JsonNullable<String> accountUpdaterResponseDecryptionKeyId;
 
     /**
@@ -349,7 +368,10 @@ public class MerchantAccount {
      * Client key provided by Pagos to authenticate to the Loon API. Loon is the Account Updater service we
      * use and if the field is not set or if it's set to null, the Account Updater service doesn't get
      * configured. If the field is set to `null`, the other `loon_*` fields must be set to null as well.
+     * 
+     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
+    @Deprecated
     @JsonIgnore
     public JsonNullable<String> loonClientKey() {
         return loonClientKey;
@@ -359,7 +381,10 @@ public class MerchantAccount {
      * Secret key provided by Pagos to authenticate to the Loon API. Loon is the Account Updater service we
      * use and if the field is not set or if it's set to null, the Account Updater service doesn't get
      * configured. If the field is set to `null`, the other `loon_*` fields must be set to null as well.
+     * 
+     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
+    @Deprecated
     @JsonIgnore
     public JsonNullable<String> loonSecretKey() {
         return loonSecretKey;
@@ -394,7 +419,10 @@ public class MerchantAccount {
      * is not set or if it's set to `null`, the Account Updater service doesn't get called.
      * 
      * <p>If the field is set, the other `account_updater_*` fields must be set as well.
+     * 
+     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
+    @Deprecated
     @JsonIgnore
     public JsonNullable<String> accountUpdaterRequestEncryptionKey() {
         return accountUpdaterRequestEncryptionKey;
@@ -406,7 +434,10 @@ public class MerchantAccount {
      * is not set or if it's set to `null`, the Account Updater service doesn't get called.
      * 
      * <p>If the field is set, the other `account_updater_*` fields must be set as well.
+     * 
+     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
+    @Deprecated
     @JsonIgnore
     public JsonNullable<String> accountUpdaterRequestEncryptionKeyId() {
         return accountUpdaterRequestEncryptionKeyId;
@@ -418,7 +449,10 @@ public class MerchantAccount {
      * set or if it's set to `null`, the Account Updater service doesn't get called.
      * 
      * <p>If the field is set, the other `account_updater_*` fields must be set as well.
+     * 
+     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
+    @Deprecated
     @JsonIgnore
     public JsonNullable<String> accountUpdaterResponseDecryptionKey() {
         return accountUpdaterResponseDecryptionKey;
@@ -430,7 +464,10 @@ public class MerchantAccount {
      * the field is not set or if it's set to `null`, the Account Updater service doesn't get called.
      * 
      * <p>If the field is set, the other `account_updater_*` fields must be set as well.
+     * 
+     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
+    @Deprecated
     @JsonIgnore
     public JsonNullable<String> accountUpdaterResponseDecryptionKeyId() {
         return accountUpdaterResponseDecryptionKeyId;
@@ -584,7 +621,10 @@ public class MerchantAccount {
      * Client key provided by Pagos to authenticate to the Loon API. Loon is the Account Updater service we
      * use and if the field is not set or if it's set to null, the Account Updater service doesn't get
      * configured. If the field is set to `null`, the other `loon_*` fields must be set to null as well.
+     * 
+     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
+    @Deprecated
     public MerchantAccount withLoonClientKey(String loonClientKey) {
         Utils.checkNotNull(loonClientKey, "loonClientKey");
         this.loonClientKey = JsonNullable.of(loonClientKey);
@@ -595,7 +635,10 @@ public class MerchantAccount {
      * Client key provided by Pagos to authenticate to the Loon API. Loon is the Account Updater service we
      * use and if the field is not set or if it's set to null, the Account Updater service doesn't get
      * configured. If the field is set to `null`, the other `loon_*` fields must be set to null as well.
+     * 
+     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
+    @Deprecated
     public MerchantAccount withLoonClientKey(JsonNullable<String> loonClientKey) {
         Utils.checkNotNull(loonClientKey, "loonClientKey");
         this.loonClientKey = loonClientKey;
@@ -606,7 +649,10 @@ public class MerchantAccount {
      * Secret key provided by Pagos to authenticate to the Loon API. Loon is the Account Updater service we
      * use and if the field is not set or if it's set to null, the Account Updater service doesn't get
      * configured. If the field is set to `null`, the other `loon_*` fields must be set to null as well.
+     * 
+     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
+    @Deprecated
     public MerchantAccount withLoonSecretKey(String loonSecretKey) {
         Utils.checkNotNull(loonSecretKey, "loonSecretKey");
         this.loonSecretKey = JsonNullable.of(loonSecretKey);
@@ -617,7 +663,10 @@ public class MerchantAccount {
      * Secret key provided by Pagos to authenticate to the Loon API. Loon is the Account Updater service we
      * use and if the field is not set or if it's set to null, the Account Updater service doesn't get
      * configured. If the field is set to `null`, the other `loon_*` fields must be set to null as well.
+     * 
+     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
+    @Deprecated
     public MerchantAccount withLoonSecretKey(JsonNullable<String> loonSecretKey) {
         Utils.checkNotNull(loonSecretKey, "loonSecretKey");
         this.loonSecretKey = loonSecretKey;
@@ -678,7 +727,10 @@ public class MerchantAccount {
      * is not set or if it's set to `null`, the Account Updater service doesn't get called.
      * 
      * <p>If the field is set, the other `account_updater_*` fields must be set as well.
+     * 
+     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
+    @Deprecated
     public MerchantAccount withAccountUpdaterRequestEncryptionKey(String accountUpdaterRequestEncryptionKey) {
         Utils.checkNotNull(accountUpdaterRequestEncryptionKey, "accountUpdaterRequestEncryptionKey");
         this.accountUpdaterRequestEncryptionKey = JsonNullable.of(accountUpdaterRequestEncryptionKey);
@@ -691,7 +743,10 @@ public class MerchantAccount {
      * is not set or if it's set to `null`, the Account Updater service doesn't get called.
      * 
      * <p>If the field is set, the other `account_updater_*` fields must be set as well.
+     * 
+     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
+    @Deprecated
     public MerchantAccount withAccountUpdaterRequestEncryptionKey(JsonNullable<String> accountUpdaterRequestEncryptionKey) {
         Utils.checkNotNull(accountUpdaterRequestEncryptionKey, "accountUpdaterRequestEncryptionKey");
         this.accountUpdaterRequestEncryptionKey = accountUpdaterRequestEncryptionKey;
@@ -704,7 +759,10 @@ public class MerchantAccount {
      * is not set or if it's set to `null`, the Account Updater service doesn't get called.
      * 
      * <p>If the field is set, the other `account_updater_*` fields must be set as well.
+     * 
+     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
+    @Deprecated
     public MerchantAccount withAccountUpdaterRequestEncryptionKeyId(String accountUpdaterRequestEncryptionKeyId) {
         Utils.checkNotNull(accountUpdaterRequestEncryptionKeyId, "accountUpdaterRequestEncryptionKeyId");
         this.accountUpdaterRequestEncryptionKeyId = JsonNullable.of(accountUpdaterRequestEncryptionKeyId);
@@ -717,7 +775,10 @@ public class MerchantAccount {
      * is not set or if it's set to `null`, the Account Updater service doesn't get called.
      * 
      * <p>If the field is set, the other `account_updater_*` fields must be set as well.
+     * 
+     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
+    @Deprecated
     public MerchantAccount withAccountUpdaterRequestEncryptionKeyId(JsonNullable<String> accountUpdaterRequestEncryptionKeyId) {
         Utils.checkNotNull(accountUpdaterRequestEncryptionKeyId, "accountUpdaterRequestEncryptionKeyId");
         this.accountUpdaterRequestEncryptionKeyId = accountUpdaterRequestEncryptionKeyId;
@@ -730,7 +791,10 @@ public class MerchantAccount {
      * set or if it's set to `null`, the Account Updater service doesn't get called.
      * 
      * <p>If the field is set, the other `account_updater_*` fields must be set as well.
+     * 
+     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
+    @Deprecated
     public MerchantAccount withAccountUpdaterResponseDecryptionKey(String accountUpdaterResponseDecryptionKey) {
         Utils.checkNotNull(accountUpdaterResponseDecryptionKey, "accountUpdaterResponseDecryptionKey");
         this.accountUpdaterResponseDecryptionKey = JsonNullable.of(accountUpdaterResponseDecryptionKey);
@@ -743,7 +807,10 @@ public class MerchantAccount {
      * set or if it's set to `null`, the Account Updater service doesn't get called.
      * 
      * <p>If the field is set, the other `account_updater_*` fields must be set as well.
+     * 
+     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
+    @Deprecated
     public MerchantAccount withAccountUpdaterResponseDecryptionKey(JsonNullable<String> accountUpdaterResponseDecryptionKey) {
         Utils.checkNotNull(accountUpdaterResponseDecryptionKey, "accountUpdaterResponseDecryptionKey");
         this.accountUpdaterResponseDecryptionKey = accountUpdaterResponseDecryptionKey;
@@ -756,7 +823,10 @@ public class MerchantAccount {
      * the field is not set or if it's set to `null`, the Account Updater service doesn't get called.
      * 
      * <p>If the field is set, the other `account_updater_*` fields must be set as well.
+     * 
+     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
+    @Deprecated
     public MerchantAccount withAccountUpdaterResponseDecryptionKeyId(String accountUpdaterResponseDecryptionKeyId) {
         Utils.checkNotNull(accountUpdaterResponseDecryptionKeyId, "accountUpdaterResponseDecryptionKeyId");
         this.accountUpdaterResponseDecryptionKeyId = JsonNullable.of(accountUpdaterResponseDecryptionKeyId);
@@ -769,7 +839,10 @@ public class MerchantAccount {
      * the field is not set or if it's set to `null`, the Account Updater service doesn't get called.
      * 
      * <p>If the field is set, the other `account_updater_*` fields must be set as well.
+     * 
+     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
+    @Deprecated
     public MerchantAccount withAccountUpdaterResponseDecryptionKeyId(JsonNullable<String> accountUpdaterResponseDecryptionKeyId) {
         Utils.checkNotNull(accountUpdaterResponseDecryptionKeyId, "accountUpdaterResponseDecryptionKeyId");
         this.accountUpdaterResponseDecryptionKeyId = accountUpdaterResponseDecryptionKeyId;
@@ -1102,20 +1175,26 @@ public class MerchantAccount {
 
         private String displayName;
 
+        @Deprecated
         private JsonNullable<String> loonClientKey = JsonNullable.undefined();
 
+        @Deprecated
         private JsonNullable<String> loonSecretKey = JsonNullable.undefined();
 
         private JsonNullable<? extends List<CardScheme>> loonAcceptedSchemes = JsonNullable.undefined();
 
         private JsonNullable<String> loonMerchantAccountId = JsonNullable.undefined();
 
+        @Deprecated
         private JsonNullable<String> accountUpdaterRequestEncryptionKey = JsonNullable.undefined();
 
+        @Deprecated
         private JsonNullable<String> accountUpdaterRequestEncryptionKeyId = JsonNullable.undefined();
 
+        @Deprecated
         private JsonNullable<String> accountUpdaterResponseDecryptionKey = JsonNullable.undefined();
 
+        @Deprecated
         private JsonNullable<String> accountUpdaterResponseDecryptionKeyId = JsonNullable.undefined();
 
         private Boolean accountUpdaterEnabled;
@@ -1175,7 +1254,10 @@ public class MerchantAccount {
          * Client key provided by Pagos to authenticate to the Loon API. Loon is the Account Updater service we
          * use and if the field is not set or if it's set to null, the Account Updater service doesn't get
          * configured. If the field is set to `null`, the other `loon_*` fields must be set to null as well.
+         * 
+         * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
          */
+        @Deprecated
         public Builder loonClientKey(String loonClientKey) {
             Utils.checkNotNull(loonClientKey, "loonClientKey");
             this.loonClientKey = JsonNullable.of(loonClientKey);
@@ -1186,7 +1268,10 @@ public class MerchantAccount {
          * Client key provided by Pagos to authenticate to the Loon API. Loon is the Account Updater service we
          * use and if the field is not set or if it's set to null, the Account Updater service doesn't get
          * configured. If the field is set to `null`, the other `loon_*` fields must be set to null as well.
+         * 
+         * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
          */
+        @Deprecated
         public Builder loonClientKey(JsonNullable<String> loonClientKey) {
             Utils.checkNotNull(loonClientKey, "loonClientKey");
             this.loonClientKey = loonClientKey;
@@ -1198,7 +1283,10 @@ public class MerchantAccount {
          * Secret key provided by Pagos to authenticate to the Loon API. Loon is the Account Updater service we
          * use and if the field is not set or if it's set to null, the Account Updater service doesn't get
          * configured. If the field is set to `null`, the other `loon_*` fields must be set to null as well.
+         * 
+         * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
          */
+        @Deprecated
         public Builder loonSecretKey(String loonSecretKey) {
             Utils.checkNotNull(loonSecretKey, "loonSecretKey");
             this.loonSecretKey = JsonNullable.of(loonSecretKey);
@@ -1209,7 +1297,10 @@ public class MerchantAccount {
          * Secret key provided by Pagos to authenticate to the Loon API. Loon is the Account Updater service we
          * use and if the field is not set or if it's set to null, the Account Updater service doesn't get
          * configured. If the field is set to `null`, the other `loon_*` fields must be set to null as well.
+         * 
+         * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
          */
+        @Deprecated
         public Builder loonSecretKey(JsonNullable<String> loonSecretKey) {
             Utils.checkNotNull(loonSecretKey, "loonSecretKey");
             this.loonSecretKey = loonSecretKey;
@@ -1273,7 +1364,10 @@ public class MerchantAccount {
          * is not set or if it's set to `null`, the Account Updater service doesn't get called.
          * 
          * <p>If the field is set, the other `account_updater_*` fields must be set as well.
+         * 
+         * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
          */
+        @Deprecated
         public Builder accountUpdaterRequestEncryptionKey(String accountUpdaterRequestEncryptionKey) {
             Utils.checkNotNull(accountUpdaterRequestEncryptionKey, "accountUpdaterRequestEncryptionKey");
             this.accountUpdaterRequestEncryptionKey = JsonNullable.of(accountUpdaterRequestEncryptionKey);
@@ -1286,7 +1380,10 @@ public class MerchantAccount {
          * is not set or if it's set to `null`, the Account Updater service doesn't get called.
          * 
          * <p>If the field is set, the other `account_updater_*` fields must be set as well.
+         * 
+         * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
          */
+        @Deprecated
         public Builder accountUpdaterRequestEncryptionKey(JsonNullable<String> accountUpdaterRequestEncryptionKey) {
             Utils.checkNotNull(accountUpdaterRequestEncryptionKey, "accountUpdaterRequestEncryptionKey");
             this.accountUpdaterRequestEncryptionKey = accountUpdaterRequestEncryptionKey;
@@ -1300,7 +1397,10 @@ public class MerchantAccount {
          * is not set or if it's set to `null`, the Account Updater service doesn't get called.
          * 
          * <p>If the field is set, the other `account_updater_*` fields must be set as well.
+         * 
+         * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
          */
+        @Deprecated
         public Builder accountUpdaterRequestEncryptionKeyId(String accountUpdaterRequestEncryptionKeyId) {
             Utils.checkNotNull(accountUpdaterRequestEncryptionKeyId, "accountUpdaterRequestEncryptionKeyId");
             this.accountUpdaterRequestEncryptionKeyId = JsonNullable.of(accountUpdaterRequestEncryptionKeyId);
@@ -1313,7 +1413,10 @@ public class MerchantAccount {
          * is not set or if it's set to `null`, the Account Updater service doesn't get called.
          * 
          * <p>If the field is set, the other `account_updater_*` fields must be set as well.
+         * 
+         * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
          */
+        @Deprecated
         public Builder accountUpdaterRequestEncryptionKeyId(JsonNullable<String> accountUpdaterRequestEncryptionKeyId) {
             Utils.checkNotNull(accountUpdaterRequestEncryptionKeyId, "accountUpdaterRequestEncryptionKeyId");
             this.accountUpdaterRequestEncryptionKeyId = accountUpdaterRequestEncryptionKeyId;
@@ -1327,7 +1430,10 @@ public class MerchantAccount {
          * set or if it's set to `null`, the Account Updater service doesn't get called.
          * 
          * <p>If the field is set, the other `account_updater_*` fields must be set as well.
+         * 
+         * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
          */
+        @Deprecated
         public Builder accountUpdaterResponseDecryptionKey(String accountUpdaterResponseDecryptionKey) {
             Utils.checkNotNull(accountUpdaterResponseDecryptionKey, "accountUpdaterResponseDecryptionKey");
             this.accountUpdaterResponseDecryptionKey = JsonNullable.of(accountUpdaterResponseDecryptionKey);
@@ -1340,7 +1446,10 @@ public class MerchantAccount {
          * set or if it's set to `null`, the Account Updater service doesn't get called.
          * 
          * <p>If the field is set, the other `account_updater_*` fields must be set as well.
+         * 
+         * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
          */
+        @Deprecated
         public Builder accountUpdaterResponseDecryptionKey(JsonNullable<String> accountUpdaterResponseDecryptionKey) {
             Utils.checkNotNull(accountUpdaterResponseDecryptionKey, "accountUpdaterResponseDecryptionKey");
             this.accountUpdaterResponseDecryptionKey = accountUpdaterResponseDecryptionKey;
@@ -1354,7 +1463,10 @@ public class MerchantAccount {
          * the field is not set or if it's set to `null`, the Account Updater service doesn't get called.
          * 
          * <p>If the field is set, the other `account_updater_*` fields must be set as well.
+         * 
+         * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
          */
+        @Deprecated
         public Builder accountUpdaterResponseDecryptionKeyId(String accountUpdaterResponseDecryptionKeyId) {
             Utils.checkNotNull(accountUpdaterResponseDecryptionKeyId, "accountUpdaterResponseDecryptionKeyId");
             this.accountUpdaterResponseDecryptionKeyId = JsonNullable.of(accountUpdaterResponseDecryptionKeyId);
@@ -1367,7 +1479,10 @@ public class MerchantAccount {
          * the field is not set or if it's set to `null`, the Account Updater service doesn't get called.
          * 
          * <p>If the field is set, the other `account_updater_*` fields must be set as well.
+         * 
+         * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
          */
+        @Deprecated
         public Builder accountUpdaterResponseDecryptionKeyId(JsonNullable<String> accountUpdaterResponseDecryptionKeyId) {
             Utils.checkNotNull(accountUpdaterResponseDecryptionKeyId, "accountUpdaterResponseDecryptionKeyId");
             this.accountUpdaterResponseDecryptionKeyId = accountUpdaterResponseDecryptionKeyId;
