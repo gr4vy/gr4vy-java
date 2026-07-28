@@ -43,6 +43,8 @@ Name custom = Name.of("custom_value");
 | `GIFT_CARD_REFUND_SUCCEEDED`                                               | gift-card-refund-succeeded                                                 |
 | `GIFT_CARD_REFUND_FAILED`                                                  | gift-card-refund-failed                                                    |
 | `GIFT_CARD_REVERSAL_SUCCEEDED`                                             | gift-card-reversal-succeeded                                               |
+| `REAUTHORIZATION_ATTEMPTED`                                                | reauthorization-attempted                                                  |
+| `REAUTHORIZATION_CREATED`                                                  | reauthorization-created                                                    |
 | `PAYMENT_CONNECTOR_RESPONSE_TRANSACTION_AUTHORIZATION_SUCCEEDED`           | payment-connector-response-transaction-authorization-succeeded             |
 | `PAYMENT_CONNECTOR_RESPONSE_TRANSACTION_CAPTURE_SUCCEEDED`                 | payment-connector-response-transaction-capture-succeeded                   |
 | `PAYMENT_CONNECTOR_RESPONSE_TRANSACTION_AUTHORIZATION_FAILED`              | payment-connector-response-transaction-authorization-failed                |

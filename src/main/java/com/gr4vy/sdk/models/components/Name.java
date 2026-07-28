@@ -50,6 +50,8 @@ public class Name {
     public static final Name GIFT_CARD_REFUND_SUCCEEDED = new Name("gift-card-refund-succeeded");
     public static final Name GIFT_CARD_REFUND_FAILED = new Name("gift-card-refund-failed");
     public static final Name GIFT_CARD_REVERSAL_SUCCEEDED = new Name("gift-card-reversal-succeeded");
+    public static final Name REAUTHORIZATION_ATTEMPTED = new Name("reauthorization-attempted");
+    public static final Name REAUTHORIZATION_CREATED = new Name("reauthorization-created");
     public static final Name PAYMENT_CONNECTOR_RESPONSE_TRANSACTION_AUTHORIZATION_SUCCEEDED = new Name("payment-connector-response-transaction-authorization-succeeded");
     public static final Name PAYMENT_CONNECTOR_RESPONSE_TRANSACTION_CAPTURE_SUCCEEDED = new Name("payment-connector-response-transaction-capture-succeeded");
     public static final Name PAYMENT_CONNECTOR_RESPONSE_TRANSACTION_AUTHORIZATION_FAILED = new Name("payment-connector-response-transaction-authorization-failed");
@@ -179,6 +181,8 @@ public class Name {
         map.put("gift-card-refund-succeeded", GIFT_CARD_REFUND_SUCCEEDED);
         map.put("gift-card-refund-failed", GIFT_CARD_REFUND_FAILED);
         map.put("gift-card-reversal-succeeded", GIFT_CARD_REVERSAL_SUCCEEDED);
+        map.put("reauthorization-attempted", REAUTHORIZATION_ATTEMPTED);
+        map.put("reauthorization-created", REAUTHORIZATION_CREATED);
         map.put("payment-connector-response-transaction-authorization-succeeded", PAYMENT_CONNECTOR_RESPONSE_TRANSACTION_AUTHORIZATION_SUCCEEDED);
         map.put("payment-connector-response-transaction-capture-succeeded", PAYMENT_CONNECTOR_RESPONSE_TRANSACTION_CAPTURE_SUCCEEDED);
         map.put("payment-connector-response-transaction-authorization-failed", PAYMENT_CONNECTOR_RESPONSE_TRANSACTION_AUTHORIZATION_FAILED);
@@ -240,6 +244,8 @@ public class Name {
         map.put("gift-card-refund-succeeded", NameEnum.GIFT_CARD_REFUND_SUCCEEDED);
         map.put("gift-card-refund-failed", NameEnum.GIFT_CARD_REFUND_FAILED);
         map.put("gift-card-reversal-succeeded", NameEnum.GIFT_CARD_REVERSAL_SUCCEEDED);
+        map.put("reauthorization-attempted", NameEnum.REAUTHORIZATION_ATTEMPTED);
+        map.put("reauthorization-created", NameEnum.REAUTHORIZATION_CREATED);
         map.put("payment-connector-response-transaction-authorization-succeeded", NameEnum.PAYMENT_CONNECTOR_RESPONSE_TRANSACTION_AUTHORIZATION_SUCCEEDED);
         map.put("payment-connector-response-transaction-capture-succeeded", NameEnum.PAYMENT_CONNECTOR_RESPONSE_TRANSACTION_CAPTURE_SUCCEEDED);
         map.put("payment-connector-response-transaction-authorization-failed", NameEnum.PAYMENT_CONNECTOR_RESPONSE_TRANSACTION_AUTHORIZATION_FAILED);
@@ -302,6 +308,8 @@ public class Name {
         GIFT_CARD_REFUND_SUCCEEDED("gift-card-refund-succeeded"),
         GIFT_CARD_REFUND_FAILED("gift-card-refund-failed"),
         GIFT_CARD_REVERSAL_SUCCEEDED("gift-card-reversal-succeeded"),
+        REAUTHORIZATION_ATTEMPTED("reauthorization-attempted"),
+        REAUTHORIZATION_CREATED("reauthorization-created"),
         PAYMENT_CONNECTOR_RESPONSE_TRANSACTION_AUTHORIZATION_SUCCEEDED("payment-connector-response-transaction-authorization-succeeded"),
         PAYMENT_CONNECTOR_RESPONSE_TRANSACTION_CAPTURE_SUCCEEDED("payment-connector-response-transaction-capture-succeeded"),
         PAYMENT_CONNECTOR_RESPONSE_TRANSACTION_AUTHORIZATION_FAILED("payment-connector-response-transaction-authorization-failed"),
