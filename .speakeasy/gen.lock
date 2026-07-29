@@ -1,19 +1,19 @@
 lockVersion: 2.0.0
 id: 5bbaa3a9-baa0-471b-ba6a-13fd88e8c119
 management:
-  docChecksum: 1150a398b609785e5aa64ea3f16cccb8
+  docChecksum: 57bff7b3113898886542ccac9c513e7c
   docVersion: 1.0.0
   speakeasyVersion: 1.791.0
   generationVersion: 2.924.0
-  releaseVersion: 2.18.0
-  configChecksum: 80724afce2746e110a53a219ee0278ba
+  releaseVersion: 2.18.1
+  configChecksum: cd06d67d5008d04c500af047b75afc24
   repoURL: https://github.com/gr4vy/gr4vy-java.git
   installationURL: https://github.com/gr4vy/gr4vy-java
   published: true
 persistentEdits:
-  generation_id: 0f44ed22-763b-4f58-a20e-fa812d3f906a
-  pristine_commit_hash: 5f65d15e1d360cc7a8102792ea065d782ea1533a
-  pristine_tree_hash: b11f03460b34a06b094afce8af0a15ff98f5d441
+  generation_id: f441994c-c980-46c8-bc06-64f999342368
+  pristine_commit_hash: db7107f1ebe9a53b16767b68ad72903980cf4bdc
+  pristine_tree_hash: 2f18ee3fe50d5c2d80326f9e3381146dffb2d989
 features:
   java:
     additionalDependencies: 0.1.0
@@ -571,8 +571,8 @@ trackedFiles:
     pristine_git_object: f22b3db40cca48b74c4d9598566460696a05d4e4
   docs/models/components/GiftCardActivationCreate.md:
     id: e2ba13478fe3
-    last_write_checksum: sha1:78bbf8f02cb0c8c983ceb80093a96eb7f601aba0
-    pristine_git_object: a751465e2c306d612a5d1535e434b2ef512df48c
+    last_write_checksum: sha1:380ff874e049ff2e01690a13faa122be99d8c9c8
+    pristine_git_object: 5579ede262dadfc60c47d21ef9b339ce27f9a76e
   docs/models/components/GiftCardBalanceRequest.md:
     id: c80a3eda305b
     last_write_checksum: sha1:c1f2778ba0fe150682aef69158b5019168d9459c
@@ -2655,8 +2655,8 @@ trackedFiles:
     pristine_git_object: 0f7d8fa069ab3f04c91515239d103b286359bd3d
   docs/sdks/activations/README.md:
     id: 5e6a3a8cf62a
-    last_write_checksum: sha1:df91083b2d54f4ee6fa90a29ef725a0d524e5e14
-    pristine_git_object: 5ce22e0995ff775c947eb81da5617e8c5bb033dc
+    last_write_checksum: sha1:7ee78930dea961c12da4a03a99ee7fb450836420
+    pristine_git_object: e8d89620628a2a3d31eeb5748d924c363d8e38e9
   docs/sdks/all/README.md:
     id: 936653be5c4b
     last_write_checksum: sha1:97da642dcdafbb8a8d55336d987af073423d3643
@@ -2815,8 +2815,8 @@ trackedFiles:
     pristine_git_object: 15c4e4642f204ccb312d8814155b69e153b4e19b
   gradle.properties:
     id: 2afbb999f001
-    last_write_checksum: sha1:225e3202f01ce0eb3a2c7584597717b8c81c40da
-    pristine_git_object: bdee5eb133719ed8c27b53fc99816e19e68f85b1
+    last_write_checksum: sha1:789ac9c1771f38932e6db67471280b17352957be
+    pristine_git_object: da64f5d583de4bd954be55ca457d4b597ff21f4f
   gradle/wrapper/gradle-wrapper.jar:
     id: ec27dae6e852
     last_write_checksum: sha1:f725fb1467084142d74fd7cd8eab691ab3442611
@@ -2851,8 +2851,8 @@ trackedFiles:
     pristine_git_object: b86ebe2ce835d4b6e1021be71f78aa98cd5d477c
   src/main/java/com/gr4vy/sdk/Activations.java:
     id: f4748ece3b9b
-    last_write_checksum: sha1:c1c04ebcdca70f4f390b2c8dd41b0af0e05be949
-    pristine_git_object: f8d575aeff5a4ae95238fca7c103c8ba03ecfac7
+    last_write_checksum: sha1:8948def6cf7f851d42e02f323d428183cbf4afbd
+    pristine_git_object: 6c8e957a3e087f1116aa45c577d261b03ea529ef
   src/main/java/com/gr4vy/sdk/All.java:
     id: 234c521b6941
     last_write_checksum: sha1:6ef88cfdfc33ec118f9cc83b188b69433ee939a3
@@ -2871,8 +2871,8 @@ trackedFiles:
     pristine_git_object: 028d3696be7da66d76b84b1353133139769e2079
   src/main/java/com/gr4vy/sdk/AsyncActivations.java:
     id: bd7db28e97c1
-    last_write_checksum: sha1:cd8fc9c05774d534000831e440ace6114220658d
-    pristine_git_object: fd9f0372db00a7f0eb65b30dac091a3f799af396
+    last_write_checksum: sha1:bb4c101f06aaa9f24347a9083d4ad1f4bbd1df24
+    pristine_git_object: 57f944984fcc7ec562c8eaff3e28a18d374f6040
   src/main/java/com/gr4vy/sdk/AsyncAll.java:
     id: 42ccc0a41ddf
     last_write_checksum: sha1:7252df5451de1c20d538f2de57ef003c53c06b65
@@ -3151,8 +3151,8 @@ trackedFiles:
     pristine_git_object: 502a7312d3dc82c102dbaf7ed5e952d0c793e26f
   src/main/java/com/gr4vy/sdk/SDKConfiguration.java:
     id: 73a7edeaca45
-    last_write_checksum: sha1:a69adb8571e06cdf11d229ebf1a05c67852ad757
-    pristine_git_object: bc127b5d047a55029732ed537e1d1c270926ff8c
+    last_write_checksum: sha1:83c49e7997f802d78b6ea9e6086fe671794fffc9
+    pristine_git_object: 0722eb268f72a918d429747677cde29a0333a088
   src/main/java/com/gr4vy/sdk/SecuritySource.java:
     id: 1b6add6b9b50
     last_write_checksum: sha1:2f365cc823c6243188e83f4df618c9737fcee8bd
@@ -3707,8 +3707,8 @@ trackedFiles:
     pristine_git_object: 86e82602250ebfd5bb1c46be7009785dd34dd693
   src/main/java/com/gr4vy/sdk/models/components/GiftCardActivationCreate.java:
     id: 888f251c8e49
-    last_write_checksum: sha1:5a418c7d1d2ec2556a69929b565956227bf8f3b8
-    pristine_git_object: 14f65504b8de0f60f7de854697bb76d498d6aed6
+    last_write_checksum: sha1:ecfc374dd54fd6b35dec98657065d61e49a821ac
+    pristine_git_object: 92d833cf07a35c9955109ba20d6550809c4920ff
   src/main/java/com/gr4vy/sdk/models/components/GiftCardBalanceRequest.java:
     id: 170501161b7d
     last_write_checksum: sha1:f742fd871283b30d36fd4a9c99d95508f71a4efd
@@ -12183,7 +12183,7 @@ examples:
   activate_gift_card:
     speakeasy-default-activate-gift-card:
       requestBody:
-        application/json: {"number": "4123455541234561234"}
+        application/json: {"number": "4123455541234561234", "store": false}
       responses:
         "201":
           application/json: {"type": "gift-card", "id": "356d56e5-fe16-42ae-97ee-8d55d846ae2e", "merchant_account_id": "default", "gift_card_service": {"type": "gift-card-service", "id": "35b60feec-a7c7-4844-b503-f39b09192d81", "gift_card_service_definition_id": "valuelink-gift-card", "display_name": "Qwikcilver USA"}, "bin": "412345", "sub_bin": "554", "last4": "1234", "created_at": "2013-07-16T19:23:00.000+00:00", "updated_at": "2013-07-16T19:23:00.000+00:00", "usage_count": 100, "cit_usage_count": 50}
@@ -12246,7 +12246,7 @@ examplesVersion: 1.0.2
 generatedTests: {}
 releaseNotes: |
   ## Java SDK Changes:
-  * `gr4vy.transactions.events.list()`:  `response.items[].name` **Changed**
+  * `gr4vy.giftCards.activations.create()`:  `request.giftCardActivationCreate` **Changed**
 generatedFiles:
   - .gitattributes
   - USAGE.md

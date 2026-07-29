@@ -8,7 +8,7 @@
 
 ## create
 
-Activate a physical gift card through the primary gift card service.
+Activate a physical gift card through the primary gift card service. Set `store` to `true` to also store the activated gift card.
 
 ### Example Usage
 

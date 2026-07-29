@@ -37,7 +37,8 @@ public class Activations {
     /**
      * Activate a gift card
      * 
-     * <p>Activate a physical gift card through the primary gift card service.
+     * <p>Activate a physical gift card through the primary gift card service. Set `store` to `true` to also
+     * store the activated gift card.
      * 
      * @return The call builder
      */
@@ -48,7 +49,8 @@ public class Activations {
     /**
      * Activate a gift card
      * 
-     * <p>Activate a physical gift card through the primary gift card service.
+     * <p>Activate a physical gift card through the primary gift card service. Set `store` to `true` to also
+     * store the activated gift card.
      * 
      * @param giftCardActivationCreate The details used to activate a physical gift card.
      * @return The response from the API call
@@ -61,7 +63,8 @@ public class Activations {
     /**
      * Activate a gift card
      * 
-     * <p>Activate a physical gift card through the primary gift card service.
+     * <p>Activate a physical gift card through the primary gift card service. Set `store` to `true` to also
+     * store the activated gift card.
      * 
      * @param idempotencyKey A unique key that identifies this request. If supported by the gift card service, the value will be forwarded to make the activation idempotent. We recommend using V4 UUIDs, or another random string with enough entropy to avoid collisions.
      * @param merchantAccountId 
