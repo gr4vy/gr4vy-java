@@ -8,10 +8,14 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.gr4vy.sdk.utils.LazySingletonValue;
 import com.gr4vy.sdk.utils.Utils;
+import java.lang.Boolean;
 import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
+import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 /**
@@ -55,28 +59,61 @@ public class GiftCardActivationCreate {
     @JsonProperty("external_identifier")
     private JsonNullable<String> externalIdentifier;
 
+    /**
+     * Whether to store the activated gift card in the vault. When `true`, a `pin` is required.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("store")
+    private Optional<Boolean> store;
+
+    /**
+     * The ID of the buyer to associate this gift card to. Only allowed when `store` is `true`. If this
+     * field is provided then the `buyer_external_identifier` field needs to be unset.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("buyer_id")
+    private JsonNullable<String> buyerId;
+
+    /**
+     * The `external_identifier` of the buyer to associate this gift card to. Only allowed when `store` is
+     * `true`. If this field is provided then the `buyer_id` field needs to be unset.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("buyer_external_identifier")
+    private JsonNullable<String> buyerExternalIdentifier;
+
     @JsonCreator
     public GiftCardActivationCreate(
             @JsonProperty("number") String number,
             @JsonProperty("pin") JsonNullable<String> pin,
             @JsonProperty("amount") JsonNullable<Long> amount,
             @JsonProperty("currency") JsonNullable<String> currency,
-            @JsonProperty("external_identifier") JsonNullable<String> externalIdentifier) {
+            @JsonProperty("external_identifier") JsonNullable<String> externalIdentifier,
+            @JsonProperty("store") Optional<Boolean> store,
+            @JsonProperty("buyer_id") JsonNullable<String> buyerId,
+            @JsonProperty("buyer_external_identifier") JsonNullable<String> buyerExternalIdentifier) {
         Utils.checkNotNull(number, "number");
         Utils.checkNotNull(pin, "pin");
         Utils.checkNotNull(amount, "amount");
         Utils.checkNotNull(currency, "currency");
         Utils.checkNotNull(externalIdentifier, "externalIdentifier");
+        Utils.checkNotNull(store, "store");
+        Utils.checkNotNull(buyerId, "buyerId");
+        Utils.checkNotNull(buyerExternalIdentifier, "buyerExternalIdentifier");
         this.number = number;
         this.pin = pin;
         this.amount = amount;
         this.currency = currency;
         this.externalIdentifier = externalIdentifier;
+        this.store = store;
+        this.buyerId = buyerId;
+        this.buyerExternalIdentifier = buyerExternalIdentifier;
     }
     
     public GiftCardActivationCreate(
             String number) {
         this(number, JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
             JsonNullable.undefined(), JsonNullable.undefined());
     }
 
@@ -119,6 +156,32 @@ public class GiftCardActivationCreate {
     @JsonIgnore
     public JsonNullable<String> externalIdentifier() {
         return externalIdentifier;
+    }
+
+    /**
+     * Whether to store the activated gift card in the vault. When `true`, a `pin` is required.
+     */
+    @JsonIgnore
+    public Optional<Boolean> store() {
+        return store;
+    }
+
+    /**
+     * The ID of the buyer to associate this gift card to. Only allowed when `store` is `true`. If this
+     * field is provided then the `buyer_external_identifier` field needs to be unset.
+     */
+    @JsonIgnore
+    public JsonNullable<String> buyerId() {
+        return buyerId;
+    }
+
+    /**
+     * The `external_identifier` of the buyer to associate this gift card to. Only allowed when `store` is
+     * `true`. If this field is provided then the `buyer_id` field needs to be unset.
+     */
+    @JsonIgnore
+    public JsonNullable<String> buyerExternalIdentifier() {
+        return buyerExternalIdentifier;
     }
 
     public static Builder builder() {
@@ -209,6 +272,65 @@ public class GiftCardActivationCreate {
         return this;
     }
 
+    /**
+     * Whether to store the activated gift card in the vault. When `true`, a `pin` is required.
+     */
+    public GiftCardActivationCreate withStore(boolean store) {
+        Utils.checkNotNull(store, "store");
+        this.store = Optional.ofNullable(store);
+        return this;
+    }
+
+
+    /**
+     * Whether to store the activated gift card in the vault. When `true`, a `pin` is required.
+     */
+    public GiftCardActivationCreate withStore(Optional<Boolean> store) {
+        Utils.checkNotNull(store, "store");
+        this.store = store;
+        return this;
+    }
+
+    /**
+     * The ID of the buyer to associate this gift card to. Only allowed when `store` is `true`. If this
+     * field is provided then the `buyer_external_identifier` field needs to be unset.
+     */
+    public GiftCardActivationCreate withBuyerId(String buyerId) {
+        Utils.checkNotNull(buyerId, "buyerId");
+        this.buyerId = JsonNullable.of(buyerId);
+        return this;
+    }
+
+    /**
+     * The ID of the buyer to associate this gift card to. Only allowed when `store` is `true`. If this
+     * field is provided then the `buyer_external_identifier` field needs to be unset.
+     */
+    public GiftCardActivationCreate withBuyerId(JsonNullable<String> buyerId) {
+        Utils.checkNotNull(buyerId, "buyerId");
+        this.buyerId = buyerId;
+        return this;
+    }
+
+    /**
+     * The `external_identifier` of the buyer to associate this gift card to. Only allowed when `store` is
+     * `true`. If this field is provided then the `buyer_id` field needs to be unset.
+     */
+    public GiftCardActivationCreate withBuyerExternalIdentifier(String buyerExternalIdentifier) {
+        Utils.checkNotNull(buyerExternalIdentifier, "buyerExternalIdentifier");
+        this.buyerExternalIdentifier = JsonNullable.of(buyerExternalIdentifier);
+        return this;
+    }
+
+    /**
+     * The `external_identifier` of the buyer to associate this gift card to. Only allowed when `store` is
+     * `true`. If this field is provided then the `buyer_id` field needs to be unset.
+     */
+    public GiftCardActivationCreate withBuyerExternalIdentifier(JsonNullable<String> buyerExternalIdentifier) {
+        Utils.checkNotNull(buyerExternalIdentifier, "buyerExternalIdentifier");
+        this.buyerExternalIdentifier = buyerExternalIdentifier;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -223,14 +345,18 @@ public class GiftCardActivationCreate {
             Utils.enhancedDeepEquals(this.pin, other.pin) &&
             Utils.enhancedDeepEquals(this.amount, other.amount) &&
             Utils.enhancedDeepEquals(this.currency, other.currency) &&
-            Utils.enhancedDeepEquals(this.externalIdentifier, other.externalIdentifier);
+            Utils.enhancedDeepEquals(this.externalIdentifier, other.externalIdentifier) &&
+            Utils.enhancedDeepEquals(this.store, other.store) &&
+            Utils.enhancedDeepEquals(this.buyerId, other.buyerId) &&
+            Utils.enhancedDeepEquals(this.buyerExternalIdentifier, other.buyerExternalIdentifier);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
             number, pin, amount,
-            currency, externalIdentifier);
+            currency, externalIdentifier, store,
+            buyerId, buyerExternalIdentifier);
     }
     
     @Override
@@ -240,7 +366,10 @@ public class GiftCardActivationCreate {
                 "pin", pin,
                 "amount", amount,
                 "currency", currency,
-                "externalIdentifier", externalIdentifier);
+                "externalIdentifier", externalIdentifier,
+                "store", store,
+                "buyerId", buyerId,
+                "buyerExternalIdentifier", buyerExternalIdentifier);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -255,6 +384,12 @@ public class GiftCardActivationCreate {
         private JsonNullable<String> currency = JsonNullable.undefined();
 
         private JsonNullable<String> externalIdentifier = JsonNullable.undefined();
+
+        private Optional<Boolean> store;
+
+        private JsonNullable<String> buyerId = JsonNullable.undefined();
+
+        private JsonNullable<String> buyerExternalIdentifier = JsonNullable.undefined();
 
         private Builder() {
           // force use of static builder() method
@@ -348,12 +483,83 @@ public class GiftCardActivationCreate {
             return this;
         }
 
+
+        /**
+         * Whether to store the activated gift card in the vault. When `true`, a `pin` is required.
+         */
+        public Builder store(boolean store) {
+            Utils.checkNotNull(store, "store");
+            this.store = Optional.ofNullable(store);
+            return this;
+        }
+
+        /**
+         * Whether to store the activated gift card in the vault. When `true`, a `pin` is required.
+         */
+        public Builder store(Optional<Boolean> store) {
+            Utils.checkNotNull(store, "store");
+            this.store = store;
+            return this;
+        }
+
+
+        /**
+         * The ID of the buyer to associate this gift card to. Only allowed when `store` is `true`. If this
+         * field is provided then the `buyer_external_identifier` field needs to be unset.
+         */
+        public Builder buyerId(String buyerId) {
+            Utils.checkNotNull(buyerId, "buyerId");
+            this.buyerId = JsonNullable.of(buyerId);
+            return this;
+        }
+
+        /**
+         * The ID of the buyer to associate this gift card to. Only allowed when `store` is `true`. If this
+         * field is provided then the `buyer_external_identifier` field needs to be unset.
+         */
+        public Builder buyerId(JsonNullable<String> buyerId) {
+            Utils.checkNotNull(buyerId, "buyerId");
+            this.buyerId = buyerId;
+            return this;
+        }
+
+
+        /**
+         * The `external_identifier` of the buyer to associate this gift card to. Only allowed when `store` is
+         * `true`. If this field is provided then the `buyer_id` field needs to be unset.
+         */
+        public Builder buyerExternalIdentifier(String buyerExternalIdentifier) {
+            Utils.checkNotNull(buyerExternalIdentifier, "buyerExternalIdentifier");
+            this.buyerExternalIdentifier = JsonNullable.of(buyerExternalIdentifier);
+            return this;
+        }
+
+        /**
+         * The `external_identifier` of the buyer to associate this gift card to. Only allowed when `store` is
+         * `true`. If this field is provided then the `buyer_id` field needs to be unset.
+         */
+        public Builder buyerExternalIdentifier(JsonNullable<String> buyerExternalIdentifier) {
+            Utils.checkNotNull(buyerExternalIdentifier, "buyerExternalIdentifier");
+            this.buyerExternalIdentifier = buyerExternalIdentifier;
+            return this;
+        }
+
         public GiftCardActivationCreate build() {
+            if (store == null) {
+                store = _SINGLETON_VALUE_Store.value();
+            }
 
             return new GiftCardActivationCreate(
                 number, pin, amount,
-                currency, externalIdentifier);
+                currency, externalIdentifier, store,
+                buyerId, buyerExternalIdentifier);
         }
 
+
+        private static final LazySingletonValue<Optional<Boolean>> _SINGLETON_VALUE_Store =
+                new LazySingletonValue<>(
+                        "store",
+                        "false",
+                        new TypeReference<Optional<Boolean>>() {});
     }
 }
