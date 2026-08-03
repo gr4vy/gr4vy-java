@@ -1,19 +1,19 @@
 lockVersion: 2.0.0
 id: 5bbaa3a9-baa0-471b-ba6a-13fd88e8c119
 management:
-  docChecksum: 57bff7b3113898886542ccac9c513e7c
+  docChecksum: 756b84d427fd9eaffb049af812fb1aee
   docVersion: 1.0.0
-  speakeasyVersion: 1.791.0
-  generationVersion: 2.924.0
-  releaseVersion: 2.18.1
-  configChecksum: cd06d67d5008d04c500af047b75afc24
+  speakeasyVersion: 1.791.1
+  generationVersion: 2.926.2
+  releaseVersion: 2.18.2
+  configChecksum: 866303668d507d1e1efbbe758ddc4780
   repoURL: https://github.com/gr4vy/gr4vy-java.git
   installationURL: https://github.com/gr4vy/gr4vy-java
   published: true
 persistentEdits:
-  generation_id: f441994c-c980-46c8-bc06-64f999342368
-  pristine_commit_hash: db7107f1ebe9a53b16767b68ad72903980cf4bdc
-  pristine_tree_hash: 2f18ee3fe50d5c2d80326f9e3381146dffb2d989
+  generation_id: 08c6fbcb-bbeb-485c-8941-7ae54bb303ac
+  pristine_commit_hash: c3e731c9a521f675604207cf5b716f4d03becd79
+  pristine_tree_hash: e20605c0a0b417a7050b961aba657bcdd5157dca
 features:
   java:
     additionalDependencies: 0.1.0
@@ -437,6 +437,10 @@ trackedFiles:
     id: 1d8f579779b7
     last_write_checksum: sha1:da6eb080bd762e01a123938be1bf1cdbd851c16d
     pristine_git_object: d0d16f427ac635be93a965dd5fc24793902604b7
+  docs/models/components/DlocalCardOptions.md:
+    id: 61fc5518c45e
+    last_write_checksum: sha1:db30a511c88cb827ea34ff1e9981748a889aed9a
+    pristine_git_object: d4e171443b5c696ea24d9d2a984c220dcebbfc79
   docs/models/components/DlocalOptions.md:
     id: 5a088684ead3
     last_write_checksum: sha1:1a7a29897c10e35710de51067778e0ce6a8f5285
@@ -1487,8 +1491,8 @@ trackedFiles:
     pristine_git_object: 42df151cdf17bc449de7a5e710b9d116e3d9468c
   docs/models/components/TransactionConnectionOptions.md:
     id: 2a90ee52a662
-    last_write_checksum: sha1:753bea4642557cbb04a89203d6e5ff00e0c63b26
-    pristine_git_object: 75474bcffb49eea5950999ea9ef4c2bb75936b66
+    last_write_checksum: sha1:73074883a079ae20a9fc12afd478844333455b17
+    pristine_git_object: 071c6afbafdd85fcf0f9f828d23bb746c920edf5
   docs/models/components/TransactionCreate.md:
     id: 0af6b811ca1f
     last_write_checksum: sha1:1800f8bd0f00d21470f52ba8697c4a872c4bb9f5
@@ -2815,8 +2819,8 @@ trackedFiles:
     pristine_git_object: 15c4e4642f204ccb312d8814155b69e153b4e19b
   gradle.properties:
     id: 2afbb999f001
-    last_write_checksum: sha1:789ac9c1771f38932e6db67471280b17352957be
-    pristine_git_object: da64f5d583de4bd954be55ca457d4b597ff21f4f
+    last_write_checksum: sha1:333b3fbd0c2643a0f8ae38e07245ef54a6b0cd24
+    pristine_git_object: 03d6df13f7a5b56bf8d205d1e5a4a2d32d06ae33
   gradle/wrapper/gradle-wrapper.jar:
     id: ec27dae6e852
     last_write_checksum: sha1:f725fb1467084142d74fd7cd8eab691ab3442611
@@ -3151,8 +3155,8 @@ trackedFiles:
     pristine_git_object: 502a7312d3dc82c102dbaf7ed5e952d0c793e26f
   src/main/java/com/gr4vy/sdk/SDKConfiguration.java:
     id: 73a7edeaca45
-    last_write_checksum: sha1:83c49e7997f802d78b6ea9e6086fe671794fffc9
-    pristine_git_object: 0722eb268f72a918d429747677cde29a0333a088
+    last_write_checksum: sha1:e7b5b6caf047ced43dfd9d931cd16aef27f26d18
+    pristine_git_object: a64b18df9c43f4231336e6d8c26567f6a2d3a8fc
   src/main/java/com/gr4vy/sdk/SecuritySource.java:
     id: 1b6add6b9b50
     last_write_checksum: sha1:2f365cc823c6243188e83f4df618c9737fcee8bd
@@ -3573,6 +3577,10 @@ trackedFiles:
     id: 9175516db203
     last_write_checksum: sha1:dc69756ae8e5884ed67bfebc4f6575169be1ee6d
     pristine_git_object: f67f9e9f43bc1e5005cb10c8f6972bda9884f050
+  src/main/java/com/gr4vy/sdk/models/components/DlocalCardOptions.java:
+    id: 0bd8a81b2ac3
+    last_write_checksum: sha1:ed2af6a6297e71af2c14aee26b48ccabe2299126
+    pristine_git_object: 5c758093a5f0dd6f3b7266dfc5555aab4d09fe80
   src/main/java/com/gr4vy/sdk/models/components/DlocalOptions.java:
     id: 937e3247cc07
     last_write_checksum: sha1:1fbd54fca85f02005310ecb7c5a98f14a0029fcc
@@ -4627,8 +4635,8 @@ trackedFiles:
     pristine_git_object: 128b2ec34de631f2453cdd8696006f12f7ba7a82
   src/main/java/com/gr4vy/sdk/models/components/TransactionConnectionOptions.java:
     id: 31501e4506f3
-    last_write_checksum: sha1:87a72c05c36657b291d392f9c5f7933b61db6b84
-    pristine_git_object: a423b9e98f362d5712a432e9b7c0d4e66691f90b
+    last_write_checksum: sha1:223f9e4ad53f663491cc9148dfa579f2baefa6ef
+    pristine_git_object: 90e0085b3d4687f389ed1f39823be8d0346e9b76
   src/main/java/com/gr4vy/sdk/models/components/TransactionCreate.java:
     id: 85da9dd45d8a
     last_write_checksum: sha1:277d073f4476aad9caf28749d0f68ce1f8706864
@@ -12244,9 +12252,7 @@ examples:
           application/json: {"type": "error", "code": "gateway_timeout", "status": 504, "message": "Request could not be processed"}
 examplesVersion: 1.0.2
 generatedTests: {}
-releaseNotes: |
-  ## Java SDK Changes:
-  * `gr4vy.giftCards.activations.create()`:  `request.giftCardActivationCreate` **Changed**
+releaseNotes: "## Java SDK Changes:\n* `gr4vy.transactions.create()`: \n  *  `request.transactionCreate.connectionOptions.dlocalCard` **Added**\n* `gr4vy.transactions.update()`: \n  *  `request.transactionUpdate.connectionOptions.dlocalCard` **Added**\n* `gr4vy.paymentLinks.create()`: \n  *  `request.paymentLinkCreate.connectionOptions.dlocalCard` **Added**\n"
 generatedFiles:
   - .gitattributes
   - USAGE.md
