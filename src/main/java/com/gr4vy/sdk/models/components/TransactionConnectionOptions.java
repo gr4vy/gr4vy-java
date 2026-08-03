@@ -200,6 +200,13 @@ public class TransactionConnectionOptions {
     private JsonNullable<? extends CybersourceOptions> cybersourceKcp;
 
     /**
+     * Custom options to be passed to the `dlocal-card` connector.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("dlocal-card")
+    private JsonNullable<? extends DlocalCardOptions> dlocalCard;
+
+    /**
      * Custom options to be passed to the `dlocal-nequi` connector.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -493,6 +500,7 @@ public class TransactionConnectionOptions {
             @JsonProperty("cybersource-card") JsonNullable<? extends CybersourceOptions> cybersourceCard,
             @JsonProperty("cybersource-ideal") JsonNullable<? extends CybersourceOptions> cybersourceIdeal,
             @JsonProperty("cybersource-kcp") JsonNullable<? extends CybersourceOptions> cybersourceKcp,
+            @JsonProperty("dlocal-card") JsonNullable<? extends DlocalCardOptions> dlocalCard,
             @JsonProperty("dlocal-nequi") JsonNullable<? extends DlocalOptions> dlocalNequi,
             @JsonProperty("dlocal-upi") JsonNullable<? extends DlocalUPIOptions> dlocalUpi,
             @JsonProperty("dlocal-pix") JsonNullable<? extends DlocalPIXOptions> dlocalPix,
@@ -557,6 +565,7 @@ public class TransactionConnectionOptions {
         Utils.checkNotNull(cybersourceCard, "cybersourceCard");
         Utils.checkNotNull(cybersourceIdeal, "cybersourceIdeal");
         Utils.checkNotNull(cybersourceKcp, "cybersourceKcp");
+        Utils.checkNotNull(dlocalCard, "dlocalCard");
         Utils.checkNotNull(dlocalNequi, "dlocalNequi");
         Utils.checkNotNull(dlocalUpi, "dlocalUpi");
         Utils.checkNotNull(dlocalPix, "dlocalPix");
@@ -621,6 +630,7 @@ public class TransactionConnectionOptions {
         this.cybersourceCard = cybersourceCard;
         this.cybersourceIdeal = cybersourceIdeal;
         this.cybersourceKcp = cybersourceKcp;
+        this.dlocalCard = dlocalCard;
         this.dlocalNequi = dlocalNequi;
         this.dlocalUpi = dlocalUpi;
         this.dlocalPix = dlocalPix;
@@ -683,7 +693,7 @@ public class TransactionConnectionOptions {
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined());
+            JsonNullable.undefined(), JsonNullable.undefined());
     }
 
     /**
@@ -919,6 +929,15 @@ public class TransactionConnectionOptions {
     @JsonIgnore
     public JsonNullable<CybersourceOptions> cybersourceKcp() {
         return (JsonNullable<CybersourceOptions>) cybersourceKcp;
+    }
+
+    /**
+     * Custom options to be passed to the `dlocal-card` connector.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public JsonNullable<DlocalCardOptions> dlocalCard() {
+        return (JsonNullable<DlocalCardOptions>) dlocalCard;
     }
 
     /**
@@ -1739,6 +1758,24 @@ public class TransactionConnectionOptions {
     }
 
     /**
+     * Custom options to be passed to the `dlocal-card` connector.
+     */
+    public TransactionConnectionOptions withDlocalCard(DlocalCardOptions dlocalCard) {
+        Utils.checkNotNull(dlocalCard, "dlocalCard");
+        this.dlocalCard = JsonNullable.of(dlocalCard);
+        return this;
+    }
+
+    /**
+     * Custom options to be passed to the `dlocal-card` connector.
+     */
+    public TransactionConnectionOptions withDlocalCard(JsonNullable<? extends DlocalCardOptions> dlocalCard) {
+        Utils.checkNotNull(dlocalCard, "dlocalCard");
+        this.dlocalCard = dlocalCard;
+        return this;
+    }
+
+    /**
      * Custom options to be passed to the `dlocal-nequi` connector.
      */
     public TransactionConnectionOptions withDlocalNequi(DlocalOptions dlocalNequi) {
@@ -2458,6 +2495,7 @@ public class TransactionConnectionOptions {
             Utils.enhancedDeepEquals(this.cybersourceCard, other.cybersourceCard) &&
             Utils.enhancedDeepEquals(this.cybersourceIdeal, other.cybersourceIdeal) &&
             Utils.enhancedDeepEquals(this.cybersourceKcp, other.cybersourceKcp) &&
+            Utils.enhancedDeepEquals(this.dlocalCard, other.dlocalCard) &&
             Utils.enhancedDeepEquals(this.dlocalNequi, other.dlocalNequi) &&
             Utils.enhancedDeepEquals(this.dlocalUpi, other.dlocalUpi) &&
             Utils.enhancedDeepEquals(this.dlocalPix, other.dlocalPix) &&
@@ -2509,20 +2547,20 @@ public class TransactionConnectionOptions {
             adyenSeveneleven, adyenSofort, adyenSwish,
             adyenVipps, affirmAffirm, braintreeCard,
             chaseorbitalCard, cybersourceAntiFraud, cybersourceCard,
-            cybersourceIdeal, cybersourceKcp, dlocalNequi,
-            dlocalUpi, dlocalPix, dlocalGcash,
-            ecommpayCard, klarnaKlarna, fiservCard,
-            forterAntiFraud, gemGem, gemGemds,
-            givingblockGivingblock, gocardlessGocardless, latitudeLatitude,
-            latitudeLatitudeds, mattildaTapi, mattildaTapifintechs,
-            monatoSpei, mockCard, mockdsCard,
-            nuveiCard, nuveiIdeal, nuveiKlarna,
-            nuveiPse, oxxoOxxo, paypalPaypal,
-            paypalPaypalpaylater, powertranzCard, riskifiedAntiFraud,
-            stripeAffirm, stripeCard, stripeKlarna,
-            stripeOnelink, stripeStripe, travelhubCard,
-            trustlyTrustly, worldpayvapCard, wpayEverydaypay,
-            wpayPayto);
+            cybersourceIdeal, cybersourceKcp, dlocalCard,
+            dlocalNequi, dlocalUpi, dlocalPix,
+            dlocalGcash, ecommpayCard, klarnaKlarna,
+            fiservCard, forterAntiFraud, gemGem,
+            gemGemds, givingblockGivingblock, gocardlessGocardless,
+            latitudeLatitude, latitudeLatitudeds, mattildaTapi,
+            mattildaTapifintechs, monatoSpei, mockCard,
+            mockdsCard, nuveiCard, nuveiIdeal,
+            nuveiKlarna, nuveiPse, oxxoOxxo,
+            paypalPaypal, paypalPaypalpaylater, powertranzCard,
+            riskifiedAntiFraud, stripeAffirm, stripeCard,
+            stripeKlarna, stripeOnelink, stripeStripe,
+            travelhubCard, trustlyTrustly, worldpayvapCard,
+            wpayEverydaypay, wpayPayto);
     }
     
     @Override
@@ -2554,6 +2592,7 @@ public class TransactionConnectionOptions {
                 "cybersourceCard", cybersourceCard,
                 "cybersourceIdeal", cybersourceIdeal,
                 "cybersourceKcp", cybersourceKcp,
+                "dlocalCard", dlocalCard,
                 "dlocalNequi", dlocalNequi,
                 "dlocalUpi", dlocalUpi,
                 "dlocalPix", dlocalPix,
@@ -2648,6 +2687,8 @@ public class TransactionConnectionOptions {
         private JsonNullable<? extends CybersourceOptions> cybersourceIdeal = JsonNullable.undefined();
 
         private JsonNullable<? extends CybersourceOptions> cybersourceKcp = JsonNullable.undefined();
+
+        private JsonNullable<? extends DlocalCardOptions> dlocalCard = JsonNullable.undefined();
 
         private JsonNullable<? extends DlocalOptions> dlocalNequi = JsonNullable.undefined();
 
@@ -3222,6 +3263,25 @@ public class TransactionConnectionOptions {
         public Builder cybersourceKcp(JsonNullable<? extends CybersourceOptions> cybersourceKcp) {
             Utils.checkNotNull(cybersourceKcp, "cybersourceKcp");
             this.cybersourceKcp = cybersourceKcp;
+            return this;
+        }
+
+
+        /**
+         * Custom options to be passed to the `dlocal-card` connector.
+         */
+        public Builder dlocalCard(DlocalCardOptions dlocalCard) {
+            Utils.checkNotNull(dlocalCard, "dlocalCard");
+            this.dlocalCard = JsonNullable.of(dlocalCard);
+            return this;
+        }
+
+        /**
+         * Custom options to be passed to the `dlocal-card` connector.
+         */
+        public Builder dlocalCard(JsonNullable<? extends DlocalCardOptions> dlocalCard) {
+            Utils.checkNotNull(dlocalCard, "dlocalCard");
+            this.dlocalCard = dlocalCard;
             return this;
         }
 
@@ -3958,20 +4018,20 @@ public class TransactionConnectionOptions {
                 adyenSeveneleven, adyenSofort, adyenSwish,
                 adyenVipps, affirmAffirm, braintreeCard,
                 chaseorbitalCard, cybersourceAntiFraud, cybersourceCard,
-                cybersourceIdeal, cybersourceKcp, dlocalNequi,
-                dlocalUpi, dlocalPix, dlocalGcash,
-                ecommpayCard, klarnaKlarna, fiservCard,
-                forterAntiFraud, gemGem, gemGemds,
-                givingblockGivingblock, gocardlessGocardless, latitudeLatitude,
-                latitudeLatitudeds, mattildaTapi, mattildaTapifintechs,
-                monatoSpei, mockCard, mockdsCard,
-                nuveiCard, nuveiIdeal, nuveiKlarna,
-                nuveiPse, oxxoOxxo, paypalPaypal,
-                paypalPaypalpaylater, powertranzCard, riskifiedAntiFraud,
-                stripeAffirm, stripeCard, stripeKlarna,
-                stripeOnelink, stripeStripe, travelhubCard,
-                trustlyTrustly, worldpayvapCard, wpayEverydaypay,
-                wpayPayto);
+                cybersourceIdeal, cybersourceKcp, dlocalCard,
+                dlocalNequi, dlocalUpi, dlocalPix,
+                dlocalGcash, ecommpayCard, klarnaKlarna,
+                fiservCard, forterAntiFraud, gemGem,
+                gemGemds, givingblockGivingblock, gocardlessGocardless,
+                latitudeLatitude, latitudeLatitudeds, mattildaTapi,
+                mattildaTapifintechs, monatoSpei, mockCard,
+                mockdsCard, nuveiCard, nuveiIdeal,
+                nuveiKlarna, nuveiPse, oxxoOxxo,
+                paypalPaypal, paypalPaypalpaylater, powertranzCard,
+                riskifiedAntiFraud, stripeAffirm, stripeCard,
+                stripeKlarna, stripeOnelink, stripeStripe,
+                travelhubCard, trustlyTrustly, worldpayvapCard,
+                wpayEverydaypay, wpayPayto);
         }
 
     }
