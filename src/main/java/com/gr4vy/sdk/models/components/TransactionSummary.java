@@ -242,6 +242,13 @@ public class TransactionSummary {
     @JsonProperty("disputed")
     private boolean disputed;
 
+    /**
+     * The identifier of the transaction from which this transaction was reauthorized.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("reauthorized_from_transaction_id")
+    private JsonNullable<String> reauthorizedFromTransactionId;
+
     @JsonCreator
     public TransactionSummary(
             @JsonProperty("id") String id,
@@ -274,7 +281,8 @@ public class TransactionSummary {
             @JsonProperty("gift_card_service") JsonNullable<? extends GiftCardService> giftCardService,
             @JsonProperty("created_at") OffsetDateTime createdAt,
             @JsonProperty("updated_at") OffsetDateTime updatedAt,
-            @JsonProperty("disputed") boolean disputed) {
+            @JsonProperty("disputed") boolean disputed,
+            @JsonProperty("reauthorized_from_transaction_id") JsonNullable<String> reauthorizedFromTransactionId) {
         Utils.checkNotNull(id, "id");
         Utils.checkNotNull(reconciliationId, "reconciliationId");
         Utils.checkNotNull(merchantAccountId, "merchantAccountId");
@@ -306,6 +314,7 @@ public class TransactionSummary {
         Utils.checkNotNull(createdAt, "createdAt");
         Utils.checkNotNull(updatedAt, "updatedAt");
         Utils.checkNotNull(disputed, "disputed");
+        Utils.checkNotNull(reauthorizedFromTransactionId, "reauthorizedFromTransactionId");
         this.type = Builder._SINGLETON_VALUE_Type.value();
         this.id = id;
         this.reconciliationId = reconciliationId;
@@ -338,6 +347,7 @@ public class TransactionSummary {
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
         this.disputed = disputed;
+        this.reauthorizedFromTransactionId = reauthorizedFromTransactionId;
     }
     
     public TransactionSummary(
@@ -367,7 +377,7 @@ public class TransactionSummary {
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), giftCardRedemptions,
             JsonNullable.undefined(), createdAt, updatedAt,
-            disputed);
+            disputed, JsonNullable.undefined());
     }
 
     /**
@@ -636,6 +646,14 @@ public class TransactionSummary {
     @JsonIgnore
     public boolean disputed() {
         return disputed;
+    }
+
+    /**
+     * The identifier of the transaction from which this transaction was reauthorized.
+     */
+    @JsonIgnore
+    public JsonNullable<String> reauthorizedFromTransactionId() {
+        return reauthorizedFromTransactionId;
     }
 
     public static Builder builder() {
@@ -1066,6 +1084,24 @@ public class TransactionSummary {
         return this;
     }
 
+    /**
+     * The identifier of the transaction from which this transaction was reauthorized.
+     */
+    public TransactionSummary withReauthorizedFromTransactionId(String reauthorizedFromTransactionId) {
+        Utils.checkNotNull(reauthorizedFromTransactionId, "reauthorizedFromTransactionId");
+        this.reauthorizedFromTransactionId = JsonNullable.of(reauthorizedFromTransactionId);
+        return this;
+    }
+
+    /**
+     * The identifier of the transaction from which this transaction was reauthorized.
+     */
+    public TransactionSummary withReauthorizedFromTransactionId(JsonNullable<String> reauthorizedFromTransactionId) {
+        Utils.checkNotNull(reauthorizedFromTransactionId, "reauthorizedFromTransactionId");
+        this.reauthorizedFromTransactionId = reauthorizedFromTransactionId;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -1107,7 +1143,8 @@ public class TransactionSummary {
             Utils.enhancedDeepEquals(this.giftCardService, other.giftCardService) &&
             Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
             Utils.enhancedDeepEquals(this.updatedAt, other.updatedAt) &&
-            Utils.enhancedDeepEquals(this.disputed, other.disputed);
+            Utils.enhancedDeepEquals(this.disputed, other.disputed) &&
+            Utils.enhancedDeepEquals(this.reauthorizedFromTransactionId, other.reauthorizedFromTransactionId);
     }
     
     @Override
@@ -1123,7 +1160,7 @@ public class TransactionSummary {
             pendingReview, buyer, rawResponseCode,
             rawResponseDescription, shippingDetails, checkoutSessionId,
             giftCardRedemptions, giftCardService, createdAt,
-            updatedAt, disputed);
+            updatedAt, disputed, reauthorizedFromTransactionId);
     }
     
     @Override
@@ -1160,7 +1197,8 @@ public class TransactionSummary {
                 "giftCardService", giftCardService,
                 "createdAt", createdAt,
                 "updatedAt", updatedAt,
-                "disputed", disputed);
+                "disputed", disputed,
+                "reauthorizedFromTransactionId", reauthorizedFromTransactionId);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -1227,6 +1265,8 @@ public class TransactionSummary {
         private OffsetDateTime updatedAt;
 
         private Boolean disputed;
+
+        private JsonNullable<String> reauthorizedFromTransactionId = JsonNullable.undefined();
 
         private Builder() {
           // force use of static builder() method
@@ -1685,6 +1725,25 @@ public class TransactionSummary {
             return this;
         }
 
+
+        /**
+         * The identifier of the transaction from which this transaction was reauthorized.
+         */
+        public Builder reauthorizedFromTransactionId(String reauthorizedFromTransactionId) {
+            Utils.checkNotNull(reauthorizedFromTransactionId, "reauthorizedFromTransactionId");
+            this.reauthorizedFromTransactionId = JsonNullable.of(reauthorizedFromTransactionId);
+            return this;
+        }
+
+        /**
+         * The identifier of the transaction from which this transaction was reauthorized.
+         */
+        public Builder reauthorizedFromTransactionId(JsonNullable<String> reauthorizedFromTransactionId) {
+            Utils.checkNotNull(reauthorizedFromTransactionId, "reauthorizedFromTransactionId");
+            this.reauthorizedFromTransactionId = reauthorizedFromTransactionId;
+            return this;
+        }
+
         public TransactionSummary build() {
             if (pendingReview == null) {
                 pendingReview = _SINGLETON_VALUE_PendingReview.value();
@@ -1701,7 +1760,7 @@ public class TransactionSummary {
                 buyer, rawResponseCode, rawResponseDescription,
                 shippingDetails, checkoutSessionId, giftCardRedemptions,
                 giftCardService, createdAt, updatedAt,
-                disputed);
+                disputed, reauthorizedFromTransactionId);
         }
 
 
