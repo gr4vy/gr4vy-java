@@ -5,6 +5,7 @@ package com.gr4vy.sdk;
 
 import static com.gr4vy.sdk.operations.Operations.RequestOperation;
 
+import com.gr4vy.sdk.models.components.TransactionAuthorizationIncrementCreate;
 import com.gr4vy.sdk.models.components.TransactionCreate;
 import com.gr4vy.sdk.models.components.TransactionUpdate;
 import com.gr4vy.sdk.models.operations.CancelTransactionRequest;
@@ -19,6 +20,9 @@ import com.gr4vy.sdk.models.operations.CreateTransactionResponse;
 import com.gr4vy.sdk.models.operations.GetTransactionRequest;
 import com.gr4vy.sdk.models.operations.GetTransactionRequestBuilder;
 import com.gr4vy.sdk.models.operations.GetTransactionResponse;
+import com.gr4vy.sdk.models.operations.IncrementTransactionAuthorizationRequest;
+import com.gr4vy.sdk.models.operations.IncrementTransactionAuthorizationRequestBuilder;
+import com.gr4vy.sdk.models.operations.IncrementTransactionAuthorizationResponse;
 import com.gr4vy.sdk.models.operations.ListTransactionsRequest;
 import com.gr4vy.sdk.models.operations.ListTransactionsRequestBuilder;
 import com.gr4vy.sdk.models.operations.ListTransactionsResponse;
@@ -35,6 +39,7 @@ import com.gr4vy.sdk.operations.CancelTransaction;
 import com.gr4vy.sdk.operations.CaptureTransaction;
 import com.gr4vy.sdk.operations.CreateTransaction;
 import com.gr4vy.sdk.operations.GetTransaction;
+import com.gr4vy.sdk.operations.IncrementTransactionAuthorization;
 import com.gr4vy.sdk.operations.ListTransactions;
 import com.gr4vy.sdk.operations.SyncTransaction;
 import com.gr4vy.sdk.operations.UpdateTransaction;
@@ -494,6 +499,60 @@ public class Transactions {
                 .build();
         RequestOperation<SyncTransactionRequest, SyncTransactionResponse> operation
               = new SyncTransaction.Sync(sdkConfiguration, _headers);
+        return operation.handleResponse(operation.doRequest(request));
+    }
+
+    /**
+     * Increment transaction authorization
+     * 
+     * <p>Increment the transaction authorization amount of a given transaction_id.
+     * 
+     * @return The call builder
+     */
+    public IncrementTransactionAuthorizationRequestBuilder incrementAuthorization() {
+        return new IncrementTransactionAuthorizationRequestBuilder(sdkConfiguration);
+    }
+
+    /**
+     * Increment transaction authorization
+     * 
+     * <p>Increment the transaction authorization amount of a given transaction_id.
+     * 
+     * @param transactionId The unique identifier of the transaction.
+     * @param transactionAuthorizationIncrementCreate 
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public IncrementTransactionAuthorizationResponse incrementAuthorization(String transactionId, TransactionAuthorizationIncrementCreate transactionAuthorizationIncrementCreate) {
+        return incrementAuthorization(transactionId, JsonNullable.undefined(), JsonNullable.undefined(),
+            transactionAuthorizationIncrementCreate);
+    }
+
+    /**
+     * Increment transaction authorization
+     * 
+     * <p>Increment the transaction authorization amount of a given transaction_id.
+     * 
+     * @param transactionId The unique identifier of the transaction.
+     * @param merchantAccountId 
+     * @param idempotencyKey A unique key that identifies this request. Providing this header will make this an idempotent request. We recommend using V4 UUIDs, or another random string with enough entropy to avoid collisions.
+     * @param transactionAuthorizationIncrementCreate 
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public IncrementTransactionAuthorizationResponse incrementAuthorization(
+            String transactionId, JsonNullable<String> merchantAccountId,
+            JsonNullable<String> idempotencyKey, TransactionAuthorizationIncrementCreate transactionAuthorizationIncrementCreate) {
+        IncrementTransactionAuthorizationRequest request =
+            IncrementTransactionAuthorizationRequest
+                .builder()
+                .transactionId(transactionId)
+                .merchantAccountId(merchantAccountId)
+                .idempotencyKey(idempotencyKey)
+                .transactionAuthorizationIncrementCreate(transactionAuthorizationIncrementCreate)
+                .build();
+        RequestOperation<IncrementTransactionAuthorizationRequest, IncrementTransactionAuthorizationResponse> operation
+              = new IncrementTransactionAuthorization.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
