@@ -78,6 +78,14 @@ public class APIKeyPair {
     private OffsetDateTime updatedAt;
 
     /**
+     * The date and time when this API key pair was last used to authenticate, or `null` if it has never
+     * been used.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("last_used_at")
+    private JsonNullable<OffsetDateTime> lastUsedAt;
+
+    /**
      * The user or API key pair that created this API key pair.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -109,6 +117,7 @@ public class APIKeyPair {
             @JsonProperty("private_key") JsonNullable<String> privateKey,
             @JsonProperty("created_at") OffsetDateTime createdAt,
             @JsonProperty("updated_at") OffsetDateTime updatedAt,
+            @JsonProperty("last_used_at") JsonNullable<OffsetDateTime> lastUsedAt,
             @JsonProperty("creator") JsonNullable<? extends ApiRoutersApiKeyPairsSchemasCreator> creator,
             @JsonProperty("merchant_accounts") Optional<? extends List<MerchantAccountSummary>> merchantAccounts,
             @JsonProperty("roles") Optional<? extends List<Role>> roles) {
@@ -120,6 +129,7 @@ public class APIKeyPair {
         Utils.checkNotNull(privateKey, "privateKey");
         Utils.checkNotNull(createdAt, "createdAt");
         Utils.checkNotNull(updatedAt, "updatedAt");
+        Utils.checkNotNull(lastUsedAt, "lastUsedAt");
         Utils.checkNotNull(creator, "creator");
         Utils.checkNotNull(merchantAccounts, "merchantAccounts");
         Utils.checkNotNull(roles, "roles");
@@ -132,6 +142,7 @@ public class APIKeyPair {
         this.privateKey = privateKey;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
+        this.lastUsedAt = lastUsedAt;
         this.creator = creator;
         this.merchantAccounts = merchantAccounts;
         this.roles = roles;
@@ -148,7 +159,7 @@ public class APIKeyPair {
         this(id, thumbprint, displayName,
             algorithm, active, JsonNullable.undefined(),
             createdAt, updatedAt, JsonNullable.undefined(),
-            Optional.empty(), Optional.empty());
+            JsonNullable.undefined(), Optional.empty(), Optional.empty());
     }
 
     /**
@@ -219,6 +230,15 @@ public class APIKeyPair {
     @JsonIgnore
     public OffsetDateTime updatedAt() {
         return updatedAt;
+    }
+
+    /**
+     * The date and time when this API key pair was last used to authenticate, or `null` if it has never
+     * been used.
+     */
+    @JsonIgnore
+    public JsonNullable<OffsetDateTime> lastUsedAt() {
+        return lastUsedAt;
     }
 
     /**
@@ -335,6 +355,26 @@ public class APIKeyPair {
     }
 
     /**
+     * The date and time when this API key pair was last used to authenticate, or `null` if it has never
+     * been used.
+     */
+    public APIKeyPair withLastUsedAt(OffsetDateTime lastUsedAt) {
+        Utils.checkNotNull(lastUsedAt, "lastUsedAt");
+        this.lastUsedAt = JsonNullable.of(lastUsedAt);
+        return this;
+    }
+
+    /**
+     * The date and time when this API key pair was last used to authenticate, or `null` if it has never
+     * been used.
+     */
+    public APIKeyPair withLastUsedAt(JsonNullable<OffsetDateTime> lastUsedAt) {
+        Utils.checkNotNull(lastUsedAt, "lastUsedAt");
+        this.lastUsedAt = lastUsedAt;
+        return this;
+    }
+
+    /**
      * The user or API key pair that created this API key pair.
      */
     public APIKeyPair withCreator(ApiRoutersApiKeyPairsSchemasCreator creator) {
@@ -411,6 +451,7 @@ public class APIKeyPair {
             Utils.enhancedDeepEquals(this.privateKey, other.privateKey) &&
             Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
             Utils.enhancedDeepEquals(this.updatedAt, other.updatedAt) &&
+            Utils.enhancedDeepEquals(this.lastUsedAt, other.lastUsedAt) &&
             Utils.enhancedDeepEquals(this.creator, other.creator) &&
             Utils.enhancedDeepEquals(this.merchantAccounts, other.merchantAccounts) &&
             Utils.enhancedDeepEquals(this.roles, other.roles);
@@ -422,7 +463,8 @@ public class APIKeyPair {
             type, id, thumbprint,
             displayName, algorithm, active,
             privateKey, createdAt, updatedAt,
-            creator, merchantAccounts, roles);
+            lastUsedAt, creator, merchantAccounts,
+            roles);
     }
     
     @Override
@@ -437,6 +479,7 @@ public class APIKeyPair {
                 "privateKey", privateKey,
                 "createdAt", createdAt,
                 "updatedAt", updatedAt,
+                "lastUsedAt", lastUsedAt,
                 "creator", creator,
                 "merchantAccounts", merchantAccounts,
                 "roles", roles);
@@ -460,6 +503,8 @@ public class APIKeyPair {
         private OffsetDateTime createdAt;
 
         private OffsetDateTime updatedAt;
+
+        private JsonNullable<OffsetDateTime> lastUsedAt = JsonNullable.undefined();
 
         private JsonNullable<? extends ApiRoutersApiKeyPairsSchemasCreator> creator = JsonNullable.undefined();
 
@@ -561,6 +606,27 @@ public class APIKeyPair {
 
 
         /**
+         * The date and time when this API key pair was last used to authenticate, or `null` if it has never
+         * been used.
+         */
+        public Builder lastUsedAt(OffsetDateTime lastUsedAt) {
+            Utils.checkNotNull(lastUsedAt, "lastUsedAt");
+            this.lastUsedAt = JsonNullable.of(lastUsedAt);
+            return this;
+        }
+
+        /**
+         * The date and time when this API key pair was last used to authenticate, or `null` if it has never
+         * been used.
+         */
+        public Builder lastUsedAt(JsonNullable<OffsetDateTime> lastUsedAt) {
+            Utils.checkNotNull(lastUsedAt, "lastUsedAt");
+            this.lastUsedAt = lastUsedAt;
+            return this;
+        }
+
+
+        /**
          * The user or API key pair that created this API key pair.
          */
         public Builder creator(ApiRoutersApiKeyPairsSchemasCreator creator) {
@@ -623,8 +689,8 @@ public class APIKeyPair {
             return new APIKeyPair(
                 id, thumbprint, displayName,
                 algorithm, active, privateKey,
-                createdAt, updatedAt, creator,
-                merchantAccounts, roles);
+                createdAt, updatedAt, lastUsedAt,
+                creator, merchantAccounts, roles);
         }
 
 
