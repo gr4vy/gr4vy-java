@@ -1,19 +1,19 @@
 lockVersion: 2.0.0
 id: 5bbaa3a9-baa0-471b-ba6a-13fd88e8c119
 management:
-  docChecksum: 22b7ff0fa9bb75151957bb53021346e0
+  docChecksum: eb80d376bd87555fc332c244429360fd
   docVersion: 1.0.0
   speakeasyVersion: 1.791.1
   generationVersion: 2.926.2
-  releaseVersion: 2.18.3
-  configChecksum: dc98b6fa07caadeb0cd7bca3a49f6cfa
+  releaseVersion: 2.18.4
+  configChecksum: 5fcc0225b237efa59dfd4fd2f869bd0e
   repoURL: https://github.com/gr4vy/gr4vy-java.git
   installationURL: https://github.com/gr4vy/gr4vy-java
   published: true
 persistentEdits:
-  generation_id: 43dbc119-97ba-4c9a-8169-2bdd13a2ae89
-  pristine_commit_hash: b738a362ebc3b537a6f0c986b89f34d6a44d82c7
-  pristine_tree_hash: 243ba88a2e84542c8aaec7cb0d25729e0d0d5fed
+  generation_id: 1941317d-d61b-4703-831c-bd8376504e73
+  pristine_commit_hash: bdc687d1421979a32ed1f529300e239852249ad0
+  pristine_tree_hash: 20d96cb21630f300a22928926e73171b40c0cdcf
 features:
   java:
     additionalDependencies: 0.1.0
@@ -59,8 +59,8 @@ trackedFiles:
     pristine_git_object: f615e05142a1f0e72c001b3aa00fb17147dac888
   docs/models/components/APIKeyPair.md:
     id: 818c5775e870
-    last_write_checksum: sha1:18c513d58b7e2e4871987be8c9d47f0a81f26724
-    pristine_git_object: 1990ad0649340c12df55fb0152b7e5373b88728b
+    last_write_checksum: sha1:b6eb40b1ac97460dbd2a7e6977e54f429eb8f599
+    pristine_git_object: d49b1fe56dd2fd728e0c9f4596ce4ce8d7b4f0a0
   docs/models/components/APIKeyPairCreate.md:
     id: 6fbe4a2cbbae
     last_write_checksum: sha1:a44ee0801c5eb6f1a1d6aba7fe875c111e3b50ac
@@ -2819,8 +2819,8 @@ trackedFiles:
     pristine_git_object: 15c4e4642f204ccb312d8814155b69e153b4e19b
   gradle.properties:
     id: 2afbb999f001
-    last_write_checksum: sha1:fbc56c996304300bbb32721fec12fdb60c30cfe3
-    pristine_git_object: 6f8426451c24189b1841bcfd9bd7740ae59e23dd
+    last_write_checksum: sha1:1b98a272863f97a9cd5768fc6bd96ee1c0321407
+    pristine_git_object: 57d533d139ba535b23d5cbe91e1b3646c3b6a974
   gradle/wrapper/gradle-wrapper.jar:
     id: ec27dae6e852
     last_write_checksum: sha1:f725fb1467084142d74fd7cd8eab691ab3442611
@@ -3155,8 +3155,8 @@ trackedFiles:
     pristine_git_object: 502a7312d3dc82c102dbaf7ed5e952d0c793e26f
   src/main/java/com/gr4vy/sdk/SDKConfiguration.java:
     id: 73a7edeaca45
-    last_write_checksum: sha1:344d0d7cd96e82352e67f4bc8b5c80dff02599cd
-    pristine_git_object: 010258c1e0ec4b4075163d026cec947dd910349b
+    last_write_checksum: sha1:30ce9ad8e288ed3ddce5f74a694803afd0694c30
+    pristine_git_object: a68d33ed864fcb2df39dd16568aa5f5f1d47bc57
   src/main/java/com/gr4vy/sdk/SecuritySource.java:
     id: 1b6add6b9b50
     last_write_checksum: sha1:2f365cc823c6243188e83f4df618c9737fcee8bd
@@ -3199,8 +3199,8 @@ trackedFiles:
     pristine_git_object: 4064ab271b9d85e870287268983ac72d32ce6515
   src/main/java/com/gr4vy/sdk/models/components/APIKeyPair.java:
     id: 13872d76e930
-    last_write_checksum: sha1:a823db624febc253799332315805f977177020d3
-    pristine_git_object: 8893253f85dc7e7916d9abbf03eafda0f1df286f
+    last_write_checksum: sha1:643342f38e60c74cb2f8ca2ef5aecaae85dd884f
+    pristine_git_object: 96c1bc68f050f7c000523599d483dfd15d44db76
   src/main/java/com/gr4vy/sdk/models/components/APIKeyPairCreate.java:
     id: a06a7a2d0225
     last_write_checksum: sha1:d93d16f4fda1b9993adc293931046e6001e14c01
@@ -12254,14 +12254,10 @@ examplesVersion: 1.0.2
 generatedTests: {}
 releaseNotes: |
   ## Java SDK Changes:
-  * `gr4vy.transactions.list()`:  `response.items[].reauthorizedFromTransactionId` **Added**
-  * `gr4vy.transactions.create()`:  `response.reauthorizedFromTransactionId` **Added**
-  * `gr4vy.transactions.get()`:  `response.reauthorizedFromTransactionId` **Added**
-  * `gr4vy.transactions.update()`:  `response.reauthorizedFromTransactionId` **Added**
-  * `gr4vy.transactions.capture()`:  `response.union(Transaction).reauthorizedFromTransactionId` **Added**
-  * `gr4vy.transactions.void()`:  `response.union(Transaction).reauthorizedFromTransactionId` **Added**
-  * `gr4vy.transactions.cancel()`:  `response.transaction.reauthorizedFromTransactionId` **Added**
-  * `gr4vy.transactions.sync()`:  `response.reauthorizedFromTransactionId` **Added**
+  * `gr4vy.apiKeyPairs.list()`:  `response.items[].lastUsedAt` **Added**
+  * `gr4vy.apiKeyPairs.create()`:  `response.lastUsedAt` **Added**
+  * `gr4vy.apiKeyPairs.get()`:  `response.lastUsedAt` **Added**
+  * `gr4vy.apiKeyPairs.update()`:  `response.lastUsedAt` **Added**
 generatedFiles:
   - .gitattributes
   - USAGE.md
