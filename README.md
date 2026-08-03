@@ -59,7 +59,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'com.gr4vy:sdk:2.18.4'
+implementation 'com.gr4vy:sdk:2.18.5'
 ```
 
 Maven:
@@ -67,7 +67,7 @@ Maven:
 <dependency>
     <groupId>com.gr4vy</groupId>
     <artifactId>sdk</artifactId>
-    <version>2.18.4</version>
+    <version>2.18.5</version>
 </dependency>
 ```
 
@@ -534,6 +534,7 @@ Async support is available for:
 * [void_](docs/sdks/transactions/README.md#void_) - Void transaction
 * [cancel](docs/sdks/transactions/README.md#cancel) - Cancel transaction
 * [sync](docs/sdks/transactions/README.md#sync) - Sync transaction
+* [incrementAuthorization](docs/sdks/transactions/README.md#incrementauthorization) - Increment transaction authorization
 
 #### [Transactions.Actions](docs/sdks/actions/README.md)
 
