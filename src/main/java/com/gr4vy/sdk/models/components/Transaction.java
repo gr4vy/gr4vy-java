@@ -244,6 +244,13 @@ public class Transaction {
     private boolean disputed;
 
     /**
+     * The identifier of the transaction from which this transaction was reauthorized.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("reauthorized_from_transaction_id")
+    private JsonNullable<String> reauthorizedFromTransactionId;
+
+    /**
      * Contains information about an airline travel, if applicable.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -544,6 +551,7 @@ public class Transaction {
             @JsonProperty("created_at") OffsetDateTime createdAt,
             @JsonProperty("updated_at") OffsetDateTime updatedAt,
             @JsonProperty("disputed") boolean disputed,
+            @JsonProperty("reauthorized_from_transaction_id") JsonNullable<String> reauthorizedFromTransactionId,
             @JsonProperty("airline") JsonNullable<? extends Airline> airline,
             @JsonProperty("auth_response_code") JsonNullable<String> authResponseCode,
             @JsonProperty("avs_response_code") JsonNullable<? extends AVSResponseCode> avsResponseCode,
@@ -613,6 +621,7 @@ public class Transaction {
         Utils.checkNotNull(createdAt, "createdAt");
         Utils.checkNotNull(updatedAt, "updatedAt");
         Utils.checkNotNull(disputed, "disputed");
+        Utils.checkNotNull(reauthorizedFromTransactionId, "reauthorizedFromTransactionId");
         Utils.checkNotNull(airline, "airline");
         Utils.checkNotNull(authResponseCode, "authResponseCode");
         Utils.checkNotNull(avsResponseCode, "avsResponseCode");
@@ -683,6 +692,7 @@ public class Transaction {
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
         this.disputed = disputed;
+        this.reauthorizedFromTransactionId = reauthorizedFromTransactionId;
         this.airline = airline;
         this.authResponseCode = authResponseCode;
         this.avsResponseCode = avsResponseCode;
@@ -758,17 +768,18 @@ public class Transaction {
             JsonNullable.undefined(), createdAt, updatedAt,
             disputed, JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            paymentSource, merchantInitiated, isSubsequentPayment,
+            JsonNullable.undefined(), paymentSource, merchantInitiated,
+            isSubsequentPayment, JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), intentOutcome,
-            multiTender, accountFundingTransaction, JsonNullable.undefined(),
+            intentOutcome, multiTender, accountFundingTransaction,
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined());
     }
 
     /**
@@ -1037,6 +1048,14 @@ public class Transaction {
     @JsonIgnore
     public boolean disputed() {
         return disputed;
+    }
+
+    /**
+     * The identifier of the transaction from which this transaction was reauthorized.
+     */
+    @JsonIgnore
+    public JsonNullable<String> reauthorizedFromTransactionId() {
+        return reauthorizedFromTransactionId;
     }
 
     /**
@@ -1789,6 +1808,24 @@ public class Transaction {
     }
 
     /**
+     * The identifier of the transaction from which this transaction was reauthorized.
+     */
+    public Transaction withReauthorizedFromTransactionId(String reauthorizedFromTransactionId) {
+        Utils.checkNotNull(reauthorizedFromTransactionId, "reauthorizedFromTransactionId");
+        this.reauthorizedFromTransactionId = JsonNullable.of(reauthorizedFromTransactionId);
+        return this;
+    }
+
+    /**
+     * The identifier of the transaction from which this transaction was reauthorized.
+     */
+    public Transaction withReauthorizedFromTransactionId(JsonNullable<String> reauthorizedFromTransactionId) {
+        Utils.checkNotNull(reauthorizedFromTransactionId, "reauthorizedFromTransactionId");
+        this.reauthorizedFromTransactionId = reauthorizedFromTransactionId;
+        return this;
+    }
+
+    /**
      * Contains information about an airline travel, if applicable.
      */
     public Transaction withAirline(Airline airline) {
@@ -2475,6 +2512,7 @@ public class Transaction {
             Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
             Utils.enhancedDeepEquals(this.updatedAt, other.updatedAt) &&
             Utils.enhancedDeepEquals(this.disputed, other.disputed) &&
+            Utils.enhancedDeepEquals(this.reauthorizedFromTransactionId, other.reauthorizedFromTransactionId) &&
             Utils.enhancedDeepEquals(this.airline, other.airline) &&
             Utils.enhancedDeepEquals(this.authResponseCode, other.authResponseCode) &&
             Utils.enhancedDeepEquals(this.avsResponseCode, other.avsResponseCode) &&
@@ -2528,20 +2566,20 @@ public class Transaction {
             pendingReview, buyer, rawResponseCode,
             rawResponseDescription, shippingDetails, checkoutSessionId,
             giftCardRedemptions, giftCardService, createdAt,
-            updatedAt, disputed, airline,
-            authResponseCode, avsResponseCode, cvvResponseCode,
-            antiFraudDecision, paymentSource, merchantInitiated,
-            isSubsequentPayment, cartItems, statementDescriptor,
-            schemeTransactionId, transactionLinkId, threeDSecure,
-            paymentServiceTransactionId, additionalIdentifiers, metadata,
-            authorizedAt, capturedAt, voidedAt,
-            canceledAt, approvalExpiresAt, buyerApprovalTimedoutAt,
-            intentOutcome, multiTender, accountFundingTransaction,
-            recipient, merchantAdviceCode, installmentCount,
-            sessionToken, taxAmount, merchantTaxId,
-            purchaseOrderNumber, customerReferenceNumber, amountIncludesTax,
-            supplierOrderNumber, dutyAmount, shippingAmount,
-            isoResponseCode);
+            updatedAt, disputed, reauthorizedFromTransactionId,
+            airline, authResponseCode, avsResponseCode,
+            cvvResponseCode, antiFraudDecision, paymentSource,
+            merchantInitiated, isSubsequentPayment, cartItems,
+            statementDescriptor, schemeTransactionId, transactionLinkId,
+            threeDSecure, paymentServiceTransactionId, additionalIdentifiers,
+            metadata, authorizedAt, capturedAt,
+            voidedAt, canceledAt, approvalExpiresAt,
+            buyerApprovalTimedoutAt, intentOutcome, multiTender,
+            accountFundingTransaction, recipient, merchantAdviceCode,
+            installmentCount, sessionToken, taxAmount,
+            merchantTaxId, purchaseOrderNumber, customerReferenceNumber,
+            amountIncludesTax, supplierOrderNumber, dutyAmount,
+            shippingAmount, isoResponseCode);
     }
     
     @Override
@@ -2579,6 +2617,7 @@ public class Transaction {
                 "createdAt", createdAt,
                 "updatedAt", updatedAt,
                 "disputed", disputed,
+                "reauthorizedFromTransactionId", reauthorizedFromTransactionId,
                 "airline", airline,
                 "authResponseCode", authResponseCode,
                 "avsResponseCode", avsResponseCode,
@@ -2683,6 +2722,8 @@ public class Transaction {
         private OffsetDateTime updatedAt;
 
         private Boolean disputed;
+
+        private JsonNullable<String> reauthorizedFromTransactionId = JsonNullable.undefined();
 
         private JsonNullable<? extends Airline> airline = JsonNullable.undefined();
 
@@ -3214,6 +3255,25 @@ public class Transaction {
         public Builder disputed(boolean disputed) {
             Utils.checkNotNull(disputed, "disputed");
             this.disputed = disputed;
+            return this;
+        }
+
+
+        /**
+         * The identifier of the transaction from which this transaction was reauthorized.
+         */
+        public Builder reauthorizedFromTransactionId(String reauthorizedFromTransactionId) {
+            Utils.checkNotNull(reauthorizedFromTransactionId, "reauthorizedFromTransactionId");
+            this.reauthorizedFromTransactionId = JsonNullable.of(reauthorizedFromTransactionId);
+            return this;
+        }
+
+        /**
+         * The identifier of the transaction from which this transaction was reauthorized.
+         */
+        public Builder reauthorizedFromTransactionId(JsonNullable<String> reauthorizedFromTransactionId) {
+            Utils.checkNotNull(reauthorizedFromTransactionId, "reauthorizedFromTransactionId");
+            this.reauthorizedFromTransactionId = reauthorizedFromTransactionId;
             return this;
         }
 
@@ -3915,19 +3975,20 @@ public class Transaction {
                 buyer, rawResponseCode, rawResponseDescription,
                 shippingDetails, checkoutSessionId, giftCardRedemptions,
                 giftCardService, createdAt, updatedAt,
-                disputed, airline, authResponseCode,
-                avsResponseCode, cvvResponseCode, antiFraudDecision,
-                paymentSource, merchantInitiated, isSubsequentPayment,
-                cartItems, statementDescriptor, schemeTransactionId,
-                transactionLinkId, threeDSecure, paymentServiceTransactionId,
-                additionalIdentifiers, metadata, authorizedAt,
-                capturedAt, voidedAt, canceledAt,
-                approvalExpiresAt, buyerApprovalTimedoutAt, intentOutcome,
-                multiTender, accountFundingTransaction, recipient,
-                merchantAdviceCode, installmentCount, sessionToken,
-                taxAmount, merchantTaxId, purchaseOrderNumber,
-                customerReferenceNumber, amountIncludesTax, supplierOrderNumber,
-                dutyAmount, shippingAmount, isoResponseCode);
+                disputed, reauthorizedFromTransactionId, airline,
+                authResponseCode, avsResponseCode, cvvResponseCode,
+                antiFraudDecision, paymentSource, merchantInitiated,
+                isSubsequentPayment, cartItems, statementDescriptor,
+                schemeTransactionId, transactionLinkId, threeDSecure,
+                paymentServiceTransactionId, additionalIdentifiers, metadata,
+                authorizedAt, capturedAt, voidedAt,
+                canceledAt, approvalExpiresAt, buyerApprovalTimedoutAt,
+                intentOutcome, multiTender, accountFundingTransaction,
+                recipient, merchantAdviceCode, installmentCount,
+                sessionToken, taxAmount, merchantTaxId,
+                purchaseOrderNumber, customerReferenceNumber, amountIncludesTax,
+                supplierOrderNumber, dutyAmount, shippingAmount,
+                isoResponseCode);
         }
 
 
