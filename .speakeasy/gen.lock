@@ -1,19 +1,19 @@
 lockVersion: 2.0.0
 id: 5bbaa3a9-baa0-471b-ba6a-13fd88e8c119
 management:
-  docChecksum: d337c2891c3414a6e389fbab08fdef6f
+  docChecksum: a5c0781808a124016d134d6cfd24d571
   docVersion: 1.0.0
   speakeasyVersion: 1.791.1
   generationVersion: 2.926.2
-  releaseVersion: 2.18.5
-  configChecksum: dab92c79f11878efd6e99699554f6a16
+  releaseVersion: 2.18.6
+  configChecksum: a4943711fd47365500ebfe9bab817691
   repoURL: https://github.com/gr4vy/gr4vy-java.git
   installationURL: https://github.com/gr4vy/gr4vy-java
   published: true
 persistentEdits:
-  generation_id: 136c16eb-f946-4643-a3c9-ac154f379672
-  pristine_commit_hash: a46071629cd72fe38d8837cf196e8c990f3138a6
-  pristine_tree_hash: e94ff9b84d3db933b37f2df7314ad0b5e4af61ea
+  generation_id: 53fa2ec1-c202-48d1-9712-e5506fc4cfda
+  pristine_commit_hash: cb0b428c062d2cfe8ce01aa6a27a9bd2b76ac5da
+  pristine_tree_hash: f2c77831019319a6f20f0698551073d9fcc528c7
 features:
   java:
     additionalDependencies: 0.1.0
@@ -2839,8 +2839,8 @@ trackedFiles:
     pristine_git_object: 15c4e4642f204ccb312d8814155b69e153b4e19b
   gradle.properties:
     id: 2afbb999f001
-    last_write_checksum: sha1:5abea2eca219b40b3f0554cae855235c694ab205
-    pristine_git_object: c8ea59f8c54ad2415704e0398766c09c254302b2
+    last_write_checksum: sha1:2e288c7ab7cb6d561699f5841ceae870065575c2
+    pristine_git_object: fbe7588b9075aaae2cf5a28180960356f86c0e0d
   gradle/wrapper/gradle-wrapper.jar:
     id: ec27dae6e852
     last_write_checksum: sha1:f725fb1467084142d74fd7cd8eab691ab3442611
@@ -3175,8 +3175,8 @@ trackedFiles:
     pristine_git_object: 502a7312d3dc82c102dbaf7ed5e952d0c793e26f
   src/main/java/com/gr4vy/sdk/SDKConfiguration.java:
     id: 73a7edeaca45
-    last_write_checksum: sha1:b55ab663b429e02a276e13bd2406249b77d58d08
-    pristine_git_object: 03ea0ed55f3fcd78a8056e35c19dd00006bda540
+    last_write_checksum: sha1:45b51e17f3c8f6151dd9e1f50bdfe3fde26f316c
+    pristine_git_object: 0e7f8fe0d874e4a13e4fbc34f0b78d1697ea14ed
   src/main/java/com/gr4vy/sdk/SecuritySource.java:
     id: 1b6add6b9b50
     last_write_checksum: sha1:2f365cc823c6243188e83f4df618c9737fcee8bd
@@ -12342,9 +12342,6 @@ examples:
           application/json: {"type": "error", "code": "gateway_timeout", "status": 504, "message": "Request could not be processed"}
 examplesVersion: 1.0.2
 generatedTests: {}
-releaseNotes: |
-  ## Java SDK Changes:
-  * `gr4vy.transactions.incrementAuthorization()`: **Added**
 generatedFiles:
   - .gitattributes
   - USAGE.md
