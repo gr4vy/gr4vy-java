@@ -22,15 +22,25 @@ public class WorldpayVapOptions {
     @JsonProperty("reportGroup")
     private JsonNullable<String> reportGroup;
 
+    /**
+     * Overrides the `orderId` passed to the Worldpay VAP API, which defaults to the Gr4vy transaction ID.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("orderId")
+    private JsonNullable<String> orderId;
+
     @JsonCreator
     public WorldpayVapOptions(
-            @JsonProperty("reportGroup") JsonNullable<String> reportGroup) {
+            @JsonProperty("reportGroup") JsonNullable<String> reportGroup,
+            @JsonProperty("orderId") JsonNullable<String> orderId) {
         Utils.checkNotNull(reportGroup, "reportGroup");
+        Utils.checkNotNull(orderId, "orderId");
         this.reportGroup = reportGroup;
+        this.orderId = orderId;
     }
     
     public WorldpayVapOptions() {
-        this(JsonNullable.undefined());
+        this(JsonNullable.undefined(), JsonNullable.undefined());
     }
 
     /**
@@ -39,6 +49,14 @@ public class WorldpayVapOptions {
     @JsonIgnore
     public JsonNullable<String> reportGroup() {
         return reportGroup;
+    }
+
+    /**
+     * Overrides the `orderId` passed to the Worldpay VAP API, which defaults to the Gr4vy transaction ID.
+     */
+    @JsonIgnore
+    public JsonNullable<String> orderId() {
+        return orderId;
     }
 
     public static Builder builder() {
@@ -64,6 +82,24 @@ public class WorldpayVapOptions {
         return this;
     }
 
+    /**
+     * Overrides the `orderId` passed to the Worldpay VAP API, which defaults to the Gr4vy transaction ID.
+     */
+    public WorldpayVapOptions withOrderId(String orderId) {
+        Utils.checkNotNull(orderId, "orderId");
+        this.orderId = JsonNullable.of(orderId);
+        return this;
+    }
+
+    /**
+     * Overrides the `orderId` passed to the Worldpay VAP API, which defaults to the Gr4vy transaction ID.
+     */
+    public WorldpayVapOptions withOrderId(JsonNullable<String> orderId) {
+        Utils.checkNotNull(orderId, "orderId");
+        this.orderId = orderId;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -74,25 +110,29 @@ public class WorldpayVapOptions {
         }
         WorldpayVapOptions other = (WorldpayVapOptions) o;
         return 
-            Utils.enhancedDeepEquals(this.reportGroup, other.reportGroup);
+            Utils.enhancedDeepEquals(this.reportGroup, other.reportGroup) &&
+            Utils.enhancedDeepEquals(this.orderId, other.orderId);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            reportGroup);
+            reportGroup, orderId);
     }
     
     @Override
     public String toString() {
         return Utils.toString(WorldpayVapOptions.class,
-                "reportGroup", reportGroup);
+                "reportGroup", reportGroup,
+                "orderId", orderId);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
         private JsonNullable<String> reportGroup = JsonNullable.undefined();
+
+        private JsonNullable<String> orderId = JsonNullable.undefined();
 
         private Builder() {
           // force use of static builder() method
@@ -117,10 +157,29 @@ public class WorldpayVapOptions {
             return this;
         }
 
+
+        /**
+         * Overrides the `orderId` passed to the Worldpay VAP API, which defaults to the Gr4vy transaction ID.
+         */
+        public Builder orderId(String orderId) {
+            Utils.checkNotNull(orderId, "orderId");
+            this.orderId = JsonNullable.of(orderId);
+            return this;
+        }
+
+        /**
+         * Overrides the `orderId` passed to the Worldpay VAP API, which defaults to the Gr4vy transaction ID.
+         */
+        public Builder orderId(JsonNullable<String> orderId) {
+            Utils.checkNotNull(orderId, "orderId");
+            this.orderId = orderId;
+            return this;
+        }
+
         public WorldpayVapOptions build() {
 
             return new WorldpayVapOptions(
-                reportGroup);
+                reportGroup, orderId);
         }
 
     }
