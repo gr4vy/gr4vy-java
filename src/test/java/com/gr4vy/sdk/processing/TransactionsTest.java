@@ -13,6 +13,7 @@ import com.gr4vy.sdk.models.components.TransactionCaptureCreate;
 import com.gr4vy.sdk.models.components.TransactionCreate;
 import com.gr4vy.sdk.models.components.TransactionCreatePaymentMethod;
 import com.gr4vy.sdk.models.components.TransactionIntent;
+import com.gr4vy.sdk.models.components.TransactionAuthorizationIncrementCreate;
 import com.gr4vy.sdk.models.components.TransactionRefundCreate;
 import com.gr4vy.sdk.models.components.TransactionUpdate;
 import com.gr4vy.sdk.models.operations.CaptureTransactionRequest;
@@ -24,8 +25,8 @@ import com.gr4vy.sdk.util.Reaches;
 
 /**
  * E2E coverage for the transactions endpoint family: create/get/update/list,
- * capture/cancel/sync, plus the events, actions, settlements and refunds
- * sub-resources and the top-level refunds lookup.
+ * capture/cancel/sync/increment-authorization, plus the events, actions,
+ * settlements and refunds sub-resources and the top-level refunds lookup.
  */
 class TransactionsTest {
 
@@ -104,6 +105,35 @@ class TransactionsTest {
 
         Reaches.reaches("cancel transaction", () ->
                 client.transactions().cancel().transactionId(id).call());
+    }
+
+    /**
+     * Incremental authorization is a PSP capability the mock connector does not
+     * offer, so the increment is attempted against a genuinely authorized
+     * transaction and a clean rejection is accepted.
+     */
+    @Test
+    @EnabledIfEnvironmentVariable(named = "E2E", matches = "true")
+    void incrementAuthorization() throws Exception {
+        Gr4vy client = Harness.client();
+        CreateTransactionResponse res = client.transactions().create()
+                .transactionCreate(TransactionCreate.builder()
+                        .amount(1299L)
+                        .currency("USD")
+                        .intent(TransactionIntent.AUTHORIZE)
+                        .paymentMethod(TransactionCreatePaymentMethod.of(Fixtures.approvingTransactionCard()))
+                        .build())
+                .call();
+        String id = res.transaction().orElseThrow().id();
+
+        Reaches.reaches("increment transaction authorization", () ->
+                client.transactions().incrementAuthorization()
+                        .transactionId(id)
+                        .transactionAuthorizationIncrementCreate(
+                                TransactionAuthorizationIncrementCreate.builder()
+                                        .amount(500L)
+                                        .build())
+                        .call());
     }
 
     @Test
