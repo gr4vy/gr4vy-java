@@ -28,7 +28,7 @@ targets:
         sourceRevisionDigest: sha256:af00175a5dbbd7368136ebc4e864a5ed335c4dec89092d07db4743fe40aa4bdb
         sourceBlobDigest: sha256:0d3e58159f8f7c87ede58c3c74ce84d9d053d51700a0bea91e81be0fa7881b4a
         codeSamplesNamespace: openapi-java-code-samples
-        codeSamplesRevisionDigest: sha256:92ac736c815dff5d6176e11094a83dcb4a2eb1eedfba82f436ab232df9a72af1
+        codeSamplesRevisionDigest: sha256:3851db4424a06b6e932385f517fd1d44323330e57aa7411a87e94b242de763c1
 workflow:
     workflowVersion: 1.0.0
     speakeasyVersion: latest
