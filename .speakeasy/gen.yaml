@@ -30,7 +30,7 @@ generation:
     generateNewTests: false
     skipResponseBodyAssertions: false
 java:
-  version: 2.18.7
+  version: 2.18.8
   additionalDependencies:
     - testImplementation:org.junit.jupiter:junit-jupiter:5.10.0
     - implementation:com.auth0:java-jwt:4.5.0
@@ -53,7 +53,7 @@ java:
   explicitDocImports: false
   flattenGlobalSecurity: true
   forwardCompatibleEnumsByDefault: false
-  forwardCompatibleUnionsByDefault: "false"
+  forwardCompatibleUnionsByDefault: true
   generateOptionalUnionAccessors: false
   generateSpringBootStarter: true
   generateUnionDocs: false
