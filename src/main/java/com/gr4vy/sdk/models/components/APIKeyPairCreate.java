@@ -40,8 +40,8 @@ public class APIKeyPairCreate {
     private Optional<Boolean> active;
 
     /**
-     * The ID of the role to assign to the API key pair. Exactly one role is supported. The caller can only
-     * assign a role whose scopes are a subset of its own.
+     * The IDs of the roles to assign to the API key pair. The caller can only assign roles whose scopes
+     * are a subset of its own.
      */
     @JsonProperty("role_ids")
     private List<String> roleIds;
@@ -114,8 +114,8 @@ public class APIKeyPairCreate {
     }
 
     /**
-     * The ID of the role to assign to the API key pair. Exactly one role is supported. The caller can only
-     * assign a role whose scopes are a subset of its own.
+     * The IDs of the roles to assign to the API key pair. The caller can only assign roles whose scopes
+     * are a subset of its own.
      */
     @JsonIgnore
     public List<String> roleIds() {
@@ -188,8 +188,8 @@ public class APIKeyPairCreate {
     }
 
     /**
-     * The ID of the role to assign to the API key pair. Exactly one role is supported. The caller can only
-     * assign a role whose scopes are a subset of its own.
+     * The IDs of the roles to assign to the API key pair. The caller can only assign roles whose scopes
+     * are a subset of its own.
      */
     public APIKeyPairCreate withRoleIds(List<String> roleIds) {
         Utils.checkNotNull(roleIds, "roleIds");
@@ -337,8 +337,8 @@ public class APIKeyPairCreate {
 
 
         /**
-         * The ID of the role to assign to the API key pair. Exactly one role is supported. The caller can only
-         * assign a role whose scopes are a subset of its own.
+         * The IDs of the roles to assign to the API key pair. The caller can only assign roles whose scopes
+         * are a subset of its own.
          */
         public Builder roleIds(List<String> roleIds) {
             Utils.checkNotNull(roleIds, "roleIds");
