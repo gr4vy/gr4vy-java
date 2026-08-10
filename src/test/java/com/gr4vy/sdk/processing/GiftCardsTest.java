@@ -4,15 +4,17 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.condition.EnabledIfEnvironmentVariable;
 
 import com.gr4vy.sdk.Gr4vy;
+import com.gr4vy.sdk.models.components.GiftCardActivationCreate;
 import com.gr4vy.sdk.models.components.GiftCardCreate;
+import com.gr4vy.sdk.models.components.GiftCardIssuanceCreate;
 import com.gr4vy.sdk.util.Fixtures;
 import com.gr4vy.sdk.util.Harness;
 import com.gr4vy.sdk.util.Reaches;
 
 /**
  * E2E coverage for gift cards. The mock environment has no real gift-card
- * provider, so create/get/delete are exercised via {@link Reaches}; list is a
- * plain successful call.
+ * provider, so create/get/delete/activate/issue are exercised via
+ * {@link Reaches}; list is a plain successful call.
  */
 class GiftCardsTest {
 
@@ -36,5 +38,36 @@ class GiftCardsTest {
 
         Reaches.reaches("gift card delete (missing)", () ->
                 client.giftCards().delete().giftCardId(Fixtures.MISSING_ID).call());
+    }
+
+    @Test
+    @EnabledIfEnvironmentVariable(named = "E2E", matches = "true")
+    void activate() throws Exception {
+        Gr4vy client = Harness.client();
+
+        Reaches.reaches("gift card activate", () ->
+                client.giftCards().activations().create()
+                        .giftCardActivationCreate(GiftCardActivationCreate.builder()
+                                .number("4111111111111111")
+                                .pin("1234")
+                                .amount(1299L)
+                                .currency("USD")
+                                .build())
+                        .call());
+    }
+
+    @Test
+    @EnabledIfEnvironmentVariable(named = "E2E", matches = "true")
+    void issue() throws Exception {
+        Gr4vy client = Harness.client();
+
+        Reaches.reaches("gift card issue", () ->
+                client.giftCards().issuances().create()
+                        .giftCardIssuanceCreate(GiftCardIssuanceCreate.builder()
+                                .theme("default")
+                                .amount(1299L)
+                                .currency("USD")
+                                .build())
+                        .call());
     }
 }
