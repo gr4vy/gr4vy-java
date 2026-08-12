@@ -11,8 +11,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.gr4vy.sdk.utils.LazySingletonValue;
 import com.gr4vy.sdk.utils.Utils;
+import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
+import java.util.List;
 import java.util.Optional;
 
 
@@ -30,6 +32,12 @@ public class Role {
     @JsonProperty("name")
     private String name;
 
+    /**
+     * The unique, human-readable identifier for the role.
+     */
+    @JsonProperty("slug")
+    private String slug;
+
 
     @JsonProperty("description")
     private String description;
@@ -38,21 +46,51 @@ public class Role {
     @JsonProperty("permissions")
     private PermissionSet permissions;
 
+    /**
+     * The types of resource this role can be assigned to.
+     */
+    @JsonProperty("assignable_to")
+    private List<RoleAssigneeType> assignableTo;
+
+    /**
+     * The slugs of the roles this role is an add-on of. Empty when this role is not an add-on.
+     */
+    @JsonProperty("applies_to")
+    private List<String> appliesTo;
+
+    /**
+     * Whether this role can be assigned on its own, without being combined with another role.
+     */
+    @JsonProperty("is_standalone_assignable")
+    private boolean isStandaloneAssignable;
+
     @JsonCreator
     public Role(
             @JsonProperty("id") String id,
             @JsonProperty("name") String name,
+            @JsonProperty("slug") String slug,
             @JsonProperty("description") String description,
-            @JsonProperty("permissions") PermissionSet permissions) {
+            @JsonProperty("permissions") PermissionSet permissions,
+            @JsonProperty("assignable_to") List<RoleAssigneeType> assignableTo,
+            @JsonProperty("applies_to") List<String> appliesTo,
+            @JsonProperty("is_standalone_assignable") boolean isStandaloneAssignable) {
         Utils.checkNotNull(id, "id");
         Utils.checkNotNull(name, "name");
+        Utils.checkNotNull(slug, "slug");
         Utils.checkNotNull(description, "description");
         Utils.checkNotNull(permissions, "permissions");
+        Utils.checkNotNull(assignableTo, "assignableTo");
+        Utils.checkNotNull(appliesTo, "appliesTo");
+        Utils.checkNotNull(isStandaloneAssignable, "isStandaloneAssignable");
         this.type = Builder._SINGLETON_VALUE_Type.value();
         this.id = id;
         this.name = name;
+        this.slug = slug;
         this.description = description;
         this.permissions = permissions;
+        this.assignableTo = assignableTo;
+        this.appliesTo = appliesTo;
+        this.isStandaloneAssignable = isStandaloneAssignable;
     }
 
     @JsonIgnore
@@ -70,6 +108,14 @@ public class Role {
         return name;
     }
 
+    /**
+     * The unique, human-readable identifier for the role.
+     */
+    @JsonIgnore
+    public String slug() {
+        return slug;
+    }
+
     @JsonIgnore
     public String description() {
         return description;
@@ -78,6 +124,30 @@ public class Role {
     @JsonIgnore
     public PermissionSet permissions() {
         return permissions;
+    }
+
+    /**
+     * The types of resource this role can be assigned to.
+     */
+    @JsonIgnore
+    public List<RoleAssigneeType> assignableTo() {
+        return assignableTo;
+    }
+
+    /**
+     * The slugs of the roles this role is an add-on of. Empty when this role is not an add-on.
+     */
+    @JsonIgnore
+    public List<String> appliesTo() {
+        return appliesTo;
+    }
+
+    /**
+     * Whether this role can be assigned on its own, without being combined with another role.
+     */
+    @JsonIgnore
+    public boolean isStandaloneAssignable() {
+        return isStandaloneAssignable;
     }
 
     public static Builder builder() {
@@ -97,6 +167,15 @@ public class Role {
         return this;
     }
 
+    /**
+     * The unique, human-readable identifier for the role.
+     */
+    public Role withSlug(String slug) {
+        Utils.checkNotNull(slug, "slug");
+        this.slug = slug;
+        return this;
+    }
+
     public Role withDescription(String description) {
         Utils.checkNotNull(description, "description");
         this.description = description;
@@ -106,6 +185,33 @@ public class Role {
     public Role withPermissions(PermissionSet permissions) {
         Utils.checkNotNull(permissions, "permissions");
         this.permissions = permissions;
+        return this;
+    }
+
+    /**
+     * The types of resource this role can be assigned to.
+     */
+    public Role withAssignableTo(List<RoleAssigneeType> assignableTo) {
+        Utils.checkNotNull(assignableTo, "assignableTo");
+        this.assignableTo = assignableTo;
+        return this;
+    }
+
+    /**
+     * The slugs of the roles this role is an add-on of. Empty when this role is not an add-on.
+     */
+    public Role withAppliesTo(List<String> appliesTo) {
+        Utils.checkNotNull(appliesTo, "appliesTo");
+        this.appliesTo = appliesTo;
+        return this;
+    }
+
+    /**
+     * Whether this role can be assigned on its own, without being combined with another role.
+     */
+    public Role withIsStandaloneAssignable(boolean isStandaloneAssignable) {
+        Utils.checkNotNull(isStandaloneAssignable, "isStandaloneAssignable");
+        this.isStandaloneAssignable = isStandaloneAssignable;
         return this;
     }
 
@@ -122,15 +228,20 @@ public class Role {
             Utils.enhancedDeepEquals(this.type, other.type) &&
             Utils.enhancedDeepEquals(this.id, other.id) &&
             Utils.enhancedDeepEquals(this.name, other.name) &&
+            Utils.enhancedDeepEquals(this.slug, other.slug) &&
             Utils.enhancedDeepEquals(this.description, other.description) &&
-            Utils.enhancedDeepEquals(this.permissions, other.permissions);
+            Utils.enhancedDeepEquals(this.permissions, other.permissions) &&
+            Utils.enhancedDeepEquals(this.assignableTo, other.assignableTo) &&
+            Utils.enhancedDeepEquals(this.appliesTo, other.appliesTo) &&
+            Utils.enhancedDeepEquals(this.isStandaloneAssignable, other.isStandaloneAssignable);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
             type, id, name,
-            description, permissions);
+            slug, description, permissions,
+            assignableTo, appliesTo, isStandaloneAssignable);
     }
     
     @Override
@@ -139,8 +250,12 @@ public class Role {
                 "type", type,
                 "id", id,
                 "name", name,
+                "slug", slug,
                 "description", description,
-                "permissions", permissions);
+                "permissions", permissions,
+                "assignableTo", assignableTo,
+                "appliesTo", appliesTo,
+                "isStandaloneAssignable", isStandaloneAssignable);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -150,9 +265,17 @@ public class Role {
 
         private String name;
 
+        private String slug;
+
         private String description;
 
         private PermissionSet permissions;
+
+        private List<RoleAssigneeType> assignableTo;
+
+        private List<String> appliesTo;
+
+        private Boolean isStandaloneAssignable;
 
         private Builder() {
           // force use of static builder() method
@@ -173,6 +296,16 @@ public class Role {
         }
 
 
+        /**
+         * The unique, human-readable identifier for the role.
+         */
+        public Builder slug(String slug) {
+            Utils.checkNotNull(slug, "slug");
+            this.slug = slug;
+            return this;
+        }
+
+
         public Builder description(String description) {
             Utils.checkNotNull(description, "description");
             this.description = description;
@@ -186,11 +319,42 @@ public class Role {
             return this;
         }
 
+
+        /**
+         * The types of resource this role can be assigned to.
+         */
+        public Builder assignableTo(List<RoleAssigneeType> assignableTo) {
+            Utils.checkNotNull(assignableTo, "assignableTo");
+            this.assignableTo = assignableTo;
+            return this;
+        }
+
+
+        /**
+         * The slugs of the roles this role is an add-on of. Empty when this role is not an add-on.
+         */
+        public Builder appliesTo(List<String> appliesTo) {
+            Utils.checkNotNull(appliesTo, "appliesTo");
+            this.appliesTo = appliesTo;
+            return this;
+        }
+
+
+        /**
+         * Whether this role can be assigned on its own, without being combined with another role.
+         */
+        public Builder isStandaloneAssignable(boolean isStandaloneAssignable) {
+            Utils.checkNotNull(isStandaloneAssignable, "isStandaloneAssignable");
+            this.isStandaloneAssignable = isStandaloneAssignable;
+            return this;
+        }
+
         public Role build() {
 
             return new Role(
-                id, name, description,
-                permissions);
+                id, name, slug,
+                description, permissions, assignableTo,
+                appliesTo, isStandaloneAssignable);
         }
 
 
