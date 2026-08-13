@@ -100,6 +100,9 @@ public class Gr4vy {
     private final CheckoutSessions checkoutSessions;
 
 
+    private final Roles roles;
+
+
     private final MerchantAccounts merchantAccounts;
 
 
@@ -189,6 +192,11 @@ public class Gr4vy {
 
     public CheckoutSessions checkoutSessions() {
         return checkoutSessions;
+    }
+
+
+    public Roles roles() {
+        return roles;
     }
 
 
@@ -397,6 +405,7 @@ public class Gr4vy {
         this.reports = new Reports(sdkConfiguration);
         this.reportExecutions = new ReportExecutions(sdkConfiguration);
         this.checkoutSessions = new CheckoutSessions(sdkConfiguration);
+        this.roles = new Roles(sdkConfiguration);
         this.merchantAccounts = new MerchantAccounts(sdkConfiguration);
         this.threeDsScenarios = new ThreeDsScenarios(sdkConfiguration);
         this.payouts = new Payouts(sdkConfiguration);

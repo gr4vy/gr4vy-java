@@ -43,6 +43,8 @@ public class AsyncGr4vy {
 
     private final AsyncCheckoutSessions checkoutSessions;
 
+    private final AsyncRoles roles;
+
     private final AsyncMerchantAccounts merchantAccounts;
 
     private final AsyncThreeDsScenarios threeDsScenarios;
@@ -115,6 +117,10 @@ public class AsyncGr4vy {
         return checkoutSessions;
     }
 
+    public AsyncRoles roles() {
+        return roles;
+    }
+
     public AsyncMerchantAccounts merchantAccounts() {
         return merchantAccounts;
     }
@@ -153,6 +159,7 @@ public class AsyncGr4vy {
         this.reports = new AsyncReports(syncSDK.reports(), sdkConfiguration);
         this.reportExecutions = new AsyncReportExecutions(syncSDK.reportExecutions(), sdkConfiguration);
         this.checkoutSessions = new AsyncCheckoutSessions(syncSDK.checkoutSessions(), sdkConfiguration);
+        this.roles = new AsyncRoles(syncSDK.roles(), sdkConfiguration);
         this.merchantAccounts = new AsyncMerchantAccounts(syncSDK.merchantAccounts(), sdkConfiguration);
         this.threeDsScenarios = new AsyncThreeDsScenarios(syncSDK.threeDsScenarios(), sdkConfiguration);
         this.payouts = new AsyncPayouts(syncSDK.payouts(), sdkConfiguration);

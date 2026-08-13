@@ -19,16 +19,22 @@ import java.util.Optional;
 
 
 public class Role {
-
+    /**
+     * Always `role`.
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("type")
     private Optional<String> type;
 
-
+    /**
+     * The unique ID for the role.
+     */
     @JsonProperty("id")
     private String id;
 
-
+    /**
+     * The human-readable name of the role.
+     */
     @JsonProperty("name")
     private String name;
 
@@ -38,11 +44,15 @@ public class Role {
     @JsonProperty("slug")
     private String slug;
 
-
+    /**
+     * A description of the access this role grants.
+     */
     @JsonProperty("description")
     private String description;
 
-
+    /**
+     * The permissions granted by a role.
+     */
     @JsonProperty("permissions")
     private PermissionSet permissions;
 
@@ -93,16 +103,25 @@ public class Role {
         this.isStandaloneAssignable = isStandaloneAssignable;
     }
 
+    /**
+     * Always `role`.
+     */
     @JsonIgnore
     public Optional<String> type() {
         return type;
     }
 
+    /**
+     * The unique ID for the role.
+     */
     @JsonIgnore
     public String id() {
         return id;
     }
 
+    /**
+     * The human-readable name of the role.
+     */
     @JsonIgnore
     public String name() {
         return name;
@@ -116,11 +135,17 @@ public class Role {
         return slug;
     }
 
+    /**
+     * A description of the access this role grants.
+     */
     @JsonIgnore
     public String description() {
         return description;
     }
 
+    /**
+     * The permissions granted by a role.
+     */
     @JsonIgnore
     public PermissionSet permissions() {
         return permissions;
@@ -155,12 +180,18 @@ public class Role {
     }
 
 
+    /**
+     * The unique ID for the role.
+     */
     public Role withId(String id) {
         Utils.checkNotNull(id, "id");
         this.id = id;
         return this;
     }
 
+    /**
+     * The human-readable name of the role.
+     */
     public Role withName(String name) {
         Utils.checkNotNull(name, "name");
         this.name = name;
@@ -176,12 +207,18 @@ public class Role {
         return this;
     }
 
+    /**
+     * A description of the access this role grants.
+     */
     public Role withDescription(String description) {
         Utils.checkNotNull(description, "description");
         this.description = description;
         return this;
     }
 
+    /**
+     * The permissions granted by a role.
+     */
     public Role withPermissions(PermissionSet permissions) {
         Utils.checkNotNull(permissions, "permissions");
         this.permissions = permissions;
@@ -282,6 +319,9 @@ public class Role {
         }
 
 
+        /**
+         * The unique ID for the role.
+         */
         public Builder id(String id) {
             Utils.checkNotNull(id, "id");
             this.id = id;
@@ -289,6 +329,9 @@ public class Role {
         }
 
 
+        /**
+         * The human-readable name of the role.
+         */
         public Builder name(String name) {
             Utils.checkNotNull(name, "name");
             this.name = name;
@@ -306,6 +349,9 @@ public class Role {
         }
 
 
+        /**
+         * A description of the access this role grants.
+         */
         public Builder description(String description) {
             Utils.checkNotNull(description, "description");
             this.description = description;
@@ -313,6 +359,9 @@ public class Role {
         }
 
 
+        /**
+         * The permissions granted by a role.
+         */
         public Builder permissions(PermissionSet permissions) {
             Utils.checkNotNull(permissions, "permissions");
             this.permissions = permissions;
