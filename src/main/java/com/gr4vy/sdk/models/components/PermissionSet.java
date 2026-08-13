@@ -11,9 +11,15 @@ import java.lang.Override;
 import java.lang.String;
 import java.util.List;
 
-
+/**
+ * PermissionSet
+ * 
+ * <p>The permissions granted by a role.
+ */
 public class PermissionSet {
-
+    /**
+     * The scopes granted by this role.
+     */
     @JsonProperty("allow")
     private List<String> allow;
 
@@ -24,6 +30,9 @@ public class PermissionSet {
         this.allow = allow;
     }
 
+    /**
+     * The scopes granted by this role.
+     */
     @JsonIgnore
     public List<String> allow() {
         return allow;
@@ -34,6 +43,9 @@ public class PermissionSet {
     }
 
 
+    /**
+     * The scopes granted by this role.
+     */
     public PermissionSet withAllow(List<String> allow) {
         Utils.checkNotNull(allow, "allow");
         this.allow = allow;
@@ -75,6 +87,9 @@ public class PermissionSet {
         }
 
 
+        /**
+         * The scopes granted by this role.
+         */
         public Builder allow(List<String> allow) {
             Utils.checkNotNull(allow, "allow");
             this.allow = allow;

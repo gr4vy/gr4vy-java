@@ -59,7 +59,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'com.gr4vy:sdk:2.18.11'
+implementation 'com.gr4vy:sdk:2.18.12'
 ```
 
 Maven:
@@ -67,7 +67,7 @@ Maven:
 <dependency>
     <groupId>com.gr4vy</groupId>
     <artifactId>sdk</artifactId>
-    <version>2.18.11</version>
+    <version>2.18.12</version>
 </dependency>
 ```
 
@@ -516,6 +516,10 @@ Async support is available for:
 * [list](docs/sdks/executions/README.md#list) - List executions for report
 * [url](docs/sdks/executions/README.md#url) - Create URL for executed report
 * [get](docs/sdks/executions/README.md#get) - Get executed report
+
+### [Roles](docs/sdks/roles/README.md)
+
+* [list](docs/sdks/roles/README.md#list) - List all roles
 
 ### [ThreeDsScenarios](docs/sdks/threedsscenarios/README.md)
 
