@@ -51,6 +51,7 @@ public class RedirectPaymentMethodCreateMethod {
     public static final RedirectPaymentMethodCreateMethod DANA = new RedirectPaymentMethodCreateMethod("dana");
     public static final RedirectPaymentMethodCreateMethod DCB = new RedirectPaymentMethodCreateMethod("dcb");
     public static final RedirectPaymentMethodCreateMethod DLOCAL = new RedirectPaymentMethodCreateMethod("dlocal");
+    public static final RedirectPaymentMethodCreateMethod DUITNOW = new RedirectPaymentMethodCreateMethod("duitnow");
     public static final RedirectPaymentMethodCreateMethod EBANX = new RedirectPaymentMethodCreateMethod("ebanx");
     public static final RedirectPaymentMethodCreateMethod ECKOH = new RedirectPaymentMethodCreateMethod("eckoh");
     public static final RedirectPaymentMethodCreateMethod EFECTY = new RedirectPaymentMethodCreateMethod("efecty");
@@ -239,6 +240,7 @@ public class RedirectPaymentMethodCreateMethod {
         map.put("dana", DANA);
         map.put("dcb", DCB);
         map.put("dlocal", DLOCAL);
+        map.put("duitnow", DUITNOW);
         map.put("ebanx", EBANX);
         map.put("eckoh", ECKOH);
         map.put("efecty", EFECTY);
@@ -359,6 +361,7 @@ public class RedirectPaymentMethodCreateMethod {
         map.put("dana", RedirectPaymentMethodCreateMethodEnum.DANA);
         map.put("dcb", RedirectPaymentMethodCreateMethodEnum.DCB);
         map.put("dlocal", RedirectPaymentMethodCreateMethodEnum.DLOCAL);
+        map.put("duitnow", RedirectPaymentMethodCreateMethodEnum.DUITNOW);
         map.put("ebanx", RedirectPaymentMethodCreateMethodEnum.EBANX);
         map.put("eckoh", RedirectPaymentMethodCreateMethodEnum.ECKOH);
         map.put("efecty", RedirectPaymentMethodCreateMethodEnum.EFECTY);
@@ -480,6 +483,7 @@ public class RedirectPaymentMethodCreateMethod {
         DANA("dana"),
         DCB("dcb"),
         DLOCAL("dlocal"),
+        DUITNOW("duitnow"),
         EBANX("ebanx"),
         ECKOH("eckoh"),
         EFECTY("efecty"),

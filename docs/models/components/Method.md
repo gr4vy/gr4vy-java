@@ -47,6 +47,7 @@ Method custom = Method.of("custom_value");
 | `DANA`               | dana                 |
 | `DCB`                | dcb                  |
 | `DLOCAL`             | dlocal               |
+| `DUITNOW`            | duitnow              |
 | `EBANX`              | ebanx                |
 | `ECKOH`              | eckoh                |
 | `EFECTY`             | efecty               |

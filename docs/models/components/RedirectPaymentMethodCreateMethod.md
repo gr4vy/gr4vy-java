@@ -44,6 +44,7 @@ RedirectPaymentMethodCreateMethod custom = RedirectPaymentMethodCreateMethod.of(
 | `DANA`            | dana              |
 | `DCB`             | dcb               |
 | `DLOCAL`          | dlocal            |
+| `DUITNOW`         | duitnow           |
 | `EBANX`           | ebanx             |
 | `ECKOH`           | eckoh             |
 | `EFECTY`          | efecty            |
