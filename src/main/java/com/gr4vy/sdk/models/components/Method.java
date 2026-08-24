@@ -51,6 +51,7 @@ public class Method {
     public static final Method DANA = new Method("dana");
     public static final Method DCB = new Method("dcb");
     public static final Method DLOCAL = new Method("dlocal");
+    public static final Method DUITNOW = new Method("duitnow");
     public static final Method EBANX = new Method("ebanx");
     public static final Method ECKOH = new Method("eckoh");
     public static final Method EFECTY = new Method("efecty");
@@ -250,6 +251,7 @@ public class Method {
         map.put("dana", DANA);
         map.put("dcb", DCB);
         map.put("dlocal", DLOCAL);
+        map.put("duitnow", DUITNOW);
         map.put("ebanx", EBANX);
         map.put("eckoh", ECKOH);
         map.put("efecty", EFECTY);
@@ -381,6 +383,7 @@ public class Method {
         map.put("dana", MethodEnum.DANA);
         map.put("dcb", MethodEnum.DCB);
         map.put("dlocal", MethodEnum.DLOCAL);
+        map.put("duitnow", MethodEnum.DUITNOW);
         map.put("ebanx", MethodEnum.EBANX);
         map.put("eckoh", MethodEnum.ECKOH);
         map.put("efecty", MethodEnum.EFECTY);
@@ -513,6 +516,7 @@ public class Method {
         DANA("dana"),
         DCB("dcb"),
         DLOCAL("dlocal"),
+        DUITNOW("duitnow"),
         EBANX("ebanx"),
         ECKOH("eckoh"),
         EFECTY("efecty"),
