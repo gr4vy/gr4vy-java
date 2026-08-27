@@ -1,6 +1,6 @@
 # AccountType
 
-Specify whether this is a `checking` or `savings` account
+Specify whether this is a `checking` or `savings` account. Defaults to `checking`.
 
 ## Example Usage
 
