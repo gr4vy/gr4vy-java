@@ -45,6 +45,13 @@ public class ListPaymentServicesRequest {
     private JsonNullable<Boolean> deleted;
 
     /**
+     * Include the non-secret credential and reporting fields for each payment service. Disable this to
+     * reduce response time if you don't need them.
+     */
+    @SpeakeasyMetadata("queryParam:style=form,explode=true,name=include_fields")
+    private Optional<Boolean> includeFields;
+
+    /**
      * The ID of the merchant account to use for this request.
      */
     @SpeakeasyMetadata("header:style=simple,explode=false,name=x-gr4vy-merchant-account-id")
@@ -56,22 +63,25 @@ public class ListPaymentServicesRequest {
             JsonNullable<String> cursor,
             Optional<Long> limit,
             JsonNullable<Boolean> deleted,
+            Optional<Boolean> includeFields,
             JsonNullable<String> merchantAccountId) {
         Utils.checkNotNull(method, "method");
         Utils.checkNotNull(cursor, "cursor");
         Utils.checkNotNull(limit, "limit");
         Utils.checkNotNull(deleted, "deleted");
+        Utils.checkNotNull(includeFields, "includeFields");
         Utils.checkNotNull(merchantAccountId, "merchantAccountId");
         this.method = method;
         this.cursor = cursor;
         this.limit = limit;
         this.deleted = deleted;
+        this.includeFields = includeFields;
         this.merchantAccountId = merchantAccountId;
     }
     
     public ListPaymentServicesRequest() {
         this(JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
-            JsonNullable.undefined(), JsonNullable.undefined());
+            JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined());
     }
 
     /**
@@ -105,6 +115,15 @@ public class ListPaymentServicesRequest {
     @JsonIgnore
     public JsonNullable<Boolean> deleted() {
         return deleted;
+    }
+
+    /**
+     * Include the non-secret credential and reporting fields for each payment service. Disable this to
+     * reduce response time if you don't need them.
+     */
+    @JsonIgnore
+    public Optional<Boolean> includeFields() {
+        return includeFields;
     }
 
     /**
@@ -194,6 +213,27 @@ public class ListPaymentServicesRequest {
     }
 
     /**
+     * Include the non-secret credential and reporting fields for each payment service. Disable this to
+     * reduce response time if you don't need them.
+     */
+    public ListPaymentServicesRequest withIncludeFields(boolean includeFields) {
+        Utils.checkNotNull(includeFields, "includeFields");
+        this.includeFields = Optional.ofNullable(includeFields);
+        return this;
+    }
+
+
+    /**
+     * Include the non-secret credential and reporting fields for each payment service. Disable this to
+     * reduce response time if you don't need them.
+     */
+    public ListPaymentServicesRequest withIncludeFields(Optional<Boolean> includeFields) {
+        Utils.checkNotNull(includeFields, "includeFields");
+        this.includeFields = includeFields;
+        return this;
+    }
+
+    /**
      * The ID of the merchant account to use for this request.
      */
     public ListPaymentServicesRequest withMerchantAccountId(String merchantAccountId) {
@@ -225,6 +265,7 @@ public class ListPaymentServicesRequest {
             Utils.enhancedDeepEquals(this.cursor, other.cursor) &&
             Utils.enhancedDeepEquals(this.limit, other.limit) &&
             Utils.enhancedDeepEquals(this.deleted, other.deleted) &&
+            Utils.enhancedDeepEquals(this.includeFields, other.includeFields) &&
             Utils.enhancedDeepEquals(this.merchantAccountId, other.merchantAccountId);
     }
     
@@ -232,7 +273,7 @@ public class ListPaymentServicesRequest {
     public int hashCode() {
         return Utils.enhancedHash(
             method, cursor, limit,
-            deleted, merchantAccountId);
+            deleted, includeFields, merchantAccountId);
     }
     
     @Override
@@ -242,6 +283,7 @@ public class ListPaymentServicesRequest {
                 "cursor", cursor,
                 "limit", limit,
                 "deleted", deleted,
+                "includeFields", includeFields,
                 "merchantAccountId", merchantAccountId);
     }
 
@@ -255,6 +297,8 @@ public class ListPaymentServicesRequest {
         private Optional<Long> limit;
 
         private JsonNullable<Boolean> deleted = JsonNullable.undefined();
+
+        private Optional<Boolean> includeFields;
 
         private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
 
@@ -340,6 +384,27 @@ public class ListPaymentServicesRequest {
 
 
         /**
+         * Include the non-secret credential and reporting fields for each payment service. Disable this to
+         * reduce response time if you don't need them.
+         */
+        public Builder includeFields(boolean includeFields) {
+            Utils.checkNotNull(includeFields, "includeFields");
+            this.includeFields = Optional.ofNullable(includeFields);
+            return this;
+        }
+
+        /**
+         * Include the non-secret credential and reporting fields for each payment service. Disable this to
+         * reduce response time if you don't need them.
+         */
+        public Builder includeFields(Optional<Boolean> includeFields) {
+            Utils.checkNotNull(includeFields, "includeFields");
+            this.includeFields = includeFields;
+            return this;
+        }
+
+
+        /**
          * The ID of the merchant account to use for this request.
          */
         public Builder merchantAccountId(String merchantAccountId) {
@@ -361,10 +426,13 @@ public class ListPaymentServicesRequest {
             if (limit == null) {
                 limit = _SINGLETON_VALUE_Limit.value();
             }
+            if (includeFields == null) {
+                includeFields = _SINGLETON_VALUE_IncludeFields.value();
+            }
 
             return new ListPaymentServicesRequest(
                 method, cursor, limit,
-                deleted, merchantAccountId);
+                deleted, includeFields, merchantAccountId);
         }
 
 
@@ -373,5 +441,11 @@ public class ListPaymentServicesRequest {
                         "limit",
                         "20",
                         new TypeReference<Optional<Long>>() {});
+
+        private static final LazySingletonValue<Optional<Boolean>> _SINGLETON_VALUE_IncludeFields =
+                new LazySingletonValue<>(
+                        "include_fields",
+                        "true",
+                        new TypeReference<Optional<Boolean>>() {});
     }
 }
