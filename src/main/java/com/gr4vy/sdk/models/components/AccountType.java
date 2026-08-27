@@ -21,7 +21,7 @@ import java.util.Optional;
 /**
  * AccountType
  * 
- * <p>Specify whether this is a `checking` or `savings` account
+ * <p>Specify whether this is a `checking` or `savings` account. Defaults to `checking`.
  */
 public class AccountType {
 

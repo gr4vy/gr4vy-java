@@ -14,6 +14,7 @@ import com.gr4vy.sdk.utils.Utils;
 import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -84,10 +85,11 @@ public class ACHBankPaymentMethodCreate {
     private Optional<Boolean> isTokenized;
 
     /**
-     * Specify whether this is a `checking` or `savings` account
+     * Specify whether this is a `checking` or `savings` account. Defaults to `checking`.
      */
+    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("account_type")
-    private AccountType accountType;
+    private Optional<? extends AccountType> accountType;
 
     @JsonCreator
     public ACHBankPaymentMethodCreate(
@@ -98,7 +100,7 @@ public class ACHBankPaymentMethodCreate {
             @JsonProperty("account_number") String accountNumber,
             @JsonProperty("routing_number") String routingNumber,
             @JsonProperty("is_tokenized") Optional<Boolean> isTokenized,
-            @JsonProperty("account_type") AccountType accountType) {
+            @JsonProperty("account_type") Optional<? extends AccountType> accountType) {
         Utils.checkNotNull(accountHolder, "accountHolder");
         Utils.checkNotNull(buyerId, "buyerId");
         Utils.checkNotNull(buyerExternalIdentifier, "buyerExternalIdentifier");
@@ -122,11 +124,10 @@ public class ACHBankPaymentMethodCreate {
     public ACHBankPaymentMethodCreate(
             BankAccountHolder accountHolder,
             String accountNumber,
-            String routingNumber,
-            AccountType accountType) {
+            String routingNumber) {
         this(accountHolder, JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), accountNumber, routingNumber,
-            Optional.empty(), accountType);
+            Optional.empty(), Optional.empty());
     }
 
     /**
@@ -199,11 +200,12 @@ public class ACHBankPaymentMethodCreate {
     }
 
     /**
-     * Specify whether this is a `checking` or `savings` account
+     * Specify whether this is a `checking` or `savings` account. Defaults to `checking`.
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public AccountType accountType() {
-        return accountType;
+    public Optional<AccountType> accountType() {
+        return (Optional<AccountType>) accountType;
     }
 
     public static Builder builder() {
@@ -309,9 +311,19 @@ public class ACHBankPaymentMethodCreate {
     }
 
     /**
-     * Specify whether this is a `checking` or `savings` account
+     * Specify whether this is a `checking` or `savings` account. Defaults to `checking`.
      */
     public ACHBankPaymentMethodCreate withAccountType(AccountType accountType) {
+        Utils.checkNotNull(accountType, "accountType");
+        this.accountType = Optional.ofNullable(accountType);
+        return this;
+    }
+
+
+    /**
+     * Specify whether this is a `checking` or `savings` account. Defaults to `checking`.
+     */
+    public ACHBankPaymentMethodCreate withAccountType(Optional<? extends AccountType> accountType) {
         Utils.checkNotNull(accountType, "accountType");
         this.accountType = accountType;
         return this;
@@ -380,7 +392,7 @@ public class ACHBankPaymentMethodCreate {
 
         private Optional<Boolean> isTokenized;
 
-        private AccountType accountType;
+        private Optional<? extends AccountType> accountType;
 
         private Builder() {
           // force use of static builder() method
@@ -491,9 +503,18 @@ public class ACHBankPaymentMethodCreate {
 
 
         /**
-         * Specify whether this is a `checking` or `savings` account
+         * Specify whether this is a `checking` or `savings` account. Defaults to `checking`.
          */
         public Builder accountType(AccountType accountType) {
+            Utils.checkNotNull(accountType, "accountType");
+            this.accountType = Optional.ofNullable(accountType);
+            return this;
+        }
+
+        /**
+         * Specify whether this is a `checking` or `savings` account. Defaults to `checking`.
+         */
+        public Builder accountType(Optional<? extends AccountType> accountType) {
             Utils.checkNotNull(accountType, "accountType");
             this.accountType = accountType;
             return this;
@@ -502,6 +523,9 @@ public class ACHBankPaymentMethodCreate {
         public ACHBankPaymentMethodCreate build() {
             if (isTokenized == null) {
                 isTokenized = _SINGLETON_VALUE_IsTokenized.value();
+            }
+            if (accountType == null) {
+                accountType = _SINGLETON_VALUE_AccountType.value();
             }
 
             return new ACHBankPaymentMethodCreate(
@@ -528,5 +552,11 @@ public class ACHBankPaymentMethodCreate {
                         "is_tokenized",
                         "false",
                         new TypeReference<Optional<Boolean>>() {});
+
+        private static final LazySingletonValue<Optional<? extends AccountType>> _SINGLETON_VALUE_AccountType =
+                new LazySingletonValue<>(
+                        "account_type",
+                        "\"checking\"",
+                        new TypeReference<Optional<? extends AccountType>>() {});
     }
 }
