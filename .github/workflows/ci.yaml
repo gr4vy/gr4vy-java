@@ -9,6 +9,12 @@ on:
   workflow_dispatch: {}
   schedule:
     # “At 08:30 on every day-of-week from Monday through Friday.”
+    #
+    # Staggered across the six SDK repos (java :30, python :35, php :40,
+    # go :45, csharp :50, typescript :55). They all run their live suites
+    # against the one shared e2e sandbox, and firing together stampedes the
+    # auth path's cold public-key cache -> Envelope /decrypt times out at 3s
+    # -> every endpoint 500s (Sentry CORE-API-1N0). Keep these apart.
     - cron: 30 8 * * 1-5
 
 # A new push to a PR cancels the previous in-flight run.
