@@ -1,4 +1,4 @@
-speakeasyVersion: 1.796.0
+speakeasyVersion: 1.796.2
 sources:
     Gr4vy:
         sourceNamespace: openapi
@@ -9,8 +9,8 @@ sources:
             - 1.0.0
     openapi:
         sourceNamespace: openapi
-        sourceRevisionDigest: sha256:f7ce5088afd4f091d0422ac2e7468437747f5592ac8ab9fb33a0cc7edd9f7a38
-        sourceBlobDigest: sha256:56f7da2d12bbe944ff935c9268f7733028de04e6fc6edd1eea4802bc0612b131
+        sourceRevisionDigest: sha256:fcbc4baed41013925f3b68526079a527ee2353ec5c87bff867c02ebc85580262
+        sourceBlobDigest: sha256:ce2d97374b8d144216e693fe8b76d96c9f10d0b138f3cdd31d08feaff5ea5461
         tags:
             - latest
             - 1.0.0
@@ -25,10 +25,10 @@ targets:
     java:
         source: openapi
         sourceNamespace: openapi
-        sourceRevisionDigest: sha256:f7ce5088afd4f091d0422ac2e7468437747f5592ac8ab9fb33a0cc7edd9f7a38
-        sourceBlobDigest: sha256:56f7da2d12bbe944ff935c9268f7733028de04e6fc6edd1eea4802bc0612b131
+        sourceRevisionDigest: sha256:fcbc4baed41013925f3b68526079a527ee2353ec5c87bff867c02ebc85580262
+        sourceBlobDigest: sha256:ce2d97374b8d144216e693fe8b76d96c9f10d0b138f3cdd31d08feaff5ea5461
         codeSamplesNamespace: openapi-java-code-samples
-        codeSamplesRevisionDigest: sha256:3d98cc602e979e676002b0a2f128bb2ed5cbfd6a12546d0e19569370c2b80719
+        codeSamplesRevisionDigest: sha256:92fc0a37f1ba868d42ac935c18be8d337dc44164efa048df5217bea0421620b6
 workflow:
     workflowVersion: 1.0.0
     speakeasyVersion: latest
