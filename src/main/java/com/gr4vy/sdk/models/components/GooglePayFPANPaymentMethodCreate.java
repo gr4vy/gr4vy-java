@@ -83,6 +83,13 @@ public class GooglePayFPANPaymentMethodCreate {
     @JsonProperty("security_code")
     private JsonNullable<? extends Object> securityCode;
 
+    /**
+     * Expiry of the Google Pay token the PAN was decrypted from, as milliseconds since the epoch.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("message_expiration")
+    private JsonNullable<String> messageExpiration;
+
     @JsonCreator
     public GooglePayFPANPaymentMethodCreate(
             @JsonProperty("expiration_date") String expirationDate,
@@ -92,7 +99,8 @@ public class GooglePayFPANPaymentMethodCreate {
             @JsonProperty("external_identifier") JsonNullable<String> externalIdentifier,
             @JsonProperty("card_type") JsonNullable<? extends CardType> cardType,
             @JsonProperty("redirect_url") JsonNullable<String> redirectUrl,
-            @JsonProperty("security_code") JsonNullable<? extends Object> securityCode) {
+            @JsonProperty("security_code") JsonNullable<? extends Object> securityCode,
+            @JsonProperty("message_expiration") JsonNullable<String> messageExpiration) {
         Utils.checkNotNull(expirationDate, "expirationDate");
         Utils.checkNotNull(number, "number");
         Utils.checkNotNull(buyerExternalIdentifier, "buyerExternalIdentifier");
@@ -101,6 +109,7 @@ public class GooglePayFPANPaymentMethodCreate {
         Utils.checkNotNull(cardType, "cardType");
         Utils.checkNotNull(redirectUrl, "redirectUrl");
         Utils.checkNotNull(securityCode, "securityCode");
+        Utils.checkNotNull(messageExpiration, "messageExpiration");
         this.expirationDate = expirationDate;
         this.number = number;
         this.buyerExternalIdentifier = buyerExternalIdentifier;
@@ -110,6 +119,7 @@ public class GooglePayFPANPaymentMethodCreate {
         this.method = Builder._SINGLETON_VALUE_Method.value();
         this.redirectUrl = redirectUrl;
         this.securityCode = securityCode;
+        this.messageExpiration = messageExpiration;
     }
     
     public GooglePayFPANPaymentMethodCreate(
@@ -117,7 +127,7 @@ public class GooglePayFPANPaymentMethodCreate {
             String number) {
         this(expirationDate, number, JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined());
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
     }
 
     /**
@@ -192,6 +202,14 @@ public class GooglePayFPANPaymentMethodCreate {
     @JsonIgnore
     public JsonNullable<Object> securityCode() {
         return (JsonNullable<Object>) securityCode;
+    }
+
+    /**
+     * Expiry of the Google Pay token the PAN was decrypted from, as milliseconds since the epoch.
+     */
+    @JsonIgnore
+    public JsonNullable<String> messageExpiration() {
+        return messageExpiration;
     }
 
     public static Builder builder() {
@@ -325,6 +343,24 @@ public class GooglePayFPANPaymentMethodCreate {
         return this;
     }
 
+    /**
+     * Expiry of the Google Pay token the PAN was decrypted from, as milliseconds since the epoch.
+     */
+    public GooglePayFPANPaymentMethodCreate withMessageExpiration(String messageExpiration) {
+        Utils.checkNotNull(messageExpiration, "messageExpiration");
+        this.messageExpiration = JsonNullable.of(messageExpiration);
+        return this;
+    }
+
+    /**
+     * Expiry of the Google Pay token the PAN was decrypted from, as milliseconds since the epoch.
+     */
+    public GooglePayFPANPaymentMethodCreate withMessageExpiration(JsonNullable<String> messageExpiration) {
+        Utils.checkNotNull(messageExpiration, "messageExpiration");
+        this.messageExpiration = messageExpiration;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -343,7 +379,8 @@ public class GooglePayFPANPaymentMethodCreate {
             Utils.enhancedDeepEquals(this.cardType, other.cardType) &&
             Utils.enhancedDeepEquals(this.method, other.method) &&
             Utils.enhancedDeepEquals(this.redirectUrl, other.redirectUrl) &&
-            Utils.enhancedDeepEquals(this.securityCode, other.securityCode);
+            Utils.enhancedDeepEquals(this.securityCode, other.securityCode) &&
+            Utils.enhancedDeepEquals(this.messageExpiration, other.messageExpiration);
     }
     
     @Override
@@ -351,7 +388,8 @@ public class GooglePayFPANPaymentMethodCreate {
         return Utils.enhancedHash(
             expirationDate, number, buyerExternalIdentifier,
             buyerId, externalIdentifier, cardType,
-            method, redirectUrl, securityCode);
+            method, redirectUrl, securityCode,
+            messageExpiration);
     }
     
     @Override
@@ -365,7 +403,8 @@ public class GooglePayFPANPaymentMethodCreate {
                 "cardType", cardType,
                 "method", method,
                 "redirectUrl", redirectUrl,
-                "securityCode", securityCode);
+                "securityCode", securityCode,
+                "messageExpiration", messageExpiration);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -386,6 +425,8 @@ public class GooglePayFPANPaymentMethodCreate {
         private JsonNullable<String> redirectUrl = JsonNullable.undefined();
 
         private JsonNullable<? extends Object> securityCode = JsonNullable.undefined();
+
+        private JsonNullable<String> messageExpiration = JsonNullable.undefined();
 
         private Builder() {
           // force use of static builder() method
@@ -525,12 +566,31 @@ public class GooglePayFPANPaymentMethodCreate {
             return this;
         }
 
+
+        /**
+         * Expiry of the Google Pay token the PAN was decrypted from, as milliseconds since the epoch.
+         */
+        public Builder messageExpiration(String messageExpiration) {
+            Utils.checkNotNull(messageExpiration, "messageExpiration");
+            this.messageExpiration = JsonNullable.of(messageExpiration);
+            return this;
+        }
+
+        /**
+         * Expiry of the Google Pay token the PAN was decrypted from, as milliseconds since the epoch.
+         */
+        public Builder messageExpiration(JsonNullable<String> messageExpiration) {
+            Utils.checkNotNull(messageExpiration, "messageExpiration");
+            this.messageExpiration = messageExpiration;
+            return this;
+        }
+
         public GooglePayFPANPaymentMethodCreate build() {
 
             return new GooglePayFPANPaymentMethodCreate(
                 expirationDate, number, buyerExternalIdentifier,
                 buyerId, externalIdentifier, cardType,
-                redirectUrl, securityCode);
+                redirectUrl, securityCode, messageExpiration);
         }
 
 

@@ -115,6 +115,7 @@ public class RedirectPaymentMethodCreateMethod {
     public static final RedirectPaymentMethodCreateMethod SEPA = new RedirectPaymentMethodCreateMethod("sepa");
     public static final RedirectPaymentMethodCreateMethod SERVIPAG = new RedirectPaymentMethodCreateMethod("servipag");
     public static final RedirectPaymentMethodCreateMethod SEVENELEVEN = new RedirectPaymentMethodCreateMethod("seveneleven");
+    public static final RedirectPaymentMethodCreateMethod SEZZLE = new RedirectPaymentMethodCreateMethod("sezzle");
     public static final RedirectPaymentMethodCreateMethod SHOPEEPAY = new RedirectPaymentMethodCreateMethod("shopeepay");
     public static final RedirectPaymentMethodCreateMethod SINGTELDASH = new RedirectPaymentMethodCreateMethod("singteldash");
     public static final RedirectPaymentMethodCreateMethod SMARTPAY = new RedirectPaymentMethodCreateMethod("smartpay");
@@ -304,6 +305,7 @@ public class RedirectPaymentMethodCreateMethod {
         map.put("sepa", SEPA);
         map.put("servipag", SERVIPAG);
         map.put("seveneleven", SEVENELEVEN);
+        map.put("sezzle", SEZZLE);
         map.put("shopeepay", SHOPEEPAY);
         map.put("singteldash", SINGTELDASH);
         map.put("smartpay", SMARTPAY);
@@ -425,6 +427,7 @@ public class RedirectPaymentMethodCreateMethod {
         map.put("sepa", RedirectPaymentMethodCreateMethodEnum.SEPA);
         map.put("servipag", RedirectPaymentMethodCreateMethodEnum.SERVIPAG);
         map.put("seveneleven", RedirectPaymentMethodCreateMethodEnum.SEVENELEVEN);
+        map.put("sezzle", RedirectPaymentMethodCreateMethodEnum.SEZZLE);
         map.put("shopeepay", RedirectPaymentMethodCreateMethodEnum.SHOPEEPAY);
         map.put("singteldash", RedirectPaymentMethodCreateMethodEnum.SINGTELDASH);
         map.put("smartpay", RedirectPaymentMethodCreateMethodEnum.SMARTPAY);
@@ -547,6 +550,7 @@ public class RedirectPaymentMethodCreateMethod {
         SEPA("sepa"),
         SERVIPAG("servipag"),
         SEVENELEVEN("seveneleven"),
+        SEZZLE("sezzle"),
         SHOPEEPAY("shopeepay"),
         SINGTELDASH("singteldash"),
         SMARTPAY("smartpay"),

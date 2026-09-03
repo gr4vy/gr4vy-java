@@ -121,6 +121,7 @@ public class Method {
     public static final Method SEPA = new Method("sepa");
     public static final Method SERVIPAG = new Method("servipag");
     public static final Method SEVENELEVEN = new Method("seveneleven");
+    public static final Method SEZZLE = new Method("sezzle");
     public static final Method SHOPEEPAY = new Method("shopeepay");
     public static final Method SINGTELDASH = new Method("singteldash");
     public static final Method SMARTPAY = new Method("smartpay");
@@ -321,6 +322,7 @@ public class Method {
         map.put("sepa", SEPA);
         map.put("servipag", SERVIPAG);
         map.put("seveneleven", SEVENELEVEN);
+        map.put("sezzle", SEZZLE);
         map.put("shopeepay", SHOPEEPAY);
         map.put("singteldash", SINGTELDASH);
         map.put("smartpay", SMARTPAY);
@@ -453,6 +455,7 @@ public class Method {
         map.put("sepa", MethodEnum.SEPA);
         map.put("servipag", MethodEnum.SERVIPAG);
         map.put("seveneleven", MethodEnum.SEVENELEVEN);
+        map.put("sezzle", MethodEnum.SEZZLE);
         map.put("shopeepay", MethodEnum.SHOPEEPAY);
         map.put("singteldash", MethodEnum.SINGTELDASH);
         map.put("smartpay", MethodEnum.SMARTPAY);
@@ -586,6 +589,7 @@ public class Method {
         SEPA("sepa"),
         SERVIPAG("servipag"),
         SEVENELEVEN("seveneleven"),
+        SEZZLE("sezzle"),
         SHOPEEPAY("shopeepay"),
         SINGTELDASH("singteldash"),
         SMARTPAY("smartpay"),
