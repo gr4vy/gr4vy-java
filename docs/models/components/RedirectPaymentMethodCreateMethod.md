@@ -108,6 +108,7 @@ RedirectPaymentMethodCreateMethod custom = RedirectPaymentMethodCreateMethod.of(
 | `SEPA`            | sepa              |
 | `SERVIPAG`        | servipag          |
 | `SEVENELEVEN`     | seveneleven       |
+| `SEZZLE`          | sezzle            |
 | `SHOPEEPAY`       | shopeepay         |
 | `SINGTELDASH`     | singteldash       |
 | `SMARTPAY`        | smartpay          |

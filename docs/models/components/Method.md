@@ -117,6 +117,7 @@ Method custom = Method.of("custom_value");
 | `SEPA`               | sepa                 |
 | `SERVIPAG`           | servipag             |
 | `SEVENELEVEN`        | seveneleven          |
+| `SEZZLE`             | sezzle               |
 | `SHOPEEPAY`          | shopeepay            |
 | `SINGTELDASH`        | singteldash          |
 | `SMARTPAY`           | smartpay             |
