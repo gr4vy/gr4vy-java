@@ -30,8 +30,8 @@ public class PaymentMethodUpdate {
     /**
      * A scheme transaction identifier to associate with this payment method. Explicitly setting this field
      * to `null` will also clear `scheme_transaction_id_scheme` as a side-effect. When setting a new value
-     * and `scheme_transaction_id_scheme` is both omitted from the payload and previously
-     * unset,`scheme_transaction_id_scheme` will be populated from the payment method's existing `scheme`.
+     * and `scheme_transaction_id_scheme` is both omitted from the payload and previously unset,
+     * `scheme_transaction_id_scheme` will be populated from the payment method's existing `scheme`.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("scheme_transaction_id")
@@ -39,7 +39,7 @@ public class PaymentMethodUpdate {
 
     /**
      * The scheme associated with `scheme_transaction_id`. Only applies to card payments. When setting a
-     * new value for `scheme_transaction_id`, if `scheme_transaction_id_scheme`is both omitted from the
+     * new value for `scheme_transaction_id`, if `scheme_transaction_id_scheme` is both omitted from the
      * payload and previously unset, `scheme_transaction_id_scheme` will be populated from the payment
      * method's existing `scheme`.
      */
@@ -86,8 +86,8 @@ public class PaymentMethodUpdate {
     /**
      * A scheme transaction identifier to associate with this payment method. Explicitly setting this field
      * to `null` will also clear `scheme_transaction_id_scheme` as a side-effect. When setting a new value
-     * and `scheme_transaction_id_scheme` is both omitted from the payload and previously
-     * unset,`scheme_transaction_id_scheme` will be populated from the payment method's existing `scheme`.
+     * and `scheme_transaction_id_scheme` is both omitted from the payload and previously unset,
+     * `scheme_transaction_id_scheme` will be populated from the payment method's existing `scheme`.
      */
     @JsonIgnore
     public JsonNullable<String> schemeTransactionId() {
@@ -96,7 +96,7 @@ public class PaymentMethodUpdate {
 
     /**
      * The scheme associated with `scheme_transaction_id`. Only applies to card payments. When setting a
-     * new value for `scheme_transaction_id`, if `scheme_transaction_id_scheme`is both omitted from the
+     * new value for `scheme_transaction_id`, if `scheme_transaction_id_scheme` is both omitted from the
      * payload and previously unset, `scheme_transaction_id_scheme` will be populated from the payment
      * method's existing `scheme`.
      */
@@ -140,8 +140,8 @@ public class PaymentMethodUpdate {
     /**
      * A scheme transaction identifier to associate with this payment method. Explicitly setting this field
      * to `null` will also clear `scheme_transaction_id_scheme` as a side-effect. When setting a new value
-     * and `scheme_transaction_id_scheme` is both omitted from the payload and previously
-     * unset,`scheme_transaction_id_scheme` will be populated from the payment method's existing `scheme`.
+     * and `scheme_transaction_id_scheme` is both omitted from the payload and previously unset,
+     * `scheme_transaction_id_scheme` will be populated from the payment method's existing `scheme`.
      */
     public PaymentMethodUpdate withSchemeTransactionId(String schemeTransactionId) {
         Utils.checkNotNull(schemeTransactionId, "schemeTransactionId");
@@ -152,8 +152,8 @@ public class PaymentMethodUpdate {
     /**
      * A scheme transaction identifier to associate with this payment method. Explicitly setting this field
      * to `null` will also clear `scheme_transaction_id_scheme` as a side-effect. When setting a new value
-     * and `scheme_transaction_id_scheme` is both omitted from the payload and previously
-     * unset,`scheme_transaction_id_scheme` will be populated from the payment method's existing `scheme`.
+     * and `scheme_transaction_id_scheme` is both omitted from the payload and previously unset,
+     * `scheme_transaction_id_scheme` will be populated from the payment method's existing `scheme`.
      */
     public PaymentMethodUpdate withSchemeTransactionId(JsonNullable<String> schemeTransactionId) {
         Utils.checkNotNull(schemeTransactionId, "schemeTransactionId");
@@ -163,7 +163,7 @@ public class PaymentMethodUpdate {
 
     /**
      * The scheme associated with `scheme_transaction_id`. Only applies to card payments. When setting a
-     * new value for `scheme_transaction_id`, if `scheme_transaction_id_scheme`is both omitted from the
+     * new value for `scheme_transaction_id`, if `scheme_transaction_id_scheme` is both omitted from the
      * payload and previously unset, `scheme_transaction_id_scheme` will be populated from the payment
      * method's existing `scheme`.
      */
@@ -175,7 +175,7 @@ public class PaymentMethodUpdate {
 
     /**
      * The scheme associated with `scheme_transaction_id`. Only applies to card payments. When setting a
-     * new value for `scheme_transaction_id`, if `scheme_transaction_id_scheme`is both omitted from the
+     * new value for `scheme_transaction_id`, if `scheme_transaction_id_scheme` is both omitted from the
      * payload and previously unset, `scheme_transaction_id_scheme` will be populated from the payment
      * method's existing `scheme`.
      */
@@ -273,8 +273,8 @@ public class PaymentMethodUpdate {
         /**
          * A scheme transaction identifier to associate with this payment method. Explicitly setting this field
          * to `null` will also clear `scheme_transaction_id_scheme` as a side-effect. When setting a new value
-         * and `scheme_transaction_id_scheme` is both omitted from the payload and previously
-         * unset,`scheme_transaction_id_scheme` will be populated from the payment method's existing `scheme`.
+         * and `scheme_transaction_id_scheme` is both omitted from the payload and previously unset,
+         * `scheme_transaction_id_scheme` will be populated from the payment method's existing `scheme`.
          */
         public Builder schemeTransactionId(String schemeTransactionId) {
             Utils.checkNotNull(schemeTransactionId, "schemeTransactionId");
@@ -285,8 +285,8 @@ public class PaymentMethodUpdate {
         /**
          * A scheme transaction identifier to associate with this payment method. Explicitly setting this field
          * to `null` will also clear `scheme_transaction_id_scheme` as a side-effect. When setting a new value
-         * and `scheme_transaction_id_scheme` is both omitted from the payload and previously
-         * unset,`scheme_transaction_id_scheme` will be populated from the payment method's existing `scheme`.
+         * and `scheme_transaction_id_scheme` is both omitted from the payload and previously unset,
+         * `scheme_transaction_id_scheme` will be populated from the payment method's existing `scheme`.
          */
         public Builder schemeTransactionId(JsonNullable<String> schemeTransactionId) {
             Utils.checkNotNull(schemeTransactionId, "schemeTransactionId");
@@ -297,7 +297,7 @@ public class PaymentMethodUpdate {
 
         /**
          * The scheme associated with `scheme_transaction_id`. Only applies to card payments. When setting a
-         * new value for `scheme_transaction_id`, if `scheme_transaction_id_scheme`is both omitted from the
+         * new value for `scheme_transaction_id`, if `scheme_transaction_id_scheme` is both omitted from the
          * payload and previously unset, `scheme_transaction_id_scheme` will be populated from the payment
          * method's existing `scheme`.
          */
@@ -309,7 +309,7 @@ public class PaymentMethodUpdate {
 
         /**
          * The scheme associated with `scheme_transaction_id`. Only applies to card payments. When setting a
-         * new value for `scheme_transaction_id`, if `scheme_transaction_id_scheme`is both omitted from the
+         * new value for `scheme_transaction_id`, if `scheme_transaction_id_scheme` is both omitted from the
          * payload and previously unset, `scheme_transaction_id_scheme` will be populated from the payment
          * method's existing `scheme`.
          */
