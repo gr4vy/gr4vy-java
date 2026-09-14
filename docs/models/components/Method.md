@@ -100,6 +100,7 @@ Method custom = Method.of("custom_value");
 | `PAYMAYA`            | paymaya              |
 | `PAYSQUAD`           | paysquad             |
 | `PAYPAL`             | paypal               |
+| `PAYPALDIRECTORDER`  | paypaldirectorder    |
 | `PAYPALPAYLATER`     | paypalpaylater       |
 | `PAYPAY`             | paypay               |
 | `PAYTO`              | payto                |

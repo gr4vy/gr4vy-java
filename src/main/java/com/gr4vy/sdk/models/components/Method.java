@@ -104,6 +104,7 @@ public class Method {
     public static final Method PAYMAYA = new Method("paymaya");
     public static final Method PAYSQUAD = new Method("paysquad");
     public static final Method PAYPAL = new Method("paypal");
+    public static final Method PAYPALDIRECTORDER = new Method("paypaldirectorder");
     public static final Method PAYPALPAYLATER = new Method("paypalpaylater");
     public static final Method PAYPAY = new Method("paypay");
     public static final Method PAYTO = new Method("payto");
@@ -305,6 +306,7 @@ public class Method {
         map.put("paymaya", PAYMAYA);
         map.put("paysquad", PAYSQUAD);
         map.put("paypal", PAYPAL);
+        map.put("paypaldirectorder", PAYPALDIRECTORDER);
         map.put("paypalpaylater", PAYPALPAYLATER);
         map.put("paypay", PAYPAY);
         map.put("payto", PAYTO);
@@ -438,6 +440,7 @@ public class Method {
         map.put("paymaya", MethodEnum.PAYMAYA);
         map.put("paysquad", MethodEnum.PAYSQUAD);
         map.put("paypal", MethodEnum.PAYPAL);
+        map.put("paypaldirectorder", MethodEnum.PAYPALDIRECTORDER);
         map.put("paypalpaylater", MethodEnum.PAYPALPAYLATER);
         map.put("paypay", MethodEnum.PAYPAY);
         map.put("payto", MethodEnum.PAYTO);
@@ -572,6 +575,7 @@ public class Method {
         PAYMAYA("paymaya"),
         PAYSQUAD("paysquad"),
         PAYPAL("paypal"),
+        PAYPALDIRECTORDER("paypaldirectorder"),
         PAYPALPAYLATER("paypalpaylater"),
         PAYPAY("paypay"),
         PAYTO("payto"),
