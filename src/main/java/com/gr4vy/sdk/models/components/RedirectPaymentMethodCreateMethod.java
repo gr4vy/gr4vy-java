@@ -100,6 +100,7 @@ public class RedirectPaymentMethodCreateMethod {
     public static final RedirectPaymentMethodCreateMethod PAYMAYA = new RedirectPaymentMethodCreateMethod("paymaya");
     public static final RedirectPaymentMethodCreateMethod PAYSQUAD = new RedirectPaymentMethodCreateMethod("paysquad");
     public static final RedirectPaymentMethodCreateMethod PAYPAL = new RedirectPaymentMethodCreateMethod("paypal");
+    public static final RedirectPaymentMethodCreateMethod PAYPALDIRECTORDER = new RedirectPaymentMethodCreateMethod("paypaldirectorder");
     public static final RedirectPaymentMethodCreateMethod PAYPALPAYLATER = new RedirectPaymentMethodCreateMethod("paypalpaylater");
     public static final RedirectPaymentMethodCreateMethod PAYPAY = new RedirectPaymentMethodCreateMethod("paypay");
     public static final RedirectPaymentMethodCreateMethod PAYTO = new RedirectPaymentMethodCreateMethod("payto");
@@ -290,6 +291,7 @@ public class RedirectPaymentMethodCreateMethod {
         map.put("paymaya", PAYMAYA);
         map.put("paysquad", PAYSQUAD);
         map.put("paypal", PAYPAL);
+        map.put("paypaldirectorder", PAYPALDIRECTORDER);
         map.put("paypalpaylater", PAYPALPAYLATER);
         map.put("paypay", PAYPAY);
         map.put("payto", PAYTO);
@@ -412,6 +414,7 @@ public class RedirectPaymentMethodCreateMethod {
         map.put("paymaya", RedirectPaymentMethodCreateMethodEnum.PAYMAYA);
         map.put("paysquad", RedirectPaymentMethodCreateMethodEnum.PAYSQUAD);
         map.put("paypal", RedirectPaymentMethodCreateMethodEnum.PAYPAL);
+        map.put("paypaldirectorder", RedirectPaymentMethodCreateMethodEnum.PAYPALDIRECTORDER);
         map.put("paypalpaylater", RedirectPaymentMethodCreateMethodEnum.PAYPALPAYLATER);
         map.put("paypay", RedirectPaymentMethodCreateMethodEnum.PAYPAY);
         map.put("payto", RedirectPaymentMethodCreateMethodEnum.PAYTO);
@@ -535,6 +538,7 @@ public class RedirectPaymentMethodCreateMethod {
         PAYMAYA("paymaya"),
         PAYSQUAD("paysquad"),
         PAYPAL("paypal"),
+        PAYPALDIRECTORDER("paypaldirectorder"),
         PAYPALPAYLATER("paypalpaylater"),
         PAYPAY("paypay"),
         PAYTO("payto"),

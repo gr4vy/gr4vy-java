@@ -53,12 +53,17 @@ public class Error409 extends Gr4vyError {
     * the resulting Error409 instance will have a null data() value and a non-null deserializationException().
     */
     public static Error409 from(HttpResponse<InputStream> response) {
+        byte[] bytes;
         try {
-            byte[] bytes = Utils.extractByteArrayFromBody(response);
+            bytes = Utils.extractByteArrayFromBody(response);
+        } catch (Exception e) {
+            return new Error409(response.statusCode(), null, response, null, e);
+        }
+        try {
             Data data = Utils.mapper().readValue(bytes, Data.class);
             return new Error409(response.statusCode(), bytes, response, data, null);
         } catch (Exception e) {
-            return new Error409(response.statusCode(), null, response, null, e);
+            return new Error409(response.statusCode(), bytes, response, null, e);
         }
     }
 

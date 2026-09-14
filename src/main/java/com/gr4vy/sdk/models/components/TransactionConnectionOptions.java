@@ -382,6 +382,13 @@ public class TransactionConnectionOptions {
     private JsonNullable<? extends PaypalOptions> paypalPaypal;
 
     /**
+     * Custom options to be passed to the `paypal-paypaldirectorder` connector.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("paypal-paypaldirectorder")
+    private JsonNullable<? extends PaypalDirectOrderOptions> paypalPaypaldirectorder;
+
+    /**
      * Custom options to be passed to the `paypal-paypalpaylater` connector.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -526,6 +533,7 @@ public class TransactionConnectionOptions {
             @JsonProperty("nuvei-pse") JsonNullable<? extends NuveiPSEOptions> nuveiPse,
             @JsonProperty("oxxo-oxxo") JsonNullable<? extends OxxoOptions> oxxoOxxo,
             @JsonProperty("paypal-paypal") JsonNullable<? extends PaypalOptions> paypalPaypal,
+            @JsonProperty("paypal-paypaldirectorder") JsonNullable<? extends PaypalDirectOrderOptions> paypalPaypaldirectorder,
             @JsonProperty("paypal-paypalpaylater") JsonNullable<? extends PaypalOptions> paypalPaypalpaylater,
             @JsonProperty("powertranz-card") JsonNullable<? extends PowertranzOptions> powertranzCard,
             @JsonProperty("riskified-anti-fraud") JsonNullable<? extends RiskifiedAntiFraudOptions> riskifiedAntiFraud,
@@ -591,6 +599,7 @@ public class TransactionConnectionOptions {
         Utils.checkNotNull(nuveiPse, "nuveiPse");
         Utils.checkNotNull(oxxoOxxo, "oxxoOxxo");
         Utils.checkNotNull(paypalPaypal, "paypalPaypal");
+        Utils.checkNotNull(paypalPaypaldirectorder, "paypalPaypaldirectorder");
         Utils.checkNotNull(paypalPaypalpaylater, "paypalPaypalpaylater");
         Utils.checkNotNull(powertranzCard, "powertranzCard");
         Utils.checkNotNull(riskifiedAntiFraud, "riskifiedAntiFraud");
@@ -656,6 +665,7 @@ public class TransactionConnectionOptions {
         this.nuveiPse = nuveiPse;
         this.oxxoOxxo = oxxoOxxo;
         this.paypalPaypal = paypalPaypal;
+        this.paypalPaypaldirectorder = paypalPaypaldirectorder;
         this.paypalPaypalpaylater = paypalPaypalpaylater;
         this.powertranzCard = powertranzCard;
         this.riskifiedAntiFraud = riskifiedAntiFraud;
@@ -693,7 +703,7 @@ public class TransactionConnectionOptions {
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined());
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
     }
 
     /**
@@ -1163,6 +1173,15 @@ public class TransactionConnectionOptions {
     @JsonIgnore
     public JsonNullable<PaypalOptions> paypalPaypal() {
         return (JsonNullable<PaypalOptions>) paypalPaypal;
+    }
+
+    /**
+     * Custom options to be passed to the `paypal-paypaldirectorder` connector.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public JsonNullable<PaypalDirectOrderOptions> paypalPaypaldirectorder() {
+        return (JsonNullable<PaypalDirectOrderOptions>) paypalPaypaldirectorder;
     }
 
     /**
@@ -2226,6 +2245,24 @@ public class TransactionConnectionOptions {
     }
 
     /**
+     * Custom options to be passed to the `paypal-paypaldirectorder` connector.
+     */
+    public TransactionConnectionOptions withPaypalPaypaldirectorder(PaypalDirectOrderOptions paypalPaypaldirectorder) {
+        Utils.checkNotNull(paypalPaypaldirectorder, "paypalPaypaldirectorder");
+        this.paypalPaypaldirectorder = JsonNullable.of(paypalPaypaldirectorder);
+        return this;
+    }
+
+    /**
+     * Custom options to be passed to the `paypal-paypaldirectorder` connector.
+     */
+    public TransactionConnectionOptions withPaypalPaypaldirectorder(JsonNullable<? extends PaypalDirectOrderOptions> paypalPaypaldirectorder) {
+        Utils.checkNotNull(paypalPaypaldirectorder, "paypalPaypaldirectorder");
+        this.paypalPaypaldirectorder = paypalPaypaldirectorder;
+        return this;
+    }
+
+    /**
      * Custom options to be passed to the `paypal-paypalpaylater` connector.
      */
     public TransactionConnectionOptions withPaypalPaypalpaylater(PaypalOptions paypalPaypalpaylater) {
@@ -2521,6 +2558,7 @@ public class TransactionConnectionOptions {
             Utils.enhancedDeepEquals(this.nuveiPse, other.nuveiPse) &&
             Utils.enhancedDeepEquals(this.oxxoOxxo, other.oxxoOxxo) &&
             Utils.enhancedDeepEquals(this.paypalPaypal, other.paypalPaypal) &&
+            Utils.enhancedDeepEquals(this.paypalPaypaldirectorder, other.paypalPaypaldirectorder) &&
             Utils.enhancedDeepEquals(this.paypalPaypalpaylater, other.paypalPaypalpaylater) &&
             Utils.enhancedDeepEquals(this.powertranzCard, other.powertranzCard) &&
             Utils.enhancedDeepEquals(this.riskifiedAntiFraud, other.riskifiedAntiFraud) &&
@@ -2556,11 +2594,11 @@ public class TransactionConnectionOptions {
             mattildaTapifintechs, monatoSpei, mockCard,
             mockdsCard, nuveiCard, nuveiIdeal,
             nuveiKlarna, nuveiPse, oxxoOxxo,
-            paypalPaypal, paypalPaypalpaylater, powertranzCard,
-            riskifiedAntiFraud, stripeAffirm, stripeCard,
-            stripeKlarna, stripeOnelink, stripeStripe,
-            travelhubCard, trustlyTrustly, worldpayvapCard,
-            wpayEverydaypay, wpayPayto);
+            paypalPaypal, paypalPaypaldirectorder, paypalPaypalpaylater,
+            powertranzCard, riskifiedAntiFraud, stripeAffirm,
+            stripeCard, stripeKlarna, stripeOnelink,
+            stripeStripe, travelhubCard, trustlyTrustly,
+            worldpayvapCard, wpayEverydaypay, wpayPayto);
     }
     
     @Override
@@ -2618,6 +2656,7 @@ public class TransactionConnectionOptions {
                 "nuveiPse", nuveiPse,
                 "oxxoOxxo", oxxoOxxo,
                 "paypalPaypal", paypalPaypal,
+                "paypalPaypaldirectorder", paypalPaypaldirectorder,
                 "paypalPaypalpaylater", paypalPaypalpaylater,
                 "powertranzCard", powertranzCard,
                 "riskifiedAntiFraud", riskifiedAntiFraud,
@@ -2739,6 +2778,8 @@ public class TransactionConnectionOptions {
         private JsonNullable<? extends OxxoOptions> oxxoOxxo = JsonNullable.undefined();
 
         private JsonNullable<? extends PaypalOptions> paypalPaypal = JsonNullable.undefined();
+
+        private JsonNullable<? extends PaypalDirectOrderOptions> paypalPaypaldirectorder = JsonNullable.undefined();
 
         private JsonNullable<? extends PaypalOptions> paypalPaypalpaylater = JsonNullable.undefined();
 
@@ -3762,6 +3803,25 @@ public class TransactionConnectionOptions {
 
 
         /**
+         * Custom options to be passed to the `paypal-paypaldirectorder` connector.
+         */
+        public Builder paypalPaypaldirectorder(PaypalDirectOrderOptions paypalPaypaldirectorder) {
+            Utils.checkNotNull(paypalPaypaldirectorder, "paypalPaypaldirectorder");
+            this.paypalPaypaldirectorder = JsonNullable.of(paypalPaypaldirectorder);
+            return this;
+        }
+
+        /**
+         * Custom options to be passed to the `paypal-paypaldirectorder` connector.
+         */
+        public Builder paypalPaypaldirectorder(JsonNullable<? extends PaypalDirectOrderOptions> paypalPaypaldirectorder) {
+            Utils.checkNotNull(paypalPaypaldirectorder, "paypalPaypaldirectorder");
+            this.paypalPaypaldirectorder = paypalPaypaldirectorder;
+            return this;
+        }
+
+
+        /**
          * Custom options to be passed to the `paypal-paypalpaylater` connector.
          */
         public Builder paypalPaypalpaylater(PaypalOptions paypalPaypalpaylater) {
@@ -4027,11 +4087,11 @@ public class TransactionConnectionOptions {
                 mattildaTapifintechs, monatoSpei, mockCard,
                 mockdsCard, nuveiCard, nuveiIdeal,
                 nuveiKlarna, nuveiPse, oxxoOxxo,
-                paypalPaypal, paypalPaypalpaylater, powertranzCard,
-                riskifiedAntiFraud, stripeAffirm, stripeCard,
-                stripeKlarna, stripeOnelink, stripeStripe,
-                travelhubCard, trustlyTrustly, worldpayvapCard,
-                wpayEverydaypay, wpayPayto);
+                paypalPaypal, paypalPaypaldirectorder, paypalPaypalpaylater,
+                powertranzCard, riskifiedAntiFraud, stripeAffirm,
+                stripeCard, stripeKlarna, stripeOnelink,
+                stripeStripe, travelhubCard, trustlyTrustly,
+                worldpayvapCard, wpayEverydaypay, wpayPayto);
         }
 
     }
