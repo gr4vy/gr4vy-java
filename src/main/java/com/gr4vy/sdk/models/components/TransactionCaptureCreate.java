@@ -49,6 +49,13 @@ public class TransactionCaptureCreate {
     private JsonNullable<? extends List<CartItem>> cartItems;
 
     /**
+     * An array of shipment tracking details for this capture.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("tracking")
+    private JsonNullable<? extends List<Tracking>> tracking;
+
+    /**
      * Whether this is marked as the final capture for the associated transaction. Must be `true` or
      * omitted when multi-capture is not enabled; a value of `false` is only valid when multi-capture is
      * available on the connection.
@@ -76,18 +83,21 @@ public class TransactionCaptureCreate {
             @JsonProperty("amount") JsonNullable<Long> amount,
             @JsonProperty("airline") JsonNullable<? extends Airline> airline,
             @JsonProperty("cart_items") JsonNullable<? extends List<CartItem>> cartItems,
+            @JsonProperty("tracking") JsonNullable<? extends List<Tracking>> tracking,
             @JsonProperty("final") Optional<Boolean> final_,
             @JsonProperty("external_identifier") JsonNullable<String> externalIdentifier,
             @JsonProperty("reauthorize_if_authorization_expired") Optional<Boolean> reauthorizeIfAuthorizationExpired) {
         Utils.checkNotNull(amount, "amount");
         Utils.checkNotNull(airline, "airline");
         Utils.checkNotNull(cartItems, "cartItems");
+        Utils.checkNotNull(tracking, "tracking");
         Utils.checkNotNull(final_, "final_");
         Utils.checkNotNull(externalIdentifier, "externalIdentifier");
         Utils.checkNotNull(reauthorizeIfAuthorizationExpired, "reauthorizeIfAuthorizationExpired");
         this.amount = amount;
         this.airline = airline;
         this.cartItems = cartItems;
+        this.tracking = tracking;
         this.final_ = final_;
         this.externalIdentifier = externalIdentifier;
         this.reauthorizeIfAuthorizationExpired = reauthorizeIfAuthorizationExpired;
@@ -95,7 +105,8 @@ public class TransactionCaptureCreate {
     
     public TransactionCaptureCreate() {
         this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            Optional.empty(), JsonNullable.undefined(), Optional.empty());
+            JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
+            Optional.empty());
     }
 
     /**
@@ -123,6 +134,15 @@ public class TransactionCaptureCreate {
     @JsonIgnore
     public JsonNullable<List<CartItem>> cartItems() {
         return (JsonNullable<List<CartItem>>) cartItems;
+    }
+
+    /**
+     * An array of shipment tracking details for this capture.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public JsonNullable<List<Tracking>> tracking() {
+        return (JsonNullable<List<Tracking>>) tracking;
     }
 
     /**
@@ -213,6 +233,24 @@ public class TransactionCaptureCreate {
     }
 
     /**
+     * An array of shipment tracking details for this capture.
+     */
+    public TransactionCaptureCreate withTracking(List<Tracking> tracking) {
+        Utils.checkNotNull(tracking, "tracking");
+        this.tracking = JsonNullable.of(tracking);
+        return this;
+    }
+
+    /**
+     * An array of shipment tracking details for this capture.
+     */
+    public TransactionCaptureCreate withTracking(JsonNullable<? extends List<Tracking>> tracking) {
+        Utils.checkNotNull(tracking, "tracking");
+        this.tracking = tracking;
+        return this;
+    }
+
+    /**
      * Whether this is marked as the final capture for the associated transaction. Must be `true` or
      * omitted when multi-capture is not enabled; a value of `false` is only valid when multi-capture is
      * available on the connection.
@@ -285,6 +323,7 @@ public class TransactionCaptureCreate {
             Utils.enhancedDeepEquals(this.amount, other.amount) &&
             Utils.enhancedDeepEquals(this.airline, other.airline) &&
             Utils.enhancedDeepEquals(this.cartItems, other.cartItems) &&
+            Utils.enhancedDeepEquals(this.tracking, other.tracking) &&
             Utils.enhancedDeepEquals(this.final_, other.final_) &&
             Utils.enhancedDeepEquals(this.externalIdentifier, other.externalIdentifier) &&
             Utils.enhancedDeepEquals(this.reauthorizeIfAuthorizationExpired, other.reauthorizeIfAuthorizationExpired);
@@ -294,7 +333,8 @@ public class TransactionCaptureCreate {
     public int hashCode() {
         return Utils.enhancedHash(
             amount, airline, cartItems,
-            final_, externalIdentifier, reauthorizeIfAuthorizationExpired);
+            tracking, final_, externalIdentifier,
+            reauthorizeIfAuthorizationExpired);
     }
     
     @Override
@@ -303,6 +343,7 @@ public class TransactionCaptureCreate {
                 "amount", amount,
                 "airline", airline,
                 "cartItems", cartItems,
+                "tracking", tracking,
                 "final_", final_,
                 "externalIdentifier", externalIdentifier,
                 "reauthorizeIfAuthorizationExpired", reauthorizeIfAuthorizationExpired);
@@ -316,6 +357,8 @@ public class TransactionCaptureCreate {
         private JsonNullable<? extends Airline> airline = JsonNullable.undefined();
 
         private JsonNullable<? extends List<CartItem>> cartItems = JsonNullable.undefined();
+
+        private JsonNullable<? extends List<Tracking>> tracking = JsonNullable.undefined();
 
         private Optional<Boolean> final_;
 
@@ -383,6 +426,25 @@ public class TransactionCaptureCreate {
         public Builder cartItems(JsonNullable<? extends List<CartItem>> cartItems) {
             Utils.checkNotNull(cartItems, "cartItems");
             this.cartItems = cartItems;
+            return this;
+        }
+
+
+        /**
+         * An array of shipment tracking details for this capture.
+         */
+        public Builder tracking(List<Tracking> tracking) {
+            Utils.checkNotNull(tracking, "tracking");
+            this.tracking = JsonNullable.of(tracking);
+            return this;
+        }
+
+        /**
+         * An array of shipment tracking details for this capture.
+         */
+        public Builder tracking(JsonNullable<? extends List<Tracking>> tracking) {
+            Utils.checkNotNull(tracking, "tracking");
+            this.tracking = tracking;
             return this;
         }
 
@@ -457,7 +519,8 @@ public class TransactionCaptureCreate {
 
             return new TransactionCaptureCreate(
                 amount, airline, cartItems,
-                final_, externalIdentifier, reauthorizeIfAuthorizationExpired);
+                tracking, final_, externalIdentifier,
+                reauthorizeIfAuthorizationExpired);
         }
 
 
