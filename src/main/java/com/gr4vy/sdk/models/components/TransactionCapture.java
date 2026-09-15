@@ -14,6 +14,7 @@ import com.gr4vy.sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
+import java.util.List;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -94,6 +95,13 @@ public class TransactionCapture {
     @JsonProperty("shipping_details")
     private JsonNullable<? extends ShippingDetails> shippingDetails;
 
+    /**
+     * The shipment tracking details associated with the capture.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("tracking")
+    private JsonNullable<? extends List<Tracking>> tracking;
+
     @JsonCreator
     public TransactionCapture(
             @JsonProperty("status") CaptureStatus status,
@@ -105,7 +113,8 @@ public class TransactionCapture {
             @JsonProperty("payment_service_capture_id") JsonNullable<String> paymentServiceCaptureId,
             @JsonProperty("external_identifier") JsonNullable<String> externalIdentifier,
             @JsonProperty("billing_details") JsonNullable<? extends BillingDetails> billingDetails,
-            @JsonProperty("shipping_details") JsonNullable<? extends ShippingDetails> shippingDetails) {
+            @JsonProperty("shipping_details") JsonNullable<? extends ShippingDetails> shippingDetails,
+            @JsonProperty("tracking") JsonNullable<? extends List<Tracking>> tracking) {
         Utils.checkNotNull(status, "status");
         Utils.checkNotNull(code, "code");
         Utils.checkNotNull(rawResponseCode, "rawResponseCode");
@@ -116,6 +125,7 @@ public class TransactionCapture {
         Utils.checkNotNull(externalIdentifier, "externalIdentifier");
         Utils.checkNotNull(billingDetails, "billingDetails");
         Utils.checkNotNull(shippingDetails, "shippingDetails");
+        Utils.checkNotNull(tracking, "tracking");
         this.type = Builder._SINGLETON_VALUE_Type.value();
         this.status = status;
         this.code = code;
@@ -127,6 +137,7 @@ public class TransactionCapture {
         this.externalIdentifier = externalIdentifier;
         this.billingDetails = billingDetails;
         this.shippingDetails = shippingDetails;
+        this.tracking = tracking;
     }
     
     public TransactionCapture(
@@ -135,7 +146,7 @@ public class TransactionCapture {
         this(status, Optional.empty(), Optional.empty(),
             Optional.empty(), transaction, JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined());
+            JsonNullable.undefined(), JsonNullable.undefined());
     }
 
     /**
@@ -225,6 +236,15 @@ public class TransactionCapture {
     @JsonIgnore
     public JsonNullable<ShippingDetails> shippingDetails() {
         return (JsonNullable<ShippingDetails>) shippingDetails;
+    }
+
+    /**
+     * The shipment tracking details associated with the capture.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public JsonNullable<List<Tracking>> tracking() {
+        return (JsonNullable<List<Tracking>>) tracking;
     }
 
     public static Builder builder() {
@@ -398,6 +418,24 @@ public class TransactionCapture {
         return this;
     }
 
+    /**
+     * The shipment tracking details associated with the capture.
+     */
+    public TransactionCapture withTracking(List<Tracking> tracking) {
+        Utils.checkNotNull(tracking, "tracking");
+        this.tracking = JsonNullable.of(tracking);
+        return this;
+    }
+
+    /**
+     * The shipment tracking details associated with the capture.
+     */
+    public TransactionCapture withTracking(JsonNullable<? extends List<Tracking>> tracking) {
+        Utils.checkNotNull(tracking, "tracking");
+        this.tracking = tracking;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -418,7 +456,8 @@ public class TransactionCapture {
             Utils.enhancedDeepEquals(this.paymentServiceCaptureId, other.paymentServiceCaptureId) &&
             Utils.enhancedDeepEquals(this.externalIdentifier, other.externalIdentifier) &&
             Utils.enhancedDeepEquals(this.billingDetails, other.billingDetails) &&
-            Utils.enhancedDeepEquals(this.shippingDetails, other.shippingDetails);
+            Utils.enhancedDeepEquals(this.shippingDetails, other.shippingDetails) &&
+            Utils.enhancedDeepEquals(this.tracking, other.tracking);
     }
     
     @Override
@@ -427,7 +466,7 @@ public class TransactionCapture {
             type, status, code,
             rawResponseCode, rawResponseDescription, transaction,
             captureId, paymentServiceCaptureId, externalIdentifier,
-            billingDetails, shippingDetails);
+            billingDetails, shippingDetails, tracking);
     }
     
     @Override
@@ -443,7 +482,8 @@ public class TransactionCapture {
                 "paymentServiceCaptureId", paymentServiceCaptureId,
                 "externalIdentifier", externalIdentifier,
                 "billingDetails", billingDetails,
-                "shippingDetails", shippingDetails);
+                "shippingDetails", shippingDetails,
+                "tracking", tracking);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -468,6 +508,8 @@ public class TransactionCapture {
         private JsonNullable<? extends BillingDetails> billingDetails = JsonNullable.undefined();
 
         private JsonNullable<? extends ShippingDetails> shippingDetails = JsonNullable.undefined();
+
+        private JsonNullable<? extends List<Tracking>> tracking = JsonNullable.undefined();
 
         private Builder() {
           // force use of static builder() method
@@ -646,13 +688,32 @@ public class TransactionCapture {
             return this;
         }
 
+
+        /**
+         * The shipment tracking details associated with the capture.
+         */
+        public Builder tracking(List<Tracking> tracking) {
+            Utils.checkNotNull(tracking, "tracking");
+            this.tracking = JsonNullable.of(tracking);
+            return this;
+        }
+
+        /**
+         * The shipment tracking details associated with the capture.
+         */
+        public Builder tracking(JsonNullable<? extends List<Tracking>> tracking) {
+            Utils.checkNotNull(tracking, "tracking");
+            this.tracking = tracking;
+            return this;
+        }
+
         public TransactionCapture build() {
 
             return new TransactionCapture(
                 status, code, rawResponseCode,
                 rawResponseDescription, transaction, captureId,
                 paymentServiceCaptureId, externalIdentifier, billingDetails,
-                shippingDetails);
+                shippingDetails, tracking);
         }
 
 
