@@ -101,6 +101,20 @@ public class CartItem {
     private JsonNullable<? extends List<String>> categories;
 
     /**
+     * A list of strings containing product subcategories for the item.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("subcategories")
+    private JsonNullable<? extends List<String>> subcategories;
+
+    /**
+     * The brand of the item.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("brand")
+    private JsonNullable<String> brand;
+
+    /**
      * The product type of the cart item.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -171,6 +185,8 @@ public class CartItem {
             @JsonProperty("product_url") JsonNullable<String> productUrl,
             @JsonProperty("image_url") JsonNullable<String> imageUrl,
             @JsonProperty("categories") JsonNullable<? extends List<String>> categories,
+            @JsonProperty("subcategories") JsonNullable<? extends List<String>> subcategories,
+            @JsonProperty("brand") JsonNullable<String> brand,
             @JsonProperty("product_type") JsonNullable<? extends ProductType> productType,
             @JsonProperty("seller_country") JsonNullable<String> sellerCountry,
             @JsonProperty("tax_exempt") JsonNullable<Boolean> taxExempt,
@@ -190,6 +206,8 @@ public class CartItem {
         Utils.checkNotNull(productUrl, "productUrl");
         Utils.checkNotNull(imageUrl, "imageUrl");
         Utils.checkNotNull(categories, "categories");
+        Utils.checkNotNull(subcategories, "subcategories");
+        Utils.checkNotNull(brand, "brand");
         Utils.checkNotNull(productType, "productType");
         Utils.checkNotNull(sellerCountry, "sellerCountry");
         Utils.checkNotNull(taxExempt, "taxExempt");
@@ -209,6 +227,8 @@ public class CartItem {
         this.productUrl = productUrl;
         this.imageUrl = imageUrl;
         this.categories = categories;
+        this.subcategories = subcategories;
+        this.brand = brand;
         this.productType = productType;
         this.sellerCountry = sellerCountry;
         this.taxExempt = taxExempt;
@@ -229,7 +249,7 @@ public class CartItem {
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined());
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
     }
 
     /**
@@ -326,6 +346,23 @@ public class CartItem {
     @JsonIgnore
     public JsonNullable<List<String>> categories() {
         return (JsonNullable<List<String>>) categories;
+    }
+
+    /**
+     * A list of strings containing product subcategories for the item.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public JsonNullable<List<String>> subcategories() {
+        return (JsonNullable<List<String>>) subcategories;
+    }
+
+    /**
+     * The brand of the item.
+     */
+    @JsonIgnore
+    public JsonNullable<String> brand() {
+        return brand;
     }
 
     /**
@@ -582,6 +619,42 @@ public class CartItem {
     }
 
     /**
+     * A list of strings containing product subcategories for the item.
+     */
+    public CartItem withSubcategories(List<String> subcategories) {
+        Utils.checkNotNull(subcategories, "subcategories");
+        this.subcategories = JsonNullable.of(subcategories);
+        return this;
+    }
+
+    /**
+     * A list of strings containing product subcategories for the item.
+     */
+    public CartItem withSubcategories(JsonNullable<? extends List<String>> subcategories) {
+        Utils.checkNotNull(subcategories, "subcategories");
+        this.subcategories = subcategories;
+        return this;
+    }
+
+    /**
+     * The brand of the item.
+     */
+    public CartItem withBrand(String brand) {
+        Utils.checkNotNull(brand, "brand");
+        this.brand = JsonNullable.of(brand);
+        return this;
+    }
+
+    /**
+     * The brand of the item.
+     */
+    public CartItem withBrand(JsonNullable<String> brand) {
+        Utils.checkNotNull(brand, "brand");
+        this.brand = brand;
+        return this;
+    }
+
+    /**
      * The product type of the cart item.
      */
     public CartItem withProductType(ProductType productType) {
@@ -750,6 +823,8 @@ public class CartItem {
             Utils.enhancedDeepEquals(this.productUrl, other.productUrl) &&
             Utils.enhancedDeepEquals(this.imageUrl, other.imageUrl) &&
             Utils.enhancedDeepEquals(this.categories, other.categories) &&
+            Utils.enhancedDeepEquals(this.subcategories, other.subcategories) &&
+            Utils.enhancedDeepEquals(this.brand, other.brand) &&
             Utils.enhancedDeepEquals(this.productType, other.productType) &&
             Utils.enhancedDeepEquals(this.sellerCountry, other.sellerCountry) &&
             Utils.enhancedDeepEquals(this.taxExempt, other.taxExempt) &&
@@ -766,10 +841,10 @@ public class CartItem {
             name, quantity, unitAmount,
             discountAmount, taxAmount, externalIdentifier,
             sku, upc, productUrl,
-            imageUrl, categories, productType,
-            sellerCountry, taxExempt, unitOfMeasure,
-            commodityCode, description, dutyAmount,
-            shippingAmount);
+            imageUrl, categories, subcategories,
+            brand, productType, sellerCountry,
+            taxExempt, unitOfMeasure, commodityCode,
+            description, dutyAmount, shippingAmount);
     }
     
     @Override
@@ -786,6 +861,8 @@ public class CartItem {
                 "productUrl", productUrl,
                 "imageUrl", imageUrl,
                 "categories", categories,
+                "subcategories", subcategories,
+                "brand", brand,
                 "productType", productType,
                 "sellerCountry", sellerCountry,
                 "taxExempt", taxExempt,
@@ -820,6 +897,10 @@ public class CartItem {
         private JsonNullable<String> imageUrl = JsonNullable.undefined();
 
         private JsonNullable<? extends List<String>> categories = JsonNullable.undefined();
+
+        private JsonNullable<? extends List<String>> subcategories = JsonNullable.undefined();
+
+        private JsonNullable<String> brand = JsonNullable.undefined();
 
         private JsonNullable<? extends ProductType> productType = JsonNullable.undefined();
 
@@ -1035,6 +1116,44 @@ public class CartItem {
 
 
         /**
+         * A list of strings containing product subcategories for the item.
+         */
+        public Builder subcategories(List<String> subcategories) {
+            Utils.checkNotNull(subcategories, "subcategories");
+            this.subcategories = JsonNullable.of(subcategories);
+            return this;
+        }
+
+        /**
+         * A list of strings containing product subcategories for the item.
+         */
+        public Builder subcategories(JsonNullable<? extends List<String>> subcategories) {
+            Utils.checkNotNull(subcategories, "subcategories");
+            this.subcategories = subcategories;
+            return this;
+        }
+
+
+        /**
+         * The brand of the item.
+         */
+        public Builder brand(String brand) {
+            Utils.checkNotNull(brand, "brand");
+            this.brand = JsonNullable.of(brand);
+            return this;
+        }
+
+        /**
+         * The brand of the item.
+         */
+        public Builder brand(JsonNullable<String> brand) {
+            Utils.checkNotNull(brand, "brand");
+            this.brand = brand;
+            return this;
+        }
+
+
+        /**
          * The product type of the cart item.
          */
         public Builder productType(ProductType productType) {
@@ -1195,10 +1314,10 @@ public class CartItem {
                 name, quantity, unitAmount,
                 discountAmount, taxAmount, externalIdentifier,
                 sku, upc, productUrl,
-                imageUrl, categories, productType,
-                sellerCountry, taxExempt, unitOfMeasure,
-                commodityCode, description, dutyAmount,
-                shippingAmount);
+                imageUrl, categories, subcategories,
+                brand, productType, sellerCountry,
+                taxExempt, unitOfMeasure, commodityCode,
+                description, dutyAmount, shippingAmount);
         }
 
     }
