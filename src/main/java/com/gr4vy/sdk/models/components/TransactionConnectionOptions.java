@@ -403,6 +403,13 @@ public class TransactionConnectionOptions {
     private JsonNullable<? extends PowertranzOptions> powertranzCard;
 
     /**
+     * Custom options to be passed to the `repay-bank` connector.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("repay-bank")
+    private JsonNullable<? extends RepayBankOptions> repayBank;
+
+    /**
      * Custom options to be passed to the `riskified-anti-fraud` connector.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -536,6 +543,7 @@ public class TransactionConnectionOptions {
             @JsonProperty("paypal-paypaldirectorder") JsonNullable<? extends PaypalDirectOrderOptions> paypalPaypaldirectorder,
             @JsonProperty("paypal-paypalpaylater") JsonNullable<? extends PaypalOptions> paypalPaypalpaylater,
             @JsonProperty("powertranz-card") JsonNullable<? extends PowertranzOptions> powertranzCard,
+            @JsonProperty("repay-bank") JsonNullable<? extends RepayBankOptions> repayBank,
             @JsonProperty("riskified-anti-fraud") JsonNullable<? extends RiskifiedAntiFraudOptions> riskifiedAntiFraud,
             @JsonProperty("stripe-affirm") JsonNullable<? extends StripeOptions> stripeAffirm,
             @JsonProperty("stripe-card") JsonNullable<? extends StripeCardOptions> stripeCard,
@@ -602,6 +610,7 @@ public class TransactionConnectionOptions {
         Utils.checkNotNull(paypalPaypaldirectorder, "paypalPaypaldirectorder");
         Utils.checkNotNull(paypalPaypalpaylater, "paypalPaypalpaylater");
         Utils.checkNotNull(powertranzCard, "powertranzCard");
+        Utils.checkNotNull(repayBank, "repayBank");
         Utils.checkNotNull(riskifiedAntiFraud, "riskifiedAntiFraud");
         Utils.checkNotNull(stripeAffirm, "stripeAffirm");
         Utils.checkNotNull(stripeCard, "stripeCard");
@@ -668,6 +677,7 @@ public class TransactionConnectionOptions {
         this.paypalPaypaldirectorder = paypalPaypaldirectorder;
         this.paypalPaypalpaylater = paypalPaypalpaylater;
         this.powertranzCard = powertranzCard;
+        this.repayBank = repayBank;
         this.riskifiedAntiFraud = riskifiedAntiFraud;
         this.stripeAffirm = stripeAffirm;
         this.stripeCard = stripeCard;
@@ -703,7 +713,8 @@ public class TransactionConnectionOptions {
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined());
     }
 
     /**
@@ -1200,6 +1211,15 @@ public class TransactionConnectionOptions {
     @JsonIgnore
     public JsonNullable<PowertranzOptions> powertranzCard() {
         return (JsonNullable<PowertranzOptions>) powertranzCard;
+    }
+
+    /**
+     * Custom options to be passed to the `repay-bank` connector.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public JsonNullable<RepayBankOptions> repayBank() {
+        return (JsonNullable<RepayBankOptions>) repayBank;
     }
 
     /**
@@ -2299,6 +2319,24 @@ public class TransactionConnectionOptions {
     }
 
     /**
+     * Custom options to be passed to the `repay-bank` connector.
+     */
+    public TransactionConnectionOptions withRepayBank(RepayBankOptions repayBank) {
+        Utils.checkNotNull(repayBank, "repayBank");
+        this.repayBank = JsonNullable.of(repayBank);
+        return this;
+    }
+
+    /**
+     * Custom options to be passed to the `repay-bank` connector.
+     */
+    public TransactionConnectionOptions withRepayBank(JsonNullable<? extends RepayBankOptions> repayBank) {
+        Utils.checkNotNull(repayBank, "repayBank");
+        this.repayBank = repayBank;
+        return this;
+    }
+
+    /**
      * Custom options to be passed to the `riskified-anti-fraud` connector.
      */
     public TransactionConnectionOptions withRiskifiedAntiFraud(RiskifiedAntiFraudOptions riskifiedAntiFraud) {
@@ -2561,6 +2599,7 @@ public class TransactionConnectionOptions {
             Utils.enhancedDeepEquals(this.paypalPaypaldirectorder, other.paypalPaypaldirectorder) &&
             Utils.enhancedDeepEquals(this.paypalPaypalpaylater, other.paypalPaypalpaylater) &&
             Utils.enhancedDeepEquals(this.powertranzCard, other.powertranzCard) &&
+            Utils.enhancedDeepEquals(this.repayBank, other.repayBank) &&
             Utils.enhancedDeepEquals(this.riskifiedAntiFraud, other.riskifiedAntiFraud) &&
             Utils.enhancedDeepEquals(this.stripeAffirm, other.stripeAffirm) &&
             Utils.enhancedDeepEquals(this.stripeCard, other.stripeCard) &&
@@ -2595,10 +2634,11 @@ public class TransactionConnectionOptions {
             mockdsCard, nuveiCard, nuveiIdeal,
             nuveiKlarna, nuveiPse, oxxoOxxo,
             paypalPaypal, paypalPaypaldirectorder, paypalPaypalpaylater,
-            powertranzCard, riskifiedAntiFraud, stripeAffirm,
-            stripeCard, stripeKlarna, stripeOnelink,
-            stripeStripe, travelhubCard, trustlyTrustly,
-            worldpayvapCard, wpayEverydaypay, wpayPayto);
+            powertranzCard, repayBank, riskifiedAntiFraud,
+            stripeAffirm, stripeCard, stripeKlarna,
+            stripeOnelink, stripeStripe, travelhubCard,
+            trustlyTrustly, worldpayvapCard, wpayEverydaypay,
+            wpayPayto);
     }
     
     @Override
@@ -2659,6 +2699,7 @@ public class TransactionConnectionOptions {
                 "paypalPaypaldirectorder", paypalPaypaldirectorder,
                 "paypalPaypalpaylater", paypalPaypalpaylater,
                 "powertranzCard", powertranzCard,
+                "repayBank", repayBank,
                 "riskifiedAntiFraud", riskifiedAntiFraud,
                 "stripeAffirm", stripeAffirm,
                 "stripeCard", stripeCard,
@@ -2784,6 +2825,8 @@ public class TransactionConnectionOptions {
         private JsonNullable<? extends PaypalOptions> paypalPaypalpaylater = JsonNullable.undefined();
 
         private JsonNullable<? extends PowertranzOptions> powertranzCard = JsonNullable.undefined();
+
+        private JsonNullable<? extends RepayBankOptions> repayBank = JsonNullable.undefined();
 
         private JsonNullable<? extends RiskifiedAntiFraudOptions> riskifiedAntiFraud = JsonNullable.undefined();
 
@@ -3860,6 +3903,25 @@ public class TransactionConnectionOptions {
 
 
         /**
+         * Custom options to be passed to the `repay-bank` connector.
+         */
+        public Builder repayBank(RepayBankOptions repayBank) {
+            Utils.checkNotNull(repayBank, "repayBank");
+            this.repayBank = JsonNullable.of(repayBank);
+            return this;
+        }
+
+        /**
+         * Custom options to be passed to the `repay-bank` connector.
+         */
+        public Builder repayBank(JsonNullable<? extends RepayBankOptions> repayBank) {
+            Utils.checkNotNull(repayBank, "repayBank");
+            this.repayBank = repayBank;
+            return this;
+        }
+
+
+        /**
          * Custom options to be passed to the `riskified-anti-fraud` connector.
          */
         public Builder riskifiedAntiFraud(RiskifiedAntiFraudOptions riskifiedAntiFraud) {
@@ -4088,10 +4150,11 @@ public class TransactionConnectionOptions {
                 mockdsCard, nuveiCard, nuveiIdeal,
                 nuveiKlarna, nuveiPse, oxxoOxxo,
                 paypalPaypal, paypalPaypaldirectorder, paypalPaypalpaylater,
-                powertranzCard, riskifiedAntiFraud, stripeAffirm,
-                stripeCard, stripeKlarna, stripeOnelink,
-                stripeStripe, travelhubCard, trustlyTrustly,
-                worldpayvapCard, wpayEverydaypay, wpayPayto);
+                powertranzCard, repayBank, riskifiedAntiFraud,
+                stripeAffirm, stripeCard, stripeKlarna,
+                stripeOnelink, stripeStripe, travelhubCard,
+                trustlyTrustly, worldpayvapCard, wpayEverydaypay,
+                wpayPayto);
         }
 
     }
