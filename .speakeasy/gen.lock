@@ -1,19 +1,19 @@
 lockVersion: 2.0.0
 id: 5bbaa3a9-baa0-471b-ba6a-13fd88e8c119
 management:
-  docChecksum: 816149e22f33cfc8c2e99554892f1b89
+  docChecksum: faccc22c75487a5bdf67f315e8b660ea
   docVersion: 1.0.0
   speakeasyVersion: 1.797.0
   generationVersion: 2.937.18
-  releaseVersion: 2.19.10
-  configChecksum: 6988623de62db297119c2d6306eaf6d0
+  releaseVersion: 2.19.11
+  configChecksum: a77c4b5166e5f6b9905ccb0f0b683574
   repoURL: https://github.com/gr4vy/gr4vy-java.git
   installationURL: https://github.com/gr4vy/gr4vy-java
   published: true
 persistentEdits:
-  generation_id: bab673f4-65f0-4d3d-897f-7a9b6b4a0e23
-  pristine_commit_hash: 5ad089ae80cd4164953c5ee3081631e4d01812af
-  pristine_tree_hash: edf83e87464fc2665040e782c29cc3c65e7b8506
+  generation_id: 2f3ef9b9-087b-4843-9ef4-c5c5d65e2e3f
+  pristine_commit_hash: 48f2424418e67e3d9d89862c5b3623a039e52b16
+  pristine_tree_hash: 2ea367cc556e0bf927814a8453294b9af1f08908
 features:
   java:
     additionalDependencies: 0.1.0
@@ -1221,6 +1221,10 @@ trackedFiles:
     id: 9487ae6ffe90
     last_write_checksum: sha1:d758de80df026c975d995fa3b37638004c2a32b9
     pristine_git_object: 3ddba69e72b58d3ffe172d926efd15d70ff0cdb6
+  docs/models/components/RepayBankOptions.md:
+    id: 4d5618a0cc52
+    last_write_checksum: sha1:44fa6f9ff068abf2b2229d4ded3f3a400c3032b1
+    pristine_git_object: f918b758ebe3569646f4f9b8dcebc4236d51df3c
   docs/models/components/Report.md:
     id: 610bd9ffdc9d
     last_write_checksum: sha1:6ccde4e766a220ebcd73c688d1e108a0dd313dcb
@@ -1325,6 +1329,10 @@ trackedFiles:
     id: 5591e864637a
     last_write_checksum: sha1:80164f666630fa76206f3c4b623345c32e5d9c29
     pristine_git_object: 8023c4c5f2d338a4c2d236bebd7772691fb2f200
+  docs/models/components/SecCode.md:
+    id: 582b117605ac
+    last_write_checksum: sha1:a80da84a24b8606cb703bc41c3b7a01eb7f732af
+    pristine_git_object: a68e5daed733cea753dc3632e75061fc35a1450e
   docs/models/components/Security.md:
     id: 3878f0f84029
     last_write_checksum: sha1:130ce67c86b8efbd1dfdc247a52629887aeba93f
@@ -1523,8 +1531,8 @@ trackedFiles:
     pristine_git_object: 428794d12ebb53b788c3a52a007b9fff3b2c4241
   docs/models/components/TransactionConnectionOptions.md:
     id: 2a90ee52a662
-    last_write_checksum: sha1:19ac7c797b57a744823c778f2262934b0f4df781
-    pristine_git_object: 41901748492b2c9065a392a754184b1f80163d0d
+    last_write_checksum: sha1:246b98b5567442f3927ed27e2217ff6c6b004ed0
+    pristine_git_object: ac3961a8bc2d59a64532154833b21306e34c454a
   docs/models/components/TransactionCreate.md:
     id: 0af6b811ca1f
     last_write_checksum: sha1:1800f8bd0f00d21470f52ba8697c4a872c4bb9f5
@@ -2871,8 +2879,8 @@ trackedFiles:
     pristine_git_object: 15c4e4642f204ccb312d8814155b69e153b4e19b
   gradle.properties:
     id: 2afbb999f001
-    last_write_checksum: sha1:e6accf528ab38c4f6c8156ae1c70d0a28e285399
-    pristine_git_object: d8f6204373d7fd5b8f1e087649a21a8359284e3c
+    last_write_checksum: sha1:e369d6cac5ddc2315aeb624ce6e2a841aea84d30
+    pristine_git_object: fee1f53098c8ee360641e7071bca92da7b92828f
   gradle/wrapper/gradle-wrapper.jar:
     id: ec27dae6e852
     last_write_checksum: sha1:f725fb1467084142d74fd7cd8eab691ab3442611
@@ -3215,8 +3223,8 @@ trackedFiles:
     pristine_git_object: b50475cc7f6041d63c4569256e4ff1850b20d30b
   src/main/java/com/gr4vy/sdk/SDKConfiguration.java:
     id: 73a7edeaca45
-    last_write_checksum: sha1:089cef876f96474d63ff5fc079178a585cf2d28d
-    pristine_git_object: fe4d67465b5c6152a3f89a1f80520b8e49cacc35
+    last_write_checksum: sha1:8ee00c9fdeb6ec63c04ca73943daf8d95390e4d5
+    pristine_git_object: b613171ec22376301f98ee460ddee7ce79fc8a08
   src/main/java/com/gr4vy/sdk/SecuritySource.java:
     id: 1b6add6b9b50
     last_write_checksum: sha1:2f365cc823c6243188e83f4df618c9737fcee8bd
@@ -4421,6 +4429,10 @@ trackedFiles:
     id: c1b3d29069dc
     last_write_checksum: sha1:2eeb77f03654e1515cdcfe15315145679796646b
     pristine_git_object: 8f209b1ad757eb550905f0c186565cddb3f53b59
+  src/main/java/com/gr4vy/sdk/models/components/RepayBankOptions.java:
+    id: af79964e044d
+    last_write_checksum: sha1:cefcdec735162334f766e0a137f3af7fb7ad19e3
+    pristine_git_object: b3ece337abb997a5e7f39ac025daaf5476db9a1e
   src/main/java/com/gr4vy/sdk/models/components/Report.java:
     id: 8bf6247989f1
     last_write_checksum: sha1:382964e811f03b155521feef695b6d10f1a75712
@@ -4525,6 +4537,10 @@ trackedFiles:
     id: d1084d2ea48a
     last_write_checksum: sha1:60d19ee1d0d289c84246467f9e8583335b248786
     pristine_git_object: 2fd6ade5a51c5775a5f24993578dfe8e4e236676
+  src/main/java/com/gr4vy/sdk/models/components/SecCode.java:
+    id: 702cc9cadfe6
+    last_write_checksum: sha1:14838fb79cba527d8f6f8afa8989522dc3cade84
+    pristine_git_object: c115d05da5f026b25e305c5b8cebb68d1a10385b
   src/main/java/com/gr4vy/sdk/models/components/Security.java:
     id: 42fff468ea64
     last_write_checksum: sha1:7592e19af06a7621e32345ddad9fbfdcf44d0334
@@ -4727,8 +4743,8 @@ trackedFiles:
     pristine_git_object: 62046c9977b03ec5c305b415b5822e8b687e45af
   src/main/java/com/gr4vy/sdk/models/components/TransactionConnectionOptions.java:
     id: 31501e4506f3
-    last_write_checksum: sha1:90d3d0a8d022cbaae7f45ad28a4fd5343d549e81
-    pristine_git_object: 11f3dfb340168be406c4dc3ac36c31a7f8391aba
+    last_write_checksum: sha1:e017baa777548312c5bcc8b20a188696861833b9
+    pristine_git_object: fea2b982d4ce432b49d21462427026f5b1d380f5
   src/main/java/com/gr4vy/sdk/models/components/TransactionCreate.java:
     id: 85da9dd45d8a
     last_write_checksum: sha1:277d073f4476aad9caf28749d0f68ce1f8706864
@@ -12459,9 +12475,7 @@ examples:
           application/json: {"type": "error", "code": "gateway_timeout", "status": 504, "message": "Request could not be processed"}
 examplesVersion: 1.0.2
 generatedTests: {}
-releaseNotes: |
-  ## Java SDK Changes:
-  * `gr4vy.transactions.capture()`:  `response.union(TransactionCapture).tracking` **Added**
+releaseNotes: "## Java SDK Changes:\n* `gr4vy.transactions.create()`: \n  *  `request.transactionCreate.connectionOptions.repayBank` **Added**\n* `gr4vy.transactions.update()`: \n  *  `request.transactionUpdate.connectionOptions.repayBank` **Added**\n* `gr4vy.paymentLinks.create()`: \n  *  `request.paymentLinkCreate.connectionOptions.repayBank` **Added**\n"
 generatedFiles:
   - .gitattributes
   - USAGE.md
