@@ -147,6 +147,13 @@ public class Capture {
     @JsonProperty("cart_items")
     private JsonNullable<? extends List<CartItem>> cartItems;
 
+    /**
+     * The shipment tracking details associated with the capture.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("tracking")
+    private JsonNullable<? extends List<Tracking>> tracking;
+
     @JsonCreator
     public Capture(
             @JsonProperty("id") String id,
@@ -166,7 +173,8 @@ public class Capture {
             @JsonProperty("raw_response_code") JsonNullable<String> rawResponseCode,
             @JsonProperty("raw_response_description") JsonNullable<String> rawResponseDescription,
             @JsonProperty("transaction_external_identifier") JsonNullable<String> transactionExternalIdentifier,
-            @JsonProperty("cart_items") JsonNullable<? extends List<CartItem>> cartItems) {
+            @JsonProperty("cart_items") JsonNullable<? extends List<CartItem>> cartItems,
+            @JsonProperty("tracking") JsonNullable<? extends List<Tracking>> tracking) {
         Utils.checkNotNull(id, "id");
         Utils.checkNotNull(merchantAccountId, "merchantAccountId");
         Utils.checkNotNull(transactionId, "transactionId");
@@ -185,6 +193,7 @@ public class Capture {
         Utils.checkNotNull(rawResponseDescription, "rawResponseDescription");
         Utils.checkNotNull(transactionExternalIdentifier, "transactionExternalIdentifier");
         Utils.checkNotNull(cartItems, "cartItems");
+        Utils.checkNotNull(tracking, "tracking");
         this.type = Builder._SINGLETON_VALUE_Type.value();
         this.id = id;
         this.merchantAccountId = merchantAccountId;
@@ -204,6 +213,7 @@ public class Capture {
         this.rawResponseDescription = rawResponseDescription;
         this.transactionExternalIdentifier = transactionExternalIdentifier;
         this.cartItems = cartItems;
+        this.tracking = tracking;
     }
     
     public Capture(
@@ -221,7 +231,8 @@ public class Capture {
             status, final_, createdAt,
             updatedAt, JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined());
     }
 
     /**
@@ -374,6 +385,15 @@ public class Capture {
     @JsonIgnore
     public JsonNullable<List<CartItem>> cartItems() {
         return (JsonNullable<List<CartItem>>) cartItems;
+    }
+
+    /**
+     * The shipment tracking details associated with the capture.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public JsonNullable<List<Tracking>> tracking() {
+        return (JsonNullable<List<Tracking>>) tracking;
     }
 
     public static Builder builder() {
@@ -625,6 +645,24 @@ public class Capture {
         return this;
     }
 
+    /**
+     * The shipment tracking details associated with the capture.
+     */
+    public Capture withTracking(List<Tracking> tracking) {
+        Utils.checkNotNull(tracking, "tracking");
+        this.tracking = JsonNullable.of(tracking);
+        return this;
+    }
+
+    /**
+     * The shipment tracking details associated with the capture.
+     */
+    public Capture withTracking(JsonNullable<? extends List<Tracking>> tracking) {
+        Utils.checkNotNull(tracking, "tracking");
+        this.tracking = tracking;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -653,7 +691,8 @@ public class Capture {
             Utils.enhancedDeepEquals(this.rawResponseCode, other.rawResponseCode) &&
             Utils.enhancedDeepEquals(this.rawResponseDescription, other.rawResponseDescription) &&
             Utils.enhancedDeepEquals(this.transactionExternalIdentifier, other.transactionExternalIdentifier) &&
-            Utils.enhancedDeepEquals(this.cartItems, other.cartItems);
+            Utils.enhancedDeepEquals(this.cartItems, other.cartItems) &&
+            Utils.enhancedDeepEquals(this.tracking, other.tracking);
     }
     
     @Override
@@ -665,7 +704,7 @@ public class Capture {
             createdAt, updatedAt, capturedAt,
             externalIdentifier, errorCode, isoResponseCode,
             rawResponseCode, rawResponseDescription, transactionExternalIdentifier,
-            cartItems);
+            cartItems, tracking);
     }
     
     @Override
@@ -689,7 +728,8 @@ public class Capture {
                 "rawResponseCode", rawResponseCode,
                 "rawResponseDescription", rawResponseDescription,
                 "transactionExternalIdentifier", transactionExternalIdentifier,
-                "cartItems", cartItems);
+                "cartItems", cartItems,
+                "tracking", tracking);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -730,6 +770,8 @@ public class Capture {
         private JsonNullable<String> transactionExternalIdentifier = JsonNullable.undefined();
 
         private JsonNullable<? extends List<CartItem>> cartItems = JsonNullable.undefined();
+
+        private JsonNullable<? extends List<Tracking>> tracking = JsonNullable.undefined();
 
         private Builder() {
           // force use of static builder() method
@@ -997,6 +1039,25 @@ public class Capture {
             return this;
         }
 
+
+        /**
+         * The shipment tracking details associated with the capture.
+         */
+        public Builder tracking(List<Tracking> tracking) {
+            Utils.checkNotNull(tracking, "tracking");
+            this.tracking = JsonNullable.of(tracking);
+            return this;
+        }
+
+        /**
+         * The shipment tracking details associated with the capture.
+         */
+        public Builder tracking(JsonNullable<? extends List<Tracking>> tracking) {
+            Utils.checkNotNull(tracking, "tracking");
+            this.tracking = tracking;
+            return this;
+        }
+
         public Capture build() {
 
             return new Capture(
@@ -1005,7 +1066,8 @@ public class Capture {
                 status, final_, createdAt,
                 updatedAt, capturedAt, externalIdentifier,
                 errorCode, isoResponseCode, rawResponseCode,
-                rawResponseDescription, transactionExternalIdentifier, cartItems);
+                rawResponseDescription, transactionExternalIdentifier, cartItems,
+                tracking);
         }
 
 
