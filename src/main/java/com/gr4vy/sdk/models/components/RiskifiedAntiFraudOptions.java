@@ -18,30 +18,78 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 public class RiskifiedAntiFraudOptions {
     /**
-     * A list of line items details to override when passing to the Riskified API.
+     * A list of line items details to override when passing to the Riskified API. Entries are matched by
+     * position against the cart items sent to Riskified, which excludes `discount`, `shipping_fee`,
+     * `sales_tax` and `store_credit` items.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("line_items")
     private JsonNullable<? extends List<RiskifiedAntiFraudOptionsLineItem>> lineItems;
 
+    /**
+     * A list of shipping lines details to override when passing to the Riskified API. Entries are matched
+     * by position against the `shipping_fee` cart items.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("shipping_lines")
+    private JsonNullable<? extends List<RiskifiedAntiFraudOptionsShippingLine>> shippingLines;
+
+    /**
+     * Additional destinations for orders shipped to more than one address. The address derived from the
+     * transaction is always sent first; these are appended after it and may not use the reserved
+     * `base-shipping-address` id.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("additional_shipping_addresses")
+    private JsonNullable<? extends List<RiskifiedAntiFraudOptionsShippingAddress>> additionalShippingAddresses;
+
     @JsonCreator
     public RiskifiedAntiFraudOptions(
-            @JsonProperty("line_items") JsonNullable<? extends List<RiskifiedAntiFraudOptionsLineItem>> lineItems) {
+            @JsonProperty("line_items") JsonNullable<? extends List<RiskifiedAntiFraudOptionsLineItem>> lineItems,
+            @JsonProperty("shipping_lines") JsonNullable<? extends List<RiskifiedAntiFraudOptionsShippingLine>> shippingLines,
+            @JsonProperty("additional_shipping_addresses") JsonNullable<? extends List<RiskifiedAntiFraudOptionsShippingAddress>> additionalShippingAddresses) {
         Utils.checkNotNull(lineItems, "lineItems");
+        Utils.checkNotNull(shippingLines, "shippingLines");
+        Utils.checkNotNull(additionalShippingAddresses, "additionalShippingAddresses");
         this.lineItems = lineItems;
+        this.shippingLines = shippingLines;
+        this.additionalShippingAddresses = additionalShippingAddresses;
     }
     
     public RiskifiedAntiFraudOptions() {
-        this(JsonNullable.undefined());
+        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
     }
 
     /**
-     * A list of line items details to override when passing to the Riskified API.
+     * A list of line items details to override when passing to the Riskified API. Entries are matched by
+     * position against the cart items sent to Riskified, which excludes `discount`, `shipping_fee`,
+     * `sales_tax` and `store_credit` items.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public JsonNullable<List<RiskifiedAntiFraudOptionsLineItem>> lineItems() {
         return (JsonNullable<List<RiskifiedAntiFraudOptionsLineItem>>) lineItems;
+    }
+
+    /**
+     * A list of shipping lines details to override when passing to the Riskified API. Entries are matched
+     * by position against the `shipping_fee` cart items.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public JsonNullable<List<RiskifiedAntiFraudOptionsShippingLine>> shippingLines() {
+        return (JsonNullable<List<RiskifiedAntiFraudOptionsShippingLine>>) shippingLines;
+    }
+
+    /**
+     * Additional destinations for orders shipped to more than one address. The address derived from the
+     * transaction is always sent first; these are appended after it and may not use the reserved
+     * `base-shipping-address` id.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public JsonNullable<List<RiskifiedAntiFraudOptionsShippingAddress>> additionalShippingAddresses() {
+        return (JsonNullable<List<RiskifiedAntiFraudOptionsShippingAddress>>) additionalShippingAddresses;
     }
 
     public static Builder builder() {
@@ -50,7 +98,9 @@ public class RiskifiedAntiFraudOptions {
 
 
     /**
-     * A list of line items details to override when passing to the Riskified API.
+     * A list of line items details to override when passing to the Riskified API. Entries are matched by
+     * position against the cart items sent to Riskified, which excludes `discount`, `shipping_fee`,
+     * `sales_tax` and `store_credit` items.
      */
     public RiskifiedAntiFraudOptions withLineItems(List<RiskifiedAntiFraudOptionsLineItem> lineItems) {
         Utils.checkNotNull(lineItems, "lineItems");
@@ -59,11 +109,55 @@ public class RiskifiedAntiFraudOptions {
     }
 
     /**
-     * A list of line items details to override when passing to the Riskified API.
+     * A list of line items details to override when passing to the Riskified API. Entries are matched by
+     * position against the cart items sent to Riskified, which excludes `discount`, `shipping_fee`,
+     * `sales_tax` and `store_credit` items.
      */
     public RiskifiedAntiFraudOptions withLineItems(JsonNullable<? extends List<RiskifiedAntiFraudOptionsLineItem>> lineItems) {
         Utils.checkNotNull(lineItems, "lineItems");
         this.lineItems = lineItems;
+        return this;
+    }
+
+    /**
+     * A list of shipping lines details to override when passing to the Riskified API. Entries are matched
+     * by position against the `shipping_fee` cart items.
+     */
+    public RiskifiedAntiFraudOptions withShippingLines(List<RiskifiedAntiFraudOptionsShippingLine> shippingLines) {
+        Utils.checkNotNull(shippingLines, "shippingLines");
+        this.shippingLines = JsonNullable.of(shippingLines);
+        return this;
+    }
+
+    /**
+     * A list of shipping lines details to override when passing to the Riskified API. Entries are matched
+     * by position against the `shipping_fee` cart items.
+     */
+    public RiskifiedAntiFraudOptions withShippingLines(JsonNullable<? extends List<RiskifiedAntiFraudOptionsShippingLine>> shippingLines) {
+        Utils.checkNotNull(shippingLines, "shippingLines");
+        this.shippingLines = shippingLines;
+        return this;
+    }
+
+    /**
+     * Additional destinations for orders shipped to more than one address. The address derived from the
+     * transaction is always sent first; these are appended after it and may not use the reserved
+     * `base-shipping-address` id.
+     */
+    public RiskifiedAntiFraudOptions withAdditionalShippingAddresses(List<RiskifiedAntiFraudOptionsShippingAddress> additionalShippingAddresses) {
+        Utils.checkNotNull(additionalShippingAddresses, "additionalShippingAddresses");
+        this.additionalShippingAddresses = JsonNullable.of(additionalShippingAddresses);
+        return this;
+    }
+
+    /**
+     * Additional destinations for orders shipped to more than one address. The address derived from the
+     * transaction is always sent first; these are appended after it and may not use the reserved
+     * `base-shipping-address` id.
+     */
+    public RiskifiedAntiFraudOptions withAdditionalShippingAddresses(JsonNullable<? extends List<RiskifiedAntiFraudOptionsShippingAddress>> additionalShippingAddresses) {
+        Utils.checkNotNull(additionalShippingAddresses, "additionalShippingAddresses");
+        this.additionalShippingAddresses = additionalShippingAddresses;
         return this;
     }
 
@@ -77,19 +171,23 @@ public class RiskifiedAntiFraudOptions {
         }
         RiskifiedAntiFraudOptions other = (RiskifiedAntiFraudOptions) o;
         return 
-            Utils.enhancedDeepEquals(this.lineItems, other.lineItems);
+            Utils.enhancedDeepEquals(this.lineItems, other.lineItems) &&
+            Utils.enhancedDeepEquals(this.shippingLines, other.shippingLines) &&
+            Utils.enhancedDeepEquals(this.additionalShippingAddresses, other.additionalShippingAddresses);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            lineItems);
+            lineItems, shippingLines, additionalShippingAddresses);
     }
     
     @Override
     public String toString() {
         return Utils.toString(RiskifiedAntiFraudOptions.class,
-                "lineItems", lineItems);
+                "lineItems", lineItems,
+                "shippingLines", shippingLines,
+                "additionalShippingAddresses", additionalShippingAddresses);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -97,13 +195,19 @@ public class RiskifiedAntiFraudOptions {
 
         private JsonNullable<? extends List<RiskifiedAntiFraudOptionsLineItem>> lineItems = JsonNullable.undefined();
 
+        private JsonNullable<? extends List<RiskifiedAntiFraudOptionsShippingLine>> shippingLines = JsonNullable.undefined();
+
+        private JsonNullable<? extends List<RiskifiedAntiFraudOptionsShippingAddress>> additionalShippingAddresses = JsonNullable.undefined();
+
         private Builder() {
           // force use of static builder() method
         }
 
 
         /**
-         * A list of line items details to override when passing to the Riskified API.
+         * A list of line items details to override when passing to the Riskified API. Entries are matched by
+         * position against the cart items sent to Riskified, which excludes `discount`, `shipping_fee`,
+         * `sales_tax` and `store_credit` items.
          */
         public Builder lineItems(List<RiskifiedAntiFraudOptionsLineItem> lineItems) {
             Utils.checkNotNull(lineItems, "lineItems");
@@ -112,7 +216,9 @@ public class RiskifiedAntiFraudOptions {
         }
 
         /**
-         * A list of line items details to override when passing to the Riskified API.
+         * A list of line items details to override when passing to the Riskified API. Entries are matched by
+         * position against the cart items sent to Riskified, which excludes `discount`, `shipping_fee`,
+         * `sales_tax` and `store_credit` items.
          */
         public Builder lineItems(JsonNullable<? extends List<RiskifiedAntiFraudOptionsLineItem>> lineItems) {
             Utils.checkNotNull(lineItems, "lineItems");
@@ -120,10 +226,54 @@ public class RiskifiedAntiFraudOptions {
             return this;
         }
 
+
+        /**
+         * A list of shipping lines details to override when passing to the Riskified API. Entries are matched
+         * by position against the `shipping_fee` cart items.
+         */
+        public Builder shippingLines(List<RiskifiedAntiFraudOptionsShippingLine> shippingLines) {
+            Utils.checkNotNull(shippingLines, "shippingLines");
+            this.shippingLines = JsonNullable.of(shippingLines);
+            return this;
+        }
+
+        /**
+         * A list of shipping lines details to override when passing to the Riskified API. Entries are matched
+         * by position against the `shipping_fee` cart items.
+         */
+        public Builder shippingLines(JsonNullable<? extends List<RiskifiedAntiFraudOptionsShippingLine>> shippingLines) {
+            Utils.checkNotNull(shippingLines, "shippingLines");
+            this.shippingLines = shippingLines;
+            return this;
+        }
+
+
+        /**
+         * Additional destinations for orders shipped to more than one address. The address derived from the
+         * transaction is always sent first; these are appended after it and may not use the reserved
+         * `base-shipping-address` id.
+         */
+        public Builder additionalShippingAddresses(List<RiskifiedAntiFraudOptionsShippingAddress> additionalShippingAddresses) {
+            Utils.checkNotNull(additionalShippingAddresses, "additionalShippingAddresses");
+            this.additionalShippingAddresses = JsonNullable.of(additionalShippingAddresses);
+            return this;
+        }
+
+        /**
+         * Additional destinations for orders shipped to more than one address. The address derived from the
+         * transaction is always sent first; these are appended after it and may not use the reserved
+         * `base-shipping-address` id.
+         */
+        public Builder additionalShippingAddresses(JsonNullable<? extends List<RiskifiedAntiFraudOptionsShippingAddress>> additionalShippingAddresses) {
+            Utils.checkNotNull(additionalShippingAddresses, "additionalShippingAddresses");
+            this.additionalShippingAddresses = additionalShippingAddresses;
+            return this;
+        }
+
         public RiskifiedAntiFraudOptions build() {
 
             return new RiskifiedAntiFraudOptions(
-                lineItems);
+                lineItems, shippingLines, additionalShippingAddresses);
         }
 
     }
