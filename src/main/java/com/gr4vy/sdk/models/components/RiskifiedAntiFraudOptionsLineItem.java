@@ -23,15 +23,27 @@ public class RiskifiedAntiFraudOptionsLineItem {
     @JsonProperty("delivered_to")
     private JsonNullable<? extends DeliveredTo> deliveredTo;
 
+    /**
+     * The shipping address this item is delivered to. Must be `base-shipping-address` for the address
+     * derived from the transaction, or the `id` of an `additional_shipping_addresses` entry. Must not be
+     * provided when `additional_shipping_addresses` is empty.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("shipping_address_id")
+    private JsonNullable<String> shippingAddressId;
+
     @JsonCreator
     public RiskifiedAntiFraudOptionsLineItem(
-            @JsonProperty("delivered_to") JsonNullable<? extends DeliveredTo> deliveredTo) {
+            @JsonProperty("delivered_to") JsonNullable<? extends DeliveredTo> deliveredTo,
+            @JsonProperty("shipping_address_id") JsonNullable<String> shippingAddressId) {
         Utils.checkNotNull(deliveredTo, "deliveredTo");
+        Utils.checkNotNull(shippingAddressId, "shippingAddressId");
         this.deliveredTo = deliveredTo;
+        this.shippingAddressId = shippingAddressId;
     }
     
     public RiskifiedAntiFraudOptionsLineItem() {
-        this(JsonNullable.undefined());
+        this(JsonNullable.undefined(), JsonNullable.undefined());
     }
 
     /**
@@ -41,6 +53,16 @@ public class RiskifiedAntiFraudOptionsLineItem {
     @JsonIgnore
     public JsonNullable<DeliveredTo> deliveredTo() {
         return (JsonNullable<DeliveredTo>) deliveredTo;
+    }
+
+    /**
+     * The shipping address this item is delivered to. Must be `base-shipping-address` for the address
+     * derived from the transaction, or the `id` of an `additional_shipping_addresses` entry. Must not be
+     * provided when `additional_shipping_addresses` is empty.
+     */
+    @JsonIgnore
+    public JsonNullable<String> shippingAddressId() {
+        return shippingAddressId;
     }
 
     public static Builder builder() {
@@ -66,6 +88,28 @@ public class RiskifiedAntiFraudOptionsLineItem {
         return this;
     }
 
+    /**
+     * The shipping address this item is delivered to. Must be `base-shipping-address` for the address
+     * derived from the transaction, or the `id` of an `additional_shipping_addresses` entry. Must not be
+     * provided when `additional_shipping_addresses` is empty.
+     */
+    public RiskifiedAntiFraudOptionsLineItem withShippingAddressId(String shippingAddressId) {
+        Utils.checkNotNull(shippingAddressId, "shippingAddressId");
+        this.shippingAddressId = JsonNullable.of(shippingAddressId);
+        return this;
+    }
+
+    /**
+     * The shipping address this item is delivered to. Must be `base-shipping-address` for the address
+     * derived from the transaction, or the `id` of an `additional_shipping_addresses` entry. Must not be
+     * provided when `additional_shipping_addresses` is empty.
+     */
+    public RiskifiedAntiFraudOptionsLineItem withShippingAddressId(JsonNullable<String> shippingAddressId) {
+        Utils.checkNotNull(shippingAddressId, "shippingAddressId");
+        this.shippingAddressId = shippingAddressId;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -76,25 +120,29 @@ public class RiskifiedAntiFraudOptionsLineItem {
         }
         RiskifiedAntiFraudOptionsLineItem other = (RiskifiedAntiFraudOptionsLineItem) o;
         return 
-            Utils.enhancedDeepEquals(this.deliveredTo, other.deliveredTo);
+            Utils.enhancedDeepEquals(this.deliveredTo, other.deliveredTo) &&
+            Utils.enhancedDeepEquals(this.shippingAddressId, other.shippingAddressId);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            deliveredTo);
+            deliveredTo, shippingAddressId);
     }
     
     @Override
     public String toString() {
         return Utils.toString(RiskifiedAntiFraudOptionsLineItem.class,
-                "deliveredTo", deliveredTo);
+                "deliveredTo", deliveredTo,
+                "shippingAddressId", shippingAddressId);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
         private JsonNullable<? extends DeliveredTo> deliveredTo = JsonNullable.undefined();
+
+        private JsonNullable<String> shippingAddressId = JsonNullable.undefined();
 
         private Builder() {
           // force use of static builder() method
@@ -119,10 +167,33 @@ public class RiskifiedAntiFraudOptionsLineItem {
             return this;
         }
 
+
+        /**
+         * The shipping address this item is delivered to. Must be `base-shipping-address` for the address
+         * derived from the transaction, or the `id` of an `additional_shipping_addresses` entry. Must not be
+         * provided when `additional_shipping_addresses` is empty.
+         */
+        public Builder shippingAddressId(String shippingAddressId) {
+            Utils.checkNotNull(shippingAddressId, "shippingAddressId");
+            this.shippingAddressId = JsonNullable.of(shippingAddressId);
+            return this;
+        }
+
+        /**
+         * The shipping address this item is delivered to. Must be `base-shipping-address` for the address
+         * derived from the transaction, or the `id` of an `additional_shipping_addresses` entry. Must not be
+         * provided when `additional_shipping_addresses` is empty.
+         */
+        public Builder shippingAddressId(JsonNullable<String> shippingAddressId) {
+            Utils.checkNotNull(shippingAddressId, "shippingAddressId");
+            this.shippingAddressId = shippingAddressId;
+            return this;
+        }
+
         public RiskifiedAntiFraudOptionsLineItem build() {
 
             return new RiskifiedAntiFraudOptionsLineItem(
-                deliveredTo);
+                deliveredTo, shippingAddressId);
         }
 
     }
