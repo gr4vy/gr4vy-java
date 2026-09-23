@@ -66,6 +66,10 @@ public class Name {
     public static final Name PAYMENT_CONNECTOR_RESPONSE_TRANSACTION_AUTHORIZATION_INCREMENT_FAILED = new Name("payment-connector-response-transaction-authorization-increment-failed");
     public static final Name PAYMENT_CONNECTOR_RESPONSE_TRANSACTION_VOID_DECLINED = new Name("payment-connector-response-transaction-void-declined");
     public static final Name PAYMENT_CONNECTOR_RESPONSE_TRANSACTION_VOID_FAILED = new Name("payment-connector-response-transaction-void-failed");
+    public static final Name PAYMENT_CONNECTOR_RESPONSE_TRANSACTION_CAPTURE_REVERSAL_SUCCEEDED = new Name("payment-connector-response-transaction-capture-reversal-succeeded");
+    public static final Name PAYMENT_CONNECTOR_RESPONSE_TRANSACTION_CAPTURE_REVERSAL_DECLINED = new Name("payment-connector-response-transaction-capture-reversal-declined");
+    public static final Name PAYMENT_CONNECTOR_RESPONSE_TRANSACTION_CAPTURE_REVERSAL_FAILED = new Name("payment-connector-response-transaction-capture-reversal-failed");
+    public static final Name PAYMENT_CONNECTOR_RESPONSE_TRANSACTION_CAPTURE_REVERSAL_DELAYED = new Name("payment-connector-response-transaction-capture-reversal-delayed");
     public static final Name PAYMENT_CONNECTOR_EXTERNAL_TRANSACTION_REQUEST = new Name("payment-connector-external-transaction-request");
     public static final Name PAYMENT_CONNECTOR_REPORT_TRANSACTION_SETTLED = new Name("payment-connector-report-transaction-settled");
     public static final Name PAYMENT_CONNECTOR_REPORT_REFUND_SETTLED = new Name("payment-connector-report-refund-settled");
@@ -197,6 +201,10 @@ public class Name {
         map.put("payment-connector-response-transaction-authorization-increment-failed", PAYMENT_CONNECTOR_RESPONSE_TRANSACTION_AUTHORIZATION_INCREMENT_FAILED);
         map.put("payment-connector-response-transaction-void-declined", PAYMENT_CONNECTOR_RESPONSE_TRANSACTION_VOID_DECLINED);
         map.put("payment-connector-response-transaction-void-failed", PAYMENT_CONNECTOR_RESPONSE_TRANSACTION_VOID_FAILED);
+        map.put("payment-connector-response-transaction-capture-reversal-succeeded", PAYMENT_CONNECTOR_RESPONSE_TRANSACTION_CAPTURE_REVERSAL_SUCCEEDED);
+        map.put("payment-connector-response-transaction-capture-reversal-declined", PAYMENT_CONNECTOR_RESPONSE_TRANSACTION_CAPTURE_REVERSAL_DECLINED);
+        map.put("payment-connector-response-transaction-capture-reversal-failed", PAYMENT_CONNECTOR_RESPONSE_TRANSACTION_CAPTURE_REVERSAL_FAILED);
+        map.put("payment-connector-response-transaction-capture-reversal-delayed", PAYMENT_CONNECTOR_RESPONSE_TRANSACTION_CAPTURE_REVERSAL_DELAYED);
         map.put("payment-connector-external-transaction-request", PAYMENT_CONNECTOR_EXTERNAL_TRANSACTION_REQUEST);
         map.put("payment-connector-report-transaction-settled", PAYMENT_CONNECTOR_REPORT_TRANSACTION_SETTLED);
         map.put("payment-connector-report-refund-settled", PAYMENT_CONNECTOR_REPORT_REFUND_SETTLED);
@@ -260,6 +268,10 @@ public class Name {
         map.put("payment-connector-response-transaction-authorization-increment-failed", NameEnum.PAYMENT_CONNECTOR_RESPONSE_TRANSACTION_AUTHORIZATION_INCREMENT_FAILED);
         map.put("payment-connector-response-transaction-void-declined", NameEnum.PAYMENT_CONNECTOR_RESPONSE_TRANSACTION_VOID_DECLINED);
         map.put("payment-connector-response-transaction-void-failed", NameEnum.PAYMENT_CONNECTOR_RESPONSE_TRANSACTION_VOID_FAILED);
+        map.put("payment-connector-response-transaction-capture-reversal-succeeded", NameEnum.PAYMENT_CONNECTOR_RESPONSE_TRANSACTION_CAPTURE_REVERSAL_SUCCEEDED);
+        map.put("payment-connector-response-transaction-capture-reversal-declined", NameEnum.PAYMENT_CONNECTOR_RESPONSE_TRANSACTION_CAPTURE_REVERSAL_DECLINED);
+        map.put("payment-connector-response-transaction-capture-reversal-failed", NameEnum.PAYMENT_CONNECTOR_RESPONSE_TRANSACTION_CAPTURE_REVERSAL_FAILED);
+        map.put("payment-connector-response-transaction-capture-reversal-delayed", NameEnum.PAYMENT_CONNECTOR_RESPONSE_TRANSACTION_CAPTURE_REVERSAL_DELAYED);
         map.put("payment-connector-external-transaction-request", NameEnum.PAYMENT_CONNECTOR_EXTERNAL_TRANSACTION_REQUEST);
         map.put("payment-connector-report-transaction-settled", NameEnum.PAYMENT_CONNECTOR_REPORT_TRANSACTION_SETTLED);
         map.put("payment-connector-report-refund-settled", NameEnum.PAYMENT_CONNECTOR_REPORT_REFUND_SETTLED);
@@ -324,6 +336,10 @@ public class Name {
         PAYMENT_CONNECTOR_RESPONSE_TRANSACTION_AUTHORIZATION_INCREMENT_FAILED("payment-connector-response-transaction-authorization-increment-failed"),
         PAYMENT_CONNECTOR_RESPONSE_TRANSACTION_VOID_DECLINED("payment-connector-response-transaction-void-declined"),
         PAYMENT_CONNECTOR_RESPONSE_TRANSACTION_VOID_FAILED("payment-connector-response-transaction-void-failed"),
+        PAYMENT_CONNECTOR_RESPONSE_TRANSACTION_CAPTURE_REVERSAL_SUCCEEDED("payment-connector-response-transaction-capture-reversal-succeeded"),
+        PAYMENT_CONNECTOR_RESPONSE_TRANSACTION_CAPTURE_REVERSAL_DECLINED("payment-connector-response-transaction-capture-reversal-declined"),
+        PAYMENT_CONNECTOR_RESPONSE_TRANSACTION_CAPTURE_REVERSAL_FAILED("payment-connector-response-transaction-capture-reversal-failed"),
+        PAYMENT_CONNECTOR_RESPONSE_TRANSACTION_CAPTURE_REVERSAL_DELAYED("payment-connector-response-transaction-capture-reversal-delayed"),
         PAYMENT_CONNECTOR_EXTERNAL_TRANSACTION_REQUEST("payment-connector-external-transaction-request"),
         PAYMENT_CONNECTOR_REPORT_TRANSACTION_SETTLED("payment-connector-report-transaction-settled"),
         PAYMENT_CONNECTOR_REPORT_REFUND_SETTLED("payment-connector-report-refund-settled"),

@@ -24,6 +24,7 @@ public class CaptureStatus {
     public static final CaptureStatus PENDING = new CaptureStatus("pending");
     public static final CaptureStatus DECLINED = new CaptureStatus("declined");
     public static final CaptureStatus FAILED = new CaptureStatus("failed");
+    public static final CaptureStatus CANCELED = new CaptureStatus("canceled");
 
     // This map will grow whenever a Color gets created with a new
     // unrecognized value (a potential memory leak if the user is not
@@ -101,6 +102,7 @@ public class CaptureStatus {
         map.put("pending", PENDING);
         map.put("declined", DECLINED);
         map.put("failed", FAILED);
+        map.put("canceled", CANCELED);
         return map;
     }
 
@@ -110,6 +112,7 @@ public class CaptureStatus {
         map.put("pending", CaptureStatusEnum.PENDING);
         map.put("declined", CaptureStatusEnum.DECLINED);
         map.put("failed", CaptureStatusEnum.FAILED);
+        map.put("canceled", CaptureStatusEnum.CANCELED);
         return map;
     }
     
@@ -119,7 +122,8 @@ public class CaptureStatus {
         SUCCEEDED("succeeded"),
         PENDING("pending"),
         DECLINED("declined"),
-        FAILED("failed"),;
+        FAILED("failed"),
+        CANCELED("canceled"),;
 
         private final String value;
 
