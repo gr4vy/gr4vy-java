@@ -121,6 +121,13 @@ public class PaymentServiceUpdate {
     @JsonProperty("settlement_reporting_enabled")
     private Optional<Boolean> settlementReportingEnabled;
 
+    /**
+     * Defines if this payment service has refund ingestion enabled.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("refund_ingestion_enabled")
+    private Optional<Boolean> refundIngestionEnabled;
+
     @JsonCreator
     public PaymentServiceUpdate(
             @JsonProperty("display_name") JsonNullable<String> displayName,
@@ -135,7 +142,8 @@ public class PaymentServiceUpdate {
             @JsonProperty("payment_method_tokenization_enabled") JsonNullable<Boolean> paymentMethodTokenizationEnabled,
             @JsonProperty("network_tokens_enabled") JsonNullable<Boolean> networkTokensEnabled,
             @JsonProperty("open_loop") JsonNullable<Boolean> openLoop,
-            @JsonProperty("settlement_reporting_enabled") Optional<Boolean> settlementReportingEnabled) {
+            @JsonProperty("settlement_reporting_enabled") Optional<Boolean> settlementReportingEnabled,
+            @JsonProperty("refund_ingestion_enabled") Optional<Boolean> refundIngestionEnabled) {
         Utils.checkNotNull(displayName, "displayName");
         Utils.checkNotNull(fields, "fields");
         Utils.checkNotNull(reportingFields, "reportingFields");
@@ -149,6 +157,7 @@ public class PaymentServiceUpdate {
         Utils.checkNotNull(networkTokensEnabled, "networkTokensEnabled");
         Utils.checkNotNull(openLoop, "openLoop");
         Utils.checkNotNull(settlementReportingEnabled, "settlementReportingEnabled");
+        Utils.checkNotNull(refundIngestionEnabled, "refundIngestionEnabled");
         this.displayName = displayName;
         this.fields = fields;
         this.reportingFields = reportingFields;
@@ -162,6 +171,7 @@ public class PaymentServiceUpdate {
         this.networkTokensEnabled = networkTokensEnabled;
         this.openLoop = openLoop;
         this.settlementReportingEnabled = settlementReportingEnabled;
+        this.refundIngestionEnabled = refundIngestionEnabled;
     }
     
     public PaymentServiceUpdate() {
@@ -169,7 +179,7 @@ public class PaymentServiceUpdate {
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            Optional.empty());
+            Optional.empty(), Optional.empty());
     }
 
     /**
@@ -282,6 +292,14 @@ public class PaymentServiceUpdate {
     @JsonIgnore
     public Optional<Boolean> settlementReportingEnabled() {
         return settlementReportingEnabled;
+    }
+
+    /**
+     * Defines if this payment service has refund ingestion enabled.
+     */
+    @JsonIgnore
+    public Optional<Boolean> refundIngestionEnabled() {
+        return refundIngestionEnabled;
     }
 
     public static Builder builder() {
@@ -530,6 +548,25 @@ public class PaymentServiceUpdate {
         return this;
     }
 
+    /**
+     * Defines if this payment service has refund ingestion enabled.
+     */
+    public PaymentServiceUpdate withRefundIngestionEnabled(boolean refundIngestionEnabled) {
+        Utils.checkNotNull(refundIngestionEnabled, "refundIngestionEnabled");
+        this.refundIngestionEnabled = Optional.ofNullable(refundIngestionEnabled);
+        return this;
+    }
+
+
+    /**
+     * Defines if this payment service has refund ingestion enabled.
+     */
+    public PaymentServiceUpdate withRefundIngestionEnabled(Optional<Boolean> refundIngestionEnabled) {
+        Utils.checkNotNull(refundIngestionEnabled, "refundIngestionEnabled");
+        this.refundIngestionEnabled = refundIngestionEnabled;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -552,7 +589,8 @@ public class PaymentServiceUpdate {
             Utils.enhancedDeepEquals(this.paymentMethodTokenizationEnabled, other.paymentMethodTokenizationEnabled) &&
             Utils.enhancedDeepEquals(this.networkTokensEnabled, other.networkTokensEnabled) &&
             Utils.enhancedDeepEquals(this.openLoop, other.openLoop) &&
-            Utils.enhancedDeepEquals(this.settlementReportingEnabled, other.settlementReportingEnabled);
+            Utils.enhancedDeepEquals(this.settlementReportingEnabled, other.settlementReportingEnabled) &&
+            Utils.enhancedDeepEquals(this.refundIngestionEnabled, other.refundIngestionEnabled);
     }
     
     @Override
@@ -562,7 +600,7 @@ public class PaymentServiceUpdate {
             position, acceptedCurrencies, acceptedCountries,
             active, threeDSecureEnabled, merchantProfile,
             paymentMethodTokenizationEnabled, networkTokensEnabled, openLoop,
-            settlementReportingEnabled);
+            settlementReportingEnabled, refundIngestionEnabled);
     }
     
     @Override
@@ -580,7 +618,8 @@ public class PaymentServiceUpdate {
                 "paymentMethodTokenizationEnabled", paymentMethodTokenizationEnabled,
                 "networkTokensEnabled", networkTokensEnabled,
                 "openLoop", openLoop,
-                "settlementReportingEnabled", settlementReportingEnabled);
+                "settlementReportingEnabled", settlementReportingEnabled,
+                "refundIngestionEnabled", refundIngestionEnabled);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -611,6 +650,8 @@ public class PaymentServiceUpdate {
         private JsonNullable<Boolean> openLoop = JsonNullable.undefined();
 
         private Optional<Boolean> settlementReportingEnabled;
+
+        private Optional<Boolean> refundIngestionEnabled;
 
         private Builder() {
           // force use of static builder() method
@@ -869,9 +910,31 @@ public class PaymentServiceUpdate {
             return this;
         }
 
+
+        /**
+         * Defines if this payment service has refund ingestion enabled.
+         */
+        public Builder refundIngestionEnabled(boolean refundIngestionEnabled) {
+            Utils.checkNotNull(refundIngestionEnabled, "refundIngestionEnabled");
+            this.refundIngestionEnabled = Optional.ofNullable(refundIngestionEnabled);
+            return this;
+        }
+
+        /**
+         * Defines if this payment service has refund ingestion enabled.
+         */
+        public Builder refundIngestionEnabled(Optional<Boolean> refundIngestionEnabled) {
+            Utils.checkNotNull(refundIngestionEnabled, "refundIngestionEnabled");
+            this.refundIngestionEnabled = refundIngestionEnabled;
+            return this;
+        }
+
         public PaymentServiceUpdate build() {
             if (settlementReportingEnabled == null) {
                 settlementReportingEnabled = _SINGLETON_VALUE_SettlementReportingEnabled.value();
+            }
+            if (refundIngestionEnabled == null) {
+                refundIngestionEnabled = _SINGLETON_VALUE_RefundIngestionEnabled.value();
             }
 
             return new PaymentServiceUpdate(
@@ -879,13 +942,19 @@ public class PaymentServiceUpdate {
                 position, acceptedCurrencies, acceptedCountries,
                 active, threeDSecureEnabled, merchantProfile,
                 paymentMethodTokenizationEnabled, networkTokensEnabled, openLoop,
-                settlementReportingEnabled);
+                settlementReportingEnabled, refundIngestionEnabled);
         }
 
 
         private static final LazySingletonValue<Optional<Boolean>> _SINGLETON_VALUE_SettlementReportingEnabled =
                 new LazySingletonValue<>(
                         "settlement_reporting_enabled",
+                        "false",
+                        new TypeReference<Optional<Boolean>>() {});
+
+        private static final LazySingletonValue<Optional<Boolean>> _SINGLETON_VALUE_RefundIngestionEnabled =
+                new LazySingletonValue<>(
+                        "refund_ingestion_enabled",
                         "false",
                         new TypeReference<Optional<Boolean>>() {});
     }

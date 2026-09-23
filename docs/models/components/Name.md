@@ -59,6 +59,10 @@ Name custom = Name.of("custom_value");
 | `PAYMENT_CONNECTOR_RESPONSE_TRANSACTION_AUTHORIZATION_INCREMENT_FAILED`    | payment-connector-response-transaction-authorization-increment-failed      |
 | `PAYMENT_CONNECTOR_RESPONSE_TRANSACTION_VOID_DECLINED`                     | payment-connector-response-transaction-void-declined                       |
 | `PAYMENT_CONNECTOR_RESPONSE_TRANSACTION_VOID_FAILED`                       | payment-connector-response-transaction-void-failed                         |
+| `PAYMENT_CONNECTOR_RESPONSE_TRANSACTION_CAPTURE_REVERSAL_SUCCEEDED`        | payment-connector-response-transaction-capture-reversal-succeeded          |
+| `PAYMENT_CONNECTOR_RESPONSE_TRANSACTION_CAPTURE_REVERSAL_DECLINED`         | payment-connector-response-transaction-capture-reversal-declined           |
+| `PAYMENT_CONNECTOR_RESPONSE_TRANSACTION_CAPTURE_REVERSAL_FAILED`           | payment-connector-response-transaction-capture-reversal-failed             |
+| `PAYMENT_CONNECTOR_RESPONSE_TRANSACTION_CAPTURE_REVERSAL_DELAYED`          | payment-connector-response-transaction-capture-reversal-delayed            |
 | `PAYMENT_CONNECTOR_EXTERNAL_TRANSACTION_REQUEST`                           | payment-connector-external-transaction-request                             |
 | `PAYMENT_CONNECTOR_REPORT_TRANSACTION_SETTLED`                             | payment-connector-report-transaction-settled                               |
 | `PAYMENT_CONNECTOR_REPORT_REFUND_SETTLED`                                  | payment-connector-report-refund-settled                                    |

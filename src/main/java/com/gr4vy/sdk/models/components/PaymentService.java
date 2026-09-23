@@ -113,6 +113,12 @@ public class PaymentService {
     private boolean settlementReportingEnabled;
 
     /**
+     * Defines if this payment service has refund ingestion enabled.
+     */
+    @JsonProperty("refund_ingestion_enabled")
+    private boolean refundIngestionEnabled;
+
+    /**
      * Defines if this payment service has 3DS enabled.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -187,6 +193,7 @@ public class PaymentService {
             @JsonProperty("network_tokens_enabled") boolean networkTokensEnabled,
             @JsonProperty("open_loop") boolean openLoop,
             @JsonProperty("settlement_reporting_enabled") boolean settlementReportingEnabled,
+            @JsonProperty("refund_ingestion_enabled") boolean refundIngestionEnabled,
             @JsonProperty("three_d_secure_enabled") JsonNullable<Boolean> threeDSecureEnabled,
             @JsonProperty("merchant_profile") JsonNullable<? extends Map<String, MerchantProfileSchemeSummary>> merchantProfile,
             @JsonProperty("webhook_url") JsonNullable<String> webhookUrl,
@@ -209,6 +216,7 @@ public class PaymentService {
         Utils.checkNotNull(networkTokensEnabled, "networkTokensEnabled");
         Utils.checkNotNull(openLoop, "openLoop");
         Utils.checkNotNull(settlementReportingEnabled, "settlementReportingEnabled");
+        Utils.checkNotNull(refundIngestionEnabled, "refundIngestionEnabled");
         Utils.checkNotNull(threeDSecureEnabled, "threeDSecureEnabled");
         Utils.checkNotNull(merchantProfile, "merchantProfile");
         Utils.checkNotNull(webhookUrl, "webhookUrl");
@@ -232,6 +240,7 @@ public class PaymentService {
         this.networkTokensEnabled = networkTokensEnabled;
         this.openLoop = openLoop;
         this.settlementReportingEnabled = settlementReportingEnabled;
+        this.refundIngestionEnabled = refundIngestionEnabled;
         this.threeDSecureEnabled = threeDSecureEnabled;
         this.merchantProfile = merchantProfile;
         this.webhookUrl = webhookUrl;
@@ -254,16 +263,17 @@ public class PaymentService {
             boolean networkTokensEnabled,
             boolean openLoop,
             boolean settlementReportingEnabled,
+            boolean refundIngestionEnabled,
             OffsetDateTime createdAt,
             OffsetDateTime updatedAt) {
         this(Optional.empty(), merchantAccountId, paymentServiceDefinitionId,
             Optional.empty(), method, displayName,
             position, Optional.empty(), acceptedCurrencies,
             acceptedCountries, paymentMethodTokenizationEnabled, networkTokensEnabled,
-            openLoop, settlementReportingEnabled, JsonNullable.undefined(),
+            openLoop, settlementReportingEnabled, refundIngestionEnabled,
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), Optional.empty(), createdAt,
-            updatedAt);
+            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
+            createdAt, updatedAt);
     }
 
     /**
@@ -376,6 +386,14 @@ public class PaymentService {
     @JsonIgnore
     public boolean settlementReportingEnabled() {
         return settlementReportingEnabled;
+    }
+
+    /**
+     * Defines if this payment service has refund ingestion enabled.
+     */
+    @JsonIgnore
+    public boolean refundIngestionEnabled() {
+        return refundIngestionEnabled;
     }
 
     /**
@@ -597,6 +615,15 @@ public class PaymentService {
     }
 
     /**
+     * Defines if this payment service has refund ingestion enabled.
+     */
+    public PaymentService withRefundIngestionEnabled(boolean refundIngestionEnabled) {
+        Utils.checkNotNull(refundIngestionEnabled, "refundIngestionEnabled");
+        this.refundIngestionEnabled = refundIngestionEnabled;
+        return this;
+    }
+
+    /**
      * Defines if this payment service has 3DS enabled.
      */
     public PaymentService withThreeDSecureEnabled(boolean threeDSecureEnabled) {
@@ -758,6 +785,7 @@ public class PaymentService {
             Utils.enhancedDeepEquals(this.networkTokensEnabled, other.networkTokensEnabled) &&
             Utils.enhancedDeepEquals(this.openLoop, other.openLoop) &&
             Utils.enhancedDeepEquals(this.settlementReportingEnabled, other.settlementReportingEnabled) &&
+            Utils.enhancedDeepEquals(this.refundIngestionEnabled, other.refundIngestionEnabled) &&
             Utils.enhancedDeepEquals(this.threeDSecureEnabled, other.threeDSecureEnabled) &&
             Utils.enhancedDeepEquals(this.merchantProfile, other.merchantProfile) &&
             Utils.enhancedDeepEquals(this.webhookUrl, other.webhookUrl) &&
@@ -776,9 +804,9 @@ public class PaymentService {
             displayName, position, status,
             acceptedCurrencies, acceptedCountries, paymentMethodTokenizationEnabled,
             networkTokensEnabled, openLoop, settlementReportingEnabled,
-            threeDSecureEnabled, merchantProfile, webhookUrl,
-            fields, reportingFields, isDeleted,
-            createdAt, updatedAt);
+            refundIngestionEnabled, threeDSecureEnabled, merchantProfile,
+            webhookUrl, fields, reportingFields,
+            isDeleted, createdAt, updatedAt);
     }
     
     @Override
@@ -799,6 +827,7 @@ public class PaymentService {
                 "networkTokensEnabled", networkTokensEnabled,
                 "openLoop", openLoop,
                 "settlementReportingEnabled", settlementReportingEnabled,
+                "refundIngestionEnabled", refundIngestionEnabled,
                 "threeDSecureEnabled", threeDSecureEnabled,
                 "merchantProfile", merchantProfile,
                 "webhookUrl", webhookUrl,
@@ -839,6 +868,8 @@ public class PaymentService {
         private Boolean openLoop;
 
         private Boolean settlementReportingEnabled;
+
+        private Boolean refundIngestionEnabled;
 
         private JsonNullable<Boolean> threeDSecureEnabled = JsonNullable.undefined();
 
@@ -1014,6 +1045,16 @@ public class PaymentService {
 
 
         /**
+         * Defines if this payment service has refund ingestion enabled.
+         */
+        public Builder refundIngestionEnabled(boolean refundIngestionEnabled) {
+            Utils.checkNotNull(refundIngestionEnabled, "refundIngestionEnabled");
+            this.refundIngestionEnabled = refundIngestionEnabled;
+            return this;
+        }
+
+
+        /**
          * Defines if this payment service has 3DS enabled.
          */
         public Builder threeDSecureEnabled(boolean threeDSecureEnabled) {
@@ -1172,10 +1213,10 @@ public class PaymentService {
                 active, method, displayName,
                 position, status, acceptedCurrencies,
                 acceptedCountries, paymentMethodTokenizationEnabled, networkTokensEnabled,
-                openLoop, settlementReportingEnabled, threeDSecureEnabled,
-                merchantProfile, webhookUrl, fields,
-                reportingFields, isDeleted, createdAt,
-                updatedAt);
+                openLoop, settlementReportingEnabled, refundIngestionEnabled,
+                threeDSecureEnabled, merchantProfile, webhookUrl,
+                fields, reportingFields, isDeleted,
+                createdAt, updatedAt);
         }
 
 

@@ -20,3 +20,4 @@ CaptureStatus custom = CaptureStatus.of("custom_value");
 | `PENDING`   | pending     |
 | `DECLINED`  | declined    |
 | `FAILED`    | failed      |
+| `CANCELED`  | canceled    |

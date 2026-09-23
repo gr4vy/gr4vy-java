@@ -127,6 +127,7 @@ public class Application {
                         "GB"))
                     .threeDSecureEnabled(true)
                     .settlementReportingEnabled(true)
+                    .refundIngestionEnabled(true)
                     .build())
                 .call();
 
@@ -259,6 +260,7 @@ public class Application {
                 .paymentServiceId("fffd152a-9532-4087-9a4f-de58754210f0")
                 .paymentServiceUpdate(PaymentServiceUpdate.builder()
                     .settlementReportingEnabled(true)
+                    .refundIngestionEnabled(true)
                     .build())
                 .call();
 

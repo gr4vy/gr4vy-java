@@ -123,6 +123,13 @@ public class PaymentServiceCreate {
     @JsonProperty("settlement_reporting_enabled")
     private Optional<Boolean> settlementReportingEnabled;
 
+    /**
+     * Defines if this payment service has refund ingestion enabled.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("refund_ingestion_enabled")
+    private Optional<Boolean> refundIngestionEnabled;
+
     @JsonCreator
     public PaymentServiceCreate(
             @JsonProperty("display_name") String displayName,
@@ -138,7 +145,8 @@ public class PaymentServiceCreate {
             @JsonProperty("payment_method_tokenization_enabled") JsonNullable<Boolean> paymentMethodTokenizationEnabled,
             @JsonProperty("network_tokens_enabled") JsonNullable<Boolean> networkTokensEnabled,
             @JsonProperty("open_loop") JsonNullable<Boolean> openLoop,
-            @JsonProperty("settlement_reporting_enabled") Optional<Boolean> settlementReportingEnabled) {
+            @JsonProperty("settlement_reporting_enabled") Optional<Boolean> settlementReportingEnabled,
+            @JsonProperty("refund_ingestion_enabled") Optional<Boolean> refundIngestionEnabled) {
         Utils.checkNotNull(displayName, "displayName");
         Utils.checkNotNull(paymentServiceDefinitionId, "paymentServiceDefinitionId");
         Utils.checkNotNull(fields, "fields");
@@ -153,6 +161,7 @@ public class PaymentServiceCreate {
         Utils.checkNotNull(networkTokensEnabled, "networkTokensEnabled");
         Utils.checkNotNull(openLoop, "openLoop");
         Utils.checkNotNull(settlementReportingEnabled, "settlementReportingEnabled");
+        Utils.checkNotNull(refundIngestionEnabled, "refundIngestionEnabled");
         this.displayName = displayName;
         this.paymentServiceDefinitionId = paymentServiceDefinitionId;
         this.fields = fields;
@@ -167,6 +176,7 @@ public class PaymentServiceCreate {
         this.networkTokensEnabled = networkTokensEnabled;
         this.openLoop = openLoop;
         this.settlementReportingEnabled = settlementReportingEnabled;
+        this.refundIngestionEnabled = refundIngestionEnabled;
     }
     
     public PaymentServiceCreate(
@@ -179,7 +189,7 @@ public class PaymentServiceCreate {
             JsonNullable.undefined(), JsonNullable.undefined(), acceptedCurrencies,
             acceptedCountries, JsonNullable.undefined(), Optional.empty(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), Optional.empty());
+            JsonNullable.undefined(), Optional.empty(), Optional.empty());
     }
 
     /**
@@ -297,6 +307,14 @@ public class PaymentServiceCreate {
     @JsonIgnore
     public Optional<Boolean> settlementReportingEnabled() {
         return settlementReportingEnabled;
+    }
+
+    /**
+     * Defines if this payment service has refund ingestion enabled.
+     */
+    @JsonIgnore
+    public Optional<Boolean> refundIngestionEnabled() {
+        return refundIngestionEnabled;
     }
 
     public static Builder builder() {
@@ -518,6 +536,25 @@ public class PaymentServiceCreate {
         return this;
     }
 
+    /**
+     * Defines if this payment service has refund ingestion enabled.
+     */
+    public PaymentServiceCreate withRefundIngestionEnabled(boolean refundIngestionEnabled) {
+        Utils.checkNotNull(refundIngestionEnabled, "refundIngestionEnabled");
+        this.refundIngestionEnabled = Optional.ofNullable(refundIngestionEnabled);
+        return this;
+    }
+
+
+    /**
+     * Defines if this payment service has refund ingestion enabled.
+     */
+    public PaymentServiceCreate withRefundIngestionEnabled(Optional<Boolean> refundIngestionEnabled) {
+        Utils.checkNotNull(refundIngestionEnabled, "refundIngestionEnabled");
+        this.refundIngestionEnabled = refundIngestionEnabled;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -541,7 +578,8 @@ public class PaymentServiceCreate {
             Utils.enhancedDeepEquals(this.paymentMethodTokenizationEnabled, other.paymentMethodTokenizationEnabled) &&
             Utils.enhancedDeepEquals(this.networkTokensEnabled, other.networkTokensEnabled) &&
             Utils.enhancedDeepEquals(this.openLoop, other.openLoop) &&
-            Utils.enhancedDeepEquals(this.settlementReportingEnabled, other.settlementReportingEnabled);
+            Utils.enhancedDeepEquals(this.settlementReportingEnabled, other.settlementReportingEnabled) &&
+            Utils.enhancedDeepEquals(this.refundIngestionEnabled, other.refundIngestionEnabled);
     }
     
     @Override
@@ -551,7 +589,7 @@ public class PaymentServiceCreate {
             reportingFields, position, acceptedCurrencies,
             acceptedCountries, active, threeDSecureEnabled,
             merchantProfile, paymentMethodTokenizationEnabled, networkTokensEnabled,
-            openLoop, settlementReportingEnabled);
+            openLoop, settlementReportingEnabled, refundIngestionEnabled);
     }
     
     @Override
@@ -570,7 +608,8 @@ public class PaymentServiceCreate {
                 "paymentMethodTokenizationEnabled", paymentMethodTokenizationEnabled,
                 "networkTokensEnabled", networkTokensEnabled,
                 "openLoop", openLoop,
-                "settlementReportingEnabled", settlementReportingEnabled);
+                "settlementReportingEnabled", settlementReportingEnabled,
+                "refundIngestionEnabled", refundIngestionEnabled);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -603,6 +642,8 @@ public class PaymentServiceCreate {
         private JsonNullable<Boolean> openLoop = JsonNullable.undefined();
 
         private Optional<Boolean> settlementReportingEnabled;
+
+        private Optional<Boolean> refundIngestionEnabled;
 
         private Builder() {
           // force use of static builder() method
@@ -834,6 +875,25 @@ public class PaymentServiceCreate {
             return this;
         }
 
+
+        /**
+         * Defines if this payment service has refund ingestion enabled.
+         */
+        public Builder refundIngestionEnabled(boolean refundIngestionEnabled) {
+            Utils.checkNotNull(refundIngestionEnabled, "refundIngestionEnabled");
+            this.refundIngestionEnabled = Optional.ofNullable(refundIngestionEnabled);
+            return this;
+        }
+
+        /**
+         * Defines if this payment service has refund ingestion enabled.
+         */
+        public Builder refundIngestionEnabled(Optional<Boolean> refundIngestionEnabled) {
+            Utils.checkNotNull(refundIngestionEnabled, "refundIngestionEnabled");
+            this.refundIngestionEnabled = refundIngestionEnabled;
+            return this;
+        }
+
         public PaymentServiceCreate build() {
             if (threeDSecureEnabled == null) {
                 threeDSecureEnabled = _SINGLETON_VALUE_ThreeDSecureEnabled.value();
@@ -841,13 +901,16 @@ public class PaymentServiceCreate {
             if (settlementReportingEnabled == null) {
                 settlementReportingEnabled = _SINGLETON_VALUE_SettlementReportingEnabled.value();
             }
+            if (refundIngestionEnabled == null) {
+                refundIngestionEnabled = _SINGLETON_VALUE_RefundIngestionEnabled.value();
+            }
 
             return new PaymentServiceCreate(
                 displayName, paymentServiceDefinitionId, fields,
                 reportingFields, position, acceptedCurrencies,
                 acceptedCountries, active, threeDSecureEnabled,
                 merchantProfile, paymentMethodTokenizationEnabled, networkTokensEnabled,
-                openLoop, settlementReportingEnabled);
+                openLoop, settlementReportingEnabled, refundIngestionEnabled);
         }
 
 
@@ -860,6 +923,12 @@ public class PaymentServiceCreate {
         private static final LazySingletonValue<Optional<Boolean>> _SINGLETON_VALUE_SettlementReportingEnabled =
                 new LazySingletonValue<>(
                         "settlement_reporting_enabled",
+                        "false",
+                        new TypeReference<Optional<Boolean>>() {});
+
+        private static final LazySingletonValue<Optional<Boolean>> _SINGLETON_VALUE_RefundIngestionEnabled =
+                new LazySingletonValue<>(
+                        "refund_ingestion_enabled",
                         "false",
                         new TypeReference<Optional<Boolean>>() {});
     }
