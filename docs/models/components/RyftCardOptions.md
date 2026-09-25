@@ -1,0 +1,9 @@
+# RyftCardOptions
+
+
+## Fields
+
+| Field                                                                                         | Type                                                                                          | Required                                                                                      | Description                                                                                   | Example                                                                                       |
+| --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
+| `subAccountId`                                                                                | *JsonNullable\<String>*                                                                       | :heavy_minus_sign:                                                                            | Ryft linked sub-account ID, sent as the `Account` header.                                     | ac_123456789                                                                                  |
+| `platformFee`                                                                                 | *JsonNullable\<Long>*                                                                         | :heavy_minus_sign:                                                                            | Platform Fee in the transaction currency's smallest unit. Sent as Ryft's `platformFee` field. | 205                                                                                           |

@@ -417,6 +417,13 @@ public class TransactionConnectionOptions {
     private JsonNullable<? extends RiskifiedAntiFraudOptions> riskifiedAntiFraud;
 
     /**
+     * Custom options to be passed to the `ryft-card` connector.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("ryft-card")
+    private JsonNullable<? extends RyftCardOptions> ryftCard;
+
+    /**
      * Custom options to be passed to the `stripe-affirm` connector.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -545,6 +552,7 @@ public class TransactionConnectionOptions {
             @JsonProperty("powertranz-card") JsonNullable<? extends PowertranzOptions> powertranzCard,
             @JsonProperty("repay-bank") JsonNullable<? extends RepayBankOptions> repayBank,
             @JsonProperty("riskified-anti-fraud") JsonNullable<? extends RiskifiedAntiFraudOptions> riskifiedAntiFraud,
+            @JsonProperty("ryft-card") JsonNullable<? extends RyftCardOptions> ryftCard,
             @JsonProperty("stripe-affirm") JsonNullable<? extends StripeOptions> stripeAffirm,
             @JsonProperty("stripe-card") JsonNullable<? extends StripeCardOptions> stripeCard,
             @JsonProperty("stripe-klarna") JsonNullable<? extends StripeOptions> stripeKlarna,
@@ -612,6 +620,7 @@ public class TransactionConnectionOptions {
         Utils.checkNotNull(powertranzCard, "powertranzCard");
         Utils.checkNotNull(repayBank, "repayBank");
         Utils.checkNotNull(riskifiedAntiFraud, "riskifiedAntiFraud");
+        Utils.checkNotNull(ryftCard, "ryftCard");
         Utils.checkNotNull(stripeAffirm, "stripeAffirm");
         Utils.checkNotNull(stripeCard, "stripeCard");
         Utils.checkNotNull(stripeKlarna, "stripeKlarna");
@@ -679,6 +688,7 @@ public class TransactionConnectionOptions {
         this.powertranzCard = powertranzCard;
         this.repayBank = repayBank;
         this.riskifiedAntiFraud = riskifiedAntiFraud;
+        this.ryftCard = ryftCard;
         this.stripeAffirm = stripeAffirm;
         this.stripeCard = stripeCard;
         this.stripeKlarna = stripeKlarna;
@@ -714,7 +724,7 @@ public class TransactionConnectionOptions {
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined());
+            JsonNullable.undefined(), JsonNullable.undefined());
     }
 
     /**
@@ -1229,6 +1239,15 @@ public class TransactionConnectionOptions {
     @JsonIgnore
     public JsonNullable<RiskifiedAntiFraudOptions> riskifiedAntiFraud() {
         return (JsonNullable<RiskifiedAntiFraudOptions>) riskifiedAntiFraud;
+    }
+
+    /**
+     * Custom options to be passed to the `ryft-card` connector.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public JsonNullable<RyftCardOptions> ryftCard() {
+        return (JsonNullable<RyftCardOptions>) ryftCard;
     }
 
     /**
@@ -2355,6 +2374,24 @@ public class TransactionConnectionOptions {
     }
 
     /**
+     * Custom options to be passed to the `ryft-card` connector.
+     */
+    public TransactionConnectionOptions withRyftCard(RyftCardOptions ryftCard) {
+        Utils.checkNotNull(ryftCard, "ryftCard");
+        this.ryftCard = JsonNullable.of(ryftCard);
+        return this;
+    }
+
+    /**
+     * Custom options to be passed to the `ryft-card` connector.
+     */
+    public TransactionConnectionOptions withRyftCard(JsonNullable<? extends RyftCardOptions> ryftCard) {
+        Utils.checkNotNull(ryftCard, "ryftCard");
+        this.ryftCard = ryftCard;
+        return this;
+    }
+
+    /**
      * Custom options to be passed to the `stripe-affirm` connector.
      */
     public TransactionConnectionOptions withStripeAffirm(StripeOptions stripeAffirm) {
@@ -2601,6 +2638,7 @@ public class TransactionConnectionOptions {
             Utils.enhancedDeepEquals(this.powertranzCard, other.powertranzCard) &&
             Utils.enhancedDeepEquals(this.repayBank, other.repayBank) &&
             Utils.enhancedDeepEquals(this.riskifiedAntiFraud, other.riskifiedAntiFraud) &&
+            Utils.enhancedDeepEquals(this.ryftCard, other.ryftCard) &&
             Utils.enhancedDeepEquals(this.stripeAffirm, other.stripeAffirm) &&
             Utils.enhancedDeepEquals(this.stripeCard, other.stripeCard) &&
             Utils.enhancedDeepEquals(this.stripeKlarna, other.stripeKlarna) &&
@@ -2635,10 +2673,10 @@ public class TransactionConnectionOptions {
             nuveiKlarna, nuveiPse, oxxoOxxo,
             paypalPaypal, paypalPaypaldirectorder, paypalPaypalpaylater,
             powertranzCard, repayBank, riskifiedAntiFraud,
-            stripeAffirm, stripeCard, stripeKlarna,
-            stripeOnelink, stripeStripe, travelhubCard,
-            trustlyTrustly, worldpayvapCard, wpayEverydaypay,
-            wpayPayto);
+            ryftCard, stripeAffirm, stripeCard,
+            stripeKlarna, stripeOnelink, stripeStripe,
+            travelhubCard, trustlyTrustly, worldpayvapCard,
+            wpayEverydaypay, wpayPayto);
     }
     
     @Override
@@ -2701,6 +2739,7 @@ public class TransactionConnectionOptions {
                 "powertranzCard", powertranzCard,
                 "repayBank", repayBank,
                 "riskifiedAntiFraud", riskifiedAntiFraud,
+                "ryftCard", ryftCard,
                 "stripeAffirm", stripeAffirm,
                 "stripeCard", stripeCard,
                 "stripeKlarna", stripeKlarna,
@@ -2829,6 +2868,8 @@ public class TransactionConnectionOptions {
         private JsonNullable<? extends RepayBankOptions> repayBank = JsonNullable.undefined();
 
         private JsonNullable<? extends RiskifiedAntiFraudOptions> riskifiedAntiFraud = JsonNullable.undefined();
+
+        private JsonNullable<? extends RyftCardOptions> ryftCard = JsonNullable.undefined();
 
         private JsonNullable<? extends StripeOptions> stripeAffirm = JsonNullable.undefined();
 
@@ -3941,6 +3982,25 @@ public class TransactionConnectionOptions {
 
 
         /**
+         * Custom options to be passed to the `ryft-card` connector.
+         */
+        public Builder ryftCard(RyftCardOptions ryftCard) {
+            Utils.checkNotNull(ryftCard, "ryftCard");
+            this.ryftCard = JsonNullable.of(ryftCard);
+            return this;
+        }
+
+        /**
+         * Custom options to be passed to the `ryft-card` connector.
+         */
+        public Builder ryftCard(JsonNullable<? extends RyftCardOptions> ryftCard) {
+            Utils.checkNotNull(ryftCard, "ryftCard");
+            this.ryftCard = ryftCard;
+            return this;
+        }
+
+
+        /**
          * Custom options to be passed to the `stripe-affirm` connector.
          */
         public Builder stripeAffirm(StripeOptions stripeAffirm) {
@@ -4151,10 +4211,10 @@ public class TransactionConnectionOptions {
                 nuveiKlarna, nuveiPse, oxxoOxxo,
                 paypalPaypal, paypalPaypaldirectorder, paypalPaypalpaylater,
                 powertranzCard, repayBank, riskifiedAntiFraud,
-                stripeAffirm, stripeCard, stripeKlarna,
-                stripeOnelink, stripeStripe, travelhubCard,
-                trustlyTrustly, worldpayvapCard, wpayEverydaypay,
-                wpayPayto);
+                ryftCard, stripeAffirm, stripeCard,
+                stripeKlarna, stripeOnelink, stripeStripe,
+                travelhubCard, trustlyTrustly, worldpayvapCard,
+                wpayEverydaypay, wpayPayto);
         }
 
     }
