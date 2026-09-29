@@ -397,6 +397,13 @@ public class TransactionCreate {
     @JsonProperty("approval_expires_at")
     private JsonNullable<OffsetDateTime> approvalExpiresAt;
 
+    /**
+     * Whether the authorization amount is expected to be modified in the future or not.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("is_amount_estimated")
+    private JsonNullable<Boolean> isAmountEstimated;
+
     @JsonCreator
     public TransactionCreate(
             @JsonProperty("amount") long amount,
@@ -441,7 +448,8 @@ public class TransactionCreate {
             @JsonProperty("duty_amount") JsonNullable<Long> dutyAmount,
             @JsonProperty("shipping_amount") JsonNullable<Long> shippingAmount,
             @JsonProperty("integration_client") JsonNullable<? extends IntegrationClient> integrationClient,
-            @JsonProperty("approval_expires_at") JsonNullable<OffsetDateTime> approvalExpiresAt) {
+            @JsonProperty("approval_expires_at") JsonNullable<OffsetDateTime> approvalExpiresAt,
+            @JsonProperty("is_amount_estimated") JsonNullable<Boolean> isAmountEstimated) {
         Utils.checkNotNull(amount, "amount");
         Utils.checkNotNull(currency, "currency");
         Utils.checkNotNull(country, "country");
@@ -485,6 +493,7 @@ public class TransactionCreate {
         Utils.checkNotNull(shippingAmount, "shippingAmount");
         Utils.checkNotNull(integrationClient, "integrationClient");
         Utils.checkNotNull(approvalExpiresAt, "approvalExpiresAt");
+        Utils.checkNotNull(isAmountEstimated, "isAmountEstimated");
         this.amount = amount;
         this.currency = currency;
         this.country = country;
@@ -528,6 +537,7 @@ public class TransactionCreate {
         this.shippingAmount = shippingAmount;
         this.integrationClient = integrationClient;
         this.approvalExpiresAt = approvalExpiresAt;
+        this.isAmountEstimated = isAmountEstimated;
     }
     
     public TransactionCreate(
@@ -547,7 +557,7 @@ public class TransactionCreate {
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined());
+            JsonNullable.undefined(), JsonNullable.undefined());
     }
 
     /**
@@ -980,6 +990,14 @@ public class TransactionCreate {
     @JsonIgnore
     public JsonNullable<OffsetDateTime> approvalExpiresAt() {
         return approvalExpiresAt;
+    }
+
+    /**
+     * Whether the authorization amount is expected to be modified in the future or not.
+     */
+    @JsonIgnore
+    public JsonNullable<Boolean> isAmountEstimated() {
+        return isAmountEstimated;
     }
 
     public static Builder builder() {
@@ -1893,6 +1911,24 @@ public class TransactionCreate {
         return this;
     }
 
+    /**
+     * Whether the authorization amount is expected to be modified in the future or not.
+     */
+    public TransactionCreate withIsAmountEstimated(boolean isAmountEstimated) {
+        Utils.checkNotNull(isAmountEstimated, "isAmountEstimated");
+        this.isAmountEstimated = JsonNullable.of(isAmountEstimated);
+        return this;
+    }
+
+    /**
+     * Whether the authorization amount is expected to be modified in the future or not.
+     */
+    public TransactionCreate withIsAmountEstimated(JsonNullable<Boolean> isAmountEstimated) {
+        Utils.checkNotNull(isAmountEstimated, "isAmountEstimated");
+        this.isAmountEstimated = isAmountEstimated;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -1945,7 +1981,8 @@ public class TransactionCreate {
             Utils.enhancedDeepEquals(this.dutyAmount, other.dutyAmount) &&
             Utils.enhancedDeepEquals(this.shippingAmount, other.shippingAmount) &&
             Utils.enhancedDeepEquals(this.integrationClient, other.integrationClient) &&
-            Utils.enhancedDeepEquals(this.approvalExpiresAt, other.approvalExpiresAt);
+            Utils.enhancedDeepEquals(this.approvalExpiresAt, other.approvalExpiresAt) &&
+            Utils.enhancedDeepEquals(this.isAmountEstimated, other.isAmountEstimated);
     }
     
     @Override
@@ -1965,7 +2002,7 @@ public class TransactionCreate {
             taxAmount, merchantTaxId, purchaseOrderNumber,
             customerReferenceNumber, amountIncludesTax, supplierOrderNumber,
             dutyAmount, shippingAmount, integrationClient,
-            approvalExpiresAt);
+            approvalExpiresAt, isAmountEstimated);
     }
     
     @Override
@@ -2013,7 +2050,8 @@ public class TransactionCreate {
                 "dutyAmount", dutyAmount,
                 "shippingAmount", shippingAmount,
                 "integrationClient", integrationClient,
-                "approvalExpiresAt", approvalExpiresAt);
+                "approvalExpiresAt", approvalExpiresAt,
+                "isAmountEstimated", isAmountEstimated);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -2104,6 +2142,8 @@ public class TransactionCreate {
         private JsonNullable<? extends IntegrationClient> integrationClient = JsonNullable.undefined();
 
         private JsonNullable<OffsetDateTime> approvalExpiresAt = JsonNullable.undefined();
+
+        private JsonNullable<Boolean> isAmountEstimated = JsonNullable.undefined();
 
         private Builder() {
           // force use of static builder() method
@@ -3050,6 +3090,25 @@ public class TransactionCreate {
             return this;
         }
 
+
+        /**
+         * Whether the authorization amount is expected to be modified in the future or not.
+         */
+        public Builder isAmountEstimated(boolean isAmountEstimated) {
+            Utils.checkNotNull(isAmountEstimated, "isAmountEstimated");
+            this.isAmountEstimated = JsonNullable.of(isAmountEstimated);
+            return this;
+        }
+
+        /**
+         * Whether the authorization amount is expected to be modified in the future or not.
+         */
+        public Builder isAmountEstimated(JsonNullable<Boolean> isAmountEstimated) {
+            Utils.checkNotNull(isAmountEstimated, "isAmountEstimated");
+            this.isAmountEstimated = isAmountEstimated;
+            return this;
+        }
+
         public TransactionCreate build() {
             if (store == null) {
                 store = _SINGLETON_VALUE_Store.value();
@@ -3085,7 +3144,7 @@ public class TransactionCreate {
                 taxAmount, merchantTaxId, purchaseOrderNumber,
                 customerReferenceNumber, amountIncludesTax, supplierOrderNumber,
                 dutyAmount, shippingAmount, integrationClient,
-                approvalExpiresAt);
+                approvalExpiresAt, isAmountEstimated);
         }
 
 
