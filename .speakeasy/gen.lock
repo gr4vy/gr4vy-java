@@ -1,19 +1,19 @@
 lockVersion: 2.0.0
 id: 5bbaa3a9-baa0-471b-ba6a-13fd88e8c119
 management:
-  docChecksum: c74fb1ba061ac848b9280e8fecd619ea
+  docChecksum: 78bd4e73e6e30d0874d90eb1d10a941e
   docVersion: 1.0.0
   speakeasyVersion: 1.799.0
   generationVersion: 2.941.0
-  releaseVersion: 2.19.16
-  configChecksum: 2be766c423897b4ac3ae6b8c808c1e58
+  releaseVersion: 2.19.17
+  configChecksum: bcb7487aa70965995474404f0e56f82a
   repoURL: https://github.com/gr4vy/gr4vy-java.git
   installationURL: https://github.com/gr4vy/gr4vy-java
   published: true
 persistentEdits:
-  generation_id: bbd62aeb-19a0-4dfb-ae26-53478422d029
-  pristine_commit_hash: 32294fdbc1ed45ed3f4708962ac151f62d38adff
-  pristine_tree_hash: 46293ad5846609a3c197e094f31a3d588d0f9c1b
+  generation_id: 5397eb22-9fb7-43aa-a862-b30564a118dc
+  pristine_commit_hash: 38717a06e3887fcf6017a13961270d41bc0f456b
+  pristine_tree_hash: 4e25f3c18920369380cda0e2301bd7a043cb55ab
 features:
   java:
     additionalDependencies: 0.1.0
@@ -1547,8 +1547,8 @@ trackedFiles:
     pristine_git_object: c0e317e66f947ccac24540834b0f47476d804419
   docs/models/components/TransactionCreate.md:
     id: 0af6b811ca1f
-    last_write_checksum: sha1:1800f8bd0f00d21470f52ba8697c4a872c4bb9f5
-    pristine_git_object: b3917399b60bd29cd171f1f3abcf5076c1b2457a
+    last_write_checksum: sha1:93a87b53c5bb1bc665b462cbba200fdcb98d4035
+    pristine_git_object: 00709ec3bd1c9cf1d5b321c287185d4a74e1fa43
   docs/models/components/TransactionCreatePaymentMethod.md:
     id: d01bc2723cd5
     last_write_checksum: sha1:4ac7c25162f999d9c8ee377251c459379e684445
@@ -2891,8 +2891,8 @@ trackedFiles:
     pristine_git_object: 15c4e4642f204ccb312d8814155b69e153b4e19b
   gradle.properties:
     id: 2afbb999f001
-    last_write_checksum: sha1:c057e9b4994b029ba8368680c0674a5482ee7937
-    pristine_git_object: 8ea8fc81fa4a92b76cf1458df5169625dde59258
+    last_write_checksum: sha1:891e62d791caf68d8a9a1e805307bc1d167dec99
+    pristine_git_object: 6076ce1e6dc7567791246518d1aca844e698a3ec
   gradle/wrapper/gradle-wrapper.jar:
     id: ec27dae6e852
     last_write_checksum: sha1:f725fb1467084142d74fd7cd8eab691ab3442611
@@ -3235,8 +3235,8 @@ trackedFiles:
     pristine_git_object: b50475cc7f6041d63c4569256e4ff1850b20d30b
   src/main/java/com/gr4vy/sdk/SDKConfiguration.java:
     id: 73a7edeaca45
-    last_write_checksum: sha1:6c7a237279ba49e6a531a166b6f7d55cf4908638
-    pristine_git_object: db2a740367d2464bad4ec7568c05c02fbf90a55d
+    last_write_checksum: sha1:dbf76be4ad21371f972f1c883a101b6910d23df5
+    pristine_git_object: eb7285f79752bdac80972762053e52dea9761371
   src/main/java/com/gr4vy/sdk/SecuritySource.java:
     id: 1b6add6b9b50
     last_write_checksum: sha1:2f365cc823c6243188e83f4df618c9737fcee8bd
@@ -4771,8 +4771,8 @@ trackedFiles:
     pristine_git_object: 62108e3ad145cbc0ea1a091e567da3d1eb11dcb7
   src/main/java/com/gr4vy/sdk/models/components/TransactionCreate.java:
     id: 85da9dd45d8a
-    last_write_checksum: sha1:277d073f4476aad9caf28749d0f68ce1f8706864
-    pristine_git_object: f5e2a716f47c0b82c7841dbd6857784b036f20ae
+    last_write_checksum: sha1:650011f4a91b527f135aa6d5405f38036817fb45
+    pristine_git_object: d179c725bc7630739dd67181f48510b327c0280a
   src/main/java/com/gr4vy/sdk/models/components/TransactionCreatePaymentMethod.java:
     id: 1e1a35522446
     last_write_checksum: sha1:d60690b521a36c3e370941105f6688f76ee90c53
@@ -12499,6 +12499,7 @@ examples:
           application/json: {"type": "error", "code": "gateway_timeout", "status": 504, "message": "Request could not be processed"}
 examplesVersion: 1.0.2
 generatedTests: {}
+releaseNotes: "## Java SDK Changes:\n* `gr4vy.transactions.create()`: \n  *  `request.transactionCreate.isAmountEstimated` **Added**\n"
 generatedFiles:
   - .gitattributes
   - USAGE.md
