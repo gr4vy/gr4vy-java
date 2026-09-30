@@ -13,6 +13,7 @@ import com.gr4vy.sdk.utils.LazySingletonValue;
 import com.gr4vy.sdk.utils.SpeakeasyMetadata;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Boolean;
+import java.lang.Deprecated;
 import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
@@ -84,8 +85,16 @@ public class ListTransactionsRequest {
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=buyer_id")
     private JsonNullable<String> buyerId;
 
-
+    /**
+     * Deprecated. Filters the results to only the items for which the `buyer` has an `email_address` that
+     * matches this value. This filter can be slow and is not recommended for use in automated systems.
+     * 
+     * <p>Use `buyer_search`, `buyer_external_identifier` or `buyer_id` instead.
+     * 
+     * @deprecated field: This filter can be slow. Use `buyer_search`, `buyer_external_identifier` or `buyer_id` instead..
+     */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=buyer_email_address")
+    @Deprecated
     private JsonNullable<String> buyerEmailAddress;
 
 
@@ -120,33 +129,37 @@ public class ListTransactionsRequest {
     private JsonNullable<? extends List<String>> metadata;
 
     /**
-     * Filters for transactions that have an `amount` that is equal to the provided `amount_eq` value.
+     * Filters for transactions that have an `amount` that is equal to the provided `amount_eq` value. For
+     * best performance, combine it with `created_at_gte` and `created_at_lte`.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=amount_eq")
     private JsonNullable<Long> amountEq;
 
     /**
      * Filters for transactions that have an `amount` that is less than or equal to the `amount_lte` value.
+     * For best performance, combine it with `created_at_gte` and `created_at_lte`.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=amount_lte")
     private JsonNullable<Long> amountLte;
 
     /**
      * Filters for transactions that have an `amount` that is greater than or equal to the `amount_gte`
-     * value.
+     * value. For best performance, combine it with `created_at_gte` and `created_at_lte`.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=amount_gte")
     private JsonNullable<Long> amountGte;
 
     /**
      * Filters for transactions that have matching `currency` values. The `currency` values provided must
-     * be formatted as 3-letter ISO currency code.
+     * be formatted as 3-letter ISO currency code. For best performance, combine it with `created_at_gte`
+     * and `created_at_lte`.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=currency")
     private JsonNullable<? extends List<String>> currency;
 
     /**
-     * Filters for transactions that have matching `country` values.
+     * Filters for transactions that have matching `country` values. For best performance, combine it with
+     * `created_at_gte` and `created_at_lte`.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=country")
     private JsonNullable<? extends List<String>> country;
@@ -166,14 +179,15 @@ public class ListTransactionsRequest {
     private JsonNullable<String> paymentMethodLabel;
 
     /**
-     * Filters for transactions where the `payment_method_scheme` matches one of the provided values.
+     * Filters for transactions where the `payment_method_scheme` matches one of the provided values. For
+     * best performance, combine it with `created_at_gte` and `created_at_lte`.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=payment_method_scheme")
     private JsonNullable<? extends List<String>> paymentMethodScheme;
 
     /**
      * Filters for transactions that have a payment method with a country that matches with the provided
-     * value.
+     * value. For best performance, combine it with `created_at_gte` and `created_at_lte`.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=payment_method_country")
     private JsonNullable<String> paymentMethodCountry;
@@ -183,7 +197,8 @@ public class ListTransactionsRequest {
     private JsonNullable<String> paymentMethodFingerprint;
 
     /**
-     * Filters for transactions that have matching `method` values.
+     * Filters for transactions that have matching `method` values. For best performance, combine it with
+     * `created_at_gte` and `created_at_lte`.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=method")
     private JsonNullable<? extends List<Method>> method;
@@ -237,14 +252,21 @@ public class ListTransactionsRequest {
     private JsonNullable<String> giftCardId;
 
     /**
-     * Filters for transactions that have at least one gift card redemption where the last 4 digits of its
-     * gift card number matches exactly with the provided value.
+     * Deprecated. Filters for transactions that have at least one gift card redemption where the last 4
+     * digits of its gift card number matches exactly with the provided value. This filter can be slow and
+     * is not recommended for use in automated systems.
+     * 
+     * <p>Use `gift_card_id` instead.
+     * 
+     * @deprecated field: This filter can be slow. Use `gift_card_id` instead..
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=gift_card_last4")
+    @Deprecated
     private JsonNullable<String> giftCardLast4;
 
     /**
-     * Filters for transactions that have at least one associated settlement record.
+     * Filters for transactions that have at least one associated settlement record. When filtering on
+     * `false`, combine it with `created_at_gte` and `created_at_lte` for best performance.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=has_settlements")
     private JsonNullable<Boolean> hasSettlements;
@@ -257,25 +279,28 @@ public class ListTransactionsRequest {
 
     /**
      * Filters the results to only the transactions that have a payment source that matches with any of the
-     * provided values.
+     * provided values. For best performance, combine it with `created_at_gte` and `created_at_lte`.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=payment_source")
     private JsonNullable<? extends List<TransactionPaymentSource>> paymentSource;
 
     /**
-     * Filters for transactions where the `is_subsequent_payment` matches the provided value.
+     * Filters for transactions where the `is_subsequent_payment` matches the provided value. For best
+     * performance, combine it with `created_at_gte` and `created_at_lte`.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=is_subsequent_payment")
     private JsonNullable<Boolean> isSubsequentPayment;
 
     /**
-     * Filters for transactions where the `merchant_initiated` matches the provided value.
+     * Filters for transactions where the `merchant_initiated` matches the provided value. For best
+     * performance, combine it with `created_at_gte` and `created_at_lte`.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=merchant_initiated")
     private JsonNullable<Boolean> merchantInitiated;
 
     /**
-     * Filters for transactions that attempted 3DS authentication or not.
+     * Filters for transactions that attempted 3DS authentication or not. For best performance, combine it
+     * with `created_at_gte` and `created_at_lte`.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=used_3ds")
     private JsonNullable<Boolean> used3ds;
@@ -544,6 +569,15 @@ public class ListTransactionsRequest {
         return buyerId;
     }
 
+    /**
+     * Deprecated. Filters the results to only the items for which the `buyer` has an `email_address` that
+     * matches this value. This filter can be slow and is not recommended for use in automated systems.
+     * 
+     * <p>Use `buyer_search`, `buyer_external_identifier` or `buyer_id` instead.
+     * 
+     * @deprecated field: This filter can be slow. Use `buyer_search`, `buyer_external_identifier` or `buyer_id` instead..
+     */
+    @Deprecated
     @JsonIgnore
     public JsonNullable<String> buyerEmailAddress() {
         return buyerEmailAddress;
@@ -591,7 +625,8 @@ public class ListTransactionsRequest {
     }
 
     /**
-     * Filters for transactions that have an `amount` that is equal to the provided `amount_eq` value.
+     * Filters for transactions that have an `amount` that is equal to the provided `amount_eq` value. For
+     * best performance, combine it with `created_at_gte` and `created_at_lte`.
      */
     @JsonIgnore
     public JsonNullable<Long> amountEq() {
@@ -600,6 +635,7 @@ public class ListTransactionsRequest {
 
     /**
      * Filters for transactions that have an `amount` that is less than or equal to the `amount_lte` value.
+     * For best performance, combine it with `created_at_gte` and `created_at_lte`.
      */
     @JsonIgnore
     public JsonNullable<Long> amountLte() {
@@ -608,7 +644,7 @@ public class ListTransactionsRequest {
 
     /**
      * Filters for transactions that have an `amount` that is greater than or equal to the `amount_gte`
-     * value.
+     * value. For best performance, combine it with `created_at_gte` and `created_at_lte`.
      */
     @JsonIgnore
     public JsonNullable<Long> amountGte() {
@@ -617,7 +653,8 @@ public class ListTransactionsRequest {
 
     /**
      * Filters for transactions that have matching `currency` values. The `currency` values provided must
-     * be formatted as 3-letter ISO currency code.
+     * be formatted as 3-letter ISO currency code. For best performance, combine it with `created_at_gte`
+     * and `created_at_lte`.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -626,7 +663,8 @@ public class ListTransactionsRequest {
     }
 
     /**
-     * Filters for transactions that have matching `country` values.
+     * Filters for transactions that have matching `country` values. For best performance, combine it with
+     * `created_at_gte` and `created_at_lte`.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -654,7 +692,8 @@ public class ListTransactionsRequest {
     }
 
     /**
-     * Filters for transactions where the `payment_method_scheme` matches one of the provided values.
+     * Filters for transactions where the `payment_method_scheme` matches one of the provided values. For
+     * best performance, combine it with `created_at_gte` and `created_at_lte`.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -664,7 +703,7 @@ public class ListTransactionsRequest {
 
     /**
      * Filters for transactions that have a payment method with a country that matches with the provided
-     * value.
+     * value. For best performance, combine it with `created_at_gte` and `created_at_lte`.
      */
     @JsonIgnore
     public JsonNullable<String> paymentMethodCountry() {
@@ -677,7 +716,8 @@ public class ListTransactionsRequest {
     }
 
     /**
-     * Filters for transactions that have matching `method` values.
+     * Filters for transactions that have matching `method` values. For best performance, combine it with
+     * `created_at_gte` and `created_at_lte`.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -751,16 +791,23 @@ public class ListTransactionsRequest {
     }
 
     /**
-     * Filters for transactions that have at least one gift card redemption where the last 4 digits of its
-     * gift card number matches exactly with the provided value.
+     * Deprecated. Filters for transactions that have at least one gift card redemption where the last 4
+     * digits of its gift card number matches exactly with the provided value. This filter can be slow and
+     * is not recommended for use in automated systems.
+     * 
+     * <p>Use `gift_card_id` instead.
+     * 
+     * @deprecated field: This filter can be slow. Use `gift_card_id` instead..
      */
+    @Deprecated
     @JsonIgnore
     public JsonNullable<String> giftCardLast4() {
         return giftCardLast4;
     }
 
     /**
-     * Filters for transactions that have at least one associated settlement record.
+     * Filters for transactions that have at least one associated settlement record. When filtering on
+     * `false`, combine it with `created_at_gte` and `created_at_lte` for best performance.
      */
     @JsonIgnore
     public JsonNullable<Boolean> hasSettlements() {
@@ -777,7 +824,7 @@ public class ListTransactionsRequest {
 
     /**
      * Filters the results to only the transactions that have a payment source that matches with any of the
-     * provided values.
+     * provided values. For best performance, combine it with `created_at_gte` and `created_at_lte`.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -786,7 +833,8 @@ public class ListTransactionsRequest {
     }
 
     /**
-     * Filters for transactions where the `is_subsequent_payment` matches the provided value.
+     * Filters for transactions where the `is_subsequent_payment` matches the provided value. For best
+     * performance, combine it with `created_at_gte` and `created_at_lte`.
      */
     @JsonIgnore
     public JsonNullable<Boolean> isSubsequentPayment() {
@@ -794,7 +842,8 @@ public class ListTransactionsRequest {
     }
 
     /**
-     * Filters for transactions where the `merchant_initiated` matches the provided value.
+     * Filters for transactions where the `merchant_initiated` matches the provided value. For best
+     * performance, combine it with `created_at_gte` and `created_at_lte`.
      */
     @JsonIgnore
     public JsonNullable<Boolean> merchantInitiated() {
@@ -802,7 +851,8 @@ public class ListTransactionsRequest {
     }
 
     /**
-     * Filters for transactions that attempted 3DS authentication or not.
+     * Filters for transactions that attempted 3DS authentication or not. For best performance, combine it
+     * with `created_at_gte` and `created_at_lte`.
      */
     @JsonIgnore
     public JsonNullable<Boolean> used3ds() {
@@ -1017,12 +1067,30 @@ public class ListTransactionsRequest {
         return this;
     }
 
+    /**
+     * Deprecated. Filters the results to only the items for which the `buyer` has an `email_address` that
+     * matches this value. This filter can be slow and is not recommended for use in automated systems.
+     * 
+     * <p>Use `buyer_search`, `buyer_external_identifier` or `buyer_id` instead.
+     * 
+     * @deprecated field: This filter can be slow. Use `buyer_search`, `buyer_external_identifier` or `buyer_id` instead..
+     */
+    @Deprecated
     public ListTransactionsRequest withBuyerEmailAddress(String buyerEmailAddress) {
         Utils.checkNotNull(buyerEmailAddress, "buyerEmailAddress");
         this.buyerEmailAddress = JsonNullable.of(buyerEmailAddress);
         return this;
     }
 
+    /**
+     * Deprecated. Filters the results to only the items for which the `buyer` has an `email_address` that
+     * matches this value. This filter can be slow and is not recommended for use in automated systems.
+     * 
+     * <p>Use `buyer_search`, `buyer_external_identifier` or `buyer_id` instead.
+     * 
+     * @deprecated field: This filter can be slow. Use `buyer_search`, `buyer_external_identifier` or `buyer_id` instead..
+     */
+    @Deprecated
     public ListTransactionsRequest withBuyerEmailAddress(JsonNullable<String> buyerEmailAddress) {
         Utils.checkNotNull(buyerEmailAddress, "buyerEmailAddress");
         this.buyerEmailAddress = buyerEmailAddress;
@@ -1120,7 +1188,8 @@ public class ListTransactionsRequest {
     }
 
     /**
-     * Filters for transactions that have an `amount` that is equal to the provided `amount_eq` value.
+     * Filters for transactions that have an `amount` that is equal to the provided `amount_eq` value. For
+     * best performance, combine it with `created_at_gte` and `created_at_lte`.
      */
     public ListTransactionsRequest withAmountEq(long amountEq) {
         Utils.checkNotNull(amountEq, "amountEq");
@@ -1129,7 +1198,8 @@ public class ListTransactionsRequest {
     }
 
     /**
-     * Filters for transactions that have an `amount` that is equal to the provided `amount_eq` value.
+     * Filters for transactions that have an `amount` that is equal to the provided `amount_eq` value. For
+     * best performance, combine it with `created_at_gte` and `created_at_lte`.
      */
     public ListTransactionsRequest withAmountEq(JsonNullable<Long> amountEq) {
         Utils.checkNotNull(amountEq, "amountEq");
@@ -1139,6 +1209,7 @@ public class ListTransactionsRequest {
 
     /**
      * Filters for transactions that have an `amount` that is less than or equal to the `amount_lte` value.
+     * For best performance, combine it with `created_at_gte` and `created_at_lte`.
      */
     public ListTransactionsRequest withAmountLte(long amountLte) {
         Utils.checkNotNull(amountLte, "amountLte");
@@ -1148,6 +1219,7 @@ public class ListTransactionsRequest {
 
     /**
      * Filters for transactions that have an `amount` that is less than or equal to the `amount_lte` value.
+     * For best performance, combine it with `created_at_gte` and `created_at_lte`.
      */
     public ListTransactionsRequest withAmountLte(JsonNullable<Long> amountLte) {
         Utils.checkNotNull(amountLte, "amountLte");
@@ -1157,7 +1229,7 @@ public class ListTransactionsRequest {
 
     /**
      * Filters for transactions that have an `amount` that is greater than or equal to the `amount_gte`
-     * value.
+     * value. For best performance, combine it with `created_at_gte` and `created_at_lte`.
      */
     public ListTransactionsRequest withAmountGte(long amountGte) {
         Utils.checkNotNull(amountGte, "amountGte");
@@ -1167,7 +1239,7 @@ public class ListTransactionsRequest {
 
     /**
      * Filters for transactions that have an `amount` that is greater than or equal to the `amount_gte`
-     * value.
+     * value. For best performance, combine it with `created_at_gte` and `created_at_lte`.
      */
     public ListTransactionsRequest withAmountGte(JsonNullable<Long> amountGte) {
         Utils.checkNotNull(amountGte, "amountGte");
@@ -1177,7 +1249,8 @@ public class ListTransactionsRequest {
 
     /**
      * Filters for transactions that have matching `currency` values. The `currency` values provided must
-     * be formatted as 3-letter ISO currency code.
+     * be formatted as 3-letter ISO currency code. For best performance, combine it with `created_at_gte`
+     * and `created_at_lte`.
      */
     public ListTransactionsRequest withCurrency(List<String> currency) {
         Utils.checkNotNull(currency, "currency");
@@ -1187,7 +1260,8 @@ public class ListTransactionsRequest {
 
     /**
      * Filters for transactions that have matching `currency` values. The `currency` values provided must
-     * be formatted as 3-letter ISO currency code.
+     * be formatted as 3-letter ISO currency code. For best performance, combine it with `created_at_gte`
+     * and `created_at_lte`.
      */
     public ListTransactionsRequest withCurrency(JsonNullable<? extends List<String>> currency) {
         Utils.checkNotNull(currency, "currency");
@@ -1196,7 +1270,8 @@ public class ListTransactionsRequest {
     }
 
     /**
-     * Filters for transactions that have matching `country` values.
+     * Filters for transactions that have matching `country` values. For best performance, combine it with
+     * `created_at_gte` and `created_at_lte`.
      */
     public ListTransactionsRequest withCountry(List<String> country) {
         Utils.checkNotNull(country, "country");
@@ -1205,7 +1280,8 @@ public class ListTransactionsRequest {
     }
 
     /**
-     * Filters for transactions that have matching `country` values.
+     * Filters for transactions that have matching `country` values. For best performance, combine it with
+     * `created_at_gte` and `created_at_lte`.
      */
     public ListTransactionsRequest withCountry(JsonNullable<? extends List<String>> country) {
         Utils.checkNotNull(country, "country");
@@ -1256,7 +1332,8 @@ public class ListTransactionsRequest {
     }
 
     /**
-     * Filters for transactions where the `payment_method_scheme` matches one of the provided values.
+     * Filters for transactions where the `payment_method_scheme` matches one of the provided values. For
+     * best performance, combine it with `created_at_gte` and `created_at_lte`.
      */
     public ListTransactionsRequest withPaymentMethodScheme(List<String> paymentMethodScheme) {
         Utils.checkNotNull(paymentMethodScheme, "paymentMethodScheme");
@@ -1265,7 +1342,8 @@ public class ListTransactionsRequest {
     }
 
     /**
-     * Filters for transactions where the `payment_method_scheme` matches one of the provided values.
+     * Filters for transactions where the `payment_method_scheme` matches one of the provided values. For
+     * best performance, combine it with `created_at_gte` and `created_at_lte`.
      */
     public ListTransactionsRequest withPaymentMethodScheme(JsonNullable<? extends List<String>> paymentMethodScheme) {
         Utils.checkNotNull(paymentMethodScheme, "paymentMethodScheme");
@@ -1275,7 +1353,7 @@ public class ListTransactionsRequest {
 
     /**
      * Filters for transactions that have a payment method with a country that matches with the provided
-     * value.
+     * value. For best performance, combine it with `created_at_gte` and `created_at_lte`.
      */
     public ListTransactionsRequest withPaymentMethodCountry(String paymentMethodCountry) {
         Utils.checkNotNull(paymentMethodCountry, "paymentMethodCountry");
@@ -1285,7 +1363,7 @@ public class ListTransactionsRequest {
 
     /**
      * Filters for transactions that have a payment method with a country that matches with the provided
-     * value.
+     * value. For best performance, combine it with `created_at_gte` and `created_at_lte`.
      */
     public ListTransactionsRequest withPaymentMethodCountry(JsonNullable<String> paymentMethodCountry) {
         Utils.checkNotNull(paymentMethodCountry, "paymentMethodCountry");
@@ -1306,7 +1384,8 @@ public class ListTransactionsRequest {
     }
 
     /**
-     * Filters for transactions that have matching `method` values.
+     * Filters for transactions that have matching `method` values. For best performance, combine it with
+     * `created_at_gte` and `created_at_lte`.
      */
     public ListTransactionsRequest withMethod(List<Method> method) {
         Utils.checkNotNull(method, "method");
@@ -1315,7 +1394,8 @@ public class ListTransactionsRequest {
     }
 
     /**
-     * Filters for transactions that have matching `method` values.
+     * Filters for transactions that have matching `method` values. For best performance, combine it with
+     * `created_at_gte` and `created_at_lte`.
      */
     public ListTransactionsRequest withMethod(JsonNullable<? extends List<Method>> method) {
         Utils.checkNotNull(method, "method");
@@ -1468,9 +1548,15 @@ public class ListTransactionsRequest {
     }
 
     /**
-     * Filters for transactions that have at least one gift card redemption where the last 4 digits of its
-     * gift card number matches exactly with the provided value.
+     * Deprecated. Filters for transactions that have at least one gift card redemption where the last 4
+     * digits of its gift card number matches exactly with the provided value. This filter can be slow and
+     * is not recommended for use in automated systems.
+     * 
+     * <p>Use `gift_card_id` instead.
+     * 
+     * @deprecated field: This filter can be slow. Use `gift_card_id` instead..
      */
+    @Deprecated
     public ListTransactionsRequest withGiftCardLast4(String giftCardLast4) {
         Utils.checkNotNull(giftCardLast4, "giftCardLast4");
         this.giftCardLast4 = JsonNullable.of(giftCardLast4);
@@ -1478,9 +1564,15 @@ public class ListTransactionsRequest {
     }
 
     /**
-     * Filters for transactions that have at least one gift card redemption where the last 4 digits of its
-     * gift card number matches exactly with the provided value.
+     * Deprecated. Filters for transactions that have at least one gift card redemption where the last 4
+     * digits of its gift card number matches exactly with the provided value. This filter can be slow and
+     * is not recommended for use in automated systems.
+     * 
+     * <p>Use `gift_card_id` instead.
+     * 
+     * @deprecated field: This filter can be slow. Use `gift_card_id` instead..
      */
+    @Deprecated
     public ListTransactionsRequest withGiftCardLast4(JsonNullable<String> giftCardLast4) {
         Utils.checkNotNull(giftCardLast4, "giftCardLast4");
         this.giftCardLast4 = giftCardLast4;
@@ -1488,7 +1580,8 @@ public class ListTransactionsRequest {
     }
 
     /**
-     * Filters for transactions that have at least one associated settlement record.
+     * Filters for transactions that have at least one associated settlement record. When filtering on
+     * `false`, combine it with `created_at_gte` and `created_at_lte` for best performance.
      */
     public ListTransactionsRequest withHasSettlements(boolean hasSettlements) {
         Utils.checkNotNull(hasSettlements, "hasSettlements");
@@ -1497,7 +1590,8 @@ public class ListTransactionsRequest {
     }
 
     /**
-     * Filters for transactions that have at least one associated settlement record.
+     * Filters for transactions that have at least one associated settlement record. When filtering on
+     * `false`, combine it with `created_at_gte` and `created_at_lte` for best performance.
      */
     public ListTransactionsRequest withHasSettlements(JsonNullable<Boolean> hasSettlements) {
         Utils.checkNotNull(hasSettlements, "hasSettlements");
@@ -1525,7 +1619,7 @@ public class ListTransactionsRequest {
 
     /**
      * Filters the results to only the transactions that have a payment source that matches with any of the
-     * provided values.
+     * provided values. For best performance, combine it with `created_at_gte` and `created_at_lte`.
      */
     public ListTransactionsRequest withPaymentSource(List<TransactionPaymentSource> paymentSource) {
         Utils.checkNotNull(paymentSource, "paymentSource");
@@ -1535,7 +1629,7 @@ public class ListTransactionsRequest {
 
     /**
      * Filters the results to only the transactions that have a payment source that matches with any of the
-     * provided values.
+     * provided values. For best performance, combine it with `created_at_gte` and `created_at_lte`.
      */
     public ListTransactionsRequest withPaymentSource(JsonNullable<? extends List<TransactionPaymentSource>> paymentSource) {
         Utils.checkNotNull(paymentSource, "paymentSource");
@@ -1544,7 +1638,8 @@ public class ListTransactionsRequest {
     }
 
     /**
-     * Filters for transactions where the `is_subsequent_payment` matches the provided value.
+     * Filters for transactions where the `is_subsequent_payment` matches the provided value. For best
+     * performance, combine it with `created_at_gte` and `created_at_lte`.
      */
     public ListTransactionsRequest withIsSubsequentPayment(boolean isSubsequentPayment) {
         Utils.checkNotNull(isSubsequentPayment, "isSubsequentPayment");
@@ -1553,7 +1648,8 @@ public class ListTransactionsRequest {
     }
 
     /**
-     * Filters for transactions where the `is_subsequent_payment` matches the provided value.
+     * Filters for transactions where the `is_subsequent_payment` matches the provided value. For best
+     * performance, combine it with `created_at_gte` and `created_at_lte`.
      */
     public ListTransactionsRequest withIsSubsequentPayment(JsonNullable<Boolean> isSubsequentPayment) {
         Utils.checkNotNull(isSubsequentPayment, "isSubsequentPayment");
@@ -1562,7 +1658,8 @@ public class ListTransactionsRequest {
     }
 
     /**
-     * Filters for transactions where the `merchant_initiated` matches the provided value.
+     * Filters for transactions where the `merchant_initiated` matches the provided value. For best
+     * performance, combine it with `created_at_gte` and `created_at_lte`.
      */
     public ListTransactionsRequest withMerchantInitiated(boolean merchantInitiated) {
         Utils.checkNotNull(merchantInitiated, "merchantInitiated");
@@ -1571,7 +1668,8 @@ public class ListTransactionsRequest {
     }
 
     /**
-     * Filters for transactions where the `merchant_initiated` matches the provided value.
+     * Filters for transactions where the `merchant_initiated` matches the provided value. For best
+     * performance, combine it with `created_at_gte` and `created_at_lte`.
      */
     public ListTransactionsRequest withMerchantInitiated(JsonNullable<Boolean> merchantInitiated) {
         Utils.checkNotNull(merchantInitiated, "merchantInitiated");
@@ -1580,7 +1678,8 @@ public class ListTransactionsRequest {
     }
 
     /**
-     * Filters for transactions that attempted 3DS authentication or not.
+     * Filters for transactions that attempted 3DS authentication or not. For best performance, combine it
+     * with `created_at_gte` and `created_at_lte`.
      */
     public ListTransactionsRequest withUsed3ds(boolean used3ds) {
         Utils.checkNotNull(used3ds, "used3ds");
@@ -1589,7 +1688,8 @@ public class ListTransactionsRequest {
     }
 
     /**
-     * Filters for transactions that attempted 3DS authentication or not.
+     * Filters for transactions that attempted 3DS authentication or not. For best performance, combine it
+     * with `created_at_gte` and `created_at_lte`.
      */
     public ListTransactionsRequest withUsed3ds(JsonNullable<Boolean> used3ds) {
         Utils.checkNotNull(used3ds, "used3ds");
@@ -1824,6 +1924,7 @@ public class ListTransactionsRequest {
 
         private JsonNullable<String> buyerId = JsonNullable.undefined();
 
+        @Deprecated
         private JsonNullable<String> buyerEmailAddress = JsonNullable.undefined();
 
         private JsonNullable<String> ipAddress = JsonNullable.undefined();
@@ -1878,6 +1979,7 @@ public class ListTransactionsRequest {
 
         private JsonNullable<String> giftCardId = JsonNullable.undefined();
 
+        @Deprecated
         private JsonNullable<String> giftCardLast4 = JsonNullable.undefined();
 
         private JsonNullable<Boolean> hasSettlements = JsonNullable.undefined();
@@ -2082,12 +2184,30 @@ public class ListTransactionsRequest {
         }
 
 
+        /**
+         * Deprecated. Filters the results to only the items for which the `buyer` has an `email_address` that
+         * matches this value. This filter can be slow and is not recommended for use in automated systems.
+         * 
+         * <p>Use `buyer_search`, `buyer_external_identifier` or `buyer_id` instead.
+         * 
+         * @deprecated field: This filter can be slow. Use `buyer_search`, `buyer_external_identifier` or `buyer_id` instead..
+         */
+        @Deprecated
         public Builder buyerEmailAddress(String buyerEmailAddress) {
             Utils.checkNotNull(buyerEmailAddress, "buyerEmailAddress");
             this.buyerEmailAddress = JsonNullable.of(buyerEmailAddress);
             return this;
         }
 
+        /**
+         * Deprecated. Filters the results to only the items for which the `buyer` has an `email_address` that
+         * matches this value. This filter can be slow and is not recommended for use in automated systems.
+         * 
+         * <p>Use `buyer_search`, `buyer_external_identifier` or `buyer_id` instead.
+         * 
+         * @deprecated field: This filter can be slow. Use `buyer_search`, `buyer_external_identifier` or `buyer_id` instead..
+         */
+        @Deprecated
         public Builder buyerEmailAddress(JsonNullable<String> buyerEmailAddress) {
             Utils.checkNotNull(buyerEmailAddress, "buyerEmailAddress");
             this.buyerEmailAddress = buyerEmailAddress;
@@ -2192,7 +2312,8 @@ public class ListTransactionsRequest {
 
 
         /**
-         * Filters for transactions that have an `amount` that is equal to the provided `amount_eq` value.
+         * Filters for transactions that have an `amount` that is equal to the provided `amount_eq` value. For
+         * best performance, combine it with `created_at_gte` and `created_at_lte`.
          */
         public Builder amountEq(long amountEq) {
             Utils.checkNotNull(amountEq, "amountEq");
@@ -2201,7 +2322,8 @@ public class ListTransactionsRequest {
         }
 
         /**
-         * Filters for transactions that have an `amount` that is equal to the provided `amount_eq` value.
+         * Filters for transactions that have an `amount` that is equal to the provided `amount_eq` value. For
+         * best performance, combine it with `created_at_gte` and `created_at_lte`.
          */
         public Builder amountEq(JsonNullable<Long> amountEq) {
             Utils.checkNotNull(amountEq, "amountEq");
@@ -2212,6 +2334,7 @@ public class ListTransactionsRequest {
 
         /**
          * Filters for transactions that have an `amount` that is less than or equal to the `amount_lte` value.
+         * For best performance, combine it with `created_at_gte` and `created_at_lte`.
          */
         public Builder amountLte(long amountLte) {
             Utils.checkNotNull(amountLte, "amountLte");
@@ -2221,6 +2344,7 @@ public class ListTransactionsRequest {
 
         /**
          * Filters for transactions that have an `amount` that is less than or equal to the `amount_lte` value.
+         * For best performance, combine it with `created_at_gte` and `created_at_lte`.
          */
         public Builder amountLte(JsonNullable<Long> amountLte) {
             Utils.checkNotNull(amountLte, "amountLte");
@@ -2231,7 +2355,7 @@ public class ListTransactionsRequest {
 
         /**
          * Filters for transactions that have an `amount` that is greater than or equal to the `amount_gte`
-         * value.
+         * value. For best performance, combine it with `created_at_gte` and `created_at_lte`.
          */
         public Builder amountGte(long amountGte) {
             Utils.checkNotNull(amountGte, "amountGte");
@@ -2241,7 +2365,7 @@ public class ListTransactionsRequest {
 
         /**
          * Filters for transactions that have an `amount` that is greater than or equal to the `amount_gte`
-         * value.
+         * value. For best performance, combine it with `created_at_gte` and `created_at_lte`.
          */
         public Builder amountGte(JsonNullable<Long> amountGte) {
             Utils.checkNotNull(amountGte, "amountGte");
@@ -2252,7 +2376,8 @@ public class ListTransactionsRequest {
 
         /**
          * Filters for transactions that have matching `currency` values. The `currency` values provided must
-         * be formatted as 3-letter ISO currency code.
+         * be formatted as 3-letter ISO currency code. For best performance, combine it with `created_at_gte`
+         * and `created_at_lte`.
          */
         public Builder currency(List<String> currency) {
             Utils.checkNotNull(currency, "currency");
@@ -2262,7 +2387,8 @@ public class ListTransactionsRequest {
 
         /**
          * Filters for transactions that have matching `currency` values. The `currency` values provided must
-         * be formatted as 3-letter ISO currency code.
+         * be formatted as 3-letter ISO currency code. For best performance, combine it with `created_at_gte`
+         * and `created_at_lte`.
          */
         public Builder currency(JsonNullable<? extends List<String>> currency) {
             Utils.checkNotNull(currency, "currency");
@@ -2272,7 +2398,8 @@ public class ListTransactionsRequest {
 
 
         /**
-         * Filters for transactions that have matching `country` values.
+         * Filters for transactions that have matching `country` values. For best performance, combine it with
+         * `created_at_gte` and `created_at_lte`.
          */
         public Builder country(List<String> country) {
             Utils.checkNotNull(country, "country");
@@ -2281,7 +2408,8 @@ public class ListTransactionsRequest {
         }
 
         /**
-         * Filters for transactions that have matching `country` values.
+         * Filters for transactions that have matching `country` values. For best performance, combine it with
+         * `created_at_gte` and `created_at_lte`.
          */
         public Builder country(JsonNullable<? extends List<String>> country) {
             Utils.checkNotNull(country, "country");
@@ -2336,7 +2464,8 @@ public class ListTransactionsRequest {
 
 
         /**
-         * Filters for transactions where the `payment_method_scheme` matches one of the provided values.
+         * Filters for transactions where the `payment_method_scheme` matches one of the provided values. For
+         * best performance, combine it with `created_at_gte` and `created_at_lte`.
          */
         public Builder paymentMethodScheme(List<String> paymentMethodScheme) {
             Utils.checkNotNull(paymentMethodScheme, "paymentMethodScheme");
@@ -2345,7 +2474,8 @@ public class ListTransactionsRequest {
         }
 
         /**
-         * Filters for transactions where the `payment_method_scheme` matches one of the provided values.
+         * Filters for transactions where the `payment_method_scheme` matches one of the provided values. For
+         * best performance, combine it with `created_at_gte` and `created_at_lte`.
          */
         public Builder paymentMethodScheme(JsonNullable<? extends List<String>> paymentMethodScheme) {
             Utils.checkNotNull(paymentMethodScheme, "paymentMethodScheme");
@@ -2356,7 +2486,7 @@ public class ListTransactionsRequest {
 
         /**
          * Filters for transactions that have a payment method with a country that matches with the provided
-         * value.
+         * value. For best performance, combine it with `created_at_gte` and `created_at_lte`.
          */
         public Builder paymentMethodCountry(String paymentMethodCountry) {
             Utils.checkNotNull(paymentMethodCountry, "paymentMethodCountry");
@@ -2366,7 +2496,7 @@ public class ListTransactionsRequest {
 
         /**
          * Filters for transactions that have a payment method with a country that matches with the provided
-         * value.
+         * value. For best performance, combine it with `created_at_gte` and `created_at_lte`.
          */
         public Builder paymentMethodCountry(JsonNullable<String> paymentMethodCountry) {
             Utils.checkNotNull(paymentMethodCountry, "paymentMethodCountry");
@@ -2389,7 +2519,8 @@ public class ListTransactionsRequest {
 
 
         /**
-         * Filters for transactions that have matching `method` values.
+         * Filters for transactions that have matching `method` values. For best performance, combine it with
+         * `created_at_gte` and `created_at_lte`.
          */
         public Builder method(List<Method> method) {
             Utils.checkNotNull(method, "method");
@@ -2398,7 +2529,8 @@ public class ListTransactionsRequest {
         }
 
         /**
-         * Filters for transactions that have matching `method` values.
+         * Filters for transactions that have matching `method` values. For best performance, combine it with
+         * `created_at_gte` and `created_at_lte`.
          */
         public Builder method(JsonNullable<? extends List<Method>> method) {
             Utils.checkNotNull(method, "method");
@@ -2560,9 +2692,15 @@ public class ListTransactionsRequest {
 
 
         /**
-         * Filters for transactions that have at least one gift card redemption where the last 4 digits of its
-         * gift card number matches exactly with the provided value.
+         * Deprecated. Filters for transactions that have at least one gift card redemption where the last 4
+         * digits of its gift card number matches exactly with the provided value. This filter can be slow and
+         * is not recommended for use in automated systems.
+         * 
+         * <p>Use `gift_card_id` instead.
+         * 
+         * @deprecated field: This filter can be slow. Use `gift_card_id` instead..
          */
+        @Deprecated
         public Builder giftCardLast4(String giftCardLast4) {
             Utils.checkNotNull(giftCardLast4, "giftCardLast4");
             this.giftCardLast4 = JsonNullable.of(giftCardLast4);
@@ -2570,9 +2708,15 @@ public class ListTransactionsRequest {
         }
 
         /**
-         * Filters for transactions that have at least one gift card redemption where the last 4 digits of its
-         * gift card number matches exactly with the provided value.
+         * Deprecated. Filters for transactions that have at least one gift card redemption where the last 4
+         * digits of its gift card number matches exactly with the provided value. This filter can be slow and
+         * is not recommended for use in automated systems.
+         * 
+         * <p>Use `gift_card_id` instead.
+         * 
+         * @deprecated field: This filter can be slow. Use `gift_card_id` instead..
          */
+        @Deprecated
         public Builder giftCardLast4(JsonNullable<String> giftCardLast4) {
             Utils.checkNotNull(giftCardLast4, "giftCardLast4");
             this.giftCardLast4 = giftCardLast4;
@@ -2581,7 +2725,8 @@ public class ListTransactionsRequest {
 
 
         /**
-         * Filters for transactions that have at least one associated settlement record.
+         * Filters for transactions that have at least one associated settlement record. When filtering on
+         * `false`, combine it with `created_at_gte` and `created_at_lte` for best performance.
          */
         public Builder hasSettlements(boolean hasSettlements) {
             Utils.checkNotNull(hasSettlements, "hasSettlements");
@@ -2590,7 +2735,8 @@ public class ListTransactionsRequest {
         }
 
         /**
-         * Filters for transactions that have at least one associated settlement record.
+         * Filters for transactions that have at least one associated settlement record. When filtering on
+         * `false`, combine it with `created_at_gte` and `created_at_lte` for best performance.
          */
         public Builder hasSettlements(JsonNullable<Boolean> hasSettlements) {
             Utils.checkNotNull(hasSettlements, "hasSettlements");
@@ -2620,7 +2766,7 @@ public class ListTransactionsRequest {
 
         /**
          * Filters the results to only the transactions that have a payment source that matches with any of the
-         * provided values.
+         * provided values. For best performance, combine it with `created_at_gte` and `created_at_lte`.
          */
         public Builder paymentSource(List<TransactionPaymentSource> paymentSource) {
             Utils.checkNotNull(paymentSource, "paymentSource");
@@ -2630,7 +2776,7 @@ public class ListTransactionsRequest {
 
         /**
          * Filters the results to only the transactions that have a payment source that matches with any of the
-         * provided values.
+         * provided values. For best performance, combine it with `created_at_gte` and `created_at_lte`.
          */
         public Builder paymentSource(JsonNullable<? extends List<TransactionPaymentSource>> paymentSource) {
             Utils.checkNotNull(paymentSource, "paymentSource");
@@ -2640,7 +2786,8 @@ public class ListTransactionsRequest {
 
 
         /**
-         * Filters for transactions where the `is_subsequent_payment` matches the provided value.
+         * Filters for transactions where the `is_subsequent_payment` matches the provided value. For best
+         * performance, combine it with `created_at_gte` and `created_at_lte`.
          */
         public Builder isSubsequentPayment(boolean isSubsequentPayment) {
             Utils.checkNotNull(isSubsequentPayment, "isSubsequentPayment");
@@ -2649,7 +2796,8 @@ public class ListTransactionsRequest {
         }
 
         /**
-         * Filters for transactions where the `is_subsequent_payment` matches the provided value.
+         * Filters for transactions where the `is_subsequent_payment` matches the provided value. For best
+         * performance, combine it with `created_at_gte` and `created_at_lte`.
          */
         public Builder isSubsequentPayment(JsonNullable<Boolean> isSubsequentPayment) {
             Utils.checkNotNull(isSubsequentPayment, "isSubsequentPayment");
@@ -2659,7 +2807,8 @@ public class ListTransactionsRequest {
 
 
         /**
-         * Filters for transactions where the `merchant_initiated` matches the provided value.
+         * Filters for transactions where the `merchant_initiated` matches the provided value. For best
+         * performance, combine it with `created_at_gte` and `created_at_lte`.
          */
         public Builder merchantInitiated(boolean merchantInitiated) {
             Utils.checkNotNull(merchantInitiated, "merchantInitiated");
@@ -2668,7 +2817,8 @@ public class ListTransactionsRequest {
         }
 
         /**
-         * Filters for transactions where the `merchant_initiated` matches the provided value.
+         * Filters for transactions where the `merchant_initiated` matches the provided value. For best
+         * performance, combine it with `created_at_gte` and `created_at_lte`.
          */
         public Builder merchantInitiated(JsonNullable<Boolean> merchantInitiated) {
             Utils.checkNotNull(merchantInitiated, "merchantInitiated");
@@ -2678,7 +2828,8 @@ public class ListTransactionsRequest {
 
 
         /**
-         * Filters for transactions that attempted 3DS authentication or not.
+         * Filters for transactions that attempted 3DS authentication or not. For best performance, combine it
+         * with `created_at_gte` and `created_at_lte`.
          */
         public Builder used3ds(boolean used3ds) {
             Utils.checkNotNull(used3ds, "used3ds");
@@ -2687,7 +2838,8 @@ public class ListTransactionsRequest {
         }
 
         /**
-         * Filters for transactions that attempted 3DS authentication or not.
+         * Filters for transactions that attempted 3DS authentication or not. For best performance, combine it
+         * with `created_at_gte` and `created_at_lte`.
          */
         public Builder used3ds(JsonNullable<Boolean> used3ds) {
             Utils.checkNotNull(used3ds, "used3ds");
