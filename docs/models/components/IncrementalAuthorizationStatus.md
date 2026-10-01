@@ -18,3 +18,4 @@ IncrementalAuthorizationStatus custom = IncrementalAuthorizationStatus.of("custo
 | ----------- | ----------- |
 | `SUCCEEDED` | succeeded   |
 | `FAILED`    | failed      |
+| `PENDING`   | pending     |

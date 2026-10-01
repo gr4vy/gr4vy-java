@@ -22,6 +22,7 @@ public class IncrementalAuthorizationStatus {
 
     public static final IncrementalAuthorizationStatus SUCCEEDED = new IncrementalAuthorizationStatus("succeeded");
     public static final IncrementalAuthorizationStatus FAILED = new IncrementalAuthorizationStatus("failed");
+    public static final IncrementalAuthorizationStatus PENDING = new IncrementalAuthorizationStatus("pending");
 
     // This map will grow whenever a Color gets created with a new
     // unrecognized value (a potential memory leak if the user is not
@@ -97,6 +98,7 @@ public class IncrementalAuthorizationStatus {
         Map<String, IncrementalAuthorizationStatus> map = new LinkedHashMap<>();
         map.put("succeeded", SUCCEEDED);
         map.put("failed", FAILED);
+        map.put("pending", PENDING);
         return map;
     }
 
@@ -104,6 +106,7 @@ public class IncrementalAuthorizationStatus {
         Map<String, IncrementalAuthorizationStatusEnum> map = new HashMap<>();
         map.put("succeeded", IncrementalAuthorizationStatusEnum.SUCCEEDED);
         map.put("failed", IncrementalAuthorizationStatusEnum.FAILED);
+        map.put("pending", IncrementalAuthorizationStatusEnum.PENDING);
         return map;
     }
     
@@ -111,7 +114,8 @@ public class IncrementalAuthorizationStatus {
     public enum IncrementalAuthorizationStatusEnum {
 
         SUCCEEDED("succeeded"),
-        FAILED("failed"),;
+        FAILED("failed"),
+        PENDING("pending"),;
 
         private final String value;
 
