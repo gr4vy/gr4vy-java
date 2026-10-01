@@ -78,4 +78,23 @@ public class WebhooksTest {
 
         assertEquals(thrown.getMessage(), "Missing header values");
     }
+
+    @Test
+    void testVerifyWebhookAcceptsAValidSignatureInAnyPosition() {
+        String header = "other,78aca0c78005107a654a957b8566fa6e0e5e06aea92d7da72a6da9e5a690d013";
+
+        assertDoesNotThrow(() -> Webhooks.verifyWebhook(payload, secret, header, 0, timestampHeader));
+    }
+
+    @Test
+    void testVerifyWebhookRejectsANearlyMatchingSignature() {
+        String header = "78aca0c78005107a654a957b8566fa6e0e5e06aea92d7da72a6da9e5a690d014";
+
+        IllegalArgumentException thrown = assertThrows(
+            IllegalArgumentException.class,
+            () -> Webhooks.verifyWebhook(payload, secret, header, 0, timestampHeader)
+        );
+
+        assertEquals(thrown.getMessage(), "No matching signature found");
+    }
 }
