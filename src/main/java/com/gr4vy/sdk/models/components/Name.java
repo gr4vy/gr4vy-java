@@ -28,6 +28,7 @@ public class Name {
     public static final Name TRANSACTION_UPDATED_STATUS = new Name("transaction-updated-status");
     public static final Name TRANSACTION_SYNC_EVENT = new Name("transaction-sync-event");
     public static final Name TRANSACTION_SYNC_FAILED_EVENT = new Name("transaction-sync-failed-event");
+    public static final Name NETWORK_TOKEN_SKIPPED = new Name("network-token-skipped");
     public static final Name TRANSACTION_MODIFIED_EVENT = new Name("transaction-modified-event");
     public static final Name TRANSACTION_API_REQUEST = new Name("transaction-api-request");
     public static final Name TRANSACTION_API_RESPONSE = new Name("transaction-api-response");
@@ -163,6 +164,7 @@ public class Name {
         map.put("transaction-updated-status", TRANSACTION_UPDATED_STATUS);
         map.put("transaction-sync-event", TRANSACTION_SYNC_EVENT);
         map.put("transaction-sync-failed-event", TRANSACTION_SYNC_FAILED_EVENT);
+        map.put("network-token-skipped", NETWORK_TOKEN_SKIPPED);
         map.put("transaction-modified-event", TRANSACTION_MODIFIED_EVENT);
         map.put("transaction-api-request", TRANSACTION_API_REQUEST);
         map.put("transaction-api-response", TRANSACTION_API_RESPONSE);
@@ -230,6 +232,7 @@ public class Name {
         map.put("transaction-updated-status", NameEnum.TRANSACTION_UPDATED_STATUS);
         map.put("transaction-sync-event", NameEnum.TRANSACTION_SYNC_EVENT);
         map.put("transaction-sync-failed-event", NameEnum.TRANSACTION_SYNC_FAILED_EVENT);
+        map.put("network-token-skipped", NameEnum.NETWORK_TOKEN_SKIPPED);
         map.put("transaction-modified-event", NameEnum.TRANSACTION_MODIFIED_EVENT);
         map.put("transaction-api-request", NameEnum.TRANSACTION_API_REQUEST);
         map.put("transaction-api-response", NameEnum.TRANSACTION_API_RESPONSE);
@@ -298,6 +301,7 @@ public class Name {
         TRANSACTION_UPDATED_STATUS("transaction-updated-status"),
         TRANSACTION_SYNC_EVENT("transaction-sync-event"),
         TRANSACTION_SYNC_FAILED_EVENT("transaction-sync-failed-event"),
+        NETWORK_TOKEN_SKIPPED("network-token-skipped"),
         TRANSACTION_MODIFIED_EVENT("transaction-modified-event"),
         TRANSACTION_API_REQUEST("transaction-api-request"),
         TRANSACTION_API_RESPONSE("transaction-api-response"),

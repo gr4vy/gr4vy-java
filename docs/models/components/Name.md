@@ -21,6 +21,7 @@ Name custom = Name.of("custom_value");
 | `TRANSACTION_UPDATED_STATUS`                                               | transaction-updated-status                                                 |
 | `TRANSACTION_SYNC_EVENT`                                                   | transaction-sync-event                                                     |
 | `TRANSACTION_SYNC_FAILED_EVENT`                                            | transaction-sync-failed-event                                              |
+| `NETWORK_TOKEN_SKIPPED`                                                    | network-token-skipped                                                      |
 | `TRANSACTION_MODIFIED_EVENT`                                               | transaction-modified-event                                                 |
 | `TRANSACTION_API_REQUEST`                                                  | transaction-api-request                                                    |
 | `TRANSACTION_API_RESPONSE`                                                 | transaction-api-response                                                   |
