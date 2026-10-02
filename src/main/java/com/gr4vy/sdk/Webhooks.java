@@ -73,7 +73,7 @@ public class Webhooks {
         // Compare in constant time, so the check doesn't leak how much of one matched.
         byte[] expected = expectedSignature.getBytes(StandardCharsets.UTF_8);
         boolean matched = signatures.stream()
-            .anyMatch(signature -> MessageDigest.isEqual(signature.getBytes(StandardCharsets.UTF_8), expected));
+            .anyMatch(signature -> MessageDigest.isEqual(expected, signature.getBytes(StandardCharsets.UTF_8)));
         if(!matched) {
             throw new IllegalArgumentException("No matching signature found");
         }
