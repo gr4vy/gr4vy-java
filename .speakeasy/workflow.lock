@@ -1,4 +1,4 @@
-speakeasyVersion: 1.800.0
+speakeasyVersion: 1.800.1
 sources:
     Gr4vy:
         sourceNamespace: openapi
@@ -28,7 +28,7 @@ targets:
         sourceRevisionDigest: sha256:2dadee4918488831e2952e33cb7154fe31342de1601ead7e20c9595f847f16dd
         sourceBlobDigest: sha256:e8d46e9f8fa7d4424f4788db7f566ad728215410fabf0fed6e1bfe1eb98ad637
         codeSamplesNamespace: openapi-java-code-samples
-        codeSamplesRevisionDigest: sha256:2dd04225894e75152fffddcd555369b3ad52442bf814f7189dbc1c2112d7d8b2
+        codeSamplesRevisionDigest: sha256:7c7c7606c4b7cebbf6143455997d493f529245272c1da03faa834a5303e3f0d5
 workflow:
     workflowVersion: 1.0.0
     speakeasyVersion: latest
