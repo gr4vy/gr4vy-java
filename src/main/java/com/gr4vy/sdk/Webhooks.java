@@ -1,6 +1,7 @@
 package com.gr4vy.sdk;
 
 import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
 import java.util.Arrays;
 import java.util.List;
 
@@ -69,7 +70,11 @@ public class Webhooks {
             throw new IllegalArgumentException("Invalid secret");
         }
 
-        if(!signatures.contains(expectedSignature)) {
+        // Compare in constant time, so the check doesn't leak how much of one matched.
+        byte[] expected = expectedSignature.getBytes(StandardCharsets.UTF_8);
+        boolean matched = signatures.stream()
+            .anyMatch(signature -> MessageDigest.isEqual(expected, signature.getBytes(StandardCharsets.UTF_8)));
+        if(!matched) {
             throw new IllegalArgumentException("No matching signature found");
         }
     }
