@@ -70,6 +70,7 @@ Name custom = Name.of("custom_value");
 | `PAYMENT_CONNECTOR_REPORT_CHARGEBACK_POSTED`                               | payment-connector-report-chargeback-posted                                 |
 | `PAYMENT_CONNECTOR_REPORT_CHARGEBACK_REVERSAL_POSTED`                      | payment-connector-report-chargeback-reversal-posted                        |
 | `PAYMENT_CONNECTOR_TRANSACTION_WEBHOOK_PROCESSED`                          | payment-connector-transaction-webhook-processed                            |
+| `REFUND_INGESTED`                                                          | refund-ingested                                                            |
 | `DIGITAL_WALLET_APPLE_PAY_TOKEN_DECRYPTED`                                 | digital-wallet-apple-pay-token-decrypted                                   |
 | `DIGITAL_WALLET_GOOGLE_PAY_TOKEN_DECRYPTED`                                | digital-wallet-google-pay-token-decrypted                                  |
 | `DIGITAL_WALLET_CLICK_TO_PAY_TOKEN_DECRYPTED`                              | digital-wallet-click-to-pay-token-decrypted                                |
