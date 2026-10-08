@@ -1,19 +1,19 @@
 lockVersion: 2.0.0
 id: 5bbaa3a9-baa0-471b-ba6a-13fd88e8c119
 management:
-  docChecksum: 71a468fd1fb2c390d488dbf23e5901de
+  docChecksum: 74e7f9943eb7fc497c33f4412f22f900
   docVersion: 1.0.0
   speakeasyVersion: 1.801.0
   generationVersion: 2.946.0
-  releaseVersion: 2.19.23
-  configChecksum: 6631ad991e0231ee8a7328f557f2f5a5
+  releaseVersion: 2.19.24
+  configChecksum: a9c74739cdf121bb18e972df3b76892b
   repoURL: https://github.com/gr4vy/gr4vy-java.git
   installationURL: https://github.com/gr4vy/gr4vy-java
   published: true
 persistentEdits:
-  generation_id: 4910981d-3c81-4888-a41b-bb165f92c006
-  pristine_commit_hash: 4538b2afd243053b82805bfb2dbfa114e75eae23
-  pristine_tree_hash: 9bb0ca8305c2b061ac3fd4db028d30e671c8ef21
+  generation_id: c884f1c2-886a-4d26-b25c-787122e101ee
+  pristine_commit_hash: 662baeae5241da87b213b4180a48a55479e3872b
+  pristine_tree_hash: 473905c354fbfdab568c84e1e091925ae669101d
 features:
   java:
     additionalDependencies: 0.1.0
@@ -2891,8 +2891,8 @@ trackedFiles:
     pristine_git_object: 15c4e4642f204ccb312d8814155b69e153b4e19b
   gradle.properties:
     id: 2afbb999f001
-    last_write_checksum: sha1:5d0f748c10d108d6e6fbed2f717bec0d69872b2a
-    pristine_git_object: 8edb06ada4eff32a086e4f4a04193912890815cd
+    last_write_checksum: sha1:fb66e79fc70726f1684e400dde178cd3949fac1d
+    pristine_git_object: 5fc4739c4a78ea1b24c0d6b85d16da8bb9150bc0
   gradle/wrapper/gradle-wrapper.jar:
     id: ec27dae6e852
     last_write_checksum: sha1:f725fb1467084142d74fd7cd8eab691ab3442611
@@ -3235,8 +3235,8 @@ trackedFiles:
     pristine_git_object: b50475cc7f6041d63c4569256e4ff1850b20d30b
   src/main/java/com/gr4vy/sdk/SDKConfiguration.java:
     id: 73a7edeaca45
-    last_write_checksum: sha1:11093075e18140de780c5b0b828ae61256435299
-    pristine_git_object: 11a351db731545d9e2c2bdbadd6a987ec64e3247
+    last_write_checksum: sha1:b1d63f7285dbf70b2f170e41fa088fcfeed0d882
+    pristine_git_object: d44ba0c44a13549b13a28f65ff7c9ab2acb61141
   src/main/java/com/gr4vy/sdk/SecuritySource.java:
     id: 1b6add6b9b50
     last_write_checksum: sha1:2f365cc823c6243188e83f4df618c9737fcee8bd
@@ -12499,9 +12499,6 @@ examples:
           application/json: {"type": "error", "code": "gateway_timeout", "status": 504, "message": "Request could not be processed"}
 examplesVersion: 1.0.2
 generatedTests: {}
-releaseNotes: |
-  ## Java SDK Changes:
-  * `gr4vy.transactions.events.list()`:  `response.items[].name.enum(refundIngested)` **Added**
 generatedFiles:
   - .gitattributes
   - USAGE.md
