@@ -19,3 +19,4 @@ UserStatus custom = UserStatus.of("custom_value");
 | `ACTIVE`  | active    |
 | `PENDING` | pending   |
 | `DELETED` | deleted   |
+| `RESET`   | reset     |
