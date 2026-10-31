@@ -64,13 +64,14 @@ public class SEPABankPaymentMethodCreate {
     private Optional<String> scheme;
 
     /**
-     * The IBAN for this SEPA bank account
+     * The IBAN for this SEPA bank account. Spaces are ignored and it is not case sensitive.
      */
     @JsonProperty("account_number")
     private String accountNumber;
 
     /**
-     * The BIC for this SEPA bank account
+     * The BIC for this SEPA bank account, of 8 or 11 characters. Spaces are ignored and it is not case
+     * sensitive.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("routing_number")
@@ -153,7 +154,7 @@ public class SEPABankPaymentMethodCreate {
     }
 
     /**
-     * The IBAN for this SEPA bank account
+     * The IBAN for this SEPA bank account. Spaces are ignored and it is not case sensitive.
      */
     @JsonIgnore
     public String accountNumber() {
@@ -161,7 +162,8 @@ public class SEPABankPaymentMethodCreate {
     }
 
     /**
-     * The BIC for this SEPA bank account
+     * The BIC for this SEPA bank account, of 8 or 11 characters. Spaces are ignored and it is not case
+     * sensitive.
      */
     @JsonIgnore
     public JsonNullable<String> routingNumber() {
@@ -234,7 +236,7 @@ public class SEPABankPaymentMethodCreate {
     }
 
     /**
-     * The IBAN for this SEPA bank account
+     * The IBAN for this SEPA bank account. Spaces are ignored and it is not case sensitive.
      */
     public SEPABankPaymentMethodCreate withAccountNumber(String accountNumber) {
         Utils.checkNotNull(accountNumber, "accountNumber");
@@ -243,7 +245,8 @@ public class SEPABankPaymentMethodCreate {
     }
 
     /**
-     * The BIC for this SEPA bank account
+     * The BIC for this SEPA bank account, of 8 or 11 characters. Spaces are ignored and it is not case
+     * sensitive.
      */
     public SEPABankPaymentMethodCreate withRoutingNumber(String routingNumber) {
         Utils.checkNotNull(routingNumber, "routingNumber");
@@ -252,7 +255,8 @@ public class SEPABankPaymentMethodCreate {
     }
 
     /**
-     * The BIC for this SEPA bank account
+     * The BIC for this SEPA bank account, of 8 or 11 characters. Spaces are ignored and it is not case
+     * sensitive.
      */
     public SEPABankPaymentMethodCreate withRoutingNumber(JsonNullable<String> routingNumber) {
         Utils.checkNotNull(routingNumber, "routingNumber");
@@ -386,7 +390,7 @@ public class SEPABankPaymentMethodCreate {
 
 
         /**
-         * The IBAN for this SEPA bank account
+         * The IBAN for this SEPA bank account. Spaces are ignored and it is not case sensitive.
          */
         public Builder accountNumber(String accountNumber) {
             Utils.checkNotNull(accountNumber, "accountNumber");
@@ -396,7 +400,8 @@ public class SEPABankPaymentMethodCreate {
 
 
         /**
-         * The BIC for this SEPA bank account
+         * The BIC for this SEPA bank account, of 8 or 11 characters. Spaces are ignored and it is not case
+         * sensitive.
          */
         public Builder routingNumber(String routingNumber) {
             Utils.checkNotNull(routingNumber, "routingNumber");
@@ -405,7 +410,8 @@ public class SEPABankPaymentMethodCreate {
         }
 
         /**
-         * The BIC for this SEPA bank account
+         * The BIC for this SEPA bank account, of 8 or 11 characters. Spaces are ignored and it is not case
+         * sensitive.
          */
         public Builder routingNumber(JsonNullable<String> routingNumber) {
             Utils.checkNotNull(routingNumber, "routingNumber");

@@ -23,12 +23,16 @@ RedirectPaymentMethodCreateMethod custom = RedirectPaymentMethodCreateMethod.of(
 | `AFTERPAY`          | afterpay            |
 | `ALIPAY`            | alipay              |
 | `ALIPAYHK`          | alipayhk            |
+| `ALIPAYPLUS`        | alipayplus          |
+| `ALMA`              | alma                |
 | `ARCUSPAYNETWORK`   | arcuspaynetwork     |
 | `BACS`              | bacs                |
 | `BANCONTACT`        | bancontact          |
+| `BCMCMOBILE`        | bcmcmobile          |
 | `BCP`               | bcp                 |
 | `BECS`              | becs                |
 | `BITPAY`            | bitpay              |
+| `BIZUM`             | bizum               |
 | `BLIK`              | blik                |
 | `BOLETO`            | boleto              |
 | `BOOST`             | boost               |
@@ -45,9 +49,11 @@ RedirectPaymentMethodCreateMethod custom = RedirectPaymentMethodCreateMethod.of(
 | `DCB`               | dcb                 |
 | `DLOCAL`            | dlocal              |
 | `DUITNOW`           | duitnow             |
+| `EBANKINGFI`        | ebankingfi          |
 | `EBANX`             | ebanx               |
 | `ECKOH`             | eckoh               |
 | `EFECTY`            | efecty              |
+| `EFTPAD`            | eftpad              |
 | `EPS`               | eps                 |
 | `EVERYDAYPAY`       | everydaypay         |
 | `GCASH`             | gcash               |
@@ -71,7 +77,9 @@ RedirectPaymentMethodCreateMethod custom = RedirectPaymentMethodCreateMethod.of(
 | `LINEPAY`           | linepay             |
 | `LINKAJA`           | linkaja             |
 | `MAYBANKQRPAY`      | maybankqrpay        |
+| `MBWAY`             | mbway               |
 | `MERCADOPAGO`       | mercadopago         |
+| `MOBILEPAY`         | mobilepay           |
 | `MULTIBANCO`        | multibanco          |
 | `MULTIPAGO`         | multipago           |
 | `NETBANKING`        | netbanking          |
@@ -89,6 +97,7 @@ RedirectPaymentMethodCreateMethod custom = RedirectPaymentMethodCreateMethod.of(
 | `P24`               | p24                 |
 | `PAGOEFECTIVO`      | pagoefectivo        |
 | `PAYBYBANK`         | paybybank           |
+| `PAYBYBANKEU`       | paybybankeu         |
 | `PAYID`             | payid               |
 | `PAYMAYA`           | paymaya             |
 | `PAYSQUAD`          | paysquad            |
@@ -105,6 +114,7 @@ RedirectPaymentMethodCreateMethod custom = RedirectPaymentMethodCreateMethod.of(
 | `RAPIPAGO`          | rapipago            |
 | `RAZORPAY`          | razorpay            |
 | `REDPAGOS`          | redpagos            |
+| `RIVERTY`           | riverty             |
 | `SCALAPAY`          | scalapay            |
 | `SEPA`              | sepa                |
 | `SERVIPAG`          | servipag            |
@@ -127,6 +137,7 @@ RedirectPaymentMethodCreateMethod custom = RedirectPaymentMethodCreateMethod.of(
 | `TRUEMONEY`         | truemoney           |
 | `TRUSTLY`           | trustly             |
 | `TRUSTLYEUROPE`     | trustlyeurope       |
+| `TWINT`             | twint               |
 | `UPI`               | upi                 |
 | `VENMO`             | venmo               |
 | `VIPPS`             | vipps               |
