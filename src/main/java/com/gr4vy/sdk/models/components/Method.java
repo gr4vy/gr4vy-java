@@ -25,14 +25,18 @@ public class Method {
     public static final Method AFTERPAY = new Method("afterpay");
     public static final Method ALIPAY = new Method("alipay");
     public static final Method ALIPAYHK = new Method("alipayhk");
+    public static final Method ALIPAYPLUS = new Method("alipayplus");
+    public static final Method ALMA = new Method("alma");
     public static final Method APPLEPAY = new Method("applepay");
     public static final Method ARCUSPAYNETWORK = new Method("arcuspaynetwork");
     public static final Method BACS = new Method("bacs");
     public static final Method BANCONTACT = new Method("bancontact");
     public static final Method BANK = new Method("bank");
+    public static final Method BCMCMOBILE = new Method("bcmcmobile");
     public static final Method BCP = new Method("bcp");
     public static final Method BECS = new Method("becs");
     public static final Method BITPAY = new Method("bitpay");
+    public static final Method BIZUM = new Method("bizum");
     public static final Method BLIK = new Method("blik");
     public static final Method ACH = new Method("ach");
     public static final Method BOLETO = new Method("boleto");
@@ -52,9 +56,11 @@ public class Method {
     public static final Method DCB = new Method("dcb");
     public static final Method DLOCAL = new Method("dlocal");
     public static final Method DUITNOW = new Method("duitnow");
+    public static final Method EBANKINGFI = new Method("ebankingfi");
     public static final Method EBANX = new Method("ebanx");
     public static final Method ECKOH = new Method("eckoh");
     public static final Method EFECTY = new Method("efecty");
+    public static final Method EFTPAD = new Method("eftpad");
     public static final Method EPS = new Method("eps");
     public static final Method EVERYDAYPAY = new Method("everydaypay");
     public static final Method GCASH = new Method("gcash");
@@ -81,7 +87,9 @@ public class Method {
     public static final Method LINEPAY = new Method("linepay");
     public static final Method LINKAJA = new Method("linkaja");
     public static final Method MAYBANKQRPAY = new Method("maybankqrpay");
+    public static final Method MBWAY = new Method("mbway");
     public static final Method MERCADOPAGO = new Method("mercadopago");
+    public static final Method MOBILEPAY = new Method("mobilepay");
     public static final Method MULTIBANCO = new Method("multibanco");
     public static final Method MULTIPAGO = new Method("multipago");
     public static final Method NEQUI = new Method("nequi");
@@ -100,6 +108,7 @@ public class Method {
     public static final Method P24 = new Method("p24");
     public static final Method PAGOEFECTIVO = new Method("pagoefectivo");
     public static final Method PAYBYBANK = new Method("paybybank");
+    public static final Method PAYBYBANKEU = new Method("paybybankeu");
     public static final Method PAYID = new Method("payid");
     public static final Method PAYMAYA = new Method("paymaya");
     public static final Method PAYSQUAD = new Method("paysquad");
@@ -118,6 +127,7 @@ public class Method {
     public static final Method RAZORPAY = new Method("razorpay");
     public static final Method RAPIPAGO = new Method("rapipago");
     public static final Method REDPAGOS = new Method("redpagos");
+    public static final Method RIVERTY = new Method("riverty");
     public static final Method SCALAPAY = new Method("scalapay");
     public static final Method SEPA = new Method("sepa");
     public static final Method SERVIPAG = new Method("servipag");
@@ -140,6 +150,7 @@ public class Method {
     public static final Method TRUEMONEY = new Method("truemoney");
     public static final Method TRUSTLY = new Method("trustly");
     public static final Method TRUSTLYEUROPE = new Method("trustlyeurope");
+    public static final Method TWINT = new Method("twint");
     public static final Method UPI = new Method("upi");
     public static final Method VENMO = new Method("venmo");
     public static final Method VIPPS = new Method("vipps");
@@ -227,14 +238,18 @@ public class Method {
         map.put("afterpay", AFTERPAY);
         map.put("alipay", ALIPAY);
         map.put("alipayhk", ALIPAYHK);
+        map.put("alipayplus", ALIPAYPLUS);
+        map.put("alma", ALMA);
         map.put("applepay", APPLEPAY);
         map.put("arcuspaynetwork", ARCUSPAYNETWORK);
         map.put("bacs", BACS);
         map.put("bancontact", BANCONTACT);
         map.put("bank", BANK);
+        map.put("bcmcmobile", BCMCMOBILE);
         map.put("bcp", BCP);
         map.put("becs", BECS);
         map.put("bitpay", BITPAY);
+        map.put("bizum", BIZUM);
         map.put("blik", BLIK);
         map.put("ach", ACH);
         map.put("boleto", BOLETO);
@@ -254,9 +269,11 @@ public class Method {
         map.put("dcb", DCB);
         map.put("dlocal", DLOCAL);
         map.put("duitnow", DUITNOW);
+        map.put("ebankingfi", EBANKINGFI);
         map.put("ebanx", EBANX);
         map.put("eckoh", ECKOH);
         map.put("efecty", EFECTY);
+        map.put("eftpad", EFTPAD);
         map.put("eps", EPS);
         map.put("everydaypay", EVERYDAYPAY);
         map.put("gcash", GCASH);
@@ -283,7 +300,9 @@ public class Method {
         map.put("linepay", LINEPAY);
         map.put("linkaja", LINKAJA);
         map.put("maybankqrpay", MAYBANKQRPAY);
+        map.put("mbway", MBWAY);
         map.put("mercadopago", MERCADOPAGO);
+        map.put("mobilepay", MOBILEPAY);
         map.put("multibanco", MULTIBANCO);
         map.put("multipago", MULTIPAGO);
         map.put("nequi", NEQUI);
@@ -302,6 +321,7 @@ public class Method {
         map.put("p24", P24);
         map.put("pagoefectivo", PAGOEFECTIVO);
         map.put("paybybank", PAYBYBANK);
+        map.put("paybybankeu", PAYBYBANKEU);
         map.put("payid", PAYID);
         map.put("paymaya", PAYMAYA);
         map.put("paysquad", PAYSQUAD);
@@ -320,6 +340,7 @@ public class Method {
         map.put("razorpay", RAZORPAY);
         map.put("rapipago", RAPIPAGO);
         map.put("redpagos", REDPAGOS);
+        map.put("riverty", RIVERTY);
         map.put("scalapay", SCALAPAY);
         map.put("sepa", SEPA);
         map.put("servipag", SERVIPAG);
@@ -342,6 +363,7 @@ public class Method {
         map.put("truemoney", TRUEMONEY);
         map.put("trustly", TRUSTLY);
         map.put("trustlyeurope", TRUSTLYEUROPE);
+        map.put("twint", TWINT);
         map.put("upi", UPI);
         map.put("venmo", VENMO);
         map.put("vipps", VIPPS);
@@ -361,14 +383,18 @@ public class Method {
         map.put("afterpay", MethodEnum.AFTERPAY);
         map.put("alipay", MethodEnum.ALIPAY);
         map.put("alipayhk", MethodEnum.ALIPAYHK);
+        map.put("alipayplus", MethodEnum.ALIPAYPLUS);
+        map.put("alma", MethodEnum.ALMA);
         map.put("applepay", MethodEnum.APPLEPAY);
         map.put("arcuspaynetwork", MethodEnum.ARCUSPAYNETWORK);
         map.put("bacs", MethodEnum.BACS);
         map.put("bancontact", MethodEnum.BANCONTACT);
         map.put("bank", MethodEnum.BANK);
+        map.put("bcmcmobile", MethodEnum.BCMCMOBILE);
         map.put("bcp", MethodEnum.BCP);
         map.put("becs", MethodEnum.BECS);
         map.put("bitpay", MethodEnum.BITPAY);
+        map.put("bizum", MethodEnum.BIZUM);
         map.put("blik", MethodEnum.BLIK);
         map.put("ach", MethodEnum.ACH);
         map.put("boleto", MethodEnum.BOLETO);
@@ -388,9 +414,11 @@ public class Method {
         map.put("dcb", MethodEnum.DCB);
         map.put("dlocal", MethodEnum.DLOCAL);
         map.put("duitnow", MethodEnum.DUITNOW);
+        map.put("ebankingfi", MethodEnum.EBANKINGFI);
         map.put("ebanx", MethodEnum.EBANX);
         map.put("eckoh", MethodEnum.ECKOH);
         map.put("efecty", MethodEnum.EFECTY);
+        map.put("eftpad", MethodEnum.EFTPAD);
         map.put("eps", MethodEnum.EPS);
         map.put("everydaypay", MethodEnum.EVERYDAYPAY);
         map.put("gcash", MethodEnum.GCASH);
@@ -417,7 +445,9 @@ public class Method {
         map.put("linepay", MethodEnum.LINEPAY);
         map.put("linkaja", MethodEnum.LINKAJA);
         map.put("maybankqrpay", MethodEnum.MAYBANKQRPAY);
+        map.put("mbway", MethodEnum.MBWAY);
         map.put("mercadopago", MethodEnum.MERCADOPAGO);
+        map.put("mobilepay", MethodEnum.MOBILEPAY);
         map.put("multibanco", MethodEnum.MULTIBANCO);
         map.put("multipago", MethodEnum.MULTIPAGO);
         map.put("nequi", MethodEnum.NEQUI);
@@ -436,6 +466,7 @@ public class Method {
         map.put("p24", MethodEnum.P24);
         map.put("pagoefectivo", MethodEnum.PAGOEFECTIVO);
         map.put("paybybank", MethodEnum.PAYBYBANK);
+        map.put("paybybankeu", MethodEnum.PAYBYBANKEU);
         map.put("payid", MethodEnum.PAYID);
         map.put("paymaya", MethodEnum.PAYMAYA);
         map.put("paysquad", MethodEnum.PAYSQUAD);
@@ -454,6 +485,7 @@ public class Method {
         map.put("razorpay", MethodEnum.RAZORPAY);
         map.put("rapipago", MethodEnum.RAPIPAGO);
         map.put("redpagos", MethodEnum.REDPAGOS);
+        map.put("riverty", MethodEnum.RIVERTY);
         map.put("scalapay", MethodEnum.SCALAPAY);
         map.put("sepa", MethodEnum.SEPA);
         map.put("servipag", MethodEnum.SERVIPAG);
@@ -476,6 +508,7 @@ public class Method {
         map.put("truemoney", MethodEnum.TRUEMONEY);
         map.put("trustly", MethodEnum.TRUSTLY);
         map.put("trustlyeurope", MethodEnum.TRUSTLYEUROPE);
+        map.put("twint", MethodEnum.TWINT);
         map.put("upi", MethodEnum.UPI);
         map.put("venmo", MethodEnum.VENMO);
         map.put("vipps", MethodEnum.VIPPS);
@@ -496,14 +529,18 @@ public class Method {
         AFTERPAY("afterpay"),
         ALIPAY("alipay"),
         ALIPAYHK("alipayhk"),
+        ALIPAYPLUS("alipayplus"),
+        ALMA("alma"),
         APPLEPAY("applepay"),
         ARCUSPAYNETWORK("arcuspaynetwork"),
         BACS("bacs"),
         BANCONTACT("bancontact"),
         BANK("bank"),
+        BCMCMOBILE("bcmcmobile"),
         BCP("bcp"),
         BECS("becs"),
         BITPAY("bitpay"),
+        BIZUM("bizum"),
         BLIK("blik"),
         ACH("ach"),
         BOLETO("boleto"),
@@ -523,9 +560,11 @@ public class Method {
         DCB("dcb"),
         DLOCAL("dlocal"),
         DUITNOW("duitnow"),
+        EBANKINGFI("ebankingfi"),
         EBANX("ebanx"),
         ECKOH("eckoh"),
         EFECTY("efecty"),
+        EFTPAD("eftpad"),
         EPS("eps"),
         EVERYDAYPAY("everydaypay"),
         GCASH("gcash"),
@@ -552,7 +591,9 @@ public class Method {
         LINEPAY("linepay"),
         LINKAJA("linkaja"),
         MAYBANKQRPAY("maybankqrpay"),
+        MBWAY("mbway"),
         MERCADOPAGO("mercadopago"),
+        MOBILEPAY("mobilepay"),
         MULTIBANCO("multibanco"),
         MULTIPAGO("multipago"),
         NEQUI("nequi"),
@@ -571,6 +612,7 @@ public class Method {
         P24("p24"),
         PAGOEFECTIVO("pagoefectivo"),
         PAYBYBANK("paybybank"),
+        PAYBYBANKEU("paybybankeu"),
         PAYID("payid"),
         PAYMAYA("paymaya"),
         PAYSQUAD("paysquad"),
@@ -589,6 +631,7 @@ public class Method {
         RAZORPAY("razorpay"),
         RAPIPAGO("rapipago"),
         REDPAGOS("redpagos"),
+        RIVERTY("riverty"),
         SCALAPAY("scalapay"),
         SEPA("sepa"),
         SERVIPAG("servipag"),
@@ -611,6 +654,7 @@ public class Method {
         TRUEMONEY("truemoney"),
         TRUSTLY("trustly"),
         TRUSTLYEUROPE("trustlyeurope"),
+        TWINT("twint"),
         UPI("upi"),
         VENMO("venmo"),
         VIPPS("vipps"),

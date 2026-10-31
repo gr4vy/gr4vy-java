@@ -27,6 +27,7 @@ public class CardScheme {
     public static final CardScheme CIRRUS = new CardScheme("cirrus");
     public static final CardScheme CULIANCE = new CardScheme("culiance");
     public static final CardScheme DANKORT = new CardScheme("dankort");
+    public static final CardScheme DINACARD = new CardScheme("dinacard");
     public static final CardScheme DINERS_CLUB = new CardScheme("diners-club");
     public static final CardScheme DISCOVER = new CardScheme("discover");
     public static final CardScheme EFTPOS_AUSTRALIA = new CardScheme("eftpos-australia");
@@ -125,6 +126,7 @@ public class CardScheme {
         map.put("cirrus", CIRRUS);
         map.put("culiance", CULIANCE);
         map.put("dankort", DANKORT);
+        map.put("dinacard", DINACARD);
         map.put("diners-club", DINERS_CLUB);
         map.put("discover", DISCOVER);
         map.put("eftpos-australia", EFTPOS_AUSTRALIA);
@@ -155,6 +157,7 @@ public class CardScheme {
         map.put("cirrus", CardSchemeEnum.CIRRUS);
         map.put("culiance", CardSchemeEnum.CULIANCE);
         map.put("dankort", CardSchemeEnum.DANKORT);
+        map.put("dinacard", CardSchemeEnum.DINACARD);
         map.put("diners-club", CardSchemeEnum.DINERS_CLUB);
         map.put("discover", CardSchemeEnum.DISCOVER);
         map.put("eftpos-australia", CardSchemeEnum.EFTPOS_AUSTRALIA);
@@ -186,6 +189,7 @@ public class CardScheme {
         CIRRUS("cirrus"),
         CULIANCE("culiance"),
         DANKORT("dankort"),
+        DINACARD("dinacard"),
         DINERS_CLUB("diners-club"),
         DISCOVER("discover"),
         EFTPOS_AUSTRALIA("eftpos-australia"),

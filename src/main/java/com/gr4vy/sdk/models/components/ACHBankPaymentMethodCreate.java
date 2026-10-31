@@ -66,23 +66,24 @@ public class ACHBankPaymentMethodCreate {
     private Optional<String> scheme;
 
     /**
-     * The account number for this ACH bank account
-     */
-    @JsonProperty("account_number")
-    private String accountNumber;
-
-    /**
-     * The routing number for this ACH bank account
-     */
-    @JsonProperty("routing_number")
-    private String routingNumber;
-
-    /**
      * Whether the account number is tokenized
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("is_tokenized")
     private Optional<Boolean> isTokenized;
+
+    /**
+     * The account number for this ACH bank account, made up of at most 17 digits. Spaces and dashes are
+     * ignored. Any format is accepted when `is_tokenized` is `true`.
+     */
+    @JsonProperty("account_number")
+    private String accountNumber;
+
+    /**
+     * The routing number for this ACH bank account, made up of 9 digits. Spaces and dashes are ignored.
+     */
+    @JsonProperty("routing_number")
+    private String routingNumber;
 
     /**
      * Specify whether this is a `checking` or `savings` account. Defaults to `checking`.
@@ -97,17 +98,17 @@ public class ACHBankPaymentMethodCreate {
             @JsonProperty("buyer_id") JsonNullable<String> buyerId,
             @JsonProperty("buyer_external_identifier") JsonNullable<String> buyerExternalIdentifier,
             @JsonProperty("external_identifier") JsonNullable<String> externalIdentifier,
+            @JsonProperty("is_tokenized") Optional<Boolean> isTokenized,
             @JsonProperty("account_number") String accountNumber,
             @JsonProperty("routing_number") String routingNumber,
-            @JsonProperty("is_tokenized") Optional<Boolean> isTokenized,
             @JsonProperty("account_type") Optional<? extends AccountType> accountType) {
         Utils.checkNotNull(accountHolder, "accountHolder");
         Utils.checkNotNull(buyerId, "buyerId");
         Utils.checkNotNull(buyerExternalIdentifier, "buyerExternalIdentifier");
         Utils.checkNotNull(externalIdentifier, "externalIdentifier");
+        Utils.checkNotNull(isTokenized, "isTokenized");
         Utils.checkNotNull(accountNumber, "accountNumber");
         Utils.checkNotNull(routingNumber, "routingNumber");
-        Utils.checkNotNull(isTokenized, "isTokenized");
         Utils.checkNotNull(accountType, "accountType");
         this.method = Builder._SINGLETON_VALUE_Method.value();
         this.accountHolder = accountHolder;
@@ -115,9 +116,9 @@ public class ACHBankPaymentMethodCreate {
         this.buyerExternalIdentifier = buyerExternalIdentifier;
         this.externalIdentifier = externalIdentifier;
         this.scheme = Builder._SINGLETON_VALUE_Scheme.value();
+        this.isTokenized = isTokenized;
         this.accountNumber = accountNumber;
         this.routingNumber = routingNumber;
-        this.isTokenized = isTokenized;
         this.accountType = accountType;
     }
     
@@ -126,8 +127,8 @@ public class ACHBankPaymentMethodCreate {
             String accountNumber,
             String routingNumber) {
         this(accountHolder, JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), accountNumber, routingNumber,
-            Optional.empty(), Optional.empty());
+            JsonNullable.undefined(), Optional.empty(), accountNumber,
+            routingNumber, Optional.empty());
     }
 
     /**
@@ -176,7 +177,16 @@ public class ACHBankPaymentMethodCreate {
     }
 
     /**
-     * The account number for this ACH bank account
+     * Whether the account number is tokenized
+     */
+    @JsonIgnore
+    public Optional<Boolean> isTokenized() {
+        return isTokenized;
+    }
+
+    /**
+     * The account number for this ACH bank account, made up of at most 17 digits. Spaces and dashes are
+     * ignored. Any format is accepted when `is_tokenized` is `true`.
      */
     @JsonIgnore
     public String accountNumber() {
@@ -184,19 +194,11 @@ public class ACHBankPaymentMethodCreate {
     }
 
     /**
-     * The routing number for this ACH bank account
+     * The routing number for this ACH bank account, made up of 9 digits. Spaces and dashes are ignored.
      */
     @JsonIgnore
     public String routingNumber() {
         return routingNumber;
-    }
-
-    /**
-     * Whether the account number is tokenized
-     */
-    @JsonIgnore
-    public Optional<Boolean> isTokenized() {
-        return isTokenized;
     }
 
     /**
@@ -274,24 +276,6 @@ public class ACHBankPaymentMethodCreate {
     }
 
     /**
-     * The account number for this ACH bank account
-     */
-    public ACHBankPaymentMethodCreate withAccountNumber(String accountNumber) {
-        Utils.checkNotNull(accountNumber, "accountNumber");
-        this.accountNumber = accountNumber;
-        return this;
-    }
-
-    /**
-     * The routing number for this ACH bank account
-     */
-    public ACHBankPaymentMethodCreate withRoutingNumber(String routingNumber) {
-        Utils.checkNotNull(routingNumber, "routingNumber");
-        this.routingNumber = routingNumber;
-        return this;
-    }
-
-    /**
      * Whether the account number is tokenized
      */
     public ACHBankPaymentMethodCreate withIsTokenized(boolean isTokenized) {
@@ -307,6 +291,25 @@ public class ACHBankPaymentMethodCreate {
     public ACHBankPaymentMethodCreate withIsTokenized(Optional<Boolean> isTokenized) {
         Utils.checkNotNull(isTokenized, "isTokenized");
         this.isTokenized = isTokenized;
+        return this;
+    }
+
+    /**
+     * The account number for this ACH bank account, made up of at most 17 digits. Spaces and dashes are
+     * ignored. Any format is accepted when `is_tokenized` is `true`.
+     */
+    public ACHBankPaymentMethodCreate withAccountNumber(String accountNumber) {
+        Utils.checkNotNull(accountNumber, "accountNumber");
+        this.accountNumber = accountNumber;
+        return this;
+    }
+
+    /**
+     * The routing number for this ACH bank account, made up of 9 digits. Spaces and dashes are ignored.
+     */
+    public ACHBankPaymentMethodCreate withRoutingNumber(String routingNumber) {
+        Utils.checkNotNull(routingNumber, "routingNumber");
+        this.routingNumber = routingNumber;
         return this;
     }
 
@@ -345,9 +348,9 @@ public class ACHBankPaymentMethodCreate {
             Utils.enhancedDeepEquals(this.buyerExternalIdentifier, other.buyerExternalIdentifier) &&
             Utils.enhancedDeepEquals(this.externalIdentifier, other.externalIdentifier) &&
             Utils.enhancedDeepEquals(this.scheme, other.scheme) &&
+            Utils.enhancedDeepEquals(this.isTokenized, other.isTokenized) &&
             Utils.enhancedDeepEquals(this.accountNumber, other.accountNumber) &&
             Utils.enhancedDeepEquals(this.routingNumber, other.routingNumber) &&
-            Utils.enhancedDeepEquals(this.isTokenized, other.isTokenized) &&
             Utils.enhancedDeepEquals(this.accountType, other.accountType);
     }
     
@@ -356,7 +359,7 @@ public class ACHBankPaymentMethodCreate {
         return Utils.enhancedHash(
             method, accountHolder, buyerId,
             buyerExternalIdentifier, externalIdentifier, scheme,
-            accountNumber, routingNumber, isTokenized,
+            isTokenized, accountNumber, routingNumber,
             accountType);
     }
     
@@ -369,9 +372,9 @@ public class ACHBankPaymentMethodCreate {
                 "buyerExternalIdentifier", buyerExternalIdentifier,
                 "externalIdentifier", externalIdentifier,
                 "scheme", scheme,
+                "isTokenized", isTokenized,
                 "accountNumber", accountNumber,
                 "routingNumber", routingNumber,
-                "isTokenized", isTokenized,
                 "accountType", accountType);
     }
 
@@ -386,11 +389,11 @@ public class ACHBankPaymentMethodCreate {
 
         private JsonNullable<String> externalIdentifier = JsonNullable.undefined();
 
+        private Optional<Boolean> isTokenized;
+
         private String accountNumber;
 
         private String routingNumber;
-
-        private Optional<Boolean> isTokenized;
 
         private Optional<? extends AccountType> accountType;
 
@@ -464,26 +467,6 @@ public class ACHBankPaymentMethodCreate {
 
 
         /**
-         * The account number for this ACH bank account
-         */
-        public Builder accountNumber(String accountNumber) {
-            Utils.checkNotNull(accountNumber, "accountNumber");
-            this.accountNumber = accountNumber;
-            return this;
-        }
-
-
-        /**
-         * The routing number for this ACH bank account
-         */
-        public Builder routingNumber(String routingNumber) {
-            Utils.checkNotNull(routingNumber, "routingNumber");
-            this.routingNumber = routingNumber;
-            return this;
-        }
-
-
-        /**
          * Whether the account number is tokenized
          */
         public Builder isTokenized(boolean isTokenized) {
@@ -498,6 +481,27 @@ public class ACHBankPaymentMethodCreate {
         public Builder isTokenized(Optional<Boolean> isTokenized) {
             Utils.checkNotNull(isTokenized, "isTokenized");
             this.isTokenized = isTokenized;
+            return this;
+        }
+
+
+        /**
+         * The account number for this ACH bank account, made up of at most 17 digits. Spaces and dashes are
+         * ignored. Any format is accepted when `is_tokenized` is `true`.
+         */
+        public Builder accountNumber(String accountNumber) {
+            Utils.checkNotNull(accountNumber, "accountNumber");
+            this.accountNumber = accountNumber;
+            return this;
+        }
+
+
+        /**
+         * The routing number for this ACH bank account, made up of 9 digits. Spaces and dashes are ignored.
+         */
+        public Builder routingNumber(String routingNumber) {
+            Utils.checkNotNull(routingNumber, "routingNumber");
+            this.routingNumber = routingNumber;
             return this;
         }
 
@@ -530,8 +534,8 @@ public class ACHBankPaymentMethodCreate {
 
             return new ACHBankPaymentMethodCreate(
                 accountHolder, buyerId, buyerExternalIdentifier,
-                externalIdentifier, accountNumber, routingNumber,
-                isTokenized, accountType);
+                externalIdentifier, isTokenized, accountNumber,
+                routingNumber, accountType);
         }
 
 
