@@ -23,6 +23,7 @@ CardScheme custom = CardScheme.of("custom_value");
 | `CIRRUS`           | cirrus             |
 | `CULIANCE`         | culiance           |
 | `DANKORT`          | dankort            |
+| `DINACARD`         | dinacard           |
 | `DINERS_CLUB`      | diners-club        |
 | `DISCOVER`         | discover           |
 | `EFTPOS_AUSTRALIA` | eftpos-australia   |

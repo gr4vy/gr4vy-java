@@ -23,6 +23,7 @@ public class UserStatus {
     public static final UserStatus ACTIVE = new UserStatus("active");
     public static final UserStatus PENDING = new UserStatus("pending");
     public static final UserStatus DELETED = new UserStatus("deleted");
+    public static final UserStatus RESET = new UserStatus("reset");
 
     // This map will grow whenever a Color gets created with a new
     // unrecognized value (a potential memory leak if the user is not
@@ -99,6 +100,7 @@ public class UserStatus {
         map.put("active", ACTIVE);
         map.put("pending", PENDING);
         map.put("deleted", DELETED);
+        map.put("reset", RESET);
         return map;
     }
 
@@ -107,6 +109,7 @@ public class UserStatus {
         map.put("active", UserStatusEnum.ACTIVE);
         map.put("pending", UserStatusEnum.PENDING);
         map.put("deleted", UserStatusEnum.DELETED);
+        map.put("reset", UserStatusEnum.RESET);
         return map;
     }
     
@@ -115,7 +118,8 @@ public class UserStatus {
 
         ACTIVE("active"),
         PENDING("pending"),
-        DELETED("deleted"),;
+        DELETED("deleted"),
+        RESET("reset"),;
 
         private final String value;
 

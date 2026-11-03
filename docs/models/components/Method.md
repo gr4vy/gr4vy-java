@@ -21,14 +21,18 @@ Method custom = Method.of("custom_value");
 | `AFTERPAY`           | afterpay             |
 | `ALIPAY`             | alipay               |
 | `ALIPAYHK`           | alipayhk             |
+| `ALIPAYPLUS`         | alipayplus           |
+| `ALMA`               | alma                 |
 | `APPLEPAY`           | applepay             |
 | `ARCUSPAYNETWORK`    | arcuspaynetwork      |
 | `BACS`               | bacs                 |
 | `BANCONTACT`         | bancontact           |
 | `BANK`               | bank                 |
+| `BCMCMOBILE`         | bcmcmobile           |
 | `BCP`                | bcp                  |
 | `BECS`               | becs                 |
 | `BITPAY`             | bitpay               |
+| `BIZUM`              | bizum                |
 | `BLIK`               | blik                 |
 | `ACH`                | ach                  |
 | `BOLETO`             | boleto               |
@@ -48,9 +52,11 @@ Method custom = Method.of("custom_value");
 | `DCB`                | dcb                  |
 | `DLOCAL`             | dlocal               |
 | `DUITNOW`            | duitnow              |
+| `EBANKINGFI`         | ebankingfi           |
 | `EBANX`              | ebanx                |
 | `ECKOH`              | eckoh                |
 | `EFECTY`             | efecty               |
+| `EFTPAD`             | eftpad               |
 | `EPS`                | eps                  |
 | `EVERYDAYPAY`        | everydaypay          |
 | `GCASH`              | gcash                |
@@ -77,7 +83,9 @@ Method custom = Method.of("custom_value");
 | `LINEPAY`            | linepay              |
 | `LINKAJA`            | linkaja              |
 | `MAYBANKQRPAY`       | maybankqrpay         |
+| `MBWAY`              | mbway                |
 | `MERCADOPAGO`        | mercadopago          |
+| `MOBILEPAY`          | mobilepay            |
 | `MULTIBANCO`         | multibanco           |
 | `MULTIPAGO`          | multipago            |
 | `NEQUI`              | nequi                |
@@ -96,6 +104,7 @@ Method custom = Method.of("custom_value");
 | `P24`                | p24                  |
 | `PAGOEFECTIVO`       | pagoefectivo         |
 | `PAYBYBANK`          | paybybank            |
+| `PAYBYBANKEU`        | paybybankeu          |
 | `PAYID`              | payid                |
 | `PAYMAYA`            | paymaya              |
 | `PAYSQUAD`           | paysquad             |
@@ -114,6 +123,7 @@ Method custom = Method.of("custom_value");
 | `RAZORPAY`           | razorpay             |
 | `RAPIPAGO`           | rapipago             |
 | `REDPAGOS`           | redpagos             |
+| `RIVERTY`            | riverty              |
 | `SCALAPAY`           | scalapay             |
 | `SEPA`               | sepa                 |
 | `SERVIPAG`           | servipag             |
@@ -136,6 +146,7 @@ Method custom = Method.of("custom_value");
 | `TRUEMONEY`          | truemoney            |
 | `TRUSTLY`            | trustly              |
 | `TRUSTLYEUROPE`      | trustlyeurope        |
+| `TWINT`              | twint                |
 | `UPI`                | upi                  |
 | `VENMO`              | venmo                |
 | `VIPPS`              | vipps                |

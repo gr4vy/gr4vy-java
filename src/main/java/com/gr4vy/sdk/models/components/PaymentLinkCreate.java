@@ -154,6 +154,13 @@ public class PaymentLinkCreate {
     private JsonNullable<? extends List<CartItem>> cartItems;
 
     /**
+     * The airline addendum data which describes the airline booking associated with this payment link.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("airline")
+    private JsonNullable<? extends Airline> airline;
+
+    /**
      * Arbitrary metadata for the payment link.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -211,6 +218,7 @@ public class PaymentLinkCreate {
             @JsonProperty("intent") Optional<? extends TransactionIntent> intent,
             @JsonProperty("return_url") JsonNullable<String> returnUrl,
             @JsonProperty("cart_items") JsonNullable<? extends List<CartItem>> cartItems,
+            @JsonProperty("airline") JsonNullable<? extends Airline> airline,
             @JsonProperty("metadata") JsonNullable<? extends Map<String, Object>> metadata,
             @JsonProperty("payment_source") Optional<? extends TransactionPaymentSource> paymentSource,
             @JsonProperty("store") Optional<Boolean> store,
@@ -235,6 +243,7 @@ public class PaymentLinkCreate {
         Utils.checkNotNull(intent, "intent");
         Utils.checkNotNull(returnUrl, "returnUrl");
         Utils.checkNotNull(cartItems, "cartItems");
+        Utils.checkNotNull(airline, "airline");
         Utils.checkNotNull(metadata, "metadata");
         Utils.checkNotNull(paymentSource, "paymentSource");
         Utils.checkNotNull(store, "store");
@@ -259,6 +268,7 @@ public class PaymentLinkCreate {
         this.intent = intent;
         this.returnUrl = returnUrl;
         this.cartItems = cartItems;
+        this.airline = airline;
         this.metadata = metadata;
         this.paymentSource = paymentSource;
         this.store = store;
@@ -276,8 +286,9 @@ public class PaymentLinkCreate {
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), amount, country,
             currency, Optional.empty(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
-            Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined());
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            Optional.empty(), Optional.empty(), JsonNullable.undefined(),
+            JsonNullable.undefined());
     }
 
     /**
@@ -432,6 +443,15 @@ public class PaymentLinkCreate {
     @JsonIgnore
     public JsonNullable<List<CartItem>> cartItems() {
         return (JsonNullable<List<CartItem>>) cartItems;
+    }
+
+    /**
+     * The airline addendum data which describes the airline booking associated with this payment link.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public JsonNullable<Airline> airline() {
+        return (JsonNullable<Airline>) airline;
     }
 
     /**
@@ -794,6 +814,24 @@ public class PaymentLinkCreate {
     }
 
     /**
+     * The airline addendum data which describes the airline booking associated with this payment link.
+     */
+    public PaymentLinkCreate withAirline(Airline airline) {
+        Utils.checkNotNull(airline, "airline");
+        this.airline = JsonNullable.of(airline);
+        return this;
+    }
+
+    /**
+     * The airline addendum data which describes the airline booking associated with this payment link.
+     */
+    public PaymentLinkCreate withAirline(JsonNullable<? extends Airline> airline) {
+        Utils.checkNotNull(airline, "airline");
+        this.airline = airline;
+        return this;
+    }
+
+    /**
      * Arbitrary metadata for the payment link.
      */
     public PaymentLinkCreate withMetadata(Map<String, Object> metadata) {
@@ -918,6 +956,7 @@ public class PaymentLinkCreate {
             Utils.enhancedDeepEquals(this.intent, other.intent) &&
             Utils.enhancedDeepEquals(this.returnUrl, other.returnUrl) &&
             Utils.enhancedDeepEquals(this.cartItems, other.cartItems) &&
+            Utils.enhancedDeepEquals(this.airline, other.airline) &&
             Utils.enhancedDeepEquals(this.metadata, other.metadata) &&
             Utils.enhancedDeepEquals(this.paymentSource, other.paymentSource) &&
             Utils.enhancedDeepEquals(this.store, other.store) &&
@@ -934,8 +973,9 @@ public class PaymentLinkCreate {
             merchantColor, merchantMessage, merchantTermsAndConditionsUrl,
             merchantFaviconUrl, amount, country,
             currency, intent, returnUrl,
-            cartItems, metadata, paymentSource,
-            store, buyerId, installmentCount);
+            cartItems, airline, metadata,
+            paymentSource, store, buyerId,
+            installmentCount);
     }
     
     @Override
@@ -960,6 +1000,7 @@ public class PaymentLinkCreate {
                 "intent", intent,
                 "returnUrl", returnUrl,
                 "cartItems", cartItems,
+                "airline", airline,
                 "metadata", metadata,
                 "paymentSource", paymentSource,
                 "store", store,
@@ -1007,6 +1048,8 @@ public class PaymentLinkCreate {
         private JsonNullable<String> returnUrl = JsonNullable.undefined();
 
         private JsonNullable<? extends List<CartItem>> cartItems = JsonNullable.undefined();
+
+        private JsonNullable<? extends Airline> airline = JsonNullable.undefined();
 
         private JsonNullable<? extends Map<String, Object>> metadata = JsonNullable.undefined();
 
@@ -1352,6 +1395,25 @@ public class PaymentLinkCreate {
 
 
         /**
+         * The airline addendum data which describes the airline booking associated with this payment link.
+         */
+        public Builder airline(Airline airline) {
+            Utils.checkNotNull(airline, "airline");
+            this.airline = JsonNullable.of(airline);
+            return this;
+        }
+
+        /**
+         * The airline addendum data which describes the airline booking associated with this payment link.
+         */
+        public Builder airline(JsonNullable<? extends Airline> airline) {
+            Utils.checkNotNull(airline, "airline");
+            this.airline = airline;
+            return this;
+        }
+
+
+        /**
          * Arbitrary metadata for the payment link.
          */
         public Builder metadata(Map<String, Object> metadata) {
@@ -1461,8 +1523,9 @@ public class PaymentLinkCreate {
                 merchantColor, merchantMessage, merchantTermsAndConditionsUrl,
                 merchantFaviconUrl, amount, country,
                 currency, intent, returnUrl,
-                cartItems, metadata, paymentSource,
-                store, buyerId, installmentCount);
+                cartItems, airline, metadata,
+                paymentSource, store, buyerId,
+                installmentCount);
         }
 
 
