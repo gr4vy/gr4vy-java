@@ -5,15 +5,15 @@ management:
   docVersion: 1.0.0
   speakeasyVersion: 1.806.0
   generationVersion: 2.956.1
-  releaseVersion: 2.19.27
-  configChecksum: d440c3fe9322bdbb62e891169d3768a5
+  releaseVersion: 2.19.28
+  configChecksum: a4ca22fc6636a44ee435c332a286a7cc
   repoURL: https://github.com/gr4vy/gr4vy-java.git
   installationURL: https://github.com/gr4vy/gr4vy-java
   published: true
 persistentEdits:
-  generation_id: 9824e4ff-3221-4b0f-9904-0ad0f2320c06
-  pristine_commit_hash: 403f0f228125ff2991d212d8e33c0cf2be7ef6ea
-  pristine_tree_hash: c3ff0b2baaaa1781ded2e086b735a4d03051435f
+  generation_id: 0753513f-a28f-4f09-9128-730486582efd
+  pristine_commit_hash: 9eb28c90eb256cee50b35b8cbdb150e86613b608
+  pristine_tree_hash: 9826f3ce24bc4f9a16f00541a7763d3e622c0deb
 features:
   java:
     additionalDependencies: 0.1.0
@@ -2891,8 +2891,8 @@ trackedFiles:
     pristine_git_object: 15c4e4642f204ccb312d8814155b69e153b4e19b
   gradle.properties:
     id: 2afbb999f001
-    last_write_checksum: sha1:4add39937a135d729a05a6968db261b4c6f0329d
-    pristine_git_object: 315d1fc8e786d001c99e90764d1186438f5316b7
+    last_write_checksum: sha1:901edafca846f473cdf854a94c1815da3901a471
+    pristine_git_object: 2ab3217cbedf224c66f4c1fdb16ecd74218bb081
   gradle/wrapper/gradle-wrapper.jar:
     id: ec27dae6e852
     last_write_checksum: sha1:f725fb1467084142d74fd7cd8eab691ab3442611
@@ -3235,8 +3235,8 @@ trackedFiles:
     pristine_git_object: b50475cc7f6041d63c4569256e4ff1850b20d30b
   src/main/java/com/gr4vy/sdk/SDKConfiguration.java:
     id: 73a7edeaca45
-    last_write_checksum: sha1:b10d36c5055a61b87b74f9738688d529607a316f
-    pristine_git_object: 1d69de2ddfad113b349f495804e1c769ea137059
+    last_write_checksum: sha1:28e753a34c4420a3611f83b1ea3dc79cdc18d485
+    pristine_git_object: 1d0448249f4d6a867c0963ae8a48ec7d140b1dd5
   src/main/java/com/gr4vy/sdk/SecuritySource.java:
     id: 1b6add6b9b50
     last_write_checksum: sha1:2f365cc823c6243188e83f4df618c9737fcee8bd
