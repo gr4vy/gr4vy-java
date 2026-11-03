@@ -19,7 +19,7 @@ jobs:
     environment: sdk-release
     steps:
       - id: bot
-        uses: gr4vy/sdk-release/release-bot@d992659f79dc88ba0bbfc61fd9acbc9e8e15855d
+        uses: gr4vy/sdk-release/release-bot@f956131fcbeaa05d2afcd763f7f8e8122ed823e2
         with:
           sdk: java
           run-id: ${{ github.event.workflow_run.id }}
@@ -34,8 +34,8 @@ jobs:
             SLACK_TITLE: Java SDK
             SLACK_WEBHOOK: ${{ secrets.SLACK_SDK_WEBHOOK_URL }}
             SLACK_CHANNEL: sdk-updates
-            SLACK_MSG_AUTHOR: gr4vy-code
-            SLACK_ICON_EMOJI: ":gr4vy:"
+            SLACK_MSG_AUTHOR: gr4vy
+            SLACK_ICON_EMOJI: ":gr4vy-sdk:"
             SLACK_COLOR: "warning"
             SLACK_MESSAGE: "Speakeasy PR needs a human: ${{ github.server_url }}/${{ github.repository }}/pull/${{ steps.bot.outputs.pr }}"
             SLACK_FOOTER: ""

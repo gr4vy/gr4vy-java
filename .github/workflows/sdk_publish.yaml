@@ -33,7 +33,7 @@ jobs:
       version: ${{ steps.gate.outputs.version }}
     steps:
       - id: gate
-        uses: gr4vy/sdk-release/publish-gate@d992659f79dc88ba0bbfc61fd9acbc9e8e15855d
+        uses: gr4vy/sdk-release/publish-gate@f956131fcbeaa05d2afcd763f7f8e8122ed823e2
         with:
           head-sha: ${{ github.event.workflow_run.head_sha || github.sha }}
           bot-login: gr4vy-sdk-release[bot]
@@ -50,8 +50,8 @@ jobs:
             SLACK_TITLE: Java SDK
             SLACK_WEBHOOK: ${{ secrets.SLACK_SDK_WEBHOOK_URL }}
             SLACK_CHANNEL: sdk-updates
-            SLACK_MSG_AUTHOR: gr4vy-code
-            SLACK_ICON_EMOJI: ":gr4vy:"
+            SLACK_MSG_AUTHOR: gr4vy
+            SLACK_ICON_EMOJI: ":gr4vy-sdk:"
             SLACK_COLOR: "#F3AB0E"
             SLACK_MESSAGE: "v${{ needs.gate.outputs.version }} is waiting for release approval: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
             SLACK_FOOTER: ""
@@ -146,25 +146,9 @@ jobs:
             SLACK_TITLE: Java SDK
             SLACK_WEBHOOK: ${{ secrets.SLACK_SDK_WEBHOOK_URL }}
             SLACK_CHANNEL: sdk-updates
-            SLACK_MSG_AUTHOR: gr4vy-code
-            SLACK_ICON_EMOJI: ":gr4vy:"
+            SLACK_MSG_AUTHOR: gr4vy
+            SLACK_ICON_EMOJI: ":gr4vy-sdk:"
             SLACK_COLOR: "${{ contains(needs.*.result, 'failure') && 'failure' || 'success' }}"
             SLACK_MESSAGE_ON_SUCCESS: "SDK publishing succeeded - `${{ github.event.workflow_run.head_commit.message || 'manual dispatch' }}`"
             SLACK_MESSAGE_ON_FAILURE: "SDK publishing failed - `${{ github.event.workflow_run.head_commit.message || 'manual dispatch' }}`"
             SLACK_FOOTER: ""
-
-  dispatch:
-    needs: publish
-    if: always() && needs.publish.result == 'success'
-    strategy:
-      matrix:
-        repo:
-          - gr4vy/gr4vy-docs-mintlify
-    runs-on: ubuntu-latest
-    steps:
-      - name: Notify SDKs
-        uses: peter-evans/repository-dispatch@ff45666b9427631e3450c54a1bcbee4d9ff4d7c0 # v3
-        with:
-          token: ${{ secrets.DISPATCH_ACCESS_TOKEN }}
-          repository: ${{ matrix.repo }}
-          event-type: sdk_updated
