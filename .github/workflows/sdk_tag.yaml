@@ -1,19 +1,24 @@
 name: Tag SDK samples
 permissions:
-  checks: write
-  contents: write
-  pull-requests: write
-  statuses: write
+  contents: read
 "on":
   push:
     branches:
       - main
   workflow_dispatch: {}
 jobs:
+  # Calls the action directly rather than Speakeasy's shared tag workflow, so the
+  # job can run in the sdk-generate Environment, the only place SPEAKEASY_API_KEY
+  # is available.
   tag:
-    uses: speakeasy-api/sdk-generation-action/.github/workflows/tag.yaml@fe37b336cd1948f1e2e60383fd94bfb884318cf2 # v15
-    with:
-      registry_tags: main
-    secrets:
-      github_access_token: ${{ secrets.GITHUB_TOKEN }}
-      speakeasy_api_key: ${{ secrets.SPEAKEASY_API_KEY }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    environment: sdk-generate
+    steps:
+      - name: Apply tags in the Speakeasy registry
+        uses: speakeasy-api/sdk-generation-action@6cd5ba5c0f635337847068ad8410ca9a8651e175 # v15
+        with:
+          action: tag
+          registry_tags: main
+          speakeasy_api_key: ${{ secrets.SPEAKEASY_API_KEY }}
+          github_access_token: ${{ github.token }}
