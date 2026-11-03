@@ -17,10 +17,14 @@ on:
     # -> every endpoint 500s (Sentry CORE-API-1N0). Keep these apart.
     - cron: 30 8 * * 1-5
 
-# A new push to a PR cancels the previous in-flight run.
+# A new push to a PR cancels the previous in-flight run. Runs on main are never
+# cancelled: the publish workflow waits for each one to finish.
 concurrency:
   group: ci-${{ github.workflow }}-${{ github.ref }}
-  cancel-in-progress: true
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+permissions:
+  contents: read
 
 jobs:
   # Compile every source + test on each Java version. No key needed, so this
@@ -33,6 +37,8 @@ jobs:
         java: [11, 17, 21]
     steps:
       - uses: actions/checkout@ee0669bd1cc54295c223e0bb666b733df41de1c5 # v2
+        with:
+          persist-credentials: false
       - name: Use Java ${{ matrix.java }}
         uses: actions/setup-java@c1e323688fd81a25caa38c78aa6df2d33d3e20d9 # v4
         with:
@@ -51,6 +57,8 @@ jobs:
         java: [11, 17, 21]
     steps:
       - uses: actions/checkout@ee0669bd1cc54295c223e0bb666b733df41de1c5 # v2
+        with:
+          persist-credentials: false
       - name: Use Java ${{ matrix.java }}
         uses: actions/setup-java@c1e323688fd81a25caa38c78aa6df2d33d3e20d9 # v4
         with:
@@ -61,28 +69,28 @@ jobs:
 
   # The live E2E suite, sharded by package so each shard is a separate JVM
   # (= one isolated merchant per shard). GR4VY_TRACK_HTTP records every request
-  # for the coverage report. Fork PRs have no secret, so the harness skips.
+  # for the coverage report. Runs on main only (push, schedule, dispatch): the
+  # key lives in the `e2e` Environment, which only main can use.
   e2e:
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     timeout-minutes: 20
-    # Only needs to read the repo and upload artifacts; no write scope.
-    permissions:
-      contents: read
+    environment: e2e
     strategy:
       fail-fast: false
       matrix:
         shard: [flows, processing, backoffice]
     steps:
       - uses: actions/checkout@ee0669bd1cc54295c223e0bb666b733df41de1c5 # v2
+        with:
+          persist-credentials: false
       - name: Use Java 21
         uses: actions/setup-java@c1e323688fd81a25caa38c78aa6df2d33d3e20d9 # v4
         with:
           distribution: corretto
           java-version: 21
-      - name: Require signing key on trusted refs
-        # On pushes/schedules the harness would silently skip without a key,
-        # masking a misconfigured secret. Fork PRs legitimately have no key.
-        if: github.event_name != 'pull_request'
+      - name: Require signing key
+        # Without a key the harness would silently skip, masking a missing secret.
         env:
           PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
         run: |
@@ -96,7 +104,8 @@ jobs:
           E2E: "true"
           GR4VY_TRACK_HTTP: "1"
           GR4VY_COVERAGE_DIR: ${{ github.workspace }}/coverage/http
-        run: ./gradlew test --tests "com.gr4vy.sdk.${{ matrix.shard }}.*" --console=plain
+          SHARD: ${{ matrix.shard }}
+        run: ./gradlew test --tests "com.gr4vy.sdk.$SHARD.*" --console=plain
       - name: Upload reached-endpoint records
         if: always()
         uses: actions/upload-artifact@65c4c4a1ddee5b72f698fdd19549f0f0fb45cf08 # v4
@@ -106,19 +115,21 @@ jobs:
           if-no-files-found: ignore
           retention-days: 3
 
-  # Endpoint-reach coverage report. Combines every shard's recorded calls and
-  # posts a sticky PR comment. This is a report, not a gate. It runs even when
-  # a shard failed, so the comment is replaced (with a warning) rather than
-  # left stale; ci-complete does not depend on it.
+  # Endpoint-reach coverage report from the daily run. Combines every shard's
+  # recorded calls, writes the report to the run summary, and posts to Slack
+  # when an operation had no real request. A report, not a gate, and it doesn't
+  # run on pushes, so it never delays a release.
   coverage:
     needs: e2e
-    if: always() && github.event_name == 'pull_request' && needs.e2e.result != 'cancelled'
+    if: >-
+      always() && needs.e2e.result != 'cancelled' && needs.e2e.result != 'skipped' &&
+      (github.event_name == 'schedule' || github.event_name == 'workflow_dispatch')
     runs-on: ubuntu-latest
     timeout-minutes: 10
-    permissions:
-      pull-requests: write
     steps:
       - uses: actions/checkout@ee0669bd1cc54295c223e0bb666b733df41de1c5 # v2
+        with:
+          persist-credentials: false
       - name: Use Java 21
         uses: actions/setup-java@c1e323688fd81a25caa38c78aa6df2d33d3e20d9 # v4
         with:
@@ -133,73 +144,66 @@ jobs:
           pattern: coverage-*
           merge-multiple: true
       - name: Build coverage report
+        id: report
+        env:
+          E2E_RESULT: ${{ needs.e2e.result }}
         run: |
           mkdir -p coverage/http
           # Flatten any downloaded jsonl into the dir the script reads.
           find coverage/download -name '*.jsonl' -exec cp {} coverage/http/ \; 2>/dev/null || true
           java scripts/endpoint_coverage/EndpointCoverage.java .
-      - name: Flag incomplete report
-        if: needs.e2e.result != 'success'
-        env:
-          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
-        run: |
+          if [ "$E2E_RESULT" != "success" ]; then
+            echo "> ⚠️ **E2E failed in this run, so the reach below is incomplete.**" >> "$GITHUB_STEP_SUMMARY"
+            echo >> "$GITHUB_STEP_SUMMARY"
+          fi
+          cat coverage/endpoint-coverage.md >> "$GITHUB_STEP_SUMMARY"
           {
-            echo "> ⚠️ **E2E failed in [this run]($RUN_URL), so the reach below is incomplete.** It refreshes when CI is re-run."
-            echo
-            cat coverage/endpoint-coverage.md
-          } > coverage/endpoint-coverage.md.tmp
-          mv coverage/endpoint-coverage.md.tmp coverage/endpoint-coverage.md
-      - name: Post coverage comment
-        uses: marocchino/sticky-pull-request-comment@52423e01640425a022ef5fd42c6fb5f633a02728 # v2
-        with:
-          header: endpoint-coverage
-          path: coverage/endpoint-coverage.md
+            echo "summary=$(grep -o '[0-9]* / [0-9]*' coverage/endpoint-coverage.md | head -1)"
+            echo "missing<<EOF"
+            grep '^- `' coverage/endpoint-coverage.md || true
+            echo "EOF"
+          } >> "$GITHUB_OUTPUT"
+      - name: Post unreached endpoints to Slack
+        if: steps.report.outputs.missing != ''
+        uses: rtCamp/action-slack-notify@e31e87e03dd19038e411e38ae27cbad084a90661 # v2
+        env:
+            SLACK_USERNAME: Java SDK
+            SLACK_TITLE: Java SDK
+            SLACK_WEBHOOK: ${{ secrets.SLACK_SDK_WEBHOOK_URL }}
+            SLACK_CHANNEL: sdk-updates
+            SLACK_MSG_AUTHOR: gr4vy-code
+            SLACK_ICON_EMOJI: ":gr4vy:"
+            SLACK_COLOR: "warning"
+            SLACK_MESSAGE: "Endpoint coverage ${{ steps.report.outputs.summary }}. No live test reached:\n${{ steps.report.outputs.missing }}"
+            SLACK_FOOTER: ""
 
-  # Stable gate: branch protection / automerge depends on THIS single check, not
-  # on the sharded matrix names (which change as shards are added/removed).
+  # Stable gate: branch rulesets require THIS single check, not the sharded
+  # matrix names (which change as shards are added/removed). On a PR it means
+  # build and offline passed; on main it also means the live suite passed,
+  # which is what the publish workflow waits for.
   ci-complete:
     needs: [build, offline, e2e]
     if: always()
     runs-on: ubuntu-latest
-    # Only needs to approve the bot's PR; no contents write.
-    permissions:
-      pull-requests: write
     steps:
       - name: Verify required jobs succeeded
+        env:
+          BUILD: ${{ needs.build.result }}
+          OFFLINE: ${{ needs.offline.result }}
+          E2E: ${{ needs.e2e.result }}
+          ON_MAIN: ${{ github.event_name != 'pull_request' && github.ref == 'refs/heads/main' }}
         run: |
-          if [ "${{ needs.build.result }}" != "success" ] \
-            || [ "${{ needs.offline.result }}" != "success" ] \
-            || [ "${{ needs.e2e.result }}" != "success" ]; then
-            echo "One or more required jobs failed."
+          if [ "$BUILD" != "success" ] || [ "$OFFLINE" != "success" ]; then
+            echo "build: $BUILD, offline: $OFFLINE"
             exit 1
           fi
-          echo "All required jobs succeeded."
-      - uses: hmarr/auto-approve-action@8f929096a962e83ccdfa8afcf855f39f12d4dac7 # v4
-        if: "github.event.pull_request.user.login == 'github-actions[bot]'"
-        with:
-          github-token: ${{ secrets.DISPATCH_ACCESS_TOKEN }}
-
-  merge:
-    needs: ci-complete
-    runs-on: ubuntu-latest
-    permissions:
-      contents: write
-      pull-requests: write
-    steps:
-      - id: automerge
-        name: automerge
-        if: "github.event.pull_request.user.login == 'github-actions[bot]'"
-        uses: "pascalgn/automerge-action@7961b8b5eec56cc088c140b56d864285eabd3f67" # v0.16.4
-        env:
-          GITHUB_TOKEN: ${{ secrets.DISPATCH_ACCESS_TOKEN }}
-          MERGE_LABELS: ''
-          MERGE_REQUIRED_APPROVALS: 0
-          MERGE_METHOD: squash
-          MERGE_COMMIT_MESSAGE: "pull-request-title"
-          MERGE_ERROR_FAIL: true
-          MERGE_DELETE_BRANCH: true
-          MERGE_FORKS: false
-          UPDATE_METHOD: rebase
+          if [ "$ON_MAIN" != "true" ] && [ "$E2E" = "skipped" ]; then
+            exit 0
+          fi
+          if [ "$E2E" != "success" ]; then
+            echo "e2e: $E2E"
+            exit 1
+          fi
 
   notify:
     needs: ci-complete
@@ -208,7 +212,7 @@ jobs:
     steps:
       - name: Slack Notification
         uses: rtCamp/action-slack-notify@e31e87e03dd19038e411e38ae27cbad084a90661 # v2
-        if: github.ref == 'refs/heads/main' || (github.event_name == 'pull_request' && github.event.pull_request.user.login == 'github-actions[bot]')
+        if: github.ref == 'refs/heads/main' || (github.event_name == 'pull_request' && github.event.pull_request.user.login == 'gr4vy-sdk-generate[bot]')
         env:
             SLACK_USERNAME: Java SDK
             SLACK_TITLE: Java SDK

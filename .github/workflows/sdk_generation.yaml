@@ -1,10 +1,6 @@
 name: Generate SDK
 permissions:
-  checks: write
-  contents: write
-  pull-requests: write
-  statuses: write
-  id-token: write
+  contents: read
 "on":
   repository_dispatch:
     types: openapi_published
@@ -19,20 +15,45 @@ permissions:
         type: string
   schedule:
     - cron: 0 0 * * *
+concurrency:
+  group: generate
+  cancel-in-progress: false
+
 jobs:
   generate:
-    uses: speakeasy-api/sdk-generation-action/.github/workflows/workflow-executor.yaml@fe37b336cd1948f1e2e60383fd94bfb884318cf2 # v15
-    with:
-      force: ${{ github.event.inputs.force }}
-      mode: pr
-      set_version: ${{ github.event.inputs.set_version }}
-    secrets:
-      github_access_token: ${{ secrets.GITHUB_TOKEN }}
-      java_gpg_passphrase: ${{ secrets.JAVA_GPG_PASSPHRASE }}
-      java_gpg_secret_key: ${{ secrets.JAVA_GPG_SECRET_KEY }}
-      ossrh_password: ${{ secrets.OSSRH_PASSWORD }}
-      ossrh_username: ${{ secrets.OSSRH_USERNAME }}
-      speakeasy_api_key: ${{ secrets.SPEAKEASY_API_KEY }}
+    runs-on: ubuntu-22.04
+    timeout-minutes: 30
+    environment: sdk-generate
+    steps:
+      - name: Mint a gr4vy-sdk-generate token
+        id: app
+        uses: actions/create-github-app-token@64ab729a6294000f5aa4a4bc0b73d1f32bc45510 # v3.3.0
+        with:
+          client-id: ${{ secrets.SDK_GENERATE_APP_CLIENT_ID }}
+          private-key: ${{ secrets.SDK_GENERATE_APP_PRIVATE_KEY }}
+          repositories: ${{ github.event.repository.name }}
+          permission-contents: write
+          permission-issues: write
+          permission-pull-requests: write
+
+      - name: Check out the repo
+        uses: actions/checkout@ee0669bd1cc54295c223e0bb666b733df41de1c5 # v2
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Generate the SDK
+        uses: speakeasy-api/sdk-generation-action@6cd5ba5c0f635337847068ad8410ca9a8651e175 # v15
+        with:
+          speakeasy_version: latest
+          github_access_token: ${{ steps.app.outputs.token }}
+          pr_creation_pat: ${{ steps.app.outputs.token }}
+          speakeasy_api_key: ${{ secrets.SPEAKEASY_API_KEY }}
+          mode: pr
+          target: java
+          force: ${{ github.event.inputs.force }}
+          set_version: ${{ github.event.inputs.set_version }}
+          enable_sdk_changelog: true
 
   notify:
     needs: generate
@@ -49,6 +70,7 @@ jobs:
             SLACK_CHANNEL: sdk-updates
             SLACK_MSG_AUTHOR: gr4vy-code
             SLACK_ICON_EMOJI: ":gr4vy:"
-            SLACK_COLOR: "failure"
+            SLACK_COLOR: "${{ contains(needs.*.result, 'failure') && 'failure' || 'success' }}"
+            SLACK_MESSAGE_ON_SUCCESS: "SDK generation succeeded"
             SLACK_MESSAGE_ON_FAILURE: "SDK generation failed"
             SLACK_FOOTER: ""
