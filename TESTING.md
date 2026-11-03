@@ -107,9 +107,9 @@ java scripts/endpoint_coverage/EndpointCoverage.java .   # needs Java 17+
 ```
 
 It writes `coverage/endpoint-coverage.md` and prints the same report. It is a
-report, not a gate (it always exits 0). In CI it runs after the daily scheduled
-shards, writes the report to the run summary, and posts the unreached operations
-to Slack.
+report, not a gate (it always exits 0). In CI it runs after the shards on the
+daily scheduled run (or a manual run), writes the report to the run summary, and
+posts the unreached operations to Slack.
 
 ## CI
 
@@ -121,8 +121,8 @@ to Slack.
 - **e2e** — the live suite sharded across `flows`/`processing`/`backoffice`,
   each recording reached endpoints. Runs on `main` only: the key lives in the
   `e2e` Environment, which only `main` can use, so PRs never run it.
-- **coverage** — on the daily run only, combines the shards' records and posts
-  to Slack when an operation had no real request.
+- **coverage** — on the daily or a manual run (never on a push), combines the
+  shards' records and posts to Slack when an operation had no real request.
 - **ci-complete** — the single stable check the branch ruleset requires. On a PR
   it means build and offline passed; on `main` it also means every shard passed.
 
