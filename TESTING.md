@@ -107,21 +107,25 @@ java scripts/endpoint_coverage/EndpointCoverage.java .   # needs Java 17+
 ```
 
 It writes `coverage/endpoint-coverage.md` and prints the same report. It is a
-report, not a gate (it always exits 0). In CI it runs after the shards and posts
-a sticky PR comment.
+report, not a gate (it always exits 0). In CI it runs after the daily scheduled
+shards, writes the report to the run summary, and posts the unreached operations
+to Slack.
 
 ## CI
 
 `.github/workflows/ci.yaml` runs:
 
-- **build** — compiles main + test sources on Java 11/17/21 (no key; protects
-  fork PRs and catches generation drift).
+- **build** — compiles main + test sources on Java 11/17/21 (no key; catches
+  generation drift on every PR).
 - **offline** — the JWT/webhook unit tests on Java 11/17/21.
 - **e2e** — the live suite sharded across `flows`/`processing`/`backoffice`,
-  each recording reached endpoints.
-- **coverage** — combines the shards' records and posts the coverage comment.
-- **ci-complete** — a single stable check that branch protection / automerge
-  depends on, so the required check name does not change as shards are added or
-  removed.
+  each recording reached endpoints. Runs on `main` only: the key lives in the
+  `e2e` Environment, which only `main` can use, so PRs never run it.
+- **coverage** — on the daily run only, combines the shards' records and posts
+  to Slack when an operation had no real request.
+- **ci-complete** — the single stable check the branch ruleset requires. On a PR
+  it means build and offline passed; on `main` it also means every shard passed.
 
-Fork PRs have no `PRIVATE_KEY`, so the live shards skip rather than fail.
+Speakeasy regen PRs are merged by the release bot (`sdk_merge.yaml`), and
+`sdk_publish.yaml` releases to Maven Central once `main` is green. See
+[gr4vy/sdk-release](https://github.com/gr4vy/sdk-release).

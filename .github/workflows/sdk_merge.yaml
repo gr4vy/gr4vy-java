@@ -1,0 +1,41 @@
+name: Merge SDK
+on:
+  workflow_run: # zizmor: ignore[dangerous-triggers] never checks out or runs PR code
+    workflows:
+      - CI
+    types:
+      - completed
+
+permissions: {}
+
+jobs:
+  decide:
+    if: >-
+      github.event.workflow_run.event == 'pull_request' &&
+      github.event.workflow_run.conclusion == 'success' &&
+      github.event.workflow_run.head_repository.full_name == github.repository
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    environment: sdk-release
+    steps:
+      - id: bot
+        uses: gr4vy/sdk-release/release-bot@d992659f79dc88ba0bbfc61fd9acbc9e8e15855d
+        with:
+          sdk: java
+          run-id: ${{ github.event.workflow_run.id }}
+          client-id: ${{ secrets.SDK_RELEASE_APP_CLIENT_ID }}
+          private-key: ${{ secrets.SDK_RELEASE_APP_PRIVATE_KEY }}
+
+      - name: Slack Notification
+        if: steps.bot.outputs.notify == 'true'
+        uses: rtCamp/action-slack-notify@e31e87e03dd19038e411e38ae27cbad084a90661 # v2
+        env:
+            SLACK_USERNAME: Java SDK
+            SLACK_TITLE: Java SDK
+            SLACK_WEBHOOK: ${{ secrets.SLACK_SDK_WEBHOOK_URL }}
+            SLACK_CHANNEL: sdk-updates
+            SLACK_MSG_AUTHOR: gr4vy-code
+            SLACK_ICON_EMOJI: ":gr4vy:"
+            SLACK_COLOR: "warning"
+            SLACK_MESSAGE: "Speakeasy PR needs a human: ${{ github.server_url }}/${{ github.repository }}/pull/${{ steps.bot.outputs.pr }}"
+            SLACK_FOOTER: ""
