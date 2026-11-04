@@ -17,17 +17,26 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 5
     environment: sdk-release
+    outputs:
+      notify: ${{ steps.bot.outputs.notify }}
+      pr: ${{ steps.bot.outputs.pr }}
     steps:
       - id: bot
-        uses: gr4vy/sdk-release/release-bot@f956131fcbeaa05d2afcd763f7f8e8122ed823e2
+        uses: gr4vy/sdk-release/release-bot@c8db692714898b3bed56d5a7df32f44db9b2055c
         with:
           sdk: java
           run-id: ${{ github.event.workflow_run.id }}
           client-id: ${{ secrets.SDK_RELEASE_APP_CLIENT_ID }}
           private-key: ${{ secrets.SDK_RELEASE_APP_PRIVATE_KEY }}
 
+  # Kept out of `decide`, which holds the release App key: the Slack action
+  # runs a container image.
+  notify:
+    needs: decide
+    if: needs.decide.outputs.notify == 'true'
+    runs-on: ubuntu-latest
+    steps:
       - name: Slack Notification
-        if: steps.bot.outputs.notify == 'true'
         uses: rtCamp/action-slack-notify@e31e87e03dd19038e411e38ae27cbad084a90661 # v2
         env:
             SLACK_USERNAME: Java SDK
@@ -37,5 +46,5 @@ jobs:
             SLACK_MSG_AUTHOR: gr4vy
             SLACK_ICON_EMOJI: ":gr4vy-sdk:"
             SLACK_COLOR: "warning"
-            SLACK_MESSAGE: "Speakeasy PR needs a human: ${{ github.server_url }}/${{ github.repository }}/pull/${{ steps.bot.outputs.pr }}"
+            SLACK_MESSAGE: "Speakeasy PR needs a human: ${{ github.server_url }}/${{ github.repository }}/pull/${{ needs.decide.outputs.pr }}"
             SLACK_FOOTER: ""

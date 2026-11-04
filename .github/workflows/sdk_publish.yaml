@@ -25,6 +25,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 5
     permissions:
+      actions: read
       contents: read
       pull-requests: read
     outputs:
@@ -32,8 +33,20 @@ jobs:
       mode: ${{ github.event_name == 'workflow_dispatch' && 'manual' || steps.gate.outputs.mode }}
       version: ${{ steps.gate.outputs.version }}
     steps:
+      - name: Require a green CI run on this commit
+        if: github.event_name == 'workflow_dispatch'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          SHA: ${{ github.sha }}
+        run: |
+          passed=$(gh api "repos/$GITHUB_REPOSITORY/actions/workflows/ci.yaml/runs?head_sha=$SHA&branch=main&event=push&status=success" --jq '.total_count')
+          if [ "$passed" = "0" ]; then
+            echo "::error::CI hasn't passed on main for $SHA, so it can't be released"
+            exit 1
+          fi
+
       - id: gate
-        uses: gr4vy/sdk-release/publish-gate@f956131fcbeaa05d2afcd763f7f8e8122ed823e2
+        uses: gr4vy/sdk-release/publish-gate@c8db692714898b3bed56d5a7df32f44db9b2055c
         with:
           head-sha: ${{ github.event.workflow_run.head_sha || github.sha }}
           bot-login: gr4vy-sdk-release[bot]
