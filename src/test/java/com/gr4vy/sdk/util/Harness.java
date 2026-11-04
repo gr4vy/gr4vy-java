@@ -1,16 +1,25 @@
 package com.gr4vy.sdk.util;
 
 import java.io.IOException;
+import java.net.URI;
+import java.net.URLEncoder;
 import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.security.SecureRandom;
 import java.time.Duration;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.junit.jupiter.api.Assumptions;
 
+import com.gr4vy.sdk.Auth;
 import com.gr4vy.sdk.BearerSecuritySource;
 import com.gr4vy.sdk.Gr4vy;
 import com.gr4vy.sdk.Gr4vy.AvailableServers;
@@ -65,6 +74,9 @@ public final class Harness {
     private static boolean attempted;
     private static TestMerchant shared;
     private static RuntimeException setupError;
+
+    /** Merchant account id to signing key, deleted when the JVM exits. */
+    private static final Map<String, String> createdMerchantAccounts = new LinkedHashMap<>();
 
     /**
      * Returns the shard's shared merchant, provisioning it on first use. Skips
@@ -154,6 +166,8 @@ public final class Harness {
         String privateKey = loadPrivateKey();
         String merchantAccountId = randomMerchantId();
 
+        trackMerchantAccount(merchantAccountId, privateKey);
+
         // Admin client (not merchant-scoped) creates the merchant account.
         Gr4vy admin = newClient(privateKey, null);
         CreateMerchantAccountResponse res = admin.merchantAccounts().create()
@@ -183,5 +197,52 @@ public final class Harness {
                 .call();
 
         return new TestMerchant(merchant, account.id(), privateKey);
+    }
+
+    /**
+     * Records a merchant account the suite created so it is deleted when the JVM
+     * exits (each CI shard is its own JVM).
+     */
+    public static synchronized void trackMerchantAccount(String merchantAccountId, String privateKey) {
+        if (createdMerchantAccounts.isEmpty()) {
+            Runtime.getRuntime().addShutdownHook(new Thread(Harness::deleteCreatedMerchantAccounts));
+        }
+        createdMerchantAccounts.put(merchantAccountId, privateKey);
+    }
+
+    private static void deleteCreatedMerchantAccounts() {
+        List<Map.Entry<String, String>> accounts;
+        synchronized (Harness.class) {
+            accounts = new ArrayList<>(createdMerchantAccounts.entrySet());
+        }
+        for (Map.Entry<String, String> account : accounts) {
+            deleteMerchantAccount(account.getKey(), account.getValue());
+        }
+    }
+
+    /**
+     * Deletes a merchant account. The endpoint is not in the public spec, so it is
+     * called directly. Failures are logged, never thrown: cleanup must not fail the run.
+     */
+    private static void deleteMerchantAccount(String merchantAccountId, String privateKey) {
+        try {
+            HttpRequest request = HttpRequest.newBuilder()
+                    .uri(URI.create(Checkout.API_BASE_URL + "/merchant-accounts/"
+                            + URLEncoder.encode(merchantAccountId, StandardCharsets.UTF_8)))
+                    .timeout(Duration.ofSeconds(30))
+                    .header("Authorization", "Bearer " + Auth.getToken(privateKey))
+                    .DELETE()
+                    .build();
+            HttpResponse<Void> response = HttpClient.newBuilder()
+                    .connectTimeout(Duration.ofSeconds(20))
+                    .build()
+                    .send(request, HttpResponse.BodyHandlers.discarding());
+            if (response.statusCode() != 204 && response.statusCode() != 404) {
+                System.err.println("Failed to delete merchant account " + merchantAccountId
+                        + ": HTTP " + response.statusCode());
+            }
+        } catch (Exception e) {
+            System.err.println("Failed to delete merchant account " + merchantAccountId + ": " + e);
+        }
     }
 }

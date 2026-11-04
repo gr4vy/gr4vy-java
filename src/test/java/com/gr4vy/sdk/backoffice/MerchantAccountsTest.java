@@ -44,6 +44,7 @@ class MerchantAccountsTest {
     void create() throws Exception {
         Gr4vy client = Harness.client();
         String id = randomMerchantId();
+        Harness.trackMerchantAccount(id, Harness.merchant().privateKey);
         MerchantAccount account = client.merchantAccounts().create()
                 .request(MerchantAccountCreate.builder()
                         .id(id)
