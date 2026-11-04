@@ -46,7 +46,7 @@ jobs:
           fi
 
       - id: gate
-        uses: gr4vy/sdk-release/publish-gate@c8db692714898b3bed56d5a7df32f44db9b2055c
+        uses: gr4vy/sdk-release/publish-gate@f65897be6ab124cb925f1f1fbabbbe81d191ce23
         with:
           head-sha: ${{ github.event.workflow_run.head_sha || github.sha }}
           bot-login: gr4vy-sdk-release[bot]
