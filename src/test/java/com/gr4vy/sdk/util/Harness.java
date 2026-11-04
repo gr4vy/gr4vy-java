@@ -168,6 +168,8 @@ public final class Harness {
         String privateKey = loadPrivateKey();
         String merchantAccountId = randomMerchantId();
 
+        trackMerchantAccount(merchantAccountId, privateKey);
+
         // Admin client (not merchant-scoped) creates the merchant account.
         Gr4vy admin = newClient(privateKey, null);
         CreateMerchantAccountResponse res = admin.merchantAccounts().create()
@@ -178,8 +180,6 @@ public final class Harness {
                 .call();
         MerchantAccount account = res.merchantAccount()
                 .orElseThrow(() -> new IllegalStateException("merchant account create returned no body"));
-
-        trackMerchantAccount(account.id(), privateKey);
 
         Gr4vy merchant = newClient(privateKey, account.id());
 

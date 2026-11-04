@@ -44,6 +44,7 @@ class MerchantAccountsTest {
     void create() throws Exception {
         Gr4vy client = Harness.client();
         String id = randomMerchantId();
+        Harness.trackMerchantAccount(id, Harness.merchant().privateKey);
         MerchantAccount account = client.merchantAccounts().create()
                 .request(MerchantAccountCreate.builder()
                         .id(id)
@@ -52,7 +53,6 @@ class MerchantAccountsTest {
                 .call()
                 .merchantAccount()
                 .orElseThrow(() -> new IllegalStateException("create returned no merchant account"));
-        Harness.trackMerchantAccount(account.id(), Harness.merchant().privateKey);
         assertFalse(account.id().isEmpty(), "created merchant account id must be non-empty");
     }
 
