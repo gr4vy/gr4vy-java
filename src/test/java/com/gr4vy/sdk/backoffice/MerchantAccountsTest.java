@@ -52,6 +52,7 @@ class MerchantAccountsTest {
                 .call()
                 .merchantAccount()
                 .orElseThrow(() -> new IllegalStateException("create returned no merchant account"));
+        Harness.trackMerchantAccount(account.id(), Harness.merchant().privateKey);
         assertFalse(account.id().isEmpty(), "created merchant account id must be non-empty");
     }
 
