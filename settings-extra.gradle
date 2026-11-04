@@ -1,0 +1,9 @@
+// The Maven Central upload plugin Speakeasy generates (sonatype-central-upload
+// 1.0.3, unmaintained) pulls in BouncyCastle 1.77, which has open advisories. It
+// runs in the publish job, next to the signing key, so move it to the version the
+// SDK itself ships. settings.gradle applies this file; Speakeasy never writes it.
+gradle.rootProject {
+    buildscript.configurations.classpath.resolutionStrategy.eachDependency { d ->
+        if (d.requested.group == 'org.bouncycastle') { d.useVersion '1.86' }
+    }
+}
