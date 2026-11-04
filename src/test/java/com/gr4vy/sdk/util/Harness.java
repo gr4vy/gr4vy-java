@@ -52,8 +52,6 @@ public final class Harness {
     /** The sandbox environment id the suite targets ({@code api.sandbox.e2e.gr4vy.app}). */
     public static final String SERVER_ID = "e2e";
 
-    private static final String API_BASE_URL = "https://api.sandbox.e2e.gr4vy.app";
-
     /** A provisioned merchant: a merchant-bound client plus its identifiers. */
     public static final class TestMerchant {
         public final Gr4vy client;
@@ -229,7 +227,7 @@ public final class Harness {
     private static void deleteMerchantAccount(String merchantAccountId, String privateKey) {
         try {
             HttpRequest request = HttpRequest.newBuilder()
-                    .uri(URI.create(API_BASE_URL + "/merchant-accounts/"
+                    .uri(URI.create(Checkout.API_BASE_URL + "/merchant-accounts/"
                             + URLEncoder.encode(merchantAccountId, StandardCharsets.UTF_8)))
                     .timeout(Duration.ofSeconds(30))
                     .header("Authorization", "Bearer " + Auth.getToken(privateKey))
