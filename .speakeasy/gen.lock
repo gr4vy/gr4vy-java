@@ -1,19 +1,19 @@
 lockVersion: 2.0.0
 id: 5bbaa3a9-baa0-471b-ba6a-13fd88e8c119
 management:
-  docChecksum: aae1ebc9319aa6c44c24c02439160ed0
+  docChecksum: ece5a8d17aca31190508b3f7034d0dfc
   docVersion: 1.0.0
   speakeasyVersion: 1.806.0
   generationVersion: 2.956.1
-  releaseVersion: 2.19.28
-  configChecksum: a4ca22fc6636a44ee435c332a286a7cc
+  releaseVersion: 2.19.29
+  configChecksum: a944fd7bb3d7c2b1d3ba773b697237eb
   repoURL: https://github.com/gr4vy/gr4vy-java.git
   installationURL: https://github.com/gr4vy/gr4vy-java
   published: true
 persistentEdits:
-  generation_id: 0753513f-a28f-4f09-9128-730486582efd
-  pristine_commit_hash: 9eb28c90eb256cee50b35b8cbdb150e86613b608
-  pristine_tree_hash: 9826f3ce24bc4f9a16f00541a7763d3e622c0deb
+  generation_id: 8549bbe1-f9fd-468b-8cce-0d6fbcdf0066
+  pristine_commit_hash: b7d236d70c77665cd47573ef11490a7c4ee0e61f
+  pristine_tree_hash: 34e7180c568200fe2318906565da43e97d4c28e1
 features:
   java:
     additionalDependencies: 0.1.0
@@ -279,8 +279,12 @@ trackedFiles:
     pristine_git_object: 66a3523543e47f679a013c143e85447b73e66cb5
   docs/models/components/CardPaymentMethodCreate.md:
     id: 7b840bcfe9f6
-    last_write_checksum: sha1:52818786b8c7562db2790784dbdb66db93c880e7
-    pristine_git_object: 240f1604a2b73e3acddecb1b92d2ed70baf60b9e
+    last_write_checksum: sha1:2a7b2d56f9a4ebb42a04f513e5e52f9800d248ba
+    pristine_git_object: c5f7653aa9b2d5118858655f3f12c2e6bd1134e1
+  docs/models/components/CardPaymentMethodCreatePreferredScheme.md:
+    id: 72ac4924f29f
+    last_write_checksum: sha1:c97d2f9f47b4b6449bc50f7e7c871ea15f31490d
+    pristine_git_object: 2ccb177b851f3efdd6d7df1f5941d05cac90df29
   docs/models/components/CardScheme.md:
     id: 41cc326587c2
     last_write_checksum: sha1:7607d129bb21364a0287b6fde659a6850b6abba8
@@ -303,8 +307,12 @@ trackedFiles:
     pristine_git_object: 75695ba27df88b409a76ece54dd94b317fb420f5
   docs/models/components/CardWithUrlPaymentMethodCreate.md:
     id: 3a20f944c2c0
-    last_write_checksum: sha1:a2f49563824ff9afac01dcf204a6eb9ff06440af
-    pristine_git_object: 3af440c48c8745ed37c46cf7c9fbb221be98594b
+    last_write_checksum: sha1:6aeab145f34e1685a23bc9959d460824d3d28c8b
+    pristine_git_object: ef25d010a57af6650444c6c56ab73021983a5ec7
+  docs/models/components/CardWithUrlPaymentMethodCreatePreferredScheme.md:
+    id: a1441f006b59
+    last_write_checksum: sha1:b7f1cc2d86a82637837a78eada26b6a7fd7e5bfc
+    pristine_git_object: 755449943cf1b4d9fff517ce8678e80d46716a29
   docs/models/components/CartItem.md:
     id: 7488a245df87
     last_write_checksum: sha1:df5da6bd528d188479899a46da4305699dd6e05c
@@ -343,8 +351,12 @@ trackedFiles:
     pristine_git_object: 72a51dd53c6ce3c398ba9cfeffd7215374296f0e
   docs/models/components/CheckoutSessionWithUrlPaymentMethodCreate.md:
     id: 76b15f22211f
-    last_write_checksum: sha1:45246f6a1351f2c5cf099869a3e312b075389c5b
-    pristine_git_object: 20b9033a65de10a2777ec417c4cfa60eeecd10bb
+    last_write_checksum: sha1:54939b543a713a96b42b126d93008bae797a37a2
+    pristine_git_object: e67f2d74ecf111c751545326b913e00f6b7c2b69
+  docs/models/components/CheckoutSessionWithUrlPaymentMethodCreatePreferredScheme.md:
+    id: 51cda603354d
+    last_write_checksum: sha1:0c79cfd4d0b54934f1336668b3735553a37110da
+    pristine_git_object: 22d49543acc4189871d26a8125287fbb4a282df9
   docs/models/components/ClickToPayFPANPaymentMethodCreate.md:
     id: f69d49bd2878
     last_write_checksum: sha1:2c215825a870cef30ce6d59580565be591b8eb9f
@@ -1499,8 +1511,12 @@ trackedFiles:
     pristine_git_object: 5949d6a8639fba5f891c61a5eff830fdcbe2e1e9
   docs/models/components/TokenPaymentMethodCreate.md:
     id: 17888efae41e
-    last_write_checksum: sha1:408d47f303407bf76a1d531b1bf8a12842bbd0b9
-    pristine_git_object: ce01164765781161afc5da5ac9f8e74761506636
+    last_write_checksum: sha1:c74462cd04fd518c287574649423da0e8472aee1
+    pristine_git_object: 8bc88c3de29020575c22954a5db6da64369b6636
+  docs/models/components/TokenPaymentMethodCreatePreferredScheme.md:
+    id: 58bafa3bd86b
+    last_write_checksum: sha1:f7fff029265767939724b63f65237ea7afb01ba4
+    pristine_git_object: f5826bb23eaf7a47668deb7051d3a2d1b8e10306
   docs/models/components/Tracking.md:
     id: 34646021f531
     last_write_checksum: sha1:826d787192800337be4845ba18f6faf2aa331284
@@ -2891,8 +2907,8 @@ trackedFiles:
     pristine_git_object: 15c4e4642f204ccb312d8814155b69e153b4e19b
   gradle.properties:
     id: 2afbb999f001
-    last_write_checksum: sha1:901edafca846f473cdf854a94c1815da3901a471
-    pristine_git_object: 2ab3217cbedf224c66f4c1fdb16ecd74218bb081
+    last_write_checksum: sha1:3d65bd4de2caa417a61ced845b9d456dae4c2d68
+    pristine_git_object: 26fc948d8599e432568c80f4d5c8d8058aaa3458
   gradle/wrapper/gradle-wrapper.jar:
     id: ec27dae6e852
     last_write_checksum: sha1:f725fb1467084142d74fd7cd8eab691ab3442611
@@ -3235,8 +3251,8 @@ trackedFiles:
     pristine_git_object: b50475cc7f6041d63c4569256e4ff1850b20d30b
   src/main/java/com/gr4vy/sdk/SDKConfiguration.java:
     id: 73a7edeaca45
-    last_write_checksum: sha1:28e753a34c4420a3611f83b1ea3dc79cdc18d485
-    pristine_git_object: 1d0448249f4d6a867c0963ae8a48ec7d140b1dd5
+    last_write_checksum: sha1:27ce1f3cf39c6d9e95c1f92f3a2e808ebd7dc4d5
+    pristine_git_object: adeeed026783af89d99089f5c97669ef20b66fa4
   src/main/java/com/gr4vy/sdk/SecuritySource.java:
     id: 1b6add6b9b50
     last_write_checksum: sha1:2f365cc823c6243188e83f4df618c9737fcee8bd
@@ -3499,8 +3515,12 @@ trackedFiles:
     pristine_git_object: c89f44416a4506bd9c67962794104223777d7e2e
   src/main/java/com/gr4vy/sdk/models/components/CardPaymentMethodCreate.java:
     id: 3ae89e26628b
-    last_write_checksum: sha1:8bd82d95ca17410f55f7bc1ff44de5c17fed8520
-    pristine_git_object: 504d71e5e3fc4a1c93d98041345a01933cdca0d8
+    last_write_checksum: sha1:cfc32114f338b342441dd0fdc09c92dd9b3b406c
+    pristine_git_object: b8ef2e94a3780086afddcbbb53e126ee0cd2da5a
+  src/main/java/com/gr4vy/sdk/models/components/CardPaymentMethodCreatePreferredScheme.java:
+    id: 479615d855b3
+    last_write_checksum: sha1:983ec3e8763865ed966f8ec4f6a57e883d51d93a
+    pristine_git_object: bd08730cc09c2697124681ad759db96646d73054
   src/main/java/com/gr4vy/sdk/models/components/CardScheme.java:
     id: 2131295a05b7
     last_write_checksum: sha1:2e0adbba5787ee8fb370d155c00b1bf65e2c4847
@@ -3523,8 +3543,12 @@ trackedFiles:
     pristine_git_object: 97205d92307cbbdfaa584240a7104ca39a3e30f9
   src/main/java/com/gr4vy/sdk/models/components/CardWithUrlPaymentMethodCreate.java:
     id: eef12496cc2d
-    last_write_checksum: sha1:e8387d9b12e0820f8310905a6d97addef64124f5
-    pristine_git_object: 916fc1ec1156dd14308ed27405f877f8185d7794
+    last_write_checksum: sha1:b63177a1637484cc578a174b959fd0cc04e743c0
+    pristine_git_object: a415351f2a40d2f344e04551b3de794f4b14b32f
+  src/main/java/com/gr4vy/sdk/models/components/CardWithUrlPaymentMethodCreatePreferredScheme.java:
+    id: b745574e691f
+    last_write_checksum: sha1:e393741194ffe38763fc3cdc372940ed0fed3373
+    pristine_git_object: e6dbb14e4487a02b1665f9d91b5c256447ab3521
   src/main/java/com/gr4vy/sdk/models/components/CartItem.java:
     id: bb251abb2fcb
     last_write_checksum: sha1:e114fa4f5d2a2b5109ca7b239ddc2b9c6c952e9b
@@ -3563,8 +3587,12 @@ trackedFiles:
     pristine_git_object: 5baebe6b674b188a7e61055622fd8b1f245c9fd1
   src/main/java/com/gr4vy/sdk/models/components/CheckoutSessionWithUrlPaymentMethodCreate.java:
     id: e4a7e837a5d7
-    last_write_checksum: sha1:e7122abba5d2fe979d721891ad6aa8db239a8bcb
-    pristine_git_object: f44058e8b496ecdb9f1a18b5310c5355379d0cfc
+    last_write_checksum: sha1:d46663234e7601c55aa5245fdf6d486e6ed58903
+    pristine_git_object: 661c4edf0177c8a1e32f5d863cc148275c944ead
+  src/main/java/com/gr4vy/sdk/models/components/CheckoutSessionWithUrlPaymentMethodCreatePreferredScheme.java:
+    id: 21171080a8cd
+    last_write_checksum: sha1:eef70dc39b70bee6a9337497b3bdc9330e3671b5
+    pristine_git_object: 0741219bea8bc842d5b13dbaaebd4fe73bbc242a
   src/main/java/com/gr4vy/sdk/models/components/ClickToPayFPANPaymentMethodCreate.java:
     id: 1aca3d4bfeb8
     last_write_checksum: sha1:b1569679ee42192359919fb2bfc2b546059b1736
@@ -4723,8 +4751,12 @@ trackedFiles:
     pristine_git_object: 6841d2f1796e51040788cadbb5d301e8e1638570
   src/main/java/com/gr4vy/sdk/models/components/TokenPaymentMethodCreate.java:
     id: da3cb8a0ef9e
-    last_write_checksum: sha1:b56bc638ab263b757fd56dd17327cc6e8aed06e1
-    pristine_git_object: bb01652754c22faae31a1012053c577c8d9720c2
+    last_write_checksum: sha1:d75434e04d9c7cbd172897bf641ef607252c211f
+    pristine_git_object: a8ad30969e9eb3d4873bffc77cd423660fab2b69
+  src/main/java/com/gr4vy/sdk/models/components/TokenPaymentMethodCreatePreferredScheme.java:
+    id: 8b8951b2adf8
+    last_write_checksum: sha1:3bfdaf963eddbaa776843be627b3ea132b1cd979
+    pristine_git_object: 9f4c6f97b59b9cc7a9a1ca28cc999e0252ee43c2
   src/main/java/com/gr4vy/sdk/models/components/Tracking.java:
     id: f2d0603f72c9
     last_write_checksum: sha1:e3a9989c645fb6b54a16628f66ceb3e2b7650a80
@@ -12499,6 +12531,7 @@ examples:
           application/json: {"type": "error", "code": "gateway_timeout", "status": 504, "message": "Request could not be processed"}
 examplesVersion: 1.0.2
 generatedTests: {}
+releaseNotes: "## Java SDK Changes:\n* `gr4vy.paymentMethods.create()`: \n  *  `requestBody.union(CardPaymentMethodCreate).preferredScheme` **Added**\n* `gr4vy.transactions.create()`: \n  *  `request.transactionCreate.paymentMethod` **Changed**\n"
 generatedFiles:
   - .gitattributes
   - USAGE.md
