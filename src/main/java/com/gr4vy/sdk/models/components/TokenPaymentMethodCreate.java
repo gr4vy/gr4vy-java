@@ -13,6 +13,7 @@ import com.gr4vy.sdk.utils.LazySingletonValue;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -44,6 +45,13 @@ public class TokenPaymentMethodCreate {
     private JsonNullable<String> securityCode;
 
     /**
+     * The preferred card scheme to use when processing a co-badged card.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("preferred_scheme")
+    private JsonNullable<? extends TokenPaymentMethodCreatePreferredScheme> preferredScheme;
+
+    /**
      * The URL to redirect a user back to after they approve the transaction in the browser.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -54,19 +62,23 @@ public class TokenPaymentMethodCreate {
     public TokenPaymentMethodCreate(
             @JsonProperty("id") String id,
             @JsonProperty("security_code") JsonNullable<String> securityCode,
+            @JsonProperty("preferred_scheme") JsonNullable<? extends TokenPaymentMethodCreatePreferredScheme> preferredScheme,
             @JsonProperty("redirect_url") JsonNullable<String> redirectUrl) {
         Utils.checkNotNull(id, "id");
         Utils.checkNotNull(securityCode, "securityCode");
+        Utils.checkNotNull(preferredScheme, "preferredScheme");
         Utils.checkNotNull(redirectUrl, "redirectUrl");
         this.id = id;
         this.method = Builder._SINGLETON_VALUE_Method.value();
         this.securityCode = securityCode;
+        this.preferredScheme = preferredScheme;
         this.redirectUrl = redirectUrl;
     }
     
     public TokenPaymentMethodCreate(
             String id) {
-        this(id, JsonNullable.undefined(), JsonNullable.undefined());
+        this(id, JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined());
     }
 
     /**
@@ -91,6 +103,15 @@ public class TokenPaymentMethodCreate {
     @JsonIgnore
     public JsonNullable<String> securityCode() {
         return securityCode;
+    }
+
+    /**
+     * The preferred card scheme to use when processing a co-badged card.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public JsonNullable<TokenPaymentMethodCreatePreferredScheme> preferredScheme() {
+        return (JsonNullable<TokenPaymentMethodCreatePreferredScheme>) preferredScheme;
     }
 
     /**
@@ -134,6 +155,24 @@ public class TokenPaymentMethodCreate {
     }
 
     /**
+     * The preferred card scheme to use when processing a co-badged card.
+     */
+    public TokenPaymentMethodCreate withPreferredScheme(TokenPaymentMethodCreatePreferredScheme preferredScheme) {
+        Utils.checkNotNull(preferredScheme, "preferredScheme");
+        this.preferredScheme = JsonNullable.of(preferredScheme);
+        return this;
+    }
+
+    /**
+     * The preferred card scheme to use when processing a co-badged card.
+     */
+    public TokenPaymentMethodCreate withPreferredScheme(JsonNullable<? extends TokenPaymentMethodCreatePreferredScheme> preferredScheme) {
+        Utils.checkNotNull(preferredScheme, "preferredScheme");
+        this.preferredScheme = preferredScheme;
+        return this;
+    }
+
+    /**
      * The URL to redirect a user back to after they approve the transaction in the browser.
      */
     public TokenPaymentMethodCreate withRedirectUrl(String redirectUrl) {
@@ -164,6 +203,7 @@ public class TokenPaymentMethodCreate {
             Utils.enhancedDeepEquals(this.id, other.id) &&
             Utils.enhancedDeepEquals(this.method, other.method) &&
             Utils.enhancedDeepEquals(this.securityCode, other.securityCode) &&
+            Utils.enhancedDeepEquals(this.preferredScheme, other.preferredScheme) &&
             Utils.enhancedDeepEquals(this.redirectUrl, other.redirectUrl);
     }
     
@@ -171,7 +211,7 @@ public class TokenPaymentMethodCreate {
     public int hashCode() {
         return Utils.enhancedHash(
             id, method, securityCode,
-            redirectUrl);
+            preferredScheme, redirectUrl);
     }
     
     @Override
@@ -180,6 +220,7 @@ public class TokenPaymentMethodCreate {
                 "id", id,
                 "method", method,
                 "securityCode", securityCode,
+                "preferredScheme", preferredScheme,
                 "redirectUrl", redirectUrl);
     }
 
@@ -189,6 +230,8 @@ public class TokenPaymentMethodCreate {
         private String id;
 
         private JsonNullable<String> securityCode = JsonNullable.undefined();
+
+        private JsonNullable<? extends TokenPaymentMethodCreatePreferredScheme> preferredScheme = JsonNullable.undefined();
 
         private JsonNullable<String> redirectUrl = JsonNullable.undefined();
 
@@ -227,6 +270,25 @@ public class TokenPaymentMethodCreate {
 
 
         /**
+         * The preferred card scheme to use when processing a co-badged card.
+         */
+        public Builder preferredScheme(TokenPaymentMethodCreatePreferredScheme preferredScheme) {
+            Utils.checkNotNull(preferredScheme, "preferredScheme");
+            this.preferredScheme = JsonNullable.of(preferredScheme);
+            return this;
+        }
+
+        /**
+         * The preferred card scheme to use when processing a co-badged card.
+         */
+        public Builder preferredScheme(JsonNullable<? extends TokenPaymentMethodCreatePreferredScheme> preferredScheme) {
+            Utils.checkNotNull(preferredScheme, "preferredScheme");
+            this.preferredScheme = preferredScheme;
+            return this;
+        }
+
+
+        /**
          * The URL to redirect a user back to after they approve the transaction in the browser.
          */
         public Builder redirectUrl(String redirectUrl) {
@@ -247,7 +309,8 @@ public class TokenPaymentMethodCreate {
         public TokenPaymentMethodCreate build() {
 
             return new TokenPaymentMethodCreate(
-                id, securityCode, redirectUrl);
+                id, securityCode, preferredScheme,
+                redirectUrl);
         }
 
 

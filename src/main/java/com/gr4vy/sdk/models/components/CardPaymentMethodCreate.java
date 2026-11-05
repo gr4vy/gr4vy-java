@@ -73,6 +73,13 @@ public class CardPaymentMethodCreate {
     @JsonProperty("security_code")
     private JsonNullable<String> securityCode;
 
+    /**
+     * The preferred card scheme to use when processing a co-badged card.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("preferred_scheme")
+    private JsonNullable<? extends CardPaymentMethodCreatePreferredScheme> preferredScheme;
+
     @JsonCreator
     public CardPaymentMethodCreate(
             @JsonProperty("expiration_date") String expirationDate,
@@ -81,7 +88,8 @@ public class CardPaymentMethodCreate {
             @JsonProperty("buyer_id") JsonNullable<String> buyerId,
             @JsonProperty("external_identifier") JsonNullable<String> externalIdentifier,
             @JsonProperty("card_type") JsonNullable<? extends CardType> cardType,
-            @JsonProperty("security_code") JsonNullable<String> securityCode) {
+            @JsonProperty("security_code") JsonNullable<String> securityCode,
+            @JsonProperty("preferred_scheme") JsonNullable<? extends CardPaymentMethodCreatePreferredScheme> preferredScheme) {
         Utils.checkNotNull(expirationDate, "expirationDate");
         Utils.checkNotNull(number, "number");
         Utils.checkNotNull(buyerExternalIdentifier, "buyerExternalIdentifier");
@@ -89,6 +97,7 @@ public class CardPaymentMethodCreate {
         Utils.checkNotNull(externalIdentifier, "externalIdentifier");
         Utils.checkNotNull(cardType, "cardType");
         Utils.checkNotNull(securityCode, "securityCode");
+        Utils.checkNotNull(preferredScheme, "preferredScheme");
         this.expirationDate = expirationDate;
         this.number = number;
         this.buyerExternalIdentifier = buyerExternalIdentifier;
@@ -97,6 +106,7 @@ public class CardPaymentMethodCreate {
         this.cardType = cardType;
         this.method = Builder._SINGLETON_VALUE_Method.value();
         this.securityCode = securityCode;
+        this.preferredScheme = preferredScheme;
     }
     
     public CardPaymentMethodCreate(
@@ -104,7 +114,7 @@ public class CardPaymentMethodCreate {
             String number) {
         this(expirationDate, number, JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined());
+            JsonNullable.undefined(), JsonNullable.undefined());
     }
 
     /**
@@ -170,6 +180,15 @@ public class CardPaymentMethodCreate {
     @JsonIgnore
     public JsonNullable<String> securityCode() {
         return securityCode;
+    }
+
+    /**
+     * The preferred card scheme to use when processing a co-badged card.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public JsonNullable<CardPaymentMethodCreatePreferredScheme> preferredScheme() {
+        return (JsonNullable<CardPaymentMethodCreatePreferredScheme>) preferredScheme;
     }
 
     public static Builder builder() {
@@ -285,6 +304,24 @@ public class CardPaymentMethodCreate {
         return this;
     }
 
+    /**
+     * The preferred card scheme to use when processing a co-badged card.
+     */
+    public CardPaymentMethodCreate withPreferredScheme(CardPaymentMethodCreatePreferredScheme preferredScheme) {
+        Utils.checkNotNull(preferredScheme, "preferredScheme");
+        this.preferredScheme = JsonNullable.of(preferredScheme);
+        return this;
+    }
+
+    /**
+     * The preferred card scheme to use when processing a co-badged card.
+     */
+    public CardPaymentMethodCreate withPreferredScheme(JsonNullable<? extends CardPaymentMethodCreatePreferredScheme> preferredScheme) {
+        Utils.checkNotNull(preferredScheme, "preferredScheme");
+        this.preferredScheme = preferredScheme;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -302,7 +339,8 @@ public class CardPaymentMethodCreate {
             Utils.enhancedDeepEquals(this.externalIdentifier, other.externalIdentifier) &&
             Utils.enhancedDeepEquals(this.cardType, other.cardType) &&
             Utils.enhancedDeepEquals(this.method, other.method) &&
-            Utils.enhancedDeepEquals(this.securityCode, other.securityCode);
+            Utils.enhancedDeepEquals(this.securityCode, other.securityCode) &&
+            Utils.enhancedDeepEquals(this.preferredScheme, other.preferredScheme);
     }
     
     @Override
@@ -310,7 +348,7 @@ public class CardPaymentMethodCreate {
         return Utils.enhancedHash(
             expirationDate, number, buyerExternalIdentifier,
             buyerId, externalIdentifier, cardType,
-            method, securityCode);
+            method, securityCode, preferredScheme);
     }
     
     @Override
@@ -323,7 +361,8 @@ public class CardPaymentMethodCreate {
                 "externalIdentifier", externalIdentifier,
                 "cardType", cardType,
                 "method", method,
-                "securityCode", securityCode);
+                "securityCode", securityCode,
+                "preferredScheme", preferredScheme);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -342,6 +381,8 @@ public class CardPaymentMethodCreate {
         private JsonNullable<? extends CardType> cardType = JsonNullable.undefined();
 
         private JsonNullable<String> securityCode = JsonNullable.undefined();
+
+        private JsonNullable<? extends CardPaymentMethodCreatePreferredScheme> preferredScheme = JsonNullable.undefined();
 
         private Builder() {
           // force use of static builder() method
@@ -462,12 +503,31 @@ public class CardPaymentMethodCreate {
             return this;
         }
 
+
+        /**
+         * The preferred card scheme to use when processing a co-badged card.
+         */
+        public Builder preferredScheme(CardPaymentMethodCreatePreferredScheme preferredScheme) {
+            Utils.checkNotNull(preferredScheme, "preferredScheme");
+            this.preferredScheme = JsonNullable.of(preferredScheme);
+            return this;
+        }
+
+        /**
+         * The preferred card scheme to use when processing a co-badged card.
+         */
+        public Builder preferredScheme(JsonNullable<? extends CardPaymentMethodCreatePreferredScheme> preferredScheme) {
+            Utils.checkNotNull(preferredScheme, "preferredScheme");
+            this.preferredScheme = preferredScheme;
+            return this;
+        }
+
         public CardPaymentMethodCreate build() {
 
             return new CardPaymentMethodCreate(
                 expirationDate, number, buyerExternalIdentifier,
                 buyerId, externalIdentifier, cardType,
-                securityCode);
+                securityCode, preferredScheme);
         }
 
 

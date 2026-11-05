@@ -78,6 +78,13 @@ public class CardWithUrlPaymentMethodCreate {
     private JsonNullable<String> securityCode;
 
     /**
+     * The preferred card scheme to use when processing a co-badged card.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("preferred_scheme")
+    private JsonNullable<? extends CardWithUrlPaymentMethodCreatePreferredScheme> preferredScheme;
+
+    /**
      * The URL to redirect a user back to after the complete 3DS in browser.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -93,6 +100,7 @@ public class CardWithUrlPaymentMethodCreate {
             @JsonProperty("external_identifier") JsonNullable<String> externalIdentifier,
             @JsonProperty("card_type") JsonNullable<? extends CardType> cardType,
             @JsonProperty("security_code") JsonNullable<String> securityCode,
+            @JsonProperty("preferred_scheme") JsonNullable<? extends CardWithUrlPaymentMethodCreatePreferredScheme> preferredScheme,
             @JsonProperty("redirect_url") JsonNullable<String> redirectUrl) {
         Utils.checkNotNull(expirationDate, "expirationDate");
         Utils.checkNotNull(number, "number");
@@ -101,6 +109,7 @@ public class CardWithUrlPaymentMethodCreate {
         Utils.checkNotNull(externalIdentifier, "externalIdentifier");
         Utils.checkNotNull(cardType, "cardType");
         Utils.checkNotNull(securityCode, "securityCode");
+        Utils.checkNotNull(preferredScheme, "preferredScheme");
         Utils.checkNotNull(redirectUrl, "redirectUrl");
         this.expirationDate = expirationDate;
         this.number = number;
@@ -110,6 +119,7 @@ public class CardWithUrlPaymentMethodCreate {
         this.cardType = cardType;
         this.method = Builder._SINGLETON_VALUE_Method.value();
         this.securityCode = securityCode;
+        this.preferredScheme = preferredScheme;
         this.redirectUrl = redirectUrl;
     }
     
@@ -118,7 +128,7 @@ public class CardWithUrlPaymentMethodCreate {
             String number) {
         this(expirationDate, number, JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined());
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
     }
 
     /**
@@ -184,6 +194,15 @@ public class CardWithUrlPaymentMethodCreate {
     @JsonIgnore
     public JsonNullable<String> securityCode() {
         return securityCode;
+    }
+
+    /**
+     * The preferred card scheme to use when processing a co-badged card.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public JsonNullable<CardWithUrlPaymentMethodCreatePreferredScheme> preferredScheme() {
+        return (JsonNullable<CardWithUrlPaymentMethodCreatePreferredScheme>) preferredScheme;
     }
 
     /**
@@ -308,6 +327,24 @@ public class CardWithUrlPaymentMethodCreate {
     }
 
     /**
+     * The preferred card scheme to use when processing a co-badged card.
+     */
+    public CardWithUrlPaymentMethodCreate withPreferredScheme(CardWithUrlPaymentMethodCreatePreferredScheme preferredScheme) {
+        Utils.checkNotNull(preferredScheme, "preferredScheme");
+        this.preferredScheme = JsonNullable.of(preferredScheme);
+        return this;
+    }
+
+    /**
+     * The preferred card scheme to use when processing a co-badged card.
+     */
+    public CardWithUrlPaymentMethodCreate withPreferredScheme(JsonNullable<? extends CardWithUrlPaymentMethodCreatePreferredScheme> preferredScheme) {
+        Utils.checkNotNull(preferredScheme, "preferredScheme");
+        this.preferredScheme = preferredScheme;
+        return this;
+    }
+
+    /**
      * The URL to redirect a user back to after the complete 3DS in browser.
      */
     public CardWithUrlPaymentMethodCreate withRedirectUrl(String redirectUrl) {
@@ -343,6 +380,7 @@ public class CardWithUrlPaymentMethodCreate {
             Utils.enhancedDeepEquals(this.cardType, other.cardType) &&
             Utils.enhancedDeepEquals(this.method, other.method) &&
             Utils.enhancedDeepEquals(this.securityCode, other.securityCode) &&
+            Utils.enhancedDeepEquals(this.preferredScheme, other.preferredScheme) &&
             Utils.enhancedDeepEquals(this.redirectUrl, other.redirectUrl);
     }
     
@@ -351,7 +389,8 @@ public class CardWithUrlPaymentMethodCreate {
         return Utils.enhancedHash(
             expirationDate, number, buyerExternalIdentifier,
             buyerId, externalIdentifier, cardType,
-            method, securityCode, redirectUrl);
+            method, securityCode, preferredScheme,
+            redirectUrl);
     }
     
     @Override
@@ -365,6 +404,7 @@ public class CardWithUrlPaymentMethodCreate {
                 "cardType", cardType,
                 "method", method,
                 "securityCode", securityCode,
+                "preferredScheme", preferredScheme,
                 "redirectUrl", redirectUrl);
     }
 
@@ -384,6 +424,8 @@ public class CardWithUrlPaymentMethodCreate {
         private JsonNullable<? extends CardType> cardType = JsonNullable.undefined();
 
         private JsonNullable<String> securityCode = JsonNullable.undefined();
+
+        private JsonNullable<? extends CardWithUrlPaymentMethodCreatePreferredScheme> preferredScheme = JsonNullable.undefined();
 
         private JsonNullable<String> redirectUrl = JsonNullable.undefined();
 
@@ -508,6 +550,25 @@ public class CardWithUrlPaymentMethodCreate {
 
 
         /**
+         * The preferred card scheme to use when processing a co-badged card.
+         */
+        public Builder preferredScheme(CardWithUrlPaymentMethodCreatePreferredScheme preferredScheme) {
+            Utils.checkNotNull(preferredScheme, "preferredScheme");
+            this.preferredScheme = JsonNullable.of(preferredScheme);
+            return this;
+        }
+
+        /**
+         * The preferred card scheme to use when processing a co-badged card.
+         */
+        public Builder preferredScheme(JsonNullable<? extends CardWithUrlPaymentMethodCreatePreferredScheme> preferredScheme) {
+            Utils.checkNotNull(preferredScheme, "preferredScheme");
+            this.preferredScheme = preferredScheme;
+            return this;
+        }
+
+
+        /**
          * The URL to redirect a user back to after the complete 3DS in browser.
          */
         public Builder redirectUrl(String redirectUrl) {
@@ -530,7 +591,7 @@ public class CardWithUrlPaymentMethodCreate {
             return new CardWithUrlPaymentMethodCreate(
                 expirationDate, number, buyerExternalIdentifier,
                 buyerId, externalIdentifier, cardType,
-                securityCode, redirectUrl);
+                securityCode, preferredScheme, redirectUrl);
         }
 
 

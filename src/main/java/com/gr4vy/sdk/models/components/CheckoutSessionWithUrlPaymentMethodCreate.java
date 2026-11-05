@@ -13,6 +13,7 @@ import com.gr4vy.sdk.utils.LazySingletonValue;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -63,30 +64,40 @@ public class CheckoutSessionWithUrlPaymentMethodCreate {
     @JsonProperty("redirect_url")
     private JsonNullable<String> redirectUrl;
 
+    /**
+     * The preferred card scheme to use when processing a co-badged card.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("preferred_scheme")
+    private JsonNullable<? extends CheckoutSessionWithUrlPaymentMethodCreatePreferredScheme> preferredScheme;
+
     @JsonCreator
     public CheckoutSessionWithUrlPaymentMethodCreate(
             @JsonProperty("id") String id,
             @JsonProperty("external_identifier") JsonNullable<String> externalIdentifier,
             @JsonProperty("buyer_id") JsonNullable<String> buyerId,
             @JsonProperty("buyer_external_identifier") JsonNullable<String> buyerExternalIdentifier,
-            @JsonProperty("redirect_url") JsonNullable<String> redirectUrl) {
+            @JsonProperty("redirect_url") JsonNullable<String> redirectUrl,
+            @JsonProperty("preferred_scheme") JsonNullable<? extends CheckoutSessionWithUrlPaymentMethodCreatePreferredScheme> preferredScheme) {
         Utils.checkNotNull(id, "id");
         Utils.checkNotNull(externalIdentifier, "externalIdentifier");
         Utils.checkNotNull(buyerId, "buyerId");
         Utils.checkNotNull(buyerExternalIdentifier, "buyerExternalIdentifier");
         Utils.checkNotNull(redirectUrl, "redirectUrl");
+        Utils.checkNotNull(preferredScheme, "preferredScheme");
         this.method = Builder._SINGLETON_VALUE_Method.value();
         this.id = id;
         this.externalIdentifier = externalIdentifier;
         this.buyerId = buyerId;
         this.buyerExternalIdentifier = buyerExternalIdentifier;
         this.redirectUrl = redirectUrl;
+        this.preferredScheme = preferredScheme;
     }
     
     public CheckoutSessionWithUrlPaymentMethodCreate(
             String id) {
         this(id, JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined());
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
     }
 
     /**
@@ -135,6 +146,15 @@ public class CheckoutSessionWithUrlPaymentMethodCreate {
     @JsonIgnore
     public JsonNullable<String> redirectUrl() {
         return redirectUrl;
+    }
+
+    /**
+     * The preferred card scheme to use when processing a co-badged card.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public JsonNullable<CheckoutSessionWithUrlPaymentMethodCreatePreferredScheme> preferredScheme() {
+        return (JsonNullable<CheckoutSessionWithUrlPaymentMethodCreatePreferredScheme>) preferredScheme;
     }
 
     public static Builder builder() {
@@ -223,6 +243,24 @@ public class CheckoutSessionWithUrlPaymentMethodCreate {
         return this;
     }
 
+    /**
+     * The preferred card scheme to use when processing a co-badged card.
+     */
+    public CheckoutSessionWithUrlPaymentMethodCreate withPreferredScheme(CheckoutSessionWithUrlPaymentMethodCreatePreferredScheme preferredScheme) {
+        Utils.checkNotNull(preferredScheme, "preferredScheme");
+        this.preferredScheme = JsonNullable.of(preferredScheme);
+        return this;
+    }
+
+    /**
+     * The preferred card scheme to use when processing a co-badged card.
+     */
+    public CheckoutSessionWithUrlPaymentMethodCreate withPreferredScheme(JsonNullable<? extends CheckoutSessionWithUrlPaymentMethodCreatePreferredScheme> preferredScheme) {
+        Utils.checkNotNull(preferredScheme, "preferredScheme");
+        this.preferredScheme = preferredScheme;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -238,14 +276,16 @@ public class CheckoutSessionWithUrlPaymentMethodCreate {
             Utils.enhancedDeepEquals(this.externalIdentifier, other.externalIdentifier) &&
             Utils.enhancedDeepEquals(this.buyerId, other.buyerId) &&
             Utils.enhancedDeepEquals(this.buyerExternalIdentifier, other.buyerExternalIdentifier) &&
-            Utils.enhancedDeepEquals(this.redirectUrl, other.redirectUrl);
+            Utils.enhancedDeepEquals(this.redirectUrl, other.redirectUrl) &&
+            Utils.enhancedDeepEquals(this.preferredScheme, other.preferredScheme);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
             method, id, externalIdentifier,
-            buyerId, buyerExternalIdentifier, redirectUrl);
+            buyerId, buyerExternalIdentifier, redirectUrl,
+            preferredScheme);
     }
     
     @Override
@@ -256,7 +296,8 @@ public class CheckoutSessionWithUrlPaymentMethodCreate {
                 "externalIdentifier", externalIdentifier,
                 "buyerId", buyerId,
                 "buyerExternalIdentifier", buyerExternalIdentifier,
-                "redirectUrl", redirectUrl);
+                "redirectUrl", redirectUrl,
+                "preferredScheme", preferredScheme);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -271,6 +312,8 @@ public class CheckoutSessionWithUrlPaymentMethodCreate {
         private JsonNullable<String> buyerExternalIdentifier = JsonNullable.undefined();
 
         private JsonNullable<String> redirectUrl = JsonNullable.undefined();
+
+        private JsonNullable<? extends CheckoutSessionWithUrlPaymentMethodCreatePreferredScheme> preferredScheme = JsonNullable.undefined();
 
         private Builder() {
           // force use of static builder() method
@@ -362,11 +405,30 @@ public class CheckoutSessionWithUrlPaymentMethodCreate {
             return this;
         }
 
+
+        /**
+         * The preferred card scheme to use when processing a co-badged card.
+         */
+        public Builder preferredScheme(CheckoutSessionWithUrlPaymentMethodCreatePreferredScheme preferredScheme) {
+            Utils.checkNotNull(preferredScheme, "preferredScheme");
+            this.preferredScheme = JsonNullable.of(preferredScheme);
+            return this;
+        }
+
+        /**
+         * The preferred card scheme to use when processing a co-badged card.
+         */
+        public Builder preferredScheme(JsonNullable<? extends CheckoutSessionWithUrlPaymentMethodCreatePreferredScheme> preferredScheme) {
+            Utils.checkNotNull(preferredScheme, "preferredScheme");
+            this.preferredScheme = preferredScheme;
+            return this;
+        }
+
         public CheckoutSessionWithUrlPaymentMethodCreate build() {
 
             return new CheckoutSessionWithUrlPaymentMethodCreate(
                 id, externalIdentifier, buyerId,
-                buyerExternalIdentifier, redirectUrl);
+                buyerExternalIdentifier, redirectUrl, preferredScheme);
         }
 
 
