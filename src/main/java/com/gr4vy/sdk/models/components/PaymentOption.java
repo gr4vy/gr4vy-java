@@ -30,18 +30,16 @@ public class PaymentOption {
     private String method;
 
 
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("icon_url")
-    private JsonNullable<String> iconUrl;
+    private String iconUrl;
 
 
     @JsonProperty("mode")
     private Mode mode;
 
 
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("label")
-    private JsonNullable<String> label;
+    private String label;
 
 
     @JsonProperty("can_store_payment_method")
@@ -59,9 +57,9 @@ public class PaymentOption {
     @JsonCreator
     public PaymentOption(
             @JsonProperty("method") String method,
-            @JsonProperty("icon_url") JsonNullable<String> iconUrl,
+            @JsonProperty("icon_url") String iconUrl,
             @JsonProperty("mode") Mode mode,
-            @JsonProperty("label") JsonNullable<String> label,
+            @JsonProperty("label") String label,
             @JsonProperty("can_store_payment_method") boolean canStorePaymentMethod,
             @JsonProperty("can_delay_capture") boolean canDelayCapture,
             @JsonProperty("context") JsonNullable<? extends Context> context) {
@@ -84,11 +82,13 @@ public class PaymentOption {
     
     public PaymentOption(
             String method,
+            String iconUrl,
             Mode mode,
+            String label,
             boolean canStorePaymentMethod,
             boolean canDelayCapture) {
-        this(method, JsonNullable.undefined(), mode,
-            JsonNullable.undefined(), canStorePaymentMethod, canDelayCapture,
+        this(method, iconUrl, mode,
+            label, canStorePaymentMethod, canDelayCapture,
             JsonNullable.undefined());
     }
 
@@ -103,7 +103,7 @@ public class PaymentOption {
     }
 
     @JsonIgnore
-    public JsonNullable<String> iconUrl() {
+    public String iconUrl() {
         return iconUrl;
     }
 
@@ -113,7 +113,7 @@ public class PaymentOption {
     }
 
     @JsonIgnore
-    public JsonNullable<String> label() {
+    public String label() {
         return label;
     }
 
@@ -146,12 +146,6 @@ public class PaymentOption {
 
     public PaymentOption withIconUrl(String iconUrl) {
         Utils.checkNotNull(iconUrl, "iconUrl");
-        this.iconUrl = JsonNullable.of(iconUrl);
-        return this;
-    }
-
-    public PaymentOption withIconUrl(JsonNullable<String> iconUrl) {
-        Utils.checkNotNull(iconUrl, "iconUrl");
         this.iconUrl = iconUrl;
         return this;
     }
@@ -163,12 +157,6 @@ public class PaymentOption {
     }
 
     public PaymentOption withLabel(String label) {
-        Utils.checkNotNull(label, "label");
-        this.label = JsonNullable.of(label);
-        return this;
-    }
-
-    public PaymentOption withLabel(JsonNullable<String> label) {
         Utils.checkNotNull(label, "label");
         this.label = label;
         return this;
@@ -244,11 +232,11 @@ public class PaymentOption {
 
         private String method;
 
-        private JsonNullable<String> iconUrl = JsonNullable.undefined();
+        private String iconUrl;
 
         private Mode mode;
 
-        private JsonNullable<String> label = JsonNullable.undefined();
+        private String label;
 
         private Boolean canStorePaymentMethod;
 
@@ -270,12 +258,6 @@ public class PaymentOption {
 
         public Builder iconUrl(String iconUrl) {
             Utils.checkNotNull(iconUrl, "iconUrl");
-            this.iconUrl = JsonNullable.of(iconUrl);
-            return this;
-        }
-
-        public Builder iconUrl(JsonNullable<String> iconUrl) {
-            Utils.checkNotNull(iconUrl, "iconUrl");
             this.iconUrl = iconUrl;
             return this;
         }
@@ -289,12 +271,6 @@ public class PaymentOption {
 
 
         public Builder label(String label) {
-            Utils.checkNotNull(label, "label");
-            this.label = JsonNullable.of(label);
-            return this;
-        }
-
-        public Builder label(JsonNullable<String> label) {
             Utils.checkNotNull(label, "label");
             this.label = label;
             return this;
