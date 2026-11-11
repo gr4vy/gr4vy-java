@@ -137,7 +137,7 @@ public class PaymentLinkCreate {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("intent")
-    private Optional<? extends TransactionIntent> intent;
+    private Optional<? extends PaymentLinkIntent> intent;
 
     /**
      * The return URL after payment completion.
@@ -215,7 +215,7 @@ public class PaymentLinkCreate {
             @JsonProperty("amount") long amount,
             @JsonProperty("country") String country,
             @JsonProperty("currency") String currency,
-            @JsonProperty("intent") Optional<? extends TransactionIntent> intent,
+            @JsonProperty("intent") Optional<? extends PaymentLinkIntent> intent,
             @JsonProperty("return_url") JsonNullable<String> returnUrl,
             @JsonProperty("cart_items") JsonNullable<? extends List<CartItem>> cartItems,
             @JsonProperty("airline") JsonNullable<? extends Airline> airline,
@@ -424,8 +424,8 @@ public class PaymentLinkCreate {
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<TransactionIntent> intent() {
-        return (Optional<TransactionIntent>) intent;
+    public Optional<PaymentLinkIntent> intent() {
+        return (Optional<PaymentLinkIntent>) intent;
     }
 
     /**
@@ -764,14 +764,14 @@ public class PaymentLinkCreate {
         return this;
     }
 
-    public PaymentLinkCreate withIntent(TransactionIntent intent) {
+    public PaymentLinkCreate withIntent(PaymentLinkIntent intent) {
         Utils.checkNotNull(intent, "intent");
         this.intent = Optional.ofNullable(intent);
         return this;
     }
 
 
-    public PaymentLinkCreate withIntent(Optional<? extends TransactionIntent> intent) {
+    public PaymentLinkCreate withIntent(Optional<? extends PaymentLinkIntent> intent) {
         Utils.checkNotNull(intent, "intent");
         this.intent = intent;
         return this;
@@ -1043,7 +1043,7 @@ public class PaymentLinkCreate {
 
         private String currency;
 
-        private Optional<? extends TransactionIntent> intent = Optional.empty();
+        private Optional<? extends PaymentLinkIntent> intent = Optional.empty();
 
         private JsonNullable<String> returnUrl = JsonNullable.undefined();
 
@@ -1343,13 +1343,13 @@ public class PaymentLinkCreate {
         }
 
 
-        public Builder intent(TransactionIntent intent) {
+        public Builder intent(PaymentLinkIntent intent) {
             Utils.checkNotNull(intent, "intent");
             this.intent = Optional.ofNullable(intent);
             return this;
         }
 
-        public Builder intent(Optional<? extends TransactionIntent> intent) {
+        public Builder intent(Optional<? extends PaymentLinkIntent> intent) {
             Utils.checkNotNull(intent, "intent");
             this.intent = intent;
             return this;

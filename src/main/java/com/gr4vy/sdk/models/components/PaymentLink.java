@@ -141,7 +141,7 @@ public class PaymentLink {
 
 
     @JsonProperty("intent")
-    private TransactionIntent intent;
+    private PaymentLinkIntent intent;
 
     /**
      * The return URL after payment completion.
@@ -253,7 +253,7 @@ public class PaymentLink {
             @JsonProperty("amount") long amount,
             @JsonProperty("country") String country,
             @JsonProperty("currency") String currency,
-            @JsonProperty("intent") TransactionIntent intent,
+            @JsonProperty("intent") PaymentLinkIntent intent,
             @JsonProperty("return_url") JsonNullable<String> returnUrl,
             @JsonProperty("cart_items") Optional<? extends List<CartItem>> cartItems,
             @JsonProperty("airline") Optional<? extends Airline> airline,
@@ -339,7 +339,7 @@ public class PaymentLink {
             long amount,
             String country,
             String currency,
-            TransactionIntent intent,
+            PaymentLinkIntent intent,
             TransactionPaymentSource paymentSource,
             OffsetDateTime createdAt,
             OffsetDateTime updatedAt,
@@ -495,7 +495,7 @@ public class PaymentLink {
     }
 
     @JsonIgnore
-    public TransactionIntent intent() {
+    public PaymentLinkIntent intent() {
         return intent;
     }
 
@@ -862,7 +862,7 @@ public class PaymentLink {
         return this;
     }
 
-    public PaymentLink withIntent(TransactionIntent intent) {
+    public PaymentLink withIntent(PaymentLinkIntent intent) {
         Utils.checkNotNull(intent, "intent");
         this.intent = intent;
         return this;
@@ -1216,7 +1216,7 @@ public class PaymentLink {
 
         private String currency;
 
-        private TransactionIntent intent;
+        private PaymentLinkIntent intent;
 
         private JsonNullable<String> returnUrl = JsonNullable.undefined();
 
@@ -1510,7 +1510,7 @@ public class PaymentLink {
         }
 
 
-        public Builder intent(TransactionIntent intent) {
+        public Builder intent(PaymentLinkIntent intent) {
             Utils.checkNotNull(intent, "intent");
             this.intent = intent;
             return this;
