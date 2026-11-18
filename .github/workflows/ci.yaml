@@ -44,6 +44,7 @@ jobs:
         with:
           distribution: corretto
           java-version: ${{ matrix.java }}
+          cache: gradle
       - name: Compile main + test sources
         run: ./gradlew compileJava compileTestJava --console=plain
 
@@ -64,6 +65,7 @@ jobs:
         with:
           distribution: corretto
           java-version: ${{ matrix.java }}
+          cache: gradle
       - name: Run offline unit tests
         run: ./gradlew test --tests "com.gr4vy.sdk.AuthTest" --tests "com.gr4vy.sdk.WebhooksTest" --console=plain
 
@@ -89,6 +91,7 @@ jobs:
         with:
           distribution: corretto
           java-version: 21
+          cache: gradle
       - name: Require signing key
         # Without a key the harness would silently skip, masking a missing secret.
         env:
