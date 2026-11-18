@@ -1,19 +1,19 @@
 lockVersion: 2.0.0
 id: 5bbaa3a9-baa0-471b-ba6a-13fd88e8c119
 management:
-  docChecksum: a7d2cc6eaed695425d169ea6bc55574c
+  docChecksum: 8ca149a6da0602ed65b53d3bf40de622
   docVersion: 1.0.0
-  speakeasyVersion: 1.808.1
-  generationVersion: 2.960.8
-  releaseVersion: 2.19.32
-  configChecksum: cd6cbef0ef8064c877f855141e0b6d3c
+  speakeasyVersion: 1.810.0
+  generationVersion: 2.961.1
+  releaseVersion: 2.19.33
+  configChecksum: 71945119aea076221d1780507296de1f
   repoURL: https://github.com/gr4vy/gr4vy-java.git
   installationURL: https://github.com/gr4vy/gr4vy-java
   published: true
 persistentEdits:
-  generation_id: 4f224a0b-1044-44ce-916f-63b3c0f744a4
-  pristine_commit_hash: e71d15028642c693fc12fbe654e937c3c8f21731
-  pristine_tree_hash: de7afbade58b9c4091fea613187d97a05ab440b9
+  generation_id: 3ad3fe26-b895-44fa-aaa2-e917f1d1344c
+  pristine_commit_hash: 3d219a41d0b337474278440ee1fd9b2a0e8de007
+  pristine_tree_hash: 02f1198542df9f9dbed802469034bade75dc6c79
 features:
   java:
     additionalDependencies: 0.1.0
@@ -183,8 +183,8 @@ trackedFiles:
     pristine_git_object: 18314147df5b57da4f036c9eb438770eb3d0e64e
   docs/models/components/ApplePaySessionRequest.md:
     id: 24f57af0fc3f
-    last_write_checksum: sha1:21a20a709f3fb688843b4891b252b119a10e8b5a
-    pristine_git_object: a6fe65ddf0e732f552490de0d75400884b1479d9
+    last_write_checksum: sha1:25b5d6553ebe1a88a9a67ae3eaef57b282f8c631
+    pristine_git_object: d9222b97df6877f2486be4588cde35ec7e20f8d9
   docs/models/components/ApprovalTarget.md:
     id: 31b8dfd27bba
     last_write_checksum: sha1:bacbf38e31e6ba00e350acbab6a53a56dcaea3a9
@@ -2911,8 +2911,8 @@ trackedFiles:
     pristine_git_object: 15c4e4642f204ccb312d8814155b69e153b4e19b
   gradle.properties:
     id: 2afbb999f001
-    last_write_checksum: sha1:6b980d1d65ad6ac895a2505b602b97ba39515ac0
-    pristine_git_object: 3ef3c1a73e93954344247d6d8c3c2e0e597d0077
+    last_write_checksum: sha1:e25d1a614ca2823709de2f654f56dce6e678b6e5
+    pristine_git_object: 1c229d31760480853caab7cdb7022773ca3c5084
   gradle/wrapper/gradle-wrapper.jar:
     id: ec27dae6e852
     last_write_checksum: sha1:f725fb1467084142d74fd7cd8eab691ab3442611
@@ -3255,8 +3255,8 @@ trackedFiles:
     pristine_git_object: b50475cc7f6041d63c4569256e4ff1850b20d30b
   src/main/java/com/gr4vy/sdk/SDKConfiguration.java:
     id: 73a7edeaca45
-    last_write_checksum: sha1:07f03de968564740c33b6e033988aec520e311bc
-    pristine_git_object: 9785a3f39142cb48883538a6a0466776637b93b9
+    last_write_checksum: sha1:3cb359d2b893f4dc7081217ce72245955105075e
+    pristine_git_object: 6e131f295f7b2991e63b3b80159b95d5e37b76a7
   src/main/java/com/gr4vy/sdk/SecuritySource.java:
     id: 1b6add6b9b50
     last_write_checksum: sha1:2f365cc823c6243188e83f4df618c9737fcee8bd
@@ -12539,7 +12539,6 @@ examples:
           application/json: {"type": "error", "code": "gateway_timeout", "status": 504, "message": "Request could not be processed"}
 examplesVersion: 1.0.2
 generatedTests: {}
-releaseNotes: "## Java SDK Changes:\n* `gr4vy.paymentLinks.create()`: \n  *  `request.paymentLinkCreate.intent.enum(preferAuthorize)` **Added**\n  *  `response.intent.enum(preferAuthorize)` **Added**\n* `gr4vy.paymentLinks.list()`:  `response.items[].intent.enum(preferAuthorize)` **Added**\n* `gr4vy.paymentLinks.get()`:  `response.intent.enum(preferAuthorize)` **Added**\n"
 generatedFiles:
   - .gitattributes
   - USAGE.md
