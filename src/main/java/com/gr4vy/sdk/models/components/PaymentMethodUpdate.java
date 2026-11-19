@@ -54,25 +54,35 @@ public class PaymentMethodUpdate {
     @JsonProperty("transaction_link_id")
     private JsonNullable<String> transactionLinkId;
 
+    /**
+     * The preferred card scheme to use when processing a co-badged card.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("preferred_scheme")
+    private JsonNullable<? extends PaymentMethodUpdatePreferredScheme> preferredScheme;
+
     @JsonCreator
     public PaymentMethodUpdate(
             @JsonProperty("expiration_date") JsonNullable<String> expirationDate,
             @JsonProperty("scheme_transaction_id") JsonNullable<String> schemeTransactionId,
             @JsonProperty("scheme_transaction_id_scheme") JsonNullable<? extends CardScheme> schemeTransactionIdScheme,
-            @JsonProperty("transaction_link_id") JsonNullable<String> transactionLinkId) {
+            @JsonProperty("transaction_link_id") JsonNullable<String> transactionLinkId,
+            @JsonProperty("preferred_scheme") JsonNullable<? extends PaymentMethodUpdatePreferredScheme> preferredScheme) {
         Utils.checkNotNull(expirationDate, "expirationDate");
         Utils.checkNotNull(schemeTransactionId, "schemeTransactionId");
         Utils.checkNotNull(schemeTransactionIdScheme, "schemeTransactionIdScheme");
         Utils.checkNotNull(transactionLinkId, "transactionLinkId");
+        Utils.checkNotNull(preferredScheme, "preferredScheme");
         this.expirationDate = expirationDate;
         this.schemeTransactionId = schemeTransactionId;
         this.schemeTransactionIdScheme = schemeTransactionIdScheme;
         this.transactionLinkId = transactionLinkId;
+        this.preferredScheme = preferredScheme;
     }
     
     public PaymentMethodUpdate() {
         this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined());
+            JsonNullable.undefined(), JsonNullable.undefined());
     }
 
     /**
@@ -112,6 +122,15 @@ public class PaymentMethodUpdate {
     @JsonIgnore
     public JsonNullable<String> transactionLinkId() {
         return transactionLinkId;
+    }
+
+    /**
+     * The preferred card scheme to use when processing a co-badged card.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public JsonNullable<PaymentMethodUpdatePreferredScheme> preferredScheme() {
+        return (JsonNullable<PaymentMethodUpdatePreferredScheme>) preferredScheme;
     }
 
     public static Builder builder() {
@@ -203,6 +222,24 @@ public class PaymentMethodUpdate {
         return this;
     }
 
+    /**
+     * The preferred card scheme to use when processing a co-badged card.
+     */
+    public PaymentMethodUpdate withPreferredScheme(PaymentMethodUpdatePreferredScheme preferredScheme) {
+        Utils.checkNotNull(preferredScheme, "preferredScheme");
+        this.preferredScheme = JsonNullable.of(preferredScheme);
+        return this;
+    }
+
+    /**
+     * The preferred card scheme to use when processing a co-badged card.
+     */
+    public PaymentMethodUpdate withPreferredScheme(JsonNullable<? extends PaymentMethodUpdatePreferredScheme> preferredScheme) {
+        Utils.checkNotNull(preferredScheme, "preferredScheme");
+        this.preferredScheme = preferredScheme;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -216,14 +253,15 @@ public class PaymentMethodUpdate {
             Utils.enhancedDeepEquals(this.expirationDate, other.expirationDate) &&
             Utils.enhancedDeepEquals(this.schemeTransactionId, other.schemeTransactionId) &&
             Utils.enhancedDeepEquals(this.schemeTransactionIdScheme, other.schemeTransactionIdScheme) &&
-            Utils.enhancedDeepEquals(this.transactionLinkId, other.transactionLinkId);
+            Utils.enhancedDeepEquals(this.transactionLinkId, other.transactionLinkId) &&
+            Utils.enhancedDeepEquals(this.preferredScheme, other.preferredScheme);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
             expirationDate, schemeTransactionId, schemeTransactionIdScheme,
-            transactionLinkId);
+            transactionLinkId, preferredScheme);
     }
     
     @Override
@@ -232,7 +270,8 @@ public class PaymentMethodUpdate {
                 "expirationDate", expirationDate,
                 "schemeTransactionId", schemeTransactionId,
                 "schemeTransactionIdScheme", schemeTransactionIdScheme,
-                "transactionLinkId", transactionLinkId);
+                "transactionLinkId", transactionLinkId,
+                "preferredScheme", preferredScheme);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -245,6 +284,8 @@ public class PaymentMethodUpdate {
         private JsonNullable<? extends CardScheme> schemeTransactionIdScheme = JsonNullable.undefined();
 
         private JsonNullable<String> transactionLinkId = JsonNullable.undefined();
+
+        private JsonNullable<? extends PaymentMethodUpdatePreferredScheme> preferredScheme = JsonNullable.undefined();
 
         private Builder() {
           // force use of static builder() method
@@ -338,11 +379,30 @@ public class PaymentMethodUpdate {
             return this;
         }
 
+
+        /**
+         * The preferred card scheme to use when processing a co-badged card.
+         */
+        public Builder preferredScheme(PaymentMethodUpdatePreferredScheme preferredScheme) {
+            Utils.checkNotNull(preferredScheme, "preferredScheme");
+            this.preferredScheme = JsonNullable.of(preferredScheme);
+            return this;
+        }
+
+        /**
+         * The preferred card scheme to use when processing a co-badged card.
+         */
+        public Builder preferredScheme(JsonNullable<? extends PaymentMethodUpdatePreferredScheme> preferredScheme) {
+            Utils.checkNotNull(preferredScheme, "preferredScheme");
+            this.preferredScheme = preferredScheme;
+            return this;
+        }
+
         public PaymentMethodUpdate build() {
 
             return new PaymentMethodUpdate(
                 expirationDate, schemeTransactionId, schemeTransactionIdScheme,
-                transactionLinkId);
+                transactionLinkId, preferredScheme);
         }
 
     }
