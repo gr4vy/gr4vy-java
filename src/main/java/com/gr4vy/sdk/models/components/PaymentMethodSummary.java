@@ -133,6 +133,13 @@ public class PaymentMethodSummary {
     private JsonNullable<? extends List<CardScheme>> additionalSchemes;
 
     /**
+     * The preferred card scheme to use when processing a co-badged card.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("preferred_scheme")
+    private JsonNullable<? extends PaymentMethodSummaryPreferredScheme> preferredScheme;
+
+    /**
      * The timestamp when this payment method was last used in a transaction for client initiated
      * transactions.
      */
@@ -203,6 +210,7 @@ public class PaymentMethodSummary {
             @JsonProperty("id") String id,
             @JsonProperty("merchant_account_id") String merchantAccountId,
             @JsonProperty("additional_schemes") JsonNullable<? extends List<CardScheme>> additionalSchemes,
+            @JsonProperty("preferred_scheme") JsonNullable<? extends PaymentMethodSummaryPreferredScheme> preferredScheme,
             @JsonProperty("cit_last_used_at") JsonNullable<OffsetDateTime> citLastUsedAt,
             @JsonProperty("cit_usage_count") long citUsageCount,
             @JsonProperty("has_replacement") boolean hasReplacement,
@@ -225,6 +233,7 @@ public class PaymentMethodSummary {
         Utils.checkNotNull(id, "id");
         Utils.checkNotNull(merchantAccountId, "merchantAccountId");
         Utils.checkNotNull(additionalSchemes, "additionalSchemes");
+        Utils.checkNotNull(preferredScheme, "preferredScheme");
         Utils.checkNotNull(citLastUsedAt, "citLastUsedAt");
         Utils.checkNotNull(citUsageCount, "citUsageCount");
         Utils.checkNotNull(hasReplacement, "hasReplacement");
@@ -248,6 +257,7 @@ public class PaymentMethodSummary {
         this.id = id;
         this.merchantAccountId = merchantAccountId;
         this.additionalSchemes = additionalSchemes;
+        this.preferredScheme = preferredScheme;
         this.citLastUsedAt = citLastUsedAt;
         this.citUsageCount = citUsageCount;
         this.hasReplacement = hasReplacement;
@@ -270,9 +280,9 @@ public class PaymentMethodSummary {
             JsonNullable.undefined(), JsonNullable.undefined(), method,
             JsonNullable.undefined(), JsonNullable.undefined(), id,
             merchantAccountId, JsonNullable.undefined(), JsonNullable.undefined(),
-            citUsageCount, hasReplacement, JsonNullable.undefined(),
-            usageCount, Optional.empty(), Optional.empty(),
-            JsonNullable.undefined());
+            JsonNullable.undefined(), citUsageCount, hasReplacement,
+            JsonNullable.undefined(), usageCount, Optional.empty(),
+            Optional.empty(), JsonNullable.undefined());
     }
 
     /**
@@ -397,6 +407,15 @@ public class PaymentMethodSummary {
     @JsonIgnore
     public JsonNullable<List<CardScheme>> additionalSchemes() {
         return (JsonNullable<List<CardScheme>>) additionalSchemes;
+    }
+
+    /**
+     * The preferred card scheme to use when processing a co-badged card.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public JsonNullable<PaymentMethodSummaryPreferredScheme> preferredScheme() {
+        return (JsonNullable<PaymentMethodSummaryPreferredScheme>) preferredScheme;
     }
 
     /**
@@ -700,6 +719,24 @@ public class PaymentMethodSummary {
     }
 
     /**
+     * The preferred card scheme to use when processing a co-badged card.
+     */
+    public PaymentMethodSummary withPreferredScheme(PaymentMethodSummaryPreferredScheme preferredScheme) {
+        Utils.checkNotNull(preferredScheme, "preferredScheme");
+        this.preferredScheme = JsonNullable.of(preferredScheme);
+        return this;
+    }
+
+    /**
+     * The preferred card scheme to use when processing a co-badged card.
+     */
+    public PaymentMethodSummary withPreferredScheme(JsonNullable<? extends PaymentMethodSummaryPreferredScheme> preferredScheme) {
+        Utils.checkNotNull(preferredScheme, "preferredScheme");
+        this.preferredScheme = preferredScheme;
+        return this;
+    }
+
+    /**
      * The timestamp when this payment method was last used in a transaction for client initiated
      * transactions.
      */
@@ -846,6 +883,7 @@ public class PaymentMethodSummary {
             Utils.enhancedDeepEquals(this.id, other.id) &&
             Utils.enhancedDeepEquals(this.merchantAccountId, other.merchantAccountId) &&
             Utils.enhancedDeepEquals(this.additionalSchemes, other.additionalSchemes) &&
+            Utils.enhancedDeepEquals(this.preferredScheme, other.preferredScheme) &&
             Utils.enhancedDeepEquals(this.citLastUsedAt, other.citLastUsedAt) &&
             Utils.enhancedDeepEquals(this.citUsageCount, other.citUsageCount) &&
             Utils.enhancedDeepEquals(this.hasReplacement, other.hasReplacement) &&
@@ -864,9 +902,9 @@ public class PaymentMethodSummary {
             fingerprint, label, lastReplacedAt,
             method, mode, scheme,
             id, merchantAccountId, additionalSchemes,
-            citLastUsedAt, citUsageCount, hasReplacement,
-            lastUsedAt, usageCount, schemeTransactionId,
-            schemeTransactionIdScheme, transactionLinkId);
+            preferredScheme, citLastUsedAt, citUsageCount,
+            hasReplacement, lastUsedAt, usageCount,
+            schemeTransactionId, schemeTransactionIdScheme, transactionLinkId);
     }
     
     @Override
@@ -887,6 +925,7 @@ public class PaymentMethodSummary {
                 "id", id,
                 "merchantAccountId", merchantAccountId,
                 "additionalSchemes", additionalSchemes,
+                "preferredScheme", preferredScheme,
                 "citLastUsedAt", citLastUsedAt,
                 "citUsageCount", citUsageCount,
                 "hasReplacement", hasReplacement,
@@ -927,6 +966,8 @@ public class PaymentMethodSummary {
         private String merchantAccountId;
 
         private JsonNullable<? extends List<CardScheme>> additionalSchemes = JsonNullable.undefined();
+
+        private JsonNullable<? extends PaymentMethodSummaryPreferredScheme> preferredScheme = JsonNullable.undefined();
 
         private JsonNullable<OffsetDateTime> citLastUsedAt = JsonNullable.undefined();
 
@@ -1192,6 +1233,25 @@ public class PaymentMethodSummary {
 
 
         /**
+         * The preferred card scheme to use when processing a co-badged card.
+         */
+        public Builder preferredScheme(PaymentMethodSummaryPreferredScheme preferredScheme) {
+            Utils.checkNotNull(preferredScheme, "preferredScheme");
+            this.preferredScheme = JsonNullable.of(preferredScheme);
+            return this;
+        }
+
+        /**
+         * The preferred card scheme to use when processing a co-badged card.
+         */
+        public Builder preferredScheme(JsonNullable<? extends PaymentMethodSummaryPreferredScheme> preferredScheme) {
+            Utils.checkNotNull(preferredScheme, "preferredScheme");
+            this.preferredScheme = preferredScheme;
+            return this;
+        }
+
+
+        /**
          * The timestamp when this payment method was last used in a transaction for client initiated
          * transactions.
          */
@@ -1325,10 +1385,10 @@ public class PaymentMethodSummary {
                 details, expirationDate, fingerprint,
                 label, lastReplacedAt, method,
                 mode, scheme, id,
-                merchantAccountId, additionalSchemes, citLastUsedAt,
-                citUsageCount, hasReplacement, lastUsedAt,
-                usageCount, schemeTransactionId, schemeTransactionIdScheme,
-                transactionLinkId);
+                merchantAccountId, additionalSchemes, preferredScheme,
+                citLastUsedAt, citUsageCount, hasReplacement,
+                lastUsedAt, usageCount, schemeTransactionId,
+                schemeTransactionIdScheme, transactionLinkId);
         }
 
 
