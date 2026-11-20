@@ -43,7 +43,7 @@ jobs:
           persist-credentials: false
 
       - name: Generate the SDK
-        uses: speakeasy-api/sdk-generation-action@6cd5ba5c0f635337847068ad8410ca9a8651e175 # v15
+        uses: speakeasy-api/sdk-generation-action@cd98f1a34dd76e2f14b6adfa48ea661fb44bceef # v15.61.0
         with:
           speakeasy_version: latest
           github_access_token: ${{ steps.app.outputs.token }}
