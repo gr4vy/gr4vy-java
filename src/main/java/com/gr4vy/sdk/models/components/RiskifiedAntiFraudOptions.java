@@ -43,21 +43,35 @@ public class RiskifiedAntiFraudOptions {
     @JsonProperty("additional_shipping_addresses")
     private JsonNullable<? extends List<RiskifiedAntiFraudOptionsShippingAddress>> additionalShippingAddresses;
 
+    /**
+     * Overrides the customer account type sent to Riskified. When not set, the customer is sent as
+     * `registered` if the transaction has a buyer, and as `guest` otherwise. When the account type is
+     * `guest`, the customer `id` and `created_at` are not sent to Riskified, even if the transaction has a
+     * buyer.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("account_type")
+    private JsonNullable<? extends RiskifiedAccountType> accountType;
+
     @JsonCreator
     public RiskifiedAntiFraudOptions(
             @JsonProperty("line_items") JsonNullable<? extends List<RiskifiedAntiFraudOptionsLineItem>> lineItems,
             @JsonProperty("shipping_lines") JsonNullable<? extends List<RiskifiedAntiFraudOptionsShippingLine>> shippingLines,
-            @JsonProperty("additional_shipping_addresses") JsonNullable<? extends List<RiskifiedAntiFraudOptionsShippingAddress>> additionalShippingAddresses) {
+            @JsonProperty("additional_shipping_addresses") JsonNullable<? extends List<RiskifiedAntiFraudOptionsShippingAddress>> additionalShippingAddresses,
+            @JsonProperty("account_type") JsonNullable<? extends RiskifiedAccountType> accountType) {
         Utils.checkNotNull(lineItems, "lineItems");
         Utils.checkNotNull(shippingLines, "shippingLines");
         Utils.checkNotNull(additionalShippingAddresses, "additionalShippingAddresses");
+        Utils.checkNotNull(accountType, "accountType");
         this.lineItems = lineItems;
         this.shippingLines = shippingLines;
         this.additionalShippingAddresses = additionalShippingAddresses;
+        this.accountType = accountType;
     }
     
     public RiskifiedAntiFraudOptions() {
-        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
+        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined());
     }
 
     /**
@@ -90,6 +104,18 @@ public class RiskifiedAntiFraudOptions {
     @JsonIgnore
     public JsonNullable<List<RiskifiedAntiFraudOptionsShippingAddress>> additionalShippingAddresses() {
         return (JsonNullable<List<RiskifiedAntiFraudOptionsShippingAddress>>) additionalShippingAddresses;
+    }
+
+    /**
+     * Overrides the customer account type sent to Riskified. When not set, the customer is sent as
+     * `registered` if the transaction has a buyer, and as `guest` otherwise. When the account type is
+     * `guest`, the customer `id` and `created_at` are not sent to Riskified, even if the transaction has a
+     * buyer.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public JsonNullable<RiskifiedAccountType> accountType() {
+        return (JsonNullable<RiskifiedAccountType>) accountType;
     }
 
     public static Builder builder() {
@@ -161,6 +187,30 @@ public class RiskifiedAntiFraudOptions {
         return this;
     }
 
+    /**
+     * Overrides the customer account type sent to Riskified. When not set, the customer is sent as
+     * `registered` if the transaction has a buyer, and as `guest` otherwise. When the account type is
+     * `guest`, the customer `id` and `created_at` are not sent to Riskified, even if the transaction has a
+     * buyer.
+     */
+    public RiskifiedAntiFraudOptions withAccountType(RiskifiedAccountType accountType) {
+        Utils.checkNotNull(accountType, "accountType");
+        this.accountType = JsonNullable.of(accountType);
+        return this;
+    }
+
+    /**
+     * Overrides the customer account type sent to Riskified. When not set, the customer is sent as
+     * `registered` if the transaction has a buyer, and as `guest` otherwise. When the account type is
+     * `guest`, the customer `id` and `created_at` are not sent to Riskified, even if the transaction has a
+     * buyer.
+     */
+    public RiskifiedAntiFraudOptions withAccountType(JsonNullable<? extends RiskifiedAccountType> accountType) {
+        Utils.checkNotNull(accountType, "accountType");
+        this.accountType = accountType;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -173,13 +223,15 @@ public class RiskifiedAntiFraudOptions {
         return 
             Utils.enhancedDeepEquals(this.lineItems, other.lineItems) &&
             Utils.enhancedDeepEquals(this.shippingLines, other.shippingLines) &&
-            Utils.enhancedDeepEquals(this.additionalShippingAddresses, other.additionalShippingAddresses);
+            Utils.enhancedDeepEquals(this.additionalShippingAddresses, other.additionalShippingAddresses) &&
+            Utils.enhancedDeepEquals(this.accountType, other.accountType);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            lineItems, shippingLines, additionalShippingAddresses);
+            lineItems, shippingLines, additionalShippingAddresses,
+            accountType);
     }
     
     @Override
@@ -187,7 +239,8 @@ public class RiskifiedAntiFraudOptions {
         return Utils.toString(RiskifiedAntiFraudOptions.class,
                 "lineItems", lineItems,
                 "shippingLines", shippingLines,
-                "additionalShippingAddresses", additionalShippingAddresses);
+                "additionalShippingAddresses", additionalShippingAddresses,
+                "accountType", accountType);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -198,6 +251,8 @@ public class RiskifiedAntiFraudOptions {
         private JsonNullable<? extends List<RiskifiedAntiFraudOptionsShippingLine>> shippingLines = JsonNullable.undefined();
 
         private JsonNullable<? extends List<RiskifiedAntiFraudOptionsShippingAddress>> additionalShippingAddresses = JsonNullable.undefined();
+
+        private JsonNullable<? extends RiskifiedAccountType> accountType = JsonNullable.undefined();
 
         private Builder() {
           // force use of static builder() method
@@ -270,10 +325,36 @@ public class RiskifiedAntiFraudOptions {
             return this;
         }
 
+
+        /**
+         * Overrides the customer account type sent to Riskified. When not set, the customer is sent as
+         * `registered` if the transaction has a buyer, and as `guest` otherwise. When the account type is
+         * `guest`, the customer `id` and `created_at` are not sent to Riskified, even if the transaction has a
+         * buyer.
+         */
+        public Builder accountType(RiskifiedAccountType accountType) {
+            Utils.checkNotNull(accountType, "accountType");
+            this.accountType = JsonNullable.of(accountType);
+            return this;
+        }
+
+        /**
+         * Overrides the customer account type sent to Riskified. When not set, the customer is sent as
+         * `registered` if the transaction has a buyer, and as `guest` otherwise. When the account type is
+         * `guest`, the customer `id` and `created_at` are not sent to Riskified, even if the transaction has a
+         * buyer.
+         */
+        public Builder accountType(JsonNullable<? extends RiskifiedAccountType> accountType) {
+            Utils.checkNotNull(accountType, "accountType");
+            this.accountType = accountType;
+            return this;
+        }
+
         public RiskifiedAntiFraudOptions build() {
 
             return new RiskifiedAntiFraudOptions(
-                lineItems, shippingLines, additionalShippingAddresses);
+                lineItems, shippingLines, additionalShippingAddresses,
+                accountType);
         }
 
     }
