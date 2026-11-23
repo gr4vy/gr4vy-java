@@ -84,6 +84,19 @@ public class AsyncApiKeyPairs {
      * 
      * @param cursor A pointer to the page of results to return.
      * @param limit The maximum number of items that are returned.
+     * @return {@code CompletableFuture<ListApiKeyPairsResponse>} - The async response
+     */
+    public CompletableFuture<ListApiKeyPairsResponse> list(JsonNullable<String> cursor, Optional<Long> limit) {
+        return list(cursor, limit, Optional.empty());
+    }
+
+    /**
+     * List all API key pairs
+     * 
+     * <p>List all API key pairs.
+     * 
+     * @param cursor A pointer to the page of results to return.
+     * @param limit The maximum number of items that are returned.
      * @param options additional options
      * @return {@code CompletableFuture<ListApiKeyPairsResponse>} - The async response
      */
@@ -125,8 +138,21 @@ public class AsyncApiKeyPairs {
      * @return {@code CompletableFuture<CreateApiKeyPairResponse>} - The async response
      */
     public CompletableFuture<CreateApiKeyPairResponse> create(APIKeyPairCreate request) {
+        return create(request, Optional.empty());
+    }
+
+    /**
+     * Create an API key pair
+     * 
+     * <p>Create a new API key pair.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param options additional options
+     * @return {@code CompletableFuture<CreateApiKeyPairResponse>} - The async response
+     */
+    public CompletableFuture<CreateApiKeyPairResponse> create(APIKeyPairCreate request, Optional<Options> options) {
         AsyncRequestOperation<APIKeyPairCreate, CreateApiKeyPairResponse> operation
-              = new CreateApiKeyPair.Async(sdkConfiguration, _headers);
+              = new CreateApiKeyPair.Async(sdkConfiguration, options, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -200,6 +226,22 @@ public class AsyncApiKeyPairs {
      * @return {@code CompletableFuture<UpdateApiKeyPairResponse>} - The async response
      */
     public CompletableFuture<UpdateApiKeyPairResponse> update(String apiKeyPairId, APIKeyPairUpdate apiKeyPairUpdate) {
+        return update(apiKeyPairId, apiKeyPairUpdate, Optional.empty());
+    }
+
+    /**
+     * Update an API key pair
+     * 
+     * <p>Updates an API key pair.
+     * 
+     * @param apiKeyPairId The ID of the API key pair.
+     * @param apiKeyPairUpdate 
+     * @param options additional options
+     * @return {@code CompletableFuture<UpdateApiKeyPairResponse>} - The async response
+     */
+    public CompletableFuture<UpdateApiKeyPairResponse> update(
+            String apiKeyPairId, APIKeyPairUpdate apiKeyPairUpdate,
+            Optional<Options> options) {
         UpdateApiKeyPairRequest request =
             UpdateApiKeyPairRequest
                 .builder()
@@ -207,7 +249,7 @@ public class AsyncApiKeyPairs {
                 .apiKeyPairUpdate(apiKeyPairUpdate)
                 .build();
         AsyncRequestOperation<UpdateApiKeyPairRequest, UpdateApiKeyPairResponse> operation
-              = new UpdateApiKeyPair.Async(sdkConfiguration, _headers);
+              = new UpdateApiKeyPair.Async(sdkConfiguration, options, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -233,13 +275,26 @@ public class AsyncApiKeyPairs {
      * @return {@code CompletableFuture<DeleteApiKeyPairResponse>} - The async response
      */
     public CompletableFuture<DeleteApiKeyPairResponse> delete(String apiKeyPairId) {
+        return delete(apiKeyPairId, Optional.empty());
+    }
+
+    /**
+     * Delete an API key pair
+     * 
+     * <p>Permanently removes an API key pair.
+     * 
+     * @param apiKeyPairId The ID of the API key pair.
+     * @param options additional options
+     * @return {@code CompletableFuture<DeleteApiKeyPairResponse>} - The async response
+     */
+    public CompletableFuture<DeleteApiKeyPairResponse> delete(String apiKeyPairId, Optional<Options> options) {
         DeleteApiKeyPairRequest request =
             DeleteApiKeyPairRequest
                 .builder()
                 .apiKeyPairId(apiKeyPairId)
                 .build();
         AsyncRequestOperation<DeleteApiKeyPairRequest, DeleteApiKeyPairResponse> operation
-              = new DeleteApiKeyPair.Async(sdkConfiguration, _headers);
+              = new DeleteApiKeyPair.Async(sdkConfiguration, options, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }

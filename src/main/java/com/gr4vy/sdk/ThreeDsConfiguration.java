@@ -71,6 +71,23 @@ public class ThreeDsConfiguration {
      * @throws RuntimeException subclass if the API call fails
      */
     public CreateThreeDsConfigurationResponse create(String merchantAccountId, MerchantAccountThreeDSConfigurationCreate merchantAccountThreeDSConfigurationCreate) {
+        return create(merchantAccountId, merchantAccountThreeDSConfigurationCreate, Optional.empty());
+    }
+
+    /**
+     * Create 3DS configuration for merchant
+     * 
+     * <p>Create a new 3DS configuration for a merchant account.
+     * 
+     * @param merchantAccountId The ID of the merchant account.
+     * @param merchantAccountThreeDSConfigurationCreate 
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public CreateThreeDsConfigurationResponse create(
+            String merchantAccountId, MerchantAccountThreeDSConfigurationCreate merchantAccountThreeDSConfigurationCreate,
+            Optional<Options> options) {
         CreateThreeDsConfigurationRequest request =
             CreateThreeDsConfigurationRequest
                 .builder()
@@ -78,7 +95,7 @@ public class ThreeDsConfiguration {
                 .merchantAccountThreeDSConfigurationCreate(merchantAccountThreeDSConfigurationCreate)
                 .build();
         RequestOperation<CreateThreeDsConfigurationRequest, CreateThreeDsConfigurationResponse> operation
-              = new CreateThreeDsConfiguration.Sync(sdkConfiguration, _headers);
+              = new CreateThreeDsConfiguration.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -104,6 +121,20 @@ public class ThreeDsConfiguration {
      */
     public ListThreeDsConfigurationsResponse list(String merchantAccountId) {
         return list(merchantAccountId, JsonNullable.undefined(), Optional.empty());
+    }
+
+    /**
+     * List 3DS configurations for merchant
+     * 
+     * <p>List all 3DS configurations for a merchant account.
+     * 
+     * @param merchantAccountId The ID of the merchant account.
+     * @param currency ISO 4217 currency code (3 characters) to filter 3DS configurations.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public ListThreeDsConfigurationsResponse list(String merchantAccountId, JsonNullable<String> currency) {
+        return list(merchantAccountId, currency, Optional.empty());
     }
 
     /**
@@ -156,6 +187,25 @@ public class ThreeDsConfiguration {
     public EditThreeDsConfigurationResponse update(
             String merchantAccountId, String threeDsConfigurationId,
             MerchantAccountThreeDSConfigurationUpdate merchantAccountThreeDSConfigurationUpdate) {
+        return update(merchantAccountId, threeDsConfigurationId, merchantAccountThreeDSConfigurationUpdate,
+            Optional.empty());
+    }
+
+    /**
+     * Edit 3DS configuration
+     * 
+     * <p>Update the 3DS configuration for a merchant account.
+     * 
+     * @param merchantAccountId The ID of the merchant account.
+     * @param threeDsConfigurationId The ID of the 3DS configuration for a merchant account.
+     * @param merchantAccountThreeDSConfigurationUpdate 
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public EditThreeDsConfigurationResponse update(
+            String merchantAccountId, String threeDsConfigurationId,
+            MerchantAccountThreeDSConfigurationUpdate merchantAccountThreeDSConfigurationUpdate, Optional<Options> options) {
         EditThreeDsConfigurationRequest request =
             EditThreeDsConfigurationRequest
                 .builder()
@@ -164,7 +214,7 @@ public class ThreeDsConfiguration {
                 .merchantAccountThreeDSConfigurationUpdate(merchantAccountThreeDSConfigurationUpdate)
                 .build();
         RequestOperation<EditThreeDsConfigurationRequest, EditThreeDsConfigurationResponse> operation
-              = new EditThreeDsConfiguration.Sync(sdkConfiguration, _headers);
+              = new EditThreeDsConfiguration.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -190,6 +240,23 @@ public class ThreeDsConfiguration {
      * @throws RuntimeException subclass if the API call fails
      */
     public DeleteThreeDsConfigurationResponse delete(String merchantAccountId, String threeDsConfigurationId) {
+        return delete(merchantAccountId, threeDsConfigurationId, Optional.empty());
+    }
+
+    /**
+     * Delete 3DS configuration for a merchant
+     * 
+     * <p>Delete a 3DS configuration for a merchant account.
+     * 
+     * @param merchantAccountId The ID of the merchant account.
+     * @param threeDsConfigurationId The ID of the 3DS configuration for a merchant account.
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public DeleteThreeDsConfigurationResponse delete(
+            String merchantAccountId, String threeDsConfigurationId,
+            Optional<Options> options) {
         DeleteThreeDsConfigurationRequest request =
             DeleteThreeDsConfigurationRequest
                 .builder()
@@ -197,7 +264,7 @@ public class ThreeDsConfiguration {
                 .threeDsConfigurationId(threeDsConfigurationId)
                 .build();
         RequestOperation<DeleteThreeDsConfigurationRequest, DeleteThreeDsConfigurationResponse> operation
-              = new DeleteThreeDsConfiguration.Sync(sdkConfiguration, _headers);
+              = new DeleteThreeDsConfiguration.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

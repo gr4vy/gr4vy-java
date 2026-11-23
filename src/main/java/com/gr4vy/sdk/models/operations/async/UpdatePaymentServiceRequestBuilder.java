@@ -10,8 +10,11 @@ import com.gr4vy.sdk.models.components.PaymentServiceUpdate;
 import com.gr4vy.sdk.models.operations.UpdatePaymentServiceRequest;
 import com.gr4vy.sdk.operations.UpdatePaymentService;
 import com.gr4vy.sdk.utils.Headers;
+import com.gr4vy.sdk.utils.Options;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.String;
+import java.time.Duration;
+import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -20,6 +23,7 @@ public class UpdatePaymentServiceRequestBuilder {
     private String paymentServiceId;
     private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
     private PaymentServiceUpdate paymentServiceUpdate;
+    private Optional<Duration> timeout = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -50,6 +54,18 @@ public class UpdatePaymentServiceRequestBuilder {
         this.paymentServiceUpdate = paymentServiceUpdate;
         return this;
     }
+                
+    public UpdatePaymentServiceRequestBuilder timeout(Duration timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = Optional.of(timeout);
+        return this;
+    }
+
+    public UpdatePaymentServiceRequestBuilder timeout(Optional<Duration> timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = timeout;
+        return this;
+    }
 
 
     private UpdatePaymentServiceRequest buildRequest() {
@@ -62,9 +78,12 @@ public class UpdatePaymentServiceRequestBuilder {
     }
 
     public CompletableFuture<UpdatePaymentServiceResponse> call() {
-        
+        Optional<Options> options = Optional.of(Options.builder()
+            .timeout(timeout)
+            .build());
+
         AsyncRequestOperation<UpdatePaymentServiceRequest, UpdatePaymentServiceResponse> operation
-              = new UpdatePaymentService.Async(sdkConfiguration, _headers);
+              = new UpdatePaymentService.Async(sdkConfiguration, options, _headers);
         UpdatePaymentServiceRequest request = buildRequest();
 
         return operation.doRequest(request)

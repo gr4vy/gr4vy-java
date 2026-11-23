@@ -72,6 +72,22 @@ public class AsyncThreeDsConfiguration {
      * @return {@code CompletableFuture<CreateThreeDsConfigurationResponse>} - The async response
      */
     public CompletableFuture<CreateThreeDsConfigurationResponse> create(String merchantAccountId, MerchantAccountThreeDSConfigurationCreate merchantAccountThreeDSConfigurationCreate) {
+        return create(merchantAccountId, merchantAccountThreeDSConfigurationCreate, Optional.empty());
+    }
+
+    /**
+     * Create 3DS configuration for merchant
+     * 
+     * <p>Create a new 3DS configuration for a merchant account.
+     * 
+     * @param merchantAccountId The ID of the merchant account.
+     * @param merchantAccountThreeDSConfigurationCreate 
+     * @param options additional options
+     * @return {@code CompletableFuture<CreateThreeDsConfigurationResponse>} - The async response
+     */
+    public CompletableFuture<CreateThreeDsConfigurationResponse> create(
+            String merchantAccountId, MerchantAccountThreeDSConfigurationCreate merchantAccountThreeDSConfigurationCreate,
+            Optional<Options> options) {
         CreateThreeDsConfigurationRequest request =
             CreateThreeDsConfigurationRequest
                 .builder()
@@ -79,7 +95,7 @@ public class AsyncThreeDsConfiguration {
                 .merchantAccountThreeDSConfigurationCreate(merchantAccountThreeDSConfigurationCreate)
                 .build();
         AsyncRequestOperation<CreateThreeDsConfigurationRequest, CreateThreeDsConfigurationResponse> operation
-              = new CreateThreeDsConfiguration.Async(sdkConfiguration, _headers);
+              = new CreateThreeDsConfiguration.Async(sdkConfiguration, options, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -106,6 +122,19 @@ public class AsyncThreeDsConfiguration {
      */
     public CompletableFuture<ListThreeDsConfigurationsResponse> list(String merchantAccountId) {
         return list(merchantAccountId, JsonNullable.undefined(), Optional.empty());
+    }
+
+    /**
+     * List 3DS configurations for merchant
+     * 
+     * <p>List all 3DS configurations for a merchant account.
+     * 
+     * @param merchantAccountId The ID of the merchant account.
+     * @param currency ISO 4217 currency code (3 characters) to filter 3DS configurations.
+     * @return {@code CompletableFuture<ListThreeDsConfigurationsResponse>} - The async response
+     */
+    public CompletableFuture<ListThreeDsConfigurationsResponse> list(String merchantAccountId, JsonNullable<String> currency) {
+        return list(merchantAccountId, currency, Optional.empty());
     }
 
     /**
@@ -160,6 +189,25 @@ public class AsyncThreeDsConfiguration {
     public CompletableFuture<EditThreeDsConfigurationResponse> update(
             String merchantAccountId, String threeDsConfigurationId,
             MerchantAccountThreeDSConfigurationUpdate merchantAccountThreeDSConfigurationUpdate) {
+        return update(
+                merchantAccountId, threeDsConfigurationId, merchantAccountThreeDSConfigurationUpdate,
+                Optional.empty());
+    }
+
+    /**
+     * Edit 3DS configuration
+     * 
+     * <p>Update the 3DS configuration for a merchant account.
+     * 
+     * @param merchantAccountId The ID of the merchant account.
+     * @param threeDsConfigurationId The ID of the 3DS configuration for a merchant account.
+     * @param merchantAccountThreeDSConfigurationUpdate 
+     * @param options additional options
+     * @return {@code CompletableFuture<EditThreeDsConfigurationResponse>} - The async response
+     */
+    public CompletableFuture<EditThreeDsConfigurationResponse> update(
+            String merchantAccountId, String threeDsConfigurationId,
+            MerchantAccountThreeDSConfigurationUpdate merchantAccountThreeDSConfigurationUpdate, Optional<Options> options) {
         EditThreeDsConfigurationRequest request =
             EditThreeDsConfigurationRequest
                 .builder()
@@ -168,7 +216,7 @@ public class AsyncThreeDsConfiguration {
                 .merchantAccountThreeDSConfigurationUpdate(merchantAccountThreeDSConfigurationUpdate)
                 .build();
         AsyncRequestOperation<EditThreeDsConfigurationRequest, EditThreeDsConfigurationResponse> operation
-              = new EditThreeDsConfiguration.Async(sdkConfiguration, _headers);
+              = new EditThreeDsConfiguration.Async(sdkConfiguration, options, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -195,6 +243,22 @@ public class AsyncThreeDsConfiguration {
      * @return {@code CompletableFuture<DeleteThreeDsConfigurationResponse>} - The async response
      */
     public CompletableFuture<DeleteThreeDsConfigurationResponse> delete(String merchantAccountId, String threeDsConfigurationId) {
+        return delete(merchantAccountId, threeDsConfigurationId, Optional.empty());
+    }
+
+    /**
+     * Delete 3DS configuration for a merchant
+     * 
+     * <p>Delete a 3DS configuration for a merchant account.
+     * 
+     * @param merchantAccountId The ID of the merchant account.
+     * @param threeDsConfigurationId The ID of the 3DS configuration for a merchant account.
+     * @param options additional options
+     * @return {@code CompletableFuture<DeleteThreeDsConfigurationResponse>} - The async response
+     */
+    public CompletableFuture<DeleteThreeDsConfigurationResponse> delete(
+            String merchantAccountId, String threeDsConfigurationId,
+            Optional<Options> options) {
         DeleteThreeDsConfigurationRequest request =
             DeleteThreeDsConfigurationRequest
                 .builder()
@@ -202,7 +266,7 @@ public class AsyncThreeDsConfiguration {
                 .threeDsConfigurationId(threeDsConfigurationId)
                 .build();
         AsyncRequestOperation<DeleteThreeDsConfigurationRequest, DeleteThreeDsConfigurationResponse> operation
-              = new DeleteThreeDsConfiguration.Async(sdkConfiguration, _headers);
+              = new DeleteThreeDsConfiguration.Async(sdkConfiguration, options, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }

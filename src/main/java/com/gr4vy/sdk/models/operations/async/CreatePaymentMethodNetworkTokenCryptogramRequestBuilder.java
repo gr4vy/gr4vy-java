@@ -10,8 +10,11 @@ import com.gr4vy.sdk.models.components.CryptogramCreate;
 import com.gr4vy.sdk.models.operations.CreatePaymentMethodNetworkTokenCryptogramRequest;
 import com.gr4vy.sdk.operations.CreatePaymentMethodNetworkTokenCryptogram;
 import com.gr4vy.sdk.utils.Headers;
+import com.gr4vy.sdk.utils.Options;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.String;
+import java.time.Duration;
+import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -21,6 +24,7 @@ public class CreatePaymentMethodNetworkTokenCryptogramRequestBuilder {
     private String networkTokenId;
     private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
     private CryptogramCreate cryptogramCreate;
+    private Optional<Duration> timeout = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -57,6 +61,18 @@ public class CreatePaymentMethodNetworkTokenCryptogramRequestBuilder {
         this.cryptogramCreate = cryptogramCreate;
         return this;
     }
+                
+    public CreatePaymentMethodNetworkTokenCryptogramRequestBuilder timeout(Duration timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = Optional.of(timeout);
+        return this;
+    }
+
+    public CreatePaymentMethodNetworkTokenCryptogramRequestBuilder timeout(Optional<Duration> timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = timeout;
+        return this;
+    }
 
 
     private CreatePaymentMethodNetworkTokenCryptogramRequest buildRequest() {
@@ -70,9 +86,12 @@ public class CreatePaymentMethodNetworkTokenCryptogramRequestBuilder {
     }
 
     public CompletableFuture<CreatePaymentMethodNetworkTokenCryptogramResponse> call() {
-        
+        Optional<Options> options = Optional.of(Options.builder()
+            .timeout(timeout)
+            .build());
+
         AsyncRequestOperation<CreatePaymentMethodNetworkTokenCryptogramRequest, CreatePaymentMethodNetworkTokenCryptogramResponse> operation
-              = new CreatePaymentMethodNetworkTokenCryptogram.Async(sdkConfiguration, _headers);
+              = new CreatePaymentMethodNetworkTokenCryptogram.Async(sdkConfiguration, options, _headers);
         CreatePaymentMethodNetworkTokenCryptogramRequest request = buildRequest();
 
         return operation.doRequest(request)

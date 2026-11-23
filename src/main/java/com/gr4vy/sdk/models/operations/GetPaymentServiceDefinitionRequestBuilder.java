@@ -12,12 +12,14 @@ import com.gr4vy.sdk.utils.Options;
 import com.gr4vy.sdk.utils.RetryConfig;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.String;
+import java.time.Duration;
 import java.util.Optional;
 
 public class GetPaymentServiceDefinitionRequestBuilder {
 
     private String paymentServiceDefinitionId;
     private Optional<RetryConfig> retryConfig = Optional.empty();
+    private Optional<Duration> timeout = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -42,6 +44,18 @@ public class GetPaymentServiceDefinitionRequestBuilder {
         this.retryConfig = retryConfig;
         return this;
     }
+                
+    public GetPaymentServiceDefinitionRequestBuilder timeout(Duration timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = Optional.of(timeout);
+        return this;
+    }
+
+    public GetPaymentServiceDefinitionRequestBuilder timeout(Optional<Duration> timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = timeout;
+        return this;
+    }
 
 
     private GetPaymentServiceDefinitionRequest buildRequest() {
@@ -54,6 +68,7 @@ public class GetPaymentServiceDefinitionRequestBuilder {
     public GetPaymentServiceDefinitionResponse call() {
         Optional<Options> options = Optional.of(Options.builder()
             .retryConfig(retryConfig)
+            .timeout(timeout)
             .build());
 
         RequestOperation<GetPaymentServiceDefinitionRequest, GetPaymentServiceDefinitionResponse> operation

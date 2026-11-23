@@ -10,8 +10,11 @@ import com.gr4vy.sdk.models.components.TransactionRefundAllCreate;
 import com.gr4vy.sdk.models.operations.CreateFullTransactionRefundRequest;
 import com.gr4vy.sdk.operations.CreateFullTransactionRefund;
 import com.gr4vy.sdk.utils.Headers;
+import com.gr4vy.sdk.utils.Options;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.String;
+import java.time.Duration;
+import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -21,6 +24,7 @@ public class CreateFullTransactionRefundRequestBuilder {
     private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
     private JsonNullable<String> idempotencyKey = JsonNullable.undefined();
     private JsonNullable<? extends TransactionRefundAllCreate> transactionRefundAllCreate = JsonNullable.undefined();
+    private Optional<Duration> timeout = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -69,6 +73,18 @@ public class CreateFullTransactionRefundRequestBuilder {
         this.transactionRefundAllCreate = transactionRefundAllCreate;
         return this;
     }
+                
+    public CreateFullTransactionRefundRequestBuilder timeout(Duration timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = Optional.of(timeout);
+        return this;
+    }
+
+    public CreateFullTransactionRefundRequestBuilder timeout(Optional<Duration> timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = timeout;
+        return this;
+    }
 
 
     private CreateFullTransactionRefundRequest buildRequest() {
@@ -82,9 +98,12 @@ public class CreateFullTransactionRefundRequestBuilder {
     }
 
     public CompletableFuture<CreateFullTransactionRefundResponse> call() {
-        
+        Optional<Options> options = Optional.of(Options.builder()
+            .timeout(timeout)
+            .build());
+
         AsyncRequestOperation<CreateFullTransactionRefundRequest, CreateFullTransactionRefundResponse> operation
-              = new CreateFullTransactionRefund.Async(sdkConfiguration, _headers);
+              = new CreateFullTransactionRefund.Async(sdkConfiguration, options, _headers);
         CreateFullTransactionRefundRequest request = buildRequest();
 
         return operation.doRequest(request)

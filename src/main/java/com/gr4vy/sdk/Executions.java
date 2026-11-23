@@ -79,6 +79,25 @@ public class Executions {
      * @param cursor A pointer to the page of results to return.
      * @param limit The maximum number of items that are at returned.
      * @param merchantAccountId 
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public ListReportExecutionsResponse list(
+            String reportId, JsonNullable<String> cursor,
+            Optional<Long> limit, JsonNullable<String> merchantAccountId) {
+        return list(reportId, cursor, limit,
+            merchantAccountId, Optional.empty());
+    }
+
+    /**
+     * List executions for report
+     * 
+     * <p>List all executions of a specific report.
+     * 
+     * @param reportId The ID of the report to retrieve details for.
+     * @param cursor A pointer to the page of results to return.
+     * @param limit The maximum number of items that are at returned.
+     * @param merchantAccountId 
      * @param options additional options
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
@@ -123,7 +142,7 @@ public class Executions {
      */
     public CreateReportExecutionUrlResponse url(String reportId, String reportExecutionId) {
         return url(reportId, reportExecutionId, JsonNullable.undefined(),
-            Optional.empty());
+            Optional.empty(), Optional.empty());
     }
 
     /**
@@ -141,6 +160,27 @@ public class Executions {
     public CreateReportExecutionUrlResponse url(
             String reportId, String reportExecutionId,
             JsonNullable<String> merchantAccountId, Optional<? extends ReportExecutionUrlGenerate> reportExecutionUrlGenerate) {
+        return url(reportId, reportExecutionId, merchantAccountId,
+            reportExecutionUrlGenerate, Optional.empty());
+    }
+
+    /**
+     * Create URL for executed report
+     * 
+     * <p>Creates a download URL for a specific execution of a report.
+     * 
+     * @param reportId The ID of the report to retrieve a URL for.
+     * @param reportExecutionId The ID of the execution of a report to retrieve a URL for.
+     * @param merchantAccountId 
+     * @param reportExecutionUrlGenerate 
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public CreateReportExecutionUrlResponse url(
+            String reportId, String reportExecutionId,
+            JsonNullable<String> merchantAccountId, Optional<? extends ReportExecutionUrlGenerate> reportExecutionUrlGenerate,
+            Optional<Options> options) {
         CreateReportExecutionUrlRequest request =
             CreateReportExecutionUrlRequest
                 .builder()
@@ -150,7 +190,7 @@ public class Executions {
                 .reportExecutionUrlGenerate(reportExecutionUrlGenerate)
                 .build();
         RequestOperation<CreateReportExecutionUrlRequest, CreateReportExecutionUrlResponse> operation
-              = new CreateReportExecutionUrl.Sync(sdkConfiguration, _headers);
+              = new CreateReportExecutionUrl.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -176,6 +216,20 @@ public class Executions {
      */
     public GetReportExecutionResponse get(String reportExecutionId) {
         return get(reportExecutionId, JsonNullable.undefined(), Optional.empty());
+    }
+
+    /**
+     * Get executed report
+     * 
+     * <p>Fetch a specific executed report.
+     * 
+     * @param reportExecutionId The ID of the execution of a report to retrieve details for.
+     * @param merchantAccountId 
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public GetReportExecutionResponse get(String reportExecutionId, JsonNullable<String> merchantAccountId) {
+        return get(reportExecutionId, merchantAccountId, Optional.empty());
     }
 
     /**

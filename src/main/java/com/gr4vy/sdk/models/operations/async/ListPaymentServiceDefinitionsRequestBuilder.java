@@ -21,6 +21,7 @@ import com.gr4vy.sdk.utils.pagination.CursorTracker;
 import java.lang.Long;
 import java.lang.String;
 import java.net.http.HttpResponse;
+import java.time.Duration;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.Flow;
@@ -36,6 +37,7 @@ public class ListPaymentServiceDefinitionsRequestBuilder {
                             "20",
                             new TypeReference<Optional<Long>>() {});
     private Optional<RetryConfig> retryConfig = Optional.empty();
+    private Optional<Duration> timeout = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -78,6 +80,18 @@ public class ListPaymentServiceDefinitionsRequestBuilder {
         this.retryConfig = retryConfig;
         return this;
     }
+                
+    public ListPaymentServiceDefinitionsRequestBuilder timeout(Duration timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = Optional.of(timeout);
+        return this;
+    }
+
+    public ListPaymentServiceDefinitionsRequestBuilder timeout(Optional<Duration> timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = timeout;
+        return this;
+    }
 
 
     private ListPaymentServiceDefinitionsRequest buildRequest() {
@@ -94,6 +108,7 @@ public class ListPaymentServiceDefinitionsRequestBuilder {
     public CompletableFuture<ListPaymentServiceDefinitionsResponse> call() {
         Optional<Options> options = Optional.of(Options.builder()
             .retryConfig(retryConfig)
+            .timeout(timeout)
             .build());
 
         AsyncRequestOperation<ListPaymentServiceDefinitionsRequest, ListPaymentServiceDefinitionsResponse> operation
@@ -124,6 +139,7 @@ public class ListPaymentServiceDefinitionsRequestBuilder {
         ListPaymentServiceDefinitionsRequest request = this.buildRequest();
         Optional<Options> options = Optional.of(Options.builder()
             .retryConfig(retryConfig)
+            .timeout(timeout)
             .build());
 
         AsyncRequestOperation<ListPaymentServiceDefinitionsRequest, ListPaymentServiceDefinitionsResponse> operation

@@ -21,6 +21,7 @@ import com.gr4vy.sdk.utils.pagination.CursorTracker;
 import java.lang.Long;
 import java.lang.String;
 import java.net.http.HttpResponse;
+import java.time.Duration;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.Flow;
@@ -37,6 +38,7 @@ public class ListMerchantAccountsRequestBuilder {
                             new TypeReference<Optional<Long>>() {});
     private JsonNullable<String> search = JsonNullable.undefined();
     private Optional<RetryConfig> retryConfig = Optional.empty();
+    private Optional<Duration> timeout = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -91,6 +93,18 @@ public class ListMerchantAccountsRequestBuilder {
         this.retryConfig = retryConfig;
         return this;
     }
+                
+    public ListMerchantAccountsRequestBuilder timeout(Duration timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = Optional.of(timeout);
+        return this;
+    }
+
+    public ListMerchantAccountsRequestBuilder timeout(Optional<Duration> timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = timeout;
+        return this;
+    }
 
 
     private ListMerchantAccountsRequest buildRequest() {
@@ -108,6 +122,7 @@ public class ListMerchantAccountsRequestBuilder {
     public CompletableFuture<ListMerchantAccountsResponse> call() {
         Optional<Options> options = Optional.of(Options.builder()
             .retryConfig(retryConfig)
+            .timeout(timeout)
             .build());
 
         AsyncRequestOperation<ListMerchantAccountsRequest, ListMerchantAccountsResponse> operation
@@ -138,6 +153,7 @@ public class ListMerchantAccountsRequestBuilder {
         ListMerchantAccountsRequest request = this.buildRequest();
         Optional<Options> options = Optional.of(Options.builder()
             .retryConfig(retryConfig)
+            .timeout(timeout)
             .build());
 
         AsyncRequestOperation<ListMerchantAccountsRequest, ListMerchantAccountsResponse> operation

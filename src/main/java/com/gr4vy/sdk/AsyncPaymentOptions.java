@@ -11,7 +11,9 @@ import com.gr4vy.sdk.models.operations.async.ListPaymentOptionsRequestBuilder;
 import com.gr4vy.sdk.models.operations.async.ListPaymentOptionsResponse;
 import com.gr4vy.sdk.operations.ListPaymentOptions;
 import com.gr4vy.sdk.utils.Headers;
+import com.gr4vy.sdk.utils.Options;
 import java.lang.String;
+import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -58,7 +60,7 @@ public class AsyncPaymentOptions {
      * @return {@code CompletableFuture<ListPaymentOptionsResponse>} - The async response
      */
     public CompletableFuture<ListPaymentOptionsResponse> list(PaymentOptionRequest paymentOptionRequest) {
-        return list(JsonNullable.undefined(), paymentOptionRequest);
+        return list(JsonNullable.undefined(), paymentOptionRequest, Optional.empty());
     }
 
     /**
@@ -72,6 +74,23 @@ public class AsyncPaymentOptions {
      * @return {@code CompletableFuture<ListPaymentOptionsResponse>} - The async response
      */
     public CompletableFuture<ListPaymentOptionsResponse> list(JsonNullable<String> merchantAccountId, PaymentOptionRequest paymentOptionRequest) {
+        return list(merchantAccountId, paymentOptionRequest, Optional.empty());
+    }
+
+    /**
+     * List payment options
+     * 
+     * <p>List the payment options available at checkout. filtering by country, currency, and additional
+     * fields passed to Flow rules.
+     * 
+     * @param merchantAccountId 
+     * @param paymentOptionRequest 
+     * @param options additional options
+     * @return {@code CompletableFuture<ListPaymentOptionsResponse>} - The async response
+     */
+    public CompletableFuture<ListPaymentOptionsResponse> list(
+            JsonNullable<String> merchantAccountId, PaymentOptionRequest paymentOptionRequest,
+            Optional<Options> options) {
         ListPaymentOptionsRequest request =
             ListPaymentOptionsRequest
                 .builder()
@@ -79,7 +98,7 @@ public class AsyncPaymentOptions {
                 .paymentOptionRequest(paymentOptionRequest)
                 .build();
         AsyncRequestOperation<ListPaymentOptionsRequest, ListPaymentOptionsResponse> operation
-              = new ListPaymentOptions.Async(sdkConfiguration, _headers);
+              = new ListPaymentOptions.Async(sdkConfiguration, options, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }

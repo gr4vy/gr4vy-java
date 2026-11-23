@@ -9,8 +9,10 @@ import com.gr4vy.sdk.utils.Headers;
 import com.gr4vy.sdk.utils.RetryConfig;
 import com.gr4vy.sdk.utils.SpeakeasyHTTPClient;
 import com.gr4vy.sdk.utils.Utils;
+import java.lang.IllegalArgumentException;
 import java.lang.String;
 import java.lang.SuppressWarnings;
+import java.time.Duration;
 import java.util.HashMap;
 import java.util.Map.Entry;
 import java.util.Map;
@@ -311,6 +313,23 @@ public class Gr4vy {
          */
         public Builder retryConfig(RetryConfig retryConfig) {
             this.sdkConfiguration.setRetryConfig(Optional.of(retryConfig));
+            return this;
+        }
+
+        /**
+         * Sets the default timeout for each request attempt. A per-call {@code timeout}
+         * takes precedence; this takes precedence over {@code x-speakeasy-timeout}.
+         * It bounds the whole call, including reading the response body.
+         *
+         * @param timeout The timeout to apply to every request; must be positive.
+         * @return The builder instance.
+         */
+        public Builder timeout(Duration timeout) {
+            Utils.checkNotNull(timeout, "timeout");
+            if (timeout.isZero() || timeout.isNegative()) {
+                throw new IllegalArgumentException("timeout must be positive");
+            }
+            this.sdkConfiguration.setTimeout(Optional.of(timeout));
             return this;
         }
 

@@ -66,6 +66,20 @@ public class Actions {
      * 
      * @param transactionId The ID of the transaction
      * @param merchantAccountId 
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public ListTransactionActionsResponse list(String transactionId, JsonNullable<String> merchantAccountId) {
+        return list(transactionId, merchantAccountId, Optional.empty());
+    }
+
+    /**
+     * List transaction Flow rules
+     * 
+     * <p>Retrieve the list of Flow rule actions that have been triggered for a transaction.
+     * 
+     * @param transactionId The ID of the transaction
+     * @param merchantAccountId 
      * @param options additional options
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails

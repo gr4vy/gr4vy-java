@@ -15,7 +15,9 @@ import com.gr4vy.sdk.models.operations.UnregisterDigitalWalletDomainResponse;
 import com.gr4vy.sdk.operations.RegisterDigitalWalletDomain;
 import com.gr4vy.sdk.operations.UnregisterDigitalWalletDomain;
 import com.gr4vy.sdk.utils.Headers;
+import com.gr4vy.sdk.utils.Options;
 import java.lang.String;
+import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 
@@ -60,7 +62,8 @@ public class Domains {
      * @throws RuntimeException subclass if the API call fails
      */
     public RegisterDigitalWalletDomainResponse create(String digitalWalletId, DigitalWalletDomain digitalWalletDomain) {
-        return create(digitalWalletId, JsonNullable.undefined(), digitalWalletDomain);
+        return create(digitalWalletId, JsonNullable.undefined(), digitalWalletDomain,
+            Optional.empty());
     }
 
     /**
@@ -77,6 +80,25 @@ public class Domains {
     public RegisterDigitalWalletDomainResponse create(
             String digitalWalletId, JsonNullable<String> merchantAccountId,
             DigitalWalletDomain digitalWalletDomain) {
+        return create(digitalWalletId, merchantAccountId, digitalWalletDomain,
+            Optional.empty());
+    }
+
+    /**
+     * Register a digital wallet domain
+     * 
+     * <p>Register a digital wallet domain (Apple Pay only).
+     * 
+     * @param digitalWalletId The ID of the digital wallet to remove a domain for.
+     * @param merchantAccountId 
+     * @param digitalWalletDomain 
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public RegisterDigitalWalletDomainResponse create(
+            String digitalWalletId, JsonNullable<String> merchantAccountId,
+            DigitalWalletDomain digitalWalletDomain, Optional<Options> options) {
         RegisterDigitalWalletDomainRequest request =
             RegisterDigitalWalletDomainRequest
                 .builder()
@@ -85,7 +107,7 @@ public class Domains {
                 .digitalWalletDomain(digitalWalletDomain)
                 .build();
         RequestOperation<RegisterDigitalWalletDomainRequest, RegisterDigitalWalletDomainResponse> operation
-              = new RegisterDigitalWalletDomain.Sync(sdkConfiguration, _headers);
+              = new RegisterDigitalWalletDomain.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -111,7 +133,8 @@ public class Domains {
      * @throws RuntimeException subclass if the API call fails
      */
     public UnregisterDigitalWalletDomainResponse delete(String digitalWalletId, DigitalWalletDomain digitalWalletDomain) {
-        return delete(digitalWalletId, JsonNullable.undefined(), digitalWalletDomain);
+        return delete(digitalWalletId, JsonNullable.undefined(), digitalWalletDomain,
+            Optional.empty());
     }
 
     /**
@@ -128,6 +151,25 @@ public class Domains {
     public UnregisterDigitalWalletDomainResponse delete(
             String digitalWalletId, JsonNullable<String> merchantAccountId,
             DigitalWalletDomain digitalWalletDomain) {
+        return delete(digitalWalletId, merchantAccountId, digitalWalletDomain,
+            Optional.empty());
+    }
+
+    /**
+     * Remove a digital wallet domain
+     * 
+     * <p>Remove a digital wallet domain (Apple Pay only).
+     * 
+     * @param digitalWalletId 
+     * @param merchantAccountId 
+     * @param digitalWalletDomain 
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public UnregisterDigitalWalletDomainResponse delete(
+            String digitalWalletId, JsonNullable<String> merchantAccountId,
+            DigitalWalletDomain digitalWalletDomain, Optional<Options> options) {
         UnregisterDigitalWalletDomainRequest request =
             UnregisterDigitalWalletDomainRequest
                 .builder()
@@ -136,7 +178,7 @@ public class Domains {
                 .digitalWalletDomain(digitalWalletDomain)
                 .build();
         RequestOperation<UnregisterDigitalWalletDomainRequest, UnregisterDigitalWalletDomainResponse> operation
-              = new UnregisterDigitalWalletDomain.Sync(sdkConfiguration, _headers);
+              = new UnregisterDigitalWalletDomain.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

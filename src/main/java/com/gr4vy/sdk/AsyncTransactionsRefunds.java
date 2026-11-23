@@ -82,6 +82,19 @@ public class AsyncTransactionsRefunds {
      * 
      * @param transactionId The ID of the transaction
      * @param merchantAccountId 
+     * @return {@code CompletableFuture<ListTransactionRefundsResponse>} - The async response
+     */
+    public CompletableFuture<ListTransactionRefundsResponse> list(String transactionId, JsonNullable<String> merchantAccountId) {
+        return list(transactionId, merchantAccountId, Optional.empty());
+    }
+
+    /**
+     * List transaction refunds
+     * 
+     * <p>List refunds for a transaction.
+     * 
+     * @param transactionId The ID of the transaction
+     * @param merchantAccountId 
      * @param options additional options
      * @return {@code CompletableFuture<ListTransactionRefundsResponse>} - The async response
      */
@@ -126,7 +139,7 @@ public class AsyncTransactionsRefunds {
     public CompletableFuture<CreateTransactionRefundResponse> create(String transactionId, TransactionRefundCreate transactionRefundCreate) {
         return create(
                 transactionId, JsonNullable.undefined(), JsonNullable.undefined(),
-                transactionRefundCreate);
+                transactionRefundCreate, Optional.empty());
     }
 
     /**
@@ -143,6 +156,27 @@ public class AsyncTransactionsRefunds {
     public CompletableFuture<CreateTransactionRefundResponse> create(
             String transactionId, JsonNullable<String> merchantAccountId,
             JsonNullable<String> idempotencyKey, TransactionRefundCreate transactionRefundCreate) {
+        return create(
+                transactionId, merchantAccountId, idempotencyKey,
+                transactionRefundCreate, Optional.empty());
+    }
+
+    /**
+     * Create transaction refund
+     * 
+     * <p>Create a refund for a transaction.
+     * 
+     * @param transactionId The ID of the transaction
+     * @param merchantAccountId 
+     * @param idempotencyKey A unique key that identifies this request. Providing this header will make this an idempotent request. We recommend using V4 UUIDs, or another random string with enough entropy to avoid collisions.
+     * @param transactionRefundCreate 
+     * @param options additional options
+     * @return {@code CompletableFuture<CreateTransactionRefundResponse>} - The async response
+     */
+    public CompletableFuture<CreateTransactionRefundResponse> create(
+            String transactionId, JsonNullable<String> merchantAccountId,
+            JsonNullable<String> idempotencyKey, TransactionRefundCreate transactionRefundCreate,
+            Optional<Options> options) {
         CreateTransactionRefundRequest request =
             CreateTransactionRefundRequest
                 .builder()
@@ -152,7 +186,7 @@ public class AsyncTransactionsRefunds {
                 .transactionRefundCreate(transactionRefundCreate)
                 .build();
         AsyncRequestOperation<CreateTransactionRefundRequest, CreateTransactionRefundResponse> operation
-              = new CreateTransactionRefund.Async(sdkConfiguration, _headers);
+              = new CreateTransactionRefund.Async(sdkConfiguration, options, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -181,6 +215,24 @@ public class AsyncTransactionsRefunds {
     public CompletableFuture<GetTransactionRefundResponse> get(String transactionId, String refundId) {
         return get(
                 transactionId, refundId, JsonNullable.undefined(),
+                Optional.empty());
+    }
+
+    /**
+     * Get transaction refund
+     * 
+     * <p>Fetch refund for a transaction.
+     * 
+     * @param transactionId The ID of the transaction
+     * @param refundId The ID of the refund
+     * @param merchantAccountId 
+     * @return {@code CompletableFuture<GetTransactionRefundResponse>} - The async response
+     */
+    public CompletableFuture<GetTransactionRefundResponse> get(
+            String transactionId, String refundId,
+            JsonNullable<String> merchantAccountId) {
+        return get(
+                transactionId, refundId, merchantAccountId,
                 Optional.empty());
     }
 

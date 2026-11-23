@@ -9,14 +9,18 @@ import com.gr4vy.sdk.SDKConfiguration;
 import com.gr4vy.sdk.models.components.ApplePaySessionRequest;
 import com.gr4vy.sdk.operations.CreateApplePayDigitalWalletSession;
 import com.gr4vy.sdk.utils.Headers;
+import com.gr4vy.sdk.utils.Options;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.String;
+import java.time.Duration;
+import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 public class CreateApplePayDigitalWalletSessionRequestBuilder {
 
     private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
     private ApplePaySessionRequest applePaySessionRequest;
+    private Optional<Duration> timeout = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -41,6 +45,18 @@ public class CreateApplePayDigitalWalletSessionRequestBuilder {
         this.applePaySessionRequest = applePaySessionRequest;
         return this;
     }
+                
+    public CreateApplePayDigitalWalletSessionRequestBuilder timeout(Duration timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = Optional.of(timeout);
+        return this;
+    }
+
+    public CreateApplePayDigitalWalletSessionRequestBuilder timeout(Optional<Duration> timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = timeout;
+        return this;
+    }
 
 
     private CreateApplePayDigitalWalletSessionRequest buildRequest() {
@@ -52,9 +68,12 @@ public class CreateApplePayDigitalWalletSessionRequestBuilder {
     }
 
     public CreateApplePayDigitalWalletSessionResponse call() {
-        
+        Optional<Options> options = Optional.of(Options.builder()
+            .timeout(timeout)
+            .build());
+
         RequestOperation<CreateApplePayDigitalWalletSessionRequest, CreateApplePayDigitalWalletSessionResponse> operation
-              = new CreateApplePayDigitalWalletSession.Sync(sdkConfiguration, _headers);
+              = new CreateApplePayDigitalWalletSession.Sync(sdkConfiguration, options, _headers);
         CreateApplePayDigitalWalletSessionRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

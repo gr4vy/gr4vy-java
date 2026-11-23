@@ -10,8 +10,11 @@ import com.gr4vy.sdk.models.components.PaymentLinkCreate;
 import com.gr4vy.sdk.models.operations.AddPaymentLinkRequest;
 import com.gr4vy.sdk.operations.AddPaymentLink;
 import com.gr4vy.sdk.utils.Headers;
+import com.gr4vy.sdk.utils.Options;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.String;
+import java.time.Duration;
+import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -19,6 +22,7 @@ public class AddPaymentLinkRequestBuilder {
 
     private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
     private PaymentLinkCreate paymentLinkCreate;
+    private Optional<Duration> timeout = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -43,6 +47,18 @@ public class AddPaymentLinkRequestBuilder {
         this.paymentLinkCreate = paymentLinkCreate;
         return this;
     }
+                
+    public AddPaymentLinkRequestBuilder timeout(Duration timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = Optional.of(timeout);
+        return this;
+    }
+
+    public AddPaymentLinkRequestBuilder timeout(Optional<Duration> timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = timeout;
+        return this;
+    }
 
 
     private AddPaymentLinkRequest buildRequest() {
@@ -54,9 +70,12 @@ public class AddPaymentLinkRequestBuilder {
     }
 
     public CompletableFuture<AddPaymentLinkResponse> call() {
-        
+        Optional<Options> options = Optional.of(Options.builder()
+            .timeout(timeout)
+            .build());
+
         AsyncRequestOperation<AddPaymentLinkRequest, AddPaymentLinkResponse> operation
-              = new AddPaymentLink.Async(sdkConfiguration, _headers);
+              = new AddPaymentLink.Async(sdkConfiguration, options, _headers);
         AddPaymentLinkRequest request = buildRequest();
 
         return operation.doRequest(request)

@@ -77,6 +77,19 @@ public class AsyncPaymentServiceDefinitions {
      * 
      * @param cursor A pointer to the page of results to return.
      * @param limit The maximum number of items that are at returned.
+     * @return {@code CompletableFuture<ListPaymentServiceDefinitionsResponse>} - The async response
+     */
+    public CompletableFuture<ListPaymentServiceDefinitionsResponse> list(JsonNullable<String> cursor, Optional<Long> limit) {
+        return list(cursor, limit, Optional.empty());
+    }
+
+    /**
+     * List payment service definitions
+     * 
+     * <p>List the definitions of each payment service that can be configured.
+     * 
+     * @param cursor A pointer to the page of results to return.
+     * @param limit The maximum number of items that are at returned.
      * @param options additional options
      * @return {@code CompletableFuture<ListPaymentServiceDefinitionsResponse>} - The async response
      */
@@ -166,6 +179,22 @@ public class AsyncPaymentServiceDefinitions {
      * @return {@code CompletableFuture<CreatePaymentServiceDefinitionSessionResponse>} - The async response
      */
     public CompletableFuture<CreatePaymentServiceDefinitionSessionResponse> session(String paymentServiceDefinitionId, Map<String, Object> requestBody) {
+        return session(paymentServiceDefinitionId, requestBody, Optional.empty());
+    }
+
+    /**
+     * Create a session for a payment service definition
+     * 
+     * <p>Creates a session for a payment service that supports sessions.
+     * 
+     * @param paymentServiceDefinitionId 
+     * @param requestBody 
+     * @param options additional options
+     * @return {@code CompletableFuture<CreatePaymentServiceDefinitionSessionResponse>} - The async response
+     */
+    public CompletableFuture<CreatePaymentServiceDefinitionSessionResponse> session(
+            String paymentServiceDefinitionId, Map<String, Object> requestBody,
+            Optional<Options> options) {
         CreatePaymentServiceDefinitionSessionRequest request =
             CreatePaymentServiceDefinitionSessionRequest
                 .builder()
@@ -173,7 +202,7 @@ public class AsyncPaymentServiceDefinitions {
                 .requestBody(requestBody)
                 .build();
         AsyncRequestOperation<CreatePaymentServiceDefinitionSessionRequest, CreatePaymentServiceDefinitionSessionResponse> operation
-              = new CreatePaymentServiceDefinitionSession.Async(sdkConfiguration, _headers);
+              = new CreatePaymentServiceDefinitionSession.Async(sdkConfiguration, options, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }

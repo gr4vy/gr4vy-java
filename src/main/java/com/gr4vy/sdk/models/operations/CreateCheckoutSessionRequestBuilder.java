@@ -9,8 +9,10 @@ import com.gr4vy.sdk.SDKConfiguration;
 import com.gr4vy.sdk.models.components.CheckoutSessionCreate;
 import com.gr4vy.sdk.operations.CreateCheckoutSession;
 import com.gr4vy.sdk.utils.Headers;
+import com.gr4vy.sdk.utils.Options;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.String;
+import java.time.Duration;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -18,6 +20,7 @@ public class CreateCheckoutSessionRequestBuilder {
 
     private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
     private Optional<? extends CheckoutSessionCreate> checkoutSessionCreate = Optional.empty();
+    private Optional<Duration> timeout = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -48,6 +51,18 @@ public class CreateCheckoutSessionRequestBuilder {
         this.checkoutSessionCreate = checkoutSessionCreate;
         return this;
     }
+                
+    public CreateCheckoutSessionRequestBuilder timeout(Duration timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = Optional.of(timeout);
+        return this;
+    }
+
+    public CreateCheckoutSessionRequestBuilder timeout(Optional<Duration> timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = timeout;
+        return this;
+    }
 
 
     private CreateCheckoutSessionRequest buildRequest() {
@@ -59,9 +74,12 @@ public class CreateCheckoutSessionRequestBuilder {
     }
 
     public CreateCheckoutSessionResponse call() {
-        
+        Optional<Options> options = Optional.of(Options.builder()
+            .timeout(timeout)
+            .build());
+
         RequestOperation<CreateCheckoutSessionRequest, CreateCheckoutSessionResponse> operation
-              = new CreateCheckoutSession.Sync(sdkConfiguration, _headers);
+              = new CreateCheckoutSession.Sync(sdkConfiguration, options, _headers);
         CreateCheckoutSessionRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

@@ -89,6 +89,20 @@ public class NetworkTokens {
      * 
      * @param paymentMethodId The ID of the payment method
      * @param merchantAccountId 
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public ListPaymentMethodNetworkTokensResponse list(String paymentMethodId, JsonNullable<String> merchantAccountId) {
+        return list(paymentMethodId, merchantAccountId, Optional.empty());
+    }
+
+    /**
+     * List network tokens
+     * 
+     * <p>List all network tokens stored for a payment method.
+     * 
+     * @param paymentMethodId The ID of the payment method
+     * @param merchantAccountId 
      * @param options additional options
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
@@ -129,7 +143,8 @@ public class NetworkTokens {
      * @throws RuntimeException subclass if the API call fails
      */
     public CreatePaymentMethodNetworkTokenResponse create(String paymentMethodId, NetworkTokenCreate networkTokenCreate) {
-        return create(paymentMethodId, JsonNullable.undefined(), networkTokenCreate);
+        return create(paymentMethodId, JsonNullable.undefined(), networkTokenCreate,
+            Optional.empty());
     }
 
     /**
@@ -146,6 +161,25 @@ public class NetworkTokens {
     public CreatePaymentMethodNetworkTokenResponse create(
             String paymentMethodId, JsonNullable<String> merchantAccountId,
             NetworkTokenCreate networkTokenCreate) {
+        return create(paymentMethodId, merchantAccountId, networkTokenCreate,
+            Optional.empty());
+    }
+
+    /**
+     * Provision network token
+     * 
+     * <p>Provision a network token for a payment method.
+     * 
+     * @param paymentMethodId The ID of the payment method
+     * @param merchantAccountId 
+     * @param networkTokenCreate 
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public CreatePaymentMethodNetworkTokenResponse create(
+            String paymentMethodId, JsonNullable<String> merchantAccountId,
+            NetworkTokenCreate networkTokenCreate, Optional<Options> options) {
         CreatePaymentMethodNetworkTokenRequest request =
             CreatePaymentMethodNetworkTokenRequest
                 .builder()
@@ -154,7 +188,7 @@ public class NetworkTokens {
                 .networkTokenCreate(networkTokenCreate)
                 .build();
         RequestOperation<CreatePaymentMethodNetworkTokenRequest, CreatePaymentMethodNetworkTokenResponse> operation
-              = new CreatePaymentMethodNetworkToken.Sync(sdkConfiguration, _headers);
+              = new CreatePaymentMethodNetworkToken.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -180,7 +214,8 @@ public class NetworkTokens {
      * @throws RuntimeException subclass if the API call fails
      */
     public SuspendPaymentMethodNetworkTokenResponse suspend(String paymentMethodId, String networkTokenId) {
-        return suspend(paymentMethodId, networkTokenId, JsonNullable.undefined());
+        return suspend(paymentMethodId, networkTokenId, JsonNullable.undefined(),
+            Optional.empty());
     }
 
     /**
@@ -197,6 +232,25 @@ public class NetworkTokens {
     public SuspendPaymentMethodNetworkTokenResponse suspend(
             String paymentMethodId, String networkTokenId,
             JsonNullable<String> merchantAccountId) {
+        return suspend(paymentMethodId, networkTokenId, merchantAccountId,
+            Optional.empty());
+    }
+
+    /**
+     * Suspend network token
+     * 
+     * <p>Suspend a network token for a payment method.
+     * 
+     * @param paymentMethodId The ID of the payment method
+     * @param networkTokenId The ID of the network token
+     * @param merchantAccountId 
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public SuspendPaymentMethodNetworkTokenResponse suspend(
+            String paymentMethodId, String networkTokenId,
+            JsonNullable<String> merchantAccountId, Optional<Options> options) {
         SuspendPaymentMethodNetworkTokenRequest request =
             SuspendPaymentMethodNetworkTokenRequest
                 .builder()
@@ -205,7 +259,7 @@ public class NetworkTokens {
                 .merchantAccountId(merchantAccountId)
                 .build();
         RequestOperation<SuspendPaymentMethodNetworkTokenRequest, SuspendPaymentMethodNetworkTokenResponse> operation
-              = new SuspendPaymentMethodNetworkToken.Sync(sdkConfiguration, _headers);
+              = new SuspendPaymentMethodNetworkToken.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -231,7 +285,8 @@ public class NetworkTokens {
      * @throws RuntimeException subclass if the API call fails
      */
     public ResumePaymentMethodNetworkTokenResponse resume(String paymentMethodId, String networkTokenId) {
-        return resume(paymentMethodId, networkTokenId, JsonNullable.undefined());
+        return resume(paymentMethodId, networkTokenId, JsonNullable.undefined(),
+            Optional.empty());
     }
 
     /**
@@ -248,6 +303,25 @@ public class NetworkTokens {
     public ResumePaymentMethodNetworkTokenResponse resume(
             String paymentMethodId, String networkTokenId,
             JsonNullable<String> merchantAccountId) {
+        return resume(paymentMethodId, networkTokenId, merchantAccountId,
+            Optional.empty());
+    }
+
+    /**
+     * Resume network token
+     * 
+     * <p>Resume a suspended network token for a payment method.
+     * 
+     * @param paymentMethodId The ID of the payment method
+     * @param networkTokenId The ID of the network token
+     * @param merchantAccountId 
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public ResumePaymentMethodNetworkTokenResponse resume(
+            String paymentMethodId, String networkTokenId,
+            JsonNullable<String> merchantAccountId, Optional<Options> options) {
         ResumePaymentMethodNetworkTokenRequest request =
             ResumePaymentMethodNetworkTokenRequest
                 .builder()
@@ -256,7 +330,7 @@ public class NetworkTokens {
                 .merchantAccountId(merchantAccountId)
                 .build();
         RequestOperation<ResumePaymentMethodNetworkTokenRequest, ResumePaymentMethodNetworkTokenResponse> operation
-              = new ResumePaymentMethodNetworkToken.Sync(sdkConfiguration, _headers);
+              = new ResumePaymentMethodNetworkToken.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -282,7 +356,8 @@ public class NetworkTokens {
      * @throws RuntimeException subclass if the API call fails
      */
     public DeletePaymentMethodNetworkTokenResponse delete(String paymentMethodId, String networkTokenId) {
-        return delete(paymentMethodId, networkTokenId, JsonNullable.undefined());
+        return delete(paymentMethodId, networkTokenId, JsonNullable.undefined(),
+            Optional.empty());
     }
 
     /**
@@ -299,6 +374,25 @@ public class NetworkTokens {
     public DeletePaymentMethodNetworkTokenResponse delete(
             String paymentMethodId, String networkTokenId,
             JsonNullable<String> merchantAccountId) {
+        return delete(paymentMethodId, networkTokenId, merchantAccountId,
+            Optional.empty());
+    }
+
+    /**
+     * Delete network token
+     * 
+     * <p>Delete a network token for a payment method.
+     * 
+     * @param paymentMethodId The ID of the payment method
+     * @param networkTokenId The ID of the network token
+     * @param merchantAccountId 
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public DeletePaymentMethodNetworkTokenResponse delete(
+            String paymentMethodId, String networkTokenId,
+            JsonNullable<String> merchantAccountId, Optional<Options> options) {
         DeletePaymentMethodNetworkTokenRequest request =
             DeletePaymentMethodNetworkTokenRequest
                 .builder()
@@ -307,7 +401,7 @@ public class NetworkTokens {
                 .merchantAccountId(merchantAccountId)
                 .build();
         RequestOperation<DeletePaymentMethodNetworkTokenRequest, DeletePaymentMethodNetworkTokenResponse> operation
-              = new DeletePaymentMethodNetworkToken.Sync(sdkConfiguration, _headers);
+              = new DeletePaymentMethodNetworkToken.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

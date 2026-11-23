@@ -10,8 +10,11 @@ import com.gr4vy.sdk.models.components.AccountUpdaterJobCreate;
 import com.gr4vy.sdk.models.operations.CreateAccountUpdaterJobRequest;
 import com.gr4vy.sdk.operations.CreateAccountUpdaterJob;
 import com.gr4vy.sdk.utils.Headers;
+import com.gr4vy.sdk.utils.Options;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.String;
+import java.time.Duration;
+import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -19,6 +22,7 @@ public class CreateAccountUpdaterJobRequestBuilder {
 
     private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
     private AccountUpdaterJobCreate accountUpdaterJobCreate;
+    private Optional<Duration> timeout = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -43,6 +47,18 @@ public class CreateAccountUpdaterJobRequestBuilder {
         this.accountUpdaterJobCreate = accountUpdaterJobCreate;
         return this;
     }
+                
+    public CreateAccountUpdaterJobRequestBuilder timeout(Duration timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = Optional.of(timeout);
+        return this;
+    }
+
+    public CreateAccountUpdaterJobRequestBuilder timeout(Optional<Duration> timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = timeout;
+        return this;
+    }
 
 
     private CreateAccountUpdaterJobRequest buildRequest() {
@@ -54,9 +70,12 @@ public class CreateAccountUpdaterJobRequestBuilder {
     }
 
     public CompletableFuture<CreateAccountUpdaterJobResponse> call() {
-        
+        Optional<Options> options = Optional.of(Options.builder()
+            .timeout(timeout)
+            .build());
+
         AsyncRequestOperation<CreateAccountUpdaterJobRequest, CreateAccountUpdaterJobResponse> operation
-              = new CreateAccountUpdaterJob.Async(sdkConfiguration, _headers);
+              = new CreateAccountUpdaterJob.Async(sdkConfiguration, options, _headers);
         CreateAccountUpdaterJobRequest request = buildRequest();
 
         return operation.doRequest(request)

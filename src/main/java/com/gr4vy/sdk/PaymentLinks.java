@@ -69,7 +69,7 @@ public class PaymentLinks {
      * @throws RuntimeException subclass if the API call fails
      */
     public AddPaymentLinkResponse create(PaymentLinkCreate paymentLinkCreate) {
-        return create(JsonNullable.undefined(), paymentLinkCreate);
+        return create(JsonNullable.undefined(), paymentLinkCreate, Optional.empty());
     }
 
     /**
@@ -83,6 +83,23 @@ public class PaymentLinks {
      * @throws RuntimeException subclass if the API call fails
      */
     public AddPaymentLinkResponse create(JsonNullable<String> merchantAccountId, PaymentLinkCreate paymentLinkCreate) {
+        return create(merchantAccountId, paymentLinkCreate, Optional.empty());
+    }
+
+    /**
+     * Add a payment link
+     * 
+     * <p>Create a new payment link.
+     * 
+     * @param merchantAccountId 
+     * @param paymentLinkCreate 
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public AddPaymentLinkResponse create(
+            JsonNullable<String> merchantAccountId, PaymentLinkCreate paymentLinkCreate,
+            Optional<Options> options) {
         AddPaymentLinkRequest request =
             AddPaymentLinkRequest
                 .builder()
@@ -90,7 +107,7 @@ public class PaymentLinks {
                 .paymentLinkCreate(paymentLinkCreate)
                 .build();
         RequestOperation<AddPaymentLinkRequest, AddPaymentLinkResponse> operation
-              = new AddPaymentLink.Sync(sdkConfiguration, _headers);
+              = new AddPaymentLink.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -155,7 +172,7 @@ public class PaymentLinks {
      * @throws RuntimeException subclass if the API call fails
      */
     public ExpirePaymentLinkResponse expire(String paymentLinkId) {
-        return expire(paymentLinkId, JsonNullable.undefined());
+        return expire(paymentLinkId, JsonNullable.undefined(), Optional.empty());
     }
 
     /**
@@ -169,6 +186,23 @@ public class PaymentLinks {
      * @throws RuntimeException subclass if the API call fails
      */
     public ExpirePaymentLinkResponse expire(String paymentLinkId, JsonNullable<String> merchantAccountId) {
+        return expire(paymentLinkId, merchantAccountId, Optional.empty());
+    }
+
+    /**
+     * Expire a payment link
+     * 
+     * <p>Expire an existing payment link.
+     * 
+     * @param paymentLinkId The unique identifier for the payment link.
+     * @param merchantAccountId 
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public ExpirePaymentLinkResponse expire(
+            String paymentLinkId, JsonNullable<String> merchantAccountId,
+            Optional<Options> options) {
         ExpirePaymentLinkRequest request =
             ExpirePaymentLinkRequest
                 .builder()
@@ -176,7 +210,7 @@ public class PaymentLinks {
                 .merchantAccountId(merchantAccountId)
                 .build();
         RequestOperation<ExpirePaymentLinkRequest, ExpirePaymentLinkResponse> operation
-              = new ExpirePaymentLink.Sync(sdkConfiguration, _headers);
+              = new ExpirePaymentLink.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -202,6 +236,20 @@ public class PaymentLinks {
      */
     public GetPaymentLinkResponse get(String paymentLinkId) {
         return get(paymentLinkId, JsonNullable.undefined(), Optional.empty());
+    }
+
+    /**
+     * Get payment link
+     * 
+     * <p>Fetch the details for a payment link.
+     * 
+     * @param paymentLinkId The unique identifier for the payment link.
+     * @param merchantAccountId 
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public GetPaymentLinkResponse get(String paymentLinkId, JsonNullable<String> merchantAccountId) {
+        return get(paymentLinkId, merchantAccountId, Optional.empty());
     }
 
     /**

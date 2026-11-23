@@ -67,6 +67,19 @@ public class AsyncRefunds {
      * 
      * @param refundId The ID of the refund
      * @param merchantAccountId 
+     * @return {@code CompletableFuture<GetRefundResponse>} - The async response
+     */
+    public CompletableFuture<GetRefundResponse> get(String refundId, JsonNullable<String> merchantAccountId) {
+        return get(refundId, merchantAccountId, Optional.empty());
+    }
+
+    /**
+     * Get refund
+     * 
+     * <p>Fetch a refund.
+     * 
+     * @param refundId The ID of the refund
+     * @param merchantAccountId 
      * @param options additional options
      * @return {@code CompletableFuture<GetRefundResponse>} - The async response
      */

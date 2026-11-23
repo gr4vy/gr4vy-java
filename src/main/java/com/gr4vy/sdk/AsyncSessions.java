@@ -40,7 +40,9 @@ import com.gr4vy.sdk.operations.CreatePazeDigitalWalletSession;
 import com.gr4vy.sdk.operations.CreatePazeMobileSession;
 import com.gr4vy.sdk.operations.ReviewPazeMobileSession;
 import com.gr4vy.sdk.utils.Headers;
+import com.gr4vy.sdk.utils.Options;
 import java.lang.String;
+import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -85,7 +87,7 @@ public class AsyncSessions {
      * @return {@code CompletableFuture<CreateGooglePayDigitalWalletSessionResponse>} - The async response
      */
     public CompletableFuture<CreateGooglePayDigitalWalletSessionResponse> googlePay(GooglePaySessionRequest googlePaySessionRequest) {
-        return googlePay(JsonNullable.undefined(), googlePaySessionRequest);
+        return googlePay(JsonNullable.undefined(), googlePaySessionRequest, Optional.empty());
     }
 
     /**
@@ -98,6 +100,22 @@ public class AsyncSessions {
      * @return {@code CompletableFuture<CreateGooglePayDigitalWalletSessionResponse>} - The async response
      */
     public CompletableFuture<CreateGooglePayDigitalWalletSessionResponse> googlePay(JsonNullable<String> merchantAccountId, GooglePaySessionRequest googlePaySessionRequest) {
+        return googlePay(merchantAccountId, googlePaySessionRequest, Optional.empty());
+    }
+
+    /**
+     * Create a Google Pay session
+     * 
+     * <p>Create a session for use with Google Pay.
+     * 
+     * @param merchantAccountId 
+     * @param googlePaySessionRequest 
+     * @param options additional options
+     * @return {@code CompletableFuture<CreateGooglePayDigitalWalletSessionResponse>} - The async response
+     */
+    public CompletableFuture<CreateGooglePayDigitalWalletSessionResponse> googlePay(
+            JsonNullable<String> merchantAccountId, GooglePaySessionRequest googlePaySessionRequest,
+            Optional<Options> options) {
         CreateGooglePayDigitalWalletSessionRequest request =
             CreateGooglePayDigitalWalletSessionRequest
                 .builder()
@@ -105,7 +123,7 @@ public class AsyncSessions {
                 .googlePaySessionRequest(googlePaySessionRequest)
                 .build();
         AsyncRequestOperation<CreateGooglePayDigitalWalletSessionRequest, CreateGooglePayDigitalWalletSessionResponse> operation
-              = new CreateGooglePayDigitalWalletSession.Async(sdkConfiguration, _headers);
+              = new CreateGooglePayDigitalWalletSession.Async(sdkConfiguration, options, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -131,7 +149,7 @@ public class AsyncSessions {
      * @return {@code CompletableFuture<CreateApplePayDigitalWalletSessionResponse>} - The async response
      */
     public CompletableFuture<CreateApplePayDigitalWalletSessionResponse> applePay(ApplePaySessionRequest applePaySessionRequest) {
-        return applePay(JsonNullable.undefined(), applePaySessionRequest);
+        return applePay(JsonNullable.undefined(), applePaySessionRequest, Optional.empty());
     }
 
     /**
@@ -144,6 +162,22 @@ public class AsyncSessions {
      * @return {@code CompletableFuture<CreateApplePayDigitalWalletSessionResponse>} - The async response
      */
     public CompletableFuture<CreateApplePayDigitalWalletSessionResponse> applePay(JsonNullable<String> merchantAccountId, ApplePaySessionRequest applePaySessionRequest) {
+        return applePay(merchantAccountId, applePaySessionRequest, Optional.empty());
+    }
+
+    /**
+     * Create a Apple Pay session
+     * 
+     * <p>Create a session for use with Apple Pay.
+     * 
+     * @param merchantAccountId 
+     * @param applePaySessionRequest 
+     * @param options additional options
+     * @return {@code CompletableFuture<CreateApplePayDigitalWalletSessionResponse>} - The async response
+     */
+    public CompletableFuture<CreateApplePayDigitalWalletSessionResponse> applePay(
+            JsonNullable<String> merchantAccountId, ApplePaySessionRequest applePaySessionRequest,
+            Optional<Options> options) {
         CreateApplePayDigitalWalletSessionRequest request =
             CreateApplePayDigitalWalletSessionRequest
                 .builder()
@@ -151,7 +185,7 @@ public class AsyncSessions {
                 .applePaySessionRequest(applePaySessionRequest)
                 .build();
         AsyncRequestOperation<CreateApplePayDigitalWalletSessionRequest, CreateApplePayDigitalWalletSessionResponse> operation
-              = new CreateApplePayDigitalWalletSession.Async(sdkConfiguration, _headers);
+              = new CreateApplePayDigitalWalletSession.Async(sdkConfiguration, options, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -177,7 +211,7 @@ public class AsyncSessions {
      * @return {@code CompletableFuture<CreatePazeMobileSessionResponse>} - The async response
      */
     public CompletableFuture<CreatePazeMobileSessionResponse> pazeMobileSessionCreate(PazeMobileSessionCreateRequest pazeMobileSessionCreateRequest) {
-        return pazeMobileSessionCreate(JsonNullable.undefined(), pazeMobileSessionCreateRequest);
+        return pazeMobileSessionCreate(JsonNullable.undefined(), pazeMobileSessionCreateRequest, Optional.empty());
     }
 
     /**
@@ -190,6 +224,22 @@ public class AsyncSessions {
      * @return {@code CompletableFuture<CreatePazeMobileSessionResponse>} - The async response
      */
     public CompletableFuture<CreatePazeMobileSessionResponse> pazeMobileSessionCreate(JsonNullable<String> merchantAccountId, PazeMobileSessionCreateRequest pazeMobileSessionCreateRequest) {
+        return pazeMobileSessionCreate(merchantAccountId, pazeMobileSessionCreateRequest, Optional.empty());
+    }
+
+    /**
+     * Create a Paze mobile session
+     * 
+     * <p>Create a mobile session for use with Paze.
+     * 
+     * @param merchantAccountId 
+     * @param pazeMobileSessionCreateRequest 
+     * @param options additional options
+     * @return {@code CompletableFuture<CreatePazeMobileSessionResponse>} - The async response
+     */
+    public CompletableFuture<CreatePazeMobileSessionResponse> pazeMobileSessionCreate(
+            JsonNullable<String> merchantAccountId, PazeMobileSessionCreateRequest pazeMobileSessionCreateRequest,
+            Optional<Options> options) {
         CreatePazeMobileSessionRequest request =
             CreatePazeMobileSessionRequest
                 .builder()
@@ -197,7 +247,7 @@ public class AsyncSessions {
                 .pazeMobileSessionCreateRequest(pazeMobileSessionCreateRequest)
                 .build();
         AsyncRequestOperation<CreatePazeMobileSessionRequest, CreatePazeMobileSessionResponse> operation
-              = new CreatePazeMobileSession.Async(sdkConfiguration, _headers);
+              = new CreatePazeMobileSession.Async(sdkConfiguration, options, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -223,7 +273,7 @@ public class AsyncSessions {
      * @return {@code CompletableFuture<CreatePazeDigitalWalletSessionResponse>} - The async response
      */
     public CompletableFuture<CreatePazeDigitalWalletSessionResponse> paze(PazeSessionRequest pazeSessionRequest) {
-        return paze(JsonNullable.undefined(), pazeSessionRequest);
+        return paze(JsonNullable.undefined(), pazeSessionRequest, Optional.empty());
     }
 
     /**
@@ -236,6 +286,22 @@ public class AsyncSessions {
      * @return {@code CompletableFuture<CreatePazeDigitalWalletSessionResponse>} - The async response
      */
     public CompletableFuture<CreatePazeDigitalWalletSessionResponse> paze(JsonNullable<String> merchantAccountId, PazeSessionRequest pazeSessionRequest) {
+        return paze(merchantAccountId, pazeSessionRequest, Optional.empty());
+    }
+
+    /**
+     * Create a Paze session
+     * 
+     * <p>Create a session for use with Paze.
+     * 
+     * @param merchantAccountId 
+     * @param pazeSessionRequest 
+     * @param options additional options
+     * @return {@code CompletableFuture<CreatePazeDigitalWalletSessionResponse>} - The async response
+     */
+    public CompletableFuture<CreatePazeDigitalWalletSessionResponse> paze(
+            JsonNullable<String> merchantAccountId, PazeSessionRequest pazeSessionRequest,
+            Optional<Options> options) {
         CreatePazeDigitalWalletSessionRequest request =
             CreatePazeDigitalWalletSessionRequest
                 .builder()
@@ -243,7 +309,7 @@ public class AsyncSessions {
                 .pazeSessionRequest(pazeSessionRequest)
                 .build();
         AsyncRequestOperation<CreatePazeDigitalWalletSessionRequest, CreatePazeDigitalWalletSessionResponse> operation
-              = new CreatePazeDigitalWalletSession.Async(sdkConfiguration, _headers);
+              = new CreatePazeDigitalWalletSession.Async(sdkConfiguration, options, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -271,7 +337,7 @@ public class AsyncSessions {
      * @return {@code CompletableFuture<ReviewPazeMobileSessionResponse>} - The async response
      */
     public CompletableFuture<ReviewPazeMobileSessionResponse> pazeMobileSessionReview(PazeSessionReviewRequest pazeSessionReviewRequest) {
-        return pazeMobileSessionReview(JsonNullable.undefined(), pazeSessionReviewRequest);
+        return pazeMobileSessionReview(JsonNullable.undefined(), pazeSessionReviewRequest, Optional.empty());
     }
 
     /**
@@ -285,6 +351,23 @@ public class AsyncSessions {
      * @return {@code CompletableFuture<ReviewPazeMobileSessionResponse>} - The async response
      */
     public CompletableFuture<ReviewPazeMobileSessionResponse> pazeMobileSessionReview(JsonNullable<String> merchantAccountId, PazeSessionReviewRequest pazeSessionReviewRequest) {
+        return pazeMobileSessionReview(merchantAccountId, pazeSessionReviewRequest, Optional.empty());
+    }
+
+    /**
+     * Review a Paze session
+     * 
+     * <p>Review a Paze checkout session and retrieve the selected card, consumer, and shipping address
+     * details.
+     * 
+     * @param merchantAccountId 
+     * @param pazeSessionReviewRequest 
+     * @param options additional options
+     * @return {@code CompletableFuture<ReviewPazeMobileSessionResponse>} - The async response
+     */
+    public CompletableFuture<ReviewPazeMobileSessionResponse> pazeMobileSessionReview(
+            JsonNullable<String> merchantAccountId, PazeSessionReviewRequest pazeSessionReviewRequest,
+            Optional<Options> options) {
         ReviewPazeMobileSessionRequest request =
             ReviewPazeMobileSessionRequest
                 .builder()
@@ -292,7 +375,7 @@ public class AsyncSessions {
                 .pazeSessionReviewRequest(pazeSessionReviewRequest)
                 .build();
         AsyncRequestOperation<ReviewPazeMobileSessionRequest, ReviewPazeMobileSessionResponse> operation
-              = new ReviewPazeMobileSession.Async(sdkConfiguration, _headers);
+              = new ReviewPazeMobileSession.Async(sdkConfiguration, options, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -318,7 +401,7 @@ public class AsyncSessions {
      * @return {@code CompletableFuture<CompletePazeMobileSessionResponse>} - The async response
      */
     public CompletableFuture<CompletePazeMobileSessionResponse> pazeMobileSessionComplete(PazeSessionCompleteRequest pazeSessionCompleteRequest) {
-        return pazeMobileSessionComplete(JsonNullable.undefined(), pazeSessionCompleteRequest);
+        return pazeMobileSessionComplete(JsonNullable.undefined(), pazeSessionCompleteRequest, Optional.empty());
     }
 
     /**
@@ -331,6 +414,22 @@ public class AsyncSessions {
      * @return {@code CompletableFuture<CompletePazeMobileSessionResponse>} - The async response
      */
     public CompletableFuture<CompletePazeMobileSessionResponse> pazeMobileSessionComplete(JsonNullable<String> merchantAccountId, PazeSessionCompleteRequest pazeSessionCompleteRequest) {
+        return pazeMobileSessionComplete(merchantAccountId, pazeSessionCompleteRequest, Optional.empty());
+    }
+
+    /**
+     * Complete a Paze session
+     * 
+     * <p>Complete a Paze checkout session and retrieve the secure payload required to settle the payment.
+     * 
+     * @param merchantAccountId 
+     * @param pazeSessionCompleteRequest 
+     * @param options additional options
+     * @return {@code CompletableFuture<CompletePazeMobileSessionResponse>} - The async response
+     */
+    public CompletableFuture<CompletePazeMobileSessionResponse> pazeMobileSessionComplete(
+            JsonNullable<String> merchantAccountId, PazeSessionCompleteRequest pazeSessionCompleteRequest,
+            Optional<Options> options) {
         CompletePazeMobileSessionRequest request =
             CompletePazeMobileSessionRequest
                 .builder()
@@ -338,7 +437,7 @@ public class AsyncSessions {
                 .pazeSessionCompleteRequest(pazeSessionCompleteRequest)
                 .build();
         AsyncRequestOperation<CompletePazeMobileSessionRequest, CompletePazeMobileSessionResponse> operation
-              = new CompletePazeMobileSession.Async(sdkConfiguration, _headers);
+              = new CompletePazeMobileSession.Async(sdkConfiguration, options, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -364,8 +463,21 @@ public class AsyncSessions {
      * @return {@code CompletableFuture<CreateClickToPayDigitalWalletSessionResponse>} - The async response
      */
     public CompletableFuture<CreateClickToPayDigitalWalletSessionResponse> clickToPay(ClickToPaySessionRequest request) {
+        return clickToPay(request, Optional.empty());
+    }
+
+    /**
+     * Create a Click to Pay session
+     * 
+     * <p>Create a session for use with Click to Pay.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param options additional options
+     * @return {@code CompletableFuture<CreateClickToPayDigitalWalletSessionResponse>} - The async response
+     */
+    public CompletableFuture<CreateClickToPayDigitalWalletSessionResponse> clickToPay(ClickToPaySessionRequest request, Optional<Options> options) {
         AsyncRequestOperation<ClickToPaySessionRequest, CreateClickToPayDigitalWalletSessionResponse> operation
-              = new CreateClickToPayDigitalWalletSession.Async(sdkConfiguration, _headers);
+              = new CreateClickToPayDigitalWalletSession.Async(sdkConfiguration, options, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }

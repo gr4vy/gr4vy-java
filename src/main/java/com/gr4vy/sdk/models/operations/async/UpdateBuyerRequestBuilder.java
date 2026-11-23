@@ -10,8 +10,11 @@ import com.gr4vy.sdk.models.components.BuyerUpdate;
 import com.gr4vy.sdk.models.operations.UpdateBuyerRequest;
 import com.gr4vy.sdk.operations.UpdateBuyer;
 import com.gr4vy.sdk.utils.Headers;
+import com.gr4vy.sdk.utils.Options;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.String;
+import java.time.Duration;
+import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -20,6 +23,7 @@ public class UpdateBuyerRequestBuilder {
     private String buyerId;
     private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
     private BuyerUpdate buyerUpdate;
+    private Optional<Duration> timeout = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -50,6 +54,18 @@ public class UpdateBuyerRequestBuilder {
         this.buyerUpdate = buyerUpdate;
         return this;
     }
+                
+    public UpdateBuyerRequestBuilder timeout(Duration timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = Optional.of(timeout);
+        return this;
+    }
+
+    public UpdateBuyerRequestBuilder timeout(Optional<Duration> timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = timeout;
+        return this;
+    }
 
 
     private UpdateBuyerRequest buildRequest() {
@@ -62,9 +78,12 @@ public class UpdateBuyerRequestBuilder {
     }
 
     public CompletableFuture<UpdateBuyerResponse> call() {
-        
+        Optional<Options> options = Optional.of(Options.builder()
+            .timeout(timeout)
+            .build());
+
         AsyncRequestOperation<UpdateBuyerRequest, UpdateBuyerResponse> operation
-              = new UpdateBuyer.Async(sdkConfiguration, _headers);
+              = new UpdateBuyer.Async(sdkConfiguration, options, _headers);
         UpdateBuyerRequest request = buildRequest();
 
         return operation.doRequest(request)

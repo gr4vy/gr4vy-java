@@ -126,7 +126,7 @@ public class PaymentMethods {
      * @throws RuntimeException subclass if the API call fails
      */
     public CreatePaymentMethodResponse create(Body requestBody) {
-        return create(JsonNullable.undefined(), requestBody);
+        return create(JsonNullable.undefined(), requestBody, Optional.empty());
     }
 
     /**
@@ -140,6 +140,23 @@ public class PaymentMethods {
      * @throws RuntimeException subclass if the API call fails
      */
     public CreatePaymentMethodResponse create(JsonNullable<String> merchantAccountId, Body requestBody) {
+        return create(merchantAccountId, requestBody, Optional.empty());
+    }
+
+    /**
+     * Create payment method
+     * 
+     * <p>Store a new payment method.
+     * 
+     * @param merchantAccountId 
+     * @param requestBody 
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public CreatePaymentMethodResponse create(
+            JsonNullable<String> merchantAccountId, Body requestBody,
+            Optional<Options> options) {
         CreatePaymentMethodRequest request =
             CreatePaymentMethodRequest
                 .builder()
@@ -147,7 +164,7 @@ public class PaymentMethods {
                 .requestBody(requestBody)
                 .build();
         RequestOperation<CreatePaymentMethodRequest, CreatePaymentMethodResponse> operation
-              = new CreatePaymentMethod.Sync(sdkConfiguration, _headers);
+              = new CreatePaymentMethod.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -173,6 +190,20 @@ public class PaymentMethods {
      */
     public GetPaymentMethodResponse get(String paymentMethodId) {
         return get(paymentMethodId, JsonNullable.undefined(), Optional.empty());
+    }
+
+    /**
+     * Get payment method
+     * 
+     * <p>Retrieve a payment method.
+     * 
+     * @param paymentMethodId The ID of the payment method
+     * @param merchantAccountId 
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public GetPaymentMethodResponse get(String paymentMethodId, JsonNullable<String> merchantAccountId) {
+        return get(paymentMethodId, merchantAccountId, Optional.empty());
     }
 
     /**
@@ -222,7 +253,8 @@ public class PaymentMethods {
      * @throws RuntimeException subclass if the API call fails
      */
     public UpdatePaymentMethodResponse update(String paymentMethodId, PaymentMethodUpdate paymentMethodUpdate) {
-        return update(paymentMethodId, JsonNullable.undefined(), paymentMethodUpdate);
+        return update(paymentMethodId, JsonNullable.undefined(), paymentMethodUpdate,
+            Optional.empty());
     }
 
     /**
@@ -239,6 +271,25 @@ public class PaymentMethods {
     public UpdatePaymentMethodResponse update(
             String paymentMethodId, JsonNullable<String> merchantAccountId,
             PaymentMethodUpdate paymentMethodUpdate) {
+        return update(paymentMethodId, merchantAccountId, paymentMethodUpdate,
+            Optional.empty());
+    }
+
+    /**
+     * Update payment method
+     * 
+     * <p>Update the details of a stored payment method.
+     * 
+     * @param paymentMethodId The ID of the payment method
+     * @param merchantAccountId 
+     * @param paymentMethodUpdate Request body for updating a stored payment method.
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public UpdatePaymentMethodResponse update(
+            String paymentMethodId, JsonNullable<String> merchantAccountId,
+            PaymentMethodUpdate paymentMethodUpdate, Optional<Options> options) {
         UpdatePaymentMethodRequest request =
             UpdatePaymentMethodRequest
                 .builder()
@@ -247,7 +298,7 @@ public class PaymentMethods {
                 .paymentMethodUpdate(paymentMethodUpdate)
                 .build();
         RequestOperation<UpdatePaymentMethodRequest, UpdatePaymentMethodResponse> operation
-              = new UpdatePaymentMethod.Sync(sdkConfiguration, _headers);
+              = new UpdatePaymentMethod.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -272,7 +323,7 @@ public class PaymentMethods {
      * @throws RuntimeException subclass if the API call fails
      */
     public DeletePaymentMethodResponse delete(String paymentMethodId) {
-        return delete(paymentMethodId, JsonNullable.undefined());
+        return delete(paymentMethodId, JsonNullable.undefined(), Optional.empty());
     }
 
     /**
@@ -286,6 +337,23 @@ public class PaymentMethods {
      * @throws RuntimeException subclass if the API call fails
      */
     public DeletePaymentMethodResponse delete(String paymentMethodId, JsonNullable<String> merchantAccountId) {
+        return delete(paymentMethodId, merchantAccountId, Optional.empty());
+    }
+
+    /**
+     * Delete payment method
+     * 
+     * <p>Delete a payment method.
+     * 
+     * @param paymentMethodId The ID of the payment method
+     * @param merchantAccountId 
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public DeletePaymentMethodResponse delete(
+            String paymentMethodId, JsonNullable<String> merchantAccountId,
+            Optional<Options> options) {
         DeletePaymentMethodRequest request =
             DeletePaymentMethodRequest
                 .builder()
@@ -293,7 +361,7 @@ public class PaymentMethods {
                 .merchantAccountId(merchantAccountId)
                 .build();
         RequestOperation<DeletePaymentMethodRequest, DeletePaymentMethodResponse> operation
-              = new DeletePaymentMethod.Sync(sdkConfiguration, _headers);
+              = new DeletePaymentMethod.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

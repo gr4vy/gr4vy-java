@@ -9,14 +9,18 @@ import com.gr4vy.sdk.SDKConfiguration;
 import com.gr4vy.sdk.models.components.BuyerCreate;
 import com.gr4vy.sdk.operations.AddBuyer;
 import com.gr4vy.sdk.utils.Headers;
+import com.gr4vy.sdk.utils.Options;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.String;
+import java.time.Duration;
+import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 public class AddBuyerRequestBuilder {
 
     private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
     private BuyerCreate buyerCreate;
+    private Optional<Duration> timeout = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -41,6 +45,18 @@ public class AddBuyerRequestBuilder {
         this.buyerCreate = buyerCreate;
         return this;
     }
+                
+    public AddBuyerRequestBuilder timeout(Duration timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = Optional.of(timeout);
+        return this;
+    }
+
+    public AddBuyerRequestBuilder timeout(Optional<Duration> timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = timeout;
+        return this;
+    }
 
 
     private AddBuyerRequest buildRequest() {
@@ -52,9 +68,12 @@ public class AddBuyerRequestBuilder {
     }
 
     public AddBuyerResponse call() {
-        
+        Optional<Options> options = Optional.of(Options.builder()
+            .timeout(timeout)
+            .build());
+
         RequestOperation<AddBuyerRequest, AddBuyerResponse> operation
-              = new AddBuyer.Sync(sdkConfiguration, _headers);
+              = new AddBuyer.Sync(sdkConfiguration, options, _headers);
         AddBuyerRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

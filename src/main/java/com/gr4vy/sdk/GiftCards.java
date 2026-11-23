@@ -97,6 +97,20 @@ public class GiftCards {
      * 
      * @param giftCardId The ID of the gift card.
      * @param merchantAccountId 
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public GetGiftCardResponse get(String giftCardId, JsonNullable<String> merchantAccountId) {
+        return get(giftCardId, merchantAccountId, Optional.empty());
+    }
+
+    /**
+     * Get gift card
+     * 
+     * <p>Fetch details about a gift card.
+     * 
+     * @param giftCardId The ID of the gift card.
+     * @param merchantAccountId 
      * @param options additional options
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
@@ -136,7 +150,7 @@ public class GiftCards {
      * @throws RuntimeException subclass if the API call fails
      */
     public DeleteGiftCardResponse delete(String giftCardId) {
-        return delete(giftCardId, JsonNullable.undefined());
+        return delete(giftCardId, JsonNullable.undefined(), Optional.empty());
     }
 
     /**
@@ -150,6 +164,23 @@ public class GiftCards {
      * @throws RuntimeException subclass if the API call fails
      */
     public DeleteGiftCardResponse delete(String giftCardId, JsonNullable<String> merchantAccountId) {
+        return delete(giftCardId, merchantAccountId, Optional.empty());
+    }
+
+    /**
+     * Delete a gift card
+     * 
+     * <p>Removes a gift card from our system.
+     * 
+     * @param giftCardId The ID of the gift card.
+     * @param merchantAccountId 
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public DeleteGiftCardResponse delete(
+            String giftCardId, JsonNullable<String> merchantAccountId,
+            Optional<Options> options) {
         DeleteGiftCardRequest request =
             DeleteGiftCardRequest
                 .builder()
@@ -157,7 +188,7 @@ public class GiftCards {
                 .merchantAccountId(merchantAccountId)
                 .build();
         RequestOperation<DeleteGiftCardRequest, DeleteGiftCardResponse> operation
-              = new DeleteGiftCard.Sync(sdkConfiguration, _headers);
+              = new DeleteGiftCard.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -182,7 +213,7 @@ public class GiftCards {
      * @throws RuntimeException subclass if the API call fails
      */
     public CreateGiftCardResponse create(GiftCardCreate giftCardCreate) {
-        return create(JsonNullable.undefined(), giftCardCreate);
+        return create(JsonNullable.undefined(), giftCardCreate, Optional.empty());
     }
 
     /**
@@ -196,6 +227,23 @@ public class GiftCards {
      * @throws RuntimeException subclass if the API call fails
      */
     public CreateGiftCardResponse create(JsonNullable<String> merchantAccountId, GiftCardCreate giftCardCreate) {
+        return create(merchantAccountId, giftCardCreate, Optional.empty());
+    }
+
+    /**
+     * Create gift card
+     * 
+     * <p>Store a new gift card in the vault.
+     * 
+     * @param merchantAccountId 
+     * @param giftCardCreate 
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public CreateGiftCardResponse create(
+            JsonNullable<String> merchantAccountId, GiftCardCreate giftCardCreate,
+            Optional<Options> options) {
         CreateGiftCardRequest request =
             CreateGiftCardRequest
                 .builder()
@@ -203,7 +251,7 @@ public class GiftCards {
                 .giftCardCreate(giftCardCreate)
                 .build();
         RequestOperation<CreateGiftCardRequest, CreateGiftCardResponse> operation
-              = new CreateGiftCard.Sync(sdkConfiguration, _headers);
+              = new CreateGiftCard.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

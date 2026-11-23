@@ -11,7 +11,9 @@ import com.gr4vy.sdk.models.operations.IssueGiftCardRequestBuilder;
 import com.gr4vy.sdk.models.operations.IssueGiftCardResponse;
 import com.gr4vy.sdk.operations.IssueGiftCard;
 import com.gr4vy.sdk.utils.Headers;
+import com.gr4vy.sdk.utils.Options;
 import java.lang.String;
+import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 
@@ -55,7 +57,8 @@ public class Issuances {
      * @throws RuntimeException subclass if the API call fails
      */
     public IssueGiftCardResponse create(GiftCardIssuanceCreate giftCardIssuanceCreate) {
-        return create(JsonNullable.undefined(), JsonNullable.undefined(), giftCardIssuanceCreate);
+        return create(JsonNullable.undefined(), JsonNullable.undefined(), giftCardIssuanceCreate,
+            Optional.empty());
     }
 
     /**
@@ -72,6 +75,25 @@ public class Issuances {
     public IssueGiftCardResponse create(
             JsonNullable<String> idempotencyKey, JsonNullable<String> merchantAccountId,
             GiftCardIssuanceCreate giftCardIssuanceCreate) {
+        return create(idempotencyKey, merchantAccountId, giftCardIssuanceCreate,
+            Optional.empty());
+    }
+
+    /**
+     * Issue a gift card
+     * 
+     * <p>Issue a new virtual gift card through the primary gift card service.
+     * 
+     * @param idempotencyKey A unique key forwarded to the gift card service to make the issuance idempotent.
+     * @param merchantAccountId 
+     * @param giftCardIssuanceCreate The details used to issue a new virtual gift card.
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public IssueGiftCardResponse create(
+            JsonNullable<String> idempotencyKey, JsonNullable<String> merchantAccountId,
+            GiftCardIssuanceCreate giftCardIssuanceCreate, Optional<Options> options) {
         IssueGiftCardRequest request =
             IssueGiftCardRequest
                 .builder()
@@ -80,7 +102,7 @@ public class Issuances {
                 .giftCardIssuanceCreate(giftCardIssuanceCreate)
                 .build();
         RequestOperation<IssueGiftCardRequest, IssueGiftCardResponse> operation
-              = new IssueGiftCard.Sync(sdkConfiguration, _headers);
+              = new IssueGiftCard.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

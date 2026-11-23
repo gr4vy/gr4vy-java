@@ -8,13 +8,17 @@ import static com.gr4vy.sdk.operations.Operations.RequestOperation;
 import com.gr4vy.sdk.SDKConfiguration;
 import com.gr4vy.sdk.operations.DeleteThreeDsConfiguration;
 import com.gr4vy.sdk.utils.Headers;
+import com.gr4vy.sdk.utils.Options;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.String;
+import java.time.Duration;
+import java.util.Optional;
 
 public class DeleteThreeDsConfigurationRequestBuilder {
 
     private String merchantAccountId;
     private String threeDsConfigurationId;
+    private Optional<Duration> timeout = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -33,6 +37,18 @@ public class DeleteThreeDsConfigurationRequestBuilder {
         this.threeDsConfigurationId = threeDsConfigurationId;
         return this;
     }
+                
+    public DeleteThreeDsConfigurationRequestBuilder timeout(Duration timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = Optional.of(timeout);
+        return this;
+    }
+
+    public DeleteThreeDsConfigurationRequestBuilder timeout(Optional<Duration> timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = timeout;
+        return this;
+    }
 
 
     private DeleteThreeDsConfigurationRequest buildRequest() {
@@ -44,9 +60,12 @@ public class DeleteThreeDsConfigurationRequestBuilder {
     }
 
     public DeleteThreeDsConfigurationResponse call() {
-        
+        Optional<Options> options = Optional.of(Options.builder()
+            .timeout(timeout)
+            .build());
+
         RequestOperation<DeleteThreeDsConfigurationRequest, DeleteThreeDsConfigurationResponse> operation
-              = new DeleteThreeDsConfiguration.Sync(sdkConfiguration, _headers);
+              = new DeleteThreeDsConfiguration.Sync(sdkConfiguration, options, _headers);
         DeleteThreeDsConfigurationRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

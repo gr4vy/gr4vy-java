@@ -71,6 +71,19 @@ public class AsyncCaptures {
      * 
      * @param transactionId The unique identifier of the transaction.
      * @param merchantAccountId 
+     * @return {@code CompletableFuture<ListTransactionCapturesResponse>} - The async response
+     */
+    public CompletableFuture<ListTransactionCapturesResponse> list(String transactionId, JsonNullable<String> merchantAccountId) {
+        return list(transactionId, merchantAccountId, Optional.empty());
+    }
+
+    /**
+     * List transaction captures
+     * 
+     * <p>List all captures for a specific transaction.
+     * 
+     * @param transactionId The unique identifier of the transaction.
+     * @param merchantAccountId 
      * @param options additional options
      * @return {@code CompletableFuture<ListTransactionCapturesResponse>} - The async response
      */
@@ -115,6 +128,24 @@ public class AsyncCaptures {
     public CompletableFuture<GetTransactionCaptureResponse> get(String transactionId, String captureId) {
         return get(
                 transactionId, captureId, JsonNullable.undefined(),
+                Optional.empty());
+    }
+
+    /**
+     * Get transaction capture
+     * 
+     * <p>Retrieve a specific capture for a transaction by its unique identifier.
+     * 
+     * @param transactionId The unique identifier of the transaction.
+     * @param captureId The unique identifier of the capture.
+     * @param merchantAccountId 
+     * @return {@code CompletableFuture<GetTransactionCaptureResponse>} - The async response
+     */
+    public CompletableFuture<GetTransactionCaptureResponse> get(
+            String transactionId, String captureId,
+            JsonNullable<String> merchantAccountId) {
+        return get(
+                transactionId, captureId, merchantAccountId,
                 Optional.empty());
     }
 

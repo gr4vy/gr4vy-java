@@ -129,7 +129,7 @@ public class AsyncPaymentMethods {
      * @return {@code CompletableFuture<CreatePaymentMethodResponse>} - The async response
      */
     public CompletableFuture<CreatePaymentMethodResponse> create(Body requestBody) {
-        return create(JsonNullable.undefined(), requestBody);
+        return create(JsonNullable.undefined(), requestBody, Optional.empty());
     }
 
     /**
@@ -142,6 +142,22 @@ public class AsyncPaymentMethods {
      * @return {@code CompletableFuture<CreatePaymentMethodResponse>} - The async response
      */
     public CompletableFuture<CreatePaymentMethodResponse> create(JsonNullable<String> merchantAccountId, Body requestBody) {
+        return create(merchantAccountId, requestBody, Optional.empty());
+    }
+
+    /**
+     * Create payment method
+     * 
+     * <p>Store a new payment method.
+     * 
+     * @param merchantAccountId 
+     * @param requestBody 
+     * @param options additional options
+     * @return {@code CompletableFuture<CreatePaymentMethodResponse>} - The async response
+     */
+    public CompletableFuture<CreatePaymentMethodResponse> create(
+            JsonNullable<String> merchantAccountId, Body requestBody,
+            Optional<Options> options) {
         CreatePaymentMethodRequest request =
             CreatePaymentMethodRequest
                 .builder()
@@ -149,7 +165,7 @@ public class AsyncPaymentMethods {
                 .requestBody(requestBody)
                 .build();
         AsyncRequestOperation<CreatePaymentMethodRequest, CreatePaymentMethodResponse> operation
-              = new CreatePaymentMethod.Async(sdkConfiguration, _headers);
+              = new CreatePaymentMethod.Async(sdkConfiguration, options, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -176,6 +192,19 @@ public class AsyncPaymentMethods {
      */
     public CompletableFuture<GetPaymentMethodResponse> get(String paymentMethodId) {
         return get(paymentMethodId, JsonNullable.undefined(), Optional.empty());
+    }
+
+    /**
+     * Get payment method
+     * 
+     * <p>Retrieve a payment method.
+     * 
+     * @param paymentMethodId The ID of the payment method
+     * @param merchantAccountId 
+     * @return {@code CompletableFuture<GetPaymentMethodResponse>} - The async response
+     */
+    public CompletableFuture<GetPaymentMethodResponse> get(String paymentMethodId, JsonNullable<String> merchantAccountId) {
+        return get(paymentMethodId, merchantAccountId, Optional.empty());
     }
 
     /**
@@ -227,7 +256,9 @@ public class AsyncPaymentMethods {
      * @return {@code CompletableFuture<UpdatePaymentMethodResponse>} - The async response
      */
     public CompletableFuture<UpdatePaymentMethodResponse> update(String paymentMethodId, PaymentMethodUpdate paymentMethodUpdate) {
-        return update(paymentMethodId, JsonNullable.undefined(), paymentMethodUpdate);
+        return update(
+                paymentMethodId, JsonNullable.undefined(), paymentMethodUpdate,
+                Optional.empty());
     }
 
     /**
@@ -243,6 +274,25 @@ public class AsyncPaymentMethods {
     public CompletableFuture<UpdatePaymentMethodResponse> update(
             String paymentMethodId, JsonNullable<String> merchantAccountId,
             PaymentMethodUpdate paymentMethodUpdate) {
+        return update(
+                paymentMethodId, merchantAccountId, paymentMethodUpdate,
+                Optional.empty());
+    }
+
+    /**
+     * Update payment method
+     * 
+     * <p>Update the details of a stored payment method.
+     * 
+     * @param paymentMethodId The ID of the payment method
+     * @param merchantAccountId 
+     * @param paymentMethodUpdate Request body for updating a stored payment method.
+     * @param options additional options
+     * @return {@code CompletableFuture<UpdatePaymentMethodResponse>} - The async response
+     */
+    public CompletableFuture<UpdatePaymentMethodResponse> update(
+            String paymentMethodId, JsonNullable<String> merchantAccountId,
+            PaymentMethodUpdate paymentMethodUpdate, Optional<Options> options) {
         UpdatePaymentMethodRequest request =
             UpdatePaymentMethodRequest
                 .builder()
@@ -251,7 +301,7 @@ public class AsyncPaymentMethods {
                 .paymentMethodUpdate(paymentMethodUpdate)
                 .build();
         AsyncRequestOperation<UpdatePaymentMethodRequest, UpdatePaymentMethodResponse> operation
-              = new UpdatePaymentMethod.Async(sdkConfiguration, _headers);
+              = new UpdatePaymentMethod.Async(sdkConfiguration, options, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -277,7 +327,7 @@ public class AsyncPaymentMethods {
      * @return {@code CompletableFuture<DeletePaymentMethodResponse>} - The async response
      */
     public CompletableFuture<DeletePaymentMethodResponse> delete(String paymentMethodId) {
-        return delete(paymentMethodId, JsonNullable.undefined());
+        return delete(paymentMethodId, JsonNullable.undefined(), Optional.empty());
     }
 
     /**
@@ -290,6 +340,22 @@ public class AsyncPaymentMethods {
      * @return {@code CompletableFuture<DeletePaymentMethodResponse>} - The async response
      */
     public CompletableFuture<DeletePaymentMethodResponse> delete(String paymentMethodId, JsonNullable<String> merchantAccountId) {
+        return delete(paymentMethodId, merchantAccountId, Optional.empty());
+    }
+
+    /**
+     * Delete payment method
+     * 
+     * <p>Delete a payment method.
+     * 
+     * @param paymentMethodId The ID of the payment method
+     * @param merchantAccountId 
+     * @param options additional options
+     * @return {@code CompletableFuture<DeletePaymentMethodResponse>} - The async response
+     */
+    public CompletableFuture<DeletePaymentMethodResponse> delete(
+            String paymentMethodId, JsonNullable<String> merchantAccountId,
+            Optional<Options> options) {
         DeletePaymentMethodRequest request =
             DeletePaymentMethodRequest
                 .builder()
@@ -297,7 +363,7 @@ public class AsyncPaymentMethods {
                 .merchantAccountId(merchantAccountId)
                 .build();
         AsyncRequestOperation<DeletePaymentMethodRequest, DeletePaymentMethodResponse> operation
-              = new DeletePaymentMethod.Async(sdkConfiguration, _headers);
+              = new DeletePaymentMethod.Async(sdkConfiguration, options, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }

@@ -20,6 +20,7 @@ import java.io.InputStream;
 import java.lang.Iterable;
 import java.lang.String;
 import java.net.http.HttpResponse;
+import java.time.Duration;
 import java.util.Iterator;
 import java.util.Optional;
 import java.util.stream.Stream;
@@ -28,6 +29,7 @@ public class ListBuyersRequestBuilder {
 
     private ListBuyersRequest request;
     private Optional<RetryConfig> retryConfig = Optional.empty();
+    private Optional<Duration> timeout = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -52,10 +54,23 @@ public class ListBuyersRequestBuilder {
         this.retryConfig = retryConfig;
         return this;
     }
+                
+    public ListBuyersRequestBuilder timeout(Duration timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = Optional.of(timeout);
+        return this;
+    }
+
+    public ListBuyersRequestBuilder timeout(Optional<Duration> timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = timeout;
+        return this;
+    }
 
     public ListBuyersResponse call() {
         Optional<Options> options = Optional.of(Options.builder()
             .retryConfig(retryConfig)
+            .timeout(timeout)
             .build());
 
         RequestOperation<ListBuyersRequest, ListBuyersResponse> operation
@@ -80,6 +95,7 @@ public class ListBuyersRequestBuilder {
     public Iterable<ListBuyersResponse> callAsIterable() {
         Optional<Options> options = Optional.of(Options.builder()
             .retryConfig(retryConfig)
+            .timeout(timeout)
             .build());
 
         RequestOperation<ListBuyersRequest, ListBuyersResponse> operation

@@ -9,13 +9,17 @@ import com.gr4vy.sdk.SDKConfiguration;
 import com.gr4vy.sdk.models.components.APIKeyPairUpdate;
 import com.gr4vy.sdk.operations.UpdateApiKeyPair;
 import com.gr4vy.sdk.utils.Headers;
+import com.gr4vy.sdk.utils.Options;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.String;
+import java.time.Duration;
+import java.util.Optional;
 
 public class UpdateApiKeyPairRequestBuilder {
 
     private String apiKeyPairId;
     private APIKeyPairUpdate apiKeyPairUpdate;
+    private Optional<Duration> timeout = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -34,6 +38,18 @@ public class UpdateApiKeyPairRequestBuilder {
         this.apiKeyPairUpdate = apiKeyPairUpdate;
         return this;
     }
+                
+    public UpdateApiKeyPairRequestBuilder timeout(Duration timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = Optional.of(timeout);
+        return this;
+    }
+
+    public UpdateApiKeyPairRequestBuilder timeout(Optional<Duration> timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = timeout;
+        return this;
+    }
 
 
     private UpdateApiKeyPairRequest buildRequest() {
@@ -45,9 +61,12 @@ public class UpdateApiKeyPairRequestBuilder {
     }
 
     public UpdateApiKeyPairResponse call() {
-        
+        Optional<Options> options = Optional.of(Options.builder()
+            .timeout(timeout)
+            .build());
+
         RequestOperation<UpdateApiKeyPairRequest, UpdateApiKeyPairResponse> operation
-              = new UpdateApiKeyPair.Sync(sdkConfiguration, _headers);
+              = new UpdateApiKeyPair.Sync(sdkConfiguration, options, _headers);
         UpdateApiKeyPairRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

@@ -70,7 +70,7 @@ public class AsyncPaymentLinks {
      * @return {@code CompletableFuture<AddPaymentLinkResponse>} - The async response
      */
     public CompletableFuture<AddPaymentLinkResponse> create(PaymentLinkCreate paymentLinkCreate) {
-        return create(JsonNullable.undefined(), paymentLinkCreate);
+        return create(JsonNullable.undefined(), paymentLinkCreate, Optional.empty());
     }
 
     /**
@@ -83,6 +83,22 @@ public class AsyncPaymentLinks {
      * @return {@code CompletableFuture<AddPaymentLinkResponse>} - The async response
      */
     public CompletableFuture<AddPaymentLinkResponse> create(JsonNullable<String> merchantAccountId, PaymentLinkCreate paymentLinkCreate) {
+        return create(merchantAccountId, paymentLinkCreate, Optional.empty());
+    }
+
+    /**
+     * Add a payment link
+     * 
+     * <p>Create a new payment link.
+     * 
+     * @param merchantAccountId 
+     * @param paymentLinkCreate 
+     * @param options additional options
+     * @return {@code CompletableFuture<AddPaymentLinkResponse>} - The async response
+     */
+    public CompletableFuture<AddPaymentLinkResponse> create(
+            JsonNullable<String> merchantAccountId, PaymentLinkCreate paymentLinkCreate,
+            Optional<Options> options) {
         AddPaymentLinkRequest request =
             AddPaymentLinkRequest
                 .builder()
@@ -90,7 +106,7 @@ public class AsyncPaymentLinks {
                 .paymentLinkCreate(paymentLinkCreate)
                 .build();
         AsyncRequestOperation<AddPaymentLinkRequest, AddPaymentLinkResponse> operation
-              = new AddPaymentLink.Async(sdkConfiguration, _headers);
+              = new AddPaymentLink.Async(sdkConfiguration, options, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -158,7 +174,7 @@ public class AsyncPaymentLinks {
      * @return {@code CompletableFuture<ExpirePaymentLinkResponse>} - The async response
      */
     public CompletableFuture<ExpirePaymentLinkResponse> expire(String paymentLinkId) {
-        return expire(paymentLinkId, JsonNullable.undefined());
+        return expire(paymentLinkId, JsonNullable.undefined(), Optional.empty());
     }
 
     /**
@@ -171,6 +187,22 @@ public class AsyncPaymentLinks {
      * @return {@code CompletableFuture<ExpirePaymentLinkResponse>} - The async response
      */
     public CompletableFuture<ExpirePaymentLinkResponse> expire(String paymentLinkId, JsonNullable<String> merchantAccountId) {
+        return expire(paymentLinkId, merchantAccountId, Optional.empty());
+    }
+
+    /**
+     * Expire a payment link
+     * 
+     * <p>Expire an existing payment link.
+     * 
+     * @param paymentLinkId The unique identifier for the payment link.
+     * @param merchantAccountId 
+     * @param options additional options
+     * @return {@code CompletableFuture<ExpirePaymentLinkResponse>} - The async response
+     */
+    public CompletableFuture<ExpirePaymentLinkResponse> expire(
+            String paymentLinkId, JsonNullable<String> merchantAccountId,
+            Optional<Options> options) {
         ExpirePaymentLinkRequest request =
             ExpirePaymentLinkRequest
                 .builder()
@@ -178,7 +210,7 @@ public class AsyncPaymentLinks {
                 .merchantAccountId(merchantAccountId)
                 .build();
         AsyncRequestOperation<ExpirePaymentLinkRequest, ExpirePaymentLinkResponse> operation
-              = new ExpirePaymentLink.Async(sdkConfiguration, _headers);
+              = new ExpirePaymentLink.Async(sdkConfiguration, options, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -205,6 +237,19 @@ public class AsyncPaymentLinks {
      */
     public CompletableFuture<GetPaymentLinkResponse> get(String paymentLinkId) {
         return get(paymentLinkId, JsonNullable.undefined(), Optional.empty());
+    }
+
+    /**
+     * Get payment link
+     * 
+     * <p>Fetch the details for a payment link.
+     * 
+     * @param paymentLinkId The unique identifier for the payment link.
+     * @param merchantAccountId 
+     * @return {@code CompletableFuture<GetPaymentLinkResponse>} - The async response
+     */
+    public CompletableFuture<GetPaymentLinkResponse> get(String paymentLinkId, JsonNullable<String> merchantAccountId) {
+        return get(paymentLinkId, merchantAccountId, Optional.empty());
     }
 
     /**

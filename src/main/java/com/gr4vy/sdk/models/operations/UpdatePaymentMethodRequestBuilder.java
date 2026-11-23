@@ -9,8 +9,11 @@ import com.gr4vy.sdk.SDKConfiguration;
 import com.gr4vy.sdk.models.components.PaymentMethodUpdate;
 import com.gr4vy.sdk.operations.UpdatePaymentMethod;
 import com.gr4vy.sdk.utils.Headers;
+import com.gr4vy.sdk.utils.Options;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.String;
+import java.time.Duration;
+import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 public class UpdatePaymentMethodRequestBuilder {
@@ -18,6 +21,7 @@ public class UpdatePaymentMethodRequestBuilder {
     private String paymentMethodId;
     private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
     private PaymentMethodUpdate paymentMethodUpdate;
+    private Optional<Duration> timeout = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -48,6 +52,18 @@ public class UpdatePaymentMethodRequestBuilder {
         this.paymentMethodUpdate = paymentMethodUpdate;
         return this;
     }
+                
+    public UpdatePaymentMethodRequestBuilder timeout(Duration timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = Optional.of(timeout);
+        return this;
+    }
+
+    public UpdatePaymentMethodRequestBuilder timeout(Optional<Duration> timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = timeout;
+        return this;
+    }
 
 
     private UpdatePaymentMethodRequest buildRequest() {
@@ -60,9 +76,12 @@ public class UpdatePaymentMethodRequestBuilder {
     }
 
     public UpdatePaymentMethodResponse call() {
-        
+        Optional<Options> options = Optional.of(Options.builder()
+            .timeout(timeout)
+            .build());
+
         RequestOperation<UpdatePaymentMethodRequest, UpdatePaymentMethodResponse> operation
-              = new UpdatePaymentMethod.Sync(sdkConfiguration, _headers);
+              = new UpdatePaymentMethod.Sync(sdkConfiguration, options, _headers);
         UpdatePaymentMethodRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

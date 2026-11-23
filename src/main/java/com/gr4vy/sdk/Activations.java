@@ -11,7 +11,9 @@ import com.gr4vy.sdk.models.operations.ActivateGiftCardRequestBuilder;
 import com.gr4vy.sdk.models.operations.ActivateGiftCardResponse;
 import com.gr4vy.sdk.operations.ActivateGiftCard;
 import com.gr4vy.sdk.utils.Headers;
+import com.gr4vy.sdk.utils.Options;
 import java.lang.String;
+import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 
@@ -57,7 +59,8 @@ public class Activations {
      * @throws RuntimeException subclass if the API call fails
      */
     public ActivateGiftCardResponse create(GiftCardActivationCreate giftCardActivationCreate) {
-        return create(JsonNullable.undefined(), JsonNullable.undefined(), giftCardActivationCreate);
+        return create(JsonNullable.undefined(), JsonNullable.undefined(), giftCardActivationCreate,
+            Optional.empty());
     }
 
     /**
@@ -75,6 +78,26 @@ public class Activations {
     public ActivateGiftCardResponse create(
             JsonNullable<String> idempotencyKey, JsonNullable<String> merchantAccountId,
             GiftCardActivationCreate giftCardActivationCreate) {
+        return create(idempotencyKey, merchantAccountId, giftCardActivationCreate,
+            Optional.empty());
+    }
+
+    /**
+     * Activate a gift card
+     * 
+     * <p>Activate a physical gift card through the primary gift card service. Set `store` to `true` to also
+     * store the activated gift card.
+     * 
+     * @param idempotencyKey A unique key that identifies this request. If supported by the gift card service, the value will be forwarded to make the activation idempotent. We recommend using V4 UUIDs, or another random string with enough entropy to avoid collisions.
+     * @param merchantAccountId 
+     * @param giftCardActivationCreate The details used to activate a physical gift card.
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public ActivateGiftCardResponse create(
+            JsonNullable<String> idempotencyKey, JsonNullable<String> merchantAccountId,
+            GiftCardActivationCreate giftCardActivationCreate, Optional<Options> options) {
         ActivateGiftCardRequest request =
             ActivateGiftCardRequest
                 .builder()
@@ -83,7 +106,7 @@ public class Activations {
                 .giftCardActivationCreate(giftCardActivationCreate)
                 .build();
         RequestOperation<ActivateGiftCardRequest, ActivateGiftCardResponse> operation
-              = new ActivateGiftCard.Sync(sdkConfiguration, _headers);
+              = new ActivateGiftCard.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

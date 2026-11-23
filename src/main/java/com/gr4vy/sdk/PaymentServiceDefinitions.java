@@ -76,6 +76,20 @@ public class PaymentServiceDefinitions {
      * 
      * @param cursor A pointer to the page of results to return.
      * @param limit The maximum number of items that are at returned.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public ListPaymentServiceDefinitionsResponse list(JsonNullable<String> cursor, Optional<Long> limit) {
+        return list(cursor, limit, Optional.empty());
+    }
+
+    /**
+     * List payment service definitions
+     * 
+     * <p>List the definitions of each payment service that can be configured.
+     * 
+     * @param cursor A pointer to the page of results to return.
+     * @param limit The maximum number of items that are at returned.
      * @param options additional options
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
@@ -161,6 +175,23 @@ public class PaymentServiceDefinitions {
      * @throws RuntimeException subclass if the API call fails
      */
     public CreatePaymentServiceDefinitionSessionResponse session(String paymentServiceDefinitionId, Map<String, Object> requestBody) {
+        return session(paymentServiceDefinitionId, requestBody, Optional.empty());
+    }
+
+    /**
+     * Create a session for a payment service definition
+     * 
+     * <p>Creates a session for a payment service that supports sessions.
+     * 
+     * @param paymentServiceDefinitionId 
+     * @param requestBody 
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public CreatePaymentServiceDefinitionSessionResponse session(
+            String paymentServiceDefinitionId, Map<String, Object> requestBody,
+            Optional<Options> options) {
         CreatePaymentServiceDefinitionSessionRequest request =
             CreatePaymentServiceDefinitionSessionRequest
                 .builder()
@@ -168,7 +199,7 @@ public class PaymentServiceDefinitions {
                 .requestBody(requestBody)
                 .build();
         RequestOperation<CreatePaymentServiceDefinitionSessionRequest, CreatePaymentServiceDefinitionSessionResponse> operation
-              = new CreatePaymentServiceDefinitionSession.Sync(sdkConfiguration, _headers);
+              = new CreatePaymentServiceDefinitionSession.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

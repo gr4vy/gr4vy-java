@@ -73,6 +73,24 @@ public class RefundSettlements {
      * @param transactionId The unique identifier of the transaction.
      * @param settlementId The unique identifier of the refund settlement.
      * @param merchantAccountId 
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public GetTransactionRefundSettlementResponse get(
+            String transactionId, String settlementId,
+            JsonNullable<String> merchantAccountId) {
+        return get(transactionId, settlementId, merchantAccountId,
+            Optional.empty());
+    }
+
+    /**
+     * Get transaction refund settlement
+     * 
+     * <p>Retrieve a specific refund settlement for a transaction by its unique identifier.
+     * 
+     * @param transactionId The unique identifier of the transaction.
+     * @param settlementId The unique identifier of the refund settlement.
+     * @param merchantAccountId 
      * @param options additional options
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
@@ -114,6 +132,20 @@ public class RefundSettlements {
      */
     public ListTransactionRefundSettlementsResponse list(String transactionId) {
         return list(transactionId, JsonNullable.undefined(), Optional.empty());
+    }
+
+    /**
+     * List transaction refund settlements
+     * 
+     * <p>List all refund settlements for a specific transaction.
+     * 
+     * @param transactionId The unique identifier of the transaction.
+     * @param merchantAccountId 
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public ListTransactionRefundSettlementsResponse list(String transactionId, JsonNullable<String> merchantAccountId) {
+        return list(transactionId, merchantAccountId, Optional.empty());
     }
 
     /**

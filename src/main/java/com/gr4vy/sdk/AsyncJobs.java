@@ -11,7 +11,9 @@ import com.gr4vy.sdk.models.operations.async.CreateAccountUpdaterJobRequestBuild
 import com.gr4vy.sdk.models.operations.async.CreateAccountUpdaterJobResponse;
 import com.gr4vy.sdk.operations.CreateAccountUpdaterJob;
 import com.gr4vy.sdk.utils.Headers;
+import com.gr4vy.sdk.utils.Options;
 import java.lang.String;
+import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -56,7 +58,7 @@ public class AsyncJobs {
      * @return {@code CompletableFuture<CreateAccountUpdaterJobResponse>} - The async response
      */
     public CompletableFuture<CreateAccountUpdaterJobResponse> create(AccountUpdaterJobCreate accountUpdaterJobCreate) {
-        return create(JsonNullable.undefined(), accountUpdaterJobCreate);
+        return create(JsonNullable.undefined(), accountUpdaterJobCreate, Optional.empty());
     }
 
     /**
@@ -69,6 +71,22 @@ public class AsyncJobs {
      * @return {@code CompletableFuture<CreateAccountUpdaterJobResponse>} - The async response
      */
     public CompletableFuture<CreateAccountUpdaterJobResponse> create(JsonNullable<String> merchantAccountId, AccountUpdaterJobCreate accountUpdaterJobCreate) {
+        return create(merchantAccountId, accountUpdaterJobCreate, Optional.empty());
+    }
+
+    /**
+     * Create account updater job
+     * 
+     * <p>Schedule one or more stored cards for an account update.
+     * 
+     * @param merchantAccountId 
+     * @param accountUpdaterJobCreate 
+     * @param options additional options
+     * @return {@code CompletableFuture<CreateAccountUpdaterJobResponse>} - The async response
+     */
+    public CompletableFuture<CreateAccountUpdaterJobResponse> create(
+            JsonNullable<String> merchantAccountId, AccountUpdaterJobCreate accountUpdaterJobCreate,
+            Optional<Options> options) {
         CreateAccountUpdaterJobRequest request =
             CreateAccountUpdaterJobRequest
                 .builder()
@@ -76,7 +94,7 @@ public class AsyncJobs {
                 .accountUpdaterJobCreate(accountUpdaterJobCreate)
                 .build();
         AsyncRequestOperation<CreateAccountUpdaterJobRequest, CreateAccountUpdaterJobResponse> operation
-              = new CreateAccountUpdaterJob.Async(sdkConfiguration, _headers);
+              = new CreateAccountUpdaterJob.Async(sdkConfiguration, options, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }

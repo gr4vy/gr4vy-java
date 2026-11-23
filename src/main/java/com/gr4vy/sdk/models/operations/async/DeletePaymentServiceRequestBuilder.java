@@ -9,8 +9,11 @@ import com.gr4vy.sdk.SDKConfiguration;
 import com.gr4vy.sdk.models.operations.DeletePaymentServiceRequest;
 import com.gr4vy.sdk.operations.DeletePaymentService;
 import com.gr4vy.sdk.utils.Headers;
+import com.gr4vy.sdk.utils.Options;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.String;
+import java.time.Duration;
+import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -18,6 +21,7 @@ public class DeletePaymentServiceRequestBuilder {
 
     private String paymentServiceId;
     private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
+    private Optional<Duration> timeout = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -42,6 +46,18 @@ public class DeletePaymentServiceRequestBuilder {
         this.merchantAccountId = merchantAccountId;
         return this;
     }
+                
+    public DeletePaymentServiceRequestBuilder timeout(Duration timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = Optional.of(timeout);
+        return this;
+    }
+
+    public DeletePaymentServiceRequestBuilder timeout(Optional<Duration> timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = timeout;
+        return this;
+    }
 
 
     private DeletePaymentServiceRequest buildRequest() {
@@ -53,9 +69,12 @@ public class DeletePaymentServiceRequestBuilder {
     }
 
     public CompletableFuture<DeletePaymentServiceResponse> call() {
-        
+        Optional<Options> options = Optional.of(Options.builder()
+            .timeout(timeout)
+            .build());
+
         AsyncRequestOperation<DeletePaymentServiceRequest, DeletePaymentServiceResponse> operation
-              = new DeletePaymentService.Async(sdkConfiguration, _headers);
+              = new DeletePaymentService.Async(sdkConfiguration, options, _headers);
         DeletePaymentServiceRequest request = buildRequest();
 
         return operation.doRequest(request)

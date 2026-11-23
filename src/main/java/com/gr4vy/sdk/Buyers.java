@@ -132,7 +132,7 @@ public class Buyers {
      * @throws RuntimeException subclass if the API call fails
      */
     public AddBuyerResponse create(BuyerCreate buyerCreate) {
-        return create(JsonNullable.undefined(), buyerCreate);
+        return create(JsonNullable.undefined(), buyerCreate, Optional.empty());
     }
 
     /**
@@ -146,6 +146,23 @@ public class Buyers {
      * @throws RuntimeException subclass if the API call fails
      */
     public AddBuyerResponse create(JsonNullable<String> merchantAccountId, BuyerCreate buyerCreate) {
+        return create(merchantAccountId, buyerCreate, Optional.empty());
+    }
+
+    /**
+     * Add a buyer
+     * 
+     * <p>Create a new buyer record.
+     * 
+     * @param merchantAccountId 
+     * @param buyerCreate Request body for creating a new buyer
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public AddBuyerResponse create(
+            JsonNullable<String> merchantAccountId, BuyerCreate buyerCreate,
+            Optional<Options> options) {
         AddBuyerRequest request =
             AddBuyerRequest
                 .builder()
@@ -153,7 +170,7 @@ public class Buyers {
                 .buyerCreate(buyerCreate)
                 .build();
         RequestOperation<AddBuyerRequest, AddBuyerResponse> operation
-              = new AddBuyer.Sync(sdkConfiguration, _headers);
+              = new AddBuyer.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -179,6 +196,20 @@ public class Buyers {
      */
     public GetBuyerResponse get(String buyerId) {
         return get(buyerId, JsonNullable.undefined(), Optional.empty());
+    }
+
+    /**
+     * Get a buyer
+     * 
+     * <p>Fetches a buyer by its ID.
+     * 
+     * @param buyerId The ID of the buyer to retrieve.
+     * @param merchantAccountId 
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public GetBuyerResponse get(String buyerId, JsonNullable<String> merchantAccountId) {
+        return get(buyerId, merchantAccountId, Optional.empty());
     }
 
     /**
@@ -228,7 +259,8 @@ public class Buyers {
      * @throws RuntimeException subclass if the API call fails
      */
     public UpdateBuyerResponse update(String buyerId, BuyerUpdate buyerUpdate) {
-        return update(buyerId, JsonNullable.undefined(), buyerUpdate);
+        return update(buyerId, JsonNullable.undefined(), buyerUpdate,
+            Optional.empty());
     }
 
     /**
@@ -245,6 +277,25 @@ public class Buyers {
     public UpdateBuyerResponse update(
             String buyerId, JsonNullable<String> merchantAccountId,
             BuyerUpdate buyerUpdate) {
+        return update(buyerId, merchantAccountId, buyerUpdate,
+            Optional.empty());
+    }
+
+    /**
+     * Update a buyer
+     * 
+     * <p>Updates a buyer record.
+     * 
+     * @param buyerId The ID of the buyer to edit.
+     * @param merchantAccountId 
+     * @param buyerUpdate Request body for updating an existing buyer
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public UpdateBuyerResponse update(
+            String buyerId, JsonNullable<String> merchantAccountId,
+            BuyerUpdate buyerUpdate, Optional<Options> options) {
         UpdateBuyerRequest request =
             UpdateBuyerRequest
                 .builder()
@@ -253,7 +304,7 @@ public class Buyers {
                 .buyerUpdate(buyerUpdate)
                 .build();
         RequestOperation<UpdateBuyerRequest, UpdateBuyerResponse> operation
-              = new UpdateBuyer.Sync(sdkConfiguration, _headers);
+              = new UpdateBuyer.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -278,7 +329,7 @@ public class Buyers {
      * @throws RuntimeException subclass if the API call fails
      */
     public DeleteBuyerResponse delete(String buyerId) {
-        return delete(buyerId, JsonNullable.undefined());
+        return delete(buyerId, JsonNullable.undefined(), Optional.empty());
     }
 
     /**
@@ -292,6 +343,23 @@ public class Buyers {
      * @throws RuntimeException subclass if the API call fails
      */
     public DeleteBuyerResponse delete(String buyerId, JsonNullable<String> merchantAccountId) {
+        return delete(buyerId, merchantAccountId, Optional.empty());
+    }
+
+    /**
+     * Delete a buyer
+     * 
+     * <p>Permanently removes a buyer record.
+     * 
+     * @param buyerId The ID of the buyer to delete.
+     * @param merchantAccountId 
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public DeleteBuyerResponse delete(
+            String buyerId, JsonNullable<String> merchantAccountId,
+            Optional<Options> options) {
         DeleteBuyerRequest request =
             DeleteBuyerRequest
                 .builder()
@@ -299,7 +367,7 @@ public class Buyers {
                 .merchantAccountId(merchantAccountId)
                 .build();
         RequestOperation<DeleteBuyerRequest, DeleteBuyerResponse> operation
-              = new DeleteBuyer.Sync(sdkConfiguration, _headers);
+              = new DeleteBuyer.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

@@ -11,7 +11,9 @@ import com.gr4vy.sdk.models.operations.CreatePaymentMethodNetworkTokenCryptogram
 import com.gr4vy.sdk.models.operations.CreatePaymentMethodNetworkTokenCryptogramResponse;
 import com.gr4vy.sdk.operations.CreatePaymentMethodNetworkTokenCryptogram;
 import com.gr4vy.sdk.utils.Headers;
+import com.gr4vy.sdk.utils.Options;
 import java.lang.String;
+import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 
@@ -60,7 +62,7 @@ public class Cryptogram {
             String paymentMethodId, String networkTokenId,
             CryptogramCreate cryptogramCreate) {
         return create(paymentMethodId, networkTokenId, JsonNullable.undefined(),
-            cryptogramCreate);
+            cryptogramCreate, Optional.empty());
     }
 
     /**
@@ -78,6 +80,27 @@ public class Cryptogram {
     public CreatePaymentMethodNetworkTokenCryptogramResponse create(
             String paymentMethodId, String networkTokenId,
             JsonNullable<String> merchantAccountId, CryptogramCreate cryptogramCreate) {
+        return create(paymentMethodId, networkTokenId, merchantAccountId,
+            cryptogramCreate, Optional.empty());
+    }
+
+    /**
+     * Provision network token cryptogram
+     * 
+     * <p>Provision a cryptogram for a network token.
+     * 
+     * @param paymentMethodId The ID of the payment method
+     * @param networkTokenId The ID of the network token
+     * @param merchantAccountId 
+     * @param cryptogramCreate 
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public CreatePaymentMethodNetworkTokenCryptogramResponse create(
+            String paymentMethodId, String networkTokenId,
+            JsonNullable<String> merchantAccountId, CryptogramCreate cryptogramCreate,
+            Optional<Options> options) {
         CreatePaymentMethodNetworkTokenCryptogramRequest request =
             CreatePaymentMethodNetworkTokenCryptogramRequest
                 .builder()
@@ -87,7 +110,7 @@ public class Cryptogram {
                 .cryptogramCreate(cryptogramCreate)
                 .build();
         RequestOperation<CreatePaymentMethodNetworkTokenCryptogramRequest, CreatePaymentMethodNetworkTokenCryptogramResponse> operation
-              = new CreatePaymentMethodNetworkTokenCryptogram.Sync(sdkConfiguration, _headers);
+              = new CreatePaymentMethodNetworkTokenCryptogram.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

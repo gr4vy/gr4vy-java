@@ -8,8 +8,11 @@ import static com.gr4vy.sdk.operations.Operations.RequestOperation;
 import com.gr4vy.sdk.SDKConfiguration;
 import com.gr4vy.sdk.operations.DeletePaymentMethodPaymentServiceToken;
 import com.gr4vy.sdk.utils.Headers;
+import com.gr4vy.sdk.utils.Options;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.String;
+import java.time.Duration;
+import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 public class DeletePaymentMethodPaymentServiceTokenRequestBuilder {
@@ -17,6 +20,7 @@ public class DeletePaymentMethodPaymentServiceTokenRequestBuilder {
     private String paymentMethodId;
     private String paymentServiceTokenId;
     private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
+    private Optional<Duration> timeout = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -47,6 +51,18 @@ public class DeletePaymentMethodPaymentServiceTokenRequestBuilder {
         this.merchantAccountId = merchantAccountId;
         return this;
     }
+                
+    public DeletePaymentMethodPaymentServiceTokenRequestBuilder timeout(Duration timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = Optional.of(timeout);
+        return this;
+    }
+
+    public DeletePaymentMethodPaymentServiceTokenRequestBuilder timeout(Optional<Duration> timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = timeout;
+        return this;
+    }
 
 
     private DeletePaymentMethodPaymentServiceTokenRequest buildRequest() {
@@ -59,9 +75,12 @@ public class DeletePaymentMethodPaymentServiceTokenRequestBuilder {
     }
 
     public DeletePaymentMethodPaymentServiceTokenResponse call() {
-        
+        Optional<Options> options = Optional.of(Options.builder()
+            .timeout(timeout)
+            .build());
+
         RequestOperation<DeletePaymentMethodPaymentServiceTokenRequest, DeletePaymentMethodPaymentServiceTokenResponse> operation
-              = new DeletePaymentMethodPaymentServiceToken.Sync(sdkConfiguration, _headers);
+              = new DeletePaymentMethodPaymentServiceToken.Sync(sdkConfiguration, options, _headers);
         DeletePaymentMethodPaymentServiceTokenRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

@@ -10,8 +10,11 @@ import com.gr4vy.sdk.models.components.GiftCardActivationCreate;
 import com.gr4vy.sdk.models.operations.ActivateGiftCardRequest;
 import com.gr4vy.sdk.operations.ActivateGiftCard;
 import com.gr4vy.sdk.utils.Headers;
+import com.gr4vy.sdk.utils.Options;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.String;
+import java.time.Duration;
+import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -20,6 +23,7 @@ public class ActivateGiftCardRequestBuilder {
     private JsonNullable<String> idempotencyKey = JsonNullable.undefined();
     private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
     private GiftCardActivationCreate giftCardActivationCreate;
+    private Optional<Duration> timeout = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -56,6 +60,18 @@ public class ActivateGiftCardRequestBuilder {
         this.giftCardActivationCreate = giftCardActivationCreate;
         return this;
     }
+                
+    public ActivateGiftCardRequestBuilder timeout(Duration timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = Optional.of(timeout);
+        return this;
+    }
+
+    public ActivateGiftCardRequestBuilder timeout(Optional<Duration> timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = timeout;
+        return this;
+    }
 
 
     private ActivateGiftCardRequest buildRequest() {
@@ -68,9 +84,12 @@ public class ActivateGiftCardRequestBuilder {
     }
 
     public CompletableFuture<ActivateGiftCardResponse> call() {
-        
+        Optional<Options> options = Optional.of(Options.builder()
+            .timeout(timeout)
+            .build());
+
         AsyncRequestOperation<ActivateGiftCardRequest, ActivateGiftCardResponse> operation
-              = new ActivateGiftCard.Async(sdkConfiguration, _headers);
+              = new ActivateGiftCard.Async(sdkConfiguration, options, _headers);
         ActivateGiftCardRequest request = buildRequest();
 
         return operation.doRequest(request)

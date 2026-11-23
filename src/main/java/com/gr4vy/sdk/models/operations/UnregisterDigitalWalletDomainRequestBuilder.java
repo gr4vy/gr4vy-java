@@ -9,8 +9,11 @@ import com.gr4vy.sdk.SDKConfiguration;
 import com.gr4vy.sdk.models.components.DigitalWalletDomain;
 import com.gr4vy.sdk.operations.UnregisterDigitalWalletDomain;
 import com.gr4vy.sdk.utils.Headers;
+import com.gr4vy.sdk.utils.Options;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.String;
+import java.time.Duration;
+import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 public class UnregisterDigitalWalletDomainRequestBuilder {
@@ -18,6 +21,7 @@ public class UnregisterDigitalWalletDomainRequestBuilder {
     private String digitalWalletId;
     private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
     private DigitalWalletDomain digitalWalletDomain;
+    private Optional<Duration> timeout = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -48,6 +52,18 @@ public class UnregisterDigitalWalletDomainRequestBuilder {
         this.digitalWalletDomain = digitalWalletDomain;
         return this;
     }
+                
+    public UnregisterDigitalWalletDomainRequestBuilder timeout(Duration timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = Optional.of(timeout);
+        return this;
+    }
+
+    public UnregisterDigitalWalletDomainRequestBuilder timeout(Optional<Duration> timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = timeout;
+        return this;
+    }
 
 
     private UnregisterDigitalWalletDomainRequest buildRequest() {
@@ -60,9 +76,12 @@ public class UnregisterDigitalWalletDomainRequestBuilder {
     }
 
     public UnregisterDigitalWalletDomainResponse call() {
-        
+        Optional<Options> options = Optional.of(Options.builder()
+            .timeout(timeout)
+            .build());
+
         RequestOperation<UnregisterDigitalWalletDomainRequest, UnregisterDigitalWalletDomainResponse> operation
-              = new UnregisterDigitalWalletDomain.Sync(sdkConfiguration, _headers);
+              = new UnregisterDigitalWalletDomain.Sync(sdkConfiguration, options, _headers);
         UnregisterDigitalWalletDomainRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

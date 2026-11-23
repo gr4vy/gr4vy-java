@@ -10,14 +10,18 @@ import com.gr4vy.sdk.models.components.MerchantAccountThreeDSConfigurationCreate
 import com.gr4vy.sdk.models.operations.CreateThreeDsConfigurationRequest;
 import com.gr4vy.sdk.operations.CreateThreeDsConfiguration;
 import com.gr4vy.sdk.utils.Headers;
+import com.gr4vy.sdk.utils.Options;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.String;
+import java.time.Duration;
+import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
 public class CreateThreeDsConfigurationRequestBuilder {
 
     private String merchantAccountId;
     private MerchantAccountThreeDSConfigurationCreate merchantAccountThreeDSConfigurationCreate;
+    private Optional<Duration> timeout = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -36,6 +40,18 @@ public class CreateThreeDsConfigurationRequestBuilder {
         this.merchantAccountThreeDSConfigurationCreate = merchantAccountThreeDSConfigurationCreate;
         return this;
     }
+                
+    public CreateThreeDsConfigurationRequestBuilder timeout(Duration timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = Optional.of(timeout);
+        return this;
+    }
+
+    public CreateThreeDsConfigurationRequestBuilder timeout(Optional<Duration> timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = timeout;
+        return this;
+    }
 
 
     private CreateThreeDsConfigurationRequest buildRequest() {
@@ -47,9 +63,12 @@ public class CreateThreeDsConfigurationRequestBuilder {
     }
 
     public CompletableFuture<CreateThreeDsConfigurationResponse> call() {
-        
+        Optional<Options> options = Optional.of(Options.builder()
+            .timeout(timeout)
+            .build());
+
         AsyncRequestOperation<CreateThreeDsConfigurationRequest, CreateThreeDsConfigurationResponse> operation
-              = new CreateThreeDsConfiguration.Async(sdkConfiguration, _headers);
+              = new CreateThreeDsConfiguration.Async(sdkConfiguration, options, _headers);
         CreateThreeDsConfigurationRequest request = buildRequest();
 
         return operation.doRequest(request)

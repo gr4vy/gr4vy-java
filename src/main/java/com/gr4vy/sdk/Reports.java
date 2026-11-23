@@ -116,7 +116,7 @@ public class Reports {
      * @throws RuntimeException subclass if the API call fails
      */
     public AddReportResponse create(ReportCreate reportCreate) {
-        return create(JsonNullable.undefined(), reportCreate);
+        return create(JsonNullable.undefined(), reportCreate, Optional.empty());
     }
 
     /**
@@ -130,6 +130,23 @@ public class Reports {
      * @throws RuntimeException subclass if the API call fails
      */
     public AddReportResponse create(JsonNullable<String> merchantAccountId, ReportCreate reportCreate) {
+        return create(merchantAccountId, reportCreate, Optional.empty());
+    }
+
+    /**
+     * Add a report
+     * 
+     * <p>Create a new report.
+     * 
+     * @param merchantAccountId 
+     * @param reportCreate 
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public AddReportResponse create(
+            JsonNullable<String> merchantAccountId, ReportCreate reportCreate,
+            Optional<Options> options) {
         AddReportRequest request =
             AddReportRequest
                 .builder()
@@ -137,7 +154,7 @@ public class Reports {
                 .reportCreate(reportCreate)
                 .build();
         RequestOperation<AddReportRequest, AddReportResponse> operation
-              = new AddReport.Sync(sdkConfiguration, _headers);
+              = new AddReport.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -163,6 +180,20 @@ public class Reports {
      */
     public GetReportResponse get(String reportId) {
         return get(reportId, JsonNullable.undefined(), Optional.empty());
+    }
+
+    /**
+     * Get a report
+     * 
+     * <p>Fetches a report by its ID.
+     * 
+     * @param reportId The ID of the report to retrieve details for.
+     * @param merchantAccountId 
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public GetReportResponse get(String reportId, JsonNullable<String> merchantAccountId) {
+        return get(reportId, merchantAccountId, Optional.empty());
     }
 
     /**
@@ -212,7 +243,8 @@ public class Reports {
      * @throws RuntimeException subclass if the API call fails
      */
     public UpdateReportResponse put(String reportId, ReportUpdate reportUpdate) {
-        return put(reportId, JsonNullable.undefined(), reportUpdate);
+        return put(reportId, JsonNullable.undefined(), reportUpdate,
+            Optional.empty());
     }
 
     /**
@@ -229,6 +261,25 @@ public class Reports {
     public UpdateReportResponse put(
             String reportId, JsonNullable<String> merchantAccountId,
             ReportUpdate reportUpdate) {
+        return put(reportId, merchantAccountId, reportUpdate,
+            Optional.empty());
+    }
+
+    /**
+     * Update a report
+     * 
+     * <p>Updates the configuration of a report.
+     * 
+     * @param reportId The ID of the report to edit.
+     * @param merchantAccountId 
+     * @param reportUpdate 
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public UpdateReportResponse put(
+            String reportId, JsonNullable<String> merchantAccountId,
+            ReportUpdate reportUpdate, Optional<Options> options) {
         UpdateReportRequest request =
             UpdateReportRequest
                 .builder()
@@ -237,7 +288,7 @@ public class Reports {
                 .reportUpdate(reportUpdate)
                 .build();
         RequestOperation<UpdateReportRequest, UpdateReportResponse> operation
-              = new UpdateReport.Sync(sdkConfiguration, _headers);
+              = new UpdateReport.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

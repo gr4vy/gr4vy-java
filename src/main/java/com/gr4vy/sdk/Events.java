@@ -76,6 +76,27 @@ public class Events {
      * @param cursor A pointer to the page of results to return.
      * @param limit The maximum number of items that are at returned.
      * @param merchantAccountId 
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public ListTransactionEventsResponse list(
+            String transactionId, JsonNullable<String> cursor,
+            Optional<Long> limit, JsonNullable<String> merchantAccountId) {
+        return list(transactionId, cursor, limit,
+            merchantAccountId, Optional.empty());
+    }
+
+    /**
+     * List transaction events
+     * 
+     * <p>Retrieve a paginated list of events related to processing a transaction, including status changes,
+     * API requests, and webhook delivery attempts. Events are listed in chronological order, with the most
+     * recent events first.
+     * 
+     * @param transactionId The ID of the transaction
+     * @param cursor A pointer to the page of results to return.
+     * @param limit The maximum number of items that are at returned.
+     * @param merchantAccountId 
      * @param options additional options
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails

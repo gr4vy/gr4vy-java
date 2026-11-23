@@ -9,8 +9,10 @@ import com.gr4vy.sdk.SDKConfiguration;
 import com.gr4vy.sdk.models.components.ReportExecutionUrlGenerate;
 import com.gr4vy.sdk.operations.CreateReportExecutionUrl;
 import com.gr4vy.sdk.utils.Headers;
+import com.gr4vy.sdk.utils.Options;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.String;
+import java.time.Duration;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -20,6 +22,7 @@ public class CreateReportExecutionUrlRequestBuilder {
     private String reportExecutionId;
     private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
     private Optional<? extends ReportExecutionUrlGenerate> reportExecutionUrlGenerate = Optional.empty();
+    private Optional<Duration> timeout = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -62,6 +65,18 @@ public class CreateReportExecutionUrlRequestBuilder {
         this.reportExecutionUrlGenerate = reportExecutionUrlGenerate;
         return this;
     }
+                
+    public CreateReportExecutionUrlRequestBuilder timeout(Duration timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = Optional.of(timeout);
+        return this;
+    }
+
+    public CreateReportExecutionUrlRequestBuilder timeout(Optional<Duration> timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = timeout;
+        return this;
+    }
 
 
     private CreateReportExecutionUrlRequest buildRequest() {
@@ -75,9 +90,12 @@ public class CreateReportExecutionUrlRequestBuilder {
     }
 
     public CreateReportExecutionUrlResponse call() {
-        
+        Optional<Options> options = Optional.of(Options.builder()
+            .timeout(timeout)
+            .build());
+
         RequestOperation<CreateReportExecutionUrlRequest, CreateReportExecutionUrlResponse> operation
-              = new CreateReportExecutionUrl.Sync(sdkConfiguration, _headers);
+              = new CreateReportExecutionUrl.Sync(sdkConfiguration, options, _headers);
         CreateReportExecutionUrlRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

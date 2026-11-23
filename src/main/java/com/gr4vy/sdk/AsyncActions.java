@@ -67,6 +67,19 @@ public class AsyncActions {
      * 
      * @param transactionId The ID of the transaction
      * @param merchantAccountId 
+     * @return {@code CompletableFuture<ListTransactionActionsResponse>} - The async response
+     */
+    public CompletableFuture<ListTransactionActionsResponse> list(String transactionId, JsonNullable<String> merchantAccountId) {
+        return list(transactionId, merchantAccountId, Optional.empty());
+    }
+
+    /**
+     * List transaction Flow rules
+     * 
+     * <p>Retrieve the list of Flow rule actions that have been triggered for a transaction.
+     * 
+     * @param transactionId The ID of the transaction
+     * @param merchantAccountId 
      * @param options additional options
      * @return {@code CompletableFuture<ListTransactionActionsResponse>} - The async response
      */

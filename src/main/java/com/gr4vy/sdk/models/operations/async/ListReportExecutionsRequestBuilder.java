@@ -21,6 +21,7 @@ import com.gr4vy.sdk.utils.pagination.CursorTracker;
 import java.lang.Long;
 import java.lang.String;
 import java.net.http.HttpResponse;
+import java.time.Duration;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.Flow;
@@ -38,6 +39,7 @@ public class ListReportExecutionsRequestBuilder {
                             new TypeReference<Optional<Long>>() {});
     private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
     private Optional<RetryConfig> retryConfig = Optional.empty();
+    private Optional<Duration> timeout = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -98,6 +100,18 @@ public class ListReportExecutionsRequestBuilder {
         this.retryConfig = retryConfig;
         return this;
     }
+                
+    public ListReportExecutionsRequestBuilder timeout(Duration timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = Optional.of(timeout);
+        return this;
+    }
+
+    public ListReportExecutionsRequestBuilder timeout(Optional<Duration> timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = timeout;
+        return this;
+    }
 
 
     private ListReportExecutionsRequest buildRequest() {
@@ -116,6 +130,7 @@ public class ListReportExecutionsRequestBuilder {
     public CompletableFuture<ListReportExecutionsResponse> call() {
         Optional<Options> options = Optional.of(Options.builder()
             .retryConfig(retryConfig)
+            .timeout(timeout)
             .build());
 
         AsyncRequestOperation<ListReportExecutionsRequest, ListReportExecutionsResponse> operation
@@ -146,6 +161,7 @@ public class ListReportExecutionsRequestBuilder {
         ListReportExecutionsRequest request = this.buildRequest();
         Optional<Options> options = Optional.of(Options.builder()
             .retryConfig(retryConfig)
+            .timeout(timeout)
             .build());
 
         AsyncRequestOperation<ListReportExecutionsRequest, ListReportExecutionsResponse> operation

@@ -10,8 +10,11 @@ import com.gr4vy.sdk.models.components.DigitalWalletUpdate;
 import com.gr4vy.sdk.models.operations.UpdateDigitalWalletRequest;
 import com.gr4vy.sdk.operations.UpdateDigitalWallet;
 import com.gr4vy.sdk.utils.Headers;
+import com.gr4vy.sdk.utils.Options;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.String;
+import java.time.Duration;
+import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -20,6 +23,7 @@ public class UpdateDigitalWalletRequestBuilder {
     private String digitalWalletId;
     private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
     private DigitalWalletUpdate digitalWalletUpdate;
+    private Optional<Duration> timeout = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -50,6 +54,18 @@ public class UpdateDigitalWalletRequestBuilder {
         this.digitalWalletUpdate = digitalWalletUpdate;
         return this;
     }
+                
+    public UpdateDigitalWalletRequestBuilder timeout(Duration timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = Optional.of(timeout);
+        return this;
+    }
+
+    public UpdateDigitalWalletRequestBuilder timeout(Optional<Duration> timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = timeout;
+        return this;
+    }
 
 
     private UpdateDigitalWalletRequest buildRequest() {
@@ -62,9 +78,12 @@ public class UpdateDigitalWalletRequestBuilder {
     }
 
     public CompletableFuture<UpdateDigitalWalletResponse> call() {
-        
+        Optional<Options> options = Optional.of(Options.builder()
+            .timeout(timeout)
+            .build());
+
         AsyncRequestOperation<UpdateDigitalWalletRequest, UpdateDigitalWalletResponse> operation
-              = new UpdateDigitalWallet.Async(sdkConfiguration, _headers);
+              = new UpdateDigitalWallet.Async(sdkConfiguration, options, _headers);
         UpdateDigitalWalletRequest request = buildRequest();
 
         return operation.doRequest(request)

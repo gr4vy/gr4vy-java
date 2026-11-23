@@ -8,11 +8,14 @@ import static com.gr4vy.sdk.operations.Operations.RequestOperation;
 import com.gr4vy.sdk.SDKConfiguration;
 import com.gr4vy.sdk.operations.CreatePaymentServiceSession;
 import com.gr4vy.sdk.utils.Headers;
+import com.gr4vy.sdk.utils.Options;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Object;
 import java.lang.String;
+import java.time.Duration;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 public class CreatePaymentServiceSessionRequestBuilder {
@@ -20,6 +23,7 @@ public class CreatePaymentServiceSessionRequestBuilder {
     private String paymentServiceId;
     private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
     private Map<String, Object> requestBody = new HashMap<>();
+    private Optional<Duration> timeout = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -50,6 +54,18 @@ public class CreatePaymentServiceSessionRequestBuilder {
         this.requestBody = requestBody;
         return this;
     }
+                
+    public CreatePaymentServiceSessionRequestBuilder timeout(Duration timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = Optional.of(timeout);
+        return this;
+    }
+
+    public CreatePaymentServiceSessionRequestBuilder timeout(Optional<Duration> timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = timeout;
+        return this;
+    }
 
 
     private CreatePaymentServiceSessionRequest buildRequest() {
@@ -62,9 +78,12 @@ public class CreatePaymentServiceSessionRequestBuilder {
     }
 
     public CreatePaymentServiceSessionResponse call() {
-        
+        Optional<Options> options = Optional.of(Options.builder()
+            .timeout(timeout)
+            .build());
+
         RequestOperation<CreatePaymentServiceSessionRequest, CreatePaymentServiceSessionResponse> operation
-              = new CreatePaymentServiceSession.Sync(sdkConfiguration, _headers);
+              = new CreatePaymentServiceSession.Sync(sdkConfiguration, options, _headers);
         CreatePaymentServiceSessionRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

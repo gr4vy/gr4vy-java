@@ -65,6 +65,18 @@ public class AsyncCardSchemeDefinitions {
      * <p>Fetch a list of the definitions of each card scheme.
      * 
      * @param merchantAccountId 
+     * @return {@code CompletableFuture<ListCardSchemeDefinitionsResponse>} - The async response
+     */
+    public CompletableFuture<ListCardSchemeDefinitionsResponse> list(JsonNullable<String> merchantAccountId) {
+        return list(merchantAccountId, Optional.empty());
+    }
+
+    /**
+     * List card scheme definitions
+     * 
+     * <p>Fetch a list of the definitions of each card scheme.
+     * 
+     * @param merchantAccountId 
      * @param options additional options
      * @return {@code CompletableFuture<ListCardSchemeDefinitionsResponse>} - The async response
      */

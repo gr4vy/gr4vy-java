@@ -72,7 +72,7 @@ public class AsyncThreeDsScenarios {
      * @return {@code CompletableFuture<CreateThreeDsScenarioResponse>} - The async response
      */
     public CompletableFuture<CreateThreeDsScenarioResponse> create(ThreeDSecureScenarioCreate threeDSecureScenarioCreate) {
-        return create(JsonNullable.undefined(), threeDSecureScenarioCreate);
+        return create(JsonNullable.undefined(), threeDSecureScenarioCreate, Optional.empty());
     }
 
     /**
@@ -85,6 +85,22 @@ public class AsyncThreeDsScenarios {
      * @return {@code CompletableFuture<CreateThreeDsScenarioResponse>} - The async response
      */
     public CompletableFuture<CreateThreeDsScenarioResponse> create(JsonNullable<String> merchantAccountId, ThreeDSecureScenarioCreate threeDSecureScenarioCreate) {
+        return create(merchantAccountId, threeDSecureScenarioCreate, Optional.empty());
+    }
+
+    /**
+     * Create a 3DS scenario
+     * 
+     * <p>Create a new 3DS scenario for a merchant account. Only available in sandbox environments.
+     * 
+     * @param merchantAccountId 
+     * @param threeDSecureScenarioCreate 
+     * @param options additional options
+     * @return {@code CompletableFuture<CreateThreeDsScenarioResponse>} - The async response
+     */
+    public CompletableFuture<CreateThreeDsScenarioResponse> create(
+            JsonNullable<String> merchantAccountId, ThreeDSecureScenarioCreate threeDSecureScenarioCreate,
+            Optional<Options> options) {
         CreateThreeDsScenarioRequest request =
             CreateThreeDsScenarioRequest
                 .builder()
@@ -92,7 +108,7 @@ public class AsyncThreeDsScenarios {
                 .threeDSecureScenarioCreate(threeDSecureScenarioCreate)
                 .build();
         AsyncRequestOperation<CreateThreeDsScenarioRequest, CreateThreeDsScenarioResponse> operation
-              = new CreateThreeDsScenario.Async(sdkConfiguration, _headers);
+              = new CreateThreeDsScenario.Async(sdkConfiguration, options, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -119,6 +135,24 @@ public class AsyncThreeDsScenarios {
     public CompletableFuture<GetThreeDsScenarioResponse> listDirect() {
         return list(
                 JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
+                Optional.empty());
+    }
+
+    /**
+     * List 3DS scenario
+     * 
+     * <p>List all 3DS scenarios for a merchant account. Only available in sandbox environments.
+     * 
+     * @param cursor A pointer to the page of results to return.
+     * @param limit The maximum number of items that are at returned.
+     * @param merchantAccountId 
+     * @return {@code CompletableFuture<GetThreeDsScenarioResponse>} - The async response
+     */
+    public CompletableFuture<GetThreeDsScenarioResponse> list(
+            JsonNullable<String> cursor, Optional<Long> limit,
+            JsonNullable<String> merchantAccountId) {
+        return list(
+                cursor, limit, merchantAccountId,
                 Optional.empty());
     }
 
@@ -173,7 +207,9 @@ public class AsyncThreeDsScenarios {
      * @return {@code CompletableFuture<UpdateThreeDsScenarioResponse>} - The async response
      */
     public CompletableFuture<UpdateThreeDsScenarioResponse> update(String threeDsScenarioId, ThreeDSecureScenarioUpdate threeDSecureScenarioUpdate) {
-        return update(threeDsScenarioId, JsonNullable.undefined(), threeDSecureScenarioUpdate);
+        return update(
+                threeDsScenarioId, JsonNullable.undefined(), threeDSecureScenarioUpdate,
+                Optional.empty());
     }
 
     /**
@@ -189,6 +225,25 @@ public class AsyncThreeDsScenarios {
     public CompletableFuture<UpdateThreeDsScenarioResponse> update(
             String threeDsScenarioId, JsonNullable<String> merchantAccountId,
             ThreeDSecureScenarioUpdate threeDSecureScenarioUpdate) {
+        return update(
+                threeDsScenarioId, merchantAccountId, threeDSecureScenarioUpdate,
+                Optional.empty());
+    }
+
+    /**
+     * Update a 3DS scenario
+     * 
+     * <p>Update a 3DS scenario. Only available in sandbox environments.
+     * 
+     * @param threeDsScenarioId The ID of the 3DS scenario
+     * @param merchantAccountId 
+     * @param threeDSecureScenarioUpdate 
+     * @param options additional options
+     * @return {@code CompletableFuture<UpdateThreeDsScenarioResponse>} - The async response
+     */
+    public CompletableFuture<UpdateThreeDsScenarioResponse> update(
+            String threeDsScenarioId, JsonNullable<String> merchantAccountId,
+            ThreeDSecureScenarioUpdate threeDSecureScenarioUpdate, Optional<Options> options) {
         UpdateThreeDsScenarioRequest request =
             UpdateThreeDsScenarioRequest
                 .builder()
@@ -197,7 +252,7 @@ public class AsyncThreeDsScenarios {
                 .threeDSecureScenarioUpdate(threeDSecureScenarioUpdate)
                 .build();
         AsyncRequestOperation<UpdateThreeDsScenarioRequest, UpdateThreeDsScenarioResponse> operation
-              = new UpdateThreeDsScenario.Async(sdkConfiguration, _headers);
+              = new UpdateThreeDsScenario.Async(sdkConfiguration, options, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -223,7 +278,7 @@ public class AsyncThreeDsScenarios {
      * @return {@code CompletableFuture<DeleteThreeDsScenarioResponse>} - The async response
      */
     public CompletableFuture<DeleteThreeDsScenarioResponse> delete(String threeDsScenarioId) {
-        return delete(threeDsScenarioId, JsonNullable.undefined());
+        return delete(threeDsScenarioId, JsonNullable.undefined(), Optional.empty());
     }
 
     /**
@@ -236,6 +291,22 @@ public class AsyncThreeDsScenarios {
      * @return {@code CompletableFuture<DeleteThreeDsScenarioResponse>} - The async response
      */
     public CompletableFuture<DeleteThreeDsScenarioResponse> delete(String threeDsScenarioId, JsonNullable<String> merchantAccountId) {
+        return delete(threeDsScenarioId, merchantAccountId, Optional.empty());
+    }
+
+    /**
+     * Delete a 3DS scenario
+     * 
+     * <p>Removes a 3DS scenario from our system. Only available in sandbox environments.
+     * 
+     * @param threeDsScenarioId The ID of the 3DS scenario
+     * @param merchantAccountId 
+     * @param options additional options
+     * @return {@code CompletableFuture<DeleteThreeDsScenarioResponse>} - The async response
+     */
+    public CompletableFuture<DeleteThreeDsScenarioResponse> delete(
+            String threeDsScenarioId, JsonNullable<String> merchantAccountId,
+            Optional<Options> options) {
         DeleteThreeDsScenarioRequest request =
             DeleteThreeDsScenarioRequest
                 .builder()
@@ -243,7 +314,7 @@ public class AsyncThreeDsScenarios {
                 .merchantAccountId(merchantAccountId)
                 .build();
         AsyncRequestOperation<DeleteThreeDsScenarioRequest, DeleteThreeDsScenarioResponse> operation
-              = new DeleteThreeDsScenario.Async(sdkConfiguration, _headers);
+              = new DeleteThreeDsScenario.Async(sdkConfiguration, options, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }

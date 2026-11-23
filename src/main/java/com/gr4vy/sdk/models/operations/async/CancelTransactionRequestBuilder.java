@@ -9,8 +9,11 @@ import com.gr4vy.sdk.SDKConfiguration;
 import com.gr4vy.sdk.models.operations.CancelTransactionRequest;
 import com.gr4vy.sdk.operations.CancelTransaction;
 import com.gr4vy.sdk.utils.Headers;
+import com.gr4vy.sdk.utils.Options;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.String;
+import java.time.Duration;
+import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -18,6 +21,7 @@ public class CancelTransactionRequestBuilder {
 
     private String transactionId;
     private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
+    private Optional<Duration> timeout = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -42,6 +46,18 @@ public class CancelTransactionRequestBuilder {
         this.merchantAccountId = merchantAccountId;
         return this;
     }
+                
+    public CancelTransactionRequestBuilder timeout(Duration timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = Optional.of(timeout);
+        return this;
+    }
+
+    public CancelTransactionRequestBuilder timeout(Optional<Duration> timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = timeout;
+        return this;
+    }
 
 
     private CancelTransactionRequest buildRequest() {
@@ -53,9 +69,12 @@ public class CancelTransactionRequestBuilder {
     }
 
     public CompletableFuture<CancelTransactionResponse> call() {
-        
+        Optional<Options> options = Optional.of(Options.builder()
+            .timeout(timeout)
+            .build());
+
         AsyncRequestOperation<CancelTransactionRequest, CancelTransactionResponse> operation
-              = new CancelTransaction.Async(sdkConfiguration, _headers);
+              = new CancelTransaction.Async(sdkConfiguration, options, _headers);
         CancelTransactionRequest request = buildRequest();
 
         return operation.doRequest(request)

@@ -8,14 +8,18 @@ import static com.gr4vy.sdk.operations.Operations.RequestOperation;
 import com.gr4vy.sdk.SDKConfiguration;
 import com.gr4vy.sdk.operations.DeletePaymentMethod;
 import com.gr4vy.sdk.utils.Headers;
+import com.gr4vy.sdk.utils.Options;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.String;
+import java.time.Duration;
+import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 public class DeletePaymentMethodRequestBuilder {
 
     private String paymentMethodId;
     private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
+    private Optional<Duration> timeout = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -40,6 +44,18 @@ public class DeletePaymentMethodRequestBuilder {
         this.merchantAccountId = merchantAccountId;
         return this;
     }
+                
+    public DeletePaymentMethodRequestBuilder timeout(Duration timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = Optional.of(timeout);
+        return this;
+    }
+
+    public DeletePaymentMethodRequestBuilder timeout(Optional<Duration> timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = timeout;
+        return this;
+    }
 
 
     private DeletePaymentMethodRequest buildRequest() {
@@ -51,9 +67,12 @@ public class DeletePaymentMethodRequestBuilder {
     }
 
     public DeletePaymentMethodResponse call() {
-        
+        Optional<Options> options = Optional.of(Options.builder()
+            .timeout(timeout)
+            .build());
+
         RequestOperation<DeletePaymentMethodRequest, DeletePaymentMethodResponse> operation
-              = new DeletePaymentMethod.Sync(sdkConfiguration, _headers);
+              = new DeletePaymentMethod.Sync(sdkConfiguration, options, _headers);
         DeletePaymentMethodRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

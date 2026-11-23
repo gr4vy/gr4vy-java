@@ -10,8 +10,11 @@ import com.gr4vy.sdk.models.components.PazeSessionCompleteRequest;
 import com.gr4vy.sdk.models.operations.CompletePazeMobileSessionRequest;
 import com.gr4vy.sdk.operations.CompletePazeMobileSession;
 import com.gr4vy.sdk.utils.Headers;
+import com.gr4vy.sdk.utils.Options;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.String;
+import java.time.Duration;
+import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -19,6 +22,7 @@ public class CompletePazeMobileSessionRequestBuilder {
 
     private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
     private PazeSessionCompleteRequest pazeSessionCompleteRequest;
+    private Optional<Duration> timeout = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -43,6 +47,18 @@ public class CompletePazeMobileSessionRequestBuilder {
         this.pazeSessionCompleteRequest = pazeSessionCompleteRequest;
         return this;
     }
+                
+    public CompletePazeMobileSessionRequestBuilder timeout(Duration timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = Optional.of(timeout);
+        return this;
+    }
+
+    public CompletePazeMobileSessionRequestBuilder timeout(Optional<Duration> timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = timeout;
+        return this;
+    }
 
 
     private CompletePazeMobileSessionRequest buildRequest() {
@@ -54,9 +70,12 @@ public class CompletePazeMobileSessionRequestBuilder {
     }
 
     public CompletableFuture<CompletePazeMobileSessionResponse> call() {
-        
+        Optional<Options> options = Optional.of(Options.builder()
+            .timeout(timeout)
+            .build());
+
         AsyncRequestOperation<CompletePazeMobileSessionRequest, CompletePazeMobileSessionResponse> operation
-              = new CompletePazeMobileSession.Async(sdkConfiguration, _headers);
+              = new CompletePazeMobileSession.Async(sdkConfiguration, options, _headers);
         CompletePazeMobileSessionRequest request = buildRequest();
 
         return operation.doRequest(request)

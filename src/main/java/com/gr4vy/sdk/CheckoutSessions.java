@@ -68,7 +68,7 @@ public class CheckoutSessions {
      * @throws RuntimeException subclass if the API call fails
      */
     public CreateCheckoutSessionResponse createDirect() {
-        return create(JsonNullable.undefined(), Optional.empty());
+        return create(JsonNullable.undefined(), Optional.empty(), Optional.empty());
     }
 
     /**
@@ -82,6 +82,23 @@ public class CheckoutSessions {
      * @throws RuntimeException subclass if the API call fails
      */
     public CreateCheckoutSessionResponse create(JsonNullable<String> merchantAccountId, Optional<? extends CheckoutSessionCreate> checkoutSessionCreate) {
+        return create(merchantAccountId, checkoutSessionCreate, Optional.empty());
+    }
+
+    /**
+     * Create checkout session
+     * 
+     * <p>Create a new checkout session.
+     * 
+     * @param merchantAccountId 
+     * @param checkoutSessionCreate 
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public CreateCheckoutSessionResponse create(
+            JsonNullable<String> merchantAccountId, Optional<? extends CheckoutSessionCreate> checkoutSessionCreate,
+            Optional<Options> options) {
         CreateCheckoutSessionRequest request =
             CreateCheckoutSessionRequest
                 .builder()
@@ -89,7 +106,7 @@ public class CheckoutSessions {
                 .checkoutSessionCreate(checkoutSessionCreate)
                 .build();
         RequestOperation<CreateCheckoutSessionRequest, CreateCheckoutSessionResponse> operation
-              = new CreateCheckoutSession.Sync(sdkConfiguration, _headers);
+              = new CreateCheckoutSession.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -115,7 +132,8 @@ public class CheckoutSessions {
      * @throws RuntimeException subclass if the API call fails
      */
     public UpdateCheckoutSessionResponse update(String sessionId, CheckoutSessionCreate checkoutSessionCreate) {
-        return update(sessionId, JsonNullable.undefined(), checkoutSessionCreate);
+        return update(sessionId, JsonNullable.undefined(), checkoutSessionCreate,
+            Optional.empty());
     }
 
     /**
@@ -132,6 +150,25 @@ public class CheckoutSessions {
     public UpdateCheckoutSessionResponse update(
             String sessionId, JsonNullable<String> merchantAccountId,
             CheckoutSessionCreate checkoutSessionCreate) {
+        return update(sessionId, merchantAccountId, checkoutSessionCreate,
+            Optional.empty());
+    }
+
+    /**
+     * Update checkout session
+     * 
+     * <p>Update the information stored on a checkout session.
+     * 
+     * @param sessionId The ID of the checkout session.
+     * @param merchantAccountId 
+     * @param checkoutSessionCreate 
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public UpdateCheckoutSessionResponse update(
+            String sessionId, JsonNullable<String> merchantAccountId,
+            CheckoutSessionCreate checkoutSessionCreate, Optional<Options> options) {
         UpdateCheckoutSessionRequest request =
             UpdateCheckoutSessionRequest
                 .builder()
@@ -140,7 +177,7 @@ public class CheckoutSessions {
                 .checkoutSessionCreate(checkoutSessionCreate)
                 .build();
         RequestOperation<UpdateCheckoutSessionRequest, UpdateCheckoutSessionResponse> operation
-              = new UpdateCheckoutSession.Sync(sdkConfiguration, _headers);
+              = new UpdateCheckoutSession.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -166,6 +203,20 @@ public class CheckoutSessions {
      */
     public GetCheckoutSessionResponse get(String sessionId) {
         return get(sessionId, JsonNullable.undefined(), Optional.empty());
+    }
+
+    /**
+     * Get checkout session
+     * 
+     * <p>Retrieve the information stored on a checkout session.
+     * 
+     * @param sessionId The ID of the checkout session.
+     * @param merchantAccountId 
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public GetCheckoutSessionResponse get(String sessionId, JsonNullable<String> merchantAccountId) {
+        return get(sessionId, merchantAccountId, Optional.empty());
     }
 
     /**
@@ -214,7 +265,7 @@ public class CheckoutSessions {
      * @throws RuntimeException subclass if the API call fails
      */
     public DeleteCheckoutSessionResponse delete(String sessionId) {
-        return delete(sessionId, JsonNullable.undefined());
+        return delete(sessionId, JsonNullable.undefined(), Optional.empty());
     }
 
     /**
@@ -228,6 +279,23 @@ public class CheckoutSessions {
      * @throws RuntimeException subclass if the API call fails
      */
     public DeleteCheckoutSessionResponse delete(String sessionId, JsonNullable<String> merchantAccountId) {
+        return delete(sessionId, merchantAccountId, Optional.empty());
+    }
+
+    /**
+     * Delete checkout session
+     * 
+     * <p>Delete a checkout session and all of its (PCI) data.
+     * 
+     * @param sessionId The ID of the checkout session.
+     * @param merchantAccountId 
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public DeleteCheckoutSessionResponse delete(
+            String sessionId, JsonNullable<String> merchantAccountId,
+            Optional<Options> options) {
         DeleteCheckoutSessionRequest request =
             DeleteCheckoutSessionRequest
                 .builder()
@@ -235,7 +303,7 @@ public class CheckoutSessions {
                 .merchantAccountId(merchantAccountId)
                 .build();
         RequestOperation<DeleteCheckoutSessionRequest, DeleteCheckoutSessionResponse> operation
-              = new DeleteCheckoutSession.Sync(sdkConfiguration, _headers);
+              = new DeleteCheckoutSession.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

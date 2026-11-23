@@ -12,6 +12,7 @@ import com.gr4vy.sdk.utils.Options;
 import com.gr4vy.sdk.utils.RetryConfig;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.String;
+import java.time.Duration;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -21,6 +22,7 @@ public class GetTransactionCaptureRequestBuilder {
     private String captureId;
     private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
     private Optional<RetryConfig> retryConfig = Optional.empty();
+    private Optional<Duration> timeout = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -63,6 +65,18 @@ public class GetTransactionCaptureRequestBuilder {
         this.retryConfig = retryConfig;
         return this;
     }
+                
+    public GetTransactionCaptureRequestBuilder timeout(Duration timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = Optional.of(timeout);
+        return this;
+    }
+
+    public GetTransactionCaptureRequestBuilder timeout(Optional<Duration> timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = timeout;
+        return this;
+    }
 
 
     private GetTransactionCaptureRequest buildRequest() {
@@ -77,6 +91,7 @@ public class GetTransactionCaptureRequestBuilder {
     public GetTransactionCaptureResponse call() {
         Optional<Options> options = Optional.of(Options.builder()
             .retryConfig(retryConfig)
+            .timeout(timeout)
             .build());
 
         RequestOperation<GetTransactionCaptureRequest, GetTransactionCaptureResponse> operation

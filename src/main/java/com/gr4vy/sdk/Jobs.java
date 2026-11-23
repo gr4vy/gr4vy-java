@@ -11,7 +11,9 @@ import com.gr4vy.sdk.models.operations.CreateAccountUpdaterJobRequestBuilder;
 import com.gr4vy.sdk.models.operations.CreateAccountUpdaterJobResponse;
 import com.gr4vy.sdk.operations.CreateAccountUpdaterJob;
 import com.gr4vy.sdk.utils.Headers;
+import com.gr4vy.sdk.utils.Options;
 import java.lang.String;
+import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 
@@ -55,7 +57,7 @@ public class Jobs {
      * @throws RuntimeException subclass if the API call fails
      */
     public CreateAccountUpdaterJobResponse create(AccountUpdaterJobCreate accountUpdaterJobCreate) {
-        return create(JsonNullable.undefined(), accountUpdaterJobCreate);
+        return create(JsonNullable.undefined(), accountUpdaterJobCreate, Optional.empty());
     }
 
     /**
@@ -69,6 +71,23 @@ public class Jobs {
      * @throws RuntimeException subclass if the API call fails
      */
     public CreateAccountUpdaterJobResponse create(JsonNullable<String> merchantAccountId, AccountUpdaterJobCreate accountUpdaterJobCreate) {
+        return create(merchantAccountId, accountUpdaterJobCreate, Optional.empty());
+    }
+
+    /**
+     * Create account updater job
+     * 
+     * <p>Schedule one or more stored cards for an account update.
+     * 
+     * @param merchantAccountId 
+     * @param accountUpdaterJobCreate 
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public CreateAccountUpdaterJobResponse create(
+            JsonNullable<String> merchantAccountId, AccountUpdaterJobCreate accountUpdaterJobCreate,
+            Optional<Options> options) {
         CreateAccountUpdaterJobRequest request =
             CreateAccountUpdaterJobRequest
                 .builder()
@@ -76,7 +95,7 @@ public class Jobs {
                 .accountUpdaterJobCreate(accountUpdaterJobCreate)
                 .build();
         RequestOperation<CreateAccountUpdaterJobRequest, CreateAccountUpdaterJobResponse> operation
-              = new CreateAccountUpdaterJob.Sync(sdkConfiguration, _headers);
+              = new CreateAccountUpdaterJob.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

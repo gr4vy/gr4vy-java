@@ -10,8 +10,11 @@ import com.gr4vy.sdk.models.components.TransactionUpdate;
 import com.gr4vy.sdk.models.operations.UpdateTransactionRequest;
 import com.gr4vy.sdk.operations.UpdateTransaction;
 import com.gr4vy.sdk.utils.Headers;
+import com.gr4vy.sdk.utils.Options;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.String;
+import java.time.Duration;
+import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -20,6 +23,7 @@ public class UpdateTransactionRequestBuilder {
     private String transactionId;
     private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
     private TransactionUpdate transactionUpdate;
+    private Optional<Duration> timeout = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -50,6 +54,18 @@ public class UpdateTransactionRequestBuilder {
         this.transactionUpdate = transactionUpdate;
         return this;
     }
+                
+    public UpdateTransactionRequestBuilder timeout(Duration timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = Optional.of(timeout);
+        return this;
+    }
+
+    public UpdateTransactionRequestBuilder timeout(Optional<Duration> timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = timeout;
+        return this;
+    }
 
 
     private UpdateTransactionRequest buildRequest() {
@@ -62,9 +78,12 @@ public class UpdateTransactionRequestBuilder {
     }
 
     public CompletableFuture<UpdateTransactionResponse> call() {
-        
+        Optional<Options> options = Optional.of(Options.builder()
+            .timeout(timeout)
+            .build());
+
         AsyncRequestOperation<UpdateTransactionRequest, UpdateTransactionResponse> operation
-              = new UpdateTransaction.Async(sdkConfiguration, _headers);
+              = new UpdateTransaction.Async(sdkConfiguration, options, _headers);
         UpdateTransactionRequest request = buildRequest();
 
         return operation.doRequest(request)

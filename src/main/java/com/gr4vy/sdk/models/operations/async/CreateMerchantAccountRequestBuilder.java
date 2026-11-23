@@ -9,12 +9,16 @@ import com.gr4vy.sdk.SDKConfiguration;
 import com.gr4vy.sdk.models.components.MerchantAccountCreate;
 import com.gr4vy.sdk.operations.CreateMerchantAccount;
 import com.gr4vy.sdk.utils.Headers;
+import com.gr4vy.sdk.utils.Options;
 import com.gr4vy.sdk.utils.Utils;
+import java.time.Duration;
+import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
 public class CreateMerchantAccountRequestBuilder {
 
     private MerchantAccountCreate request;
+    private Optional<Duration> timeout = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -27,11 +31,26 @@ public class CreateMerchantAccountRequestBuilder {
         this.request = request;
         return this;
     }
+                
+    public CreateMerchantAccountRequestBuilder timeout(Duration timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = Optional.of(timeout);
+        return this;
+    }
+
+    public CreateMerchantAccountRequestBuilder timeout(Optional<Duration> timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = timeout;
+        return this;
+    }
 
     public CompletableFuture<CreateMerchantAccountResponse> call() {
-        
+        Optional<Options> options = Optional.of(Options.builder()
+            .timeout(timeout)
+            .build());
+
         AsyncRequestOperation<MerchantAccountCreate, CreateMerchantAccountResponse> operation
-              = new CreateMerchantAccount.Async(sdkConfiguration, _headers);
+              = new CreateMerchantAccount.Async(sdkConfiguration, options, _headers);
 
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);

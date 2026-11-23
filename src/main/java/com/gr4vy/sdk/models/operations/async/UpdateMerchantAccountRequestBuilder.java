@@ -10,14 +10,18 @@ import com.gr4vy.sdk.models.components.MerchantAccountUpdate;
 import com.gr4vy.sdk.models.operations.UpdateMerchantAccountRequest;
 import com.gr4vy.sdk.operations.UpdateMerchantAccount;
 import com.gr4vy.sdk.utils.Headers;
+import com.gr4vy.sdk.utils.Options;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.String;
+import java.time.Duration;
+import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
 public class UpdateMerchantAccountRequestBuilder {
 
     private String merchantAccountId;
     private MerchantAccountUpdate merchantAccountUpdate;
+    private Optional<Duration> timeout = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -36,6 +40,18 @@ public class UpdateMerchantAccountRequestBuilder {
         this.merchantAccountUpdate = merchantAccountUpdate;
         return this;
     }
+                
+    public UpdateMerchantAccountRequestBuilder timeout(Duration timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = Optional.of(timeout);
+        return this;
+    }
+
+    public UpdateMerchantAccountRequestBuilder timeout(Optional<Duration> timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = timeout;
+        return this;
+    }
 
 
     private UpdateMerchantAccountRequest buildRequest() {
@@ -47,9 +63,12 @@ public class UpdateMerchantAccountRequestBuilder {
     }
 
     public CompletableFuture<UpdateMerchantAccountResponse> call() {
-        
+        Optional<Options> options = Optional.of(Options.builder()
+            .timeout(timeout)
+            .build());
+
         AsyncRequestOperation<UpdateMerchantAccountRequest, UpdateMerchantAccountResponse> operation
-              = new UpdateMerchantAccount.Async(sdkConfiguration, _headers);
+              = new UpdateMerchantAccount.Async(sdkConfiguration, options, _headers);
         UpdateMerchantAccountRequest request = buildRequest();
 
         return operation.doRequest(request)

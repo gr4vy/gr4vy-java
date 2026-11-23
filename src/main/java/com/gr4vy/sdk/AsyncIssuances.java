@@ -11,7 +11,9 @@ import com.gr4vy.sdk.models.operations.async.IssueGiftCardRequestBuilder;
 import com.gr4vy.sdk.models.operations.async.IssueGiftCardResponse;
 import com.gr4vy.sdk.operations.IssueGiftCard;
 import com.gr4vy.sdk.utils.Headers;
+import com.gr4vy.sdk.utils.Options;
 import java.lang.String;
+import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -56,7 +58,9 @@ public class AsyncIssuances {
      * @return {@code CompletableFuture<IssueGiftCardResponse>} - The async response
      */
     public CompletableFuture<IssueGiftCardResponse> create(GiftCardIssuanceCreate giftCardIssuanceCreate) {
-        return create(JsonNullable.undefined(), JsonNullable.undefined(), giftCardIssuanceCreate);
+        return create(
+                JsonNullable.undefined(), JsonNullable.undefined(), giftCardIssuanceCreate,
+                Optional.empty());
     }
 
     /**
@@ -72,6 +76,25 @@ public class AsyncIssuances {
     public CompletableFuture<IssueGiftCardResponse> create(
             JsonNullable<String> idempotencyKey, JsonNullable<String> merchantAccountId,
             GiftCardIssuanceCreate giftCardIssuanceCreate) {
+        return create(
+                idempotencyKey, merchantAccountId, giftCardIssuanceCreate,
+                Optional.empty());
+    }
+
+    /**
+     * Issue a gift card
+     * 
+     * <p>Issue a new virtual gift card through the primary gift card service.
+     * 
+     * @param idempotencyKey A unique key forwarded to the gift card service to make the issuance idempotent.
+     * @param merchantAccountId 
+     * @param giftCardIssuanceCreate The details used to issue a new virtual gift card.
+     * @param options additional options
+     * @return {@code CompletableFuture<IssueGiftCardResponse>} - The async response
+     */
+    public CompletableFuture<IssueGiftCardResponse> create(
+            JsonNullable<String> idempotencyKey, JsonNullable<String> merchantAccountId,
+            GiftCardIssuanceCreate giftCardIssuanceCreate, Optional<Options> options) {
         IssueGiftCardRequest request =
             IssueGiftCardRequest
                 .builder()
@@ -80,7 +103,7 @@ public class AsyncIssuances {
                 .giftCardIssuanceCreate(giftCardIssuanceCreate)
                 .build();
         AsyncRequestOperation<IssueGiftCardRequest, IssueGiftCardResponse> operation
-              = new IssueGiftCard.Async(sdkConfiguration, _headers);
+              = new IssueGiftCard.Async(sdkConfiguration, options, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }

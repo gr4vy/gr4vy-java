@@ -9,17 +9,21 @@ import com.gr4vy.sdk.SDKConfiguration;
 import com.gr4vy.sdk.models.operations.CreatePaymentServiceDefinitionSessionRequest;
 import com.gr4vy.sdk.operations.CreatePaymentServiceDefinitionSession;
 import com.gr4vy.sdk.utils.Headers;
+import com.gr4vy.sdk.utils.Options;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.Object;
 import java.lang.String;
+import java.time.Duration;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
 public class CreatePaymentServiceDefinitionSessionRequestBuilder {
 
     private String paymentServiceDefinitionId;
     private Map<String, Object> requestBody = new HashMap<>();
+    private Optional<Duration> timeout = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -38,6 +42,18 @@ public class CreatePaymentServiceDefinitionSessionRequestBuilder {
         this.requestBody = requestBody;
         return this;
     }
+                
+    public CreatePaymentServiceDefinitionSessionRequestBuilder timeout(Duration timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = Optional.of(timeout);
+        return this;
+    }
+
+    public CreatePaymentServiceDefinitionSessionRequestBuilder timeout(Optional<Duration> timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = timeout;
+        return this;
+    }
 
 
     private CreatePaymentServiceDefinitionSessionRequest buildRequest() {
@@ -49,9 +65,12 @@ public class CreatePaymentServiceDefinitionSessionRequestBuilder {
     }
 
     public CompletableFuture<CreatePaymentServiceDefinitionSessionResponse> call() {
-        
+        Optional<Options> options = Optional.of(Options.builder()
+            .timeout(timeout)
+            .build());
+
         AsyncRequestOperation<CreatePaymentServiceDefinitionSessionRequest, CreatePaymentServiceDefinitionSessionResponse> operation
-              = new CreatePaymentServiceDefinitionSession.Async(sdkConfiguration, _headers);
+              = new CreatePaymentServiceDefinitionSession.Async(sdkConfiguration, options, _headers);
         CreatePaymentServiceDefinitionSessionRequest request = buildRequest();
 
         return operation.doRequest(request)

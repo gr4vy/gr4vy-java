@@ -10,8 +10,11 @@ import com.gr4vy.sdk.models.components.PayoutCreate;
 import com.gr4vy.sdk.models.operations.CreatePayoutRequest;
 import com.gr4vy.sdk.operations.CreatePayout;
 import com.gr4vy.sdk.utils.Headers;
+import com.gr4vy.sdk.utils.Options;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.String;
+import java.time.Duration;
+import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -19,6 +22,7 @@ public class CreatePayoutRequestBuilder {
 
     private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
     private PayoutCreate payoutCreate;
+    private Optional<Duration> timeout = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -43,6 +47,18 @@ public class CreatePayoutRequestBuilder {
         this.payoutCreate = payoutCreate;
         return this;
     }
+                
+    public CreatePayoutRequestBuilder timeout(Duration timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = Optional.of(timeout);
+        return this;
+    }
+
+    public CreatePayoutRequestBuilder timeout(Optional<Duration> timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = timeout;
+        return this;
+    }
 
 
     private CreatePayoutRequest buildRequest() {
@@ -54,9 +70,12 @@ public class CreatePayoutRequestBuilder {
     }
 
     public CompletableFuture<CreatePayoutResponse> call() {
-        
+        Optional<Options> options = Optional.of(Options.builder()
+            .timeout(timeout)
+            .build());
+
         AsyncRequestOperation<CreatePayoutRequest, CreatePayoutResponse> operation
-              = new CreatePayout.Async(sdkConfiguration, _headers);
+              = new CreatePayout.Async(sdkConfiguration, options, _headers);
         CreatePayoutRequest request = buildRequest();
 
         return operation.doRequest(request)
