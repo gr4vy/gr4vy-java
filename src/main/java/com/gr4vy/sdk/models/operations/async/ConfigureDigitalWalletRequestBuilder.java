@@ -10,8 +10,11 @@ import com.gr4vy.sdk.models.components.DigitalWalletCreate;
 import com.gr4vy.sdk.models.operations.ConfigureDigitalWalletRequest;
 import com.gr4vy.sdk.operations.ConfigureDigitalWallet;
 import com.gr4vy.sdk.utils.Headers;
+import com.gr4vy.sdk.utils.Options;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.String;
+import java.time.Duration;
+import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -19,6 +22,7 @@ public class ConfigureDigitalWalletRequestBuilder {
 
     private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
     private DigitalWalletCreate digitalWalletCreate;
+    private Optional<Duration> timeout = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -43,6 +47,18 @@ public class ConfigureDigitalWalletRequestBuilder {
         this.digitalWalletCreate = digitalWalletCreate;
         return this;
     }
+                
+    public ConfigureDigitalWalletRequestBuilder timeout(Duration timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = Optional.of(timeout);
+        return this;
+    }
+
+    public ConfigureDigitalWalletRequestBuilder timeout(Optional<Duration> timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = timeout;
+        return this;
+    }
 
 
     private ConfigureDigitalWalletRequest buildRequest() {
@@ -54,9 +70,12 @@ public class ConfigureDigitalWalletRequestBuilder {
     }
 
     public CompletableFuture<ConfigureDigitalWalletResponse> call() {
-        
+        Optional<Options> options = Optional.of(Options.builder()
+            .timeout(timeout)
+            .build());
+
         AsyncRequestOperation<ConfigureDigitalWalletRequest, ConfigureDigitalWalletResponse> operation
-              = new ConfigureDigitalWallet.Async(sdkConfiguration, _headers);
+              = new ConfigureDigitalWallet.Async(sdkConfiguration, options, _headers);
         ConfigureDigitalWalletRequest request = buildRequest();
 
         return operation.doRequest(request)

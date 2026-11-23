@@ -11,7 +11,9 @@ import com.gr4vy.sdk.models.operations.async.ListGiftCardBalancesRequestBuilder;
 import com.gr4vy.sdk.models.operations.async.ListGiftCardBalancesResponse;
 import com.gr4vy.sdk.operations.ListGiftCardBalances;
 import com.gr4vy.sdk.utils.Headers;
+import com.gr4vy.sdk.utils.Options;
 import java.lang.String;
+import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -56,7 +58,7 @@ public class AsyncBalances {
      * @return {@code CompletableFuture<ListGiftCardBalancesResponse>} - The async response
      */
     public CompletableFuture<ListGiftCardBalancesResponse> list(GiftCardBalanceRequest giftCardBalanceRequest) {
-        return list(JsonNullable.undefined(), giftCardBalanceRequest);
+        return list(JsonNullable.undefined(), giftCardBalanceRequest, Optional.empty());
     }
 
     /**
@@ -69,6 +71,22 @@ public class AsyncBalances {
      * @return {@code CompletableFuture<ListGiftCardBalancesResponse>} - The async response
      */
     public CompletableFuture<ListGiftCardBalancesResponse> list(JsonNullable<String> merchantAccountId, GiftCardBalanceRequest giftCardBalanceRequest) {
+        return list(merchantAccountId, giftCardBalanceRequest, Optional.empty());
+    }
+
+    /**
+     * List gift card balances
+     * 
+     * <p>Fetch the balances for one or more gift cards.
+     * 
+     * @param merchantAccountId 
+     * @param giftCardBalanceRequest 
+     * @param options additional options
+     * @return {@code CompletableFuture<ListGiftCardBalancesResponse>} - The async response
+     */
+    public CompletableFuture<ListGiftCardBalancesResponse> list(
+            JsonNullable<String> merchantAccountId, GiftCardBalanceRequest giftCardBalanceRequest,
+            Optional<Options> options) {
         ListGiftCardBalancesRequest request =
             ListGiftCardBalancesRequest
                 .builder()
@@ -76,7 +94,7 @@ public class AsyncBalances {
                 .giftCardBalanceRequest(giftCardBalanceRequest)
                 .build();
         AsyncRequestOperation<ListGiftCardBalancesRequest, ListGiftCardBalancesResponse> operation
-              = new ListGiftCardBalances.Async(sdkConfiguration, _headers);
+              = new ListGiftCardBalances.Async(sdkConfiguration, options, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }

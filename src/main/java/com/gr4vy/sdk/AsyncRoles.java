@@ -67,6 +67,19 @@ public class AsyncRoles {
      * 
      * @param cursor A pointer to the page of results to return.
      * @param limit The maximum number of items that are returned.
+     * @return {@code CompletableFuture<ListRolesResponse>} - The async response
+     */
+    public CompletableFuture<ListRolesResponse> list(JsonNullable<String> cursor, Optional<Long> limit) {
+        return list(cursor, limit, Optional.empty());
+    }
+
+    /**
+     * List all roles
+     * 
+     * <p>List all roles available in the instance.
+     * 
+     * @param cursor A pointer to the page of results to return.
+     * @param limit The maximum number of items that are returned.
      * @param options additional options
      * @return {@code CompletableFuture<ListRolesResponse>} - The async response
      */

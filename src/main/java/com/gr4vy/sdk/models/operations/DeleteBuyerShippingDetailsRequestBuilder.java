@@ -8,8 +8,11 @@ import static com.gr4vy.sdk.operations.Operations.RequestOperation;
 import com.gr4vy.sdk.SDKConfiguration;
 import com.gr4vy.sdk.operations.DeleteBuyerShippingDetails;
 import com.gr4vy.sdk.utils.Headers;
+import com.gr4vy.sdk.utils.Options;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.String;
+import java.time.Duration;
+import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 public class DeleteBuyerShippingDetailsRequestBuilder {
@@ -17,6 +20,7 @@ public class DeleteBuyerShippingDetailsRequestBuilder {
     private String buyerId;
     private String shippingDetailsId;
     private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
+    private Optional<Duration> timeout = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -47,6 +51,18 @@ public class DeleteBuyerShippingDetailsRequestBuilder {
         this.merchantAccountId = merchantAccountId;
         return this;
     }
+                
+    public DeleteBuyerShippingDetailsRequestBuilder timeout(Duration timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = Optional.of(timeout);
+        return this;
+    }
+
+    public DeleteBuyerShippingDetailsRequestBuilder timeout(Optional<Duration> timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = timeout;
+        return this;
+    }
 
 
     private DeleteBuyerShippingDetailsRequest buildRequest() {
@@ -59,9 +75,12 @@ public class DeleteBuyerShippingDetailsRequestBuilder {
     }
 
     public DeleteBuyerShippingDetailsResponse call() {
-        
+        Optional<Options> options = Optional.of(Options.builder()
+            .timeout(timeout)
+            .build());
+
         RequestOperation<DeleteBuyerShippingDetailsRequest, DeleteBuyerShippingDetailsResponse> operation
-              = new DeleteBuyerShippingDetails.Sync(sdkConfiguration, _headers);
+              = new DeleteBuyerShippingDetails.Sync(sdkConfiguration, options, _headers);
         DeleteBuyerShippingDetailsRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

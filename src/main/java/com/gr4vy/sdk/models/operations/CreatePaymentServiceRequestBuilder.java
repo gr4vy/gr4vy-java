@@ -9,14 +9,18 @@ import com.gr4vy.sdk.SDKConfiguration;
 import com.gr4vy.sdk.models.components.PaymentServiceCreate;
 import com.gr4vy.sdk.operations.CreatePaymentService;
 import com.gr4vy.sdk.utils.Headers;
+import com.gr4vy.sdk.utils.Options;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.String;
+import java.time.Duration;
+import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 public class CreatePaymentServiceRequestBuilder {
 
     private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
     private PaymentServiceCreate paymentServiceCreate;
+    private Optional<Duration> timeout = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -41,6 +45,18 @@ public class CreatePaymentServiceRequestBuilder {
         this.paymentServiceCreate = paymentServiceCreate;
         return this;
     }
+                
+    public CreatePaymentServiceRequestBuilder timeout(Duration timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = Optional.of(timeout);
+        return this;
+    }
+
+    public CreatePaymentServiceRequestBuilder timeout(Optional<Duration> timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = timeout;
+        return this;
+    }
 
 
     private CreatePaymentServiceRequest buildRequest() {
@@ -52,9 +68,12 @@ public class CreatePaymentServiceRequestBuilder {
     }
 
     public CreatePaymentServiceResponse call() {
-        
+        Optional<Options> options = Optional.of(Options.builder()
+            .timeout(timeout)
+            .build());
+
         RequestOperation<CreatePaymentServiceRequest, CreatePaymentServiceResponse> operation
-              = new CreatePaymentService.Sync(sdkConfiguration, _headers);
+              = new CreatePaymentService.Sync(sdkConfiguration, options, _headers);
         CreatePaymentServiceRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

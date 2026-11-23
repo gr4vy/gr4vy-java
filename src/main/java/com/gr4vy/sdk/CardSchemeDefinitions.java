@@ -64,6 +64,19 @@ public class CardSchemeDefinitions {
      * <p>Fetch a list of the definitions of each card scheme.
      * 
      * @param merchantAccountId 
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public ListCardSchemeDefinitionsResponse list(JsonNullable<String> merchantAccountId) {
+        return list(merchantAccountId, Optional.empty());
+    }
+
+    /**
+     * List card scheme definitions
+     * 
+     * <p>Fetch a list of the definitions of each card scheme.
+     * 
+     * @param merchantAccountId 
      * @param options additional options
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails

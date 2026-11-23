@@ -9,13 +9,17 @@ import com.gr4vy.sdk.SDKConfiguration;
 import com.gr4vy.sdk.models.operations.DeleteApiKeyPairRequest;
 import com.gr4vy.sdk.operations.DeleteApiKeyPair;
 import com.gr4vy.sdk.utils.Headers;
+import com.gr4vy.sdk.utils.Options;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.String;
+import java.time.Duration;
+import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
 public class DeleteApiKeyPairRequestBuilder {
 
     private String apiKeyPairId;
+    private Optional<Duration> timeout = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -28,6 +32,18 @@ public class DeleteApiKeyPairRequestBuilder {
         this.apiKeyPairId = apiKeyPairId;
         return this;
     }
+                
+    public DeleteApiKeyPairRequestBuilder timeout(Duration timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = Optional.of(timeout);
+        return this;
+    }
+
+    public DeleteApiKeyPairRequestBuilder timeout(Optional<Duration> timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = timeout;
+        return this;
+    }
 
 
     private DeleteApiKeyPairRequest buildRequest() {
@@ -38,9 +54,12 @@ public class DeleteApiKeyPairRequestBuilder {
     }
 
     public CompletableFuture<DeleteApiKeyPairResponse> call() {
-        
+        Optional<Options> options = Optional.of(Options.builder()
+            .timeout(timeout)
+            .build());
+
         AsyncRequestOperation<DeleteApiKeyPairRequest, DeleteApiKeyPairResponse> operation
-              = new DeleteApiKeyPair.Async(sdkConfiguration, _headers);
+              = new DeleteApiKeyPair.Async(sdkConfiguration, options, _headers);
         DeleteApiKeyPairRequest request = buildRequest();
 
         return operation.doRequest(request)

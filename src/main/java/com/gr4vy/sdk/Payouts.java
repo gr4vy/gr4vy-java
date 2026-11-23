@@ -107,7 +107,7 @@ public class Payouts {
      * @throws RuntimeException subclass if the API call fails
      */
     public CreatePayoutResponse create(PayoutCreate payoutCreate) {
-        return create(JsonNullable.undefined(), payoutCreate);
+        return create(JsonNullable.undefined(), payoutCreate, Optional.empty());
     }
 
     /**
@@ -123,6 +123,25 @@ public class Payouts {
      * @throws RuntimeException subclass if the API call fails
      */
     public CreatePayoutResponse create(JsonNullable<String> merchantAccountId, PayoutCreate payoutCreate) {
+        return create(merchantAccountId, payoutCreate, Optional.empty());
+    }
+
+    /**
+     * Create a payout
+     * 
+     * <p>Creates a new payout.
+     * 
+     * @param merchantAccountId 
+     * @param payoutCreate PayoutCreate
+     *         
+     *         Represents the data required to create a new payout.
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public CreatePayoutResponse create(
+            JsonNullable<String> merchantAccountId, PayoutCreate payoutCreate,
+            Optional<Options> options) {
         CreatePayoutRequest request =
             CreatePayoutRequest
                 .builder()
@@ -130,7 +149,7 @@ public class Payouts {
                 .payoutCreate(payoutCreate)
                 .build();
         RequestOperation<CreatePayoutRequest, CreatePayoutResponse> operation
-              = new CreatePayout.Sync(sdkConfiguration, _headers);
+              = new CreatePayout.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -156,6 +175,20 @@ public class Payouts {
      */
     public GetPayoutResponse get(String payoutId) {
         return get(payoutId, JsonNullable.undefined(), Optional.empty());
+    }
+
+    /**
+     * Get a payout
+     * 
+     * <p>Retrieves a payout.
+     * 
+     * @param payoutId 
+     * @param merchantAccountId 
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public GetPayoutResponse get(String payoutId, JsonNullable<String> merchantAccountId) {
+        return get(payoutId, merchantAccountId, Optional.empty());
     }
 
     /**

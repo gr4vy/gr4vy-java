@@ -87,6 +87,24 @@ public class MerchantAccounts {
      * @param cursor A pointer to the page of results to return.
      * @param limit The maximum number of items that are at returned.
      * @param search The search term to filter merchant accounts by.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public ListMerchantAccountsResponse list(
+            JsonNullable<String> cursor, Optional<Long> limit,
+            JsonNullable<String> search) {
+        return list(cursor, limit, search,
+            Optional.empty());
+    }
+
+    /**
+     * List all merchant accounts
+     * 
+     * <p>List all merchant accounts in an instance.
+     * 
+     * @param cursor A pointer to the page of results to return.
+     * @param limit The maximum number of items that are at returned.
+     * @param search The search term to filter merchant accounts by.
      * @param options additional options
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
@@ -127,8 +145,22 @@ public class MerchantAccounts {
      * @throws RuntimeException subclass if the API call fails
      */
     public CreateMerchantAccountResponse create(MerchantAccountCreate request) {
+        return create(request, Optional.empty());
+    }
+
+    /**
+     * Create a merchant account
+     * 
+     * <p>Create a new merchant account in an instance.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public CreateMerchantAccountResponse create(MerchantAccountCreate request, Optional<Options> options) {
         RequestOperation<MerchantAccountCreate, CreateMerchantAccountResponse> operation
-              = new CreateMerchantAccount.Sync(sdkConfiguration, _headers);
+              = new CreateMerchantAccount.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -199,6 +231,23 @@ public class MerchantAccounts {
      * @throws RuntimeException subclass if the API call fails
      */
     public UpdateMerchantAccountResponse update(String merchantAccountId, MerchantAccountUpdate merchantAccountUpdate) {
+        return update(merchantAccountId, merchantAccountUpdate, Optional.empty());
+    }
+
+    /**
+     * Update a merchant account
+     * 
+     * <p>Update info for a merchant account in an instance.
+     * 
+     * @param merchantAccountId The ID of the merchant account.
+     * @param merchantAccountUpdate 
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public UpdateMerchantAccountResponse update(
+            String merchantAccountId, MerchantAccountUpdate merchantAccountUpdate,
+            Optional<Options> options) {
         UpdateMerchantAccountRequest request =
             UpdateMerchantAccountRequest
                 .builder()
@@ -206,7 +255,7 @@ public class MerchantAccounts {
                 .merchantAccountUpdate(merchantAccountUpdate)
                 .build();
         RequestOperation<UpdateMerchantAccountRequest, UpdateMerchantAccountResponse> operation
-              = new UpdateMerchantAccount.Sync(sdkConfiguration, _headers);
+              = new UpdateMerchantAccount.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

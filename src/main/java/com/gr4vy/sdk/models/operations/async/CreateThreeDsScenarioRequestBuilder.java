@@ -10,8 +10,11 @@ import com.gr4vy.sdk.models.components.ThreeDSecureScenarioCreate;
 import com.gr4vy.sdk.models.operations.CreateThreeDsScenarioRequest;
 import com.gr4vy.sdk.operations.CreateThreeDsScenario;
 import com.gr4vy.sdk.utils.Headers;
+import com.gr4vy.sdk.utils.Options;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.String;
+import java.time.Duration;
+import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -19,6 +22,7 @@ public class CreateThreeDsScenarioRequestBuilder {
 
     private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
     private ThreeDSecureScenarioCreate threeDSecureScenarioCreate;
+    private Optional<Duration> timeout = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -43,6 +47,18 @@ public class CreateThreeDsScenarioRequestBuilder {
         this.threeDSecureScenarioCreate = threeDSecureScenarioCreate;
         return this;
     }
+                
+    public CreateThreeDsScenarioRequestBuilder timeout(Duration timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = Optional.of(timeout);
+        return this;
+    }
+
+    public CreateThreeDsScenarioRequestBuilder timeout(Optional<Duration> timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = timeout;
+        return this;
+    }
 
 
     private CreateThreeDsScenarioRequest buildRequest() {
@@ -54,9 +70,12 @@ public class CreateThreeDsScenarioRequestBuilder {
     }
 
     public CompletableFuture<CreateThreeDsScenarioResponse> call() {
-        
+        Optional<Options> options = Optional.of(Options.builder()
+            .timeout(timeout)
+            .build());
+
         AsyncRequestOperation<CreateThreeDsScenarioRequest, CreateThreeDsScenarioResponse> operation
-              = new CreateThreeDsScenario.Async(sdkConfiguration, _headers);
+              = new CreateThreeDsScenario.Async(sdkConfiguration, options, _headers);
         CreateThreeDsScenarioRequest request = buildRequest();
 
         return operation.doRequest(request)

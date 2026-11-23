@@ -10,8 +10,11 @@ import com.gr4vy.sdk.models.operations.Body;
 import com.gr4vy.sdk.models.operations.CreatePaymentMethodRequest;
 import com.gr4vy.sdk.operations.CreatePaymentMethod;
 import com.gr4vy.sdk.utils.Headers;
+import com.gr4vy.sdk.utils.Options;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.String;
+import java.time.Duration;
+import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -19,6 +22,7 @@ public class CreatePaymentMethodRequestBuilder {
 
     private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
     private Body requestBody;
+    private Optional<Duration> timeout = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -43,6 +47,18 @@ public class CreatePaymentMethodRequestBuilder {
         this.requestBody = requestBody;
         return this;
     }
+                
+    public CreatePaymentMethodRequestBuilder timeout(Duration timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = Optional.of(timeout);
+        return this;
+    }
+
+    public CreatePaymentMethodRequestBuilder timeout(Optional<Duration> timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = timeout;
+        return this;
+    }
 
 
     private CreatePaymentMethodRequest buildRequest() {
@@ -54,9 +70,12 @@ public class CreatePaymentMethodRequestBuilder {
     }
 
     public CompletableFuture<CreatePaymentMethodResponse> call() {
-        
+        Optional<Options> options = Optional.of(Options.builder()
+            .timeout(timeout)
+            .build());
+
         AsyncRequestOperation<CreatePaymentMethodRequest, CreatePaymentMethodResponse> operation
-              = new CreatePaymentMethod.Async(sdkConfiguration, _headers);
+              = new CreatePaymentMethod.Async(sdkConfiguration, options, _headers);
         CreatePaymentMethodRequest request = buildRequest();
 
         return operation.doRequest(request)

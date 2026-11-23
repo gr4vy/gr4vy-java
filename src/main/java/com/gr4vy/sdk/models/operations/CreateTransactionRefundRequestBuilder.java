@@ -9,8 +9,11 @@ import com.gr4vy.sdk.SDKConfiguration;
 import com.gr4vy.sdk.models.components.TransactionRefundCreate;
 import com.gr4vy.sdk.operations.CreateTransactionRefund;
 import com.gr4vy.sdk.utils.Headers;
+import com.gr4vy.sdk.utils.Options;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.String;
+import java.time.Duration;
+import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 public class CreateTransactionRefundRequestBuilder {
@@ -19,6 +22,7 @@ public class CreateTransactionRefundRequestBuilder {
     private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
     private JsonNullable<String> idempotencyKey = JsonNullable.undefined();
     private TransactionRefundCreate transactionRefundCreate;
+    private Optional<Duration> timeout = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -61,6 +65,18 @@ public class CreateTransactionRefundRequestBuilder {
         this.transactionRefundCreate = transactionRefundCreate;
         return this;
     }
+                
+    public CreateTransactionRefundRequestBuilder timeout(Duration timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = Optional.of(timeout);
+        return this;
+    }
+
+    public CreateTransactionRefundRequestBuilder timeout(Optional<Duration> timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = timeout;
+        return this;
+    }
 
 
     private CreateTransactionRefundRequest buildRequest() {
@@ -74,9 +90,12 @@ public class CreateTransactionRefundRequestBuilder {
     }
 
     public CreateTransactionRefundResponse call() {
-        
+        Optional<Options> options = Optional.of(Options.builder()
+            .timeout(timeout)
+            .build());
+
         RequestOperation<CreateTransactionRefundRequest, CreateTransactionRefundResponse> operation
-              = new CreateTransactionRefund.Sync(sdkConfiguration, _headers);
+              = new CreateTransactionRefund.Sync(sdkConfiguration, options, _headers);
         CreateTransactionRefundRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

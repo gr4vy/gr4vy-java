@@ -10,8 +10,11 @@ import com.gr4vy.sdk.models.components.DigitalWalletDomain;
 import com.gr4vy.sdk.models.operations.RegisterDigitalWalletDomainRequest;
 import com.gr4vy.sdk.operations.RegisterDigitalWalletDomain;
 import com.gr4vy.sdk.utils.Headers;
+import com.gr4vy.sdk.utils.Options;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.String;
+import java.time.Duration;
+import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -20,6 +23,7 @@ public class RegisterDigitalWalletDomainRequestBuilder {
     private String digitalWalletId;
     private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
     private DigitalWalletDomain digitalWalletDomain;
+    private Optional<Duration> timeout = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -50,6 +54,18 @@ public class RegisterDigitalWalletDomainRequestBuilder {
         this.digitalWalletDomain = digitalWalletDomain;
         return this;
     }
+                
+    public RegisterDigitalWalletDomainRequestBuilder timeout(Duration timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = Optional.of(timeout);
+        return this;
+    }
+
+    public RegisterDigitalWalletDomainRequestBuilder timeout(Optional<Duration> timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = timeout;
+        return this;
+    }
 
 
     private RegisterDigitalWalletDomainRequest buildRequest() {
@@ -62,9 +78,12 @@ public class RegisterDigitalWalletDomainRequestBuilder {
     }
 
     public CompletableFuture<RegisterDigitalWalletDomainResponse> call() {
-        
+        Optional<Options> options = Optional.of(Options.builder()
+            .timeout(timeout)
+            .build());
+
         AsyncRequestOperation<RegisterDigitalWalletDomainRequest, RegisterDigitalWalletDomainResponse> operation
-              = new RegisterDigitalWalletDomain.Async(sdkConfiguration, _headers);
+              = new RegisterDigitalWalletDomain.Async(sdkConfiguration, options, _headers);
         RegisterDigitalWalletDomainRequest request = buildRequest();
 
         return operation.doRequest(request)

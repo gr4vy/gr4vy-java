@@ -10,8 +10,11 @@ import com.gr4vy.sdk.models.components.MerchantAccountThreeDSConfigurationUpdate
 import com.gr4vy.sdk.models.operations.EditThreeDsConfigurationRequest;
 import com.gr4vy.sdk.operations.EditThreeDsConfiguration;
 import com.gr4vy.sdk.utils.Headers;
+import com.gr4vy.sdk.utils.Options;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.String;
+import java.time.Duration;
+import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
 public class EditThreeDsConfigurationRequestBuilder {
@@ -19,6 +22,7 @@ public class EditThreeDsConfigurationRequestBuilder {
     private String merchantAccountId;
     private String threeDsConfigurationId;
     private MerchantAccountThreeDSConfigurationUpdate merchantAccountThreeDSConfigurationUpdate;
+    private Optional<Duration> timeout = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -43,6 +47,18 @@ public class EditThreeDsConfigurationRequestBuilder {
         this.merchantAccountThreeDSConfigurationUpdate = merchantAccountThreeDSConfigurationUpdate;
         return this;
     }
+                
+    public EditThreeDsConfigurationRequestBuilder timeout(Duration timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = Optional.of(timeout);
+        return this;
+    }
+
+    public EditThreeDsConfigurationRequestBuilder timeout(Optional<Duration> timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = timeout;
+        return this;
+    }
 
 
     private EditThreeDsConfigurationRequest buildRequest() {
@@ -55,9 +71,12 @@ public class EditThreeDsConfigurationRequestBuilder {
     }
 
     public CompletableFuture<EditThreeDsConfigurationResponse> call() {
-        
+        Optional<Options> options = Optional.of(Options.builder()
+            .timeout(timeout)
+            .build());
+
         AsyncRequestOperation<EditThreeDsConfigurationRequest, EditThreeDsConfigurationResponse> operation
-              = new EditThreeDsConfiguration.Async(sdkConfiguration, _headers);
+              = new EditThreeDsConfiguration.Async(sdkConfiguration, options, _headers);
         EditThreeDsConfigurationRequest request = buildRequest();
 
         return operation.doRequest(request)

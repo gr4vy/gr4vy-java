@@ -9,8 +9,11 @@ import com.gr4vy.sdk.SDKConfiguration;
 import com.gr4vy.sdk.models.components.TransactionAuthorizationIncrementCreate;
 import com.gr4vy.sdk.operations.IncrementTransactionAuthorization;
 import com.gr4vy.sdk.utils.Headers;
+import com.gr4vy.sdk.utils.Options;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.String;
+import java.time.Duration;
+import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 public class IncrementTransactionAuthorizationRequestBuilder {
@@ -19,6 +22,7 @@ public class IncrementTransactionAuthorizationRequestBuilder {
     private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
     private JsonNullable<String> idempotencyKey = JsonNullable.undefined();
     private TransactionAuthorizationIncrementCreate transactionAuthorizationIncrementCreate;
+    private Optional<Duration> timeout = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -61,6 +65,18 @@ public class IncrementTransactionAuthorizationRequestBuilder {
         this.transactionAuthorizationIncrementCreate = transactionAuthorizationIncrementCreate;
         return this;
     }
+                
+    public IncrementTransactionAuthorizationRequestBuilder timeout(Duration timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = Optional.of(timeout);
+        return this;
+    }
+
+    public IncrementTransactionAuthorizationRequestBuilder timeout(Optional<Duration> timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = timeout;
+        return this;
+    }
 
 
     private IncrementTransactionAuthorizationRequest buildRequest() {
@@ -74,9 +90,12 @@ public class IncrementTransactionAuthorizationRequestBuilder {
     }
 
     public IncrementTransactionAuthorizationResponse call() {
-        
+        Optional<Options> options = Optional.of(Options.builder()
+            .timeout(timeout)
+            .build());
+
         RequestOperation<IncrementTransactionAuthorizationRequest, IncrementTransactionAuthorizationResponse> operation
-              = new IncrementTransactionAuthorization.Sync(sdkConfiguration, _headers);
+              = new IncrementTransactionAuthorization.Sync(sdkConfiguration, options, _headers);
         IncrementTransactionAuthorizationRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

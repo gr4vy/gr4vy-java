@@ -98,6 +98,19 @@ public class AsyncGiftCards {
      * 
      * @param giftCardId The ID of the gift card.
      * @param merchantAccountId 
+     * @return {@code CompletableFuture<GetGiftCardResponse>} - The async response
+     */
+    public CompletableFuture<GetGiftCardResponse> get(String giftCardId, JsonNullable<String> merchantAccountId) {
+        return get(giftCardId, merchantAccountId, Optional.empty());
+    }
+
+    /**
+     * Get gift card
+     * 
+     * <p>Fetch details about a gift card.
+     * 
+     * @param giftCardId The ID of the gift card.
+     * @param merchantAccountId 
      * @param options additional options
      * @return {@code CompletableFuture<GetGiftCardResponse>} - The async response
      */
@@ -139,7 +152,7 @@ public class AsyncGiftCards {
      * @return {@code CompletableFuture<DeleteGiftCardResponse>} - The async response
      */
     public CompletableFuture<DeleteGiftCardResponse> delete(String giftCardId) {
-        return delete(giftCardId, JsonNullable.undefined());
+        return delete(giftCardId, JsonNullable.undefined(), Optional.empty());
     }
 
     /**
@@ -152,6 +165,22 @@ public class AsyncGiftCards {
      * @return {@code CompletableFuture<DeleteGiftCardResponse>} - The async response
      */
     public CompletableFuture<DeleteGiftCardResponse> delete(String giftCardId, JsonNullable<String> merchantAccountId) {
+        return delete(giftCardId, merchantAccountId, Optional.empty());
+    }
+
+    /**
+     * Delete a gift card
+     * 
+     * <p>Removes a gift card from our system.
+     * 
+     * @param giftCardId The ID of the gift card.
+     * @param merchantAccountId 
+     * @param options additional options
+     * @return {@code CompletableFuture<DeleteGiftCardResponse>} - The async response
+     */
+    public CompletableFuture<DeleteGiftCardResponse> delete(
+            String giftCardId, JsonNullable<String> merchantAccountId,
+            Optional<Options> options) {
         DeleteGiftCardRequest request =
             DeleteGiftCardRequest
                 .builder()
@@ -159,7 +188,7 @@ public class AsyncGiftCards {
                 .merchantAccountId(merchantAccountId)
                 .build();
         AsyncRequestOperation<DeleteGiftCardRequest, DeleteGiftCardResponse> operation
-              = new DeleteGiftCard.Async(sdkConfiguration, _headers);
+              = new DeleteGiftCard.Async(sdkConfiguration, options, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -185,7 +214,7 @@ public class AsyncGiftCards {
      * @return {@code CompletableFuture<CreateGiftCardResponse>} - The async response
      */
     public CompletableFuture<CreateGiftCardResponse> create(GiftCardCreate giftCardCreate) {
-        return create(JsonNullable.undefined(), giftCardCreate);
+        return create(JsonNullable.undefined(), giftCardCreate, Optional.empty());
     }
 
     /**
@@ -198,6 +227,22 @@ public class AsyncGiftCards {
      * @return {@code CompletableFuture<CreateGiftCardResponse>} - The async response
      */
     public CompletableFuture<CreateGiftCardResponse> create(JsonNullable<String> merchantAccountId, GiftCardCreate giftCardCreate) {
+        return create(merchantAccountId, giftCardCreate, Optional.empty());
+    }
+
+    /**
+     * Create gift card
+     * 
+     * <p>Store a new gift card in the vault.
+     * 
+     * @param merchantAccountId 
+     * @param giftCardCreate 
+     * @param options additional options
+     * @return {@code CompletableFuture<CreateGiftCardResponse>} - The async response
+     */
+    public CompletableFuture<CreateGiftCardResponse> create(
+            JsonNullable<String> merchantAccountId, GiftCardCreate giftCardCreate,
+            Optional<Options> options) {
         CreateGiftCardRequest request =
             CreateGiftCardRequest
                 .builder()
@@ -205,7 +250,7 @@ public class AsyncGiftCards {
                 .giftCardCreate(giftCardCreate)
                 .build();
         AsyncRequestOperation<CreateGiftCardRequest, CreateGiftCardResponse> operation
-              = new CreateGiftCard.Async(sdkConfiguration, _headers);
+              = new CreateGiftCard.Async(sdkConfiguration, options, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }

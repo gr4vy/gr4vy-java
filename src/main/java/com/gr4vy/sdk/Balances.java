@@ -11,7 +11,9 @@ import com.gr4vy.sdk.models.operations.ListGiftCardBalancesRequestBuilder;
 import com.gr4vy.sdk.models.operations.ListGiftCardBalancesResponse;
 import com.gr4vy.sdk.operations.ListGiftCardBalances;
 import com.gr4vy.sdk.utils.Headers;
+import com.gr4vy.sdk.utils.Options;
 import java.lang.String;
+import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 
@@ -55,7 +57,7 @@ public class Balances {
      * @throws RuntimeException subclass if the API call fails
      */
     public ListGiftCardBalancesResponse list(GiftCardBalanceRequest giftCardBalanceRequest) {
-        return list(JsonNullable.undefined(), giftCardBalanceRequest);
+        return list(JsonNullable.undefined(), giftCardBalanceRequest, Optional.empty());
     }
 
     /**
@@ -69,6 +71,23 @@ public class Balances {
      * @throws RuntimeException subclass if the API call fails
      */
     public ListGiftCardBalancesResponse list(JsonNullable<String> merchantAccountId, GiftCardBalanceRequest giftCardBalanceRequest) {
+        return list(merchantAccountId, giftCardBalanceRequest, Optional.empty());
+    }
+
+    /**
+     * List gift card balances
+     * 
+     * <p>Fetch the balances for one or more gift cards.
+     * 
+     * @param merchantAccountId 
+     * @param giftCardBalanceRequest 
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public ListGiftCardBalancesResponse list(
+            JsonNullable<String> merchantAccountId, GiftCardBalanceRequest giftCardBalanceRequest,
+            Optional<Options> options) {
         ListGiftCardBalancesRequest request =
             ListGiftCardBalancesRequest
                 .builder()
@@ -76,7 +95,7 @@ public class Balances {
                 .giftCardBalanceRequest(giftCardBalanceRequest)
                 .build();
         RequestOperation<ListGiftCardBalancesRequest, ListGiftCardBalancesResponse> operation
-              = new ListGiftCardBalances.Sync(sdkConfiguration, _headers);
+              = new ListGiftCardBalances.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

@@ -40,7 +40,9 @@ import com.gr4vy.sdk.operations.CreatePazeDigitalWalletSession;
 import com.gr4vy.sdk.operations.CreatePazeMobileSession;
 import com.gr4vy.sdk.operations.ReviewPazeMobileSession;
 import com.gr4vy.sdk.utils.Headers;
+import com.gr4vy.sdk.utils.Options;
 import java.lang.String;
+import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 
@@ -84,7 +86,7 @@ public class Sessions {
      * @throws RuntimeException subclass if the API call fails
      */
     public CreateGooglePayDigitalWalletSessionResponse googlePay(GooglePaySessionRequest googlePaySessionRequest) {
-        return googlePay(JsonNullable.undefined(), googlePaySessionRequest);
+        return googlePay(JsonNullable.undefined(), googlePaySessionRequest, Optional.empty());
     }
 
     /**
@@ -98,6 +100,23 @@ public class Sessions {
      * @throws RuntimeException subclass if the API call fails
      */
     public CreateGooglePayDigitalWalletSessionResponse googlePay(JsonNullable<String> merchantAccountId, GooglePaySessionRequest googlePaySessionRequest) {
+        return googlePay(merchantAccountId, googlePaySessionRequest, Optional.empty());
+    }
+
+    /**
+     * Create a Google Pay session
+     * 
+     * <p>Create a session for use with Google Pay.
+     * 
+     * @param merchantAccountId 
+     * @param googlePaySessionRequest 
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public CreateGooglePayDigitalWalletSessionResponse googlePay(
+            JsonNullable<String> merchantAccountId, GooglePaySessionRequest googlePaySessionRequest,
+            Optional<Options> options) {
         CreateGooglePayDigitalWalletSessionRequest request =
             CreateGooglePayDigitalWalletSessionRequest
                 .builder()
@@ -105,7 +124,7 @@ public class Sessions {
                 .googlePaySessionRequest(googlePaySessionRequest)
                 .build();
         RequestOperation<CreateGooglePayDigitalWalletSessionRequest, CreateGooglePayDigitalWalletSessionResponse> operation
-              = new CreateGooglePayDigitalWalletSession.Sync(sdkConfiguration, _headers);
+              = new CreateGooglePayDigitalWalletSession.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -130,7 +149,7 @@ public class Sessions {
      * @throws RuntimeException subclass if the API call fails
      */
     public CreateApplePayDigitalWalletSessionResponse applePay(ApplePaySessionRequest applePaySessionRequest) {
-        return applePay(JsonNullable.undefined(), applePaySessionRequest);
+        return applePay(JsonNullable.undefined(), applePaySessionRequest, Optional.empty());
     }
 
     /**
@@ -144,6 +163,23 @@ public class Sessions {
      * @throws RuntimeException subclass if the API call fails
      */
     public CreateApplePayDigitalWalletSessionResponse applePay(JsonNullable<String> merchantAccountId, ApplePaySessionRequest applePaySessionRequest) {
+        return applePay(merchantAccountId, applePaySessionRequest, Optional.empty());
+    }
+
+    /**
+     * Create a Apple Pay session
+     * 
+     * <p>Create a session for use with Apple Pay.
+     * 
+     * @param merchantAccountId 
+     * @param applePaySessionRequest 
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public CreateApplePayDigitalWalletSessionResponse applePay(
+            JsonNullable<String> merchantAccountId, ApplePaySessionRequest applePaySessionRequest,
+            Optional<Options> options) {
         CreateApplePayDigitalWalletSessionRequest request =
             CreateApplePayDigitalWalletSessionRequest
                 .builder()
@@ -151,7 +187,7 @@ public class Sessions {
                 .applePaySessionRequest(applePaySessionRequest)
                 .build();
         RequestOperation<CreateApplePayDigitalWalletSessionRequest, CreateApplePayDigitalWalletSessionResponse> operation
-              = new CreateApplePayDigitalWalletSession.Sync(sdkConfiguration, _headers);
+              = new CreateApplePayDigitalWalletSession.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -176,7 +212,7 @@ public class Sessions {
      * @throws RuntimeException subclass if the API call fails
      */
     public CreatePazeMobileSessionResponse pazeMobileSessionCreate(PazeMobileSessionCreateRequest pazeMobileSessionCreateRequest) {
-        return pazeMobileSessionCreate(JsonNullable.undefined(), pazeMobileSessionCreateRequest);
+        return pazeMobileSessionCreate(JsonNullable.undefined(), pazeMobileSessionCreateRequest, Optional.empty());
     }
 
     /**
@@ -190,6 +226,23 @@ public class Sessions {
      * @throws RuntimeException subclass if the API call fails
      */
     public CreatePazeMobileSessionResponse pazeMobileSessionCreate(JsonNullable<String> merchantAccountId, PazeMobileSessionCreateRequest pazeMobileSessionCreateRequest) {
+        return pazeMobileSessionCreate(merchantAccountId, pazeMobileSessionCreateRequest, Optional.empty());
+    }
+
+    /**
+     * Create a Paze mobile session
+     * 
+     * <p>Create a mobile session for use with Paze.
+     * 
+     * @param merchantAccountId 
+     * @param pazeMobileSessionCreateRequest 
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public CreatePazeMobileSessionResponse pazeMobileSessionCreate(
+            JsonNullable<String> merchantAccountId, PazeMobileSessionCreateRequest pazeMobileSessionCreateRequest,
+            Optional<Options> options) {
         CreatePazeMobileSessionRequest request =
             CreatePazeMobileSessionRequest
                 .builder()
@@ -197,7 +250,7 @@ public class Sessions {
                 .pazeMobileSessionCreateRequest(pazeMobileSessionCreateRequest)
                 .build();
         RequestOperation<CreatePazeMobileSessionRequest, CreatePazeMobileSessionResponse> operation
-              = new CreatePazeMobileSession.Sync(sdkConfiguration, _headers);
+              = new CreatePazeMobileSession.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -222,7 +275,7 @@ public class Sessions {
      * @throws RuntimeException subclass if the API call fails
      */
     public CreatePazeDigitalWalletSessionResponse paze(PazeSessionRequest pazeSessionRequest) {
-        return paze(JsonNullable.undefined(), pazeSessionRequest);
+        return paze(JsonNullable.undefined(), pazeSessionRequest, Optional.empty());
     }
 
     /**
@@ -236,6 +289,23 @@ public class Sessions {
      * @throws RuntimeException subclass if the API call fails
      */
     public CreatePazeDigitalWalletSessionResponse paze(JsonNullable<String> merchantAccountId, PazeSessionRequest pazeSessionRequest) {
+        return paze(merchantAccountId, pazeSessionRequest, Optional.empty());
+    }
+
+    /**
+     * Create a Paze session
+     * 
+     * <p>Create a session for use with Paze.
+     * 
+     * @param merchantAccountId 
+     * @param pazeSessionRequest 
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public CreatePazeDigitalWalletSessionResponse paze(
+            JsonNullable<String> merchantAccountId, PazeSessionRequest pazeSessionRequest,
+            Optional<Options> options) {
         CreatePazeDigitalWalletSessionRequest request =
             CreatePazeDigitalWalletSessionRequest
                 .builder()
@@ -243,7 +313,7 @@ public class Sessions {
                 .pazeSessionRequest(pazeSessionRequest)
                 .build();
         RequestOperation<CreatePazeDigitalWalletSessionRequest, CreatePazeDigitalWalletSessionResponse> operation
-              = new CreatePazeDigitalWalletSession.Sync(sdkConfiguration, _headers);
+              = new CreatePazeDigitalWalletSession.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -270,7 +340,7 @@ public class Sessions {
      * @throws RuntimeException subclass if the API call fails
      */
     public ReviewPazeMobileSessionResponse pazeMobileSessionReview(PazeSessionReviewRequest pazeSessionReviewRequest) {
-        return pazeMobileSessionReview(JsonNullable.undefined(), pazeSessionReviewRequest);
+        return pazeMobileSessionReview(JsonNullable.undefined(), pazeSessionReviewRequest, Optional.empty());
     }
 
     /**
@@ -285,6 +355,24 @@ public class Sessions {
      * @throws RuntimeException subclass if the API call fails
      */
     public ReviewPazeMobileSessionResponse pazeMobileSessionReview(JsonNullable<String> merchantAccountId, PazeSessionReviewRequest pazeSessionReviewRequest) {
+        return pazeMobileSessionReview(merchantAccountId, pazeSessionReviewRequest, Optional.empty());
+    }
+
+    /**
+     * Review a Paze session
+     * 
+     * <p>Review a Paze checkout session and retrieve the selected card, consumer, and shipping address
+     * details.
+     * 
+     * @param merchantAccountId 
+     * @param pazeSessionReviewRequest 
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public ReviewPazeMobileSessionResponse pazeMobileSessionReview(
+            JsonNullable<String> merchantAccountId, PazeSessionReviewRequest pazeSessionReviewRequest,
+            Optional<Options> options) {
         ReviewPazeMobileSessionRequest request =
             ReviewPazeMobileSessionRequest
                 .builder()
@@ -292,7 +380,7 @@ public class Sessions {
                 .pazeSessionReviewRequest(pazeSessionReviewRequest)
                 .build();
         RequestOperation<ReviewPazeMobileSessionRequest, ReviewPazeMobileSessionResponse> operation
-              = new ReviewPazeMobileSession.Sync(sdkConfiguration, _headers);
+              = new ReviewPazeMobileSession.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -317,7 +405,7 @@ public class Sessions {
      * @throws RuntimeException subclass if the API call fails
      */
     public CompletePazeMobileSessionResponse pazeMobileSessionComplete(PazeSessionCompleteRequest pazeSessionCompleteRequest) {
-        return pazeMobileSessionComplete(JsonNullable.undefined(), pazeSessionCompleteRequest);
+        return pazeMobileSessionComplete(JsonNullable.undefined(), pazeSessionCompleteRequest, Optional.empty());
     }
 
     /**
@@ -331,6 +419,23 @@ public class Sessions {
      * @throws RuntimeException subclass if the API call fails
      */
     public CompletePazeMobileSessionResponse pazeMobileSessionComplete(JsonNullable<String> merchantAccountId, PazeSessionCompleteRequest pazeSessionCompleteRequest) {
+        return pazeMobileSessionComplete(merchantAccountId, pazeSessionCompleteRequest, Optional.empty());
+    }
+
+    /**
+     * Complete a Paze session
+     * 
+     * <p>Complete a Paze checkout session and retrieve the secure payload required to settle the payment.
+     * 
+     * @param merchantAccountId 
+     * @param pazeSessionCompleteRequest 
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public CompletePazeMobileSessionResponse pazeMobileSessionComplete(
+            JsonNullable<String> merchantAccountId, PazeSessionCompleteRequest pazeSessionCompleteRequest,
+            Optional<Options> options) {
         CompletePazeMobileSessionRequest request =
             CompletePazeMobileSessionRequest
                 .builder()
@@ -338,7 +443,7 @@ public class Sessions {
                 .pazeSessionCompleteRequest(pazeSessionCompleteRequest)
                 .build();
         RequestOperation<CompletePazeMobileSessionRequest, CompletePazeMobileSessionResponse> operation
-              = new CompletePazeMobileSession.Sync(sdkConfiguration, _headers);
+              = new CompletePazeMobileSession.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -363,8 +468,22 @@ public class Sessions {
      * @throws RuntimeException subclass if the API call fails
      */
     public CreateClickToPayDigitalWalletSessionResponse clickToPay(ClickToPaySessionRequest request) {
+        return clickToPay(request, Optional.empty());
+    }
+
+    /**
+     * Create a Click to Pay session
+     * 
+     * <p>Create a session for use with Click to Pay.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public CreateClickToPayDigitalWalletSessionResponse clickToPay(ClickToPaySessionRequest request, Optional<Options> options) {
         RequestOperation<ClickToPaySessionRequest, CreateClickToPayDigitalWalletSessionResponse> operation
-              = new CreateClickToPayDigitalWalletSession.Sync(sdkConfiguration, _headers);
+              = new CreateClickToPayDigitalWalletSession.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

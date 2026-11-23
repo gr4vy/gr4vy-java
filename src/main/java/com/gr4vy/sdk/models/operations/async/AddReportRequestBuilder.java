@@ -10,8 +10,11 @@ import com.gr4vy.sdk.models.components.ReportCreate;
 import com.gr4vy.sdk.models.operations.AddReportRequest;
 import com.gr4vy.sdk.operations.AddReport;
 import com.gr4vy.sdk.utils.Headers;
+import com.gr4vy.sdk.utils.Options;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.String;
+import java.time.Duration;
+import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -19,6 +22,7 @@ public class AddReportRequestBuilder {
 
     private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
     private ReportCreate reportCreate;
+    private Optional<Duration> timeout = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -43,6 +47,18 @@ public class AddReportRequestBuilder {
         this.reportCreate = reportCreate;
         return this;
     }
+                
+    public AddReportRequestBuilder timeout(Duration timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = Optional.of(timeout);
+        return this;
+    }
+
+    public AddReportRequestBuilder timeout(Optional<Duration> timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = timeout;
+        return this;
+    }
 
 
     private AddReportRequest buildRequest() {
@@ -54,9 +70,12 @@ public class AddReportRequestBuilder {
     }
 
     public CompletableFuture<AddReportResponse> call() {
-        
+        Optional<Options> options = Optional.of(Options.builder()
+            .timeout(timeout)
+            .build());
+
         AsyncRequestOperation<AddReportRequest, AddReportResponse> operation
-              = new AddReport.Async(sdkConfiguration, _headers);
+              = new AddReport.Async(sdkConfiguration, options, _headers);
         AddReportRequest request = buildRequest();
 
         return operation.doRequest(request)

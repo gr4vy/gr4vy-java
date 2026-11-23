@@ -9,14 +9,18 @@ import com.gr4vy.sdk.SDKConfiguration;
 import com.gr4vy.sdk.models.components.GiftCardCreate;
 import com.gr4vy.sdk.operations.CreateGiftCard;
 import com.gr4vy.sdk.utils.Headers;
+import com.gr4vy.sdk.utils.Options;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.String;
+import java.time.Duration;
+import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 public class CreateGiftCardRequestBuilder {
 
     private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
     private GiftCardCreate giftCardCreate;
+    private Optional<Duration> timeout = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -41,6 +45,18 @@ public class CreateGiftCardRequestBuilder {
         this.giftCardCreate = giftCardCreate;
         return this;
     }
+                
+    public CreateGiftCardRequestBuilder timeout(Duration timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = Optional.of(timeout);
+        return this;
+    }
+
+    public CreateGiftCardRequestBuilder timeout(Optional<Duration> timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = timeout;
+        return this;
+    }
 
 
     private CreateGiftCardRequest buildRequest() {
@@ -52,9 +68,12 @@ public class CreateGiftCardRequestBuilder {
     }
 
     public CreateGiftCardResponse call() {
-        
+        Optional<Options> options = Optional.of(Options.builder()
+            .timeout(timeout)
+            .build());
+
         RequestOperation<CreateGiftCardRequest, CreateGiftCardResponse> operation
-              = new CreateGiftCard.Sync(sdkConfiguration, _headers);
+              = new CreateGiftCard.Sync(sdkConfiguration, options, _headers);
         CreateGiftCardRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

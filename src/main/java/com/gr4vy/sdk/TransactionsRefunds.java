@@ -81,6 +81,20 @@ public class TransactionsRefunds {
      * 
      * @param transactionId The ID of the transaction
      * @param merchantAccountId 
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public ListTransactionRefundsResponse list(String transactionId, JsonNullable<String> merchantAccountId) {
+        return list(transactionId, merchantAccountId, Optional.empty());
+    }
+
+    /**
+     * List transaction refunds
+     * 
+     * <p>List refunds for a transaction.
+     * 
+     * @param transactionId The ID of the transaction
+     * @param merchantAccountId 
      * @param options additional options
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
@@ -122,7 +136,7 @@ public class TransactionsRefunds {
      */
     public CreateTransactionRefundResponse create(String transactionId, TransactionRefundCreate transactionRefundCreate) {
         return create(transactionId, JsonNullable.undefined(), JsonNullable.undefined(),
-            transactionRefundCreate);
+            transactionRefundCreate, Optional.empty());
     }
 
     /**
@@ -140,6 +154,27 @@ public class TransactionsRefunds {
     public CreateTransactionRefundResponse create(
             String transactionId, JsonNullable<String> merchantAccountId,
             JsonNullable<String> idempotencyKey, TransactionRefundCreate transactionRefundCreate) {
+        return create(transactionId, merchantAccountId, idempotencyKey,
+            transactionRefundCreate, Optional.empty());
+    }
+
+    /**
+     * Create transaction refund
+     * 
+     * <p>Create a refund for a transaction.
+     * 
+     * @param transactionId The ID of the transaction
+     * @param merchantAccountId 
+     * @param idempotencyKey A unique key that identifies this request. Providing this header will make this an idempotent request. We recommend using V4 UUIDs, or another random string with enough entropy to avoid collisions.
+     * @param transactionRefundCreate 
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public CreateTransactionRefundResponse create(
+            String transactionId, JsonNullable<String> merchantAccountId,
+            JsonNullable<String> idempotencyKey, TransactionRefundCreate transactionRefundCreate,
+            Optional<Options> options) {
         CreateTransactionRefundRequest request =
             CreateTransactionRefundRequest
                 .builder()
@@ -149,7 +184,7 @@ public class TransactionsRefunds {
                 .transactionRefundCreate(transactionRefundCreate)
                 .build();
         RequestOperation<CreateTransactionRefundRequest, CreateTransactionRefundResponse> operation
-              = new CreateTransactionRefund.Sync(sdkConfiguration, _headers);
+              = new CreateTransactionRefund.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -176,6 +211,24 @@ public class TransactionsRefunds {
      */
     public GetTransactionRefundResponse get(String transactionId, String refundId) {
         return get(transactionId, refundId, JsonNullable.undefined(),
+            Optional.empty());
+    }
+
+    /**
+     * Get transaction refund
+     * 
+     * <p>Fetch refund for a transaction.
+     * 
+     * @param transactionId The ID of the transaction
+     * @param refundId The ID of the refund
+     * @param merchantAccountId 
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public GetTransactionRefundResponse get(
+            String transactionId, String refundId,
+            JsonNullable<String> merchantAccountId) {
+        return get(transactionId, refundId, merchantAccountId,
             Optional.empty());
     }
 

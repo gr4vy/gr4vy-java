@@ -77,6 +77,24 @@ public class PaymentServiceTokens {
      * @param paymentMethodId The ID of the payment method
      * @param paymentServiceId The ID of the payment service
      * @param merchantAccountId 
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public ListPaymentMethodPaymentServiceTokensResponse list(
+            String paymentMethodId, JsonNullable<String> paymentServiceId,
+            JsonNullable<String> merchantAccountId) {
+        return list(paymentMethodId, paymentServiceId, merchantAccountId,
+            Optional.empty());
+    }
+
+    /**
+     * List payment service tokens
+     * 
+     * <p>List all gateway tokens stored for a payment method.
+     * 
+     * @param paymentMethodId The ID of the payment method
+     * @param paymentServiceId The ID of the payment service
+     * @param merchantAccountId 
      * @param options additional options
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
@@ -118,7 +136,8 @@ public class PaymentServiceTokens {
      * @throws RuntimeException subclass if the API call fails
      */
     public CreatePaymentMethodPaymentServiceTokenResponse create(String paymentMethodId, PaymentServiceTokenCreate paymentServiceTokenCreate) {
-        return create(paymentMethodId, JsonNullable.undefined(), paymentServiceTokenCreate);
+        return create(paymentMethodId, JsonNullable.undefined(), paymentServiceTokenCreate,
+            Optional.empty());
     }
 
     /**
@@ -135,6 +154,25 @@ public class PaymentServiceTokens {
     public CreatePaymentMethodPaymentServiceTokenResponse create(
             String paymentMethodId, JsonNullable<String> merchantAccountId,
             PaymentServiceTokenCreate paymentServiceTokenCreate) {
+        return create(paymentMethodId, merchantAccountId, paymentServiceTokenCreate,
+            Optional.empty());
+    }
+
+    /**
+     * Create payment service token
+     * 
+     * <p>Create a gateway tokens for a payment method.
+     * 
+     * @param paymentMethodId The ID of the payment method
+     * @param merchantAccountId 
+     * @param paymentServiceTokenCreate 
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public CreatePaymentMethodPaymentServiceTokenResponse create(
+            String paymentMethodId, JsonNullable<String> merchantAccountId,
+            PaymentServiceTokenCreate paymentServiceTokenCreate, Optional<Options> options) {
         CreatePaymentMethodPaymentServiceTokenRequest request =
             CreatePaymentMethodPaymentServiceTokenRequest
                 .builder()
@@ -143,7 +181,7 @@ public class PaymentServiceTokens {
                 .paymentServiceTokenCreate(paymentServiceTokenCreate)
                 .build();
         RequestOperation<CreatePaymentMethodPaymentServiceTokenRequest, CreatePaymentMethodPaymentServiceTokenResponse> operation
-              = new CreatePaymentMethodPaymentServiceToken.Sync(sdkConfiguration, _headers);
+              = new CreatePaymentMethodPaymentServiceToken.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -169,7 +207,8 @@ public class PaymentServiceTokens {
      * @throws RuntimeException subclass if the API call fails
      */
     public DeletePaymentMethodPaymentServiceTokenResponse delete(String paymentMethodId, String paymentServiceTokenId) {
-        return delete(paymentMethodId, paymentServiceTokenId, JsonNullable.undefined());
+        return delete(paymentMethodId, paymentServiceTokenId, JsonNullable.undefined(),
+            Optional.empty());
     }
 
     /**
@@ -186,6 +225,25 @@ public class PaymentServiceTokens {
     public DeletePaymentMethodPaymentServiceTokenResponse delete(
             String paymentMethodId, String paymentServiceTokenId,
             JsonNullable<String> merchantAccountId) {
+        return delete(paymentMethodId, paymentServiceTokenId, merchantAccountId,
+            Optional.empty());
+    }
+
+    /**
+     * Delete payment service token
+     * 
+     * <p>Delete a gateway tokens for a payment method.
+     * 
+     * @param paymentMethodId The ID of the payment method
+     * @param paymentServiceTokenId The ID of the payment service token
+     * @param merchantAccountId 
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public DeletePaymentMethodPaymentServiceTokenResponse delete(
+            String paymentMethodId, String paymentServiceTokenId,
+            JsonNullable<String> merchantAccountId, Optional<Options> options) {
         DeletePaymentMethodPaymentServiceTokenRequest request =
             DeletePaymentMethodPaymentServiceTokenRequest
                 .builder()
@@ -194,7 +252,7 @@ public class PaymentServiceTokens {
                 .merchantAccountId(merchantAccountId)
                 .build();
         RequestOperation<DeletePaymentMethodPaymentServiceTokenRequest, DeletePaymentMethodPaymentServiceTokenResponse> operation
-              = new DeletePaymentMethodPaymentServiceToken.Sync(sdkConfiguration, _headers);
+              = new DeletePaymentMethodPaymentServiceToken.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

@@ -75,7 +75,8 @@ public class ShippingDetails {
      * @throws RuntimeException subclass if the API call fails
      */
     public AddBuyerShippingDetailsResponse create(String buyerId, ShippingDetailsCreate shippingDetailsCreate) {
-        return create(buyerId, JsonNullable.undefined(), shippingDetailsCreate);
+        return create(buyerId, JsonNullable.undefined(), shippingDetailsCreate,
+            Optional.empty());
     }
 
     /**
@@ -92,6 +93,25 @@ public class ShippingDetails {
     public AddBuyerShippingDetailsResponse create(
             String buyerId, JsonNullable<String> merchantAccountId,
             ShippingDetailsCreate shippingDetailsCreate) {
+        return create(buyerId, merchantAccountId, shippingDetailsCreate,
+            Optional.empty());
+    }
+
+    /**
+     * Add buyer shipping details
+     * 
+     * <p>Associate shipping details to a buyer.
+     * 
+     * @param buyerId The ID of the buyer to add shipping details to.
+     * @param merchantAccountId 
+     * @param shippingDetailsCreate 
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public AddBuyerShippingDetailsResponse create(
+            String buyerId, JsonNullable<String> merchantAccountId,
+            ShippingDetailsCreate shippingDetailsCreate, Optional<Options> options) {
         AddBuyerShippingDetailsRequest request =
             AddBuyerShippingDetailsRequest
                 .builder()
@@ -100,7 +120,7 @@ public class ShippingDetails {
                 .shippingDetailsCreate(shippingDetailsCreate)
                 .build();
         RequestOperation<AddBuyerShippingDetailsRequest, AddBuyerShippingDetailsResponse> operation
-              = new AddBuyerShippingDetails.Sync(sdkConfiguration, _headers);
+              = new AddBuyerShippingDetails.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -126,6 +146,20 @@ public class ShippingDetails {
      */
     public ListBuyerShippingDetailsResponse list(String buyerId) {
         return list(buyerId, JsonNullable.undefined(), Optional.empty());
+    }
+
+    /**
+     * List a buyer's shipping details
+     * 
+     * <p>List all the shipping details associated to a specific buyer.
+     * 
+     * @param buyerId The ID of the buyer to retrieve shipping details for.
+     * @param merchantAccountId 
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public ListBuyerShippingDetailsResponse list(String buyerId, JsonNullable<String> merchantAccountId) {
+        return list(buyerId, merchantAccountId, Optional.empty());
     }
 
     /**
@@ -187,6 +221,24 @@ public class ShippingDetails {
      * @param buyerId The ID of the buyer to retrieve shipping details for.
      * @param shippingDetailsId The ID of the shipping details to retrieve.
      * @param merchantAccountId 
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public GetBuyerShippingDetailsResponse get(
+            String buyerId, String shippingDetailsId,
+            JsonNullable<String> merchantAccountId) {
+        return get(buyerId, shippingDetailsId, merchantAccountId,
+            Optional.empty());
+    }
+
+    /**
+     * Get buyer shipping details
+     * 
+     * <p>Get a buyer's shipping details.
+     * 
+     * @param buyerId The ID of the buyer to retrieve shipping details for.
+     * @param shippingDetailsId The ID of the shipping details to retrieve.
+     * @param merchantAccountId 
      * @param options additional options
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
@@ -232,7 +284,7 @@ public class ShippingDetails {
             String buyerId, String shippingDetailsId,
             ShippingDetailsUpdate shippingDetailsUpdate) {
         return update(buyerId, shippingDetailsId, JsonNullable.undefined(),
-            shippingDetailsUpdate);
+            shippingDetailsUpdate, Optional.empty());
     }
 
     /**
@@ -250,6 +302,27 @@ public class ShippingDetails {
     public UpdateBuyerShippingDetailsResponse update(
             String buyerId, String shippingDetailsId,
             JsonNullable<String> merchantAccountId, ShippingDetailsUpdate shippingDetailsUpdate) {
+        return update(buyerId, shippingDetailsId, merchantAccountId,
+            shippingDetailsUpdate, Optional.empty());
+    }
+
+    /**
+     * Update a buyer's shipping details
+     * 
+     * <p>Update the shipping details associated to a specific buyer.
+     * 
+     * @param buyerId The ID of the buyer to update shipping details for.
+     * @param shippingDetailsId The ID of the shipping details to update.
+     * @param merchantAccountId 
+     * @param shippingDetailsUpdate 
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public UpdateBuyerShippingDetailsResponse update(
+            String buyerId, String shippingDetailsId,
+            JsonNullable<String> merchantAccountId, ShippingDetailsUpdate shippingDetailsUpdate,
+            Optional<Options> options) {
         UpdateBuyerShippingDetailsRequest request =
             UpdateBuyerShippingDetailsRequest
                 .builder()
@@ -259,7 +332,7 @@ public class ShippingDetails {
                 .shippingDetailsUpdate(shippingDetailsUpdate)
                 .build();
         RequestOperation<UpdateBuyerShippingDetailsRequest, UpdateBuyerShippingDetailsResponse> operation
-              = new UpdateBuyerShippingDetails.Sync(sdkConfiguration, _headers);
+              = new UpdateBuyerShippingDetails.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -285,7 +358,8 @@ public class ShippingDetails {
      * @throws RuntimeException subclass if the API call fails
      */
     public DeleteBuyerShippingDetailsResponse delete(String buyerId, String shippingDetailsId) {
-        return delete(buyerId, shippingDetailsId, JsonNullable.undefined());
+        return delete(buyerId, shippingDetailsId, JsonNullable.undefined(),
+            Optional.empty());
     }
 
     /**
@@ -302,6 +376,25 @@ public class ShippingDetails {
     public DeleteBuyerShippingDetailsResponse delete(
             String buyerId, String shippingDetailsId,
             JsonNullable<String> merchantAccountId) {
+        return delete(buyerId, shippingDetailsId, merchantAccountId,
+            Optional.empty());
+    }
+
+    /**
+     * Delete a buyer's shipping details
+     * 
+     * <p>Delete the shipping details associated to a specific buyer.
+     * 
+     * @param buyerId The ID of the buyer to delete shipping details for.
+     * @param shippingDetailsId The ID of the shipping details to delete.
+     * @param merchantAccountId 
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public DeleteBuyerShippingDetailsResponse delete(
+            String buyerId, String shippingDetailsId,
+            JsonNullable<String> merchantAccountId, Optional<Options> options) {
         DeleteBuyerShippingDetailsRequest request =
             DeleteBuyerShippingDetailsRequest
                 .builder()
@@ -310,7 +403,7 @@ public class ShippingDetails {
                 .merchantAccountId(merchantAccountId)
                 .build();
         RequestOperation<DeleteBuyerShippingDetailsRequest, DeleteBuyerShippingDetailsResponse> operation
-              = new DeleteBuyerShippingDetails.Sync(sdkConfiguration, _headers);
+              = new DeleteBuyerShippingDetails.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

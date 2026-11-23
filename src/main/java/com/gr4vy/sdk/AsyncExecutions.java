@@ -81,6 +81,25 @@ public class AsyncExecutions {
      * @param cursor A pointer to the page of results to return.
      * @param limit The maximum number of items that are at returned.
      * @param merchantAccountId 
+     * @return {@code CompletableFuture<ListReportExecutionsResponse>} - The async response
+     */
+    public CompletableFuture<ListReportExecutionsResponse> list(
+            String reportId, JsonNullable<String> cursor,
+            Optional<Long> limit, JsonNullable<String> merchantAccountId) {
+        return list(
+                reportId, cursor, limit,
+                merchantAccountId, Optional.empty());
+    }
+
+    /**
+     * List executions for report
+     * 
+     * <p>List all executions of a specific report.
+     * 
+     * @param reportId The ID of the report to retrieve details for.
+     * @param cursor A pointer to the page of results to return.
+     * @param limit The maximum number of items that are at returned.
+     * @param merchantAccountId 
      * @param options additional options
      * @return {@code CompletableFuture<ListReportExecutionsResponse>} - The async response
      */
@@ -128,7 +147,7 @@ public class AsyncExecutions {
     public CompletableFuture<CreateReportExecutionUrlResponse> url(String reportId, String reportExecutionId) {
         return url(
                 reportId, reportExecutionId, JsonNullable.undefined(),
-                Optional.empty());
+                Optional.empty(), Optional.empty());
     }
 
     /**
@@ -145,6 +164,27 @@ public class AsyncExecutions {
     public CompletableFuture<CreateReportExecutionUrlResponse> url(
             String reportId, String reportExecutionId,
             JsonNullable<String> merchantAccountId, Optional<? extends ReportExecutionUrlGenerate> reportExecutionUrlGenerate) {
+        return url(
+                reportId, reportExecutionId, merchantAccountId,
+                reportExecutionUrlGenerate, Optional.empty());
+    }
+
+    /**
+     * Create URL for executed report
+     * 
+     * <p>Creates a download URL for a specific execution of a report.
+     * 
+     * @param reportId The ID of the report to retrieve a URL for.
+     * @param reportExecutionId The ID of the execution of a report to retrieve a URL for.
+     * @param merchantAccountId 
+     * @param reportExecutionUrlGenerate 
+     * @param options additional options
+     * @return {@code CompletableFuture<CreateReportExecutionUrlResponse>} - The async response
+     */
+    public CompletableFuture<CreateReportExecutionUrlResponse> url(
+            String reportId, String reportExecutionId,
+            JsonNullable<String> merchantAccountId, Optional<? extends ReportExecutionUrlGenerate> reportExecutionUrlGenerate,
+            Optional<Options> options) {
         CreateReportExecutionUrlRequest request =
             CreateReportExecutionUrlRequest
                 .builder()
@@ -154,7 +194,7 @@ public class AsyncExecutions {
                 .reportExecutionUrlGenerate(reportExecutionUrlGenerate)
                 .build();
         AsyncRequestOperation<CreateReportExecutionUrlRequest, CreateReportExecutionUrlResponse> operation
-              = new CreateReportExecutionUrl.Async(sdkConfiguration, _headers);
+              = new CreateReportExecutionUrl.Async(sdkConfiguration, options, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -181,6 +221,19 @@ public class AsyncExecutions {
      */
     public CompletableFuture<GetReportExecutionResponse> get(String reportExecutionId) {
         return get(reportExecutionId, JsonNullable.undefined(), Optional.empty());
+    }
+
+    /**
+     * Get executed report
+     * 
+     * <p>Fetch a specific executed report.
+     * 
+     * @param reportExecutionId The ID of the execution of a report to retrieve details for.
+     * @param merchantAccountId 
+     * @return {@code CompletableFuture<GetReportExecutionResponse>} - The async response
+     */
+    public CompletableFuture<GetReportExecutionResponse> get(String reportExecutionId, JsonNullable<String> merchantAccountId) {
+        return get(reportExecutionId, merchantAccountId, Optional.empty());
     }
 
     /**

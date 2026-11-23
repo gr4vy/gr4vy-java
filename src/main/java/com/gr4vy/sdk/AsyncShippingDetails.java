@@ -76,7 +76,9 @@ public class AsyncShippingDetails {
      * @return {@code CompletableFuture<AddBuyerShippingDetailsResponse>} - The async response
      */
     public CompletableFuture<AddBuyerShippingDetailsResponse> create(String buyerId, ShippingDetailsCreate shippingDetailsCreate) {
-        return create(buyerId, JsonNullable.undefined(), shippingDetailsCreate);
+        return create(
+                buyerId, JsonNullable.undefined(), shippingDetailsCreate,
+                Optional.empty());
     }
 
     /**
@@ -92,6 +94,25 @@ public class AsyncShippingDetails {
     public CompletableFuture<AddBuyerShippingDetailsResponse> create(
             String buyerId, JsonNullable<String> merchantAccountId,
             ShippingDetailsCreate shippingDetailsCreate) {
+        return create(
+                buyerId, merchantAccountId, shippingDetailsCreate,
+                Optional.empty());
+    }
+
+    /**
+     * Add buyer shipping details
+     * 
+     * <p>Associate shipping details to a buyer.
+     * 
+     * @param buyerId The ID of the buyer to add shipping details to.
+     * @param merchantAccountId 
+     * @param shippingDetailsCreate 
+     * @param options additional options
+     * @return {@code CompletableFuture<AddBuyerShippingDetailsResponse>} - The async response
+     */
+    public CompletableFuture<AddBuyerShippingDetailsResponse> create(
+            String buyerId, JsonNullable<String> merchantAccountId,
+            ShippingDetailsCreate shippingDetailsCreate, Optional<Options> options) {
         AddBuyerShippingDetailsRequest request =
             AddBuyerShippingDetailsRequest
                 .builder()
@@ -100,7 +121,7 @@ public class AsyncShippingDetails {
                 .shippingDetailsCreate(shippingDetailsCreate)
                 .build();
         AsyncRequestOperation<AddBuyerShippingDetailsRequest, AddBuyerShippingDetailsResponse> operation
-              = new AddBuyerShippingDetails.Async(sdkConfiguration, _headers);
+              = new AddBuyerShippingDetails.Async(sdkConfiguration, options, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -127,6 +148,19 @@ public class AsyncShippingDetails {
      */
     public CompletableFuture<ListBuyerShippingDetailsResponse> list(String buyerId) {
         return list(buyerId, JsonNullable.undefined(), Optional.empty());
+    }
+
+    /**
+     * List a buyer's shipping details
+     * 
+     * <p>List all the shipping details associated to a specific buyer.
+     * 
+     * @param buyerId The ID of the buyer to retrieve shipping details for.
+     * @param merchantAccountId 
+     * @return {@code CompletableFuture<ListBuyerShippingDetailsResponse>} - The async response
+     */
+    public CompletableFuture<ListBuyerShippingDetailsResponse> list(String buyerId, JsonNullable<String> merchantAccountId) {
+        return list(buyerId, merchantAccountId, Optional.empty());
     }
 
     /**
@@ -191,6 +225,24 @@ public class AsyncShippingDetails {
      * @param buyerId The ID of the buyer to retrieve shipping details for.
      * @param shippingDetailsId The ID of the shipping details to retrieve.
      * @param merchantAccountId 
+     * @return {@code CompletableFuture<GetBuyerShippingDetailsResponse>} - The async response
+     */
+    public CompletableFuture<GetBuyerShippingDetailsResponse> get(
+            String buyerId, String shippingDetailsId,
+            JsonNullable<String> merchantAccountId) {
+        return get(
+                buyerId, shippingDetailsId, merchantAccountId,
+                Optional.empty());
+    }
+
+    /**
+     * Get buyer shipping details
+     * 
+     * <p>Get a buyer's shipping details.
+     * 
+     * @param buyerId The ID of the buyer to retrieve shipping details for.
+     * @param shippingDetailsId The ID of the shipping details to retrieve.
+     * @param merchantAccountId 
      * @param options additional options
      * @return {@code CompletableFuture<GetBuyerShippingDetailsResponse>} - The async response
      */
@@ -239,7 +291,7 @@ public class AsyncShippingDetails {
             ShippingDetailsUpdate shippingDetailsUpdate) {
         return update(
                 buyerId, shippingDetailsId, JsonNullable.undefined(),
-                shippingDetailsUpdate);
+                shippingDetailsUpdate, Optional.empty());
     }
 
     /**
@@ -256,6 +308,27 @@ public class AsyncShippingDetails {
     public CompletableFuture<UpdateBuyerShippingDetailsResponse> update(
             String buyerId, String shippingDetailsId,
             JsonNullable<String> merchantAccountId, ShippingDetailsUpdate shippingDetailsUpdate) {
+        return update(
+                buyerId, shippingDetailsId, merchantAccountId,
+                shippingDetailsUpdate, Optional.empty());
+    }
+
+    /**
+     * Update a buyer's shipping details
+     * 
+     * <p>Update the shipping details associated to a specific buyer.
+     * 
+     * @param buyerId The ID of the buyer to update shipping details for.
+     * @param shippingDetailsId The ID of the shipping details to update.
+     * @param merchantAccountId 
+     * @param shippingDetailsUpdate 
+     * @param options additional options
+     * @return {@code CompletableFuture<UpdateBuyerShippingDetailsResponse>} - The async response
+     */
+    public CompletableFuture<UpdateBuyerShippingDetailsResponse> update(
+            String buyerId, String shippingDetailsId,
+            JsonNullable<String> merchantAccountId, ShippingDetailsUpdate shippingDetailsUpdate,
+            Optional<Options> options) {
         UpdateBuyerShippingDetailsRequest request =
             UpdateBuyerShippingDetailsRequest
                 .builder()
@@ -265,7 +338,7 @@ public class AsyncShippingDetails {
                 .shippingDetailsUpdate(shippingDetailsUpdate)
                 .build();
         AsyncRequestOperation<UpdateBuyerShippingDetailsRequest, UpdateBuyerShippingDetailsResponse> operation
-              = new UpdateBuyerShippingDetails.Async(sdkConfiguration, _headers);
+              = new UpdateBuyerShippingDetails.Async(sdkConfiguration, options, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -292,7 +365,9 @@ public class AsyncShippingDetails {
      * @return {@code CompletableFuture<DeleteBuyerShippingDetailsResponse>} - The async response
      */
     public CompletableFuture<DeleteBuyerShippingDetailsResponse> delete(String buyerId, String shippingDetailsId) {
-        return delete(buyerId, shippingDetailsId, JsonNullable.undefined());
+        return delete(
+                buyerId, shippingDetailsId, JsonNullable.undefined(),
+                Optional.empty());
     }
 
     /**
@@ -308,6 +383,25 @@ public class AsyncShippingDetails {
     public CompletableFuture<DeleteBuyerShippingDetailsResponse> delete(
             String buyerId, String shippingDetailsId,
             JsonNullable<String> merchantAccountId) {
+        return delete(
+                buyerId, shippingDetailsId, merchantAccountId,
+                Optional.empty());
+    }
+
+    /**
+     * Delete a buyer's shipping details
+     * 
+     * <p>Delete the shipping details associated to a specific buyer.
+     * 
+     * @param buyerId The ID of the buyer to delete shipping details for.
+     * @param shippingDetailsId The ID of the shipping details to delete.
+     * @param merchantAccountId 
+     * @param options additional options
+     * @return {@code CompletableFuture<DeleteBuyerShippingDetailsResponse>} - The async response
+     */
+    public CompletableFuture<DeleteBuyerShippingDetailsResponse> delete(
+            String buyerId, String shippingDetailsId,
+            JsonNullable<String> merchantAccountId, Optional<Options> options) {
         DeleteBuyerShippingDetailsRequest request =
             DeleteBuyerShippingDetailsRequest
                 .builder()
@@ -316,7 +410,7 @@ public class AsyncShippingDetails {
                 .merchantAccountId(merchantAccountId)
                 .build();
         AsyncRequestOperation<DeleteBuyerShippingDetailsRequest, DeleteBuyerShippingDetailsResponse> operation
-              = new DeleteBuyerShippingDetails.Async(sdkConfiguration, _headers);
+              = new DeleteBuyerShippingDetails.Async(sdkConfiguration, options, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }

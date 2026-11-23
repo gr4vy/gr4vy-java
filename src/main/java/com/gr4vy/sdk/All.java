@@ -11,7 +11,9 @@ import com.gr4vy.sdk.models.operations.CreateFullTransactionRefundRequestBuilder
 import com.gr4vy.sdk.models.operations.CreateFullTransactionRefundResponse;
 import com.gr4vy.sdk.operations.CreateFullTransactionRefund;
 import com.gr4vy.sdk.utils.Headers;
+import com.gr4vy.sdk.utils.Options;
 import java.lang.String;
+import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 
@@ -56,7 +58,7 @@ public class All {
      */
     public CreateFullTransactionRefundResponse create(String transactionId) {
         return create(transactionId, JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined());
+            JsonNullable.undefined(), Optional.empty());
     }
 
     /**
@@ -74,6 +76,27 @@ public class All {
     public CreateFullTransactionRefundResponse create(
             String transactionId, JsonNullable<String> merchantAccountId,
             JsonNullable<String> idempotencyKey, JsonNullable<? extends TransactionRefundAllCreate> transactionRefundAllCreate) {
+        return create(transactionId, merchantAccountId, idempotencyKey,
+            transactionRefundAllCreate, Optional.empty());
+    }
+
+    /**
+     * Create batch transaction refund
+     * 
+     * <p>Create a refund for all instruments on a transaction.
+     * 
+     * @param transactionId The ID of the transaction
+     * @param merchantAccountId 
+     * @param idempotencyKey A unique key that identifies this request. Providing this header will make this an idempotent request. We recommend using V4 UUIDs, or another random string with enough entropy to avoid collisions.
+     * @param transactionRefundAllCreate 
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public CreateFullTransactionRefundResponse create(
+            String transactionId, JsonNullable<String> merchantAccountId,
+            JsonNullable<String> idempotencyKey, JsonNullable<? extends TransactionRefundAllCreate> transactionRefundAllCreate,
+            Optional<Options> options) {
         CreateFullTransactionRefundRequest request =
             CreateFullTransactionRefundRequest
                 .builder()
@@ -83,7 +106,7 @@ public class All {
                 .transactionRefundAllCreate(transactionRefundAllCreate)
                 .build();
         RequestOperation<CreateFullTransactionRefundRequest, CreateFullTransactionRefundResponse> operation
-              = new CreateFullTransactionRefund.Sync(sdkConfiguration, _headers);
+              = new CreateFullTransactionRefund.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

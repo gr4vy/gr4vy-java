@@ -66,6 +66,20 @@ public class Refunds {
      * 
      * @param refundId The ID of the refund
      * @param merchantAccountId 
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public GetRefundResponse get(String refundId, JsonNullable<String> merchantAccountId) {
+        return get(refundId, merchantAccountId, Optional.empty());
+    }
+
+    /**
+     * Get refund
+     * 
+     * <p>Fetch a refund.
+     * 
+     * @param refundId The ID of the refund
+     * @param merchantAccountId 
      * @param options additional options
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails

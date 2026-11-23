@@ -10,8 +10,11 @@ import com.gr4vy.sdk.models.components.GiftCardBalanceRequest;
 import com.gr4vy.sdk.models.operations.ListGiftCardBalancesRequest;
 import com.gr4vy.sdk.operations.ListGiftCardBalances;
 import com.gr4vy.sdk.utils.Headers;
+import com.gr4vy.sdk.utils.Options;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.String;
+import java.time.Duration;
+import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -19,6 +22,7 @@ public class ListGiftCardBalancesRequestBuilder {
 
     private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
     private GiftCardBalanceRequest giftCardBalanceRequest;
+    private Optional<Duration> timeout = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -43,6 +47,18 @@ public class ListGiftCardBalancesRequestBuilder {
         this.giftCardBalanceRequest = giftCardBalanceRequest;
         return this;
     }
+                
+    public ListGiftCardBalancesRequestBuilder timeout(Duration timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = Optional.of(timeout);
+        return this;
+    }
+
+    public ListGiftCardBalancesRequestBuilder timeout(Optional<Duration> timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = timeout;
+        return this;
+    }
 
 
     private ListGiftCardBalancesRequest buildRequest() {
@@ -54,9 +70,12 @@ public class ListGiftCardBalancesRequestBuilder {
     }
 
     public CompletableFuture<ListGiftCardBalancesResponse> call() {
-        
+        Optional<Options> options = Optional.of(Options.builder()
+            .timeout(timeout)
+            .build());
+
         AsyncRequestOperation<ListGiftCardBalancesRequest, ListGiftCardBalancesResponse> operation
-              = new ListGiftCardBalances.Async(sdkConfiguration, _headers);
+              = new ListGiftCardBalances.Async(sdkConfiguration, options, _headers);
         ListGiftCardBalancesRequest request = buildRequest();
 
         return operation.doRequest(request)

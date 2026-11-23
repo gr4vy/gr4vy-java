@@ -9,14 +9,18 @@ import com.gr4vy.sdk.SDKConfiguration;
 import com.gr4vy.sdk.models.operations.DeleteThreeDsConfigurationRequest;
 import com.gr4vy.sdk.operations.DeleteThreeDsConfiguration;
 import com.gr4vy.sdk.utils.Headers;
+import com.gr4vy.sdk.utils.Options;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.String;
+import java.time.Duration;
+import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
 public class DeleteThreeDsConfigurationRequestBuilder {
 
     private String merchantAccountId;
     private String threeDsConfigurationId;
+    private Optional<Duration> timeout = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -35,6 +39,18 @@ public class DeleteThreeDsConfigurationRequestBuilder {
         this.threeDsConfigurationId = threeDsConfigurationId;
         return this;
     }
+                
+    public DeleteThreeDsConfigurationRequestBuilder timeout(Duration timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = Optional.of(timeout);
+        return this;
+    }
+
+    public DeleteThreeDsConfigurationRequestBuilder timeout(Optional<Duration> timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = timeout;
+        return this;
+    }
 
 
     private DeleteThreeDsConfigurationRequest buildRequest() {
@@ -46,9 +62,12 @@ public class DeleteThreeDsConfigurationRequestBuilder {
     }
 
     public CompletableFuture<DeleteThreeDsConfigurationResponse> call() {
-        
+        Optional<Options> options = Optional.of(Options.builder()
+            .timeout(timeout)
+            .build());
+
         AsyncRequestOperation<DeleteThreeDsConfigurationRequest, DeleteThreeDsConfigurationResponse> operation
-              = new DeleteThreeDsConfiguration.Async(sdkConfiguration, _headers);
+              = new DeleteThreeDsConfiguration.Async(sdkConfiguration, options, _headers);
         DeleteThreeDsConfigurationRequest request = buildRequest();
 
         return operation.doRequest(request)

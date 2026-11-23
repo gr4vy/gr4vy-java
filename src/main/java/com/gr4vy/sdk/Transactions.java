@@ -174,7 +174,7 @@ public class Transactions {
      */
     public CreateTransactionResponse create(TransactionCreate transactionCreate) {
         return create(JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
-            transactionCreate);
+            transactionCreate, Optional.empty());
     }
 
     /**
@@ -195,6 +195,30 @@ public class Transactions {
     public CreateTransactionResponse create(
             JsonNullable<String> merchantAccountId, JsonNullable<String> idempotencyKey,
             Optional<String> xForwardedFor, TransactionCreate transactionCreate) {
+        return create(merchantAccountId, idempotencyKey, xForwardedFor,
+            transactionCreate, Optional.empty());
+    }
+
+    /**
+     * Create transaction
+     * 
+     * <p>Create a new transaction using a supported payment method. If additional buyer authorization is
+     * required, an approval URL will be returned. Duplicated gift card numbers are not supported.
+     * 
+     * @param merchantAccountId 
+     * @param idempotencyKey A unique key that identifies this request. Providing this header will make this an idempotent request. We recommend using V4 UUIDs, or another random string with enough entropy to avoid collisions.
+     * @param xForwardedFor The IP address to forward from the customer. Use this when calling
+     *         our API from the server side to ensure the customer's address is
+     *         passed to downstream services, rather than your server IP.
+     * @param transactionCreate 
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public CreateTransactionResponse create(
+            JsonNullable<String> merchantAccountId, JsonNullable<String> idempotencyKey,
+            Optional<String> xForwardedFor, TransactionCreate transactionCreate,
+            Optional<Options> options) {
         CreateTransactionRequest request =
             CreateTransactionRequest
                 .builder()
@@ -204,7 +228,7 @@ public class Transactions {
                 .transactionCreate(transactionCreate)
                 .build();
         RequestOperation<CreateTransactionRequest, CreateTransactionResponse> operation
-              = new CreateTransaction.Sync(sdkConfiguration, _headers);
+              = new CreateTransaction.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -230,6 +254,20 @@ public class Transactions {
      */
     public GetTransactionResponse get(String transactionId) {
         return get(transactionId, JsonNullable.undefined(), Optional.empty());
+    }
+
+    /**
+     * Get transaction
+     * 
+     * <p>Retrieve the details of a transaction by its unique identifier.
+     * 
+     * @param transactionId The ID of the transaction
+     * @param merchantAccountId 
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public GetTransactionResponse get(String transactionId, JsonNullable<String> merchantAccountId) {
+        return get(transactionId, merchantAccountId, Optional.empty());
     }
 
     /**
@@ -279,7 +317,8 @@ public class Transactions {
      * @throws RuntimeException subclass if the API call fails
      */
     public UpdateTransactionResponse update(String transactionId, TransactionUpdate transactionUpdate) {
-        return update(transactionId, JsonNullable.undefined(), transactionUpdate);
+        return update(transactionId, JsonNullable.undefined(), transactionUpdate,
+            Optional.empty());
     }
 
     /**
@@ -296,6 +335,25 @@ public class Transactions {
     public UpdateTransactionResponse update(
             String transactionId, JsonNullable<String> merchantAccountId,
             TransactionUpdate transactionUpdate) {
+        return update(transactionId, merchantAccountId, transactionUpdate,
+            Optional.empty());
+    }
+
+    /**
+     * Manually update a transaction
+     * 
+     * <p>Manually updates a transaction.
+     * 
+     * @param transactionId The ID of the transaction
+     * @param merchantAccountId 
+     * @param transactionUpdate 
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public UpdateTransactionResponse update(
+            String transactionId, JsonNullable<String> merchantAccountId,
+            TransactionUpdate transactionUpdate, Optional<Options> options) {
         UpdateTransactionRequest request =
             UpdateTransactionRequest
                 .builder()
@@ -304,7 +362,7 @@ public class Transactions {
                 .transactionUpdate(transactionUpdate)
                 .build();
         RequestOperation<UpdateTransactionRequest, UpdateTransactionResponse> operation
-              = new UpdateTransaction.Sync(sdkConfiguration, _headers);
+              = new UpdateTransaction.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -331,8 +389,23 @@ public class Transactions {
      * @throws RuntimeException subclass if the API call fails
      */
     public CaptureTransactionResponse capture(CaptureTransactionRequest request) {
+        return capture(request, Optional.empty());
+    }
+
+    /**
+     * Capture transaction
+     * 
+     * <p>Captures a previously authorized transaction. You can capture the full or a partial amount, as long
+     * as it does not exceed the authorized amount (unless over-capture is enabled).
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public CaptureTransactionResponse capture(CaptureTransactionRequest request, Optional<Options> options) {
         RequestOperation<CaptureTransactionRequest, CaptureTransactionResponse> operation
-              = new CaptureTransaction.Sync(sdkConfiguration, _headers);
+              = new CaptureTransaction.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -366,7 +439,7 @@ public class Transactions {
      */
     public VoidTransactionResponse void_(String transactionId) {
         return void_(transactionId, JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined());
+            JsonNullable.undefined(), Optional.empty());
     }
 
     /**
@@ -388,6 +461,31 @@ public class Transactions {
     public VoidTransactionResponse void_(
             String transactionId, JsonNullable<? extends List<String>> prefer,
             JsonNullable<String> merchantAccountId, JsonNullable<String> idempotencyKey) {
+        return void_(transactionId, prefer, merchantAccountId,
+            idempotencyKey, Optional.empty());
+    }
+
+    /**
+     * Void transaction
+     * 
+     * <p>Voids a previously authorized transaction. If the transaction was not yet successfully authorized,
+     * or was already captured, the void will not be processed. This operation releases the hold on the
+     * buyer's funds.
+     * 
+     * <p>Captured transactions can be refunded instead.
+     * 
+     * @param transactionId The ID of the transaction
+     * @param prefer The preferred resource type in the response.
+     * @param merchantAccountId 
+     * @param idempotencyKey A unique key that identifies this request. Providing this header will make this an idempotent request. We recommend using V4 UUIDs, or another random string with enough entropy to avoid collisions.
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public VoidTransactionResponse void_(
+            String transactionId, JsonNullable<? extends List<String>> prefer,
+            JsonNullable<String> merchantAccountId, JsonNullable<String> idempotencyKey,
+            Optional<Options> options) {
         VoidTransactionRequest request =
             VoidTransactionRequest
                 .builder()
@@ -397,7 +495,7 @@ public class Transactions {
                 .idempotencyKey(idempotencyKey)
                 .build();
         RequestOperation<VoidTransactionRequest, VoidTransactionResponse> operation
-              = new VoidTransaction.Sync(sdkConfiguration, _headers);
+              = new VoidTransaction.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -424,7 +522,7 @@ public class Transactions {
      * @throws RuntimeException subclass if the API call fails
      */
     public CancelTransactionResponse cancel(String transactionId) {
-        return cancel(transactionId, JsonNullable.undefined());
+        return cancel(transactionId, JsonNullable.undefined(), Optional.empty());
     }
 
     /**
@@ -439,6 +537,24 @@ public class Transactions {
      * @throws RuntimeException subclass if the API call fails
      */
     public CancelTransactionResponse cancel(String transactionId, JsonNullable<String> merchantAccountId) {
+        return cancel(transactionId, merchantAccountId, Optional.empty());
+    }
+
+    /**
+     * Cancel transaction
+     * 
+     * <p>Cancels a pending transaction. If the transaction was successfully authorized, or was already
+     * captured, the cancel will not be processed.
+     * 
+     * @param transactionId The ID of the transaction
+     * @param merchantAccountId 
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public CancelTransactionResponse cancel(
+            String transactionId, JsonNullable<String> merchantAccountId,
+            Optional<Options> options) {
         CancelTransactionRequest request =
             CancelTransactionRequest
                 .builder()
@@ -446,7 +562,7 @@ public class Transactions {
                 .merchantAccountId(merchantAccountId)
                 .build();
         RequestOperation<CancelTransactionRequest, CancelTransactionResponse> operation
-              = new CancelTransaction.Sync(sdkConfiguration, _headers);
+              = new CancelTransaction.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -475,7 +591,7 @@ public class Transactions {
      * @throws RuntimeException subclass if the API call fails
      */
     public SyncTransactionResponse sync(String transactionId) {
-        return sync(transactionId, JsonNullable.undefined());
+        return sync(transactionId, JsonNullable.undefined(), Optional.empty());
     }
 
     /**
@@ -491,6 +607,25 @@ public class Transactions {
      * @throws RuntimeException subclass if the API call fails
      */
     public SyncTransactionResponse sync(String transactionId, JsonNullable<String> merchantAccountId) {
+        return sync(transactionId, merchantAccountId, Optional.empty());
+    }
+
+    /**
+     * Sync transaction
+     * 
+     * <p>Synchronizes the status of a transaction with the underlying payment service provider. This is
+     * useful for transactions in a pending state to check if they've been completed or failed. Only
+     * available for some payment service providers.
+     * 
+     * @param transactionId 
+     * @param merchantAccountId 
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public SyncTransactionResponse sync(
+            String transactionId, JsonNullable<String> merchantAccountId,
+            Optional<Options> options) {
         SyncTransactionRequest request =
             SyncTransactionRequest
                 .builder()
@@ -498,7 +633,7 @@ public class Transactions {
                 .merchantAccountId(merchantAccountId)
                 .build();
         RequestOperation<SyncTransactionRequest, SyncTransactionResponse> operation
-              = new SyncTransaction.Sync(sdkConfiguration, _headers);
+              = new SyncTransaction.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -525,7 +660,7 @@ public class Transactions {
      */
     public IncrementTransactionAuthorizationResponse incrementAuthorization(String transactionId, TransactionAuthorizationIncrementCreate transactionAuthorizationIncrementCreate) {
         return incrementAuthorization(transactionId, JsonNullable.undefined(), JsonNullable.undefined(),
-            transactionAuthorizationIncrementCreate);
+            transactionAuthorizationIncrementCreate, Optional.empty());
     }
 
     /**
@@ -543,6 +678,27 @@ public class Transactions {
     public IncrementTransactionAuthorizationResponse incrementAuthorization(
             String transactionId, JsonNullable<String> merchantAccountId,
             JsonNullable<String> idempotencyKey, TransactionAuthorizationIncrementCreate transactionAuthorizationIncrementCreate) {
+        return incrementAuthorization(transactionId, merchantAccountId, idempotencyKey,
+            transactionAuthorizationIncrementCreate, Optional.empty());
+    }
+
+    /**
+     * Increment transaction authorization
+     * 
+     * <p>Increment the transaction authorization amount of a given transaction_id.
+     * 
+     * @param transactionId The unique identifier of the transaction.
+     * @param merchantAccountId 
+     * @param idempotencyKey A unique key that identifies this request. Providing this header will make this an idempotent request. We recommend using V4 UUIDs, or another random string with enough entropy to avoid collisions.
+     * @param transactionAuthorizationIncrementCreate 
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public IncrementTransactionAuthorizationResponse incrementAuthorization(
+            String transactionId, JsonNullable<String> merchantAccountId,
+            JsonNullable<String> idempotencyKey, TransactionAuthorizationIncrementCreate transactionAuthorizationIncrementCreate,
+            Optional<Options> options) {
         IncrementTransactionAuthorizationRequest request =
             IncrementTransactionAuthorizationRequest
                 .builder()
@@ -552,7 +708,7 @@ public class Transactions {
                 .transactionAuthorizationIncrementCreate(transactionAuthorizationIncrementCreate)
                 .build();
         RequestOperation<IncrementTransactionAuthorizationRequest, IncrementTransactionAuthorizationResponse> operation
-              = new IncrementTransactionAuthorization.Sync(sdkConfiguration, _headers);
+              = new IncrementTransactionAuthorization.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

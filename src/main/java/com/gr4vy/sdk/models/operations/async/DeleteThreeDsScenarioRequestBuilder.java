@@ -9,8 +9,11 @@ import com.gr4vy.sdk.SDKConfiguration;
 import com.gr4vy.sdk.models.operations.DeleteThreeDsScenarioRequest;
 import com.gr4vy.sdk.operations.DeleteThreeDsScenario;
 import com.gr4vy.sdk.utils.Headers;
+import com.gr4vy.sdk.utils.Options;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.String;
+import java.time.Duration;
+import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -18,6 +21,7 @@ public class DeleteThreeDsScenarioRequestBuilder {
 
     private String threeDsScenarioId;
     private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
+    private Optional<Duration> timeout = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -42,6 +46,18 @@ public class DeleteThreeDsScenarioRequestBuilder {
         this.merchantAccountId = merchantAccountId;
         return this;
     }
+                
+    public DeleteThreeDsScenarioRequestBuilder timeout(Duration timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = Optional.of(timeout);
+        return this;
+    }
+
+    public DeleteThreeDsScenarioRequestBuilder timeout(Optional<Duration> timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = timeout;
+        return this;
+    }
 
 
     private DeleteThreeDsScenarioRequest buildRequest() {
@@ -53,9 +69,12 @@ public class DeleteThreeDsScenarioRequestBuilder {
     }
 
     public CompletableFuture<DeleteThreeDsScenarioResponse> call() {
-        
+        Optional<Options> options = Optional.of(Options.builder()
+            .timeout(timeout)
+            .build());
+
         AsyncRequestOperation<DeleteThreeDsScenarioRequest, DeleteThreeDsScenarioResponse> operation
-              = new DeleteThreeDsScenario.Async(sdkConfiguration, _headers);
+              = new DeleteThreeDsScenario.Async(sdkConfiguration, options, _headers);
         DeleteThreeDsScenarioRequest request = buildRequest();
 
         return operation.doRequest(request)

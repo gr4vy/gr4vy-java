@@ -70,6 +70,20 @@ public class Captures {
      * 
      * @param transactionId The unique identifier of the transaction.
      * @param merchantAccountId 
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public ListTransactionCapturesResponse list(String transactionId, JsonNullable<String> merchantAccountId) {
+        return list(transactionId, merchantAccountId, Optional.empty());
+    }
+
+    /**
+     * List transaction captures
+     * 
+     * <p>List all captures for a specific transaction.
+     * 
+     * @param transactionId The unique identifier of the transaction.
+     * @param merchantAccountId 
      * @param options additional options
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
@@ -111,6 +125,24 @@ public class Captures {
      */
     public GetTransactionCaptureResponse get(String transactionId, String captureId) {
         return get(transactionId, captureId, JsonNullable.undefined(),
+            Optional.empty());
+    }
+
+    /**
+     * Get transaction capture
+     * 
+     * <p>Retrieve a specific capture for a transaction by its unique identifier.
+     * 
+     * @param transactionId The unique identifier of the transaction.
+     * @param captureId The unique identifier of the capture.
+     * @param merchantAccountId 
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public GetTransactionCaptureResponse get(
+            String transactionId, String captureId,
+            JsonNullable<String> merchantAccountId) {
+        return get(transactionId, captureId, merchantAccountId,
             Optional.empty());
     }
 

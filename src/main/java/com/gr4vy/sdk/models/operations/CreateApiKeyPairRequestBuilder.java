@@ -9,11 +9,15 @@ import com.gr4vy.sdk.SDKConfiguration;
 import com.gr4vy.sdk.models.components.APIKeyPairCreate;
 import com.gr4vy.sdk.operations.CreateApiKeyPair;
 import com.gr4vy.sdk.utils.Headers;
+import com.gr4vy.sdk.utils.Options;
 import com.gr4vy.sdk.utils.Utils;
+import java.time.Duration;
+import java.util.Optional;
 
 public class CreateApiKeyPairRequestBuilder {
 
     private APIKeyPairCreate request;
+    private Optional<Duration> timeout = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -26,11 +30,26 @@ public class CreateApiKeyPairRequestBuilder {
         this.request = request;
         return this;
     }
+                
+    public CreateApiKeyPairRequestBuilder timeout(Duration timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = Optional.of(timeout);
+        return this;
+    }
+
+    public CreateApiKeyPairRequestBuilder timeout(Optional<Duration> timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = timeout;
+        return this;
+    }
 
     public CreateApiKeyPairResponse call() {
-        
+        Optional<Options> options = Optional.of(Options.builder()
+            .timeout(timeout)
+            .build());
+
         RequestOperation<APIKeyPairCreate, CreateApiKeyPairResponse> operation
-              = new CreateApiKeyPair.Sync(sdkConfiguration, _headers);
+              = new CreateApiKeyPair.Sync(sdkConfiguration, options, _headers);
 
         return operation.handleResponse(operation.doRequest(request));
     }

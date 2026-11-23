@@ -9,8 +9,10 @@ import com.gr4vy.sdk.SDKConfiguration;
 import com.gr4vy.sdk.models.components.TransactionCreate;
 import com.gr4vy.sdk.operations.CreateTransaction;
 import com.gr4vy.sdk.utils.Headers;
+import com.gr4vy.sdk.utils.Options;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.String;
+import java.time.Duration;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -20,6 +22,7 @@ public class CreateTransactionRequestBuilder {
     private JsonNullable<String> idempotencyKey = JsonNullable.undefined();
     private Optional<String> xForwardedFor = Optional.empty();
     private TransactionCreate transactionCreate;
+    private Optional<Duration> timeout = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -68,6 +71,18 @@ public class CreateTransactionRequestBuilder {
         this.transactionCreate = transactionCreate;
         return this;
     }
+                
+    public CreateTransactionRequestBuilder timeout(Duration timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = Optional.of(timeout);
+        return this;
+    }
+
+    public CreateTransactionRequestBuilder timeout(Optional<Duration> timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = timeout;
+        return this;
+    }
 
 
     private CreateTransactionRequest buildRequest() {
@@ -81,9 +96,12 @@ public class CreateTransactionRequestBuilder {
     }
 
     public CreateTransactionResponse call() {
-        
+        Optional<Options> options = Optional.of(Options.builder()
+            .timeout(timeout)
+            .build());
+
         RequestOperation<CreateTransactionRequest, CreateTransactionResponse> operation
-              = new CreateTransaction.Sync(sdkConfiguration, _headers);
+              = new CreateTransaction.Sync(sdkConfiguration, options, _headers);
         CreateTransactionRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

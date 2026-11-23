@@ -20,6 +20,7 @@ import java.io.InputStream;
 import java.lang.Iterable;
 import java.lang.String;
 import java.net.http.HttpResponse;
+import java.time.Duration;
 import java.util.Iterator;
 import java.util.Optional;
 import java.util.stream.Stream;
@@ -28,6 +29,7 @@ public class ListAuditLogsRequestBuilder {
 
     private ListAuditLogsRequest request;
     private Optional<RetryConfig> retryConfig = Optional.empty();
+    private Optional<Duration> timeout = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -52,10 +54,23 @@ public class ListAuditLogsRequestBuilder {
         this.retryConfig = retryConfig;
         return this;
     }
+                
+    public ListAuditLogsRequestBuilder timeout(Duration timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = Optional.of(timeout);
+        return this;
+    }
+
+    public ListAuditLogsRequestBuilder timeout(Optional<Duration> timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = timeout;
+        return this;
+    }
 
     public ListAuditLogsResponse call() {
         Optional<Options> options = Optional.of(Options.builder()
             .retryConfig(retryConfig)
+            .timeout(timeout)
             .build());
 
         RequestOperation<ListAuditLogsRequest, ListAuditLogsResponse> operation
@@ -80,6 +95,7 @@ public class ListAuditLogsRequestBuilder {
     public Iterable<ListAuditLogsResponse> callAsIterable() {
         Optional<Options> options = Optional.of(Options.builder()
             .retryConfig(retryConfig)
+            .timeout(timeout)
             .build());
 
         RequestOperation<ListAuditLogsRequest, ListAuditLogsResponse> operation

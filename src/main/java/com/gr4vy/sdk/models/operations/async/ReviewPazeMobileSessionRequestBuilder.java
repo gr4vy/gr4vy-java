@@ -10,8 +10,11 @@ import com.gr4vy.sdk.models.components.PazeSessionReviewRequest;
 import com.gr4vy.sdk.models.operations.ReviewPazeMobileSessionRequest;
 import com.gr4vy.sdk.operations.ReviewPazeMobileSession;
 import com.gr4vy.sdk.utils.Headers;
+import com.gr4vy.sdk.utils.Options;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.String;
+import java.time.Duration;
+import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -19,6 +22,7 @@ public class ReviewPazeMobileSessionRequestBuilder {
 
     private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
     private PazeSessionReviewRequest pazeSessionReviewRequest;
+    private Optional<Duration> timeout = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -43,6 +47,18 @@ public class ReviewPazeMobileSessionRequestBuilder {
         this.pazeSessionReviewRequest = pazeSessionReviewRequest;
         return this;
     }
+                
+    public ReviewPazeMobileSessionRequestBuilder timeout(Duration timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = Optional.of(timeout);
+        return this;
+    }
+
+    public ReviewPazeMobileSessionRequestBuilder timeout(Optional<Duration> timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = timeout;
+        return this;
+    }
 
 
     private ReviewPazeMobileSessionRequest buildRequest() {
@@ -54,9 +70,12 @@ public class ReviewPazeMobileSessionRequestBuilder {
     }
 
     public CompletableFuture<ReviewPazeMobileSessionResponse> call() {
-        
+        Optional<Options> options = Optional.of(Options.builder()
+            .timeout(timeout)
+            .build());
+
         AsyncRequestOperation<ReviewPazeMobileSessionRequest, ReviewPazeMobileSessionResponse> operation
-              = new ReviewPazeMobileSession.Async(sdkConfiguration, _headers);
+              = new ReviewPazeMobileSession.Async(sdkConfiguration, options, _headers);
         ReviewPazeMobileSessionRequest request = buildRequest();
 
         return operation.doRequest(request)

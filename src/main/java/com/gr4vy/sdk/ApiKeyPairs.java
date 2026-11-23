@@ -83,6 +83,20 @@ public class ApiKeyPairs {
      * 
      * @param cursor A pointer to the page of results to return.
      * @param limit The maximum number of items that are returned.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public ListApiKeyPairsResponse list(JsonNullable<String> cursor, Optional<Long> limit) {
+        return list(cursor, limit, Optional.empty());
+    }
+
+    /**
+     * List all API key pairs
+     * 
+     * <p>List all API key pairs.
+     * 
+     * @param cursor A pointer to the page of results to return.
+     * @param limit The maximum number of items that are returned.
      * @param options additional options
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
@@ -122,8 +136,22 @@ public class ApiKeyPairs {
      * @throws RuntimeException subclass if the API call fails
      */
     public CreateApiKeyPairResponse create(APIKeyPairCreate request) {
+        return create(request, Optional.empty());
+    }
+
+    /**
+     * Create an API key pair
+     * 
+     * <p>Create a new API key pair.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public CreateApiKeyPairResponse create(APIKeyPairCreate request, Optional<Options> options) {
         RequestOperation<APIKeyPairCreate, CreateApiKeyPairResponse> operation
-              = new CreateApiKeyPair.Sync(sdkConfiguration, _headers);
+              = new CreateApiKeyPair.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -194,6 +222,23 @@ public class ApiKeyPairs {
      * @throws RuntimeException subclass if the API call fails
      */
     public UpdateApiKeyPairResponse update(String apiKeyPairId, APIKeyPairUpdate apiKeyPairUpdate) {
+        return update(apiKeyPairId, apiKeyPairUpdate, Optional.empty());
+    }
+
+    /**
+     * Update an API key pair
+     * 
+     * <p>Updates an API key pair.
+     * 
+     * @param apiKeyPairId The ID of the API key pair.
+     * @param apiKeyPairUpdate 
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public UpdateApiKeyPairResponse update(
+            String apiKeyPairId, APIKeyPairUpdate apiKeyPairUpdate,
+            Optional<Options> options) {
         UpdateApiKeyPairRequest request =
             UpdateApiKeyPairRequest
                 .builder()
@@ -201,7 +246,7 @@ public class ApiKeyPairs {
                 .apiKeyPairUpdate(apiKeyPairUpdate)
                 .build();
         RequestOperation<UpdateApiKeyPairRequest, UpdateApiKeyPairResponse> operation
-              = new UpdateApiKeyPair.Sync(sdkConfiguration, _headers);
+              = new UpdateApiKeyPair.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -226,13 +271,27 @@ public class ApiKeyPairs {
      * @throws RuntimeException subclass if the API call fails
      */
     public DeleteApiKeyPairResponse delete(String apiKeyPairId) {
+        return delete(apiKeyPairId, Optional.empty());
+    }
+
+    /**
+     * Delete an API key pair
+     * 
+     * <p>Permanently removes an API key pair.
+     * 
+     * @param apiKeyPairId The ID of the API key pair.
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public DeleteApiKeyPairResponse delete(String apiKeyPairId, Optional<Options> options) {
         DeleteApiKeyPairRequest request =
             DeleteApiKeyPairRequest
                 .builder()
                 .apiKeyPairId(apiKeyPairId)
                 .build();
         RequestOperation<DeleteApiKeyPairRequest, DeleteApiKeyPairResponse> operation
-              = new DeleteApiKeyPair.Sync(sdkConfiguration, _headers);
+              = new DeleteApiKeyPair.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

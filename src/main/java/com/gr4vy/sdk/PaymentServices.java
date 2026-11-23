@@ -125,7 +125,7 @@ public class PaymentServices {
      * @throws RuntimeException subclass if the API call fails
      */
     public CreatePaymentServiceResponse create(PaymentServiceCreate paymentServiceCreate) {
-        return create(JsonNullable.undefined(), paymentServiceCreate);
+        return create(JsonNullable.undefined(), paymentServiceCreate, Optional.empty());
     }
 
     /**
@@ -139,6 +139,23 @@ public class PaymentServices {
      * @throws RuntimeException subclass if the API call fails
      */
     public CreatePaymentServiceResponse create(JsonNullable<String> merchantAccountId, PaymentServiceCreate paymentServiceCreate) {
+        return create(merchantAccountId, paymentServiceCreate, Optional.empty());
+    }
+
+    /**
+     * Configure a payment service
+     * 
+     * <p>Configures a new payment service for use by merchants.
+     * 
+     * @param merchantAccountId 
+     * @param paymentServiceCreate Request body for activating a payment service
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public CreatePaymentServiceResponse create(
+            JsonNullable<String> merchantAccountId, PaymentServiceCreate paymentServiceCreate,
+            Optional<Options> options) {
         CreatePaymentServiceRequest request =
             CreatePaymentServiceRequest
                 .builder()
@@ -146,7 +163,7 @@ public class PaymentServices {
                 .paymentServiceCreate(paymentServiceCreate)
                 .build();
         RequestOperation<CreatePaymentServiceRequest, CreatePaymentServiceResponse> operation
-              = new CreatePaymentService.Sync(sdkConfiguration, _headers);
+              = new CreatePaymentService.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -172,6 +189,20 @@ public class PaymentServices {
      */
     public GetPaymentServiceResponse get(String paymentServiceId) {
         return get(paymentServiceId, JsonNullable.undefined(), Optional.empty());
+    }
+
+    /**
+     * Get payment service
+     * 
+     * <p>Get the details of a configured payment service.
+     * 
+     * @param paymentServiceId the ID of the payment service
+     * @param merchantAccountId 
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public GetPaymentServiceResponse get(String paymentServiceId, JsonNullable<String> merchantAccountId) {
+        return get(paymentServiceId, merchantAccountId, Optional.empty());
     }
 
     /**
@@ -221,7 +252,8 @@ public class PaymentServices {
      * @throws RuntimeException subclass if the API call fails
      */
     public UpdatePaymentServiceResponse update(String paymentServiceId, PaymentServiceUpdate paymentServiceUpdate) {
-        return update(paymentServiceId, JsonNullable.undefined(), paymentServiceUpdate);
+        return update(paymentServiceId, JsonNullable.undefined(), paymentServiceUpdate,
+            Optional.empty());
     }
 
     /**
@@ -238,6 +270,25 @@ public class PaymentServices {
     public UpdatePaymentServiceResponse update(
             String paymentServiceId, JsonNullable<String> merchantAccountId,
             PaymentServiceUpdate paymentServiceUpdate) {
+        return update(paymentServiceId, merchantAccountId, paymentServiceUpdate,
+            Optional.empty());
+    }
+
+    /**
+     * Update a configured payment service
+     * 
+     * <p>Updates the configuration of a payment service.
+     * 
+     * @param paymentServiceId the ID of the payment service
+     * @param merchantAccountId 
+     * @param paymentServiceUpdate Request body for updating a Payment Service
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public UpdatePaymentServiceResponse update(
+            String paymentServiceId, JsonNullable<String> merchantAccountId,
+            PaymentServiceUpdate paymentServiceUpdate, Optional<Options> options) {
         UpdatePaymentServiceRequest request =
             UpdatePaymentServiceRequest
                 .builder()
@@ -246,7 +297,7 @@ public class PaymentServices {
                 .paymentServiceUpdate(paymentServiceUpdate)
                 .build();
         RequestOperation<UpdatePaymentServiceRequest, UpdatePaymentServiceResponse> operation
-              = new UpdatePaymentService.Sync(sdkConfiguration, _headers);
+              = new UpdatePaymentService.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -271,7 +322,7 @@ public class PaymentServices {
      * @throws RuntimeException subclass if the API call fails
      */
     public DeletePaymentServiceResponse delete(String paymentServiceId) {
-        return delete(paymentServiceId, JsonNullable.undefined());
+        return delete(paymentServiceId, JsonNullable.undefined(), Optional.empty());
     }
 
     /**
@@ -285,6 +336,23 @@ public class PaymentServices {
      * @throws RuntimeException subclass if the API call fails
      */
     public DeletePaymentServiceResponse delete(String paymentServiceId, JsonNullable<String> merchantAccountId) {
+        return delete(paymentServiceId, merchantAccountId, Optional.empty());
+    }
+
+    /**
+     * Delete a configured payment service
+     * 
+     * <p>Deletes all the configuration of a payment service.
+     * 
+     * @param paymentServiceId the ID of the payment service
+     * @param merchantAccountId 
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public DeletePaymentServiceResponse delete(
+            String paymentServiceId, JsonNullable<String> merchantAccountId,
+            Optional<Options> options) {
         DeletePaymentServiceRequest request =
             DeletePaymentServiceRequest
                 .builder()
@@ -292,7 +360,7 @@ public class PaymentServices {
                 .merchantAccountId(merchantAccountId)
                 .build();
         RequestOperation<DeletePaymentServiceRequest, DeletePaymentServiceResponse> operation
-              = new DeletePaymentService.Sync(sdkConfiguration, _headers);
+              = new DeletePaymentService.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -317,7 +385,7 @@ public class PaymentServices {
      * @throws RuntimeException subclass if the API call fails
      */
     public VerifyPaymentServiceCredentialsResponse verify(VerifyCredentials verifyCredentials) {
-        return verify(JsonNullable.undefined(), verifyCredentials);
+        return verify(JsonNullable.undefined(), verifyCredentials, Optional.empty());
     }
 
     /**
@@ -331,6 +399,23 @@ public class PaymentServices {
      * @throws RuntimeException subclass if the API call fails
      */
     public VerifyPaymentServiceCredentialsResponse verify(JsonNullable<String> merchantAccountId, VerifyCredentials verifyCredentials) {
+        return verify(merchantAccountId, verifyCredentials, Optional.empty());
+    }
+
+    /**
+     * Verify payment service credentials
+     * 
+     * <p>Verify the credentials of a configured payment service
+     * 
+     * @param merchantAccountId 
+     * @param verifyCredentials 
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public VerifyPaymentServiceCredentialsResponse verify(
+            JsonNullable<String> merchantAccountId, VerifyCredentials verifyCredentials,
+            Optional<Options> options) {
         VerifyPaymentServiceCredentialsRequest request =
             VerifyPaymentServiceCredentialsRequest
                 .builder()
@@ -338,7 +423,7 @@ public class PaymentServices {
                 .verifyCredentials(verifyCredentials)
                 .build();
         RequestOperation<VerifyPaymentServiceCredentialsRequest, VerifyPaymentServiceCredentialsResponse> operation
-              = new VerifyPaymentServiceCredentials.Sync(sdkConfiguration, _headers);
+              = new VerifyPaymentServiceCredentials.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -364,7 +449,8 @@ public class PaymentServices {
      * @throws RuntimeException subclass if the API call fails
      */
     public CreatePaymentServiceSessionResponse session(String paymentServiceId, Map<String, Object> requestBody) {
-        return session(paymentServiceId, JsonNullable.undefined(), requestBody);
+        return session(paymentServiceId, JsonNullable.undefined(), requestBody,
+            Optional.empty());
     }
 
     /**
@@ -381,6 +467,25 @@ public class PaymentServices {
     public CreatePaymentServiceSessionResponse session(
             String paymentServiceId, JsonNullable<String> merchantAccountId,
             Map<String, Object> requestBody) {
+        return session(paymentServiceId, merchantAccountId, requestBody,
+            Optional.empty());
+    }
+
+    /**
+     * Create a session for a payment service definition
+     * 
+     * <p>Creates a session for a payment service that supports sessions.
+     * 
+     * @param paymentServiceId the ID of the payment service
+     * @param merchantAccountId 
+     * @param requestBody 
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public CreatePaymentServiceSessionResponse session(
+            String paymentServiceId, JsonNullable<String> merchantAccountId,
+            Map<String, Object> requestBody, Optional<Options> options) {
         CreatePaymentServiceSessionRequest request =
             CreatePaymentServiceSessionRequest
                 .builder()
@@ -389,7 +494,7 @@ public class PaymentServices {
                 .requestBody(requestBody)
                 .build();
         RequestOperation<CreatePaymentServiceSessionRequest, CreatePaymentServiceSessionResponse> operation
-              = new CreatePaymentServiceSession.Sync(sdkConfiguration, _headers);
+              = new CreatePaymentServiceSession.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

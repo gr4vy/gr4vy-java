@@ -119,7 +119,7 @@ public class AsyncReports {
      * @return {@code CompletableFuture<AddReportResponse>} - The async response
      */
     public CompletableFuture<AddReportResponse> create(ReportCreate reportCreate) {
-        return create(JsonNullable.undefined(), reportCreate);
+        return create(JsonNullable.undefined(), reportCreate, Optional.empty());
     }
 
     /**
@@ -132,6 +132,22 @@ public class AsyncReports {
      * @return {@code CompletableFuture<AddReportResponse>} - The async response
      */
     public CompletableFuture<AddReportResponse> create(JsonNullable<String> merchantAccountId, ReportCreate reportCreate) {
+        return create(merchantAccountId, reportCreate, Optional.empty());
+    }
+
+    /**
+     * Add a report
+     * 
+     * <p>Create a new report.
+     * 
+     * @param merchantAccountId 
+     * @param reportCreate 
+     * @param options additional options
+     * @return {@code CompletableFuture<AddReportResponse>} - The async response
+     */
+    public CompletableFuture<AddReportResponse> create(
+            JsonNullable<String> merchantAccountId, ReportCreate reportCreate,
+            Optional<Options> options) {
         AddReportRequest request =
             AddReportRequest
                 .builder()
@@ -139,7 +155,7 @@ public class AsyncReports {
                 .reportCreate(reportCreate)
                 .build();
         AsyncRequestOperation<AddReportRequest, AddReportResponse> operation
-              = new AddReport.Async(sdkConfiguration, _headers);
+              = new AddReport.Async(sdkConfiguration, options, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -166,6 +182,19 @@ public class AsyncReports {
      */
     public CompletableFuture<GetReportResponse> get(String reportId) {
         return get(reportId, JsonNullable.undefined(), Optional.empty());
+    }
+
+    /**
+     * Get a report
+     * 
+     * <p>Fetches a report by its ID.
+     * 
+     * @param reportId The ID of the report to retrieve details for.
+     * @param merchantAccountId 
+     * @return {@code CompletableFuture<GetReportResponse>} - The async response
+     */
+    public CompletableFuture<GetReportResponse> get(String reportId, JsonNullable<String> merchantAccountId) {
+        return get(reportId, merchantAccountId, Optional.empty());
     }
 
     /**
@@ -217,7 +246,9 @@ public class AsyncReports {
      * @return {@code CompletableFuture<UpdateReportResponse>} - The async response
      */
     public CompletableFuture<UpdateReportResponse> put(String reportId, ReportUpdate reportUpdate) {
-        return put(reportId, JsonNullable.undefined(), reportUpdate);
+        return put(
+                reportId, JsonNullable.undefined(), reportUpdate,
+                Optional.empty());
     }
 
     /**
@@ -233,6 +264,25 @@ public class AsyncReports {
     public CompletableFuture<UpdateReportResponse> put(
             String reportId, JsonNullable<String> merchantAccountId,
             ReportUpdate reportUpdate) {
+        return put(
+                reportId, merchantAccountId, reportUpdate,
+                Optional.empty());
+    }
+
+    /**
+     * Update a report
+     * 
+     * <p>Updates the configuration of a report.
+     * 
+     * @param reportId The ID of the report to edit.
+     * @param merchantAccountId 
+     * @param reportUpdate 
+     * @param options additional options
+     * @return {@code CompletableFuture<UpdateReportResponse>} - The async response
+     */
+    public CompletableFuture<UpdateReportResponse> put(
+            String reportId, JsonNullable<String> merchantAccountId,
+            ReportUpdate reportUpdate, Optional<Options> options) {
         UpdateReportRequest request =
             UpdateReportRequest
                 .builder()
@@ -241,7 +291,7 @@ public class AsyncReports {
                 .reportUpdate(reportUpdate)
                 .build();
         AsyncRequestOperation<UpdateReportRequest, UpdateReportResponse> operation
-              = new UpdateReport.Async(sdkConfiguration, _headers);
+              = new UpdateReport.Async(sdkConfiguration, options, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }

@@ -9,8 +9,11 @@ import com.gr4vy.sdk.SDKConfiguration;
 import com.gr4vy.sdk.models.components.PaymentServiceTokenCreate;
 import com.gr4vy.sdk.operations.CreatePaymentMethodPaymentServiceToken;
 import com.gr4vy.sdk.utils.Headers;
+import com.gr4vy.sdk.utils.Options;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.String;
+import java.time.Duration;
+import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 public class CreatePaymentMethodPaymentServiceTokenRequestBuilder {
@@ -18,6 +21,7 @@ public class CreatePaymentMethodPaymentServiceTokenRequestBuilder {
     private String paymentMethodId;
     private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
     private PaymentServiceTokenCreate paymentServiceTokenCreate;
+    private Optional<Duration> timeout = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -48,6 +52,18 @@ public class CreatePaymentMethodPaymentServiceTokenRequestBuilder {
         this.paymentServiceTokenCreate = paymentServiceTokenCreate;
         return this;
     }
+                
+    public CreatePaymentMethodPaymentServiceTokenRequestBuilder timeout(Duration timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = Optional.of(timeout);
+        return this;
+    }
+
+    public CreatePaymentMethodPaymentServiceTokenRequestBuilder timeout(Optional<Duration> timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = timeout;
+        return this;
+    }
 
 
     private CreatePaymentMethodPaymentServiceTokenRequest buildRequest() {
@@ -60,9 +76,12 @@ public class CreatePaymentMethodPaymentServiceTokenRequestBuilder {
     }
 
     public CreatePaymentMethodPaymentServiceTokenResponse call() {
-        
+        Optional<Options> options = Optional.of(Options.builder()
+            .timeout(timeout)
+            .build());
+
         RequestOperation<CreatePaymentMethodPaymentServiceTokenRequest, CreatePaymentMethodPaymentServiceTokenResponse> operation
-              = new CreatePaymentMethodPaymentServiceToken.Sync(sdkConfiguration, _headers);
+              = new CreatePaymentMethodPaymentServiceToken.Sync(sdkConfiguration, options, _headers);
         CreatePaymentMethodPaymentServiceTokenRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

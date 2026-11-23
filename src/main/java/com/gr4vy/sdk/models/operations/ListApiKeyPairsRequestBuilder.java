@@ -23,6 +23,7 @@ import java.lang.Iterable;
 import java.lang.Long;
 import java.lang.String;
 import java.net.http.HttpResponse;
+import java.time.Duration;
 import java.util.Iterator;
 import java.util.Optional;
 import java.util.stream.Stream;
@@ -36,6 +37,7 @@ public class ListApiKeyPairsRequestBuilder {
                             "20",
                             new TypeReference<Optional<Long>>() {});
     private Optional<RetryConfig> retryConfig = Optional.empty();
+    private Optional<Duration> timeout = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -78,6 +80,18 @@ public class ListApiKeyPairsRequestBuilder {
         this.retryConfig = retryConfig;
         return this;
     }
+                
+    public ListApiKeyPairsRequestBuilder timeout(Duration timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = Optional.of(timeout);
+        return this;
+    }
+
+    public ListApiKeyPairsRequestBuilder timeout(Optional<Duration> timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = timeout;
+        return this;
+    }
 
 
     private ListApiKeyPairsRequest buildRequest() {
@@ -94,6 +108,7 @@ public class ListApiKeyPairsRequestBuilder {
     public ListApiKeyPairsResponse call() {
         Optional<Options> options = Optional.of(Options.builder()
             .retryConfig(retryConfig)
+            .timeout(timeout)
             .build());
 
         RequestOperation<ListApiKeyPairsRequest, ListApiKeyPairsResponse> operation
@@ -119,6 +134,7 @@ public class ListApiKeyPairsRequestBuilder {
     public Iterable<ListApiKeyPairsResponse> callAsIterable() {
         Optional<Options> options = Optional.of(Options.builder()
             .retryConfig(retryConfig)
+            .timeout(timeout)
             .build());
 
         RequestOperation<ListApiKeyPairsRequest, ListApiKeyPairsResponse> operation

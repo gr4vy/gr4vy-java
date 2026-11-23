@@ -9,8 +9,11 @@ import com.gr4vy.sdk.SDKConfiguration;
 import com.gr4vy.sdk.models.operations.SuspendPaymentMethodNetworkTokenRequest;
 import com.gr4vy.sdk.operations.SuspendPaymentMethodNetworkToken;
 import com.gr4vy.sdk.utils.Headers;
+import com.gr4vy.sdk.utils.Options;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.String;
+import java.time.Duration;
+import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -19,6 +22,7 @@ public class SuspendPaymentMethodNetworkTokenRequestBuilder {
     private String paymentMethodId;
     private String networkTokenId;
     private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
+    private Optional<Duration> timeout = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -49,6 +53,18 @@ public class SuspendPaymentMethodNetworkTokenRequestBuilder {
         this.merchantAccountId = merchantAccountId;
         return this;
     }
+                
+    public SuspendPaymentMethodNetworkTokenRequestBuilder timeout(Duration timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = Optional.of(timeout);
+        return this;
+    }
+
+    public SuspendPaymentMethodNetworkTokenRequestBuilder timeout(Optional<Duration> timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = timeout;
+        return this;
+    }
 
 
     private SuspendPaymentMethodNetworkTokenRequest buildRequest() {
@@ -61,9 +77,12 @@ public class SuspendPaymentMethodNetworkTokenRequestBuilder {
     }
 
     public CompletableFuture<SuspendPaymentMethodNetworkTokenResponse> call() {
-        
+        Optional<Options> options = Optional.of(Options.builder()
+            .timeout(timeout)
+            .build());
+
         AsyncRequestOperation<SuspendPaymentMethodNetworkTokenRequest, SuspendPaymentMethodNetworkTokenResponse> operation
-              = new SuspendPaymentMethodNetworkToken.Async(sdkConfiguration, _headers);
+              = new SuspendPaymentMethodNetworkToken.Async(sdkConfiguration, options, _headers);
         SuspendPaymentMethodNetworkTokenRequest request = buildRequest();
 
         return operation.doRequest(request)

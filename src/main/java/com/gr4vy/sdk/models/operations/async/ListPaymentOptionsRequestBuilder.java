@@ -10,8 +10,11 @@ import com.gr4vy.sdk.models.components.PaymentOptionRequest;
 import com.gr4vy.sdk.models.operations.ListPaymentOptionsRequest;
 import com.gr4vy.sdk.operations.ListPaymentOptions;
 import com.gr4vy.sdk.utils.Headers;
+import com.gr4vy.sdk.utils.Options;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.String;
+import java.time.Duration;
+import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -19,6 +22,7 @@ public class ListPaymentOptionsRequestBuilder {
 
     private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
     private PaymentOptionRequest paymentOptionRequest;
+    private Optional<Duration> timeout = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -43,6 +47,18 @@ public class ListPaymentOptionsRequestBuilder {
         this.paymentOptionRequest = paymentOptionRequest;
         return this;
     }
+                
+    public ListPaymentOptionsRequestBuilder timeout(Duration timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = Optional.of(timeout);
+        return this;
+    }
+
+    public ListPaymentOptionsRequestBuilder timeout(Optional<Duration> timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = timeout;
+        return this;
+    }
 
 
     private ListPaymentOptionsRequest buildRequest() {
@@ -54,9 +70,12 @@ public class ListPaymentOptionsRequestBuilder {
     }
 
     public CompletableFuture<ListPaymentOptionsResponse> call() {
-        
+        Optional<Options> options = Optional.of(Options.builder()
+            .timeout(timeout)
+            .build());
+
         AsyncRequestOperation<ListPaymentOptionsRequest, ListPaymentOptionsResponse> operation
-              = new ListPaymentOptions.Async(sdkConfiguration, _headers);
+              = new ListPaymentOptions.Async(sdkConfiguration, options, _headers);
         ListPaymentOptionsRequest request = buildRequest();
 
         return operation.doRequest(request)

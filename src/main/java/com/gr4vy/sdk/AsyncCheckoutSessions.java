@@ -69,7 +69,7 @@ public class AsyncCheckoutSessions {
      * @return {@code CompletableFuture<CreateCheckoutSessionResponse>} - The async response
      */
     public CompletableFuture<CreateCheckoutSessionResponse> createDirect() {
-        return create(JsonNullable.undefined(), Optional.empty());
+        return create(JsonNullable.undefined(), Optional.empty(), Optional.empty());
     }
 
     /**
@@ -82,6 +82,22 @@ public class AsyncCheckoutSessions {
      * @return {@code CompletableFuture<CreateCheckoutSessionResponse>} - The async response
      */
     public CompletableFuture<CreateCheckoutSessionResponse> create(JsonNullable<String> merchantAccountId, Optional<? extends CheckoutSessionCreate> checkoutSessionCreate) {
+        return create(merchantAccountId, checkoutSessionCreate, Optional.empty());
+    }
+
+    /**
+     * Create checkout session
+     * 
+     * <p>Create a new checkout session.
+     * 
+     * @param merchantAccountId 
+     * @param checkoutSessionCreate 
+     * @param options additional options
+     * @return {@code CompletableFuture<CreateCheckoutSessionResponse>} - The async response
+     */
+    public CompletableFuture<CreateCheckoutSessionResponse> create(
+            JsonNullable<String> merchantAccountId, Optional<? extends CheckoutSessionCreate> checkoutSessionCreate,
+            Optional<Options> options) {
         CreateCheckoutSessionRequest request =
             CreateCheckoutSessionRequest
                 .builder()
@@ -89,7 +105,7 @@ public class AsyncCheckoutSessions {
                 .checkoutSessionCreate(checkoutSessionCreate)
                 .build();
         AsyncRequestOperation<CreateCheckoutSessionRequest, CreateCheckoutSessionResponse> operation
-              = new CreateCheckoutSession.Async(sdkConfiguration, _headers);
+              = new CreateCheckoutSession.Async(sdkConfiguration, options, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -116,7 +132,9 @@ public class AsyncCheckoutSessions {
      * @return {@code CompletableFuture<UpdateCheckoutSessionResponse>} - The async response
      */
     public CompletableFuture<UpdateCheckoutSessionResponse> update(String sessionId, CheckoutSessionCreate checkoutSessionCreate) {
-        return update(sessionId, JsonNullable.undefined(), checkoutSessionCreate);
+        return update(
+                sessionId, JsonNullable.undefined(), checkoutSessionCreate,
+                Optional.empty());
     }
 
     /**
@@ -132,6 +150,25 @@ public class AsyncCheckoutSessions {
     public CompletableFuture<UpdateCheckoutSessionResponse> update(
             String sessionId, JsonNullable<String> merchantAccountId,
             CheckoutSessionCreate checkoutSessionCreate) {
+        return update(
+                sessionId, merchantAccountId, checkoutSessionCreate,
+                Optional.empty());
+    }
+
+    /**
+     * Update checkout session
+     * 
+     * <p>Update the information stored on a checkout session.
+     * 
+     * @param sessionId The ID of the checkout session.
+     * @param merchantAccountId 
+     * @param checkoutSessionCreate 
+     * @param options additional options
+     * @return {@code CompletableFuture<UpdateCheckoutSessionResponse>} - The async response
+     */
+    public CompletableFuture<UpdateCheckoutSessionResponse> update(
+            String sessionId, JsonNullable<String> merchantAccountId,
+            CheckoutSessionCreate checkoutSessionCreate, Optional<Options> options) {
         UpdateCheckoutSessionRequest request =
             UpdateCheckoutSessionRequest
                 .builder()
@@ -140,7 +177,7 @@ public class AsyncCheckoutSessions {
                 .checkoutSessionCreate(checkoutSessionCreate)
                 .build();
         AsyncRequestOperation<UpdateCheckoutSessionRequest, UpdateCheckoutSessionResponse> operation
-              = new UpdateCheckoutSession.Async(sdkConfiguration, _headers);
+              = new UpdateCheckoutSession.Async(sdkConfiguration, options, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -167,6 +204,19 @@ public class AsyncCheckoutSessions {
      */
     public CompletableFuture<GetCheckoutSessionResponse> get(String sessionId) {
         return get(sessionId, JsonNullable.undefined(), Optional.empty());
+    }
+
+    /**
+     * Get checkout session
+     * 
+     * <p>Retrieve the information stored on a checkout session.
+     * 
+     * @param sessionId The ID of the checkout session.
+     * @param merchantAccountId 
+     * @return {@code CompletableFuture<GetCheckoutSessionResponse>} - The async response
+     */
+    public CompletableFuture<GetCheckoutSessionResponse> get(String sessionId, JsonNullable<String> merchantAccountId) {
+        return get(sessionId, merchantAccountId, Optional.empty());
     }
 
     /**
@@ -217,7 +267,7 @@ public class AsyncCheckoutSessions {
      * @return {@code CompletableFuture<DeleteCheckoutSessionResponse>} - The async response
      */
     public CompletableFuture<DeleteCheckoutSessionResponse> delete(String sessionId) {
-        return delete(sessionId, JsonNullable.undefined());
+        return delete(sessionId, JsonNullable.undefined(), Optional.empty());
     }
 
     /**
@@ -230,6 +280,22 @@ public class AsyncCheckoutSessions {
      * @return {@code CompletableFuture<DeleteCheckoutSessionResponse>} - The async response
      */
     public CompletableFuture<DeleteCheckoutSessionResponse> delete(String sessionId, JsonNullable<String> merchantAccountId) {
+        return delete(sessionId, merchantAccountId, Optional.empty());
+    }
+
+    /**
+     * Delete checkout session
+     * 
+     * <p>Delete a checkout session and all of its (PCI) data.
+     * 
+     * @param sessionId The ID of the checkout session.
+     * @param merchantAccountId 
+     * @param options additional options
+     * @return {@code CompletableFuture<DeleteCheckoutSessionResponse>} - The async response
+     */
+    public CompletableFuture<DeleteCheckoutSessionResponse> delete(
+            String sessionId, JsonNullable<String> merchantAccountId,
+            Optional<Options> options) {
         DeleteCheckoutSessionRequest request =
             DeleteCheckoutSessionRequest
                 .builder()
@@ -237,7 +303,7 @@ public class AsyncCheckoutSessions {
                 .merchantAccountId(merchantAccountId)
                 .build();
         AsyncRequestOperation<DeleteCheckoutSessionRequest, DeleteCheckoutSessionResponse> operation
-              = new DeleteCheckoutSession.Async(sdkConfiguration, _headers);
+              = new DeleteCheckoutSession.Async(sdkConfiguration, options, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }

@@ -90,6 +90,19 @@ public class AsyncNetworkTokens {
      * 
      * @param paymentMethodId The ID of the payment method
      * @param merchantAccountId 
+     * @return {@code CompletableFuture<ListPaymentMethodNetworkTokensResponse>} - The async response
+     */
+    public CompletableFuture<ListPaymentMethodNetworkTokensResponse> list(String paymentMethodId, JsonNullable<String> merchantAccountId) {
+        return list(paymentMethodId, merchantAccountId, Optional.empty());
+    }
+
+    /**
+     * List network tokens
+     * 
+     * <p>List all network tokens stored for a payment method.
+     * 
+     * @param paymentMethodId The ID of the payment method
+     * @param merchantAccountId 
      * @param options additional options
      * @return {@code CompletableFuture<ListPaymentMethodNetworkTokensResponse>} - The async response
      */
@@ -132,7 +145,9 @@ public class AsyncNetworkTokens {
      * @return {@code CompletableFuture<CreatePaymentMethodNetworkTokenResponse>} - The async response
      */
     public CompletableFuture<CreatePaymentMethodNetworkTokenResponse> create(String paymentMethodId, NetworkTokenCreate networkTokenCreate) {
-        return create(paymentMethodId, JsonNullable.undefined(), networkTokenCreate);
+        return create(
+                paymentMethodId, JsonNullable.undefined(), networkTokenCreate,
+                Optional.empty());
     }
 
     /**
@@ -148,6 +163,25 @@ public class AsyncNetworkTokens {
     public CompletableFuture<CreatePaymentMethodNetworkTokenResponse> create(
             String paymentMethodId, JsonNullable<String> merchantAccountId,
             NetworkTokenCreate networkTokenCreate) {
+        return create(
+                paymentMethodId, merchantAccountId, networkTokenCreate,
+                Optional.empty());
+    }
+
+    /**
+     * Provision network token
+     * 
+     * <p>Provision a network token for a payment method.
+     * 
+     * @param paymentMethodId The ID of the payment method
+     * @param merchantAccountId 
+     * @param networkTokenCreate 
+     * @param options additional options
+     * @return {@code CompletableFuture<CreatePaymentMethodNetworkTokenResponse>} - The async response
+     */
+    public CompletableFuture<CreatePaymentMethodNetworkTokenResponse> create(
+            String paymentMethodId, JsonNullable<String> merchantAccountId,
+            NetworkTokenCreate networkTokenCreate, Optional<Options> options) {
         CreatePaymentMethodNetworkTokenRequest request =
             CreatePaymentMethodNetworkTokenRequest
                 .builder()
@@ -156,7 +190,7 @@ public class AsyncNetworkTokens {
                 .networkTokenCreate(networkTokenCreate)
                 .build();
         AsyncRequestOperation<CreatePaymentMethodNetworkTokenRequest, CreatePaymentMethodNetworkTokenResponse> operation
-              = new CreatePaymentMethodNetworkToken.Async(sdkConfiguration, _headers);
+              = new CreatePaymentMethodNetworkToken.Async(sdkConfiguration, options, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -183,7 +217,9 @@ public class AsyncNetworkTokens {
      * @return {@code CompletableFuture<SuspendPaymentMethodNetworkTokenResponse>} - The async response
      */
     public CompletableFuture<SuspendPaymentMethodNetworkTokenResponse> suspend(String paymentMethodId, String networkTokenId) {
-        return suspend(paymentMethodId, networkTokenId, JsonNullable.undefined());
+        return suspend(
+                paymentMethodId, networkTokenId, JsonNullable.undefined(),
+                Optional.empty());
     }
 
     /**
@@ -199,6 +235,25 @@ public class AsyncNetworkTokens {
     public CompletableFuture<SuspendPaymentMethodNetworkTokenResponse> suspend(
             String paymentMethodId, String networkTokenId,
             JsonNullable<String> merchantAccountId) {
+        return suspend(
+                paymentMethodId, networkTokenId, merchantAccountId,
+                Optional.empty());
+    }
+
+    /**
+     * Suspend network token
+     * 
+     * <p>Suspend a network token for a payment method.
+     * 
+     * @param paymentMethodId The ID of the payment method
+     * @param networkTokenId The ID of the network token
+     * @param merchantAccountId 
+     * @param options additional options
+     * @return {@code CompletableFuture<SuspendPaymentMethodNetworkTokenResponse>} - The async response
+     */
+    public CompletableFuture<SuspendPaymentMethodNetworkTokenResponse> suspend(
+            String paymentMethodId, String networkTokenId,
+            JsonNullable<String> merchantAccountId, Optional<Options> options) {
         SuspendPaymentMethodNetworkTokenRequest request =
             SuspendPaymentMethodNetworkTokenRequest
                 .builder()
@@ -207,7 +262,7 @@ public class AsyncNetworkTokens {
                 .merchantAccountId(merchantAccountId)
                 .build();
         AsyncRequestOperation<SuspendPaymentMethodNetworkTokenRequest, SuspendPaymentMethodNetworkTokenResponse> operation
-              = new SuspendPaymentMethodNetworkToken.Async(sdkConfiguration, _headers);
+              = new SuspendPaymentMethodNetworkToken.Async(sdkConfiguration, options, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -234,7 +289,9 @@ public class AsyncNetworkTokens {
      * @return {@code CompletableFuture<ResumePaymentMethodNetworkTokenResponse>} - The async response
      */
     public CompletableFuture<ResumePaymentMethodNetworkTokenResponse> resume(String paymentMethodId, String networkTokenId) {
-        return resume(paymentMethodId, networkTokenId, JsonNullable.undefined());
+        return resume(
+                paymentMethodId, networkTokenId, JsonNullable.undefined(),
+                Optional.empty());
     }
 
     /**
@@ -250,6 +307,25 @@ public class AsyncNetworkTokens {
     public CompletableFuture<ResumePaymentMethodNetworkTokenResponse> resume(
             String paymentMethodId, String networkTokenId,
             JsonNullable<String> merchantAccountId) {
+        return resume(
+                paymentMethodId, networkTokenId, merchantAccountId,
+                Optional.empty());
+    }
+
+    /**
+     * Resume network token
+     * 
+     * <p>Resume a suspended network token for a payment method.
+     * 
+     * @param paymentMethodId The ID of the payment method
+     * @param networkTokenId The ID of the network token
+     * @param merchantAccountId 
+     * @param options additional options
+     * @return {@code CompletableFuture<ResumePaymentMethodNetworkTokenResponse>} - The async response
+     */
+    public CompletableFuture<ResumePaymentMethodNetworkTokenResponse> resume(
+            String paymentMethodId, String networkTokenId,
+            JsonNullable<String> merchantAccountId, Optional<Options> options) {
         ResumePaymentMethodNetworkTokenRequest request =
             ResumePaymentMethodNetworkTokenRequest
                 .builder()
@@ -258,7 +334,7 @@ public class AsyncNetworkTokens {
                 .merchantAccountId(merchantAccountId)
                 .build();
         AsyncRequestOperation<ResumePaymentMethodNetworkTokenRequest, ResumePaymentMethodNetworkTokenResponse> operation
-              = new ResumePaymentMethodNetworkToken.Async(sdkConfiguration, _headers);
+              = new ResumePaymentMethodNetworkToken.Async(sdkConfiguration, options, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -285,7 +361,9 @@ public class AsyncNetworkTokens {
      * @return {@code CompletableFuture<DeletePaymentMethodNetworkTokenResponse>} - The async response
      */
     public CompletableFuture<DeletePaymentMethodNetworkTokenResponse> delete(String paymentMethodId, String networkTokenId) {
-        return delete(paymentMethodId, networkTokenId, JsonNullable.undefined());
+        return delete(
+                paymentMethodId, networkTokenId, JsonNullable.undefined(),
+                Optional.empty());
     }
 
     /**
@@ -301,6 +379,25 @@ public class AsyncNetworkTokens {
     public CompletableFuture<DeletePaymentMethodNetworkTokenResponse> delete(
             String paymentMethodId, String networkTokenId,
             JsonNullable<String> merchantAccountId) {
+        return delete(
+                paymentMethodId, networkTokenId, merchantAccountId,
+                Optional.empty());
+    }
+
+    /**
+     * Delete network token
+     * 
+     * <p>Delete a network token for a payment method.
+     * 
+     * @param paymentMethodId The ID of the payment method
+     * @param networkTokenId The ID of the network token
+     * @param merchantAccountId 
+     * @param options additional options
+     * @return {@code CompletableFuture<DeletePaymentMethodNetworkTokenResponse>} - The async response
+     */
+    public CompletableFuture<DeletePaymentMethodNetworkTokenResponse> delete(
+            String paymentMethodId, String networkTokenId,
+            JsonNullable<String> merchantAccountId, Optional<Options> options) {
         DeletePaymentMethodNetworkTokenRequest request =
             DeletePaymentMethodNetworkTokenRequest
                 .builder()
@@ -309,7 +406,7 @@ public class AsyncNetworkTokens {
                 .merchantAccountId(merchantAccountId)
                 .build();
         AsyncRequestOperation<DeletePaymentMethodNetworkTokenRequest, DeletePaymentMethodNetworkTokenResponse> operation
-              = new DeletePaymentMethodNetworkToken.Async(sdkConfiguration, _headers);
+              = new DeletePaymentMethodNetworkToken.Async(sdkConfiguration, options, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }

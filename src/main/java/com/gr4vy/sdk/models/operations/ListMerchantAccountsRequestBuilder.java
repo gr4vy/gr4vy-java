@@ -23,6 +23,7 @@ import java.lang.Iterable;
 import java.lang.Long;
 import java.lang.String;
 import java.net.http.HttpResponse;
+import java.time.Duration;
 import java.util.Iterator;
 import java.util.Optional;
 import java.util.stream.Stream;
@@ -37,6 +38,7 @@ public class ListMerchantAccountsRequestBuilder {
                             new TypeReference<Optional<Long>>() {});
     private JsonNullable<String> search = JsonNullable.undefined();
     private Optional<RetryConfig> retryConfig = Optional.empty();
+    private Optional<Duration> timeout = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -91,6 +93,18 @@ public class ListMerchantAccountsRequestBuilder {
         this.retryConfig = retryConfig;
         return this;
     }
+                
+    public ListMerchantAccountsRequestBuilder timeout(Duration timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = Optional.of(timeout);
+        return this;
+    }
+
+    public ListMerchantAccountsRequestBuilder timeout(Optional<Duration> timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = timeout;
+        return this;
+    }
 
 
     private ListMerchantAccountsRequest buildRequest() {
@@ -108,6 +122,7 @@ public class ListMerchantAccountsRequestBuilder {
     public ListMerchantAccountsResponse call() {
         Optional<Options> options = Optional.of(Options.builder()
             .retryConfig(retryConfig)
+            .timeout(timeout)
             .build());
 
         RequestOperation<ListMerchantAccountsRequest, ListMerchantAccountsResponse> operation
@@ -133,6 +148,7 @@ public class ListMerchantAccountsRequestBuilder {
     public Iterable<ListMerchantAccountsResponse> callAsIterable() {
         Optional<Options> options = Optional.of(Options.builder()
             .retryConfig(retryConfig)
+            .timeout(timeout)
             .build());
 
         RequestOperation<ListMerchantAccountsRequest, ListMerchantAccountsResponse> operation

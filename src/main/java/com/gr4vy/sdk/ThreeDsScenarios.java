@@ -71,7 +71,7 @@ public class ThreeDsScenarios {
      * @throws RuntimeException subclass if the API call fails
      */
     public CreateThreeDsScenarioResponse create(ThreeDSecureScenarioCreate threeDSecureScenarioCreate) {
-        return create(JsonNullable.undefined(), threeDSecureScenarioCreate);
+        return create(JsonNullable.undefined(), threeDSecureScenarioCreate, Optional.empty());
     }
 
     /**
@@ -85,6 +85,23 @@ public class ThreeDsScenarios {
      * @throws RuntimeException subclass if the API call fails
      */
     public CreateThreeDsScenarioResponse create(JsonNullable<String> merchantAccountId, ThreeDSecureScenarioCreate threeDSecureScenarioCreate) {
+        return create(merchantAccountId, threeDSecureScenarioCreate, Optional.empty());
+    }
+
+    /**
+     * Create a 3DS scenario
+     * 
+     * <p>Create a new 3DS scenario for a merchant account. Only available in sandbox environments.
+     * 
+     * @param merchantAccountId 
+     * @param threeDSecureScenarioCreate 
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public CreateThreeDsScenarioResponse create(
+            JsonNullable<String> merchantAccountId, ThreeDSecureScenarioCreate threeDSecureScenarioCreate,
+            Optional<Options> options) {
         CreateThreeDsScenarioRequest request =
             CreateThreeDsScenarioRequest
                 .builder()
@@ -92,7 +109,7 @@ public class ThreeDsScenarios {
                 .threeDSecureScenarioCreate(threeDSecureScenarioCreate)
                 .build();
         RequestOperation<CreateThreeDsScenarioRequest, CreateThreeDsScenarioResponse> operation
-              = new CreateThreeDsScenario.Sync(sdkConfiguration, _headers);
+              = new CreateThreeDsScenario.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -117,6 +134,24 @@ public class ThreeDsScenarios {
      */
     public GetThreeDsScenarioResponse listDirect() {
         return list(JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
+            Optional.empty());
+    }
+
+    /**
+     * List 3DS scenario
+     * 
+     * <p>List all 3DS scenarios for a merchant account. Only available in sandbox environments.
+     * 
+     * @param cursor A pointer to the page of results to return.
+     * @param limit The maximum number of items that are at returned.
+     * @param merchantAccountId 
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public GetThreeDsScenarioResponse list(
+            JsonNullable<String> cursor, Optional<Long> limit,
+            JsonNullable<String> merchantAccountId) {
+        return list(cursor, limit, merchantAccountId,
             Optional.empty());
     }
 
@@ -169,7 +204,8 @@ public class ThreeDsScenarios {
      * @throws RuntimeException subclass if the API call fails
      */
     public UpdateThreeDsScenarioResponse update(String threeDsScenarioId, ThreeDSecureScenarioUpdate threeDSecureScenarioUpdate) {
-        return update(threeDsScenarioId, JsonNullable.undefined(), threeDSecureScenarioUpdate);
+        return update(threeDsScenarioId, JsonNullable.undefined(), threeDSecureScenarioUpdate,
+            Optional.empty());
     }
 
     /**
@@ -186,6 +222,25 @@ public class ThreeDsScenarios {
     public UpdateThreeDsScenarioResponse update(
             String threeDsScenarioId, JsonNullable<String> merchantAccountId,
             ThreeDSecureScenarioUpdate threeDSecureScenarioUpdate) {
+        return update(threeDsScenarioId, merchantAccountId, threeDSecureScenarioUpdate,
+            Optional.empty());
+    }
+
+    /**
+     * Update a 3DS scenario
+     * 
+     * <p>Update a 3DS scenario. Only available in sandbox environments.
+     * 
+     * @param threeDsScenarioId The ID of the 3DS scenario
+     * @param merchantAccountId 
+     * @param threeDSecureScenarioUpdate 
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public UpdateThreeDsScenarioResponse update(
+            String threeDsScenarioId, JsonNullable<String> merchantAccountId,
+            ThreeDSecureScenarioUpdate threeDSecureScenarioUpdate, Optional<Options> options) {
         UpdateThreeDsScenarioRequest request =
             UpdateThreeDsScenarioRequest
                 .builder()
@@ -194,7 +249,7 @@ public class ThreeDsScenarios {
                 .threeDSecureScenarioUpdate(threeDSecureScenarioUpdate)
                 .build();
         RequestOperation<UpdateThreeDsScenarioRequest, UpdateThreeDsScenarioResponse> operation
-              = new UpdateThreeDsScenario.Sync(sdkConfiguration, _headers);
+              = new UpdateThreeDsScenario.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -219,7 +274,7 @@ public class ThreeDsScenarios {
      * @throws RuntimeException subclass if the API call fails
      */
     public DeleteThreeDsScenarioResponse delete(String threeDsScenarioId) {
-        return delete(threeDsScenarioId, JsonNullable.undefined());
+        return delete(threeDsScenarioId, JsonNullable.undefined(), Optional.empty());
     }
 
     /**
@@ -233,6 +288,23 @@ public class ThreeDsScenarios {
      * @throws RuntimeException subclass if the API call fails
      */
     public DeleteThreeDsScenarioResponse delete(String threeDsScenarioId, JsonNullable<String> merchantAccountId) {
+        return delete(threeDsScenarioId, merchantAccountId, Optional.empty());
+    }
+
+    /**
+     * Delete a 3DS scenario
+     * 
+     * <p>Removes a 3DS scenario from our system. Only available in sandbox environments.
+     * 
+     * @param threeDsScenarioId The ID of the 3DS scenario
+     * @param merchantAccountId 
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public DeleteThreeDsScenarioResponse delete(
+            String threeDsScenarioId, JsonNullable<String> merchantAccountId,
+            Optional<Options> options) {
         DeleteThreeDsScenarioRequest request =
             DeleteThreeDsScenarioRequest
                 .builder()
@@ -240,7 +312,7 @@ public class ThreeDsScenarios {
                 .merchantAccountId(merchantAccountId)
                 .build();
         RequestOperation<DeleteThreeDsScenarioRequest, DeleteThreeDsScenarioResponse> operation
-              = new DeleteThreeDsScenario.Sync(sdkConfiguration, _headers);
+              = new DeleteThreeDsScenario.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

@@ -10,8 +10,11 @@ import com.gr4vy.sdk.models.components.ShippingDetailsCreate;
 import com.gr4vy.sdk.models.operations.AddBuyerShippingDetailsRequest;
 import com.gr4vy.sdk.operations.AddBuyerShippingDetails;
 import com.gr4vy.sdk.utils.Headers;
+import com.gr4vy.sdk.utils.Options;
 import com.gr4vy.sdk.utils.Utils;
 import java.lang.String;
+import java.time.Duration;
+import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -20,6 +23,7 @@ public class AddBuyerShippingDetailsRequestBuilder {
     private String buyerId;
     private JsonNullable<String> merchantAccountId = JsonNullable.undefined();
     private ShippingDetailsCreate shippingDetailsCreate;
+    private Optional<Duration> timeout = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -50,6 +54,18 @@ public class AddBuyerShippingDetailsRequestBuilder {
         this.shippingDetailsCreate = shippingDetailsCreate;
         return this;
     }
+                
+    public AddBuyerShippingDetailsRequestBuilder timeout(Duration timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = Optional.of(timeout);
+        return this;
+    }
+
+    public AddBuyerShippingDetailsRequestBuilder timeout(Optional<Duration> timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = timeout;
+        return this;
+    }
 
 
     private AddBuyerShippingDetailsRequest buildRequest() {
@@ -62,9 +78,12 @@ public class AddBuyerShippingDetailsRequestBuilder {
     }
 
     public CompletableFuture<AddBuyerShippingDetailsResponse> call() {
-        
+        Optional<Options> options = Optional.of(Options.builder()
+            .timeout(timeout)
+            .build());
+
         AsyncRequestOperation<AddBuyerShippingDetailsRequest, AddBuyerShippingDetailsResponse> operation
-              = new AddBuyerShippingDetails.Async(sdkConfiguration, _headers);
+              = new AddBuyerShippingDetails.Async(sdkConfiguration, options, _headers);
         AddBuyerShippingDetailsRequest request = buildRequest();
 
         return operation.doRequest(request)
