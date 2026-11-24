@@ -9,6 +9,7 @@ import com.gr4vy.sdk.models.components.PaymentMethodUpdate;
 import com.gr4vy.sdk.models.operations.Body;
 import com.gr4vy.sdk.models.operations.CreatePaymentMethodRequest;
 import com.gr4vy.sdk.models.operations.DeletePaymentMethodRequest;
+import com.gr4vy.sdk.models.operations.DetokenizePaymentMethodRequest;
 import com.gr4vy.sdk.models.operations.GetPaymentMethodRequest;
 import com.gr4vy.sdk.models.operations.ListPaymentMethodsRequest;
 import com.gr4vy.sdk.models.operations.UpdatePaymentMethodRequest;
@@ -16,6 +17,8 @@ import com.gr4vy.sdk.models.operations.async.CreatePaymentMethodRequestBuilder;
 import com.gr4vy.sdk.models.operations.async.CreatePaymentMethodResponse;
 import com.gr4vy.sdk.models.operations.async.DeletePaymentMethodRequestBuilder;
 import com.gr4vy.sdk.models.operations.async.DeletePaymentMethodResponse;
+import com.gr4vy.sdk.models.operations.async.DetokenizePaymentMethodRequestBuilder;
+import com.gr4vy.sdk.models.operations.async.DetokenizePaymentMethodResponse;
 import com.gr4vy.sdk.models.operations.async.GetPaymentMethodRequestBuilder;
 import com.gr4vy.sdk.models.operations.async.GetPaymentMethodResponse;
 import com.gr4vy.sdk.models.operations.async.ListPaymentMethodsRequestBuilder;
@@ -24,6 +27,7 @@ import com.gr4vy.sdk.models.operations.async.UpdatePaymentMethodRequestBuilder;
 import com.gr4vy.sdk.models.operations.async.UpdatePaymentMethodResponse;
 import com.gr4vy.sdk.operations.CreatePaymentMethod;
 import com.gr4vy.sdk.operations.DeletePaymentMethod;
+import com.gr4vy.sdk.operations.DetokenizePaymentMethod;
 import com.gr4vy.sdk.operations.GetPaymentMethod;
 import com.gr4vy.sdk.operations.ListPaymentMethods;
 import com.gr4vy.sdk.operations.UpdatePaymentMethod;
@@ -364,6 +368,72 @@ public class AsyncPaymentMethods {
                 .build();
         AsyncRequestOperation<DeletePaymentMethodRequest, DeletePaymentMethodResponse> operation
               = new DeletePaymentMethod.Async(sdkConfiguration, options, _headers);
+        return operation.doRequest(request)
+            .thenCompose(operation::handleResponse);
+    }
+
+
+    /**
+     * Detokenize a payment method
+     * 
+     * <p>Retrieve the card number and expiration date of a stored card, encrypted to the merchant account's
+     * public key. Requests are rate limited.
+     * 
+     * @return The async call builder
+     */
+    public DetokenizePaymentMethodRequestBuilder detokenize() {
+        return new DetokenizePaymentMethodRequestBuilder(sdkConfiguration);
+    }
+
+    /**
+     * Detokenize a payment method
+     * 
+     * <p>Retrieve the card number and expiration date of a stored card, encrypted to the merchant account's
+     * public key. Requests are rate limited.
+     * 
+     * @param paymentMethodId The ID of the payment method
+     * @return {@code CompletableFuture<DetokenizePaymentMethodResponse>} - The async response
+     */
+    public CompletableFuture<DetokenizePaymentMethodResponse> detokenize(String paymentMethodId) {
+        return detokenize(paymentMethodId, JsonNullable.undefined(), Optional.empty());
+    }
+
+    /**
+     * Detokenize a payment method
+     * 
+     * <p>Retrieve the card number and expiration date of a stored card, encrypted to the merchant account's
+     * public key. Requests are rate limited.
+     * 
+     * @param paymentMethodId The ID of the payment method
+     * @param merchantAccountId 
+     * @return {@code CompletableFuture<DetokenizePaymentMethodResponse>} - The async response
+     */
+    public CompletableFuture<DetokenizePaymentMethodResponse> detokenize(String paymentMethodId, JsonNullable<String> merchantAccountId) {
+        return detokenize(paymentMethodId, merchantAccountId, Optional.empty());
+    }
+
+    /**
+     * Detokenize a payment method
+     * 
+     * <p>Retrieve the card number and expiration date of a stored card, encrypted to the merchant account's
+     * public key. Requests are rate limited.
+     * 
+     * @param paymentMethodId The ID of the payment method
+     * @param merchantAccountId 
+     * @param options additional options
+     * @return {@code CompletableFuture<DetokenizePaymentMethodResponse>} - The async response
+     */
+    public CompletableFuture<DetokenizePaymentMethodResponse> detokenize(
+            String paymentMethodId, JsonNullable<String> merchantAccountId,
+            Optional<Options> options) {
+        DetokenizePaymentMethodRequest request =
+            DetokenizePaymentMethodRequest
+                .builder()
+                .paymentMethodId(paymentMethodId)
+                .merchantAccountId(merchantAccountId)
+                .build();
+        AsyncRequestOperation<DetokenizePaymentMethodRequest, DetokenizePaymentMethodResponse> operation
+              = new DetokenizePaymentMethod.Async(sdkConfiguration, options, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }

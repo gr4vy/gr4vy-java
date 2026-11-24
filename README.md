@@ -59,7 +59,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'com.gr4vy:sdk:2.19.36'
+implementation 'com.gr4vy:sdk:2.19.37'
 ```
 
 Maven:
@@ -67,7 +67,7 @@ Maven:
 <dependency>
     <groupId>com.gr4vy</groupId>
     <artifactId>sdk</artifactId>
-    <version>2.19.36</version>
+    <version>2.19.37</version>
 </dependency>
 ```
 
@@ -451,6 +451,7 @@ Async support is available for:
 * [get](docs/sdks/paymentmethods/README.md#get) - Get payment method
 * [update](docs/sdks/paymentmethods/README.md#update) - Update payment method
 * [delete](docs/sdks/paymentmethods/README.md#delete) - Delete payment method
+* [detokenize](docs/sdks/paymentmethods/README.md#detokenize) - Detokenize a payment method
 
 #### [PaymentMethods.NetworkTokens](docs/sdks/networktokens/README.md)
 

@@ -9,6 +9,7 @@
 * [get](#get) - Get payment method
 * [update](#update) - Update payment method
 * [delete](#delete) - Delete payment method
+* [detokenize](#detokenize) - Detokenize a payment method
 
 ## list
 
@@ -324,6 +325,70 @@ public class Application {
 ### Response
 
 **[DeletePaymentMethodResponse](../../models/operations/DeletePaymentMethodResponse.md)**
+
+### Errors
+
+| Error Type                        | Status Code                       | Content Type                      |
+| --------------------------------- | --------------------------------- | --------------------------------- |
+| models/errors/Error400            | 400                               | application/json                  |
+| models/errors/Error401            | 401                               | application/json                  |
+| models/errors/Error403            | 403                               | application/json                  |
+| models/errors/Error404            | 404                               | application/json                  |
+| models/errors/Error405            | 405                               | application/json                  |
+| models/errors/Error409            | 409                               | application/json                  |
+| models/errors/HTTPValidationError | 422                               | application/json                  |
+| models/errors/Error425            | 425                               | application/json                  |
+| models/errors/Error429            | 429                               | application/json                  |
+| models/errors/Error500            | 500                               | application/json                  |
+| models/errors/Error502            | 502                               | application/json                  |
+| models/errors/Error504            | 504                               | application/json                  |
+| models/errors/APIException        | 4XX, 5XX                          | \*/\*                             |
+
+## detokenize
+
+Retrieve the card number and expiration date of a stored card, encrypted to the merchant account's public key. Requests are rate limited.
+
+### Example Usage
+
+<!-- UsageSnippet language="java" operationID="detokenize_payment_method" method="post" path="/payment-methods/{payment_method_id}/detokenization" -->
+```java
+package hello.world;
+
+import com.gr4vy.sdk.Gr4vy;
+import com.gr4vy.sdk.models.errors.*;
+import com.gr4vy.sdk.models.operations.DetokenizePaymentMethodResponse;
+import java.lang.Exception;
+
+public class Application {
+
+    public static void main(String[] args) throws Exception {
+
+        Gr4vy sdk = Gr4vy.builder()
+                .merchantAccountId("<id>")
+                .bearerAuth(System.getenv().getOrDefault("BEARER_AUTH", ""))
+            .build();
+
+        DetokenizePaymentMethodResponse res = sdk.paymentMethods().detokenize()
+                .paymentMethodId("ef9496d8-53a5-4aad-8ca2-00eb68334389")
+                .call();
+
+        if (res.detokenization().isPresent()) {
+            System.out.println(res.detokenization().get());
+        }
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                               | Type                                                    | Required                                                | Description                                             | Example                                                 |
+| ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- |
+| `paymentMethodId`                                       | *String*                                                | :heavy_check_mark:                                      | The ID of the payment method                            | ef9496d8-53a5-4aad-8ca2-00eb68334389                    |
+| `merchantAccountId`                                     | *JsonNullable\<String>*                                 | :heavy_minus_sign:                                      | The ID of the merchant account to use for this request. |                                                         |
+
+### Response
+
+**[DetokenizePaymentMethodResponse](../../models/operations/DetokenizePaymentMethodResponse.md)**
 
 ### Errors
 
