@@ -13,6 +13,9 @@ import com.gr4vy.sdk.models.operations.CreatePaymentMethodResponse;
 import com.gr4vy.sdk.models.operations.DeletePaymentMethodRequest;
 import com.gr4vy.sdk.models.operations.DeletePaymentMethodRequestBuilder;
 import com.gr4vy.sdk.models.operations.DeletePaymentMethodResponse;
+import com.gr4vy.sdk.models.operations.DetokenizePaymentMethodRequest;
+import com.gr4vy.sdk.models.operations.DetokenizePaymentMethodRequestBuilder;
+import com.gr4vy.sdk.models.operations.DetokenizePaymentMethodResponse;
 import com.gr4vy.sdk.models.operations.GetPaymentMethodRequest;
 import com.gr4vy.sdk.models.operations.GetPaymentMethodRequestBuilder;
 import com.gr4vy.sdk.models.operations.GetPaymentMethodResponse;
@@ -24,6 +27,7 @@ import com.gr4vy.sdk.models.operations.UpdatePaymentMethodRequestBuilder;
 import com.gr4vy.sdk.models.operations.UpdatePaymentMethodResponse;
 import com.gr4vy.sdk.operations.CreatePaymentMethod;
 import com.gr4vy.sdk.operations.DeletePaymentMethod;
+import com.gr4vy.sdk.operations.DetokenizePaymentMethod;
 import com.gr4vy.sdk.operations.GetPaymentMethod;
 import com.gr4vy.sdk.operations.ListPaymentMethods;
 import com.gr4vy.sdk.operations.UpdatePaymentMethod;
@@ -362,6 +366,73 @@ public class PaymentMethods {
                 .build();
         RequestOperation<DeletePaymentMethodRequest, DeletePaymentMethodResponse> operation
               = new DeletePaymentMethod.Sync(sdkConfiguration, options, _headers);
+        return operation.handleResponse(operation.doRequest(request));
+    }
+
+    /**
+     * Detokenize a payment method
+     * 
+     * <p>Retrieve the card number and expiration date of a stored card, encrypted to the merchant account's
+     * public key. Requests are rate limited.
+     * 
+     * @return The call builder
+     */
+    public DetokenizePaymentMethodRequestBuilder detokenize() {
+        return new DetokenizePaymentMethodRequestBuilder(sdkConfiguration);
+    }
+
+    /**
+     * Detokenize a payment method
+     * 
+     * <p>Retrieve the card number and expiration date of a stored card, encrypted to the merchant account's
+     * public key. Requests are rate limited.
+     * 
+     * @param paymentMethodId The ID of the payment method
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public DetokenizePaymentMethodResponse detokenize(String paymentMethodId) {
+        return detokenize(paymentMethodId, JsonNullable.undefined(), Optional.empty());
+    }
+
+    /**
+     * Detokenize a payment method
+     * 
+     * <p>Retrieve the card number and expiration date of a stored card, encrypted to the merchant account's
+     * public key. Requests are rate limited.
+     * 
+     * @param paymentMethodId The ID of the payment method
+     * @param merchantAccountId 
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public DetokenizePaymentMethodResponse detokenize(String paymentMethodId, JsonNullable<String> merchantAccountId) {
+        return detokenize(paymentMethodId, merchantAccountId, Optional.empty());
+    }
+
+    /**
+     * Detokenize a payment method
+     * 
+     * <p>Retrieve the card number and expiration date of a stored card, encrypted to the merchant account's
+     * public key. Requests are rate limited.
+     * 
+     * @param paymentMethodId The ID of the payment method
+     * @param merchantAccountId 
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public DetokenizePaymentMethodResponse detokenize(
+            String paymentMethodId, JsonNullable<String> merchantAccountId,
+            Optional<Options> options) {
+        DetokenizePaymentMethodRequest request =
+            DetokenizePaymentMethodRequest
+                .builder()
+                .paymentMethodId(paymentMethodId)
+                .merchantAccountId(merchantAccountId)
+                .build();
+        RequestOperation<DetokenizePaymentMethodRequest, DetokenizePaymentMethodResponse> operation
+              = new DetokenizePaymentMethod.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
