@@ -190,7 +190,7 @@ public class TransactionConnectionOptions {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("cybersource-card")
-    private JsonNullable<? extends CybersourceOptions> cybersourceCard;
+    private JsonNullable<? extends CybersourceCardOptions> cybersourceCard;
 
     /**
      * Custom options to be passed to the `cybersource-ideal` connector.
@@ -310,6 +310,13 @@ public class TransactionConnectionOptions {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("latitude-latitudeds")
     private JsonNullable<? extends LatitudeOptions> latitudeLatitudeds;
+
+    /**
+     * Custom options to be passed to the `mastercard-card` connector.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("mastercard-card")
+    private JsonNullable<? extends MastercardCardOptions> mastercardCard;
 
     /**
      * Custom options to be passed to the `mattilda-tapi` connector.
@@ -526,7 +533,7 @@ public class TransactionConnectionOptions {
             @JsonProperty("chaseorbital-bank") JsonNullable<? extends ChaseBankOptions> chaseorbitalBank,
             @JsonProperty("chaseorbital-card") JsonNullable<? extends ChaseOptions> chaseorbitalCard,
             @JsonProperty("cybersource-anti-fraud") JsonNullable<? extends CybersourceAntiFraudOptions> cybersourceAntiFraud,
-            @JsonProperty("cybersource-card") JsonNullable<? extends CybersourceOptions> cybersourceCard,
+            @JsonProperty("cybersource-card") JsonNullable<? extends CybersourceCardOptions> cybersourceCard,
             @JsonProperty("cybersource-ideal") JsonNullable<? extends CybersourceOptions> cybersourceIdeal,
             @JsonProperty("cybersource-kcp") JsonNullable<? extends CybersourceOptions> cybersourceKcp,
             @JsonProperty("dlocal-card") JsonNullable<? extends DlocalCardOptions> dlocalCard,
@@ -544,6 +551,7 @@ public class TransactionConnectionOptions {
             @JsonProperty("gocardless-gocardless") JsonNullable<? extends GoCardlessOptions> gocardlessGocardless,
             @JsonProperty("latitude-latitude") JsonNullable<? extends LatitudeOptions> latitudeLatitude,
             @JsonProperty("latitude-latitudeds") JsonNullable<? extends LatitudeOptions> latitudeLatitudeds,
+            @JsonProperty("mastercard-card") JsonNullable<? extends MastercardCardOptions> mastercardCard,
             @JsonProperty("mattilda-tapi") JsonNullable<? extends MattildaTapiOptions> mattildaTapi,
             @JsonProperty("mattilda-tapifintechs") JsonNullable<? extends MattildaTapiOptions> mattildaTapifintechs,
             @JsonProperty("monato-spei") JsonNullable<? extends MonatoSpeiOptions> monatoSpei,
@@ -613,6 +621,7 @@ public class TransactionConnectionOptions {
         Utils.checkNotNull(gocardlessGocardless, "gocardlessGocardless");
         Utils.checkNotNull(latitudeLatitude, "latitudeLatitude");
         Utils.checkNotNull(latitudeLatitudeds, "latitudeLatitudeds");
+        Utils.checkNotNull(mastercardCard, "mastercardCard");
         Utils.checkNotNull(mattildaTapi, "mattildaTapi");
         Utils.checkNotNull(mattildaTapifintechs, "mattildaTapifintechs");
         Utils.checkNotNull(monatoSpei, "monatoSpei");
@@ -682,6 +691,7 @@ public class TransactionConnectionOptions {
         this.gocardlessGocardless = gocardlessGocardless;
         this.latitudeLatitude = latitudeLatitude;
         this.latitudeLatitudeds = latitudeLatitudeds;
+        this.mastercardCard = mastercardCard;
         this.mattildaTapi = mattildaTapi;
         this.mattildaTapifintechs = mattildaTapifintechs;
         this.monatoSpei = monatoSpei;
@@ -734,7 +744,8 @@ public class TransactionConnectionOptions {
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined());
     }
 
     /**
@@ -959,8 +970,8 @@ public class TransactionConnectionOptions {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<CybersourceOptions> cybersourceCard() {
-        return (JsonNullable<CybersourceOptions>) cybersourceCard;
+    public JsonNullable<CybersourceCardOptions> cybersourceCard() {
+        return (JsonNullable<CybersourceCardOptions>) cybersourceCard;
     }
 
     /**
@@ -1114,6 +1125,15 @@ public class TransactionConnectionOptions {
     @JsonIgnore
     public JsonNullable<LatitudeOptions> latitudeLatitudeds() {
         return (JsonNullable<LatitudeOptions>) latitudeLatitudeds;
+    }
+
+    /**
+     * Custom options to be passed to the `mastercard-card` connector.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public JsonNullable<MastercardCardOptions> mastercardCard() {
+        return (JsonNullable<MastercardCardOptions>) mastercardCard;
     }
 
     /**
@@ -1801,7 +1821,7 @@ public class TransactionConnectionOptions {
     /**
      * Custom options to be passed to the `cybersource-card` connector.
      */
-    public TransactionConnectionOptions withCybersourceCard(CybersourceOptions cybersourceCard) {
+    public TransactionConnectionOptions withCybersourceCard(CybersourceCardOptions cybersourceCard) {
         Utils.checkNotNull(cybersourceCard, "cybersourceCard");
         this.cybersourceCard = JsonNullable.of(cybersourceCard);
         return this;
@@ -1810,7 +1830,7 @@ public class TransactionConnectionOptions {
     /**
      * Custom options to be passed to the `cybersource-card` connector.
      */
-    public TransactionConnectionOptions withCybersourceCard(JsonNullable<? extends CybersourceOptions> cybersourceCard) {
+    public TransactionConnectionOptions withCybersourceCard(JsonNullable<? extends CybersourceCardOptions> cybersourceCard) {
         Utils.checkNotNull(cybersourceCard, "cybersourceCard");
         this.cybersourceCard = cybersourceCard;
         return this;
@@ -2119,6 +2139,24 @@ public class TransactionConnectionOptions {
     public TransactionConnectionOptions withLatitudeLatitudeds(JsonNullable<? extends LatitudeOptions> latitudeLatitudeds) {
         Utils.checkNotNull(latitudeLatitudeds, "latitudeLatitudeds");
         this.latitudeLatitudeds = latitudeLatitudeds;
+        return this;
+    }
+
+    /**
+     * Custom options to be passed to the `mastercard-card` connector.
+     */
+    public TransactionConnectionOptions withMastercardCard(MastercardCardOptions mastercardCard) {
+        Utils.checkNotNull(mastercardCard, "mastercardCard");
+        this.mastercardCard = JsonNullable.of(mastercardCard);
+        return this;
+    }
+
+    /**
+     * Custom options to be passed to the `mastercard-card` connector.
+     */
+    public TransactionConnectionOptions withMastercardCard(JsonNullable<? extends MastercardCardOptions> mastercardCard) {
+        Utils.checkNotNull(mastercardCard, "mastercardCard");
+        this.mastercardCard = mastercardCard;
         return this;
     }
 
@@ -2660,6 +2698,7 @@ public class TransactionConnectionOptions {
             Utils.enhancedDeepEquals(this.gocardlessGocardless, other.gocardlessGocardless) &&
             Utils.enhancedDeepEquals(this.latitudeLatitude, other.latitudeLatitude) &&
             Utils.enhancedDeepEquals(this.latitudeLatitudeds, other.latitudeLatitudeds) &&
+            Utils.enhancedDeepEquals(this.mastercardCard, other.mastercardCard) &&
             Utils.enhancedDeepEquals(this.mattildaTapi, other.mattildaTapi) &&
             Utils.enhancedDeepEquals(this.mattildaTapifintechs, other.mattildaTapifintechs) &&
             Utils.enhancedDeepEquals(this.monatoSpei, other.monatoSpei) &&
@@ -2706,15 +2745,16 @@ public class TransactionConnectionOptions {
             klarnaKlarna, fiservCard, forterAntiFraud,
             gemGem, gemGemds, givingblockGivingblock,
             gocardlessGocardless, latitudeLatitude, latitudeLatitudeds,
-            mattildaTapi, mattildaTapifintechs, monatoSpei,
-            mockCard, mockdsCard, nuveiCard,
-            nuveiIdeal, nuveiKlarna, nuveiPse,
-            oxxoOxxo, paypalPaypal, paypalPaypaldirectorder,
-            paypalPaypalpaylater, powertranzCard, repayBank,
-            riskifiedAntiFraud, ryftCard, stripeAffirm,
-            stripeCard, stripeKlarna, stripeOnelink,
-            stripeStripe, travelhubCard, trustlyTrustly,
-            worldpayvapCard, wpayEverydaypay, wpayPayto);
+            mastercardCard, mattildaTapi, mattildaTapifintechs,
+            monatoSpei, mockCard, mockdsCard,
+            nuveiCard, nuveiIdeal, nuveiKlarna,
+            nuveiPse, oxxoOxxo, paypalPaypal,
+            paypalPaypaldirectorder, paypalPaypalpaylater, powertranzCard,
+            repayBank, riskifiedAntiFraud, ryftCard,
+            stripeAffirm, stripeCard, stripeKlarna,
+            stripeOnelink, stripeStripe, travelhubCard,
+            trustlyTrustly, worldpayvapCard, wpayEverydaypay,
+            wpayPayto);
     }
     
     @Override
@@ -2762,6 +2802,7 @@ public class TransactionConnectionOptions {
                 "gocardlessGocardless", gocardlessGocardless,
                 "latitudeLatitude", latitudeLatitude,
                 "latitudeLatitudeds", latitudeLatitudeds,
+                "mastercardCard", mastercardCard,
                 "mattildaTapi", mattildaTapi,
                 "mattildaTapifintechs", mattildaTapifintechs,
                 "monatoSpei", monatoSpei,
@@ -2842,7 +2883,7 @@ public class TransactionConnectionOptions {
 
         private JsonNullable<? extends CybersourceAntiFraudOptions> cybersourceAntiFraud = JsonNullable.undefined();
 
-        private JsonNullable<? extends CybersourceOptions> cybersourceCard = JsonNullable.undefined();
+        private JsonNullable<? extends CybersourceCardOptions> cybersourceCard = JsonNullable.undefined();
 
         private JsonNullable<? extends CybersourceOptions> cybersourceIdeal = JsonNullable.undefined();
 
@@ -2877,6 +2918,8 @@ public class TransactionConnectionOptions {
         private JsonNullable<? extends LatitudeOptions> latitudeLatitude = JsonNullable.undefined();
 
         private JsonNullable<? extends LatitudeOptions> latitudeLatitudeds = JsonNullable.undefined();
+
+        private JsonNullable<? extends MastercardCardOptions> mastercardCard = JsonNullable.undefined();
 
         private JsonNullable<? extends MattildaTapiOptions> mattildaTapi = JsonNullable.undefined();
 
@@ -3398,7 +3441,7 @@ public class TransactionConnectionOptions {
         /**
          * Custom options to be passed to the `cybersource-card` connector.
          */
-        public Builder cybersourceCard(CybersourceOptions cybersourceCard) {
+        public Builder cybersourceCard(CybersourceCardOptions cybersourceCard) {
             Utils.checkNotNull(cybersourceCard, "cybersourceCard");
             this.cybersourceCard = JsonNullable.of(cybersourceCard);
             return this;
@@ -3407,7 +3450,7 @@ public class TransactionConnectionOptions {
         /**
          * Custom options to be passed to the `cybersource-card` connector.
          */
-        public Builder cybersourceCard(JsonNullable<? extends CybersourceOptions> cybersourceCard) {
+        public Builder cybersourceCard(JsonNullable<? extends CybersourceCardOptions> cybersourceCard) {
             Utils.checkNotNull(cybersourceCard, "cybersourceCard");
             this.cybersourceCard = cybersourceCard;
             return this;
@@ -3733,6 +3776,25 @@ public class TransactionConnectionOptions {
         public Builder latitudeLatitudeds(JsonNullable<? extends LatitudeOptions> latitudeLatitudeds) {
             Utils.checkNotNull(latitudeLatitudeds, "latitudeLatitudeds");
             this.latitudeLatitudeds = latitudeLatitudeds;
+            return this;
+        }
+
+
+        /**
+         * Custom options to be passed to the `mastercard-card` connector.
+         */
+        public Builder mastercardCard(MastercardCardOptions mastercardCard) {
+            Utils.checkNotNull(mastercardCard, "mastercardCard");
+            this.mastercardCard = JsonNullable.of(mastercardCard);
+            return this;
+        }
+
+        /**
+         * Custom options to be passed to the `mastercard-card` connector.
+         */
+        public Builder mastercardCard(JsonNullable<? extends MastercardCardOptions> mastercardCard) {
+            Utils.checkNotNull(mastercardCard, "mastercardCard");
+            this.mastercardCard = mastercardCard;
             return this;
         }
 
@@ -4266,15 +4328,16 @@ public class TransactionConnectionOptions {
                 klarnaKlarna, fiservCard, forterAntiFraud,
                 gemGem, gemGemds, givingblockGivingblock,
                 gocardlessGocardless, latitudeLatitude, latitudeLatitudeds,
-                mattildaTapi, mattildaTapifintechs, monatoSpei,
-                mockCard, mockdsCard, nuveiCard,
-                nuveiIdeal, nuveiKlarna, nuveiPse,
-                oxxoOxxo, paypalPaypal, paypalPaypaldirectorder,
-                paypalPaypalpaylater, powertranzCard, repayBank,
-                riskifiedAntiFraud, ryftCard, stripeAffirm,
-                stripeCard, stripeKlarna, stripeOnelink,
-                stripeStripe, travelhubCard, trustlyTrustly,
-                worldpayvapCard, wpayEverydaypay, wpayPayto);
+                mastercardCard, mattildaTapi, mattildaTapifintechs,
+                monatoSpei, mockCard, mockdsCard,
+                nuveiCard, nuveiIdeal, nuveiKlarna,
+                nuveiPse, oxxoOxxo, paypalPaypal,
+                paypalPaypaldirectorder, paypalPaypalpaylater, powertranzCard,
+                repayBank, riskifiedAntiFraud, ryftCard,
+                stripeAffirm, stripeCard, stripeKlarna,
+                stripeOnelink, stripeStripe, travelhubCard,
+                trustlyTrustly, worldpayvapCard, wpayEverydaypay,
+                wpayPayto);
         }
 
     }
