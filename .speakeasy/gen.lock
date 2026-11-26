@@ -1,19 +1,19 @@
 lockVersion: 2.0.0
 id: 5bbaa3a9-baa0-471b-ba6a-13fd88e8c119
 management:
-  docChecksum: 3a3671f50796cf717c7dbb3d0d26ba4e
+  docChecksum: 52e94311aeb44d1f3fa8946c6d639539
   docVersion: 1.0.0
   speakeasyVersion: 1.812.0
   generationVersion: 2.968.1
-  releaseVersion: 2.19.38
-  configChecksum: d21c1535c590bb9728f5246553b2a60f
+  releaseVersion: 2.19.39
+  configChecksum: 0036c6eacc0478bb4dd63443315bd8ca
   repoURL: https://github.com/gr4vy/gr4vy-java.git
   installationURL: https://github.com/gr4vy/gr4vy-java
   published: true
 persistentEdits:
-  generation_id: 52d3c268-aba3-4ac8-a47f-f5b3fb9ec8d1
-  pristine_commit_hash: a3225365d3092259c0e796e2768c2493c704f71d
-  pristine_tree_hash: f6f2d64c2d887d7d63469c34c4eaa54e86bca445
+  generation_id: 2f7e3153-8ef8-43b5-939d-33d2af4762a8
+  pristine_commit_hash: 78727587fa4ac86202ca02fbfad90522250ada45
+  pristine_tree_hash: 665ef6da6afa01f500a126767b7927614d830861
 features:
   java:
     additionalDependencies: 0.1.0
@@ -209,6 +209,10 @@ trackedFiles:
     id: 577a597e3ed0
     last_write_checksum: sha1:24a61e6e5fda3ba1db550afb2fff70c8b8dec390
     pristine_git_object: 5694a1bd3c8ee8599202bd12a42457e7682c53dd
+  docs/models/components/AuthorizationMethod.md:
+    id: 85abce959179
+    last_write_checksum: sha1:7b569923f59fbc765fb5721c34237613d3543a8a
+    pristine_git_object: 5b67cd4e5a7d68d8ce2a2bf1879da7924fcef1e7
   docs/models/components/BACSBankPaymentMethodCreate.md:
     id: 572409d95739
     last_write_checksum: sha1:e67464fad4d0114b3780dbf2e907e92123bf7689
@@ -321,6 +325,10 @@ trackedFiles:
     id: 318d849b3d83
     last_write_checksum: sha1:40436a04ed7382b52cf92f6c923a8ba895f1c8ad
     pristine_git_object: dd266c9ef133d66350977e82ea7a44caa2340358
+  docs/models/components/ChaseBankOptions.md:
+    id: 99481b20ea69
+    last_write_checksum: sha1:4a9695dafbe1b17329e90b3c285bbcbd9a1b3a42
+    pristine_git_object: 544fa6e37db5e3bf4b3e8a01a6db7d0c54d84295
   docs/models/components/ChaseOptions.md:
     id: e2c1a60d6e5e
     last_write_checksum: sha1:366762b72eddeb6415442365255be2f7e924f808
@@ -1583,8 +1591,8 @@ trackedFiles:
     pristine_git_object: 428794d12ebb53b788c3a52a007b9fff3b2c4241
   docs/models/components/TransactionConnectionOptions.md:
     id: 2a90ee52a662
-    last_write_checksum: sha1:ff7bedcb723c09b0dfed65a7693ccfd14b76de50
-    pristine_git_object: c0e317e66f947ccac24540834b0f47476d804419
+    last_write_checksum: sha1:e41de79886320ffb3e7a0e23074e1f5e6e33a53a
+    pristine_git_object: e2743293eff1f27f09e3d03aacf54965f77c5f54
   docs/models/components/TransactionCreate.md:
     id: 0af6b811ca1f
     last_write_checksum: sha1:93a87b53c5bb1bc665b462cbba200fdcb98d4035
@@ -2939,8 +2947,8 @@ trackedFiles:
     pristine_git_object: 15c4e4642f204ccb312d8814155b69e153b4e19b
   gradle.properties:
     id: 2afbb999f001
-    last_write_checksum: sha1:3be27baa49d0573b65277956a8efdef70ae0ca0a
-    pristine_git_object: 5214b730d07a92555bb2945f8d2ebe53f42de689
+    last_write_checksum: sha1:73baf209fbb4b90ca9d7a5e5ebe1206519ab2a14
+    pristine_git_object: c00bcd35871f75f1d96ebf89db70c6c9605d51ba
   gradle/wrapper/gradle-wrapper.jar:
     id: ec27dae6e852
     last_write_checksum: sha1:f725fb1467084142d74fd7cd8eab691ab3442611
@@ -3283,8 +3291,8 @@ trackedFiles:
     pristine_git_object: cc9f094dc5cdcd37bddf6c5a0bac29d3fd13b7d7
   src/main/java/com/gr4vy/sdk/SDKConfiguration.java:
     id: 73a7edeaca45
-    last_write_checksum: sha1:aa8df8250bb38832c9ed19dd4b01a35fd2d62473
-    pristine_git_object: a53a1879396adcd952486bf78e2895ed1f38684b
+    last_write_checksum: sha1:2abfae21fbab6845948ce16b02d0e75eabfb8ab3
+    pristine_git_object: e7e3f9afc9b723b83922d082d0975cd30a061b65
   src/main/java/com/gr4vy/sdk/SecuritySource.java:
     id: 1b6add6b9b50
     last_write_checksum: sha1:2f365cc823c6243188e83f4df618c9737fcee8bd
@@ -3477,6 +3485,10 @@ trackedFiles:
     id: 77bd10d18639
     last_write_checksum: sha1:1cda69509947879beccf498234855aec41493473
     pristine_git_object: 8c7daa3632859a28642d9cf44c40a2a66e54b212
+  src/main/java/com/gr4vy/sdk/models/components/AuthorizationMethod.java:
+    id: 588a041c4d07
+    last_write_checksum: sha1:c7e8daa7854cf2fb057a694b31130fc5cf87685f
+    pristine_git_object: c34f30c341a9ccd2496f9ee60c163b6326cc201e
   src/main/java/com/gr4vy/sdk/models/components/BACSBankPaymentMethodCreate.java:
     id: b460ab2abaf9
     last_write_checksum: sha1:2ba1610902507d7f8d2f9c8253bac4493316c557
@@ -3589,6 +3601,10 @@ trackedFiles:
     id: e3229b7647d1
     last_write_checksum: sha1:36dd78dbd7d05437f34c6d8e74f3e61051f9f737
     pristine_git_object: f498f0db9d1b949fdaf8015af278761cd867d2a4
+  src/main/java/com/gr4vy/sdk/models/components/ChaseBankOptions.java:
+    id: d29f3ab096c2
+    last_write_checksum: sha1:d14f55104dbd66ae1b25f328a979c2bf4207ec01
+    pristine_git_object: 1b7471eacaac9d189b039cd37df06b18f125dc8f
   src/main/java/com/gr4vy/sdk/models/components/ChaseOptions.java:
     id: 7fc9aaf0cdc4
     last_write_checksum: sha1:b5d2b6d1f4ce51f0147bbe1f6af6247d6f270c63
@@ -4855,8 +4871,8 @@ trackedFiles:
     pristine_git_object: 62046c9977b03ec5c305b415b5822e8b687e45af
   src/main/java/com/gr4vy/sdk/models/components/TransactionConnectionOptions.java:
     id: 31501e4506f3
-    last_write_checksum: sha1:035f8d8e0991f588ff57f50db7cfd7e440b7b298
-    pristine_git_object: 62108e3ad145cbc0ea1a091e567da3d1eb11dcb7
+    last_write_checksum: sha1:8ac579b8502177de98ea856ca4079fae5d748889
+    pristine_git_object: a0fc42f52dbaf08c25397ebab016ec8f23297738
   src/main/java/com/gr4vy/sdk/models/components/TransactionCreate.java:
     id: 85da9dd45d8a
     last_write_checksum: sha1:650011f4a91b527f135aa6d5405f38036817fb45
@@ -12643,6 +12659,7 @@ examples:
           application/json: {"type": "error", "code": "gateway_timeout", "status": 504, "message": "Request could not be processed"}
 examplesVersion: 1.0.2
 generatedTests: {}
+releaseNotes: "## Java SDK Changes:\n* `gr4vy.transactions.create()`: \n  *  `request.transactionCreate.connectionOptions.chaseorbitalBank` **Added**\n* `gr4vy.transactions.update()`: \n  *  `request.transactionUpdate.connectionOptions.chaseorbitalBank` **Added**\n* `gr4vy.paymentLinks.create()`: \n  *  `request.paymentLinkCreate.connectionOptions.chaseorbitalBank` **Added**\n"
 generatedFiles:
   - .gitattributes
   - USAGE.md
