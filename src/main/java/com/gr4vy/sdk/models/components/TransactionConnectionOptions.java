@@ -165,6 +165,13 @@ public class TransactionConnectionOptions {
     private JsonNullable<? extends BraintreeOptions> braintreeCard;
 
     /**
+     * Custom options to be passed to the `chaseorbital-bank` connector.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("chaseorbital-bank")
+    private JsonNullable<? extends ChaseBankOptions> chaseorbitalBank;
+
+    /**
      * Custom options to be passed to the `chaseorbital-card` connector.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -516,6 +523,7 @@ public class TransactionConnectionOptions {
             @JsonProperty("adyen-vipps") JsonNullable<? extends AdyenOptions> adyenVipps,
             @JsonProperty("affirm-affirm") JsonNullable<? extends AffirmOptions> affirmAffirm,
             @JsonProperty("braintree-card") JsonNullable<? extends BraintreeOptions> braintreeCard,
+            @JsonProperty("chaseorbital-bank") JsonNullable<? extends ChaseBankOptions> chaseorbitalBank,
             @JsonProperty("chaseorbital-card") JsonNullable<? extends ChaseOptions> chaseorbitalCard,
             @JsonProperty("cybersource-anti-fraud") JsonNullable<? extends CybersourceAntiFraudOptions> cybersourceAntiFraud,
             @JsonProperty("cybersource-card") JsonNullable<? extends CybersourceOptions> cybersourceCard,
@@ -584,6 +592,7 @@ public class TransactionConnectionOptions {
         Utils.checkNotNull(adyenVipps, "adyenVipps");
         Utils.checkNotNull(affirmAffirm, "affirmAffirm");
         Utils.checkNotNull(braintreeCard, "braintreeCard");
+        Utils.checkNotNull(chaseorbitalBank, "chaseorbitalBank");
         Utils.checkNotNull(chaseorbitalCard, "chaseorbitalCard");
         Utils.checkNotNull(cybersourceAntiFraud, "cybersourceAntiFraud");
         Utils.checkNotNull(cybersourceCard, "cybersourceCard");
@@ -652,6 +661,7 @@ public class TransactionConnectionOptions {
         this.adyenVipps = adyenVipps;
         this.affirmAffirm = affirmAffirm;
         this.braintreeCard = braintreeCard;
+        this.chaseorbitalBank = chaseorbitalBank;
         this.chaseorbitalCard = chaseorbitalCard;
         this.cybersourceAntiFraud = cybersourceAntiFraud;
         this.cybersourceCard = cybersourceCard;
@@ -724,7 +734,7 @@ public class TransactionConnectionOptions {
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined());
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
     }
 
     /**
@@ -915,6 +925,15 @@ public class TransactionConnectionOptions {
     @JsonIgnore
     public JsonNullable<BraintreeOptions> braintreeCard() {
         return (JsonNullable<BraintreeOptions>) braintreeCard;
+    }
+
+    /**
+     * Custom options to be passed to the `chaseorbital-bank` connector.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public JsonNullable<ChaseBankOptions> chaseorbitalBank() {
+        return (JsonNullable<ChaseBankOptions>) chaseorbitalBank;
     }
 
     /**
@@ -1722,6 +1741,24 @@ public class TransactionConnectionOptions {
     public TransactionConnectionOptions withBraintreeCard(JsonNullable<? extends BraintreeOptions> braintreeCard) {
         Utils.checkNotNull(braintreeCard, "braintreeCard");
         this.braintreeCard = braintreeCard;
+        return this;
+    }
+
+    /**
+     * Custom options to be passed to the `chaseorbital-bank` connector.
+     */
+    public TransactionConnectionOptions withChaseorbitalBank(ChaseBankOptions chaseorbitalBank) {
+        Utils.checkNotNull(chaseorbitalBank, "chaseorbitalBank");
+        this.chaseorbitalBank = JsonNullable.of(chaseorbitalBank);
+        return this;
+    }
+
+    /**
+     * Custom options to be passed to the `chaseorbital-bank` connector.
+     */
+    public TransactionConnectionOptions withChaseorbitalBank(JsonNullable<? extends ChaseBankOptions> chaseorbitalBank) {
+        Utils.checkNotNull(chaseorbitalBank, "chaseorbitalBank");
+        this.chaseorbitalBank = chaseorbitalBank;
         return this;
     }
 
@@ -2602,6 +2639,7 @@ public class TransactionConnectionOptions {
             Utils.enhancedDeepEquals(this.adyenVipps, other.adyenVipps) &&
             Utils.enhancedDeepEquals(this.affirmAffirm, other.affirmAffirm) &&
             Utils.enhancedDeepEquals(this.braintreeCard, other.braintreeCard) &&
+            Utils.enhancedDeepEquals(this.chaseorbitalBank, other.chaseorbitalBank) &&
             Utils.enhancedDeepEquals(this.chaseorbitalCard, other.chaseorbitalCard) &&
             Utils.enhancedDeepEquals(this.cybersourceAntiFraud, other.cybersourceAntiFraud) &&
             Utils.enhancedDeepEquals(this.cybersourceCard, other.cybersourceCard) &&
@@ -2661,22 +2699,22 @@ public class TransactionConnectionOptions {
             adyenPaypay, adyenPix, adyenSepa,
             adyenSeveneleven, adyenSofort, adyenSwish,
             adyenVipps, affirmAffirm, braintreeCard,
-            chaseorbitalCard, cybersourceAntiFraud, cybersourceCard,
-            cybersourceIdeal, cybersourceKcp, dlocalCard,
-            dlocalNequi, dlocalUpi, dlocalPix,
-            dlocalGcash, ecommpayCard, klarnaKlarna,
-            fiservCard, forterAntiFraud, gemGem,
-            gemGemds, givingblockGivingblock, gocardlessGocardless,
-            latitudeLatitude, latitudeLatitudeds, mattildaTapi,
-            mattildaTapifintechs, monatoSpei, mockCard,
-            mockdsCard, nuveiCard, nuveiIdeal,
-            nuveiKlarna, nuveiPse, oxxoOxxo,
-            paypalPaypal, paypalPaypaldirectorder, paypalPaypalpaylater,
-            powertranzCard, repayBank, riskifiedAntiFraud,
-            ryftCard, stripeAffirm, stripeCard,
-            stripeKlarna, stripeOnelink, stripeStripe,
-            travelhubCard, trustlyTrustly, worldpayvapCard,
-            wpayEverydaypay, wpayPayto);
+            chaseorbitalBank, chaseorbitalCard, cybersourceAntiFraud,
+            cybersourceCard, cybersourceIdeal, cybersourceKcp,
+            dlocalCard, dlocalNequi, dlocalUpi,
+            dlocalPix, dlocalGcash, ecommpayCard,
+            klarnaKlarna, fiservCard, forterAntiFraud,
+            gemGem, gemGemds, givingblockGivingblock,
+            gocardlessGocardless, latitudeLatitude, latitudeLatitudeds,
+            mattildaTapi, mattildaTapifintechs, monatoSpei,
+            mockCard, mockdsCard, nuveiCard,
+            nuveiIdeal, nuveiKlarna, nuveiPse,
+            oxxoOxxo, paypalPaypal, paypalPaypaldirectorder,
+            paypalPaypalpaylater, powertranzCard, repayBank,
+            riskifiedAntiFraud, ryftCard, stripeAffirm,
+            stripeCard, stripeKlarna, stripeOnelink,
+            stripeStripe, travelhubCard, trustlyTrustly,
+            worldpayvapCard, wpayEverydaypay, wpayPayto);
     }
     
     @Override
@@ -2703,6 +2741,7 @@ public class TransactionConnectionOptions {
                 "adyenVipps", adyenVipps,
                 "affirmAffirm", affirmAffirm,
                 "braintreeCard", braintreeCard,
+                "chaseorbitalBank", chaseorbitalBank,
                 "chaseorbitalCard", chaseorbitalCard,
                 "cybersourceAntiFraud", cybersourceAntiFraud,
                 "cybersourceCard", cybersourceCard,
@@ -2796,6 +2835,8 @@ public class TransactionConnectionOptions {
         private JsonNullable<? extends AffirmOptions> affirmAffirm = JsonNullable.undefined();
 
         private JsonNullable<? extends BraintreeOptions> braintreeCard = JsonNullable.undefined();
+
+        private JsonNullable<? extends ChaseBankOptions> chaseorbitalBank = JsonNullable.undefined();
 
         private JsonNullable<? extends ChaseOptions> chaseorbitalCard = JsonNullable.undefined();
 
@@ -3293,6 +3334,25 @@ public class TransactionConnectionOptions {
         public Builder braintreeCard(JsonNullable<? extends BraintreeOptions> braintreeCard) {
             Utils.checkNotNull(braintreeCard, "braintreeCard");
             this.braintreeCard = braintreeCard;
+            return this;
+        }
+
+
+        /**
+         * Custom options to be passed to the `chaseorbital-bank` connector.
+         */
+        public Builder chaseorbitalBank(ChaseBankOptions chaseorbitalBank) {
+            Utils.checkNotNull(chaseorbitalBank, "chaseorbitalBank");
+            this.chaseorbitalBank = JsonNullable.of(chaseorbitalBank);
+            return this;
+        }
+
+        /**
+         * Custom options to be passed to the `chaseorbital-bank` connector.
+         */
+        public Builder chaseorbitalBank(JsonNullable<? extends ChaseBankOptions> chaseorbitalBank) {
+            Utils.checkNotNull(chaseorbitalBank, "chaseorbitalBank");
+            this.chaseorbitalBank = chaseorbitalBank;
             return this;
         }
 
@@ -4199,22 +4259,22 @@ public class TransactionConnectionOptions {
                 adyenPaypay, adyenPix, adyenSepa,
                 adyenSeveneleven, adyenSofort, adyenSwish,
                 adyenVipps, affirmAffirm, braintreeCard,
-                chaseorbitalCard, cybersourceAntiFraud, cybersourceCard,
-                cybersourceIdeal, cybersourceKcp, dlocalCard,
-                dlocalNequi, dlocalUpi, dlocalPix,
-                dlocalGcash, ecommpayCard, klarnaKlarna,
-                fiservCard, forterAntiFraud, gemGem,
-                gemGemds, givingblockGivingblock, gocardlessGocardless,
-                latitudeLatitude, latitudeLatitudeds, mattildaTapi,
-                mattildaTapifintechs, monatoSpei, mockCard,
-                mockdsCard, nuveiCard, nuveiIdeal,
-                nuveiKlarna, nuveiPse, oxxoOxxo,
-                paypalPaypal, paypalPaypaldirectorder, paypalPaypalpaylater,
-                powertranzCard, repayBank, riskifiedAntiFraud,
-                ryftCard, stripeAffirm, stripeCard,
-                stripeKlarna, stripeOnelink, stripeStripe,
-                travelhubCard, trustlyTrustly, worldpayvapCard,
-                wpayEverydaypay, wpayPayto);
+                chaseorbitalBank, chaseorbitalCard, cybersourceAntiFraud,
+                cybersourceCard, cybersourceIdeal, cybersourceKcp,
+                dlocalCard, dlocalNequi, dlocalUpi,
+                dlocalPix, dlocalGcash, ecommpayCard,
+                klarnaKlarna, fiservCard, forterAntiFraud,
+                gemGem, gemGemds, givingblockGivingblock,
+                gocardlessGocardless, latitudeLatitude, latitudeLatitudeds,
+                mattildaTapi, mattildaTapifintechs, monatoSpei,
+                mockCard, mockdsCard, nuveiCard,
+                nuveiIdeal, nuveiKlarna, nuveiPse,
+                oxxoOxxo, paypalPaypal, paypalPaypaldirectorder,
+                paypalPaypalpaylater, powertranzCard, repayBank,
+                riskifiedAntiFraud, ryftCard, stripeAffirm,
+                stripeCard, stripeKlarna, stripeOnelink,
+                stripeStripe, travelhubCard, trustlyTrustly,
+                worldpayvapCard, wpayEverydaypay, wpayPayto);
         }
 
     }
