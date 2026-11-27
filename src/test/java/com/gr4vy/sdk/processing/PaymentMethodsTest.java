@@ -134,4 +134,15 @@ class PaymentMethodsTest {
                         .paymentServiceTokenId(Fixtures.MISSING_ID)
                         .call());
     }
+
+    @Test
+    @EnabledIfEnvironmentVariable(named = "E2E", matches = "true")
+    void detokenize() throws Exception {
+        Gr4vy client = Harness.client();
+        String id = storeCard(client);
+
+        // Rate limited, and needs a merchant public key the per-run merchant may lack, so a 4xx counts.
+        Reaches.reaches("payment method detokenize", () ->
+                client.paymentMethods().detokenize().paymentMethodId(id).call());
+    }
 }
